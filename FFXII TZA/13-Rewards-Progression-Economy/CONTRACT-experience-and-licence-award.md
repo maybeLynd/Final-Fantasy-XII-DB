@@ -24,7 +24,7 @@ audit:
 production_review:
   section: SECTION-03
   by: external-continuation
-  status: "PRODUCTION COMPLETE; formal peer acceptance pending"
+  status: "PRODUCTION COMPLETE; independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1)"
   evidence: _experiments/evidence/continuation-section03-reward-bindings/REVIEW.md
   audit_scope: "Existing audit/annotation metadata is historical, not acceptance of these edits."
 ---
@@ -296,7 +296,7 @@ A later implementation should preserve the null-recipient distinction, condition
 mode-dependent EXP division, LP asymmetry, actual baseline byte, signed arithmetic, mask order,
 row-pointer construction, and rejection/zero ambiguity. Do not infer actual coefficients or
 lifetime from pointer samples. L3 implementation/parity is later; this package closes bounded
-production corrections and leaves formal peer acceptance pending.
+production corrections and leaves ~~formal peer acceptance pending~~ formal peer acceptance to the auditor. *(OPUS, 2026-10-01: independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, [review](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), GR-16; N1: `run_review.py` reproduces against the pinned pre-image of the reward-binding checker, and the sealed checker agrees with the preserved observation).)*
 
 
 ## Historical cross-system notes

@@ -45,3 +45,44 @@ bullets are struck. No register row changes; `OPEN-QUESTIONS.md` is not touched.
 
 Peers' uncommitted pass-22 bullet lists on five of the pages (gambit, handbook, license board, shop, authored
 commands) are not part of this publish.
+
+## Repair after the REJECT (2026-10-01, SWE2-FRONTIER)
+
+SWE2-AUDIT-SEM's review [`auditsem-review-gi-restatus-0930`](../auditsem-review-gi-restatus-0930/REVIEW.md)
+**REJECTED** `c97af7156`: the status lines and the two shop strikes were right, but seven pages kept unstruck
+"not read / not resolved" prose with no register id, which FABLE's status-currency rule (line 43) keeps PARTIAL,
+and `residue_scan.py` could not see it because it read only bullets under residue-style headings.
+
+### What the repair did (SWE2-FRONTIER, 2026-10-01)
+
+- **Struck stale residue with pointers.** 80-97's `## Not read` paragraph (emit calls → GI-11 and the shared
+  pages; selector targets → the dispatch page's `003A2F70` funnel; `00431770` read 2026-09-19; `003AA280` on
+  CONTRACT-transform-primitives) and its two `(not read)` table cells (shared tail `0045B640`, read under GI-11
+  B1); 60-74's line-57 parenthetical and the emit-tail list (GI-10); the gambit falsification note's two settled
+  reasons (per-leaf roles read 2026-09-15; `00566C10` art answered GI-1); the oscillator's `0x290`-naming clause
+  (named bone records 2026-09-18); the handbook's stale `still open` front-matter strings (GI-2); the license
+  board's already-struck GI-3 pair; 00-0a's paragraph wording.
+- **Registered the real limits** in `OPEN-QUESTIONS.md`: **GI-14** (00-0a's six tail helpers, the line emitter
+  `0039D6C0`, the record `+0x38` consumer, the translated-VU0 row-gradient body), **GI-15** (the authored
+  commands' eleven per-site not-read statements), **GI-16** (the license board's `+0x37D` move-mode values),
+  **GI-17** (the shop's `002D45C0`/`002CFCF0`/`0027EE80` helpers), **GI-18** (the gambit editor's 12 sub-commands
+  and the list's 19 arms below entry level), **GI-19** (the oscillator's resolve-chain intermediate types — a
+  hit the reviewer's 12-hit-capped sweep did not list; caught by the widened scan).
+- **Widened `residue_scan.py`**: it now sweeps every line outside struck spans for residue words (status line
+  excluded) AND flags paragraph/table content under residue-style headings, tracks `~~` spans across lines,
+  requires the residue word to start the heading text, and marks registered (`rg`, a register-family id) versus
+  settled (`  `, an answered/read/corrected word) versus live (`!!`) lines. `--selftest` embeds the 80-97
+  `## Not read` paragraph exactly as committed at `c97af7156` and asserts the sweep flags it — the review's
+  rejecting regression — plus four controls.
+- **Scoped one neighbour-block line** on 60-74 (the six actor accessors are the actor layer's pages' scope)
+  and one "Not established this pass:" lead-in on the oscillator page (every item under it was already struck;
+  marked settled).
+
+### Result (SWE2-FRONTIER)
+
+`residue_scan.py` on the 13 pages: **0 residue-without-id lines** ([`residue_scan.out`](residue_scan.out);
+selftest OK). `documented_rule.py`: **READY 7, PARTIAL 6, FAILS 0** ([`documented_rule.out`](documented_rule.out)).
+The six PARTIAL pages — 00-0a (GI-14), authored commands (GI-15), license board (GI-16), shop (GI-17), gambit
+(GI-18), oscillator (GI-19) — carry honest status lines naming their live rows instead of claiming "no live id".
+The seven READY pages — handbook, shared dialogs, unlabelled panes, 40-42/a0-ab/d0-d1, 60-74, 80-97,
+save/load — keep DOCUMENTED.

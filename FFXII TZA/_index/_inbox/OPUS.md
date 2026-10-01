@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45514 epoch=3 queue_sha=64eef75aa5e37f49 -->
-> generated 2026-10-01T20:10:12+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45558 epoch=3 queue_sha=48a9cbe5ada52bf8 -->
+> generated 2026-10-01T20:39:35+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-DD-TYPES-CRT-0930, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-2005-1001
-> READY addressed to you: P1 ASTRA-RETURN-OPUS-OV33-E2-SIX-CACHE-KEYS-0930, P2 ASTRA-REQ-OPUS-S33-UPSTREAM-VERDICT-GUARD-1001, P2 FRONTIER-REQ-OPUS-DISPOSITIONS-RECORD-GATE-1001
+> ACTIVE: OPUS-CLOUD-AUDIT-PRERUN-1001, OPUS-CLOUD-F-INTERIOR-W1-1001, OPUS-CLOUD-RE-READINESS-INPUT-AUDIO-1001, OPUS-DD-TYPES-CRT-0930, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-CLOUD-PROGRAM-1001
+> READY addressed to you: P1 ASTRA-REQ-OPUS-SUSPEND-COPY-CORRECTION-1001, P1 ASTRA-RETURN-OPUS-OV33-E2-SIX-CACHE-KEYS-0930, P2 ASTRA-REQ-OPUS-S33-UPSTREAM-VERDICT-GUARD-1001, P2 FRONTIER-REQ-OPUS-DISPOSITIONS-RECORD-GATE-1001
 > READY pool: 1 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -17,8 +17,16 @@
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
 
-## Resume state - 2026-10-01 20:05 UTC (OPUS)
+## Resume state - 2026-10-01 20:45 UTC (OPUS)
 
+- **STANDING (user, 2026-10-01): GitHub repos + cloud program are OPUS's job.** Read the section "Standing
+  responsibility: the GitHub repos and the cloud program" further down in this file (after the RESUME PROTOCOL) and
+  do its resume steps every time: follow OPUS-CLOUD-* tasks, ingest finished cloud reports, sync + push the DB snapshot
+  from committed state, plan the next wave. Wave 1 running since 20:40 UTC: OPUS-CLOUD-F-INTERIOR-W1-1001 (session
+  01MsKSmz4qgiM3h8TPNKv3gp), OPUS-CLOUD-AUDIT-PRERUN-1001 (0193YNrU1oBcBFBoWgpYKQNr), OPUS-CLOUD-RE-READINESS-INPUT-
+  AUDIO-1001 (014xapq8GYgyFvvwy2xRFAwk). Ask the user for the credit bar after wave 1. Snapshot pushed at 1e19c52b /
+  31aa5485 (source f59c531bc). The 20:05 publishes all landed (menu selection 20f3f8a2e, render records 157fcd85d,
+  time-stop 87908a4fa, this block's predecessor 787271b18); the runner exited at max life, queue empty.
 - **Authority:** all non-ASTRA work while FABLE is inactive (user, 2026-10-01); FABLE gets a notice for every edit on
   its pages; FABLE's ASTRA twins stay FABLE's (only the assignee can close them).
 - **Gate (dashboard generation 19:59 UTC):** questions OPEN 5 / PARTIAL 7 (ASTRA live); DD 20; F 3,705 (3,620 in the
@@ -1728,6 +1736,57 @@ register, once SWE2-CONTRACT's parked `OPEN-QUESTIONS.md` rows are published. Re
 S-36's 428 and S-45's 429.
 
 ---
+
+## Standing responsibility: the GitHub repos and the cloud program (OPUS, 2026-10-01)
+
+The user assigned OPUS two standing jobs on 2026-10-01:
+- **Keep the private GitHub repos current.** That is maybeLynd/Final-Fantasy-XII-DB (the database snapshot) and
+  maybeLynd/Final-Fantasy-XII-RE.
+- **Run the cloud-session program.** It spends the temporary $250 cloud credit (expires 2026-11-05) on database work
+  without duplicating anything OPUS, FABLE, ASTRA or the SWE2 (Devin) lanes do.
+
+**Where things are.**
+- **How to launch, and billing:** `C:/Users/Kristian/Desktop/CLOUD_SESSIONS_GUIDE.md`. Launches go through
+  `C:/Users/Kristian/Tools/cloud-launch/cloud_launch.py`; never through routines.
+- **The program:** in the DB repo checkout `C:/Users/Kristian/source/repos/Final-Fantasy-XII-DB`:
+  - `docs/CLOUD_PROGRAM.md`: the five streams F, D, A, C, R, the no-duplication protocol and the lifecycle;
+  - `docs/cloud-briefs/`: one brief per stream;
+  - `docs/CLOUD_AGENTS.md`: the task log;
+  - `docs/REPO_MANAGEMENT.md`: sync cadence and conventions.
+- **Tools:** `Tools/work/OPUS/cloud/`. These are mirrored to the DB repo's `tools/opus-cloud/` at each sync, because
+  Tools/work is not in git.
+  - `scope_guard.py`: BLOCK / WARN / CLEAR per page;
+  - `cloud_task.py open|close`: the board task `OPUS-CLOUD-*`, holding the pages;
+  - `f_pack.py`: F-interior input packs;
+  - `listing.py`;
+  - `interior_ingest.py check|apply`: refuses to apply until SWE2-AUDIT-SPEC accepts the interior method;
+  - `interior_applier.py`;
+  - `briefs/`: the launch messages.
+
+**At every resume, after the TEAM-CURRENT block:**
+1. **Follow cloud tasks.**
+   - List the open `OPUS-CLOUD-*` board tasks.
+   - `git -C C:/Users/Kristian/source/repos/Final-Fantasy-XII-DB fetch`, and look for finished `cloud/*` branches.
+   - Ingest each finished report:
+     - Stream F: `interior_ingest.py check`, then re-read every row against the review sheet in
+       `Tools/work/OPUS/cloud/review/`, then `apply` once the verdict allows.
+     - Streams A, C and D: verify each finding and route it to the page's owner as a notice. Do not fix other
+       identities' pages.
+     - Stream R: verify, then copy accepted maps to the RE repo's `docs/readiness/`.
+   - Then archive the report into `main`, delete the branch, `cloud_task.py close`, and update the log row.
+2. **Sync the snapshot from committed state, commit, push** (`tools/sync_from_xiionline.py --apply`). Do this at
+   every checkpoint and after every publish batch, so the repo always carries the latest committed work.
+3. **Plan the next wave.**
+   - Pace launches by OPUS's verification capacity and the credit balance. Ask the user for the Settings -> Usage bar
+     after each new wave size.
+   - Before each launch: `scope_guard.py`, then `cloud_task.py open`, then sync and push, then launch, then a log row.
+4. **Stop using cloud sessions** when the credit is spent or on 2026-11-05. Nothing may depend on them.
+
+**Rules.**
+- A cloud result is a pointer, never evidence, and never independent review.
+- Every cloud scope is guarded and claimed first.
+- Wave 1 (2026-10-01) is streams F, A and R. Streams D and C wait for scopes that are OPUS-owned or unowned and not in
+  another identity's flight.
 
 ## Register work for FRONTIER bundle A, and RM-1 part 1 (OPUS, 2026-09-27)
 

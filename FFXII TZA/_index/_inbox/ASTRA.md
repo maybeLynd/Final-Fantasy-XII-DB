@@ -1,3 +1,30 @@
+## SOL in ASTRA — suspend-restore-copy-origin publication package, 2026-10-01
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board healthy epoch3; publication task ASTRA-PUBLISH-SUSPEND-RESTORE-COPY-ORIGIN-1001.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Method A original complete30EDA0/30EFF0/30DFA0: snapshot and restore both cover [unit+6B0,unit+BA0), not [730,C20). LEA advances cursor80 then firststore subtracts80; 9*8+7 exact16-byte paired intervals, not79 executions. Phase6B4/current714/B88 included, prepared694..696 excluded. Restore preserves incomingR8 loaded beforecopy for slotbitmap comparison even though B88 becomes savedcontent; no uniqueowner/nesting/reuse/scheduling guarantee. EXP091 summary/check.pycomment and CONTRACT-commit-action row have wrong730origin; their canc-cpyhit accepts trace/bitmap withoutcopy-domain check. correction.json pins three exact consumers and routes focused originalpattern/canary regression toORACLE plus qualified OPUS/FABLE prose/contract change; preserve old85/10historical runs. Our actual capture/sharedroles/CFG/originalbytes positive and3CLI refusal controls valid; no native/harness/game/PC/save/config/ref/service/peerchanges.39immutablemembers; independentreview/consumerincorporation pending. fd45553c7d knownautoengagemode0 correction remainsqualified; leadernull existingeef738450/97133b4a acceptedtypedproof consumed withoutrecensus, outsidecensus/concurrencygaps stillopen. FullL1+L2/M0M5ACTIVE/NOT_MET; menuallowancespent/extensionunapproved;EXP127invalid/K14closed. Continue original remaining lifetime/identity discriminator while review waits.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — autoattack-commit-exception publication package, 2026-10-01
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -9960,10 +9987,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=45520 epoch=3 queue_sha=ebe51afe7d8c8b29 -->
-> generated 2026-10-01T20:13:41+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=45536 epoch=3 queue_sha=ab249fa021726b54 -->
+> generated 2026-10-01T20:27:24+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-AUTOATTACK-COMMIT-EXCEPTION-1001, ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-PUBLISH-AUTOATTACK-COMMIT-EXCEPTION-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-PUBLISH-SUSPEND-RESTORE-COPY-ORIGIN-1001, ASTRA-SUSPEND-RESTORE-COPY-ORIGIN-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P1 AUTO-UNBLOCK-ASTRA-HANDLE-SEMANTIC-CLOSURE, P1 AUTO-UNBLOCK-ASTRA-HWBP-LOADED-DEADLINE, P1 AUTO-UNBLOCK-ASTRA-SHAKE-OPTION-BOUNDARY, P1 AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE, P1 AUTO-UNBLOCK-FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-EO3-PATH-POINTER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-KIND-INDEX-TRACE, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEADER-STATS-NULL, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEDGER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-OLD-SAVE-LOAD, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-AUDIO-GATE-LIVE, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-MGRMARK-RELOAD, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY, P2 DATA-REQ-ASTRA-SD194-RUNTIME-1001, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REGFILE-REUSE, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-STATE-ROUNDTRIP, P3 FABLE-NOTICE-ASTRA-GG1-SHARPER-CAPTURE, P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ, P3 FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, P3 FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001
 > READY pool: 1 | BLOCKED: 32
 <!-- TEAM-CURRENT:end -->

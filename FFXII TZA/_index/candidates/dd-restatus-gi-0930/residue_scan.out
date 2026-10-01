@@ -1,48 +1,325 @@
 === 16-UI/Gambit-Screens/the-gambit-screens.md
+        23 last_pass_state: opus-gambit-screens-pass-1 - nine claims attacked by decoding the image at GN160; eight survive, including both jump tables reproducing every documented 
+        37 **Status:** PARTIAL — the four widget procedures, the parent→child `0x121` destroy notification, the bank-commit-on-close arm, and every screen-region helper are cited be
+    rg  41 The gambit UI is two related screens, not one:  **Corrected 2026-09-29 (FABLE, GI-1):** the direction is the other way. The editor `005691E0` creates `0056B4D0`: its id-1
+    rg  45 | `0056B4D0` |  condition/action pick list, created by the editor (corrected 2026-09-29, FABLE, GI-1) | gambits + message window |
+    rg  46 | `005691E0` | gambit editor screen  — the pick list's creator (corrected 2026-09-29, FABLE, GI-1) | gambits |
+    rg  47 | `00566C10` |  tab-strip marker: page arrows and a sliding pointer, named after the `GambitIcon…` keys it reads (corrected 2026-09-29, FABLE, GI-1) | gambits |
+    rg  48 | `0056C170` |  the pick list's tab-strip container (corrected 2026-09-29, FABLE, GI-1) | gambits + message window (child) |
+        56 > **CORRECTED 2026-09-14 (OPUS, falsification pass 1): the bound is at `0056B4F8`, not `0056B4F5`.**  — `0056B4F5` is `mov rsi, rcx`. The compare is `0056B4F8 cmp eax, 0x
+       112 `00327BD0` + `GambitConfig_*`/`GambitRuntime_*` (documented on `09-Combat-AI-And-Gambits`), the
+    rg 122 | `00566C10` |  tab-strip marker proc (ids 1,2,3,4; corrected 2026-09-29, GI-1) — see below | `00566C6C` `sub r8d,[rip+..]` (scroll global) |
+    rg 150 | `0056AE80` |  **action**-picker tab builder — pages `byte[0208D300]`, menu kind `0x22`, tab frame 1 (corrected 2026-09-29, FABLE, GI-1) — `0031EB20` + `00327BA0`/`00327
+    rg 151 | `0056B100` |  **condition**-picker tab builder — pages `byte[0208D310]`, menu kind `0x23`, tab frame 0 (corrected 2026-09-29, FABLE, GI-1) — `0031EB20` + `00327BC0`/`00
+    rg 156 | `0056C170` | leaf slot proc (ids 1,18) —  tab-strip container: tabs `0056C060` plus the marker `00566C10` (corrected 2026-09-29, GI-1) | `0056C176` `mov rax,[rip+0x19d8
+    rg 173 `00566C10` handles only ids 1, 2, 3, 4 (`00566C1F`–`00566C39`). Id 4 is a before-content draw: when `+0xE8 & 1` it calls `00242B90` with `[+0x38]` at position `+0xD4`/`+0
+    rg 177 `0056C170` handles only ids 1 and 18 (`0056C18A`–`0056C192`): construct and destroy. With no draw, no input, and no sub-command arm it is  **Corrected 2026-09-29 (FABLE, 
+    rg 187 | `0056B350` (→`00567D80`→`005691E0`, editor) | `GambitActionListMoveX`, `GambitTargetListMoveX` |  **Corrected 2026-09-29 (FABLE, GI-1):** mode 1 (the target-condition l
   [200] ## Not yet established
-       - ~~the per-leaf roles of `00566B70`..`0056AD50`~~ — all eight read 2026-09-15 (member table): `00566B70` slot-state write, `00566FE0` record flag clear, `005678C0` kind 
-       - ~~which `0x8000`–`0x8004` sub-command the list posts~~ — the `0056BA10` arm is decoded above: `0x8000` slot text for the confirm prompt, `0x8001` picker open, `0x8002` 
-       - ~~whether `00566C10`'s icon set is condition- or action-type art~~ — **answered 2026-09-29 (FABLE, GI-1): neither; the premise was wrong** — §*GI-1 answered 2026-09-29*
+       202 -  — all eight read 2026-09-15 (member table):
+       203 `00566B70` slot-state write, `00566FE0` record flag clear, `005678C0` kind selector,
+       204 `005678F0` cursor blink tick, `005682C0` fade ramp, `00569F90` bank→widget copy + commit,
+       205 `0056AAC0`/`0056AD50` list page-up/down writing `8`/`4` to `[rip-global]+0xDE9`.
+       206 -  — the `0056BA10` arm is decoded above:
+       207 `0x8000` slot text for the confirm prompt, `0x8001` picker open, `0x8002` picker close/apply,
+       208 `0x8005` list-mode flag (`0x8003`/`0x8004` go to the default arm).
+    rg 209 -  — **answered 2026-09-29 (FABLE, GI-1): neither; the premise was wrong** — §*GI-1 answered 2026-09-29* below. *History:* **narrowed 2026-09-15**: the
+    rg 210 icon index `+0xDC` is the only writer-visible field and it is populated inside `00566C10` from
+    rg 211 the global dword `02F8F570` (`mov eax,[rip+0x1b2860a]` at `00566F60`), not from a per-slot
+    rg 212 record. The question is now *who writes `02F8F570`* — that global's writer decides whether the
+    rg 213 art varies per gambit type.
+    rg 214 **Corrected 2026-09-18 (FABLE): the address was misread, and the record does decide.** The operand at `00566F60` resolves to **`0208F570`**, the 60 Hz tick counter every 
+       270 and corrected above.**
+       276 | the table at `0056BB80` carries the 9 documented arms | an arm the table does not carry | **survived** — **9 of 9**, read as image-base + `rel32`, index `id−1` |
+       280 | the editor's table at `00569F1C`, target = `0x120000 + rel32`, index `id−1` | a documented arm the table does not produce | **survived** — ids 1/2/5/8 → `005692A2`/`005
+    rg 292 list's 19 arms below entry level — registered as **GI-18**. The other two reasons the page
+       293 gave are settled:  *(all eight read 2026-09-15,
+    rg 295 *(settled 2026-09-29 (FABLE, GI-1): `00566C10` is a tab-strip pointer, not condition/action
+       300 **ActorEntity — CLIENT (33 edges through 11 of this page's functions).** The ActorEntity layer reaches this page at `00263E30`, `00326D60`, `0031EB20`, `00326BB0` and 7 m
+       302 **CombatFormula — CLIENT.** `BattleStats_ResolveByActorHandle`, owned by that layer, calls `00263E30` on this page. That caller is a 55-byte resolver behind the same `byt
+       304 **Party — SERVICE.** `0031EB20` on this page calls `BattleUnit_ResolveByFocusHandle`, owned by that layer. What it reaches is a 42-byte resolver gated on bit 4 of `byte[0
 === 16-UI/Handbook/the-handbook-screen.md
+        19 basis: additive-annotation delta - every function this document cites whose record differs between the stamped snapshot and GN161's gained a plate comment and tags ONLY (
+    rg  27 - "hcom | explained | menuhandbook.bin (.bin member): {hcom, u32 103, u16 self-relative node web, u32 constants} - (kind 7, 0xC8) by 003158B0 into 022C2550, walked by 003
+    rg  28 - "hodr | explained | menuhandbook_order.bin (.bin member): {hodr, u32 101, u32 33, 32-byte records[33]} (12 + 33*32 = 1068) - (kind 7, 0xC9) by 00572D80 into rbx+0x1200,
+    rg  43 The handbook is a two-screen composite: `00574E80` is the **back panel** (it requests `HandBack2_c.tm2`, installed by `00574CB0`/`00575580`), and it installs `0056EF60` —
+    rg  53 | `00572E10` |  **the Sky Pirate's Den screen** (page kind 7 only; corrected 2026-09-29, FABLE, GI-2) | `0056EE10` (inside `0056EF60`'s subtree) |
+    rg  55 | `00572600` |  **statue description popup** (corrected 2026-09-29, FABLE, GI-2) (ids 1,10,14,15,18) | `00572E10` |
+    rg  77 **Corrected 2026-09-29 (FABLE, GI-2):** this procedure is the **Sky Pirate's Den** screen, not a viewer generic over the handbook's chapters — `0056EE10` installs it only
+    rg  83 | 1 | `00572E54` | construct: `msg->arg` → `+0xC0` (ptr) / `+0xC8` (page kind byte) / `+0x11D8` (arg+0x10); zeroes an inline `0x1100`-byte record array at `+0xD0` via `00
+    rg  85 | 10 | `00573078` | directional input, only when `+0xC9 == 5` (page mode): pad-mask tests; one key calls `00572890` + `00249C60`(3) (`00573097`),  with a statue selected,
+    rg  86 | 12 | `005731A7` | sub-commands `0xE`, `0x12`, `0x8100`–`0x8102`: `0xE` with arg `0xC` → `00572920` + `005704A0` (`00573244`) —  builds the statue groups (corrected 2026
+    rg  90 | 18 | `0057328D` | destroy: `002527B0`  stores the selected statue `+0xCB` into saved-cursor bank 6 at the slot the `0xC036A4` key byte gives for kind `+0xC8` (`005732A8
+    rg  95 **Corrected 2026-09-29 (FABLE, GI-2):** `+0xC8` is always 7 here (the Den), the `0xC036A4` byte is a saved-cursor slot, not a resource, and `menuhandbook_order.bin` is th
+    rg 100 - `00572600` (654 B, ids 1,10,14,15,18, `General` layout keys):  **Corrected 2026-09-29 (FABLE, GI-2):** the statue description popup. The Den creates it when a statue is
+    rg 149 | `00572600` |  the statue description popup (corrected 2026-09-29, FABLE, GI-2) | `0057264D` `call 00247510` |
+    rg 151 | `00572920` |  Den statue build: a group per awarded achievement, `0xFF` records anchored through `003165B0` (corrected 2026-09-29, FABLE, GI-2) — `003165B0` + `003B2AA0
+    rg 152 | `00572BD0` | `003BD6F0` + `00202C90` + `00808C40` —  picks the nearest other statue in the pressed direction from the records' `+2`/`+4` positions (corrected 2026-09-29
+    rg 154 | `00572E10` |  the Sky Pirate's Den screen (corrected 2026-09-29, FABLE, GI-2) (1,422 B) — §above | `00572E1F` `mov rax,[rip+0x19d1a0a]` |
+    rg 156 | `005734C0` |  selection change: redraws the old statue with its `+0x16` effect and the new one with `+0x17` (corrected 2026-09-29, FABLE, GI-2) — `003B2AA0`/`003B2D80`/
+    rg 194 | `00572E10` P ( the Sky Pirate's Den; corrected 2026-09-29, FABLE, GI-2) | `PartyBlackBandTime` | `mov ecx` → duration arg for the viewer's party-band fade call on `[rdx
+    rg 201 **Corrected 2026-09-29 (FABLE, GI-2):** `00572E10` is the Sky Pirate's Den, installed for page kind 7 only. It loads `menuhandbook_order.bin` (the statue layout), keeps o
+    rg 218 **Corrected 2026-09-29 (FABLE, GI-2): the field names in the block below are wrong from `+0x00` to `+0x17`.** `+0x00` is a key (selection priority and child anchor), `+0x
+    rg 240 *(Corrected 2026-09-29, FABLE, GI-2 — `+0xCB` is the selected statue and `+0x01` a draw depth; see the note above the block.)*
+    rg 244 **Corrected 2026-09-29 (FABLE, GI-2): the block below misreads the format.** There is no node web: `hcom` is five length-prefixed sections `{u16 byteLength, u16 count, …}
+    rg 260 *(Corrected 2026-09-29, FABLE, GI-2: each hop skips one whole section; the hop count selects the section, three for `00315D50`.)*
+    rg 264 **Corrected 2026-09-29 (FABLE, GI-2 / GI-4): the framing below is four bytes late.** The records are `{u16 label; u16 help; u8 key; u8 flag}` starting at `00D236A0`; `0xC
+    rg 280 **Corrected 2026-09-29 (FABLE, GI-2; agrees with the GI-6 reader): the struck rows pair each page's key with the next page's two texts.** Read from the record starts, `00
+    rg 292 *(Corrected 2026-09-29, FABLE, GI-2: see the note above the table.)*
+    rg 360 | 4 | `+0xF8` | `u32 idMask` + one `u32` per set bit — the achievement threshold overrides | `003165C0` (achievement catalogue, UQ-274) **and** the Den's child anchors ab
+       362 The 14 us bestiary rules: Battery Mimic and Tiny Battery (story ≥ 341), Miriam Guardian and Miriam Facer (≥ 2200), Ba'Gamnan (≥ 660), Ahriman (≥ 3200), Imperial (≥ 253), 
+       364 **The two `u16`s of each `0xC036A4` record** are the page's label and help text ids — `{u16 label; u16 help; u8 key; u8 flag}` from `00D236A0`; kinds 4–7 are Traveler's T
   [366] ## Not yet established
-       - ~~the `menuhandbook_order.bin` record format beyond the `00572460` placement walk~~ — **resolved above**: 33 × 32 B permutation records, 2026-09-16
-       - ~~which `0xC8` page kinds map to which resource ids in `0xC036A4`~~ — ~~**resolved above** for kinds 0–7 (`0x0B`–`0x12`), 2026-09-16; the table continues but the caller
-       - ~~the `0056EF60` pane's own role (frame vs. list chrome)~~ — **read 2026-09-18 (FABLE): it is the content-pane host, neither frame nor list.** Its four arms: **id 1** (
-       - ~~the `hcom` u16 offset-web's node semantics (which nodes are topics vs. links), and the two `u16` fields in each `0xC036A4` record~~ — **answered 2026-09-29 (FABLE, GI
-       - ~~the `hodr` `+0x16`/`+0x17` link pair's exact traversal semantics (a pairing, not yet walked)~~ — **answered 2026-09-29 (FABLE, GI-2):** not links — a statue's normal 
+       369 **resolved above**: 33 × 32 B permutation records, 2026-09-16
+    rg 371 **Corrected 2026-09-29 (FABLE, GI-2):** `0x0B`–`0x12` are saved-cursor slots, not resource ids, and the table ends at `00D236D0`; see [§ The Sky Pirate's Den](#the-sky-pi
+       372 -  — **read 2026-09-18 (FABLE): it is the content-pane host, neither frame nor list.** Its four arms: **id 1** (`0056F20D`) takes layout `0x1B` through `003946B0`, keeps 
+    rg 374 — **answered 2026-09-29 (FABLE, GI-2):** no web — five sections; the two `u16`s are label and help text ids ([§ The Sky Pirate's Den](#the-sky-pirates-den-and-the-two-dat
+    rg 375 -  — **answered 2026-09-29 (FABLE, GI-2):** not links — a statue's normal and highlighted effect ids ([§ The Sky Pirate's Den](#the-sky-pirates-den-and-the-two-data-files
+       425 **CombatAction — CLIENT.** `FUN_002fc3c0`, owned by that layer, calls `0024F410` on this page. That caller is a 183-byte dispatcher: `byte[rec+0x23] & 0xF`, bounded to 7,
+       427 **Script_VM_Native_Bridge — CLIENT.** `FUN_0033fd40`, owned by that layer, calls `002EFD20` on this page. That caller is a 29-byte guard that returns its argument only wh
+       429 **StoryEvent — CLIENT.** `FUN_001ed240`, owned by that layer, calls `00265270` on this page. That caller is a 2,192-byte cutscene-override table: it matches the current a
+       447 **Presentation — SERVICE and CLIENT (106 edges).** Most of the count is shared helpers the render layer also calls. `00202C90` is a 16-byte copy (`movups [rcx], [rdx]`) w
+       449 **Resource — SERVICE and CLIENT (62 edges).** The load path the page names (`0032E400`/`0032E620`: no per-format loader) is the resource layer's. `0032E400(kind, id)` ret
+       455 **SaveLoad — CLIENT (7 edges).** `00582790` claims a request batch record (`00249580`), loads (`00249210`), closes the batch with `00249410` and requests kind-7 resources
 === 16-UI/License-Board-View/the-license-board-screen-widgets.md
-  (no residue section)
+        11 decoded from the function bodies; the grid view widget ''s data path is the one
+        28 > and the change sweep [already documented for its data path](the-license-board-grid-build-and-its-change-sweep.md).
+    rg  30 **Corrected 2026-09-29 (FABLE, GI-3):** is the licence-board **chooser**, the twelve-board wheel whose three draw layers it
+        33 **PARTIAL.** Read: the tree, every procedure's decoded dispatch, and each screen-region member's role. The ~190
+    rg  83 **Corrected 2026-09-29 (FABLE, GI-3):** the tree above draws `005565E0`, `005569F0`, `00557760` and `0055A340` as children of `0055CD40`. Each one's installer has a singl
+    rg 115 | 285 | `0055D84B` | a second rel32 table at `0055DB88` on `msg->a - 0xA` (18 arms) —  **Corrected 2026-09-29 (FABLE, GI-3):** the **reply of the dialogs the board opens*
+    rg 119 **Corrected 2026-09-29 (FABLE, GI-3):** besides construct (`00557FD3`, which builds the twelve-board wheel) and id 10, it answers id 285 at `00558598` for the two dialogs
+       122 in the census. The `+0x37D` byte at `00557DF0` is the cursor's move-mode. *(Narrowed 2026-09-18, FABLE, from its six sites — all inside `00557DB0`, the id-10 arm's owner:
+       143 | `0055B3F0` | **the licd grid build** — already documented: `+0x559/+0x55A` = `licd` width+1/height+1, byte map at `+0x128` |
+       144 | `0055BFF0` (+ `0055B310`) | **the change sweep** — already documented: walks `+0x120` cell array row-major |
+    rg 175 | `00557760` | draw child — ids 1/4/18, arm 4 calls `005574C0` (`002DB080` draw) with  `+0xD8`/`+0xDA` the wheel centre from the create record — the **backdrop disc** of 
+    rg 176 | `005565E0`/`0055A340` | draw children — ids 1/4/18/25 (`0055A340` also 2),  **Corrected 2026-09-29 (FABLE, GI-3):** the `002472A0` call with the owner's `+0x34C` angle 
+       200 - The grid-build and change-sweep data path (`0055B3F0`, `0055BFF0`/`0055B310`) is **independently documented** on
+       203 - `00557DB0`'s id-10 arm is the same input protocol the Config screen documented for message 10 — directional
+    rg 206 *(answered 2026-09-29 (FABLE, GI-3) — §8a)*;
+    rg 207 the `+0x37D` cursor move-mode values remain unassigned — registered as **GI-16**.
+       211 *(FABLE, Claude Opus 5.5 — NATIVE/STATIC, bodies read; dialog texts resolved from the shipped `us` tables; control
+    rg 267 | `0055A340` P (board pane, `00557430`) | `LicenseBoardBallLength`, `LicenseBoardFaceLength`, `LicenseBoardBallFaceSecondOffsetY` | `ecx = BallLength + FaceLength` — the 
+       282 | each row is installed by the procedure the page names | a named installer with **no** rip-relative `lea` of its procedure | **survived — 10 of 10**, decoded from the im
+       295 > so it is routed to the atlas's owner rather than corrected here.
+       317 **ActorEntity — CLIENT (11 edges through 6 of this page's functions).** The ActorEntity layer reaches this page at `00263990`, `002B7B80`, `002B58B0`, `00316DF0` and 2 mo
+       319 **CombatAI — CLIENT.** `AiOrder_EvaluateTargetSelector`, owned by that layer, calls `00309EC0` on this page. That caller is the selector evaluation, 6,963 bytes of it: it
+       321 **CombatFormula — CLIENT.** `BattleStats_InitializeDefinitionRecord`, owned by that layer, calls `00323910` on this page. That caller is the `0x1C8`-byte record initialis
+       336 (interior read 2026-09-17, SWE2-FRONTIER: 1,307 B — `002432B0` first at [`00579490`](../../_index/ADDRESS-INDEX.md), `00247870` ×3 + `005791B0`/`0037E760`/`00247930` ×2 —
 === 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md
+        18 basis: additive-annotation across GN161 -> GN162 - REPLACED 2026-09-21 (OPUS), because the snapshot-identity basis this block carried is FALSE at GN162: this document cit
+        35 **Status:** PARTIAL — the four procedures' dispatch shapes and arm interiors are cited below; `0057C480`'s full id-4/10/12/19 arm set is now read (2026-09-15) and every l
+    rg  39 **Corrected 2026-09-29 (FABLE, GI-4):** the Clan Primer's category menu — Hunts, Bestiary, Sky Pirate's Den, Traveler's Tips. Its only installer is `00574D00` (from the h
+        48 > **CORRECTED 2026-09-14 (OPUS, falsification pass 1): two of these bullets were labelled with the
+        58 **The `0xC0368C` table, decoded from its reader 2026-09-18 (FABLE).** The id-12 arm's `0x8001` path (`0056F96A`–`0056F9B5`) takes the option table's byte at `+0xCE + row`
+    rg  60 **Corrected 2026-09-29 (FABLE, GI-4): the framing was four bytes late, and it paired each key with the next record's texts.** `0xC0368C` is the `+4` key byte of 6-byte re
+        71 The remaining arms, read against the table at `0057CCA8` (2026-09-15):
+    rg  74 - **id 10** `0057C9A3`: input — when `+0x630` bit 8 is clear it forwards to `002D3900` on `+0xC0` (the embedded list child). When set, `002B3930` must still be animating-
+    rg  77 - `0x8001` (`0057CB16`): option pick. With bit 8 set it just posts `0x8100` to `[+0xC8]`. Otherwise it computes the embedded list's cursor row, checks the option slot's `
+    rg  85 Display-only: answers ids 1, 2, 18 — construct, reconcile, destroy. No input arm, no sub-command arm.  **Corrected 2026-09-29 (FABLE, GI-4):** it is the license-board cho
+    rg 156 **Corrected 2026-09-29 (FABLE, GI-4):** two of the four are single-screen widgets — `0056F810` is the Clan Primer category menu (installer `00574D00` only) and `00556F90`
+    rg 203 **Mask `0x800`, read 2026-09-29 (FABLE, GI-4 follow-up).** Only the Yes/No question `002CDF20` passes it (`0xC812`). It ORs bit `0x80` into the option list's `+0xE4` (`00
+       205 *Out of this row (a note, not residue):* the cue names behind sound ids 3 / 4 / `0x18` / `0x19` / `0x37` / `0x45` are not resolved.
   [207] ## Not yet established
-       - ~~`00556F90`'s id-2 arm (how the message text is fed)~~ — **answered 2026-09-29 (FABLE, GI-4):** pulled by the license board's index ([§ The title table](#the-title-tab
-       - ~~the `0xC0368C`/`0xC036A4` shared lookup tables' full contents~~ — **answered 2026-09-29 (FABLE, GI-4):** twelve `{u16 label, u16 help, u8 key, u8 flag}` records from 
-       - ~~the `+0x630` flag classes' full semantics beyond the classes `0057CB16` maps to `+0xFC` result bytes~~ — **read 2026-09-29 (FABLE, GI-4)**, mask `0x800` by the follow
-       - **answered 2026-09-29 (FABLE, GI-4 follow-up):** what `+0x630` mask `0x800` does for the player — it holds the hand pointer on the highlighted row during the window's c
+    rg 209 -  — **answered 2026-09-29 (FABLE, GI-4):** pulled by the license board's index ([§ The title table](#the-title-table-the-two-single-installer-widgets-and-the-0x630-word-
+    rg 210 -  — **answered 2026-09-29 (FABLE, GI-4):** twelve `{u16 label, u16 help, u8 key, u8 flag}` records from `00D23688` (same section)
+    rg 211 -  — **read 2026-09-29 (FABLE, GI-4)**, mask `0x800` by the follow-up paragraph "Mask `0x800`" (same section)
+    rg 212 - **answered 2026-09-29 (FABLE, GI-4 follow-up):** what `+0x630` mask `0x800` does for the player — it holds the hand pointer on the highlighted row during the window's c
+       243 **Items_Equipment_Shops_License — SERVICE.** `002C2320` on this page calls `Equipment_CheckPrimarySecondaryPairReasonByStatsIndex`, owned by that layer. What it reaches i
+       245 **Party — CLIENT (8 edges through 2 of this page's functions).** The Party layer reaches this page at `003589B0`, `00265020`. `FUN_00303cc0` is the worked example, read i
 === 16-UI/Shop-Screens/the-shop-screens.md
+        19 basis: additive-annotation delta - every function this document cites whose record differs between the stamped snapshot and GN161's gained a plate comment and tags ONLY (
+    rg  77 - **id 12** `0056D3E5`: sub-commands `0xF`, `0x8000`, `0x8001`, `0x8002` — `0x8001` (`0056D42B`) requires `+0xC8` set, then when `+0xE4 & 2` computes `count × price` — `i
+    rg  80 `+0xDC` is the quantity and `[+0xD0]+0x10` the unit price — this is the "how many" counter where cost accumulates.  **Corrected 2026-09-29 (FABLE, GI-5):** `+0xE4 & 0x3FC
+        90 *Contents read 2026-09-18 (FABLE).* **Id 1** stores the argument's `+8` at `+0xE8` (its owner), calls the twin `0057A300(argWord, &+0xC0)`, asks `0056E880([02CA9790]+0xC0
+       104 documented under `12-Items-Equipment-Shops-License` (`0030A4E0`/`0030B180`/`0030B270`/`0030C410`/
+    rg 187 `0057B890` is the shop's outer menu — the "Buy / Sell / …" list with the `Shop_8_c.tm2` banner — owning the cursor and forwarding input to its `+0x148` menu-list child. I
+    rg 207 `002CFCF0`, `0027EE80`) are named by call site only — not read in this pass; registered as **GI-17**.
   [250] ## Not yet established
-       - ~~which `0xF`/`0x12` sub-command ids correspond to which parent notifications~~ — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): both are decoded below, which an
-       - ~~the exact `+0xE4` mode-field values beyond `0x1C0`/`0x2C0`~~ — **answered 2026-09-29 (FABLE, GI-5)**: a bitfield; `0x1C0`/`0x2C0` are the loot and bazaar kinds — §*GI
-       - ~~`0057A4E0`'s contents beyond "descriptor row"~~ — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): read 2026-09-18 (FABLE) in the `0057A4E0` section above, a sty
+       252 -  — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): both are decoded below, which answers the question.* **narrowed
+       253 2026-09-15**: `0xF` is the `0056E140` child's own post (`00247510(self+0x188, 0xF, (+0x194)>>2 & 1)`
+       254 from its id-15 arm, `0056E322`) — a pre-destroy flag report to `+0x188`. `0x12` on the menu list
+       255 does `002470D0` + sets the child's `+0xE0 & 0x200000` list-mode bit — the enter-list-mode notify.
+    rg 256 -  — **answered 2026-09-29 (FABLE, GI-5)**: a bitfield; `0x1C0`/`0x2C0` are the loot and bazaar kinds — §*GI-5 answered 2026-09-29* below
+       257 -  — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): read 2026-09-18 (FABLE) in the `0057A4E0` section above, a styled text element built at id 1.*
+       345 **CombatFormula — CLIENT.** `FUN_0038ebe0`, owned by that layer, calls `00320D50` on this page. That caller is a 349-byte row-timing computation on the same two definitio
+       420 - **RNG_Random_Selection - SERVICE (3 edges).** `AiOrder_EvaluateAndResolveActionTarget` (`003014C0`) reaches `BattleData_ResolveWeightedId` (`00308EC0`) and `RNG_SharedG
 === 16-UI/Unlabelled-Panes/the-unlabelled-procedures.md
+        21 basis: additive-annotation delta - every function this document cites whose record differs between the stamped snapshot and GN161's gained a plate comment and tags ONLY (
+    rg  59 | `00579AF0` | 33 | `00579990`/`00579A40` |  **the Hunts host** (corrected 2026-09-29, FABLE, GI-6: pane kind 6 is the handbook category "Hunts", and `00579990`/`00579A40
+    rg  87 Both take `msg->arg+8` as a kind byte (`+0xE8` / `+0x8060`)  **Corrected 2026-09-29 (FABLE, GI-6):** `00571A50` compares its byte only against 5 (`00571ABD` and three mor
+    rg  91 *Note 2026-09-29 (FABLE, GI-6): their host `00579AF0` serves `0056EF60` pane kind 6, which `0056F2A0` titles **Hunts** (§*GI-6 answered 2026-09-29*); the "item/equip" rea
+    rg 125 - **`00565E00`** (the tail-jump-installed widget the protocol page's DL-2 list names) reads
+       140 All 25 unlabelled rows resolve to panes of documented screens or to three screen families the key evidence missed (license launcher, handbook content pages, item/equip). 
   [142] ## Not yet established
-       - ~~the `arg+8` page-kind values inside `00571A50`/`005742D0` (2 vs 5 → which page type) — the pane-level kind byte is resolved (`0056EF60`/`+0xC8`: 0–5 `00570BF0` pages,
-       - ~~which concrete menu selection sets each `0056EF60` kind value~~ — **answered 2026-09-29 (FABLE, GI-6)**, same section
-       - ~~the `0xC0368C`/`0xC036A4` shared lookup tables' full contents~~ — **decoded 2026-09-18**: ~~both are 6-byte records `{paneKind, flag, u16, u16}`;~~ **Corrected 2026-0
+    rg 146 — **answered 2026-09-29 (FABLE, GI-6)**: there is no
+    rg 147 second-level kind; the pages read the pane kind, which is the handbook category — §*GI-6 answered 2026-09-29* below
+    rg 148 -  — **answered 2026-09-29 (FABLE, GI-6)**, same section
+    rg 149 -  — **decoded 2026-09-18**:  **Corrected 2026-09-29 (FABLE, GI-6):** they are one run of 6-byte records `{u16 title, u16 help, u8 value, u8 flag}` starting at `00D23688`
+       153 *(FABLE, Claude Opus 5.5 — NATIVE/STATIC, bodies read; titles resolved from the shipped `penelosdiary.bin` /
+       190 framing on [the handbook page](../Handbook/the-handbook-screen.md) is corrected by that page's owner. *Not tied here:
+       206 | every row is installed by the procedure(s) named | a named installer with **no** rip-relative `lea` of its procedure | **survived — 25 of 25**, decoded from the image |
+       230 **Movement — SERVICE.** `002D70F0` on this page calls `FUN_00326bb0`, owned by that layer. What it reaches is a one-time reset guarded by bit 0 of `[022C25A0]`: it stamps
+       232 **PlatformOnlineAchievements — SERVICE.** `005760A0` on this page calls `FUN_00315420`, owned by that layer. What it reaches is an 80-byte per-id lookup: ids at or above 
+       271 twenty-three relationships. Edge count from `edges.tsv`. Read from the shipping bytes 2026-09-14
+       280 **SaveLoad — CLIENT (1 edge).** `00582790` (197 B, filed to no owner, resolved by the audit to SaveLoad) claims a slot through `00249580` on entry (`0058279D`). That rout
 === 17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md
-  (no residue section)
+         9 method: registration sites read in the shipping image 2026-09-17 (SWE2-FRONTIER) — all 25
+        57 other way is invisible to a rip-relative sweep" — is resolved by exactly this: the readers are
+        82 (§6). Corrected per AUDITSEM-CONTRA-FRONTIER-AUTHCMD-BANKB, verified against the body
+        95 | 0x19 | `00520CE0` | 32 B — calls `0046CC70` (interior read 2026-09-17, SWE2-FRONTIER: 1,069 B — `00237420` first at [`0046CCAE`](../../_index/ADDRESS-INDEX.md), `004FE2
+    rg 105 | 0x28 | `00520720` | 22 B — tail-calls `003E6AA0` — **post request lane `dword+4` to the bound effect instance** *(SWE2-DATA 2026-09-30, UQ-218 pass 15)*: `003E6AA0` wri
+       110 | 0x3F | `00520510` | 147 B —  **broadcasts through** `00426870` (*corrected 2026-09-20, see `0x14`*) — **a directed sway** *(FABLE 2026-09-20)*: on a root record only, p
+       111 | 0x48 | `005205B0` | `0020E600`/`002ED570` lookups + `00372800`/`00426870` — **command `0x3F` with its target resolved by NAME** *(FABLE 2026-09-20, below)*: same precon
+    rg 149 **Traced 2026-09-29 (FABLE, GI-7) - bank B is a one-slot bank for
+    rg 165 **Named (GI-7, 2026-09-29, pointing to sections already on this page):**
+       202 - **Resource - CLIENT and SERVICE (65 edges).** ResourceTable_ResolveEntryByIndex (`002ED570`), `003AB7F0`, `004090D0` are called by bodies filed to Resource: ResourceTab
+    rg 246 **The three battle handlers, settled.** [EE-12](../../_index/OPEN-QUESTIONS.md) asked whether `00325260`, `00325090`
+    rg 258 system; what each subtype means to the handler is the battle side's and was not read here (GI-15).
+       269 confirmation, not discovery; `FABLE-REQ-ASTRA-HANDLERS` is withdrawn as answered.
+    rg 302 the container - 108,511 authored, one or two per block. What it does with the section was not read (GI-15).*
+    rg 317 names the two as **the shadow pools of `BT-1`**. So the `0xFF` arm turns shadows on and off for everything, from an
+       322 against a **128-wide byte table at `00520B50`**. Decoded, that table has **nine** slots, and the eight that are not
+    rg 353 **Not read here (GI-15):** the seven arms past their first store; the `0x80` arm's nested switch; what `003AFC10` builds;
+       365 **`00426870(word[rec + 0], 00520E90, block)`** — the entity and its whole sub-tree, through the helper corrected in
+       373 | the resource | not needed | resolved first (`dword[+0x18]` through the `+0xD98` table), and the command aborts without it |
+    rg 393 **Not read here (GI-15):** `00372800`'s lookup beyond its `0xFFFF` contract; what name key `29` is; why `0x3F` zeroes its
+       437 **What event `0x203D` does, read 2026-09-20.** It reaches the table. `00427320` filters a few events by name
+    rg 459 **Not read here (GI-15):** `00423790`.
+       480 built with no key**. That is a placeholder: the record exists, but nothing was resolved for it.
+       482 **Leaving that state restores three fades.** On the other branch the key is resolved
+    rg 502 **Not read here (GI-15):** `004219C0`, the sibling writer, beyond confirming its two stores match; what the key argument
+    rg 553 **Not read here (GI-15):** `00373060` (read only for its shape — it resolves two image pointers and indexes a `0x292`-stride
+       582 **`+0` is settled by command `0x2F` below: it is the parameter**, and the block is a `{value, record}` pair shared by
+       608 > ### Corrected within the day, and why the control did not catch it (FABLE)
+       627 **The class-`0x80` arm's pair, read 2026-09-20.** `004288B0(record, delta)` is 40 bytes whole: it raises
+    rg 638 **Not read here (GI-15):** what `word[+0x2F2]` counts  (settled under `0x2F`).
+    rg 700 **Not read here (GI-15):** what the pool's slots are for (`003D8300`, the release, and the slot's own `+0x30`/`+0x40` were
+       744 > *Corrected within the day (FABLE): this table first read 329, 121/34/58/58/58. The first run of the script walked
+    rg 760 **Not read here (GI-15):** what a "sub-resource variant" is on the model side (`RenderModelInstance_RemoveSubresourceVariantBinding`
+       795 ***Corrected 2026-09-20 (FABLE): it was established, on another page, and I did not look.** The object at `+0x94` is
+       805 > **What that ten-argument call is — `0041BEE0`, read 2026-09-20 (FABLE, Claude Opus 5).** It does three things.
+       834 > **The per-bone binding it emits, read 2026-09-20.** `0041B550` (247 B) writes `word[+0x100]` from its `r9`
+       841 >  **Resolved the same
+    rg 857 > *Not read (GI-15):* `0041B650`, `00409190` and `003AB7F0`, and the tail past the loop.
+       868 `003E3460` (258 B) is the `+0x28`/`+0x2C` pair arm `00417F40` runs on the command record: each target float is compared against the `0020E600`-resolved record's current `
+       872 `003E3590` (258 B) is the sibling arm on `+0x20`/`+0x24`: identical structure - compare against the resolved record, write `(target - current) * 0.125` into `+0x40`/`+0x4
+       932 *Read 2026-09-29 (FABLE, Claude Opus 5.5;
+       961 locomotion classifier** *(read 2026-09-29, FABLE, Claude Opus 5.5;
+      1001 `band_names.py` checks both: S0/S1/T, FAILS 0.  — resolved
+      1014 are 1 (112) and 10 (3).  — resolved to mechanism 2026-09-29 (SWE2-DATA):
+      1017 `dword[def+0x2C+4·map]`, a resource id resolved by `0020E600` and spawned by `00333280(childObj, id, lane)` into the
 === 17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md
-  (no residue section)
+    rg  47 **GI-14**. (`0044A180` and `0044C850` are the shared `0x05`/`0x0A` tails, read
+    rg  48 2026-09-29 under GI-11, groups B1 and A5.)
+        84 | `00431770` | head |  *read 2026-09-19: not an init variant but the rebase of a `0xF0`-byte track bundle; see the dated section* |
+    rg 109 | step | `00442520` | base stepper + tail `00442600` (GI-14) |
+    rg 135 | step | `004427A0` | base + tail `004428F0` (GI-14) |
+    rg 189 | step | `0044A5F0` | base + tail `0044B3C0` (GI-14) |
+    rg 273 | 1-7 | `0039D970` (point, 348 B, read whole); the line's `0039D6C0` (457 B) **not read (GI-14)** | first **appends a `0x28`-byte entry to the depth-sorted display list**
+    rg 279 + Cd; `0x46` = Cd x (1 - As) - **an inference from the encoding; the consumer of record `+0x38` was not read (GI-14)**, and mode
+       325 `+0x188` is resolved, asked for its table, and the bundle is sampled at the element's time - the high half of the
+       347 **Not read (explicit):**  *(all ten read 2026-09-19 - [an effect element, frame by frame](an-effect-element-frame-by-frame.md))*;
+       348 *(every walk read 2026-09-29 - [what every walk draws](#what-every-walk-draws-and-who-authors-it-gi-8-2026-09-29-fable))*; the blended line
+    rg 357 **Answered 2026-09-29 (FABLE, GI-8):** every
+       362 unconfirmed consumers.
+    rg 367 (Claude Opus 5.5). The primitive class of each type was already on [UQ-204's table](../../_index/candidates/uq204-element-type-emits/README.md);
+    rg 396 row gradient by its call shape - that body is translated VU0 code, not read line by line; registered GI-14).
+       435 **Movement — SERVICE.** `002F3750` on this page calls `FUN_00264670`, owned by that layer. What it reaches is a 35-byte float getter gated on the kind bits `byte[+3] & 0x
+       463 **World — MECHANICAL (1 edge).** `00378540` (943 B, filed to no owner, resolved by the audit to World) allocates through `0036A190` (`00378586`). It shares the allocator 
 === 17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md
-  (no residue section)
+        37 56 B base+tail, walk `00464090` (8 B — *read 2026-09-18 (FABLE): not a walk at all; the whole body is `or byte ptr [rcx+0x248], 2; ret`, a setter of bit 1 in the element'
+    rg  40 seventh `00464050` (50 B)  **Corrected 2026-09-29 (FABLE, GI-9):** two
+    rg  85 **Corrected 2026-09-29 (FABLE, GI-9):** the seventh
+    rg 103 **Narrowed 2026-09-29 (FABLE, GI-9):** what each of this page's types is, and which record
+    rg 105 emits are on [UQ-204's table](../../_index/candidates/uq204-element-type-emits/README.md); `00431770` is read on
+       111 the `0x42` request floats, the `0xD0` target arms and the head of `0xD1`'s tail were settled by FABLE from the bytes. Checks: [`type_census.py`](members/type_census.py) (
+    rg 166 alpha, and **no cull, no release, no spawn**. Its walk builds a GS packet PC never submits (UQ-204), and **no shipped
+    rg 176 | `+0x00`, `+0x10` | the head of template `02AE9BC0` - the template that installs UQ-213's program `004DA8A0` - and its body `02AE9BE0` by reference (`0054B5A6`–`0054B5DA
+    rg 187 the slot's vectors and matrix and **five A+D data words from slot `+0xE0`–`+0x104`**. UQ-213 reads that cell as
+    rg 193 This settles the upload order UQ-213 left open for `0xAB`.
+    rg 238 **What it produces on screen (GI-9, 2026-09-29, FABLE).** `0xD0`'s blend block is a **screen-refraction effect on the
+    rg 250 this executable reads that buffer (CG-6): `TEX0` from the frame-buffer table `02AEECF0`, region `CLAMP`, normal
+    rg 269 *Nothing of GI-9 remains open (2026-09-29): the last item, what `0xD0`'s blend selector produces on screen, is
+       270 answered above.*
+       274 **Gameplay — CLIENT.** `FUN_0031adb0`, owned by that layer, calls `003589B0` on this page. That caller is a 1,790-byte routine with a stack cookie and a `0x80`-byte frame
+    rg 331 **WorldAreaField — MECHANICAL (1 edge).** `00378230` walks three handle dwords and passes each non-zero one to `003ABCA0` (`00378437`–`0037843D`). That routine finds the 
 === 17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md
-  (no residue section)
+    rg  47 | `0024DDD0` | reads global object `+0x13B` byte and calls `003A3FD0`/`003A6BA0` storing two results —  **(corrected 2026-09-29, FABLE, GI-10: the effect's owner actor `0
+        49 | `005C5230` | `xor eax,eax; ret` — the shared return-0 stub (page's "null path" confirmed) |
+    rg  57 `0044B960` + own tail (`0045C450` / `0045CDC0` / `0045D7D0`, all read 2026-09-29, GI-10);
+    rg  92 `004607C0` — and also invokes the seventh dispatcher `002F31C0` itself. **Corrected 2026-09-29 (FABLE, GI-10):**
+    rg 101 (`00523380`/`00524320`/`005263F0`/`00529D50`,  *read 2026-09-29*) **(corrected 2026-09-29, FABLE, GI-10:
+    rg 137 tails (`0052A8B0`/`0052B5E0`/, ) **(corrected 2026-09-29, FABLE, GI-10: `0054C6B0` /
+       168 *(tails read 2026-09-29 - [the tails](#the-tails-the-emits-and-who-authors-them-gi-10-2026-09-29-fable); `00431770`
+       169 read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md))*;
+    rg 175 identity is answered under GI-10 - the section below; the transform primitives and the shared helpers are documented on the
+    rg 190 | type | per-frame tail | what it makes the element do | cull fork | program / primitive (UQ-213) | authored: chunks / assets |
+       194 | `0x65`, `0x66` | `0045E3C0`, `0045F140` (1,213 B; three operands differ) | common head + three seeds; **after the cull passes**, a target offset (track `+0x140`) is res
+       196 | `0x68` | `00523380` (2,160 B) | a **bolt travelling from a start point to a resolved target** along a bent curve: each end gets a fixed random slot on a ring around the
+       206 names. **`00431770`** is the texture-layer bundle rebase read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md);
+    rg 301 *Nothing of GI-10 remains open (2026-09-29). The coverage limit on names above is not a residue: no ability-keyed
+       306 **Audio — CLIENT.** `FUN_003b99d0`, owned by that layer, calls `001EDDA0` on this page. That caller is a 1,501-byte state machine driven by `byte[+8]`, decremented case b
+       308 **Gameplay — CLIENT.** `BattleAction_FindApproachGeometryAroundTarget`, owned by that layer, calls `00203170` on this page. That caller is the approach-geometry search: a
+       310 **Input — CLIENT (6 edges through 2 of this page's functions).** The Input layer reaches this page at `0053DD10`, `0022B6E0`. `FUN_002e09a0` is the worked example, read i
+       312 **RNG_Random_Selection — SERVICE.** `0022B6E0` on this page calls `RNG_MT19937_NextU32_Thunk`, owned by that layer. What it reaches is a five-byte thunk - `jmp 00863BF0` 
+       314 **Save_Load_Settings — SERVICE.** `0022B6E0` on this page calls `SaveRuntime_ResetActiveImageAndRebindState`, owned by that layer. What it reaches is a 50-byte reset that
+    rg 342 `0053A5D0` (287 B) is the  **`+0x44 = 0x67` (corrected 2026-09-29, FABLE, GI-10: `005004C0`'s table and `members/effect-type-methods.tsv`)** creation arm (`005004C0` stub
+    rg 346 `0053A6F0` (150 B) is the  **`+0x44 = 0xA0` (corrected 2026-09-29, FABLE, GI-10)** creation arm (`005004C0` stub 39): `00500470` prelude, `0042FCF0`x2/`004304F0`x4/`00430
+    rg 350 `0053A790` (162 B) is the  **`+0x44 = 0xA1` (corrected 2026-09-29, FABLE, GI-10)** creation arm (`005004C0` stub 40): `00500470` prelude, `0020E620`x2/`003AA280`x2 pairs,
+    rg 354 `0053A840` (191 B) is the  **`+0x44 = 0xA2` (corrected 2026-09-29, FABLE, GI-10; `0x68` has no main-range setup)** creation arm (`005004C0` stub 41): `00500470` prelude, 
 === 17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md
-  [92] ## The remaining full-size walks
-  [120] ## Not read
+    rg  56 - `0x8C`/`0x94`/`0x95` **(and `0x97`, corrected 2026-09-29, FABLE, GI-11: same birth, update `0045B260` and tail `0045B640`)** — identical step `00455390` (419 B: base + 
+    rg  68 tail `00459BD0`,  **(corrected 2026-09-29, FABLE, GI-11: `0020E610`, an `x == 0` test, *replaces*
+    rg  82 | `0045B2A0` (`0x95`) | `*rcx != 0` | shared tail `0045B640` (read 2026-09-29, GI-11 group B1) |
+    rg  86 | `0045BAD0` (`0x97`) | `*rcx != 0` | shared tail `0045B640` (read 2026-09-29, GI-11 group B1) |
+        97 `0x8B` `00454930` (1623 B), `0x8D` `00455DB0` (1276 B, calls `002F1D90`; interior read 2026-09-17, SWE2-FRONTIER: `00434A70` first at [`00455E38`](../../_index/ADDRESS-IN
+    rg 103 **Read 2026-09-29 (FABLE, GI-11):** the
+    rg 112 `0045AA50`, `00454480` —  *all read 2026-09-29*). **Corrected 2026-09-29 (FABLE, GI-11):** `00454890` is
+    rg 117 `003A6E60`;  **`0x89` (corrected 2026-09-29, FABLE, GI-11; `0x8A`'s step is the 54-B `00453110`)** step `004524C0` (113 B) same. Every update is the 56 B
+       122 *(tails read 2026-09-29 - [the tails and emits](#the-tails-and-the-emits-gi-11-2026-09-29-fable))*;
+    rg 127 and primitive identity is answered under GI-11 - same section; the transform primitives `00399600`/`0039A9B0`/`0039B550`/`0039B620`
+       128 and the workbench save/restore `002F1D90` are documented on [the two transform primitives](../../00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primi
+       130 are shared helpers documented where the neighbour pages name them)*;
+    rg 134 not this one's)*; the `0045B2A0`/`0045BAD0` shared tail is `0045B640`, read under GI-11 group B1;
+       135 *(`00431770` read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md); `003AA280` is documented on
+    rg 166 | types | program(s) (UQ-213) | primitive | on screen | authored: chunks / assets |
+    rg 173 | `0x81`, `0x8A`, `0x97` | raw GS packets | - | **nothing on PC** (UQ-204), and **no shipped effect authors them** | 0 |
+       177 **Audio — CLIENT.** `FUN_003b99d0`, owned by that layer, calls `001EDDA0` on this page. That caller is a 1,501-byte state machine driven by `byte[+8]`, decremented case b
 === 17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md
-  (no residue section)
+        74 | `+0x00` | u32 | encoded id resolved by `0020E600` → the `0x30`-stride entry array (`0040AEC1`–`0040AED0`) |
+        76 | `+0x05` | u8 | if set, `+0x0C` is resolved and *its* `[0]` resolved again before proceeding (a parent indirection, `0040AD0E`–`0040AD28`) |
+       150 **H1 confirmed**: the outputs are node matrices and delta vectors pushed through the VU0 register
+       157 *(settled: they are the skeleton's bone records — "Not established this pass" below, named
+    rg 159 unnamed — registered as **GI-19**.
+       169 3. if the arg triple `params[0]/[4]/[8]` differs from the resolved `[rsi + 4]`-record's
+       172 4. compares `params[+0xC]` against a third resolved record's `+0x18` and rewrites the
+       177 `0040FEF0(record, resolved)` — one synchronous heavy-triple pass — unless
+       190 *(every item below settled — the owner/pose questions answered
+    rg 191 2026-09-29 under GI-12; the naming of the resolve chain's intermediate types is registered GI-19)*
+    rg 199 *All three answered 2026-09-29 (FABLE, GI-12) in section 6b: the globals are the map wind, `02B59D60` is never
+       211 helpers and take no slot.** *(Narrowed 2026-09-30 on SWE2-AUDIT-SEM's review N1, `auditsem-review-gi12-0930`,
+       285 rig frame skips its last three applies (the rig page, corrected the same day).
+       331 | `0040xxxx` oscillator band | `0040ACF0`, `0040B180`, `0040B780`, `0040D890`, `0040ED80`, `0040EE70`, `00413340`, `00415EE0`, `00416270`, `00416450`, `00416600`, `004167
+    rg 337 *Answered 2026-09-29 (FABLE, GI-12): each evaluator
+       372 verified and refined (the `+0` field is an encoded id resolved by `0020E600`, the `+0x10` scalar
+       407 **Gameplay — CLIENT.** `BattleAction_FindApproachGeometryAroundTarget`, owned by that layer, calls `00203170` on this page. That caller is the approach-geometry search: a
+       409 **Input — CLIENT (11 edges through 2 of this page's functions).** The Input layer reaches this page at `0022A770`, `001EDE70`. `InputGameplay_ArbitrateDigitalInputAndModa
+       411 **Party — SERVICE.** `0022A770` on this page calls `PartyFocus_CommitPendingPackedActorHandle_Thunk`, owned by that layer. What it reaches is a five-byte thunk - `jmp 003
+       413 **Resource — SERVICE.** `004242B0` on this page calls `ResourceTable_ResolveEntryByIndex`, owned by that layer. What it reaches is the paged resource-table lookup, and it
+       415 **StoryEvent — CLIENT.** `FUN_001ed240`, owned by that layer, calls `001EC560` on this page. That caller is a 2,192-byte cutscene-override table: it matches the current a
+       417 **UI — CLIENT (19 edges through 7 of this page's functions).** The UI layer reaches this page at `00203170`, `00202C70`, `00202B10`, `001EDDA0` and 3 more. `FUN_0024b9b0`
+       451 *Three bodies read whole - the handler `00520510` (147 B), its deferred callback `00520E90` (361 B) and the oscillator
+       478 `00518D50` (259 B) is the bone-record stamp `003E00C0` runs: `[rcx+0x30]`/`+0x40`/`+0x50` copy into the `022D91B0`/`022D91C0`/`022D91D0` globals, then per `dword[rbx+4]` 
 === 19-Save-Load-Settings/the-save-load-screen-widgets.md
+        23 last_pass_state: opus-save-load-widgets-pass-1 - thirteen claims attacked by decoding the image at GN160; the id SET of every widget is exact, derived from the table at 0
+        38 **Status:** PARTIAL — the seven atlas rows are dispatch-read below; the installers are the named `SaveLoad_*`/`SaveWrite_*` controllers, so these widgets are the UI end o
+        79 > **CORRECTED 2026-09-14 (OPUS, falsification pass 1): `0057E610` answers id 1.**
   [86] ## Not yet established
-       - ~~`0057FE80`'s id-10/12/14 arm interiors (slot pick semantics)~~ — **read at the dispatch level 2026-09-18 (FABLE).** The table at `005807B8` is indexed by `id − 1` (`0
-       - ~~which `0x1D`/`0xD` status codes `0057F360` branches into beyond the guard~~ — **narrowed 2026-09-18 (FABLE): `0x1D` is the sub-command and ~~3 / `0xD` / `0xF` are its
-       - ~~the `00583FD0` child's own identity (the "writing" indicator widget)~~ — **confirmed as a text notice 2026-09-18 (FABLE):** it builds its line from the low-pool rows 
+        88 -  — **read at the dispatch level 2026-09-18 (FABLE).** The table at `005807B8` is indexed by `id − 1` (`0057FE92`–`0057FEAF`): id 10 → `005803C7`, id 12 → `00580401`, id
+    rg  89 -  — **narrowed 2026-09-18 (FABLE): `0x1D` is the sub-command and ** **Corrected 2026-09-29 (FABLE, GI-13):** 3 / `0xD` / `0xF` are notification classes (who reported), a
+        90 -  — **confirmed as a text notice 2026-09-18 (FABLE):** it builds its line from the low-pool rows `0x49A` or `0x49C` (chosen by a flag, `0058402A`–`00584038`), formats th
+       144 | `0057E610` | *(none)* | **1** | **FALSIFIED**, corrected above |
+       188 **⚠ Corrected 2026-09-14 (FABLE, FINAL-AUDIT pass 22) — `002EF640` is not a slot or file enumerator.** It is the 8-byte
+!! residue-without-id lines: 0
+selftest OK - 5 fixture lines flagged

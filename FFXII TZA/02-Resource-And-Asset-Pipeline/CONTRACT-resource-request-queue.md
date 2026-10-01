@@ -72,7 +72,7 @@ synchronously until a slot is available. The queue is not guaranteed to defer wo
 
 | Offset | Bounded meaning |
 |---|---|
-| `+0x00`, `+0x08` | Absolute-counter accumulator and latest stamp. State 2 adds the **second** getter result and stores that same result as the stamp. |
+| `+0x00`, `+0x08` | Absolute-counter accumulator and latest stamp. State 2 adds the **second** getter result and stores that same result as the stamp. **The accumulator is written, never read in this build** (SWE2-CONTRACT `b6_request_queue.py` Z1, M1-M2, Z3): `0032E153` adds to it and `0032E229` / `0032E725` / `0032E97C` store 0; its purpose is not a static question. |
 | `+0x10`, `+0x18` | Next and previous slot pointers, for both free and pending lists. |
 | `+0x20`, `+0x21` | State and kind bytes; kind `0xFF` changes the meaning of the stored 32-bit index. |
 | `+0x22`, `+0x23` | Distinct chunk-enable and progress-result bytes. Some initialization writes both at once. |
@@ -81,7 +81,7 @@ synchronously until a slot is available. The queue is not guaranteed to defer wo
 | `+0x30`, `+0x34` | Part cap and remaining count; the relevant minimum/termination comparisons are signed 32-bit. |
 | `+0x38`, `+0x70` | Advancing destination and original destination. |
 | `+0x40`, `+0x48` | Completion/error and cancellation callback pointers copied from descriptor `+0x10/+0x18`. |
-| `+0x50` | Part callback slot. **The requester clears it; it does not copy descriptor `+0x20`.** |
+| `+0x50` | Part callback slot. **The requester clears it; it does not copy descriptor `+0x20`.** **Nonnull part callbacks: none in the shipped build** (SWE2-CONTRACT `b6_request_queue.py` Z2): the slot is stored only as 0 (`0032E6FF`, `r14` = 0 from `0032E670`; `0032E959`) and read only at `0032E3B4`, so `0032E3B0` returns 1 and part results 2 / 3 occur only under seeded controls. |
 | `+0x58`, `+0x5C`, `+0x60`, `+0x64` | Slot index; requester-zeroed dword; callback argument word; request id. |
 | `+0x68..+0x6F`, `+0x78..+0x7F` | Unobserved in the cited slot census; do not invent semantics. |
 
@@ -174,7 +174,7 @@ the head is busy. These rows describe original caller control flow; external rea
 | State | Transition / stopping condition |
 |---|---|
 | Empty pending list | Call `003EADD0`, then the common service footer. |
-| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. **Every other kind is taken as issued:** the wrapper `0046E030` returns 1 whatever the read issuer `002DF780` returned (`0046E043`). So a refused read (a −1 file-size entry, `002DF7B9`) also moves to state 2, and in state 3 it completes on the status slot `0215EFF4` the previous read left (OPUS 2026-09-30, RC-37, `_index/candidates/rc37-refused-read-0930/`, static; pending SWE2-AUDIT-SPEC review). |
+| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. **Every other kind is taken as issued:** the wrapper `0046E030` returns 1 whatever the read issuer `002DF780` returned (`0046E043`). So a refused read (a −1 file-size entry, `002DF7B9`) also moves to state 2, and in state 3 it completes on the status slot `0215EFF4` the previous read left (OPUS 2026-09-30, RC-37, `_index/candidates/rc37-refused-read-0930/`, static; ~~pending SWE2-AUDIT-SPEC review~~ reviewed ACCEPT by SWE2-AUDIT-SPEC 2026-09-30, [`auditspec-review-rc37-0930`](../_index/candidates/auditspec-review-rc37-0930/REVIEW.md)). |
 | 2 issued | Discard first getter result; add second absolute reading to accumulator; store the same value at `+8`; set state 3 and revisit head. |
 | 3 waiting | In-flight status returns to footer and blocks later pending work. Otherwise set state 5 or 6 from status sign and enter completion handling. |
 | 4 cancelling | Wait for in-flight status to clear; when cancel callback exists, zero byte count and call it. Set state 0, recycle, and revisit head. With no callback this path does not zero byte count. |
@@ -270,8 +270,8 @@ protection; and the pump drains to teardown, not idle.
 
 * Real read-layer, file/archive, service-footer and callback side effects beyond the checked boundary.
 * Live progress, scheduling, synchronization, cancellation/path lifetime and higher-level priority policy.
-* Authored/reachable producer state for the chunk gate, nonnull part callbacks and invalid input values.
-* Meaning of the absolute-counter accumulator and the still-unobserved slot bytes.
+* Authored/reachable producer state for the chunk gate~~, nonnull part callbacks~~ and invalid input values. *(Nonnull part callbacks answered 2026-10-01: none in the shipped build, `+0x50` row.)*
+* ~~Meaning of the absolute-counter accumulator and the still-unobserved slot bytes.~~ *(Answered 2026-10-01: the accumulator is written and never read, `+0x00` row; the 16 bytes `022C51E0`..`022C51EF` after the list record are one qword stored 0 by `0032EAA7` and `0032EAE0` and never read (SWE2-CONTRACT `b6_request_queue.py` Z3).)*
 * Formal peer review of SECTION-02 and resolution of the broader L2 system obligations.
 
 These are not answered by correct hashes, a complete layout, passing fixtures or a linked contract.

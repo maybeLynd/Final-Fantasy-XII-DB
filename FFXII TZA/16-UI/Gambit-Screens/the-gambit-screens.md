@@ -1,7 +1,7 @@
 ---
 id: ui-gambit-screens
 title: The gambit screens — the list, the editor, the icon, and the bank-commit protocol
-status: "DOCUMENTED — GI-1 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-0930). Was PARTIAL on: which value of the gambit row's +0x14 bit 0 selects condition art and which action art is not established; the earlier 02F8F570 was a misread of 0208F570, the tick counter (corrected 2026-09-18)"
+status: "PARTIAL — GI-18 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the editor's 12 sub-commands and the list's 19 arms below entry level are live. GI-1 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). Was PARTIAL on: which value of the gambit row's +0x14 bit 0 selects condition art and which action art is not established; the earlier 02F8F570 was a misread of 0208F570, the tick counter (corrected 2026-09-18)"
 evidence_tier: 1
 tags: [ui, gambits, menu-screens]
 verified_against:
@@ -288,9 +288,12 @@ page false), and the destroy window was read correctly but judged by the wrong p
 sharpest claim on the page — that a `lea` with a specific displacement yields exactly the image
 base — is also the one that would have been easiest to get wrong, and it is exact.**
 
-**Not attacked by this pass**, and still `PARTIAL` for the reasons the page already gives: the
-editor's 12 sub-commands and the list's 19 arms below entry level, the per-leaf roles in
-*Not yet established*, and whether `00566C10`'s icon set is condition- or action-type art.
+**Not attacked by this pass**, and still `PARTIAL` on the editor's 12 sub-commands and the
+list's 19 arms below entry level — registered as **GI-18**. The other two reasons the page
+gave are settled: ~~the per-leaf roles in *Not yet established*~~ *(all eight read 2026-09-15,
+member table)* ~~and whether `00566C10`'s icon set is condition- or action-type art~~
+*(settled 2026-09-29 (FABLE, GI-1): `00566C10` is a tab-strip pointer, not condition/action
+art)*.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

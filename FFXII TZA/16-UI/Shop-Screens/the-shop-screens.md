@@ -1,7 +1,7 @@
 ---
 id: ui-shop-screens
 title: The shop screens — the menu list, the trade panel, and the item list
-status: "DOCUMENTED — GI-5 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-0930). Was PARTIAL on: +0xE4 mode values beyond 0x1C0/0x2C0 are not established; 0057A4E0's contents read 2026-09-18 (a styled text element torn down at shop state 3)"
+status: "PARTIAL — GI-17 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the id-20 arm helpers `002D45C0`/`002CFCF0`/`0027EE80` are live. GI-5 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). Was PARTIAL on: +0xE4 mode values beyond 0x1C0/0x2C0 are not established; 0057A4E0's contents read 2026-09-18 (a styled text element torn down at shop state 3)"
 evidence_tier: 1
 tags: [ui, shop, menu-screens]
 addresses:
@@ -204,7 +204,7 @@ site `0056E15F`; unhandled ids share the `0056E3AB` return-0 tail):
 | 20 | `0056E356` | `0056DD00` gate, then `002CFCF0`, `0027EE80` (`0056E356`–`0056E373`) |
 
 ids 2–7, 11, 13, 16, 17 are unhandled. The arm bodies' per-helper roles (`002D45C0`,
-`002CFCF0`, `0027EE80`) are named by call site only — not read in this pass.
+`002CFCF0`, `0027EE80`) are named by call site only — not read in this pass; registered as **GI-17**.
 
 ## The `01E0C490` query-class dispatch — NOCALLER-INSTALLERS, 2026-09-14 (FRONTIER)
 

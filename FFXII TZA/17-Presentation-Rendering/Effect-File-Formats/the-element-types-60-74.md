@@ -54,7 +54,7 @@ New helper identifications this group (all read from the shipped body):
 
 `0x60` and `0x62` share setup `0053A120`; `0x61` has `0053A060` (a trimmed
 variant, not the same shape). All three steps are 87 B = base stepper + PRNG
-`0044B960` + own tail (`0045C450` / `0045CDC0` / `0045D7D0`, all `not read`);
+`0044B960` + own tail (`0045C450` / `0045CDC0` / `0045D7D0`, all read 2026-09-29, GI-10);
 all updates are the 56 B base + same tail. `0053A120`'s record: four 3-track
 groups `+0x80`–`+0x140`, three 4-track groups `+0x180`/`+0x1D0`/`+0x220`, three
 single heads `+0x270`–`+0x290`. `0x61`'s `0053A060` drops the fourth 3G (three
@@ -161,17 +161,19 @@ queue `0024B1C0`, array `02091150`, count `02092168`); `0x70` is definition-only
 the `0x50`-stride 4-track-group runs and `0xF0`-stride `00431770` blocks make the
 `0x6B`–`0x74` records regular arrays of repeated structures.
 
-**Not read (explicit):** ~~all step/update tails (`0045C450`, `0045CDC0`,
+~~**Not read (explicit):**~~ ~~all step/update tails (`0045C450`, `0045CDC0`,
 `0045D7D0`, `0045E3C0`, `0045F140`, `0045F600`, `004607C0`, `00523380`,
 `00524320`, `005263F0`, `00529D50`, `0052A8B0`, `0052B5E0`, `0054C6B0`,
 `0054E040`); `00431770` still `not read` (third-variant init used at `0xF0`
 stride);~~ *(tails read 2026-09-29 - [the tails](#the-tails-the-emits-and-who-authors-them-gi-10-2026-09-29-fable); `00431770`
-read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md))*; the walk emit tails `003970A0`, `00399600`, `0039A9B0`, `003A33B0`,
+read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md))*; ~~the walk emit tails `003970A0`, `00399600`, `0039A9B0`, `003A33B0`,
 `003A34D0`, `0039ADE0`, `00202B70`, `00202D50`, `00202D70`, `00203170`,
 `0024E460`, `0024E640`, `00462260`, `00540F40`, `00434900`, `0036A190`,
 `0036C140`, `0036C1D0`, `00532EF0`, `003697F0`, `0017FFD0`, `003D8E50`,
 `003A6E60`, `00541E00`/`00542060`/`005439A0`/`005450E0`/`00545120`/`00547DD0`/
-`0054A9C0`, `00808C40`, `00861EBA`. ~~**No player-facing names assigned** — the
+`0054A9C0`, `00808C40`, `00861EBA`.~~ *(Each type's program and primitive
+identity is answered under GI-10 - the section below; the transform primitives and the shared helpers are documented on the
+shared pages, and `00808C40`/`00861EBA` are the CRT stack-cookie check and the block copy.)* ~~**No player-facing names assigned** — the
 emitter call identity still unread.~~ *(Each type's program and primitive: [the emits](#the-tails-the-emits-and-who-authors-them-gi-10-2026-09-29-fable), 2026-09-29.)*
 
 ## The tails, the emits, and who authors them (GI-10, 2026-09-29, FABLE)
@@ -359,7 +361,7 @@ Interior anchor `0053A86B` (function `0053A840`).
 
 **Party — SERVICE (1 edge).** The point query `003A56F0` calls `PartyFocus_GetCurrentPackedActorHandle` (`003590D0`) on one arm and gives up when it returns 0, so for that target mode the queried point belongs to the player's current focus character. The effect reads the party layer's focus handle; it does not change the focus.
 
-**ActorEntity — SERVICE, MECHANICAL (7 edges).** The registry's 2026-09-14 GENUINELY-IRRELEVANT verdict for this pair covered one edge: the actor state-interpolation body `003F1E90` calling the SIMD helper `00203170`, which is shared math. The GI answer adds six more, all from the point query `003A56F0`: it calls `ActorHandle_ResolveRegistryEntryByPackedId` (`003588B0`), `ActorHandle_EncodeRegistryEntry` (`003589B0`), `ActorManager_GetRecordByOrdinal` (`00358940`), `Actor_GetWorldPosition` (`00265020`) and two small actor accessors, `00263C30` and `00263FF0`, which are named in the census only and not read here. The point query turns an actor reference into a world position through the actor layer's handle, record and position accessors; the effect reads actor state and writes none of it.
+**ActorEntity — SERVICE, MECHANICAL (7 edges).** The registry's 2026-09-14 GENUINELY-IRRELEVANT verdict for this pair covered one edge: the actor state-interpolation body `003F1E90` calling the SIMD helper `00203170`, which is shared math. The GI answer adds six more, all from the point query `003A56F0`: it calls `ActorHandle_ResolveRegistryEntryByPackedId` (`003588B0`), `ActorHandle_EncodeRegistryEntry` (`003589B0`), `ActorManager_GetRecordByOrdinal` (`00358940`), `Actor_GetWorldPosition` (`00265020`) and two small actor accessors, `00263C30` and `00263FF0`, which are named in the census only — their bodies are the actor layer's pages' scope. The point query turns an actor reference into a world position through the actor layer's handle, record and position accessors; the effect reads actor state and writes none of it.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22, FRONTIER's debt (SWE2-FRONTIER, 2026-09-30)
 

@@ -1,0 +1,22 @@
+{
+  "status": "ADDITIVE_CORRECTION_REQUIRED",
+  "prior_claim": "copy4F0 from [unit+B88] to unit+730",
+  "corrected_claim": "Actual original stores cover [unit+6B0,unit+BA0); +80 is loop cursor advance cancelled by first-store displacement.",
+  "producer_cause": "check.py line49 and EXP091 summary copied the cursor as origin. Existing canc-cpyhit acceptance at lines802..809 checks trace and bitmap, not destination boundaries; no direct copy-origin/canary check is in that case.",
+  "required_change": "ORACLE add minimal disjoint patterned source, poison destination and boundary-canary case around original30EDA0; verify all4F0 bytes at6B0 and untouched6AF/BA0 plus714/B88, separately retain actual original R8 bitmap release. OPUS/FABLE qualify restored action/ownership domain. Preserve original85cases/mutations/history; no wholesale repeat or live run required.",
+  "limits": "This is original-code address proof, not a new execution of EXP091 or live initialization/lifetime proof.",
+  "consumer_preimages": [
+    {
+      "path": "Database/FFXII TZA/_experiments/EXP-091-commit-callees-exec.md",
+      "sha256": "0fe0a73fc084d4e0797098d281616a3364acab2296416ef9df284f1b097510f0"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/commit-callees-exec/check.py",
+      "sha256": "65ac80dea4c0332216a6d556a7298c98a5ef496bfe989f65a42470758e676b83"
+    },
+    {
+      "path": "Database/FFXII TZA/07-Combat-Action/CONTRACT-commit-action.md",
+      "sha256": "6b08e9eab4e7074a3b63134b6a37e954331f4918253fc0b95cd19669359712e8"
+    }
+  ]
+}

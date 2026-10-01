@@ -1,7 +1,7 @@
 ---
 system: The per-model oscillator subsystem (the 0040ACF0 family)
 category: 17-Presentation-Rendering
-status: "DOCUMENTED — GI-12 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI12, ACCEPT-WITH-NARROWING applied on the page, cfc5a4863); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-0930). Was PARTIAL on: which pose slot each evaluator owns is not established; the 0x290 records named 2026-09-18 as the skeleton's bone records (the Skeleton_* family strides them)"
+status: "PARTIAL — GI-19 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the resolve chain's intermediate object types are unnamed. GI-12 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI12, ACCEPT-WITH-NARROWING applied on the page, cfc5a4863). Was PARTIAL on: which pose slot each evaluator owns is not established; the 0x290 records named 2026-09-18 as the skeleton's bone records (the Skeleton_* family strides them)"
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -153,8 +153,10 @@ appears anywhere in the apply heads, and the `0x290` records carry four-row matr
 H2 (per-model lighting from the weather sun) is unsupported by anything read. The oscillation
 inputs are the two phase pairs of §2, whose speeds are re-drawn from `003D8E50` — the same
 perturbation helper the weather system uses — which is the concrete mechanism behind wind/gust
-sway. What the `0x290` records are *named* (node vs bone vs attachment) is not established; the
-four-deep resolve chain's intermediate object types are likewise unnamed.
+sway. ~~What the `0x290` records are *named* (node vs bone vs attachment) is not established~~
+*(settled: they are the skeleton's bone records — "Not established this pass" below, named
+2026-09-18 FABLE)*; the four-deep resolve chain's intermediate object types are likewise
+unnamed — registered as **GI-19**.
 
 ## 5. The parameter-install path (`0054B1F0`)
 
@@ -185,7 +187,8 @@ Roles above are read from bodies at the stated addresses; the four heavy stages
 call-shape level only — their inner loops resolve sub-entries through `0020E600` and stream
 through the bank, but the per-sub-entry math is not walked instruction-by-instruction.
 
-Not established this pass:
+~~Not established this pass:~~ *(every item below settled — the owner/pose questions answered
+2026-09-29 under GI-12; the naming of the resolve chain's intermediate types is registered GI-19)*
 
 - ~~the owner type of the `0x40`-byte oscillator record;~~ *placed 2026-09-19: it is the rig's controller 0 (section 1)*; ~~and the `0x290`-stride node records~~ — **the `0x290` records are the skeleton's bone records (named 2026-09-18, FABLE, by cross-reference):** [the render-event selection evidence](../Character-Render-Records/render-event-selection-evidence.md) walks the same `0x290` array as *bone records*, and every listed function that strides by `0x290` is a skeleton body — `Skeleton_UpdateFinalPoseAndCombatLook` `003703A0`, `Skeleton_ComposeFinalPose` `00373860`, `AddMotion_ApplyBonePose` `003714A0`, `RelationLook_ApplyBoneMatrices` `00514F20`, `Skeleton_ResetConfiguredAdditiveBoneMatrices` `003E3C30`, `SkeletonModelWork_PropagateParentSecondaryTransforms` `00373F40` — so the four-row matrix at `+0x80` is a bone's pose matrix and the apply pushes bone poses, not attachment or node transforms;
 - ~~who writes `02CA4380`–`02CA439C`, `02B59D60`, `02B59D68`, and what arms `02CA4390`;~~

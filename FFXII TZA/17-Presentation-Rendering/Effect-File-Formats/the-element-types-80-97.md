@@ -79,11 +79,11 @@ definition record and tail-jump into a shared emit body:
 | walk | gate | targets |
 |---|---|---|
 | `0045AEE0` (`0x94`) | `*rcx != 0` | `0045AEF0` shared tail |
-| `0045B2A0` (`0x95`) | `*rcx != 0` | shared tail (`not read`) |
+| `0045B2A0` (`0x95`) | `*rcx != 0` | shared tail `0045B640` (read 2026-09-29, GI-11 group B1) |
 | `00455540` (`0x8C`) | record `[+0x20] + 0x294 & 6` | `004559C0` vs `00455560` |
 | `0045A200` (`0x92`) | record `[+0x20] + 0x2A4 & 6` | `0045A6A0` vs `0045A220` |
 | `00457FE0` (`0x90`) | record `[+0x20] + 0x337`, then `+0x330` — **three-way**: `+0x330 == 0` falls into ~~an inline body at~~ its own function `00458010` | `004584E0` vs `00458CA0` (or inline `00458010`) |
-| `0045BAD0` (`0x97`) | `*rcx != 0` | shared tail (10 B, `not read`) |
+| `0045BAD0` (`0x97`) | `*rcx != 0` | shared tail `0045B640` (read 2026-09-29, GI-11 group B1) |
 
 The `[element+0x20]` record flag bytes `+0x294`, `+0x2A4`, `+0x330`, `+0x337`
 therefore carry authored mode bits that choose between emit paths — the first
@@ -117,14 +117,23 @@ and field traffic at `+0x264`–`+0x2AC`. `0x86` step `004504C0` (131 B) adds
 `003A6E60`; ~~`0x8A`~~ **`0x89` (corrected 2026-09-29, FABLE, GI-11; `0x8A`'s step is the 54-B `00453110`)** step `004524C0` (113 B) same. Every update is the 56 B
 base+tail form.
 
-## Not read
+## Former "not read" list — every item settled or scoped (SWE2-FRONTIER repair, per the SWE2-AUDIT-SEM review, 2026-10-01)
 
-~~All step/update tails listed above;~~ *(tails read 2026-09-29 - [the tails and emits](#the-tails-and-the-emits-gi-11-2026-09-29-fable))*; emit calls `00394DA0`, `003970A0`,
+~~All step/update tails listed above;~~ *(tails read 2026-09-29 - [the tails and emits](#the-tails-and-the-emits-gi-11-2026-09-29-fable))*;
+~~emit calls `00394DA0`, `003970A0`,
 `00398030`, `00399600`, `0039A9B0`, `0039B550`, `0039B620`, `003A2B20`,
 `003A2D80`, `003A3010`, `003A34D0`, `003A35E0`, `0042FDB0`, `004309C0`,
-`003A6E60`, `003D8E50`, `0020E610`, `0017FFD0`, `002F1D90`; selector targets
+`003A6E60`, `003D8E50`, `0020E610`, `0017FFD0`, `002F1D90`;~~ *(each type's program
+and primitive identity is answered under GI-11 - same section; the transform primitives `00399600`/`0039A9B0`/`0039B550`/`0039B620`
+and the workbench save/restore `002F1D90` are documented on [the two transform primitives](../../00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md)
+and [the shared transform workbench](../../00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md); `0017FFD0`/`003D8E50`/`003A6E60`/`0020E610`
+are shared helpers documented where the neighbour pages name them)*; ~~selector targets
 `0045AEF0`, `004559C0`, `00455560`, `0045A6A0`, `0045A220`, `004584E0`,
-`00458CA0`, and the `0045B2A0`/`0045BAD0` tails; `00431770`, `003AA280`.
+`00458CA0`,~~ *(the emit-path arms all funnel through the shared mid-ladder helper `003A2F70` - `0020E680` marshal, `001DB840` second
+stage - catalogued on [the dispatch page](effect-element-type-dispatch.md); their per-branch interiors are that page's scope,
+not this one's)*; the `0045B2A0`/`0045BAD0` shared tail is `0045B640`, read under GI-11 group B1; ~~`00431770`, `003AA280`~~
+*(`00431770` read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md); `003AA280` is documented on
+[CONTRACT-transform-primitives](../../00-Engine-Core-Runtime/CONTRACT-transform-primitives.md))*.
 ~~**No player-facing names assigned.**~~ *(What each type draws: [the tails and emits](#the-tails-and-the-emits-gi-11-2026-09-29-fable), 2026-09-29.)*
 
 ## The tails and the emits (GI-11, 2026-09-29, FABLE)

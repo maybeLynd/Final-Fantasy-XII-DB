@@ -1,7 +1,7 @@
 ---
 system: the element types 0x00-0x0A
 category: 17-Presentation-Rendering
-status: "DOCUMENTED — GI-8 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-0930). Was PARTIAL on: seven of the ten walks (the draws) are not read, so what those types look like on screen is not established; 0x01 is a point, 0x02 a sprite and 0x03 a line (2026-09-19); the update side (all ten tails, the cull test, the release, the child-spawn slots) is read whole and has its own page, an-effect-element-frame-by-frame"
+status: "PARTIAL — GI-14 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the six step/update tail helpers, the line emitter `0039D6C0` and the record `+0x38` consumer are live. GI-8 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2). Was PARTIAL on: seven of the ten walks (the draws) are not read, so what those types look like on screen is not established; 0x01 is a point, 0x02 a sprite and 0x03 a line (2026-09-19); the update side (all ten tails, the cull test, the release, the child-spawn slots) is read whole and has its own page, an-effect-element-frame-by-frame"
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -42,8 +42,10 @@ selects a *variant*, not an independent implementation:
   `00447830`/`00448800` for `0x02`/`0x05`/`0x06`/`0x07`, `0044C850`+`0044B960`
   for `0x0A`) — and in the 0x04/0x05/0x06/0x07 steps the tail is followed by
   extra helper work. All steps are 43–310 B **except `0x02`'s `00448DE0`
-  (739 B)**. The tail helpers themselves are not read this pass — marked
-  `not read` per row.
+  (739 B)**. The tail helpers `00442600`, `004428F0`, `0044B3C0`, `00449560`,
+  `00447830` and `00448800` were not instruction-read this pass — registered as
+  **GI-14**. (`0044A180` and `0044C850` are the shared `0x05`/`0x0A` tails, read
+  2026-09-29 under GI-11, groups B1 and A5.)
 - **`update` is base + same tail.** Every derived update is exactly 56 B **except
   `0x02`'s `00448D70` (103 B)**: call the type-`0x00` update `002F2530` (2094 B —
   the frame-advance the dispatch page already names), then the *same* tail helper
@@ -104,7 +106,7 @@ scalar track to the base record.
 
 | method | address | what it does |
 |---|---|---|
-| step | `00442520` | base stepper + tail `00442600` (`not read`) |
+| step | `00442520` | base stepper + tail `00442600` (GI-14) |
 | update | `004424E0` | base advance + same tail `00442600` |
 | walk | `00442550` | resolves a workbench slot from element `+0x244` (`0039B620`), writes `1.0f` to element `+0x23C`, runs transform primitive `002F1F40` on the `+0x230` matrix field, and calls `0026EE00` (the colour-modulate body wrapped internally in the bank save/restore); evaluates the record `+0x30` track with `004314E0` and stores the result to global `02AEE908`; stores record `+0x49 >> 5` to global dword `02AEE900`; copies the `+0x230` row to the stack and emits via `0039C550` |
 
@@ -130,7 +132,7 @@ rescales — the only low type that does.
 
 | method | address | what it does |
 |---|---|---|
-| step | `004427A0` | base + tail `004428F0` (`not read`) |
+| step | `004427A0` | base + tail `004428F0` (GI-14) |
 | update | `00442760` | base + tail `004428F0` |
 | walk | `004427D0` | 277 B; workbench compose (`0026EE00`, `002F1F40`, `0039B620`, `004314E0`) + `0039C4C0` and import-side `00808C40`; touches `+0x68`–`+0x70` and `+0x230`–`+0x254` |
 
@@ -184,7 +186,7 @@ track-dense low type.
 
 | method | address | what it does |
 |---|---|---|
-| step | `0044A5F0` | base + tail `0044B3C0` (`not read`) |
+| step | `0044A5F0` | base + tail `0044B3C0` (GI-14) |
 | update | `0044A5B0` | base + tail `0044B3C0` |
 | walk | `0044A620` | 3483 B — largest low-type walk; uses bank writers `003697F0`, `0036A190`, `0036DD80` (one of only three `vf00` writers, per the register-bank page) + `00397ED0`, `00398480` |
 
@@ -268,13 +270,13 @@ then the map to the PC renderer's topology enum. That is a reading of six table 
 | mode | emitter | what it does |
 |---|---|---|
 | 0 | `0039D890` (point, 224 B), `0039D5A0` (line, 286 B), both read whole | builds the primitive on the current command list and submits it at once; the point emitter also clears record `+0x58`, which the constructor sets to 1 |
-| 1-7 | `0039D970` (point, 348 B, read whole); the line's `0039D6C0` (457 B) **not read** | first **appends a `0x28`-byte entry to the depth-sorted display list** (`[02F8F2F8]`, count word `02F8F2C6` - the Gi page's section 11): callback and argument null, its own command list at `+0x18`, **sort key `+8` := the projected point's third word (after the x and y words the cull test reads - so depth, by position), with the pass nibble `02AEE910` or-ed into bits 28-31**, a flag dword at `+0x20` from three predicates not read. Then the primitive, with record `+0x4C` := 1 and **record `+0x38` := a blend value** |
+| 1-7 | `0039D970` (point, 348 B, read whole); the line's `0039D6C0` (457 B) **not read (GI-14)** | first **appends a `0x28`-byte entry to the depth-sorted display list** (`[02F8F2F8]`, count word `02F8F2C6` - the Gi page's section 11): callback and argument null, its own command list at `+0x18`, **sort key `+8` := the projected point's third word (after the x and y words the cull test reads - so depth, by position), with the pass nibble `02AEE910` or-ed into bits 28-31**, a flag dword at `+0x20` from three predicates not read. Then the primitive, with record `+0x4C` := 1 and **record `+0x38` := a blend value** |
 
 The blend value is `01EFAC20[mode]`, eight qwords: `0x44`, `0x48`, `0x42`, `0x44`, `0x49`, `0x46`, then two values that
 do not look like members (`0x80000000A8`, `4`). **Mode 6 does not use the table: it takes `02AEE908`, the `+0x30` track
 value** - an authored, animatable blend value. *The table values have the layout of a PS2 GS `ALPHA` register -
 `0x44` = (Cs - Cd) x As + Cd, normal; `0x48` = Cs x As + Cd, additive; `0x42` = Cd - Cs x As, subtractive; `0x49` = Cd x As
-+ Cd; `0x46` = Cd x (1 - As) - **an inference from the encoding; the consumer of record `+0x38` was not read**, and mode
++ Cd; `0x46` = Cd x (1 - As) - **an inference from the encoding; the consumer of record `+0x38` was not read (GI-14)**, and mode
 7 indexes past the six plausible entries.*
 
 **This explains a threshold in the tails.** They apply the `+0x30` percent track to alpha only when definition `+0x49`
@@ -391,7 +393,7 @@ round-up to a multiple of `+0x670` is for.
 radius, the height step and the start angle each advance as a difference series (R from `+0x254` += `+0x258` += `+0x25C`;
 Y += `+0x248` += `+0x24C` += `+0x250`; twist `+0x260` += `+0x264`) (`00447290`–`00447313`): a tube, a funnel, a tornado or a
 spiral from one type. V = row × `+0x244 / rows`; U repeats `+0x6D0` times; three colours + `+0x280` go to `00446050` (a
-row gradient by its call shape - that body is translated VU0 code, not read line by line).
+row gradient by its call shape - that body is translated VU0 code, not read line by line; registered GI-14).
 
 **`0x07` - `00447ED0` (2,350 B, read whole): a dome or sphere.** Latitude from π/2 downwards by `+0x240 / rows`, longitude
 span `+0x244`; vertex `(sin θ·R·cos φ, H·sin φ, cos θ·R·cos φ)` with R and H both starting at `+0x24C` and advancing by

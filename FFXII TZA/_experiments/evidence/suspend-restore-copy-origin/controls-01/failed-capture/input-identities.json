@@ -1,0 +1,121 @@
+{
+  "complete_case_file_set": true,
+  "files": [
+    {
+      "case_path": "capture-01.status.json",
+      "bytes": 502,
+      "sha256": "a52a0a57912d14d2bfa05f0a2a736acd04c2234c7158690dfb16357f6a1c7ad0",
+      "retained_overlay": "capture-01.status.json"
+    },
+    {
+      "case_path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "capture-01.stderr"
+    },
+    {
+      "case_path": "capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "inherited_base": "capture-01.stdout"
+    },
+    {
+      "case_path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+      "inherited_base": "capture-index-path.py"
+    },
+    {
+      "case_path": "capture.py",
+      "bytes": 895,
+      "sha256": "84ea8fae2406685cd53078c57516f7456d652384243b0d9dd439566ae8928aa0",
+      "inherited_base": "capture.py"
+    },
+    {
+      "case_path": "control.py",
+      "bytes": 3086,
+      "sha256": "aaa6534474cd6300926ae809215cce8c716b1678d074fa25c2f9dc446342d4ea",
+      "inherited_base": "control.py"
+    },
+    {
+      "case_path": "correction.json",
+      "bytes": 1580,
+      "sha256": "8388a3280bdb53db0256bb6376543ee165753cc86a2db03054d3b89891733da2",
+      "inherited_base": "correction.json"
+    },
+    {
+      "case_path": "PLAN.md",
+      "bytes": 1975,
+      "sha256": "d73abe3f88f7f7cb82697603510fade687f43b72412a2329ca5b3b64248391fb",
+      "inherited_base": "PLAN.md"
+    },
+    {
+      "case_path": "proof-01.status.json",
+      "bytes": 541,
+      "sha256": "f8118e43fc034573948c46724871bc28c3f9c92ce682bbb99ee860434c1ed86a",
+      "inherited_base": "proof-01.status.json"
+    },
+    {
+      "case_path": "proof-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "proof-01.stderr"
+    },
+    {
+      "case_path": "proof-01.stdout",
+      "bytes": 109,
+      "sha256": "c27263772cdaad3bb3a4211702a103f40fdc49df7974727bfb993a5c94297e2b",
+      "inherited_base": "proof-01.stdout"
+    },
+    {
+      "case_path": "prove.py",
+      "bytes": 9529,
+      "sha256": "7f9968296398a8b9a1ef6a76ae7584593fcdb97457d3d9cd2b171d92a3e08afd",
+      "inherited_base": "prove.py"
+    },
+    {
+      "case_path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+      "inherited_base": "prove_owner_reload_order.py"
+    },
+    {
+      "case_path": "receipt.json",
+      "bytes": 471,
+      "sha256": "e9ac9ee494786e103f333294673124c0647e62572f80f287529902eaf014e2da",
+      "retained_overlay": "receipt.json"
+    },
+    {
+      "case_path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3",
+      "inherited_base": "run.py"
+    },
+    {
+      "case_path": "source-01.json",
+      "bytes": 55613,
+      "sha256": "31c27aa8b2da192db7c62c62420ef2f44d2cc5cabe79b1149d90dcd782ded67d",
+      "inherited_base": "source-01.json"
+    },
+    {
+      "case_path": "stderr.raw",
+      "bytes": 857,
+      "sha256": "c38b42d74d782b5ef5eacf966a379717a77ac48354994e328a17e4d6f5a64c80",
+      "retained_overlay": "stderr.raw"
+    },
+    {
+      "case_path": "stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_overlay": "stdout.raw"
+    },
+    {
+      "case_path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "inherited_base": "validate-title-source-annotations.py"
+    }
+  ],
+  "explicit_removed_base_files": [],
+  "limits": "Unchanged inputs are exact hash-bound base files; no inference from absent output"
+}

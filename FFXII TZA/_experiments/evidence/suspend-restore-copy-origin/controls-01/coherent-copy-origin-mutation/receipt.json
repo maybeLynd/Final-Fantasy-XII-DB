@@ -1,0 +1,12 @@
+{
+  "name": "coherent-copy-origin-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "7f9968296398a8b9a1ef6a76ae7584593fcdb97457d3d9cd2b171d92a3e08afd",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "d17b4e2a8871af3e127c7388be0e6dedf98135c7b14b112671472d68802b34cf",
+  "terminal": true,
+  "exception": null
+}

@@ -1,7 +1,7 @@
 ---
 system: The authored presentation-command handler family — the 00520xxx band and its two-level dispatch
 category: 17-Presentation-Rendering
-status: "DOCUMENTED — GI-7 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI7, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-0930). Was PARTIAL on: residue registered as GI-7"
+status: "PARTIAL — GI-15 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the per-site not-read helpers named on the page are live. GI-7 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI7, ACCEPT, d998217e2). Was PARTIAL on: residue registered as GI-7
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -255,7 +255,7 @@ runtime watch. The data and the dispatch code answer it:
   handler. Authored counts by subtype: 7,656 / 2,559 / 2,283 / 2,559 / 3,169 / 220 / 622 / 622 / 622 / 80 / 1,256 /
   1,050 / 4,933. **So 20,392 authored commands (subtypes 0 to 9), in the attack, magic, item and ability animations of
   2,613 containers, are routed to the battle unit's timeline handler.** This is how an attack animation's timing reaches the battle
-  system; what each subtype means to the handler is the battle side's and was not read here.
+  system; what each subtype means to the handler is the battle side's and was not read here (GI-15).
 - **Id `6` - `002E7090` -> `00325090`.** 7,008 authored commands, one per block, in the same animation families.
 - **Id `0x0C` - `002E70A0` -> `003250F0` - is not a command class at all.** No block authors it, and no generated
   invoker reads its slot. Slot `02CA4470` is read by the **engine**, at three places: the two end-of-track sites of
@@ -299,7 +299,7 @@ the same version-1 container ([the container page](../Model-And-Motion-Formats/f
 
 *(Superseded 2026-09-20 by the section below, which reads the invoker whole.)* *Read but not written up here: `0x09` (invoker 00417F40, 1,717 B - only its first 0x140 bytes read, so written without code marks) looks its payload up as
 the **name of an `@FMN` section** of the entry's resource, the bone-motion child that sits beside each `@FMC` block in
-the container - 108,511 authored, one or two per block. What it does with the section was not read.*
+the container - 108,511 authored, one or two per block. What it does with the section was not read (GI-15).*
 ## Command `0x34` is the shadow command (FABLE, Claude Opus 5, 2026-09-20)
 
 **`byte[cmd + 2] == 0xFF` is a global toggle, and it is a pair this database already knows.**
@@ -350,7 +350,7 @@ and one is a nested switch.*
 So **the 120-wide default arm is dead in shipped data**, every real arm is live, and the global shadow toggle is
 authored 28 times across the game.
 
-**Not read here:** the seven arms past their first store; the `0x80` arm's nested switch; what `003AFC10` builds;
+**Not read here (GI-15):** the seven arms past their first store; the `0x80` arm's nested switch; what `003AFC10` builds;
 which of `+0x1C`–`+0x55` mean what to the shadow pools.
 
 ## Command `0x48` is command `0x3F` with its target named (FABLE, Claude Opus 5, 2026-09-20)
@@ -390,7 +390,7 @@ Both passes, with **both** published totals as controls — `0x3F` 3,108 and `0x
 authoring context: inside an animation container the oscillator is addressed by index, inside an event block by name
 — which is what an event needs, since it is authored against models it does not own.
 
-**Not read here:** `00372800`'s lookup beyond its `0xFFFF` contract; what name key `29` is; why `0x3F` zeroes its
+**Not read here (GI-15):** `00372800`'s lookup beyond its `0xFFFF` contract; what name key `29` is; why `0x3F` zeroes its
 index when it matches the masked `word+2`.
 
 ## Command `0x2F`: one presentation event, pushed down the child sub-tree (FABLE, Claude Opus 5, 2026-09-20)
@@ -456,7 +456,7 @@ when that lookup fails** (`0041FE57`–`0041FE97`). `CharacterRenderRecord_Reset
 `word[+0x2F8] == 0xFFFF` means *this record has no command block*, and that is exactly why `0x2F` skips such a node:
 there is no command stream there to affect.
 
-**Not read here:** `00423790`.
+**Not read here (GI-15):** `00423790`.
 
 ## `word[record + 0x2F2]`: the field two commands key on marks a **substitute** record (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -499,7 +499,7 @@ to fully opaque when a record stops being a substitute.
 **substitute-versus-real selector**, and the census shows the event blocks address **both** sides deliberately: bit 0
 set on 6,164 commands and clear on 1,029.
 
-**Not read here:** `004219C0`, the sibling writer, beyond confirming its two stores match; what the key argument
+**Not read here (GI-15):** `004219C0`, the sibling writer, beyond confirming its two stores match; what the key argument
 *names*; `00372760` and `0046E590` beyond their return contracts.
 
 ## Command `0x14`: a filtered hierarchy broadcast - and `00426870` is not a deferral (FABLE, Claude Opus 5, 2026-09-20)
@@ -550,7 +550,7 @@ id" reduces to plain `word[cmd + 2]` every time. The lookup `005048A0` is nevert
 `-1`, which drops that node silently — so the one failure this command can have in practice is a resource id that the
 entity's own table does not carry.
 
-**Not read here:** `00373060` (read only for its shape — it resolves two image pointers and indexes a `0x292`-stride
+**Not read here (GI-15):** `00373060` (read only for its shape — it resolves two image pointers and indexes a `0x292`-stride
 table) and `005048A0` beyond its `-1` contract; what `word[+0x2F2]` *is*, beyond being the field `0x13` gates on and
 `0x14` filters by.
 
@@ -635,7 +635,7 @@ re-applies the record with its class pinned to `0x80`.*
 `byte+3 = 0xFF`, so from this command `004288B0` always takes the **reset** branch — `byte[+0x40A] = 0` plus
 `+0x284` bit 17 — and never the add. The add path has eight other callers outside this page's subject.
 
-**Not read here:** what `word[+0x2F2]` counts ~~; the block's `+0`~~ (settled under `0x2F`).
+**Not read here (GI-15):** what `word[+0x2F2]` counts ~~; the block's `+0`~~ (settled under `0x2F`).
 
 ## Command `0x2A`: a pooled, generation-tagged handle, two at a time (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -697,7 +697,7 @@ Three of the four have **x equal to y** with a different z, and the fourth is un
 scale, not of a position offset* — but nothing read here consumes the floats, so they are recorded as three floats
 with four authored values and no name.
 
-**Not read here:** what the pool's slots are for (`003D8300`, the release, and the slot's own `+0x30`/`+0x40` were
+**Not read here (GI-15):** what the pool's slots are for (`003D8300`, the release, and the slot's own `+0x30`/`+0x40` were
 read only for their shape); the `02B4D7A2` gate; the table at `02B4E3D0` the kind-2 path indexes with the request's
 clamped word.
 
@@ -757,7 +757,7 @@ register-sourced `or`s into it. Only a wholesale `mov dword` could raise it — 
 render-record band (`00426E20`, `0042F250`, `0042F310`) — and those were **not traced**. Until one is, the honest
 statement is that the bit has no additive setter, not that nothing sets it.
 
-**Not read here:** what a "sub-resource variant" is on the model side (`RenderModelInstance_RemoveSubresourceVariantBinding`
+**Not read here (GI-15):** what a "sub-resource variant" is on the model side (`RenderModelInstance_RemoveSubresourceVariantBinding`
 `00504610` and the `003E7210` table walk were read only for their shape); which slot each of the five indices is.
 
 ## Command `0x09`: play this bone motion - and where the blend rule is spent (FABLE, 2026-09-20)
@@ -854,7 +854,7 @@ ten-argument call (`0041850F`..`00418561`).
 >
 > — `0x104` used inside the `0x108` stride, with no overlap at all.
 >
-> *Not read:* `0041B650`, `00409190` and `003AB7F0`, and the tail past the loop.
+> *Not read (GI-15):* `0041B650`, `00409190` and `003AB7F0`, and the tail past the loop.
 
 **6. Finish:** previous motion := current, entry `+0x328` := the state's track byte, state flag bit 2 := header byte
 `+0x24` bit 0 (or the index payload's bit 0), `+0x2E8` bits 1-2 cleared, state playing at the entry's speed.

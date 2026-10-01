@@ -108,6 +108,19 @@ def main():
     by = {}
     for f, why in refused:
         by[why] = by.get(why, 0) + 1
+    # OPUS's cloud-program tools live in XIIOnline's gitignored Tools/work; back them up here (OPUS's own files only)
+    own = os.path.join(REPO, "Database", "Tools", "work", "OPUS", "cloud")
+    if os.path.isdir(own):
+        for sub in ("", "briefs"):
+            sd = os.path.join(own, sub)
+            for f in sorted(os.listdir(sd)) if os.path.isdir(sd) else []:
+                if not (f.endswith(".py") or (sub == "briefs" and f.endswith(".txt"))):
+                    continue
+                b = open(os.path.join(sd, f), "rb").read()
+                d = os.path.join(DST, "tools", "opus-cloud", sub, f)
+                if not (os.path.isfile(d) and open(d, "rb").read() == b) and apply:
+                    os.makedirs(os.path.dirname(d), exist_ok=True)
+                    open(d, "wb").write(b)
     print("allowed %d files; add %d, update %d, delete %d; refused %s" % (len(want), add, changed, len(gone), by))
     print("SOURCE %s" % src_rev)
     print("APPLIED" if apply else "dry run (use --apply)")

@@ -24,8 +24,8 @@ verified_against:
 last_reviewed: 2026-09-14
 falsification_passes: 1
 archive_formats:
-  - "hcom | explained | menuhandbook.bin (.bin member): {hcom, u32 103, u16 self-relative node web, u32 constants} - (kind 7, 0xC8) by 003158B0 into 022C2550, walked by 00315D50; node semantics still open (section Not yet established)"
-  - "hodr | explained | menuhandbook_order.bin (.bin member): {hodr, u32 101, u32 33, 32-byte records[33]} (12 + 33*32 = 1068) - (kind 7, 0xC9) by 00572D80 into rbx+0x1200, placement walk 00572460; the +0x16/+0x17 link pair's traversal still open"
+  - "hcom | explained | menuhandbook.bin (.bin member): {hcom, u32 103, u16 self-relative node web, u32 constants} - (kind 7, 0xC8) by 003158B0 into 022C2550, walked by 00315D50; node semantics settled 2026-09-29 (GI-2): five length-prefixed sections, not a node web"
+  - "hodr | explained | menuhandbook_order.bin (.bin member): {hodr, u32 101, u32 33, 32-byte records[33]} (12 + 33*32 = 1068) - (kind 7, 0xC9) by 00572D80 into rbx+0x1200, placement walk 00572460; the +0x16/+0x17 pair settled 2026-09-29 (GI-2): statue effect ids, not links"
 audit:
   passes: 1
   last_pass: 2026-09-14

@@ -27,7 +27,7 @@ audit:
   reopened_count: 0
 production_review:
   section: SECTION-03
-  status: locally validated; peer acceptance pending
+  status: locally validated; independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1)
   scope: original reward consumers, selected caller instructions and retained binding observations
   new_live_session: false
 
@@ -35,7 +35,7 @@ production_review:
 
 # Contract — the defeat rewards sequence
 
-> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending.**
+> **SECTION-03 production review, 2026-09-22; ~~independent peer acceptance pending.~~** *(OPUS, 2026-10-01: independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, [review](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), GR-16; N1: `run_review.py` reproduces against the pinned pre-image of the reward-binding checker, and the sealed checker agrees with the preserved observation).)*
 > Corrected against original EXE instructions, 71 bounded native controls and independent review
 > of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
 > a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.

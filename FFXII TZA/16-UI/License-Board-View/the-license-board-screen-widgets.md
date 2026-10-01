@@ -2,7 +2,7 @@
 system: The license board screen — the widget tree of the main-menu board view, its message protocols, and the
   roles of its subtree members
 category: 16-UI
-status: "DOCUMENTED — GI-3 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-0930). Was PARTIAL on: id 285's 18 sub-commands and which of 005565E0/0055A340/00557760 draws which layer are unresolved; the +0x37D move mode narrowed 2026-09-18 to a four-state byte written at six sites in 00557DB0"
+status: "PARTIAL — GI-16 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the `+0x37D` cursor move-mode values are live. GI-3 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). Was PARTIAL on: id 285's 18 sub-commands and which of 005565E0/0055A340/00557760 draws which layer are unresolved; the +0x37D move mode narrowed 2026-09-18 to a four-state byte written at six sites in 00557DB0"
 owner_layer: CodeDomain:UI (menu screens)
 evidence_tier: 1
 verified_against:
@@ -202,9 +202,9 @@ already named in the census; `003B28F0`–`003B2D80` — the menu effect registr
   the two pages agree on which object owns the `licd` grid.
 - `00557DB0`'s id-10 arm is the same input protocol the Config screen documented for message 10 — directional
   input becomes a cursor delta.
-- Not resolved: ~~the 18 sub-commands of id 285 (the board's own vocabulary — select/confirm/sort are reachable but
-  not yet named), which of `005565E0`/`0055A340`/`00557760` draws which layer, and~~ the `+0x37D` cursor move-mode
-  values. *(The first two answered 2026-09-29 (FABLE, GI-3) — §8a.)*
+- ~~Not resolved: the 18 sub-commands of id 285 (the board's own vocabulary — select/confirm/sort are reachable but
+  not yet named), which of `005565E0`/`0055A340`/`00557760` draws which layer, and~~ *(answered 2026-09-29 (FABLE, GI-3) — §8a)*;
+  the `+0x37D` cursor move-mode values remain unassigned — registered as **GI-16**.
 
 ## 8a. GI-3 answered 2026-09-29 (FABLE) — id 285 is the dialog reply; the wheel's three layers
 
