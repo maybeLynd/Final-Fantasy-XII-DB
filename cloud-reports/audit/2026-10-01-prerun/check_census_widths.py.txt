@@ -1,0 +1,670 @@
+
+declared whole (array or span) - disagreement expected: 279
+  span     SpawnRecord          +0x0080 declared 456   battleStats              elements {4: 1}
+  span     CharacterRenderRecord +0x001C declared 32    instanceKey              elements {1: 1}
+  span     CharacterRenderRecord +0x003C declared 32    modelContainerName       elements {1: 16}
+  span     CharacterRenderRecord +0x0090 declared 16    perSlotWords             elements {2: 4}
+  span     CharacterRenderRecord +0x00A0 declared 32    lodDistanceThresholds    elements {4: 2}
+  span     CharacterRenderRecord +0x0140 declared 16    modelTransformTranslatio elements {8: 1, 4: 2}
+  span     CharacterRenderRecord +0x0180 declared 64    modelTransform           elements {4: 1}
+  span     CharacterRenderRecord +0x0200 declared 16    lodViewVec4              elements {4: 1}
+  span     CharacterRenderRecord +0x0210 declared 16    paramVec4_210            elements {4: 1}
+  span     CharacterRenderRecord +0x0220 declared 16    lodScalarVec2            elements {4: 5}
+  span     CharacterRenderRecord +0x0310 declared 16    quatSlot310              elements {4: 1}
+  span     CharacterRenderRecord +0x03D4 declared 32    lookupName3D4            elements {1: 1}
+  span     CharacterRenderRecord +0x05A0 declared 16    vectorSlot0              elements {4: 1, 16: 1}
+  span     CharacterRenderRecord +0x05B0 declared 16    vectorSlot1              elements {4: 1, 16: 1}
+  span     CharacterRenderRecord +0x05D0 declared 16    zeroedBlock5D0           elements {8: 1}
+  span     CharacterRenderRecord +0x05E0 declared 16    quatSlot5E0              elements {8: 1}
+  span     CharacterRenderObject +0x0078 declared 792   shaderParams             elements {8: 1}
+  span     CharacterRenderObject +0x03C0 declared 16    submitOutVecB            elements {4: 3, 8: 1}
+  span     CharacterRenderObject +0x03D0 declared 16    submitOutVecC            elements {4: 2, 8: 1}
+  span     SavePayload          +0xE240 declared 131088 spawnKeepImageA          elements {2: 2}
+  span     SavePayload          +0x2E450 declared 131088 spawnKeepImageB          elements {2: 1}
+  span     SavePayload          +0x4E48C declared 29712 battleSystemStateRegion  elements {4: 4, 2: 1, 16: 1, 1: 5}
+  span     BattleUnit           +0x00E0 declared 16    releaseWorldPos          elements {16: 7, 4: 17}
+  span     BattleUnit           +0x0100 declared 16    pathGoal                 elements {4: 2}
+  span     BattleUnit           +0x0110 declared 16    secondaryTarget          elements {4: 1}
+  span     BattleUnit           +0x0200 declared 1168  navigationPathState      elements {4: 2}
+  span     BattleUnit           +0x0778 declared 520   targetBuffer             elements {1: 3}
+  span     BattleUnit           +0x0988 declared 512   targetResultEntries      elements {8: 3}
+  span     BattleUnit           +0x0BA0 declared 24    issuedCommandOrder       elements {2: 11}
+  span     BattleUnit           +0x0BC0 declared 520   perceptionCandidates     elements {1: 12}
+  span     BattleUnit           +0x0DD4 declared 128   perSlotDwords            elements {4: 1}
+  span     BattleUnit           +0x0E80 declared 16    innateAugmentSource      elements {8: 3}
+  span     ActorStorageRecord   +0x008C declared 8     channelTail              elements {1: 2}
+  span     ActorStorageRecord   +0x0094 declared 8     channelHead              elements {1: 4}
+  span     ActorStorageRecord   +0x00C8 declared 36    overrideSlots            elements {2: 4}
+  span     ActorManagerSlot     +0x01D0 declared 8     recordCountByKind        elements {2: 1, 8: 1}
+  span     ActorManagerSlot     +0x01D8 declared 8     recordBaseByKind         elements {2: 1}
+  span     BattleStatsRecord    +0x0050 declared 10    equipmentSlots           elements {2: 22, 8: 1}
+  span     BattleStatsRecord    +0x005C declared 8     unobservedSpan005C       elements {4: 3}
+  span     BattleStatsRecord    +0x0068 declared 16    statusLayerMutable       elements {1: 1}
+  span     BattleStatsRecord    +0x0078 declared 16    statusLayerDerived       elements {1: 3}
+  span     BattleStatsRecord    +0x0088 declared 52    gambitBlockSpawned       elements {1: 9}
+  span     BattleStatsRecord    +0x00BC declared 128   statusParameterA         elements {4: 6}
+  span     BattleStatsRecord    +0x013C declared 64    statusTimerWord          elements {2: 1}
+  span     BattleStatsRecord    +0x017C declared 16    statusDurationTimers     elements {2: 3}
+  span     BattleSystemState    +0x0008 declared 18240 statsRecords             elements {4: 10, 1: 8}
+  span     BattleSystemState    +0x4748 declared 128   inventoryTemporaryStateA elements {2: 1}
+  span     BattleSystemState    +0x47C8 declared 840   inventoryTemporaryStateB elements {2: 1}
+  span     BattleSystemState    +0x4F84 declared 128   inventoryTemporaryBackup elements {2: 2}
+  span     BattleSystemState    +0x5004 declared 840   inventoryTemporaryBackup elements {2: 2}
+  span     BattleSystemState    +0x59C8 declared 128   inventoryPackedFlags     elements {1: 7}
+  span     BattleSystemState    +0x5A48 declared 18    slotMapClass0            elements {2: 4, 1: 18, 16: 7}
+  span     BattleSystemState    +0x5A5A declared 18    slotMapClass1            elements {1: 8, 2: 6}
+  span     BattleSystemState    +0x5A6C declared 18    slotMapClass2            elements {1: 1, 2: 5}
+  span     BattleSystemState    +0x5A7E declared 18    slotMapClass3            elements {1: 4}
+  span     BattleSystemState    +0x5A90 declared 18    slotMapClass4            elements {1: 7, 2: 2}
+  span     BattleSystemState    +0x5B10 declared 6240  gambitBanks              elements {16: 2, 2: 5}
+  span     BattleSystemState    +0x7370 declared 160   gambitSelectedBank       elements {4: 18}
+  span     BattleResultRecord   +0x0032 declared 3     stealSlots               elements {1: 4}
+  span     BattleResultRecord   +0x003C declared 2     statusLayerAdd           elements {1: 2, 2: 2}
+  span     BattleResultRecord   +0x003E declared 4     statusLayerRemove        elements {1: 2, 4: 2}
+  span     BattleResultRecord   +0x0042 declared 16    statusTimers             elements {2: 4}
+  span     BattleResultRecord   +0x005C declared 128   parameterA               elements {4: 4}
+  span     BattleResultRecord   +0x00DC declared 64    parameterB               elements {2: 4}
+  span     BattleResultRecord   +0x0128 declared 4     spawnFlagsSet            elements {1: 1}
+  span     BattleResultRecord   +0x012C declared 4     spawnFlagsClear          elements {1: 2}
+  span     MovementContext      +0x0108 declared 16    walkedIntArray108        elements {4: 2, 8: 1}
+  span     SecondaryContext     +0x0000 declared 288   elements                 elements {4: 57, 2: 59, 8: 1}
+  span     EvaluationContext    +0x001A declared 16    sourceLayerMask          elements {1: 3}
+  span     PostProcessParamContext +0x0000 declared 16    listSentinel0            elements {8: 1}
+  span     PostProcessParamContext +0x0010 declared 16    listSentinel1            elements {8: 1}
+  span     PostProcessParamContext +0x0028 declared 16    listSentinel2            elements {8: 1}
+  span     PostProcessParamContext +0x0038 declared 16    listSentinel3            elements {8: 2}
+  span     PostProcessParamContext +0x0088 declared 16    listSentinel4            elements {8: 1}
+  span     PostProcessParamContext +0x00A4 declared 72    paramBlockA4             elements {4: 1}
+  span     PostProcessParamContext +0x0100 declared 16    paramVec100              elements {4: 1}
+  span     PostProcessParamContext +0x0138 declared 8     lerpTriggerThreshold     elements {8: 1, 4: 3}
+  span     PostProcessParamContext +0x0140 declared 8     lerpCurrentX             elements {8: 1, 4: 5}
+  span     PostProcessParamContext +0x0148 declared 8     lerpCurrentY             elements {8: 1, 4: 6}
+  span     PostProcessParamContext +0x0150 declared 2     lerpPendingFlags         elements {4: 1}
+  span     PostProcessParamContext +0x015C declared 8     lerpFrameCounter         elements {8: 1, 4: 6}
+  span     PostProcessParamContext +0x01A0 declared 64    paramBlock1A0            elements {4: 10}
+  span     PostProcessParamContext +0x034C declared 40    paramBlock34C            elements {4: 2}
+  span     PostProcessParamContext +0x0378 declared 112   fxaa378                  elements {8: 2}
+  span     PostProcessParamContext +0x03F0 declared 40    paramBlock3F0            elements {1: 2, 4: 1}
+  span     PostProcessParamContext +0x0418 declared 40    paramBlock418            elements {1: 2, 4: 1}
+  span     PostProcessParamContext +0x0440 declared 64    zeroBlock440             elements {8: 1}
+  span     ManagerSingleton0209BE80 +0x0080 declared 24    clearedBlock0080         elements {8: 2}
+  span     ManagerSingleton0209BE80 +0x00A0 declared 21216 embedded00A0             elements {4: 1}
+  span     ManagerSingleton0209BE80 +0x57E0 declared 9920  embedded57E0             elements {8: 1, 4: 1}
+  span     ManagerSingleton0209BE80 +0x7EA0 declared 272   embedded7EA0             elements {4: 3, 8: 1}
+  span     ManagerSingleton0209BE80 +0x7FB0 declared 4080  embedded7FB0             elements {8: 1}
+  span     ManagerSingleton0209BE80 +0x8FA0 declared 4368  embedded8FA0             elements {8: 1}
+  span     ManagerSingleton0209BE80 +0xAA60 declared 196   zeroedBlockAA60          elements {4: 1}
+  span     ManagerSingleton0209BE80 +0xAB30 declared 1824  overlayWidget0720AB30    elements {8: 3}
+  span     Manager0209AC60      +0x0000 declared 16    vector0000               elements {8: 1}
+  span     Manager0209AC60      +0x0010 declared 16    vector0010               elements {8: 3}
+  span     Manager0209AC60      +0x0020 declared 16    vector0020               elements {8: 1}
+  span     Manager0209AC60      +0x0030 declared 16    vector0030               elements {8: 16}
+  span     Manager0209AC60      +0x0040 declared 16    vector0040               elements {8: 9, 4: 2}
+  span     Manager0209AC60      +0x0050 declared 16    vector0050               elements {8: 10}
+  span     Manager0209AC60      +0x0060 declared 16    vector0060               elements {8: 10}
+  span     Manager0209AC60      +0x00D0 declared 16    vector00D0               elements {8: 5}
+  span     Manager0209AC60      +0x03E8 declared 16    vector03E8               elements {4: 2, 16: 1}
+  span     ShadowSettings01F82EA8 +0x00FC declared 12    lightDirection           elements {4: 3}
+  span     CPostEffect          +0x0210 declared 280   initDescriptor           elements {8: 1}
+  span     CPostEffect          +0x07A4 declared 384   matrices7A4              elements {4: 2}
+  span     CPostEffect          +0x0924 declared 6     matrixFlags924           elements {1: 1}
+  span     CPostEffect          +0x092C declared 64    matrix92C                elements {4: 1}
+  span     CPostEffect          +0x09F8 declared 24    mixed9F8                 elements {8: 1}
+  span     CPostEffect          +0x0A90 declared 16    mixedA90                 elements {1: 5}
+  span     CPostEffect          +0x0AE4 declared 12    mixedAE4                 elements {8: 1}
+  span     CPostEffect          +0x0AFC declared 8     mixedAFC                 elements {1: 2}
+  span     CPostEffect          +0x0B04 declared 8     mixedB04                 elements {4: 1}
+  span     CPostEffect          +0x0B38 declared 12    mixedB38                 elements {4: 2}
+  span     CPostEffect          +0x0B44 declared 8     mixedB44                 elements {4: 1}
+  span     CPostEffect          +0x0B50 declared 8     mixedB50                 elements {4: 1}
+  span     WidgetSingleton0208E6C0 +0x0000 declared 192   widgetBase0000           elements {8: 4}
+  span     WidgetSingleton0209C498 +0x00D8 declared 2     tagPairD8                elements {1: 1}
+  span     WidgetSingleton0209C498 +0x0160 declared 328   childWidget160           elements {8: 1}
+  span     WidgetSingleton0209C498 +0x02A8 declared 328   childWidget2A8           elements {8: 1}
+  span     WidgetSingleton02CA99C0 +0x00D8 declared 704   saveQueue0D8             elements {4: 1, 1: 1}
+  span     AiOrderSet           +0x0000 declared 32    subgroupCounts           elements {1: 3}
+  span     AuthoredTriggerLiveSet +0x0000 declared 36    entries                  elements {4: 4}
+  span     DynGeoFontTextSpecialFinalInstance +0x0008 declared 200   sharedLayerArrays        elements {8: 1}
+  span     DynGeoFontTextSpecialFinalInstance +0x0108 declared 20    block108                 elements {4: 2}
+  span     DynGeoFontTextSpecialFinalInstance +0x011C declared 64    matrix11C                elements {4: 2}
+  span     DynGeoFontTextSpecialInstance +0x0008 declared 80    layerSource              elements {8: 1}
+  span     DynGeoFontTextSpecialInstance +0x0058 declared 80    layerVertices            elements {8: 1}
+  span     DynGeoFontTextSpecialInstance +0x00A8 declared 40    layerCount               elements {4: 1}
+  span     DynGeoFontTextSpecialInstance +0x0108 declared 20    block108                 elements {4: 2}
+  span     DynGeoFontTextSpecialInstance +0x011C declared 64    matrix11C                elements {4: 1}
+  span     DynGeoFontTextSpecialShadowInstance +0x0008 declared 200   sharedLayerArrays        elements {8: 1}
+  span     DynGeoFontTextSpecialShadowInstance +0x0108 declared 20    block108                 elements {4: 2}
+  span     DynGeoFontTextSpecialShadowInstance +0x011C declared 64    matrix11C                elements {4: 1}
+  span     EncodedIdQueryRecord +0x0034 declared 4     classTail0034            elements {2: 2}
+  span     FieldPendingRequestCells022C8030 +0x0000 declared 32    cells                    elements {4: 8}
+  span     GameSettingValueNameRow +0x0000 declared 72    valueNames               elements {8: 1}
+  span     InputReservedBindingIds +0x0000 declared 140   ids                      elements {4: 2}
+  span     ManagerSub00A0Entry  +0x0000 declared 16    vector000                elements {4: 2, 16: 1}
+  span     ManagerSub00A0Entry  +0x0050 declared 16    rect050                  elements {4: 1}
+  span     ManagerSub00A0Entry  +0x0060 declared 16    cosSin060                elements {4: 2}
+  span     ManagerSub0209BE80_5380 +0x0000 declared 576   poolA                    elements {4: 3}
+  span     ManagerSub5380PoolAEntry +0x0010 declared 8     text                     elements {1: 1}
+  span     ManagerSub7EA0Entry  +0x0000 declared 16    vector000                elements {8: 1, 4: 1}
+  span     ManagerSub7EA0Entry  +0x0018 declared 8     unobservedTail0018       elements {4: 4}
+  span     ManagerSub7FB0Record +0x0000 declared 192   widgetBase0000           elements {8: 1}
+  span     ManagerSub7FB0Record +0x00F8 declared 12    queue00F8                elements {8: 1, 4: 5}
+  span     MapScreenPage        +0x0000 declared 192   widgetBase0000           elements {8: 1}
+  span     MapScreenPageSlot    +0x0000 declared 48136 page                     elements {8: 1}
+  span     NativeCommandFamilyTables +0x0000 declared 128   tables                   elements {8: 1}
+  span     NavRegionRecord      +0x0014 declared 14    triangleIndices          elements {2: 1}
+  span     OrderedCommandList   +0x0000 declared 32    baseClass_EastlPointerVe elements {8: 21}
+  span     PApplication         +0x0380 declared 2448  embeddedComposite380     elements {8: 1}
+  span     PApplication         +0x0DA0 declared 16    constructedObjectDA0     elements {4: 1, 16: 1}
+  span     PApplication         +0x0DC8 declared 48    world                    elements {8: 2}
+  span     PAssetReferenceRegistry01F2EA70 +0x0018 declared 24    anchorB                  elements {8: 2}
+  span     PDeferredLightingBase +0x0000 declared 80    baseClass_PPostEffectBas elements {8: 7}
+  span     PDeferredLightingBase +0x4128 declared 168   qwordBlock4128           elements {8: 7}
+  span     PNamedSemanticDescriptor +0x0008 declared 24    selfLinkedHead08         elements {8: 1}
+  span     PartySelectionRegistryPtrs022C8388 +0x0000 declared 32    entries                  elements {8: 2}
+  span     PhyreClassDescriptor +0x0050 declared 16    registryNode             elements {8: 1}
+  span     PhyreClassDescriptor +0x0060 declared 16    annotationList60         elements {8: 1}
+  span     PhyreClassDescriptor +0x0080 declared 16    fieldList                elements {8: 2}
+  span     PhyreClassDescriptor +0x0090 declared 16    methodList               elements {8: 1}
+  span     PhyreClassDescriptor +0x00A0 declared 16    scriptBridgeList         elements {8: 1}
+  span     PhyreClassDescriptor +0x00B0 declared 16    unidentifiedListB0       elements {8: 1}
+  span     PpfxInitDescriptor   +0x0090 declared 56    qwords090                elements {8: 1}
+  span     RenderCommandBufferPair +0x0000 declared 48    buffers                  elements {8: 3}
+  span     RenderCommandOwnerList +0x0000 declared 32    baseClass_EastlPointerVe elements {8: 5}
+  span     RenderStrideC0Element +0x0020 declared 32    elementName              elements {16: 1, 1: 1}
+  span     RenderStrideC0Element +0x0040 declared 64    localTransform           elements {4: 1}
+  span     SeparationCandidateScratch +0x0000 declared 16    candidates               elements {8: 1}
+  span     SeparationCellMasks  +0x0000 declared 512   cells                    elements {16: 1}
+  span     StickBasis022C7FA0   +0x0010 declared 32    basis                    elements {4: 4}
+  span     StickWorldVector022C7FD0 +0x0000 declared 16    vec                      elements {4: 2}
+  span     SystemStopRegistry   +0x0000 declared 1344  records                  elements {8: 1}
+  span     Widget02CA9718       +0x00C8 declared 16    vector00C8               elements {4: 1}
+  span     WidgetFocusStack     +0x0000 declared 256   entries                  elements {8: 1}
+  span     WidgetSingleton02AED490 +0x00F0 declared 768   entriesA                 elements {1: 4}
+  span     WidgetSingleton02AED490 +0x03F0 declared 512   entriesB                 elements {16: 1, 8: 1}
+  span     WidgetSingleton02AED490EntryB +0x0000 declared 1     unobservedByte00         elements {16: 1, 8: 1}
+  span     WidgetSingleton02B457E0 +0x0000 declared 192   widgetBase0000           elements {8: 1}
+  span     WidgetSingleton02B457E0 +0x0120 declared 336   records120               elements {8: 15}
+  span     WidgetSingleton02B457E0Record +0x0018 declared 144   slots18                  elements {8: 8}
+  span     WidgetSingleton02B47730 +0x0000 declared 192   widgetBase0000           elements {8: 1}
+  span     WidgetSingleton02CA8F38 +0x0000 declared 192   widgetBase0000           elements {8: 3}
+  span     WidgetSingleton02CA99C0QueueEntry +0x0008 declared 64    payload08                elements {1: 6, 8: 1}
+  span     WidgetSingleton02CA99C0QueueEntry +0x0050 declared 8     arg50                    elements {4: 3, 1: 1, 8: 1}
+  span     ImageBackedStateBlock +0x0030 declared 64    cursorMemoryWords        elements {2: 4}
+  span     ImageBackedStateBlock +0x0090 declared 404   cursorMemoryDwords       elements {4: 6}
+  span     ImageBackedStateBlock +0x47B8 declared 48    slotDwordByIndex         elements {4: 3}
+  span     BootSingleton01F7F598 +0x09C8 declared 272   subBlock88Pair           elements {8: 2}
+  span     PartyRosterSlots     +0x0000 declared 32    slots                    elements {8: 4, 16: 3}
+  span     InputBindingProfile  +0x0040 declared 32    group1                   elements {4: 1}
+  span     InputBindingProfile  +0x0060 declared 16    group2                   elements {4: 1, 16: 1}
+  span     ImageAddressArenaRecord +0x0068 declared 36    arenaCounters            elements {8: 1}
+  span     PendingCompletionQueue01F81248 +0x0058 declared 160   recordArray0058          elements {1: 2}
+  span     BattleTargetBuffer   +0x0008 declared 512   entries                  elements {8: 11, 16: 2}
+  span     GambitConfig         +0x0000 declared 48    slots                    elements {1: 9, 2: 1}
+  span     NavigationPathState  +0x000C declared 4     noRouteMemory            elements {2: 1}
+  span     NavigationPathState  +0x0010 declared 128   nextRegion               elements {1: 1}
+  span     NavigationPathState  +0x0090 declared 1024  nodePositionXZ           elements {8: 1}
+  span     ManagerSub0209BE80_00A0 +0x0010 declared 16    quad0010                 elements {4: 6}
+  span     ManagerSub0209BE80_57E0 +0x00D0 declared 416   pairRecords00D0          elements {8: 1}
+  span     ManagerSub0209BE80_57E0 +0x0270 declared 8736  claimSlotRecords         elements {4: 1}
+  span     ManagerSub0209BE80_57E0 +0x25F0 declared 96    floatQuadArray25F0       elements {4: 1}
+  span     ManagerSub0209BE80_57E0 +0x2650 declared 64    floatQuadArray2650       elements {4: 1}
+  span     ManagerSub0209BE80_57E0 +0x26AD declared 6     nibbleHighRow26AD        elements {1: 1}
+  span     ManagerSub0209BE80_7EA0 +0x0000 declared 16    quad0000                 elements {4: 3, 8: 1}
+  span     ManagerSub0209BE80_7EA0 +0x0010 declared 16    quad0010                 elements {4: 2, 8: 1}
+  span     ManagerSub0209BE80_7FB0 +0x0000 declared 1632  recordArray0000          elements {8: 1}
+  span     ManagerSub0209BE80_8FA0 +0x1088 declared 60    vectorRecords1088        elements {16: 1}
+  span     ManagerSub0209BE80_A0D0 +0x0960 declared 16    tableRowCopy0960         elements {4: 2}
+  span     ManagerSub0209BE80_57E0ArrayRecord +0x0000 declared 16    copiedBlock000           elements {4: 1}
+  span     ManagerSub0209BE80_57E0ArrayRecord +0x0030 declared 16    vector030                elements {4: 1}
+  span     Mt19937State         +0x0000 declared 2496  mt                       elements {4: 2}
+  span     LegacyPs2GsTextureContext +0x0040 declared 208   chunkRecords040          elements {8: 1}
+  span     LegacyPs2GsTextureContext +0x0110 declared 4     mixed0110                elements {8: 1}
+  span     LegacyPs2GsTextureContext +0x01E0 declared 48    derivedClassBanks        elements {8: 2}
+  span     FrameMarkerSingleton01F82C80 +0x0030 declared 3072  markerRecords30          elements {8: 1}
+  span     FrameMarkerSingleton01F82C80 +0x0C30 declared 3072  markerDeltaTableC30      elements {8: 3}
+  span     FrameMarkerSingleton01F82C80 +0x1830 declared 3072  markerRawStampTable1830  elements {8: 3}
+  span     FrameMarkerSingleton01F82C80 +0x2430 declared 2048  queryRecords2430         elements {4: 1}
+  span     FrameMarkerSingleton01F82C80 +0x2E38 declared 12864 colourRecordArray2E38    elements {8: 1}
+  span     FrameMarkerSingleton01F82C80 +0x6078 declared 12864 colourRecordArray6078    elements {8: 1}
+  span     FrameMarkerSingleton01F82C80 +0xF738 declared 64    identityMatrixF738       elements {8: 1}
+  span     RenderModelInstance  +0x00A0 declared 16    paramVec4_A0             elements {4: 2}
+  span     RenderModelInstance  +0x00BC declared 20    blockBC                  elements {1: 3}
+  span     RenderModelInstance  +0x00D0 declared 16    paramVec4_D0             elements {4: 1}
+  span     RenderModelInstance  +0x0100 declared 64    slotIdTable              elements {2: 1}
+  span     RenderModelInstance  +0x0140 declared 64    serialTable140           elements {8: 1}
+  span     RenderModelInstance  +0x0180 declared 20    flagTable180             elements {1: 2}
+  span     RenderModelInstance  +0x0194 declared 80    indexTable194            elements {4: 1}
+  span     RenderModelInstance  +0x0208 declared 28    indexTable208            elements {4: 2}
+  span     RenderModelInstanceContainer +0x0000 declared 96    bank                     elements {4: 1}
+  span     RenderStrideC0Bank   +0x0000 declared 96    bank                     elements {4: 3}
+  span     RenderStrideC0Bank   +0x0060 declared 40    pendingIndexVector       elements {4: 1}
+  span     RenderResourceEntry  +0x0010 declared 32    bufferDescriptor         elements {4: 2}
+  span     BattleMenuWidget2DC0 +0x0000 declared 192   widgetBase0000           elements {8: 15}
+  span     BattleMenuWidget2DC0 +0x00C0 declared 16    subObject00C0            elements {8: 1, 2: 2}
+  span     BattleMenuWidget2DC0 +0x00F0 declared 5664  childWidgetA00F0         elements {8: 1}
+  span     BattleMenuWidget2DC0 +0x1710 declared 5664  childWidgetB1710         elements {8: 1}
+  span     BattleMenuPanelWidget3010 +0x0000 declared 192   widgetBase0000           elements {8: 4}
+  span     BattleMenuPanelWidget3010 +0x0220 declared 11712 menuWidget0220           elements {8: 1}
+  span     BattleMenuChildWidget1620 +0x0000 declared 1216  base0000                 elements {8: 1}
+  span     PaneListWidget0B68   +0x0B44 declared 4     slotRequest              elements {1: 4}
+  span     RenderContext02CC0410 +0x0170 declared 392   texture170               elements {8: 1}
+  span     RenderContext02CC0410 +0x02F8 declared 392   texture2F8               elements {8: 1}
+  span     RenderContext02CC0410 +0x0480 declared 80    renderTarget480          elements {8: 6}
+  span     RenderContext02CC0410 +0x04D0 declared 80    renderTarget4D0          elements {8: 6}
+  span     RenderContext02CC0410 +0x07D8 declared 488   primitivePass7D8         elements {8: 1}
+  span     RenderContext02CC0410 +0x09C0 declared 400   passState9C0             elements {4: 1}
+  span     RenderContext02CC0410 +0x1820 declared 40    sampler1820              elements {4: 1, 1: 1}
+  span     RenderContext02CC0410 +0x18C0 declared 133432 primitiveRenderer        elements {8: 2}
+  span     RenderPrimitivePass1E8 +0x0058 declared 400   passState                elements {4: 1}
+  span     PrimitiveRendererD3D11 +0x0090 declared 16    unobservedSpan90         elements {8: 1}
+  span     PrimitiveRendererD3D11 +0x0208 declared 1600  passStates               elements {4: 1}
+  span     PrimitiveRendererD3D11 +0x0880 declared 65536 batchMerger              elements {8: 1}
+  span     PShaderPassStateD3D11 +0x0004 declared 40    m_rasterDesc             elements {4: 1}
+  span     PShaderPassStateD3D11 +0x002C declared 52    m_depthDesc              elements {4: 1}
+  span     PShaderPassStateD3D11 +0x0060 declared 264   m_blendDesc              elements {8: 1}
+  span     ImageBackedStateBlock +0x0030 declared 64    cursorMemoryWords        elements {2: 4}
+  span     ImageBackedStateBlock +0x0090 declared 404   cursorMemoryDwords       elements {4: 6}
+  span     ImageBackedStateBlock +0x0224 declared 12288 navimapRevealedTileTable elements {16: 4}
+  span     ImageBackedStateBlock +0x32C4 declared 8     achievementStateBitmapA  elements {8: 1, 1: 3}
+  span     ImageBackedStateBlock +0x32CC declared 64    achievementStateBitmapB  elements {1: 5}
+  span     ImageBackedStateBlock +0x330C declared 64    achievementStateBitmapC  elements {1: 4}
+  span     ImageBackedStateBlock +0x334C declared 32    handbookGateBits         elements {1: 4}
+  span     ImageBackedStateBlock +0x336C declared 128   handbookGateNibbles      elements {1: 3}
+  span     ImageBackedStateBlock +0x33F4 declared 16    achievementStateBitmapD  elements {1: 4}
+  span     ImageBackedStateBlock +0x3404 declared 512   achievementStateByteTabl elements {1: 11}
+  span     ImageBackedStateBlock +0x3604 declared 576   achievementStateBitmapE  elements {1: 8}
+  span     ImageBackedStateBlock +0x3844 declared 4     firedBitmap              elements {1: 12}
+  span     ImageBackedStateBlock +0x3848 declared 4     flagBitmap3848           elements {1: 3}
+  span     ImageBackedStateBlock +0x384C declared 32    achievementCounters      elements {4: 6, 2: 6}
+  span     ImageBackedStateBlock +0x47B8 declared 48    slotDwordByIndex         elements {4: 3}
+  span     BattleStatsRecord    +0x0050 declared 10    equipmentSlots           elements {8: 1}
+  span     BattleStatsRecord    +0x0088 declared 52    gambitBlockSpawned       elements {1: 1, 2: 1}
+
+WIDTH DELIBERATE markers that are no longer needed -- the census now AGREES: 1
+      Retiring one is its owner's call; a stale exemption hides the next real disagreement at that offset.
+      Category               +0x0078 declared 4    volumeRampCount        census {4: 4}
+declared deliberately against the census, with a reason in the row: 102
+  stated   CharacterRenderRecord +0x0010 declared 8     encodedContextPtr        census {4: 105, 8: 2}
+  stated   CharacterRenderRecord +0x02F4 declared 2     packedParamLow2F4        census {2: 1, 4: 2}
+  stated   CharacterRenderRecord +0x0438 declared 16    handleSlots              census {4: 10, 8: 1}
+  stated   CharacterRenderObject +0x04B5 declared 1     flagByte4B5              census {2: 2}
+  stated   SavePayload          +0x4E460 declared 4     payloadSlot4E460         census {1: 1, 4: 1, 16: 1}
+  stated   BattleUnit           +0x01A4 declared 4     orderRangeBand1          census {8: 2, 4: 1}
+  stated   BattleUnit           +0x06D8 declared 4     effectiveRangeBand1      census {8: 2, 4: 2}
+  stated   BattleUnit           +0x0750 declared 4     groupTargetFocusEffectiv census {8: 7, 4: 3}
+  stated   ActorStorageRecord   +0x0028 declared 4     initDword28              census {8: 1}
+  stated   ActorStorageRecord   +0x00F0 declared 4     pendingDispatchId        census {4: 1, 8: 3}
+  stated   ActorStorageRecord   +0x0106 declared 1     initByte106              census {2: 1}
+  stated   BattleStatsRecord    +0x0008 declared 2     statAccumulator008       census {2: 4, 4: 5}
+  stated   BattleStatsRecord    +0x0010 declared 16    statBlockByKind          census {2: 3, 4: 4}
+  stated   BattleStatsRecord    +0x01C3 declared 1     licenceBoardSelectorA    census {2: 1}
+  stated   BattleSystemState    +0x5AA4 declared 4     slotMapSourceFirst       census {4: 7, 1: 16}
+  stated   BattleResultRecord   +0x0000 declared 4     resultFlags              census {1: 2, 4: 2}
+  stated   BattleResultRecord   +0x011C declared 1     targetLevelTarget        census {1: 1, 2: 2}
+  stated   MovementContext      +0x000C declared 4     speedScaleOrFlags        census {4: 1, 8: 2}
+  stated   GameSettingConfig    +0x0004 declared 2     ResolutionLow            census {2: 8, 4: 13}
+  stated   PostProcessParamContext +0x0348 declared 1     byte348                  census {2: 1, 1: 1}
+  stated   TextDrawState        +0x0054 declared 2     formatArgLow             census {4: 14, 2: 5}
+  stated   TextDrawState        +0x0058 declared 2     drawFlags58              census {2: 6, 4: 15}
+  stated   TextDrawState        +0x0099 declared 1     formatFlagByte99         census {2: 3, 1: 1}
+  stated   Manager0209AC60      +0x03E0 declared 4     dword03E0                census {2: 4, 4: 1}
+  stated   Manager0209AC60      +0x0528 declared 4     dword0528                census {2: 1}
+  stated   ManagerSub8FA0SlotRecord02B8 +0x0280 declared 2     suppressDestroyFlag      census {1: 1}
+  stated   CPostEffect          +0x0478 declared 4     field478                 census {16: 9, 4: 1}
+  stated   CPostEffect          +0x0720 declared 4     field720                 census {8: 3}
+  stated   CPostEffect          +0x0750 declared 4     field750                 census {8: 1}
+  stated   CPostEffect          +0x09E0 declared 4     field9E0                 census {4: 1, 8: 2}
+  stated   CPostEffect          +0x09E8 declared 4     field9E8                 census {4: 1, 8: 2}
+  stated   CPostEffect          +0x0BC8 declared 4     fieldBC8                 census {16: 2}
+  stated   CPostEffect          +0x0BD8 declared 4     fieldBD8                 census {16: 2}
+  stated   CPostEffect          +0x0C04 declared 4     fieldC04                 census {16: 1}
+  stated   CPostEffect          +0x0CE6 declared 1     fieldCE6                 census {2: 2}
+  stated   CPostEffect          +0x0CE8 declared 4     fieldCE8                 census {16: 3}
+  stated   WidgetSingleton0208E6D8 +0x00D0 declared 4     dword00D0                census {1: 3}
+  stated   WidgetSingleton02CA99C0 +0x00C0 declared 1     byte00C0                 census {8: 2}
+  stated   WidgetSingleton02CA99C0 +0x00D0 declared 8     qword00D0                census {4: 1}
+  stated   EncodedIdQueryRecord +0x003C declared 1     equipByte003C            census {1: 1, 4: 1, 2: 4}
+  stated   EncodedIdQueryRecord +0x003E declared 1     equipByte003E            census {1: 1, 2: 2}
+  stated   EncodedIdQueryRecord +0x0040 declared 1     equipByte0040            census {1: 1, 2: 2}
+  stated   ManagerSub0209AC60_02F8 +0x00C8 declared 2     word00C8                 census {1: 3}
+  stated   ManagerSub5380PoolAEntry +0x000C declared 2     word000C                 census {2: 1, 4: 2}
+  stated   ManagerSub5380PoolBEntry +0x0016 declared 2     flags                    census {1: 1}
+  stated   ManagerSub5380PoolCEntry +0x0012 declared 2     flags                    census {1: 1}
+  stated   MapLightingTuning02CB7FD0 +0x0034 declared 4     mapEyeSpecularBlendModif census {8: 1}
+  stated   MapLightingTuning02CB7FD0 +0x003C declared 4     mapEyeCameraLightYModifi census {8: 1}
+  stated   MapLightingTuning02CB7FD0 +0x0044 declared 4     mapEyeDiffuseModifier    census {8: 1}
+  stated   MapLightingTuning02CB7FD0 +0x0064 declared 4     mapHairSpecularIntensity census {8: 1}
+  stated   MapLightingTuning02CB7FD0 +0x00B4 declared 4     field0B4                 census {8: 1}
+  stated   MapRefWeatherBlock   +0x0000 declared 4     laneUnreachable          census {1: 2}
+  stated   MapScreenContainer   +0x179DC declared 2     word179DC                census {1: 2, 2: 1}
+  stated   PApplication         +0x0068 declared 1     initialisedFlag68        census {2: 1}
+  stated   PDeferredLightingBase +0x40D0 declared 16    m_ambientColor           census {4: 1}
+  stated   PpfxInitDescriptor   +0x0008 declared 8     qword008                 census {4: 1}
+  stated   PpfxInitDescriptor   +0x0010 declared 8     qword010                 census {4: 1}
+  stated   PpfxInitDescriptor   +0x0018 declared 8     qword018                 census {4: 1}
+  stated   PpfxInitDescriptor   +0x0040 declared 8     qword040                 census {4: 1}
+  stated   PpfxInitDescriptor   +0x0058 declared 8     qword058                 census {4: 1}
+  stated   PpfxInitDescriptor   +0x00F8 declared 8     qword0F8                 census {4: 1}
+  stated   RampChannelRecord    +0x0004 declared 2     field004                 census {4: 1}
+  stated   RampChannelRecord    +0x0014 declared 4     field014                 census {8: 1}
+  stated   RampChannelRecord    +0x0080 declared 4     field080                 census {8: 1}
+  stated   RampChannelRecord    +0x008C declared 4     field08C                 census {8: 1}
+  stated   RampChannelRecord    +0x0094 declared 4     field094                 census {8: 1}
+  stated   RampChannelRecord    +0x00BC declared 4     field0BC                 census {8: 1}
+  stated   RampChannelRecord    +0x00CC declared 4     field0CC                 census {8: 1}
+  stated   SummonEffectState02B40508 +0x0004 declared 4     rec0Word4                census {2: 1}
+  stated   Widget02CA9718       +0x00C0 declared 4     dword00C0                census {1: 13, 4: 3}
+  stated   WidgetSingleton020927F0 +0x00E8 declared 4     dword00E8                census {1: 6, 4: 5}
+  stated   WidgetSingleton0209C4C8 +0x00C0 declared 4     dword00C0                census {1: 2, 4: 2}
+  stated   WidgetSingleton02AED490 +0x00E6 declared 4     dword00E6                census {1: 3}
+  stated   WidgetSingleton02AEE4C0 +0x00C0 declared 4     resourceReadyFlags00C0   census {1: 1, 4: 1}
+  stated   WidgetSingleton02B47730 +0x00C0 declared 4     dword00C0                census {1: 5, 4: 2}
+  stated   WidgetSingleton02B62D80 +0x00C8 declared 4     dword00C8                census {4: 13, 1: 17}
+  stated   WidgetSingleton02CA99C8 +0x00CC declared 4     dword00CC                census {1: 5, 4: 5}
+  stated   BootSingleton01F7F598 +0x001C declared 1     writerBank1C             census {2: 1}
+  stated   BootSingleton01F7F598 +0x0DA0 declared 4     fieldDA0                 census {8: 1}
+  stated   BootSingleton01F7F598 +0x0DB9 declared 1     fieldDB9                 census {2: 1}
+  stated   BootSingleton01F7F598 +0x0DBC declared 4     accumulatorDBC           census {8: 1}
+  stated   BootSingleton01F7F598 +0x0DC4 declared 1     fieldDC4                 census {2: 1}
+  stated   WorldLootPickupNode  +0x0004 declared 4     state                    census {8: 10, 4: 1}
+  stated   ChunkedSlotBankEntry +0x0000 declared 4     bankId                   census {8: 1}
+  stated   ChunkedSlotBankEntry +0x0014 declared 4     liveInBank               census {8: 1}
+  stated   ChunkedSlotEntry     +0x0000 declared 4     occupancy                census {8: 1}
+  stated   SecondaryContextElement +0x0000 declared 4     entryId                  census {8: 2, 4: 58, 2: 60}
+  stated   ManagerSub0209BE80_00A0 +0x52C6 declared 2     flags52C6                census {1: 3, 2: 3}
+  stated   ManagerSub0209BE80_57E0ArrayRecord +0x0272 declared 2     slotFlag272              census {1: 1, 2: 1}
+  stated   PartyReadMachineRecord +0x0010 declared 8     driverTail               census {4: 7}
+  stated   RenderResourceEntryBank +0x0020 declared 2     bankCursor               census {4: 1}
+  stated   RenderContext02CC0410 +0x0000 declared 1     dynamicSizesFlag         census {2: 1}
+  stated   RenderContext02CC0410 +0x00F4 declared 4     dynamicVertexBytes       census {8: 1}
+  stated   RenderContext02CC0410 +0x00FC declared 4     uavVertexBytes           census {8: 1}
+  stated   RenderContext02CC0410 +0x07D0 declared 4     scale7D0                 census {8: 1}
+  stated   RenderContext02CC0410 +0x1848 declared 1     modeByte1848             census {2: 1}
+  stated   RenderContext02CC0410 +0x18A4 declared 4     refreshRate              census {8: 1}
+  stated   RenderContext02CC0410 +0x18AC declared 4     adapterIndex             census {8: 1}
+  stated   PPostEffectBase      +0x0048 declared 8     qword048                 census {4: 5}
+  stated   BattleStatsRecord    +0x0008 declared 2     statAccumulator008       census {4: 1}
+  stated   BattleStatsRecord    +0x0010 declared 16    statBlockByKind          census {4: 1}
+  stated   BattleStatsRecord    +0x01C3 declared 1     licenceBoardSelectorA    census {2: 1}
+
+COVERAGE -- what was actually compared, not what stayed quiet
+  declared rows in the store:                                  9132 in 825 types
+  OUTSIDE THIS CHECKER'S REACH (no census mapping):            3358 in 585 types
+  declared rows in scope (the 240 types with a census mapping): 5774
+    CHECKED, a comparison was performed:                      3465
+    unchecked, census file absent:                            0
+    unchecked, census has no access at that displacement:     2309
+        AchievementDescriptor  3 row(s)
+        AchievementState       13 row(s)
+        ActiveLogWidget40C8    9 row(s)
+        ActorManagerSlot       11 row(s)
+        ActorManagerSlotEntry  1 row(s)
+        ActorResourceEntry     1 row(s)
+        ActorSequenceDescriptor 1 row(s)
+        ActorStorageRecord     11 row(s)
+        ActorWaitSlot          11 row(s)
+        AiOrderSet             2 row(s)
+        AudioParameterRamp     7 row(s)
+        AuthoredTableHeader    3 row(s)
+        AuthoredTableRegistrySlot 1 row(s)
+        AuthoredTriggerLiveEntry 1 row(s)
+        BattleFormulaScratch   2 row(s)
+        BattleMenuChildBase4C0 17 row(s)
+        BattleMenuChildRecord1E0 13 row(s)
+        BattleMenuChildWidget1620 27 row(s)
+        BattleMenuPanelWidget3010 10 row(s)
+        BattleMenuPanelWidget3010Block 14 row(s)
+        BattleMenuWidget2DC0   5 row(s)
+        BattleResultRecord     8 row(s)
+        BattleStatsRecord      47 row(s)
+        BattleSystemState      10 row(s)
+        BattleTargetBuffer     1 row(s)
+        BattleTargetResultEntry 2 row(s)
+        BattleUnit             32 row(s)
+        BgmStream              2 row(s)
+        BootSingleton01F7F598  49 row(s)
+        CPostEffect            123 row(s)
+        Category               7 row(s)
+        CharacterRenderObject  6 row(s)
+        CharacterRenderRecord  57 row(s)
+        CharacterRenderSystemTail 4 row(s)
+        ChunkedSlotBankEntry   5 row(s)
+        ChunkedSlotEntry       1 row(s)
+        DynGeoFontTextSpecialFinalInstance 2 row(s)
+        DynGeoFontTextSpecialInstance 2 row(s)
+        DynGeoFontTextSpecialShadowInstance 2 row(s)
+        EeVu0RegisterBank      80 row(s)
+        EfxCallerTemplate      21 row(s)
+        EncodedIdQueryRecord   15 row(s)
+        EvaluationContext      3 row(s)
+        FrameMarkerSingleton01F82C80 5 row(s)
+        GambitConfig           3 row(s)
+        GameSettingConfig      6 row(s)
+        GlyphRunRecord14       1 row(s)
+        GlyphRunWidget1498     20 row(s)
+        GroupPersistentBank    1 row(s)
+        HandleSlotRecord       3 row(s)
+        ImageAddressArenaRecord 3 row(s)
+        ImageBackedStateBlock  38 row(s)
+        IndexedExternalSourceRequest 3 row(s)
+        InputBindingProfile    1 row(s)
+        InputBindingRecord     3 row(s)
+        InputManager           4 row(s)
+        InputReservedBindingIds 1 row(s)
+        ItemClassDescriptor    5 row(s)
+        LegacyPs2GsDerivedSlotRecord 5 row(s)
+        LegacyPs2GsReferenceDescriptor 4 row(s)
+        LegacyPs2GsSourceTextureRecord 8 row(s)
+        LegacyPs2GsTextureContext 9 row(s)
+        Manager0209AC60        115 row(s)
+        ManagerSingleton0209BE80 28 row(s)
+        ManagerSub00A0Entry    6 row(s)
+        ManagerSub0209AC60_02F8 4 row(s)
+        ManagerSub0209AC60_02F8_00C0 8 row(s)
+        ManagerSub0209BE80_00A0 4 row(s)
+        ManagerSub0209BE80_5380 3 row(s)
+        ManagerSub0209BE80_57E0 26 row(s)
+        ManagerSub0209BE80_57E0ArrayRecord 12 row(s)
+        ManagerSub0209BE80_57E0PairRecord 18 row(s)
+        ManagerSub0209BE80_7EA0 2 row(s)
+        ManagerSub0209BE80_7FB0 1 row(s)
+        ManagerSub0209BE80_8FA0 15 row(s)
+        ManagerSub0209BE80_A0D0 7 row(s)
+        ManagerSub0209BE80_AB30 54 row(s)
+        ManagerSub5380PoolAEntry 2 row(s)
+        ManagerSub5380PoolBEntry 7 row(s)
+        ManagerSub5380PoolCEntry 8 row(s)
+        ManagerSub7EA0Entry    1 row(s)
+        ManagerSub7FB0Record   9 row(s)
+        ManagerSub8FA0SlotRecord02B8 15 row(s)
+        ManagerSubA0D0Record   10 row(s)
+        MapLightingTuning02CB7FD0 9 row(s)
+        MapRefImageHeader      4 row(s)
+        MapRefWeatherBlock     3 row(s)
+        MapRefWeatherLane      2 row(s)
+        MapScreenContainer     31 row(s)
+        MapScreenPage          49 row(s)
+        MapScreenPageSlot      1 row(s)
+        MessageWindowRecord    17 row(s)
+        MovementBody           55 row(s)
+        MovementContext        11 row(s)
+        NavMeshTriangle        3 row(s)
+        NavPortalRecord        2 row(s)
+        NavRegionRecord        2 row(s)
+        NavRunStateBlock       5 row(s)
+        NavigationPathState    2 row(s)
+        OrderedCommandList     1 row(s)
+        OrderedObject          2 row(s)
+        PApplication           36 row(s)
+        PAssetReferenceRegistry01F2EA70 1 row(s)
+        PDeferredLightingBase  6 row(s)
+        PDeferredLightingSlot0080 5 row(s)
+        PNamedSemanticDescriptor 1 row(s)
+        PPostEffectBase        3 row(s)
+        PShaderPassStateD3D11  2 row(s)
+        PTypeDefaultUInt       3 row(s)
+        PaneListWidget0B68     10 row(s)
+        PaneSlotWidget0160     14 row(s)
+        PartyFormationSlot     7 row(s)
+        PartyReadMachineRecord 2 row(s)
+        PendingCompletionQueue01F81248 9 row(s)
+        PersistentFlagPayload  25 row(s)
+        PhyreClassDescriptor   10 row(s)
+        PostProcessParamContext 23 row(s)
+        PpfxInitDescriptor     10 row(s)
+        PresentationEntryReferenceContainer 3 row(s)
+        PrimitiveRendererD3D11 113 row(s)
+        RampChannelRecord      22 row(s)
+        RenderCommandBufferPair 1 row(s)
+        RenderContext02CC0410  49 row(s)
+        RenderContextPassStateBlock 2 row(s)
+        RenderModelInstance    13 row(s)
+        RenderModelInstanceContainer 2 row(s)
+        RenderPrimitivePass1E8 6 row(s)
+        RenderResourceEntry    3 row(s)
+        RenderResourceEntryBank 4 row(s)
+        RenderResourceEntryBuffer 2 row(s)
+        RenderResourceRoot     4 row(s)
+        RenderStrideC0Bank     1 row(s)
+        RenderStrideC0Element  4 row(s)
+        ResourceKindOverrideTable 1 row(s)
+        ResourceRequestSlot    4 row(s)
+        ResourceSectionNameScratch 1 row(s)
+        SaveImage              2 row(s)
+        SaveImageHeader        7 row(s)
+        SavePayload            15 row(s)
+        SecondaryContext       3 row(s)
+        SecondaryContextElement 2 row(s)
+        ShadowSettings01F82EA8 110 row(s)
+        SpawnGroupLedger       1 row(s)
+        SpawnKeepImage         3 row(s)
+        SpawnRecord            9 row(s)
+        StatusDefinitionRecord 13 row(s)
+        SteeringRecord         6 row(s)
+        SummonEffectState02B40508 9 row(s)
+        SystemStopRecord       3 row(s)
+        SystemStopRegistry     5 row(s)
+        TextDrawState          3 row(s)
+        UiRootTable            2 row(s)
+        VmValueStack           4 row(s)
+        Vu1DataMemory02064E30  1 row(s)
+        Vu1RegisterBank02064B00 86 row(s)
+        Widget                 1 row(s)
+        Widget0209CC18         4 row(s)
+        Widget02B5F1F8         12 row(s)
+        Widget02B5F200         2 row(s)
+        Widget02CA6C80         7 row(s)
+        Widget02CA9718         8 row(s)
+        Widget02CA9790         17 row(s)
+        WidgetConsumer02AEE4C8 5 row(s)
+        WidgetFocusStack       2 row(s)
+        WidgetSingleton01FD4940 5 row(s)
+        WidgetSingleton01FD4948 2 row(s)
+        WidgetSingleton0208E6C0 28 row(s)
+        WidgetSingleton0208E6C8 2 row(s)
+        WidgetSingleton0208E6D0 15 row(s)
+        WidgetSingleton0208E6D8 13 row(s)
+        WidgetSingleton020927F0 4 row(s)
+        WidgetSingleton0209AC18 1 row(s)
+        WidgetSingleton0209AC20 1 row(s)
+        WidgetSingleton0209C300 16 row(s)
+        WidgetSingleton0209C318 1 row(s)
+        WidgetSingleton0209C380 1 row(s)
+        WidgetSingleton0209C498 4 row(s)
+        WidgetSingleton0209C4C8 10 row(s)
+        WidgetSingleton0209E5F8 1 row(s)
+        WidgetSingleton0209E600 1 row(s)
+        WidgetSingleton022C83E0 9 row(s)
+        WidgetSingleton022CA428 2 row(s)
+        WidgetSingleton022CBE20 7 row(s)
+        WidgetSingleton02AED490 3 row(s)
+        WidgetSingleton02AED490EntryA 1 row(s)
+        WidgetSingleton02AED490EntryB 1 row(s)
+        WidgetSingleton02AEE4C0 3 row(s)
+        WidgetSingleton02B457E0 2 row(s)
+        WidgetSingleton02B457E0Record 2 row(s)
+        WidgetSingleton02B476B0 2 row(s)
+        WidgetSingleton02B47730 1 row(s)
+        WidgetSingleton02B47740 6 row(s)
+        WidgetSingleton02B47758 9 row(s)
+        WidgetSingleton02B47758_02A0 3 row(s)
+        WidgetSingleton02B47758_0460 2 row(s)
+        WidgetSingleton02B47758_05F0 4 row(s)
+        WidgetSingleton02B62D78 1 row(s)
+        WidgetSingleton02B62D80 6 row(s)
+        WidgetSingleton02B62D88 8 row(s)
+        WidgetSingleton02CA8F38 24 row(s)
+        WidgetSingleton02CA96D8 3 row(s)
+        WidgetSingleton02CA9738 7 row(s)
+        WidgetSingleton02CA99C0 16 row(s)
+        WidgetSingleton02CA99C8 6 row(s)
+        WidgetSingleton02CA99D0 2 row(s)
+        WidgetSingleton02CA99D8 2 row(s)
+        WidgetSingleton02CA99E0 2 row(s)
+        WorldLootDropEntry     1 row(s)
+        WorldLootPickupNode    4 row(s)
+        WorldLootPresenceRecord 2 row(s)
+  census lines read but not usable as width evidence:
+      static catalogue header rejected 0
+      address outside the type's extent 0
+      malformed or short               0
+      no operand width                 1539
+      indexed at zero displacement     136
+      unrolled SIMD block copy         1492
+      reached via a shared helper      4490
+      a zeroed-register clear run      794
+      usable width observations        32415
+  WHAT THE SIMD RULE COST -- declared rows whose evidence it removed: 48
+      Every one is an ARRAY. Where the array is accessed per element the rule costs
+      nothing; where its natural access IS a block move, the rule removes exactly the
+      evidence that would have confirmed it, and that row is UNCHECKED, not passing.
+      BattleMenuPanelWidget3010 +0x00C0 BattleMenuPa declared 256   1 line(s)  ALL evidence dropped
+      BattleMenuPanelWidget3010 +0x01C0 void*        declared 8     1 line(s)  ALL evidence dropped
+      BattleMenuPanelWidget3010 +0x01F0 u8[12]       declared 12    1 line(s)  ALL evidence dropped
+      BattleMenuPanelWidget3010 +0x0200 u8[16]       declared 16    1 line(s)  ALL evidence dropped
+      BattleMenuPanelWidget3010 +0x0210 u8[16]       declared 16    1 line(s)  ALL evidence dropped
+      BattleStatsRecord      +0x0010 UNRESOLVED   declared 16    1 line(s)  only 16-wide evidence dropped; kept {4: 1}
+      BattleStatsRecord      +0x0030 uint8        declared 1     1 line(s)  ALL evidence dropped
+      BattleStatsRecord      +0x0040 uint8        declared 1     1 line(s)  ALL evidence dropped
+      BattleUnit             +0x0100 f32[4]       declared 16    1 line(s)  only 16-wide evidence dropped; kept {4: 2}
+      BattleUnit             +0x0110 f32[4]       declared 16    1 line(s)  only 16-wide evidence dropped; kept {4: 1}
+      BattleUnit             +0x06C0 u8[16]       declared 16    2 line(s)  ALL evidence dropped
+      CPostEffect            +0x0338 u64          declared 8     1 line(s)  ALL evidence dropped
+      CPostEffect            +0x0604 float        declared 4     6 line(s)  ALL evidence dropped
+      CPostEffect            +0x0624 float        declared 4     2 line(s)  ALL evidence dropped
+      CPostEffect            +0x0634 float        declared 4     2 line(s)  ALL evidence dropped
+      CPostEffect            +0x0644 float        declared 4     2 line(s)  ALL evidence dropped
+      CPostEffect            +0x0674 float        declared 4     4 line(s)  ALL evidence dropped
+      CPostEffect            +0x0684 float        declared 4     4 line(s)  ALL evidence dropped
+      CPostEffect            +0x06B4 u8[12]       declared 12    1 line(s)  ALL evidence dropped
+      CPostEffect            +0x073C uint32       declared 4     1 line(s)  ALL evidence dropped
+      CPostEffect            +0x0ACC uint32       declared 4     1 line(s)  ALL evidence dropped
+      CPostEffect            +0x0B58 u8[8]        declared 8     1 line(s)  ALL evidence dropped
+      CharacterRenderObject  +0x04C4 f32[4][12]   declared 192   1 line(s)  ALL evidence dropped
+      CharacterRenderObject  +0x0584 f32[4][12]   declared 192   1 line(s)  ALL evidence dropped
+      CharacterRenderRecord  +0x0140 float[4]     declared 16    3 line(s)  only 16-wide evidence dropped; kept {8: 1, 4: 2}
+      GroupPersistentBank    +0x0000 u8[512]      declared 512   2 line(s)  ALL evidence dropped
+      ImageBackedStateBlock  +0x0008              declared 16    2 line(s)  ALL evidence dropped
+      ImageBackedStateBlock  +0x0018              declared 16    2 line(s)  ALL evidence dropped
+      InputBindingRecord     +0x0000 int32[16]    declared 64    10 line(s)  ALL evidence dropped
+      InputBindingRecord     +0x0040 uint8[256]   declared 256   3 line(s)  ALL evidence dropped
+      MapLightingTuning02CB7FD0 +0x0040 float        declared 4     1 line(s)  ALL evidence dropped
+      MessageWindowRecord    +0x00D0 TextDrawStat declared 208   5 line(s)  ALL evidence dropped
+      PartyFormationSlot     +0x0010 float[4]     declared 16    10 line(s)  ALL evidence dropped
+      PartyFormationSlot     +0x0020 float        declared 4     10 line(s)  ALL evidence dropped
+      PartyFormationSlot     +0x0030 float[4]     declared 16    10 line(s)  ALL evidence dropped
+      PartyFormationSlot     +0x0040 float[4]     declared 16    10 line(s)  ALL evidence dropped
+      PartyFormationSlot     +0x0050 float[4]     declared 16    10 line(s)  ALL evidence dropped
+      PpfxInitDescriptor     +0x0020 u8[8]        declared 8     2 line(s)  ALL evidence dropped
+      PpfxInitDescriptor     +0x0050 u64          declared 8     2 line(s)  ALL evidence dropped
+      SaveImage              +0x0000 SaveImageHea declared 512   4 line(s)  ALL evidence dropped
+      SaveImageHeader        +0x0030 u8[12]       declared 12    7 line(s)  ALL evidence dropped
+      SaveImageHeader        +0x00A0 u8[32]       declared 32    4 line(s)  ALL evidence dropped
+      SavePayload            +0xE040 uint8[512]   declared 512   2 line(s)  ALL evidence dropped
+      SavePayload            +0x2E250 uint8[512]   declared 512   2 line(s)  ALL evidence dropped
+      SpawnKeepImage         +0x0010 uint8[65536] declared 65536  2 line(s)  ALL evidence dropped
+      SpawnKeepImage         +0x10010 uint8[65536] declared 65536  1 line(s)  ALL evidence dropped
+      SpawnRecord            +0x0020 u8[48]       declared 48    1 line(s)  ALL evidence dropped
+      SpawnRecord            +0x0070 u8[8]        declared 8     1 line(s)  ALL evidence dropped
+
+ROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 0

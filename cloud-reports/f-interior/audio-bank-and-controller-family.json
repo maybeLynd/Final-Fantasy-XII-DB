@@ -1,0 +1,521 @@
+{
+ "page": "18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md",
+ "session": "session_01MsKSmz4qgiM3h8TPNKv3gp",
+ "rows": [
+  {
+   "fn": "001DC130",
+   "text": "returns `002111F0(00210B30(), ecx, edx, r8, r9d, the fifth (stack) argument)`",
+   "anchors": [
+    [
+     "001DC14E",
+     "call"
+    ],
+    [
+     "001DC159",
+     "mov"
+    ],
+    [
+     "001DC16A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001DC2E0",
+   "text": "returns `00211270(00210B30(), rcx, edx, r8, r9d)`",
+   "anchors": [
+    [
+     "001DC2FF",
+     "call"
+    ],
+    [
+     "001DC307",
+     "mov"
+    ],
+    [
+     "001DC314",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00219970",
+   "text": "walks the circular list headed at `rcx+8` (next pointer at node `+0`) and, for each node whose qword `+0x10` has byte `+0x49` AND `dl` non-zero, calls `00223300(that qword, -1, 0)`",
+   "anchors": [
+    [
+     "0021997F",
+     "mov"
+    ],
+    [
+     "00219994",
+     "test"
+    ],
+    [
+     "002199A0",
+     "call"
+    ],
+    [
+     "002199A5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00219C40",
+   "text": "calls `005CD4F0(rcx+0xB8)`, decrements dword `+0x58` of `rdx` and, when it reaches zero, calls `rdx`'s vtable slot `+0x10` on `rdx` and then `00219D80(rcx+0x20, rdx)`; tail-jumps `005CD820(rcx+0xB8)`",
+   "anchors": [
+    [
+     "00219C5C",
+     "call"
+    ],
+    [
+     "00219C61",
+     "sub"
+    ],
+    [
+     "00219C70",
+     "call"
+    ],
+    [
+     "00219C7A",
+     "call"
+    ],
+    [
+     "00219C95",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0021B290",
+   "text": "calls `005CD4F0(rcx+0xB8)`, decrements dword `+0x90` of `rdx` and, when it reaches zero, calls `rdx`'s vtable slot `+0x10` on `rdx` and then `00219D80(rcx+0x20, rdx)`; tail-jumps `005CD820(rcx+0xB8)`",
+   "anchors": [
+    [
+     "0021B2AC",
+     "call"
+    ],
+    [
+     "0021B2B1",
+     "sub"
+    ],
+    [
+     "0021B2C6",
+     "call"
+    ],
+    [
+     "0021B2D0",
+     "call"
+    ],
+    [
+     "0021B2EB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0021C3D0",
+   "text": "calls its own vtable slot `+0x38`, then `0016D6A0(dword +0x30 of the result == 0)` (read before any null check) and `0016D6A0(result != 0)`; a null result stores to address 0 and returns 0, otherwise calls its own vtable slot `+0x28` with (`rcx`, result) and returns the result",
+   "anchors": [
+    [
+     "0021C3E0",
+     "call"
+    ],
+    [
+     "0021C3F0",
+     "call"
+    ],
+    [
+     "0021C3FD",
+     "call"
+    ],
+    [
+     "0021C407",
+     "mov"
+    ],
+    [
+     "0021C424",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0021C680",
+   "text": "walks the circular list at `rcx+8` for a node whose qword `+0x10` has dword `+0x3C` equal to `edx`, then calls `002129F0(&local, 8)`; when the local dword is positive and `r9` is non-null it takes the matched entry (after `00225030(entry, -1)`) or, with no match, its own vtable slot `+0x30` result, and when that is non-null calls `00224DC0(entry, edx, r8d, r9, fifth arg, sixth arg, 002129F0 result)`; every other path calls `00212A70(002129F0 result)`; returns the local dword",
+   "anchors": [
+    [
+     "0021C6B4",
+     "cmp"
+    ],
+    [
+     "0021C6CB",
+     "call"
+    ],
+    [
+     "0021C6ED",
+     "call"
+    ],
+    [
+     "0021C72A",
+     "call"
+    ],
+    [
+     "0021C733",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0021D3D0",
+   "text": "calls `0021D280(rcx+0x20)` and, when it returns null, calls its own vtable slot `+0x20` and `0021D280(rcx+0x20)` again; then calls `0016D6A0(result != 0)` and its own vtable slot `+0x28` with (`rcx`, result) whether or not the result is null, and returns the result",
+   "anchors": [
+    [
+     "0021D3E6",
+     "call"
+    ],
+    [
+     "0021D3F9",
+     "call"
+    ],
+    [
+     "0021D400",
+     "call"
+    ],
+    [
+     "0021D410",
+     "call"
+    ],
+    [
+     "0021D41E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00220C70",
+   "text": "calls `005CD4F0(rcx+0x378)`, `002206B0(rcx+0x268)` and `005CD820(rcx+0x378)`, and returns the `002206B0` result",
+   "anchors": [
+    [
+     "00220C96",
+     "call"
+    ],
+    [
+     "00220CA3",
+     "call"
+    ],
+    [
+     "00220CAE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002224F0",
+   "text": "walks the circular list at `rcx+8` (next pointer at node `+0`) and calls `002257E0(qword +0x10, edx, r8d)` for each node whose qword `+0x10` is non-null",
+   "anchors": [
+    [
+     "00222504",
+     "mov"
+    ],
+    [
+     "0022251A",
+     "test"
+    ],
+    [
+     "00222524",
+     "call"
+    ],
+    [
+     "00222529",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00222C70",
+   "text": "when `00210930(00210B30())` is non-zero and a second `00210B30()` result has bit 0 of byte `+0x3C` set, tail-jumps its own vtable slot 0 with (`rcx`, 1); otherwise returns",
+   "anchors": [
+    [
+     "00222C81",
+     "call"
+    ],
+    [
+     "00222C8A",
+     "call"
+    ],
+    [
+     "00222C8F",
+     "test"
+    ],
+    [
+     "00222CA5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00222FE0",
+   "text": "when qwords `+0x20` and `+0x50` of `rcx` are both non-null calls `002255B0(qword +0x20, qword +0x50, 0)`, otherwise calls `00809950(qword +0x50)` when `+0x50` is non-null; in either called case zeroes qword `+0x50`; then tail-jumps `00222000(rcx)`",
+   "anchors": [
+    [
+     "00222FFE",
+     "call"
+    ],
+    [
+     "0022300E",
+     "call"
+    ],
+    [
+     "00223013",
+     "mov"
+    ],
+    [
+     "00223023",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002230D0",
+   "text": "tail-jumps its own vtable slot 0 when dword `+0x38` minus `0x249F0` is at least `0x3E8` (unsigned), qword `+0x50` is non-null and byte `+0x49` AND `0x69` is zero; otherwise returns",
+   "anchors": [
+    [
+     "002230D3",
+     "sub"
+    ],
+    [
+     "002230D8",
+     "cmp"
+    ],
+    [
+     "002230DF",
+     "cmp"
+    ],
+    [
+     "002230E6",
+     "test"
+    ],
+    [
+     "002230EF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00223100",
+   "text": "tail-jumps its own vtable slot 0 when dword `+0x38` minus `0x249F0` is at least `0x3E8` (unsigned), qword `+0x50` is non-null, byte `+0x49` AND `0x68` is zero and its bit 0 is set; otherwise returns",
+   "anchors": [
+    [
+     "00223108",
+     "cmp"
+    ],
+    [
+     "0022310F",
+     "cmp"
+    ],
+    [
+     "0022311A",
+     "test"
+    ],
+    [
+     "0022311E",
+     "test"
+    ],
+    [
+     "00223125",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00223130",
+   "text": "tail-jumps its own vtable slot 0 when dword `+0x38` minus `0x249F0` is below `0x3E8` (unsigned), qword `+0x50` is non-null and bit 0 of byte `+0x49` is clear; otherwise returns",
+   "anchors": [
+    [
+     "00223133",
+     "sub"
+    ],
+    [
+     "00223138",
+     "cmp"
+    ],
+    [
+     "0022313F",
+     "cmp"
+    ],
+    [
+     "00223146",
+     "test"
+    ],
+    [
+     "0022314F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00223E60",
+   "text": "when qwords `+0x20` and `+0x50` of `rcx` are both non-null calls `002255B0(qword +0x20, qword +0x50, 0)`, otherwise calls `00809950(qword +0x50)` when `+0x50` is non-null; in either called case zeroes qword `+0x50`; then calls `00223A20(rcx)` and tail-jumps `00222000(rcx)`",
+   "anchors": [
+    [
+     "00223E7E",
+     "call"
+    ],
+    [
+     "00223E8E",
+     "call"
+    ],
+    [
+     "00223E93",
+     "mov"
+    ],
+    [
+     "00223E9E",
+     "call"
+    ],
+    [
+     "00223EAB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00224D40",
+   "text": "stores -1 in qword `+0x40` of `rcx` and calls `00222080(rcx)`; when qword `+0x20` is non-null calls `002255B0(qword +0x20, qword +0x50, qword +0x48)` and `007A88F0(qword +0x20 + 8, 1)` and zeroes `+0x20`, `+0x48` and `+0x50`, otherwise calls `00809950` on each non-null of qwords `+0x50` and `+0x48` and zeroes both; returns 0",
+   "anchors": [
+    [
+     "00224D49",
+     "mov"
+    ],
+    [
+     "00224D51",
+     "call"
+    ],
+    [
+     "00224D67",
+     "call"
+    ],
+    [
+     "00224D76",
+     "call"
+    ],
+    [
+     "00224D98",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00225440",
+   "text": "when `00210930(00210B30())` is non-zero and a second `00210B30()` result has bit 2 of byte `+0x3C` set, calls its own vtable slot `+0x48` with (`rcx`, `rdx`, 1); otherwise returns",
+   "anchors": [
+    [
+     "00225458",
+     "call"
+    ],
+    [
+     "00225466",
+     "test"
+    ],
+    [
+     "0022547B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002255B0",
+   "text": "stores `rdx` at qword `+0x20` of `rcx` (the entry instruction) and `r8` at qword `+0x28`",
+   "anchors": [
+    [
+     "002255B4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00225C40",
+   "text": "calls `0016D6A0(qword +0x210 of rcx == 0)`, then `00584740(0x50)` and, when non-null, `00597A20(that)`; stores the `00597A20` result (or 0) at qword `+0x210`, writes byte 2 at its `+0x38` without a null check, and copies the NUL-terminated string at `rdx`, terminator included, to `rcx+0x10`",
+   "anchors": [
+    [
+     "00225C6D",
+     "call"
+    ],
+    [
+     "00225C75",
+     "call"
+    ],
+    [
+     "00225C87",
+     "call"
+    ],
+    [
+     "00225C96",
+     "mov"
+    ],
+    [
+     "00225CA3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0036E9F0",
+   "text": "selects a `0x18`-byte record: none (null) for `ecx` -1, else index `ecx` AND `0xF` in `022D9AE0` when `ecx` AND `0xF0` is non-zero or in `022D9AB0` otherwise; stores in its dword `+8` the result of `002DF450(byte +1 plus 2 when byte +2 is non-zero else byte +1, sword +0x14, 0036A0B0(dword +0x10), 0036C100(that), 0)`; when that is zero calls `00369800(dword +0x10)`, zeroes `+0x10` and sets byte `+0` to 3, otherwise sets byte `+0` to 3 only when dword `+4` is non-zero",
+   "anchors": [
+    [
+     "0036EA3A",
+     "call"
+    ],
+    [
+     "0036EA6C",
+     "cmove"
+    ],
+    [
+     "0036EA74",
+     "mov"
+    ],
+    [
+     "0036EA89",
+     "call"
+    ],
+    [
+     "0036EA96",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0036EAB0",
+   "text": "selects a `0x18`-byte record: none (null) for `ecx` -1, else index `ecx` AND `0xF` in `022D9AE0` when `ecx` AND `0xF0` is non-zero or in `022D9AB0` otherwise; stores in its dword `+4` the result of `002DF450(byte +1 plus 2 when byte +2 is non-zero else byte +1, sword +0x14, 0036A0B0(dword +0xC), 0036C100(that), 1)`; when that is zero calls `00369800(dword +0xC)`, zeroes `+0xC` and sets byte `+0` to 3, otherwise sets byte `+0` to 3 only when dword `+8` is non-zero",
+   "anchors": [
+    [
+     "0036EAFA",
+     "call"
+    ],
+    [
+     "0036EB2C",
+     "cmove"
+    ],
+    [
+     "0036EB34",
+     "mov"
+    ],
+    [
+     "0036EB49",
+     "call"
+    ],
+    [
+     "0036EB56",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00657140",
+   "why": "its whole work is the entry instruction (xor al, al; ret)"
+  }
+ ],
+ "notes": "Doubts: 002255B0's first store is the entry instruction, so it is rowed with a single anchor on the second store; drop it if OPUS treats it as entry-only. 0021C680: '&local' is the caller's home slot at [rsp+0x70] (rcx's shadow space), fifth/sixth args are the incoming stack arguments at [rsp+0x90]/[rsp+0x98]; whether 00225030 also reads r8 is not visible. 0021C3D0 dereferences +0x30 of the slot +0x38 result before its null check and writes dword 0 to absolute address 0 on null. 0036E9F0/0036EAB0: for ecx -1 the record pointer is 0 and the body then reads through it; the 0036C100 argument is the 0036A0B0 result (rcx), and 0036A0B0/0036C100 return values are passed as r8 and r9d. 00222C70/00225440/002230D0/00223100/00223130: 'own vtable slot 0' is jmp qword [qword [rcx]]."
+}

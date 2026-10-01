@@ -1,0 +1,1306 @@
+addresses called unread somewhere : 1264
+addresses some document says it read : 1205
+PAIRS - called unread in one document, read in another : 158
+
+0016D6A0
+   unread : _index/OPEN-QUESTIONS.md:1426
+            | GF-7 | **What the post-effect workers' render-state calls set, and what the multiple submissions differ by.** All eleven workers build a `PMaterialSelectorMaterialSet` over the e
+   unread : _index/OPEN-QUESTIONS.md:1581
+            | GI-7 | The authored-command residuals: bank B (`02CA4670`, registered via `0041D6D0`) consumer side not yet traced to a drain, and per-command presentation names for the bespoke 
+   unread : 14-Story-Event-Quest-Hunt/persistent-flag-banks.md:1240
+            game".** It is 1,185 bytes of consecutive subsystem resets and it calls this chain; it was **not read in full**, and no menu path was traced to it. - **What `0016D6A0`, `00253A80` 
+   read   : 16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:288
+            * ### The function re-read whole, and §7's table holds All 330 bytes disassembled. **148 call sites — 142 `E8`, 6 `E9`** (positive control: the `ret 0` stub `0016D6A0` at 2,528 + 3
+   read   : 17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md:1573
+            ../../_index/ADDRESS-INDEX.md)). The dispatch the §-flows name. `001FB840` — 43 B, 16 callers: the §12b body, read in full — `rcx` is reloaded from a global, `0016D6A0` runs (the r
+
+00180120
+   unread : _index/OPEN-QUESTIONS.md:1160
+            these two exhaust the consumer set. §10 counts three consumers for flag A and four for flag B with one of each read; this reads the two named unread ones and `00180120` was already
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1160
+            these two exhaust the consumer set. §10 counts three consumers for flag A and four for flag B with one of each read; this reads the two named unread ones and `00180120` was already
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1250
+            these two exhaust the consumer set. §10 counts three consumers for flag A and four for flag B with one of each read; this reads the two named unread ones and `00180120` was already
+   read   : 99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:363
+            B) was read. - [x] **UQ-336.** **The other consumers of the two flags.** `0034CF90` and `0034D790` (137 B each) have **zero callers by graph or bytes**; `00180120` is now read — a 
+
+00180620
+   unread : 03-World-Area-Field/Weather/weather-slot-state-model.md:295
+            t** read or written here. The two clusters are adjacent in the payload and independent in behaviour. ### Limits - **The derive half is cited, not decoded.** `00180620`, `003148F0` 
+   read   : 03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md:240
+            | First pass publishes real environment state | complete bodies of `00180620` and `001A7E40` | 1 |
+
+00195DF0
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:354
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:353
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+   read   : 15-Input/Input-Stack/input-stack-device-channel-and-bindings.md:447
+            e-format-and-default-controls.md` derives — two different structures — **`DD-1` ANSWERED**: `00195DF0` is the converter, read in full in [the binding-profiles contract](../Binding-
+   read   : 15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md:1099
+            **Both are > established now — `DD-1` is ANSWERED.** The converter is `00195DF0`, read in full in > [the contract](CONTRACT-binding-profiles.md) §7a, and the stride is `0x15C`, der
+
+001989D0
+   unread : 22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md:627
+            `0017CE20`, `0017CE50` (+11 more) reach bodies filed to Input: `001967D0`, InputManager_CreateSingleton (`00198750`), InputManager_GetSingleton (`00198790`), `001989D0` (+13 more) 
+   read   : _index/candidates/opus-input-manager-type.md:22
+            wrappers that fetch the singleton and tail-jump into a one-instruction method. The setter strip `00198670`-`001989F0` was therefore read in full, which adds `001989D0` (`+0x39`), `
+
+001D1660
+   unread : 06-Movement-And-Navigation/Facing-And-Steering/the-two-steering-slots-and-what-a-character-resumes.md:373
+            ytes. - **Input — CLIENT.** `00263230` calls the 1,936-byte Input-filed body that is still unread. - **Audio and Presentation, through the console — CLIENT.** `001D1660`, the 13,75
+   read   : 00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md:292
+            | the table is at `001D4C1C`, 282 dword RVAs, all landing in-body | decoded from the image; 282 of 282 in `001D1660`-`001D4C19` | 1 |
+
+001EDDA0
+   unread : _experiments/evidence/heading-commit-tail-supplement/retained/the-element-types-60-74.md:173
+            — the emitter call identity still unread. ## Cross-subsystem neighbours — FINAL-AUDIT pass 22 **Audio — CLIENT.** `FUN_003b99d0`, owned by that layer, calls `001EDDA0` on this page
+   read   : 19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md:931
+            | `001EDBB0(…)` | `002F2530` (effect frame advance — **interior read 2026-09-17, SWE2-FRONTIER**: `001EDDA0` ×2 over `02EBEF88`, `003A8950`/`002F31C0` arms at [`002F25CD`](../../_i
+   read   : 06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md:458
+            the layer boundary, no shared ownership. - **CoreRuntimeScheduling - DEPENDENCY and SERVICE (4 edges, one far end; FABLE 2026-09-29).** All four edges end at `001EDDA0`, the 27-byt
+
+001EDDC0
+   unread : 07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:566
+            ultStep`. **Locomotion can post battle messages.** Which messages it posts is not read. Two locomotion bodies look up stats owners, and the frame-base setup `001EDDC0` (the `timeBe
+   unread : 19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md:536
+            HANICAL.* - **Audio — CLIENT.** The console body `001D1660` calls the console's two audio legs (9 B and 46 B). - **Movement — SERVICE.** The frame-base setup `001EDDC0` (the `timeB
+   read   : _index/OPEN-QUESTIONS.md:298
+            | K-8 | Are `DAT_01DFE0BC` / `DAT_01DFE0B8` ever written away from `1.0` during play? | **ANSWERED 2026-09-02 — closes with Z-10.** Censused: `01DFE0B4` **211 R / 1 W**, `01DFE0B8`
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:298
+            | K-8 | Are `DAT_01DFE0BC` / `DAT_01DFE0B8` ever written away from `1.0` during play? | **ANSWERED 2026-09-02 — closes with Z-10.** Censused: `01DFE0B4` **211 R / 1 W**, `01DFE0B8`
+
+001EDE70
+   unread : 17-Presentation-Rendering/Model-And-Motion-Formats/fdm-and-for-entries.md:338
+            rs); this page claims the entry layouts they read, not the table's lookup. - **CoreRuntimeScheduling — OUT-OF-SCOPE, edges.tsv.** The builder `0053AB50` calls `001EDE70`; no statem
+   read   : 17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:406
+            from the shipping bytes 2026-09-14 (OPUS). **Input — CLIENT (11 edges through 2 of this page's functions).** The Input layer reaches this page at `0022A770`, `001EDE70`. `InputGame
+   read   : _experiments/evidence/heading-node-followup/retained/the-per-model-oscillator-subsystem.md:286
+            from the shipping bytes 2026-09-14 (OPUS). **Input — CLIENT (11 edges through 2 of this page's functions).** The Input layer reaches this page at `0022A770`, `001EDE70`. `InputGame
+
+001FF4F0
+   unread : _index/candidates/opus-dd-eastl-0930/README.md:16
+            B0`** (was "not read"). F1: it makes a JsonBox value an object (type 3; a `0x38`-byte map whose allocator is named `EASTL map`), then tail-jumps to the find `001FF4F0`. This matche
+   read   : 23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md:170
+            | `001FF6B0` | callee of `001FF740` | 130 B | read 2026-09-30 (OPUS; also on [what the console tunes](../../00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.m
+
+001FF740
+   unread : 17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:751
+            *. Seventy-seven of `init.json`'s keys are not read by this applier. - **A miss is not free: the lookup helper is a **mutating** `operator[]`.** `001FF740` delegates to `001FF6B0`,
+   read   : 23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md:170
+            | `001FF6B0` | callee of `001FF740` | 130 B | read 2026-09-30 (OPUS; also on [what the console tunes](../../00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.m
+   read   : 23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md:409
+            | `basic_string` is three pointers with no inline buffer | complete bodies of `001FF740`, `001600D0`, `0015FE00` — three globals written, no inline buffer anywhere | 1 |
+
+0020E600
+   unread : _index/OPEN-QUESTIONS.md:548
+            | MP-2 | **The inner layouts of the `.mpk` sections `YM00` (slot 8), `ACTL` (9), `SP1` (16), `SPP1` (10), `WD` (1) and `MRP` (15)**, and what the navigation section (slot 4) holds 
+   unread : 00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md:164
+            B90` gate the paths and are **not read**. ## 4c. The two hubs are an addition and a subtraction — 32 pairs The largest single neighbour in the whole pass is `0020E600`, and it is *
+   unread : 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:365
+            | — | `ImageAddress_ResolveRuntimePointer` | not read *(2026-09-30, SWE2-STRUCT for OPUS, DD batch 12: stale, `0020E600` is read whole on this page, "The resolver is three instruct
+   read   : _index/PARITY-STATUS.md:360
+            | what `0020E600` and `0051B9E0` are | NOT EXERCISED | answered statically outside this harness: 0020E600 is ImageAddress_ResolveRuntimePointer (three instructions, read whole) and
+   read   : _index/candidates/auditsem-review-gi12-0930/REVIEW.md:65
+            / `0052ADB0`. Holds. ## 5. `0040F390` (claim 5) (SWE2-AUDIT-SEM) `.pdata` chain root with five fragments totalling **2,900 B** (`f390_summary.out.txt`); 56 `0020E600` resolves, 84 
+
+00226BE0
+   unread : 00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md:258
+            pairs still belongs to a document whose owner decides whether the edge matters to that page. Nothing here edits another page. **Unread, and named as such:** `00226BE0` (1,936 B, 23
+   unread : 00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md:308
+            rose under a numbered heading, which the crossings gate does not read; this section names the edges.* **ActorEntity — SERVICE, CLIENT (23 edges).** The start `00226BE0`, the cancel
+   unread : _experiments/evidence/rate-normalizer-domain/retained/shared-neighbours.md:248
+            pairs still belongs to a document whose owner decides whether the edge matters to that page. Nothing here edits another page. **Unread, and named as such:** `00226BE0` (1,936 B, 23
+   read   : 00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md:9
+            d hold evidence_tier: 1 verified_against: exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 method: complete bodies of the start 00226BE0, the per-id rec
+   read   : 00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md:330
+            | Start marks all managed actors and exempts by category | `00226BE0` read whole; `00263BE0`, `002647B0` | 1 | PROVEN |
+
+00229590
+   unread : _index/candidates/sd3-policy-bit21-0930/README.md:31
+            `[01FD4940]`. - **So:** during a Save/Load operation, the arbiter's modal is opened in its flag-0 variant. ## Limits (OPUS) - **Still open:** what the modal `00229590` does with fl
+   read   : 99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:769
+            ero callers by both the call graph and a byte-level decode**, so they are in the position `00392A10` was before it was read. `00180120` (39 B, called from `00229590`) is now read —
+
+0022A0B0
+   unread : _index/OPEN-QUESTIONS.md:631
+            | HM-1 | **What the two tables mean on screen.** `skeletonmapping.bin`'s single record (`hc1006_03`, 39 `i32`) is matched by name in `00372820` and indexed by `Skeleton_UpdateFinal
+   unread : _index/OPEN-QUESTIONS.md:1028
+            | UQ-216 | What the mapping's 39 values index and why only `hc1006_03` has one, what the replace table's `b` and `c` arguments are (the callers pass `002657E0(actor)` and `00263FC0
+   unread : _index/candidates/rc3-boot-blocks-0930/README.md:25
+            e opens. ## The 0.5 MiB block (`01FD4A20`): allocated and never read The block's pointer slot has **one** reference anywhere in the image: its boot store in `0022A0B0` (`0022A284`,
+   read   : 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md:802
+            ed with the presentation layer rather than owned here. Read from the shipping bytes 2026-09-14 (OPUS). **RNG_Random_Selection — CLIENT (1 edge, body read).** `0022A0B0` calls `RNG_
+   read   : 02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md:398
+            | `00259180` | the stream's seeder | 179 B | read 2026-09-11: called once at boot by `0022A0B0` ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-
+
+00233780
+   unread : 00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md:210
+            | `00233780` | `SpawnKeep_RotatePersistenceBanksForAreaTransition` | 672 B | — | not read |
+   read   : 99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md:303
+            r_Lifecycle — MECHANICAL, 1 edge.** `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`) is called by `SpawnKeep_RotatePersistenceBanksForAreaTransition` (`00233780`). *Tier 2:
+
+00233C10
+   unread : 05-Spawn-Encounter-Lifecycle/why-the-enemies-you-killed-come-back.md:221
+            y four UI bodies (170 to 1,827 bytes), and one calls a 134-byte UI body. Which screen reads respawn state is not read here. - **SaveLoad - CLIENT (2 edges).** `00233C10`, `002EF640
+   read   : 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md:379
+            the paragraph below is dated 2026-09-13; since then §3 names the block, §4 is read to its ret and `V-3` answers the header map.)* **Not claimed:** which block `00233C10` and `00237
+
+002368D0
+   unread : 07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:282
+            r that fills slot 7 is not read"*. It is read now, in five steps, every one from the shipped bytes: 1. **The request.** `BattleStorage_InitializeWorkArrays` (`002368D0`) frees the 
+   read   : 04-Actor-Entity/battleunit-slot-pool-and-actor-class.md:173
+            | `002368D0` | `BattleStorage_InitializeWorkArrays` | ✅ read 2026-09-15 (§12) |
+
+00237DF0
+   unread : 05-Spawn-Encounter-Lifecycle/why-the-enemies-you-killed-come-back.md:215
+            s. **Which of the guard's callees run on every call, and which only on the null path, is not read here.** The page's claim about bank 1 is unaffected, because `00237DF0` does not t
+   read   : 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md:380
+            et and `V-3` answers the header map.)* **Not claimed:** which block `00233C10` and `002370C0` belong to *(`00237DF0` read 2026-09-13 — §3: it reaches `002370C0` through `0023AF50`)
+
+00237FC0
+   unread : _index/candidates/dd-content-fable-0930/README.md:124
+            ad whole); - `+0x21` is unread (AY-2); - `+0x24` is narrowed: the selector's three cases, and 39 / 68 / 436 rows; - `+0x38` is the list position, reader `00237FC0`; - `+0x3A` is a 
+   unread : _index/candidates/auditspec-review-gr45-0930/REVIEW.md:69
+            base. At both sites the next instruction does not read eax (`cmp dword [rip -> 02AEDFB8], 1`). So the returned row is discarded, as S5 says. - **Binder.** `00237FC0` passes the slo
+   read   : _index/EVIDENCE-STANDARD.md:3523
+            13ag and this one close `AG-5` — *"whether the header is uniform across all 63 slots or only the three read"*. ### The header, read whole from a second site `00237FC0` loads `02EBF
+
+0023B146
+   unread : _index/candidates/dd-content-fable-0930/README.md:110
+            The HUD cap is anchored (`00289DE7`–`00289E08`). The "25 arms" figure is counted. - **Reconciled.** The `+0x6B4` "unread" sentence is reconciled with UQ-118. `0023B146` is read. - 
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_with.md:92
+            ds the entry, §8 UQ-115); unit flag bit 22 read 2026-09-30 (§2.5 test 3, an engage auto-attack in progress), the +0x6B4 note reconciled with UQ-118 (§4.2), the 0023B146 comparison 
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_nochain.md:92
+            ds the entry, §8 UQ-115); unit flag bit 22 read 2026-09-30 (§2.5 test 3, an engage auto-attack in progress), the +0x6B4 note reconciled with UQ-118 (§4.2), the 0023B146 comparison 
+
+0023B6F0
+   unread : _index/candidates/imagebase-switch-inventory.md:128
+            254B50 FUN_00254b50 263 0x01..0x18 6 6 UI 0023B530 FUN_0023b530 402 0x01..0x17 5 18 0023B6F0 FUN_0023b6f0 1031 bias unread 3 12 0027C3D0 BattleMenu_ClassifySelectedEnt 717 bias unr
+   read   : 16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md:220
+            which fits an edge word, not a level. > > **So the Brightness row (`0023B330`, `02F9736C`) keeps stepping while left or right is held, and every other > row (`0023B6F0`, `02F9736A`
+
+0023CE10
+   unread : 15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md:597
+            path swap it.** *(an arm misattributed in the first version of this answer, corrected the same day)*. Which screen `0023CE10` builds, and what `0x2CA1` and row 0 are, are not read.
+   unread : 15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md:600
+            )*. Which screen `0023CE10` builds, and what `0x2CA1` and row 0 are, are not read. > **Crossing into Audio — FINAL-AUDIT pass 22 (FABLE, 2026-09-14).** `0023CE10`, the builder that
+   read   : 19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md:197
+            ss 2 and 3 are the menu widgets (`0023BD40`, `0023CE10`, `0023FBE0`, `00240AD0`, `00241D40` — the second and third read 2026-09-17, SWE2-FRONTIER: `0023CE10` drives `00249C60` ×3 /
+
+002432B0
+   unread : _index/OPEN-QUESTIONS.md:1691
+            | SD-104 | The drawing context's `+0x000` table row: its third qword, what the row's 10-bit id names, and the per-element decode loop at `00243340` ([the-shared-drawing-context.md]
+   unread : 99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md:177
+            | | `+0x08` | a **pointer to the source record** (`mov [r15+8], r12`) | | `+0x10` | not read in this pass | **The source records are 20 bytes and authored.** `002432B0` resolves `[
+   read   : 03-World-Area-Field/Weather/weather-probability-and-transition-roll.md:309
+            y it makes a **`0xC8`-byte** object around the `.text` callback `003C5910` and caches it there. `003C5910` interior read 2026-09-17 (SWE2-FRONTIER): 1,159 B — `002432B0` first at [
+   read   : 16-UI/License-Board-View/the-license-board-screen-widgets.md:336
+            chine` bodies `002BAF80`/`002B7B80` and `Presentation.UI.Quest.ListScreenSelectionStateMachine` `00579420` (interior read 2026-09-17, SWE2-FRONTIER: 1,307 B — `002432B0` first at [
+
+00244F50
+   unread : 16-UI/Request-Router/ui-request-router.md:165
+            the-time-stop-and-system-stop-registry.md) §3–§4 (*"unread" corrected 2026-09-12 (OPUS)*); 2. constructs two `0xD8`-byte widgets through the widget factory `00244F50` with procs `0
+   read   : 16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md:52
+            if (o->_0x168 != 0) return; /* already built */ /* tail-jump */ Widget_Construct(0x200, &FUN_00565E00, NULL); /* 00244F50 */ } ``` `00244F50` is the widget factory — **already read
+   read   : 99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md:289
+            pass-51 conclusion inverted: these functions sit *below* Phyre, not between Phyre and the game. --- ## 6. A fixed table of 112 records with a heap fallback `00244F50`, 203 callers,
+
+00248220
+   unread : _index/candidates/ov31-title-asset-type-store-0929/README.md:74
+            widget code does. ## Residue (not smoothed) 1. `+0xC4` stays DISCOVERED/UNKNOWN, typed `u8[4]`. Accesses through the UI-root child link made at attach (`00248220`) are not excluded
+   unread : 16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md:281
+            nd of residue 1). **Residue, named rather than smoothed:** 1. `+0xC4` has no reader on any enumerated path. An access through the UI-root child link that `00248220` makes at attach
+   read   : 16-UI/Widget-Object-Model/CONTRACT-widget-object.md:603
+            | `00248220` tail-appends on `+0x18`/`+0x20`, sets `child+0x10`=parent, `parent+0x30`++; propagates parent bit 5 through `002463F0`+`002418E0`; `+0x40 \|= 0x2000` always | body rea
+   read   : _experiments/evidence/widget-transition-duration-domain/retained/contract.md:591
+            | `00248220` tail-appends on `+0x18`/`+0x20`, sets `child+0x10`=parent, `parent+0x30`++; propagates parent bit 5 through `002463F0`+`002418E0`; `+0x40 \|= 0x2000` always | body rea
+
+002482E0
+   unread : _index/candidates/gg1-msg2-reconcile/README.md:53
+            `002D3900`; - ten that no decoder or caller walk places. **Limit.** A window with bit 18 of `+0x40` set is walked without the send. One with bit 10 set takes `002482E0`, which is n
+   read   : _index/OPEN-QUESTIONS.md:2790
+            | UQ-76 | **Why types 2 and 9 are aliases**, and why 3 and 6 both mean "nothing". **PARTIAL 2026-09-17 (FABLE): the 2/9 half is answered; the 3/6 half has no reader to ask.** Types
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:2789
+            | UQ-76 | **Why types 2 and 9 are aliases**, and why 3 and 6 both mean "nothing". **PARTIAL 2026-09-17 (FABLE): the 2/9 half is answered; the 3/6 half has no reader to ask.** Types
+
+00249C60
+   unread : 18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md:210
+            x7F) -> SQEX Sd driver internals (007Axxxx-007Fxxxx), not read here -> handle, or 0xFFFFFFFF ``` **Upstream:** 99 distinct non-Audio functions call `00249C60` directly. **Downstrea
+   unread : 18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:111
+            ers**, not > of the path, and `02091098` is not a master mute: `00271500` and the script verb never read it. The most-called audio entry point in the game is `00249C60` — **100** d
+   read   : 18-Audio/Audio-Boundary/CONTRACT-sound-request.md:871
+            | the wrapper is 51 bytes, takes **one** argument through an unwritten `ecx`, and tail-jumps | **re-read 2026-09-12**: `00249C60`–`00249C92` complete; no write to `ecx` before `002
+
+0024A5A0
+   unread : _index/candidates/swe2contract-ddres-b6-0930/README.md:103
+            ped_list.py` B1–B7 rejects "what bit 7 gates is not read" and "the bit marks a widget record": the mask includes bit 7, and every writer's target comes from `0024A5A0`. - `b6_reque
+   read   : 99-Unresolved-Residual/the-nine-patch-window-frame.md:451
+            es.** `0028BB50` calls `002713E0`; `003F6BB0` calls `002713E0`. **Resource — MECHANICAL, 3 edges.** `0017D4C0` calls `001A11B0`, `001DB1E0`; `003F3710` calls `0024A5A0`. *Tier 2: l
+
+0024A680
+   unread : 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:691
+            0`, which pops it. `00384420` also calls `0036C660`, which writes a tag into a block whose header carries the `0xFF12` marker. `00406A60` calls `0024A440` and `0024A680`; both are 
+   read   : _index/candidates/auditspec-review-astra-title-retirement-guards-0930/REVIEW.md:18
+            's mnemonics under two hash pins, so every clause below was decoded again from the shipping image (`rg_indep.py` / `rg_indep.out`). **Clause by clause:** - *`0024A680` is 141 B in 
+   read   : _experiments/evidence/returned-softedges-source-prerequisite-repair/independent-review-receipts/title-retirement-guards.md:18
+            's mnemonics under two hash pins, so every clause below was decoded again from the shipping image (`rg_indep.py` / `rg_indep.out`). **Clause by clause:** - *`0024A680` is 141 B in 
+
+0025DF00
+   unread : _index/candidates/rc121314-fable-0930/README.md:99
+            0314124`, `00314211`; whether both run every tick was not read). This is the world-tick promotion the page's section 2.5 was looking for ("the wait resolver `0025DF00` is the candi
+   unread : 01-Script-VM-Native-Bridge/CONTRACT-interpreter-core.md:282
+            eading is numbered, so the crossings gate does not read it; this section names each edge.* **ActorEntity — SERVICE and CLIENT (18 edges).** The script driver `0025DF00` calls `0035
+   unread : 01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md:362
+            so called by four Movement-filed bodies (88–233 B), which push floats onto the script stack. Which verbs they serve is not read. - **Presentation — SERVICE.** `0025DF00` calls thre
+   read   : 04-Actor-Entity/CONTRACT-field-runtime-pass.md:738
+            l. ## 17. Related - [`the-field-runtime-pass.md`](the-field-runtime-pass.md) — the mechanism this formalises, including the dead-nibble correction and the `0025DF00` wait resolver 
+
+00262F50
+   unread : _index/COVERAGE-DIMENSIONS.md:366
+            e's case now read across DE-1..DE-4); the 0x4021/0x4025 holes explained 2026-09-08 (DE-2)` 1, `PARTIAL — which sequences use which verb pairs is not read; what 00262F50 does with t
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_with.md:92
+            party-swap verb pairs) and SD-192 (whether the six +0x14F bit-0 readers each refuse movement); BV-1 to BV-5 answered (§7, evidence rows added 2026-09-30); what 00262F50 does with t
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_nochain.md:92
+            party-swap verb pairs) and SD-192 (whether the six +0x14F bit-0 readers each refuse movement); BV-1 to BV-5 answered (§7, evidence rows added 2026-09-30); what 00262F50 does with t
+
+00263560
+   unread : _index/OPEN-QUESTIONS.md:141
+            | C-11 | Meaning of the field-record `u16` and of the third byte of each 3-byte record. *Re-scoped 2026-09-11 to semantics; narrowed 2026-09-12 (FABLE, FABLE-C11):* **bits 12–13 ar
+   unread : 00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md:207
+            t 36 set while stopped** (or while that actor bit is set) | the battle unit's flag qword | `00226A50` / `00226AB0` (← `0035A720`, `0035A7A0`, `0035A8D0`) and `00263560` also reach 
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:141
+            | C-11 | Meaning of the field-record `u16` and of the third byte of each 3-byte record. *Re-scoped 2026-09-11 to semantics; narrowed 2026-09-12 (FABLE, FABLE-C11):* **bits 12–13 ar
+   read   : 03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md:583
+            ys so"* — into `02099DE7`, beside `02099DE5` / `02099DE6` which the same family writes (`002628B0`, `00263050`, `00266D10`, `0026A1D0`) and reads (`00263480`, `00263560`). **Read 2
+   read   : 03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md:587
+            **Read 2026-09-12 (FABLE), FZ-28:** the triple is the tail of **five party-hold bytes `02099DE3`–`02099DE7`**, and it selects two things. *The hold.* `00263560` ORs `DE3 | DE4 | DE
+
+00263990
+   unread : _index/OPEN-QUESTIONS.md:939
+            | UQ-138 | What each bank is *for*. Six banks with different capacities implies six different categories of memory (story, hunts, chests, dialogue...). [persistent-flag-banks.md](.
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:939
+            | UQ-138 | What each bank is *for*. Six banks with different capacities implies six different categories of memory (story, hunts, chests, dialogue...). [persistent-flag-banks.md](.
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:975
+            | UQ-138 | What each bank is *for*. Six banks with different capacities implies six different categories of memory (story, hunts, chests, dialogue...). [persistent-flag-banks.md](.
+   read   : 04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md:216
+            | The flag selects the second name | `00263990` read whole: `0032A930` then `003EAC10(id, result != 0)` | 1 | PROVEN |
+
+00263E10
+   unread : _index/candidates/gb2-env-class-4/consumer-check.md:15
+            | `gambit-evaluation-and-enmity.md` selector table, opcode 48/49 | "two global getters, unread" | revised-here (struck; `00263E10` is the environment class, and all 17 shipped uses
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:727
+            | 48 / 49 | 17 / 0 | `00303027` | `operand` 0: `00263E10()` == threshold; 1: `00377BA0()` == threshold; 2: `00377BA0()` ≥ threshold — *(2026-09-27, FABLE, Claude Opus 5.5: `00263E1
+
+00265020
+   unread : 10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md:2470
+            answers non-zero); the vertex-batch submitter `001E8070` calls the four-byte field getter `00225690`; the Audio body `00362850` calls `Actor_GetWorldPosition` `00265020`. The first
+   unread : 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md:1016
+            Dispatch/scriptvm-verb-table.tsv); the six accessors were read, the handlers are identified by that table and not read one by one. - *`Actor_GetWorldPosition` `00265020`, 23 edges 
+   read   : 13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md:550
+            bytes 2026-09-14 (OPUS). **UI — CLIENT (61 edges through 4 of this page's functions).** The UI layer reaches this page at `00249C60`, `00202C90`, `0024A5A0`, `00265020`. `FUN_002c7
+   read   : 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md:245
+            from the shipping bytes 2026-09-14 (OPUS). **Party — CLIENT (8 edges through 2 of this page's functions).** The Party layer reaches this page at `003589B0`, `00265020`. `FUN_00303c
+
+00266D10
+   unread : 03-World-Area-Field/Weather/weather-slot-state-model.md:313
+            tialiser. It stores into `02EC0B81` ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md)). - The area initialiser `00266D10` calls a 1,93
+   unread : 18-Audio/how-the-music-changes-when-you-change-area.md:631
+            9-byte **Input** initialiser and the **Presentation** loaders `AddMotion_LoadSkeletonMapping` / `AddMotion_LoadHighModelReplace`. - The area initialiser `00266D10` calls the unread
+   read   : 00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md:473
+            m `edges.tsv`. Read from the shipping bytes 2026-09-14 (OPUS). **Script_VM_Native_Bridge — CLIENT on one edge, SERVICE on three (4 edges, every body read).** `00266D10` on this pag
+   read   : 21-RNG-And-Determinism/rng-streams.md:900
+            pping bytes 2026-09-14 (OPUS). **Input — CLIENT (28 edges through 3 of this page's functions).** The Input layer reaches this page at `0063A990`, `0022B6E0`, `00266D10`. `FUN_00226
+
+00267E18
+   unread : _index/CONTRADICTION-LEDGER.md:201
+            spatch"* — and the same day the contract's §4, §10 and §12 asserted what the unread empty-stack edge does, by symmetry with the float pop. The bytes disagree: `00267E18 jle` → `002
+   read   : 01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md:64
+            pInt32CoerceFloat32` (`00267E10`, 78 B) ```c int pop(VmValueStack *s) { int depth = s->i_00; if (depth <= 0) return 0; /* EF-6, read 2026-09-10: 00267E18 jle -> 00267E3B xor eax,ea
+
+0026C8C0
+   unread : _index/candidates/swe2contract-pub-0926b-consumer-check.md:19
+            try of the current actor-manager slot block `[02099D70]` (EF-3's canonical name; replaces "message pack"). The `+0xA0`/`+0xA8` table planter is unread — `0026C8C0`'s bind clears `+
+   unread : 99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:890
+            nd.** (2026-09-26 scope correction per FABLE: the `+0xA0`/`+0xA8` tables are *presumably* a loaded message resource, but their planter is unread — `0026C8C0`'s bind clears `+0xA0`/
+   read   : 99-Unresolved-Residual/Unlisted-Code/the-bodies-the-list-cuts-short.md:266
+            `. *Tier 2: ledger names, sizes and `edges.tsv`; no new body read (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).* - **Save_Load_Settings - SERVICE (1 edge).** `0026C8C0` reaches bod
+   read   : 04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md:2900
+            (OPUS). **Story_Event_Quest_Hunt — CLIENT (13 edges through 2 of this page's functions).** The Story_Event_Quest_Hunt layer reaches this page at `002EF2B0`, `0026C8C0`. `Persistent
+
+0026EE00
+   unread : _index/candidates/sd140-vertex-prep-kernel-0930/README.md:82
+            ut it is the `rdx` of `004355D0`: the block at `[01FD4A78] + 0x800`, whose `+0x40` is written by `0026EE00` from the element instance's `+0x240` (X4, static). `0026EE00` itself was
+   unread : _index/candidates/sd140-vertex-prep-kernel-0930/README.md:178
+            write at `00435CC5`–`00435DA2`. - **The lighting routines that fill `L` are not read**, so what `L.w` means (for example a rim or fresnel factor) is open. - **`0026EE00`**, which f
+   read   : 00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md:384
+            | **four of the nine restore by TAIL JUMP, not by call** | **re-read 2026-09-12**: `0026EE00` `0026F413`, `003AFDD0` `003AFFAB`, `00431D30` `00431F0A`, `00462260` `0046242E` — each
+   read   : _experiments/evidence/workbench-depth-target-alias/retained/contract.md:344
+            | **four of the nine restore by TAIL JUMP, not by call** | **re-read 2026-09-12**: `0026EE00` `0026F413`, `003AFDD0` `003AFFAB`, `00431D30` `00431F0A`, `00462260` `0046242E` — each
+
+00280A00
+   unread : _index/candidates/swe2contract-ddres-b13-0930/README.md:48
+            | 547 | "which this page has not read" | STALE: §2 reads `00280A00` (struck) |
+   read   : 16-UI/Request-Router/ui-request-router.md:146
+            ngle_menu2`. So 14 and 21 are exercisable slots, but that does not name them. ### The generic route, and the request word every route sets (read 2026-09-11) `00280A00(request, para
+
+0028F1F0
+   unread : 10-Status-Periodic-Terminal/where-mp-comes-from.md:698
+            )`. Those two are not read, so what the Steam side does with index `0x13` is open. ## Cross-subsystem neighbours — FINAL-AUDIT pass 22 **UI — SERVICE.** `0028F1F0` on this page cal
+   read   : 08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md:523
+            bytes 2026-09-14 (OPUS). **UI — CLIENT (14 edges through 6 of this page's functions).** The UI layer reaches this page at `00263C20`, `00296280`, `00313F60`, `0028F1F0` and 2 more.
+   read   : _experiments/evidence/hp-floor-cap-precondition/retained/the-hp-write-and-the-lethal-transition.md:507
+            bytes 2026-09-14 (OPUS). **UI — CLIENT (14 edges through 6 of this page's functions).** The UI layer reaches this page at `00263C20`, `00296280`, `00313F60`, `0028F1F0` and 2 more.
+
+002A00F0
+   unread : 03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md:1058
+            ]` entries, `0024A440` refcounted), a `00244F50` window (`rbx+0xC0`) and a `00244960` registration — **`msg+0x10` is never read in any branch**. The relocator `002A00F0` never runs
+   read   : 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mrp-menu-resource-packages.md:178
+            | `00249660` | completion thunk → `002A00F0(buffer)` | ✅ 9-byte body read |
+
+002A70B0
+   unread : _index/OPEN-QUESTIONS.md:982
+            e list, and so whether this is a *“choice window”* — the word FABLE declined on 2026-09-14 and which nothing read here earns. The two consumers `002A6F80` and `002A70B0` were not o
+   unread : 16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1503
+            or the list itself, and therefore whether this is a “choice window”. Nothing read here distinguishes those, and the two consumers `002A6F80` (301 B) and `002A70B0` (1,639 B) were n
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:982
+            e list, and so whether this is a *“choice window”* — the word FABLE declined on 2026-09-14 and which nothing read here earns. The two consumers `002A6F80` and `002A70B0` were not o
+   read   : 99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md:273
+            sage-window layout readers](../../16-UI/Message-Windows/the-message-window-layout-readers.md) already adjudicates the same edge for `002A3960`, `002A6190` and `002A70B0` alike: **o
+
+002AF340
+   unread : 16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:885
+            n and `002A1C24` as > `002B3C30`'s argument — and never again; `002A1B00` calls no dispatcher, and `002B3C30`'s own > callees are `002B2150` and `002B24B0` (→ `002AF340`), none of 
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1194
+            | UQ-366 | **Replacing it: what divides `002AAE40` from `002A8C50`, `002AF340`, `002B1FB0` and `002B5730`** — the other four callers of the interpreter. **PARTIAL 2026-09-15 (FABLE
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1298
+            | UQ-366 | **Replacing it: what divides `002AAE40` from `002A8C50`, `002AF340`, `002B1FB0` and `002B5730`** — the other four callers of the interpreter. **PARTIAL 2026-09-15 (FABLE
+   read   : _index/candidates/dd-data-3-0930/README.md:31
+            | the glyph-quads page `how-a-line-of-text-becomes-glyph-quads` (same folder as the dispatch table) line ~827 (the inside of `002AF340` not established) | routed-to-FABLE: the retu
+
+002B6DB0
+   unread : _index/candidates/imagebase-switch-inventory.md:114
+            C0 FUN_005528c0 4521 bias unread 17 17 UI 00552250 FUN_00552250 1543 bias unread 13 12 UI 002B6DB0 FUN_002b6db0 1033 bias unread 10 9 002BC3E0 FUN_002bc3e0 1422 bias unread 10 9 00
+   unread : _index/candidates/uq156-arm-readings/consumer-check.md:8
+            10, "a cursor step on the track map … and a full list walk on the location map".** The track arm is a close and a hand-off to the page's command dispatcher `002B6DB0`, followed by 
+   unread : _index/candidates/swe2struct-ddres-b17-0930/README.md:40
+            | 907 | `002B6DB0` "(same band, not read whole)" | **RESIDUE, answered and corrected** (S1–S4): struck, and the cell now lists what the arm writes. A note was added below the table
+   read   : 16-UI/Widget-Object-Model/the-widget-message-protocol.md:961
+            0-01 (SWE2-STRUCT for OPUS, DD batch 17), S1–S4; see below the table)* | `002B6E99`–`002B6EA1` | *Read 2026-10-01 (SWE2-STRUCT for OPUS, DD batch 17, S1–S4): `002B6DB0` is a **base
+
+002B8EE0
+   unread : 16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:819
+            The location map draws the same layers at a scroll position the player moves, with no subject to follow. - *Still unread:* what the two drawers `002B8EE0` and `002BCB00` put on scr
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:957
+            | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are "unparsed" in the handler census). **ANSWERED 2026-09-26 (FABLE, Clau
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1001
+            | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are "unparsed" in the handler census). **ANSWERED 2026-09-26 (FABLE, Clau
+   read   : 99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md:173
+            the-unresolved-158.md) groups `002B8EE0`, `002BCB00` and `002DBDD0` as residual cluster 3, 6,775 bytes. **All three are now read and classified at GN161**: - `002B8EE0` — [the blin
+
+002C64C0
+   unread : 04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md:1093
+            DF73A` → the overhead display**, which is what a field sign would want. > **This is a join of two published readings, not a third one**: I have not read `002C64C0`, > and the HUD p
+   read   : 05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md:788
+            tle Menu and two unnamed slots. The bits with no UI projection are consumed directly: **bit 4** (`0x10`) by the menu functions `002736B0`, `00273950`, `002C64C0` (interior read 202
+
+002DD7E0
+   unread : 00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:389
+            | `0028B140` | 1462 | sibling of `0028AAA0` over `[rdx+0x14]`/`[+0x10]`/`[rsi+0x20]`: same `003F0040`/`003F1290` slot+list pair, `002DD7E0` ×2. Track variant, not read deeper |
+   unread : _experiments/evidence/postmultiply-order-alias/retained/the-two-transform-primitives.md:389
+            | `0028B140` | 1462 | sibling of `0028AAA0` over `[rdx+0x14]`/`[+0x10]`/`[rsi+0x20]`: same `003F0040`/`003F1290` slot+list pair, `002DD7E0` ×2. Track variant, not read deeper |
+   unread : _experiments/evidence/matrix-consumer-identity-control/retained/primitives.md:389
+            | `0028B140` | 1462 | sibling of `0028AAA0` over `[rdx+0x14]`/`[+0x10]`/`[rsi+0x20]`: same `003F0040`/`003F1290` slot+list pair, `002DD7E0` ×2. Track variant, not read deeper |
+   read   : 08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md:722
+            ay_ArbitrateDigitalInputAndModalState` and `00313A00` read the same field flag. **Save_Load_Settings — MECHANICAL, one edge:** `00581930` calls the queue fill `002DD7E0`. *Tier 2: 
+   read   : 99-Unresolved-Residual/drawing-one-coloured-rectangle.md:214
+            ss 22 **Save_Load_Settings — CLIENT (5 edges through 3 of this page's functions).** The Save_Load_Settings layer reaches this page at `00249C60`, `001EDEC0`, `002DD7E0`. `FUN_00581
+
+002E0FA0
+   unread : _index/candidates/sd125-sd128-fable-0930/README.md:143
+            ` (next at `+0x18`). - **Arguments (R2):** - `hud`, then `node`. - Three pass-through contexts: `r8`, `r9` and arg5. - arg6 is never read. - arg7 = `(002E0FA0() >> 10) & 1`, which 
+   read   : 05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md:782
+            **`EE-8` ANSWERED 2026-09-12 (FABLE), with two bits left as residue.** - **Row-12 bits.** A row's bits act only through the OR-reduced aggregate (`002E0FA0`, 29 call sites read who
+
+002EC3F0
+   unread : 06-Movement-And-Navigation/Facing-And-Steering/the-two-steering-slots-and-what-a-character-resumes.md:311
+            `, `FUN_002EC2C0`, `FUN_002EBFA0`, `FUN_002EC3F0` or `FUN_002E8EE0` do.** Named as the push/pop chain, unread. *One of the five read, 2026-09-19 (FABLE):* `002EC3F0` is where this 
+   read   : 17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md:231
+            | the shape / selector table | `002EC3F0` read whole | 1 |
+   read   : _experiments/evidence/heading-class-effects-slice/retained/canonical-consumption/03-the-staged-look-command.md:226
+            | the shape / selector table | `002EC3F0` read whole | 1 |
+
+002EC5B0
+   unread : _index/COVERAGE-DIMENSIONS.md:366
+            ss, the table filled by the setmapid verbs; the mask bits 00314E10 honours (UQ-104) answered 2026-09-18: +0x114 is never written after the allocator zeroes it, 002EC5B0 is the only
+   read   : 01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:363
+            **READ 2026-09-13 (OPUS): it sets the movement body's `maskA`, and it OVERWRITES it.** All 31 bytes are a two-hop guarded store: ```asm 002EC5B0 mov rax, [rcx + 0xC0] ; actor -> mo
+
+002ED020
+   unread : _index/candidates/auditspec-review-dd-mixed-0930/REVIEW.md:34
+            judge any of those answers. **Boxes.** All six pages have 0 unticked boxes. **Pointers.** - *the-party-standard-motion-verbs.md.* The struck "`00233F50` and `002ED020` remain unrea
+   unread : _index/candidates/opus-dd-restatus-mixed-0930/README.md:10
+            | `01-…/Party-Presentation-Verbs/the-party-standard-motion-verbs.md` | RC-19, RC-20 | re-status, plus a pointer: `00233F50` / `002ED020` "remain unread" were read 2026-09-18 | READ
+   read   : _index/COVERAGE-DIMENSIONS.md:366
+            to element 0 (UQ-51), and 022C8018 is an embedded machine record in the 00359800 driver (UQ-52)` 1, `PARTIAL — the -1.0f float's meaning is open; 00233F50 and 002ED020 read 2026-09
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_with.md:92
+            s a hard cut, a positive one a cross-fade) and the Movement float pushers answered (RC-20: seven movement verbs' begin callbacks) (SWE2-CONTRACT); 00233F50 and 002ED020 read 2026-0
+
+002ED570
+   unread : _index/candidates/swe2contract-ddres-b6-0930/README.md:99
+            e-readers-0930/` (`kind7.py`) agrees; it is re-run in K1–K3. - `00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md` (87 callers of `002ED570`) agrees. R
+   read   : 02-Resource-And-Asset-Pipeline/resource-section-addressing.md:314
+            38`. **J-4.** *Narrowed 2026-09-12 (FABLE):* the entry's **owner** is now read — a table descriptor (§4) that `ResourceTable_ResolveEntryByIndex` (`002ED570`) indexes in two levels
+
+002F6AB0
+   unread : 03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md:436
+            15-11 / 2016-03, the remaster dev window — probably re-export stamps). **Never read by the loader** — 002F6AB0 sets rbx = file+0x10 and only touches the region at +0x10 onward, so 
+   read   : 24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md:1060
+            Presentation — MECHANICAL, one edge each.** The magic-static example `00189CE0` is reached from the frame step `0017D6E0`, and the rejected `00467D20` from `002F6AB0`. *Tier 2: led
+
+002F7EC0
+   unread : 12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md:225
+            as not opened, and its "optimise" command fills the weapon hand first and then throws away an off-hand that no longer fits. ## 12. Reproduction formula Call `002F7EC0(a, b)` with `
+   read   : 12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md:311
+            hich makes the asymmetry testable rather than merely stated. ### SURVIVED: the expression, exactly `Equipment_CheckPrimarySecondaryDefinitionCompatibility` (`002F7EC0`) re-read in 
+
+002F8E90
+   unread : 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:776
+            s slot-keyed wrapper `002F8E70`, the field's bit 15 through `00313F60`, and `003A1920`. - Tier: `0031B860`, `00320A40`, `00320A70`, `00320AB0`, `0031E800` and `002F8E90` read whole
+   read   : 08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md:767
+            it categories. A separate, independently gated stage applies **× 0.125** on `test byte ptr [rbx+9], 0x10`. ### What the selector actually is `FUN_002F8E90` (`002F8E90`, 131 B) is a
+   read   : 08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md:890
+            pass 22 **ActorEntity — CLIENT (9 edges through 4 of this page's functions).** The ActorEntity layer reaches this page at `00263C20`, `0032E400`, `0031B860`, `002F8E90`. `BattleUni
+
+002FAFD0
+   unread : 03-World-Area-Field/CONTRACT-authored-trigger-points.md:229
+            **ActorEntity — MECHANICAL.** The body asks that layer for the unit's world position, which is TP-2's input. - **Party — MECHANICAL.** Reached only through `002FAFD0`, the *other* 
+   read   : 14-Story-Event-Quest-Hunt/persistent-flag-banks.md:868
+            criptvm-verb-table.tsv)) — which resolves the > chest record from the script's packed reference (`0050FB25`) and calls it with an output triple. > Read whole (`002FAFD0`–`002FB14A`
+
+002FEF30
+   unread : _index/COVERAGE-DIMENSIONS.md:366
+            rio row's +0x09/+0x0B/+0x0C (unread) and the preset's +3 (the rank byte) (UQ-128), answered 2026-09-17` 1, `PARTIAL — the equipment contribution formula inside 002FEF30's 2,859 byt
+   unread : _index/OPEN-QUESTIONS.md:426
+            | FE-2 | **What `+0x31`–`+0x36` and the words `+0x0A` / `+0x0E` / `+0x12` / `+0x16` / `+0x1A` / `+0x1E` are** — the rebuild `002FEF30`'s six unread outputs (`002FF936`–`002FF8D2`) 
+   unread : _index/candidates/dd-content-fable-0930/consumer-check-0930-dd7.md:106
+            0x1B) <= 0x0C` is the thirteen Espers, not "a band of slot indices". 2. **"The contribution formula is not read"** (status line, lead, §6 end, §7) is struck: `002FEF30` was read wh
+   read   : 12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md:4
+            --- system: Equipment slots and the single stat rebuild category: 12-Items-Equipment-Shops-License status: AUDITED — the equipment contribution formula inside 002FEF30 is read whol
+   read   : 12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md:399
+            | The rebuild's stages and every term of §6.1 | `002FEF30` read whole, `002FEF30`–`002FFA5A`; each term cites its instructions in §6.1 | 1 |
+
+002FFEF0
+   unread : _index/OPEN-QUESTIONS.md:794
+            | UQ-2 | **Types are not derived, only slots.** Whether `rcx` holds a `BattleUnit*` or a `char*` is outside what liveness can say. **NARROWED 2026-09-17 (FABLE): one position typed
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:794
+            | UQ-2 | **Types are not derived, only slots.** Whether `rcx` holds a `BattleUnit*` or a `char*` is outside what liveness can say. **NARROWED 2026-09-17 (FABLE): one position typed
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:807
+            | UQ-2 | **Types are not derived, only slots.** Whether `rcx` holds a `BattleUnit*` or a `char*` is outside what liveness can say. **NARROWED 2026-09-17 (FABLE): one position typed
+   read   : 07-Combat-Action/how-an-action-gathers-its-targets.md:158
+            1A99E`, `0031A9A5`, `0031A9AC`, `0031A9B2`, `0031A9C2`, `0031A9CF`, `0031A9E5`, `0031A9EC`, `0031A9F4`, `0031AA13`, `0031AA19` | Under 128 bytes, read whole: `002FFEF0`, `002FFED0`
+
+00300530
+   unread : 08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md:249
+            n's revive arm can never fire for > it. Whether anything *else* in the game clears that KO is not read here and is not claimed; > the scope of this finding is `00300530` alone. > >
+   unread : _experiments/evidence/hp-floor-cap-precondition/retained/CONTRACT-hp-write-and-lethal-transition.md:240
+            n's revive arm can never fire for > it. Whether anything *else* in the game clears that KO is not read here and is not claimed; > the scope of this finding is `00300530` alone. > >
+   read   : 07-Combat-Action/CONTRACT-battle-target-buffer.md:645
+            DIT pass 22 **Gameplay — CLIENT (27 edges through 13 of this page's functions).** The Gameplay layer reaches this page at `00301AD0`, `0030D160`, `00313120`, `00300530` and 9 more.
+   read   : 05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md:412
+            -14 (OPUS). **Gameplay — CLIENT (29 edges through 17 of this page's functions).** The Gameplay layer reaches this page at `00301AD0`, `002FEF30`, `002FFCF0`, `00300530` and 13 more
+
+00305AB0
+   unread : 07-Combat-Action/CONTRACT-native-command-seam.md:239
+            oes in the sound system is not read here, and CS-4 does not depend on it. **CombatAI — CLIENT and SERVICE (3 edges).** `BattleUnit_SelectAndCommitNextAction` `00305AB0` and `Battle
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:250
+            | `00305AB0` | `BattleUnit_SelectAndCommitNextAction` | 517 B | ✅ read 2026-09-03 — the tail (the four-set cascade that supplies `subgroup_index`) is in [`which-gambit-set-fires-an
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:251
+            | `00308610` | `BattleUnit_UpdateCombatFrame` | 461 B | ✅ read 2026-09-30 — with an order current (`+0x708`) it re-walks the gambits in resume mode, `00305AB0(unit, 1)` at `0030874
+
+00309110
+   unread : _experiments/EXP-063-mp-cost-controls.md:26
+            11. No game process was accessed. ## Question and original-code boundary CS-5 on [the MP page](../10-Status-Periodic-Terminal/where-mp-comes-from.md) leaves `00309110` unread. The 
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:354
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:353
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+   read   : 10-Status-Periodic-Terminal/where-mp-comes-from.md:371
+            ias property that document already establishes. ### The spend side — what an action costs (CS-5, read 2026-09-11) `BattleAction_ComputePrimaryResourceCost` (`00309110`, 165 B; call
+
+00309EC0
+   unread : _index/candidates/swe2struct-ddres-b12-0930/README.md:64
+            | 1281–1282 | "why the bias is five … The record's remaining `0x50` bytes are unread." | BOUNDARY: the encoded-id class registry page owns the nibble records, and its `00309EC0` re
+   read   : 00-Engine-Core-Runtime/the-encoded-id-class-registry.md:567
+            bytes 2026-09-14 (OPUS). **UI — CLIENT (9 edges through 5 of this page's functions).** The UI layer reaches this page at `0031C5D0`, `00322360`, `00326BB0`, `00309EC0` and 1 more. 
+
+0030A190
+   unread : _index/candidates/gr4-gr5-action-row-readers-0930/README.md:91
+            ot found)`, and the §7 GR-4 box. **That contradicts both this record and the effect page**, which already cites `0030A190` for `+0x28`. The fix is to name `0030A190` with the gate 
+   unread : 07-Combat-Action/Action-Definition-Row/the-action-definition-row.md:103
+            as a traced reader except `+0x0B` (GR-5), `+0x21` (unread: AY-2) and `+0x28` (GR-4).* *(2026-09-30, SWE2-DATA: GR-4 and GR-5 are answered - `+0x28` is read by `0030A190`, and `+0x0
+   unread : 07-Combat-Action/Action-Definition-Row/the-action-definition-row.md:151
+            Y-2), +0x28; every other field's reader is in the section 2.2 table ``` *(2026-09-30, SWE2-DATA: the block's `+0x28` "reader not found" is answered by GR-4 - `0030A190` reads it as
+   read   : _index/candidates/auditspec-review-gr45-0930/REVIEW.md:72
+            's `+0xC`, `+0x10`, `+0x18`, `+0x1C` and `+0x14` (the last through `0020E620` and the `003846F0` loop). It stores the header pointer nowhere else. - **S6.** `0030A190` read whole (
+   read   : _index/candidates/auditspec-review-gr45-0930/REVIEW.md:72
+            x18`, `+0x1C` and `+0x14` (the last through `0020E620` and the `003846F0` loop). It stores the header pointer nowhere else. - **S6.** `0030A190` read whole (`0030A190..0030A241`) m
+
+0030C010
+   unread : _index/COVERAGE-DIMENSIONS.md:366
+            dead store); status brought up to date 2026-09-18 (FABLE)` 1, `PARTIAL — what the HUD draws beyond the formatted combo count is not read; the continuation gate 0030C010 read 2026-0
+   read   : 07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:151
+            hich is the same field the gambit cascade reads. `0023B040` gets its pointer from `BattleUnit_GetPartyLeader` (`003272A0`) at `0023B089`. ### 2.5 The gate — `0030C010` answers *may
+   read   : 07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:205
+            | `0030C010` | the continue predicate | 179 B | read whole 2026-09-12 (§2.5) |
+
+0030C650
+   unread : _index/candidates/overlay-drop-dispositions-01.md:42
+            | `applying-a-result-to-a-target.md` | `0030C650` | **withdrawn-with-reason** — it appeared in "cited by name and argument, not decoded"; EXP-148 decoded and executed it, so the st
+   unread : _index/candidates/overlay-drop-dispositions-01.md:42
+            | `applying-a-result-to-a-target.md` | `0030C650` | **withdrawn-with-reason** — it appeared in "cited by name and argument, not decoded"; EXP-148 decoded and executed it, so the st
+   read   : 08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md:188
+            2FF099`–`002FF0CD`); every other record takes the arm that sign-extends > **eight i16** at `+0x10` … `+0x1E` (`002FF20A`–`002FF2F1`). The growers `0030C470` / `0030C650` > write th
+
+0030D8B0
+   unread : _index/candidates/rc18-map1-blend-arms-0930/README.md:160
+            . ## Not claimed - **RC-18:** - Whether the roster actors that keep a map-4 model in modes 2, 3 and 5 are drawn. The mode hook table `01EECFC0` run by `0030D8B0` was not read. - Wh
+   read   : 00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md:606
+            | The transition dispatcher and its five populated rows | `0030D8B0` read whole; `01EECFC0` dumped as six 32-byte rows; callers `00233AA0` / `00233CF0` from `edges.tsv` | 1 |
+
+0030E060
+   unread : 10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md:44
+            rmula in this function's equipment loop. It is not there: that loop accumulates auto-statuses. Four calls in the apply tail — `0030E130` twice, `002FEF30` and `0030E060` — were not
+   unread : _experiments/EXP-061-mp-writer-controls.md:101
+            ise limits the candidate to: ``` capacity = effect39 ? 0 : signed16(stats+0x28) * (byte(stats+0x37) or 1) ``` It stores the low 16 bits at `+0x06` and calls `0030E060(stats, flags)
+   read   : 10-Status-Periodic-Terminal/where-mp-comes-from.md:624
+            | The late gates run regardless of bit 0; the secondary word's cap and tier; no recursion | `00300CE0`, `00300BC0`, `00300C90`, `0030E060` read whole; EXP-061 (27 isolated cases, l
+
+0030E130
+   unread : 07-Combat-Action/applying-a-result-to-a-target.md:173
+            was true and beside the point. - **`+0x3C`–`+0x41` do not go to `0030E360` at all.** They go to `BattleStats_ModifyStatusLayerStateAndProcessSideEffects` (`0030E130`), two bytes in
+   unread : _experiments/EXP-249-46AB10-dedup-scan-arm-exec.md:77
+            `s5369c0` notify sink (0x240-frame broadcast builder, unread stack arg — deferred). - Live-game reachability — `NATIVE-REPLAY`, `live_game: false`. - `e130`/`0030E130` still ×0.
+   read   : 10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md:291
+            ery frame with the same request ids. ### 2.8 The status-layer function, for the applier's step 14 `BattleStats_ModifyStatusLayerStateAndProcessSideEffects` (`0030E130`, 553 B) is t
+   read   : _experiments/evidence/poison-q6-independent/private-source/current-preimage-status-page.md:291
+            ery frame with the same request ids. ### 2.8 The status-layer function, for the applier's step 14 `BattleStats_ModifyStatusLayerStateAndProcessSideEffects` (`0030E130`, 553 B) is t
+
+0030F760
+   unread : _index/OPEN-QUESTIONS.md:431
+            | FE-7 | **Whether a direct-state order `0x4158`–`0x415C` / `0x4160`–`0x4162` can reach a party (kind 0) stats record.** The arms add a clamped signed word to `+0x08`, `+0x0A`, `+0
+   unread : 07-Combat-Action/README.md:74
+            tandard-action pipeline applies a status change through the status layer's routine; which status is not read here. **WorldAreaField — DEPENDENCY (2 edges).** `0030F760` and `00313C
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:431
+            | FE-7 | **Whether a direct-state order `0x4158`–`0x415C` / `0x4160`–`0x4162` can reach a party (kind 0) stats record.** The arms add a clamped signed word to `+0x08`, `+0x0A`, `+0
+   read   : 09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md:128
+            | `0030F760` | `BattleUnit_CommitAction` | 570 B | **read 2026-09-18 (FABLE).** `(unit, params, actionId, targetHandle, cancelFirst)`: with `cancelFirst` it runs `BattleUnit_Cancel
+
+00312170
+   unread : _index/candidates/dd-content-fable-0930/README.md:125
+            d: the selector's three cases, and 39 / 68 / 436 rows; - `+0x38` is the list position, reader `00237FC0`; - `+0x3A` is a bit number into the kind-10 mask (`00312170`). - **Stale pr
+   read   : 07-Combat-Action/Action-Definition-Row/the-action-definition-row.md:232
+            | `+0x3A` is a bit number into the kind-10 mask | `00312170` read whole (264 B): `003121F5`–`00312203`, `0031224D`–`0031225E` | 1 |
+
+00312588
+   unread : _index/candidates/auditsem-review-gr19-gr11-0930/REVIEW.md:31
+            der's owner rule it would pair, and then no kill would ever drop loot. So something excludes it: the gather's filter word `0x1C`, or the body's release before `00312588`. That excl
+   read   : 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md:227
+            e-ten-slot-pool-and-the-despawn.md)); - `00319490` (148 bytes, read whole) is the gate in front of them. The drop is attempted only when it returns nonzero (`00312588`–`00312597`).
+   read   : 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md:414
+            | the drop gate | `00319490` read whole; `00312588`–`003125B4` | 1 |
+
+00313F60
+   unread : 03-World-Area-Field/CONTRACT-field-record-accessors.md:501
+            CLIENT.** - `SpawnLifecycle_CheckAndRetireByNativeRange` and `Spawn_ValidateCandidateDistanceToPlayers` read the permission bit through its 5-byte thunk `00313F60`. - `SpawnKeep_Ro
+   unread : 09-Combat-AI-And-Gambits/CONTRACT-enmity.md:242
+            numbered, so the crossings gate does not read it. Most edges below reach the two shared helpers the falsification pass cites for E-8 — the field-record waiver `00313F60` (a five-by
+   unread : 09-Combat-AI-And-Gambits/CONTRACT-enmity.md:248
+            d the waiver. **CombatFormula — MECHANICAL (2 edges).** `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` calls `00322C50`, and `00384F40` calls `00313F60`. Two more c
+   read   : _index/COVERAGE-DIMENSIONS.md:366
+            preset extractor) and 002E3D40 (the weather-to-presentation refresh) read 2026-09-18` 1, `DOCUMENTED — the flag pair, its writers and its 125 guard sites read; 00313F60, the callee
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_with.md:92
+            er-to-presentation refresh) read 2026-09-18 (status line current 2026-09-30, SWE2-DATA)` 1, `AUDITED — the flag pair, its writers and its 125 guard sites read; 00313F60, the callee
+
+00314020
+   unread : 00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md:314
+            ng is numbered, so the crossings gate does not read it; this section names each edge.* **Input — SERVICE and CLIENT (4 edges).** `World_UpdateSimulationTick` `00314020` calls `002E
+   read   : 01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md:293
+            -14 (OPUS). **Movement — CLIENT (51 edges through 17 of this page's functions).** The Movement layer reaches this page at `0037B4D0`, `002E28E0`, `002E4A40`, `00314020` and 13 more
+   read   : 99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md:808
+            (`003148F0`), `WorldTransition_SetOptions` (`00314DA0`) and 3 more; `ActorManager_RunFieldRuntimePass` (`0025D9E0`) is called by `World_UpdateSimulationTick` (`00314020`). *Tier 2:
+
+003148F0
+   unread : 00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md:117
+            0`, `00320230`, `0035BC50`, `00313DB0` (inline), and the two mode getters. **Callee:** `FieldData_GetActiveFieldRecordBit15` (`00377C20`), which itself calls `003148F0` — whose res
+   unread : 03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md:252
+            is the ledger name unless a body is cited.* - **Audio — CLIENT, not read.** A 335-byte Audio-filed body reads `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`) and the persi
+   unread : _experiments/EXP-098-battle-mode-composition-exec.md:21
+            y`, 55 comparisons / 0 mismatches) ran the ladder `0030D9A0` and the predicate `00377C20` **separately** — each with the other scripted — and the index getter `003148F0` was "answe
+   read   : 00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md:445
+            _Encounter_Lifecycle — CLIENT (9 edges through 3 of this page's functions).** The Spawn_Encounter_Lifecycle layer reaches this page at `00328370`, `0032A150`, `003148F0`. `SpawnKee
+   read   : 00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md:447
+            ytes 2026-09-14 (OPUS). **UI — CLIENT (78 edges through 17 of this page's functions).** The UI layer reaches this page at `00249C60`, `001EDEC0`, `00249580`, `003148F0` and 13 more
+
+00315420
+   unread : 14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md:572
+            - **PlatformOnlineAchievements — CLIENT.** `FieldData_GetVariable0` (`00265270`) is read by two achievement-side bodies of 308 and 367 bytes. Both also call `00315420`, and the 367
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:3005
+            | UQ-273 | **ANSWERED 2026-09-17 (FABLE): they are tested, but not by the updater — by the checker `00315E90`, whose jump table has an arm per mode.** The updater's type-0 path han
+   read   : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:3110
+            | UQ-273 | **ANSWERED 2026-09-17 (FABLE): they are tested, but not by the updater — by the checker `00315E90`, whose jump table has an arm per mode.** The updater's type-0 path han
+
+00315E90
+   unread : 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md:161
+            the all-achievements award. That is why only the receipt handlers ever award it. - Whether any caller re-issues an award that I-2 drops. The periodic checker `00315E90` is the like
+   read   : 16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1217
+            09-14 (OPUS). **Gameplay — CLIENT (9 edges through 9 of this page's functions).** The Gameplay layer reaches this page at `00203170`, `002543F0`, `00309EC0`, `00315E90` and 5 more.
+
+00316760
+   unread : 20-Platform-Online-Achievements/CONTRACT-achievement-counters.md:73
+            cides whether the achievement is now COMPLETE — arm 0 takes a threshold from > `003165C0`, falls back to the descriptor's `+0x04`, reads the counter through `00316760`, and > compa
+   read   : 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md:696
+            `00316787`/`0031678C`; *(read 2026-09-30, SWE2-DATA: for id 18, `00316760` returns -1, so the checker's compare never passes. The updater's kind-0 arm compares the value `0028F0C0`
+
+00316DF0
+   unread : 11-Party/the-five-parallel-slot-maps.md:293
+            540`) decrements equipment counts and calls the same grant. **Activating a definition changes inventory.** - **Rewards_Progression_Economy — SERVICE.** `00316DF0` also adds gil (`G
+   read   : 16-UI/License-Board-View/the-license-board-screen-widgets.md:317
+            ass 22 **ActorEntity — CLIENT (11 edges through 6 of this page's functions).** The ActorEntity layer reaches this page at `00263990`, `002B7B80`, `002B58B0`, `00316DF0` and 2 more.
+
+00317090
+   unread : 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:524
+            + 0x698]` (`002F8C5C`–`002F8C71`; corrected 2026-09-12 on OPUS's counter-evidence, the recipient is not read there): **word `+0`** into game counter `0x11` (`00317090` → `00253770(
+   unread : _experiments/evidence/nav-circle-cell-boundary/retained/carrier.md:520
+            + 0x698]` (`002F8C5C`–`002F8C71`; corrected 2026-09-12 on OPUS's counter-evidence, the recipient is not read there): **word `+0`** into game counter `0x11` (`00317090` → `00253770(
+   unread : _experiments/evidence/nav-grid-quantization/retained/how-a-battle-unit-is-built-from-its-definition.md:520
+            + 0x698]` (`002F8C5C`–`002F8C71`; corrected 2026-09-12 on OPUS's counter-evidence, the recipient is not read there): **word `+0`** into game counter `0x11` (`00317090` → `00253770(
+   read   : _index/candidates/dd-content-fable-0930/consumer-check-0930-dd7.md:209
+            el. 2. **Counter `0x11`'s amount** (death page step 6). The old text, "the reward row's word +0 times the level span (`00317090` → `00316A50`)", is struck. `00317090` (78 B, read w
+   read   : 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md:103
+            `003170D8 jmp`), and only for an enemy-kind stats record (`003170A4`). *(Corrected 2026-09-30 (FABLE): the old wording dropped the flat term and the thunk. `00317090` is 78 bytes, 
+
+00317ED0
+   unread : 13-Rewards-Progression-Economy/CONTRACT-loot-rolls-and-the-chain.md:305
+            before it; the other layers share the stream and do not read or change loot state. **CoreRuntimeScheduling — SERVICE (1 edge).** `EnemyChain_UpdateOnDefeat` `00317ED0` calls `00229
+   read   : 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md:220
+            *Reconciled 2026-09-30 (FABLE).* Each item in that list is now read, either here or on the page that owns it: - `00317ED0` is the chain update, read on [the chain page](the-chain-a
+
+003180F0
+   unread : 13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md:420
+            nction.** > **Corrected 2026-09-12 (FABLE) — the negative was bounded to the wrong six functions.** The > caller that was "not read", `Loot_RollDropEntries` (`003180F0`, from > `Ba
+   read   : 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md:224
+            -and-enemy-chain.md) §8b; - `003171C0` is step 0's kill counter and species tally, and `00317090` is step 6's counter-17 feed; both were read whole today; - `003180F0` rolls the dr
+
+00319850
+   unread : _experiments/EXP-052-loot-pickup-selection.md:26
+            t of the question. ## Question and evidence The [loot page](../13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md) lists `00319850` as unread. D
+   read   : 13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md:238
+            tier, and what the grant and the presentation do natively is not claimed by either. ### Finding the nearest pickup — `Loot_FindNearestActivePickupPosition` (`00319850`), read 2026-
+
+0031A990
+   unread : _index/OPEN-QUESTIONS.md:908
+            | UQ-107 | The bits of `+0x0C` beyond bit 11, and of `+0x13` beyond bit 0, and `+0x2C` bit 5 — their readers are named above; the bit meanings are not read. **NARROWED 2026-09-17 (
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:908
+            | UQ-107 | The bits of `+0x0C` beyond bit 11, and of `+0x13` beyond bit 0, and `+0x2C` bit 5 — their readers are named above; the bit meanings are not read. **NARROWED 2026-09-17 (
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:940
+            | UQ-107 | The bits of `+0x0C` beyond bit 11, and of `+0x13` beyond bit 0, and `+0x2C` bit 5 — their readers are named above; the bit meanings are not read. **NARROWED 2026-09-17 (
+   read   : 07-Combat-Action/how-an-action-gathers-its-targets.md:10
+            f8 method: Battle_BuildActionTargetSet 0030D160 (1,004 B), its per-candidate predicates 002FFEF0, 0030BB10 and 0030BCB0, and the shape-descriptor builder 0031A990 (154 B) disassemb
+
+0031ADB0
+   unread : _index/candidates/uq218-fmc-selector-kinds/README.md:44
+            ind `004252A7` — see `criteria.md`. - What kinds `0x20`/`0x21`/`0x24`/`0x25` decide by. They query the battle unit's view request (`002ED500` → `0031B4B0` → `0031ADB0`) with querie
+   unread : 00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md:193
+            unit chains combo hits only while Confused or Berserk; the mode lifts that restriction. *Not read:* the identity of the `0208E6A4` handle and what `0031ADB0` does with the answer. 
+   read   : 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md:982
+            2026-09-14 (OPUS). **Party — CLIENT (19 edges through 7 of this page's functions).** The Party layer reaches this page at `003590D0`, `003589B0`, `00265020`, `0031ADB0` and 3 more.
+   read   : 99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md:1473
+            ss 22 **ActorEntity — CLIENT (53 edges through 14 of this page's functions).** The ActorEntity layer reaches this page at `0031B760`, `00263E30`, `00326D60`, `0031ADB0` and 10 more
+
+0031B860
+   unread : 10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md:135
+            share nothing.** *Kind 1 — a spawn-backed record* (`0031001A`–`0031006F`). The definition row is **never read**. Instead the owning battle unit is resolved (`0031B860`) and **128 b
+   unread : 13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md:371
+            g is numbered, so the crossings gate does not read it; this section names each edge.* **ActorEntity — SERVICE (2 edges).** `BattleStats_FindOwningBattleUnit` `0031B860` calls `Batt
+   read   : 11-Party/active-party-reserve-and-the-moment-the-leader-changes.md:632
+            ForRecipient` is the worked example, read in full - it is the experience computation for one recipient: it needs `byte[rec+5] == 0` and takes its context from `0031B860`; **5 of th
+
+0031E9A0
+   unread : _index/candidates/uq80-table-field-coverage/notes.md:113
+            s), +0x12 price. Residue 19 bytes: all but +0x24 have readers in the sweep (listed in `eitm_data-fields.tsv`); the subtype union +0x18..+0x23 (selected by `0031E9A0`) was not decod
+   read   : 08-Combat-Formula/where-a-stat-number-comes-from.md:177
+            **A weapon and a piece of armour take different branches for their stat pair and the same path for > everything else.** The three branches, read 2026-09-11 (`0031E9A0` classifies t
+
+00321850
+   unread : 09-Combat-AI-And-Gambits/CONTRACT-enmity.md:266
+            00313F60`. The battle menu builds its command list against the same validator and waiver; it does not read enmity. **WorldAreaField — DEPENDENCY (4 edges).** `00321850`, `00321B00`
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:254
+            | `00321850` | `BattleEnmity_WriteForCombatantId` | 381 B | ✅ read 2026-09-30 — adds (mode 0) or sets (mode 1) one foe entry: a positive entry is floored at 1 (`0032191D`–`00321923
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:256
+            | `00321B00` | `BattleEnmity_AdjustOtherRelevantCombatants` | 551 B | ✅ read 2026-09-30 — the same per-entry rule as `00321850`, applied on the target foe to the four party slots o
+
+00321B00
+   unread : 09-Combat-AI-And-Gambits/CONTRACT-enmity.md:201
+            olved - The vector's exact length; the page records 40 bytes and this contract does not re-derive it. - Whether an entry saturates, and at what value. - What `00321B00` counts as a
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:256
+            | `00321B00` | `BattleEnmity_AdjustOtherRelevantCombatants` | 551 B | ✅ read 2026-09-30 — the same per-entry rule as `00321850`, applied on the target foe to the four party slots o
+
+00322050
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:392
+            | FB-4 | read 2026-09-11 (the tracked-HP registration `00328FF0`, the engaged-state decision `00237040`, the HP-stage pulse reset `002FEAB0`, the re-key wrapper `00322050`); **bit 
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:391
+            | FB-4 | read 2026-09-11 (the tracked-HP registration `00328FF0`, the engaged-state decision `00237040`, the HP-stage pulse reset `002FEAB0`, the re-key wrapper `00322050`); **bit 
+   read   : 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:66
+            th can bypass it (`0023A5CD`–`0023A5F2`); otherwise a nonzero incoming class byte, or a saved old ID differing from both the incoming ID and `0xFFFF`, selects `00322050(unit)` befo
+   read   : 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:504
+            read 2026-09-11 (§2.9: the tracked-HP registration, the engaged-state decision, the HP-stage pulse reset; `00322050` the re-key wrapper). Bit 26 is the spawn side's placement-chose
+
+00324470
+   unread : _index/candidates/dd-content-fable-0930/consumer-check-0930-dd7.md:108
+            (`002FEF30`–`002FFA5A`) and §6.1 now gives the formula term by term with instruction anchors. The §10 / §11 "not read" lists are struck with dated answers (`00324470`, `00324380`, 
+   read   : 12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md:403
+            | `00324470`'s steps and its four callers | body read whole; raw call index (`rawcalls.py 00324470`): `0031A4DF`, `0031A602`, `0031A6ED`, `00323A48` | 1 |
+   read   : 12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md:403
+            | `00324470`'s steps and its four callers | body read whole; raw call index (`rawcalls.py 00324470`): `0031A4DF`, `0031A602`, `0031A6ED`, `00323A48` | 1 |
+
+00326500
+   unread : _index/candidates/s20-runtime-per-invariant-exposure.md:104
+            | commit-action §6 / EXP-047: attacker registration ends at a reset | EXP-047: the mask and count are cleared **before** the delegate (5 cases stop at `003220E0`'s entry) | **The c
+   unread : 08-Combat-Formula/CONTRACT-stat-derivation.md:283
+            `), `PartyConfiguration_ReconcileRuntimeRosterFirstThreeFromRequestedSelectors` (`00328DB0`) and five more — and by `PartyFocus_SelectAndRequestDefaultActor` (`00326500`): party co
+   read   : 11-Party/Battle-State-Block/the-battle-state-block-field-map.md:177
+            s. Which results set `+0x138` / `+0x13C`, and what the sum is, are `FO-2`. ### 2.7 How the focus actor is chosen — `PartyFocus_SelectAndRequestDefaultActor` (`00326500`), read 2026
+   read   : 03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md:689
+            me is in mode 3 — which, in a bit-15 field, is exactly when the game is not in combat. This is untested in play: it is derived from the complete bodies of `00326500` and `00377C70`
+
+003272A0
+   unread : 13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md:360
+            state is written by neither. **Party — SERVICE (2 edges).** `00312730` calls `BattleUnit_ResolveByFocusHandle` (`0031B7E0`) and `BattleUnit_GetPartyLeader` (`003272A0`): the order-
+   read   : 11-Party/active-party-reserve-and-the-moment-the-leader-changes.md:646
+            y` (leader change decays enmity); the other 11 edges are the `BattleEnmity_*` family and `AiOrder_EvaluateTargetSelector`/`GambitConfig_*` sharing `00322C50`/ `003272A0`. One real 
+   read   : 04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:459
+            caller-direction edges are the mirror image: `PartyFollow_SolveFormation`, `0031B810`'s callers `00310920` (interior read 2026-09-17, SWE2-FRONTIER: 1,028 B — `003272A0` first at [
+
+00328140
+   unread : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:1632
+            **two independent directions that meet**: the function that *writes* the record, and the function that *reads* it. `GambitRuntime_RebuildOrderSetFromConfig` (`00328140`, 369 B) had
+   read   : 16-UI/Gambit-Screens/the-gambit-screens.md:198
+            C0` consumes. The screen→config→runtime chain is: editor close → `GambitConfig_CommitBankAndRebuildRuntimeOrders` → `GambitRuntime_RebuildOrderSetFromConfig` (`00328140`) → the bat
+
+00329220
+   unread : _index/candidates/auditsem-review-sd125-128-0930/REVIEW.md:35
+            | B4 | it neither builds nor reads the 0xC0 StatusView record | **Holds for the call evidence.** It does not call `00329220` or any of its four callers, and it makes no indirect ca
+   unread : _index/candidates/sd125-sd128-fable-0930/README.md:242
+            out-readers.md`: revised-here. The status line, the `002C7660` table row and the SD-128 box change. - consumer: `04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md` 
+   read   : _index/candidates/nas-package-4-2026-09-27/opus-review.md:8
+            ckage-4-2026-09-27/README.md` (published at 8cb2a0393). **Re-run.** `fj3_name_blank.py`: B1, B2 PASS, FAILS 0. **The builder, re-read whole (OPUS).** I read `00329220`..`003299AC` 
+   read   : _index/candidates/nas-package-4-2026-09-27/README.md:12
+            ough `00263990`, the stats side through `00536310` / `00536280`. **The mechanism, read whole.** Control: `fj3_name_blank.py` (2 checks, FAILS 0). The builder `00329220` stores the 
+
+0032E400
+   unread : _index/OPEN-QUESTIONS.md:589
+            | SN-1 | **The inner layouts of the `.sbn` (source-text blocks), `.dbg` (symbol table) and `.msb` (messages) companions of the PS2 ATEL control scripts `ctrl`, `btlctrl`, `evctrl`,
+   unread : 25-EBP-Script-Container/Sections/section-004.md:296
+            | `0032E400` | the size probe | ❌ not read |
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:589
+            | SN-1 | **The inner layouts of the `.sbn` (source-text blocks), `.dbg` (symbol table) and `.msb` (messages) companions of the PS2 ATEL control scripts `ctrl`, `btlctrl`, `evctrl`,
+   read   : 01-Script-VM-Native-Bridge/ATEL-Control-Modules/the-ctrl-module-debug-companions.md:908
+            eighbours — FINAL-AUDIT pass 22 **ActorEntity — CLIENT (7 edges through 2 of this page's functions).** The ActorEntity layer reaches this page at `003306E0`, `0032E400`. `FUN_00263
+   read   : _experiments/evidence/sn1-named-entry-line-convention/retained/consumer-before.md:822
+            eighbours — FINAL-AUDIT pass 22 **ActorEntity — CLIENT (7 edges through 2 of this page's functions).** The ActorEntity layer reaches this page at `003306E0`, `0032E400`. `FUN_00263
+
+0032E620
+   unread : 18-Audio/how-the-music-changes-when-you-change-area.md:498
+            archive file. **The `FFXII.ResourceDataLoading` tag on `0051ED10` is a ledger claim, and I > promoted it to "fetched as resource 9" without reading past it.** `0032E620` (340 B) is
+   unread : 18-Audio/how-the-music-changes-when-you-change-area.md:552
+            tions in, the file has not appeared — which is worth stating precisely because the temptation > after a retraction is to assert the reverse. The remainder of `0032E620` past the de
+   unread : _experiments/EXP-008-the-real-music-table.md:24
+            seen the real one. This is the real one. ## The question `DG-1` had traced `0x02B5E0D0` as far as *"an allocated buffer sized from a table; what fills it is `0032E620` (340 B), **u
+   read   : 02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md:1396
+            (`InputManager_CreateSingleton`). - The boot calls the input fix-up `0035B270` and seeds `RNG_MT19937_Seed`. - The UI-side `00291C80` issues the same request `0032E620`. *Tier 2: l
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/06-CONTRACT-authored-table-row-lookup.md:1396
+            (`InputManager_CreateSingleton`). - The boot calls the input fix-up `0035B270` and seeds `RNG_MT19937_Seed`. - The UI-side `00291C80` issues the same request `0032E620`. *Tier 2: l
+
+0032FCA0
+   unread : 02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md:230
+            crossings gate does not read it; this section names each edge.* **ActorEntity — CLIENT, MECHANICAL (2 edges).** `ActorResource_BeginManagerResourceSetLoad` (`0032FCA0`) calls the 2
+   read   : 26-PKFL-Package-Container/Container/pkfl-package-container.md:381
+            **Closed 2026-09-18 (FABLE) by a body read of every reader of the directory.** The walker `0032FCA0` reads each package's first `0x88` or `0x208` bytes into one of four per-manager
+   read   : 19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md:417
+            9-14 (OPUS). **Resource — CLIENT (32 edges through 7 of this page's functions).** The Resource layer reaches this page at `001D6F20`, `001D6E80`, `001D6FA0`, `0032FCA0` and 3 more.
+
+0034CF90
+   unread : _index/candidates/ov15-skip-mask-fable/README.md:37
+            y were not read one by one, so "no other writer" is claimed only for those ranges. - **What the wait does with it (W).** The wait is family 0 command 0: begin `0034CF90`, poll `003
+   read   : 99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:366
+            OPOSED-repos9e-20.** *Both named consumers are now READ (2026-09-15, OPUS): identical twins applying a rate multiplier that ships as 1.* - **`0034CF90` and `0034D790` are the same 
+
+00358290
+   unread : _index/OPEN-QUESTIONS.md:1117
+            | UQ-297 | The runtime contents of the pass-enable mask `022C7F90` for each draw mode. **THE CONTENTS STAY LIVE, BUT THE BIT MEANINGS DO NOT — 2026-09-16 (FABLE), a static route th
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1117
+            | UQ-297 | The runtime contents of the pass-enable mask `022C7F90` for each draw mode. **THE CONTENTS STAY LIVE, BUT THE BIT MEANINGS DO NOT — 2026-09-16 (FABLE), a static route th
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1200
+            | UQ-297 | The runtime contents of the pass-enable mask `022C7F90` for each draw mode. **THE CONTENTS STAY LIVE, BUT THE BIT MEANINGS DO NOT — 2026-09-16 (FABLE), a static route th
+   read   : 17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md:421
+            er". 3. **All three read 2026-09-20:** - `00358290` (13 B) returns `(u16[022C7F92] >> 1) & 1` — **aux-mask bit 1 of render-pass enable entry 0** (the high `u16` of `022C7F90[0]`; t
+   read   : 17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md:496
+            | the three tick-call-site gates' predicates | all three read whole 2026-09-20 — `00358290` = aux-mask bit 1 of pass-enable entry 0 (`022C7F92`); `00181DD0` = `byte[lazy 0x2E0 sing
+
+003589B0
+   unread : 01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md:386
+            ed bodies (88–233 B), which push floats onto the script stack. Which verbs they serve is not read. **CombatAction — SERVICE (SWE2-EC7 2026-09-19, 2 edges).** `003589B0`, a bridge b
+   read   : 04-Actor-Entity/battleunit-slot-pool-and-actor-class.md:177
+            | `003589B0` | `ActorHandle_EncodeRegistryEntry` | ✅ read 2026-09-10 |
+
+003590D0
+   unread : 13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md:499
+            s that layer using the same accessors for its own work. **Audio — CLIENT, OUT-OF-SCOPE (2 edges).** `00362850`, a 1,036-byte Audio body, calls `00265020` and `003590D0`: it reads a
+   unread : 04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md:278
+            layer.* **Audio — CLIENT and SERVICE (4 edges).** `00362850` (1,036 B, Audio, not read here) reads the focus getter `PartyFocus_GetCurrentPackedActorHandle` `003590D0` and calls th
+   unread : 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:679
+            ads the field-id getter `WorldTransition_GetActiveOrPendingFieldId` `003148F0`, and `00362850` reads the focus getter `PartyFocus_GetCurrentPackedActorHandle` `003590D0`; both are 
+   read   : 00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:555
+            orld — MECHANICAL (2 edges).** 2 World-side calls into a shared helper the page cites: `0025E400` and `002623A0` call `PartyFocus_GetCurrentPackedActorHandle` (003590D0), the party
+
+0035D460
+   unread : 16-UI/Widget-Object-Model/the-widget-message-protocol.md:1497
+            | `0028B860` | 666 | widget-lookup dispatcher (jump table present, not decoded): `0035D460` context getter ×3, `00271AB0` array search ×2, `00245020`/`00244DD0`/`002735E0`, `0028B7
+   read   : 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:613
+            bit 0 says the block is live. The UI readers (`00403970`, `00403F90`, `00404730`, `003C4070`, `003C4B20` — interior read 2026-09-17, SWE2-FRONTIER: 1,282 B, `0035D460` ×3 + `003C72
+
+0035D6B0
+   unread : _index/candidates/swe2contract-ddres-b13-0930/README.md:42
+            | 336 | key address `0035D6B0`: "unread" | **RESIDUE, answered (R2)**, struck |
+   read   : 16-UI/Request-Router/ui-request-router.md:365
+            | `0035D6B0` | request 24's widget proc | 515 B | posts the request word; read 2026-09-30 (§7b R2): also request 3's; for 24 it blocks capability row 8 bits 0 and 20, shows text `0
+
+003697F0
+   unread : 16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md:167
+            safe repeated teardown, idempotence, double-free or the absence of transitive effects. That helper's tracking-tree effects (its chain is in the ASTRA packet), `003697F0`'s free eff
+   read   : _index/candidates/lgs-context-lifetime/README.md:60
+            09-28) [`lgs_children_lifetime.py`](lgs_children_lifetime.py) (R1-R3, S; FAILS 0). - **`RenderCommandBuffer`: resolved.** `003EC8A0`, now read, frees through `003697F0` and nulls t
+
+0036BC60
+   unread : 24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md:1376
+            D8E18], 0xFF` — and a block allocated while that stands is stamped `0xFF`, which as an index reaches `022D920C`, far outside anything this page names. Whether `0036BC60` can return
+   read   : 02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md:120
+            | Finding 2: arena suballocation | §3; the same receipt, `0036BC60` read whole (887 B) | 1 (static) |
+
+00377850
+   unread : 03-World-Area-Field/Weather/mweather-resource-format.md:376
+            e offsets being 3 and 7 with a 9-bit total, not read directly."* The encodings state both, because each wrapper computes its **offset from its width**: ```asm 00377850 mov r9d, 3 x
+   read   : 03-World-Area-Field/choosing-the-field-environment-variant.md:134
+            ad through getter thunks by the combat stage, `02099DBC` through a third getter, and `02099DB0` by nothing (GB-3, answered; `pf_env_checks.py` E8).)* - **What `00377850` computes**
+   read   : 03-World-Area-Field/choosing-the-field-environment-variant.md:135
+            0` computes** from `(rowU16, selector+1)`. Only how its result is banded. *Read 2026-09-18 (FABLE), by cross-reference:* it is the **3-bit weather preset**. `00377850` tail-calls t
+
+00377BA0
+   unread : _index/candidates/gb2-env-class-4/consumer-check.md:15
+            | `gambit-evaluation-and-enmity.md` selector table, opcode 48/49 | "two global getters, unread" | revised-here (struck; `00263E10` is the environment class, and all 17 shipped uses
+   read   : 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md:727
+            | 48 / 49 | 17 / 0 | `00303027` | `operand` 0: `00263E10()` == threshold; 1: `00377BA0()` == threshold; 2: `00377BA0()` ≥ threshold — *(2026-09-27, FABLE, Claude Opus 5.5: `00263E1
+
+00377C20
+   unread : 08-Combat-Formula/the-auto-status-rebuild.md:335
+            **WorldAreaField — SERVICE (1 edge).** The status write `BattleStats_ChangeStatusAndProcessSideEffects` `0030E360` calls `FieldData_GetActiveFieldRecordBit15` `00377C20`. The statu
+   unread : 08-Combat-Formula/where-a-stat-number-comes-from.md:516
+            — SERVICE (2 edges).** `0023A570` calls the thunk `FieldData_GetActiveFieldRecordBit15` `00313F60`, and `00307D10` calls `FieldData_GetActiveFieldRecordBit15` `00377C20`. Both read
+   unread : 10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md:410
+            eward layer and the status layers share the applier, not state. **WorldAreaField — SERVICE (1 edge).** `00313DB0` calls `FieldData_GetActiveFieldRecordBit15` `00377C20`. The ring c
+   read   : 08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md:543
+            | **the override is `00377C20 FieldData_GetActiveFieldRecordBit15`** | **re-read 2026-09-12**: both guards call it and bail when it returns zero, so **the active field record's bit
+   read   : 00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md:948
+            **InputGameplay — MECHANICAL (1 edge).** 1 InputGameplay-side call into a shared helper the page cites: `00313A00` calls `FieldData_GetActiveFieldRecordBit15` (00377C20), one of th
+
+00377DC0
+   unread : _index/candidates/ov33-no-status-exits-fable-0929/README.md:221
+            he staff roll (`00511540`); - the `m` values that reach `0032FC30` (m = 4 gives kind 1, id set+0x6B); - the model ids `002E6700` passes to `002EAD50`; - `00377DC0`'s path rewrite. 
+   read   : _index/OPEN-QUESTIONS.md:3659
+            | SD-194 | For the 34 fields whose block index names no map_ctrl package, and the 121 whose own index names none, `002DF880` returns -1 without writing and `00377DC0` requests what
+
+00379160
+   unread : 14-Story-Event-Quest-Hunt/persistent-flag-banks.md:990
+            d.** Nine candidates looked like evidence; the arithmetic said to expect about two by chance; verification found zero real ones. ## 8f. Reopened 2026-09-08 - `00379160` read: what 
+   read   : _index/CONTRADICTION-LEDGER.md:131
+            ut work that was finished **Claim:** [`persistent-flag-banks.md`](../14-Story-Event-Quest-Hunt/persistent-flag-banks.md) §3 marked `00377970`, `00377440` and `00379160` as `⚠ parti
+
+0037D1F0
+   unread : 04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:835
+            `0xC8` of each `0xF0` driver block, are unread.** The block's accumulator at `+0xC8` and its `0x10`-stride parameter table at `+0x14` are identified by use in `0037D1F0`; the rest 
+   read   : 17-Presentation-Rendering/Scripted-Camera/how-a-camera-reaches-the-renderer.md:218
+            rected 2026-09-19.** *The sentence above was wrong, and it was mine: I inferred it from the driver's `(data id, time)` call shape before reading the sampler.* `0037D1F0` `(record, 
+
+0037DEA0
+   unread : _index/OPEN-QUESTIONS.md:471
+            | FY-7 | **The authored tables the consumer sweep reaches but does not name** — `02EBF020` (6 × 20, scanned by `0032A230` for `BattleMenu_BuildCommandEntryList`) and `02EBF008` (49
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:471
+            | FY-7 | **The authored tables the consumer sweep reaches but does not name** — `02EBF020` (6 × 20, scanned by `0032A230` for `BattleMenu_BuildCommandEntryList`) and `02EBF008` (49
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:470
+            | FY-7 | **The authored tables the consumer sweep reaches but does not name** — `02EBF020` (6 × 20, scanned by `0032A230` for `BattleMenu_BuildCommandEntryList`) and `02EBF008` (49
+   read   : 17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:336
+            | The schedule table and its application | `0037DDD0` and `0037DEA0` read whole; the 49 rows dumped from `battle_pack.bin` `+0x118` | 1 |
+
+003820C0
+   unread : 17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md:332
+            h wants a projection, and a distance taken from the product's translation, which looks like a view matrix's job. The block's only builder is the camera update `003820C0` (2,125 B, 
+   read   : 17-Presentation-Rendering/Scripted-Camera/how-a-camera-reaches-the-renderer.md:9
+            04b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 method: the submit function 003829D0 and the initialiser 00382910 disassembled whole; the camera update 003820C0 read whole th
+
+00383840
+   unread : _experiments/evidence/nav-conversion-domain/retained/how-a-unit-finds-its-way-across-the-navigation-mesh.md:37
+            ets at `+0x0C`..`+0x20`, a seventh at `+0x28`, and the grid's own two at `+8` and `+0xC`. `00383A20` clears the pointer, `00383C80` answers whether it is set, `00383840` returns it
+   read   : 02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md:1077
+            eadingConstraint`) and eleven callees (`0033CC80`/`0033D200`/ `004687F0`/`00335F90`/`00337470`/`00339DF0`/`00335180` (interior read 2026-09-17, SWE2-FRONTIER: `00383840` first at [
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/06-CONTRACT-authored-table-row-lookup.md:1077
+            eadingConstraint`) and eleven callees (`0033CC80`/`0033D200`/ `004687F0`/`00335F90`/`00337470`/`00339DF0`/`00335180` (interior read 2026-09-17, SWE2-FRONTIER: `00383840` first at [
+
+003847C0
+   unread : _index/candidates/s26-runtime-per-invariant-exposure.md:74
+            ult-to-target.md`). Those records are not named in S-26's runtime cell; their stubs and whether they measure L-1/L-2/L-6 were **not read** here. The merge `003847C0` is executed no
+   unread : _index/candidates/s26-runtime-per-invariant-exposure.md:96
+            L-1..L-6: none executed by the row's record.** This is coverage, not exposure. `0030E130` / `0030FED0` run in four other contracts' records (not read here); `003847C0` runs in none
+   read   : 08-Combat-Formula/Evaluation-Context/the-evaluation-context-field-map.md:12
+            fidence: PROVEN verified_against: exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 method: BattleFormula_BuildEvaluationContext 003847C0 read to its ret
+   read   : 08-Combat-Formula/Evaluation-Context/the-evaluation-context-field-map.md:175
+            | The builder's fields and the merge | `003847C0` read to its ret (`003847D8`–`003848B8`) | 1 | PROVEN |
+
+003848E0
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:444
+            | FO-3 | **What result `+0x08` is** **The result record's allocation size and site** — the initialiser `003848E0` reaches `+0x147` (`memset(+8, 0, 0x140)`); the caller that owns th
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:443
+            | FO-3 | **What result `+0x08` is** **The result record's allocation size and site** — the initialiser `003848E0` reaches `+0x147` (`memset(+8, 0, 0x140)`); the caller that owns th
+   read   : 07-Combat-Action/Result-Record/the-result-record-field-map.md:221
+            | The defaults and the 0x148 reach | `003848E0` read to its ret: `003848EF`–`003848F5`, `00384902`–`003849A0` | 1 | PROVEN |
+
+003849B0
+   unread : 08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md:139
+            EE05C float the target's defensive stat ``` These are **global**, not per-unit — so **one attack resolves at a time**. `BattleFormula_ResetScratchState` (`003849B0`) clears all thr
+   read   : 08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:422
+            | the block is 44 words from `02AEDFB8` and the reset touches 41 | `003849B0` read whole; the census's 912 references | 1 | PROVEN |
+
+00386C70
+   unread : 10-Status-Periodic-Terminal/Periodic-Tick/what-the-periodic-tick-does.md:350
+            *(heading struck 2026-09-29, FABLE: stage 2 is the 32 statuses' timer; see "Corrected 2026-09-12" below)* `BattleFormula_AdvanceStatusTimersAndBuildResult` (`00386C70`, 935 B) was 
+   read   : _index/OPEN-QUESTIONS.md:2146
+            | EZ-4 | **What `BattleFormula_ApplyResultMetadata` (`00385BA0`, 250 B) does with the `u16` id in `r9w`**, called first on every apply (`0031137A`), and what `+0x140` bit 14 (the `
+   read   : 10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md:141
+            er.** Both are consumed by stage 2 of [the periodic tick](../Periodic-Tick/what-the-periodic-tick-does.md), `BattleFormula_AdvanceStatusTimersAndBuildResult` (`00386C70`, 935 B, re
+
+00389040
+   unread : 08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md:283
+            | action `+0x12` / `+0x13` are not read by these recipes | `rwr_slots.py`: `00389040` is slot 25, `0038B220` slot 94, `0038B6A0` slot 95, none in either list (control: slots 35 and
+   read   : 08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:424
+            | the roller's bands, thresholds and kinds | `003896B0` read whole; `00389040`'s four stores | 1 | PROVEN |
+
+003895D0
+   unread : _index/candidates/dd-content-fable-0930/README.md:161
+            4.** ActionDefinition `+0x12` / `+0x13` are corrected as not read by these recipes; the hit chance starts at 100. - **Anchors.** MWeather class 2 is anchored (`003895D0` read whole
+   read   : 08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md:280
+            | Weather accuracy ×0.8 / ×0.5 | complete bodies of `003895D0` (55 B, `bb8cfe86…4c37`) and `00389610` (55 B, `bd0ae289…0a90`) | 1 |
+   read   : 08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md:417
+            e §5 call chain. *Examined 2026-09-30 (FABLE):* - **The recipe tables.** Decoded from the image; §2's lists reproduce exactly. - **The severe-weather gate.** `003895D0` read whole;
+
+00393460
+   unread : _index/candidates/swe2struct-ddres-b17-0930/README.md:45
+            | 1208 | "what 00393460 and its siblings do natively is not read here" | **BOUNDARY**: the typed-list page, section 7c (`dataface_c` through `002493D0` → `0024A4E0`; kind 7 id 111 
+   unread : 16-UI/Widget-Object-Model/the-widget-message-protocol.md:1289
+            quests were already complete, message 16 arrives before `00582790` returns. **Equal counts mean the requests finished, not that their content is valid**; what `00393460` and its si
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_with.md:92
+            0); the manifest premise refuted (RC-29: 008FCE00 is the developer console's page table; four unrequested .mrp files come through .rdata id lists of 003933F0 / 00393460) (status li
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_nochain.md:92
+            0); the manifest premise refuted (RC-29: 008FCE00 is the developer console's page table; four unrequested .mrp files come through .rdata id lists of 003933F0 / 00393460) (status li
+
+00394DA0
+   unread : _index/candidates/auditsem-review-gi-restatus-0930/REVIEW.md:38
+            | `the-element-types-80-97.md` | 122–127 | `## Not read`: emit calls `00394DA0` … `002F1D90`, selector targets `0045AEF0` … `00458CA0`, the `0045B2A0`/`0045BAD0` tails, `00431770`,
+   read   : 17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md:122
+            t read *(tails read 2026-09-29 - [the tails and emits](#the-tails-and-the-emits-gi-11-2026-09-29-fable))*; emit calls `00394DA0`, `003970A0`, `00398030`, `00399600`, `0039A9B0`, `0
+
+003970A0
+   unread : _index/candidates/auditsem-review-gi-restatus-0930/REVIEW.md:41
+            | same | 167 onward | "Not read (explicit): … the walk emit tails `003970A0`, `00399600`, …" (unstruck after the struck tail list) |
+   unread : _experiments/evidence/heading-commit-tail-supplement/retained/the-element-types-60-74.md:163
+            3F0`, `00529D50`, `0052A8B0`, `0052B5E0`, `0054C6B0`, `0054E040`); `00431770` still `not read` (third-variant init used at `0xF0` stride); the walk emit tails `003970A0`, `00399600
+   read   : 17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md:169
+            s-and-who-authors-them-gi-10-2026-09-29-fable); `00431770` read 2026-09-19 on [the element types 0x00-0x0A](the-element-types-00-0a.md))*; the walk emit tails `003970A0`, `00399600
+
+00397910
+   unread : 00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:360
+            the two laws in §3 and §4 were observed in the game.** They were **emulated**. §5a observed the *state of the globals*, not the functions running. - **That `00397910` is only a mat
+   unread : _experiments/evidence/postmultiply-order-alias/retained/the-two-transform-primitives.md:360
+            the two laws in §3 and §4 were observed in the game.** They were **emulated**. §5a observed the *state of the globals*, not the functions running. - **That `00397910` is only a mat
+   unread : _experiments/evidence/matrix-consumer-identity-control/retained/primitives.md:360
+            the two laws in §3 and §4 were observed in the game.** They were **emulated**. §5a observed the *state of the globals*, not the functions running. - **That `00397910` is only a mat
+   read   : 00-Engine-Core-Runtime/CONTRACT-transform-primitives.md:478
+            no body read for this note. - **Presentation — CLIENT, fan-in of 299 edges.** The render layer is the primitives' main consumer. By Presentation neighbours: `00397910` 76, `0039AF7
+   read   : 00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md:362
+            tsv`; no body read for this note. - **Presentation — CLIENT, fan-in of 396 edges.** Render bodies use the register-bank routines. By Presentation neighbours: `00397910` 76, `00398F
+
+0039B620
+   unread : 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md:646
+            eads, which composes `02AEEBF0` with the element's matrix. Two values reach it out of band, through the globals `02AEE900` and `02AEE908`. **Not read here:** `0039B620`, `002F1F40`
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:2745
+            | UQ-41 | **What the nine functions are for.** Their callers sit in the Presentation layer, but a caller is not evidence of ownership and none of the nine carries a ledger owner. *
+   read   : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:2792
+            | UQ-41 | **What the nine functions are for.** Their callers sit in the Presentation layer, but a caller is not evidence of ownership and none of the nine carries a ledger owner. *
+
+003A1650
+   unread : _index/candidates/opus-dd-restatus-02-0930/batch2.md:11
+            | `chse-character-se-tables.md` | re-status, plus two stale lines pointed at their answers ("SB-2 is open"; the Audio helper `003A1650` "not read") | READY |
+   unread : _index/candidates/swe2contract-ddres-b5-0930/README.md:14
+            | `chse` | SB-2 (FABLE, the reader section); the Audio helper `003A1650` = SE block registration (`seb-se-block-index.md` §3.2); the letter = the model-id letter (`character-render
+   read   : 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md:321
+            ched only through front matter or a link path; tier 2: ledger names, sizes and `edges.tsv`; no body read for this note. - **Audio — SERVICE** *(the helper is `003A1650`, the SE blo
+   read   : 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md:322
+            dio-filed helper. What that helper does is not read here. *Answered 2026-09-30 (SWE2-CONTRACT, from the database):* the body is `002E60F0` and the helper is `003A1650`, the SE bloc
+
+003EA650
+   unread : 02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md:59
+            ## 3. Types ``` Ff12Ar03Header (file base, 0x30 bytes) +0x00 char[8] 'FF12AR03' never read by the loader +0x0C u32 trailer offset read by 003EA650, NOT by the loader +0x10 .. +0x2C
+   unread : 02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md:131
+            the header directory, and the file's blocks. **Not read at all:** the magic at `+0x00` and the trailer offset at `+0x0C` — the latter has a reader elsewhere (`003EA650`) but not on
+   unread : 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md:109
+            166/166, never read by the loader +0x08 u32 _zero0 0 in 166/166 — never read +0x0C u32 trailerOff offset-shaped, 134 distinct values — read by 003EA650, not by the loader (CC-8, 20
+   read   : _index/OPEN-QUESTIONS.md:2997
+            | UQ-264 | What the non-music path (`context + 0x17` bit 2 clear) does with `0x37C910(1)`. [how-the-music-changes-when-you-change-area.md](../18-Audio/how-the-music-changes-when-yo
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:2996
+            | UQ-264 | What the non-music path (`context + 0x17` bit 2 clear) does with `0x37C910(1)`. [how-the-music-changes-when-you-change-area.md](../18-Audio/how-the-music-changes-when-yo
+
+003EAB60
+   unread : 18-Audio/how-the-music-changes-when-you-change-area.md:463
+            modder edits a data file, not the binary.** Which archive entry resource 9 resolves to is **not > established here** — `0051ED10` (153 B) is unread. `DG-4`. `003EAB60` is **not** a
+   read   : _index/L2-VERDICTS.md:277
+            | **S-42** field music selection | **MET — re-scored 2026-09-22 (SWE2-AUDIT-SEM): both named pages contracted — field-music-selection (pre-existing) + music-control-file/BGM-stream
+
+003EC700
+   unread : 03-World-Area-Field/walking-into-an-authored-trigger-point.md:145
+            Unit_FindMappedDefinitionSelectorByIndex`. - **Party — CLIENT.** `PartyFocus_ProcessActorControlPresentati…` calls the distance. - **Presentation — SERVICE.** `003EC700` indexes th
+   read   : 14-Story-Event-Quest-Hunt/persistent-flag-banks.md:715
+            -the-battle-message-table.md)). Then `002FB8C0(record, unit, &out)` > **gathers the units the trap reaches** (read whole below), `003EC700(i, 3)` > retires the trap's world marker,
+
+0041EDE0
+   unread : _index/OPEN-QUESTIONS.md:1032
+            | UQ-220 | **Sections 2, 3, 6, 7, 18, 21–24 of the payload** — present, addressed by a handful of ids, not decoded. *Narrowed 2026-09-18 (FABLE): two scans now bound the readers.* 
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1032
+            | UQ-220 | **Sections 2, 3, 6, 7, 18, 21–24 of the payload** — present, addressed by a handful of ids, not decoded. *Narrowed 2026-09-18 (FABLE): two scans now bound the readers.* 
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1110
+            | UQ-220 | **Sections 2, 3, 6, 7, 18, 21–24 of the payload** — present, addressed by a handful of ids, not decoded. *Narrowed 2026-09-18 (FABLE): two scans now bound the readers.* 
+   read   : 17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md:562
+            u32, f32, f32}` records but is itself **unreferenced** (dead code; no E8/E9/dword/qword ref). Details in the last section.* **Section 3, from its consumer.** `0041EDE0(parent, chil
+
+0041F270
+   unread : 17-Presentation-Rendering/Character-Rendering/how-a-character-is-lit.md:232
+            and two smaller neighbours of it; what the shader does with the fourth component was not read. **Where `+0x244` and `+0x248` come from (added 2026-09-19).** `0041F270` (124 B, read
+   read   : 17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md:228
+            s float track `+0x120` × the element's alpha and `w` is float track `+0x130` (`00465825`–`00465840`). `CharacterRenderRecord_PublishBlendStateToModelInstance` `0041F270` (124 B, re
+
+004256E0
+   unread : _index/candidates/uq218-fmc-selector-kinds/README.md:45
+            (`002ED500` → `0031B4B0` → `0031ADB0`) with queries `0x30` and `4`, whose results were not read. - Which sign of the yaw is the character's left; the exact `004256E0` band→`@FMN`-n
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:2575
+            | UD-3 | **CLOSED 2026-09-13 (OPUS).** Four are **libvpx VP8 control handlers** in the codec interface's control map at `01CDB320`, reached by nothing but the qword in that table -
+   read   : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:2596
+            | UD-3 | **CLOSED 2026-09-13 (OPUS).** Four are **libvpx VP8 control handlers** in the codec interface's control map at `01CDB320`, reached by nothing but the qword in that table -
+
+00427320
+   unread : 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:691
+            tes a tag into a block whose header carries the `0xFF12` marker. `00406A60` calls `0024A440` and `0024A680`; both are Resource bodies that were not read here. `00427320` resolves a
+   read   : 17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md:437
+            `. *So this is a single-purpose command: one event, one authoring context, thirty uses.* **What event `0x203D` does, read 2026-09-20.** It reaches the table. `00427320` filters a f
+
+00431770
+   unread : _index/COVERAGE-DIMENSIONS.md:366
+            6-09-18 (index-registered records in two tables, their binders 00333C80 and 004FF270 unread)` 1, `PARTIAL — the tail helpers (00442600, 004428F0, 0044B3C0) and 00431770's third-var
+   unread : _index/COVERAGE-DIMENSIONS.md:366
+            -18 (an 8-byte setter of bit 1 in the element's +0x248, not a walk)` 1, `PARTIAL — all step/update tails (0045C450, 0045CDC0, 0045D7D0, 0052A8B0 and peers) and 00431770 are not rea
+   unread : _index/OPEN-QUESTIONS.md:1584
+            | GI-10 | The step/update tails (`0045C450`, `0045CDC0`, `0045D7D0`, `0052A8B0` and peers), `00431770`, and the emit calls' player-facing identity for element types `0x60`–`0x74` (
+   read   : _index/candidates/auditsem-review-gi-restatus-0930/REVIEW.md:38
+            | `the-element-types-80-97.md` | 122–127 | `## Not read`: emit calls `00394DA0` … `002F1D90`, selector targets `0045AEF0` … `00458CA0`, the `0045B2A0`/`0045BAD0` tails, `00431770`,
+   read   : 17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md:82
+            | `00431770` | head | *read 2026-09-19: not an init variant but the rebase of a `0xF0`-byte track bundle; see the dated section* |
+
+0045C450
+   unread : _experiments/evidence/heading-commit-tail-supplement/retained/the-element-types-60-74.md:159
+            uns and `0xF0`-stride `00431770` blocks make the `0x6B`–`0x74` records regular arrays of repeated structures. **Not read (explicit):** all step/update tails (`0045C450`, `0045CDC0`
+   read   : _index/COVERAGE-DIMENSIONS.md:366
+            teriors are not read everywhere; 00464090 read 2026-09-18 (an 8-byte setter of bit 1 in the element's +0x248, not a walk)` 1, `PARTIAL — all step/update tails (0045C450, 0045CDC0, 
+   read   : _index/candidates/auditspec-review-extent-v4-0930/pc_with.md:92
+            ) is NOT A QUESTION 2026-09-26, carried by FABLE-CARRIER-TOOLING-AND-CHECKER-PROPOSALS-0926; owner read 2026-09-29 (OPUS)` 1, `PARTIAL — all step/update tails (0045C450, 0045CDC0, 
+
+004698C0
+   unread : 12-Items-Equipment-Shops-License/using-an-item-is-an-action-that-costs-an-item.md:141
+            ion-Availability/battle-command-availability-and-reason-codes.md)); `+0xE54` is a gil charge the target-preview evaluators store (`00303954`, `00303B2E`, from `004698C0`'s output) 
+   read   : 07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:504
+            s. Every apply site's record, though, is a local that is memset and built immediately before the call. - [x] `004698C0` (390 B), **All three read 2026-09-12 (FABLE):** **`0046A9D0(
+   read   : 07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:520
+            irectStateCommandOrder`. The seven bits, from the rows: 0 HP drain, 1 MP drain, 2 no Attack, 3 no Magicks, 4 no Technicks, 5 no Items, 6 the magnetic field. `004698C0` read 2026-09
+
+004776D0
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:525
+            | SM-2 | **What live stop sets 3 (controller `+0x170`) and 4 (controller `+0x164`) stop in player terms** — set 3's hook `002E92F0` tests the character render record `+0x284`; set 
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:524
+            | SM-2 | **What live stop sets 3 (controller `+0x170`) and 4 (controller `+0x164`) stop in player terms** — set 3's hook `002E92F0` tests the character render record `+0x284`; set 
+   read   : 17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md:221
+            0520DC4`, `00520DDC` | | `004772E0` allocator (139 B) | `004772F6`, `0047730A`, `00477334`, `00477347`, `0047734C`, `00477357` | Under 128 bytes, read whole: `004776D0`, `00477670`
+
+005044D0
+   unread : _index/candidates/swe2contract-ddres-b10-0930/README.md:56
+            | `@FTE` `+0x10` unread | **answered (T1, T3).** It is 0 in all 2,127 records. The pointer-forming bodies are exactly `005044D0`, `00504D30` and `0053AB50`. `0053AB50` reads the re
+   read   : 17-Presentation-Rendering/Character-Render-Records/how-a-status-shows-on-a-character.md:103
+            `00504D20` (7 B, read), is one store, **the model instance's byte `+0xBA`** - and stores a step callback. **The mode is a variant index** (added 2026-09-19). `005044D0` (65 B, read
+
+00529D50
+   unread : _experiments/evidence/heading-commit-tail-supplement/retained/the-element-types-60-74.md:99
+            es. ## `0x68`–`0x6B` — first sub-range cluster Sub-steps all call base `002F2D60` plus `003A3E20`/`003D8E50` and own tails (`00523380`/`00524320`/`005263F0`/`00529D50`, `not read`)
+   read   : 17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md:101
+            ## `0x68`–`0x6B` — first sub-range cluster Sub-steps all call base `002F2D60` and own tails (`00523380`/`00524320`/`005263F0`/`00529D50`, *read 2026-09-29*) **(corrected 2026-09-29
+
+0056D468
+   unread : _index/candidates/dd-content-fable-0930/consumer-check-0930-dd7.md:156
+            ruck. The `+4` half was answered by the page's own bit-3 bullet. For layout-A rows the consumer is the transaction driver `0056D370`, which clears the bit (`0056D468`). The layout-
+   read   : 12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md:394
+            [x] **What consumes price bit 31** — **partly read 2026-09-30 (FABLE).** For a layout-A row (id `+8`, price `+0x10`), the transaction driver clears it (`0056D468`) before multiplyi
+
+00582860
+   unread : _index/candidates/seven-flag-cells-ruling.md:23
+            se seven are the only PTR cells in the store never accessed as a qword**; the other 72, including the `02CA99C0/C8/D0/D8` siblings that share the "published by 00582860" story, all
+   read   : _index/candidates/ov31-title-asset-type-store-0929/README.md:32
+            500` and `002486B0` have no `.pdata` entry, because they are leaf functions. Their bodies were read whole, up to `ret` and the `int3` padding. - **J.** In `00582860`'s jump table (
+   read   : 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md:111
+            veLoad_NormalizeLoadedRuntimeStateAndReseedRNG` (`00584210`, 456 B) is the load path's normalise step, called once from `SaveLoad_ControllerLifecycleHandler` (`00582860`). **Read t
+
+0059A6F0
+   unread : _index/OPEN-QUESTIONS.md:1105
+            | UQ-285 | **The packed namespace format.** `0059A6F0` (116 B) reads it and is **not read**. [the-cluster-header-and-what-the-loader-rejects.md](../22-Middleware-PhyreEngine/Phyre-
+   unread : _index/OPEN-QUESTIONS.md:1105
+            | UQ-285 | **The packed namespace format.** `0059A6F0` (116 B) reads it and is **not read**. [the-cluster-header-and-what-the-loader-rejects.md](../22-Middleware-PhyreEngine/Phyre-
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:354
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+   read   : 22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md:437
+            bom-reader/bom_reader.py` | 1 | PROVEN | ## 15a. Falsification pass 1 — 2026-09-12 (OPUS) **passes: 1 · last_pass: 2026-09-12** ### The reader, read whole `0059A6F0` is **116 bytes
+   read   : 22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md:147
+            the jump, and `_aligned_malloc` takes two arguments.** Those > two stores cannot be read by anything. ### The namespace reader imposes no bound of its own — `0059A6F0`, 116 bytes, 
+
+0059C180
+   unread : 22-Middleware-PhyreEngine/Phyre-Asset-Container/the-packed-namespace-and-the-file-side-schema.md:224
+            | `0059C180` | the namespace byte-swap fixup — **not read** | — |
+   read   : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1826
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+   read   : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1847
+            | M-5 | PARTLY ANSWERED 2026-09-12 (FABLE): partly. What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration `FUN_00238260(i)` loop and 
+
+0059E070
+   unread : _index/OPEN-QUESTIONS.md:763
+            | PH-5 | what `r9` is. Its `+0x08` is the oversized copy's destination (`0059A52E`), which is enough to drive the fixture, but the object's own shape and lifetime are unread. | **A
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:763
+            | PH-5 | what `r9` is. Its `+0x08` is the oversized copy's destination (`0059A52E`), which is enough to drive the fixture, but the object's own shape and lifetime are unread. | **A
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:767
+            | PH-5 | what `r9` is. Its `+0x08` is the oversized copy's destination (`0059A52E`), which is enough to drive the fixture, but the object's own shape and lifetime are unread. | **A
+   read   : 22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md:577
+            26-09-15 (OPUS): `r9` is a second `PhyreNamespaceBuffer`, and it is a stack local of the only caller.** Both halves the row asked for are now read, from `0059E070` rather than from
+
+0059EE90
+   unread : _index/candidates/swe2contract-ddres-b14-0930/README.md:100
+            against archive names only.** A cached file from outside the archive is not covered. Q13 shows the install holds no loose `PS2Data` tree. - **The file layer `0059EE90` was not read
+   read   : 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md:250
+            ***Answered 2026-09-30 (SWE2-CONTRACT, DD batch 8), from the resolver `0059EE90` read whole (`b8` S1–S5):** the selector byte `+0x18` decides three things. - **The log line.** Sele
+   read   : 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md:332
+            | The selector's three effects, the forced 5 and the two helpers | `0059EE90` read whole; `b8` S1–S6 | 1 (static) |
+
+005FD050
+   unread : _index/candidates/hub-paragraph-address-accuracy.md:45
+            r anchor check passes them — `005FD050`'s anchor `005FD065` IS correct — so no existing gate sees this. A reader who resolves `032703C8` to find the singleton `005FD050` builds fin
+   read   : 19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md:569
+            | `00184380` (210 B) | the codec apply — `0085E730`, memset via `00861EC0`, then the `0061xxxx` text-conversion family `006160B0`/`0060DD70`/`00610990`/`00625F00`/`0061E200`/`0061F
+
+006388C0
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1103
+            | UQ-283 | **READ 2026-09-16 (FABLE) — they are not five different things. They are one operation applied to five members of one array.** All five open with the identical shape: `l
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1186
+            | UQ-283 | **READ 2026-09-16 (FABLE) — they are not five different things. They are one operation applied to five members of one array.** All five open with the identical shape: `l
+   read   : _index/candidates/auditspec-review-pass7-tiers-0930/REVIEW.md:23
+            class-instance-sizes-and-alignments.md`** — 6 rows: - four rows are pure body/scan claims (registrar fields `00632D80`/ `00632C90`, `+0x30` name readers `006388C0`/`PObjectAccessor
+   read   : 22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md:927
+            | The name hash and its collision handling | complete bodies of `006388C0` and `006311D0` | 1 |
+
+0063E410
+   unread : _index/OPEN-QUESTIONS.md:741
+            | PCD-5 | `0063E410`, called at the end of a successful rebind, is unread. | **ANSWERED 2026-09-14 (FABLE)** — read whole: it sums `+0xF0` over the descriptor and its ancestors (to
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:741
+            | PCD-5 | `0063E410`, called at the end of a successful rebind, is unread. | **ANSWERED 2026-09-14 (FABLE)** — read whole: it sums `+0xF0` over the descriptor and its ancestors (to
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:740
+            | PCD-5 | `0063E410`, called at the end of a successful rebind, is unread. | **ANSWERED 2026-09-14 (FABLE)** — read whole: it sums `+0xF0` over the descriptor and its ancestors (to
+   read   : _experiments/evidence/descriptor-lifetime-claim-boundary/retained/04-CONTRACT-phyre-class-descriptor.md:544
+            `PCD-3` is ANSWERED too — the base descriptor is `0x100` bytes and the dynamic one `0x140`, §3 — and `PCD-1` is SUPERSEDED, its last list carried by `BL-8`)*; `0063E410` **read 202
+   read   : 22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md:553
+            `PCD-3` is ANSWERED too — the base descriptor is `0x100` bytes and the dynamic one `0x140`, §3 — and `PCD-1` is SUPERSEDED, its last list carried by `BL-8`)*; `0063E410` **read 202
+
+006561D0
+   unread : 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:245
+            | `00648100` / `006561D0` | `PostProcessing.AtmosphereParameters` | not read |
+   read   : 22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md:415
+            lve passes, the character render method `001F7790` (15 reads) and the Phyre-side writers `0060E670`, `00654B00`, `00654FE0`, `006561D0` and `0067C440`. (`006561D0` interior read 20
+
+006B6700
+   unread : _index/FINAL-AUDIT-PROTOCOL.md:851
+            | **Finding 1 — a correction that reached the prose and not the index.** `class-descriptor-and-metadata-system.md` already carried a dated correction saying `006B6700` is *"a list-
+   unread : _index/FINAL-AUDIT-PROTOCOL.md:853
+            sses row still read **embedded-string destructor · not read**, and a later section still said two destructors *"destroy the embedded string at `+0x38` through `006B6700`"*. The bod
+   unread : _index/AUDIT-PASS13-ROUND1.md:43
+            | `006B6700` | 71 B | *"embedded-string destructor — not read"* | **DIFFERS — a list-unlink loop** |
+   read   : 22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md:245
+            | `006B6700` | **intrusive-list unlink loop** | ✅ read 2026-09-14 (OPUS, pass 13) |
+
+0070D360
+   unread : _index/OPEN-QUESTIONS.md:1242
+            | MT-3 | **ANSWERED 2026-09-15 (FABLE) — there are 23, not 22, and they are container-level operations rather than further runtime members.** The split was wrong by one in both dir
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:1240
+            | MT-3 | **ANSWERED 2026-09-15 (FABLE) — there are 23, not 22, and they are container-level operations rather than further runtime members.** The split was wrong by one in both dir
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:1347
+            | MT-3 | **ANSWERED 2026-09-15 (FABLE) — there are 23, not 22, and they are container-level operations rather than further runtime members.** The split was wrong by one in both dir
+   read   : 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md:266
+            . None of them is a runtime member — they **use** the node layout rather than implement it.* *And they close the node size from a third direction. `0070D360` read whole is the cano
+
+007980A0
+   unread : 22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md:487
+            therefore carry edges into five other subsystems, and each is named here with what the edge is. ### `007980A0` — the framework's start-up and message loop **`007980A0` is the frame
+   read   : 00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md:327
+            | `WinMain` is `007A3770` and calls `007980A0` | CJ-1, read 2026-09-12 | 1 |
+
+007A78B0
+   unread : 18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:1001
+            path does; 6. starts it with SEAD `007A78B0`, whose first float is **4.8** for a bit-5 bank and 0 otherwise (`002232AB`–`002232C1`). What 4.8 is (007A78B0's first float parameter) 
+   read   : 18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:310
+            eads "`Sound::SetVolume` `failed range over %f`" (2026-09-26, FABLE).* - **The start path** *(read 2026-09-26, FABLE, Claude Opus 5.5; static)*. `007A78B0` is SEAD's handle-level p
+
+007CF9A0
+   unread : _experiments/evidence/ov42-selector-fst-bound/source-preimages/03-OPEN-QUESTIONS.md:196
+            | G-1 | What the four selection implementations at **vtable slot 43** do. **`SwitchSound` CLOSED 2026-09-02** — proven: plays entry E iff `E.rangeMin <= parameter < E.rangeMax`. Re
+   unread : _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md:196
+            | G-1 | What the four selection implementations at **vtable slot 43** do. **`SwitchSound` CLOSED 2026-09-02** — proven: plays entry E iff `E.rangeMin <= parameter < E.rangeMax`. Re
+   read   : 18-Audio/Sound-Selection/sound-variant-selection.md:298
+            t line and §12.)* ***ANSWERED 2026-09-17 (FABLE): the three rules, read whole (§12).** A *set* is a run of consecutive candidates sharing the group byte `007CF9A0` returns (sequenc
+
+00861EBA
+   unread : _experiments/evidence/heading-commit-tail-supplement/retained/the-element-types-60-74.md:135
+            -steps call base + `0036A190` + `002F31C0` (seventh dispatcher) + own tails (`0052A8B0`/`0052B5E0`/`0054C6B0`/`0054E040`, `not read`); `0x72`–`0x74` also call `00861EBA`. Sub-walks
+   unread : _experiments/evidence/heading-commit-tail-supplement/retained/the-element-types-60-74.md:168
+            6C1D0`, `00532EF0`, `003697F0`, `0017FFD0`, `003D8E50`, `003A6E60`, `00541E00`/`00542060`/`005439A0`/`005450E0`/`00545120`/`00547DD0`/ `0054A9C0`, `00808C40`, `00861EBA`. **No play
+   read   : 00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:597
+            | Shared callees deliberately outside the census: `00434C50`, `003977B0`, `0039B550`, `0039A150`, `0024E410`, `00229E40`, `00399B80`, `00432300`, `0020E600`, `00861EBA`. Two of the
+   read   : _experiments/evidence/postmultiply-order-alias/retained/the-two-transform-primitives.md:584
+            | Shared callees deliberately outside the census: `00434C50`, `003977B0`, `0039B550`, `0039A150`, `0024E410`, `00229E40`, `00399B80`, `00432300`, `0020E600`, `00861EBA`. Two of the
+
+00861F14
+   unread : 17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md:611
+            stance from that bone's translation to the render object's position (`003E6F70(record)` → `+0x20/+0x24/+0x2C`; the difference is squared, summed and rooted at `00861F14`), and maps
+   read   : 00-Engine-Core-Runtime/Object-Model/vtable-method-index.md:2345
+            | `001F34F0` | `RazorMarkerPushObj` | 1 | `00837880` | `btStaticPlaneShape` | 14 — interior read 2026-09-17 (SWE2-FRONTIER): 1,165 B, `00861F14` ×3 + `00808C40`, first call [`00837
+   read   : 00-Engine-Core-Runtime/Object-Model/vtable-method-index.md:2379
+            | `0020CEF0` | `AmdAdapterInfo` | 0 | `0083F850` (interior read 2026-09-17, SWE2-FRONTIER: 1,041 B — `00861F14` at [`0083FB5F`](../../_index/ADDRESS-INDEX.md), near-leaf) | `DebugD
+
+A pair is not a defect. 'Unread' and 'read' can be about different things - a caller
+census versus a body, a field versus a function. The tool reports; a person judges.
