@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-TYPE6CENSUS-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the UQ-76 embedded typed-list census: 228 mrppack_ys.bin MRP units validated (0 issues), type-6 = blanked text slot (stringId -1), types 3/9 never authored.",
+  "scope": "a-typed-list-measured-once-and-built-in-one-allocation.md, members/gen_listtype_census_embedded.py, members/listtype-census-embedded.tsv, the-map-ctrl-pack.md, OPEN-QUESTIONS.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "packet": "action-selector-local-exclusions",
+    "manifest_sha256": "8221834782de76d5d53743a53d436240d9e3fd89adb8460e11f1017bdd82c81a",
+    "member": "special-selection-dispatch-raw-02.json",
+    "copy": "retained/action-selector-local-exclusions-special-selection-dispatch-raw-02.json",
+    "sha256": "524836337505ae35921868bbddb38a8baf68fd05501a3f950ebf7767f7cf2d96",
+    "bytes": 25679
+  },
+  {
+    "packet": "action-selector-local-exclusions",
+    "manifest_sha256": "8221834782de76d5d53743a53d436240d9e3fd89adb8460e11f1017bdd82c81a",
+    "member": "special-action-frozen-ready/action-selectors-01/tables/action_data_us.st2e",
+    "copy": "retained/action-selector-local-exclusions-special-action-frozen-ready--action-selectors-01--tables--action_data_us.st2e",
+    "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+    "bytes": 32612
+  },
+  {
+    "packet": "ov42-class20-action-admission",
+    "manifest_sha256": "67e7df297497326a5b98d9d21355923750442981e8121cfb4d4e7840de5e4d92",
+    "member": "special-admission-callers-raw-01.json",
+    "copy": "retained/ov42-class20-action-admission-special-admission-callers-raw-01.json",
+    "sha256": "dbf82f16cfcd2859b763bc5d0ab436be28a18458c0fd8f68a7ec75f55c9ba30f",
+    "bytes": 29513
+  },
+  {
+    "packet": "row113-equality",
+    "manifest_sha256": "12e3323d7635333a1368db1d49a51fbf4e2bb69845a86ddd5c65f2e3cd25aa29",
+    "member": "source-01.json",
+    "copy": "retained/row113-equality-source-01.json",
+    "sha256": "69050015f859c93c10530db44368a98b833d977997c2d8d23c49fb890b868f21",
+    "bytes": 22870
+  },
+  {
+    "packet": "row113-equality",
+    "manifest_sha256": "12e3323d7635333a1368db1d49a51fbf4e2bb69845a86ddd5c65f2e3cd25aa29",
+    "member": "result-01.json",
+    "copy": "retained/row113-equality-result-01.json",
+    "sha256": "d586eb007383ed55eba064537e9aa46edfc8c803340860d155c4a1168bbfce72",
+    "bytes": 12282
+  },
+  {
+    "packet": "row113-equality",
+    "manifest_sha256": "12e3323d7635333a1368db1d49a51fbf4e2bb69845a86ddd5c65f2e3cd25aa29",
+    "member": "proof-01.status.json",
+    "copy": "retained/row113-equality-proof-01.status.json",
+    "sha256": "b6a11a2092388ffe9646c78e09c66ea8b9a074e441c244aaff8f10875563f0cd",
+    "bytes": 626
+  },
+  {
+    "packet": "row113-equality",
+    "manifest_sha256": "12e3323d7635333a1368db1d49a51fbf4e2bb69845a86ddd5c65f2e3cd25aa29",
+    "member": "proof-01.stdout",
+    "copy": "retained/row113-equality-proof-01.stdout",
+    "sha256": "29fa0c307484911887a844f453a7d55a62eff0e2d7c8af496af36a53aae58ab7",
+    "bytes": 203
+  },
+  {
+    "packet": "row113-equality",
+    "manifest_sha256": "12e3323d7635333a1368db1d49a51fbf4e2bb69845a86ddd5c65f2e3cd25aa29",
+    "member": "proof-01.stderr",
+    "copy": "retained/row113-equality-proof-01.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "packet": "row113-equality",
+    "manifest_sha256": "12e3323d7635333a1368db1d49a51fbf4e2bb69845a86ddd5c65f2e3cd25aa29",
+    "member": "prove.py",
+    "copy": "retained/row113-equality-prove.py",
+    "sha256": "279406da5bef69f0f4bf425b86d53a17eb5a847ea05564ac0550d251db5ee553",
+    "bytes": 10752
+  },
+  {
+    "packet": "presentation-index-domain",
+    "manifest_sha256": "499a3e53e678069ec4c7424c2f2efbed3236d504c899fe93555cb85596a756eb",
+    "member": "source-01.json",
+    "copy": "retained/presentation-index-domain-source-01.json",
+    "sha256": "42f23e697ae838f07943f0a4a4b694193dbca1fe6bf99f81f445118c707f98c4",
+    "bytes": 25116
+  }
+]

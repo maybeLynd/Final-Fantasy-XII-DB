@@ -1,0 +1,36 @@
+{
+  "case": "failed-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\row113-equality\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\row113-equality\\proof-controls-01\\failed-capture\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\row113-equality\\proof-controls-01\\failed-capture"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "diagnostic": "RuntimeError: upstream capture failed/incomplete",
+  "expected_error": "RuntimeError: upstream capture failed/incomplete",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_path": "capture-01.status.json",
+  "changed_sha256": "f8d4dc367313289cb1bdfd89ce3d1e0431419e751aea2f1bb44ccfa5f10dd884",
+  "baseline_source_sha256": "69050015f859c93c10530db44368a98b833d977997c2d8d23c49fb890b868f21",
+  "baseline_retained_sha256": {
+    "ov42-class20-action-admission-manifest.json": "67e7df297497326a5b98d9d21355923750442981e8121cfb4d4e7840de5e4d92",
+    "ov42-class20-action-admission-special-admission-callers-raw-01.json": "dbf82f16cfcd2859b763bc5d0ab436be28a18458c0fd8f68a7ec75f55c9ba30f",
+    "presentation-index-domain-manifest.json": "499a3e53e678069ec4c7424c2f2efbed3236d504c899fe93555cb85596a756eb",
+    "presentation-index-domain-proof-01.status.json": "524c1d9e283fff652400cc5f4e4b434195f2a180cddc96d0567ad723ff1ebb04",
+    "presentation-index-domain-proof-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "presentation-index-domain-proof-01.stdout": "abc9be0f7e77c86a394f401902ffba49c2cc77dd458c0a0c76510359b689cba0",
+    "presentation-index-domain-prove.py": "5fea9a75ef253616cb921c29ef5f2dcb40201b869e6a73da07d33b36d6aa0a22",
+    "presentation-index-domain-result-01.json": "eb71114482f4b1a329ed941a01da3e72b6864609ef14de9394db05dd65d1a061",
+    "presentation-index-domain-source-01.json": "42f23e697ae838f07943f0a4a4b694193dbca1fe6bf99f81f445118c707f98c4"
+  },
+  "control_sha256": "bb6bd96deb3bffb05cce7f24abf60fcc9da85739fd9cf6648d48836b4cc7d69a",
+  "producer_sha256": "279406da5bef69f0f4bf425b86d53a17eb5a847ea05564ac0550d251db5ee553",
+  "passed": true
+}

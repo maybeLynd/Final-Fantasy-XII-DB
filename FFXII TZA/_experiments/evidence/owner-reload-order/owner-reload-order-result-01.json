@@ -1,0 +1,191 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_RELOAD_ORDER_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+  "source_pins": [
+    {
+      "path": "capture-owner-reload-order.py",
+      "sha256": "3386b653c3bffa9bb2fc4a8d43b49cc64f8384351a633ccdc7651a0df8ba8b24"
+    },
+    {
+      "path": "owner-reload-order-source-01.json",
+      "sha256": "e581b090e37f559144f18ab9c8e73dcbc6d9787fc8f92b78b02faa183244e9ec"
+    },
+    {
+      "path": "owner-reload-order-capture-01.status.json",
+      "sha256": "f5d9f2b9052188a67958ba71c7691614b7b2b412bdf2ec44bc92c46791ae1afa"
+    },
+    {
+      "path": "owner-reload-order-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "owner-reload-order-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-owner-reload-gate.py",
+      "sha256": "5798bf1d658ee73d2304e34dc91872dbc8249fcb7640e5a9d4609b7ebab20baa"
+    },
+    {
+      "path": "owner-reload-gate-source-01.json",
+      "sha256": "ac5a281d8cec2bd09716bb15647626a0ce535dfa0d7de2cc147053c912104e06"
+    },
+    {
+      "path": "owner-reload-gate-capture-01.status.json",
+      "sha256": "2231e78c5c673ac6c7a6f6d83e00363997097b801b1bf0ef913fb1d9bf72a6f2"
+    },
+    {
+      "path": "owner-reload-gate-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "owner-reload-gate-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "retained_dependency": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\bts-index-binding",
+    "manifest_sha256": "c57c6b668c5b567014a01c5da45dcbf7899645e4547a6bc310edce0972891abb",
+    "member": {
+      "path": "index-path-raw-02.json",
+      "bytes": 192936,
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12"
+    }
+  },
+  "partition": [
+    {
+      "group": 0,
+      "live_gate": false,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": false,
+      "named_waits": [],
+      "visited_instructions": 127,
+      "normal_return": true
+    },
+    {
+      "group": 0,
+      "live_gate": true,
+      "byte_gate_nonzero": false,
+      "owner_delete_site": true,
+      "named_waits": [],
+      "visited_instructions": 320,
+      "normal_return": true
+    },
+    {
+      "group": 0,
+      "live_gate": true,
+      "byte_gate_nonzero": true,
+      "owner_delete_site": true,
+      "named_waits": [
+        "0x262af2",
+        "0x262b0d",
+        "0x262b1e"
+      ],
+      "visited_instructions": 363,
+      "normal_return": true
+    },
+    {
+      "group": 1,
+      "live_gate": false,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": false,
+      "named_waits": [],
+      "visited_instructions": 121,
+      "normal_return": true
+    },
+    {
+      "group": 1,
+      "live_gate": true,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": true,
+      "named_waits": [],
+      "visited_instructions": 198,
+      "normal_return": true
+    },
+    {
+      "group": 2,
+      "live_gate": false,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": false,
+      "named_waits": [],
+      "visited_instructions": 121,
+      "normal_return": true
+    },
+    {
+      "group": 2,
+      "live_gate": true,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": true,
+      "named_waits": [],
+      "visited_instructions": 198,
+      "normal_return": true
+    },
+    {
+      "group": 3,
+      "live_gate": false,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": false,
+      "named_waits": [],
+      "visited_instructions": 126,
+      "normal_return": true
+    },
+    {
+      "group": 3,
+      "live_gate": true,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": true,
+      "named_waits": [],
+      "visited_instructions": 197,
+      "normal_return": true
+    },
+    {
+      "group": 4,
+      "live_gate": false,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": false,
+      "named_waits": [],
+      "visited_instructions": 121,
+      "normal_return": true
+    },
+    {
+      "group": 4,
+      "live_gate": true,
+      "byte_gate_nonzero": null,
+      "owner_delete_site": true,
+      "named_waits": [],
+      "visited_instructions": 164,
+      "normal_return": true
+    }
+  ],
+  "gate": {
+    "address": "0x22cb726",
+    "width": 1,
+    "load": "MOVSX EAX,BYTE;RET",
+    "timing": "value when3603C0 executes, not assumed entry value"
+  },
+  "established": [
+    "Retained32FCA0 normal local CFG unload2628B0 precedes its reset32ED80, auxiliary request32FF0B and primary330310 entry. This existing caller evidence is reused, not a new allcaller census.",
+    "In2628B0, the named3DD380 group deletion site is selected by the observed slot live-bit gate. All three named32E520(0) waits are reachable only for group0/live and nonzero3603C0 byte gate; on any normal return in that partition deletion precedes all three waits.",
+    "The other ten equivalent group/live/gate partitions have no named local32E520 site, including live group0 with gate zero. A universal local unload-drain premise is refuted. Unobserved opaque/transitive callbacks may still wait or submit elsewhere.",
+    "330310 normal positive-size primary path stages callback3304A0 and packed low32 allocation pointer OR group in descriptor+8; D4/nonNULL override instead copies then directly invokes3304A0. Queue admission/IO/callback scheduling remain separate.",
+    "3304A0 conditionally dispatches section+10 through32F850, not the incoming destination argument. Count>0, nonzero offset and nonzero pointer sum gate it; low32 pointer/tag packing is preserved.32F850 binds through26C8C0 only on a nonzero first section byte and a selected supported arena branch. Binder reset3DD790 remains the prior conditional original body result."
+  ],
+  "limits": [
+    "Local CFG includes opaque normally returning direct and indirect callees; normal ABI preserves group registers. No transitive pump/drain absence, EH/unwind, concurrency, reentry or natural entry closure.",
+    "Branch partitions concern values at actual tests, not portable constructor defaults, stable entry live-bit or byte gate. No assertion any synthetic combination occurs naturally.",
+    "Callback code proves behavior IF reached; allocation success, queue descriptor consumption, initialized resources, tag alignment/low-address validity, callback timing and reset-versus-pending-request lifetime remain separate.",
+    "Prior SECTION09 controlled machine-code results, GR17 reviewer/census and bts retained sources are dependencies/corroboration, not new runs or automatic semantic acceptance.",
+    "Eleven bounded CFG partitions are static computations, not machine-code experiments. No whole OV19/21 closure or safe reload award."
+  ],
+  "affected_claims": [
+    "FABLE indexed owner/reset caller ordering and explicit reload barrier preconditions",
+    "OPUS persistent owner lifetime and ActorManagerSlot/payload callback contract"
+  ],
+  "next_discriminator": "Trace/prove whether queued indexed-owner requests can remain for the same group when this gated reload reaches3DD790. First reuse original32ED80 and accepted callback-delivery/cancellation/producer evidence; no absence-sampling or gameplay just for local branches.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only sources/disposable controls; no process/game/save/configuration/reference writes"
+}

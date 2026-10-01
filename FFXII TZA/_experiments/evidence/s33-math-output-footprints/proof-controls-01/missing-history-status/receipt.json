@@ -1,0 +1,39 @@
+{
+  "case": "missing-history-status",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-math-output-footprints\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-math-output-footprints\\proof-controls-01\\missing-history-status\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-math-output-footprints\\proof-controls-01\\missing-history-status"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "KeyError: 's33-history-counter-bounds/proof-01.status.json'",
+  "expected_error": "KeyError: 's33-history-counter-bounds/proof-01.status.json'",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_file": "retained/s33-history-counter-bounds-proof-01.status.json",
+  "changed_sha256": null,
+  "inherited_from_baseline": {
+    "capture.py": "106c5c586d6225e3762ba625c5fc3fb3c9a89795c3e8469af78fad78e802d6c5",
+    "capture-01.status.json": "ce92799df0dac3bded8d20ed5cbb84d3aad7f3a18f8db3c8b02c4155ea632d0d",
+    "capture-01.stdout": "7d654330b0b722b1b29b023d04e1135590455f436b38750531c16705d51b0925",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source-01.json": "3237c99aafed367e41848dad9a6bbcccc5969a17dd259d9d79e3a9f4ca69cc20",
+    "retained/matrix-buffer-alias-manifest.json": "f4f460958fbc47c7c1d841663afad3011601df5ceb0ce54f8ef25f94d6c97fc0",
+    "retained/matrix-buffer-alias-source.json": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500",
+    "retained/s33-history-counter-bounds-manifest.json": "eccff61b054257998fe40886c59f76c8cb70b55152a568b78c586c03a2b07be1",
+    "retained/s33-history-counter-bounds-proof-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "retained/s33-history-counter-bounds-proof-01.stdout": "844e6cdb1d9a15544be7825c24e01e9460279b2594a26e4e7996960718cc1a0a",
+    "retained/s33-history-counter-bounds-prove.py": "88533b07b755767150f60b5f9eac805bfc97f5e2d82d3144e777022601cdafdc",
+    "retained/s33-history-counter-bounds-result-01.json": "4d9e2864cd4c496c074b275fec08b720a919b992e6ab03ce4641daa50ed6f4fa",
+    "retained/s33-history-counter-bounds-source-01.json": "891b7858ba819f3809bcbece72c702af33a5817f97301ca64a5a8b00f8b94b8f"
+  },
+  "producer_sha256": "ad125d4b408cfb658bbdd7cf7e6204e00eeaf09569872880077e5ef1c35b7630",
+  "control_sha256": "197a52de10ef1020906b5105a060f5760204144b69bac5e7acc0f50ed1b9a6a6",
+  "passed": true
+}

@@ -1,0 +1,30 @@
+{
+  "case": "failed-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\proof-controls-01\\failed-capture\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\proof-controls-01\\failed-capture"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "RuntimeError: upstream capture failed/incomplete",
+  "expected_error": "RuntimeError: upstream capture failed/incomplete",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_file": "capture-01.status.json",
+  "changed_sha256": "6860c46e339e9c65bdcb9a04a06cff477789319d02fdce1c7c1416e5bbb1ad5e",
+  "inherited_from_baseline": {
+    "capture.py": "67dd99ddb878e5ca24697c036d1f40c34e202b5e8ebf463a338eac06c43f7c1f",
+    "capture-01.stdout": "1cfc1378fe0fcb8a9cedc2f52eead3f721687554aaab8a50d76890bc6905d630",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source-01.json": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+  },
+  "producer_sha256": "d66d21f288d75946abfb07823967e08dbfef5a39cf1fb3e58fa5b52ca96345d7",
+  "control_sha256": "a1d309009a51cc2a2cdf2e1301652adc693ea117fe27518dc218854e48294922",
+  "passed": true
+}

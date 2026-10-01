@@ -1,0 +1,237 @@
+{
+  "status": "PRODUCER_CHECKED_BOUNDED_LOOP_INDEPENDENT_PENDING",
+  "method": "A original source + induction/bounded arithmetic",
+  "question": "Does0030E6C7 inherit incoming outerR8B?",
+  "answer": "No. Reached initialization resetsEDI fromEDX0; the32-bit mask loop supplies fresh bit index0..31. Bound independent of outerR8B; branch/resource validity and ordinarycalleeABI remain premises.",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "10561e568f97d9a9f8251d749bf47af5a68be34b512f5100406e834bd7827cae",
+  "capture_status_sha256": "8f3cd8ebb7fffe28cb1e35b6a51013012c077e50dce221acd49efd4f8d4f3af4",
+  "checker_sha256": "c64af37156bbaf73923c3e7baa434760e6fd44f59e52b0ad026595fae702684e",
+  "annotations": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 59,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "counter_local_writes": [
+    "0x30e69a",
+    "0x30e6d2"
+  ],
+  "bounded_arithmetic_states": [
+    {
+      "before": 0,
+      "argument": 0,
+      "after": 1,
+      "continues": true
+    },
+    {
+      "before": 1,
+      "argument": 1,
+      "after": 2,
+      "continues": true
+    },
+    {
+      "before": 2,
+      "argument": 2,
+      "after": 3,
+      "continues": true
+    },
+    {
+      "before": 3,
+      "argument": 3,
+      "after": 4,
+      "continues": true
+    },
+    {
+      "before": 4,
+      "argument": 4,
+      "after": 5,
+      "continues": true
+    },
+    {
+      "before": 5,
+      "argument": 5,
+      "after": 6,
+      "continues": true
+    },
+    {
+      "before": 6,
+      "argument": 6,
+      "after": 7,
+      "continues": true
+    },
+    {
+      "before": 7,
+      "argument": 7,
+      "after": 8,
+      "continues": true
+    },
+    {
+      "before": 8,
+      "argument": 8,
+      "after": 9,
+      "continues": true
+    },
+    {
+      "before": 9,
+      "argument": 9,
+      "after": 10,
+      "continues": true
+    },
+    {
+      "before": 10,
+      "argument": 10,
+      "after": 11,
+      "continues": true
+    },
+    {
+      "before": 11,
+      "argument": 11,
+      "after": 12,
+      "continues": true
+    },
+    {
+      "before": 12,
+      "argument": 12,
+      "after": 13,
+      "continues": true
+    },
+    {
+      "before": 13,
+      "argument": 13,
+      "after": 14,
+      "continues": true
+    },
+    {
+      "before": 14,
+      "argument": 14,
+      "after": 15,
+      "continues": true
+    },
+    {
+      "before": 15,
+      "argument": 15,
+      "after": 16,
+      "continues": true
+    },
+    {
+      "before": 16,
+      "argument": 16,
+      "after": 17,
+      "continues": true
+    },
+    {
+      "before": 17,
+      "argument": 17,
+      "after": 18,
+      "continues": true
+    },
+    {
+      "before": 18,
+      "argument": 18,
+      "after": 19,
+      "continues": true
+    },
+    {
+      "before": 19,
+      "argument": 19,
+      "after": 20,
+      "continues": true
+    },
+    {
+      "before": 20,
+      "argument": 20,
+      "after": 21,
+      "continues": true
+    },
+    {
+      "before": 21,
+      "argument": 21,
+      "after": 22,
+      "continues": true
+    },
+    {
+      "before": 22,
+      "argument": 22,
+      "after": 23,
+      "continues": true
+    },
+    {
+      "before": 23,
+      "argument": 23,
+      "after": 24,
+      "continues": true
+    },
+    {
+      "before": 24,
+      "argument": 24,
+      "after": 25,
+      "continues": true
+    },
+    {
+      "before": 25,
+      "argument": 25,
+      "after": 26,
+      "continues": true
+    },
+    {
+      "before": 26,
+      "argument": 26,
+      "after": 27,
+      "continues": true
+    },
+    {
+      "before": 27,
+      "argument": 27,
+      "after": 28,
+      "continues": true
+    },
+    {
+      "before": 28,
+      "argument": 28,
+      "after": 29,
+      "continues": true
+    },
+    {
+      "before": 29,
+      "argument": 29,
+      "after": 30,
+      "continues": true
+    },
+    {
+      "before": 30,
+      "argument": 30,
+      "after": 31,
+      "continues": true
+    },
+    {
+      "before": 31,
+      "argument": 31,
+      "after": 32,
+      "continues": false
+    }
+  ],
+  "inheritance_counterexample": {
+    "outer_byte": 31,
+    "selected_metadata_mask": "0x10",
+    "recursive_argument": 4,
+    "limits": "Conditional loop-entry/mask witness, not a natural initialized resource or original-code execution"
+  },
+  "affected_claims": [
+    "SWE2-STRUCT caller cone0030E6C7 line: inheritedouterbyte -> bounded maskbit loop",
+    "FABLE/OPUS compositional region-A status argument bounds"
+  ],
+  "limitations": [
+    "Local path through30E682/686, validrow atRCX and nonzero32-bit mask required for recursion",
+    "Normal ABI preserves nonvolatileEDI across0030E360 and backing callerframe/metadata stable as required; noexception or arbitrarymemory interference guarantee",
+    "Not a complete fullfunction/caller census or proof that outerarbitrarybyte/state is safe",
+    "No nativecallback effect, natural branch/resource binding/scheduling/lifetime or playerpresentation proof",
+    "32 enumeration states are arithmetic proof controls, not32 original-code executions"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Finite read-only source analysis; noPC/game/nativeinstrument/save/config/reference/peerprocesswrites"
+}

@@ -1,0 +1,65 @@
+{
+  "candidate_commit": "059ee3a6ccf9f4d5b49ef52deb61d1be75bde1e9",
+  "members": [
+    {
+      "path": "status-before.body",
+      "bytes": 1123,
+      "sha256": "5ad781812c1d6a780dc76bb2ab32b268b9571ce8df5480b99885f324dbf1c17c",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "status-after.body",
+      "bytes": 1123,
+      "sha256": "5ad781812c1d6a780dc76bb2ab32b268b9571ce8df5480b99885f324dbf1c17c",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-progress.body",
+      "bytes": 205285,
+      "sha256": "55933018fc75d23515a333bf5cfb42234f04f77b24e73784673b002ce32321c6",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-overview.body",
+      "bytes": 17037,
+      "sha256": "ed2bf5fa2e9d9a1e3cf0d548b1abacdd6ffe27632713095f4c4847211a56267e",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-systems.body",
+      "bytes": 42243,
+      "sha256": "e78fcd15a53fe269334d712415dd14f35fde76efc57687d650c9b0923b6ea020",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-vbf.body",
+      "bytes": 11554,
+      "sha256": "b74f8787fd13eb031dce377879cc8a19380cfa83874b0c1b268ff19d482dc749",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-executable.body",
+      "bytes": 17100,
+      "sha256": "fd5c94d67aad54018a8b8b08ef1c9126a7b1c66494affbdb6fa8ae6aa90bf524",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-types.body",
+      "bytes": 1671,
+      "sha256": "aec70263e24c154f508b13b595306a659a4c942d946e93f1401c35304346917f",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-evidence.body",
+      "bytes": 3069,
+      "sha256": "8b274a2378156ee1273ebb89cd8c7feab52afd58d86d927e5b2a5be37a52f083",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    },
+    {
+      "path": "view-fleet.body",
+      "bytes": 2266,
+      "sha256": "387ce07a712320807c39adc93134a2d49396e4d977db4d4571f8c4bc2685c728",
+      "observer": "FRONTIER retained run; not ASTRA capture"
+    }
+  ]
+}

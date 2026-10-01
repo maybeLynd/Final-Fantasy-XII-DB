@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+003DC2D0	VMNativeCommandDispatch_InitializeFamilyTables	003DC2E8	0x0	w	rep stosq qword ptr [rdi], rax	route-seeded STATIC 0x02B57EF0 base+0x0	

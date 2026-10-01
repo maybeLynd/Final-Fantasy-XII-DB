@@ -1,0 +1,31 @@
+{
+  "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md",
+  "sha256": "f61b3d5dca749408c7300a4c9698a1e395e4af9b394c1324b1947796b5974b79",
+  "relevant": [
+    {
+      "line": 200,
+      "text": "The 128-entry table is now a store type: **`NameBindingEntry`** (`0x40`), `PARRAY 0x0215FDA0"
+    },
+    {
+      "line": 204,
+      "text": "find-by-id walk compares), `+0x18` stateFlags (bit 1 = ready, `002E4C20`), `+0x19` pinFlags"
+    },
+    {
+      "line": 286,
+      "text": "      ***ANSWERED 2026-09-17 (FABLE): a bound record is the `NameBindingEntry` the store declares, plus a holder mask at `+0x20`, a stamp that is sixteen bits wide, and three offsets nothing touches.** The 2026-09-18 declaration on this page names `+0x00` prev, `+0x08` next, `+0x10` auxHandle, `+0x14` boundId, `+0x18` stateFlags, `+0x19` pinFlags, `+0x1A` own slot, `+0x1C` refcount, `+0x1E` subTableIndex, `+0x24` stamp, `+0x28` requestMask, `+0x2C` readyMask and `+0x30`..`+0x3B` the three subResourceIds; the allocator `002E25E0` zeroes exactly `+0x10`, `+0x14` (the id), `+0x18`, `+0x1C`, `+0x1E` (set to the free index), `+0x20`, `+0x26`, `+0x28`..`+0x2F`, `+0x30`..`+0x3B` (`002E25FA`..`002E262B`). What that leaves: **`+0x20` is a word of per-selector holder bits.** `002EB540` inserts the entry into the list headed at `0215FD78`, sets pinFlags bit 3 and sets bit `selector` of the word (`bts`, `002EB5B1`..`002EB5B9`); `002EAE20` does the same insertion and sets bit 0 (`002EAE87`); `002E3E20(selector, direction)` walks the list headed at `0215FD58` and clears that bit when the direction is positive or the whole word when it is negative (`002E3E50`, `002E3E58`), then, when refcount `+0x1C` is not positive, the word is empty and pinFlags bits 0..1 are clear, calls the re-lister `002EAEB0` (`002E3E5C`..`002E3E6E`): an entry is held while any selector's bit is up, and released when the last one drops. `002E6EB0` also packs the word into the high half of the tag it hands the resource requester `0032E620` (`002E6FC3`..`002E6FCA`). **The stamp is sixteen bits.** The allocator, the release `002E9360` (`002E944E`) and the re-lister `002EAEB0` (`002EAEFF`) each increment the dword `+0x24` and then zero the word `+0x26`, so the high half of the dword is always 0 and the stamp is the u16 that fits the handle's high half. **`+0x1B`, `+0x22` and `+0x3C` are touched by nothing** in the module `002E2000`..`002EC000`: every `+0x22` and `+0x3C` access there belongs to the `0x120`-byte sub-record (`002E9470`, `002E3F00`, `002E4000`, `002EB890`, which read `+0x5C` beside them) or to another object (`002E6900`, `rbx-0x10`), and `+0x1B` has no access at all. Static, module-wide offset census and the bodies read.*"
+    },
+    {
+      "line": 603,
+      "text": "## SWE2-EC7-70 update (2026-09-19) - `002EB540` NameBindingEntry find-or-create measured"
+    },
+    {
+      "line": 606,
+      "text": "walks the `0215FD58` then `0215FD78` lists for the entry whose `+0x14`"
+    },
+    {
+      "line": 608,
+      "text": "onto the `0215FD78` head (with the old head's `+0` backlink), and ORs"
+    }
+  ],
+  "limits": "Canonical type/list premise snapshot, not independent acceptance of new producer semantics"
+}

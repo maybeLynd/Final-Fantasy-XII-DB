@@ -1,0 +1,62 @@
+{
+  "status": "PASS_ACTUAL_QUEUE_ORDER_PREREQUISITE_REFUSALS",
+  "driver_sha256": "b87dfa158860fe3c6e0dab0bad6ae6a0323701fc4a18d7f28099826db252a1ff",
+  "cases": [
+    {
+      "tag": "failed-qualifier",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_queue_order.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\failed-qualifier\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\failed-qualifier"
+      ],
+      "exit": 1,
+      "expected_refusal": "required qualifier failed/stale",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-tail-flag",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_queue_order.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\changed-tail-flag\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\changed-tail-flag"
+      ],
+      "exit": 1,
+      "expected_refusal": "retained original body hash changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-retirement",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_queue_order.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\missing-retirement\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\missing-retirement"
+      ],
+      "exit": 1,
+      "expected_refusal": "required range population missing/changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-table",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_queue_order.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\missing-table\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-controls-01\\missing-table"
+      ],
+      "exit": 1,
+      "expected_refusal": "required pump table missing",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    }
+  ]
+}

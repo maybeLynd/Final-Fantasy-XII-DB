@@ -1,7 +1,7 @@
 ---
 system: The file schema against the runtime schema — joining .phyre's own class table to the recovered field list
 category: 22-Middleware-PhyreEngine
-status: DOCUMENTED - was REOPENED; the trigger (the 2026-09-07 Route 1 error) is resolved (section 3b rewritten, CL-1 / CL-2 and SD-64..SD-67 answered), and a non-author falsification pass on 2026-10-01 SURVIVED (Route 4, all 21 descriptors live RTTI) (owner re-status 2026-10-01, OPUS, on SWE2-STRUCT's swe2struct-reopened3-0930)
+status: AUDITED - was REOPENED; the trigger (the 2026-09-07 Route 1 error) is resolved (section 3b rewritten, CL-1 / CL-2 and SD-64..SD-67 answered), and a non-author falsification pass on 2026-10-01 SURVIVED (Route 4, all 21 descriptors live RTTI) (owner re-status 2026-10-01, OPUS, on SWE2-STRUCT's swe2struct-reopened3-0930)
 owner_layer: CodeDomain:Middleware.PhyreEngine
 evidence_tier: 3
 verified_against:
@@ -25,8 +25,9 @@ audit:
   last_pass: 2026-10-01
   last_pass_kind: falsification
   last_pass_state: swe2struct-falsification-2026-10-01 - Route 4 SURVIVED (22 bare, 21 descriptor, 21 accessor, 0 absent; all 21 descriptors live RTTI)
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 1
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record swe2struct-falsification-2026-10-01; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours covered inline (no dedicated section; fresh audit reports 0 unaccounted); killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The file schema against the runtime schema

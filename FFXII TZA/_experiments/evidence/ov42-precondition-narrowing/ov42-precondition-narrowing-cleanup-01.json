@@ -1,0 +1,32 @@
+{
+  "status": "CHECKED_TERMINAL_OFFLINE_ONLY",
+  "original_commit": "318e510c6692309620b468b4d6101582072d8019",
+  "immutable_preimages": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/special-admission-raw-01.json",
+      "sha256": "33276301865c4c6aca31720248a0afe6c6832924b97bd40e754abdc2b45c307a"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/special-admission-result-01.json",
+      "sha256": "3dc3cf887ab793d60f4647371361cf82071cbb824cf5c7606758c204e0224dc1"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/check-special-admission.py",
+      "sha256": "a39533b2fd1b32358935238fa1da0c66d681ffd4bb7cd6b98a8e15c184dc6001"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/action-selectors-01/result.json",
+      "sha256": "0c7cbbebc515e2a9be7db0d10657c468f944222dd01dd61e391f475c98063dd3"
+    }
+  ],
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_raw_sha256": "33276301865c4c6aca31720248a0afe6c6832924b97bd40e754abdc2b45c307a",
+  "capture_driver_sha256": "4848eafdb0168a2fdc4eb7c05e501a22a130129cdbd03bdfa7000514c0eb8d51",
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "no_reference_save_config_game_pc_or_peer_process_writes": true,
+  "all_own_children_terminal": true,
+  "limits": "Offline file/CLI ownership cleanup, not global process inventory or live-game health verification",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0
+}

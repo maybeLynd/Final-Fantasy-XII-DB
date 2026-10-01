@@ -1,7 +1,7 @@
 ---
 system: Choosing the field environment variant
 category: 03-World-Area-Field
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS) — ~~what the selector's three states mean to a player is not established~~ the selector is the field's weather slot, one of three authored weather configurations (CONTRACT-weather section 1, reconciled 2026-09-30); GB-1 (defect or design of the two-slot divergence) is NO ADMISSIBLE SOURCE; 00377850 (the 3-bit weather preset extractor) and 002E3D40 (the weather-to-presentation refresh) read 2026-09-18 (status line current 2026-09-30, SWE2-DATA)
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS) — ~~what the selector's three states mean to a player is not established~~ the selector is the field's weather slot, one of three authored weather configurations (CONTRACT-weather section 1, reconciled 2026-09-30); GB-1 (defect or design of the two-slot divergence) is NO ADMISSIBLE SOURCE; 00377850 (the 3-bit weather preset extractor) and 002E3D40 (the weather-to-presentation refresh) read 2026-09-18 (status line current 2026-09-30, SWE2-DATA)
 owner_layer: PrimaryOwner:WorldAreaField
 evidence_tier: 1
 verified_against:
@@ -26,8 +26,9 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: first-read-repos-55
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record first-read-repos-55; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Choosing the field environment variant

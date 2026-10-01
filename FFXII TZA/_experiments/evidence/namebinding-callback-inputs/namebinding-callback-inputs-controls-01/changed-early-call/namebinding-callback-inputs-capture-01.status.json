@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-namebinding-callback-inputs.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-source-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "5b4d3d6d9d1adc4bbea6e0693d665fd3150ad1dd35406641f796b2e6596db36a"
+}

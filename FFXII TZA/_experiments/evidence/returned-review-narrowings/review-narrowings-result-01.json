@@ -1,0 +1,80 @@
+{
+  "status": "PRODUCER_CORRECTED_RETURNED_NARROWINGS_INDEPENDENT_REPAIR_PENDING",
+  "producer_complete": true,
+  "method": "A retained primary bytes + returned independent review + focused reducer controls; no native/live execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "index-path-raw-02.json",
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12",
+      "annotation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 780,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      }
+    },
+    {
+      "path": "special-override-control-raw-01.json",
+      "sha256": "b34df909103976d7f4ccb454f70254bfd7865a554cfe7492d82d52a1463150eb",
+      "annotation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 1198,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      }
+    },
+    {
+      "path": "special-override-constructor-raw-01.json",
+      "sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656",
+      "annotation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 182,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      }
+    }
+  ],
+  "questions": [
+    "Apply domain input-specific corrupt-state narrowing to actual producer",
+    "Connect FST full-index size lookup to the exact32FD99/32FECA path and reject the narrowed lookup model",
+    "Reconcile existing pointer-source repair and already accepted canonical consumers without repeating them"
+  ],
+  "established": [
+    "Domain default now names increment9/index8 versus decrement8/index7 and negative decrement-1/index-2; conditional initialized0..8 invariant unchanged.",
+    "FST full signed32 base+1 ->32FD99 ->stack+A8 ->32FECA/JL now pinned. Group4 code exclusions and +1-only/sibling limits explicit. Signed-size0 passes branch; retained counts unchanged.",
+    "Actual wrong-model CLI passes valid input/annotation prerequisites then refuses before-table retained lookup; no result. It is not native execution/fault evidence."
+  ],
+  "existing_pointer_repair": {
+    "commit": "d63804f9708749d20837d2485d5206b24685a332",
+    "record": "Database/FFXII TZA/_experiments/evidence/returned-softedges-source-prerequisite-repair/returned-softedges-source-repair-summary-01.md",
+    "meaning": "Guard-setting operations and shader resource pin already fixed/default actual path;229-member immutable original packet now delivered across4 guarded explicit-path commits. Its independent repair review remains separate."
+  },
+  "consumers": {
+    "already_correct_semantics": "FABLE98851f13d/_index/candidates/astra-returns-fable-0930/README.md consumed actual review narrowings; no duplicate FABLE semantic request.",
+    "required": "Independent review of new domain/FST producer repair and exact source/model control; existing Phyre repair review/canonical follow-through remains its own route."
+  },
+  "dependencies": {
+    "old_index_manifest_sha256": "2b403fa72c66a27f23ef9fcd56b1a2d7ed80bece3bb0dd025ccc84063c0711bd",
+    "old_index_all_members_verified": 31,
+    "fst_tables": "Reuse exact12 fst inputs from immutable old packet; no redistributed EXE or repeated export.",
+    "reviews": [
+      "Database/FFXII TZA/_index/candidates/auditspec-review-astra-special-override-domain-0930/REVIEW.md",
+      "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-fst-bounds-0930/REVIEW.md",
+      "Database/FFXII TZA/_index/candidates/auditspec-review-astra-softedges-pointer-keys-0930/REVIEW.md"
+    ]
+  },
+  "limits": [
+    "No universal selector domain, same-object identity/no-overwrite, writer/alias/lifetime, natural rejected request, native initialized resource or game presentation proof.",
+    "Legacy producers/results/manifest remain unchanged; new results qualify them additively.",
+    "Reviewer censuses/interpretations are external corroboration, never additional tests run here.",
+    "New whole runtime-row closures0; four scoped historical runtime needs already source-eliminated, not recounted."
+  ],
+  "cleanup": "Finite offline files/CLI only; no PC/game/process/instrument/save/config/reference/peer edits; menu parked spent/unapproved,EXP127invalid; fullgoalACTIVE/NOT_MET"
+}

@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "case": "unrelated-upstream-fail",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\reduce.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\unrelated-upstream-fail\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\unrelated-upstream-fail"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "RuntimeError: required collector status failed/stale resume-01",
+      "expected": "RuntimeError: required collector status failed/stale resume-01",
+      "result_absent": true,
+      "stdout_empty": true,
+      "producer_sha256": "ef80b0dd0b50d3df53acfb2ebea454bb0a8fcb3ffa6ea64c36fd663cb317d153",
+      "control_sha256": "437a2c994c8a354c459f5bf63b7c0a594db6be1b6f1b219e49bf267a88ea16ae",
+      "passed": true
+    },
+    {
+      "case": "empty-suffix",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\reduce.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\empty-suffix\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\empty-suffix"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "RuntimeError: missing/duplicate composite entry",
+      "expected": "RuntimeError: missing/duplicate composite entry",
+      "result_absent": true,
+      "stdout_empty": true,
+      "producer_sha256": "ef80b0dd0b50d3df53acfb2ebea454bb0a8fcb3ffa6ea64c36fd663cb317d153",
+      "control_sha256": "437a2c994c8a354c459f5bf63b7c0a594db6be1b6f1b219e49bf267a88ea16ae",
+      "passed": true
+    },
+    {
+      "case": "coherent-gap-literal",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\reduce.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\coherent-gap-literal\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\coherent-gap-literal"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "RuntimeError: gap whole-byte control changed",
+      "expected": "RuntimeError: gap whole-byte control changed",
+      "result_absent": true,
+      "stdout_empty": true,
+      "producer_sha256": "ef80b0dd0b50d3df53acfb2ebea454bb0a8fcb3ffa6ea64c36fd663cb317d153",
+      "control_sha256": "437a2c994c8a354c459f5bf63b7c0a594db6be1b6f1b219e49bf267a88ea16ae",
+      "passed": true
+    }
+  ],
+  "limits": "Actual reducer CLI controls; no archive reread/native/game tests, prefix budget failure never declared successful."
+}

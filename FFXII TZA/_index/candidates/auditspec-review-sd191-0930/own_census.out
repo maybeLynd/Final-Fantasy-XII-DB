@@ -1,0 +1,43 @@
+ebp files: 10045
+files w/o parseable dir: 0 | decode anomalies: 0
+total CALL-family instructions: 16666842
+control setposparty (0x3B1) calls: 7092
+target-verb calls: 738
+  0x191 setpossummonspace            243
+  0x195 resumeposbattletarget        126
+  0x202 disposepartywithoutcontrol   117
+  0x205 changetosummonparty          117
+  0x232 capturepartyforsummon        117
+  0x2A3 duplicatepartyinfo_spattack  9
+  0x2A4 resumepartyinfo_spattack     9
+files containing them: 243
+distinct zone paths: 27
+  D:/FFXII_TZA_extract/ps2data/event/spc_z/spc_z0000/spc_z0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_a/sum_a0000/sum_a0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_a/sum_a0001/sum_a0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_b/sum_b0000/sum_b0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_b/sum_b0001/sum_b0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_c/sum_c0000/sum_c0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_c/sum_c0001/sum_c0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_d/sum_d0000/sum_d0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_d/sum_d0001/sum_d0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_e/sum_e0000/sum_e0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_e/sum_e0001/sum_e0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_f/sum_f0000/sum_f0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_f/sum_f0001/sum_f0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_g/sum_g0000/sum_g0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_g/sum_g0001/sum_g0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_h/sum_h0000/sum_h0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_h/sum_h0001/sum_h0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_i/sum_i0000/sum_i0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_i/sum_i0001/sum_i0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_j/sum_j0000/sum_j0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_j/sum_j0001/sum_j0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_k/sum_k0000/sum_k0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_k/sum_k0001/sum_k0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_l/sum_l0000/sum_l0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_l/sum_l0001/sum_l0001.ebp       18
+  D:/FFXII_TZA_extract/ps2data/event/sum_m/sum_m0000/sum_m0000.ebp       36
+  D:/FFXII_TZA_extract/ps2data/event/sum_m/sum_m0001/sum_m0001.ebp       18
+per-language: {'ch': 82, 'cn': 82, 'de': 82, 'es': 82, 'fr': 82, 'in': 82, 'it': 82, 'kr': 82, 'us': 82}
+raw-pattern upper bound (undecoded): 1369

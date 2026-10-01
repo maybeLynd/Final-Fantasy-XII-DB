@@ -1,0 +1,5 @@
+{
+  "original_method_sha256": "13535e6a669ac4f8c7b3179fcedf12a4f703236995867641c5fdbf5e44b524e0",
+  "preparation": "Two additional small primary boundaries (pump217B prefix plus59B done helper) and24B six-entry table are needed to establish callback operation, rather than relying only on queue prose. No full queue experiment campaign or capture required.",
+  "limits": "Conditional state1/zero-byte/gate0/non-null callback path; other pump states/timing not newly established"
+}

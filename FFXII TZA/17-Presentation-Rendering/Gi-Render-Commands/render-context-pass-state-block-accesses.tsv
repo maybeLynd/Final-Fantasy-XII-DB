@@ -1,0 +1,13 @@
+function	name	site	disp	kind	instruction	route	note
+00615720	FUN_00615720	00615736	0x0	w	mov qword ptr [rcx], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615840	FUN_00615840	00615AC8	0x0	addr	lea rcx, [rbp + 0xb50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x-B50	
+00615720	FUN_00615720	00615739	0x8	w	mov qword ptr [rcx + 8], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	0061575E	0x10	w	mov qword ptr [rbx + 0x10], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	00615762	0x18	w	mov qword ptr [rbx + 0x18], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	00615766	0x20	w	mov qword ptr [rbx + 0x20], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	0061576A	0x28	w	mov qword ptr [rbx + 0x28], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	0061576E	0x30	w	mov qword ptr [rbx + 0x30], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	00615772	0x38	w	mov qword ptr [rbx + 0x38], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	00615776	0x40	w	mov qword ptr [rbx + 0x40], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00615720	FUN_00615720	0061577A	0x48	w	mov qword ptr [rbx + 0x48], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
+00616560	FUN_00616560	006165B9	0x50	addr	lea rcx, [rdi + 0xba0]	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x-B50	

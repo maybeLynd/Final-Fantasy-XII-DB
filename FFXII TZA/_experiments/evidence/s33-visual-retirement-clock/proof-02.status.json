@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\result-02.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock"
+  ],
+  "driver_sha256": "7a1df5cfdb1f6cb06c33780806d331810dd83a501dcca79c2b8b04156453af96",
+  "deadline_seconds": 35,
+  "exit": 1,
+  "terminal": true,
+  "exception": null
+}

@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reset_barrier.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-result-02.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "408c0b0126daebbf74fa2fddee37d939b4a10cc1c2028b2ee65229c3552c990d"
+}

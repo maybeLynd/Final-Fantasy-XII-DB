@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control-title-annotation-prerequisite.py", line 136, in <module>
+    worker()
+    ~~~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control-title-annotation-prerequisite.py", line 37, in worker
+    result = load_driver().verify_packet_annotations(folder, result_name)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prepare-residue-packet-publication.py", line 80, in verify_packet_annotations
+    checks.append(dict(path=pin['path'],sha256=digest,agreement=validator.validate(json.loads(src.read_text()))))
+                                                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 43, in validate
+    raise ValueError("decoded annotation disagrees with bytes at " + record["pc"])
+ValueError: decoded annotation disagrees with bytes at 0x1fb660

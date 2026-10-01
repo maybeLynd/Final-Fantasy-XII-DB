@@ -1,0 +1,12 @@
+{
+  "name": "failed-capture",
+  "exit": 1,
+  "diagnostic": "required capture status failed capture-02",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "832a0fab7381c2585f7b2037985ee309943aed826059bd0ce5e7608acb11e4d7",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "f3256d52986ebb11c80e5ac78fbc6379604b936a28f7a78e9f06a7493cc913d5",
+  "terminal": true,
+  "exception": null
+}

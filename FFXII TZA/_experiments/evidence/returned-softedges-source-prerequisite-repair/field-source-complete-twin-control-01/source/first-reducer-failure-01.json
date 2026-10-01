@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_PRODUCER_NO_RESULT",
+  "exit": 1,
+  "driver_sha256": "e04b1488850e395ce24231be030fcce33bf7ebf26c25f0416f50bc66728f5999",
+  "failure": "KeyError m_offset: nested location class owns m_size; m_offset is inherited from its parent. No output result or dependent semantic conclusion exists.",
+  "correction": "Resolve the actual file parent chain, reject broken or circular relationships and test the concrete invocation."
+}

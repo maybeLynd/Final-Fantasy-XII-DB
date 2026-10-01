@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-owner-admission.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-admission-source-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "170798c8f55ccacf3bb116301f23c754a28d3413e0f45994dbe9b42d2a5238a4",
+  "elapsed": 0.18933810014277697
+}

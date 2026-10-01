@@ -1,0 +1,101 @@
+{
+  "status": "PRODUCER_VALIDATED_PENDING_INDEPENDENT_REVIEW",
+  "limits": "STATIC_ONLY; initialized543-row table premise, natural admission OPEN",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "action-admission-guards-raw-01.json",
+      "bytes": 83859,
+      "sha256": "b68e052df6e19c6674c8e8cc692ec4dc764e7e31223d82eaff6328e0bcfe2bc5"
+    },
+    {
+      "path": "action-selectors-01/result.json",
+      "bytes": 78391,
+      "sha256": "0c7cbbebc515e2a9be7db0d10657c468f944222dd01dd61e391f475c98063dd3"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_ch.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_cn.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_de.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_es.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_fr.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_in.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_it.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_kr.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "action-selectors-01/tables/action_data_us.st2e",
+      "bytes": 32612,
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    },
+    {
+      "path": "capture-action-admission-guards.py",
+      "bytes": 758,
+      "sha256": "9de85e226a2773b4efdd0d9dc89a4b159297a534bb1915b29f9aa335e34f4a97"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-special-admission-callers.py",
+      "bytes": 3009,
+      "sha256": "63752b577a9b67adbc16e9369de44375ac317fa1e41411f734351911444b45e0"
+    },
+    {
+      "path": "class20-admission-result-01.json",
+      "bytes": 2084,
+      "sha256": "d55fd32f64d4e79a4f730069a31fffd16b5878d7c49e6aabbe83b68128e22490"
+    },
+    {
+      "path": "prove-class20-admission.py",
+      "bytes": 5773,
+      "sha256": "9fd429f301e86d94fd68ad09a487ae7aa1d39556436611ef000f52831752d263"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2312,
+      "sha256": "15ff2dc68dbfa90057c89889e0750a77395d538b54fafaf6c2c804a8aef09422"
+    },
+    {
+      "path": "special-admission-callers-raw-01.json",
+      "bytes": 29513,
+      "sha256": "dbf82f16cfcd2859b763bc5d0ab436be28a18458c0fd8f68a7ec75f55c9ba30f"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "status": "PASS_ACTUAL_STALE_LANE_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "cd5edf7be6d5a4b13992d3a3b7603824864776f8f49c7d269afd7414a741fc10",
+  "positive_reused": {
+    "path": "lane-stale-release-result-01.json",
+    "sha256": "02ec1ddbca1427d69c3db36219d311c055d82bd2a65c4944ac220d157ff6c576"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-stale-release.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "inverted-request-gate",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-stale-release.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\inverted-request-gate\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\inverted-request-gate"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-count-operation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-stale-release.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\changed-count-operation\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\changed-count-operation"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-stale-release.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\missing-source\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-stale-release-controls-01\\missing-source"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "63167e87410d8d7afba3df8d2aaaf48ae86f8ace9efe0a541aed2d66a3beb9a8",
+  "limits": "Four actual CLI prerequisite/identity refusals plus reused original instruction branch proof; no native/live executions or independent acceptance"
+}

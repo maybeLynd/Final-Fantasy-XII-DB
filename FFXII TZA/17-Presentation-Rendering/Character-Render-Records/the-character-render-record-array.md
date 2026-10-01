@@ -1083,4 +1083,36 @@ resolves the record's context object and `qword[rax+0xDA0]` is its
 instance table, handed with the selector word to `004780B0` by tail
 jump. Interior anchor `003E55CB` (the `0020E600` context resolve).
 
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
 
+*Functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`renderrec_interior.py`](../../_index/candidates/opus-renderrec-interior-1001/renderrec_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0015CC90` | 37 B | calls `001E1520(01F82D60, 20000)`, then tail-jumps to `00808B90(008A6C70)` | `0015CC94`, `0015CCA0`, `0015CCB0` |
+| `002E87F0` | 164 B | for a non-null `rcx` whose dword `+0` and word `+0` are not -1, takes the 0x740-byte record (signed word `+0`) of `[022C6F28]`; when its dword `+0x284` is non-zero: with `edx` non-zero clears bit 13 and sets bit 12 of dword `+0x304`, with `edx` 0 clears bits 12-13; either way sets bit 22 of dword `+0x290` | `002E8817`, `002E8827`, `002E8830`, `002E883A`, `002E887F` |
+| `00332510` | 124 B | stores `022C6F30` in qword `022C6F20` and calls `001EB150("display character : preprocessing" at 00D10A38)`, `004264A0` and `001EB110`; stores it again and calls `001EB150("display character : draw objects" at 00D10A80)`, `0041E4D0([022C6F20])` and `001EB110`; calls `001EB150("display character : after emission" at 00D10AA8)` and `00425DC0` with qword `022C6F28` as read before the second string, then tail-jumps to `001EB110` | `00332528`, `0033252F`, `0033255F`, `00332578`, `00332587` |
+| `00342410` | 59 B | calls `002E88A0(rdx, 1)`, then tail-calls `002E8900(rdx)` with `xmm1` = `00267DB0(r9)` | `00342421`, `00342431`, `00342446` |
+| `00342CF0` | 59 B | calls `002E8950(rdx, 1)`, then tail-calls `002E89B0(rdx)` with `xmm1` = `00267DB0(r9)` | `00342D01`, `00342D11`, `00342D26` |
+| `003B6000` | 27 B | clears bit 0 of byte `+0x40` of record `cl` of the 0xE0-byte records at `[02B40528]` when its dword `+0x10` equals `ecx` | `003B6003`, `003B600A`, `003B6011`, `003B6016` |
+| `0041CEA0` | 22 B | when qword `+0x18` is non-null, sets bit 3 of dword `+0xC` when `edx` is 1, else clears it | `0041CEA7`, `0041CEAC`, `0041CEB1` |
+| `00423050` | 70 B | when dword `+0xC4` is not -1, looks up `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC4)` and tail-calls `0041C6B0` on it; returns 0 when there is none | `00423056`, `00423065`, `00423077`, `00423089`, `0042308E` |
+| `00423570` | 76 B | when dword `+0xC4` is not -1, looks up `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC4)` and, when found, calls `0041CEA0(it, edx)` | `0042357A`, `0042359D`, `004235AC` |
+| `00423AB0` | 87 B | stores `xmm1` in float `+0x2BC`; when dword `+0xC4` is not -1, looks up `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC4)` and, when found, calls `0041C7C0(it)` with `xmm1` | `00423AC8`, `00423AE7`, `00423AF7` |
+| `004270A0` | 85 B | when `xmm1` is 0.0, calls `00426FA0` and sets dword `+0x294` to (itself AND `0xFFFDFA7F`) OR 0x20; otherwise stores `xmm1` in float `+0x308` and sets `+0x294` to (itself AND `0xFFFDFB5F`) with bit 8 set | `004270AC`, `004270B3`, `004270BE`, `004270D2`, `004270E5` |
+| `004272C0` | 26 B | sets bit 23 of dword `+0x294`, stores `xmm1` in float `+0x3C0` and `r8d` in dword `+0x3C4` | `004272CA`, `004272D2` |
+| `004272E0` | 21 B | sets dword `+0x294` to (itself AND `0xFFFDFA7F`) OR 0x20 | `004272E6`, `004272EB`, `004272EE` |
+| `00427300` | 19 B | sets bit 15 of dword `+0x294` and stores `xmm1` in float `+0x3BC` | `0042730A` |
+| `00427880` | 35 B | sets bit 16 of dword `+0x294` and stores `xmm1`, `xmm2` and `xmm3` in floats `+0x3C0`, `+0x3C4` and `+0x3C8` | `0042788A`, `00427892`, `0042789A` |
+| `004278B0` | 17 B | sets bit 22 of dword `+0x294` and stores `edx` in dword `+0x3C4` | `004278BA` |
+| `00428DE0` | 36 B | sets bit 10 of dword `+0x304` when `edx` is non-zero, else clears it, and sets bit 29 of dword `+0x290` | `00428DEA`, `00428DEE`, `00428DF3`, `00428DF9` |
+| `00428E10` | 36 B | sets bit 11 of dword `+0x304` when `edx` is non-zero, else clears it, and sets bit 30 of dword `+0x290` | `00428E1A`, `00428E1E`, `00428E23`, `00428E29` |
+| `0042D810` | 22 B | copies bit 0 of byte `+0x60` of `rdx` into bit 3 of byte `+0x4B7` | `0042D814`, `0042D81D`, `0042D81F` |
+| `0042E300` | 22 B | when word `+0x2F2` is non-zero, copies word `+0x20` of `rdx` to word `+0x3FA` | `0042E308`, `0042E30A`, `0042E30E` |
+| `0042E320` | 36 B | when word `+6` is -1 or word `+0x2F2` is 1, tail-calls `0016D6A0(rcx, qword +0x18 of rdx, 0, 1)` | `0042E327`, `0042E331`, `0042E33B`, `0042E33E` |
+| `0042E350` | 37 B | when word `+6` is -1 or word `+0x2F2` is 1, tail-calls `0016D6A0(rcx, qword +0x18 of rdx, dword +0x20 of rdx, 1)` | `0042E357`, `0042E361`, `0042E36B`, `0042E36F` |
+| `0042E4B0` | 63 B | when word `+6` is -1 or word `+0x2F2` is 1, calls `0016D6A0` with its own incoming arguments; then, when word `+6` is -1, zeroes dword `+0x58` of `rdx` | `0042E4C7`, `0042E4D1`, `0042E4D6`, `0042E4DD` |
+| `00504740` | 117 B | returns 1.0 (`01CEBBA8`) unless a match is found: for a non-null `rcx` with dword `+0x208` not -1, takes A = dword `+0x1F8` + dword `+0x208` (a 32-bit sum used as an address), scans the byte `A+0x30` count of 0xE0-byte records from `A` + word `A+0x38` for one whose byte `+0` equals signed byte `+0xB8` of `rcx`, and returns that record's float `+0x18` | `0050475E`, `00504764`, `0050478B`, `00504796`, `005047AD` |
+| `0051EE10` | 20 B | zeroes dwords `+0` and `+0x10` and qword `+8`, and stores 0x800 in qword `+0x14` | `0051EE12`, `0051EE1A`, `0051EE1C`, `0051EE20` |
+| `0051EE30` | 69 B | copies from `rdx` its qword `+8` passed through `003AB880` (null stays null) and its dwords `+0x10`, `+0x14` and `+0x18` | `0051EE4F`, `0051EE54`, `0051EE5B`, `0051EE67` |
+| `0051F020` | 91 B | stores `003AB8B0(edx, dword [rcx])` in qword `+8` and `edx` in dword `+0x10`, calls `003AB880` on the new qword, and when `r8d` is 1 zeroes `edx` bytes at `003AB7F0(qword +8)` with `00861EC0` | `0051F03C`, `0051F044`, `0051F04B`, `0051F059`, `0051F066` |

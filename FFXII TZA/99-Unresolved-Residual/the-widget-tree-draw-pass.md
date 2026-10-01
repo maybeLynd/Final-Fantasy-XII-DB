@@ -1,7 +1,7 @@
 ---
 system: The widget tree draw pass
 category: 99-Unresolved-Residual
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS): all five cluster members are read (00245170, 002455A0 and 002DA2D0 on the widget-background page); what the second bracket pass draws (SD-101: flag bit 24 is a per-subtree second-pass switch set by six screens) and the glyph emitters' commands (SD-102) answered 2026-09-30; §7's four small callees read 2026-09-18 (the glyph run's flag getter, the fontcolor shadow byte, and two render-command emitters)
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS): all five cluster members are read (00245170, 002455A0 and 002DA2D0 on the widget-background page); what the second bracket pass draws (SD-101: flag bit 24 is a per-subtree second-pass switch set by six screens) and the glyph emitters' commands (SD-102) answered 2026-09-30; §7's four small callees read 2026-09-18 (the glyph run's flag getter, the fontcolor shadow byte, and two render-command emitters)
 owner_layer: CodeDomain:Presentation.Widget
 evidence_tier: 1
 verified_against:
@@ -22,8 +22,9 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: residual-cluster-5-repos-55
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record residual-cluster-5-repos-55; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The widget tree draw pass

@@ -1,0 +1,11 @@
+PATCHED **What it DOES is still unknown.** **BI-1.**
+PATCHED **What the machine models is still unknown. BI-2.*
+PATCHED **What it is a state machine *for* is still unknow
+PATCHED none has been decoded. **BI-1** stands.
+PATCHED **What chain A computes over that sub-block is sti
+PATCHED is not established** (`SD-121`; 2026-09-30, SWE2-D
+PATCHED **Still unknown:** what any of it *holds*. **BI-8*
+PATCHED **What the buckets hold is still unknown.** This d
+PATCHED original scan did not match. **Untested. BI-12.**
+PATCHED status: PARTIAL — what the packed-id bucket regist
+FAILS 0

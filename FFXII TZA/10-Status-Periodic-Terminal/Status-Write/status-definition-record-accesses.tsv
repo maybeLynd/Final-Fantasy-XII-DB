@@ -1,0 +1,22 @@
+function	name	site	disp	kind	instruction	route	note
+00237CA0	FUN_00237ca0	00237D28	0x6	r	test word ptr [rcx + 6], r14w	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+002C4720	FUN_002c4720	002C4D0F	0x6	r	movzx ebx, word ptr [rcx + 6]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+003851F0	BattleFormula_BuildCandidateStatusMask	0038540C	0x6	r	test word ptr [rcx + 6], r14w	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+003851F0	BattleFormula_BuildCandidateStatusMask	0038546C	0x6	r	test word ptr [rcx + 6], r14w	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+003851F0	BattleFormula_BuildCandidateStatusMask	003854CC	0x6	r	test word ptr [rcx + 6], r14w	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+003851F0	BattleFormula_BuildCandidateStatusMask	0038552C	0x6	r	test word ptr [rcx + 6], bp	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387CB0	BattleFormula_ResolveCandidateStatusApplications	00387D72	0x6	r	test word ptr [rcx + 6], ax	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387CB0	BattleFormula_ResolveCandidateStatusApplications	00387DC6	0x6	r	test byte ptr [rcx + 6], 0x20	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387CB0	BattleFormula_ResolveCandidateStatusApplications	00387E17	0x6	r	test word ptr [rcx + 6], ax	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+0038FCE0	FUN_0038fce0	0038FDC6	0x6	r	test word ptr [rcx + 6], r12w	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00386C70	BattleFormula_AdvanceStatusTimersAndBuildResult	00386EE0	0x8	r	cmp byte ptr [rcx + 8], 0xff	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00386C70	BattleFormula_AdvanceStatusTimersAndBuildResult	00386F4F	0x8	r	cmp byte ptr [rcx + 8], 0xff	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387730	BattleStatus_ComputeDefaultDwordParameter	0038788D	0x8	r	movzx eax, byte ptr [rbx + 8]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387730	BattleStatus_ComputeDefaultDwordParameter	0038792C	0x8	r	movzx eax, byte ptr [rbx + 8]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387BB0	BattleFormula_AppendStatusAddOperation	00387C57	0x8	r	cmp byte ptr [rcx + 8], 0xff	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+0038FCE0	FUN_0038fce0	0038FE64	0x8	r	cmp byte ptr [rcx + 8], 0xff	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00386C70	BattleFormula_AdvanceStatusTimersAndBuildResult	00386E76	0x9	r	movzx eax, byte ptr [rcx + 9]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+003876D0	BattleStatus_ComputeDefaultShortTimer	00387714	0x9	r	movzx eax, byte ptr [rcx + 9]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+00387CB0	BattleFormula_ResolveCandidateStatusApplications	00387E5D	0x20	r	mov eax, dword ptr [rcx + 0x20]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+0038FCE0	FUN_0038fce0	0038FE0D	0x20	r	mov eax, dword ptr [rcx + 0x20]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	
+003908A0	FUN_003908a0	003909DC	0x20	r	mov eax, dword ptr [rdi + 0x20]	route-seeded DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride) | PKREF 0x0020E600 0x02EBF118 +0x0C base+0x0	

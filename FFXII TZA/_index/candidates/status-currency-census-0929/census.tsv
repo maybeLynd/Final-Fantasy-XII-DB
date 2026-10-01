@@ -1,9 +1,11 @@
 page	status_word	class	named_rows
+00-Engine-Core-Runtime/ABI-Recovery/derived-call-signatures.md	PARTIAL	every-named-row-closed	UQ-1=ANSWERED,UQ-2=WITHDRAWN,UQ-3=ANSWERED,UQ-4=ANSWERED
 00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md	PARTIAL	every-named-row-closed	UQ-22=ANSWERED,UQ-23=ANSWERED
 00-Engine-Core-Runtime/Developer-Tuning-Console/the-event-slot-panel-and-its-dead-feeder.md	CORRECTED	names-no-register-id	
 00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md	PARTIAL	names-no-register-id	
 00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md	PARTIAL	names-no-register-id	
 00-Engine-Core-Runtime/Diagnostics-Logging/the-formatted-log-call-and-its-level-gate.md	PARTIAL	names-no-register-id	
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md	PARTIAL	every-named-row-closed	UQ-36=ANSWERED,UQ-38=ANSWERED,UQ-39=ANSWERED,UQ-40=ANSWERED
 00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	PARTIAL	every-named-row-closed	UQ-46=ANSWERED,UQ-47=ANSWERED
 00-Engine-Core-Runtime/the-encoded-id-class-registry.md	REOPENED	names-no-register-id	
 00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	REOPENED	names-no-register-id	
@@ -69,7 +71,8 @@ page	status_word	class	named_rows
 16-UI/Gambit-Screens/the-gambit-screens.md	PARTIAL	names-no-register-id	
 16-UI/Handbook/the-handbook-screen.md	PARTIAL	names-no-register-id	
 16-UI/License-Board-View/the-license-board-screen-widgets.md	PARTIAL	names-no-register-id	
-16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md	PARTIAL	names-live-row	MS-1=OPEN,MS-2=OPEN,MS-3=OPEN,UQ-156=ANSWERED,UQ-158=ANSWERED
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md	PARTIAL	every-named-row-closed	UQ-156=ANSWERED,UQ-158=ANSWERED
+16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	PARTIAL	every-named-row-closed	UQ-159=ANSWERED,UQ-160=WITHDRAWN,UQ-161=ANSWERED
 16-UI/Request-Router/ui-request-router.md	PARTIAL	every-named-row-closed	UQ-162=ANSWERED,UQ-163=ANSWERED
 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md	PARTIAL	names-no-register-id	
 16-UI/Shop-Screens/the-shop-screens.md	PARTIAL	names-no-register-id	
@@ -95,6 +98,7 @@ page	status_word	class	named_rows
 17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md	PARTIAL	names-no-register-id	
 17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md	PARTIAL	names-no-register-id	
 17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md	PARTIAL	names-no-register-id	
+17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md	PARTIAL	names-no-register-id	
 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	PARTIAL	every-named-row-closed	W-3=ANSWERED,W-5=ANSWERED,W-7=WITHDRAWN
 18-Audio/Sound-Selection/sound-variant-selection.md	PARTIAL	every-named-row-closed	G-1=ANSWERED,G-13=ANSWERED,G-2=WITHDRAWN
 18-Audio/sqex-sd-sound-driver-architecture.md	PARTIAL	every-named-row-closed	G-1=ANSWERED,G-2=WITHDRAWN,G-3=ANSWERED,G-4=ANSWERED,G-5=ANSWERED,WC-1=ANSWERED
@@ -113,10 +117,13 @@ page	status_word	class	named_rows
 23-Third-Party-Libraries/third-party-middleware-inventory.md	REOPENED	names-no-register-id	
 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md	PARTIAL	names-no-register-id	
 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-ordered-container-runtime.md	PARTIAL	names-no-register-id	
+24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md	PARTIAL	every-named-row-closed	UQ-317=WITHDRAWN,UQ-318=WITHDRAWN,UQ-319=ANSWERED
 24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md	REOPENED	names-no-register-id	
 99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md	PARTIAL	names-no-register-id	
 99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	PARTIAL	names-no-register-id	
 99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	PARTIAL	every-named-row-closed	BI-11=ANSWERED,BI-3b=ANSWERED,BI-3c=ANSWERED
+99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md	PARTIAL	every-named-row-closed	UQ-371=WITHDRAWN,UQ-372=WITHDRAWN,UQ-373=ANSWERED,UQ-374=ANSWERED,UQ-375=ANSWERED
 99-Unresolved-Residual/Unlisted-Code/the-bodies-the-list-cuts-short.md	PARTIAL	every-named-row-closed	UC-1=ANSWERED
+99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	PARTIAL	every-named-row-closed	UC-1=ANSWERED,UC-2=ANSWERED,UC-4=WITHDRAWN,UQ-377=WITHDRAWN
 99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md	PARTIAL	names-no-register-id	
 99-Unresolved-Residual/the-widget-tree-draw-pass.md	PARTIAL	names-no-register-id	

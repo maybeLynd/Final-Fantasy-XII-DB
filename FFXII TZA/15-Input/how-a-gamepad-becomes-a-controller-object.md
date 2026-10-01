@@ -1,7 +1,7 @@
 ---
 system: How a gamepad becomes a controller object - DirectInput enumeration, the three controller kinds the engine names, hot-plug, and the Steam Input action names
 category: 15-Input
-status: DOCUMENTED
+status: AUDITED
 owner_layer: PrimaryOwner:Input
 evidence_tier: 1
 verified_against:
@@ -16,9 +16,11 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-gamepad-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
   note: written by FABLE while placing one of FRONTIER's uncited bodies (00797690). Static. Read in part only and
     described by role - the per-frame device update, the window procedure's device-change arm, and the XInput test;
-    not read - the mouse and keyboard arms, the three kinds' poll methods; pending first review
+    not read - the mouse and keyboard arms, the three kinds' poll methods; pending first review  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-gamepad-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: FABLE)
 ---
 
 # How a gamepad becomes a controller object

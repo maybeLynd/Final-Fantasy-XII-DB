@@ -1,0 +1,62 @@
+{
+  "status": "PASS_ACTUAL_PREBIND_PREREQUISITE_REFUSALS",
+  "driver_sha256": "15c319a3a4b25e2155635db59ffad549cc28f5684702e416955b7af7a856512b",
+  "cases": [
+    {
+      "tag": "failed-qualifier",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_prebind_callees.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\failed-qualifier\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\failed-qualifier"
+      ],
+      "exit": 1,
+      "expected_refusal": "required qualifier failed/stale",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-flag-leaf",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_prebind_callees.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\changed-flag-leaf\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\changed-flag-leaf"
+      ],
+      "exit": 1,
+      "expected_refusal": "original byte mismatch",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-tail-body",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_prebind_callees.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\missing-tail-body\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\missing-tail-body"
+      ],
+      "exit": 1,
+      "expected_refusal": "required range population missing/changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "broadened-depth-premise",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_prebind_callees.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\broadened-depth-premise\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01\\broadened-depth-premise"
+      ],
+      "exit": 1,
+      "expected_refusal": "required valid-context bounds premise changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    }
+  ]
+}

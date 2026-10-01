@@ -1,0 +1,196 @@
+{
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": "0x120000",
+  "adapter_path": "Database\\Tools\\analysis-kit\\gfz-scripts\\reg_tracking.py",
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "driver_sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+  "capstone": "5.0.7",
+  "controls": [
+    {
+      "bytes": "0f1101",
+      "expected": "w",
+      "observed": "w"
+    },
+    {
+      "bytes": "488d4104",
+      "expected": "addr",
+      "observed": "addr"
+    },
+    {
+      "bytes": "f00fb101",
+      "expected": "rw",
+      "observed": "rw"
+    }
+  ],
+  "ranges": [
+    {
+      "start": "0x5de250",
+      "end_exclusive": "0x5de282",
+      "sha256": "6b2681abecb85b9a3ec34068909ae6f6eb9b00da7d3fc64ab8c5df27bd71a2c0",
+      "instructions": [
+        {
+          "pc": "0x5de250",
+          "bytes": "4053",
+          "mnemonic": "push",
+          "args": "rbx",
+          "memory": []
+        },
+        {
+          "pc": "0x5de252",
+          "bytes": "4883ec30",
+          "mnemonic": "sub",
+          "args": "rsp, 0x30",
+          "memory": []
+        },
+        {
+          "pc": "0x5de256",
+          "bytes": "48c7442420feffffff",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x20], 0xfffffffffffffffe",
+          "memory": [
+            {
+              "base": "rsp",
+              "index": null,
+              "scale": 1,
+              "displacement": 32,
+              "size": 8,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x5de25f",
+          "bytes": "488bd9",
+          "mnemonic": "mov",
+          "args": "rbx, rcx",
+          "memory": []
+        },
+        {
+          "pc": "0x5de262",
+          "bytes": "e8997c0400",
+          "mnemonic": "call",
+          "args": "0x625f00",
+          "memory": []
+        },
+        {
+          "pc": "0x5de267",
+          "bytes": "90",
+          "mnemonic": "nop",
+          "args": "",
+          "memory": []
+        },
+        {
+          "pc": "0x5de268",
+          "bytes": "84c0",
+          "mnemonic": "test",
+          "args": "al, al",
+          "memory": []
+        },
+        {
+          "pc": "0x5de26a",
+          "bytes": "7409",
+          "mnemonic": "je",
+          "args": "0x5de275",
+          "memory": []
+        },
+        {
+          "pc": "0x5de26c",
+          "bytes": "488bcb",
+          "mnemonic": "mov",
+          "args": "rcx, rbx",
+          "memory": []
+        },
+        {
+          "pc": "0x5de26f",
+          "bytes": "e83cda0400",
+          "mnemonic": "call",
+          "args": "0x62bcb0",
+          "memory": []
+        },
+        {
+          "pc": "0x5de274",
+          "bytes": "90",
+          "mnemonic": "nop",
+          "args": "",
+          "memory": []
+        },
+        {
+          "pc": "0x5de275",
+          "bytes": "488bcb",
+          "mnemonic": "mov",
+          "args": "rcx, rbx",
+          "memory": []
+        },
+        {
+          "pc": "0x5de278",
+          "bytes": "4883c430",
+          "mnemonic": "add",
+          "args": "rsp, 0x30",
+          "memory": []
+        },
+        {
+          "pc": "0x5de27c",
+          "bytes": "5b",
+          "mnemonic": "pop",
+          "args": "rbx",
+          "memory": []
+        },
+        {
+          "pc": "0x5de27d",
+          "bytes": "e9de890300",
+          "mnemonic": "jmp",
+          "args": "0x616c60",
+          "memory": []
+        }
+      ]
+    },
+    {
+      "start": "0x19c590",
+      "end_exclusive": "0x19c597",
+      "sha256": "b15d06e9f05badc31af760cf0820c11e11edb991d8ae644a8280aa9b9da9e78d",
+      "instructions": [
+        {
+          "pc": "0x19c590",
+          "bytes": "48ff25b1657200",
+          "mnemonic": "jmp",
+          "args": "qword ptr [rip + 0x7265b1]",
+          "memory": [
+            {
+              "base": "rip",
+              "index": null,
+              "scale": 1,
+              "displacement": 7497137,
+              "size": 8,
+              "role": "r",
+              "rip_target": "0x8c2b48"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "wrapper_complete": true,
+  "pdata_entries": [
+    [
+      6152784,
+      6152834,
+      31063864
+    ]
+  ],
+  "import_boundary": {
+    "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+    "name": "malloc",
+    "hint": 24,
+    "descriptor_rva": "0x1ccad08",
+    "lookup_table_rva": "0x1ccb8b0",
+    "slot": 1,
+    "iat": "0x8c2b48",
+    "descriptor_bytes": "b0b8cc010000000000000000e6f5cc01402b7a00",
+    "lookup_bytes": "80eecc0100000000",
+    "name_bytes": "18006672656500"
+  },
+  "invocation_driver_sha256": "7f77b3cff3be611c5b4288658ef2253474558ccbfb28d49bf486a36d0d3cf31a",
+  "limits": "Original local source and import metadata only. No loaded CRT/IAT/module identity, heap validity/safety, full resource teardown, actual initialized object or natural callback execution."
+}

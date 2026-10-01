@@ -1,0 +1,63 @@
+{
+  "status": "PASS_ACTUAL_RELOAD_PREREQUISITE_REFUSALS",
+  "driver_sha256": "ff52b349362a1747bb98cc3dda77336c95c404111176a860d1a2eefe36c1b7ce",
+  "cases": [
+    {
+      "tag": "failed-capture",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reload_order.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\failed-capture\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_refusal": "required capture failed/stale",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-definition",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reload_order.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\missing-definition\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\missing-definition"
+      ],
+      "exit": 1,
+      "expected_refusal": "required range population missing/changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-group-branch",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reload_order.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\changed-group-branch\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\changed-group-branch"
+      ],
+      "exit": 1,
+      "expected_refusal": "original byte mismatch",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-retained-source",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reload_order.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\missing-retained-source\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\missing-retained-source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-controls-01\\missing-retained-source\\missing-retained"
+      ],
+      "exit": 1,
+      "expected_refusal": "No such file",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "status": "VERIFIED_OFFLINE_REFERENCE_UNCHANGED",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "game_native_emulated_runs": 0,
+  "pc_control": 0,
+  "save_config_instrument_writes": 0,
+  "own_helpers": "capture/reducer/control all terminal; no service or terminal tab",
+  "limits": "No global process absence or peer termination claim"
+}

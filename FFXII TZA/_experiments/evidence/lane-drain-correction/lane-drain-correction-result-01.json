@@ -1,0 +1,124 @@
+{
+  "status": "PRODUCER_VALID_DRAIN_CANONICAL_CORRECTION_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "lane-drain-correction-source-01.json",
+      "sha256": "7da571104d3a2fb059c3fe9f3fb7c1d9061db574e5826767608875fd7169099d"
+    }
+  ],
+  "normal_cfg": {
+    "entry": "0x2e6900",
+    "end_exclusive": "0x2e6a7a",
+    "instructions": 108,
+    "returns": [
+      "0x2e6a79"
+    ],
+    "calls": [
+      {
+        "pc": "0x2e6982",
+        "target": "0x20e600"
+      },
+      {
+        "pc": "0x2e698c",
+        "target": "0x41e490"
+      },
+      {
+        "pc": "0x2e6994",
+        "target": "0x369800"
+      },
+      {
+        "pc": "0x2e69e8",
+        "target": "0x2e9470"
+      },
+      {
+        "pc": "0x2e6a4e",
+        "target": "0x2e6a80"
+      }
+    ]
+  },
+  "normal_return": 0,
+  "return_definition_chain": [
+    "0x2e6a70",
+    "0x2e6a72",
+    "0x2e6a76",
+    "0x2e6a77",
+    "0x2e6a78",
+    "0x2e6a79"
+  ],
+  "direct_queue_head_writes": [
+    {
+      "pc": "0x2e69fe",
+      "base": "rip",
+      "displacement": 31953803,
+      "rip_target": "0x215fd90"
+    },
+    {
+      "pc": "0x2e6a61",
+      "base": "rip",
+      "displacement": 31953704,
+      "rip_target": "0x215fd90"
+    }
+  ],
+  "established": [
+    "Original2E6900 starts from sweep head0215FD90, walks to the tail, services requested AND loaded lanes, clears serviced handle/loaded/requested, unlinks the node and conditionally calls sub-record recycler. It is not the locally described node builder/list append.",
+    "ModeECX0 limits the first reverse walk to one node; nonzero continues while previous exists. A later pass calls2E6A80 only for records with negative node index. These are distinct local phases, not a once-per-frame or always-full-drain guarantee.",
+    "The only direct queue-head writes preserve current head or set it0 when the removed node was that head, after the relevant helper. They do not locally insert a new node. Opaque callees can have effects outside this local footprint.",
+    "Every normal return is dominated by XOR EAX,EAX at2E6A70; following stack restoration does not write EAX. Thus the shipping function returns0 normally for either mode. Exceptions, ABI violations or nontermination are not normal-return counterexamples.",
+    "Current frame contract2E6900 paragraph describes a list append/build/tail insert and requires semantic correction. Its2E6A80 no-flags wording also needs exact loaded+24|mask28, not all masks/pending, under separately retained lane source."
+  ],
+  "consumer_snapshot_sha256": "de2466e73e96bc08302c440868624bcd97cd201e940bb46f761828ebb6d5275f",
+  "affected_claims": [
+    "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md2E6900 and2E6A80 paragraphs",
+    "Name-binding drain return0 guard in prior scoped ASTRA package",
+    "FABLE/OPUS original scheduling and list operation classification"
+  ],
+  "limitations": [
+    "Valid lists/state, normal ABI/returns and no interfering writes; local code not global allocator/IO effects",
+    "No actual frame schedule, natural outstanding IO, callback delivery or full-drain progress proof",
+    "2E6A80 mask qualification reuses prior source result pending independent review, not a new native run",
+    "Producer and invocation checks are not independent acceptance or canonical repair"
+  ],
+  "checker_sha256": "e3500768b1908593c8eeba6d94e957cf7e551619a7823de6753444182f7a6dd8",
+  "required_invocation_receipts": [
+    {
+      "path": "capture-lane-drain-correction.py",
+      "sha256": "ee9accdba5723b083dbd41ad5f0477b3d379c1a20ba2bc70fbc77cff67333a19"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "lane-drain-correction-consumer-01.json",
+      "sha256": "de2466e73e96bc08302c440868624bcd97cd201e940bb46f761828ebb6d5275f"
+    },
+    {
+      "path": "lane-drain-correction-capture-01.status.json",
+      "sha256": "13ef31afd768c656e1c13c2fea8ed8522a111dd00bb14beeaefeffd212abf74f"
+    },
+    {
+      "path": "lane-drain-correction-capture-01.stdout",
+      "sha256": "fc776af863c25a0c4428914f5e4723e3a6c98ed4f73d00aa48af5cbabe9d568c"
+    },
+    {
+      "path": "lane-drain-correction-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "next_discriminator": "Owner correction and independent primary review; original caller/service guarantees remain open, do not turn return0 into proof of completed IO",
+  "cleanup": "Finite original reference/current consumer reads and private source controls only"
+}

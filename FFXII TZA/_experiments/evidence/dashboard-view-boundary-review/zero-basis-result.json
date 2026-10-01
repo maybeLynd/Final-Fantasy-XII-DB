@@ -1,0 +1,363 @@
+{
+  "commit": "eae0ed3c7d1ed9f8f41a401b85e1fedb4ed39cc9",
+  "python": "3.14.6",
+  "method": "pinned production host function slice; not full build/server/game",
+  "builder_sha256": "812d7f0ce2c7681044f657ce0af51c09f3fad5a22bc641116691675b190016ab",
+  "server_sha256": "54578ce1fd27619ab76af14dded5697c2a4aadbda8d86e6cf238a4f3f7fbf75f",
+  "cases": [
+    {
+      "case": "count",
+      "prior": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 10,
+            "denominator": null,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only"
+          }
+        ]
+      },
+      "result": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 15,
+            "denominator": null,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only",
+            "delta": {
+              "count": 5,
+              "rel": 50.0,
+              "old": {
+                "numerator": 10,
+                "denominator": null
+              },
+              "new": {
+                "numerator": 15,
+                "denominator": null
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "bounded-prior",
+          "committed_at": "fixture"
+        }
+      },
+      "validation": [
+        null,
+        null
+      ]
+    },
+    {
+      "case": "moved-ratio",
+      "prior": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 10,
+            "denominator": 100,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only"
+          }
+        ]
+      },
+      "result": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 15,
+            "denominator": 200,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only",
+            "delta": {
+              "na": "scope changed",
+              "why": "scope 'same' -> 'same'; denominator 100 -> 200",
+              "old": {
+                "numerator": 10,
+                "denominator": 100
+              },
+              "new": {
+                "numerator": 15,
+                "denominator": 200
+              },
+              "dnum": 5,
+              "dden": 100
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "bounded-prior",
+          "committed_at": "fixture"
+        }
+      },
+      "validation": [
+        null,
+        null
+      ]
+    },
+    {
+      "case": "changed-scope",
+      "prior": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 10,
+            "denominator": null,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only"
+          }
+        ]
+      },
+      "result": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 15,
+            "denominator": null,
+            "scope": "changed",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only",
+            "delta": {
+              "na": "N/A - definition changed",
+              "why": "definition or scope changed",
+              "old": {
+                "numerator": 10,
+                "denominator": null
+              },
+              "new": {
+                "numerator": 15,
+                "denominator": null
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "bounded-prior",
+          "committed_at": "fixture"
+        }
+      },
+      "validation": [
+        null,
+        null
+      ]
+    },
+    {
+      "case": "empty-ratio-to-count",
+      "prior": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only"
+          }
+        ]
+      },
+      "result": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 5,
+            "denominator": null,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only",
+            "delta": {
+              "count": 5,
+              "rel": null,
+              "old": {
+                "numerator": 0,
+                "denominator": null
+              },
+              "new": {
+                "numerator": 5,
+                "denominator": null
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "bounded-prior",
+          "committed_at": "fixture"
+        }
+      },
+      "validation": [
+        null,
+        null
+      ]
+    },
+    {
+      "case": "ratio-to-empty-ratio",
+      "prior": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 1,
+            "denominator": 2,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only"
+          }
+        ]
+      },
+      "result": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only",
+            "delta": {
+              "na": "N/A - definition changed",
+              "why": "definition or scope changed",
+              "old": {
+                "numerator": 1,
+                "denominator": 2
+              },
+              "new": {
+                "numerator": 0,
+                "denominator": null
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "bounded-prior",
+          "committed_at": "fixture"
+        }
+      },
+      "validation": [
+        null,
+        null
+      ]
+    },
+    {
+      "case": "unchanged-empty-ratio",
+      "prior": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only"
+          }
+        ]
+      },
+      "result": {
+        "view": "types",
+        "status": "OK",
+        "definition": "same-v1",
+        "measures": [
+          {
+            "id": "test",
+            "label": "bounded control",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "same",
+            "instrument": "ASTRA fixture",
+            "as_of": "2026-09-30",
+            "limits": "host control only",
+            "delta": {
+              "count": 0,
+              "rel": null,
+              "old": {
+                "numerator": 0,
+                "denominator": null
+              },
+              "new": {
+                "numerator": 0,
+                "denominator": null
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "bounded-prior",
+          "committed_at": "fixture"
+        }
+      },
+      "validation": [
+        null,
+        null
+      ]
+    }
+  ],
+  "checks": {
+    "ordinary_count": true,
+    "moved_ratio": true,
+    "changed_scope": true,
+    "empty_ratio_not_count": false,
+    "ratio_to_zero_keeps_new_basis": false,
+    "unchanged_zero_keeps_basis": false
+  },
+  "control_valid": true,
+  "verdict": "REJECT_BASIS_BOUNDARY"
+}

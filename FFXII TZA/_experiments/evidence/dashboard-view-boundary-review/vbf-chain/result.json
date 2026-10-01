@@ -1,0 +1,555 @@
+{
+  "commit": "eae0ed3c7d1ed9f8f41a401b85e1fedb4ed39cc9",
+  "capture_source_sha256": "e94f7654f89a54d881530a0411538ad1756c3267aa5fabc604ce20046b9c3bc5",
+  "builder_sha256": "812d7f0ce2c7681044f657ce0af51c09f3fad5a22bc641116691675b190016ab",
+  "method": "actual capture CLI and original host view function, disclosed synthetic VBF fixture",
+  "checks": {
+    "positive": true,
+    "drift": true,
+    "missing_archive": true,
+    "corrupt_archive": true,
+    "missing_listing_not_measured_zero": false,
+    "atomic_outputs_completed": true
+  },
+  "records": [
+    {
+      "case": "positive",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\vbf_index.py",
+        "--archive",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+        "--listing",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\listing.txt",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.json"
+      ],
+      "exit": 0,
+      "stdout": "entries 2 header fe50bd5aed88\n",
+      "stderr": "",
+      "capture": {
+        "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+        "archive_file_bytes": 142,
+        "archive_mtime_ns": 1790729784787211100,
+        "archive_index": {
+          "magic": "SRYK",
+          "header_length": 142,
+          "entry_count": 2,
+          "header_sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f"
+        },
+        "entries": [
+          [
+            "folder/a.dat",
+            100
+          ],
+          [
+            "folder/b.src",
+            200
+          ]
+        ],
+        "uncompressed_bytes": 300,
+        "vs_listing": {
+          "listing_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\listing.txt",
+          "missing_from_archive": 0,
+          "missing_from_listing": 0,
+          "size_mismatch": 0
+        }
+      },
+      "view": {
+        "view": "vbf",
+        "title": "VBF archive - the installed archive's own folder tree",
+        "status": "OK",
+        "source": {
+          "identity": "installed archive header sha256 fe50bd5aed88 (2 entries, file 142 bytes)",
+          "as_of": "bounded fixture",
+          "instrument": "vbf_index.py (ASTRA A17 header parser) + requirements.py X",
+          "limits": "the tree IS the installed archive's folder tree (the VBF Browser has no category table), read from its header at this build; payload bytes, decompression and a running game's binding to this archive are not claimed. Format stages: disposition and layout explanation per extension and bucket member; field meaning is the format sheets' own claim"
+        },
+        "measures": [
+          {
+            "id": "files",
+            "label": "files in the archive",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "a file count; distinct formats and bytes are other denominators"
+          },
+          {
+            "id": "bytes",
+            "label": "bytes in the archive (uncompressed)",
+            "numerator": 300,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "uncompressed sizes from the header"
+          },
+          {
+            "id": "extensions",
+            "label": "distinct file extensions",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "an extension is not a format variant"
+          },
+          {
+            "id": "listing-drift",
+            "label": "entries where the old 2026-09-02 listing differs from the installed archive",
+            "numerator": 0,
+            "denominator": null,
+            "scope": "installed index vs vbf_list.txt",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "0 = the old listing still describes the archive exactly (ASTRA A17's check, re-run every build)"
+          },
+          {
+            "id": "formats-ext",
+            "label": "archive extensions with an accepted format disposition",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "X family, extensions (requirement facts)",
+            "instrument": "requirements.py X",
+            "as_of": "bounded fixture",
+            "limits": "explained / standard / external; a bucketed extension counts through its members"
+          },
+          {
+            "id": "formats-members",
+            "label": "bucket member formats explained",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "X family, bucket members (requirement facts)",
+            "instrument": "requirements.py X",
+            "as_of": "bounded fixture",
+            "limits": "a signature-scoped archive_formats claim explains the member"
+          }
+        ],
+        "tree": [
+          {
+            "id": "folder",
+            "label": "folder",
+            "counts": {
+              "files": 2,
+              "bytes": 300
+            },
+            "children": []
+          }
+        ],
+        "rows": {
+          "columns": [
+            "extension",
+            "files",
+            "bytes",
+            "format disposition"
+          ],
+          "data": [
+            [
+              "dat",
+              1,
+              100,
+              "-"
+            ],
+            [
+              "src",
+              1,
+              200,
+              "-"
+            ]
+          ]
+        }
+      },
+      "temporary_output_left": false
+    },
+    {
+      "case": "drift",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\vbf_index.py",
+        "--archive",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+        "--listing",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\drift.txt",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\drift.json"
+      ],
+      "exit": 0,
+      "stdout": "entries 2 header fe50bd5aed88\n",
+      "stderr": "",
+      "capture": {
+        "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+        "archive_file_bytes": 142,
+        "archive_mtime_ns": 1790729784787211100,
+        "archive_index": {
+          "magic": "SRYK",
+          "header_length": 142,
+          "entry_count": 2,
+          "header_sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f"
+        },
+        "entries": [
+          [
+            "folder/a.dat",
+            100
+          ],
+          [
+            "folder/b.src",
+            200
+          ]
+        ],
+        "uncompressed_bytes": 300,
+        "vs_listing": {
+          "listing_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\drift.txt",
+          "missing_from_archive": 1,
+          "missing_from_listing": 0,
+          "size_mismatch": 1
+        }
+      },
+      "view": {
+        "view": "vbf",
+        "title": "VBF archive - the installed archive's own folder tree",
+        "status": "PARTIAL",
+        "source": {
+          "identity": "installed archive header sha256 fe50bd5aed88 (2 entries, file 142 bytes)",
+          "as_of": "bounded fixture",
+          "instrument": "vbf_index.py (ASTRA A17 header parser) + requirements.py X",
+          "limits": "the tree IS the installed archive's folder tree (the VBF Browser has no category table), read from its header at this build; payload bytes, decompression and a running game's binding to this archive are not claimed. Format stages: disposition and layout explanation per extension and bucket member; field meaning is the format sheets' own claim"
+        },
+        "measures": [
+          {
+            "id": "files",
+            "label": "files in the archive",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "a file count; distinct formats and bytes are other denominators"
+          },
+          {
+            "id": "bytes",
+            "label": "bytes in the archive (uncompressed)",
+            "numerator": 300,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "uncompressed sizes from the header"
+          },
+          {
+            "id": "extensions",
+            "label": "distinct file extensions",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "an extension is not a format variant"
+          },
+          {
+            "id": "listing-drift",
+            "label": "entries where the old 2026-09-02 listing differs from the installed archive",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed index vs vbf_list.txt",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "0 = the old listing still describes the archive exactly (ASTRA A17's check, re-run every build)"
+          },
+          {
+            "id": "formats-ext",
+            "label": "archive extensions with an accepted format disposition",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "X family, extensions (requirement facts)",
+            "instrument": "requirements.py X",
+            "as_of": "bounded fixture",
+            "limits": "explained / standard / external; a bucketed extension counts through its members"
+          },
+          {
+            "id": "formats-members",
+            "label": "bucket member formats explained",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "X family, bucket members (requirement facts)",
+            "instrument": "requirements.py X",
+            "as_of": "bounded fixture",
+            "limits": "a signature-scoped archive_formats claim explains the member"
+          }
+        ],
+        "tree": [
+          {
+            "id": "folder",
+            "label": "folder",
+            "counts": {
+              "files": 2,
+              "bytes": 300
+            },
+            "children": []
+          }
+        ],
+        "rows": {
+          "columns": [
+            "extension",
+            "files",
+            "bytes",
+            "format disposition"
+          ],
+          "data": [
+            [
+              "dat",
+              1,
+              100,
+              "-"
+            ],
+            [
+              "src",
+              1,
+              200,
+              "-"
+            ]
+          ]
+        }
+      },
+      "temporary_output_left": false
+    },
+    {
+      "case": "missing-archive",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\vbf_index.py",
+        "--archive",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\missing.vbf",
+        "--listing",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\listing.txt",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\missing-archive.json"
+      ],
+      "exit": 1,
+      "stdout": "failed: FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-eae0ed3c7-review\\\\vbf-chain\\\\missing.vbf'\n",
+      "stderr": "",
+      "capture": {
+        "failed": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-eae0ed3c7-review\\\\vbf-chain\\\\missing.vbf'",
+        "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\missing.vbf"
+      },
+      "view": {
+        "view": "vbf",
+        "title": "VBF archive - the installed archive's own folder tree",
+        "status": "FAILED",
+        "source": {
+          "identity": "vbf_index capture",
+          "as_of": "bounded fixture",
+          "instrument": "vbf_index.py",
+          "limits": "the archive index could not be read: FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-eae0ed3c7-review\\\\vbf-chain\\\\missing.vbf'"
+        },
+        "measures": [],
+        "rows": {
+          "columns": [
+            "failure"
+          ],
+          "data": [
+            [
+              "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-eae0ed3c7-review\\\\vbf-chain\\\\missing.vbf'"
+            ]
+          ]
+        }
+      },
+      "temporary_output_left": false
+    },
+    {
+      "case": "corrupt-archive",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\vbf_index.py",
+        "--archive",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\corrupt.vbf",
+        "--listing",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\listing.txt",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\corrupt-archive.json"
+      ],
+      "exit": 1,
+      "stdout": "failed: ValueError: invalid VBF header\n",
+      "stderr": "",
+      "capture": {
+        "failed": "ValueError: invalid VBF header",
+        "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\corrupt.vbf"
+      },
+      "view": {
+        "view": "vbf",
+        "title": "VBF archive - the installed archive's own folder tree",
+        "status": "FAILED",
+        "source": {
+          "identity": "vbf_index capture",
+          "as_of": "bounded fixture",
+          "instrument": "vbf_index.py",
+          "limits": "the archive index could not be read: ValueError: invalid VBF header"
+        },
+        "measures": [],
+        "rows": {
+          "columns": [
+            "failure"
+          ],
+          "data": [
+            [
+              "ValueError: invalid VBF header"
+            ]
+          ]
+        }
+      },
+      "temporary_output_left": false
+    },
+    {
+      "case": "missing-listing",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\vbf_index.py",
+        "--archive",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+        "--listing",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\missing-listing.txt",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\missing-listing.json"
+      ],
+      "exit": 0,
+      "stdout": "entries 2 header fe50bd5aed88\n",
+      "stderr": "",
+      "capture": {
+        "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+        "archive_file_bytes": 142,
+        "archive_mtime_ns": 1790729784787211100,
+        "archive_index": {
+          "magic": "SRYK",
+          "header_length": 142,
+          "entry_count": 2,
+          "header_sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f"
+        },
+        "entries": [
+          [
+            "folder/a.dat",
+            100
+          ],
+          [
+            "folder/b.src",
+            200
+          ]
+        ],
+        "uncompressed_bytes": 300
+      },
+      "view": {
+        "view": "vbf",
+        "title": "VBF archive - the installed archive's own folder tree",
+        "status": "OK",
+        "source": {
+          "identity": "installed archive header sha256 fe50bd5aed88 (2 entries, file 142 bytes)",
+          "as_of": "bounded fixture",
+          "instrument": "vbf_index.py (ASTRA A17 header parser) + requirements.py X",
+          "limits": "the tree IS the installed archive's folder tree (the VBF Browser has no category table), read from its header at this build; payload bytes, decompression and a running game's binding to this archive are not claimed. Format stages: disposition and layout explanation per extension and bucket member; field meaning is the format sheets' own claim"
+        },
+        "measures": [
+          {
+            "id": "files",
+            "label": "files in the archive",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "a file count; distinct formats and bytes are other denominators"
+          },
+          {
+            "id": "bytes",
+            "label": "bytes in the archive (uncompressed)",
+            "numerator": 300,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "uncompressed sizes from the header"
+          },
+          {
+            "id": "extensions",
+            "label": "distinct file extensions",
+            "numerator": 2,
+            "denominator": null,
+            "scope": "installed archive index",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "an extension is not a format variant"
+          },
+          {
+            "id": "listing-drift",
+            "label": "entries where the old 2026-09-02 listing differs from the installed archive",
+            "numerator": 0,
+            "denominator": null,
+            "scope": "installed index vs vbf_list.txt",
+            "instrument": "vbf_index",
+            "as_of": "bounded fixture",
+            "limits": "0 = the old listing still describes the archive exactly (ASTRA A17's check, re-run every build)"
+          },
+          {
+            "id": "formats-ext",
+            "label": "archive extensions with an accepted format disposition",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "X family, extensions (requirement facts)",
+            "instrument": "requirements.py X",
+            "as_of": "bounded fixture",
+            "limits": "explained / standard / external; a bucketed extension counts through its members"
+          },
+          {
+            "id": "formats-members",
+            "label": "bucket member formats explained",
+            "numerator": 0,
+            "denominator": 0,
+            "scope": "X family, bucket members (requirement facts)",
+            "instrument": "requirements.py X",
+            "as_of": "bounded fixture",
+            "limits": "a signature-scoped archive_formats claim explains the member"
+          }
+        ],
+        "tree": [
+          {
+            "id": "folder",
+            "label": "folder",
+            "counts": {
+              "files": 2,
+              "bytes": 300
+            },
+            "children": []
+          }
+        ],
+        "rows": {
+          "columns": [
+            "extension",
+            "files",
+            "bytes",
+            "format disposition"
+          ],
+          "data": [
+            [
+              "dat",
+              1,
+              100,
+              "-"
+            ],
+            [
+              "src",
+              1,
+              200,
+              "-"
+            ]
+          ]
+        }
+      },
+      "temporary_output_left": false
+    }
+  ],
+  "verdict": "REJECT_MISSING_LISTING_BOUNDARY"
+}

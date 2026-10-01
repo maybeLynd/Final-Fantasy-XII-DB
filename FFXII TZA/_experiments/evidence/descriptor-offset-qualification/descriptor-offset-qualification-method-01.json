@@ -1,0 +1,20 @@
+{
+  "question": "Does the namebinding2EAD50 descriptor leading DWORD0 denote flags, or the queue initial file offset?",
+  "hypotheses": [
+    "H1 leading DWORD is an error-notification flag",
+    "H2 leading DWORD is initial file offset, independent of error byte-count sentinel"
+  ],
+  "method": "A retained original issuer/adopter bytes + existing canonical policy. No live/harness/capture/whole-queue census.",
+  "why_sufficient": "Original issuer RSP+30 becomes descriptor pointer; adopter reads descriptor+0, signed-aligns EAX and stores slot+2C, while independent request byte count goes to+28.",
+  "reference": "Shipping EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000; retained full32E870 and2EAD50",
+  "scope": "One affected own frozen pin-exception packet exact descriptor.flags=0 and its matching established sentence. Record README/proof/freezer/job/history label qualification additively. Term candidates across five packet roots did not identify any other direct-root matching label; not universal repository census.",
+  "discriminator": "Exact original descriptor+0 -> signed alignment -> slot+2C versus descriptor bytecount+28; validate shipping bytes and reviewed annotation path.",
+  "controls": [
+    "Reused existing fully checked source/capture receipts, no re-execution credit",
+    "Concrete normalizer invocation refuses missing or changed semantic preimage and changed original code identity; failed prerequisite cannot emit normalized result"
+  ],
+  "acceptance": "Normalized descriptor contains initial_file_offset=0 and no fictional flags field; only exact established sentence changes; all other old semantics and input/manifest identities preserved; producer invocation0 and actual refusal receipts.",
+  "limits": "Natural initialization, actual IO outcome, error-state count writers, callback scheduling and lifetime remain OPEN. Canonical queue/index already correct; no universal descriptor schema or record mask04 change.",
+  "consumer": "Existing FABLE/OPUS namebinding consumers and SPEC pin-exception review, no peer page edit.",
+  "restoration": "Finite file analysis; no game/PC/native/emulated/instrument/save/config/reference/peer-process mutation"
+}

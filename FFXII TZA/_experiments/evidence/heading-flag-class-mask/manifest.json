@@ -1,0 +1,361 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A RETAINED_SOURCE_BIT_INVARIANT",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "control-flag-class-mask.py",
+      "bytes": 2903,
+      "sha256": "8b10d33203bc7488e80a1c2f88a19ba1640fb517fa88a88e9fa81b74abeb22e2"
+    },
+    {
+      "path": "flag-class-mask-cleanup-01.json",
+      "bytes": 416,
+      "sha256": "e4b3553500b113a30458f553e9db6cb4a17f1f98c0955dacb873e391b142f5ec"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/check-effects.py",
+      "bytes": 8177,
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/checks-effects-terminal.json",
+      "bytes": 8900,
+      "sha256": "f046a5c5020f001c9a587cdd7a044d679137fe382325f5a6737914d1f02a00f3"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/identity.json",
+      "bytes": 3109,
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/input-manifest.json",
+      "bytes": 1700,
+      "sha256": "10ea15861ac61c79ea53bcc7838db22849acd3319516be60e2e20f02715f5fd9"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/raw-object-state.json",
+      "bytes": 8100,
+      "sha256": "7bdf4cffc755178a284edafed207847f0b68e7ecee52e6886a87c718dd643441"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/raw-position-effects.json",
+      "bytes": 22594,
+      "sha256": "6044be105b9d4265a6cbdb6ad376892d150fb76ccbe1f291fbf49b3234aa5a03"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/retained/object-state/003E33E0.bin",
+      "bytes": 21,
+      "sha256": "d07d2633ad93969ec5a3c6559ee2d880745e11e3524ff9c0992615695bea1581"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/retained/object-state/003E3440.bin",
+      "bytes": 19,
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/retained/position-effects/002E6000.bin",
+      "bytes": 129,
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/status.json",
+      "bytes": 866,
+      "sha256": "a6c9db7d7df0facbd93cc898e380a6d0c5db54c086b2a93a7f8e98ddcbbf57b7"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/stderr",
+      "bytes": 1026,
+      "sha256": "fe656f33db0381bfaeafd6fee877063bef47edb8d48d7dffa415438d788f7b47"
+    },
+    {
+      "path": "flag-class-mask-controls-01/changed-mask/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/check-effects.py",
+      "bytes": 8177,
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/checks-effects-terminal.json",
+      "bytes": 8900,
+      "sha256": "f82c1f51ae765833e63e8e8ee0903b2c61075907fbd6cc2ff00540b0a994e984"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/identity.json",
+      "bytes": 3109,
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/input-manifest.json",
+      "bytes": 1700,
+      "sha256": "10ea15861ac61c79ea53bcc7838db22849acd3319516be60e2e20f02715f5fd9"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/raw-object-state.json",
+      "bytes": 8098,
+      "sha256": "bd0b4f781b8694b31e47308568cd368490e177fbb0d3bc20ad8c81df0cd1b012"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/raw-position-effects.json",
+      "bytes": 22594,
+      "sha256": "6044be105b9d4265a6cbdb6ad376892d150fb76ccbe1f291fbf49b3234aa5a03"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/retained/object-state/003E33E0.bin",
+      "bytes": 21,
+      "sha256": "5a40dce04a9c9be0283cf0ae5393b65c0b65e7439c5e7a2d9b850354f29a8d1e"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/retained/object-state/003E3440.bin",
+      "bytes": 19,
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/retained/position-effects/002E6000.bin",
+      "bytes": 129,
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/status.json",
+      "bytes": 890,
+      "sha256": "6daaa13982ed9be80b0a3c367e17d3273bf599288a0c781a00a6ae43a465b868"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/stderr",
+      "bytes": 538,
+      "sha256": "2d107ca6f9d36d46bf05603824a48e508161f9170012426d28ef39011c30e6b0"
+    },
+    {
+      "path": "flag-class-mask-controls-01/failed-prerequisite/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/check-effects.py",
+      "bytes": 8177,
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/checks-effects-terminal.json",
+      "bytes": 8900,
+      "sha256": "f046a5c5020f001c9a587cdd7a044d679137fe382325f5a6737914d1f02a00f3"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/identity.json",
+      "bytes": 3109,
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/input-manifest.json",
+      "bytes": 1700,
+      "sha256": "10ea15861ac61c79ea53bcc7838db22849acd3319516be60e2e20f02715f5fd9"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/raw-object-state.json",
+      "bytes": 8098,
+      "sha256": "bd0b4f781b8694b31e47308568cd368490e177fbb0d3bc20ad8c81df0cd1b012"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/raw-position-effects.json",
+      "bytes": 9975,
+      "sha256": "d14b8f9e882d463a7cb5fd5eb0128ca60561f87763b71615dee155515aeba49e"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/retained/object-state/003E33E0.bin",
+      "bytes": 21,
+      "sha256": "5a40dce04a9c9be0283cf0ae5393b65c0b65e7439c5e7a2d9b850354f29a8d1e"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/retained/object-state/003E3440.bin",
+      "bytes": 19,
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/retained/position-effects/002E6000.bin",
+      "bytes": 129,
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/status.json",
+      "bytes": 866,
+      "sha256": "61a019ea9d3c495794376d265819a1901e593fa87536fed519f70eeb842b6c95"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/stderr",
+      "bytes": 578,
+      "sha256": "ddfdf3fd5922440213d050ca1d8cd8dd0320a0f9a90044a196bac9438e512d0d"
+    },
+    {
+      "path": "flag-class-mask-controls-01/missing-class-gate/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "flag-class-mask-controls-01/result.json",
+      "bytes": 3989,
+      "sha256": "4f66068f5c8e543b41728b9293fa5c15080dfe1144745873c35cdfa746369530"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/check-effects.py",
+      "bytes": 8177,
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/checks-effects-terminal.json",
+      "bytes": 8900,
+      "sha256": "f046a5c5020f001c9a587cdd7a044d679137fe382325f5a6737914d1f02a00f3"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/identity.json",
+      "bytes": 3109,
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/input-manifest.json",
+      "bytes": 1700,
+      "sha256": "10ea15861ac61c79ea53bcc7838db22849acd3319516be60e2e20f02715f5fd9"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/raw-object-state.json",
+      "bytes": 8098,
+      "sha256": "4a7b510aa43c441641f454f0d9b4158d425b0d800351bbbda797ead92d9e3f33"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/raw-position-effects.json",
+      "bytes": 22594,
+      "sha256": "6044be105b9d4265a6cbdb6ad376892d150fb76ccbe1f291fbf49b3234aa5a03"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/retained/object-state/003E33E0.bin",
+      "bytes": 21,
+      "sha256": "5a40dce04a9c9be0283cf0ae5393b65c0b65e7439c5e7a2d9b850354f29a8d1e"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/retained/object-state/003E3440.bin",
+      "bytes": 19,
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/retained/position-effects/002E6000.bin",
+      "bytes": 129,
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/status.json",
+      "bytes": 872,
+      "sha256": "928513fc7f5379c27daf553d226df77a5d3ae8c563362fac95fa7595e134e273"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/stderr",
+      "bytes": 881,
+      "sha256": "e83e447c8f8902a24119abf6ab321f64d6b61930e955cf118da706159beb4cc6"
+    },
+    {
+      "path": "flag-class-mask-controls-01/wrong-store-role/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "flag-class-mask-controls-run-01.status.json",
+      "bytes": 620,
+      "sha256": "77f11dde0ca6224cfec4080a36b59952ea8b4519ca0ec7da52a31d0f89af479f"
+    },
+    {
+      "path": "flag-class-mask-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "flag-class-mask-controls-run-01.stdout",
+      "bytes": 84,
+      "sha256": "1694b82e2503f5545a6c4f9cf1fd1198c53e1e4b02d34782c00ac3afb4ef78fc"
+    },
+    {
+      "path": "flag-class-mask-input-01/check-effects.py",
+      "bytes": 8177,
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+    },
+    {
+      "path": "flag-class-mask-input-01/checks-effects-terminal.json",
+      "bytes": 8900,
+      "sha256": "f046a5c5020f001c9a587cdd7a044d679137fe382325f5a6737914d1f02a00f3"
+    },
+    {
+      "path": "flag-class-mask-input-01/identity.json",
+      "bytes": 3109,
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522"
+    },
+    {
+      "path": "flag-class-mask-input-01/input-manifest.json",
+      "bytes": 1700,
+      "sha256": "10ea15861ac61c79ea53bcc7838db22849acd3319516be60e2e20f02715f5fd9"
+    },
+    {
+      "path": "flag-class-mask-input-01/raw-object-state.json",
+      "bytes": 8098,
+      "sha256": "bd0b4f781b8694b31e47308568cd368490e177fbb0d3bc20ad8c81df0cd1b012"
+    },
+    {
+      "path": "flag-class-mask-input-01/raw-position-effects.json",
+      "bytes": 22594,
+      "sha256": "6044be105b9d4265a6cbdb6ad376892d150fb76ccbe1f291fbf49b3234aa5a03"
+    },
+    {
+      "path": "flag-class-mask-input-01/retained/object-state/003E33E0.bin",
+      "bytes": 21,
+      "sha256": "5a40dce04a9c9be0283cf0ae5393b65c0b65e7439c5e7a2d9b850354f29a8d1e"
+    },
+    {
+      "path": "flag-class-mask-input-01/retained/object-state/003E3440.bin",
+      "bytes": 19,
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62"
+    },
+    {
+      "path": "flag-class-mask-input-01/retained/position-effects/002E6000.bin",
+      "bytes": 129,
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b"
+    },
+    {
+      "path": "FLAG-CLASS-MASK-METHOD-1001.md",
+      "bytes": 2306,
+      "sha256": "a8bb2311a54e54ba00db2516a07e9cd1cf1e28b3c282e1c40aa7b36c59bddedb"
+    },
+    {
+      "path": "flag-class-mask-positive-01.status.json",
+      "bytes": 760,
+      "sha256": "5b75f322fd49d713efc9001adcffb048e2bb81c5e575fcb458cb69e99e7c5392"
+    },
+    {
+      "path": "flag-class-mask-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "flag-class-mask-positive-01.stdout",
+      "bytes": 92,
+      "sha256": "fdd434c6830cbf335a758255c88d540d75c432605996a87cd6757df0c5200ee9"
+    },
+    {
+      "path": "flag-class-mask-result-01.json",
+      "bytes": 6487,
+      "sha256": "8ae6557aa69f81ec9cd655b4d8a6870281ea7e60edda0740b9c0cafd0ea5e40c"
+    },
+    {
+      "path": "prove-flag-class-mask.py",
+      "bytes": 9134,
+      "sha256": "dcf4b3b465078485a92b26e92eee38fb19594aee2d9ba49872dc3d68319bbb4b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3746,
+      "sha256": "f85262b9dd7b2a5b238809e6234a34bae33b5841e6ef55b78c1bc409c2b714ac"
+    }
+  ]
+}

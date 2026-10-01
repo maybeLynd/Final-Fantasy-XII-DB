@@ -1,0 +1,147 @@
+{
+  "kind": "independent exact 0aa restore/terminal review",
+  "verdict": "REJECT",
+  "external_inputs": "four pinned raw ZIP bodies retained at qualified paths; absent is INCOMPLETE",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "admission-01/cleanup.json",
+      "sha256": "fd5894b67270030cc57304eec3c99278650c44e5431ba6592ae20893c3866067",
+      "bytes": 438
+    },
+    {
+      "path": "admission-01/result.json",
+      "sha256": "9b03d963256cb6905e31fba84a0c7ba171678eecd2d5fd3f25c2f8017bcd4bd6",
+      "bytes": 7808
+    },
+    {
+      "path": "ADMISSION-PLAN.md",
+      "sha256": "0b3f7adae9cb479f16f02e245abff5cdf8f78e5b07598c423d3960fe216556ff",
+      "bytes": 1613
+    },
+    {
+      "path": "ADMISSION-RESULT.md",
+      "sha256": "4b005afc46bd6969c0908c5f6e2c1d0040bf9bc711417cc28c4558350312debb",
+      "bytes": 2141
+    },
+    {
+      "path": "archive-inputs-qualified-1001.json",
+      "sha256": "fb3c33d2ac7e0c20d9ea946e794a2453eab88194026c76d9181f49acb65e4192",
+      "bytes": 68497
+    },
+    {
+      "path": "cleanup.json",
+      "sha256": "cf161539f53d0011b2c2121d86d7dd15244c1d6a2c7afeede9e6851b11b64650",
+      "bytes": 308
+    },
+    {
+      "path": "freeze-review-1001.py",
+      "sha256": "f6da8c882a735fc6f954f57d984e541320d5a4a5695a5e668270aaaa367e4824",
+      "bytes": 4140
+    },
+    {
+      "path": "generation.py",
+      "sha256": "c165172d618ccfb276f1ec117107b76e27ca7e96e294a841ef8fd913b5206658",
+      "bytes": 25839
+    },
+    {
+      "path": "PLAN.md",
+      "sha256": "14c838e679972a4ce5d1557b55b5d435fa583cfcfca04150592a742c9922ce1d",
+      "bytes": 1366
+    },
+    {
+      "path": "probe-admission.py",
+      "sha256": "5fdc4945756233a7b5f8b4166b68040d7fe3b9c98266c538a69716d5272fcef4",
+      "bytes": 4969
+    },
+    {
+      "path": "probe-terminal.py",
+      "sha256": "8612fdf17ec932abd1d755ecb3c1d1b2764f7f9fa7c4cb5f09dfdc7888366ce8",
+      "bytes": 7877
+    },
+    {
+      "path": "probe.py",
+      "sha256": "7ad0cd6712ba9a8c8a534b102fc3f6fa240290e86b01d08e1ddbf35bbb60c8e7",
+      "bytes": 4052
+    },
+    {
+      "path": "README.md",
+      "sha256": "4b5385e2be0824541cb06d93a01c75597886e2ff427cf283f74f4947ffc9bb95",
+      "bytes": 2894
+    },
+    {
+      "path": "result.json",
+      "sha256": "9a2071a9b25638b6133e10848c0c5717a9bb70edb76ebbb28248104f0cb3c3da",
+      "bytes": 15695
+    },
+    {
+      "path": "RESULT.md",
+      "sha256": "a5d70f3367885afb1b9a6a3c80fa44506f55c6bfd680e620ad59a21e30112d15",
+      "bytes": 1748
+    },
+    {
+      "path": "terminal-01/category-map.tsv",
+      "sha256": "b7d93cb9256a5d0a05a7ff8674ef83861eae8359cab188233e9f7a9efa952909",
+      "bytes": 30
+    },
+    {
+      "path": "terminal-01/driver-terminal.json",
+      "sha256": "b40cc1bee1f6115112962f9d4662e3bea844512462dc19abc0b725330be2d374",
+      "bytes": 619
+    },
+    {
+      "path": "terminal-01/facts.json",
+      "sha256": "d94fa0ccbce03fcc2d78b9760c209722f792cc06672753c77da3cbdccd885efe",
+      "bytes": 331
+    },
+    {
+      "path": "terminal-01/git-source-receipt.json",
+      "sha256": "3dd51f87aeb5e613fe368debd2068d1b9ee1aa8b9b3ff156cc80e96780e763ed",
+      "bytes": 339
+    },
+    {
+      "path": "terminal-01/prerequisite-controls.json",
+      "sha256": "ae14f7d74611851b9aba01e0a6f3c73280c85110d4c2a56c78d242acfe481eed",
+      "bytes": 3374
+    },
+    {
+      "path": "terminal-01/reporter-base.json",
+      "sha256": "798d129539d945f90a4e6418d8afa4d44de7ceaa033dbfbb1b4900207ae4313f",
+      "bytes": 451
+    },
+    {
+      "path": "terminal-01/requirements.py",
+      "sha256": "b47e084f994abcfdb12a4edb43088934b118eff241d33d002e5e6ac5438a2d84",
+      "bytes": 39374
+    },
+    {
+      "path": "terminal-01/result.json",
+      "sha256": "7f849cb4800e4a1eb9c836061c9a544824cdd7d5a7956bda46d82923eb48e206",
+      "bytes": 2067196
+    },
+    {
+      "path": "terminal-01/subsystems.tsv",
+      "sha256": "80078002836631ffb3654f9c1a6aabac064c9a7a5c69b4db05e22c9a5c1ac3dc",
+      "bytes": 130
+    },
+    {
+      "path": "terminal-01/wrong-source.py",
+      "sha256": "332d05e2ae228b87ff76df57cb1486a2fdf090dc6f97e841b6fbf251ba367515",
+      "bytes": 39417
+    },
+    {
+      "path": "TERMINAL-PLAN-1001.md",
+      "sha256": "bd740065976bcdd42436dead9d7a21d57dde26ce81407ff4f08b17667e2eb7d1",
+      "bytes": 2553
+    },
+    {
+      "path": "TERMINAL-RESULT-1001.md",
+      "sha256": "40475b93aeace19f1781def56ee4bfe30471d766ea69fb6b7ad7e1588c6cd0a9",
+      "bytes": 3087
+    }
+  ]
+}

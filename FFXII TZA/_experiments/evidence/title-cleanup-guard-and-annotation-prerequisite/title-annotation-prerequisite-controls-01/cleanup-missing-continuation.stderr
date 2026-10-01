@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-cleanup-guard-scope-02.py", line 180, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-cleanup-guard-scope-02.py", line 92, in main
+    raise ValueError("missing/changed original span")
+ValueError: missing/changed original span

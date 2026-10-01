@@ -1,0 +1,28 @@
+{
+  "case": "failed-upstream",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\controls-02\\failed-upstream\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\controls-02\\failed-upstream"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "result_absent": true,
+  "diagnostic": "RuntimeError: required capture failed/incomplete",
+  "changed_file": "capture-01.status.json",
+  "changed_sha256": "35624e2f2dc6d98f6fd8c626033b68dd217d4f07e6ff2d85e53de1e3a409302e",
+  "inherited_from_baseline": {
+    "capture.py": "005b4e6643972d9296495595f7ae0a79d910fee871fb13c33e9ea3224b0a65dc",
+    "source-01.json": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8",
+    "capture-01.stdout": "be751450a1aaa539879a4cc8f03da49424dc90ff152896eee9d4335cc526f435",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "producer_sha256": "f32a163d55cfe32983d74f0efbef42bd420b621378aa33dc82a52543b6e4813a",
+  "control_sha256": "9c8601484997e36cb58c3665604fcba8b623d0f0cb04f410092a3ea977a34cf3",
+  "expected_diagnostic": "RuntimeError: required capture failed/incomplete",
+  "passed": true
+}

@@ -1,0 +1,22 @@
+{
+  "question": "Does full file-queue retry service old callbacks between lane owner validation and pending-publication, and when is new descriptor staged/copied?",
+  "hypotheses": [
+    "H1 issuer-toqueue path cannot service callbacks before its pending store/adoption",
+    "H2 full-pool pump is an old-request callback opportunity before adoption and later pending store; descriptor staging differs by32E620 chunk mode"
+  ],
+  "method": "A reuse canonical queue semantics/retainedlane source, then exact missing request-builder/full-pool-adopter code only",
+  "existing": "Canonical request queue alreadystates fullpool pumps32E070/46DFE0/35EA30 and separate chunk fixups, its72 originalinstruction runs belong to priorproducer notASTRA. Retained2E6EB0 validates owner beforeallocation/submission, sets pending after32E620 returns. No naturaloldcallback/reuse proof.",
+  "identity": "Shipping EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000, sameoriginalcaller/code/typedqueue64slots validated independently",
+  "controls": [
+    "Freeheadnonnull bypasses pump and contrasts with fullpool branch",
+    "Actualshipping/adapter roles and exact descriptor-copy/store/call order",
+    "Current originalcallee/caller identities, no shorthand/type offset-only identity",
+    "Refuse failed upstream or coherentlyaltered order/controlbytes; do not replay queue campaign"
+  ],
+  "acceptance": "Source callchain and eventpartialorder: owner validation -> possibleold-requestservice -> new adoption -> pending-store; scope copieddescriptor mode versus borrowed ordinarymode; no same-newrequest callback inference",
+  "falsification": "Fullpool onlypaceswithout originalpump, or descriptoradoption/pendingstore dominates all possible pump paths; distinguish unavailablequeuecontrols fromzeroevents",
+  "consumer": "Existing FABLE/OPUS lane/ownership consumers, relatedqueuecontractowner if a genuinelymissing qualification",
+  "budget": "Two missing bounded request functions, retainedlane/queue source semantics reused. No game/native/generalobserver/platform.",
+  "limits": "Conditional callback opportunity is not naturalold-request/reuse or realthread/timing proof. Currentrecordgeneration check not old-submission fence; positive accepted outstandingIO premise separate.",
+  "cleanup": "Finite file analysis/ownprivatecontrols, no game/PC/native/emulated/instrument/save/config/reference/peer mutation"
+}

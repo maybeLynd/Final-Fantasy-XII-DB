@@ -1,0 +1,101 @@
+{
+  "status": "UNWIND_PREPARATION_ONLY",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "exception_directory": {
+    "rva": "0x2e78000",
+    "bytes": 428556,
+    "padding_tuples": 0
+  },
+  "fragments": {
+    "0x62bcb0": [
+      {
+        "entry": [
+          "0x62bcb0",
+          "0x62bcf1",
+          "0x1da8b68"
+        ],
+        "chain_root": [
+          "0x62bcb0",
+          "0x62bcf1",
+          "0x1da8b68"
+        ],
+        "raw_unwind": null
+      },
+      {
+        "entry": [
+          "0x62bcf1",
+          "0x62bd04",
+          "0x1da8510"
+        ],
+        "chain_root": [
+          "0x62bcb0",
+          "0x62bcf1",
+          "0x1da8b68"
+        ],
+        "raw_unwind": "2105020005540600b0bc5000f1bc5000688bc801"
+      },
+      {
+        "entry": [
+          "0x62bd04",
+          "0x62bf24",
+          "0x1da8524"
+        ],
+        "chain_root": [
+          "0x62bcb0",
+          "0x62bcf1",
+          "0x1da8b68"
+        ],
+        "raw_unwind": "210a04000a74080005640700f1bc500004bd50001085c801"
+      },
+      {
+        "entry": [
+          "0x62bf24",
+          "0x62bf2b",
+          "0x1da853c"
+        ],
+        "chain_root": [
+          "0x62bcb0",
+          "0x62bcf1",
+          "0x1da8b68"
+        ],
+        "raw_unwind": "21000000f1bc500004bd50001085c801"
+      },
+      {
+        "entry": [
+          "0x62bf2b",
+          "0x62bf37",
+          "0x1da854c"
+        ],
+        "chain_root": [
+          "0x62bcb0",
+          "0x62bcf1",
+          "0x1da8b68"
+        ],
+        "raw_unwind": "21000000b0bc5000f1bc5000688bc801"
+      }
+    ],
+    "0x616c60": [
+      {
+        "entry": [
+          "0x616c60",
+          "0x616cbd",
+          "0x1da8590"
+        ],
+        "chain_root": [
+          "0x616c60",
+          "0x616cbd",
+          "0x1da8590"
+        ],
+        "raw_unwind": null
+      }
+    ]
+  },
+  "guard_leaf": {
+    "start": "0x625f00",
+    "end_exclusive": "0x625f0b",
+    "bytes": "83b9bc000000000f95c0c3"
+  },
+  "failed_preparation": "First whole-section scan included raw .pdata alignment/padding and tried an unbacked unwind address; no output or semantic result. Corrected scan uses authoritative Exception DataDirectory size.",
+  "limits": "Physical chain association only; normal CFG/callee effects and field meaning still require reduction"
+}

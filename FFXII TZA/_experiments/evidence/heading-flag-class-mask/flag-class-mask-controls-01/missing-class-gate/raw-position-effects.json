@@ -1,0 +1,387 @@
+{
+  "selected_source_edges": [
+    {
+      "pc": "0x2e5d4c",
+      "target": "0x3db1b0",
+      "mnemonic": "call",
+      "kind": "direct_call"
+    },
+    {
+      "pc": "0x2e5d63",
+      "target": "0x3dae00",
+      "mnemonic": "call",
+      "kind": "direct_call"
+    },
+    {
+      "pc": "0x2e5dc1",
+      "target": "0x2e6000",
+      "mnemonic": "call",
+      "kind": "direct_call"
+    },
+    {
+      "pc": "0x2e5ddd",
+      "target": "0x3db1b0",
+      "mnemonic": "call",
+      "kind": "direct_call"
+    }
+  ],
+  "unique_targets": [
+    3039232,
+    4042240,
+    4043184
+  ],
+  "callees": [
+    {
+      "entry": "0x3dae00",
+      "name": "FUN_003dae00",
+      "catalogue_line": "003DAE00\tFUN_003dae00\t23\tMovement\tfalse\tfalse\tfalse\t1438\tCategoryExitV120AuditWIP;FFXII.MovementNavigationSteering;FunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Movement;GFZ.V120WIP.MovementExit.CategoryClosed;GFZ.V120WIP.PrimaryOwner.Movement;V120AuditWIP761B",
+      "bytes": 23,
+      "code_file": "retained/position-effects/003DAE00.bin",
+      "code_sha256": "4f3452706a354e3d1f8a5912514e2b810d3009743561506e3507519ddb006099",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 23,
+      "instructions": [
+        {
+          "pc": "0x3dae00",
+          "bytes": "4885c9",
+          "mnemonic": "test",
+          "args": "rcx, rcx",
+          "written": [
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3dae03",
+          "bytes": "7411",
+          "mnemonic": "je",
+          "args": "0x3dae16",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x3dae05",
+          "bytes": "8b4130",
+          "mnemonic": "mov",
+          "args": "eax, dword ptr [rcx + 0x30]",
+          "written": [
+            "rax"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3dae08",
+          "bytes": "8902",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdx], eax",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3dae0a",
+          "bytes": "8b4134",
+          "mnemonic": "mov",
+          "args": "eax, dword ptr [rcx + 0x34]",
+          "written": [
+            "rax"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3dae0d",
+          "bytes": "894204",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdx + 4], eax",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3dae10",
+          "bytes": "8b4138",
+          "mnemonic": "mov",
+          "args": "eax, dword ptr [rcx + 0x38]",
+          "written": [
+            "rax"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3dae13",
+          "bytes": "894208",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdx + 8], eax",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3dae16",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    },
+    {
+      "entry": "0x3db1b0",
+      "name": "FUN_003db1b0",
+      "catalogue_line": "003DB1B0\tFUN_003db1b0\t57\tMovement\tfalse\tfalse\tfalse\t1438\tCategoryExitV120AuditWIP;FFXII.MovementNavigationSteering;FunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Movement;GFZ.V120WIP.MovementExit.CategoryClosed;GFZ.V120WIP.PrimaryOwner.Movement;V120AuditWIP761B",
+      "bytes": 57,
+      "code_file": "retained/position-effects/003DB1B0.bin",
+      "code_sha256": "abf76f41630f6e14ae2b1ef06afdd0176f1530fdd42ad88f35fef408fa116377",
+      "extent_status": "UNWIND_UNION_MATCH",
+      "unwind_union": 57,
+      "unwind_contiguous": true,
+      "fragments": [
+        {
+          "begin": "0x3db1b0",
+          "end": "0x3db1e9",
+          "unwind": "0x1d6b7c8",
+          "flags": 0,
+          "raw_unwind": "010a04000a3406000a320670",
+          "table_pc": 50078788,
+          "raw_runtime_function": "b0b12b00e9b12b00c8b7c401"
+        }
+      ],
+      "decoded_bytes": 57,
+      "instructions": [
+        {
+          "pc": "0x3db1b0",
+          "bytes": "48895c2408",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 8], rbx",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 8
+            }
+          ]
+        },
+        {
+          "pc": "0x3db1b5",
+          "bytes": "57",
+          "mnemonic": "push",
+          "args": "rdi",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1b6",
+          "bytes": "4883ec20",
+          "mnemonic": "sub",
+          "args": "rsp, 0x20",
+          "written": [
+            "rflags",
+            "rsp"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1ba",
+          "bytes": "488bf9",
+          "mnemonic": "mov",
+          "args": "rdi, rcx",
+          "written": [
+            "rdi"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1bd",
+          "bytes": "bb01000000",
+          "mnemonic": "mov",
+          "args": "ebx, 1",
+          "written": [
+            "rbx"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1c2",
+          "bytes": "4885c9",
+          "mnemonic": "test",
+          "args": "rcx, rcx",
+          "written": [
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1c5",
+          "bytes": "7415",
+          "mnemonic": "je",
+          "args": "0x3db1dc",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1c7",
+          "bytes": "4883c130",
+          "mnemonic": "add",
+          "args": "rcx, 0x30",
+          "written": [
+            "rcx",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1cb",
+          "bytes": "e8605bfaff",
+          "mnemonic": "call",
+          "args": "0x380d30",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1d0",
+          "bytes": "33c0",
+          "mnemonic": "xor",
+          "args": "eax, eax",
+          "written": [
+            "rax",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1d2",
+          "bytes": "66398782000000",
+          "mnemonic": "cmp",
+          "args": "word ptr [rdi + 0x82], ax",
+          "written": [
+            "rflags"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 2
+            }
+          ]
+        },
+        {
+          "pc": "0x3db1d9",
+          "bytes": "0f4cd8",
+          "mnemonic": "cmovl",
+          "args": "ebx, eax",
+          "written": [
+            "rbx"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1dc",
+          "bytes": "8bc3",
+          "mnemonic": "mov",
+          "args": "eax, ebx",
+          "written": [
+            "rax"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1de",
+          "bytes": "488b5c2430",
+          "mnemonic": "mov",
+          "args": "rbx, qword ptr [rsp + 0x30]",
+          "written": [
+            "rbx"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 8
+            }
+          ]
+        },
+        {
+          "pc": "0x3db1e3",
+          "bytes": "4883c420",
+          "mnemonic": "add",
+          "args": "rsp, 0x20",
+          "written": [
+            "rflags",
+            "rsp"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1e7",
+          "bytes": "5f",
+          "mnemonic": "pop",
+          "args": "rdi",
+          "written": [
+            "rdi",
+            "rsp"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3db1e8",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [
+        {
+          "pc": "0x3db1cb",
+          "target": "0x380d30"
+        }
+      ],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    }
+  ],
+  "status": "SOURCE_ONLY_NOT_CLASS_PRESERVATION",
+  "selection": "Three unique observed position/collision callees from2E5C90. Native bytes/source only; no class/alias/lifetime/initialized-state verdict.",
+  "cleanup": "Original references unchanged, no game/native/browser/input/instrument/process control."
+}

@@ -1,7 +1,7 @@
 ---
 system: Native command lifecycle — begin / poll / result
 category: 01-Script-VM-Native-Bridge
-status: "REOPENED — SECTION-11 trigger resolved (accepted by a non-author review 2026-09-29) and the page returns through the owner read; families 3, 5 and 7 and the default aliasing answered (AO-1, AO-4); the byte the polls test is the manager skip mask (OV-15); a skip is set when the player skips an event cutscene (RC-17, answered by FABLE; ORACLE's corrections pending FABLE's adjudication) (status line current 2026-09-30, SWE2-CONTRACT)"
+status: "DOCUMENTED — every register row the page names is answered; owner read and re-status 2026-10-01 (OPUS, batch 23): the SECTION-11 trigger is resolved (accepted by a non-author review 2026-09-29); families 3, 5 and 7 and the default aliasing answered (AO-1, AO-4); the byte the polls test is the manager skip mask (OV-15); a skip is set when the player skips an event cutscene (RC-17, answered by FABLE; ORACLE's two corrections adjudicated by OPUS 2026-10-01, both hold) (status line current 2026-09-30, SWE2-CONTRACT)"
 owner_layer: PrimaryOwner:Script_VM_Native_Bridge
 evidence_tier: 1
 verified_against:
@@ -191,7 +191,7 @@ rather than calling a native verb ([how a script binds to an actor](../Interpret
   engine's own loop over managers 1–3 in `00360710` runs — i.e. whether the skip mask the durative polls test is set in
   shipped play. Registered 2026-09-30 (SWE2-CONTRACT); static first (a call-triple census over the shipped `.ebp`
   corpus, as CR-2's was, plus the engine loop's callers).
-  *Applied 2026-09-30 (records) RC-17:* **ANSWERED 2026-09-30 by FABLE (`rc151617-fable-0930`, `0870d8b62`): yes — the skip mask is set when the player skips an event cutscene** (`skipexec(1)` in 7 event scripts, `skipexec(0)` in 12, in the cutscene-skip idiom). **ORACLE (`rc15-regfile-skipmask-0930`, commit `1e4537034`) agrees on the chain and corrects two details:** `00360880` calls `00360710(n, m)` once per manager for the lowest set bit, not once per set bit; and `skipcheck` returns the entry's begun word, not the player's skip; `00228130`'s trigger is bit 13 of `[[0209AC30] + 0x400]`. **FABLE adjudication pending** on the corrections.
+  *Applied 2026-09-30 (records) RC-17:* **ANSWERED 2026-09-30 by FABLE (`rc151617-fable-0930`, `0870d8b62`): yes — the skip mask is set when the player skips an event cutscene** (`skipexec(1)` in 7 event scripts, `skipexec(0)` in 12, in the cutscene-skip idiom). **ORACLE (`rc15-regfile-skipmask-0930`, commit `1e4537034`) agrees on the chain and corrects two details:** `00360880` calls `00360710(n, m)` once per manager for the lowest set bit, not once per set bit; and `skipcheck` returns the entry's begun word, not the player's skip; `00228130`'s trigger is bit 13 of `[[0209AC30] + 0x400]`. ~~**FABLE adjudication pending** on the corrections.~~ *(Corrections adjudicated 2026-10-01 by OPUS for FABLE: both corrections hold at the bytes - `00360880` runs managers 1 to 3 (`ebx`), scans bits 0-7 of each mask from `022CB9C4` (`bt` loop `003608A0`-`003608AA`) and calls `00360710` once, at the first set bit (`003608B0`); `003604A0` returns dword `[022CB738 + (n + 8m)*16]`, the begun word ([record](../../_index/candidates/opus-dd-restatus-23-1001/README.md)).)*
 
 ## 5. Data structures and formulas
 

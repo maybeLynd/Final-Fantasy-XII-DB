@@ -1,0 +1,62 @@
+{
+  "status": "PASS_ACTUAL_PRODUCER_GATE_PREREQUISITE_REFUSALS",
+  "driver_sha256": "694b154b0abb8f685348bd2ace7990793c413e7ee8dbeadeac4b683799bfc746",
+  "cases": [
+    {
+      "tag": "failed-qualifier",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_producer_gate.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\failed-qualifier\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\failed-qualifier"
+      ],
+      "exit": 1,
+      "expected_refusal": "required qualifier failed/stale",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-enable-store",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_producer_gate.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\changed-enable-store\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\changed-enable-store"
+      ],
+      "exit": 1,
+      "expected_refusal": "original byte mismatch",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-getter",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_producer_gate.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\missing-getter\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\missing-getter"
+      ],
+      "exit": 1,
+      "expected_refusal": "required range population missing/changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-sign-branch",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_producer_gate.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\changed-sign-branch\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-controls-01\\changed-sign-branch"
+      ],
+      "exit": 1,
+      "expected_refusal": "original byte mismatch",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    }
+  ]
+}

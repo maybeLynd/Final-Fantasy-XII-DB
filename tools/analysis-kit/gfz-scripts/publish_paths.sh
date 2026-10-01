@@ -773,12 +773,40 @@ echo "publish_paths.sh: committed sha: $commit"
 # paths just committed, which would make git status report them as changed in
 # reverse. Refresh the index for THOSE PATHS ONLY -- they now equal HEAD, so the
 # entries become clean -- and touch nothing else, so peer staging is preserved.
-for p in "$@"; do
-    if [ -e "$root/$p" ]; then
-        git -C "$root" add -- "$p"
-    else
-        git -C "$root" rm --cached --quiet --ignore-unmatch -- "$p"
+# The refresh runs on the REAL index, so a concurrent writer holding
+# .git/index.lock makes `git add` exit 128 (ASTRA-NOTICE-FRONTIER-POSTCOMMIT-
+# INDEX-LOCK-0930: commit bc6e03755 landed, refresh exit 128). The commit itself
+# is already durable by then -- retry briefly, then report REFRESH-DEFERRED
+# with the commit sha rather than fail ambiguously. Re-running the refresh is
+# safe: the committed blobs equal the worktree, so the retry is idempotent.
+refresh_tries=0
+while :; do
+    refresh_rc=0
+    for p in "$@"; do
+        if [ -e "$root/$p" ]; then
+            git -C "$root" add -- "$p" || refresh_rc=1
+        else
+            git -C "$root" rm --cached --quiet --ignore-unmatch -- "$p" || refresh_rc=1
+        fi
+    done
+    [ "$refresh_rc" -eq 0 ] && break
+    refresh_tries=$((refresh_tries + 1))
+    if [ "$refresh_tries" -ge 20 ]; then
+        cat >&2 <<EOF
+publish_paths.sh: REFRESH-DEFERRED -- the commit DID land as $commit.
+  The post-commit repository-index refresh could not take .git/index.lock
+  after $refresh_tries tries (a concurrent writer held it). Nothing is lost.
+  Until the refresh completes, \`git status\` reports the just-committed paths
+  as changed-in-reverse; peer staging is untouched either way.
+  To finish later, run for each named path:
+      git add -- <path>                 (paths that exist)
+      git rm --cached -- <path>         (paths the commit deleted)
+  Delivery bookkeeping: this run is NOT a complete delivery. Verify the exact
+  commit sha and blobs, then re-run only the refresh -- never the commit.
+EOF
+        exit 4
     fi
+    sleep 1
 done
 
 # The repository index still holds whatever it held before, including a peer's

@@ -1,7 +1,7 @@
 ---
 system: How experience is computed and divided
 category: 13-Rewards-Progression-Economy
-status: REOPENED — SECTION-03 independent peer acceptance pending (GR-16); converted to a function note of the award page 2026-09-30 (FABLE)
+status: REOPENED — SECTION-03 independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1); the page's re-status is left to its owner (FABLE); converted to a function note of the award page 2026-09-30 (FABLE)
 note_kind: function
 parent: experience-and-license-point-award.md
 owner_layer: PrimaryOwner:Rewards_Progression_Economy
@@ -27,7 +27,7 @@ audit:
   reopened_count: 0
 production_review:
   section: SECTION-03
-  status: locally validated; peer acceptance pending
+  status: locally validated; independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1)
   scope: original reward consumers, selected caller instructions and retained binding observations
   new_live_session: false
 
@@ -35,7 +35,7 @@ production_review:
 
 # How experience is computed and divided
 
-> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending** (registered as GR-16, 2026-09-30).
+> **SECTION-03 production review, 2026-09-22; ~~independent peer acceptance pending~~** (registered as GR-16, 2026-09-30). *(OPUS, 2026-10-01: independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, [review](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), GR-16; N1: `run_review.py` reproduces against the pinned pre-image of the reward-binding checker, and the sealed checker agrees with the preserved observation).)*
 > Corrected against original EXE instructions, 71 bounded native controls and independent review
 > of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
 > a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.

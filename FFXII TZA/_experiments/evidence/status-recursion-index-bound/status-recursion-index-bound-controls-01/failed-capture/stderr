@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-status-recursion-index-bound.py", line 38, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-status-recursion-index-bound.py", line 10, in main
+    if st.get('terminal') is not True or st.get('exit')!=0 or st.get('source_sha256')!=sha(p) or st.get('driver_sha256')!=sha(src/'capture-status-recursion-index-bound.py'):raise ValueError('capture prerequisite failed or missing')
+                                                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: capture prerequisite failed or missing

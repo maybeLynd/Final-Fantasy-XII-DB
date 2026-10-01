@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-handle-accounting-qualification.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\handle-accounting-qualification-source-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "04f0806b791edeb026abd0562d7819bb26b6d0107877d5b329157b94ab7f5b40"
+}

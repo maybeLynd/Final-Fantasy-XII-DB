@@ -1,0 +1,75 @@
+{
+  "status": "EXACT_OWN_DESCRIPTOR_LABEL_PREIMAGES",
+  "inputs": [
+    {
+      "path": "descriptor-offset-retained-pin-result-01.json",
+      "sha256": "c41fc457dd09f60c39b726f7db3460f8e76bdeedfac5901779c9fd8e593b94d2",
+      "original_path": "namebinding-pin-exception-frozen-ready/namebinding-pin-exception-result-01.json",
+      "manifest_sha256": "5d9692137a0bb8b8f08e0c69e9c8da7f2fcecca8e6ac9595b5a09aa56eeda08b"
+    },
+    {
+      "path": "descriptor-offset-retained-pin-source-01.json",
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be",
+      "original_path": "namebinding-pin-exception-frozen-ready/namebinding-pin-exception-source-01.json",
+      "manifest_sha256": "5d9692137a0bb8b8f08e0c69e9c8da7f2fcecca8e6ac9595b5a09aa56eeda08b"
+    },
+    {
+      "path": "descriptor-offset-retained-adopter-source-01.json",
+      "sha256": "482092407f28b26808664a0e897c67097da0c77004b64f9e4a29e0edaa5c14b9",
+      "original_path": "lane-request-reentrancy-frozen-ready/lane-request-reentrancy-source-01.json",
+      "manifest_sha256": "c09ed22e9f1ea624f3f605c41bfb4eafc7221b8e80d12204c7cbf9d2897b1541"
+    }
+  ],
+  "affected": [
+    {
+      "path": "namebinding-pin-exception-frozen-ready/freeze-namebinding-pin-exception.py",
+      "sha256": "bd5b9b481347362982d7ea70a3489af53545e67f1c05c35c3383bf830b65d19a",
+      "hits": [
+        {
+          "line": 29,
+          "text": "(out/'README.md').write_text('# Name-binding exception flag is not the ordinary ready flag\\n\\nMethod A, STATIC_ONLY. Three complete original bodies700B, verified shipping\\nEXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8,\\nimagebase120000. Shared reviewed store/address/RMW adapter actually invoked.\\nProducer valid; independent review and canonical incorporation pending.\\nFull L1+L2 database goal remains ACTIVE/NOT_MET.\\n\\nPlayer version: when this resource cannot supply a positive size or allocation,\\nthe loader retains a special failure flag and a zero handle. A successful\\nallocation clears that flag before submitting the file read. The failure flag\\ndoes not itself mean the ordinary resource-ready flag is set.\\n\\n2E6700 starts at typed queued-entry list0215FD78; boundID+14 maps through2ED6F0\\nand32E400.2E677B sets19mask04,2E6783 zeroes+10, signed size<=0 skips allocation\\nand submit; allocator36B160 return0 likewise skips submit. Otherwise2E679B\\nclears04 through RSI=record+19 before same-record2EAD50 call. Records move to\\nlive list0215FD58. Canonical type/list premises are pinned separately.\\n\\nComplete worker has no direct record18 write. Constructor18=0 and mask04=0,\\nfollowed by a no-interference nonpositive-size path, permits ready18mask02=0\\nand19mask04=1 with no read submitted by that invocation. This is a conditional\\noriginal producer composition; actual natural initialization/callers not proved.\\n\\n2EAD50 prepares callback2E4D20, DWORD low32 record user data, flags0 and NULL\\ncancel function. Its destination is36A000(handle) RAX; metadata queried twice,\\nnew size passed to32E620. Descriptor dataflow is not acceptance/execution.\\nAddress representation and callee behavior remain explicit preconditions.\\n\\nDiscovery candidates are positive leads only:36 offset candidates, one\\nincomplete jump-table body, module-local and alias0-limited. Original constructor\\nAND19,C8 is a detection control. Source-directed alias clear at2E679B is retained;\\nno universal writer absence or typed meaning from arithmetic/offset alone.\\n\\nReproduce in a writable repo copy with verified original image and fresh outputs.\\nThree actual CLI controls reuse the sufficient positive and refuse failed\\ncapture, coherent same-count wrong flag clear, and missing consumer premise.\\nNo result appears on refusal. Normal ABI/list/state/no interference premises\\nremain. No game, native or emulated run, PC control, instrument/save/config/\\nreference/peer mutation. No test-count credit for external evidence.\\n\\nExisting FABLE/OPUS namebinding-deletion consumers own incorporation. Resolve\\ntheir narrow flag/type/descriptor assumptions after independent review.\\nOld outstanding request plus04, natural callback timing/reentry/lifetime,\\nother writers and allocator/read success remain OPEN. No whole OV row closure.\\n',encoding='utf8')"
+        }
+      ]
+    },
+    {
+      "path": "namebinding-pin-exception-frozen-ready/namebinding-pin-exception-result-01.json",
+      "sha256": "c41fc457dd09f60c39b726f7db3460f8e76bdeedfac5901779c9fd8e593b94d2",
+      "hits": [
+        {
+          "line": 135,
+          "text": "    \"flags\": 0,"
+        },
+        {
+          "line": 145,
+          "text": "    \"Submitter2EAD50 builds callback2E4D20, DWORD low32 record user data, flags0 and NULL cancellation function. It passes the36A000(handle) return as destination, metadata kind/index and a newly queried size to32E620. This is original descriptor and call dataflow, not proof the read is accepted or executed.\","
+        }
+      ]
+    },
+    {
+      "path": "namebinding-pin-exception-frozen-ready/prove-namebinding-pin-exception.py",
+      "sha256": "1f1b2a82f8da4f2779663f897e8e907de342af54787ff433560da75d16ed9261",
+      "hits": [
+        {
+          "line": 69,
+          "text": "    result=dict(status='PRODUCER_VALID_PIN_EXCEPTION_BRANCH_INDEPENDENT_PENDING',producer_complete=True,question='Does the original mask04 producer force ready18mask02 or mark allocation-unavailable branches?',method='A STATIC_ONLY',exe_sha256=P.SHA,source_pins=pins,normal_cfgs=cfgs,branch_partition=rows,descriptor=dict(callback='0x2e4d20',user_data='low32(record pointer), DWORD+8',flags=0,cancel_callback='NULL',read_destination='RAX of36A000(handle)',read_size='EAX of second32E400',metadata_queries=2),"
+        },
+        {
+          "line": 74,
+          "text": "        'Submitter2EAD50 builds callback2E4D20, DWORD low32 record user data, flags0 and NULL cancellation function. It passes the36A000(handle) return as destination, metadata kind/index and a newly queried size to32E620. This is original descriptor and call dataflow, not proof the read is accepted or executed.',"
+        }
+      ]
+    },
+    {
+      "path": "namebinding-pin-exception-frozen-ready/README.md",
+      "sha256": "a99a97d2465c4e3f35476c4640baaddb7639e266d8ef2b7ec86b7f300ce5693c",
+      "hits": [
+        {
+          "line": 25,
+          "text": "2EAD50 prepares callback2E4D20, DWORD low32 record user data, flags0 and NULL"
+        }
+      ]
+    }
+  ],
+  "unaffected": "Other four direct roots had no matching descriptor flags0 terms; real record flags/modes unchanged, not a universal absence proof.",
+  "future_path": "normalize-namebinding-descriptor.py checked original dataflow -> qualified02; historical driver/result are immutable legacy inputs, not current semantic output."
+}

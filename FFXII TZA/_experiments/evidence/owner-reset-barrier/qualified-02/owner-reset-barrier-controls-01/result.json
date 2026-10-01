@@ -1,0 +1,63 @@
+{
+  "status": "PASS_ACTUAL_OWNER_RESET_PREREQUISITE_REFUSALS",
+  "cases": [
+    {
+      "tag": "failed-capture",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reset_barrier.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\failed-capture\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_refusal": "required original capture failed/stale",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-wait",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reset_barrier.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\missing-wait\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\missing-wait"
+      ],
+      "exit": 1,
+      "expected_refusal": "original operation changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-branch",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reset_barrier.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\changed-branch\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\changed-branch"
+      ],
+      "exit": 1,
+      "expected_refusal": "original byte mismatch",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-retained-fst",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_reset_barrier.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\missing-retained-fst\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\missing-retained-fst",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reset-barrier-controls-01\\missing-retained-fst\\missing-upstream"
+      ],
+      "exit": 1,
+      "expected_refusal": "No such file",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    }
+  ],
+  "driver_sha256": "2f179ff2575675c7fd1bea7c04c7efe7ee989155632364ec9acee9b0b25255d6"
+}

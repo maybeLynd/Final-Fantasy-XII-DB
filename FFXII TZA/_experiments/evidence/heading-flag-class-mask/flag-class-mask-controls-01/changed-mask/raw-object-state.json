@@ -1,0 +1,298 @@
+{
+  "direct_call_sites": [
+    {
+      "pc": "0x3e6bc7",
+      "target": "0x3e33e0"
+    },
+    {
+      "pc": "0x3e6bd7",
+      "target": "0x3e3440"
+    }
+  ],
+  "unique_targets": [
+    3040000,
+    4076512,
+    4076608
+  ],
+  "callees": [
+    {
+      "entry": "0x2e6300",
+      "name": "FUN_002e6300",
+      "catalogue_line": "002E6300\tFUN_002e6300\t10\tMovement\tfalse\tfalse\tfalse\t1677\tCategoryExitV120AuditWIP;ContextAuditV104;FFXII.MovementNavigationSteering;FunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Movement;GFZ.V120WIP.MovementExit.CategoryClosed;GFZ.V120WIP.PrimaryOwner.Movement;V120AuditWIP761B",
+      "bytes": 10,
+      "code_file": "retained/object-state/002E6300.bin",
+      "code_sha256": "9defb13934426f2272551d47d061ac00bf1755a0ad9ceef0074af127dfce95af",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 10,
+      "instructions": [
+        {
+          "pc": "0x2e6300",
+          "bytes": "4584c0",
+          "mnemonic": "test",
+          "args": "r8b, r8b",
+          "written": [
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x2e6303",
+          "bytes": "0f8807f2f7ff",
+          "mnemonic": "js",
+          "args": "0x265510",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x2e6309",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [
+        {
+          "pc": "0x2e6303",
+          "target": "0x265510",
+          "mnemonic": "js",
+          "conditional": true,
+          "resolved_immediate": true
+        }
+      ],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    },
+    {
+      "entry": "0x3e33e0",
+      "name": "FUN_003e33e0",
+      "catalogue_line": "003E33E0\tFUN_003e33e0\t21\t\tfalse\tfalse\tfalse\t818\tGFZ.V121.CodeDomain.NativeLeaf.InlineBitfieldStateMutation",
+      "bytes": 21,
+      "code_file": "retained/object-state/003E33E0.bin",
+      "code_sha256": "d07d2633ad93969ec5a3c6559ee2d880745e11e3524ff9c0992615695bea1581",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 21,
+      "instructions": [
+        {
+          "pc": "0x3e33e0",
+          "bytes": "0fb7c2",
+          "mnemonic": "movzx",
+          "args": "eax, dx",
+          "written": [
+            "rax"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e33e3",
+          "bytes": "c1e017",
+          "mnemonic": "shl",
+          "args": "eax, 0x17",
+          "written": [
+            "rax",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e33e6",
+          "bytes": "3301",
+          "mnemonic": "xor",
+          "args": "eax, dword ptr [rcx]",
+          "written": [
+            "rax",
+            "rflags"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3e33e8",
+          "bytes": "2500000020",
+          "mnemonic": "and",
+          "args": "eax, 0x20000000",
+          "written": [
+            "rax",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e33ed",
+          "bytes": "3301",
+          "mnemonic": "xor",
+          "args": "eax, dword ptr [rcx]",
+          "written": [
+            "rax",
+            "rflags"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3e33ef",
+          "bytes": "83c802",
+          "mnemonic": "or",
+          "args": "eax, 2",
+          "written": [
+            "rax",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e33f2",
+          "bytes": "8901",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx], eax",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3e33f4",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    },
+    {
+      "entry": "0x3e3440",
+      "name": "FUN_003e3440",
+      "catalogue_line": "003E3440\tFUN_003e3440\t19\t\tfalse\tfalse\tfalse\t818\tGFZ.V121.CodeDomain.NativeLeaf.InlineBitfieldStateMutation",
+      "bytes": 19,
+      "code_file": "retained/object-state/003E3440.bin",
+      "code_sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 19,
+      "instructions": [
+        {
+          "pc": "0x3e3440",
+          "bytes": "c1e218",
+          "mnemonic": "shl",
+          "args": "edx, 0x18",
+          "written": [
+            "rdx",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e3443",
+          "bytes": "3311",
+          "mnemonic": "xor",
+          "args": "edx, dword ptr [rcx]",
+          "written": [
+            "rdx",
+            "rflags"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3e3445",
+          "bytes": "81e200000001",
+          "mnemonic": "and",
+          "args": "edx, 0x1000000",
+          "written": [
+            "rdx",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e344b",
+          "bytes": "3311",
+          "mnemonic": "xor",
+          "args": "edx, dword ptr [rcx]",
+          "written": [
+            "rdx",
+            "rflags"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3e344d",
+          "bytes": "83ca04",
+          "mnemonic": "or",
+          "args": "edx, 4",
+          "written": [
+            "rdx",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x3e3450",
+          "bytes": "8911",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx], edx",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x3e3452",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    }
+  ],
+  "status": "SOURCE_ONLY_NOT_CLASS_PRESERVATION",
+  "selection": "Two object-state tail targets and deliberate one-source edge regression control, not three new semantic cases. Prior raw/driver archives preserved.",
+  "cleanup": "Original references unchanged, no game/native/browser/input/instrument/process control."
+}

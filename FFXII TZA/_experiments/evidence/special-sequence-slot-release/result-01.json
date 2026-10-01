@@ -1,0 +1,275 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original branch/caller-order proof",
+  "driver_sha256": "e441c804455c00135a96d3f4efbc8552e551ffb3dd29894634974ae6052d7e95",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "3f79356ba7dfef4764d1db51992b2610f2750454ba405f18c1dad41436385cf3"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 98,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 45,
+  "graphs": [
+    {
+      "entry": "0x30c970",
+      "visited": 64,
+      "returns": [
+        "0x30ca4f"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x30c9f7",
+          "target": "0x325a00"
+        },
+        {
+          "pc": "0x30c9ff",
+          "target": "0x317ec0"
+        },
+        {
+          "pc": "0x30ca0c",
+          "target": "0x31b7e0"
+        },
+        {
+          "pc": "0x30ca14",
+          "target": "0x306570"
+        }
+      ]
+    },
+    {
+      "entry": "0x306570",
+      "visited": 22,
+      "returns": [
+        "0x3065c6"
+      ],
+      "tails": [
+        "0x3065bd"
+      ],
+      "calls": [
+        {
+          "pc": "0x30658f",
+          "target": "0x2671f0"
+        },
+        {
+          "pc": "0x3065af",
+          "target": "0x238a60"
+        }
+      ]
+    },
+    {
+      "entry": "0x31b7e0",
+      "visited": 12,
+      "returns": [
+        "0x31b809"
+      ],
+      "tails": [
+        "0x31b7fe"
+      ],
+      "calls": [
+        {
+          "pc": "0x31b7ed",
+          "target": "0x3588b0"
+        }
+      ]
+    }
+  ],
+  "resolver_zero_path": "02089340bit4 clear or3588B0 NULL -> EAX0; no false-handle/native effects assumed",
+  "caller_transfer": "slot+18 !=0 ->31B7E0(slot+20) -> RCX=RAX unconditionally ->306570; no NULL/result check",
+  "global_release_admission": "argNULL OR globalownerNULL OR equal pointers; then predicate2671F0(3) must returnzero to execute localglobalclear",
+  "postreturn": "Caller always executes local slotreset after306570 normalreturn, including mismatchedowner/resourcepredicate-nonzero return; no local success channel",
+  "slot_resets": [
+    {
+      "pc": "0x30ca22",
+      "base": "rbx",
+      "offset": 28,
+      "bytes": 2,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca26",
+      "base": "rbx",
+      "offset": 0,
+      "bytes": 8,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca29",
+      "base": "rbx",
+      "offset": 8,
+      "bytes": 8,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca2d",
+      "base": "rbx",
+      "offset": 40,
+      "bytes": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca34",
+      "base": "rbx",
+      "offset": 36,
+      "bytes": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca3b",
+      "base": "rbx",
+      "offset": 20,
+      "bytes": 8,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca3f",
+      "base": "rbx",
+      "offset": 16,
+      "bytes": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x30ca42",
+      "base": "rbx",
+      "offset": 32,
+      "bytes": 4,
+      "role": "w"
+    }
+  ],
+  "global_local_clears": [
+    {
+      "pc": "0x306598",
+      "address": "0x22c2158",
+      "bytes": 4,
+      "role": "rw"
+    },
+    {
+      "pc": "0x3065a1",
+      "address": "0x22c215c",
+      "bytes": 8,
+      "role": "w"
+    },
+    {
+      "pc": "0x3065a8",
+      "address": "0x22c2168",
+      "bytes": 8,
+      "role": "w"
+    }
+  ],
+  "branch_partition_countermodels": [
+    {
+      "release_arg": 0,
+      "global_owner": 0,
+      "resource_predicate": 0,
+      "queries_resource": true,
+      "local_global_clear_path": true,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 0,
+      "global_owner": 0,
+      "resource_predicate": 1,
+      "queries_resource": true,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 0,
+      "global_owner": 4096,
+      "resource_predicate": 0,
+      "queries_resource": true,
+      "local_global_clear_path": true,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 0,
+      "global_owner": 4096,
+      "resource_predicate": 1,
+      "queries_resource": true,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 4096,
+      "global_owner": 0,
+      "resource_predicate": 0,
+      "queries_resource": true,
+      "local_global_clear_path": true,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 4096,
+      "global_owner": 0,
+      "resource_predicate": 1,
+      "queries_resource": true,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 4096,
+      "global_owner": 4096,
+      "resource_predicate": 0,
+      "queries_resource": true,
+      "local_global_clear_path": true,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 4096,
+      "global_owner": 4096,
+      "resource_predicate": 1,
+      "queries_resource": true,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 8192,
+      "global_owner": 0,
+      "resource_predicate": 0,
+      "queries_resource": true,
+      "local_global_clear_path": true,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 8192,
+      "global_owner": 0,
+      "resource_predicate": 1,
+      "queries_resource": true,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 8192,
+      "global_owner": 4096,
+      "resource_predicate": 0,
+      "queries_resource": false,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    },
+    {
+      "release_arg": 8192,
+      "global_owner": 4096,
+      "resource_predicate": 1,
+      "queries_resource": false,
+      "local_global_clear_path": false,
+      "slot_reset_after_normal_return": true
+    }
+  ],
+  "answer": "A failed owner resolution can be forwarded asNULL wildcard, conditional on valid slot+18/noninterference/normalcallee returns. A skipped globalclear is not a skipped slotreset. No naturalinvalidowner/reuse bug was observed; the cross-call ownership contract must state these conditional paths.",
+  "limitations": [
+    "No native/game/emulator/forced calls or actual resourcepredicate effects",
+    "Valid poolslot0..31, validlinks/privateframe, x64ABI and slot/global noninterference across normal external returns assumed",
+    "31B7E0 target263E30 and othercallees native effects not established by their call tags",
+    "Resourcepredicate nonzero prevents LOCAL clear; does not prove predicate/transitivecalls neverwrite sameglobals",
+    "Natural lostowner/alias/reuse/abort reachability and scheduling remainopen",
+    "QWORDclear022C215C covers kindDWORD and adjacentstateDWORD; observed write footprint is not atomicity/timing/parity guarantee"
+  ]
+}

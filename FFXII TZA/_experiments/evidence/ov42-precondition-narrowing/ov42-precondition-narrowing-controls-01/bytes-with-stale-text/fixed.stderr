@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-special-admission.py", line 15, in <module>
+    source_validation=gate.qualify(raw,args.exe)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\qualify-special-admission-source.py", line 28, in qualify
+    validation = s.validate(raw)  # Actual invocation, including reviewed adapter.
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 48, in validate
+    raise ValueError("decoded annotation disagrees with bytes at " + record["pc"])
+ValueError: decoded annotation disagrees with bytes at 0x306c0a

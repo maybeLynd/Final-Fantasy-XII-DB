@@ -1,0 +1,32 @@
+{
+  "canonical_accounting_path": "Database/FFXII TZA/24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+  "canonical_accounting_sha256": "52a0d21f1ec5bd89957c2d0e577419a4d119184b5c8fc15aec679580f1f5bbec",
+  "canonical_accounting_excerpt": " \u2014 the array is two elements, and the page was right (OPUS, 2026-09-14)\n\nThe narrowing above left one question: what is `[rec+0x17]`'s range? `0036C5D0` answers it directly,\nbecause that function **takes the new index as an argument** and compares it against the record's\ncurrent one (`0036C5FD  cmp eax, r8d`). So the callers give the range.\n\n| callee | call sites | literal `edx` | computed |\n|---|---:|---|---:|\n| `0036C5D0` | 5 | **1** at two sites | 3 |\n| `0036C620` | 2 | **1** at one site | 1 |\n| `00369860` | 7 | **0** at all seven | 0 |\n\n**Every literal is 0 or 1.** And the four computed sites forward a caller's parameter rather than\nderiving a wide value \u2014 `FUN_003AB910` is the clearest: `test cl, 3` / `setne r8b` / `cmp r8d, 1`,\nthen `jmp 0036C5D0` when it is 1 and `jmp 0036C620` when it is not. **A boolean dispatch.**\n\n",
+  "original_affected_claim": "2E4D20 unpins its backing before the04 decision. With04 it sets08 and skips41E580 registration. Its2EA6E0 call then takes the04 early-return0 arm, so it creates no follow-up task through that path; callback sets02 and calls2EAEB0, retiring this record. It does not free the backing itself.",
+  "affected": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/namebinding-deletion-result-01.json",
+      "sha256": "686500b75a1f33e586f12e0100a380e5f363ca78406e35d1beaa66cc52a7f79d"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/README.md",
+      "sha256": "00bb000cefeffc6138df4a636c13a60592963c8dad55684dccc5109c2df30085"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/prove-namebinding-deletion.py",
+      "sha256": "1050a23115236e08698cbe204c335bf050f12bb187f0479447cc5b04e0b965e8"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/freeze-namebinding-deletion.py",
+      "sha256": "ba4705db6816ad5fc294a5d2e5ef575e1562b6a80182d6c032bca03431a96d81"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/namebinding-deletion-method-01.json",
+      "sha256": "861126c977c9b0a27789270799accd0acbf474671cba88f5cd45dd8637827fe4"
+    }
+  ],
+  "limits": "Published historical records immutable; source bytes/flag/order checks unchanged, semantic unpins term corrected additively. FABLE/OPUS consumer and SPEC first package review require qualifier.",
+  "affected_claim_index": 2,
+  "original_inaccurate_snapshot_sha256": "824043b99015e30955dbfbc56eda7d3f0834f71d7bcab25fb561a7f8eb864655",
+  "selection": "Unique exact semantic preimage, not assumed fixed array index"
+}

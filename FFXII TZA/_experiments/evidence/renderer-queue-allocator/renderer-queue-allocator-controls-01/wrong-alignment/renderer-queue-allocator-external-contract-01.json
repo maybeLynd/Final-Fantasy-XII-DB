@@ -1,0 +1,22 @@
+{
+  "method": "External authoritative API contract, separately from shipping EXE source and loaded native module behavior",
+  "read_utc": "2026-10-01 10:08:10 UTC",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/aligned-malloc?view=msvc-170",
+      "title": "Microsoft Learn: _aligned_malloc",
+      "page_last_updated": "2022-12-02",
+      "paraphrase": "The documented size/alignment allocation can return a null pointer on failure. Alignment must be a power of two. Resource exhaustion is one documented failure condition. Zero size or invalid alignment belongs to the parameter-validation path.",
+      "selected_claim": "For the original nonzero 80000-byte, alignment16 request, the documented API contract does not guarantee nonnull normal return.",
+      "limits": "Not a hash or inspection of the FF12-loaded CRT DLL, not an observed FF12 allocation failure or error handler. No errno capture. Apply only under an unmodified IAT binding implementing this API contract."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/aligned-free?view=msvc-170",
+      "title": "Microsoft Learn: _aligned_free",
+      "page_last_updated": "2022-12-02",
+      "paraphrase": "The documented one-pointer void function releases memory from the aligned allocation APIs. Its native effects depend on a valid allocation pointer.",
+      "selected_claim": "The wrapper's tail is the named aligned release import, not evidence of a size-aware native release contract or valid ownership.",
+      "limits": "No claim that a particular pointer was valid, released, reused or harmless in FF12. Local null-pointer skipping is established from shipping instructions independently."
+    }
+  ]
+}

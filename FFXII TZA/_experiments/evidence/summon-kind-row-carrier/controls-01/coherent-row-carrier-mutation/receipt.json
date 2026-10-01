@@ -1,0 +1,12 @@
+{
+  "name": "coherent-row-carrier-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "832a0fab7381c2585f7b2037985ee309943aed826059bd0ce5e7608acb11e4d7",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "b815487dafcec14676a31090d5de83c61d4c7b53579168aa7bff1d7102a8240a",
+  "terminal": true,
+  "exception": null
+}

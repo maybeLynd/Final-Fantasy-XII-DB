@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-cleanup-import-boundary.py", line 123, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-cleanup-import-boundary.py", line 45, in main
+    P.need(x, pc, mnemonic, args)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-queue-consumption.py", line 20, in need
+    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,a):raise ValueError('source operation mismatch '+hex(pc))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: source operation mismatch 0x5de26a

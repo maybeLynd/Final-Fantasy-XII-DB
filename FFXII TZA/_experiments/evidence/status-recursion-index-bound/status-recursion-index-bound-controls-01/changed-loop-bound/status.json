@@ -1,0 +1,16 @@
+{
+  "case": "changed-loop-bound",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-status-recursion-index-bound.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\changed-loop-bound",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\changed-loop-bound\\capture-status.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\changed-loop-bound\\invalid-result.json"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "expected_error": "loop bytes differ from shipping reference",
+  "expected_error_seen": true,
+  "invalid_result_absent": true,
+  "checker_sha256": "c64af37156bbaf73923c3e7baa434760e6fd44f59e52b0ad026595fae702684e"
+}

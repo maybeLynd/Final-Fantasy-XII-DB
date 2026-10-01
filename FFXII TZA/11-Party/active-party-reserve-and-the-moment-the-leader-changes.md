@@ -1,7 +1,7 @@
 ---
 system: Active party, reserve, and the moment the leader changes
 category: 11-Party
-status: DOCUMENTED — both items that kept it PARTIAL are answered: camera record 2 is the ordinary field camera, on screen whenever no event camera (records 3-7) is active (GR-10, 2026-09-30, OPUS) and nothing reads the unwritten part of camera context 0's `+0x6F0` block as values (GR-11, 2026-09-30, OPUS) (owner re-status 2026-10-01, OPUS; documented_rule READY)
+status: AUDITED — both items that kept it PARTIAL are answered: camera record 2 is the ordinary field camera, on screen whenever no event camera (records 3-7) is active (GR-10, 2026-09-30, OPUS) and nothing reads the unwritten part of camera context 0's `+0x6F0` block as values (GR-11, 2026-09-30, OPUS) (owner re-status 2026-10-01, OPUS; documented_rule READY)
 owner_layer: PrimaryOwner:Party
 evidence_tier: 1
 verified_against:
@@ -21,8 +21,9 @@ audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-active-party-and-leader-change-pass-1
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-active-party-and-leader-change-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Active party, reserve, and the moment the leader changes

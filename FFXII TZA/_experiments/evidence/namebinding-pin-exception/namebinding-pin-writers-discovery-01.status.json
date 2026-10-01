@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\find-namebinding-pin-writers.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-writers-candidates-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "4af623d2899d0c2948bcaaed873e6357302ef3a64d5a5a4ebb1fec67233919e5"
+}

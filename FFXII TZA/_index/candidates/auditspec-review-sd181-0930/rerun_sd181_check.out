@@ -1,0 +1,6 @@
+PASS  L1 00378030 registers 00378BC0 as the pack load's completion (its only reference)
+PASS  L2 00378BC0: 0036B970(block & ~3, &slots[0] = rsp + 0x20, 32)
+PASS  L3 slots[16] (the SP1 section) is stored into 02ADD060
+PASS  L4 control: slots[24] lands at 02ADD010, as the slot table says
+PASS  L5 02ADD060: written by 00378BC0 (slot 16) and the teardown 00378230; read by 003775D0 -> 003635C0 -> 022CBAF0
+FAILS 0

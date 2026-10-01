@@ -1,0 +1,14 @@
+function	name	site	disp	kind	instruction	route	note
+00402490	FUN_00402490	004024A9	0x60	r	mov rax, qword ptr [rdx + 0x60]	route-seeded PTR 0x02B62D78 base+0x0	
+00402490	FUN_00402490	0040252C	0x60	r	mov rax, qword ptr [rdx + 0x60]	route-seeded PTR 0x02B62D78 base+0x0	
+00402490	FUN_00402490	0040253E	0x60	r	mov rax, qword ptr [rdx + 0x60]	route-seeded PTR 0x02B62D78 base+0x0	
+00402490	FUN_00402490	004025A7	0x60	r	mov rax, qword ptr [rdx + 0x60]	route-seeded PTR 0x02B62D78 base+0x0	
+00402490	FUN_00402490	004025D3	0x60	r	mov rax, qword ptr [rdx + 0x60]	route-seeded PTR 0x02B62D78 base+0x0	
+00402730	FUN_00402730	00402743	0x60	r	mov rax, qword ptr [r9 + 0x60]	route-seeded PTR 0x02B62D78 base+0x0	
+00402730	FUN_00402730	00402747	0xC0	w	mov qword ptr [r9 + 0xc0], rcx	route-seeded PTR 0x02B62D78 base+0x0	
+00402730	FUN_00402730	00402756	0xC8	w	mov word ptr [r9 + 0xc8], dx	route-seeded PTR 0x02B62D78 base+0x0	
+00402730	FUN_00402730	0040274E	0xCA	w	mov word ptr [r9 + 0xca], r10w	route-seeded PTR 0x02B62D78 base+0x0	
+00402490	FUN_00402490	00402542	0xCC	w	mov word ptr [rdx + 0xcc], si	route-seeded PTR 0x02B62D78 base+0x0	
+00402730	FUN_00402730	004027AB	0xCC	r	add ax, word ptr [r9 + 0xcc]	route-seeded PTR 0x02B62D78 base+0x0	
+00402730	FUN_00402730	004027B9	0xCC	r	movzx eax, word ptr [r9 + 0xcc]	route-seeded PTR 0x02B62D78 base+0x0	
+00402490	FUN_00402490	0040255E	0xCE	w	mov word ptr [rdx + 0xce], ax	route-seeded PTR 0x02B62D78 base+0x0	

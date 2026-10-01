@@ -1,0 +1,27 @@
+{
+  "collection_complete": true,
+  "literal_question_settled": true,
+  "method": "A suffix/full-entry literal discriminator; prior recognized code spans reused",
+  "collector_sha256": "b972b5d8e71482fbdb4aa301f8e9ec08cccebb0e2f8985e809cdb2c89d87dc68",
+  "parent_raw_sha256": "290de70e2942ce091db9ecb82f5a4223e41f890b4793d04c6f7b1d99b82e6626",
+  "parent_status_sha256": "74c961542910e06fae906dd3e68cc989f69845239dd8ccbc157553f455a27900",
+  "parent_failure": "BUDGET_STOP: retained partial, not a prior successful full run",
+  "archive": {
+    "path": "D:\\FFXII MP Mod\\FFXII_TestClient1\\FFXII_TZA.vbf",
+    "size": 31196932183,
+    "mtime_ns": 1745004555950129800,
+    "header_bytes": 11995716,
+    "header_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+    "whole_archive_hash": "NOT_RECOMPUTED",
+    "ebp_index_entries": 10045
+  },
+  "new_read_bytes": 39117360,
+  "planned_read_bytes": 39117360,
+  "old_prefix_entries": 9429,
+  "new_suffix_entries": 616,
+  "small_layout_gaps_checked_as_whole_bytes": 26,
+  "coverage": [],
+  "literal_candidates": [],
+  "elapsed_seconds": 0.525268399855122,
+  "limits": "No literal native3044 CALL candidate in covered section0 function spans plus the whole unread/gap entries, if candidates empty. Existing prefix directory coverage/layout and noninterference assumptions retained. Whole files/other sections of already recognized prefix entries were not rescanned. This is not natural unreachability, wholearchive identity, compressed/generated/external programs, other native writers, dynamic gameplay or stats-type proof."
+}

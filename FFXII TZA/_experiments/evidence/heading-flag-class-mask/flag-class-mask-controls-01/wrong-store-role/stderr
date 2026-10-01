@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\heading-class-effects-slice\prove-flag-class-mask.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\heading-class-effects-slice\prove-flag-class-mask.py", line 54, in main
+    ins=verify(f)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\heading-class-effects-slice\prove-flag-class-mask.py", line 42, in verify
+    if memory!=r['memory'] or sorted(roles.written(i))!=r['written']:raise ValueError('actual retained memory-role mismatch')
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: actual retained memory-role mismatch

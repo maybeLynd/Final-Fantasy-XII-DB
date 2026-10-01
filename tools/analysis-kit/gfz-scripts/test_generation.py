@@ -264,6 +264,42 @@ check("R3", w_unv and "UNVERIFIED" in w_unv and w_full and "non-empty" in w_full
 names = ["a:b", "a%3Ab", "a_b", "a%b", "a%25b", "x/y", "x\\y", "plain.md"]
 check("R4", len(set(G.snapshot_name(n) for n in names)) == len(names) and G.snapshot_name("plain.md") == "plain.md"
       and all(not set(G.snapshot_name(n)) & set('<>:"/\\|?*') for n in names), [G.snapshot_name(n) for n in names])
+# R5-R7: Windows name folding (ASTRA's REJECT of 0aa544606, 53909f69b: `ASTRA-alias` and `ASTRA-alias.` restored to one file)
+zc5 = os.path.join(T, "c5.zip"); col_zip(zc5, ["ASTRA-alias", "ASTRA-alias."])
+w5 = raises(lambda: G.restore_zip(zc5, os.path.join(T, "r5")))
+d5 = os.path.join(T, "r5", "gcol", "inputs"); f5 = sorted(os.listdir(d5)) if os.path.isdir(d5) else []
+b5 = {n: open(os.path.join(d5, n), "rb").read() for n in f5}
+check("R5", w5 is None and f5 == ["ASTRA-alias", "ASTRA-alias%2E"] and b5 == {"ASTRA-alias": b"ASTRA-alias", "ASTRA-alias%2E": b"ASTRA-alias."}
+      and os.path.exists(os.path.join(T, "r5", G.CURRENT)), "restored %s (%s)" % (f5, w5 or "clean"))
+def out_zip(path, outs):
+    man = {"format": G.FORMAT, "generation": "gout", "outputs": {}, "inputs": {}}
+    with zipfile.ZipFile(path, "w") as zo:
+        for o in outs:
+            man["outputs"][o] = {"sha256": G.hashlib.sha256(o.encode()).hexdigest()}
+            zo.writestr("outputs/" + o, o.encode())
+        zo.writestr(G.MANIFEST, json.dumps(man))
+zo6, zo6b = os.path.join(T, "o6.zip"), os.path.join(T, "o6b.zip"); out_zip(zo6, ["view.json", "view.json."]); out_zip(zo6b, ["NUL.json"])
+w6 = raises(lambda: G.restore_zip(zo6, os.path.join(T, "r6"))); w6b = raises(lambda: G.restore_zip(zo6b, os.path.join(T, "r6b")))
+check("R6", w6 and "dot or space" in w6 and not os.path.exists(os.path.join(T, "r6")) and w6b and "device name" in w6b
+      and not os.path.exists(os.path.join(T, "r6b")), "%s | %s" % (w6, w6b))
+n7 = ["x", "x.", "x..", "x ", "x%2E", "CON", "con.txt", "%43ON", "plain.md", "a:b"]
+s7 = [G.snapshot_name(n) for n in n7]
+check("R7", len(set(s7)) == len(n7) and len({G.windows_key(s) for s in s7}) == len(n7) and G.snapshot_name("plain.md") == "plain.md"
+      and G.snapshot_name("x") == "x" and all(G.portable_component(s) is None for s in s7), s7)
+# R8: the superscript-digit device names (ASTRA's re-review REJECT of 87c7561de, f13344fa1): all twelve spellings -
+# COM/LPT x superscript 1/2/3, bare upper case and lower case with an extension - are escaped as snapshot names and
+# refused as outputs before any write; their plain-digit neighbours COM0 / LPT0 (not reserved) stay plain
+sup = ["¹", "²", "³"]
+n8 = [p + s for p in ("COM", "LPT") for s in sup] + [p.lower() + s + ".txt" for p in ("COM", "LPT") for s in sup]
+esc = {n: G.snapshot_name(n) for n in n8}
+refused = []
+for k, n in enumerate(n8):
+    zo = os.path.join(T, "o8_%d.zip" % k); out_zip(zo, [n])
+    w = raises(lambda: G.restore_zip(zo, os.path.join(T, "r8_%d" % k)))
+    refused.append(bool(w) and "device name" in w and not os.path.exists(os.path.join(T, "r8_%d" % k)))
+check("R8", len(n8) == 12 and all(esc[n] != n and esc[n].startswith("%") for n in n8) and all(refused)
+      and all(G.portable_component(n) for n in n8) and G.snapshot_name("COM0") == "COM0" and G.portable_component("LPT0.txt") is None
+      and len(set(esc.values())) == 12, {n: esc[n] for n in n8[:3]})
 shutil.rmtree(T, ignore_errors=True)
 print("FAILS %d" % fails)
 sys.exit(1 if fails else 0)

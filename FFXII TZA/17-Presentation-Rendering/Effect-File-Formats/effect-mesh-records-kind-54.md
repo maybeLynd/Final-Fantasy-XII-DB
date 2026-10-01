@@ -1,7 +1,7 @@
 ---
 system: kind-0x54 effect mesh records
 category: 17-Presentation-Rendering
-status: PARTIAL — record layout and census complete; the consumers read 2026-09-30 renormalise the +0x24 vectors (normals), while what the +0x28 byte kernel and the emitted packets make of +0x28 / +0x2C is SD-140 (status line current 2026-09-30, SWE2-DATA)
+status: PARTIAL — record layout and census complete; the consumers read 2026-09-30 renormalise the +0x24 vectors (normals); SD-140 answered 2026-10-01 (SWE2-ORACLE, execution-proven: +0x28 is a per-corner RGBA8 vertex colour on the GS 0x80=1.0 scale, +0x2C a per-corner float texture coordinate, the 00432300 kernel the PS2 colour modulate); open residue: the uncharacterised pass operators and the clipper 00521450 (status line current 2026-10-01, SWE2-DATA)
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:

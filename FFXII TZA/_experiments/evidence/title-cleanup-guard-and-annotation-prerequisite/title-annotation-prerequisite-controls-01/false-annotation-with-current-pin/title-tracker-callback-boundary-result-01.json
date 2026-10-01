@@ -1,0 +1,61 @@
+{
+  "status": "PRODUCER_CHECKED_CONDITIONAL_BOUNDARY_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "question": "Does tracker183720 resolve each supplied object and synchronously release it, or use a shared context to queue a callback/data pair?",
+  "hypotheses": [
+    "argument-dependent object resolver and immediate complete release",
+    "global context getter plus conditional callback-pair enqueue; omitted scheduling/release effects separate"
+  ],
+  "evidence_choice": "Complete original getter/caller/writer/control flow distinguishes these hypotheses without original-code execution or live state.",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "title-tracker-cleanup-source-01.json",
+      "sha256": "ac943ae1a4f789323a33c7f0fe1bb7cc0d58b9a349f4254f951788ed158ddc02"
+    },
+    {
+      "path": "title-cleanup-callback-queue-source-01.json",
+      "sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2"
+    }
+  ],
+  "established": [
+    "189120 is exactly MOV RAX,[01F7F598];RET. It ignores RCX and does not resolve the supplied object. The canonical transform paragraph resolving the object twice is incorrect.",
+    "183720 with supplied argumentNULL returns before context reads. Otherwise it reads the shared global twice, tests only the first forNULL, and passes the second as RCX with callback17ECC0/data=original argument to185A90. Stable/nonNULL context across reads is a condition, not a lifetime invariant.",
+    "185A90 chooses queue=secondContext+C38+32*signextend32(DWORD[secondContext+CB8]); it has no local index bounds check. It stages16B [callback,data] on stack.",
+    "If old writecursor<end(unsigned) and old cursornonnull, fast path stores cursor+16 at queue+8 BEFORE copying16B pair to oldcursor. It makes no nested call or callback execution on that branch. There is no local full16B remaining-capacity check; valid vector/index/allocation/ABI and alias premises are required.",
+    "If cursorNULL while unsigned cursor<end, it still advances cursor by16 and skips the copy. This is a conditional malformed-state branch, not observed initialization or a normal null-queue claim. Otherwise write>=end delegates1858A0(queue,write,&pair), effects unproved here.",
+    "1FB660 invokes183720 for value+0, then nulls+0; circular-list payload+28 similarly invokes183720 then nulls+28. Another linked list delegates1AF2B0(value+8,[link]) and allocator-like vcall18(value+38,link,30). Normal return resets+20/+28byte/+30 and circular+10/+18. Invoking these helpers is not itself complete release/cancellation evidence.",
+    "Supplied callback17ECC0, IF actually invoked with incoming RCX, preserves that input for5DE250 then tail19C590. This proves that callback entry boundary, not that queue consumption supplies stored data or invokes it at a specific frame/thread."
+  ],
+  "correction": {
+    "page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md",
+    "clause": "183720:189120 resolves the object twice",
+    "supported_replacement": "189120 reads shared global01F7F598;183720 stages17ECC0/original-argument through185A90 after first nonNULL context test"
+  },
+  "assumptions": [
+    "Normally returning original callees and ABI-valid stack/register state",
+    "Stable valid context for any fast-path association; signed index yields backed queue, 16B storage readable/writable; no interfering aliases/writes",
+    "Valid terminating circular/linked lists for tracker normal return; callback/link helper effects not assumed safe/absent"
+  ],
+  "limitations": [
+    "Actual initialized context/index/capacity/global lifetime and natural tracker branches remain unobserved",
+    "Queue slow path1858A0, consumer ABI/thread/frame/drain and5DE250/19C590 effects remainOPEN",
+    "No atomic16B-copy/order guarantee to concurrent observers or observed race",
+    "Not whole title ticket cancellation/lifetime, successful load, arbitrary malformed-input safety, direct native free or initialized pointer proof"
+  ],
+  "next_discriminators": [
+    "Original1858A0 insertion and context queue consumer identify whether/how callback pair executes",
+    "Bound5DE250/19C590 callback effects and tracker1AF2B0/vcall identity from original metadata before live escalation"
+  ],
+  "affected_claims": [
+    "Canonical global-getter/183720 description",
+    "OV29 title tracker and deferred resource-release boundary",
+    "OPUS context queue/callback ABI contracts where owned"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "checker_sha256": "43087aae78f87cf254fd786779bd976dfd3e73955fb3e5c8b76bd2100ae0b04e",
+  "cleanup": "Offline original reads only; no game/process/control/instrument/save/config/reference writes"
+}

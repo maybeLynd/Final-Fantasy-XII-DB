@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\qualify_owner_prebind_source.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-source-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "6eec165160545ca626e8e2e3a321509b54a4e53ed551fb452bb1e646dfea6cfe"
+}

@@ -1,0 +1,278 @@
+{
+  "status": "PRODUCER_CHECKED_CONDITIONAL_BRIDGE_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "question": "Under unchanged matching native mappings, which terminal member and pointer/count association do these two packed keys request?",
+  "result": "Both keys conditionally resolve outer kind3 array then terminal kind2 m_els; no null child/getter assumption. The source association is first11 definition objects and singleton object11. Existing pointer/count setter proof supplies only normal continuation behavior.",
+  "source_pins": [
+    {
+      "path": "softedges-effectvariant-registration-code-01.json",
+      "sha256": "04fe0aa3d7fc6bd03107745d2557977e33636720f6a5bac0fb1d3106b2ffde03"
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01/original-code.json",
+      "sha256": "f473de8c4be098d9709ea751a78795a69678289137a3e48b8d24125a6bf88aaa"
+    },
+    {
+      "path": "softedges-mapping-builders-code-01.json",
+      "sha256": "f4a2523fd16aa8016a1d1a558e51f50aed5324cec28b6b11e3af3a61c00b25f1"
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7"
+    },
+    {
+      "path": "softedges-resource-source-01/member-bridge-code-01.json",
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-header-membership-code-01.json",
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01\\facts.json",
+      "sha256": "064116faa8706e11ebf94ef8fb90e7fbaf7f40955d5b8bd55171680ec67adf6b"
+    },
+    {
+      "path": "softedges-resource-source-01/phyretext.fx.phyre",
+      "sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf",
+      "bytes": 44634
+    }
+  ],
+  "source_qualification": [
+    {
+      "path": "softedges-effectvariant-registration-code-01.json",
+      "source_sha256": "04fe0aa3d7fc6bd03107745d2557977e33636720f6a5bac0fb1d3106b2ffde03",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 240,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x5e45b0",
+          "end_exclusive": "0x5e4a9b",
+          "original_sha256": "db21825638b40ca9042891c4da05b062deaaad64b31cfc0bcc2db49ef2a86523"
+        }
+      ]
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "source_sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 166,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59ec40",
+          "end_exclusive": "0x59ec53",
+          "original_sha256": "177439759b8b69edaff3f54d4a8a2b79adb3c38bdbf9e555cae522568f4a2282"
+        },
+        {
+          "start": "0x5eeb20",
+          "end_exclusive": "0x5eee4f",
+          "original_sha256": "5bd453d924e3455060aa971b0b39ee03cda8dc33c07e67c39819dae9bdb07aa2"
+        }
+      ]
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01/original-code.json",
+      "source_sha256": "f473de8c4be098d9709ea751a78795a69678289137a3e48b8d24125a6bf88aaa",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 24,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x16d680",
+          "end_exclusive": "0x16d684",
+          "original_sha256": "cbc18d5e3d66ae414162c4a417b073a375f2804b50567d073ef1c62e50d8d523"
+        },
+        {
+          "start": "0x632a10",
+          "end_exclusive": "0x632a6b",
+          "original_sha256": "ea8f1f25ddeca48e007c5430efb8bc20e272c3164ecf6e5c62912f495a0bdd28"
+        }
+      ]
+    },
+    {
+      "path": "softedges-mapping-builders-code-01.json",
+      "source_sha256": "f4a2523fd16aa8016a1d1a558e51f50aed5324cec28b6b11e3af3a61c00b25f1",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 727,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59ac00",
+          "end_exclusive": "0x59b082",
+          "original_sha256": "f7a14ba0e996b412841d4917141b1fd6c8058674324d789d674d230341f157c2"
+        },
+        {
+          "start": "0x59b430",
+          "end_exclusive": "0x59ba3b",
+          "original_sha256": "4bde5ec0a08ffadef177ad62f0eecc65c780e7ce1755aadb46271a83196657a4"
+        }
+      ]
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "source_sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 87,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59ec53",
+          "end_exclusive": "0x59ec5b",
+          "original_sha256": "338b07f374c835b09ec9e6c0374e53a36b00ac8312da8200c27827da14776a61"
+        },
+        {
+          "start": "0x59ec5b",
+          "end_exclusive": "0x59ec77",
+          "original_sha256": "3c6e2b12b20e9983131b734d4a9c27c300b0b1cb326f688c34c67b1ec45a2827"
+        },
+        {
+          "start": "0x59ec77",
+          "end_exclusive": "0x59eccc",
+          "original_sha256": "1bbeead9667f1e39a65bb6bd3704b172e0d87d7e96425b10bc90cd5c21157973"
+        },
+        {
+          "start": "0x59eccc",
+          "end_exclusive": "0x59ecf2",
+          "original_sha256": "2b0e216b015a350edc6563f1cd3ab5c58732b43fc6481cbfed9a9f6ba516f8e2"
+        },
+        {
+          "start": "0x59ecf2",
+          "end_exclusive": "0x59ed0b",
+          "original_sha256": "d9a6eb722812b60369a104682909a0d3e7e8872895f1bd07e5cb11cffc0b4e26"
+        },
+        {
+          "start": "0x59ed0b",
+          "end_exclusive": "0x59ed61",
+          "original_sha256": "b389836237bc11a971374a33db32e78ef22324447006621585e8b800612be035"
+        }
+      ]
+    },
+    {
+      "path": "softedges-resource-source-01/member-bridge-code-01.json",
+      "source_sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 170,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59bed0",
+          "end_exclusive": "0x59c17f",
+          "original_sha256": "729e5ab707735f9ced34d0af6ee97d70a23418292f007833d497412bb22e3e61"
+        }
+      ]
+    },
+    {
+      "path": "softedges-header-membership-code-01.json",
+      "source_sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 987,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59c700",
+          "end_exclusive": "0x59ce25",
+          "original_sha256": "9a3e7372c1a6f9c21ec8363023e3bcdcf8647c3fe717fe0f4f154ae0c1f64dbb"
+        },
+        {
+          "start": "0x59d940",
+          "end_exclusive": "0x59e064",
+          "original_sha256": "3229fef455e0e50255c615a53b49dbd3c077f037202b3edd38dca3424b15ca6d"
+        }
+      ]
+    }
+  ],
+  "qualification_helper_sha256": "2a46ba3bcd804cea3b1cc57f7061205767d265a0d28338f655b1f74ada9ab482",
+  "table_dependency": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\phyretext-softedges-field-extent\\m_untweakableShaderParameterDefinitions",
+    "sha256": "612667edde39dced5a481872366ca48c7be0758ff2c4476b2a97aabc3e240114",
+    "commit": "5bbbe5528076e0d2c82a9b05e0dfc4c3232bfaa1",
+    "acceptance": "Scoped independent ACCEPT at d5f06584e; new reducer repair independent pending"
+  },
+  "routes": [
+    {
+      "key": 22,
+      "outer_member": "m_tweakableShaderParameterDefinitions",
+      "outer_kind": 3,
+      "inner_member": "m_els",
+      "inner_kind": 2,
+      "residual": 4,
+      "file_child_class_id": 43,
+      "native_array_address": "object+zext32(0x40+arrayF4-effectVariantF4)",
+      "source_list": 12,
+      "source_object_index": 0,
+      "count": 11
+    },
+    {
+      "key": 27,
+      "outer_member": "m_untweakableShaderParameterDefinitions",
+      "outer_kind": 3,
+      "inner_member": "m_els",
+      "inner_kind": 2,
+      "residual": 4,
+      "file_child_class_id": 43,
+      "native_array_address": "object+zext32(0x50+arrayF4-effectVariantF4)",
+      "source_list": 12,
+      "source_object_index": 11,
+      "count": 1
+    }
+  ],
+  "guard_correction": "Kind2 with bit6 clear stops recursion. With bit6 set and nonnull self getter, optional query result==1 ALLOWS recursion; other results stop. Current canonical prose result==1 fails has reversed polarity. Bit1 always stops. No claim about opaque query effects or natural values.",
+  "assumptions": [
+    "Class/member name/type mapping matches these native registered objects;59BFaf type equality holds",
+    "Registrations returned normally and metadata/kinds/getters remain unchanged",
+    "The pointer-fixup assignment site is reached with correctly bound list12 native objects",
+    "Normal source-association continuation after any unproved owned-storage cleanup"
+  ],
+  "limitations": [
+    "Actual successful live/resource initialization is unobserved",
+    "F4 values retained symbolically; no universal zero or destination-address assumption",
+    "Pointer patcher can write a destination slot at59CD14 before the callback; this is not a complete effects inventory or a claim of unchanged pre-call array storage",
+    "Native source pointer/lifetime/aliases and opaque cleanup not proved",
+    "Not whole constructor/OV42 closure, gameplay or natural reachability"
+  ],
+  "checker_sha256": "d86968d07ed0afdcb0bb56f8b4e3aa03e61772e27715ed323b8dc9c326e85689",
+  "producer_complete": true,
+  "live_runs": 0,
+  "isolated_native_runs": 0
+}

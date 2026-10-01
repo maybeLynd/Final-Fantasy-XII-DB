@@ -1,0 +1,212 @@
+{
+  "status": "FROZEN_PRODUCER_VALID_INDEPENDENT_PENDING",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "control-descriptor-offset-qualification.py",
+      "bytes": 3982,
+      "sha256": "1ee8e44d560d714b4b5c471940f50e9b0256d6576c536c5df99ead770fe151a6"
+    },
+    {
+      "path": "descriptor-offset-affected-preimages-01.json",
+      "bytes": 6933,
+      "sha256": "b63d8b8b4149c69e696b96216513970550402d306573c214af9f4309c7374857"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/descriptor-offset-affected-preimages-01.json",
+      "bytes": 6933,
+      "sha256": "0f3bfa12d38c47743cf7078c2e6aec1f9beb6151dc382fb2c46cb6c8311821a3"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/descriptor-offset-retained-adopter-source-01.json",
+      "bytes": 68935,
+      "sha256": "482092407f28b26808664a0e897c67097da0c77004b64f9e4a29e0edaa5c14b9"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/descriptor-offset-retained-pin-result-01.json",
+      "bytes": 8320,
+      "sha256": "c41fc457dd09f60c39b726f7db3460f8e76bdeedfac5901779c9fd8e593b94d2"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/descriptor-offset-retained-pin-source-01.json",
+      "bytes": 56953,
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/namebinding-error-policy-existing-resolution-01.json",
+      "bytes": 3112,
+      "sha256": "6b373d9e9b5d555f000b45b487b35c3897127e3e789b8243e7047e8ec66af1c7"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/status.json",
+      "bytes": 875,
+      "sha256": "6868c3fb2eb06647f1667657c24386138982661802fb99dba71013781e7ef4e5"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/stderr",
+      "bytes": 546,
+      "sha256": "15aa390209c3e0dad15c564d132a12adc88ccc5bc4ac04abbe9629f174e8626a"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/changed-offset-store/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/descriptor-offset-affected-preimages-01.json",
+      "bytes": 6933,
+      "sha256": "b63d8b8b4149c69e696b96216513970550402d306573c214af9f4309c7374857"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/descriptor-offset-retained-adopter-source-01.json",
+      "bytes": 68935,
+      "sha256": "af47f19a019bab68921a205a8196e617f105fd9acc7ddaee175e51b20596ffac"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/descriptor-offset-retained-pin-source-01.json",
+      "bytes": 56953,
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/namebinding-error-policy-existing-resolution-01.json",
+      "bytes": 3112,
+      "sha256": "6b373d9e9b5d555f000b45b487b35c3897127e3e789b8243e7047e8ec66af1c7"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/status.json",
+      "bytes": 876,
+      "sha256": "37cb60d981b5cf0b4386b00720fcdd7086c517820bf12312f3d79145a74fa0d9"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/stderr",
+      "bytes": 1521,
+      "sha256": "e563d9dc149505b092ca50a06d0a8fdf16ec6a510d47fa704d31463932cebf8d"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/missing-semantic-preimage/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-01/result.json",
+      "bytes": 2477,
+      "sha256": "f208a4579bf8ddd99512a146b27da9fe6593062f45648f90ef24c39d950cc306"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-run-01.status.json",
+      "bytes": 397,
+      "sha256": "092e274aa45cb5fe29cff4a72c4092a890f6325061c4e5341b90089aad42484f"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "descriptor-offset-qualification-controls-run-01.stdout",
+      "bytes": 95,
+      "sha256": "1302afa4762eb3d8c9ca371051803164d6347ee004cde014915dcbaadcd0ce5a"
+    },
+    {
+      "path": "descriptor-offset-qualification-method-01.json",
+      "bytes": 2243,
+      "sha256": "5c3c69dc430d9afae0631860e01a168ff41e9481c17df335af374fb084261550"
+    },
+    {
+      "path": "descriptor-offset-qualification-positive-01.status.json",
+      "bytes": 583,
+      "sha256": "a88845a132d615bd88c3e005fd5063b104700c9b0ab77dbc879cfb176ab59113"
+    },
+    {
+      "path": "descriptor-offset-qualification-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "descriptor-offset-qualification-positive-01.stdout",
+      "bytes": 89,
+      "sha256": "4e02cb466a63003bded3e58817c345f2ba23506bf7afd8e87d80d4229062e345"
+    },
+    {
+      "path": "descriptor-offset-qualification-result-01.json",
+      "bytes": 2209,
+      "sha256": "0b512d16b96e774fe4c8497641b74bec05c65c5dae5e243885885473eeabeea7"
+    },
+    {
+      "path": "descriptor-offset-retained-adopter-source-01.json",
+      "bytes": 68935,
+      "sha256": "af47f19a019bab68921a205a8196e617f105fd9acc7ddaee175e51b20596ffac"
+    },
+    {
+      "path": "descriptor-offset-retained-pin-result-01.json",
+      "bytes": 8320,
+      "sha256": "c41fc457dd09f60c39b726f7db3460f8e76bdeedfac5901779c9fd8e593b94d2"
+    },
+    {
+      "path": "descriptor-offset-retained-pin-source-01.json",
+      "bytes": 56953,
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "descriptor-offset-term-candidates-01.json",
+      "bytes": 5602,
+      "sha256": "3eeeca1377924d711160b4435ae48469bd0182b1192f91dec1da089734656e44"
+    },
+    {
+      "path": "freeze-descriptor-offset-qualification.py",
+      "bytes": 6541,
+      "sha256": "6fdbdbdac8c51e970767a9c54d0aa209e82db71a3448d272d48c262ebe4ab63d"
+    },
+    {
+      "path": "namebinding-error-policy-existing-resolution-01.json",
+      "bytes": 3112,
+      "sha256": "6b373d9e9b5d555f000b45b487b35c3897127e3e789b8243e7047e8ec66af1c7"
+    },
+    {
+      "path": "namebinding-error-policy-method-01.json",
+      "bytes": 2210,
+      "sha256": "0cb0f91ce20e6eeb71b01fe78cf726958cf82092353adb838ab3400ca26fc126"
+    },
+    {
+      "path": "namebinding-pin-exception-qualified-02.json",
+      "bytes": 8512,
+      "sha256": "e3c9d6c2dbc097947725c536d53d16a7085c17aeaf98de3205f2395f077120c6"
+    },
+    {
+      "path": "normalize-namebinding-descriptor.py",
+      "bytes": 6579,
+      "sha256": "98aa0b7b572cf03109a47b46e4b3ec433b09fef791c1fd3edb87279a3207f7ef"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2647,
+      "sha256": "77e9a579bae7f8dec7b0f2abdda519c1e93853ceca011c602cc4b2150dea8762"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "member_count": 40,
+  "native_path_units": 5710,
+  "method": "A RETAINED_ORIGINAL_CODE",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0
+}

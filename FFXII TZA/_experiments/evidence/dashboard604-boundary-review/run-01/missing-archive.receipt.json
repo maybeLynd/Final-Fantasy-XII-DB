@@ -1,0 +1,48 @@
+{
+  "case": "missing-archive",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\source-vbf_index.py",
+    "--archive",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\missing.vbf",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\missing-archive.json",
+    "--listing",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\listing.txt"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "stdout": "failed: FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-604194276-review\\\\run-01\\\\inputs\\\\missing.vbf'\r\n",
+  "stderr": "",
+  "capture": {
+    "failed": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-604194276-review\\\\run-01\\\\inputs\\\\missing.vbf'",
+    "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\missing.vbf"
+  },
+  "capture_sha256": "77d38e382974ab46ab81c0036ff58adcfa887e39aadad1823855b414a3b0f4a8",
+  "view": {
+    "view": "vbf",
+    "title": "VBF archive - the installed archive's own folder tree",
+    "status": "FAILED",
+    "source": {
+      "identity": "vbf_index capture",
+      "as_of": "ASTRA synthetic header fixture",
+      "instrument": "vbf_index.py",
+      "limits": "the archive index could not be read: FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-604194276-review\\\\run-01\\\\inputs\\\\missing.vbf'"
+    },
+    "measures": [],
+    "rows": {
+      "columns": [
+        "failure"
+      ],
+      "data": [
+        [
+          "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\dashboard-views-604194276-review\\\\run-01\\\\inputs\\\\missing.vbf'"
+        ]
+      ]
+    }
+  },
+  "validation": null,
+  "temporary_output_left": false
+}

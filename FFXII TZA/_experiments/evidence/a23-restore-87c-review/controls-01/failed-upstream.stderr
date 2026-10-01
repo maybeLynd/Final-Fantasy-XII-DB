@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\migration-a23-current-release\restore-repair-87c\check.py", line 31, in <module>
+    need(receipt['terminal'] is True and receipt['exception'] is None and receipt['exit'] == expected_exit, 'upstream CLI result: ' + label)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\migration-a23-current-release\restore-repair-87c\check.py", line 15, in need
+    raise RuntimeError(why)
+RuntimeError: upstream CLI result: case-pair

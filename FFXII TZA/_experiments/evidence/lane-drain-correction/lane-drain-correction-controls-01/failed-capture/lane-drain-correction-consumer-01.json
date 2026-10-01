@@ -1,0 +1,7 @@
+{
+  "path": "Database/FFXII TZA/00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+  "sha256": "b3e7b8f10a3863dea6e47685208332eaecc4f30412993c0749c0e432c528929a",
+  "original_2e6900_paragraph": "`002E6900` (378 B) is the list append `002E65A0`/`002E6D60` call: walks `0215FD90`'s `+8` links to the tail (or `rbx` when the head is empty), then `0020E600` resolves, `0041E490`/`00369800`/`002E9470` build the node and `002E6A80` links it - the per-frame gate's tail insert.",
+  "original_2e6a80_paragraph": "`002E6A80` (141 B) is the 32-bit flag sweeper on the update gate's list node: each set bit shared by the two masks calls `002E6E30` for that lane, the node is then unlinked from its doubly-linked list, and `002E9470` runs when no flags remain - the drain-and-detach pass the per-frame gate applies to spent entries.",
+  "limits": "Exact current read snapshot; no peer file write or assertion that the whole page shares this error"
+}

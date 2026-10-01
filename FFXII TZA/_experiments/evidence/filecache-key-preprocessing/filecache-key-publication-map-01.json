@@ -1,0 +1,63 @@
+{
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "filecache-key-boundaries-source-01.json",
+      "sha256": "4cebf324a0e4631907dbf0b6a36d4455e993d085c6dcd2b368abebaf5321eb17"
+    },
+    {
+      "path": "filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e"
+    },
+    {
+      "path": "filecache-hash-loop-source-01.json",
+      "sha256": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f"
+    }
+  ],
+  "data_pins": [
+    {
+      "path": "filecache-import-declarations-01.json",
+      "sha256": "ac72ff72ae3818c1eb1d43c14fb1ad0f7ae882c83f5a3347bc710355d1bc6b11",
+      "role": "static import declarations, not instruction ranges"
+    }
+  ],
+  "scientific_result_sha256": "ae7ed53bb3128adc748b5012b751791d54297adc5af9e68127426d1a74628e3e",
+  "driver_sha256": "61c9d16a97344d69f9b37da22d00711dbebb4394f4e05ce04949f018c2ffcc9c",
+  "annotation_receipts": [
+    {
+      "path": "filecache-key-boundaries-source-01.json",
+      "agreement": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 267,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      }
+    },
+    {
+      "path": "filecache-key-boundaries-source-02.json",
+      "agreement": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 113,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      }
+    },
+    {
+      "path": "filecache-hash-loop-source-01.json",
+      "agreement": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 14,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      }
+    }
+  ],
+  "status": "PUBLICATION_MAP_ONLY_INDEPENDENT_PENDING",
+  "limits": "Original53 members unchanged. Import declarations are typed data, not sent as fake code ranges. No scientific rerun, guard change, whole E2 or live/native acceptance."
+}

@@ -1,0 +1,21 @@
+function	name	site	disp	kind	instruction	route	note
+003EC8A0	FUN_003ec8a0	003EC8A9	0x0	r	mov rcx, qword ptr [rcx]	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+003EC8A0	FUN_003ec8a0	003EC8B6	0x0	w	mov qword ptr [rbx], 0	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE3C0	FUN_004fe3c0	004FE3C2	0x0	w	mov qword ptr [rcx], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE3D0	FUN_004fe3d0	004FE3ED	0x0	w	mov qword ptr [rbx], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE3D0	FUN_004fe3d0	004FE40A	0x0	w	mov qword ptr [rbx], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE44D	0x0	w	mov qword ptr [rbx], r9	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE472	0x0	w	mov qword ptr [rbx], r8	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE3C0	FUN_004fe3c0	004FE3C5	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE3D0	FUN_004fe3d0	004FE3F0	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE3D0	FUN_004fe3d0	004FE40D	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE450	0x8	w	mov qword ptr [rbx + 8], r9	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE481	0x8	w	mov qword ptr [rbx + 8], r8	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE3C0	FUN_004fe3c0	004FE3C9	0x10	w	mov qword ptr [rcx + 0x10], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE3D0	FUN_004fe3d0	004FE3F4	0x10	w	mov qword ptr [rbx + 0x10], rax	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0 zeroclear	
+004FE3D0	FUN_004fe3d0	004FE411	0x10	w	mov dword ptr [rbx + 0x10], edi	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE454	0x10	w	mov dword ptr [rbx + 0x10], r9d	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE485	0x10	w	mov dword ptr [rbx + 0x10], edi	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE3D0	FUN_004fe3d0	004FE3DA	0x14	r	cmp dword ptr [rcx + 0x14], 0	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE42F	0x14	r	cmp dword ptr [rcx + 0x14], 0	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	
+004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE446	0x14	w	mov dword ptr [rbx + 0x14], 1	route-seeded STATIC 0x02EBEFC0 | STATIC 0x02EBB700 base+0x0	

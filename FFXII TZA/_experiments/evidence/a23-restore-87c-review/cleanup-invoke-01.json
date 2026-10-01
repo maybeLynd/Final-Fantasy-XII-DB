@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\cleanup.py"
+  ],
+  "driver_sha256": "d8f986332c61ce277bb2678b783c772d7de0568c683ca6ad6c2bcd1e7f89f6ee",
+  "deadline_seconds": 60,
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "stdout_bytes": 260,
+  "stderr_bytes": 0
+}

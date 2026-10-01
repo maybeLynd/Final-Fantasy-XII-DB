@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\control-flag-class-mask.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\flag-class-mask-controls-01"
+  ],
+  "exit": 0,
+  "driver_sha256": "8b10d33203bc7488e80a1c2f88a19ba1640fb517fa88a88e9fa81b74abeb22e2",
+  "result_sha256": "4f66068f5c8e543b41728b9293fa5c15080dfe1144745873c35cdfa746369530"
+}

@@ -1,0 +1,109 @@
+{
+  "ordinary_controls": [
+    {
+      "name": "ASTRA-plain.md",
+      "mapped": "ASTRA-plain.md",
+      "reason": null
+    },
+    {
+      "name": "COM10.txt",
+      "mapped": "COM10.txt",
+      "reason": null
+    },
+    {
+      "name": "LPT10.txt",
+      "mapped": "LPT10.txt",
+      "reason": null
+    }
+  ],
+  "ascii_controls": [
+    {
+      "name": "CON",
+      "mapped": "%43ON",
+      "mapped_reason": null,
+      "reason": "is a Windows device name"
+    },
+    {
+      "name": "nul.json",
+      "mapped": "%6Eul.json",
+      "mapped_reason": null,
+      "reason": "is a Windows device name"
+    },
+    {
+      "name": "COM1.txt",
+      "mapped": "%43OM1.txt",
+      "mapped_reason": null,
+      "reason": "is a Windows device name"
+    },
+    {
+      "name": "LPT9",
+      "mapped": "%4CPT9",
+      "mapped_reason": null,
+      "reason": "is a Windows device name"
+    }
+  ],
+  "documented_superscript_cases": [
+    {
+      "name": "COM\u00b9",
+      "mapped": "COM\u00b9",
+      "reason": null
+    },
+    {
+      "name": "com\u00b9.json",
+      "mapped": "com\u00b9.json",
+      "reason": null
+    },
+    {
+      "name": "COM\u00b2",
+      "mapped": "COM\u00b2",
+      "reason": null
+    },
+    {
+      "name": "com\u00b2.json",
+      "mapped": "com\u00b2.json",
+      "reason": null
+    },
+    {
+      "name": "COM\u00b3",
+      "mapped": "COM\u00b3",
+      "reason": null
+    },
+    {
+      "name": "com\u00b3.json",
+      "mapped": "com\u00b3.json",
+      "reason": null
+    },
+    {
+      "name": "LPT\u00b9",
+      "mapped": "LPT\u00b9",
+      "reason": null
+    },
+    {
+      "name": "lpt\u00b9.json",
+      "mapped": "lpt\u00b9.json",
+      "reason": null
+    },
+    {
+      "name": "LPT\u00b2",
+      "mapped": "LPT\u00b2",
+      "reason": null
+    },
+    {
+      "name": "lpt\u00b2.json",
+      "mapped": "lpt\u00b2.json",
+      "reason": null
+    },
+    {
+      "name": "LPT\u00b3",
+      "mapped": "LPT\u00b3",
+      "reason": null
+    },
+    {
+      "name": "lpt\u00b3.json",
+      "mapped": "lpt\u00b3.json",
+      "reason": null
+    }
+  ],
+  "no_device_path_opened": true,
+  "primary_contract_url": "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file"
+}

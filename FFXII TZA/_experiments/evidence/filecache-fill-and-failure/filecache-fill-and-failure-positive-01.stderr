@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-filecache-fill-and-failure.py", line 115, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=W);p.add_argument('--out',type=Path,required=True);a=p.parse_args();main(a.source,a.out)
+                                                                                                                                                ~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-filecache-fill-and-failure.py", line 84, in main
+    if not G.dominates(resolver,0x59efe5,0x59f1b7):raise ValueError('cache lookup does not dominate fill')
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: cache lookup does not dominate fill

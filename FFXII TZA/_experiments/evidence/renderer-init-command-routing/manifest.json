@@ -1,0 +1,306 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-renderer-init-command-routing-before-prepare-leaf-correction-01.py",
+      "bytes": 2903,
+      "sha256": "942680c2c55e4dc36f3e7cc6874ea74ad6221a3be8d9ff3274cb4d3555dad65e"
+    },
+    {
+      "path": "capture-renderer-init-command-routing.py",
+      "bytes": 2920,
+      "sha256": "10e92b0c628657d904498dd5639604e3ef81a24a0c37aafb16119eeb42dc0289"
+    },
+    {
+      "path": "control-renderer-init-command-routing.py",
+      "bytes": 3198,
+      "sha256": "9f8693b1515664b2fb2a38eb1b811fab334a920c0abd1fd51775da8f21076a57"
+    },
+    {
+      "path": "prove-renderer-init-command-routing.py",
+      "bytes": 11059,
+      "sha256": "e27ac4f4119cba9df0f60c5c160fd2212a31f90768dd38d2d6324421ac1ed3af"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4616,
+      "sha256": "e72cf43827920c9c4b941bb4307ed5e8a9d7203d3e449e705089aa044d28f2c0"
+    },
+    {
+      "path": "renderer-init-command-routing-capture-01.status.json",
+      "bytes": 652,
+      "sha256": "9e55ecb545070ac7380680ae7ffbc3a8e2605b19e14e45885299095d4228756f"
+    },
+    {
+      "path": "renderer-init-command-routing-capture-01.stderr",
+      "bytes": 656,
+      "sha256": "83835fa5ee80d2ddc0deb8aeaf6a8e2ba60016238826b49fc4c6ff10f4590332"
+    },
+    {
+      "path": "renderer-init-command-routing-capture-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-capture-02.status.json",
+      "bytes": 714,
+      "sha256": "f7c11083aecafb3ed5de5ad0497d6f7ff57e0b6b401538ec100872cca0d02528"
+    },
+    {
+      "path": "renderer-init-command-routing-capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-capture-02.stdout",
+      "bytes": 178,
+      "sha256": "bd0b7b7123cf27ba5ba1642b4088d3569fce41519e34212874dfe7cd15a2deaf"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/capture-renderer-init-command-routing.py",
+      "bytes": 2920,
+      "sha256": "10e92b0c628657d904498dd5639604e3ef81a24a0c37aafb16119eeb42dc0289"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/capture-status.json",
+      "bytes": 714,
+      "sha256": "ce402ea7fb1d78f491d12b927cfd25563a7c28dd78d9a142ccb9f3fddbb8680d"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/renderer-init-command-routing-source-02.json",
+      "bytes": 29726,
+      "sha256": "4a53d3c6e9a9876ecf507a2156e7a6d72da5a5c2d5933c72e1c6b106d4a9c5e7"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/renderer-queue-initialization-source-02.json",
+      "bytes": 147251,
+      "sha256": "d0781c50db22f5cae5c70b610aae5fcd3d2b369f33e5dc362aac50a4c91c4deb"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/status.json",
+      "bytes": 1132,
+      "sha256": "41444edd16269c63b3c4dc0a5ac6e5b9ce26a12a1570a858fc5d7f53bf43770d"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/stderr",
+      "bytes": 1007,
+      "sha256": "8807de84b20bdb2335a0520cd8eaeda0c30dc5835f681549138000cd3ac78590"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/changed-prepare-slot/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/capture-renderer-init-command-routing.py",
+      "bytes": 2920,
+      "sha256": "10e92b0c628657d904498dd5639604e3ef81a24a0c37aafb16119eeb42dc0289"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/capture-status.json",
+      "bytes": 714,
+      "sha256": "95e54b613d27dfba6c60cb005b836a7f8c9d485805257071c012b51eed44eadd"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/renderer-init-command-routing-source-02.json",
+      "bytes": 29726,
+      "sha256": "84a0e8695328a3d23d6e5305b3b5c4d99b20b612df2d1046b9ce5ebc4938b606"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/renderer-queue-initialization-source-02.json",
+      "bytes": 147251,
+      "sha256": "d0781c50db22f5cae5c70b610aae5fcd3d2b369f33e5dc362aac50a4c91c4deb"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/status.json",
+      "bytes": 1113,
+      "sha256": "6996c8d33f5314aa939267ebd0daacd7d6be6fb151f0c43643729084dee938aa"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/stderr",
+      "bytes": 678,
+      "sha256": "ad70c714d88be7274dc0b4ebd337fa7601c5c4c8319781b10bce23c694408082"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/failed-upstream/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/capture-renderer-init-command-routing.py",
+      "bytes": 2920,
+      "sha256": "10e92b0c628657d904498dd5639604e3ef81a24a0c37aafb16119eeb42dc0289"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/capture-status.json",
+      "bytes": 714,
+      "sha256": "7234d99fb4dc1a62282d93f6b221b7322880e9e113c41fa8cd92fc8b79e344f7"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/renderer-init-command-routing-source-02.json",
+      "bytes": 29726,
+      "sha256": "84a0e8695328a3d23d6e5305b3b5c4d99b20b612df2d1046b9ce5ebc4938b606"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/renderer-queue-initialization-source-02.json",
+      "bytes": 147251,
+      "sha256": "d0781c50db22f5cae5c70b610aae5fcd3d2b369f33e5dc362aac50a4c91c4deb"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/status.json",
+      "bytes": 1109,
+      "sha256": "4a1c5d9d4cb3c93f48fddb617193dec2ec277c3a8ddd84622f9f5db193993645"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/stderr",
+      "bytes": 888,
+      "sha256": "03e21eb92acd128503c8f5db69537263ba9a34c638aa7b74b9c148105164bb39"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/missing-getter/title-cleanup-callback-queue-source-01.json",
+      "bytes": 9370,
+      "sha256": "419c7f8237e3644c23abf2ef1c9eba3f41f37d21caa6fd74c341a630b3a4fd12"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/result.json",
+      "bytes": 4933,
+      "sha256": "357d72d1fc333a2f222a80876aca9f129d54e24add06ba25dfb547783666d5b7"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/capture-renderer-init-command-routing.py",
+      "bytes": 2920,
+      "sha256": "10e92b0c628657d904498dd5639604e3ef81a24a0c37aafb16119eeb42dc0289"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/capture-status.json",
+      "bytes": 714,
+      "sha256": "8cc5ee272cfc35b1ecd450d1d36601876a0a7a4f954a33c0b91ebbef179be383"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/renderer-init-command-routing-source-02.json",
+      "bytes": 29727,
+      "sha256": "dca3ae245ba07afcfbeb4f135b74f9be014f78f445b1bcabc8eeafad1c4d13bb"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/renderer-queue-initialization-source-02.json",
+      "bytes": 147251,
+      "sha256": "d0781c50db22f5cae5c70b610aae5fcd3d2b369f33e5dc362aac50a4c91c4deb"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/status.json",
+      "bytes": 1128,
+      "sha256": "2c95f0adda5494a3d747a46ab725f5619a453d38cee8fda79cd059907797cfda"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/stderr",
+      "bytes": 1099,
+      "sha256": "c2ac352bea18daf467c91665608c7d3d5060a8913fc4683db519ad97adf82e93"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-01/reversed-null-branch/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-run-01.status.json",
+      "bytes": 645,
+      "sha256": "73f6b36565e003fce9818ff4f074299eecc335247f48beed3b3ea760856f74aa"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-controls-run-01.stdout",
+      "bytes": 89,
+      "sha256": "4ea7ab6cedf8abcd7092717f39a9bfa2f4a3a1185dda33f134ff410dadbf3ff4"
+    },
+    {
+      "path": "renderer-init-command-routing-method-01.json",
+      "bytes": 3223,
+      "sha256": "b7064ddb77bfa3c461cc472ad2ef9861c83a6b3029269c8bc0c14659c92bbb3d"
+    },
+    {
+      "path": "renderer-init-command-routing-positive-01.status.json",
+      "bytes": 934,
+      "sha256": "0de8342089a8064bf2ab4f85f6813d384faaa842562c1c4a380eb320a2ac4ebc"
+    },
+    {
+      "path": "renderer-init-command-routing-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renderer-init-command-routing-positive-01.stdout",
+      "bytes": 90,
+      "sha256": "4f18155f34fa383f7ec192eccdef58346489deb298d3d775c5590ef849e46e70"
+    },
+    {
+      "path": "renderer-init-command-routing-restoration-01.json",
+      "bytes": 391,
+      "sha256": "28565d2296f261deb54a133056ce527c7621e08e9d513689d41a8037637ce724"
+    },
+    {
+      "path": "renderer-init-command-routing-result-01.json",
+      "bytes": 8746,
+      "sha256": "7fdfad7e8333a6f23f73b3f27166c4669d3935513624c98bb81cb8356e180114"
+    },
+    {
+      "path": "renderer-init-command-routing-source-02.json",
+      "bytes": 29628,
+      "sha256": "ace89cd49e28e27e50c256d1f649af0517f8ae4badfba83017e2b3f88d61c477"
+    },
+    {
+      "path": "renderer-queue-initialization-source-02.json",
+      "bytes": 147251,
+      "sha256": "d0781c50db22f5cae5c70b610aae5fcd3d2b369f33e5dc362aac50a4c91c4deb"
+    },
+    {
+      "path": "title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

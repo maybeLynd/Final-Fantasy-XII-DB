@@ -1,0 +1,625 @@
+{
+  "status": "VERIFIED",
+  "commit": "a688c29372ea8e057f7ba0f030c4c85f47ff8b71",
+  "exact_paths": 103,
+  "members": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/.gitattributes",
+      "bytes": 8,
+      "git_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/capture-index-path.py",
+      "bytes": 4338,
+      "git_sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/capture-title-cleanup-callees.py",
+      "bytes": 3574,
+      "git_sha256": "f2b1f92c689431ffe2823d330e2183bcbd351312128dd2d24a309e19aa94fce7",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/control-title-annotation-prerequisite.py",
+      "bytes": 6456,
+      "git_sha256": "78cbaf97cfc54bdf79062dac9b503def4f562289237de08694057aeffbb1dd97",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-controls-03.json",
+      "bytes": 481,
+      "git_sha256": "98df12c12c57f3745bc4cd287901b1e1a291ee77d3b04a9f9a950d5ccef114d7",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-positive-03.status.json",
+      "bytes": 554,
+      "git_sha256": "efa48e45b0e2da779a3c74742cb1eda3fe79337b6447c29296d9171471d44da7",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-positive-03.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-positive-03.stdout",
+      "bytes": 107,
+      "git_sha256": "ccfcb6bf2871d3a4e04f7136f1b703aedd6248f70346c438452ed82b33bf4b35",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-refusal-03.status.json",
+      "bytes": 768,
+      "git_sha256": "c87a234ee21be0fe5430eadcd0ab8e66c67ce688b4386495796b12f289c3a9c6",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-refusal-03.stderr",
+      "bytes": 961,
+      "git_sha256": "1675824ac14454698de08d02aea4e281682fd056f18326abae4944c7b6760d2d",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/frozen-placement-refusal-03.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/manifest.json",
+      "bytes": 20874,
+      "git_sha256": "19ffb3c45dfee3c31e39d660142c52d61cb0969c8aca96c657792e7a00f44c07",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/prepare-residue-packet-publication-before-annotation-prerequisite-01.py",
+      "bytes": 36512,
+      "git_sha256": "2af62aee97abe6881c05d0b99fcbe2e87a0a902d2fd844d7213492fb49707dcf",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/prepare-residue-packet-publication.py",
+      "bytes": 37379,
+      "git_sha256": "4f17feadd4ae4f7489dd1cd218e8fb3ad866a8b37a410a25825f3d0d30bda51f",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/prove-title-cleanup-guard-scope-02.py",
+      "bytes": 11626,
+      "git_sha256": "741595e455cd23a0f7ea8c5a31f8aa98f681cdc4591ecc217a12fa5dbc3249ac",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/prove-title-cleanup-guard-scope.py",
+      "bytes": 11120,
+      "git_sha256": "9799320f7950d2febf88706ab98b223f904a2f45f1380f0b602444a5c461536b",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "git_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/README.md",
+      "bytes": 6084,
+      "git_sha256": "d0ea00ce4af02d65effc80e29879bfced969315af26b4ec400abdc0038d0e407",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/run-softedges-array-descriptor-offset.py",
+      "bytes": 4138,
+      "git_sha256": "1869886f6e07a657b674badbcd419668dce9e6e2bac8482ee7320bc792b9a439",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-control-invocation-01.status.json",
+      "bytes": 460,
+      "git_sha256": "38dfab8c9bafe258087c1f127143a7a3471ad30f9ceb69f51842a1881d94bc2b",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-control-invocation-01.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-control-invocation-01.stdout",
+      "bytes": 102,
+      "git_sha256": "d3ca43444719986e946ee623f3bfeeca230f648417f83f740e3486a316492f3a",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-missing-continuation/title-cleanup-callees-source-01.json",
+      "bytes": 65542,
+      "git_sha256": "dce4884c8a98f9115e88155502f5153a05bbddbe8262bc54e8147ae191217146",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-missing-continuation/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5172,
+      "git_sha256": "6479b721861fa65b5ef1ff1d37678aec73116b5ab0dfcf4b64151da459ae4326",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-missing-continuation.status.json",
+      "bytes": 705,
+      "git_sha256": "f37c019943b4f820b5a7fc9bbd17c87e6dd6aa2f5dc1e1c2d51d5db4731b93c7",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-missing-continuation.stderr",
+      "bytes": 493,
+      "git_sha256": "e9f9d92bb6b0724787b17b4ce79061e871b72c5726f92fc1cfd1b94c896ea174",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-missing-continuation.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-wrong-unwind-parent/title-cleanup-callees-source-01.json",
+      "bytes": 66666,
+      "git_sha256": "bc9b274e9a1ed32434015b68dec1de5f1827b5112e3797f6bde5fd7a75b12bf6",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-wrong-unwind-parent/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5172,
+      "git_sha256": "6479b721861fa65b5ef1ff1d37678aec73116b5ab0dfcf4b64151da459ae4326",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-wrong-unwind-parent.status.json",
+      "bytes": 703,
+      "git_sha256": "1791b9e99218382ace1e8b5ebe4608323aad1e8a5d05eee0a70a52f0da3b116a",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-wrong-unwind-parent.stderr",
+      "bytes": 491,
+      "git_sha256": "078b23e5b9c8c43611415cffea023dfb2f471d8f1e7c3f29db56ec414df082fd",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/cleanup-wrong-unwind-parent.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-access-role-with-current-pin/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-access-role-with-current-pin/title-tracker-callback-boundary-result-01.json",
+      "bytes": 4904,
+      "git_sha256": "11caf25d2b9aede9ad36469b9d41c617eed1b561e6f21a5338d6a091afeb95ba",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-access-role-with-current-pin/title-tracker-cleanup-source-01.json",
+      "bytes": 22416,
+      "git_sha256": "d3aa118e0bc1d0a2c90cd5270bc82fb3cd83d2dd8f761e5870fdca1cb98be425",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-access-role-with-current-pin.status.json",
+      "bytes": 792,
+      "git_sha256": "9e9ea3e50368e8a0dc774189d13aa074e6ae362e8c638fddac94b0fa763e4ed0",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-access-role-with-current-pin.stderr",
+      "bytes": 1219,
+      "git_sha256": "f628e913aa5c1b4ff456a45b7d5bc0f330e79d4017b7e393f04efb6b0caa3507",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-access-role-with-current-pin.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-annotation-with-current-pin/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-annotation-with-current-pin/title-tracker-callback-boundary-result-01.json",
+      "bytes": 4904,
+      "git_sha256": "871391684de51b9a382468c90d0b5b3eb5914640c5a4ab27eb253604cd17dbc4",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-annotation-with-current-pin/title-tracker-cleanup-source-01.json",
+      "bytes": 22396,
+      "git_sha256": "ac943ae1a4f789323a33c7f0fe1bb7cc0d58b9a349f4254f951788ed158ddc02",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-annotation-with-current-pin.status.json",
+      "bytes": 790,
+      "git_sha256": "3d7bc6b740c942e82bb1aeec929e8f67d1741056cea1753ebf931581aed7acf0",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-annotation-with-current-pin.stderr",
+      "bytes": 1213,
+      "git_sha256": "2e028965fe5197ead6596c2bed21ea559b01af92108686178659cbbcd6bb4826",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/false-annotation-with-current-pin.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/missing-source/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/missing-source/title-tracker-callback-boundary-result-01.json",
+      "bytes": 4904,
+      "git_sha256": "0d066a10e030d4923650234a2efd12e9a28d56db786c18c56e4a55d67a234762",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/missing-source.status.json",
+      "bytes": 752,
+      "git_sha256": "44860435eec3c51c3e8076bf00c8ad10fd79a89e628f7eb900f08832d7d3290e",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/missing-source.stderr",
+      "bytes": 930,
+      "git_sha256": "d210a35ff2b69c8f749797fa924c9055198d9e60f9d9b955a8412b22dac19697",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/missing-source.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/result.json",
+      "bytes": 2291,
+      "git_sha256": "92a82f9734ff073f9b74676809817304b8e1c87e6a19262f31a0f9c00713bdc9",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-cleanup-import-qualified.json",
+      "bytes": 1630,
+      "git_sha256": "b0366995ab0c089a318a51f4f6038b5644019224346e0885d2edf15694d0c4e4",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-cleanup-import.status.json",
+      "bytes": 726,
+      "git_sha256": "56d586bfd47b372b5da91e3a41de27edf03a9f28b042f08fc79fff123c13e2c6",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-cleanup-import.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-cleanup-import.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-consumption-qualified.json",
+      "bytes": 2266,
+      "git_sha256": "311d773f7f02fa7d2f0f13e1e516b9a6a3eaec141c1d698de126f5e7856770ea",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-consumption.status.json",
+      "bytes": 726,
+      "git_sha256": "4a4e42179b371a0dc740cc22b675d95cdfb3d38d48156a9b213e9a476670d47c",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-consumption.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-consumption.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-pump-qualified.json",
+      "bytes": 1614,
+      "git_sha256": "0179f231d70cf4379fc034c1bd9e94ae944846aa319cfe7ab525ad120ae48808",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-pump.status.json",
+      "bytes": 714,
+      "git_sha256": "59b1b40605906fabf59d637a2f2727510e2caf73d5d547c33c3d6cefdf341fbb",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-pump.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-queue-pump.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-tracker-callback-qualified.json",
+      "bytes": 1624,
+      "git_sha256": "dee32387adf3730953ff9bcc5e15fa631dc0fadc95121b06ada673e2217576fa",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-tracker-callback.status.json",
+      "bytes": 732,
+      "git_sha256": "a623ec55ee28e9d01f6436e2f224ed73292e9cc76a0b39a5a824e385972e7464",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-tracker-callback.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/title-tracker-callback.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/zero-source-map/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/zero-source-map/title-tracker-callback-boundary-result-01.json",
+      "bytes": 4586,
+      "git_sha256": "8bb14fe1ad41d5568bc49021707cb05baad74479ad78542347568da2e05388dc",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/zero-source-map/title-tracker-cleanup-source-01.json",
+      "bytes": 22418,
+      "git_sha256": "ca0d9bde58612ad1328b43c5399199da2bc597a54674724407a377d91b14e68c",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/zero-source-map.status.json",
+      "bytes": 754,
+      "git_sha256": "170f28da8f5856da8308a36c5e3552de59384ae77182b6009056a7533507e830",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/zero-source-map.stderr",
+      "bytes": 792,
+      "git_sha256": "1b1aaa7cee1587a9dd5a36c41b57396fe24e1c0ed36c03c9bab803f148eafd48",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-annotation-prerequisite-controls-01/zero-source-map.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/actual-cli.status.json",
+      "bytes": 664,
+      "git_sha256": "7accaeeafbdeddb0b12e4142e822b31a507f314e9876aba31326535a3c39cb48",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/actual-cli.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/actual-cli.stdout",
+      "bytes": 107,
+      "git_sha256": "ccfcb6bf2871d3a4e04f7136f1b703aedd6248f70346c438452ed82b33bf4b35",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/control-verdict.json",
+      "bytes": 776,
+      "git_sha256": "9e46c41664cc1d71761873d8e860a6421104ecd7633772eac387d1d423ed65c5",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/malformed-source-must-not-pass.json",
+      "bytes": 5877,
+      "git_sha256": "87fa5f8fca1a6f9b1edf6d66f8cd497ff97f528e00fb5fa1791484f4290a9eee",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/repair-verdict-02.json",
+      "bytes": 1322,
+      "git_sha256": "f8ab8d83eabd2e78c00655dae4bcd29e23e7d410c1e9ff6a4aee8bc80c338024",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/repaired-actual-cli.status.json",
+      "bytes": 663,
+      "git_sha256": "8a8c64a49e0296a85b91e7240ad3ee214bbb2d29d7ba36028752b5df29934053",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/repaired-actual-cli.stderr",
+      "bytes": 817,
+      "git_sha256": "bee6cfabf3dc595c921d93ff0a88bef475a014114897d84d428cc3b8c513d137",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/repaired-actual-cli.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/title-cleanup-callees-source-01.json",
+      "bytes": 66671,
+      "git_sha256": "b65cc92a0c7b991b2a3224e9411311e4a48784f4cb0d01cdd3a00fd74b0cd24d",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-annotation-prerequisite-control-01/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5172,
+      "git_sha256": "6479b721861fa65b5ef1ff1d37678aec73116b5ab0dfcf4b64151da459ae4326",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callee-unwind-preparation-02.json",
+      "bytes": 2471,
+      "git_sha256": "923f415a8122292eeda1750c6a2cc9417ddf7b948c3045a19a7f5905ec046a5b",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callees-gate-01.json",
+      "bytes": 433,
+      "git_sha256": "d087e4fa66669e63807e45c0b52fd53eac4824cab7439ff8ebaf7cc692a59c56",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callees-invocation-01.status.json",
+      "bytes": 293,
+      "git_sha256": "b2b578659a13b0518df65ce7a4a6db54ab745e4225ff655100f8baf1bae9c732",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callees-invocation-01.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callees-invocation-01.stdout",
+      "bytes": 183,
+      "git_sha256": "0cf6eaa4abadf00fb763211c183089378d350ed346e55efdf0e6eb55d76ffefd",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callees-method-01.json",
+      "bytes": 1539,
+      "git_sha256": "02d4f4a7078a465ab518d072aee34271c6d9298cffed089fb98c9e231f6f0b8a",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-callees-source-01.json",
+      "bytes": 66668,
+      "git_sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-proof-invocation-01.status.json",
+      "bytes": 453,
+      "git_sha256": "9d2230f6b78067ec18e4ecee89de9c882685d3974f7071e3da96a7728c7f714d",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-proof-invocation-01.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-proof-invocation-01.stdout",
+      "bytes": 107,
+      "git_sha256": "ccfcb6bf2871d3a4e04f7136f1b703aedd6248f70346c438452ed82b33bf4b35",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-proof-invocation-02.status.json",
+      "bytes": 456,
+      "git_sha256": "0518715cd5f94f916433ed0f0058c79fd856d9f053fa62fa7e4cfa06a07244ec",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-proof-invocation-02.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-proof-invocation-02.stdout",
+      "bytes": 107,
+      "git_sha256": "ccfcb6bf2871d3a4e04f7136f1b703aedd6248f70346c438452ed82b33bf4b35",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-result-01.json",
+      "bytes": 5877,
+      "git_sha256": "fbcf4eb379407e3de14ea78c9b6550c65cdda630cea58c180637e0cdf2230e87",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-result-02.json",
+      "bytes": 6842,
+      "git_sha256": "5e3c3b46b68a2bd65e651c1aafadf76c08004f5a5d95f87c43ee4b3f5b3ae0d0",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-guard-scope-result-03.json",
+      "bytes": 6842,
+      "git_sha256": "96836ff6d09c5d6f702bb349e887482c8abfcb42e3bc39fae5209dc47d7ddcaf",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5172,
+      "git_sha256": "6479b721861fa65b5ef1ff1d37678aec73116b5ab0dfcf4b64151da459ae4326",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/validate-title-source-annotations-before-placement-02.py",
+      "bytes": 3433,
+      "git_sha256": "355e897b4f9ba33f8f548dac7ebeef0a40fdf6c443eb28eacabba55e785b6cf6",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-guard-and-annotation-prerequisite/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "git_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/_inbox/ASTRA.md",
+      "bytes": 1096001,
+      "git_sha256": "8fb3b012a6df48db0cec5b5042168ef62211e5fdba26fd5a6f42ce1ab9f493eb",
+      "verification": "LF-only handoff normalization"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+003CCA70	FUN_003cca70	003CCA74	0x0	r	movups xmm0, xmmword ptr [rdx]	route-seeded STATIC 0x022D8F10 base+0x0	

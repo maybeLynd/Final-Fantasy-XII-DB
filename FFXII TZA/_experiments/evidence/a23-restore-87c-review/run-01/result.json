@@ -1,0 +1,1265 @@
+{
+  "source_sha256": "033c37bd65cf4e9b5f33c94af14ad867877ac32cf992ad1515d4c230a6597dec",
+  "records": [
+    {
+      "case": "original",
+      "zip_sha256": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "run": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+          "restore",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-original"
+        ],
+        "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-original",
+        "deadline_seconds": 30,
+        "exit": 0,
+        "terminal": true,
+        "exception": null,
+        "stdout": "RESTORED g20260929T213407Z-9c7238 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-original\r\n",
+        "stderr": ""
+      },
+      "target_exists": true,
+      "current": true,
+      "reader_problems": [],
+      "generation": "g20260929T213407Z-9c7238",
+      "zip_member_count": 35,
+      "comparisons": [
+        {
+          "logical": "inputs/_tree",
+          "physical": "_tree",
+          "bytes": 9443,
+          "sha256": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+          "equal": true
+        },
+        {
+          "logical": "inputs/build_views.py",
+          "physical": "build_views.py",
+          "bytes": 49701,
+          "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+          "equal": true
+        },
+        {
+          "logical": "inputs/category_map",
+          "physical": "category_map",
+          "bytes": 10617,
+          "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+          "equal": true
+        },
+        {
+          "logical": "inputs/check_questions",
+          "physical": "check_questions",
+          "bytes": 643,
+          "sha256": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802",
+          "equal": true
+        },
+        {
+          "logical": "inputs/coverage_dims",
+          "physical": "coverage_dims",
+          "bytes": 58385,
+          "sha256": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+          "equal": true
+        },
+        {
+          "logical": "inputs/fields",
+          "physical": "fields",
+          "bytes": 10640389,
+          "sha256": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+          "equal": true
+        },
+        {
+          "logical": "inputs/functions",
+          "physical": "functions",
+          "bytes": 7008993,
+          "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+          "equal": true
+        },
+        {
+          "logical": "inputs/goal_gate",
+          "physical": "goal_gate",
+          "bytes": 752,
+          "sha256": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34",
+          "equal": true
+        },
+        {
+          "logical": "inputs/l2",
+          "physical": "l2",
+          "bytes": 334764,
+          "sha256": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-EXP-LEVEL-UP.md",
+          "physical": "pkg%3APKG-GP-EXP-LEVEL-UP.md",
+          "bytes": 6493,
+          "sha256": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-HP-LETHAL.md",
+          "physical": "pkg%3APKG-GP-HP-LETHAL.md",
+          "bytes": 10550,
+          "sha256": "f899c1a9364968ae0719b59f12ce01fd212cb460c1af7deac0f153eea54d32a4",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-SPAWN-RESPAWN.md",
+          "physical": "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+          "bytes": 10701,
+          "sha256": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-STATUS-POISON.md",
+          "physical": "pkg%3APKG-GP-STATUS-POISON.md",
+          "bytes": 13229,
+          "sha256": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-TECH-SCRIPTVM-VALUE.md",
+          "physical": "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+          "bytes": 8469,
+          "sha256": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+          "equal": true
+        },
+        {
+          "logical": "inputs/progress_check",
+          "physical": "progress_check",
+          "bytes": 85,
+          "sha256": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f",
+          "equal": true
+        },
+        {
+          "logical": "inputs/progress_snapshot",
+          "physical": "progress_snapshot",
+          "bytes": 272726,
+          "sha256": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a",
+          "equal": true
+        },
+        {
+          "logical": "inputs/requirement_facts",
+          "physical": "requirement_facts",
+          "bytes": 8145497,
+          "sha256": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47",
+          "equal": true
+        },
+        {
+          "logical": "inputs/requirements.py",
+          "physical": "requirements.py",
+          "bytes": 32680,
+          "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+          "equal": true
+        },
+        {
+          "logical": "inputs/subsystems",
+          "physical": "subsystems",
+          "bytes": 22589,
+          "sha256": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+          "equal": true
+        },
+        {
+          "logical": "inputs/team",
+          "physical": "team",
+          "bytes": 57193960,
+          "sha256": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657",
+          "equal": true
+        },
+        {
+          "logical": "inputs/types",
+          "physical": "types",
+          "bytes": 1920357,
+          "sha256": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_1_64",
+          "physical": "uc1_1_64",
+          "bytes": 37250,
+          "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_65_256",
+          "physical": "uc1_65_256",
+          "bytes": 11254,
+          "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_band.py",
+          "physical": "uc1_band.py",
+          "bytes": 6914,
+          "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+          "equal": true
+        },
+        {
+          "logical": "inputs/vbf_list",
+          "physical": "vbf_list",
+          "bytes": 6448250,
+          "sha256": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+          "equal": true
+        },
+        {
+          "logical": "inputs/watchdog",
+          "physical": "watchdog",
+          "bytes": 5860,
+          "sha256": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-evidence.json",
+          "physical": "view-evidence.json",
+          "bytes": 3544,
+          "sha256": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-executable.json",
+          "physical": "view-executable.json",
+          "bytes": 20634,
+          "sha256": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-fleet.json",
+          "physical": "view-fleet.json",
+          "bytes": 2405,
+          "sha256": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-overview.json",
+          "physical": "view-overview.json",
+          "bytes": 21771,
+          "sha256": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-progress.json",
+          "physical": "view-progress.json",
+          "bytes": 226669,
+          "sha256": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-systems.json",
+          "physical": "view-systems.json",
+          "bytes": 57027,
+          "sha256": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-types.json",
+          "physical": "view-types.json",
+          "bytes": 1869,
+          "sha256": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-vbf.json",
+          "physical": "view-vbf.json",
+          "bytes": 18393,
+          "sha256": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272",
+          "equal": true
+        },
+        {
+          "logical": "MANIFEST.json",
+          "sha256": "865299843d417576c56167c3375db3f3a17e5a2abde61f128b5fdd24b9adc66e",
+          "equal": true
+        }
+      ],
+      "tree": {
+        "CURRENT": "0eba8008555b1f927d23b4c7fa448a8d6910a6ea0cc5373d558692c89e4d1262",
+        "g20260929T213407Z-9c7238\\MANIFEST.json": "865299843d417576c56167c3375db3f3a17e5a2abde61f128b5fdd24b9adc66e",
+        "g20260929T213407Z-9c7238\\inputs\\build_views.py": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+        "g20260929T213407Z-9c7238\\inputs\\category_map": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+        "g20260929T213407Z-9c7238\\inputs\\check_questions": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802",
+        "g20260929T213407Z-9c7238\\inputs\\coverage_dims": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+        "g20260929T213407Z-9c7238\\inputs\\fields": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+        "g20260929T213407Z-9c7238\\inputs\\functions": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+        "g20260929T213407Z-9c7238\\inputs\\goal_gate": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34",
+        "g20260929T213407Z-9c7238\\inputs\\l2": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-EXP-LEVEL-UP.md": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-HP-LETHAL.md": "f899c1a9364968ae0719b59f12ce01fd212cb460c1af7deac0f153eea54d32a4",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-SPAWN-RESPAWN.md": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-STATUS-POISON.md": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-TECH-SCRIPTVM-VALUE.md": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+        "g20260929T213407Z-9c7238\\inputs\\progress_check": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f",
+        "g20260929T213407Z-9c7238\\inputs\\progress_snapshot": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a",
+        "g20260929T213407Z-9c7238\\inputs\\requirements.py": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+        "g20260929T213407Z-9c7238\\inputs\\requirement_facts": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47",
+        "g20260929T213407Z-9c7238\\inputs\\subsystems": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+        "g20260929T213407Z-9c7238\\inputs\\team": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657",
+        "g20260929T213407Z-9c7238\\inputs\\types": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_1_64": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_65_256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_band.py": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+        "g20260929T213407Z-9c7238\\inputs\\vbf_list": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+        "g20260929T213407Z-9c7238\\inputs\\watchdog": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc",
+        "g20260929T213407Z-9c7238\\inputs\\_tree": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+        "g20260929T213407Z-9c7238\\outputs\\view-evidence.json": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43",
+        "g20260929T213407Z-9c7238\\outputs\\view-executable.json": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d",
+        "g20260929T213407Z-9c7238\\outputs\\view-fleet.json": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f",
+        "g20260929T213407Z-9c7238\\outputs\\view-overview.json": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246",
+        "g20260929T213407Z-9c7238\\outputs\\view-progress.json": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+        "g20260929T213407Z-9c7238\\outputs\\view-systems.json": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471",
+        "g20260929T213407Z-9c7238\\outputs\\view-types.json": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071",
+        "g20260929T213407Z-9c7238\\outputs\\view-vbf.json": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272"
+      },
+      "physical_inputs": [
+        "_tree",
+        "build_views.py",
+        "category_map",
+        "check_questions",
+        "coverage_dims",
+        "fields",
+        "functions",
+        "goal_gate",
+        "l2",
+        "pkg%3APKG-GP-EXP-LEVEL-UP.md",
+        "pkg%3APKG-GP-HP-LETHAL.md",
+        "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+        "pkg%3APKG-GP-STATUS-POISON.md",
+        "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+        "progress_check",
+        "progress_snapshot",
+        "requirement_facts",
+        "requirements.py",
+        "subsystems",
+        "team",
+        "types",
+        "uc1_1_64",
+        "uc1_65_256",
+        "uc1_band.py",
+        "vbf_list",
+        "watchdog"
+      ]
+    },
+    {
+      "case": "percent-distinct",
+      "zip_sha256": "df0d9efa25ac741a62bb52722ebe05e1a398eaa21cf9b30b916366bcea009735",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "run": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+          "restore",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\percent-distinct.zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-percent-distinct"
+        ],
+        "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-percent-distinct",
+        "deadline_seconds": 30,
+        "exit": 0,
+        "terminal": true,
+        "exception": null,
+        "stdout": "RESTORED g20260929T213407Z-9c7238 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-percent-distinct\r\n",
+        "stderr": ""
+      },
+      "target_exists": true,
+      "current": true,
+      "reader_problems": [],
+      "generation": "g20260929T213407Z-9c7238",
+      "zip_member_count": 35,
+      "comparisons": [
+        {
+          "logical": "inputs/_tree",
+          "physical": "_tree",
+          "bytes": 9443,
+          "sha256": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+          "equal": true
+        },
+        {
+          "logical": "inputs/build_views.py",
+          "physical": "build_views.py",
+          "bytes": 49701,
+          "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+          "equal": true
+        },
+        {
+          "logical": "inputs/category_map",
+          "physical": "category_map",
+          "bytes": 10617,
+          "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+          "equal": true
+        },
+        {
+          "logical": "inputs/check_questions",
+          "physical": "check_questions",
+          "bytes": 643,
+          "sha256": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802",
+          "equal": true
+        },
+        {
+          "logical": "inputs/coverage_dims",
+          "physical": "coverage_dims",
+          "bytes": 58385,
+          "sha256": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+          "equal": true
+        },
+        {
+          "logical": "inputs/fields",
+          "physical": "fields",
+          "bytes": 10640389,
+          "sha256": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+          "equal": true
+        },
+        {
+          "logical": "inputs/functions",
+          "physical": "functions",
+          "bytes": 7008993,
+          "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+          "equal": true
+        },
+        {
+          "logical": "inputs/goal_gate",
+          "physical": "goal_gate",
+          "bytes": 752,
+          "sha256": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34",
+          "equal": true
+        },
+        {
+          "logical": "inputs/l2",
+          "physical": "l2",
+          "bytes": 334764,
+          "sha256": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-SPAWN-RESPAWN.md",
+          "physical": "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+          "bytes": 10701,
+          "sha256": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-STATUS-POISON.md",
+          "physical": "pkg%3APKG-GP-STATUS-POISON.md",
+          "bytes": 13229,
+          "sha256": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-TECH-SCRIPTVM-VALUE.md",
+          "physical": "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+          "bytes": 8469,
+          "sha256": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+          "equal": true
+        },
+        {
+          "logical": "inputs/progress_check",
+          "physical": "progress_check",
+          "bytes": 85,
+          "sha256": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f",
+          "equal": true
+        },
+        {
+          "logical": "inputs/progress_snapshot",
+          "physical": "progress_snapshot",
+          "bytes": 272726,
+          "sha256": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a",
+          "equal": true
+        },
+        {
+          "logical": "inputs/requirement_facts",
+          "physical": "requirement_facts",
+          "bytes": 8145497,
+          "sha256": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47",
+          "equal": true
+        },
+        {
+          "logical": "inputs/requirements.py",
+          "physical": "requirements.py",
+          "bytes": 32680,
+          "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+          "equal": true
+        },
+        {
+          "logical": "inputs/subsystems",
+          "physical": "subsystems",
+          "bytes": 22589,
+          "sha256": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+          "equal": true
+        },
+        {
+          "logical": "inputs/team",
+          "physical": "team",
+          "bytes": 57193960,
+          "sha256": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657",
+          "equal": true
+        },
+        {
+          "logical": "inputs/types",
+          "physical": "types",
+          "bytes": 1920357,
+          "sha256": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_1_64",
+          "physical": "uc1_1_64",
+          "bytes": 37250,
+          "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_65_256",
+          "physical": "uc1_65_256",
+          "bytes": 11254,
+          "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_band.py",
+          "physical": "uc1_band.py",
+          "bytes": 6914,
+          "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+          "equal": true
+        },
+        {
+          "logical": "inputs/vbf_list",
+          "physical": "vbf_list",
+          "bytes": 6448250,
+          "sha256": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+          "equal": true
+        },
+        {
+          "logical": "inputs/watchdog",
+          "physical": "watchdog",
+          "bytes": 5860,
+          "sha256": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc",
+          "equal": true
+        },
+        {
+          "logical": "inputs/ASTRA:a",
+          "physical": "ASTRA%3Aa",
+          "bytes": 6493,
+          "sha256": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+          "equal": true
+        },
+        {
+          "logical": "inputs/ASTRA%3Aa",
+          "physical": "ASTRA%253Aa",
+          "bytes": 6493,
+          "sha256": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-evidence.json",
+          "physical": "view-evidence.json",
+          "bytes": 3544,
+          "sha256": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-executable.json",
+          "physical": "view-executable.json",
+          "bytes": 20634,
+          "sha256": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-fleet.json",
+          "physical": "view-fleet.json",
+          "bytes": 2405,
+          "sha256": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-overview.json",
+          "physical": "view-overview.json",
+          "bytes": 21771,
+          "sha256": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-progress.json",
+          "physical": "view-progress.json",
+          "bytes": 226669,
+          "sha256": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-systems.json",
+          "physical": "view-systems.json",
+          "bytes": 57027,
+          "sha256": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-types.json",
+          "physical": "view-types.json",
+          "bytes": 1869,
+          "sha256": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-vbf.json",
+          "physical": "view-vbf.json",
+          "bytes": 18393,
+          "sha256": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272",
+          "equal": true
+        },
+        {
+          "logical": "MANIFEST.json",
+          "sha256": "b16e4efc4bfb5cdf1e18de6e827d58fd8512e3409b915f1f77cc9425f3b799d1",
+          "equal": true
+        }
+      ],
+      "tree": {
+        "CURRENT": "2267c901c92a544459b9eab30525640b6e96afbff4f16cfe1bc2b0ee72e8ef18",
+        "g20260929T213407Z-9c7238\\MANIFEST.json": "b16e4efc4bfb5cdf1e18de6e827d58fd8512e3409b915f1f77cc9425f3b799d1",
+        "g20260929T213407Z-9c7238\\inputs\\ASTRA%253Aa": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+        "g20260929T213407Z-9c7238\\inputs\\ASTRA%3Aa": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+        "g20260929T213407Z-9c7238\\inputs\\build_views.py": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+        "g20260929T213407Z-9c7238\\inputs\\category_map": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+        "g20260929T213407Z-9c7238\\inputs\\check_questions": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802",
+        "g20260929T213407Z-9c7238\\inputs\\coverage_dims": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+        "g20260929T213407Z-9c7238\\inputs\\fields": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+        "g20260929T213407Z-9c7238\\inputs\\functions": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+        "g20260929T213407Z-9c7238\\inputs\\goal_gate": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34",
+        "g20260929T213407Z-9c7238\\inputs\\l2": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-SPAWN-RESPAWN.md": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-STATUS-POISON.md": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-TECH-SCRIPTVM-VALUE.md": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+        "g20260929T213407Z-9c7238\\inputs\\progress_check": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f",
+        "g20260929T213407Z-9c7238\\inputs\\progress_snapshot": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a",
+        "g20260929T213407Z-9c7238\\inputs\\requirements.py": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+        "g20260929T213407Z-9c7238\\inputs\\requirement_facts": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47",
+        "g20260929T213407Z-9c7238\\inputs\\subsystems": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+        "g20260929T213407Z-9c7238\\inputs\\team": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657",
+        "g20260929T213407Z-9c7238\\inputs\\types": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_1_64": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_65_256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_band.py": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+        "g20260929T213407Z-9c7238\\inputs\\vbf_list": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+        "g20260929T213407Z-9c7238\\inputs\\watchdog": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc",
+        "g20260929T213407Z-9c7238\\inputs\\_tree": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+        "g20260929T213407Z-9c7238\\outputs\\view-evidence.json": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43",
+        "g20260929T213407Z-9c7238\\outputs\\view-executable.json": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d",
+        "g20260929T213407Z-9c7238\\outputs\\view-fleet.json": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f",
+        "g20260929T213407Z-9c7238\\outputs\\view-overview.json": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246",
+        "g20260929T213407Z-9c7238\\outputs\\view-progress.json": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+        "g20260929T213407Z-9c7238\\outputs\\view-systems.json": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471",
+        "g20260929T213407Z-9c7238\\outputs\\view-types.json": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071",
+        "g20260929T213407Z-9c7238\\outputs\\view-vbf.json": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272"
+      },
+      "physical_inputs": [
+        "ASTRA%253Aa",
+        "ASTRA%3Aa",
+        "_tree",
+        "build_views.py",
+        "category_map",
+        "check_questions",
+        "coverage_dims",
+        "fields",
+        "functions",
+        "goal_gate",
+        "l2",
+        "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+        "pkg%3APKG-GP-STATUS-POISON.md",
+        "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+        "progress_check",
+        "progress_snapshot",
+        "requirement_facts",
+        "requirements.py",
+        "subsystems",
+        "team",
+        "types",
+        "uc1_1_64",
+        "uc1_65_256",
+        "uc1_band.py",
+        "vbf_list",
+        "watchdog"
+      ],
+      "logical_pair": [
+        "ASTRA:a",
+        "ASTRA%3Aa"
+      ],
+      "mapped_pair": [
+        "ASTRA%3Aa",
+        "ASTRA%253Aa"
+      ],
+      "samefile": false
+    },
+    {
+      "case": "case-pair",
+      "zip_sha256": "d3ecb1b6cde9c7832b5d84b3a30135a89dc53ea81761f3d678a889c5b72cd0ba",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "run": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+          "restore",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\case-pair.zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-case-pair"
+        ],
+        "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-case-pair",
+        "deadline_seconds": 30,
+        "exit": 1,
+        "terminal": true,
+        "exception": null,
+        "stdout": "REFUSED two members restore to one file on a case-insensitive system (Windows name folding): 'inputs/ASTRA-case' and 'inputs/astra-case'\r\n",
+        "stderr": ""
+      },
+      "target_exists": false,
+      "current": false
+    },
+    {
+      "case": "unverified",
+      "zip_sha256": "af46e93f3eaecc35d5900fcc3ae71cb51fb91d0a721ee5ae1d8382381de17a8a",
+      "verify": "UNVERIFIED",
+      "verify_info": {
+        "reason": "members do not match the manifest",
+        "generation": "g20260929T213407Z-9c7238",
+        "extra": [],
+        "missing": [],
+        "hash_mismatch": [
+          "inputs/pkg:PKG-GP-EXP-LEVEL-UP.md"
+        ]
+      },
+      "run": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+          "restore",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\unverified.zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-unverified"
+        ],
+        "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-unverified",
+        "deadline_seconds": 30,
+        "exit": 1,
+        "terminal": true,
+        "exception": null,
+        "stdout": "REFUSED refusing to restore an UNVERIFIED zip: members do not match the manifest\r\n",
+        "stderr": ""
+      },
+      "target_exists": false,
+      "current": false
+    },
+    {
+      "case": "trailing-period",
+      "zip_sha256": "af7c3d88f51f7f7ebd2cd40b4c01428171d4dfc86d21a95f89e7a4c512a7ae09",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "run": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+          "restore",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\trailing-period.zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-period"
+        ],
+        "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-period",
+        "deadline_seconds": 30,
+        "exit": 0,
+        "terminal": true,
+        "exception": null,
+        "stdout": "RESTORED g20260929T213407Z-9c7238 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-period\r\n",
+        "stderr": ""
+      },
+      "target_exists": true,
+      "current": true,
+      "reader_problems": [],
+      "generation": "g20260929T213407Z-9c7238",
+      "zip_member_count": 35,
+      "comparisons": [
+        {
+          "logical": "inputs/_tree",
+          "physical": "_tree",
+          "bytes": 9443,
+          "sha256": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+          "equal": true
+        },
+        {
+          "logical": "inputs/build_views.py",
+          "physical": "build_views.py",
+          "bytes": 49701,
+          "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+          "equal": true
+        },
+        {
+          "logical": "inputs/category_map",
+          "physical": "category_map",
+          "bytes": 10617,
+          "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+          "equal": true
+        },
+        {
+          "logical": "inputs/check_questions",
+          "physical": "check_questions",
+          "bytes": 643,
+          "sha256": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802",
+          "equal": true
+        },
+        {
+          "logical": "inputs/coverage_dims",
+          "physical": "coverage_dims",
+          "bytes": 58385,
+          "sha256": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+          "equal": true
+        },
+        {
+          "logical": "inputs/fields",
+          "physical": "fields",
+          "bytes": 10640389,
+          "sha256": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+          "equal": true
+        },
+        {
+          "logical": "inputs/functions",
+          "physical": "functions",
+          "bytes": 7008993,
+          "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+          "equal": true
+        },
+        {
+          "logical": "inputs/goal_gate",
+          "physical": "goal_gate",
+          "bytes": 752,
+          "sha256": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34",
+          "equal": true
+        },
+        {
+          "logical": "inputs/l2",
+          "physical": "l2",
+          "bytes": 334764,
+          "sha256": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-SPAWN-RESPAWN.md",
+          "physical": "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+          "bytes": 10701,
+          "sha256": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-GP-STATUS-POISON.md",
+          "physical": "pkg%3APKG-GP-STATUS-POISON.md",
+          "bytes": 13229,
+          "sha256": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8",
+          "equal": true
+        },
+        {
+          "logical": "inputs/pkg:PKG-TECH-SCRIPTVM-VALUE.md",
+          "physical": "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+          "bytes": 8469,
+          "sha256": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+          "equal": true
+        },
+        {
+          "logical": "inputs/progress_check",
+          "physical": "progress_check",
+          "bytes": 85,
+          "sha256": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f",
+          "equal": true
+        },
+        {
+          "logical": "inputs/progress_snapshot",
+          "physical": "progress_snapshot",
+          "bytes": 272726,
+          "sha256": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a",
+          "equal": true
+        },
+        {
+          "logical": "inputs/requirement_facts",
+          "physical": "requirement_facts",
+          "bytes": 8145497,
+          "sha256": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47",
+          "equal": true
+        },
+        {
+          "logical": "inputs/requirements.py",
+          "physical": "requirements.py",
+          "bytes": 32680,
+          "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+          "equal": true
+        },
+        {
+          "logical": "inputs/subsystems",
+          "physical": "subsystems",
+          "bytes": 22589,
+          "sha256": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+          "equal": true
+        },
+        {
+          "logical": "inputs/team",
+          "physical": "team",
+          "bytes": 57193960,
+          "sha256": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657",
+          "equal": true
+        },
+        {
+          "logical": "inputs/types",
+          "physical": "types",
+          "bytes": 1920357,
+          "sha256": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_1_64",
+          "physical": "uc1_1_64",
+          "bytes": 37250,
+          "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_65_256",
+          "physical": "uc1_65_256",
+          "bytes": 11254,
+          "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+          "equal": true
+        },
+        {
+          "logical": "inputs/uc1_band.py",
+          "physical": "uc1_band.py",
+          "bytes": 6914,
+          "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+          "equal": true
+        },
+        {
+          "logical": "inputs/vbf_list",
+          "physical": "vbf_list",
+          "bytes": 6448250,
+          "sha256": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+          "equal": true
+        },
+        {
+          "logical": "inputs/watchdog",
+          "physical": "watchdog",
+          "bytes": 5860,
+          "sha256": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc",
+          "equal": true
+        },
+        {
+          "logical": "inputs/ASTRA-alias",
+          "physical": "ASTRA-alias",
+          "bytes": 6493,
+          "sha256": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+          "equal": true
+        },
+        {
+          "logical": "inputs/ASTRA-alias.",
+          "physical": "ASTRA-alias%2E",
+          "bytes": 6493,
+          "sha256": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-evidence.json",
+          "physical": "view-evidence.json",
+          "bytes": 3544,
+          "sha256": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-executable.json",
+          "physical": "view-executable.json",
+          "bytes": 20634,
+          "sha256": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-fleet.json",
+          "physical": "view-fleet.json",
+          "bytes": 2405,
+          "sha256": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-overview.json",
+          "physical": "view-overview.json",
+          "bytes": 21771,
+          "sha256": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-progress.json",
+          "physical": "view-progress.json",
+          "bytes": 226669,
+          "sha256": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-systems.json",
+          "physical": "view-systems.json",
+          "bytes": 57027,
+          "sha256": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-types.json",
+          "physical": "view-types.json",
+          "bytes": 1869,
+          "sha256": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071",
+          "equal": true
+        },
+        {
+          "logical": "outputs/view-vbf.json",
+          "physical": "view-vbf.json",
+          "bytes": 18393,
+          "sha256": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272",
+          "equal": true
+        },
+        {
+          "logical": "MANIFEST.json",
+          "sha256": "a6a65bcb881cc86d36aebe9c33c7b18161a6bf132eb05ff09a71f1c8a03c2427",
+          "equal": true
+        }
+      ],
+      "tree": {
+        "CURRENT": "343d8ca4f0906aae5ab5767a3a0058104c2581b04c338f1ce29fa01dcae832de",
+        "g20260929T213407Z-9c7238\\MANIFEST.json": "a6a65bcb881cc86d36aebe9c33c7b18161a6bf132eb05ff09a71f1c8a03c2427",
+        "g20260929T213407Z-9c7238\\inputs\\ASTRA-alias": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+        "g20260929T213407Z-9c7238\\inputs\\ASTRA-alias%2E": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc",
+        "g20260929T213407Z-9c7238\\inputs\\build_views.py": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+        "g20260929T213407Z-9c7238\\inputs\\category_map": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+        "g20260929T213407Z-9c7238\\inputs\\check_questions": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802",
+        "g20260929T213407Z-9c7238\\inputs\\coverage_dims": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+        "g20260929T213407Z-9c7238\\inputs\\fields": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+        "g20260929T213407Z-9c7238\\inputs\\functions": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+        "g20260929T213407Z-9c7238\\inputs\\goal_gate": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34",
+        "g20260929T213407Z-9c7238\\inputs\\l2": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-SPAWN-RESPAWN.md": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-GP-STATUS-POISON.md": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8",
+        "g20260929T213407Z-9c7238\\inputs\\pkg%3APKG-TECH-SCRIPTVM-VALUE.md": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+        "g20260929T213407Z-9c7238\\inputs\\progress_check": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f",
+        "g20260929T213407Z-9c7238\\inputs\\progress_snapshot": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a",
+        "g20260929T213407Z-9c7238\\inputs\\requirements.py": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+        "g20260929T213407Z-9c7238\\inputs\\requirement_facts": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47",
+        "g20260929T213407Z-9c7238\\inputs\\subsystems": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+        "g20260929T213407Z-9c7238\\inputs\\team": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657",
+        "g20260929T213407Z-9c7238\\inputs\\types": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_1_64": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_65_256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+        "g20260929T213407Z-9c7238\\inputs\\uc1_band.py": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+        "g20260929T213407Z-9c7238\\inputs\\vbf_list": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+        "g20260929T213407Z-9c7238\\inputs\\watchdog": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc",
+        "g20260929T213407Z-9c7238\\inputs\\_tree": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+        "g20260929T213407Z-9c7238\\outputs\\view-evidence.json": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43",
+        "g20260929T213407Z-9c7238\\outputs\\view-executable.json": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d",
+        "g20260929T213407Z-9c7238\\outputs\\view-fleet.json": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f",
+        "g20260929T213407Z-9c7238\\outputs\\view-overview.json": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246",
+        "g20260929T213407Z-9c7238\\outputs\\view-progress.json": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+        "g20260929T213407Z-9c7238\\outputs\\view-systems.json": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471",
+        "g20260929T213407Z-9c7238\\outputs\\view-types.json": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071",
+        "g20260929T213407Z-9c7238\\outputs\\view-vbf.json": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272"
+      },
+      "physical_inputs": [
+        "ASTRA-alias",
+        "ASTRA-alias%2E",
+        "_tree",
+        "build_views.py",
+        "category_map",
+        "check_questions",
+        "coverage_dims",
+        "fields",
+        "functions",
+        "goal_gate",
+        "l2",
+        "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+        "pkg%3APKG-GP-STATUS-POISON.md",
+        "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+        "progress_check",
+        "progress_snapshot",
+        "requirement_facts",
+        "requirements.py",
+        "subsystems",
+        "team",
+        "types",
+        "uc1_1_64",
+        "uc1_65_256",
+        "uc1_band.py",
+        "vbf_list",
+        "watchdog"
+      ],
+      "logical_pair": [
+        "ASTRA-alias",
+        "ASTRA-alias."
+      ],
+      "mapped_pair": [
+        "ASTRA-alias",
+        "ASTRA-alias%2E"
+      ],
+      "samefile": false
+    }
+  ],
+  "trailing_output": {
+    "verify": "VERIFIED",
+    "verify_info": {
+      "generation": "g20260929T213407Z-9c7238",
+      "members": 36
+    },
+    "zip_sha256": "35c8de55a39c347f4ca489f25ea6eab147e51310ffe21d05f4516786350fb02c",
+    "run": {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+        "restore",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\derived-trailing-output.zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-output"
+      ],
+      "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-output",
+      "deadline_seconds": 30,
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "stdout": "REFUSED output name 'ASTRA-view.json.' ends with a dot or space, which Windows strips; it would restore under another name\r\n",
+      "stderr": ""
+    },
+    "target_exists": false,
+    "current": false
+  },
+  "device_functions": {
+    "ordinary_controls": [
+      {
+        "name": "ASTRA-plain.md",
+        "mapped": "ASTRA-plain.md",
+        "reason": null
+      },
+      {
+        "name": "COM10.txt",
+        "mapped": "COM10.txt",
+        "reason": null
+      },
+      {
+        "name": "LPT10.txt",
+        "mapped": "LPT10.txt",
+        "reason": null
+      }
+    ],
+    "ascii_controls": [
+      {
+        "name": "CON",
+        "mapped": "%43ON",
+        "mapped_reason": null,
+        "reason": "is a Windows device name"
+      },
+      {
+        "name": "nul.json",
+        "mapped": "%6Eul.json",
+        "mapped_reason": null,
+        "reason": "is a Windows device name"
+      },
+      {
+        "name": "COM1.txt",
+        "mapped": "%43OM1.txt",
+        "mapped_reason": null,
+        "reason": "is a Windows device name"
+      },
+      {
+        "name": "LPT9",
+        "mapped": "%4CPT9",
+        "mapped_reason": null,
+        "reason": "is a Windows device name"
+      }
+    ],
+    "documented_superscript_cases": [
+      {
+        "name": "COM\u00b9",
+        "mapped": "COM\u00b9",
+        "reason": null
+      },
+      {
+        "name": "com\u00b9.json",
+        "mapped": "com\u00b9.json",
+        "reason": null
+      },
+      {
+        "name": "COM\u00b2",
+        "mapped": "COM\u00b2",
+        "reason": null
+      },
+      {
+        "name": "com\u00b2.json",
+        "mapped": "com\u00b2.json",
+        "reason": null
+      },
+      {
+        "name": "COM\u00b3",
+        "mapped": "COM\u00b3",
+        "reason": null
+      },
+      {
+        "name": "com\u00b3.json",
+        "mapped": "com\u00b3.json",
+        "reason": null
+      },
+      {
+        "name": "LPT\u00b9",
+        "mapped": "LPT\u00b9",
+        "reason": null
+      },
+      {
+        "name": "lpt\u00b9.json",
+        "mapped": "lpt\u00b9.json",
+        "reason": null
+      },
+      {
+        "name": "LPT\u00b2",
+        "mapped": "LPT\u00b2",
+        "reason": null
+      },
+      {
+        "name": "lpt\u00b2.json",
+        "mapped": "lpt\u00b2.json",
+        "reason": null
+      },
+      {
+        "name": "LPT\u00b3",
+        "mapped": "LPT\u00b3",
+        "reason": null
+      },
+      {
+        "name": "lpt\u00b3.json",
+        "mapped": "lpt\u00b3.json",
+        "reason": null
+      }
+    ],
+    "no_device_path_opened": true,
+    "primary_contract_url": "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file"
+  },
+  "checks": {
+    "original_all35_preserved": true,
+    "percent_pair_distinct": true,
+    "retained_trailing_pair_distinct": true,
+    "case_pair_refused_before_writes": true,
+    "unverified_refused_before_writes": true,
+    "nonempty_refused_unchanged": true,
+    "trailing_output_refused_before_writes": true,
+    "ordinary_device_control": true,
+    "ascii_device_control": true,
+    "superscript_devices_encoded_and_refused": false
+  },
+  "controls_valid": true,
+  "verdict": "REJECT_DOCUMENTED_DEVICE_CLASS",
+  "limits": [
+    "No device I/O; static admission counterexample only.",
+    "Native restore samples do not establish all Windows aliases, Unicode folding, legacy generations or deployment.",
+    "Synthetic ZIP fixtures are database workflow evidence, not game runtime evidence."
+  ]
+}

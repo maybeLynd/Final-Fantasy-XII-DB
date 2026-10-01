@@ -1,0 +1,1553 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original producer/dataflow proof; zero machine-code/game execution",
+  "driver_sha256": "c5a4c0d1f06c0a374fa16cc5e135cb58de4e5f13b5408019c836cb25299caf55",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "a5dca623e4c5b98627cf9f675a9ac863cf167ff71cae70f434ce1d4be5ffa54b"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 373,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 54,
+  "graphs": [
+    {
+      "entry": "0x50ffb0",
+      "visited": 17,
+      "returns": [],
+      "tails": [
+        "0x50ffe6"
+      ],
+      "calls": [
+        [
+          "0x50ffc0",
+          "0x267e10"
+        ],
+        [
+          "0x50ffca",
+          "0x267e10"
+        ],
+        [
+          "0x50ffd5",
+          "0x3139c0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3139c0",
+      "visited": 3,
+      "returns": [
+        "0x3139cd"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x3137e0",
+      "visited": 3,
+      "returns": [
+        "0x3137ee"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x3266c0",
+      "visited": 350,
+      "returns": [
+        "0x326ba4"
+      ],
+      "tails": [],
+      "calls": [
+        [
+          "0x3266ef",
+          "0x311e20"
+        ],
+        [
+          "0x32674f",
+          "0x30d9a0"
+        ],
+        [
+          "0x3267b7",
+          "0x3272f0"
+        ],
+        [
+          "0x3267be",
+          "0x377c20"
+        ],
+        [
+          "0x3267c8",
+          "0x377c20"
+        ],
+        [
+          "0x3267d1",
+          "0x377c70"
+        ],
+        [
+          "0x32686e",
+          "0x3272f0"
+        ],
+        [
+          "0x326875",
+          "0x377c20"
+        ],
+        [
+          "0x32687f",
+          "0x377c20"
+        ],
+        [
+          "0x326888",
+          "0x377c70"
+        ],
+        [
+          "0x3268f3",
+          "0x377c70"
+        ],
+        [
+          "0x326991",
+          "0x304650"
+        ],
+        [
+          "0x3269d2",
+          "0x313800"
+        ],
+        [
+          "0x3269da",
+          "0x3137e0"
+        ],
+        [
+          "0x326a42",
+          "0x263750"
+        ],
+        [
+          "0x326a53",
+          "0x263e30"
+        ],
+        [
+          "0x326aa1",
+          "0x2ecf10"
+        ],
+        [
+          "0x326aa9",
+          "0x3105d0"
+        ],
+        [
+          "0x326ac7",
+          "0x313f60"
+        ],
+        [
+          "0x326ada",
+          "0x300e40"
+        ],
+        [
+          "0x326ae3",
+          "0x2e42d0"
+        ],
+        [
+          "0x326aec",
+          "0x2699d0"
+        ],
+        [
+          "0x326af5",
+          "0x2ecec0"
+        ],
+        [
+          "0x326b0a",
+          "0x23a570"
+        ],
+        [
+          "0x326b1e",
+          "0x326500"
+        ],
+        [
+          "0x326b49",
+          "0x322c50"
+        ],
+        [
+          "0x326b81",
+          "0x313f60"
+        ]
+      ]
+    }
+  ],
+  "slot3_stores": [
+    {
+      "pc": "0x3269f2",
+      "state_offset": "0x5a60",
+      "map": 1,
+      "slot": 3,
+      "size": 2
+    },
+    {
+      "pc": "0x326a00",
+      "state_offset": "0x5a72",
+      "map": 2,
+      "slot": 3,
+      "size": 2
+    },
+    {
+      "pc": "0x326a0e",
+      "state_offset": "0x5a96",
+      "map": 4,
+      "slot": 3,
+      "size": 2
+    }
+  ],
+  "byte_partition": [
+    {
+      "selector_byte": 0,
+      "slot3_word": 0,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 1,
+      "slot3_word": 1,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 2,
+      "slot3_word": 2,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 3,
+      "slot3_word": 3,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 4,
+      "slot3_word": 4,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 5,
+      "slot3_word": 5,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 6,
+      "slot3_word": 6,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 7,
+      "slot3_word": 7,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 8,
+      "slot3_word": 8,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 9,
+      "slot3_word": 9,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 10,
+      "slot3_word": 10,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 11,
+      "slot3_word": 11,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 12,
+      "slot3_word": 12,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 13,
+      "slot3_word": 13,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 14,
+      "slot3_word": 14,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 15,
+      "slot3_word": 15,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 16,
+      "slot3_word": 16,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 17,
+      "slot3_word": 17,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 18,
+      "slot3_word": 18,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 19,
+      "slot3_word": 19,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 20,
+      "slot3_word": 20,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 21,
+      "slot3_word": 21,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 22,
+      "slot3_word": 22,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 23,
+      "slot3_word": 23,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 24,
+      "slot3_word": 24,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 25,
+      "slot3_word": 25,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 26,
+      "slot3_word": 26,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 27,
+      "slot3_word": 27,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 28,
+      "slot3_word": 28,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 29,
+      "slot3_word": 29,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 30,
+      "slot3_word": 30,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 31,
+      "slot3_word": 31,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 32,
+      "slot3_word": 32,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 33,
+      "slot3_word": 33,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 34,
+      "slot3_word": 34,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 35,
+      "slot3_word": 35,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 36,
+      "slot3_word": 36,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 37,
+      "slot3_word": 37,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 38,
+      "slot3_word": 38,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 39,
+      "slot3_word": 39,
+      "in_esper_band": true
+    },
+    {
+      "selector_byte": 40,
+      "slot3_word": 40,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 41,
+      "slot3_word": 41,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 42,
+      "slot3_word": 42,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 43,
+      "slot3_word": 43,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 44,
+      "slot3_word": 44,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 45,
+      "slot3_word": 45,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 46,
+      "slot3_word": 46,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 47,
+      "slot3_word": 47,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 48,
+      "slot3_word": 48,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 49,
+      "slot3_word": 49,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 50,
+      "slot3_word": 50,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 51,
+      "slot3_word": 51,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 52,
+      "slot3_word": 52,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 53,
+      "slot3_word": 53,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 54,
+      "slot3_word": 54,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 55,
+      "slot3_word": 55,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 56,
+      "slot3_word": 56,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 57,
+      "slot3_word": 57,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 58,
+      "slot3_word": 58,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 59,
+      "slot3_word": 59,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 60,
+      "slot3_word": 60,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 61,
+      "slot3_word": 61,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 62,
+      "slot3_word": 62,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 63,
+      "slot3_word": 63,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 64,
+      "slot3_word": 64,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 65,
+      "slot3_word": 65,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 66,
+      "slot3_word": 66,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 67,
+      "slot3_word": 67,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 68,
+      "slot3_word": 68,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 69,
+      "slot3_word": 69,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 70,
+      "slot3_word": 70,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 71,
+      "slot3_word": 71,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 72,
+      "slot3_word": 72,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 73,
+      "slot3_word": 73,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 74,
+      "slot3_word": 74,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 75,
+      "slot3_word": 75,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 76,
+      "slot3_word": 76,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 77,
+      "slot3_word": 77,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 78,
+      "slot3_word": 78,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 79,
+      "slot3_word": 79,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 80,
+      "slot3_word": 80,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 81,
+      "slot3_word": 81,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 82,
+      "slot3_word": 82,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 83,
+      "slot3_word": 83,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 84,
+      "slot3_word": 84,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 85,
+      "slot3_word": 85,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 86,
+      "slot3_word": 86,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 87,
+      "slot3_word": 87,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 88,
+      "slot3_word": 88,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 89,
+      "slot3_word": 89,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 90,
+      "slot3_word": 90,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 91,
+      "slot3_word": 91,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 92,
+      "slot3_word": 92,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 93,
+      "slot3_word": 93,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 94,
+      "slot3_word": 94,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 95,
+      "slot3_word": 95,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 96,
+      "slot3_word": 96,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 97,
+      "slot3_word": 97,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 98,
+      "slot3_word": 98,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 99,
+      "slot3_word": 99,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 100,
+      "slot3_word": 100,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 101,
+      "slot3_word": 101,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 102,
+      "slot3_word": 102,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 103,
+      "slot3_word": 103,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 104,
+      "slot3_word": 104,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 105,
+      "slot3_word": 105,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 106,
+      "slot3_word": 106,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 107,
+      "slot3_word": 107,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 108,
+      "slot3_word": 108,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 109,
+      "slot3_word": 109,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 110,
+      "slot3_word": 110,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 111,
+      "slot3_word": 111,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 112,
+      "slot3_word": 112,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 113,
+      "slot3_word": 113,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 114,
+      "slot3_word": 114,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 115,
+      "slot3_word": 115,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 116,
+      "slot3_word": 116,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 117,
+      "slot3_word": 117,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 118,
+      "slot3_word": 118,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 119,
+      "slot3_word": 119,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 120,
+      "slot3_word": 120,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 121,
+      "slot3_word": 121,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 122,
+      "slot3_word": 122,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 123,
+      "slot3_word": 123,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 124,
+      "slot3_word": 124,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 125,
+      "slot3_word": 125,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 126,
+      "slot3_word": 126,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 127,
+      "slot3_word": 127,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 128,
+      "slot3_word": 128,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 129,
+      "slot3_word": 129,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 130,
+      "slot3_word": 130,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 131,
+      "slot3_word": 131,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 132,
+      "slot3_word": 132,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 133,
+      "slot3_word": 133,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 134,
+      "slot3_word": 134,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 135,
+      "slot3_word": 135,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 136,
+      "slot3_word": 136,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 137,
+      "slot3_word": 137,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 138,
+      "slot3_word": 138,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 139,
+      "slot3_word": 139,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 140,
+      "slot3_word": 140,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 141,
+      "slot3_word": 141,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 142,
+      "slot3_word": 142,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 143,
+      "slot3_word": 143,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 144,
+      "slot3_word": 144,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 145,
+      "slot3_word": 145,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 146,
+      "slot3_word": 146,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 147,
+      "slot3_word": 147,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 148,
+      "slot3_word": 148,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 149,
+      "slot3_word": 149,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 150,
+      "slot3_word": 150,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 151,
+      "slot3_word": 151,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 152,
+      "slot3_word": 152,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 153,
+      "slot3_word": 153,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 154,
+      "slot3_word": 154,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 155,
+      "slot3_word": 155,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 156,
+      "slot3_word": 156,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 157,
+      "slot3_word": 157,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 158,
+      "slot3_word": 158,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 159,
+      "slot3_word": 159,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 160,
+      "slot3_word": 160,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 161,
+      "slot3_word": 161,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 162,
+      "slot3_word": 162,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 163,
+      "slot3_word": 163,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 164,
+      "slot3_word": 164,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 165,
+      "slot3_word": 165,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 166,
+      "slot3_word": 166,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 167,
+      "slot3_word": 167,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 168,
+      "slot3_word": 168,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 169,
+      "slot3_word": 169,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 170,
+      "slot3_word": 170,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 171,
+      "slot3_word": 171,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 172,
+      "slot3_word": 172,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 173,
+      "slot3_word": 173,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 174,
+      "slot3_word": 174,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 175,
+      "slot3_word": 175,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 176,
+      "slot3_word": 176,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 177,
+      "slot3_word": 177,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 178,
+      "slot3_word": 178,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 179,
+      "slot3_word": 179,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 180,
+      "slot3_word": 180,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 181,
+      "slot3_word": 181,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 182,
+      "slot3_word": 182,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 183,
+      "slot3_word": 183,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 184,
+      "slot3_word": 184,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 185,
+      "slot3_word": 185,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 186,
+      "slot3_word": 186,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 187,
+      "slot3_word": 187,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 188,
+      "slot3_word": 188,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 189,
+      "slot3_word": 189,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 190,
+      "slot3_word": 190,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 191,
+      "slot3_word": 191,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 192,
+      "slot3_word": 192,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 193,
+      "slot3_word": 193,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 194,
+      "slot3_word": 194,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 195,
+      "slot3_word": 195,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 196,
+      "slot3_word": 196,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 197,
+      "slot3_word": 197,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 198,
+      "slot3_word": 198,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 199,
+      "slot3_word": 199,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 200,
+      "slot3_word": 200,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 201,
+      "slot3_word": 201,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 202,
+      "slot3_word": 202,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 203,
+      "slot3_word": 203,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 204,
+      "slot3_word": 204,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 205,
+      "slot3_word": 205,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 206,
+      "slot3_word": 206,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 207,
+      "slot3_word": 207,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 208,
+      "slot3_word": 208,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 209,
+      "slot3_word": 209,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 210,
+      "slot3_word": 210,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 211,
+      "slot3_word": 211,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 212,
+      "slot3_word": 212,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 213,
+      "slot3_word": 213,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 214,
+      "slot3_word": 214,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 215,
+      "slot3_word": 215,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 216,
+      "slot3_word": 216,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 217,
+      "slot3_word": 217,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 218,
+      "slot3_word": 218,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 219,
+      "slot3_word": 219,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 220,
+      "slot3_word": 220,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 221,
+      "slot3_word": 221,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 222,
+      "slot3_word": 222,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 223,
+      "slot3_word": 223,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 224,
+      "slot3_word": 224,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 225,
+      "slot3_word": 225,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 226,
+      "slot3_word": 226,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 227,
+      "slot3_word": 227,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 228,
+      "slot3_word": 228,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 229,
+      "slot3_word": 229,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 230,
+      "slot3_word": 230,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 231,
+      "slot3_word": 231,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 232,
+      "slot3_word": 232,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 233,
+      "slot3_word": 233,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 234,
+      "slot3_word": 234,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 235,
+      "slot3_word": 235,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 236,
+      "slot3_word": 236,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 237,
+      "slot3_word": 237,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 238,
+      "slot3_word": 238,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 239,
+      "slot3_word": 239,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 240,
+      "slot3_word": 240,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 241,
+      "slot3_word": 241,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 242,
+      "slot3_word": 242,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 243,
+      "slot3_word": 243,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 244,
+      "slot3_word": 244,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 245,
+      "slot3_word": 245,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 246,
+      "slot3_word": 246,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 247,
+      "slot3_word": 247,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 248,
+      "slot3_word": 248,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 249,
+      "slot3_word": 249,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 250,
+      "slot3_word": 250,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 251,
+      "slot3_word": 251,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 252,
+      "slot3_word": 252,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 253,
+      "slot3_word": 253,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 254,
+      "slot3_word": 254,
+      "in_esper_band": false
+    },
+    {
+      "selector_byte": 255,
+      "slot3_word": 65535,
+      "in_esper_band": false
+    }
+  ],
+  "algebraic_examples": [
+    {
+      "first_pop": -1,
+      "stored_byte": 255,
+      "slot3_word": 65535
+    },
+    {
+      "first_pop": 0,
+      "stored_byte": 0,
+      "slot3_word": 0
+    },
+    {
+      "first_pop": 26,
+      "stored_byte": 26,
+      "slot3_word": 26
+    },
+    {
+      "first_pop": 27,
+      "stored_byte": 27,
+      "slot3_word": 27
+    },
+    {
+      "first_pop": 39,
+      "stored_byte": 39,
+      "slot3_word": 39
+    },
+    {
+      "first_pop": 40,
+      "stored_byte": 40,
+      "slot3_word": 40
+    },
+    {
+      "first_pop": 254,
+      "stored_byte": 254,
+      "slot3_word": 254
+    },
+    {
+      "first_pop": 255,
+      "stored_byte": 255,
+      "slot3_word": 65535
+    },
+    {
+      "first_pop": 256,
+      "stored_byte": 0,
+      "slot3_word": 0
+    },
+    {
+      "first_pop": 283,
+      "stored_byte": 27,
+      "slot3_word": 27
+    }
+  ],
+  "established": [
+    "Bridge stores first PopInt32 return low8 bits in5AD4, then forwards second return fullECX32 to313550; no local selector band validation",
+    "3137E0 reads5AD4 aszeroextendedbyte; mode1 arm copies thatbyte into slot3 ofmaps1/2/4, exceptFF becomesFFFF",
+    "The four-iteration arm has no type27..39 check; other slots preserve summonerindex or clearFFFF",
+    "Byte-domain behavior is source-determined; the thirteen-member authored summon rows do not bound this separate API input"
+  ],
+  "map_arm_boundary": "326A34 before shared actor/application tail, same-block/noninterference premises required",
+  "unresolved": [
+    "Reachable authored values at50FFB0 and full PopInt32 behavior/VM stack argument meaning",
+    "Actual actor/stats type after23A570 or async party-read completion, aliasing/lifetime/scheduling",
+    "Natural row275 Dismiss command acceptance->execution and loaded-resource identity",
+    "Other writers including saved-state restore and full source/type domain invariant"
+  ],
+  "limits": "Local API and mapping domain only. Mathematical unconstrained input examples do not prove authored/gameplay reachability or a malformed-type native fault. Map selector is not captured/live stats type. Whole3266C0 CFG records callee boundaries, not transitive effects; no return-time map stability claim. Existing13table/constants/catalog names not recounted or independently accepted."
+}

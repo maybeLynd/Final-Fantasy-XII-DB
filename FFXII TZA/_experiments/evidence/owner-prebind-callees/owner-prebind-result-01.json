@@ -1,0 +1,153 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_PREBIND_CALLEE_CLOSURE_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "owner-prebind-source-01.json",
+      "sha256": "1ea38f069d6d7af49f478663dd9a98381285dbdcbef8f86e4ea6d22ef6e00a43"
+    }
+  ],
+  "driver_sha256": "522dc357eb203ef73f891eb1d857ce4719d2af3c86aa37ea888892ff646aafb6",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A ORIGINAL_SOURCE_CLOSED_CALL_SLICE_AND_CONDITIONAL_BOUNDS",
+  "annotation_receipt": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 153,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "reused_cfg_sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+  "retained_dependencies": [
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\continuation-section09-owner-producer",
+      "manifest_sha256": "23785132366d8f1464b42ccfec0e1d9d4cbec05a04d733b212270f867a7e9de8",
+      "disassembly_sha256": "9cb269e7008618d928cb575d5f65a05c544b56da14ac031ffe972182aa0a7304"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\owner-reload-order\\owner-reload-order-source-01.json",
+      "sha256": "e581b090e37f559144f18ab9c8e73dcbc6d9787fc8f92b78b02faa183244e9ec",
+      "selected_range": "0x32f850",
+      "body_sha256": "21c902a7d7d0e92f6b45dfc64cf7b2dab61f2dd888238943d4fd4d37458bca6f"
+    }
+  ],
+  "premise": {
+    "kind": "conditional valid-context premise, not observed live state",
+    "bank": 0,
+    "depth_min": 0,
+    "depth_max": 30,
+    "arena_ids": [
+      5,
+      13,
+      14
+    ]
+  },
+  "prebind_sites": [
+    {
+      "pc": "0x32f8d2",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f8e5",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f90c",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f91e",
+      "target": "0x36c1d0"
+    },
+    {
+      "pc": "0x32f92e",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f940",
+      "target": "0x36c1d0"
+    },
+    {
+      "pc": "0x32f955",
+      "target": "0x36c1d0"
+    }
+  ],
+  "context_writes": [
+    {
+      "pc": "0x36c1f0",
+      "kind": "caller shadow-stack slot",
+      "base": "entry RSP+8",
+      "size": 8,
+      "nonaliasing": "explicit normal stack premise"
+    },
+    {
+      "pc": "0x36c224",
+      "low": "0x22d89d0",
+      "high_exclusive": "0x22d8bb2",
+      "size": 2
+    },
+    {
+      "pc": "0x36c234",
+      "low": "0x22d89d2",
+      "high_exclusive": "0x22d8bb3",
+      "size": 1
+    },
+    {
+      "pc": "0x36c243",
+      "low": "0x22d89d8",
+      "high_exclusive": "0x22d8bc0",
+      "size": 8
+    },
+    {
+      "pc": "0x36c252",
+      "low": "0x22d89d3",
+      "high_exclusive": "0x22d8bb4",
+      "size": 1
+    },
+    {
+      "pc": "0x36c25e",
+      "low": "0x22d89c0",
+      "high_exclusive": "0x22d89c4",
+      "size": 4
+    },
+    {
+      "pc": "0x36c265",
+      "low": "0x22d8e18",
+      "high_exclusive": "0x22d8e1c",
+      "size": 4
+    },
+    {
+      "pc": "0x36c26b",
+      "low": "0x22d8e20",
+      "high_exclusive": "0x22d8e28",
+      "size": 8
+    },
+    {
+      "pc": "0x36c27f",
+      "low": "0x22d89bc",
+      "high_exclusive": "0x22d89c0",
+      "size": 4
+    }
+  ],
+  "established": [
+    "The complete source-local enable1-to-binder interval invokes only36B200 and36C1D0.36B200 is a15B flag getter with no call/tail;36C1D0 tails only36C1F0, whose complete150B original body contains no calls/callbacks/tails.",
+    "Under valid bank0/depth0..30 and nonaliasing normal-stack premises, all context writes are bounded saved-context/count/metadata fields, disjoint from pending globals, group enable bytes and indexed owner/mask storage. R9 metadata is stored, never called or dereferenced by36C1F0.",
+    "These exact callees cannot synchronously service3DD4C0/owner submission/queue callbacks in this interval on the stated normal path. The prior opaque-looking call names no longer require live absence sampling for this limited proposition."
+  ],
+  "limits": [
+    "Normal original function entry/ABI/accessible nonaliasing storage and conditional initialized bounds, not captured process state or universal initialization proof. Depth31+ locally spins; signed-negative count is not guarded below zero and is excluded from valid bounds.",
+    "The wrapper reads QWORD at entryRSP+4 then subtracts5. Preserve original bytes/unaligned read; no portable source/debug-statement attribution or assumed saved-return-address value.",
+    "No asynchronous thread/scheduler/exception/unwind closure, natural producer reachability, earlier/later caller interval exclusion, direct D4/world-reset guarantee or full owner uniqueness/safe reload.",
+    "The field may be changed by unrelated concurrency. No game/native run or external-audit count credited. Independent review and FABLE/OPUS canonical consumption required."
+  ],
+  "affected_claims": [
+    "Owner reset/lifetime sufficiency: pre-binder synchronous-service gap for normal32F850",
+    "Arena context metadata versus callback boundary in this exact path"
+  ],
+  "next_discriminator": "Actual same-thread caller/update order and any alternative submit/reentry paths before primary completion, plus independent D4/world reset. Reuse retained scheduling bodies and prove bounded call relationships before requesting minimal process observation.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only original/retained source; finite children terminal; no game/PC/save/config/reference or peer writes"
+}

@@ -1,0 +1,1 @@
+Initial checker exited1 at receipt preimage comparison: candidate Git blob7892B vs CRLF checkout8121B. Normalized bytes and parsed JSON match. A later diagnosis also discovered raw body paths must be read from actual published layout, not guessed at folder root. Keep initial run INVALID; repair actual source-selection procedure before retry. No A23 acceptance from partial work.

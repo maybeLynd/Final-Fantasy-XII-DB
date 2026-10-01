@@ -1,0 +1,155 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_OWNER_RESET_BARRIER_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "f8b408acb807dd7013cc5afaf0501a4a551ec20f4e26274349d38698eca074cd",
+  "source_sha256": "54fe10a0cf7bd81254d7e45bae92ddcc88aefc09352bc8fcd3edf626c4b996bc",
+  "source_validation": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 791,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "world_call_order": {
+    "precall": "0x266de6 ->0x32f430",
+    "reset": "0x267112 ->0x3dd7e0",
+    "dominates": true
+  },
+  "binder_tail": {
+    "argument": "ECX = original EBP group before saved-register restore",
+    "pc": "0x26cde3",
+    "target": "0x3dd790"
+  },
+  "conditional_size": {
+    "kind": 8,
+    "index": 848,
+    "override_pointer": "0x22c5230",
+    "null_override_required": true
+  },
+  "fst_dependency": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\bts-index-binding",
+    "manifest_sha256": "c57c6b668c5b567014a01c5da45dcbf7899645e4547a6bc310edce0972891abb",
+    "members": [
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_ASIA.fst",
+        "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_CH.fst",
+        "sha256": "1f7e4ca1ea1a003d2ade2a6338be3513f659ab986efb3dc734db12c36498075b",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_CN.fst",
+        "sha256": "e33cb21a6ae3ac84aaf7500d724e20aefdf6cbc6e7ff9e97ee2faa8448f41258",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_DE.fst",
+        "sha256": "d80b86be6f53166701abf5c15356c449421fbb41f2e82e105044a406e90e350c",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_ES.fst",
+        "sha256": "4aec6d0e32f56dbe95fd9c76aef4685c42e2eb043e1ffffa2059c2ba5c2af5a9",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_FR.fst",
+        "sha256": "d8f6211d36a6207a2a20ecbfe0e8b53f12b6ba5c473f4693fec4730e30293213",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_IN.fst",
+        "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_IT.fst",
+        "sha256": "948c7aee093a63b210972227e68172d79303f7a1e2a9a2d44b4012b589e7fdc1",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_JP.fst",
+        "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_KR.fst",
+        "sha256": "83a4dda471c8b9744375227389730097ba8502984e66c88dc5de0738549976ca",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_UK.fst",
+        "sha256": "2451762db99591c4b8417d1278d6120f20226f338f4da36aa2ff544d713bb40f",
+        "offset": 163392,
+        "raw_hex": "ffffffff",
+        "signed_value": -1,
+        "selects_wait": false
+      },
+      {
+        "path": "bts-index-binding-inputs-01/FileSizeTable_US.fst",
+        "sha256": "3a03ea77c689d1f48428c440a272b7dbfd77b121758bfd2c5ac0697ceeeb2b3e",
+        "offset": 163392,
+        "raw_hex": "000f0000",
+        "signed_value": 3840,
+        "selects_wait": true
+      }
+    ]
+  },
+  "wait_normal_return": {
+    "pending_head": "0x22c51c0",
+    "observed_condition": "head==0 then normally returned46DFE0()==0",
+    "atomic": false,
+    "time_bound": false
+  },
+  "established": [
+    "266D10 normal local path calls32F430 before clearing all indexed owner records through3DD7E0.",
+    "32F430 wait32E520(0) is conditional on positive kind8/0350 size. Under nulloverride and selected unchanged retained FST, eleven3840 variants select the call and UK-1 skips this submit/wait segment.",
+    "The specific unconditional-wait premise is refuted by an original supported data/branch path. This does not show UK never waits elsewhere or that any stale request survives naturally.",
+    "32E520(0) pumps and retries until its sequential pending-head/service checks permit normal return; it gives no deadline or atomic guarantee of continuing emptiness.",
+    "26C8C0 normal completion restores its frame and tail-jumps to3DD790 with its original group argument; its opaque prior callees and actual actor-load lifetime remain separate."
+  ],
+  "limits": [
+    "All source/local CFG statements assume valid ABI/storage and normally returning relevant calls. EH, opaque transitive effects, concurrent submissions and other reset callers are not closed.",
+    "Selected regional FST/null runtime size override are explicit premises, not observed initialization, process file selection or save/load proof.",
+    "No universal safe reset/destructor, callback-generation/lifetime or wholeOV19/21/database closure. Current UC1 extent/catalogue dispositions unchanged.",
+    "Twelve retained-data computations are not new original-code/live experiments; prior SECTION09 initializer fixtures not repeated."
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0
+}

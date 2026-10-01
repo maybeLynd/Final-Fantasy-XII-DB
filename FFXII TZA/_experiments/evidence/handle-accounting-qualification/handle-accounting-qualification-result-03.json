@@ -1,0 +1,283 @@
+{
+  "status": "PRODUCER_VALID_ACCOUNTING_QUALIFICATION_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "handle-accounting-qualification-source-01.json",
+      "sha256": "46d0a3c412f5a4ca4a6dc1cbaba16000db167b5f2255416ac29b2afc06d3f968"
+    },
+    {
+      "path": "handle-access-release-source-01.json",
+      "sha256": "941f9755f6030edd2d770e2aa414f8d63860ae978d594baec971052ea28c0316"
+    },
+    {
+      "path": "handle-accounting-retained-namebinding-deletion-source-01.json",
+      "sha256": "86666cf5e5c3029fb5b9f08c2307fa7ada9ee73ecd5fe9444fecde7da06db5fb"
+    }
+  ],
+  "normal_accounting_cfg": {
+    "entry": "0x36c5d0",
+    "end_exclusive": "0x36c61f",
+    "instructions": 25,
+    "returns": [
+      "0x36c61e"
+    ],
+    "calls": []
+  },
+  "normal_access_release_cfg": {
+    "entry": "0x36d170",
+    "end_exclusive": "0x36d1f5",
+    "instructions": 37,
+    "returns": [
+      "0x36d1f4"
+    ],
+    "calls": [
+      {
+        "pc": "0x36d1d9",
+        "target": "0x36b410"
+      }
+    ]
+  },
+  "accounting_memory_writes": [
+    {
+      "pc": "0x36c60c",
+      "mnemonic": "sub",
+      "args": "dword ptr [r9 + rax*4], ecx",
+      "memory": {
+        "base": "r9",
+        "index": "rax",
+        "scale": 4,
+        "displacement": 0,
+        "size": 4,
+        "role": "rw",
+        "rip_target": null
+      }
+    },
+    {
+      "pc": "0x36c610",
+      "mnemonic": "add",
+      "args": "dword ptr [r9 + r8*4], ecx",
+      "memory": {
+        "base": "r9",
+        "index": "r8",
+        "scale": 4,
+        "displacement": 0,
+        "size": 4,
+        "role": "rw",
+        "rip_target": null
+      }
+    },
+    {
+      "pc": "0x36c616",
+      "mnemonic": "mov",
+      "args": "byte ptr [rdx + 0x17], r8b",
+      "memory": {
+        "base": "rdx",
+        "index": null,
+        "scale": 1,
+        "displacement": 23,
+        "size": 1,
+        "role": "w",
+        "rip_target": null
+      }
+    },
+    {
+      "pc": "0x36c61a",
+      "mnemonic": "mov",
+      "args": "word ptr [rdx + 0x3e], ax",
+      "memory": {
+        "base": "rdx",
+        "index": null,
+        "scale": 1,
+        "displacement": 62,
+        "size": 2,
+        "role": "w",
+        "rip_target": null
+      }
+    }
+  ],
+  "free_entry_cfg": {
+    "instructions": 25,
+    "calls": [
+      {
+        "pc": "0x369828",
+        "target": "0x36a9c0"
+      }
+    ],
+    "tails": [
+      {
+        "pc": "0x369846",
+        "target": "0x369860"
+      }
+    ],
+    "returns": [
+      "0x369854"
+    ]
+  },
+  "category_bit_partition": [
+    {
+      "old": 0,
+      "new": 0,
+      "counter_delta": "none",
+      "header17": 0,
+      "header3E": 0
+    },
+    {
+      "old": 0,
+      "new": 1,
+      "counter_delta": "subtract payload bytes fromold/add tonew modulo2^32",
+      "header17": 1,
+      "header3E": 0
+    },
+    {
+      "old": 1,
+      "new": 0,
+      "counter_delta": "subtract payload bytes fromold/add tonew modulo2^32",
+      "header17": 0,
+      "header3E": 0
+    },
+    {
+      "old": 1,
+      "new": 1,
+      "counter_delta": "none",
+      "header17": 1,
+      "header3E": 0
+    }
+  ],
+  "established": [
+    "36C5D0 takes a signed32 new accounting index inEDX, masks low32 handle to a slot and obtains its header through slot+8. With valid slot/header it compares oldBYTE+17 with new index, transfers DWORD payload-length accounting from022D8E10[old] to[new] when unequal, then stores header+17=new lowBYTE and clears WORD+3E even when index equal.",
+    "Complete79B leaf has exactly counter SUB/ADD, header17 store and guard3E clear as memory writes, and no calls. It does not increment/decrement a protective reference count, cancel/drain IO or establish a lifetime retention policy. Arbitrary indices, invalid mapped handles and alias/interference safety are not established.",
+    "369800 free entry masks its handle, saves slot+8 header, calls36A9C0 and conditionally tail-calls369860(header+40,0). It does not directly inspect accounting+17 to gate that tail. Opaque helper effects and full physical reclamation remain separate; no universal free-success claim.",
+    "Retained full original2E4D20 calls36D170(backingHandle) at2E4D89, not36C5D0.36D170 checks slot+6/header+1C stamp and absent header15mask02, calls tree insertion36B410, sets mask02 and clears guard3E. Existing allocator semantics identify this as return-to-relocation-tree access release. Earlier own unpins wording is qualified to that operation; no protective lifetime/refcount/drain conclusion follows.",
+    "Current canonical allocator accounting model already records this as category classification. No canonical index regression is asserted. Historical producer/result/README/method remain immutable; deterministic normalized02 applies the exact additive correction and pins its original preimage."
+  ],
+  "affected_claims": [
+    "namebinding-deletion published result01 exact unpins established claim, README, producer/freezer emitted unpins prose and method hypothesis",
+    "Existing FABLE/OPUS namebinding-deletion consumers and SPEC review must include normalized02",
+    "Runtime lifetime preparation must not use these calls as a protective pin/unpin barrier"
+  ],
+  "limitations": [
+    "Current canonical model is prior peer evidence, not new ASTRA census/tests or automatic acceptance of this application",
+    "Header slot+8 identity valid premise; this leaf has no stamp comparison and no generic pointer/ID safety",
+    "Accounting domain0/1 is scoped to these relevant calls; wider caller census not rerun",
+    "No full369860 reclamation, relocation, actual asynchronous lifetime, old request reuse or game observation proof",
+    "Producer/semantic correction remains pending independent review/consumer agreement"
+  ],
+  "checker_sha256": "51f6782105bc2e28d6389d9ec6fe32d6c0071ecb249d66b7b4db2b6c1176b1c2",
+  "required_invocation_receipts": [
+    {
+      "path": "capture-handle-accounting-qualification.py",
+      "sha256": "04f0806b791edeb026abd0562d7819bb26b6d0107877d5b329157b94ab7f5b40"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "handle-accounting-retained-provenance-01.json",
+      "sha256": "c21ff0ba7995051332b6a3c10978888ed39f2b39a5d2eb1ba6d36da5e1b97b04"
+    },
+    {
+      "path": "handle-accounting-retained-namebinding-deletion-result-01.json",
+      "sha256": "686500b75a1f33e586f12e0100a380e5f363ca78406e35d1beaa66cc52a7f79d"
+    },
+    {
+      "path": "handle-accounting-affected-consumers-02.json",
+      "sha256": "3f7b033c2831c4505be1758ba6b7d63063196870e8ae6f8d9d70ee694c9836fd"
+    },
+    {
+      "path": "handle-accounting-method-addendum-01.json",
+      "sha256": "4d685b9af8ae99d3b03b7a153bd8e88c97a8603cc06a042d01dd4be177ed2b03"
+    },
+    {
+      "path": "handle-accounting-method-addendum-02.json",
+      "sha256": "a8c62cf886559cf6da5ea6491ad153ac1e711700a5b9562be288ff4fc89d8c99"
+    },
+    {
+      "path": "handle-accounting-method-addendum-03.json",
+      "sha256": "8f5936d59f9dc0bc594f3d990fc12e71af44f1b9b325815274730aa4e07f0c2f"
+    },
+    {
+      "path": "handle-accounting-affected-consumers-01.json",
+      "sha256": "824043b99015e30955dbfbc56eda7d3f0834f71d7bcab25fb561a7f8eb864655"
+    },
+    {
+      "path": "prove-handle-accounting-qualification-02.py",
+      "sha256": "2ae2877380473cbed09987bc36a74e5a6481699625789f02565a25c51b4a3512"
+    },
+    {
+      "path": "handle-accounting-qualification-positive-02.status.json",
+      "sha256": "6c27036d648a523bd7068c9c19b989f5617c4f999cb1263e3e775b9a791c6648"
+    },
+    {
+      "path": "handle-accounting-qualification-positive-02.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handle-accounting-qualification-positive-02.stderr",
+      "sha256": "013cd1c0cccb06082d2ecf9f72fe84c8d773266a29c10d1d41912d59cd1d4625"
+    },
+    {
+      "path": "capture-handle-access-release.py",
+      "sha256": "b00af081a828de7cb092f01f52a8f9cff263f30c0cb2b12cc039ccc22be32dbe"
+    },
+    {
+      "path": "handle-access-release-capture-01.status.json",
+      "sha256": "98f975c1785e93e7a8dcd38cfecd2148d678cc664883d156d6ac9d09047d4b26"
+    },
+    {
+      "path": "handle-access-release-capture-01.stdout",
+      "sha256": "3c0194c2d3b8b7734475011462aec81965bb9a4e3a9ac3999620084be74117d0"
+    },
+    {
+      "path": "handle-access-release-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-handle-accounting-qualification.py",
+      "sha256": "31f65700ab8e84c432a6b84e761e99874a472ad5b4b91754f21ba04941170377"
+    },
+    {
+      "path": "handle-accounting-qualification-positive-01.status.json",
+      "sha256": "7a4cdf3ee2ba17259d6baf020189001e86af0450053245ef77dd308a2265635b"
+    },
+    {
+      "path": "handle-accounting-qualification-positive-01.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handle-accounting-qualification-positive-01.stderr",
+      "sha256": "5c936aadae8f59da31e425afb7040d30b67ad86ed58fa8373869aa86c4d67868"
+    },
+    {
+      "path": "handle-accounting-qualification-capture-01.status.json",
+      "sha256": "011c10906e459ff14f68d79f1077ea3bdf0c9914b4a685e485375695534fd61b"
+    },
+    {
+      "path": "handle-accounting-qualification-capture-01.stdout",
+      "sha256": "38ce259a8272d04d66efeaa68f210a7bc46849762f3bb3e0e1dbce8364f4ba96"
+    },
+    {
+      "path": "handle-accounting-qualification-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "normalized_result": {
+    "path": "namebinding-deletion-qualified-02.json",
+    "sha256": "359e3017e6425c4530749a370dd184b9b4a72221116eb50500126fb39a9a2890"
+  },
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Finite original reads and scoped deterministic semantic overlay; published history/peer pages unchanged"
+}

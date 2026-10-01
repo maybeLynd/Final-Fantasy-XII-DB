@@ -1,0 +1,40 @@
+{
+  "tag": "wrong-compare-import",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-key-preprocessing.py",
+    "--inputs",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-key-preprocessing-controls-01\\wrong-compare-import",
+    "--out",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-key-preprocessing-controls-01\\wrong-compare-import\\unexpected-result.json"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "expected_error": "exact static import declarations missing",
+  "refusal_seen": true,
+  "result_absent": true,
+  "passed": true,
+  "changed_file": "filecache-import-declarations-01.json",
+  "changed_sha256": "a535547146138ce50553ea4dbe2c3591dac7639fe76bbae2a686f51daca80704",
+  "inherited_from_baseline": {
+    "capture-index-path.py": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+    "capture-filecache-hash-loop.py": "3cd757ce5614ef1f4e189fd8b8e08a203a5110900035832f250d5e53bbb3da99",
+    "capture-filecache-key-boundaries.py": "e8f0546565a2b5d088b74d544fbeef32a73fcfe726e7bd96c3eeedaca39b504e",
+    "capture-filecache-key-boundaries-before-normalizer-closure-01.py": "2590de2c7546128d79e1e23b86756c1483b56b18acb34a26bebcef69fa78b52c",
+    "validate-title-source-annotations.py": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "prove_owner_reload_order.py": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+    "filecache-key-boundaries-source-01.json": "4cebf324a0e4631907dbf0b6a36d4455e993d085c6dcd2b368abebaf5321eb17",
+    "filecache-key-boundaries-source-02.json": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e",
+    "filecache-hash-loop-source-01.json": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f",
+    "filecache-key-boundaries-capture-01.status.json": "c051bd39158abfef63aa8cdcd21424cf151205affda92ec035e129a0a38a5231",
+    "filecache-key-boundaries-capture-01.stdout": "425a35b272ddecdf18f1da9dd3ebfa925e77e7b59325410790449b5c72613084",
+    "filecache-key-boundaries-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "filecache-key-boundaries-capture-02.status.json": "4014aab07d746a61ec42005a09311e9410609c80354687f8c6d605f0e7eefff8",
+    "filecache-key-boundaries-capture-02.stdout": "b081b0743760653d32ed2c1fc9236d9ddc66e940bcb2da827dd3fd9eb0e709cb",
+    "filecache-key-boundaries-capture-02.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "filecache-hash-loop-capture-01.status.json": "2534a201ad804d81f93faa12013ca06d9b7ed7879b5507fd8ac8dfd93e32d499",
+    "filecache-hash-loop-capture-01.stdout": "1624c15cab8b7dfbbdd67722f41bb7318f51299d4740e3c01d643a33d40866a3",
+    "filecache-hash-loop-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

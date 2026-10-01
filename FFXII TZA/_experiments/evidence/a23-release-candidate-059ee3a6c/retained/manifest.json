@@ -1,0 +1,125 @@
+{
+  "status": "FROZEN_SCOPED_SNAPSHOT_SOURCE_RECEIPT_NOT_FULL_A23_ACCEPTANCE",
+  "members": [
+    {
+      "path": "PLAN.md",
+      "bytes": 1663,
+      "sha256": "6d1df9d42f751d39174485770dd23918b4644f70b3c8052adef278d992ab526e"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 3854,
+      "sha256": "8af5807b9ef0af9dc9af94a1fe9b8ba89b04f9c614327288b231aefd19c6aef3"
+    },
+    {
+      "path": "check.py",
+      "bytes": 8538,
+      "sha256": "1766e16c9fb4f95813746979ca304b79f3be1cf030d48615f860319d0f7a89c1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 12305,
+      "sha256": "7347709075a7042e04330d8e14cbad6f69734fa9d7a588dc20e5ed6d295a8737"
+    },
+    {
+      "path": "terminal.json",
+      "bytes": 210,
+      "sha256": "a51fd7c850a866701ebebd6028c5f3cb514d48646586b0b9d2b3f881d05467e2"
+    },
+    {
+      "path": "retained-http/identity.json",
+      "bytes": 2296,
+      "sha256": "687efbf7397f02fa30df0c2a1a37d98af6d2dd2b1c68005220ce74d7a5ba7c92"
+    },
+    {
+      "path": "retained-http/status-after.body",
+      "bytes": 1123,
+      "sha256": "5ad781812c1d6a780dc76bb2ab32b268b9571ce8df5480b99885f324dbf1c17c"
+    },
+    {
+      "path": "retained-http/status-before.body",
+      "bytes": 1123,
+      "sha256": "5ad781812c1d6a780dc76bb2ab32b268b9571ce8df5480b99885f324dbf1c17c"
+    },
+    {
+      "path": "retained-http/view-evidence.body",
+      "bytes": 3069,
+      "sha256": "8b274a2378156ee1273ebb89cd8c7feab52afd58d86d927e5b2a5be37a52f083"
+    },
+    {
+      "path": "retained-http/view-executable.body",
+      "bytes": 17100,
+      "sha256": "fd5c94d67aad54018a8b8b08ef1c9126a7b1c66494affbdb6fa8ae6aa90bf524"
+    },
+    {
+      "path": "retained-http/view-fleet.body",
+      "bytes": 2266,
+      "sha256": "387ce07a712320807c39adc93134a2d49396e4d977db4d4571f8c4bc2685c728"
+    },
+    {
+      "path": "retained-http/view-overview.body",
+      "bytes": 17037,
+      "sha256": "ed2bf5fa2e9d9a1e3cf0d548b1abacdd6ffe27632713095f4c4847211a56267e"
+    },
+    {
+      "path": "retained-http/view-progress.body",
+      "bytes": 205285,
+      "sha256": "55933018fc75d23515a333bf5cfb42234f04f77b24e73784673b002ce32321c6"
+    },
+    {
+      "path": "retained-http/view-systems.body",
+      "bytes": 42243,
+      "sha256": "e78fcd15a53fe269334d712415dd14f35fde76efc57687d650c9b0923b6ea020"
+    },
+    {
+      "path": "retained-http/view-types.body",
+      "bytes": 1671,
+      "sha256": "aec70263e24c154f508b13b595306a659a4c942d946e93f1401c35304346917f"
+    },
+    {
+      "path": "retained-http/view-vbf.body",
+      "bytes": 11554,
+      "sha256": "b74f8787fd13eb031dce377879cc8a19380cfa83874b0c1b268ff19d482dc749"
+    },
+    {
+      "path": "initial-checkout-preimage-failure/check.py",
+      "bytes": 7643,
+      "sha256": "d142030e6fcf070f45435daa6f050435807998cab281f7cc926777aa9d30203a"
+    },
+    {
+      "path": "initial-checkout-preimage-failure/FAILURE.md",
+      "bytes": 382,
+      "sha256": "b1a7af7ffe6ece0f323f18ee69a8e36139b1594b3303a55d53c1ffdea00d0a6a"
+    },
+    {
+      "path": "initial-checkout-preimage-failure/result.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "initial-checkout-preimage-failure/terminal.json",
+      "bytes": 201,
+      "sha256": "608d962f9798a565b353f835be2bbceb795f954e907bcf638ad8d8f012169d8b"
+    },
+    {
+      "path": "source-delivery-commit-failure/check.py",
+      "bytes": 8145,
+      "sha256": "4fa1db9896341cb447940f61a33c8587c88b1dfa71da3b0b1ca35a274f5911e9"
+    },
+    {
+      "path": "source-delivery-commit-failure/FAILURE.md",
+      "bytes": 351,
+      "sha256": "03df99aa8b101bf8a672b9a52b1b8162843f546b15fb7afb7414cba8165a8ae8"
+    },
+    {
+      "path": "source-delivery-commit-failure/result.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-delivery-commit-failure/terminal.json",
+      "bytes": 201,
+      "sha256": "608d962f9798a565b353f835be2bbceb795f954e907bcf638ad8d8f012169d8b"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "actual_guard": {
+    "status": "VERIFIED_PREREQUISITE",
+    "result": "result-02.json",
+    "source_checks": [
+      {
+        "path": "source-01.json",
+        "sha256": "a5dca623e4c5b98627cf9f675a9ac863cf167ff71cae70f434ce1d4be5ffa54b",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 373,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      }
+    ],
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Annotation consistency only; independent acceptance and native effects remain separate"
+  },
+  "publisher_sha256": "8cbb3b90bfd8059128a71c76dee376494acfe762bb4f740a194ac943585734b4",
+  "scope": "Actual required source admission only, not independent semantics."
+}

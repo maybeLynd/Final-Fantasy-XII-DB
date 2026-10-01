@@ -1,0 +1,3 @@
+function	name	site	disp	kind	instruction	route	note
+0035BC50	FUN_0035bc50	0035BDC3	0x0	w	mov qword ptr [r14], rbx	route-seeded STATIC 0x022C8388 base+0x0	
+0035BC50	FUN_0035bc50	0035BDDF	0x0	w	mov qword ptr [r14], rax	route-seeded STATIC 0x022C8388 base+0x0	

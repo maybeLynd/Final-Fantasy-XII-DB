@@ -1,0 +1,9 @@
+{
+  "status": "REFUSED_BEFORE_SEMANTIC_RESULT",
+  "exit": 1,
+  "result_exists": false,
+  "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-guard-scope-02.py\", line 180, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-guard-scope-02.py\", line 57, in main\r\n    annotation_checks = [S.validate(raw), S.validate(caller)]\r\n                         ~~~~~~~~~~^^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\validate-title-source-annotations.py\", line 43, in validate\r\n    raise ValueError(\"decoded annotation disagrees with bytes at \" + record[\"pc\"])\r\nValueError: decoded annotation disagrees with bytes at 0x616c60\r\n",
+  "driver_sha256": "741595e455cd23a0f7ea8c5a31f8aa98f681cdc4591ecc217a12fa5dbc3249ac",
+  "validator_sha256": "355e897b4f9ba33f8f548dac7ebeef0a40fdf6c443eb28eacabba55e785b6cf6",
+  "actual_path": "New primary02 invokes annotation verifier for both consumed sources before CFG/predicate reduction; legacy01 retained"
+}

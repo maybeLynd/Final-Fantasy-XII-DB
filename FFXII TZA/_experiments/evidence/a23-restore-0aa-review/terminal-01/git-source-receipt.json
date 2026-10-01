@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "0aa544606e35de0b2f6056b0af469fa048d7fe8a:Database/Tools/dashboard/requirements.py"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout_bytes": 39374,
+  "sha256": "b47e084f994abcfdb12a4edb43088934b118eff241d33d002e5e6ac5438a2d84",
+  "commit": "0aa544606e35de0b2f6056b0af469fa048d7fe8a"
+}

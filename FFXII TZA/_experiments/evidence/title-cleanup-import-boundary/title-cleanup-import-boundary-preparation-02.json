@@ -1,0 +1,23 @@
+{
+  "status": "IMPORT_PREPARATION_NOT_TRANSITIVE_EFFECT_CLOSURE",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "entry": "0x19c590",
+  "bytes": "48ff25b1657200",
+  "tail_rip_target": "0x8c2b48",
+  "entries": [
+    {
+      "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+      "name": "free",
+      "hint": 24,
+      "descriptor_rva": "0x1ccad08",
+      "lookup_table_rva": "0x1ccb8b0",
+      "slot": 1,
+      "iat": "0x8c2b48",
+      "descriptor_bytes": "b0b8cc010000000000000000e6f5cc01402b7a00",
+      "lookup_bytes": "80eecc0100000000"
+    }
+  ],
+  "preparation_failure": "Optional pefile import unavailable before any semantic/source output; no dependent result passed. Bounded stdlib original PE parser used instead; no install or library effect claimed.",
+  "limits": "Named original import boundary, not loaded IAT/module identity, actual free effect, heap validity, resource ownership, native lifetime or natural title observation"
+}

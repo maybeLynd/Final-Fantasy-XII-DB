@@ -1,7 +1,7 @@
 ---
 system: The largest unclassified functions — 2.67 MB the GFZ owns but does not classify
 category: 99-Unresolved-Residual
-status: PARTIAL — what the packed-id bucket registry family holds (BI-11) is answered 2026-09-27 (OPUS); the two items this status used to name, the second index list +0x174 (BI-3b) and what distinguishes the two out-of-line draw paths from inline (BI-3c), are answered in the register (restated 2026-09-26 (FABLE, Claude Opus 5.5) from the 2026-09-18 measurements); the three labels of §20's untested list, which were never registered, are answered 2026-09-30, and the page's residue is registered as SD-120 to SD-123 (status line current 2026-09-30, SWE2-DATA)
+status: DOCUMENTED — every register row the page names is answered and its stale 'still unknown' lines point to the answers (owner re-status 2026-10-01, OPUS, batch 24); what the packed-id bucket registry family holds (BI-11) is answered 2026-09-27 (OPUS); the two items this status used to name, the second index list +0x174 (BI-3b) and what distinguishes the two out-of-line draw paths from inline (BI-3c), are answered in the register (restated 2026-09-26 (FABLE, Claude Opus 5.5) from the 2026-09-18 measurements); the three labels of §20's untested list, which were never registered, are answered 2026-09-30, and the page's residue is registered as SD-120 to SD-123 (status line current 2026-09-30, SWE2-DATA)
 evidence_tier: 1
 owner_layer: mixed PrimaryOwner, no CodeDomain
 verified_against:
@@ -54,7 +54,7 @@ them do have a `PrimaryOwner`**.
 ~~Unknown, and that is the finding worth stating plainly.~~ These are among the largest functions in the
 game — 21 KB each — sitting in the **Presentation** layer, which means a player is looking at their
 output constantly. ~~**The database cannot yet say which part of the screen they are responsible for.**~~
-*(Corrected 2026-09-30, SWE2-DATA: the later sections say which. `003CD840` and `003D2B60` belong to the render-model subresource-variant binding system that the `CharacterRenderRecord_*` binding pair drives, so they serve character rendering (§19). `00438860` is one of the draw paths of an effect's per-frame mesh, effect element type `0x05` (§22). What each binding operation does is still `SD-120`.)*
+*(Corrected 2026-09-30, SWE2-DATA: the later sections say which. `003CD840` and `003D2B60` belong to the render-model subresource-variant binding system that the `CharacterRenderRecord_*` binding pair drives, so they serve character rendering (§19). `00438860` is one of the draw paths of an effect's per-frame mesh, effect element type `0x05` (§22). ~~What each binding operation does is still `SD-120`~~ *(answered 2026-10-01: palette/CLUT animation operations, the §7 box).*)*
 
 ## 2. Native mechanism
 
@@ -184,8 +184,8 @@ chain B:  002F4020 -> 00449AB0 -> 004355D0 -> 00438860 / 00437130 / the inline p
 
 - [x] ~~What `003CD840` is a state machine for.~~ **PARTLY ANSWERED - the machine has no
       class identity** (section 17): not an object, no vtable, no RTTI, so no name exists to be
-      found. **What it DOES is still unknown.** **BI-1.**
-- [x] ~~What `003D2B60` classifies.~~ **PARTLY ANSWERED - it is the same machine as `003CD840`**, not a separate system: **6 of 6 load addresses and 21 of 21 store addresses in common**, and each reads five globals the other writes. Section 11. **What the machine models is still unknown. BI-2.**
+      found. **What it DOES is still unknown.** **BI-1.** *(OPUS owner read 2026-10-01: answered since - BI-1 is the render-model subresource-variant binding system, register row BI-1.)*
+- [x] ~~What `003D2B60` classifies.~~ **PARTLY ANSWERED - it is the same machine as `003CD840`**, not a separate system: **6 of 6 load addresses and 21 of 21 store addresses in common**, and each reads five globals the other writes. Section 11. **What the machine models is still unknown. BI-2.** *(OPUS owner read 2026-10-01: answered since - BI-2 is superseded into BI-1 (the same machine), and BI-1 is answered.)*
 - [x] What `00438860` and `004355D0` fix up — **315 pointer resolutions** over an object keyed on
       `+0x170`, into a `.data` table with no file image. **BI-3.**
       *Narrowed 2026-09-14 (FABLE):* chain B is effect element type `0x05`'s walk (`00449AB0` → `004355D0` → `00438860`).
@@ -299,7 +299,7 @@ and a single loop.
 > "register", extract its bytes, write them to individually-addressed state, repeat. The 1,296-byte
 > span of the destinations is the size of the state it maintains.
 
-**What it is a state machine *for* is still unknown**, and that is the honest limit. The combination —
+**What it is a state machine *for* is still unknown**, and that is the honest limit. *(OPUS owner read 2026-10-01: answered since - BI-1 is the render-model subresource-variant binding system, register row BI-1.)* The combination —
 16-byte vector registers, byte-addressable state, no calls, no strings, and a PS2-heritage codebase
 ([the `Gi*` family](../../17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md)
 carries the PlayStation 2 Graphics Synthesizer vocabulary) — is *suggestive* of emulating a
@@ -382,7 +382,7 @@ passing values to each other through it.
 > being further operations of the same machine.
 
 **What the machine models is still unknown.** Naming it would need the meaning of the 32 globals, and
-none has been decoded. **BI-1** stands.
+none has been decoded. **BI-1** stands. *(OPUS owner read 2026-10-01: answered since - BI-1 is the render-model subresource-variant binding system, register row BI-1.)*
 
 ### `00438860` is confirmed as the odd one out
 
@@ -460,7 +460,7 @@ access into the matrix. Its name and its access pattern agree.
 
 **So chain A works one sub-block of a shared transform state; it does not own the region.** The
 footprint measurement was right and the ownership implied by calling it "its register file" was too
-strong. **What chain A computes over that sub-block is still unknown — BI-1 stands** — but it is now
+strong. **What chain A computes over that sub-block is still unknown — BI-1 stands** — *(OPUS owner read 2026-10-01: answered since - BI-1 is the render-model subresource-variant binding system, register row BI-1.)* — but it is now
 positioned inside an identified structure rather than floating.
 
 ## 13. The descriptor table decoded — 32 typed slots with an accessor family
@@ -488,7 +488,7 @@ positioned inside an identified structure rather than floating.
 > ```
 >
 > The `rcx*8` on the first three and `rcx*4` on the last three, at bases `0x100` apart, are stated
-> as read; **what the three arrays at `022D97B0`/`022D98B0`/`022D99B0` are is not established** (`SD-121`; 2026-09-30, SWE2-DATA: [the world-tick page](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md) reads a slot clearer over the first two), and
+> as read; **what the three arrays at `022D97B0`/`022D98B0`/`022D99B0` are is not established** (`SD-121`, answered 2026-09-30: the script-assigned effect-actor slots; 2026-09-30, SWE2-DATA: [the world-tick page](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md) reads a slot clearer over the first two), and
 > `0036E3B0`'s body was not read beyond these six sites. §12's own matrix setter `0039AF70` also writes the region through a literal
 > RIP-relative address, so this document contradicted itself one section apart.
 
@@ -617,7 +617,7 @@ descriptor slot (32 max)
 have nothing in common but the accessor that reaches them. **The tag is a real type discriminator, and
 the slots hold references to unrelated object kinds.**
 
-**Still unknown:** what any of it *holds*. **BI-8** narrows to: what the 32-entry `48`-byte table
+**Still unknown:** what any of it *holds*. *(OPUS owner read 2026-10-01: answered since - BI-8 is the per-manager table of script-requested event-effect loads, and BI-11 the engine's typed effect and presentation handles.)* **BI-8** narrows to: what the 32-entry `48`-byte table
 at `02EBE5E0` and the bucketed record set contain. The handle encoding is now the most tractable lead — **an id with a
 4-bit type field in its top nibble is a pattern that shows up in authored data**, and this database
 has [an id-encoding document](../../12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md)
@@ -677,7 +677,7 @@ The ten `0x1C` sites cluster in `0024Cxxx`–`0024Fxxx`, and **the GFZ tags one 
 > things §14 read out of `0024FDA0`'s disassembly: **packed id**, and **bucket**. Two sources, no
 > shared derivation — unlike an agreement between two readings of the same dump.
 
-**What the buckets hold is still unknown.** This does not answer BI-8; it confirms the mechanism and
+**What the buckets hold is still unknown.** *(OPUS owner read 2026-10-01: answered since - BI-11, the engine's typed handles for effect and presentation objects, one class per kind.)* This does not answer BI-8; it confirms the mechanism and
 names the family. **BI-11** records the family as a unit worth reading.
 
 ## 16. BI-7 answered — the machine has eight operations, and two of them compose
@@ -767,7 +767,7 @@ The register file's last cell is at **`022D94A0`**; the [no-writer descriptor ta
 **`022D94B0`**. **Adjacent, but adjacency is a banned evidence class here**, and the analyst declined
 to claim a link. It is recorded only as a reason to look: if the two are one allocation, the
 descriptor table's missing writer may be one of these ten operations under an addressing form the
-original scan did not match. **Untested. BI-12.**
+original scan did not match. **Untested. BI-12.** *(OPUS owner read 2026-10-01: answered since - BI-12 is answered no: none of the ten operations writes the region by any addressing mode.)*
 
 ### What this does not establish
 
@@ -1008,7 +1008,7 @@ what §1 guessed a player was looking at without being able to say which part.
 
 ### Still not established
 
-- **No operation body has been read.** The opcode → semantics map is empty. *(2026-09-30, SWE2-DATA: the opcode to operation map is decoded for both dispatchers, §20; what each operation does is `SD-120`.)*
+- ~~**No operation body has been read.** The opcode → semantics map is empty.~~ *(Answered 2026-10-01, `SD-120`: the eight `0050xxxx` operations are palette/CLUT animation effects on an 8.8 fixed-point colour table — record [`sd120-binding-ops-0930`](../../_index/candidates/sd120-binding-ops-0930/README.md).)*
 - **The 56-byte block is a *usage* partition, not a proven structure.** Six addresses touched by the
   same code could still be separate globals — stronger than proximity, not proof.
 - The 32-byte record payload remains opaque apart from its index byte.
@@ -1585,3 +1585,56 @@ Every citation on this page is a census entry of unresolved or unowned code, so 
 **WorldAreaField — MECHANICAL, 14 edges.** `0032E400` is called by `MapRef_BeginLoadResources` (`00268750`), `003319D0`, `00378030`, `00379A10` and 1 more; `0036A100` is called by `00267930`, `003319D0`, `AreaArd_LoadOrUnloadFieldResource` (`003EA820`); `BattleRuntime_GetMode0To5FromFlagsAndFieldBit15` (`0030D9A0`) calls `FieldData_GetActiveFieldRecordBit15` (`00377C20`); `00313A00` calls `FieldData_GetActiveFieldRecordBit15` (`00377C20`); `00313A00` is called by `BattleSystem_RunFieldFrameOrchestrator` (`00234590`); `00313DB0` calls `FieldData_GetActiveFieldRecordBit15` (`00377C20`); `0036E1E0` is called by `World_UpdateSimulationTick` (`00314020`); `InputDevice_QueryAvailabilityState_Always1` (`0053DD10`) is called by `003789A0`.
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*The functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`lu_interior.py`](../../_index/candidates/opus-lu-interior-1001/lu_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0024E210` | 173 B | walks the bucket `020910F0[(handle >> 28) & 0xF]` through `+0x348` for the record whose words `+4` / `+6` equal the handle's low / high words; for a selector `edx` of 0 to 5 returns one bit of that record's word `+0x36A` (bit 5, 6, 7, 8, 9 or 10, picked through a jump table); returns 0 when no record matches or `edx` is above 5 | `0024E225`, `0024E238`, `0024E254`, `0024E267` |
+| `0024ED50` | 39 B | dispatches on the handle's class (`(ecx >> 28) & 0xF`): class 1 tail-calls `002FCFB0`, classes 5, 6 and 9 tail-call `003B0F30`, any other class returns | `0024ED58`, `0024ED60`, `0024ED6C`, `0024ED71` |
+| `0024F8D0` | 78 B | for a non-zero class, walks the bucket `020910F0[(handle >> 28) & 0xF]` through `+0x348` for the record whose dword `+4` equals the handle and writes `dx & 7` into bits 12-14 of its word `+0x36A` | `0024F8DA`, `0024F8F0`, `0024F90B`, `0024F916` |
+| `0024FE30` | 51 B | dispatches on the handle's class (`(ecx >> 28) & 0xF`): 1 tail-calls `002FD0C0`, 5, 6 and 9 tail-call `003B1260`, 7 tail-calls `003B2830`, any other class returns 0 | `0024FE3B`, `0024FE45`, `0024FE54`, `0024FE59` |
+| `002EFD80` | 64 B | when dword `022BDEB8` is non-zero, releases it through `0024CFF0` and clears it; then calls `0036E750(0, 0, &local, ecx, 9)` | `002EFD92`, `002EFD97`, `002EFDB5` |
+| `002EFDC0` | 70 B | the same release of dword `022BDEB8` as `002EFD80`, then stores the result of `0036E750(0, 0, &local, ecx, 9)` in `022BDEB8` | `002EFDD7`, `002EFDF5`, `002EFDFA` |
+| `002FC9B0` | 75 B | walks the list at `*(02EC3D60)` through `+0x28` and, for each node whose byte `+0x23` low nibble is 5 to 7, adds `word[02EC19C4 + 8 * word +0x20] & 0x1F`; returns the sum | `002FC9D9`, `002FC9E2`, `002FC9EB`, `002FC9EE` |
+| `002FCB60` | 130 B | for a non-zero handle, calls `003B0820`; when slot `handle & 0x3F` is below `0x30` and the 0x38-byte record at `02EC32E0 + 0x38 * slot` holds the handle in its dword `+0`, selects arena 8 with `0xA` (`0036C1D0`), calls `002FC3C0(record)` and, when that returns 1, `002FC350(record)`, restores the arena (`0036C140`) and returns 1; else 0 | `002FCB9A`, `002FCBA6`, `002FCBAE`, `002FCBBB` |
+| `002FCFB0` | 57 B | for a handle whose slot record at `02EC32E0 + 0x38 * (handle & 0x3F)` (slot below `0x30`) holds it and has an object at `+0x10`, sets bit `0x800` of that object's word `+0x36A` | `002FCFCD`, `002FCFD2`, `002FCFE1` |
+| `002FCFF0` | 103 B | for each of `0x200` indices stores `0032E400(k, index)` - `k` is `0x26` when `002DEBB0()` returns 0 and `0xB` otherwise - in the dword at `02EC19C0 + 8 * index`; then sets byte `02EC3D7D` to 1 | `002FD024`, `002FD027`, `002FD02F`, `002FD04A` |
+| `00341F90` | 101 B | when the operand's word `+0` and dword `+4` (at `r8`) are both non-negative and `00360C00(dword +4)` returns neither 0 nor 5, calls `00314D40(1)` and returns 1; otherwise, when the operand's byte `+3` has bit `0x40` and `0053DD10()` returns 0, calls `0016D6A0(1)` and returns 1; else 0 | `00341FB6`, `00341FBE`, `00341FC8`, `00341FDE` |
+| `003433A0` | 49 B | when `002638C0(rdx)` returns a handle, releases it through `0024CFF0` and tail-calls `00269DD0(rdx, 0)` | `003433AC`, `003433B7`, `003433C6` |
+| `00345250` | 96 B | returns 0 when `003DF0F0(operand +4, operand +0)` is 0; when `003DF0A0` of the same pair is 0 it calls `00314D40(1)` and returns 1; otherwise, when `0053DD10()` returns 0, calls `0016D6A0(1)` and returns 1; else returns 0 | `00345260`, `00345274`, `0034528F`, `003452A3` |
+| `00346AA0` | 80 B | when byte `+0x20` of `rdx` is non-negative and `0036ECA0` of it is not 3, calls `00314D40(1)` and returns 1; otherwise, when `0053DD10()` returns 0, calls `0016D6A0(1)` and returns 1; else returns 0 | `00346AB3`, `00346AB8`, `00346AC0`, `00346ADA` |
+| `0034D740` | 70 B | when `0036E540(operand +0)` is non-zero, calls `00314D40(1)` and returns 1; otherwise, when `0053DD10()` returns 0, calls `0016D6A0(1)` and returns 1; else returns 0 | `0034D747`, `0034D755`, `0034D770` |
+| `0034EF60` | 83 B | when `00267310(byte +0x15 of rdx)` is 0 it is waiting while `0036E5A0(operand +0)` is non-zero, otherwise it calls `0036DDC0(operand +0)` and is not waiting; while waiting it returns 1; otherwise, when `0053DD10()` returns 0, calls `0016D6A0(1)` and returns 1; else returns 0 | `0034EF6D`, `0034EF81`, `0034EF86`, `0034EF9D` |
+| `0036DF80` | 49 B | clamps `ecx` to 0..`0x1F` and, when word `+4` of the 24-byte entry at `022D94B0 + 24 * index` is non-zero, tail-calls `003B27A0(entry dword +0)` | `0036DF8F`, `0036DFA0`, `0036DFAB` |
+| `0036E500` | 52 B | returns dword `+0` of the 24-byte entry at `022D94B0 + 24 * index`, index `ecx` clamped to 0..`0x1F` | `0036E51F`, `0036E530` |
+| `0036E540` | 93 B | for the clamped entry at `022D94B0 + 24 * index`: when its word `+4` is 1 and `0024DE70(dword +0)` returns 2 or 3, sets word `+4` to 2 and returns 0; when it returns anything else, returns 1; when word `+4` is not 1, returns 0 | `0036E566`, `0036E574`, `0036E586`, `0036E592` |
+| `0036E5A0` | 54 B | returns the signed word at `022D94B4 + 24 * index` (word `+4` of the entry), index `ecx` clamped to 0..`0x1F` | `0036E5C0`, `0036E5D1` |
+| `0036E5E0` | 51 B | when word `+4` of the clamped entry at `022D94B0 + 24 * index` is 3, tail-calls `0024FDA0(entry dword +0)`; else returns 0 | `0036E5EF`, `0036E600`, `0036E60B` |
+| `0039C550` | 121 B | calls `0039B550(02AEECB0)` and `00399600(rcx, &value)`; when that returns 0, passes the 16-byte value and `edx` to `0039D970` when dword `02AEE900` is non-zero and to `0039D890` otherwise | `0039C575`, `0039C582`, `0039C58B`, `0039C5A5` |
+| `003A28C0` | 53 B | stores the raw bits of its second (float) argument, sign-extended, at qword `022D8F30`, copies the 16 bytes from `022D8F30` to `022D92F0`, adds that float to every lane of the vector at `rcx` and writes the sum to `rcx` and `022D92E0` | `003A28CE`, `003A28DC`, `003A28E7`, `003A28F1` |
+| `003A2B60` | 42 B | converts `edx` to a float, stores it at `022D92F0`, multiplies every lane of the vector at `rcx` by it and writes the product to `022D92E0` and `rcx` | `003A2B6A`, `003A2B70`, `003A2B7C`, `003A2B86` |
+| `003AA470` | 546 B | looks along the list at `*(02EBEF70)` (each step resolving the next record's handle through `0020E600`) for a record whose word `+0xC` and bytes `+0xE` / `+0xF` match the first dword of the argument, and on a match calls `00500A60(record, argument + 4)`; otherwise, for byte 2 of that dword minus `0x50` in 0..5, it allocates a kind-specific record through `0036A100` (one of `0x190`, `0x1D0`, `0xC0`, `0x48`, `0x1C` or `0x20` bytes), constructs it from the dword and initialises it from `argument + 4`, appends it to that list (handles through `0020E620`) and increments the list's word `+0x18` | `003AA490`, `003AA4C2`, `003AA4F6`, `003AA4FD`, `003AA623` |
+| `003B0AD0` | 129 B | finds the 24-byte entry holding handle `ecx` among those from `02EBEC00` to `02EBEF60`; returns 0 when there is none or its object at `+8` is null; returns 1 unless the object's word `+0x378` has bit `0x100` and its byte `+0x370` is at most 6, in which case a jump table on that byte returns 1, 2, 3, 4 or 5 | `003B0AE3`, `003B0AFC`, `003B0B0B`, `003B0B31` |
+| `003B0B70` | 127 B | counts the leading 24-byte entries from `02EBEC00` whose dword `+0` is non-zero, up to the table end `02EBEF60`, and returns half that count (rounded toward zero) | `003B0B80`, `003B0BA9`, `003B0BB6` |
+| `003B0C30` | 30 B | calls `003B02A0(rcx, 0, 0, edx, 5)` | `003B0C37`, `003B0C44` |
+| `003B0F30` | 78 B | for a non-zero handle found among the first `0x24` entries at `02EBEC00` (the search stops at an empty entry), sets bit `0x800` of word `+0x36A` of the entry's object at `+8` | `003B0F43`, `003B0F68`, `003B0F76` |
+| `003B0FD0` | 43 B | finds handle `ecx` among the entries from `02EBEC00` to `02EBEF60` (stopping at an empty one) and stores `edx` in that entry's dword `+4` | `003B0FE8`, `003B0FF7` |
+| `003B27A0` | 135 B | for `edx` from 0 to 10: finds handle `ecx` among the 48-byte entries from `02EBE5E0` to `02EBEBE0` (stopping at an empty one); with an object at `+0x10` calls `0024ED80(object)` and, when that object's `+0x130` is non-null, `003339C0(it, edx as a byte)` and returns 1; else 0 | `003B27B4`, `003B27D6`, `003B27F9`, `003B2812` |
+| `003B4A50` | 271 B | walks the list at `*(02B404C8)` through `+0x10`, skipping nodes whose byte `+0x2D` shares a bit with byte `02B404C1`; it stores `node + 0x20` in the output array `rdx` for each node that passes its kind test - byte `+0x22` 1: dword `+0x24` must equal `ecx` when byte `+0x23` is 2 and differ from it when byte `+0x23` is 4; byte `+0x22` 2: with byte `+0x23` 1, `0024E2F0(+0x24, ecx)` must be non-zero, with 2 `0024E6D0(+0x24, ecx)`, with 3 either, and any other value fails; other kinds always pass - and, once one is stored, stops at a node whose byte `+0x2C` is below the smallest seen so far; returns the count | `003B4A94`, `003B4ADA`, `003B4B17`, `003B4B29` |
+| `003C8A20` | 46 B | when qword `02B47730` is null, creates a `0xD8`-byte object with procedure `003C8B70` through `00244F50` and stores it there | `003C8A31`, `003C8A3D`, `003C8A42` |
+| `003CD590` | 63 B | for the 64-byte entry `*(02B47790) + 64 * (low byte of ecx)` whose dword `+4` equals `ecx`: clears dword `+0x30` of every node on its chain at `+0x28` (linked through `+0x38`), clears byte `+0` and qwords `+0x28` / `+0x30`, and returns 1; else 0 | `003CD59E`, `003CD5B0`, `003CD5BC` |
+| `003CD650` | 111 B | for the 80-byte node `*(02B47798) + 80 * (low byte of ecx)` whose dword `+0x30` equals `ecx`: clears it, decrements byte `+0` of its owner entry (`*(02B47790) + 64 * byte +4`) and unlinks the node from the owner's list (next `+0x38`, previous `+0x40`; owner head `+0x28`, tail `+0x30`); returns 1, else 0 | `003CD662`, `003CD685`, `003CD694`, `003CD6AB` |
+| `003CD6C0` | 24 B | returns the 64-byte entry `*(02B47790) + 64 * (low byte of ecx)` when its dword `+4` equals `ecx`, else 0 | `003CD6D0`, `003CD6D3` |
+| `003CD7C0` | 37 B | when that 64-byte entry's dword `+4` equals `ecx`, sets bit 6 of its byte `+1` to bit 0 of `dl` | `003CD7CF`, `003CD7D5`, `003CD7E0` |
+| `003D7E90` | 126 B | returns -1 when `00181DD0()` is non-zero and dword `+0x80` is 0; otherwise, for the 30 dwords at `+8`, zeroes each non-zero one for which `002DEE80` returns 0 and returns how many it kept | `003D7EAF`, `003D7EDE`, `003D7EE7`, `003D7EEB` |
+| `003E69E0` | 49 B | when `003E55B0(rcx)` returns an object, calls `00504610(object, edx, r8d)` | `003E69EF`, `003E6A01` |
+| `003EA430` | 118 B | for the 64-byte entry `02B5D0B0 + 64 * ecx`: stores the qword at `+0x20 + 8 * 002DEBB0()` in `+0x30`; when byte `+4` is 3 and that table holds more than `edx` entries (its dword `+4`), calls `002DF610(table dword at +0x10 + 16 * edx, r8d)` when that dword is non-zero | `003EA462`, `003EA467`, `003EA472`, `003EA491` |
+| `003EA540` | 118 B | the same selection as `003EA430`, calling `002DF6A0` instead of `002DF610` | `003EA572`, `003EA582`, `003EA5A1` |
+| `00478070` | 57 B | when `002ED570(rcx, signed dx)` returns an object, calls `00504C40(object)` and then `0051FCF0(rcx, signed dx)` | `00478082`, `0047808F`, `00478099` |
+| `00504610` | 225 B | for slot `edx` below `0x10`: with `r8d` = `0xFFFF` it releases the id at `+0x140 + 4 * slot` through `003CD590` and `003CD5D0`, sets it to -1 and resets to `0xFF` each of the 20 bytes at `+0x180` whose high nibble is the slot; otherwise it finds the byte `(slot << 4) OR (r8 AND 0xF)` among those 20, releases the id at `+0x194 + 4 * index` through `003CD650` and resets that byte to `0xFF` | `00504641`, `0050467A`, `005046A5`, `005046D4` |
+| `0050D5E0` | 126 B | uses `00267E10(r9)` (or, when negative, the word at `rdx`) as the index into `002640C0()`'s records through `00358940`; when the record's byte `+3` top three bits are `0x60` and `002EA6A0(record)` is non-zero, passes `00409090(0036B130(002E9A00(record)))` with the string at `008F4438` to `0017D280` | `0050D5F0`, `0050D608`, `0050D61C`, `0050D64E` |
+| `00521250` | 50 B | for the 48-byte entry `*(02CA8450) + 48 * (low byte of cx)`: decrements word `+0x24`; when it reaches 0 or below, sets word `+0` and dword `+4` to `0xFFFF` and decrements dword `02CA8458` | `00521265`, `00521275`, `00521278`, `0052127B` |
+| `005375B0` | 59 B | calls `004FF2B0(this)`; when byte `+0x10` is non-zero, stores `0020E620(003AA280(0, 0x58, that byte))` in dword `+0x1C`; returns `this + 0x20` | `005375B9`, `005375D1`, `005375DE`, `005375E1` |

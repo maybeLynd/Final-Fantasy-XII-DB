@@ -1,0 +1,80 @@
+{
+  "method": "A STATIC_ONLY retained shipping data/import declarations",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": "0x120000",
+  "cycle": {
+    "address": "0x9159d8",
+    "bytes": "010000000200000000000000",
+    "values": [
+      1,
+      2,
+      0
+    ]
+  },
+  "direct_imports": {
+    "0x8c2c68": {
+      "dll": "api-ms-win-crt-math-l1-1-0.dll",
+      "symbol": "_isnan",
+      "name_thunk": "0x1ccecd8"
+    },
+    "0x8c2c70": {
+      "dll": "api-ms-win-crt-math-l1-1-0.dll",
+      "symbol": "_finite",
+      "name_thunk": "0x1ccecce"
+    }
+  },
+  "math_thunks": [
+    {
+      "entry": "0x861f02",
+      "bytes": "ff25c80c0600",
+      "iat": "0x8c2bd0",
+      "declaration": {
+        "dll": "api-ms-win-crt-math-l1-1-0.dll",
+        "symbol": "atan2f",
+        "name_thunk": "0x1cced38"
+      }
+    },
+    {
+      "entry": "0x861f08",
+      "bytes": "ff259a0c0600",
+      "iat": "0x8c2ba8",
+      "declaration": {
+        "dll": "api-ms-win-crt-math-l1-1-0.dll",
+        "symbol": "cosf",
+        "name_thunk": "0x1cced42"
+      }
+    },
+    {
+      "entry": "0x861f0e",
+      "bytes": "ff259c0c0600",
+      "iat": "0x8c2bb0",
+      "declaration": {
+        "dll": "api-ms-win-crt-math-l1-1-0.dll",
+        "symbol": "sinf",
+        "name_thunk": "0x1cced4a"
+      }
+    },
+    {
+      "entry": "0x861f14",
+      "bytes": "ff259e0c0600",
+      "iat": "0x8c2bb8",
+      "declaration": {
+        "dll": "api-ms-win-crt-math-l1-1-0.dll",
+        "symbol": "sqrtf",
+        "name_thunk": "0x1cced52"
+      }
+    },
+    {
+      "entry": "0x861f56",
+      "bytes": "ff251c0d0600",
+      "iat": "0x8c2c78",
+      "declaration": {
+        "dll": "api-ms-win-crt-math-l1-1-0.dll",
+        "symbol": "acosf",
+        "name_thunk": "0x1ccefee"
+      }
+    }
+  ],
+  "import_descriptor_count": 30,
+  "limits": "Import declarations establish named original boundary, not loaded-module identity or native effects; math/no-record-write assumptions remain explicit. No native/game executions."
+}

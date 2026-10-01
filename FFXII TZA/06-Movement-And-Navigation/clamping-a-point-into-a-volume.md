@@ -1,7 +1,7 @@
 ---
 system: Clamping a point into a volume
 category: 06-Movement-And-Navigation
-status: DOCUMENTED — SD-180 and SD-181 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — the second result is an output: the one caller of 00363FD0 keeps the nearest of a chain of segments by it (2026-09-30, SWE2-DATA); the history's reader found 2026-09-18 (0025C830, the two-point test); what the emitter-volume walk does with the clamped point (SD-180) and which file carries the volume records (SD-181) are answered in the register and on the page (status line current 2026-09-30, SWE2-DATA)
+status: AUDITED — SD-180 and SD-181 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — the second result is an output: the one caller of 00363FD0 keeps the nearest of a chain of segments by it (2026-09-30, SWE2-DATA); the history's reader found 2026-09-18 (0025C830, the two-point test); what the emitter-volume walk does with the clamped point (SD-180) and which file carries the volume records (SD-181) are answered in the register and on the page (status line current 2026-09-30, SWE2-DATA)
 owner_layer: CodeDomain — shared geometry
 evidence_tier: 1
 verified_against:
@@ -22,8 +22,9 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: first-read-repos-55
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record first-read-repos-55; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Clamping a point into a volume

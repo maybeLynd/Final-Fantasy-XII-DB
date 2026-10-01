@@ -1,0 +1,6 @@
+{
+  "failed_receipt": "handle-accounting-qualification-positive-02.status.json",
+  "result_absent": true,
+  "normalized_absent": true,
+  "learned": "Affected established claim selected by unique exact unpins preimage, not presumed positional index. Original inaccurate consumer snapshot01 and failed producer02 retained; corrected02 snapshot records actual index."
+}

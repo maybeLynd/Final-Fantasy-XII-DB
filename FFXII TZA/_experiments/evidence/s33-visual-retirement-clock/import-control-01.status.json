@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\check_import_prefix.py"
+  ],
+  "driver_sha256": "c9f8331f07cce971156b3cd533c282e477351864f390b8fcbaac5e37340ea48d",
+  "deadline_seconds": 50,
+  "exit": 1,
+  "terminal": true,
+  "exception": null
+}

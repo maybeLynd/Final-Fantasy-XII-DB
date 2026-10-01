@@ -1,0 +1,308 @@
+PASS A TS-1                       _index/candidates/opus-types-section-tables-0930/README.md
+PASS O TS-1                       
+PASS K TS-1.1                     
+PASS C TS-1                       base 0ea7dbefc
+PASS A TS-2                       _types/types.tsv
+PASS O TS-2                       
+PASS K TS-2.1                     
+PASS C TS-2                       base 0ea7dbefc
+PASS A TS-3                       _types/types.tsv
+PASS O TS-3                       
+PASS C TS-3                       base 0ea7dbefc
+PASS A SD164-1                    _index/candidates/sd164-167-arena-allocator-0930/README.md
+PASS O SD164-1                    
+PASS K SD164-1.1                  
+PASS K SD164-1.2                  
+PASS K SD164-1.3                  
+PASS C SD164-1                    base 0ea7dbefc
+PASS A SD166-1                    _index/candidates/sd166-arena-7-0930/README.md
+PASS O SD166-1                    
+PASS K SD166-1.1                  
+PASS C SD166-1                    base 0ea7dbefc
+PASS A SD166-2                    _index/candidates/sd166-arena-7-0930/README.md
+PASS O SD166-2                    
+PASS C SD166-2                    base 0ea7dbefc
+PASS A SD166-3                    _index/candidates/sd166-arena-7-0930/README.md
+PASS O SD166-3                    
+PASS C SD166-3                    base 0ea7dbefc
+PASS A SD166-4                    _index/candidates/sd166-arena-7-0930/README.md
+PASS O SD166-4                    
+PASS K SD166-4.1                  
+PASS C SD166-4                    base 0ea7dbefc
+PASS A SD166-5                    _index/candidates/sd166-arena-7-0930/README.md
+PASS O SD166-5                    
+PASS K SD166-5.1                  
+PASS C SD166-5                    base 0ea7dbefc
+PASS A SD166-6                    ../Tools/analysis-kit/gfz-scripts/regval.py
+PASS O SD166-6                    
+PASS C SD166-6                    base 0ea7dbefc
+PASS A SD126-1                    _index/candidates/sd126-hud-proc-arms-0930/README.md
+PASS O SD126-1                    
+PASS K SD126-1.1                  
+PASS C SD126-1                    base 0ea7dbefc
+PASS A SD126-2                    _index/candidates/sd126-hud-proc-arms-0930/README.md
+PASS O SD126-2                    
+PASS K SD126-2.1                  
+PASS C SD126-2                    base 0ea7dbefc
+PASS A SD126-3                    _index/candidates/sd126-hud-proc-arms-0930/README.md
+PASS O SD126-3                    
+PASS K SD126-3.1                  
+PASS C SD126-3                    base 0ea7dbefc
+PASS A SD126-4                    _index/candidates/sd126-hud-proc-arms-0930/README.md
+PASS O SD126-4                    
+PASS K SD126-4.1                  
+PASS C SD126-4                    base 0ea7dbefc
+PASS A SD126-5                    _index/candidates/sd126-hud-proc-arms-0930/README.md
+PASS O SD126-5                    
+PASS C SD126-5                    base 0ea7dbefc
+PASS A SD126-6                    _index/candidates/sd126-hud-proc-arms-0930/README.md
+PASS O SD126-6                    
+PASS C SD126-6                    base 0ea7dbefc
+PASS A SD127-1                    _index/candidates/sd127-hud-key-base-reads-0930/README.md
+PASS O SD127-1                    
+PASS K SD127-1.1                  
+PASS K SD127-1.2                  
+PASS K SD127-1.3                  
+PASS K SD127-1.4                  
+PASS C SD127-1                    base 0ea7dbefc
+PASS A SD127-2                    _index/candidates/sd127-hud-key-base-reads-0930/README.md
+PASS O SD127-2                    
+PASS C SD127-2                    base 0ea7dbefc
+PASS A SD127-3                    _index/candidates/sd127-hud-key-base-reads-0930/README.md
+PASS O SD127-3                    
+PASS K SD127-3.1                  
+PASS C SD127-3                    base 0ea7dbefc
+PASS A SD127-4                    _index/candidates/sd127-hud-key-base-reads-0930/README.md
+PASS O SD127-4                    
+PASS K SD127-4.1                  
+PASS C SD127-4                    base 0ea7dbefc
+PASS A SD169-1                    _index/candidates/sd169-draw-surface-cells-0930/README.md
+PASS O SD169-1                    
+PASS K SD169-1.1                  
+PASS C SD169-1                    base 0ea7dbefc
+PASS A SD121-1                    _index/candidates/sd121-effect-actor-slots-0930/README.md
+PASS O SD121-1                    
+PASS K SD121-1.1                  
+PASS C SD121-1                    base 0ea7dbefc
+PASS A SD121-2                    _index/candidates/sd121-effect-actor-slots-0930/README.md
+PASS O SD121-2                    
+PASS K SD121-2.1                  
+PASS C SD121-2                    base 0ea7dbefc
+PASS A SD121-3                    _index/candidates/sd121-effect-actor-slots-0930/README.md
+PASS O SD121-3                    
+PASS K SD121-3.1                  
+PASS C SD121-3                    base 0ea7dbefc
+PASS A SD121-4                    _index/candidates/sd121-effect-actor-slots-0930/README.md
+PASS O SD121-4                    
+PASS K SD121-4.1                  
+PASS C SD121-4                    base 0ea7dbefc
+PASS A SD123-1                    _index/candidates/sd123-kind52-image-record-0930/README.md
+PASS O SD123-1                    
+PASS K SD123-1.1                  
+PASS C SD123-1                    base 0ea7dbefc
+PASS A SD123-2                    _index/candidates/sd123-kind52-image-record-0930/README.md
+PASS O SD123-2                    
+PASS K SD123-2.1                  
+PASS C SD123-2                    base 0ea7dbefc
+PASS A SD123-3                    _index/candidates/sd123-kind52-image-record-0930/README.md
+PASS O SD123-3                    
+PASS K SD123-3.1                  
+PASS K SD123-3.2                  
+PASS C SD123-3                    base 0ea7dbefc
+PASS A SD123-4                    _index/candidates/sd123-kind52-image-record-0930/README.md
+PASS O SD123-4                    
+PASS K SD123-4.1                  
+PASS C SD123-4                    base 0ea7dbefc
+PASS A SD123-5                    _index/candidates/sd123-kind52-image-record-0930/README.md
+PASS O SD123-5                    
+PASS K SD123-5.1                  
+PASS C SD123-5                    base 0ea7dbefc
+PASS A SD123-6                    _index/candidates/sd123-kind52-image-record-0930/README.md
+PASS O SD123-6                    
+PASS K SD123-6.1                  
+PASS C SD123-6                    base 0ea7dbefc
+PASS A SD160-1                    _index/candidates/sd160-free-target-type3-0930/README.md
+PASS O SD160-1                    
+PASS K SD160-1.1                  
+PASS C SD160-1                    base 0ea7dbefc
+PASS A SD160-2                    _index/candidates/sd160-free-target-type3-0930/README.md
+PASS O SD160-2                    
+PASS K SD160-2.1                  
+PASS C SD160-2                    base 0ea7dbefc
+PASS A SD160-3                    _index/candidates/sd160-free-target-type3-0930/README.md
+PASS O SD160-3                    
+PASS K SD160-3.1                  
+PASS C SD160-3                    base 0ea7dbefc
+PASS A SD161-1                    _index/candidates/sd161-counter11-writers-0930/README.md
+PASS O SD161-1                    
+PASS K SD161-1.1                  
+PASS C SD161-1                    base 0ea7dbefc
+PASS A SD161-2                    _index/candidates/sd161-counter11-writers-0930/README.md
+PASS O SD161-2                    
+PASS K SD161-2.1                  
+PASS C SD161-2                    base 0ea7dbefc
+PASS A SD161-3                    _index/candidates/sd161-counter11-writers-0930/README.md
+PASS O SD161-3                    
+PASS K SD161-3.1                  
+PASS C SD161-3                    base 0ea7dbefc
+PASS A SD163-1                    _index/candidates/sd163-steamcontroller-poll-0930/README.md
+PASS O SD163-1                    
+PASS K SD163-1.1                  
+PASS C SD163-1                    base 0ea7dbefc
+PASS A SD163-2                    _index/candidates/sd163-steamcontroller-poll-0930/README.md
+PASS O SD163-2                    
+PASS K SD163-2.1                  
+PASS C SD163-2                    base 0ea7dbefc
+PASS A SD163-3                    _index/candidates/sd163-steamcontroller-poll-0930/README.md
+PASS O SD163-3                    
+PASS K SD163-3.1                  
+PASS K SD163-3.2                  
+PASS C SD163-3                    base 0ea7dbefc
+PASS A SD192-1                    _index/candidates/sd192-attached-bit-readers-0930/README.md
+PASS O SD192-1                    
+PASS K SD192-1.1                  
+PASS C SD192-1                    base 0ea7dbefc
+PASS A SD192-2                    _index/candidates/sd192-attached-bit-readers-0930/README.md
+PASS O SD192-2                    
+PASS K SD192-2.1                  
+PASS C SD192-2                    base 0ea7dbefc
+PASS A DDMIX-1                    _index/candidates/opus-dd-restatus-mixed-0930/README.md
+PASS O DDMIX-1                    
+PASS C DDMIX-1                    base 0ea7dbefc
+PASS A DD02R-1                    02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md
+PASS O DD02R-1                    
+PASS K DD02R-1.1                  
+PASS C DD02R-1                    base 0ea7dbefc
+PASS A DD02R-2                    02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md
+PASS O DD02R-2                    
+PASS K DD02R-2.1                  
+PASS K DD02R-2.2                  
+PASS K DD02R-2.3                  
+PASS K DD02R-2.4                  
+PASS C DD02R-2                    base 0ea7dbefc
+PASS A DD02R-3                    02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md
+PASS O DD02R-3                    
+PASS C DD02R-3                    base 0ea7dbefc
+PASS A DD02R-4                    02-Resource-And-Asset-Pipeline/resource-section-addressing.md
+PASS O DD02R-4                    
+PASS K DD02R-4.1                  
+PASS C DD02R-4                    base 0ea7dbefc
+PASS A DD02R-5                    02-Resource-And-Asset-Pipeline/resource-section-addressing.md
+PASS O DD02R-5                    
+PASS C DD02R-5                    base 0ea7dbefc
+PASS A DD02R-6                    02-Resource-And-Asset-Pipeline/resource-section-addressing.md
+PASS O DD02R-6                    
+PASS K DD02R-6.1                  
+PASS C DD02R-6                    base 0ea7dbefc
+PASS A DD02R-7                    _index/candidates/opus-dd-restatus-02-0930/README.md
+PASS O DD02R-7                    
+PASS C DD02R-7                    base 0ea7dbefc
+PASS A DD02B-1                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/as7-menu-graphics-containers.md
+PASS O DD02B-1                    
+PASS C DD02B-1                    base 0ea7dbefc
+PASS A DD02B-2                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md
+PASS O DD02B-2                    
+PASS C DD02B-2                    base 0ea7dbefc
+PASS A DD02B-3                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md
+PASS O DD02B-3                    
+PASS C DD02B-3                    base 0ea7dbefc
+PASS A DD02B-4                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md
+PASS O DD02B-4                    
+PASS C DD02B-4                    base 0ea7dbefc
+PASS A DD02B-5                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md
+PASS O DD02B-5                    
+PASS C DD02B-5                    base 0ea7dbefc
+PASS A DD02B-6                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lst-menuquest-list.md
+PASS O DD02B-6                    
+PASS C DD02B-6                    base 0ea7dbefc
+PASS A DD02B-7                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mg-worldmap-mesh.md
+PASS O DD02B-7                    
+PASS C DD02B-7                    base 0ea7dbefc
+PASS A DD02B-8                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md
+PASS O DD02B-8                    
+PASS K DD02B-8.1                  
+PASS C DD02B-8                    base 0ea7dbefc
+PASS A DD02B-9                    02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md
+PASS O DD02B-9                    
+PASS K DD02B-9.1                  
+PASS C DD02B-9                    base 0ea7dbefc
+PASS A DD02B-10                   02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cmap-menumap-common-sublocation-directory.md
+PASS O DD02B-10                   
+PASS C DD02B-10                   base 0ea7dbefc
+PASS A DD02B-11                   02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/wmap-menumap-world-map-graph.md
+PASS O DD02B-11                   
+PASS C DD02B-11                   base 0ea7dbefc
+PASS A DD02B-12                   _index/candidates/opus-dd-restatus-02-0930/batch2.md
+PASS O DD02B-12                   
+PASS K DD02B-12.1                 
+PASS K DD02B-12.2                 
+PASS C DD02B-12                   base 0ea7dbefc
+PASS A DD02B-13                   _index/candidates/opus-dd-restatus-02-0930/batch2.md
+PASS O DD02B-13                   
+PASS C DD02B-13                   base 0ea7dbefc
+PASS T regval.py                  
+PASS H regval.py                  0 new ## heading(s)
+PASS T as7-menu-graphics-containers.md 
+PASS H as7-menu-graphics-containers.md 0 new ## heading(s)
+PASS T btm-exfont-bitmaps.md      
+PASS H btm-exfont-bitmaps.md      0 new ## heading(s)
+PASS T cmap-menumap-common-sublocation-directory.md 
+PASS H cmap-menumap-common-sublocation-directory.md 1 new ## heading(s)
+PASS T lmap-menumap-location-graph.md 
+PASS H lmap-menumap-location-graph.md 0 new ## heading(s)
+PASS T lst-menuquest-list.md      
+PASS H lst-menuquest-list.md      0 new ## heading(s)
+PASS T mg-worldmap-mesh.md        
+PASS H mg-worldmap-mesh.md        0 new ## heading(s)
+PASS T wmap-menumap-world-map-graph.md 
+PASS H wmap-menumap-world-map-graph.md 1 new ## heading(s)
+PASS T a-typed-list-measured-once-and-built-in-one-allocation.md 
+PASS H a-typed-list-measured-once-and-built-in-one-allocation.md 0 new ## heading(s)
+PASS T resource-section-addressing.md 
+PASS H resource-section-addressing.md 0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T batch2.md                  
+PASS H batch2.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T README.md                  
+PASS H README.md                  0 new ## heading(s)
+PASS T types.tsv                  
+PASS H types.tsv                  0 new ## heading(s)
+PASS R register                   
+PASS R where-the-games-memory-comes-from.md 
+PASS R native-command-lifecycle.md 
+PASS R effect-mesh-records-kind-54.md 
+PASS R spawn-placement-and-retirement.md 
+PASS P README tables              1 table(s), 0 bad row(s)
+PASS H README Outcomes (SWE2-STRUCT for O 
+PASS H README Declined sub-items, with re 
+PASS H README Proposed for OPUS: status l 
+PASS H README Consumers that repeat the o 
+PASS H README Blocked (SWE2-STRUCT for OP 
+PASS H README Checker (SWE2-STRUCT for OP 
+EDITS 63 in 26 files
+FAILS 0

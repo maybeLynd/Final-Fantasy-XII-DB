@@ -173,14 +173,14 @@ static storage built in place by `00615840` and `006C8750`; nothing is allocated
 24 sites. Handlers: PACKED reaches 12 arms (PRIM split into bit bytes, RGBAQ bytes plus int Q, ST as S/Q, T/Q and Q, UV
 floats, XYZF2 and XYZ2, TEX0, CLAMP, FOG, A+D); its arms for `0x3B`-`0x4F` are unreachable. A+D reaches 14 (PRIM, TEX0,
 CLAMP, TEXA, FOGCOL, TEXFLUSH as device slot 37, ALPHA, TEST, ZBUF) and ignores RGBAQ, ST, UV, XYZ and FOG. FGE, FIX,
-FOG, FOGCOL, int Q and ZBUF_1/ZBUF_2 are stored and never read. [record](candidates/swe2struct-uq384-385-0930/README.md),
+FOG, FOGCOL, int Q and ZBUF_1/ZBUF_2 are stored and never read. [record](README.md),
 `uq384_385.py` FAILS 0.
 
 **UQ-385:** ANSWERED 2026-09-30 (SWE2-STRUCT for OPUS), static. None of the 19 is a JAL or JR sub-program target, and
 none is data-referenced. All 19 are VU1 microprogram entries from UQ-213's 57: 9 were already rowed registrar-path and
 10 were added by UQ-213. Each address is formed only by rip lea as a registrar's program argument (48 sites), and MSCAL
 starts it through the program table `02068E30`. No VU microcode is embedded, because MPG carries one x64 pointer. The
-only data matches are `.pdata`, unwind and handler metadata. [record](candidates/swe2struct-uq384-385-0930/README.md),
+only data matches are `.pdata`, unwind and handler metadata. [record](README.md),
 `uq384_385.py` FAILS 0.
 
 run: uq384_385.py at d5888bccf (FAILS 0)

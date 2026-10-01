@@ -1,0 +1,32 @@
+{
+  "source": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+  "source_sha256": "033c37bd65cf4e9b5f33c94af14ad867877ac32cf992ad1515d4c230a6597dec",
+  "driver_sha256": "deec8727840f3a90bb176f8a8a392d7bd4e4880983023b6ddfb74d50bdd02d68",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "retained_inputs": {
+    "original": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip",
+      "sha256": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7"
+    },
+    "percent-distinct": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\percent-distinct.zip",
+      "sha256": "df0d9efa25ac741a62bb52722ebe05e1a398eaa21cf9b30b916366bcea009735"
+    },
+    "case-pair": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\case-pair.zip",
+      "sha256": "d3ecb1b6cde9c7832b5d84b3a30135a89dc53ea81761f3d678a889c5b72cd0ba"
+    },
+    "unverified": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\unverified.zip",
+      "sha256": "af46e93f3eaecc35d5900fcc3ae71cb51fb91d0a721ee5ae1d8382381de17a8a"
+    },
+    "trailing-period": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\trailing-period.zip",
+      "sha256": "af7c3d88f51f7f7ebd2cd40b4c01428171d4dfc86d21a95f89e7a4c512a7ae09"
+    }
+  },
+  "method": "exact historical production Python CLI on native Windows; synthetic ZIP contents; pure reserved-name calls; no FF12 process"
+}

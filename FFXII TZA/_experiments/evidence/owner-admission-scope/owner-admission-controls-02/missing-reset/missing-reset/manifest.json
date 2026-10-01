@@ -1,0 +1,390 @@
+{
+  "kind": "conditional original owner-reset barrier",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "capture-owner-reset-barrier.py",
+      "sha256": "2cb7ff68e0ab7b10fd1d7d154f50b0c3ffd7ff7ca02d1e66603e6c19df60f3b7",
+      "bytes": 4331
+    },
+    {
+      "path": "control_owner_reset_barrier.py",
+      "sha256": "2f179ff2575675c7fd1bea7c04c7efe7ee989155632364ec9acee9b0b25255d6",
+      "bytes": 3299
+    },
+    {
+      "path": "DELIVERY-QUALIFICATION-02.json",
+      "sha256": "08b1cc97bf03af103063df1ea5973cfa23e509b33b294277ad10d364f0422740",
+      "bytes": 1154
+    },
+    {
+      "path": "FAILED-PUBLICATION-01.json",
+      "sha256": "68bdd57020141b95624513fe51f9a8b3363285250a547ea32a49d3e58dbb72c2",
+      "bytes": 1035
+    },
+    {
+      "path": "FAILED-PUBLICATION-01.stderr",
+      "sha256": "24222545fe3010bdff4e16ec54ce830eb3006e8246ba5d4cb0330a352467a136",
+      "bytes": 4432
+    },
+    {
+      "path": "FAILED-PUBLICATION-01.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "freeze_owner_reset_barrier-before-cache-selection-01.py",
+      "sha256": "4d8209529bce67e01fa2c6c714d08c128c23f433e0d2605a062f39ace7afc6ad",
+      "bytes": 2748
+    },
+    {
+      "path": "freeze_owner_reset_barrier.py",
+      "sha256": "bf6e434149d3d8bcaf9e4aa0fa18a5853be7d0305b8423d673b864857e89425c",
+      "bytes": 5190
+    },
+    {
+      "path": "owner-reset-barrier-call-pin-preflight-01.json",
+      "sha256": "a566faabc096519a336bfcbc4cbd5474183d11c7f9ede478f69b225ae036a680",
+      "bytes": 479
+    },
+    {
+      "path": "owner-reset-barrier-capture-01.status.json",
+      "sha256": "c8035c66126e400fe2ca452582c115b031383509f4595c7a60e43e5cbe07e7cc",
+      "bytes": 449
+    },
+    {
+      "path": "owner-reset-barrier-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-reset-barrier-claim-apply-checkpoint34-owner-reset.status.json",
+      "sha256": "fd7d524627887f0749dbbc398c54b7189f8143fc41faf12e8df0658de3148ce7",
+      "bytes": 487
+    },
+    {
+      "path": "owner-reset-barrier-claim-apply-checkpoint34-owner-reset.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-claim-apply-checkpoint34-owner-reset.stdout",
+      "sha256": "9fc2058c5ea5d7473232f08ef3b839d35232668cb0ea35e13a06bce2c4de9a4d",
+      "bytes": 22
+    },
+    {
+      "path": "owner-reset-barrier-claim-operation-checkpoint34-owner-reset.json",
+      "sha256": "db307f04b1bf6e506e6a978b35f8bd1f57dc7c73f6f5222b2090058b01313dde",
+      "bytes": 197
+    },
+    {
+      "path": "owner-reset-barrier-claim-watch-checkpoint34-owner-reset.json",
+      "sha256": "ec0ce78af61e27d5d0674e7ee9b70fa36aada30458c17623ba1b2f47c92b4e5b",
+      "bytes": 205
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/capture-owner-reset-barrier.py",
+      "sha256": "2cb7ff68e0ab7b10fd1d7d154f50b0c3ffd7ff7ca02d1e66603e6c19df60f3b7",
+      "bytes": 4331
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/owner-reset-barrier-capture-01.status.json",
+      "sha256": "c8035c66126e400fe2ca452582c115b031383509f4595c7a60e43e5cbe07e7cc",
+      "bytes": 449
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/owner-reset-barrier-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/owner-reset-barrier-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/owner-reset-barrier-source-01.json",
+      "sha256": "65de66832be80e8fc16691b1147400df4bde377193bc41d90c5487112abf35ab",
+      "bytes": 221320
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/stderr",
+      "sha256": "d1be9984f3301669e0079b0152b5498c7f5946f87cbe6291c1a1117a980aa826",
+      "bytes": 947
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/capture-owner-reset-barrier.py",
+      "sha256": "2cb7ff68e0ab7b10fd1d7d154f50b0c3ffd7ff7ca02d1e66603e6c19df60f3b7",
+      "bytes": 4331
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/owner-reset-barrier-capture-01.status.json",
+      "sha256": "c0ccf861a4e78a14699cf4defe2681280c7829a5b7fb0d78ef5445537349acca",
+      "bytes": 449
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/owner-reset-barrier-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/owner-reset-barrier-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/owner-reset-barrier-source-01.json",
+      "sha256": "54fe10a0cf7bd81254d7e45bae92ddcc88aefc09352bc8fcd3edf626c4b996bc",
+      "bytes": 221321
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/stderr",
+      "sha256": "2918d424f5b3742670065d67976c6e94454edc88476ef983673368ead5b7481f",
+      "bytes": 771
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/failed-capture/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/capture-owner-reset-barrier.py",
+      "sha256": "2cb7ff68e0ab7b10fd1d7d154f50b0c3ffd7ff7ca02d1e66603e6c19df60f3b7",
+      "bytes": 4331
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/missing-upstream/manifest.json",
+      "sha256": "c57c6b668c5b567014a01c5da45dcbf7899645e4547a6bc310edce0972891abb",
+      "bytes": 32298
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/owner-reset-barrier-capture-01.status.json",
+      "sha256": "c8035c66126e400fe2ca452582c115b031383509f4595c7a60e43e5cbe07e7cc",
+      "bytes": 449
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/owner-reset-barrier-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/owner-reset-barrier-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/owner-reset-barrier-source-01.json",
+      "sha256": "54fe10a0cf7bd81254d7e45bae92ddcc88aefc09352bc8fcd3edf626c4b996bc",
+      "bytes": 221321
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/stderr",
+      "sha256": "ff4917c150ab0c99bd216f58b26e46ac912ffa7dada1055b8c321fe53c04ab5b",
+      "bytes": 1389
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/capture-owner-reset-barrier.py",
+      "sha256": "2cb7ff68e0ab7b10fd1d7d154f50b0c3ffd7ff7ca02d1e66603e6c19df60f3b7",
+      "bytes": 4331
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/owner-reset-barrier-capture-01.status.json",
+      "sha256": "c8035c66126e400fe2ca452582c115b031383509f4595c7a60e43e5cbe07e7cc",
+      "bytes": 449
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/owner-reset-barrier-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/owner-reset-barrier-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/owner-reset-barrier-source-01.json",
+      "sha256": "5b5733c683c838c04be7a419843c847528372248c74b77afe6565377ee9e80d5",
+      "bytes": 214117
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/stderr",
+      "sha256": "50bc78def40ede41bf72bd5292e5d6a9ed530f85ef1a97f0926514d9e8fd596f",
+      "bytes": 1002
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/result.json",
+      "sha256": "713cbb2d98777be4e9d061d7369f9dca9bbc7e1efdc1ef71257bc65704cd96ca",
+      "bytes": 3363
+    },
+    {
+      "path": "owner-reset-barrier-controls-run-01.status.json",
+      "sha256": "75a98220f28d061c5adede8e437c83627d1eff3dc77921a44f96410864de5703",
+      "bytes": 446
+    },
+    {
+      "path": "owner-reset-barrier-controls-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-controls-run-01.stdout",
+      "sha256": "84f88e990679a02b0bfa8c49accc4d5e39f4c2e5ff3af00d6a2e09fcceb7d28f",
+      "bytes": 47
+    },
+    {
+      "path": "owner-reset-barrier-positive-01.status.json",
+      "sha256": "fa6586b299d577b70395d4cf4430f3a6e4a468e1561cbf4e36c9de1d78aee386",
+      "bytes": 447
+    },
+    {
+      "path": "owner-reset-barrier-positive-01.stderr",
+      "sha256": "7a1d1f5cf3cc0c5014635e2cb11af04e5a02803eea679026a151b8bcfbde15ca",
+      "bytes": 899
+    },
+    {
+      "path": "owner-reset-barrier-positive-01.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-positive-02.status.json",
+      "sha256": "cb67af049ebe32e619245294cbbdb541dcb11dcb0218f29b6d59d0ab22287112",
+      "bytes": 447
+    },
+    {
+      "path": "owner-reset-barrier-positive-02.stderr",
+      "sha256": "aee643d80b2998c571358241ad98dfbd8b58c057136300e61b57c836c0a145ea",
+      "bytes": 990
+    },
+    {
+      "path": "owner-reset-barrier-positive-02.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-positive-03.status.json",
+      "sha256": "d938b66dd04be36a6415bf9984348f9ddb97a3d8c1252ed33566e56add45dd8c",
+      "bytes": 447
+    },
+    {
+      "path": "owner-reset-barrier-positive-03.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-positive-03.stdout",
+      "sha256": "276ab0bbe2e6d8ab6c2a0284dc572704d804750cb9702ff3c83f6f39c68732c0",
+      "bytes": 124
+    },
+    {
+      "path": "owner-reset-barrier-positive-04.status.json",
+      "sha256": "97c1f18cd0aaf3e74ea376987fcf361250ac1b39717cd3cdc8b9e5709629072e",
+      "bytes": 447
+    },
+    {
+      "path": "owner-reset-barrier-positive-04.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-reset-barrier-positive-04.stdout",
+      "sha256": "276ab0bbe2e6d8ab6c2a0284dc572704d804750cb9702ff3c83f6f39c68732c0",
+      "bytes": 124
+    },
+    {
+      "path": "owner-reset-barrier-result-03.json",
+      "sha256": "fe90e25fbf0d68125b071b53234f91d199cfef62ada205f25ecde2ce1a16e351",
+      "bytes": 6842
+    },
+    {
+      "path": "owner-reset-barrier-result-04.json",
+      "sha256": "4e899e7a737176294e26272b310e327893705d90bafdc517d67e6584f16d7490",
+      "bytes": 6842
+    },
+    {
+      "path": "owner-reset-barrier-source-01.json",
+      "sha256": "54fe10a0cf7bd81254d7e45bae92ddcc88aefc09352bc8fcd3edf626c4b996bc",
+      "bytes": 221321
+    },
+    {
+      "path": "OWNER-RESET-METHOD-1001.md",
+      "sha256": "7538d02c0f6bec8801c50b36540f50ec6c0610400543fa36c30f7bdf597e015b",
+      "bytes": 2458
+    },
+    {
+      "path": "prove_owner_reset_barrier-before-call-pin-correction-01.py",
+      "sha256": "0e4142e9bc37195cce1e06aacc68c532ada5f9ab6f393b28755863886c338e8c",
+      "bytes": 10748
+    },
+    {
+      "path": "prove_owner_reset_barrier-before-retained-manifest-pin-03.py",
+      "sha256": "f8b408acb807dd7013cc5afaf0501a4a551ec20f4e26274349d38698eca074cd",
+      "bytes": 10926
+    },
+    {
+      "path": "prove_owner_reset_barrier-before-world-tail-boundary-02.py",
+      "sha256": "408c0b0126daebbf74fa2fddee37d939b4a10cc1c2028b2ee65229c3552c990d",
+      "bytes": 10748
+    },
+    {
+      "path": "prove_owner_reset_barrier.py",
+      "sha256": "c02b16e1e25348a2fd1504726d310af5d0f7a4ec28d23310e20ec61d14062aa4",
+      "bytes": 11242
+    },
+    {
+      "path": "README.md",
+      "sha256": "3da137df58715e34fdb3f57bcc6557f2edd1eb43c2cf7eb4c8a1b76f64481f9f",
+      "bytes": 4175
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    }
+  ]
+}

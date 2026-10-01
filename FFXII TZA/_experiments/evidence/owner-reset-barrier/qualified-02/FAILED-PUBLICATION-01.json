@@ -1,0 +1,22 @@
+{
+  "status": "FAILED_REQUIRES_RECONCILIATION",
+  "task": "ASTRA-PUBLISH-OWNER-RESET-BARRIER-1001",
+  "board_revision": 44924,
+  "own_pid": 74668,
+  "transport": {
+    "pathfile": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/publication-owner-reset-barrier-01/reviewed-publisher-paths-01.txt",
+    "pathfile_sha256": "488e4be57b65171645beb994a57111b1f8401962f6740c509b6ed993cacc88bf",
+    "transport_sha256": "2d18bfe5ecc986ac6bab99f3fba57869b0b8a1513baddeaef0560d68541cde46",
+    "explicit_paths": 72,
+    "native_path_budget": {
+      "path_argv_utf16_units": 8751,
+      "limit": 24000,
+      "limits": "Conservative setup guard; actual publisher/health/commit checks still required"
+    }
+  },
+  "driver_sha256": "5d8ec2da147e8c2c54ec9181e19229f74df5018ae7e298b4e992f37f0f34390a",
+  "publisher_sha256": "ce60f287cfd9822e613378423a61b18c8922c44ffe0503163382a8cdd465d2b1",
+  "explicit_paths": 72,
+  "publisher_exit": 1,
+  "error": "publisher failed; inspect retained terminal output, no finish"
+}

@@ -190,6 +190,11 @@ R_PKREF = re.compile(r"^PKREF\s+0x([0-9A-Fa-f]+)\s+(\w+)\s*\+\s*0x([0-9A-Fa-f]+)
 # stopping at the first non-function qword. The seed is honest because every call site
 # is `call [rax + slot]` off a loaded object - rcx IS the instance at entry.
 R_VTABLE = re.compile(r"^VTABLE\s+0x([0-9A-Fa-f]+)(?:\s.*)?$")
+# `ARG reg 0xFUNC` - the object is in `reg` at the entry of a NAMED function, proven by a cited
+# instruction in the row (the grammar form candidates/derived-route-parent-roots.md proposed for
+# the three argument-rooted parents). Seeded exactly like one VTABLE entry: the function is the
+# host, and `reg` is marked at offset 0 in its body.
+R_ARG = re.compile(r"^ARG\s+(rcx|rdx|r8|r9)\s+0x([0-9A-Fa-f]+)(?:\s.*)?$", re.I)
 
 
 def store(db):
@@ -259,6 +264,12 @@ def parse_route(route):
     m = R_VTABLE.match(route)
     if m:
         return ("VTABLE", int(m.group(1), 16), 0, 0)
+    m = R_ARG.match(route)
+    if m:
+        # (kind, host-fn, arg-register index into W.ARG_REGS) - the register slot
+        # carries what a VTABLE rule's implicit rcx carries.
+        return ("ARG", int(m.group(2), 16),
+                ("rcx", "rdx", "r8", "r9").index(m.group(1).lower()), 0)
     m = R_CHAIN.match(route)
     if m:
         sm = re.search(r"stride=0x([0-9A-Fa-f]+)", m.group(0))
@@ -299,7 +310,7 @@ def parse_routes(route):
     return out
 
 
-SEEDABLE = ("PTR", "FN", "STATIC", "ARRAY", "PARRAY", "SLOTPTR", "PTABLE", "VTABLE")
+SEEDABLE = ("PTR", "FN", "STATIC", "ARRAY", "PARRAY", "SLOTPTR", "PTABLE", "VTABLE", "ARG")
 DERIVED = ("CHAIN", "RELOFF", "EMBED", "PSLOT", "PKREF")
 
 
@@ -1364,7 +1375,10 @@ class Census(object):
             self.fn_sites = bank_sites(self.img, rule[1], rule[4])
         # A VTABLE seed is `this` at method entry: every dispatch site is `call
         # [rax + slot]` off the object, so rcx is the instance in every entry body.
-        this_seed = {W.ARG_REGS[0]: 0} if rule[0] == "VTABLE" else {}
+        # An ARG seed is the same shape with the register the route names.
+        this_seed = ({W.ARG_REGS[0]: 0} if rule[0] == "VTABLE"
+                     else {W.ARG_REGS[rule[2]]: 0} if rule[0] == "ARG"
+                     else {})
         for e in hosts:
             self.walk(e, this_seed, acc, fwd, rule)
         seen = set(fwd)
@@ -1408,6 +1422,9 @@ def hosts_for(img, rule, callers):
     if kind == "VTABLE":
         # the hosts ARE the methods - each is walked with rcx marked at 0
         return vtable_entries(img, addr)
+    if kind == "ARG":
+        # the host IS the named function - walked with the named arg register at 0
+        return [addr] if addr in img.sizes else []
     out = []
     for e in sorted(img.sizes):
         body = img.body(e)
@@ -1571,7 +1588,7 @@ def main():
     if not rules:
         print("route %r is not one this tool models "
               "(PTR [+off] / FN+delta / STATIC / ARRAY+stride / PARRAY+stride / SLOTPTR /"
-              " PTABLE / VTABLE / CHAIN / RELOFF / EMBED / PKREF only)" % route)
+              " PTABLE / VTABLE / ARG / CHAIN / RELOFF / EMBED / PKREF only)" % route)
         return 2
     print("%s  size 0x%X  route %s" % (a.type, size, route))
     c = Census(img, size)

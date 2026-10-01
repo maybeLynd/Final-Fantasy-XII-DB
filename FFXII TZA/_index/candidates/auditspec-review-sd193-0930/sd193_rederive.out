@@ -1,0 +1,40 @@
+== D: decoded branch structure of 003EC040
+PASS  D1 003EC040 branch instructions as read (20 checked) []
+PASS  D2 modes 0/1 return cur +- step with no wrap (003EC184..003EC1A8 is the epilogue only)
+PASS  D3 both step multipliers read 01DFE0BC
+PASS  D4 01DFE0BC = 1.0 in the file; 001EDDE0 stores 0.5 only when 001EDDC0's ecx != 0 (je 0x1ede1f skips it)
+== W: image-wide references to 01DFE0BC
+   referencing instructions: 183; writes: ['001EDDE0 movss dword ptr [rip + 0x1c102d4], xmm1']
+PASS  W1 01DFE0BC has exactly one writing instruction image-wide (183 references)
+PASS  W2 control: the sweep finds 003EC040's two reads (003EC12E, 003EC152)
+== X: unicorn runs of the original bytes
+PASS  X1 003A1AD0 executed on 4006 (cur, target, step) points equals the decoded reference bit-for-bit []
+PASS  X1b seam: 003A1AD0(3.0, -3.0, 0.2) = -3.083185 (crosses +-pi the short way, re-wrapped)
+PASS  X2 003EC510 executed on 9003 (d, dir) points equals the reference; dir 0 output in [0.0418, 6.2578], dir 1 in [-6.2414, -0.0254]
+PASS  X3 003A1980 executed = min(|x|, s) on 2000 points []
+   mode2              0.100000
+   mode2_neg          -0.100000
+   fast               0.300000
+   fast_mode7         0.300000
+   mode0              0.100000
+   mode1              -0.100000
+   mode0_snap         0.050000
+   mode3              1.000000
+   mode_neg           1.000000
+   mode2_mult05       0.050000
+   norate             1.000000
+   invalid            0.000000
+   idx_m1             0.000000
+   parked             0.000000
+   flag_clear_w6_set  1.000000
+   flag_clear_w6_m1   0.100000
+   mode0_past_pi      3.200000
+PASS  X4 executed 003EC040: mode 2 steps +-rate(+0x24); fast steps rate(+0x28) for any mode; mode 0 / 1 step the forced way; snap within a step; modes 3 / -1 and no rate record return the target; multiplier 0.5 halves the step
+PASS  X5 executed: +0x284 == 0, index -1, and (+0x290 bit 0x100000 clear, +0x284 bit 0x8000000 set, +6 != -1) return 0
+PASS  X6 executed: +0x290 bit 0x100000 clear and +6 != -1 (bit 0x8000000 clear) returns the TARGET at once, in every mode (the package's case table lacks this row); with +6 == -1 it steps
+PASS  X7 executed: mode 0 from 3.1 by 0.1 returns 3.200000 > pi (the mode-0/1 result is not wrapped)
+   hold (stub 00422D50): {'D': 0.7, '35': 0.7, '36': 0.7, 'E': 0.8, '1035': 0.7, 'state2': 0.8}
+PASS  X8 executed (00422D50 stubbed): animation id 0x0D/0x35/0x36 (low 12 bits) in state byte 1 holds +0x124; other ids or state 2 step
+   per-call deltas toward 1.25 at rate 0.1: ['0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.1000', '0.0500', '0.0000']
+PASS  X9 executed loop: 12 equal steps of 0.1 then a final 0.0500 landing exactly on the target, then 0 - no easing
+FAILS 0

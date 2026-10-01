@@ -1,0 +1,198 @@
+{
+  "source_sha256": "c165172d618ccfb276f1ec117107b76e27ca7e96e294a841ef8fd913b5206658",
+  "base_zip_sha256": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "method": "native Windows exact production restore CLI; labelled derived name/content fixtures, not game/runtime evidence",
+  "records": [
+    {
+      "case": "percent-distinct",
+      "zip_sha256": "df0d9efa25ac741a62bb52722ebe05e1a398eaa21cf9b30b916366bcea009735",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\generation.py",
+        "restore",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\percent-distinct.zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\disposable-percent-distinct"
+      ],
+      "exit": 0,
+      "stdout": "RESTORED g20260929T213407Z-9c7238 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\disposable-percent-distinct\n",
+      "stderr": "",
+      "current": true,
+      "logical_names": [
+        "ASTRA:a",
+        "ASTRA%3Aa"
+      ],
+      "snapshot_names": [
+        "ASTRA%3Aa",
+        "ASTRA%253Aa"
+      ],
+      "reader_problems": [],
+      "physical_input_names": [
+        "ASTRA%253Aa",
+        "ASTRA%3Aa",
+        "_tree",
+        "build_views.py",
+        "category_map",
+        "check_questions",
+        "coverage_dims",
+        "fields",
+        "functions",
+        "goal_gate",
+        "l2",
+        "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+        "pkg%3APKG-GP-STATUS-POISON.md",
+        "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+        "progress_check",
+        "progress_snapshot",
+        "requirement_facts",
+        "requirements.py",
+        "subsystems",
+        "team",
+        "types",
+        "uc1_1_64",
+        "uc1_65_256",
+        "uc1_band.py",
+        "vbf_list",
+        "watchdog"
+      ],
+      "same_physical_file": false,
+      "bytes_equal": [
+        true,
+        true
+      ]
+    },
+    {
+      "case": "case-pair",
+      "zip_sha256": "d3ecb1b6cde9c7832b5d84b3a30135a89dc53ea81761f3d678a889c5b72cd0ba",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\generation.py",
+        "restore",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\case-pair.zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\disposable-case-pair"
+      ],
+      "exit": 1,
+      "stdout": "REFUSED two members restore to one file on a case-insensitive system: 'inputs/ASTRA-case' and 'inputs/astra-case'\n",
+      "stderr": "",
+      "current": false,
+      "logical_names": [
+        "ASTRA-case",
+        "astra-case"
+      ],
+      "snapshot_names": [
+        "ASTRA-case",
+        "astra-case"
+      ]
+    },
+    {
+      "case": "unverified",
+      "zip_sha256": "af46e93f3eaecc35d5900fcc3ae71cb51fb91d0a721ee5ae1d8382381de17a8a",
+      "verify": "UNVERIFIED",
+      "verify_info": {
+        "reason": "members do not match the manifest",
+        "generation": "g20260929T213407Z-9c7238",
+        "extra": [],
+        "missing": [],
+        "hash_mismatch": [
+          "inputs/pkg:PKG-GP-EXP-LEVEL-UP.md"
+        ]
+      },
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\generation.py",
+        "restore",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\unverified.zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\disposable-unverified"
+      ],
+      "exit": 1,
+      "stdout": "REFUSED refusing to restore an UNVERIFIED zip: members do not match the manifest\n",
+      "stderr": "",
+      "current": false,
+      "logical_names": null,
+      "snapshot_names": null
+    },
+    {
+      "case": "trailing-period",
+      "zip_sha256": "af7c3d88f51f7f7ebd2cd40b4c01428171d4dfc86d21a95f89e7a4c512a7ae09",
+      "verify": "VERIFIED",
+      "verify_info": {
+        "generation": "g20260929T213407Z-9c7238",
+        "members": 35
+      },
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\generation.py",
+        "restore",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\trailing-period.zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\disposable-trailing-period"
+      ],
+      "exit": 0,
+      "stdout": "RESTORED g20260929T213407Z-9c7238 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\disposable-trailing-period\n",
+      "stderr": "",
+      "current": true,
+      "logical_names": [
+        "ASTRA-alias",
+        "ASTRA-alias."
+      ],
+      "snapshot_names": [
+        "ASTRA-alias",
+        "ASTRA-alias."
+      ],
+      "reader_problems": [],
+      "physical_input_names": [
+        "ASTRA-alias",
+        "_tree",
+        "build_views.py",
+        "category_map",
+        "check_questions",
+        "coverage_dims",
+        "fields",
+        "functions",
+        "goal_gate",
+        "l2",
+        "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+        "pkg%3APKG-GP-STATUS-POISON.md",
+        "pkg%3APKG-TECH-SCRIPTVM-VALUE.md",
+        "progress_check",
+        "progress_snapshot",
+        "requirement_facts",
+        "requirements.py",
+        "subsystems",
+        "team",
+        "types",
+        "uc1_1_64",
+        "uc1_65_256",
+        "uc1_band.py",
+        "vbf_list",
+        "watchdog"
+      ],
+      "same_physical_file": true,
+      "bytes_equal": [
+        true,
+        true
+      ]
+    }
+  ],
+  "checks": {
+    "percent_distinct_positive": true,
+    "case_pair_refused": true,
+    "unverified_refused": true,
+    "trailing_period_no_alias_acceptance": false
+  },
+  "controls_valid": true,
+  "verdict": "REJECT_TRAILING_PERIOD_PHYSICAL_ALIAS"
+}

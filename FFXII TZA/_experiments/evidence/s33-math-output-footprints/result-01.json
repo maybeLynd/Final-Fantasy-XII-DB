@@ -1,0 +1,1260 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY native output-footprint composition",
+  "driver_sha256": "ad125d4b408cfb658bbdd7cf7e6204e00eeaf09569872880077e5ef1c35b7630",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "3237c99aafed367e41848dad9a6bbcccc5969a17dd259d9d79e3a9f4ca69cc20"
+    },
+    {
+      "path": "retained-matrix-reannotation-01.json",
+      "sha256": "00fb5b39d9b66573a7e79dd2251cf66d30375d21f25c00ed8e0eb2319dd5e923"
+    },
+    {
+      "path": "retained/s33-history-counter-bounds-source-01.json",
+      "sha256": "891b7858ba819f3809bcbece72c702af33a5817f97301ca64a5a8b00f8b94b8f"
+    }
+  ],
+  "parent_manifests": {
+    "matrix-buffer-alias": "f4f460958fbc47c7c1d841663afad3011601df5ceb0ce54f8ef25f94d6c97fc0",
+    "s33-history-counter-bounds": "eccff61b054257998fe40886c59f76c8cb70b55152a568b78c586c03a2b07be1"
+  },
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 636,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 66,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 539,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x202b10",
+      "visited": 17,
+      "returns": [
+        "0x202b60"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x202de0",
+      "visited": 10,
+      "returns": [
+        "0x202e00"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x202def",
+          "target": "0x216660"
+        }
+      ]
+    },
+    {
+      "entry": "0x203080",
+      "visited": 17,
+      "returns": [
+        "0x2030d0"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x270720",
+      "visited": 79,
+      "returns": [
+        "0x270873"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x270730",
+          "target": "0x203170"
+        }
+      ]
+    },
+    {
+      "entry": "0x203170",
+      "visited": 9,
+      "returns": [
+        "0x20319b"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x270a10",
+      "visited": 65,
+      "returns": [
+        "0x270b36"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x270a68",
+          "target": "0x861f02"
+        },
+        {
+          "pc": "0x270a7f",
+          "target": "0x861f02"
+        },
+        {
+          "pc": "0x270ad4",
+          "target": "0x203170"
+        },
+        {
+          "pc": "0x270ae7",
+          "target": "0x202e90"
+        },
+        {
+          "pc": "0x270af9",
+          "target": "0x202f00"
+        },
+        {
+          "pc": "0x270b06",
+          "target": "0x270b40"
+        },
+        {
+          "pc": "0x270b13",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x270cf0",
+      "visited": 121,
+      "returns": [
+        "0x270f44"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x270d2e",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x270d51",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x270dc5",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x270e31",
+          "target": "0x861f56"
+        },
+        {
+          "pc": "0x270e3a",
+          "target": "0x861f0e"
+        },
+        {
+          "pc": "0x270e5c",
+          "target": "0x861f0e"
+        },
+        {
+          "pc": "0x270e72",
+          "target": "0x861f0e"
+        },
+        {
+          "pc": "0x270f23",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x270b40",
+      "visited": 99,
+      "returns": [
+        "0x270be2",
+        "0x270ce3"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x270b7e",
+          "target": "0x861f14"
+        },
+        {
+          "pc": "0x270c48",
+          "target": "0x861f14"
+        }
+      ]
+    },
+    {
+      "entry": "0x216660",
+      "visited": 49,
+      "returns": [
+        "0x216700",
+        "0x216719"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x21669b",
+          "target": "qword ptr [rip + 0x6ac5c7]"
+        },
+        {
+          "pc": "0x2166a8",
+          "target": "qword ptr [rip + 0x6ac5c2]"
+        },
+        {
+          "pc": "0x2166be",
+          "target": "0x861f14"
+        }
+      ]
+    },
+    {
+      "entry": "0x202e90",
+      "visited": 27,
+      "returns": [],
+      "tails": [
+        {
+          "pc": "0x202eef",
+          "target": "0x217790"
+        }
+      ],
+      "calls": [
+        {
+          "pc": "0x202ec7",
+          "target": "0x861f08"
+        },
+        {
+          "pc": "0x202ed2",
+          "target": "0x861f0e"
+        }
+      ]
+    },
+    {
+      "entry": "0x202f00",
+      "visited": 27,
+      "returns": [],
+      "tails": [
+        {
+          "pc": "0x202f5f",
+          "target": "0x217880"
+        }
+      ],
+      "calls": [
+        {
+          "pc": "0x202f37",
+          "target": "0x861f08"
+        },
+        {
+          "pc": "0x202f42",
+          "target": "0x861f0e"
+        }
+      ]
+    },
+    {
+      "entry": "0x217790",
+      "visited": 58,
+      "returns": [
+        "0x21787b"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x217880",
+      "visited": 58,
+      "returns": [
+        "0x217969"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x217060",
+      "visited": 56,
+      "returns": [
+        "0x21714a"
+      ],
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x202b70",
+      "visited": 10,
+      "returns": [
+        "0x202b8e"
+      ],
+      "tails": [],
+      "calls": [
+        {
+          "pc": "0x202b7e",
+          "target": "0x217060"
+        }
+      ]
+    }
+  ],
+  "writes": [
+    {
+      "entry": "0x202b10",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x202b59",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    },
+    {
+      "entry": "0x202de0",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x202dec",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        },
+        {
+          "pc": "0x202df4",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 12,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    },
+    {
+      "entry": "0x203080",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x2030c9",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    },
+    {
+      "entry": "0x270720",
+      "output_bound": 64,
+      "direct_output_stores": [
+        {
+          "pc": "0x27075e",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 4
+        },
+        {
+          "pc": "0x27077d",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 4,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        },
+        {
+          "pc": "0x27079d",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x2707bd",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 16,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 20
+        },
+        {
+          "pc": "0x2707e2",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 20,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 24
+        },
+        {
+          "pc": "0x270802",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 24,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 28
+        },
+        {
+          "pc": "0x270822",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 32,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 36
+        },
+        {
+          "pc": "0x270842",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 36,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 40
+        },
+        {
+          "pc": "0x270869",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 40,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 44
+        }
+      ]
+    },
+    {
+      "entry": "0x203170",
+      "output_bound": 64,
+      "direct_output_stores": [
+        {
+          "pc": "0x203177",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        },
+        {
+          "pc": "0x203181",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 16,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 32
+        },
+        {
+          "pc": "0x20318c",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 32,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 48
+        },
+        {
+          "pc": "0x203197",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 48,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 64
+        }
+      ]
+    },
+    {
+      "entry": "0x270a10",
+      "output_bound": 16,
+      "direct_output_stores": []
+    },
+    {
+      "entry": "0x270cf0",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x270eaa",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 4
+        },
+        {
+          "pc": "0x270eba",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 4,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        },
+        {
+          "pc": "0x270ec8",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x270ed6",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 12,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    },
+    {
+      "entry": "0x270b40",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x270b96",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 12,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        },
+        {
+          "pc": "0x270ba9",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 4
+        },
+        {
+          "pc": "0x270bbb",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 4,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        },
+        {
+          "pc": "0x270bce",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x270c62",
+          "memory": {
+            "base": "rdi",
+            "index": "r15",
+            "scale": 4,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x270c9b",
+          "memory": {
+            "base": "rdi",
+            "index": "rsi",
+            "scale": 4,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x270cbb",
+          "memory": {
+            "base": "rdi",
+            "index": "r14",
+            "scale": 4,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x270cd9",
+          "memory": {
+            "base": "rdi",
+            "index": null,
+            "scale": 1,
+            "displacement": 12,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    },
+    {
+      "entry": "0x216660",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x2166d9",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 4
+        },
+        {
+          "pc": "0x2166e2",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 4,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        },
+        {
+          "pc": "0x2166ec",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x21670d",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 8,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        },
+        {
+          "pc": "0x216711",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 8,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        }
+      ]
+    },
+    {
+      "entry": "0x202e90",
+      "output_bound": 64,
+      "direct_output_stores": [
+        {
+          "pc": "0x202ea1",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        },
+        {
+          "pc": "0x202eb0",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 16,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 32
+        },
+        {
+          "pc": "0x202eb8",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 32,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 48
+        },
+        {
+          "pc": "0x202ec0",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 48,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 64
+        }
+      ]
+    },
+    {
+      "entry": "0x202f00",
+      "output_bound": 64,
+      "direct_output_stores": [
+        {
+          "pc": "0x202f11",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        },
+        {
+          "pc": "0x202f20",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 16,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 32
+        },
+        {
+          "pc": "0x202f28",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 32,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 48
+        },
+        {
+          "pc": "0x202f30",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 48,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 64
+        }
+      ]
+    },
+    {
+      "entry": "0x217790",
+      "output_bound": 64,
+      "direct_output_stores": [
+        {
+          "pc": "0x2177e3",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 4,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        },
+        {
+          "pc": "0x2177f0",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x217811",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 20,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 24
+        },
+        {
+          "pc": "0x217821",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 24,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 28
+        },
+        {
+          "pc": "0x21783c",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 36,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 40
+        },
+        {
+          "pc": "0x217864",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 40,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 44
+        },
+        {
+          "pc": "0x21786d",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 52,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 56
+        },
+        {
+          "pc": "0x217872",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 56,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 60
+        }
+      ]
+    },
+    {
+      "entry": "0x217880",
+      "output_bound": 64,
+      "direct_output_stores": [
+        {
+          "pc": "0x2178c9",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 4
+        },
+        {
+          "pc": "0x2178e5",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x2178fa",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 24,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 28
+        },
+        {
+          "pc": "0x217904",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 16,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 20
+        },
+        {
+          "pc": "0x217928",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 40,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 44
+        },
+        {
+          "pc": "0x217936",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 32,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 36
+        },
+        {
+          "pc": "0x21795b",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 48,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 52
+        },
+        {
+          "pc": "0x217960",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 56,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 60
+        }
+      ]
+    },
+    {
+      "entry": "0x217060",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x2170ce",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 4
+        },
+        {
+          "pc": "0x21710d",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 4,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 8
+        },
+        {
+          "pc": "0x217138",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 8,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 12
+        },
+        {
+          "pc": "0x21713d",
+          "memory": {
+            "base": "rcx",
+            "index": null,
+            "scale": 1,
+            "displacement": 12,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    },
+    {
+      "entry": "0x202b70",
+      "output_bound": 16,
+      "direct_output_stores": [
+        {
+          "pc": "0x202b86",
+          "memory": {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 16,
+            "role": "w",
+            "rip_target": null
+          },
+          "bounded_end": 16
+        }
+      ]
+    }
+  ],
+  "transfer_assertions": 38,
+  "index_table": {
+    "address": "0x9159d8",
+    "bytes": "010000000200000000000000",
+    "values": [
+      1,
+      2,
+      0
+    ],
+    "finite_index_cases": [
+      {
+        "selected": 0,
+        "r15": 0,
+        "rsi": 1,
+        "r14": 2
+      },
+      {
+        "selected": 1,
+        "r15": 1,
+        "rsi": 2,
+        "r14": 0
+      },
+      {
+        "selected": 2,
+        "r15": 2,
+        "rsi": 0,
+        "r14": 1
+      }
+    ]
+  },
+  "native_effects": "Vector/copy/quaternion outputs within16B; matrix identity/rotation/conversion within64B. Normalize216660 includes16B zero fallback. Two rotation wrappers compose64B tail effects217790/217880. 270A10 produces16B through270B40 and uses private64B matrix scratch. Imported math/cookie effects excluded under named normal contracts.",
+  "caller_composition": "3FC170 uses output record destinations only H+0 (202B10,16B), H+10 (270CF0,16B), and prior verified copy/counter sites. Other vector/quaternion/matrix outputs use valid private stack. With initialized0..6 counters, ordinarynonvolatileABI, record/frames nonaliasing and no outside/foreign record writes, composed recordwrites endatvisual254 and do nottouchphase260/flags272/links278/280. No pixel/scheduling/elapsedframe guarantee.",
+  "limits": [
+    "Normal imported atan2f/cosf/sinf/sqrtf/acosf/_isnan/_finite and cookie boundaries are not executed or proven as loaded-module effects here. Declare their no-record-write/ABI/return contract; this is not a stub proving native effects.",
+    "Whole manager release across another invocation still requires valid finite list, normal updater effects, no outside interference, identity/lifetime and actual scheduling; these are not established by this footprint.",
+    "Output bounds establish memory regions, not bit-exact numeric outputs, arbitrary matrix/vector overlap safety, FP exception behavior or presentation.",
+    "Parent source/counter proofs are independently pending; integrity alone doesnotaccept theirsemantics. Matrixalias source facts reused with sharedadapter reannotation; prior samples/reviewer runs notrepeated/credited."
+  ],
+  "consumer": "OPUS can refine math/caller effects after scoped independent review and declared library/stack premises, closing explicit native output-width gap. FABLE preserve initialized/scheduling/presentation gaps and correct transformhistory terminology. No wholeS33/runtime-row closure."
+}

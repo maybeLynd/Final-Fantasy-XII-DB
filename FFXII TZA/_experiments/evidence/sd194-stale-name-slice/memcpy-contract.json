@@ -1,0 +1,5 @@
+{
+  "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/memcpy-wmemcpy?view=msvc-170",
+  "read_date": "2026-10-01",
+  "paraphrase": "The named API takes destination, source and byte count. Its documentation does not define overlapping copies. This supports a contract premise/limit; the loaded module and actual effects are not established by its name or this document."
+}

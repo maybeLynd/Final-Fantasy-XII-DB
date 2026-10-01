@@ -1,0 +1,13 @@
+{
+  "case": "changed-pump-call",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-request-reentrancy.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-request-reentrancy-controls-01\\changed-pump-call\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-request-reentrancy-controls-01\\changed-pump-call"
+  ],
+  "exit": 1,
+  "expected_error": "reference byte identity changed",
+  "expected_error_seen": true,
+  "result_absent": true
+}

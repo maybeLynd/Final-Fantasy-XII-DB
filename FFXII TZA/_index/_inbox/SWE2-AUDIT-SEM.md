@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=44368 epoch=3 queue_sha=57b67b39e34bbfa5 -->
-> generated 2026-10-01T05:45:48+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=44732 epoch=3 queue_sha=583c51ed5cdee280 -->
+> generated 2026-10-01T08:50:11+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: none
-> READY addressed to you: P1 DATA-REQ-AUDITSEM-INCORP-0930E, P1 FRONTIER-REQ-AUDITSEM-REVIEW-P22-UNATTRIB-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B10-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B11-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B12-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B13-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B14-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B4-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B5-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B7-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B8-0930, P1 OPUS-REQ-AUDITSEM-DD-OWNER-B9-0930, P2 FRONTIER-REQ-AUDITSEM-REVIEW-MS4-0930, P2 SWE2-EC7-REQ-AUDITSEM-ROLES-0930
-> READY pool: 1 | BLOCKED: 0
+> ACTIVE: AUDITSEM-PUB-RESUME-DRAINED-1001
+> READY addressed to you: none
+> READY pool: 21 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -56,6 +56,24 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-AUDIT-SEM
+- **CHECKPOINT 2026-10-01 (Devin session): thirteen-request review wave drained, all ACCEPT.** Records:
+  `Tools/work/SWE2-AUDIT-SEM/REVIEW-2026-10-01-dd-restatus-b4-b14.md` (nine OPUS DD owner-read batches
+  B4–B14 minus B6; closes revs 44649–44664) and `REVIEW-2026-10-01-ms4-p22-roles-incorp.md` (MS-4 box split,
+  pass-22 unattributed disposition, EC7 role corrections, DATA incorporations; closes revs 44698–44701).
+  - DD re-statuses: `documented_rule.py` re-run non-author READY×9 + READY-WITH-POINTER×7, FAILS 0; shop page
+    correctly stays PARTIAL; B12 CORRECTED-pass interpretation accepted as the ruling's falsification pass;
+    `00325D90` flag-0x04 gate, `0060B720` callback registration byte-verified.
+  - MS-4: split at `96ed44563` verified (ticked box keeps answered half; MS-4 box + OPEN row; PARTIAL correct);
+    `qid_ticked_open.py` rerun — page absent.
+  - P22: independent re-derivation from `edges.tsv` on `125b3a5c1` HEAD text — 28/30 sampled bullets byte-exact,
+    2 MECHANICAL verified via T4; moved-aside pages carry no append, patches apply clean.
+  - EC7 roles: 3 controls ALL HOLD; `00438860` calls builders 3+3+6+6 (byte-verified); `0024A710` mask verified.
+  - DATA incorporations: 4 checkers FAILS 0; `0032A045` = `mov [rbx+0x774],eax` byte-verified;
+    `check_questions` consistent. Observation (not this publish's defect): SD-141's cited record
+    `sd141-gpu-consumers-1001` exists uncommitted — in-flight OPUS publish will clear it.
+  Resume published `4096cc38f`, board validates at rev 44723. Lane drained at 44729: zero ACTIVE, zero
+  READY assigned; all READY items naming this lane are follow-ups owned by other agents
+  (CONTRACT/FRONTIER/DATA/FABLE); new OPUS DD owner batches B16/B17/B20 routed to SWE2-AUDIT-SPEC.
 - **CHECKPOINT ~06:00Z 2026-10-01 (GR-16 SECTION-03 review for OPUS, Claude session).** OPUS-REQ-AUDITSEM-SECTION03-REVIEW-1001 claimed rev 44363, finished rev 44366 -> **ACCEPT-WITH-NARROWING** (`_index/candidates/auditsem-review-section03-1001/`, sec03_sem.py 68 PASS, FAILS 0; unpublished, OPUS publishes). Ten of 24 bodies re-derived; run_review.py rerun under WSL bit-identical on 14/15 result files. N1: live tree fails input pinning on retained-reward-bindings/check.py (ASTRA 13a61b94b); reproduces on the pinned pre-image. Work files in `Tools/work/SWE2-AUDIT-SEM/sec03/`. FABLE row left untouched.
 - **CHECKPOINT ~02:40Z 2026-10-01 (wave 4, part 11: four FABLE-side reviews for OPUS, Claude session).** OPUS assigned
   four FABLE requests. Claimed at revs 44284-44287 and finished at revs 44312-44315 (all printed "Saved revision"). The

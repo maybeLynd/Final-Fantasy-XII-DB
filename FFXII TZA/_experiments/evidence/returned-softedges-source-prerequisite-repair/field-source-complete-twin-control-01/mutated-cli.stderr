@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-field-extent.py", line 197, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-field-extent.py", line 187, in main
+    source_qualification=quality.qualify_sources(directory,['original-code-raw-01.json','array-binding-code-01.json','member-bridge-code-01.json','constructor-source-retained-01.json'])
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-softedges-member-boundaries-03.py", line 32, in qualify_sources
+    agreement=A.validate(v);ranges=[]
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 48, in validate
+    raise ValueError("decoded annotation disagrees with bytes at " + record["pc"])
+ValueError: decoded annotation disagrees with bytes at 0x1ea5c1

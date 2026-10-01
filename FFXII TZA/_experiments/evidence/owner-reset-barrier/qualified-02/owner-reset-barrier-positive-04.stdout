@@ -1,0 +1,1 @@
+CONDITIONAL_OWNER_RESET_BARRIER:11 retained FST variants positive; UK-1 skips namedwait; other callers/state/lifetime OPEN

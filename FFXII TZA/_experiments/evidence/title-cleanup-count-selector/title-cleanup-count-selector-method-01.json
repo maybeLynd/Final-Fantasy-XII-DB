@@ -1,0 +1,19 @@
+{
+  "question": "Does the first cleanup delegate62B100 sanitize zero count before record processing, and does623DF0 select a record base or its+38 field?",
+  "hypotheses": [
+    "Zero count skips or normalizes before access",
+    "max(1,n) plus NULL selector reaches a field read before native service",
+    "Returned pointer is record base",
+    "Returned pointer is record+38 with stride58 and zero-extended index"
+  ],
+  "method": "A STATIC_ONLY",
+  "why": "Shipping branches and call/dataflow distinguish the local access and selector, without initialized game or native service effects.",
+  "existing": "New BC/common cleanup source shows first62B100 delegate and max1 selector preconditions; diagnostic complete root112B, first-ret-only leaf dump omitted second branch and was not semantic closure.",
+  "discriminator": "Complete entry-normal CFG from62B100..62B170 and623DF0..623E28; current decoded bytes/memory roles; first read ordering, selector offset and absence of local count sanitizer before it.",
+  "controls": "Exact image/span/metadata; shared SSE-store/LEA/atomic role controls; byte-to-annotation agreement before reduction; missing second leaf branch and wrong count/offset must refuse.",
+  "acceptance": "Only conditional original local behavior under backed ABI state; do not claim real zero-state reachability, scheduler/refcount purpose or opaque5CCB80 effects.",
+  "falsification": "Different count branch, sanitizer before read, mismatched selected offset or incomplete/failed prerequisite -> no semantic result.",
+  "consumer": "Existing FABLE title cleanup/OPUS count-storage ABI obligations; route scoped additional evidence without duplicate old reviews.",
+  "stop": "Stop unchanged source once local claim settled; actual valid constructors/count writers are separate next discriminator.",
+  "cleanup": "Original file reads only; no process/save/config/reference mutation"
+}

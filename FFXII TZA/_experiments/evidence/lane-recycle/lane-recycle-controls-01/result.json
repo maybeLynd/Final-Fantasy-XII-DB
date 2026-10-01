@@ -1,0 +1,64 @@
+{
+  "status": "PASS_ACTUAL_RECYCLE_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "fcebb3a51102bf1adbaeb6267e13f8878400fc4872bf47dd0cdf333b6d034ce3",
+  "positive_reused": {
+    "path": "lane-recycle-result-01.json",
+    "sha256": "405832624ae8155d0d639610aff7262c022a2b740e4ffe2d8e71d7418c5141ad"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-recycle.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "different-ticket-field",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-recycle.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\different-ticket-field\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\different-ticket-field"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "inverted-recycle-gate",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-recycle.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\inverted-recycle-gate\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\inverted-recycle-gate"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-retained-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-recycle.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\missing-retained-source\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\missing-retained-source"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "56cb6d5b79cec9082c5a7e447587e39ad188787f6209ad015dd41ea6ab8763cc",
+  "limits": "Four actual CLI prerequisite/identity refusals and reused positive; no natural-state, native or live execution or independent semantic acceptance"
+}

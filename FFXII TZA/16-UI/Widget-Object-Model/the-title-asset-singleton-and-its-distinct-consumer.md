@@ -281,9 +281,19 @@ asset through the UI-root child link is not excluded (the bound of residue 1).
    `00248220` makes at attach time is not excluded, because those generic walkers were not read one by one.
 2. Release through a teardown of the parent root `*(0208EA28)` is not established.
 3. Whether the asset ever takes `00244F00`'s deferred branch, or `00245020`'s `+0x40` bit `0x20`
-   deferral, is not established. `00248271` copies that bit from the parent at attach time.
+   deferral, is not established. `00248271` copies that bit from the parent at attach time. *(Narrowed 2026-10-01, OPUS, on ASTRA's title-root-retirement, ACCEPTed: the `00245020` deferral applies after a successful, valid, unchanged root initialization, because the root handler `002445D0` sets the bit and attachment copies it - see the OPUS 2026-10-01 subsection below. `00244F00`'s deferred branch is not settled by it.)*
 4. Real IO timing and lifetime remain OV-29.
 5. Type readiness is left for independent acceptance (OV-32).
+
+### OPUS 2026-10-01: root retention applies to the title asset, and the owner window has no revocation (OV-29)
+
+*Consumed from ASTRA's [`title-root-retirement`](../../_experiments/evidence/title-root-retirement/README.md) (SWE2-AUDIT-SPEC [review](../../_index/candidates/auditspec-review-title-root-retirement-1001/REVIEW.md), ACCEPT, no narrowing); OPUS re-read `002445D8`, `0024826B`-`00248271` and `00245072`-`0024509B` at the bytes. Static only, and every claim below is conditional on the premises named.*
+
+**The title asset inherits root retention.** The title initializer `00393FF0` starts its two requests, then loads the root `*(0208EA28)` (`00394117`) and attaches the asset under it (`00244960` -> `00248220`). The roots `0208EA20` / `0208EA28` / `0208EA30` are made by `00247AE0`, and their message-1 handler `002445D0` sets `0x23` in `+0x40` (`002445D8`). Attachment copies the parent's bit `0x20` into the child (`0024826B` tests it, `00248271` sets it). So after a successful, valid, unchanged root initialization the asset carries bit `0x20`. Teardown `00245020` broadcasts message 18 and then re-reads that bit (`00245072`). Set: it calls `002473F0(self, 0)`, clears bit 1 and sets bit `0x10`, and keeps the storage. Clear: it tail-calls the physical release `002482E0`. Message and helper side effects are premises, and root membership at attach is not lifetime for good.
+
+**No local revocation in the owner window.** After its ordinary gates (sealed, counts equal, ticket `+4` zero), `002495C0` reads the raw owner at ticket `+8` and that owner's current handler at owner `+0`, rejects NULL for each, and sends message 16. It reads no owner flags `+0x40`, no generation and no publication `02AEE4C0`. The title's message-16 handler `00394070` simply sets ready bit 0 at `+0xC0`. So a completion that arrives after a retained teardown, with the handler unchanged and the gates satisfied, writes the ready bit despite bit `0x10` and the cleared publication. That is a source witness under those conditions, not an observed late delivery.
+
+**Physical release.** `002482E0` nulls the handler before it disposes the storage, so a still-backed, unreused pool slot suppresses the notification. NULL is not a lasting identity token: a released slot can be selected by `00244F50` and reinitialized by `002465F0` with a new handler. Whether a ticket survives into reuse (ABA), external cancellation or drain, heap validity and natural pending teardown all stay open (OV-29).
 
 ## Cross-subsystem neighbours — SWE2-EC7 (pass-22 dispositions)
 

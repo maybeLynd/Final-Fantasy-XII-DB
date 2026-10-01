@@ -1,0 +1,17 @@
+function	name	site	disp	kind	instruction	route	note
+003B4160	FUN_003b4160	003B4182	0x0	r	cmp dword ptr [rbx], ebp	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B41F2	0x0	w	mov dword ptr [rbx], eax	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B4244	0x0	r	mov eax, dword ptr [rbx]	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B41EA	0x4	w	mov dword ptr [rbx + 4], ebp	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B4235	0x8	w	mov qword ptr [rbx + 8], rbp	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0 zeroclear	
+003B4160	FUN_003b4160	003B4280	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B428E	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B429A	0x8	r	mov rax, qword ptr [rbx + 8]	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B4239	0x10	w	mov qword ptr [rbx + 0x10], rbp	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0 zeroclear	
+003B4160	FUN_003b4160	003B4284	0x10	w	mov qword ptr [rbx + 0x10], rbp	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0 zeroclear	
+003B4160	FUN_003b4160	003B4292	0x10	w	mov qword ptr [rbx + 0x10], rcx	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B4215	0x20	w	movups xmmword ptr [rbx + 0x20], xmm0	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B425B	0x2C	r	movzx eax, byte ptr [rbx + 0x2c]	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B421D	0x30	w	movups xmmword ptr [rbx + 0x30], xmm1	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B4225	0x40	w	movups xmmword ptr [rbx + 0x40], xmm0	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	
+003B4160	FUN_003b4160	003B41A8	0x50	w	mov dword ptr [rbx + 0x50], eax	route-seeded PARRAY 0x02B404E0 stride=0x60 count=64 base+0x0	

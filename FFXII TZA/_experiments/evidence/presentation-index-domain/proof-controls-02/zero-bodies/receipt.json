@@ -1,0 +1,33 @@
+{
+  "case": "zero-bodies",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\presentation-index-domain\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\presentation-index-domain\\proof-controls-02\\zero-bodies\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\presentation-index-domain\\proof-controls-02\\zero-bodies"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "ValueError: missing/zero original ranges",
+  "expected_error": "ValueError: missing/zero original ranges",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_file": "source-01.json",
+  "changed_sha256": "48b5d3a5ce813071c5427527d7e08fbbfecf67aa874736c02cebc3e81348fb4b",
+  "baseline_sha256": {
+    "capture.py": "a795d4c7b5049d1c88e590fe1b1ff891f28323dedfe3ffacfc908730396275f2",
+    "capture-01.status.json": "71d953f148637f30c17f0da49a8de27782c5761e0ce54189e0b74fb2f7cafd8a",
+    "capture-01.stdout": "6afa733e7942ce80bd99a20014937efa7373991660b84308dcfbc53888f9f061",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source-01.json": "42f23e697ae838f07943f0a4a4b694193dbca1fe6bf99f81f445118c707f98c4",
+    "retained/selector-callers-raw-01.json": "a362ef91feb4e2f80045af35a825d0dbc6b1556f08a45d0c4ccf271b2fcf0576",
+    "retained/selector-callers.py": "83863f63f0519d8755ed561d2c2ba07864ba93c10a2ad4e61f36088d18ec8ae7"
+  },
+  "producer_sha256": "5fea9a75ef253616cb921c29ef5f2dcb40201b869e6a73da07d33b36d6aa0a22",
+  "control_sha256": "1e01c4d2da46721ae6a76ac781faf02359955f6e9eeefbe932ec186e9d891669",
+  "passed": true
+}

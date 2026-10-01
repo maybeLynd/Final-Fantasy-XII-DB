@@ -1,0 +1,15 @@
+{
+  "question": "What original producer sets NameBindingEntry+19 mask04, and does its local construction rule force18mask02 ready rather than pending?",
+  "hypotheses": ["H1 mask04 marks a direct/special already-ready source, excluding the pending exception under its original producer", "H2 the producer permits mask04 while18mask02=0, so natural pending exception needs additional lifetime evidence"],
+  "method": "A existing records then bounded positive-writer discovery and original object/branch/dataflow analysis",
+  "existing": "namebinding-deletion result01 explicit exception; types field19 allocator ANDC8 clears04; canonical entry128 fixed-array topology; no earlier snapshot proves mask04 producer",
+  "identity": "Shipping EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000; current catalog extents and shared reviewed access-role adapter",
+  "discovery_scope": "Only original002E2000..002EC000 module body candidates for a positive setter; incomplete decode/offset ambiguity remains visible. Wider/indirect/other-module writes are not excluded.",
+  "controls": ["Known AND BYTE[record+19],C8 at2E25F2 detected with actual shared-adapter rw classification", "Store/LEA/RMW reviewed adapter prerequisites", "Validate candidate object identity through original lookup/constructor, not displacement arithmetic alone", "Capture exact verified function entry/end, never guessed interior disassembly as evidence"],
+  "acceptance": "Find a real original producer and prove/refute its conditional ready/pending implication; do not promote a candidate-only offset scan into type identity or universal writer exclusion",
+  "falsification": "Reached producer19|04 with18mask02 remaining0 refutes local ready-only rule; unknown alias/caller states keep universal pending impossibility open",
+  "consumer": "Existing FABLE/OPUS namebinding-deletion consumer and natural exception/lifetime preparation",
+  "budget": "Small module candidate discovery plus source-directed selected bodies; no general disposition/callgraph tooling or live setup",
+  "cleanup": "Read-only reference/metadata and finite own scripts; no game/PC/native/instrument/save/config/reference/peer changes",
+  "stop": "If positive controls fail or candidates do not distinguish hypotheses, retain invalid/unresolved result and choose an exact better original-source boundary; no blind rerun"
+}

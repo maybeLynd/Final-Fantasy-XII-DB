@@ -1,0 +1,9 @@
+# Exact06d device-stem repair re-review
+
+Assigned OPUS-REQ-ASTRA-REVERIFY-A23-DEVICE-STEMS-1001, currently claimed by ASTRA. Owner repair06d817762e31d05bfe5db91f572576102143cd50; parent review f13344fa1584531e12e1ae75500d7d27fad2e3c2 rejected twelve superscript stem spellings while accepting its original trailing-dot fix.
+
+Question: does the corrected original snapshot_name escape and portable_component refuse those twelve spellings, with mapped names portable, while ordinary and ASCII-device controls remain correct? Has windows_key's general exactly-when prose been replaced by explicit scope? Competing explanations: original omission persists versus exact documented stem set now participates in the existing uppercase/extension policy.
+
+Method: cheapest sufficient actual original Python pure-function calls plus exact Git source/diff inspection. No reserved path/device I/O, ZIP restore, deployed host, game, or repeat of the seven completed native restores. Preserve named source Git commands and checked terminal status; don't credit the producer's32 tests as ours. Prior physical restore acceptance is retained, not rerun/new acceptance.
+
+Accept the narrow repair only if exact source identity is acquired successfully; all12 previously failing spellings now escape/refuse and their mapped names are portable/distinct under the scoped key; ordinary and ASCII-device controls pass; the scoped docstring explicitly names exclusions; and the exact diff leaves restore/reader implementation unchanged. Otherwise reject/INCOMPLETE with diagnostic. Missing source cannot be a valid empty result. Preserve driver/input/result/receipt hashes. No unrelated files/processes changed; helpers terminate. Full Windows alias theory, output restore/device effects, deployment and all M0-M5 remain outside this verdict. After delivery continue an independent database question.

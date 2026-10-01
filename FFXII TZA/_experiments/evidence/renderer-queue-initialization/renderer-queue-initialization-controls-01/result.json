@@ -1,0 +1,48 @@
+{
+  "status": "PASS_ACTUAL_REFUSALS_INDEPENDENT_PENDING",
+  "refusals": [
+    {
+      "case": "missing-initializer",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-queue-initialization.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-01\\missing-initializer\\source.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-01\\missing-initializer\\result.json"
+      ],
+      "exit": 1,
+      "expected_error": "normal extent/chain prerequisite incomplete",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "checker_sha256": "95f37d5868f2c10deb03fc4140eca266c040ab1ea1385159de163b32265e3997"
+    },
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-queue-initialization.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-01\\failed-capture\\source.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-01\\failed-capture\\result.json"
+      ],
+      "exit": 1,
+      "expected_error": "missing original/adapter prerequisite",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "checker_sha256": "95f37d5868f2c10deb03fc4140eca266c040ab1ea1385159de163b32265e3997"
+    },
+    {
+      "case": "coherent-five-banks",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-queue-initialization.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-01\\coherent-five-banks\\source.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-01\\coherent-five-banks\\result.json"
+      ],
+      "exit": 1,
+      "expected_error": "source operation mismatch 0x184fdd",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "checker_sha256": "95f37d5868f2c10deb03fc4140eca266c040ab1ea1385159de163b32265e3997"
+    }
+  ],
+  "limits": "Synthetic producer inputs/actual CLI exits; not original-code execution, allocator failure or live FF12 observations"
+}

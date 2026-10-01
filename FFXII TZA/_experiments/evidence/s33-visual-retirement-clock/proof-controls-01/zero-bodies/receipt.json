@@ -1,0 +1,30 @@
+{
+  "case": "zero-bodies",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\proof-controls-01\\zero-bodies\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\proof-controls-01\\zero-bodies"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "ValueError: missing/zero original ranges",
+  "expected_error": "ValueError: missing/zero original ranges",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_file": "source-01.json",
+  "changed_sha256": "6368bf60c70902b0e3b68245cbe61b93e1f6cf26d10520ea80b1874255a7b49a",
+  "inherited_from_baseline": {
+    "capture.py": "67dd99ddb878e5ca24697c036d1f40c34e202b5e8ebf463a338eac06c43f7c1f",
+    "capture-01.status.json": "10709f4c0d1e7303669c6d9b6c0365f900d6312b16ef7aee7006ce2f37a51464",
+    "capture-01.stdout": "1cfc1378fe0fcb8a9cedc2f52eead3f721687554aaab8a50d76890bc6905d630",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "producer_sha256": "d66d21f288d75946abfb07823967e08dbfef5a39cf1fb3e58fa5b52ca96345d7",
+  "control_sha256": "a1d309009a51cc2a2cdf2e1301652adc693ea117fe27518dc218854e48294922",
+  "passed": true
+}

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\s33-visual-retirement-clock\prove.py", line 86, in <module>
+    ap=argparse.ArgumentParser();ap.add_argument('output',type=Path);ap.add_argument('--src',type=Path,default=P);a=ap.parse_args();main(a.src,a.output)
+                                                                                                                                    ~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\s33-visual-retirement-clock\prove.py", line 21, in main
+    roles=load('s33phase_roles',TOOLS/'validate-title-source-annotations.py').validate(v)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 28, in validate
+    raise ValueError("missing/zero original ranges")
+ValueError: missing/zero original ranges

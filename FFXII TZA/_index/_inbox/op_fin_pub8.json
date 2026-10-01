@@ -1,8 +1,1 @@
-{
- "action": "finish",
- "task": "SWE2-DATA-PUB-UQ218-PASS8",
- "note": "Publish landed c8d6ddb80 \u2014 page opcode table + candidate record + OQ narrowing + audit entry.",
- "result_refs": [
-  "c8d6ddb80"
- ]
-}
+{"action": "finish", "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-8", "note": "published f6cb9491 - 17 doc pages + inbox; @publication moves to seal", "result_refs": ["f6cb9491"]}

@@ -1,0 +1,171 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY native branch/store proof; no game or machine-code execution",
+  "driver_sha256": "7e6c8ea864852a11d1292a52ebfd3fd05c4e393169217d86851736ab58c80e59",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "6f11f0406c765cf3983109d6f1b19430feb2b986b80e4206310801922747c821"
+    },
+    {
+      "path": "stack-probe-source-01.json",
+      "sha256": "da5529ebbfec0be778ee4a6fc5d343f058365c08cb70f1c4e4b3d2617e2a4bfc"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 47,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 19,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 26,
+  "graphs": [
+    {
+      "entry": "0x313550",
+      "visited": 15,
+      "returns": [
+        "0x313589"
+      ],
+      "tails": [
+        {
+          "pc": "0x313575",
+          "target": "0x35c620"
+        },
+        {
+          "pc": "0x313584",
+          "target": "0x35c620"
+        }
+      ]
+    },
+    {
+      "entry": "0x35c620",
+      "visited": 2,
+      "returns": [],
+      "tails": [
+        {
+          "pc": "0x35c627",
+          "target": "0x273e30"
+        }
+      ]
+    }
+  ],
+  "raw_argument_partitions": [
+    {
+      "old_bit": 0,
+      "raw_ecx_min": 0,
+      "raw_ecx_max": 0,
+      "store_and_tail": false,
+      "result_bit": 0,
+      "bit_value_changes": false
+    },
+    {
+      "old_bit": 0,
+      "raw_ecx_min": 1,
+      "raw_ecx_max": 1,
+      "store_and_tail": true,
+      "result_bit": 1,
+      "bit_value_changes": true
+    },
+    {
+      "old_bit": 0,
+      "raw_ecx_min": 2,
+      "raw_ecx_max": 4294967295,
+      "store_and_tail": true,
+      "result_bit": 1,
+      "bit_value_changes": true
+    },
+    {
+      "old_bit": 1,
+      "raw_ecx_min": 0,
+      "raw_ecx_max": 0,
+      "store_and_tail": true,
+      "result_bit": 0,
+      "bit_value_changes": true
+    },
+    {
+      "old_bit": 1,
+      "raw_ecx_min": 1,
+      "raw_ecx_max": 1,
+      "store_and_tail": false,
+      "result_bit": 1,
+      "bit_value_changes": false
+    },
+    {
+      "old_bit": 1,
+      "raw_ecx_min": 2,
+      "raw_ecx_max": 4294967295,
+      "store_and_tail": true,
+      "result_bit": 1,
+      "bit_value_changes": false
+    }
+  ],
+  "boundary_countermodel": {
+    "old_flags": 1,
+    "raw_ecx": 2,
+    "new_flags": 1,
+    "store_and_tail": true,
+    "interpretation": "Under raw32 ABI, same bit value still writes/tails; not proof that a natural caller supplies2 or that a declared0/1 API accepts it."
+  },
+  "stack_probe": "Verified original81B helper has no RCX/RDX references orRAX destination/calls. BND prefixes retained, no MPX/OS execution claim. Normal return/valid private stack/pages/no interference remain premises.",
+  "immediate_receiver_stores": [
+    {
+      "pc": "0x273e9e",
+      "receiver": "0x22ca408",
+      "offset": 0,
+      "bytes": 8,
+      "value": 0
+    },
+    {
+      "pc": "0x273ea7",
+      "receiver": "0x22ca408",
+      "offset": 8,
+      "bytes": 8,
+      "value": 0
+    },
+    {
+      "pc": "0x273eae",
+      "receiver": "0x22ca408",
+      "offset": 16,
+      "bytes": 8,
+      "value": 0
+    },
+    {
+      "pc": "0x273eb5",
+      "receiver": "0x22ca408",
+      "offset": 24,
+      "bytes": 8,
+      "value": 0
+    }
+  ],
+  "receiver_zero_interval": [
+    "0x22ca408",
+    "0x22ca428"
+  ],
+  "native_suffix_entry": "0x273ebc",
+  "full_initializer_effects_closed": false,
+  "established": [
+    "Changed rawcomparison path forwards updatedDWORD inEDX but replacesRCX with static022CA408 receiver",
+    "Given successful original stackprobe/privateframe/validreceiver, original initializer prefix clears32bytes of thatreceiver before the uncapturedsuffix",
+    "A stubbed35C620 or273E30 records call interception only and does not establish these native effects",
+    "RawECX outside0/1 can trigger same-bit store/tail; conditional argument0/1 unchanged-mode guarantee remains valid"
+  ],
+  "unresolved": [
+    "Full273E30 semantic meaning/effects/any laternotifications/flags use",
+    "Natural receiver lifetime/type/initialization/caller argumentdomain",
+    "Full suffix callees/aliasing/OS-stack fault behavior/MPX state",
+    "Mode1-to-Esper type coupling and wholeOV42/21 naturaladmission"
+  ],
+  "limits": "Prefix source effect only, not executed native receiver writes, whole notify refutation or action consequence. No old mode-bit campaigns repeated. A label may include notifications later; immediate original memory mutation must remain explicit."
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import importlib.util; from pathlib import Path; s=importlib.util.spec_from_file_location("bounded_q",'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\qualify_owner_queue_order_source.py'); q=importlib.util.module_from_spec(s); s.loader.exec_module(q); q.main(Path('Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\duplicate-selection\\source.json'),q.UP,entries=[4053616, 4053616],include_pump_table=False)
+                                                                                                                                                                                                                                                                                                                               ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\qualify_owner_queue_order_source.py", line 29, in main
+    if not isinstance(selected,list) or not selected or any(not isinstance(e,int) for e in selected) or len(set(selected))!=len(selected):raise ValueError('missing/invalid bounded original selection')
+                                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: missing/invalid bounded original selection

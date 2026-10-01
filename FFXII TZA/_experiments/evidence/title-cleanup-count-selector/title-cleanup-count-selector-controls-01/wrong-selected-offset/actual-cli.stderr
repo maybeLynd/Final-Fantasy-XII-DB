@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-cleanup-count-selector.py", line 105, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-cleanup-count-selector.py", line 28, in main
+    annotations = S.validate(raw)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 48, in validate
+    raise ValueError("decoded annotation disagrees with bytes at " + record["pc"])
+ValueError: decoded annotation disagrees with bytes at 0x623e06

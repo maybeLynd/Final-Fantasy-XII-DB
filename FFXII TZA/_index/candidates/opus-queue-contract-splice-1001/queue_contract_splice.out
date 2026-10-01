@@ -1,0 +1,5 @@
+WOULD PATCH | `+0x00`, `+0x08` | Absolute-counter accumulator 
+WOULD PATCH | `+0x50` | Part callback slot. **The requester cl
+WOULD PATCH * Authored/reachable producer state for the chunk 
+WOULD PATCH * Meaning of the absolute-counter accumulator and 
+FAILS 0

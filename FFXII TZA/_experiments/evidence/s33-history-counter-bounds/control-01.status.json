@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\control.py"
+  ],
+  "driver_sha256": "d357e5798af466c9d3e7468dd4b2a8a20baa4c63a2edd50e22cffe93156caeb8",
+  "deadline_seconds": 55,
+  "exit": 0,
+  "terminal": true,
+  "exception": null
+}

@@ -1,0 +1,15 @@
+{
+  "question": "Does186230 consume the same context+C38/32*index callback-data queue used by185A90, and in what local order relative to index changes and cursor reset?",
+  "hypotheses": [
+    "Invokes the enqueuing bank before any bank change",
+    "Changes the bank then invokes each stored callback with its stored data and clears a queue cursor"
+  ],
+  "method": "A STATIC_ONLY",
+  "why": "Matching base/stride/index dataflow and indirect call operands establish local ABI/order without an initialized game. Actual call-chain occurrence/thread/frame, concurrent access, callback mutations and natural lifetime require additional evidence.",
+  "reference": "Pinned shipping EXE73461d08; candidate-only bounded search identifies pdata186230..1862AD/1D52A90",
+  "controls": "Existing reviewed adapter controls; exact original125B span; complete normal CFG and exact call/argument/stride/index/reset predicates before result",
+  "acceptance": "Source-bound bank expression, callback argument and loop/reset order, with mutation/alias/reentrancy assumptions explicit",
+  "failure": "Wrong range, source role, CFG, callback target or global/context identity refuses reduction; missing state remains OPEN",
+  "consumer": "FABLE renderer/title lifetime, OPUS callback ABI/queue contract",
+  "cleanup": "Offline reads only; checked synchronous child exit; no process/game/save/config writes"
+}

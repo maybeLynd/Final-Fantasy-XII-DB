@@ -1,0 +1,100 @@
+{
+  "status": "CANDIDATE_ONLY_NOT_SEMANTIC_CLOSURE",
+  "method": "A STATIC_ONLY",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "bounded_function_starts": [
+    "0x184af0",
+    "0x1862b0"
+  ],
+  "hits": [
+    {
+      "pdata": [
+        "0x184f20",
+        "0x18506f",
+        "0x1d542d4"
+      ],
+      "pc": "0x184fc0",
+      "bytes": "488d8f380c0000",
+      "mnemonic": "lea",
+      "args": "rcx, [rdi + 0xc38]"
+    },
+    {
+      "pdata": [
+        "0x185a90",
+        "0x185ae6",
+        "0x1d52ad8"
+      ],
+      "pc": "0x185a94",
+      "bytes": "486381b80c0000",
+      "mnemonic": "movsxd",
+      "args": "rax, dword ptr [rcx + 0xcb8]"
+    },
+    {
+      "pdata": [
+        "0x186230",
+        "0x1862ad",
+        "0x1d52a90"
+      ],
+      "pc": "0x18623f",
+      "bytes": "8b81b80c0000",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rcx + 0xcb8]"
+    },
+    {
+      "pdata": [
+        "0x186230",
+        "0x1862ad",
+        "0x1d52a90"
+      ],
+      "pc": "0x18624d",
+      "bytes": "8981b80c0000",
+      "mnemonic": "mov",
+      "args": "dword ptr [rcx + 0xcb8], eax"
+    },
+    {
+      "pdata": [
+        "0x186230",
+        "0x1862ad",
+        "0x1d52a90"
+      ],
+      "pc": "0x186262",
+      "bytes": "488b9c0b380c0000",
+      "mnemonic": "mov",
+      "args": "rbx, qword ptr [rbx + rcx + 0xc38]"
+    },
+    {
+      "pdata": [
+        "0x186230",
+        "0x1862ad",
+        "0x1d52a90"
+      ],
+      "pc": "0x186282",
+      "bytes": "48638eb80c0000",
+      "mnemonic": "movsxd",
+      "args": "rcx, dword ptr [rsi + 0xcb8]"
+    },
+    {
+      "pdata": [
+        "0x186230",
+        "0x1862ad",
+        "0x1d52a90"
+      ],
+      "pc": "0x186292",
+      "bytes": "488b8431380c0000",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rcx + rsi + 0xc38]"
+    },
+    {
+      "pdata": [
+        "0x186230",
+        "0x1862ad",
+        "0x1d52a90"
+      ],
+      "pc": "0x18629a",
+      "bytes": "48898431400c0000",
+      "mnemonic": "mov",
+      "args": "qword ptr [rcx + rsi + 0xc40], rax"
+    }
+  ],
+  "limits": "Displacement match is not object identity or semantic proof; no access-role classification, natural reachability or complete CFG claim"
+}

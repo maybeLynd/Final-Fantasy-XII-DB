@@ -1,0 +1,210 @@
+{
+  "status": "PRODUCER_VALIDATED_INDEPENDENT_PENDING",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-status-recursion-index-bound.py",
+      "bytes": 938,
+      "sha256": "e8caf8c8e226367f91725dcac51eb292116a549965a3c54874304ad6ab1d6820"
+    },
+    {
+      "path": "control-status-recursion-index-bound.py",
+      "bytes": 2669,
+      "sha256": "94b06930bdcc7ba9bc363a098b607050f09a390fbee19c6aaf0f25b041642384"
+    },
+    {
+      "path": "dependencies/CALLER-CONE-0030E360-0930.md",
+      "bytes": 8575,
+      "sha256": "7ed441a6bbd1ec9676453b1cc037ac18be1c38702e773eb0a15436f69cb9ac13"
+    },
+    {
+      "path": "dependencies/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "prove-status-recursion-index-bound.py",
+      "bytes": 5750,
+      "sha256": "c64af37156bbaf73923c3e7baa434760e6fd44f59e52b0ad026595fae702684e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5063,
+      "sha256": "a58359c5287f4cc581d2d657fa5da0466a4bf85a3d5c3a09a284a6f9c72e766a"
+    },
+    {
+      "path": "status-recursion-index-bound-capture-01.status.json",
+      "bytes": 667,
+      "sha256": "8f3cd8ebb7fffe28cb1e35b6a51013012c077e50dce221acd49efd4f8d4f3af4"
+    },
+    {
+      "path": "status-recursion-index-bound-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "status-recursion-index-bound-capture-01.stdout",
+      "bytes": 178,
+      "sha256": "d6b319a3341c2286144f1a7996e77607009ee251968893abf911ed7f44a2956a"
+    },
+    {
+      "path": "status-recursion-index-bound-cleanup-01.json",
+      "bytes": 569,
+      "sha256": "bb44f85568e3cdbc29d6a50e4c5ad4d93c326338b870c0e653691f4c47120cd4"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/changed-loop-bound/capture-status-recursion-index-bound.py",
+      "bytes": 938,
+      "sha256": "e8caf8c8e226367f91725dcac51eb292116a549965a3c54874304ad6ab1d6820"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/changed-loop-bound/capture-status.json",
+      "bytes": 667,
+      "sha256": "21c0988848b2fff2785f5dc7c4b605787fe87cb685edeeec88b4045cd80d1e5b"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/changed-loop-bound/status-recursion-index-bound-source-01.json",
+      "bytes": 17432,
+      "sha256": "e3de1ee0a27ea6e31e5860ecdea950df6f4f785a01e124ac8f9938814da42c81"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/changed-loop-bound/status.json",
+      "bytes": 1160,
+      "sha256": "fea1a16f58650b0cf917bf40b4938ed17b7d7563e3c8daca03879583564a91db"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/changed-loop-bound/stderr",
+      "bytes": 663,
+      "sha256": "307d72dd502bf78eb3e9163e347f3aba3e48105c35b442490cc673322b870f09"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/changed-loop-bound/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/failed-capture/capture-status-recursion-index-bound.py",
+      "bytes": 938,
+      "sha256": "e8caf8c8e226367f91725dcac51eb292116a549965a3c54874304ad6ab1d6820"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/failed-capture/capture-status.json",
+      "bytes": 667,
+      "sha256": "3145a653d50e8e9f012ceb677f0f5fbf329b3d717a0f825bfa5e7bc41d870a68"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/failed-capture/status-recursion-index-bound-source-01.json",
+      "bytes": 17432,
+      "sha256": "8b56ec15bdb2844191011daea84b133fd403a36c421e28bf47332ee6aa6918a0"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/failed-capture/status.json",
+      "bytes": 1141,
+      "sha256": "d3f56792c7752ba933e074feac18a0b28803009bb78a3310b93af16c258f51ef"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/failed-capture/stderr",
+      "bytes": 960,
+      "sha256": "126912785be5bc257784a538d746583bd851e625648eb0aeea7e3f63e80720a0"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/failed-capture/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/missing-loop/capture-status-recursion-index-bound.py",
+      "bytes": 938,
+      "sha256": "e8caf8c8e226367f91725dcac51eb292116a549965a3c54874304ad6ab1d6820"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/missing-loop/capture-status.json",
+      "bytes": 667,
+      "sha256": "437df7c9221c15858e9b60a634cadcd53ab7437b2cc32854b1917cac1c6a6df7"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/missing-loop/status-recursion-index-bound-source-01.json",
+      "bytes": 4850,
+      "sha256": "0825221dea6bbb4dada1d48b27ba5bea42f70ff518ef76c85981f34268124c08"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/missing-loop/status.json",
+      "bytes": 1124,
+      "sha256": "94fc5c4f2af4f570d897341713ad09655204b27fd2cb7bccdf94cab45835c084"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/missing-loop/stderr",
+      "bytes": 813,
+      "sha256": "9acfdac57c456dbffff6369d617cddb40d12db048f7db0d9b6588a4f753860d3"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/missing-loop/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-01/result.json",
+      "bytes": 3948,
+      "sha256": "29321b6e75e9198e5ec8e035ca1761dcb368a77e7f0bdfd9dccfbef027d1c678"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-run-01.status.json",
+      "bytes": 576,
+      "sha256": "6e131367620b9746f7f64aadb76de040b0d338b6c6c365a65a4e9beb46ce0f47"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "status-recursion-index-bound-controls-run-01.stdout",
+      "bytes": 71,
+      "sha256": "7da3054b91dbae3e1788dc47055775d078812d592a00b6069c28d9b624c810e8"
+    },
+    {
+      "path": "status-recursion-index-bound-method-01.json",
+      "bytes": 1887,
+      "sha256": "4de8dc0edbb46df09b117d704f7a9334ac9ff87dc43128ad17fac3002a3f43ff"
+    },
+    {
+      "path": "status-recursion-index-bound-positive-01.status.json",
+      "bytes": 864,
+      "sha256": "46961cd0382c4e161f6ca1f6f1b1e2fd23564648b96d8e92644f8d9c3c214629"
+    },
+    {
+      "path": "status-recursion-index-bound-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "status-recursion-index-bound-positive-01.stdout",
+      "bytes": 117,
+      "sha256": "0561d3518bbacd2ce581084a809b8bbe056f494948e920295a4d1863d7c4717d"
+    },
+    {
+      "path": "status-recursion-index-bound-result-01.json",
+      "bytes": 5852,
+      "sha256": "4592c8475211202a09e7593d47f73a2e9b46ced3a7b4afc2de6241ed383d66be"
+    },
+    {
+      "path": "status-recursion-index-bound-source-01.json",
+      "bytes": 17347,
+      "sha256": "10561e568f97d9a9f8251d749bf47af5a68be34b512f5100406e834bd7827cae"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+00228450	FUN_00228450	0022845C	0xC8	r	cmp qword ptr [rax + 0xc8], rcx	route-seeded PTR 0x01FD4948 base+0x0	
+00228450	FUN_00228450	00228465	0xC8	w	mov qword ptr [rax + 0xc8], 0	route-seeded PTR 0x01FD4948 base+0x0	
+002286B0	FUN_002286b0	002286E3	0xC8	w	mov qword ptr [rax + 0xc8], rbx	route-seeded PTR 0x01FD4948 base+0x0	

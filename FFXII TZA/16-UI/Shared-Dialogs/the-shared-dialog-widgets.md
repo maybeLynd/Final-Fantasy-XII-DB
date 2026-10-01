@@ -77,7 +77,7 @@ The remaining arms, read against the table at `0057CCA8` (2026-09-15):
   - `0x8001` (`0057CB16`): option pick. With bit 8 set it just posts `0x8100` to `[+0xC8]`. Otherwise it computes the embedded list's cursor row, checks the option slot's `+0x5BC` flag bit, and writes ~~the parent list's `+0xFC` result byte~~ **its own embedded list's `+0xFC` decide-sound id** (corrected 2026-09-29, FABLE, GI-4: `r8` = `+0xC0`, and the list plays that byte as its confirm sound at `002D4114` when the owner declines the pick) from the `+0x630` flag class: option id `0x8101` → `3`; `0x04` → `0x37`; `0x40` → `0x19`; `0x80` → `0x18`; `0x100` → `3`; `0x200` → `4`; `0x400` → `0x45` — the last three via `bt edx, 8/9/0xA` (`0057CB8F`–`0057CBD7`). It then posts the slot's `+0x5B8` word (the option id) to `[+0xC8]` and returns 1 only when the child answered 1
   - `0x8002` (`0057CACB`): with `+0x630` bit 2 set, post `0x8102` to `[+0xC8]` and clear `+0x40` bit 3; with bit 8 clear, `002D4650` on `+0xC0` with `movsx +0x634` — the back/scroll path
 - **id 19** `0057C88C`: same `002D4650` back-path as `0x8002`, gated on bit 8 clear and `+0x637`==1 — the "leave stage 1" message
-- **id 2** `0057C8C0`: reconcile — `001EDEC0` render-scale gate on `+0xB4`; when it passes and bit `0x20` is clear, window-record `002ABEC0` + `002B1E20`(0) re-lay out `+0xE0`
+- **id 2** `0057C8C0`: reconcile — `001EDEC0` FrameLimit mode predicate on `+0xB4`; when it passes and bit `0x20` is clear, window-record `002ABEC0` + `002B1E20`(0) re-lay out `+0xE0`
 - **id 18** `0057CC79`: clears `[rip+0x1b1dfb0]+0x328` — the singleton pointer teardown complementing the `0057C4D9` store
 
 ## `00556F90` — the message window (MessageLine/NobuMessage keys)
@@ -102,7 +102,7 @@ members are shared engine helpers cited as families: the `0024xxxx` widget objec
 (`002B1E20`/`002B3050`/`002B3280`/`002B3400`/`002B3930`), the `002Dxxxx` menu controls
 (`002CC9C0`/`002CCB30`/`002D04F0`/`002D3900`/`002D4650`/`002D8550`/`002D8650`/`002D8910`/
 `002D8BB0`), `002F9860` string fetch, `002527B0`/`00254F30`/`00291D70`/`00291D80` helpers,
-`001EDEC0` render-scale gate, `002ABEC0` window records, and `00861EC0`/`00808C40` CRT. **8 call-targets carry no
+`001EDEC0` FrameLimit mode predicate, `002ABEC0` window records, and `00861EC0`/`00808C40` CRT. **8 call-targets carry no
 census entry** — arm bodies inside listed owners.
 
 | member | role | interior cite |
@@ -268,4 +268,4 @@ Interior anchor `003671CB` (function `00367110`).
 
 *Added 2026-09-30 (SWE2-FRONTIER, `SWE2-FRONTIER-PASS22-DEBT-OWN`): the layers pass 22 still reported for this page at HEAD `9a4cd5784`. Every edge was listed in full and the cited function's body was read.*
 
-**Save_Load_Settings — CLIENT (7 edges).** `00247510` (95 B) sends a widget message. It builds a message of kind `0xC` with the caller's two arguments on the stack. When the object and its handler at `[obj+0]` are non-null, it calls the handler with that message; otherwise it returns 0. The save and load controllers use it to notify their listener: `0057E950`, `0057EBB0`, `SaveLoad_FullImageStorageCompletionCallback` (`00580840`), `SaveSlotScan_ControllerCallback` (`005819F0`), `SaveSlotProbe_StorageCompletionCallback` (`00581B70`) and `SaveLoad_ControllerLifecycleHandler` (`00582860`). For example, `00581B70` posts `0x1D` to the object at its `+0xC0` (`00581D41`–`00581D52`), and `00582860` posts `0x8001` (`00582B0B`–`00582B19`). `00582860` also calls the render-scale gate `001EDEC0` on its `+0xB4` (`00582A31`–`00582A37`). The save layer uses these helpers to talk to its dialogs and owns nothing on this page.
+**Save_Load_Settings — CLIENT (7 edges).** `00247510` (95 B) sends a widget message. It builds a message of kind `0xC` with the caller's two arguments on the stack. When the object and its handler at `[obj+0]` are non-null, it calls the handler with that message; otherwise it returns 0. The save and load controllers use it to notify their listener: `0057E950`, `0057EBB0`, `SaveLoad_FullImageStorageCompletionCallback` (`00580840`), `SaveSlotScan_ControllerCallback` (`005819F0`), `SaveSlotProbe_StorageCompletionCallback` (`00581B70`) and `SaveLoad_ControllerLifecycleHandler` (`00582860`). For example, `00581B70` posts `0x1D` to the object at its `+0xC0` (`00581D41`–`00581D52`), and `00582860` posts `0x8001` (`00582B0B`–`00582B19`). `00582860` also calls `001EDEC0` on its `+0xB4` (`00582A31`–`00582A37`), the FrameLimit mode predicate of CONTRACT-boot-fixups 13c/13d: 1 unless the mode is on and unsuppressed, then (~arg) & 1. The save layer uses these helpers to talk to its dialogs and owns nothing on this page.

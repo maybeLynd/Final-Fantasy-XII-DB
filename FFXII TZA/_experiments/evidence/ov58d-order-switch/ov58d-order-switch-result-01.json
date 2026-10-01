@@ -1,0 +1,578 @@
+{
+  "status": "PRODUCER_CHECKED_STATIC_REFUTATION_INDEPENDENT_PENDING",
+  "method": "A original code and exact finite switch data",
+  "producer_complete": true,
+  "question": "Do normal4049/404A order handlers reach the two named high-index status calls?",
+  "answer": "REFUTED. Both map to2FDE7B, change unit54 to1/2 then locally return1; no direct CALL. Actual status messages4051..4070 and4071..4090 supply lowR8B0..31, notF8/D9.",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "e2087d01fa8ef78d9ad0095e628aabd73baa175a268eafe6fd9f55e91a55cd97",
+  "capture_status_sha256": "d03d4ac65e19f9c3ff64dcb2b448cde8ab93fac53c983ab04bddecbe532c7bc5",
+  "capture_driver_sha256": "8d5346292fd8e6a26e6fc2faa5ebfc0a7081437fcfe55482f0cbed61626b6169",
+  "checker_sha256": "332becde1a90d134033a531c6d7f87ab6098874d1aa0317af7af3868ab8dae2f",
+  "annotations": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 537,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "first_switch_mapping": [
+    {
+      "message": "0x4046",
+      "selector": 0,
+      "target": "0x2fde39"
+    },
+    {
+      "message": "0x4047",
+      "selector": 0,
+      "target": "0x2fde39"
+    },
+    {
+      "message": "0x4048",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x4049",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x404a",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x404b",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x404c",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x404d",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x404e",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x404f",
+      "selector": 1,
+      "target": "0x2fde7b"
+    },
+    {
+      "message": "0x4050",
+      "selector": 2,
+      "target": "0x2fde98"
+    },
+    {
+      "message": "0x4051",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4052",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4053",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4054",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4055",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4056",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4057",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4058",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4059",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x405a",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x405b",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x405c",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x405d",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x405e",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x405f",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4060",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4061",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4062",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4063",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4064",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4065",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4066",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4067",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4068",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4069",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x406a",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x406b",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x406c",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x406d",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x406e",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x406f",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4070",
+      "selector": 3,
+      "target": "0x2fdf18"
+    },
+    {
+      "message": "0x4071",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4072",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4073",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4074",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4075",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4076",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4077",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4078",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4079",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x407a",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x407b",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x407c",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x407d",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x407e",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x407f",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4080",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4081",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4082",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4083",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4084",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4085",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4086",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4087",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4088",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4089",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x408a",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x408b",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x408c",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x408d",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x408e",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x408f",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4090",
+      "selector": 4,
+      "target": "0x2fdf5a"
+    },
+    {
+      "message": "0x4091",
+      "selector": 5,
+      "target": "0x2fdec1"
+    }
+  ],
+  "status_arm_domains": {
+    "0x2fdf18": [
+      "0x4051",
+      "0x4052",
+      "0x4053",
+      "0x4054",
+      "0x4055",
+      "0x4056",
+      "0x4057",
+      "0x4058",
+      "0x4059",
+      "0x405a",
+      "0x405b",
+      "0x405c",
+      "0x405d",
+      "0x405e",
+      "0x405f",
+      "0x4060",
+      "0x4061",
+      "0x4062",
+      "0x4063",
+      "0x4064",
+      "0x4065",
+      "0x4066",
+      "0x4067",
+      "0x4068",
+      "0x4069",
+      "0x406a",
+      "0x406b",
+      "0x406c",
+      "0x406d",
+      "0x406e",
+      "0x406f",
+      "0x4070"
+    ],
+    "0x2fdf5a": [
+      "0x4071",
+      "0x4072",
+      "0x4073",
+      "0x4074",
+      "0x4075",
+      "0x4076",
+      "0x4077",
+      "0x4078",
+      "0x4079",
+      "0x407a",
+      "0x407b",
+      "0x407c",
+      "0x407d",
+      "0x407e",
+      "0x407f",
+      "0x4080",
+      "0x4081",
+      "0x4082",
+      "0x4083",
+      "0x4084",
+      "0x4085",
+      "0x4086",
+      "0x4087",
+      "0x4088",
+      "0x4089",
+      "0x408a",
+      "0x408b",
+      "0x408c",
+      "0x408d",
+      "0x408e",
+      "0x408f",
+      "0x4090"
+    ]
+  },
+  "native_byte_arguments": {
+    "0x2fdf18": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "0x2fdf5a": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ]
+  },
+  "conditional_record_extents": [
+    {
+      "record": 38,
+      "last_dword_start": "0x44f0",
+      "last_dword_end": "0x44f4",
+      "last_word_start": "0x4532",
+      "last_word_end": "0x4534"
+    },
+    {
+      "record": 39,
+      "last_dword_start": "0x46b8",
+      "last_dword_end": "0x46bc",
+      "last_word_start": "0x46fa",
+      "last_word_end": "0x46fc"
+    }
+  ],
+  "controls_basis": "Actual table maps4049/404A toselector1 and positive4051/4070/4071/4090 tostatusarms. Complete76 table entries enumerated, not76 native executions.",
+  "affected_claims": [
+    "SWE2-STRUCT caller-cone high-ID two-site assertion and queued Esper runtime premise",
+    "FABLE T3b region-A named reach limit",
+    "OPUS status/aux byte caller contract for these two sites"
+  ],
+  "limits": [
+    "Normal original handler entry, unchanged valid shipping code/table, valid unit+708/backed memory and usualABI required",
+    "Handler+6B4!=0 returns before switch; no natural observation or initialized unit/Esper ownership claim",
+    "A local arm store is not a player-visible effect or proof of other callback/transitive effects",
+    "Status argument bound at these two calls; generic0030E360 remains unmasked and accepts higher byte args from other hypothetical callers",
+    "Record k<=39 and retained spilled argument/no-interference are premises for extent calculation; no whole-state/alias/lifetime safety",
+    "Other caller-cone bounds are external prior evidence, not a new complete caller census",
+    "No whole OV58/OV5/8 closure before independent review and named consumer incorporation"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "formerly_runtime_propositions_eliminated_without_gameplay": 1,
+  "new_whole_runtime_rows_closed": 0,
+  "next_discriminator": "Consumers must remove these two false high-ID premises; if another source remains, name its exact original caller/argument provenance before any runtime capture"
+}

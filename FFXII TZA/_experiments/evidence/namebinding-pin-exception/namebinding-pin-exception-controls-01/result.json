@@ -1,0 +1,51 @@
+{
+  "status": "PASS_ACTUAL_PIN_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "1f1b2a82f8da4f2779663f897e8e907de342af54787ff433560da75d16ed9261",
+  "positive_reused": {
+    "path": "namebinding-pin-exception-result-01.json",
+    "sha256": "c41fc457dd09f60c39b726f7db3460f8e76bdeedfac5901779c9fd8e593b94d2"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-pin-exception.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-exception-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-exception-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-flag-clear",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-pin-exception.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-exception-controls-01\\changed-flag-clear\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-exception-controls-01\\changed-flag-clear"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-consumer",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-pin-exception.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-exception-controls-01\\missing-consumer\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-pin-exception-controls-01\\missing-consumer"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "8f56e78fcec13f2d4e356d6bffefec2aee7ea201854e1a65f6aeb8fc50b775d9",
+  "limits": "Three actual CLI prerequisite/identity refusals and sufficient original-code positive; not native/live runs or independent semantic acceptance"
+}

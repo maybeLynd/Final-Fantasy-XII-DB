@@ -1,0 +1,320 @@
+{
+  "kind": "conditional original full-pool owner admission order",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "control_owner_fullpool_admission.py",
+      "sha256": "46bb2d68f4f294ccd1288f1354468d81e8d7d6568ebe6a85f17466f9d55de5c8",
+      "bytes": 3994
+    },
+    {
+      "path": "freeze_owner_fullpool_admission.py",
+      "sha256": "ec93be177695528fb404c5a5fa92befc252d72bc7457eef5853872990153fc5f",
+      "bytes": 3243
+    },
+    {
+      "path": "OWNER-FULLPOOL-ADMISSION-METHOD-1001.md",
+      "sha256": "8832ccd139116e0d847961b20f5753ed175f78a5b9cd579496c3510678f9fcd2",
+      "bytes": 2537
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/owner-fullpool-source-01.json",
+      "sha256": "e792e2d8387429a2e7d0458b1a679a890a8fa1822e4331147a249038b311b97f",
+      "bytes": 56613
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/owner-fullpool-source-run-01.status.json",
+      "sha256": "52a37202056e2df3e47cd47ebc127ca1c6603835834a652232a432834691cfee",
+      "bytes": 531
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/owner-fullpool-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/owner-fullpool-source-run-01.stdout",
+      "sha256": "30234459820d37a2285931f8b12377cb78a7e2da479b43863586b920221c648e",
+      "bytes": 170
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/qualify_owner_fullpool_source.py",
+      "sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+      "bytes": 598
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/qualify_owner_queue_order_source.py",
+      "sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b",
+      "bytes": 6535
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/stderr",
+      "sha256": "d5bf786c51a1a9c0aa3586856a0ae4989aad716d60dfe77ccd6a14a6c58989a4",
+      "bytes": 871
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-free-branch/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/owner-fullpool-source-01.json",
+      "sha256": "9d28f7db99e389192fb34a0089801b9dba87e317743ac681ba22532f9ca10242",
+      "bytes": 56560
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/owner-fullpool-source-run-01.status.json",
+      "sha256": "52a37202056e2df3e47cd47ebc127ca1c6603835834a652232a432834691cfee",
+      "bytes": 531
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/owner-fullpool-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/owner-fullpool-source-run-01.stdout",
+      "sha256": "30234459820d37a2285931f8b12377cb78a7e2da479b43863586b920221c648e",
+      "bytes": 170
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/qualify_owner_fullpool_source.py",
+      "sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+      "bytes": 598
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/qualify_owner_queue_order_source.py",
+      "sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b",
+      "bytes": 6535
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/stderr",
+      "sha256": "b1e0048c50aa9efaa9c0346ae129d47967036c695ae406c7cd9be455d0a558cc",
+      "bytes": 671
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/changed-selection/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-fullpool-controls-01/duplicate-selection/stderr",
+      "sha256": "636f3c3cb42d45c1efd5d9e2d025008ec79878e35783e9b35beb17579a64b096",
+      "bytes": 1733
+    },
+    {
+      "path": "owner-fullpool-controls-01/duplicate-selection/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/owner-fullpool-source-01.json",
+      "sha256": "4f0a526e2f21fb807eb5e4f2fcc10d46c5576e39c69455115acc0dd74e7356b1",
+      "bytes": 56614
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/owner-fullpool-source-run-01.status.json",
+      "sha256": "9c39ec05977d0909d5e5e09259672dbbc5739927bc3605fa5992d72d8e63c459",
+      "bytes": 531
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/owner-fullpool-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/owner-fullpool-source-run-01.stdout",
+      "sha256": "30234459820d37a2285931f8b12377cb78a7e2da479b43863586b920221c648e",
+      "bytes": 170
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/qualify_owner_fullpool_source.py",
+      "sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+      "bytes": 598
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/qualify_owner_queue_order_source.py",
+      "sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b",
+      "bytes": 6535
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/stderr",
+      "sha256": "8d20c583f7b500eeb6a90b9c0e6ccb51a16aa0ea9cb5cd47c800843357ebf233",
+      "bytes": 922
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/failed-qualifier/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/owner-fullpool-source-01.json",
+      "sha256": "3441643230dd7e9f91a3616d0ca6a69f15eae9e04e75e2e5dfa19e1c1b735143",
+      "bytes": 49205
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/owner-fullpool-source-run-01.status.json",
+      "sha256": "52a37202056e2df3e47cd47ebc127ca1c6603835834a652232a432834691cfee",
+      "bytes": 531
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/owner-fullpool-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/owner-fullpool-source-run-01.stdout",
+      "sha256": "30234459820d37a2285931f8b12377cb78a7e2da479b43863586b920221c648e",
+      "bytes": 170
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/qualify_owner_fullpool_source.py",
+      "sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+      "bytes": 598
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/qualify_owner_queue_order_source.py",
+      "sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b",
+      "bytes": 6535
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/stderr",
+      "sha256": "90d1bdef1010a40f2a82322cb9608d394828a1617102fed00e919b22220c7562",
+      "bytes": 920
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-01/missing-owner-caller/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-fullpool-controls-01/result.json",
+      "sha256": "c9d2c179ea0ea0843cd80d6454032749d1de4f3043a74a160a7827370655f307",
+      "bytes": 4941
+    },
+    {
+      "path": "owner-fullpool-controls-01/zero-selection/stderr",
+      "sha256": "ba140bc226ea1a76845d328f1c501a220941839b8e613e54200bdbee283c59e8",
+      "bytes": 1691
+    },
+    {
+      "path": "owner-fullpool-controls-01/zero-selection/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-run-01.status.json",
+      "sha256": "2eca7eeeaed60dc3d8b0d7dc2c99529f515eb68bb1ec53b528518a3114c431a0",
+      "bytes": 443
+    },
+    {
+      "path": "owner-fullpool-controls-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-controls-run-01.stdout",
+      "sha256": "56a87afc48db3ad5482ef393bb095bcbca39bcfc740649c4f5ad74a6eb07f1a6",
+      "bytes": 102
+    },
+    {
+      "path": "owner-fullpool-positive-01.status.json",
+      "sha256": "43ba034f084ab76c93ac01d21cfa048ba3d9814dd3be7f2c8c6a42573d841a45",
+      "bytes": 444
+    },
+    {
+      "path": "owner-fullpool-positive-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-positive-01.stdout",
+      "sha256": "b6a85e6428fce96fbc76ff76abf91e1d4bc17c18be2dcae47742ffb035f886fe",
+      "bytes": 147
+    },
+    {
+      "path": "owner-fullpool-result-01.json",
+      "sha256": "abd41c1243fcfa326d9bbb7f6d477f20ab104918504bb72e8265f556307a34f9",
+      "bytes": 5008
+    },
+    {
+      "path": "owner-fullpool-source-01.json",
+      "sha256": "4f0a526e2f21fb807eb5e4f2fcc10d46c5576e39c69455115acc0dd74e7356b1",
+      "bytes": 56614
+    },
+    {
+      "path": "owner-fullpool-source-run-01.status.json",
+      "sha256": "52a37202056e2df3e47cd47ebc127ca1c6603835834a652232a432834691cfee",
+      "bytes": 531
+    },
+    {
+      "path": "owner-fullpool-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-fullpool-source-run-01.stdout",
+      "sha256": "30234459820d37a2285931f8b12377cb78a7e2da479b43863586b920221c648e",
+      "bytes": 170
+    },
+    {
+      "path": "prove_owner_fullpool_admission.py",
+      "sha256": "c2f3430114f60f93a7d1128a14412cdd232e052701ee66a4cf9a65af0ae0efc4",
+      "bytes": 10757
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+      "bytes": 14292
+    },
+    {
+      "path": "qualify_owner_fullpool_source.py",
+      "sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+      "bytes": 598
+    },
+    {
+      "path": "qualify_owner_queue_order_source-before-bounded-selection-01.py",
+      "sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+      "bytes": 5981
+    },
+    {
+      "path": "qualify_owner_queue_order_source.py",
+      "sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b",
+      "bytes": 6535
+    },
+    {
+      "path": "README.md",
+      "sha256": "0f858b2d09d2a12d997a2a3fa1307672a11a8338213b48e325d83e5527891c66",
+      "bytes": 4763
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    }
+  ]
+}

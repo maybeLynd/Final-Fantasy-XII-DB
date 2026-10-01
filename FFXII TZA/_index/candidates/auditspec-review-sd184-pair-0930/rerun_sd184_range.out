@@ -1,0 +1,6 @@
+PASS  N1 fast path for |x| > 4pi = 12.56637, loops otherwise
+PASS  M1 model: |x| <= 4pi always lands in [-pi, pi]; 16.0 -> 3.4336 and -16.0 -> -3.4336 do not
+PASS  S1 facing publish callers: a re-publish and the party snapshot
+PASS  S2 the snapshot stores each member's wrapped facing
+PASS  S3 the mode-1/4 desired heading is a yaw-from-direction result
+FAILS 0

@@ -1,0 +1,293 @@
+{
+  "status": "PRODUCER_VALID_COMMAND_PROGRESS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "namebinding-command-progress-source-01.json",
+      "sha256": "69156dbedea4d8674687dfd2fa7596f4bbcb1d34861e8bc3f5a166556aa0e5c7"
+    }
+  ],
+  "table_pin": {
+    "path": "namebinding-command-dispatch-table-01.json",
+    "sha256": "5b22ef9e3baa536a16e131a971a1725caa069c2f34b66edb1b6d5b3967f05aaf"
+  },
+  "dispatch_targets": [
+    {
+      "state": 0,
+      "target": "0x2e614f"
+    },
+    {
+      "state": 1,
+      "target": "0x2e614f"
+    },
+    {
+      "state": 2,
+      "target": "0x2e628c"
+    },
+    {
+      "state": 3,
+      "target": "0x2e61d3"
+    },
+    {
+      "state": 4,
+      "target": "0x2e61e2"
+    },
+    {
+      "state": 5,
+      "target": "0x2e61fb"
+    },
+    {
+      "state": 6,
+      "target": "0x2e6213"
+    },
+    {
+      "state": 7,
+      "target": "0x2e6213"
+    },
+    {
+      "state": 8,
+      "target": "0x2e629e"
+    }
+  ],
+  "command_cfg": {
+    "entry": "0x2e60f0",
+    "end_exclusive": "0x2e62db",
+    "instructions": 133,
+    "returns": [
+      "0x2e62da"
+    ],
+    "calls": [
+      {
+        "pc": "0x2e6152",
+        "target": "0x2ed950"
+      },
+      {
+        "pc": "0x2e61a8",
+        "target": "0x32e400"
+      },
+      {
+        "pc": "0x2e61d6",
+        "target": "0x36d200"
+      },
+      {
+        "pc": "0x2e61e9",
+        "target": "0x3a1650"
+      },
+      {
+        "pc": "0x2e61fe",
+        "target": "0x3a1290"
+      },
+      {
+        "pc": "0x2e6246",
+        "target": "0x36c1d0"
+      },
+      {
+        "pc": "0x2e624e",
+        "target": "0x36b160"
+      },
+      {
+        "pc": "0x2e6255",
+        "target": "0x36c140"
+      },
+      {
+        "pc": "0x2e625c",
+        "target": "0x36a0b0"
+      },
+      {
+        "pc": "0x2e6277",
+        "target": "0x32e620"
+      },
+      {
+        "pc": "0x2e6290",
+        "target": "0x32e4d0"
+      },
+      {
+        "pc": "0x2e62ab",
+        "target": "0x2eaeb0"
+      }
+    ]
+  },
+  "normal_leaf_cfgs": [
+    {
+      "entry": "0x32e4d0",
+      "end_exclusive": "0x32e512",
+      "instructions": 21,
+      "returns": [
+        "0x32e503",
+        "0x32e511"
+      ],
+      "calls": [
+        {
+          "pc": "0x32e506",
+          "target": "0x16d6a0"
+        }
+      ]
+    },
+    {
+      "entry": "0x3a1290",
+      "end_exclusive": "0x3a12ce",
+      "instructions": 20,
+      "returns": [
+        "0x3a12ca",
+        "0x3a12cd"
+      ],
+      "calls": []
+    }
+  ],
+  "state_register_definitions": [
+    {
+      "pc": "0x2e6103",
+      "mnemonic": "movzx",
+      "args": "ebx, di"
+    },
+    {
+      "pc": "0x2e61b8",
+      "mnemonic": "mov",
+      "args": "ebx, 7"
+    },
+    {
+      "pc": "0x2e61c9",
+      "mnemonic": "mov",
+      "args": "ebx, 7"
+    },
+    {
+      "pc": "0x2e61f6",
+      "mnemonic": "mov",
+      "args": "ebx, 5"
+    },
+    {
+      "pc": "0x2e6223",
+      "mnemonic": "mov",
+      "args": "ebx, 1"
+    },
+    {
+      "pc": "0x2e6234",
+      "mnemonic": "mov",
+      "args": "ebx, 7"
+    },
+    {
+      "pc": "0x2e6253",
+      "mnemonic": "mov",
+      "args": "ebx, eax"
+    },
+    {
+      "pc": "0x2e6287",
+      "mnemonic": "mov",
+      "args": "ebx, 2"
+    },
+    {
+      "pc": "0x2e6299",
+      "mnemonic": "lea",
+      "args": "ebx, [rax + 3]"
+    },
+    {
+      "pc": "0x2e62b0",
+      "mnemonic": "mov",
+      "args": "ebx, 9"
+    }
+  ],
+  "negative_three_part_conditional_witness": [
+    {
+      "part": 0,
+      "selector": 0,
+      "word_offset": 0,
+      "subresource_offset": 48,
+      "source_class": "signed WORD<0",
+      "dispatch_states": [
+        1,
+        7
+      ],
+      "next_selector": 1,
+      "next_word_offset": 2
+    },
+    {
+      "part": 1,
+      "selector": 1,
+      "word_offset": 2,
+      "subresource_offset": 52,
+      "source_class": "signed WORD<0",
+      "dispatch_states": [
+        1,
+        7
+      ],
+      "next_selector": 2,
+      "next_word_offset": 4
+    },
+    {
+      "part": 2,
+      "selector": 2,
+      "word_offset": 4,
+      "subresource_offset": 56,
+      "source_class": "signed WORD<0",
+      "dispatch_states": [
+        1,
+        7
+      ],
+      "next_selector": 3,
+      "next_word_offset": 6
+    }
+  ],
+  "established": [
+    "LowWORD command state is unsigned bounded0..8 byCMP8/JA. HighWORD is sign-extended selector used for metadata words and record subresource slots. The separate36B original table resolves all9 dispatch entries; code/table identities are distinct.",
+    "State2 polls the saved32E620 request ID through32E4D0. Busy1 retains state2; zero advances to state3 and returns this invocation. The poll is not a direct byte/content/read-success check.",
+    "32E4D0 busy1 requires id not0/-1, matching generation-tagged queue slot+64 and nonzero slot state+20. Sentinel-1, id0, mismatch or inactive slot return0 normally. This describes a busy predicate, not why the id ceased to be pending; ordinary16D6A0 callee effects are separate.",
+    "State3 invokes36D200 on its subresource handle; state4 hands it to3A1650, maps return-1 to skip state7 or otherwise polls3A1290 at state5. Getter returns stamped resource byte+0C only for a matching valid record, else0; state5 advances only when return2. Opaque binding/read effects are not established.",
+    "Signed-negative metadata WORD skips the local allocate/read/postprocess path, writes its subresource slotFFFFFFFF and dispatches state7. Nonpositive32E400 size likewise skips. State6/7 advance selector and offsets; after word offset reaches6 the command sets entry18mask02, conditionally calls removal under18mask04 and writes state9.",
+    "With initial selector0/state0or1, valid stable three negative metadata WORDs and ordinary lookup returns, all3 parts skip, slots30/34/38 becomeFFFFFFFF and the command still sets18mask02/state9 without its direct32E620 call. Thus ready is local sequence completion including skipped parts, not universal proof all3 assets loaded successfully. This is an original branch/invariant witness, not a native or natural game observation.",
+    "Incoming state8 directly selects the set-ready arm; state>8 exits dispatch. Arbitrary highWORD selectors are not bounds-sanitized by the low-state check; valid selector/caller preconditions remain."
+  ],
+  "limitations": [
+    "No natural source metadata values/caller/init proof; valid backed command+28 entry, selector0..2, stable metadata, normal ABI and no interference assumed",
+    "The three-negative case is a conditional original-code witness; authored-resource reachability remains separate",
+    "Request admission/refusal/natural failure not demonstrated; constant kind20/positive-size path may constrain reachable refusals",
+    "No allocator/postprocessor implementation effects, asynchronous timing/cancel/drain, successful content load, initialized record ownership or whole OV closure",
+    "3A1290 is not an arbitrary-ID sanitizer: ECX=-1 sets R8=0 before field dereference; local caller guards the fresh postprocess-1 arm, valid subsequent state5 handle required",
+    "Producer checks, prerequisite refusals and retained canonical queue semantics are not independent acceptance or external-run credit"
+  ],
+  "affected_claims": [
+    "Existing FABLE name-binding ready/delayed-delete and optional subresource semantics",
+    "OPUS command-state, RequestID busy predicate, ready-state meaning and invalid-handle preconditions"
+  ],
+  "checker_sha256": "9dab23339365e17953e9ac9945eb87fe56be639c092f8fd65bf129e626ee7bc2",
+  "required_invocation_receipts": [
+    {
+      "path": "capture-namebinding-command-progress.py",
+      "sha256": "5d94a306712584b59cef452a987f8230e25fb94c23c10cdc69ae4275fec36106"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-command-dispatch-table-01.json",
+      "sha256": "5b22ef9e3baa536a16e131a971a1725caa069c2f34b66edb1b6d5b3967f05aaf"
+    },
+    {
+      "path": "namebinding-command-progress-capture-01.status.json",
+      "sha256": "79784d7684e234ee722bb72f5592ee214d49f9ccb56fb3191135c97225ca3584"
+    },
+    {
+      "path": "namebinding-command-progress-capture-01.stdout",
+      "sha256": "53979f0eb9ef5809a516245343ffe4e125cf0b8634242940e1347797c1113d5b"
+    },
+    {
+      "path": "namebinding-command-progress-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "next_discriminator": "Independent source review and owner consumption; exact authored negative metadata/prepared caller proof only if a natural reachability claim requires it. Do not sample live ready flags to replace this local definition.",
+  "cleanup": "Finite read-only original code/data and disposable refusal fixtures; no game/PC/native/emulated/instrument/save/config/reference/peer mutation"
+}

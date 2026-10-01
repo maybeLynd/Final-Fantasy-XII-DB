@@ -1,0 +1,6 @@
+PATCHED game-application.md Interior anchor `0061D14C` (the `0061377
+PATCHED game-application.md tail: each 0x58 record gets seven zeroed
+PATCHED game-application.md `00627DA0` (175 B) is a game-application
+PATCHED game-application.md `00628100` (153 B) is one of the `001B72
+PATCHED CONTRACT-save-image-buffers.md `00607FA0` — the save-image write family
+FAILS 0

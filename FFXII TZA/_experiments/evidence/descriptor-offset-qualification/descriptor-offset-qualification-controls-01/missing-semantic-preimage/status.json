@@ -1,0 +1,14 @@
+{
+  "case": "missing-semantic-preimage",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\normalize-namebinding-descriptor.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-controls-01\\missing-semantic-preimage\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-controls-01\\missing-semantic-preimage"
+  ],
+  "exit": 1,
+  "expected_error": "FileNotFoundError",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "normalized_absent": true
+}

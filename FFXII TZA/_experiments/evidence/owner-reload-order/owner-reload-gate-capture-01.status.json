@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-owner-reload-gate.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-gate-source-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "5798bf1d658ee73d2304e34dc91872dbc8249fcb7640e5a9d4609b7ebab20baa",
+  "elapsed": 0.680382699938491
+}

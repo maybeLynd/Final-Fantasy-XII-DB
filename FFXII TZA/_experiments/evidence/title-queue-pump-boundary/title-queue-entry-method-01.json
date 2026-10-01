@@ -1,0 +1,14 @@
+{
+  "question": "Which original instructions enter the185C20->186230 tail, and can their context/caller control flow bind the four-bank consumer to an engine path?",
+  "hypotheses": [
+    "Only explicitly forced invocation is known",
+    "Shipping call/jump or function binding establishes an original caller path, whose initialized execution still requires separate evidence"
+  ],
+  "method": "A STATIC_ONLY",
+  "why": "Direct instruction references and caller register/CFG dataflow can establish a static path without game setup. CALL-only zero was inadequate; include JMP and positive controls.",
+  "controls": "Same original search must find185ADC CALL1858A0 and185C20 JMP186230; verify candidate instruction starts from original pdata where available and pin naked5B tail bytes",
+  "acceptance": "Specific validated leaf/caller dataflow and relevant boundary; no runtime occurrence/thread/frame from static path",
+  "failure": "No validated caller or indirect binding => explicit OPEN, not impossible reachability",
+  "consumer": "FABLE renderer/title scheduling and OPUS queue entry/callback contract",
+  "cleanup": "Original reads only; no background/native/game process"
+}

@@ -1,0 +1,5 @@
+PASS  S1 the tick skips states 0, 1 and 7
+PASS  S2 no children left: state 6 -> 7 always; other states -> 7 only if slot 39 says so
+PASS  S3 state 7 writers: start completed, start failed, last child gone - the terminal state
+PASS  D1 007F0820 is DynamicSound's: slot 38 = float +0xE8, slot 39 = true
+FAILS 0

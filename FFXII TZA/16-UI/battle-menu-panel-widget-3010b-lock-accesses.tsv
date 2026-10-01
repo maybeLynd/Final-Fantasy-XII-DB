@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+00296960	FUN_00296960	0029698B	0x0	addr	lea rcx, [rbx + 0x180]	route-seeded EMBED BattleMenuPanelWidget3010 +0xC0 stride=0x40 count=4 base+0x-180	

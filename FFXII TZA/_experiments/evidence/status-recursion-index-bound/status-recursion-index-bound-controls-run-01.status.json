@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control-status-recursion-index-bound.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "driver_sha256": "94b06930bdcc7ba9bc363a098b607050f09a390fbee19c6aaf0f25b041642384"
+}

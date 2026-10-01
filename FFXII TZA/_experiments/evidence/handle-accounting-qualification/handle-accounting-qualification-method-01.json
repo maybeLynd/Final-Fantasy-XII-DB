@@ -1,0 +1,21 @@
+{
+  "question": "Does36C5D0(handle,0/1) establish a protective pin/unpin or only change accounting classification, and did own earlier deletion prose overstate it?",
+  "hypotheses": [
+    "H1 physical retention/release pin protects outstanding IO from cleanup",
+    "H2 changes payload accounting category; free retains its separate validation/reclamation semantics"
+  ],
+  "method": "A consume current accepted allocator documentation and exact original leaf/free-entry instructions; no new native/live run",
+  "existing": "Canonical where-the-games-memory-comes-from.md records0036C5D0 newindex/record+17 boolean accounting and frees through369800. Earlier own namebinding-deletion result says completion unpins; original sources remain valid, semantic wording needs scope review.",
+  "identity": "Pinned shipping EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000; handle->header identity from shipping masking/slot pointer/stamp validation, not offset alone",
+  "controls": [
+    "Require exact original leaf boundaries and shared reviewed access adapter actual path",
+    "Original counter transfer at category change and same-category no-op are distinguishers",
+    "Identify own affected published result/prose/reproducer and queue notices; canonical index not claimed regressed",
+    "Only counter/classification and direct free-entry guard effects, not complete physical free or scheduling"
+  ],
+  "acceptance": "Prove exact category comparison/write/counter delta and absence of direct protective pin state in this full leaf; qualify the earlier word and affected consumers. Do not re-open accepted broad accounting census.",
+  "falsification": "Original protective count/deferral/cancel/IO-state operation in reached leaf would refute category-only local footprint; unspecified callee/other flag mechanisms remain separate",
+  "consumer": "Existing FABLE/OPUS namebinding consumers and SPEC correction review; allocator canonical page no competing edit",
+  "budget": "Two original local bodies and exact existing-source terminology snapshots; no broad type scan/tool platform",
+  "cleanup": "Finite file analysis/private proof controls only; no game/PC/native/emulated/instrument/save/config/reference/peer mutation"
+}

@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=43900 epoch=3 queue_sha=2aecd5039ddd5f0c -->
-> generated 2026-09-30T23:26:44+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=44701 epoch=3 queue_sha=7ad86f394ff218f9 -->
+> generated 2026-10-01T08:34:18+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-REQ-FRONTIER-AUDITSPEC-LANE-BACKLOG-0930, OPUS-REQ-FRONTIER-FLEET-LANE-DOUBLE-WAKE-0930, SWE2-FRONTIER-P22-UNATTRIB-0930, SWE2-FRONTIER-PUB-P22U-MS-0930, SWE2CONTRACT-REQ-FRONTIER-MAPSCREENS-003C1680-0930
-> READY addressed to you: P1 ASTRA-REQ-FRONTIER-NATIVE-PATH-ARGV-LIMIT-0930, P1 AUDITSEM-REQ-FRONTIER-HOLD-OV58D-0930, P1 AUDITSEM-REQ-FRONTIER-P22-B8-0930, P1 AUDITSEM-REQ-FRONTIER-P22-DATA-0930, P1 OPUS-NOTICE-FRONTIER-READINESS-DEBT-0930, P1 OPUS-REQ-FRONTIER-PUBLISH-REQUEST-QUEUE-CARRIER-0930, P1 OPUS-REQ-FRONTIER-RC37-SPLICE-0930, P1 OPUS-REQ-FRONTIER-S08-I3-SPLICE-0930, P2 ASTRA-NOTICE-FRONTIER-TITLE-EVIDENCE-PUB-0930, P2 AUDITSEM-REQ-FRONTIER-GI-RESTATUS-RESIDUE-0930, P2 AUDITSEM-REQ-FRONTIER-P22-B1-EDEC0-LABEL-0930, P2 AUDITSEM-REQ-FRONTIER-P22-B4-ED80-0930, P2 FABLE-REQ-FRONTIER-OV58D-STATIC-0930, P2 OPUS-CON-TRANSFORM-00434CD0-BIT-POLARITY-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-BOARD-VERDICTS-MISRECORDED-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-OV58D-ROW-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM2-0930, P2 SWE2CONTRACT-REQ-FRONTIER-PUBLISH-LIFECYCLE-OVERLAY-0930B, P3 AUTO-REPAIR-FRONTIER-REQ-AUDITSEM-REVIEW-GI-RESTATUS-0930
-> READY pool: 1 | BLOCKED: 2
+> ACTIVE: AUDITSEM-REQ-FRONTIER-P22-B1-EDEC0-LABEL-0930, AUDITSEM-REQ-FRONTIER-P22-B4-ED80-0930, AUDITSEM-REQ-FRONTIER-P22-B8-0930, AUDITSEM-REQ-FRONTIER-P22-DATA-0930, OPUS-REQ-FRONTIER-PUBLISH-REQUEST-QUEUE-CARRIER-0930, OPUS-REQ-FRONTIER-RC37-SPLICE-0930, OPUS-REQ-FRONTIER-REGISTRY-ADDRESSERS-0930, OPUS-REQ-FRONTIER-S08-I3-SPLICE-0930, SWE2CONTRACT-REQ-FRONTIER-PUBLISH-LIFECYCLE-OVERLAY-0930B, SWE2FRONTIER-PUB-REVIEW-INCORPS-1001
+> READY addressed to you: P2 ASTRA-NOTICE-FRONTIER-POSTCOMMIT-INDEX-LOCK-0930, P2 ASTRA-NOTICE-FRONTIER-TITLE-EVIDENCE-PUB-0930, P2 ASTRA-REQ-FRONTIER-PREPARED-EVIDENCE-SLOT-0930, P2 AUDITSEM-REQ-FRONTIER-GI-RESTATUS-RESIDUE-0930, P2 FABLE-REQ-FRONTIER-OV58D-STATIC-0930, P2 OPUS-CON-TRANSFORM-00434CD0-BIT-POLARITY-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-BOARD-VERDICTS-MISRECORDED-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM2-0930, P3 AUTO-REPAIR-FRONTIER-REQ-AUDITSEM-REVIEW-GI-RESTATUS-0930
+> READY pool: 1 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -65,6 +65,32 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
+- **2026-10-01 ~08:20Z (Devin session `calm-lamp` executing SWE2-FRONTIER):**
+  **Lane identity fixed:** this interactive session is `calm-lamp` (titled by the user's first question, not
+  `SWE2-FRONTIER`), so the controller counted it foreign and spawned a duplicate FRONTIER wake at 07:56Z
+  (pid 68532 resuming `concise-family`). The duplicate was killed after only reads; `fleet-map.json`
+  `SWE2-FRONTIER.current` is now `calm-lamp` — controller sees `busy-active`, future wakes resume this
+  session. `d20a34efb` fixed the subagent double-wake class; THIS class needed map attribution.
+  **Processed:** replans cleared (DEP_STARVED spam re `FABLE-REQ-CONTRACT-RC-RESTATE-0930` — CONTRACT stays
+  parked, its only dependent is P3); `ASTRA-REQ-FRONTIER-NATIVE-PATH-ARGV-LIMIT-0930` DONE (authorized bounded
+  multi-commit <=60 paths/call under one lease, shared PUBLISH_EXPECT; filed
+  `FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001` as optional tooling follow-up);
+  `OPUS-NOTICE-FRONTIER-READINESS-DEBT-0930` DONE (debt sized, plan unchanged);
+  `ASTRA-NOTICE-FRONTIER-EVIDENCE-PUBLICATION-WAIT-1001` DONE earlier at 07:51Z.
+  **Applied, waiting @publication (ACTIVE claims):**
+  - `OPUS-REQ-FRONTIER-RC37-SPLICE-0930` + `OPUS-REQ-FRONTIER-S08-I3-SPLICE-0930` +
+    `OPUS-REQ-FRONTIER-PUBLISH-REQUEST-QUEUE-CARRIER-0930` — both splices applied on
+    `CONTRACT-resource-request-queue.md`; one publish finishes all three.
+  - `AUDITSEM-REQ-FRONTIER-P22-B8-0930` — handbook page corrected (002EFD20 byte@0x30 stride,
+    0032E400 kind-FF, 00572E10 transitive calls, SaveLoad batch vocabulary); publish pending.
+  - `AUDITSEM-REQ-FRONTIER-P22-DATA-0930` — C1/F3/N3/N4 applied across himg/as7/btm/mrp/binmenu
+    (N1/N2 optional); five files pending publish.
+  - `SWE2CONTRACT-REQ-FRONTIER-PUBLISH-LIFECYCLE-OVERLAY-0930B` — neighbour gate re-verified ADDS NOTHING
+    (454->450, accounts 4); `-0930` stays BLOCKED until the commit lands, then finish both.
+  - `OPUS-REQ-FRONTIER-REGISTRY-ADDRESSERS-0930` — resumed+reclaimed; publish encoded-id page +
+    batch-K + `registry-addressers-apply-0930/` in one commit per OPUS.
+  **Publish order when @publication frees:** whichever is ready; all paths verified. Use publish_paths.sh
+  per group; record each sha in the task finish.
 - **2026-10-01 morning (Devin session executing SWE2-FRONTIER):**
   **@publication adjudication pending.** `SWE2STRUCT-PUB-ROUTECENSUS2-0930` has held `@publication` since
   06:50:49Z; the holding Devin session is confirmed closed by the user. Evidence: no commit (HEAD `560c86a3`),

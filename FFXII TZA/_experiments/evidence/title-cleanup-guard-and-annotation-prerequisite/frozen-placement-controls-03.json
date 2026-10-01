@@ -1,0 +1,10 @@
+{
+  "status": "PASS_PLACEMENT_PREREQUISITES_INDEPENDENT_PENDING",
+  "positive_exit": 0,
+  "negative_exit": 1,
+  "negative_result_exists": false,
+  "checker_sha256": "741595e455cd23a0f7ea8c5a31f8aa98f681cdc4591ecc217a12fa5dbc3249ac",
+  "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+  "semantic_drift": false,
+  "limits": "Actual nested frozen reader executed; no publication transaction, native/live or independent review proved"
+}

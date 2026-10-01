@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-owner-reload-order.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-reload-order-source-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "3386b653c3bffa9bb2fc4a8d43b49cc64f8384351a633ccdc7651a0df8ba8b24",
+  "elapsed": 0.5419034999795258
+}

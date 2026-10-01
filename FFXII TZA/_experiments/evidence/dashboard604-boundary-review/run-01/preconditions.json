@@ -1,0 +1,91 @@
+{
+  "commit": "604194276",
+  "source_pins": {
+    "build_views.py": "924dbecfe617a749a6875c0d6a30055fd9ea7af5140b9771593f6fbfc675f330",
+    "server.py": "f3df8bf778ff6896cd8dc70eb9011435f245c7145cded9eb13d16f16343da8fd",
+    "vbf_index.py": "7043d3d8f7ce127e4a337f6c060a3cb24f2ad6ecdb5c090fd233176094365198"
+  },
+  "driver_sha256": "45ddb3f8b8aecc7418fcde57a40dc0c16490066047be6a1b55caf7e2ec7aa10f",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "ast_slices": [
+    {
+      "file": "source-build_views.py",
+      "sha256": "924dbecfe617a749a6875c0d6a30055fd9ea7af5140b9771593f6fbfc675f330",
+      "functions": [
+        "M",
+        "annotate_deltas",
+        "v_vbf"
+      ],
+      "original_lines": [
+        {
+          "name": "M",
+          "first": 34,
+          "last": 36
+        },
+        {
+          "name": "v_vbf",
+          "first": 172,
+          "last": 234
+        },
+        {
+          "name": "annotate_deltas",
+          "first": 1770,
+          "last": 1838
+        }
+      ]
+    },
+    {
+      "file": "source-server.py",
+      "sha256": "f3df8bf778ff6896cd8dc70eb9011435f245c7145cded9eb13d16f16343da8fd",
+      "functions": [
+        "_states",
+        "check_view"
+      ],
+      "original_lines": [
+        {
+          "name": "_states",
+          "first": 176,
+          "last": 180
+        },
+        {
+          "name": "check_view",
+          "first": 183,
+          "last": 209
+        }
+      ]
+    }
+  ],
+  "retained_fixture_identity": {
+    "positive.vbf": {
+      "retained_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\positive.vbf",
+      "sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f",
+      "bytes": 142
+    },
+    "corrupt.vbf": {
+      "retained_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\corrupt.vbf",
+      "sha256": "0054cc9fa2a031e8e89d9a47447940b0acf970f4421ddd1e8d3c296c277ddb80",
+      "bytes": 142
+    },
+    "listing.txt": {
+      "retained_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\listing.txt",
+      "sha256": "8ad8cedbfc0cda7e85ddf4446a57ff44c018a5393ba68690d65cfb7a70976caa",
+      "bytes": 36
+    },
+    "drift.txt": {
+      "retained_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-eae0ed3c7-review\\vbf-chain\\drift.txt",
+      "sha256": "832404fdfbf9bdd275f9846b1a2de9359ad55a8ea24fed5120e7ed09328913da",
+      "bytes": 52
+    }
+  },
+  "input_pins": {
+    "corrupt.vbf": "0054cc9fa2a031e8e89d9a47447940b0acf970f4421ddd1e8d3c296c277ddb80",
+    "drift.txt": "832404fdfbf9bdd275f9846b1a2de9359ad55a8ea24fed5120e7ed09328913da",
+    "facts.json": "e08e9ed8449f5310afb37abbcbaed3195818637c76e6b62668189070e28919fe",
+    "listing.txt": "8ad8cedbfc0cda7e85ddf4446a57ff44c018a5393ba68690d65cfb7a70976caa",
+    "positive.vbf": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f",
+    "rowless.txt": "57d160ad6ffe53a064ec6785b4b2868a45d0f649b22991eebf3d172622153956"
+  },
+  "limits": "Original historical host function slices and real capture CLI; synthetic header only, not full server/build/real archive/game."
+}

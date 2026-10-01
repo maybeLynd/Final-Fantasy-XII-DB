@@ -1,0 +1,8 @@
+{
+  "status": "PRODUCER_SYNTAX_PREFLIGHT_VALID",
+  "invalid_original_sha256": "cbbd9b5816fd1cda1c8cd61b98fd61020d354a8244be620dfae0ddbeef5120c2",
+  "corrected_driver_sha256": "7f77b3cff3be611c5b4288658ef2253474558ccbfb28d49bf486a36d0d3cf31a",
+  "actual_current_compile": "PASS_BEFORE_CAPTURE",
+  "cause": "Generated source escape replacement introduced NUL and active newline, written as CRLF. Original capture gate refused SyntaxError/exit1. Two repair preflights refused before any new capture/file. Normalize CRLF in repair buffer and use numeric bytes to avoid escape layers; compile before writing/invoking.",
+  "dependent_conclusions": "None: no source/result01; prior three frozen packets have no dependency on failed producer."
+}

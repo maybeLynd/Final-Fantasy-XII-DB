@@ -1,0 +1,400 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original bounded-width invariant, no native/game execution",
+  "driver_sha256": "279406da5bef69f0f4bf425b86d53a17eb5a847ea05564ac0550d251db5ee553",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "69050015f859c93c10530db44368a98b833d977997c2d8d23c49fb890b868f21"
+    },
+    {
+      "path": "retained/presentation-index-domain-source-01.json",
+      "sha256": "42f23e697ae838f07943f0a4a4b694193dbca1fe6bf99f81f445118c707f98c4"
+    },
+    {
+      "path": "retained/ov42-class20-action-admission-special-admission-callers-raw-01.json",
+      "sha256": "dbf82f16cfcd2859b763bc5d0ab436be28a18458c0fd8f68a7ec75f55c9ba30f"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 82,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 85,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 117,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "parent_manifests": {
+    "presentation-index-domain": "499a3e53e678069ec4c7424c2f2efbed3236d504c899fe93555cb85596a756eb",
+    "ov42-class20-action-admission": "67e7df297497326a5b98d9d21355923750442981e8121cfb4d4e7840de5e4d92"
+  },
+  "instruction_assertions": 39,
+  "graphs": [
+    {
+      "entry": "0x30ce10",
+      "visited": 82,
+      "returns": [
+        "0x30cf30",
+        "0x30cf3e"
+      ],
+      "calls": [
+        {
+          "pc": "0x30ce2f",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x30ce4d",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x30ce64",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x30cea3",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x30cecc",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x30cf0d",
+          "target": "0x306bd0"
+        }
+      ]
+    }
+  ],
+  "bounds": {
+    "maximum_row_product": 4294836225,
+    "difference_min": -18022125,
+    "difference_max": 4276814100,
+    "modulus": 4294967296,
+    "row_domain": [
+      0,
+      65535
+    ],
+    "nonzero_stride_domain": [
+      1,
+      65535
+    ]
+  },
+  "theorem": "With fixed B=u32 low resolver return, s=u16 in1..65535, i=u16 in0..65535 and ordinaryABI/noninterference, P=(B+i*s)mod2^32 is injective in i; P equals specialC=(B+275*s)mod2^32 iff i275. Original DIV normalization recoversi exactly and recomposesP even if addition wraps.",
+  "reason": "i*s<2^32; -2^32<(i-275)*s<2^32. The only multiple of2^32 in that latter open interval is0; s>0 impliesi275. B cancels in modular equality/subtraction. DIV32 has EDX0 and numeratori*s, quotienti/remainder0.",
+  "boundary_witnesses": [
+    {
+      "base_low32": 0,
+      "row": 0,
+      "stride": 1,
+      "pointer": 0,
+      "recovered_row": 0,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 275,
+      "stride": 1,
+      "pointer": 275,
+      "recovered_row": 275,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": true
+    },
+    {
+      "base_low32": 0,
+      "row": 511,
+      "stride": 1,
+      "pointer": 511,
+      "recovered_row": 511,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 65535,
+      "stride": 1,
+      "pointer": 65535,
+      "recovered_row": 65535,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 0,
+      "stride": 32768,
+      "pointer": 0,
+      "recovered_row": 0,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 275,
+      "stride": 32768,
+      "pointer": 9011200,
+      "recovered_row": 275,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": true
+    },
+    {
+      "base_low32": 0,
+      "row": 511,
+      "stride": 32768,
+      "pointer": 16744448,
+      "recovered_row": 511,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 65535,
+      "stride": 32768,
+      "pointer": 2147450880,
+      "recovered_row": 65535,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 0,
+      "stride": 65535,
+      "pointer": 0,
+      "recovered_row": 0,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 275,
+      "stride": 65535,
+      "pointer": 18022125,
+      "recovered_row": 275,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": true
+    },
+    {
+      "base_low32": 0,
+      "row": 511,
+      "stride": 65535,
+      "pointer": 33488385,
+      "recovered_row": 511,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 0,
+      "row": 65535,
+      "stride": 65535,
+      "pointer": 4294836225,
+      "recovered_row": 65535,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 0,
+      "stride": 1,
+      "pointer": 4294967295,
+      "recovered_row": 0,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 275,
+      "stride": 1,
+      "pointer": 274,
+      "recovered_row": 275,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": true
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 511,
+      "stride": 1,
+      "pointer": 510,
+      "recovered_row": 511,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 65535,
+      "stride": 1,
+      "pointer": 65534,
+      "recovered_row": 65535,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 0,
+      "stride": 32768,
+      "pointer": 4294967295,
+      "recovered_row": 0,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 275,
+      "stride": 32768,
+      "pointer": 9011199,
+      "recovered_row": 275,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": true
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 511,
+      "stride": 32768,
+      "pointer": 16744447,
+      "recovered_row": 511,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 65535,
+      "stride": 32768,
+      "pointer": 2147450879,
+      "recovered_row": 65535,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 0,
+      "stride": 65535,
+      "pointer": 4294967295,
+      "recovered_row": 0,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 275,
+      "stride": 65535,
+      "pointer": 18022124,
+      "recovered_row": 275,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": true
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 511,
+      "stride": 65535,
+      "pointer": 33488384,
+      "recovered_row": 511,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    },
+    {
+      "base_low32": 4294967295,
+      "row": 65535,
+      "stride": 65535,
+      "pointer": 4294836224,
+      "recovered_row": 65535,
+      "remainder": 0,
+      "normalization_preserves_pointer": true,
+      "special_comparison_equal": false
+    }
+  ],
+  "countermodels": [
+    {
+      "case": "zero-stride",
+      "row": 511,
+      "special_row": 275,
+      "stride": 0,
+      "equal": true,
+      "limit": "Outside nonzero premise; original DIV by0 not executed"
+    },
+    {
+      "case": "broader-row-width",
+      "row": 131347,
+      "special_row": 275,
+      "stride": 32768,
+      "equal": true,
+      "limit": "Row exceeds u16; no shipping-width alias"
+    },
+    {
+      "case": "broader-stride-width",
+      "row": 33043,
+      "special_row": 275,
+      "stride": 131072,
+      "equal": true,
+      "limit": "Stride exceedsu16"
+    },
+    {
+      "case": "changed-base",
+      "row": 511,
+      "producer_base": 0,
+      "selector_base": 236,
+      "stride": 1,
+      "equal": true,
+      "limit": "Violates stable low32 resolver base"
+    },
+    {
+      "case": "changed-stride",
+      "row": 511,
+      "producer_stride": 275,
+      "selector_stride": 511,
+      "base": 0,
+      "equal": true,
+      "limit": "Violates stable context stride"
+    }
+  ],
+  "caller_limits": "Retained30CBFC..30CD9E prefix and306BD0 prefix, not full caller/interpreter closure. Normal-return calls preserve nonvolatile RSI/RBP/entrypoint arguments by ABI; actual helper effects and pointer availability not proved.",
+  "established": [
+    "No other u16 row can select309230 equal-table branch through this source producer under stable nonzero u16 stride/base premises",
+    "30CE10 record normalization preserves produced row pointer under those premises; no no-add-wrap premise needed",
+    "Row275 is the precise remaining equal-branch type-admission question; other row u16 selectors stay under their separate authored bounds"
+  ],
+  "unresolved": [
+    "Natural base/stride/context stability/initialization and externalcall effects",
+    "Natural row275 actor type27..39 admission and actual metadata/loaded pointers",
+    "Other caller/value producers, allocations/lifetime/interference, wholeOV42/21 rejection/consequences"
+  ],
+  "limits": "24 algebraic boundary witnesses/five broadened-domain countermodels are not executions or substitute for the interval proof. No shipped header/9-table census repeated. Parent producer proof valid but independent acceptance pending, not assumed."
+}

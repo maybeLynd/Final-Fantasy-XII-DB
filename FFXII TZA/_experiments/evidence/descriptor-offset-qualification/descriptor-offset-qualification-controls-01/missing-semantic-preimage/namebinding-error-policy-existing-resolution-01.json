@@ -1,0 +1,68 @@
+{
+  "status": "ANSWER_CONSUMED_FROM_EXISTING_CANONICAL_EVIDENCE",
+  "original_question": "namebinding-error-policy-method-01.json",
+  "original_question_sha256": "0cb0f91ce20e6eeb71b01fe78cf726958cf82092353adb838ab3400ca26fc126",
+  "correction": "Neither proposed descriptor-flag hypothesis was correctly posed. Descriptor+0 is initial file offset. Error helper tests slot byte count+28 == -1 with nonnull callback, not descriptor flags.",
+  "canonical": {
+    "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+    "sha256": "6e11e4c730a6d5bec5882134529750dab1a6a23d12ba870961b8af8204a8cd9b",
+    "excerpts": [
+      {
+        "line": 88,
+        "text": "The builder copies a `0x28`-byte descriptor on its gated branch, but the requester consumes only"
+      },
+      {
+        "line": 89,
+        "text": "`+0` offset, `+8` argument, and `+0x10/+0x18` callbacks. A copied descriptor byte is not necessarily"
+      },
+      {
+        "line": 90,
+        "text": "a semantically consumed value. The gated builder writes its local `+4=0x80000` and `+0x20=0`, then"
+      },
+      {
+        "line": 91,
+        "text": "sets the slot cap directly after requesting. The input descriptor remains unchanged in the controls."
+      },
+      {
+        "line": 125,
+        "text": "**I6 \u2014 file offset truncates toward zero to a `0x800` multiple.** The instruction sequence is"
+      },
+      {
+        "line": 126,
+        "text": "`cdq; and edx,0x7ff; add eax,edx; and eax,0xfffff800`. For positive values that is downward;"
+      },
+      {
+        "line": 127,
+        "text": "for negative values it is toward zero. No extra `subtract` instruction exists. The same operation"
+      },
+      {
+        "line": 128,
+        "text": "is used initially and on requeue. Signed count comparisons must not be rewritten as unsigned."
+      },
+      {
+        "line": 222,
+        "text": "Error helper `0032E370` calls the done callback with success 0 only when the callback is nonnull"
+      },
+      {
+        "line": 223,
+        "text": "and byte count equals -1. With callback gated out and non-FF kind, the return can still contain"
+      },
+      {
+        "line": 224,
+        "text": "that callback pointer. It is not a boolean result. Completion helper passes success 1 and original"
+      },
+      {
+        "line": 225,
+        "text": "destination; callback argument is the descriptor's 32-bit word, not a buffer pointer."
+      }
+    ]
+  },
+  "established": "Consume exact established original32E370 byte-count sentinel and callback ABI. This is not an additional test or independent acceptance of own issuer composition.",
+  "unresolved": [
+    "Natural failed IO producer/state, byte-count writers between adoption and error helper, ownership/recovery/cancellation and lifetime",
+    "Input read size initially passed by original issuer does not prove its later error-helper count; offset0 has no error opt-in meaning"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "additional_tests": 0
+}

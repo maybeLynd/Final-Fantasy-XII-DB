@@ -1,0 +1,50 @@
+function	name	site	disp	kind	instruction	route	note
+00615840	FUN_00615840	00615AB5	0x0	w	mov qword ptr [rbp + 0x7d8], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8	
+00615840	FUN_00615840	00615A63	0x8	w	mov dword ptr [rbp + 0x7e0], r14d	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8	
+00615840	FUN_00615840	00615A6A	0x10	w	mov qword ptr [rbp + 0x7e8], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A71	0x18	w	mov qword ptr [rbp + 0x7f0], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A78	0x20	w	mov qword ptr [rbp + 0x7f8], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A7F	0x28	w	mov qword ptr [rbp + 0x800], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A86	0x30	w	mov qword ptr [rbp + 0x808], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A8D	0x38	w	mov qword ptr [rbp + 0x810], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A94	0x40	w	mov qword ptr [rbp + 0x818], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615A9B	0x48	w	mov qword ptr [rbp + 0x820], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615AA2	0x50	w	mov qword ptr [rbp + 0x828], r14	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8 zeroclear	
+00615840	FUN_00615840	00615AA9	0x58	addr	lea rcx, [rbp + 0x830]	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x-7D8	
+00615ED0	FUN_00615ed0	00615EE9	0x58	w	mov dword ptr [rcx], edx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615EEB	0x5C	w	mov dword ptr [rcx + 4], 3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615EF2	0x60	w	mov qword ptr [rcx + 8], 3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FE3	0x60	w	mov dword ptr [rcx + 8], 1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615EFA	0x68	w	mov qword ptr [rcx + 0x10], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615EFE	0x70	w	mov dword ptr [rcx + 0x18], edx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F01	0x74	w	mov qword ptr [rcx + 0x1c], 1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F09	0x7C	w	mov qword ptr [rcx + 0x24], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FEA	0x7C	w	mov dword ptr [rcx + 0x24], 1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F0D	0x84	w	mov dword ptr [rcx + 0x2c], 1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F14	0x88	w	mov dword ptr [rcx + 0x30], 1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F1B	0x8C	w	mov qword ptr [rcx + 0x34], 2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F23	0x94	w	mov word ptr [rcx + 0x3c], 0xffff	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F29	0x98	w	movups xmmword ptr [rcx + 0x40], xmm1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F35	0xA8	w	movups xmmword ptr [rcx + 0x50], xmm1	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F39	0xB8	w	mov qword ptr [rcx + 0x60], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F3D	0xC0	w	movups xmmword ptr [rcx + 0x68], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F8C	0xD0	w	movups xmmword ptr [rcx + 0x78], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F49	0xE0	w	movups xmmword ptr [rcx + 0x88], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F90	0xF0	w	movups xmmword ptr [rcx + 0x98], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F58	0x100	w	movups xmmword ptr [rcx + 0xa8], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F97	0x110	w	movups xmmword ptr [rcx + 0xb8], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F69	0x120	w	movups xmmword ptr [rcx + 0xc8], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F9E	0x130	w	movups xmmword ptr [rcx + 0xd8], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F70	0x140	w	movups xmmword ptr [rcx + 0xe8], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FA5	0x150	w	movups xmmword ptr [rcx + 0xf8], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F77	0x160	w	movups xmmword ptr [rcx + 0x108], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FAC	0x170	w	movups xmmword ptr [rcx + 0x118], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F7E	0x180	w	movups xmmword ptr [rcx + 0x128], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FB3	0x190	w	movups xmmword ptr [rcx + 0x138], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615F85	0x1A0	w	movups xmmword ptr [rcx + 0x148], xmm3	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FBA	0x1B0	w	movups xmmword ptr [rcx + 0x158], xmm2	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	
+00615ED0	FUN_00615ed0	00615FC1	0x1C0	w	mov qword ptr [rcx + 0x168], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58 zeroclear	
+00615ED0	FUN_00615ed0	00615FC8	0x1C8	w	mov qword ptr [rcx + 0x170], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58 zeroclear	
+00615ED0	FUN_00615ed0	00615FCF	0x1D0	w	mov qword ptr [rcx + 0x178], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58 zeroclear	
+00615ED0	FUN_00615ed0	00615FD6	0x1D8	w	mov qword ptr [rcx + 0x180], rdx	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58 zeroclear	
+00615ED0	FUN_00615ed0	00615FDD	0x1E0	w	mov byte ptr [rcx + 0x188], dl	route-seeded EMBED RenderContext02CC0410 +0x07D8 base+0x58	

@@ -1,0 +1,10 @@
+== baseline fixture (record's config): ff=1, no unit
+  word after: 000C1  (expect 0xC0 arm)
+== variant: ff=0, party unit slot 0, order=0x4022
+  word after: 000A1  (expect 0xA0 arm)
+== variant: ff=0, party unit, order=0x4023 (different order)
+  word after: 000C1  (expect 0xC0)
+== variant: ff=0, unit but byte[698rec+5]=1 (non-party)
+  word after: 000C1  (expect 0xC0)
+== variant: ff=1, party unit, order=0x4022 (fight ON blocks arm-5)
+  word after: 000C1  (expect 0xC0)

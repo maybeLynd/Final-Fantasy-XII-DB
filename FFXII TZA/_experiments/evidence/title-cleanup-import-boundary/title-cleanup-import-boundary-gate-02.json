@@ -1,0 +1,13 @@
+{
+  "stages": [
+    "compile_current_generated_driver_before_invocation",
+    "check_fresh_output",
+    "invoke_checked_producer",
+    "verify_output_exists",
+    "read_output",
+    "source_available_for_reduction"
+  ],
+  "producer_sha256": "7f77b3cff3be611c5b4288658ef2253474558ccbfb28d49bf486a36d0d3cf31a",
+  "source_sha256": "6479b721861fa65b5ef1ff1d37678aec73116b5ab0dfcf4b64151da459ae4326",
+  "status": "VALID_SOURCE_NOT_TRANSITIVE_EFFECT_CLOSURE"
+}

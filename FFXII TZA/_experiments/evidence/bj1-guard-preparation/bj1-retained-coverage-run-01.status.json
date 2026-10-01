@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bj1_guard_capture.py",
+    "--retained-coverage",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bj1-retained-coverage-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "9366e5b04c20cb9c68449e102f242bc064a5dcb729eff15766cff58b71fa3690"
+}

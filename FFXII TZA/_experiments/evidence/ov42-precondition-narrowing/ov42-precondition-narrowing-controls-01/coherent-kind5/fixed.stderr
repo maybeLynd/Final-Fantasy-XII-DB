@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-special-admission.py", line 15, in <module>
+    source_validation=gate.qualify(raw,args.exe)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\qualify-special-admission-source.py", line 46, in qualify
+    raise ValueError('retained source differs from shipping bytes')
+ValueError: retained source differs from shipping bytes

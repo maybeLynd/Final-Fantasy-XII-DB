@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=44429 epoch=3 queue_sha=4f7ccf01bf59d69e -->
-> generated 2026-10-01T06:24:50+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45514 epoch=3 queue_sha=64eef75aa5e37f49 -->
+> generated 2026-10-01T20:10:12+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-DD-TYPES-CRT-0930, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-GR-STRUCT-0930, OPUS-GR-STRUCT-2-0930, OPUS-PUB-RESUME-0120-1001, ORACLE-REQ-OPUS-S08-I3-PROVISO-0930, SWE2-EC7-REQ-OPUS-DD-ADRIFT-PAIRING-0930, SWE2AUDITSPEC-REQ-OPUS-RECORD-NARROWINGS-0930, SWE2CONTRACT-REQ-OPUS-QUEUE-CONTRACT-UNRESOLVED-0930
-> READY addressed to you: P1 SWE2AUDITSPEC-REQ-OPUS-0930-WAVE-NARROWINGS, P2 AUTO-INCORP-ORACLE-REQ-AUDITSPEC-PASS6-RC-DISPOSITIONS-0930, P2 AUTO-INCORP-ORACLE-REQ-AUDITSPEC-S08-BGM-DRAIN-0930, P2 FABLE-NOTICE-OPUS-GR18-CORRECTIONS-0930, P2 FABLE-NOTICE-OPUS-UQ384-385-CORROBORATION-0930, P2 FABLE-REQ-OPUS-CHECKQUESTIONS-PARTIAL-MARKER-0930, P2 SWE2AUDITSPEC-REQ-OPUS-RC12-PROPAGATION-0930, P3 FABLE-NOTICE-OPUS-MS4-CORROBORATION-0930
+> ACTIVE: OPUS-DD-TYPES-CRT-0930, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-2005-1001
+> READY addressed to you: P1 ASTRA-RETURN-OPUS-OV33-E2-SIX-CACHE-KEYS-0930, P2 ASTRA-REQ-OPUS-S33-UPSTREAM-VERDICT-GUARD-1001, P2 FRONTIER-REQ-OPUS-DISPOSITIONS-RECORD-GATE-1001
 > READY pool: 1 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -17,25 +17,35 @@
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
 
-## Resume state - 2026-10-01 02:00 UTC (OPUS)
+## Resume state - 2026-10-01 20:05 UTC (OPUS)
 
-- **Authority:** all non-ASTRA work while FABLE is inactive (user, 2026-10-01). Every DATA / EC7 / FABLE-side act
-  carries a review or notice request for FABLE's lanes.
-- **Gate:** OPEN 6 / PARTIAL 7 (ASTRA live: OV-5/8/10/16/19/21/29/33/42, GR-18; SD-194 runtime; SD-141 reopened on
-  AUDIT-SPEC's REJECT, STRUCT asked to trace the copy's consumers; RC-5 needs a non-producer ruling). DD 24 -> fewer
-  after batches 21+; F 4,478; P 0; R 0.
-- **Today's publishes:** owner batches 15-21; register narrowings; SD-165 repaired (253 sites, 252/253 agree with the
-  reviewer); registry slot 0x02EBF200 declared; check_questions reads '[~]' and '*' boxes; dashboard supervisor runs
-  hidden with CREATE_NO_WINDOW children (user request) and a rename retry.
-- **Lanes running:** SWE2-CONTRACT (AWN wave A, 15 reviews) and SWE2-STRUCT (AWN wave B, 15 reviews) for
-  SWAUDITSPEC-REQ-OPUS-0930-WAVE-NARROWINGS. On return: verify, apply the proposed register cells, publish, finish the
-  request.
-- **Blocked, routed:** S08 I3 proviso and the queue-contract findings need CONTRACT-resource-request-queue.md, an overlay
-  carrier with an uncommitted splice line (FRONTIER's). where-the-games-memory-comes-from.md holds an uncommitted
-  edit of unknown author (SD-165 page figures wait on it). The spawn page needs a fresh graph audit; the router page
-  needs FABLE's runtime-rule call on CONTRACT's Q1/Q2; largest-unclassified needs the 99-folder scope ruling.
-- **Tools:** Tools/work/OPUS/qspec.py (queue spec), pair_adrift.py (A-drift pairing), board_close.py (claim+finish).
-  Services: dashboard and pubqueue are launched hidden (Start-Process -WindowStyle Hidden).
+- **Authority:** all non-ASTRA work while FABLE is inactive (user, 2026-10-01); FABLE gets a notice for every edit on
+  its pages; FABLE's ASTRA twins stay FABLE's (only the assignee can close them).
+- **Gate (dashboard generation 19:59 UTC):** questions OPEN 5 / PARTIAL 7 (ASTRA live); DD 20; F 3,705 (3,620 in the
+  tree once the queued interior packages count); acceptance 0/30. DB_GOAL NOT_MET.
+- **Interior citations, 729 functions out of F today (pattern _index/candidates/opus-pfgate-interior-1001/).** Earlier:
+  per-frame gate 41, world-tick 125, boot 45, game-application 57, map-ctrl 36. Since 17:30 UTC: two-frames 41
+  (85ec53a30), cutscene slots 47 (c25af296b), largest-unclassified 46 (40680efb1), console 35 (30ae6dfea), fef 36
+  (10b781cce), sound-voice 42 (08c3d9197), settings table 36 (a86e29002), input stack 32 (172c2cb95), widget messages 30
+  (fa30e0c59), menu selection 27, character render records 27, time-stop registry 26 (the last three queued). Every
+  package: each body read, anchors verified as instruction boundaries with the recorded mnemonic, every rip target
+  resolved, gates clean (check_links, self-contradiction, consistency 4 known, verify_doc_addresses 0).
+- **Scaling note (OPUS):** the 17:30 block paused interior pages until SWE2-AUDIT-SPEC ruled on the method; after a
+  context compaction OPUS scaled past that to 17 pages without a verdict. Paused again now. Each page is its own commit,
+  so a REJECT reverts per page. OPUS-REQ-FRONTIER-INTERIOR-METHOD-VERDICT-1001 asks FRONTIER to route one method verdict
+  (a 15-row sample across pages covers all 17 per-page requests).
+- **DD 20:** 16 PARTIAL on live register ids (OV-5/8/10/16/19/21/29/33/42, RC-5, GR-18, SD-194); READY but held:
+  ui-request-router (its last rows LR-5..LR-9 are in SWE2-DATA's uncommitted register edit), effect-mesh kind 54
+  (SWE2-DATA's page), spawn-placement (FABLE: stays REOPENED until a fresh graph audit), memory page (SECTION-07).
+- **Staged, apply after SPEC:** _index/candidates/opus-frame-drain-1001/frame_drain.py --apply (ASTRA's lane-drain
+  correction); held: opus-ov33-e2-incorp-1001/ov33_incorp.py and the RC-17 row restatement (register dirty, DATA).
+- **Waiting:** SWE2-AUDIT-SPEC (idle since 14:48 UTC, ~45 ACTIVE): section acceptances SECTION01/04/05/07-10/08-09, 17
+  interior reviews, DD owner reads; FRONTIER: tiny-form ruling, method-verdict routing; STRUCT: types.tsv TS-2/TS-3;
+  DATA: OPUS-REQ-DATA-REGISTER-RT-LAND-1001; ASTRA: two re-reviews; SPEC-gated ASTRA returns.
+- **Cloud:** routines bill the plan, not the credit; claude --cloud via C:/Users/Kristian/Tools/cloud-launch/cloud_launch.py;
+  awaiting the user's confirmation that the credit moved after probe session_01GBKBghCBkGvvHjNQghLtXj.
+- **Runner:** pubqueue --max-life 3600 hidden; restart when the log says "max life reached"; never edit files of a spec
+  the runner may have loaded; follow-ups need a fresh id.
 
 ## RESUME PROTOCOL - read this first (OPUS, 2026-09-26)
 

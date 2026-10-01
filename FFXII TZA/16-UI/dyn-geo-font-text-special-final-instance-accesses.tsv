@@ -1,0 +1,52 @@
+function	name	site	disp	kind	instruction	route	note
+00213AA0	FUN_00213aa0	00213AB0	0x0	w	mov qword ptr [rcx], rax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	00214002	0x0	r	mov rax, qword ptr [rcx]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	00214188	0x0	r	mov rax, qword ptr [rsi]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	002141D0	0x0	r	mov rax, qword ptr [rsi]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+002142A0	FUN_002142a0	002142C9	0x8	addr	lea r14, [rcx + 8]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+002142A0	FUN_002142a0	002142D0	0x8	r	mov rdx, qword ptr [r14]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x8	
+002142A0	FUN_002142a0	00214332	0x58	r	mov r13, qword ptr [r14 + 0x50]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x8	
+002142A0	FUN_002142a0	002142BA	0xA8	addr	lea r15, [rcx + 0xa8]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+002142A0	FUN_002142a0	0021432D	0xA8	r	mov esi, dword ptr [r15]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0xA8	
+00213FE0	FUN_00213fe0	00214099	0xF8	r	mov rcx, qword ptr [rsi + 0xf8]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+002146F0	FUN_002146f0	002146F0	0xF8	w	mov qword ptr [rcx + 0xf8], rdx	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	00214046	0x100	r	mov rcx, qword ptr [rsi + 0x100]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+002148E0	FUN_002148e0	002148E0	0x100	w	mov qword ptr [rcx + 0x100], rdx	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	0021402B	0x108	r	mov edx, dword ptr [rsi + 0x108]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214830	FUN_00214830	00214832	0x108	w	mov dword ptr [rcx + 0x108], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	00214024	0x10C	r	mov r8d, dword ptr [rsi + 0x10c]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214830	FUN_00214830	0021483B	0x10C	w	mov dword ptr [rcx + 0x10c], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	0021401D	0x110	r	mov r9d, dword ptr [rsi + 0x110]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214830	FUN_00214830	00214844	0x110	w	mov dword ptr [rcx + 0x110], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	00214035	0x114	r	mov eax, dword ptr [rsi + 0x114]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214830	FUN_00214830	0021484D	0x114	w	mov dword ptr [rcx + 0x114], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213FE0	FUN_00213fe0	00214011	0x118	r	mov eax, dword ptr [rsi + 0x118]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214830	FUN_00214830	00214856	0x118	w	mov dword ptr [rcx + 0x118], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213B72	0x11C	r	mulss xmm0, dword ptr [rcx + 0x11c]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214712	0x11C	w	mov dword ptr [rcx + 0x11c], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213B7D	0x120	r	mulss xmm1, dword ptr [rcx + 0x120]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	0021471B	0x120	w	mov dword ptr [rcx + 0x120], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214724	0x124	w	mov dword ptr [rcx + 0x124], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213B85	0x128	r	mulss xmm2, dword ptr [rcx + 0x128]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	0021472D	0x128	w	mov dword ptr [rcx + 0x128], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213BAB	0x12C	r	mulss xmm7, dword ptr [rcx + 0x12c]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214736	0x12C	w	mov dword ptr [rcx + 0x12c], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213BB3	0x130	r	mulss xmm6, dword ptr [rcx + 0x130]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	0021473F	0x130	w	mov dword ptr [rcx + 0x130], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214748	0x134	w	mov dword ptr [rcx + 0x134], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213BBB	0x138	r	mulss xmm9, dword ptr [rcx + 0x138]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214751	0x138	w	mov dword ptr [rcx + 0x138], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213B67	0x13C	r	movss xmm3, dword ptr [rcx + 0x13c]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	0021475A	0x13C	w	mov dword ptr [rcx + 0x13c], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213BE0	0x140	r	movss xmm2, dword ptr [rcx + 0x140]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214763	0x140	w	mov dword ptr [rcx + 0x140], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	0021476C	0x144	w	mov dword ptr [rcx + 0x144], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213BCF	0x148	r	movss xmm1, dword ptr [rcx + 0x148]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214775	0x148	w	mov dword ptr [rcx + 0x148], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213BFD	0x14C	r	addss xmm7, dword ptr [rcx + 0x14c]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	0021477E	0x14C	w	mov dword ptr [rcx + 0x14c], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213C0E	0x150	r	addss xmm6, dword ptr [rcx + 0x150]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214787	0x150	w	mov dword ptr [rcx + 0x150], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214790	0x154	w	mov dword ptr [rcx + 0x154], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00213B40	FUN_00213b40	00213C05	0x158	r	addss xmm9, dword ptr [rcx + 0x158]	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	
+00214710	FUN_00214710	00214799	0x158	w	mov dword ptr [rcx + 0x158], eax	route-seeded DYNAMIC reached only through vtable 00906EB8 | VTABLE 0x00906EB8 base+0x0	

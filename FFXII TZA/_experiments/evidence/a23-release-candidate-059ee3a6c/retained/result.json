@@ -1,0 +1,344 @@
+{
+  "status": "SCOPED_RELEASE_SNAPSHOT_SOURCE_CHECKED_NOT_FULL_A23_ACCEPTANCE",
+  "candidate_commit": "059ee3a6ccf9f4d5b49ef52deb61d1be75bde1e9",
+  "generation": "g20260929T213407Z-9c7238",
+  "zip_sha256": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7",
+  "manifest_sha256": "865299843d417576c56167c3375db3f3a17e5a2abde61f128b5fdd24b9adc66e",
+  "driver_sha256": "1766e16c9fb4f95813746979ca304b79f3be1cf030d48615f860319d0f7a89c1",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "members": [
+    {
+      "path": "MANIFEST.json",
+      "bytes": 8672,
+      "sha256": "865299843d417576c56167c3375db3f3a17e5a2abde61f128b5fdd24b9adc66e"
+    },
+    {
+      "path": "inputs/_tree",
+      "bytes": 9443,
+      "sha256": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6"
+    },
+    {
+      "path": "inputs/build_views.py",
+      "bytes": 49701,
+      "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790"
+    },
+    {
+      "path": "inputs/category_map",
+      "bytes": 10617,
+      "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f"
+    },
+    {
+      "path": "inputs/check_questions",
+      "bytes": 643,
+      "sha256": "806ac2abffa8e5414949a10f739ff53bd7a57cf392992b94b59cb9294d65d802"
+    },
+    {
+      "path": "inputs/coverage_dims",
+      "bytes": 58385,
+      "sha256": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50"
+    },
+    {
+      "path": "inputs/fields",
+      "bytes": 10640389,
+      "sha256": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505"
+    },
+    {
+      "path": "inputs/functions",
+      "bytes": 7008993,
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "inputs/goal_gate",
+      "bytes": 752,
+      "sha256": "b0b95e6b8330042f0b757f4ab8b55f77ab68f894e27c275d87a1b1d03f38ef34"
+    },
+    {
+      "path": "inputs/l2",
+      "bytes": 334764,
+      "sha256": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668"
+    },
+    {
+      "path": "inputs/pkg:PKG-GP-EXP-LEVEL-UP.md",
+      "bytes": 6493,
+      "sha256": "2e936c6e0aebcf700238ddb1db7a0b469938c8ecc64672252f485d4b6e0a85cc"
+    },
+    {
+      "path": "inputs/pkg:PKG-GP-HP-LETHAL.md",
+      "bytes": 10550,
+      "sha256": "f899c1a9364968ae0719b59f12ce01fd212cb460c1af7deac0f153eea54d32a4"
+    },
+    {
+      "path": "inputs/pkg:PKG-GP-SPAWN-RESPAWN.md",
+      "bytes": 10701,
+      "sha256": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db"
+    },
+    {
+      "path": "inputs/pkg:PKG-GP-STATUS-POISON.md",
+      "bytes": 13229,
+      "sha256": "baf526fff397a6d3c474252501998978d9bcf49a5a597475fcda806e9d5fbae8"
+    },
+    {
+      "path": "inputs/pkg:PKG-TECH-SCRIPTVM-VALUE.md",
+      "bytes": 8469,
+      "sha256": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5"
+    },
+    {
+      "path": "inputs/progress_check",
+      "bytes": 85,
+      "sha256": "ea8609f68d597f7c8cbebd7a12416b949d1b2d475c186916faf2a5a8b65f1e8f"
+    },
+    {
+      "path": "inputs/progress_snapshot",
+      "bytes": 272726,
+      "sha256": "34f4027fc2da928f4623430d426abc1c3b027aeec37da97aefba18f023b6e72a"
+    },
+    {
+      "path": "inputs/requirement_facts",
+      "bytes": 8145497,
+      "sha256": "8193c878525a1fc17ff2d8188e88baec3b9563688b6eca848aade78c8e592f47"
+    },
+    {
+      "path": "inputs/requirements.py",
+      "bytes": 32680,
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148"
+    },
+    {
+      "path": "inputs/subsystems",
+      "bytes": 22589,
+      "sha256": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87"
+    },
+    {
+      "path": "inputs/team",
+      "bytes": 57193960,
+      "sha256": "996fa23099dacbfa2f24ea779b2d42810f951af2e3c469989f0e451e76c12657"
+    },
+    {
+      "path": "inputs/types",
+      "bytes": 1920357,
+      "sha256": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af"
+    },
+    {
+      "path": "inputs/uc1_1_64",
+      "bytes": 37250,
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa"
+    },
+    {
+      "path": "inputs/uc1_65_256",
+      "bytes": 11254,
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97"
+    },
+    {
+      "path": "inputs/uc1_band.py",
+      "bytes": 6914,
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b"
+    },
+    {
+      "path": "inputs/vbf_list",
+      "bytes": 6448250,
+      "sha256": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217"
+    },
+    {
+      "path": "inputs/watchdog",
+      "bytes": 5860,
+      "sha256": "bf77be1164b74e609320a1473a30b1a7425f9e4e6cc1d5c1bc36b1e8f1738ebc"
+    },
+    {
+      "path": "outputs/view-evidence.json",
+      "bytes": 3544,
+      "sha256": "5a6a737f7985dd9d74443e5350b5dc1d05fcc157924e213aa152212b8e68dd43"
+    },
+    {
+      "path": "outputs/view-executable.json",
+      "bytes": 20634,
+      "sha256": "db9e3b99977a5fa5397319d9f3e6d64add4a4aabcf7e06ab738705c7e388231d"
+    },
+    {
+      "path": "outputs/view-fleet.json",
+      "bytes": 2405,
+      "sha256": "003444afb2c52ebf188ae3e3d303cfa01a9604dddeaffddc26923af355711e7f"
+    },
+    {
+      "path": "outputs/view-overview.json",
+      "bytes": 21771,
+      "sha256": "4280069999755373d2c3c6ad4a77479823e398b359e1a79ce9e645a25a113246"
+    },
+    {
+      "path": "outputs/view-progress.json",
+      "bytes": 226669,
+      "sha256": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795"
+    },
+    {
+      "path": "outputs/view-systems.json",
+      "bytes": 57027,
+      "sha256": "633c62534832409fb9e4bf96e06c39e786fdd601f567eba13cfc8c498717d471"
+    },
+    {
+      "path": "outputs/view-types.json",
+      "bytes": 1869,
+      "sha256": "879cbfc551810e2e17bc392eea5a02c85820391bc7270e2dc54e6af885ed8071"
+    },
+    {
+      "path": "outputs/view-vbf.json",
+      "bytes": 18393,
+      "sha256": "4bcc89a0a3ce631c08215bdfb7fba26ee5bcc270fbabf1fba85b5d0f8e5b8272"
+    }
+  ],
+  "producer_observed_views": [
+    {
+      "view": "progress",
+      "retained_http_sha256": "55933018fc75d23515a333bf5cfb42234f04f77b24e73784673b002ce32321c6",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "overview",
+      "retained_http_sha256": "ed2bf5fa2e9d9a1e3cf0d548b1abacdd6ffe27632713095f4c4847211a56267e",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "systems",
+      "retained_http_sha256": "e78fcd15a53fe269334d712415dd14f35fde76efc57687d650c9b0923b6ea020",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "vbf",
+      "retained_http_sha256": "b74f8787fd13eb031dce377879cc8a19380cfa83874b0c1b268ff19d482dc749",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "executable",
+      "retained_http_sha256": "fd5c94d67aad54018a8b8b08ef1c9126a7b1c66494affbdb6fa8ae6aa90bf524",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "types",
+      "retained_http_sha256": "aec70263e24c154f508b13b595306a659a4c942d946e93f1401c35304346917f",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "evidence",
+      "retained_http_sha256": "8b274a2378156ee1273ebb89cd8c7feab52afd58d86d927e5b2a5be37a52f083",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    },
+    {
+      "view": "fleet",
+      "retained_http_sha256": "387ce07a712320807c39adc93134a2d49396e4d977db4d4571f8c4bc2685c728",
+      "matches_zip": true,
+      "observer": "FRONTIER, not an ASTRA live capture"
+    }
+  ],
+  "sources": [
+    {
+      "input": "build_views.py",
+      "component_commit": "cdbf25a5d711654ccbb883f472309c3f42df290f",
+      "git_bytes_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+      "snapshot_bytes_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+      "exact": true,
+      "CRLF_equivalence_only_for_uc1": false
+    },
+    {
+      "input": "requirements.py",
+      "component_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e",
+      "git_bytes_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "snapshot_bytes_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "exact": true,
+      "CRLF_equivalence_only_for_uc1": false
+    },
+    {
+      "input": "uc1_band.py",
+      "component_commit": "b26125d2d0111845ec6e702e5a51410c1745e581",
+      "git_bytes_sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+      "snapshot_bytes_sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+      "exact": false,
+      "CRLF_equivalence_only_for_uc1": true
+    }
+  ],
+  "git_receipts": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "059ee3a6ccf9f4d5b49ef52deb61d1be75bde1e9:Database/FFXII TZA/_index/candidates/a23-release-0929/release-result.json"
+      ],
+      "exit": 0,
+      "stdout_bytes": 7892,
+      "stdout_sha256": "4c65d3ddb61014052ab51ff2ec7e2335a3374e48cc808e119fdb62e076a1c854",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "cdbf25a5d711654ccbb883f472309c3f42df290f:Database/Tools/dashboard/build_views.py"
+      ],
+      "exit": 0,
+      "stdout_bytes": 49701,
+      "stdout_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "69bbf8c81bbfea644a05584e70b7fd73e51fb80e:Database/Tools/dashboard/requirements.py"
+      ],
+      "exit": 0,
+      "stdout_bytes": 32680,
+      "stdout_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "b26125d2d0111845ec6e702e5a51410c1745e581:Database/Tools/analysis-kit/gfz-scripts/uc1_band.py"
+      ],
+      "exit": 0,
+      "stdout_bytes": 6757,
+      "stdout_sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "b6e6de3f0080cd311336c04d68cf17516c228dff:Database/Tools/analysis-kit/gfz-scripts/generation.py"
+      ],
+      "exit": 0,
+      "stdout_bytes": 21083,
+      "stdout_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "stderr": ""
+    }
+  ],
+  "actual_verify_zip": {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+      "verify-zip",
+      "Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip"
+    ],
+    "exit": 0,
+    "stdout": "VERIFIED {\"generation\": \"g20260929T213407Z-9c7238\", \"members\": 35}\n",
+    "stderr": ""
+  },
+  "private_same_count_member_control": {
+    "member": "outputs/view-progress.json",
+    "before_sha256": "38d0936066acf7ab417a3f328b1b7b43e79f29d17a238cb5973f91aae5116795",
+    "after_sha256": "e06125bf3560eeb1215a56705073102000058f018fee252a0a1a5526d2eb138b",
+    "hash_and_store_equality_rejected": true
+  },
+  "limits": [
+    "Retained HTTP observations are the deployment owner's, not new ASTRA live observations.",
+    "CURRENT movement is expected and not compared to this historical candidate.",
+    "No loaded-module attestation, launcher/restart or dashboard suite execution performed.",
+    "Rollback and process receipts require their own scope review; they are not ASTRA runs.",
+    "Full A23/M0-M5 and L1/L2 acceptance remain unawarded."
+  ],
+  "cleanup": "Read-only; no export, rebuild, server/process control or peer/reference write"
+}

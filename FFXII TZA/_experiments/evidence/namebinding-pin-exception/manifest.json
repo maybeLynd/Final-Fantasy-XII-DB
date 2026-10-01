@@ -1,0 +1,327 @@
+{
+  "status": "FROZEN_PRODUCER_VALID_INDEPENDENT_PENDING",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-namebinding-pin-exception.py",
+      "bytes": 1069,
+      "sha256": "09405245bc54ffe7e491eb527064f857898244d0000537fa6c265d0a6614a265"
+    },
+    {
+      "path": "control-namebinding-pin-exception.py",
+      "bytes": 3128,
+      "sha256": "8f56e78fcec13f2d4e356d6bffefec2aee7ea201854e1a65f6aeb8fc50b775d9"
+    },
+    {
+      "path": "find-namebinding-pin-writers.py",
+      "bytes": 3671,
+      "sha256": "4af623d2899d0c2948bcaaed873e6357302ef3a64d5a5a4ebb1fec67233919e5"
+    },
+    {
+      "path": "freeze-namebinding-pin-exception.py",
+      "bytes": 6984,
+      "sha256": "bd5b9b481347362982d7ea70a3489af53545e67f1c05c35c3383bf830b65d19a"
+    },
+    {
+      "path": "namebinding-pin-exception-capture-01.status.json",
+      "bytes": 542,
+      "sha256": "4b519cd3ceac08a25a4e62ab83d78b91d05a6ac8b9ad9e1880bcfe0cb7ce41b3"
+    },
+    {
+      "path": "namebinding-pin-exception-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-capture-01.stdout",
+      "bytes": 166,
+      "sha256": "d6cddd4e120256f985e2c2f52ef288425f1b976b36f53ac171bc07f026f77819"
+    },
+    {
+      "path": "namebinding-pin-exception-consumer-01.json",
+      "bytes": 3273,
+      "sha256": "d58b22cc4c3647cd1d89c80ce3c8f073974e009cf295a0246c2fc9fa25cc789c"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/capture-namebinding-pin-exception.py",
+      "bytes": 1069,
+      "sha256": "09405245bc54ffe7e491eb527064f857898244d0000537fa6c265d0a6614a265"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/namebinding-pin-exception-capture-01.status.json",
+      "bytes": 542,
+      "sha256": "4b519cd3ceac08a25a4e62ab83d78b91d05a6ac8b9ad9e1880bcfe0cb7ce41b3"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/namebinding-pin-exception-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/namebinding-pin-exception-capture-01.stdout",
+      "bytes": 166,
+      "sha256": "d6cddd4e120256f985e2c2f52ef288425f1b976b36f53ac171bc07f026f77819"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/namebinding-pin-exception-consumer-01.json",
+      "bytes": 3273,
+      "sha256": "d58b22cc4c3647cd1d89c80ce3c8f073974e009cf295a0246c2fc9fa25cc789c"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/namebinding-pin-exception-source-01.json",
+      "bytes": 56953,
+      "sha256": "31a666e02a84a030ac9973a57886304d735049e96a689001f010e90e6d22a7fc"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/status.json",
+      "bytes": 826,
+      "sha256": "2e31128486a0c0b89a1be743ef61c95d5df33d039d73933cceedae2d72acbc59"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/stderr",
+      "bytes": 735,
+      "sha256": "e2bd18ee7e616c35f6f38d1371c5acf43d797f3fabdafa013a08ea398d0a4564"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/changed-flag-clear/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/capture-namebinding-pin-exception.py",
+      "bytes": 1069,
+      "sha256": "09405245bc54ffe7e491eb527064f857898244d0000537fa6c265d0a6614a265"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/namebinding-pin-exception-capture-01.status.json",
+      "bytes": 552,
+      "sha256": "8b711564ab40e374b10bb7e5c0e522dc046a9cc7a68146b8ac49b6f807a1f38c"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/namebinding-pin-exception-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/namebinding-pin-exception-capture-01.stdout",
+      "bytes": 166,
+      "sha256": "d6cddd4e120256f985e2c2f52ef288425f1b976b36f53ac171bc07f026f77819"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/namebinding-pin-exception-consumer-01.json",
+      "bytes": 3273,
+      "sha256": "d58b22cc4c3647cd1d89c80ce3c8f073974e009cf295a0246c2fc9fa25cc789c"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/namebinding-pin-exception-source-01.json",
+      "bytes": 56953,
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/status.json",
+      "bytes": 803,
+      "sha256": "fcc216480e9bbb1b34a24405e1e42732a2f2fadc5940c88aa16397fea73c7c5d"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/stderr",
+      "bytes": 688,
+      "sha256": "233941068337699ef314248f22d42fd4150a81ebc39c18865f8bfdec7664bcd8"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/failed-capture/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/capture-namebinding-pin-exception.py",
+      "bytes": 1069,
+      "sha256": "09405245bc54ffe7e491eb527064f857898244d0000537fa6c265d0a6614a265"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/namebinding-pin-exception-capture-01.status.json",
+      "bytes": 542,
+      "sha256": "4b519cd3ceac08a25a4e62ab83d78b91d05a6ac8b9ad9e1880bcfe0cb7ce41b3"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/namebinding-pin-exception-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/namebinding-pin-exception-capture-01.stdout",
+      "bytes": 166,
+      "sha256": "d6cddd4e120256f985e2c2f52ef288425f1b976b36f53ac171bc07f026f77819"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/namebinding-pin-exception-source-01.json",
+      "bytes": 56953,
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/status.json",
+      "bytes": 806,
+      "sha256": "0a0e90dd16b9a9c995781048a468d08f2e84db7da7c8218a328e83431a3ac00f"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/stderr",
+      "bytes": 1313,
+      "sha256": "7e2e41bab8ccc3728436e257e417066d3d0196556e9e3dfdf6bcf1ec623a2328"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/missing-consumer/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-01/result.json",
+      "bytes": 3187,
+      "sha256": "49a4ca4748e5072967b399553e21487fa47a0f71eea55668ffd258d3c3591401"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-run-01.status.json",
+      "bytes": 391,
+      "sha256": "484fec286f33e7064e1c81d50208f55eba53dd9d8d5e0ae09034496ee4dea275"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-controls-run-01.stdout",
+      "bytes": 75,
+      "sha256": "0e838a80a1706fe977dc0732abf79d257febd35865f3e7c99ca871450470f9d1"
+    },
+    {
+      "path": "namebinding-pin-exception-method-01.json",
+      "bytes": 2392,
+      "sha256": "76798ddf6324a092d6bc06bdf18052b3ef10992866de23b6f194984833b3c9de"
+    },
+    {
+      "path": "namebinding-pin-exception-positive-01.status.json",
+      "bytes": 549,
+      "sha256": "a9e7ef77e2fc10c77ffc4ca5c0621f31f3799b0fb8072f34cf2a4aa8a7553513"
+    },
+    {
+      "path": "namebinding-pin-exception-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-exception-positive-01.stdout",
+      "bytes": 101,
+      "sha256": "62cb22b4ef9a26ed14efa356c4326d694fa11bc1e27c0db4657c0e250a0df103"
+    },
+    {
+      "path": "namebinding-pin-exception-result-01.json",
+      "bytes": 8320,
+      "sha256": "c41fc457dd09f60c39b726f7db3460f8e76bdeedfac5901779c9fd8e593b94d2"
+    },
+    {
+      "path": "namebinding-pin-exception-source-01.json",
+      "bytes": 56953,
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "namebinding-pin-writers-candidates-01.json",
+      "bytes": 15727,
+      "sha256": "4a7d3ebb0d7580feeff3d736e427121a40fa3501e416d27b462bb98d0c616e24"
+    },
+    {
+      "path": "namebinding-pin-writers-discovery-01.status.json",
+      "bytes": 539,
+      "sha256": "58d43fe037724ae3e6a32e7f897d4f0c0f8c5caeeafdfe222ed2aeba61dfa4ff"
+    },
+    {
+      "path": "namebinding-pin-writers-discovery-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-pin-writers-discovery-01.stdout",
+      "bytes": 769,
+      "sha256": "4dca037babf8c58a24a782b49b2119ee4bcae6841f907e4df1d696e3f1dc610a"
+    },
+    {
+      "path": "prove-namebinding-pin-exception.py",
+      "bytes": 11252,
+      "sha256": "1f1b2a82f8da4f2779663f897e8e907de342af54787ff433560da75d16ed9261"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2825,
+      "sha256": "a99a97d2465c4e3f35476c4640baaddb7639e266d8ef2b7ec86b7f300ce5693c"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "member_count": 63,
+  "native_path_units": 8602,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A STATIC_ONLY",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0
+}

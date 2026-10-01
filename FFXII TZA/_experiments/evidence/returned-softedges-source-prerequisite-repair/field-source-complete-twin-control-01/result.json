@@ -1,0 +1,26 @@
+{
+  "status": "PASS_COMPLETE_SOURCE_TWIN_INDEPENDENT_PENDING",
+  "positive_exit": 0,
+  "mutated_exit": 1,
+  "mutated_result_exists": false,
+  "original_instruction": {
+    "pc": "0x1ea5c1",
+    "bytes": "4c8d9618010000",
+    "mnemonic": "lea",
+    "args": "r10, [rsi + 0x118]",
+    "memory": [
+      {
+        "base": "rsi",
+        "index": null,
+        "scale": 1,
+        "displacement": 280,
+        "size": 8,
+        "role": "addr",
+        "rip_target": null
+      }
+    ]
+  },
+  "driver_sha256": "0b607264a870cba8d4a93c9dbf2b40558fa43e583c505f979f1590da9ccdcafd",
+  "reducer_sha256": "88768d2fc9c3963f115d622a43a4541cab27d9f3f27c9d7e65df23bb79368b97",
+  "limits": "One complete same-copy positive/changed-byte refusal; qualifies earlier partial gate fixture, no independent audit/native/live count."
+}

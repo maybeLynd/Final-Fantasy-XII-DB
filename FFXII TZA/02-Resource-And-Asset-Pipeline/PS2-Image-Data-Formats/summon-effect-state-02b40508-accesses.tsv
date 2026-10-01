@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+003B54C0	FUN_003b54c0	003B54FE	0x2	w	mov byte ptr [rbx + 2], 2	route-seeded STATIC 0x02B40508 base+0x0	
+003B54C0	FUN_003b54c0	003B5508	0x2	w	mov byte ptr [rcx + 2], 2	route-seeded STATIC 0x02B40508 base+0x0	
+003B54C0	FUN_003b54c0	003B54C6	0x4	r	movzx eax, word ptr [rcx + 4]	route-seeded STATIC 0x02B40508 base+0x0	

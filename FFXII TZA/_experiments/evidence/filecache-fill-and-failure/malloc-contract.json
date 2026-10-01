@@ -1,0 +1,6 @@
+{
+  "method": "External named API contract, not actual loaded FF12 CRT",
+  "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/malloc?view=msvc-170",
+  "read_date": "2026-10-01",
+  "paraphrase": "malloc may return null for insufficient memory; new-handler behavior can be configured. This does not prove the exact loaded heap or that a16-byte allocation can fail after this preceding free."
+}

@@ -1,0 +1,150 @@
+{
+  "status": "PRODUCER_CHECKED_CONDITIONAL_QUEUE_DATAFLOW_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "title-queue-slow-consumer-source-01.json",
+      "sha256": "df40ab42c84f9ad8bb70d6d3bb8c3390c4b26a546e02446ffed200d25fdeac97"
+    },
+    {
+      "path": "title-queue-consumer-source-01.json",
+      "sha256": "a31c39ebdb1fa1c024b2ce703add5a4466170533be89659e67261054af04349e"
+    },
+    {
+      "path": "title-cleanup-callback-queue-source-01.json",
+      "sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x1858a0",
+      "end_exclusive": "0x185a0f",
+      "instructions": 113,
+      "returns": [
+        "0x18591e",
+        "0x185a0e"
+      ],
+      "calls": [
+        {
+          "pc": "0x185956",
+          "target": "qword ptr [rax + 0x10]"
+        },
+        {
+          "pc": "0x1859dd",
+          "target": "qword ptr [r9 + 0x18]"
+        }
+      ]
+    },
+    {
+      "entry": "0x186230",
+      "end_exclusive": "0x1862ad",
+      "instructions": 31,
+      "returns": [
+        "0x1862ac"
+      ],
+      "calls": [
+        {
+          "pc": "0x186277",
+          "target": "qword ptr [rbx]"
+        }
+      ]
+    }
+  ],
+  "question": "How does the full queue append store its pair, and how is that pair consumed through the same four-bank context?",
+  "established": [
+    "With valid stable begin<=write<=capacity and position=write supplied by185A90, its write>=capacity condition implies write==capacity. Original1858A0 takes the full-growth arm; the spare-capacity insertion arm is not reached under these premises.",
+    "At valid full size n=(write-begin)/16, n=0 chooses new capacity1; 1<=n<=7FFFFFFF chooses2*n. Native arithmetic tests low32(EAX), doubles in32-bit EBP and zero-extends allocation bytes; it is not an arbitrary-size sanitizer. Growth uses queue+18 interface slot10, copies the old prefix and staged16B pair, optionally calls interface slot18 on old storage, then publishes begin/write/capacity in that order. Relevant slot effects and success/freshness remain premises.",
+    "1858A0 has only the two interface call sites, with allocator-record/byte-count/storage arguments. It never directly calls the staged function pointer as its target. This is local source dataflow, not proof that opaque allocation callbacks cannot perform arbitrary transitive effects.",
+    "186230 writes new bank ((old DWORD+1) modulo2^32)&3 BEFORE loading queue begin/write for that bank. Queue bases are context+C38+32*bank; write offset C40. It snapshots the write cursor, then invokes each16B pair function at+0 with RCX=data at+8 and increments the iterator by16. This establishes the previously omitted stored-data callback ABI, conditional on that consumer executing.",
+    "Under unchanged index/storage/callback inputs and normal ABI-preserving returns, it visits only the pre-call [begin,write) snapshot and resets current selected write to its begin. It does not free the queue allocation or zero callback/data bytes locally. Initial empty queue skips callbacks and still resets its cursor.",
+    "Four uninterrupted consumer invocations rotate through all four banks and return to the original low-two-bit bank. A pair appended to the current bank is not visited on the next invocation; its bank is selected on the fourth invocation under unchanged relevant state. Invocations are not frames, and actual initial index/pump caller/thread/timing are not established.",
+    "The final reset re-reads context+CB8 after callbacks instead of using the captured bank. Same-bank callback append without reallocation lies beyond the captured end and its cursor can be discarded by that reset; a callback that changes CB8 can redirect which bank is reset. These are conditional source counterexamples to unrestricted mutation/reentry safety, not observations that17ECC0 or ordinary gameplay performs those mutations."
+  ],
+  "bounded_algebraic_cycle": [
+    {
+      "initial_low2": 0,
+      "consumed_banks": [
+        1,
+        2,
+        3,
+        0
+      ]
+    },
+    {
+      "initial_low2": 1,
+      "consumed_banks": [
+        2,
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "initial_low2": 2,
+      "consumed_banks": [
+        3,
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "initial_low2": 3,
+      "consumed_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "cycle_basis": "INC32 then AND3 depends only on two low bits; all4 residues enumerated as algebraic controls, not4 original-code executions",
+  "conditional_witnesses": [
+    {
+      "kind": "append_without_reallocation",
+      "bank": 1,
+      "begin": "0x1000",
+      "captured_write": "0x1010",
+      "capacity": "0x1030",
+      "callback_appends_at": "0x1010",
+      "new_write": "0x1020",
+      "loop_end_unchanged": "0x1010",
+      "reset_write": "0x1000",
+      "interpretation": "New appended pair is not invoked in this loop and is outside the reset logical range; requires callback append and no reallocation/index interference"
+    },
+    {
+      "kind": "index_mutation",
+      "captured_bank": 1,
+      "callback_leaves_index": 2,
+      "reset_bank": 2,
+      "interpretation": "Final reset uses bank2 while loop iterated bank1; conditional state write, no natural reachability assertion"
+    }
+  ],
+  "assumptions": [
+    "ABI-correct stack and normally returning original callees; callbacks preserve nonvolatile iterator/end/context registers",
+    "Valid contiguous backed16B queue records; stable input pair and context; growth returns fresh sufficiently large nonNULL storage with no conflicting aliases or overflow",
+    "0<=full count<=7FFFFFFF for ordinary capacity formula; opaque allocation/free side effects not independently established",
+    "Unchanged queue/index/storage through callbacks for the ordinary loop/cycle; mutation witnesses explicitly replace that premise"
+  ],
+  "limitations": [
+    "No actual initialized game state, consumer caller/thread/frame, natural reentry, callback mutation or lifetime observation",
+    "Named pump source spans are retained preparation only; no automatic same-context consumer caller proof",
+    "No cancellation/drain of title resource tickets, full lifetime guarantee, allocation-interface implementation or5DE250/19C590 release effects",
+    "Direct-call-only candidate search with zero hits lacks negative detection control and does not establish no caller; identified E9 at185C20 remains a candidate until a separate original leaf/caller proof"
+  ],
+  "next_discriminators": [
+    "Validate185C20 tail entry and its callers/binding before asserting normal consumer reachability",
+    "Bind allocation interfaces and callback5DE250/19C590 effects if needed for cancellation/lifetime proposition"
+  ],
+  "affected_claims": [
+    "OPUS renderer four-bank callback queue ABI/order and mutation preconditions",
+    "FABLE title tracker deferred-release scheduling boundary"
+  ],
+  "checker_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Only original file reads and synchronous checked scripts; no PC/game/process/instrument/save/config/reference writes"
+}

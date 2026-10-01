@@ -1,0 +1,36 @@
+{
+  "question": "Do the exact902720 allocator slots10/18 bound by original bank constructor guarantee nonnull allocation on normal return, or can they returnnull/error without an exception before188640 publishes its pointertuple?",
+  "hypotheses": [
+    "H1 slot10 wrapper guarantees nonnull or propagates failure before normal return",
+    "H2 it can normally returnnull; original reserve writes remain conditional/request evidence only"
+  ],
+  "method": "A exact shipping table and native callback chain first; B only for bounded unresolved branch/ABI ifstaticinsufficient; live onlyforactualallocatorinitialization/placement or naturalfailurestate.",
+  "existing": "Newrendererqueue protocol producer capturedsevennormalspans:184CB0->1EDF00 storesvtable902720;188640slot10 receives80000B/R8D0for5000pairs, no local successgate; slot18 oldstorage release separate. Review/canonicalincorporation pending, no actualmemory placement guarantee.",
+  "physical_table": {
+    "address": "0x902720",
+    "bytes": "80d616000000000010df1e000000000080df1e0000000000e0df1e0000000000",
+    "sha256": "a7740d5af6d40501aae47062771ea9ca7f9d216f8143538f42df0e8b1cd5ac3c",
+    "slots": [
+      {
+        "offset": "0x0",
+        "target": "0x16d680"
+      },
+      {
+        "offset": "0x8",
+        "target": "0x1edf10"
+      },
+      {
+        "offset": "0x10",
+        "target": "0x1edf80"
+      },
+      {
+        "offset": "0x18",
+        "target": "0x1edfe0"
+      }
+    ]
+  },
+  "limits": "Physical shipping table is not live vtable observation. Validate each exactcallee/body/normalABI/return and nativeAPI boundary before ownership/error claims. No universalmalloc contract/stub effects or gamefailureinference.",
+  "consumer": "Existing FABLE native resource/title preconditions; OPUS allocation/return/ownership contracts",
+  "stop": "No live setup or generalallocatorplatform. Ifopaque/nativeprocessstate persists, return exact minimalcollector condition andcontinue anotherunblockedquestion; no unchangedEXP127/menuretry.",
+  "cleanup": "Offline exactreferencebytes only; no game/PC/native/emulated/instrument/save/config/reference/peer mutation"
+}

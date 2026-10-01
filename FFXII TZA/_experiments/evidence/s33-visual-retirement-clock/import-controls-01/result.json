@@ -1,0 +1,88 @@
+{
+  "complete": true,
+  "verdict": "REJECT_IMPORT_STAGE_UPSTREAM_VERDICT_PROPAGATION",
+  "driver_sha256": "dabc9f49ca67970e7f04bd44dfa4cad102ff3c99ce0b60a92ffe8fa11b9de79b",
+  "source_sha256": "927b20cbaca9ac820dc8525dcd1e49ff39f76337f75867189675e720f8fb9373",
+  "prefix_sha256": "6c8e9fbcf8cf7c6759a3b932317bd48722ce64b2619695523d02d436572ccd0f",
+  "cases": [
+    {
+      "case": "positive",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\runner.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\positive",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\original-prefix.py"
+      ],
+      "exit": 0,
+      "terminal": true,
+      "exception": null,
+      "fixture_sha256": "325ebca5a085c09b349ef4e3036bf97241065873cfffc0ffb38d505e93234c53",
+      "observed": {
+        "prefix_returned": true,
+        "upstream_allok": true,
+        "upstream_rows": {
+          "qualified": {
+            "pass_": true
+          }
+        },
+        "exception": null
+      },
+      "expected_behavior_observed": true,
+      "method": "Labelled host module fixture through the exact retained import-prefix statements; no native/whole-S33/game execution"
+    },
+    {
+      "case": "reported-fail",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\runner.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\reported-fail",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\original-prefix.py"
+      ],
+      "exit": 0,
+      "terminal": true,
+      "exception": null,
+      "fixture_sha256": "4c1bfc059ca8102e4230b9a512e1c1786b978529e9d8e29d76a28fb781a7bf4c",
+      "observed": {
+        "prefix_returned": true,
+        "upstream_allok": false,
+        "upstream_rows": {
+          "qualified": {
+            "pass_": false
+          }
+        },
+        "exception": null
+      },
+      "expected_behavior_observed": true,
+      "method": "Labelled host module fixture through the exact retained import-prefix statements; no native/whole-S33/game execution"
+    },
+    {
+      "case": "raised-failure",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\runner.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\raised-failure",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\original-prefix.py"
+      ],
+      "exit": 2,
+      "terminal": true,
+      "exception": null,
+      "fixture_sha256": "68302509d99632412d019576c52ebe5b8e89dc0a97be2a966cfdb1ed682575f7",
+      "observed": {
+        "prefix_returned": false,
+        "exception": "RuntimeError('qualified upstream failure')"
+      },
+      "expected_behavior_observed": true,
+      "method": "Labelled host module fixture through the exact retained import-prefix statements; no native/whole-S33/game execution"
+    }
+  ],
+  "historical_upstream_report": {
+    "ok": true,
+    "rows": 4,
+    "limits": "Current retained upstream record is positive; this latent guard defect does not prove it failed in the historical R7 run."
+  },
+  "finding": "The exact import prefix returns normally and hides printed failure when upstreammodule reports allok=False. The full producer has no C.allok/C.results check. A raisedexception does stop this stage. Require checked nonempty upstreamverdict before accessingW/uc/S; preserve false/missing/exception diagnostics.",
+  "limits": "This runs only the actual import stage with labelled host modules. It does not claim that all eight downstream native cases passed under an injected failure, nor that historical outcomes are refuted. No full campaigns repeated."
+}

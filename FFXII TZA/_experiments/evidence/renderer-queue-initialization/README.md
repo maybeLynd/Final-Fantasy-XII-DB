@@ -1,0 +1,15 @@
+# Original renderer callback-bank initialization
+
+ASTRA/SOL, 2026-10-01. Method A, producer checked; independent review pending. Exact shipping image73461d08...21f8; seven selected original code spans with complete local normal CFGs, actual shared reviewed access roles and source annotations. No native/emulated/game execution.
+
+189000's original allocation path calls184F20 forDD8 bytes before publishing returnedRAX to01F7F598; already nonnull skips the constructor, allocationnull storesnull. 184F20 constructs four same-object callback banks atC38/C58/C78/C98 with32-byte stride via shipping808FE4/184CB0. Each bank's begin/current/end getszero and allocator record18 gets vtable902720 through shipping1EDF00. These are point stores, not live portable defaults.
+
+186CD0's normal loop requests188640(bank,5000) on each bank and writesCB8 index0. Exact receiver/zero definitions, full body pins and normal-return dominance controls bind the argument and call order. 188640 uses16-byte elements: its allocation arm passes80000bytes for5000 pairs, plusR8D0, to allocator-record slot10. It copies and optionally releases old storage via slot18 before publishing the pointer tuple. An initially empty unchanged bank plus successful backed allocation has current=begin,end=begin+80000. The request and tuple writes do not certify allocation success or physical address.
+
+Opaque guard/allocator/helper effects, normal ABI/returns, backed objects and noninterference are explicit premises. The later1F16C0 call is not a transitive no-overwrite proof. Initialized game state, memory placement, all writers, concurrency, natural title teardown and lifetime remainopen. Four construction/reserve iterations are algebraic consequences of original instructions, not native tests or frames. No whole runtime row closed.
+
+Capture01 refused before output because188640 has five chained normal unwind regions. Its driver/error receipt remains. Capture02 binds the exact chain and complete source. Prover01 remains historical; final02 adds full-body pins and normal-return dominance. The final actual checker refuses missing initialization, failed source and a coherent five-bank fixture at the intended gates; no invalid result is emitted. Three controls are synthetic inputs to an actual reducer, never shipping behavior observations.
+
+Reproduce in a fresh owned working directory at the existing repository work depth, using the pinned EXE and shared adapter/dependencies. Choose fresh source/result/control names: recorded outputs are immutable. Reuse captured source02 for the semantic prover; do not recapture instruction constants for a live quota. Required independent review and FABLE/OPUS adoption remain distinct.
+
+Full L1+L2/M0-M5 goal ACTIVE/NOT_MET. No PC/game/instrument/save/config/reference or peer changes. Menu extension stays unapproved and spent; EXP127 remainsinvalid. Next discriminator: actual bound allocator902720 slot10/18 return/error behavior and exact later alias/caller obligation, using original code before runtime.

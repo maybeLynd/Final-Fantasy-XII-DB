@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\normalize-namebinding-descriptor.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-result-01.json"
+  ],
+  "exit": 0,
+  "checker_sha256": "98aa0b7b572cf03109a47b46e4b3ec433b09fef791c1fd3edb87279a3207f7ef",
+  "result_present": true
+}

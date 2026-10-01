@@ -1,0 +1,13 @@
+{
+  "stages": [
+    "check_fresh_output",
+    "invoke_checked_producer",
+    "verify_output_exists",
+    "read_output",
+    "source_available_for_reduction"
+  ],
+  "source_sha256": "a31c39ebdb1fa1c024b2ce703add5a4466170533be89659e67261054af04349e",
+  "producer_sha256": "9413f83a1639b14a3289126744f4a46576ff05f74df33e8a639f74b6b91b7b2d",
+  "gate_sha256": "1869886f6e07a657b674badbcd419668dce9e6e2bac8482ee7320bc792b9a439",
+  "status": "SOURCE_ONLY"
+}

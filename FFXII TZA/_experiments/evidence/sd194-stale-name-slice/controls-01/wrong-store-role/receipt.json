@@ -1,0 +1,27 @@
+{
+  "case": "wrong-store-role",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\controls-01\\wrong-store-role\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\controls-01\\wrong-store-role"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "result_absent": true,
+  "diagnostic": "ValueError: memory/address/access annotation disagrees at 0x377f12",
+  "changed_file": "source-01.json",
+  "changed_sha256": "9435623485e190efa93729eb9e61b2a2bcdf0ea085ee75b558a3519fc5cdb283",
+  "inherited_from_baseline": {
+    "capture.py": "005b4e6643972d9296495595f7ae0a79d910fee871fb13c33e9ea3224b0a65dc",
+    "capture-01.status.json": "bd86e7a17cd3d9817f5b768d47ef94625801efdce2b39cfc2037e1e7bfa91196",
+    "capture-01.stdout": "be751450a1aaa539879a4cc8f03da49424dc90ff152896eee9d4335cc526f435",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "producer_sha256": "f32a163d55cfe32983d74f0efbef42bd420b621378aa33dc82a52543b6e4813a",
+  "control_sha256": "07fbb14a284b6bdaa165b69588a454e32315fd145b251b786f66f6575dcfdeea",
+  "passed": true
+}

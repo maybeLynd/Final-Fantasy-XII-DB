@@ -1,0 +1,165 @@
+{
+  "status": "PRODUCER_PROVED_CONDITIONAL_FLAG_CLASS_BIT_INVARIANT_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A retained shipping bytes, per-bit Boolean invariant and nonwrapping address geometry; no execution",
+  "checker_sha256": "dcf4b3b465078485a92b26e92eee38fb19594aee2d9ba49872dc3d68319bbb4b",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "input_pins": [
+    {
+      "path": "raw-object-state.json",
+      "sha256": "bd0b4f781b8694b31e47308568cd368490e177fbb0d3bc20ad8c81df0cd1b012"
+    },
+    {
+      "path": "raw-position-effects.json",
+      "sha256": "6044be105b9d4265a6cbdb6ad376892d150fb76ccbe1f291fbf49b3234aa5a03"
+    },
+    {
+      "path": "identity.json",
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522"
+    },
+    {
+      "path": "checks-effects-terminal.json",
+      "sha256": "f046a5c5020f001c9a587cdd7a044d679137fe382325f5a6737914d1f02a00f3"
+    },
+    {
+      "path": "check-effects.py",
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+    },
+    {
+      "path": "retained/object-state/003E33E0.bin",
+      "sha256": "5a40dce04a9c9be0283cf0ae5393b65c0b65e7439c5e7a2d9b850354f29a8d1e"
+    },
+    {
+      "path": "retained/object-state/003E3440.bin",
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62"
+    },
+    {
+      "path": "retained/position-effects/002E6000.bin",
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b"
+    }
+  ],
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "actual_role_controls": [
+    {
+      "bytes": "0f1101",
+      "role": "w"
+    },
+    {
+      "bytes": "488d4104",
+      "role": "addr"
+    },
+    {
+      "bytes": "f00fb101",
+      "role": "rw"
+    }
+  ],
+  "question": "Which flag-word overlaps can change actor byte3 highE0 class bits?",
+  "snippets": [
+    {
+      "entry": "0x3e33e0",
+      "original_extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "input_shift": 23,
+      "update_mask": "0x800000",
+      "dirty_mask": "0x2",
+      "may_change_bits": [
+        1,
+        23
+      ],
+      "boolean_cases": 256,
+      "placements": [
+        {
+          "flag_minus_actor": 0,
+          "class_mask_in_flag_word": "0xe0000000",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        },
+        {
+          "flag_minus_actor": 1,
+          "class_mask_in_flag_word": "0xe00000",
+          "potential_changed_class_bits": "0x800000",
+          "preserves_second_read_class_bits": false
+        },
+        {
+          "flag_minus_actor": 2,
+          "class_mask_in_flag_word": "0xe000",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        },
+        {
+          "flag_minus_actor": 3,
+          "class_mask_in_flag_word": "0xe0",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        }
+      ]
+    },
+    {
+      "entry": "0x3e3440",
+      "original_extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "input_shift": 24,
+      "update_mask": "0x1000000",
+      "dirty_mask": "0x4",
+      "may_change_bits": [
+        2,
+        24
+      ],
+      "boolean_cases": 256,
+      "placements": [
+        {
+          "flag_minus_actor": 0,
+          "class_mask_in_flag_word": "0xe0000000",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        },
+        {
+          "flag_minus_actor": 1,
+          "class_mask_in_flag_word": "0xe00000",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        },
+        {
+          "flag_minus_actor": 2,
+          "class_mask_in_flag_word": "0xe000",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        },
+        {
+          "flag_minus_actor": 3,
+          "class_mask_in_flag_word": "0xe0",
+          "potential_changed_class_bits": "0x0",
+          "preserves_second_read_class_bits": true
+        }
+      ]
+    }
+  ],
+  "counterexample": {
+    "method": "Algebraic original-source consequence, not native or observed alias",
+    "entry": "0x3e33e0",
+    "flag_minus_actor": 1,
+    "input_dx": 1,
+    "first_read": 0,
+    "second_read": 0,
+    "computed_store": "0x800002",
+    "actor_class_byte_before": 0,
+    "actor_class_byte_after": 128
+  },
+  "established": [
+    "3E3440 computed store preserves actor byte3 highE0 bits from its second DWORD read at all four possible covering placements, without an alignment premise. Bits24/2 cannot meet class-byte high5..7 bits.",
+    "3E33E0 computed store may change those class bits only at exact F=actor+1, through updatebit23->actorbyte3 bit7. All other covering placements preserve them from second read. Disjointness is sufficient but stronger than this exact mask condition.",
+    "If flag and actor bases are both4-aligned, exact F=actor+1 is excluded. This is a conditional geometric consequence, not proof of actual alignment/nonaliasing or initialized allocator state.",
+    "The two original DWORD reads remain independent d0/d1. Bits outside mask|dirty copy d1 even if d0 differs. Comparing with an earlier actor class or memory just before store requires separate no-interference/synchronization premises."
+  ],
+  "limitations": [
+    "Original21B/19B catalogue-only snippets retain their scope labels; no fabricated full-function unwind/caller coverage",
+    "Computed store invariant is not actual memory preservation across intervening writers, native initialization, natural alias or lifetime",
+    "Other render/native callbacks, other stores and full CON-172 class-stability remain OPEN",
+    "512 Boolean cases exhaust bit-local triples for two snippets; not512 game samples/native experiments and not an exact model of omitted operations"
+  ],
+  "affected_claims": [
+    "FABLE/OPUS CON-172 selected rendering flag-store overlap preconditions"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Canonical selected inputs read/copies only; shared adapter invoked; own bounded Python terminal, no game/PC/native/instrument/save/config/reference/peer mutation"
+}

@@ -1,0 +1,44 @@
+{
+  "status": "PRODUCER_VALID_DESCRIPTOR_OFFSET_QUALIFICATION_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A RETAINED_ORIGINAL_CODE",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "descriptor-offset-retained-pin-source-01.json",
+      "sha256": "c4ef40d40d0463491bc859638e998dbcdf8dde7ad20400720fe13e9172c018be"
+    },
+    {
+      "path": "descriptor-offset-retained-adopter-source-01.json",
+      "sha256": "af47f19a019bab68921a205a8196e617f105fd9acc7ddaee175e51b20596ffac"
+    }
+  ],
+  "checker_sha256": "98aa0b7b572cf03109a47b46e4b3ec433b09fef791c1fd3edb87279a3207f7ef",
+  "established": [
+    "The issuer descriptor leading zero is an initial file offset; adopter signed-aligns descriptor+0 and stores slot+2C.",
+    "Slot+28 byte count is independent. Existing error-helper count==-1 policy is consumed, not a new experiment.",
+    "Normalized output changes exactly descriptor.flags to initial_file_offset and the one matching established sentence; no record/state flag or prior branch result is changed."
+  ],
+  "limitations": [
+    "Natural failed IO producer/state, byte-count writers between adoption and error helper, ownership/recovery/cancellation and lifetime",
+    "Input read size initially passed by original issuer does not prove its later error-helper count; offset0 has no error opt-in meaning",
+    "Producer validity is not independent review or canonical incorporation. Natural reachability/IO/scheduling/lifetime not certified."
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "descriptor-offset-affected-preimages-01.json",
+      "sha256": "b63d8b8b4149c69e696b96216513970550402d306573c214af9f4309c7374857"
+    },
+    {
+      "path": "namebinding-error-policy-existing-resolution-01.json",
+      "sha256": "6b373d9e9b5d555f000b45b487b35c3897127e3e789b8243e7047e8ec66af1c7"
+    }
+  ],
+  "normalized_result": {
+    "path": "namebinding-pin-exception-qualified-02.json",
+    "sha256": "e3c9d6c2dbc097947725c536d53d16a7085c17aeaf98de3205f2395f077120c6"
+  },
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0
+}

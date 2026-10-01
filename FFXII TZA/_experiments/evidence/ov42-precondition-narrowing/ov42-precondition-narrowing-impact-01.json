@@ -1,0 +1,73 @@
+{
+  "method": "Targeted reference search, not universal dependency closure",
+  "rg_exit": 0,
+  "matches": [
+    {
+      "path": "Database/FFXII TZA/_index/_inbox/ASTRA.md",
+      "sha256": "0758565111f5c3609b27661688b9df81958b1e536845a9d7907d9243b19b3778"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/progress/crosswalk.md",
+      "sha256": "812ad26bf6d5cc59828ee1e6d912b151ab75eca302822cc3ca3705f47dd1fa68"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/action-selector-local-exclusions/special-action-frozen-ready/README.md",
+      "sha256": "ffe0ae924a76d7b4d5a2a62e264f0c1e55cd3cc9b4823db379c64b72a9788572"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/action-selector-local-exclusions/special-action-frozen-ready/freeze-special-action.py",
+      "sha256": "fec92bafe748c073b8e0fb6d529fadcb5300489d14f80f68e66d4c05dce681db"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/action-selector-local-exclusions/special-action-frozen-ready/check-special-admission.py",
+      "sha256": "a39533b2fd1b32358935238fa1da0c66d681ffd4bb7cd6b98a8e15c184dc6001"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-class20-admission-0930/compare_rerun.py",
+      "sha256": "993215cd8cc670147c396df64d3c48ad9328ae6526fc0cc5d56224c255e8e5b0"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-action-preconditions-0930/REVIEW.md",
+      "sha256": "f5d87511ddfb5e1849c4a080bfc821e67748bb8d98fde87f25050fbb0fb8ef45"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-action-preconditions-0930/pre_refusals.py",
+      "sha256": "a3a67ac55f6db6fe354913975fba7de2629bf433c41a2be95bce0651585e6108"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-action-preconditions-0930/pre_indep.py",
+      "sha256": "554b58ae9e7a9acaa7d757180a58d1b2a8fada05dc20ef6d0bc3acca54b83a2e"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-action-preconditions-0930/compare_rerun.py",
+      "sha256": "993215cd8cc670147c396df64d3c48ad9328ae6526fc0cc5d56224c255e8e5b0"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/README.md",
+      "sha256": "ffe0ae924a76d7b4d5a2a62e264f0c1e55cd3cc9b4823db379c64b72a9788572"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/freeze-special-action.py",
+      "sha256": "fec92bafe748c073b8e0fb6d529fadcb5300489d14f80f68e66d4c05dce681db"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/ov42-special-action-preconditions/check-special-admission.py",
+      "sha256": "a39533b2fd1b32358935238fa1da0c66d681ffd4bb7cd6b98a8e15c184dc6001"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/rc5-operand-dataflow-fable-0929/rc5_action_word24.py",
+      "sha256": "1231dd61db4cfe5c4d99704a4e7074329a4c105b99144a5decf9ce909aa2896d"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/rc5-operand-dataflow-fable-0929/README.md",
+      "sha256": "f729ada67425acf58c6230a1fd76d70e3282262befaadf59655fc31ae0d87ce1"
+    }
+  ],
+  "producer_change": "Only owned current check-special-admission.py now calls qualify-special-admission-source.py by default. Shipping capture/access-role adapter unchanged. Historical canonical/frozen old reducers and results immutable.",
+  "affected_claims": [
+    "old checker could validate stale text/coherent wrong kind or range branch; independent source capture reproduction is still needed for old semantic claims",
+    "row113 wording ->0x113/275; unconditional D0..F1 wording ->mode5/6 only; prefix mode/owner/group3 gates named",
+    "narrowed WORD sign ->not full index bound or successful resource/load"
+  ],
+  "not_regressed": "Canonical source capture/index/adapter not changed; original ranges match exact shipping bytes and independent review already corroborated them. Nested old packets need this additive qualification when using old source-confidence or prose, not recapture/reclassification of unrelated proofs."
+}

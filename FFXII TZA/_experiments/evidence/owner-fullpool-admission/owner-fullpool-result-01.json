@@ -1,0 +1,75 @@
+{
+  "status": "PRODUCER_VALID_FULLPOOL_ADMISSION_ORDER_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "owner-fullpool-source-01.json",
+      "sha256": "4f0a526e2f21fb807eb5e4f2fcc10d46c5576e39c69455115acc0dd74e7356b1"
+    }
+  ],
+  "driver_sha256": "c2f3430114f60f93a7d1128a14412cdd232e052701ee66a4cf9a65af0ae0efc4",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "qualifier_outer_sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+  "qualifier_helper_sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b",
+  "annotation_receipt": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 184,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "reused_cfg_sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+  "retained_dependency": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\continuation-section09-owner-producer",
+    "manifest_sha256": "23785132366d8f1464b42ccfec0e1d9d4cbec05a04d733b212270f867a7e9de8",
+    "disassembly_sha256": "9cb269e7008618d928cb575d5f65a05c544b56da14ac031ffe972182aa0a7304"
+  },
+  "method": "A RETAINED_ORIGINAL_SOURCE_BRANCH_ORDER",
+  "partitions": [
+    {
+      "free_head_nonzero": true,
+      "local_pump_before_insert": false,
+      "allocation_site": "0x32e8c9"
+    },
+    {
+      "free_head_nonzero": false,
+      "local_pump_before_insert": true,
+      "pump_site": "0x32e8aa",
+      "allocation_site": "0x32e8c9",
+      "loop": "may repeat or never return"
+    }
+  ],
+  "descriptor": {
+    "base": "caller RSP+30",
+    "length_at": "+0",
+    "owner_data32_at": "+8",
+    "callback_at": "+10",
+    "callback": "0x3dd850",
+    "cancel_at": "+18",
+    "cancel": 0,
+    "premise": "accessible normal stack/nonaliasing ABI; staged before opaque request call, consumed after fullpool service"
+  },
+  "established": [
+    "3DDA70 stages the owner descriptor and invokes32E620 before its sole owner state+4 write3. Normal local return does not re-read, branch on or reconcile state changed by the opaque requester; the postcall store is unconditional.",
+    "Both nonnegative requester arms can invoke32E870. On its observed free-head-zero branch, original32E8AA calls32E070 synchronously before allocation/insertion32E8C9 and later descriptor consumption. Free-head-nonzero control skips that local service loop.",
+    "Thus queue service is not universally deferred until this owner submission returns. That source boundary needs no new game session. A pump call is not proof a callback actually executes; completion still depends on prior pump head/state/IO evidence.",
+    "IF a normally returning serviced callback changes the current owner state during this call, original3DDA70 subsequently writes3 to its retained owner pointer. This is a conditional local effect, not an observed same-group reset, natural double request or safe lifetime claim."
+  ],
+  "limits": [
+    "Source CFG partitions, no new FF12/native/game execution. Full pool, actual head/completion, initialized fields/resource destination validity, natural caller timing/thread state and callback effects are unproved here.",
+    "Normal ABI preserves RBX and stack; valid accessible disjoint queue/free/storage and stable descriptor stack. Opaque calls/EH/concurrency/invalid memory can prevent normal return; service loops have no deadline.",
+    "Descriptor fields are staged before service. This does not prove the old resource-derived destination/size still valid if callbacks change resources, nor lifetime/ABA/pointer identity stability.",
+    "No assertion32E620 rejection is naturally reachable or all submit paths use3DDA70. Prior rejection/gate/queue/callback evidence kept at its existing scope; no repeat samples or enlarged native credit.",
+    "Independent SPEC verdict and FABLE/OPUS canonical incorporation pending. Whole OV19/21/36/natural owner uniqueness remain open."
+  ],
+  "affected_claims": [
+    "Owner submit state transition and allowed synchronous-service boundary",
+    "Lifetime/reset pending exclusion during queue-pool pressure"
+  ],
+  "next_discriminator": "Reuse original full-pool/generation/callback evidence to prove or bound actual same-group primary reset and staged destination lifetime; natural occupancy/entry only if needed by canonical consumer. Avoid recapturing the settled local branch.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only original/retained inputs; finite children terminal; no PC/game/save/config/reference or peer writes"
+}

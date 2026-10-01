@@ -1,0 +1,30 @@
+{
+  "status": "PASS_PRODUCER_CONTROLS",
+  "cases": [
+    {
+      "case": "missing-source",
+      "exit": 1,
+      "result_exists": false,
+      "status": "REFUSED_ACTUAL_REDUCER_CLI",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-import-boundary.py\", line 123, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-import-boundary.py\", line 21, in main\r\n    raw, x = P.load(source, \"title-cleanup-import-boundary-source-02.json\", pins)\r\n             ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-queue-consumption.py\", line 12, in load\r\n    p=source/name;v=json.loads(p.read_text());pins.append(dict(path=name,sha256=sha(p)))\r\n                               ~~~~~~~~~~~^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 787, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\title-cleanup-import-controls-01\\\\missing-source\\\\title-cleanup-import-boundary-source-02.json'\r\n"
+    },
+    {
+      "case": "wrong-import-name",
+      "exit": 1,
+      "result_exists": false,
+      "status": "REFUSED_ACTUAL_REDUCER_CLI",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-import-boundary.py\", line 123, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-import-boundary.py\", line 63, in main\r\n    raise ValueError(\"wrong named original import binding\")\r\nValueError: wrong named original import binding\r\n"
+    },
+    {
+      "case": "reversed-teardown-condition",
+      "exit": 1,
+      "result_exists": false,
+      "status": "REFUSED_ACTUAL_REDUCER_CLI",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-import-boundary.py\", line 123, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-import-boundary.py\", line 45, in main\r\n    P.need(x, pc, mnemonic, args)\r\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-queue-consumption.py\", line 20, in need\r\n    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,a):raise ValueError('source operation mismatch '+hex(pc))\r\n                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: source operation mismatch 0x5de26a\r\n"
+    }
+  ],
+  "positive_reused": "title-cleanup-import-boundary-result-01.json",
+  "positive_sha256": "9561104b1fb5e25102da3f8f5ae3cb8aa10de34f141f7368a3d0fade89c42a52",
+  "driver_sha256": "678b0c64c0ecd7fab5f276273c85a11aa6f2bb87ef83b35bfa6ab449ae734dc7",
+  "native_runs": 0
+}

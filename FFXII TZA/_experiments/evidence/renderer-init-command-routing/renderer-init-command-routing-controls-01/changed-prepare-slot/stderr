@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-init-command-routing.py", line 109, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-init-command-routing.py", line 69, in main
+    if table!=dict(address='0x902f28',bytes='a0d6160000000000a0161f0000000000',sha256=hashlib.sha256(bytes.fromhex('a0d6160000000000a0161f0000000000')).hexdigest(),slots=['0x16d6a0','0x1f16a0']):raise ValueError('physical prepare-slot identity changed')
+                                                                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: physical prepare-slot identity changed

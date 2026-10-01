@@ -1,0 +1,13 @@
+{
+  "status": "IMMUTABLE_QUALIFIED_SOURCE_REUSED",
+  "original": "lane-stale-release-frozen-ready/lane-stale-release-source-01.json",
+  "original_manifest": "lane-stale-release-frozen-ready/manifest.json",
+  "manifest_sha256": "c55c8847dfec9ee39600ac37026738321278b8d05dfded5dc352940015dad8d2",
+  "member": {
+    "path": "lane-stale-release-source-01.json",
+    "bytes": 67013,
+    "sha256": "f0d8359317446c74beb13a737306a0dbcc76b910e125f4a30064716bef6e07e3"
+  },
+  "retained_sha256": "f0d8359317446c74beb13a737306a0dbcc76b910e125f4a30064716bef6e07e3",
+  "limits": "Qualified original source reused, publication/review pending. No recapture, no additional credit for prior controls; all bytes independently revalidated against shipping EXE by current reducer"
+}

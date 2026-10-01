@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-softedges-member-boundaries-legacy-02.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\phyretext-member-boundaries",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-result-04.json.legacy-result.json"
+  ],
+  "exit": 0,
+  "legacy_sha256": "672a2358f6ec16839466cb45058fbf0051438e67470b7e4d3de44ea3f0cffd18"
+}

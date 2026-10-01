@@ -1,0 +1,9 @@
+function	name	site	disp	kind	instruction	route	note
+00316440	FUN_00316440	00316449	0x1	r	movzx ecx, byte ptr [rax + 0x3845]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+003162E0	FUN_003162e0	0031631C	0x8	addr	lea ecx, [rax + 0x384c]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+003166F0	FUN_003166f0	00316705	0x8	addr	lea edx, [rax + 0x384c]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+00316810	FUN_00316810	00316878	0x8	addr	lea edx, [rax + 0x384c]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+00316810	FUN_00316810	003168CB	0x8	addr	lea edx, [rax + 0x384c]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+00316BF0	FUN_00316bf0	00316C04	0x8	addr	lea r8d, [rax + 0x384c]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+00316C60	FUN_00316c60	00316C79	0x8	addr	lea edx, [rax + 0x384c]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x-3844	
+00315390	FUN_00315390	003153A4	0x24	r	mov ebx, dword ptr [rax]	route-seeded PTR 0x020927C0+0x3844 | FN 0x002536A0+0x3844 base+0x24	

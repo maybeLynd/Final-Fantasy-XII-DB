@@ -1,0 +1,11 @@
+{
+  "status": "TERMINAL_OFFLINE_ONLY",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "source_sha256": "10561e568f97d9a9f8251d749bf47af5a68be34b512f5100406e834bd7827cae",
+  "all_children_terminal": true,
+  "no_game_pc_native_instrument_save_config_reference_or_peerprocess_write": true,
+  "limits": "Scoped source and child-process cleanup, no global host inventory/live health claim",
+  "native_runs": 0,
+  "live_runs": 0
+}

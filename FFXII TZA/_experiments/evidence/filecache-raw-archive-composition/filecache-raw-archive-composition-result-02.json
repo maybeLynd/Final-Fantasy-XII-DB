@@ -1,0 +1,1451 @@
+{
+  "method": "A STATIC_ONLY, compositional source lemma",
+  "producer_complete": true,
+  "driver_sha256": "354022717f3d2a5e1ca5ad0a5d5ffc19555837cb11b64737c46a0804a21969c6",
+  "source_pins": [
+    {
+      "path": "filecache-format-boundary-source-01.json",
+      "sha256": "2909e71cae51b038b33c4612104b1f1435b999d6b452480bf9ec888058f77935"
+    }
+  ],
+  "external_dependencies": [
+    {
+      "folder": "Database\\FFXII TZA\\_experiments\\evidence\\filecache-key-preprocessing",
+      "manifest_sha256": "f7b5ffccc16ae832d1a7279e1f616c2687e97868b4d98d4378db48ba17e15db6",
+      "path": "filecache-key-preprocessing-result-02.json",
+      "sha256": "ae7ed53bb3128adc748b5012b751791d54297adc5af9e68127426d1a74628e3e"
+    },
+    {
+      "folder": "Database\\FFXII TZA\\_experiments\\evidence\\filecache-key-preprocessing",
+      "manifest_sha256": "f7b5ffccc16ae832d1a7279e1f616c2687e97868b4d98d4378db48ba17e15db6",
+      "path": "filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e"
+    },
+    {
+      "folder": "Database\\FFXII TZA\\_experiments\\evidence\\filecache-fill-and-failure",
+      "manifest_sha256": "3ec198b7e33d6bd3aaa18ef8574a33eead108f51a6611ccdfc42fe5e2edfbd02",
+      "path": "filecache-fill-key-resolver-source-01.json",
+      "sha256": "5702e1c669165ec02c555872f49d5f0efec007c0659bc7f601551676e1cbb145"
+    }
+  ],
+  "graphs": {
+    "0x17d2e0": {
+      "visited": [
+        1561312,
+        1561317,
+        1561322,
+        1561327,
+        1561328,
+        1561329,
+        1561330,
+        1561334,
+        1561337,
+        1561342,
+        1561345,
+        1561350,
+        1561353,
+        1561358,
+        1561362,
+        1561371,
+        1561374,
+        1561377,
+        1561380,
+        1561384,
+        1561390,
+        1561392,
+        1561395,
+        1561399,
+        1561400,
+        1561401,
+        1561402
+      ],
+      "calls": [
+        [
+          1561345,
+          "0x16d670"
+        ],
+        [
+          1561384,
+          "qword ptr [rip + 0x745bda]"
+        ]
+      ],
+      "returns": [
+        1561402
+      ]
+    },
+    "0x16d670": {
+      "visited": [
+        1496688,
+        1496695
+      ],
+      "calls": [],
+      "returns": [
+        1496695
+      ]
+    },
+    "0x20c440": {
+      "visited": [
+        2147392,
+        2147395,
+        2147401,
+        2147404,
+        2147405,
+        2147412,
+        2147419,
+        2147422,
+        2147430,
+        2147435,
+        2147439,
+        2147442,
+        2147446,
+        2147449,
+        2147454,
+        2147456,
+        2147459,
+        2147463,
+        2147466,
+        2147468,
+        2147470,
+        2147475,
+        2147477,
+        2147479,
+        2147489,
+        2147492,
+        2147494,
+        2147496,
+        2147499,
+        2147502,
+        2147504,
+        2147508,
+        2147512,
+        2147514,
+        2147518,
+        2147521,
+        2147523,
+        2147525,
+        2147528,
+        2147531,
+        2147533,
+        2147536,
+        2147539,
+        2147541,
+        2147544,
+        2147547,
+        2147550,
+        2147552,
+        2147555,
+        2147558,
+        2147560,
+        2147563,
+        2147565,
+        2147567,
+        2147570,
+        2147572,
+        2147575,
+        2147581,
+        2147583,
+        2147586,
+        2147589,
+        2147592,
+        2147594,
+        2147602,
+        2147605,
+        2147608,
+        2147610,
+        2147616,
+        2147619,
+        2147622,
+        2147624,
+        2147627,
+        2147630,
+        2147632,
+        2147640,
+        2147648,
+        2147651,
+        2147656,
+        2147663,
+        2147664
+      ],
+      "calls": [
+        [
+          2147575,
+          "qword ptr [rip + 0x6b6af3]"
+        ],
+        [
+          2147651,
+          "0x808c40"
+        ]
+      ],
+      "returns": [
+        2147664
+      ]
+    },
+    "0x59ee90": {
+      "visited": [
+        5893776,
+        5893778,
+        5893780,
+        5893782,
+        5893784,
+        5893786,
+        5893790,
+        5893795,
+        5893799,
+        5893803,
+        5893807,
+        5893814,
+        5893817,
+        5893821,
+        5893825,
+        5893828,
+        5893831,
+        5893834,
+        5893836,
+        5893839,
+        5893844,
+        5893846,
+        5893849,
+        5893852,
+        5893857,
+        5893859,
+        5893861,
+        5893864,
+        5893869,
+        5893871,
+        5893873,
+        5893878,
+        5893883,
+        5893886,
+        5893888,
+        5893890,
+        5893897,
+        5893900,
+        5893902,
+        5893904,
+        5893911,
+        5893913,
+        5893918,
+        5893922,
+        5893925,
+        5893929,
+        5893931,
+        5893936,
+        5893938,
+        5893944,
+        5893948,
+        5893954,
+        5893957,
+        5893963,
+        5893967,
+        5893973,
+        5893978,
+        5893980,
+        5893986,
+        5893991,
+        5893994,
+        5894000,
+        5894005,
+        5894008,
+        5894014,
+        5894020,
+        5894024,
+        5894026,
+        5894030,
+        5894032,
+        5894037,
+        5894039,
+        5894041,
+        5894043,
+        5894046,
+        5894048,
+        5894051,
+        5894053,
+        5894057,
+        5894059,
+        5894064,
+        5894066,
+        5894068,
+        5894073,
+        5894075,
+        5894080,
+        5894082,
+        5894084,
+        5894087,
+        5894089,
+        5894094,
+        5894098,
+        5894103,
+        5894107,
+        5894111,
+        5894114,
+        5894117,
+        5894122,
+        5894126,
+        5894129,
+        5894131,
+        5894134,
+        5894137,
+        5894139,
+        5894144,
+        5894148,
+        5894158,
+        5894162,
+        5894165,
+        5894167,
+        5894170,
+        5894174,
+        5894179,
+        5894182,
+        5894185,
+        5894190,
+        5894192,
+        5894194,
+        5894196,
+        5894198,
+        5894201,
+        5894204,
+        5894207,
+        5894208,
+        5894211,
+        5894214,
+        5894218,
+        5894220,
+        5894222,
+        5894224,
+        5894228,
+        5894231,
+        5894234,
+        5894240,
+        5894243,
+        5894246,
+        5894250,
+        5894252,
+        5894254,
+        5894257,
+        5894260,
+        5894262,
+        5894265,
+        5894267,
+        5894272,
+        5894275,
+        5894277,
+        5894280,
+        5894283,
+        5894286,
+        5894288,
+        5894291,
+        5894294,
+        5894296,
+        5894299,
+        5894301,
+        5894304,
+        5894307,
+        5894310,
+        5894312,
+        5894314,
+        5894317,
+        5894319,
+        5894322,
+        5894325,
+        5894327,
+        5894335,
+        5894339,
+        5894342,
+        5894344,
+        5894347,
+        5894351,
+        5894354,
+        5894359,
+        5894362,
+        5894365,
+        5894370,
+        5894374,
+        5894378,
+        5894383,
+        5894387,
+        5894390,
+        5894392,
+        5894395,
+        5894399,
+        5894404,
+        5894407,
+        5894412,
+        5894415,
+        5894417,
+        5894420,
+        5894424,
+        5894427,
+        5894429,
+        5894431,
+        5894434,
+        5894436,
+        5894438,
+        5894440,
+        5894443,
+        5894445,
+        5894448,
+        5894455,
+        5894458,
+        5894461,
+        5894466,
+        5894469,
+        5894472,
+        5894474,
+        5894478,
+        5894480,
+        5894483,
+        5894485,
+        5894488,
+        5894491,
+        5894494,
+        5894496,
+        5894499,
+        5894502,
+        5894504,
+        5894508,
+        5894510,
+        5894512,
+        5894515,
+        5894518,
+        5894520,
+        5894522,
+        5894525,
+        5894527,
+        5894530,
+        5894533,
+        5894535,
+        5894540,
+        5894543,
+        5894546,
+        5894551,
+        5894555,
+        5894558,
+        5894560,
+        5894563,
+        5894568,
+        5894571,
+        5894574,
+        5894576,
+        5894580,
+        5894583,
+        5894588,
+        5894590,
+        5894592,
+        5894595,
+        5894602,
+        5894604,
+        5894609,
+        5894614,
+        5894618,
+        5894621,
+        5894626,
+        5894630,
+        5894634,
+        5894638,
+        5894642,
+        5894644,
+        5894646,
+        5894648,
+        5894650,
+        5894651
+      ],
+      "calls": [
+        [
+          5893852,
+          "0x1d6b20"
+        ],
+        [
+          5893864,
+          "0x865390"
+        ],
+        [
+          5893913,
+          "0x5cdaa0"
+        ],
+        [
+          5893931,
+          "0x1d6b20"
+        ],
+        [
+          5894059,
+          "0x1d6b90"
+        ],
+        [
+          5894075,
+          "0x1d6b70"
+        ],
+        [
+          5894117,
+          "0x1d6d20"
+        ],
+        [
+          5894174,
+          "0x808f10"
+        ],
+        [
+          5894354,
+          "0x808f10"
+        ],
+        [
+          5894378,
+          "0x599250"
+        ],
+        [
+          5894399,
+          "0x808f10"
+        ],
+        [
+          5894461,
+          "0x17d2e0"
+        ],
+        [
+          5894535,
+          "0x19b1f0"
+        ],
+        [
+          5894546,
+          "0x19aee0"
+        ],
+        [
+          5894563,
+          "0x215280"
+        ],
+        [
+          5894583,
+          "0x59a9b0"
+        ],
+        [
+          5894604,
+          "0x5cdaa0"
+        ],
+        [
+          5894621,
+          "0x808c40"
+        ]
+      ],
+      "returns": [
+        5894651
+      ]
+    }
+  },
+  "instruction_assertions": 30,
+  "ascii_stage_controls": [
+    {
+      "byte": 0,
+      "g": 0,
+      "c": 0,
+      "c_after_g": 0,
+      "alphanumeric": false
+    },
+    {
+      "byte": 1,
+      "g": 1,
+      "c": 1,
+      "c_after_g": 1,
+      "alphanumeric": false
+    },
+    {
+      "byte": 2,
+      "g": 2,
+      "c": 2,
+      "c_after_g": 2,
+      "alphanumeric": false
+    },
+    {
+      "byte": 3,
+      "g": 3,
+      "c": 3,
+      "c_after_g": 3,
+      "alphanumeric": false
+    },
+    {
+      "byte": 4,
+      "g": 4,
+      "c": 4,
+      "c_after_g": 4,
+      "alphanumeric": false
+    },
+    {
+      "byte": 5,
+      "g": 5,
+      "c": 5,
+      "c_after_g": 5,
+      "alphanumeric": false
+    },
+    {
+      "byte": 6,
+      "g": 6,
+      "c": 6,
+      "c_after_g": 6,
+      "alphanumeric": false
+    },
+    {
+      "byte": 7,
+      "g": 7,
+      "c": 7,
+      "c_after_g": 7,
+      "alphanumeric": false
+    },
+    {
+      "byte": 8,
+      "g": 8,
+      "c": 8,
+      "c_after_g": 8,
+      "alphanumeric": false
+    },
+    {
+      "byte": 9,
+      "g": 9,
+      "c": 9,
+      "c_after_g": 9,
+      "alphanumeric": false
+    },
+    {
+      "byte": 10,
+      "g": 10,
+      "c": 10,
+      "c_after_g": 10,
+      "alphanumeric": false
+    },
+    {
+      "byte": 11,
+      "g": 11,
+      "c": 11,
+      "c_after_g": 11,
+      "alphanumeric": false
+    },
+    {
+      "byte": 12,
+      "g": 12,
+      "c": 12,
+      "c_after_g": 12,
+      "alphanumeric": false
+    },
+    {
+      "byte": 13,
+      "g": 13,
+      "c": 13,
+      "c_after_g": 13,
+      "alphanumeric": false
+    },
+    {
+      "byte": 14,
+      "g": 14,
+      "c": 14,
+      "c_after_g": 14,
+      "alphanumeric": false
+    },
+    {
+      "byte": 15,
+      "g": 15,
+      "c": 15,
+      "c_after_g": 15,
+      "alphanumeric": false
+    },
+    {
+      "byte": 16,
+      "g": 16,
+      "c": 16,
+      "c_after_g": 16,
+      "alphanumeric": false
+    },
+    {
+      "byte": 17,
+      "g": 17,
+      "c": 17,
+      "c_after_g": 17,
+      "alphanumeric": false
+    },
+    {
+      "byte": 18,
+      "g": 18,
+      "c": 18,
+      "c_after_g": 18,
+      "alphanumeric": false
+    },
+    {
+      "byte": 19,
+      "g": 19,
+      "c": 19,
+      "c_after_g": 19,
+      "alphanumeric": false
+    },
+    {
+      "byte": 20,
+      "g": 20,
+      "c": 20,
+      "c_after_g": 20,
+      "alphanumeric": false
+    },
+    {
+      "byte": 21,
+      "g": 21,
+      "c": 21,
+      "c_after_g": 21,
+      "alphanumeric": false
+    },
+    {
+      "byte": 22,
+      "g": 22,
+      "c": 22,
+      "c_after_g": 22,
+      "alphanumeric": false
+    },
+    {
+      "byte": 23,
+      "g": 23,
+      "c": 23,
+      "c_after_g": 23,
+      "alphanumeric": false
+    },
+    {
+      "byte": 24,
+      "g": 24,
+      "c": 24,
+      "c_after_g": 24,
+      "alphanumeric": false
+    },
+    {
+      "byte": 25,
+      "g": 25,
+      "c": 25,
+      "c_after_g": 25,
+      "alphanumeric": false
+    },
+    {
+      "byte": 26,
+      "g": 26,
+      "c": 26,
+      "c_after_g": 26,
+      "alphanumeric": false
+    },
+    {
+      "byte": 27,
+      "g": 27,
+      "c": 27,
+      "c_after_g": 27,
+      "alphanumeric": false
+    },
+    {
+      "byte": 28,
+      "g": 28,
+      "c": 28,
+      "c_after_g": 28,
+      "alphanumeric": false
+    },
+    {
+      "byte": 29,
+      "g": 29,
+      "c": 29,
+      "c_after_g": 29,
+      "alphanumeric": false
+    },
+    {
+      "byte": 30,
+      "g": 30,
+      "c": 30,
+      "c_after_g": 30,
+      "alphanumeric": false
+    },
+    {
+      "byte": 31,
+      "g": 31,
+      "c": 31,
+      "c_after_g": 31,
+      "alphanumeric": false
+    },
+    {
+      "byte": 32,
+      "g": 32,
+      "c": 32,
+      "c_after_g": 32,
+      "alphanumeric": false
+    },
+    {
+      "byte": 33,
+      "g": 33,
+      "c": 33,
+      "c_after_g": 33,
+      "alphanumeric": false
+    },
+    {
+      "byte": 34,
+      "g": 34,
+      "c": 34,
+      "c_after_g": 34,
+      "alphanumeric": false
+    },
+    {
+      "byte": 35,
+      "g": 35,
+      "c": 35,
+      "c_after_g": 35,
+      "alphanumeric": false
+    },
+    {
+      "byte": 36,
+      "g": 36,
+      "c": 36,
+      "c_after_g": 36,
+      "alphanumeric": false
+    },
+    {
+      "byte": 37,
+      "g": 37,
+      "c": 37,
+      "c_after_g": 37,
+      "alphanumeric": false
+    },
+    {
+      "byte": 38,
+      "g": 38,
+      "c": 38,
+      "c_after_g": 38,
+      "alphanumeric": false
+    },
+    {
+      "byte": 39,
+      "g": 39,
+      "c": 39,
+      "c_after_g": 39,
+      "alphanumeric": false
+    },
+    {
+      "byte": 40,
+      "g": 40,
+      "c": 40,
+      "c_after_g": 40,
+      "alphanumeric": false
+    },
+    {
+      "byte": 41,
+      "g": 41,
+      "c": 41,
+      "c_after_g": 41,
+      "alphanumeric": false
+    },
+    {
+      "byte": 42,
+      "g": 42,
+      "c": 42,
+      "c_after_g": 42,
+      "alphanumeric": false
+    },
+    {
+      "byte": 43,
+      "g": 43,
+      "c": 43,
+      "c_after_g": 43,
+      "alphanumeric": false
+    },
+    {
+      "byte": 44,
+      "g": 44,
+      "c": 44,
+      "c_after_g": 44,
+      "alphanumeric": false
+    },
+    {
+      "byte": 45,
+      "g": 45,
+      "c": 45,
+      "c_after_g": 45,
+      "alphanumeric": false
+    },
+    {
+      "byte": 46,
+      "g": 46,
+      "c": 46,
+      "c_after_g": 46,
+      "alphanumeric": false
+    },
+    {
+      "byte": 47,
+      "g": 47,
+      "c": 92,
+      "c_after_g": 92,
+      "alphanumeric": false
+    },
+    {
+      "byte": 48,
+      "g": 48,
+      "c": 48,
+      "c_after_g": 48,
+      "alphanumeric": true
+    },
+    {
+      "byte": 49,
+      "g": 49,
+      "c": 49,
+      "c_after_g": 49,
+      "alphanumeric": true
+    },
+    {
+      "byte": 50,
+      "g": 50,
+      "c": 50,
+      "c_after_g": 50,
+      "alphanumeric": true
+    },
+    {
+      "byte": 51,
+      "g": 51,
+      "c": 51,
+      "c_after_g": 51,
+      "alphanumeric": true
+    },
+    {
+      "byte": 52,
+      "g": 52,
+      "c": 52,
+      "c_after_g": 52,
+      "alphanumeric": true
+    },
+    {
+      "byte": 53,
+      "g": 53,
+      "c": 53,
+      "c_after_g": 53,
+      "alphanumeric": true
+    },
+    {
+      "byte": 54,
+      "g": 54,
+      "c": 54,
+      "c_after_g": 54,
+      "alphanumeric": true
+    },
+    {
+      "byte": 55,
+      "g": 55,
+      "c": 55,
+      "c_after_g": 55,
+      "alphanumeric": true
+    },
+    {
+      "byte": 56,
+      "g": 56,
+      "c": 56,
+      "c_after_g": 56,
+      "alphanumeric": true
+    },
+    {
+      "byte": 57,
+      "g": 57,
+      "c": 57,
+      "c_after_g": 57,
+      "alphanumeric": true
+    },
+    {
+      "byte": 58,
+      "g": 58,
+      "c": 58,
+      "c_after_g": 58,
+      "alphanumeric": false
+    },
+    {
+      "byte": 59,
+      "g": 59,
+      "c": 59,
+      "c_after_g": 59,
+      "alphanumeric": false
+    },
+    {
+      "byte": 60,
+      "g": 60,
+      "c": 60,
+      "c_after_g": 60,
+      "alphanumeric": false
+    },
+    {
+      "byte": 61,
+      "g": 61,
+      "c": 61,
+      "c_after_g": 61,
+      "alphanumeric": false
+    },
+    {
+      "byte": 62,
+      "g": 62,
+      "c": 62,
+      "c_after_g": 62,
+      "alphanumeric": false
+    },
+    {
+      "byte": 63,
+      "g": 63,
+      "c": 63,
+      "c_after_g": 63,
+      "alphanumeric": false
+    },
+    {
+      "byte": 64,
+      "g": 64,
+      "c": 64,
+      "c_after_g": 64,
+      "alphanumeric": false
+    },
+    {
+      "byte": 65,
+      "g": 97,
+      "c": 65,
+      "c_after_g": 65,
+      "alphanumeric": true
+    },
+    {
+      "byte": 66,
+      "g": 98,
+      "c": 66,
+      "c_after_g": 66,
+      "alphanumeric": true
+    },
+    {
+      "byte": 67,
+      "g": 99,
+      "c": 67,
+      "c_after_g": 67,
+      "alphanumeric": true
+    },
+    {
+      "byte": 68,
+      "g": 100,
+      "c": 68,
+      "c_after_g": 68,
+      "alphanumeric": true
+    },
+    {
+      "byte": 69,
+      "g": 101,
+      "c": 69,
+      "c_after_g": 69,
+      "alphanumeric": true
+    },
+    {
+      "byte": 70,
+      "g": 102,
+      "c": 70,
+      "c_after_g": 70,
+      "alphanumeric": true
+    },
+    {
+      "byte": 71,
+      "g": 103,
+      "c": 71,
+      "c_after_g": 71,
+      "alphanumeric": true
+    },
+    {
+      "byte": 72,
+      "g": 104,
+      "c": 72,
+      "c_after_g": 72,
+      "alphanumeric": true
+    },
+    {
+      "byte": 73,
+      "g": 105,
+      "c": 73,
+      "c_after_g": 73,
+      "alphanumeric": true
+    },
+    {
+      "byte": 74,
+      "g": 106,
+      "c": 74,
+      "c_after_g": 74,
+      "alphanumeric": true
+    },
+    {
+      "byte": 75,
+      "g": 107,
+      "c": 75,
+      "c_after_g": 75,
+      "alphanumeric": true
+    },
+    {
+      "byte": 76,
+      "g": 108,
+      "c": 76,
+      "c_after_g": 76,
+      "alphanumeric": true
+    },
+    {
+      "byte": 77,
+      "g": 109,
+      "c": 77,
+      "c_after_g": 77,
+      "alphanumeric": true
+    },
+    {
+      "byte": 78,
+      "g": 110,
+      "c": 78,
+      "c_after_g": 78,
+      "alphanumeric": true
+    },
+    {
+      "byte": 79,
+      "g": 111,
+      "c": 79,
+      "c_after_g": 79,
+      "alphanumeric": true
+    },
+    {
+      "byte": 80,
+      "g": 112,
+      "c": 80,
+      "c_after_g": 80,
+      "alphanumeric": true
+    },
+    {
+      "byte": 81,
+      "g": 113,
+      "c": 81,
+      "c_after_g": 81,
+      "alphanumeric": true
+    },
+    {
+      "byte": 82,
+      "g": 114,
+      "c": 82,
+      "c_after_g": 82,
+      "alphanumeric": true
+    },
+    {
+      "byte": 83,
+      "g": 115,
+      "c": 83,
+      "c_after_g": 83,
+      "alphanumeric": true
+    },
+    {
+      "byte": 84,
+      "g": 116,
+      "c": 84,
+      "c_after_g": 84,
+      "alphanumeric": true
+    },
+    {
+      "byte": 85,
+      "g": 117,
+      "c": 85,
+      "c_after_g": 85,
+      "alphanumeric": true
+    },
+    {
+      "byte": 86,
+      "g": 118,
+      "c": 86,
+      "c_after_g": 86,
+      "alphanumeric": true
+    },
+    {
+      "byte": 87,
+      "g": 119,
+      "c": 87,
+      "c_after_g": 87,
+      "alphanumeric": true
+    },
+    {
+      "byte": 88,
+      "g": 120,
+      "c": 88,
+      "c_after_g": 88,
+      "alphanumeric": true
+    },
+    {
+      "byte": 89,
+      "g": 121,
+      "c": 89,
+      "c_after_g": 89,
+      "alphanumeric": true
+    },
+    {
+      "byte": 90,
+      "g": 122,
+      "c": 90,
+      "c_after_g": 90,
+      "alphanumeric": true
+    },
+    {
+      "byte": 91,
+      "g": 91,
+      "c": 91,
+      "c_after_g": 91,
+      "alphanumeric": false
+    },
+    {
+      "byte": 92,
+      "g": 47,
+      "c": 92,
+      "c_after_g": 92,
+      "alphanumeric": false
+    },
+    {
+      "byte": 93,
+      "g": 93,
+      "c": 93,
+      "c_after_g": 93,
+      "alphanumeric": false
+    },
+    {
+      "byte": 94,
+      "g": 94,
+      "c": 94,
+      "c_after_g": 94,
+      "alphanumeric": false
+    },
+    {
+      "byte": 95,
+      "g": 95,
+      "c": 95,
+      "c_after_g": 95,
+      "alphanumeric": false
+    },
+    {
+      "byte": 96,
+      "g": 96,
+      "c": 96,
+      "c_after_g": 96,
+      "alphanumeric": false
+    },
+    {
+      "byte": 97,
+      "g": 97,
+      "c": 65,
+      "c_after_g": 65,
+      "alphanumeric": true
+    },
+    {
+      "byte": 98,
+      "g": 98,
+      "c": 66,
+      "c_after_g": 66,
+      "alphanumeric": true
+    },
+    {
+      "byte": 99,
+      "g": 99,
+      "c": 67,
+      "c_after_g": 67,
+      "alphanumeric": true
+    },
+    {
+      "byte": 100,
+      "g": 100,
+      "c": 68,
+      "c_after_g": 68,
+      "alphanumeric": true
+    },
+    {
+      "byte": 101,
+      "g": 101,
+      "c": 69,
+      "c_after_g": 69,
+      "alphanumeric": true
+    },
+    {
+      "byte": 102,
+      "g": 102,
+      "c": 70,
+      "c_after_g": 70,
+      "alphanumeric": true
+    },
+    {
+      "byte": 103,
+      "g": 103,
+      "c": 71,
+      "c_after_g": 71,
+      "alphanumeric": true
+    },
+    {
+      "byte": 104,
+      "g": 104,
+      "c": 72,
+      "c_after_g": 72,
+      "alphanumeric": true
+    },
+    {
+      "byte": 105,
+      "g": 105,
+      "c": 73,
+      "c_after_g": 73,
+      "alphanumeric": true
+    },
+    {
+      "byte": 106,
+      "g": 106,
+      "c": 74,
+      "c_after_g": 74,
+      "alphanumeric": true
+    },
+    {
+      "byte": 107,
+      "g": 107,
+      "c": 75,
+      "c_after_g": 75,
+      "alphanumeric": true
+    },
+    {
+      "byte": 108,
+      "g": 108,
+      "c": 76,
+      "c_after_g": 76,
+      "alphanumeric": true
+    },
+    {
+      "byte": 109,
+      "g": 109,
+      "c": 77,
+      "c_after_g": 77,
+      "alphanumeric": true
+    },
+    {
+      "byte": 110,
+      "g": 110,
+      "c": 78,
+      "c_after_g": 78,
+      "alphanumeric": true
+    },
+    {
+      "byte": 111,
+      "g": 111,
+      "c": 79,
+      "c_after_g": 79,
+      "alphanumeric": true
+    },
+    {
+      "byte": 112,
+      "g": 112,
+      "c": 80,
+      "c_after_g": 80,
+      "alphanumeric": true
+    },
+    {
+      "byte": 113,
+      "g": 113,
+      "c": 81,
+      "c_after_g": 81,
+      "alphanumeric": true
+    },
+    {
+      "byte": 114,
+      "g": 114,
+      "c": 82,
+      "c_after_g": 82,
+      "alphanumeric": true
+    },
+    {
+      "byte": 115,
+      "g": 115,
+      "c": 83,
+      "c_after_g": 83,
+      "alphanumeric": true
+    },
+    {
+      "byte": 116,
+      "g": 116,
+      "c": 84,
+      "c_after_g": 84,
+      "alphanumeric": true
+    },
+    {
+      "byte": 117,
+      "g": 117,
+      "c": 85,
+      "c_after_g": 85,
+      "alphanumeric": true
+    },
+    {
+      "byte": 118,
+      "g": 118,
+      "c": 86,
+      "c_after_g": 86,
+      "alphanumeric": true
+    },
+    {
+      "byte": 119,
+      "g": 119,
+      "c": 87,
+      "c_after_g": 87,
+      "alphanumeric": true
+    },
+    {
+      "byte": 120,
+      "g": 120,
+      "c": 88,
+      "c_after_g": 88,
+      "alphanumeric": true
+    },
+    {
+      "byte": 121,
+      "g": 121,
+      "c": 89,
+      "c_after_g": 89,
+      "alphanumeric": true
+    },
+    {
+      "byte": 122,
+      "g": 122,
+      "c": 90,
+      "c_after_g": 90,
+      "alphanumeric": true
+    },
+    {
+      "byte": 123,
+      "g": 123,
+      "c": 123,
+      "c_after_g": 123,
+      "alphanumeric": false
+    },
+    {
+      "byte": 124,
+      "g": 124,
+      "c": 124,
+      "c_after_g": 124,
+      "alphanumeric": false
+    },
+    {
+      "byte": 125,
+      "g": 125,
+      "c": 125,
+      "c_after_g": 125,
+      "alphanumeric": false
+    },
+    {
+      "byte": 126,
+      "g": 126,
+      "c": 126,
+      "c_after_g": 126,
+      "alphanumeric": false
+    },
+    {
+      "byte": 127,
+      "g": 127,
+      "c": 127,
+      "c_after_g": 127,
+      "alphanumeric": false
+    }
+  ],
+  "theorem": "For valid bounded ASCII p containing an alphanumeric, normal nonaliasing %s copy, C-locale toupper and ordinary returns: C(G(p))=C(p). Thus IF G(p) literally equals archiveName, raw-path insertion key equals that archiveName cache key.",
+  "proof": [
+    "G discards only a leading run of dot/slash/backslash, none alphanumeric; C would ignore them before its first alphanumeric. Removing that run preserves C selected suffix.",
+    "Pointwise G preserves ASCII alphanumeric classification, hence first retained alphanumeric in the remaining string is the same position.",
+    "For every ASCII byte, Cpoint(Gpoint(byte))=Cpoint(byte). Byte mapping therefore produces identical sequences after the first alphanumeric by induction on suffix length.",
+    "Both inputs to the identical cache backslash-collapse/trailing-space stages are equal. Their outputs and deterministic original hash are equal.",
+    "G removes bytes or maps one-for-one and %s copies normally; it cannot lengthen p, preserving the declared <256 direct-cache buffer domain."
+  ],
+  "limits": [
+    "A semantic source proof with finite point-map controls, not128 native executions or sampled whole-path proof. Original leading classifier is a checked immutable producer-result prerequisite; its256 calculation is consumed, not rerun or self-accepted as independent review.",
+    "Normal narrow %s copy/CRT options/locale behavior is a named contract premise, not observed loaded CRT. No high-byte, overflow, empty output, malformed-pointer or interference guarantee.",
+    "G(p)=archiveName literal equality is stronger than equal MD5 digests. MD5 collisions/different raw sources/all writer/address escapes/mounted namespace identity and natural issuance remain open.",
+    "20BE50 gate-specific /hostapp prefix stripping is separate. This lemma concerns raw direct lookup/insertion20C1B0, not every API prefix.",
+    "No archive collision census, native or live execution. Prior accepted namespace and previous failure-call lemma remain separate."
+  ],
+  "affected_claims": [
+    "FABLE/OPUS archive-name-only cache-key population premise for literal raw aliases"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0
+}

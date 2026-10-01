@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-filecache-key-boundaries.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "driver_sha256": "2590de2c7546128d79e1e23b86756c1483b56b18acb34a26bebcef69fa78b52c"
+}

@@ -1,0 +1,5 @@
+{
+  "status": "INVALID",
+  "command": "Collaboration/Tools/analysis/venv/Scripts/python.exe Database/Tools/work/ASTRA/migration-a23-current-release/release-059ee3a6c/check.py",
+  "exit_code": 1
+}

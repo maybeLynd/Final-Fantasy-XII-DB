@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "06d817762e31d05bfe5db91f572576102143cd50:Database/Tools/analysis-kit/gfz-scripts/generation.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "driver_sha256": "034321e33e37cb3c6866241946b4231b2cdc30be30c55e3781dd214b847d6774",
+  "stdout_sha256": "ec45e3f6d4bbc0c0e42d7f869cf6a8e76b31dc7121be0fd1c03dd3ac354bdff6",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

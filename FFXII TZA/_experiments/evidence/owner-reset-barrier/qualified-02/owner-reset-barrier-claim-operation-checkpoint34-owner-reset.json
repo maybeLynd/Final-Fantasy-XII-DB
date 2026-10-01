@@ -1,0 +1,5 @@
+{
+  "action": "claim",
+  "task": "ASTRA-PUBLISH-OWNER-RESET-BARRIER-1001",
+  "note": "Fresh free-slot check for existing curated packet; one supported claim. No reaping/bypass/old-op replay."
+}

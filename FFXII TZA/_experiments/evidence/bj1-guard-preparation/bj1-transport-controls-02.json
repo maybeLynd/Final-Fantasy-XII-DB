@@ -1,0 +1,42 @@
+{
+  "status": "INVALID",
+  "evidence_kind": "owned synthetic process instrument control, not FF12",
+  "driver_sha256": "b7cb9dc0839d395ca19d7050ba3ecbd1c4d165ae593f8d642c7704b648243317",
+  "collector_sha256": "9366e5b04c20cb9c68449e102f242bc064a5dcb729eff15766cff58b71fa3690",
+  "reused_reader_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+  "controls": [],
+  "fixture": {
+    "base": 2671179333632,
+    "control": 2671179341824,
+    "epoch": 2671179341840,
+    "inaccessible": 2671179345920
+  },
+  "child_pid": 83048,
+  "child_state_before_read": 259,
+  "positive_capture": {
+    "status": "INVALID",
+    "evidence_kind": "read transport; state/health unverified",
+    "reads": [
+      {
+        "address": 2671179341824,
+        "size": 6,
+        "purpose": "positive-before",
+        "start_unix": 1790855143.4975934,
+        "end_unix": 1790855143.497629,
+        "hex": null
+      }
+    ],
+    "guard_values": [],
+    "seconds_limit": 3.0,
+    "load_base": 2671179333632,
+    "collection_atomic": false,
+    "error": "ValueError('failed/short read; never zero-fill')",
+    "elapsed_seconds": 4.479987546801567e-05
+  },
+  "positive_read_win32_error": 299,
+  "error": "AssertionError(\"ValueError('failed/short read; never zero-fill')\")",
+  "handle_closed": true,
+  "child_exit": 0,
+  "child_stderr": "",
+  "child_stdout_remaining": ""
+}

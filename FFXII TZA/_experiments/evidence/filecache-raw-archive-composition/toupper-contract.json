@@ -1,0 +1,6 @@
+{
+  "method": "Named API premise, not loaded CRT",
+  "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/toupper-toupper-towupper-toupper-l-towupper-l?view=msvc-170",
+  "read_date": "2026-10-01",
+  "paraphrase": "The documented conversion uses the currently set locale. This proof explicitly assumes C-ASCII conversion; it does not establish the game locale. The initial URL omitted the separate _toupper slug and failed; corrected official source found by domain-filtered search."
+}

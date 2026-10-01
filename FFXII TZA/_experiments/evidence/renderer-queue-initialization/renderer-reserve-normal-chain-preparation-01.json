@@ -1,0 +1,71 @@
+{
+  "status": "PREPARATION_ONLY_NO_SEMANTIC_RESULT",
+  "entries": [
+    {
+      "pdata": [
+        1607232,
+        1607276,
+        30930032
+      ],
+      "flags": 0,
+      "unwind_codes": 6
+    },
+    {
+      "pdata": [
+        1607276,
+        1607281,
+        30754000
+      ],
+      "flags": 4,
+      "unwind_codes": 2,
+      "chain": [
+        1607232,
+        1607276,
+        30930032
+      ]
+    },
+    {
+      "pdata": [
+        1607281,
+        1607371,
+        30754020
+      ],
+      "flags": 4,
+      "unwind_codes": 2,
+      "chain": [
+        1607276,
+        1607281,
+        30754000
+      ]
+    },
+    {
+      "pdata": [
+        1607371,
+        1607440,
+        30754040
+      ],
+      "flags": 4,
+      "unwind_codes": 0,
+      "chain": [
+        1607276,
+        1607281,
+        30754000
+      ]
+    },
+    {
+      "pdata": [
+        1607440,
+        1607457,
+        30754056
+      ],
+      "flags": 4,
+      "unwind_codes": 0,
+      "chain": [
+        1607232,
+        1607276,
+        30930032
+      ]
+    }
+  ],
+  "failure": "Capture01 refused before output because reserve188640 full extent has split chained normal pdata, not one root tuple. Bind actual chain before new capture."
+}

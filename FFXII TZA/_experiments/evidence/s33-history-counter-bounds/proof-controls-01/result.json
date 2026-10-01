@@ -1,0 +1,135 @@
+{
+  "complete": true,
+  "status": "FOUR_ACTUAL_PROOF_PREREQUISITE_REFUSALS",
+  "cases": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\failed-capture\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "RuntimeError: upstream capture failed/incomplete",
+      "expected_error": "RuntimeError: upstream capture failed/incomplete",
+      "expected_error_seen": true,
+      "stdout_empty": true,
+      "result_absent": true,
+      "changed_file": "capture-01.status.json",
+      "changed_sha256": "1a969532271e5270ed7ea3855894958363860fd8289937d94dea4f369f992c26",
+      "inherited_from_baseline": {
+        "capture.py": "5b663f568036ea597985f957b33f5bba3831d4c4eeaf370682c43d054f65babb",
+        "capture-01.stdout": "2fcb4d09153cb2a15c1428f7d21600abcaf6774f6db069d5897804d1bbc5825a",
+        "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source-01.json": "891b7858ba819f3809bcbece72c702af33a5817f97301ca64a5a8b00f8b94b8f",
+        "retained/parent-manifest.json": "10529734543712b86f86c24453c8b01f468e21f3d1abb9afe69c067e65072502",
+        "retained/manager-source-01.json": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+      },
+      "producer_sha256": "88533b07b755767150f60b5f9eac805bfc97f5e2d82d3144e777022601cdafdc",
+      "control_sha256": "d357e5798af466c9d3e7468dd4b2a8a20baa4c63a2edd50e22cffe93156caeb8",
+      "passed": true
+    },
+    {
+      "case": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\missing-source\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\missing-source"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\s33-history-counter-bounds\\\\proof-controls-01\\\\missing-source\\\\source-01.json'",
+      "expected_error": "FileNotFoundError:",
+      "expected_error_seen": true,
+      "stdout_empty": true,
+      "result_absent": true,
+      "changed_file": "source-01.json",
+      "changed_sha256": null,
+      "inherited_from_baseline": {
+        "capture.py": "5b663f568036ea597985f957b33f5bba3831d4c4eeaf370682c43d054f65babb",
+        "capture-01.status.json": "a3deabc4575433b6f24372583f1d37c547d3a691bd5760f9798fe9703ae6a449",
+        "capture-01.stdout": "2fcb4d09153cb2a15c1428f7d21600abcaf6774f6db069d5897804d1bbc5825a",
+        "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained/parent-manifest.json": "10529734543712b86f86c24453c8b01f468e21f3d1abb9afe69c067e65072502",
+        "retained/manager-source-01.json": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+      },
+      "producer_sha256": "88533b07b755767150f60b5f9eac805bfc97f5e2d82d3144e777022601cdafdc",
+      "control_sha256": "d357e5798af466c9d3e7468dd4b2a8a20baa4c63a2edd50e22cffe93156caeb8",
+      "passed": true
+    },
+    {
+      "case": "zero-bodies",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\zero-bodies\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\zero-bodies"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "ValueError: missing/zero original ranges",
+      "expected_error": "ValueError: missing/zero original ranges",
+      "expected_error_seen": true,
+      "stdout_empty": true,
+      "result_absent": true,
+      "changed_file": "source-01.json",
+      "changed_sha256": "ab07de326a92e0d344ba95c81e3c2c311e3bb4c37fcc87d2058f9a9b85e2b35b",
+      "inherited_from_baseline": {
+        "capture.py": "5b663f568036ea597985f957b33f5bba3831d4c4eeaf370682c43d054f65babb",
+        "capture-01.status.json": "a3deabc4575433b6f24372583f1d37c547d3a691bd5760f9798fe9703ae6a449",
+        "capture-01.stdout": "2fcb4d09153cb2a15c1428f7d21600abcaf6774f6db069d5897804d1bbc5825a",
+        "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained/parent-manifest.json": "10529734543712b86f86c24453c8b01f468e21f3d1abb9afe69c067e65072502",
+        "retained/manager-source-01.json": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+      },
+      "producer_sha256": "88533b07b755767150f60b5f9eac805bfc97f5e2d82d3144e777022601cdafdc",
+      "control_sha256": "d357e5798af466c9d3e7468dd4b2a8a20baa4c63a2edd50e22cffe93156caeb8",
+      "passed": true
+    },
+    {
+      "case": "changed-parent",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\changed-parent\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-history-counter-bounds\\proof-controls-01\\changed-parent"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "diagnostic": "RuntimeError: retained parent identity failed",
+      "expected_error": "RuntimeError: retained parent identity failed",
+      "expected_error_seen": true,
+      "stdout_empty": true,
+      "result_absent": true,
+      "changed_file": "retained/parent-manifest.json",
+      "changed_sha256": "7cb1309a09717224cb9dda61c228f84a382f2b47983842b02051a4e99bddb0b7",
+      "inherited_from_baseline": {
+        "capture.py": "5b663f568036ea597985f957b33f5bba3831d4c4eeaf370682c43d054f65babb",
+        "capture-01.status.json": "a3deabc4575433b6f24372583f1d37c547d3a691bd5760f9798fe9703ae6a449",
+        "capture-01.stdout": "2fcb4d09153cb2a15c1428f7d21600abcaf6774f6db069d5897804d1bbc5825a",
+        "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source-01.json": "891b7858ba819f3809bcbece72c702af33a5817f97301ca64a5a8b00f8b94b8f",
+        "retained/manager-source-01.json": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+      },
+      "producer_sha256": "88533b07b755767150f60b5f9eac805bfc97f5e2d82d3144e777022601cdafdc",
+      "control_sha256": "d357e5798af466c9d3e7468dd4b2a8a20baa4c63a2edd50e22cffe93156caeb8",
+      "passed": true
+    }
+  ],
+  "limits": "Host admission controls, not original-code/native/game executions. The required positive is the retained terminal proof-01."
+}

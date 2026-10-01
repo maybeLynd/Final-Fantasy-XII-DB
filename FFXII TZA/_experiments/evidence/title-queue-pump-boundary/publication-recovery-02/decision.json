@@ -1,0 +1,19 @@
+{
+  "status": "ADDITIVE_PUBLICATION_RECOVERY_NOT_SEMANTIC_ACCEPTANCE",
+  "original_manifest_sha256": "e382d0ff0c9b226c75ad2cc38fccda3456cb983b3a5ff3c7452e90d1affd5d0b",
+  "original_scientific_members": 34,
+  "moved_member": {
+    "path": "Database/FFXII TZA/_index/_inbox/ASTRA.md",
+    "status": "MOVED_EXCLUDED_FROM_CURRENT_IMMUTABLE_PACKET",
+    "reviewed_sha256": "c515969d1c6c4bbe295233ed652559f551d097a52499fec4e173c8adf8fc8c5f",
+    "current_sha256": "a4e4c131f8ef123b13df9355500ccf0d2d6d231caae32da3487f032b4979d418",
+    "reason": "Mutable operating record is not a scientific input; original reviewed plan preserved explicitly.",
+    "retained_preimage": null,
+    "limitation": "No matching retained inbox preimage established; not replaced by a different snapshot."
+  },
+  "oracle_request": "ASTRA-REQ-ORACLE-QUEUE-BYTE-POLICY-0930",
+  "oracle_record": "Database/FFXII TZA/_index/candidates/oracle-queue-byte-policy-1001/README.md",
+  "policy": "Existing1225845ca leaf * -text applied before staging; original refusal/plan/input/result untouched.",
+  "counts": "Original scientific manifest members, original publish paths and fresh delivery paths are different quantities.",
+  "goal": "ACTIVE NOT_MET; independent review/canonical consumption remain required; no new experiment or runtime credit."
+}

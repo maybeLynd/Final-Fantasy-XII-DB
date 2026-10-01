@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-filecache-equal-key.py", line 99, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=W);p.add_argument('--out',type=Path,required=True);a=p.parse_args();main(a.source,a.out)
+                                                                                                                                                ~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-filecache-equal-key.py", line 63, in main
+    raise ValueError('release import declaration mismatch')
+ValueError: release import declaration mismatch

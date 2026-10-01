@@ -1,0 +1,1 @@
+{"complete": true, "verdict": "REJECT_IMPORT_STAGE_UPSTREAM_VERDICT_PROPAGATION", "cases": [{"case": "positive", "exit": 0, "prefix_returned": true}, {"case": "reported-fail", "exit": 0, "prefix_returned": true}, {"case": "raised-failure", "exit": 2, "prefix_returned": false}], "native_runs": 0, "game_runs": 0}

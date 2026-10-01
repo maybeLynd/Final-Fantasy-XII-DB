@@ -1,0 +1,44 @@
+publish_paths.sh: @publication held by ASTRA (ASTRA-PUBLISH-OWNER-RESET-BARRIER-1001) -- that is you, proceeding
+current block refreshed in C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_index\_inbox\ASTRA.md (rev 44924)
+publish_paths.sh: changed lines  Database/FFXII TZA/_index/_inbox/ASTRA.md: +31 -4
+publish_paths.sh: WARNING -- added line(s) carry agent id(s) that are not ASTRA and were not on the replaced line(s):
+  Database/FFXII TZA/_index/_inbox/ASTRA.md :: FABLE :: NewMethodAanswer:266D10 normal local call32F430 precedes3DD7E0 reset, but named32E520(0)wait conditionalpositi
+Database/FFXII TZA/_index/_inbox/ASTRA.md :: OPUS :: OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+  That can be a legitimate citation, or a peer's parked inline edit riding your
+  publish. The heading guard cannot see these; diff the path before re-running.
+publish_paths.sh: drift: -- 0 open-claim drift candidate(s) (report-only; hand review)
+publish_paths.sh: mirror: index built 2026-09-25T20:49:09+00:00, pin=worktree, generator=f28cf6d7b961
+publish_paths.sh: mirror:   STALE generator: a parser/module or the schema changed since the build (every table is downstream)
+publish_paths.sh: mirror:   STALE citations: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE citations: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE contract_claims: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE contract_sections: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE contradictions: file:Database/FFXII TZA/_index/CONTRADICTIONS.tsv changed since the build
+publish_paths.sh: mirror:   STALE doc_fields: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE doc_names: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE doc_names: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE documents: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE edges: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE field_access: file:Database/FFXII TZA/_types/field-access-index.tsv changed since the build
+publish_paths.sh: mirror:   STALE fields: file:Database/FFXII TZA/_types/fields.tsv changed since the build
+publish_paths.sh: mirror:   STALE functions: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE global_refs: file:Database/Tools/work/h78/rip_data_refs.tsv changed since the build
+publish_paths.sh: mirror:   STALE questions: file:Database/FFXII TZA/_index/OPEN-QUESTIONS.md changed since the build
+publish_paths.sh: mirror:   STALE reconstructions: tree:Reconstruction;* changed since the build
+publish_paths.sh: mirror:   STALE script_verbs: file:Database/FFXII TZA/01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-dispatch.tsv changed since the build
+publish_paths.sh: mirror:   STALE types: file:Database/FFXII TZA/_types/types.tsv changed since the build
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+The following paths are ignored by one of your .gitignore files:
+Database/FFXII TZA/_experiments/evidence/owner-reset-barrier/owner-reset-barrier-controls-01/changed-branch/__pycache__
+hint: Use -f if you really want to add them.
+hint: Disable this message with "git config set advice.addIgnoredFile false"

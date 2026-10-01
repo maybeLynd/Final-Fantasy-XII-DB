@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+003DAB50	FUN_003dab50	003DAB94	0x0	r	mov r13, qword ptr [rcx]	route-seeded STATIC 0x02B57EE0 base+0x0	

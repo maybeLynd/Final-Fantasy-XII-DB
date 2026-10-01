@@ -1,0 +1,4 @@
+PATCHED **order not reachable; the drain is exposed at `00
+PATCHED - **I3's same-call drain has one named exposure:**
+PATCHED once with `streamActive` 0 and once with it non-ze
+FAILS 0

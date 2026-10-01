@@ -1,0 +1,89 @@
+{
+  "status": "PASS_FIVE_ACTUAL_CLI_REFUSALS_INDEPENDENT_PENDING",
+  "cases": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ov58d-order-switch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\failed-capture",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\failed-capture\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\failed-capture\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "failed/missing capture prerequisite",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "4faf89e652ef9cfac61930f6f77749f8e00ba2cdd67f9daa8a7f179e82be43ee"
+    },
+    {
+      "case": "wrong4049-selector",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ov58d-order-switch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\wrong4049-selector",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\wrong4049-selector\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\wrong4049-selector\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "table differs from shipping reference",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "4faf89e652ef9cfac61930f6f77749f8e00ba2cdd67f9daa8a7f179e82be43ee"
+    },
+    {
+      "case": "changed-status-subtract",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ov58d-order-switch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\changed-status-subtract",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\changed-status-subtract\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\changed-status-subtract\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "code differs from shipping reference",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "4faf89e652ef9cfac61930f6f77749f8e00ba2cdd67f9daa8a7f179e82be43ee"
+    },
+    {
+      "case": "missing-selector-table",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ov58d-order-switch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\missing-selector-table",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\missing-selector-table\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\missing-selector-table\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "missing/different original tables",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "4faf89e652ef9cfac61930f6f77749f8e00ba2cdd67f9daa8a7f179e82be43ee"
+    },
+    {
+      "case": "wrong-store-role",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ov58d-order-switch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\wrong-store-role",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\wrong-store-role\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\wrong-store-role\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "memory/address/access annotation disagrees",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "4faf89e652ef9cfac61930f6f77749f8e00ba2cdd67f9daa8a7f179e82be43ee"
+    }
+  ],
+  "driver_sha256": "7ac72cef390d393437e1566f83eac4509fd3596d6f11e161de26602db68bd36c",
+  "native_runs": 0,
+  "live_runs": 0,
+  "limits": "Synthetic code/data/status mutations, not original/native execution or independent acceptance"
+}

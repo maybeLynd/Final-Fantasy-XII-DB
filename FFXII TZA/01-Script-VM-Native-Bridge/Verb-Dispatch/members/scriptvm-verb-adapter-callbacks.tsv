@@ -646,7 +646,6 @@ address	family	verb_id	verb_name	role	native_callee
 00353860	0	0267	commoneffectplay	result	00357620
 003538C0	0	0004	setangzx	result	0026A0D0
 003539E0	0	01BF	getgaugetimer	result	003E8EF0
-00353A10	0,0	00EA;00EE	eventreadsync_ea;eventsync_ee	begin;begin	none
 00353A50	0	001F	disable	result	00269E00
 00353AA0	0	0133	setfocusshift	result	00379A00
 00353AC0	0	0533	waitdistance3d	poll	none
@@ -661,7 +660,6 @@ address	family	verb_id	verb_name	role	native_callee
 00353D50	0	0444	mesvfacedispose	result	002E2560
 00353D70	0	01C0	getgaugecounter	result	003E8EE0
 00353E00	0	0134	setfocusalpha	result	003799A0
-00353E20	0,0	00E9;00ED	eventreadsync;eventsync	begin;begin	none
 00353E80	0	02BD	isquestok	result	0046B1F0
 00353FC0	0	04AA	atrac3standby	result	none
 00354000	0	03F5	istreasureflag	result	0032AAD0

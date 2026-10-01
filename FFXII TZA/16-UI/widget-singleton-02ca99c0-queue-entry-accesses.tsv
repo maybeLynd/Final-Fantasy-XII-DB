@@ -1,0 +1,48 @@
+function	name	site	disp	kind	instruction	route	note
+00582040	SaveStorageQueue_StartFrontOperation	0058207F	0x0	r	movsxd rax, dword ptr [rcx + 0xd8]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582256	0x0	addr	lea rdx, [rcx + 0xd8]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582266	0x0	r	movzx esi, byte ptr [rdx]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058229A	0x0	w	movups xmmword ptr [rdx], xmm0	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	
+0057EA40	FUN_0057ea40	0057EA7B	0x4	r	mov edx, dword ptr [rcx + 0xdc]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+0057EA40	FUN_0057ea40	0057EA89	0x4	w	mov dword ptr [rcx + 0xdc], edx	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+0057EC60	FUN_0057ec60	0057EC98	0x4	r	mov r8d, dword ptr [rcx + 0xdc]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+0057EC60	FUN_0057ec60	0057ECA9	0x4	w	mov dword ptr [rcx + 0xdc], r8d	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+0057ED40	FUN_0057ed40	0057ED6A	0x4	r	mov edx, dword ptr [rax + 0xdc]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+0057ED40	FUN_0057ed40	0057ED78	0x4	w	mov dword ptr [rax + 0xdc], edx	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582076	0x4	r	test byte ptr [rcx + 0xdc], 1	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005820BD	0x4	rw	or dword ptr [rbx + 0xdc], 1	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058225D	0x4	r	mov r8d, dword ptr [rcx + 0xdc]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+003BB440	FUN_003bb440	003BB460	0x8	r	movzx eax, byte ptr [rcx]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+003BB6A0	FUN_003bb6a0	003BB6D0	0x8	r	movzx eax, byte ptr [r8]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+003BB740	FUN_003bb740	003BB750	0x8	r	movzx eax, byte ptr [rcx]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+003BB920	FUN_003bb920	003BB950	0x8	r	movzx eax, byte ptr [rcx]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+00582040	SaveStorageQueue_StartFrontOperation	0058209E	0x8	r	mov rax, qword ptr [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005820E7	0x8	r	movzx ecx, byte ptr [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005820F3	0x8	r	movzx eax, byte ptr [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582110	0x8	addr	lea rcx, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582124	0x8	addr	lea r8, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582150	0x8	addr	lea rcx, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582172	0x8	addr	lea rcx, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582191	0x8	addr	lea rcx, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005821AB	0x8	addr	lea rax, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005821F1	0x8	addr	lea rcx, [rbx + 0xe0]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+003BB440	FUN_003bb440	003BB466	0x9	addr	lea rcx, [rcx + 1]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+003BB6A0	FUN_003bb6a0	003BB6D8	0x9	addr	lea r8, [r8 + 1]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+003BB740	FUN_003bb740	003BB756	0x9	addr	lea rcx, [rcx + 1]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+003BB920	FUN_003bb920	003BB956	0x9	addr	lea rcx, [rcx + 1]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x8	
+00582040	SaveStorageQueue_StartFrontOperation	005820AC	0x10	r	mov eax, dword ptr [rbx + 0xe8]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822A1	0x10	w	movups xmmword ptr [rdx + 0x10], xmm1	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822AC	0x20	w	movups xmmword ptr [rdx + 0x20], xmm0	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822B7	0x30	w	movups xmmword ptr [rdx + 0x30], xmm1	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822C3	0x40	w	movups xmmword ptr [rdx + 0x40], xmm0	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	0058212B	0x48	r	movzx ecx, byte ptr [rbx + 0x120]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582157	0x48	r	mov r8, qword ptr [rbx + 0x120]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582179	0x48	r	mov rdx, qword ptr [rbx + 0x120]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582198	0x48	r	mov r8, qword ptr [rbx + 0x120]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005821C3	0x48	r	mov rax, qword ptr [rbx + 0x120]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	0058211E	0x4C	r	mov eax, dword ptr [rbx + 0x124]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	00582149	0x50	r	mov r9d, dword ptr [rbx + 0x128]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	0058216A	0x50	r	movzx r8d, byte ptr [rbx + 0x128]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	0058218A	0x50	r	mov r9d, dword ptr [rbx + 0x128]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582040	SaveStorageQueue_StartFrontOperation	005821CF	0x50	r	mov eax, dword ptr [rbx + 0x128]	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x-D8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822C7	0x50	w	movsd qword ptr [rdx + 0x50], xmm1	route-seeded EMBED WidgetSingleton02CA99C0 +0xD8 stride=0x58 count=8 base+0x0	

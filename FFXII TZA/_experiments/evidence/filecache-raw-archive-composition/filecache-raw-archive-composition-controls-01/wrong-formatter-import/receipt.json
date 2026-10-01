@@ -1,0 +1,26 @@
+{
+  "tag": "wrong-formatter-import",
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-raw-archive-composition.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-raw-archive-composition-controls-01\\wrong-formatter-import",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-raw-archive-composition-controls-01\\wrong-formatter-import\\result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "expected_error": "static formatter import attribution failed",
+  "result_absent": true,
+  "passed": true,
+  "changed_file": "filecache-format-boundary-source-01.json",
+  "changed_sha256": "8c0a4ada82f8087e920587362d2f65c2a2d32762544715632e8b7a2d1e2f7b3d",
+  "inherited_from_baseline": {
+    "capture-filecache-format-boundary.py": "2c5ee94ecc119954e82ec11ee16a342b8c6114e63db6094b2c4d44d36b366fe4",
+    "filecache-format-boundary-capture-01.status.json": "ef4ad3632e6bd85daa211259241d36d7f449d9d21085cf133651a84624e3646b",
+    "filecache-format-boundary-capture-01.stdout": "505300949b14a673527345393edf373706635715cf6c1292014b4906f15e87e0",
+    "filecache-format-boundary-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validate-title-source-annotations.py": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "prove_owner_reload_order.py": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+  }
+}

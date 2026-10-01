@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-renderer-queue-initialization.py", line 24, in <module>
+    if len(entries)!=1:raise ValueError('exact selected normal root changed '+hex(a))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: exact selected normal root changed 0x188640

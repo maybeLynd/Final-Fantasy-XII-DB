@@ -1470,11 +1470,11 @@ and `rax` reaches `01F82C80` only at `001D6347`.
 
 ## SWE2-EC7-61 update (2026-09-19) - `00628100`
 
-`00628100` (153 B) is one of the `001B72B0` Y/U/V-channel triad callees - `0061FDA0`/`00627DA0`/`0062B100`/`0062BCB0`. Interior anchor `00628118` (a `0062BCB0` call).
+`00628100` (153 B) is one of the `001B72B0` Y/U/V-channel triad callees - `0061FDA0`/`00627DA0`/`0062B100`/`0062BCB0`. Interior anchor `00628118` (a `0062BCB0` call). *(OPUS, 2026-10-01; ASTRA [`texture-resize-drain-caller`](../../_experiments/evidence/texture-resize-drain-caller/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../../_index/candidates/auditspec-review-texture-resize-drain-caller-0930/REVIEW.md)), static: when `+0xBC` is set and `0062BCB0` fails, it returns before both calls; otherwise the `0062B100` wait on the same object runs before the `00627DA0` resize of `+0x30`. That wait reads each old element's counter until it is not positive, one element at a time; it does not prove that nothing is pending afterwards. After a successful resize a masked count of 0 selects NULL and reads it (`0062815B`), so the callers must pass a positive count. Callers, per ASTRA [`texture-resize-input-domain`](../../_experiments/evidence/texture-resize-input-domain/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../../_index/candidates/auditspec-review-texture-resize-input-domain-0930/REVIEW.md)) and ASTRA [`texture-resize-upstream-safe-counts`](../../_experiments/evidence/texture-resize-upstream-safe-counts/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../../_index/candidates/auditspec-review-texture-resize-upstream-counts-0930/REVIEW.md)): six direct call sites pass 1, 4 or `max(1, r9d)` (`0017E8E0`, `0017F3B0`), so a raw 0 is excluded; the selected upstream callers of those two pass 1, 4 or 32. For an arbitrary dynamic `r9d` the count `0x80000000` still masks to 0. Callers outside these selected paths are not covered.)*
 
 ## SWE2-EC7-62 update (2026-09-19) - `00627DA0`
 
-`00627DA0` (175 B) is a game-application body - `00584730`/`0061D100`. Interior anchor `00627DE8` (a `0061D100` call).
+`00627DA0` (175 B) is a game-application body - `00584730`/`0061D100`. Interior anchor `00627DE8` (a `0061D100` call). *(OPUS, 2026-10-01; ASTRA [`texture-copy-capacity-caller`](../../_experiments/evidence/texture-copy-capacity-caller/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../../_index/candidates/auditspec-review-texture-copy-capacity-caller-0930/REVIEW.md)), static: the old count is the record's dword with bit 31 cleared, and `cmp`/`cmovb` set K = min(new count, old count) right before the `0061D100` call, so K <= N holds on this path. A new count equal to the whole old dword returns 0 with no work; a NULL buffer with a non-zero count returns 0xD before any change. On success the old buffer goes to `00584730` only when it is not the new one, not the inline `+8` slot, not NULL and bit 31 was clear; then the new pointer (unless inline) and the new count are stored.)*
 
 
 ## SWE2-EC7-62 update (2026-09-19) - `00185C30`
@@ -2105,7 +2105,7 @@ then `0061C250` zero-fills
 the `(edx - r9d)` tail.
 Returns the buffer.
 Interior anchor `0061D14C`
-(the `00613770` copy).
+(the `00613770` copy). *(OPUS, 2026-10-01; ASTRA [`texture-copy-construction`](../../_experiments/evidence/texture-copy-construction/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../../_index/candidates/auditspec-review-texture-copy-construction-0930/REVIEW.md)), static: `edx` is the new count N, `r9d` the copy count K, `r8` the source; N = 1 uses the helper record at `rcx+8`. The helper does not clamp: K <= N is its caller's precondition, and K > N would copy past an N-record buffer. The copied head keeps each record's `+0x38` counter and its `+0x48` / `+0x50` async data; the tail records get `+0..+0x30` and `+0x38` zeroed and the `00D54348` vtable at `+0x40`, while their `+0x48` / `+0x50` keep whatever the allocation held.)*
 
 ## SWE2-EC7-124 update (2026-09-21) - the `0061D100` record helpers and `0060DA50` measured
 
@@ -2113,10 +2113,11 @@ Interior anchor `0061D14C`
 default-record fill
 `0061D100` runs on the
 tail: each 0x58 record gets
-seven zeroed qwords, `+0x28`
+~~seven zeroed qwords, `+0x28`
 zeroed, and the `00D54348`
 vtable (RTTI `01D12448`)
-installed at `+0x30`.
+installed at `+0x30`.~~
+*(Corrected 2026-10-01, OPUS: seven zeroed qwords at `+0..+0x30`, a zeroed dword at `+0x38`, and the `00D54348` vtable (RTTI `01D12448`) at `+0x40`. The loop stores through `rax = rcx + 0x10` (`0061C25F`), so the old offsets were read 0x10 short. Found by ASTRA [`texture-copy-construction`](../../_experiments/evidence/texture-copy-construction/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../../_index/candidates/auditspec-review-texture-copy-construction-0930/REVIEW.md)); regression `tex_check.py` T1 in [`opus-texture-incorp-1001`](../../_index/candidates/opus-texture-incorp-1001/consumer-check.md).)*
 Interior anchor `0061C297`
 (the vtable store).
 
@@ -2396,3 +2397,67 @@ Interior anchor `00181EE1` (function `00181E70`).
 `00600070` (163 B) is the ring-buffer record push `00186010` runs: `00600B30(rcx, 0, 1)` gates out to the vtable `[rax+0x10]` fallback, otherwise the `+0x60`/`+0x50` cursors advance past `+0x58` by `0x80` with wraparound; a nonnull cursor slot writes `{dword 0x10, rdi}` at `+0x88`-claimed space and returns 0, a null slot returns `0xD`
 
 Interior anchor `00600086` (function `00600070`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*The functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`gameapp_interior.py`](../../_index/candidates/opus-gameapp-interior-1001/gameapp_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic. `0061D490` is not stated here (1,211 B, several paths).*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001850B0` | 65 B | calls `0062DD70` on `+0x298` and on `+0x108`, and stores the address `008C5D50` at `+0x190` and at `+0` | `001850C4`, `001850D7`, `001850DE`, `001850E3` |
+| `00185FB0` | 86 B | calls `00188730` and `0018B4E0` and sets the returned object's dword `+0x20` to -1; calls `00861EC0([this+0xDB0], 0, 0x17BB000)` and `00600070([this+8], [this+0xDB0])`; calls vtable slot `+0x10` of `[this+8]` and tail-calls `00610330([this+8])` | `00185FBE`, `00185FCB`, `00185FD9`, `00185FF5`, `00186001` |
+| `0018A820` | 13 B | stores `dl` in byte `+0`; when it is 0 also clears the word at `+1` | `0018A822`, `0018A826` |
+| `00194AA0` | 14 B | stores the dwords `0x49` at `+0` and `0x4A` at `+4` | `00194AA6`, `00194AAD` |
+| `00194AB0` | 58 B | calls `0016D6A0(qword 01F7FFD8 is null)`; when `01F7FFD8` is null, allocates 8 bytes through `00210EC0` and stores the block there | `00194AC0`, `00194AD4`, `00194ADE` |
+| `00198750` | 64 B | when the qword `01F7FFE0` is null, allocates `0x40` bytes through `00210EC0`, constructs them with `00195060` and stores the result there | `0019876C`, `0019877E`, `00198784` |
+| `00199790` | 61 B | when the qword `01F810F0` is null, allocates 1 byte through `00210EC0`, zeroes it and stores it there | `001997A3`, `001997B2`, `001997B5` |
+| `0019F060` | 111 B | when `edx` is non-zero, allocates `edx` * 0x18 bytes through vtable slot `+0x10` of the allocator at `+0x18`, then copies the 0x18-byte elements of [`r8`, `r9`) into the new block | `0019F081`, `0019F089`, `0019F0A9`, `0019F0B2` |
+| `001A1130` | 116 B | brings the count of 0x140-byte elements between `[rcx]` and `[rcx+8]` to `edx`: grows through `0019FC30` by the difference, or passes the excess range to `001A08F0` | `001A1151`, `001A117D`, `001A118A`, `001A119F` |
+| `001A11B0` | 64 B | when the qword `01F81160` is null, allocates `0x140228` bytes through `00584740`, constructs them with `0019F620` and stores the result there | `001A11CC`, `001A11DE`, `001A11E4` |
+| `001A1240` | 205 B | while byte `+0x1A0` is set: when byte `+0x68` is set, sets `+0x69` and calls `005CCB80(1)`; otherwise clears `+0x69` and, between `005CD4F0(+0x28)` and `005CD820(+0x28)`, unlinks the first node of the list at `+0x50`, releases it through vtable slot `+0x18` of the allocator at `+0x60`, sets `+0x68` when the list is then empty, and passes the value it took (`+0x10` of the node at `+0x58`) to `001A07B0`; returns 0 | `001A1274`, `001A1285`, `001A12C4`, `001A12CD`, `001A12E4` |
+| `001A1420` | 55 B | allocates `edx` bytes through `0017D260(edx, 0x10)`, stores the block at `+0` and `+8` and its end at `+0x10`, and returns `rcx` | `001A1436`, `001A143B`, `001A144A` |
+| `001A14E0` | 28 B | calls `001A1420(rcx, 0x2000000)` and returns `rcx` | `001A14E6`, `001A14EE` |
+| `001ACF10` | 110 B | stores `edx` at `+0x248`, then makes two objects through `001EE040(0x200, 0x200, ...)` with `02CF76E8` and `02CF79C0`, storing them at `+0xD0` and `+0xC8` | `001ACF1A`, `001ACF40`, `001ACF51`, `001ACF71` |
+| `001AD3E0` | 87 B | calls `0016D6A0(qword 01F811C8 is null)`; when it is null, allocates `0x258` bytes through `00210EC0`, constructs them with `001AA9E0` and stores the result at `01F811C8` | `001AD3FD`, `001AD410`, `001AD422`, `001AD42A` |
+| `001AD8E0` | 125 B | copies the 0x40-byte elements of [`rcx`, `rdx`) to `r8` - qword `+0` directly, the rest through `001AE4B0` - and returns the destination end | `001AD923`, `001AD92E`, `001AD94F` |
+| `001ADAB0` | 127 B | sets `[rcx]` = `r9`, then builds a copy of each 0x40-byte element of [`rdx`, `r8`) at `[rcx]` (qword `+0`, the rest through `0021A920`), advancing `[rcx]` by 0x40; returns `rcx` | `001ADACB`, `001ADAF5`, `001ADB05`, `001ADB1D` |
+| `001ADB30` | 108 B | builds `edx` copies of the 0x40-byte element at `r8` at `rcx` (qword `+0`, the rest through `0021A920`) | `001ADB72`, `001ADB7D`, `001ADB83` |
+| `001B1580` | 32 B | calls `001B1630`, then `001AF470`, then tail-calls `001C6C00`, all on the same object | `001B1589`, `001B1591`, `001B159B` |
+| `001B1BA0` | 87 B | calls `0016D6A0(qword 01F811E8 is null)`; when it is null, allocates `0x4300` bytes through `00210EC0`, constructs them with `001ADD30` and stores the result at `01F811E8` | `001B1BBD`, `001B1BD0`, `001B1BE2`, `001B1BEA` |
+| `001B24D0` | 94 B | fills the 16 qwords at `rcx` with `0x0000271000002710`, then stores `rcx + 0x40` at `+0x88` and `rcx` at `+0x80`; returns `rcx` | `001B24DE`, `001B2518`, `001B251C`, `001B2526` |
+| `001B3320` | 113 B | copies the 0x38-byte elements of [`rcx`, `rdx`) to `r8`: the first 0x20 bytes through `001A5760` (skipped when source and destination are the same), then qwords `+0x20`, `+0x28` and dword `+0x30`; returns the destination end | `001B3353`, `001B335B`, `001B336E`, `001B3383` |
+| `001B6BC0` | 102 B | when the qword `01F81210` is null, allocates `0x20` bytes, zeroes `+0`..`+0x17`, calls `001EDF00(block + 0x18, 008C5F58)`, copies `+0` to `+8` and stores the block at `01F81210` | `001B6BF2`, `001B6C08`, `001B6C10`, `001B6C19` |
+| `001B7CE0` | 49 B | returns 1 when `[rcx+0x28]` is null; otherwise looks for `[rcx+0x30]` on the chain from that record's `+0x50` through `+0x78`, and returns 1 only when it is found and the record's dword `+0x74` is non-zero | `001B7CF6`, `001B7CFB`, `001B7D05`, `001B7D0E` |
+| `001B80C0` | 56 B | with the count = dword `+0` without bit 31: returns 3 when `edx` is at or above the count; otherwise stores `r8` in slot `edx` - of the array at `[rcx+8]` when the count is above 1, else of the inline slots at `rcx+8` - and returns 0 | `001B80C2`, `001B80CA`, `001B80DB`, `001B80F1` |
+| `001B82A0` | 79 B | when byte `+8` is set: calls `00229AE0(0)`, sets dword `+4` = 3, calls `0067A440(+0x678)` and `0067A970(+0x678, 0)`, and tail-calls `002E1C20(1, 0x15)` | `001B82B1`, `001B82BD`, `001B82D2`, `001B82E4` |
+| `001B9C80` | 110 B | allocates a 0x58-byte node through vtable slot `+0x10` of the allocator at `+0x30`, copies 0x38 bytes from `rdx + 0x20` into node `+0x20`, sets node `+0x10` = `r8`, `+0` and `+8` = 0 and byte `+0x18` from `rdx`'s byte `+0x18`; returns the node | `001B9C9F`, `001B9CAF`, `001B9CCE`, `001B9CE2` |
+| `001BB120` | 107 B | returns 0 unless `rdx` and its `+8` are set; otherwise asks `0019EB00(0019EF80(), [rdx+8])`, calls `001BAA30(rcx, rdx)` when the answer is true, and returns the answer | `001BB143`, `001BB14E`, `001BB160`, `001BB165` |
+| `001BDA50` | 87 B | calls `0016D6A0(qword 01F81248 is null)`; when it is null, allocates `0x108` bytes through `00210EC0`, constructs them with `001BC9D0` and stores the result at `01F81248` | `001BDA6D`, `001BDA80`, `001BDA92`, `001BDA9A` |
+| `001C0D40` | 84 B | calls `0016D6A0(qword 01F81258 is null)`, then always allocates `0x1B8` bytes through `00210EC0`, constructs them with `001BE730` and stores the result at `01F81258` (0 when the allocation fails) | `001C0D59`, `001C0D63`, `001C0D75`, `001C0D7B` |
+| `001C0DD0` | 70 B | when `[rcx]` is set, byte `+8` is clear and `0019EB00(0019EF80(), [rcx])` is true, calls `001BF2E0(rcx)` and sets byte `+8` to 1 | `001C0DE5`, `001C0DF6`, `001C0E02`, `001C0E07` |
+| `001C1710` | 10 B | atomically swaps byte `+0x10` with 0 and tail-jumps to `001C1810` | `001C1712`, `001C1715` |
+| `001C18A0` | 64 B | when the qword `01F81260` is null, allocates `0xA78` bytes through `00210EC0`, constructs them with `001C0E20` and stores the result there | `001C18BC`, `001C18CE`, `001C18D4` |
+| `001D5600` | 17 B | zeroes qword `+0` and word `+8` and returns `rcx` | `001D5607`, `001D560A` |
+| `001D58F0` | 122 B | for 128 entries of 0x18 bytes from `+0x30`: zeroes the entry's first qword, copies the empty string `01CEB638` into the next 15 bytes through the CRT `strncpy` (IAT slot `008C2F70`) and zeroes the entry's byte `+0x17`; then zeroes dword `+0x1C` | `001D5926`, `001D5934`, `001D593E`, `001D595A` |
+| `001D6990` | 82 B | calls `0016D6A0(qword 01F82CB8 is null)`; when it is null, allocates 8 bytes through `00210EC0`, zeroes them and stores the block there | `001D69A0`, `001D69B4`, `001D69C3`, `001D69CA` |
+| `001D8AB0` | 110 B | calls `001D8700`; when byte `+0x1C` is set, calls `001D8690`, adds the double argument (rounded to float) to float `+0x20` and to double `+0x10`, stores the new `+0x10` (as float) times the float at `01CEBC50` at `+0x18`, and passes that to `001D7A20(001D8210(), value)` | `001D8AC6`, `001D8ADE`, `001D8AE3`, `001D8AF6`, `001D8B0E` |
+| `001D8CD0` | 86 B | when the qword `01F82CE0` is null, allocates `0x38` bytes through `00210EC0`, zeroes byte `+0`, bytes `+4`..`+0xF`, qword `+0x28` and dword `+0x30`, sets dword `+0x10` = 3 and stores the block there (0 when the allocation fails) | `001D8CE3`, `001D8CF6`, `001D8CFD`, `001D8D0B` |
+| `001DB500` | 69 B | when the qword `01F82D00` is null, allocates `0x20` bytes, runs `001A1420(block, 0x800000)` and stores the block there | `001DB51C`, `001DB52B`, `001DB533`, `001DB539` |
+| `001F0570` | 57 B | stores the high 16 bits of `001DE5A0(*01F82D20)` at `+0x844` and the signed low 16 bits of a second such call at `+0x848` | `001F0580`, `001F0585`, `001F0588`, `001F059A` |
+| `0020B840` | 347 B | releases entries of the list at `+0x30` (sentinel `+0x28`) until `rdx` bytes are freed: an entry is skipped when its record (`+0x28`) has byte `+0x10` set or dword `+0x14` = 5, and, unless `r9b` is set, when its non-negative word `+0xE` equals word `+0xE8` of `[+0x18]` or its positive word `+0xC` equals dword `+0x80` (or `+0x84`, unless `r8b` is set); each release subtracts the record's dword `+8` from qword `+0x90`, calls `0020B0F0` and `002124C0(+0x98, ...)`, decrements `+0x48`, unlinks the entry and frees it through vtable slot `+0x18` of the allocator at `+0x50`; a pass that falls short is repeated once with `r8b` set | `0020B894`, `0020B8BA`, `0020B8EB`, `0020B914`, `0020B93F`, `0020B970` |
+| `0020BFA0` | 429 B | tries `0020B130(this, size)`; when that fails, between `005CD4F0(+0x58)` and `005CD820(+0x58)` it releases entries of the `+0x30` list (the skip tests of `0020B840`) until max(3 * size, `0xBEBC200`) bytes are freed, falls back to `0020B840(this, remainder, 1, 0)` when short, retries `0020B130`, and repeats while that fails and its stop flag stays clear; returns the `0020B130` result | `0020BFD0`, `0020BFEA`, `0020BFFA`, `0020C070`, `0020C0F5`, `0020C10F` |
+| `0020E9F0` | 82 B | calls `0016D6A0(1)`, allocates `0xC0` bytes through `001A1470(*01F7F4C0, 0xC0)`, stores `009068B8` at the block's `+0`, stores the block at `+8` and returns block `+0x10` (0 when the allocation fails) | `0020E9FE`, `0020EA0F`, `0020EA23`, `0020EA29`, `0020EA32` |
+| `00292260` | 95 B | for the ids 10, 20 and 14 in turn: when `002F8040(id)` is 0, calls `002491B0(rcx, id)` | `0029226E`, `0029227D`, `00292296`, `002922B4` |
+| `002922C0` | 45 B | when `002F8040(0x11)` is 0, tail-calls `002491B0(rcx, 0x11)` | `002922CE`, `002922E2` |
+| `0035E700` | 96 B | clears dword `022CA634`, calls `00863800` on the handles `*022CA610` and `*022CA618`, calls `008635F0(1)` while dword `022CA630` is non-zero, then calls `00863590` on both handles | `0035E70B`, `0035E715`, `0035E735`, `0035E74B` |
+| `00368AD0` | 8 B | sign-extends `ecx` and tail-jumps to `00863800` | `00368AD3` |
+| `00369050` | 19 B | stores `rdx` at `022D7F70` and tail-jumps to `00863800` with the handle `*022D7F68` | `00369057`, `0036905E` |
+| `003690F0` | 12 B | tail-jumps to `00863800` with the handle `*022D7F90` | `003690F7` |
+| `00369100` | 84 B | with the index = byte `[rcx]`: calls `0016D6A0(0x7C)`, then loops forever - `00863650` on the handle at the dword table `022CFEEC`, the callback at the qword table `022CFF10` when it is set, and, when `0017D3E0()` returns 0, `00863800` on the handle at the dword table `022CFEF0` | `00369112`, `00369128`, `0036913A`, `0036914D` |
+| `003691B0` | 19 B | tail-jumps to `00863800` with the handle in the dword table `022CFEEC` at index `ecx` | `003691B3`, `003691BA`, `003691BE` |
+| `0050CE40` | 43 B | passes the format string at `00D22938` (`++ debug_sound_info_regist ++ syncv = %ld`) and `0035E810()`'s result to `0017D280`, then calls `0016D6A0(1)` and tail-calls `0016D6A0` | `0050CE44`, `0050CE53`, `0050CE5D`, `0050CE66` |
+| `0050D780` | 133 B | resolves an id (`00267E10(r9)`, or word `[rdx]` when that is negative) to a record through `00358940(002640C0(), id)`; when the record's byte `+3` has top bits `0x60`, `002EA6A0(record)` is non-zero and `+0xC0` is set, passes the format string at `00D22A0C` (`%d `) and the signed byte `+0x14D` of `+0xC0` to `0017D280` | `0050D7A0`, `0050D7B1`, `0050D7C5`, `0050D7F0` |
+| `0067A010` | 529 B | unless dword `+0x260` is 1, repeats until it is: takes an item with `006CC4F0`, feeds its bytes (`+0x10`, count `+4`) to `0016DFE0(+0x2A8)` and calls `006CC550`; for each output `0016E040(+0x2A8)` yields it takes a slot with `006CC6A0(+0xA8, [+0x52C])` (stopping when there is none), waits with `006CC920` while dword `+0x2F0` minus `006CC580()` is below 3, writes the output's three sources (`+0x30`, `+0x38`, `+0x40` with the dwords `+0x50`, `+0x54`, `+0x58`) through `00679570` and submits with `006CC710`; finally calls `006CC670(+0xA8)` and clears byte `+0x2E8` | `0067A06C`, `0067A091`, `0067A0D0`, `0067A107`, `0067A14D`, `0067A1B4`, `0067A214` |
+| `0067F280` | 344 B | copies the twelve floats at `rcx` (`+0`..`+0x2C`), the floats `+0x20`..`+0x28` of `rdx` and the float at `01CEBBA8` into stack operands, calls `001EB4B0` on them, and writes 48 bytes of the result back over `rcx` `+0`..`+0x2F` | `0067F293`, `0067F2CB`, `0067F2D8`, `0067F383`, `0067F3A3`, `0067F3CA` |
+| `008B1B10` | 38 B | calls `001A49C0(02D3ECA8, *02D3ECC0)` | `008B1B1D`, `008B1B24`, `008B1B2B` |
+| `008B1C00` | 31 B | calls `0067F580(01F2EA70)` | `008B1C0D`, `008B1C14` |

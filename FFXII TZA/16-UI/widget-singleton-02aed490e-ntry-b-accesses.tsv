@@ -1,0 +1,10 @@
+function	name	site	disp	kind	instruction	route	note
+0037FBA0	FUN_0037fba0	0037FC07	0x0	addr	lea rcx, [rsi + 0x3f0]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x-3F0	
+0037FFD0	FUN_0037ffd0	00380037	0x0	addr	lea rdi, [rbx + 0x3f0]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x-3F0	
+0037FFD0	FUN_0037ffd0	0038003E	0x0	r	movups xmm0, xmmword ptr [rdi]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	
+0037FFD0	FUN_0037ffd0	00380088	0x0	w	rep movsq qword ptr [rdi], qword ptr [rsi]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	
+0037FBA0	FUN_0037fba0	0037FC11	0x1	r	movzx eax, byte ptr [rcx + 1]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	
+003800D0	FUN_003800d0	003800DF	0x1	r	movzx eax, byte ptr [rdx + 1]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	
+0037FBA0	FUN_0037fba0	0037FC26	0x2	r	cmp byte ptr [rcx + 2], al	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	
+003800D0	FUN_003800d0	0038011C	0x2	r	movzx ebx, byte ptr [rdx + 2]	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	
+0037FBA0	FUN_0037fba0	0037FD42	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded EMBED WidgetSingleton02AED490 +0x3F0 stride=0x10 count=32 base+0x0	

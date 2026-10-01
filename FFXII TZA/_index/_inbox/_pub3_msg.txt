@@ -1,0 +1,23 @@
+SWE2-STRUCT: derived-route census batch 3 - RenderContext02CC0410 STATIC route seeds 6 censuses
+
+- types.tsv: STATIC 0x02CC0410 on RenderContext02CC0410 (ctor 005FD050 builds
+  the .bss static in place); EMBED/CHAIN routes on PPostEffectBase,
+  PShaderPassStateD3D11, NameRegistryNode, PFXAAD3D11 (the child EMBEDs on
+  RenderPrimitivePass1E8 / RenderContextPassStateBlock / PrimitiveRendererD3D11
+  were already declared and now seed).
+- Six new census files registered in check_census_widths.py's CENSUS map:
+  render-context-02cc0410 (649 acc / 414 off / 23 fns), render-primitive-
+  pass-1e8, render-context-pass-state-block, primitive-renderer-d3d11
+  (184 acc / 168 off, ranged-size driver at AT MOST 0x20940),
+  p-shader-pass-state-d3d11, p-post-effect-base.
+- PFXAAD3D11: empty census, not registered. NameRegistryNode: 242 generic
+  helper stores at offset 0 - census rejected as propagation noise, route
+  retained as a containment fact.
+- fields.tsv: 8 WIDTH DELIBERATE markers (7 ctor bulk-init merges on
+  RenderContext fields; PPostEffectBase +0x48 dword accesses under an
+  8-byte tail declaration).
+- regval.py: documented analysis limits (jump-table edges, mid-body entry,
+  movzx/movsx copy semantics) for OPUS per AUDIT-SPEC's SD-166 review.
+- Gates: check_census_widths 0 mismatches; check_gap_debt TOUCHED=0,
+  INHERITED=7; types_index --validate 0 errors. UNMEASURED now 411 rows /
+  23,423 bytes (was 448 / 23,818).

@@ -609,6 +609,16 @@ CENSUS = {
     "WidgetSingleton02B47758_0460": "widget-singleton-02b47758-0460-accesses.tsv",
     "WidgetSingleton02B47758_05F0": "widget-singleton-02b47758-05f0-accesses.tsv",
     "ResourceRequestSlot": "resource-request-slot-accesses.tsv",
+    # RenderContext02CC0410 subtree, unlocked by the parent's STATIC route
+    # (0x02CC0410, its ctor 005FD050 builds it in place). Children ride the
+    # parent's EMBED/CHAIN routes; PPostEffectBase chains through
+    # PDeferredLightingBase's VTABLE routes.
+    "RenderContext02CC0410": "render-context-02cc0410-accesses.tsv",
+    "RenderPrimitivePass1E8": "render-primitive-pass-1e8-accesses.tsv",
+    "RenderContextPassStateBlock": "render-context-pass-state-block-accesses.tsv",
+    "PrimitiveRendererD3D11": "primitive-renderer-d3d11-accesses.tsv",
+    "PShaderPassStateD3D11": "p-shader-pass-state-d3d11-accesses.tsv",
+    "PPostEffectBase": "p-post-effect-base-accesses.tsv",
 }
 
 

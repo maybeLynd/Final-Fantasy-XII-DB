@@ -50,13 +50,48 @@ CODE_SPAN = re.compile(r"`[^`\n]*`")
 #              Only a code span that itself contains `](` is blanked; `[`name`](target)` stays a link. 9 cases.
 #   PERCENT    Markdown decodes `%20`; `../../FFXII%20TZA/...` resolves to `FFXII TZA`. The target is unquoted
 #              before resolving.
+#
+# THREE REPAIRS, OPUS 2026-10-01, on SWE2-AUDIT-SPEC's links-scope review (auditspec-review-links-scope-0930, AWN):
+#   CODE SPANS are paired the CommonMark way across the paragraph (a backtick run opens, the next run of the SAME length
+#              closes, an unmatched run is literal); the line-local regex mis-paired ``a`b`` and hid a real link (B1).
+#   CAPTURES   the "subdirectory = capture" rule stays a convention, now written down where packages are made
+#              (_experiments/README.md, "Evidence package layout"): authored documents go at package level. Judging
+#              README-named files inside subdirectories was tried and rejected: on 2026-10-01 it flagged ~25 links, all in
+#              true byte captures (`run-01/source/Database/...` mirrors, a `retained/` copy), none in an authored file.
+#   PERCENT    a target whose decoding adds a path separator (`%2F`, `%5C`) is broken: browsers do not split on them (C3).
 def is_capture(root, dirpath):
     rel = os.path.relpath(dirpath, root).replace(os.sep, "/").split("/")
     return len(rel) >= 4 and rel[0] == "_experiments" and rel[1] == "evidence"
 
 
+def cm_spans(par):
+    """CommonMark code spans in one paragraph: (start, end) offsets."""
+    runs = [(m.start(), m.end()) for m in re.finditer(r"`+", par)]
+    spans, i = [], 0
+    while i < len(runs):
+        s, e = runs[i]
+        n = e - s
+        j = next((k for k in range(i + 1, len(runs)) if runs[k][1] - runs[k][0] == n), None)
+        if j is None:
+            i += 1
+            continue
+        spans.append((s, runs[j][1]))
+        i = j + 1
+    return spans
+
+
 def blank_code_spans(text):
-    return CODE_SPAN.sub(lambda c: " " * len(c.group(0)) if "](" in c.group(0) else c.group(0), text)
+    """Blank (keeping newlines and length) every CommonMark code span that contains `](`; it renders as code."""
+    out = []
+    for part in re.split(r"(\n[ \t]*\n)", text):
+        chars = list(part)
+        for s, e in cm_spans(part):
+            if "](" in part[s:e]:
+                for k in range(s, e):
+                    if chars[k] != "\n":
+                        chars[k] = " "
+        out.append("".join(chars))
+    return "".join(out)
 
 
 n_captures = 0
@@ -134,8 +169,14 @@ for root in ROOTS:
                 target = m.group(1).strip()
                 if target.startswith(("http://", "https://", "#", "mailto:")):
                     continue
-                target = urllib.parse.unquote(target.split("#", 1)[0])
+                raw = target.split("#", 1)[0]
+                target = urllib.parse.unquote(raw)
                 if not target:
+                    continue
+                if any(target.count(c) > raw.count(c) for c in "/\\"):
+                    n_links += 1
+                    bad.append((os.path.relpath(p, root), "%s  [an encoded path separator (%%2F / %%5C) is not a separator in a "
+                                "browser]" % raw, p, dirpath))
                     continue
                 resolved = os.path.normpath(os.path.join(dirpath, target))
                 n_links += 1

@@ -1,0 +1,19 @@
+{
+  "mode": "Declared frozen-member delivery only; no source/result edits or new runs",
+  "original_directory": "Database/Tools/work/ASTRA/migration-a23-current-release/source-binding-prerequisite-01",
+  "original_manifest_sha256": "41e0238f405b31b7b2c2a5db5b2d9d815d960f8e48d4381ed27979bc2d48cde7",
+  "all_declared_members_byte_exact": true,
+  "unlisted_administrative_files": [
+    {
+      "path": "op_add_repair.json",
+      "sha256": "4636e376dc26419c90f4ca08ba69ae1b7e86fca7e790e12b28dcfdf6b6186cfd",
+      "disposition": "Existing board operation receipt or attributes outside scientific manifest; retained in place, never replayed"
+    },
+    {
+      "path": "op_note.json",
+      "sha256": "13e1d5640f73d728a9efc5746e299ce0f42c0144a41f5b8c536f2dfd111ee6c0",
+      "disposition": "Existing board operation receipt or attributes outside scientific manifest; retained in place, never replayed"
+    }
+  ],
+  "limits": "Named historical candidate/prerequisite scope, not current-version A23/fullmigration/database acceptance"
+}

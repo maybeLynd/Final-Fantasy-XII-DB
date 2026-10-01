@@ -1,7 +1,7 @@
 ---
 system: The text-element dispatch table — how the residual drawing cluster is entered
 category: 99-Unresolved-Residual
-status: DOCUMENTED — which text each drawer owns is answered by builder (GJ-7) and the four kinds are named (GJ-8); SD-106 (the five 002B3280 sites) and SD-107 (no traced code builds a kind-1 element, static) are answered; the residue prose carried by SWE2-CONTRACT's DD batch 19 (owner re-status 2026-10-01, OPUS; documented_rule READY).
+status: AUDITED — which text each drawer owns is answered by builder (GJ-7) and the four kinds are named (GJ-8); SD-106 (the five 002B3280 sites) and SD-107 (no traced code builds a kind-1 element, static) are answered; the residue prose carried by SWE2-CONTRACT's DD batch 19 (owner re-status 2026-10-01, OPUS; documented_rule READY).
 owner_layer: CodeDomain — residual; ancestors owned by UI
 evidence_tier: 1
 verified_against:
@@ -22,8 +22,9 @@ audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-text-dispatch-pass-1 - the table, both null rows, the single image-wide pointer to the orphan, the caller counts 2/3/5 and both column bases all reproduce; the boundary argument is now exact because the powers of ten are NINE u32 occupying 36 bytes immediately after the 96-byte table; section 4's listing of 002ABF20 omits its null test, so section 3 is right and section 4 is short; and the signed selector is bounded by nothing in any of the three dispatchers, which makes obj[+0xA3] in 0..3 an unproven precondition rather than a checked one
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-text-dispatch-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The text-element dispatch table — how the residual drawing cluster is entered

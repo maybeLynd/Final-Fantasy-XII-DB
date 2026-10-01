@@ -1,0 +1,47 @@
+{
+  "status": "RETAINED_CANONICAL_SELECTED_INPUTS_ONLY",
+  "source": "Database/FFXII TZA/_experiments/evidence/heading-class-effects-slice",
+  "members": [
+    {
+      "path": "raw-object-state.json",
+      "sha256": "bd0b4f781b8694b31e47308568cd368490e177fbb0d3bc20ad8c81df0cd1b012",
+      "bytes": 8098
+    },
+    {
+      "path": "raw-position-effects.json",
+      "sha256": "6044be105b9d4265a6cbdb6ad376892d150fb76ccbe1f291fbf49b3234aa5a03",
+      "bytes": 22594
+    },
+    {
+      "path": "checks-effects-terminal.json",
+      "sha256": "f046a5c5020f001c9a587cdd7a044d679137fe382325f5a6737914d1f02a00f3",
+      "bytes": 8900
+    },
+    {
+      "path": "check-effects.py",
+      "sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10",
+      "bytes": 8177
+    },
+    {
+      "path": "identity.json",
+      "sha256": "224c978f1937a99223757b33f8d5c6318113c85717f5d7cfd65836cf96e8f522",
+      "bytes": 3109
+    },
+    {
+      "path": "retained/object-state/003E33E0.bin",
+      "sha256": "5a40dce04a9c9be0283cf0ae5393b65c0b65e7439c5e7a2d9b850354f29a8d1e",
+      "bytes": 21
+    },
+    {
+      "path": "retained/object-state/003E3440.bin",
+      "sha256": "dd71e7695c2f0b548c79bca647681c0beb33149b99718f3ef4820368f4fd5c62",
+      "bytes": 19
+    },
+    {
+      "path": "retained/position-effects/002E6000.bin",
+      "sha256": "5a7d9409df564f82d637984ba721f80788cca1a808684e11f7330e334dacce5b",
+      "bytes": 129
+    }
+  ],
+  "limits": "Only selected two flag snippets and class-gate body are reduced; other code_file links remain in the original full package, not a false complete copy. Original source extent labels unchanged."
+}

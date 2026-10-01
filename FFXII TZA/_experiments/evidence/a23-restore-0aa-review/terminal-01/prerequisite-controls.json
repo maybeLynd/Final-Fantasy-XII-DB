@@ -1,0 +1,43 @@
+{
+  "records": [
+    {
+      "case": "corrupt",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py",
+        "--source",
+        "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\terminal-01\\wrong-source.py",
+        "--out",
+        "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\terminal-01\\corrupt-unexpected-result.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py\", line 143, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py\", line 30, in main\n    raise ValueError('required exact original source identity failed')\nValueError: required exact original source identity failed\n",
+      "terminal": true,
+      "output_exists": false,
+      "pass": true
+    },
+    {
+      "case": "missing",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py",
+        "--source",
+        "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\terminal-01\\absent-source.py",
+        "--out",
+        "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\terminal-01\\missing-unexpected-result.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py\", line 143, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py\", line 29, in main\n    if hashlib.sha256(args.source.read_bytes()).hexdigest() != PIN:\n                      ~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-a23-current-release\\\\restore-repair-0aa\\\\terminal-01\\\\absent-source.py'\n",
+      "terminal": true,
+      "output_exists": false,
+      "pass": true
+    }
+  ],
+  "complete": true,
+  "pass": true,
+  "driver_sha256": "8612fdf17ec932abd1d755ecb3c1d1b2764f7f9fa7c4cb5f09dfdc7888366ce8"
+}

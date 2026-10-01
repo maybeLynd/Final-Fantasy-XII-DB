@@ -1,0 +1,1 @@
+CONDITIONAL_RELOAD_ORDER:11 static partitions; local waits require live group0 AND nonzero byte gate; lifetime remains OPEN

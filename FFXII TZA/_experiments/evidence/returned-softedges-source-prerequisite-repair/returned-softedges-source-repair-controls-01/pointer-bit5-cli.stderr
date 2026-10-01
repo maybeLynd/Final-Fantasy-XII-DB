@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-pointer-key-binding.py", line 16, in <module>
+    source_qualification=quality.qualify_sources(W,[
+     'softedges-effectvariant-registration-code-01.json','softedges-member-resolution-code-01.json',
+     'softedges-array-terminal-guard-source-01/original-code.json','softedges-mapping-builders-code-01.json',
+     'softedges-member-resolution-continuation-code-01.json','softedges-resource-source-01/member-bridge-code-01.json',
+     'softedges-header-membership-code-01.json'])
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-softedges-member-boundaries-03.py", line 32, in qualify_sources
+    agreement=A.validate(v);ranges=[]
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 48, in validate
+    raise ValueError("decoded annotation disagrees with bytes at " + record["pc"])
+ValueError: decoded annotation disagrees with bytes at 0x59ecb5

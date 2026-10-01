@@ -1,0 +1,204 @@
+{
+  "status": "PRODUCER_VALID_LOCAL_PRODUCER_GATE_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "owner-producer-gate-source-01.json",
+      "sha256": "18b2c0ec98b09d8331f47b5127e9fde1c2d910670673e7a75c44e8eb21e7846b"
+    }
+  ],
+  "driver_sha256": "bfe3dcc1359cb5293516f5111901d2403ef60e40311e4f7fe26dc1c42e0a0d53",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A RETAINED_ORIGINAL_SOURCE_LOCAL_CFG",
+  "qualifier_sha256": "219d086088856535662d21059942b838a939d5343eafe369ee03a51b2c8b7cfc",
+  "annotation_receipt": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 512,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "reused_cfg_sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+  "retained_dependencies": [
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\continuation-section09-owner-producer",
+      "manifest_sha256": "23785132366d8f1464b42ccfec0e1d9d4cbec05a04d733b212270f867a7e9de8",
+      "disassembly_sha256": "9cb269e7008618d928cb575d5f65a05c544b56da14ac031ffe972182aa0a7304"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\bts-index-binding\\index-path-raw-02.json",
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12",
+      "selected_range": "0x32ed80",
+      "body_sha256": "2191ab4f7437185e353212dea4fa6ac2970fffaa641952775907011d1c613aae"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\owner-reload-order\\owner-reload-order-source-01.json",
+      "sha256": "e581b090e37f559144f18ab9c8e73dcbc6d9787fc8f92b78b02faa183244e9ec",
+      "selected_range": "0x32f850",
+      "body_sha256": "21c902a7d7d0e92f6b45dfc64cf7b2dab61f2dd888238943d4fd4d37458bca6f"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x3dd4c0",
+      "instructions": 139,
+      "returns": [
+        "0x3dd6be"
+      ]
+    },
+    {
+      "entry": "0x32f240",
+      "instructions": 8,
+      "returns": [
+        "0x32f25b",
+        "0x32f25f"
+      ]
+    },
+    {
+      "entry": "0x32ed80",
+      "instructions": 249,
+      "returns": [
+        "0x32f163"
+      ]
+    },
+    {
+      "entry": "0x32f850",
+      "instructions": 115,
+      "returns": [
+        "0x32f8a6",
+        "0x32fa03"
+      ]
+    }
+  ],
+  "negative_iteration_path": [
+    "0x3dd53c",
+    "0x3dd541",
+    "0x3dd543",
+    "0x3dd545",
+    "0x3dd548",
+    "0x3dd656",
+    "0x3dd65e",
+    "0x3dd665",
+    "0x3dd669",
+    "0x3dd66c",
+    "0x3dd675",
+    "0x3dd67a"
+  ],
+  "enable": {
+    "base": "0x22c6d18",
+    "width": 1,
+    "valid_group_premise": "0..4"
+  },
+  "cleanup_calls_before_disable": [
+    "0x32ed9d",
+    "0x32eda7",
+    "0x32edb6",
+    "0x32edd1",
+    "0x32eddb",
+    "0x32ede8",
+    "0x32edf4",
+    "0x32ee0e",
+    "0x32ee28",
+    "0x32ee42",
+    "0x32ee4c",
+    "0x32ee5b",
+    "0x32ee67",
+    "0x32ee81",
+    "0x32ee8b",
+    "0x32ee9a",
+    "0x32eea6",
+    "0x32eebf",
+    "0x32eecc",
+    "0x32eed9",
+    "0x32eee6",
+    "0x32eef0",
+    "0x32eeff",
+    "0x32ef0b",
+    "0x32ef28",
+    "0x32ef35",
+    "0x32ef3f",
+    "0x32ef4e",
+    "0x32ef5a",
+    "0x32ef73",
+    "0x32ef84",
+    "0x32ef98",
+    "0x32efa2",
+    "0x32efb1",
+    "0x32efbd",
+    "0x32efce",
+    "0x32efe0",
+    "0x32efea",
+    "0x32eff9",
+    "0x32f005",
+    "0x32f016",
+    "0x32f027",
+    "0x32f034",
+    "0x32f03e",
+    "0x32f04d",
+    "0x32f059",
+    "0x32f06a",
+    "0x32f07c",
+    "0x32f086",
+    "0x32f095",
+    "0x32f0a1",
+    "0x32f0b2",
+    "0x32f0c4",
+    "0x32f0ce",
+    "0x32f0dd",
+    "0x32f0e9",
+    "0x32f0fa"
+  ],
+  "opaque_call_sites_after_enable_before_binder": [
+    {
+      "pc": "0x32f8d2",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f8e5",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f90c",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f91e",
+      "target": "0x36c1d0"
+    },
+    {
+      "pc": "0x32f92e",
+      "target": "0x36b200"
+    },
+    {
+      "pc": "0x32f940",
+      "target": "0x36c1d0"
+    },
+    {
+      "pc": "0x32f955",
+      "target": "0x36c1d0"
+    }
+  ],
+  "established": [
+    "A zero enable byte observed by leaf32F240 returns signed32 -1 without loading the index.3DD4C0 TEST/JNS takes its negative arm, clears current armed owner state+4 to0, and skips local3DDA70 submission for that iteration; other slots/groups are separate.",
+    "That negative continuation does not clear the request mask bit: initialized R13D remains0 and bypasses the AND. State0 is not automatic retry; renewed arming/state2 or other behavior is separate.",
+    "Original32ED80 normal valid-group return clears this same enable array at32F10D, after its preceding cleanup calls. It does not locally disable the producer at function entry.",
+    "Original32F850 nonzero-header path writes1 to this same group enable field at32F8B6 before any reached26C8C0 binder call. A universal uninterrupted local zero-gate-through-binding premise is refuted."
+  ],
+  "limits": [
+    "Read-only source qualification/CFG, not native/live state. No initialized defaults, natural reentry, all writers/callers, thread scheduling, queue drain or global one-live-owner guarantee.",
+    "Enable value is the byte at the getter read, not assumed entry value; nonzero getter loads DWORD whose signed value may still be negative. Valid group/storage/ABI/nonaliasing premises.",
+    "Opaque cleanup/prebinder calls may mutate state, service callbacks or otherwise prevent normal return. A preceding local store1 does not guarantee field remains1 at binder entry, nor prove an actual intervening producer invocation.",
+    "Current negative iteration only; later slots/groups can be enabled. No transitive submission/cancellation absence, deadline, EH/interference closure or automatic whole OV19/21/natural lifetime acceptance.",
+    "Independent SPEC acceptance and existing FABLE/OPUS consumption pending. Earlier callback/reload/queue evidence retained at its own scope, no rerun or enlarged native credit."
+  ],
+  "affected_claims": [
+    "Disabled-producer interval premise for owner reset/reload uniqueness",
+    "Indexed-owner state/mask behavior after provider gate failure"
+  ],
+  "next_discriminator": "Prove relevant opaque pre-binder calls cannot service3DD4C0 or alternate owner submissions under the actual caller/ABI, or identify the exact natural scheduling/ownership state requiring observation. Separate direct D4/world-reset paths; do not spend gameplay on this settled local branch.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only references/retained bytes; finite children terminal; no game/process/save/config or peer writes"
+}

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-key-preprocessing.py",
+    "--out",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-key-preprocessing-result-01.json"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "driver_sha256": "d16c054e8f90813d13d0bcdd7f59a5ca7e42d2813ec36cf601177c3bc119ac5f"
+}

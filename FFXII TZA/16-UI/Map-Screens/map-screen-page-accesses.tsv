@@ -1,0 +1,92 @@
+function	name	site	disp	kind	instruction	route	note
+00244830	FUN_00244830	00244869	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EE3	0x0	r	mov rax, qword ptr [rbx]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244F00	FUN_00244f00	00244F25	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00245020	FUN_00245020	00245044	0x0	r	mov rax, qword ptr [rdi]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	00246641	0x0	w	mov qword ptr [rdi], rbx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002473F0	FUN_002473f0	0024743E	0x0	r	mov rax, qword ptr [r8]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	002483A0	0x0	r	mov rax, qword ptr [rdi]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	002483CE	0x0	w	mov qword ptr [rdi], 0	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00273A20	FUN_00273a20	00273A22	0x0	r	cmp qword ptr [rcx], rax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002B6140	FUN_002b6140	002B616D	0x0	addr	lea rcx, [rbx + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B6140	FUN_002b6140	002B617F	0x0	addr	lea rcx, [rbx + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B61B0	FUN_002b61b0	002B61DD	0x0	addr	lea rcx, [rbx + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B61B0	FUN_002b61b0	002B61F2	0x0	addr	lea rcx, [rbx + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B6350	FUN_002b6350	002B63FA	0x0	addr	lea rcx, [r8 + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B6350	FUN_002b6350	002B645B	0x0	addr	lea rcx, [rdx + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B9D30	FUN_002b9d30	002B9DD7	0x0	addr	lea rcx, [r8 + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002B9D30	FUN_002b9d30	002B9E40	0x0	addr	lea rcx, [rdx + 0x1b0]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x-1B0	
+002482E0	FUN_002482e0	002483CA	0x8	r	mov rbx, qword ptr [rdi + 8]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248308	0x10	r	mov rax, qword ptr [rdi + 0x10]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002448D0	FUN_002448d0	002448E0	0x18	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00245020	FUN_00245020	00245047	0x18	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002473F0	FUN_002473f0	00247414	0x18	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	002482EE	0x18	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248315	0x20	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248311	0x28	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244830	FUN_00244830	00244865	0x40	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E17	0x40	r	mov edx, dword ptr [rbx + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E50	0x40	w	mov dword ptr [rbx + 0x40], edx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244F00	FUN_00244f00	00244F0A	0x40	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244F00	FUN_00244f00	00244F11	0x40	r	mov eax, dword ptr [rcx + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00245020	FUN_00245020	00245072	0x40	r	test byte ptr [rdi + 0x40], 0x20	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00245020	FUN_00245020	00245091	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00245020	FUN_00245020	0024509B	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	00246647	0x40	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	00246650	0x40	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	00246660	0x40	w	mov dword ptr [rdi + 0x40], ecx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	0024666D	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	002466D1	0x40	rw	and dword ptr [rdi + 0x40], 0xffffbfff	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	002466F2	0x40	rw	or dword ptr [rdi + 0x40], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002473F0	FUN_002473f0	0024741F	0x40	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002473F0	FUN_002473f0	0024743A	0x40	w	mov dword ptr [r8 + 0x40], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00247870	FUN_00247870	00247884	0x40	r	mov ecx, dword ptr [rcx + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00247870	FUN_00247870	00247893	0x40	w	mov dword ptr [rbx + 0x40], ecx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00247870	FUN_00247870	002478A2	0x40	rw	and dword ptr [rbx + 0x40], 0xfffffffd	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00247870	FUN_00247870	002478BB	0x40	w	mov dword ptr [rbx + 0x40], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	002483B4	0x40	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	002483C7	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	002483F0	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	00246670	0x44	rw	and dword ptr [rdi + 0x44], 0xfff8ffff	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	0024667E	0x44	r	mov edx, dword ptr [rdi + 0x44]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	002466FA	0x44	w	mov word ptr [rdi + 0x44], ax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+00244DD0	FUN_00244dd0	00244E80	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	00246687	0x48	w	mov qword ptr [rdi + 0x48], rax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002482E0	FUN_002482e0	00248334	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248343	0x50	w	mov dword ptr [rdi + 0x50], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248377	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	0024833E	0x60	r	cmp qword ptr [rdi + 0x60], 0	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248360	0x60	r	mov rax, qword ptr [rdi + 0x60]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	0024838A	0x60	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002482E0	FUN_002482e0	00248398	0x60	w	mov qword ptr [rdi + 0x60], 0	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E88	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E6A	0x70	w	mov dword ptr [rbx + 0x70], ecx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E75	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244ED4	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E78	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E7B	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E92	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E95	0x78	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E1F	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E23	0x7C	rw	or dword ptr [rbx + 0x7c], 1	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E2C	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EAA	0x7C	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EBC	0x7C	w	mov dword ptr [rbx + 0x7c], edi	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244ED7	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EDB	0x7C	rw	or dword ptr [rbx + 0x7c], 4	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EDF	0x7C	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	002466D8	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002482E0	FUN_002482e0	002483BE	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	00246711	0x98	w	mov dword ptr [rdi + 0x98], eax	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	00246717	0x9C	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	0024670A	0xA0	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	002466E6	0xA1	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002482E0	FUN_002482e0	002483E9	0xA2	w	mov byte ptr [rdi + 0xa2], 0	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	002466A1	0xAC	w	mov byte ptr [rdi + 0xac], 0xf9	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	002466CB	0xAC	w	mov byte ptr [rdi + 0xac], cl	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	00246695	0xAD	w	mov byte ptr [rdi + 0xad], 0xf9	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	002466C1	0xAD	w	mov byte ptr [rdi + 0xad], al	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+002465F0	FUN_002465f0	0024675C	0xB4	w	mov dword ptr [rdi + 0xb4], 1	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	
+00244DD0	FUN_00244dd0	00244DE1	0xB8	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E0F	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0 exposed	
+002465F0	FUN_002465f0	00246700	0xB8	w	mov dword ptr [rdi + 0xb8], 0x3f800000	route-seeded EMBED MapScreenPageSlot +0x00 base+0x0	

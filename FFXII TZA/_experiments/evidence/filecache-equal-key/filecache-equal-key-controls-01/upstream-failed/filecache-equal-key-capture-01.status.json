@@ -1,0 +1,11 @@
+{
+  "driver_sha256": "51d1f24c3d626057a315385776a1dbbd1004b216704ae9e1a56ee773fecc625a",
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-filecache-equal-key.py"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "stdout_bytes": 803,
+  "stderr_bytes": 0
+}

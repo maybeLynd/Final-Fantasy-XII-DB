@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-CENSUS-BATTLE-MENU-WIDGET-2DC0",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "Census the 0x2DC0 battle-menu widget at ManagerSub0209BE80_AB30 +0x2E0. The seed set is proven and listed below, so this is ready to run rather than ready to investigate.",
+  "scope": "a new census artifact and an EMBED child type under _AB30; the parent's spans are NOT to be split until the ownership question below is settled",
+  "completion": "an accesses.tsv from the listed seeds with a control, and either a declared EMBED child type or a recorded reason it cannot be declared",
+  "dependencies": [],
+  "resources": [{"key": "note:battle-menu-widget-census"}],
+  "known_evidence": "The chain is verified from construction arguments and recorded on the _AB30 type row: 002766E0 builds the 0x61F0 widget at singleton+0xAB30 with handler 00279E20; 0027A42D inside that handler builds a 0x3010 widget at +0xC0 with handler 00276D30 (0x3010 is the child stride the widget-constructor page derives independently); 00276DE6 inside THAT handler builds a 0x2DC0 widget at +0x220, i.e. _AB30+0x2E0, with handler 002778C0. ARG0 IS PROVEN BY CONSTRUCTION - handler registration is this store's own admissibility rule for widget rcx - and 002778C0 does `mov rsi, rcx` at 002778FC, so every [rsi+N] in it is a field. MEASURED: 32 distinct displacements off rsi, the highest being 0x2DB6, which sits 10 bytes under the 0x2DC0 the constructor asks for. THE SEED SET, functions this handler calls with the object in rcx: 00275440 (15 calls), 002753F0 (6), 00249C60 (3), 0027B430 (3), 00244960 (2), 002470D0 (1), 002470C0 (1), 005C5230 (1). 00244960 is ALREADY a CORE function in gen_widget_census's seed list, which is independent corroboration that this object is a widget.",
+  "missing_information": "Whether dword0710 belongs to this widget. In _AB30 coordinates it is +0x710; in this widget's coordinates it would be +0x430, and NEITHER 002778C0 NOR 00276D30 accesses displacement 0x430 at all. Its only cited evidence, 002906FF, reaches it through the SINGLETON's base (`cmp dword ptr [rcx + 0xb240]`, and 0xB240 - 0xAB30 = 0x710). So three coordinate systems touch that region and none of them settles ownership.",
+  "why_it_matters": "It is a game-side widget instance whose EXTENT IS KNOWN FROM ITS CONSTRUCTION ARGUMENT rather than as a floor, which is exactly what the sized-by-argument ctype rule requires of a row that would declare an instance - unlike the instances the store-wide sweep found, which have floors only. It also sits inside the largest unobserved span in the store (23,196 bytes at _AB30+0x714) and is the reason that span's accesses were invisible to the parent's census.",
+  "what_is_blocked": "Nothing is blocked ON this. What this blocks is splitting _AB30's spans: a single row for either child would swallow dword0710, the only evidenced row inside child0, which is why an EMBED child type is required and why the flat field list cannot express the hierarchy."
+ }
+}

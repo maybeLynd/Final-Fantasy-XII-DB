@@ -1,0 +1,26 @@
+{
+  "tag": "failed-upstream",
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-raw-archive-composition.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-raw-archive-composition-controls-01\\failed-upstream",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-raw-archive-composition-controls-01\\failed-upstream\\result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "expected_error": "format capture failed",
+  "result_absent": true,
+  "passed": true,
+  "changed_file": "filecache-format-boundary-capture-01.status.json",
+  "changed_sha256": "b0ef7cc1106bab9d657c340df7356ba03a6d1c84e2cb44a0d1d0e041cdb15c1f",
+  "inherited_from_baseline": {
+    "capture-filecache-format-boundary.py": "2c5ee94ecc119954e82ec11ee16a342b8c6114e63db6094b2c4d44d36b366fe4",
+    "filecache-format-boundary-source-01.json": "2909e71cae51b038b33c4612104b1f1435b999d6b452480bf9ec888058f77935",
+    "filecache-format-boundary-capture-01.stdout": "505300949b14a673527345393edf373706635715cf6c1292014b4906f15e87e0",
+    "filecache-format-boundary-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validate-title-source-annotations.py": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "prove_owner_reload_order.py": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+  }
+}

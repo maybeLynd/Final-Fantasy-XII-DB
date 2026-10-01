@@ -1,0 +1,36 @@
+{
+  "case": "failed-stack-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\mode-summon-tail\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\mode-summon-tail\\proof-controls-01\\failed-stack-capture\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\mode-summon-tail\\proof-controls-01\\failed-stack-capture"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "RuntimeError: upstream capture failed/incomplete stack-capture-01",
+  "expected_error": "RuntimeError: upstream capture failed/incomplete stack-capture-01",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_path": "stack-capture-01.status.json",
+  "changed_sha256": "2211bff0f21895680dc5b9f7c43ca7d67a5f14390a78049b586e51587dc3b8e5",
+  "baseline_sha256": {
+    "capture.py": "ca24fd77fb151418601d59770848467aabb61e228a520fd267a15a466d5d083a",
+    "capture-stack-probe.py": "146224607d27cf2eba81d072c4c41440dbe74971ff328396c5992265c8603f89",
+    "source-01.json": "6f11f0406c765cf3983109d6f1b19430feb2b986b80e4206310801922747c821",
+    "stack-probe-source-01.json": "da5529ebbfec0be778ee4a6fc5d343f058365c08cb70f1c4e4b3d2617e2a4bfc",
+    "capture-01.status.json": "36ceadf67c19b2c7ea915d2ff6d1ca59f5a07de9dc9078a4cc296e524f16f0af",
+    "capture-01.stdout": "50d04df0e53f9eb60df12c95b881fd3fd0e2561a3d0bff36ecceb341963cb586",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stack-capture-01.status.json": "04aecd9316eff4b302a3f7a340ddd585fbb2685cff969e8042e2ca791dbb37ed",
+    "stack-capture-01.stdout": "327b064a92b2ef36b00f81a62d46f4b3417fc4580d00e4fa2c07a85006084655",
+    "stack-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "producer_sha256": "7e6c8ea864852a11d1292a52ebfd3fd05c4e393169217d86851736ab58c80e59",
+  "control_sha256": "400cc38ad6a6d6d4c19a65617cd098eda4f9b375814ad23bce7db5c92a9bd7fb",
+  "passed": true
+}

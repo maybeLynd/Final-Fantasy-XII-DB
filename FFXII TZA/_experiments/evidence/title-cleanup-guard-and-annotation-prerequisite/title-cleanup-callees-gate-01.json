@@ -1,0 +1,13 @@
+{
+  "stages": [
+    "compile_driver_before_invocation",
+    "check_fresh_output",
+    "invoke_checked_producer",
+    "verify_output_exists",
+    "read_output",
+    "source_available_for_reduction"
+  ],
+  "producer_sha256": "f2b1f92c689431ffe2823d330e2183bcbd351312128dd2d24a309e19aa94fce7",
+  "source_sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0",
+  "status": "SOURCE_NOT_SEMANTIC_CLOSURE"
+}

@@ -1,0 +1,259 @@
+{
+  "status": "VERIFIED",
+  "commit": "d04105596c99a15cd623a8fe5005f0831cabff70",
+  "exact_paths": 42,
+  "members": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/.gitattributes",
+      "bytes": 8,
+      "git_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/capture-index-path.py",
+      "bytes": 4338,
+      "git_sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/capture-title-cleanup-import-boundary-02.py",
+      "bytes": 3633,
+      "git_sha256": "7f77b3cff3be611c5b4288658ef2253474558ccbfb28d49bf486a36d0d3cf31a",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/history/capture-driver-invalid01.bin",
+      "bytes": 3685,
+      "git_sha256": "cbbd9b5816fd1cda1c8cd61b98fd61020d354a8244be620dfae0ddbeef5120c2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/manifest.json",
+      "bytes": 7752,
+      "git_sha256": "8512938d16e6ec96883dce9d1e099fbc5068d3d7835e177efe05c4fe91dc2b21",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/prepare-residue-packet-publication.py",
+      "bytes": 35038,
+      "git_sha256": "c5afc6a48168b4b450d2cbe4da6f2b01ac7a9c12c272fb416c6562f49c0476f3",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/prove-title-cleanup-import-boundary.py",
+      "bytes": 6680,
+      "git_sha256": "678b0c64c0ecd7fab5f276273c85a11aa6f2bb87ef83b35bfa6ab449ae734dc7",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "git_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/README.md",
+      "bytes": 3492,
+      "git_sha256": "038305a3944fbe0a491e41130585d162da6fb53cc0d50556a0ac9ba5d84b3252",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/run-softedges-array-descriptor-offset.py",
+      "bytes": 4138,
+      "git_sha256": "1869886f6e07a657b674badbcd419668dce9e6e2bac8482ee7320bc792b9a439",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-gate-02.json",
+      "bytes": 466,
+      "git_sha256": "f6ed3e5cbf5945c3ff936b76d225ae7266a532991d37ec25fed97ab1a492ae6b",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-invocation-01.status.json",
+      "bytes": 301,
+      "git_sha256": "cc82bb5fcab20b09122c2398714330181f52dc12d4133b401d0d96b644e91691",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-invocation-01.stderr",
+      "bytes": 234,
+      "git_sha256": "e3598d1a9e20610df0c882ad33f5ad11db0e74106aa98d779cb3133659a7f361",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-invocation-01.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-invocation-02.status.json",
+      "bytes": 304,
+      "git_sha256": "89e8f4869d5dd9303fb652dc45301896e0d12fd74afcc3fd13a68db8e32a6a2c",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-invocation-02.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-invocation-02.stdout",
+      "bytes": 170,
+      "git_sha256": "60860f009466d818aebd4fd25275039114056a9cbacd3509bb03bd23259703b2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-method-01.json",
+      "bytes": 1283,
+      "git_sha256": "c94e08008f9dc782d66076faf2992df47c9adf2cf687037ec67f40f215e17bb7",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-preparation-02.json",
+      "bytes": 1025,
+      "git_sha256": "8caf8b6b8798c8c78c2683198718ef32cdda5ee59f678ebfcd4bd3cca802d797",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-result-01.json",
+      "bytes": 3093,
+      "git_sha256": "9561104b1fb5e25102da3f8f5ae3cb8aa10de34f141f7368a3d0fade89c42a52",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5172,
+      "git_sha256": "6479b721861fa65b5ef1ff1d37678aec73116b5ab0dfcf4b64151da459ae4326",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/missing-source/actual-cli.status.json",
+      "bytes": 653,
+      "git_sha256": "927e5919da75f3d53063c9508d8d70cf6a1baf9624a48439a95d0dc2ae797095",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/missing-source/actual-cli.stderr",
+      "bytes": 1568,
+      "git_sha256": "cd52da8bb1fab346a6f27318cae9537d7224e8427fc6983106a4ced22cb87e02",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/missing-source/actual-cli.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/missing-source/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/result.json",
+      "bytes": 4064,
+      "git_sha256": "b0eeafa37835bf4aa5abbb1be15fa159cee469425bed15b2ab54a7b39acb05a8",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/reversed-teardown-condition/actual-cli.status.json",
+      "bytes": 679,
+      "git_sha256": "8997af3aad8eccbe19e860e1ad28a6bfadea66513c6e1079c1c760d0809db49e",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/reversed-teardown-condition/actual-cli.stderr",
+      "bytes": 887,
+      "git_sha256": "f37596c8cf550790296ef94889444ea6515e781d1d3b009fe20995f2487e3603",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/reversed-teardown-condition/actual-cli.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/reversed-teardown-condition/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/reversed-teardown-condition/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5173,
+      "git_sha256": "d6484cb359be14dcb98be95031b64a5881e779679511e81b76efc8ca86cf3f3b",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/wrong-import-name/actual-cli.status.json",
+      "bytes": 659,
+      "git_sha256": "135faa4a71f62f0dedd3d5e8f764c27630127497af434bf084bd88704c89910e",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/wrong-import-name/actual-cli.stderr",
+      "bytes": 507,
+      "git_sha256": "c09caca0f336d7df10d16d279cd335a540a0b879eb8b6040eb4506ebe13ca16b",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/wrong-import-name/actual-cli.stdout",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/wrong-import-name/title-cleanup-callback-queue-source-01.json",
+      "bytes": 10186,
+      "git_sha256": "aa7e7dc675137cc414d99d8b7b02fdd5b40f233c1168fb188e9f9e3ce1ec79d2",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-controls-01/wrong-import-name/title-cleanup-import-boundary-source-02.json",
+      "bytes": 5174,
+      "git_sha256": "d13b27ed923940259341534f66c3cb66939279aed7ab350b6a4a63dbee4c3e83",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-proof-invocation-01.status.json",
+      "bytes": 461,
+      "git_sha256": "7f4f711f37c9bd64e960f193a501a8203449c26e0d39279aa4794b1a7bded094",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-proof-invocation-01.stderr",
+      "bytes": 0,
+      "git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-proof-invocation-01.stdout",
+      "bytes": 88,
+      "git_sha256": "19d9761a8d7231b961327838899f720615a6835c10427a4b8e2c83a03277b3ca",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/title-cleanup-import-boundary/title-cleanup-import-source-generation-control-01.json",
+      "bytes": 744,
+      "git_sha256": "156fe45d59e044fb2a872ad2e6ccd626b234547cd2ff9ff57ec39f3b3fddced9",
+      "verification": "strict SHA256"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/_inbox/ASTRA.md",
+      "bytes": 1093122,
+      "git_sha256": "8c70edb24b68ea0dec7c712a6ab995ddc67384f42d7a86743245d98af654a6e1",
+      "verification": "LF-only handoff normalization"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "source_commit": "06d817762e31d05bfe5db91f572576102143cd50",
+  "source_sha256": "ec45e3f6d4bbc0c0e42d7f869cf6a8e76b31dc7121be0fd1c03dd3ac354bdff6",
+  "prior_source_sha256": "033c37bd65cf4e9b5f33c94af14ad867877ac32cf992ad1515d4c230a6597dec",
+  "driver_sha256": "ebcc800228f483414bfcc3a689ee73b8ae3cb43d094bc05a946877c3b245b4b8",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "method": "Actual exact original host Python pure functions plus complete AST equivalence outside declared changes",
+  "rows": [
+    {
+      "name": "COM\u00b9",
+      "mapped": "%43OM\u00b9",
+      "expected_mapping": "%43OM\u00b9",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%43om\u00b9"
+    },
+    {
+      "name": "com\u00b9.json",
+      "mapped": "%63om\u00b9.json",
+      "expected_mapping": "%63om\u00b9.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%63om\u00b9.json"
+    },
+    {
+      "name": "COM\u00b2",
+      "mapped": "%43OM\u00b2",
+      "expected_mapping": "%43OM\u00b2",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%43om\u00b2"
+    },
+    {
+      "name": "com\u00b2.json",
+      "mapped": "%63om\u00b2.json",
+      "expected_mapping": "%63om\u00b2.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%63om\u00b2.json"
+    },
+    {
+      "name": "COM\u00b3",
+      "mapped": "%43OM\u00b3",
+      "expected_mapping": "%43OM\u00b3",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%43om\u00b3"
+    },
+    {
+      "name": "com\u00b3.json",
+      "mapped": "%63om\u00b3.json",
+      "expected_mapping": "%63om\u00b3.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%63om\u00b3.json"
+    },
+    {
+      "name": "LPT\u00b9",
+      "mapped": "%4CPT\u00b9",
+      "expected_mapping": "%4CPT\u00b9",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%4cpt\u00b9"
+    },
+    {
+      "name": "lpt\u00b9.json",
+      "mapped": "%6Cpt\u00b9.json",
+      "expected_mapping": "%6Cpt\u00b9.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%6cpt\u00b9.json"
+    },
+    {
+      "name": "LPT\u00b2",
+      "mapped": "%4CPT\u00b2",
+      "expected_mapping": "%4CPT\u00b2",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%4cpt\u00b2"
+    },
+    {
+      "name": "lpt\u00b2.json",
+      "mapped": "%6Cpt\u00b2.json",
+      "expected_mapping": "%6Cpt\u00b2.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%6cpt\u00b2.json"
+    },
+    {
+      "name": "LPT\u00b3",
+      "mapped": "%4CPT\u00b3",
+      "expected_mapping": "%4CPT\u00b3",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%4cpt\u00b3"
+    },
+    {
+      "name": "lpt\u00b3.json",
+      "mapped": "%6Cpt\u00b3.json",
+      "expected_mapping": "%6Cpt\u00b3.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null,
+      "key": "%6cpt\u00b3.json"
+    }
+  ],
+  "ordinary_controls": [
+    {
+      "name": "ASTRA-plain.md",
+      "mapped": "ASTRA-plain.md",
+      "reason": null
+    },
+    {
+      "name": "COM10.txt",
+      "mapped": "COM10.txt",
+      "reason": null
+    },
+    {
+      "name": "LPT10.txt",
+      "mapped": "LPT10.txt",
+      "reason": null
+    },
+    {
+      "name": "COM0",
+      "mapped": "COM0",
+      "reason": null
+    },
+    {
+      "name": "LPT0",
+      "mapped": "LPT0",
+      "reason": null
+    }
+  ],
+  "ascii_controls": [
+    {
+      "name": "CON",
+      "mapped": "%43ON",
+      "reason": "is a Windows device name",
+      "mapped_reason": null
+    },
+    {
+      "name": "nul.json",
+      "mapped": "%6Eul.json",
+      "reason": "is a Windows device name",
+      "mapped_reason": null
+    },
+    {
+      "name": "COM1.txt",
+      "mapped": "%43OM1.txt",
+      "reason": "is a Windows device name",
+      "mapped_reason": null
+    },
+    {
+      "name": "LPT9",
+      "mapped": "%4CPT9",
+      "reason": "is a Windows device name",
+      "mapped_reason": null
+    }
+  ],
+  "percent_control": {
+    "name": "%43OM\u00b9",
+    "mapped": "%2543OM\u00b9",
+    "other": "%43OM\u00b9"
+  },
+  "windows_key_docstring": "A folding key covering two Windows aliasing rules, case and trailing dots/spaces: per component, those are\nstripped and the case folded. Two paths with one key open as one file on Windows. This is NOT a complete theory of\nWindows aliasing (8.3 short names, alternate data streams, Unicode normalization and device names are outside it;\ndevice names are handled by portable_component and snapshot_name). Used to refuse a restore that would merge two\narchive members into one file under these two rules.",
+  "checks": {
+    "declared_changes_only_restore_reader_unchanged": true,
+    "twelve_former_failures_now_exactly_mapped_and_refused": true,
+    "twelve_mapped_keys_distinct": true,
+    "ordinary_controls_unchanged": true,
+    "ascii_device_controls_correct": true,
+    "encoded_looking_logical_name_kept_distinct": true,
+    "key_docstring_explicit_scope": true
+  },
+  "complete": true,
+  "verdict": "ACCEPT_BOUNDED_DEVICE_REPAIR",
+  "no_device_path_opened": true,
+  "no_restore_cli_or_game_run": true,
+  "limits": [
+    "Twelve selected names and scoped original code, not all Windows namespace/alias behavior.",
+    "Prior physical restore acceptance retained; seven native restores not rerun.",
+    "No deployed host/archive/full M0-M5/FF12 evidence. Producer32-test campaign not ours."
+  ]
+}

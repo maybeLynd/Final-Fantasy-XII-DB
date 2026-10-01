@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\a23-device-stems-06d-review\\review.py"
+  ],
+  "driver_sha256": "ebcc800228f483414bfcc3a689ee73b8ae3cb43d094bc05a946877c3b245b4b8",
+  "deadline_seconds": 25,
+  "exit": 0,
+  "terminal": true,
+  "exception": null
+}

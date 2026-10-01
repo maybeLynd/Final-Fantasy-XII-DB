@@ -1,0 +1,11 @@
+{
+  "commit": "b4772fab9886c7a935023b672728ddfc50201050",
+  "manifest_sha256": "202c1070520a988a3e7eed6b6b6f04ff0c8b8c9ab5a6be0c2ce4f48ec48e3764",
+  "member": {
+    "path": "source-01.json",
+    "bytes": 91745,
+    "sha256": "a5dca623e4c5b98627cf9f675a9ac863cf167ff71cae70f434ce1d4be5ffa54b"
+  },
+  "copy_sha256": "a5dca623e4c5b98627cf9f675a9ac863cf167ff71cae70f434ce1d4be5ffa54b",
+  "limits": "Reused original producer bytes, not another native/capture run"
+}

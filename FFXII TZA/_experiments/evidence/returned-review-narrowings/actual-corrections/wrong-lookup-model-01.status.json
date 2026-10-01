@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-index-domain-wrong-lookup-model-control-01.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\index-path-raw-02.json",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fst-inputs-01",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\returned-narrowings-1001\\wrong-lookup-model-result-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "632eb3d5e81c11ca1f068b127300730309015c1fe4ea972196c22ee8475e4b90",
+  "expected_detection": "lookup outside retained FST",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "limit": "Actual reducer mutant/control; no FF12/native run or proof of native invalid memory effect"
+}

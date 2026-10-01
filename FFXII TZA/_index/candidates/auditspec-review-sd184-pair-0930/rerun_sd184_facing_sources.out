@@ -1,0 +1,26 @@
+PASS  S1   setposparty (0x3B1 -> 003571A0) passes its FIRST pop (the last pushed argument) as xmm1 with r8d = 1; setposparty_mapjump (0x56D -> 0033F070) the same with r8d = 0
+PASS  S2   0037D000 reaches 00310920 (xmm1 = the facing, unchanged) only on r8d != 0, i.e. only from setposparty
+PASS  S3   00310920: xmm6 is written only at entry (0031094F = the facing) and in the epilogue restore (00310D0A); its three BattleUnit +0x160 stores (00310B00, 00310BB1, 00310CA6) store that xmm6 raw (xmm6 is non-volatile across the calls)
+PASS  S4   00311F70 (all seven call sites) publishes +0x30 of the record it hands 00336E40 (rsp+0x40 -> rsp+0x70), not a caller argument
+PASS  S5   00336E40 writes +0x30 twice: 00336FAA = [022C7DE0]; 00337429 = xmm0, which is 004687F0's yaw (00337381, via 003373BD) or 00265200's facing (00337422) or 0.0 (00337414)
+PASS  S6   022C7DE0 has one store image-wide (0033CAE0), and it stores 00265200's facing (0033CADB)
+PASS  S7   the +0x160 stores in 002F0000-0033FFFF are 002F2BB2, 002F6B7A, 002F6C6D, 002FDB1B, 002FDCC7, 00300426, 003043A8, 00304BD3, 00307A0B, 00310B00, 00310BB1, 00310CA6, 003120AF, 00312F77. Not headings: 002F2BB2 is the middle row of a 48-byte copy (+0x150/+0x160/+0x170) in 002F2530, and 002F6B7A / 002F6C6D are fields of the 0x240-byte object 002F6AB0 builds for 0026E760. 002FDB1B / 002FDCC7 / 00304BD3 go through st = unit+0x80 (= BattleUnit +0x1E0, the look-target kind). The other eight are BattleUnit +0x160 = st+0xE0
+PASS  S8   three facing publishes the page's table lacks: 003043A8 (00304180) and 00307A0B (00307300) store 00265200's facing; 00312F77 (00312EE0) stores 0031ACC0's result = atan2f or its 00265200 argument
+PASS  S9   00265200 reads movementState +0xA8 (kind 3) or +0x38 (kind 1); their writers 002E5E10 and 0026B6A0 store the sign-biased wrap x - trunc((x +- pi) / 2pi) * 2pi (single writers per the movement-context census)
+PASS  S10  00334120's early path (|wrap(target - cur)| <= step) returns its target argument raw
+PASS  S11  00334120 has exactly the nine direct calls; targets: 0033A678 004687F0 yaw; 0033A6A6 st+0x150 when st+0x160 == 2 (the order's facing goal); 0033BC39 ctx+0xA8; 0033C183 byte st+0x20 * pi/128, wrapped once; 0033C807 byte st+0x20 * pi/128, wrapped once; 0033CE3C the dispatcher's desired heading (mode 5); 0033CE9D the dispatcher's desired heading (mode 3); 0033D2A8 0033D200's desired heading (dispatcher or 0033A720's candidate); 0033E1B7 004687F0 yaw
+PASS  S12  ctx+0xA8 has one store in the solver band (00336A5D in BuildSolverContext), 004687F0's yaw toward the target
+PASS  S13  0033C183 / 0033C807: target = b * pi / 128 for a byte b, minus 2pi when above pi: always in (-pi, pi]
+PASS  S14  002FDC30 sets st+0x160 = 2 and st+0x150 = the heading 00312B40 leaves in its in/out slot (seeded with st+0xE0)
+PASS  S15  00312B40's nine heading outputs are 00316DA0 (loop wrap, no fast path), 0031AC90 (atan2f, or the slot's current value), or the spawn record's +0x70
+PASS  S16  spawn record +0x70 writers (00239210 = 00316DA0-wrapped degrees; 003003F0, 00307300, 00311F70 = the facings above) match the spawn-keep field map's writer list
+PASS  S17  0033A720's candidate heading = 004687F0's yaw + a table offset; max |offset| over 00D10B30-00D10BEF and the immediates = 2.3562 (3pi/4 = 2.3562), so every sum is < 4pi and its inline wrap takes the loop path
+PASS  S18  004687F0's angle is the 16,384-entry table at 00D12590 (min 0.0000, max 3.1416) negated for x < 0: in [-pi, pi]
+PASS  E1   executed 0033CB70: 4pi -> 0.000000 (loop path), next float up 12.5663719 -> 0.000001 (fast path, in range), 16.0 -> 3.4336, -16.0 -> -3.4336, 13.0 -> 0.4336, 20.0 -> 1.1504, the largest authored facing 5.846853 -> -0.436333
+PASS  E2   executed sweep of 80,001 inputs in [-40, 40]: none with |x| <= 4pi leaves [-pi, pi]; 25132 inputs do, the smallest positive 15.708 (5pi = 15.7080): the defect needs |x| > 5pi, not just > 4pi; OPUS's model agrees on every 7th point (0 mismatches)
+PASS  E3   the mis-normalised inputs fill the odd bands |x| in (5pi, 6pi), (7pi, 8pi), ... (bands seen: [5, 7, 9, 11]): the fast path leaves x mod 2pi in [0, 2pi) instead of [-pi, pi]
+PASS  E4   executed 00334120(cur, target, step): (0, 5.846853, 10) -> 5.846853 (early path, target returned raw); (5.846853, 0.5, 0.1) -> -0.336333 (cur - step wrapped by the loop path); (5.846853, 0.5, 2.0) -> 0.500000
+PASS  E5   executed 00334120(16.5, 0, 0.1) -> 3.8336: a current heading beyond 5pi comes back outside [-pi, pi] (the defect reaches st+0xE0 only if a caller feeds such a heading)
+PASS  E6   executed controls: 00316DA0 (loop wrap) gives ['-2.8496', '2.8496', '-0.4363', '2.3009'] and 0026A0D0 (the sign-biased wrap into movementState +0xA4, object kind byte 0x60 injected) gives ['-2.8496', '2.8496', '-0.4363', '2.3009'] for 16, -16, 5.846853, 40 - all in [-pi, pi]
+PASS  E7   executed 004687F0 on 72 directions around the circle: yaw in [-3.0546, 3.1416] (float32 pi = 3.1415927 allowed) (stub: sqrtf answered in Python; ['sqrtf'])
+FAILS 0

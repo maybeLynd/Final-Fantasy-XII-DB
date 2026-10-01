@@ -1,0 +1,8 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check_bj1_preparation.py"
+  ],
+  "exit": 0,
+  "driver_sha256": "6f83819dad4b9d2502a1a583c25b52b17b8c4f76f2ed7e39c77369a8d0855100"
+}

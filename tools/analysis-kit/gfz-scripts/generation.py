@@ -64,10 +64,44 @@ READABLE = ("ff12-generation-1", "ff12-generation-2")
 _UNSAFE = set('<>:"/\\|?*%')
 
 
+# Microsoft's reserved device names, in any case and with any extension: CON, PRN, AUX, NUL, COM1-9, LPT1-9 and the
+# superscript-digit forms COM¹ COM² COM³ LPT¹ LPT² LPT³ (ASTRA's re-review REJECT of 87c7561de, f13344fa1).
+_SUPERSCRIPT = ("¹", "²", "³")
+_DEVICES = ({"CON", "PRN", "AUX", "NUL"} | {"COM%d" % i for i in range(1, 10)} | {"LPT%d" % i for i in range(1, 10)}
+            | {p + s for p in ("COM", "LPT") for s in _SUPERSCRIPT})
+
+
 def snapshot_name(name):
     """The portable file name of an input's snapshot: percent-escape what a Windows or POSIX file name cannot hold, and
-    '%' itself, so distinct logical names never share a file. A plain name is returned unchanged."""
-    return "".join("%%%02X" % ord(c) if (c in _UNSAFE or ord(c) < 32) else c for c in name)
+    '%' itself, so distinct logical names never share a file. A plain name is returned unchanged.
+    Windows also silently strips trailing dots and spaces and reserves the device stems (CON, NUL, COM1 ...), so those
+    are escaped too: `x` and `x.` must restore to two files (ASTRA's REJECT of 0aa544606, 53909f69b)."""
+    s = "".join("%%%02X" % ord(c) if (c in _UNSAFE or ord(c) < 32) else c for c in name)
+    k = len(s)
+    while k and s[k - 1] in ". ":
+        k -= 1
+    s = s[:k] + "".join("%%%02X" % ord(c) for c in s[k:])
+    if s and s.split(".", 1)[0].upper() in _DEVICES:
+        s = "%%%02X" % ord(s[0]) + s[1:]
+    return s
+
+
+def windows_key(path):
+    """A folding key covering two Windows aliasing rules, case and trailing dots/spaces: per component, those are
+    stripped and the case folded. Two paths with one key open as one file on Windows. This is NOT a complete theory of
+    Windows aliasing (8.3 short names, alternate data streams, Unicode normalization and device names are outside it;
+    device names are handled by portable_component and snapshot_name). Used to refuse a restore that would merge two
+    archive members into one file under these two rules."""
+    return "/".join(c.rstrip(". ").casefold() for c in path.replace("\\", "/").split("/"))
+
+
+def portable_component(name):
+    """None when Windows stores `name` under exactly that name, else why not (trailing dot/space, device stem)."""
+    if name != name.rstrip(". "):
+        return "ends with a dot or space, which Windows strips"
+    if name.split(".", 1)[0].upper() in _DEVICES:
+        return "is a Windows device name"
+    return None
 
 
 def input_file(gen_dir, name):
@@ -383,15 +417,19 @@ def restore_zip(zip_path, root):
         for o in man["outputs"]:
             if os.sep in o or "/" in o or o.startswith("."):
                 raise GenerationError("output name is not a flat file name: %r" % o)
+            why = portable_component(o)
+            if why:
+                raise GenerationError("output name %r %s; it would restore under another name" % (o, why))
             plan[os.path.join(gen, "outputs", o)] = "outputs/" + o
         for n, c in man["inputs"].items():
             if c["state"] in ("present", "empty") and not c.get("external"):
                 plan[os.path.join(gen, "inputs", snapshot_name(n))] = "inputs/" + n   # snapshot_name is one-to-one
         folded = {}
-        for dst in plan:                  # a case-insensitive file system folds names a case-sensitive archive keeps apart
-            k = os.path.normcase(dst).lower()
+        for dst in plan:                  # Windows folds case and trailing dots/spaces that a ZIP keeps apart: refuse before any write
+            k = windows_key(dst)
             if k in folded:
-                raise GenerationError("two members restore to one file on a case-insensitive system: %r and %r" % (plan[folded[k]], plan[dst]))
+                raise GenerationError("two members restore to one file on a case-insensitive system (Windows name folding): %r and %r"
+                                      % (plan[folded[k]], plan[dst]))
             folded[k] = dst
         os.makedirs(os.path.join(root, gen, "outputs"))
         os.makedirs(os.path.join(root, gen, "inputs"))

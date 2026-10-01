@@ -72,11 +72,24 @@ def capture(archive, listing=None):
     st = os.stat(archive)
     out = {"archive_path": archive, "archive_file_bytes": st.st_size, "archive_mtime_ns": st.st_mtime_ns, "archive_index": rec,
            "entries": sorted([n, s] for n, s in names.items()), "uncompressed_bytes": sum(names.values())}
-    if listing and os.path.isfile(listing):
-        old = read_listing(listing)
-        out["vs_listing"] = {"listing_path": listing, "missing_from_archive": len(old.keys() - names.keys()),
-                             "missing_from_listing": len(names.keys() - old.keys()),
-                             "size_mismatch": sum(1 for n in names.keys() & old.keys() if names[n] != old[n])}
+    # The comparison is a separate measurement from the inventory: an absent or unreadable listing is recorded as
+    # such (vs_listing_failed), never as a comparison that found no difference (ASTRA's REJECT of eae0ed3c7, VBF-RESULT.md).
+    if not listing:
+        out["vs_listing_failed"] = "no listing supplied"
+    elif not os.path.isfile(listing):
+        out["vs_listing_failed"] = "listing not found: %s" % listing
+    else:
+        try:
+            old = read_listing(listing)
+        except (OSError, UnicodeDecodeError) as e:
+            out["vs_listing_failed"] = "listing unreadable: %s: %s" % (type(e).__name__, e)
+        else:
+            if not old:
+                out["vs_listing_failed"] = "listing has no '<size> <name>' rows: %s" % listing
+            else:
+                out["vs_listing"] = {"listing_path": listing, "missing_from_archive": len(old.keys() - names.keys()),
+                                     "missing_from_listing": len(names.keys() - old.keys()),
+                                     "size_mismatch": sum(1 for n in names.keys() & old.keys() if names[n] != old[n])}
     return out
 
 

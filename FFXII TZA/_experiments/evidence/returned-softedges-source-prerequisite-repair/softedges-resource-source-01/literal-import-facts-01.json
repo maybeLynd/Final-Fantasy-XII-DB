@@ -1,0 +1,38 @@
+{
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "4afd26d355020e2573bb9a354624a084e1cd24b81aa5916311055650f4042600",
+  "resource_slots": [
+    {
+      "slot": "0x1dfde00",
+      "slot_bytes": "9019900000000000",
+      "pointer": "0x901990",
+      "name": "./GameData/D3D11/ArtData/shaders/PhyreText.fx.phyre",
+      "cstring_bytes": "2e2f47616d65446174612f44334431312f417274446174612f736861646572732f5068797265546578742e66782e706879726500"
+    },
+    {
+      "slot": "0x1dfde08",
+      "slot_bytes": "c819900000000000",
+      "pointer": "0x9019c8",
+      "name": "./GameData/D3D11/ArtData/font/tuffysdf.fgen.phyre",
+      "cstring_bytes": "2e2f47616d65446174612f44334431312f417274446174612f666f6e742f74756666797364662e6667656e2e706879726500"
+    }
+  ],
+  "lookup": {
+    "address": "0x901b18",
+    "name": "softEdges",
+    "cstring_bytes": "736f6674456467657300"
+  },
+  "imports": [
+    {
+      "dll": "VCRUNTIME140.dll",
+      "name": "memcpy",
+      "iat_slot": "0x8c2a68",
+      "import_index": 18,
+      "descriptor_bytes": "48b7cc01000000000000000062eccc01d8297a00",
+      "name_rva": "0x1cceb42",
+      "hint": "3c00"
+    }
+  ],
+  "limits": "File-backed literal/import identity only, not evidence that the resource loads, callbacks execute or native memcpy was called."
+}

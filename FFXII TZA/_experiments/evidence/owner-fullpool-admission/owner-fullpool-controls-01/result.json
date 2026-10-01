@@ -1,0 +1,86 @@
+{
+  "status": "PASS_ACTUAL_FULLPOOL_PREREQUISITE_REFUSALS",
+  "driver_sha256": "46bb2d68f4f294ccd1288f1354468d81e8d7d6568ebe6a85f17466f9d55de5c8",
+  "cases": [
+    {
+      "tag": "failed-qualifier",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_fullpool_admission.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\failed-qualifier\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\failed-qualifier"
+      ],
+      "exit": 1,
+      "expected_refusal": "required qualifier failed/stale",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-free-branch",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_fullpool_admission.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\changed-free-branch\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\changed-free-branch"
+      ],
+      "exit": 1,
+      "expected_refusal": "original byte mismatch",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "missing-owner-caller",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_fullpool_admission.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\missing-owner-caller\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\missing-owner-caller"
+      ],
+      "exit": 1,
+      "expected_refusal": "required range population missing/changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "changed-selection",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_fullpool_admission.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\changed-selection\\result.json",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-controls-01\\changed-selection"
+      ],
+      "exit": 1,
+      "expected_refusal": "required bounded selection changed",
+      "refusal_seen": true,
+      "result_absent": true,
+      "passed": true
+    }
+  ],
+  "selection_api_controls": [
+    {
+      "tag": "zero-selection",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-c",
+        "import importlib.util; from pathlib import Path; s=importlib.util.spec_from_file_location(\"bounded_q\",'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\qualify_owner_queue_order_source.py'); q=importlib.util.module_from_spec(s); s.loader.exec_module(q); q.main(Path('Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\owner-fullpool-controls-01\\\\zero-selection\\\\source.json'),q.UP,entries=[],include_pump_table=False)"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "passed": true
+    },
+    {
+      "tag": "duplicate-selection",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-c",
+        "import importlib.util; from pathlib import Path; s=importlib.util.spec_from_file_location(\"bounded_q\",'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\qualify_owner_queue_order_source.py'); q=importlib.util.module_from_spec(s); s.loader.exec_module(q); q.main(Path('Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\owner-fullpool-controls-01\\\\duplicate-selection\\\\source.json'),q.UP,entries=[4053616, 4053616],include_pump_table=False)"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "passed": true
+    }
+  ]
+}

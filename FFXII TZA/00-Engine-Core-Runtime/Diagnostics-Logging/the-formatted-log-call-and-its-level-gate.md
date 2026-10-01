@@ -1,7 +1,7 @@
 ---
 system: The formatted log call, the singleton behind it, and the vsnprintf underneath it
 category: 00-Engine-Core-Runtime
-status: DOCUMENTED — the sink class (Phyre::PTTYCallback) and slot 1's behaviour answered 2026-09-18 (§7): only channel 4 does anything (a debugger break), the text goes nowhere; a census of 245 call sites resolves 202 to channels 0-3 and none to 4 or above; every one of the 245 sites passes channel 0-3, none passes 4 (RC-9, answered); no caller gates its call on a verbosity control (RC-10, answered); owner read 2026-09-30 (OPUS, `_index/candidates/dd-owner-read-b1-0930/` round 3)
+status: AUDITED — the sink class (Phyre::PTTYCallback) and slot 1's behaviour answered 2026-09-18 (§7): only channel 4 does anything (a debugger break), the text goes nowhere; a census of 245 call sites resolves 202 to channels 0-3 and none to 4 or above; every one of the 245 sites passes channel 0-3, none passes 4 (RC-9, answered); no caller gates its call on a verbosity control (RC-10, answered); owner read 2026-09-30 (OPUS, `_index/candidates/dd-owner-read-b1-0930/` round 3)
 owner_layer: Runtime.Diagnostics.Logging — from the ledger, not inferred from callers
 evidence_tier: 1
 level: L1
@@ -20,8 +20,9 @@ audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-formatted-log-pass-1
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-formatted-log-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours covered inline (no dedicated section; fresh audit reports 0 unaccounted); killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The formatted log call, ~~its per-thread level gate~~ the singleton behind it, and the `vsnprintf` underneath it

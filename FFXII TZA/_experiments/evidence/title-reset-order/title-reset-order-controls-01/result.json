@@ -1,0 +1,39 @@
+{
+  "status": "PASS_ACTUAL_READER_REFUSALS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "positive_result_sha256": "a2855b7d2d361ac17fa5eafb65476c1d3183300846935886d9c03720e73fc04b",
+  "positive_reused": true,
+  "refusals": [
+    {
+      "case": "missing-wrapper",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "missing original/adapter prerequisite",
+      "expected_error_seen": true
+    },
+    {
+      "case": "false-object-annotation",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "disagree",
+      "expected_error_seen": true
+    },
+    {
+      "case": "consistent-al-zero",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong/incomplete original body",
+      "expected_error_seen": true
+    },
+    {
+      "case": "wrong-root",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong named root metadata",
+      "expected_error_seen": true
+    }
+  ],
+  "driver_sha256": "dfea2918b5548eb299c96069abceb76a10e0858e5d6308d52238fea08c27ed86",
+  "reader_sha256": "ccdac5fb28f5255ef6a254fafd079cd2830a4d12e897fd81b7989d6938c9516e",
+  "limits": "Producer CLI regression controls, not independent acceptance or native/live tests. All subprocesses terminal."
+}

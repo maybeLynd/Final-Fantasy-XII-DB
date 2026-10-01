@@ -1,0 +1,60 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 2847,
+      "sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3771,
+      "sha256": "6c7f69b71920e808899b79fa7cc72450bcd25c5ed8c96d843cffe10b173a53d3"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2453,
+      "sha256": "91e726e4f3f62e8a90cc010dc1ff6c5b7f3aa340ecc71cd0ca2d11b4ac68b9f3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3870,
+      "sha256": "cb122774c8d9880401c91e3af95a59b420c0df1e2dd84e408b136ccd34635cbb"
+    },
+    {
+      "path": "retained/EXP-219-kind1C-catchall-emit-internals-exec.md",
+      "bytes": 8317,
+      "sha256": "d7a8f859c5694eb74e578b379ef9b4ccce0a3d162bdd1095a6e4e1cb4ccee49c"
+    },
+    {
+      "path": "retained/gs-source.json",
+      "bytes": 33520,
+      "sha256": "467e3ea5e5a13015b103585831bfb22adc106aeaac9dcb6f86f453e22e367d9d"
+    },
+    {
+      "path": "retained/the-scripted-camera-player.md",
+      "bytes": 77236,
+      "sha256": "88c95033fb8bd241ba3a877073cf44f1730535ff17e36442ef721d8eaacc7b8f"
+    },
+    {
+      "path": "retained/the-two-transform-primitives.md",
+      "bytes": 123292,
+      "sha256": "27667ba52ee64fc469d07df981fb0412859584ad592542d5d25e0d590018643a"
+    },
+    {
+      "path": "source.json",
+      "bytes": 19514,
+      "sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1096,
+      "sha256": "5d00427fe6a4a3f3626b294dc8fe5740833064c47463faf6bc3e0e0e2ae19e28"
+    }
+  ],
+  "limits": "A source/decoded operands and conditional exact arithmetic, no new alias execution/live game. Valid stable buffers, matrix disjoint for vector-snapshot guarantee, private stack not aliased for wrapper staging. RAX physical residue not declared C return type/caller use. Owner/independent acceptance pending."
+}

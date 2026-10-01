@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+    "restore",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\admission-01\\case-pair.zip",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-case-pair"
+  ],
+  "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-case-pair",
+  "deadline_seconds": 30,
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "stdout": "REFUSED two members restore to one file on a case-insensitive system (Windows name folding): 'inputs/ASTRA-case' and 'inputs/astra-case'\r\n",
+  "stderr": ""
+}

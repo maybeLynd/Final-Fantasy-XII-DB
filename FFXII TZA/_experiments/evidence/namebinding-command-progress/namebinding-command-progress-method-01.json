@@ -1,0 +1,22 @@
+{
+  "question": "When does original name-binding command2E60F0 set entry18mask02, and does the request-id poll distinguish successful content load from no longer pending?",
+  "hypotheses": [
+    "H1 ready is guarded by actual successful file completion/content binding",
+    "H2 the local command advances on request-id no-longer-pending then resource postprocessing status2, without independently validating read success"
+  ],
+  "method": "A exact shipping code/control-flow and nine-entry original jump table; retain opaque postprocessor and caller limits",
+  "existing": "Prior deletion packet preserved only entry/tail and followup return caveat. Shipping queue contract already defines32E4D0 as busy query; no new broad queue census.2E60F0 preview has32E620 result stored/polled then3A1650/3A1290 phases.",
+  "identity": "Pinned shipping EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000; typed node pointer from native command+28",
+  "controls": [
+    "CMP EBX,8/JA and indexed DWORD target table size9 derived from source",
+    "Exact instruction bytes/type carriers; central reviewed memory-role adapter actual use",
+    "Require source and table capture successful before proof; corrupt table/changed branch/missing input actual CLI refusals",
+    "No guessed interior disassembly/table bytes-as-instructions"
+  ],
+  "acceptance": "Original state-to-target map, complete normal CFG with guarded indirect jump, request-id poll transition and exact set-ready/removal branch established; success/timing/callee guarantees separated",
+  "falsification": "Direct original read-success check or natural-state preparation contradicts local poll-only interpretation; otherwise local missing check does not prove shipped failure reachability",
+  "consumer": "Existing FABLE/OPUS namebinding-deletion consumers and SPEC independent review",
+  "budget": "One complete491B instruction body plus36B table and bounded request-id query body if needed; no generic platform/no live",
+  "limits": "Submission and injected states not acceptance/natural reachability; queried absence is not read-success proof; metadata and postprocessor validity remain premises",
+  "cleanup": "Finite file reads/private proof controls, no game/PC/native/instrument/save/config/reference/peer mutation"
+}

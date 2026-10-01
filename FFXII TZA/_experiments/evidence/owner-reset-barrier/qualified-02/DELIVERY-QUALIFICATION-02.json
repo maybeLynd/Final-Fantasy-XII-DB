@@ -1,0 +1,21 @@
+{
+  "original_manifest_sha256": "82077c82933d31278d0bf5fa066ff0401ff3f32f5ffb6f47376edc45a332575b",
+  "original_members_verified": 70,
+  "excluded_derived_caches": [
+    {
+      "path": "owner-reset-barrier-controls-01/changed-branch/__pycache__/validate-title-source-annotations.cpython-314.pyc",
+      "sha256": "4d1a8dc0b6c922a78f8e0065688174147c0c6c348a6c6a0020bf120d23ac0626"
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-retained-fst/__pycache__/validate-title-source-annotations.cpython-314.pyc",
+      "sha256": "24babd3ff04bff89102cf67589435bf2973bff42f3cf23c90610038cfc9b3e83"
+    },
+    {
+      "path": "owner-reset-barrier-controls-01/missing-wait/__pycache__/validate-title-source-annotations.cpython-314.pyc",
+      "sha256": "9700d859ab882775f9e552171f26323113e77131634603536f9eee803b996a39"
+    }
+  ],
+  "source_preimage_sha256": "4d8209529bce67e01fa2c6c714d08c128c23f433e0d2605a062f39ace7afc6ad",
+  "current_producer_sha256": "bf6e434149d3d8bcaf9e4aa0fa18a5853be7d0305b8423d673b864857e89425c",
+  "conclusion": "Only interpreter-cache packaging changed; primary scientific evidence unchanged"
+}

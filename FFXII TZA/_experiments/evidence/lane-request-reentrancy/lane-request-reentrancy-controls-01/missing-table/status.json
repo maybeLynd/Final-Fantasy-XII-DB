@@ -1,0 +1,13 @@
+{
+  "case": "missing-table",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-request-reentrancy.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-request-reentrancy-controls-01\\missing-table\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-request-reentrancy-controls-01\\missing-table"
+  ],
+  "exit": 1,
+  "expected_error": "FileNotFoundError",
+  "expected_error_seen": true,
+  "result_absent": true
+}

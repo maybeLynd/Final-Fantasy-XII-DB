@@ -1,0 +1,31 @@
+{
+  "tag": "coherent-output-pointer-change",
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-fill-and-failure.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-fill-and-failure-controls-01\\coherent-output-pointer-change",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-fill-and-failure-controls-01\\coherent-output-pointer-change\\result.json"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "expected_error": "required original complete boundary/identity failed",
+  "result_absent": true,
+  "changed_file": "filecache-fill-key-resolver-source-01.json",
+  "changed_sha256": "35abe647dd298d1d7e30c256685d7453ecc775025c2406afd65d654fc09428a7",
+  "inherited_from_baseline": {
+    "capture-filecache-fill-key-provenance.py": "b871ffbc1e915047f908b5828b81a6c61cd61ff7c99873cb21b20d26f184d1b6",
+    "qualify-filecache-failure-thunks.py": "4ad8b30e09ef2443cd4ac141e3f62fecdbc9ff1009431a35775c12e86a879683",
+    "validate-title-source-annotations.py": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "prove_owner_reload_order.py": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+    "filecache-release-allocator-thunks-qualified-01.json": "5a915e652faae61951000299a7bc68db4f23e2c1759b4e8ec2486b73dad05882",
+    "filecache-fill-key-resolver-capture-01.status.json": "166772aff716781d17272cfb78b5af80476f96d3acfa9142e5796241bccf8d1f",
+    "filecache-fill-key-resolver-capture-01.stdout": "459b46f4bdee86e4179becd20170058423ae57aff5755892ea4a3fa74a4afe67",
+    "filecache-fill-key-resolver-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "filecache-release-allocator-thunks-qualification-01.status.json": "7de98b1a522ead83db4268cbf21f3781a499e2467e9c17670162b9cf68c5de10",
+    "filecache-release-allocator-thunks-qualification-01.stdout": "c5aab1e83f2383e326d90297d62f8a403bc58a7eb7aec6fa196610cd77b588e2",
+    "filecache-release-allocator-thunks-qualification-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "passed": true
+}

@@ -35,7 +35,7 @@ production_review:
 
 # What happens when an enemy dies
 
-> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending** (registered as GR-16, 2026-09-30).
+> **SECTION-03 production review, 2026-09-22; ~~independent peer acceptance pending~~** (registered as GR-16, 2026-09-30). *(OPUS, 2026-10-01: independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, [review](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), GR-16; N1: `run_review.py` reproduces against the pinned pre-image of the reward-binding checker, and the sealed checker agrees with the preserved observation).)*
 > Corrected against original EXE instructions, 71 bounded native controls and independent review
 > of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
 > a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.
@@ -393,7 +393,7 @@ which this body only calls; and the unit's removal from the battle, which this b
 Every entry is also a register row.
 
 - [x] **Section 03's independent peer acceptance** (GR-16). The production review on which this page's corrections
-      rest has had the owner's review but no independent auditor verdict. *(GR-16 answered 2026-10-01: SWE2-AUDIT-SEM's independent review `f41194772`, [record](../../_index/candidates/auditsem-review-section03-1001/REVIEW.md), ACCEPT-WITH-NARROWING; register restated by OPUS for SWE2-DATA.)*
+      rest has had the owner's review but no independent auditor verdict. *(GR-16 answered 2026-10-01: SWE2-AUDIT-SEM's independent review `f41194772`, [record](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), ACCEPT-WITH-NARROWING; register restated by OPUS for SWE2-DATA.)*
 - [x] **What the drop gate's nearby-actor test decides** (GR-19) *(answered 2026-09-30, FABLE: whether the party leader could stand at the death position; see the answer above)*: the 565-byte body behind `00319490`, and so under
       what circumstances a kill leaves no loot. *(Narrowed 2026-09-30, C4: it is the shared placement test `003377C0` that DE-4 names; open is what that test accepts.)*
 

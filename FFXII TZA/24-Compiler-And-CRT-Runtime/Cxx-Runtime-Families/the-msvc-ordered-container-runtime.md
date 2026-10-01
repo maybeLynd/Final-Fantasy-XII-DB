@@ -1,7 +1,7 @@
 ---
 system: MSVC's `std::_Tree` — the second red-black runtime, the one the engine does not use
 category: 24-Compiler-And-CRT-Runtime
-status: DOCUMENTED — every register row is closed: which container each instantiation is (MT-1, answered 2026-09-26), instantiation C's module (MT-2, answered 2026-09-16), the further _Isnil bodies (MT-3, answered 2026-09-15), the fourteen profiled bodies read (SD-80, answered 2026-09-30); MT-4 (inlining) NOT A QUESTION, carried by a board task. Owner re-status 2026-09-30 (OPUS)
+status: AUDITED — every register row is closed: which container each instantiation is (MT-1, answered 2026-09-26), instantiation C's module (MT-2, answered 2026-09-16), the further _Isnil bodies (MT-3, answered 2026-09-15), the fourteen profiled bodies read (SD-80, answered 2026-09-30); MT-4 (inlining) NOT A QUESTION, carried by a board task. Owner re-status 2026-09-30 (OPUS)
 readiness: BEHAVIORALLY UNDERSTOOD (2026-09-30, OPUS) - all twenty-three family bodies are read: nine
   whole by this page and the other fourteen by SD-80 (nine proven instruction-identical to a read
   sibling, five read directly), and every role label in section 3 holds on the read. The node's
@@ -23,8 +23,9 @@ audit:
   passes: 1
   last_pass: 2026-09-15
   last_pass_state: fable-msvc-tree-pass-1
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record fable-msvc-tree-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 function_families:
   - "MSVC ordered-container (std::_Tree) runtime | C | members/msvc-ordered-container-runtime.tsv | 22 | (2026-09-30, OPUS: 00714B00 left the row - it is measured A; the other 22 stay C) not this game's code and not the engine's container runtime either: Microsoft's std::_Tree, emitted into separately compiled modules that link into this image beside the engine's EASTL. IDENTIFIED BY A MEMBER EASTL DOES NOT HAVE: every body tests a byte at +0x19, which is MSVC's _Isnil; EASTL's rbtree_node_base is {mpNodeRight +0, mpNodeLeft +8, mpNodeParent +0x10, mColor +0x18} and ends at +0x19. CONFIRMED BY WHERE THE PARENT IS: across a mirror rotation pair the invariant store offset is the parent, and it is +0x08 here against +0x10 in the EASTL family - _Parent against mpNodeParent. THE BOUNDARY: 23 bodies, 6,630 bytes, EVERY ONE UNNAMED. ~~NOT dispositioned: which container each of the three instantiations is, and the 22 further bodies that carry the _Isnil test without a family shape.~~ Dispositioned since (corrected 2026-09-30, SWE2-DATA) - MT-1 names the three containers and MT-3 classes the 23 further _Isnil bodies as non-members; the fourteen profiled bodies are SD-80."
 ---

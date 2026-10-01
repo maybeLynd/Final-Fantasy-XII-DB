@@ -1,0 +1,53 @@
+{
+  "status": "TERMINAL_OFFLINE_ONLY_REFERENCE_UNCHANGED",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "original_code_ranges": [
+    {
+      "start": "0x2fdda0",
+      "end_exclusive": "0x2fe534",
+      "sha256": "9d15c6dd5b3ea3bc30535da89c60062f878ddc4810002f33f269da2d76c43904"
+    },
+    {
+      "start": "0x305080",
+      "end_exclusive": "0x30510f",
+      "sha256": "b08a02a8593ddb44c0275c05256cc50d21a1d70129124f25275be81cead39873"
+    },
+    {
+      "start": "0x30e360",
+      "end_exclusive": "0x30e395",
+      "sha256": "1c0de06c0b1c1859c033dee4269727322a4533fbd2d0d1b8e3f79ce9ec375f33"
+    },
+    {
+      "start": "0x30e588",
+      "end_exclusive": "0x30e5b7",
+      "sha256": "95167c61bf19588a5602c5d9a761316bb5ab5c249e4230a46adadcf279766b5c"
+    }
+  ],
+  "original_tables": [
+    {
+      "address": "0x2fe534",
+      "sha256": "7e33621fe2f414f538b6366e561dd74a374bde3ad64af86aaa1f945b76eb77ac"
+    },
+    {
+      "address": "0x2fe54c",
+      "sha256": "f03e74bd300f2331535af1a7a3f523b74efbc57b362171972a6d3579236cba34"
+    },
+    {
+      "address": "0x2fe598",
+      "sha256": "cc261cee52b9d29f57a88a27d243d2f2f743629626550430958e646de5b485a5"
+    },
+    {
+      "address": "0x1eec6a8",
+      "sha256": "910aa2ebe69b5cf580334e25cf1975e4c4c4a3b610ee0d07cfab69adbd48a984"
+    }
+  ],
+  "source_sha256": "e2087d01fa8ef78d9ad0095e628aabd73baa175a268eafe6fd9f55e91a55cd97",
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "all_own_scientific_children_terminal": true,
+  "no_game_pc_save_config_reference_or_peer_process_write": true,
+  "first_capture_exit1_no_source_result": true,
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_rows_closed": 0,
+  "limits": "Scoped script/resource cleanup, no general PC inventory or live health claim"
+}

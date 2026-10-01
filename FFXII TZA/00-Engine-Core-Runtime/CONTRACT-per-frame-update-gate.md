@@ -414,6 +414,17 @@ head pointer `0215FD88` stepping down the `+0x00` link. Afterward `00369C60(6, 1
 indirect notify at `0215FD98` (called with the `021641F0` dword) fires once before the slot is cleared — the
 full "flush then signal" sequence the gate's callers expect.
 
+## Name-binding removal, completion and the release drain (OPUS, 2026-10-01)
+
+*Consumed from ASTRA's [`namebinding-deletion`](../_experiments/evidence/namebinding-deletion/README.md) (SWE2-AUDIT-SPEC [review](../_index/candidates/auditspec-review-namebinding-deletion-1001/REVIEW.md), ACCEPT, no narrowing). OPUS re-read `002EAEB0`-`002EAECC`, `002E6D66`-`002E6DEA` and `002E93E1`-`002E93F7` at the bytes. Static and conditional: valid records and lists, normal ABI returns and no interfering writes are premises.*
+
+- **Removal can be mark-only.** `002EAEB0` sets `+0x18` bit `0x04` (`002EAEC4`) and returns, with no other write or call, when `+0x18` bit `0x02` and `+0x19` bit `0x04` are both clear. Otherwise it advances the stamp, unlinks the record and retires it. `+0x19` bit `0x04` bypasses the mark-only arm; its meaning is not inferred.
+- **Completion of a marked record.** The completion `002E4D20` unpins first. A record marked by removal (`+0x18` bit `0x04`) gets bit `0x08` and skips registration (`0041E580`). `002EA6E0` returns 0 early under that bit, and the callback then sets bit `0x02` and retires the record. Without the mark, the follow-up allocation may return 1, so the callback does not always set bit `0x02`. A successful follow-up sets it at the `002E60F0` tail.
+- **This gate's drain releases them.** `002E6D60` enters the cleanup only when `002E6900(0)` returns 0 (`002E6D66`/`002E6D6B`) and a selected retired record has a non-zero handle `+0x10` (`002E6DAC`). `+0x18` bit `0x08` (`002E6DB3`) or `+0x19` bit `0x04` (`002E6DB9`) skips the unregister `0041E490` (`002E6DDD`) but not the release `002E9360` (`002E6DEA`). `002E9360` requests the child and secondary releases, calls `00369800` on the handle (`002E93E1`, `002E93F2`), clears the handle after it returns (`002E93F7`) and recycles the record. A record with a zero handle bypasses that call.
+- **The stamp stays 16-bit.** `INC dword +0x24` then a clear of `word +0x26` is `(old + 1) & 0xFFFF`, as the name-binding page already records; this corroborates it.
+
+**Open.** The producer of `+0x19` bit `0x04`, any natural overlap with a pending read, `00369800`'s and the allocator's own effects, real delivery timing, list progress, and OV-21/OV-25 as wholes. The `movsxd` completion argument and the low-32-bit list comparisons do not establish 64-bit pointer placement.
+
 ## SWE2-EC7-30 update (2026-09-18) — `002713E0` resolve-and-copy shim
 
 `002713E0` (49 B) is the resolve `003F6BB0` calls twice: `003588B0(id)`
@@ -1774,3 +1785,51 @@ Interior anchor `002E6AC1` (function `002E6A80`).
 `0028E240` (67 B) is the global-gated refresh dispatch both gate arms (`002BE050`, `002BE1A0`) tail into: when manager `0209BE80` is live and bit `0x40` of its `+0x10F68` word is set, `0016D6A0` runs on the `+0x8FA0` child and the body tail-jumps `002BDC00` on that same field; gate closed returns immediately - the frame-gate's conditional broadcast leg.
 
 Interior anchor `0028E262` (function `0028E240`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*Forty-one functions this contract named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`pfgate_interior.py`](../_index/candidates/opus-pfgate-interior-1001/pfgate_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0017F000` | 55 B | gets the object `001BC000` returns; when it is non-null, calls `001BB2B0(object, id, &out)` and returns `out`; otherwise returns 0 | `0017F021`, `0017F026` |
+| `00271530` | 112 B | fills a ten-qword header at `rcx`: `+0` = (signed `edx` << 15) OR `0x1000000000000004`, then the constants `0xE`, `0x53001`, `0x47`, `0x44`, `0x42`, 1, `0x1A`, `0x54` (`0x5C` when `r8d` is 0) and 0; returns `rcx + 0x50` | `00271551`, `0027156C`, `00271593` |
+| `002716C0` | 38 B | writes four dwords at `rcx`: 0, `0x13000000`, `0x10000000` and `0x50000000` OR ((`edx` - `rcx` - 0x10) >> 4), the 16-byte count of the span after the header | `002716CB`, `002716D5`, `002716E2` |
+| `00272710` | 32 B | adds word `+0x16` to word `+0x14`; at or above `0x400` it clamps to `0x400` and returns 1, else returns 0 | `00272714`, `00272726`, `0027272A` |
+| `00272F30` | 48 B | resolves `003588B0`; with no record it returns the float at `01CEBBA8`, else `002645D0(record)` scaled by the float at `00901B34` | `00272F3E`, `00272F4E`, `00272F53` |
+| `002760A0` | 120 B | walks the list at `rdx` through `+0x18` for a block with room for `r8d + 0x20` bytes after its used span; carves a node there (`[node] = node + 0x20`, `+8` = size), links it after the block and stores it at `rcx+0x10`; returns the node, or 0 when none fits | `002760B9`, `002760E9`, `0027610D`, `00276115` |
+| `00276120` | 110 B | when the head `[rcx]` lies above `[rcx+0x20]` and the gap holds `edx + 0x20` bytes, carves a node at `[rcx+0x20]` and makes it the new head (`[rcx]` and `+0x10`); returns it, else 0 | `0027615D`, `00276183`, `0027618B` |
+| `002767C0` | 100 B | asks `002753F0(this, {0x2C, ...})` for key `0x2C`; returns the answer, or the signed word `+0x61B8` when the answer is 0 | `002767FD`, `0027680A` |
+| `00289970` | 35 B | runs `0028A550`, then `0028A350`, then tail-calls `0028A620`, all on the same object | `00289981`, `0028998E` |
+| `0028C850` | 31 B | counts the nodes of the chain linked through `+0xD70` | `0028C860`, `0028C867` |
+| `0028C970` | 120 B | calls `0028D260(this, this, a2, a3, -1)`, then `0028D8A0` for the two 0x20-byte entries at `+0x30` and `+0x50` | `0028C99E`, `0028C9C7`, `0028C9CE` |
+| `0028CA30` | 13 B | tail-calls `00861EC0(rcx, 0, 0x80)` | `0028CA32`, `0028CA38` |
+| `0028E1D0` | 75 B | with the singleton `*(0209BE80)` present and its `+0x10F68` bit `0x40` clear, calls `002BDB60` on its `+0x8FA0` part, then tail-calls `002BDCA0(part, 1)` | `0028E1E0`, `0028E1F0`, `0028E211` |
+| `00290B10` | 90 B | on the singleton `*(0209BE80)`: calls `0028C4F0` on `+0x10F00` when set; when the record at `+0x10EF0` has word `+0xD54` = 3, sets its `+0xD4C` bit 3; then clears `+0x10EF0` | `00290B30`, `00290B4B`, `00290B59` |
+| `002964D0` | 101 B | runs `002962D0` and `0035BC40`; when `0035BB60()` is non-zero, makes a `0xB68`-byte object through `00244F50`, sets its `+0x40` bit `0x8000` when `002544B0()` is 1, starts it with `00246AC0` and returns it; else 0 | `002964E3`, `00296502`, `00296519`, `00296523` |
+| `00296940` | 20 B | tail-calls `00245000(rcx, 0x720, 002985D0, 0)` | `00296943`, `0029694F` |
+| `002BDCA0` | 49 B | when `+0x1080` and `+0x1058` are set, writes bit 0 of word `+0x40B6` of the `+0x1058` object as the inverse of `dx` bit 0 | `002BDCBE`, `002BDCC9` |
+| `002BE090` | 16 B | sets `+0x10FA` bit 1 and stores `dx` in word `+0x10F8` | `002BE098` |
+| `002BE230` | 51 B | with a child at `+0x1030`: sets its `+0x280` bit `0x20` and its word `+0x294` = `dx`; without one: sets `+0x103E` bit 1 and word `+0x103C` = `dx` | `002BE24B`, `002BE253`, `002BE25B` |
+| `002BE270` | 26 B | stores `edx` in the `+0x1030` child's `+0x298`, or in `+0x1040` when there is no child | `002BE27C`, `002BE283` |
+| `0031C200` | 73 B | when byte `02089340` bit `0x10` is set, resolves `003588B0` -> `00263E30` -> `+0x698` and returns that record's byte `+4` (unless `0xFF`); otherwise -1 | `0031C224`, `0031C230`, `0031C241` |
+| `00377750` | 41 B | returns 1 when `00314AE0()` is 1, 0 when it is 2, otherwise calls `003148F0` and returns 1 | `0037775C`, `00377763`, `00377772` |
+| `0037B2F0` | 50 B | when byte `02ADD932` is not 4, copies it to `02ADD930`, calls `0037B3D0`, and copies it to `02ADD931` | `0037B307`, `0037B30D`, `0037B312` |
+| `003C5400` | 14 B | stores `edx` in the dword table at `02B45970`, index `ecx` | `003C5403`, `003C540A` |
+| `003C8070` | 80 B | on the object `*(02B476B0)`: clears `+0x40` bit `0x10000`, sets it again (and clears dword `02B476E4`) when `002544B0()` is 1 or `02B476E4` is non-zero, then tail-calls `00244F00(object)` | `003C8082`, `003C809C`, `003C80B5` |
+| `003F24A0` | 42 B | calls `003F1E90` on every node of the chain linked through `+0x9B0` | `003F24B3`, `003F24B8` |
+| `003F6100` | 42 B | calls `003F5CB0` on every node of the chain linked through `+0x868` | `003F6113`, `003F6118` |
+| `003F80D0` | 14 B | tail-jumps to `003F7E80` when `+0x984` bit 0 is set, else returns | `003F80D7`, `003F80DD` |
+| `003F8EA0` | 31 B | clears qword `+0x52A0`, then tail-calls `00861EC0(rcx + 0x4020, 0, 0x1280)` | `003F8EAD`, `003F8EB4`, `003F8EBA` |
+| `002E6E30` | 121 B | for slot `edx`: when the handle at `+0x60 + 4*slot` is non-zero, resolves it against `[022C6F28]+0x48830` (`0020E600`), unregisters it through `0041E490`, frees it through `00369800`, zeroes the slot and clears bit `slot` in `+0x24` and `+0x2C` | `002E6E6F`, `002E6E77`, `002E6E83`, `002E6E93` |
+| `002EA6E0` | 157 B | when `+0x18` bit `0x04` is clear and `002ED950(+0x14)` finds an entry, takes a command record from `002F16B0`, copies `edx` dwords from `r8` into `+0x30`, and fills the record (`+4` = `0x30009`, `+0x10` = `002E60F0`, `+0x28` = this); returns 1, else 0 | `002EA6EF`, `002EA70B`, `002EA722`, `002EA73D`, `002EA744` |
+| `0036F460` | 110 B | stores its float argument at `02AD9B50` (taking the difference from the previous value), steps the stored value down by a constant while it is at or above a limit, scales the difference by constants and hands it to `004678E0`, then tail-calls `00468520` | `0036F472`, `0036F490`, `0036F4B9`, `0036F4C0` |
+| `003F00F0` | 124 B | fills a transform block: the two imported math functions `00861F08` / `00861F0E` of 0.0 go to `+0x60` / `+0x6C` and `+0x64` / negated `+0x68`, `+0xC` = 1.0, `+0x80` and `+0xF0` = 0, `+0xEC` = -1, and two 16-byte constants to `+0x70` and `+0x10` | `003F0101`, `003F012E`, `003F0133`, `003F0152` |
+| `003F80E0` | 84 B | zeroes the four dwords at `+0x960`, then copies row `edx` of the 16-byte table at `00D11D80` into them; row 1 is skipped while dword `02092730` is 4 | `003F8103`, `003F8115`, `003F8121` |
+| `003FA6E0` | 74 B | when argument 2 has `+0x272` bit 0 and is on this object's `+0x2490` chain (linked through `+0x278`), calls `00202C90(argument 3)` and returns 1; else 0 | `003FA700`, `003FA705`, `003FA71B` |
+| `003FA730` | 48 B | the same membership test as `003FA6E0`; returns argument 2's dword `+0x260`, else 0 | `003FA745`, `003FA759` |
+| `00356160` | 220 B | takes two floats from `00267DB0` and an id from `00267E10` (all on argument 4), builds a direction through `00203170`, `00202F00`, `00202E90` and `00202B70` with w = 1.0, passes it through `003A1890` and hands it with the id to `003DEA70` | `0035619E`, `003561CD`, `003561FD`, `00356211` |
+| `003F7760` | 134 B | forms the vector from `+0x280` to `+0x290` (`00203080`), zeroes its w, passes it through `00202DE0` and `00270A10`, and updates `+0x2A0` from it with a constant through `00270CF0` | `003F778B`, `003F779D`, `003F77CE` |
+| `003F7CC0` | 436 B | runs `003F2F20` on this and `+0xF0`; writes the `0x13000000` / `0x10000000` code words at `+0xE0`..`+0xEC` and `+0x1D0`..`+0x1DC`; copies `+0xB0`..`+0xBC` to `+0x2C0`..`+0x2CC`; sets the floats 0.21 at `+0x1A4`, 0.2 at `+0x1AC` and 127.0 at `+0x1B0`, `+0x1B4` and `+0x1B8` (a qword store, so `+0x1BC` = 0); derives `+0x2B0`..`+0x2BC` from the four floats at argument 2; then builds its records with `00271650` / `002716C0` (`+0x1E0`), `003F77F0`, and `00271530` (`+0x230`) / `002716C0` (`+0x220`) | `003F7CE7`, `003F7CEC`, `003F7D46`, `003F7D8E`, `003F7E36`, `003F7E51`, `003F7E6F` |
+| `003FAAF0` | 102 B | when `00273A20(this)` is non-zero, stores `edx` in dwords `+0x28`..`+0x34` of parts 0, 1 and 2 (`[this+0x60][k]`) | `003FAB0B`, `003FAB31`, `003FAB37`, `003FAB43` |
+| `00505500` | 94 B | in mode `+0x3C` = 2: counts `+0x44` down first (returning 0), then raises word `+0x38` by 6 until `0x80` and by word `+0x3A` after that, returning 1 once it passes `0x100`; in other modes adds `+0x3A` and returns 1 once it passes `0x25` | `0050550D`, `00505523`, `0050553D`, `0050554D` |

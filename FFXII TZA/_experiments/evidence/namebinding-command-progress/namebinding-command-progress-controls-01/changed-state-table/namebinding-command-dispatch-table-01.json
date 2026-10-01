@@ -1,0 +1,58 @@
+{
+  "method": "A ORIGINAL_DATA",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "imagebase": "0x120000",
+  "start": "0x2e62dc",
+  "end_exclusive": "0x2e6300",
+  "bytes": "4f611c004f611c008c621c00d3611c00e2611c00fb611c0013621c008c621c009e621c00",
+  "sha256": "788a37360ebe5193bcee5030597a815ff60bbb9c6868a1ca42f72ad00bc57af0",
+  "entries": [
+    {
+      "state": 0,
+      "rva": "0x1c614f",
+      "target": "0x2e614f"
+    },
+    {
+      "state": 1,
+      "rva": "0x1c614f",
+      "target": "0x2e614f"
+    },
+    {
+      "state": 2,
+      "rva": "0x1c628c",
+      "target": "0x2e628c"
+    },
+    {
+      "state": 3,
+      "rva": "0x1c61d3",
+      "target": "0x2e61d3"
+    },
+    {
+      "state": 4,
+      "rva": "0x1c61e2",
+      "target": "0x2e61e2"
+    },
+    {
+      "state": 5,
+      "rva": "0x1c61fb",
+      "target": "0x2e61fb"
+    },
+    {
+      "state": 6,
+      "rva": "0x1c6213",
+      "target": "0x2e6213"
+    },
+    {
+      "state": 7,
+      "rva": "0x1c628c",
+      "target": "0x2e628c"
+    },
+    {
+      "state": 8,
+      "rva": "0x1c629e",
+      "target": "0x2e629e"
+    }
+  ],
+  "derivation": "CMP EBX,8 / JA outside dispatch, EBX zero-extended lowWORD; original indexedDWORD table resolved through imagebase",
+  "invocation_driver_sha256": "5d94a306712584b59cef452a987f8230e25fb94c23c10cdc69ae4275fec36106"
+}

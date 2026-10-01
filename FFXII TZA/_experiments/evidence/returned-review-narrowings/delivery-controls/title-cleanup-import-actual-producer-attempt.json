@@ -1,0 +1,23 @@
+{
+  "status": "VERIFIED_AND_RELEASED",
+  "task": "ASTRA-PUBLISH-TITLE-CLEANUP-IMPORT-0930",
+  "board_revision": 44779,
+  "own_pid": 50892,
+  "transport": {
+    "pathfile": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/publication-title-cleanup-import-01/reviewed-publisher-paths-01.txt",
+    "pathfile_sha256": "4633afaba58d01c9622ada0b07bd83db824449e06c7104d1e1abd303a03f13ab",
+    "transport_sha256": "2d18bfe5ecc986ac6bab99f3fba57869b0b8a1513baddeaef0560d68541cde46",
+    "explicit_paths": 42,
+    "native_path_budget": {
+      "path_argv_utf16_units": 5317,
+      "limit": 24000,
+      "limits": "Conservative setup guard; actual publisher/health/commit checks still required"
+    }
+  },
+  "driver_sha256": "713b72df0a85cca69126d152624119abe50b175f1a25adbefb3b946fe557b272",
+  "publisher_sha256": "ce60f287cfd9822e613378423a61b18c8922c44ffe0503163382a8cdd465d2b1",
+  "explicit_paths": 42,
+  "publisher_exit": 0,
+  "commit": "d04105596c99a15cd623a8fe5005f0831cabff70",
+  "final_revision": 44781
+}

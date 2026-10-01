@@ -1,0 +1,38 @@
+{
+  "question": "Does the original renderer-bank allocator902720 guarantee a nonnull normal allocation return? Under explicit initially-empty/no-interference premises, does reserve188640 check that returned pointer before publishing its tuple?",
+  "competing_hypotheses": [
+    "H1: the local allocator adds a successful-allocation guarantee, retry or throwing adaptation, so null cannot reach the reserve publication on normal return",
+    "H2: the local allocator tail-propagates the named aligned allocation API; a contract-permitted normal null remains unchecked by the selected initially-empty reserve path"
+  ],
+  "method": "A: retained bank/reserve original bytes, new two-wrapper source/import capture and complete normal CFG/dataflow. The external documented API contract is a separate source premise.",
+  "ladder": {
+    "retained": "Reuse the existing original184CB0/1EDF00/188640 and seven-span source02; no repeated queue, constructor, pump or callback samples.",
+    "static": "Two bounded original normal roots and original PE descriptor/ILT/IAT/name bytes distinguish local adaptation versus a direct external tail. Selected empty-bank source branch conditions prove the pointer-tuple consequence for all unsigned positive desired counts under the stated premises.",
+    "new_analyzer": "Reuse capture-index-path.py/shared access-role adapter and source validator; a small selected-tail CFG reducer checks the exact known import boundary without changing the strict general closed() function.",
+    "original_execution": "Not required for this local instruction/dataflow/ABI proposition. An allocator stub or forced null is not proof of the native API or natural failure.",
+    "process": "Required only for a separate actual loaded-IAT/DLL identity, allocation placement/success or natural failure question, if canonical consumers require those facts. No process set-up for this package.",
+    "interactive": "No gameplay is needed to settle the local wrapper/reserve claim. Natural initialized-state/caller/lifetime obligations stay distinct and open."
+  },
+  "identity": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": "0x120000",
+    "physical_table": "0x902720; slots10/18=1EDF80/1EDFE0; 32 original bytes",
+    "full_normal_roots": ["1EDF80..1EDFDA (90B)", "1EDFE0..1EE040 (96B)"],
+    "iat_targets": ["8C2B40 malloc", "8C2B48 free positive control", "8C2B60 _aligned_malloc", "8C2B70 _aligned_free"]
+  },
+  "state": "Read-only shipping reference. No save/area/trigger or live process; symbolic initially empty bank is an explicit premise, not a captured initialized state.",
+  "observations": "Full source bytes/normal extents, actual shared-role annotation controls, PE binding metadata, argument transformations, header failure continuation, null release branch and reserve publication stores.",
+  "budget": "186 new shipping instruction bytes plus32 table bytes/selected import/unwind metadata; reuse prior reserve data. One positive reducer invocation after repairing a producer schema mismatch; four bounded synthetic CLI refusals. No native/live runs.",
+  "controls": [
+    "Actual capture executes reviewed store/LEA/read-modify-write role controls and source annotation validation",
+    "Actual reducer requires capture exit0, exact driver and source hashes; upstream exit1 refusal",
+    "Coherent alignment16->32 mutation, coherent wrong native-import binding, and missing retained reserve body each refuse without a result",
+    "Known original free import metadata serves only as import-reader corroboration, not a repeated free-behavior experiment"
+  ],
+  "acceptance": "Pin both full original normal bodies/table/unwind/import metadata, account for all local normal exits/calls, and establish the conditional empty-bank formula while preserving the external-contract premise. Independent SPEC review and FABLE/OPUS incorporation are separate requirements.",
+  "invalidation": "Wrong/missing binary, source bytes, role annotations, capture exit/hash, normal extent or import binding prevents semantic output. A changed loaded module/ABI/interference invalidates native composition, not the retained local original bytes.",
+  "producer_lesson": "Initial reducer01 refused because the reviewed source adapter represents absent RIP index as null, not an empty string. No semantic result was emitted. Preserve the failed driver/exit/stderr, use the actual null-index schema with exact target/size/read role. Do not recapture or weaken general external-tail closure.",
+  "consumers": ["FABLE original renderer/title cleanup initialization preconditions", "OPUS allocator callback ABI, null-return/reserve and aligned release contracts"],
+  "restoration": "Reference EXE hash checked before and after; no EXE/config/save/process or peer mutation. Synchronous scripts exit; no persistent terminal/service/PC-control session.",
+  "stop": "No native heap implementation, allocator platform, live setup or all-lifetime claim. When local discriminator is settled, publish/review-route once and advance to another prepared original-source obligation. Menu branch remains spent/unapproved; EXP127 remains invalid."
+}

@@ -1,0 +1,14 @@
+{
+  "case": "failed-tree-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-handle-accounting-qualification-03.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\handle-accounting-qualification-controls-01\\failed-tree-capture\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\handle-accounting-qualification-controls-01\\failed-tree-capture"
+  ],
+  "exit": 1,
+  "expected_error": "tree capture failed/stale",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "normalized_absent": true
+}

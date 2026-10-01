@@ -1,0 +1,41 @@
+function	name	site	disp	kind	instruction	route	note
+0025D740	FUN_0025d740	0025D74A	0x0	r	mov edx, dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D760	0x0	r	mov eax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D77C	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D7D8	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D7F0	0x0	r	mov eax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D7FB	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D878	0x0	r	mov eax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+0025D740	FUN_0025d740	0025D883	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+002621D0	VMNativeCommand_ExecuteLifecycle	00262280	0x0	r	movsxd rax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+002621D0	VMNativeCommand_ExecuteLifecycle	00262360	0x0	r	movsxd rcx, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+002621D0	VMNativeCommand_ExecuteLifecycle	00262380	0x0	rw	inc dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00262440	FUN_00262440	002624D2	0x0	r	mov eax, dword ptr [r14]	route-seeded STATIC 0x02099AC0 base+0x0	
+00262440	FUN_00262440	002624E1	0x0	w	mov dword ptr [r14], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+00267560	FUN_00267560	00267566	0x0	r	mov r8d, dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00267DB0	VMValueStack_PopNumericDiscard	00267DB4	0x0	r	mov eax, dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267DB0	VMValueStack_PopNumericDiscard	00267DBF	0x0	w	mov dword ptr [rcx], eax	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267E10	VMValueStack_PopInt32CoerceFloat32	00267E14	0x0	r	mov eax, dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267E10	VMValueStack_PopInt32CoerceFloat32	00267E1F	0x0	w	mov dword ptr [rcx], eax	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267E60	FUN_00267e60	00267E9C	0x0	r	mov ecx, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00267E60	FUN_00267e60	00267EA7	0x0	w	mov dword ptr [rbx], ecx	route-seeded STATIC 0x02099AC0 base+0x0	
+00267E60	FUN_00267e60	00267EF2	0x0	r	mov eax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00267E60	FUN_00267e60	00267EFD	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+00267F60	VMValueStack_PushFloat32Bits	00267F60	0x0	r	movsxd rax, dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267F60	VMValueStack_PushFloat32Bits	00267F86	0x0	rw	inc dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267F90	VMValueStack_PushInt32	00267F90	0x0	r	movsxd rax, dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267F90	VMValueStack_PushInt32	00267FB4	0x0	rw	inc dword ptr [rcx]	route-seeded STATIC 0x02099AC0 base+0x0 exposed	
+00267FC0	FUN_00267fc0	00268070	0x0	r	movsxd rax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00267FC0	FUN_00267fc0	002680A1	0x0	rw	inc dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00267FC0	FUN_00267fc0	002680AE	0x0	r	movsxd rax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00267FC0	FUN_00267fc0	002680DB	0x0	rw	inc dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268100	FUN_00268100	0026814D	0x0	r	movsxd rax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268100	FUN_00268100	0026819C	0x0	rw	inc dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268850	ScriptVM_SubmitActorRuntimeRequest	00268870	0x0	r	mov eax, dword ptr [r8]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268850	ScriptVM_SubmitActorRuntimeRequest	00268892	0x0	w	mov dword ptr [r8], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+00268850	ScriptVM_SubmitActorRuntimeRequest	002688B0	0x0	r	mov eax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268850	ScriptVM_SubmitActorRuntimeRequest	002688BB	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+00268850	ScriptVM_SubmitActorRuntimeRequest	002688D8	0x0	r	mov eax, dword ptr [rbx]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268850	ScriptVM_SubmitActorRuntimeRequest	002688E3	0x0	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x02099AC0 base+0x0	
+00268A80	FUN_00268a80	00268A8F	0x0	r	mov eax, dword ptr [r8]	route-seeded STATIC 0x02099AC0 base+0x0	
+00268A80	FUN_00268a80	00268AA4	0x0	w	mov dword ptr [r8], eax	route-seeded STATIC 0x02099AC0 base+0x0	

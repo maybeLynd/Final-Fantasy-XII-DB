@@ -1,0 +1,98 @@
+{
+  "package": "a23-device-stems-06d-review",
+  "producer": "SOL in ASTRA",
+  "method": "Independent actual original host pure-functions; no device I/O/restores/game",
+  "independent_verdict": "ACCEPT_BOUNDED_DEVICE_REPAIR",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 1457,
+      "sha256": "034321e33e37cb3c6866241946b4231b2cdc30be30c55e3781dd214b847d6774"
+    },
+    {
+      "path": "diff.receipt.json",
+      "bytes": 509,
+      "sha256": "681464a1d9a812be6bd06e14a12a138f5d68bcffb1be404f2b13354f0593d0a3"
+    },
+    {
+      "path": "diff.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diff.stdout",
+      "bytes": 1915,
+      "sha256": "d95b018a08b488f73c6e92f0274b913b9da38c9faa23246ba21666d3872e1560"
+    },
+    {
+      "path": "generation.py",
+      "bytes": 27962,
+      "sha256": "ec45e3f6d4bbc0c0e42d7f869cf6a8e76b31dc7121be0fd1c03dd3ac354bdff6"
+    },
+    {
+      "path": "original-diff.patch",
+      "bytes": 1915,
+      "sha256": "d95b018a08b488f73c6e92f0274b913b9da38c9faa23246ba21666d3872e1560"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1876,
+      "sha256": "0086949342c7652fdf76df8692947e7e2fe111cf1df65a07ec3907dfc32abcf0"
+    },
+    {
+      "path": "prior-generation.py",
+      "bytes": 27326,
+      "sha256": "033c37bd65cf4e9b5f33c94af14ad867877ac32cf992ad1515d4c230a6597dec"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2534,
+      "sha256": "2b78cfa2b174e3ca2780e622158e0d91d60a02692f5557e8ff9424c9053f7638"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 6034,
+      "sha256": "8b349f2b6f7ff28d698cbd61ced661f93d05218a610fa2198a350918c4374ad8"
+    },
+    {
+      "path": "review-01.status.json",
+      "bytes": 476,
+      "sha256": "5e9f87937fe859e727a08e9c95dec7c47f838828d0ae3192a588c2e8e8637a2e"
+    },
+    {
+      "path": "review-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "review-01.stdout",
+      "bytes": 414,
+      "sha256": "76d4a3a233013a5595fa5d0a180f7b2b227d762176f04ea787612eab8aea9de7"
+    },
+    {
+      "path": "review.py",
+      "bytes": 4929,
+      "sha256": "ebcc800228f483414bfcc3a689ee73b8ae3cb43d094bc05a946877c3b245b4b8"
+    },
+    {
+      "path": "source.receipt.json",
+      "bytes": 472,
+      "sha256": "b22badacc21217e8b5379b0a3155211db65b56665e24f3801f3ac5c79a0f42f2"
+    },
+    {
+      "path": "source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source.stdout",
+      "bytes": 27962,
+      "sha256": "ec45e3f6d4bbc0c0e42d7f869cf6a8e76b31dc7121be0fd1c03dd3ac354bdff6"
+    }
+  ]
+}

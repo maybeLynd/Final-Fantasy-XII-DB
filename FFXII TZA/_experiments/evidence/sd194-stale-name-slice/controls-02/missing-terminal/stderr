@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-stale-name-slice\prove.py", line 128, in <module>
+    parser=argparse.ArgumentParser();parser.add_argument('out',type=Path);parser.add_argument('--src',type=Path,default=P);args=parser.parse_args();main(args.out,args.src)
+                                                                                                                                                    ~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-stale-name-slice\prove.py", line 26, in main
+    qualification = roles.validate(v)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 40, in validate
+    raise ValueError("empty/mixed original bytes")
+ValueError: empty/mixed original bytes

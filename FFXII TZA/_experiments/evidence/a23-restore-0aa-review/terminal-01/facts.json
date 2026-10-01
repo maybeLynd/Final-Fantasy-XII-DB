@@ -1,0 +1,18 @@
+{
+  "version": "MP-2",
+  "facts": [
+    {
+      "k": "K:fixture",
+      "f": "K",
+      "ok": true,
+      "st": "labelled accepted fixture",
+      "doc": null,
+      "h": [],
+      "o": "ASTRA fixture",
+      "e": "labelled input, not project closure",
+      "n": ""
+    }
+  ],
+  "failed": {},
+  "excluded": []
+}

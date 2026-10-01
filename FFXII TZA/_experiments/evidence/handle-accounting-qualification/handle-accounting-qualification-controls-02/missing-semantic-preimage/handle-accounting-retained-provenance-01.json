@@ -1,0 +1,16 @@
+{
+  "commit": "966eaa60455737605c9174c13ae7ba14548386c1",
+  "manifest_sha256": "f24358969a0619d6a05526a6dfa81ffa1af5d52bab3a6a50e82ecc94f4202376",
+  "members": [
+    {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/namebinding-deletion-source-01.json",
+      "local_path": "handle-accounting-retained-namebinding-deletion-source-01.json",
+      "sha256": "86666cf5e5c3029fb5b9f08c2307fa7ada9ee73ecd5fe9444fecde7da06db5fb"
+    },
+    {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/namebinding-deletion/namebinding-deletion-result-01.json",
+      "local_path": "handle-accounting-retained-namebinding-deletion-result-01.json",
+      "sha256": "686500b75a1f33e586f12e0100a380e5f363ca78406e35d1beaa66cc52a7f79d"
+    }
+  ]
+}

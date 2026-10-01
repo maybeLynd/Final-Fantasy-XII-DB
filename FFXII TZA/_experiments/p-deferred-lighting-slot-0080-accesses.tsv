@@ -1,0 +1,49 @@
+function	name	site	disp	kind	instruction	route	note
+00659EC0	FUN_00659ec0	0065A497	0x0	addr	lea r8, [rbx + 0x50]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x-50	
+0065A960	FUN_0065a960	0065AB05	0x0	r	movss xmm13, dword ptr [rbx]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AD47	0x0	r	mulss xmm3, dword ptr [rbx]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB0A	0x4	r	movss xmm15, dword ptr [rbx + 4]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AD42	0x4	r	mulss xmm2, dword ptr [rbx + 4]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB10	0x8	r	movss xmm0, dword ptr [rbx + 8]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ABEF	0x8	r	movss xmm6, dword ptr [rbx + 8]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AD3A	0x8	r	mulss xmm1, dword ptr [rbx + 8]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AAE6	0xC	r	movss xmm12, dword ptr [rbx + 0xc]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ADE5	0xC	r	mulss xmm1, dword ptr [rbx + 0xc]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AA6D	0x10	r	movss xmm0, dword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB2D	0x10	r	movss xmm0, dword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AC4D	0x10	r	movss xmm12, dword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ACC2	0x10	r	mulss xmm7, dword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AA68	0x14	r	movss xmm1, dword ptr [rbx + 0x14]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB32	0x14	r	movss xmm1, dword ptr [rbx + 0x14]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AC39	0x14	r	movss xmm4, dword ptr [rbx + 0x14]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ACBD	0x14	r	mulss xmm4, dword ptr [rbx + 0x14]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AA63	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB37	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AC2A	0x18	r	movss xmm0, dword ptr [rbx + 0x18]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ACB5	0x18	r	mulss xmm3, dword ptr [rbx + 0x18]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AAE0	0x1C	r	movss xmm9, dword ptr [rbx + 0x1c]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ADD3	0x1C	r	movss xmm10, dword ptr [rbx + 0x1c]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065A9F8	0x20	r	movss xmm0, dword ptr [r8 + 0x20]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB52	0x20	r	movss xmm0, dword ptr [rbx + 0x20]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AC82	0x20	r	movss xmm14, dword ptr [rbx + 0x20]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ACFC	0x20	r	movss xmm2, dword ptr [rbx + 0x20]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065A9F2	0x24	r	movss xmm1, dword ptr [r8 + 0x24]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB57	0x24	r	movss xmm14, dword ptr [rbx + 0x24]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ACED	0x24	r	movss xmm1, dword ptr [rbx + 0x24]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065A9EC	0x28	r	movss xmm2, dword ptr [r8 + 0x28]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AB5D	0x28	r	movss xmm11, dword ptr [rbx + 0x28]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ACDE	0x28	r	movss xmm0, dword ptr [rbx + 0x28]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AADA	0x2C	r	movss xmm8, dword ptr [rbx + 0x2c]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ADC8	0x2C	r	movss xmm9, dword ptr [rbx + 0x2c]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AF32	0x30	addr	lea r10, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AF3B	0x31	addr	lea eax, [r10 + 1]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x30	
+0065A960	FUN_0065a960	0065ABB5	0x50	r	cmp dword ptr [rbx + 0x50], 2	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065B109	0x50	r	mov eax, dword ptr [rbx + 0x50]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065B02D	0x54	r	movss xmm0, dword ptr [rbx + 0x54]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ABA1	0x58	r	movss xmm6, dword ptr [rbx + 0x58]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065B028	0x58	r	movss xmm1, dword ptr [rbx + 0x58]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AFAA	0x5C	r	movss xmm7, dword ptr [rbx + 0x5c]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065ABBB	0x60	r	movss xmm0, dword ptr [rbx + 0x60]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065AF8E	0x60	r	movss xmm9, dword ptr [rbx + 0x60]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065B09D	0x64	r	cmp dword ptr [rbx + 0x64], 0	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	
+0065A960	FUN_0065a960	0065B0A3	0x68	r	mov eax, dword ptr [rbx + 0x68]	route-seeded EMBED PDeferredLightingBase +0x50 stride=0x80 count=129 base+0x0	

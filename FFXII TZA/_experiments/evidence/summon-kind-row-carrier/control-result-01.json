@@ -1,0 +1,45 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "32b4b8e998dcb5ca6a54038754d30786fef88b7ef9e76d13817990105aee9399",
+  "positive_producer_sha256": "832a0fab7381c2585f7b2037985ee309943aed826059bd0ce5e7608acb11e4d7",
+  "cases": [
+    {
+      "name": "failed-capture",
+      "exit": 1,
+      "diagnostic": "required capture status failed capture-02",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "832a0fab7381c2585f7b2037985ee309943aed826059bd0ce5e7608acb11e4d7",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f3256d52986ebb11c80e5ac78fbc6379604b936a28f7a78e9f06a7493cc913d5",
+      "terminal": true,
+      "exception": null
+    },
+    {
+      "name": "missing-source",
+      "exit": 1,
+      "diagnostic": "source-02.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "832a0fab7381c2585f7b2037985ee309943aed826059bd0ce5e7608acb11e4d7",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6a5646aeddae7604af3dfb430597c5aa2a7eae8e4a15970f25a09cd737f20a3e",
+      "terminal": true,
+      "exception": null
+    },
+    {
+      "name": "coherent-row-carrier-mutation",
+      "exit": 1,
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "832a0fab7381c2585f7b2037985ee309943aed826059bd0ce5e7608acb11e4d7",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b815487dafcec14676a31090d5de83c61d4c7b53579168aa7bff1d7102a8240a",
+      "terminal": true,
+      "exception": null
+    }
+  ],
+  "count": 3,
+  "limits": "Disposable CLI evidence mutations only; no FF12 native/game, no parent recensus/retest"
+}

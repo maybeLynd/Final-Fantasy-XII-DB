@@ -1,0 +1,5 @@
+function	name	site	disp	kind	instruction	route	note
+0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0026DA07	0x0	addr	lea rsi, [rcx + rsi*4]	route-seeded EMBED MapRefWeatherBlock +0x00 | EMBED MapRefWeatherBlock +0x04 | EMBED MapRefWeatherBlock +0x08 | EMBED MapRefWeatherBlock +0x0C base+0x0	
+0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0026DA14	0x0	r	movzx eax, byte ptr [rsi]	route-seeded EMBED MapRefWeatherBlock +0x00 | EMBED MapRefWeatherBlock +0x04 | EMBED MapRefWeatherBlock +0x08 | EMBED MapRefWeatherBlock +0x0C base+0x0	
+0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0026DA58	0x0	r	movzx edx, byte ptr [rsi]	route-seeded EMBED MapRefWeatherBlock +0x00 | EMBED MapRefWeatherBlock +0x04 | EMBED MapRefWeatherBlock +0x08 | EMBED MapRefWeatherBlock +0x0C base+0x0	
+0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0026DA54	0x2	r	movzx eax, byte ptr [rsi + 2]	route-seeded EMBED MapRefWeatherBlock +0x00 | EMBED MapRefWeatherBlock +0x04 | EMBED MapRefWeatherBlock +0x08 | EMBED MapRefWeatherBlock +0x0C base+0x0	

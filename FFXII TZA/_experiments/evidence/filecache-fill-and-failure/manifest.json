@@ -1,0 +1,265 @@
+{
+  "kind": "original cache fill-key provenance and conditional failure release",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture-filecache-fill-key-provenance.py",
+      "bytes": 1170,
+      "sha256": "b871ffbc1e915047f908b5828b81a6c61cd61ff7c99873cb21b20d26f184d1b6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "control-filecache-fill-and-failure.py",
+      "bytes": 3278,
+      "sha256": "ef7383895702432420e6fd956591044e7931146322ea36e0971689cd27d62c67"
+    },
+    {
+      "path": "external-dependencies.json",
+      "bytes": 1216,
+      "sha256": "e909376a16c3b53abaeaabefc6e35848ea38643625ec395310062ce4d53d6567"
+    },
+    {
+      "path": "FILECACHE-FAILURE-METHOD-1001.md",
+      "bytes": 2010,
+      "sha256": "c67a4d650b8561790c2822f26d82fb578e444da5587ab2e7b30656cc5006041b"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/coherent-output-pointer-change/filecache-fill-key-resolver-source-01.json",
+      "bytes": 67527,
+      "sha256": "35abe647dd298d1d7e30c256685d7453ecc775025c2406afd65d654fc09428a7"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/coherent-output-pointer-change/receipt.json",
+      "bytes": 2462,
+      "sha256": "3486cd8568dcbc824029aced35daf87f36498aa655d0c310660326787c514a11"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/coherent-output-pointer-change/stderr",
+      "bytes": 1026,
+      "sha256": "c5968b8c5973dcf2e6b7c269e1544f495f2f7e926f5c6f7a8eb0ea1981bfe393"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/coherent-output-pointer-change/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/failed-resolver/filecache-fill-key-resolver-capture-01.status.json",
+      "bytes": 467,
+      "sha256": "1bbe4bd43fc2446eba799f8e491b55aaf738499b0e559ed84c4b494fb0f64f24"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/failed-resolver/receipt.json",
+      "bytes": 2399,
+      "sha256": "cf393e1eb02f615ddc3dc706199706f7dc2a7f5a896a9f03da4c38919f3a784a"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/failed-resolver/stderr",
+      "bytes": 1113,
+      "sha256": "9c7790b714d8df28a2e00af9f5dbf6da3d7890dc93f5b7e862c5c4d2afc37414"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/failed-resolver/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/false-malloc-import/filecache-release-allocator-thunks-qualified-01.json",
+      "bytes": 5505,
+      "sha256": "6555af47a815906373782b07c60da15cdc56b7106a7210bad34fed89649150e0"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/false-malloc-import/receipt.json",
+      "bytes": 2412,
+      "sha256": "ab0564d40a4e6c3d7871c95b7d6b72b42697404334ba1f424e1c559085c1b411"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/false-malloc-import/stderr",
+      "bytes": 1090,
+      "sha256": "1ef70123af3562de524b6ce29fec2552768cec2a92d99522010f79afec43b83f"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/false-malloc-import/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/incomplete-resolver/filecache-fill-key-resolver-source-01.json",
+      "bytes": 67372,
+      "sha256": "1ed1532af7538019d4e3c56ba623953bba1bd886b3364d5d3ffc8bc70e03c5a2"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/incomplete-resolver/receipt.json",
+      "bytes": 2429,
+      "sha256": "9f940ba15fab8564667aa3728ffe2dd4f49c525ac20dd3ccc2d0bfe038321343"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/incomplete-resolver/stderr",
+      "bytes": 1026,
+      "sha256": "c5968b8c5973dcf2e6b7c269e1544f495f2f7e926f5c6f7a8eb0ea1981bfe393"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/incomplete-resolver/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-01/result.json",
+      "bytes": 10467,
+      "sha256": "d773efdf60c8ba60873e6345c45a10598729d4fe51f1071b639d96232b9a9ce8"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-run-01.status.json",
+      "bytes": 463,
+      "sha256": "9689d18ac4a12926726d5d432b01373b6e41725423e32353fb0bb4cafaefff78"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-controls-run-01.stdout",
+      "bytes": 29,
+      "sha256": "7f28fb4e71353448d7418429a37c1340b3d7ca7ef3109fc83eff22ffb044744c"
+    },
+    {
+      "path": "filecache-fill-and-failure-positive-01.status.json",
+      "bytes": 526,
+      "sha256": "a9ea2a2b482388889e4e84c722dd015eaca5e7a4d62501d00a6c240d6d5b9044"
+    },
+    {
+      "path": "filecache-fill-and-failure-positive-01.stderr",
+      "bytes": 964,
+      "sha256": "a3a7f203a05433cfa113eacc2b892bbd7af256b90ff1ebdbb8de336a0cf7fc3b"
+    },
+    {
+      "path": "filecache-fill-and-failure-positive-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-positive-02.status.json",
+      "bytes": 526,
+      "sha256": "313d20e3d34b11349f4efa64ecb9b1f3e7332a1bc84344b482d751b3fdcce18e"
+    },
+    {
+      "path": "filecache-fill-and-failure-positive-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-and-failure-positive-02.stdout",
+      "bytes": 120,
+      "sha256": "6cc5f970383668b15ad2b1d83dadfed3cd3a9774b10d387dd69ffc9f0205a21c"
+    },
+    {
+      "path": "filecache-fill-and-failure-result-01.json",
+      "bytes": 30306,
+      "sha256": "1a6a4c41458f3dd772f2ce1a193c34931787d275aef8babd71fb9c0f93849049"
+    },
+    {
+      "path": "FILECACHE-FILL-KEY-PROVENANCE-METHOD-1001.md",
+      "bytes": 2603,
+      "sha256": "3c022abe538b26e14b055d8234fcf995c6bb43498066c51e895623e8e7f1d528"
+    },
+    {
+      "path": "filecache-fill-key-resolver-capture-01.status.json",
+      "bytes": 467,
+      "sha256": "166772aff716781d17272cfb78b5af80476f96d3acfa9142e5796241bccf8d1f"
+    },
+    {
+      "path": "filecache-fill-key-resolver-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-fill-key-resolver-capture-01.stdout",
+      "bytes": 185,
+      "sha256": "459b46f4bdee86e4179becd20170058423ae57aff5755892ea4a3fa74a4afe67"
+    },
+    {
+      "path": "filecache-fill-key-resolver-source-01.json",
+      "bytes": 67527,
+      "sha256": "5702e1c669165ec02c555872f49d5f0efec007c0659bc7f601551676e1cbb145"
+    },
+    {
+      "path": "filecache-release-allocator-thunks-qualification-01.status.json",
+      "bytes": 462,
+      "sha256": "7de98b1a522ead83db4268cbf21f3781a499e2467e9c17670162b9cf68c5de10"
+    },
+    {
+      "path": "filecache-release-allocator-thunks-qualification-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-release-allocator-thunks-qualification-01.stdout",
+      "bytes": 157,
+      "sha256": "c5aab1e83f2383e326d90297d62f8a403bc58a7eb7aec6fa196610cd77b588e2"
+    },
+    {
+      "path": "filecache-release-allocator-thunks-qualified-01.json",
+      "bytes": 5499,
+      "sha256": "5a915e652faae61951000299a7bc68db4f23e2c1759b4e8ec2486b73dad05882"
+    },
+    {
+      "path": "filecache-release-allocator-thunks-source-01.json",
+      "bytes": 4177,
+      "sha256": "43543f2be60b6e6ddb134eedcfdf19328ff242acca8774f4836f32be06834fd4"
+    },
+    {
+      "path": "freeze-filecache-fill-and-failure.py",
+      "bytes": 4833,
+      "sha256": "5df150238cd882a5b747edebdd61db7561c25b6a1fa149dfecbe1e7264f2f835"
+    },
+    {
+      "path": "malloc-contract.json",
+      "bytes": 421,
+      "sha256": "794c8c23b592b5a3bbeb688ae8720aef2af1fae2af16804c3442cb7fc66466d4"
+    },
+    {
+      "path": "prove-filecache-fill-and-failure-before-correlated-arm-01.py",
+      "bytes": 11687,
+      "sha256": "816f0b3be977d5907671fc8c9b810d85c994c99a2394e292eafbfb2e6d7bd464"
+    },
+    {
+      "path": "prove-filecache-fill-and-failure.py",
+      "bytes": 13364,
+      "sha256": "efb700462e46fdf3ed45007ce10b6241c81237415f4ae6be8fea8757527254f4"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "qualify-filecache-failure-thunks.py",
+      "bytes": 3194,
+      "sha256": "4ad8b30e09ef2443cd4ac141e3f62fecdbc9ff1009431a35775c12e86a879683"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4485,
+      "sha256": "2f6ad8fd3cc6fe142fd63e83877bbc94c7cd317977fa7d33ea94a249ee62b07c"
+    },
+    {
+      "path": "run-filecache-equal-key.py",
+      "bytes": 1225,
+      "sha256": "36b737362949ef728c72b30e8ac3c7129325dc6eff339d3152e2444df6391c57"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

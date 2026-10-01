@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\capture.py"
+  ],
+  "driver_sha256": "67dd99ddb878e5ca24697c036d1f40c34e202b5e8ebf463a338eac06c43f7c1f",
+  "deadline_seconds": 35,
+  "exit": 1,
+  "terminal": true,
+  "exception": null
+}

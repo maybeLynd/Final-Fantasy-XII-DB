@@ -1,0 +1,341 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_QUEUE_ORDER_INDEPENDENT_PENDING",
+  "method": "A RETAINED_ORIGINAL_SOURCE_AND_LIST_INVARIANT",
+  "driver_sha256": "065cc3c475b78125995620badc2d853605cff9dc094bec25eb2a729f53402268",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "e0b0c452e400af9d616dd730938059868f885747f3fefb48c8723da109aeb1f4",
+  "qualifier_sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+  "annotation_receipt": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 423,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "dependency": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\continuation-section09-owner-producer",
+    "manifest_sha256": "23785132366d8f1464b42ccfec0e1d9d4cbec05a04d733b212270f867a7e9de8",
+    "disassembly_sha256": "9cb269e7008618d928cb575d5f65a05c544b56da14ac031ffe972182aa0a7304"
+  },
+  "table": {
+    "address": "0x32e2d0",
+    "bytes": "bde0200049e1200063e1200063e12000abe12000abe12000",
+    "sha256": "6c8c59fada350ee1e470da36aa06448d11ebd783ccf7049e3bb9c85190b00a8d",
+    "targets": [
+      "0x32e0bd",
+      "0x32e149",
+      "0x32e163",
+      "0x32e163",
+      "0x32e1ab",
+      "0x32e1ab"
+    ]
+  },
+  "graphs": [
+    {
+      "entry": "0x32e620",
+      "instructions": 86,
+      "calls": [
+        {
+          "pc": "0x32e656",
+          "target": "0x3eb0d0"
+        },
+        {
+          "pc": "0x32e6dd",
+          "target": "0x32e870"
+        },
+        {
+          "pc": "0x32e759",
+          "target": "0x32e870"
+        }
+      ],
+      "returns": [
+        "0x32e773"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x32e870",
+      "instructions": 76,
+      "calls": [
+        {
+          "pc": "0x32e8aa",
+          "target": "0x32e070"
+        },
+        {
+          "pc": "0x32e8af",
+          "target": "0x46dfe0"
+        },
+        {
+          "pc": "0x32e8b6",
+          "target": "0x35ea30"
+        },
+        {
+          "pc": "0x32e8c9",
+          "target": "0x32e990"
+        }
+      ],
+      "returns": [
+        "0x32e98c"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x32e990",
+      "instructions": 50,
+      "calls": [],
+      "returns": [
+        "0x32e9e5",
+        "0x32ea19",
+        "0x32ea49"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x32ec40",
+      "instructions": 35,
+      "calls": [],
+      "returns": [],
+      "tails": [
+        "0x32ecce"
+      ]
+    },
+    {
+      "entry": "0x32e070",
+      "instructions": 156,
+      "calls": [
+        {
+          "pc": "0x32e0bd",
+          "target": "0x3eadd0"
+        },
+        {
+          "pc": "0x32e0f1",
+          "target": "0x46e030"
+        },
+        {
+          "pc": "0x32e0f6",
+          "target": "0x35e810"
+        },
+        {
+          "pc": "0x32e111",
+          "target": "0x2df6c0"
+        },
+        {
+          "pc": "0x32e11e",
+          "target": "0x35e810"
+        },
+        {
+          "pc": "0x32e133",
+          "target": "0x32e330"
+        },
+        {
+          "pc": "0x32e13f",
+          "target": "0x32ec40"
+        },
+        {
+          "pc": "0x32e149",
+          "target": "0x35e810"
+        },
+        {
+          "pc": "0x32e14e",
+          "target": "0x35e810"
+        },
+        {
+          "pc": "0x32e163",
+          "target": "0x46dfe0"
+        },
+        {
+          "pc": "0x32e189",
+          "target": "rax"
+        },
+        {
+          "pc": "0x32e192",
+          "target": "0x32ec40"
+        },
+        {
+          "pc": "0x32e19c",
+          "target": "0x46e0e0"
+        },
+        {
+          "pc": "0x32e1d3",
+          "target": "0x32e370"
+        },
+        {
+          "pc": "0x32e1e3",
+          "target": "0x32ec40"
+        },
+        {
+          "pc": "0x32e1fa",
+          "target": "0x32e330"
+        },
+        {
+          "pc": "0x32e208",
+          "target": "0x32e3b0"
+        },
+        {
+          "pc": "0x32e24d",
+          "target": "0x32e3b0"
+        },
+        {
+          "pc": "0x32e26f",
+          "target": "0x32e330"
+        },
+        {
+          "pc": "0x32e27b",
+          "target": "0x32ec40"
+        },
+        {
+          "pc": "0x32e285",
+          "target": "0x32e370"
+        },
+        {
+          "pc": "0x32e291",
+          "target": "0x32ec40"
+        },
+        {
+          "pc": "0x32e29b",
+          "target": "0x3eadd0"
+        },
+        {
+          "pc": "0x32e2a0",
+          "target": "0x46dd50"
+        },
+        {
+          "pc": "0x32e2a5",
+          "target": "0x16d6a0"
+        },
+        {
+          "pc": "0x32e2aa",
+          "target": "0x3e9780"
+        },
+        {
+          "pc": "0x32e2af",
+          "target": "0x16d6a0"
+        },
+        {
+          "pc": "0x32e2b4",
+          "target": "0x36fd50"
+        },
+        {
+          "pc": "0x32e2bd",
+          "target": "0x3bb790"
+        }
+      ],
+      "returns": [
+        "0x32e2cc"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x32e330",
+      "instructions": 19,
+      "calls": [
+        {
+          "pc": "0x32e34f",
+          "target": "rax"
+        }
+      ],
+      "returns": [
+        "0x32e36a"
+      ],
+      "tails": [
+        "0x32e360"
+      ]
+    }
+  ],
+  "theorem": {
+    "antecedent": "Distinct request tokens A and B coexist in one valid finite pending list; A was pending before accepted normal tail insertion of B.",
+    "representation": "L = P ++ [A] ++ Q ++ [B] ++ R, arbitrary finite P,Q,R with distinct tokens and disjoint free list.",
+    "induction": [
+      "Base: appending B places every existing token, including A, before B.",
+      "Prepending or appending a different fresh token adds a prefix or suffix; the relative order of A and B is unchanged.",
+      "Removing any token other than A/B deletes from P,Q,R; A before B is unchanged.",
+      "Removing A or B makes the coexistence antecedent false; reusing a physical slot is a different token and is outside unchanged-identity premises.",
+      "The selected head cannot be B while A still precedes it.32E070 selects only head; its completion helper receives that head slot and reads that slot callback+40/data+60/destination+70."
+    ],
+    "conclusion": "Under the stated transitions/premises, B completion callback cannot be invoked by this pump while older A remains pending. A must have retired, possibly by cancellation/error, before B delivery."
+  },
+  "controls": [
+    {
+      "kind": "algebraic illustration, not native execution",
+      "before": [
+        "A",
+        "X"
+      ],
+      "operation": "append primary B",
+      "after": [
+        "A",
+        "X",
+        "B"
+      ],
+      "older_precedes_primary": true
+    },
+    {
+      "kind": "counterexample to unsupported head-primary extension",
+      "before": [
+        "A",
+        "X"
+      ],
+      "operation": "prepend primary B",
+      "after": [
+        "B",
+        "A",
+        "X"
+      ],
+      "older_precedes_primary": false
+    },
+    {
+      "kind": "retirement removes antecedent, not proof of success",
+      "before": [
+        "A",
+        "B"
+      ],
+      "operation": "remove A",
+      "after": [
+        "B"
+      ],
+      "older_still_pending": false
+    }
+  ],
+  "source_boundaries": {
+    "tail_flags": [
+      "0x32e6b9",
+      "0x32e742"
+    ],
+    "completion_sites": [
+      "0x32e133",
+      "0x32e1fa",
+      "0x32e26f"
+    ],
+    "retirement_sites": [
+      "0x32e13f",
+      "0x32e192",
+      "0x32e1e3",
+      "0x32e27b",
+      "0x32e291"
+    ]
+  },
+  "established": [
+    "Both local32E620 request arms pass sixth atTail=1 to32E870, which forwards it to32E990. Nonzero insertion appends to valid pending tail.",
+    "32EC40 locally unlinks the selected node, preserves other-node order and puts it on the free list; its shipping tail16D6A0 is RET0.",
+    "32E070 services the current pending head, never locally advances RBX to next. Non-progress may retain/revisit head or return; no fairness/deadline is established.",
+    "An older request already pending before an accepted ordinary queued primary cannot be overtaken under the explicit valid-list/noninterference premises. This narrows the reset/pending countermodel for that antecedent without proving global uniqueness."
+  ],
+  "limits": [
+    "Static conditional proof and three illustrative algebraic controls; zero new native/live executions. Retained SECTION09 native fixtures remain their prior bounded evidence, not rerun or enlarged.",
+    "Normal ABI/valid accessible nonaliasing queue storage and stable sixth stack argument; no recursive pump, concurrent corruption, queue reset/permutation, opaque call that bypasses these transitions, or ABA identity confusion.",
+    "Full-pool32E870 may pump before insertion/acceptance. No universal deferred scheduling or successful IO is inferred.",
+    "Only requests already pending before B enqueue are covered. Later owner submissions, head-inserted primary32E780 and synchronous D4 direct3304A0/world-reset paths are outside this proof.",
+    "Retirement may be cancellation/error, not successful owner completion. No initialized scene, producer-disable invariant, natural caller census, pointer lifetime, allocator placement or safe reload/whole OV19/21 closure.",
+    "Non-atomic instruction transitions require stated noninterference; source-local callback association does not establish all callback effects. Independent SPEC and FABLE/OPUS canonical consumption remain pending."
+  ],
+  "affected_claims": [
+    "Owner reload/reset pending-request exclusion for already-pending requests on normal queued primary path",
+    "OV36 global owner-uniqueness sufficiency premise; retain valid per-slot delivery and admission-only scope"
+  ],
+  "next_discriminator": "Original32ED80 disable interval and32F850 re-enable-before-bind: can later owner work be submitted before queued-primary reset? D4 synchronous override lacks FIFO antecedent; retain independent world-reset bounds.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0,
+  "cleanup": "All read-only original/retained inputs; no game/process/save/config/reference writes; finite children terminal"
+}

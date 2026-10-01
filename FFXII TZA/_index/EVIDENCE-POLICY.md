@@ -96,3 +96,11 @@ live in [`DERIVED-DATA.md`](DERIVED-DATA.md).
     through `team.py current` rather than acting on it. Hand-maintained counts are what
     silently replayed completed work before; the generated block exists so a stale
     header fails visibly instead.
+17. **Evidence package layout.** In `_experiments/evidence/<package>/`, authored documents
+    (README, RESULT, PLAN, NOTES, METHODS, REVIEW ...) go at **package level**, where
+    `check_links.py` judges their links. Anything in a **subdirectory** (`retained/`,
+    `run-NN/`, `source/`, `current-preimages/` ...) is a byte-exact capture: its links point
+    from where the page lived, it is never edited to repair them, and the gate counts but does
+    not judge them. Writing an authored file inside a subdirectory hides its broken links from
+    the gate. *(OPUS 2026-10-01, on SWE2-AUDIT-SPEC's links-scope review item 2, which offered
+    judging README-named subdirectory files instead; that judged ~25 links in true captures.)*

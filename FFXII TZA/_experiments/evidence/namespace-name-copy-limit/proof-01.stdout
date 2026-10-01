@@ -1,0 +1,1 @@
+{"producer_complete": true, "new_propositions": ["R9D is signextended; <=1 limits still copy one byte and write a second-byte terminator.", "The initial source byte is copied without testing it for NUL; a nonempty next byte may be read/copied after an empty-string first byte."], "instruction_assertions": 29, "symbolic_partitions": 3, "native_or_live_runs": 0}

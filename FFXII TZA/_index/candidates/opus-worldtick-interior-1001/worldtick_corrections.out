@@ -1,0 +1,6 @@
+CHECK 001EC690 inc dword ptr [rip + 0x1d96c2e] -> ok
+CHECK 0051E809 mov dword ptr [rcx + 0x128], 0 -> ok
+CHECK 0051E849 mov dword ptr [rcx + 0x128], 1 -> ok
+PATCHED `001EC690` (7 B `01F832C4` flag read)
+PATCHED | `0051E800`, `0051E840` | set `+0x128` 
+FAILS 0

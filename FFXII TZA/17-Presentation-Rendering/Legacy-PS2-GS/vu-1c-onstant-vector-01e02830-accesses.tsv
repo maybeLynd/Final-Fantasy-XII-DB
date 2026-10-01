@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+004B9D80	FUN_004b9d80	004B9D8A	0x0	r	movss xmm4, dword ptr [rdx]	route-seeded STATIC 0x01E02830 base+0x0	
+004B9D80	FUN_004b9d80	004B9DAA	0x4	r	movss xmm0, dword ptr [rdx + 4]	route-seeded STATIC 0x01E02830 base+0x0	
+004B9E60	FUN_004b9e60	004B9E60	0x4	r	movss xmm0, dword ptr [rdx + 4]	route-seeded STATIC 0x01E02830 base+0x0	
+004B9D80	FUN_004b9d80	004B9DC2	0x8	r	movss xmm2, dword ptr [rdx + 8]	route-seeded STATIC 0x01E02830 base+0x0	
+004B9A10	FUN_004b9a10	004B9A10	0xC	r	movss xmm0, dword ptr [rdx + 0xc]	route-seeded STATIC 0x01E02830 base+0x0	

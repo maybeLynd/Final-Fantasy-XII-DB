@@ -1,0 +1,10 @@
+function	name	site	disp	kind	instruction	route	note
+0057FE80	FUN_0057fe80	0058039B	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+0057FE80	FUN_0057fe80	00580611	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00580840	SaveLoad_FullImageStorageCompletionCallback	00580890	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00580840	SaveLoad_FullImageStorageCompletionCallback	005809F4	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00580A80	FUN_00580a80	00580ADD	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00580CD0	FUN_00580cd0	00580CFD	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00582860	SaveLoad_ControllerLifecycleHandler	00582D65	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00583040	SaveLoad_HandleStorageStatusResultAndAdvanceController	0058312E	0xCC	w	mov dword ptr [rax + 0xcc], 4	route-seeded PTR 0x02CA99E0 base+0x0	
+00583990	FUN_00583990	00583BA2	0xCC	w	mov dword ptr [rax + 0xcc], 0	route-seeded PTR 0x02CA99E0 base+0x0	

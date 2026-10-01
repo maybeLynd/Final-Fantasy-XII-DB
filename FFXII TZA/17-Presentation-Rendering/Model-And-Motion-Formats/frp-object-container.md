@@ -1,7 +1,7 @@
 ---
 system: The @FRP object container (.ca and .cm)
 category: 17-Presentation-Rendering
-status: DOCUMENTED — no register row is open (owner re-status 2026-09-30, OPUS): the entry payloads are decoded on their own sheets (fcp, ftr, fdm/for, fte/fct, fef and motion entries; their residue stays there); the name compare is 32 bytes and no caller passes a name (§7, 2026-09-30); the seven '@FRP' argument sites read 2026-09-18 (a section-lookup key, the fallback after @FMN / @FMC at five of them) (status line current 2026-09-30, SWE2-DATA)
+status: AUDITED — no register row is open (owner re-status 2026-09-30, OPUS): the entry payloads are decoded on their own sheets (fcp, ftr, fdm/for, fte/fct, fef and motion entries; their residue stays there); the name compare is 32 bytes and no caller passes a name (§7, 2026-09-30); the seven '@FRP' argument sites read 2026-09-18 (a section-lookup key, the fallback after @FMN / @FMC at five of them) (status line current 2026-09-30, SWE2-DATA)
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -24,8 +24,9 @@ audit:
   passes: 1
   last_pass: 2026-09-05
   last_pass_state: GN160-corpus-and-code-reparse-repos-1e — 4,230 files re-parsed from the VBF and every cited instruction re-decoded; corpus and loader contract confirmed, 10 non-boundary anchors corrected
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record GN160-corpus-and-code-reparse-repos-1e — 4,230 files re-parsed from the VBF and every cited instruction re-decoded; corpus and loader contract confirmed, 10 non-boundary anchors corrected; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The `@FRP` object container — `.ca` and `.cm`

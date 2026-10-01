@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\namespace-name-copy-limit\prove.py", line 81, in <module>
+    p=argparse.ArgumentParser();p.add_argument('out',type=Path);p.add_argument('--src',type=Path,default=P);a=p.parse_args();main(a.out,a.src)
+                                                                                                                             ~~~~^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\namespace-name-copy-limit\prove.py", line 18, in main
+    if sha(manifest)!='b9f212c1d22eb7398d16d5c2d184ce7c0bca4b6900e2cc0f94af5662605b82c1':raise RuntimeError('retained parent manifest identity failed')
+                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: retained parent manifest identity failed

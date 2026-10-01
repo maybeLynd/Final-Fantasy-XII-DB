@@ -1,0 +1,31 @@
+{
+  "case": "coherent-second-pop-selector",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-domain\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-domain\\proof-controls-01\\coherent-second-pop-selector\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-domain\\proof-controls-01\\coherent-second-pop-selector"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "RuntimeError: original byte mismatch",
+  "expected_error": "RuntimeError: original byte mismatch",
+  "expected_error_seen": true,
+  "stdout_empty": true,
+  "result_absent": true,
+  "changed_path": "source-01.json",
+  "changed_sha256": "bf1f025216d3322b5e4d032440443909bc7cebda8a87ad4fb123842b7fea4709",
+  "baseline_sha256": {
+    "capture.py": "44292d66ed0ef66c01157947d71a188df0dba5cb910728d662821d7afe3562ee",
+    "source-01.json": "a5dca623e4c5b98627cf9f675a9ac863cf167ff71cae70f434ce1d4be5ffa54b",
+    "capture-01.status.json": "abad43fe48b62406ca0d5970efc4ca2466d5f8d56cbe9f92b9d66a4cb7c11b25",
+    "capture-01.stdout": "46a6ad873e6766586e6ed41ad46234117e6884082960fb7b256dbac6c899df74",
+    "capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "producer_sha256": "c5a4c0d1f06c0a374fa16cc5e135cb58de4e5f13b5408019c836cb25299caf55",
+  "control_sha256": "9312f28a737b1a6736f62c787a9a5a5ed9b92aff125471f208aaeb75e7efda2c",
+  "passed": true
+}

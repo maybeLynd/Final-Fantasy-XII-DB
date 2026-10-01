@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control_bj1_guard_capture.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bj1-transport-controls-03.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "32b74ea1bb3f3593c9122982410ad7e4abc1047ee88c7b268631c445ce156f21"
+}

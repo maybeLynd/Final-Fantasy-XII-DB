@@ -1,0 +1,198 @@
+{
+  "status": "PRODUCER_VALID_CALLBACK_INPUT_INDEPENDENCE_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A ORIGINAL_CODE_INPUT_INVARIANT",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "namebinding-callback-inputs-source-01.json",
+      "sha256": "287433b2f57eab611f748a316243ed23cfd634f2d71de7187a0c02d945090827"
+    },
+    {
+      "path": "namebinding-callback-inputs-retained-source-01.json",
+      "sha256": "86666cf5e5c3029fb5b9f08c2307fa7ada9ee73ecd5fe9444fecde7da06db5fb"
+    }
+  ],
+  "checker_sha256": "6331164d8e11b8edc90e80473c078b8b857eeaba3656785d199dacbeca83ccff",
+  "normal_helper_cfgs": [
+    {
+      "entry": "0x32f3d0",
+      "end_exclusive": "0x32f427",
+      "instructions": 31,
+      "returns": [
+        "0x32f41e",
+        "0x32f426"
+      ],
+      "calls": [
+        {
+          "pc": "0x32f3d8",
+          "target": "0x408b30"
+        },
+        {
+          "pc": "0x32f3e2",
+          "target": "0x408b10"
+        },
+        {
+          "pc": "0x32f40b",
+          "target": "0x5c5230"
+        }
+      ]
+    },
+    {
+      "entry": "0x408b30",
+      "end_exclusive": "0x408b38",
+      "instructions": 2,
+      "returns": [
+        "0x408b37"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x408b10",
+      "end_exclusive": "0x408b18",
+      "instructions": 2,
+      "returns": [
+        "0x408b17"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x36b130",
+      "end_exclusive": "0x36b159",
+      "instructions": 15,
+      "returns": [
+        "0x36b155",
+        "0x36b158"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x409090",
+      "end_exclusive": "0x4090c5",
+      "instructions": 15,
+      "returns": [
+        "0x4090bf",
+        "0x4090c4"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x5c5230",
+      "end_exclusive": "0x5c5233",
+      "instructions": 2,
+      "returns": [
+        "0x5c5232"
+      ],
+      "calls": []
+    }
+  ],
+  "root_prefix": {
+    "entry": "0x2e4d20",
+    "stop_before_opaque_call": "0x2e4d82",
+    "incoming": [
+      "RDX destination",
+      "R8D success"
+    ],
+    "exit_live_masks": [
+      0
+    ]
+  },
+  "original_expanded_calls": [
+    {
+      "pc": "0x2e4d46",
+      "target": "0x32f3d0"
+    },
+    {
+      "pc": "0x2e4d68",
+      "target": "0x36b130"
+    },
+    {
+      "pc": "0x2e4d73",
+      "target": "0x409090"
+    },
+    {
+      "pc": "0x32f3d8",
+      "target": "0x408b30"
+    },
+    {
+      "pc": "0x32f3e2",
+      "target": "0x408b10"
+    },
+    {
+      "pc": "0x32f40b",
+      "target": "0x5c5230"
+    }
+  ],
+  "argument_kills": [
+    {
+      "pc": "0x2e4d78",
+      "input": "R8D",
+      "operation": "mov r8d, dword ptr [rdi + 0x14]"
+    },
+    {
+      "pc": "0x409097",
+      "input": "RDX",
+      "operation": "lea rdx, [rip + 0x1af68a2]"
+    },
+    {
+      "pc": "0x4090a3",
+      "input": "R8D",
+      "operation": "mov r8d, dword ptr [rcx]"
+    }
+  ],
+  "established": [
+    "With fixed valid ECX record/current memory and normal original execution, incoming R8D success and RDX destination are never read before full overwrite across the complete early original call graph. Both are dead before36C660; no stored copy survives. The callback does not gate local behavior on either argument.",
+    "32F3D0 expands only original408B30/408B10 getters and shipping5C5230 zero stub;36B130 is a leaf.409090 unconditionally replacesRDX and conditionally replacesR8D; callback then overwritesR8D from record+14. No assumed volatile-register clobber or fabricated native effects establishes this invariant.",
+    "Ready18mask02 still follows original2EA6E0 return0, with removal/registration rules and callee effects separate. Incoming success0 versus1 cannot itself distinguish successful content here; a ready record is not proof of valid delivered bytes."
+  ],
+  "limitations": [
+    "No proof the failed-read path naturally invokes this callback; error-helper count==-1 condition and actual IO/count writers are separate.",
+    "Valid pointer/resource mappings, normal ABI returns, fixed relevant memory/execution environment and no interference are premises; exceptions, timing/side channels and arbitrary invalid inputs are not certified.",
+    "No full followup/registration/tagging/storage semantics or complete lifetime/recovery proof. Shipping zero stub cannot establish omitted native effects.",
+    "Static proof/control receipts are producer evidence, not native executions, independent acceptance or whole runtime-row closure."
+  ],
+  "affected_claims": [
+    "Namebinding callback/readiness distinction in existing FABLE/OPUS deletion consumers",
+    "SPEC deletion/pin review; failure notification is not successful-content certification",
+    "Future OV19/21 error-recovery/lifetime preparations must keep natural failed delivery separate"
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "capture-namebinding-callback-inputs.py",
+      "sha256": "5b4d3d6d9d1adc4bbea6e0693d665fd3150ad1dd35406641f796b2e6596db36a"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-callback-inputs-retained-provenance-01.json",
+      "sha256": "6e494a025a7a003a19ebf9ace0f0d209871e84b93292289304a774a761d2f133"
+    },
+    {
+      "path": "namebinding-callback-inputs-capture-01.status.json",
+      "sha256": "75642a779714d63cae92d7d332533ae8ec3066198b4ef9a52ed30c6321777cb0"
+    },
+    {
+      "path": "namebinding-callback-inputs-capture-01.stdout",
+      "sha256": "6fb2c383989e1a91eb506e79d42bfa826ad2f59dc9f725d8bbaff624193ef6a7"
+    },
+    {
+      "path": "namebinding-callback-inputs-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "next_discriminator": "Natural failed callback delivery/count writer and valid-content recovery remain separate; do not sample input-status independence in live game again.",
+  "cleanup": "Finite original reads and static invariant; no game/PC/native/emulated/instrument/save/config/reference/peer mutation"
+}

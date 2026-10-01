@@ -1,0 +1,169 @@
+function	name	site	disp	kind	instruction	route	note
+006318A0	FUN_006318a0	00631937	0x0	w	mov qword ptr [rbx], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	006319BB	0x0	w	mov qword ptr [rbx], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632DCE	0x0	w	mov qword ptr [rcx], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	006333BC	0x0	w	mov qword ptr [rcx], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	00633568	0x0	w	mov qword ptr [r15], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00791B70	FUN_00791b70	00791BCD	0x0	w	mov qword ptr [rdi], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006314B0	FUN_006314b0	006314BE	0x8	addr	lea rbx, [rdx + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006314B0	FUN_006314b0	006314DC	0x8	w	mov qword ptr [rbx], rcx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006318A0	FUN_006318a0	006318EE	0x8	addr	lea rax, [rbx + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	006318F2	0x8	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8	
+00632D80	FUN_00632d80	00632D8E	0x8	addr	lea rax, [rcx + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632D92	0x8	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006388C0	FUN_006388c0	00638991	0x8	addr	lea rdx, [rbp + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	00639478	0x8	addr	lea rax, [rbx + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	00639481	0x8	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006314B0	FUN_006314b0	006314DF	0x10	w	mov qword ptr [rdx + 0x10], rcx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	006318F5	0x10	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8	
+00632D80	FUN_00632d80	00632D95	0x10	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+00639450	FUN_00639450	00639486	0x10	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006314B0	FUN_006314b0	006314BA	0x18	r	movzx eax, byte ptr [rdx + 0x18]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006314B0	FUN_006314b0	006314D8	0x18	rw	add qword ptr [rbx + 0x10], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006314B0	FUN_006314b0	00631589	0x18	r	movzx eax, byte ptr [rbx + 0x10]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006314B0	FUN_006314b0	00631598	0x18	w	mov qword ptr [rbx + 0x10], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006318A0	FUN_006318a0	006318F9	0x18	w	mov qword ptr [rax + 0x10], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8	
+00632D80	FUN_00632d80	00632D99	0x18	w	mov qword ptr [rax + 0x10], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+00639450	FUN_00639450	0063948A	0x18	w	mov qword ptr [rax + 0x10], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+0067F700	FUN_0067f700	0067F702	0x18	r	movzx r8d, byte ptr [rdx + 0x10]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+0067F700	FUN_0067f700	0067F70A	0x18	r	mov rax, qword ptr [rdx + 0x10]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+0067F700	FUN_0067f700	0067F730	0x18	r	movzx eax, byte ptr [r9 + 0x10]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+0067F700	FUN_0067f700	0067F73D	0x18	r	add rcx, qword ptr [r9 + 0x10]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006314B0	FUN_006314b0	00631507	0x20	r	mov ecx, dword ptr [r10 + 0x20]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	006318FD	0x20	w	mov dword ptr [rax + 0x18], edi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8	
+00632D80	FUN_00632d80	00632D9D	0x20	w	mov dword ptr [rax + 0x18], r10d	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006388C0	FUN_006388c0	00638976	0x20	w	mov dword ptr [rbp + 0x20], edi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	0063948E	0x20	w	mov dword ptr [rax + 0x18], ecx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006314B0	FUN_006314b0	00631532	0x28	r	mov rax, qword ptr [r10 + 0x28]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	00631900	0x28	w	mov qword ptr [rax + 0x20], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8	
+00632D80	FUN_00632d80	00632DA1	0x28	w	mov qword ptr [rax + 0x20], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006388C0	FUN_006388c0	0063897C	0x28	w	mov qword ptr [rbp + 0x28], rsi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	00639491	0x28	w	mov qword ptr [rax + 0x20], rcx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x8 exposed	
+006318A0	FUN_006318a0	0063190B	0x30	w	mov qword ptr [rbx + 0x30], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632DB0	0x30	w	mov qword ptr [rcx + 0x30], r8	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006388C0	FUN_006388c0	006388CA	0x30	r	mov rsi, qword ptr [rcx + 0x30]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639160	FUN_00639160	0063916F	0x30	r	mov rsi, qword ptr [rdx + 0x30]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	00631913	0x38	w	mov dword ptr [rbx + 0x38], 1	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632DB4	0x38	w	mov dword ptr [rcx + 0x38], r9d	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632E80	FUN_00632e80	00632EA6	0x38	r	mov r9d, dword ptr [r9 + 0x38]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632E80	FUN_00632e80	00632ED9	0x38	r	mov eax, dword ptr [rbx + 0x38]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+0063E2E0	FUN_0063e2e0	0063E2EF	0x38	r	mov eax, dword ptr [rcx + 0x38]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	0063191A	0x3C	w	mov dword ptr [rbx + 0x3c], 1	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632DA9	0x3C	w	mov dword ptr [rcx + 0x3c], eax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632E80	FUN_00632e80	00632EAA	0x3C	r	mov r10d, dword ptr [rbx + 0x3c]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	00631921	0x40	w	mov qword ptr [rbx + 0x40], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632DB8	0x40	w	mov qword ptr [rcx + 0x40], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+006318A0	FUN_006318a0	00631925	0x48	w	mov qword ptr [rbx + 0x48], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632DBC	0x48	w	mov qword ptr [rcx + 0x48], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+006318A0	FUN_006318a0	006318E3	0x50	addr	lea rax, [rbx + 0x50]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	006318E7	0x50	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50	
+00632D80	FUN_00632d80	00632D83	0x50	addr	lea rax, [rcx + 0x50]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632D87	0x50	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+00639160	FUN_00639160	00639212	0x50	addr	lea r8, [rdi + 0x50]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639160	FUN_00639160	00639231	0x50	addr	lea rdx, [rdi + 0x50]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063D640	FUN_0063d640	0063D64A	0x50	addr	lea r8, [rdx + 0x50]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063D640	FUN_0063d640	0063D64E	0x50	r	mov rdx, qword ptr [rdx + 0x50]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063D640	FUN_0063d640	0063D662	0x50	w	mov qword ptr [r8], r8	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+006318A0	FUN_006318a0	006318EA	0x58	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50	
+00632D80	FUN_00632d80	00632D8A	0x58	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+00639160	FUN_00639160	00639216	0x58	r	mov rax, qword ptr [r8 + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+00639160	FUN_00639160	00639225	0x58	w	mov qword ptr [r8 + 8], rdx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+00639160	FUN_00639160	00639235	0x58	r	mov rax, qword ptr [rdx + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+00639160	FUN_00639160	00639240	0x58	w	mov qword ptr [rdx + 8], r14	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+0063D640	FUN_0063d640	0063D646	0x58	r	mov rax, qword ptr [rdx + 0x58]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063D640	FUN_0063d640	0063D665	0x58	w	mov qword ptr [r8 + 8], r8	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x50 exposed	
+006318A0	FUN_006318a0	0063190F	0x60	addr	lea rax, [rbx + 0x60]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	00631929	0x60	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x60	
+00632D80	FUN_00632d80	00632DAC	0x60	addr	lea rax, [rcx + 0x60]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632DC0	0x60	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x60 exposed	
+00633390	FUN_00633390	00633557	0x60	addr	lea rcx, [r15 + 0x60]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006B6700	FUN_006b6700	006B6710	0x60	r	mov rdx, qword ptr [r8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x60 exposed	
+006318A0	FUN_006318a0	0063192C	0x68	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x60	
+00632D80	FUN_00632d80	00632DC3	0x68	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x60 exposed	
+006318A0	FUN_006318a0	00631941	0x70	w	mov qword ptr [rbx + 0x70], rsi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632DD6	0x70	w	mov qword ptr [rcx + 0x70], rdx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	006333DC	0x70	r	mov rcx, qword ptr [rcx + 0x70]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	0063945C	0x70	r	mov rcx, qword ptr [rcx + 0x70]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006305A0	FUN_006305a0	00630624	0x78	r	mov rsi, qword ptr [rsi + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00630BE0	FUN_00630be0	00630C64	0x78	r	mov rsi, qword ptr [rsi + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	0063194A	0x78	w	mov qword ptr [rbx + 0x78], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632DDA	0x78	w	mov qword ptr [rcx + 0x78], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639160	FUN_00639160	006391FF	0x78	r	mov rdx, qword ptr [rdi + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E2E0	FUN_0063e2e0	0063E351	0x78	r	mov rdi, qword ptr [rdi + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E2E0	FUN_0063e2e0	0063E3B4	0x78	r	mov rdi, qword ptr [rdi + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E441	0x78	r	mov rax, qword ptr [rax + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E44A	0x78	r	mov rax, qword ptr [rdx + 0x78]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006305A0	FUN_006305a0	006305E0	0x80	addr	lea rdi, [rsi + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006305A0	FUN_006305a0	006305E7	0x80	r	mov rbx, qword ptr [rdi]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80	
+00630BE0	FUN_00630be0	00630C20	0x80	addr	lea rdi, [rsi + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	0063193A	0x80	addr	lea rax, [rbx + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	0063194E	0x80	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80	
+00632D80	FUN_00632d80	00632DDE	0x80	addr	lea rax, [rcx + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632DE5	0x80	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80 exposed	
+00633390	FUN_00633390	006334B2	0x80	addr	lea r8, [r15 + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	006334C0	0x80	r	mov rdx, qword ptr [r8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80 exposed	
+0063E2E0	FUN_0063e2e0	0063E310	0x80	addr	lea rsi, [rdi + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E2E0	FUN_0063e2e0	0063E317	0x80	r	mov rbx, qword ptr [rsi]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80 exposed	
+0063E2E0	FUN_0063e2e0	0063E370	0x80	addr	lea rsi, [rdi + 0x80]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00630BE0	FUN_00630be0	00630C27	0x88	r	mov rbx, qword ptr [rdi + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80	
+006318A0	FUN_006318a0	00631951	0x88	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80	
+00632D80	FUN_00632d80	00632DE8	0x88	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80 exposed	
+0063E2E0	FUN_0063e2e0	0063E377	0x88	r	mov rbx, qword ptr [rsi + 8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x80 exposed	
+006318A0	FUN_006318a0	00631955	0x90	addr	lea rax, [rbx + 0x90]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	0063195C	0x90	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x90	
+00632D80	FUN_00632d80	00632DEC	0x90	addr	lea rax, [rcx + 0x90]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632DF3	0x90	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x90 exposed	
+00633390	FUN_00633390	006333E6	0x90	addr	lea r14, [r15 + 0x90]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	006333ED	0x90	r	mov rdi, qword ptr [r14]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x90 exposed	
+00633390	FUN_00633390	006334E4	0x90	r	mov rdx, qword ptr [r14]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x90 exposed	
+006318A0	FUN_006318a0	0063195F	0x98	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x90	
+00632D80	FUN_00632d80	00632DF6	0x98	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x90 exposed	
+006318A0	FUN_006318a0	00631963	0xA0	addr	lea rax, [rbx + 0xa0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	0063196A	0xA0	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xA0	
+00632D80	FUN_00632d80	00632DFA	0xA0	addr	lea rax, [rcx + 0xa0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632E01	0xA0	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xA0 exposed	
+00633390	FUN_00633390	0063344E	0xA0	addr	lea rsi, [r15 + 0xa0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	00633455	0xA0	r	mov rdi, qword ptr [rsi]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xA0 exposed	
+00633390	FUN_00633390	00633508	0xA0	r	mov rdx, qword ptr [rsi]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xA0 exposed	
+006318A0	FUN_006318a0	0063196D	0xA8	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xA0	
+00632D80	FUN_00632d80	00632E04	0xA8	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xA0 exposed	
+006318A0	FUN_006318a0	00631971	0xB0	addr	lea rax, [rbx + 0xb0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+006318A0	FUN_006318a0	00631978	0xB0	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xB0	
+00632D80	FUN_00632d80	00632E08	0xB0	addr	lea rax, [rcx + 0xb0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632E0F	0xB0	w	mov qword ptr [rax], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xB0 exposed	
+00633390	FUN_00633390	0063352C	0xB0	addr	lea r8, [r15 + 0xb0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	00633533	0xB0	r	mov rdx, qword ptr [r8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xB0 exposed	
+006318A0	FUN_006318a0	0063197B	0xB8	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xB0	
+00632D80	FUN_00632d80	00632E12	0xB8	w	mov qword ptr [rax + 8], rax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0xB0 exposed	
+006318A0	FUN_006318a0	0063197F	0xC0	w	mov qword ptr [rbx + 0xc0], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632E16	0xC0	w	mov qword ptr [rcx + 0xc0], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+0063DC80	FUN_0063dc80	0063DC80	0xC0	w	mov qword ptr [rcx + 0xc0], rdx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	00631986	0xC8	w	mov qword ptr [rbx + 0xc8], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632E1D	0xC8	w	mov qword ptr [rcx + 0xc8], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+0063DF90	FUN_0063df90	0063DF90	0xC8	w	mov qword ptr [rcx + 0xc8], rdx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	0063198D	0xD0	w	mov qword ptr [rbx + 0xd0], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632E24	0xD0	w	mov qword ptr [rcx + 0xd0], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+0063DFA0	FUN_0063dfa0	0063DFA0	0xD0	w	mov qword ptr [rcx + 0xd0], rdx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	00631994	0xD8	w	mov qword ptr [rbx + 0xd8], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632E2B	0xD8	w	mov qword ptr [rcx + 0xd8], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+006318A0	FUN_006318a0	0063199B	0xE0	w	mov qword ptr [rbx + 0xe0], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632E32	0xE0	w	mov qword ptr [rcx + 0xe0], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed zeroclear	
+006318A0	FUN_006318a0	006319A8	0xE8	w	mov dword ptr [rbx + 0xe8], eax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632E3F	0xE8	w	mov dword ptr [rcx + 0xe8], eax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00633390	FUN_00633390	006333BF	0xE8	r	mov eax, dword ptr [rcx + 0xe8]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	006319C1	0xEC	w	mov dword ptr [rbx + 0xec], 0xffffffff	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	
+00632D80	FUN_00632d80	00632E58	0xEC	w	mov dword ptr [rcx + 0xec], 0xffffffff	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	006319CB	0xF0	w	mov qword ptr [rbx + 0xf0], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+00632D80	FUN_00632d80	00632E4F	0xF0	w	mov dword ptr [rcx + 0xf0], eax	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E435	0xF0	r	mov ecx, dword ptr [rax + 0xf0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E44E	0xF0	r	mov r9d, dword ptr [rdx + 0xf0]	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632E62	0xF4	w	mov qword ptr [rcx + 0xf4], r10	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E416	0xF4	w	mov dword ptr [rcx + 0xf4], r8d	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E43B	0xF4	rw	add dword ptr [rdx + 0xf4], ecx	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+006318A0	FUN_006318a0	006319D2	0xF8	w	mov qword ptr [rbx + 0xf8], rdi	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 zeroclear	
+0063E410	FUN_0063e410	0063E46A	0xF8	w	mov dword ptr [rdx + 0xf8], r8d	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+0063E410	FUN_0063e410	0063E47F	0xF8	w	mov dword ptr [rdx + 0xf8], r8d	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00632D80	FUN_00632d80	00632E69	0xFC	w	mov dword ptr [rcx + 0xfc], r10d	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	00639465	0xFC	rw	or dword ptr [rbx + 0xfc], 0x40000000	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00639450	FUN_00639450	0063946F	0xFC	r	test byte ptr [rbx + 0xfc], 1	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0 exposed	
+00791B70	FUN_00791b70	00791BD0	0xFC	rw	or dword ptr [rdi + 0xfc], 2	route-seeded STATIC 0x02CF8270 | STATIC 0x02EA5380 - one static per registered class base+0x0	

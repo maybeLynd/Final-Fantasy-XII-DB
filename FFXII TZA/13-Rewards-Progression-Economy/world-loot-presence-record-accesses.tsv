@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+002FB150	Loot_FindOverlappingPickupIndex	002FB1E0	0x0	r	cmp byte ptr [rdi], 0	route-seeded ARRAY 0x022BE7F0 stride=0x20 count=10 base+0x0	

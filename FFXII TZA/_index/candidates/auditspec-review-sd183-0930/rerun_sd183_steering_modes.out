@@ -1,0 +1,34 @@
+PASS  S1   00339F00: desired heading xmm6 = 004687F0 yaw toward the goal st+4/+8/+0xC; mode = dword[st] & 0x1F: 1 and 4 -> 0033CEF0, 2 -> 0033D200, 3 -> 0033CE60, 4 -> 0033CEF0, 6 -> 0033BAA0 (no xmm1), 5 -> 0033CDE0
+PASS  S2   the flag word is dword[st+0] (= BattleUnit +0x80): ctx+0x100 and +0x108 both hold st; the dispatcher's only call (0033BF8D in SolveDefaultStep) is taken only while the countdown bits 5-14 are non-zero
+PASS  S3   after the body: countdown cleared when ctx+0xB0 exceeds the XZ distance to the goal, else decremented, mode bits kept
+PASS  S4   0033CC80(ctx, mode, yaw, pitch, dist): when dist > ctx+0xB0 it writes the goal st+4/+8/+0xC = ctx + dist * direction(yaw, pitch) and inserts `mode` into bits 0-4 (xor/and 0x1F/xor); otherwise it only clears the countdown
+PASS  S5   0033CC80's two callers are in 0033A720 (the obstacle-avoidance direction search): 0033B156 sets mode 4 after the candidate loop found no direction (0033CEF0 on the base heading first); 0033B582 sets mode esi = the chooser 00339DF0's value, turned into 1 when the forward step is clear (0033B370) or into 0033D200's return (0033B2F6)
+PASS  S6   the chooser 00339DF0 returns 3.0 (turn in place) when |wrap(candidate - st+0xE0)| > 0.01 and > row[0] degrees, else row byte 8 + 1 or byte 9 + 1 by row[1] degrees; row = 01EED4C0[(st+0x175 profile, <8 else 1) * 6 + (st+0x170 bit 3 clear ? 3 : 0) + speed band 0/1/2]; the 48 rows' byte pairs give only modes 1 and 2
+PASS  S7   0033D200 returns 5 when the goal lies inside a turning circle (00334220), else 2 - so 0033B582 can also write mode 5
+PASS  S8   003343D0 (TryStartRandomizedAvoidanceManeuver) sets mode 6: bit 15 = a random orbit direction (rand & 1), countdown = trunc(st+0x12C / arc step), halved when 0031EA90 == 4, st+4 = the orbit radius +- (rand % 5 + 5) / 100
+PASS  S9   0033E1F0 (ResetAvoidanceStateRandomized) clears mode and countdown together (mode 0)
+PASS  S10  census of dword stores through st = [ctx+0x100/0x108] in 00330000-00341FFF: 24 stores; the only ones that change bits 0-4 are 003346CD (clear bits 0, 3, 4), 003346D4 (or 6), 0033CD7F (xor-insert of the caller's mode), 0033E272 (clear bits 0-14); the other 20 keep bits 0-4 (and-masks ending in 0x1F, or registers built with 0x7FE0 / 0x8000 / 0xFFFF815F|0x140 / 0xA0|0xC0)
+PASS  S13  the only code that compares the five bits is the dispatcher and 003343D0's 'already mode 6' guard (00334441): modes 1 and 4 run the same body and nothing else tells them apart
+      E-1/4 far, full-rate turn, cone clamp                      desired +1.5000 -> B4 +1.000000 BC +0.100000 word 00C1 | model +1.000000 +0.100000 00C1
+      E-1/4 far, eased rate near alignment                       desired +1.5000 -> B4 +1.419297 BC +1.419297 word 00C1 | model +1.419297 +1.419297 00C1
+      E-1/4 close to goal, inside stop radius: hold              desired +1.5000 -> B4 +1.500000 BC +0.000000 word 00C1 | model +1.500000 +0.000000 00C1
+      E-1/4 close, outside stop radius: turn, move along desired desired +1.5000 -> B4 +1.500000 BC +0.100000 word 00C1 | model +1.500000 +0.100000 00C1
+      E-1/4 within one step: the jbe fallback stores desired raw desired +1.5000 -> B4 +1.500000 BC +1.500000 word 00C1 | model +1.500000 +1.500000 00C1
+      E-1/4 fast rate while ctx+0xB0 > st+0x104                  desired -2.0000 -> B4 -1.500000 BC -0.200000 word 00C1 | model -1.500000 -0.200000 00C1
+      E-1/4 wrap across +-pi                                     desired -3.0000 -> B4 +3.031473 BC +3.031473 word 00C1 | model +3.031473 +3.031473 00C1
+PASS  E1   executed 0033CEF0 on 7 fixtures: B4 (move heading) and BC (limited facing) and the countdown arm match the static reading (M1) on every case
+PASS  S11  0033CEF0's constants: easing below pi/3 as 0.5 (1 - cos 3d) blending the rate down to 1 degree; 30 ticks when st+0xE8 == 0; fallbacks 0033D099 / 0033D15A store the desired heading raw, 0033D102 holds st+0xE0
+      E-2   goal ahead, outside both turning circles             desired +0.2000 -> B4 +0.040372 BC +0.040372 word 0142 ret 2 | model +0.040372 +0.040372 0142 2
+      E-2   goal inside a turning circle -> returns 5            desired +1.5000 -> B4 +1.500000 BC +0.100000 word 0002 ret 5 | model +1.500000 +0.100000 0002 5
+      E-2   eased below pi/4                                     desired +0.3000 -> B4 +0.140372 BC +0.140372 word 0142 ret 2 | model +0.140372 +0.140372 0142 2
+      E-2   close (dist <= 5 speed), countdown running: hold     desired +1.0000 -> B4 +1.000000 BC +0.000000 word 0062 ret 2 | model +1.000000 +0.000000 0062 2
+      E-2   countdown running: no circle test, no re-arm         desired +1.5000 -> B4 +1.500000 BC +0.000000 word 0082 ret 2 | model +1.500000 +0.000000 0082 2
+PASS  E2   executed 0033D200 on 5 fixtures (its turning-circle test 00334220 runs its shipped bytes): outputs, returned 2 / 5 and the countdown arm match the reading (M2)
+PASS  S12  0033D200's constants: below pi/4 the rate scales by (80 d / (pi/4) + 20) %; it holds st+0xE0 within 5 steps of the goal; its order-word store 0033D3B9 arms the countdown at 10 and keeps bits 0-4 (no mode change)
+      E-6   orbit clockwise bit 15 = 0                           -> B4 -3.092177 BC +0.850000 B0 0.5000 B8 0.0000 word 0146
+      E-6   orbit bit 15 = 1 (reverse)                           -> B4 -0.052993 BC +0.850000 B0 0.5000 B8 0.0000 word 8146
+      E-6   step clear and no actor pair blocks -> ends          -> B4 +0.000000 BC +1.000000 B0 0.0000 B8 0.0000 word 0006
+PASS  E3   executed 0033BAA0 (stubs 00335B60 = 0 / 1, 0033D660 = 0): on the orbit branch ctx+0xB4 = the chord heading of one arc step, -3.092177 / -0.052993 for a = speed/circumference*2pi = 0.100000 (to the acos table's step, 5e-3), the direction set by bit 15; ctx+0xB0 = st+0xF8, ctx+0xB8 = 0; with the step clear and no pair blocking it clears the countdown and ctx+0xB0 (mode bits kept)
+PASS  E4   the limited facing turns from ctx+0xBC = 1.0 toward ctx+0xA8 (0 in the fixture; BuildSolverContext writes it as the yaw toward the target) by 1.5 x the arc angle = 0.1500: BC = +0.850000
+PASS  E5   control from the page's AM-7 text, executed 0033CE60: speed +0xB0 zeroed, B4 = BC = cur turned by the slow rate st+0xEC (0.1000), countdown armed at 10; on arrival (0.0500) the countdown is cleared (word 0003)
+FAILS 0

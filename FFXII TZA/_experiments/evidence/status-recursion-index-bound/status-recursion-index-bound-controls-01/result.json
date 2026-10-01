@@ -1,0 +1,57 @@
+{
+  "status": "PASS_THREE_ACTUAL_RECURSION_REFUSALS_INDEPENDENT_PENDING",
+  "cases": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-status-recursion-index-bound.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\failed-capture",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\failed-capture\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\failed-capture\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "capture prerequisite failed or missing",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "c64af37156bbaf73923c3e7baa434760e6fd44f59e52b0ad026595fae702684e"
+    },
+    {
+      "case": "changed-loop-bound",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-status-recursion-index-bound.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\changed-loop-bound",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\changed-loop-bound\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\changed-loop-bound\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "loop bytes differ from shipping reference",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "c64af37156bbaf73923c3e7baa434760e6fd44f59e52b0ad026595fae702684e"
+    },
+    {
+      "case": "missing-loop",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-status-recursion-index-bound.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\missing-loop",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\missing-loop\\capture-status.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\status-recursion-index-bound-controls-01\\missing-loop\\invalid-result.json"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_error": "missing/different loop source",
+      "expected_error_seen": true,
+      "invalid_result_absent": true,
+      "checker_sha256": "c64af37156bbaf73923c3e7baa434760e6fd44f59e52b0ad026595fae702684e"
+    }
+  ],
+  "driver_sha256": "94b06930bdcc7ba9bc363a098b607050f09a390fbee19c6aaf0f25b041642384",
+  "native_runs": 0,
+  "live_runs": 0,
+  "limits": "Producer synthetic regressions, not original-code executions or independent acceptance"
+}

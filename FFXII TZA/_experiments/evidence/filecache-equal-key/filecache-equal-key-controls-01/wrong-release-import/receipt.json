@@ -1,0 +1,28 @@
+{
+  "tag": "wrong-release-import",
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-equal-key.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-equal-key-controls-01\\wrong-release-import",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-equal-key-controls-01\\wrong-release-import\\result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "expected_error": "release import declaration mismatch",
+  "passed": true,
+  "result_absent": true,
+  "changed_file": "filecache-equal-key-source-01.json",
+  "changed_sha256": "b2b4c75e7940c35c11af5a1d0f8227a6e8a8cfcf876b501c5d6c7f098ffef0e4",
+  "inherited_from_baseline": {
+    "capture-filecache-equal-key.py": "51d1f24c3d626057a315385776a1dbbd1004b216704ae9e1a56ee773fecc625a",
+    "capture-index-path.py": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+    "validate-title-source-annotations.py": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "prove_owner_reload_order.py": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+    "filecache-equal-key-capture-01.status.json": "a92e71be20e194cb04a5fed141fdb2767486792e00de3ef0e3aabf746cf0578f",
+    "filecache-equal-key-capture-01.stdout": "3abb5b8f07c26b2986199201e752d42cb71a856e3509c58f16fb0fdb5cc4329d",
+    "filecache-equal-key-capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "producer_sha256": "527ec5a74e61818b28d1ac2b3601b6f1ede75497ff2526ade3fbdb567064c941"
+}

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-math-output-footprints\\control.py"
+  ],
+  "driver_sha256": "197a52de10ef1020906b5105a060f5760204144b69bac5e7acc0f50ed1b9a6a6",
+  "deadline_seconds": 55,
+  "exit": 0,
+  "terminal": true,
+  "exception": null
+}

@@ -1,7 +1,7 @@
 ---
 system: The handbook's monster viewer, end to end - from a MonsterId entry of the gallery file to a model that is never culled and is drawn only in the menu frame
 category: 16-UI
-status: DOCUMENTED
+status: AUDITED
 owner_layer: PrimaryOwner:UI
 evidence_tier: 1
 verified_against:
@@ -17,10 +17,12 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-monster-viewer-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
   note: written by FABLE. Started from two of FRONTIER's uncited bodies (004781E0, 004781A0) and one flag nobody had
     named (render record +0x6E0). Static. Corrects the 2026-09-12 Y-7 answer of mine that the gallery file's reader was
     "not found", and answers the settings page's residue "what that handle is". Not read - the pane's own drawing of
-    the viewer, the camera and light setters, the motion binders of loader states 6 and 7; pending first review
+    the viewer, the camera and light setters, the motion binders of loader states 6 and 7; pending first review  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-monster-viewer-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The handbook's monster viewer, end to end

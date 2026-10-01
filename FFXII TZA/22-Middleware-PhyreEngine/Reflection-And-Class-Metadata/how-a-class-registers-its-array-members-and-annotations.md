@@ -1,7 +1,7 @@
 ---
 system: How a Phyre class registers its array members and its annotations
 category: 22-Middleware-PhyreEngine
-status: DOCUMENTED — SD-61, SD-62, SD-63 and UQ-281 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — +0x58/+0x5C are the element size and the array kind (UQ-281, reconciled 2026-09-30); SD-61 answered 2026-09-30 (OPUS `73e6ff01f`; AUDIT-SEM review `auditsem-review-dd-owner-read-2-0930` §3), SD-62 answered 2026-09-30 (SWE2-ORACLE `dedfaf0d7`, after OPUS's `e2777d3c8` narrowing: the root's two lists and the class-name hash tree), SD-63 answered 2026-09-30 (OPUS `ce6a553b2`: the scene-wide shader parameter table and its constant-buffer layout); both PAnnotation destructors read (006B6750 on the page, 006B6780 on 2026-09-18: a 0x30-byte object) (status line current 2026-09-30, SWE2-DATA)
+status: AUDITED — SD-61, SD-62, SD-63 and UQ-281 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — +0x58/+0x5C are the element size and the array kind (UQ-281, reconciled 2026-09-30); SD-61 answered 2026-09-30 (OPUS `73e6ff01f`; AUDIT-SEM review `auditsem-review-dd-owner-read-2-0930` §3), SD-62 answered 2026-09-30 (SWE2-ORACLE `dedfaf0d7`, after OPUS's `e2777d3c8` narrowing: the root's two lists and the class-name hash tree), SD-63 answered 2026-09-30 (OPUS `ce6a553b2`: the scene-wide shader parameter table and its constant-buffer layout); both PAnnotation destructors read (006B6750 on the page, 006B6780 on 2026-09-18: a 0x30-byte object) (status line current 2026-09-30, SWE2-DATA)
 owner_layer: Phyre — from the ledger, not inferred from callers
 evidence_tier: 1
 level: L1
@@ -20,8 +20,9 @@ audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-phyre-reflection-pass-1
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-phyre-reflection-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # How a Phyre class registers its array members and its annotations

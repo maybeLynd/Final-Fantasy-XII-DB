@@ -1,0 +1,4 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+STATIC FORMAT {"iat_va": "0x8c2f08", "dll": "api-ms-win-crt-stdio-l1-1-0.dll", "name": "__stdio_common_vsprintf", "lookup_raw": "b4eccc0100000000"}
+0x17d2e0 8cee24942ffb9e71495d571868938e0540a0be6bc5fad7a4fea582889578a6e6
+0x16d670 3cfbe7e81225a3f1f1232206f4754a6127e1bcafc9c9f726d476192e97c09ca5

@@ -399,7 +399,7 @@ wait-for-light-animation mechanism.
 External drivers: `00314020` → `003E7EC0` (first-touch pass); `00355300` → `003E82F0` +
 `003E8AA0` (query one id, then refresh snapshots — mode = `byte[ctx+0x15]` of its own
 context object); `0034ECF0` → `00360710` (same `+0x15`-byte mode source); `00228130` →
-`00360880` (bit-scans `dword[02CB9C4]`, dispatches `00360710(member=bitIdx, group=arg)`);
+`00360880` (~~bit-scans `dword[02CB9C4]`, dispatches `00360710(member=bitIdx, group=arg)`~~ for managers 1 to 3, finds the lowest set bit of `dword[022CB9C4 + 4*(m-1)]` and calls `00360710(member=bit, group=m)` once per manager - *corrected 2026-10-01, OPUS, on ORACLE's RC-17 correction, read at `003608A0`-`003608B0`*);
 `002628B0` → `003603F0` (loops members 0–7 through `00360A50(member=i, group=arg)`);
 `0034DB30` → `00360A20` → `00360A50` (forwarder). The `00360710`/`00360A50` family walks
 the `022CB730` group table (0x80-stride groups, 8 × 0x10 slots) and passes the **group
@@ -1805,3 +1805,46 @@ Interior anchor `003784E1` (function `003784A0`).
 `004680D0` (139 B) is the table drain `002F5450` calls on this page's `02CA6010` array: each of the `02CA6020`-counted `0x40` rows releases `+0x14` through `003CD5D0` when `+0x04` is clear and `+0x30` the same way when `+0x10` reads 4, then `003EC8A0` frees both `02CA6010` and `02CA6018` and the tail jumps `00180280` - the full-table teardown the map pack runs on unload.
 
 Interior anchor `0046810E` (function `004680D0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*The functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`mapctrl_interior.py`](../../_index/candidates/opus-mapctrl-interior-1001/mapctrl_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001806F0` | 32 B | when `001A9930()` returns an object, stores `ecx` in its dword `+0x20` | `00180700`, `00180702`, `00180707` |
+| `00180730` | 112 B | calls `001A9B70` with the `001A9930()` object as the first argument, followed by this function's own four register arguments and three stack arguments | `0018074F`, `00180754`, `00180786` |
+| `001807A0` | 79 B | when `001A9930()` returns an object, calls `001A9BF0(object, byte +0x1C of 00189120() is non-zero, ecx, edx)` | `001807C4`, `001807C7`, `001807DA` |
+| `00182280` | 137 B | when `00189120()` returns an object, calls `00185CD0` on it with this function's four float arguments and its two byte stack arguments | `001822B3`, `001822C0`, `001822E6` |
+| `001A9B70` | 121 B | passes `r8d` on as 1, 2, 3 or 4 when it is 1 to 4 and as 0 otherwise, calling `001E5790(rdx, that value, r9, ...)` with its four stack arguments passed on (the first in `r9`) | `001A9B7A`, `001A9B96`, `001A9BDF` |
+| `001ACF80` | 306 B | when `001A9930()` returns an object, walks the list at `+0x10` (`0016D6D0` steps it) for the node whose payload `+0x40` has a non-null `+0x100` and whose string `+0x20` equals the string at that object's `+0x241`; on a match it decrements `+0x30`, unlinks the node (`0016DA60`), frees the node's string and the 0x48-byte node through the allocators at node `+0x38` and this `+0x38`, calls `001AC4B0(this, payload +0x100, payload +0x108)`, sets byte `+0x130`, frees payload `+0x100` (`00210EB0`) and the 0x118-byte payload (`00809950`) | `001ACFE0`, `001AD014`, `001AD078`, `001AD09D` |
+| `001E5540` | 123 B | stores the floats `xmm1` at `+0x1FC` and `xmm2` at `+0x200`, then calls `0060EC30(element, r9d)` for each qword of the array [`+0x18`, `+0x20`) | `001E5564`, `001E5570`, `001E5595` |
+| `00231F50` | 38 B | zeroes the nine qwords `+0x00` to `+0x40` | `00231F52`, `00231F6D`, `00231F71` |
+| `0026E290` | 97 B | on the object `*(0209A670)` with dword `+0x120` non-zero: when dword `0209A708` is set, calls `002F7380(object, *0209A668)` and clears `0209A708`; then calls the object's function pointer `+0x130` with (object, `ecx`) when it is set | `0026E2A8`, `0026E2C4`, `0026E2C9`, `0026E2E4` |
+| `0026EDB0` | 65 B | calls the function pointer at `+0x128` when it is set, then `0016D6A0` on `+0x40` and on `+0xA8` | `0026EDC9`, `0026EDD7`, `0026EDDC` |
+| `002F6740` | 124 B | stores the count `[rdx]` at `+0x22C`; when it is positive, stores `rdx + 0x10` at `+0x1A0`, allocates count * 12 bytes through `003EC8D0(6, ...)` into `+0x1D8`, and fills each 12-byte entry with the qword 1 and the float 1.0 at `+8` | `002F674B`, `002F676B`, `002F679D`, `002F67A6` |
+| `0034DC70` | 36 B | tail-calls `003E9020(00267E10(argument 4), 00377B90())` | `0034DC79`, `0034DC80`, `0034DC8F` |
+| `00355300` | 79 B | when `00267310(byte +0x15 of argument 2)` is non-zero, calls `00473680`, `003E8AA0` (with that byte) and `00466DD0`; then returns 1 when `003E82F0(dword [argument 3])` is non-zero, else 0 | `00355314`, `0035532A`, `00355336`, `00355344` |
+| `0037A9B0` | 78 B | in record `ecx` (0x50 bytes) of the table at `02EBF420`, scans the 8-byte entries from `+0x10` of the list at `+0x18` (count `+4`) for the word equal to `edx` and sets that entry's byte `+2` to 1 | `0037A9BD`, `0037A9E3`, `0037A9F7` |
+| `0037ACA0` | 45 B | for `ecx` up to 4, clears byte `+0x4C` of record `ecx` of `02EBF420` (address `02EBF46C`); for `ecx` 0 with the qword `02EBF420` null, tail-jumps to `003774C0` | `0037ACAF`, `0037ACB6`, `0037ACC6` |
+| `0037ACD0` | 53 B | for `ecx` up to 4, sets byte `+0x4C` of record `ecx` of `02EBF420` to 1 when its qword `+0` is non-null; for `ecx` 0 with the qword `02EBF420` null, tail-jumps to `00379290` | `0037ACE6`, `0037ACED`, `0037ACFE` |
+| `0037B290` | 42 B | returns word `+0x10` of the list at `+0x18` of record `ecx` of `02EBF420` when the list exists with a non-zero count `+4`, else -1 | `0037B2A1`, `0037B2B1`, `0037B2B6` |
+| `003B40F0` | 79 B | with v = its double argument xored with the 16 bytes at `01CEBD90`, returns (float `02B404A8` + float `02B40498` * v) / (float `02B404AC` + float `02B4049C` * v), computed in doubles and rounded through a float | `003B40F7`, `003B4118`, `003B4133`, `003B4137` |
+| `003CD5D0` | 125 B | for slot `cl` of the 0x40-byte records at `*(02B47790)`: when its dword `+4` equals `ecx`, decrements byte `02B47770`, clears `+4`, clears dword `+0x30` of each node on its `+0x28` chain (linked through `+0x38`), unlinks the record from the list linked through `+0x18` / `+0x20` (ends `02B47778` / `02B47780`) and returns 1; otherwise 0 | `003CD5DE`, `003CD5E3`, `003CD600`, `003CD61F` |
+| `003E8230` | 104 B | resolves id `ecx` in the table at `*(02B5D080)`: below word `+8`, splits it into id / 100 and id % 100; the group directory at word `+0xC` holds the group count, and each 4-byte group entry a member count (word `+2`) and an offset (word `+4`); returns table + offset + (id % 100) * word `+6`, or 0 when out of range | `003E8244`, `003E8252`, `003E826B`, `003E8289` |
+| `003E82A0` | 9 B | tail-calls `0037B030(0, ecx)` | `003E82A2`, `003E82A4` |
+| `003E82F0` | 85 B | resolves `ecx` through `003E8230`; when found, tail-calls `003E8350(record, table + word +0xE, 00265920())`, else returns 0 | `003E8306`, `003E830B`, `003E831B`, `003E8333` |
+| `003E8860` | 37 B | clears bit 3 of word `+0` of the record `003E8230(ecx)` resolves | `003E886E`, `003E887D` |
+| `003E8890` | 33 B | sets bit 3 of word `+0` of the record `003E8230(ecx)` resolves | `003E889E`, `003E88A8` |
+| `003E88C0` | 60 B | on the record `003E8230(edx)` resolves: clears bit 3 and sets bit 4 of word `+0`, stores `cl` in byte `+0x15` and keeps only the low four bits of byte `+0x12` | `003E88D3`, `003E88E8`, `003E88EC`, `003E88F0` |
+| `003E8900` | 64 B | as `003E88C0`, and also sets bit 4 of byte `+0x12` | `003E8913`, `003E8930`, `003E8934` |
+| `003EC910` | 95 B | between `0036C1D0(..., 0xB)` and `0036C140`, allocates `edx` bytes through `0036A190`; on null calls `00862690(00D11BF0)` and returns null; otherwise calls `r8` on the block when it is set and returns the block | `003EC924`, `003EC92B`, `003EC944`, `003EC95F` |
+| `003EC970` | 36 B | for `ecx` up to 7, returns the 0x38-byte record `ecx` at `02EBB820` when its qword `+0` is non-null, else 0 | `003EC97A`, `003EC981`, `003EC98B` |
+| `003ECA70` | 68 B | for `ecx` >= 0, on record `ecx` (0x38 bytes) at `02EBB820`: calls `003EC8A0` when dword `+8` is positive, clears qword `+0` and dword `+8`, and decrements dword `02EBB9E4` | `003ECA97`, `003ECA9E`, `003ECAA4` |
+| `003ED840` | 45 B | stores `rcx` at `02B5F1A0`; with n = dword `[rcx + ([rcx] + 1) * 4]` AND `0xFFFFFF`, stores `rcx + n * 16` at `02B5F1B0` when `edx` is greater than n (signed) | `003ED844`, `003ED84F`, `003ED865` |
+| `00466B10` | 111 B | for each of the dword `02EBB6E0` 0x50-byte records at `*(02EBB6F0)`, passes `+0x20` and `+0x28` to `003EC8A0`; then passes `02EBB6F0` itself, and clears qword `02EBB6F8` and the count | `00466B3B`, `00466B44`, `00466B5F`, `00466B6F` |
+| `00467D00` | 17 B | zeroes qword `+0x10`, dword `+0`, qword `+8` and qword `+0x18` | `00467D02`, `00467D08`, `00467D0C` |
+| `0051EDC0` | 49 B | returns the qword `+0x70`, `+0x78` or `+0x80` of `*(0209AC30)` for `ecx` 1, 2 or 3, and `+0x68` otherwise | `0051EDDA`, `0051EDE2`, `0051EDE7`, `0051EDEC` |
+| `00536060` | 27 B | returns 0 when word `+0xE` is 0, else `rcx` + word `+0xC` + dword `+8` | `0053606A`, `0053606D`, `00536077` |
+| `005360C0` | 84 B | allocates dword `+0x10` + 0x10 bytes through `003EC8D0(6, ...)`, stores `rcx` at the block's `+0`, links the block through `+8` (the block takes `[rcx+8]`'s old value, that node points at it, `[rcx+8]` becomes it), copies dword `+0x10` bytes from `rdx` to the block's `+0x10` through `00861EBA`, and increments dword `+0x14` | `005360DB`, `005360E3`, `005360F9`, `00536101`, `00536106` |
+| `00291D90` | 625 B | dispatches on the message `[rdx]`: 1 stores itself at `*(0209AC30) + 0x300`, resets `+0x168` with 1 in its bits 16-19, clears the ten 16-byte slots at `+0xC8` and calls `00247950`; `0x12` clears `*(0209AC30) + 0x300`; 2 steps a state machine kept in bits 16-19 of `+0x168` whose steps copy the ten slots from `0209BEA0`, request `0024A440(qword +0xD0, *01E0C210, 2)` into `+0xC0`, test each slot with `0032E4D0`, release `+0xC0` through `0024A680`, and in one state call `00244F00` on itself; any other message goes to `005C5230`, whose result it returns; messages 1, 2 and `0x12` return 0 | `00291DB7`, `00291F96`, `00291F2D`, `00291E4A` |

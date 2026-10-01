@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control-special-admission-source.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "driver_sha256": "49a7ca2392d7729ed9c48c026fcce55ab22872c9fa29375e6c86502694d32b02",
+  "stdout_sha256": "adea22e28b9b1b9b70dc13bc4c8e87bd92312f3eca0b21729d6a61c9faea10a0",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

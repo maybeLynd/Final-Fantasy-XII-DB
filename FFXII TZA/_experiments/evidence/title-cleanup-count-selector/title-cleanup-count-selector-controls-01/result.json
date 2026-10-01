@@ -1,0 +1,26 @@
+{
+  "status": "PASS_AFFECTED_PRODUCER_CONTROLS_INDEPENDENT_PENDING",
+  "checks": [
+    {
+      "case": "first-return-only",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "labelled_synthetic": true,
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-count-selector.py\", line 105, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-count-selector.py\", line 34, in main\r\n    raise ValueError(\"incomplete/wrong original span\")\r\nValueError: incomplete/wrong original span\r\n"
+    },
+    {
+      "case": "wrong-selected-offset",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "labelled_synthetic": true,
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-count-selector.py\", line 105, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-count-selector.py\", line 28, in main\r\n    annotations = S.validate(raw)\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\validate-title-source-annotations.py\", line 48, in validate\r\n    raise ValueError(\"decoded annotation disagrees with bytes at \" + record[\"pc\"])\r\nValueError: decoded annotation disagrees with bytes at 0x623e06\r\n"
+    },
+    {
+      "case": "wrong-root-metadata",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "labelled_synthetic": true,
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-count-selector.py\", line 105, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-cleanup-count-selector.py\", line 36, in main\r\n    raise ValueError(\"named span/leaf prerequisite changed\")\r\nValueError: named span/leaf prerequisite changed\r\n"
+    }
+  ],
+  "positive_sha256": "65c353fc508a3b745c09f4ea57dd6cb160ae31c5faf2f328b6bc7f7509d17d06",
+  "driver_sha256": "c7a925e968ee83672efff0a8c29f6e631c244f3c70d1fd4b66b6d806a87c2f57",
+  "limits": "Three actual prerequisite refusals; existing positive reused. No native/live, semantic independent acceptance or natural zero-count claim"
+}

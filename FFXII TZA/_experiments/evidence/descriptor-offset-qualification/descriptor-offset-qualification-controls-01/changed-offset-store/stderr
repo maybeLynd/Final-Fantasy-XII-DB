@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\normalize-namebinding-descriptor.py", line 84, in <module>
+    if __name__ == '__main__': main()
+                               ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\normalize-namebinding-descriptor.py", line 45, in main
+    raise ValueError('reference byte identity changed')
+ValueError: reference byte identity changed

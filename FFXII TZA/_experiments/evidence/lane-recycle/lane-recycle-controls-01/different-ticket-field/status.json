@@ -1,0 +1,13 @@
+{
+  "case": "different-ticket-field",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-lane-recycle.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\different-ticket-field\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\lane-recycle-controls-01\\different-ticket-field"
+  ],
+  "exit": 1,
+  "expected_error": "reference byte identity changed",
+  "expected_error_seen": true,
+  "result_absent": true
+}

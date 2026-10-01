@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\qualify_owner_fullpool_source.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-fullpool-source-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "d39a435cd893135056fe26c9e5832714620ab37a81d7574d9587d0b6a0a79bb9",
+  "helper_sha256": "e17427264036a17ba921e010f672e807393ec794fd2b5d1a95b6badca4cd546b"
+}

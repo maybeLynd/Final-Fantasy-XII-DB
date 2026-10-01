@@ -1,0 +1,9 @@
+PASS T1 record stores [('0x0', 8), ('0x10', 8), ('0x18', 8), ('0x20', 8), ('0x28', 8), ('0x30', 8), ('0x38', 4), ('0x40', 8), ('0x8', 8)] (old reading dword+0x28 / vtable+0x30 rejected)
+PASS T2 [('0x0', 8), ('0x10', 8), ('0x18', 8), ('0x20', 8), ('0x28', 8), ('0x30', 8), ('0x38', 4), ('0x40', 8), ('0x48', 8), ('0x50', 4), ('0x8', 8)]
+PASS T3 clamp + 0xD failure
+PASS T4 gate -> wait -> resize -> masked-0 selects null and reads it
+PASS T5 bank stride 0x38, key +0x20
+PASS T6 pre-call bank, then (bank+1)&3 regardless of the call's result
+PASS T7 bank +0x10, current context, tail 0062EBC0
+PASS T8 index guard
+FAILS 0

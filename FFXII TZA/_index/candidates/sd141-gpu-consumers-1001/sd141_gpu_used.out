@@ -1,0 +1,8 @@
+PASS  L1 UQ-22's layout: 4799 blobs, layouts [(1520, 154)]
+PASS  L2 the pair sits at +0x5D4 / +0x5DC: 0x5d4 / 0x5dc
+PASS  K1 control: EyePosition is USED in 3632 of 4799 blobs
+PASS  K2 control: the non-flying pair is USED (speed 517, range 517 of 4799 blobs)
+      mShadowFlyingFadeSpeed   declared in 4799 blobs, USED in 517 (files: ['phyredefaultlitshader.fx'])
+      mShadowFlyingFadeRange   declared in 4799 blobs, USED in 517 (files: ['phyredefaultlitshader.fx'])
+      RESULT: flying pair used by 1034 blob(s)
+FAILS 0

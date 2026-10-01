@@ -1,0 +1,5 @@
+CHECK row1: body ends 00261DF6, 66 90 pad, 0025E5DD mov ecx, dword ptr [r8 + rax*4 + 0x141df8], leading dwords resolving into the body 100 -> ok
+CHECK row2: 0027C40F cmp eax, 0x16, 0027C421 eax, byte ptr [r8 + rax + 0x15c6b8], 0027C42A ecx, dword ptr [r8 + rax*4 + 0x15c6a0], 23 bytes all <= 5 -> ok
+CHECK rows3-4: 0028060C cmp eax, 0x11, 0028061A eax, byte ptr [r8 + rax + 0x16065c], 00280623 ecx, dword ptr [r8 + rax*4 + 0x160650], offsets ['00280630', '0028063E', '00280648'], 18 bytes all <= 2 -> ok
+PATCHED 2 row(s)
+FAILS 0

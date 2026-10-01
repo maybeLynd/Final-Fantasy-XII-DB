@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control_bj1_prerequisites.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bj1-prerequisite-controls-01"
+  ],
+  "exit": 0,
+  "driver_sha256": "6fc181f5ddb611f0b073a53b2a6b18b73f065767241e770132ea5257f7f47fe1"
+}

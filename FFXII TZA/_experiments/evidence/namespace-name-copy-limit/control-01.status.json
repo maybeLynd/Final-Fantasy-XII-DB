@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\control.py"
+  ],
+  "driver_sha256": "0989b30bef17562282b59c58a0ecd2f2d7ad28a6bacb9d1fc6e8e53ac2376e3c",
+  "deadline_seconds": 60,
+  "exit": 0,
+  "terminal": true,
+  "exception": null
+}

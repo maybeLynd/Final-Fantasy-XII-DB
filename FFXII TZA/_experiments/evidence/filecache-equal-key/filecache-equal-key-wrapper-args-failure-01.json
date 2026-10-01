@@ -1,0 +1,16 @@
+{
+  "stage": "actual invocation",
+  "exit": 2,
+  "terminal": true,
+  "driver_sha256": "3b4ca6486e3dc0f3ab2f664435c15db3f3681384fe0469e2558e49ea851edd8a",
+  "command": [
+    "run-filecache-equal-key.py",
+    "prove-filecache-equal-key.py",
+    "filecache-equal-key-positive-01",
+    "--out",
+    "filecache-equal-key-result-01.json"
+  ],
+  "error": "argparse rejected --out before launching reducer or creating result/inner receipts",
+  "result_absent": true,
+  "fix": "REMAINDER forwards downstream argument tokens verbatim"
+}

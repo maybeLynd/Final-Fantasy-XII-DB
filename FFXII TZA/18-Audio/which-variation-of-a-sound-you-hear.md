@@ -1,7 +1,7 @@
 ---
 system: Which variation of a sound you hear
 category: 18-Audio
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS): ~~the group value and the emitter's use of the entry are not established~~ the group value is answered (UQ-259), the emitter's use of the entry is answered on the trigger page (UQ-262), and the descriptor's other bytes are SUPERSEDED under G-2; the 007CF830 predicate read 2026-09-18 (is a range authored); the SD-24 record identity answered 2026-09-30
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS): ~~the group value and the emitter's use of the entry are not established~~ the group value is answered (UQ-259), the emitter's use of the entry is answered on the trigger page (UQ-262), and the descriptor's other bytes are SUPERSEDED under G-2; the 007CF830 predicate read 2026-09-18 (is a range authored); the SD-24 record identity answered 2026-09-30
 owner_layer: PrimaryOwner:Audio
 evidence_tier: 1
 verified_against:
@@ -21,8 +21,9 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: first-read-repos-55
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record first-read-repos-55; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours covered inline (no dedicated section; fresh audit reports 0 unaccounted); killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Which variation of a sound you hear

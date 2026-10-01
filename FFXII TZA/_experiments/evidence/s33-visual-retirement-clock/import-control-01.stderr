@@ -1,0 +1,4 @@
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\s33-visual-retirement-clock\check_import_prefix.py", line 44
+    raise SystemExit(0 if complete else1)
+                     ^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression

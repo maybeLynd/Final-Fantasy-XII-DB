@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-index-domain-wrong-lookup-model-control-01.py", line 140, in <module>
+    if __name__=='__main__': main()
+                             ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-index-domain-wrong-lookup-model-control-01.py", line 105, in main
+    results=analyze(raw,tables)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-index-domain-wrong-lookup-model-control-01.py", line 80, in analyze
+    flat=lookup_flat_word(ns,signed16(full),len(words))
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-index-domain-wrong-lookup-model-control-01.py", line 61, in lookup_flat_word
+    if not 0<=flat<word_count:raise ValueError('lookup outside retained FST; not valid Python negative indexing')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: lookup outside retained FST; not valid Python negative indexing

@@ -1,0 +1,59 @@
+{
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": "0x120000",
+  "adapter_path": "Database\\Tools\\analysis-kit\\gfz-scripts\\reg_tracking.py",
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "driver_sha256": "5798bf1d658ee73d2304e34dc91872dbc8249fcb7640e5a9d4609b7ebab20baa",
+  "capstone": "5.0.7",
+  "controls": [
+    {
+      "bytes": "0f1101",
+      "expected": "w",
+      "observed": "w"
+    },
+    {
+      "bytes": "488d4104",
+      "expected": "addr",
+      "observed": "addr"
+    },
+    {
+      "bytes": "f00fb101",
+      "expected": "rw",
+      "observed": "rw"
+    }
+  ],
+  "ranges": [
+    {
+      "start": "0x3603c0",
+      "end_exclusive": "0x3603c8",
+      "sha256": "43f571be9e8d80aa36fb00ff979b526104d28b5fa768d013a1c882879c0a5cbb",
+      "instructions": [
+        {
+          "pc": "0x3603c0",
+          "bytes": "0fbe055fb3f601",
+          "mnemonic": "movsx",
+          "args": "eax, byte ptr [rip + 0x1f6b35f]",
+          "memory": [
+            {
+              "base": "rip",
+              "index": null,
+              "scale": 1,
+              "displacement": 32944991,
+              "size": 1,
+              "role": "r",
+              "rip_target": "0x22cb726"
+            }
+          ]
+        },
+        {
+          "pc": "0x3603c7",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "memory": []
+        }
+      ]
+    }
+  ]
+}

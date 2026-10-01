@@ -1,0 +1,19 @@
+{
+  "status": "PREPARED_NATIVE_GUARD_SOURCE_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "slots": {
+    "0xd49ea0": {
+      "offset": "0x8",
+      "bytes": "80d6160000000000",
+      "target": "0x16d680"
+    },
+    "0xd4bd30": {
+      "offset": "0x8",
+      "bytes": "80d6160000000000",
+      "target": "0x16d680"
+    }
+  },
+  "correction": "Private untested16D680 null-stub hypothesis refuted by original488BC1C3: it returns RCX. Published member-boundary packet did not depend on the hypothesis; its registered callback/status/address-width claims remain unchanged.",
+  "next": "Bind constructor argument7 to member+5C: outer-kind3 from5E48C6/5E4951 versus inner-kind2 from5EED9A. Both registered getters return self. Original59EC40 kind2/bit6 guard, not a null getter/link, should stop inner recursion; verify59BED0 terminal member. Mapped child-link at59B93C is a class-reference calculation, not assumed null.",
+  "limits": "No loaded descriptor/pointer, lifetime, resource-success or natural caller observation."
+}

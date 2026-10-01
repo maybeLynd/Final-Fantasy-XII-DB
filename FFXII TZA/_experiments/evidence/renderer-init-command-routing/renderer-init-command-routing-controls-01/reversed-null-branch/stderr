@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-init-command-routing.py", line 109, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-init-command-routing.py", line 63, in main
+    (0x1a1905,'mov','r8d, 0x40'),(0x1a190b,'mov','rdx, rsi'),(0x1a190e,'call','qword ptr [rax]')]:P.need(ix,pc,m,a)
+                                                                                                  ~~~~~~^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-queue-consumption.py", line 20, in need
+    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,a):raise ValueError('source operation mismatch '+hex(pc))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: source operation mismatch 0x1a1877

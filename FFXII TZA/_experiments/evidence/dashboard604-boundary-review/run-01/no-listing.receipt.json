@@ -1,0 +1,145 @@
+{
+  "case": "no-listing",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\source-vbf_index.py",
+    "--archive",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\positive.vbf",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\no-listing.json"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "stdout": "entries 2 header fe50bd5aed88\r\n",
+  "stderr": "",
+  "capture": {
+    "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\positive.vbf",
+    "archive_file_bytes": 142,
+    "archive_mtime_ns": 1790868946783196400,
+    "archive_index": {
+      "magic": "SRYK",
+      "header_length": 142,
+      "entry_count": 2,
+      "header_sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f"
+    },
+    "entries": [
+      [
+        "folder/a.dat",
+        100
+      ],
+      [
+        "folder/b.src",
+        200
+      ]
+    ],
+    "uncompressed_bytes": 300,
+    "vs_listing_failed": "no listing supplied"
+  },
+  "capture_sha256": "4ced4f63a2f146617692b2be761a7494d7b53810654fc3427e46d1a54c09932c",
+  "view": {
+    "view": "vbf",
+    "title": "VBF archive - the installed archive's own folder tree",
+    "status": "PARTIAL",
+    "source": {
+      "identity": "installed archive header sha256 fe50bd5aed88 (2 entries, file 142 bytes)",
+      "as_of": "ASTRA synthetic header fixture",
+      "instrument": "vbf_index.py (ASTRA A17 header parser) + requirements.py X",
+      "limits": "the tree IS the installed archive's folder tree (the VBF Browser has no category table), read from its header at this build; payload bytes, decompression and a running game's binding to this archive are not claimed. Format stages: disposition and layout explanation per extension and bucket member; field meaning is the format sheets' own claim. Listing comparison UNMEASURED: no listing supplied"
+    },
+    "measures": [
+      {
+        "id": "files",
+        "label": "files in the archive",
+        "numerator": 2,
+        "denominator": null,
+        "scope": "installed archive index",
+        "instrument": "vbf_index",
+        "as_of": "ASTRA synthetic header fixture",
+        "limits": "a file count; distinct formats and bytes are other denominators"
+      },
+      {
+        "id": "bytes",
+        "label": "bytes in the archive (uncompressed)",
+        "numerator": 300,
+        "denominator": null,
+        "scope": "installed archive index",
+        "instrument": "vbf_index",
+        "as_of": "ASTRA synthetic header fixture",
+        "limits": "uncompressed sizes from the header"
+      },
+      {
+        "id": "extensions",
+        "label": "distinct file extensions",
+        "numerator": 2,
+        "denominator": null,
+        "scope": "installed archive index",
+        "instrument": "vbf_index",
+        "as_of": "ASTRA synthetic header fixture",
+        "limits": "an extension is not a format variant"
+      },
+      {
+        "id": "formats-ext",
+        "label": "archive extensions with an accepted format disposition",
+        "numerator": 0,
+        "denominator": 0,
+        "scope": "X family, extensions (requirement facts)",
+        "instrument": "requirements.py X",
+        "as_of": "ASTRA synthetic header fixture",
+        "limits": "explained / standard / external; a bucketed extension counts through its members"
+      },
+      {
+        "id": "formats-members",
+        "label": "bucket member formats explained",
+        "numerator": 0,
+        "denominator": 0,
+        "scope": "X family, bucket members (requirement facts)",
+        "instrument": "requirements.py X",
+        "as_of": "ASTRA synthetic header fixture",
+        "limits": "a signature-scoped archive_formats claim explains the member"
+      }
+    ],
+    "tree": [
+      {
+        "id": "folder",
+        "label": "folder",
+        "counts": {
+          "files": 2,
+          "bytes": 300
+        },
+        "children": []
+      }
+    ],
+    "rows": {
+      "columns": [
+        "extension",
+        "files",
+        "bytes",
+        "format disposition"
+      ],
+      "data": [
+        [
+          "(listing comparison)",
+          "UNMEASURED",
+          "-",
+          "no listing supplied"
+        ],
+        [
+          "dat",
+          1,
+          100,
+          "-"
+        ],
+        [
+          "src",
+          1,
+          200,
+          "-"
+        ]
+      ]
+    }
+  },
+  "validation": null,
+  "temporary_output_left": false
+}

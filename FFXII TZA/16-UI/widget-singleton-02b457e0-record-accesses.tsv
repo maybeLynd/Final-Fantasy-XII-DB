@@ -1,0 +1,52 @@
+function	name	site	disp	kind	instruction	route	note
+003BE2D0	FUN_003be2d0	003BE306	0x0	r	mov rdx, qword ptr [r10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BECA0	FUN_003beca0	003BECD6	0x0	r	mov rdx, qword ptr [r10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BF520	FUN_003bf520	003BF550	0x0	r	mov r8, qword ptr [r9]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BF5E0	FUN_003bf5e0	003BF611	0x0	addr	lea r10, [rcx + 0x120]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x-120	
+003BF5E0	FUN_003bf5e0	003BF618	0x0	r	mov rcx, qword ptr [r10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C0CF0	FUN_003c0cf0	003C0D03	0x0	r	cmp qword ptr [rax], r9	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C1F00	FUN_003c1f00	003C1F1E	0x0	addr	lea r11, [rcx + 0x120]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x-120	
+003C1F00	FUN_003c1f00	003C1F37	0x0	r	cmp qword ptr [rax], r15	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C1F00	FUN_003c1f00	003C1FD0	0x0	r	cmp qword ptr [r11], r15	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C1F00	FUN_003c1f00	003C2012	0x0	w	mov qword ptr [rsi], rax	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C21C0	FUN_003c21c0	003C21D3	0x0	r	cmp qword ptr [rcx], 0	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C222A	0x0	addr	lea rdi, [rcx + 0x120]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x-120	
+003C2210	FUN_003c2210	003C2270	0x0	r	mov rcx, qword ptr [rdi]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C2281	0x0	w	mov qword ptr [rdi], r14	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C22B0	FUN_003c22b0	003C22FA	0x0	r	mov rcx, qword ptr [rsi]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C22B0	FUN_003c22b0	003C2310	0x0	w	mov qword ptr [rsi], rbp	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C26DA	0x0	addr	lea rbx, [rcx + 0x120]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x-120	
+003C26C0	FUN_003c26c0	003C26E7	0x0	r	cmp qword ptr [rbx], rbp	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C271C	0x0	r	mov rax, qword ptr [rbx]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C0CF0	FUN_003c0cf0	003C0D23	0x8	r	cmp qword ptr [rax + 8], r9	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C273F	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C27F4	0x8	r	mov rax, qword ptr [rbx + 8]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BE2D0	FUN_003be2d0	003BE30E	0x10	r	movzx ecx, byte ptr [r10 + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BECA0	FUN_003beca0	003BECDE	0x10	r	movzx ecx, byte ptr [r10 + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BF520	FUN_003bf520	003BF558	0x10	r	movzx ecx, byte ptr [r9 + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BF5E0	FUN_003bf5e0	003BF620	0x10	r	movzx eax, byte ptr [r10 + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C0CF0	FUN_003c0cf0	003C0D08	0x10	r	movzx edx, byte ptr [rax + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C1F00	FUN_003c1f00	003C1FF2	0x10	w	mov byte ptr [rsi + 0x10], dil	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C21C0	FUN_003c21c0	003C21D9	0x10	r	movzx eax, byte ptr [rcx + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C26EC	0x10	r	movzx eax, byte ptr [rbx + 0x10]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C1F00	FUN_003c1f00	003C201A	0x12	w	mov byte ptr [rsi + 0x12], al	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C2815	0x12	r	movzx r8d, byte ptr [rbx + 0x12]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C2243	0x13	r	cmp byte ptr [rdi + 0x13], sil	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C2262	0x13	r	movzx eax, byte ptr [rdi + 0x13]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C2273	0x13	w	mov byte ptr [rdi + 0x13], r14b	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C22B0	FUN_003c22b0	003C22C6	0x13	r	cmp byte ptr [rcx + 0x13], dil	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C22B0	FUN_003c22b0	003C22E7	0x13	r	movzx eax, byte ptr [rsi + 0x13]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C22B0	FUN_003c22b0	003C2302	0x13	w	mov byte ptr [rsi + 0x13], bpl	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C2733	0x13	w	mov byte ptr [rbx + 0x13], cl	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C282C	0x13	r	movzx eax, byte ptr [rbx + 0x13]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BF520	FUN_003bf520	003BF5D8	0x18	r	mov rax, qword ptr [r9 + rcx*8 + 0x18]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003BF5E0	FUN_003bf5e0	003BF6B2	0x18	r	mov rax, qword ptr [r10 + rax*8 + 0x18]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C2249	0x18	addr	lea rbx, [rdi + 0x18]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C2210	FUN_003c2210	003C2250	0x18	r	mov rcx, qword ptr [rbx]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x18	
+003C2210	FUN_003c2210	003C225F	0x18	w	mov qword ptr [rbx], r14	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x18	
+003C22B0	FUN_003c22b0	003C22D1	0x18	addr	lea rbx, [rcx + 0x18]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C22B0	FUN_003c22b0	003C22D5	0x18	r	mov rcx, qword ptr [rbx]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x18	
+003C22B0	FUN_003c22b0	003C22E4	0x18	w	mov qword ptr [rbx], rbp	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x18	
+003C26C0	FUN_003c26c0	003C2771	0x18	addr	lea r15, [rbx + 0x18]	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x0	
+003C26C0	FUN_003c26c0	003C2780	0x18	r	cmp qword ptr [r15], 0	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x18	
+003C26C0	FUN_003c26c0	003C2829	0x18	w	mov qword ptr [r15], rax	route-seeded EMBED WidgetSingleton02B457E0 +0x120 stride=0xA8 count=2 base+0x18	

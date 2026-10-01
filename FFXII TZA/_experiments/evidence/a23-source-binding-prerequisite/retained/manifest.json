@@ -1,0 +1,55 @@
+{
+  "status": "FROZEN_SOURCE_LEVEL_REPRODUCER_NOT_A23_ACCEPTANCE",
+  "members": [
+    {
+      "path": "PLAN.md",
+      "bytes": 1174,
+      "sha256": "f67fbe24fd2f5d6d2bdc758feef4d074ae952a522f5748565e0fcfb372f6e227"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 2629,
+      "sha256": "62b2fce88107c348e910ec97891318b34b27735b946e6b97976126bfe85986d3"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 3639,
+      "sha256": "ceb477615458bdd3ef57fa59c7f96c94135155ff45ccd1f47dfb70fa2d48bc87"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3845,
+      "sha256": "1f14acc954801dbc2b725b9d53b8184c9dd746e546e2ef1b237235f222b3ce62"
+    },
+    {
+      "path": "terminal.json",
+      "bytes": 223,
+      "sha256": "b2a76a03719248af23d5a4973a32fe9a0c8f05a57c7b9851d5c6184d07788787"
+    },
+    {
+      "path": "source-release.py",
+      "bytes": 6653,
+      "sha256": "838d4882e545c353061888ba5d06eae76514f1a219a73fff400df51dc9948469"
+    },
+    {
+      "path": "initial-peer-source-run/probe.py",
+      "bytes": 3536,
+      "sha256": "52714f3a93112ef7bb6eb32a00bde6a6baba36a06f79fcd04683fa849083540d"
+    },
+    {
+      "path": "initial-peer-source-run/result.json",
+      "bytes": 3751,
+      "sha256": "0824ef573270d131ef871707087defb7dd18f7fb3e69a9a8ce692bd07be9cea1"
+    },
+    {
+      "path": "initial-peer-source-run/terminal.json",
+      "bytes": 223,
+      "sha256": "8f6e2e2103106e6f826a99e99f30d9bbe1c4229fe469d59afa6b5efa9e29e64e"
+    },
+    {
+      "path": "initial-peer-source-run/source-release.py",
+      "bytes": 6653,
+      "sha256": "838d4882e545c353061888ba5d06eae76514f1a219a73fff400df51dc9948469"
+    }
+  ]
+}

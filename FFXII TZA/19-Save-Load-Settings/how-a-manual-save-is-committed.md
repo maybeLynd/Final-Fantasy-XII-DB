@@ -1,7 +1,7 @@
 ---
 system: How a manual save is committed - the eight-step slot transaction, its completion callback, and the header stamp that makes the file valid
 category: 19-Save-Load-Settings
-status: DOCUMENTED
+status: AUDITED
 owner_layer: PrimaryOwner:Save_Load_Settings
 evidence_tier: 1
 verified_against:
@@ -17,6 +17,8 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-manual-save-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
   note: written by FABLE while placing one of FRONTIER's uncited bodies (00581B70). Static. CORRECTED 2026-09-20
     (FABLE, Claude Opus 5) - the short variant branches inside the state-2 arm, after the icon.sys delete has
     completed, so it skips states 3 and 4 only; the transaction's own progress totals (0x1DA full, 0x17C short) are
@@ -24,7 +26,7 @@ audit:
     +0x18. The mechanics of the state
     machine were already on the save-image page as a mechanical note; what the steps ARE - which file, which operation,
     in which order, and why - was not. Not read - the write worker itself, the submission descriptor, the header finaliser; the storage layer's close
-    routine read for its calls only; pending first review
+    routine read for its calls only; pending first review  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-manual-save-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # How a manual save is committed

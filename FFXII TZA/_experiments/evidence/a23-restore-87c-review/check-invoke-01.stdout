@@ -1,0 +1,56 @@
+{
+  "status": "CHECK_RECEIPTS_VALID_SCOPED_REJECT",
+  "native_cli_receipts": [
+    {
+      "case": "original",
+      "exit": 0,
+      "stdout_sha256": "794986a7873f968c4a9ac7f36b789a86521427047857240a448056dc404cb190",
+      "receipt_sha256": "a4e4127247afbb3e330faa782255935e05277913ffaa48742c528e37b2665f91"
+    },
+    {
+      "case": "percent-distinct",
+      "exit": 0,
+      "stdout_sha256": "1cd22dfaf41576491d9ad3a7a9f537cfd40debdf21ea317eea06ef9a8136933c",
+      "receipt_sha256": "7d34fc667daf91800bccb369b7fbf536253942e25e7041bbd5d86e681eae7c85"
+    },
+    {
+      "case": "case-pair",
+      "exit": 1,
+      "stdout_sha256": "ad00b57900db084d4fd1220375649c228a4bcc97374362851b0095464d8a1d88",
+      "receipt_sha256": "fd592a63c4d5ab168df019de2e88e701dac0bed064296eadee36e4bf562c8133"
+    },
+    {
+      "case": "unverified",
+      "exit": 1,
+      "stdout_sha256": "fa92cddd2872a1aa8f7782d591926e45ccb70a9e3f0ed37e3abd68904caea10e",
+      "receipt_sha256": "294fb369f6c4c7886315ff91a9dcbbd9e76c88e5f8c7942a9f4b0556e8147fef"
+    },
+    {
+      "case": "trailing-period",
+      "exit": 0,
+      "stdout_sha256": "f66a279efe72960787fb7cb2527f3e24cd52a5ce211fbba8f84f90c8c33c0018",
+      "receipt_sha256": "6239fd6adf30e9b0c0aaa2ed4a070b5912dba6f69523368d9092b52f3e0e4a26"
+    },
+    {
+      "case": "nonempty",
+      "exit": 1,
+      "stdout_sha256": "99c3db24506e1774cade1bcac01e7ce654bacbacaa6c2aa1a5f2e4fbddb47eb7",
+      "receipt_sha256": "7d2c02dda75c0313917fcffc2238ef8de4c9b8ffe117e005b25095681775c8ad"
+    },
+    {
+      "case": "trailing-output",
+      "exit": 1,
+      "stdout_sha256": "5eb0b711dc2f5651a415c0a1103061eca1abbdd0553350d966f667d085286c9f",
+      "receipt_sha256": "31570d7ac2b01c95388915fb529979e7d8db9e025799c5f1872a47d085a91094"
+    }
+  ],
+  "restored_member_counts": [
+    35,
+    35,
+    35
+  ],
+  "reserved_device_calls": 12,
+  "source_sha256": "033c37bd65cf4e9b5f33c94af14ad867877ac32cf992ad1515d4c230a6597dec",
+  "semantic_verdict": "REJECT_DOCUMENTED_DEVICE_CLASS",
+  "limits": "Retained receipt consistency and artifact identity; no new native restore, no fresh physical alias measurement, no device I/O or game execution."
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-init-command-routing.py", line 109, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-init-command-routing.py", line 80, in main
+    if q is None or q['end_exclusive']!='0x189128' or q['sha256']!='b02fbb2973e16dbb84c98a083df86088e8bf9ed44f9acb18380d73344cdd193e':raise ValueError('retained getter prerequisite incomplete')
+                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: retained getter prerequisite incomplete

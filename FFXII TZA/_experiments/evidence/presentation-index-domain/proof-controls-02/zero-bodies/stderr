@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\presentation-index-domain\prove.py", line 100, in <module>
+    ap=argparse.ArgumentParser();ap.add_argument('output',type=Path);ap.add_argument('--src',type=Path,default=P);args=ap.parse_args();main(args.src,args.output)
+                                                                                                                                       ~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\presentation-index-domain\prove.py", line 16, in main
+    V=load('presentation_annotation',T/'validate-title-source-annotations.py');roles=V.validate(v)
+                                                                                     ~~~~~~~~~~^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 28, in validate
+    raise ValueError("missing/zero original ranges")
+ValueError: missing/zero original ranges

@@ -1,0 +1,127 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"STATIC_EFFECT_BOUNDARIES_VALID_NOT_CLASS_CLOSURE\",\n  \"method\": \"A; retained original code decoding, no machine-code/game execution\",\n  \"class_stability\": \"OPEN\",\n  \"commit_dispatch_targets\": [\n    \"0x52b5d0\",\n    \"0x52a8a0\",\n    \"0x529d40\",\n    \"0x45fd00\"\n  ],\n  \"limits\": \"Conditional source facts only; initialized alias/lifetime/callback/normal reachability not established. No-root catalogue bodies remain qualified. Original failed capture and additive edge corrections preserved.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-upstream-failed"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 21, in <module>\n    assert terminal['terminal'] is True and terminal['returncode'] == 0 and not terminal['stderr'], 'Required capture failed/incomplete'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required capture failed/incomplete\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "missing-latest",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-missing-latest"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 57, in <module>\n    assert set(all_raw) == set(stems), 'Required newest boundary missing'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required newest boundary missing\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "empty-capture",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-empty-capture"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 36, in <module>\n    assert raw['callees'] and {int(f['entry'], 16) for f in raw['callees']} == set(raw['unique_targets']), 'Missing/zero-case capture'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Missing/zero-case capture\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "drop-conditional",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-drop-conditional"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 64, in <module>\n    assert actual == [{'pc': '0x2e6303', 'target': '0x265510', 'mnemonic': 'js', 'conditional': True, 'resolved_immediate': True}], 'Real conditional-tail control missing'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Real conditional-tail control missing\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "tail-as-call",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-tail-as-call"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 67, in <module>\n    assert selected == [{'pc': '0x3ec4dd', 'target': '0x4288b0', 'mnemonic': 'call', 'kind': 'direct_call'}, {'pc': '0x3ec4fb', 'target': '0x3b3ca0', 'mnemonic': 'jmp', 'kind': 'unconditional_tail'}]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "fictional-closure",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-fictional-closure"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 86, in <module>\n    if '--fault-fictional-closure' in sys.argv: assert not dispatch, 'Four original native tails remain; no class-closure acceptance'\n                                                       ^^^^^^^^^^^^\nAssertionError: Four original native tails remain; no class-closure acceptance\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "lea-read",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-lea-read"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 77, in <module>\n    assert lea == [{'kind': 'addr', 'bytes': 8}] and store == [{'kind': 'w', 'bytes': 8}] and rmw == [{'kind': 'rw', 'bytes': 4}], 'Real LEA/store/RMW classifications'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Real LEA/store/RMW classifications\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  },
+  {
+    "case": "store-read",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py",
+      "--fault-store-read"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-effects.py\", line 77, in <module>\n    assert lea == [{'kind': 'addr', 'bytes': 8}] and store == [{'kind': 'w', 'bytes': 8}] and rmw == [{'kind': 'rw', 'bytes': 4}], 'Real LEA/store/RMW classifications'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Real LEA/store/RMW classifications\n",
+    "terminal": true,
+    "checker_sha256": "ddccbdd23a014b9718cfb66f77d91d99dc9eeeba8d7af9ee481fc020b4519a10"
+  }
+]

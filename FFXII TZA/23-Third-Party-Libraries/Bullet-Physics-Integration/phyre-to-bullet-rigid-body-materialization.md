@@ -1,7 +1,7 @@
 ---
 system: Phyre-to-Bullet rigid body materialization
 category: 23-Third-Party-Libraries
-status: DOCUMENTED — the exact Bullet version (UQ-302) is SUPERSEDED as a duplicate of BN-1, answered 2026-09-26 (the 2.77 line); the field split inside phyreBody[0xC0]/material[0x04] (BN-2) is answered; which objects become rigid bodies (UQ-304) is SUPERSEDED as a duplicate of BN-4, answered 2026-09-27 (none in shipped content); the 102 generically tagged functions (UQ-305) are SUPERSEDED as a duplicate of BN-6. Re-statused 2026-09-29 (OPUS, owner read under FABLE's status-currency ruling, _index/candidates/dd-owner-read-0929)
+status: AUDITED — the exact Bullet version (UQ-302) is SUPERSEDED as a duplicate of BN-1, answered 2026-09-26 (the 2.77 line); the field split inside phyreBody[0xC0]/material[0x04] (BN-2) is answered; which objects become rigid bodies (UQ-304) is SUPERSEDED as a duplicate of BN-4, answered 2026-09-27 (none in shipped content); the 102 generically tagged functions (UQ-305) are SUPERSEDED as a duplicate of BN-6. Re-statused 2026-09-29 (OPUS, owner read under FABLE's status-currency ruling, _index/candidates/dd-owner-read-0929)
 owner_layer: CodeDomain:Phyre.PPhysics.Bullet + ThirdParty.Physics.Bullet
 evidence_tier: 6
 verified_against:
@@ -24,8 +24,9 @@ audit:
   last_falsification: 2026-09-03
   last_falsification_by: repos-d2
   falsification_result: 0 overturned, 9 survived, 2 claims strengthened — see section 10
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record GN158 checkpoint 2ed8affb… / snapshot 46f02e26…, project GFZ_HD2; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours covered inline (no dedicated section; fresh audit reports 0 unaccounted); killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Phyre-to-Bullet rigid body materialization

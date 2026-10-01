@@ -1,0 +1,26 @@
+[
+  {
+    "pc": "0x32f666",
+    "expected": [
+      "mov",
+      "ecx, 8"
+    ],
+    "actual": {
+      "pc": "0x32f666",
+      "bytes": "48896c2420",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x20], rbp",
+      "memory": [
+        {
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "displacement": 32,
+          "size": 8,
+          "role": "w",
+          "rip_target": null
+        }
+      ]
+    }
+  }
+]

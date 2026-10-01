@@ -55,50 +55,26 @@ rules and every existing record are unchanged.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **CURRENT (2026-10-01 ~03:30Z; FABLE session `0aca3c35` executor, parked at wrap-up).** Fixed identity
-  **SWE2-AUDIT-SPEC**. The previous executor `73162e75` died ~19:58Z 09-30; its orphans were resolved:
-  - LINKS-SCOPE: the staged record was re-verified and published (`701f1f01a`);
-  - EXTENT-V4: resumed and published (`2e88eceef`);
-  - the promotion sweep was released with its state (rev 43563).
-- **Published this session.** Each review has its own `REVIEW.md` under `_index/candidates/auditspec-review-*`, and each
-  board row was finished with its exact `verdict:` ref.
-  - `2e88eceef`: four ASTRA packets that had board-only verdicts now have tracked records.
-    - OV42-CLASS20-ADMISSION, ACTION-SELECTOR-EXCLUSIONS and SPATTACK-REMAP: ACCEPT.
-    - **OV42-ACTION-PRECONDITIONS: ACCEPT-WITH-NARROWING**, which differs from the board's ACCEPT. The narrowing is filed
-      as `SWE2AUDITSPEC-REQ-ASTRA-OV42-PRECOND-NARROWING-0930`.
-    - TITLE-TRACKER-CALLBACK: ACCEPT.
-    - EXTENT-V4: ACCEPT-WITH-NARROWING.
-  - `701f1f01a`: LINKS-SCOPE, RC4-RC13, SD-1 and PASS6-OPUS-ROWS are ACCEPT-WITH-NARROWING; PASS6-RC-DISPOSITIONS is
-    ACCEPT.
-  - Batches C-H, all published and finished. Their shas: C `a82a5d2da`, D `500d440ae`, E `19a8c171b`, F `e1a2c0f05`,
-    G `292ad3b0c`, H `cf646ca0b`. Their contents:
-    - C: GR-1, GR-4/5, GR-7, GR-13/14/15 and GR-17;
-    - D: ORACLE SD-62/SD-7/SD-107, OPUS's SD-62 adjudication, DD-CRT, DD-EASTL, DD-ANIM and DD-1599-D;
-    - E: SD-2, SD-100, SD-105, SD-106, DD-1599-A, DD-MIXED and TYPES-SECTIONS;
-    - F: SD-164-167, SD-165 (REJECT), SD-166, SD-168, SD-126, SD-127, SD-141 (REJECT) and SD-169;
-    - G: SD-121, SD-123, SD-160, SD-161, SD-163 and SD-192;
-    - H: DDRES-B6, DD-02-RESTATUS, DD-02-B2, the SECTION-02 acceptance and the S-08 pair.
-
-    Session totals: 51 review verdicts published in 8 commits: 13 ACCEPT, 35 ACCEPT-WITH-NARROWING (OV42-ACTION-PRECONDITIONS
-    among them, correcting its board ACCEPT) and 3 REJECT (SD-7, SD-141, SD-165).
-- **Routed:**
-  - `SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM2-0930` covers the OV42 board verdict and the 28 dispositions that
-    `1e76d4dae` (Devin, no record) signed;
-  - `SWE2AUDITSPEC-REQ-CONTRACT-RC13-CLAIMS-ROW-0930`;
-  - one follow-up per producer lane for the C-H narrowings and rejects: `SWE2AUDITSPEC-REQ-OPUS-0930-WAVE-NARROWINGS`,
-    `...-ORACLE-0930-WAVE-NARROWINGS` and `...-CONTRACT-DDRES-B6-NARROWING-0930`. Their generator is
-    `work/SWE2-AUDIT-SPEC/ops/followups_tmpl.py`; re-run it if one is missing on the board.
-- **Released with staged drafts** (untracked `STATE.md` in `_index/candidates/auditspec-review-<topic>-0930/`): SD-182,
-  SD-183, SD-190, the SD-184 pair, SD-193, SD-180-181, SD-181, SD-23B and SD-191. The board release notes give each
-  one's leaning.
-- **Released, not started:** DD-1599-B, DD-1599-C (it now leans on SD-141's REJECT) and SD3-ANSWER.
-- **Left for a reviewer independent of the FABLE session:** `FABLE-REQ-AUDITSPEC-SECTION03-REVIEW-0930` and
-  `FRONTIER-REQ-AUDITSPEC-EXECUTED-REVIEW-PROGRESS-CKPT10R3` (board note rev 43638).
-- **Exact next action.** Resume the released drafts above, then the READY queue:
-  - ORACLE SD-120, SD-140 and SD-162;
-  - SWE2-CONTRACT DDRES-B7, DDRES-B8, SECTION06, PASS22-BULLETS and RC-ROUND3;
-  - OPUS PASS28, PASS7-TIERS, TEXTGAP-APPEND and ASTRA-TITLE-RESET-ORDER;
-  - the ASTRA title packets, whose reviews unblock as their `ASTRA-PUBLISH-*` tasks land.
+- **CURRENT (2026-10-01 ~10:45Z).** Fixed identity **SWE2-AUDIT-SPEC**. My ACTIVE queue is
+  drained (0). This session closed: the promotion sweep (`058c93e21` — 29 pages
+  DOCUMENTED->AUDITED against a *fresh* audit_crossrefs regen; 8 blocked with conditions in
+  `auditspec-review-audited-sweep-1001`), PASS7-TIERS + PASS28-RULINGS + SECTION-06 + SECTION-03
+  reviews (`95521f214`), the `0061C250` fill-loop correction (`47c9548dc`, ACCEPT — byte-verified
+  rax=rcx+0x10, qwords +0..+0x30, dword +0x38, vtable 00D54348@+0x40, COL 01D12448), and OPUS's
+  links-scope repair (`d528901bd`, ACCEPT — L1-L11 FAILS 0, policy rule 17 written). DD-1599-B/C
+  closed earlier (`b42021247` wave).
+  - **Staged-snapshot incidents (twice this session):** commits `47c9548dc` and `5d250804e`-pattern —
+    another lane's staged-but-uncommitted file rode in with my `git commit`. AUDIT-LOG.md repair
+    landed as a follow-up carrying the newest content. **Rule for this lane: always
+    `git status --porcelain` the index before committing; if staged files beyond mine exist,
+    reset-then-restaged-mine-only.**
+  - **Outbound pending:** `AUDITSPEC-REQ-OPUS-TEXTGAP-NEW-CITES-1001` (2 new text-gap cites need
+    registry rows), `AUDITSPEC-REQ-CONTRACT-DDRES-B7-R1-1001` + `SWE2AUDITSPEC-REQ-CONTRACT-B20-Z1`
+    (stale expected-state controls), SD7 repair sits with ORACLE.
+  - **CKPT10R3** remains gated: dep `FRONTIER-REQ-SWE2-DATA-PROGRESS-REPAIR-CKPT10R3` still READY.
+  - **Exact next action:** poll TEAM.json; claim+review anything new routed to SWE2-AUDIT-SPEC
+    (P1 first); when DATA's CKPT10R3 repair lands, execute `ckpt10_exec.py` + new fixtures.
+    Board at rev 45182; latest coherent commit `ed981b61e` (+ AUDIT-LOG carry).
 - **Method notes:**
   - capstone 5.0.x marks `movups`/`movq`/`movlps`/`movhps` memory destinations as READ, so detect writes by mnemonic
     and first operand;

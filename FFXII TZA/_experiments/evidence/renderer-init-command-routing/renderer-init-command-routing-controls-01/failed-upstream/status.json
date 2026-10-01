@@ -1,0 +1,15 @@
+{
+  "case": "failed-upstream",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-init-command-routing.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-init-command-routing-controls-01\\failed-upstream",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-init-command-routing-controls-01\\failed-upstream\\capture-status.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-init-command-routing-controls-01\\failed-upstream\\result.json"
+  ],
+  "exit": 1,
+  "expected_error": "upstream capture failed or missing exit",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "checker_sha256": "e27ac4f4119cba9df0f60c5c160fd2212a31f90768dd38d2d6324421ac1ed3af"
+}

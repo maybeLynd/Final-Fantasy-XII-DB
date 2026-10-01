@@ -1,0 +1,175 @@
+function	name	site	disp	kind	instruction	route	note
+00244960	FUN_00244960	00244960	0x10	r	cmp qword ptr [rdx + 0x10], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0 exposed	
+002BF3D0	FUN_002bf3d0	002BF459	0x30	w	movups xmmword ptr [rsi], xmm0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x30	
+002BDCE0	FUN_002bdce0	002BDFDD	0x40	rw	and dword ptr [rax + 0x40], 0xfffff7ff	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BF3D0	FUN_002bf3d0	002BF45F	0x40	w	mov dword ptr [rsi + 0x10], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x30	
+002BF3D0	FUN_002bf3d0	002BF459	0x44	w	movups xmmword ptr [rsi], xmm0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x44	
+002BF3D0	FUN_002bf3d0	002BF45F	0x54	w	mov dword ptr [rsi + 0x10], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x44	
+002BF3D0	FUN_002bf3d0	002BF459	0x58	w	movups xmmword ptr [rsi], xmm0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x58	
+002BF3D0	FUN_002bf3d0	002BF45F	0x68	w	mov dword ptr [rsi + 0x10], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x58	
+002BDCE0	FUN_002bdce0	002BDFAC	0x9C	w	mov word ptr [rcx + 0x9c], ax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BDCE0	FUN_002bdce0	002BDFB3	0x9E	w	mov word ptr [rcx + 0x9e], dx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+003F80E0	FUN_003f80e0	003F80EE	0xA38	addr	lea r9, [rcx + 0x960]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xD8	
+003F80E0	FUN_003f80e0	003F8103	0xA38	w	mov dword ptr [rcx], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA38	
+003F80E0	FUN_003f80e0	003F8121	0xA38	w	mov dword ptr [r9], ecx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA38	
+003F80E0	FUN_003f80e0	003F8105	0xA3C	addr	lea rcx, [rcx + 4]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA38	
+003F80D0	FUN_003f80d0	003F80D0	0xA5C	r	test byte ptr [rcx + 0x984], 1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xD8	
+00276650	FUN_00276650	002766B2	0xA80	w	mov dword ptr [rdi + 0x18], ebx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+00276650	FUN_00276650	002766C2	0xA80	w	mov dword ptr [rdi + 0x18], ebx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+00276650	FUN_00276650	002766CE	0xAD0	w	mov dword ptr [rdi + 0x68], ebx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+00276650	FUN_00276650	002766AC	0xAD6	r	cmp word ptr [rdi + 0x6e], bx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+00276650	FUN_00276650	002766B5	0xAD6	w	mov word ptr [rdi + 0x6e], r14w	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+00276650	FUN_00276650	002766BC	0xAD6	r	cmp word ptr [rdi + 0x6e], bx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+00276650	FUN_00276650	002766C5	0xAD6	w	mov word ptr [rdi + 0x6e], bx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xA68	
+002465F0	FUN_002465f0	00246641	0xB38	w	mov qword ptr [rdi], rbx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00246AD0	FUN_00246ad0	00246BF7	0xB38	r	mov rax, qword ptr [rbx]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002473F0	FUN_002473f0	0024743E	0xB38	r	mov rax, qword ptr [r8]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00273A20	FUN_00273a20	00273A22	0xB38	r	cmp qword ptr [rcx], rax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002753F0	FUN_002753f0	002753FA	0xB38	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00276650	FUN_00276650	0027672F	0xB38	r	mov rax, qword ptr [rsi]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00246AD0	FUN_00246ad0	00246AE5	0xB48	r	cmp qword ptr [rdx + 0x10], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00248220	FUN_00248220	00248267	0xB48	w	mov qword ptr [rdx + 0x10], rbx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002473F0	FUN_002473f0	00247414	0xB50	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00248220	FUN_00248220	0024827A	0xB50	r	mov rdi, qword ptr [rdx + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002753F0	FUN_002753f0	00275405	0xB50	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00248220	FUN_00248220	00248260	0xB60	w	mov qword ptr [rdx + 0x28], rcx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002465F0	FUN_002465f0	00246647	0xB78	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	00246650	0xB78	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	00246660	0xB78	w	mov dword ptr [rdi + 0x40], ecx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	0024666D	0xB78	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466D1	0xB78	rw	and dword ptr [rdi + 0x40], 0xffffbfff	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466F2	0xB78	rw	or dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00246AD0	FUN_00246ad0	00246ADE	0xB78	rw	and dword ptr [rdx + 0x40], 0xffffffbf	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246AEA	0xB78	r	mov eax, dword ptr [rdx + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246AF2	0xB78	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B06	0xB78	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B18	0xB78	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B72	0xB78	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B95	0xB78	rw	or dword ptr [rbx + 0x40], 0x200	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BA3	0xB78	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002473F0	FUN_002473f0	0024741F	0xB78	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002473F0	FUN_002473f0	0024743A	0xB78	w	mov dword ptr [r8 + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00248220	FUN_00248220	00248271	0xB78	rw	or dword ptr [rdx + 0x40], 0x20	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00248220	FUN_00248220	002482B9	0xB78	r	test byte ptr [rsi + 0x40], 2	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002465F0	FUN_002465f0	00246670	0xB7C	rw	and dword ptr [rdi + 0x44], 0xfff8ffff	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	0024667E	0xB7C	r	mov edx, dword ptr [rdi + 0x44]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466FA	0xB7C	w	mov word ptr [rdi + 0x44], ax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	00246687	0xB80	w	mov qword ptr [rdi + 0x48], rax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00246AD0	FUN_00246ad0	00246BAC	0xB80	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BB0	0xBA0	w	mov qword ptr [rbx + 0x68], rcx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B7B	0xBA8	w	mov dword ptr [rbx + 0x70], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B8A	0xBA8	r	sub eax, dword ptr [rbx + 0x70]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BEC	0xBA8	w	mov dword ptr [rbx + 0x70], edx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B8D	0xBAC	r	sub eax, dword ptr [rbx + 0x74]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B90	0xBAC	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BBA	0xBAC	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BBD	0xBB0	w	mov dword ptr [rbx + 0x78], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002465F0	FUN_002465f0	002466D8	0xBB4	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00246AD0	FUN_00246ad0	00246B51	0xBB4	r	mov edx, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BD4	0xBB4	w	mov dword ptr [rbx + 0x7c], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BEF	0xBB4	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246BF3	0xBB4	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+002465F0	FUN_002465f0	00246711	0xBD0	w	mov dword ptr [rdi + 0x98], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	00246717	0xBD4	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	0024670A	0xBD8	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466E6	0xBD9	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466A1	0xBE4	w	mov byte ptr [rdi + 0xac], 0xf9	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466CB	0xBE4	w	mov byte ptr [rdi + 0xac], cl	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	00246695	0xBE5	w	mov byte ptr [rdi + 0xad], 0xf9	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	002466C1	0xBE5	w	mov byte ptr [rdi + 0xad], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	0024675C	0xBEC	w	mov dword ptr [rdi + 0xb4], 1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002465F0	FUN_002465f0	00246700	0xBF0	w	mov dword ptr [rdi + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00246AD0	FUN_00246ad0	00246B1B	0xBF0	w	mov dword ptr [rbx + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00246AD0	FUN_00246ad0	00246B49	0xBF0	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38 exposed	
+00244830	FUN_00244830	00244869	0xBF8	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244EE3	0xBF8	r	mov rax, qword ptr [rbx]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244F00	FUN_00244f00	00244F25	0xBF8	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00245020	FUN_00245020	00245044	0xBF8	r	mov rax, qword ptr [rdi]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002473F0	FUN_002473f0	0024743E	0xBF8	r	mov rax, qword ptr [r8]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483A0	0xBF8	r	mov rax, qword ptr [rdi]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483CE	0xBF8	w	mov qword ptr [rdi], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00273A20	FUN_00273a20	00273A22	0xBF8	r	cmp qword ptr [rcx], rax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00296490	FUN_00296490	002964AE	0xBF8	addr	lea rcx, [rbx + 0xc0]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002482E0	FUN_002482e0	002483CA	0xC00	r	mov rbx, qword ptr [rdi + 8]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248308	0xC08	r	mov rax, qword ptr [rdi + 0x10]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002448D0	FUN_002448d0	002448E0	0xC10	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00245020	FUN_00245020	00245047	0xC10	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002473F0	FUN_002473f0	00247414	0xC10	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002482EE	0xC10	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248315	0xC18	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248311	0xC20	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244830	FUN_00244830	00244865	0xC38	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E17	0xC38	r	mov edx, dword ptr [rbx + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E50	0xC38	w	mov dword ptr [rbx + 0x40], edx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244F00	FUN_00244f00	00244F0A	0xC38	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244F00	FUN_00244f00	00244F11	0xC38	r	mov eax, dword ptr [rcx + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00245020	FUN_00245020	00245072	0xC38	r	test byte ptr [rdi + 0x40], 0x20	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00245020	FUN_00245020	00245091	0xC38	r	mov eax, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00245020	FUN_00245020	0024509B	0xC38	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002473F0	FUN_002473f0	0024741F	0xC38	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002473F0	FUN_002473f0	0024743A	0xC38	w	mov dword ptr [r8 + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483B4	0xC38	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483C7	0xC38	r	mov eax, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483F0	0xC38	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E80	0xC40	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248334	0xC48	r	mov eax, dword ptr [rdi + 0x50]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248343	0xC48	w	mov dword ptr [rdi + 0x50], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248377	0xC48	r	mov eax, dword ptr [rdi + 0x50]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	0024833E	0xC58	r	cmp qword ptr [rdi + 0x60], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248360	0xC58	r	mov rax, qword ptr [rdi + 0x60]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	0024838A	0xC58	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	00248398	0xC58	w	mov qword ptr [rdi + 0x60], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E88	0xC60	w	mov qword ptr [rbx + 0x68], rcx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E6A	0xC68	w	mov dword ptr [rbx + 0x70], ecx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E75	0xC68	r	sub eax, dword ptr [rbx + 0x70]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244ED4	0xC68	w	mov dword ptr [rbx + 0x70], edx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E78	0xC6C	r	sub eax, dword ptr [rbx + 0x74]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E7B	0xC6C	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E92	0xC6C	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E95	0xC70	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E1F	0xC74	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E23	0xC74	rw	or dword ptr [rbx + 0x7c], 1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E2C	0xC74	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244EAA	0xC74	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244EBC	0xC74	w	mov dword ptr [rbx + 0x7c], edi	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244ED7	0xC74	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244EDB	0xC74	rw	or dword ptr [rbx + 0x7c], 4	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244EDF	0xC74	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483BE	0xC74	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+002482E0	FUN_002482e0	002483E9	0xC9A	w	mov byte ptr [rdi + 0xa2], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244DE1	0xCB0	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00244DD0	FUN_00244dd0	00244E0F	0xCB0	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xBF8 exposed	
+00296960	FUN_00296960	0029698B	0xCB8	addr	lea rcx, [rbx + 0x180]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002475D0	FUN_002475d0	002475F2	0xCF8	r	mov eax, dword ptr [rcx + 0x40]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	002475FE	0xCF8	w	mov dword ptr [rcx + 0x40], eax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	002475EC	0xD5B	w	mov byte ptr [rcx + 0xa3], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	0024760A	0xD5C	w	mov byte ptr [rcx + 0xa4], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247619	0xD5D	w	mov byte ptr [rcx + 0xa5], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247628	0xD5E	w	mov byte ptr [rcx + 0xa6], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247637	0xD5F	w	mov byte ptr [rcx + 0xa7], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247646	0xD60	w	mov byte ptr [rcx + 0xa8], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247655	0xD61	w	mov byte ptr [rcx + 0xa9], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247664	0xD62	w	mov byte ptr [rcx + 0xaa], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+002475D0	FUN_002475d0	00247673	0xD63	w	mov byte ptr [rcx + 0xab], al	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xCB8	
+00296960	FUN_00296960	0029699B	0xF4C	addr	lea rax, [rbx + 0x414]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00296960	FUN_00296960	002969B2	0xF4C	w	mov byte ptr [rax], 9	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xF4C	
+00296960	FUN_00296960	002969B5	0x112C	addr	lea rax, [rax + 0x1e0]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xF4C	
+0029B550	FUN_0029b550	0029B56C	0x11E0	r	mov rax, qword ptr [rcx + 0x60]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x1180	
+0029B550	FUN_0029b550	0029B664	0x1240	r	add ax, word ptr [r15 + 0xc0]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x1180	
+0029B550	FUN_0029b550	0029B685	0x1242	r	add ax, word ptr [r15 + 0xc2]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x1180	
+0029B550	FUN_0029b550	0029B655	0x1244	r	movzx eax, word ptr [r15 + 0xc4]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x1180	
+0029B550	FUN_0029b550	0029B670	0x1246	r	movzx eax, word ptr [r15 + 0xc6]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x1180	
+00296490	FUN_00296490	002964BA	0x1248	w	mov dword ptr [rbx + 0x710], 1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+00296960	FUN_00296960	0029696A	0x1248	r	cmp dword ptr [rcx + 0x710], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0xB38	
+002BE8D0	FUN_002be8d0	002BE94D	0x4098	r	cmp qword ptr [rcx + 0x4098], 0	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BE8D0	FUN_002be8d0	002BE9D5	0x4098	r	mov rcx, qword ptr [rdi + 0x4098]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BE8D0	FUN_002be8d0	002BE9E1	0x4098	w	mov qword ptr [rdi + 0x4098], rbx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BF480	FUN_002bf480	002BF480	0x4098	r	mov rdx, qword ptr [rcx + 0x4098]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BF480	FUN_002bf480	002BF496	0x4098	w	mov qword ptr [rcx + 0x4098], rax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BE8D0	FUN_002be8d0	002BE8E4	0x40A8	r	mov rbx, qword ptr [rcx + 0x40a8]	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BE8D0	FUN_002be8d0	002BE900	0x40A8	w	mov qword ptr [rcx + 0x40a8], rax	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BDCE0	FUN_002bdce0	002BDECA	0x40B2	w	mov word ptr [rax + 0x40b2], dx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BDB60	FUN_002bdb60	002BDBD4	0x40B6	rw	or word ptr [rax + 0x40b6], 1	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BDC00	FUN_002bdc00	002BDC75	0x40B6	rw	and word ptr [rax + 0x40b6], cx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BDCA0	FUN_002bdca0	002BDCBE	0x40B6	rw	and word ptr [rax + 0x40b6], cx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	
+002BDCA0	FUN_002bdca0	002BDCC9	0x40B6	rw	or word ptr [rax + 0x40b6], dx	route-seeded CHAIN ManagerSub0209BE80_8FA0 +0x1058 base+0x0	

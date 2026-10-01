@@ -1,0 +1,21 @@
+{
+  "case": "unrelated-upstream-fail",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\reduce.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\unrelated-upstream-fail\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-selector-authored-sites\\controls-01\\unrelated-upstream-fail"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "diagnostic": "RuntimeError: required collector status failed/stale resume-01",
+  "expected": "RuntimeError: required collector status failed/stale resume-01",
+  "result_absent": true,
+  "stdout_empty": true,
+  "producer_sha256": "ef80b0dd0b50d3df53acfb2ebea454bb0a8fcb3ffa6ea64c36fd663cb317d153",
+  "control_sha256": "437a2c994c8a354c459f5bf63b7c0a594db6be1b6f1b219e49bf267a88ea16ae",
+  "passed": true
+}

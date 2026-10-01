@@ -1,0 +1,102 @@
+== A: each applied wording is on its target, the original kept struck, the dated note beside it
+PASS  SD1-1 sd1-force-fight-enemy-consumers-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD1-2 sd1-force-fight-enemy-consumers-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  P6-1 text-gap-append-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR1-1 gr1-wait-slot-settled-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR1-2 gr1-wait-slot-settled-0930: wording added
+PASS  GR1-3 gr1-wait-slot-settled-0930: wording added
+PASS  GR7-1 gr7-kind10-reader-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR7-2 gr7-kind10-reader-0930: wording added
+PASS  GR7-3 gr7-kind10-reader-0930: wording added
+PASS  GR45-1 gr4-gr5-action-row-readers-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR45-2 gr4-gr5-action-row-readers-0930: wording added
+PASS  GR45-3 gr4-gr5-action-row-readers-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR45-4 gr4-gr5-action-row-readers-0930: wording added
+PASS  GR1315-1 gr13-15-shop-list-widget-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR17-1 gr17-reward-table-lifetime-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  GR17-2 gr17-reward-table-lifetime-0930: wording added
+PASS  CRT-1 opus-dd-crt-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  ANIM-1 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  ANIM-2 opus-dd-crt-0930: wording added
+PASS  W1599-1 16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD100-1 sd100-reveal-modes-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD100-2a sd100-reveal-modes-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD100-2b sd100-reveal-modes-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD100-2c sd100-reveal-modes-0930: wording added
+PASS  SD100-3a sd100-reveal-modes-0930: wording added
+PASS  SD100-3b sd100-reveal-modes-0930: wording added
+PASS  SD100-3c sd100-reveal-modes-0930: wording added
+PASS  SD100-3d sd100-reveal-modes-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD100-4 sd100-reveal-modes-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD105-1 sd105-reveal-inputs-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD105-2a sd105-reveal-inputs-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD105-2b sd105-reveal-inputs-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD105-3a sd105-reveal-inputs-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD105-3b sd105-reveal-inputs-0930: wording added
+PASS  SD106-1 sd106-measure-sites-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD106-2a sd106-measure-sites-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD106-2b sd106-measure-sites-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+PASS  SD106-3 sd106-measure-sites-0930: new wording present, original struck, one unstruck copy fewer than HEAD
+== X: the struck originals were really there at HEAD (the struck checks can fail)
+PASS  X1-SD1-1 original present and new wording absent at HEAD
+PASS  X1-SD1-2 original present and new wording absent at HEAD
+PASS  X1-P6-1 original present and new wording absent at HEAD
+PASS  X1-GR1-1 original present and new wording absent at HEAD
+PASS  X1-GR7-1 original present and new wording absent at HEAD
+PASS  X1-GR45-1 original present and new wording absent at HEAD
+PASS  X1-GR45-3 original present and new wording absent at HEAD
+PASS  X1-GR1315-1 original present and new wording absent at HEAD
+PASS  X1-GR17-1 original present and new wording absent at HEAD
+PASS  X1-CRT-1 original present and new wording absent at HEAD
+PASS  X1-ANIM-1 original present and new wording absent at HEAD
+PASS  X1-W1599-1 original present and new wording absent at HEAD
+PASS  X1-SD100-1 original present and new wording absent at HEAD
+PASS  X1-SD100-2a original present and new wording absent at HEAD
+PASS  X1-SD100-2b original present and new wording absent at HEAD
+PASS  X1-SD100-3d original present and new wording absent at HEAD
+PASS  X1-SD100-4 original present and new wording absent at HEAD
+PASS  X1-SD105-1 original present and new wording absent at HEAD
+PASS  X1-SD105-2a original present and new wording absent at HEAD
+PASS  X1-SD105-2b original present and new wording absent at HEAD
+PASS  X1-SD105-3a original present and new wording absent at HEAD
+PASS  X1-SD106-1 original present and new wording absent at HEAD
+PASS  X1-SD106-2a original present and new wording absent at HEAD
+PASS  X1-SD106-2b original present and new wording absent at HEAD
+PASS  X1-SD106-3 original present and new wording absent at HEAD
+== Checker texts
+PASS  K1 gr13_15_shop_list_check.out: B6 re-issued with the review's check text, FAILS 0
+PASS  K2 gr13_15_shop_list_check.py: B6 message text
+PASS  K3 sd106_sites.py: the M5 comment drops the 002B3400 path (the check itself is unchanged)
+== T: every edited table row keeps its header's column count
+PASS  T-Widget-Object-Model/the-widget-constructor-and-object-sizes.md edited rows off-width: none
+PASS  T-Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md edited rows off-width: none
+PASS  T-gr1-wait-slot-settled-0930/README.md edited rows off-width: none
+PASS  T-gr13-15-shop-list-widget-0930/README.md edited rows off-width: none
+PASS  T-gr17-reward-table-lifetime-0930/README.md edited rows off-width: none
+PASS  T-gr4-gr5-action-row-readers-0930/README.md edited rows off-width: none
+PASS  T-gr7-kind10-reader-0930/README.md edited rows off-width: none
+PASS  T-opus-dd-crt-0930/README.md edited rows off-width: none
+PASS  T-opus-dd-crt-0930/batch2-animation.md edited rows off-width: none
+PASS  T-sd1-force-fight-enemy-consumers-0930/README.md edited rows off-width: none
+PASS  T-sd100-reveal-modes-0930/README.md edited rows off-width: none
+PASS  T-sd105-reveal-inputs-0930/README.md edited rows off-width: none
+PASS  T-sd106-measure-sites-0930/README.md edited rows off-width: none
+PASS  T-text-gap-append-0930/README.md edited rows off-width: none
+== L: every review link the notes add resolves
+PASS  L-Widget-Object-Model/the-widget-constructor-and-object-sizes.md 1 note link(s), unresolved none
+PASS  L-Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md 1 note link(s), unresolved none
+PASS  L-gr1-wait-slot-settled-0930/README.md 3 note link(s), unresolved none
+PASS  L-gr13-15-shop-list-widget-0930/README.md 1 note link(s), unresolved none
+PASS  L-gr17-reward-table-lifetime-0930/README.md 2 note link(s), unresolved none
+PASS  L-gr4-gr5-action-row-readers-0930/README.md 4 note link(s), unresolved none
+PASS  L-gr7-kind10-reader-0930/README.md 3 note link(s), unresolved none
+PASS  L-opus-dd-crt-0930/README.md 1 note link(s), unresolved none
+PASS  L-opus-dd-crt-0930/batch2-animation.md 1 note link(s), unresolved none
+PASS  L-sd1-force-fight-enemy-consumers-0930/README.md 2 note link(s), unresolved none
+PASS  L-sd100-reveal-modes-0930/README.md 11 note link(s), unresolved none
+PASS  L-sd105-reveal-inputs-0930/README.md 5 note link(s), unresolved none
+PASS  L-sd106-measure-sites-0930/README.md 4 note link(s), unresolved none
+PASS  L-text-gap-append-0930/README.md 1 note link(s), unresolved none
+== B: blocked items are untouched
+PASS  B1 _types/types.tsv MsvcTreeNodeHeader ctor cell carries the original (SWE2-STRUCT holds the file); replacement proposed in README
+FAILS 0

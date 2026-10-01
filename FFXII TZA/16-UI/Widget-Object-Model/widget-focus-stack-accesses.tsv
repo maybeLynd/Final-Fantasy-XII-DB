@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+00244640	FUN_00244640	0024467F	0x0	w	mov qword ptr [r8 - 0x20], rdx	route-seeded STATIC 0x0208EAC0 base+0x20	
+00244640	FUN_00244640	00244683	0x8	w	mov qword ptr [r8 - 0x18], rcx	route-seeded STATIC 0x0208EAC0 base+0x20	
+00244640	FUN_00244640	0024468B	0x10	w	mov qword ptr [r8 - 0x10], rcx	route-seeded STATIC 0x0208EAC0 base+0x20	
+00244640	FUN_00244640	00244693	0x18	w	mov qword ptr [r8 - 8], rcx	route-seeded STATIC 0x0208EAC0 base+0x20	
+00244640	FUN_00244640	00244674	0x20	addr	lea r8, [r8 + 0x20]	route-seeded STATIC 0x0208EAC0 base+0x0	

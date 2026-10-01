@@ -569,12 +569,21 @@ gates the remaining channels: bit 3 stamps packed u16 constants
 (`0x7233`/`0x8DCC` default, `0x80FF`/`0x7813`/`0x7FCC` for `00229E40` in
 1..6, `0x7ED0`/`0x75E3`/`0x7D9C` otherwise, `00434E1B`–`00434ED7`) gated by
 `0039A150`/`0024E410`, or — bit 3 clear — `00399B80` may return 0 early after
-restoring the matrix rows (`00434ED9`–`00434F04`). Bit 4 sends the `+0x28`
-sections through `00433830` and always calls `00432300` (`00434F40`). Bit 5
-sends `+0x2C` through `004344C0` into `dst3`; clear → a plain `00861EBA` copy
-of `idx18*8` (`00434F56`–`00434FA7`). Bit 6 sends `+0x24` through `00432030`
-into `dst1`; clear → `00861EBA` of `idx16*4` (`00434FB9`–`0043500D`). The
-matrix rows are restored before return — the save/restore contract.
+restoring the matrix rows (`00434ED9`–`00434F04`). Bits 4–6 each pick
+blend-or-copy with the same polarity — **clear selects the blend, set
+selects the copy/direct call** (re-read against the shipping bytes for
+SD-140 X1; an earlier read here had all three inverted). Bit 4
+(`test …,0x10` at `00434E97`) gates `+0x28`: set → `00432300` on the
+current record's own `+0x28`, no blend (`00434EA1`–`00434EB3` →
+`00434F40`); clear → `00433830(cur +0x28, next +0x28, out, c18,
+t = 1 − w)` blends first (`00434F09`–`00434F33`), then the kernel runs in
+place on the blend output (`00434F47`). Bit 5 (`test …,0x20` at
+`00434F4C`) gates `+0x2C` into `dst3`: clear → `004344C0`
+(`00434F7B`–`00434FAA`); set → a plain `00861EBA` copy of `idx18*8`
+(`00434F56`–`00434F79`). Bit 6 (`test …,0x40` at `00434FAF`) gates `+0x24`
+into `dst1`: clear → `00432030` (`00434FDE`–`0043500D`); set → `00861EBA`
+of `idx16*4` (`00434FB9`–`00434FDC`). The matrix rows are restored before
+return — the save/restore contract.
 
 | member | role | interior |
 | --- | --- | --- |
@@ -591,14 +600,23 @@ are both call-free SIMD leaves — `mulss` ×18 apiece over `movups`/`movaps`
 lane traffic (19 and 23 wide loads), the scalar-blend members of this
 family ([`0039A163`](../../_index/ADDRESS-INDEX.md) / [`00399B94`](../../_index/ADDRESS-INDEX.md) prologues).
 
-`00432300` (2,486 B) read to interior anchors 2026-09-17 (SWE2-FRONTIER): the bit-4 `+0x28`
-channel's operand unpacker. It `movsxd`s the source descriptors' head dwords (`[rcx]` at
-`00432309`, `[rdx]` at `00432321`) into the `022D8F90`/`022D8FA0` staging cells
-(`00432313`/`00432324`), loads the `022D8F10` staging row into `xmm4` (`0043230C`), then
-`psrldq`-extracts byte lanes (`psrldq xmm0,1` / `psrldq xmm1,7` at `00432335`/`0043233A`,
-low lane out to `byte[022D8F91]` at `0043233F`) — the MMI-style lane unpack the register-bank
-page describes for this family. No external calls; pure staging into the shared `022D8Fxx`
-cells the channel kernels blend from.
+`00432300` (2,486 B) re-read 2026-10-01 against SD-140
+([`_index/candidates/sd140-vertex-prep-kernel-0930`](../../_index/candidates/sd140-vertex-prep-kernel-0930/README.md),
+ORACLE model FAILS 0 — execution-proven formula, static operand anchors): the bit-4 `+0x28`
+channel's PS2 colour-modulate kernel, not a pure unpacker. The front half is the lane
+unpack the earlier read described — it `movsxd`s the source descriptors' head dwords
+(`[rcx]` at `00432309`, `[rdx]` at `00432321`) into the `022D8F90`/`022D8FA0` staging
+cells (`00432313`/`00432324`), loads the `022D8F10` staging row into `xmm4`
+(`0043230C`), then `psrldq`/`pextrw`-extracts byte and word lanes into the shared
+`022D8Fxx` cells — but the tail is arithmetic: per channel
+`out[i].byte[c] = min(255, (entry.byte[c] * colour.byte[c]) >> 7)`, the `sar eax,7` ×4
+at `00432A4E`–`00432A8A`, one packed dword stored per entry. `0x80` is 1.0 on the GS
+scale — `0x80808080` is the exact identity the draw paths skip re-modulating on. `rcx`
+is the source entry list (the record's own `+0x28`, or the `00433830` blend output),
+`rdx` is the draw parameter block's `+0x40` — one RGBA8 colour, only its first dword is
+read — `r8` the output, `r9d = c18`; it reads `c18+1` source entries (an unused
+one-past-end prefetch) and count 0 still writes one entry (do-while). No external
+calls — but it is the modulate itself, not staging for the channel blends.
 
 ## Interior citations — four frontier workbench hubs (2026-09-17, SWE2-EC7)
 

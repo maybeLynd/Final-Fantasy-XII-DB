@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove_owner_producer_gate.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-producer-gate-result-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "bfe3dcc1359cb5293516f5111901d2403ef60e40311e4f7fe26dc1c42e0a0d53"
+}

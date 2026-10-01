@@ -1,0 +1,7 @@
+PASS  C1 738 calls; 27 zone files; all language copies agree
+PASS  C2 the kept us table (82 calls) matches this run
+PASS  C3 the 26 summon files and spc_z0000, nothing else
+PASS  C4 13 summon entries: capturepartyforsummon > disposepartywithoutcontrol > setpossummonspace > changetosummonparty
+PASS  C5 13 summon exits: one setpossummonspace and one resumeposbattletarget each
+PASS  C6 spc_z0000: duplicate > setpossummonspace > resumeposbattletarget > resumepartyinfo_spattack
+FAILS 0

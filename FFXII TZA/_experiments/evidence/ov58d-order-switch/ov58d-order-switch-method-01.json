@@ -1,0 +1,25 @@
+{
+  "question": "Can normal entry002FDDA0 with order WORD4049/404A reach002FDF40/79 ->0030E360 on an Esper, and what IDs actually reach those two calls through the original compressed switch?",
+  "hypotheses": [
+    "Queued record assigns4049/404A directly tostatus arms, requiring natural Esper timing",
+    "Original selector byte table remaps them elsewhere; actual status arms are contiguous4051..4070 and4071..4090, so lowR8B is0..31"
+  ],
+  "known_evidence": "SWE2-STRUCT CALLER-CONE-0030E360-0930 claims two high IDs. Initial exact shipping peek shows two-stage compressed dispatch: byte[2FE54C+msg-4046] ->DWORD[2FE534+4*selector]+imagebase.4049/404A mapselector1 ->2FDE7B, not status arm. This is a candidate until byte/control proof packaged.",
+  "method": "A exact verified original code/data finite-switch proof",
+  "why_cheaper_suffices": "The handler reads WORD once, performs local unsigned bounds and two-stage lookup with no preceding opaque calls before that switch. Exact4049/404A path can be proven to localreturn, not sampled absent in gameplay. Isolated/live not needed for this proposition. Other initialized ownership/alias/native side effects remain separate.",
+  "target_identity": "FFXII_TZA.exe SHA73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 base120000; exact branch instructions, selector76bytes/RVA6slots and actual arms; normal ABI valid loaded unit+708 premises",
+  "starting_state": "No game; file identity/access-role controls. Normal entry2FDDA0 with stable valid code/table; unit fields require initialized backed memory for conditional semantic inference",
+  "observation": "Normalized complete76-entry first-switch mapping; immediate case paths4049/404A to2FDE7B without call; actual status arm domain and byte ID bounds with shipping instruction order",
+  "controls": [
+    "actual shared store/LEA/RMW adapter",
+    "shipping code/table comparison",
+    "positive4051/4070 and4071/4090 status domains",
+    "mutated selector/caller-ID operation/incomplete source/failed producer must refuse result"
+  ],
+  "budget": "Capture only normal handler/source boundaries, exact tables and status parameter/store anchors; one source/proof positive plus focused actual CLI refusals. No broad corpus or live/platform setup",
+  "acceptance": "Exact mapping/source/normal-flow proof plus all controls; producer independent review and STRUCT/FABLE/OPUS consumers required before canonical closure",
+  "failure": "Nondecoding/ambiguous data/code, unclosed4049 paths, changed identity/controls or missing producer exit ->no result; preserve and revise specific precondition",
+  "restoration": "Synchronous read-only file/CLI only; verify original image/source identities and all own children terminal; no PC/game/save/config/reference/instrument mutation",
+  "consumer": "SWE2-STRUCT original caller-cone/residue record owner, FABLE T3b region-A limit owner, OPUS exact status/aux contract owner",
+  "limits": "Normal original entry under correct ABI/stable valid code/table and state. No forced/native test, natural order production, heap placement or universal other caller/alias safety. Existing external caller census is not our own test. Task labelruntime does not mandate methodC."
+}

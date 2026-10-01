@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "status": "TWO_ACTUAL_RETAINED_ADMISSION_REFUSALS",
+  "cases": [
+    {
+      "case": "mixed-parent",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\controls-01\\mixed-parent\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\controls-01\\mixed-parent"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "result_absent": true,
+      "stdout_empty": true,
+      "expected_error": "RuntimeError: retained parent manifest identity failed",
+      "diagnostic": "RuntimeError: retained parent manifest identity failed",
+      "expected_error_seen": true,
+      "changed_file": "retained/parent-manifest.json",
+      "changed_sha256": "97dd2de6b479c85265d11f70edc993aeac3aa3a1161894c2f36e32baacfedd63",
+      "inherited_from_baseline": {
+        "retained/capture-01.status.json": "bd86e7a17cd3d9817f5b768d47ef94625801efdce2b39cfc2037e1e7bfa91196",
+        "retained/capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained/capture-01.stdout": "be751450a1aaa539879a4cc8f03da49424dc90ff152896eee9d4335cc526f435",
+        "retained/capture.py": "005b4e6643972d9296495595f7ae0a79d910fee871fb13c33e9ea3224b0a65dc",
+        "retained/source-01.json": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8"
+      },
+      "producer_sha256": "eefaff2c64fae8ff63736a2e8a1244cd5a7d0b771c374382f16d57a5b75501d0",
+      "control_sha256": "0989b30bef17562282b59c58a0ecd2f2d7ad28a6bacb9d1fc6e8e53ac2376e3c",
+      "passed": true
+    },
+    {
+      "case": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\controls-01\\missing-source\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namespace-name-copy-limit\\controls-01\\missing-source"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "result_absent": true,
+      "stdout_empty": true,
+      "expected_error": "FileNotFoundError",
+      "diagnostic": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\namespace-name-copy-limit\\\\controls-01\\\\missing-source\\\\retained\\\\source-01.json'",
+      "expected_error_seen": true,
+      "changed_file": "retained/source-01.json",
+      "changed_sha256": null,
+      "inherited_from_baseline": {
+        "retained/capture-01.status.json": "bd86e7a17cd3d9817f5b768d47ef94625801efdce2b39cfc2037e1e7bfa91196",
+        "retained/capture-01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained/capture-01.stdout": "be751450a1aaa539879a4cc8f03da49424dc90ff152896eee9d4335cc526f435",
+        "retained/capture.py": "005b4e6643972d9296495595f7ae0a79d910fee871fb13c33e9ea3224b0a65dc",
+        "retained/parent-manifest.json": "b9f212c1d22eb7398d16d5c2d184ce7c0bca4b6900e2cc0f94af5662605b82c1"
+      },
+      "producer_sha256": "eefaff2c64fae8ff63736a2e8a1244cd5a7d0b771c374382f16d57a5b75501d0",
+      "control_sha256": "0989b30bef17562282b59c58a0ecd2f2d7ad28a6bacb9d1fc6e8e53ac2376e3c",
+      "passed": true
+    }
+  ],
+  "limits": "Mixed/missing retained evidence detection, not semantic machine-code mutations/executions."
+}

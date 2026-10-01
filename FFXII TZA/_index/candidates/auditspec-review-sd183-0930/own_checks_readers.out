@@ -1,0 +1,9 @@
+mode-field readers (and/test 0x1F fed by ctx+0x100/0x108 or unit+0x80):
+  0033A03B and al, 0x1f   <- 00339FFE load-from-+0x108 rax, qword ptr [rbx + 0x108]
+  0033A04E and al, 0x1f   <- 00339FFE load-from-+0x108 rax, qword ptr [rbx + 0x108]
+  0033A061 and eax, 0x1f   <- 00339FFE load-from-+0x108 rax, qword ptr [rbx + 0x108]
+  0033A075 and al, 0x1f   <- 00339FFE load-from-+0x108 rax, qword ptr [rbx + 0x108]
+  0033A088 and eax, 0x1f   <- 00339FFE load-from-+0x108 rax, qword ptr [rbx + 0x108]
+  0033A099 and eax, 0x1f   <- 00339FFE load-from-+0x108 rax, qword ptr [rbx + 0x108]
+  0033CD7C and eax, 0x1f   <- 0033CCA6 load-from-+0x100 rax, qword ptr [rcx + 0x100]
+total: 7

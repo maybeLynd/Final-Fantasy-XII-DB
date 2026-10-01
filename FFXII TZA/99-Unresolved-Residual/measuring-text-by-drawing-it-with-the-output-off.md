@@ -1,7 +1,7 @@
 ---
 system: Measuring text by drawing it with the output off
 category: 99-Unresolved-Residual
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS; SD-100 answered) — what `002AF340` returns is read (the characters laid out up to the stop string, or -1; §4, 2026-09-30) and every cluster member is read (UQ-383); what the reveal stepper's modes are for is answered (SD-100, 2026-09-30)
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS; SD-100 answered) — what `002AF340` returns is read (the characters laid out up to the stop string, or -1; §4, 2026-09-30) and every cluster member is read (UQ-383); what the reveal stepper's modes are for is answered (SD-100, 2026-09-30)
 owner_layer: CodeDomain:Presentation.Text
 evidence_tier: 1
 verified_against:
@@ -22,8 +22,9 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: residual-cluster-1-repos-55
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record residual-cluster-1-repos-55; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Measuring text by drawing it with the output off

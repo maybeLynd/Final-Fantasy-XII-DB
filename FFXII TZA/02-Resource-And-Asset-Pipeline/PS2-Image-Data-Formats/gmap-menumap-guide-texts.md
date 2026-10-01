@@ -1,7 +1,7 @@
 ---
 system: The `gmap` map-guide text files — `worldmap/menumap_guide00..04.bin`, 77 guide strings and an optional TIM2 per locale
 category: 02-Resource-And-Asset-Pipeline
-status: DOCUMENTED
+status: AUDITED
 owner_layer: CodeDomain:Presentation.Menu
 evidence_tier: 1
 verified_against:
@@ -18,6 +18,9 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-gmap-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-gmap-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The `gmap` map-guide text files — `worldmap/menumap_guide00..04.bin`

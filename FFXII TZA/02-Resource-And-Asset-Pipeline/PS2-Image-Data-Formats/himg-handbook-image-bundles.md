@@ -230,10 +230,10 @@ NOT claimed: what the two completion callbacks (`+0x10` direct vs `[+8]` virtual
 
 *Added 2026-09-30 (SWE2-FRONTIER, executing SWE2-DATA's pass-22 debt). These are the layers pass 22 still reported for this page at HEAD `4dfe4a006`. Every edge was listed in full, and each cited helper was read at its instructions.*
 
-**UI — CLIENT (14 edges).** `00249210` claims a slot in the shared loader pool and starts a request. `00249410` completes a slot: it sets bit 1 of the slot flags, and when the slot's two counts at `+0x18` / `+0x1A` agree it calls the slot's callback at `+0x10`, or else notifies the object at `+8`. The menu screens load through the same pool: `003C9950`, `00561390` and `00562F90` claim slots through `00249210`, and eleven UI bodies (`00253780` to `00561390`) complete them through `00249410`. The pool is shared; the handbook bundles are one of its clients.
+**UI — CLIENT (14 edges).** `00249210` claims a slot in the shared loader pool and starts a request. `00249410` closes a request batch (the `00249580` record): it marks the batch issued (bit 1) and, if every request has already finished (`+0x18` == `+0x1A`), fires it — the callback at `+0x10` when `+4` is set, otherwise message 16 (resource batch complete, DL-1) to the owner at `+8`; otherwise the last request's completion `002495C0` fires it. The menu screens load through the same pool: `003C9950`, `00561390` and `00562F90` claim slots through `00249210`, and eleven UI bodies (`00253780` to `00561390`) close their batches through `00249410`. The pool is shared; the handbook bundles are one of its clients.
 
-**Presentation — CLIENT (2 edges).** The input-consumer state machines `002B7B80` and `002BAF80` complete slots through `00249410`, the same completion step.
+**Presentation — CLIENT (2 edges).** The input-consumer state machines `002B7B80` and `002BAF80` close request batches through `00249410`, the same close step.
 
-**SaveLoad — CLIENT (2 edges).** `00582790` claims a slot through `00249210` and completes it through `00249410`. The load menu reuses the pool.
+**SaveLoad — CLIENT (2 edges).** `00582790` claims a slot through `00249210` and closes the batch through `00249410`. The load menu reuses the pool.
 
 **Input — CLIENT (1 edge).** `00291D90` calls `0024A440`, which creates a text label through `0024A4E0` and calls the image member callback `0024A1D0`. It is the helper the bundle's `hb_tex` registration uses.

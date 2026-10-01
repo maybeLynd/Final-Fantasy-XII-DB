@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+0035C080	FUN_0035c080	0035C090	0xC4	r	cmp dword ptr [rax + 0xc4], 0	route-seeded PTR 0x022C83E0 base+0x0	
+0035C080	FUN_0035c080	0035C0A5	0xC4	w	mov dword ptr [rax + 0xc4], 0	route-seeded PTR 0x022C83E0 base+0x0	
+0035C100	FUN_0035c100	0035C11E	0xC4	w	mov dword ptr [rax + 0xc4], 0	route-seeded PTR 0x022C83E0 base+0x0	

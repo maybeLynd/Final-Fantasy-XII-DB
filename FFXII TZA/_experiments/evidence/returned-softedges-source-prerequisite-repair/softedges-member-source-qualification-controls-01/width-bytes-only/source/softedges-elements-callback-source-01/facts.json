@@ -1,0 +1,213 @@
+{
+  "method": "A STATIC_ONLY",
+  "status": "PRODUCER_SOURCE_COMPLETE_REVIEW_PENDING",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "asset_sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf",
+  "question": "What address/count ABI and result propagation does the original named m_els assignment actually use?",
+  "hypotheses": [
+    "A second metadata offset/base adjustment and inner failure propagation",
+    "Direct supplied-object callback ABI and explicit inner-status suppression"
+  ],
+  "choice": "Exact original branch/register/write sequence distinguishes these hypotheses; no live state or new isolated samples are required.",
+  "registration_source_sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a",
+  "member_name": "6d5f656c7300",
+  "member_name_address": "0xd32dc0",
+  "vtable": "0xd4bd30",
+  "slot_offset": "0x40",
+  "slot_bytes": "d0f3600000000000",
+  "assignment": "0x60f3d0",
+  "callback": "0x60f280",
+  "callback_pdata": [
+    [
+      6353536,
+      6353552,
+      30747592
+    ]
+  ],
+  "file_classes": [
+    {
+      "class_id": 13,
+      "name": "PEffectVariant",
+      "raw": [
+        2,
+        805306400,
+        931,
+        9,
+        0,
+        0,
+        0,
+        8,
+        0
+      ],
+      "members": [
+        {
+          "name": "m_effect",
+          "raw": [
+            2686,
+            20,
+            0,
+            1,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "m_switches",
+          "raw": [
+            2695,
+            27,
+            1,
+            5,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_sceneRenderPasses",
+          "raw": [
+            2706,
+            29,
+            6,
+            5,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_sceneRenderPassLookup",
+          "raw": [
+            2726,
+            28,
+            11,
+            5,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_largestShaderPassCount",
+          "raw": [
+            2750,
+            4,
+            16,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_tweakableShaderParameterDefinitions",
+          "raw": [
+            2775,
+            30,
+            18,
+            5,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_untweakableShaderParameterDefinitions",
+          "raw": [
+            2813,
+            30,
+            23,
+            5,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_tweakableParameterBufferSize",
+          "raw": [
+            2853,
+            4,
+            28,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_untweakableParameterBufferSize",
+          "raw": [
+            2884,
+            4,
+            30,
+            2,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": 17,
+      "name": "PArray<PShaderParameterDefinition>",
+      "raw": [
+        2,
+        805306373,
+        602,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "members": [
+        {
+          "name": "m_count",
+          "raw": [
+            2672,
+            0,
+            0,
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "m_els",
+          "raw": [
+            2680,
+            56,
+            4,
+            1,
+            2147483648,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "observations": [
+    "Native registration5EEDAF names m_els, not m_data. The old working shorthand is corrected; packed class17 independently names m_els at file+4.",
+    "60F3D0 reads metadata+70. Nonnull tail-dispatches with RCX=supplied object,RDX=supplied source,R8D=count; it performs no member+48/owner+F4 adjustment. Null returns21 without array writes.",
+    "Registered callback60F280 calls original60EFE0 with that ABI, then XOR EAX,EAX and returns0 regardless of a normally returning setter result.",
+    "Retained60EFE0 rejects negative signed counts with5 before array writes. Normal nonnegative continuation writes source at array+8 and count|80000000 at array+0; different owned old storage takes unproved5F03A0 cleanup.",
+    "Therefore callback return0 is not proof of a write or accepted count. This is original native API behavior, separate from the project requirement that evidence tools propagate failed prerequisites."
+  ],
+  "limits": "Original-source proof only. Mapped-class/member bindings, packed key22/27 resolver child-link terminal behavior, descriptor base adjustments, actual load success, native pointer identity/lifetime, natural reachability and cleanup effects remain OPEN. No static pointer observation is a captured live pointer.",
+  "next": "Resolve actual file-member to mapped-child construction; do not substitute the outer60F590 setter, assume child-null or claim installed arrays from this dispatcher.",
+  "controls": [
+    {
+      "bytes": "0f1101",
+      "expected": "w",
+      "observed": "w"
+    },
+    {
+      "bytes": "488d4104",
+      "expected": "addr",
+      "observed": "addr"
+    },
+    {
+      "bytes": "f00fb101",
+      "expected": "rw",
+      "observed": "rw"
+    }
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "driver_sha256": "80e11fca4a11fe7cd9278ada9c64679dea3ddfcf33b13d6855e859ae13df2e07"
+}

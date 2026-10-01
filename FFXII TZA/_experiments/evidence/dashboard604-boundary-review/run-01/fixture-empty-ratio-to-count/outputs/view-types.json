@@ -1,0 +1,17 @@
+{
+  "view": "types",
+  "status": "OK",
+  "definition": "same-v1",
+  "measures": [
+    {
+      "id": "test",
+      "label": "ASTRA bounded measure",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "same",
+      "instrument": "independent fixture",
+      "as_of": "2026-10-01",
+      "limits": "host control only"
+    }
+  ]
+}

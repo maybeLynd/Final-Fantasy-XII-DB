@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-reset-order.py", line 56, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-reset-order.py", line 16, in main
+    if len(raw['ranges'])!=2 or any(q['start'] not in expected or (q['end_exclusive'],q['sha256'])!=expected[q['start']] for q in raw['ranges']):raise ValueError('wrong/incomplete original body')
+                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wrong/incomplete original body

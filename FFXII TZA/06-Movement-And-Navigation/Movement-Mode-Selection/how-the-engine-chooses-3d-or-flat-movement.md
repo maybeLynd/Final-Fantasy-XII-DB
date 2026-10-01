@@ -1,7 +1,7 @@
 ---
 system: Movement mode selection — 3-D or flat
 category: 06-Movement-And-Navigation
-status: DOCUMENTED — SD-191 and SD-192 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — residue registered as SD-191 (which scripted sequences use which party-swap verb pairs) and SD-192 (whether the six +0x14F bit-0 readers each refuse movement), both since answered (§7); BV-1 to BV-5 answered (§7, evidence rows added 2026-09-30); what 00262F50 does with the table entry read 2026-09-18 (it links the summon stand-in to the party member and flags the stand-in's record); K-6 answered 2026-09-07 (+0xA8 is the facing angle) and closed on this page 2026-09-12 (status line current 2026-09-30, SWE2-DATA)
+status: AUDITED — SD-191 and SD-192 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — residue registered as SD-191 (which scripted sequences use which party-swap verb pairs) and SD-192 (whether the six +0x14F bit-0 readers each refuse movement), both since answered (§7); BV-1 to BV-5 answered (§7, evidence rows added 2026-09-30); what 00262F50 does with the table entry read 2026-09-18 (it links the summon stand-in to the party member and flags the stand-in's record); K-6 answered 2026-09-07 (+0xA8 is the facing angle) and closed on this page 2026-09-12 (status line current 2026-09-30, SWE2-DATA)
 owner_layer: PrimaryOwner:Movement
 evidence_tier: 1
 verified_against:
@@ -24,8 +24,9 @@ audit:
   last_falsification: 2026-09-03
   last_falsification_by: repos-d2
   falsification_result: 1 claim overturned, 8 survived — see section 10
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record GN158 checkpoint 2ed8affb… / snapshot 46f02e26…, project GFZ_HD2; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Movement mode selection — 3-D or flat

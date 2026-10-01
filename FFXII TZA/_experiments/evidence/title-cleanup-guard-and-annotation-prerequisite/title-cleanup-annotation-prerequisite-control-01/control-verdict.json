@@ -1,0 +1,23 @@
+{
+  "status": "DEFECT_MALFORMED_ANNOTATION_ACCEPTED",
+  "expected": "nonzero/no semantic result",
+  "actual_exit": 0,
+  "actual_result_exists": true,
+  "control": "same raw bytes/body hashes/counts; decoded annotation falsely adds a common-entry bypass of cleanup",
+  "original_instruction": {
+    "pc": "0x616c60",
+    "bytes": "4053",
+    "mnemonic": "push",
+    "args": "rbx",
+    "memory": []
+  },
+  "changed_instruction": {
+    "pc": "0x616c60",
+    "bytes": "4053",
+    "mnemonic": "je",
+    "args": "0x616ca7",
+    "memory": []
+  },
+  "error": null,
+  "limits": "Labelled source-record mutation only, not original-code execution or real decoder error. Actual original raw source facts are unchanged; source-verification guarantee is incomplete."
+}

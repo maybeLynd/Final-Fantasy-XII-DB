@@ -1,0 +1,3 @@
+function	name	site	disp	kind	instruction	route	note
+00196550	InputManager_ValidateBindingUniqueness	001965B4	0x0	r	cmp ecx, dword ptr [rax]	route-seeded STATIC 0x01DF13E0 base+0x0	
+00198A00	InputManager_AssignBindingWithConflictPolicy	00198AC0	0x0	r	cmp r8d, dword ptr [rax]	route-seeded STATIC 0x01DF13E0 base+0x0	

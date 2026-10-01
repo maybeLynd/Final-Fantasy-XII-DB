@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-special-admission.py", line 26, in <module>
+    if len(raw['controls'])!=3 or any(c['observed']!=c['expected'] for c in raw['controls']):raise ValueError('upstream roles invalid')
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: upstream roles invalid

@@ -1,0 +1,29 @@
+{
+  "mode": "Declared frozen-member delivery only; no source/result edits or new runs",
+  "original_directory": "Database/Tools/work/ASTRA/migration-a23-current-release/release-059ee3a6c",
+  "original_manifest_sha256": "e7d00508a471715a4da3fcb32b79e270a3f62538b10fb48895a9e49d4dca5c7e",
+  "all_declared_members_byte_exact": true,
+  "unlisted_administrative_files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "disposition": "Existing board operation receipt or attributes outside scientific manifest; retained in place, never replayed"
+    },
+    {
+      "path": "op_add_pub.json",
+      "sha256": "87be098725148e60afde662292b408f419d79ff4b14b4254e2d0b956794798b0",
+      "disposition": "Existing board operation receipt or attributes outside scientific manifest; retained in place, never replayed"
+    },
+    {
+      "path": "op_checkpoint_migration.json",
+      "sha256": "2b1eabee6bf62810ca168b498b3ec3559787e2385e6b971fb5a444b8fed391cd",
+      "disposition": "Existing board operation receipt or attributes outside scientific manifest; retained in place, never replayed"
+    },
+    {
+      "path": "op_claim_pub.json",
+      "sha256": "3981131ec8b18fca8ee6c3cacc2f6ffbb5b060b28bda50069e477f837c708715",
+      "disposition": "Existing board operation receipt or attributes outside scientific manifest; retained in place, never replayed"
+    }
+  ],
+  "limits": "Named historical candidate/prerequisite scope, not current-version A23/fullmigration/database acceptance"
+}

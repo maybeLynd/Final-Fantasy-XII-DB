@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "604194276:Database/Tools/dashboard/build_views.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "stdout_bytes": 133585,
+  "stderr_bytes": 0,
+  "sha256": "924dbecfe617a749a6875c0d6a30055fd9ea7af5140b9771593f6fbfc675f330"
+}

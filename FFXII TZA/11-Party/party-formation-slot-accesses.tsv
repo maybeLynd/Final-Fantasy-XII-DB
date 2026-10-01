@@ -1,0 +1,67 @@
+function	name	site	disp	kind	instruction	route	note
+00338490	PartyFollow_SolveFormation	00338969	0x0	r	movaps xmm2, xmmword ptr [rcx]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338980	0x0	w	movaps xmmword ptr [rcx], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389DB	0x0	r	movaps xmm2, xmmword ptr [rcx]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389F2	0x0	w	movaps xmmword ptr [rcx], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A4D	0x0	r	movaps xmm2, xmmword ptr [rcx]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A64	0x0	w	movaps xmmword ptr [rcx], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338ADF	0x0	r	movaps xmm2, xmmword ptr [rcx]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338AF6	0x0	w	movaps xmmword ptr [rcx], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B9C	0x0	r	movaps xmm2, xmmword ptr [rcx]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BB3	0x0	w	movaps xmmword ptr [rcx], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00339A60	PartyFollow_LookupDestination	00339AB4	0x0	r	cmp byte ptr [rax], dl	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	0033896C	0x10	r	movaps xmm3, xmmword ptr [rcx + 0x10]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338987	0x10	w	movaps xmmword ptr [rcx + 0x10], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389DE	0x10	r	movaps xmm3, xmmword ptr [rcx + 0x10]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389F9	0x10	w	movaps xmmword ptr [rcx + 0x10], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A50	0x10	r	movaps xmm3, xmmword ptr [rcx + 0x10]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A6B	0x10	w	movaps xmmword ptr [rcx + 0x10], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338AE2	0x10	r	movaps xmm3, xmmword ptr [rcx + 0x10]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B00	0x10	w	movaps xmmword ptr [rcx + 0x10], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B9F	0x10	r	movaps xmm3, xmmword ptr [rcx + 0x10]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BBA	0x10	w	movaps xmmword ptr [rcx + 0x10], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338970	0x20	r	movaps xmm4, xmmword ptr [rcx + 0x20]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	0033898F	0x20	w	movaps xmmword ptr [rcx + 0x20], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389E2	0x20	r	movaps xmm4, xmmword ptr [rcx + 0x20]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A01	0x20	w	movaps xmmword ptr [rcx + 0x20], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A54	0x20	r	movaps xmm4, xmmword ptr [rcx + 0x20]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A76	0x20	w	movaps xmmword ptr [rcx + 0x20], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338AE6	0x20	r	movaps xmm4, xmmword ptr [rcx + 0x20]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B0B	0x20	w	movaps xmmword ptr [rcx + 0x20], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BA3	0x20	r	movaps xmm4, xmmword ptr [rcx + 0x20]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BC2	0x20	w	movaps xmmword ptr [rcx + 0x20], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338950	0x24	r	movss xmm0, dword ptr [rcx + 0x24]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389C3	0x24	r	movss xmm0, dword ptr [rcx + 0x24]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A34	0x24	r	movss xmm0, dword ptr [rcx + 0x24]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338ABF	0x24	r	movss xmm0, dword ptr [rcx + 0x24]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B84	0x24	r	movss xmm0, dword ptr [rcx + 0x24]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338974	0x30	r	movaps xmm5, xmmword ptr [rcx + 0x30]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338997	0x30	w	movaps xmmword ptr [rcx + 0x30], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389E6	0x30	r	movaps xmm5, xmmword ptr [rcx + 0x30]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A09	0x30	w	movaps xmmword ptr [rcx + 0x30], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A58	0x30	r	movaps xmm5, xmmword ptr [rcx + 0x30]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A81	0x30	w	movaps xmmword ptr [rcx + 0x30], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338AEA	0x30	r	movaps xmm5, xmmword ptr [rcx + 0x30]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B16	0x30	w	movaps xmmword ptr [rcx + 0x30], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BA7	0x30	r	movaps xmm5, xmmword ptr [rcx + 0x30]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BCA	0x30	w	movaps xmmword ptr [rcx + 0x30], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338978	0x40	r	movaps xmm6, xmmword ptr [rcx + 0x40]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	0033899F	0x40	w	movaps xmmword ptr [rcx + 0x40], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389EA	0x40	r	movaps xmm6, xmmword ptr [rcx + 0x40]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A11	0x40	w	movaps xmmword ptr [rcx + 0x40], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A5C	0x40	r	movaps xmm6, xmmword ptr [rcx + 0x40]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A8C	0x40	w	movaps xmmword ptr [rcx + 0x40], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338AEE	0x40	r	movaps xmm6, xmmword ptr [rcx + 0x40]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B21	0x40	w	movaps xmmword ptr [rcx + 0x40], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BAB	0x40	r	movaps xmm6, xmmword ptr [rcx + 0x40]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BD2	0x40	w	movaps xmmword ptr [rcx + 0x40], xmm0	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	0033897C	0x50	r	movaps xmm7, xmmword ptr [rcx + 0x50]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389A7	0x50	w	movaps xmmword ptr [rcx + 0x50], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	003389EE	0x50	r	movaps xmm7, xmmword ptr [rcx + 0x50]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A19	0x50	w	movaps xmmword ptr [rcx + 0x50], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A60	0x50	r	movaps xmm7, xmmword ptr [rcx + 0x50]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338A97	0x50	w	movaps xmmword ptr [rcx + 0x50], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338AF2	0x50	r	movaps xmm7, xmmword ptr [rcx + 0x50]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338B2C	0x50	w	movaps xmmword ptr [rcx + 0x50], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BAF	0x50	r	movaps xmm7, xmmword ptr [rcx + 0x50]	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	
+00338490	PartyFollow_SolveFormation	00338BDA	0x50	w	movaps xmmword ptr [rcx + 0x50], xmm1	route-seeded ARRAY 0x022C7E00 stride=0x60 count=4 index=slot base+0x0	

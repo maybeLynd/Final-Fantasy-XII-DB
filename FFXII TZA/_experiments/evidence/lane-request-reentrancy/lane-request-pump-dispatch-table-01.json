@@ -1,0 +1,43 @@
+{
+  "method": "A ORIGINAL_DATA",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "imagebase": "0x120000",
+  "start": "0x32e2d0",
+  "end_exclusive": "0x32e2e8",
+  "bytes": "bde0200049e1200063e1200063e12000abe12000abe12000",
+  "sha256": "6c8c59fada350ee1e470da36aa06448d11ebd783ccf7049e3bb9c85190b00a8d",
+  "entries": [
+    {
+      "state": 0,
+      "rva": "0x20e0bd",
+      "target": "0x32e0bd"
+    },
+    {
+      "state": 1,
+      "rva": "0x20e149",
+      "target": "0x32e149"
+    },
+    {
+      "state": 2,
+      "rva": "0x20e163",
+      "target": "0x32e163"
+    },
+    {
+      "state": 3,
+      "rva": "0x20e163",
+      "target": "0x32e163"
+    },
+    {
+      "state": 4,
+      "rva": "0x20e1ab",
+      "target": "0x32e1ab"
+    },
+    {
+      "state": 5,
+      "rva": "0x20e1ab",
+      "target": "0x32e1ab"
+    }
+  ],
+  "derivation": "Pump BYTEstate-1, CMP5/JA guard supplies6entries. Prefix only, conditional state1 zero-length completion path; not full pump CFG proof",
+  "invocation_driver_sha256": "6d9e978547940d6cc0921a709f68dc412471392ad4b31f3689246e5805af95c2"
+}

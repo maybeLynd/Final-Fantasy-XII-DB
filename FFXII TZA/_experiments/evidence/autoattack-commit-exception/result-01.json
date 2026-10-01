@@ -1,0 +1,83 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original directcaller/ABI/carrier andretainedUSrow bound",
+  "driver_sha256": "6344c26d2f665fdffeb20bae1f33212415794e7664ce6dfd8ba566d71dfd65e5",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "de992f8f8a039140deeaa02643a81147b2c1dc5fe67183829591e996fd210ab2"
+    },
+    {
+      "path": "retained/current-row-source-01.json",
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "path": "retained/current-row-source-02.json",
+      "sha256": "1b6bebb2a932b09c387ead6830cd4088236ad551ccbc1c52b9651ca0d8faa9b8"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 69,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 161,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 405,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "parent_manifest": "56100abc27fc97e1fdcd85e7488dc1f712365a4296c3ad819f2622800caed1dd",
+  "instruction_assertions": 29,
+  "straightline_instructions": 15,
+  "ABI": {
+    "push_bytes": 40,
+    "sub_bytes": 32,
+    "callee_prologue_delta": 72,
+    "caller_arg5_offset": 32,
+    "call_return_address_bytes": 8,
+    "callee_postprologue_arg5_offset": 112
+  },
+  "known_mode0_caller": {
+    "site": "0x3130dc",
+    "action": 150,
+    "arg5": 0,
+    "required_preceding_call": "0x30eff0",
+    "required_nonzero_suspend_result": true,
+    "scope": "One located directcaller leg, not all native callers"
+  },
+  "callee_carrier": "MOVZX EDI,R8W before modegate/callees; WindowsnonvolatileRDI, original150<=542 normalallowedpath writesDI currentunit714 andphase0",
+  "retained_table": {
+    "path": "retained/action_data_us.st2e",
+    "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+    "row": 150,
+    "flags": "0xc16408c",
+    "bit30": false,
+    "runtime_binding_observed": false
+  },
+  "excluded_path": "With currentactionstill150 and actionregistryboundto retainedUSrowbytes, 304F45 jumpsordinary304F54 ->30FE10, skipping306760. Thisactualdirectmode0caller cannot itself commit arbitraryrow275/Dismiss. Otherchanges/restore/registrybinding remainopen.",
+  "correction": "Earlier working delivery wording suggesting all known commit callers passmode1 is false:31309C passes0 after30EFF0. Publishedc40/8b localcarrier/cleanup proofs didnot dependon that wording; preserve originals and addcorrected consumer/handoff notes.",
+  "limitations": [
+    "No native/harness/game execution",
+    "Ordinary Windowsx64ABI/privateframe/normalcalls/noninterference, validinitializedsameunit andstableaction/registry premised",
+    "30EFF0 native effects/lifetime/fullrestore are not proven by calltag orstub",
+    "Only exactretainedUS table binding; no captured live table pointer",
+    "Other direct/indirect callers and forcedmode0 mayhave differentdomains",
+    "No universalrowidentity/globalstatstype/parity/wholeOVclosure"
+  ]
+}

@@ -746,15 +746,19 @@ The native award path is laid out in [the Steam integration contract](CONTRACT-s
 
 | index | descriptor | title | where | sites |
 |---:|---|---|---|---:|
-| 39 | `ACH_TRIAL_MODE_50` | Judge Magister | Trial Mode stage scripts `tri_*` | 900 |
-| 40 | `ACH_TRIAL_MODE_100` | Imperator | Trial Mode stage scripts `tri_*` | 900 |
+| 39 | `ACH_TRIAL_MODE_50` | Judge Magister | Trial Mode stage scripts `tri_*` | ~~900~~ 900 code copies (100 files × 9 languages); 9 live, `tri_j05` only *(corrected 2026-10-01, SWE2-DATA, `SD-162`)* |
+| 40 | `ACH_TRIAL_MODE_100` | Imperator | Trial Mode stage scripts `tri_*` | ~~900~~ 900 code copies; 9 live, `tri_t05` only *(corrected 2026-10-01, SWE2-DATA, `SD-162`)* |
 | 33 | `ACH_EVENT_RETURN_RABANASTRE` | A Traitor Redeemed | `slm_a01` | 9 |
 
 **So Trial Mode awards its two achievements from its own stage scripts, by index, bypassing the counter updater**, and `ACH_COUNT_SCORE` is not among the script-awarded indices (**AB-8** narrowed).
 
 **Descriptor slot 0 is `ACH_CHAMPION_IVALICE`, *Champion of Ivalice*.** No script or counter awards it. The Steam receipt handlers `0020C940` (callback 1101) and `0020C8C0` (1103) award it themselves when every other entry is achieved.
 
-*Static and corpus. Whether a given stage's call site is reached on a stage clear is not established here (`SD-162`, SWE2-DATA, 2026-09-30).*
+*Static and corpus. ~~Whether a given stage's call site is reached on a stage clear is not established here~~
+(`SD-162` answered 2026-10-01, SWE2-ORACLE — all 1,800 sites sit after the `waitv` group-completion post in the shared
+director code; each is live in exactly one stage file under its `nowmap()` guard — index 39 live only in `tri_j05`
+(stage 50, `nowmap()==0x4CF` after the tenth-stage set), index 40 only in `tri_t05` (stage 100, `nowmap()==0x51F`);
+18 live sites, 1,782 statically excluded; record [`sd162-trial-award-path-0930`](../_index/candidates/sd162-trial-award-path-0930/README.md), `sd162_award_path.py` FAILS 0).*
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

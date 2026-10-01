@@ -1,0 +1,5 @@
+{
+  "command": "Collaboration/Tools/analysis/venv/Scripts/python.exe Database/Tools/work/ASTRA/migration-a23-current-release/source-binding-prerequisite-01/probe.py",
+  "status": "TERMINAL_SUCCESS",
+  "exit_code": 0
+}

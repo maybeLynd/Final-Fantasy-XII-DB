@@ -1,7 +1,7 @@
 ---
 system: The shop table — 57 shops, each a ladder of stock lists gated on story progress or clan rank, bound to registry slot 02EBF158
 category: 12-Items-Equipment-Shops-License
-status: PARTIAL — the three list-interface questions are answered 2026-09-30 (OPUS 9c71391a8: GR-13 a shop row has one layout and its price is read at entry +0x10, GR-14 a shop list never receives message 26, so +0x10 is not rewritten, GR-15 the list kinds per widget family) and the body is corrected to them (FABLE 2026-09-30, shop-page-corrections-fable-0930); the shop table, the gate and the listing are read whole. Answered: the 57 name ids through npcdic.bin 2026-09-17 (UQ-132); row 24's runs 2026-09-27 (UQ-133: the vendor is first usable at story progress 3,100, so only entry 0 is ever gated); the rank counters' predicates are FG-1's, and no purchase path re-checks a gate (2026-09-30)
+status: DOCUMENTED — every register row the page names is answered and its prose residue is closed (owner re-status 2026-10-01, OPUS, batch 22): the three list-interface questions are answered 2026-09-30 (OPUS 9c71391a8: GR-13 a shop row has one layout and its price is read at entry +0x10, GR-14 a shop list never receives message 26, so +0x10 is not rewritten, GR-15 the list kinds per widget family) and the body is corrected to them (FABLE 2026-09-30, shop-page-corrections-fable-0930); the shop table, the gate and the listing are read whole. Answered: the 57 name ids through npcdic.bin 2026-09-17 (UQ-132); row 24's runs 2026-09-27 (UQ-133: the vendor is first usable at story progress 3,100, so only entry 0 is ever gated); the rank counters' predicates are FG-1's, and no purchase path re-checks a gate (2026-09-30)
 owner_layer: both
 evidence_tier: 1
 verified_against:

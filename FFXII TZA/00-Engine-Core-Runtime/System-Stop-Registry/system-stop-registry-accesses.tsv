@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+00226B30	FUN_00226b30	00226B80	0x0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x0	
+00226B30	FUN_00226b30	00226B87	0x14	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x0	
+00226BE0	FUN_00226be0	00226C27	0x2A0	addr	lea r12, [rax + 0x2a0]	route-seeded STATIC 0x01FD4160 base+0x0 exposed	

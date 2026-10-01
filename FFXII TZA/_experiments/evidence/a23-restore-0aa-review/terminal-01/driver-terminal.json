@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\probe-terminal.py",
+    "--out",
+    "Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-0aa\\terminal-01\\result.json"
+  ],
+  "returncode": 0,
+  "stdout": "{\"status\": \"PASS_SCOPED_MP16\", \"case_count\": 99, \"failures\": []}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "8612fdf17ec932abd1d755ecb3c1d1b2764f7f9fa7c4cb5f09dfdc7888366ce8"
+}

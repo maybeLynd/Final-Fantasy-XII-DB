@@ -1,0 +1,76 @@
+{
+  "status": "CONTROLLED_ORIGINAL_REFERENCE_PREPARATION_NOT_CALLER_SEMANTICS",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A STATIC_ONLY",
+  "controls": [
+    {
+      "expected_pc": "0x185adc",
+      "target": "0x1858a0",
+      "mnemonic": "call",
+      "found": true
+    },
+    {
+      "expected_pc": "0x185c20",
+      "target": "0x186230",
+      "mnemonic": "jmp",
+      "found": true
+    }
+  ],
+  "hits": [
+    {
+      "pc": "0x17d716",
+      "target": "0x185c20",
+      "mnemonic": "call",
+      "bytes": "e805850000",
+      "pdata": [
+        [
+          "0x17d6e0",
+          "0x17d874",
+          "0x1d537c8"
+        ]
+      ],
+      "validated_instruction": true,
+      "identity": "PADATA_INSTRUCTION_START"
+    },
+    {
+      "pc": "0x185adc",
+      "target": "0x1858a0",
+      "mnemonic": "call",
+      "bytes": "e8bffdffff",
+      "pdata": [
+        [
+          "0x185a90",
+          "0x185ae6",
+          "0x1d52ad8"
+        ]
+      ],
+      "validated_instruction": true,
+      "identity": "PADATA_INSTRUCTION_START"
+    },
+    {
+      "pc": "0x1c160c",
+      "target": "0x1858a0",
+      "mnemonic": "call",
+      "bytes": "e88f42fcff",
+      "pdata": [
+        [
+          "0x1c0f20",
+          "0x1c170c",
+          "0x1d5c130"
+        ]
+      ],
+      "validated_instruction": true,
+      "identity": "PADATA_INSTRUCTION_START"
+    },
+    {
+      "pc": "0x185c20",
+      "target": "0x186230",
+      "mnemonic": "jmp",
+      "bytes": "e90b060000",
+      "pdata": [],
+      "validated_instruction": true,
+      "identity": "PINNED_5B_TAIL_ONLY"
+    }
+  ],
+  "limits": "RelativeCALL/JMP scope only. Negative/indirect bindings and caller object/CFG/state/frame remain unproved. Known5Btail is not assumed to cover a larger enclosing function."
+}

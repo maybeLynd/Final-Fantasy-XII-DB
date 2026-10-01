@@ -1,0 +1,151 @@
+{
+  "status": "IMMUTABLE_INDEPENDENT_HOST_BOUNDARY_REJECTION_NOT_FULL_ACCEPTANCE",
+  "members": [
+    {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "path": ".gitattributes"
+    },
+    {
+      "bytes": 346,
+      "sha256": "7c314c654ec32e85f6b925401beab55f87f74ab66aeb51c7e75f8e8851e63b17",
+      "path": "fixture-changed-scope/outputs/view-types.json"
+    },
+    {
+      "bytes": 346,
+      "sha256": "7c314c654ec32e85f6b925401beab55f87f74ab66aeb51c7e75f8e8851e63b17",
+      "path": "fixture-count/outputs/view-types.json"
+    },
+    {
+      "bytes": 342,
+      "sha256": "a4751957d2b1a504d2e21b356ce52a453642d445ec26d0d896e9917f85656881",
+      "path": "fixture-empty-ratio-to-count/outputs/view-types.json"
+    },
+    {
+      "bytes": 345,
+      "sha256": "87127d4918ca3b97b2c5a43521f49be968176afcbfeadd0e6ca754f282b5f16a",
+      "path": "fixture-moved-ratio/outputs/view-types.json"
+    },
+    {
+      "bytes": 342,
+      "sha256": "5f63913993aff1f53c3ec7f52163c67f171e6799ca3192f72a5c9ea048edc9da",
+      "path": "fixture-ratio-to-empty-ratio/outputs/view-types.json"
+    },
+    {
+      "bytes": 342,
+      "sha256": "a4751957d2b1a504d2e21b356ce52a453642d445ec26d0d896e9917f85656881",
+      "path": "fixture-unchanged-empty-ratio/outputs/view-types.json"
+    },
+    {
+      "bytes": 1934,
+      "sha256": "2c9e77a0bf141c59fc687ee3356c223b677f4c24844421a1273f7a696339a16a",
+      "path": "PLAN.md"
+    },
+    {
+      "bytes": 5016,
+      "sha256": "fb24bf5423149a1312e62f4646982c0aeefbe50ec8115ac4dd6e2924a3b7e002",
+      "path": "probe-vbf-chain.py"
+    },
+    {
+      "bytes": 4834,
+      "sha256": "5c5a80bade1b177c5710f3b61f64152b3c0b3f7de8fc517d6a2c9698520bbacd",
+      "path": "probe-zero-basis.py"
+    },
+    {
+      "bytes": 2040,
+      "sha256": "3339d4e378503b4869fda7a8e862672a09e92fa3f97f0ebcf9eff57270daa348",
+      "path": "README.md"
+    },
+    {
+      "bytes": 2814,
+      "sha256": "f91e74d0a3bba11aec2ea7216ccd943109c878f9b2f8c6163fa233abcccb8115",
+      "path": "RESULT.md"
+    },
+    {
+      "bytes": 60558,
+      "sha256": "812d7f0ce2c7681044f657ce0af51c09f3fad5a22bc641116691675b190016ab",
+      "path": "source-build_views-eae0ed3c7.py"
+    },
+    {
+      "bytes": 60558,
+      "sha256": "812d7f0ce2c7681044f657ce0af51c09f3fad5a22bc641116691675b190016ab",
+      "path": "source-build_views.py"
+    },
+    {
+      "bytes": 46364,
+      "sha256": "54578ce1fd27619ab76af14dded5697c2a4aadbda8d86e6cf238a4f3f7fbf75f",
+      "path": "source-server.py"
+    },
+    {
+      "bytes": 197,
+      "sha256": "d2a6a8b7fa81339819d342bb09205dbed7224d3dc9ebba45d3104a5a11f051d0",
+      "path": "vbf-chain/corrupt-archive.json"
+    },
+    {
+      "bytes": 142,
+      "sha256": "0054cc9fa2a031e8e89d9a47447940b0acf970f4421ddd1e8d3c296c277ddb80",
+      "path": "vbf-chain/corrupt.vbf"
+    },
+    {
+      "bytes": 710,
+      "sha256": "4d14499cc8d43ae80d6d8ebd641b33492f46ce3fb45c64e4d619364abd0cb528",
+      "path": "vbf-chain/drift.json"
+    },
+    {
+      "bytes": 52,
+      "sha256": "832404fdfbf9bdd275f9846b1a2de9359ad55a8ea24fed5120e7ed09328913da",
+      "path": "vbf-chain/drift.txt"
+    },
+    {
+      "bytes": 39,
+      "sha256": "e08e9ed8449f5310afb37abbcbaed3195818637c76e6b62668189070e28919fe",
+      "path": "vbf-chain/facts.json"
+    },
+    {
+      "bytes": 36,
+      "sha256": "8ad8cedbfc0cda7e85ddf4446a57ff44c018a5393ba68690d65cfb7a70976caa",
+      "path": "vbf-chain/listing.txt"
+    },
+    {
+      "bytes": 382,
+      "sha256": "f5990a26aec454434bc44415267ede66f4b1679682eadad991af3ce614baebcf",
+      "path": "vbf-chain/missing-archive.json"
+    },
+    {
+      "bytes": 469,
+      "sha256": "dcecbcc8d59076f9220ef1dd0a2ef5b3327f7e6c89b0dfd898de46e9419610c3",
+      "path": "vbf-chain/missing-listing.json"
+    },
+    {
+      "bytes": 712,
+      "sha256": "5d17ed25d5cc6b72572f2b18653c7e76c700cb5e8413a48e935bb4840c6d893b",
+      "path": "vbf-chain/positive.json"
+    },
+    {
+      "bytes": 142,
+      "sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f",
+      "path": "vbf-chain/positive.vbf"
+    },
+    {
+      "bytes": 22758,
+      "sha256": "57ad6bc5ba40f643eb4abe775ff2de38bd75412b89d328a1dc7d6534a0c2985c",
+      "path": "vbf-chain/result.json"
+    },
+    {
+      "bytes": 5682,
+      "sha256": "e94f7654f89a54d881530a0411538ad1756c3267aa5fabc604ce20046b9c3bc5",
+      "path": "vbf-chain/vbf_index.py"
+    },
+    {
+      "bytes": 2183,
+      "sha256": "5dc20c0b34921e8212cd0ba4ea653a1890484c7ca543c204e4a519cc2af16c49",
+      "path": "VBF-RESULT.md"
+    },
+    {
+      "bytes": 9611,
+      "sha256": "147a4803440c40b991961edd3bd80d7b5a560a0e4e8c7797596e1153ccaf5267",
+      "path": "zero-basis-result.json"
+    }
+  ],
+  "limits": "Six pinned delta cases and five actual synthetic-header CLI-to-view cases; observed failures remain failures. Integrity is not FF12/live/full build/deployment acceptance."
+}

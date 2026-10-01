@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-handle-accounting-qualification.py", line 91, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-handle-accounting-qualification.py", line 65, in main
+    accountcall=next(i for i in callback if i['mnemonic']=='call' and i['args']=='0x36c5d0')
+StopIteration

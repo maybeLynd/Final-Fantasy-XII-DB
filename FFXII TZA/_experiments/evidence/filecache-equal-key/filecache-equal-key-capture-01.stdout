@@ -1,0 +1,7 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+RANGE 0x1d6a20 0x1d6a6d 1fb87c5cf1cf0d9cc2f68b6d328a5cef161e4d3286abb179f2299f5b8f30ddb6
+RANGE 0x20b680 0x20b83b 6351d3140ac8de9d876ff304797e949053c599ed62218e8075c965d1a8f20e00
+RANGE 0x20b5f0 0x20b675 29fb16f493bf88ef4e7c6b860978868f153da61149d3f46355a8c6e2ec6be351
+RANGE 0x20b0f0 0x20b126 b1da229162eec2af3b5d3a189ad84cf951c1b3088bf8ec9371c780e918a08ee6
+RANGE 0x20c300 0x20c438 7f56074a74f27acc403c1f72c1c8a5d2538e7b889e2056d748f877b3a7918245
+STATIC IMPORTS [{"iat_va": "0x8c2b48", "dll": "api-ms-win-crt-heap-l1-1-0.dll", "name": "free", "import_lookup_raw": "80eecc0100000000"}, {"iat_va": "0x8c2b50", "dll": "api-ms-win-crt-heap-l1-1-0.dll", "name": "_msize", "import_lookup_raw": "92eecc0100000000"}]

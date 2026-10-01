@@ -1,0 +1,15 @@
+{
+  "case": "failed-upstream",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-queue-allocator.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-allocator-controls-01\\failed-upstream",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-allocator-controls-01\\failed-upstream\\capture-status.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-allocator-controls-01\\failed-upstream\\result.json"
+  ],
+  "exit": 1,
+  "expected_error": "upstream capture failed or missing exit",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "checker_sha256": "07a02284de4c90dd7201a9f62e3c61d63595d428c751c4af025c9ef80f703978"
+}

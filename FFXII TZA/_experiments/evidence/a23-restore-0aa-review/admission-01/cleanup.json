@@ -1,0 +1,21 @@
+{
+  "events": [
+    {
+      "name": "disposable-percent-distinct",
+      "removed": true
+    },
+    {
+      "name": "disposable-case-pair",
+      "not_created": true
+    },
+    {
+      "name": "disposable-unverified",
+      "not_created": true
+    },
+    {
+      "name": "disposable-trailing-period",
+      "removed": true
+    }
+  ],
+  "scope": "only four own disposable roots; retained ZIP inputs/results untouched"
+}

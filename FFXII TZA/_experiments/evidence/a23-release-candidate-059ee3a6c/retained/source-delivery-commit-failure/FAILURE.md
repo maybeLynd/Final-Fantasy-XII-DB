@@ -1,0 +1,1 @@
+Second checker run exited1 at requirements source binding: delivery publication commit includes later component code. Named source commits in original release receipt, not evidence-publication HEAD, identify deployed component bytes. Use successful Git lookup of each declared component commit, checked against manifest bytes; keep this run INVALID.

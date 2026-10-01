@@ -1,0 +1,21 @@
+{
+  "question": "Does original2E4D20 consume the incoming R8D success flag or RDX destination before replacing those values, and does its local readiness rule distinguish callbacksuccess0/1?",
+  "hypotheses": [
+    "H1 success/destination incoming arguments control callback memory/call/branch effects directly or through an early original callee",
+    "H2 both are unused through their first full overwrite; local progression uses the record/metadata/callee outcome rather than the incoming notification status"
+  ],
+  "method": "A retained complete callback and source-directed original leaf/pre-overwrite callees. Invariant of input-independent registers/branches; no sample/harness/live run needed if original leaves close the dependency boundary.",
+  "existing": "Own retained full2E4D20 ignores direct R8D/RDX until metadata/tag overwrite. First32F3D0 contains calls408B30/408B10/5C5230;36B130 and409090 are small original leaves. Shipping5C5230 is already verified zero stub; no native effect inferred from it.",
+  "reference": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000; user record from signextendedECX and valid mapped descriptor/caller premises",
+  "discriminator": "Check every reachable original instruction before unconditional argument kills, including early direct callees. A read-before-first-write from R8/RDX aliases, opaque early indirect call, dependent effective address or branch refutes closure.",
+  "controls": [
+    "Exact full ranges/current instruction boundaries, original byte verification and shared reviewed access-role adapter actual capture path",
+    "Validated complete local CFG/early-call graph; explicit no other pending argument stack/hidden side channel guarantee",
+    "Corrupt early-helper identity or missing retained semantic source must fail producer before output"
+  ],
+  "acceptance": "Incoming callback success/destination input has no modeled local effect through original pre-overwrite graph, under valid memory/normal ABI/no interference. Conditional readiness/registration still depends on record flags/followup outcome. Do not claim valid content or natural failed callback delivery.",
+  "falsification": "Early original read of incoming aliases or unclosed call graph; preserve useful direct no-use fact and leave transitive independence open instead of narrowing collector silently.",
+  "consumer": "Existing FABLE/OPUS namebinding consumers/SPEC review; normal callback error delivery and lifetime remain separate",
+  "budget": "Retained callback reused; source-directed87+8+8+41+53+3=200B early graph maximum. No broad census/framework or live setup.",
+  "cleanup": "Finite original file reads; no PC/game/native/emulated/instrument/save/config/reference/peer-process mutation"
+}

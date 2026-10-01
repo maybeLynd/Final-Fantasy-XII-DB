@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-renderer-init-command-routing.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-init-command-routing-source-02.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "10e92b0c628657d904498dd5639604e3ef81a24a0c37aafb16119eeb42dc0289",
+  "source_name": "renderer-init-command-routing-source-02.json",
+  "source_sha256": "84a0e8695328a3d23d6e5305b3b5c4d99b20b612df2d1046b9ce5ebc4938b606"
+}

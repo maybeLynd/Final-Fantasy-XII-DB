@@ -1,7 +1,7 @@
 ---
 system: Battle locomotion — steering, avoidance and recovery
 category: 06-Movement-And-Navigation
-status: DOCUMENTED — SD-183 and SD-184 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — the modes 1/4/2/6 bodies and the mode-bit authors (AM-7's residue, registered as SD-183 2026-09-30) and whether any heading writer stores outside [-pi, pi] (SD-184) are answered in §6; AM-5 answered 2026-09-18 (the 0x4020 case read: wander around the unit's own spawn position; every opcode's case now read across DE-1..DE-4); the 0x4021/0x4025 holes explained 2026-09-08 (DE-2)
+status: AUDITED — SD-183 and SD-184 are ANSWERED and every box on the page is closed (owner re-status 2026-09-30, OPUS) — the modes 1/4/2/6 bodies and the mode-bit authors (AM-7's residue, registered as SD-183 2026-09-30) and whether any heading writer stores outside [-pi, pi] (SD-184) are answered in §6; AM-5 answered 2026-09-18 (the 0x4020 case read: wander around the unit's own spawn position; every opcode's case now read across DE-1..DE-4); the 0x4021/0x4025 holes explained 2026-09-08 (DE-2)
 owner_layer: PrimaryOwner:Movement — driven entirely from CombatAction
 evidence_tier: 1
 verified_against:
@@ -22,6 +22,7 @@ audit:
   last_pass_state: GN160-xiionline-61-rand-and-order-opcodes
   crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record GN160-xiionline-61-rand-and-order-opcodes; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Battle locomotion — steering, avoidance and recovery

@@ -1,7 +1,7 @@
 ---
 system: Setting the movement mode, and which way a character turns
 category: 06-Movement-And-Navigation
-status: DOCUMENTED — SD-190 and SD-193 are ANSWERED and DP-2 is SUPERSEDED (owner re-status 2026-09-30, OPUS) — DP-2 SUPERSEDED 2026-09-26 (FABLE, runtime rule: the mode-4 mechanism is tier-1 static; whether the difference is visible in play is a live observation, not queued); DP-1 answered on the page 2026-09-12 (+0x5C is a dead store); residue registered as SD-190 (when the per-frame pass takes the integrator's direct-delta path) and SD-193 (the mode-3 curve 003EC040), both since answered (§6); status line current 2026-09-30, SWE2-DATA
+status: AUDITED — SD-190 and SD-193 are ANSWERED and DP-2 is SUPERSEDED (owner re-status 2026-09-30, OPUS) — DP-2 SUPERSEDED 2026-09-26 (FABLE, runtime rule: the mode-4 mechanism is tier-1 static; whether the difference is visible in play is a live observation, not queued); DP-1 answered on the page 2026-09-12 (+0x5C is a dead store); residue registered as SD-190 (when the per-frame pass takes the integrator's direct-delta path) and SD-193 (the mode-3 curve 003EC040), both since answered (§6); status line current 2026-09-30, SWE2-DATA
 owner_layer: PrimaryOwner:Movement
 evidence_tier: 1
 level: L1
@@ -20,8 +20,9 @@ audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-movement-mode-pass-1 - the mode census re-derived from the last edx write at each site gives exactly section 10's counts (2 x10, 3 x7, 4 x5, 0 x7, and NONE passes 5) over 29 sites in 27 distinct callers, so section 2's '26 callers' is a third number; 0034DC60 does not forward but hardcodes 0 and takes its second argument as the actor; all four normaliser constants and the 9 / 180 / 0.5 degree values are exact; and 01DFE0B4 ships as 1 and is the same global the widget pass found rate-compensating the UI frame counter
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-movement-mode-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Setting the movement mode, and which way a character turns

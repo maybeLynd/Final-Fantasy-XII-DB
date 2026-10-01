@@ -1,0 +1,17 @@
+{
+  "case": "missing-output",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\check.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\controls-01\\disposable-missing-output"
+  ],
+  "checker_sha256": "fb9c5a8bc979ddffe83ce1d6a6fe09762188d5a99decea214235e102646f4ab8",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "expected_error_seen": true,
+  "no_success_output": true,
+  "delta_sha256": "8cdd9ec14a87bffb14a058f39077055faa45cff1d3e969779552b4df3ecd845d",
+  "disposable_absent": true
+}

@@ -1,0 +1,3 @@
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-title-cleanup-import-boundary.py", line 14
+    if d[p:p+4]!=b'PE
+SyntaxError: source code cannot contain null bytes

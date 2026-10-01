@@ -1,0 +1,38 @@
+{
+  "status": "PASS_ACTUAL_UPSTREAM_AND_ZERO_CASE_REFUSALS",
+  "driver_sha256": "6fc181f5ddb611f0b073a53b2a6b18b73f065767241e770132ea5257f7f47fe1",
+  "cases": [
+    {
+      "tag": "upstream-fail",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check_bj1_preparation.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bj1-prerequisite-controls-01\\upstream-fail"
+      ],
+      "exit": 1,
+      "mutation_file": "bj1-transport-controls-run-04.status.json",
+      "field": "exit",
+      "replacement": 1,
+      "before_sha256": "035ec6351946e3a9311db621a61ee564dca068fb89c773ee88da8642ccafd1c1",
+      "mutated_sha256": "2f247f446b46e28d9af885f8e6b76a0d48e2268fee44a911b25f2eca69a5f532",
+      "expected_refusal_seen": true,
+      "no_pass": true
+    },
+    {
+      "tag": "zero-case",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check_bj1_preparation.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bj1-prerequisite-controls-01\\zero-case"
+      ],
+      "exit": 1,
+      "mutation_file": "bj1-transport-controls-04.json",
+      "field": "controls",
+      "replacement": [],
+      "before_sha256": "0607de53475b1bcdd6ee2f603ce6b41c50ab0727de96495a96ef072cd2a03133",
+      "mutated_sha256": "032d66b0e525daea01356c4d36cdb37c958a3c9e39084f68c59f2e4d2ed70788",
+      "expected_refusal_seen": true,
+      "no_pass": true
+    }
+  ]
+}

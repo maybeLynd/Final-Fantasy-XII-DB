@@ -1,0 +1,1 @@
+{"complete": false, "cases": [{"case": "failed-capture", "passed": true, "diagnostic": "RuntimeError: upstream capture failed/incomplete"}]}

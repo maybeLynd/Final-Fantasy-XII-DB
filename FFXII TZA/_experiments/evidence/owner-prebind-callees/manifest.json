@@ -1,0 +1,295 @@
+{
+  "kind": "conditional original pre-binder callee closure",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "control_owner_prebind_callees.py",
+      "sha256": "15c319a3a4b25e2155635db59ffad549cc28f5684702e416955b7af7a856512b",
+      "bytes": 3156
+    },
+    {
+      "path": "freeze_owner_prebind_callees.py",
+      "sha256": "3fbbff91450f628c1367f5394e6c73b33f85fb432677f5f5377c0c3c8b14cdef",
+      "bytes": 3020
+    },
+    {
+      "path": "owner-prebind-bounds-premise-01.json",
+      "sha256": "d06e6a14e8d8364195b07d82ecf8513541f8b848fcda991360632f3e2d36c574",
+      "bytes": 180
+    },
+    {
+      "path": "OWNER-PREBIND-CALLEES-METHOD-1001.md",
+      "sha256": "ed73d5acf10ee921e070f05666504146f5251fb58e957e9ca54c743152fbc969",
+      "bytes": 1674
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/owner-prebind-bounds-premise-01.json",
+      "sha256": "b72d740b43a00339a72152c00e93f91b11a99375f5d413b5086adbf5e176a954",
+      "bytes": 180
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/owner-prebind-source-01.json",
+      "sha256": "1ea38f069d6d7af49f478663dd9a98381285dbdcbef8f86e4ea6d22ef6e00a43",
+      "bytes": 41628
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/owner-prebind-source-run-01.status.json",
+      "sha256": "5aaab3cae24ec348fdd8a144e00d39bbf45d4a3f129d3d6e98aedfa40b8d6fa1",
+      "bytes": 441
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/owner-prebind-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/owner-prebind-source-run-01.stdout",
+      "sha256": "09f662803da78c3c909627125d7fe1c1ac2805248e09d3168e64bbfc71a73e62",
+      "bytes": 96
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/qualify_owner_prebind_source.py",
+      "sha256": "6eec165160545ca626e8e2e3a321509b54a4e53ed551fb452bb1e646dfea6cfe",
+      "bytes": 7045
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/stderr",
+      "sha256": "2a95fc53445776f3147fbff40caa52795ed4c5b0a4c29f1cd95bffd4ba8a8f83",
+      "bytes": 687
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/broadened-depth-premise/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/owner-prebind-bounds-premise-01.json",
+      "sha256": "d06e6a14e8d8364195b07d82ecf8513541f8b848fcda991360632f3e2d36c574",
+      "bytes": 180
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/owner-prebind-source-01.json",
+      "sha256": "890a27d6625c16ea0188aa9fc29eda0b0638fe27c9dd8b147876d7f301db29fa",
+      "bytes": 41629
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/owner-prebind-source-run-01.status.json",
+      "sha256": "5aaab3cae24ec348fdd8a144e00d39bbf45d4a3f129d3d6e98aedfa40b8d6fa1",
+      "bytes": 441
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/owner-prebind-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/owner-prebind-source-run-01.stdout",
+      "sha256": "09f662803da78c3c909627125d7fe1c1ac2805248e09d3168e64bbfc71a73e62",
+      "bytes": 96
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/qualify_owner_prebind_source.py",
+      "sha256": "6eec165160545ca626e8e2e3a321509b54a4e53ed551fb452bb1e646dfea6cfe",
+      "bytes": 7045
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/stderr",
+      "sha256": "e44b2e52d2c35c8c89b809aa1df51de271bf8fc79da62d4c05e955b8310b7244",
+      "bytes": 865
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/changed-flag-leaf/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/owner-prebind-bounds-premise-01.json",
+      "sha256": "d06e6a14e8d8364195b07d82ecf8513541f8b848fcda991360632f3e2d36c574",
+      "bytes": 180
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/owner-prebind-source-01.json",
+      "sha256": "1ea38f069d6d7af49f478663dd9a98381285dbdcbef8f86e4ea6d22ef6e00a43",
+      "bytes": 41628
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/owner-prebind-source-run-01.status.json",
+      "sha256": "e1ff5b15dd56af516f13b4e5849cf9b0088e5b1f3a17fd9260b8fcd3b8be817f",
+      "bytes": 441
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/owner-prebind-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/owner-prebind-source-run-01.stdout",
+      "sha256": "09f662803da78c3c909627125d7fe1c1ac2805248e09d3168e64bbfc71a73e62",
+      "bytes": 96
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/qualify_owner_prebind_source.py",
+      "sha256": "6eec165160545ca626e8e2e3a321509b54a4e53ed551fb452bb1e646dfea6cfe",
+      "bytes": 7045
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/stderr",
+      "sha256": "5c2dfd42ecad000e974675c5e11c4109d37534f530afcc35f85d653bc95c6317",
+      "bytes": 838
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/failed-qualifier/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/owner-prebind-bounds-premise-01.json",
+      "sha256": "d06e6a14e8d8364195b07d82ecf8513541f8b848fcda991360632f3e2d36c574",
+      "bytes": 180
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/owner-prebind-source-01.json",
+      "sha256": "687aa006a8107ff0a00281b6acae31f8afd5708a0819bab84e4e37fed92872bf",
+      "bytes": 31264
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/owner-prebind-source-run-01.status.json",
+      "sha256": "5aaab3cae24ec348fdd8a144e00d39bbf45d4a3f129d3d6e98aedfa40b8d6fa1",
+      "bytes": 441
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/owner-prebind-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/owner-prebind-source-run-01.stdout",
+      "sha256": "09f662803da78c3c909627125d7fe1c1ac2805248e09d3168e64bbfc71a73e62",
+      "bytes": 96
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/qualify_owner_prebind_source.py",
+      "sha256": "6eec165160545ca626e8e2e3a321509b54a4e53ed551fb452bb1e646dfea6cfe",
+      "bytes": 7045
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/stderr",
+      "sha256": "4fa7612b4cb499d4becb0f62b721b698718820ab1e718e05dbc36e19ef0c20d2",
+      "bytes": 914
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-01/missing-tail-body/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-prebind-controls-01/result.json",
+      "sha256": "c7fe9af8c075345601a9b1a72069763641373445eaf110166d1fb021a44adb9c",
+      "bytes": 3240
+    },
+    {
+      "path": "owner-prebind-controls-run-01.status.json",
+      "sha256": "3ee3541b0bd96aab3308c251c7e5f3e657277e87bf6c90dba4bf81172f2fc8a9",
+      "bytes": 439
+    },
+    {
+      "path": "owner-prebind-controls-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-controls-run-01.stdout",
+      "sha256": "722a1d93e9013bcbb5f40838c0065eba88206e28d83e463c858783391b9ca7f2",
+      "bytes": 88
+    },
+    {
+      "path": "owner-prebind-positive-01.status.json",
+      "sha256": "f1331788376a5f2cf34432a8b6978999977dbe6835b088b7f78835755c66d10c",
+      "bytes": 440
+    },
+    {
+      "path": "owner-prebind-positive-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-positive-01.stdout",
+      "sha256": "a66edec839c8ff7501dea1abe8e4f3c39cbdfc48cf133594f9b0e7834139f17f",
+      "bytes": 129
+    },
+    {
+      "path": "owner-prebind-result-01.json",
+      "sha256": "e4945fa02f31779df6ffad697b02c3f757205de526b13799377b83978446503b",
+      "bytes": 6039
+    },
+    {
+      "path": "owner-prebind-source-01.json",
+      "sha256": "1ea38f069d6d7af49f478663dd9a98381285dbdcbef8f86e4ea6d22ef6e00a43",
+      "bytes": 41628
+    },
+    {
+      "path": "owner-prebind-source-run-01.status.json",
+      "sha256": "5aaab3cae24ec348fdd8a144e00d39bbf45d4a3f129d3d6e98aedfa40b8d6fa1",
+      "bytes": 441
+    },
+    {
+      "path": "owner-prebind-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-prebind-source-run-01.stdout",
+      "sha256": "09f662803da78c3c909627125d7fe1c1ac2805248e09d3168e64bbfc71a73e62",
+      "bytes": 96
+    },
+    {
+      "path": "prove_owner_prebind_callees.py",
+      "sha256": "522dc357eb203ef73f891eb1d857ce4719d2af3c86aa37ea888892ff646aafb6",
+      "bytes": 9714
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+      "bytes": 14292
+    },
+    {
+      "path": "qualify_owner_prebind_source.py",
+      "sha256": "6eec165160545ca626e8e2e3a321509b54a4e53ed551fb452bb1e646dfea6cfe",
+      "bytes": 7045
+    },
+    {
+      "path": "README.md",
+      "sha256": "5f553834ba0fd7a62f2f7a595f2aa0f2b71be64d482c311fbe52691a0c974466",
+      "bytes": 3866
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    }
+  ]
+}

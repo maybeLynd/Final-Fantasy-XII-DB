@@ -1,0 +1,16 @@
+{
+  "case": "missing-selector-table",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ov58d-order-switch.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\missing-selector-table",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\missing-selector-table\\capture-status.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-controls-01\\missing-selector-table\\invalid-result.json"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "expected_error": "missing/different original tables",
+  "expected_error_seen": true,
+  "invalid_result_absent": true,
+  "checker_sha256": "4faf89e652ef9cfac61930f6f77749f8e00ba2cdd67f9daa8a7f179e82be43ee"
+}

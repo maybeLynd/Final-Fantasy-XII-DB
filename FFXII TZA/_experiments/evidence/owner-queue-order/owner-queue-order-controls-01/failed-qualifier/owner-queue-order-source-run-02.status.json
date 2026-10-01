@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\qualify_owner_queue_order_source.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-queue-order-source-02.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae"
+}

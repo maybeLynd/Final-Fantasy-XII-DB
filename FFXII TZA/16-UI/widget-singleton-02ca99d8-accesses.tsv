@@ -1,0 +1,11 @@
+function	name	site	disp	kind	instruction	route	note
+0057EA40	FUN_0057ea40	0057EA5D	0xC0	r	test byte ptr [rax + 0xc0], 2	route-seeded PTR 0x02CA99D8 base+0x0	
+0057EA40	FUN_0057ea40	0057EAFE	0xC0	rw	or dword ptr [rax + 0xc0], 2	route-seeded PTR 0x02CA99D8 base+0x0	
+0057EC60	FUN_0057ec60	0057EC7A	0xC0	r	test byte ptr [rax + 0xc0], 2	route-seeded PTR 0x02CA99D8 base+0x0	
+0057EC60	FUN_0057ec60	0057ECC7	0xC0	rw	and dword ptr [rax + 0xc0], 0xfffffffe	route-seeded PTR 0x02CA99D8 base+0x0	
+0057EC60	FUN_0057ec60	0057ECD1	0xC0	rw	or dword ptr [rax + 0xc0], edx	route-seeded PTR 0x02CA99D8 base+0x0	
+0057EC60	FUN_0057ec60	0057ED13	0xC0	rw	or dword ptr [rax + 0xc0], 2	route-seeded PTR 0x02CA99D8 base+0x0	
+0057ED40	FUN_0057ed40	0057ED4C	0xC0	r	test byte ptr [rcx + 0xc0], 2	route-seeded PTR 0x02CA99D8 base+0x0	
+0057ED40	FUN_0057ed40	0057ED85	0xC0	rw	and dword ptr [rcx + 0xc0], 0xfffffffc	route-seeded PTR 0x02CA99D8 base+0x0	
+0057ED40	FUN_0057ed40	0057ED9B	0xC0	rw	and dword ptr [rcx + 0xc0], 0xfffffffc	route-seeded PTR 0x02CA99D8 base+0x0	
+0057EC60	FUN_0057ec60	0057ECD7	0xC8	w	mov qword ptr [rax + 0xc8], r9	route-seeded PTR 0x02CA99D8 base+0x0	

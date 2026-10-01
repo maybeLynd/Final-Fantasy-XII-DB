@@ -1,0 +1,9 @@
+{
+  "status": "ORIGINAL_DIRECT_CALL_CANDIDATES_NOT_CALLER_SEMANTICS",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "target": "0x186230",
+  "candidates": [],
+  "verified_instruction_hits": [],
+  "limits": "No register/object/caller-entry CFG or indirect callers, live occurrence, thread or timing proof. Whole executable raw rel32 candidates are checked as instruction starts in original pdata spans; consumers still require validated dataflow."
+}

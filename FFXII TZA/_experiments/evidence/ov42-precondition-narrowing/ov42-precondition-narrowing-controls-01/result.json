@@ -1,0 +1,160 @@
+{
+  "status": "PASS_FIVE_ACTUAL_DEFAULT_CLI_REFUSALS_THREE_OLD_FALSE_ACCEPTANCES",
+  "cases": [
+    {
+      "case": "bytes-with-stale-text",
+      "expected_error": "decoded annotation disagrees with bytes",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "fixed_invocation": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\bytes-with-stale-text\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\bytes-with-stale-text\\invalid-result.json"
+        ],
+        "exit": 1,
+        "terminal": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "1f3d430bd1768515feffc6e048a55d1926fa429426edcfe4cc27fedcd6b62130"
+      },
+      "old_acceptance": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission-before-returned-review-1001.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\bytes-with-stale-text\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\bytes-with-stale-text\\old-synthetic-result.json"
+        ],
+        "exit": 0,
+        "terminal": true,
+        "stdout_sha256": "7fdeef156c2b8bea1c9bd79f63842cab0ffd5328cc565edfd41990e72e36dc97",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "result_sha256": "f6f65f02421d9fcf811b29e917ba3465aef9bbe06e396efa056c2d7b3729d45c"
+      }
+    },
+    {
+      "case": "coherent-kind5",
+      "expected_error": "retained source differs from shipping bytes",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "fixed_invocation": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-kind5\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-kind5\\invalid-result.json"
+        ],
+        "exit": 1,
+        "terminal": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "4c2a99fea2965f33be212a1edabad1d34ea99065a4ee34efabcb18139732f48c"
+      },
+      "old_acceptance": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission-before-returned-review-1001.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-kind5\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-kind5\\old-synthetic-result.json"
+        ],
+        "exit": 0,
+        "terminal": true,
+        "stdout_sha256": "7fdeef156c2b8bea1c9bd79f63842cab0ffd5328cc565edfd41990e72e36dc97",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "result_sha256": "86adc7771f90ecfcd98a7cb4dda8bfac59d9d1626bbe649dff1aca41a8085201"
+      }
+    },
+    {
+      "case": "coherent-mode-range-reversal",
+      "expected_error": "retained source differs from shipping bytes",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "fixed_invocation": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-mode-range-reversal\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-mode-range-reversal\\invalid-result.json"
+        ],
+        "exit": 1,
+        "terminal": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "4c2a99fea2965f33be212a1edabad1d34ea99065a4ee34efabcb18139732f48c"
+      },
+      "old_acceptance": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission-before-returned-review-1001.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-mode-range-reversal\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\coherent-mode-range-reversal\\old-synthetic-result.json"
+        ],
+        "exit": 0,
+        "terminal": true,
+        "stdout_sha256": "7fdeef156c2b8bea1c9bd79f63842cab0ffd5328cc565edfd41990e72e36dc97",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "result_sha256": "3e163df297ddd5cb1210a5a726d31fe5a0150c60f04572770d31f31ce88a56ba"
+      }
+    },
+    {
+      "case": "failed-role-control",
+      "expected_error": "upstream roles invalid",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "fixed_invocation": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\failed-role-control\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\failed-role-control\\invalid-result.json"
+        ],
+        "exit": 1,
+        "terminal": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "82e9dc21c47f2fe057ba6b3818aff8dcb6aebf5ef00fd38de4e010aa8813c025"
+      },
+      "old_acceptance": null
+    },
+    {
+      "case": "wrong-reference-image",
+      "expected_error": "shipping image identity mismatch",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "fixed_invocation": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-special-admission.py",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\wrong-reference-image\\raw.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\result.json",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\action-selectors-01\\tables",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\wrong-reference-image\\invalid-result.json",
+          "--exe",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-precondition-narrowing-controls-01\\wrong-reference-image\\invalid-exe.bin"
+        ],
+        "exit": 1,
+        "terminal": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "9d2b789078b03906a02249949994439e6455916a0c279a29c4fa82929baaad59"
+      },
+      "old_acceptance": null
+    }
+  ],
+  "driver_sha256": "49a7ca2392d7729ed9c48c026fcce55ab22872c9fa29375e6c86502694d32b02",
+  "checker_sha256": "4da26a59bef723387bb4fd706bf54e9b2ec6608f0d891f10be65f70c8309a31e",
+  "source_gate_sha256": "7eac8d153c370d7ea27c7111e2e651f3b4fae45bc8a13cdb0889dbf18e5defad",
+  "native_runs": 0,
+  "live_runs": 0,
+  "limits": "Synthetic mutation controls through actual default invocation. Three old outputs demonstrate invalid acceptance only; not valid original source conclusions. Review independent acceptance remains pending."
+}

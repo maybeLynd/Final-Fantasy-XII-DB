@@ -1,0 +1,41 @@
+{
+  "producer_complete": true,
+  "method": "A scoped composite original-resource literal absence, zero native/game runs",
+  "driver_sha256": "ef80b0dd0b50d3df53acfb2ebea454bb0a8fcb3ffa6ea64c36fd663cb317d153",
+  "source_pins": [
+    {
+      "path": "retained-native-source.json",
+      "sha256": "a5dca623e4c5b98627cf9f675a9ac863cf167ff71cae70f434ce1d4be5ffa54b"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 373,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "input_archive_header_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+  "entry_count": 10045,
+  "recognized_prefix_code_entries": 9403,
+  "whole_entry_suffix": 616,
+  "whole_entry_small_gaps": 26,
+  "literal_target_calls": 0,
+  "partial_full_run_status": "INVALID_INCOMPLETE preserved exit1; never upgraded to PASS",
+  "composite_scope": "9429 retained prefix entries, with26 small layout gaps discriminated by exact wholebytes;616 unread suffix wholebytes. No already-covered prefix recapture.",
+  "established": [
+    "No literal CALL/CALLACT/CALLPOPA/CALLACTPOPA id3044 in these recognized function spans and the whole suffix/gap EBP bytes",
+    "The chosen resource-method discriminator does not need a live game or absence sampling",
+    "Native3044 result binding is50FFB0 and its unchecked selector API remains part of the binary even without a located literal caller"
+  ],
+  "limits": [
+    "All recognized prefix code spans use the existing section0 directory model; other sections of those entries were not globally scanned",
+    "Whole31GB archive hash not recomputed; archive header/stat plus each decompressed entry content hash bound, noninterference/declaredreference assumptions explicit",
+    "Not natural function unreachability: other IDs/callback aliases, external/generated/compressed programs, other native writers and source dataflows remain open",
+    "Does not prove original actor type initialization or safety of row275; no fullOV42/21 closure or independent acceptance",
+    "256 byte calculations/13constants fromb4772fab not repeated; decoder positive962CALLs is a control, not gameplay/execution or962 new tests"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "604194276:Database/Tools/dashboard/vbf_index.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "stdout_bytes": 6406,
+  "stderr_bytes": 0,
+  "sha256": "7043d3d8f7ce127e4a337f6c060a3cb24f2ad6ecdb5c090fd233176094365198"
+}

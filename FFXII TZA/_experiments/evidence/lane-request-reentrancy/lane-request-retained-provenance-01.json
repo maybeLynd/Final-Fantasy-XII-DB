@@ -1,0 +1,6 @@
+{
+  "original_private_frozen_path": "lane-recycle-frozen-ready/lane-recycle-source-01.json",
+  "manifest_sha256": "ce2d9387bf687725cd3f7c5678f8a226581cd301a062f7c399dffba65c0ea4b3",
+  "member_sha256": "00219979658cc8bb07ca21bbcc27b5422994930ed9222450aac4c99729a141ef",
+  "limits": "Frozen producer source reused; independent acceptance remains separate"
+}

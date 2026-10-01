@@ -1,0 +1,16 @@
+{
+  "question": "Does0030E6C7 inherit the outerstatus byte, or select a fresh bounded bit index?",
+  "hypotheses": [
+    "Priorcallercone inheritedouterargument interpretation",
+    "Original EDX0 ->EDI0 plus increment/JL32 and MOVZX R8D,DIL yields0..31 independently of outerbyte whenever recursivecallreached"
+  ],
+  "existing_evidence": "Exactshippingpreview30E682/686 XOR EDX,EDX;30E69A MOVEDI,EDX;30E6B9 MOVZX R8D,DIL;30E6D2 INCEDI;30E6D4 CMPEDI20;30E6D7 JL30E6A3. Previous order-switch packet bindsoutertwo messagearms only.",
+  "method": "A bounded original loop invariant and call ABI boundary",
+  "why_sufficient": "Counter initialization/loop condition/argument production is original finitecode; natural branch entry/resource initialization/native effects notclaimed. No execution samples needed for the arithmetic invariant.",
+  "tool": "Reuse capture-index-path, reviewed access roles and source-byte validator; exactsource/currentstatus prerequisite plus EXEcomparison, purpose-specific loop proof and focusedCLI controls",
+  "acceptance": "Exactentry0 andmonotoniccounter admitted0..31, onlylocalindexwrites initialization/increment, argument beforecallzeroextendDIL, normal ABI preserves EDI acrossopaque/recursivecall; discloseallpremises. Conditional outer31/maskbit4 counterexample toinheritance ifthatbranchreached.",
+  "failure": "Any alternateingress/counterwrite/wrongbyte/provenance/failedcapture or control ambiguity ->no claim; retainproducerfailedreceipt",
+  "consumer": "SWE2-STRUCTcallercone recursiveinheritance line; FABLE/OPUS region-Acallerbound consumers after independentreview",
+  "cleanup": "Finitefile-only helpers, no PC/game/instrument/saves/config/reference mutation; captures/results immutable",
+  "limits": "Boundedloop only, no complete externalcallerclosure, natural resource/branchreachability or transitive nativeeffects"
+}

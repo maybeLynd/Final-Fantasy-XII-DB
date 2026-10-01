@@ -1,0 +1,19 @@
+{
+  "method": "A static import declarations, not loaded targets or CRT locale effects",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "imports": [
+    {
+      "iat_va": "0x8c2ff0",
+      "dll": "api-ms-win-crt-string-l1-1-0.dll",
+      "name": "toupper",
+      "import_lookup_raw": "e4efcc0100000000"
+    },
+    {
+      "iat_va": "0x8c2ff8",
+      "dll": "api-ms-win-crt-string-l1-1-0.dll",
+      "name": "strncmp",
+      "import_lookup_raw": "daefcc0100000000"
+    }
+  ],
+  "complete": true
+}

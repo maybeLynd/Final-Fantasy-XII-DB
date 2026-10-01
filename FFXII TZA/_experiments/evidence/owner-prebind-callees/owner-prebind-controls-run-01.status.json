@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control_owner_prebind_callees.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\owner-prebind-controls-01"
+  ],
+  "exit": 0,
+  "driver_sha256": "15c319a3a4b25e2155635db59ffad549cc28f5684702e416955b7af7a856512b"
+}

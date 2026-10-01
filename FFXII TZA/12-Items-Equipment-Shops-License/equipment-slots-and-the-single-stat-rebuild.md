@@ -1,7 +1,7 @@
 ---
 system: Equipment slots and the single stat rebuild
 category: 12-Items-Equipment-Shops-License
-status: DOCUMENTED — the equipment contribution formula inside 002FEF30 is read whole (§6, 2026-09-30); battle actions 0x9C / 0x9D, which the battle menu issues against the stashed loadout, do nothing (GR-12, answered 2026-09-30, SWE2-CONTRACT for OPUS; reviewed by SWE2-AUDIT-SEM, C4 applied) (owner re-status 2026-10-01, OPUS; documented_rule READY)
+status: AUDITED — the equipment contribution formula inside 002FEF30 is read whole (§6, 2026-09-30); battle actions 0x9C / 0x9D, which the battle menu issues against the stashed loadout, do nothing (GR-12, answered 2026-09-30, SWE2-CONTRACT for OPUS; reviewed by SWE2-AUDIT-SEM, C4 applied) (owner re-status 2026-10-01, OPUS; documented_rule READY)
 owner_layer: PrimaryOwner:Items_Equipment_Shops_License
 evidence_tier: 1
 verified_against:
@@ -25,8 +25,9 @@ audit:
     (0030FBE0) and read back five-at-a-time by giveback_item_and_equip (0030FAA0 -> 0031A710, cmp edi,5/jl).
     The display record's "sixth equipment word" and the AI selectors 0x1A/0x1B index one past the array into
     saved[0]. 0x1000 is Unarmed, from the sibling id-encoding page. PRIOR: opus-equipment-slots-pass-1 - both caller censuses reproduce (14 over 25 sites, and exactly 2 with no thunk) and the equip path matches instruction for instruction; ANSWERED: there are five slots 0-4, bounded by an unsigned cmp esi, 4 in 00317930, whose short-circuit table 1000 FFFF FFFF FFFF FFFF accepts only (slot 0, 0x1000); CORRECTED: the preview diffs five slots at +0x50..+0x58, not three, and section 3's parenthesis about re-reading 'old' reverses the order; and 00328BD0 is gameplay, answered by FZ-6 one register row away
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record fable-plus-five-2026-09-20; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # Equipment slots and the single stat rebuild

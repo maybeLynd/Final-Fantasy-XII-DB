@@ -1497,3 +1497,51 @@ Interior anchor `003325A2` (function `00332590`).
 `00375F80` (206 B) is the lane flush `002F1950` runs mid-frame: `0024B240` releases and nulls `[02ADB6D0]`, then for each of the three lane counters at `02EC07F0..+8` it scans the 32x`0x70` record table at `02EBFA48` for a `+0`-keyed match and `rep movsq`-compacts the slot's tail up one record, zeroing `02EC07D8` and the lane count; `02ADB6D8` clears at the end - the frame's dead-lane compaction
 
 Interior anchor `00375FE0` (function `00375F80`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*Functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. `003ACA60` is not here: its whole work is the entry instruction. Verified by [`twoframes_interior.py`](../../_index/candidates/opus-twoframes-interior-1001/twoframes_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0017F070` | 52 B | once: while byte `01F7F50C` is 0 and `0018CA40()` is non-null, sets the byte to 1 and tail-calls `0018C580` on that object | `0017F074`, `0017F087`, `0017F09A` |
+| `0017F330` | 63 B | when `0018CA40()` and `001A9930()` are non-null and `001A94B0(001A9930())` is true, tail-calls `0018BB70(0018CA40())` | `0017F350`, `0017F355`, `0017F365` |
+| `001809E0` | 66 B | when `001A9930()` is non-null and `001A94B0` on it is true, calls `001A5A70` on it, then tail-calls `001AA2C0` on it | `001809F6`, `00180A07`, `00180A18` |
+| `00180A30` | 61 B | when `001A9930()` is non-null and `001A94B0` on it is true, calls `001A8F80` on it; in every case then tail-calls `0018C2A0(0018CA40())` | `00180A46`, `00180A57`, `00180A68` |
+| `00182410` | 36 B | returns byte `+0xDB9` of the object `00189120()` returns, or 0 when there is none | `0018241E`, `00182423` |
+| `001826E0` | 67 B | when `00189120()` is non-null, tail-calls `0018B970(0018CA40(), [00193D50() + 0x2B8], 0, 0)` | `001826F8`, `00182707`, `00182719` |
+| `00182730` | 74 B | when `00193D50()` is non-null, calls `001944D0` on it with every other argument 0 or 0.0 | `00182743`, `00182757`, `00182770` |
+| `00183120` | 43 B | when `005C5230()` is non-zero, tail-calls `0018CB30(0018CA40(), ecx)` | `00183128`, `00183139`, `00183140` |
+| `00184900` | 70 B | with `0018CA40()` present: when `005C5230()` is non-zero and `0017D8B0()` is not 2, sets dword `+0xC30` of `00189120()` to 3; then tail-calls `0018C860(0018CA40())` | `0018491C`, `00184926`, `0018493C` |
+| `001863F0` | 30 B | tail-calls `0018BD30(0018CA40(), dl)` | `001863F9`, `00186409` |
+| `001A1460` | 9 B | copies qword `+8` to `+0x18` | `001A1464` |
+| `001A5A70` | 15 B | copies qword `+0x90` to `+0x98` | `001A5A77` |
+| `00229F20` | 110 B | when dword `01FD49E8` is non-zero: marks `"AO render"` (`001EB150`), runs `0017F670(1)` and `001826E0`; when it is still non-zero and the argument is non-zero, marks `"Water effect"` and runs `0017F330`, `00180A30`, `001EB110` and `001826E0`; then `0017ECF0` and a tail call to `001EB110` | `00229F38`, `00229F47`, `00229F60`, `00229F79`, `00229F83` |
+| `0022A490` | 30 B | stores `edx` in dword `02064AA0`, then increments byte `02064AD0` when `0022A580()` is non-zero | `0022A49A`, `0022A4A3` |
+| `002385D0` | 102 B | for a group index up to `0x1B`, reads the signed loader id from the byte table `01E09F68`; when it is not negative, calls `008478A0(id)` and returns `00384420(id, rdx, 00914698, that result, 8, 4)`; otherwise 0 | `002385E8`, `002385FA`, `0023861E`, `0023862E` |
+| `0024B240` | 43 B | appends `rcx` to the 256-qword array at `02091950` and increments the word count `0209216A`; at 256 entries it tail-jumps to `00182CA0` instead | `0024B24F`, `0024B25F`, `0024B263` |
+| `00253C20` | 45 B | returns 1 when `0035D050()` is non-zero and dword `02092730` is 0 or 3, else 0 | `00253C24`, `00253C2D`, `00253C37`, `00253C3C` |
+| `0026E1A0` | 36 B | multiplies the four 16-byte float vectors `0209A380`, `0209A370`, `0209A390` and `0209A3C0` lane by lane and stores the product at `0209A3B0` | `0026E1A7`, `0026E1B5`, `0026E1BC` |
+| `002D7F20` | 119 B | returns entry `ecx` of an eleven-dword table built on the stack (the eight dwords at `00917230`, then `0x100`, `0x200`, `0x400`); 0 when `ecx` is above 10 | `002D7F43`, `002D7F66`, `002D7F82` |
+| `002F3860` | 41 B | stores into qword `02F97348` either `[[rcx+8]+0x10]` or, when byte `[rcx]` is `0xF0`, `[rcx+0x18]`; then tail-jumps to `0024ED80` | `002F3863`, `002F386D`, `002F387D`, `002F3884` |
+| `0033FA20` | 21 B | calls `0035B8D0`, then tail-calls `0016D6A0` with `xmm0` = 0.0 | `0033FA24`, `0033FA29`, `0033FA30` |
+| `00353260` | 102 B | reads three values from `00267E10` on argument 4; when `00267310(byte +0x15 of argument 2)` is 0, calls `002F1A90(third, second, first)` | `0035327D`, `0035329C`, `003532AC` |
+| `0035B7D0` | 105 B | a fixed call sequence: `00358750(0, 1)`, `003586E0`, `00358580`, `00358670`, `003585B0` (each with 0, 0), `003586C0(0)`, `00358560(0)`, `002E1CD0(0, 0)`, `002E1C40(0, 4)`, `00368AA0(0, 0)`, then a tail call to `001848C0` | `0035B7DB`, `0035B816`, `0035B822`, `0035B834` |
+| `0035EDE0` | 112 B | returns a mask: for each of bits 0-15 that is set in `edx`, reads the signed byte at `022CB114 + 0x294*ecx + bit`, and when it is not negative sets that bit number in the result | `0035EDF5`, `0035EE1F`, `0035EE2E`, `0035EE42` |
+| `00368AE0` | 18 B | calls `00863650` with the sign-extended argument, then `00368B00`; it does not return (an `int3` follows) | `00368AE4`, `00368AE7`, `00368AEC` |
+| `00368C10` | 88 B | an endless loop over slot `[rcx]` (byte): calls `00863650` with qword `022D7F68 + 8*slot`, calls the function pointer at `022D7F70 + 8*slot` when it is set and clears it, then calls `00863520(dword 022CFEF4 + 4*slot, 0x24)` | `00368C38`, `00368C4A`, `00368C59`, `00368C61`, `00368C66` |
+| `0036E810` | 104 B | when `ecx` is non-zero, passes a stack record {mode 2 when `edx` is 1 else 1, byte `r8b`, float `xmm3`} to `0024FAE0`; otherwise calls `0024FA40` | `0036E83B`, `0036E841`, `0036E84A`, `0036E861` |
+| `0036F410` | 28 B | calls `0026E1A0` and `003ECE60`, then tail-calls `003ED7F0(1)` | `0036F414`, `0036F419`, `0036F427` |
+| `003769E0` | 15 B | copies the 16 bytes at `020926C0` to `0209A380` | `003769E7` |
+| `003A1E10` | 62 B | calls `004FE420(02EBEFC0, rcx, edx)`, then tail-calls `004FE420(02EBEFD8, rcx, rcx + edx)` | `003A1E2C`, `003A1E31`, `003A1E49` |
+| `003ACA70` | 9 B | clears the bits of `cl` in byte `02B3F520` | `003ACA72` |
+| `003B4770` | 30 B | indexes the 96-byte records at `[02B404E0]` by `cl`; returns the record plus `0x20` when its dword `+0` equals `ecx`, else 0 | `003B4777`, `003B477B`, `003B4782`, `003B478B` |
+| `003B6B80` | 28 B | indexes the `0xE0`-byte records at `[02B40528]` by `cl`; when the record's dword `+0x10` equals `ecx`, stores `xmm1` at `+0x14` | `003B6B83`, `003B6B91`, `003B6B96` |
+| `003E6F70` | 17 B | tail-jumps to `003E56A0` when qword `+0x400` is non-zero, else returns 0 | `003E6F78`, `003E6F7E` |
+| `00425DC0` | 78 B | calls `0051D1D0`, then walks the `0x740`-byte records of `[022C6F28]` from the index in dword `+0x48800`, calling `003E6680` on each and following its word `+4` until -1 | `00425DC4`, `00425DE3`, `00425DEE`, `00425DFA` |
+| `004264A0` | 88 B | stores in word `+0x4882C` of `[022C6F28]` the value `002E9B80(003590D0())`, or -1 when `003590D0()` is 0; then calls `00425FB0(0042D050, 0042CBF0, [022C6F28])` and tail-jumps to `00428980` | `004264AF`, `004264BB`, `004264CE`, `004264EA`, `004264F3` |
+| `00428E40` | 48 B | when byte `+0x48842` of `[022C6F28]` is 1 and byte `+0x48843` is 0, calls `00426420` and tail-calls `00521440` | `00428E4B`, `00428E54`, `00428E5D`, `00428E66` |
+| `0046EDD0` | 89 B | for id `+0xC`: when `0035B240(id)` has any bit other than bit 2, reads an integer through `00537410`, divides it as a float by the constant at `00906A44`, passes it to `0035B550` and returns 1; otherwise calls `0035B1A0(id)` and returns 0 | `0046EDE1`, `0046EDF0`, `0046EE01`, `0046EE09`, `0046EE1C` |
+| `00474600` | 75 B | builds a stack record {16 zero bytes, the 24-byte entry `02EBEFC0 + 24*[02EBEFF0]`} and passes it with `rcx` and its fifth argument to `003A22A0`, then calls `003A1DB0` | `0047461D`, `0047462C`, `0047463C`, `00474641` |
+| `00475390` | 31 B | when dword `02EBA4C0` is non-zero and dword `02EBA4D0` is 0, tail-calls `00474710(02EBA4C0)` | `00475399`, `004753A2`, `004753A9` |
+| `00504490` | 20 B | calls `0016D6A0(0)`, then tail-calls `003A1DB0` | `00504494`, `00504496`, `0050449F` |

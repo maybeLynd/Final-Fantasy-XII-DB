@@ -1,0 +1,16 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+0x674a00 movzx edx, byte ptr [rcx]
+0x674a03 mov eax, 0x1505
+0x674a08 test dl, dl
+0x674a0a je 0x674a23
+0x674a0c nop dword ptr [rax]
+0x674a10 imul eax, eax, 0x21
+0x674a13 lea rcx, [rcx + 1]
+0x674a17 movsx edx, dl
+0x674a1a add eax, edx
+0x674a1c movzx edx, byte ptr [rcx]
+0x674a1f test dl, dl
+0x674a21 jne 0x674a10
+0x674a23 btr eax, 0x1f
+0x674a27 ret 
+Hash body SHA 1b604e013c04950e3c0b1c29b3d08e6776b4cf316eabec0bccfc1cd036672397

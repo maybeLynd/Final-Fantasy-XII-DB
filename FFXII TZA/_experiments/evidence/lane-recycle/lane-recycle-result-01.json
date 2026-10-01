@@ -1,0 +1,216 @@
+{
+  "status": "PRODUCER_VALID_CURRENT_METADATA_TICKET_AND_LOCAL_RECYCLE_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "lane-recycle-source-01.json",
+      "sha256": "00219979658cc8bb07ca21bbcc27b5422994930ed9222450aac4c99729a141ef"
+    },
+    {
+      "path": "lane-recycle-retained-source-01.json",
+      "sha256": "f0d8359317446c74beb13a737306a0dbcc76b910e125f4a30064716bef6e07e3"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x2e6eb0",
+      "end_exclusive": "0x2e7072",
+      "instructions": 124,
+      "returns": [
+        "0x2e7071"
+      ],
+      "calls": [
+        {
+          "pc": "0x2e6f26",
+          "target": "0x36c1d0"
+        },
+        {
+          "pc": "0x2e6f30",
+          "target": "0x36c1a0"
+        },
+        {
+          "pc": "0x2e6f3b",
+          "target": "0x2e9920"
+        },
+        {
+          "pc": "0x2e6f4d",
+          "target": "0x36b160"
+        },
+        {
+          "pc": "0x2e6f69",
+          "target": "0x36c5d0"
+        },
+        {
+          "pc": "0x2e6f82",
+          "target": "0x2ed6f0"
+        },
+        {
+          "pc": "0x2e6fac",
+          "target": "0x36a000"
+        },
+        {
+          "pc": "0x2e700c",
+          "target": "0x32e620"
+        },
+        {
+          "pc": "0x2e7016",
+          "target": "0x36c140"
+        },
+        {
+          "pc": "0x2e701b",
+          "target": "0x36c110"
+        }
+      ]
+    },
+    {
+      "entry": "0x2e9470",
+      "end_exclusive": "0x2e9552",
+      "instructions": 62,
+      "returns": [
+        "0x2e9551"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x2e4000",
+      "end_exclusive": "0x2e4145",
+      "instructions": 93,
+      "returns": [
+        "0x2e4144"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x2e4e50",
+      "end_exclusive": "0x2e4f34",
+      "instructions": 63,
+      "returns": [
+        "0x2e4f33"
+      ],
+      "calls": [
+        {
+          "pc": "0x2e4ed5",
+          "target": "0x36b130"
+        },
+        {
+          "pc": "0x2e4edd",
+          "target": "0x36d170"
+        },
+        {
+          "pc": "0x2e4eef",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x2e4efa",
+          "target": "0x41e580"
+        },
+        {
+          "pc": "0x2e4f09",
+          "target": "0x2eb890"
+        },
+        {
+          "pc": "0x2e4f15",
+          "target": "0x2eafa0"
+        }
+      ]
+    },
+    {
+      "entry": "0x2e2660",
+      "end_exclusive": "0x2e26e8",
+      "instructions": 35,
+      "returns": [
+        "0x2e26e7"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x2e6a80",
+      "end_exclusive": "0x2e6b0d",
+      "instructions": 43,
+      "returns": [
+        "0x2e6b0c"
+      ],
+      "calls": [
+        {
+          "pc": "0x2e6aaf",
+          "target": "0x2e6e30"
+        },
+        {
+          "pc": "0x2e6af8",
+          "target": "0x2e9470"
+        }
+      ]
+    }
+  ],
+  "recycler_pending_accesses": [],
+  "recycler_calls": 0,
+  "ticket_formula": "(u16(subrecord+20)<<16)|lane; receiver high16=slot,low16=lane; no submitting-generation operand",
+  "established": [
+    "2E6EB0 constructs descriptor callback2E4E50 and DWORDargument=(u16 record+20<<16)|lane from lane0..31. No submitting-generation value is encoded in this DWORD. Receiver decodes exactly high16 sub-record index/low16 lane.",
+    "Completion compares CURRENT sub-record+5C against CURRENT node+24 after reading CURRENT sub-record+22. It does not compare either against a generation carried by this ticket. This local metadata consistency check alone cannot distinguish an old ticket targeting a recycled slot whose new metadata is coherent.",
+    "Reached2E6A80 tests loaded+24|mask28 before calling2E9470, not pending+34. Complete2E9470 has no call, no pending+34 access and no record-carrier change; for nonnull valid record it invalidates current node index, unlinks both nodes and pushes the same storage to free head0215FD70. Local nonzero pending alone does not prevent this push.",
+    "2E2660 pops free storage, rebinds node/generation, zeroes32 lane handle slots and clears pending+34 as part of QWORD+30. It makes no release call for old lane handles. These are local allocation rules, not proof that the slot naturally recycles with outstanding IO.",
+    "2E4000 is another named direct sweephead writer. For each lane it tests requested+2C and skips marking/enqueue if already set. Therefore its examined local iteration does not by itself repair the already-requested lane. Another lane or other producer may link the same shared node.",
+    "Pending-mask+34 does not itself prove a newly accepted asynchronous read:2E6EB0 can set it on the nonzero existing-handle arm without a32E620 call, and its actual request-call arm sets pending AFTER32E620 returns. Queue acceptance/callback timing cannot be inferred from this field alone."
+  ],
+  "refuted": [
+    "This DWORDcallback ticket explicitly contains the submitting owner generation",
+    "Examined local recycler refuses any nonzero pending mask before pushing the slot free"
+  ],
+  "limitations": [
+    "Normal ABI/returns, valid record/list/lane/node and no interfering writes; no malformed-state safety or pointer-placement guarantee",
+    "No natural late callback, overlapping generations, leak, crash or universal safety/unsafety claim",
+    "Current metadata consistency is distinct from original-request identity; other queue/service contracts could prevent late delivery",
+    "Composed conditional static paths are not native/live executions, accepted IO observations or full scheduler reachability",
+    "Only named local direct writer/body rules; other lanes, relinks/aliases and callers remain outside proof",
+    "Producer review and canonical consumption pending; retained source is reused without recapture and prior controls are not new runs"
+  ],
+  "affected_claims": [
+    "NameBindingSubRecord generation defence scope and actual recycle site",
+    "OV25 carried lane lifetime/requeue interpretation",
+    "OPUS callback-ticket/recycler/precondition contract",
+    "FRONTIER future real scheduling discriminator"
+  ],
+  "checker_sha256": "fcebb3a51102bf1adbaeb6267e13f8878400fc4872bf47dd0cdf333b6d034ce3",
+  "required_invocation_receipts": [
+    {
+      "path": "capture-lane-recycle.py",
+      "sha256": "73efb43e0250fb0a51f65fa77f54eef4fd302b58d47be422c105b71e7f76b8d1"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "lane-recycle-retained-provenance-01.json",
+      "sha256": "270316d2684769332ce1410fc046cb79cf1895efad56fb685114632811d263fc"
+    },
+    {
+      "path": "lane-recycle-capture-01.status.json",
+      "sha256": "d922190e89460ebecb362ff7315467a534e91aabce9773150530d584254290f4"
+    },
+    {
+      "path": "lane-recycle-capture-01.stdout",
+      "sha256": "ba4acfa7338a8846290dca492812001345454cb94bdbaa7c866c733062f7de41"
+    },
+    {
+      "path": "lane-recycle-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "next_discriminator": "Original callers and accepted IO/service cancellation/drain guarantee preventing late delivery across actual slot recycle; not a pending-bit sample or forced callback",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Finite read-only reference/capture and private source controls; no game/PC/native/instrument/save/config/reference/peer changes"
+}

@@ -1,0 +1,8 @@
+{
+  "status": "VERIFIED_ACTUAL_DRIVER_IDENTITY",
+  "actual_driver_sha256": "713b72df0a85cca69126d152624119abe50b175f1a25adbefb3b946fe557b272",
+  "actual_driver": "actual-invoked-publication-helper.py",
+  "current_curator_snapshot": "../prepare-residue-packet-publication.py",
+  "qualification": "Current curator snapshot adds only the reset package job; actual invocation source713b72df is retained separately. Three exact terminal receipts bind it. No helper existence/hash substitutes for actual invocation.",
+  "limits": "Publication control, not scientific acceptance"
+}

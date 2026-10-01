@@ -1,7 +1,7 @@
 ---
 system: The EASTL red-black tree - the six bodies every keyed lookup in the game shares
 category: 24-Compiler-And-CRT-Runtime
-status: DOCUMENTED — every register row is closed: the library, payload offset, node sizes and child sides (OC-1..OC-3, answered 2026-09-15); the 99 callers enumerated (OC-4) and read for purpose (SD-81, answered 2026-09-30: 24 unique-key map/set instantiations, 56 insert wrappers, 30 inline erases, 12 walks); inlined rotations (SD-82, answered 2026-09-30). Owner re-status 2026-09-30 (OPUS)
+status: AUDITED — every register row is closed: the library, payload offset, node sizes and child sides (OC-1..OC-3, answered 2026-09-15); the 99 callers enumerated (OC-4) and read for purpose (SD-81, answered 2026-09-30: 24 unique-key map/set instantiations, 56 insert wrappers, 30 inline erases, 12 walks); inlined rotations (SD-82, answered 2026-09-30). Owner re-status 2026-09-30 (OPUS)
 owner_layer: CodeDomain:CxxStandardLibrary.OrderedContainerRuntime; no PrimaryOwner
 evidence_tier: 1
 verified_against:
@@ -15,8 +15,9 @@ audit:
   passes: 1
   last_pass: 2026-09-15
   last_pass_state: fable-ordered-container-falsification-1
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record fable-ordered-container-falsification-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 function_families_withdrawn: "2026-09-30 (OPUS): the ordered-container row (members/ordered-container-runtime.tsv, 6) is withdrawn - all six members are measured A on this DOCUMENTED page, and A beats a declaration; the members file stays as the enumeration"
 ---
 

@@ -1,0 +1,15 @@
+{
+  "case": "failed-prerequisite",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prove-flag-class-mask.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\flag-class-mask-controls-01\\failed-prerequisite",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\flag-class-mask-controls-01\\failed-prerequisite\\result.json"
+  ],
+  "exit": 1,
+  "expected_error": "retained producer prerequisite failed/missing",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "checker_sha256": "dcf4b3b465078485a92b26e92eee38fb19594aee2d9ba49872dc3d68319bbb4b"
+}

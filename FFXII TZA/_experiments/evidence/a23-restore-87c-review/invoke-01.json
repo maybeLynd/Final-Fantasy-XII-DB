@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\probe.py"
+  ],
+  "driver_sha256": "deec8727840f3a90bb176f8a8a392d7bd4e4880983023b6ddfb74d50bdd02d68",
+  "deadline_seconds": 240,
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "stdout_bytes": 462,
+  "stderr_bytes": 0
+}

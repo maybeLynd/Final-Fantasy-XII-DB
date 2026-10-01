@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+001DEE90	GameSettingConfig_SerializeText	001DEF93	0x0	r	mov rdx, qword ptr [r12]	route-seeded ARRAY 0x01DFD050 stride=0x8 count=31 base+0x0	
+001DEE90	GameSettingConfig_SerializeText	001DEFCA	0x0	r	mov rdx, qword ptr [r12]	route-seeded ARRAY 0x01DFD050 stride=0x8 count=31 base+0x0	
+001DEE90	GameSettingConfig_SerializeText	001DF02A	0x0	r	mov rdx, qword ptr [r12]	route-seeded ARRAY 0x01DFD050 stride=0x8 count=31 base+0x0	

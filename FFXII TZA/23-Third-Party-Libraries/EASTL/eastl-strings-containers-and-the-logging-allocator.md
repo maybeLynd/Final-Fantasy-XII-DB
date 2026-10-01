@@ -1,7 +1,7 @@
 ---
 system: EASTL — strings, containers and the logging allocator
 category: 23-Third-Party-Libraries
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS): the EASTL version is OUT OF EVIDENCE BOUNDARY (BS-5, 2026-09-27; UQ-306 SUPERSEDED as its duplicate) - the image holds no version banner, and the eight EASTL strings bound the line to an EA-internal branch, whose version only that branch or the build configuration states (§7)
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS): the EASTL version is OUT OF EVIDENCE BOUNDARY (BS-5, 2026-09-27; UQ-306 SUPERSEDED as its duplicate) - the image holds no version banner, and the eight EASTL strings bound the line to an EA-internal branch, whose version only that branch or the build configuration states (§7)
 owner_layer: CodeDomain:EASTL.*
 evidence_tier: 3
 verified_against:
@@ -20,8 +20,9 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: 46f02e26104e44215f8793700fe95fc243394d6b966b366e74f16110627bbbb2
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record 46f02e26104e44215f8793700fe95fc243394d6b966b366e74f16110627bbbb2; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 function_families:
   - "EASTL basic_string<char> static initialisers | C | members/eastl-string-static-initialisers.tsv | 51 | not this game's code: compiler-generated dynamic-initialiser stubs, one per static eastl::basic_string. PROVED BY FORM PLUS THE LITERAL ITSELF - 51 members, all 240 bytes, 178 byte positions identical (the other 62 are the operands that must vary: object, literal, dtor). Every member leas 008F6600 - the ASCII literal EASTL basic_string, the allocator_memory_log tag; the code names its own library type. CONTROL: every member calls 001EDF00 (allocator_memory_log ctor, this page's identifying symbol) EXACTLY twice - the stack copy and the allocator embedded at +0x18 of the static object - and tail-jumps 00808B90, the atexit wrapper. Body semantics read: construct allocator, zero the three-pointer string, measure the literal (end minus start plus one), allocate through the allocator vtable or point all three pointers at the shared empty byte 02EBA2E0, copy the literal, NUL-terminate, register the dtor. THE BOUNDARY: the form is the toolchain's; a reconstruction declaring the same static strings gets these from its own compiler. NOT dispositioned: 001EDF00 (documented here), the per-object destructors, the literals, and which game string each object holds. Selector: members/select_eastl_string_static_inits.py"
   - "EASTL basic_string<char> static initialisers - variant forms | C | members/eastl-basicstring-variant-initialisers.tsv | 7 | not this game's code: the same allocator_memory_log / EASTL basic_string initialiser mechanism as the 51-member 240-byte family, in the toolchain's other generated shapes (6 at 228 bytes, 2 at 74 bytes - different source-string argument forms). PROVED BY THE TAG LITERAL - every member leas 008F6600 (\"EASTL basic_string\"), calls 001EDF00, and tail-jumps the atexit wrapper 00808B90; every member is a .CRT$XI array entry and census-wide skeleton scans find no unclaimed twins. NOT dispositioned: 001EDF00, the per-object destructors, and the strings. Selector: members/select_xc_array_clusters.py (under 24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown) 1 member(s) left the family 2026-09-20, since measured as A (A beats a declaration): 0015C560"

@@ -1,0 +1,12 @@
+function	name	site	disp	kind	instruction	route	note
+00296960	FUN_00296960	0029699B	0x44	addr	lea rax, [rbx + 0x414]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x-3D0	
+00296960	FUN_00296960	002969B2	0x44	w	mov byte ptr [rax], 9	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x44	
+00296960	FUN_00296960	002969B5	0x224	addr	lea rax, [rax + 0x1e0]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x44	
+0029B550	FUN_0029b550	0029B56C	0x2D8	r	mov rax, qword ptr [rcx + 0x60]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x278	
+0029B550	FUN_0029b550	0029B664	0x338	r	add ax, word ptr [r15 + 0xc0]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x278	
+0029B550	FUN_0029b550	0029B685	0x33A	r	add ax, word ptr [r15 + 0xc2]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x278	
+0029B550	FUN_0029b550	0029B655	0x33C	r	movzx eax, word ptr [r15 + 0xc4]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x278	
+0029B550	FUN_0029b550	0029B670	0x33E	r	movzx eax, word ptr [r15 + 0xc6]	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x278	
+002906D0	FUN_002906d0	002906FF	0x340	r	cmp dword ptr [rcx + 0xb240], eax	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x-AF00	
+00296490	FUN_00296490	002964BA	0x340	w	mov dword ptr [rbx + 0x710], 1	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x-3D0	
+00296960	FUN_00296960	0029696A	0x340	r	cmp dword ptr [rcx + 0x710], 0	route-seeded EMBED BattleMenuChildWidget1620 +0x0000 base+0x-3D0	

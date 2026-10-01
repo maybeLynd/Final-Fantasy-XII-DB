@@ -1,0 +1,12 @@
+{
+  "name": "coherent-resolver-forward-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "e441c804455c00135a96d3f4efbc8552e551ffb3dd29894634974ae6052d7e95",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "ee96f7669e483e1b044fd24e48ff87bb01f676f2be6c3ac9e196744563935258",
+  "terminal": true,
+  "exception": null
+}

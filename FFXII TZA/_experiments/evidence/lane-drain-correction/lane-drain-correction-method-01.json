@@ -1,0 +1,16 @@
+{
+  "question": "Does original2E6900 append/build a queue node as current frame contract says, or drain/unlink it, and can it normally return nonzero?",
+  "hypotheses": ["H1 canonical tail-insert/build description and potentially nonzero status are correct", "H2 original local code removes nodes and the sole normal return is0"],
+  "method": "A STATIC_ONLY exact body/normal-CFG/return-register proof",
+  "identity": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000",
+  "why_cheaper_sufficient": "Exact list writes, branch directions, calls and final EAX definition are static local rules. Sampling return values or tracing the game cannot improve a full normal-return proof. Opaque callback/native effects and natural scheduling remain separate.",
+  "existing": "Current CONTRACT-per-frame-update-gate.md2E6900 paragraph and2E6A80 no-flags wording; retained namebinding-deletion/lane-stale-release/lane-recycle original sources, producer review pending",
+  "targets": ["002E6900..002E6A7A"],
+  "controls": ["Actual reviewed store/LEA/RMW adapter invocation", "Full378B source/normalCFG and terminal register-carrier proof", "Actual CLI upstream failure, missing evidence and coherent same-count changed return definition refusal"],
+  "acceptance": "Exact current canonical paragraph bound to a snapshot, original local drain/head-removal/return0 established or falsified; no global IO-drain/caller reachability inference",
+  "falsification": "Any normal return not dominated by EAX0 or direct head insertion rather than examined removal update refutesH2",
+  "consumers": ["OPUS CONTRACT-per-frame-update-gate canonical producer/owning repair", "FABLE source-owner family scheduling interpretation", "Prior ASTRA name-binding return0 conditional narrowing after review"],
+  "budget": "One378B body, existing source/checker/role adapters; no new native/live process or broad census",
+  "cleanup": "Read-only reference/current consumer snapshot and private controls; no peer page edit or game/PC/native/instrument/save/config/reference mutation",
+  "limits": "Valid list/state, normal ABI/returns and no interfering writes; infinite loop/exception paths are not normal returns. Opaque callee effects not proved by local call names. Producer controls are not independent acceptance."
+}

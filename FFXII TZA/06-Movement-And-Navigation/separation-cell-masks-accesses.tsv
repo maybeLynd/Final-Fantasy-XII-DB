@@ -1,0 +1,20 @@
+function	name	site	disp	kind	instruction	route	note
+003DAA40	FUN_003daa40	003DAA50	0x0	w	mov qword ptr [rax], r8	route-seeded STATIC 0x02B57CE0 base+0x0 zeroclear	
+003DAAB0	FUN_003daab0	003DAAD9	0x0	r	movdqu xmm0, xmmword ptr [rax]	route-seeded STATIC 0x02B57CE0 base+0x0	
+003DAE30	FUN_003dae30	003DAEC0	0x0	w	mov qword ptr [rax], r8	route-seeded STATIC 0x02B57CE0 base+0x0 zeroclear	
+003DAA40	FUN_003daa40	003DAA53	0x8	w	mov qword ptr [rax + 8], r8	route-seeded STATIC 0x02B57CE0 base+0x0 zeroclear	
+003DAE30	FUN_003dae30	003DAEC3	0x8	w	mov qword ptr [rax + 8], r8	route-seeded STATIC 0x02B57CE0 base+0x0 zeroclear	
+003DAA40	FUN_003daa40	003DAA57	0x10	w	mov qword ptr [rax + 0x10], r8	route-seeded STATIC 0x02B57CE0 base+0x0 zeroclear	
+003DAE30	FUN_003dae30	003DAEC7	0x10	w	mov qword ptr [rax + 0x10], r8	route-seeded STATIC 0x02B57CE0 base+0x0 zeroclear	
+003DAA40	FUN_003daa40	003DAA5F	0x18	w	mov qword ptr [rax - 0x28], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAE30	FUN_003dae30	003DAECF	0x18	w	mov qword ptr [rax - 0x28], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAA40	FUN_003daa40	003DAA63	0x20	w	mov qword ptr [rax - 0x20], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAE30	FUN_003dae30	003DAED3	0x20	w	mov qword ptr [rax - 0x20], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAA40	FUN_003daa40	003DAA67	0x28	w	mov qword ptr [rax - 0x18], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAE30	FUN_003dae30	003DAED7	0x28	w	mov qword ptr [rax - 0x18], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAA40	FUN_003daa40	003DAA6B	0x30	w	mov qword ptr [rax - 0x10], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAE30	FUN_003dae30	003DAEDB	0x30	w	mov qword ptr [rax - 0x10], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAA40	FUN_003daa40	003DAA6F	0x38	w	mov qword ptr [rax - 8], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAE30	FUN_003dae30	003DAEDF	0x38	w	mov qword ptr [rax - 8], r8	route-seeded STATIC 0x02B57CE0 base+0x40 zeroclear	
+003DAA40	FUN_003daa40	003DAA5B	0x40	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02B57CE0 base+0x0	
+003DAE30	FUN_003dae30	003DAECB	0x40	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02B57CE0 base+0x0	

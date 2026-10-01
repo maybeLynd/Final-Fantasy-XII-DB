@@ -1,0 +1,270 @@
+{
+  "kind": "local original owner producer gate",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "control_owner_producer_gate.py",
+      "sha256": "694b154b0abb8f685348bd2ace7990793c413e7ee8dbeadeac4b683799bfc746",
+      "bytes": 3296
+    },
+    {
+      "path": "freeze_owner_producer_gate.py",
+      "sha256": "d72530abe6ebf3a207b53d5f300edb78a633f7cd1ee5f8375cd957281fe0dc15",
+      "bytes": 3018
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/owner-producer-gate-source-01.json",
+      "sha256": "f484d05c69012598d1b493267f1738896f045474e08fe16439099ed1ea740815",
+      "bytes": 119577
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/owner-producer-gate-source-run-01.status.json",
+      "sha256": "61e5662524120a6c138248ec1790cd18d0adb13a8647b97baff342f11807eb2f",
+      "bytes": 453
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/owner-producer-gate-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/owner-producer-gate-source-run-01.stdout",
+      "sha256": "c7409085c4245e0f94633b26b102ca08532f207f61ff8c4b49f7c146b9dae33f",
+      "bytes": 93
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/qualify_owner_producer_gate_source.py",
+      "sha256": "219d086088856535662d21059942b838a939d5343eafe369ee03a51b2c8b7cfc",
+      "bytes": 7073
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/stderr",
+      "sha256": "a678a7459d152a768d8f23868036ae8b8aedfa0717e384ebfd565073aa4ab5e8",
+      "bytes": 861
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-enable-store/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/owner-producer-gate-source-01.json",
+      "sha256": "56b22c7167c70653740f8d15c6b29eaa2bd5804987d0760bde6361df06877f9a",
+      "bytes": 119576
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/owner-producer-gate-source-run-01.status.json",
+      "sha256": "61e5662524120a6c138248ec1790cd18d0adb13a8647b97baff342f11807eb2f",
+      "bytes": 453
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/owner-producer-gate-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/owner-producer-gate-source-run-01.stdout",
+      "sha256": "c7409085c4245e0f94633b26b102ca08532f207f61ff8c4b49f7c146b9dae33f",
+      "bytes": 93
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/qualify_owner_producer_gate_source.py",
+      "sha256": "219d086088856535662d21059942b838a939d5343eafe369ee03a51b2c8b7cfc",
+      "bytes": 7073
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/stderr",
+      "sha256": "a678a7459d152a768d8f23868036ae8b8aedfa0717e384ebfd565073aa4ab5e8",
+      "bytes": 861
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/changed-sign-branch/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/owner-producer-gate-source-01.json",
+      "sha256": "18b2c0ec98b09d8331f47b5127e9fde1c2d910670673e7a75c44e8eb21e7846b",
+      "bytes": 119577
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/owner-producer-gate-source-run-01.status.json",
+      "sha256": "5911ee535bde2a98cd7cd7c3454ebb0142a608d2f921ffc8ac72bee2caed6d56",
+      "bytes": 453
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/owner-producer-gate-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/owner-producer-gate-source-run-01.stdout",
+      "sha256": "c7409085c4245e0f94633b26b102ca08532f207f61ff8c4b49f7c146b9dae33f",
+      "bytes": 93
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/qualify_owner_producer_gate_source.py",
+      "sha256": "219d086088856535662d21059942b838a939d5343eafe369ee03a51b2c8b7cfc",
+      "bytes": 7073
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/stderr",
+      "sha256": "a363668accae3f9913ddceda69897bddb33d570ae662ead0b333843abb05a3aa",
+      "bytes": 814
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/failed-qualifier/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/owner-producer-gate-source-01.json",
+      "sha256": "b8d582a331749fda3930050e4e68bf3d1f6b276c79cb60617c41c8326135f287",
+      "bytes": 117179
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/owner-producer-gate-source-run-01.status.json",
+      "sha256": "61e5662524120a6c138248ec1790cd18d0adb13a8647b97baff342f11807eb2f",
+      "bytes": 453
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/owner-producer-gate-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/owner-producer-gate-source-run-01.stdout",
+      "sha256": "c7409085c4245e0f94633b26b102ca08532f207f61ff8c4b49f7c146b9dae33f",
+      "bytes": 93
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/qualify_owner_producer_gate_source.py",
+      "sha256": "219d086088856535662d21059942b838a939d5343eafe369ee03a51b2c8b7cfc",
+      "bytes": 7073
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/stderr",
+      "sha256": "7e5dc946f57da1fa95a976ab152ab4da605581f5654e6f326d0ae004abc0b585",
+      "bytes": 910
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-01/missing-getter/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-producer-gate-controls-01/result.json",
+      "sha256": "d9eab293cafe5d15a5323a31e9bef3c7910cdc335c5e2d1cc2b1223f25ef0f0a",
+      "bytes": 3251
+    },
+    {
+      "path": "owner-producer-gate-controls-run-01.status.json",
+      "sha256": "7cdcdc0dfa7635d83763aeaab504b74f780e2ea878fb5b09b783f4bcd861a9be",
+      "bytes": 443
+    },
+    {
+      "path": "owner-producer-gate-controls-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-controls-run-01.stdout",
+      "sha256": "6b538a8d0e038d6e16bedf610503a6d96bf216705ea1b8621c61f177d59ed193",
+      "bytes": 94
+    },
+    {
+      "path": "OWNER-PRODUCER-GATE-METHOD-1001.md",
+      "sha256": "7c84dd23aad229ca45db55a2e4fb8d5ed543dbdb1c8360f309b6a0ff44e4a778",
+      "bytes": 2182
+    },
+    {
+      "path": "owner-producer-gate-positive-01.status.json",
+      "sha256": "0e565d9e269346f02e8c80fe03312ba119d4ebe4fd325d49dc400ca9f42aeacc",
+      "bytes": 444
+    },
+    {
+      "path": "owner-producer-gate-positive-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-positive-01.stdout",
+      "sha256": "2ba4476f765f04be28156a35ebc464ebca59b4198ddccfd8a4667d9429ebeb6d",
+      "bytes": 132
+    },
+    {
+      "path": "owner-producer-gate-result-01.json",
+      "sha256": "2c9fdbc823c7174d44b8b9f4983d00f680d7a0ed2a6e78b93088a8da424cf74e",
+      "bytes": 7223
+    },
+    {
+      "path": "owner-producer-gate-source-01.json",
+      "sha256": "18b2c0ec98b09d8331f47b5127e9fde1c2d910670673e7a75c44e8eb21e7846b",
+      "bytes": 119577
+    },
+    {
+      "path": "owner-producer-gate-source-run-01.status.json",
+      "sha256": "61e5662524120a6c138248ec1790cd18d0adb13a8647b97baff342f11807eb2f",
+      "bytes": 453
+    },
+    {
+      "path": "owner-producer-gate-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-producer-gate-source-run-01.stdout",
+      "sha256": "c7409085c4245e0f94633b26b102ca08532f207f61ff8c4b49f7c146b9dae33f",
+      "bytes": 93
+    },
+    {
+      "path": "prove_owner_producer_gate.py",
+      "sha256": "bfe3dcc1359cb5293516f5111901d2403ef60e40311e4f7fe26dc1c42e0a0d53",
+      "bytes": 9848
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+      "bytes": 14292
+    },
+    {
+      "path": "qualify_owner_producer_gate_source.py",
+      "sha256": "219d086088856535662d21059942b838a939d5343eafe369ee03a51b2c8b7cfc",
+      "bytes": 7073
+    },
+    {
+      "path": "README.md",
+      "sha256": "4171281f2bbedc6438d36f1aa97ba5a5067eebd05d8b9713928a83b00561c079",
+      "bytes": 4548
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    }
+  ]
+}

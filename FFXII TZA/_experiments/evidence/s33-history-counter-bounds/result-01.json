@@ -1,0 +1,656 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY byte-bound integer/address induction",
+  "driver_sha256": "88533b07b755767150f60b5f9eac805bfc97f5e2d82d3144e777022601cdafdc",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "891b7858ba819f3809bcbece72c702af33a5817f97301ca64a5a8b00f8b94b8f"
+    },
+    {
+      "path": "retained/manager-source-01.json",
+      "sha256": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+    }
+  ],
+  "parent_manifest_sha256": "10529734543712b86f86c24453c8b01f468e21f3d1abb9afe69c067e65072502",
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 539,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "parent_annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 342,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "graphs": [
+    {
+      "entry": "0x3fc170",
+      "returns": [
+        "0x3fc3e1"
+      ],
+      "visited": 149,
+      "calls": [
+        {
+          "pc": "0x3fc24b",
+          "target": "0x861f0e"
+        },
+        {
+          "pc": "0x3fc289",
+          "target": "0x202b10"
+        },
+        {
+          "pc": "0x3fc2d6",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x3fc2f6",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x3fc303",
+          "target": "0x270720"
+        },
+        {
+          "pc": "0x3fc315",
+          "target": "0x202b70"
+        },
+        {
+          "pc": "0x3fc328",
+          "target": "0x203080"
+        },
+        {
+          "pc": "0x3fc33f",
+          "target": "0x202de0"
+        },
+        {
+          "pc": "0x3fc356",
+          "target": "0x270a10"
+        },
+        {
+          "pc": "0x3fc36b",
+          "target": "0x270cf0"
+        },
+        {
+          "pc": "0x3fc37c",
+          "target": "0x202b10"
+        },
+        {
+          "pc": "0x3fc3b3",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x3fbe90",
+      "returns": [
+        "0x3fc169"
+      ],
+      "visited": 180,
+      "calls": [
+        {
+          "pc": "0x3fbef4",
+          "target": "qword ptr [rip + 0x4c719e]"
+        },
+        {
+          "pc": "0x3fbf2e",
+          "target": "qword ptr [rip + 0x4c7164]"
+        },
+        {
+          "pc": "0x3fbf67",
+          "target": "qword ptr [rip + 0x4c712b]"
+        },
+        {
+          "pc": "0x3fbfa4",
+          "target": "0x203170"
+        },
+        {
+          "pc": "0x3fbfb5",
+          "target": "0x202e90"
+        },
+        {
+          "pc": "0x3fbfc5",
+          "target": "0x202f00"
+        },
+        {
+          "pc": "0x3fbfd5",
+          "target": "0x202f70"
+        },
+        {
+          "pc": "0x3fc014",
+          "target": "0x202b70"
+        },
+        {
+          "pc": "0x3fc024",
+          "target": "0x202b10"
+        },
+        {
+          "pc": "0x3fc029",
+          "target": "qword ptr [rip + 0x4c7069]"
+        },
+        {
+          "pc": "0x3fc063",
+          "target": "qword ptr [rip + 0x4c702f]"
+        },
+        {
+          "pc": "0x3fc09c",
+          "target": "qword ptr [rip + 0x4c6ff6]"
+        },
+        {
+          "pc": "0x3fc0d9",
+          "target": "0x203170"
+        },
+        {
+          "pc": "0x3fc0ea",
+          "target": "0x202e90"
+        },
+        {
+          "pc": "0x3fc0fa",
+          "target": "0x202f00"
+        },
+        {
+          "pc": "0x3fc10a",
+          "target": "0x202f70"
+        },
+        {
+          "pc": "0x3fc116",
+          "target": "0x270b40"
+        },
+        {
+          "pc": "0x3fc134",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x3fa160",
+      "returns": [
+        "0x3fa4d5"
+      ],
+      "visited": 197,
+      "calls": [
+        {
+          "pc": "0x3fa1bb",
+          "target": "0x24a5a0"
+        },
+        {
+          "pc": "0x3fa1ce",
+          "target": "0x24a5a0"
+        },
+        {
+          "pc": "0x3fa236",
+          "target": "0x2711e0"
+        },
+        {
+          "pc": "0x3fa2f8",
+          "target": "0x2711e0"
+        },
+        {
+          "pc": "0x3fa3e9",
+          "target": "0x26e350"
+        },
+        {
+          "pc": "0x3fa3f6",
+          "target": "0x275550"
+        },
+        {
+          "pc": "0x3fa42a",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x3fa435",
+          "target": "0x202c90"
+        },
+        {
+          "pc": "0x3fa465",
+          "target": "0x3fbe90"
+        },
+        {
+          "pc": "0x3fa4b2",
+          "target": "0x249c60"
+        },
+        {
+          "pc": "0x3fa4c2",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x275550",
+      "returns": [
+        "0x27556b"
+      ],
+      "visited": 10,
+      "calls": []
+    },
+    {
+      "entry": "0x202c90",
+      "returns": [
+        "0x202c96"
+      ],
+      "visited": 3,
+      "calls": []
+    }
+  ],
+  "instruction_assertions": 73,
+  "direct_object_write_pcs": [
+    "0x3fc294",
+    "0x3fc2a0"
+  ],
+  "manager_binding": "003FA801/805: RCX=visual+20, RDX=visual. 3FC170 is the four-channel sinusoidal transform-history update, not a direct pixel renderer.",
+  "creation_reset": "3FA3EE/F3/F6 supplies record/2A0 to original275550, which clears A8 DWORDs with REP STOSD. Then3FA465 calls3FBE90(record+20,record). Its four-iteration reset writes zero at each channel+80; normal nested returns/nonvolatile ABI required. Later nested effects not assumed universally bounded.",
+  "counter_offsets_relative_to_visual": [
+    "0xa0",
+    "0x130",
+    "0x1c0",
+    "0x250"
+  ],
+  "normal_counter_domain": [
+    0,
+    6
+  ],
+  "normal_cases": [
+    {
+      "before": 0,
+      "after_increment": 1,
+      "stored": 1,
+      "shift_copy_count": 0,
+      "copy_intervals_relative_to_channel": [],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    },
+    {
+      "before": 1,
+      "after_increment": 2,
+      "stored": 2,
+      "shift_copy_count": 1,
+      "copy_intervals_relative_to_channel": [
+        {
+          "dst": [
+            48,
+            64
+          ],
+          "src": [
+            32,
+            48
+          ]
+        }
+      ],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    },
+    {
+      "before": 2,
+      "after_increment": 3,
+      "stored": 3,
+      "shift_copy_count": 2,
+      "copy_intervals_relative_to_channel": [
+        {
+          "dst": [
+            64,
+            80
+          ],
+          "src": [
+            48,
+            64
+          ]
+        },
+        {
+          "dst": [
+            48,
+            64
+          ],
+          "src": [
+            32,
+            48
+          ]
+        }
+      ],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    },
+    {
+      "before": 3,
+      "after_increment": 4,
+      "stored": 4,
+      "shift_copy_count": 3,
+      "copy_intervals_relative_to_channel": [
+        {
+          "dst": [
+            80,
+            96
+          ],
+          "src": [
+            64,
+            80
+          ]
+        },
+        {
+          "dst": [
+            64,
+            80
+          ],
+          "src": [
+            48,
+            64
+          ]
+        },
+        {
+          "dst": [
+            48,
+            64
+          ],
+          "src": [
+            32,
+            48
+          ]
+        }
+      ],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    },
+    {
+      "before": 4,
+      "after_increment": 5,
+      "stored": 5,
+      "shift_copy_count": 4,
+      "copy_intervals_relative_to_channel": [
+        {
+          "dst": [
+            96,
+            112
+          ],
+          "src": [
+            80,
+            96
+          ]
+        },
+        {
+          "dst": [
+            80,
+            96
+          ],
+          "src": [
+            64,
+            80
+          ]
+        },
+        {
+          "dst": [
+            64,
+            80
+          ],
+          "src": [
+            48,
+            64
+          ]
+        },
+        {
+          "dst": [
+            48,
+            64
+          ],
+          "src": [
+            32,
+            48
+          ]
+        }
+      ],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    },
+    {
+      "before": 5,
+      "after_increment": 6,
+      "stored": 6,
+      "shift_copy_count": 5,
+      "copy_intervals_relative_to_channel": [
+        {
+          "dst": [
+            112,
+            128
+          ],
+          "src": [
+            96,
+            112
+          ]
+        },
+        {
+          "dst": [
+            96,
+            112
+          ],
+          "src": [
+            80,
+            96
+          ]
+        },
+        {
+          "dst": [
+            80,
+            96
+          ],
+          "src": [
+            64,
+            80
+          ]
+        },
+        {
+          "dst": [
+            64,
+            80
+          ],
+          "src": [
+            48,
+            64
+          ]
+        },
+        {
+          "dst": [
+            48,
+            64
+          ],
+          "src": [
+            32,
+            48
+          ]
+        }
+      ],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    },
+    {
+      "before": 6,
+      "after_increment": 7,
+      "stored": 6,
+      "shift_copy_count": 5,
+      "copy_intervals_relative_to_channel": [
+        {
+          "dst": [
+            112,
+            128
+          ],
+          "src": [
+            96,
+            112
+          ]
+        },
+        {
+          "dst": [
+            96,
+            112
+          ],
+          "src": [
+            80,
+            96
+          ]
+        },
+        {
+          "dst": [
+            80,
+            96
+          ],
+          "src": [
+            64,
+            80
+          ]
+        },
+        {
+          "dst": [
+            64,
+            80
+          ],
+          "src": [
+            48,
+            64
+          ]
+        },
+        {
+          "dst": [
+            48,
+            64
+          ],
+          "src": [
+            32,
+            48
+          ]
+        }
+      ],
+      "latest_copy_dst": [
+        32,
+        48
+      ]
+    }
+  ],
+  "exhaustive_signed32_partitions": [
+    {
+      "before": [
+        -2147483648,
+        -2
+      ],
+      "increment": "before+1, signed negative",
+      "stored": "increment",
+      "loop_count": 0
+    },
+    {
+      "before": [
+        -1,
+        -1
+      ],
+      "increment": 0,
+      "stored": 0,
+      "loop_count": 0
+    },
+    {
+      "before": [
+        0,
+        4
+      ],
+      "increment": "before+1",
+      "stored": "before+1",
+      "loop_count": "before"
+    },
+    {
+      "before": [
+        5,
+        2147483646
+      ],
+      "increment": "before+1 >= 6",
+      "stored": 6,
+      "loop_count": 5
+    },
+    {
+      "before": [
+        2147483647,
+        2147483647
+      ],
+      "increment": -2147483648,
+      "stored": -2147483648,
+      "loop_count": 2147483647
+    }
+  ],
+  "algebraic_boundary_controls": [
+    {
+      "before": -2147483648,
+      "after_increment": -2147483647,
+      "stored": -2147483647,
+      "loop_count": 0
+    },
+    {
+      "before": -2,
+      "after_increment": -1,
+      "stored": -1,
+      "loop_count": 0
+    },
+    {
+      "before": -1,
+      "after_increment": 0,
+      "stored": 0,
+      "loop_count": 0
+    },
+    {
+      "before": 0,
+      "after_increment": 1,
+      "stored": 1,
+      "loop_count": 0
+    },
+    {
+      "before": 4,
+      "after_increment": 5,
+      "stored": 5,
+      "loop_count": 4
+    },
+    {
+      "before": 5,
+      "after_increment": 6,
+      "stored": 6,
+      "loop_count": 5
+    },
+    {
+      "before": 6,
+      "after_increment": 7,
+      "stored": 6,
+      "loop_count": 5
+    },
+    {
+      "before": 2147483646,
+      "after_increment": 2147483647,
+      "stored": 6,
+      "loop_count": 5
+    },
+    {
+      "before": 2147483647,
+      "after_increment": -2147483648,
+      "stored": -2147483648,
+      "loop_count": 2147483647
+    }
+  ],
+  "normal_footprint": "Direct counter writes and verified16B copy sites stay within each channel[0,84), four channels atvisual20+90*j. Highestendvisual254 < phase260/flags272/list278. This is NOT the entire callee-composed write footprint; other native math callees need their own output/no-alias contracts.",
+  "counterexample": "Initial signedcounter INTMAX: INC wraps toINTMIN, signedCMOVGE doesnotcap, storedINTMIN, DEC wraps toINTMAX and JLE doesnotexit. Nominal shiftloop2147483647copycalls undercontinuednormalreturns, firstaddresses faroutsideinitializedhistory. No actualunsafe read/write/crash/native/game run ornaturalreachability is claimed.",
+  "limits": [
+    "Initialized0..6 preservation is conditional on no interfering counter writes, normal nonvolatile ABI and nested callees not overwriting counters/record control.",
+    "Only explicit counter stores and original202C90 copy effects are closed here. Other mathematicalcallee destination/global effects remain separate; no wholemanager-nextcall guarantee.",
+    "Creator reset calls and setter normal initialized domain are source facts, not observation of a naturally loaded/live object, allocator placement, scheduler orpresentation.",
+    "Five integer partitions/seven normal witnesses/nine boundary witnesses are source/algebraic checks, not machine-code executions.",
+    "Earlier s33 clock packet remains immutable; its conservative unclosed3FC170 boundary stands, terminology is refined additively."
+  ],
+  "consumer": "OPUS add four counters/initializedrange/signoverflow guard precondition and exactRCX=record+20 binding; FABLE correct draw-only shorthand and preserve real cadence/visual effects/wholemanager limits. Do not broaden R7 sampled51 lifetime."
+}

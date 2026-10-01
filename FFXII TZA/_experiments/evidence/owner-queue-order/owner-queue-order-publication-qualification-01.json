@@ -1,0 +1,22 @@
+{
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "owner-queue-order-source-02.json",
+      "sha256": "e0b0c452e400af9d616dd730938059868f885747f3fefb48c8723da109aeb1f4"
+    }
+  ],
+  "driver_sha256": "c35cab466470684d1e4c379ba534fe3dd849fc52a57e1f5a3f63d53c5074699b",
+  "annotation_receipt": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 423,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "original_manifest_sha256": "e1cd99c0727e019e051d57cdb3ded060ccbda6aa273c5d9ed96f71978849417f",
+  "scientific_result_sha256": "cb77b078065bc187410b1d0e676e6c7e826c27dd07b037122f742bd105998aae",
+  "status": "CHECKED_PUBLICATION_PREREQUISITES_ONLY_INDEPENDENT_PENDING",
+  "original_preparation": "Actual --deliver checkpoint37-owner-queue-order exited1: missing/incomplete source prerequisite map. No canonical destination/handoff/preparation directory or commit. Own publication released44952. This qualifies the existing map; no scientific rerun, guard change or old operation replay."
+}

@@ -1,0 +1,100 @@
+{
+  "status": "PRODUCER_CHECKED_RESET_ORDER_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "title-reset-order-source-01.json",
+      "sha256": "7c1910000737d01578a23a4cd7d3f0a24a7d0ca12a9362f9c691e5feae31abcc"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 50,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfgs": [
+    {
+      "entry": "0x611f80",
+      "end_exclusive": "0x611fe2",
+      "instructions": 32,
+      "returns": [
+        "0x611fe1"
+      ],
+      "calls": [
+        {
+          "pc": "0x611f95",
+          "target": "0x62b100"
+        },
+        {
+          "pc": "0x611f9d",
+          "target": "0x62bcb0"
+        },
+        {
+          "pc": "0x611fc3",
+          "target": "0x584730"
+        },
+        {
+          "pc": "0x611fd4",
+          "target": "0x5de290"
+        }
+      ]
+    },
+    {
+      "entry": "0x5de290",
+      "end_exclusive": "0x5de2cf",
+      "instructions": 18,
+      "returns": [
+        "0x5de2ce"
+      ],
+      "calls": [
+        {
+          "pc": "0x5de2b4",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x5de2c3",
+          "target": "0x6108c0"
+        }
+      ]
+    }
+  ],
+  "checker_sha256": "ccdac5fb28f5255ef6a254fafd079cd2830a4d12e897fd81b7989d6938c9516e",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "question": "Does611F80 establish valid count/storage before62B100, and does5DE290 locally repair the cleared count?",
+  "competing_hypotheses": [
+    "Candidate establishes count>=1 before cleanup",
+    "Candidate cleans incoming object first and clears state afterward"
+  ],
+  "established": [
+    "611F80 takes its object from RDX, copies it to RBX and RCX, and unconditionally calls62B100 before62BCB0, release testing or any local object write. Incoming RCX is not the object source in this entry. It provides no local count>=1 normalization or zero-count skip before the established first-access precondition.",
+    "After both cleanup calls return normally, it reads current count+30; direct584730 is selected only when bit31clear, masked n>1, and pointer+38nonNULL. Thus the predicate uses state after cleanup, not necessarily the entry count. Opaque cleanup/free side effects remain unproved.",
+    "All local normal paths converge at XOR EAX,EAX, QWORD[RBX+38]=0 then DWORD[RBX+30]=0, immediately passing the original object in RCX to5DE290. There is no local count-one initializer. This clears state before that call, not necessarily after its transitive effects.",
+    "611F80 writes AL=1 after5DE290 returns and returns normally. Only the low byte is established; upper return bits and native error/exception propagation are not a Boolean32 result guarantee.",
+    "5DE290 has no local nonstack writes: it conditionally calls5CDAA0 with ECX3 when byte[object+8] is nonzero, then conditionally calls6108C0 with pointer[object+20]. It does not locally establish count>=1 or change count+30. Callee effects/aliasing could change state and are outside this local result.",
+    "The candidate-writer hypothesis therefore does not discharge the valid incoming count/storage obligation. Actual constructors, count writers and callers of cleanup remain the next static discriminator; neither natural empty-state reachability nor a game crash is proved."
+  ],
+  "assumptions": [
+    "ABI-correct backed object and normally returning calls preserving nonvolatile RBX",
+    "Local operations only; no implicit stack/object alias or concurrent writes"
+  ],
+  "limitations": [
+    "No initialized game state, actual constructor/caller census or lifetime/reuse proof",
+    "No5CCB80/62B870/584730/5CDAA0/6108C0 native effects or allocator/ownership meaning",
+    "No forced native call, emulator or live observation; zero-count natural reachability remains OPEN",
+    "No safe repeated-cleanup/idempotence guarantee"
+  ],
+  "affected_claims": [
+    "FABLE title cleanup valid count/storage and reset ordering",
+    "OPUS callback RDX object argument/AL return and count field contracts"
+  ],
+  "next_discriminator": "Find actual constructors/count writers and normal callers that provide n>=1, rather than naming this cleanup entry an initializer.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Bounded original file reads and synchronous helpers only; no process/game/input/instrument/save/config/reference writes"
+}

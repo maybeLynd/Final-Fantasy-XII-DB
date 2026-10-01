@@ -1,0 +1,34 @@
+{
+  "question": "Which exact conditional source claims survive OV42 action-precondition review, and can the actual default checker reject stale-text/coherent-code changes before accepting them?",
+  "hypotheses": [
+    "Retained source supports row0x113/type substitution and conditional D0..F1 refusal with loader mode/owner/group3 gates",
+    "Original broad wording or text-only checks may misattribute a row/domain or accept a changed kind selector"
+  ],
+  "method": "A retained original ranges/tables plus shipping-byte revalidation and actual checker CLI controls",
+  "why_cheaper_sufficient": "All corrected propositions are bounded static predicates; natural state/reachability is not claimed. Reuse all nine retained table inputs and returned review, no archive recapture/reviewer census duplicate. One affected producer positive after repair is required.",
+  "inputs": {
+    "raw_sha256": "33276301865c4c6aca31720248a0afe6c6832924b97bd40e754abdc2b45c307a",
+    "old_checker_sha256": "a39533b2fd1b32358935238fa1da0c66d681ffd4bb7cd6b98a8e15c184dc6001",
+    "returned_review": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-ov42-action-preconditions-0930/REVIEW.md",
+    "review_commit": "2e88eceef"
+  },
+  "discriminator": "Re-decode bytes with actual reviewed access-role adapter; compare every retained range to verified shipping EXE before checking kind3 and conditional branches. CLI mutations must fail before result emission.",
+  "controls": [
+    "valid unchanged retained inputs",
+    "bytes changed with old mnemonic/text retained",
+    "coherently changed kind3 to5",
+    "coherently reversed mode5/6 range branch",
+    "EXE identity mismatch",
+    "failed role detection"
+  ],
+  "acceptance": "One complete positive with exact narrowed statements plus nonzero/absent-result concrete refusals; source/driver/inputs and terminal exits retained. Independent acceptance and canonical consumption remain separate.",
+  "failure": "Missing source/driver/identity/receipt, changed bytes/roles or invalid control -> no result; preserve first failing receipt, diagnose instead of blind retry.",
+  "cleanup": "Synchronous read-only children, no game/PC/native calls/hooks/saves/config/reference writes; finite timeout and terminal receipt.",
+  "consumer": "Existing FABLE OV42 action-preconditions consumer plus OPUS exact kind/selector/contract consumers; route missing consumption once after independent review.",
+  "limits": [
+    "Existing tables/conditional machine-code dataflow only",
+    "No actual initialized mode/owner, natural action reachability, native load or allocation/lifetime guarantee",
+    "Review counts and its executions are external corroboration, not our new empirical samples",
+    "Original published/frozen inputs/results stay immutable; additive qualification supersedes only cited wording/old checker confidence"
+  ]
+}

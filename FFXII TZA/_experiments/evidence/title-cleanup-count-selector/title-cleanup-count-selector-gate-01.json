@@ -1,0 +1,12 @@
+{
+  "status": "SOURCE_NOT_SEMANTIC_CLOSURE",
+  "stages": [
+    "compile_driver_before_invocation",
+    "check_fresh_output",
+    "invoke_checked_producer",
+    "verify_output_exists",
+    "read_output",
+    "source_available_for_reduction"
+  ],
+  "source_sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+}

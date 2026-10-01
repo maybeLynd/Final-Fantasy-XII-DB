@@ -1,0 +1,5 @@
+function	name	site	disp	kind	instruction	route	note
+00319920	Loot_CollectWorldPickupAndGrantInventory	00319950	0x0	r	movzx eax, word ptr [rbx - 4]	route-seeded EMBED WorldLootPickupNode +0x20 stride=0x8 count=7 base+0x4	
+00319CA0	Loot_CreateWorldPickup	00319D78	0x0	w	movups xmmword ptr [rbx + 0x20], xmm0	route-seeded EMBED WorldLootPickupNode +0x20 stride=0x8 count=7 base+0x-20	
+00319920	Loot_CollectWorldPickupAndGrantInventory	0031993C	0x4	addr	lea rbx, [rcx + 0x24]	route-seeded EMBED WorldLootPickupNode +0x20 stride=0x8 count=7 base+0x-20	
+00319920	Loot_CollectWorldPickupAndGrantInventory	0031995A	0x4	r	mov edx, dword ptr [rbx]	route-seeded EMBED WorldLootPickupNode +0x20 stride=0x8 count=7 base+0x4	

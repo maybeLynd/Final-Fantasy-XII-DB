@@ -1,0 +1,90 @@
+== B0. positive controls for the taint scan (synthetic bytes, decoded at a dummy address)
+  direct movss           -> flagged 1: 1000000C movss dword ptr [r10 + 0x14], xmm0
+  derived lea+movups     -> flagged 1: 10000010 movups xmmword ptr [rcx], xmm0
+  tab+0x18 load          -> flagged 1: 1000000B movss dword ptr [r8 + 0x10], xmm0
+== A. image-wide x*144 index forms (all .pdata roots)
+  root 0016F450  0016F50B lea9+shl4  rcx  next-add: 
+  root 0016F770  0016F7DC lea9+shl4  rcx  next-add: 0016F7F6 add rcx, rax
+  root 0016F770  0016F7E4 lea9+shl4  rax  next-add: 
+  root 0016F840  0016F8A6 lea9+shl4  rax  next-add: 0016F8B4 add rax, 0x780
+  root 0016F840  0016F8CB lea9+shl4  rcx  next-add: 
+  root 0016F840  0016F8EB lea9+shl4  rcx  next-add: 
+  root 0016F840  0016F90B lea9+shl4  rcx  next-add: 
+  root 0022CC50  0022CCEC lea9+shl4  r10  next-add: 0022CCF4 add r10, qword ptr [r14 + 0x18]
+  root 0022D4B0  0022D54C lea9+shl4  r10  next-add: 0022D554 add r10, qword ptr [r15 + 0x18]
+  root 0022D7E0  0022D90C lea9+shl4  rsi  next-add: 0022D914 add rsi, qword ptr [r15 + 0x18]
+  root 0022DE60  0022DF1D lea9+shl4  rsi  next-add: 0022DF25 add rsi, qword ptr [r15 + 0x18]
+  root 0022F8B0  0022F924 lea9+shl4  r9   next-add: 0022F92C add r9, qword ptr [rsi + 0x18]
+  root 0035F260  0035F378 shl4+lea9  rax  next-add: 
+  root 0035F760  0035F787 shl4+lea9  rax  next-add: 
+  root 0035FAC0  0035FAE5 shl4+lea9  rax  next-add: 
+  root 0035FCA0  0035FD1D shl4+lea9  rax  next-add: 
+  root 0035FDD0  0035FE3E shl4+lea9  rax  next-add: 
+  root 00376990  003769A3 lea9+shl4  rbx  next-add: 003769AB add rbx, rax
+  root 003FA600  003FA686 lea9+shl4  rcx  next-add: 003FA68E add rcx, 0x20
+  root 003FC170  003FC279 lea9+shl4  r8   next-add: 003FC281 add r8, r13
+  root 00461270  00461B63 lea9+shl4  rdx  next-add: 00461B78 add rdx, rax
+  root 00461270  00461CA9 lea9+shl4  rdx  next-add: 
+  root 00461270  00461E40 lea9+shl4  rdx  next-add: 00461E55 add rdx, rax
+  root 00461270  00461FDF lea9+shl4  rdx  next-add: 
+  root 00502CB0  00502CF2 lea9+shl4  rcx  next-add: 
+  root 00502F30  00502FC7 lea9+shl4  rcx  next-add: 
+  root 005032D0  005033BE lea9+shl4  rcx  next-add: 
+  root 00754680  00754A88 lea9+shl4  rcx  next-add: 
+  total x*144 forms 28 in 21 roots; followed by `add r, qword [..+0x18]`: 5 in roots 0022CC50, 0022D4B0, 0022D7E0, 0022DE60, 0022F8B0
+== C. references to the nav-table cells
+  02EC1370: rip 2, image-base 0, abs64 0, rva32 0
+     003208D5 mov rcx, qword ptr [rip + 0x2ba0a94] (8B)  root 003208C0
+     00322230 mov qword ptr [rip + 0x2b9f139], rax (8B)  root 00322220
+  02EC1378: rip 4, image-base 0, abs64 0, rva32 0
+     00318CA7 mov rcx, qword ptr [rip + 0x2ba86ca] (8B)  root 00318CA0
+     0032223C mov qword ptr [rip + 0x2b9f135], rax (8B)  root 00322220
+     00322259 mov qword ptr [rip + 0x2b9f118], rax (8B)  root 00322220
+     0032A5AC mov rcx, qword ptr [rip + 0x2b96dc5] (8B)  root 0032A4D0
+  0209A678: rip 7, image-base 0, abs64 0, rva32 0
+     0026E116 cmovne rcx, qword ptr [rip + 0x1e2c55a] (8B)  root ?
+     0026E368 mov rbx, qword ptr [rip + 0x1e2c309] (8B)  root 0026E350
+     0026E56F cmovne rbx, qword ptr [rip + 0x1e2c101] (8B)  root 0026E530
+     0026E6E0 mov qword ptr [rip + 0x1e2bf91], rdx (8B)  root 0026E640
+     0026E984 lea r10, [rip + 0x1e2bced] (8B)  root 0026E960
+     0037759B mov rcx, qword ptr [rip + 0x1d230d6] (8B)  root 00377560
+     00377B06 mov rax, qword ptr [rip + 0x1d22b6b] (8B)  root 00377AB0
+  0209A680: rip 1, image-base 0, abs64 0, rva32 0
+     0026E6E7 mov qword ptr [rip + 0x1e2bf92], rdx (8B)  root 0026E640
+== B. taint scan: writes through a subrecord pointer (and through a table pointer)
+  0016F450    65 ins  sub-writes 0 [] | tab-writes 0 []
+  0016F770    40 ins  sub-writes 0 [] | tab-writes 0 []
+  0016F840   106 ins  sub-writes 0 [] | tab-writes 0 []
+  0022CC50   183 ins  sub-writes 0 [] | tab-writes 0 []
+  0022D4B0   199 ins  sub-writes 0 [] | tab-writes 0 []
+  0022D7E0   366 ins  sub-writes 0 [] | tab-writes 0 []
+  0022DE60   285 ins  sub-writes 0 [] | tab-writes 0 []
+  0022F8B0    66 ins  sub-writes 0 [] | tab-writes 0 []
+  0026E350    33 ins  sub-writes 0 [] | tab-writes 0 []
+  0026E530    36 ins  sub-writes 0 [] | tab-writes 0 []
+  0026E640    42 ins  sub-writes 0 [] | tab-writes 0 []
+  0026E960    79 ins  sub-writes 0 [] | tab-writes 0 []
+  00318CA0    14 ins  sub-writes 0 [] | tab-writes 0 []
+  003208C0    29 ins  sub-writes 0 [] | tab-writes 0 []
+  00322220    21 ins  sub-writes 0 [] | tab-writes 0 []
+  0032A4D0    82 ins  sub-writes 0 [] | tab-writes 0 []
+  0035F260   110 ins  sub-writes 0 [] | tab-writes 0 []
+  0035F760   266 ins  sub-writes 0 [] | tab-writes 0 []
+  0035FAC0    87 ins  sub-writes 0 [] | tab-writes 0 []
+  0035FCA0    82 ins  sub-writes 0 [] | tab-writes 0 []
+  0035FDD0    74 ins  sub-writes 0 [] | tab-writes 0 []
+  00376990    21 ins  sub-writes 0 [] | tab-writes 0 []
+  00377560    29 ins  sub-writes 0 [] | tab-writes 0 []
+  00377AB0    47 ins  sub-writes 0 [] | tab-writes 0 []
+  00380FA0    71 ins  sub-writes 0 [] | tab-writes 0 []
+  00381EB0    88 ins  sub-writes 0 [] | tab-writes 0 []
+  003FA600    56 ins  sub-writes 0 [] | tab-writes 0 []
+  003FC170   149 ins  sub-writes 0 [] | tab-writes 0 []
+  00461270   812 ins  sub-writes 0 [] | tab-writes 0 []
+  00502CB0   129 ins  sub-writes 0 [] | tab-writes 0 []
+  00502F30    58 ins  sub-writes 0 [] | tab-writes 0 []
+  005032D0   258 ins  sub-writes 0 [] | tab-writes 0 []
+  00754680   374 ins  sub-writes 0 [] | tab-writes 0 []
+== D. callers of the shape consumers
+  00380FA0: rel32 ['0022CD59 call (root 0022CC50)', '0022D5D2 call (root 0022D4B0)'] ; jcc [] ; abs64 [] ; rva32 1
+  00381EB0: rel32 ['0022F968 call (root 0022F8B0)', '00381CF3 call (root 00381AC0)'] ; jcc [] ; abs64 [] ; rva32 4

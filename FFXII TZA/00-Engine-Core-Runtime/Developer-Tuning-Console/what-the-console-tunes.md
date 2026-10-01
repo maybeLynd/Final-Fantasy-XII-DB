@@ -1217,3 +1217,45 @@ Shared callees outside the census: none.
 `001A7770` (213 B) is the notify sweep the change-gated dials (`001A9A70`/`001A9AA0`/`001A9AD0`) tail-jump to: it walks the `[rcx+0x4A0]` listener list to the `[rcx+0x498]` sentinel via `0016D6D0`, stamps each node `+0x30 = 0`, `+0x28 = +0x484`, `+0x24 = +0x480`, and when `+0x488` float is nonzero adds `(+0x488 * 2 * rand() / 32766.0) - +0x488` to `+0x24` - the dial's random-spread option (`008C3098` is `rand`)
 
 Interior anchor `001A7819` (function `001A7770`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*Functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`console_interior.py`](../../_index/candidates/opus-console-interior-1001/console_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0015CC00` | 21 B | stores the pointer `001F0850()` returns in qword `01F812C8` | `0015CC09` |
+| `0017E010` | 19 B | returns the address of the 8-byte entry `01DF0018 + 8*[dword 01DF0010]` | `0017E017`, `0017E01E` |
+| `0017E7A0` | 36 B | adds `ecx` to dword `01DF0010` and stores the sum, except that a negative sum is stored as 2 and a sum above 2 as 0 | `0017E7AA`, `0017E7BA`, `0017E7BD` |
+| `0017F5E0` | 38 B | returns dword `+0x168` of the object `001AD440()` returns, or -1 when there is none | `0017F5F3`, `0017F5FE` |
+| `00182E10` | 59 B | when `001DDAB0()` is non-null, calls `001DC940(it, cl)`, then tail-jumps to `001DC730` with `001DDAB0()` in `rcx` | `00182E2E`, `00182E40` |
+| `001846B0` | 57 B | calls `001E0580` and `001EB940(001EBA40())`, copies float `01F7F53C` to `02CB8138`, then tail-calls `0018CCF0(0018CA40(), 1)` | `001846C1`, `001846CE`, `001846E4` |
+| `001846F0` | 75 B | calls `001E0580`, copies float `02CB8138` back to `01F7F53C` and zeroes `02CB8138`, calls `0018CCF0(0018CA40(), 0)`, then tail-calls `001EB7B0(001EBA40(), ecx)` | `00184708`, `00184710`, `00184722`, `00184736` |
+| `00189110` | 15 B | copies byte `+8` of the object at qword `+0x10` to byte `+9` of the object that object's first qword points to | `00189117`, `0018911B` |
+| `0018A790` | 17 B | returns 1 when bytes `+0` and `+1` are both non-zero, else 0 | `0018A795`, `0018A79B` |
+| `0018A7B0` | 17 B | returns 1 when bytes `+0` and `+2` are both non-zero, else 0 | `0018A7B5`, `0018A7BB` |
+| `00196710` | 184 B | works on the pointer table at qword `+0xDF8` of `00796E20()`: for entries at offsets `0x118`-`0x148` up to the first null, calls `00861EC0(entry + 0x30, 0, 0x100)`; for each non-null entry at `0x88`-`0x110`, zeroes the 17 bytes at `+0x30`; for the entry at `0x150`, zeroes word `+0x1E0` and byte `+0x1E2` | `0019673B`, `00196741`, `00196782`, `001967B5`, `001967BC` |
+| `001AC7A0` | 21 B | returns `rcx + 0x204 + 32*[dword +0x200]` (32-byte records from `+0x204`) | `001AC7A7`, `001AC7AB` |
+| `001AC7C0` | 66 B | when byte `+0xA4` is non-zero and dword `+0xA8` is -2, sets `+0xA8` to -1 and, when `001F0850()` is non-null, tail-calls `001EF540(it, 1)` | `001AC7C4`, `001AC7CD`, `001AC7D6`, `001AC7F8` |
+| `001AD4D0` | 62 B | stores `edx` modulo the qword count of the vector at `[+0xE8]` in dword `+0x168`, or 0 when that vector is empty | `001AD4E1`, `001AD4F9`, `001AD4FC`, `001AD503` |
+| `001BD9D0` | 128 B | takes float `01DFE194` when byte `01DFE190` is set and its magnitude is at least 0.001 (double `008F9558`), else 0.0; stores that in float `02CB8154`, or 0.0 when byte `+0x118` of `001EBA40()` is set | `001BD9EA`, `001BDA0B`, `001BDA19`, `001BDA22`, `001BDA3E` |
+| `001BE660` | 86 B | zeroes qwords `+0`, `+8` and `+0x10`, calls `001EDF00(rcx + 0x18, r8)`, then `001A4BF0(rcx, rdx, rdx + strlen(rdx))` for the C string in `rdx`; returns `rcx` | `001BE66F`, `001BE684`, `001BE693`, `001BE6A3` |
+| `001C0440` | 60 B | returns float `+0x20` of the record at qword `+0x18` when the count of 40-byte elements in `[+0x58, +0x60)` is non-zero and qword `+0x10` is non-null, else 0.0 | `001C0452`, `001C0455`, `001C046B`, `001C0476` |
+| `001C0630` | 60 B | returns float `+0x34` of the record at qword `+0x18` when the count of 40-byte elements in `[+0x58, +0x60)` is non-zero and qword `+0x10` is non-null, else 0.0 | `001C0642`, `001C0657`, `001C0662` |
+| `001C4F50` | 237 B | starts a stack vector from the constant (1, 0, 0, 1) at `008FCCA0`; calls `00203170` on a stack block, `00202F70` with the stack (fifth) argument and `00202F00` with `xmm3`, each multiplied by 3.14159 (`008FCC94`) and divided by 180 (`008F3138`), then `00202B70`; stores the result's first float through `rcx`, its second through `rdx` and its third, negated by the sign mask `01CEBDA0`, through `r8` | `001C4F73`, `001C4FA4`, `001C4FB1`, `001C4FF2`, `001C500D` |
+| `001D5230` | 46 B | steps dword `+0xC` up when `dl` is non-zero, else down, wrapping 4 to 0 and a negative value to 3 | `001D5234`, `001D5239`, `001D5244`, `001D5256` |
+| `001DBB00` | 46 B | tail-calls `002112D0(00210B30(), edx != 0, ecx)` | `001DBB0E`, `001DBB11`, `001DBB29` |
+| `001DC940` | 116 B | steps an index up when `dl` is non-zero, else down, with wrap-around: when dword `+8` of `[01F82D20]` is 0, dword `+0x38` modulo `[+0x20]` (plus one slot when the 28-byte entry `[+0x40] + 0x1C*[+0x20]` has non-zero dwords `+0` and `+4`); otherwise dword `+0x24` modulo `[+0x20]` | `001DC947`, `001DC955`, `001DC976`, `001DC99A` |
+| `001DC9C0` | 16 B | returns `[+0x78] + 0x140*[dword +0x48]` (320-byte records) | `001DC9C3`, `001DC9C7`, `001DC9CB` |
+| `001DD090` | 32 B | returns dword `+0x130` of the 320-byte record `[+0x78] + 0x140*[+0x48]`, or dword `+0x5C` when `[+0x78]` is null | `001DD094`, `001DD0A0`, `001DD0A4`, `001DD0AC` |
+| `001E3E90` | 28 B | returns qword `+0x80` of `[[rcx+0x18]]` minus its low bit | `001E3E94`, `001E3EA5`, `001E3EA8` |
+| `001EF500` | 32 B | sets dwords `+0x130` and `+0x134` to 6 when `+0x130` was 2, else to 2 | `001EF50A`, `001EF510`, `001EF519` |
+| `0020D9F0` | 96 B | calls virtual slot 1 (`[vtable+8]`) on `rcx`, then on each object along the qword `+8` links, until one returns non-zero; returns 1 when one did, else 0 | `0020DA0A`, `0020DA11`, `0020DA25`, `0020DA43` |
+| `002112D0` | 105 B | on a stack object: `007A4380`, `007A4C70(r8d)`, then `007A45C0` with float 1.0 (`01CEBBA8`) when `dl` is non-zero, else 0.0, and finally `001243B0` | `002112EF`, `002112FC`, `00211316`, `0021131E`, `00211329` |
+| `002D4F90` | 25 B | for `ecx` 1 to 5, stores it in dword `01E0CF88` and zeroes dword `0209E65C`; any other value is ignored | `002D4F93`, `002D4F98`, `002D4F9E` |
+| `002F1CD0` | 13 B | stores `ecx` in dword `022BE7D8` and `edx` in dword `01EEBAE0` | `002F1CD6` |
+| `002F4510` | 13 B | stores `ecx` in dword `022BE7DC` and `edx` in dword `01EEBAE4` | `002F4516` |
+| `00308E80` | 51 B | reads qword entry `ecx` of the table at `022C24E0`; when it is non-null and its byte `+4` is below 6, returns qword entry `[+4]` of the table at `01EEC268`; otherwise returns the string `"Nobody"` at `00D10394` | `00308E8A`, `00308E9B`, `00308EA2`, `00308EAB` |
+| `003091C0` | 100 B | calls `0031ABF0(003272F0())`; when that is non-null and `00265970` on it is non-null, calls `00265020(it, rcx, rdx, r8)` | `003091DD`, `003091E4`, `003091F4`, `0030920A` |
+| `0050D360` | 59 B | when `00267E10(r9)` is non-zero, tail-calls `0026FAD0(0, 00265920(), byte +0x15 of rdx)`; otherwise tail-calls `0026FE50(0)` | `0050D36C`, `0050D375`, `0050D38A`, `0050D396` |
+| `005DDDB0` | 186 B | passes the qword vector at `+0x1010` to `001A5A80` with its capacity in qwords and zeroes its three pointers; then, for the buffers at `+0x4A8` (size dword `+0x4A0`) and `+0x480` (size dword `+0x478`), calls `005F01B0` and `005F03A0` when bit 31 of the size is clear, and zeroes pointer and size | `005DDDEB`, `005DDDF1`, `005DDE0D`, `005DDE18`, `005DDE47` |

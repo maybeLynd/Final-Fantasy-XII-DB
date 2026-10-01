@@ -105,7 +105,7 @@ and middle/head/last removals are checked with a full 64-slot disjoint-list cont
 **I3 — no slot means a blocking retry, not an error return.** `0032E870` executes
 pump -> in-flight getter -> pacer before testing free head again. A 65th requester can free
 all 64 zero-byte requests itself and return in the same invocation. Progress is not guaranteed
-if external completion never arrives. The unguarded `0032E990` alone faults at `0x10` on a null
+if external completion never arrives. **Proviso (script BGM stream):** the same-call drain holds while the stream `02B5E0E0` is inactive (every shipped run) or waiting in state 5, but not while the stream machine `003EADE0` is in a submitting state (1, or 7 with bytes left) with the pool full: it submits through `0032E780` -> `0032E870` before writing its next state (`003EAE4C` before `003EAE63`, `003EAF9A` before `003EAFAD`), so the nested requester re-enters the pump, which calls the machine again, and nothing drains (SWE2-ORACLE 2026-09-30, NATIVE-REPLAY to depth 8, `_index/candidates/s08-bgm-machine-drain-0930/`; the order is static, OPUS-verified; exhaustion inferred; review pending). No shipped script feeds the stream, so this is a modded-script domain, like I5's gate. The unguarded `0032E990` alone faults at `0x10` on a null
 free head for either flag. That is a precondition violation, not the requester behavior.
 
 **I4 — ids distinguish successive uses, within the accepted counter domain.**

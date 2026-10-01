@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+00247AE0	FUN_00247ae0	00247D9F	0x0	w	mov qword ptr [rdi], rbx	route-seeded STATIC 0x0208EA20 base+0x0	
+00250540	FUN_00250540	00250630	0x0	r	mov rcx, qword ptr [rdi]	route-seeded STATIC 0x0208EA20 base+0x0	
+00250540	FUN_00250540	00250675	0x0	r	mov rcx, qword ptr [rbx]	route-seeded STATIC 0x0208EA20 base+0x0	

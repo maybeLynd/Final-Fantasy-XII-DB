@@ -1,0 +1,23 @@
+{
+  "status": "VERIFIED_AND_RELEASED",
+  "task": "ASTRA-PUBLISH-TITLE-CLEANUP-COUNT-SELECTOR-0930",
+  "board_revision": 44784,
+  "own_pid": 28284,
+  "transport": {
+    "pathfile": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/publication-title-cleanup-count-selector-01/reviewed-publisher-paths-01.txt",
+    "pathfile_sha256": "e4d2bc732f81ca7d79ff2b1f637d426f46158d4bab1350c69c51d709445528fb",
+    "transport_sha256": "2d18bfe5ecc986ac6bab99f3fba57869b0b8a1513baddeaef0560d68541cde46",
+    "explicit_paths": 38,
+    "native_path_budget": {
+      "path_argv_utf16_units": 4815,
+      "limit": 24000,
+      "limits": "Conservative setup guard; actual publisher/health/commit checks still required"
+    }
+  },
+  "driver_sha256": "713b72df0a85cca69126d152624119abe50b175f1a25adbefb3b946fe557b272",
+  "publisher_sha256": "ce60f287cfd9822e613378423a61b18c8922c44ffe0503163382a8cdd465d2b1",
+  "explicit_paths": 38,
+  "publisher_exit": 0,
+  "commit": "cb5a29b42b8aa8091e2e55076794b225f74262a3",
+  "final_revision": 44785
+}

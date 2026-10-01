@@ -1,0 +1,41 @@
+{
+  "original_map_refusal": "missing/incomplete source prerequisite map",
+  "actual_positive_guard": {
+    "status": "VERIFIED_PREREQUISITE",
+    "result": "result-02.json",
+    "source_checks": [
+      {
+        "path": "source-01.json",
+        "sha256": "42f23e697ae838f07943f0a4a4b694193dbca1fe6bf99f81f445118c707f98c4",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 85,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      },
+      {
+        "path": "retained/selector-callers-raw-01.json",
+        "sha256": "a362ef91feb4e2f80045af35a825d0dbc6b1556f08a45d0c4ccf271b2fcf0576",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 250,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      }
+    ],
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Annotation consistency only; independent acceptance and native effects remain separate"
+  },
+  "old_result_sha256": "eb71114482f4b1a329ed941a01da3e72b6864609ef14de9394db05dd65d1a061",
+  "new_result_sha256": "79b26822cf22c3421b74f1e8b0fcbb26285b4f9c967f4d1746a2d33afa59f496",
+  "publisher_sha256": "40ff139e3226610913438837bc2afd92ea8861aa393aab416a95f8e9ea0b9201",
+  "adapter_sha256": "cfec267286346e1a31ce5a9e4b42d877c9247e4a15a4e14995eaa4274446ab78",
+  "semantic_fields_unchanged": true,
+  "limits": "Actual original-publication annotation path only, not independent semantic acceptance/new source experiment."
+}

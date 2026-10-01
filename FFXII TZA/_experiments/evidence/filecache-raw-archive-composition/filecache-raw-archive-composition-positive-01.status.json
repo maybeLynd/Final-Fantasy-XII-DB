@@ -1,0 +1,13 @@
+{
+  "driver_sha256": "3c83b4256f8d940a08dfda26223be3abb889dac250e1624bd7e40c0816da23ab",
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-filecache-raw-archive-composition.py",
+    "--out",
+    "filecache-raw-archive-composition-result-01.json"
+  ],
+  "terminal": true,
+  "exit": 0,
+  "stdout_bytes": 136,
+  "stderr_bytes": 0
+}

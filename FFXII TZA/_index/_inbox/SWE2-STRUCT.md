@@ -1524,5 +1524,146 @@ bases the sweep printed (GroupPersistentBank +0x80, RampChannelRecord +0x120,
 ResourceKindOverrideTable +0x40, SeparationCellMasks +0x40,
 TransformWorkbenchSavedValue +0x10 — candidate sub-objects).
 
-NEXT: publish batch 2 (fields.tsv, check_census_widths.py,
-sweep_route_seeded_census.py, 143 census files, audit log, this block).
+NEXT: DONE — published `1bd0d2d6` (task `SWE2STRUCT-PUB-ROUTECENSUS2-0930`
+finished, lease released rev 44681). All seedable routed types now have
+censuses. Fallback: investigate the five orphan bases named above as
+candidate sub-object declarations, then unrouted-type coverage.
+
+
+## 2026-10-01 — SWE2-STRUCT: SD-141 receiver/consumer trace (OPUS-REQ-STRUCT-SD141-CONSUMERS-1001)
+
+Verified OPUS's `sd141-gpu-consumers-1001` chain and completed the CPU-side census it left open.
+
+- `r14` in `00604750` = mapped CPU view of a D3D11 ring-buffer slot
+  (`006097B0` busy-wait + `00626060` map; commit `0062C300`); record =
+  `this+0x4A8 + cursor*80`. Per UQ-22: `SceneWideParameterConstantBuffer`,
+  `+0x5D4`/`+0x5DC` = `mShadowFlyingFadeSpeed`/`mShadowFlyingFadeRange`.
+- `r14` is write-only on CPU (291 stores, 0 non-lea loads); consumers are
+  GPU-side only (517 lit-shader blobs per OPUS's blob census).
+- The two staged slots (`this+0x4E0`/`+0xA78`, parity-indexed by `+0x4D8`)
+  take the pair bytes at `+0x550`/`+0x554` in whole-struct copies, but **no
+  CPU reader exists** — `00604750` is the only `imul ×0x598` site and no
+  same-receiver operand hits `+0x1030`/`+0x15C8`/`+0x1034`/`+0x15CC`.
+  Write-only staging for the pair bytes.
+- `00604750` entry is indirect (a `.rdata` rva32 jump-table arm at
+  `0x6048D0`); both raw rel32 caller candidates decode mid-instruction.
+
+Record: `_index/candidates/swe2struct-sd141-receiver-1001/` — checker
+`sd141_receiver.py` FAILS 0 (C1..C10).
+
+NEXT: DONE — `OPUS-REQ-STRUCT-SD141-CONSUMERS-1001` finished (rev 44768),
+published `911aff55b`.
+
+## 2026-10-01 — SWE2-STRUCT: the five sweep "orphan bases" resolved — all register-bias artifacts
+
+Each orphan folded back inside an already-declared row via a biased base
+register (disp column already carries the folded offset):
+
+- GroupPersistentBank base+0x80: `[rax-0x80..rax]` movups import/export loop
+  tiles the 512B blob (eff +0x00..+0x70 inside `bytes`).
+- RampChannelRecord base+0x120: `003B68E2 and byte [rax-0xE0],0xFE` →
+  elem+0x40 = `field040` (PARRAY stride 0xE0).
+- ResourceKindOverrideTable / SeparationCellMasks base+0x40: zeroclear qword
+  loops with `[rax-0x28..-8]` → +0x18..+0x38 inside the blob rows.
+- TransformWorkbenchSavedValue base+0x10: `[r9-0x10]` → +0x00 inside
+  `savedBytes[16]`.
+
+No candidate sub-objects exist among them — the `report_bases` orphan list is
+exhausted. Fallback continues: unrouted-type coverage (types with no route
+column cannot be census-seeded) and the standing transitive-return consumer
+limitation.
+
+## 2026-10-01 — SWE2-STRUCT: derived-route census batch — RenderContext subtree unlocked
+
+`RenderContext02CC0410` gained `STATIC 0x02CC0410` (ctor 005FD050 lea's the
+.bss static in place), which seeded the whole EMBED/CHAIN subtree already
+declared on the children:
+
+- `render-context-02cc0410-accesses.tsv`: 649 accesses / 414 offsets / 23 fns,
+  0 gap-rows hit, every base resolves to a declared row. Driven in-process —
+  the size is a range (AT MOST 0x22200), outside `store()`'s sized map.
+- `render-primitive-pass-1e8-accesses.tsv`, `render-context-pass-state-block-accesses.tsv`,
+  `primitive-renderer-d3d11-accesses.tsv` (184/168/5, also via the ranged-size
+  driver at AT MOST 0x20940).
+- `p-shader-pass-state-d3d11-accesses.tsv` (EMBED RenderPrimitivePass1E8 +0x058).
+- `p-post-effect-base-accesses.tsv` (CHAIN PDeferredLightingBase +0x000;
+  VTABLE-routed parent).
+- `PFXAAD3D11` (EMBED PFXAA +0x000): empty — no displacement reached. Not
+  registered.
+- `NameRegistryNode` (CHAIN InputNameRegistryHeadCell +0x000): 242 accesses,
+  all generic `mov [reg],reg` stub propagation — a true containment fact but
+  a FALSE census. Route kept, census deleted.
+
+Eight `WIDTH DELIBERATE` markers: seven RenderContext ctor bulk stores
+(word/qword merges over byte/dword fields) and `PPostEffectBase +0x48`
+(declared 8 to the type end; all five routed accesses dword — the row
+already recorded the split).
+
+Gates: `check_census_widths` 0 mismatches; `check_gap_debt` TOUCHED=0,
+INHERITED grew to 7 (parent/child shared-code reads — the expected class);
+`types_index --validate` 0 errors. UNMEASURED now **411 rows / 23,423 B**.
+
+NEXT: DONE — published `8cc4b2781` (task SWE2STRUCT-PUB-ROUTECENSUS3-1001,
+rev 44852). A first invocation with swapped `publish_paths.sh` args produced
+`efdf7f714` (adds only `_pub3_msg.txt`) — superseded, harmless.
+
+Continue unrouted-type coverage — remaining tractable work is thin; most of
+the 350+ unrouted types are caller-owned / interior / engine-allocated with
+no honest root. Standing limitation: transitive getter-alias consumer census.
+
+## 2026-10-01 — SWE2-STRUCT: ARG route form implemented + piloted, ruling requested
+
+`ARG <reg> 0xFUNC` (object provably in <reg> at FUNC entry — the grammar
+proposed in `derived-route-parent-roots.md`, FRONTIER's to accept or refuse)
+is now implemented in `gen_route_seeded_census.py`: `R_ARG` parse, `ARG` in
+`SEEDABLE`, `hosts_for` returns the named function, walker seeds
+`W.ARG_REGS[idx]` at offset 0 — the VTABLE shape with a named register.
+
+Pilot (in-process driver, routes injected to the store map — `types.tsv`
+untouched pending the ruling):
+
+- `ActorDefinitionPayload` `ARG rdx 0x0026C8C0`: 7 offsets — the binder's own
+  field reads.
+- `AuthoredExpressionBlock` `ARG rcx 0x0042FDB0`: 21 offsets — re-derives the
+  four-record layout + mode byte.
+- `AuthoredExpressionRecord` EMBED child: 6 offsets (redundant — parent census
+  already covers the same bytes).
+- `ActorDefinitionCountedU16Section` RELOFF child: 0 offsets — the
+  parent+*(int32*)(parent+off) combine is not modelled under ARG; not emitted.
+- `PaneListWidget0B68`/`PaneSlotWidget0160`: already censused — not run.
+
+Record: `_index/candidates/arg-route-form-pilot-1001/README.md`. Board:
+`SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001` (rev 44929) requests the
+accept/refuse verdict; on acceptance the three `DYNAMIC - ... ARG proposed`
+rows gain real routes and the two pilot censuses publish.
+
+NEXT: awaiting FRONTIER ruling on ARG. Fallback meanwhile: unrouted-type
+coverage remains thin (caller-owned / interior / engine-allocated dominate);
+transitive getter-alias consumer census remains unsupported/known debt.
+
+## 2026-10-01 — SWE2-STRUCT: seedable frontier probed to closure
+
+Drove all **152 direct-seedable types lacking a registered census** through an
+in-process driver (cached `Image`/`call_maps`, every SEEDABLE rule per row):
+**0 produced a non-empty census.** The batch-2/3 emitters already captured
+every type the current grammar can actually measure; the remaining seedable
+rows are objects whose code reaches them only through bases the walker cannot
+prove (rip-addressed reads outside marked registers, or no displaced access
+at all). No route pruning — an empty census doesn't falsify the root; the
+route rows stay as provenance.
+
+Frontier state after `2609c0d85`:
+
+- Gates: widths 0 mismatches; gap-debt TOUCHED=0 / AMBIGUOUS=2 (non-defect) /
+  INHERITED=7; types_index 0 errors. UNMEASURED 411 rows / 23,423 B.
+- The remaining UNMEASURED debt sits in unrouted/unseedable types (VP8, Lua
+  GC objects, caller-owned/interior/engine-allocated) — no honest root under
+  the current grammar.
+- Pending external: `SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001` (the only
+  untried lever — argument-register roots); `ASTRA-RETURN-STRUCT-OV58D-ORDER-
+  SWITCH-1001` gated on `ASTRA-REQ-SPEC-OV58D-ORDER-SWITCH-1001` (still READY).
+
+NEXT: awaiting the ARG ruling — if accepted, apply the three routes and
+publish the two pilot censuses. Standing limitation: transitive getter-alias
+consumer census remains unsupported/known debt. Queue otherwise empty for
+this lane; monitor the board.

@@ -1,0 +1,730 @@
+[
+  {
+    "case": "count",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 10,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 15,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 15,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "count": 5,
+            "rel": 50.0,
+            "old": {
+              "numerator": 10,
+              "denominator": null
+            },
+            "new": {
+              "numerator": 15,
+              "denominator": null
+            }
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "count": 5,
+      "rel": 50.0,
+      "old": {
+        "numerator": 10,
+        "denominator": null
+      },
+      "new": {
+        "numerator": 15,
+        "denominator": null
+      }
+    },
+    "prior_file_sha256": "6495b7da041f1eade3a02b2d6cb0edae1672d1d87dce6ff6e7ad7a690d0cc6c4",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "moved-ratio",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 10,
+          "denominator": 100,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 15,
+          "denominator": 200,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 15,
+          "denominator": 200,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "na": "scope changed",
+            "why": "scope 'same' -> 'same'; denominator 100 -> 200",
+            "old": {
+              "numerator": 10,
+              "denominator": 100
+            },
+            "new": {
+              "numerator": 15,
+              "denominator": 200
+            },
+            "dnum": 5,
+            "dden": 100,
+            "pp": -2.5
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "na": "scope changed",
+      "why": "scope 'same' -> 'same'; denominator 100 -> 200",
+      "old": {
+        "numerator": 10,
+        "denominator": 100
+      },
+      "new": {
+        "numerator": 15,
+        "denominator": 200
+      },
+      "dnum": 5,
+      "dden": 100,
+      "pp": -2.5
+    },
+    "prior_file_sha256": "95fa61e29a40d09f83bb46e0ddd242c9d9a76355a4f3739098e602d64eafc5b3",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "changed-scope",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 10,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 15,
+          "denominator": null,
+          "scope": "changed",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 15,
+          "denominator": null,
+          "scope": "changed",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "na": "N/A - definition changed",
+            "why": "definition or scope changed",
+            "old": {
+              "numerator": 10,
+              "denominator": null
+            },
+            "new": {
+              "numerator": 15,
+              "denominator": null
+            }
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "na": "N/A - definition changed",
+      "why": "definition or scope changed",
+      "old": {
+        "numerator": 10,
+        "denominator": null
+      },
+      "new": {
+        "numerator": 15,
+        "denominator": null
+      }
+    },
+    "prior_file_sha256": "6495b7da041f1eade3a02b2d6cb0edae1672d1d87dce6ff6e7ad7a690d0cc6c4",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "empty-ratio-to-count",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 5,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 5,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "na": "N/A - basis changed",
+            "why": "count/ratio basis changed: denominator 0 -> None",
+            "old": {
+              "numerator": 0,
+              "denominator": 0
+            },
+            "new": {
+              "numerator": 5,
+              "denominator": null
+            }
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "na": "N/A - basis changed",
+      "why": "count/ratio basis changed: denominator 0 -> None",
+      "old": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "new": {
+        "numerator": 5,
+        "denominator": null
+      }
+    },
+    "prior_file_sha256": "0f0dfb2e2152c4ce826c400f4b5a577f9e4b7d8b1e217cee0ee1fe15a37bbb9f",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "ratio-to-empty-ratio",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 1,
+          "denominator": 2,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "na": "scope changed",
+            "why": "scope 'same' -> 'same'; denominator 2 -> 0",
+            "old": {
+              "numerator": 1,
+              "denominator": 2
+            },
+            "new": {
+              "numerator": 0,
+              "denominator": 0
+            },
+            "dnum": -1,
+            "dden": -2,
+            "pp": 50.0
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "na": "scope changed",
+      "why": "scope 'same' -> 'same'; denominator 2 -> 0",
+      "old": {
+        "numerator": 1,
+        "denominator": 2
+      },
+      "new": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "dnum": -1,
+      "dden": -2,
+      "pp": 50.0
+    },
+    "prior_file_sha256": "6b96a09c59ea36dfcf1c055ced6eecf0a35bc9eb457976285d51d3ca41b07c14",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "unchanged-empty-ratio",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "pp": 0.0,
+            "old": {
+              "numerator": 0,
+              "denominator": 0
+            },
+            "new": {
+              "numerator": 0,
+              "denominator": 0
+            }
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "pp": 0.0,
+      "old": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "new": {
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "prior_file_sha256": "0f0dfb2e2152c4ce826c400f4b5a577f9e4b7d8b1e217cee0ee1fe15a37bbb9f",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "count-to-ratio",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 5,
+          "denominator": null,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 3,
+          "denominator": 10,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 3,
+          "denominator": 10,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "na": "N/A - basis changed",
+            "why": "count/ratio basis changed: denominator None -> 10",
+            "old": {
+              "numerator": 5,
+              "denominator": null
+            },
+            "new": {
+              "numerator": 3,
+              "denominator": 10
+            }
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "na": "N/A - basis changed",
+      "why": "count/ratio basis changed: denominator None -> 10",
+      "old": {
+        "numerator": 5,
+        "denominator": null
+      },
+      "new": {
+        "numerator": 3,
+        "denominator": 10
+      }
+    },
+    "prior_file_sha256": "2e5cadef0c39ce143211c2b233244e115ca4a8937d3852f7e7926810ad225ef9",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  },
+  {
+    "case": "empty-to-ten",
+    "prior": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 0,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "original_current": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 10,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only"
+        }
+      ]
+    },
+    "result": {
+      "view": "types",
+      "status": "OK",
+      "definition": "same-v1",
+      "measures": [
+        {
+          "id": "test",
+          "label": "ASTRA bounded measure",
+          "numerator": 0,
+          "denominator": 10,
+          "scope": "same",
+          "instrument": "independent fixture",
+          "as_of": "2026-10-01",
+          "limits": "host control only",
+          "delta": {
+            "na": "scope changed",
+            "why": "scope 'same' -> 'same'; denominator 0 -> 10",
+            "old": {
+              "numerator": 0,
+              "denominator": 0
+            },
+            "new": {
+              "numerator": 0,
+              "denominator": 10
+            },
+            "dnum": 0,
+            "dden": 10,
+            "pp": -100.0
+          }
+        }
+      ],
+      "delta_basis": {
+        "generation": "ASTRA-retained-prior",
+        "committed_at": "synthetic fixture"
+      }
+    },
+    "delta": {
+      "na": "scope changed",
+      "why": "scope 'same' -> 'same'; denominator 0 -> 10",
+      "old": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "new": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "dnum": 0,
+      "dden": 10,
+      "pp": -100.0
+    },
+    "prior_file_sha256": "0f0dfb2e2152c4ce826c400f4b5a577f9e4b7d8b1e217cee0ee1fe15a37bbb9f",
+    "prior_file_unchanged": true,
+    "before_validation": [
+      null,
+      null
+    ],
+    "after_validation": null
+  }
+]

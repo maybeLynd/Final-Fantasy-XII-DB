@@ -1,0 +1,9 @@
+{
+  "status": "SUPERSEDED_BY_EXISTING_EVIDENCE_NO_NEW_TEST",
+  "proposal": "title-release-dispatch-method-01.json",
+  "accepted_boundary": "ASTRA-REQ-SPEC-TITLE-TRACKER-CALLBACK-0930 /2e88eceef",
+  "queue_publication": "d010f6988b66742fb4340197ce7e0ac0d3f62e14",
+  "pump_publication": "c1fd6d208bc6a035ca1201fe31da77c452532fbe",
+  "limits": "Tracker accepted; consumption/pump producer evidence delivered, independent review/canonical incorporation pending. Do not re-test append/rotation/pump simply because the old checkpoint proposed them. No native/live or newly closed runtime-row count.",
+  "next": "Consume existing cleanup/count/reset proof and returned narrowings; only then select an exact unowned constructor/count-writer/caller invariant or other residue."
+}

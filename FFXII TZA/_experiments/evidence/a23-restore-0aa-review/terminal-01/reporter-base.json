@@ -1,0 +1,21 @@
+{
+  "levels": {
+    "L2_reconstruction_grade": {
+      "systems": [
+        {
+          "system": "S-01",
+          "contract": "MET",
+          "types": "MET",
+          "relationships": "MET",
+          "runtime": "MET",
+          "script_data": "N/A"
+        }
+      ],
+      "per_dimension_live_unruled": {}
+    },
+    "terminal_certification": {
+      "required_consecutive": 30,
+      "final_audits_declared": 0
+    }
+  }
+}

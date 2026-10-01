@@ -1,0 +1,292 @@
+image sha256 asserted: 73461d0896204b1c
+
+== A  003631B0 shape arms (class = byte [rec+9] & 0x7F)
+  0036326A movzx ecx, byte ptr [rbx + 9]
+  0036326E and ecx, 0x7f
+  00363271 je 0x3632c1
+  00363276 je 0x3632af
+  0036327B je 0x363293
+  00363212 movss xmm8, dword ptr [rip + 0x9ada75]        const [00D10C90] = 4.141592979431152
+  00363221 movss xmm9, dword ptr [rip + 0x1988a72]       const [01CEBC9C] = -1.0
+  -- class 0 (je 003632C1)
+     003632C1 mov r8, rbx
+     003632C4 lea rdx, [rsp + 0x60]
+     003632C9 mov rcx, rsi
+     003632CC call 0x361de0
+     003632D1 movss xmm2, dword ptr [rbx + 0x58]
+     003632D6 movss xmm1, dword ptr [rbx + 0x54]
+     003632DB movss xmm0, dword ptr [rbx + 0x38]
+     003632E0 movss dword ptr [rsp + 0x48], xmm0
+     003632E6 lea r9, [rsp + 0x60]
+     003632EB movss xmm0, dword ptr [rip + 0x1f68799]
+     003632F3 lea rdx, [rsp + 0x50]
+     003632F8 movss dword ptr [rsp + 0x40], xmm2
+     003632FE lea rcx, [rsp + 0xe8]
+     00363306 movss dword ptr [rsp + 0x38], xmm1
+     0036330C mov r8, rsi
+     0036330F movss dword ptr [rsp + 0x30], xmm0
+     00363315 movss dword ptr [rsp + 0x28], xmm6
+     0036331B mov qword ptr [rsp + 0x20], rbx
+  -- class 1 (je 003632AF)
+     003632AF mov r8, rbx
+     003632B2 lea rdx, [rsp + 0x60]
+     003632B7 mov rcx, rsi
+     003632BA call 0x3623c0
+     003632BF jmp 0x3632d1
+     003632D1 movss xmm2, dword ptr [rbx + 0x58]
+     003632D6 movss xmm1, dword ptr [rbx + 0x54]
+     003632DB movss xmm0, dword ptr [rbx + 0x38]
+     003632E0 movss dword ptr [rsp + 0x48], xmm0
+     003632E6 lea r9, [rsp + 0x60]
+     003632EB movss xmm0, dword ptr [rip + 0x1f68799]
+     003632F3 lea rdx, [rsp + 0x50]
+     003632F8 movss dword ptr [rsp + 0x40], xmm2
+     003632FE lea rcx, [rsp + 0xe8]
+     00363306 movss dword ptr [rsp + 0x38], xmm1
+     0036330C mov r8, rsi
+     0036330F movss dword ptr [rsp + 0x30], xmm0
+     00363315 movss dword ptr [rsp + 0x28], xmm6
+     0036331B mov qword ptr [rsp + 0x20], rbx
+  -- class 2 (je 00363293)
+     00363293 mov r8, rbx
+     00363296 lea rdx, [rsp + 0x60]
+     0036329B mov rcx, rsi
+     0036329E call 0x362230
+     003632A3 movaps xmm6, xmm0
+     003632A6 movaps xmm1, xmm7
+     003632A9 movaps xmm2, xmm8
+     003632AD jmp 0x3632db
+     003632DB movss xmm0, dword ptr [rbx + 0x38]
+     003632E0 movss dword ptr [rsp + 0x48], xmm0
+     003632E6 lea r9, [rsp + 0x60]
+     003632EB movss xmm0, dword ptr [rip + 0x1f68799]
+     003632F3 lea rdx, [rsp + 0x50]
+     003632F8 movss dword ptr [rsp + 0x40], xmm2
+     003632FE lea rcx, [rsp + 0xe8]
+     00363306 movss dword ptr [rsp + 0x38], xmm1
+     0036330C mov r8, rsi
+     0036330F movss dword ptr [rsp + 0x30], xmm0
+     00363315 movss dword ptr [rsp + 0x28], xmm6
+     0036331B mov qword ptr [rsp + 0x20], rbx
+  -- class >=3 (fall-through 0036327D)
+     0036327D movaps xmm0, xmmword ptr [rsi]
+     00363280 movaps xmm1, xmm7
+     00363283 movdqa xmmword ptr [rsp + 0x60], xmm0
+     00363289 movaps xmm2, xmm8
+     0036328D movaps xmm0, xmm9
+     00363291 jmp 0x3632e0
+     003632E0 movss dword ptr [rsp + 0x48], xmm0
+     003632E6 lea r9, [rsp + 0x60]
+     003632EB movss xmm0, dword ptr [rip + 0x1f68799]
+     003632F3 lea rdx, [rsp + 0x50]
+     003632F8 movss dword ptr [rsp + 0x40], xmm2
+     003632FE lea rcx, [rsp + 0xe8]
+     00363306 movss dword ptr [rsp + 0x38], xmm1
+     0036330C mov r8, rsi
+     0036330F movss dword ptr [rsp + 0x30], xmm0
+     00363315 movss dword ptr [rsp + 0x28], xmm6
+     0036331B mov qword ptr [rsp + 0x20], rbx
+  xmm6 is set to xmm7 (0) at 0036325A before the dispatch: movaps xmm6, xmm7 | xmm7: xorps xmm7, xmm7
+  [rsp+0x30] source 003632EB = .data cell 022CBA8C (file bytes: False)
+
+== B  00361810: stack-argument reads and record reads (record = arg5 = [rsp+0xd0] -> rsi)
+  00361870 mov rsi, qword ptr [rsp + 0xd0]                    arg5 record
+  00361895 movss xmm7, dword ptr [rsp + 0xf0]                 arg9 (xmm2: +0x58 or const)
+  00361907 subss xmm0, dword ptr [rsp + 0xe8]                 arg8 (xmm1: +0x54 or 0)
+  00361944 movss xmm0, dword ptr [rsp + 0xf8]                 arg10 (xmm0: +0x38 or const)
+  003619A9 subss xmm0, dword ptr [rsp + 0xd8]                 arg6 (xmm6: 0 / 00362230 result)
+  003619D0 subss xmm0, dword ptr [rsp + 0xe0]                 arg7 ([022CBA8C])
+  memory operands on rsi (the record) in 00361810: [(3545233, 'movzx eax, byte ptr [rsi + 0x1b]'), (3545722, 'movss xmm8, dword ptr [rsi + 0x10]'), (3545769, 'movzx edx, byte ptr [rsi + 0xb]'), (3545777, 'movzx ecx, byte ptr [rsi + 0xa]'), (3545890, 'cmp byte ptr [rsi + 9], 0x80'), (3545938, 'movzx ecx, byte ptr [rsi + 0x2c]'), (3545942, 'mov byte ptr [rsi + 0x2e], al'), (3545976, 'mov byte ptr [rsi + 0x2c], cl')]
+  rsi writes in 00361810 (other than the load): [('0x361870', 'mov rsi, qword ptr [rsp + 0xd0]'), ('0x361bbc', 'mov rsi, qword ptr [r11 + 0x40]')]
+
+== C  W2 / W3
+  00363341 movaps xmm6, xmm0
+  00363344 call 0x3638b0
+  00363349 ucomiss xmm6, xmm7
+  0036334C jp 0x363352
+  0036334E jne 0x363352
+  00363350 mov ebp, eax
+  003638D2 mov esi, r9d
+  003638D5 movzx ecx, byte ptr [rcx + 0x1a]
+  003638DC test cl, cl
+  003638DE js 0x3638e8
+  003638E0 movsx esi, cl
+  003638E3 jmp 0x3639ff
+  003639FF: mov eax, esi
+  esi writes in 003638B0..003639FF: [('0x3638d2', 'mov esi, r9d'), ('0x3638e0', 'movsx esi, cl'), ('0x363960', 'cmove edi, r14d')]
+
+== D  driver 00362850
+  00362870 mov esi, dword ptr [rip + 0x1f6920a]             -> 022CBA80
+  00362AC0 cmp qword ptr [rip + 0x1f69030], 0               -> 022CBAF8
+  00362ACE mov rax, qword ptr [rip + 0x1f6901b]             -> 022CBAF0
+  00362ADE cmp byte ptr [rip + 0x1f68fab], 0                -> 022CBA90
+  00362B12 xor ebx, ebx                                     
+  00362B63 mov r9d, esi                                     
+  00362B76 call 0x3631b0                                    
+  00362B82 mov esi, eax                                     
+  00362B87 call 0x20e600                                    
+  00362B8F je 0x362bbe                                      
+  00362BB1 mov r9d, esi                                     
+  00362BB7 call 0x3631b0                                    
+  00362BBC mov esi, eax                                     
+  00362BBE cmp byte ptr [rip + 0x1f68ecd], bl               -> 022CBA91
+  00362BC4 cmovne esi, dword ptr [rip + 0x1f68eb9]          -> 022CBA84
+  00362BCB cmp dword ptr [rip + 0x1f68eaf], esi             -> 022CBA80
+  00362BD1 je 0x362beb                                      
+  00362BD3 mov r8d, esi                                     
+  00362BD6 mov edx, 0xb4                                    
+  00362BDB mov ecx, 1                                       
+  00362BE0 call 0x2df410                                    
+  00362BE5 mov dword ptr [rip + 0x1f68e95], esi             -> 022CBA80
+  ebx writes between 00362B12 and 00362BBE: [('0x362b12', 'xor ebx, ebx')]
+  022CBA80..022CBA9F references (rip):
+    00361719 -> 022CBA9B  mov byte ptr [rip + 0x1f6a37c], dl                 w1 W  owner None
+    0036175F -> 022CBA94  movzx eax, byte ptr [rip + 0x1f6a32e]              w1 R  owner None
+    003617B7 -> 022CBA94  movzx eax, byte ptr [rip + 0x1f6a2d6]              w1 R  owner None
+    00361B00 -> 022CBA92  movzx ecx, byte ptr [rip + 0x1f69f8b]              w1 R  owner (3545104, 3546086)
+    00361C75 -> 022CBA8C  movss xmm0, dword ptr [rip + 0x1f69e0e]            w4 R  owner (3546096, 3546338)
+    00361CB2 -> 022CBA94  imul ecx, dword ptr [rip + 0x1f69ddb]              w4 R  owner (3546096, 3546338)
+    00361D7D -> 022CBA8C  movss xmm0, dword ptr [rip + 0x1f69d06]            w4 R  owner (3546352, 3546591)
+    00361DAF -> 022CBA94  imul ecx, dword ptr [rip + 0x1f69cde]              w4 R  owner (3546352, 3546591)
+    00362870 -> 022CBA80  mov esi, dword ptr [rip + 0x1f6920a]               w4 R  owner (3549264, 3549302)
+    00362925 -> 022CBA8C  movss dword ptr [rip + 0x1f6915f], xmm0            w4 W  owner (3549343, 3549663)
+    0036293E -> 022CBA9B  movzx ecx, byte ptr [rip + 0x1f69156]              w1 R  owner (3549343, 3549663)
+    003629DF -> 022CBA9A  movsx ecx, byte ptr [rip + 0x1f690b4]              w1 R  owner (3549663, 3549687)
+    00362A79 -> 022CBA8C  movss dword ptr [rip + 0x1f6900b], xmm0            w4 W  owner (3549687, 3549934)
+    00362A92 -> 022CBA8C  movss dword ptr [rip + 0x1f68ff2], xmm1            w4 W  owner (3549687, 3549934)
+    00362AAC -> 022CBA8C  movss xmm1, dword ptr [rip + 0x1f68fd8]            w4 R  owner (3549687, 3549934)
+    00362ADE -> 022CBA90  cmp byte ptr [rip + 0x1f68fab], 0                  w1 R  owner (3549687, 3549934)
+    00362BBE -> 022CBA91  cmp byte ptr [rip + 0x1f68ecd], bl                 w1 R  owner (3549950, 3550214)
+    00362BC4 -> 022CBA84  cmovne esi, dword ptr [rip + 0x1f68eb9]            w4 R  owner (3549950, 3550214)
+    00362BCB -> 022CBA80  cmp dword ptr [rip + 0x1f68eaf], esi               w4 R  owner (3549950, 3550214)
+    00362BE5 -> 022CBA80  mov dword ptr [rip + 0x1f68e95], esi               w4 W  owner (3549950, 3550214)
+    00362C9C -> 022CBA9C  movss dword ptr [rip + 0x1f68df8], xmm0            w4 W  owner (3550304, 3550485)
+    00362CAC -> 022CBA99  mov byte ptr [rip + 0x1f68de6], 0x7f               w1 W  owner (3550304, 3550485)
+    00362CB3 -> 022CBA98  mov byte ptr [rip + 0x1f68dde], 0x7f               w1 W  owner (3550304, 3550485)
+    00362CBA -> 022CBA94  mov dword ptr [rip + 0x1f68dd0], 0x7f              w4 W  owner (3550304, 3550485)
+    00362CE6 -> 022CBA92  movzx eax, byte ptr [rip + 0x1f68da5]              w1 R  owner (3550304, 3550485)
+    00362CED -> 022CBA93  cmp byte ptr [rip + 0x1f68da0], al                 w1 R  owner (3550304, 3550485)
+    00362D03 -> 022CBA92  movzx eax, byte ptr [rip + 0x1f68d88]              w1 R  owner (3550304, 3550485)
+    00362D0A -> 022CBA93  mov byte ptr [rip + 0x1f68d83], al                 w1 W  owner (3550304, 3550485)
+    00362D20 -> 022CBA9C  movss xmm1, dword ptr [rip + 0x1f68d74]            w4 R  owner None
+    00362D5E -> 022CBA9C  mov dword ptr [rip + 0x1f68d34], 0                 w4 W  owner None
+    00362D68 -> 022CBA98  movzx eax, byte ptr [rip + 0x1f68d29]              w1 R  owner None
+    00362D77 -> 022CBA99  movzx eax, byte ptr [rip + 0x1f68d1b]              w1 R  owner None
+    00362D98 -> 022CBA94  mov dword ptr [rip + 0x1f68cf6], eax               w4 W  owner None
+    00362DA0 -> 022CBA9B  movzx eax, byte ptr [rip + 0x1f68cf4]              w1 R  owner None
+    00362FC0 -> 022CBA80  mov dword ptr [rip + 0x1f68aba], ecx               w4 W  owner (3551088, 3551604)
+    00362FC6 -> 022CBA8C  mov dword ptr [rip + 0x1f68ac0], ecx               w4 W  owner (3551088, 3551604)
+    00362FD3 -> 022CBA90  mov byte ptr [rip + 0x1f68ab7], cl                 w1 W  owner (3551088, 3551604)
+    00362FD9 -> 022CBA91  mov byte ptr [rip + 0x1f68ab2], cl                 w1 W  owner (3551088, 3551604)
+    00362FDF -> 022CBA9C  mov dword ptr [rip + 0x1f68ab7], ecx               w4 W  owner (3551088, 3551604)
+    00362FE5 -> 022CBA93  mov byte ptr [rip + 0x1f68aa8], cl                 w1 W  owner (3551088, 3551604)
+    00362FEB -> 022CBA9A  mov byte ptr [rip + 0x1f68aa8], 0                  w1 W  owner (3551088, 3551604)
+    00362FF2 -> 022CBA92  mov byte ptr [rip + 0x1f68a99], 0x7f               w1 W  owner (3551088, 3551604)
+    00362FF9 -> 022CBA99  mov byte ptr [rip + 0x1f68a99], 0x7f               w1 W  owner (3551088, 3551604)
+    00363000 -> 022CBA98  mov byte ptr [rip + 0x1f68a91], 0x7f               w1 W  owner (3551088, 3551604)
+    00363007 -> 022CBA94  mov dword ptr [rip + 0x1f68a83], 0x7f              w4 W  owner (3551088, 3551604)
+    0036310E -> 022CBA8C  movss xmm1, dword ptr [rip + 0x1f68976]            w4 R  owner (3551088, 3551604)
+    00363121 -> 022CBA9B  mov byte ptr [rip + 0x1f68973], 0                  w1 W  owner (3551088, 3551604)
+    003631A0 -> 022CBA91  mov byte ptr [rip + 0x1f688eb], cl                 w1 W  owner None
+    003631A6 -> 022CBA84  mov dword ptr [rip + 0x1f688d8], edx               w4 W  owner None
+    003632EB -> 022CBA8C  movss xmm0, dword ptr [rip + 0x1f68799]            w4 R  owner (3551664, 3552176)
+    003634CA -> 022CBA99  mov byte ptr [rip + 0x1f685c8], dil                w1 W  owner (3552432, 3552597)
+    003634EF -> 022CBA94  movzx ecx, byte ptr [rip + 0x1f6859e]              w1 R  owner (3552432, 3552597)
+    003634FD -> 022CBA98  mov byte ptr [rip + 0x1f68595], cl                 w1 W  owner (3552432, 3552597)
+    0036350F -> 022CBA9C  movss dword ptr [rip + 0x1f68585], xmm2            w4 W  owner (3552432, 3552597)
+    00363532 -> 022CBA9C  movss dword ptr [rip + 0x1f68562], xmm1            w4 W  owner (3552432, 3552597)
+    00363542 -> 022CBA98  mov byte ptr [rip + 0x1f6854f], dil                w1 W  owner (3552432, 3552597)
+    00363549 -> 022CBA94  mov dword ptr [rip + 0x1f68545], edi               w4 W  owner (3552432, 3552597)
+    003635C0 -> 022CBA90  mov byte ptr [rip + 0x1f684c9], 0                  w1 W  owner None
+    003635C7 -> 022CBA9A  mov byte ptr [rip + 0x1f684cc], 0                  w1 W  owner None
+    00363657 -> 022CBA88  mov dword ptr [rip + 0x1f6842b], ebp               w4 W  owner (3552736, 3552924)
+    0036366D -> 022CBA9C  movss dword ptr [rip + 0x1f68426], xmm0            w4 W  owner (3552736, 3552924)
+    0036367E -> 022CBA99  mov byte ptr [rip + 0x1f68414], 0x7f               w1 W  owner (3552736, 3552924)
+    00363685 -> 022CBA98  mov byte ptr [rip + 0x1f6840c], 0x7f               w1 W  owner (3552736, 3552924)
+    0036368C -> 022CBA94  mov dword ptr [rip + 0x1f683fe], 0x7f              w4 W  owner (3552736, 3552924)
+    00363730 -> 022CBA90  mov byte ptr [rip + 0x1f68359], 0                  w1 W  owner None
+    00363742 -> 022CBA9A  mov byte ptr [rip + 0x1f68351], 0                  w1 W  owner None
+    0036375D -> 022CBA90  mov byte ptr [rip + 0x1f6832c], 0                  w1 W  owner (3553104, 3553133)
+    003637F7 -> 022CBA88  mov ecx, dword ptr [rip + 0x1f6828b]               w4 R  owner (3553264, 3553307)
+    00363820 -> 022CBA88  mov dword ptr [rip + 0x1f6825e], 0xffffffff        w4 W  owner (3553307, 3553339)
+    00363859 -> 022CBA92  movzx r8d, byte ptr [rip + 0x1f68231]              w1 R  owner (3553344, 3553450)
+    0036387C -> 022CBA92  movzx eax, byte ptr [rip + 0x1f6820f]              w1 R  owner (3553344, 3553450)
+    00363883 -> 022CBA93  mov byte ptr [rip + 0x1f6820a], al                 w1 W  owner (3553344, 3553450)
+    00363946 -> 022CBA94  mov edx, dword ptr [rip + 0x1f68148]               w4 R  owner (3553529, 3553791)
+    003639B4 -> 022CBA94  movzx eax, byte ptr [rip + 0x1f680d9]              w1 R  owner (3553529, 3553791)
+    00363A41 -> 022CBA92  movzx r8d, byte ptr [rip + 0x1f68049]              w1 R  owner (3553845, 3553907)
+    00363A5B -> 022CBA92  movzx eax, byte ptr [rip + 0x1f68030]              w1 R  owner (3553845, 3553907)
+    00363A62 -> 022CBA93  mov byte ptr [rip + 0x1f6802b], al                 w1 W  owner (3553845, 3553907)
+    00363A80 -> 022CBA90  mov byte ptr [rip + 0x1f6800a], cl                 w1 W  owner None
+    00363B00 -> 022CBA9A  mov byte ptr [rip + 0x1f67f94], cl                 w1 W  owner None
+    00363D57 -> 022CBA9C  movss dword ptr [rip + 0x1f67d3d], xmm0            w4 W  owner (3554112, 3554880)
+    00363D67 -> 022CBA99  mov byte ptr [rip + 0x1f67d2b], 0x7f               w1 W  owner (3554112, 3554880)
+    00363D6E -> 022CBA98  mov byte ptr [rip + 0x1f67d23], 0x7f               w1 W  owner (3554112, 3554880)
+    00363D75 -> 022CBA94  mov dword ptr [rip + 0x1f67d15], 0x7f              w4 W  owner (3554112, 3554880)
+    00363DF9 -> 022CBA9C  movss dword ptr [rip + 0x1f67c9b], xmm0            w4 W  owner (3554112, 3554880)
+    00363E01 -> 022CBA99  mov byte ptr [rip + 0x1f67c91], 0x7f               w1 W  owner (3554112, 3554880)
+    00363E08 -> 022CBA94  mov dword ptr [rip + 0x1f67c82], 0x7f              w4 W  owner (3554112, 3554880)
+    00363E12 -> 022CBA98  mov byte ptr [rip + 0x1f67c7f], 0x7f               w1 W  owner (3554112, 3554880)
+    00363EAD -> 022CBA9C  movss dword ptr [rip + 0x1f67be7], xmm0            w4 W  owner (3554880, 3555119)
+    00363EC1 -> 022CBA99  mov byte ptr [rip + 0x1f67bd1], 0x7f               w1 W  owner (3554880, 3555119)
+    00363EC8 -> 022CBA98  mov byte ptr [rip + 0x1f67bc9], 0x7f               w1 W  owner (3554880, 3555119)
+    00363ECF -> 022CBA94  mov dword ptr [rip + 0x1f67bbb], 0x7f              w4 W  owner (3554880, 3555119)
+    00363EFB -> 022CBA9C  movss dword ptr [rip + 0x1f67b99], xmm0            w4 W  owner (3554880, 3555119)
+    00363F11 -> 022CBA99  mov byte ptr [rip + 0x1f67b81], 0x7f               w1 W  owner (3554880, 3555119)
+    00363F18 -> 022CBA98  mov byte ptr [rip + 0x1f67b79], 0x7f               w1 W  owner (3554880, 3555119)
+    00363F1F -> 022CBA94  mov dword ptr [rip + 0x1f67b6b], 0x7f              w4 W  owner (3554880, 3555119)
+
+== E  022CBAF0 census
+  022CBAF0 (base) rip refs: 17
+    00362ACE mov rax, qword ptr [rip + 0x1f6901b]               w8 R  owner (3549687, 3549934)
+    00362B0B mov r10, qword ptr [rip + 0x1f68fde]               w8 R  owner (3549950, 3550214)
+    00362B7B mov rcx, qword ptr [rip + 0x1f68f6e]               w8 R  owner (3549950, 3550214)
+    00362B91 mov rcx, qword ptr [rip + 0x1f68f58]               w8 R  owner (3549950, 3550214)
+    00362BAA add rdx, qword ptr [rip + 0x1f68f3f]               w8 R  owner (3549950, 3550214)
+    00362C06 mov r8, qword ptr [rip + 0x1f68ee3]                w8 R  owner (3550214, 3550271)
+    00362DDB mov rax, qword ptr [rip + 0x1f68d0e]               w8 R  owner (3550656, 3550760)
+    00362DF6 mov rdx, qword ptr [rip + 0x1f68cf3]               w8 R  owner (3550656, 3550760)
+    00362E55 mov rax, qword ptr [rip + 0x1f68c93]               w8 R  owner (3550800, 3551061)
+    00362E80 mov r10, qword ptr [rip + 0x1f68c69]               w8 R  owner (3550800, 3551061)
+    00362FA7 mov qword ptr [rip + 0x1f68b42], rcx               w8 W  owner (3551088, 3551604)
+    00363263 add rbx, qword ptr [rip + 0x1f68886]               w8 R  owner (3551664, 3552176)
+    003635CE mov qword ptr [rip + 0x1f6851b], rcx               w8 W  owner None
+    00363737 mov qword ptr [rip + 0x1f683ae], 0                 w8 W  owner None
+    00363C38 mov rax, qword ptr [rip + 0x1f67eb1]               w8 R  owner (3554112, 3554880)
+    00363C64 add rbx, qword ptr [rip + 0x1f67e85]               w8 R  owner (3554112, 3554880)
+    00363F6B add rbx, qword ptr [rip + 0x1f67b7e]               w8 R  owner (3555151, 3555254)
+  022CBAF0 (base) image-base-relative refs: 0 []
+  022CBAF0 (base) data refs: []  DIR64 targets: []
+  022CBAF8 (control: SPP1 ptr) rip refs: 10
+    00362AC0 cmp qword ptr [rip + 0x1f69030], 0                 w8 R  owner (3549687, 3549934)
+    00362DC6 cmp qword ptr [rip + 0x1f68d2a], 0                 w8 R  owner (3550656, 3550760)
+    00362F60 mov rax, qword ptr [rip + 0x1f68b91]               w8 R  owner None
+    00362FA0 mov qword ptr [rip + 0x1f68b51], rcx               w8 W  owner (3551088, 3551604)
+    00363662 mov qword ptr [rip + 0x1f6848f], rsi               w8 W  owner (3552736, 3552924)
+    00363756 mov rsi, qword ptr [rip + 0x1f6839b]               w8 R  owner (3553104, 3553133)
+    0036382A mov qword ptr [rip + 0x1f682c3], 0                 w8 W  owner (3553307, 3553339)
+    00363978 mov rcx, qword ptr [rip + 0x1f68179]               w8 R  owner (3553529, 3553791)
+    00363B79 mov r10, qword ptr [rip + 0x1f67f78]               w8 R  owner (3554112, 3554880)
+    00363C50 mov r11, qword ptr [rip + 0x1f67ea1]               w8 R  owner (3554112, 3554880)
+  022CBAF8 (control: SPP1 ptr) image-base-relative refs: 0 []
+  022CBAF8 (control: SPP1 ptr) data refs: []  DIR64 targets: []
+  structure-base forms: rip lea/refs into 022CBA00..022CBAF0 that are lea: [('00360D81', 'lea rdi, [rip + 0x1f6acc9]'), ('00360DF2', 'lea rbp, [rip + 0x1f6ac58]'), ('00361239', 'lea rax, [rip + 0x1f6a811]'), ('003612EF', 'lea rax, [rip + 0x1f6a75b]'), ('00361301', 'lea rax, [rip + 0x1f6a749]')]
+  callers of 003635C0: rel32 [('003775F5', 'call')] jcc [] data [('rva32', '02FBBE54', '.pdata')] DIR64 []
+  callers of 003635E0: rel32 [('00377638', 'call')] jcc [] data [('rva32', '02FBBE5C', '.pdata')] DIR64 []
+  rip lea of 003635C0: []
+
+== F  shipped SP1 blocks
+  .mpk files 550, with SP1 456, with an emitter index 456, records 14272
+  shape class counts: {0: 1562, 1: 1575, 2: 5813, 3: 3148, 4: 991, 5: 198, 6: 196, 8: 698, 9: 91}
+  class of index entry 0: {3: 423, 2: 9, 0: 23, 1: 1}
+  arena-head default lists: {(32768,): 422, (32769,): 10, (32771,): 2, (32770,): 3, (32778,): 3, (32783,): 1, (32782,): 1, (32780,): 1, (32781,): 2, (32777,): 2, (20563, 49, 32, 0, 256, 0, 1088, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 2, 0, 32770): 1, (32772,): 1, (20563, 49, 32, 0, 240, 0, 1744, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 32768): 1, (32779,): 4, (32773,): 1, (32776,): 1}
+  +0x1A file bytes: {25: 57, 255: 1876, 0: 11948, 20: 135, 15: 94, 30: 102, 40: 52, 21: 1, 10: 4, 35: 2, 32: 1}
+  +0x38 values, class 0: {0.0: 200, 19.1673: 83, 25.0: 55, 17.7028: 34, -1.0: 30, 35.4702: 29}
+  +0x38 values, class 1: {-0.0: 1467, 20.0: 15, 10.8667: 12, 9.0: 8, -1.0: 8, 9.6973: 6}
+  +0x38 values, class 2: {-0.0: 5413, 1.0: 18, 15.0: 16, 20.0: 14, -1.0: 12, 15.383: 9}
+  +0x38 values, class 3: {-0.0: 2694, 1.0: 453, 100.0: 1}
+  +0x38 values, class 4: {-0.0: 991}
+  +0x38 values, class 5: {-0.0: 198}
+  +0x38 values, class 6: {-0.0: 196}
+  +0x38 values, class 8: {-0.0: 698}
+  +0x38 values, class 9: {-0.0: 91}

@@ -1,0 +1,31 @@
+diff --git a/Database/Tools/analysis-kit/gfz-scripts/generation.py b/Database/Tools/analysis-kit/gfz-scripts/generation.py
+index e7a18ff8b..ceb8d08af 100644
+--- a/Database/Tools/analysis-kit/gfz-scripts/generation.py
++++ b/Database/Tools/analysis-kit/gfz-scripts/generation.py
+@@ -64,7 +64,11 @@ READABLE = ("ff12-generation-1", "ff12-generation-2")
+ _UNSAFE = set('<>:"/\\|?*%')
+ 
+ 
+-_DEVICES = {"CON", "PRN", "AUX", "NUL"} | {"COM%d" % i for i in range(1, 10)} | {"LPT%d" % i for i in range(1, 10)}
++# Microsoft's reserved device names, in any case and with any extension: CON, PRN, AUX, NUL, COM1-9, LPT1-9 and the
++# superscript-digit forms COM¹ COM² COM³ LPT¹ LPT² LPT³ (ASTRA's re-review REJECT of 87c7561de, f13344fa1).
++_SUPERSCRIPT = ("¹", "²", "³")
++_DEVICES = ({"CON", "PRN", "AUX", "NUL"} | {"COM%d" % i for i in range(1, 10)} | {"LPT%d" % i for i in range(1, 10)}
++            | {p + s for p in ("COM", "LPT") for s in _SUPERSCRIPT})
+ 
+ 
+ def snapshot_name(name):
+@@ -83,8 +87,11 @@ def snapshot_name(name):
+ 
+ 
+ def windows_key(path):
+-    """The key two paths share exactly when Windows opens them as one file: per component, trailing dots and spaces
+-    stripped and case folded. Used to refuse a restore that would merge two archive members into one file."""
++    """A folding key covering two Windows aliasing rules, case and trailing dots/spaces: per component, those are
++    stripped and the case folded. Two paths with one key open as one file on Windows. This is NOT a complete theory of
++    Windows aliasing (8.3 short names, alternate data streams, Unicode normalization and device names are outside it;
++    device names are handled by portable_component and snapshot_name). Used to refuse a restore that would merge two
++    archive members into one file under these two rules."""
+     return "/".join(c.rstrip(". ").casefold() for c in path.replace("\\", "/").split("/"))
+ 
+ 

@@ -1,0 +1,11 @@
+{
+  "status": "VERIFIED_OFFLINE_REFERENCE_UNCHANGED",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "game_runs": 0,
+  "native_runs": 0,
+  "instruments": 0,
+  "pc_control": 0,
+  "save_config_writes": 0,
+  "own_scripts": "all bounded capture/reducer/control invocations terminal; no services or terminal tabs created",
+  "limits": "No global inventory or termination of peer processes"
+}

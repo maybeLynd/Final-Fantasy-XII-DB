@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control-title-annotation-prerequisite.py", line 136, in <module>
+    worker()
+    ~~~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control-title-annotation-prerequisite.py", line 37, in worker
+    result = load_driver().verify_packet_annotations(folder, result_name)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prepare-residue-packet-publication.py", line 77, in verify_packet_annotations
+    if not src.is_relative_to(folder.resolve()) or not src.is_file():raise ValueError('missing/outside source')
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: missing/outside source

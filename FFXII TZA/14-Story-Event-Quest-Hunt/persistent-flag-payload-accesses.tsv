@@ -1,0 +1,14 @@
+function	name	site	disp	kind	instruction	route	note
+002EF2D0	FUN_002ef2d0	002EF2E1	0x0	addr	lea rcx, [rax + 0x200]	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0058427B	0x1044	r	mov eax, dword ptr [rbx + 0x1244]	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	00584332	0x1044	w	mov dword ptr [rbx + 0x1244], eax	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	00584287	0x1048	r	mov eax, dword ptr [rbx + 0x1248]	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	005842B7	0x1048	w	mov dword ptr [rbx + 0x1248], esi	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0058433E	0x1048	w	mov dword ptr [rbx + 0x1248], eax	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	00584293	0x104C	r	mov eax, dword ptr [rbx + 0x124c]	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0058434A	0x104C	w	mov dword ptr [rbx + 0x124c], eax	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0058429F	0x1050	r	mov eax, dword ptr [rbx + 0x1250]	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	00584356	0x1050	w	mov dword ptr [rbx + 0x1250], eax	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	005842AB	0x1054	r	mov eax, dword ptr [rbx + 0x1254]	route-seeded FN 0x002EF640+0x200 base+0x-200	
+00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	00584362	0x1054	w	mov dword ptr [rbx + 0x1254], eax	route-seeded FN 0x002EF640+0x200 base+0x-200	
+002EF370	FUN_002ef370	002EF37D	0x1535	w	mov byte ptr [rax + 0x1735], bl	route-seeded FN 0x002EF640+0x200 base+0x-200	

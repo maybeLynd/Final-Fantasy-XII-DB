@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "show",
+    "87c7561de:Database/Tools/analysis-kit/gfz-scripts/generation.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "stdout_bytes": 27326,
+  "stderr_bytes": 0,
+  "sha256": "033c37bd65cf4e9b5f33c94af14ad867877ac32cf992ad1515d4c230a6597dec"
+}

@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-ov58d-order-switch.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov58d-order-switch-source-02.json"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "driver_sha256": "8d5346292fd8e6a26e6fc2faa5ebfc0a7081437fcfe55482f0cbed61626b6169",
+  "source_sha256": "8411f3d2e1f04f3434834ff433a7ecfb3a0bc4e8a34653baf857a042e2ffd169"
+}

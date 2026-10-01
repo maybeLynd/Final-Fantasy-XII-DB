@@ -1,0 +1,65 @@
+{
+  "status": "PASS_ACTUAL_CALLBACK_INPUT_CONTROLS_INDEPENDENT_PENDING",
+  "driver_sha256": "81bfd97550cd0a7fcd165a6270835575bcd76d83c188aea417536445f7aba668",
+  "checker_sha256": "6331164d8e11b8edc90e80473c078b8b857eeaba3656785d199dacbeca83ccff",
+  "positive_reused": {
+    "path": "namebinding-callback-inputs-result-01.json",
+    "sha256": "aa108a8eae08e13fab307bf07bda4ee76d222ab6c89fc3e9113e84a82b96b6ec"
+  },
+  "original_detection_controls": [
+    {
+      "pc": "0x4090a6",
+      "bytes": "443b00",
+      "R8_input_read": true,
+      "R8_full_kill": false
+    },
+    {
+      "pc": "0x4090a3",
+      "bytes": "448b01",
+      "R8_input_read": false,
+      "R8_full_kill": true
+    }
+  ],
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-callback-inputs.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-early-call",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-callback-inputs.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-controls-01\\changed-early-call\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-controls-01\\changed-early-call"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-retained-callback",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-callback-inputs.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-controls-01\\missing-retained-callback\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-callback-inputs-controls-01\\missing-retained-callback"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "limits": "Detection checks original register read/full kill through the producer alias policy; not extra native execution, natural state or proof the entire dataflow analyzer has no defects. Three actual CLI refusals; sufficient positive reused."
+}

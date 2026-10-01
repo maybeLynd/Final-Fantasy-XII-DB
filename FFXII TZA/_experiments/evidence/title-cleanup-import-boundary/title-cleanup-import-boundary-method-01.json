@@ -1,0 +1,15 @@
+{
+  "question": "After17ECC0 returns from5DE250, is its19C590 tail an allocator/object virtual dispatch or a named shipping import boundary, and which5DE250 conditional callees remain unproved?",
+  "hypotheses": [
+    "Object-specific implicit release path",
+    "Same pointer passed to a named C-runtime free import after conditional teardown helper returns"
+  ],
+  "method": "A STATIC_ONLY",
+  "why": "Original tail bytes and PE import descriptor can bind a named external boundary. Local destructor control flow is source-answerable; actual heap validity/transitive native effects/lifetime cannot be inferred.",
+  "reference": "EXE73461d08; prior exact17ECC0 preserves RCX through5DE250 and tails19C590",
+  "controls": "Pinned shipping image, exact19C590 RIP target and unambiguous import/IAT entry; next source captures use reviewed roles and current prerequisite gate",
+  "acceptance": "Exact named boundary and local conditional teardown calls, not proof of all nested resources or safe memory free",
+  "failure": "Missing/ambiguous import or callee identity remains OPEN; no body-size guess or stub-as-effect proof",
+  "consumer": "FABLE title resource cleanup, OPUS callback/lifetime ABI",
+  "cleanup": "Read-only original PE; no native/game/runtime controls"
+}

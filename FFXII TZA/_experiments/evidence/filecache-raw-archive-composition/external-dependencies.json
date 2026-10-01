@@ -1,0 +1,23 @@
+{
+  "required": [
+    {
+      "folder": "Database\\FFXII TZA\\_experiments\\evidence\\filecache-key-preprocessing",
+      "manifest_sha256": "f7b5ffccc16ae832d1a7279e1f616c2687e97868b4d98d4378db48ba17e15db6",
+      "path": "filecache-key-preprocessing-result-02.json",
+      "sha256": "ae7ed53bb3128adc748b5012b751791d54297adc5af9e68127426d1a74628e3e"
+    },
+    {
+      "folder": "Database\\FFXII TZA\\_experiments\\evidence\\filecache-key-preprocessing",
+      "manifest_sha256": "f7b5ffccc16ae832d1a7279e1f616c2687e97868b4d98d4378db48ba17e15db6",
+      "path": "filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e"
+    },
+    {
+      "folder": "Database\\FFXII TZA\\_experiments\\evidence\\filecache-fill-and-failure",
+      "manifest_sha256": "3ec198b7e33d6bd3aaa18ef8574a33eead108f51a6611ccdfc42fe5e2edfbd02",
+      "path": "filecache-fill-key-resolver-source-01.json",
+      "sha256": "5702e1c669165ec02c555872f49d5f0efec007c0659bc7f601551676e1cbb145"
+    }
+  ],
+  "missing": "INCOMPLETE/refusal; pinned repository parents required"
+}

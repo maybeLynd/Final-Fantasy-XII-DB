@@ -1,0 +1,15 @@
+{
+  "question": "On the original185A90 full-buffer path, is17ECC0 executed immediately or is its callback/data pair inserted? Can the named renderer update bodies establish where callback/data is invoked and cleared?",
+  "hypotheses": [
+    "Slow insertion invokes the supplied callback synchronously",
+    "Slow insertion only stores/moves the pair; a separate renderer queue consumer invokes it"
+  ],
+  "method": "A STATIC_ONLY",
+  "why": "Original direct/indirect callee operands, stores and renderer queue offsets can distinguish local insertion versus invocation. No actual initialized queue, frame occurrence, thread or natural title lifetime claim follows.",
+  "inputs": "Shipping EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; existing185A90/183720/current original bytes and canonical renderer pump identities189570/189CE0",
+  "controls": "Pinned file/three exact pdata spans and reviewed access-role adapter controls; complete source gate required; semantic reduction must identify actual pair use rather than generic call count",
+  "acceptance": "Bound local slow-path effects and exact callback consumer operands from complete normal CFG/callee boundaries; no universal cancellation or temporal guarantee",
+  "failure": "Incomplete decoding/CFG or unknown relevant callee effects stays OPEN; retain failed evidence, never promote wrapper_complete to semantic closure",
+  "consumer": "FABLE renderer/title lifetime pages, OPUS callback ABI and queue contract",
+  "next": "Follow only demonstrated consumer/slow helper boundary; no general runtime platform or menu retry"
+}

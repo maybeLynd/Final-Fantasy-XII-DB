@@ -1,0 +1,18 @@
+PASS fixtures valid [None, None]
+PASS D1 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS D2 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS D3 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS D4 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS D5 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS D6 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS D7 {'count': {'count': 5, 'rel': 50.0, 'old': {'numerator': 10, 'denominator': None}, 'new': {'numerator': 15, 'denominator': None}}, 'ratio-moved': {'na': 'scope changed', 'why': "scope 's' -> 's'; denominator 100 -> 200", 'old': {'numerator': 10, 'denominator': 100}, 'new': {'numerator': 15, 'denominator': 200}, 'dnum': 5, 'dden': 100, 'pp': -2.5}, 'count-scope': {'na': 'N/A - definition changed', 
+PASS V1 (0, 'OK')
+PASS V2 (0, 'PARTIAL')
+PASS V3 (1, 'FAILED')
+PASS V4 (1, 'FAILED')
+PASS V5 (0, 'PARTIAL', ['bytes', 'extensions', 'files', 'formats-ext', 'formats-members'], 'omparison UNMEASURED: listing not found: C:\\Users\\Kristian\\AppData\\Local\\Temp\\viewbound_hmuuj7do\\vbf\\missing-listing.txt')
+PASS V6 (0, 'PARTIAL', "r; field meaning is the format sheets' own claim. Listing comparison UNMEASURED: no listing supplied")
+PASS V7 (0, 'PARTIAL', "g has no '<size> <name>' rows: C:\\Users\\Kristian\\AppData\\Local\\Temp\\viewbound_hmuuj7do\\vbf\\empty.txt")
+PASS V8 PARTIAL
+PASS discriminator {'D4': True, 'D5': True, 'D6': True, 'V5': True, 'controls hold there': True}
+FAILS 0

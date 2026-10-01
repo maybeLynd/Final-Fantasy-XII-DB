@@ -1,0 +1,2 @@
+the-shape-of-the-verb-population.md :: ScriptVM.VerbAdapter | 1032 -> 1030 | removed 00353A10 00353E20
+noted 01-Script-VM-Native-Bridge\Verb-Dispatch\the-shape-of-the-verb-population.md :: ScriptVM.VerbAdapter 1032 -> 1030

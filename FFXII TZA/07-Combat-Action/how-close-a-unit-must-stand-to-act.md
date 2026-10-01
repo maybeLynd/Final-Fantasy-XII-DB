@@ -1,7 +1,7 @@
 ---
 system: How close a unit must stand to act - the three range bands of an action, where each number comes from, and what locomotion does with them
 category: 07-Combat-Action
-status: DOCUMENTED
+status: AUDITED
 owner_layer: PrimaryOwner:CombatAction
 evidence_tier: 1
 verified_against:
@@ -16,10 +16,12 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-range-bands-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
   note: written by FABLE while placing one of FRONTIER's uncited bodies (00309300). The three floats were already placed
     as storage on the battle-unit field map (unit +0x6D4..+0x6DC, copied to the locomotion block); what they MEAN was
     not written anywhere, and three bytes of the action definition row were listed as having no reader. Static, plus one
-    data tally. Not read - the back-off step's own helpers and the avoidance manoeuvre; pending first review
+    data tally. Not read - the back-off step's own helpers and the avoidance manoeuvre; pending first review  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-range-bands-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: FABLE)
 ---
 
 # How close a unit must stand to act

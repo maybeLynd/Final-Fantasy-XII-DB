@@ -1,7 +1,7 @@
 ---
 system: How a unit finds its way across the navigation mesh - the dataset, the region search, the waypoints, and the script verb that opens and closes its doors
 category: 06-Movement-And-Navigation
-status: DOCUMENTED
+status: AUDITED
 owner_layer: PrimaryOwner:Movement
 evidence_tier: 1
 verified_against:
@@ -16,10 +16,12 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-nav-mesh-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
   note: written by FABLE while placing two of FRONTIER's uncited bodies (00382D10, 003842E0), which turned out to have no
     page to go on - the pathfinder had only mechanical rows on the battle-unit field map. Static, plus one data census.
     Not read - the locomotion solver that consumes the waypoint, the direct-route check that shares the portal test, and
-    the six other callers of the region lookup; pending first review
+    the six other callers of the region lookup; pending first review  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-nav-mesh-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # How a unit finds its way across the navigation mesh

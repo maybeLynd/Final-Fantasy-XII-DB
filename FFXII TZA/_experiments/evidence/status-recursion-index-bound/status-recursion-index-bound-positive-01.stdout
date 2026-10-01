@@ -1,0 +1,1 @@
+Original recursivecall uses fresh0..31 maskbit index, not inheritedouter byte; initialization/ABI premises retained

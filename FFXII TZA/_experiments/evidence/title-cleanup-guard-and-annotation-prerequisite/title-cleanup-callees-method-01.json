@@ -1,0 +1,15 @@
+{
+  "question": "Does DWORD+BC zero prevent queued teardown cleanup, and which local buffer-release predicate applies in the common tail?",
+  "hypotheses": [
+    "BC acts as a complete ownership/cleanup guard",
+    "BC gates only the first call; common tail unconditionally calls cleanup and has a separate bit31/count/pointer release predicate"
+  ],
+  "method": "A STATIC_ONLY",
+  "why": "Verified original predicate/caller/tail instructions and full chained cleanup CFG settle bounded branch/write/call relationships. Object initialization, native delegate effects, actual valid heap/alias/lifetime require separate evidence.",
+  "existing": "Prior frozen original5DE250/17ECC0/CRT free boundary; predicate625F00 and616C60 diagnostics; complete62BCB0 needs five original chained fragments, not65B root alone",
+  "controls": "Exact EXE/leaf/pdata and recursive chain roots; actual shared role adapter; checked compile/capture exit/source gate; full normal CFG with named tail boundary before semantic result",
+  "acceptance": "Exact guard scope, normal-call multiplicity and local field/call predicates; never universal successful release, idempotence, leak/double-free or natural title state",
+  "failure": "Incomplete chain/CFG/dependency refuses result; raw preparation no closure, opaque callee effects stay OPEN",
+  "consumer": "FABLE title/deferred lifetime; OPUS ownership/state/callback ABI contracts",
+  "cleanup": "Original file reads only; own synchronous helpers; no live/PC/game/save/config/reference changes"
+}

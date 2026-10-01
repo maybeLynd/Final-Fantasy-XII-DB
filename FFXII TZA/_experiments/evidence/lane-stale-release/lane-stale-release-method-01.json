@@ -1,0 +1,18 @@
+{
+  "question": "Existing OV25 carried residue: for an unchanged valid lane whose release-request bit is already set, does stale-owner completion enqueue its sub-record to the release sweep, and can the cited2EB890 helper repair that locally?",
+  "hypotheses": ["H1 completion retries the request and enqueue occurs now that loaded is set", "H2 release-request retry returns before list writes;2EB890 adjusts a lane count only, so direct completion does not repair membership"],
+  "method": "A STATIC_ONLY original machine-code branch/dataflow proof",
+  "why_cheaper_sufficient": "The requested-already-set gate, local stores/calls and exact global-list writer are decidable from complete original bodies. No-hit live sampling is weaker. Natural stale-generation histories, all callers/queue producers and actual lifetime still require separate evidence.",
+  "identity": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, base120000; shared reviewed access-role adapter",
+  "existing": "ov25-queue-clients-fable README explicit stale-lane obligation; families.py L1-L3 reused as interpretation, not a new registration/caller census",
+  "targets": ["002E4E50", "002EAFA0", "002EB890", "002E6A80", "002E2660"],
+  "starting_premises": "Valid sub-record and lane0..31, normal ABI/returns, no interfering state writes, selected owner generation mismatched or negative node index; release-request bit set before callback. Prior sweep membership is explicitly variable, not assumed absent or universal.",
+  "observations": "Completion loaded/pending updates then stale branch; release gate before any write/call; exact requested0/loaded1 enqueue positive control; helper write footprint/no calls; sweep unlink despite remaining pending state",
+  "controls": ["Actual reviewed store/LEA/RMW adapter invocation", "Complete normal CFGs and original byte/annotation identity", "Eight relevant bit partitions plus actual matched branch paths; analytic controls, not original executions", "Checked failed/missing upstream and coherently changed decisive branch/consumer code refusal"],
+  "acceptance": "Prove/refute direct enqueue under already-requested stale completion and exact helper/list behavior; preserve external relinking/scheduling/natural-state limits",
+  "falsification": "Original pre-return write/call on requested-already-set arm, direct completion enqueue outsideEAFA0, or helper list/global writes would refute H2",
+  "budget": "Five bounded complete original local bodies,787 bytes expected; no broad census or full interpreter/emulator platform",
+  "consumers": ["FABLE OV25 carried lane release box and owner family semantics", "OPUS conditional lane ownership/release contract", "FRONTIER OV21 lifetime preparation"],
+  "cleanup": "Finite read-only EXE/retained reads and disposable private controls; no FF12/game/PC/native/instrument/save/config/reference/peer changes",
+  "next_if_conditional_only": "Trace existing actual relink producers/caller lifetime invariant only if consumer requires natural loss/progress closure; do not infer leak or safety from conditional no-enqueue alone"
+}

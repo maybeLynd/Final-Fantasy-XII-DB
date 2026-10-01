@@ -1,0 +1,190 @@
+{
+  "status": "PRODUCER_CHECKED_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "producer_complete": true,
+  "checker_sha256": "590e670acf36b5b8beff2f93f8a163736591fc94d8490ddc0ecf8b9ee83b4de4",
+  "inputs": [
+    {
+      "path": "softedges-elements-callback-source-01/original-code.json",
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61",
+      "bytes": 4348
+    },
+    {
+      "path": "softedges-member-assignment-code-01.json",
+      "sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2",
+      "bytes": 12455
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a",
+      "bytes": 53403
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7",
+      "bytes": 30399
+    },
+    {
+      "path": "softedges-elements-callback-source-01/facts.json",
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6",
+      "bytes": 5741
+    }
+  ],
+  "established": [
+    {
+      "claim": "named-m_els-dispatch-ABI",
+      "result": "60F3D0 uses metadata+70; supplies object/source/count directly to the callback, without a second member-offset or class-F4 address adjustment. Null callback returns21."
+    },
+    {
+      "claim": "callback-zero-not-count-acceptance",
+      "result": "Registered60F280 executes60EFE0 then overwrites EAX with0. Negative signed count gives inner5/no array write but normal outer return0. Nonnegative normal continuation associates source/count|80000000. Opaque5F03A0 effects excluded."
+    },
+    {
+      "claim": "packed-member-return-width",
+      "result": "59EC40 through-path address is (object + zext32(memberNativeOffset + childF4 - parentF4)) mod2^64. Residual offset update is mod2^32. It is not unrestricted signed pointer arithmetic; the original writes EAX before adding the64-bit object."
+    }
+  ],
+  "arithmetic_discriminator": {
+    "member_offset": 0,
+    "child_f4": 0,
+    "parent_f4": 8,
+    "original_delta": 4294967288,
+    "unrestricted_signed_delta": -8,
+    "label": "ISA-width counterexample calculation only; supplied values are not claimed naturally reachable and this is not a native execution"
+  },
+  "unresolved": [
+    "Actual file-member mapped-child construction and key22/27 terminal member",
+    "Successful loaded-resource binding and descriptor adjustments in that load",
+    "Pointer lifetime, cleanup effects, destination aliases and natural reachability"
+  ],
+  "limits": "Conditional original source behavior, no forced call or game observations. The retained mapping records are not supplied here as runtime state. Registered native m_els name must be checked against separate source facts; this checker does not prove the loader installs that member. All source ranges now match shipping file bytes and decoded operations/memory roles before required reduction. No new native/live, initialized state or independent acceptance.",
+  "live_runs": 0,
+  "isolated_native_runs": 0,
+  "entrypoint_sha256": "a2eb661a97bd262c3e6275b13ed3e469c0ff67c3019bab83cef45a1aaff7d431",
+  "accepted_legacy_checker_sha256": "672a2358f6ec16839466cb45058fbf0051438e67470b7e4d3de44ea3f0cffd18",
+  "source_qualification": [
+    {
+      "path": "softedges-elements-callback-source-01/original-code.json",
+      "source_sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 16,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x60f3d0",
+          "end_exclusive": "0x60f3f1",
+          "original_sha256": "82479d67ceee02afb65f85009b73501bd43cb43cfa9695d15fbc688465205ed1"
+        },
+        {
+          "start": "0x60f280",
+          "end_exclusive": "0x60f290",
+          "original_sha256": "ab75d067d856b4b3078433e9fcb7e9aa6824b03808fd72d1f679fa3b3876b3be"
+        }
+      ]
+    },
+    {
+      "path": "softedges-member-assignment-code-01.json",
+      "source_sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 44,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x60f590",
+          "end_exclusive": "0x60f5b3",
+          "original_sha256": "4cc72bff315e2461464fcd61bb283c09a75e93be3bc55b74f1e3c39e4c559fff"
+        },
+        {
+          "start": "0x60efe0",
+          "end_exclusive": "0x60f04d",
+          "original_sha256": "ca2c462e5d533187bc2f46b950747a36cc7b68aa11ad5a58c5adf943bcd5d6b0"
+        }
+      ]
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "source_sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 166,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59ec40",
+          "end_exclusive": "0x59ec53",
+          "original_sha256": "177439759b8b69edaff3f54d4a8a2b79adb3c38bdbf9e555cae522568f4a2282"
+        },
+        {
+          "start": "0x5eeb20",
+          "end_exclusive": "0x5eee4f",
+          "original_sha256": "5bd453d924e3455060aa971b0b39ee03cda8dc33c07e67c39819dae9bdb07aa2"
+        }
+      ]
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "source_sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7",
+      "annotations": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 87,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "shipping_ranges": [
+        {
+          "start": "0x59ec53",
+          "end_exclusive": "0x59ec5b",
+          "original_sha256": "338b07f374c835b09ec9e6c0374e53a36b00ac8312da8200c27827da14776a61"
+        },
+        {
+          "start": "0x59ec5b",
+          "end_exclusive": "0x59ec77",
+          "original_sha256": "3c6e2b12b20e9983131b734d4a9c27c300b0b1cb326f688c34c67b1ec45a2827"
+        },
+        {
+          "start": "0x59ec77",
+          "end_exclusive": "0x59eccc",
+          "original_sha256": "1bbeead9667f1e39a65bb6bd3704b172e0d87d7e96425b10bc90cd5c21157973"
+        },
+        {
+          "start": "0x59eccc",
+          "end_exclusive": "0x59ecf2",
+          "original_sha256": "2b0e216b015a350edc6563f1cd3ab5c58732b43fc6481cbfed9a9f6ba516f8e2"
+        },
+        {
+          "start": "0x59ecf2",
+          "end_exclusive": "0x59ed0b",
+          "original_sha256": "d9a6eb722812b60369a104682909a0d3e7e8872895f1bd07e5cb11cffc0b4e26"
+        },
+        {
+          "start": "0x59ed0b",
+          "end_exclusive": "0x59ed61",
+          "original_sha256": "b389836237bc11a971374a33db32e78ef22324447006621585e8b800612be035"
+        }
+      ]
+    }
+  ],
+  "image_tool_sha256": "0c5207a9392df6bea7e193aaaab3066fd6e9f58fb4bebce919cba543d80e0efa",
+  "image_tool_dependencies": {
+    "kit_paths.py": "cb29fb32ef38d49ba480e5769e549b9917f9cdb45c80e0cf5fee915b91c22a53"
+  },
+  "annotation_validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+  "qualification_status": "PRODUCER_REPAIR_CHECKED_INDEPENDENT_PENDING"
+}

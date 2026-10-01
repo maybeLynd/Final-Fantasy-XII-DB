@@ -1,0 +1,10 @@
+function	name	site	disp	kind	instruction	route	note
+00674F60	FUN_00674f60	00674F7E	0x18	r	mov rax, qword ptr [rcx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0	
+006750C0	FUN_006750c0	006750E3	0x18	addr	lea rdi, [rcx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0	
+006750C0	FUN_006750c0	00675104	0x18	r	mov rax, qword ptr [rdi]	route-seeded STATIC 0x01F2EA70 base+0x18	
+0067F580	FUN_0067f580	0067F59D	0x18	addr	lea r14, [rcx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0 exposed	
+0067F580	FUN_0067f580	0067F5B0	0x18	r	mov rdi, qword ptr [r14]	route-seeded STATIC 0x01F2EA70 base+0x18 exposed	
+0067F700	FUN_0067f700	0067F9B3	0x18	r	mov rcx, qword ptr [rbx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0 exposed	
+0067F9D0	FUN_0067f9d0	0067F9D6	0x18	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0 exposed	
+0067FE20	FUN_0067fe20	0067FE29	0x18	addr	lea r9, [rcx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0	
+0067FF40	FUN_0067ff40	0067FF44	0x18	addr	lea r9, [rcx + 0x18]	route-seeded STATIC 0x01F2EA70 base+0x0	

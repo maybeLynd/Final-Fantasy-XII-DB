@@ -1,0 +1,48 @@
+{
+  "case": "corrupt-archive",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\source-vbf_index.py",
+    "--archive",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\corrupt.vbf",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\corrupt-archive.json",
+    "--listing",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\listing.txt"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "stdout": "failed: ValueError: invalid VBF header\r\n",
+  "stderr": "",
+  "capture": {
+    "failed": "ValueError: invalid VBF header",
+    "archive_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-views-604194276-review\\run-01\\inputs\\corrupt.vbf"
+  },
+  "capture_sha256": "4cb0aa02c6c50cf33710872a02e88538431ec88c4d78b3e5fd7b3587406fdc07",
+  "view": {
+    "view": "vbf",
+    "title": "VBF archive - the installed archive's own folder tree",
+    "status": "FAILED",
+    "source": {
+      "identity": "vbf_index capture",
+      "as_of": "ASTRA synthetic header fixture",
+      "instrument": "vbf_index.py",
+      "limits": "the archive index could not be read: ValueError: invalid VBF header"
+    },
+    "measures": [],
+    "rows": {
+      "columns": [
+        "failure"
+      ],
+      "data": [
+        [
+          "ValueError: invalid VBF header"
+        ]
+      ]
+    }
+  },
+  "validation": null,
+  "temporary_output_left": false
+}

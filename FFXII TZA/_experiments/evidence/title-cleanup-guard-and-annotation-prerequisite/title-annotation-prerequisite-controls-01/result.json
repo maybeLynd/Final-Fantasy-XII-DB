@@ -1,0 +1,71 @@
+{
+  "status": "PASS_PRODUCER_PREREQUISITE_CONTROLS_INDEPENDENT_PENDING",
+  "checks": [
+    {
+      "case": "title-tracker-callback",
+      "exit": 0,
+      "result_exists": true,
+      "status": "PASS_POSITIVE"
+    },
+    {
+      "case": "title-queue-consumption",
+      "exit": 0,
+      "result_exists": true,
+      "status": "PASS_POSITIVE"
+    },
+    {
+      "case": "title-queue-pump",
+      "exit": 0,
+      "result_exists": true,
+      "status": "PASS_POSITIVE"
+    },
+    {
+      "case": "title-cleanup-import",
+      "exit": 0,
+      "result_exists": true,
+      "status": "PASS_POSITIVE"
+    },
+    {
+      "case": "false-annotation-with-current-pin",
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED_NO_RESULT"
+    },
+    {
+      "case": "false-access-role-with-current-pin",
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED_NO_RESULT"
+    },
+    {
+      "case": "zero-source-map",
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED_NO_RESULT"
+    },
+    {
+      "case": "missing-source",
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED_NO_RESULT"
+    },
+    {
+      "case": "cleanup-missing-continuation",
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED_NO_RESULT"
+    },
+    {
+      "case": "cleanup-wrong-unwind-parent",
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED_NO_RESULT"
+    }
+  ],
+  "driver_sha256": "78cbaf97cfc54bdf79062dac9b503def4f562289237de08694057aeffbb1dd97",
+  "publication_driver_sha256": "4f17feadd4ae4f7489dd1cd218e8fb3ad866a8b37a410a25825f3d0d30bda51f",
+  "validator_sha256": "355e897b4f9ba33f8f548dac7ebeef0a40fdf6c443eb28eacabba55e785b6cf6",
+  "guard_checker_sha256": "741595e455cd23a0f7ea8c5a31f8aa98f681cdc4591ecc217a12fa5dbc3249ac",
+  "limits": "Actual prerequisite function and reader CLI tested; full guarded prepare/publish requires a real current claim. Four retained positives, six labelled defect/missing controls; no new native/live experiments or independent acceptance.",
+  "cleanup": "All subprocesses terminal; owned disposable fixture files only; retained/canonical/reference/peer bytes unchanged"
+}

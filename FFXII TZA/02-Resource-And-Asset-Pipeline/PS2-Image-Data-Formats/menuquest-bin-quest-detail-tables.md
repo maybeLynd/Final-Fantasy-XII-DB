@@ -1,7 +1,7 @@
 ---
 system: The quest-menu detail tables — `quest/menuquest00..02.bin`, one per quest group, a 20-byte record per quest over six sections
 category: 02-Resource-And-Asset-Pipeline
-status: DOCUMENTED
+status: AUDITED
 owner_layer: CodeDomain:Presentation.Menu
 evidence_tier: 1
 verified_against:
@@ -19,6 +19,9 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-menuquest-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-menuquest-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The quest-menu detail tables — `quest/menuquest00..02.bin`

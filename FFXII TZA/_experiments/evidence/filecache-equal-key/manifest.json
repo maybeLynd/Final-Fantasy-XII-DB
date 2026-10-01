@@ -1,0 +1,210 @@
+{
+  "kind": "conditional original cache numeric-key reuse proof",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture-filecache-equal-key.py",
+      "bytes": 2823,
+      "sha256": "51d1f24c3d626057a315385776a1dbbd1004b216704ae9e1a56ee773fecc625a"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "control-filecache-equal-key.py",
+      "bytes": 3591,
+      "sha256": "c133cd18b25bfc11fd7d45d980e8c061f593dace7f01b811b5a6321af7480016"
+    },
+    {
+      "path": "filecache-equal-key-capture-01.status.json",
+      "bytes": 457,
+      "sha256": "a92e71be20e194cb04a5fed141fdb2767486792e00de3ef0e3aabf746cf0578f"
+    },
+    {
+      "path": "filecache-equal-key-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-capture-01.stdout",
+      "bytes": 803,
+      "sha256": "3abb5b8f07c26b2986199201e752d42cb71a856e3509c58f16fb0fdb5cc4329d"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/changed-key-move/filecache-equal-key-source-01.json",
+      "bytes": 82738,
+      "sha256": "f9238fcbccae6b421b8cbda04423c077d3da98a4e27954ded36379bcac02a99f"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/changed-key-move/receipt.json",
+      "bytes": 1896,
+      "sha256": "e895f8067c6714d8af63d826df3554cd795777c768a776ce4cf480407f2bf2a7"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/changed-key-move/stderr",
+      "bytes": 830,
+      "sha256": "162dcc242d6bf395efa4f408367d96087f92c30888df3b562638ed5772f1bb50"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/changed-key-move/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/incomplete-body/filecache-equal-key-source-01.json",
+      "bytes": 82583,
+      "sha256": "52ed3fb6ecb7e826b1eb76aecbb0a88eef8a4e87a14139c4ff883b13c2e53487"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/incomplete-body/receipt.json",
+      "bytes": 1893,
+      "sha256": "c7d8652984a27f4b5a9064453771ba538b797a586464d0bf056a7e881ade4c6b"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/incomplete-body/stderr",
+      "bytes": 830,
+      "sha256": "162dcc242d6bf395efa4f408367d96087f92c30888df3b562638ed5772f1bb50"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/incomplete-body/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/result.json",
+      "bytes": 8259,
+      "sha256": "677fd3a0fe422608c074e910c34caeb3ce1ea35960b69f27627f6a0014b19a96"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/upstream-failed/filecache-equal-key-capture-01.status.json",
+      "bytes": 457,
+      "sha256": "730ef9435ca829777f5ca642fc930128e13752c25a21b342d1e650b65bc54812"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/upstream-failed/receipt.json",
+      "bytes": 1863,
+      "sha256": "0fda2de0980e21c2ff7adbc8d78790710f62e0d381245295f4746ca8b62d5bf4"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/upstream-failed/stderr",
+      "bytes": 804,
+      "sha256": "f569cae700b21e04f1d0d63241a0b44a1c429e7cdf478d8ca78600b69cea6eb7"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/upstream-failed/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/wrong-release-import/filecache-equal-key-source-01.json",
+      "bytes": 82741,
+      "sha256": "b2b4c75e7940c35c11af5a1d0f8227a6e8a8cfcf876b501c5d6c7f098ffef0e4"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/wrong-release-import/receipt.json",
+      "bytes": 1890,
+      "sha256": "bb24e09bc9a249c2938478a0705e013ed699bde794b907663575ce07535b408e"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/wrong-release-import/stderr",
+      "bytes": 794,
+      "sha256": "a0f4c58c0904eb215ea32281b9b28c7661355def2fd0d774a7bff605a83bd596"
+    },
+    {
+      "path": "filecache-equal-key-controls-01/wrong-release-import/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-controls-run-01.status.json",
+      "bytes": 456,
+      "sha256": "8b2d460ce6fc0cd43aee3a8afdf2cefb962ddfea1a12c629af121010f8180979"
+    },
+    {
+      "path": "filecache-equal-key-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-controls-run-01.stdout",
+      "bytes": 29,
+      "sha256": "7f28fb4e71353448d7418429a37c1340b3d7ca7ef3109fc83eff22ffb044744c"
+    },
+    {
+      "path": "FILECACHE-EQUAL-KEY-METHOD-1001.md",
+      "bytes": 2897,
+      "sha256": "2c02cfec1cdef8af1cd15058fb5f1c2b2c09aa1b4dc2c2efccf60dcb7ca8275f"
+    },
+    {
+      "path": "filecache-equal-key-positive-02.status.json",
+      "bytes": 512,
+      "sha256": "538f5da339814f18dc4a9882aaf949901c79942d82849f377b02870edf5ad840"
+    },
+    {
+      "path": "filecache-equal-key-positive-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filecache-equal-key-positive-02.stdout",
+      "bytes": 133,
+      "sha256": "e36b7183faf4bf4fa71fc7ef3b4478d4cb1959b5559a1da2c31ed67002a8b486"
+    },
+    {
+      "path": "filecache-equal-key-result-01.json",
+      "bytes": 11455,
+      "sha256": "e861cd3055eca84abe397683a420ecefae4fc08016a431e8750b24bcaad2f687"
+    },
+    {
+      "path": "filecache-equal-key-source-01.json",
+      "bytes": 82738,
+      "sha256": "9687b8460b8365df94cc24dc6354ce725f599428d2868ac10994cbc41141f0dd"
+    },
+    {
+      "path": "filecache-equal-key-wrapper-args-failure-01.json",
+      "bytes": 543,
+      "sha256": "5dd58440118c3a2e9670189baa7022c6998d005a3d8cb432bb6f5c2a0c913642"
+    },
+    {
+      "path": "freeze-filecache-equal-key.py",
+      "bytes": 4093,
+      "sha256": "10fabed3eae95a0f1261dccd96d85de5ee73d2e8036fc53301354844e8aad678"
+    },
+    {
+      "path": "prove-filecache-equal-key.py",
+      "bytes": 9938,
+      "sha256": "527ec5a74e61818b28d1ac2b3601b6f1ede75497ff2526ade3fbdb567064c941"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3650,
+      "sha256": "12080710a9511f01528f77529eb48533a858346d935fef6f8d2878c1032934be"
+    },
+    {
+      "path": "run-filecache-equal-key-before-forwarded-args-01.py",
+      "bytes": 1210,
+      "sha256": "3b4ca6486e3dc0f3ab2f664435c15db3f3681384fe0469e2558e49ea851edd8a"
+    },
+    {
+      "path": "run-filecache-equal-key.py",
+      "bytes": 1225,
+      "sha256": "36b737362949ef728c72b30e8ac3c7129325dc6eff339d3152e2444df6391c57"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

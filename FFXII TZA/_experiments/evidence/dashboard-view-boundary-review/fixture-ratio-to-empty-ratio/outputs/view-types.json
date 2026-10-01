@@ -1,0 +1,17 @@
+{
+  "view": "types",
+  "status": "OK",
+  "definition": "same-v1",
+  "measures": [
+    {
+      "id": "test",
+      "label": "bounded control",
+      "numerator": 1,
+      "denominator": 2,
+      "scope": "same",
+      "instrument": "ASTRA fixture",
+      "as_of": "2026-09-30",
+      "limits": "host control only"
+    }
+  ]
+}

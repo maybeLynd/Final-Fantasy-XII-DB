@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-renderer-queue-initialization.py", line 14, in <module>
+    if len(raw.get('normal_chains',[]))!=5 or len(raw.get('ranges',[]))!=7:raise ValueError('normal extent/chain prerequisite incomplete')
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: normal extent/chain prerequisite incomplete

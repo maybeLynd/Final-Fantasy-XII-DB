@@ -1,0 +1,6 @@
+PASS  D only slot states 1..6 are dispatched
+PASS  P all six delivery sites reset the slot to 0 and recycle it before the next dispatch 
+PASS  H helpers call the completion pointer without clearing it
+PASS  O armer admits only state 0 (the producer requires 2 and leaves 3: see ov34-state1-owner-fable)
+PASS  R owner callback 003DD850 direct callees: ['0x20e600', '0x369800', '0x36d170', '0x41e490', '0x41e580']
+FAILS 0

@@ -1,0 +1,11 @@
+{
+  "kind": "conditional valid-context premise, not observed live state",
+  "bank": 0,
+  "depth_min": 0,
+  "depth_max": 31,
+  "arena_ids": [
+    5,
+    13,
+    14
+  ]
+}

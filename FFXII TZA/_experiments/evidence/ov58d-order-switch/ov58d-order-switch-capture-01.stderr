@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-ov58d-order-switch.py", line 53, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-ov58d-order-switch.py", line 46, in main
+    sys.argv=[sys.argv[0],str(out)];C.main();v=json.loads(out.read_text())
+                                    ~~~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-index-path.py", line 69, in main
+    instructions=decode(blob,a)))
+                 ~~~~~~^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-index-path.py", line 53, in decode
+    raise ValueError('incomplete decoder span %x: covered %x of %x; next %x' % (a,covered,len(blob),a+covered))
+ValueError: incomplete decoder span 30e588: covered 27 of 2b; next 30e5af

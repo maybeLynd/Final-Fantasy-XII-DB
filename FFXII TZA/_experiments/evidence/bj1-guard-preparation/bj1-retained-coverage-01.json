@@ -1,0 +1,64 @@
+{
+  "method": "A retained read interval analysis; no new process observation",
+  "guard_list_sha256": "509146ce42e15eeab81d11a061f48f4983ce3d5a11e4caadb65a8dd45c027c60",
+  "guard_count": 1681,
+  "captures": [
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\phyre-startup-globals\\title-defaults.json",
+      "sha256": "25931a0cb4f734c941b04ad50281a7c18a86119c9d02c13b64e5d4b4f3ef0b05",
+      "status": "OBSERVED",
+      "covered_targets": 0,
+      "hits": [],
+      "closure_eligible": null
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\phyre-startup-globals\\title-pilot-readable.json",
+      "sha256": "ade9097d71bd8dff7433f1cb498209cb3e6c71fcd8430420df950ac7d8795804",
+      "status": "OBSERVED",
+      "covered_targets": 0,
+      "hits": [],
+      "closure_eligible": null
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\phyre-startup-globals\\title-full.json",
+      "sha256": "632c008127893eb7bccd916f992e576ef3ad20e22f80f203065746ee90458265",
+      "status": "INVALID",
+      "covered_targets": 3,
+      "hits": [
+        {
+          "target": "02CF6678",
+          "observations": [
+            {
+              "read_index": 1,
+              "value": 2147484895,
+              "purpose": "descriptor-before"
+            }
+          ]
+        },
+        {
+          "target": "02CF66D8",
+          "observations": [
+            {
+              "read_index": 1,
+              "value": 2147484896,
+              "purpose": "descriptor-before"
+            }
+          ]
+        },
+        {
+          "target": "02CF6738",
+          "observations": [
+            {
+              "read_index": 1,
+              "value": 2147484906,
+              "purpose": "descriptor-before"
+            }
+          ]
+        }
+      ],
+      "closure_eligible": false
+    }
+  ],
+  "acceptance": "Coverage only, not new semantic acceptance of EXP124 or INVALID captures",
+  "result": "Valid title capture spans cover zero requested guards/epoch. Three INVALID provisional guard values do not close BJ1."
+}

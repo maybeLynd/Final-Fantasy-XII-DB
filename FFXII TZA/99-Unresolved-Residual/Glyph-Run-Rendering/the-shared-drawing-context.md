@@ -1,7 +1,7 @@
 ---
 system: The shared drawing context behind 0209CC40
 category: 99-Unresolved-Residual
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS): the field map is classified and GJ-1 to GJ-6 and GJ-10 are answered (§3a–§3g, §5a); who fills the three pointer slots (SD-103: rows 174-176 of the +0x000 table), the row's third qword, 10-bit id and decode loop (SD-104) and the reveal's authored inputs (SD-105) answered 2026-09-30
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS): the field map is classified and GJ-1 to GJ-6 and GJ-10 are answered (§3a–§3g, §5a); who fills the three pointer slots (SD-103: rows 174-176 of the +0x000 table), the row's third qword, 10-bit id and decode loop (SD-104) and the reveal's authored inputs (SD-105) answered 2026-09-30
 owner_layer: CodeDomain — residual; ancestors owned by UI
 evidence_tier: 1
 verified_against:
@@ -21,8 +21,9 @@ audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-shared-drawing-context-pass-1 - the lifecycle reproduces to the address (69-byte writer, 121 reference sites in 26 functions with EXACTLY ONE write, and 0209D490 / 0x1108 / 0209CC40 / 01CEBC70 / 01E0CE0C all resolved from their own displacements); the field map was NOT re-derived - an independent linear register trace returned 67 offsets including impossible negative ones, reproducing from scratch the control-flow blindness section 3 already records, so the attempt is reported as a tool artefact and section 3's map is left untouched
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-shared-drawing-context-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: OPUS)
 ---
 
 # The shared drawing context behind `0209CC40`

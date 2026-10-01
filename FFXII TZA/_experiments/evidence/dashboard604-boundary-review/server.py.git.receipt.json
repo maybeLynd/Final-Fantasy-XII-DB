@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "604194276:Database/Tools/dashboard/server.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "stdout_bytes": 49429,
+  "stderr_bytes": 0,
+  "sha256": "f3df8bf778ff6896cd8dc70eb9011435f245c7145cded9eb13d16f16343da8fd"
+}

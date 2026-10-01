@@ -1,0 +1,512 @@
+{
+  "method": "A STATIC_ONLY",
+  "producer_complete": true,
+  "driver_sha256": "527ec5a74e61818b28d1ac2b3601b6f1ede75497ff2526ade3fbdb567064c941",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "filecache-equal-key-source-01.json",
+      "sha256": "9687b8460b8365df94cc24dc6354ce725f599428d2868ac10994cbc41141f0dd"
+    }
+  ],
+  "tool_pins": [
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-filecache-equal-key.py",
+      "sha256": "51d1f24c3d626057a315385776a1dbbd1004b216704ae9e1a56ee773fecc625a"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    }
+  ],
+  "annotation_check": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 283,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "graphs": {
+    "0x1d6a20": {
+      "visited": [
+        1927712,
+        1927717,
+        1927722,
+        1927727,
+        1927728,
+        1927732,
+        1927735,
+        1927738,
+        1927741,
+        1927743,
+        1927748,
+        1927751,
+        1927755,
+        1927758,
+        1927761,
+        1927763,
+        1927768,
+        1927773,
+        1927778,
+        1927783,
+        1927787,
+        1927788
+      ],
+      "calls": [
+        [
+          1927743,
+          "0x20c700"
+        ],
+        [
+          1927763,
+          "0x20b680"
+        ]
+      ],
+      "returns": [
+        1927788
+      ],
+      "tails": []
+    },
+    "0x20b680": {
+      "visited": [
+        2143872,
+        2143876,
+        2143877,
+        2143878,
+        2143879,
+        2143881,
+        2143883,
+        2143885,
+        2143887,
+        2143891,
+        2143900,
+        2143908,
+        2143911,
+        2143914,
+        2143916,
+        2143919,
+        2143923,
+        2143928,
+        2143932,
+        2143936,
+        2143939,
+        2143942,
+        2143944,
+        2143947,
+        2143949,
+        2143952,
+        2143956,
+        2143958,
+        2143961,
+        2143964,
+        2143966,
+        2143969,
+        2143971,
+        2143974,
+        2143976,
+        2143979,
+        2143983,
+        2143986,
+        2143988,
+        2143992,
+        2143995,
+        2143999,
+        2144002,
+        2144007,
+        2144011,
+        2144015,
+        2144022,
+        2144026,
+        2144030,
+        2144033,
+        2144035,
+        2144038,
+        2144043,
+        2144046,
+        2144050,
+        2144055,
+        2144058,
+        2144063,
+        2144070,
+        2144075,
+        2144078,
+        2144086,
+        2144088,
+        2144091,
+        2144097,
+        2144104,
+        2144107,
+        2144109,
+        2144113,
+        2144116,
+        2144120,
+        2144123,
+        2144127,
+        2144134,
+        2144136,
+        2144139,
+        2144141,
+        2144145,
+        2144152,
+        2144156,
+        2144159,
+        2144163,
+        2144167,
+        2144170,
+        2144172,
+        2144179,
+        2144183,
+        2144186,
+        2144190,
+        2144193,
+        2144197,
+        2144200,
+        2144204,
+        2144208,
+        2144216,
+        2144220,
+        2144225,
+        2144228,
+        2144232,
+        2144237,
+        2144242,
+        2144247,
+        2144255,
+        2144258,
+        2144260,
+        2144263,
+        2144266,
+        2144270,
+        2144273,
+        2144278,
+        2144281,
+        2144288,
+        2144291,
+        2144299,
+        2144303,
+        2144305,
+        2144307,
+        2144309,
+        2144311,
+        2144312,
+        2144313,
+        2144314
+      ],
+      "calls": [
+        [
+          2143923,
+          "0x5cd4f0"
+        ],
+        [
+          2144002,
+          "0x20b0f0"
+        ],
+        [
+          2144038,
+          "0x20c300"
+        ],
+        [
+          2144050,
+          "0x5cd820"
+        ],
+        [
+          2144070,
+          "0x1ba860"
+        ],
+        [
+          2144220,
+          "0x20b5f0"
+        ],
+        [
+          2144232,
+          "0x5cd820"
+        ],
+        [
+          2144242,
+          "0x210ec0"
+        ],
+        [
+          2144273,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        2144314
+      ],
+      "tails": []
+    },
+    "0x20b5f0": {
+      "visited": [
+        2143728,
+        2143732,
+        2143736,
+        2143739,
+        2143743,
+        2143746,
+        2143749,
+        2143751,
+        2143754,
+        2143760,
+        2143764,
+        2143766,
+        2143769,
+        2143773,
+        2143775,
+        2143778,
+        2143781,
+        2143783,
+        2143786,
+        2143788,
+        2143791,
+        2143793,
+        2143795,
+        2143797,
+        2143802,
+        2143807,
+        2143812,
+        2143817,
+        2143822,
+        2143826,
+        2143829,
+        2143833,
+        2143842,
+        2143847,
+        2143852,
+        2143856,
+        2143860
+      ],
+      "calls": [
+        [
+          2143842,
+          "0x1ae9b0"
+        ]
+      ],
+      "returns": [
+        2143860
+      ],
+      "tails": []
+    },
+    "0x20b0f0": {
+      "visited": [
+        2142448,
+        2142453,
+        2142454,
+        2142458,
+        2142461,
+        2142464,
+        2142467,
+        2142473,
+        2142476,
+        2142482,
+        2142485,
+        2142490,
+        2142494,
+        2142495
+      ],
+      "calls": [
+        [
+          2142467,
+          "qword ptr [rip + 0x6b7a47]"
+        ]
+      ],
+      "returns": [],
+      "tails": [
+        2142495
+      ]
+    },
+    "0x20c300": {
+      "visited": [
+        2147072,
+        2147076,
+        2147077,
+        2147078,
+        2147080,
+        2147084,
+        2147093,
+        2147098,
+        2147103,
+        2147106,
+        2147109,
+        2147112,
+        2147118,
+        2147122,
+        2147125,
+        2147129,
+        2147132,
+        2147134,
+        2147137,
+        2147139,
+        2147144,
+        2147148,
+        2147153,
+        2147156,
+        2147159,
+        2147164,
+        2147168,
+        2147173,
+        2147176,
+        2147179,
+        2147184,
+        2147187,
+        2147189,
+        2147192,
+        2147194,
+        2147199,
+        2147203,
+        2147208,
+        2147211,
+        2147214,
+        2147217,
+        2147219,
+        2147222,
+        2147224,
+        2147227,
+        2147232,
+        2147234,
+        2147237,
+        2147239,
+        2147243,
+        2147250,
+        2147255,
+        2147259,
+        2147264,
+        2147267,
+        2147271,
+        2147273,
+        2147278,
+        2147282,
+        2147287,
+        2147290,
+        2147297,
+        2147301,
+        2147303,
+        2147307,
+        2147312,
+        2147317,
+        2147320,
+        2147323,
+        2147328,
+        2147333,
+        2147338,
+        2147341,
+        2147343,
+        2147346,
+        2147349,
+        2147352,
+        2147355,
+        2147360,
+        2147361,
+        2147363,
+        2147365,
+        2147370,
+        2147375,
+        2147379,
+        2147381,
+        2147382,
+        2147383
+      ],
+      "calls": [
+        [
+          2147148,
+          "0x20b5f0"
+        ],
+        [
+          2147168,
+          "0x20b5f0"
+        ],
+        [
+          2147203,
+          "0x20b5f0"
+        ],
+        [
+          2147259,
+          "0x20b5f0"
+        ],
+        [
+          2147282,
+          "0x20b5f0"
+        ],
+        [
+          2147312,
+          "0x20b5f0"
+        ],
+        [
+          2147328,
+          "0x210ec0"
+        ],
+        [
+          2147355,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        2147383
+      ],
+      "tails": []
+    }
+  },
+  "instruction_assertions": 63,
+  "hit_partition": {
+    "calls": [
+      [
+        2143923,
+        "0x5cd4f0"
+      ],
+      [
+        2144002,
+        "0x20b0f0"
+      ],
+      [
+        2144038,
+        "0x20c300"
+      ],
+      [
+        2144050,
+        "0x5cd820"
+      ]
+    ],
+    "returns": [
+      2144314
+    ],
+    "new_payload_assignment_reachable": false
+  },
+  "tree_invariant": "Finite valid unsigned-key BST. Taking child0 when node<key discards only nodes<key; otherwise retain candidate and take child8, seeking least remaining node>=key. At null, sentinel or lower-bound candidate. Final incoming>=candidate selects equality because candidate>=incoming. No filename comparison participates in these local decisions. This is an induction argument over the ordered tree, not samples proving tree initialization.",
+  "frame_identity": {
+    "insert_frame_bytes": 120,
+    "saved_key_entry_offset": 16,
+    "miss_accessor_postprologue_offset": 136,
+    "new_mode_entry_offset": 40,
+    "hit_old_mode_outgoing_offset": 40,
+    "hit_new_mode_outgoing_offset": 32,
+    "wrapper_frame_bytes": 72
+  },
+  "conclusions": [
+    "001D6A20 forwards caller unsigned32 numeric key unchanged; no path normalizer/hash recomputation on this wrapper.",
+    "Given existing equal numeric key, local20B680 hit branch invokes release boundary on incoming *pointer before forwarding existing payload data/length to20C300. It does not execute miss payload assignment.",
+    "20B0F0 statically calls declared _msize, atomically subtracts that size at manager+10, then tailcalls declared free; actual loaded CRT/allocator behavior is unobserved.",
+    "20C300 preserves supplied existing data/length in nonvolatile registers and passes them to217A60 after16-byte allocation. Allocation-null branch returns0. Native constructor effects are not established by these call arguments.",
+    "Existing and requested mode remain separate stack arguments. Counter/refcount/tag/mode changes are possible; reuse is not a no-side-effects claim."
+  ],
+  "premises": [
+    "finite correctly ordered map and valid initialized memory",
+    "valid incoming allocation distinct from retained payload/manager/map memory",
+    "normal ABI/callee returns and named CRT contracts",
+    "successful mutex behavior/no interfering mutation"
+  ],
+  "unresolved": [
+    "actual insertion caller/key-source domain completeness",
+    "natural same-key different-file collision/membership/eviction/reachability",
+    "constructor/native loaded CRT effects and lifetime/allocator placement",
+    "unbounded malformed pointers/keys/tree safety",
+    "whole OV33 E2 and runtime-built kind-FF paths"
+  ]
+}

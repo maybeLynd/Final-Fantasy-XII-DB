@@ -1,0 +1,27 @@
+{
+  "verify": "VERIFIED",
+  "verify_info": {
+    "generation": "g20260929T213407Z-9c7238",
+    "members": 36
+  },
+  "zip_sha256": "35c8de55a39c347f4ca489f25ea6eab147e51310ffe21d05f4516786350fb02c",
+  "run": {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\generation.py",
+      "restore",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\derived-trailing-output.zip",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-output"
+    ],
+    "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\restore-repair-87c\\run-01\\disposable-trailing-output",
+    "deadline_seconds": 30,
+    "exit": 1,
+    "terminal": true,
+    "exception": null,
+    "stdout": "REFUSED output name 'ASTRA-view.json.' ends with a dot or space, which Windows strips; it would restore under another name\r\n",
+    "stderr": ""
+  },
+  "target_exists": false,
+  "current": false
+}

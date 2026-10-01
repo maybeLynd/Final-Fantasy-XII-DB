@@ -1,0 +1,147 @@
+{
+  "method": "A STATIC_ONLY retained original-code induction",
+  "producer_complete": true,
+  "driver_sha256": "eefaff2c64fae8ff63736a2e8a1244cd5a7d0b771c374382f16d57a5b75501d0",
+  "source_pins": [
+    {
+      "path": "retained/source-01.json",
+      "sha256": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8"
+    }
+  ],
+  "external_parent": {
+    "path": "_experiments/evidence/sd194-stale-name-slice/manifest.json",
+    "sha256": "b9f212c1d22eb7398d16d5c2d184ce7c0bca4b6900e2cc0f94af5662605b82c1",
+    "commit": "d7ff30672166c95f2533a144d55e1346e447482d",
+    "scope": "Original source identity only; builder semantic review not assumed accepted"
+  },
+  "body_sha256": "f71f6f4a0633fa327a47b23f16231e23be086270b133f30357e49520d74f9800",
+  "body_bytes": 89,
+  "instruction_assertions": 29,
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 175,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "graphs": [
+    {
+      "entry": "0x2df880",
+      "visited": 29,
+      "returns": [
+        "0x2df8a3",
+        "0x2df8d8"
+      ]
+    },
+    {
+      "entry": "0x2df880",
+      "visited": 11,
+      "returns": [
+        "0x2df8a3"
+      ]
+    },
+    {
+      "entry": "0x2df880",
+      "visited": 27,
+      "returns": [
+        "0x2df8d8"
+      ]
+    }
+  ],
+  "induction": {
+    "entry": "After nonNULL setup: RAX=S,R11=D,RDX=D-S,R8=-S,R9=sign_extend_i32(argR9),R10D=0.",
+    "iteration_start": "At B3 before iteration i+1, RAX=S+i,R10D=i,RDX=D-S,R8=-S; accessible disjoint memory keeps original future source bytes.",
+    "copy": "B3 loads source[i]; B6 increments count; B9 writes destination[i]; BC advances source pointer. No first/current-byte NUL test precedes copy.",
+    "count": "C0 computes i+1 via (-S)+(S+i+1); C4/C7 compare that positive offset against signed c. If i+1>=c, exit before any next-byte read.",
+    "next_byte": "Only when i+1<c, C9 reads source[i+1]; CC continues iff nonzero. Therefore the earliest examined zero is q>=1, regardless source[0].",
+    "bound": "M=max(1,c),1<=M<=INT32_MAX. Either next-byte zero stops at q<M or count stops at M; I=min(q,M). If no q before M, I=M. Counter stays1..INT32_MAX, so signed count never wraps.",
+    "exit": "CE signextends copied count, D1 writes destination[I]=0, D6 zeroes EAX (rawRAX0), D8 returns. NULL branch A0 zeroextends EAXFFFFFFFF to rawRAX00000000FFFFFFFF and A3 returns without destination writes."
+  },
+  "symbolic_partitions": [
+    {
+      "c": "INT32_MIN..1",
+      "I": 1,
+      "next_byte_read": false,
+      "destination_bytes_written": 2
+    },
+    {
+      "c": "2..INT32_MAX",
+      "q": "1..c-1",
+      "I": "q",
+      "last_source_index_read": "q (zero)",
+      "destination_bytes_written": "q+1"
+    },
+    {
+      "c": "2..INT32_MAX",
+      "q": "c..infinity or no zero before c",
+      "I": "c",
+      "last_source_index_read": "c-1",
+      "destination_bytes_written": "c+1"
+    }
+  ],
+  "algebraic_witnesses": [
+    {
+      "source_bytes": "41424300",
+      "signed_limit": 2,
+      "copied": 2,
+      "destination_bytes": "414200",
+      "next_NUL_examined": false,
+      "method": "Algebraic illustration of the source-derived invariant; not native/isolated/live execution"
+    },
+    {
+      "source_bytes": "41424300",
+      "signed_limit": 0,
+      "copied": 1,
+      "destination_bytes": "4100",
+      "next_NUL_examined": false,
+      "method": "Algebraic illustration of the source-derived invariant; not native/isolated/live execution"
+    },
+    {
+      "source_bytes": "41424300",
+      "signed_limit": -1,
+      "copied": 1,
+      "destination_bytes": "4100",
+      "next_NUL_examined": false,
+      "method": "Algebraic illustration of the source-derived invariant; not native/isolated/live execution"
+    },
+    {
+      "source_bytes": "004100",
+      "signed_limit": 259,
+      "copied": 2,
+      "destination_bytes": "004100",
+      "next_NUL_examined": true,
+      "method": "Algebraic illustration of the source-derived invariant; not native/isolated/live execution"
+    },
+    {
+      "source_bytes": "0000",
+      "signed_limit": 259,
+      "copied": 1,
+      "destination_bytes": "0000",
+      "next_NUL_examined": true,
+      "method": "Algebraic illustration of the source-derived invariant; not native/isolated/live execution"
+    },
+    {
+      "source_bytes": "004100",
+      "signed_limit": 1,
+      "copied": 1,
+      "destination_bytes": "0000",
+      "next_NUL_examined": false,
+      "method": "Algebraic illustration of the source-derived invariant; not native/isolated/live execution"
+    }
+  ],
+  "new_propositions": [
+    "R9D is signextended; <=1 limits still copy one byte and write a second-byte terminator.",
+    "The initial source byte is copied without testing it for NUL; a nonempty next byte may be read/copied after an empty-string first byte."
+  ],
+  "preserved_existing_propositions": [
+    "NULL returns signed32-1 without destination writes.",
+    "For positive c/nonempty normal source, copied=min(firstNUL,c) and destination requires copied+1 (worst c+1)."
+  ],
+  "limitations": [
+    "Valid namespace/table/index and accessible sufficiently large disjoint source/destination memory assumed.",
+    "No natural empty source or nonpositive limit reachability established; current named field caller uses259.",
+    "General aliasing, invalid pointer/index memory, unavailable bytes after first NUL and native faults excluded.",
+    "No original/native/game code executed; witnesses are not independent behavior observations."
+  ]
+}

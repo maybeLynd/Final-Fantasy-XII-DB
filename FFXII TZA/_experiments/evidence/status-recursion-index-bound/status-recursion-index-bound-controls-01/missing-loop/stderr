@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-status-recursion-index-bound.py", line 38, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-status-recursion-index-bound.py", line 17, in main
+    if [(q['start'],q['end_exclusive']) for q in v['ranges']]!=[('0x30e360','0x30e395'),('0x30e645','0x30e6e7')]:raise ValueError('missing/different loop source')
+                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: missing/different loop source

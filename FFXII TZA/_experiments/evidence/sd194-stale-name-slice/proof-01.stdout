@@ -1,0 +1,1 @@
+{"producer_complete": true, "classes": {"no_separator_empty": 260, "negative_terminator_raw_copy": 1030, "zero_terminator_empty": 255, "positive_copy_boundary": 32385}, "partitions": 33930, "hypothetical_copy_overlap_states": 9, "operation_assertions": 69, "native_or_live_runs": 0}

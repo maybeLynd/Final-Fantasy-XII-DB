@@ -1,0 +1,7 @@
+function	name	site	disp	kind	instruction	route	note
+00391710	FUN_00391710	0039190D	0x0	r	mov rdx, qword ptr [rsi]	route-seeded ARRAY 0x02AEE0C0 stride=0x8 count=elementCount02AEE0BC bitmask=02AEE0B0 base+0x0	
+00391710	FUN_00391710	00391932	0x0	r	mov rax, qword ptr [rsi]	route-seeded ARRAY 0x02AEE0C0 stride=0x8 count=elementCount02AEE0BC bitmask=02AEE0B0 base+0x0	
+00391A30	FUN_00391a30	00391C42	0x0	r	mov rdx, qword ptr [rsi]	route-seeded ARRAY 0x02AEE0C0 stride=0x8 count=elementCount02AEE0BC bitmask=02AEE0B0 base+0x0	
+00391A30	FUN_00391a30	00391C84	0x0	r	mov rax, qword ptr [rsi]	route-seeded ARRAY 0x02AEE0C0 stride=0x8 count=elementCount02AEE0BC bitmask=02AEE0B0 base+0x0	
+00391D90	FUN_00391d90	00391F86	0x0	r	mov rdx, qword ptr [rsi]	route-seeded ARRAY 0x02AEE0C0 stride=0x8 count=elementCount02AEE0BC bitmask=02AEE0B0 base+0x0	
+00391D90	FUN_00391d90	00392040	0x0	r	mov rax, qword ptr [rsi]	route-seeded ARRAY 0x02AEE0C0 stride=0x8 count=elementCount02AEE0BC bitmask=02AEE0B0 base+0x0	

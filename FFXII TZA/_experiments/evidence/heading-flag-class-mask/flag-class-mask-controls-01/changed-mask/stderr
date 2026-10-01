@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\heading-class-effects-slice\prove-flag-class-mask.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\heading-class-effects-slice\prove-flag-class-mask.py", line 59, in main
+    if op!=[('shl',reg+', '+hex(c['shift'])),('xor',reg+', dword ptr [rcx]'),('and',reg+', '+hex(c['mask'])),('xor',reg+', dword ptr [rcx]'),('or',reg+', '+str(c['dirty'])),('mov','dword ptr [rcx], '+reg),('ret','')]:raise ValueError('original shift/mask/store sequence changed')
+                                                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: original shift/mask/store sequence changed

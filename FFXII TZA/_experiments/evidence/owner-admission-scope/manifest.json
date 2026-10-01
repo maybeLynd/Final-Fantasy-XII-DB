@@ -1,0 +1,415 @@
+{
+  "kind": "conditional original owner admission scope",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "capture-owner-admission.py",
+      "sha256": "170798c8f55ccacf3bb116301f23c754a28d3413e0f45994dbe9b42d2a5238a4",
+      "bytes": 4173
+    },
+    {
+      "path": "control_owner_admission_scope-before-refusal-order-01.py",
+      "sha256": "0be0838ade6bf0c537bb4ef70db3435c1dc62413657c6fc3b35759c8c36e010d",
+      "bytes": 3211
+    },
+    {
+      "path": "control_owner_admission_scope.py",
+      "sha256": "a495898c103f5f049b8e83f305135aa8037e69ea2275a6792a23d85c371bc5c3",
+      "bytes": 3273
+    },
+    {
+      "path": "FAILED-CONTROL-01-INPUT-MAP.json",
+      "sha256": "38ff559e09f802b26ce95b589c922b1750aee6a396cf9ea8b6f37958fdb65d19",
+      "bytes": 7501
+    },
+    {
+      "path": "freeze_owner_admission_scope.py",
+      "sha256": "7dc767b4af7c09f2d47875ec41db4625a8bd9bde934dd0a8492a1be263f6a317",
+      "bytes": 4255
+    },
+    {
+      "path": "owner-admission-capture-01.status.json",
+      "sha256": "d61fac26d85ffd462ce3b3e33ea4b2fbd4b1e5dc8e6939afd1c091ab514a8beb",
+      "bytes": 570
+    },
+    {
+      "path": "owner-admission-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-admission-controls-01/changed-armer/stderr",
+      "sha256": "7d61adcd4b02af74f5b77779a4abac1e2296b9bdbe1ad375f801da631e2f016d",
+      "bytes": 899
+    },
+    {
+      "path": "owner-admission-controls-01/changed-armer/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-01/failed-capture/stderr",
+      "sha256": "a56b4db3d6f6769f8c218c8ed08280d381826b9099d354857db84499b949a2b7",
+      "bytes": 984
+    },
+    {
+      "path": "owner-admission-controls-01/failed-capture/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/capture-owner-admission.py",
+      "sha256": "170798c8f55ccacf3bb116301f23c754a28d3413e0f45994dbe9b42d2a5238a4",
+      "bytes": 4173
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-admission-capture-01.status.json",
+      "sha256": "d61fac26d85ffd462ce3b3e33ea4b2fbd4b1e5dc8e6939afd1c091ab514a8beb",
+      "bytes": 570
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-admission-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-admission-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-admission-source-01.json",
+      "sha256": "fef7da0b3d7ee3e46928835ed1df8a039ebaf0bf4a8ad667b717afed83e165a6",
+      "bytes": 5955
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-uniqueness-delivery-source-01.py",
+      "sha256": "9a2e9ac85b034dc0c6f259fd34aa5b02296f8494069a498d0d8c8e69a6ee383b",
+      "bytes": 4726
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-uniqueness-existing-check-01.status.json",
+      "sha256": "112fae27b5e584d79f86f8f7cca8db4c763721552b997e7d306f496b66404c01",
+      "bytes": 414
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-uniqueness-existing-check-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/owner-uniqueness-existing-check-01.stdout",
+      "sha256": "cc3b0941a31cb4c18ed45098d502eef4b19f87f99dafcb3de92b1f9da1675fa7",
+      "bytes": 426
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/stderr",
+      "sha256": "7d61adcd4b02af74f5b77779a4abac1e2296b9bdbe1ad375f801da631e2f016d",
+      "bytes": 899
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/changed-armer/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/capture-owner-admission.py",
+      "sha256": "170798c8f55ccacf3bb116301f23c754a28d3413e0f45994dbe9b42d2a5238a4",
+      "bytes": 4173
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-admission-capture-01.status.json",
+      "sha256": "eb2d36d8ae24e5b36038be09bbacbc7e1ca2ea28268b3a9d94810e0793d5a009",
+      "bytes": 570
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-admission-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-admission-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-admission-source-01.json",
+      "sha256": "8ce214633e6640272a1f46b9baa90640ea31b35debcd94321dac9a47ac39fd86",
+      "bytes": 5956
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-uniqueness-delivery-source-01.py",
+      "sha256": "9a2e9ac85b034dc0c6f259fd34aa5b02296f8494069a498d0d8c8e69a6ee383b",
+      "bytes": 4726
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-uniqueness-existing-check-01.status.json",
+      "sha256": "112fae27b5e584d79f86f8f7cca8db4c763721552b997e7d306f496b66404c01",
+      "bytes": 414
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-uniqueness-existing-check-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/owner-uniqueness-existing-check-01.stdout",
+      "sha256": "cc3b0941a31cb4c18ed45098d502eef4b19f87f99dafcb3de92b1f9da1675fa7",
+      "bytes": 426
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/stderr",
+      "sha256": "a56b4db3d6f6769f8c218c8ed08280d381826b9099d354857db84499b949a2b7",
+      "bytes": 984
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/failed-capture/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/capture-owner-admission.py",
+      "sha256": "170798c8f55ccacf3bb116301f23c754a28d3413e0f45994dbe9b42d2a5238a4",
+      "bytes": 4173
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-admission-capture-01.status.json",
+      "sha256": "d61fac26d85ffd462ce3b3e33ea4b2fbd4b1e5dc8e6939afd1c091ab514a8beb",
+      "bytes": 570
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-admission-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-admission-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-admission-source-01.json",
+      "sha256": "8ce214633e6640272a1f46b9baa90640ea31b35debcd94321dac9a47ac39fd86",
+      "bytes": 5956
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-uniqueness-delivery-source-01.py",
+      "sha256": "9a2e9ac85b034dc0c6f259fd34aa5b02296f8494069a498d0d8c8e69a6ee383b",
+      "bytes": 4726
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-uniqueness-existing-check-01.status.json",
+      "sha256": "756dc48fead2c33b0c0b4be9e2d925424a575fe8a849ceff5d51b10659b85172",
+      "bytes": 414
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-uniqueness-existing-check-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/owner-uniqueness-existing-check-01.stdout",
+      "sha256": "cc3b0941a31cb4c18ed45098d502eef4b19f87f99dafcb3de92b1f9da1675fa7",
+      "bytes": 426
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/stderr",
+      "sha256": "fcbb1a208b46d59a92f1e2c31aedfbf1e7efd24276d248d3f295611eee87b227",
+      "bytes": 1060
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/failed-original-O/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/capture-owner-admission.py",
+      "sha256": "170798c8f55ccacf3bb116301f23c754a28d3413e0f45994dbe9b42d2a5238a4",
+      "bytes": 4173
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/missing-reset/manifest.json",
+      "sha256": "82f5bf38b2239395628083ca267e14ca29d5679308f7e8f01ce467bb31a2319e",
+      "bytes": 15101
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-admission-capture-01.status.json",
+      "sha256": "d61fac26d85ffd462ce3b3e33ea4b2fbd4b1e5dc8e6939afd1c091ab514a8beb",
+      "bytes": 570
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-admission-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-admission-capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-admission-source-01.json",
+      "sha256": "8ce214633e6640272a1f46b9baa90640ea31b35debcd94321dac9a47ac39fd86",
+      "bytes": 5956
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-uniqueness-delivery-source-01.py",
+      "sha256": "9a2e9ac85b034dc0c6f259fd34aa5b02296f8494069a498d0d8c8e69a6ee383b",
+      "bytes": 4726
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-uniqueness-existing-check-01.status.json",
+      "sha256": "112fae27b5e584d79f86f8f7cca8db4c763721552b997e7d306f496b66404c01",
+      "bytes": 414
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-uniqueness-existing-check-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/owner-uniqueness-existing-check-01.stdout",
+      "sha256": "cc3b0941a31cb4c18ed45098d502eef4b19f87f99dafcb3de92b1f9da1675fa7",
+      "bytes": 426
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/stderr",
+      "sha256": "0603a5f11ba079339ea244ee34ee62994a8c3424268dafe2b7751ca3d1140113",
+      "bytes": 1651
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-02/missing-reset/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-admission-controls-02/result.json",
+      "sha256": "5477fed40779f5692ec4d4d7b03f54e25d045f92a171c7f45a1d40181022bc7d",
+      "bytes": 3745
+    },
+    {
+      "path": "owner-admission-controls-run-01.status.json",
+      "sha256": "8face4889f979db928d5ce314c6810b34a22f178b9e366389f1810461f6f1e90",
+      "bytes": 572
+    },
+    {
+      "path": "owner-admission-controls-run-01.stderr",
+      "sha256": "3211b0fa821ea0eb400421d505075c538ebe50382c489d5e915fecc6facaae17",
+      "bytes": 655
+    },
+    {
+      "path": "owner-admission-controls-run-01.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-run-02.status.json",
+      "sha256": "74f48f51c4d42721fc04afef8d414d6788e9878f62327f5fa9a6cae18e8762f9",
+      "bytes": 572
+    },
+    {
+      "path": "owner-admission-controls-run-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-controls-run-02.stdout",
+      "sha256": "a45fe29e1517494170526d0262fb922bfa30276df00d3a84e0da81b155348057",
+      "bytes": 81
+    },
+    {
+      "path": "owner-admission-positive-01.status.json",
+      "sha256": "cfb66c484f1a87c5a7620660f521647fcebb0b5b75e03ee96dcdb3f374e90dbc",
+      "bytes": 574
+    },
+    {
+      "path": "owner-admission-positive-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-admission-positive-01.stdout",
+      "sha256": "295a5ff9b55e81496c6bed3f29ba7d50210df58b29013e5e1fe54019961468bd",
+      "bytes": 126
+    },
+    {
+      "path": "owner-admission-result-01.json",
+      "sha256": "7a7ed5748aa3930d19605f46a03e2b1508203e81215d531d2382e79287d72303",
+      "bytes": 3921
+    },
+    {
+      "path": "owner-admission-source-01.json",
+      "sha256": "8ce214633e6640272a1f46b9baa90640ea31b35debcd94321dac9a47ac39fd86",
+      "bytes": 5956
+    },
+    {
+      "path": "owner-uniqueness-delivery-source-01.py",
+      "sha256": "9a2e9ac85b034dc0c6f259fd34aa5b02296f8494069a498d0d8c8e69a6ee383b",
+      "bytes": 4726
+    },
+    {
+      "path": "owner-uniqueness-existing-check-01.status.json",
+      "sha256": "112fae27b5e584d79f86f8f7cca8db4c763721552b997e7d306f496b66404c01",
+      "bytes": 414
+    },
+    {
+      "path": "owner-uniqueness-existing-check-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-uniqueness-existing-check-01.stdout",
+      "sha256": "cc3b0941a31cb4c18ed45098d502eef4b19f87f99dafcb3de92b1f9da1675fa7",
+      "bytes": 426
+    },
+    {
+      "path": "OWNER-UNIQUENESS-METHOD-1001.md",
+      "sha256": "1b6e339727ccb69a45d3a3aa870b0e0c8f2cf2d0060167af53e7def1779bb481",
+      "bytes": 2612
+    },
+    {
+      "path": "prove_owner_admission_scope.py",
+      "sha256": "7a1066b78296ceddf127b24602c3d962ab3652b4dcbe5ac92bcda64fc066eeaa",
+      "bytes": 10136
+    },
+    {
+      "path": "README.md",
+      "sha256": "6866d1fb81822066d613c7114fa3316722778b72970c459608360af32e4cc0b8",
+      "bytes": 3743
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    }
+  ]
+}

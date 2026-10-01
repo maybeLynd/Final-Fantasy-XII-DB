@@ -1,0 +1,305 @@
+{
+  "kind": "conditional original queue order, publication map qualified02",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "bytes": 9
+    },
+    {
+      "path": "control_owner_queue_order.py",
+      "sha256": "b87dfa158860fe3c6e0dab0bad6ae6a0323701fc4a18d7f28099826db252a1ff",
+      "bytes": 2925
+    },
+    {
+      "path": "freeze_owner_queue_order.py",
+      "sha256": "0c4d6bc9df4ea4035ef242d1fbc786f5ba1693361d125099b26923589c919ac7",
+      "bytes": 3148
+    },
+    {
+      "path": "original-frozen-manifest-01.json",
+      "sha256": "e1cd99c0727e019e051d57cdb3ded060ccbda6aa273c5d9ed96f71978849417f",
+      "bytes": 11328
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/owner-queue-order-source-02.json",
+      "sha256": "ded3e50a4ba3c6734e562b995620f84ef891b4fc69008553decabaa4b03ca0e5",
+      "bytes": 123559
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/owner-queue-order-source-run-02.status.json",
+      "sha256": "b39c6b9a418ea109f00f21406e2c3000f557cd015d66f57c99874262dac6fa54",
+      "bytes": 449
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/owner-queue-order-source-run-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/owner-queue-order-source-run-02.stdout",
+      "sha256": "c058c47ccf372672629a7ea9cb6c43f0e367d761c611fa0ff8985500eeb8533f",
+      "bytes": 99
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/qualify_owner_queue_order_source.py",
+      "sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+      "bytes": 5981
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/stderr",
+      "sha256": "3b98ef5a42c3846d7fd1f5adcf778b3dc72bd1d05439eb93f978160404ec48f6",
+      "bytes": 776
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/changed-tail-flag/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/owner-queue-order-source-02.json",
+      "sha256": "e0b0c452e400af9d616dd730938059868f885747f3fefb48c8723da109aeb1f4",
+      "bytes": 123559
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/owner-queue-order-source-run-02.status.json",
+      "sha256": "c7a49ff0ab97e3e4948576109fa31d9c0134c0714ca28a6248f627f53ab11ac6",
+      "bytes": 449
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/owner-queue-order-source-run-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/owner-queue-order-source-run-02.stdout",
+      "sha256": "c058c47ccf372672629a7ea9cb6c43f0e367d761c611fa0ff8985500eeb8533f",
+      "bytes": 99
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/qualify_owner_queue_order_source.py",
+      "sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+      "bytes": 5981
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/stderr",
+      "sha256": "ff636e5a210b73b8cd501d0fd027c82f0cf5250e9ffa9967ef275202449810ef",
+      "bytes": 830
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/failed-qualifier/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/owner-queue-order-source-02.json",
+      "sha256": "2a3ca1850a97812dc5472badde2223b8f235e488bc6e558d28e1d64dcd18688c",
+      "bytes": 112173
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/owner-queue-order-source-run-02.status.json",
+      "sha256": "b39c6b9a418ea109f00f21406e2c3000f557cd015d66f57c99874262dac6fa54",
+      "bytes": 449
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/owner-queue-order-source-run-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/owner-queue-order-source-run-02.stdout",
+      "sha256": "c058c47ccf372672629a7ea9cb6c43f0e367d761c611fa0ff8985500eeb8533f",
+      "bytes": 99
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/qualify_owner_queue_order_source.py",
+      "sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+      "bytes": 5981
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/stderr",
+      "sha256": "6944a270711a0a1ed0fbd2480a349616052d1366946446ecd6353282a6e1c8da",
+      "bytes": 671
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-retirement/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/owner-queue-order-source-02.json",
+      "sha256": "fa23708c17fe230bbbec668d693307fe4672ee64b87470fa4149fb07ea1d7735",
+      "bytes": 123224
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/owner-queue-order-source-run-02.status.json",
+      "sha256": "b39c6b9a418ea109f00f21406e2c3000f557cd015d66f57c99874262dac6fa54",
+      "bytes": 449
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/owner-queue-order-source-run-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/owner-queue-order-source-run-02.stdout",
+      "sha256": "c058c47ccf372672629a7ea9cb6c43f0e367d761c611fa0ff8985500eeb8533f",
+      "bytes": 99
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/qualify_owner_queue_order_source.py",
+      "sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+      "bytes": 5981
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/stderr",
+      "sha256": "e093e7fcaacc1cdab83a08ed1977a230c2a24cd40712281e5f9aff6762511eff",
+      "bytes": 722
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-01/missing-table/validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    },
+    {
+      "path": "owner-queue-order-controls-01/result.json",
+      "sha256": "ac034a291374857e71464b3390c3a00d950eaef9b91fabbfece5f879bd05ce8a",
+      "bytes": 3228
+    },
+    {
+      "path": "owner-queue-order-controls-run-01.status.json",
+      "sha256": "79ea71626cb1a1dc3e1315b814a3402554324bd3072382542c850eefcb57cf64",
+      "bytes": 439
+    },
+    {
+      "path": "owner-queue-order-controls-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-controls-run-01.stdout",
+      "sha256": "8a19911fa27741a3e8d84cb710cc4583a698dc0bac39164bebade9e5e0468209",
+      "bytes": 92
+    },
+    {
+      "path": "OWNER-QUEUE-ORDER-METHOD-1001.md",
+      "sha256": "0434b8741e65ec2c5dc2c61c506142a165c56181b0250cff8ced1ce64f6d8886",
+      "bytes": 3083
+    },
+    {
+      "path": "owner-queue-order-positive-01.status.json",
+      "sha256": "1b06c7651b89fc9c251c5f43fbce754cba4db2186c6ae2c75475b0ccd14cee17",
+      "bytes": 440
+    },
+    {
+      "path": "owner-queue-order-positive-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-positive-01.stdout",
+      "sha256": "437ec4b0a9c6225e9e6d442d41b6a85602cfbb8e2e80359a8cecdc1bb5e4d19c",
+      "bytes": 128
+    },
+    {
+      "path": "owner-queue-order-publication-qualification-01.json",
+      "sha256": "1263b9e9610370fb4fd898205e2440c6e35b3e0dfe516af8903d90c082ca6033",
+      "bytes": 1361
+    },
+    {
+      "path": "owner-queue-order-result-01.json",
+      "sha256": "cb77b078065bc187410b1d0e676e6c7e826c27dd07b037122f742bd105998aae",
+      "bytes": 10796
+    },
+    {
+      "path": "owner-queue-order-source-01.json",
+      "sha256": "1f8bb2d70e578bc7e4cfb17a810be229c8981e18a7907ec59a1bc18f4bb7aacb",
+      "bytes": 118494
+    },
+    {
+      "path": "owner-queue-order-source-02.json",
+      "sha256": "e0b0c452e400af9d616dd730938059868f885747f3fefb48c8723da109aeb1f4",
+      "bytes": 123559
+    },
+    {
+      "path": "owner-queue-order-source-run-01.status.json",
+      "sha256": "43e5cc4f572fc0ccfc5b46d475fa923a950774fc0a069d116f25005de61a6857",
+      "bytes": 579
+    },
+    {
+      "path": "owner-queue-order-source-run-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-source-run-01.stdout",
+      "sha256": "82788828bacebfe343a995e13f8994673e84efa9bb5fadbd1b0d64c42a5b0332",
+      "bytes": 99
+    },
+    {
+      "path": "owner-queue-order-source-run-02.status.json",
+      "sha256": "b39c6b9a418ea109f00f21406e2c3000f557cd015d66f57c99874262dac6fa54",
+      "bytes": 449
+    },
+    {
+      "path": "owner-queue-order-source-run-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "owner-queue-order-source-run-02.stdout",
+      "sha256": "c058c47ccf372672629a7ea9cb6c43f0e367d761c611fa0ff8985500eeb8533f",
+      "bytes": 99
+    },
+    {
+      "path": "prove_owner_queue_order.py",
+      "sha256": "065cc3c475b78125995620badc2d853605cff9dc094bec25eb2a729f53402268",
+      "bytes": 16411
+    },
+    {
+      "path": "qualify_owner_queue_order_publication.py",
+      "sha256": "c35cab466470684d1e4c379ba534fe3dd849fc52a57e1f5a3f63d53c5074699b",
+      "bytes": 4647
+    },
+    {
+      "path": "qualify_owner_queue_order_source-before-helper-scope-01.py",
+      "sha256": "143e30fd0f1e186799a96acd22a0ebb906a384b1c0e2a9174d096015b754e6d8",
+      "bytes": 5944
+    },
+    {
+      "path": "qualify_owner_queue_order_source.py",
+      "sha256": "7a8a5eaa7f8186cb3f2b2d286ba0ff46ca00055bada6dee784f7e82a64def8ae",
+      "bytes": 5981
+    },
+    {
+      "path": "README.md",
+      "sha256": "ba5320e37b6f39f737ad6ef54015e8294789c7877227104768d9e4d977f02e72",
+      "bytes": 5743
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "bytes": 3767
+    }
+  ]
+}

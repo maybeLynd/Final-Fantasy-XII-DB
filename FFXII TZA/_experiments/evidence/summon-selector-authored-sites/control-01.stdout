@@ -1,0 +1,1 @@
+{"complete": true, "cases": [{"case": "unrelated-upstream-fail", "passed": true, "diagnostic": "RuntimeError: required collector status failed/stale resume-01"}, {"case": "empty-suffix", "passed": true, "diagnostic": "RuntimeError: missing/duplicate composite entry"}, {"case": "coherent-gap-literal", "passed": true, "diagnostic": "RuntimeError: gap whole-byte control changed"}]}

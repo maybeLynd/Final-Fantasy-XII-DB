@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-reset-order.py", line 56, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-reset-order.py", line 17, in main
+    if raw.get('pdata_entries')!=[[0x611F80,0x611FE2,0x1DA8660],[0x5DE290,0x5DE2CF,0x1D9FE28]]:raise ValueError('wrong named root metadata')
+                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wrong named root metadata

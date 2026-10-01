@@ -1,7 +1,7 @@
 ---
 system: in-game settings command table (Config screen -> save-backed options record)
 category: 19-Save-Load-Settings
-status: DOCUMENTED
+status: AUDITED
 owner_layer: Save_Load_Settings
 evidence_tier: 1
 verified_against:
@@ -18,8 +18,11 @@ audit:
   last_pass: 2026-09-29
   last_pass_kind: falsification
   last_pass_state: opus-settings-falsification-pass-1
+  crossref_clean: true
+  reopened_count: 0
   note: written for FABLE-REQ-SWE2-DATA-SETTINGS-COMMAND-TABLE; pending
     SWE2-AUDIT-SPEC first review
+  promoted: 2026-10-01 DOCUMENTED -> AUDITED by SWE2-AUDIT-SPEC (FRONTIER eligibility census sweep): falsification record opus-settings-falsification-pass-1; audit_crossrefs at HEAD reports 0 unresolved findings; cross-subsystem neighbours dispositioned in their section; killer observations recorded in the pass; promoter is not the last substantive author (last substantive commit: SWE2-DATA)
 container_format: options-record + ui-descriptor
 ---
 
@@ -943,3 +946,46 @@ were turned into checks at their instructions, independently of the page's own r
 - the ×2 speed multiplier;
 - subtitles on for language ids 1 and 6;
 - the Japanese-voice bit clear for ids 0, 7, 8, 10 and 11.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
+
+*Functions this page named only at their entry. Each was read from the certified image; the sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`settings_interior.py`](../../_index/candidates/opus-settings-interior-1001/settings_interior.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00181390` | 96 B | forwards its six arguments to `001B0A20`, with `001B1C00()` inserted as the first | `001813AF`, `001813D6` |
+| `00198960` | 109 B | swaps the two dwords of each pair `01DF176C`/`01DF1770`, `01DF18C8`/`01DF18CC` and `01DF1A24`/`01DF1A28`, and also writes each swapped pair to `01F80164`/`01F80168`, `01F802C0`/`01F802C4` and `01F8041C`/`01F80420` | `0019896C`, `00198972`, `00198978`, `00198990`, `001989B4` |
+| `001DC190` | 76 B | forwards its four arguments to `00211200`, with `00210B30()` inserted as the first | `001DC1AE`, `001DC1C2` |
+| `001DC1E0` | 84 B | forwards its five arguments to `00211210`, with `00210B30()` inserted as the first | `001DC1FE`, `001DC21A` |
+| `001E0920` | 82 B | on the object at qword `+0xDF8` of `00796E20()`, calls `0079AEE0(it, i)` for i = 1 to 3; then calls `0079AE40(00796E20(), i, 0)` for i = `0x1C` to `0x98` | `001E093E`, `001E0945`, `001E095D`, `001E0964` |
+| `001E0AA0` | 90 B | when `00198790()` is non-null, tail-calls `00197710(it, dl, byte 2 of 001E0650(), byte 0 of 001E0650())` | `001E0AAC`, `001E0AC4`, `001E0AEA` |
+| `001E0CE0` | 67 B | returns dword `+0x184` of the object at qword `+0xDF8` of `00796E20()`, negated when `00198790()` is non-null and `001976E0` on it returns non-zero | `001E0CFA`, `001E0D0E`, `001E0D1A` |
+| `001E0D30` | 67 B | returns dword `+0x188` of the object at qword `+0xDF8` of `00796E20()`, negated when `00198790()` is non-null and `001976F0` on it returns non-zero | `001E0D4A`, `001E0D5E`, `001E0D6A` |
+| `00231400` | 474 B | returns 0 or 1. After `00233050` and `00233110(rcx, stack block, 00233050(), rdx)`, the word at stack `+0xA2` indexes a 32-byte record of `[rcx+0x10]` (a negative word returns 0); when the record's float `+4` exceeds 0.001 (`008C5B2C`) it takes the height of the record's plane (floats `+0`/`+4`/`+8` through the point at `[rcx+8] + 16*word +0x10`) at the x and z of the point `rdx`; with `r9d` 0 that height replaces the y of a stack copy of the point, otherwise a height above the y returns 0. It then turns x and z plus the integers `+0x38`/`+0x3C` into a cell of the grid at `[rcx]` (cell sizes `+0x10`/`+0x14`, odd columns shifted by half a cell, bounds `+8`/`+0xC`, -1 outside) and calls `0022F830` on a stack query {callback `0022F8B0`, `rcx`, that cell, byte 6, the point}; it returns 1 when the query's dword `+0x20` stays 0 | `00231482`, `002314AA`, `00231548`, `002315A9`, `002315B2` |
+| `00232160` | 99 B | for a word `r8w` below `0x5000`: from `0x4000` up, tail-calls `00381D90([rcx+0x18] + 0x90*(r8w-0x4000), rdx, r9)`; below `0x4000`, copies the first 16 bytes of the 32-byte record `[rcx+0x10] + 32*r8w` to `rdx`; from `0x5000` up it does nothing | `0023216B`, `0023218B`, `00232193`, `002321A0`, `002321BE` |
+| `0023B2E0` | 78 B | when `00229E20()` is non-zero: when `002DDDA0()` is 0, calls `00229ED0(1)` and tail-calls `00182FB0(1)`; when it is 1, calls `00229ED0(2)` and tail-calls `00182FB0(2)`; any other value does nothing | `0023B2E4`, `0023B2ED`, `0023B2FE`, `0023B30C`, `0023B324` |
+| `0023E710` | 82 B | calls `00244F50(0xF0, 0023E770, record)` with a stack record {dword 0, qword `ecx`, qword `dl`} | `0023E72F`, `0023E737`, `0023E743`, `0023E74B` |
+| `00290030` | 33 B | stores `xmm0` at float `+0x1D7C` of the object at qword `+0x10F80` of `[0209BE80]`, when both are non-null | `00290037`, `0029003C`, `00290048` |
+| `00290060` | 85 B | with `[0209BE80]` and its qword `+0x10F80` non-null: calls `002C63D0` on that object, and when `002544B0()` returns 1 sets word `+0x1D78` of that object to `0x80` and bit 2 of its word `+0x1D7A` | `0029007E`, `00290083`, `00290099`, `002900A7` |
+| `00290190` | 21 B | tail-calls `0016D6A0([0209BE80] + 0x8FA0, ecx)` | `00290192`, `00290199`, `002901A0` |
+| `00290280` | 74 B | with qword `+0x10F80` of `[0209BE80]` non-null, sets bit 1 (when `ecx` is non-zero) or bit 0 (otherwise) of that object's word `+0x1D7A` to bit 0 of `dx` | `00290293`, `002902A3`, `002902AB`, `002902B9` |
+| `00290C00` | 66 B | with `[0209BE80]` non-null: calls `003F5070` on its qword `+0x10F10` when that is non-null, then tail-calls `003F7490` on its qword `+0x10F30` when that is non-null | `00290C1C`, `00290C28`, `00290C38` |
+| `002911D0` | 324 B | looks up `edx` in the list at qword `+0x10F40` (`003F3580`); a found node gets float `+0x64` = `xmm2` and dword `+0x48` = `002713B0(r9d)`. Otherwise it allocates a `0x80`-byte node (`00273A30(0, [[0209BE80]+0x10FC0], 0x80)`), loads qword `+0x10F50` once through `0024A5A0([01E0C1E0])`, fills a stack record from an entry of the table at `[[+0x10F50]+0x20] + 0x30` (word +0 plus 2, word +2, dword +4 minus 4 in the low 12 bits and unchanged in bits 12-23), initialises the node with `003F3510` and stores `003F34D0(list, node)` back in `+0x10F40`; returns the node | `00291204`, `00291211`, `00291234`, `002912AF`, `002912F0` |
+| `002DE080` | 36 B | sets bit 13 of the dword at `[0215E6E0]` to bit 0 of `ecx`, then tail-calls `0035FF30(0, that bit)` | `002DE08A`, `002DE08D`, `002DE093`, `002DE09F` |
+| `002DE160` | 37 B | sets bit 9 of dword `+4` of `[0215E6E0]` to bit 0 of `ecx`, then tail-calls `001E0FF0(that bit)` | `002DE16A`, `002DE16D`, `002DE174`, `002DE180` |
+| `002DE190` | 37 B | sets bit 8 of dword `+4` of `[0215E6E0]` to bit 0 of `ecx`, then tail-calls `001E1020(that bit)` | `002DE19A`, `002DE19D`, `002DE1A4`, `002DE1B0` |
+| `002DF4D0` | 85 B | calls `001DC1E0(ecx, edx, r8d, r9d, 1 when 002DDE20() is 0 else 0)` | `002DF4EE`, `002DF502`, `002DF50B` |
+| `0032CA70` | 538 B | calls `003CC130(rcx + 0x350, rcx + 0x60, ...)` with three output floats and returns 0 when the one written through `r9` is above 1.3962634 (`00D108C4`). Otherwise it calls `003CC480(0, the one written through r8 plus 0.25 01CEBB68, 0)` into a stack vector, applies `00202B70` to the stack vector (0, 0, 3.0 `008F311C`, 1.0 `01CEBBA8`) and that result and stores it as the 16 bytes at `+0x300`; runs `00232490` and `00231690` (with `0x13` and `01EED410`) on qword `+0x2C8`, then `00230C00` with 4 (when `00232490` returned 0 and `00231690`'s float is not strictly between 0 and 0.27 `00D108B4`) or -1 and the float 0.27, copying its 16-byte result to `+0x300` when it returns non-zero; finally copies the 16 bytes at `+0x350` to `+0x310` and returns 1 | `0032CAAD`, `0032CAB7`, `0032CB5F`, `0032CBB4`, `0032CC10` |
+| `00342F80` | 132 B | when `00267310(byte +0x15 of rdx)` is non-zero, tail-calls `00360960` with word `[r8]`, dword `[r8+0xC]` and the signed low nibble of byte `[r8+2]`; otherwise, when `00360C20()` is 5 and `002DEC00()` differs from word `[r8]`, tail-calls `002DED70` (the nibble non-zero, or dword `+0xC` positive with the word `0x5A` or `0x5B`), `002DECE0` (the nibble 0 and dword `+0xC` not positive) or `002DEC80` (the rest) | `00342F8D`, `00342F9E`, `00342FAB`, `00342FC6`, `00342FF9` |
+| `0035D280` | 79 B | calls the function `rdx` on the node `rcx`, and `002A2720` on the node when that returns non-zero; then recurses over the children from qword `+0x18`, each call returning the next sibling; returns qword `+0x20` | `0035D290`, `0035D299`, `0035D2B6`, `0035D2C0` |
+| `0035D2D0` | 79 B | calls the function `rdx` on the node `rcx`, and `00246AC0` on the node when that returns non-zero; then recurses over the children from qword `+0x18`, each call returning the next sibling; returns qword `+0x20` | `0035D2E0`, `0035D2E9`, `0035D306`, `0035D310` |
+| `0035E580` | 26 B | returns 1 when `rcx` is non-null and bits 19 and 20 of its dword `+0x44` are both set, else 0 | `0035E587`, `0035E58A`, `0035E596` |
+| `0035FF30` | 41 B | for `ecx` below 2, sets bit 2 of byte `+9` of the `0x294`-byte record `022CAE90 + 0x294*ecx` to `edx != 0` | `0035FF38`, `0035FF3F`, `0035FF49`, `0035FF55` |
+| `00382020` | 94 B | returns 1 when the float at `+4` lies strictly between -1.0 (`01CEBC9C`) and 1.0 (`01CEBBA8`) and `00861F14(x*x + z*z)` of the floats at `+0` and `+8` is below 1.0, else 0 | `00382036`, `0038203B`, `00382059`, `0038205E` |
+| `003EF290` | 79 B | calls `002DEE50(002DEC00(), edx, 0)`; then, with `2*edx`, calls `003611F0(it, 1)` and `003634B0(it, 0)` and stores it in dword `+0xC8`; stores 6 in byte `+0xC0` | `003EF2AB`, `003EF2B0`, `003EF2B9`, `003EF2C7`, `003EF2D2` |
+| `003F6B30` | 124 B | fills a stack block with `00271360(block, rcx)`, writes six qwords (`0x1000000000000002`, `0xE`, `0x53001`, `0x47`, `0x44`, `0x42`) at the block's write pointer (qword `+0x10`) and advances it by `0x30` (the 16 bytes first copied there from `02064AB0` are overwritten), then calls `002712E0(rcx, block, 1)` | `003F6B41`, `003F6B6A`, `003F6B98`, `003F6BA1` |
+| `00405150` | 82 B | with `[02B62D88]` and its qword `+0xC0` non-null: calls `00244DD0` on the latter when bit 20 of its dword `+0x40` is clear, and in either case sets bit 2 of dword `+0xC8` of `[02B62D88]`; when `+0xC0` is null, sets that bit only when bit 0 of `+0xC8` is set | `0040516C`, `00405175`, `00405181`, `0040518D` |
+| `004052D0` | 61 B | with `[02B62D88]` and its qword `+0xC0` non-null and bit 2 of its dword `+0xC8` set, calls `00246AD0([02B62D88], [+0xC0])` and clears that bit | `004052EC`, `004052F5`, `00405301` |
+| `004082D0` | 38 B | with `[02B62D80]` and its qword `+0xC0` non-null, tail-jumps to `00244DD0` on the latter when bit 20 of its dword `+0x40` is clear | `004082DC`, `004082E8`, `004082EF` |
+| `00408AA0` | 43 B | with `[02B62D80]` and its qword `+0xC0` non-null, tail-jumps to `00246AD0` when the latter's dword `+0xD8` has bit 2 set and bit 3 clear | `00408AB8`, `00408ABE`, `00408AC2`, `00408AC4` |
+| `0046DB10` | 12 B | tail-calls `0035EEB0(0, ecx, 0)` | `0046DB12`, `0046DB15`, `0046DB17` |

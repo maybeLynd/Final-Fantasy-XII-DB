@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-handle-accounting-qualification-03.py", line 106, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-handle-accounting-qualification-03.py", line 14, in main
+    pins=[];v,ix=P.load(src,'handle-accounting-qualification-source-01.json',pins);S.validate(v)
+                                                                                   ~~~~~~~~~~^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 61, in validate
+    raise ValueError("memory/address/access annotation disagrees at " + record["pc"])
+ValueError: memory/address/access annotation disagrees at 0x36c61a

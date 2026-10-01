@@ -1,7 +1,7 @@
 ---
 system: Experience and License Point award
 category: 13-Rewards-Progression-Economy
-status: PARTIAL — SECTION-03 independent peer acceptance pending (GR-16); reward-row binding lifetime (GR-17) and edge-state reachability (GR-18) open; player view, evidence table and Related added 2026-09-30 (FABLE)
+status: PARTIAL — edge-state reachability (GR-18) partial; SECTION-03 independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1); reward-row binding lifetime (GR-17) answered 2026-09-30; player view, evidence table and Related added 2026-09-30 (FABLE)
 owner_layer: PrimaryOwner:Rewards_Progression_Economy
 evidence_tier: 1
 verified_against:
@@ -24,7 +24,7 @@ audit:
   reopened_count: 0
 production_review:
   section: SECTION-03
-  status: locally validated; peer acceptance pending
+  status: locally validated; independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1)
   scope: original reward consumers, selected caller instructions and retained binding observations
   new_live_session: false
 
@@ -32,7 +32,7 @@ production_review:
 
 # Experience and License Point award
 
-> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending** (registered as GR-16, 2026-09-30).
+> **SECTION-03 production review, 2026-09-22; ~~independent peer acceptance pending~~** (registered as GR-16, 2026-09-30). *(OPUS, 2026-10-01: independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, [review](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), GR-16; N1: `run_review.py` reproduces against the pinned pre-image of the reward-binding checker, and the sealed checker agrees with the preserved observation).)*
 > Corrected against original EXE instructions, 71 bounded native controls and independent review
 > of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
 > a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.
@@ -218,7 +218,7 @@ snapshot of the entire party. No network implementation is part of this update.
 
 - [x] **Section 03's independent peer acceptance** (**GR-16.**) The production review that §§1–8 rest on has the
       owner's review ([`section03-owner-review.md`](../_index/candidates/section03-owner-review.md)) and no auditor
-      verdict. *(GR-16 answered 2026-10-01: SWE2-AUDIT-SEM's independent review `f41194772`, [record](../../_index/candidates/auditsem-review-section03-1001/REVIEW.md), ACCEPT-WITH-NARROWING; register restated by OPUS for SWE2-DATA.)*
+      verdict. *(GR-16 answered 2026-10-01: SWE2-AUDIT-SEM's independent review `f41194772`, [record](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), ACCEPT-WITH-NARROWING; register restated by OPUS for SWE2-DATA.)*
 - [x] **Reward-row binding lifetime** (**GR-17.**) A unit caches its two reward-row pointers once, at install
       (`+0xE70` / `+0xE78`; [the defeat contract](CONTRACT-defeat-rewards-sequence.md) §3). Whether the tables they
       point into can be rebound or released before that unit's defeat is not read. *(Answered 2026-09-30, SWE2-ORACLE for OPUS `3613e9cdb`; register row GR-17, records [`gr17-reward-table-lifetime-0930`](../_index/candidates/gr17-reward-table-lifetime-0930/README.md) and [`gr17-effect-residue-0930`](../_index/candidates/gr17-effect-residue-0930/README.md): along direct control flow there is no window. Only manager-0 actors own battle units, and every free of the reward tables is followed in the same call by manager 0's unload, whose whole-record memsets zero `+0xE70` / `+0xE78`; the one data-gated chain is closed by the shipped effect data. Indirect dispatch during teardown is not followed.)*

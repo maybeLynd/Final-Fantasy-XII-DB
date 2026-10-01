@@ -62993,3 +62993,174 @@ MapLightingTuning +0xAC/+0xBC to named floats; PDeferredLightingBase
 the sustaining sites. `check_census_widths` 0 mismatches; `check_gap_debt`
 TOUCHED 0 / AMBIGUOUS 2 / INHERITED 1; `types_index --validate` 0 errors.
 UNMEASURED gap debt now 448 rows / 23,818 bytes (from 631 / 25,282).
+
+### 2026-10-01 — SWE2-STRUCT: SD-141 receiver/consumer trace — flying-fade pair reaches only the GPU
+
+`OPUS-REQ-STRUCT-SD141-CONSUMERS-1001` answered in
+`_index/candidates/swe2struct-sd141-receiver-1001/` (checker FAILS 0). `00604750`'s `r14` is the
+mapped view of a D3D11 ring-buffer slot (`006097B0`/`00626060` map, `0062C300` commit; record at
+`this+0x4A8+cursor*80`) = `SceneWideParameterConstantBuffer`, `+0x5D4`/`+0x5DC` the flying-fade pair.
+The 0x598-byte snapshot at `rbp+0x270` is `this`-owned and `006084B0`-filled; its `+0x2A0` tail copies
+`02CB8160` wholesale so `02CB8410`/`02CB8414` land at `+0x550`/`+0x554` (review H1-H3 hold). New
+finding: the staged double-buffer at `this+0x4E0`/`+0xA78` receives the pair in whole-struct copies
+but has **no CPU reader** (sole `imul ×0x598` site is `00604750` itself; no same-receiver operand at
+the slot-pair displacements); `r14` fields are write-only on CPU (291 stores, 0 non-lea loads). The
+pair's sole consumer is GPU-side — the 517 lit-shader blobs of OPUS's `sd141-gpu-consumers-1001`
+(uncommitted at trace time).
+
+### 2026-09-30 — SWE2-DATA: DD owner-read row corrections — batch 2 (SD-60..67), batch 3 (SD-100/124/125/128), batch 4 (C1..C11) and the SD6x adoption narrowings
+
+Three ACCEPT-WITH-CORRECTIONS review passes applied to the owning pages and the register
+(`auditsem-review-dd-owner-read-2/3/4-0930`, `auditsem-review-sd6x-adoption-0930`; all `dd*_sem.py`
+FAILS 0). The SD-60..SD-67 register rows were already adopted at `583b096f7`; this pass lands the
+owning-page corrections and the remaining row wording.
+
+- **SD-60 / camera page** — "no reader of those globals and no device class" was false (review §3):
+  `01FD3620` is the VIF1/VU1 vertex-matrix destination (`0020EA50`), `01FD3660`/`01FD3664` the Z-clamp
+  bounds (`00210230`), and the device is `PrimitiveRendererD3D11` whose `+0x30` slot `006CAF40` copies
+  the 16 dwords to `+0x10` and sets `+0x208F3`. Data-structure block, call chain and checklist updated.
+- **SD-61 / array-members page** — the "none of the 70 call sites forms those arguments" limit was
+  false at all 70 sites: `+0x18` is the annotation key (`"WriteMask"` at the 69 observed sites), `+0x20`
+  `PTypeDefault<unsigned int>`, linked into the annotated `m_count` member's list at `+0x38`.
+- **SD-62 / same page** — the two non-type elements are already registries on three pages: `01F2E330`
+  is the class-descriptor root (384/385 descriptors, stored at `+0x70` by `00632D80`), `01F2E780` a
+  `PWorld`/`getInstanceCount` list-headed record; cold paths are static init/`atexit` only.
+- **SD-63 / same page** — answered (OPUS `ce6a553b2`): the 703-byte body `005FD2A0` builds Phyre's
+  scene-wide shader parameter table (23 named parameters with index/type codes) and `005FD700` lays
+  out its constant buffer (`02CB8458`, `02CB8460`). Regression `sd63_scene_layout.py` FAILS 0.
+- **SD-64 / file-schema page** — answered (OPUS `02d334dbe`): the non-class names are string payload of
+  `PShaderParameterDefinition`/`PShaderStreamDefinition`/`PStreamInputDescD3D11`/`PShaderPassInfo`/
+  `PMaterialSwitch` objects, not file-schema entries. `sd64_names.py` FAILS 0.
+- **SD-65 / file-schema + packed-namespace pages** — answered (OPUS `49f9a523b`): no shipped class takes
+  the dynamic-member route — `w7` bit 0 (the loader's dynamic-class flag) is set on 0 of 684,244 shipped
+  class records, and 527/527 file-declared members are statically registered. The namespace page's `w7`
+  cell corrected: values are 0/2/8/12/20/32/34/40 (the earlier list missed 20, in 5 records); bit 0
+  identified, bits 1–5 open. `sd65_census/loader/members.py` FAILS 0.
+- **SD-66/SD-67 / file-schema page** — SD-66's candidate was answered 2026-09-14 (`02CF8580` is a
+  `PClassDescriptorWithoutDefaultConstructor<PClassDescriptorDynamic>` descriptor — attach-slot `+0x40`
+  registrations exist, five bodies / 19 calls, all reflection metaclasses). SD-67 answered in full
+  before registration (member-registration page §20, `414a737fd`): `m_streamBindings` is
+  `PSharray<const PMeshInstanceSegmentStreamBinding *>`, 16 B at native `+0x38` — the §7 item re-pointed.
+- **Batch 3 (rows + pages)** — SD-100 mode 3 corrected (steps `+0xA0` per tick while `+0x88` non-zero,
+  primes `+0x9B` and returns to mode 0 at zero — the "counts down then resumes" reading was wrong);
+  SD-124 narrowed to what `00320040(2,·)` admits (`0035BB20(k)` returns the k-th compacted battle-menu
+  member slot `022C8080 + k×0xC0`, `+4` the packed actor handle — `+0x2FE0` is a member slot's actor
+  handle); SD-125 narrowed to the meaning (`002778C0` sets `0x4000` at `002795B5`, clears `002795C2`);
+  SD-128 narrowed (`002C7660` is labelled and paged — the display-record channel evaluation, caller
+  `002C62B0`; a fuller read remains). Pages: selection, battle-HUD, measuring-text.
+- **Batch 4 (C1..C11)** — C1 dedup landed at `583b096f7`; C2/C9/C11 page corrections applied
+  (four-globals strike, the Steam page's AB-8 SUPERSEDED presentation corrected to "fed natively,
+  register word pending", the `02099DB0` modding note bounded to GB-3's rip-relative scope); C3–C8 row
+  narrowings applied with the parent-database citations the review names (AB-8 displacement census,
+  DM-2/vtable-index/RC-10, render-event-selection `0036C5A0`, RC-11, OV-40); C10 names the `00432300`
+  kernel in SD-140; the two optionals folded (MSVC `pre_cpp_initialization` shape, RC-11 part-2 spin).
+- **Adoption C1** — SD-165 restated to carry the dropped second copy's question (any player-visible
+  message/fallback/crash on a null return): the OPUS census (`sd165-alloc-null-tests-0930`, 206 sites:
+  50 tested, 17 unchecked dereferences that fault, 134 handed on untraced) answers that an unchecked
+  dereference faults and no message/fallback body is on any seen path; the handed-on half stays residue.
+- **Adoption C2/C3** — the register's trailing newline restored; the discharged READY row tasks
+  (SD-60..SD-67, the dedup publish task, CONTRACT's register-dirty request) finished citing
+  `583b096f7` and this pass's publish.
+- **UQ-218 pass-18** — the two §3 narrowings applied to `uq218-pass18-0930/README.md`: N1 (op `0x09`
+  has a name arm through `00409930`/`00409780`; the `+0x2A` zero base rests on the 33,753/33,753 data
+  control, writers untraced) and N2 (144 models shipped; the rows name 125 distinct companion files,
+  `h0000.efx` ships unnamed).
+## 2026-10-01 SWE2-STRUCT — derived-route census batch (RenderContext subtree)
+
+- Route additions: `STATIC 0x02CC0410` on `RenderContext02CC0410` (ctor
+  005FD050 constructs the .bss static in place); child EMBED/CHAIN routes
+  already declared now seed.
+- New censuses registered: `render-context-02cc0410` (649 acc / 414 off /
+  23 fns), `render-primitive-pass-1e8`, `render-context-pass-state-block`,
+  `primitive-renderer-d3d11` (ranged-size driver, AT MOST bound injected),
+  `p-shader-pass-state-d3d11`, `p-post-effect-base`.
+- `PFXAAD3D11`: empty census, not registered. `NameRegistryNode`: generic
+  helper propagation (242 offset-0 stores across 242 stubs) — census rejected
+  as noise; route retained as a containment fact.
+- 8 `WIDTH DELIBERATE` markers (7 ctor bulk-init merges on RenderContext
+  fields; `PPostEffectBase +0x48` dword accesses under an 8-byte tail decl).
+- Gates: widths 0 mismatches; gap-debt TOUCHED=0 / INHERITED=7; index 0
+  errors. UNMEASURED 411 rows / 23,423 B.
+## 2026-10-01 SWE2-STRUCT — ARG route verb implemented + piloted (ruling pending)
+
+- `gen_route_seeded_census.py`: `ARG <reg> 0xFUNC` added — parse rule,
+  `SEEDABLE`, host = the named function, walker seeds the named argument
+  register at offset 0 (VTABLE shape). Additive; inert for existing routes.
+- Pilot (in-process, `types.tsv` untouched): `ActorDefinitionPayload`
+  `ARG rdx 0x0026C8C0` → 7 offsets; `AuthoredExpressionBlock`
+  `ARG rcx 0x0042FDB0` → 21 offsets (independently re-derives the
+  four-record layout + mode byte); `AuthoredExpressionRecord` EMBED child
+  → 6 offsets (redundant); `ActorDefinitionCountedU16Section` RELOFF child
+  → 0 (combine not modelled under ARG).
+- Record: `_index/candidates/arg-route-form-pilot-1001/README.md`.
+- `SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001` filed (rev 44929):
+  accept/refuse verdict on the grammar form before any `types.tsv` change.
+## 2026-10-01 SWE2-STRUCT — seedable frontier probed to closure (empty-census cohort)
+
+- All 152 direct-seedable types without a registered census driven in-process:
+  every one produces an empty census. The registered set is complete under the
+  current grammar; empty results preserve the route rows as provenance (no
+  pruning — an empty census does not falsify the root).
+- Gates unchanged: TOUCHED=0 / AMBIGUOUS=2 / INHERITED=7 / UNMEASURED 411 rows
+  / 23,423 B; widths 0 mismatches; index 0 errors.
+- Lane blocked on external rulings: FRONTIER ARG grammar verdict
+  (`SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001`), AUDIT-SPEC OV58D review.
+
+## EC7-205 batch-171 seal - 2026-10-01
+
+- Identity SWE2-EC7, package
+  SWE2-EC7-SHARED-HUB-IDENTIFICATION-171, 22 bodies
+  (6 multi-caller + 16 top one-caller frontier by
+  size, 457..137 B) routed to 14 bearing hosts.
+  Claim released by the rev-40484 board executor
+  while decode sat uncommitted; re-claimed at rev
+  41464 once the appends landed.
+- Decoded subjects: `00290230` the `0209BE80`
+  `+0x10FA3` byte setter shared by three callers;
+  `004041D0` the four-slot record teardown;
+  `003D8DE0`/`003D8D70` the keyed `02B4D7D0`
+  element-row vector/byte stores; `003A3E20` the
+  `+0x44`/`+0x42` invalidation stamp; `0028E240`
+  the `+0x10F68`-gated refresh dispatch;
+  `0039D6C0`/`0039D5A0` the `02F8F2F8`
+  counter-indexed and 8-channel transform-record
+  constructors; `0020DC70` the MSVC string assign;
+  `0056C3A0` the child-visibility combinator;
+  `00402C30` the map record-list row constructor;
+  `00442380`/`00532520` the 14-slot field sweep
+  and extended apply behind `00442460`'s table;
+  `0055F780`/`00561DC0`/`00561100` the
+  `00560910` subtree refresh/broadcast/enumerator
+  triplet; `0019A6E0` the FST chunk-layout
+  planner; `00330190`/`00330220` the `022C6CA0`/
+  `022C6CC8` low/high bit-lane slot writes;
+  `00159870` the bounded wide-char copy
+  (0x80070057/0x8007007A); `00204D10` the
+  voice-request intrusive-list node factory;
+  `00366080` the `022CBE00` bin-record pointer-
+  table builder.
+- Interior anchors: 6,412 total, 0
+  mid-instruction, 0 outside-body.
+- Paragraph-address gate: all UNSUPPORTED
+  cites pre-existing (batch tails at EOF).
+- Hash audit: clean - standing unreproduced/EXP
+  stamp set only, nothing on batch hosts.
+- Publish-neighbour guard: ADDS NOTHING
+  (single-doc and 14-host reruns; the first
+  full-batch run's 5 font-data refusals did not
+  reproduce on a complete worktree side).
+
+### 2026-10-01 — SWE2-AUDIT-SPEC: promotion sweep + review wave
+
+- **AUDITED promotion sweep** (`058c93e21`): 29 pages DOCUMENTED → AUDITED against a fresh
+  `audit_crossrefs.py` regen (446 findings / 519 docs; the Sep-29 census input was stale — two
+  pages had drifted to 6 and 5 findings and were blocked, not promoted). 8 blocked conditions
+  recorded in `_index/candidates/auditspec-review-audited-sweep-1001/`.
+- **Reviews** (`95521f214`, `d528901bd`, `47c9548dc`): PASS7-TIERS, PASS28 rulings (53 unruled
+  claims at HEAD = post-commit drift, next ruling pass owed), SECTION-06 (85 bodies hash-verified,
+  +870/+878 byte2&4 suppression byte-verified), SECTION-03 (concur AWN; `002F8BB0` anchors
+  re-derived — NULL recipient does not bypass shared division), links-scope repair (L1–L11,
+  EVIDENCE-POLICY rule 17), and the `0061C250` fill-loop correction (rax=rcx+0x10; qwords
+  +0..+0x30, dword +0x38, vtable `00D54348`@+0x40, COL `01D12448` — old reading 0x10 short).
+- **Routed:** textgap new-cites registry rows (OPUS), DDRES-B7/B20 stale controls (CONTRACT),
+  RT-1 duplicate id (SWE2-DATA). CKPT10R3 remains gated on DATA's progress repair.

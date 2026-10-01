@@ -1,0 +1,14 @@
+{
+  "question": "Does actual boot184F20 initialise the same renderer+C38 four-bank records and CB8 rotation used by185A90/186230 before189000 publishes01F7F598?",
+  "hypotheses": [
+    "H1 initializer establishes valid0..3 bank index and empty/bounded bank cursors before publication",
+    "H2 constructor delegates or leaves the consumer fields unresolved, requiring specific native/runtime initialization evidence"
+  ],
+  "method": "A retained canonical boot/global facts plus exact original constructor dataflow/CFG. Cached refs only candidate discovery; no all-writer/alias absence. B only for a remaining bounded callee write; live only for an exact actual-state/caller-order claim.",
+  "existing": "Canonical game-application BootSingleton01F7F598189000; accepted tracker189120 global getter; producer queue append/186230 four-bank and17D6E0 pump now delivered. Their runtime-state premises remain open.",
+  "discriminator": "Exact same-object stores/arguments for queue banks/index and their order beforeglobal189067, with allocator/vcall effects explicitly opaque.",
+  "controls": "Shipping EXE/ref span/unwind/root identity, actual reviewed memory-role adapter controls, complete local normal CFG and changed initialization source refusal; no count/growth ratio.",
+  "limits": "Constructor instruction effects conditional on reached code/backed object/normal ABI, not live success, scheduling, dynamic identity, lifetime, indirectwriter or natural reachability.",
+  "consumer": "Existing FABLE title/nativequeue consumer and OPUS renderer layout contracts after required independentreview.",
+  "stop": "No initializer label by adjacency; use184F20 actual calltarget from189061. Stop if prior accepted source already settles this exactclaim; no newgame/menu/instrument/platform."
+}

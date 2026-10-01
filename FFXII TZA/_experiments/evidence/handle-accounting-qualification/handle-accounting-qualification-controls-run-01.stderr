@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control-handle-accounting-qualification.py", line 28, in <module>
+    if not(r.returncode and rec['expected_error_seen'] and rec['result_absent'] and rec['normalized_absent']):raise ValueError('concrete refusal failed '+label)
+                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: concrete refusal failed changed-guard-clear

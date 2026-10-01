@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	00327F60	0x0	w	mov byte ptr [r13], r12b	route-seeded ARRAY 0x02089378 stride=0x170 index=setIndex base+0x0	
+00327F80	GambitRuntime_RebuildAllOrderSets	0032810B	0x0	w	mov byte ptr [r13], r12b	route-seeded ARRAY 0x02089378 stride=0x170 index=setIndex base+0x0	
+00328140	GambitRuntime_RebuildOrderSetFromConfig	003282A0	0x0	w	mov byte ptr [r13], r12b	route-seeded ARRAY 0x02089378 stride=0x170 index=setIndex base+0x0	

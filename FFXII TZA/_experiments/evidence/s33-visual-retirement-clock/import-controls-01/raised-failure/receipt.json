@@ -1,0 +1,20 @@
+{
+  "case": "raised-failure",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\runner.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\raised-failure",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\original-prefix.py"
+  ],
+  "exit": 2,
+  "terminal": true,
+  "exception": null,
+  "fixture_sha256": "68302509d99632412d019576c52ebe5b8e89dc0a97be2a966cfdb1ed682575f7",
+  "observed": {
+    "prefix_returned": false,
+    "exception": "RuntimeError('qualified upstream failure')"
+  },
+  "expected_behavior_observed": true,
+  "method": "Labelled host module fixture through the exact retained import-prefix statements; no native/whole-S33/game execution"
+}

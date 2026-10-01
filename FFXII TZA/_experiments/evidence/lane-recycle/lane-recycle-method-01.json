@@ -1,0 +1,18 @@
+{
+  "question": "Does this original lane callback ticket identify the submitting owner generation, and do the examined sweep/recycler locally refuse recycling solely because pending+34 is nonzero?",
+  "hypotheses": ["H1 ticket/recycler preserve an original-request generation fence or pending guard", "H2 ticket contains slot/lane only; completion checks current metadata; recycler can push the slot to free list without a local pending test"],
+  "method": "A STATIC_ONLY retained verified original bodies plus three missing exact slices",
+  "why_cheaper_sufficient": "Ticket bit composition, receiver operands, recycler calls/tests and exact list writes are bounded machine-code rules. Natural outstanding IO/delivery ordering is not established by these rules and remains a separate scheduling question. A forced native callback would not prove natural late delivery.",
+  "existing": "lane-stale-release frozen65/source01; original catalog code, current canonical NameBindingSubRecord generation-defence language; no family/corpus census rerun",
+  "identity": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8/base120000; shared reviewed adapter",
+  "new_targets": ["002E6EB0..002E7072", "002E9470..002E9552", "002E4000..002E4145"],
+  "retained_targets": ["002E4E50", "002E2660", "002E6A80"],
+  "premises": "Valid record/list/metadata and lane0..31, normal ABI/returns, no interfering writes. Pending mask is a field value, not proof of outstanding accepted IO. Reached sweep/recycler is conditional, not gameplay reachability.",
+  "controls": ["Revalidate retained instruction bytes against exact shipping image, no recapture", "Complete local CFGs and operand/dataflow/write footprints", "Ticket identity independent of submitting generation by bit construction/receiver decode", "Actual CLI missing/failed upstream and changed ticket/recycler code refusals"],
+  "acceptance": "Exact ticket index/lane representation, current-metadata generation check and local pending-guard absence/pushfree behavior proved or refuted; actual late-delivery/reuse safety remains OPEN",
+  "falsification": "Original submitted generation operand in ticket/receiver, or a reached recycler pending test preventing pushfree, falsifiesH2",
+  "budget": "1001B new slices,505B relevant retained slices; no generic runtime/emulator infrastructure or live setup",
+  "consumers": ["FABLE source-owner lifetime interpretation", "OPUS NameBindingSubRecord ownership/release/callback contract", "FRONTIER precise scheduling/reachability preparation"],
+  "cleanup": "Finite read-only reference and private source controls only; no game/PC/native/instrument/save/config/reference/peer mutation",
+  "next_discriminator": "Caller/service guarantees that actually prevent a callback arriving after slot recycle, with accepted IO identity; pending-bit samples alone are insufficient"
+}

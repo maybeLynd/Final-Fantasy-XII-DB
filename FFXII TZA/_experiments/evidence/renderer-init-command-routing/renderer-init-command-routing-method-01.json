@@ -1,0 +1,16 @@
+{
+  "question": "Does the post-index1F16C0 call in186CD0 merely stage a command, or can the following submission choose a direct indirect-dispatch branch before189000 publishes the renderer singleton?",
+  "hypotheses": ["H1: this path always defers command effects without an immediate target dispatch", "H2: source preparation is a real RET slot, but submission branches on current renderer-global state and the null arm immediately calls the incoming target's slot0"],
+  "method": "A: exact original local normal CFG/dataflow plus retained initializer and getter bytes. Reuse accepted BG9/BG11 interpretations and the existing callback-frame review without re-running their census.",
+  "why_cheaper_suffices": "Existing canonical family describes prepare/execute roles but does not alone certify the exact current189000->184F20->186CD0 post-index route. Shipping normal branch instructions distinguish the local alternatives. No scheduling sample/native call is necessary for the conditional call boundary.",
+  "new_bytes": "Three pdata-bound normal wrappers1F16C0/1FB840/1A1850, leaf1FB830, realRET16D6A0 and16B physical902F28 vtable. Retain existing189120 and initialization source; no repeated getter/queue sample.",
+  "identity": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, base120000, exact pdata extents, reviewed actual memory-role adapter",
+  "state": "Original shipping file only. Normal ABI/return, backed arena/command/target/global pointers and no interfering publication/vtable mutation are explicit premises. Current global null at submission is a condition, not live state proof.",
+  "discriminator": "1A1850 first189120->TEST/JZ separates currentglobal null from nonnull. Null arm uses original target+8 receiver, incoming command inRDX andR8D40 before indirectslot0 call. Nonnull arm wraps command and calls wrapper slot8 using a second independently read renderer+8.",
+  "controls": "Actual capture exit/source/driver and source annotations required; exact full-body CFG/pins; actual producer CLI refusals for failed upstream, coherent null-branch reversal, missing getter and changed prepare slot identity.",
+  "acceptance": "Bind original prepare slot to realRET; derive both selected local call boundaries, retained caller argument/publication order, and preserve opaque dispatch/callee effects and separate getter-read limits. Independent review and consumer adoption still required.",
+  "invalidation": "Wrong/missing source, extent, role, capture exit/hash, getter or table identity blocks reduction. No loaded IAT/native effect, actual initialization, transitive no-overwrite, atomic getter-pair or all-callers award.",
+  "consumer": "FABLE renderer initialization/command lifecycle and OPUS selected call/ABI contracts",
+  "cleanup": "No process/game/PC/instruments/save/config/reference mutation. Bounded synchronous scripts terminal; protect peer work. Menu extension remains spent/unapproved and EXP127 invalid.",
+  "preflight_lesson": "Initial record-discovery preview encountered a list-valued JSON file, after its supported checkpoint succeeded. No semantic result/capture existed. Filter dict/ranges shape; never replay that completed checkpoint transaction."
+}

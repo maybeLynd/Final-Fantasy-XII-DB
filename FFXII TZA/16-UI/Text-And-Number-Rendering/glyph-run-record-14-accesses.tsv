@@ -1,0 +1,15 @@
+function	name	site	disp	kind	instruction	route	note
+0053EFC0	FUN_0053efc0	0053EFF8	0x0	w	mov dword ptr [r11 + r10*4 + 0xa90], eax	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F03A	0x4	w	mov word ptr [r11 + r10*4 + 0xa94], r8w	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F075	0x4	w	mov word ptr [r11 + r10*4 + 0xa94], cx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F093	0x4	rw	add word ptr [r11 + r10*4 + 0xa94], cx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F02C	0x6	w	mov word ptr [r11 + r10*4 + 0xa96], r8w	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F011	0x8	w	mov word ptr [r11 + r10*4 + 0xa98], dx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F05F	0x8	w	mov word ptr [r11 + r10*4 + 0xa98], cx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F023	0xA	w	mov word ptr [r11 + r10*4 + 0xa9a], r9w	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F09C	0xA	w	mov word ptr [r11 + r10*4 + 0xa9a], cx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F008	0xC	w	mov word ptr [r11 + r10*4 + 0xa9c], dx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F068	0xC	w	mov word ptr [r11 + r10*4 + 0xa9c], cx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F01A	0xE	w	mov word ptr [r11 + r10*4 + 0xa9e], r9w	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F0A5	0xE	w	mov word ptr [r11 + r10*4 + 0xa9e], cx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	
+0053EFC0	FUN_0053efc0	0053F043	0x10	w	mov word ptr [r11 + r10*4 + 0xaa0], bx	route-seeded EMBED GlyphRunWidget1498 +0x0A90 stride=0x14 count=128 base+0x-A90	

@@ -1,0 +1,26 @@
+{
+  "case": "reported-fail",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\runner.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\reported-fail",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-visual-retirement-clock\\import-controls-01\\original-prefix.py"
+  ],
+  "exit": 0,
+  "terminal": true,
+  "exception": null,
+  "fixture_sha256": "4c1bfc059ca8102e4230b9a512e1c1786b978529e9d8e29d76a28fb781a7bf4c",
+  "observed": {
+    "prefix_returned": true,
+    "upstream_allok": false,
+    "upstream_rows": {
+      "qualified": {
+        "pass_": false
+      }
+    },
+    "exception": null
+  },
+  "expected_behavior_observed": true,
+  "method": "Labelled host module fixture through the exact retained import-prefix statements; no native/whole-S33/game execution"
+}

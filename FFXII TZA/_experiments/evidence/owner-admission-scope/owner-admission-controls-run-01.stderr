@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control_owner_admission_scope.py", line 54, in <module>
+    if __name__=='__main__':main(Path(sys.argv[1]))
+                            ~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\control_owner_admission_scope.py", line 48, in main
+    if not good:raise AssertionError('actual refusal failed '+tag)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: actual refusal failed changed-armer

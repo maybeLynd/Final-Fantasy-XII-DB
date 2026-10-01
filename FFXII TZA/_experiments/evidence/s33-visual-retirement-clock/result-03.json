@@ -1,0 +1,167 @@
+{
+  "method": "A STATIC_ONLY original-code phase/flag induction",
+  "producer_complete": true,
+  "driver_sha256": "d66d21f288d75946abfb07823967e08dbfef5a39cf1fb3e58fa5b52ca96345d7",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "d2be1857758bff0b776aa00afb832b849baa872ada7d49c9c844781c5733fa2a"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 342,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "graphs": [
+    {
+      "entry": "0x3fa820",
+      "visited": 49,
+      "returns": [
+        "0x3fa8ff"
+      ],
+      "calls": [
+        {
+          "pc": "0x3fa88a",
+          "target": "0x861f0e"
+        },
+        {
+          "pc": "0x3fa8db",
+          "target": "0x249c60"
+        }
+      ]
+    },
+    {
+      "entry": "0x3fc510",
+      "visited": 208,
+      "returns": [
+        "0x3fc792",
+        "0x3fc7dc",
+        "0x3fc855",
+        "0x3fc8fc"
+      ],
+      "calls": [
+        {
+          "pc": "0x3fc71f",
+          "target": "0x2713e0"
+        },
+        {
+          "pc": "0x3fc73c",
+          "target": "0x275490"
+        },
+        {
+          "pc": "0x3fc788",
+          "target": "0x808c40"
+        },
+        {
+          "pc": "0x3fc7d2",
+          "target": "0x808c40"
+        },
+        {
+          "pc": "0x3fc84b",
+          "target": "0x808c40"
+        },
+        {
+          "pc": "0x3fc8f2",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x3fa790",
+      "visited": 38,
+      "returns": [
+        "0x3fa81e"
+      ],
+      "calls": [
+        {
+          "pc": "0x3fa7ca",
+          "target": "0x3fa4e0"
+        },
+        {
+          "pc": "0x3fa7f3",
+          "target": "0x3fc510"
+        },
+        {
+          "pc": "0x3fa7f8",
+          "target": "0x1ede80"
+        },
+        {
+          "pc": "0x3fa808",
+          "target": "0x3fc170"
+        }
+      ]
+    },
+    {
+      "entry": "0x3fa4e0",
+      "visited": 31,
+      "returns": [
+        "0x3fa501",
+        "0x3fa566"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x1ede80",
+      "visited": 16,
+      "returns": [
+        "0x1edeb2",
+        "0x1edebc"
+      ],
+      "calls": [
+        {
+          "pc": "0x1ede9b",
+          "target": "0x22a080"
+        },
+        {
+          "pc": "0x1edea2",
+          "target": "0x22a030"
+        }
+      ]
+    }
+  ],
+  "instruction_assertions": 75,
+  "neutral_graph": {
+    "visited": 24,
+    "calls": [],
+    "object_writes": [
+      "0x3fa851",
+      "0x3fa8e0",
+      "0x3fa8e6"
+    ]
+  },
+  "flags_write_population": [
+    "0x3fc549",
+    "0x3fc597",
+    "0x3fc5e1",
+    "0x3fc681",
+    "0x3fc756",
+    "0x3fc80f",
+    "0x3fc8e3"
+  ],
+  "retirement": "Active,notretired,flag8clear,neutralarg0: setsflagbit1,stores290=0/294=0; preservesphase260/motion264/fade270. No callee effects on this path.",
+  "phase_protocol": "Updater chooses handler once from phase260: phase1 motion/float predicates can write2; phase2 withretiredbit1 writes3 andmode290=0 clearsflag20; phase3 writes0 only when signedfade270<=0 after earlierfadeupdate. Local flag stores preserve occupiedbit0. This is not a universal elapsed-frame guarantee.",
+  "manager_protocol": "First pass savesnext278 before testingphase260; phase0 flags cleared and target unlinked through3FA4E0; savednext survivesclearedlinks, so multiplephase0 slots canrelease. Onlythen secondpasscalls3FC510. A phase0 store bythatupdater happensafterthisinvocation firstpass. Rendering3FC170 andotherwrites remain separate, notassumed inert.",
+  "gate_limit": "001EDE80 default branches return1, notret0. Therefore secondpassrendercall cannotbe excluded merelyfrom defaultzero globals. No conditional-nextpass guarantee is widenedto wholeoriginalrender/scheduling.",
+  "fixed_point": {
+    "method": "Source-derived symbolic invariant, not execution/sampling",
+    "domain": "local3FC510 repeatedly,validrecord/ABI/noninterference,phase3,flags3,0<signedword270<=0x4000,290=0,frameStep01DFE0BC=+0 or-0,ordinarymaskedFP",
+    "result": "Original MULSS byfiniteconstant yieldssignedzero; CVTTSS2SI gives0; ADD lowword0 preservespositivefade and JNS. Phase3positivefade skipsphase0store,mode0 bypassesapplicationcalls,flags/phase remainunchanged. No universal51local-call limit follows over thisadmitteddomain; naturalzero-step/reachability/render effects NOTproved.",
+    "decline_constant": {
+      "address": "0xd1204c",
+      "bytes": "000000c5",
+      "f32": -2048.0
+    },
+    "visited": 43
+  },
+  "prior_R7": "RetainedOPUS result/stdout reportsfive retiredslots releasedon51stupdate initsfixture. The48agedprobe is READMEprose only, notaseparate rawresult inthisrecord. No peer-native tests rerun/credited here.",
+  "limits": [
+    "Natural initialized phase/motion/frameStep/cadence/dropinterleaving/consequence remainOPEN.",
+    "Firstpass andlocalupdater facts do not establishrender3FC170 effects,wholemanager invariants orliveelapsed timing.",
+    "Generalinvalidlist/pointer/alias/non-normalcallee/MXCSR exceptions outside the stateddomain. No fullfloattrajectory/bit-exact51 algebra claimed."
+  ],
+  "consumer": "Correctfixedretirement-window assumptions; collector mustbracket phase260,occupied/retireflags272,fade270,motion264/mode290/frameStep01DFE0BC andoriginalupdate/release stages. Keepnormaldrop->visualcreation->zerohandle->tick/consequence separate."
+}

@@ -1,0 +1,268 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_STALE_LANE_NO_ENQUEUE_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "lane-stale-release-source-01.json",
+      "sha256": "f0d8359317446c74beb13a737306a0dbcc76b910e125f4a30064716bef6e07e3"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x2e4e50",
+      "end_exclusive": "0x2e4f34",
+      "instructions": 63,
+      "returns": [
+        "0x2e4f33"
+      ],
+      "calls": [
+        {
+          "pc": "0x2e4ed5",
+          "target": "0x36b130"
+        },
+        {
+          "pc": "0x2e4edd",
+          "target": "0x36d170"
+        },
+        {
+          "pc": "0x2e4eef",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x2e4efa",
+          "target": "0x41e580"
+        },
+        {
+          "pc": "0x2e4f09",
+          "target": "0x2eb890"
+        },
+        {
+          "pc": "0x2e4f15",
+          "target": "0x2eafa0"
+        }
+      ]
+    },
+    {
+      "entry": "0x2eafa0",
+      "end_exclusive": "0x2eb027",
+      "instructions": 43,
+      "returns": [
+        "0x2eb026"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x2eb890",
+      "end_exclusive": "0x2eb923",
+      "instructions": 43,
+      "returns": [
+        "0x2eb8cf",
+        "0x2eb922"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x2e6a80",
+      "end_exclusive": "0x2e6b0d",
+      "instructions": 43,
+      "returns": [
+        "0x2e6b0c"
+      ],
+      "calls": [
+        {
+          "pc": "0x2e6aaf",
+          "target": "0x2e6e30"
+        },
+        {
+          "pc": "0x2e6af8",
+          "target": "0x2e9470"
+        }
+      ]
+    },
+    {
+      "entry": "0x2e2660",
+      "end_exclusive": "0x2e26e8",
+      "instructions": 35,
+      "returns": [
+        "0x2e26e7"
+      ],
+      "calls": []
+    }
+  ],
+  "request_partition": [
+    {
+      "requested": false,
+      "loaded": false,
+      "pending_or28": false,
+      "decision": "inactive_early",
+      "branches": [
+        "0x2eafb2 fallthrough",
+        "0x2eafc5->0x2eb026"
+      ]
+    },
+    {
+      "requested": false,
+      "loaded": false,
+      "pending_or28": true,
+      "decision": "mark_pending_no_enqueue",
+      "branches": [
+        "0x2eafb2 fallthrough",
+        "0x2eafc5 fallthrough",
+        "0x2eafd0->0x2eb026"
+      ]
+    },
+    {
+      "requested": false,
+      "loaded": true,
+      "pending_or28": false,
+      "decision": "mark_and_enqueue",
+      "branches": [
+        "0x2eafb2 fallthrough",
+        "0x2eafc5 fallthrough",
+        "0x2eafd0 fallthrough",
+        "0x2eb01f headstore"
+      ]
+    },
+    {
+      "requested": false,
+      "loaded": true,
+      "pending_or28": true,
+      "decision": "mark_and_enqueue",
+      "branches": [
+        "0x2eafb2 fallthrough",
+        "0x2eafc5 fallthrough",
+        "0x2eafd0 fallthrough",
+        "0x2eb01f headstore"
+      ]
+    },
+    {
+      "requested": true,
+      "loaded": false,
+      "pending_or28": false,
+      "decision": "already_requested_early",
+      "branches": [
+        "0x2eafb2->0x2eb026"
+      ]
+    },
+    {
+      "requested": true,
+      "loaded": false,
+      "pending_or28": true,
+      "decision": "already_requested_early",
+      "branches": [
+        "0x2eafb2->0x2eb026"
+      ]
+    },
+    {
+      "requested": true,
+      "loaded": true,
+      "pending_or28": false,
+      "decision": "already_requested_early",
+      "branches": [
+        "0x2eafb2->0x2eb026"
+      ]
+    },
+    {
+      "requested": true,
+      "loaded": true,
+      "pending_or28": true,
+      "decision": "already_requested_early",
+      "branches": [
+        "0x2eafb2->0x2eb026"
+      ]
+    }
+  ],
+  "early_retry_pcs": [
+    "0x2eafa0",
+    "0x2eafa3",
+    "0x2eafa5",
+    "0x2eafaa",
+    "0x2eafac",
+    "0x2eafb0",
+    "0x2eafb2",
+    "0x2eb026"
+  ],
+  "early_retry_calls_or_memory_writes": 0,
+  "helper_memory_writes": [
+    [
+      "0x2eb8fc",
+      "rcx",
+      224,
+      2
+    ],
+    [
+      "0x2eb91b",
+      "rcx",
+      224,
+      2
+    ]
+  ],
+  "established": [
+    "2E4E50 resolves a nullable owner from node index/generation, sets loaded+24 and clears pending+34 BEFORE testing owner. Stale/null-owner arm passes same sub-record RBX and lane ESI to2EAFA0, skipping registration/unpin and2EB890 locally.",
+    "2EAFA0 computes the lane mask and tests requested+2C FIRST. If already set, it returns with no call or memory write, regardless of newly loaded+24. Therefore under unchanged requested bit this stale completion does not enqueue, and cannot create sweep membership if it was absent before the callback. It also does not unlink existing membership.",
+    "Positive distinguishing arm: requested0 and loaded1 sets requested and links sub-record+10 to sweep head0215FD90. Requested0/pending-or28 but unloaded marks requested without enqueue; inactive lane is unchanged. These exact branch cases differ from an idempotent request-that-always-requeues.",
+    "2EB890 is not a repair enqueue: it searches owner by boundId, requires nonnegative index and matching generation, then decrements lane signed-WORD count+E0. Only with resulting signed count<=0 and selected bit in+38|+3C does it clamp to0. It has no call, no global or queue-node write. It is called on valid-owner/nonzero-handle/requested branch, not stale-owner completion.",
+    "Reached2E6A80 calls lane release only for requested AND loaded across32 lanes, then locally unlinks its sweep node irrespective of remaining pending+34. This can leave a conditional later-completion relink requirement; external callee effects, queue head walker and actual interleaving are not assumed.",
+    "2E2660 pops free head0215FD70, binds node/generation and clears loaded/requested/pending masks. It has no call or direct sweephead0215FD90 store. This is a local allocator fact, not proof that every subsequent pending request remains outside the sweep."
+  ],
+  "refuted": [
+    "Direct stale completion always enqueues a previously requested lane once loaded becomes1",
+    "2EB890 is itself the deferred-release sweep enqueue helper"
+  ],
+  "unresolved": [
+    "Natural reachability of requested-pending then stale-node combination",
+    "Other enqueue producers/queue scheduling and eventual release/lifetime progress",
+    "Actual handle pin/free effects on stale arm and all wholeOV21/OV25 claims"
+  ],
+  "limitations": [
+    "Valid sub-record/node/metadata and lane0..31; callback low16 lane and16-bit record index have no universal malformed-input upper-bound proof",
+    "Normal ABI/returns and no interfering writes; static paths/Boolean partitions are not native executions or live observations",
+    "Prior queue membership variable; no unconditional leak or impossibility claim and no reuse/lifetime guarantee",
+    "Only named local bodies; opaque callee effects, external aliases, relinks and natural sequencing unproved",
+    "Producer evidence, independent acceptance and canonical incorporation remain separate; prior peer censuses are not tests run here"
+  ],
+  "affected_claims": [
+    "OV25 carried stale-node release-request completion/list obligation",
+    "FABLE lane ownership semantics",
+    "OPUS direct-release retry/precondition contracts",
+    "FRONTIER OV21 source lifetime preparation"
+  ],
+  "checker_sha256": "cd5edf7be6d5a4b13992d3a3b7603824864776f8f49c7d269afd7414a741fc10",
+  "required_invocation_receipts": [
+    {
+      "path": "capture-lane-stale-release.py",
+      "sha256": "b0f23d89a2d8d24925fb9de00b608da84398ce84065ad266edb203d0cd53e223"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "lane-stale-release-capture-01.status.json",
+      "sha256": "74b8260acabd0a5a81d9fe9c5cf02aaf312ad807ec51a6f89a401bbb6c866611"
+    },
+    {
+      "path": "lane-stale-release-capture-01.stdout",
+      "sha256": "b454b74690b1bee31ef6e9e555a46d76e087273e4e604f18675aa441f0ee8991"
+    },
+    {
+      "path": "lane-stale-release-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "next_discriminator": "If consumer needs natural eventual-release closure, trace actual listhead/node relink producers and lifetime/callback invariant; do not launch gameplay to sample absence",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Finite read-only capture/proof and private controls, no game/PC/native/instrument/save/config/reference/peer changes"
+}

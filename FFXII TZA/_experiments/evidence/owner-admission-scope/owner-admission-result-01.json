@@ -1,0 +1,63 @@
+{
+  "status": "PRODUCER_VALID_OWNER_ADMISSION_SCOPE_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "checker_sha256": "7a1066b78296ceddf127b24602c3d962ab3652b4dcbe5ac92bcda64fc066eeaa",
+  "armer_source_sha256": "8ce214633e6640272a1f46b9baa90640ea31b35debcd94321dac9a47ac39fd86",
+  "reset_dependency": {
+    "manifest_sha256": "82f5bf38b2239395628083ca267e14ca29d5679308f7e8f01ce467bb31a2319e",
+    "member": {
+      "path": "owner-reset-barrier-source-01.json",
+      "sha256": "54fe10a0cf7bd81254d7e45bae92ddcc88aefc09352bc8fcd3edf626c4b996bc",
+      "bytes": 221321
+    }
+  },
+  "section09_manifest_sha256": "23785132366d8f1464b42ccfec0e1d9d4cbec05a04d733b212270f867a7e9de8",
+  "original_O_predicate": "arm.get(0x3DDA3B) == \"cmp dword ptr [rax + rcx + 4], 0\" and arm.get(0x3DDA4E) == \"mov dword ptr [rax + rcx + 4], 2\"",
+  "original_producer_control": "Unmodified delivery.py exits0/FAILS0 including O; its admission-only scope is reproduced, not independently re-accepted.",
+  "conditional_countermodels": [
+    {
+      "group": 1,
+      "slot": 0,
+      "owner": "0x2b58360",
+      "initial_state": 3,
+      "pending_queue_marker": 1,
+      "state_after_original_reset": 0,
+      "armer_predicate_accepts": true,
+      "state_after_original_armer": 2,
+      "queue_marker_unchanged_locally": true,
+      "condition": "reset runs before pending request retirement"
+    },
+    {
+      "group": 1,
+      "slot": 0,
+      "owner": "0x2b58360",
+      "initial_state": 5,
+      "pending_queue_marker": 1,
+      "state_after_original_reset": 0,
+      "armer_predicate_accepts": true,
+      "state_after_original_armer": 2,
+      "queue_marker_unchanged_locally": true,
+      "condition": "reset runs before pending request retirement"
+    }
+  ],
+  "established": [
+    "Same static owner DWORD+4 is unconditionally cleared by original3DD790 and is the sole admission-state read of3DDA20. Reset has no entry-state guard or local call; armer does not read queue head, slot identity or pending request count.",
+    "IF reset runs before a pending owner request retires, the armer locally admits the reset owner again from state0. The existing O check passes while omitting this exact reset/pending exclusion. Admission alone is not a global one-live-request proof.",
+    "This identifies a missing sufficiency premise, not a natural two-request occurrence or an automatic refutation of OV36 per-slot delivery. Prior D/P/H evidence remains at its existing scope."
+  ],
+  "limits": [
+    "Two source-compositional state/queue-marker cases are neither native executions nor captured live states. No original second submission was performed or claimed.",
+    "Normal initialized call flow may exclude the conditional countermodel through queue FIFO, disabled producers, cleanup or other mechanisms. The reset/retirement ordering proof remains required before global uniqueness.",
+    "Group1/slot0 valid storage, certified unmodified bytes, no interference/alias corruption. Mask memory is distinct from queue slot storage; neither function establishes natural timing/lifetime.",
+    "No automatic register/OV36/all-L2 reopening. FABLE scope adjudication and independent review must identify which stronger prose depends on this premise."
+  ],
+  "affected_claims": [
+    "ov36-callback-delivery-fable README/headline/O: universal one-live-request-per-owner scope",
+    "Owner lifetime consumers that infer pending exclusion from armer admission alone"
+  ],
+  "next_discriminator": "Retained original queued-primary FIFO and producer-disable interval versus synchronous D4 override/world-reset ordering; prove pending-owner exclusion if possible, otherwise preserve precise natural-state requirement.",
+  "native_runs": 0,
+  "live_runs": 0,
+  "whole_runtime_rows_closed": 0
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-namebinding-command-progress.py", line 98, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-namebinding-command-progress.py", line 26, in main
+    if len(tb)!=36 or table.get('start')!='0x2e62dc' or table.get('end_exclusive')!='0x2e6300' or table.get('exe_sha256')!=P.SHA or table.get('imagebase')!='0x120000' or table.get('invocation_driver_sha256')!=P.sha(d) or hashlib.sha256(tb).hexdigest()!=table['sha256'] or raw(0x2e62dc,0x2e6300)!=tb:raise ValueError('original dispatch table identity changed')
+                                                                                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: original dispatch table identity changed

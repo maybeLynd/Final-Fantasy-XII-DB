@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-filecache-raw-archive-composition.py", line 91, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=W);p.add_argument('--out',type=Path,required=True);a=p.parse_args();main(a.source,a.out)
+                                                                                                                                                ~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-filecache-raw-archive-composition.py", line 64, in main
+    if decl['iat_va']!='0x8c2f08' or decl['name']!='__stdio_common_vsprintf' or decl['dll']!='api-ms-win-crt-stdio-l1-1-0.dll':raise ValueError('static formatter import attribution failed')
+                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: static formatter import attribution failed

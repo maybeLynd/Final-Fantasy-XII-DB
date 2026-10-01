@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-queue-initialization.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-source-02.json",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-result-02.json"
+  ],
+  "exit": 0
+}

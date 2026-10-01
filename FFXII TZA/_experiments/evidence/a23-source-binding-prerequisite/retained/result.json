@@ -1,0 +1,89 @@
+{
+  "status": "SOURCE_HELPER_GIT_FAILURE_NOT_PROPAGATED",
+  "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\source-binding-prerequisite-01\\source-release.py",
+  "source_sha256": "838d4882e545c353061888ba5d06eae76514f1a219a73fff400df51dc9948469",
+  "driver_sha256": "ceb477615458bdd3ef57fa59c7f96c94135155ff45ccd1f47dfb70fa2d48bc87",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "invocation": "Exact AST-extracted headsha, real subprocess/Git; release top-level not executed",
+  "positive": {
+    "helper_return": [
+      "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+      "7c14ecf567699d13a6ce9eddeb3e720fa9f5ff4d"
+    ],
+    "checked_git": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+          "show",
+          "HEAD:Database/Tools/dashboard/server.py"
+        ],
+        "exit": 0,
+        "stdout_bytes": 44677,
+        "stdout_sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+          "log",
+          "-1",
+          "--format=%H",
+          "--",
+          "Database/Tools/dashboard/server.py"
+        ],
+        "exit": 0,
+        "stdout_bytes": 41,
+        "stdout_sha256": "f3fcfbd8cad66ce2be1c5577ba8f6d7051b19d4ba15dadfc11e19e06302b02b6",
+        "stderr": ""
+      }
+    ]
+  },
+  "negative": {
+    "helper_return": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      ""
+    ],
+    "checked_git": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\source-binding-prerequisite-01\\NONEXISTENT-GIT-CONTEXT",
+          "show",
+          "HEAD:Database/Tools/dashboard/server.py"
+        ],
+        "exit": 128,
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "fatal: cannot change to 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\source-binding-prerequisite-01\\NONEXISTENT-GIT-CONTEXT': No such file or directory\n"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\source-binding-prerequisite-01\\NONEXISTENT-GIT-CONTEXT",
+          "log",
+          "-1",
+          "--format=%H",
+          "--",
+          "Database/Tools/dashboard/server.py"
+        ],
+        "exit": 128,
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "fatal: cannot change to 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\source-binding-prerequisite-01\\NONEXISTENT-GIT-CONTEXT': No such file or directory\n"
+      }
+    ]
+  },
+  "implication": "Failed Git queries return SHA256(empty stdout) and an empty commit rather than preserving their nonzero exits.",
+  "limits": [
+    "No complete release/deployment executed or accepted.",
+    "No claim that actual valid release binding differs or its aggregate verdict passes on this negative.",
+    "FRONTIER owns repair of its helper and source binding; ASTRA existing Git checker checks exits."
+  ],
+  "cleanup": "No release top-level, export, server, board, reference, game or file write; output is stdout only"
+}

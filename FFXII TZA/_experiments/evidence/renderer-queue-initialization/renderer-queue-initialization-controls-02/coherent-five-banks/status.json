@@ -1,0 +1,14 @@
+{
+  "case": "coherent-five-banks",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-renderer-queue-initialization.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-02\\coherent-five-banks\\source.json",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\renderer-queue-initialization-controls-02\\coherent-five-banks\\result.json"
+  ],
+  "exit": 1,
+  "expected_error": "source operation mismatch 0x184fdd",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "checker_sha256": "bd57bdbc3cfb5c2253223ed2403d84681c918daa6b7b7391868fcad8b674fe7a"
+}

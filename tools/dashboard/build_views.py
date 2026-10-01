@@ -197,26 +197,37 @@ def v_vbf(inp, t):
     members = collections.Counter(f["k"][2:].split("/")[0] for f in xm)
     xgap = (facts.get("gaps") or {}).get("X"); xfail = (facts.get("failed") or {}).get("X")
     claims = idx.get("format_claims") or {}
-    vs = idx.get("vs_listing") or {}
-    drift = sum(vs.get(k, 0) for k in ("missing_from_archive", "missing_from_listing", "size_mismatch"))
+    # The listing comparison is measured only when the capture recorded one with all three counts; an absent, missing,
+    # unreadable or malformed comparison is UNMEASURED and named, never a drift of 0 (ASTRA's REJECT of eae0ed3c7).
+    vs = idx.get("vs_listing")
+    keys = ("missing_from_archive", "missing_from_listing", "size_mismatch")
+    if isinstance(vs, dict) and all(isinstance(vs.get(k), int) for k in keys):
+        drift, cmp_fail = sum(vs[k] for k in keys), None
+    else:
+        drift, cmp_fail = None, idx.get("vs_listing_failed") or ("malformed listing comparison" if vs is not None else "no listing comparison in the capture")
     rec = idx["archive_index"]
     measured = not (xgap or xfail or idx.get("format_claims_failed"))
     idn = "installed archive header sha256 %s (%d entries, file %d bytes)" % (rec["header_sha256"][:12], rec["entry_count"], idx["archive_file_bytes"])
     ms = [M("files", "files in the archive", files, None, "installed archive index", "vbf_index", t, "a file count; distinct formats and bytes are other denominators"),
           M("bytes", "bytes in the archive (uncompressed)", byts, None, "installed archive index", "vbf_index", t, "uncompressed sizes from the header"),
           M("extensions", "distinct file extensions", len(ext), None, "installed archive index", "vbf_index", t, "an extension is not a format variant"),
-          M("listing-drift", "entries where the old 2026-09-02 listing differs from the installed archive", drift, None, "installed index vs vbf_list.txt",
-            "vbf_index", t, "0 = the old listing still describes the archive exactly (ASTRA A17's check, re-run every build)"),
           M("formats-ext", "archive extensions with an accepted format disposition", sum(1 for f in xe if f.get("ok")), len(xe),
             "X family, extensions (requirement facts)", "requirements.py X", t, "explained / standard / external; a bucketed extension counts through its members"),
           M("formats-members", "bucket member formats explained", sum(1 for f in xm if f.get("ok")), len(xm),
             "X family, bucket members (requirement facts)", "requirements.py X", t, "a signature-scoped archive_formats claim explains the member")]
+    if drift is not None:
+        ms.insert(3, M("listing-drift", "entries where the old 2026-09-02 listing differs from the installed archive", drift, None,
+                       "installed index vs vbf_list.txt", "vbf_index", t,
+                       "0 = the old listing still describes the archive exactly (ASTRA A17's check, re-run every build)"))
     rows = [[e, c, eb[e], ",".join(claims.get(e, [])) or ("bucket (%d members)" % members[e] if members.get(e) else "-")] for e, c in ext.most_common()]
     lim = ("the tree IS the installed archive's folder tree (the VBF Browser has no category table), read from its header at this build; payload bytes, "
            "decompression and a running game's binding to this archive are not claimed. Format stages: disposition and layout explanation per "
            "extension and bucket member; field meaning is the format sheets' own claim")
     if not measured:
         lim += ". UNMEASURED: " + (xgap or xfail or idx.get("format_claims_failed"))
+    if cmp_fail:
+        lim += ". Listing comparison UNMEASURED: " + cmp_fail
+        rows.insert(0, ["(listing comparison)", "UNMEASURED", "-", cmp_fail])
     return {"view": "vbf", "title": "VBF archive - the installed archive's own folder tree", "status": "OK" if measured and drift == 0 else "PARTIAL",
             "source": {"identity": idn, "as_of": t, "instrument": "vbf_index.py (ASTRA A17 header parser) + requirements.py X", "limits": lim},
             "measures": ms, "tree": [conv(k, v, k) for k, v in sorted(root["kids"].items())],
@@ -1774,7 +1785,15 @@ def annotate_deltas(views, prior_dir, prior_man):
         pm = {m["id"]: m for m in (prev or {}).get("measures", [])} if prev else {}
         for m in v.get("measures", []):
             o = pm.get(m["id"])
-            if not m.get("denominator"):
+            # A plain count has denominator None; a ratio has a number, and 0 is a ratio with nothing in scope (0 of 0).
+            # The two are never conflated, and a measure that moved between them gets no numeric change at all (ASTRA's
+            # REJECT of eae0ed3c7, RESULT.md: 0/0 -> 5/null was shown as a count +5 and the prior basis rewritten to null).
+            if o is not None and prev is not None and (o.get("denominator") is None) != (m.get("denominator") is None):
+                m["delta"] = {"na": "N/A - basis changed", "why": "count/ratio basis changed: denominator %s -> %s" % (o.get("denominator"), m.get("denominator")),
+                              "old": {"numerator": o.get("numerator"), "denominator": o.get("denominator")},
+                              "new": {"numerator": m.get("numerator"), "denominator": m.get("denominator")}}
+                continue
+            if m.get("denominator") is None:
                 # A count with no denominator (files, bytes, active tasks, types) still changes between refreshes: its
                 # signed change and relative change, on the same like-for-like basis (definition, id, scope unchanged).
                 # A count is never turned into a percentage of completion (user request 2026-09-29: a change on every tile).
@@ -1783,7 +1802,7 @@ def annotate_deltas(views, prior_dir, prior_man):
                 newc = {"numerator": m["numerator"], "denominator": None}
                 if prev is None or o is None or not isinstance(o.get("numerator"), (int, float)):
                     m["delta"] = {"na": "no prior", "why": "no comparable measure in the prior generation", "new": newc}
-                elif prev.get("definition") != v.get("definition") or o.get("scope") != m.get("scope") or o.get("denominator"):
+                elif prev.get("definition") != v.get("definition") or o.get("scope") != m.get("scope"):
                     m["delta"] = {"na": "N/A - definition changed", "why": "definition or scope changed", "old": {"numerator": o["numerator"],
                                   "denominator": o.get("denominator")}, "new": newc}
                 else:
@@ -1797,7 +1816,7 @@ def annotate_deltas(views, prior_dir, prior_man):
             elif prev.get("definition") != v.get("definition"):
                 m["delta"] = {"na": "N/A - definition changed", "why": "view definition %s -> %s" % (prev.get("definition"), v.get("definition")),
                               "old": {"numerator": o["numerator"], "denominator": o.get("denominator")}, "new": new}
-            elif o.get("scope") != m.get("scope") or o.get("denominator") != m["denominator"] or not o.get("denominator"):
+            elif o.get("scope") != m.get("scope") or o.get("denominator") != m["denominator"]:
                 # No percentage-point delta across a moved denominator (like-for-like rule), but both sides' changes are
                 # shown, so a refresh that found new requirements and closed some is visible as exactly that.
                 m["delta"] = {"na": "scope changed", "why": "scope %r -> %r; denominator %s -> %s" % (o.get("scope"), m.get("scope"), o.get("denominator"), m["denominator"]),
@@ -1813,7 +1832,9 @@ def annotate_deltas(views, prior_dir, prior_man):
                 if isinstance(o.get("denominator"), (int, float)) and isinstance(o.get("numerator"), (int, float))                         and isinstance(m.get("denominator"), (int, float)):
                     m["delta"]["pp"] = round(pct(m["numerator"], m["denominator"]) - pct(o["numerator"], o["denominator"]), 3)
             else:
-                pp_ = 100.0 * m["numerator"] / m["denominator"] - 100.0 * o["numerator"] / o["denominator"]
+                # same scope and same denominator; 0 of 0 is 100 % complete (user, 2026-09-30), never a division by zero
+                pct = lambda n, d: (100.0 * n / d) if d else 100.0
+                pp_ = pct(m["numerator"], m["denominator"]) - pct(o["numerator"], o["denominator"])
                 m["delta"] = {"pp": round(pp_, 3), "old": {"numerator": o["numerator"], "denominator": o["denominator"]}, "new": new}
 
 

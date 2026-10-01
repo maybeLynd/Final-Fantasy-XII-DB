@@ -1,0 +1,40 @@
+{
+  "status": "PASS_ACTUAL_DESCRIPTOR_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "98aa0b7b572cf03109a47b46e4b3ec433b09fef791c1fd3edb87279a3207f7ef",
+  "driver_sha256": "1ee8e44d560d714b4b5c471940f50e9b0256d6576c536c5df99ead770fe151a6",
+  "positive_reused": {
+    "path": "descriptor-offset-qualification-result-01.json",
+    "sha256": "0b512d16b96e774fe4c8497641b74bec05c65c5dae5e243885885473eeabeea7"
+  },
+  "refusals": [
+    {
+      "case": "missing-semantic-preimage",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\normalize-namebinding-descriptor.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-controls-01\\missing-semantic-preimage\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-controls-01\\missing-semantic-preimage"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "normalized_absent": true
+    },
+    {
+      "case": "changed-offset-store",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\normalize-namebinding-descriptor.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-controls-01\\changed-offset-store\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\descriptor-offset-qualification-controls-01\\changed-offset-store"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "normalized_absent": true
+    }
+  ],
+  "limits": "Two actual CLI refusal controls, no repeated scientific positive or original-code execution. Sparse missing-input case is not a valid empty capture."
+}
