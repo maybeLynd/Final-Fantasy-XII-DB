@@ -57,34 +57,39 @@ Stop when the scope is covered; summarise counts at the top of the report.
 
 ## How a session starts one
 
-**Confirmed 2026-10-01.** Use the `RemoteTrigger` tool in a local Claude Code session. The account's cloud
-environment is **`env_01GxcHZwJhZwkn92cKmyZH3q`** ("Default", set with `/remote-env`).
+**Corrected 2026-10-01 (OPUS).** The first method written here (RemoteTrigger routines) was **wrong**. Routines
+bill the plan's weekly usage limit, not the cloud-session credit: the credit stayed at $250 while the routine runs hit
+"You've hit your weekly limit". **Do not create or run routines** (RemoteTrigger `create`/`run`, `/schedule`,
+`/v1/code/triggers`).
 
-1. **Create** an on-demand routine. With no `cron_expression` it never fires on its own:
-   ```json
-   {"name": "FF12 DB: <task>",
-    "job_config": {"ccr": {
-      "environment_id": "env_01GxcHZwJhZwkn92cKmyZH3q",
-      "session_context": {"sources": [{"git_repository": {"url": "https://github.com/maybeLynd/Final-Fantasy-XII-DB"}}]},
-      "events": [{"data": {"type": "user", "message": {"role": "user", "content": "<the full brief>"}}}]}}}
-   ```
-   Check that the response's `derived_state.prompt` shows the brief. To reuse a routine for a new task, `update` its
-   `job_config` with a new brief.
-2. **Run** it: `RemoteTrigger run <trigger_id>` returns the cloud session id (`cse_...`).
-3. **Follow** it: `RemoteTrigger list_runs <trigger_id>` and `get_run_log <session_id>`. The run's claude.ai link is in
-   `list_runs`.
+The credit pays for ordinary cloud sessions. An agent starts one with `claude --cloud "<task>"`. That command needs an
+interactive terminal, so run it through the launcher on this PC, which provides a pseudo-console:
+
+```
+C:\Users\Kristian\Tools\cloud-launch\.venv\Scripts\python.exe C:\Users\Kristian\Tools\cloud-launch\cloud_launch.py ^
+    --cwd C:\Users\Kristian\source\repos\Final-Fantasy-XII-DB --task-file brief.txt --wait 120 --log launch.log
+```
+
+It prints `SESSION https://claude.ai/code/session_...`. The full method, its limits and how to check the credit are in
+**`C:\Users\Kristian\Tools\cloud-launch\CLOUD_SESSIONS_GUIDE.md`**; read it first.
+
+1. **Refresh the snapshot** (`tools/sync_from_xiionline.py --apply`), commit and push, so the session clones current
+   text.
+2. **Launch** with the brief template above; `--cwd` is this checkout.
+3. **Follow**: `RemoteTrigger get_run_log` with the `session_...` id reads the transcript and starts nothing.
 4. **Collect**: fetch the `cloud/<topic>` branch locally, verify every finding against `XIIOnline/Database`, apply the
    accepted ones through the publish queue, and record them in the task log below.
 
-What does not work here: the `Agent` tool's `isolation: "remote"` silently falls back to a local worktree in this
-session. That uses no cloud credit and runs on the parent `WiP` repo, so do not use it for cloud work.
+The `Agent` tool's `isolation: "remote"` silently falls back to a local worktree in this session. It uses no cloud
+credit, so do not use it for cloud work.
 
-Before a session uses this method, check that the credit still has a balance and that today is before 2026-11-05. If
-either fails, stop using cloud agents.
+Before a session launches anything, check that the credit still has a balance (ask the user, who sees Settings ->
+Usage) and that today is before 2026-11-05. If either fails, stop using cloud agents.
 
 ## Task log
 
 | date | branch | task | status | applied locally |
 |---|---|---|---|---|
-| 2026-10-01 | cloud/register-consistency | register vs page consistency sweep (routine trig_015tTBC1YjYsjvEQGjFTWLsQ, session cse_01U8msvcyJcZBFDBTcM3ZfLL) | running | - |
-| 2026-10-01 | cloud/register-vs-records | register cells vs their cited records (routine trig_01WxJTdNfcFXL8rgBHCoyubv, session cse_01FzYbtkHfwTDWZWmdih3zsL) | running | - |
+| 2026-10-01 | cloud/register-consistency | register vs page consistency sweep (ROUTINE: billed plan usage, not the credit; session cse_01U8msvcyJcZBFDBTcM3ZfLL) | done: PR #1, 84 findings | section (d) and the GR-17 status verified and queued (OPUS-PUB-GR16-PROPAGATE-1001); overlay carriers routed to SWE2-FRONTIER |
+| 2026-10-01 | cloud/register-vs-records | register cells vs their cited records (ROUTINE: billed plan usage; session cse_01FzYbtkHfwTDWZWmdih3zsL) | stopped by the weekly limit at 08:19 UTC, no output | - |
+| 2026-10-01 | - | credit-billing probe via `claude --cloud` (cloud_launch.py; session_01GBKBghCBkGvvHjNQghLtXj, claude-opus-5-5) | method verified; whether the credit moved awaits the user's check | - |
