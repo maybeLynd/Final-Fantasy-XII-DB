@@ -71,7 +71,9 @@ C:\Users\Kristian\Tools\cloud-launch\.venv\Scripts\python.exe C:\Users\Kristian\
 ```
 
 It prints `SESSION https://claude.ai/code/session_...`. The full method, its limits and how to check the credit are in
-**`C:\Users\Kristian\Tools\cloud-launch\CLOUD_SESSIONS_GUIDE.md`**; read it first.
+**`C:\Users\Kristian\Desktop\CLOUD_SESSIONS_GUIDE.md`** (an identical copy sits next to the launcher in
+`C:\Users\Kristian\Tools\cloud-launch\`); read it first. Billing confirmed 2026-10-01: after the probe session the
+user's Cloud session credits bar read $249 of $250 left.
 
 1. **Refresh the snapshot** (`tools/sync_from_xiionline.py --apply`), commit and push, so the session clones current
    text.
@@ -92,4 +94,4 @@ Usage) and that today is before 2026-11-05. If either fails, stop using cloud ag
 |---|---|---|---|---|
 | 2026-10-01 | cloud/register-consistency | register vs page consistency sweep (ROUTINE: billed plan usage, not the credit; session cse_01U8msvcyJcZBFDBTcM3ZfLL) | done: PR #1, 84 findings | section (d) and the GR-17 status verified and queued (OPUS-PUB-GR16-PROPAGATE-1001); overlay carriers routed to SWE2-FRONTIER |
 | 2026-10-01 | cloud/register-vs-records | register cells vs their cited records (ROUTINE: billed plan usage; session cse_01FzYbtkHfwTDWZWmdih3zsL) | stopped by the weekly limit at 08:19 UTC, no output | - |
-| 2026-10-01 | - | credit-billing probe via `claude --cloud` (cloud_launch.py; session_01GBKBghCBkGvvHjNQghLtXj, claude-opus-5-5) | method verified; whether the credit moved awaits the user's check | - |
+| 2026-10-01 | - | credit-billing probe via `claude --cloud` (cloud_launch.py; session_01GBKBghCBkGvvHjNQghLtXj, claude-opus-5-5) | method verified; credit confirmed by the user ($249 of $250 left afterwards) | - |
