@@ -1,0 +1,1652 @@
+checked 491 documents; 354 un-closed unknown(s) name an address that a closure elsewhere already carries
+A hit is a QUESTION, not a defect. The open page may be the one that is right.
+
+11-Party/Battle-State-Block/the-battle-state-block-field-map.md:403
+   asks about 00326030 : - **The "base pairs" are that block.** `GambitConfig_InitializeThreeBanksFromBasePairs(block, member)` (`00326030`):
+      register _index/OPEN-QUESTIONS.md                             | FO-4 | **The gambit bank layout** (0x34 B per bank, three per member from `+0x5B10`, `+0x32` = the available
+
+11-Party/Battle-State-Block/the-battle-state-block-field-map.md:411
+   asks about 00328BD0 : - `00328BD0` calls it at `00328D04`; that is the path the script verb `resetJobs` reaches.
+      register _index/OPEN-QUESTIONS.md                             | FZ-6 | ~~**What `00342230` is** — the sole caller of `00328BD0`, the third path into `GambitConfig_LoadAutho
+      ticked   09-Combat-AI-And-Gambits/gambit-evaluation-and-enmit - [x] ~~What `00342230` is — the caller of `00328BD0`, the third path into the preset loader; no static
+
+11-Party/Battle-State-Block/the-battle-state-block-field-map.md:411
+   asks about 00328D04 : - `00328BD0` calls it at `00328D04`; that is the path the script verb `resetJobs` reaches.
+      register _index/OPEN-QUESTIONS.md                             | FO-4 | **The gambit bank layout** (0x34 B per bank, three per member from `+0x5B10`, `+0x32` = the available
+
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:393
+   asks about 02EBF188 : - **The writes.** The 93 stores are all `mov qword [02EBF188], rax`. They sit in the battle formula, runtime and
+      register _index/OPEN-QUESTIONS.md                             | AG-4 | ~~Why `0x02EBF178`, `0x02EBF188`, `0x02EBF198` are unreferenced.~~ **Narrowed 2026-09-11 (FABLE):** `
+      register _index/OPEN-QUESTIONS.md                             | UQ-117 | What `02EBF188` is read by, if anything — three sites write it, none here reads it. [how-a-combo-co
+      ticked   02-Resource-And-Asset-Pipeline/authored-data-table-r - [x] Why `0x02EBF178`, `0x02EBF188` and `0x02EBF198` are unreferenced. **AG-4.**
+
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:397
+   asks about 02EBF008 : - Its `lea`'d neighbours `02EBF008`–`02EBF170` are single-qword pointer globals, each passed on its own as
+      register _index/OPEN-QUESTIONS.md                             | AG-3 | Whether the array has a header before `0x02EBF008`. **ANSWERED 2026-09-12 (FABLE): no header** — `0x0
+      register _index/OPEN-QUESTIONS.md                             | AY-7 | What the pointer registry at `0x0215F000` is and how it relates to `0x02EBF008`. | **ANSWERED - it is
+      register _index/OPEN-QUESTIONS.md                             | FY-7 | **The authored tables the consumer sweep reaches but does not name** — `02EBF020` (6 × 20, scanned by
+
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:397
+   asks about 02EBF170 : - Its `lea`'d neighbours `02EBF008`–`02EBF170` are single-qword pointer globals, each passed on its own as
+      register _index/OPEN-QUESTIONS.md                             | FB-1 | ~~**What `002B58B0` resolves** from the `02EBF170` row selected by the definition's `+8` (enemy, `002
+      register _index/OPEN-QUESTIONS.md                             | FD-3 | ~~**What reads the actor work object's `+0xF8` text pointer and `+0x100` number** that `00269F20` sto
+      register _index/OPEN-QUESTIONS.md                             | FX-1 | ~~**Which banks the other six readers of the text bank table `02EBF170` address** — `002960B0`, `0031
+
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:399
+   asks about 02EBF178 : - `02EBF178`–`02EBF188` have no `lea` at all.
+      register _index/OPEN-QUESTIONS.md                             | AG-4 | ~~Why `0x02EBF178`, `0x02EBF188`, `0x02EBF198` are unreferenced.~~ **Narrowed 2026-09-11 (FABLE):** `
+      register _index/OPEN-QUESTIONS.md                             | AG-11 | Whether every registry slot is rebound on every area transition, or only some. **ANSWERED 2026-09-12
+      register _index/OPEN-QUESTIONS.md                             | FZ-8 | **What starts the `02EBF178` blob and who reads it** — *narrowed 2026-09-11 (FABLE), `00324510` read 
+
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md:399
+   asks about 02EBF188 : - `02EBF178`–`02EBF188` have no `lea` at all.
+      register _index/OPEN-QUESTIONS.md                             | AG-4 | ~~Why `0x02EBF178`, `0x02EBF188`, `0x02EBF198` are unreferenced.~~ **Narrowed 2026-09-11 (FABLE):** `
+      register _index/OPEN-QUESTIONS.md                             | UQ-117 | What `02EBF188` is read by, if anything — three sites write it, none here reads it. [how-a-combo-co
+      ticked   02-Resource-And-Asset-Pipeline/authored-data-table-r - [x] Why `0x02EBF178`, `0x02EBF188` and `0x02EBF198` are unreferenced. **AG-4.**
+
+07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:471
+   asks about 0031124D : - `0031126C` (resolved at `0031124D`) is the pickup service.
+      register _index/OPEN-QUESTIONS.md                             | FL-3 | **Which situations hand `BattleFormula_DispatchPostResultEvents` (`00469EC0`) a target stats record w
+      register _index/OPEN-QUESTIONS.md                             | UQ-113 | **Which situations hand the dispatcher a target with no owning unit** — the menu on reserve members
+
+07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:471
+   asks about 0031126C : - `0031126C` (resolved at `0031124D`) is the pickup service.
+      register _index/OPEN-QUESTIONS.md                             | FL-3 | **Which situations hand `BattleFormula_DispatchPostResultEvents` (`00469EC0`) a target stats record w
+      register _index/OPEN-QUESTIONS.md                             | UQ-113 | **Which situations hand the dispatcher a target with no owning unit** — the menu on reserve members
+
+07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:493
+   asks about 0031126C : - **The pickup service** (`00311146`–`0031126C`) is the only other unit-less route.
+      register _index/OPEN-QUESTIONS.md                             | FL-3 | **Which situations hand `BattleFormula_DispatchPostResultEvents` (`00469EC0`) a target stats record w
+      register _index/OPEN-QUESTIONS.md                             | UQ-113 | **Which situations hand the dispatcher a target with no owning unit** — the menu on reserve members
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:339
+   asks about 02EBF0E8 : - **`0x9F` itself is authored as a technick.** Its own row is "Shades of Black" (recipe 39, the only user). Row 1 of
+      register _index/OPEN-QUESTIONS.md                             | FT-3 | **Who commits action id `0x9F`** — the "repeat the last action" id both the preview (`003857F3`–`0038
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:342
+   asks about 0030F760 : - **The commit callers do not single it out.** `BattleUnit_CommitAction` `0030F760` has five raw call sites:
+      register _index/OPEN-QUESTIONS.md                             | E-5 | Whether `BattleUnit_CommitAction` (`0030F760`) is a universal human/Gambit/AI/guest/script command fun
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:343
+   asks about 00305AB0 : - `BattleUnit_SelectAndCommitNextAction` `00305AB0`, twice;
+      register _index/OPEN-QUESTIONS.md                             | FE-1 | **What stats record `+0x00` holds** — one enumerated writer (`00328FB0`, `00328FD5`) and four readers
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:351
+   asks about 02EBF0E0 : - **The authored gambit presets do not carry it.** No action slot of the 40 preset rows (`02EBF0E0`, directory
+      register _index/OPEN-QUESTIONS.md                             | FT-3 | **Who commits action id `0x9F`** — the "repeat the last action" id both the preview (`003857F3`–`0038
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:356
+   asks about 02EBF160 : - **No enemy order reaches `0x9F`.** An order record's selector goes through `BattleData_ResolveWeightedId` `00308EC0`:
+      register _index/OPEN-QUESTIONS.md                             | AD-1 | How `BattleData_ResolveWeightedId` maps a 31-bit LCG draw onto its candidate range. **ANSWERED 2026-0
+      register _index/OPEN-QUESTIONS.md                             | AY-12 | What `commandpack.bin`'s `(u16, u16)` pairs mean, and why it ships for only four languages. Spun out
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:379
+   asks about 0038E080 : - **The body** (`0038E080`–`0038E2C1`). `rdx` is the target's [stats record](../Battle-Stats-Record/the-battle-stats-rec
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:382
+   asks about 02AEE02C : - target HP absolute `02AEE02C` = the same cap slots 111 / 119 use: `max(1, HP +0x48)` under status 16, `2 × max HP +0x2
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:384
+   asks about 02AEE030 : - target MP absolute `02AEE030` = capacity `+0x28`, or `0` when either layer holds id 39;
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:385
+   asks about 02AEDFF8 : - **loss `02AEDFF8` = 0, gain `02AEDFFC` = MP bars `+0x37` − charges `+0x4E`**;
+      register _index/OPEN-QUESTIONS.md                             | EZ-3 | **What the `+0x1D` multiplier means.** `BattleStats_ModifySecondaryResource(target, target->w_28 × (s
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:385
+   asks about 02AEDFFC : - **loss `02AEDFF8` = 0, gain `02AEDFFC` = MP bars `+0x37` − charges `+0x4E`**;
+      register _index/OPEN-QUESTIONS.md                             | EZ-3 | **What the `+0x1D` multiplier means.** `BattleStats_ModifySecondaryResource(target, target->w_28 × (s
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:399
+   asks about 003116B4 : - **Where they land.** The resolver stores `low8(gain − loss)` in result `+0x1D` (§2.7). The applier calls
+      register _index/OPEN-QUESTIONS.md                             | EZ-3 | **What the `+0x1D` multiplier means.** `BattleStats_ModifySecondaryResource(target, target->w_28 × (s
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:399
+   asks about 003116E0 : - **Where they land.** The resolver stores `low8(gain − loss)` in result `+0x1D` (§2.7). The applier calls
+      register _index/OPEN-QUESTIONS.md                             | EZ-3 | **What the `+0x1D` multiplier means.** `BattleStats_ModifySecondaryResource(target, target->w_28 × (s
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:405
+   asks about 002479B0 : - A register-tracked `lea` base plus displacement found 0 sites (`leabase_reach.py`; its control `002479B0` →
+      register _index/OPEN-QUESTIONS.md                             | FZ-8 | **What starts the `02EBF178` blob and who reads it** — *narrowed 2026-09-11 (FABLE), `00324510` read 
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:405
+   asks about 0208ED68 : - A register-tracked `lea` base plus displacement found 0 sites (`leabase_reach.py`; its control `002479B0` →
+      register _index/OPEN-QUESTIONS.md                             | FZ-8 | **What starts the `02EBF178` blob and who reads it** — *narrowed 2026-09-11 (FABLE), `00324510` read 
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:407
+   asks about 02AEE000 : - An image-base displacement (`0x29CE000`) and raw `u32` constants `02AEE000` / `029CE000` found 0.
+      register _index/OPEN-QUESTIONS.md                             | BI-3 | What `00438860` (20,603 B) and `004355D0` (5,936 B) fix up - **315 calls to `ImageAddress_ResolveRunt
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:410
+   asks about 02AEE044 : - **`02AEE044` / `02AEE048`** were named 2026-09-11 (§2.2).
+      register _index/OPEN-QUESTIONS.md                             | FP-3 | **The meaning of `+0x30`, `+0x11C` / `+0x11D`, `+0x130`, `+0x3D` / `+0x3F`** — sentinel-set by the in
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md:410
+   asks about 02AEE048 : - **`02AEE044` / `02AEE048`** were named 2026-09-11 (§2.2).
+      register _index/OPEN-QUESTIONS.md                             | FP-3 | **The meaning of `+0x30`, `+0x11C` / `+0x11D`, `+0x130`, `+0x3D` / `+0x3F`** — sentinel-set by the in
+      register _index/OPEN-QUESTIONS.md                             | FT-4 | **The unnamed scratch words and the caller mask** — `02AEDFF8` / `02AEDFFC` (what `0038E080` writes i
+
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md:250
+   asks about 0032AB50 : - `sethoridashi`'s handler `0034C710` pops an id and tail-calls `0032AB50(good, 1)`. That is the script entry the
+      register _index/OPEN-QUESTIONS.md                             | AB-2 | What `HORIDASHI` and `YUGOU` refer to in the shipped game. *Half answered 2026-09-15 (FABLE):* **HORI
+      register _index/OPEN-QUESTIONS.md                             | FZ-4 | ~~**What bazaar row flag `+0x14` bit 1 means and what flag-byte bit 2 is.**~~ **ANSWERED 2026-09-11 (
+
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md:250
+   asks about 0034C710 : - `sethoridashi`'s handler `0034C710` pops an id and tail-calls `0032AB50(good, 1)`. That is the script entry the
+      register _index/OPEN-QUESTIONS.md                             | AB-2 | What `HORIDASHI` and `YUGOU` refer to in the shipped game. *Half answered 2026-09-15 (FABLE):* **HORI
+
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md:266
+   asks about 01DFE410 : - **YUGOU stays open.** Its only occurrence in the image is the string `ACH_COMPLETE_YUGOU` (file offset `0x7E4E6D`). No
+      register _index/OPEN-QUESTIONS.md                             | AB-2 | What `HORIDASHI` and `YUGOU` refer to in the shipped game. *Half answered 2026-09-15 (FABLE):* **HORI
+      register _index/OPEN-QUESTIONS.md                             | AB-8 | Whether `ACH_COUNT_SCORE` relates to Trial Mode. *Narrowed 2026-09-12 (FABLE):* no native caller of t
+
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md:266
+   asks about 01E00258 : - **YUGOU stays open.** Its only occurrence in the image is the string `ACH_COMPLETE_YUGOU` (file offset `0x7E4E6D`). No
+      register _index/OPEN-QUESTIONS.md                             | AB-2 | What `HORIDASHI` and `YUGOU` refer to in the shipped game. *Half answered 2026-09-15 (FABLE):* **HORI
+
+12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md:294
+   asks about 00322C50 : - **What `00322C50(class)` tests.** It is a 1,025-byte shared validator; the action path passes
+      register _index/OPEN-QUESTIONS.md                             | RC-1 | Which encoded-id classes a shipped caller passes to `BattleEncodedId_IsValidForClass` `00322C50`, dir
+
+12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md:273
+   asks about 0056D370 : - **Reached from.** `0056D370` is a widget procedure, the trade panel of
+      register _index/OPEN-QUESTIONS.md                             | AB-8 | Whether `ACH_COUNT_SCORE` relates to Trial Mode. *Narrowed 2026-09-12 (FABLE):* no native caller of t
+      register _index/OPEN-QUESTIONS.md                             | FZ-4 | ~~**What bazaar row flag `+0x14` bit 1 means and what flag-byte bit 2 is.**~~ **ANSWERED 2026-09-11 (
+      register _index/OPEN-QUESTIONS.md                             | UQ-131 | Where `0056D370` is reached from, and how it turns a bazaar selection into `Shop_CommitPurchaseItem
+
+12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md:285
+   asks about 0056D46C : - The quantity is the panel's word `+0xDC`. The total is price × quantity (`0056D450`–`0056D46C`).
+      register _index/OPEN-QUESTIONS.md                             | GR-14 | **Does the list widget's message-26 layout write land on a shop list before the transaction driver r
+
+14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md:236
+   asks about 02ADD100 : - **What the three bytes of an `02ADD100` record mean.** Two are read at the call site examined; the
+      register _index/OPEN-QUESTIONS.md                             | FO-6 | **The unread calls around the focus selection** — what `00311E20` (a bracket on `022BE974`), `0032662
+
+00-Engine-Core-Runtime/the-encoded-id-class-registry.md:299
+   asks about 02EBF038 : - **Why classes 30, 31 and 32 alias other arms** rather than having their own.
+      register _index/OPEN-QUESTIONS.md                             | UQ-33 | Which of the 32 classes `BattleEncodedId_IsValidForClass` distinguishes, and whether the class numbe
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+00-Engine-Core-Runtime/the-encoded-id-class-registry.md:299
+   asks about 02EBF068 : - **Why classes 30, 31 and 32 alias other arms** rather than having their own.
+      register _index/OPEN-QUESTIONS.md                             | UQ-33 | Which of the 32 classes `BattleEncodedId_IsValidForClass` distinguishes, and whether the class numbe
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md:283
+   asks about 001DBDB0 : - **`001DBDB0`** fetches the audio manager singleton at `01FD36A0`, through a 33-byte getter. It passes
+      register _index/OPEN-QUESTIONS.md                             | UQ-31 | What `001DBDB0` does with the id, and whether the cleared bit 31 is re-used there. [the-shared-neigh
+      ticked   _experiments/evidence/rate-normalizer-domain/retaine - [x] ~~**UQ-31.** What `001DBDB0` does with the id, and whether the cleared bit 31 is re-used there.~~
+      ticked   _experiments/evidence/image-reference-roundtrip-doma - [x] ~~**UQ-31.** What `001DBDB0` does with the id, and whether the cleared bit 31 is re-used there.~~
+
+00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md:283
+   asks about 01FD36A0 : - **`001DBDB0`** fetches the audio manager singleton at `01FD36A0`, through a 33-byte getter. It passes
+      register _index/OPEN-QUESTIONS.md                             | BR-8 | **The five audio controllers and their pool constants.** `002105E0` constructs five `AudioController`
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md:216
+   asks about 001CD0E0 : - **The renderer is not a consumer, and that is settled on a sibling page.** `001CD0E0` reads every one of this
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md:216
+   asks about 001D1660 : - **The renderer is not a consumer, and that is settled on a sibling page.** `001CD0E0` reads every one of this
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md:287
+   asks about 001E2AF0 : - **Display texture density** is read by `001E2AF0` (`001E37DC`).
+      register _index/OPEN-QUESTIONS.md                             | AQ-5 | Whether the ~992 non-glue Phyre functions (the engine-behaviour remainder after removing 5,776 reflec
+      register _index/OPEN-QUESTIONS.md                             | EA-8 | **What `001A9930` and `001AD440` are.** `001E2AF0` is the single largest member of `UQ-289`'s 48 at 4
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md:288
+   asks about 00180090 : - **Debug high model skeleton** is a float read through `00180090` by `AddMotion_ApplyBonePose`
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md:170
+   asks about 02CB8000 : - a register-held base: no `lea` anywhere in `02CB8000`–`02CB8120`;
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md:170
+   asks about 02CB8120 : - a register-held base: no `lea` anywhere in `02CB8000`–`02CB8120`;
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:220
+   asks about 02CB80A0 : - **Read by nothing but the console.** Over the whole array `02CB80A0`–`02CB812C`, the only accesses are:
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+      register _index/OPEN-QUESTIONS.md                             | UQ-11 | **What any of the 36 array slots is.** Known: their step magnitudes, their bounds where they have th
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:222
+   asks about 001D1660 : - the console arm `001D1660`, which steps them;
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:223
+   asks about 001C3D50 : - **writes** by the scene-config loaders `001C3D50` / `001C7940` to the nine keyed slots.
+      register _index/OPEN-QUESTIONS.md                             | D-4 | Physical rendering role of the normalized environment direction vector at `02CB8420/24/28` (consumed b
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:223
+   asks about 001C7940 : - **writes** by the scene-config loaders `001C3D50` / `001C7940` to the nine keyed slots.
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+      register _index/OPEN-QUESTIONS.md                             | UQ-11 | **What any of the 36 array slots is.** Known: their step magnitudes, their bounds where they have th
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:224
+   asks about 02CB8000 : - **The routes a rip census would miss are closed.** No `lea` of any address in `02CB8000`–`02CB8140`,
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:249
+   asks about 001D2052 : - the console **toggles** it (id 99, `001D2052`);
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:251
+   asks about 001F8D10 : - the renderer `001F8D10` **selects a draw path** by it at `001F98CF`. With the flag set and
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:251
+   asks about 001F98CF : - the renderer `001F8D10` **selects a draw path** by it at `001F98CF`. With the flag set and
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:260
+   asks about 001F8D10 : - `001F8D10` tests it at `001F98CF` before a branch that, when `[rbp+0x1A0]` is 0, reads words `+0x10` / `+0x12` of a
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md:260
+   asks about 001F98CF : - `001F8D10` tests it at `001F98CF` before a branch that, when `[rbp+0x1A0]` is 0, reads words `+0x10` / `+0x12` of a
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md:384
+   asks about 001C3D50 : - **It is floats, and it is not indexed.** Of 382 references, **351 are `movss`** (the rest:
+      register _index/OPEN-QUESTIONS.md                             | D-4 | Physical rendering role of the normalized environment direction vector at `02CB8420/24/28` (consumed b
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md:393
+   asks about 02CB7FE8 : - *Re-checkable by anyone: one range census with a stated control. If any `lea` into
+      register _index/OPEN-QUESTIONS.md                             | UQ-17 | Whether the `02CB7FE8`–`02CB806C` and `02CB8130`–`02CB8144` clusters are two arrays or one. [arm-cat
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md:393
+   asks about 02CB8144 : - *Re-checkable by anyone: one range census with a stated control. If any `lea` into
+      register _index/OPEN-QUESTIONS.md                             | UQ-17 | Whether the `02CB7FE8`–`02CB806C` and `02CB8130`–`02CB8144` clusters are two arrays or one. [arm-cat
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md:346
+   asks about 02CB7FD0 : - **What the object at `02CB7FD0` is called.** Its constructor and destructor are known and its
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md:351
+   asks about 01DFE1AC : - **`SSS Diffuse a` and `b` do not live together**: `a` is image-initialised at `01DFE1AC`, `b` sits
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md:351
+   asks about 01F82EE4 : - **`SSS Diffuse a` and `b` do not live together**: `a` is image-initialised at `01DFE1AC`, `b` sits
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-G-ids-204-235.md:193
+   asks about 001CCB20 : - **The store.** The defaults builder `001CCB20` writes `mov qword ptr [rdi + 0xDDC], 0x11` (`001CCD7D`). That is
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+      register _index/OPEN-QUESTIONS.md                             | UQ-19 | ~~**What the three numeric entry fields edit.**~~ **ANSWERED 2026-09-16 (FABLE): NOTHING — and *none
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-G-ids-204-235.md:195
+   asks about 001CD0E0 : - **No other access.** No other instruction in the three console bodies touches `+0xDDC`: the builder, the
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-5 | What each of the 26 fields controls. **No field in this slice was traced to a consumer.** [arm-catalo
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-G-ids-204-235.md:195
+   asks about 001D1660 : - **No other access.** No other instruction in the three console bodies touches `+0xDDC`: the builder, the
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+      register _index/OPEN-QUESTIONS.md                             | UQ-14 | What id 99's byte global `01DFE191` enables. ~~**ANSWERED 2026-09-16 (FABLE): it gates the DEBUG MEN
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md:300
+   asks about 01F82D20 : - **Properties 11, 19, 20, 21** of the `01F82D20` object — reached by no arm (§8); what they hold is
+      register _index/OPEN-QUESTIONS.md                             | AU-5 | What **writes** `+0x64` on the singleton at `0x01F82D20`. | **ANSWERED - it is `DecideButton` in Game
+      register _index/OPEN-QUESTIONS.md                             | AU-6 | What the singleton at `0x01F82D20` is. | **ANSWERED - the GameSetting.ini configuration object.** 0x6
+      register _index/OPEN-QUESTIONS.md                             | AU-2 | What distinguishes the **3** binding profiles at `0x01F80130` (stride `0x15C`) - players, devices or 
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-I-ids-268-293.md:295
+   asks about 001DF2C0 : - **The gateway `001DF2C0(cfg, current, up)`** steps `current` by one, modulo 5, in the requested direction
+      register _index/OPEN-QUESTIONS.md                             | AX-5 | Settings-object fields `+0x44C` (=1), `+0x658` (=`0x0101`, two bytes) and `+0x65A` (=1), all set befo
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md:256
+   asks about 01F7F5F0 : - `01F7F5F0` is the lazily built `0x4A8`-byte post-process parameter context that all twelve passes take
+      register _index/OPEN-QUESTIONS.md                             | UQ-247 | What the `.json` sidecar is used for on the `sum_` path — two calls consume it and were not followe
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md:258
+   asks about 001DDAB0 : - `01F82D18` is the `0x180`-byte display object `001DDAB0` returns
+      register _index/OPEN-QUESTIONS.md                             | BC-2 | What the predicate `FUN_00182F50` tests - it gates the `Final` variants' identity-matrix path entirel
+
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md:258
+   asks about 01F82D18 : - `01F82D18` is the `0x180`-byte display object `001DDAB0` returns
+      register _index/OPEN-QUESTIONS.md                             | BC-2 | What the predicate `FUN_00182F50` tests - it gates the `Final` variants' identity-matrix path entirel
+      ticked   17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit - [x] ~~**`01F82D18` and `01F82D20`** - two globals eight bytes apart, neither laid out.~~
+
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md:256
+   asks about 022D9470 : - *Re-checkable: one range census with a stated control, plus the same-slot int-store /
+      register _index/OPEN-QUESTIONS.md                             | UQ-37 | What `022D9140`–`022D916C` and `022D9470` are (FPU-like floats; a flag word set at `0x40` / `0x80`).
+
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:345
+   asks about 022D8F90 : - **Whether the deposits are read by anyone.** Counted across **both** reference instruments,
+      register _index/OPEN-QUESTIONS.md                             | BI-9 | What the 4x4 matrix at `022D91B0`-`022D91EF` **is** - world, view, projection, or a current transform
+      register _index/OPEN-QUESTIONS.md                             | BQ-13 | **The shared geometry scratch — a seam no call-graph reading can find.** `022D9198`–`022D9428`, 660 
+      register _index/OPEN-QUESTIONS.md                             | UQ-41 | **What the nine functions are for.** Their callers sit in the Presentation layer, but a caller is no
+
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:345
+   asks about 022D9300 : - **Whether the deposits are read by anyone.** Counted across **both** reference instruments,
+      register _index/OPEN-QUESTIONS.md                             | BI-9 | What the 4x4 matrix at `022D91B0`-`022D91EF` **is** - world, view, projection, or a current transform
+
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:357
+   asks about 022D91F0 : - **What the live blocks at `022D91F0` and `022D9210` are.** Their sizes, their update rate and one
+      register _index/OPEN-QUESTIONS.md                             | BQ-16 | **How the shared transform workbench divides into matrices past `022D91B0`.** One 4×4 matrix is fixe
+
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md:357
+   asks about 022D9210 : - **What the live blocks at `022D91F0` and `022D9210` are.** Their sizes, their update rate and one
+      register _index/OPEN-QUESTIONS.md                             | BQ-16 | **How the shared transform workbench divides into matrices past `022D91B0`.** One 4×4 matrix is fixe
+
+00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md:338
+   asks about 022D8F00 : - *Mechanically re-checkable by anyone: the claim is one census over eight addresses with a
+      register _index/OPEN-QUESTIONS.md                             | BQ-14 | ~~`022D8F00`–`022D9500` is **thirteen objects** — what are the other twelve?~~ **⚠ THE QUESTION'S PR
+
+00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md:338
+   asks about 022D9500 : - *Mechanically re-checkable by anyone: the claim is one census over eight addresses with a
+      register _index/OPEN-QUESTIONS.md                             | BQ-14 | ~~`022D8F00`–`022D9500` is **thirteen objects** — what are the other twelve?~~ **⚠ THE QUESTION'S PR
+
+10-Status-Periodic-Terminal/the-thirty-two-statuses.md:288
+   asks about 00387CB0 : - **No consumer is traced, and none is claimed to be absent — but the negative is now
+      register _index/OPEN-QUESTIONS.md                             | GA-1 | **The rest of the `status_data.bin` row** — `+2` (a small number, or 255 on KO, Invisible, HP Critica
+
+10-Status-Periodic-Terminal/the-thirty-two-statuses.md:288
+   asks about 02EBF118 : - **No consumer is traced, and none is claimed to be absent — but the negative is now
+      register _index/OPEN-QUESTIONS.md                             | GA-1 | **The rest of the `status_data.bin` row** — `+2` (a small number, or 255 on KO, Invisible, HP Critica
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+      register _index/OPEN-QUESTIONS.md                             | GE-3 | **What `[rsi + 0x0A]` reads when the registry slot is missing.** `0031E259` and `0031E266` both branc
+
+10-Status-Periodic-Terminal/the-thirty-two-statuses.md:329
+   asks about 08000000 : - Confuse by Berserk (`0x08000000`) and Berserk by Confuse (`0x20`);
+      register _index/OPEN-QUESTIONS.md                             | Z-17 | ~~The status bits `0x20` and `0x08000000` tested in `BattleUnit_SelectAndCommitNextAction`, outside t
+      ticked   09-Combat-AI-And-Gambits/gambit-evaluation-and-enmit - [x] ~~The status bits `0x20` and `0x08000000` tested outside the `0x80000003` predicate.~~ **Z-17 ANSWERED 2
+
+02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md:631
+   asks about 002D8D10 : - **2 and 9:** they share a constructor but not a drawer. 2 is a batched sprite run (`002D9380`); 9 is a
+      register _index/OPEN-QUESTIONS.md                             | UQ-76 | **Why types 2 and 9 are aliases**, and why 3 and 6 both mean "nothing". **PARTIAL 2026-09-17 (FABLE)
+      register _index/OPEN-QUESTIONS.md                             | UQ-78 | **What the four copied `u16` fields mean.** **ANSWERED 2026-09-17 (FABLE): x, y (signed) and width, 
+
+02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md:631
+   asks about 002D9380 : - **2 and 9:** they share a constructor but not a drawer. 2 is a batched sprite run (`002D9380`); 9 is a
+      register _index/OPEN-QUESTIONS.md                             | UQ-75 | **What types 2/9 and 7 build.** `0029F4C0` (via `002A0060`) and `0029F130` (841 B, the 160-byte type
+      register _index/OPEN-QUESTIONS.md                             | UQ-76 | **Why types 2 and 9 are aliases**, and why 3 and 6 both mean "nothing". **PARTIAL 2026-09-17 (FABLE)
+      register _index/OPEN-QUESTIONS.md                             | UQ-78 | **What the four copied `u16` fields mean.** **ANSWERED 2026-09-17 (FABLE): x, y (signed) and width, 
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:462
+   asks about 01E4D830 : - `UQ-73`'s rule that manifest slot *k* is pack entry *k*, at directory `+4 + 4k`. The manifest is the image's own
+      register _index/OPEN-QUESTIONS.md                             | FL-2 | **The live check of the `02EBF018` ↔ `battle_message.bin` binding** — `[02EBF018]` header `+4 == 102`
+      register _index/OPEN-QUESTIONS.md                             | UQ-72 | What the path pool at `0x01E4D830` contains beyond the 82-entry battle/menu region. [vbf-archive-and
+      ticked   02-Resource-And-Asset-Pipeline/VBF-Archive-And-Autho - [x] **UQ-72.** What the path pool at `0x01E4D830` contains beyond the 82-entry battle/menu region. It runs
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:468
+   asks about 02EBF180 : - two stored directly: `+4` into `0x02EBF180` and `+0x11C` into `0x02EBF200`.
+      register _index/OPEN-QUESTIONS.md                             | FZ-9 | ~~**What the weapon-class map's value selects** — `02EBF180` maps an equipment category to a class 0–
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:468
+   asks about 02EBF200 : - two stored directly: `+4` into `0x02EBF180` and `+0x11C` into `0x02EBF200`.
+      register _index/OPEN-QUESTIONS.md                             | AG-7 | Whether the isolated globals past `0x02EBF1F8` form a second array. **ANSWERED 2026-09-12 (FABLE): no
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:471
+   asks about 02EBF180 : - `0x02EBF180` is `WepJob_Matrix`;
+      register _index/OPEN-QUESTIONS.md                             | FZ-9 | ~~**What the weapon-class map's value selects** — `02EBF180` maps an equipment category to a class 0–
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:472
+   asks about 02EBF130 : - `0x02EBF130` is `chr_data`;
+      register _index/OPEN-QUESTIONS.md                             | CB-11 | **What does `[rdi+4]` select on the `0x02EBF130` path?** `BattleStats_RebuildEffectiveStatsAndAffini
+      register _index/OPEN-QUESTIONS.md                             | UQ-34 | What `byte [sub+4] == 0x1A` distinguishes, and what the `+0x3C` / `+0x64` flag bits mean individuall
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:473
+   asks about 02EBF138 : - `0x02EBF138` is `action_data`;
+      register _index/OPEN-QUESTIONS.md                             | AG-1 | What `0x02EBF190` and `0x02EBF138` hold. | **ANSWERED** - `0x02EBF138` is the **action definition tab
+      register _index/OPEN-QUESTIONS.md                             | AG-8 | The full action-definition row layout at `0x02EBF138` (bytes at `+0x10` and `+0x12` identified). **AN
+      register _index/OPEN-QUESTIONS.md                             | AI-2 | What actions `0x113`, `0x95` and the range `0x106`-`0x112` are. `0x113` and `0x95` are the only ids e
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:474
+   asks about 02EBF0D8 : - `0x02EBF0D8` is `targetchip_data`;
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:475
+   asks about 02EBF008 : - `0x02EBF008` is `movie`;
+      register _index/OPEN-QUESTIONS.md                             | AG-3 | Whether the array has a header before `0x02EBF008`. **ANSWERED 2026-09-12 (FABLE): no header** — `0x0
+      register _index/OPEN-QUESTIONS.md                             | AY-7 | What the pointer registry at `0x0215F000` is and how it relates to `0x02EBF008`. | **ANSWERED - it is
+      register _index/OPEN-QUESTIONS.md                             | FY-7 | **The authored tables the consumer sweep reaches but does not name** — `02EBF020` (6 × 20, scanned by
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:1169
+   asks about 00236C30 : - [the row-lookup contract](CONTRACT-authored-table-row-lookup.md) §7a gives `00236C30`'s 35 registrations,
+      register _index/OPEN-QUESTIONS.md                             | FL-2 | **The live check of the `02EBF018` ↔ `battle_message.bin` binding** — `[02EBF018]` header `+4 == 102`
+      register _index/OPEN-QUESTIONS.md                             | FV-4 | ~~**The Channeling percentages** — the values of slot-29 rows `0x5B` / `0x5C` / `0x5D` word `+4` (eff
+      register _index/OPEN-QUESTIONS.md                             | UQ-80 | The contents of the other 26 slots. **A class number is an identity, not a description.** [authored-
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:1171
+   asks about 01E4D830 : - the manifest at `01E4D830` gives names;
+      register _index/OPEN-QUESTIONS.md                             | FL-2 | **The live check of the `02EBF018` ↔ `battle_message.bin` binding** — `[02EBF018]` header `+4 == 102`
+      register _index/OPEN-QUESTIONS.md                             | UQ-72 | What the path pool at `0x01E4D830` contains beyond the 82-entry battle/menu region. [vbf-archive-and
+      ticked   02-Resource-And-Asset-Pipeline/VBF-Archive-And-Autho - [x] **UQ-72.** What the path pool at `0x01E4D830` contains beyond the 82-entry battle/menu region. It runs
+
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md:1221
+   asks about 02EBF180 : - the weapon-class map `02EBF180` (directory `+4`) on `WepJob_Matrix`, manifest slot 0;
+      register _index/OPEN-QUESTIONS.md                             | FZ-9 | ~~**What the weapon-class map's value selects** — `02EBF180` maps an equipment category to a class 0–
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:310
+   asks about 002DF9A0 : - **What installs them.** `ResourcePath_Init` (`002DF9A0`) is the only function that references the region.
+      register _index/OPEN-QUESTIONS.md                             | FRP-2 | which map row 636 of resource namespace 5 names, for the slot-0 `0xD4` request. The path tables are 
+      register _index/OPEN-QUESTIONS.md                             | UQ-68 | `bwin`: what entry 4 is, and what the two numbers measure. **NARROWED 2026-09-17 (FABLE): the reader
+      register _index/OPEN-QUESTIONS.md                             | UQ-69 | `sign`: sections 1 and 2, and the button-mask encoding. **NARROWED 2026-09-17 (FABLE): as for `bwin`
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:310
+   asks about 0215F000 : - **What installs them.** `ResourcePath_Init` (`002DF9A0`) is the only function that references the region.
+      register _index/OPEN-QUESTIONS.md                             | AY-7 | What the pointer registry at `0x0215F000` is and how it relates to `0x02EBF008`. | **ANSWERED - it is
+      register _index/OPEN-QUESTIONS.md                             | UQ-72 | What the path pool at `0x01E4D830` contains beyond the 82-entry battle/menu region. [vbf-archive-and
+      register _index/OPEN-QUESTIONS.md                             | UQ-74 | The three dwords at `0x0215EFF4`, immediately below the `0x0215F000` directory, which `FUN_002DF780`
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:329
+   asks about 01E4D830 : - Walking pointer slots from `01E4D830` runs 80,974 slots before the first non-pointer.
+      register _index/OPEN-QUESTIONS.md                             | FL-2 | **The live check of the `02EBF018` ↔ `battle_message.bin` binding** — `[02EBF018]` header `+4 == 102`
+      register _index/OPEN-QUESTIONS.md                             | UQ-72 | What the path pool at `0x01E4D830` contains beyond the 82-entry battle/menu region. [vbf-archive-and
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:334
+   asks about 002DF9A0 : - Census: `work/FABLE/drift4/uq72_path_pool.py`, and the lea / store pairs of `002DF9A0`.
+      register _index/OPEN-QUESTIONS.md                             | FRP-2 | which map row 636 of resource namespace 5 names, for the slot-0 `0xD4` request. The path tables are 
+      register _index/OPEN-QUESTIONS.md                             | UQ-68 | `bwin`: what entry 4 is, and what the two numbers measure. **NARROWED 2026-09-17 (FABLE): the reader
+      register _index/OPEN-QUESTIONS.md                             | UQ-69 | `sign`: sections 1 and 2, and the button-mask encoding. **NARROWED 2026-09-17 (FABLE): as for `bwin`
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:363
+   asks about 00384420 : - **This also explains the four-language pattern of AY-5 and AY-12.** The `in` / `kr` / `cn` / `ch` directories
+      register _index/OPEN-QUESTIONS.md                             | M-7 | ~~What the **twelve** entries initialised by `BattleStorage_InitializeWorkArrays` are - a 12-iteration
+      register _index/OPEN-QUESTIONS.md                             | FZ-7 | ~~**Which files loader ids `0x47`–`0x52` name** — the twelve resources behind registry slots `02EBF1A
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:411
+   asks about 02EBF160 : - **The reader fixes that meaning.** The weighted-id resolver, reached through registry slot `02EBF160`,
+      register _index/OPEN-QUESTIONS.md                             | AD-1 | How `BattleData_ResolveWeightedId` maps a 31-bit LCG draw onto its candidate range. **ANSWERED 2026-0
+      register _index/OPEN-QUESTIONS.md                             | AY-12 | What `commandpack.bin`'s `(u16, u16)` pairs mean, and why it ships for only four languages. Spun out
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md:431
+   asks about 02EBF180 : - `wepjob_matrix.bin` = the first 27 bytes of entry 0 (directory `+0x04`) plus 5 zero bytes:
+      register _index/OPEN-QUESTIONS.md                             | FZ-9 | ~~**What the weapon-class map's value selects** — `02EBF180` maps an equipment category to a class 0–
+
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md:281
+   asks about 0038E2D0 : - **Phoenix Lore, slot 130 `0038E2D0`**, recipe 36 (Phoenix Down):
+      register _index/OPEN-QUESTIONS.md                             | FQ-1 | **The names of the merged-layer ids the calculator slots test** — 8, 9, 10, 11, 13, 14, 15, 18, 103, 
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:305
+   asks about 002EA320 : - the initialiser `002EA320`;
+      register _index/OPEN-QUESTIONS.md                             | EE-3 | ~~**What distinguishes the two completion arms**, and what sets bit 0 of battle-unit `+0xE99` that ch
+      register _index/OPEN-QUESTIONS.md                             | EE-12 | **Whether `003250F0` (`BattleUnit_HandleReactionAnimationEvent`), `00325090` and `00325260` (`Battle
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:306
+   asks about 002E25E0 : - the allocator `002E25E0`, which runs `inc dword [rec+0x24]` at `002E25EC`;
+      register _index/OPEN-QUESTIONS.md                             | UQ-58 | **What a record holds once a map IS loaded.** **ANSWERED 2026-09-17 (FABLE): a bound record is the `
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:307
+   asks about 002E9360 : - the release `002E9360`, which runs `inc dword [rec+0x24]` at `002E944B`.
+      register _index/OPEN-QUESTIONS.md                             | UQ-58 | **What a record holds once a map IS loaded.** **ANSWERED 2026-09-17 (FABLE): a bound record is the `
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:309
+   asks about 002EA320 : - **The title read is the initialiser's order.** EXP-003 recorded slot 0 with a null `+0x00`, `+0x08` pointing to
+      register _index/OPEN-QUESTIONS.md                             | EE-3 | ~~**What distinguishes the two completion arms**, and what sets bit 0 of battle-unit `+0xE99` that ch
+      register _index/OPEN-QUESTIONS.md                             | EE-12 | **Whether `003250F0` (`BattleUnit_HandleReactionAnimationEvent`), `00325090` and `00325260` (`Battle
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:325
+   asks about 0026B2E0 : - The bit-15-selected pair → `0026B2E0`.
+      register _index/OPEN-QUESTIONS.md                             | UQ-221 | **The section-1 pairs 67 / 68 and 79 / 80** — read with a per-field alternate; what they bound is n
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:327
+   asks about 003E6310 : - `0x600A1244` (through the integer getter `003E6310`) → `0026AF40`.
+      register _index/OPEN-QUESTIONS.md                             | UQ-219 | **Why the default table is one slot behind the files from slot 11**, and whether the two slot bytes
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:423
+   asks about 0026DAC0 : - **What the setter writes.** `0026DAC0(actor, v)` (68 B) stores `v` at `+0x148` of the actor's `+0xC0` object, then cop
+      register _index/OPEN-QUESTIONS.md                             | FA-3 | **What `0046AB10(target, 0x12 / 0x11, &zeros)` does for Stone and Vanished** (behind `002FA390`, reac
+      register _index/OPEN-QUESTIONS.md                             | FO-6 | **The unread calls around the focus selection** — what `00311E20` (a bracket on `022BE974`), `0032662
+      register _index/OPEN-QUESTIONS.md                             | UQ-61 | **What the `-1.0f` at `0026DAC0` means.** [how-a-script-names-a-thing-in-the-world.md](../01-Script-
+
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md:425
+   asks about 002EC5B0 : - **The mask agrees.** The verb's next call, `002EC5B0(actor, 0x10)`, gives the chest priority bit 4 in the same rule, s
+      register _index/OPEN-QUESTIONS.md                             | UQ-104 | Which mask bits `00314E10` honours (`+0x110` / `+0x114`) and what sets them beyond `002EC5B0`. [the
+
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-standard-motion-verbs.md:184
+   asks about 004272E0 : - **What `-1.0f` means.** Universally a "no value / use the default" sentinel in this codebase's
+      register _index/OPEN-QUESTIONS.md                             | RC-19 | What the character render record's two blend arms do when `002EB0D0` starts a standard motion with t
+
+01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md:677
+   asks about 0016D6A0 : - **Two of the nineteen are not verbs.** `0x20D3` is the **last id of family 2** and its handler
+      register _index/OPEN-QUESTIONS.md                             | B-2/a | ~~Which specific empty destructor(s) the linker folded onto `0016D6A0`.~~ | | **CLOSED 2026-09-07 — 
+      register _index/OPEN-QUESTIONS.md                             | AK-5 | Whether the **42** no-op slots were authored as no-ops or are distinct functions folded by `/OPT:ICF`
+      register _index/OPEN-QUESTIONS.md                             | AS-5 | ~~Whether the single function appearing in **1,349** vtables is the already-documented folded `ret 0`
+
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md:967
+   asks about 001F3ED0 : - **The return.** `001F3ED0` returns `lea rax, [rsp + 0x30]` (`001F3F52`), a 510-byte buffer in its own `0x248` frame. I
+      register _index/OPEN-QUESTIONS.md                             | UQ-146 | Whether `001F3ED0` returning a pointer into its own stack frame is a live defect. [keymap-ini-file-
+
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md:1015
+   asks about 001F3ED0 : - *What this does not do.* It fixes one input to the test; it does not run it. ASTRA's strings were **supplied**
+      register _index/OPEN-QUESTIONS.md                             | UQ-146 | Whether `001F3ED0` returning a pointer into its own stack frame is a live defect. [keymap-ini-file-
+
+15-Input/Modal-Toggles/r2-force-fight-toggle.md:461
+   asks about 0208EA28 : - **Where the label reads.** The label widget registered on root `0208EA28`, and it reads the state in its
+      register _index/OPEN-QUESTIONS.md                             | U-7 | **What indexes `ManagerSub0209BE80_57E0 + 0xD0` with stride `0xD0`.** *Raised 2026-09-19 (OPUS), and r
+      register _index/OPEN-QUESTIONS.md                             | FM-1 | **What drives the HUD's `FLEEING` label** — `003669D0` (off / arming / engaged from `022CBE1A`, seven
+
+15-Input/Modal-Toggles/r2-force-fight-toggle.md:489
+   asks about 00360370 : - **Boot reset.** `00360370` zeroes the block and writes `0x5A` at `+4`.
+      register _index/OPEN-QUESTIONS.md                             | UQ-240 | What `022CB726` means, likewise. `00360110`, `003601D0` and `00360370` write it; only their surroun
+      ticked   18-Audio/Audio-Boundary/how-a-sound-request-becomes- - [x] ~~**UQ-240.** What `022CB726` means, likewise. `00360110`, `003601D0` and `00360370` write it; only thei
+
+15-Input/Modal-Toggles/r2-force-fight-toggle.md:492
+   asks about 00360110 : - **Clear.** `00360110` resets `022CB726` to 0, and its one caller is `ActorManager_BindLoadedDefinitionPayload`, so the
+      register _index/OPEN-QUESTIONS.md                             | UQ-240 | What `022CB726` means, likewise. `00360110`, `003601D0` and `00360370` write it; only their surroun
+      ticked   18-Audio/Audio-Boundary/how-a-sound-request-becomes- - [x] ~~**UQ-240.** What `022CB726` means, likewise. `00360110`, `003601D0` and `00360370` write it; only thei
+
+15-Input/Modal-Toggles/r2-force-fight-toggle.md:492
+   asks about 022CB726 : - **Clear.** `00360110` resets `022CB726` to 0, and its one caller is `ActorManager_BindLoadedDefinitionPayload`, so the
+      register _index/OPEN-QUESTIONS.md                             | BR-2 | Meaning of the literals `0x40` and `0x7F` passed to `002DF220` by every wrapper in the play family. T
+      register _index/OPEN-QUESTIONS.md                             | FRP-4 | **what the three newly named callees are for.** `0032F6E0`'s per-slot byte table at `022C6D20`, `003
+      register _index/OPEN-QUESTIONS.md                             | UQ-150 | What `022CB728` / `022CB726` are — the two refusal predicates behind `003603B0` / `003603C0`. [r2-f
+
+19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md:122
+   asks about 01F82D20 : - What the object at `0x01F82D20` is as a whole — three fields are identified out of an unknown
+      register _index/OPEN-QUESTIONS.md                             | AU-5 | What **writes** `+0x64` on the singleton at `0x01F82D20`. | **ANSWERED - it is `DecideButton` in Game
+      register _index/OPEN-QUESTIONS.md                             | AU-6 | What the singleton at `0x01F82D20` is. | **ANSWERED - the GameSetting.ini configuration object.** 0x6
+      register _index/OPEN-QUESTIONS.md                             | AU-2 | What distinguishes the **3** binding profiles at `0x01F80130` (stride `0x15C`) - players, devices or 
+
+19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md:127
+   asks about 0017E270 : - Whether the id feeds text asset selection, font selection, or both. No consumer of `0017E270`'s
+      register _index/OPEN-QUESTIONS.md                             | AV-1 | What occupied language ids `0`, `6` and `9`. `0017E270` maps jp->10, en->1, fr->2, de->3, it->4, es->
+      register _index/OPEN-QUESTIONS.md                             | AV-4 | What consumes `0017E270`'s returned language id. | **ANSWERED** - `0022A0B0` (`CoreRuntimeScheduling`
+      register _index/OPEN-QUESTIONS.md                             | AV-5 | Why `0017E410` returns a hardcoded `10` - the same id `0017E270` gives for `jp` and for anything unma
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:618
+   asks about 00D23750 : - `00D23750` maps the screen's eight tabs to categories `[0,1,2,3,4,6,5,7]`.
+      register _index/OPEN-QUESTIONS.md                             | FG-1 | **What the 0x180 × 0x20 entry table at payload `+0x8224` holds per entry** (writers `003C5E50` `003C5
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:619
+   asks about 00D23758 : - `00D23758` gives each tab's entry count: 160 / 96 / 64 / 120 / 56 / 512 / 48 / 30.
+      register _index/OPEN-QUESTIONS.md                             | FG-1 | **What the 0x180 × 0x20 entry table at payload `+0x8224` holds per entry** (writers `003C5E50` `003C5
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:620
+   asks about 00576920 : - The Handbook code (`00576550`, `00576920`) passes that category to the flag functions.
+      register _index/OPEN-QUESTIONS.md                             | FG-1 | **What the 0x180 × 0x20 entry table at payload `+0x8224` holds per entry** (writers `003C5E50` `003C5
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:697
+   asks about 0046B1F0 : - `0046B1F0(i)` tests it (`0046B224`), from verb `0x2BD` (`isquestok`).
+      register _index/OPEN-QUESTIONS.md                             | FG-3 | **What `+0x7B12` / `+0x7B42` (read by `00235AF0`, `00235B31`–`00235B41`) and `+0x1164` / `+0x1364` / 
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:699
+   asks about 001E71B0 : - The only other `+0x1364` displacement in the executable, `001E72E6`, is a `dword` store on an `r14`
+      register _index/OPEN-QUESTIONS.md                             | UQ-358 | What the `0x38`-byte buffer holds beyond `+0x00` (a size or id compared against `n`), `+0x08`, `+0x
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:711
+   asks about 00329E60 : - What `00329E60`'s other arms and the AI operand use the word for is not read.
+      register _index/OPEN-QUESTIONS.md                             | EE-9 | **Who reads `u16` slot 3 of the 64-entry table at `*(02098E68)`** — the value `00307030` posts is the
+      register _index/OPEN-QUESTIONS.md                             | FG-3 | **What `+0x7B12` / `+0x7B42` (read by `00235AF0`, `00235B31`–`00235B41`) and `+0x1164` / `+0x1364` / 
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:750
+   asks about 002EF390 : - **`+0xC88` / `+0xC8C` / `+0xCF0` `g_com_set_get_label` / `_2` / `_3`**: item-acquisition message
+      register _index/OPEN-QUESTIONS.md                             | FZ-22 | ~~**The save payload's `+0x200`–`+0xCF4` is the script-global variable space**~~ **ANSWERED 2026-09-
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md:224
+   asks about 05071901 : - **Whether the two constants are ever compared at all** as header fields `+0x58`/`+0x60`. Only the
+      register _index/OPEN-QUESTIONS.md                             | V-2 | Whether `0x20050223` / `0x05071901` are dates, versions or magics. **PARTIAL 2026-09-10 (FABLE):** `0x
+      register _index/OPEN-QUESTIONS.md                             | V-12 | Why the save image grew by exactly `0x8000` (32 KB) between the 2018 and current builds. *Narrowed 20
+      register _index/OPEN-QUESTIONS.md                             | FG-2 | **What the two large unseeded ranges hold** — `+0x2081`–`+0x7B11` (23,185 B) and `+0x4E50D`–`+0x53C53
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md:243
+   asks about 02089344 : - **`02089344` bit 0 means "this load came through load mode 3"** (the Trial Mode route, `FV-1`).
+      register _index/OPEN-QUESTIONS.md                             | FG-4 | ~~**Why the group bank and the SpawnKeep image are paired twice** (`+0xE040` / `+0xE240` and `+0x2E25
+      register _index/OPEN-QUESTIONS.md                             | FV-2 | **What the save header's `+0x0C`, `+0x10`–`+0x1B` and the stash `+0x70`–`+0x90` hold** beyond the con
+
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md:248
+   asks about 00233C10 : - When the bit is set, `00233C10` also clears it (`00233C7C`) and zeroes the block's `+0x5B0C` word,
+      register _index/OPEN-QUESTIONS.md                             | L-13 |  **Complete load continuation** (ASTRA, 2026-09-12; row mirrored by FABLE). `00233550` restores bank 
+      register _index/OPEN-QUESTIONS.md                             | V-2 | Whether `0x20050223` / `0x05071901` are dates, versions or magics. **PARTIAL 2026-09-10 (FABLE):** `0x
+      register _index/OPEN-QUESTIONS.md                             | V-12 | Why the save image grew by exactly `0x8000` (32 KB) between the 2018 and current builds. *Narrowed 20
+
+13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md:212
+   asks about 00309060 : - **What determines an action's gil cost** — `00309060` in §5 is called but not read.
+      register _index/OPEN-QUESTIONS.md                             | FV-4 | ~~**The Channeling percentages** — the values of slot-29 rows `0x5B` / `0x5C` / `0x5D` word `+4` (eff
+
+03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md:207
+   asks about 001C7850 : - **The cutscene path.** The cutscene-JSON loader reads the pair only when the file sets `enableLightInfo`, which
+      register _index/OPEN-QUESTIONS.md                             | D-4 | Physical rendering role of the normalized environment direction vector at `02CB8420/24/28` (consumed b
+
+03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md:744
+   asks about 002FEF30 : - **Permanent-status words** never carry it. The stat rebuild `002FEF30` ORs these into `+0x3C`:
+      register _index/OPEN-QUESTIONS.md                             | FE-2 | **What `+0x31`–`+0x36` and the words `+0x0A` / `+0x0E` / `+0x12` / `+0x16` / `+0x1A` / `+0x1E` are** 
+
+03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md:746
+   asks about 00238160 : - the equipment attribute blocks' `+0x08`: 0 of 176. The blocks are the 24-byte heap after the record array.
+      register _index/OPEN-QUESTIONS.md                             | AY-11 | Unexplained trailing bytes in 7 `st2e` names. Spun out of AY-3 2026-09-15 (OPUS). `eitm_data.bin` (3
+
+18-Audio/the-spatial-audio-object-model.md:321
+   asks about 007F1D10 : - Its slot 34 writes the constant position `(0, 0, 0, 1)` (`007F1D10`).
+      register _index/OPEN-QUESTIONS.md                             | G-4 | How `Lay` spatial sources (`Point`/`Polygon`/`Direction`/`Ambient`/`Dynamic`) are evaluated against li
+
+18-Audio/the-spatial-audio-object-model.md:324
+   asks about 007BB610 : - It contributes five slots of its own (0, 1, 7, 34, 35), not three. No function in its vtable calls the listener
+      register _index/OPEN-QUESTIONS.md                             | G-4 | How `Lay` spatial sources (`Point`/`Polygon`/`Direction`/`Ambient`/`Dynamic`) are evaluated against li
+
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md:219
+   asks about 003E9C10 : - **So §3's `+0x10` stream id and `+0x14` load handle belong to the NEXT record's slot.** That is
+      register _index/OPEN-QUESTIONS.md                             | GA-3 | **The `.vpc` pack's own layout** — *narrowed 2026-09-11:* the cue table is sub-file `slot` of the PKF
+      register _index/OPEN-QUESTIONS.md                             | UQ-254 | The `0215EFxx` command block's layout beyond the fields now read. **ANSWERED 2026-09-17 (FABLE): th
+
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md:219
+   asks about 003E9CF1 : - **So §3's `+0x10` stream id and `+0x14` load handle belong to the NEXT record's slot.** That is
+      register _index/OPEN-QUESTIONS.md                             | GA-3 | **The `.vpc` pack's own layout** — *narrowed 2026-09-11:* the cue table is sub-file `slot` of the PKF
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:843
+   asks about 00360370 : - `00360370` zeroes its block at boot.
+      register _index/OPEN-QUESTIONS.md                             | UQ-240 | What `022CB726` means, likewise. `00360110`, `003601D0` and `00360370` write it; only their surroun
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:845
+   asks about 00360110 : - `00360110` clears it when `ActorManager_BindLoadedDefinitionPayload` binds the next definition payload.
+      register _index/OPEN-QUESTIONS.md                             | UQ-240 | What `022CB726` means, likewise. `00360110`, `003601D0` and `00360370` write it; only their surroun
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:845
+   asks about 003603C0 : - `00360110` clears it when `ActorManager_BindLoadedDefinitionPayload` binds the next definition payload.
+      register _index/OPEN-QUESTIONS.md                             | BR-2 | Meaning of the literals `0x40` and `0x7F` passed to `002DF220` by every wrapper in the play family. T
+      register _index/OPEN-QUESTIONS.md                             | FRP-4 | **what the three newly named callees are for.** `0032F6E0`'s per-slot byte table at `022C6D20`, `003
+      register _index/OPEN-QUESTIONS.md                             | UQ-150 | What `022CB728` / `022CB726` are — the two refusal predicates behind `003603B0` / `003603C0`. [r2-f
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:867
+   asks about 01CEBBA8 : - Each value must lie in `[-1.0, +1.0]` (`01CEBC9C`, `01CEBBA8`). An out-of-range value is
+      register _index/OPEN-QUESTIONS.md                             | RN-1 | **What `003A6E60` actually is, and what its two state globals are.** Every authored spread in the gam
+      register _index/OPEN-QUESTIONS.md                             | BQ-20 | ~~`0036D9E0`'s header writes at `01EF93F0`/`F4`/`FC` — the clear routine writes 80 slots and reads n
+      register _index/OPEN-QUESTIONS.md                             | UQ-41 | **What the nine functions are for.** Their callers sit in the Presentation layer, but a caller is no
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:869
+   asks about 007CA560 : - Each axis ramps separately through `007CA560` into its own 0x30-byte interpolator at
+      register _index/OPEN-QUESTIONS.md                             | G-14 | What the seven parameter operations do. **ANSWERED 2026-09-17 (FABLE) — all seven read, and they are 
+      register _index/OPEN-QUESTIONS.md                             | G-3 | How `ConfigFile` bus/category/curve routing works and how it maps to the Config menu's volume options.
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:881
+   asks about 02EADC20 : - Kind 8 is a `Music@Magi` handle (pool `02EADC20`, "music number is out of range"). Its slot 9
+      register _index/OPEN-QUESTIONS.md                             | T-8 | What the two `Audio` prototype-copy clusters at `02EAD018` (2,040 B, 611 `Audio` refs) and `02EADC20` 
+      ticked   24-Compiler-And-CRT-Runtime/Static-Initialization-An - [x] What the two `Audio` prototype-copy clusters at `02EAD018` (2,040 B) and `02EADC20` (656 B)
+
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md:1574
+   asks about 01F81300 : - **Not established:** whether any other consumer of `01F81300 +0x110`–`+0x120` overwrites these in the
+      register _index/OPEN-QUESTIONS.md                             | UQ-247 | What the `.json` sidecar is used for on the `sum_` path — two calls consume it and were not followe
+
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:271
+   asks about 003E9C10 : - the voice-pack cue start `003E9C10`, which checks a `sabf` header first
+      register _index/OPEN-QUESTIONS.md                             | GA-3 | **The `.vpc` pack's own layout** — *narrowed 2026-09-11:* the cue table is sub-file `slot` of the PKF
+      register _index/OPEN-QUESTIONS.md                             | UQ-254 | The `0215EFxx` command block's layout beyond the fields now read. **ANSWERED 2026-09-17 (FABLE): th
+
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:289
+   asks about 01CB5A30 : - **What each command does.** In `SQEX::Sd::Driver::Sound` (vtable `01CB5A30`) the slots are named by the state
+      register _index/OPEN-QUESTIONS.md                             | UQ-260 | Whether the four policies are ever applied to the same list, or each list has one policy. **ANSWERE
+
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:291
+   asks about 007BED30 : - command `0xB` → slot 2 `007BED30` = **stop**, with a fade (sequence state 4 or 3);
+      register _index/OPEN-QUESTIONS.md                             | G-16 | What the `+0x54` lifecycle states mean. Behavioural classes proven (refuse 0/6/7; stored-value 1/2; z
+
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:300
+   asks about 007A7010 : - Music's slot 0 reads the sound's state through `007A7010` and then pauses or resumes.
+      register _index/OPEN-QUESTIONS.md                             | SQ-1 | **What the unread parts of `SPP1` mean and whether the loose `env99.spp` is ever loaded.** No reader 
+
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:316
+   asks about 007BD120 : - **`0xA` arms a `Sound` trigger.** Its arm resolves a type-2 handle and calls `007BDFA0`. That is the state
+      register _index/OPEN-QUESTIONS.md                             | G-16 | What the `+0x54` lifecycle states mean. Behavioural classes proven (refuse 0/6/7; stored-value 1/2; z
+      register _index/OPEN-QUESTIONS.md                             | SD-25 | Whether the thread that runs the `Sound` selects (the stepper `007BD120`) shares UCRT `rand()` state
+
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md:316
+   asks about 007BDFA0 : - **`0xA` arms a `Sound` trigger.** Its arm resolves a type-2 handle and calls `007BDFA0`. That is the state
+      register _index/OPEN-QUESTIONS.md                             | G-16 | What the `+0x54` lifecycle states mean. Behavioural classes proven (refuse 0/6/7; stored-value 1/2; z
+
+16-UI/Message-Windows/the-message-window-layout-readers.md:78
+   asks about 002A6190 : - The dispatch interiors of `002A6190` (ids 1–4, 10, 12, 15, 18, 21) beyond the layout reads above.
+      register _index/OPEN-QUESTIONS.md                             | UQ-166 | Whether damage numbers specifically route through here. **First narrowing, 2026-09-15 (FABLE) — one
+      register _index/OPEN-QUESTIONS.md                             | UQ-355 | ~~Whether `002D6990` superseded this. §5 declines to claim it.~~ **ANSWERED 2026-09-16 (FABLE): NO.
+      register _index/OPEN-QUESTIONS.md                             | UQ-383 | **What the 13-function text/number cluster is, and how its text-layout role relates to the actor-up
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1165
+   asks about 0017F7C0 : - **Noted because it is a process failure, not a research one.** The adapter table immediately
+      register _index/OPEN-QUESTIONS.md                             | AC-9 | What `002A9F00` (2,304 B) does with the mapped character. **It is where the per-character advance act
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1174
+   asks about 0017F7C0 : - `0017F7C0` → `001E8070` draws one glyph from a 160-byte record.
+      register _index/OPEN-QUESTIONS.md                             | AC-9 | What `002A9F00` (2,304 B) does with the mapped character. **It is where the per-character advance act
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1175
+   asks about 0017F850 : - `0017F850` → `001E8580` flushes and presents, inside the `"display : draw Font"` scope.
+      register _index/OPEN-QUESTIONS.md                             | AS-3 | Whether the `DynGeoFontTextSpecial*` family (4 classes, 12 slots each) is the draw path for the chara
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1175
+   asks about 001E8580 : - `0017F850` → `001E8580` flushes and presents, inside the `"display : draw Font"` scope.
+      register _index/OPEN-QUESTIONS.md                             | AS-3 | Whether the `DynGeoFontTextSpecial*` family (4 classes, 12 slots each) is the draw path for the chara
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1179
+   asks about 001E9C80 : - `0017FB00` → `001E9C80` sets the 4×4 transform.
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1181
+   asks about 001E9D20 : - `0017FD30` → `001E9D20` selects with an owner key.
+      register _index/OPEN-QUESTIONS.md                             | UQ-357 | What the tree at `+0xF38`/`+0xF48` is populated by — this function only reads it. **ANSWERED 2026-0
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1199
+   asks about 002A9F00 : - **So the cap is not a text limit.** Twenty is how many items this object batches before it
+      register _index/OPEN-QUESTIONS.md                             | AC-9 | What `002A9F00` (2,304 B) does with the mapped character. **It is where the per-character advance act
+      register _index/OPEN-QUESTIONS.md                             | AC-10 | ~~Whether digit columns are in fact even on screen. The mechanism believed to cause them does not ex
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1205
+   asks about 002AC622 : - `002AD2B8` — `cmp byte [rax+0x1102], r15b` then `je`. **`r15d` is zeroed at `002AC622` and is
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1205
+   asks about 002AD2B8 : - `002AD2B8` — `cmp byte [rax+0x1102], r15b` then `je`. **`r15d` is zeroed at `002AC622` and is
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1207
+   asks about 002ADA77 : - `002ADD31` — the same shape, but it sits **after** `002ADA77` (`mov r15d, 1`), so `r15b` is
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1207
+   asks about 002ADD31 : - `002ADD31` — the same shape, but it sits **after** `002ADA77` (`mov r15d, 1`), so `r15b` is
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1210
+   asks about 002A9F00 : - `002ACA9E` — `movsx ebx, byte [r8+0x1102]`: the flag is taken as a **value**, not a branch,
+      register _index/OPEN-QUESTIONS.md                             | AC-9 | What `002A9F00` (2,304 B) does with the mapped character. **It is where the per-character advance act
+      register _index/OPEN-QUESTIONS.md                             | AC-10 | ~~Whether digit columns are in fact even on screen. The mechanism believed to cause them does not ex
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1210
+   asks about 002ACA9E : - `002ACA9E` — `movsx ebx, byte [r8+0x1102]`: the flag is taken as a **value**, not a branch,
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1215
+   asks about 0209CC40 : - **The counter** is dword `+0x10D4` of the text context `[0209CC40]`. It counts the **glyphs written into the current
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+      register _index/OPEN-QUESTIONS.md                             | GJ-3 | **Whether the drawing context is ever passed to another function at all.** The corrected census finds
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1217
+   asks about 0017F7C0 : - Each glyph draw (`0017F7C0`) is followed by `inc [ctx+0x10D4]` (`002AB4BA`).
+      register _index/OPEN-QUESTIONS.md                             | AC-9 | What `002A9F00` (2,304 B) does with the mapped character. **It is where the per-character advance act
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1226
+   asks about 002ACA9E : - The 7,489-byte formatter saves and restores it around its nested formatter call (`002ACA9E`, `002ACACF`).
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1434
+   asks about 002A8C50 : - **Only `+0xAE` has a tight enough displacement set to trace safely.** A scan over `+0x88`, `+0x9E`
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+      register _index/OPEN-QUESTIONS.md                             | UQ-166 | Whether damage numbers specifically route through here. **First narrowing, 2026-09-15 (FABLE) — one
+      register _index/OPEN-QUESTIONS.md                             | UQ-366 | **Replacing it: what divides `002AAE40` from `002A8C50`, `002AF340`, `002B1FB0` and `002B5730`** — 
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1516
+   asks about 003FFDF0 : - **The record's shape says list.** `003FFDF0` decodes a count `n`, a flag byte, an optional
+      register _index/OPEN-QUESTIONS.md                             | UQ-381 | **What the per-item mask bit gates in a `0x0E` selection list.** `UQ-174` settles what `0x0E` intro
+
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md:1730
+   asks about 002A9F00 : - **`state[+7]` is block `+0xA7`, and the index is gated and one-shot** *(2026-09-15, OPUS)*.
+      register _index/OPEN-QUESTIONS.md                             | AC-9 | What `002A9F00` (2,304 B) does with the mapped character. **It is where the per-character advance act
+      register _index/OPEN-QUESTIONS.md                             | AC-10 | ~~Whether digit columns are in fact even on screen. The mechanism believed to cause them does not ex
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:793
+   asks about 002B841B : - **It draws nothing while system-stop request 10 is active** — the time-stop magick / target-selection cursor
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:814
+   asks about 00402A40 : - **It rebuilds the element array** `+0xBBD0` every frame through `00402A40` (`002B8A19`). The location map's
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+      register _index/OPEN-QUESTIONS.md                             | UQ-158 | The shared page helpers `002B7460`, `00402A40`, `00402250` and `00403970`, and the page sub-widget 
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:819
+   asks about 002B8EE0 : - *Still unread:* what the two drawers `002B8EE0` and `002BCB00` put on screen, element by element, and arms 1, 2,
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+      register _index/OPEN-QUESTIONS.md                             | UQ-158 | The shared page helpers `002B7460`, `00402A40`, `00402250` and `00403970`, and the page sub-widget 
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:819
+   asks about 002BCB00 : - *Still unread:* what the two drawers `002B8EE0` and `002BCB00` put on screen, element by element, and arms 1, 2,
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+      register _index/OPEN-QUESTIONS.md                             | UQ-158 | The shared page helpers `002B7460`, `00402A40`, `00402250` and `00403970`, and the page sub-widget 
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:825
+   asks about 002B8EE0 : - **What each icon is.** [The blinking icon and its atlas](../../99-Unresolved-Residual/the-blinking-icon-and-its-atlas.
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+      register _index/OPEN-QUESTIONS.md                             | UQ-158 | The shared page helpers `002B7460`, `00402A40`, `00402250` and `00403970`, and the page sub-widget 
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:829
+   asks about 0209E5AC : - **The offset it reads.** The "global Y offset" that page reads at `002B9058` is
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:869
+   asks about 002C9430 : - `002C9430(0x80)` reads the band record `[0209AC30]+0x2B8`. It returns `+0xDA` + `+0xD6` while the
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:869
+   asks about 0209AC30 : - `002C9430(0x80)` reads the band record `[0209AC30]+0x2B8`. It returns `+0xDA` + `+0xD6` while the
+      register _index/OPEN-QUESTIONS.md                             | EJ-1 | **What the 512-byte widget at `00565E00` is.** 1,914 bytes, registered exactly once by `00565DD0` and
+      register _index/OPEN-QUESTIONS.md                             | SM-1 | **The seven ids with no start site (1, 3, 8, 9, 14, 20, 21), and the player-facing names of ids 15, 1
+      register _index/OPEN-QUESTIONS.md                             | UQ-142 | What `Present_SetSpeedField` (`002DE250`) bits 23–26 of `[0215E6E0 + 4]` control, and what `GameSpe
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:895
+   asks about 002BA310 : - **Kind 0:** `002BA310` opens a `0x3E0`-byte child page on the marker. It opens nothing, and returns 0, when
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:969
+   asks about 00402230 : - Otherwise, including when no marker has that id, it is the list's first marker (`00402230`).
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:980
+   asks about 01E0CE70 : - on the track map, `TrackMapScale` `01E0CE70` (150).
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1005
+   asks about 00273A20 : - the current page slot reports ready through `00273A20`, and the page's `+0x40` bit 9 is clear;
+      register _index/OPEN-QUESTIONS.md                             | U-7 | **What indexes `ManagerSub0209BE80_57E0 + 0xD0` with stride `0xD0`.** *Raised 2026-09-19 (OPUS), and r
+      register _index/OPEN-QUESTIONS.md                             | UQ-28 | **The other fourteen groups.** Named and sized here, unread. **ANSWERED 2026-09-17 (FABLE): the four
+      register _index/OPEN-QUESTIONS.md                             | UQ-189 | What `+0x61CC`'s bits mean — it is the busiest field in the record (54 census sites) and this docum
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1023
+   asks about 002B9D30 : - When bit 7 is set and bit 9 is clear, the id-2 step opens slot `+0x179D0` in mode `+0x179D8` through
+      register _index/OPEN-QUESTIONS.md                             | UQ-190 | The two construction sites whose size, and the two whose handler, were not recoverable. **ANSWERED 
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1025
+   asks about 00273A20 : - When bit 9 is set, it waits until neither page slot's `00273A20` returns 1. It then runs `003C21B0` and
+      register _index/OPEN-QUESTIONS.md                             | U-7 | **What indexes `ManagerSub0209BE80_57E0 + 0xD0` with stride `0xD0`.** *Raised 2026-09-19 (OPUS), and r
+      register _index/OPEN-QUESTIONS.md                             | UQ-28 | **The other fourteen groups.** Named and sized here, unread. **ANSWERED 2026-09-17 (FABLE): the four
+      register _index/OPEN-QUESTIONS.md                             | UQ-189 | What `+0x61CC`'s bits mean — it is the busiest field in the record (54 census sites) and this docum
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1025
+   asks about 003C21B0 : - When bit 9 is set, it waits until neither page slot's `00273A20` returns 1. It then runs `003C21B0` and
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1036
+   asks about 003C1DF0 : - *Still open on UQ-156:* what each page draws (arm 4's callees), what `003C1DF0` and `003BD890` do, and who
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1040
+   asks about 003C1DF0 : - **`003C1DF0` and `003BD890` were already on record.** The line above listed them as open; that was a miss on
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1042
+   asks about 003C1DF0 : - `003C1DF0` is the lazy install of the `menumap_common` sub-location directory into the map-data widget's
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1055
+   asks about 0209E5F0 : - *Still open on UQ-156:* what each page draws (arm 4's callees), and the container's lifetime (who destroys
+      register _index/OPEN-QUESTIONS.md                             | C-13 | **Layout of `MapScreenPage` +0x0108..+0x0117 — three initialisers disagree and nothing reads it.** Fo
+
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1076
+   asks about 003C8060 : - *Still open:* what the track map's own drawing adds (its arm-4 callees, such as `003C8060`), and the
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md:263
+   asks about 00D86960 : - **The contract match.** The target was not traced, but every slot these classes call fits that class's primary
+      register _index/OPEN-QUESTIONS.md                             | BC-1 | What `6`, `7`, `9` select in the `DynGeoFontTextSpecialShadowInstance` slot-10 prefix (`00214540`), a
+
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md:303
+   asks about 006CAB80 : - **Bound.** The mirror census is by displacement (`0x20860`–`0x208F8` over `.text`). A base rebased through a register
+      register _index/OPEN-QUESTIONS.md                             | BC-1 | What `6`, `7`, `9` select in the `DynGeoFontTextSpecialShadowInstance` slot-10 prefix (`00214540`), a
+
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md:318
+   asks about 001DDAB0 : - **No writer of 1 was found.** Every call site of `001DDAB0` was followed for a store into `dword [rax]`, including
+      register _index/OPEN-QUESTIONS.md                             | BC-2 | What the predicate `FUN_00182F50` tests - it gates the `Final` variants' identity-matrix path entirel
+
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md:325
+   asks about 01F82D18 : - **The pointer cell `01F82D18` has three `.text` references:** a compare and a store, both in the lazy initialiser,
+      register _index/OPEN-QUESTIONS.md                             | BC-2 | What the predicate `FUN_00182F50` tests - it gates the `Final` variants' identity-matrix path entirel
+      ticked   00-Engine-Core-Runtime/Developer-Tuning-Console/the- - [x] ~~What the four singletons at `01F81168`, `01F7F5F0`, `01F82D18` and `01F81270` are.~~ **Answered 2026-0
+      ticked   17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit - [x] ~~**`01F82D18` and `01F82D20`** - two globals eight bytes apart, neither laid out.~~
+
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md:327
+   asks about 001DDAB0 : - **None of the 72 direct call sites of the getter `001DDAB0` writes `[ret + 0]`.** None stores the pointer to
+      register _index/OPEN-QUESTIONS.md                             | BC-2 | What the predicate `FUN_00182F50` tests - it gates the `Final` variants' identity-matrix path entirel
+
+16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md:457
+   asks about 001CAF50 : - **1 bound key has no schema row** — `BattleMistCount0Offset`: data-keyed and code-bound
+      register _index/OPEN-QUESTIONS.md                             | Y-2 | Why the editor schema (229 trackbars) and the data (231 keys) disagree, plus name mismatches. **ANSWER
+
+16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md:558
+   asks about 001FF740 : - **Each site is the same three steps:** `001FF740` (`EASTL_LookupByCString`) against the one
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+      register _index/OPEN-QUESTIONS.md                             | UQ-22 | **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are **97 addre
+
+16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md:219
+   asks about 0055B3F0 : - **The view's builder** `0055B3F0` reads only the header, which is what this page measured.
+      register _index/OPEN-QUESTIONS.md                             | AG-4 | ~~Why `0x02EBF178`, `0x02EBF188`, `0x02EBF198` are unreferenced.~~ **Narrowed 2026-09-11 (FABLE):** `
+
+16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md:230
+   asks about 0055D5C8 : - **It is cleared** at `0055D5C8` once the chosen board byte equals `+0x558` (`0055D5A1`–`0055D5C8`), just before the
+      register _index/OPEN-QUESTIONS.md                             | UQ-155 | **What `[view+0x570] & 0x400` means** - it skips the job lookup and keeps the existing board index,
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:189
+   asks about 00229E70 : - **`00229E70`** returns the float `01E02820` (and rewrites it to `1.0` if it does not compare above 0: zero, −0 and neg
+      ticked   _experiments/evidence/rate-normalizer-domain/retaine - [x] **What `00229DF0`, `00229EA0` and `00229E70` are**, and what "mode 2" means for the rate.
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:222
+   asks about 002473F0 : - **The two arms interlock with the two bodies exactly, which is what settles the question.**
+      register _index/OPEN-QUESTIONS.md                             | UQ-185 | **What `00248220` and `002473F0` do** on the two entry arms. [starting-a-widget-animation-and-the-m
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:222
+   asks about 00248220 : - **The two arms interlock with the two bodies exactly, which is what settles the question.**
+      register _index/OPEN-QUESTIONS.md                             | UQ-185 | **What `00248220` and `002473F0` do** on the two entry arms. [starting-a-widget-animation-and-the-m
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:229
+   asks about 002473F0 : - **And the link they share is the same one.** The `+0x20` sibling pointer `00248220` writes
+      register _index/OPEN-QUESTIONS.md                             | UQ-185 | **What `00248220` and `002473F0` do** on the two entry arms. [starting-a-widget-animation-and-the-m
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:229
+   asks about 00248220 : - **And the link they share is the same one.** The `+0x20` sibling pointer `00248220` writes
+      register _index/OPEN-QUESTIONS.md                             | UQ-185 | **What `00248220` and `002473F0` do** on the two entry arms. [starting-a-widget-animation-and-the-m
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:247
+   asks about 0208F570 : - **The objection this box was built on is resolved *inside* that entry.** The re-base of
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:252
+   asks about 0023B330 : - **Why this is a citation and not a finding.** I re-derived the `0023B330` arm from bytes
+      register _index/OPEN-QUESTIONS.md                             | DI-2 | **Which input word is which.** `0023B330` reads `word [02F9736C]`; `0023B6F0` reads `word [02F9736A]`
+      register _index/OPEN-QUESTIONS.md                             | FK-3 | **What `001D50D0` returns** — the object whose `+0xE5C` is console arm 243's value (`0017D454`–`0017D
+      register _index/OPEN-QUESTIONS.md                             | UQ-23 | Why ids start at **12** rather than 0. *Narrowed 2026-09-14 (FABLE), not answered: ids 1–11 are rows
+
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md:286
+   asks about 002465F0 : - the constructor `002465F0` (`00246677`);
+      register _index/OPEN-QUESTIONS.md                             | C-13 | **Layout of `MapScreenPage` +0x0108..+0x0117 — three initialisers disagree and nothing reads it.** Fo
+      register _index/OPEN-QUESTIONS.md                             | WD-1 | **A widget presentation state exists in the shipped game and cannot be entered.** `002465F0` clears b
+      register _index/OPEN-QUESTIONS.md                             | UQ-183 | **What states 2, 3 and 5–7 do** — the nibble is signed and four-bit; only `0`, `1` and `4` have arm
+
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md:286
+   asks about 00246677 : - the constructor `002465F0` (`00246677`);
+      register _index/OPEN-QUESTIONS.md                             | UQ-187 | What `00915198` (the fixed `+0x48` table) holds. **NARROWED 2026-09-17 (FABLE): the record's consum
+
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md:287
+   asks about 00246AD0 : - the animation starter `00246AD0` (`00246B9C`), which uses it unless the widget supplies its own
+      register _index/OPEN-QUESTIONS.md                             | EK-1 | **What “mode 2” is, and what the three functions behind it return.** `Widget_StartAnimation` (`00246A
+      register _index/OPEN-QUESTIONS.md                             | UQ-183 | **What states 2, 3 and 5–7 do** — the nibble is signed and four-bit; only `0`, `1` and `4` have arm
+      register _index/OPEN-QUESTIONS.md                             | UQ-184 | **What `+0x48`'s record is**, beyond carrying a `u16` duration at `+2`. **NARROWED 2026-09-17 (FABL
+
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md:287
+   asks about 00246B9C : - the animation starter `00246AD0` (`00246B9C`), which uses it unless the widget supplies its own
+      register _index/OPEN-QUESTIONS.md                             | UQ-184 | **What `+0x48`'s record is**, beyond carrying a `u16` duration at `+2`. **NARROWED 2026-09-17 (FABL
+      register _index/OPEN-QUESTIONS.md                             | UQ-187 | What `00915198` (the fixed `+0x48` table) holds. **NARROWED 2026-09-17 (FABLE): the record's consum
+
+16-UI/Request-Router/ui-request-router.md:520
+   asks about 0215F1A4 : - **7, 8, 9, 13, 16 and 20.** These have no producer. The request word `0215F1A4` is written in five places:
+      register _index/OPEN-QUESTIONS.md                             | UQ-162 | Identity of requests 4, 6-10, 12-13, 15-20, 22. *Narrowed 2026-09-18 (FABLE), by a census of `openf
+      register _index/OPEN-QUESTIONS.md                             | GH-2 | **Why `002E15D0` and `002E1AE0` write the mailbox cells.** The image-wide sweep of `0215F1A0`..`0215F
+
+16-UI/Request-Router/ui-request-router.md:522
+   asks about 002E1A60 : - the script translator `002E1A60`, whose table yields only 2, 6, 10, 15, 17, 18, 19 and 22;
+      register _index/OPEN-QUESTIONS.md                             | GH-2 | **Why `002E15D0` and `002E1AE0` write the mailbox cells.** The image-wide sweep of `0215F1A0`..`0215F
+
+16-UI/Request-Router/ui-request-router.md:523
+   asks about 002E1AE0 : - `002E1AE0`, which writes 12;
+      register _index/OPEN-QUESTIONS.md                             | UQ-162 | Identity of requests 4, 6-10, 12-13, 15-20, 22. *Narrowed 2026-09-18 (FABLE), by a census of `openf
+      register _index/OPEN-QUESTIONS.md                             | GH-2 | **Why `002E15D0` and `002E1AE0` write the mailbox cells.** The image-wide sweep of `0215F1A0`..`0215F
+
+16-UI/Request-Router/ui-request-router.md:524
+   asks about 002E1B10 : - the mailbox `002E1B10`.
+      register _index/OPEN-QUESTIONS.md                             | EX-3 | **What the tick's unread tail callees do** — `002E09A0` (1,002 B), `003E7650` (1,566 B, Presentation)
+      register _index/OPEN-QUESTIONS.md                             | GH-2 | **Why `002E15D0` and `002E1AE0` write the mailbox cells.** The image-wide sweep of `0215F1A0`..`0215F
+
+16-UI/Request-Router/ui-request-router.md:530
+   asks about 0209E5E8 : - **The domain of that absence.** It covers the raw E8 / E9 call index and a conditional-jump sweep, both empty
+      register _index/OPEN-QUESTIONS.md                             | UQ-156 | What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are
+
+25-EBP-Script-Container/Sections/section-012.md:314
+   asks about 02099D70 : - the current-manager cache `02099D70`;
+      register _index/OPEN-QUESTIONS.md                             | EF-3 | ~~**What `002640C0` and `002650B0` resolve.** In `VM_Spawn_SetEntryMapAndResetTransientEntries` they 
+      register _index/OPEN-QUESTIONS.md                             | FH-3 | **Who writes the bound-slot global `02099D70` besides the bind** (fifteen functions per `globals_inde
+      register _index/OPEN-QUESTIONS.md                             | UD-1a | **What do the eight flags mean, and who reads them?** Not one reader was traced. Also open: what kin
+
+06-Movement-And-Navigation/heading-speed-to-position-delta.md:532
+   asks about 00267260 : - **Not traced:** what `00267260` tests, and the part of `0033BFB0` after the angle.
+      register _index/OPEN-QUESTIONS.md                             | BV-3 | What actor `+0x08` bit 1 and `+0x09` bit 0 denote. **ANSWERED 2026-09-12 (FABLE):** `+0x08` bits 1–2 
+      ticked   _experiments/evidence/heading-passthrough-alias-boun - [x] **K-7 ANSWERED 2026-09-02** — see [`Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.m
+
+06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md:421
+   asks about 00266B2D : - **Class 1 = sequences 1–2 (1,550):** `magic_switch`, `扉` (doors), `gil_magicwall`, `warp_up`,
+      register _index/OPEN-QUESTIONS.md                             | UQ-374 | **What kind `3` is** in the `(byte[+3] & 0xE0) == 0x60` gate, and what `[rcx+0xB8]` and `[rcx+0xC0]
+
+17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md:169
+   asks about 003B6930 : - `003B6930` has exactly five direct calls and no other reference (no RIP-relative operand, qword or RVA32 anywhere in
+      register _index/OPEN-QUESTIONS.md                             | UG-2 | **Who drives the gate at `[02B40524]`, and what does its bit 1 gate?** *Narrowed 2026-09-13 (differen
+
+17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md:224
+   asks about 02AEEA20 : - **That `02AEEA20` is always the identity.** Observed at the title screen, stable over 30 samples.
+      register _index/OPEN-QUESTIONS.md                             | BI-9 | What the 4x4 matrix at `022D91B0`-`022D91EF` **is** - world, view, projection, or a current transform
+
+17-Presentation-Rendering/Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:258
+   asks about 0024D540 : - Why the driver `0024D540` is called with 0 from the menu frame and the capture-backed frame as well as by
+      register _index/OPEN-QUESTIONS.md                             | SM-3 | **The consumers of the combined mask's un-named global bits** — `002E24C0` / `002E24E0` (A bit 39), `
+
+17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:269
+   asks about 0079C140 : - The per-frame update `0079D920`, called from `PApplication` slot 28 `0079C140`, sets `+0x40` to
+      register _index/OPEN-QUESTIONS.md                             | PA-5 |  What the 13 inherited slots do, i.e. what behaviour FFXII takes from the middleware unchanged.  [`..
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:597
+   asks about 0018B100 : - **The render pass runs it in two parts.** It calls the walker `0018B100(list, part, device)` twice:
+      register _index/OPEN-QUESTIONS.md                             | GC-1 | **Why does ambient occlusion terminate the forward walk?** `0018B16C`–`0018B17C` in `0018B100` branch
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:636
+   asks about 01F7F5E0 : - **So the split is ownership versus schedule.** `01F7F5E8` is the frame's owner: every
+      register _index/OPEN-QUESTIONS.md                             | UQ-228 | Where the list is sorted and executed. The producer side is complete; no consumer that walks `01F7F
+      register _index/OPEN-QUESTIONS.md                             | UQ-229 | Why every command is appended to **two** lists, and what distinguishes `01F7F5E8` from `01F7F5E0`. 
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:636
+   asks about 01F7F5E8 : - **So the split is ownership versus schedule.** `01F7F5E8` is the frame's owner: every
+      register _index/OPEN-QUESTIONS.md                             | UQ-228 | Where the list is sorted and executed. The producer side is complete; no consumer that walks `01F7F
+      register _index/OPEN-QUESTIONS.md                             | UQ-229 | Why every command is appended to **two** lists, and what distinguishes `01F7F5E8` from `01F7F5E0`. 
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:648
+   asks about 0085E730 : - **36 allocate their own node and push it into a vector** — every one calls the allocator
+      register _index/OPEN-QUESTIONS.md                             | BU-2 | ~~Why 108 import stubs encode in **6 bytes** and 12 in **7**. Both are the same instruction, `JMP qwo
+      ticked   24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-la - [x] ~~Why 108 import stubs encode in 6 bytes and 12 in 7. Both are the same instruction.~~ **BU-2 ANSWERED 2
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:822
+   asks about 001C3D50 : - **The loaders.** The cutscene-JSON loader `001C3D50` reads keys from `jsondata/cutscenes/*.json` (283 of 337 files
+      register _index/OPEN-QUESTIONS.md                             | D-4 | Physical rendering role of the normalized environment direction vector at `02CB8420/24/28` (consumed b
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+      register _index/OPEN-QUESTIONS.md                             | UQ-8 | **What any of the thirteen floats is.** They are an array of tuning parameters with known step sizes 
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:822
+   asks about 01F81300 : - **The loaders.** The cutscene-JSON loader `001C3D50` reads keys from `jsondata/cutscenes/*.json` (283 of 337 files
+      register _index/OPEN-QUESTIONS.md                             | UQ-247 | What the `.json` sidecar is used for on the `sum_` path — two calls consume it and were not followe
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:840
+   asks about 00194330 : - **By the same instruction pattern, not re-read site by site.** The HBAO pair `00194330` / `00194350` fills
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:840
+   asks about 00194350 : - **By the same instruction pattern, not re-read site by site.** The HBAO pair `00194330` / `00194350` fills
+      register _index/OPEN-QUESTIONS.md                             | EA-4 | **What fills the two AO parameter blocks.** `g_AngleBiasChr` and `g_AngleBiasSce` are stored in **deg
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:852
+   asks about 00212CC0 : - **The base ends at `+0x11`.** `00212CC0` (26 B) writes exactly three things: the vtable
+      register _index/OPEN-QUESTIONS.md                             | UQ-317 | What any of these families *does*. Form identity is not semantics, and no member body here has been
+      register _index/OPEN-QUESTIONS.md                             | GC-3 | **Is `OrderedObject +0x08` (`orderValue`) dead?** The base constructor zeroes it at `00212CC7` and **
+
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md:852
+   asks about 009010B8 : - **The base ends at `+0x11`.** `00212CC0` (26 B) writes exactly three things: the vtable
+      register _index/OPEN-QUESTIONS.md                             | GC-3 | **Is `OrderedObject +0x08` (`orderValue`) dead?** The base constructor zeroes it at `00212CC7` and **
+
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md:570
+   asks about 003CC6C0 : - **`003CC6C0`** indexes `7n + (m − 1)` with an 8-byte stride, so `m = 0` addresses `7n − 1`:
+      register _index/OPEN-QUESTIONS.md                             | BY-6 | **What a `CAM7` path with no arc table produces.** 47 of 1,682 array-C paths have `arcCount = 0` and 
+
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md:573
+   asks about 003CC890 : - **`003CC890` is a binary search with two clamps**, and it is the one that leaves the record:
+      register _index/OPEN-QUESTIONS.md                             | BY-6 | **What a `CAM7` path with no arc table produces.** 47 of 1,682 array-C paths have `arcCount = 0` and 
+
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md:573
+   asks about 01CEBBA8 : - **`003CC890` is a binary search with two clamps**, and it is the one that leaves the record:
+      register _index/OPEN-QUESTIONS.md                             | RN-1 | **What `003A6E60` actually is, and what its two state globals are.** Every authored spread in the gam
+      register _index/OPEN-QUESTIONS.md                             | BQ-20 | ~~`0036D9E0`'s header writes at `01EF93F0`/`F4`/`FC` — the clear routine writes 80 slots and reads n
+      register _index/OPEN-QUESTIONS.md                             | UQ-41 | **What the nine functions are for.** Their callers sit in the Presentation layer, but a caller is no
+
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md:604
+   asks about 002EA890 : - **So a camera attached to a bone can have its roll and field of view driven by that bone's add-motion.** An
+      register _index/OPEN-QUESTIONS.md                             | BY-7 | **What `CAM7` attachment modes 1 and 2 compute, and what bits 9 and 10 add.** Modes 1/2 call `002E7F1
+
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md:624
+   asks about 00257520 : - **`00257520` is the "resume behind camera" blend.**
+      register _index/OPEN-QUESTIONS.md                             | BY-9 | **What the two other producers of camera record 5 are** — `00257520` (which reads `020963F0`–`0209640
+      ticked   _experiments/evidence/matrix-buffer-alias/retained/t - [x] ~~**BY-9.** What the other two producers of camera record 5, `00257520` and `00255850`, are.~~ `BY-9`.
+
+17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:112
+   asks about 00225680 : - `+0x10` **width**: `00225680` (`mov eax, [rcx+0x10]; ret`) and `001DD120`.
+      register _index/OPEN-QUESTIONS.md                             | FZ-15 | ~~**The four sound-layer entry points the BGM stream calls**~~ **ANSWERED 2026-09-11 (FABLE):** all 
+
+17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:151
+   asks about 01F82D20 : - **`01F82D20`** is `GameSettingConfig`: 31 `u32` settings at `index × 4`, stored once at `00798261` after
+      register _index/OPEN-QUESTIONS.md                             | AU-5 | What **writes** `+0x64` on the singleton at `0x01F82D20`. | **ANSWERED - it is `DecideButton` in Game
+      register _index/OPEN-QUESTIONS.md                             | AU-6 | What the singleton at `0x01F82D20` is. | **ANSWERED - the GameSetting.ini configuration object.** 0x6
+      register _index/OPEN-QUESTIONS.md                             | AU-2 | What distinguishes the **3** binding profiles at `0x01F80130` (stride `0x15C`) - players, devices or 
+
+17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md:953
+   asks about 00442310 : - **So `00442310`'s step is `2.0` at 30 fps and `1.0` at 60 fps** — half the advance per tick
+      register _index/OPEN-QUESTIONS.md                             | UQ-207 | The difference between the two drivers of `002F3910` (`0043EF40` and `00442310`). [effect-element-t
+
+17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:370
+   asks about 0065B270 : - **How the descriptor arrives.** The atmosphere selector's one caller, `0065B270`, is itself a vtable method: its
+      register _index/OPEN-QUESTIONS.md                             | W-5 | What the `Inverted` render passes are for (water reflection is a guess, not proven). **NARROWED 2026-0
+
+17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md:192
+   asks about 009010B8 : - **A different base.** RTTI gives both reset classes the single base `OrderedObject` (vtable `009010B8`, 3 slots).
+      register _index/OPEN-QUESTIONS.md                             | GC-3 | **Is `OrderedObject +0x08` (`orderValue`) dead?** The base constructor zeroes it at `00212CC7` and **
+
+17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md:210
+   asks about 00210570 : - **The command.** `GiSetTexture`'s execute slot `00863040` passes the command's `u16` id (`+0x08`), its texture
+      register _index/OPEN-QUESTIONS.md                             | `PROPOSED-repos2d-4` | **ANSWERED in its own text** (FABLE 2026-09-18; verified SWE2-CONTRACT 2026-09-23 — `
+      register _index/OPEN-QUESTIONS.md                             | CD-2 | **Does anything write `0x01F83530` at runtime?** It is zero at image load (past `.data`'s raw backing
+      register _index/OPEN-QUESTIONS.md                             | UQ-83 | Why the resource publishers store a 32-bit-truncated pointer that every reader then dereferences as 
+
+17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md:210
+   asks about 00863040 : - **The command.** `GiSetTexture`'s execute slot `00863040` passes the command's `u16` id (`+0x08`), its texture
+      register _index/OPEN-QUESTIONS.md                             | `PROPOSED-repos2d-4` | **ANSWERED in its own text** (FABLE 2026-09-18; verified SWE2-CONTRACT 2026-09-23 — `
+
+17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md:808
+   asks about 0072D820 : - **Its one caller.** `0072D820` has one raw call site, inside a 4,903-byte method with no direct caller.
+      register _index/OPEN-QUESTIONS.md                             | UQ-226 | **The sole caller `0072D820`** and where in start-up it sits. [the-post-processing-effect-catalogue
+
+17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md:809
+   asks about 00DA5DA8 : - **The class.** That method's address is slot 0 of the five-slot vtable at `00DA5DA8`. The RTTI locator before the tabl
+      register _index/OPEN-QUESTIONS.md                             | UQ-226 | **The sole caller `0072D820`** and where in start-up it sits. [the-post-processing-effect-catalogue
+
+17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md:809
+   asks about 01D3C4B0 : - **The class.** That method's address is slot 0 of the five-slot vtable at `00DA5DA8`. The RTTI locator before the tabl
+      register _index/OPEN-QUESTIONS.md                             | UQ-226 | **The sole caller `0072D820`** and where in start-up it sits. [the-post-processing-effect-catalogue
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:316
+   asks about 01F7F5E0 : - The render record's per-frame update calls slot 1, which appends the object's pooled `CharacterOrderedObject`
+      register _index/OPEN-QUESTIONS.md                             | UQ-228 | Where the list is sorted and executed. The producer side is complete; no consumer that walks `01F7F
+      register _index/OPEN-QUESTIONS.md                             | UQ-229 | Why every command is appended to **two** lists, and what distinguishes `01F7F5E8` from `01F7F5E0`. 
+      ticked   17-Presentation-Rendering/Render-Command-List/the-or - [x] ~~**UQ-228.** Where the list is sorted and executed. The producer side is complete; no consumer of `01F7
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:318
+   asks about 001F5D70 : - The application's render pass list walks that list, and each element's slot 1 (`00215320`) jumps to
+      register _index/OPEN-QUESTIONS.md                             | EA-5 | **The 48 `Phyre.Rendering.NativeQualified` functions that reference no string.** They are 40 % of the
+      register _index/OPEN-QUESTIONS.md                             | UQ-289 | **The 48 `Phyre.Rendering.NativeQualified` functions that reference no string** were not read. [the
+      register _index/OPEN-QUESTIONS.md                             | GC-2 | **What are `OrderedCommandList` `+0x29`–`+0x2B`?** The constructor `0018AD00` zeroes the word at `+0x
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:318
+   asks about 00215320 : - The application's render pass list walks that list, and each element's slot 1 (`00215320`) jumps to
+      register _index/OPEN-QUESTIONS.md                             | GC-2 | **What are `OrderedCommandList` `+0x29`–`+0x2B`?** The constructor `0018AD00` zeroes the word at `+0x
+      register _index/OPEN-QUESTIONS.md                             | GC-3 | **Is `OrderedObject +0x08` (`orderValue`) dead?** The base constructor zeroes it at `00212CC7` and **
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:320
+   asks about 001F5D70 : - `001F5D70` calls Phyre's draw submit `0060B980` per mesh instance, in a shadow, alpha or opaque mode.
+      register _index/OPEN-QUESTIONS.md                             | EA-5 | **The 48 `Phyre.Rendering.NativeQualified` functions that reference no string.** They are 40 % of the
+      register _index/OPEN-QUESTIONS.md                             | UQ-289 | **The 48 `Phyre.Rendering.NativeQualified` functions that reference no string** were not read. [the
+      register _index/OPEN-QUESTIONS.md                             | GC-2 | **What are `OrderedCommandList` `+0x29`–`+0x2B`?** The constructor `0018AD00` zeroes the word at `+0x
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:320
+   asks about 0060B980 : - `001F5D70` calls Phyre's draw submit `0060B980` per mesh instance, in a shadow, alpha or opaque mode.
+      register _index/OPEN-QUESTIONS.md                             | EA-8 | **What `001A9930` and `001AD440` are.** `001E2AF0` is the single largest member of `UQ-289`'s 48 at 4
+      register _index/OPEN-QUESTIONS.md                             | GD-1 | **What the draw-side arguments of a context-switch evaluator are.** The eight evaluators read four di
+      register _index/OPEN-QUESTIONS.md                             | GF-7 | **What the post-effect workers' render-state calls set, and what the multiple submissions differ by.*
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:382
+   asks about 001BD4A0 : - **This also explains the “count — not established” row in § above:** ~~there is no count~~
+      register _index/OPEN-QUESTIONS.md                             | BB-4 | Whether one `CharacterRenderObject` exists per visible character, per party member, or per model inst
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:391
+   asks about 001BD4A0 : - **Acquire (`001BD4A0`).** It looks up the id's model entry and searches its tree for the entry's `+0x2A0`.
+      register _index/OPEN-QUESTIONS.md                             | BB-4 | Whether one `CharacterRenderObject` exists per visible character, per party member, or per model inst
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:447
+   asks about 00215320 : - **The external callers name the relationship.** `001F4DA0` is
+      register _index/OPEN-QUESTIONS.md                             | GC-2 | **What are `OrderedCommandList` `+0x29`–`+0x2B`?** The constructor `0018AD00` zeroes the word at `+0x
+      register _index/OPEN-QUESTIONS.md                             | GC-3 | **Is `OrderedObject +0x08` (`orderValue`) dead?** The base constructor zeroes it at `00212CC7` and **
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:462
+   asks about 0018D240 : - Otherwise it calls `FindShaderParameter` `0018D240(material, name)` **98 times** and stores 92 of the results in
+      register _index/OPEN-QUESTIONS.md                             | EA-3 | **The upper 3 bits of the shader-parameter descriptor's size word** at `descriptor + 0x12`, discarded
+
+17-Presentation-Rendering/Character-Rendering/character-render-object.md:763
+   asks about 01F7F598 : - **Still open, and narrower:** what raises it from zero. **No writer other than the
+      register _index/OPEN-QUESTIONS.md                             | E-9 | **What flips the character transform double-buffer parity byte at `*(char**)0x01F7F598 + 0x1C`, and wh
+      register _index/OPEN-QUESTIONS.md                             | UQ-12 | What the engine object behind id 103's accessor is, and what its `+0xCC4`/`+0xCC8`/`+0xCCC` *Narrowe
+
+17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md:436
+   asks about 01F82E38 : - What the global `01F82E38` is, whose non-zero value gives a new ramp a head start of one step.
+      register _index/OPEN-QUESTIONS.md                             | DH-1 | ~~**What decides the frame-rate mode.**~~ **ANSWERED 2026-09-08 — it is `FrameLimit`, setting 18 of `
+      register _index/OPEN-QUESTIONS.md                             | DH-3 | **What the thirteen `0x01F82E38` readers do.** One write (`001EDDE8`, the 60 branch) and **thirteen `
+      register _index/OPEN-QUESTIONS.md                             | UQ-28 | **The other fourteen groups.** Named and sized here, unread. **ANSWERED 2026-09-17 (FABLE): the four
+
+17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md:382
+   asks about 01F00410 : - **What `+0xCC` is.** It is the signed word that [the render-event selection evidence](render-event-selection-evidence.
+      register _index/OPEN-QUESTIONS.md                             | BT-4 | **What the subtypes mean.** `0x0D` forces speed to zero, `0x10` arms the coast-down latch, `0x35`/`0x
+      register _index/OPEN-QUESTIONS.md                             | UQ-195 | Meaning/writers of entry bit 12 and the full priority-table extent and event vocabulary. **ANSWERED
+
+17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md:385
+   asks about 00424D80 : - **The store read here** is `00424D80` at `00424FAB`, which writes its fourth argument, the candidate event.
+      register _index/OPEN-QUESTIONS.md                             | BT-4 | **What the subtypes mean.** `0x0D` forces speed to zero, `0x10` arms the coast-down latch, `0x35`/`0x
+      register _index/OPEN-QUESTIONS.md                             | FT-2 | **What the reaction events `0x2037`, `0x2039`–`0x203C` draw** — `Battle_EmitReactionPresentationForSl
+
+17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md:385
+   asks about 00424FAB : - **The store read here** is `00424D80` at `00424FAB`, which writes its fourth argument, the candidate event.
+      register _index/OPEN-QUESTIONS.md                             | BT-4 | **What the subtypes mean.** `0x0D` forces speed to zero, `0x10` arms the coast-down latch, `0x35`/`0x
+
+17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md:279
+   asks about 01DFE0BC : - The units of the timed forms: the setter divides the frame count by `[01DFE0BC]` and the countdown subtracts the same
+      register _index/OPEN-QUESTIONS.md                             | Z-11 | What the scheduler state block at `0x01DFE0B4`-`0x01DFE0BC` holds. | **ANSWERED - a time-base triple*
+      register _index/OPEN-QUESTIONS.md                             | UQ-27 | **Which of the two degree units each field uses**, `pi/180` or `pi/180000`. **ANSWERED 2026-09-17 (F
+      register _index/OPEN-QUESTIONS.md                             | UQ-28 | **The other fourteen groups.** Named and sized here, unread. **ANSWERED 2026-09-17 (FABLE): the four
+
+17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md:216
+   asks about 01DFE0B8 : - What the controller's `+0x18` (the minimum-duration floor) and the global scale `01DFE0B8` are.
+      register _index/OPEN-QUESTIONS.md                             | CM-2 | ~~What is `01DFE0B8`?~~ | **ANSWERED 2026-09-07 — the 60 fps frame-rate scalar, and the game-speed le
+      register _index/OPEN-QUESTIONS.md                             | UQ-27 | **Which of the two degree units each field uses**, `pi/180` or `pi/180000`. **ANSWERED 2026-09-17 (F
+      ticked   13-Rewards-Progression-Economy/world-loot-pickups-th - [x] ~~What `01DFE0B8` actually is.~~ **ANSWERED 2026-09-07 — the 60 fps frame-rate scalar**, not the
+
+17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md:220
+   asks about 01F82E38 : - What `00426220` tests, and what the global `01F82E38` is.
+      register _index/OPEN-QUESTIONS.md                             | DH-1 | ~~**What decides the frame-rate mode.**~~ **ANSWERED 2026-09-08 — it is `FrameLimit`, setting 18 of `
+      register _index/OPEN-QUESTIONS.md                             | DH-3 | **What the thirteen `0x01F82E38` readers do.** One write (`001EDDE8`, the 60 branch) and **thirteen `
+      register _index/OPEN-QUESTIONS.md                             | UQ-28 | **The other fourteen groups.** Named and sized here, unread. **ANSWERED 2026-09-17 (FABLE): the four
+
+99-Unresolved-Residual/the-unresolved-158.md:284
+   asks about 00281ED0 : - Its only registrar `00565DD0` is called only by the menu state machine `00281ED0`, for menu request `0x4B8`.
+      ticked   16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md     - [x] **UQ-160.** The 25 unlabelled procedures in the menu range, and 137 image-wide. The largest are `0056091
+
+99-Unresolved-Residual/the-unresolved-158.md:284
+   asks about 00565DD0 : - Its only registrar `00565DD0` is called only by the menu state machine `00281ED0`, for menu request `0x4B8`.
+      register _index/OPEN-QUESTIONS.md                             | EJ-1 | **What the 512-byte widget at `00565E00` is.** 1,914 bytes, registered exactly once by `00565DD0` and
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:428
+   asks about 022CB730 : - *k* indexes the manager's eight 16-byte skip-request entries at `022CB730 + (m × 8 + k) × 16`.
+      register _index/OPEN-QUESTIONS.md                             | EX-8 | **What the eleven skip-begin notifications and the three pre-skip calls do** — `003601B0`, `003600D0`
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:432
+   asks about 003603F0 : - The engine loop `003603F0` walks *k* = 0 … 7.
+      register _index/OPEN-QUESTIONS.md                             | EX-1 | ~~**What each of the fifteen extra sub-steps of `World_UpdateSimulationTick` is for**, and which scri
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:433
+   asks about 00360880 : - The engine path `00360880` passes the index of the set pending bit.
+      register _index/OPEN-QUESTIONS.md                             | EX-1 | ~~**What each of the fifteen extra sub-steps of `World_UpdateSimulationTick` is for**, and which scri
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:459
+   asks about 001C5750 : - **The DoF family is five keys, and the code reads two of them.** `mDofApertureFnumber`
+      register _index/OPEN-QUESTIONS.md                             | UQ-247 | What the `.json` sidecar is used for on the `sum_` path — two calls consume it and were not followe
+      register _index/OPEN-QUESTIONS.md                             | UQ-339 | **The JSON document's full schema.** Two keys were recovered because `001C5750` names them; the fil
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:499
+   asks about 001C5750 : - *Control, so the absences mean something:* the two keys `001C5750` is known to read are both
+      register _index/OPEN-QUESTIONS.md                             | UQ-247 | What the `.json` sidecar is used for on the `sum_` path — two calls consume it and were not followe
+      register _index/OPEN-QUESTIONS.md                             | UQ-339 | **The JSON document's full schema.** Two keys were recovered because `001C5750` names them; the fil
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:510
+   asks about 001C5750 : - this page's sidecar `001C5750`;
+      register _index/OPEN-QUESTIONS.md                             | UQ-247 | What the `.json` sidecar is used for on the `sum_` path — two calls consume it and were not followe
+      register _index/OPEN-QUESTIONS.md                             | UQ-339 | **The JSON document's full schema.** Two keys were recovered because `001C5750` names them; the fil
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:1321
+   asks about 00392A10 : - **And no caller exists to supply a value.** A whole-image census of `00392A10` (positive
+      register _index/OPEN-QUESTIONS.md                             | UQ-355 | ~~Whether `002D6990` superseded this. §5 declines to claim it.~~ **ANSWERED 2026-09-16 (FABLE): NO.
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:1341
+   asks about 00392A10 : - it keeps each colour dword's top byte, with no `and …, 0xFFFFFF` in the body, where `00392A10` has four;
+      register _index/OPEN-QUESTIONS.md                             | UQ-355 | ~~Whether `002D6990` superseded this. §5 declines to claim it.~~ **ANSWERED 2026-09-16 (FABLE): NO.
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:1454
+   asks about 02EBEFC0 : - **Still open, and it is what the row now asks:** what the 64-bit value selects. **No
+      register _index/OPEN-QUESTIONS.md                             | GJ-5 | **What `[0209CC48]` is**, cleared beside every column-1 dispatch. **ANSWERED 2026-09-21 (FABLE), §3d 
+      ticked   99-Unresolved-Residual/the-widget-tree-draw-pass.md  - [x] **What the two glyph emitters put in their commands.** `002DAF30` loads four rows from `02EBEFC0` / `02E
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:1476
+   asks about 00245110 : - `00245110` is reached from `00252990`.
+      ticked   99-Unresolved-Residual/the-widget-tree-draw-pass.md  - [x] **What the second bracket pass draws.** `00245110` sets pass 1 and is reached from `00252990`; a node dr
+
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md:1476
+   asks about 00252990 : - `00245110` is reached from `00252990`.
+      ticked   99-Unresolved-Residual/the-widget-tree-draw-pass.md  - [x] **What the second bracket pass draws.** `00245110` sets pass 1 and is reached from `00252990`; a node dr
+
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md:438
+   asks about 002465F0 : - **So it is non-zero by default.** The constructor `002465F0` sets `+0xA0 = 0x80` (1.0) at `0024670A`. Within the pass,
+      register _index/OPEN-QUESTIONS.md                             | C-13 | **Layout of `MapScreenPage` +0x0108..+0x0117 — three initialisers disagree and nothing reads it.** Fo
+      register _index/OPEN-QUESTIONS.md                             | WD-1 | **A widget presentation state exists in the shipped game and cannot be entered.** `002465F0` clears b
+      register _index/OPEN-QUESTIONS.md                             | UQ-183 | **What states 2, 3 and 5–7 do** — the nibble is signed and four-bit; only `0`, `1` and `4` have arm
+
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md:440
+   asks about 002C0BE0 : - a message-3 handler scales it to 0. Two are read here: `002C0BE0` scales by `+0xEA` when `+0xEC` bit 1 is set, and `00
+      register _index/OPEN-QUESTIONS.md                             | UQ-355 | ~~Whether `002D6990` superseded this. §5 declines to claim it.~~ **ANSWERED 2026-09-16 (FABLE): NO.
+
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md:450
+   asks about 00392AE4 : - `00392AE4` picks the sliced renderer when the flag is set, and the simple one otherwise.
+      ticked   99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene - [x] ~~**UQ-342.** What `002DD4B0` tests. It decides which of two renderers runs and is unread.~~ **Answered 
+
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md:468
+   asks about 002DD1E0 : - The batch opener `002DD1E0`, which the root calls on the nine-slice path, writes the batch's one GIF tag at
+      ticked   99-Unresolved-Residual/the-widget-tree-draw-pass.md  - [x] **What the two glyph emitters put in their commands.** `002DAF30` loads four rows from `02EBEFC0` / `02E
+
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md:472
+   asks about 002DC7F0 : - The cell drawer `002DC7F0` has no tag of its own, so every cell is drawn under that primitive.
+      register _index/OPEN-QUESTIONS.md                             | UQ-353 | **The exact vertex format `002DC7F0` emits.** [the-box-renderer-that-is-never-called.md](../99-Unre
+
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md:303
+   asks about 001B51C0 : - **`001B51C0` is a binary-search-tree find by `u32` key.** Root `[rcx+0x40]`, terminator
+      register _index/OPEN-QUESTIONS.md                             | UQ-359 | What `001B5FB0`, `001B51C0`, `001FDD60`, `006B5C70` and `005C5310` do. [choosing-the-render-target-
+
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md:319
+   asks about 005C5310 : - **One tension left open rather than resolved by guess.** If the container is an EASTL
+      register _index/OPEN-QUESTIONS.md                             | UQ-359 | What `001B5FB0`, `001B51C0`, `001FDD60`, `006B5C70` and `005C5310` do. [choosing-the-render-target-
+
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md:319
+   asks about 006B5C70 : - **One tension left open rather than resolved by guess.** If the container is an EASTL
+      register _index/OPEN-QUESTIONS.md                             | UQ-359 | What `001B5FB0`, `001B51C0`, `001FDD60`, `006B5C70` and `005C5310` do. [choosing-the-render-target-
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:995
+   asks about 00266BD0 : - `00266BD0` (the call after the planter) is *not* the filler — it is the per-kind
+      register _index/OPEN-QUESTIONS.md                             | UQ-374 | **What kind `3` is** in the `(byte[+3] & 0xE0) == 0x60` gate, and what `[rcx+0xB8]` and `[rcx+0xC0]
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:995
+   asks about 00266C30 : - `00266BD0` (the call after the planter) is *not* the filler — it is the per-kind
+      register _index/OPEN-QUESTIONS.md                             | UQ-374 | **What kind `3` is** in the `(byte[+3] & 0xE0) == 0x60` gate, and what `[rcx+0xB8]` and `[rcx+0xC0]
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:998
+   asks about 00266530 : - The `002665A9` caller's function is `00266530(parent, blockArray, index)` — a
+      register _index/OPEN-QUESTIONS.md                             | FI-2 | **The writers the enumerated routes do not reach** — `+0x03` (`packedKindAndSequence`, 78 readers, no
+      register _index/OPEN-QUESTIONS.md                             | PCD-4 | the `+0x100` / `+0x102` guard's meaning, and what state makes the two words equal. **ITS POLARITY AN
+      ticked   04-Actor-Entity/Actor-Storage-Record/the-record-behi - [x] ~~**Who calls `00266530`**, and therefore when a slot is recycled. Not traced. `EH-6`.~~
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:1152
+   asks about 00267E10 : - The `+0x18` issuer side is already censused on the actor-manager
+      register _index/OPEN-QUESTIONS.md                             | BQ-8 | `00267DB0` is named `VMValueStack_PopNumericDiscard` but **returns a float in xmm0 on all four exit p
+      register _index/OPEN-QUESTIONS.md                             | GA-3 | **The `.vpc` pack's own layout** — *narrowed 2026-09-11:* the cue table is sub-file `slot` of the PKF
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:1167
+   asks about 003304A0 : - **coda-6 — the `+0x18`/`+0x1C` authoring split, closed by path
+      register _index/OPEN-QUESTIONS.md                             | BZ-1 | ~~**Is `section_006`'s `TIM2` block reached through the EBP directory at all**, or only via the gener
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:1740
+   asks about 002AD2B8 : - **Gates** the two interpreter arms that place the pen at the start of a line. Justification `%&'` measures
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:1740
+   asks about 002ADD31 : - **Gates** the two interpreter arms that place the pen at the start of a line. Justification `%&'` measures
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md:1743
+   asks about 002ACA9E : - **Saved and restored** around the selection list's nested call (`002ACA9E`, `002ACACF`).
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+
+99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md:645
+   asks about 0209CC40 : - `GJ-3` — ~~**Whether the object is ever passed to another function at all.** The corrected census finds no
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+      register _index/OPEN-QUESTIONS.md                             | UQ-168 | What the counter capped at `0x14` counts, and what the `[rcx+0x1102]` flag gates. [numeric-formatti
+      register _index/OPEN-QUESTIONS.md                             | GJ-3 | **Whether the drawing context is ever passed to another function at all.** The corrected census finds
+
+99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md:653
+   asks about 0209CC48 : - **`GJ-5` — What `[0209CC48]` is**, cleared beside every column-1 dispatch. **ANSWERED 2026-09-21 (FABLE), §3d:** the c
+      register _index/OPEN-QUESTIONS.md                             | UQ-163 | **What this state block belongs to.** The field roles are read from use; ~~**no caller was traced a
+      register _index/OPEN-QUESTIONS.md                             | GJ-5 | **What `[0209CC48]` is**, cleared beside every column-1 dispatch. **ANSWERED 2026-09-21 (FABLE), §3d 
+
+99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md:654
+   asks about 01E0CE0C : - **`GJ-6` — What the initialiser's conditional float at `01E0CE0C` scales.** **ANSWERED 2026-09-21 (FABLE), §3f:** noth
+      register _index/OPEN-QUESTIONS.md                             | GJ-6 | **What the initialiser's conditional float at `01E0CE0C` scales.** **ANSWERED 2026-09-21 (FABLE), §3f
+
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md:480
+   asks about 002B3400 : - **Kind 2 (the null row) is screen label text.** `002B3400` stamps it for 21 sites in 19 functions: menus, the
+      register _index/OPEN-QUESTIONS.md                             | UQ-361 | **Which strings are `ex`-prefixed, and what `002B0280` does differently.** **PARTIAL 2026-09-15 (FA
+      register _index/OPEN-QUESTIONS.md                             | GJ-7 | **Which text each of the four font drawers is responsible for.** `PROPOSED-repos9e-6` stands; §6 of [
+      register _index/OPEN-QUESTIONS.md                             | GJ-8 | **What `obj[0xA3]`'s four kinds are.** The selector's domain is four rows wide; nothing read there na
+
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md:482
+   asks about 002AA800 : - **Kind 1 (`002AA800`) has no builder.** No cluster code writes 1 (`GJ-8`).
+      register _index/OPEN-QUESTIONS.md                             | UQ-382 | **What dispatches slot 2 of the drawer table at `009164C0`.** The table is three-wide, indexed `kin
+      register _index/OPEN-QUESTIONS.md                             | GJ-7 | **Which text each of the four font drawers is responsible for.** `PROPOSED-repos9e-6` stands; §6 of [
+      register _index/OPEN-QUESTIONS.md                             | GJ-8 | **What `obj[0xA3]`'s four kinds are.** The selector's domain is four rows wide; nothing read there na
+
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md:506
+   asks about 01E0CDC8 : - `GJ-9` — ~~**What `obj[0xAC]` and the global `01E0CDC8` gate** in the guarded dispatcher — a condition under
+      register _index/OPEN-QUESTIONS.md                             | GJ-9 | **What `obj[0xAC]` and the global `01E0CDC8` gate** in the guarded dispatcher — the condition under w
+
+04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md:158
+   asks about 0032990D : - **`+0x64` is the enemy's Clan Primer entry id.** For a kind-1 record whose class nibble is not 3, the builder
+      register _index/OPEN-QUESTIONS.md                             | FJ-2 | **What `0030A310(row, i)` reads** for the three party-row words at `+0xB4`–`+0xB8` (`00329640`–`00329
+
+04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md:161
+   asks about 00329983 : - **`+0x5E` is the unit's issued command action id.** While unit flag bit 14 is set, the builder copies
+      register _index/OPEN-QUESTIONS.md                             | FJ-2 | **What `0030A310(row, i)` reads** for the three party-row words at `+0xB4`–`+0xB8` (`00329640`–`00329
+
+24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md:212
+   asks about 0071EE70 : - **B: `map<std::string, std::string>`, the parsed YEBIS licence.** Its one owner looks up `FeatureId`,
+      register _index/OPEN-QUESTIONS.md                             | MT-3 | ~~**The 22 further bodies carrying the `_Isnil` test.**~~ **ANSWERED 2026-09-15 (FABLE) — there are 2
+      register _index/OPEN-QUESTIONS.md                             | SD-80 | What the fourteen profiled MSVC `std::_Tree` bodies do, read end to end: `0071F240`, `0071F590`, `00
+
+24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md:207
+   asks about 00248030 : - **`00248030` (`HierarchyGenerationBitTraversalAndCallbackReconciliation`)** — the generation reconcile. For each node
+      register _index/OPEN-QUESTIONS.md                             | UQ-188 | What the two globals at `0024665F` and `00246753` gate. **ANSWERED 2026-09-17 (FABLE): a generation
+
+24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md:207
+   asks about 0208ED5C : - **`00248030` (`HierarchyGenerationBitTraversalAndCallbackReconciliation`)** — the generation reconcile. For each node
+      register _index/OPEN-QUESTIONS.md                             | UQ-188 | What the two globals at `0024665F` and `00246753` gate. **ANSWERED 2026-09-17 (FABLE): a generation
+
+24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md:219
+   asks about 01DF08F8 : - **`0017ECB0` (`Presentation.Runtime.Callback`)** — ten bytes that copy dword `[arg + 0x10]` to `01DF08F8`
+      register _index/OPEN-QUESTIONS.md                             | DH-7 | **What `00184960`'s `mode` argument is** — it decides whether 60 fps runs in HALFRATE: the one setter
+
+24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md:467
+   asks about 01F44830 : - **2,208 are prologue loads** (`mov rax, [01F44830]`), and every one of those functions calls
+      register _index/OPEN-QUESTIONS.md                             | BJ-2 | Identity of `01F44830`. It is the CRT pointer-encoding cookie here, read from **2,229 functions at 2,
+
+24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md:494
+   asks about 02EAED70 : - **Why never.** All three exports exist in `kernel32.dll` from Windows Vista on (documented API availability, not
+      register _index/OPEN-QUESTIONS.md                             | BJ-3 | Whether the event-fallback path in `_Init_thread_wait` is ever taken on a supported OS. `02EAED70` is
+
+24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md:272
+   asks about 006B6750 : - `006B6750` is **`Phyre::PAnnotation`'s destructor**. It unlinks the annotation from its
+      register _index/OPEN-QUESTIONS.md                             | UQ-319 | The shared implementations. Every one named in a members file is still in the frontier. **NARROWED 
+      ticked   22-Middleware-PhyreEngine/Reflection-And-Class-Metad - [x] **`006B6750` is a destructor, not a variant constructor.** *Killer:* it initialising rather than
+
+24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md:274
+   asks about 006B68A0 : - `006B68A0` is **`Phyre::PNamedSemanticDescriptor`'s destructor**. It unlinks the list element at `+0x50`,
+      register _index/OPEN-QUESTIONS.md                             | UQ-319 | The shared implementations. Every one named in a members file is still in the frontier. **NARROWED 
+
+24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md:279
+   asks about 007DF6D0 : - `007DF6D0` calls `InitializeCriticalSection` on `this` and zeroes the `0x24` bytes after the `0x28`-byte
+      register _index/OPEN-QUESTIONS.md                             | UQ-319 | The shared implementations. Every one named in a members file is still in the frontier. **NARROWED 
+
+24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md:258
+   asks about 0209BE80 : - **Every use of `+0xA0`** found by following each load of `[0209BE80]`, matched exactly — *corrected the same day after
+      register _index/OPEN-QUESTIONS.md                             | BU-3 | What `0028FB40`'s singleton at `0209BE80` is, and what lives at its `+0xA0`. It is the only member of
+      register _index/OPEN-QUESTIONS.md                             | UQ-25 | **What the node type is.** **§10: RTTI cannot answer it from this path** — no indirect call and no `
+      register _index/OPEN-QUESTIONS.md                             | UQ-28 | **The other fourteen groups.** Named and sized here, unread. **ANSWERED 2026-09-17 (FABLE): the four
+
+24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md:305
+   asks about 0019C590 : - **Where the qwords are.** 1,393 in `.rdata` and 22 in `.data`: vtable slots, the Lua `luaL_Reg` tables (each
+      register _index/OPEN-QUESTIONS.md                             | BU-2 | ~~Why 108 import stubs encode in **6 bytes** and 12 in **7**. Both are the same instruction, `JMP qwo
+
+24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md:603
+   asks about 008800C0 : - **Positive control, so the absence means something.** The member files are bare uppercase
+      register _index/OPEN-QUESTIONS.md                             | G-23 | ~~Are both the HCA and Vorbis decode paths live in this title, or is one vestigial?~~ **ANSWERED 2026
+
+09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md:426
+   asks about 01EEC298 : - **`n = 0` never completes.** The fallback record `{0x4021, 0, flags 0x2000}` at `01EEC298` is exactly that
+      register _index/OPEN-QUESTIONS.md                             | DE-2 | **Why `0x4021` and `0x4025` are holes.** Both sit inside the valid band and route to the same target 
+
+09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md:432
+   asks about 01EEC460 : - **The only route in.** `BattleUnit_ExecuteDirectStateCommandOrder` has no `E8`/`E9` caller and no `rip`
+      register _index/OPEN-QUESTIONS.md                             | EI-2 | **What lies above action id 542.** `AT-8` has the space's size and file; this adds that the engine ad
+      ticked   09-Combat-AI-And-Gambits/gambit-evaluation-and-enmit - [x] ~~What action id `0x414D` *does*.~~ **Z-14 ANSWERED 2026-09-12 (FABLE): it flips the combat stance.** It
+
+23-Third-Party-Libraries/third-party-middleware-inventory.md:778
+   asks about 00679A50 : - The count of "nine of eleven with no caller" is about the eleven *tagged* bodies, none of which `00679A50`
+      register _index/OPEN-QUESTIONS.md                             | G-23 | ~~Are both the HCA and Vorbis decode paths live in this title, or is one vestigial?~~ **ANSWERED 2026
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:129
+   asks about 0016F450 : - `1` is `VP8_SET_REFERENCE`: it converts `vpx_ref_frame_t` and calls `vp8dx_set_reference` `0016F450`.
+      register _index/OPEN-QUESTIONS.md                             | FR-1 | **Which codecs the `.webm` loader accepts**, and which library plays the 40 movies (10,377 MiB, EBML 
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:182
+   asks about 0016EEEF : - **It is a 2-D grid, and the context names both dimensions.** With `r11 = [rcx+0x1B0]` (the
+      register _index/OPEN-QUESTIONS.md                             | UQ-310 | **The `0x4C`-stride array `0016EEC0` walks.** [the-vp8-codec-interface-and-its-control-map.md](../2
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:182
+   asks about 0016EF3F : - **It is a 2-D grid, and the context names both dimensions.** With `r11 = [rcx+0x1B0]` (the
+      register _index/OPEN-QUESTIONS.md                             | UQ-310 | **The `0x4C`-stride array `0016EEC0` walks.** [the-vp8-codec-interface-and-its-control-map.md](../2
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:185
+   asks about 0016EF35 : - **Each row carries one entry more than the inner count.** After the inner loop ends, the
+      register _index/OPEN-QUESTIONS.md                             | UQ-310 | **The `0x4C`-stride array `0016EEC0` walks.** [the-vp8-codec-interface-and-its-control-map.md](../2
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:189
+   asks about 0016EF20 : - **The discriminant is a byte at `+0x02`, and two values are searched.** The first pass looks
+      register _index/OPEN-QUESTIONS.md                             | UQ-310 | **The `0x4C`-stride array `0016EEC0` walks.** [the-vp8-codec-interface-and-its-control-map.md](../2
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:189
+   asks about 0016EF60 : - **The discriminant is a byte at `+0x02`, and two values are searched.** The first pass looks
+      register _index/OPEN-QUESTIONS.md                             | UQ-310 | **The `0x4C`-stride array `0016EEC0` walks.** [the-vp8-codec-interface-and-its-control-map.md](../2
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:192
+   asks about 0016EECE : - **The whole walk is gated on `[rcx+0x1A8] == 0`** (`0016EECE`) and on the out-pointer being
+      register _index/OPEN-QUESTIONS.md                             | UQ-310 | **The `0x4C`-stride array `0016EEC0` walks.** [the-vp8-codec-interface-and-its-control-map.md](../2
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:207
+   asks about 00000005 : - **`+0x08` = `0x00000005` is `abi_version`** — `VPX_CODEC_INTERNAL_ABI_VERSION`. It is
+      register _index/OPEN-QUESTIONS.md                             | UQ-311 | **`+0x08`'s two packed fields.** `00000005` and `00140001` are read, not interpreted. [the-vp8-code
+
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md:211
+   asks about 00140001 : - **`+0x0C` = `0x00140001` is `caps`**, and it is exactly three flags — `0x1` **DECODER**,
+      register _index/OPEN-QUESTIONS.md                             | UQ-311 | **`+0x08`'s two packed fields.** `00000005` and `00140001` are read, not interpreted. [the-vp8-code
+
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md:323
+   asks about 00783AA0 : - **Not EASTL (one):** `00783AA0` (540 B) is MSVC's `std::vector<T>` growth — `_Xlength_error`
+      register _index/OPEN-QUESTIONS.md                             | BS-1 | The **12 unread `EASTL.ContainerRuntime` bodies**, including the two largest — `00200E60` (1,527 B) a
+
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md:387
+   asks about 001EDF00 : - **The constructor keeps no name.** `001EDF00` is all 14 bytes: it writes the vtable `00902720` and returns
+      register _index/OPEN-QUESTIONS.md                             | UQ-358 | What the `0x38`-byte buffer holds beyond `+0x00` (a size or id compared against `n`), `+0x08`, `+0x
+
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md:387
+   asks about 00902720 : - **The constructor keeps no name.** `001EDF00` is all 14 bytes: it writes the vtable `00902720` and returns
+      register _index/OPEN-QUESTIONS.md                             | UQ-358 | What the `0x38`-byte buffer holds beyond `+0x00` (a size or id compared against `n`), `+0x08`, `+0x
+
+23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md:403
+   asks about 00684D10 : - **The callable-method callers.** `00684D10` and `00686280` pass `PClassCallableMethodScript::m_script`, the
+      register _index/OPEN-QUESTIONS.md                             | R-1 | What `00684D10` and `00686280` execute — which scripts, from where, when. | **SUPERSEDED 2026-09-26 (F
+      register _index/OPEN-QUESTIONS.md                             | DA-1 | **Does the shipped game ever execute a Lua chunk?** **Static evidence cannot settle it and says so:**
+      register _index/OPEN-QUESTIONS.md                             | DA-3 | ~~**What supplies a chunk, if anything does?**~~ **ANSWERED 2026-09-08 — the loader is `00683C30`, Ph
+
+23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md:403
+   asks about 00686280 : - **The callable-method callers.** `00684D10` and `00686280` pass `PClassCallableMethodScript::m_script`, the
+      register _index/OPEN-QUESTIONS.md                             | R-1 | What `00684D10` and `00686280` execute — which scripts, from where, when. | **SUPERSEDED 2026-09-26 (F
+      register _index/OPEN-QUESTIONS.md                             | DA-3 | ~~**What supplies a chunk, if anything does?**~~ **ANSWERED 2026-09-08 — the loader is `00683C30`, Ph
+      register _index/OPEN-QUESTIONS.md                             | DA-4 | **Two `PCallerScript` vtable slots are the folded `005C5230` stub** (`xor eax,eax; ret`), the same bo
+
+23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md:472
+   asks about 0081D790 : - `0081D790` `f_parser`: `attempt to load a %s chunk (mode is '%s')`;
+      register _index/OPEN-QUESTIONS.md                             | DA-3 | ~~**What supplies a chunk, if anything does?**~~ **ANSWERED 2026-09-08 — the loader is `00683C30`, Ph
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md:484
+   asks about 005FEFD0 : - One clause of that page is contradicted rather than consumed: it states `00600A60`'s
+      register _index/OPEN-QUESTIONS.md                             | GF-7 | **What the post-effect workers' render-state calls set, and what the multiple submissions differ by.*
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md:484
+   asks about 00600A60 : - One clause of that page is contradicted rather than consumed: it states `00600A60`'s
+      register _index/OPEN-QUESTIONS.md                             | GF-7 | **What the post-effect workers' render-state calls set, and what the multiple submissions differ by.*
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md:407
+   asks about 0018D240 : - **Consumers.** Every `movzx …, word [descriptor + 0x12]` in the 37 callers of `FindShaderParameter` `0018D240` and in
+      register _index/OPEN-QUESTIONS.md                             | EA-3 | **The upper 3 bits of the shader-parameter descriptor's size word** at `descriptor + 0x12`, discarded
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md:407
+   asks about 001945B0 : - **Consumers.** Every `movzx …, word [descriptor + 0x12]` in the 37 callers of `FindShaderParameter` `0018D240` and in
+      register _index/OPEN-QUESTIONS.md                             | EA-3 | **The upper 3 bits of the shader-parameter descriptor's size word** at `descriptor + 0x12`, discarded
+      register _index/OPEN-QUESTIONS.md                             | EA-6 | **`001945B0`** (296 B), called by several passes immediately before their parameter run. Not read. **
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md:418
+   asks about 0018D240 : - **Residue:** what the asset format puts there, most plausibly a type or array-rank code beside a 13-bit size. A reader
+      register _index/OPEN-QUESTIONS.md                             | EA-3 | **The upper 3 bits of the shader-parameter descriptor's size word** at `descriptor + 0x12`, discarded
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md:455
+   asks about 0060B980 : - **The other 30 are classified, not read**: 11 `0065xxxx` render bodies (13,651 B) each reached from
+      register _index/OPEN-QUESTIONS.md                             | EA-8 | **What `001A9930` and `001AD440` are.** `001E2AF0` is the single largest member of `UQ-289`'s 48 at 4
+      register _index/OPEN-QUESTIONS.md                             | GD-1 | **What the draw-side arguments of a context-switch evaluator are.** The eight evaluators read four di
+      register _index/OPEN-QUESTIONS.md                             | GF-7 | **What the post-effect workers' render-state calls set, and what the multiple submissions differ by.*
+
+22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md:465
+   asks about 0060B980 : - **And the eleven are read, as a population** — every one builds a `PMaterialSelectorMaterialSet`
+      register _index/OPEN-QUESTIONS.md                             | EA-8 | **What `001A9930` and `001AD440` are.** `001E2AF0` is the single largest member of `UQ-289`'s 48 at 4
+      register _index/OPEN-QUESTIONS.md                             | GD-1 | **What the draw-side arguments of a context-switch evaluator are.** The eight evaluators read four di
+      register _index/OPEN-QUESTIONS.md                             | GF-7 | **What the post-effect workers' render-state calls set, and what the multiple submissions differ by.*
+
+22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md:883
+   asks about 02EAF6D8 : - **No other thread watching.** The `02EAF6D8` fence at the top of the function is inert: its load is hoisted out of the
+      register _index/OPEN-QUESTIONS.md                             | CF-6 | **ADVANCED 2026-09-07 — censused by disassembly; see `CG`.** Twelve settle-spin loops found in `.text
+      register _index/OPEN-QUESTIONS.md                             | CG-4 | **Is `0x02EAF6D8` the same protocol on a second word?** `xiionline-13` is chasing *"the thread that c
+      ticked   17-Presentation-Rendering/Graphics-Thread-Handshake/ - [x] ~~**Whether `0x02EAF6D8` runs the same protocol.** `xiionline-13` is chasing "the thread that
+
+22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md:890
+   asks about 002E2240 : - **Only two callers of `002E2240`.** Mode 6 is set in exactly one place and mode 2 is restored in exactly
+      register _index/OPEN-QUESTIONS.md                             | GA-4 | **The voice starter's gate and the slot's leftover words** — what the mode byte `02064AD3` (`00229EA0
+      register _index/OPEN-QUESTIONS.md                             | SM-1 | **The seven ids with no start site (1, 3, 8, 9, 14, 20, 21), and the player-facing names of ids 15, 1
+
+22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md:924
+   asks about 002F9860 : - `002F9860(id)` splits the id into id ÷ 1000, a text group, and id mod 1000, a row.
+      register _index/OPEN-QUESTIONS.md                             | FX-2 | **What augments 116–127 are** — rows with no description and parameters `0, 0, 0, 40, 30, 20, 30, 20,
+      register _index/OPEN-QUESTIONS.md                             | UQ-68 | `bwin`: what entry 4 is, and what the two numbers measure. **NARROWED 2026-09-17 (FABLE): the reader
+      register _index/OPEN-QUESTIONS.md                             | GE-1 | **What bank 12 of the 28-bank string pool holds.** The status record's `+0x0A` word is `12000 + id`, 
+
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md:344
+   asks about 0062EFD0 : - **`+0x80` holds the fields.** `AttachMember` `0062EFD0` links the 682 field registrations.
+      register _index/OPEN-QUESTIONS.md                             | BQ-25 | ~~The **88 teardown functions**, confirmed only **negatively** (0/88 on both construction instrument
+      register _index/OPEN-QUESTIONS.md                             | PH-2 | what `0063E2E0` does with the descriptor at `02CAA0A0`. ~~**`02CAA0A0` is in `.bss` and is therefore 
+
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md:432
+   asks about 0063CE80 : - **Each field.** `0063CE80` asks the field for its type (field slot 1), skips fields by flag bits `+0x28`, and
+      register _index/OPEN-QUESTIONS.md                             | PH-2 | what `0063E2E0` does with the descriptor at `02CAA0A0`. ~~**`02CAA0A0` is in `.bss` and is therefore 
+
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md:845
+   asks about 006B6700 : - **The type.** The RTTI base-class table of `PClassDataMember` (vtable `00D580B0`) puts `PAnnotatable` at
+      register _index/OPEN-QUESTIONS.md                             | PCD-1 | **what each of the six lists holds.** The source page says their roles are not established and this 
+
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md:845
+   asks about 00D580B0 : - **The type.** The RTTI base-class table of `PClassDataMember` (vtable `00D580B0`) puts `PAnnotatable` at
+      register _index/OPEN-QUESTIONS.md                             | PCD-1 | **what each of the six lists holds.** The source page says their roles are not established and this 
+
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md:525
+   asks about 00861EBA : - `+0x20`..`+0x27` are moved only by the whole-slot copier `005BFE70` (`memcpy` through `00861EBA`), which never interpr
+      register _index/OPEN-QUESTIONS.md                             | UQ-279 | The member-flag word at `member + 0x28`. Bit 1 forces the bound size to 8 (section 4); bit 6 partic
+      register _index/OPEN-QUESTIONS.md                             | UQ-361 | **Which strings are `ex`-prefixed, and what `002B0280` does differently.** **PARTIAL 2026-09-15 (FA
+
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md:557
+   asks about 005C72A0 : - **Slot 12 is therefore not declared by any common base.** Each blender controller introduces its own, and the
+      register _index/OPEN-QUESTIONS.md                             | BM-2 | Whether any semantic beyond `Rotation` / `Translation` / `Scale` receives special handling elsewhere 
+      register _index/OPEN-QUESTIONS.md                             | BM-3 | The remaining 16 bytes of the 40-byte `ChannelValue` slot (`+0x18`..`+0x27`). `005C72A0` reads only t
+      register _index/OPEN-QUESTIONS.md                             | BM-5 | The full vtable layouts of `PAnimationTargetBlenderController` and `PAnimationBlenderController`. Nee
+
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md:557
+   asks about 005C9F30 : - **Slot 12 is therefore not declared by any common base.** Each blender controller introduces its own, and the
+      register _index/OPEN-QUESTIONS.md                             | BM-5 | The full vtable layouts of `PAnimationTargetBlenderController` and `PAnimationBlenderController`. Nee
+
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md:594
+   asks about 005C5230 : - **`005C5230`** (`xor eax, eax / ret`): `PClassDataMember`, `PClassDataMemberEnum` and `PClassDataMemberDynamic`;
+      register _index/OPEN-QUESTIONS.md                             | BN-4 | Which FFXII objects actually become Bullet rigid bodies in a shipped map, and how many exist at once.
+      register _index/OPEN-QUESTIONS.md                             | CR-3 | **Why is the ATRAC3 family split across two inert shapes?** `atrac3standbysync` and `atrac3playsync` 
+      register _index/OPEN-QUESTIONS.md                             | DA-4 | **Two `PCallerScript` vtable slots are the folded `005C5230` stub** (`xor eax,eax; ret`), the same bo
+
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md:595
+   asks about 0016D680 : - **`0016D680`** (`mov rax, rcx / ret`): every array member, meaning `PClassDataMemberArray`, `…ArrayFixedSize`, and eac
+      register _index/OPEN-QUESTIONS.md                             | AS-5 | ~~Whether the single function appearing in **1,349** vtables is the already-documented folded `ret 0`
+      register _index/OPEN-QUESTIONS.md                             | PH-2 | what `0063E2E0` does with the descriptor at `02CAA0A0`. ~~**`02CAA0A0` is in `.bss` and is therefore 
+
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md:598
+   asks about 005C0820 : - **So slot 1 is an *as-array* accessor.** It returns the member itself when the member is an array and null otherwise.
+      register _index/OPEN-QUESTIONS.md                             | BM-6 | Whether target **kinds 2 and 3** (reflected-setter binds) are produced by any binder other than `005C
+
+22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md:469
+   asks about 007A08A0 : - **Slot 29** `007A08A0` returns 9 when `+0x69` is set. On its first call it runs slot 9 (vtable `+0x48`). It then
+      register _index/OPEN-QUESTIONS.md                             | PA-5 |  What the 13 inherited slots do, i.e. what behaviour FFXII takes from the middleware unchanged.  [`..
+
+22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md:417
+   asks about 005A0840 : - **The walker's `+0x18` is a different thing.** `005A0840` uses `+0x18` only as a vtable slot
+      register _index/OPEN-QUESTIONS.md                             | UQ-40 | Whether any translated routine is reached from more than one thread. **NARROWED 2026-09-17 (FABLE): 
+      register _index/OPEN-QUESTIONS.md                             | UQ-331 | Whether `atexit` ordering matters to anything in this image. **NARROWED 2026-09-17 (FABLE): for thi
+
+22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md:417
+   asks about 005A0882 : - **The walker's `+0x18` is a different thing.** `005A0840` uses `+0x18` only as a vtable slot
+      register _index/OPEN-QUESTIONS.md                             | UQ-40 | Whether any translated routine is reached from more than one thread. **NARROWED 2026-09-17 (FABLE): 
