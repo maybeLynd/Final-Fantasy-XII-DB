@@ -57,11 +57,33 @@ Stop when the scope is covered; summarise counts at the top of the report.
 
 ## How a session starts one
 
-<!-- LAUNCH-METHOD: filled in once confirmed -->
-See "Launch method" below. If it is unknown, the user can start one at https://claude.ai/code on this repo with the
-brief above.
+**Confirmed 2026-10-01.** Use the `RemoteTrigger` tool in a local Claude Code session. The account's cloud
+environment is **`env_01GxcHZwJhZwkn92cKmyZH3q`** ("Default", set with `/remote-env`).
+
+1. **Create** an on-demand routine. With no `cron_expression` it never fires on its own:
+   ```json
+   {"name": "FF12 DB: <task>",
+    "job_config": {"ccr": {
+      "environment_id": "env_01GxcHZwJhZwkn92cKmyZH3q",
+      "session_context": {"sources": [{"git_repository": {"url": "https://github.com/maybeLynd/Final-Fantasy-XII-DB"}}]},
+      "events": [{"data": {"type": "user", "message": {"role": "user", "content": "<the full brief>"}}}]}}}
+   ```
+   Check that the response's `derived_state.prompt` shows the brief. To reuse a routine for a new task, `update` its
+   `job_config` with a new brief.
+2. **Run** it: `RemoteTrigger run <trigger_id>` returns the cloud session id (`cse_...`).
+3. **Follow** it: `RemoteTrigger list_runs <trigger_id>` and `get_run_log <session_id>`. The run's claude.ai link is in
+   `list_runs`.
+4. **Collect**: fetch the `cloud/<topic>` branch locally, verify every finding against `XIIOnline/Database`, apply the
+   accepted ones through the publish queue, and record them in the task log below.
+
+What does not work here: the `Agent` tool's `isolation: "remote"` silently falls back to a local worktree in this
+session. That uses no cloud credit and runs on the parent `WiP` repo, so do not use it for cloud work.
+
+Before a session uses this method, check that the credit still has a balance and that today is before 2026-11-05. If
+either fails, stop using cloud agents.
 
 ## Task log
 
 | date | branch | task | status | applied locally |
 |---|---|---|---|---|
+| 2026-10-01 | cloud/register-consistency | register vs page consistency sweep (routine trig_015tTBC1YjYsjvEQGjFTWLsQ, session cse_01U8msvcyJcZBFDBTcM3ZfLL) | running | - |
