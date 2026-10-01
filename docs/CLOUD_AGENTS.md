@@ -87,3 +87,4 @@ either fails, stop using cloud agents.
 | date | branch | task | status | applied locally |
 |---|---|---|---|---|
 | 2026-10-01 | cloud/register-consistency | register vs page consistency sweep (routine trig_015tTBC1YjYsjvEQGjFTWLsQ, session cse_01U8msvcyJcZBFDBTcM3ZfLL) | running | - |
+| 2026-10-01 | cloud/register-vs-records | register cells vs their cited records (routine trig_01WxJTdNfcFXL8rgBHCoyubv, session cse_01FzYbtkHfwTDWZWmdih3zsL) | running | - |
