@@ -3,6 +3,11 @@
 Read this before starting or briefing a cloud agent for FF12. It records how cloud sessions are used here, so a future
 session can carry on without relearning it.
 
+**Since 2026-10-01 the work itself is organised as a program.** See [`CLOUD_PROGRAM.md`](CLOUD_PROGRAM.md) for the
+streams, the results they should produce, the no-duplication protocol and the task lifecycle. The per-stream briefs
+are in [`cloud-briefs/`](cloud-briefs/), and repo upkeep is in [`REPO_MANAGEMENT.md`](REPO_MANAGEMENT.md). This file
+keeps the background and the **task log** at the end.
+
 ## The credit is temporary
 
 - The account has **$250 of Claude Code cloud-session credit, expiring 2026-11-05** (1:59 AM CST).

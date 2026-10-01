@@ -27,6 +27,15 @@ So most checkers here **cannot be re-run in a cloud session**: they read `Tools/
 extracted archive, which exist only on the workstation. Cloud work on this repo must be self-contained, such as
 reading, cross-checking pages against each other, tooling and documentation.
 
+## Repo-owned folders
+
+These folders are this repo's own; the snapshot sync never touches them:
+- `docs/`: the cloud program (`CLOUD_PROGRAM.md`), the briefs (`cloud-briefs/`), the task log (`CLOUD_AGENTS.md`) and
+  repo upkeep (`REPO_MANAGEMENT.md`).
+- `cloud-input/`: OPUS-generated inputs for cloud sessions. This includes disassembly text derived from the certified
+  executable, so the repo must stay private.
+- `cloud-reports/`: cloud session reports, archived after OPUS has verified them.
+
 ## Cloud sessions are temporary (user, 2026-10-01)
 
 The account has $250 of Claude Code cloud-session credit, which expires on 2026-11-05. Use cloud agents to the best of
