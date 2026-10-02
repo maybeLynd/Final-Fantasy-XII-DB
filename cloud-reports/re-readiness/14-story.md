@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot at `df2c9f47` only; no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item quotes or paraphrases a page and gives its location. Text is quoted as the snapshot has it; several of these pages are being edited by other lanes. |
 
-**Counts:** _(filled in when the report is complete; see the end of the commit series)_
+**Counts:** 4 pages read in full (`README.md` + 3 system pages, 2,519 lines), 2 `.tsv` files checked for layout and counts only, 2 `.py` member headers read · **36 entry-point rows** mapped (14 flag-bank accessors / reset / base, 4 event-memory, 4 publishers / threshold variable, 5 RNG-fed writers, 5 bestiary, 4 other) · **20** self-stated open gaps + **16** structural gaps · **40 contradictions**: **18 value-changing** (3 with a favoured side settled by a dated correction: C-V2, C-V8, C-V9; 15 with no favoured side, all "page-text only - needs local check") and **22 stale / banner** · 7 cross-checks found consistent · **Rating: MOSTLY** overall (flag-bank core READY statically; schedule, event memory, traps and bestiary MOSTLY; treasure NOT YET; hunts not a native system).
 
 Citation form: `page:line`, where `page` is the file name inside `FFXII TZA/14-Story-Event-Quest-Hunt/`. The pages are:
 
@@ -531,3 +531,23 @@ settled point as open.
 - Trap mask ring: three 12-byte entries from `02EC3EA0` end at `02EC3EC4`, the write index (`persistent-flag-banks.md:751-752`).
 - `SetPrimary` bound: `id - 2U < 0x1FE` (`persistent-flag-banks.md:99`) ≡ `cmp eax, 0x1FD / ja` (`:1172`; `CONTRACT-persistent-flag-banks.md:217`).
 - `Bank64` call sites (`CONTRACT-persistent-flag-banks.md:248-249`) fall inside the handler functions of §8b (`persistent-flag-banks.md:610-611`).
+
+---
+
+## 4. Rating
+
+**Overall: MOSTLY.** The native core of this category could be written from the database alone, with its limits
+declared; the authored mechanisms layered on it have named gaps, and one of them (treasure) has structural ones.
+
+| part | rating | why |
+|---|---|---|
+| Flag banks: eleven accessors, bit arithmetic, range guards (including the negative-id behaviour), the gate's bit-14 decode and reserved ids 0/1, the new-game `memset` + initial set | **READY** (static) | layout, formula, bounds and the shipped id list are stated (`persistent-flag-banks.md:285-333`, `:514`; `CONTRACT-persistent-flag-banks.md:335-347`); eleven accessors differentially tested, 0 mismatches (`CONTRACT-persistent-flag-banks.md:559-571`). Open: no live observation (S-1); value items C-V1, C-V3, C-V5, C-V11 need a local check. |
+| Authored threshold schedule | **MOSTLY** | file format and walk are complete (`persistent-flag-banks.md:169-217`); the variable it compares against cannot be located (G-1). |
+| Event memory at actor bind | **MOSTLY** | the predicate and the shipped list are complete (`event-memory-at-actor-bind.md:107-121`, `:241-255`); what the gated buffers hold (S-14), the third record byte (S-15) and the `00576300`/`00570080` bodies (G-10) are not stated. |
+| Traps (`002FA740`, `002F8060`) | **MOSTLY** | record, table source, arming, trigger body, gather and the action formulas are stated (`persistent-flag-banks.md:721-784`); trigger cadence and caller, marker functions and the table-reference chooser are not (G-6, G-7). |
+| Treasure (`002FAFD0`) | **NOT YET** | the record is partial, the per-chest mask is named only, and the flag half disagrees with the script verb (G-3, G-4); the draw needed a dated correction (C-V8). |
+| Bestiary block | **MOSTLY** | storage and the three functions are stated (`event-memory-at-actor-bind.md:194-212`); `00315D50`'s return contract and the block's base are not (G-12, G-13). |
+| Hunts | **n/a natively** | "no hunt subsystem exists in native code" (`event-memory-at-actor-bind.md:38-39`); the authored conventions are unread (G-15). |
+
+A re-implementer would also have to settle the 18 value items in §3.1 against the executable (15 of them have no
+favoured side on the pages) and should read the 22 items in §3.2 as settled in the direction of the answering side.
