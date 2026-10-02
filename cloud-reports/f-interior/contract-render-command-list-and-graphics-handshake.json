@@ -1,0 +1,68 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "rows": [
+  {
+   "fn": "0018B030",
+   "text": "subtracts qword `+0` of `rcx` from qword `+8`, shifts the difference right arithmetically by 3 and stores the low dword at `+0x2C`",
+   "anchors": [
+    [
+     "0018B034",
+     "sub"
+    ],
+    [
+     "0018B037",
+     "sar"
+    ],
+    [
+     "0018B03B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0018CB10",
+   "text": "calls `0018B4E0` with `rcx` unchanged and tail-jumps `0018B510(result, edx)`",
+   "anchors": [
+    [
+     "0018CB18",
+     "call"
+    ],
+    [
+     "0018CB20",
+     "mov"
+    ],
+    [
+     "0018CB27",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001A14D0",
+   "text": "copies qword `+0x18` of `rcx` into qword `+8`",
+   "anchors": [
+    [
+     "001A14D4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00212C60",
+   "text": "loads qword `+8` of `rcx` and, when it is non-null, tail-jumps `001E2AF0` with it as `rcx`; otherwise returns",
+   "anchors": [
+    [
+     "00212C64",
+     "test"
+    ],
+    [
+     "00212C67",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001A14D0: the entry instruction is the load and the only interior work is the store, anchored alone."
+}
