@@ -80,8 +80,8 @@ never passed through the write path — and a different fourth constant at `+0x6
 **Generation B (04, 05, 06, 15)** begins with the tag `FF12`, `u32 1`, then `u32` values 6,500 / 6,500 / 0 /
 500 at `+0x08`. **From `+0x08` on it is generation A's map** — gil at `+0x08`, the 60 Hz clock at
 `+0x10` matching the `h:mm:ss` at `+0x18`/`+0x1A`/`+0x1B`, the area id at `+0x1244` — so the two
-generations differ in their **first eight bytes only**, tag and version where generation A has the
-checksum (§6). What follows the header is still undecoded.
+generations differ in their **first eight bytes ~~only~~** and in `+0x58`–`+0x6C`, which are zero in generation B where generation A carries its six constants *(corrected 2026-10-02, OPUS: read through `vbf_read_entry` from `FFXII_TZA.vbf`)*, tag and version where generation A has the
+checksum (§6)~~. What follows the header is still undecoded~~ *(answered: see §7 `SV-1`, narrowed 2026-09-27 — all three generations carry the 40-record party-stats array; 2026-10-02, OPUS)*.
 
 **Generation C (07–14)** has an all-zero header — zero through `+0x6C`, so not even the four
 constants — and its first non-zero byte is at `+0x901` (slot 13: `+0x1244`). Seven of the eight are
@@ -160,10 +160,10 @@ written out. If generation B shares the map, the identity must hold there too.
 each fail 8 of 8, 59 fails 6 of 8 and 61 fails 7 of 8; reading the counter from gil, from `+0x0C`,
 from `+0x14` or from the area id fails 8 of 8; swapping minutes and seconds fails 8 of 8.
 
-So **generations A and B differ in their first eight bytes and nothing else that is decoded**: the
-tag `FF12` and a `u32 1` stand where generation A has its checksum and the dword at `+0x04`. The
-payload past the header is still undecoded in both, and generation C — zero through `+0x6C`, first
-non-zero byte at `+0x901` — is undecoded entirely.
+So **generations A and B differ in their first eight bytes ~~and nothing else that is decoded~~** and in the header constants `+0x58`–`+0x6C`, all zero in generation B *(corrected 2026-10-02, OPUS: read through `vbf_read_entry`; generation A carries `20050223` / `00001538` / `05071901` / `00005A70` / `0131F3EA` / `00004818`)*: the
+tag `FF12` and a `u32 1` stand where generation A has its checksum and the dword at `+0x04`. ~~The~~
+~~payload past the header is still undecoded in both, and generation C — zero through `+0x6C`, first~~
+~~non-zero byte at `+0x901` — is undecoded entirely.~~ *(answered: see §7 `SV-1` — all three generations carry the 40-record party-stats array, generation C at image `+0x15FC`; 2026-10-02, OPUS)*
 
 ### ✔ New: `+0x5C` and `+0x64` are block sizes — and `+0x64` is the one that moved
 
@@ -272,8 +272,8 @@ Whether `20050223` means anything beyond its value. Whether the console command 
 ## 7. What this document does not claim
 
 - [x] **SV-1.** The layouts of generation B (`FF12`-tagged) and generation C (zero header) **past the
-      header**. `SV-1`, narrowed 2026-09-13: generation B's header *is* generation A's from
-      `+0x08` on (§6), and `+0x64` is the size of the block behind `02EBF190` — 23,152 in these
+      header**. `SV-1`, narrowed 2026-09-13: generation B's header ~~*is* generation A's from~~
+      ~~`+0x08` on (§6)~~ follows generation A's map from `+0x08` on (§6) but carries none of its constants at `+0x58`–`+0x6C` *(corrected 2026-10-02, OPUS: zero in the shipped generation-B images, read through `vbf_read_entry`)*, and `+0x64` is the size of the block behind `02EBF190` — 23,152 in these
       images against 29,712 shipped, a real revision that nothing in the shipped build checks.
       **NARROWED FURTHER 2026-09-27 (OPUS): all three generations carry the party-stats array. The discriminator is the shipped record's own byte +4 (the definition row index), which runs 0..39 across consecutive records: generation A at image +0x2208 with stride 0x1C4, generation B at the same place (block +8 of the copy at payload +0x2000) with stride 0x190, generation C at image +0x15FC with stride 0x140 - 40 records in every image (the shipped array is BattleStatsRecord[40] at stride 0x1C8, which finds no run in generation A). Generation B's record ends at +0x190, where the shipped licencePoints field begins. CORRECTED the same day: the first narrowing below put 160 of the 6,560 extra bytes in a shipped tail +0x5A70..+0x5B10. In fact generation A's post-array fields (the slot maps, the source byte) sit 0xA0 = 40 x 4 lower than shipped, so the 160 B are the record growth (0x1C4 to 0x1C8) and the tail existed in development at +0x59D0..+0x5A70; 6,560 = 160 + 6,400 gambit bytes. Still open: which four bytes each record gained, the B and C records past the head, generation C's block framing, and what B and C hold after the array. Control _index/candidates/sv1-party-array/sv1_party_array.py (3 checks, FAILS 0; P3 rejects the tail reading).**
       **NARROWED 2026-09-27 (OPUS): the battle-state block's extra 6,560 bytes are located. In the shipped layout (the type store's BattleSystemState rows) ~~the bytes past the development size +0x5A70 are the slot-map / sequence / transition / result-echo tail (+0x5A70..+0x5B10, 160 B) and~~ *(CORRECTED 2026-09-27, OPUS: those 160 B are the stats-record growth, 40 x 4; see the narrowing above)* the bytes past it include the gambit configuration: gambitBanks GambitConfig[120] at +0x5B10 (6,240 B) and gambitSelectedBank int32[40] at +0x7370 (160 B). So 6,400 of the 6,560 are gambit data. In all four generation-A images the battle-state mirror (payload +0x2000) is zero from block +0x5A05 on, consistent with a 0x5A70-byte block. Their CRC slots +0x0 / +0xE200 are zero, so they were never checksummed. Not claimed: whether the development build kept gambits elsewhere or not at all. Still open: generations B and C past the header. Control _index/candidates/sv1-battle-block-tail/sv1_battle_block_tail.py (4 checks, FAILS 0).**

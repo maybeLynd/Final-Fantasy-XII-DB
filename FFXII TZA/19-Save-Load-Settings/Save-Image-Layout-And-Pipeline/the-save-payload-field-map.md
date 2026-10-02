@@ -43,8 +43,8 @@ audit:
 
 > [The save-image page](save-image-buffers-header-and-payload.md) mapped roughly 470 bytes of the 353,424-byte payload from the 70
 > direct callers of the base getter and recorded why it stopped: *a pointer-propagation-aware
-> analysis is required*. This page is that analysis. It reaches 368 functions and
-> 309 offsets, places the SpawnKeep images, the group persistence banks, the transition
+> analysis is required*. This page is that analysis. It reaches ~~368 functions and~~
+> ~~309 offsets~~ 350 functions and 301 offsets in the published `save-payload-accesses.tsv` *(corrected 2026-10-02, OPUS: counted in the TSV, 1,725 rows)*, places the SpawnKeep images, the group persistence banks, the transition
 > snapshot, the inventory descriptors and — answering `AB-5` — **the achievement block, which is
 > inside the image at `+0x8000`**.
 
@@ -85,9 +85,9 @@ back to callers through `rax`; three hops.
 
 | | count |
 |---|---|
-| payload access rows | 1829 (976 at a seed, 853 through propagation) |
-| payload functions / offsets | 368 / 309 |
-| header access rows / functions / offsets | 204 / 26 / 40 |
+| payload access rows | ~~1829 (976 at a seed, 853 through propagation)~~ 1,725 in the published TSV *(corrected 2026-10-02, OPUS: counted in `save-payload-accesses.tsv`; the reserved-span check below cites the same 1,725)* |
+| payload functions / offsets | ~~368 / 309~~ 350 / 301 *(corrected 2026-10-02, OPUS: distinct functions and displacements in `save-payload-accesses.tsv`)* |
+| header access rows / functions / offsets | ~~204 / 26 / 40~~ 199 / 25 / 40 *(corrected 2026-10-02, OPUS: counted in `save-header-accesses.tsv`)* |
 | control | `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`) reads `+0x1044` — found |
 
 **What the enumeration cannot see:** indexed entries (an access to `entry[i]` is reported at the
@@ -140,7 +140,7 @@ that limit.
 | `+0x2E250`–`+0x2E44F` | 512 | **group persistent bank B** (~~128~~ **0x200 B**, corrected 2026-09-11) | world persistence |
 | `+0x2E450`–`+0x4E45F` | 131,088 | **SpawnKeep image B**, read by `00233550` from `005843E0` (`0058445E`) — **the "persistence pair for the active slot"** that `WorldTransitionSnapshot_RestorePersistencePairForActiveSlot` restores is these two images, each with its group bank before it (stride `0x20210`) | spawn keep |
 | `+0x4E460`–`+0x4E48B` | 44 | the save-transition metadata record (`SaveTransitionMetadata_CaptureToRecord` `002EF3C0`, `SaveTransitionMetadata_RestoreFromRecord` `002EF410`, `002EF540`, `WorldTransition_StageFieldTransition` `003145E0` at `+0x4E464`) | transition |
-| `+0x4E48C`–`+0x5589B` | ~~23,312~~ **29,712** (`0x7410`, corrected 2026-09-11: the reset `002370C0` clears exactly that many bytes at `002370CD`; the inventory descriptors below and the gambit banks are *inside* the block — [the block page](../../11-Party/Battle-State-Block/the-battle-state-block-field-map.md)) | **the battle-state block `*(02EBF190)`** — `SaveRuntime_RebindImageBackedGameplayState` (`00238A80`, `00238A89`–`00238A92`) and `00233C10` (`00233C2A`–`00233C33`) point the global at `SaveImage_GetActiveRuntimeBuffer() + 0x4E68C`; the block opens with the magic **`0x05071901`** (`00233C4D`, the constant the header carries at `+0x60`), a flag dword at `+4`, and **the 40 party `BattleStatsRecord`s from `+8`** (`0x4E494`; every offset of the stats map applies at `+0x4E494 + d`); the fields at block `+0x5B00`–`+0x5B0E` (`00233C83`–`00233C9E`) are the last touched. Its first 0x80 bytes are what the capture functions mirror to `+0x2000` | battle state, party |
+| `+0x4E48C`–`+0x5589B` | ~~23,312~~ **29,712** (`0x7410`, corrected 2026-09-11: the reset `002370C0` clears exactly that many bytes at `002370CD`; the inventory descriptors below and the gambit banks are *inside* the block — [the block page](../../11-Party/Battle-State-Block/the-battle-state-block-field-map.md)) | **the battle-state block `*(02EBF190)`** — `SaveRuntime_RebindImageBackedGameplayState` (`00238A80`, `00238A89`–`00238A92`) and `00233C10` (`00233C2A`–`00233C33`) point the global at `SaveImage_GetActiveRuntimeBuffer() + 0x4E68C`; the block opens with the magic **`0x05071901`** (`00233C4D`, the constant the header carries at `+0x60`), a flag dword at `+4`, and **the 40 party `BattleStatsRecord`s from `+8`** (`0x4E494`; every offset of the stats map applies at `+0x4E494 + d`); the fields at block `+0x5B00`–`+0x5B0E` (`00233C83`–`00233C9E`) are the last touched. Its first ~~0x80~~ `0x6000` bytes *(corrected 2026-10-02, OPUS: the capture copies `0x6000`, `00229B76`–`00229BE2`; this map's `+0x2000` row)* are what the capture functions mirror to `+0x2000` | battle state, party |
 | `+0x53C54`–`+0x53C9B`, `+0x53E54` | 72 + 2 | (block `+0x57C8`) inventory class descriptors rebased on load by `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (`0030B6A0`) — **pointers stored in the image and fixed up after load** | inventory |
 
 > **The script-global region, 2026-09-12 (FABLE-FZ22).** The census behind this page follows the
@@ -213,7 +213,7 @@ that limit.
 | `+0x8090` | 4 |  | 2 / 1 | `00252610` (`0025265B` +1); `002527B0` (`002527CF` +1) | `002526F0` (`0025273B` +1) |
 | `+0x8224` | 16 | ~~**achievement / counter entry table**~~ **the navigation-map revealed-tile table** (block `+0x224`, 0x180 × 0x20 B, one 256-bit tile bitmap per navimap id — FG-1, 2026-09-12) — entry 0 | 3 / 1 | `003C5E50` (`003C5E8D`); `003C60F0` (`003C611D`); `003C8670` (`003C869C`) | `002551B0` (`002551E3`) |
 | `+0x8234` | 16 | (entry 0, second half) | 3 / 1 | `003C5E50` (`003C5E97`); `003C60F0` (`003C6127`); `003C8670` (`003C86A6`) | `002551B0` (`002551E9`) |
-| `+0xB244` | 1 | block `+0x3244` **the inventory category flags** — bit *n* set by `002CD650` when category *n*'s derived list is non-empty (1 weapons, 2 armour, 3 ammunition, 4 items, 5 magicks / technicks, 6 loot, 7 key items other than maps, 8 accessories; [the encoded-id space page](../../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.9); bit 0 kept, bit 1 cleared at init | 3 / 2 | `00252D40` (`00252D67` +1); `00253480` (`002534AA`); `SaveRuntime_InitializeHeaderAndImageBackedState` `00253A80` | `00252D10` (`00252D2E`); the menu code |
+| `+0xB244` | 1 | block `+0x3244` **the inventory category flags** — bit *n* set by `002CD650` when category *n*'s derived list is non-empty (1 weapons, 2 armour, 3 ammunition, 4 items, 5 magicks / technicks, 6 loot, 7 key items other than maps, 8 accessories; [the encoded-id space page](../../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.9); ~~bit 0 kept, bit 1 cleared at init~~ zero after init *(corrected 2026-10-02, OPUS: `00253B1C` keeps bit 0, but `00253B47`–`00253B56` then zero `+0x3244` for `0x80` bytes; katano-debug-savedata.md)* | 3 / 2 | `00252D40` (`00252D67` +1); `00253480` (`002534AA`); `SaveRuntime_InitializeHeaderAndImageBackedState` `00253A80` | `00252D10` (`00252D2E`); the menu code |
 | `+0xB245` | 1 | block `+0x3245` | 2 / 0 | `00253480` (`002534B1`); `SaveRuntime_InitializeHeaderAndImageBackedState` `00253A80` (`00253B23`) |  |
 | `+0xB2C4` | 1 | block `+0x32C4` bitmap, ~~0x80 B~~ **five bytes reached, upper bound not established** (`00254E00` / `00254DD0`) — corrected 2026-09-18, OPUS: every call site hands a compile-time constant and the largest is `0x23`, so byte `4` is the highest the accessors touch | 2 / 1 | `SaveRuntime_InitializeHeaderAndImageBackedState` `00253A80` (`00253B5D`); `00254E00` (`00254E27` +1) | `00254E00` (`00254E2E`) |
 | `+0xB2CC` | 1 |  | 1 / 2 | `00315910` (`00315975` +1) | `003154B0` (`003154FD`); `00315910` (`00315965` +1) |
@@ -242,7 +242,7 @@ that limit.
 | `+0xE0C0` | 0 |  | 0 / 2 |  | `WorldPersistence_ExportGroupPersistentBank` `0025D8E0` (`0025D8F0`); `WorldPersistence_ImportGroupPersistentBank` `00269A20` (`00269A3A`) |
 | `+0xE240` | 0 | **SpawnKeep image A**: previous field id | 1 / 4 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233530`) | `WorldTransitionSnapshot_CaptureRuntimeState` `00229B40` (`00229CEB`); `WorldTransitionSnapshot_RestorePersistencePairForActiveSlot` `005843E0` (`00584434`); +2 more |
 | `+0xE242` | 2 | most-recent field id | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`0023353A`) | `SpawnKeep_RestorePersistenceBank` `00233550` (`002335C3`) |
-| `+0xE250` | 0 | bank 2 of image A (0x10000) | 1 / 2 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233481`) | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233468`); `SpawnKeep_RestorePersistenceBank` `00233550` (`0023355C` +1) |
+| `+0xE250` | 0 | bank 2 of image A (~~0x10000~~ a `0x10000` slot holding `0x9400` copied bytes and a `0x6C00` zero tail *(corrected 2026-10-02, OPUS: `00233448`, `0023345D`, `00233560` — `0x128` passes of `0x80`)*) | 1 / 2 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233481`) | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233468`); `SpawnKeep_RestorePersistenceBank` `00233550` (`0023355C` +1) |
 | `+0xE260` | 16 |  | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233489`) | `SpawnKeep_RestorePersistenceBank` `00233550` (`0023357B`) |
 | `+0xE270` | 16 |  | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233491`) | `SpawnKeep_RestorePersistenceBank` `00233550` (`00233583`) |
 | `+0xE280` | 16 |  | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233499`) | `SpawnKeep_RestorePersistenceBank` `00233550` (`0023358B`) |
@@ -251,7 +251,7 @@ that limit.
 | `+0xE2B0` | 16 |  | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334B1`) | `SpawnKeep_RestorePersistenceBank` `00233550` (`002335A3`) |
 | `+0xE2C0` | 16 |  | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334B9`) | `SpawnKeep_RestorePersistenceBank` `00233550` (`002335AB`) |
 | `+0xE2D0` | 0 |  | 0 / 2 |  | `SpawnKeep_SerializePersistenceBanks` `00233440` (`00233470`); `SpawnKeep_RestorePersistenceBank` `00233550` (`00233570`) |
-| `+0x1E250` | 0 | bank 1 of image A (0x10000) | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334E7`) | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334CF`) |
+| `+0x1E250` | 0 | bank 1 of image A (~~0x10000~~ a `0x10000` slot holding `0x9400` copied bytes and a `0x6C00` zero tail *(corrected 2026-10-02, OPUS: `00233448`, `0023345D` — `0x128` passes of `0x80`)*) | 1 / 1 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334E7`) | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334CF`) |
 | `+0x1E260` | 16 |  | 1 / 0 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334EF`) |  |
 | `+0x1E270` | 16 |  | 1 / 0 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334F7`) |  |
 | `+0x1E280` | 16 |  | 1 / 0 | `SpawnKeep_SerializePersistenceBanks` `00233440` (`002334FF`) |  |
@@ -585,7 +585,7 @@ normalises the header and reseeds; `0030B6A0` rebases the inventory descriptors.
 
 - **The achievement state is in the save file** at payload `+0x8000`–`+0xC817`; the "already fired"
   bitmap at `+0xB844` is what a mod that unlocks or resets achievements would touch.
-- **A zone's remembered monsters are two 131 KB images in the save**, each preceded by a 128-byte
+- **A zone's remembered monsters are two 131 KB images in the save**, each preceded by a ~~128-byte~~ 512-byte *(corrected 2026-10-02, OPUS: `0x200` B, this page's bank rows, corrected 2026-09-11)*
   group bank; editing one entry means editing a `0x250` record inside `+0xE250` or `+0x1E250`
   ([the spawn-keep entry](../../05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md)).
 - **Inventory descriptors are stored as pointers and rebased on load** — a save edited by hand must

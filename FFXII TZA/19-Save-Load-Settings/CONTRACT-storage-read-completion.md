@@ -315,7 +315,7 @@ The rest of ASTRA's section 24 was re-derived from the shipped bodies 2026-09-15
   `esi = (00394450() == 3)` and `ebx = byte[+0x57] & 1`. `00584210`
   (`SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG`) takes a **stash** arm when
   `(mode==3 && flag clear)` — copying `rdi+0x10`/`+0x18`/`+0x1A`/`+0x1B` to
-  `rbx+0x70..0x7B`, `00320D50()` to `rbx+0x7C`, and `rbx+0x1244..0x1254` (six
+  `rbx+0x70..0x7B`, `00320D50()` to `rbx+0x7C`, and `rbx+0x1244..0x1254` (~~six~~ five *(corrected 2026-10-02, OPUS: `0058427B`–`005842B1` and `00584325`–`00584362` copy five; the save-image page's header map, `+0x80 5 dwords`)*
   dwords) to `rbx+0x80..0x90` — and a **restore** arm when `(mode!=3 && flag set)`,
   reversing exactly those copies, reseeding via `00269A20(rbx+0xE240)` /
   `002EF410(rbx+0x4E660)`, clearing `[rbx+0x57]` bit 0, `01E0C3EC`, and
@@ -464,8 +464,8 @@ dispatch on `[02B40E14]` (table `0x3BA944`, `cmp 0xF / ja` at `003BA7BB`–`003B
 - **states 3–5, 7, 11–14** → `003BA93D`: idle no-ops.
 
 `00582040` (StartFrontOperation) admits the front packet when the queue is non-empty
-(`0058206D`) and `+0xDC` bit 1 is clear (`00582076`), dispatches kind `0..12` through table
-`0x58220C`, then sets busy bit 1 and returns 1. **Packet-9's arm** (`0058218A`) calls
+(`0058206D`) and `+0xDC` ~~bit 1~~ bit 0 is clear (`00582076`) *(corrected 2026-10-02, OPUS: `00582076` is `test byte ptr [rcx + 0xdc], 1`; bit 1 is the completion-callback suppressor)*, dispatches kind `0..12` through table
+`0x58220C`, then sets busy ~~bit 1~~ bit 0 *(corrected 2026-10-02, OPUS: `005820BD` `or dword ptr [rbx + 0xdc], 1`)* and returns 1. **Packet-9's arm** (`0058218A`) calls
 `003BB440`, which *is* the acceptance: refuses if a chain is in flight (`[02B40E10] != 0`,
 `003BB440`) or the packet's `+0x128` length is 0 (`003BB44F`); copies the packet's inline
 name at `+0xE0` into `02B40EC8` (`003BB454`–`003BB46C`); records dest `+0x120` → `02B40EF0`
@@ -725,7 +725,7 @@ OPEN QUESTION row in §15, which no fixture can answer. A caller census would no
 | `00582AE9` opens dialog `0x870`/`0x871` by `+0xC1` and self-posts `0x8001` | `00582AE9 cmp byte[rbx+0xC1],0` → `ecx=0x870/0x871`; `002F9860` at `00582AFC`, `002CA150` at `00582B06`; `00247510(rbx,0x8001,2)` at `00582B19`; `00582B20 mov byte[rbx+0xC0],1` | 1 (static) |
 | `00581310` releases its argument and, when controller `+0xC4` bit 3 is set, runs `002CC9B0`→`002CC9C0` | `00244F00` at `00581314`; `00291D40`/`002CA110` at `00581319`/`0058131E`; `test byte[rax+0xC4],8` on `02CA99B8` at `0058132A` → `002CC9B0` tail `002CC9C0` | 1 (static) |
 | `005832B0` builds the `"PS2D"` submission descriptor — memset, magic stamp, bounds, path formatting, three `005837F0` calls | `00861EC0` memset at `00583302`; `"PS2D"` at `00D23F10` read `00583307`; slot `< 0xC8` at `0058330D`, `0x3C` bounds `00583341`/`0058334D`; `00254A10` gate at `00583358`; `0017D2E0` formats; `005837F0` at `00583644`/`00583675`/`005836A5` | 1 (static) |
-| `00583700`/`005837F0` write the slot directory and asset names into `controller+0x128`, gated on `02CA99B8` | `00583700`: `"%s%03d"` (`009153E4`) of `003935C0` base + slot byte, `"/%s"` (`00D23EE4`) prefix when flag arg set; `005837F0`: kind 0 → `"icon.sys"` (`00D23EC8`), kind 1 → `"%s%03d"` ≤ `0x40`, kinds 2/3 → `"static.ico"` (`00D23ED8`); both `cmp [02CA99B8],0` bail | 1 (static) |
+| `00583700`/`005837F0` write the slot directory and asset names into `controller+0x128`, gated on `02CA99B8` | `00583700`: `"%s%03d"` (`009153E4`) of `003935C0` base + slot byte, `"/%s"` (`00D23EE4`) prefix when flag arg set; `005837F0`: kind 0 → `"icon.sys"` (`00D23EC8`), kind 1 → `"%s%03d"` ≤ `0x40`, ~~kinds 2/3~~ kinds 2, 3 and 4 *(corrected 2026-10-02, OPUS: checked at `0058383C`–`0058384E`)* → `"static.ico"` (`00D23ED8`); both `cmp [02CA99B8],0` bail | 1 (static) |
 | `00583930` posts `00244F50(0x5A0, cb=00582860)` carrying `{arg3, arg1!=0, arg2!=0}`; `00583920` returns `[02CA99E8]`; `00583260` posts `00244F50(0x178, cb=0057E4D0)` | `0058395A lea rdx,[00582860]` / `ecx=0x5A0` / `call 00244F50` at `00583974`, payload built `00583946`–`0058396F`; `00583920 mov eax,[02CA99E8]` / `ret`; `00583288 lea rdx,[0057E4D0]` / `ecx=0x178` / `call 00244F50` at `00583295` | 1 (static) |
 | the `005843E0`/`00584210` admission split is `(00394450()==3)` vs `byte[+0x57]&1`, not a `+0x18`/`+0xC4` bit-4 | `00584236 cmp al,3`/`0058423A movzx eax,[rdi+0x57]`/`and eax,1` select stash (`00584255`–`005842DF`) vs restore (`005842F9`–`00584393`); `00584404`/`00584410` same predicates in `005843E0`; `+0x18` is payload, `+0xC4` untouched | 1 (static) |
 | `00583CB0` backs up `0xE240` bytes from the active header to `[[02CA99B8]+0x588]+0x80` | `00583CCE mov edx,0x1C4`; `0x80`-stride `movups` loop `00583CE0`–`00583D31` plus `0x40` tail `00583D33`–`00583D4D`; `00583C00` is the exact mirror | 1 (static) |
@@ -763,7 +763,7 @@ It is a shared completion helper rather than a save-only one. Which screens thos
 
 **PlatformOnlineAchievements — SERVICE.** `00584210` on this page calls `FUN_00316810`, owned by that layer. What it reaches is an achievement-table scan over `01EED078` against the `.rdata` table at `00D10460`, bounded at `0x7FFE`; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 
-**Spawn_Encounter_Lifecycle — SERVICE.** `005843E0` on this page calls `SpawnKeep_RestorePersistenceBank`, owned by that layer. What it reaches is the bank restore, and it gives the bank a width: **`0x128` bytes** are copied from the caller's `+0x10` into `[0208E698] + 0x80`, in `0x80`-byte steps; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
+**Spawn_Encounter_Lifecycle — SERVICE.** `005843E0` on this page calls `SpawnKeep_RestorePersistenceBank`, owned by that layer. What it reaches is the bank restore, and it gives the bank a width: ~~**`0x128` bytes**~~ **`0x9400` bytes** (`0x128` passes of `0x80`) *(corrected 2026-10-02, OPUS: `00233560` `mov r8d, 0x128` counts passes; the serializer `00233448` / `0023345D` copies the same)* are copied from the caller's `+0x10` into `[0208E698] + 0x80`, in `0x80`-byte steps; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **Audio — SERVICE (4 edges through 3 of this page's functions).** `00580EB0`, `00581350` and `00583990` call the Audio-filed `00249C60`, and `00581350` additionally calls `0024A1A0` — both read from the shipping bytes: each is a guarded call-through shim gated on `dword[02091098]`, forwarding to `002DF220`/`002DF0F0` or returning `-1`. The transition machine resolves its result messages through that layer's fetch helpers; the crossing is those calls, not a shared responsibility. Read from the shipping bytes 2026-09-15 (SWE2).
 
@@ -917,8 +917,8 @@ Interior anchor `002D3E2B` (the `jmp rcx` table dispatch).
 
 ## SWE2-EC7-80 update (2026-09-20) - `008625D0` + `00581930` + `00581860` measured
 
-`008625D0` (33 B) is the conditional teardown the `003BA7B0` caller
-runs: `ecx == 0` releases `[02EAF8E8]` through `00866A80`; either way
+`008625D0` (33 B) is ~~the conditional teardown~~ the seek *(corrected 2026-10-02, OPUS: checked at `008625D0`–`008625F0`; `00866A80` writes the cursor absolute, relative or from the end and bounds-checks it — the callee/caller note, "the sibling **seek**")* the `003BA7B0` caller
+runs: `ecx == 0` ~~releases~~ repositions `[02EAF8E8]` through `00866A80`; either way
 `dword[02EAF8E0]` is zeroed and 0 returns.
 Interior anchor `008625D8` (the `02EAF8E8` load).
 
@@ -948,8 +948,8 @@ Interior anchor `0029F491` (the `+0x64` store arm).
 
 ## SWE2-EC7-89 update (2026-09-20) - `003BB9B0` + `003BB740` measured
 
-`003BB9B0` (174 B) is the element-array install the read
-completion runs once (`[02B40E10]` gates it): `r8d` is clamped to
+`003BB9B0` (174 B) is ~~the element-array install the read~~
+~~completion runs once~~ the write submission — queue kind 8's arm (`00582180`) and the autosave's call (`0057E490`) *(corrected 2026-10-02, OPUS: it arms `02B40E1C` = 2, the write command; how-a-manual-save-is-committed.md, kind 8 → `003BB9B0`)* (`[02B40E10]` gates it): `r8d` is clamped to
 five, written to `02B40FE0`, and that many 0x38-stride records
 copy from `rdx` into `02B40EC8`; `02B40E1C` is armed to 2, the
 `02B40EC0`/`02B40E18`/`02B40FE4` counters are zeroed,
@@ -963,8 +963,8 @@ Interior anchor `003BB750` (the copy loop).
 
 ## SWE2-EC7-90 update (2026-09-20) - `003BAEB0` + `003BAC90` measured
 
-`003BAEB0` (803 B) is the `02B40E14` state pump the completion
-install arms: an 18-arm jump table (`02B40E14` states 0-0x11)
+`003BAEB0` (803 B) is the `02B40E14` state pump ~~the completion~~
+~~install arms~~ the write submissions arm, the write worker *(corrected 2026-10-02, OPUS: `003BB920` and `003BB9B0` arm `02B40E1C` = 2 and run it)*: an 18-arm jump table (`02B40E14` states 0-0x11)
 drives the `02B40EC8` 0x38-stride records through `008620D0`/
 `008624D0`/`008625D0`/`00862620` buffer ops indexed by
 `02B40FE4`, accumulates `0017D270`-timed `00583920`-gated

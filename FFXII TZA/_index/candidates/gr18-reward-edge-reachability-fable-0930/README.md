@@ -71,6 +71,13 @@ but no `area/*.ard`. They hold 517 `btlAtelSetUnit` calls, ids 0..27.
 - Only binding one of the four empty-table areas would reach a zero-count reward descriptor.
 - This is static work that was not done here, not a live-only question.
 
+**The numeric half is now answered (incorporated *(FABLE, 2026-10-02)*).** ASTRA's [`bts-index-binding`](../../../_experiments/evidence/bts-index-binding/README.md), ACCEPTed at its scoped bounds by SWE2-AUDIT-SPEC ([review](../auditspec-review-bts-index-binding-1001/REVIEW.md)), joins the original lookup tables:
+- Both shipped namespace-26 arrays name the 31 `bts_*` zones at the same 31 area indices, and both MRF images map those areas to 31 distinct field rows (`00264ED0` reads the unsigned word at row `+4`).
+- At those area indices both namespace-21 ARD slot pairs (`2 × area`, `2 × area + 1`) are NULL. So **no `.ard` is bound by the ordinary lookup, and none of the four empty-table areas is selected.** At the zones' field ids all ten namespace-5 script triples are NULL, and the twelve shipped FSTs hold -1 there.
+- Controls: non-null `ttl_a` pointers and strings, the positive `asp_a` ARD size 224 in every FST, and eleven positive title-script sizes (UK's -1 is kept as -1).
+
+So the `bts_*` residual is **missing resource entries, not a zero-count reward descriptor**. By this record's own fork above, an install with no `.ard` faults at `0023A6B4` before any reward store; it cannot reach E1. **What stays open** (ASTRA's own limits, kept): whether the shipped game ever runs a `bts_*` script; the primary-carrier admission in `00330310` / `003306E0` after manager 0's `0032FCA0` computes `3 × selector`; run-time size overrides, aliases, alternate selectors and pending callbacks. NMB naming is metadata, not proof that a script executes, so this does not award universal unreachability, and E1 is not closed by it.
+
 ### (b) High relocation base
 
 **Code (STATIC, `B-code`, `B-refs`).**
@@ -98,6 +105,12 @@ but no `area/*.ard`. They hold 517 `btlAtelSetUnit` calls, ids 0..27.
   cited, not re-read).
 - **Missing fact: where the OS places those `malloc` blocks.** EXP-079 saw one process with base 0 and the arena below
   2 GiB.
+
+**Which sample can answer it (incorporated *(FABLE, 2026-10-02)*).** ASTRA's [`ard-callback-width`](../../../_experiments/evidence/ard-callback-width/README.md), ACCEPTed at its scoped bounds by SWE2-AUDIT-SPEC ([review](../auditspec-review-ard-callback-width-1001/REVIEW.md)). FABLE re-read its four instruction facts ([`gr18_astra_check.py`](gr18_astra_check.py), [out](gr18_astra_check.out), FAILS 0, with the callback's `"AREA"` load as control):
+- The `.ard` read goes to the full 64-bit allocator result (`003EA971` `mov r8, rax`, then the read `0032E620` at `003EA97F`).
+- The request descriptor keeps only the low half (`003EA976` `mov dword ptr [rsp + 0x38], eax`), and the callback `003EA710` zero-extends its argument (`003EA732` `mov ebp, ecx`) before publishing it as the root `02B5E0C0` (`003EA809`).
+
+So **a sample of `02B5E0C0` can never show a buffer at or above 4 GiB**, and observing it cannot settle this variant. A run-time observer has to record `rax` at `003EA93E` or `r8` at `003EA97F`, with the request's identity. ASTRA's limits are kept: the signed resolver's low dword plus a low root can cross 4 GiB in 64-bit arithmetic only conditionally (a root just under 4 GiB plus a small offset), which is arithmetic, not shipped reachability. Natural placement stays a run-time fact.
 
 ### (c) Level at or below the `+0x88` baseline
 

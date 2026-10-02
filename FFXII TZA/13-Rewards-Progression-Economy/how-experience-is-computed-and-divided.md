@@ -1,7 +1,7 @@
 ---
 system: How experience is computed and divided
 category: 13-Rewards-Progression-Economy
-status: REOPENED — SECTION-03 independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1); the page's re-status is left to its owner (FABLE); converted to a function note of the award page 2026-09-30 (FABLE)
+status: PARTIAL — edge-state reachability (GR-18) partial; owner re-status 2026-10-02 (FABLE) from REOPENED: the reopening is resolved, SECTION-03 independently accepted with a narrowing 2026-10-01 (SWE2-AUDIT-SEM, auditsem-review-section03-1001, GR-16, N1); documented_rule reads PARTIAL on live GR-18, whose case (c) is this function's; graph audit 0 findings (_index/candidates/rewards-restatus-fable-1002); converted to a function note of the award page 2026-09-30 (FABLE)
 note_kind: function
 parent: experience-and-license-point-award.md
 owner_layer: PrimaryOwner:Rewards_Progression_Economy
@@ -23,7 +23,7 @@ audit:
   passes: 1
   last_pass: 2026-09-03
   last_pass_state: first-read-repos-55
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 0
 production_review:
   section: SECTION-03

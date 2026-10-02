@@ -1,0 +1,8 @@
+# page
+HITS 0
+# positive control: spawn page at 71e56e131~1 (before OPUS narrowed four citations)
+spawn_pre.md  0039440A inside 00394400  family NativeAdapter.NullableGlobalTailDispatch
+spawn_pre.md  00394522 inside 00394520  family NativeLeaf.StaticPointerNonNullPredicate
+spawn_pre.md  0050F52C inside 0050F520  family ScriptVM.VerbAdapter
+spawn_pre.md  0051026C inside 00510260  family ScriptVM.VerbAdapter
+HITS 4

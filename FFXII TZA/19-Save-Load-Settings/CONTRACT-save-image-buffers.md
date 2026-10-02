@@ -31,8 +31,8 @@ size or the spacing wrong produces files the original cannot read.
 
 ## 1. Purpose
 
-The save image is a single flat block. One copy is live while you play, one is the snapshot taken
-when you save, one is what gets handed to the file write, and one is a backup. Nothing here parses the
+The save image is a single flat block. One copy is live while you play~~, one is the snapshot taken~~
+~~when you save, one is what gets handed to the file write,~~ and is the one a manual save writes; one is the autosave's snapshot and one what the autosave `0057E310` hands to the storage machine *(corrected 2026-10-02, OPUS: checked at `00581DCA`–`00581DCF` and `00581F27`–`00581F2F`, the manual save's element `+0x28` is `002EF640()`, the active buffer)*; and one is a backup. Nothing here parses the
 image — these operations move it whole.
 
 ## 2. Interface
@@ -51,7 +51,7 @@ image — these operations move it whole.
 | active runtime | `0x02164280` | `002EF5F6 lea rcx, [rip + 0x1e74c83]` and the getter's `002EF640 lea rax, [rip + 0x1e74c39]`, both resolving here |
 | capture staging | `0x021BA940` | the copy's source, `002EF6A4 lea rcx, [rip + 0x1ecb295]` |
 | write submission | `0x02211000` | the copy's destination, `002EF69D lea r8, [rip + 0x1f2195c]` |
-| backup | `0x022676C0` | written by one function nothing calls and read by nothing (`V-6`) |
+| backup | `0x022676C0` | written by one function ~~nothing calls~~ called through the thunk `00584490` at `0027F974` on load-mode opens *(answered: see §10 item 3, THE WRITER HAS A CALLER; 2026-10-02, OPUS)* and read by nothing (`V-6`) |
 
 **The spacing is exactly `0x566C0` between consecutive buffers**, and the image is `0x56690` — 48
 bytes smaller. The buffers are padded, not packed, and **the padding is not part of the image**: a
@@ -110,9 +110,9 @@ nothing", and that is wrong by two calls.** Reading `002EF690` end to end, the c
 4. **tail-jumps to `0020E540`** at `002EF72C` with `ecx = ebx`, `rdx = 0x02211000` and
    `r8d = 0x56690`.
 
-Step 4 is the write submission, and it is the *point* of the operation: the copy does not merely
-stage the image, it hands it on. A reader who took this section at its word would build a
-reconstruction that fills a buffer nobody collects.
+~~Step 4 is the write submission, and it is the *point* of the operation: the copy does not merely~~
+~~stage the image, it hands it on. A reader who took this section at its word would build a~~
+~~reconstruction that fills a buffer nobody collects.~~ Step 4 reaches no file: `0020E540` is `call 001C18E0` then `jmp 0016D6A0`, and `0016D6A0` is `ret 0`, so the submission buffer this copy fills is collected by nothing *(corrected 2026-10-02, OPUS: checked at `002EF72C` and `0020E540`–`0020E576`; only `0057E310` and `00581DA0` reach the storage machine — save-image-buffers-header-and-payload.md §5)*.
 
 ## 9. Determinism
 
@@ -150,7 +150,7 @@ locks them, so the family assumes the save path is not concurrent with play on a
    > **has** a caller: the thunk `00584490` (`jmp 002EF570`) is called at `0027F974` by the save
    > controller's state handler `0027F5D0`, on the arm with a non-zero controller id, immediately
    > before `SaveLoad_OpenController(ctx+0xD4, 1)`. The buffer is still read by nothing (rip sweep),
-   > so "dead storage" holds, but the write runs on every save — a reimplementation that omits it
+   > so "dead storage" holds, but the write runs on ~~every save~~ every load-mode open *(corrected 2026-10-02, OPUS: §10 item 3's correction of 2026-09-23 — `0027F8DB`–`0027F984`, the arm that opens the controller in load mode)* — a reimplementation that omits it
    > is still unobservable, one that reproduces it must do so at that point. Found by a raw
    > `E8`/`E9` index that does not depend on the function list.
 
@@ -173,7 +173,7 @@ getActive(): return active
 copy()   : bit = selectorBit()          /* 00236760, read BEFORE the move and held in ebx */
            memcpy(submit, capture, IMAGE)
            beforeSubmit()               /* 0020E4E0 */
-           return submitWrite(bit, submit, IMAGE)   /* 0020E540, a TAIL JUMP */
+           return submitWrite(bit, submit, IMAGE)   /* 0020E540, a TAIL JUMP */   <- corrected 2026-10-02, OPUS: 0020E540 is a stub (call 001C18E0; jmp 0016D6A0 = ret 0); nothing is written
 ```
 
 **The last three lines were missing until 2026-09-12** — the formula read `copy(): memcpy(submit,
@@ -376,8 +376,8 @@ this contract should not have to find them from the experiment side only.
 2. ~~What `00236760` returns and why the copy keeps it across the move.~~ **ANSWERED 2026-09-12.**
    It returns a **single bit**, not a handle: `mov rax, [0x02EBF190]` / `mov eax, [rax+4]` /
    `shr eax, 0xC` / `and eax, 1`. The copy keeps it because it becomes the **first argument to the
-   submit callee** at `002EF725 mov ecx, ebx`. What the bit *selects* inside `0020E540` is outside
-   this family and stays open.
+   submit callee** at `002EF725 mov ecx, ebx`. ~~What the bit *selects* inside `0020E540` is outside~~
+   ~~this family and stays open.~~ *(answered: nothing — `0020E540` is `call 001C18E0` then `jmp 0016D6A0`, and `0016D6A0` is `ret 0`, checked at `0020E540`–`0020E576`; 2026-10-02, OPUS)*
 3. ~~What the clear's tail-jump to `0016D6A0` does with `ecx = 0`.~~ **ANSWERED — and it was already
    answered in §6 when this question was written.** `0016D6A0` is `ret 0`. The harness maps that
    address from the image and **executes it** rather than hooking it, so the claim is now carried by
@@ -546,7 +546,7 @@ element's `+0x78` vcall on `r14 = [rax+0x110]` (`0062C4F0`..`0062C521`),
 closed by `005FCF20`→`00225690`/`005CD7D0` (`0062C523`..`0062C542`). Callers
 `0017E8E0`/`0017F3B0`/`00180A70`/`00180C80`/`00183320`/`00183640`/`00183A00`/
 `00183C60`/`00183EE0`/`00184140`/`00193F90`/`001946E0`/`001B1630`/`001D8D60`/
-`00607FA0` — the save-image write family.
+`00607FA0` — ~~the save-image write family~~ the D3D11 texture path *(corrected 2026-10-02, OPUS: none of these bodies references a save buffer; the rows are `Texture2DD3D11Element` records, the section below)*.
 
 **The texture path behind `0062C360` (OPUS, 2026-10-01; ASTRA's packages, each ACCEPTed by SWE2-AUDIT-SPEC at its own scoped bounds; static, nothing executed).** The rows are `Texture2DD3D11Element` records (0x58 bytes) of a `PTexture2DD3D11`.
 - *Admission*, ASTRA [`texture-async-boundary`](../_experiments/evidence/texture-async-boundary/README.md), ACCEPTed by SWE2-AUDIT-SPEC ([review](../_index/candidates/auditspec-review-texture-async-boundary-0930/REVIEW.md)): the 0xC8-byte copy is twelve 16-byte load/store pairs and one 8-byte pair, each written as it is read, so no overlap guarantee follows. The element's `+0x40` async data takes the texture pointer at its `+8` and the index at its `+0x10` (element `+0x48` / `+0x50`); its slot 0 (`00D54348`, `00621FF0`) tails `00622010`. `0062EB90` hands `context + 0x38*bank` to `00199DB0`, which inserts the pointer as a **key in an ordered tree**, refusing a key already present, rather than appending a callback pair; an insertion increments the container's `+0x28`. That container count is not the element's `+0x38` wait counter.
@@ -615,7 +615,7 @@ with `eax == 1` chaining `005FD050`. Interior anchor `00615C40` (the
 
 ## SWE2-EC7-33 update (2026-09-19) - `00686DE0`
 
-`00686DE0` (3,463 B) is the save-image serializer - 6 `00686D40` calls plus `0059D510`/`00584730`/`0017D260`/`0066FE20` over the buffer records. Interior anchor `00687A28` (a `00686D40` call).
+`00686DE0` (3,463 B) is ~~the save-image serializer~~ a D3D11 texture-path body, not a save-image serializer *(corrected 2026-10-02, OPUS: the four buffers' only rip references are the `002EF4A0`–`002EF7C0` bodies, SV-4, and no `006xxxxx` body calls a buffer getter; the save file is written by the storage machine, `003BAEB0` → `00862620` / `00866AD0` → `00866200`)* - 6 `00686D40` calls plus `0059D510`/`00584730`/`0017D260`/`0066FE20` over the buffer records. Interior anchor `00687A28` (a `00686D40` call).
 
 ## SWE2-EC7-33 update (2026-09-19) - `006215A0`
 
@@ -661,11 +661,11 @@ treated as a separate region that is populated field by field, not wiped.
 | escaping interior pointers | only `+0x000`, the buffer pointer itself |
 
 **For reconstruction:** those 320 bytes must exist — the header is `0x200` and every later offset
-depends on it — but no code sets them, so what reaches the save file is whatever the buffer already
-held. The buffer is `.bss` (`INTERIOR` storage at `02164280`, no allocation call), so on a fresh
-process that is zero; across a save/load cycle it is whatever the previous contents were. **A
-reimplementation that zeroes them is not reproducing the engine, and one that writes anything into
-them is inventing data the engine never wrote.**
+depends on it — but no code sets them~~, so what reaches the save file is whatever the buffer already~~
+~~held~~ individually, and both clears zero them with the whole image *(corrected 2026-10-02, OPUS: `002EF5F6`–`002EF603` and `002EF656`–`002EF663` run `memset(02164280, 0, 0x56690)`, and the boot frame `0022B6E0` takes `002EF650` before any save; the correction at the head of this section)*. The buffer is `.bss` (`INTERIOR` storage at `02164280`, no allocation call), so on a fresh
+process that is zero; across a save/load cycle it is whatever the previous contents were. **~~A~~
+~~reimplementation that zeroes them is not reproducing the engine, and~~ A reimplementation must zero them, and one that writes anything into
+them is inventing data the engine never wrote.** *(corrected 2026-10-02, OPUS: zero is the engine's value, as above)*
 
 **Limit.** This is four static routes plus the initialiser, not a runtime observation. A writer
 reached in a form the taint does not model would look identical — the same bound stated for
@@ -989,8 +989,8 @@ Interior anchor `0028056B` (function `002804E0`).
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22 (OPUS, 2026-09-29)
 
-**Presentation — BOTH DIRECTIONS, 156 edges: the save image is captured through the renderer's own graphics-device
-layer.** The save-image write family this page names shares its helpers with the renderer:
+**Presentation — BOTH DIRECTIONS, 156 edges: ~~the save image is captured through the renderer's own graphics-device~~
+~~layer.~~** *(corrected 2026-10-02, OPUS: these bodies are the D3D11 texture path, not a save-image route — the save image is written by the storage machine)* ~~The save-image write family this page names~~ The texture-path family shares its helpers with the renderer:
 - the `0017E8E0` / `0017EBD0` / `0017F3B0` / `00183A00` / `00183C60` / `00183EE0` / `00184140` / `00184380` /
   `001946E0` bodies;
 - the device wrappers they drive: the `005FD050` service, the resource namer `0061C550` (`"RasterState"`), the lazy

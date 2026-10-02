@@ -27,7 +27,12 @@ Addresses include the image base `0x120000`, for image `73461d08…21F8`.
   - Non-zero but below 4 GiB: the contract's "zero for the process life" is falsified, but (c) is still unreached.
   - At or above 4 GiB: (c) is reached. OV-5/OV-8 (c) closes ANSWERED (reachable), and the contract's 32-bit high-half-loss paths (query row arithmetic; `0030C71D add ebp, eax`) become live behaviour.
 
-### (2) OV-5 / OV-8 (d): over-reservation
+### (2) OV-5 / OV-8 (d): over-reservation — **WITHDRAWN 2026-10-02 (FABLE, on FRONTIER-REQ-FABLE-OV58D-PROBE-WITHDRAW-1001)**
+
+(d) is answered statically: over-reservation enters region A only from save-file bytes
+([`t3b_ov58d_region_a.md`](../fable-astra-live-facts-0930/t3b_ov58d_region_a.md), FAILS 0; writer list corrected at
+`089f55128`). No live observation is needed, so this probe is no longer requested. The text below is kept as the
+record of what it would have shown.
 
 - **What to read.** There are three packed-count classes, not four: 5 items, 6 equipment and 7 loot. Classes 14/15/18/19 have mutate handlers but no storage. Read these packed u16 words, low 10 bits = total and high 6 bits = reserved:
   - 64 words at `021B7054` (class 5);

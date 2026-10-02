@@ -31,7 +31,7 @@ audit:
 > is an equality test. A save whose stamp differs is not migrated; the block it stamps is
 > **reinitialised from scratch**.
 
-**PARTIAL.** *(DOCUMENTED since 2026-09-30, OPUS: SD-41 is closed OUT OF EVIDENCE BOUNDARY and SD-42 answered, §6.)* The two stamps, their single writer, the equality comparison and the load-normalise call
+~~**PARTIAL.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`)* *(DOCUMENTED since 2026-09-30, OPUS: SD-41 is closed OUT OF EVIDENCE BOUNDARY and SD-42 answered, §6.)* The two stamps, their single writer, the equality comparison and the load-normalise call
 sequence are read at tier 1. ~~**The payload interior and the header map remain open**~~ *(Corrected 2026-09-30, SWE2-DATA: the header map is
 `V-3` and the payload interior `V-1`, both answered; `UQ-271` is SUPERSEDED as V-1's duplicate)* (the checksum is answered, V-4) in
 [the parent document](save-image-buffers-header-and-payload.md).

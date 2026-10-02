@@ -1,0 +1,12 @@
+ok   0016D6A0 ret 0
+ok   002EF640 lea rax, [rip + 0x1e74c39]
+ok   002EF647 ret 
+ok   00583F99 mov dword ptr [rdi + 0xe200], eax
+ok   00583F9F not ecx
+ok   00583FA1 mov dword ptr [rdi], ecx
+ok   005820BD or dword ptr [rbx + 0xdc], 1
+ok   0058427B mov eax, dword ptr [rbx + 0x1244]
+ok   00584281 mov dword ptr [rbx + 0x80], eax
+ok   001F3EAB call qword ptr [rip + 0x6cec6f]
+ok   001F3EB1 cmp eax, -1
+FAILS 0

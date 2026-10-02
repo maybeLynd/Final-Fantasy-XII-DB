@@ -54,8 +54,8 @@ epilogue):
 | SET | `002407F0` | `0x00240968` | `0x0024095E` | `mov ecx,[rbx]; call SETTER; jmp 0016D6A0` |
 | GET | `002403F0` | `0x00240518` | `0x00240512` | `call GETTER; mov [rbx],eax; ret` |
 
-`0016D6A0` is the shared post-set notifier tail every handled arm jumps to
-(generic UI-dirty broadcast, ~2.4k callers — not options-specific).
+`0016D6A0` is the shared ~~post-set notifier~~ tail every handled arm jumps to
+(~~generic UI-dirty broadcast,~~ a bare `ret 0` that notifies nothing *(corrected 2026-10-02, OPUS: `0016D6A0` is `ret 0`; CONTRACT-save-image-buffers.md — a port must not add a notification)*; ~2.4k callers — not options-specific).
 
 Row-side wrappers: **`00240750`** normalises the widget's value through a 35-byte
 selector table before calling the SET dispatcher; **`00240330`** calls the GET
@@ -223,7 +223,7 @@ walks it — kind 3 -> `0023DB40`, kind 4 -> `0023E710` (-> `0023E770`), kinds 1
 | 8 | **Cursor Position** — compound arm writes the same value to **bit 15 and bit 16**; `002DE1E0` tails to `002526D0` which `memset`s the remembered-position table at `savebuf+0x30` (0x1F4 bytes). Bit 15 read by `002526F0` (menu cursor code); bit 16 by `002DDD40` -> `002778C0`/`00290CF0`. Choices: "Last Selection" (remember) / "Default" (reset each time). |
 | 9 | **Vibration** — bit 13, stored inverted; propagated by `0035FF30(device<2, on)` to bit 2 of `device[0x294]+9`. `002DDA30` can force it from `00408B80()` ~~(pad capability)~~ *(corrected 2026-09-26 (FABLE, Claude Opus 5.5): `00408B80` is a plain getter of `FF12CONFIG` byte `+0x06`; see [the FF12CONFIG page](ff12config-and-debglobal.md) `PC-1`)*. |
 | 10 | **Screen Shake** — bit 14, stored inverted; propagated by `0037DDC0` to `dword[0x02EBF3C4]`. `002DDA30` forces from `00408B40()`. **What reads it (2026-09-21, FABLE):** `0037D9FF`, one of two flags gating the 28-byte accumulator-row copy in `0037D970` — which runs its calculation `003D83A0` **first**, so the option suppresses the *output*, not the work, and an OFF setting is not evidence that the camera-shake sampler stopped ([the camera page](../../17-Presentation-Rendering/Scripted-Camera/how-a-camera-reaches-the-renderer.md)). |
-| 11 | **Subtitles** — the only command whose setter and getter touch *different* storage: setter stores opt+0 bit 12 as `!normalised` (net effect: bit = display value, because the sel-2 row normaliser inverts first); getter reads the live flag `u16[0x0215E6DC]` bit 0 (a state word beside the options pointer) ~~.~~ **only while that
+| 11 | **Subtitles** — ~~the only command whose setter and getter touch *different* storage~~ the command whose getter reads other storage only while `0215E6DC` is non-zero *(answered: see the falsification table, C4, CON-194; 2026-10-02, OPUS)*: setter stores opt+0 bit 12 as `!normalised` (net effect: bit = display value, because the sel-2 row normaliser inverts first); getter reads the live flag `u16[0x0215E6DC]` bit 0 (a state word beside the options pointer) ~~.~~ **only while that
 word is non-zero; when it is zero the getter returns the inverse of opt+0 bit 12, the setter's own storage
 (corrected 2026-09-29, OPUS, CON-194, `002DDD7A`..`002DDD8D`).** Extra caller `002A2C00`. |
 | 12 | **Camera Y-Axis** — bit 8 of dword1; propagated by `001E1020`. Help `0xCFB` "Adjust vertical camera controls". |
@@ -302,8 +302,8 @@ button (cmd 38), `0xC35` "Restore default settings." (child 23), `0xD1C`/`0xD1D`
   carries title-menu labels, so it is the title-screen variant; descs 0/2 are the
   two in-game variants. The screen-creator path (message-dispatched procs
   `0023FCD4`/`0023CE41`) has no direct-code callers to cite.
-- `00229E40` language-id domain: ids {0,7,8,0xA,0xB} select the non-Japanese
-  voice default; the full id->region map is owned by the language-selection page.
+- `00229E40` language-id domain: ids {0,7,8,0xA,0xB} select the ~~non-Japanese~~
+  ~~voice default~~ Japanese voice default *(corrected 2026-10-02, OPUS: `002DDF24`–`002DDF6E` set bit 10 of dword1, stored 1 = Japanese, for those ids; §2)*; the full id->region map is owned by the language-selection page.
 - Choice item ids (`0x2D`, `0x36`, ...) are second-level descriptor references;
   their second u16 (`0xC34` shared by several rows) is carried but its consumer
   is unverified - it is *not* the per-choice help (rows' help comes from the item
@@ -945,7 +945,7 @@ were turned into checks at their instructions, independently of the page's own r
 - all three volumes at 100;
 - the ×2 speed multiplier;
 - subtitles on for language ids 1 and 6;
-- the Japanese-voice bit clear for ids 0, 7, 8, 10 and 11.
+- the Japanese-voice bit ~~clear~~ set for ids 0, 7, 8, 10 and 11 *(corrected 2026-10-02, OPUS: `002DDF24`–`002DDF6E`, `ebx = 0x400` for those ids, `or` into dword1)*.
 
 ## Interior citations for the entry-cited functions (OPUS, 2026-10-01)
 

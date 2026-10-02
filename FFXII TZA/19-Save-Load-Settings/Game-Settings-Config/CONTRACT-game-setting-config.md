@@ -137,7 +137,7 @@ zeroed — and **only** that span, by the single `memset` at `001DE138`
   touches **no** displacement in `+0x07C..+0x447`, so the ini cannot set them; `001DFD40` touches
   only `+0x450`, so they are never persisted. **Therefore on every run after the first, `memset(obj
   + 0x7C, 0, 0x3CC)` clears the block and nothing refills or reads it.** A call-graph fixpoint
-  census over the config pointer — **77 functions**: all **60** that load `*(0x01F82D20)`, plus
+  census over the config pointer — **77 functions**: all ~~**60**~~ that load `*(0x01F82D20)` — 63 functions with 158 reads and 1 write by `retool.py refs 01F82D20` *(corrected 2026-10-02, OPUS: no page figure matches the image)* — plus
   `001DE050` and `001DED50` seeded at `rcx` from the construction site, propagating `rcx`/`rdx`/
   `r8`/`r9` into callees and carrying **interior-pointer offsets** so that `001DF240`'s
   `[rax-0x144]`/`[rax]`/`[rax+0x144]` resolve to `+0x07C`/`+0x1C0`/`+0x304` — finds **exactly four
@@ -165,7 +165,7 @@ zeroed — and **only** that span, by the single `memset` at `001DE138`
   comparison, and the `movsxd` means a **negative** index writes *below* the object. `001DF350`
   takes its index as the fourth argument (`r15 = r9` at `001DF39A`) and has no `cmp` against 31
   near its three stores; the nearby comparisons are string-SSO and value-range tests. `001DF340` has
-  roughly twenty-five callers across the `0079xxxx` settings-load band.
+  ~~roughly twenty-five callers across the `0079xxxx` settings-load band~~ 38 call sites in 15 functions *(corrected 2026-10-02, OPUS: `retool.py callers 001DF340`; language-selection-and-locale-ids.md AV-3 counts the same 38)*.
   **For reconstruction**: the safety of `+0x7C` and beyond rests on *every caller* passing a bounded
   index, not on the setter. A reimplementation that adds a bounds check inside the setter changes
   behaviour the original does not have, and one that trusts the setter while relaxing a caller opens
@@ -207,7 +207,7 @@ object will see it.
 | **allocated** | one `0x65C` block at `00798239` via `malloc` (IAT `008C2B40`), **not zeroed**; the parse and serialize paths `alloca` a file-sized buffer |
 | **deallocated** | none — the singleton is never freed; **no destructor identified** |
 
-`globals_index.py --addr 01F82D20` → **1 writer, 61 readers** (RIP-relative instrument).
+`globals_index.py --addr 01F82D20` → **1 writer, ~~61 readers~~** 63 functions referencing it, 158 reads and 1 write *(corrected 2026-10-02, OPUS: `retool.py refs 01F82D20`)* (RIP-relative instrument).
 
 ## 6. Relationships
 
@@ -252,7 +252,7 @@ anything else                          → 1  en
 ## 9. Determinism
 
 **RNG:** none. **Timing:** entirely pre-`main` except the preset applier, which runs from a
-`lea`-registered graphics callback whose firing time is **UNRESOLVED** (`AX-6a`). **Threading:** all
+`lea`-registered graphics callback whose firing time is ~~**UNRESOLVED**~~ a left/right press on a Config-screen row *(answered: see "The trigger for the whole graphics-apply chain is now established", after the call chain; 2026-10-02, OPUS)* (`AX-6a`). **Threading:** all
 observed access is single-threaded during startup; no synchronisation primitive appears in any of the
 eleven entries. **Not proven to be single-threaded afterwards.**
 
@@ -441,8 +441,8 @@ this contract should not have to find them from the experiment side only.
    > value is never consulted — a reimplementation may carry them for byte fidelity but cannot
    > diverge on them. Live discriminator for the mask: read `+0x44C` after `00625830` returns.
 4. **No destructor identified.**
-5. When the graphics callback fires, hence whether §10's mismatch is observable (`AX-6a`).
-6. Which of the 31 the options UI exposes versus ini-only (`AX-2`).
+5. ~~When the graphics callback fires, hence whether §10's mismatch is observable (`AX-6a`).~~ *(answered: on a left/right press on a Config row, so §10's mismatch stands until the player moves `Quality`; `AX-6a`, game-settings-ini-and-runtime-config.md "Resolved 2026-09-08"; 2026-10-02, OPUS)*
+6. ~~Which of the 31 the options UI exposes versus ini-only (`AX-2`).~~ *(answered: 22 of 31 — game-settings-ini-and-runtime-config.md `AX-2` and the Config screen page §11; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -460,7 +460,7 @@ this contract should not have to find them from the experiment side only.
 | no separate field exists anywhere in `+0x450`–`+0x657` | every memory operand of `001DE050`, `001DED50`, `001DFD40`, `001DF240` and `007980A0` decoded over the full recorded body length; the only displacement in `[0x440,0x660)` other than `+0x448`, `+0x44C`, `+0x658`, `+0x65A` is `+0x450` itself. **Positive control:** `+0x450` appears in three of the four config functions. **Boundary:** these five functions only; code outside them was not searched | 1 | PROVEN for the config functions |
 | the `0x65C` block is `malloc`ed, never zeroed | `00798239` -> `00210EC0` -> `0085E730` -> IAT `008C2B40` = `malloc`; the constructor's only bulk clear is `memset(obj+0x7C,0,0x3CC)` at `001DE138` (IAT `008C2A60`) | 1 | PROVEN |
 | meaning of the three value tables | **not established** | none | UNKNOWN |
-| any runtime observation | **none exists** | none | UNKNOWN |
+| any runtime observation | ~~**none exists**~~ `EXP-001`, a controlled A/B run 2026-09-08 (§13) *(corrected 2026-10-02, OPUS: the front matter says `RUNTIME VALIDATED # EXP-001`)* | ~~none~~ runtime | ~~UNKNOWN~~ PROVEN |
 
 ## 15a. Falsification pass 1 — 2026-09-12 (OPUS)
 
@@ -477,7 +477,7 @@ position:
 | | count |
 |---|---:|
 | **writers** | **1** — `00798261 mov qword [rip → 01F82D20], rax`, in `FUN_007980A0` |
-| readers | **156 references across 61 distinct functions** |
+| readers | ~~**156 references across 61 distinct functions**~~ **158 reads in 63 functions** *(corrected 2026-10-02, OPUS: `retool.py refs 01F82D20`, beside the one write)* |
 | `lea` (address taken) | **0** |
 
 **The allocation is `00798239 mov ecx, 0x65C` / `call 00210EC0`**, and the pointer it returns is
@@ -533,9 +533,9 @@ them changing the settings array, 68 leaving it untouched.
 ### ⚠ The subsystem's readiness does not move
 
 This contract covers **construct, load, parse, apply, serialize**. **One of those five operations is
-now differential-tested.** `readiness` stays **`CONTRACT READY`**, because promoting the whole
-subsystem on the strength of its smallest operation is exactly the overstatement the readiness ladder
-exists to prevent.
+now differential-tested.** ~~`readiness` stays **`CONTRACT READY`**, because promoting the whole~~
+~~subsystem on the strength of its smallest operation is exactly the overstatement the readiness ladder~~
+~~exists to prevent.~~ *(corrected 2026-10-02, OPUS: the front matter says `readiness: RUNTIME VALIDATED   # EXP-001`, on §13's controlled A/B, not on this one differential-tested operation)*
 
 ### Why this operation was chosen as the second pilot
 
@@ -571,8 +571,8 @@ not the signature.**
 | `EDGE-CASE` | parity — no-op path, `VQ_CUSTOM`, and out-of-range qualities |
 | `INTEGRATION` | **NOT TESTED** — nothing here shows *when* the game calls this, or that the settings object it receives is in the state the test assumes |
 
-**The four other operations in this contract are untested**, and `AX-6a` — when the graphics-apply
-callback fires — remains the open question that would make `INTEGRATION` testable at all.
+**The four other operations in this contract are untested**~~, and `AX-6a` — when the graphics-apply~~
+~~callback fires — remains the open question that would make `INTEGRATION` testable at all.~~ *(answered: `AX-6a` is answered — the apply runs on a left/right press on a Config row; 2026-10-02, OPUS)*.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 
@@ -594,7 +594,7 @@ callback fires — remains the open question that would make `INTEGRATION` testa
 
 ### Interior citation — frontier hub 0017E070 (2026-09-18, SWE2-EC7)
 
-**0017E070** (254 B, 4 A-measured callers) — the settings read dispatcher. Bounds-checks an index (`ecx <= 0x16`, 23 cases), loads a jump table at `01B1322C` (`mov rax, [rip-0x5e089]` → `01D20000` + `[rip+0x5e1ac]` slot fetch → `jmp rax`), and each arm pulls a field off the settings record `[01F7CD80]` — `+0x18` word, `+0xB0` byte, `+0x68` byte, `+0x12` byte, `+0x14` byte, `+0x6C` byte — normalising each to `eax`. This is the read-side counterpart of the write path (`0017DDD0`→`0017E140`): the config screen writes, the console reads, both through index tables on the same record. In-scope: dispatch `jmp rax` [`0017E093`](../../_index/ADDRESS-INDEX.md); arm `+0x18` read [`0017E0AE`](../../_index/ADDRESS-INDEX.md) — 4 callers, all A.
+**0017E070** (254 B, 4 A-measured callers) — the settings read dispatcher. Bounds-checks an index (`ecx <= 0x16`, 23 cases), loads a jump table at `01B1322C` (`mov rax, [rip-0x5e089]` → `01D20000` + `[rip+0x5e1ac]` slot fetch → `jmp rax`), and each arm ~~pulls a field off the settings record `[01F7CD80]` — `+0x18` word, `+0xB0` byte, `+0x68` byte, `+0x12` byte, `+0x14` byte, `+0x6C` byte —~~ loads a field of the GameSettingConfig object `[01F82D20]` (`+0xC`, `+8`, `+0x10`, `+0x14`, `+0x44`, `+0x48`) or calls the display object's `001DDAB0` *(corrected 2026-10-02, OPUS: checked at `0017E070`–`0017E108`, the 23-case table at `0017E1AC`; the Config screen's per-row reader, after the call chain above)*, normalising each to `eax`. This is the read-side counterpart of the write path (`0017DDD0`→`0017E140`): the config screen writes, the console reads, both through index tables on the same record. In-scope: dispatch `jmp rax` [`0017E093`](../../_index/ADDRESS-INDEX.md); arm `+0x18` read [`0017E0AE`](../../_index/ADDRESS-INDEX.md) — 4 callers, all A.
 
 ## SWE2-EC7-34 update (2026-09-19) - `001DEE90`
 

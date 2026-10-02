@@ -117,7 +117,7 @@ payload is **compressed first, then encrypted**. **Read:** `008666B0` → `00865
 
 ## 4. What this contract does not establish
 
-- **The codec/file round trip**, caller allocation preconditions and ordinary scheduling — still
+- ~~**The codec/file round trip**,~~ *(answered: executed in EXP-088, 46/46 cases — §13's correction of 2026-09-16; 2026-10-02, OPUS)* Caller allocation preconditions and ordinary scheduling — still
   open. Provider/allocator effects and handle cleanup are established 2026-09-18: the provider is
   `Microsoft Enhanced Cryptographic Provider v1.0` (`PROV_RSA_FULL`) under a persistent
   `RSA_SQEX_FFXII_TZA` keyset created by the `CRYPT_NEWKEYSET` retry, and cleanup is a single-exit
@@ -437,7 +437,7 @@ particular value.
 
 ## 16. Parity plan
 
-No differential harness exists for this contract — §13 is honest that nothing has been executed.
+No differential harness exists for this contract~~ — §13 is honest that nothing has been executed~~ *(answered: see §13's correction of 2026-09-16 — EXP-088 executed five bodies, 46/46 cases; 2026-10-02, OPUS)*.
 The test §13 names is a container **round-trip**, not an instruction-level fixture: deflate a known
 payload at level 9, rotate the title by the `n` read from `header+8`, MD5 it, derive the RC4 key and
 compare ciphertext against a shipped save — `INTEGRATION` parity, ORACLE-shaped, needing no running

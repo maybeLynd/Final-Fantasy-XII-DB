@@ -1,0 +1,7 @@
+PASS  C0 control: the callback 003EA710 loads the 'AREA' tag  | 003EA72C  8d15be709200                   lea edx, [rip + 0x9270be]  ; 00D117F0  .rdata  "AREA"
+PASS  W1 003EA971 the read destination is the full allocator result  | 003EA971  4c8bc0                         mov r8, rax
+PASS  W2 003EA976 the request descriptor keeps the low half  | 003EA976  89442438                       mov dword ptr [rsp + 0x38], eax
+PASS  W3 003EA97F the read call follows  | 003EA97F  e89c3cf4ff                     call 0x32e620  ; -> 0032E620
+PASS  W4 003EA732 the callback zero-extends its argument  | 003EA732  8be9                           mov ebp, ecx
+PASS  W5 003EA809 the callback publishes rbp as the root 02B5E0C0  | 003EA809  48892db0387702                 mov qword ptr [rip + 0x27738b0], rbp  ; 02B5E0C0  .data
+FAILS 0

@@ -47,7 +47,7 @@ from a base path the engine obtains first.
 
 ```asm
 ; InputManager_BuildKeymapPath
-00197F22  call 0x001F3EA0                ; obtain the base path into a buffer
+00197F22  call 0x001F3EA0                ; obtain the base path into a buffer   <- corrected 2026-10-02, OPUS: 001F3EA0 obtains nothing; it is _waccess(path, 0) then, on -1, _wmkdir(path) - it creates the directory when missing (001F3EA0-001F3EBE; IAT 008C2B20 / 008C2B10); the base path comes from SHGetFolderPathW
 00197F27  lea  r9,  [0x8F3848]           ; L"\My Games\"
 00197F2E  lea  r8,  <the same buffer>
 00197F33  lea  rdx, [0x8F38C0]           ; L"%s%s"
@@ -67,8 +67,8 @@ from a base path the engine obtains first.
 > shared.**
 
 **That is the fact a modder needs:** the directory is not read from one place. **Anything that changes
-where the game looks must change it in at least two, and this pair census found two — it does not
-prove there are only two.**
+where the game looks must change it in at least two, and this pair census found two ~~— it does not~~
+~~prove there are only two.~~** *(answered: the component census below proves exactly two — four references from two functions; 2026-10-02, OPUS)*
 
 **The format string is `%s%s` — a plain append**, with `%s\%s` and `%s` sitting beside it in the same
 constant pool for the other joins. **The buffer is passed as both the destination and the first
@@ -84,8 +84,8 @@ source**, so each step appends to what is already there.
 | Does this prove there are exactly two builders? | **It does now — and by a different question.** Censusing the path *components* rather than the one address gives **four references from exactly two functions.** *A census of one address is a census of one question.* |
 | Is the encoding really UTF-16? | Every second byte is zero across all four strings. |
 
-**What this document does not claim:** what `001F3EA0` returns as a base path, what the file names are
-beyond the keymap's first characters, whether the directory is created or only read, or whether any
+**What this document does not claim:** ~~what `001F3EA0` returns as a base path,~~ what the file names are
+beyond the keymap's first characters, ~~whether the directory is created or only read,~~ *(answered: `001F3EA0` returns no path; it runs `_waccess(path, 0)` and, on `-1`, `_wmkdir(path)`, so the directory is created when missing — checked at `001F3EA0`–`001F3EBE`; 2026-10-02, OPUS)* or whether any
 other subsystem builds the same path by another route.
 
 ## And there is a second, dead copy of the strings
