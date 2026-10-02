@@ -493,3 +493,606 @@ helper `00678B50`: "`m33 == 0` → `f/(n−f)`, `n·f/(n−f)`; else `1/(n−f)`
 
 ---
 
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Every quotation below was re-read against the snapshot (`86b70c69`) line by line. `…` marks an elision inside one
+line; nothing is paraphrased inside quotation marks. Two kinds:
+
+- **§3.1 Value-changing**: a count, offset, address, size, constant, formula, order or layout differs. Every one is
+  **page-text only - needs local check**. A favoured side is named **only** where a dated correction on the pages
+  settles it; otherwise "no favoured side".
+- **§3.2 Stale / banner**: a "not read / open / unknown" claim that another line, a later dated section or another
+  page answers; a status banner that disagrees with the front matter. These do not change a value a port uses, but a
+  reader who stops at the stale line will believe the wrong thing is still open.
+
+### 3.1 Value-changing — page-text only - needs local check
+
+#### Category-wide counts
+
+**C-V1. Phyre function count: 6,768 vs 6,769.**
+- "| Functions | 6,768 |" (`README:8`); the composition line sums to 6,768 with "Rendering 287" (`README:66`).
+- "**`Reflection` + `ScriptVM` = 5,776 of 6,769 functions — 85.3 % by count.**  *(6,769 at GN161 — the R109 batch classified `00180A70` as `Phyre.Rendering.TextureBufferSetup`; corrected 2026-09-14.)*" (`MAP:274`); `README:70` itself says "4,515 of the 6,769".
+- **Favoured: 6,769**, by the dated correction 2026-09-14 (`MAP:274`). `members/phyre-function-class-map.tsv` has 6,769 rows.
+
+**C-V2. Rendering function count: 287 vs 288.**
+- "| `Rendering` | 288 | 74,634 | 259 B |" (`MAP:268`)
+- "| `Rendering` | 54 | 287 | 18.8 % |" (`MAP:346`); "Rendering 287" (`README:66`)
+- **Favoured: 288**, by the same 2026-09-14 correction (`MAP:274`); the seam table and the README were not updated.
+
+**C-V3. RTTI class counts: 2,133 / 2,134 / 2,248, and Phyre classes 1,604 / 1,739.**
+- "`rtti_recover.py` recovered **2,133 classes** image-wide, of which **1,604 are `Phyre::`**, carrying" (`MAP:58`)
+- "| 2,134 RTTI classes | independent MSVC RTTI walk (`rtti_recover.py`) | 4 |" (`CDMS:489`, evidence row, unstruck)
+- "~~**2,134 RTTI classes** are present in the binary~~ — **superseded 2026-09-08, see §14: the count is" / "2,248, and the run that produced 2,134 failed to demangle about three quarters of the names.**" (`CDMS:203-204`); "**Use 2,248.**" (`CDMS:1328`)
+- `MAP:188` (NARROWED 2026-09-18): "`classes.tsv` carries **1,739** `Phyre::` names today (the 1,604 above predates the AS-9a recount)".
+- **Favoured: 2,248 total** (dated 2026-09-08, `CDMS:203-204`) and **1,739 Phyre** (dated 2026-09-18, `MAP:188`). `MAP:58`, the namespace table `MAP:63-87` and `CDMS:489` are stale.
+
+**C-V4. Classes directly in `Phyre::`: 50 vs 62.**
+- "| *(directly in `Phyre::`)* | 50 | 50 |" (`MAP:87`)
+- "`@Phyre@@` with no sub-namespace**, which is 62 names. The map's 50 used a different counting rule, not reproduced here." (`MAP:202`)
+- No favoured side (the page names the conflict and does not reconcile it).
+
+#### Application boundary, module registry and frame
+
+**C-V5. Frame-tick return codes: 0 / 1 / 9 vs 0 / 9.**
+- "                       -> FUN_0017D6E0(frameTime, mode) -> 0 / 1 / 9" (`APP:305`, call-chain block, unstruck)
+- "*(Corrected 2026-09-14, FABLE: the comment here read "returns 0, 1 or 9". The tick returns only **0** or **9**" (`APP:136`); "**the premise was wrong: there is no 1**" (`APP:406`)
+- **Favoured: 0 / 9**, dated 2026-09-14.
+
+**C-V6. Per-frame slot order: slot 4 before slot 7, vs slot 7 before slot 4.**
+- `APP:302-307`: "-> per frame:" / "slot 4  GameApplication : FRAME TICK" … "slot 7  GameApplication : input pump" / "slot 6  GameApplication : pre-step"; slot 8 "at a rate THIS DOCUMENT DOES NOT ESTABLISH" (`APP:308-309`).
+- "slot 7 (input, `0079C26B`), slot 4 (animate, `0079C2D6`), slot 9 again after a screen-mode change (`0079C526`), each" / "viewport's render (`0079C5FE`) and slot 8 (render, `0079C655`)." (`APP:434-435`, the PA-5 reading of slot 28)
+- **Favoured: 7 → 4 → 9 → viewports → 8**, by the PA-5 answer (2026-09-14/26, `APP:431-452`). Whether slot 6 runs per frame is not settled by either side.
+
+**C-V7. Slots 22 and 25: inherited vs overridden.**
+- "**The 145 CFG guard adapters.** Slot 22 and 25 inherit `0016D6A0`, which is the CFG check" (`APP:331`)
+- "slot 22  OVERRIDDEN  0017D170                              (Phyre: 0016D6A0 empty)" (`APP:262`); "slot 25  OVERRIDDEN  0017D1E0" (`APP:265`)
+- No favoured side by date (the slot table and the "18 overridden" count support "overridden").
+
+**C-V8. The shutdown walker: run only from `atexit`, vs also called directly at teardown.**
+- "**registers `005A0840` with `atexit`** (`lea rcx, [rip-0x287]` at `005A0AC0`, then" / "`call 00808B90`) — so the shutdown walk runs at process exit, not from game code." (`MOD:214-215`)
+- "(`SteamAPI_UnregisterCallback`), then calls `CoUninitialize` and the module shutdown walker `005A0840`." (`APP:513`)
+- No favoured side. (The guard flag `0x02CACCA0`, `MOD:212`, may make the second call a no-op; neither page says which call does the work.)
+
+**C-V9. `006388C0` return value.**
+- "(`0067F700`), returning `0x12` on a duplicate insert." (`MOD:262`)
+- "Returns `sete` — true when the interned lookup/call succeeded." (`APP:667`)
+- No favoured side.
+
+**C-V10. The base-vtable installer column: constructors vs destructors.**
+- "Which is ctor-versus-base-ctor and which is ctor-versus-dtor is" / "**not** established, and the column is headed accordingly." (`MOD:124-125`); evidence row "| **Those fifteen are constructors, not destructors** | **not established** —" (`MOD:460`)
+- "**A side result settles the ⚠ above.**" … "So the `008Axxxx`–`008Cxxxx` column is the destructor column, registered for process exit." (`MOD:419-424`)
+- **Favoured: destructors**, by the 2026-09-14 answer block (`MOD:393-424`). Order matters: these run at exit, not start-up.
+
+**C-V11. `PUtilityDynamicGeometry` registrar address: `00617810` vs `00167810`.**
+- "21 no-arg inits (including `00617810`, the `PUtilityDynamicGeometry` registrar of the §2 table)" (`MOD:253`)
+- "| `01F2EE60` | `PDynamicGeometry::PUtilityDynamicGeometry` | `00167810` | `008B6A40` |" (`MOD:137`)
+- No dated correction; `MOD:137` and `Subsystem-Map/members/phyre-module-utility-registrars.tsv` both give `00167810`, so `00617810` looks like a digit transposition.
+
+**C-V12. Module family member counts: body table vs front matter.**
+- Body: "claims the **203 frontier" / "entries" (`MOD:272-273`) for PAnimation; "**477 members**" (`MOD:312`) for PhyreCore; "| `PPhysics` | 95 |" and "| `PRendering` | 306 |" (`MOD:344-345`), with the rest of the table at `MOD:346-358`.
+- Front matter: "../members/phyre-pphysics.tsv | 134 |" (`MOD:30`), "../members/phyre-prendering.tsv | 310 |" (`MOD:31`), PAnimation 238, PhyreCore 426 (`MOD:28-29`); the member `.tsv` files carry the front-matter counts.
+- **Favoured: the front matter**, by its dated per-row deltas (2026-09-17 … 2026-09-30, `MOD:28-45`). Two front-matter chains do not close on their own (PPostProcessing and PScripting), so the exact deltas are also open.
+
+**C-V13. Address of the `0xE0`-byte object the init walk allocates: `01F3F5B8` vs `01F7F5B8`.**
+- "**Init allocates a `0xE0`-byte object at `01F3F5B8`**" (`MOD:213`)
+- "ctor for the `0xE0` object the root stores at `01F7F5B8`" (`MOD:250`); "drain the `[01F7F5B8]` list" (`MOD:548`)
+- No dated correction; two of three lines say `01F7F5B8`.
+
+**C-V14. Thread procedures in the image: nine vs thirteen.**
+- "none of the" / "image's **nine** thread procedures is a plausible consumer of a graphics command stream (the" / "largest is 555 B, and the enumeration is complete — five `CreateThread` and four `_beginthreadex`" (`FRM:218-220`); also `FRM:829-830`, `FRM:1041`.
+- "**Premise corrected 2026-09-12 (FABLE)" … the engine's own thread API `008636E0` creates four more threads … "the claim stands on thirteen procedures, not nine (CG-3)" (`FRM:971`)
+- **Favoured: thirteen**, dated 2026-09-12.
+
+**C-V15. `003A2090`: GIFtag "begin subpacket" (AND) vs freelist push (OR).**
+- "| `003A2090` | begin subpacket | 39 B | writes the GIFtag, masks `NLOOP` to zero |" (`FRM:482`); "hdr->dword0        &= 0x8000;                     // keep bit 15, clear bits 0-14" (`FRM:554`)
+- "`003A2090` (39 B) is the intrusive 16-byte-element freelist push" … "or [head], 0x8000` flag — the queue push" (`FRM:1249-1251`)
+- No favoured side. An AND-mask and an OR-set of bit 15 produce different headers.
+
+**C-V16. Command-buffer index global: `02EBEFF0` vs `02F8EFF0`.**
+- "*(u32*)0x02EBEFF0 = 0;                        // current index" (`FRM:286`); also `FRM:327`, `FRM:519`
+- "the flip is `eax = 1 - dword [02F8EFF0]` stored back" (`FRM:1186`)
+- No dated correction; every other mention uses `02EBEFF0`.
+
+**C-V17. Callers of `003A1DB0`: 38 vs 17.**
+- "+-> (via 003A1DB0, from 38 call sites across the engine)" (`FRM:750`); "it has 38 callers" (`FRM:778`)
+- "`003A1DB0` — 84 B, 17 A-measured callers at census" (`FRM:1185`)
+- No favoured side (call sites vs callers is not stated).
+
+**C-V18. Sites where the settle spin is inlined: 10, 9 or 11.**
+- "inlined at the" / "top of every mode body — `0022A850`, `0022AE50`, `0022AFA0`, `0022B040`, `0022B2C0`, `0022B720`, `0022B820`," / "`0022BAD0`, `0022BD20` — and once more at `00262AE0`." (`FRM:268-270`), ten in all
+- "inlined spin at `0022BAD0` and its eight siblings" (`FRM:810`), nine
+- "raw disassembly at `0022BAD0` (inside `0022B8C0`) and `0022B2C0` (inside `0022B0B0`); displacement census locates nine more" (`FRM:974`), eleven; and `0022B2C0` is inside `MainLoop_Draw`, not a mode body.
+- No favoured side.
+
+**C-V19. Mode 3 and the world tick.**
+- "mode 3 does not advance the world." (`FRM:816`)
+- "`World_UpdateSimulationTick` (`00314020`), reached from mode 3 as well as mode 2, so \"the menu" / "is open\" is not by itself a reason to expect the simulation to be stopped" (`FRM:817-818`)
+- No favoured side (same bullet).
+
+**C-V20. Which passes each mask bit gates: pass list vs bit table.**
+- Pass list `FRM:380-401` (e.g. bit 3 "`00252A70`  (or 00251010 on the alternate path)", `FRM:398`; bit 6 "`00332420(1)`", `FRM:386`).
+- Bit table `FRM:664-674` (bit 3 "`00252A70` / `0017FD70` / `002450B0`", `FRM:669`; bit 6 "`00332420(3)`, `00332420(0)`, `00332420(1)`", `FRM:672`; bit 0 adds `0036F410` … `00475390`, `FRM:666`).
+- No favoured side.
+
+**C-V21. "AO render" and "Water effect": gates and order.**
+- "\"AO render\"             <- only if 0017FE10() != 0" / "bit 4   VFXSystem_RenderLayerPass(3), EffectSystem_...ForPass(3)" / "\"Water effect\"          <- only if 0017FE20() != 0" (`FRM:389-391`)
+- "`00229F20` | 110 B | when dword `01FD49E8` is non-zero: marks `\"AO render\"` … when it is still non-zero and the argument is non-zero, marks `\"Water effect\"`" (`FRM:1519`), with no VFX pass between them and different gate globals.
+- No favoured side.
+
+**C-V22. Who passes the 512×448 viewport.**
+- "The field frame calls it as `00184460(0, 0, *(u32*)0x01E0C1D8, *(u32*)0x01E0C1DC, 1)`" (`FRM:717`)
+- "the call site in `0022B8C0` passes the globals `01E0C1D8`/`01E0C1DC`" (`FRM:983`); `0022B8C0` is mode 3, "**the full-menu frame**" (`FRM:470`/`FRM:124`)
+- No favoured side.
+
+**C-V23. Camera command record size and second block: 140 vs 144 bytes, 60 vs 64 bytes.**
+- "**It fills a 140-byte record from two sources and nothing else.**" (`CAM:37`); "**`+0x48 … +0x84`** — 60 bytes" (`CAM:41`)
+- "The highest field written is `+0x8C`, a dword — **`0x90` total from the base.**" (`CAM:98`); "allocates `0x90` bytes" (`CAM:116`); "`+0x48`..`+0x87` is handed to one call" (`CAM:125`)
+- **Favoured: 0x90 = 144 bytes, second block 64 bytes (a mat4)**, by the layout read 2026-09-30 (`CAM:115-166`).
+
+#### Asset container
+
+**C-V24. `PInstanceListHeader` field count: 10 vs 9.**
+- "| `00598DF0` | registers the 10 `PInstanceListHeader` fields — interior verified 2026-09-17 … ×9 each — a nine-element registration battery" (`HDR:256`)
+- "**nine** `unsigned int` fields — so the instance-list" / "header is **36 bytes**" (`HDR:102-103`); "**Corrected 2026-09-07 (same day, audit pass).** This table first listed a tenth field," (`HDR:117`)
+- **Favoured: nine fields, 36 bytes**, dated 2026-09-07; the key-address row still says 10.
+
+**C-V25. Where the oversized header is copied: `r9` (second buffer) vs `nsBuf`.**
+- "| `r9` | **a SECOND buffer of the same shape as `r8`, and a stack local in that one caller** — … Its `+0x08` is where the oversized path copies the 84 bytes (`0059A52E mov rdx, [r12+8]`)." (`C-HDR:57`)
+- "if (!grow(nsBuf, size)) return 0xD;" / "memcpy(nsBuf->p, h, 84);                  /* 5 x movups + 1 dword */" (`C-HDR:346-347`), in a formula whose signature has no `r9` (`C-HDR:298-299`)
+- **Favoured: `r9`**, by PH-5 (2026-09-15, `C-HDR:575-592`) and §13a (2026-09-18, `C-HDR:458`).
+
+**C-V26. `0059A3B0` argument order: §2 vs the §12 formula.**
+- "`int Read(Stream *rcx, ClusterHeader *rdx, NsBuffer *r8, Buffer *r9, bool *outWasByteSwapped [rsp+0x28], uint32 *outSize [rsp+0x30], bool checkPlatform [rsp+0x38])`" (`C-HDR:55`)
+- "int PhyreClusterHeader_Read(Stream *s, ClusterHeader *h, Buf *nsBuf," / "bool checkPlatform, uint32 *outSize, bool *outSwapped)" (`C-HDR:298-299`)
+- **Favoured: §2**, by §13a (2026-09-18, `C-HDR:436-438`).
+
+**C-V27. Packed-namespace reader argument order.**
+- "`int Read(Stream *rcx, bool wasByteSwapped dl, void *buffer r8, uint32 len r9d)`" (`C-NS:53`)
+- "return ReadPackedNamespace(s, nsBuf->p + take," / "h->m_packedNamespaceSize - take, *outSwapped);" (`C-HDR:342-343`), i.e. buffer, length, flag
+- No favoured side by date (the register-level form is the more specific).
+
+**C-V28. Is a zero-length namespace accepted when the capacity already reads zero?**
+- "a *zero-length* namespace is refused, while a zero-length namespace whose capacity already reads zero is accepted, because the second never replaces the buffer." (`C-HDR:286`)
+- "if (!nsBuf->data) return 6;                   /* 0059A4D3 -> 0059A598 */" (`C-HDR:329`); "and for a **null `nsRec.buf` regardless of namespace length**: the" / "`test r13, r13` at `0059A4D3` precedes the length paths" (`C-HDR:470-471`, §13a, 2026-09-18). The only caller zeroes the buffer before the call (`C-HDR:579-581`).
+- No explicit correction; §13a is the later dated text.
+
+**C-V29. Rejection causes and codes: "Four rejections, three distinct codes" vs "Five distinct causes share the code `6`".**
+- "**Four rejections, three distinct codes: `6` refuse, `9` truncated, `0xD` allocation failed.**" (`HDR:146`)
+- "**Five distinct causes share the code `6`,**" (`C-HDR:286`), within a nine-row return table (`C-HDR:274-284`); plus the BOM refusal `6` at `0059E295` (`C-NS:387`) and `0x13` from the user-fixup loader (`HDR:716`).
+- No dated correction on `HDR`; the contract (2026-09-12, pilot-driven) is the fuller list.
+
+**C-V30. Are the platform and physics id leaves called when the check is off?**
+- "if (checkPlatform && hdr->m_platformID != GetPlatformID())        return 6;   /* 0x44583131 */" (`HDR:138`), a short-circuit form
+- "**Both leaves are called even when `checkPlatform` is false.** Only the comparisons are guarded, so" (`C-HDR:222`)
+- **Favoured: called either way**, by the contract's re-read (2026-09-12, `C-HDR:226`).
+
+**C-V31. Oversized-header copy: "21 dwords" vs SSE, five vs ten `movups`.**
+- "copied in as 21 dwords" (`HDR:199`)
+- "five `movups` of 16" / "bytes plus one 4-byte `mov`" (`C-HDR:260-261`); formula comment "5 x movups + 1 dword" (`C-HDR:347`)
+- "**Ten `movups`, forming five 16-byte transfers**" (`C-HDR:682`, §15a)
+- **Favoured: ten `movups` (five 16-byte load/store pairs) plus one dword, inline**, by §15a (2026-09-12).
+
+**C-V32. The second header swap.**
+- "**If the file was byte-swapped, the header is swapped *back*** before either path runs." (`HDR:200`)
+- "**The size the loader uses is the swapped one.** For a big-endian file, `m_size` is published" / "and compared from the *swapped* header; swapping the header back afterwards does not revise it." (`C-HDR:242-243`)
+- **Favoured: the contract**, by its "CORRECTED 2026-09-12" block (`C-HDR:226`).
+
+**C-V33. `bswap`s in the namespace header swap: fourteen vs eight.**
+- "**fourteen `bswap`s over eight fixed dwords," (`C-HDR:168`); "fourteen" / "`bswap`s over eight fixed dwords at `+0x00`…`+0x1C`" (`C-HDR:571-572`, 2026-09-18)
+- "**eight `bswap`s, one per fixed dword** (*\"fourteen\" corrected 2026-09-25, OPUS - counted at `0059C18B`...`0059C1C2`*)" (`C-NS:172`)
+- **Favoured: eight**, dated 2026-09-25; the cluster-header contract was not updated.
+
+**C-V34. Class-record swap: "nine words … the rest `bswap`" vs "only five … use `bswap`".**
+- "swapping **nine** words per record; the first is an inlined byte-reversal, the rest `bswap`" (`C-NS:174`)
+- "But only **five** of the nine use the `bswap`" / "instruction. The other four — `-0x2c`, `-0x1c`, `-0x18`, `-0x14` — are **open-coded**:" (`C-NS:457-458`)
+- No dated correction (§15a is the later read). The bytes produced are the same; the description differs.
+
+**C-V35. Which `w7` bit marks a header class.**
+- "class\" is a class whose namespace record carries **bit 4 of class word `w7`** — in this title" / "exactly three: `PParameterBuffer` (`w7` = 12), `PAnimationClipBinding` and" / "`PModifierNetworkInfoPacket` (`w7` = 20)" (`HDR:299-301`); 12 has no bit 4 (0x10).
+- "abstract, `0x04` header, `0x08` no default constructor.** Bit `0x10` is set exactly on the two `Header`" / "classes in the corpus" (`C-NS:354-355`, NS-1 answered 2026-09-26)
+- "bits 1–5 stay" / "unexplained." (`NS:276-277`, a 2026-09-30 note)
+- **Favoured: `0x04` = header**, by NS-1 (2026-09-26, `C-NS:349`). The later-dated `NS:276-277` is stale despite its date.
+
+**C-V36. Member attribute bit 31 as "the pointer bit".**
+- "PString               1   m_buffer +0        (attribute 0x80000010 - the pointer bit)" (`NS:586`); "**`m_buffer` is the only field in the file with attribute bit 31 set, and it is the one field that is" / "a pointer**" (`NS:593-594`)
+- "**An object pointer carries bit 1, not bit 31.**" … "A walker that tested bit 31 would treat `m_effectVariant`, `m_mesh` and `m_asset` as inline values." (`NS:515-518`)
+- **Favoured: bit 1**, by the 2026-09-26 correction block (`NS:497-518`).
+
+**C-V37. The two teardown helpers' count/pointer pairs overlap.**
+- "walks the `+0x38/+0x40`, `+0x28/+0x30`, `+0x18/+0x20`, `+0x08/+0x10` count/pointer pairs" (`NS:638`)
+- "`+0x50/+0x58`, `+0x40/+0x48` …, `+0x30/+0x38`, `+0x20/+0x28`" (`NS:642`): `+0x38` and `+0x40` are a count in one helper and a pointer in the other.
+- No favoured side.
+
+**C-V38. Mesh clusters in the archive: 2,097 vs 2,091.**
+- "6 meshes against 2,097 in the archive" (`HDR:239`)
+- "**2,091** meshes (index + vertex, no texture)" (`HDR:233`, CU-4 2026-09-12); `members/user-fixup-census.tsv` sums to 2,091.
+- **Favoured: 2,091**, dated 2026-09-12.
+
+**C-V39. Field names the registration misses: 85 vs 87.**
+- "the schema misses 85 of the 349 field names the files declare." (`NS:203`, 2026-09-26)
+- "**138 of 177 classes and 262 of 349 field names are in the recovered" / "registration**" (`NS:321-322`, 2026-09-12): 349 − 262 = 87.
+- No favoured side.
+
+**C-V40. Call sites of `0059A6F0` inside `0059A3B0`: 2 vs 3.**
+- "| `0059A6F0` is called from the header validator | **stands** — 2 sites, matching the fast path and the version-shim path. |" (`NS:626`)
+- "| the three size paths converge on `0059A6F0` | **re-read**: `0059A5BF`, `0059A5D7` and the equal path all call it |" (`C-HDR:630`)
+- No favoured side (whether "the equal path" is its own site is not stated).
+
+**C-V41. The three D3D11 header sizes: GPU reservation vs error-field propagation.**
+- "**The three D3D11 sizes tell the loader how much GPU memory to reserve.**" (`HDR:277`)
+- "`00686D10` (43 B) is the three-field status copy `0059E300` runs: when `r8`'s `+0x48`/`+0x4C`/ `+0x50` are not all zero it writes them to `rcx`'s `+0x20`/`+0x1C` and conditionally `+0x24` - the loader's error-field propagation." (`C-HDR:936-943`)
+- No favoured side.
+
+#### Reflection
+
+**C-V42. Descriptor offsets as qword indices, left unstruck after the unit correction.**
+- "| `+0x0C` | `FUN_006b6700` | embedded string (the class name) |" (`CDMS:150`) … "| `+0x1D` | compared to `DAT_02CF8260` | a generation / registration counter |" (`CDMS:156`); "+0x0C   str    embedded string (class name)" (`CDMS:255`, §4 block `CDMS:253-261`); "| `02CF8260` | global compared against descriptor `+0x1D` | — |" (`CDMS:246`)
+- "**Unit correction 2026-09-02 — the offsets in this block and in §4 are qword indices, not byte" / "offsets.**" (`CDMS:160-161`): bytes `+0x80/+0x90/+0xA0/+0xB0`, sub-object `+0x70`, counter `+0xE8`, name `char *` at `+0x30` (`CDMS:162-172`; `C-CD:81`).
+- **Favoured: byte offsets**, dated 2026-09-02. A reader of the §2 table or the §4 block alone gets every descriptor offset wrong by a factor of 8.
+
+**C-V43. "Embedded string" (the name) vs list-unlink.**
+- "FUN_006b6700(self + 7);                       // destroy an embedded string (the name)" (`CDMS:131`); "+0x38   str    embedded string (member name)" (`CDMS:267`); evidence row `CDMS:485`.
+- "**clear the intrusive list at `+0x38` through `006B6700`**" (`CDMS:1284`); "**⚠ Corrected 2026-09-14 (OPUS), pass 13 — independent re-derivation.** `006B6700` is a list-unlink" (`CDMS:1286`)
+- **Favoured: list-unlink, no string**, dated 2026-09-14; the name is a pointer at member `+0x20` (`CDMS:423`; `MR:638-651`).
+
+**C-V44. `PClassDataMember` teardown: which offset is freed and which bit is tested.**
+- "+0x28   flags  bit 0 tested during teardown" (`CDMS:266`)
+- "and conditionally free `[+0x18]` when `[+0x20] & 1`." (`CDMS:1284`), while `MR:638-651` puts the owner at `+0x18` and the name at `+0x20`.
+- No favoured side on the page. `C-CD:456-457` implies the `CDMS:1284` offsets are relative to the node at member `+8` (so member `+0x20`/`+0x28`), but neither line says so.
+
+**C-V45. `FieldStorageWidth`: a literal 8 vs `ctx->vslot08()`.**
+- "returns 8 when attribute bit 1 is set, else the type's inline size from `type+0x38`" (`MR:582`); "storage size of literally 8 when this bit is set" (`MR:669`); "returns literally `8` when bit 1 is set" (`MR:916`); `MR:1383` (same wording).
+- "**Corrected 2026-09-19 (OPUS).** The earlier transcription of this body said `return /* pointer" / "width */ 8`" (`MR:406-407`): the width is `ctx->vslot08()` (`MR:408-410`).
+- **Favoured: `ctx->vslot08()`**, dated 2026-09-19; four unstruck restatements remain.
+
+**C-V46. `classdesc+0xF4`: zero vs not zero.**
+- "`descriptor+0xF4`/`+0xF8` are the offset adjustments, both zero (§12)." (`MR:1674`); §12's "The recorded offsets are true in-instance offsets" (`MR:1429-1443`)
+- "## 16. CORRECTION — `classdesc+0xF4` is **not** zero (2026-09-19, OPUS, same day)" (`MR:1676`): 0 for 126 classes, 8 for 27, unresolved for 26 (`MR:1714-1716`).
+- **Favoured: not zero**, by §16/§17 (2026-09-19). A port that ignores `+0xF4` mis-addresses every field of 27 classes by 8 bytes (`MR:1781`).
+
+**C-V47. Meaning of `+0xF8`.**
+- "int used       = *(int *)(cls + 0xF8);" (`MR:361`, `AttachMember` reading)
+- "and `+0xF8` as the same sum with each term clamped at zero." (`MR:1751`, §17)
+- No favoured side (the `AttachMember` reading was not revisited).
+
+**C-V48. Descriptor size: ~0x110 vs 0x100 (vs "at least 0x140").**
+- "Descriptors are about" / "0x110 bytes and packed in `.data`" (`MR:296-297`)
+- "The descriptor is 0x100 bytes." (`IS:87`); base 0x100 and `PClassDescriptorDynamic` 0x140 (`C-CD:66-73`, `C-CD:488-494`)
+- "| size | **at least `0x140`** — `0063D550` writes `+0x138` and `+0x104`; the exact end is not established (§14) |" (`C-CD:52`)
+- **Favoured: 0x100 (base) / 0x140 (Dynamic)**, by PCD-3 answered 2026-09-25 (`C-CD:488-494`); `MR:296` and `C-CD:52` are stale.
+
+**C-V49. `PClassDataMember` layout in the interior citation vs §4.**
+- "`00D580B0` installs at `006329B6`, `+0x48`/`+0x50` take the name and context args, `+0x28` bit 1" (`MR:1366`)
+- "record[0x30] = memberType;" (`MR:623`); "*(uint32_t *)&record[0x48] = offset;" (`MR:626`); "record[0x50] = 0;" (`MR:627`)
+- No dated ruling (§4 is the full body reading).
+
+**C-V50. Field-record count: 682 vs 684 vs 686, over 246 / 182 / 180 / 179 classes.**
+- "There are **682 such call sites** in the binary. **680 of them resolve completely**" (`MR:78`); "**680 fully-resolved field records over 246 classes**," (`MR:30`)
+- "registered members                                  684 across 182 classes" (`MR:1876`, §18a, 2026-09-22)
+- "The schema recovered here is 682 members over 180 classes," (`MR:1799`)
+- "| **runtime schema** | … | **682 records, 246 class names, 179 distinct leaves** |" (`FS:61`); "the 179 leaf names in" (`IS:162`)
+- `phyre-field-schema.tsv` has **686** data rows, 246 distinct `class`, **182** distinct `class_leaf` (checked for this report).
+- No favoured side. §20 (2026-09-27) says four `00632A70` sites were added (`MR:2291`), which would explain 686 = 682 + 4, but no page states the new total.
+
+**C-V51. Attribute-word census: `0x00` 196 vs 200.**
+- "0x00 196     0x02  36     0x08 123     0x0A  39     0x10 207     0x12  79" (`MR:658`)
+- `phyre-field-schema.tsv` now has `0x00` 200 (the other values match). No favoured side.
+
+**C-V52. Classes whose fields carry constant bits 3-4: 146 of 146 vs 243 of 246; coherence over 164 classes.**
+- "constant across every field of a class in **146 of 146** classes" (`MR:910`); "struct-layout coherence across 164 classes" (`MR:905`)
+- "-> constant across every field of the class in 243 of 246 classes;" (`MR:672`)
+- **Favoured: 243 of 246** (the second-pass figures, explained in §10, `MR:1049-1052`); the §8 evidence rows are stale.
+
+**C-V53. Classes that fit their size exactly: 33 vs 15.**
+- "* Sharpness: **33 classes fit exactly**" (`IS:101`); the `.tsv` has 33 rows with slack 0.
+- "the 177 independently derived Phyre reflection member rows all fit inside their" / "stated sizes, and 15 sum exactly" (`IS:218-219`)
+- No favoured side.
+
+**C-V54. When array members are built: static initialisation vs lazily on first use.**
+- "class-descriptor initialisers (static init)" (`AR:351`); "the member descriptors are built by code at static initialisation." (`AR:366`)
+- "**680 of the 682 member registrations execute lazily**, behind a one-time-init guard," / "the first time the class is touched." (`MR:968-969`), in MR's "Correction to a sibling document" (`MR:963-971`)
+- **Favoured: lazy** for the `00632960` members (`MR:963-971`). Whether the 165 array registrations (`00632A10`) are also behind the guard is not stated on `AR`.
+
+**C-V55. The eleven `006349B0` teardown thunks: 103 vs 96 bytes.**
+- "**What each member does.** All eleven are 103 bytes with the same shape." (`AR:414`)
+- "same 96-byte `PClassDataMember` teardown shape" (`MR:1333`)
+- No favoured side.
+
+**C-V56. The lazy-static accessors: one `0x50`-stride array, and zero-initialised.**
+- "each returns a distinct element of **one `0x50`-stride" / "array** at `01F2E330`…`01F2E780`." (`AR:183-184`); "The objects are zero-initialised and only" / "their teardown is generated" (`AR:186-187`)
+- "*Answered 2026-09-14 (FABLE): thirteen of the fifteen elements are Phyre type objects, and they are **not**" (`AR:189`, not zero-initialised); "from `01F2E780` up the objects do not follow that stride - `01F2E780` is 0x30 bytes" (`AR:296`, 2026-09-30)
+- **Favoured: not zero-initialised (2026-09-14) and no uniform stride above `01F2E780` (2026-09-30).**
+
+**C-V57. `PClassDescriptorConcrete` static initialisers: 254, 255 or 227.**
+- front-matter family row "| 254 |" (`CDMS:29`); "| `PClassDescriptorConcrete.StaticInitializer` | **255** | ~~227~~ | — |" (`CDMS:192`)
+- "-> PClassDescriptorConcrete<T> static initializer      (227 of these)" (`CDMS:296`, unstruck)
+- No favoured side between 254 and 255 (the `.tsv` has 254 rows); 227 is struck at `CDMS:192` but not at `CDMS:296`.
+
+**C-V58. §5 call chain repeats superseded teardown counts.**
+- "-> ClassDescriptorStaticTeardown       (372)" / "-> DataMemberMetadataStaticTeardown    (830)" (`CDMS:308-309`)
+- "| `DataMemberMetadataStaticTeardown` | **853** | ~~830~~ |" / "| `ClassDescriptorStaticTeardown` | **404** | ~~372~~ |" (`CDMS:188-189`)
+- **Favoured: 853 / 404**, dated 2026-09-02 (`CDMS:182`); the `.tsv` files agree.
+
+**C-V59. Traversal adapter: descriptor vtable slot 0 vs the push adapter at `+0x20`.**
+- "Of the 331 `Concrete<T>` vtables, 243 have one of the 298" / "traversal adapters as slot 0" (`CDMS:443-444`)
+- "| `+0x20` | **315** | the class's **script-VM object push adapter** — … (21 B ×194, 31 B ×115) is that family's own documented split of 188 and 116 |" (`CDMS:1013`)
+- No favoured side (slot, sizes 46/75 B vs 21/31 B, and the 194/115 vs 188/116 split all differ).
+
+**C-V60. The vftable written at destructor entry.**
+- "| `+0x00` | 8 | vftable. The destructor overwrites it with `PType`'s before releasing anything |" (`C-CD:80`)
+- "it assigns `Phyre::PClassDescriptor::vftable` on entry" / "and `Phyre::PType::vftable` on exit" (`CDMS:87-88`); "(`00D581C0` at `006333BC`, `00D31168` at `00633568`), so the object passes through two vtable" / "identities" (`C-CD:197-198`)
+- No dated ruling; the instruction addresses on `C-CD:197` favour entry = `PClassDescriptor`, exit = `PType`.
+
+**C-V61. `+0xC8` / `+0xD0`: full-size instances vs byte masks.**
+- "| `+0xC8` | 8 | **a second full-size instance**," / "| `+0xD0` | 8 | **a third full-size instance**," (`C-CD:92-93`); "| `+0xD0` | a third buffer registered by the same family; **no reader identified** |" (`CDMS:1146`)
+- "**Purpose read 2026-09-25 (FABLE, Claude Opus 5.5): `+0xC8` and `+0xD0` are byte masks over the instance, not" (`C-CD:689`)
+- **Favoured: byte masks**, dated 2026-09-25 (`CDMS:715-722` still uses `+0xC8` as a construction target inside `00639A60`; that dual use is not reconciled).
+
+**C-V62. Does `+0x50` return false everywhere, so `0063CB80` always builds?**
+- "`+0x50` returns **false on every class measured**, so `00639A60` always hands off to `0063CB80`" (`CDMS:901`); also `CDMS:844-845`, `CDMS:1071-1072`.
+- "**WITHDRAWN 2026-09-25 (OPUS): all three arms below are ARMED.**" (`CDMS:861`); "`0063CB80` builds only where `+0x50` returns false or flags bit 0" / "is set.**" (`CDMS:1038-1039`)
+- **Favoured: conditional**, dated 2026-09-25.
+
+**C-V63. Registry insert when the parent is in another registry: head vs append.**
+- "otherwise it is linked at the **head** of the" / "registry's list (`0063922E`–`00639244`)." (`CDMS:392-393`)
+- "else appending `rdi+0x50` into `[rbx+0x10]`'s list (`006391FF`..`00639244`" (`CDMS:1730`); "and appends it otherwise" (`C-CD:444`)
+- No favoured side by date (`CDMS:1730` is dated "2026-05-15", earlier than the rest); two of three statements say "append".
+
+**C-V64. Identity of `00632C90`: a scalar-deleting destructor vs a descriptor constructor.**
+- "**00632C90** (66 B; heads the ICF-folded cluster of identical scalar-deleting destructors" … "— `??_G` scalar-deleting destructor for the class whose vtable is **00D30168**" (`CDMS:1726`)
+- "`00632C90` takes no parent argument and writes `mov qword ptr [rcx + 0x78], r10`" (`C-CD:868-869`); "`00632C90` 226 B, 4 registrars" (`IS:133-134`)
+- No favoured side by date; the sizes (66 B vs 226 B) disagree as well.
+
+**C-V65. PSharray / PArray instantiation counts.**
+- "`PArray` (66 instantiations) and `PSharray`" / "(9)." (`FS:70-71`)
+- "~~All nine `PSharray<T>` descriptors fit that: …~~ **All TEN" (`MR:2348`, 2026-09-28)
+- **Favoured for `PSharray`: ten descriptors**, dated 2026-09-28 (`FS` may count schema names, not descriptors; the page does not say).
+
+**C-V66. Class-descriptor globals the schema names: 246 vs 249.**
+- "The 246 descriptors span `02CA9DA0`–`02EBA030`" … "All 249 class-descriptor globals the current field schema names are there," (`FS:171`, the second half anchored 2026-09-30)
+- **Favoured: 249**, dated 2026-09-30; `class_obj` in the `.tsv` has 249 distinct values.
+
+#### Script bridge
+
+**C-V67. Lua standard-library address range.**
+- "**It bounds the standard library**: the named functions span `00814xxx`–`0081Cxxx`, which is where" (`LUA:838`)
+- "*exact link range 2026-09-13 (FABLE):* every census entry from `0080F2E0` up to `00830760`" (`LUA:435`)
+- **Favoured: `0080F2E0`–`00830760`**, dated 2026-09-13.
+
+**C-V68. Lua function counts: 111 / 90 / 108 / 143.**
+- "Lua 5.2.1, **111 functions**, per" (`LUA:1085`); "Across the whole 90-function `ThirdParty.Scripting.Lua` domain" (`LUA:479`); "0x80F000 - 0x812FFF :  108 functions,  6 tagged Lua,  102 generic  (94%)" (`LUA:476`); "**148 records matched; 145 of them fall in 12 arrays; 143 distinct functions are named.**" (`LUA:669`)
+- No favoured side (different measures, never reconciled).
+
+**C-V69. `luaopen_*` references: "only" the table entry vs also a `lea` in `00685AC0`.**
+- "Each open function's **only** reference in" / "the image is its table entry (one 8-byte hit each; `luaopen_string` two)" (`LUA:375-376`, R-4 2026-09-12)
+- "Its only" / "references are its `lea` in `00685AC0` (`00685ADD`, `00685AF0`, `00685B03`, `00685B16`) and its" (`LUA:958-959`, UQ-284 2026-09-25)
+- **Favoured: table entry plus the `lea`**, dated 2026-09-25.
+
+**C-V70. `PScheduler` / `PAsyncProcessBuffer` constructor columns.**
+- "| `PScripting::PAsyncProcessBuffer` | `00D6FD50` | `00681560`, `00681720` |" / "| `PScripting::PScheduler` | `00D6FD68` | `00681560`, `00681880` |" (`LUA:1094-1095`)
+- "`00681560`, which stamps it into `this` … — the constructor —" / "and `00681880`, which stamps it and frees — the destructor." (`LUA:389-390`, 2026-09-22); "`00681720` (166 B) is a call-free intrusive-list unlink" (`LUA:1165`)
+- **Favoured: `00681560` = `PScheduler` ctor, `00681880` = its destructor, `00681720` = a list unlink**, by the later dated sections.
+
+**C-V71. What `02E41570` is.**
+- "The sixth `0x100` slot `02E41570` belongs to a class none of the five registers and is outside this question" (`LUA:929`, 2026-09-18)
+- "a `u32` count" / "with bit 31 as a flag at **`02E41570`**, and the 16-byte-entry buffer pointer at **`02E41578`**." (`LUA:939-940`, 2026-09-25)
+- **Favoured: the list count**, dated 2026-09-25.
+
+**C-V72. "Nearly every binding" funnels through one routine.**
+- "**Nearly every one of the 1,219 bindings funnels through this one routine.**" (`LUA:166`)
+- "reach it through jump thunks**, for **841 in total**." (`LUA:163`); the 588 accessors call `00682980` and do not push (`LUA:293-298`).
+- No favoured side.
+
+**C-V73. Argument order of the shared push.**
+- "void FUN_005a0e80(L, obj, ctx) { thunk_FUN_00682d20(obj, ctx, &DAT_02cad640); return; }" (`LUA:148`)
+- "`00682D20(L, obj, descriptor)`, read in full (112 B)" (`LUA:342`, R-2 2026-09-14)
+- **Favoured: `(L, obj, descriptor)`**, dated 2026-09-14.
+
+**C-V74. The push adapters' `+8`: base-class adjustment vs member offset.**
+- "The `+ 8` in the middle variant is a **base-class this-pointer adjustment**, which is what a" (`LUA:167`)
+- "add a member offset with a null guard (cmove to 0) and differ ONLY in that offset immediate - 8, 1, 0x30, 0x10" (`ACC:26`)
+- No favoured side.
+
+**C-V75. Reference accessors: 265 vs 264.**
+- "| reference accessors | 265 | **345** | **0** | 80 |" (`ACC:307`); `LUA:173`, `LUA:615` also 265.
+- "object-reference-accessors.tsv | 264" (`ACC:30`); "| `ObjectReferenceAccessor` | 264 | **2** | **264** |" (`ACC:820`)
+- No favoured side. (The `.tsv` header's frontier-only selector, and the absence of `00599770` from it, would explain the difference; no page says so.)
+
+**C-V76. Null path of the optional-pointer adapters.**
+- "**Null:** `lua_checkstack(L, 1)` (`0080F420`), then a tail call of `00810620`. That body is Lua's `lua_pushnil`:" (`LUA:359`), "**Non-null:** a tail call of `thunk_FUN_00682d20` (`00684080`)" (`LUA:361`)
+- "non-null tail-jumps shared 00810620, else calls 0080F420 with edx=0x19" (`ACC:34`, also `ACC:35-36`)
+- No favoured side (either the `00810620` role or the branch sense is wrong for these families).
+
+**C-V77. Role of `0080F420`.**
+- "push arg1 onto the optptr stack via shared 0080F420" (`ACC:43`)
+- `0080F420` = `lua_checkstack` (`LUA:225`, `LUA:343`, `LUA:359`)
+- **Favoured: `lua_checkstack`** (R-3, 2026-09-14).
+
+**C-V78. `00811130` used as a value-returning call.**
+- "`00682A10(rcx, -1)` first, then `00811130(rcx, -2)`; a" / "non-null result is returned verbatim" (`ACC:936-937`)
+- "**`00811130` is `lua_settop`**" (`ACC:215`), which returns nothing.
+- No favoured side.
+
+**C-V79. Is `"PhyreObject"` the only metatable gate?**
+- "**`\"PhyreObject\"` in the Lua registry is the gate.** A userdata without that exact metatable" / "is rejected by every accessor." (`LUA:324-325`)
+- "`0080FA50(rcx, 0xFFF0B9D8, \"Vector\")` decorates" (`ACC:945`, 2026-09-20), in a helper the accessor vtable rows share (`ACC:935-936`)
+- No favoured side.
+
+#### Animation
+
+**C-V80. Kind-2 target: object at `+0x20` vs `+0x28`.**
+- "+0x20  ptr  object    kind 2: object whose setter is invoked     [consumer-only]" (`ANI:228`); "case 2: InvokeReflectedSetter(target->obj_0x20, target->ctx_0x18, &value); break;" (`ANI:397`)
+- "kind 2 -> 005A7E90(obj @ +0x28 ... ctx @ +0x18)             005C7531" (`ANI:933`)
+- **Favoured: `+0x20`**, by BM-6's producer evidence (2026-09-14, `ANI:565-575`).
+
+**C-V81. Shader parameters reached through kinds 2/3 vs kind 1.**
+- "and, through kinds 2/3, arbitrary reflected properties including shader parameters." (`ANI:472`)
+- "| `PAnimationChannelTargetBindShaderParameter` | `00D31808` | `005C1160` | **1**, dest at `+0x08` (`005C1274`–`005C127A`) |" (`ANI:574`)
+- **Favoured: kind 1**, by BM-6 (2026-09-14).
+
+**C-V82. Array element size: type `+0x38` vs member `+0x58`.**
+- "elementSize = *(u32 *)(arrayType + 0x38);" (`ANI:277`)
+- "beside the element size at `+0x58`" (`ANI:606`); `AR:65-71` (`+0x58` = element size)
+- No favoured side (possibly two different objects; neither line says so).
+
+**C-V83. Member `+0x18`: owning class vs name pointer.**
+- "offset += (int)member[9] - *(int *)(member[3] + 0xF4);   // member offset - owning class base" (`ANI:271`)
+- "copy `00861EBA`, pointer to `+0x18`)" (`ANI:588`, the name copy in the member base initialiser)
+- No favoured side (`ANI:588` may be relative to the node at member `+8`, as `C-CD:456-457` implies, but it does not say so).
+
+**C-V84. `005BF290`: bind-time writer vs the per-frame value floats.**
+- "Both are written by the bind-time writer `005BF290` (OPUS, 2026-09-14) and never read by the composer." (`ANI:524`)
+- "| `+0x00`..`+0x0F` | the four floats | a 16-byte load, source stride `0x58` |" (`ANI:1032`, the same writer); the per-frame evaluation into `ChannelValue` slots (`ANI:455-456`)
+- No favoured side.
+
+**C-V85. Functions that reference a `ChannelSemantic` entry: 23 vs the 22 listed.**
+- "**Twenty-three functions reference a `ChannelSemantic` entry directly.** They fall into four groups" / "and none of them was on this page." (`ANI:1065-1066`); the four groups at `ANI:1068-1103` list 22, and `ANI:517` reaches 23 only by including `005C72A0`, which is on the page.
+- No favoured side.
+
+#### Post-process, post-effects and shader variants
+
+**C-V86. The constant-block bound: `offset ≥ 4` vs `size ≥ 4`.**
+- "if (offset >= 4)                             /* must not overwrite the header */" (`PPF:86`)
+- "a second test requires `size >= 4`," (`PPF:1536`); "copies `r9w` bytes from" (`PPF:732`, `r9w` the length)
+- No favoured side.
+
+**C-V87. Call sites of `001945B0`.**
+- "Eleven call sites in `0018D850`–`00190260`." (`PPF:520`)
+- `001930F0` (`PPF:252-253`), `00191E90` (`PPF:386`) and `001E2AF0` (`PPF:1533`) also call it, all outside that range.
+- No favoured side.
+
+**C-V88. SMAA pass body size: 2,839 B vs ~220 B.**
+- "| `001925D0` | 2,839 B | **SMAA** |" (`PPF:67`)
+- "`001925D0` (~220 B) — an EH-protected pass body" (`PPF:665`)
+- **Favoured: 2,839 B**, re-measured by the 2026-09-13 falsification pass (`PPF:620-621`).
+
+**C-V89. Role of `001EE8E0`.**
+- "| `001EE8E0` | 840 B | **colour-buffer copy** |" (`PPF:69`)
+- "`001EE8E0` — 840 B, 7 callers; the submit composer that drives the whole ring battery." (`PPF:714`)
+- No favoured side.
+
+**C-V90. `00606A20`: teardown vs the variant-key builder.**
+- "`00606A20`/" / "`00606C60`/`00600B30` teardown)." (`PPF:243-244`)
+- "`00606A20(effect, …)` is the whole key path." (`CTX:400`)
+- No dated ruling; `CTX` is tier 1 and reads the body.
+
+**C-V91. `005DC2F0`: array constructor vs `PRenderer` constructor.**
+- "`005DC2F0` (267 B) is an array constructor over `eh_vector_constructor_iterator`;" (`PPF:497`)
+- "`PRenderer`'s constructor `005DC2F0` is the only installer of its vtable." (`CTX:385`, GD-1 2026-09-26)
+- **Favoured: `PRenderer` constructor**, by GD-1 (2026-09-26).
+
+**C-V92. Is the post-process context object a reflected type?**
+- "**Declared 2026-09-17 (SWE2-STRUCT):** the object is in the type store as `PostProcessParamContext`" / "(size `0x4A8`, …) with a 145-row field map" (`PPF:399-400`)
+- "at any of this object's known offsets — `+0x184` (SMAA quality), `+0x198`, `+0x344`, `+0x2E0` —" / "returns **no rows at all**." (`PPF:1559-1560`)
+- No favoured side (two different stores may be meant; the page does not say).
+
+**C-V93. Factory-slot routes: 24 + 11 + 0 = 35 of 36.**
+- "Checked for every one" / "of the 36: slot 10 reaches the class's vtable in **24** cases directly and in **11** through a single" / "call to a wrapper that does it, and in **zero** cases not at all." (`PFX:153-155`)
+- No favoured side (one class is unaccounted for).
+
+**C-V94. Bodies that install each post-effect vtable: one vs 66.**
+- "Each class's vtable is installed by exactly one body, in the `0064xxxx` band," (`PFX:148`)
+- "66 bodies stamp the 36 family vtables" (`PFX:856`, falsification pass 2026-09-29)
+- **Favoured: 66**, dated 2026-09-29.
+
+**C-V95. D3D11 post-effect classes that add fields: six of seven carry none vs `PMotionBlurD3D11` adds 3.**
+- "Six of" / "the seven are that." (`PFX:804-805`)
+- "| `00646A30` | `PMotionBlurD3D11` (second body) | 3 |" (`PFX:796`)
+- No favoured side.
+
+**C-V96. Does any code construct a post-effect?**
+- "**no code constructs one and no shipped asset names one**. The family ships" / "as middleware the game does not use." (`PFX:755-756`)
+- "**CORRECTED 2026-09-29 (OPUS, `CON-198`): one class IS constructed by code.**" (`PFX:138`), PFXAA at context `+0x378`.
+- **Favoured: PFXAA is constructed**, dated 2026-09-29.
+
+**C-V97. Callers of `0060B980`: 27 vs 58.**
+- "the key builder `00606A20` has exactly one caller, the submission body `0060B980`, and *that*" / "has **27**," (`CTX:161-162`)
+- "| `0060B980`, the firing control | **58** |" (`PFX:633`)
+- No favoured side (functions vs call sites is not stated).
+
+**C-V98. `0018D0E0`: reached only through a data qword vs 52 direct calls.**
+- "| vtable-slot members (reached only through a data qword) | 7 | 458 | `0018D0E0`, …" (`CTX:830`)
+- "But `0018D0E0`, the 11-byte body that stamps `008C6C80`, has **52** direct call sites, not none." (`PFX:861`, `CON-200`, 2026-09-29)
+- **Favoured: 52 direct calls**, dated 2026-09-29.
+
+**C-V99. The eleven `0065xxxx` bodies: material selectors called from slot 1 vs post-effect workers called from slot 6.**
+- "| the `0065xxxx` material-selector bodies | 11 | 13,651 | … the class map names three of them `PRendering::PMaterialSelectorMater…" (`CTX:826`)
+- the slot-6 override → worker table (`PFX:58-68`); "reached from slot 6 of each class's vtable" (`PPF:459-460`)
+- No dated ruling on `CTX:826`; the post-effect page's tier-1 reading of the slot-6 overrides is the more specific.
+
+**C-V100. Light cap: nine (key format) vs four (output record).**
+- "With the registered budget of three words that tops out at" / "nine lights." (`CTX:134-135`)
+- "and the structure is not a bug but a four-light bound the caller and the callee agree on." (`CTX:337`); "the record is `PLight*[4]` followed by a `u32` count." (`CTX:341`)
+- No favoured side (both 2026-09-22; the page does not say which one caps a draw).
+
+**C-V101. Trailing record `+0x38`: the geometry descriptor vs zero.**
+- "| 7 | stack | **the trailing record** — `+0x00` the camera (§5a), `+0x30` instance data, `+0x38` the geometry descriptor |" (`CTX:263`); INDICES_16BIT reads "a byte at `+0x4C` of the last argument's `+0x38`" (`CTX:148`)
+- "| `+0x38`, `+0x40`, `+0x48` | `0` | `0060BAF3`, `0060BAFE`, `0060BB08` |" (`CTX:357`, zeroed by the only caller)
+- No favoured side. If `CTX:357` holds, `INDICES_16BIT` always evaluates on a null `+0x38`; the page does not say so.
+
+### 3.2 Stale "not read / open" claims and banner disagreements
+
+| # | stale side (quoted) | answering side (quoted) | settled by |
+|---|---|---|---|
+| C-S1 | `README:14` "**DOCUMENTED, tier 1, crossref-clean.**" (The Frame) | `FRM:4` "status: AUDITED" | no favoured side (banner) |
+| C-S2 | `README:21-22` "**DOCUMENTED, tier 1.**" (class descriptors); `README:33` "**DOCUMENTED, tier 1, one falsification pass.**" (member registration); `README:25` same (application); `README:46` "**DOCUMENTED, tier 2.**" (accessors) | `CDMS:4`, `MR:4`, `APP:4`, `ACC:4` "status: AUDITED" | no favoured side (banner) |
+| C-S3 | `README:13-63` indexes 8 pages | 23 pages exist; `MOD`, `CAM`, `MAP`, the four asset-container pages, `C-CD`, `AR`, `IS`, `FS`, `PPF` and `ANI` are not indexed | — |
+| C-S4 | `README:70` "**AQ-2** (PARTIAL: 4,515 of the 6,769 …)" | `MAP:187` "~~stays PARTIAL on the 2,254 unplaced functions~~ is SUPERSEDED (the line below; 2026-09-29, OPUS" | 2026-09-29 |
+| C-S5 | `MAP:186` "**not been applied to the GZF** (open question **B-3**)" | `MAP:187` "**B-3** is now ANSWERED (the class set was applied 2026-09-02 as the vtable method index), so the clause above is history." | 2026-09-26 |
+| C-S6 | `MAP:41` "**PARTIAL, and tier 4 by construction.**"; `MAP:42` "No Phyre function body is read here." | `MAP:4` "status: DOCUMENTED"; `MAP:188`/`MAP:198` decode bodies (2026-09-18) | front matter re-statused 2026-09-29 |
+| C-S7 | `MAP:180` "whether the ~992 non-glue functions are driven" | `MAP:198` "973 of the 993 are reachable" | 2026-09-18 |
+| C-S8 | `MOD:165` "| `005A0CB0` | 100 B | slot `+0x00` of every module vtable — **body unread** |" (also `MOD:221`, `MOD:238`, `MOD:468`) | `MOD:393` "**Answered 2026-09-14 (FABLE): the modules' shared scalar deleting destructor," | 2026-09-14 |
+| C-S9 | `APP:381-382` "All nine are" / "overridden and input-tagged; none has been read."; `APP:216` "the input-facing overrides" | `APP:372` "**PA-1 — ANSWERED 2026-09-27 …: nothing in this build dispatches slots 10, 15, 16, 22, 23 or 24.**"; per-slot table `APP:389-398` | 2026-09-14 / 2026-09-27 |
+| C-S10 | `APP:400` "**Still open for slots 10, 15 and 16:**" | `APP:372` (as above) | 2026-09-27 |
+| C-S11 | `APP:437-438` "Slots 1, 12, 13, 17–20, 29 and" / "30 are not read." | `APP:452` "**ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5): every inherited slot now has a behaviour.**" | 2026-09-26 |
+| C-S12 | `APP:639-640` "**the caller is inside PhyreEngine and" / "was not read**." | `APP:433-437` (slot 28 `0079C140` read; "The run loop `00796490` calls it") | PA-5, 2026-09-14 |
+| C-S13 | `CAM:104` "What is still not claimed is what the two matrices and the two floats mean, `SD-60`." | `CAM:4` "SD-60, is ANSWERED"; answer block `CAM:186-193` | 2026-09-30 |
+| C-S14 | `FRM:66-67` "Where the commands are actually consumed is the largest thing this" / "document does not know."; `FRM:753` "the consumer of these buffers is NOT in this executable's" | `FRM:870` "**ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static: nothing in this executable reads a finished batch.**" | 2026-09-27 |
+| C-S15 | `FRM:876` "uninitialised in the image; only its shape is proven." | `FRM:875` "*(answered 2026-09-18 in section 4.3)*"; `FRM:690` (all values written by nine routines) | 2026-09-18 |
+| C-S16 | `FRM:415-416` "spin-waits on `02EAF6D8 bit 0x100` … **and again per entry at `0037559F`–`003755B2`**" | `FRM:208` "**It cannot wait**, no matter who writes the word."; `FRM:212` "**all 17 sites are hoisted**" | falsification 2026-09-12 (`FRM:1093`) |
+| C-S17 | `ANI:23` "the binder writes only kind 1, so both halves are measured and still do not meet"; `ANI:845-846` "**no code in this document produces a kind-2 or" / "kind-3 record**" | `ANI:565` "*Answered on the page 2026-09-14 (FABLE), … yes. The binder is a virtual family, and" | 2026-09-14 |
+| C-S18 | `ANI:215` "+0x18  ...  (remaining 16 B not read by 005C72A0)"; `ANI:865` "The `ChannelValue` bytes `+0x18`..`+0x27` stay unread." | `ANI:521` "**ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5)**" | 2026-09-26 |
+| C-S19 | `ANI:303` "nothing in these bodies says whether it is." (slot-1 purity) | `ANI:591` "**Answered 2026-09-14 (FABLE): it is pure, and the second disjunct is dead.**" | 2026-09-14 |
+| C-S20 | `LUA:209-211` "is **not** established from strings alone — see **R-4**, which is the single" / "highest-value open question in this document." | `LUA:366-367` "**R-4 ANSWERED 2026-09-12 (FABLE): neither" / "runs — no standard library is ever opened.**" | 2026-09-12 |
+| C-S21 | `LUA:683` "| `01CCB3E0` | 8 | **loadedlibs — opened at startup** |" | `LUA:366-367` (as above) | 2026-09-12 |
+| C-S22 | `LUA:307` "**Upstream:** whatever schedules script execution — not yet identified (**R-5**)." | `LUA:384` "**R-5 ANSWERED 2026-09-22 (FABLE): neither — the question has a third answer," | 2026-09-22 |
+| C-S23 | `LUA:229` "| `00684D10` / `00686280` | Lua execution sites (`lua_pcall`) | not read |" | `LUA:512` "## 12. The two callers executed — [`EXP-110`]…, folded in 2026-09-19 (OPUS)" | 2026-09-19 |
+| C-S24 | `LUA:338` "- [x] What `00684D10` and `00686280` actually execute — which scripts, from where, and when. *(closed — the register row is WITHDRAWN.)*" | `LUA:515-516` "**It does not answer §7's open item** — *which* scripts these execute, from where" / "and when, is still unknown and stays open." | no favoured side (box closed, text open) |
+| C-S25 | `ACC:175-176` "the script side reads engine objects through" / "this path and does not write them through it."; `ACC:208` "these are read-side accessors" | `ACC:221` "**But `Get` hands out writable access.**"; `ACC:249` "`AZ-2`'s \"script cannot write\" reading is refuted." | 2026-09-14 |
+| C-S26 | `ACC:894` "four shared implementations named above remain not dispositioned." | `ACC:880` "*not in these rows — updated 2026-09-13: `00811130`, `00812960` and `008119F0` are Lua API bodies declared on the Lua library row," | 2026-09-13 (but `ACC:894` is dated later, 2026-09-16; no favoured side) |
+| C-S27 | `HDR:251` "| `0059A6F0` | reads the packed namespace — **not read here** | 116 B |" | `C-HDR:147` "### The namespace reader imposes no bound of its own — `0059A6F0`, 116 bytes, read in full" | contract 2026-09-12 |
+| C-S28 | `NS:225` "| `0059C180` | the namespace byte-swap fixup — **not read** | — |" | `NS:249` "~~`FUN_0059C180`, the byte-swap fixup — not read.~~ **READ — section 8," | 2026-09-07 |
+| C-S29 | `C-HDR:636` "| any execution of this ladder, isolated or live | **none**; §13 | none | UNKNOWN |" | `C-HDR:359` "**Executed 2026-09-12** by [`diff_phyre_header.py`]" | 2026-09-12 |
+| C-S30 | `C-HDR:382` "**The byte-swap block is the one that matters and the one that cannot be run.**" | `C-HDR:422` "### 13a. The block that \"cannot be run\" was run — 2026-09-18" | 2026-09-18 |
+| C-S31 | `C-NS:478` "`NS-1`'s bit names and `NS-4` stay open," | `C-NS:349` "**ANSWERED 2026-09-26 …: `w7` is the file copy of the runtime class descriptor's `+0xFC` flag byte.**"; `C-NS:382` "**`NS-4` — answered 2026-09-26 …: the loader does read it.**" | 2026-09-26 |
+| C-S32 | `NS:360` "| **Why they cluster there** | **not established — a reading, no constructor read** | 8 |" | `NS:195` "**Answered 2026-09-26 (FABLE, Claude Opus 5.5) (`CW-3`): the obvious reading is wrong," | 2026-09-26 |
+| C-S33 | `CDMS:244` "| `0063D640` | descriptor sub-object destructor | not read |" | `C-CD:375` "#### `0063D640` takes `(rcx = the sub-object, rdx = the descriptor)` — and this contract had it the other way" | 2026-09-18 |
+| C-S34 | `CDMS:158` "**Four separate intrusive linked lists.** Their individual roles are not established — see §7." | `C-CD:115` "### ⚠ CORRECTED 2026-09-12 by the destructor pilot — the destructor does not \"walk four lists\"" | 2026-09-12 |
+| C-S35 | `C-CD:551` "| any execution of any of this | **none**; §13 | none | UNKNOWN |"; `C-CD:598` "**Not claimed:** none of this was executed — §13 is unchanged — and `PCD-1`…`PCD-4` stay open" | `C-CD:488` (PCD-3 struck and answered); `C-CD:368` (EXP-097 execution) | 2026-09-18 / 2026-09-25 |
+| C-S36 | `C-CD:528` "**Not established:** what `+0x38` measures, and so what the two totals mean." | `C-CD:748` "`+0x38` is this contract's own size field — the one `0063C910` passes to `memcpy`" | 2026-09-20 |
+| C-S37 | `MR:498` "Only `+0x80` is identified." | `MR:867` "**Four of six are now identified**"; `+0x60` identified 2026-09-25 (`MR:878-880`) | 2026-09-25 |
+| C-S38 | `MR:491` "**(c) is the whole remaining search space, and it is not searched here.** The row" (stays open) | `MR:481` "**ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): `+0x38`" | 2026-09-25 |
+| C-S39 | `MR:2341` "the other 186 unharvested registrations (`RM-1`)." | `MR:797` "**ANSWERED 2026-09-27 (OPUS):** all 215 registrations of the three constructors are accounted for in the store." | 2026-09-27 |
+| C-S40 | `MR:1859-1860` "680 of the schema's 682 rows are already carried in `_types/fields.tsv` at" / "the exact type and offset, so the schema side of the propagation is complete" | `MR:1883` "~~**There is no unfinished harvest anywhere in this category.**~~ **Corrected 2026-09-27 (OPUS), §20:" | 2026-09-27 |
+| C-S41 | `MR:2019-2020` "**the registered Phyre hierarchy here is" / "shallow.**" | `MR:2050` "**And §19b's reading of control 5 was wrong.**" | §19c, same session |
+| C-S42 | `AR:52` "**seven lazy-static accessors**"; `AR:181` "**Which singleton each of the seven accessors returns.** Only that all seven are that shape." (unboxed, while `AR:4` says every box is closed) | `AR:146` "**There are fifteen of them, not seven (2026-09-13, §9).**"; `AR:189` (answered 2026-09-14) | 2026-09-13 / 2026-09-14 |
+| C-S43 | `IS:141-142` "so the parent of each class is" / "*not* recovered by this sweep and no class hierarchy is asserted." | `MR` §19 parent chain (`MR:1913-1933`; `members/phyre-class-parent-chain.tsv`) | 2026-09-19 |
+| C-S44 | `FS:250` "**`CL-1`** — why the 682-call-site census misses 21 classes that carry both descriptor RTTI and" | `FS:230` "They are ~~**recovery gaps**~~"; CL-1 answered and corrected (`FS:260`, `FS:293`) | 2026-09-14 / 2026-09-26 |
+| C-S45 | `FS:39` "**Evidence tier 9, deliberately.**" | `FS:6` "evidence_tier: 3" (explained at `FS:42`) | banner |
+| C-S46 | `PPF:223-224` "**but the link is not" / "read, and this document does not claim it.**"; `PPF:589` "| Which setting selects which AO | **not established** | — |" | `PPF:365` "*Answered on the page 2026-09-14 (FABLE), …* **the `HDAO` setting turns AO off or" | 2026-09-14 |
+| C-S47 | `PPF:398` "**The class name is still open.** The reflection-schema route this row proposes remains the way to get it."; `PPF:590` "| The context object's class | **not recovered** | — |" | `PPF:1570` "**So the class name is not recoverable from this image by any route this database uses.**" | 2026-09-22 / signed 2026-09-26 (`PPF:387`) |
+| C-S48 | `PPF:433` "**Still open:** what the asset puts in bits 13–15." | `PPF:436` "**ANSWERED 2026-09-27 (OPUS):** the shipped assets store **0** there." | 2026-09-27 |
+| C-S49 | `PPF:269` "| `001945B0` | 296 B, called before the parameter runs in several passes; **not read** |" | `PPF:512` (`EA-6` answered 2026-09-12) | 2026-09-12 |
+| C-S50 | `PPF:54` "**The remaining 48 reference no string and were not read** (`EA-5`)."; `PPF:458` "`UQ-289` stays open on those 30." (also `CTX:832`) | `PPF:504` "***So every one of the 48 now has an identity, and the question changes shape.***" | 2026-09-21 / UQ-289 superseded 2026-09-26 (`PPF:441`) |
+| C-S51 | `PFX:434` "*(closed — the register row is WITHDRAWN.)*" (`GF-4`) | `PFX:448` "The question stays open only for content outside"; routed to ASTRA (`PFX:648-649`) | no favoured side (box closed, live question open) |
+| C-S52 | `CTX:887` "structural question is not answered and does not need to be" (`GD-5`) | `CTX:332` "**Exactly four pointer slots and then the count**" (§4c settles the structural half) | 2026-09-22 (same day; §4c is the measurement) |
+| C-S53 | `CTX:849-850` "The evaluators read four distinct objects" | `CTX:267` "There are five"; `CTX:864` GD-1 answered 2026-09-26 | 2026-09-22 / 2026-09-26 |
+| C-S54 | front-matter `last_reviewed` older than the page's own latest dated body section: `APP:18` 2026-09-02, `MR:18` 2026-09-02, `LUA:18` 2026-09-02, `MAP:19` 2026-09-02, `CAM:19` 2026-09-03, `FS:20` 2026-09-05, `HDR:20` 2026-09-07, `NS:20` 2026-09-07, `FRM:18` 2026-09-07, `MOD:19` 2026-09-08, `AR:17` 2026-09-08, `C-HDR:18`, `C-NS:17`, `C-CD:17` 2026-09-12, `CDMS:18`, `ACC:18`, `PPF:12` 2026-09-13 | bodies carry dated sections to 2026-09-25 … 2026-09-30 (e.g. `MR:2348`, `NS:275`, `CAM:186`, `PFX:144`) | banner |
+
+**Not a contradiction between pages, but a probable factual error a port would copy:** `APP:1068` says
+"`SetPriorityClass` with `0x8000` (HIGH_PRIORITY_CLASS)". In the Windows SDK, `0x8000` is
+`ABOVE_NORMAL_PRIORITY_CLASS` and `HIGH_PRIORITY_CLASS` is `0x80`. This is outside knowledge, not page text. The
+immediate (`0x8000`) is what a port should reproduce, but the label should be checked locally.
+
+---
+
