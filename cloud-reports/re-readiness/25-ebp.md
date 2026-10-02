@@ -372,3 +372,221 @@ on pages in other categories; this report did not read those.
 light `+0x21` (remapped) and `+0x27` bit `0x20` (`S014:173-179`); TIM2 cache refcount (`S006:145-147`); `LGT2`
 slot `+0x4C` "ready" (`S014:154`, consumer not stated); CAM7 runtime entry `+0x20`/`+0x28` written zero
 (`S009:197-198`, use not stated).
+
+### 2.3 CONTRADICTIONS
+
+These are statements a re-implementer would have to choose between. Each item quotes both sides exactly, with
+`ABBR:line`.
+
+- **A** is value-changing: an offset, address, constant, field role, formula or control flow that a port would
+  hard-code, where believing the wrong side gives different behaviour. Every A item is **page-text only - needs
+  local check**: this session cannot see the executable.
+- **B** is a count, size or address that disagrees but changes no ported behaviour. These are also page-text only.
+- **C** is a stale "open / not read" claim that a later dated section answers, a status banner or front matter that
+  disagrees with the body, or a corrected name still in use.
+
+A favoured side is named **only** where a dated correction on the pages settles it. Otherwise the item says "not
+settled on the pages".
+
+#### A. Value-changing
+
+**A1. `CML1` binding: authored index, or name lookup (sections 8, 10, 11).**
+- Name side, unstruck:
+  - S008 lede: "**The index that ships in the file is never used** — the engine recomputes it by name." (`S008:34-35`)
+  - S008 box: "**Renaming a camera in `section_009` breaks the link; renumbering the index column in `section_008` does nothing at all.**" (`S008:194-195`)
+  - S008 key addresses: "`CML1_ResolveNames` — the only reader of this section (… index write-back `0x003DA28F` …)" (`S008:250`)
+  - S010 §1: "**renumbering `index` does nothing, because the engine recomputes it — but renaming a shake in `section_011` breaks the link.**" (`S010:68-69`); again at `S010:261-262`; and "it is an input the engine consumes and then overwrites" (`S010:443-444`)
+  - S011 propagated correction: "`SHKCTL_ResolveNames` (`0x003DD120`), which resolves `section_010`'s entries by **name**" (`S011:416-417`)
+- Index side:
+  - "**CORRECTED 2026-09-12 (FABLE) — the resolver below never resolves anything in the shipped build, so the authored index column is the binding.**" (`S008:131-132`); "**REVERSED 2026-09-12 — the box above has the direction wrong.** … **Renumbering the index column in `section_008` changes which camera a script plays; renaming a camera in `section_009` changes nothing**" (`S008:198-200`)
+  - "**CORRECTED 2026-09-12 (FABLE) — the resolving store above never executes in the shipped build.** … **renumbering `index` in `section_010` changes which shake plays, and renaming a shake in `section_011` changes nothing**" (`S010:271-276`)
+  - S011: "the only reader of this section's record names that has been found, `Shk1_FindByName`, is unreachable, and `section_010` binds by its authored index." (`S011:411-413`)
+- The difference shows in data: "in **all eleven** the authored index points at the **later** of the two same-named records … in **seven** of the eleven the two records differ" (`S008:201-203`).
+- **Favoured: the authored index, by the dated corrections of 2026-09-12** (`S008:131`, `S010:271`). *Page-text only - needs local check.*
+
+**A2. Text-bank entry count: low `u16` of the first entry, or the whole first dword.**
+- Field tables: "section `+0x00` low u16 (first offset) | `0x00264D74` | — | — | no — **doubles as the entry count** (`>> 2`)" (`S002:240`); "section `+0x00` low u16 | `0x00264DA4` | … **doubles as the entry count**" (`S003:195`).
+- Audit: "`00264D74  movsxd rax, dword ptr [r8]      ; the WHOLE first dword, sign-extended`" (`S002:95`); "**In `section_002` this fires in 213 of 828 sections**" (`S003:92`).
+- The two give different counts in 213 of 828 sections ("the guard at `0x00264D81` admits indices **0 … 16,390**", `S002:109-110`).
+- **Favoured: the whole dword, by the AUDIT of 2026-09-05** (`S002:90`, `S003:89`). *Page-text only - needs local check.*
+
+**A3. `ActorScriptResource_GetBytecodeOffsetById`: which dword of the 8-byte entry.**
+- Listing comment: "`00358A0F  mov    eax, dword ptr [r8 + rax*8 + 8]  ; 8-byte stride, dword at entry+0`" (`S000:390`).
+- BW-5: the table is "`{u32 count; {u32 nameOffInPool, u32 offsetWithinScript}[count]}`" (`S000:425`) and the function returns "function `id`'s offset within the script** (the 8-byte entry's second dword)" (`S000:434-435`).
+- **Favoured: the second dword, by BW-5 of 2026-09-12** (`S000:409`). *Page-text only - needs local check.*
+
+**A4. Header `+0x6C`: a length-prefixed byte array, or `{u32 count; u32 packedRef}`.**
+- "`+0x60` through `+0x74` each point at an array whose **first byte is the element count**, followed by that many bytes." (`S000:133-134`); "`+0x6C` | **`1` in 1114/1114** | a 1-element authored option" (`S000:139`); "`+0x6C`/`+0x70` are likewise fixed at `1`/`5`. A data byte that never varies while its neighbours do is a length." (`S000:595`).
+- "`+0x6C  u32  trapRefs     -> {u32 count = 1; u32 packedRef} - the trap table's tag-3 reference, read by 002641B0 (corrected 2026-09-12)`" (`S000:108`); "`+0x6C` is `{u32 1; u32 packedRef}`" (`S000:256`).
+- **Favoured: `{u32 count; u32 packedRef}`, by the correction of 2026-09-12** (`S000:108`). Whether `+0x70` (also called a byte-count array of "4-byte offsets", `S000:140`) has the same `u32`-count shape is not settled. *Page-text only - needs local check.*
+
+**A5. `weatherProbability`: per-slot survival chances, or availability flags.**
+- "**Most maps are `{100, 0, 0}` — slot 0 always survives the roll, i.e. the weather never changes.** … this is three independent per-slot chances, not a distribution." (`S000:327-331`); README quoting the glossary: "*"authored per-slot chance the current slot survives the transition roll, script header `+0x64`."*" (`README:134-135`); S000 §1 "*the per-slot chance the current weather survives the transition roll*" (`S000:70-71`).
+- "**BW-4 answered 2026-09-12 (FABLE): … the three bytes are availability flags to their one consumer, not chances against a roll.** … tests candidates' bytes **`> 0`** and picks the first available; when both alternatives are open the order is a `RNG_MT19937_NextU32 % 100 < 50` coin … and the byte's *value* is never compared to the roll." (`S000:283-292`)
+- **Favoured: availability flags, by BW-4 of 2026-09-12**, for the one consumer found; "whether another reader weighs the values is not established" (`S000:294-295`). *Page-text only - needs local check.*
+
+**A6. Section-6 handler: where the base and the pending word live.**
+- S000 interior note: "`ecx` splits into base `ecx & ~0xF` (stored at `0233A6F0 + lane*8`) … the `0233AE48 + lane*8` word clears bit `0x40`" (`S000:683`).
+- S006: "`00330097  MOV [r15 + rax*8 + 0x21A6CF0],RBX        ; 022C6CF0[mgr] = section`" (`S006:136`); CON: "stores to `DAT_022c6cf0[mgr]`" (`CON:345`); the pending mask is "`022C6E48[mgr] = mask`" (`S014:273`) and "`022C6E48` | — | per-manager flags" (`S012:153`).
+- Two pages against one for the store; three against one for the mask array. Not settled on the pages. *Page-text only - needs local check.*
+
+**A7. Section 11 pending bit: `0x400`, cleared by `btr rdi, 0xb`.**
+- "pairs the tag with the completion callback `FUN_003316b0` and pending-mask bit **`0x400`**" (`S011:290`); CON gives slot 11 "mask bit 10" (`CON:349`).
+- "`0x0033166F` | `btr rdi, 0xb` — clears pending-resource bit `0x400`" (`S011:326`). `btr … 0xb` is bit 11, `0x800`, which S010 gives to section 10: "`0x00331662` — `btr rdi, 0xb`: clear pending-resource bit `0x800`." (`S010:173`).
+- Either the instruction or the bit in `S011:326` is wrong. Not settled on the pages. *Page-text only - needs local check.*
+
+**A8. `CML1_ResolveNames` reset: what `+0x18` / `+0x1A` are set to.**
+- "five `(u16, u16)` pairs in the manager record are reset to `(0, 0xFFFF)` on every resolve — `+0x18`, `+0x118`, `+0x130`, `+0x148`, `+0x160`." (`S008:230-231`); S010's listing: "`reset five (u16,u16) pairs to (0, 0xFFFF)`" (`S010:241`).
+- S008's listing: "`manager[+0x18] = 0xFFFF ; manager[+0x1A] = 0xFFFF`" (`S008:149`); BY-4: "`+0x18` / `+0x1A` are the main and sub frames' owning channel, both set to `0xFFFF`" (`S008:234`).
+- **Favoured: `+0x18` and `+0x1A` both `0xFFFF`, by BY-4 of 2026-09-12** (`S008:234`). *Page-text only - needs local check.*
+
+**A9. `SHK1` `+0x04`–`+0x07`: two `u16`, or one count whose upper half is unread.**
+- "**`+0x04` and `+0x06` are two 16-bit fields, not one 32-bit count.**" (`S011:92`); "**the two-`u16` split is proven, not inferred**" (`S011:440`).
+- §7: "**Whether `recordCount`'s upper 16 bits are meaningful.** The loader reads only the low half. No shipped file has a non-zero upper half" (`S011:482-483`). `+0x06` is `curveCount`, "2 .. 127 observed" (`S011:86`), so it is non-zero in every file.
+- **Favoured: two `u16`, by the audit pass of 2026-09-05** (`S011:423`, `S011:439-441`). *Page-text only - needs local check.*
+
+**A10. Does the engine write into the shake chunk (`+0x28`, `+0x62`)?**
+- "**CA-1 answered 2026-09-12 (FABLE): the `CML1` chunk is read — through the per-record copy, for kind-3 actors.** … **sets bit 7 of chunk `+0x62`** … reads and **clears chunk `+0x28`**" (`S010:457-463`), unstruck.
+- "**RETRACTED 2026-09-12 (FABLE) — the CA-1 answer that follows misread its base.** `[actor + 0xB8]` is the actor record's `contextPtr` … So `00263230` and `002693D0` touch a steering record's `+0x62`, `+0x28` and `+0x65`, not this chunk" (`S010:448-452`).
+- **Favoured: no writes into the chunk, by the retraction of 2026-09-12** (`S010:448`). The retracted block is still printed in full below it. *Page-text only - needs local check.*
+
+**A11. Section-12 ids: one `id + 1000` rule, a per-letter rule, or the decoder's block index.**
+- "**Column 1 is the model number less 1000**" (`S012:175`), unqualified.
+- Per-letter (audit 2026-09-05): `c`/`m`/`n` use `id + 1000`, `b`/`g`/`s`/`t` resolve "directly" (`S012:197-212`); "*"column 1 is the model number less 1000"*, stated without qualification … holds for three letters of eleven" (`S012:392-393`).
+- Engine decoder (2026-09-26): "`c` → kind 14, index = id × 25 … `n` → kind 19, index = id × 25" (`S012:335-337`), and "the **lowercase** ids do not follow the decoder's block order … So that reader translates lowercase ids somehow" (`S012:349-351`).
+- **Favoured for matching ids to model stems: the per-letter rule, by the audit of 2026-09-05.** How the engine would map a lowercase id is not settled on the pages. *Page-text only - needs local check.*
+
+**A12. Section-19 record field roles.**
+- §2: "`+0x02` is the striking one: **three values in 2,116 records.** A field with that distribution is a kind or a version, not a quantity. `+0x08` … reads like an identifier." (`S019:220-222`).
+- CC-10: "`{u32 modelKey (a letter — the three values of `+0x02` are `m` / `n` / `s` — over a model number); u16 class; u16 groupId; u16 motionIndex}`" (`S019:468-469`).
+- **Favoured: CC-10, dated 2026-09-12** (`S019:466`). *Page-text only - needs local check.*
+
+**A13. Section-19 header: how many fields any code reads.**
+- "**So four of the eight constant header fields are now proven inert and one is proven live.**" (`S019:327`).
+- BZ-2: "**`+0x0C` is read** … so **`+0x2C` (the handler) and `+0x0C` (the trailer reader) are the only header fields any code reads**" (`S019:274-278`); field table "`+0x0C` `offsetB` | `003EA650(1)` … | **NO — read (BZ-2, 2026-09-12)**" (`S019:264`).
+- **Favoured: two fields read (`+0x0C`, `+0x2C`), by BZ-2 of 2026-09-12.** *Page-text only - needs local check.*
+
+**A14. Container directory slot width.**
+- README plan: "`EBP2` magic at `+0x00`, a version/count `0x14` at `+0x04`, and an offset table in 8-byte slots." (`README:101-102`).
+- "`+0x10  u32[20]  sectionOff`" (`CON:80`); "**"An offset table in 8-byte slots"** appeared in an early plan for this category. The directory is **`u32[20]`, 4-byte slots**." (`CON:655-656`); README's own census: "`+0x10  u32[20]   section offsets`" (`README:181`).
+- **Favoured: `u32[20]`, by the 2026-09-03 census** (`README:171`, `README:181`; `CON:655-656`). *Page-text only - needs local check.*
+
+**A15. Do `REQALL` / `REQIALL` carry a channel?**
+- "`PREQ*`/`REQWAIT`/`REQCHG`/`REQCANCEL`/`REQALL`/`REQIALL` consume built entries and carry no new channel." (`S000:497-498`), unstruck; the member TSV classifies every `REQALL` / `REQIALL` row as `channel_class n/a` (B5).
+- "***Corrected 2026-09-24 (FABLE, Claude Opus 5.5) for `REQALL`/`REQIALL`:*** each pops **one channel**" (`S000:498-499`); the opcode table "`0x5F REQALL` | pops the **channel**" (`S000:543`).
+- **Favoured: they pop a channel, by the correction of 2026-09-24.** *Page-text only - needs local check.*
+
+**A16. CAM7 record `+0x20`: inert, or read.**
+- Falsification row: "Could the `0x8000` at record `+0x20` be read somewhere the census missed? | **Not resolved by search alone, and it is not claimed.** … Listed inert **with that method named**, not asserted unused." (`S009:294`).
+- "rec `+0x20`, `+0x22` | **`002572E0`** at manager runtime init … | **no — the attachment word.** *Corrected 2026-09-12*" (`S009:169`); fence "`+0x20  u32  attachWord  eye/target attachment bitfield, decoded by 002572E0`" (`S009:96`).
+- **Favoured: read, by the correction of 2026-09-12.** *Page-text only - needs local check.*
+
+#### B. Counts, sizes and addresses that disagree but change no ported behaviour
+
+**B1. How often `0x003304A0` reads `+0x04`.** "`0x003304A0` at 15 sites" (`CON:253`); "all 15 `cmp dword ptr [rdi+4], N` sites" (`CON:321`); "15 sites → 14 distinct slots" (`CON:578`) — against "a field the function reads fourteen times" (`CON:295`) and "compared against **fourteen different constants**" (`CON:576`). Fifteen sites, fourteen distinct constants is consistent; "reads fourteen times" is not. Not settled on the pages.
+
+**B2. Listing order in the ns-37 probe.** "`0032FDD9  mov  r12d, eax`" is printed before "`0032FDD4  mov  ecx, 0x25`" (`CON:167-168`). The addresses are out of order in the listing. Not settled on the pages.
+
+**B3. Weather triples.** "775 of the 1,114 scripts spell it `{100, 0, 0}`" (`S000:72`); the triple table (`S000:316-325`) sums to 1,087 of 1,114. The table does not say it is partial. Not settled on the pages.
+
+**B4. The msp region (class / tag 3): used or not.** "`+0x40` (`image + tableOff40`, class 3, no shipped script uses it)" (`S000:361`) — against "`+0x6C … {u32 count = 1; u32 packedRef} - the trap table's tag-3 reference`" (`S000:108`), whose count is 1 in "1114/1114" (`S000:139`), and "`+0x3C  u32  mspSize … 0 in 352 files`" (`S000:95`). The base chooser is "the same table as the variable classes" (`S000:254-255`). Whether "no shipped script uses it" means variable descriptors only is not settled on the pages.
+
+**B5. Member TSV against the REQALL correction.** `req-channel-census.tsv` classifies all 47,812 `REQALL` and 3,699 `REQIALL` rows as `channel_class n/a` (member file); S000's correction says each "pops **one channel** … an immediate between 0 and 7 at all 51,511 shipped sites" (`S000:499-500`). **Favoured: the correction of 2026-09-24**; the TSV predates it.
+
+**B6. Section-6 dimension table.** Headed "The dimensions, all 67" (`S006:104`), its rows sum to 64 (`S006:108-115`). Not settled on the pages.
+
+**B7. Section-6 24 × 23 count.** "55 of the 67 are the same tiny 24×23" (`S006:35-36`) and "**24 × 23** | **55**" (`S006:108`) — against "57 of 67 are exactly 448 B" (`S006:45`), "the 57 single-picture 448 B files" (`S006:96`), and "55–57 files carry one **24 × 23** picture (448 B)" (`S006:232`). Not settled on the pages.
+
+**B8. Section-6 non-24 × 23 shapes in `us`.** §2: `640 × 23` ×3, `40 × 23`, `80 × 21`, `576 × 21`, `616 × 16`, `200 × 16`, `640 × 46` (`S006:109-115`). Cross-tree note: "In every Latin-script tree the population is the same: … three carry a two-picture **640 × 23**, one a 64 × 23, one an 8 × 22, one a 40 × 14 and one two-picture 640 × 46" (`S006:232-234`). `us` is a Latin-script tree (`S006:230`). Not settled on the pages.
+
+**B9. Section-6 multi-picture count.** "**10 files carry `pictureCount == 2`**" (`S006:296`; also `S006:70`) — against four two-picture files in the Latin-tree list (`S006:233-234`). Not settled on the pages.
+
+**B10. CAM7 record lengths.** "Record length takes 11 distinct values." (`S009:259`) — against "The distribution came back with **twelve** distinct lengths, not eleven" (`S009:358`) and the inline fix "*(The 152 was missing from this list until 2026-09-13 …)*" (`S009:115`). **Favoured: twelve, by the pass of 2026-09-13.**
+
+**B11. Callers of `CAM7_Load`.** "the one caller reads `param & 0xF`" (`S009:218-219`) — against "`002561C0` is called by `0032FAC0`; `002561C0` is called by `003306E0`" (`S009:405`; also `S008:422`). The second is the dead ATEL route (`S009:152-156`). Not settled on the pages.
+
+**B12. Teardown function address.** "`ActorResource_ResetManagerLoadState` (`0x0032ED80`)" (`S008:240`, `S009:241`) — against "Teardown is `FUN_0032ED70`" (`S010:181`, `S011:293`) and "`0x0032ED70` | teardown — unbind, free, null" (`S011:328`). Not settled on the pages.
+
+**B13. One free site for two blobs.** S008: "loads the blob at `0x0032EFD3`, frees it at `0x0032EFBD`, and clears the slot at `0x0032F00C`" (`S008:240-241`); S009: "frees the blob at `0x0032EFBD`, clears the slot at `0x0032EFC4`" (`S009:241`). Two different blobs, one free address, and S008's load is after its free. Not settled on the pages.
+
+**B14. Section-12 frequency.** "in every third map file" (`S012:33`) — against "**842 (75.6 %)**" (`S012:39`). README gives "842 (75.5 %)" (`README:48`; 842 / 1,115 against 842 / 1,114). Not settled on the pages.
+
+**B15. High-detail model pool sizes.** "each id set is larger than its candidate pool (40 ids against 17 `hc` stems)" (`S012:217-218`) — against "48 `hc*.cm`, 87 `hn*.cm` and 5 `hs*.cm`" and "Every `C` id (0–46) is below 48" (`S012:339-342`). **Favoured: 48, by UQ-333 of 2026-09-26** (`S012:331`); the 17 counted `obj_finish` stems, not the decoder's table.
+
+**B16. Pair without section 14.** "every file that has `014` has both, while 423 files have the pair without `014`." (`S014:47-48`) — against 423 files with the pair in total (`S008:42-43`) and 140 with `014` (`S014:43-44`), which leaves 283. Not settled on the pages.
+
+**B17. Standalone `.ard` count.** "the same format also ships as 332 standalone `.ard` files" (`S019:36-37`; `S019:390`) — against "`repos-d6` measured 166 areas" (`S019:155-156`), "`.ard`, **166/166**" (`S019:169`) and "my own parse of the 166 standalone .ard files" (`S019:25`). Not settled on the pages.
+
+**B18. Legacy-path probes.** "the four directories it builds (`entry`, `icon`, `treasure`, and the `.ard` sibling) occur **0, 0, 0** times respectively" (`S004:338-339`) — four names, three figures; the probe table measures `.icn`, `/icon/`, `.eps` and `/entry/` and has no `treasure` row (`S004:259-265`). Not settled on the pages.
+
+#### C. Stale "open / not read" claims, banners and names
+
+**C1. README: the container sheet "not written".** "**§3, the loader contract, is still empty**" and "**The sheet is deliberately not written yet.**" (`README:262-266`) — against `Container/ebp2-container.md`, `status: AUDITED` (`CON:4`) with a full §3 (`CON:105-432`). **Favoured: CON** (falsification pass 2026-09-03, `CON:567`).
+
+**C2. README: whether the magic is checked.** "**Two readings, and this does not choose between them** … **Settling it needs the loader body read in Ghidra.** Until then the sheet may not claim either." (`README:230-239`) — against "**So the first reading is the correct one, and the second should not be carried forward.**" (`CON:299`). **Favoured: CON, 2026-09-03.**
+
+**C3. README: seven units "*unknown*".** `section_004`, `008`, `009`, `010`, `011`, `014`, `019` are "*unknown*" (`README:42-51`), and "**Seven of the fourteen units have no tool-side lead at all.**" (`README:67`) — against the AUDITED sheets: `NAVIICN2` (`S004:2`), `CML1` (`S008:2`, `S010:2`), `CAM7` (`S009:2`), `SHK1` (`S011:2`), `LGT2` (`S014:2`), `FF12AR03` (`S019:2`). **Favoured: the section sheets.**
+
+**C4. README: section 6 is "pre-rendered text lines".** "23-pixel-high strips of varying width — pre-rendered text lines (section-006 §5)" (`README:43`) — against "**Correction/refinement 2026-09-24 (SWE2-DATA) — the `in` strips are per-event expansion-glyph sheets, not captions.**" (`S006:247-248`) and "The earlier "a line of text rendered to a texture" reading is superseded for the `in`/`ch`/`cn`/`kr` populations" (`S006:272-273`). **Favoured: S006, 2026-09-24.**
+
+**C5. README: `+0x04` as a version.** "a version/count `0x14` at `+0x04`" (`README:101`) — against "`+0x04` is therefore **not a version stamp**." (`CON:327`) and the 2026-09-03 falsification row (`CON:576`). **Favoured: CON.**
+
+**C6. CON: slot 17 still an open question.** "Open question `PROPOSED-repos-1e-1`." (`CON:391`); "**Not yet attacked:** whether another language's archive populates slot 17" (`CON:583`) — against "**BW-1 answered 2026-09-12 (FABLE): the always-zero slots are zero in every language tree.**" (`CON:91`). **Partly settled:** BW-1 covers nine trees; `CON:584` asks for `jp`/`eu`, which BW-1 does not list (`CON:93-94`).
+
+**C7. CON: manager 0's slot-14 skip "open".** "**Slot 14's manager-0 exclusion is described, not explained.** What distinguishes manager 0 is open." (`CON:642-643`) — against "*Answered 2026-09-14 (FABLE, `BW-3`): **manager 0's lighting comes from the map-control pack, not from EBP.**" (`CON:397`). **Favoured: BW-3, 2026-09-14.**
+
+**C8. CON: `FUN_0036c660` "not read".** "It does **not** claim the allocator guarantees a low arena — `FUN_0036c660` was not read." (`CON:598-599`); "Open question `PROPOSED-repos-1e-2`." (`CON:421-422`) — against "**CORRECTED 2026-09-12** … `FUN_0036C660(p, name, tag)` is a **header tagger**" (`CON:607-610`). **Favoured: the correction of 2026-09-12.**
+
+**C9. CON: binders "not read".** "`0x003DFE60` | shared binder for slot 16 (selector 0) and slot 17 (selector 1) | not read" (`CON:449`); "**The binders.** `FUN_003dfe60`, … `FUN_0026c8xx`, `FUN_0026ceXX` and `FUN_0026d3xx` … **Their bodies were not read**" (`CON:591-593`) — against "`0x003DFE60` | `FUN_003dfe60` — `g_fieldRoots[class] = ptr`; the store is `0x003DFE6A` | ✅" (`S016:219`), "`0x0026C880` | binder — writes `ctx+0xA0` | ✅ 1 instruction" (`S002:281`), "`0x0026CE00` | binder … | ✅ full body" (`S008:253`), "`0026CE40` | … | ✅ complete 21-byte body *(audit 2026-09-05)*" (`S012:144`), and "`0x0026D3A0` | stores the **second copy** … | ✅ full body, 5 instructions" (`S010:288`). **Favoured: the section sheets** (S012's audit is dated 2026-09-05).
+
+**C10. S000: the weather reader "not found".** "the *reader* was not found — see §7" (`S000:596`); "**Who reads `weatherProbability` was not found.** … `PROPOSED-repos-1e-4`." (`S000:610-614`) — against "**BW-4 answered 2026-09-12 (FABLE): the reading instruction is `002658EB`**" (`S000:283`). **Favoured: BW-4, 2026-09-12.**
+
+**C11. S002: `0xA5` / `0xA3` "unresolved".** "**The full character table.** `0xA5` … and `0xA3` are unresolved. No glyph table was located" (`S002:376-377`) — against "**BX-2 ANSWERED 2026-09-15 (OPUS) — both are the hyphen** … Carried to `section_002`'s 4,262 occurrences by the shared table" (`S003:315-330`). **Favoured: BX-2, 2026-09-15.**
+
+**C12. S002: the renderer "not read".** "Their semantics belong to the text renderer (`FUN_00269F20`, `FUN_002E16B0`), which this document did not read." (`S002:354-355`) — against BX-1's reading of `mes` and the window paths: "**only when the flag is 0 opens the window itself** (`002E16B0`, `00348EFF`)" (`S002:366-367`). **Partly settled by BX-1, 2026-09-12**: the escape semantics remain open.
+
+**C13. Front matter `last_reviewed` older than the body.** `last_reviewed: 2026-09-03` on S002 (`S002:19`), S003 (`S003:19`), S004 (`S004:19`), S006 (`S006:19`), S012 (`S012:19`) and S016 (`S016:19`), while their bodies carry dated changes to 2026-09-12 (`S002:360`), 2026-09-15 (`S003:315`), 2026-09-04 (`S004:134`), 2026-09-28 (`S006:319`), 2026-09-27 (`S012:323`) and 2026-09-12 (`S016:316`). Banner only.
+
+**C14. S004 §7 against its own §3 and front matter.** "**No loader contract.** Section 3 has no `Read by` entry that is a real instruction address. That is the main gap in this sheet and the reason its status is `PARTIAL`, not `DOCUMENTED`." and "**no field below is marked `Inert`**" (`S004:344-348`) — against `status: AUDITED` (`S004:4`), "the section pointer | `003DFDC0`" (`S004:163`), the four "**YES — never read**" rows (`S004:159-162`), and "**Established 2026-09-04.**" (`S004:134`). **Favoured: §3, 2026-09-04.**
+
+**C15. S019 §7 and §3 against its own corrections.**
+- "**No loader contract.** No `Read by` cell in section 3 holds a real instruction address, which is why the status is `PARTIAL`. **No field is marked `Inert`**" (`S019:460-462`) — against `status: AUDITED` (`S019:4`), "`003EAA32` `MOV ECX,[RBX+0x2C]`, twice" (`S019:267`) and the "**YES — never read**" rows (`S019:262-269`), "**Established 2026-09-04.**" (`S019:232`).
+- "**The eight constant `u32` in the header are not explained**" (`S019:474`) — against "**`BZ-2` closes**: the eight fields are directory slots" (`S019:179`) and BZ-2 of 2026-09-12 (`S019:271-282`).
+- "The agreement is structural — same directory, same size, same absent slots" (`S019:183-184`) — against "**CORRECTED 2026-09-05 by the audit — the two absences are not the same**" (`S019:162`).
+- "`003320D0` | the `.ard` stream-completion callback … | ❌ not read" (`S019:413`) — against "`FUN_003320D0  (13 bytes)`" read in §3 (`S019:242-244`).
+- "the `.ard` files were not extracted from the archive for this block" (`S019:396`) — against "from my own parse of the 166 extracted files" (`S019:177`).
+- **Favoured: the dated §2/§3 corrections (2026-09-04, 2026-09-05, 2026-09-12).**
+
+**C16. S006 "not read" and "open" rows against its §3 and §5.**
+- "`0037F1F0`, `003BC4E0`, `00575710`, `0029CAC0` | the four callers | ❌ not read" (`S006:224`) — against the `0029CAC0` listing (`S006:144-148`) and "`003BC4E0` (1,163 B) — one of `0039BEC0`'s four callers, previously unread — is an **event dispatcher**" (`S006:367-368`).
+- Falsification: "**none of its four callers is in the `atelload.c` unit**. Left open rather than asserted." (`S006:308`) and "The attempt failed to confirm the link" (`S006:313-314`) — against "**Complete as of 2026-09-04. The connection to `section_006` is made**" (`S006:122-123`).
+- "**The palette source is unknown.**" (`S006:331`) — against "The external-palette invariant (§2) now has its explanation: the text renderer supplies colours" (`S006:274-275`, 2026-09-25).
+- **Favoured: §3 (2026-09-04) and §5 (2026-09-25).**
+
+**C17. S008: section 10 has no sheet, and the subset is unexplained.** "`section_010` — … `repos-c7`'s unit; the sheet does not exist yet, so this is deliberately not a link." (`S008:363-365`); "**`section_010`'s subset relationship is stated, not explained.**" (`S008:357`) — against `Sections/section-010.md` (AUDITED, `S010:4`) and "*That co-occurrence is not engine-enforced (BY-5, answered 2026-09-26 …)*" (`S008:58`). **Favoured: BY-5, 2026-09-26.**
+
+**C18. S009: `subCount` at record `+0x28`.** "**`subCount` at record `+0x28` is 1 in 3,941 of 3,942 records.**" (`S009:275`); "the one `subCount == 2` record" (`S009:310`) — against the fence "`+0x28  u8  firstCommand  type byte of the command stream`" (`S009:99`) and "`+0x28` is the first command's type: `1` = key." (`S009:279`). **Favoured: `firstCommand`, 2026-09-12.**
+
+**C19. `BY-4` names two different questions.** In S008 and S009 it is the four camera channels: "*(Established 2026-09-12, `BY-4`: `+0x110 + 0x18·ch` are the four **camera channels**" (`S008:234`), "**Explained 2026-09-12 (`BY-4` answered): four camera channels**" (`S009:316`). In S009's pass 2 it is census reproducibility: "### `BY-4` is closed … I raised `BY-4` on 2026-09-12: `census.py`'s output was not byte-reproducible" (`S009:377-379`). Not settled on the pages.
+
+**C20. S010: `PROPOSED-repos-c7-1` both open and closed; a missing §3b.** "That residue is open question **PROPOSED-repos-c7-1**." (`S010:213`); "Recorded as PROPOSED-repos-c7-1 rather than written up as an inert section." (`S010:356`) — against "**PROPOSED-repos-c7-1 is CLOSED** by `repos-4b`'s pass." (`S010:474`). The field table cites "the searches in §3b" (`S010:152`); the page has no §3b. **Favoured: closed, 2026-09-05** (`S010:471`).
+
+**C21. S011: `dataOffset` still called 32-bit.** "read 16-bit only — the high half of the u32 is discarded" (`S011:247`); "Declared `u32` at `+0x08` in §2.1" (`S011:272`); "**16-bit read of the 32-bit `+0x08`**" (`S011:320`) — against the fence "`+0x08  u16  dataOffset`" and "`+0x0A  u16  _unread`" (`S011:87-88`), "**Audit note, 2026-09-05 (`repos-4b`): `dataOffset` is read 16-bit, so the fence says `u16`.**" (`S011:101`). **Favoured: `u16`, 2026-09-05.**
+
+**C22. S011: "seven of the nine" key floats unnamed.** "**Seven of the nine are named `_unnamedN` on purpose.**" (`S011:200`) — against the fence, which names six of nine (`startFrame`, `coefA`–`coefD`, `weight`) and leaves three `_unnamed` (`S011:189-197`), and "**Four of the other seven are identified by the evaluator; three are never read (2026-09-26 …)**" (`S011:214`). **Favoured: the fence, 2026-09-26.**
+
+**C23. S011: duplicated heading.** "## 6. Falsification pass — 2026-09-03" twice (`S011:370-371`). Banner only.
+
+**C24. S012: consumer search target, and the id list "not stored".**
+- "**Consequence for §7:** the consumer to look for reads **`managerRecord[+0x100]`**" (`S012:116`); "**The consumer is not in this function and this document does not claim to have found it.**" (`S012:124`) — against "**ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static: nothing in this executable walks it.**" (`S012:323`).
+- "**That needs the id list, and the database does not store one** … no `members/` file on this page carries them." (`S012:299-301`); "**Not closed** — that is sufficiency, not proof, and the id list needed to finish it is not stored anywhere." (`S012:373-374`) — against "`members/section012_model_ids.py` writes it to `members/section012-model-ids.tsv`" (`S012:416-417`) and "**ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): both, and the split is measured.**" (`S012:364`).
+- "mapping the uppercase letter to the `h`-prefixed family gives 13 of 40, 13 of 66 and 1 of 5 — **better than zero and not a finding**" (`S012:216-217`) — against "**ANSWERED (FABLE, Claude Opus 5.5, 2026-09-26), static: they are the high-detail model tables, `hc`, `hn` and `hs`.**" (`S012:331`).
+- **Favoured: the answers of 2026-09-25 to 2026-09-27.**
+
+**C25. `0032F1B0` named "teardown".** "`0032F1B0` | teardown path when the flags word goes to zero | ❌" (`S012:146`) — against "`0032F1B0` | `ActorResource_FinalizeManagerRuntimeAfterLoads` — calls the binder" (`S014:224`) and "`ActorResource_FinalizeManagerRuntimeAfterLoads` (`0032F1B0`) binds it through `0037AA90(block, slot)` once the slot's loads finish" (`CON:398-399`). Not settled by a dated correction; two pages against one.
+
+**C26. S014: `003775D0` "not read".** "`003775D0` | `FUN_003775d0` — the second binder caller (site `003776A6`) | ❌ not read" (`S014:235`); "`FUN_003775d0`'s call at `003776A6` — **not read.**" (`S014:465`) — against "**CD-1 answered 2026-09-12 (FABLE): the branch is live, on the lighting-set route.** `003775D0` is read" (`S014:443-444`). The CD-1 block's "entered through a relative dispatch table whose entries at `01D7BC70` / `01D7BCA4` carry its RVA" (`S014:450-451`) is corrected in the next paragraph: "begin/end/unwind triples … exception metadata, not callers" (`S014:460-461`). **Favoured: CD-1 and its residue answer, 2026-09-12.**
+
+**C27. S016: `type == 2` "too rare".** "a third shape, too rare to characterise" (`S016:124`); "**`type == 2`.** Nineteen records in 25,687. Too few to characterise honestly." (`S016:344`) — against CC-3: "**2** draws `u` the same way and bounds `v` by the ellipse `sqrt(B² − u²·B²/A²)`" (`S016:339`). **Favoured: CC-3, 2026-09-12** (`S016:333`).
+
+**C28. Evidence tier 9 on instruction-level sheets.** S002 and S003 carry `evidence_tier: 9` (`S002:6`, `S003:6`) while every loader claim in them cites instructions read "from raw instruction bytes via capstone against the authorized EXE" (`S003:303`) and their siblings carry tier 1. Banner only; not settled on the pages.
