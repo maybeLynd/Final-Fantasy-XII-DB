@@ -102,7 +102,7 @@ Member files, checked for layout and counts only (no item below rests on a membe
 | `PS2-…/members/hb-index-census.tsv` | 54 rows; `tag` = 102 in every row (see C-V40); monster `hdat_files` per locale 4–11 (see C-V39) |
 | `PS2-…/members/mmsg-value-receiver-adapters.tsv` | 28 rows — agrees with `BINM:25` |
 | `PS2-…/summon-effect-state-02b40508-accesses.tsv` | 3 rows in `003B54C0`; **no page links it** |
-| `PS2-…/members/loader-bound-census.tsv` | **does not exist**, though `LBB:36` cites it (G-S12) |
+| `PS2-…/members/loader-bound-census.tsv` | **does not exist**, though `LBB:36` cites it (G-T36) |
 
 ---
 
@@ -504,3 +504,89 @@ The folder is the engine's file and data layer. It has six layers, each document
 | 07-Combat / 05-Spawn | `BattleUnit_ApplyUnitDefinition` `0023A570`; action-row page; `.ard` slots 5/6 growth | `REG:1446`, `LDR:936-946` |
 | 24-CRT | zlib `0080C5A0`, `_Init_thread_header/_footer` `008092FC`/`0080929C` for the 149 one-time-init holders | `BIG:171-172`, `README:42-50` |
 | 00-Engine | main-loop frame functions `0022B0B0`/`0022B8C0`/`0022BC20`; boot `0022A0B0` ← `0017D4C0` | `EV:1455-1456`, `ROW:874` |
+
+---
+
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open as written)
+
+Items a page marks answered elsewhere are not repeated here. They appear under §3.2 when their "open" text is
+still unstruck.
+
+| id | gap, as the page states it | cite |
+|---|---|---|
+| G-S1 | Queue side effects: "Real read-layer, file/archive, service-footer and callback side effects beyond the checked boundary"; "Live progress, scheduling, synchronization, cancellation/path lifetime and higher-level priority policy"; "Authored/reachable producer state for the chunk gate" | `RQC:271-273` |
+| G-S2 | "*Nothing live has run.* Whether the allocator supplies a high half at all ... it is open" (raw-path pointer truncated to 32 bits in `+0x24`) | `RQ:540-541` |
+| G-S3 | "36 of `0032E620`'s callers compute their kind ... not modelled here"; "The other 36 sites compute their kind. They are not resolved here" | `RQ:680-681`, `NMB:227-228` |
+| G-S4 | The owner record's `+8` annotation: "later semantic meaning is unresolved"; "The annotation's downstream purpose remains unresolved" | `ISR:45`, `OWNC:114` |
+| G-S5 | "what a byte-count -1 failure callback registers ..., and the five other `003EDAD0` drivers"; "the 20 array-bearing setup routines' loops and what the linked `*02EBEF70` nodes are"; OV-42 "Still OPEN" | `PRF:103-105` |
+| G-S6 | Decoder base `01F83530` over the process: "**"zero for the life of the process" is supported, not proven**"; "**"The base is zero for the whole process" is well supported and not proven.**"; Limits 3 "parks it as live-only" | `TREE:101`, `ROW:472`, `EV:1400-1405` |
+| G-S7 | "**Threading** — not established; no lock appears in the read bodies"; "no arbitrary reentrant/thread-safe lookup is established" | `TREE:257`, `RSA:141`, `EFX:393-394` |
+| G-S8 | "whether any arena exceeds 4 GiB in practice"; "Whether any arena backing ever sits more than 4 GiB from the decoder base" | `EFX:554-555`, `ROW:823-828` |
+| G-S9 | "Whether any caller distinguishes "not found" from a genuine offset of `-1` (RA-6)" | `CSA:194` |
+| G-S10 | Authored expression: "What the record is part of, and who authors it"; "The **bit-2-clear** branch of `0042FDB0` is not characterised here ... Mode-byte values 1 and 2 ... are unread"; `00430B90` "**not read**" | `AEC:219`, `RND:379-384`, `RND:403` |
+| G-S11 | `0x02EBF178`: "What sets state 1 and fills the 301 ids, and who reads the blob, is **FZ-8**." | `REG:1999-2000` |
+| G-S12 | Registry residue "**60 bytes in 8 tables**"; 30 tables with no type rows ("the generic accessor that resolves a descriptor to a record" is wanted); class-13 table order not stated | `REG:1229`, `REG:2234-2243`, `REG:1263-1265` |
+| G-S13 | `.ard`: "**What is still missing is the record level:** the four `st2e` tables' fields and what a row means"; "What each *individual* bit switches remains open"; "what writes `stats + 0x88`" | `LDR:657-661`, `LDR:646-654`, `LDR:950` |
+| G-S14 | `.nmb`: "**What an entry means is not established.**"; "`0x12BA` vs `0x12BB` is undecided." | `NMB:763-768` |
+| G-S15 | `.ard` reader: "at `003EA8A4` and `003EA9AE` no instruction sets `rcx` after the preceding free call"; "Which caller sets the force flag the refresh's skip depends on" | `ARDC:188-189` |
+| G-S16 | Text: "The CJK tables index a different glyph set and were not tested"; "What the data puts in each array is still a runtime fact"; low-pool group 20 "not yet bound to a file" | `VBF:617-618`, `VBF:846`, `BTB:234` |
+| G-S17 | BigFile: whether a `false` from `0019B070` refuses to start the game ("followed one level") | `BIG:439-445` |
+| G-S18 | FST: "**Why ten kinds are unsized**"; the byte-identical pairs; kind 5 unnamed | `FST:186-188`, `FST:293-296` |
+| G-S19 | Prefetch: whether manifests are complete or advisory; the `events/` loader; nothing measured from a file | `PFM:247-254` |
+| G-S20 | `.ah`: the consumer of the list; `_srm` meaning; the kind-4 dispatch "not read" | `AH:235-239` |
+| G-S21 | `.ta`: the script verbs for rate/loop and the `0x130` record; which dispatcher twin serves `.ta` | `TA:228-229`, `TA:316-318` |
+| G-S22 | TIM2: "What the decoder does with the other fields"; "**Whether the seven-slot ceiling is ever reached in play.**"; what `eXt` means | `TIM2:197-198`, `TIM2:297-299` |
+| G-S23 | behindcamera: "**Still open:** which drive parameter `x` is and what `y` answers"; "the function that samples `obj+0x10..+0x63` per frame was **not** located" | `LBB:354-356`, `LBB:261` |
+| G-S24 | MRP `+0x2C` "not established"; "The spare `{count,offset}` pairs' table strides" | `MRP:73`, `MRP:227` |
+| G-S25 | Field-level residue on the menu formats: hctg `+0x08` high bits, monster tail `v1`–`v3`, hchk `+0x0A`/`+0x03`, hdat `arg`; `QHD0`/`QHT0` fields, `rel[5]`, header `+0x0C`; cmap `auxId` and sec2 semantics; wmap `+8` aux and `B2`; sloc LCMPOS1, NAVIICN2, `_e3`, `version`, `recordEnd` | `HCHK:392-410`, `MQ:94-97`, `CMAP:141`, `WMAP:198-199`, `SLOC:314-327` |
+| G-S26 | binmenu: "**Open (static limit):** **palette ownership**"; "the exact guest-slot → `face_guestNN` selection table" | `BINM:152-166` |
+| G-S27 | CHSE: which actors reach state 4 with no battle-record key; what the letters are; why three tables ship empty | `CHSE:212-226` |
+| G-S28 | gmap: a latent over-read for five Latin `guide00` copies "(inferred, not run)"; `0x18xx` text codes; no writer of byte `+4` searched | `GMAP:91-99` |
+| G-S29 | Unnamed `.bin`: ashd "`field04`'s role is open", "Its bytecode is not disassembled"; the st2e surplus bytes "the content is not read" | `UBF:160`, `UBF:168`, `UBF:230-231` |
+| G-S30 | Five small tables: sign scene-record `a`/`b` and text rows; hchk header fields; qstd bits 18/30 "No reader"; QST1 field 718 and bit 26 | `FIVE:206`, `FIVE:349-350`, `FIVE:360`, `FIVE:396-398` |
+| G-S31 | Every system page states it has no live-game observation (for example "No observation of the running game"; "Nothing was executed"; "no experiment executes these five bodies") | `AEC:224`, `BTB:348-350`, `ARDC:178-180`, `FST:298-301` |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no 02 page states them)
+
+| id | gap | where it shows |
+|---|---|---|
+| G-T1 | **Queue pacing and clocks.** The pacer `0035EA30` (called with 0 and 2), the counter `022CA5E0` (writer, unit, initial value) and the return values of `003EADD0` and `0046DFE0` are not stated. Only "returns 2 while the word is −1" is given for `0046DFE0`. | `RQ:103`, `RQ:173`, `RQ:145`, `RQ:713` |
+| G-T2 | **Two pump branches appear only in the contract.** The kind-FF retry ("Kind-FF nonzero submit result revisits the same head") and the refused-read path ("a refused read (a −1 file-size entry, `002DF7B9`) also moves to state 2 ...") are in `RQC:177`. The state table in RQ does not carry them, and the `002DF6C0` return contract is not given. | `RQC:177` vs `RQ:145-147` |
+| G-T3 | **`0032EB40`, the "staged (2 KB-chunk) request path".** It is named on FST but absent from the queue pages, and ARDC calls it a read request (C-V45). | `FST:74`, `FST:108` |
+| G-T4 | **EFX ticket id.** "preserves low6 slot bits and high tag bits while changing generation bits": no bit widths and no initial stamp. | `OWN:107` |
+| G-T5 | **External-source metadata directory `022C6E70+8g`.** Only the first byte, `+8+8i` and `+0xC+8i` are given. | `ISR:95-96` |
+| G-T6 | **`.cm` configuration table `02B64380` and the `metadataSize` provider chain.** Named, with no parse or format. | `PRF:47`, `PRF:51-53`, `PRF:123` |
+| G-T7 | **EFX per-element relocation bodies.** `005004C0` dispatches to 38 bodies and only subtype 0 (`00500470`) is described. The 'R' repair `00501420` and the notify `00442460` are named only. | `PRF:58`, `PRF:134`, `EFX:912` |
+| G-T8 | **Tree add path.** It never says which arena tree it inserts into; only remove gives `tree = (byte[node+3] < 0xF) ? 022D7FD0 + byte[node+3]*0xA8 : 0`. The splice helpers `0036B490`/`0036B5A0` and the third argument (`0x4AA`, `0x4BF`, `0x4DF`, `0x4E3`) are undefined. | `TREE:292` vs `TREE:298`; `TREE:178-185` |
+| G-T9 | **Handle-slot table.** Slot `+5` active, `+6` generation, `+8` header are given, but the table base, size and allocation are not stated. | `TREE:217`, `EV:561-569`, `EFX:120` |
+| G-T10 | **Arena record and header initial contents.** `0036A490` writes the header ("the 0x40-byte record initializer") but no field-by-field initial values are given. The arena record layout is "a map, a qword array and optional 16-byte bookkeeping records", with offsets deferred. | `EV:394-397`, `EV:1470`, `ROW:1318` |
+| G-T11 | **Section-addressing bodies and descriptor fields.** `00409930` (`ResourceEntry_FindSectionIndexByTagAndName`) has no body description. Descriptor `+0x28` (bank blob) and `+0x54` (capacity) are used but absent from the §4 layout. The six `0041E500` callback bodies are named only. `RSA:712` cites `rowstride-census.tsv` "the durable artifact", which exists nowhere in the repo. | `RSA:168`, `RSA:204-212` vs `RSA:679`/`RSA:701-702`, `RSA:603-610`, `RSA:712` |
+| G-T12 | **Typed list type 4.** The constructor sets `node[+0x18]=0` and "builds nothing", yet the drawer arm `0029ED30` is "a `jmp` through node `+0x18`". Whether that jump is guarded is not stated. The allocator `002497B0` and release `002482E0` are named only. | `TL:128`, `TL:466`, `TL:590` |
+| G-T13 | **RNG recurrence `advance()`.** "The recurrence itself is specified on the RNG page" — not on any 02 page. Only `as_float(state)` is given for how state becomes `v ∈ [1,2)`. | `AEC:120-121`, `AEC:160`, `RND:186` |
+| G-T14 | **Curve evaluator edge cases.** Missing: a value below the first x, negative values against the period, period 0, how the three control points are chosen, which root `0039B6E0` takes, and what sentinel `2.0` triggers. The period fields `+0x08`/`+0x0A` are absent from both record-layout tables. | `RND:82-96`, `AEC:53-57` |
+| G-T15 | **Expression context and variants.** The `context` argument of `eval` is never described. The second writer of the enable word, `0044BAC0`, is named only. The float twin `004309C0` and its tail `00430540` have no formulas. | `AEC:45`, `RND:251`, `RND:277`, `RND:402` |
+| G-T16 | **`003846F0` body.** It binds text banks, `.ard` category 1 and every `+0x14` sub-directory entry, but is described only as "a different binder, with a third argument zeroed", "the two-level rebase", and in two conflicting sketches (C-V47). | `REG:220`, `REG:979`, `ROW:847`, `BTB:66-69`, `LDR:378-380` |
+| G-T17 | **Bespoke binders.** What `00237FC0`'s "re-registered" rows do, what `00238160` rewrites per row, and the three nesting levels of `00238660` are not enumerated. | `ROW:1135-1138`, `REG:1950` |
+| G-T18 | **`0x02EBF188`.** Written 93 times by 40 functions, read by none found. Only "formula gates / result metadata" (UNPROVEN) is given. | `REG:891-892`, `REG:1900` |
+| G-T19 | **`BattleSystemState` and the 456-byte stats record.** `0x7410` B with magic `0x05071901`; only scattered offsets are known, and "58 offsets is a floor". There is no layout or initial values. | `REG:2053`, `REG:1492-1521` |
+| G-T20 | **Row-address width.** ROW proves 32-bit truncating arithmetic for one instance. REG's formula gives no width, and whether every inlined consumer truncates is not stated. | `ROW:700-704`, `REG:379` |
+| G-T21 | **Field id → `.ard` area index.** `00264ED0` is named (49 B) with no mapping, and "the same area has different indices" in `.nmb`. | `ARDC:48`, `LDR:141`, `NMB:684` |
+| G-T22 | **`.ard` base table entry 1.** The binder writes entry 0 of `02B5E0C0` and `003EA650` accepts 0..1, but no writer of entry 1 is stated. The slot-7 table's count/terminator for `003DCA30` is not given. | `LDR:625`, `LDR:641`, `LDR:676-681` |
+| G-T23 | **Text decoding.** The packed-string indexer `002B58B0` is "by reference". The `{0F}xx` / `0x0F` inline escape codes are not decoded. The CJK encodings ("multi-byte sequences of their own") are not given. PS2 pages defer their text encoding to "the text-data sheets". | `BTB:98`, `BTB:108`, `VBF:198`, `VBF:613`, `HCHK:351`, `LST:84-85` |
+| G-T24 | **Text-group tables `02EC3D80` / `02F973C0`.** "null in the file and populated at load": the populating function and its source are not named. | `VBF:863-864`, `VBF:1113-1114` |
+| G-T25 | **Route-1 (RAM cache) behaviour.** The extension test is "nine single-character tests" with no boolean combination. The cache node layout, insertion by `0059A9B0`, and eviction against `01F83448` are not described. | `PATH:178-182`, `PATH:292-293` |
+| G-T26 | **Archive object and mounts.** The `0xB0` object is given only at `+0x00/+0x20/+0x68/+0x70/+0x78`. Route 2 has "five package slots", with no search order. The name-table terminator is not stated. | `BIG:262`, `PATH:239`, `BIG:115` |
+| G-T27 | **`.ah` entry and request record.** The struct is fenced as `size=0x03`, yet it has a `+0x88` back-pointer and ordinals divide by 8. The request-record kind 4 arm of `001A0BB0` is "not read", though `.ta` depends on it. | `AH:68-80`, `AH:96`, `AH:238-239`, `TA:88` |
+| G-T28 | **`.ta` / phyremaps.** The phyremaps parser `00677340`, the loaded-asset table `0019CA80` and the frame-set element layout are named only. | `TA:94`, `TA:120`, `TA:668` |
+| G-T29 | **TIM2 decode route.** "Which loader the 446 `.tm2` files actually go through" is unknown; decoding is left to the Sony spec, and `+0x40` "is **not a uniform `formatId`**". | `TIM2:81-82`, `TIM2:259-264` |
+| G-T30 | **AS7 LZ codec `00248500`.** The tail block `{mode, k, be16 outLen, dictionary}` is given but not the token format. | `AS7:134-137` |
+| G-T31 | **`mg` mesh layout.** The only struct on the page is the superseded one; "§2's slot struct is 4 bytes out of phase", and the replacement lives only in an `_index/candidates` record. | `MG:4`, `MG:48-69`, `MG:95`, `MG:147`, `MG:156` |
+| G-T32 | **`sloc` records.** The LCMPOS1, NAVIICN2 and untagged-record layouts are not given. The filler of `0x02ADD030` and the consumers `003C6360`/`003C6380` are "not read here". | `SLOC:124`, `SLOC:186`, `SLOC:316-320` |
+| G-T33 | **`loc_MAX 59` has no owner.** wmap: "(in `lmap`, not here)"; lmap: "Those belong to `menumap_world.bin` and are not tested here". | `WMAP:155`, `LMAP:621-623` |
+| G-T34 | **binmenu texture format.** "The per-kind descriptor table ... is **runtime-populated**"; a port must pick L8 or CLUT. | `BINM:125-126`, `BINM:154-156` |
+| G-T35 | **Handbook root handle layout.** The `+0xC8…+0xF0` stride is internally inconsistent (C-V95), so the exact buffer slots are ambiguous. | `HCHK:380`, `HCHK:387` |
+| G-T36 | **Loader-bound families: ids and census.** The page cites "`members/loader-bound-census.tsv` … 87 files, all rows", which does not exist; only the generator is present. The kind-9 ids of `behindcamera`/`pc_skillmotion` and the kind-7 ids of `tex2pack` (`0xD7`) and `fontpack_fs` (`0xD2`) are not on the page; they appear only in the generator. | `LBB:36`, `LBB:179-180`, `PS2-…/members/gen_loader_bound_census.py:34-46` |
+| G-T37 | **Movie / TGA helpers.** The TGA probe `002DF8E0` and texture loader `00183180` are named only, and the "0x1C-stride movie table" has no layout (see C-V67). | `SF:65-66`, `SF:148` |
+| G-T38 | **One boot order.** The boot steps in §1.4 are stated piecemeal across eight pages. No page gives their relative order inside `0022A0B0` (FST read vs arena init vs seeder vs `002368D0`). | `FST:71`, `EV:344-361`, `RND:398`, `ROW:874` |
