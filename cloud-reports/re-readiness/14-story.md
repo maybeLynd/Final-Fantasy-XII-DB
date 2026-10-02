@@ -340,3 +340,194 @@ byte: "read by no accessor in that family … still open" (`:236-238`).
 | G-14 | **`00377B60` fallback address is malformed**: "returns the `02EB1F0` fallback string" — seven hex digits where every other address has eight; the lookup's table global is not named. | `persistent-flag-banks.md:1399-1403` |
 | G-15 | **Hunts.** Declared authored (`event-memory-at-actor-bind.md:190`), but no page names the flags or counters any hunt uses; a port of hunt behaviour needs the script reading, which is not done. | `event-memory-at-actor-bind.md:158-192` |
 | G-16 | **`+0x1062`/`+0x1063` cluster** (29 access sites; bit `0x40` gates the music override) is in the payload this folder maps but its other bits are not stated. | `persistent-flag-banks.md:344`; `CONTRACT-persistent-flag-banks.md:86` |
+
+---
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Two groups. **3.1** are items where the two sides give a different count, offset, address, constant or formula; every
+one is **page-text only - needs local check** (this session cannot see the executable). A favoured side is named only
+where a dated correction on the pages settles it (3 items: C-V2, C-V8, C-V9). **3.2** are stale "open / not read"
+claims that a later dated section answers, corrected claims repeated unstruck, and banner / front-matter
+disagreements; they do not change a value a port would compute, but a reader taking the stale side would treat a
+settled point as open.
+
+### 3.1 Value-changing — page-text only - needs local check
+
+**C-V1. How many banks: six or five.**
+- Six: "Story progress is **bits** in six banks" (`README.md:14`, `:33`); "### Six banks, all inside the save payload"
+  (`persistent-flag-banks.md:54`); "Six banks of flags live inside the save payload" (`CONTRACT-persistent-flag-banks.md:39`);
+  "the other five banks have a dedicated query and Primary does not" (`CONTRACT-persistent-flag-banks.md:74`); "**six
+  persistent flag banks**" (`event-memory-at-actor-bind.md:180`).
+- Five: "**AA-4 closed: `Bank512Low` and `Bank512High` are not two banks.** They are two accessor pairs over **one**
+  512-flag region" (`persistent-flag-banks.md:592-593`); "**`Bank512` is one region with two accessor pairs, not two
+  banks.**" (`CONTRACT-persistent-flag-banks.md:97`); "The five bank offsets were re-derived" (`persistent-flag-banks.md:337`);
+  "the five bank offsets and sizes … **SURVIVED exactly**, all five" (`:1005`). The page's own table has five rows
+  (`:59-65`).
+- Offsets agree on both sides; the count (and any per-bank structure sized from it) does not. No favoured side.
+
+**C-V2. How many `Primary` flags a new game sets: 53 or 52.** *Favoured: 52 (dated corrections).*
+- 53: "**Room for fifty-three authored ids is switched on in the Primary bank before the first frame of play**"
+  (`persistent-flag-banks.md:1085-1086`); "the payload is zeroed and then the ids in `mapjumpgroupinit.bin` are switched
+  on" (`CONTRACT-persistent-flag-banks.md:328-329`, no exception for id 0).
+- 52: "The first entry is **0, which the setter's `2 <= id <= 0x1FF` guard drops** … so a new game starts with **52**
+  Primary flags set, not 53" (`persistent-flag-banks.md:514`, ANSWERED 2026-09-18); "~~all inside `SetPrimary`'s
+  accepted range `2..0x1FF`~~ **52 of the 53 inside**" … "sets **52** Primary bits at new game" (`CONTRACT-persistent-flag-banks.md:434-437`,
+  "Corrected 2026-09-25").
+
+**C-V3. Size of the gate `0032A8A0`: 122 B or ~127 B.**
+- "`0032A8A0` | `PersistentFlag_QueryPrimaryOrAuthoredThresholdGate` | 122 B" (`persistent-flag-banks.md:263`); "`0032A8A0` (122 B)"
+  (`CONTRACT-persistent-flag-banks.md:52`).
+- "`0032A8A0` (`PersistentFlag_QueryPrimaryOrAuthoredThresholdGate`, ~127 B)" (`CONTRACT-persistent-flag-banks.md:646`).
+  (127 B is the schedule `00377970`'s size at `persistent-flag-banks.md:273`.) No favoured side.
+
+**C-V4. The second shop name reader of `Bank2048`: `002BA530` or `002BA548`.**
+- "the two name-source readers on the shop page, `002B9C70` and `002BA530`" (`persistent-flag-banks.md:640`); also
+  "the `0029C530`/ `002B9C70`/`002BA530` callers" (`:1399-1400`).
+- "the two name-source readers `002B9C70`/`002BA548`" (`CONTRACT-persistent-flag-banks.md:392`); "7 sites in
+  `00263990`/`002639E0`/`002B9C70`/`002BA548`/`0034E980`" (`:488`). One may be a call site inside the other's
+  function; the pages do not say. No favoured side.
+
+**C-V5. Which offset the gate reads.**
+- The gate reads `Primary`: "`return (*(byte *)(base + (index >> 3) + 0x14F4)`" (`persistent-flag-banks.md:145`); "the
+  fall-through is bit `id & 7` of `payload[0x14F4 + (id >> 3)]`" (`CONTRACT-persistent-flag-banks.md:479`).
+- The inline-write census lists it under `Bank64A`: "| `Bank64A` `+0x1384` | `QueryPrimaryOrAuthoredThresholdGate`,
+  `QueryBank64A`, `SetBank64A` |" (`persistent-flag-banks.md:922`), and again under Primary (`:926`). No favoured side; the
+  §2 body and the contract agree with each other.
+
+**C-V6. The "seven siblings" that reject a negative id are cited with eight addresses.**
+- "against seven siblings that reject by `js` (`0032A945`, `0032AA75`, `0032AAE5`) or unsigned compares (`0032A8C6`,
+  `0032AB6F`, `0032ABFD`, `0032AD7D`, `0032ADFD`)" (`CONTRACT-persistent-flag-banks.md:484`) — five unsigned sites.
+- The seven are three `js` queries and **four** unsigned setters: "**three** by an added `js`, **four** by an unsigned
+  compare" (`CONTRACT-persistent-flag-banks.md:514-515`; table `:502-508`). `0032A8C6` falls inside the gate
+  (`0032A8A0`, 122 B), which is not one of the eleven. No favoured side.
+
+**C-V7. Size of the persistent payload and of its mapped part.**
+- "the payload interior now has 336 mapped bytes (`0x1384`–`0x1533`) plus the area id at `0x1044`, against 353,424
+  total" (`persistent-flag-banks.md:563-564`). (`0x1384`–`0x1533` inclusive is `0x1B0` = 432 bytes by arithmetic.)
+- "> **The persistent payload is exactly `0x1538` = 5,432 bytes**" (`persistent-flag-banks.md:1119`, §8f, 2026-09-08);
+  "**441 of 5,432 bytes are declared — 8.1 %.**" (`CONTRACT-persistent-flag-banks.md:100`).
+- 353,424 is close to the whole image (`memset(0x02164280, 0, 0x56690)` "the whole save image, 353,936 bytes",
+  `persistent-flag-banks.md:1097`) minus `0x200`, but no page says so. §8f is the only measurement of the length; it
+  does not strike §8's figures, so no favoured side is named.
+
+**C-V8. The treasure chest's draw: "50 / 45 / 5" or two pairs.** *Favoured: two pairs (dated correction).*
+- "| `002FAFD0` *(unowned)* | - | `record[9]` | authored threshold + **50 / 45 / 5** |" (`persistent-flag-banks.md:828`);
+  "**A three-way outcome, 50 / 45 / 5.** `< 0x32` (50) then `< 0x5F` (95) splits the remainder into a 45% band and a 5%
+  tail." (`:858-859`), both unstruck.
+- "*AF-6 answered 2026-09-12 (FABLE): the second format is the treasure chest, and the "50 / 45 / 5" is two different
+  pairs.*" … "**50 / 50 between two ids without the armlet, 95 / 5 between two other ids with it** — the "45 / 5" was
+  the second pair's split read as a tail of the first" (`:864-865`, `:891-892`).
+
+**C-V9. Field-action record offsets given as untyped indices.** *Favoured: the byte offsets (dated corrections).*
+- §8c reads the trap record as `short *`: "`[2] u8 persistent flag id`", "`[3] short`", "`[4] short`"
+  (`persistent-flag-banks.md:696-699`). §8d then gives "Flag id from `record[2]`" (trap) and "`record[9]`" (treasure),
+  with the gate threshold "at `record[0xB]`" (`:827-828`, `:835-839`, `:851-852`), without an element width. Read with
+  §8c's `short *` width, `record[9]` would be byte `+0x12`.
+- AF-1 (2026-09-12): "`+0x04 u8 persistent flag id`" (`:728`); AF-6 (2026-09-12): "`+0x09 u8 persistent flag id`",
+  "`+0x0B u8 gil chance`", and `+0x12` is "item id, armlet pick" (`:874-879`). The treasure indices are bytes; the trap
+  indices are shorts.
+
+**C-V10. How many functions turn an RNG draw into a permanent flag: one or two.**
+- "**RNG:** none in the accessors. One *writer* is downstream of a roll — `BattleUnit_TryTriggerNearbyAuthoredFieldAction`
+  sets a `Bank512Low` bit after a 75/25 MT19937 draw" (`CONTRACT-persistent-flag-banks.md:202-203`); "the one RNG-fed
+  *writer* belongs to `07-Combat-Action`" (`:553`).
+- "**Two, and only two** - and they are strikingly alike: **both write `Bank512Low`, both draw MT19937.**"
+  (`persistent-flag-banks.md:822-823`); "> **Exactly two functions in FFXII turn a random draw into permanent save state**,
+  and both are known: `002F8060` and `002FAFD0`." (`:979-980`, §8e, 2026-09-02). §8e predates the contract text and is
+  not a correction of it, so no favoured side is named; but only one side quotes a body (`:832-847`).
+
+**C-V11. Where a negative `Bank64A` id can write.**
+- "**writes before the bank** — into the unmapped payload stretch between `+0x1164` and `+0x1384`"
+  (`CONTRACT-persistent-flag-banks.md:236-237`); the 2026-09-08 correction keeps this for `SetBank64A` ("That is true of
+  `SetBank64A` and false of `SetBank64B`", `:290-291`) and gives `-1024..-1` spanning "`+0x1383` down to `+0x1304`" (`:312`).
+- "Over the test's id set that is **12 distinct offsets, from `0x1383` down to `0x0FE0`** — 932 bytes before the bank"
+  (`CONTRACT-persistent-flag-banks.md:284-285`); `0x0FE0` is below `+0x1164` (and below the `+0x1044` WorldTransition
+  block), while the same block's worked list stops at "`id = -4096 writes bit 0 of payload +0x1184`" (`:280`). No favoured side.
+
+**C-V12. What `00262A76` writes to `+0x1534`.**
+- "`002628B0` also clears it (`00262A65`–`00262A76`)" (`persistent-flag-banks.md:457`, narrowed 2026-09-14).
+- "writers `00262A76` (`bpl`), `0026A73D` (`0`, beside `and +0x1063, 0xBF`), `0026A75B` (`bl`, beside `or +0x1063, 0x40`)"
+  (`CONTRACT-persistent-flag-banks.md:418-419`, 2026-09-21) — a register byte, not a stated zero. No favoured side.
+
+**C-V13. Functions behind the payload-route census: 100 or 104.**
+- "`002EF2B0` | **121** | **0** | 70" and "`002EF640` | **40** | **0** | 28" (`CONTRACT-persistent-flag-banks.md:526-527`);
+  `002EF2D0` has two named callers (`persistent-flag-banks.md:1093-1099`).
+- "Operand-level census of all `call 002EF2B0`/`call 002EF640`/`call 002EF2D0` sites (163 calls in 104 functions)"
+  (`CONTRACT-persistent-flag-banks.md:404-405`; again `persistent-flag-banks.md:505`, "163 helper calls in 104 functions").
+  121 + 40 + 2 = 163 calls, but 70 + 28 + 2 = 100 functions. No favoured side.
+
+**C-V14. `Primary`'s callers: "30 query callers against 4 setters" or 32 gate callers and three named setters.**
+- "30 query callers against 4 setters: **written rarely, read constantly**" (`persistent-flag-banks.md:630`).
+- "the gate has **32 callers**" (`persistent-flag-banks.md:424`; `CONTRACT-persistent-flag-banks.md:145`), "including two five-byte
+  thunks the §3 table does not list" (`persistent-flag-banks.md:1058`) — which may account for 30 vs 32, but the page
+  does not say so. Setters named: `0034DD90`, `0034EE20` (`:608`) and `00379160` (`:627`) — three. No favoured side.
+
+**C-V15. The script-VM surface per bank: "one query and two setters", or two and four for `Bank512`.**
+- "Every bank has an identical Script-VM surface: **one query handler and two setter handlers**."
+  (`persistent-flag-banks.md:603-604`); "each with an identical script-VM surface of one query and two setter opcodes"
+  (`event-memory-at-actor-bind.md:180-181`).
+- "| `Bank512` | `00354540` / `00354000` | `00353750`, `00353BD0`, `00352EA0`, `00353390` |" (`persistent-flag-banks.md:612`).
+  No favoured side (it may be "per half", which no page states).
+
+**C-V16. How many ten-byte table publishers: three, five or six.**
+- "All three ten-byte publishers in this family are byte-identical but for the global" (`persistent-flag-banks.md:1299`).
+- "**That document lists three such registrations. There are at least five**" (`:1209-1210`); "the family is five
+  publishers, not three" (`:1316-1317`); "All five §8f publishers" (`:525-526`).
+- A sixth is documented later: "`00378540` requests it as kind 9 index `0xA` … the completion `00378BA0` stores the
+  pointer in `g_table` = **`02ADD0C8`** through `mov eax, ecx`" (`:198-201`, 2026-09-29). Whether `00378BA0` is one of
+  the field-record page's three is not stated. No favoured side.
+
+**C-V17. The size of the shipped script corpus.**
+- "decodes every shipped `section_000` script image, all language copies: 10,036 scripts" with the control
+  "`settalknpcname` `0x399` at 513 sites (the `us` copy's 57, nine times over)" (`CONTRACT-persistent-flag-banks.md:255-258`).
+- "In the 1,114 decompiled `us` scripts" (`persistent-flag-banks.md:376`; `CONTRACT-persistent-flag-banks.md:398`): nine
+  copies of 1,114 is 10,026, not 10,036. Whether the copies differ in count is not stated. No favoured side.
+
+**C-V18. How many functions the category owns: two or fifteen.** (A count; no port behaviour depends on it.)
+- "| Functions owned by `Story_Event_Quest_Hunt` | **two**: the `PersistentFlag_*` setters and
+  `EventMemory_QueryDefinitionIdAbsent` |" (`event-memory-at-actor-bind.md:170`); "only two functions carry the
+  `Story_Event_Quest_Hunt` owner" (`:277-278`).
+- "| Functions | 15 |" (`README.md:8`); "**All 15 functions the ledger assigns to `Story_Event_Quest_Hunt` are now read
+  individually**" (`persistent-flag-banks.md:279`; `:1079-1080`; `CONTRACT-persistent-flag-banks.md:29-30`). No dated
+  correction on the event-memory page addresses its figure.
+
+### 3.2 Stale "open / not read" claims, corrected claims repeated unstruck, and banner disagreements
+
+| # | stale or banner side (quoted) | answering side (quoted) |
+|---|---|---|
+| C-S1 | README calls the page "**DOCUMENTED, tier 1.**" and lists only `persistent-flag-banks.md`, twice (`README.md:13-16`, `:32-35`); "offsets (`+0x1384`, `+0x13B4`, `+0x14B4`, `+0x14F4`), verified contiguous" (`README.md:15`, `:34`) | front matter `status: AUDITED` (`persistent-flag-banks.md:4`); "**The layout is contiguous apart from one gap**" and `+0x138C` (`:62`, `:67`); the event-memory page and the contract are not indexed |
+| C-S2 | `last_reviewed: 2026-09-08` on all three pages (`persistent-flag-banks.md:21`; `CONTRACT-persistent-flag-banks.md:17`; `event-memory-at-actor-bind.md:22`) | dated body edits up to "2026-09-29, SWE2-DATA" (`persistent-flag-banks.md:198`), "2026-09-26" (`CONTRACT-persistent-flag-banks.md:423`; `event-memory-at-actor-bind.md:260`), "CORRECTED 2026-09-25 (OPUS)" (`event-memory-at-actor-bind.md:52`) |
+| C-S3 | `audit: passes: 2`, `last_pass: 2026-09-02` (`persistent-flag-banks.md:26-27`) | "**This document has now had its first falsification pass.**" (`persistent-flag-banks.md:1074-1075`); no second pass section on the page |
+| C-S4 | "this page has no open item of its own" (`event-memory-at-actor-bind.md:4`) | §5 still lists three unchecked items: the buffers' contents, the third record byte ("still open"), and whether the lookups concern the same kind of event (`event-memory-at-actor-bind.md:234-238`, `:256-257`) |
+| C-S5 | AA-2 open: "**AA-2 is partly answered**" (`persistent-flag-banks.md:576`); "'no engine subsystem touches `Bank2048`' is a genuine negative" and "**AA-2 stays OPEN**" (`:649-652`), unstruck; "`Bank2048`, `64A` and `64B` still have **no engine consumer at all**. `AA-2`." (`CONTRACT-persistent-flag-banks.md:382-383`) | "**CORRECTED 2026-09-18 (FABLE): true of `Bank64A` and `Bank64B`, false of `Bank2048`.**" (`persistent-flag-banks.md:640`); "**ANSWERED 2026-09-18 (FABLE)**" (`:496`); "**ANSWERED 2026-09-21 (SWE2-CONTRACT) — the "no engine consumer" clause is wrong for `Bank2048`**" (`CONTRACT-persistent-flag-banks.md:384-385`) |
+| C-S6 | AA-5 open: "`+0x1394 u8[32] UNKNOWN - 256 flags' worth, unexplained [AA-5]`" (`persistent-flag-banks.md:293`); "Still unexplained, but now exactly located and sized." (`:598-599`); "`+0x1394 u8[32] UNEXPLAINED`" (`CONTRACT-persistent-flag-banks.md:89`); "`AA-2` and the `+0x1394` gap remain open" (`event-memory-at-actor-bind.md:258`, annotated below it) | "**ANSWERED 2026-09-21 by SWE2-CONTRACT … dead space by all three access routes.**" (`persistent-flag-banks.md:505`); "**DISPOSITIONED 2026-09-21 (SWE2-CONTRACT)**" (`CONTRACT-persistent-flag-banks.md:401`); "*Status 2026-09-26 … both are now closed*" (`event-memory-at-actor-bind.md:260`) |
+| C-S7 | AA-8 open: "`+0x1534 u8[4] UNEXPLAINED - the payload's last four bytes [AA-8]`" (`CONTRACT-persistent-flag-banks.md:93`); "Extent closed, meaning unknown. `AA-8`." (`:410`); "Its *meaning* is still unknown; its *extent* is now closed." (`persistent-flag-banks.md:1125-1126`) | "**ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5)**" (`persistent-flag-banks.md:470`); "**ANSWERED 2026-09-21 (SWE2-CONTRACT)**" (`CONTRACT-persistent-flag-banks.md:411`); §4 map `:297-298` |
+| C-S8 | "`+0x1534` has six access sites … Registered as **AA-6**." (`persistent-flag-banks.md:1043-1045`) | "**AA-8** (filed 2026-09-02 as a second `AA-6`; **renumbered 2026-09-08**" (`:449`); AA-6 is the event-memory question, "**AA-6 CLOSED**" (`:506`, `:1256`) |
+| C-S9 | DS-1 unread: "the **ids themselves are unknown. `DS-1`.**" (`persistent-flag-banks.md:1291`); "**no id has been read**" (`:1323`); "The ids themselves are unread — `DS-1`." (`CONTRACT-persistent-flag-banks.md:187`); "The ids themselves are still unread — `DS-1`." (`event-memory-at-actor-bind.md:155-156`) | "**ANSWERED 2026-09-18 (FABLE)**" (`persistent-flag-banks.md:514`); "**ANSWERED 2026-09-21 (SWE2-CONTRACT), both files decoded.**" (`CONTRACT-persistent-flag-banks.md:430-431`); "**ANSWERED 2026-09-16**" (`event-memory-at-actor-bind.md:241`) |
+| C-S10 | Where the lists live: "Both are inside the 31 GB `SRYK` archive; extracting them answers it outright." (`persistent-flag-banks.md:512-513`); "The files live inside the 31 GB `SRYK` archive and were not extracted" (`:1289-1290`) | "the file extracts whole from the VBF as a standalone member (`common/eventmemorylist.bin`, 26 B, sha `5027c063…`), not from inside an `SRYK` container" (`event-memory-at-actor-bind.md:241-243`, 2026-09-16). Favoured, for `eventmemorylist.bin` only: the 2026-09-16 decode. |
+| C-S11 | Count vs capacity: "**These are capacities, not counts**" (`persistent-flag-banks.md:1288-1289`); "the caution that 8 is a capacity rather than a count" (`event-memory-at-actor-bind.md:153-154`) | "`+0x08 u16 8 entry count — the fill, not a capacity`" (`event-memory-at-actor-bind.md:248`, 2026-09-16); `mapjumpgroupinit.bin` "count 53, and `10 + 2 * 53 = 116` bytes exactly" (`persistent-flag-banks.md:514`). Favoured: the dated decodes (both lists are full). |
+| C-S12 | DX-1 open: "`DX-1` still asks whether an authored path can produce a negative id at all — that is unchanged" (`CONTRACT-persistent-flag-banks.md:317-318`); "*whether any caller actually passes a negative id* remains `UNKNOWN`" (`:539-541`) | "**ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): no authored path reaches a `Bank64` accessor at all, with any id.**" (`:246-247`); "**ANSWERED 2026-09-21 (SWE2-CONTRACT)**" (`:445`) |
+| C-S13 | "holds it open as **`PROPOSED-repos2d-4`**" (`persistent-flag-banks.md:1315-1316`) | "**ANSWERED 2026-09-18 (FABLE, at `PROPOSED-repos2d-4` in that document); verified 2026-09-23 (SWE2-CONTRACT).**" (`:519-520`) |
+| C-S14 | Contract §17 still describes the four-accessor stage: "### Parity status, for these four operations only" (`CONTRACT-persistent-flag-banks.md:612`); "Four of the seventeen entries are covered … `§13` is still empty" (`:617-619`); "**39 effective writes per value**" computed from `SetPrimary` and `SetBank64A` (`:607-610`) | "**all 11 bank accessors** — 5 queries, 6 setters" (`:566`); "11 of the **17** entry points" (`:580`); "**RECLASSIFIED 2026-09-12** … the bank accessors have been executed against the shipped bytes" (`:354-357`) |
+| C-S15 | "**two event-memory lookups** at actor bind (§2)" (`event-memory-at-actor-bind.md:182`); "**And the two event-memory lookups turn out to gate buffer allocation**" (`:187`); "The native side is banks, two id lists and a counter" (`:214-215`) | "**CORRECTED 2026-09-25 (OPUS)** … `02ADD100` is `FieldRecordTable` … So the S-34 mechanism here is ONE list plus a consult of an S-11-contracted table" (`event-memory-at-actor-bind.md:52-61`) |
+| C-S16 | "A list that grows as events happen and a table sized to the id space are different kinds of memory" (`event-memory-at-actor-bind.md:135-136`), unstruck | "the reading below that the list *“grows as events happen”* is **not supported**: nothing writes the list body, only the pointer" (`:151-153`, "Reopened 2026-09-08") |
+| C-S17 | "§4b's map ended at `+0x1535` with a field it could not place." (`persistent-flag-banks.md:1123-1124`) | §4b now runs to "...and the payload ends at `+0x1537`: `0x1538` bytes" (`:351-352`) |
+| C-S18 | One `0x400B` site: "The save finalizer calls this gate with `0x400B`" (`persistent-flag-banks.md:248`); call chain shows one (`:415-417`; `CONTRACT-persistent-flag-banks.md:154`) | "`0x400B` is threshold query 11 … **SURVIVED**, and there are **three** such call sites, not one" (`persistent-flag-banks.md:1008`, falsification pass 2026-09-02). The other two sites are not named (G-8). |
+| C-S19 | The `shutoral` verbs are cited to "([the bank page](persistent-flag-banks.md) §8)" (`CONTRACT-persistent-flag-banks.md:250-251`) | the verbs are in §7 (`persistent-flag-banks.md:496`) and §4c (`:371-372`); §8b lists only handler addresses (`:610-611`) |
+| C-S20 | `+0x1535`'s 1-writing caller is "the options apply `002DDA30`" (`persistent-flag-banks.md:462`) | "The session-counter function reaches it at `002DDB4A`" (`CONTRACT-persistent-flag-banks.md:423-424`, corrected 2026-09-26). Same site and value; two identities for the function. |
+| C-S21 | Duplicate headings: "## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)" at `persistent-flag-banks.md:1341` and `:1385`; README's "## Systems in this category" at `README.md:11` and `:30` | — (structure only) |
+| C-S22 | Evidence row: "complete bodies of the five query functions and two setters" (`persistent-flag-banks.md:539`) | eleven accessors read and tested (`persistent-flag-banks.md:113`; `CONTRACT-persistent-flag-banks.md:495-515`, `:566`) |
+
+### 3.3 Checked and found consistent (not contradictions)
+
+- `8064 comparisons` (`CONTRACT-persistent-flag-banks.md:361`) = `7,803` (`:570`) + `261` (`:479`).
+- Absolute bank addresses `0x02165804`…`0x02165974` and the gap `02165814`–`02165833` follow from `0x02164480` plus the
+  offsets (`persistent-flag-banks.md:937-940`, `:505`).
+- `FLAGROM1`: `10 + 2·152 + 2·271 = 856`; record lengths 48 + 98 + 1 + 3 + 2 = 152 and 48 + 196 + 3 + 12 + 12 = 271 words
+  (`persistent-flag-banks.md:210-213`); `offset[0] = 0x13A` = `10 + 2·152`.
+- Negative-id offsets `-16 → +0x1382`, `-1024 → +0x1304` (`persistent-flag-banks.md:118-119`;
+  `CONTRACT-persistent-flag-banks.md:230-233`) and the `SetBank64B` table (`:299-306`) agree with the signed-division rule.
+- Trap mask ring: three 12-byte entries from `02EC3EA0` end at `02EC3EC4`, the write index (`persistent-flag-banks.md:751-752`).
+- `SetPrimary` bound: `id - 2U < 0x1FE` (`persistent-flag-banks.md:99`) ≡ `cmp eax, 0x1FD / ja` (`:1172`; `CONTRACT-persistent-flag-banks.md:217`).
+- `Bank64` call sites (`CONTRACT-persistent-flag-banks.md:248-249`) fall inside the handler functions of §8b (`persistent-flag-banks.md:610-611`).
