@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "002F3890",
+   "text": "copies dword `+0x1F0` of `rcx` to `+0x1F4`; when qword `+0x10` is non-null, calls `0039AF70(qword +0x10)` and then `00398F90` with a stack copy of the 16 bytes at `+0x60` as both `rcx` and `rdx`, otherwise uses the 16 bytes at `+0x60` unchanged; then moves the 16 bytes at `+0x70` to `+0x80` and stores that vector at `+0x70`; wrapped in the stack-cookie check (`01F44830`, `00808C40`)",
+   "anchors": [["002F38AE", "mov"], ["002F38C7", "call"], ["002F38D6", "call"], ["002F38EA", "movdqa"], ["002F38F2", "movdqa"]]}
+ ],
+ "skipped": [],
+ "notes": "002F3890: r8 is not set before the 00398F90 call, so whether 0039AF70's result reaches it (in rax or another register) cannot be read from this listing; the row does not claim it does."
+}
