@@ -1,0 +1,23 @@
+{
+ "page": "04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md",
+ "session": "session_013aUyF9Cw8dmXC6Vyt6UA4p",
+ "rows": [
+  {"fn": "00235AB0",
+   "text": "calls `003272A0()` and returns 0 when the result is null, when its qword `+0x698` is null, when byte `+5` of that record is non-zero, or when byte `+4` minus `0x1B` is above `0xC` as an unsigned byte; otherwise (byte `+5` zero and byte `+4` in `0x1B`-`0x27`) returns 1",
+   "anchors": [["00235AB4", "call"], ["00235ABE", "mov"], ["00235ACA", "movzx"], ["00235AD8", "cmp"], ["00235ADC", "mov"]]},
+  {"fn": "0026AA60",
+   "text": "takes the float `xmm1` and picks 3.141593 (`01CEBC50`) when it is at least 0.0, else -3.141593 (`00915620`); only when byte `+3` of `rcx` AND `0xE0` equals `0x60` it adds that offset, subtracts the truncated-to-integer quotient by 6.283185 (`01CEBC78`) times 6.283185, subtracts the offset again and stores the float at `+0xB0` of the object at qword `+0xB8` of `rcx`; otherwise it returns without a store",
+   "anchors": [["0026AA6B", "movss"], ["0026AA87", "cmp"], ["0026AA96", "cvttss2si"], ["0026AAB0", "subss"], ["0026AAB8", "movss"]]},
+  {"fn": "00273910",
+   "text": "calls `00263C20(003588B0())` and returns 0 unless it returns 3; when it is 3, returns 1 if `003229A0(ecx)` returns 0, else 0",
+   "anchors": [["00273918", "call"], ["00273920", "call"], ["00273925", "cmp"], ["00273934", "call"], ["0027393D", "sete"]]},
+  {"fn": "0030BA80",
+   "text": "calls `0031B770(rcx)` and returns 0 when it is null; returns 1 when bit 14 of the result's dword `+0` is set; otherwise returns 1 when its qword `+0x708` is non-zero and its word `+0x714` is at most `0x21E` (unsigned), else 0",
+   "anchors": [["0030BA84", "call"], ["0030BA93", "bt"], ["0030BAA4", "cmp"], ["0030BAB3", "cmp"], ["0030BABC", "xor"]]},
+  {"fn": "003528C0",
+   "text": "calls `00267E10(r9)` and `00269FE0(rdx, that result)`, then tail-jumps `00263A30(byte +0x15 of rdx, word +0 of rdx)`",
+   "anchors": [["003528CC", "call"], ["003528D6", "call"], ["003528DB", "movzx"], ["003528DE", "movzx"], ["003528E7", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "No doubts. 0026AA60 computes the offset add before the byte +3 guard, but only the guarded path stores; the 0.0 compare is a comiss against xorps zero, so a NaN xmm1 takes the -3.141593 arm. 003528C0's tail-call argument order is rcx = byte +0x15, edx = word +0 of the original rdx (rbx)."
+}
