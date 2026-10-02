@@ -1,0 +1,108 @@
+{
+ "page": "22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md",
+ "session": "session_01CsdbXqRd5h9LCs97R3i5zB",
+ "rows": [
+  {
+   "fn": "00584E10",
+   "text": "calls `00599770(rdx)` and copies `0x54` bytes from the returned pointer to `r8` (five 16-byte `movups` blocks at `+0` through `+0x40`, then dword `+0x50`), returning that last dword in `eax`",
+   "anchors": [
+    [
+     "00584E1C",
+     "call"
+    ],
+    [
+     "00584E24",
+     "movups"
+    ],
+    [
+     "00584E43",
+     "movups"
+    ],
+    [
+     "00584E4A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0062F080",
+   "text": "on the two-qword link pair at `rdx+8` (next at `+0`, previous at `+8`), stores the previous pointer at `+8` of the next node and the next pointer at `+0` of the previous node, then points both of the pair's own qwords at `rdx+8` itself",
+   "anchors": [
+    [
+     "0062F084",
+     "add"
+    ],
+    [
+     "0062F08C",
+     "mov"
+    ],
+    [
+     "0062F090",
+     "mov"
+    ],
+    [
+     "0062F093",
+     "mov"
+    ],
+    [
+     "0062F096",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0067ADD0",
+   "text": "copies dword `rdx+0x10` to `rcx+0x10` and returns `rcx` at once when it is zero; otherwise calls `0067B100(rcx, dword [rdx] with bit 31 cleared)` and then, when qword `rcx+8` is non-null, `00861EBA(qword rcx+8, qword rdx+8, dword rcx+0x10)`, and returns `rcx`",
+   "anchors": [
+    [
+     "0067ADDC",
+     "mov"
+    ],
+    [
+     "0067ADED",
+     "cmovne"
+    ],
+    [
+     "0067ADF4",
+     "btr"
+    ],
+    [
+     "0067ADF8",
+     "call"
+    ],
+    [
+     "0067AE0D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006CC920",
+   "text": "returns 0 in `al` when byte `rcx+0x48` is zero; otherwise calls `005CD840(rcx+0x28)` and `005CD5E0(rcx+0x28)` and returns 1",
+   "anchors": [
+    [
+     "006CC928",
+     "test"
+    ],
+    [
+     "006CC938",
+     "call"
+    ],
+    [
+     "006CC940",
+     "call"
+    ],
+    [
+     "006CC94A",
+     "mov"
+    ],
+    [
+     "006CC951",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0067ADD0: the `cmovne` re-tests dword `rdx+0x10`, which is already known non-zero on that path, so the third argument to 00861EBA is always qword `rdx+8` there; the row says so directly. 0067ADD0 reads `0067B100`'s effect on `rcx+8`/`rcx+0x10` only after the call (re-loads both), so the size passed is the post-call dword."
+}
