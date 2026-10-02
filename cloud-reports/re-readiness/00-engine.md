@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`34861cfd`); no executable, Ghidra or live game was used. Several pages in this folder are being edited by other lanes; every quotation is the snapshot's text. |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. |
 
-**Counts:** **51 pages** read (39,297 lines: 50 system pages + `README.md`; every line of prose, status and correction text read; the 4,275-row appendix of `VTIDX` counted and sampled by script), **60 member-file rows** checked for layout and counts only · **257 entry-point rows** mapped across 10 page groups · **176** self-stated open gaps + **102** structural gaps · **545 contradictions**: **269 value-changing** (**168** itemised, of which **82** have a favoured side settled by a dated correction on the pages, wholly or in part, and **86** have no favoured side; plus **101** count rows; all "page-text only - needs local check") and **276 stale / banner** · **Rating: NOT YET** overall (boot, tick, gate, stop registry, mode ladder core, encoded-id registry, accessors and the console frame MOSTLY; log, duplicate-name rules, class validator, workbench save/restore and transform primitives READY; the `0209BE80` singleton layout, the skip sub-steps, the mode transition dispatcher, the text resolvers, the basis helpers, the 267 workbench member routines, object-method behaviour and the action-timeline interpreter NOT YET).
+**Counts:** **51 pages** read (39,297 lines: 50 system pages + `README.md`; every line of prose, status and correction text read; the 4,275-row appendix of `VTIDX` counted and sampled by script), **60 member-file rows** checked for layout and counts only · **257 entry-point rows** mapped across 10 page groups · **176** self-stated open gaps + **102** structural gaps · **545 contradictions**: **269 value-changing** (**168** itemised, of which **40** have a favoured side settled by a dated correction on the pages, wholly or in part, and **128** have no favoured side; plus **101** count rows; all "page-text only - needs local check") and **276 stale / banner** · **Rating: NOT YET** overall (boot, tick, gate, stop registry, mode ladder core, encoded-id registry, accessors and the console frame MOSTLY; log, duplicate-name rules, class validator, workbench save/restore and transform primitives READY; the `0209BE80` singleton layout, the skip sub-steps, the mode transition dispatcher, the text resolvers, the basis helpers, the 267 workbench member routines, object-method behaviour and the action-timeline interpreter NOT YET).
 
 ## How to read the citations
 
@@ -1823,4 +1823,1519 @@ that shows the gap (usually a callee named and never described, or a value used 
 - **S-100.** **Ids 177/178 and 180/181 "then one call"** callee not named (ARM-F:111, ARM-F:114); ids 205–207 named; id 182 "one call with value−1" callee not named (ARM-F:115); id 263 "a string-taking function" not named (ARM-H:165).
 - **S-101.** **Destruction / lifetime** of the console object at `01F81428`: not stated.
 - **S-102.** **`+0x10C4`** owner ambiguous (C.1).
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Quotes are exact, from the snapshot. `…` marks an elision; emphasis markers (`**`, `~~`, `*`) inside a quote are
+kept as they appear on the page. "Favoured" is named **only** where a dated correction on the pages settles the
+point; otherwise the item says **no favoured side**. Where the corrected claim is still printed unstruck elsewhere,
+the item says where. Every value-changing item is **page-text only - needs local check**: this session cannot see
+the executable.
+
+### 3.1 Value-changing (behaviour, offsets, addresses, sizes, constants, formulas, function extents)
+
+Favoured side named, wholly or in part (40 items): C-V1, C-V11, C-V31, C-V32, C-V33, C-V34, C-V42, C-V43, C-V53, C-V58, C-V65, C-V66, C-V67, C-V68, C-V73, C-V90, C-V91, C-V92, C-V100, C-V101, C-V102, C-V103, C-V104, C-V105, C-V113, C-V117, C-V119, C-V125, C-V128, C-V129, C-V132, C-V133, C-V137, C-V138, C-V140, C-V149, C-V152, C-V154, C-V162, C-V164. C-V68 is listed although its two sides already agree after a dated correction (`C-EID:347`); it is kept so that the corrected text is not reused. Every other C-V item has no favoured side.
+
+#### 3.1.0 Cross-group items (one contradiction reported by more than one reader)
+
+**C-V1.** **`0016D6A0`: a three-byte `ret`, or a release / free / over-range report.** *(found by three readers; merged)*
+- Side A: `DUP:229`: "**`0016D6A0` has a three-byte body: `ret`.**" (§8b, "added 2026-09-13, OPUS", `DUP:224`); `QREC:217`: "| Q6 | §3 "the original `ret0` stub" | **survives**: `0016D6A0` is `ret 0`, three bytes, with 2,868 call sites." (falsification pass 1, 2026-09-29, `QREC:203`); `C-EID:55-56`: "the original three-byte `ret 0` at `0016D6A0` … That stub is not an error-state proof"; `VTIDX:101`: "`ret` placeholder"; `MODE:352`: "the empty stub `0016D6A0`".
+- Side B: `TICK:454`: "`0016D6A0` is the string-member release."; `TICK:511`: "`0016D6A0` free"; `RTTI:1093-1097`: "each allocation immediately handed back to `0016D6A0` on the same allocator object"; `EID:1114-1116`: "`ecx > 0xB` reports `0016D6A0(0x200)` and clamps the index to 0".
+- Status: **favoured side A** for the body, by the dated §8b measurement (`DUP:224-229`, 2026-09-13) and the dated pass row Q6 (`QREC:217`, 2026-09-29). Neither strikes side B: `TICK:454`, `TICK:511`, `RTTI:1093-1097` and `EID:1114-1116` are unstruck. A port that implements the call as a free or as an error report changes memory or control behaviour at 2,868 call sites. A separate count disagreement on the same address (three tables vs 1,291 classes) is C-V106.
+- page-text only - needs local check
+
+**C-V2.** **`001EC560`: does it require `00265680()` to hold, or to answer zero?** *(found by two readers; merged)*
+- Side A: `TICK:928-929`: "`001EC560` is *the current cutscene slot `01DFE40C` is 0–4, its per-slot flag at `01F832B0` is set, and `00265680()` holds*"; `EVSLOT:152`: "`001EC560` probes `[01DFE40C] ≤ 4 → 01F832B0[index]`, nonzero runs `00265680`."; `EVSLOT:247`: "| `001EC560` | pending probe | 59 B | `01F832B0[marker] != 0` and `00265680()` |".
+- Side B: `C-TICK:209-210`: "`001EC560` = `01F832B0[dword[01DFE40C]] != 0` (index bounded ≤4) **and** `00265680() == 0`"; `C-TICK:326`: "the story word selected by `01DFE40C` out of `01F832B0` is non-zero and `00265680` answers zero".
+- Status: no favoured side. The 2026-09-22 strike note near `C-TICK:199-212` corrects the map-art address, not this polarity. The polarity decides whether the field frame's third entry gate runs or skips while the slot-0 manager is ready.
+- page-text only - needs local check
+
+**C-V3.** **What `00265020` is: the force-fight / console getter, or `Actor_GetWorldPosition`.** *(found by two readers; merged)*
+- Side A: `FORCE:305-308`: "`00265020`'s reader population continues into … The force-fight getter is read wherever the mode matters"; `TUNES:755`: "`00265020` — the console-side fetch the arms share".
+- Side B: `FORCE:327`, `FORCE:342`: "`Actor_GetWorldPosition` (00265020)"; `TUNES:1187`: "`Actor_GetWorldPosition` (00265020)"; `TUNES:1123`: "`00265020` is also called by 16 **Movement**-layer bodies". `FORCE:60` and `FORCE:143` make `00253B90` the force-fight flag reader.
+- Status: no favoured side. Each page states both identities.
+- page-text only - needs local check
+
+**C-V4.** **Console step-size census: two populations, two answers.** *(found by two readers; merged)*
+- Side A: `ARMDIV:44`: "magnitudes 0.01 × 58, 0.02 × 11, 0.05 × 10, 0.1 × 9, 0.001 × 7, 0.03 × 3, 1.0 × 2, 0.005556 × 1, 0.5 × 1"; `CON282:433-437` (the same table, "| **total** | **102** |").
+- Side B: `C-CON:140-141`: "**56 arms step by exactly 0.01**, then 0.1 (7), 0.02 (7), 0.001 (6), 0.05 (5), 1.0 (4), **0.005 (4)**, 0.03 (3) and **0.005556 (2)**" (runtime replay, `C-CON:139`). `ARM-F:123-125` has ids 190–192 stepping "**0.002, scaled**", which is in neither table.
+- Status: no favoured side. The methods differ (static table walk vs runtime replay from zero), and neither page retracts the other. A port's per-arm step constants come from the slices, not these tables (see S-83).
+- page-text only - needs local check
+
+#### 3.1.1 Boot fixups, startup data construction and the application root
+
+**C-V5.** **Where the 1 MiB block's pointer is stored**
+- Side A: `BOOT:350`: "0022A28B  0x0100000 -> (not stored here)"
+- Side B: `BOOT:164-165`: "the 1 MiB block's pointer goes to `01FD4A90` (`0022A2A3`)"; also `C-BOOT:228-230`: "each is followed only by `mov ecx, <next size>` and a store of `rax` into its `.data` pointer slot (`01FD49F0`–`01FD4A90`)"
+- Status: no favoured side (BOOT:165 is a "Narrowed (cited 2026-09-30)" note citing `_types/fields.tsv`, but it does not strike BOOT:350). BOOT:350 still unstruck.
+- page-text only - needs local check
+
+**C-V6.** **Boot seed call site**
+- Side A: `BOOT:38`: "002648..  func_0x00379CF0(0x11B9);      // through a 5-byte thunk -> 00863D30"
+- Side B: `C-BOOT:839`: "a third caller of the seed thunk … survives: exactly `0022A410` and `005843D3`"
+- Status: no favoured side (C-BOOT falsification 2026-09-29 does not mention BOOT:38). `002648..` lies outside `0022A0B0`'s 978-byte body.
+- page-text only - needs local check
+
+**C-V7.** **Order inside `0017D000`: allocate before or after `0017D4C0`**
+- Side A: `FLOAT:83-87`: "+31   call 0017D4C0 … +41   call 00210EC0            allocate" (offsets "SURVIVED, all five exact", FLOAT:431)
+- Side B: `APP:629-630`: "`0017D000` itself allocates an `0x80` record into `[01F7E340]`, then calls three bodies before latching `+0x113C`: **`0017D4C0`** …"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V8.** **`02064ACC` value after boot at default settings**
+- Side A: `BOOT:378-379`: "with the shipped value of `1` the quotient is `2`" (with BOOT:110: "`0022BDF0` … runs first, and then")
+- Side B: `C-BOOT:212-214`: "in the vanilla install with default settings the answer is the non-zero branch — `setting[18] = 1`, quadruple written, `01DFE0B4 = 2`" (so `2 / 2 = 1`)
+- Status: no favoured side; C-BOOT:218-224 adds a PROBABLE ordering ("the engine starts on the 30 fps base and switches later in startup") that would make the boot division read `1` — undecided.
+- page-text only - needs local check
+
+**C-V9.** **`02064AC0`–`02064AD4` "four 1.0f values" overlap integer/byte cells**
+- Side A: `BOOT:377`: "alongside four `1.0f` values written to `02064AC0`–`02064AD4`"
+- Side B: `BOOT:254`: "`02064ACC` \| frame-base constant \| `.data` dword \| `2 / FrameLimit`"; `APP:707`: "the mode-change detect on `02064AD3`"; `C-BOOT:465`: "comparing `movsx b[02064AD3]` against the mode argument" (and MODE contract `C-MODE:451`: "`byte[02064AD3]` (0–6, default→`0022A770`)")
+- Status: no favoured side; the four float addresses are not given (G.2).
+- page-text only - needs local check
+
+**C-V10.** **`001C0D40` lazy or unconditional**
+- Side A: `APP:640`: "`001C0D40` →`[01F81258]` (alloc `0x1B8`, ctor `001BE730`) … the shared shape `cmp [G],0 → jne done → alloc → ctor → store [G]`"
+- Side B: `APP:2437`: "calls `0016D6A0(qword 01F81258 is null)`, then always allocates `0x1B8` bytes … and stores the result at `01F81258`"
+- Status: no favoured side (APP:2437 is OPUS 2026-10-01 interior read but does not strike APP:640).
+- page-text only - needs local check
+
+**C-V11.** **Number of pumped singletons: 16 vs 13**
+- Side A: `APP:227`: "37 callees: 16 are 8-10 byte singleton getters"; repeated `APP:236` "the other fifteen follow", `APP:251-252`, `APP:404`
+- Side B: `APP:299`: "**BE-6 — ~~partly~~ answered 2026-09-27.** The tick pumps **13 lazily-constructed singletons**, not 16."; `APP:479`
+- Status: favoured side B by `APP:299` (dated 2026-09-27 answer). Side A still repeated unstruck at APP:227, 236, 251-252, 404.
+- page-text only - needs local check
+
+**C-V12.** **`0037E0F0` call/lea count**
+- Side A: `FLOAT:253-254`: "`0037E0F0` makes 49 (48 distinct; `004E3110` twice)"
+- Side B: `BOOT:401`: "`0037E0F0` (596 B — 48 call sites, 47 distinct targets: **45** in the `0047xxxx`–`004Fxxxx` band plus member calls `002EFF50`/`002F0110`"; `C-BOOT:521`: "46 straight `lea rcx, …` … each handed to a … initializer, with a lone `jmp 004C3610`"; TSV: 48 rows
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V13.** **`0037DF90` call count**
+- Side A: `FLOAT:253`: "`0037DF90` makes 28"; `FLOAT:108` "26 from the first hub" (into band)
+- Side B: `BOOT:401`: "`0037DF90` (344 B — calls **27** distinct `0047xxxx`–`004Exxxx` bodies"; `C-BOOT:637`: "thirty `lea rcx, 02ADExxx/02AExxxx` + `call` pairs"; TSV: 27 rows
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V14.** **Gap after `02AE8900`**
+- Side A: `FLOAT:528`: "`02AE8900` \| `004F4F80` \| `0x2E0` \| `0x530`"
+- Side B: `members/builder-store-extents.tsv` row 32: `02AE8900 004F4F80 … 0x2E0 0x2E0` (next object `02AE8BE0`, builder `0047A800`, out of band)
+- Status: no favoured side (population difference: FLOAT's table measures to the next in-band pointer; not stated on page).
+- page-text only - needs local check
+
+**C-V15.** **`0022A0B0` described as a hub**
+- Side A: `APP:776`: "`0022A0B0`, the startup chain's second hub"
+- Side B: `FLOAT:157`: "hubs \| `0x0037DF90` (26 calls), `0x0037E0F0` (40 calls)"; EEVU:325 "`0022A0B0`, the startup hub"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V16.** **Role of `0079C140`**
+- Side A: `APP:281-282`: "rewritten by the screen-mode routine `0079C140` from `GetSystemMetrics`"
+- Side B: `TUNES:652` (other 00 page): "its per-frame update is the inherited slot 28 `0079C140`, run by the loop `00796490`"
+- Status: no favoured side (may both hold; neither page reconciles).
+- page-text only - needs local check
+
+#### 3.1.2 World tick, field frame and force-fight mode
+
+**C-V17.** **`001EDDA0` predicate globals**
+- Side A: `TICK:1543`: "`dword[01FCE0C0] != 0` **or** `dword[0209DE38] == 0`"
+- Side B: `TICK:1066`: "(`001EDDA0` — the 27 B `[01DFE0C0] != 0 || [01F82E38] == 0` predicate —"; also `C-TICK:226`: "`[01DFE0C0] != 0 || [01F82E38] == 0` predicate"; `NBR:234`: "`[01DFE0C0] != 0 \|\| [01F82E38] == 0`"; `C-BOOT:288`: "`01DFE0C0` (suppressor) first, then `01F82E38` (flag)"
+- Status: no favoured side (no dated correction); Side B repeated on four lines across three pages.
+- page-text only - needs local check
+
+**C-V18.** **`003DF760` table addresses**
+- Side A: `TICK:901-902`: "pointers `02B59C40[n]` and `02B59C80[n]`, dwords `02B59CC0[n]` and `02B59CE0[n]`"
+- Side B: `TICK:1666-1668`: "`qword[0x2A39C40 + i*8] = r9`, `qword[0x2A39C80 + i*8] = stack arg`, `dword[0x2A39CC0 + i*4] = r8d`, `dword[0x2A39CE0 + i*4] = ecx`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V19.** **Skip pending/active arrays `022CB9C0`/`022CB9D8` vs `021AB9C0`/`021AB9D8`**
+- Side A: `TICK:188-189`: "its row in the pending / active dword arrays `022CB9C0` / `022CB9D8`"; `TICK:178`: "pending bits at `022CB9C0`"
+- Side B: `TICK:2171`: "`0x21AB9C0`/`0x21AB9D8` dword tables, `022CB732` `rax<<7` records"; `TICK:2606-2607`: "the two `02CDC4xx`-region dword masks at `+0x21AB9C0`/`+0x21AB9D8` per slot"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V20.** **Skip-entry stride / `00360710` shape and extent**
+- Side A: `TICK:187-188`: "a 16-byte entry at `022CB730 + (manager × 8 + k) × 16`"; `TICK:178`/`TICK:191-198` describe `00360710` checking live/armed, audio stop, eleven notifications, through `0036084F`
+- Side B: `TICK:1328-1331`: "`00360710` (64 B) — an 8-byte-element range bound: `rsi = movsxd(edx)` count, `r14 = movsxd(ecx)` start … `rdi = r14 + rsi*8` over the `022CB730` array"
+- Status: no favoured side. (64 B cannot contain sites up to `0036084F` cited on the same page.)
+- page-text only - needs local check
+
+**C-V21.** **Timed-record pool `02EBB6F0` (0x50) vs `01EAB6E0` (x80)**
+- Side A: `TICK:789-790`: "the `0x50`-stride pool at `02EBB6F0`"; `TICK:1196`: "whose `0x50`-byte entry at `*02EBB6F0`" with count "dword `02EBB6E0`"
+- Side B: `TICK:2502-2503`: "`ecx` bounds-checks against `dword[01EAB6D8]`, selects the x80 record in `01EAB6E0`" (`00467730`)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V22.** **Loader state `020C51C0` vs `022C51C0`**
+- Side A: `TICK:1577-1579`: "re-polls `[020C51C0]` … returns `([020C51C0] != 0) | !0046DFE0()`"
+- Side B: `TICK:1867`: "`0032E070` (the `022C51C0` loader state-machine pump)"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V23.** **Slot table base `0209BE10` vs `02098E10`**
+- Side A: `TICK:683`: "`00267360` (50 B) | the slot-0 probe … indexes the `0x288`-stride table at `0209BE10`"
+- Side B: `TICK:63`: "**actor-manager slot array at `02098E10`, stride `0x288`**" (and every other `0x288` reference, e.g. TICK:1120-1122, TICK:1584-1585)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V24.** **Frame-mode numbers of the three tick callers**
+- Side A: `TICK:54-56`: "| 2, the field frame | `0022A770` …| 3, the full-menu frame | `MainLoop_UpdateAndRenderFrame` `0022B8C0` …| 5, the capture-backed frame | `0022BC20`"; `TICK:581-583` same
+- Side B: `C-MODE:469-470`: "`00314020 ←` state arms `0022B8C0` (2), `0022BC20` (3), `0022A770` (>6)"; `C-MODE:451`: "(0–6, default→`0022A770`)"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V25.** **`00234520` extent**
+- Side A: `TICK:256`: "**`00234520(slot)`** (109 B)"; `TICK:369`: "| `00234520` | 109 B |"
+- Side B: `TICK:1475`: "`00234520` (~220 B) — 64-aligned stack frame; `ecx == 0` runs `0023B040` (`00234531`/`00234533`)" (TICK:256 puts the slot test at `0023452F`)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V26.** **`00265A20` extent and loop bound**
+- Side A: `TICK:365`: "`00265A20` | 320 B"; `TICK:267`: "up to 32 of them (`00265A8F`)"
+- Side B: `TICK:1435-1437`: "`00265A20` (`ActorSystem_BindBattleUnitsForEligibleRecords`, ~200 B) — loops `dword[rcx+0x20]` slots"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V27.** **`0022BC20` extent vs its tick call site**
+- Side A: `TICK:56`: "`0022BC20` | `0022BCC8`–`0022BCCF`, same label" (ATEL CONTROL)
+- Side B: `TICK:1468-1469`: "`0022BC20` (~80 B) — `0016D6A0(3)`, `0017F740(0)`, `0036F2F0`, then a `"PAD CONTROL"` tagged block" (80 B ends at ~`0022BC70`, before `0022BCC8`)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V28.** **First mode test site**
+- Side A: `TICK:91`: "**This call sits before the mode test (`0031410C`)**"; `TICK:120`: "`0031410C jne -> 00314231`"
+- Side B: `C-TICK:73-74`: "`0025BFB0` is called at `00314078`; the first mode test is `003140CF`"; `C-TICK:68-69` tests "at **`003140CF`, `003140DC`, `00314103`/`00314108` and `00314249`/`0031424E`**" (no `0031410C`)
+- Status: no favoured side (C-TICK falsification 2026-09-29, C-TICK:337, confirms its own sites but does not address TICK's `0031410C`). WT-2's conclusion is the same on both sides.
+- page-text only - needs local check
+
+**C-V29.** **`0036DE70` store value**
+- Side A: `TICK:797`: "it sets `+4 = 4`"
+- Side B: `TICK:1786-1787`: "it stores `bx+4` into `word[+4]`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V30.** **`003DEE10` streaming-slot base**
+- Side A: `TICK:806-807`: "the manager's eight `0x38`-stride streaming slots at `02B58960 + m × 8 × 0x38`"
+- Side B: `TICK:1944`: "`003DEE10` (432 B) is the `0x38`-stride streaming-slot drain … over `02B59360`/`02B59C20`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+#### 3.1.3 Per-frame update gate and system stop registry
+
+**C-V31.** **Enable word width: 16-bit vs uint32**
+- Side A: `GATE:33`: "**A single 16-bit word decides, every frame, which sixteen groups of updates run at all**"; `C-GATE:28`: "One 16-bit word at `01E0C464` decides which subsystems tick"; `C-GATE:103`: "the enable word at `01E0C464`, sixteen bits, every frame"
+- Side B: `C-GATE:45`: "**`uint32`** … *CORRECTED 2026-09-25 (OPUS): this cell said `uint16`. … MSVC does not emit a dword read of a 2-byte global; §3 proves not-`uint8`, not `uint16`.*"
+- Status: favoured side B by "*CORRECTED 2026-09-25 (OPUS)…*" (C-GATE:45). Still repeated unstruck at GATE:33, C-GATE:28 and C-GATE:103.
+- page-text only - needs local check
+
+**C-V32.** **Gate test widths: all `test byte` vs 8 byte + 8 dword**
+- Side A: `GATE:262`: "| one enable word, fifteen masks | 16 `test byte [01E0C464], imm` sites in `0028E290`"; `GATE:53`: "test byte [01E0C464], <mask>   x15"
+- Side B: `GATE:66-67`: "**8 are `test byte`** and **8 are `test dword`**"; `C-GATE:344`: "**8 byte + 8 dword = 16**"
+- Status: favoured side B by the dated pass "## 11. Falsification pass 1 — 2026-09-13 (OPUS)" (GATE:332), which measured "`0x01`–`0x80` as `test byte ptr` × **8**; `0x100`–`0x8000` as `test dword ptr` × **8**" (GATE:345). Still unstruck at GATE:262 (evidence table) and GATE:53 (diagram, which also says "x15").
+- page-text only - needs local check
+
+**C-V33.** **FramePump takes an argument, and the formula ignores it**
+- Side A: `C-GATE:191`: "void FramePump(void) {                      /* 0028E290 */"; `C-GATE:198`: "if (en & 0x0002) Group_00291B90();      /* same bit, second group */"
+- Side B: `C-GATE:82-85`: "**And §2's "none used by the gate logic" is wrong.** `0028E2A0 mov edi, ecx` … `0028E3B7 test dil, 1` gates the second of bit 1's two groups … A reimplementation taking no parameter runs that group unconditionally"
+- Status: favoured side B by "**CORRECTED 2026-09-12 (`OPUS-FRAMEGATE-ISOLATED`)**" (C-GATE:61). The §12 formula (C-GATE:191-209) still has no parameter and no `dil&1` test.
+- page-text only - needs local check
+
+**C-V34.** **Group handler signatures: nullary vs one EMBED child each**
+- Side A: `C-GATE:193-208`: "if (en & 0x0001) Group_00289970(); … if (en & 0x0800) Group_0028C870();"
+- Side B: `C-GATE:439-442`: "§13's reconstruction sketch writes the handlers as `Group_003F9F40()`, `Group_00296860()` and so on — nullary … **They each take one specific EMBED child of the `0209BE80` singleton**"
+- Status: favoured side B by the dated section "(2026-09-18, OPUS)" (C-GATE:437), which explicitly corrects the sketch. The sketch at C-GATE:193-208 is unstruck. Side B cites "§13", but the sketch is §12.
+- page-text only - needs local check
+
+**C-V35.** **Pump argument `word[01E0C2B0]`: single writer, always 0xF vs stop-apply writes 0x10/0x0E**
+- Side A: `C-GATE:301-302`: "`dil&1` — the pump's first argument, `word[01E0C2B0]`, written once at `002539E5` with `0xF` (so always true in this build)"; repeated at `C-GATE:335`: "feeds the pump `word[01E0C2B0]` (single writer `002539E5`, value `0xF`)"
+- Side B: `STOP:299`: "*A/B bits 36..37*, the words `01E0C2B0`/`01E0C2AC` given `0x10` or `0x0E`: … `01E0C2B0` is the argument of the battle-HUD draw `0028E290` … the battle draw tests bit 0 … both words are also restored by the save apply `00253970`"; `STOP:828`: "`002547C0` | 12 B | stores `cx` in word `01E0C2B0` (its entry instruction), then tail-jumps to `003BBF90`"
+- Status: no favoured side. Under side B, every stop that reaches the A/B 36–37 path writes a value with bit 0 clear (`0x10`, `0x0E`), so group 0x0002 B would be skipped. Side A says it always runs.
+- page-text only - needs local check
+
+**C-V36.** **`001EDE80` meaning: pause / cutscene-name-slot counters vs half-rate / frame counters (same logic)**
+- Side A: `GATE:254`: "`001EDE80` returns 1 under the pause predicate (`[01F82E38]` zero or `[01DFE0C0]` set) and otherwise the sum of the two cutscene-name-slot counters `0022A080()` and `0022A030()`"; `C-GATE:297-298`: "`001EDE80` — the pause/cutscene-name-slot predicate"
+- Side B: `GATE:520-523`: "**Group 2 (`0x0002`, the half-rate walker).** … It returns 1 unless half-rate is on (`[01F82E38] != 0` and `[01DFE0C0] == 0`). Under half-rate it returns the sum of the two frame counters `[02064AD8]` and `[02064AA8]`."
+- Other 00 pages: `C-BOOT:290` "`1`, unless the mode is on and unsuppressed — then `0022A080() + 0022A030()`"; `C-BOOT:462` "`001EDE80`'s live-path sum is `d[02064AD8] + d[02064AA8]`"; `BOOT:505` "`dword[01F82E38] = 1`" on "the 60 fps arm" (BOOT:502). These support "mode = 60 fps", not "pause".
+- Status: no favoured side. The truth tables agree; the meaning differs (pause vs 60-fps half-rate), and so does what the counters are.
+- page-text only - needs local check
+
+**C-V37.** **Group 0x1000 (Libra) member selection: "or" vs "kept only when"**
+- Side A: `GATE:254`: "collects into `022C1740` the members whose status words `+0x64` or `+0x3C` carry `0x80000003` (KO, Stone, X-Zone) or whose field record bit 15 (`00377C20`) is set"
+- Side B: `GATE:537-539`: "A member carrying a terminal status (`statusWord1|statusWord2 & 0x80000003`: KO, Stone, X-Zone) is kept only when `FieldData_GetActiveFieldRecordBit15` holds."
+- Status: no favoured side. The 2026-09-25 section (GATE:510) does not say it corrects UQ-28. The two also name the group differently: "a party incapacitation scan" (GATE:254) vs "Libra" (GATE:541-542).
+- page-text only - needs local check
+
+**C-V38.** **Target-line node `+0xD44`: timer vs radian angle field**
+- Side A: `GATE:225`: "`+0xD44` a timer bounded by the per-kind constants at `00916028`/`0091602C` with the kind byte from `00916010`"
+- Side B: `GATE:252`: "both constants act on the SAME radian field, `node+0xD44`, as a floor and a minimum step … the field they act on is radian-valued"
+- Status: no favoured side. Both are dated 2026-09-17 (FABLE).
+- page-text only - needs local check
+
+**C-V39.** **`0028CD80` operand: a 0x20-byte lane vs the `_7EA0` object**
+- Side A: `GATE:254`: "then `0028CD80` and `0028CE90` on the two `0x20`-byte lanes at `+0x30` and `+0x50`: a two-lane rotating fade"
+- Side B: `C-GATE:1646`: "`0028CD80` … `word[rcx+0x28]` bit 0 gates the update … `byte[+0x2A]` … `float[+0x20]` … `dword[+0x2C] += 0x10`" (offsets past a 0x20 lane). Compare `C-GATE:1690`: "`0028CE90` … `+0x14` bit `0` … `+0x13` ramps … `+0x10` accumulates", which uses different offsets for the same roles.
+- Member tsv: `manager-sub-0209be80-7ea0-accesses.tsv` places `0028CD80` at `_7EA0` base disps 0x10/0x20/0x24/0x28. `manager-sub-7ea0e-ntry-accesses.tsv` (lanes +0x30 stride 0x20) has only `0028CE90`.
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V40.** **`0029FB50` reached through `0028BB50` by the 0x0020 group vs `0028BB50` has one caller in group 0x0004**
+- Side A: `GATE:481`: "the fixed-width decimal digit writer the `0x0020`-group widget spawner reaches through `0028BB50`"
+- Side B: `GATE:157-158`: "**`E8` = 1** (`0028C4D3`, the walk above), **`E9` = 0** … One caller, no address-taken reference." (the walk is group 0x0004's `0028C4C0`)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V41.** **`00377C20` called "the one word this page is named for"**
+- Side A: `GATE:401-402`: "**That getter is the one word this page is named for**, so the crossing is the AI layer reading the same gate as the fifteen subsystems"
+- Side B: `GATE:283-284`: "`01E0C464` has **16 references in the entire image. All 16 are in `0028E290`, and all 16 are `test`.**"
+- Status: no favoured side by a dated correction. Side B is confirmed by the dated pass at GATE:347. `00377C20` is `FieldData_GetActiveFieldRecordBit15`, not `01E0C464`.
+- page-text only - needs local check
+
+**C-V42.** **What writes the 23,224-byte hole: only the constructor memset vs also the 0x61F0 battle-menu clear**
+- Side A: `C-GATE:1094-1095`: "23,224 bytes **never read and never individually written, and zero-initialised wholesale exactly once, at construction.**"; `C-GATE:1130`: "So on the extended sweep the constructor's `memset` remains the **only** bulk write reaching the hole."
+- Side B: `C-GATE:711-719`: "> **RETRACTED 2026-09-19 (OPUS) — it does extend into it** … **a 0x61F0-byte clear of the handed-out object** … the hole at `+0xB244` is **inside it**"; `C-GATE:734-735`: "**`4d05cc7a0`'s bound — "the constructor's memset remains the ONLY bulk write reaching the hole" — is wrong by one.**"
+- Status: favoured side B by "RETRACTED 2026-09-19 (OPUS)" (C-GATE:711). Side A is still unstruck at C-GATE:1094-1095 and C-GATE:1130.
+- page-text only - needs local check
+
+**C-V43.** **`_8FA0` size: 0x1130 vs 0x1110**
+- Side A: `GATE:476` (struck) and `C-GATE:473` (struck) "`_8FA0` (`0x1130`)"; `C-GATE:612`: "| `_8FA0` | 4,400 |" (4,400 = 0x1130); `C-GATE:582`: "touch **sixteen offsets** across 4,400 bytes"; `C-GATE:600`: "103 offsets over 43,456 bytes" (the total uses 4,400)
+- Side B: `C-GATE:502`: "**`_8FA0`'s size corrected `0x1130` → `0x1110`, 2026-09-21 (OPUS), closing `CON-124`.**"; the C-GATE:499 table row says `0x1110`
+- Status: favoured side B by the 2026-09-21 correction. Still repeated unstruck as 4,400 at C-GATE:582, 612 and in the 43,456 total at C-GATE:600.
+- page-text only - needs local check
+
+**C-V44.** **Allocation site of the `0x8030` child block**
+- Side A: `C-GATE:731`: "`00291750` allocates `0x8030` at `0029176F` and stores it at `00291779`"
+- Side B: `C-GATE:1132-1133`: "`0029176A` allocates `0x8030` bytes and `00291779` stores that pointer"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V45.** **`00226280` behaviour: AND over 28 slots vs best-fit search over 1024 entries (other 00 page)**
+- Side A: `C-STOP:74-78`: "**SS-1 — The combined restriction is an AND over ALL TWENTY-EIGHT slots** … The loop walks `01FD4410` to `01FD46B0` in steps of `0x18` — **28 slots**"; `STOP:172-173`
+- Side B: `TICK:1553-1557`: "the loop at `002262E4` walks a packed table rooted at `01FD4410` with `ebp = 0x3FF` as the element mask and `0x20000000000` as a validity bit … — a best-fit/free-slot search over a 1024-entry index space, not a linear lookup."
+- Status: no favoured side by an explicit correction. C-STOP's dated pass (C-STOP:305-320) and EXP-191 support side A but do not mention TICK.
+- page-text only - needs local check
+
+**C-V46.** **Record B `+0x14`: flag argument stored vs zeroed at start**
+- Side A: `STOP:94-95`: "The **flag** argument (stored at record B `+0x14`) changes the records of ids 4, 6 and 7 only."; `STOP:44`: "a flag byte `+0x14`"
+- Side B: `C-STOP:242-243`: "**`+0x14` byte — zeroed** at start/reset in both records (`00225E30`/`00226003`/`00226008`)"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V47.** **`00225CD0` labelled "start"**
+- Side A: `C-STOP:210-211`: "start `00225CD0` and stop-sweep `00225EB0` both set it"
+- Side B: `C-STOP:53`: "| cancel | `00225CD0` |"; `STOP:80`: "**Cancelling** — `00225CD0(id, fade)`"
+- Status: no favoured side. C-STOP:211-212 then calls `00225CD0` the one that "**clears** the request's bitset bit", which is consistent with cancel.
+- page-text only - needs local check
+
+**C-V48.** **UI close path listed among "start-only" bodies**
+- Side A: `C-STOP:233-235`: "Start-only bodies that return with dirty raised: `002273B0`, … `00252D90`, `002544C0`, `002630FD`, `00313EB1` (start-A)"
+- Side B: `STOP:241-243`: "released by … the UI close path (`00252D90`, `002544C0`)"; `STOP:827`: "`002544C0` … a non-negative result tail-calls `00225CD0(result, -1)`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V49.** **System-stop flag word address: `0215F1DC` vs `0215F1D0` (same bits 0, 1, 9, 20)**
+- Side A: `STOP:271`: "sets bits 0, 1, 9 and 20 of the system-stop flag word `0215F1DC`"; `STOP:483`: "`or dword[0215F1DC], 0x100203`"
+- Side B: `STOP:832-834`: "`002E06B0` … clears bits 0, 1, 9 and 20 of dword `0215F1D0`" (likewise `002E2400`, `002E2440`)
+- Status: no favoured side. These may be two different words written by different functions. The page does not say.
+- page-text only - needs local check
+
+**C-V50.** **`0035C7B0` on `022C83E8` bit 8: sets vs tests**
+- Side A: `STOP:271`: "Its raiser `0035C7B0` … sets bit 8 of the request word `022C83E8`" (and `TICK:845` "sets `022C83E8` bit 8")
+- Side B: `STOP:526-527`: "`0035C7B0` (~62 B) — `dword[022C83E8] & 0x100` test"; `STOP:794`: "`0035C7B0`'s `& 0x100` test"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V51.** **Initial bit pattern of the enable word**
+- Side A: `C-GATE:289`: "Bit 4 is therefore set (`0xFFFF` at ship)"
+- Side B: `C-GATE:173`: "The word ships as `FF FF FF FF`"; `GATE:233`: "the word ships `0xFFFFFFFF`"
+- Status: no favoured side (side B is repeated on more pages). The value matters under C-GATE:45's `uint32`.
+- page-text only - needs local check
+
+#### 3.1.4 Battle runtime mode ladder, diagnostics log, duplicated names, all-ones convention
+
+**C-V52.** **Transition table `01EECFC0`: which column is which (summon and chocobo rows)**
+- Side A: `MODE:350`: "| mode | same-mode (`commit = 0` / `≠ 0`) | leave (`commit = 0` / `≠ 0`) |" with `MODE:352`: "| 1 summon | the empty stub `0016D6A0` / `00313600` … | `00313730` … / `00313650` …" and `MODE:353`: "| 2 chocobo | `00304180` … / `00304060` — the mount | `00304400` — disarms and detaches the rider … / `00304140` …" (i.e. col 1 = `00313600` / `00304060`, col 2 = `00313730` / `00304400`)
+- Side B: `MODE:364`: "| 1, 1 | `00313730` |" ; `MODE:365`: "| 1, 2 | `00313600` |" ; `MODE:368`: "| 2, 1 | `00304400` |" ; `MODE:369`: "| 2, 2 | `00304060` |" ; corroborated by `C-MODE:392-393`: "`00304060`/`00304140` — `call rax` slots 10/11 of the `01EECFC0` hook table" (slot 10 = row 2 col 2)
+- Status: no favoured side (the 2026-09-14 binding table, MODE:357, does not say it overturns the column headers). MODE:350-353 unstruck.
+- page-text only - needs local check
+
+**C-V53.** **`00313650`: resets when bit 0 is set or when it is clear**
+- Side A: `MODE:352`: "`00313650` — resets through `00313840` if bit 0 is still on"
+- Side B: `MODE:366`: "`+0x5B04` bit 0 **clear** → tail `00313840`, set → `ret` (the doc table's "if bit 0 is still on" reads it the other way; `je` at `0031365E` jumps on clear)"
+- Side C: `MODE:580`: "`00313650` sets bit 0 through `00313840` when it is clear (the summon reset, §2c);" — while `MODE:110` says "`00313840` (reset) clears"
+- Status: favoured side B by `MODE:357` "*(2026-09-14 — NOCALLER-INSTALLERS: the matrix's five no-caller members bound.*" with the explicit note at MODE:366. Side A (MODE:352) still unstruck; MODE:580 contradicts both on what `00313840` does to bit 0.
+- page-text only - needs local check
+
+**C-V54.** **`00307200` / `00307240`: setters or getters**
+- Side A: `MODE:121`: "00307200 (set bit 3 -> mode 5)  <- thunk 0037D110 <- 00351E50"; `MODE:122`: "00307240 (set bit 2 -> mode 4)  <- thunk 0037D120 <- 00351B40"; `C-MODE:57`: "| the four setters | `00307200` bit 3 · `00307240` bit 2 · `00303D90` bit 1 · `00313550` bit 0 |"
+- Side B: `MODE:1050`: "Two plain `jmp` thunks into the `02EBF190 + 0x5B04` bit getters."; `MODE:1054`: "| `0037D110` | `00307200` | `dword[+0x5B04] >> 3 & 1` |"; `MODE:1055`: "| `0037D120` | `00307240` | `dword[+0x5B04] >> 2 & 1` |"
+- Status: no favoured side (no dated correction either way; C-MODE:343-345 2026-09-26 executed "the bit-3/bit-2 setters (one write, none when equal)" without naming addresses). MODE:1050-1055 unstruck.
+- page-text only - needs local check
+
+**C-V55.** **`00313550` operates on which object**
+- Side A: `MODE:1241-1242`: "`ecx` is compared against bit 0 of the `+0x5B04` dword on the `02EC4BA9` object"
+- Side B: `C-MODE:71-72`: "`*(void **)0x02EBF190` | 8 | the `BattleSystemState` block" / "`state + 0x5B04` | 4 | **the mode flags word.**"; `MODE:110`: bit 0 getter/setter `003135E0`/`00313550` on the same word
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V56.** **Width and meaning of `state+0x5AE0`**
+- Side A: `MODE:464`: "state + 0x5AE0              u32    chocobo flags: bit 0 timers armed, bit 1 turbo on, bits 2-3 turbo charges (3 per ride)"
+- Side B: `C-MODE:74`: "| `state + 0x5AE0` | 8 | the special-sequence word; bit 1 and bits 2–3 are touched by the bit-1 setter |"
+- Also (MODE cites it at MODE:310; outside 00, not audited): `11-Party/Battle-State-Block/the-battle-state-block-field-map.md:115`: "| `+0x5AE0` | 4 | **the event-party state word** of the mode ladder"
+- Status: no favoured side. MODE:381-383 places "the global special-sequence state" at `022C2160`, not in the block.
+- page-text only - needs local check
+
+**C-V57.** **Persisted footprint: one mode word or two**
+- Side A: `MODE:280-281`: "the persisted footprint is **`state+0x5AD0 .. +0x5AEF` (32 bytes) plus the mode word at `+0x5B04`**" (capture list MODE:272-277 has no `+0x5B08`; C-MODE:80 "writes it to `rec+0x28`")
+- Side B: `MODE:375-377`: "The persisted footprint §"It survives area transitions" describes is therefore the chocobo's block plus the two mode words — a ride survives a zone change and a save."
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V58.** **Battle slot map base and shape (`+0x5A58` vs `+0x5A5A`)**
+- Side A: `MODE:536`: "**battle slot map** ([the battle-state-block field map](…) `+0x5A58`, four 18-byte entries)"
+- Side B: `C-MODE:149`: "(~~`+0x5A58`, four 18-byte entries~~ the four mapping-class tables at `+0x5A5A`/`+0x5A6C`/`+0x5A7E`/`+0x5A90`, nine u16 each, classes 1–4 of `0031B9F0`; entries 0, 1, 3 below are classes 1, 2, 4 — corrected 2026-09-14)"
+- Side C (other 00 page): `HUBS:168`: "then one of five byte arrays of the block at `+0x5A58`…`+0x5A90`"
+- Also `C-MODE:400-401`: "returns `byte[state + slot*2 + 0x5A90]` (`0031C2C7`) — the class-4 mapped row" (byte read at a 2-byte stride, vs "nine u16").
+- Status: favoured side B by `C-MODE:149` "corrected 2026-09-14" (outside 00, not audited, the cited field map at line 91 carries the same 2026-09-14 correction). MODE:536 still repeats `+0x5A58` four 18-byte entries unstruck; HUBS:168 "five byte arrays" unstruck.
+- page-text only - needs local check
+
+**C-V59.** **`002E73C0`: tail-calls `003E6AA0` when `+0x284` is non-zero or zero**
+- Side A: `C-MODE:490-491`: "002E73F3  cmp  dword [rcx + 0x284], 0" / "002E73FA  jne  0x3E6AA0                  ; TAIL CALL"; `C-MODE:498-499`: "it is reached only when `[record + 0x284]` is non-zero"; `MODE:555`: "when its `+0x284` is non-zero, calls `003E6AA0(record, n)`"
+- Side B: `C-MODE:655-656`: "only when the record's `[+0x284]` word is zero does it tail `003E6AA0`" (also "word" vs "dword")
+- Status: no favoured side (C-MODE:650 is dated 2026-09-18, later than RMD-3's 2026-09-15, but does not say it corrects it).
+- page-text only - needs local check
+
+**C-V60.** **Ladder callers: the six direct wrapper callers listed as callers of `0030D9A0`, and outside the stated address range**
+- Side A: `C-MODE:112-115`: "**Callers of the ladder:** `PartyControl_RecomputeSuppressionFromLeaderBattleState` (`0023B040`), `InputGameplay_ArbitrateDigitalInputAndModalState` (`00253C70`), `BattleUnit_ApplyUnitDefinition` (`0023A570`), … `00235EA0`, `00320230`, `0035BC50`, `00313DB0` (inline), and the two mode getters."
+- Side B: `MODE:194-203` (those six are the direct callers of the wrapper `00303EC0`, not of `0030D9A0`); `C-MODE:444-445`: "The ladder `0030D9A0` has **20 call sites, all in the `0x2FF…0x326` battle cluster**" (excludes `0023B040`/`0023A570`/`00235EA0`/`00253C70`/`0035BC50`)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V61.** **Function extents vs the page's own interior citations**
+- Side A: `MODE:1006`: "`00303F00` (~27 B)" (repeated MODE:1023); Side B: `MODE:316-319` cite `00303F59`, `00303F98`–`00303FC8`, `00303FED`–`00303FFD`, `0030400A`–`0030403B` inside the turbo handler `00303F00`.
+- Side A: `MODE:1012`: "`00304060` (~11 B) — `0031B8C0(3)` non-null gate"; Side B: `MODE:315` "the mount handler starts countdown channel 1 … (`003040C6`–`003040E4`)", `MODE:317` "set at the end of the mount handler `00304131`".
+- Side A (other 00 page): `TICK:1493`: "`00304440` (~27 B) — `byte[02EBF190 + 0x5AE0] & 1` gate"; Side B: `MODE:315` cites `00304458`–`00304468`, `00304474`–`00304485`, `003044A6`–`003044E7`, `MODE:318` `003044EC`–`00304584` in the frame handler.
+- Side A: `MODE:988`: "`00306760` `BattleAction_UpdateSpecialPresentationSequence` (293 B)"; Side B: `MODE:334` "at `00306931`–`003069F3`", `MODE:339-341` "`003069F8`–`00306A31` … `00306A6D`–`00306A87`"; `ONES:232-238` `00306877`–`00306891`; (outside 00, not audited) battle-state-block field map:160 "(`00306760`, 911 B)".
+- Status: no favoured side for any of the four.
+- page-text only - needs local check
+
+**C-V62.** **`022C1F50` accumulated-HP table entry layout**
+- Side A: `MODE:391`: "the accumulated-HP table: 32 entries of 16 bytes (`+8` the target unit, `+0x10` the HP delta), the source at `+0`"
+- Side B: same line — a field at `+0x10` lies outside a 16-byte entry.
+- Status: no favoured side (internal).
+- page-text only - needs local check
+
+**C-V63.** **Who writes `02EAED3C`**
+- Side A: `LOG:281-282`: "It is the module's `_tls_index`, written by the loader — **not a logging index**."
+- Side B (other 00 page): `APP:772`: "| `00189CE0` | `00189D4C` | `call _Init_thread_header` — TLS-init bracket around a `0018A620` call run; also writes `02EAED3C` |"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V64.** **Who publishes the sink pointer `02CB6150`**
+- Side A: `LOG:201`: "the second magic static `005CD9C0` publishes that object's address as the sink pointer `02CB6150`"
+- Side B: `LOG:269-270`: "005CDB75  call 0x5CDA30                   ; build it" / "005CDB81  mov  [rip + 0x26E85C8], rax     ; -> 02CB6150" (the log call itself stores `005CDA30`'s result); `LOG:285-286`: "`005CD9C0` … guard `02CB6158`, `lea rax, [02CB6150]`, return"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V65.** **The log call's "gate" and argument order (corrected; still echoed)**
+- Side A: `LOG:132-136`: "/* the gate, and it is per-thread */ … if (*(int32_t *)0x02CB6158 > lvl) … return; /* dropped */"; `LOG:129-130`: "`__stdio_common_vsprintf(…, buf, /* size */ 0x4000, fmt, /* locale */ (void *)-1, ap);`"
+- Side B: `LOG:275-276`: "**Both branches reach `005CDB31`.** … **No message is ever dropped**"; `LOG:319-320`: "**`r9 = -1` is `count`, i.e. `_TRUNCATE`**, and the locale is the **`0`** … §5 reads the `-1` as the locale and omits `count`."
+- Status: favoured side B by `LOG:117`: "**⚠ The whole "gate" reading below is withdrawn (2026-09-13, §9).**" Still repeated: `LOG:236` (2026-09-14 note) "the level `cmp` is at `005CDB29`"; `APP:897` "`__stdio_common_vsprintf` into a `0x4000` stack buffer" (import is `…vsnprintf_s`, LOG:208).
+- page-text only - needs local check
+
+#### 3.1.5 Encoded-id space, class registry, query record, basis helpers, ABI recovery
+
+**C-V66.** **Who touches the descriptor table: 15 functions vs 28**
+- Side A: `EID:291-297`: "A whole-image census of the table base `01EEBCC0` finds fifteen functions: … — the only code that touches the descriptors at all."
+- Side B: `C-EID:268-270`: "49 rip-relative references into the table sit in 28 functions: both packed handlers, both bitset handlers, the query dispatchers and the equipment snapshot pair … among them."
+- Also within EID: `EID:163-164`: "`InventoryEquipment_SnapshotAndClearTemporaryState` (`0030FBE0`) walks it by the descriptors' counts (`01EEBCFC` = class 5's `+0x3C`, `01EEBD28` = class 6's `+0x10`" — not in the fifteen. Other 00 page: `TICK:2217`: "`00308DE0` (149 B) is a world-tick body - `003008A0` single call plus `01EEBD54`/`01EEBF0C`."
+- Status: favoured side B by "*Corrected 2026-09-30 (OPUS, on FABLE's and SWE2-AUDIT-SEM's findings; `falsify_encoded_id.py` E10 / E11):*" (C-EID:267-268) and E10 "**BROKEN**" (C-EID:400). EID:736 keeps "15 functions" valid only for the base address. EID:296-297 "the only code that touches the descriptors at all" is still unstruck.
+- page-text only - needs local check
+
+**C-V67.** **00309EC0 dispatches to query vs "mutate or query"**
+- Side A: `CLS:252-253`: "the mode dispatcher `00309EC0`, which routes by nibble to a record's mutate or query handler"
+- Side B: `C-EID:345`: "`qword[+0x50]` non-null tail-dispatches `jmp rax` … **as `handler(id, 0)`**"; `CLS:631-633`: "`jmp qword[row+0x50]` … tail-dispatches the row's mode-0 handler"
+- Status: favoured side B by "*Corrected 2026-09-26 (OPUS, contract owner).*" (C-EID:347) with argument capture "at both query handlers" (C-EID:351). CLS:252 (2026-09-30 section) still says "mutate or query".
+- page-text only - needs local check
+
+**C-V68.** **00309EC0 argument order**
+- Side A: struck "~~with `(0, cx)`~~" (C-EID:345)
+- Side B: `CLS:632-633`: "tail-dispatches the row's mode-0 handler with `(edx=0, ecx=cx)`"; `C-EID:345` "**as `handler(id, 0)`**"
+- Status: agree after correction (C-EID:347, dated 2026-09-26). No live conflict; recorded for completeness.
+
+**C-V69.** **00309EC0 out-of-range return**
+- Side A: `CLS:633`: "Out-of-range ids return 0."
+- Side B: `EID:132-134`: "return −1 for `0xFFFF`, −1 for a nibble above `0xE`, index the record by the nibble, bound `id & 0xFFF` by `+0x3C`, and tail-call `+0x50` … **a class without a query handler answers 0**" — the out-of-range-index result is not stated; `C-EID:141`: "`FFFF` and invalid nibble are rejected separately."
+- Status: no favoured side (not a direct contradiction; the index-out-of-range value is stated only at CLS:633).
+- page-text only - needs local check
+
+**C-V70.** **00309440 calls the validator vs leaf**
+- Side A: `CLS:211-212`: "`00322C50` itself is Gameplay-owned — called by `0031B9F0`/`0031C5D0` and called *from* `00301AD0`, `00309440`, `00323910`, `00327CB0`"
+- Side B: `CLS:248`: "the validator and `00309440` are leaf code, EXP-143"; body EID:718-726 / CLS:466-472 has no call.
+- Status: no favoured side (no dated correction), but both instruction listings show no call.
+- page-text only - needs local check
+
+**C-V71.** **Function extents in "exclusive subtree" sections**
+- Side A: `EID:804`: "`0031C5D0` (~105 B) — six-register body"; `EID:793`: "`0030B270` (`BattleIdClassD_RefreshPrerequisiteRuntimeFlags`, ~105 B)"
+- Side B: `EID:740`: "`0031C5D0` is 8,136 bytes"; `CLS:173`: "`FUN_0031C5D0` (8,136 B)"
+- Status: no favoured side by dated correction; ~105 B is also given for two unrelated functions.
+- page-text only - needs local check
+
+**C-V72.** **"Exclusive" subtree members that have other callers**
+- Side A: `CLS:601-609`: "The `003008A0` exclusive subtree — 1 member bound … `00309F30`"
+- Side B: `CLS:574`: "page-cited `Equipment_EvaluateCandidateLoadoutAndBuildDerivedStats` (0030A4E0) … call … `Inventory_QueryEncodedItemStateByClass` (00309F30)"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V73.** **Validator class mapping (other 00 page)**
+- Side A: `NBR:329`: "every class from 1 to 32 resolves to one registry slot (four slots serve more than one class: `02EBF110` classes 22..24, `02EBF068` classes 15, 30, 31, `02EBF138` classes 19, 20, `02EBF038` classes 25, 32), class 13 concatenates three slots"
+- Side B: `CLS:91-92`/`CLS:98`: class 13 "four counts summed", class 19 "*range `0xE000`–`0xEFFE`*", class 22 "*literal bound 4*", class 23 "*literal bound 9*"; `CLS:519-520`: "`00322FA6  mov ecx, 4` … `00322FAF  mov ecx, 9`"
+- Status: favoured side B by "(corrected 2026-09-13)" (CLS:113), "**Added 2026-09-13**" (CLS:119), "Falsification pass 1 — 2026-09-30 (OPUS)" E4 "Arm `00322F63` loads `0xE000` and `0xEFFF`" (C-EID:394), and "**CLOSED 2026-09-23**" four-slot sum (C-EID:250-255). NBR:329 (dated 2026-09-17) still repeats the old mapping unstruck.
+- page-text only - needs local check
+
+**C-V74.** **Class 16 census cites the class-15 arm address**
+- Side A: `EID:355-356`: "a whole-image rip-relative census of `02EBF060` finds only the validator (`00322EBB`)"
+- Side B: `CLS:104`: "`00322EBB` serves 15 / 30 / 31"; `CLS:431`: "`00322EBB` → 15/30/31"
+- Status: no favoured side (EID's site may be the class-16 arm next to it; not stated).
+- page-text only - needs local check
+
+**C-V75.** **002F9920 bucket table address**
+- Side A: `EID:936-937`: "buckets the id into a 28-entry pointer table at `02FDA3D80`" (nine hex digits)
+- Side B: `C-EID:358`: "`002F9920` (314 B) is the bucketed sub-table search over `02EC3D80`/`02F973C0`"; `C-EID:126`: "Description ready/root arrays | `02EC3D80`, `02F973C0`"
+- Status: no favoured side; side A is malformed.
+- page-text only - needs local check
+
+**C-V76.** **Empty-record default of the text resolvers (other 00 page)**
+- Side A: `HUBS:560-561`: "Returns `01C8B638` (a static empty record) on any miss" (002F9860)
+- Side B: `EID:937`: "a null entry returns the `01CEB638` default" (002F9920); `HUBS:837-838` "answers the `01CEB638` empty row"
+- Status: no favoured side (different functions; differ by one digit).
+- page-text only - needs local check
+
+**C-V77.** **Slot-descriptor header layout**
+- Side A: `EID:1152`: "`word[+6]` is the row count … `0020E600(dword[+8])` resolves the table base, `word[+4]` strides `ecx` rows in" (shop table `02EBF158`)
+- Side B: `CLS:84`: "compare the id against the count at its `+4`"; `C-EID:278`: "`0020E600(dword [table directory + 0xC])`"; `C-EID:358`: "`word[+8]*i + 0020E600(+0xC)`"
+- Status: no favoured side (may be two formats; not stated).
+- page-text only - needs local check
+
+**C-V78.** **Jump-table address given as RVA**
+- Side A: `CLS:648-650`: "`003241D0()` minus `0x15` indexes a 9-entry jump table at `002038E4`"
+- Side B: page convention `CLS:80`: "`jump table at 00323054`" from `0x120000 + 0x203054`; `002038E4` + `0x120000` = `003238E4`.
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V79.** **00323890 argument**
+- Side A: `EID:540-541`: "Classes 25 and 32 store `00323890(row+5)` at `+0x23` … the result of `003241D0` minus `0x15`"
+- Side B: `CLS:648`: "`00323890` (83 B) is the class-map decoder: `003241D0()` minus `0x15`"
+- Status: no favoured side (whether row+5 reaches `003241D0` is not stated).
+- page-text only - needs local check
+
+**C-V80.** **BASIS translation slots +0x0C/+0x1C/+0x2C vs +0x14/+0x24/+0x34**
+- Side A: `BASIS:130-131`: "those three are written **individually into `+0x0C`, `+0x1C` and `+0x2C`** — **the fourth slot of each of the three rows**"
+- Side B: `BASIS:62-64`/`BASIS:67`: fourth column at "`+0x14`, `+0x24` and `+0x34`"
+- Status: no favoured side; agrees only if `00189130`'s destination is the structure `+0x08`, which is not stated.
+- page-text only - needs local check
+
+**C-V81.** **BASIS scratch offsets**
+- Side A: `BASIS:75-77`: "`0062DE6E  mov dword ptr [rcx + 0x44], eax ; the scratch fourth slots are zeroed` … `+0x54` … `+0x64`"
+- Side B: `BASIS:89-90`: "`movups xmm6, xmmword ptr [rcx + 0x38] ; the saved fourth column` … `[rcx + 0x48] ; column A`"; `BASIS:110`: "both use `+0x48 … +0x70` as scratch" (row fourths would be `+0x54/+0x64/+0x74`; `+0x44` would be inside the saved column).
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V82.** **00300BA0 "shared query" vs modify entry**
+- Side A: `EID:1036-1037`: "falls into `003008A0` - the two-ones-shim into the shared query."
+- Side B: `EID:279-280`: "`Inventory_ModifyEncodedItemAndUpdateDiscoveryState` (`003008A0` …) is the one entry that changes what the party owns"
+- Status: no favoured side (label; the shim also fixes `absolute = 1`, `channel = 1`, which no other line confirms).
+- page-text only - needs local check
+
+#### 3.1.6 Shared transform workbench (EE/VU0 register bank, save/restore, primitives)
+
+**C-V83.** **vf00 writer count (2 vs 3)**
+- Side A: `WB:365`: "**It has exactly two writers and they write the same thing.**"; `WB:381-382`: "the two-writer count is exact rather than merely unseen."
+- Side B: `EEVU:70`: "Exactly **3 writers**, all storing (0, 0, 0, 1)."; `C-PRIM:398-405` (three: `0036D990`, `0036D9E0`, `0036DD80`); `PRIM:87` "all three of its writers (`0036D9A8`, `0036D9E8`, `0036DD87`)"; WB itself `WB:628-631` (`0036DD80` … `movups [01EF93F0],xmm0`).
+- Status: no favoured side by an explicit strike of WB:365; C-PRIM:418-420 (2026-09-19) explains that a sweep "addressed to" the cell "found two, missing `0036DD80` entirely". WB:365/381 still unstruck.
+- page-text only - needs local check
+
+**C-V84.** **What `022D8F10` is: `$zero` vs caller-filled operand row / table**
+- Side A: `EEVU:64`: "**0 writers, 44 readers.** … which is `bne rX, $zero`."; `EEVU:89`: "GPR[0]  $zero           never written"
+- Side B: `SAVE:162`: "`022D8F10` is an *operand the caller must have left there*"; `SAVE:292`: "no rip-relative store writes that row, so the callers fill it through pointers"; `PRIM:1502`: "`word[r9]` keys the `022D8F10` table"; `PRIM:610`: "loads the `022D8F10` staging row"
+- Status: no favoured side. If A holds, the modulate's row term (SAVE:188) and UQ-42's ceiling byte are always zero. (Outside 00, not audited: `02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md:687` says `003D2B60` is "writing `022D8F10`"; SAVE:287 cites that page.)
+- page-text only - needs local check
+
+**C-V85.** **Rows protected by Save: only `022D8F30`/`022D8F90` vs also `022D8F40`**
+- Side A: `SAVE:146-147`: "**`022D8F30` and `022D8F90` are the only two addresses that anything in this image bothers to protect**"; `WB:281-282`: "`022D8F30` (5 callers) or `022D8F90` (3), with one saving both"
+- Side B: `C-SAVE:341`: "one passes `ecx = 2` (`004300F9`, saving rows `022D8F30`+`022D8F40`)"
+- Status: no favoured side (C-SAVE's 2026-09-23 "CLOSED" does not strike SAVE §5 or WB:282).
+- page-text only - needs local check
+
+**C-V86.** **`0044BAC0`'s save window: one call (`sqrtf`) vs `0044B8C0` inside it**
+- Side A: `SAVE:296`: "there is **no branch and exactly one call - `00861F14 sqrtf`**"; `C-SAVE:175`; `C-SAVE:428` (1 call)
+- Side B: `SAVE:381`: "`0044B8C0` (160 B) is the matrix-scalar helper `0044BAC0` runs inside its save window"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V87.** **How `0044BAC0` reaches the other users**
+- Side A: `C-SAVE:167-168`: "The ninth, `0044BAC0`, can — and only through `0026EE00`"
+- Side B: `SAVE:296`: "`0044BAC0` (3,461 B) reaches `0026EE00`, `002F1D90`, `003AFDD0`, `003D8E50`, `0042FDB0` and `00431D30`"; `C-SAVE:413`: "`0044BAC0` transitively reaches **six of the other eight**"
+- Status: no favoured side (C-SAVE §15a dated 2026-09-12 adds the six but does not strike line 168).
+- page-text only - needs local check
+
+**C-V88.** **Save capacity: "at most two rows" vs any count**
+- Side A: `C-SAVE:342-343`: "a single save window can protect at most two rows — a whole matrix is unreachable through this convention."
+- Side B: `C-SAVE:62-63`: "A caller saving a 64-byte matrix must pass four pointers"; `C-SAVE:261` (executed at depths "0, 1, 2, 3, 4, 5 and 8"); `C-SAVE:470`
+- Status: no favoured side (within one page).
+- page-text only - needs local check
+
+**C-V89.** **Scope of `0036D9E0`'s clear: "whole area" vs `022D91B0`–`022D9428`**
+- Side A: `WB:253`: "`0036D9E0` ── clears the whole area, reads nothing"; `C-WB:141`: "`0036D9E0` clears it wholesale"; `C-SAVE:199-201` "the wholesale-clear hazard stays: clearing the region between `00502280`'s store and `00501820`'s read would corrupt the parameter"
+- Side B: `WB:230`: "`for (row = 022D91B0; row < 022D9428; row += 16)`"; `WB:391`: "80 slot writes `022D91B0`–`022D9428`" (excludes `022D8F00`–`022D91AF`, including `022D8F0C`, the GPRs and ACC)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V90.** **UQ-38 bracket: 41 vs 31 "C by both instruments"**
+- Side A: `EEVU:262`: "The bracket stands (47 whole-shaped, 41 C, 95 undecided)."
+- Side B: `EEVU:261`: "*(corrected 2026-09-28, FABLE … both instruments agree on C+fragments for **31** members…)*"; `EEVU:4` "static bracket 47 / 31 / 95"; `EEVU:259`
+- Status: favoured B by `EEVU:261` "~~the 41 both instruments call C+fragments are settled that way~~ *(corrected 2026-09-28 …)*"; TSV agrees (31). "41 C" still unstruck at EEVU:262.
+- page-text only - needs local check
+
+**C-V91.** **Composer stack staging offsets**
+- Side A: `PRIM:131`: "(`[rsp+0x40]` and `[rsp+0x80]`)"; `C-PRIM:88`
+- Side B: `C-PRIM:319`: "**§15a: the staged offsets are `[rsp+0x40]`–`+0x70` and `[rsp]`–`+0x30` in the current body; the row's `+0x80` does not appear**"
+- Status: favoured B by the dated falsification pass `C-PRIM:331` "## 15a. Falsification pass 1 — 2026-09-12 (OPUS)"; A still unstruck at PRIM:131, C-PRIM:88.
+- page-text only - needs local check
+
+**C-V92.** **`00398F90` at title screen: not running vs withdrawn**
+- Side A: `C-PRIM:199`: "**So `00398F90` is not running at the title screen**"
+- Side B: `PRIM:180`: "~~**So `00398F90` is not running at the title screen**~~ — **WITHDRAWN 2026-09-21 (ASTRA …)**"
+- Status: favoured B by PRIM:180; still unstruck at C-PRIM:199.
+- page-text only - needs local check
+
+**C-V93.** **`00398F94` loads ACC vs row 1**
+- Side A: `PRIM:625`: "`00398F94` is `movups xmm0, [rip+...]` loading the ACC row"
+- Side B: `PRIM:389`: "`00398F94 movups xmm0, [rip + 0x1f40215]` resolves to **`022D91B0`**" (ACC is `022D91A0`, EEVU:95)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V94.** **What `003970A0` reads: rows 1–4 vs "vector-unit-5 quadrant"**
+- Side A: `EEVU:71`: "is rows 1–4"; `PRIM:30`: "VU0 vector rows 1–4"
+- Side B: `PRIM:695-696`: "a 64-byte snapshot of the vector-unit-5 quadrant into caller storage"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V95.** **Sine table address `01F404E0` vs `01F004E0`**
+- Side A: `PRIM:729`: "indices into the sine table `r8 = 01F404E0`"
+- Side B: `PRIM:812`: "`r8 = [01F004E0]` LUT base"; `PRIM:893`, `PRIM:913`, `PRIM:1570`, `PRIM:1654`; other 00 page `TICK:1046`: "**`01F004E0` is a 32,768-entry sine table**"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V96.** **`022D9130`: CLIP flag word vs "staging bank"**
+- Side A: `EEVU:67`: "`0025A8E0`: `shl eax, 6` … That is `VCLIP`."; `EEVU:93`
+- Side B: `WB:589`: "bumps the `022D9130` staging bank"; `WB:593-594`: "`0025A8E0`'s `022D9130` cells are the same staging bank the `00433830` blend kernel consumes."
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V97.** **Who prints the emulation banner (`00908D80`)**
+- Side A: `EEVU:74`: "`0036D990` stores vf00 and prints … the completion line, through `0017D280`"; `BOOT:403` "`0036D990` (`00908D68`/`80`)"
+- Side B: other 00 page `APP:1661-1673`: "`0022CB90` (138 B) … then two `0017D280` report calls on the `00908D68` / `00908D80` strings"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V98.** **Banner string text**
+- Side A: `EEVU:38`: "`"PS2 Assembly emulation initilization completed! "`"
+- Side B: `WB:368`: "`"PS2 Assembly emulation initilization completed! *** \n"`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V99.** **Save `lea` instruction addresses**
+- Side A: `SAVE:66-67`: "`0036D953  lea  r9, [02EC0800]`" / "`0036D95A  lea  r8, [02EC0A00]`"
+- Side B: `C-SAVE:353-354`: "values array `lea`'d at `0036D954` … pointers `lea`'d at `0036D95B`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V100.** **`022D94B0`/`B4`: pointers vs record table**
+- Side A: `WB:222-223`: "`022D94B0   void*` … `022D94B4   void*`"; `WB:144`, `WB:207`, `WB:394`, `WB:523`
+- Side B: `WB:315`: "**BQ-17 ANSWERED 2026-09-12 (FABLE): not two pointers — the base of a 32-entry table of 24-byte records**"; `C-WB:113-116` "*Corrected 2026-09-23 …*"
+- Status: favoured B by WB:315 / C-WB:113; A unstruck at WB:144, 207, 222-223, 394, 523.
+- page-text only - needs local check
+
+**C-V101.** **Call sites "156" vs 231**
+- Side A: `PRIM:290` "the 156 call sites around them are not"; `PRIM:352` "156 call sites were counted"; `C-PRIM:379` "§14's 156 call sites"
+- Side B: `PRIM:55`: "(~~156 call sites~~ — 156 is the *caller* sum; the **sites** are **231**, 129 and 102; corrected 2026-09-13)"; `C-PRIM:283`
+- Status: favoured B by PRIM:55; A unstruck at PRIM:290, PRIM:352, C-PRIM:379.
+- page-text only - needs local check
+
+**C-V102.** **`0039AF70` sites and source (232 / always `02AEEA20`)**
+- Side A: `PRIM:309-310` (struck) "`0039AF70` (232 raw call sites) always copies **`02AEEA20`**"
+- Side B: `PRIM:319-320` "**Corrected 2026-09-13** … `0039AF70` does **not** always copy `02AEEA20` … **116 unique call sites**"
+- Status: favoured B by PRIM:319; not repeated unstruck in the group (PRIM:314 "the 232 sites" is still unstruck in the same paragraph).
+- page-text only - needs local check
+
+**C-V103.** **`003977B0` product order**
+- Side A: `PRIM:807` (struck) "`M[rcx] = M[rcx] · M[rdx]`"
+- Side B: `PRIM:807` "*Corrected 2026-09-27 …*: in row-major storage the result is `M[rcx] = M[rdx] · M[rcx]`"
+- Status: favoured B; not repeated unstruck; heading "post-multiply" (PRIM:805) kept, with the 2026-09-28 note on convention.
+- page-text only - needs local check
+
+#### 3.1.7 Object model (RTTI and the vtable method index)
+
+**C-V104.** **Distinct virtual-method count 6,886 vs 6,883**
+- Side A: `VTIDX:61`: "**2,286 vtables across 2,248 classes, holding 6,886 distinct method addresses**"; `VTIDX:78`: "| distinct method addresses | **6,886** |"
+- Side B: `RTTI:372`: "**6,883 is correct.** Section 6. **AS-7.**"; `RTTI:489`: "**The correct count is 6,883**"; also `VTIDX:2572`: "| **in a vtable** — what RTTI can name | **6,883** |"
+- Status: favoured side B by `RTTI:464` "## 6. Falsification pass 2026-09-02 (second) - AS-7 settled" (same date as VTIDX's recovery, VTIDX:28-29; VTIDX:183 cites RTTI §§13–14 so VTIDX postdates it). Side A still repeated unstruck at VTIDX:61 and VTIDX:78; VTIDX contradicts itself (VTIDX:2572/2655).
+- page-text only - needs local check
+
+**C-V105.** **Unambiguously-owned set: 4,275 (includes the 3 AS-7 non-pointers) vs 4,272**
+- Side A: `VTIDX:30`: "**4,275 function addresses, each tied to exactly one C++ class and vtable slot.**"; the appendix lists `00444F4C` (`PLOD::PUtilityLOD` slot 3, VTIDX:251), `006C6543` (slot 16, VTIDX:1238), `00755F6D` (slot 11, VTIDX:1362); `VTIDX:2541`: "**4,275 admitted, 4,275 published, 0 missing, 0 extra**" (re-derived from `methods.tsv`)
+- Side B: `RTTI:95`: "| exactly one class | **4,272 (62.1 %)** |"; `RTTI:888`: "**they are inline ASCII strings, not pointers** … `vtable_map.py` requires a known function *entry* and rejects them"; `RTTI:476-478`: the three are mid-function (`FUN_00444340` + 0xC0C etc.)
+- Status: favoured side B by `RTTI:464`/`RTTI:489` (dated falsification pass 2026-09-02, "A vtable slot never points mid-function", RTTI:481). 4,275 − 3 = 4,272 and 2,611 + 4,272 = 6,883. VTIDX repeats 4,275 unstruck (VTIDX:2, 30, 42, 79, 92, 2536, 2580, 2671) and README:33. A port keying `(class, slot)` from VTIDX would install three ASCII constants as methods.
+- page-text only - needs local check
+
+**C-V106.** **`0016D6A0` folding scale: three tables vs 1,291 classes**
+- Side A: `RTTI:103-104`: "(`0016D6A0`, a bare `ret 0`, is shared by three unrelated tables)"
+- Side B: `VTIDX:101`: "0016D6A0          3 B   in 1,291 classes   <- _guard_check_icall, a `ret` placeholder"
+- Status: no favoured side. Side A unstruck.
+- page-text only - needs local check
+
+**C-V107.** **rtti_recover.py vtable count before the fix: 2,286 vs 2,284**
+- Side A: `RTTI:39-40`: "**Both find exactly 2,286 vtables**"; `RTTI:330`: "| vtables | **2,286** | **2,286** |"; `RTTI:787-792`: "`classes.tsv`'s `vtables` column **sums to 2,286** … rtti_recover.py   2,286 vtables  ->  2,133 classes"
+- Side B: `RTTI:864`: "vtables                  2,284        2,286          2,286"; `RTTI:853-854`: "both were silently dropped. That is the missing 2 of 2,286 vtables."
+- Status: no favoured side (§14 undated). Side A repeated unstruck in the page banner (RTTI:39).
+- page-text only - needs local check
+
+**C-V108.** **vtable_map.py row/slot count: 25,794 vs 25,798 (gap 191 vs 195)**
+- Side A: `RTTI:490-491`: "25,794 named slots here against 25,603 there, 191 apart"; `RTTI:569`: "| (address, class, slot) triples | 25,603 | 25,794 |"
+- Side B: `RTTI:77`: "| vtable slots | 25,798 |"; `RTTI:712`: "`vtable_map.py` emits **25,798** rows"; `RTTI:865`; `VTIDX:184-185`: "differing by 1 row out of 25,798"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V109.** **Cause of the method-table gap: vtable_map.py demangler (AS-8) vs rtti_recover.py demangler**
+- Side A: `RTTI:373-375`: "**ANSWERED** - a **naming** difference … This tool's demangler doubles the outer namespace on template classes."; `RTTI:587`: "**AS-8 closed - no data defect, a cosmetic defect in this pass's own tool.**"
+- Side B: `RTTI:712-714`: "The gap was blamed on the demangler defect. **It is not caused by that** … the old splitter was **injective**"; `RTTI:797-800`: "`rtti_recover.py`'s demangler **discards template arguments**"
+- Status: no favoured side (§§12–14 undated). AS-8 answer still unstruck at RTTI:373-375 and RTTI:571-572 ("The 191 extra triples are entirely **class-name strings**").
+- page-text only - needs local check
+
+**C-V110.** **`00385F60` extent: ~144 B vs contains `003863D0` (2,302 B)**
+- Side A: `RTTI:1009`: "`00385F60` (`BattleFormula_ResolveTargetResult`, ~144 B)"
+- Side B: `RTTI:683`: "`003859FF` in `00385680` alongside `003863D0` in `00385F60`" (0x470 bytes past entry); `08-Combat-Formula/Steal/the-steal-roll.md:149`: "| `00385F60` | 2,302 B |" (outside 00, cited via RTTI's step-table link, not audited)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V111.** **Slot numbers in VTIDX follow-up tables vs VTIDX appendix (5 roots)**
+- Side A (follow-up tables): `VTIDX:3225` `0062FB30` "(10)"; `VTIDX:3227` `006342B0` "`PClassDescriptorDynamic` (0)"; `VTIDX:3229` `006421B0` "(0)"; `VTIDX:3243` `00643530` "(0)"; `VTIDX:3255` `00680D80` "(0)"
+- Side B (appendix): `VTIDX:1448` `0062FB30` slot 14; `VTIDX:1478` `006342B0` slot 7; `VTIDX:1667` `006421B0` slot 10; `VTIDX:1707` `00643530` slot 10; `VTIDX:562` `00680D80` slot 10
+- Status: no favoured side (appendix is the attacked set, VTIDX:2543 "0 mismatches", but that attack predates the follow-up tables). Script check of all `root | class (slot)` rows in VTIDX:2456-5219 found only these 5 mismatches.
+- page-text only - needs local check
+
+**C-V112.** **Class attribution in update sections taken from the neighbouring table column**
+- Side A: `VTIDX:3399`: "`001F3740` (355 B) is the `RenderSSSObj`/`btSphereShape` vtable row body"; `VTIDX:3407`: "`001F2A20` (323 B) is the `CopyBufferObj`/`btInternalTriangleIndexCallback` vtable row body"; `VTIDX:2865`: "`00215320` — the appendix's `CharacterOrderedObject` slot-1 method (`0084AAC0`)"
+- Side B: `VTIDX:2351`: `001F3740` | `RenderSSSObj` | 1 and `00837F00` | `btSphereShape` (second triple); `VTIDX:2326`: `001F2A20` | `CopyBufferObj` | 1 and `00835FC0` | `btInternalTriangleIndexCallback`; `VTIDX:2404`: `00215320` | `CharacterOrderedObject` | 1 and `0084AAC0` | `btTriangleConvexcastCallback` | 0
+- Status: no favoured side; the Bullet names and `0084AAC0` belong to the other triple on the same appendix row.
+- page-text only - needs local check
+
+**C-V113.** **GameApplication has / lacks a deleting destructor**
+- Side A: `VTIDX:2468`: "NEITHER   30      no deleting destructor at all"; `VTIDX:2505`: "The remainder of `NEITHER`: `GameApplication` (never deleted — see [the application root]…)"
+- Side B: `APP:129`: "### The object is exactly `0x1140` bytes, and slot 0 says so"; `APP:361`: "| **`GameApplication` has no deleting destructor** | slot 0 being one | **OVERTURNED.** |"; VTIDX's own appendix lists slot 0 `0017CC70` (VTIDX:2185)
+- Status: favoured side B by `APP:340` "## 10. Falsification pass 1 - 2026-09-02" ("OVERTURNED", APP:361). Side A still unstruck at VTIDX:2505; `README:31` also still says "Never deleted, hence no stated object size." This also moves the NEITHER/A_ONLY counts in VTIDX:2464-2472.
+- page-text only - needs local check
+
+**C-V114.** **GameApplication vtable slot count: 30 vs 31**
+- Side A: `RTTI:237`: "| `GameApplication` | 30 | the root application object |"
+- Side B: `APP:28`: "a vtable of 31 slots at `0x008C5760`"; `APP:354`: "| 31 vtable slots | a 32nd function pointer | **SURVIVED.**"
+- Status: no favoured side (APP's dated pass tests 31 against 32, it does not address RTTI's 30).
+- page-text only - needs local check
+
+**C-V115.** **`00863850` (GiColorRect slot 1): execute-against-device vs exception thunk**
+- Side A: `VTIDX:2496`: "**They are render command objects, and slot 1 is execute-against-device.**" (Gi* family); appendix `VTIDX:2441`: `00863850` | `GiColorRect` | 1
+- Side B: `VTIDX:3375`: "`00863850` (738 B) is an exception-thunk body - the `008C5F80`-`008C5FD0` rdata run"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V116.** **`001C0F20` identity**
+- Side A: `VTIDX:2739`: "`SaveloadManager_ParseDisableAutosaveList` (`001C0F20`, 2,028 B)"
+- Side B: `VTIDX:3367`: "`001C0F20` (2,028 B) is the `008F6600`-vtable object body - 10 `001EDF00` string copies, the `"EASTL basic_string"` vtable string"
+- Status: no favoured side (could both hold; neither cross-references the other).
+- page-text only - needs local check
+
+#### 3.1.8 Shared-state accessors and the ownership boundary
+
+**C-V117.** **Shared scratch page object count: 62 vs 13**
+- Side A: `OWN:159`: "Re-derived from writer sets, the page holds **62 objects, not 13**"
+- Side B: `OWN:277`: "**Do not treat `022D8F00`–`022D9500` as one region.** It is 13 objects"; also `OWN:405`: "It is **thirteen objects**, one of which is RNG control state."; `README:42`: "why `022D8F00`–`022D9500` is thirteen objects rather than one."
+- Status: favoured side A by `OWN:157` "**CORRECTED 2026-09-02 — the object count below is wrong**" (and WB:439 "### CORRECTED: 62 objects, not 13"). Corrected claim still repeated unstruck at OWN:277, OWN:405, README:42.
+- page-text only - needs local check
+
+**C-V118.** **Size of the `022D8F00`–`022D9500` area: 1,436 vs 1,536 bytes**
+- Side A: `OWN:404-405`: "that `022D8F00`–`022D9500` is *one* 1,436-byte shared scratchpad"
+- Side B: `WB:202`: "`022D8F00`–`022D9500` | the transform workbench | BSS region, 1,536-byte"; `WB:212`: "022D8F00 .. 022D94FF        1,536 B"
+- Status: no favoured side (no dated correction; 0x600 = 1,536 by the page's own bounds).
+- page-text only - needs local check
+
+**C-V119.** **Number of wrong sub-labels: three vs two**
+- Side A: `OWN:39`: "**Three labels within it do not hold**, and they are named."; `OWN:429`: "### FOUND: three labels that are wrong"; `OWN:490-491`: "with three named exceptions in the sub-labels"; `README:40`: "**Three sub-labels are wrong**"
+- Side B: `OWN:282`: "**TWO are wrong (corrected 2026-09-22, FABLE):**"; `OWN:298-299`: "**ANSWERED 2026-09-26 … two** labels are wrong, not three."
+- Status: favoured side B by OWN:282 / OWN:298 (dated 2026-09-22, 2026-09-26). Still repeated unstruck at OWN:39, OWN:429, OWN:491, README:40.
+- page-text only - needs local check
+
+**C-V120.** **`005004C0` callees: 39 callees vs no call / forty jump targets**
+- Side A: `OWN:194`: "39 callees — a router, but a large one"; `OWN:293`: "`005004C0` (497 B, 39 callees) is a switchboard"
+- Side B: `OWN:283`: "no `call` in its 497 bytes and forty tail-jump targets"; `OWN:438-441`: "**forty distinct `jmp` targets** … the graph's “39 callees” are those tail jumps"
+- Status: no favoured side on 39 vs 40 (the 2026-09-22 correction explains "callees" as jumps but leaves 39 ≠ 40 unreconciled).
+- page-text only - needs local check
+
+**C-V121.** **`003B8670` objects: 15 private vs 15 written / 8 exclusive**
+- Side A: `OWN:306-307`: "15 private objects including `0209218C+20` and `020925A0+12` that nothing else in the image writes"
+- Side B: `OWN:358`: "15 written objects, 8 of them exclusive"; `OWN:446`: "`003B8670` (15 written objects, 8 exclusive)"
+- Status: no favoured side (side A is inside a struck box, OWN:304-308 `~~`, so it is struck text; side B unstruck).
+- page-text only - needs local check
+
+**C-V122.** **`02F97348` described as private state, but other 00 pages read/write it**
+- Side A: `OWN:514`: "**The private state is the current action context.** The singleton `[02F97348]`"
+- Side B: `TICK:2765`: "`003A7050` (581 B) is the twin timer-decay channel the world tick runs on singleton `02F97348`"; `TICK:1170`: "for the four dwords `+0x110` to `+0x11C` of `*02F97348`, calls `002FC340` on each non-zero one and zeroes it"; `C-TICK:295`: "`003A3E30` … consult on singleton `02F97348`"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V123.** **`00433830` write footprint: 84 consecutive bytes vs 52-byte run + 11 others vs ~0x380 block**
+- Side A: `OWN:230-232`: "(it writes 84 consecutive bytes of one buffer) instead of the correct **1 run of 52 bytes plus 11 others**"
+- Side B: `OWN:395-397`: "**Eighty-four consecutive bytes.** One buffer … the same function writes **12 objects**, the largest a 52-byte run"; `OWN:573`: "writes `022D9304`, tail of a `022D8F90`-based scratch block of ~0x380 bytes"
+- Status: no favoured side (84 consecutive bytes cannot coalesce into a 52-byte largest run under the stated ≤8-byte gap rule; OWN:573 is a third extent).
+- page-text only - needs local check
+
+**C-V124.** **`00433830` role: tessellation helper vs blend kernel**
+- Side A: `OWN:195`: "shared tessellation helper"; `OWN:272-273`: "reached from tessellation, mesh building and colour packing paths"
+- Side B: `PRIM:593`: "the dst2 channel kernel — no calls; a pure-SIMD weighted blend over the `022D8Fxx` staging cells"; `WB:594`: "the `00433830` blend kernel"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V125.** **Audio play constants labels (pan/volume) — corrected, but struck labels repeated**
+- Side A: `NBR:84`: "~~"volume `0x40`, parameter `0x7F`"~~"; `NBR:270`: "forwards `(0, id, volume, parameter)` to the audio manager singleton"; `NBR:284`: "`(manager, 0, id, volume byte, parameter)` … masks the parameter to `0x7F` a second time"; `NBR:293`: "`(handle, id, volume, parameter)`"
+- Side B: `NBR:81`: "pan 0x40, volume 0x7F"; `NBR:84-90`: "**They are the other way round** … the **`0x40`** to `002256F0` — **the pan wrapper** … the **`0x7F`** to `002257E0` … a level, normalised."
+- Status: favoured side B by `NBR:84` "until 2026-09-21 (FABLE)". The old "volume" (second arg) / "parameter" (third arg, the 0x7F-masked one) labels are still used unstruck at NBR:270, NBR:284, NBR:293 (and "parameter" at NBR:99-101).
+- page-text only - needs local check
+
+**C-V126.** **`0020E600` subsystem reach: 17 vs 21**
+- Side A: `HUBS:481`: "| 17 | 815 | `ImageAddress_ResolveRuntimePointer` | runtime infrastructure |"
+- Side B: `NBR:336`: "`ImageAddress_ResolveRuntimePointer` (10 B, 815 callers in 21 owning subsystems)"
+- Status: no favoured side (different dates/methods: HUBS 2026-09-02, NBR 2026-09-14).
+- page-text only - needs local check
+
+**C-V127.** **`002F8060` size: 648 B vs ~128 B**
+- Side A: `HUBS:211`: "| `002F8060` | `BattleUnit_TryTriggerNearbyAuthoredFieldAction` | 648 B |"
+- Side B: `HUBS:543`: "`002F8060` (`BattleUnit_TryTriggerNearbyAuthoredFieldAction`, ~128 B)"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V128.** **Opcode 128: inline vs calls `002EB740` (page vs TSV)**
+- Side A: `action-timeline-opcodes.tsv` row opcode 128: "128	60	003B92F3	(inline, no call)"
+- Side B: `OWN:537`: "~~128 and a dozen others are inline without a call~~ *(Corrected 2026-09-30, SWE2-DATA …: opcode 128 calls `002EB740` … as event kind 5 with that target"
+- Status: favoured side B by the OWN:537 dated correction (2026-09-30). The TSV still carries the uncorrected row.
+- page-text only - needs local check
+
+**C-V129.** **Opcode 37 dispatch (page vs TSV)**
+- Side A: `action-timeline-opcodes.tsv` row 37: "37	34	003B9234	003333B0 FUN_003333b0" (no `002EB740`)
+- Side B: `OWN:520-527`: "opcodes ~~13, 26 and 34~~ **13, 26, 34 and 37** *(corrected 2026-09-29, FABLE: opcode 37 was missing)* dispatch other timeline events the same way … 37: kind 4."
+- Status: favoured side B by the OWN:521 dated correction (2026-09-29). The TSV row is not updated (it may reach the dispatch by an inline jump, as the 128 correction shows; not stated).
+- page-text only - needs local check
+
+**C-V130.** **Opcodes 10/11 callee `003ACA90`**
+- Side A: `OWN:532-533`: "**10** / **11** run the render reset family … (`003ACA90`, `003AFD30`, `003B6930`"
+- Side B: TSV opcode 11 row: "003B81A0 FUN_003b81a0; 003ACA80 FUN_003aca80; 003AFD30 …" (no `003ACA90`)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V131.** **`02098E10` rows: five slots vs "rows < 3 only" config table**
+- Side A: `NBR:301`: "**The records** are the five actor-manager slots."; `C-TICK:60`: "the actor-manager slot array, stride 0x288 -- FIVE slots"; `HUBS:165`: "class … (must be `< 5`…)"
+- Side B: `OWN:694-698`: "`byte[obj+0x15]` picks a row of the `02098E10` config table (0x288-stride, rows < 3 only) … everything else (kind >= 3 …) forwards"
+- Status: no favoured side (OWN may be stating only that function's bound; it names the array a "config table").
+- page-text only - needs local check
+
+#### 3.1.9 Developer tuning console: dispatcher, tunables, second table, event slot, names
+
+**C-V132.** **Stepping arms: all bidirectional vs 51 one-way**
+- Side A: `CON282:391`: "**102 of 102** fixed-step arms have this shape — a `test` on a register flag, then a `subss` and an `addss` against the *same* constant. Not one arm steps in a single direction."
+- Side B: `C-CON:262-263`: "~~110 arms carry both `addss` and `subss`~~ **110 arms reach `addss`, and 59 of them also reach `subss`; 51 step one way only** *(CORRECTED 2026-09-29, falsification pass 1)*"
+- Status: on the mnemonic count, favoured side B by "*(CORRECTED 2026-09-29, falsification pass 1)*" (C-CON:263) and D10 "**corrected**: 110 arms reach `addss`; 59 also reach `subss`" (C-CON:382). The corrected claim is still repeated unstruck at CON282:90 "(`addss` *and* `subss`, one arm doing both) | **110**". On *direction*, no favoured side: CON282:465-468 shows arms that step both ways with one `addss` (sign from a ±1.0 register), so "one way only" by mnemonic may not mean one direction.
+- page-text only - needs local check
+
+**C-V133.** **How arm extents are bounded**
+- Side A: `CON282:85-86`: "Classifying each of the 226 by the instructions between its entry and the next arm's"
+- Side B: `C-CON:386-389`: "My first arm census cut the body at each next table entry. … Arms share tail code, so that cut is wrong. The counts above follow each arm's control flow from its entry"
+- Status: favoured side B by the 2026-09-29 pass (C-CON:364, 386-389). CMDNAMES:402 "bounding it at the next *address* is right" sides with neither. CON282:86 and 294 ("each arm's instruction range classified between its entry and the next arm's") are still unstruck.
+- page-text only - needs local check
+
+**C-V134.** **Whether 0.005556 is a literal constant**
+- Side A: `C-CON:141-142`: "The last two are loaded as no literal. The arms compute them"
+- Side B: `CON282:416-423`: "The step census, with the sign composed, is exactly symmetric" … "| 0.005556 | 1 | 1 |"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V135.** **Literal-constant census (1.0, extra constants)**
+- Side A: `CON282:101`: "1.0  x8"
+- Side B: `C-CON:376`: "survives: all eleven, including 1.0 ×11. The census also finds 0.5 ×4, −0.02 ×3 and 0.002 ×3, which the table did not list"
+- Status: no favoured side. C-CON:134-137 itself calls the difference "method, not error".
+- page-text only - needs local check
+
+**C-V136.** **Where the +0.01 constant lives**
+- Side A: `CON282:162`: "| `008F30E4` | `.rdata` f32 | `+0.01` — the dominant step, referenced 88 times |"
+- Side B: `CON282:400-401`: "the pool holds `+0.01` at `009002BC` and `-0.01` at `009002F4` as separate floats"; `CMDNAMES:419`: "steps it up or down by the constant at `009002BC`"
+- Status: no favoured side. Also CON282:383 has `[008F30E8]` as 0.05, next to `008F30E4`.
+- page-text only - needs local check
+
+**C-V137.** **What indexes the authored-code table (console id vs field id)**
+- Side A: `C-CON:168-169`: "The renderer indexes the table by the id itself (`001CDBDF`–`001CDBF7`: `[base + id*16 + 0x1CD6E68]`)"; `C-CON:291`: "code  = qword[0x01DF6E68 + id*16]"
+- Side B: `CON2:75`: "**Answered 2026-09-30 (SWE2-CONTRACT): they are map-pack names, and the table is indexed by field id.**"; `CON2:249`: "(fieldId from the singleton's +0xAB4)"
+- Status: favoured side B by that dated answer (CON2:75-83), which also answers the contract's `dst0104` question. C-CON:80 already says "index from `[r15+0xAB4]`". Still unstruck: C-CON:158-165 (I-7, "area codes", "a reading of the table as a per-id key"), C-CON:290-292 (§12), C-CON:305-308 (§14 items 1–2).
+- page-text only - needs local check
+
+**C-V138.** **Authored-code table extent and NULL count**
+- Side A: `C-CON:68`: "| **authored codes** | `01DF6E68` in `.data` | **16** | 294 (ids 0–293) | `id` |"; `C-CON:261`: "**A NULL code pointer** → 183 of the 294 entries"
+- Side B: `C-CON:77`: "**CORRECTED 2026-09-25 (OPUS) - the table is 1,314 entries long, not 294.**"; `CON2:241`: "`.data`, 1,314 × 16 B | … 601 codes"
+- Status: favoured side B by the 2026-09-25 correction. 294 is still repeated unstruck at C-CON:68, 73 ("for all 294 entries"), 158, 261, 291 ("NULL in 183 of 294") and 321 ("all 294 entries decoded").
+- page-text only - needs local check
+
+**C-V139.** **`008AB7C0`: getter vs destructor vs registration**
+- Side A: `CON282:249`: "the 12-byte getter `008AB7C0` returns it and has no listed caller"
+- Side B: `TUNES:72`: "`lea  rcx, [rip+0x749399]    ; -> 008AB7C0, the destructor`"; `TUNES:540-541`: "`lea rcx, [008AB7C0]` and `jmp 00808B90` — the `atexit` registration of its teardown"
+- Side C: `TUNES:1214-1216`: "`lea rcx, [02CB7FD0]` then `jmp 005DDDB0` … registers the `02CB7FD0` record with the `005DDDB0` registration body"
+- Status: no favoured side. Outside my pages, ARM-E:239-241 (00 folder) agrees with side B ("`atexit(destructor)`").
+- page-text only - needs local check
+
+**C-V140.** **Block defaults: constructor vs none**
+- Side A: `CON282:328`: "in the zero-filled tail of `.data` — no file image, built at run time."
+- Side B: `TUNES:65-67`: "**Corrected 2026-09-03: "uninitialised, built at run time, no file image" was wrong.** The block is a **C++ static object** with a constructor and an `atexit` destructor, and its defaults are immediates in `.text`."
+- Status: favoured side B by the dated correction (TUNES:65), refined by TUNES:542-544 (2026-09-13): no file image, loader-zeroed, then constructed. Still unstruck: CON282:328; TUNES:169 "`.data`, uninitialised"; TUNES:270 "uninitialised `.data` neighbourhood".
+- page-text only - needs local check
+
+**C-V141.** **`001F0AD0`'s write extent in the block**
+- Side A: `TUNES:188`: "+390 .. +44F   shadow scalars and counts   001F0AD0; includes the four mMapShadow* names below"
+- Side B: `TUNES:932`: "span **`02CB8160` … `02CB8404`**" (that is, `+0x190..+0x434`); `TUNES:520`: "**Do not patch `+190..+434`.**"; `TUNES:958-959`: "ending at `001F1543` → `02CB83E8`"; `TUNES:362-365`: the `mMapShadow*` offsets `+438..+444` are named by `001C7940`
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V142.** **When the loaders run: per frame vs scene load**
+- Side A: `TUNES:493-494`: "meanwhile, every frame: / `001C7940 / 001C3D50      read the same block through movss`"
+- Side B: `TUNES:518`: "overwritten from config at scene load"; `CON2:253`: "map load: 001C7940 -> 001FF740("mUseLinearTonemap") -> 00193D50 block +0x4A2"
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V143.** **Next-frame effect: "nothing double-buffers it" vs a double-buffered snapshot**
+- Side A: `C-CON:249-250`: "a press takes effect on the next frame, because the block the arms write is the block the renderer reads; nothing double-buffers it."
+- Side B: `CON282:250`: "The snapshot is 0x598 bytes, change-checked by a 0x598-byte memcmp and double-buffered at owner +0x4E0, and it is NOT the GPU layout."
+- Status: no favoured side. They may describe different objects (the block vs the staged snapshot). The block-to-GPU latency is not settled.
+- page-text only - needs local check
+
+**C-V144.** **Is `00265680` itself a field-frame entry gate?**
+- Side A: `EVSLOT:232-234`: "it is one of the field frame's three entry gates"; `EVSLOT:254`: "| `00265680` | manager-slot readiness gate | 149 B | one of the field frame's entry gates |"
+- Side B (00): `TICK:919`: "**What the field frame's three entry gates `001800E0`, `001800C0`, `001EC560` test**". There `00265680` is a sub-test of `001EC560` (TICK:928-930).
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V145.** **Who reads the classification flags**
+- Side A: `EVSLOT:173`: "The flags are read both by console arms and by the script driver's wait-park gate (§4)."
+- Side B: `EVSLOT:185-186`: "The consumer set is closed: seven call sites in four functions, `00180120`, `0025DF00`, `0034CF90`, `0034D790`, all read"
+- Status: no favoured side. EVSLOT:185 is a dated pointer but does not strike line 173.
+- page-text only - needs local check
+
+**C-V146.** **Config-screen id set and case-table extent**
+- Side A: `CON282:262`: "the arms carry exactly **16** ids: `0x86`, `0xA6`, `0x10A`, `0x110`–`0x119`, `0x11B`–`0x11D`" (same at 216, 271); `CON282:271`: "a 23-entry table (`0017DBBF`..`0017DBDE`)"
+- Side B: `CON282:270`: "a 23-way jump table (`0017DBC2`..`0017DBDE`) whose cases forward ids of 12 and above (`0x86`, `0x10A`, `0x110`..`0x11D`) and none below"
+- Status: no favoured side. Line 271 is later (2026-09-18) but does not explicitly overturn 270. Side B omits `0xA6` and adds `0x11A`, which is id 282, `Save Config File`, on the shared arm (CMDNAMES:365).
+- page-text only - needs local check
+
+**C-V147.** **`0017D490` extent**
+- Side A: `CON2:98`: "**has a dedicated nineteen-byte accessor:**"
+- Side B: `CON2:230`: "| `0017D490` | `WorldField_GetDebugWeatherSlotOverride` | 20 B |"
+- Status: no favoured side. The quoted asm, `0017D490`..`0017D4A3 ret`, spans 20 bytes.
+- page-text only - needs local check
+
+**C-V148.** **Dispatcher return type**
+- Side A: `CON282:176`: "`int DevConsole_DispatchCommand(void *ctx, u8 a, u8 b, int id)`"
+- Side B: `C-CON:55`: "| return type | none established — the arms are `jmp` targets inside one body, not callees. |"
+- Status: no favoured side.
+- page-text only - needs local check
+
+#### 3.1.10 Developer tuning console: the arm catalogue (work division and slices A-I)
+
+**C-V149.** **Block tunables "consumed by nothing" vs copied whole into the shader constant buffer**
+- Side A: `ARM-C:215-217`: "**ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): character Fresnel-specular and hair / eye lighting tuning values. All 36 are named, and in this build nothing outside the console reads any of them.**"; `ARM-C:227-228`: "The bank is written and displayed, and nothing consumes it."; `ARM-B:167`: "**What they control in this build: nothing outside the console.**"; `ARM-B:176`: "the knobs are console-only."
+- Side B: `CON282:249`: "*Narrowed 2026-09-18 (FABLE): the 63 are traced after all — to the staged shader-constant buffer, not to a body.* … **Every one of the 80 sits at `+0x004` .. `+0x17C`**"; `CON282:250`: "**ANSWERED 2026-09-27 (OPUS):** each of the 80 becomes a named variable of the shipped shaders' SceneWideParameterConstantBuffer … the character Fresnel/Hair/Eye A-B families -> chrFresnel*/hChr*/eChr*/xChr*/yChr* (0x238-0x2C4)".
+- Status: favoured side B by the later dated "ANSWERED 2026-09-27 (OPUS)" (CON282:250). Side A is still repeated unstruck at ARM-B:160-176, ARM-C:215-229; also ARM-E:331-334 / ARM-E:348 ("Whether the 21 `Map …` floats have a consumer at all"), ARM-D:380-392 ("Nothing can walk it as an array"), ARM-A:301 ("nothing else reads either global").
+- page-text only - needs local check
+
+**C-V150.** **`02CB7FE8`–`02CB8144` "no pointer into the block can be formed" vs a `this`-based walk**
+- Side A: `ARM-D:388-392`: "**Nothing can walk it as an array, and that is the decisive part.** The census finds **zero `lea`** anywhere in the span: **no instruction takes the address of any slot**, so no pointer into the block can be formed and no `base + index*4` access can exist."
+- Side B: `ARM-E:243-244`: "So **`02CB7FD0` is an object base, not a global**, and every `02CBxxxx` field in this slice is `this + offset`."; `CON282:249`: "`006084B0` staging sixteen bytes at a time … (a base-register walk `base+0x00` .. `base+0xD0` and on, the very access shape a rip-relative census cannot see)"; `ARMDIV:444`: "Passed by `lea rcx` to a constructor, **so every `02CBxxxx` field is `this + offset`**".
+- Status: no explicit dated retraction of ARM-D's UQ-17; CON282:249-250 (2026-09-18/27) is later. Literal `lea` claim is about `02CB7FE8`+ while the base is `02CB7FD0`, so only the conclusion conflicts. No favoured side by the rule; later dated text supports B.
+- page-text only - needs local check
+
+**C-V151.** **Id 28's float constants**
+- Side A: `ARM-A:160-162`: "**Not one of those references is in slice A.** The only float constants here are `1` and `-1`, in id 26." (also ARM-A:95 "**the only float arm in this slice**")
+- Side B: `ARMDIV:45`: "**Id 28 is not a stepper:** it multiplies three values by `0.2126` / `0.7152` / `0.0722` — the Rec.709 luma weights — inside the save / zero / restore toggle"; CMDNAMES:419 "recomputes `02CB8080`".
+- Status: no favoured side (ARMDIV §1 is dated 2026-09-13 but does not retract ARM-A's line). ARM-A:161 unstruck.
+- page-text only - needs local check
+
+**C-V152.** **Hub counts 45 / 33: arms vs call sites**
+- Side A: `ARMDIV:259-260`: "`001A9930` is used by 45 arms, `00193D50` by 33"; `ARM-A:153-154`: "one serving **45** arms, the other **33**"; ARM-A:110 "calls the 33-arm shared helper".
+- Side B: `ARM-D:194-197`: "`001A9930` | 14 | **14** | **45** … **The numbers 45 and 33 reproduce exactly — as call sites.**"; `CON282:113`: "*(CORRECTED 2026-09-29, OPUS …: "used by" counted **call sites**, not arms.)*"
+- Status: favoured side B by CON282:113 "CORRECTED 2026-09-29" (also CON282:149). Side A still unstruck at ARMDIV:259 and ARM-A:110-111, ARM-A:153.
+- page-text only - needs local check
+
+**C-V153.** **Which accessor has "47 caller functions"**
+- Side A: `ARM-D:162`: "The accessor is a hub — **47 caller functions image-wide**" — D's accessor is `001A9930` (ARM-D:264), 14 arms / 45 sites (ARM-D:194).
+- Side B: `ARM-F:238-239`: "The accessor used by ids 172–174 and 179 … **16 arms, 33 call sites, 47 caller functions image-wide.**" (16 arms/33 sites = `00193D50`, ARM-D:195)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V154.** **`01F82D20` is never nudged vs "nudged by 18" / "MOV r32"**
+- Side A: `ARMDIV:42`: "**24 in 18 arms**, all 8-byte loads … **reproduced** — a pointer slot, never nudged"; `ARMDIV:315`: "**`01F82D20` is a pointer slot and is never nudged.**" (Corrections, 2026-09-03)
+- Side B: `ARMDIV:195`: "The hottest single address is `01F82D20`, nudged by **18** different commands." (unstruck); `CON282:329`: "The hottest single address is `01F82D20`, nudged by **18** different commands (… re-counted 2026-09-30 …)"; `TUNES:603`: "every access found is a `MOV r32` read"
+- Status: favoured side A by "Corrections to this work order, 2026-09-03" (ARMDIV:313-324) and the 2026-09-13 census (ARMDIV:42). Side B unstruck at ARMDIV:195, CON282:329 (dated later only for the count), TUNES:603 (width).
+- page-text only - needs local check
+
+**C-V155.** **Distance `01F82D20` → `01F82ED0`**
+- Side A: `ARMDIV:328` / `ARM-D:184`: "`01F82ED0`, sixteen bytes further into the same region"
+- Side B: arithmetic of the two addresses the same lines give: `0x01F82ED0 − 0x01F82D20 = 0x1B0` (432 bytes).
+- Status: no favoured side; internal arithmetic.
+- page-text only - needs local check
+
+**C-V156.** **Arms referencing `01F82D20` in slice I: 15 vs 14**
+- Side A: `ARM-I:38-39`: "fifteen of its twenty-two live commands dereference one shared pointer"; `ARM-I:94-95`: "slice I holds fifteen of them"
+- Side B: `ARMDIV:469`: "**18** — D 1 · E 1 · H 2 · I 14"; `ARM-H:197`: "18, across slices **D (1), E (1), H (2), I (14)**"; consumers TSV row `01F82D20` (11 + 3 I ids = 14).
+- Status: no favoured side (ARMDIV §H is undated). D1+E1+H2+I15 = 19 ≠ 18.
+- page-text only - needs local check
+
+**C-V157.** **`+0x10C4` owner: id 267 or id 268**
+- Side A: `ARM-H:257`: "`+0x10C4`           mouse vertical camera speed, mirrored from the accessor" (id 267 "Mouse Control Vertical Camera Speed", ARM-H:93)
+- Side B: `ARM-I:154`: "| 268 | `001D4731` | int step via a getter/setter pair | mirrors to `d+0x10C4` |" (id 268 "Mouse Control Horizon Camera Speed", CMDNAMES:351)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V158.** **Id 200's party walk: `022C1740` vs `02EBF190`**
+- Side A: `ARM-F:133`: "`00305A00`: stores LP `+0x190 = 99,999` … for each party member the nine-slot walk `BattleStats_GetByMappedBattleSlot(i, 3)`, `i < 9`, finds (roster kept at `022C1740`)" ("corrected 2026-09-13")
+- Side B: `ARM-F:313-314`: "Id 200, *"Set LP to max"*, calls `00305A00` (`001D3EB6`), the 170-byte function that walks the party through `02EBF190`" ("Answered 2026-09-14"); `CON282:298`: "`00305A00` reads `02EBF190`"
+- Status: no favoured side (the 2026-09-13 row correction is about calls; the 2026-09-14 answer is later but does not address the roster address).
+- page-text only - needs local check
+
+**C-V159.** **Id 227 wrap: every sub-field mod 60 vs hours mod a runtime value**
+- Side A: `ARM-G:80`: "**each sub-field mod 60**"; `ARM-G:124-125`: "**modulo 60, four times in the body.**"
+- Side B: `ARM-G:288-290`: "**227 is an h:mm:ss editor** whose hours wrap modulo a **runtime** value"; `ARMDIV:533-535`: "**hours wrap mod a runtime value at `+0xE18`**"
+- Status: no favoured side (amendment undated, "recorded as an amendment rather than folded in", ARM-G:287). ARM-G:80 table row unchanged.
+- page-text only - needs local check
+
+**C-V160.** **`005DC720` / `005DC580` targets and range**
+- Side A: `ARM-E:244-245`: "`FUN_005dc720` calls a base constructor `FUN_005dc580` with `rcx = this`, then `FUN_005dc430` with `rcx = this + 0xD0`"; `ARM-E:257`: "`005DC580` covers `0x00–0xC4` and `005DC720` covers `0x42C–0x4D8`"
+- Side B: `ARM-E:454-455`: "`005DC580` + `005DC430` init the `+0xD0` member" (SWE2-EC7-126 update 2026-09-21); `ARM-E:461-468`: "a 2-iteration loop … rooted at `+0xA1D` before `+0x1010`/ `+0x1018`/`+0x1020` are zeroed"; `TUNES:76`: "`005DC720` initialises fields out to `+0x1020`"; `TUNES:509`: "`005DC720` (`+42C..+468`)"
+- Status: no favoured side for the `005DC580` target (TUNES:390 and TUNES:546-547 agree with side A on `rcx = this`); range `0x4D8` vs `+0x468` vs `+0x1020` unresolved.
+- page-text only - needs local check
+
+**C-V161.** **Id 108's step constant**
+- Side A: `ARM-D:74`: "| 108 | `001D1FE6` | `02CB8130` | 0.02 | one constant, `subss`/`addss` |"
+- Side B: `CMDNAMES:419`: "Arm 108 (*Diffuse intensity*, `001D1FE6`–`001D200F`) loads the float and steps it up or down by the constant at `009002BC`"; `CON282:400`: "the pool holds `+0.01` at `009002BC`"
+- Status: no favoured side (CON282:162 and ARM-E:67 put `+0.01` at `008F30E4`, so `009002BC`'s value is itself disputed across pages).
+- page-text only - needs local check
+
+**C-V162.** **"Every stepping arm holds both directions / the flag was universal" vs id 38**
+- Side A: `ARMDIV:244-246`: "Every stepping arm holds both directions"; `ARM-F:63-64`: "In slices A–D the flag was universal among stepping arms"
+- Side B: `ARM-A:107`: "| 38 | `001D1C83` | integer step | `d+0xAC0` | 1 | `inc` only — no direction test" (corrected 2026-09-13)
+- Status: favoured side B for id 38 by "corrected 2026-09-13" (ARM-A:107). Side A unstruck at ARMDIV:244 and ARM-F:63.
+- page-text only - needs local check
+
+**C-V163.** **Label-shape claim vs id 103**
+- Side A: `ARM-E:160-161`: "Every `cmp`/`sete` arm in both slices carries a label ending in "enable" or "Enabled"."
+- Side B: `ARM-C:283`: "`cmp`/`sete` in 99 and 103"; id 103 label "Camera Over Write (O to capture)" (ARM-C:320; CMDNAMES:186).
+- Status: no favoured side. (Used as one of four alignment proofs.)
+- page-text only - needs local check
+
+**C-V164.** **Loader writes vs "genuine outside consumers" in the block, and `02CB8128`**
+- Side A: `ARM-B:179`: "**27 have a genuine outside consumer.** … `001C3D50` and `001C7940` together take 19 slots (`02CB8044`–`02CB8060`, `02CB80A0`–`02CB80AC`, `02CB80D4`, `02CB80D8`, `02CB80E4`, `02CB8104`)… **So the block IS consumed - just not here.**" (MEASURED 2026-09-16)
+- Side B: `ARM-C:223`: "**writes** by the scene-config loaders `001C3D50` / `001C7940` to the nine keyed slots" incl. `02CB8128` (ARM-C:232); `ARM-B:174`: "The scene-config loaders `001C3D50` / `001C7940` write only the neighbouring gap slots" (2026-09-25)
+- Status: favoured side B (loaders are writers) by "ANSWERED 2026-09-25" (ARM-B:160; ARM-C:215); ARM-B:179 unstruck. The listed slots number 16, not 19, and omit `02CB8128` (keyed per ARM-C:232 and the TSV).
+- page-text only - needs local check
+
+**C-V165.** **`EnableIBL` key bound to two addresses**
+- Side A: `ARM-D:284`: "| `+0x2E4` | — (byte) | `EnableIBL` (`001C98B5` / `001C98CA`) |" (map-art context, 2026-09-25)
+- Side B: `CON282:248`: "`EnableIBL` at `01DFE190`"; consumers TSV row `01DFE190 … EnableIBL`
+- Status: no favoured side (could be two stores of one key; neither page says so).
+- page-text only - needs local check
+
+**C-V166.** **Kinds of slice I sum to 28 for 26 ids**
+- Side A: `ARM-I:46-50`: 13 property + 4 boolean + 4 integer + 3 getter/setter + 4 unimplemented (= 28)
+- Side B: `ARM-I:52`: "**22 real arms.**"; `ARM-I:181`: "**22 real arms and 4 unimplemented**" (table rows: 13 + 3 + 3 + 3 = 22)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V167.** **Slice F direction census 11 / 8 / 8 vs nine unconditional ids**
+- Side A: `ARM-F:58-60`: "`bl` only … 11 | … two separate buttons | 8 | … neither … | 8"; `ARM-F:62`: "**Eight of the 27 arms ignore the direction flag completely.**"
+- Side B: `ARM-F:244-245`: "Ids 176, 179, 183, 185, 187, 188 and 199–201 flip regardless" (nine ids); table rows with "**none**": 176, 179, 183, 185, 187, 188, 199, 200, 201 (ARM-F:109-134)
+- Status: no favoured side.
+- page-text only - needs local check
+
+**C-V168.** **Slice H non-empty arms: 16 vs 14**
+- Side A: `ARM-H:218`: "all 16 non-empty arms exit to `001D4BFA`"; `ARMDIV:493`: "all 16 of its arms exit to `001D4BFA`"
+- Side B: `ARM-H:52`: "**18 do-nothing · 8 counter/cycle arms · 5 call arms · 1 float step.**" (32 − 18 = 14 real)
+- Status: no favoured side.
+- page-text only - needs local check
+
+### 3.1.C Counts that disagree (no behaviour attached, but a port's tables or a checker's assertions would differ)
+
+#### 3.1.C1 Counts that disagree: Boot fixups, startup data construction and the application root
+
+- Startup objects: 66 (`FLOAT:349` "There are 66 objects, not 75", favoured by falsification 2026-09-02) vs 74/75 (`FLOAT:32-33` "48 of the 74 hub targets"; `FLOAT:622` "Over all 74 objects with a next pointer"; TSV 75 rows; `README:26` "build 75 objects"). TSV supports 75 total / 66 in band; the 66 correction holds only for the band population.
+- Builders reached: 65 (`FLOAT:109`, `FLOAT:351`) vs 67 (`FLOAT:281-282` "Counting the hubs' two tail jumps, the hubs reach 67 in-region builders").
+- Unreached region functions: 131 (`FLOAT:228`, `FLOAT:360`) vs "the region's *other* 132 functions" (`FLOAT:271`).
+- Helper-less builders: 15 (`FLOAT:4`, `FLOAT:513`, `FLOAT:630`) vs 16 (`FLOAT:188` "in all sixteen helper-less builders"; `FLOAT:631` "sixteen with `0047E140`").
+- Prototype objects: "six of these objects" (`FLOAT:41`) lists seven addresses (`FLOAT:41-42`).
+- `008631D0` callers: 40 (`FLOAT:511`) vs "48 frontier callers at census" (`FLOAT:645`).
+- Exact memset rows: "nine are exactly equal" (`FLOAT:516`) vs eleven marked exact after the 2026-09-17 corrections (`FLOAT:521-536`).
+- `001EDDC0` size: 165 B (`BOOT:239`) vs "~160 B" (`BOOT:497`).
+- Frame bodies: "the six frame bodies" (`APP:709`) lists seven (`APP:709-710`).
+- GameApplication bodies: "any of the 22 GameApplication vtable bodies" (`APP:418`) vs 18 overridden (`APP:123`).
+- `006CB5F0`: "the twelve diagonal fields" lists eight offsets (`APP:1860-1864`).
+- `0017D4C0`: "allocates `0x10`" (`APP:631`) vs "`00210EC0` quintuple" (`APP:1202`).
+- Workbench population: `APP:415` "functions touching 022D91B0..+0x400 : 247", `APP:411` "152 owned writers" vs `README:50` "249 functions write one 1.5 KB area" (different populations/extents).
+- "battery's smallest fill" `00482410` 471 B (`C-BOOT:727`) followed by smaller battery members `004978F0` 458 B … `004B0B70` 376 B (`C-BOOT:731-759`).
+
+#### 3.1.C2 Counts that disagree: World tick, field frame and force-fight mode
+
+- **Mode consulted "five times" vs four sites**: `C-TICK:67` "**WT-1 — The frame mode is a PARAMETER consulted five times**" vs `C-TICK:337` "the mode is held in `r14d` and tested at the four cited sites" (C-TICK:68-69 lists four site groups). No favoured side.
+- **`cmp …, 5` sites: five vs six**: `C-TICK:167` "Count the `cmp … 5` sites and assert **five**" and `TICK:66-67` (five listed) vs `TICK:1008` "`00314132 cmp ebx, 5` (and five more)". No favoured side.
+- **Manager slots: five vs three**: `C-TICK:94` "**WT-5 — Five slots**" vs `C-STOP:215-216` "the start/stop fan-out walks all 3 manager slots". No favoured side (may be a sub-walk; page-text only).
+- **`23 steps` vs 39 calls**: reconciled on page (TICK:1014-1017); no contradiction.
+
+#### 3.1.C3 Counts that disagree: Per-frame update gate and system stop registry
+
+- UI-owned groups: `GATE:124` "**Six of the fifteen masks' groups are `UI`-owned**" vs the GATE:86-102 table, which marks five masks UI (`0x0004`, `0x0008`, `0x0100`, `0x0400`, `0x2000`).
+- Groups: `GATE:286` "A word that fifteen update groups depend on" and `C-GATE:476` "The fifteen groups still do not account for the whole singleton" vs sixteen groups (GATE:29, C-GATE:152).
+- Body population: `C-GATE:1033` "Across all 38,161 bodies" vs `C-GATE:287` / `C-GATE:334` "all 35,713 `.pdata` bodies".
+- `_8FA0` owners and members: `C-GATE:581` "Censused from the fourteen thunk owners plus five bodies … **nineteen member bodies** touch **sixteen offsets**" vs the `C-GATE:499` owner list (12 functions) and `C-GATE:612` table "| `_8FA0` | 4,400 | 16 | 14 |" (16 members, 14 offsets).
+- Zeroed-byte total: `C-GATE:1219` "the corpus-wide total is **52,076 bytes across 163 spans**". The stated inputs (42,192 + 11,593 − `_5380`'s 1,087) give 52,698; the difference of 622 equals the unstated removal of `_57E0ArrayRecord` (C-GATE:1171). Later `C-GATE:1250` gives 52,758 / 167 spans.
+- Apply callers: `TICK:1552` "`00226280` — 952 B, 9 A-measured callers" vs `C-STOP:231-232` "exactly 25 call/jmp edges".
+- Slot loaders: "136 bodies" (C-GATE:444) vs 203 distinct functions in `manager-singleton-0209be80-accesses.tsv` (a closure population; see P).
+- `_A0D0` offsets: `C-GATE:613` "2 | 2 | `+0x960`, `+0x984`" vs `GATE:503`, which also names `+0x974` (the tsv has five disps).
+- Undefined-residue upper bound: `C-GATE:1335` "the 3,862 are where it will not" vs corrected "≤ 3,079 bytes in 191 spans" (C-GATE:1288, 1315).
+
+#### 3.1.C4 Counts that disagree: Battle runtime mode ladder, diagnostics log, duplicated names, all-ones convention
+
+- Ladder callers: `C-MODE:444` "**20 call sites**" vs `MODE:534` "among the ladder's 21 callers" and `C-MODE:147` "Of the 21 callers" (21 is `00303EC0`'s count, MODE:443).
+- Movement edges: `MODE:206` "(30 call edges)" vs `C-MODE:122` "**Movement** asks and answers on 13 edges".
+- `022C2160` readers: `MODE:420` "Eleven readers test `state − 5 ≤ 1`" vs nine enumerated at `MODE:420-423`.
+- `00254B50` jump table: `MODE:1094` "dispatches a six-arm jump table" vs five targets listed at `MODE:1095-1096`.
+- `01EECFC0` rows: `MODE:348` "only modes 0–4 are in the table" vs `MODE:606` "`01EECFC0` dumped as six 32-byte rows".
+- C-MODE evidence row: `C-MODE:508` "the ladder's six tests … and the two early returns" vs `C-MODE:541` "Four `test` instructions; the fifth decision is an `and`" / `C-MODE:545` "**"Two early returns" is four**" (row is annotated inline).
+- DUP group census: `DUP:57`/`DUP:275` 53 thunk+body groups vs `DUP:329` "a reader re-running it gets 52 groups plus one it cannot place".
+- DUP gap census: `DUP:160-169` "33,346 gap regions … 255 … **17** … **16** … at least 766" vs `DUP:355` "**33,329 / 509,056 / 253 / 15 / 14**" and `DUP:362-363` "**at least 764** by this count" (recorded as reproducibility gap; no favoured side).
+- DUP thunk-caller census: `DUP:128-133` 325/140/185 (edges.tsv) vs `DUP:151`/`DUP:284` "**234 / 132 / 102**" (direct rel32) — page says both are defensible.
+- ONES pairs: `ONES:162` "Three of the six are adjacent pairs" vs `ONES:112` "**Corrected 2026-09-13 (§9): two adjacent pairs, not three**" (favoured ONES:112; ONES:162 unstruck).
+- `005CDAA0` callers: `LOG:55` "**136**" vs `APP:892` "239 B, 77 frontier callers at census" (different census basis).
+- `0016D670` callers: `LOG:216` "both callers immediately use `[rax]`" vs `LOG:233` "**23 direct call sites, not two**".
+
+#### 3.1.C5 Counts that disagree: Encoded-id space, class registry, query record, basis helpers, ABI recovery
+
+- Direct callers of `0031C5D0`: "fourteen" (EID:62), "76 / 14 / 14" (EID:675), "12" own-record (EID:208), "17 direct callers" (CLS:321). Callers of `0035D330`: 76 (EID:675), 75 (EID:206), "159" (CLS:321). Probably functions vs sites; units not stated for CLS:321. C-EID:309 "all 191 wrapper/filler call sites" = 17+159+15.
+- Sections bound by the loader: "34 `st2e` sections" (EID:72, EID:576); "33 times … 36 distinct descriptors" (CLS:172); "all 23 `st2e` tables of the shipped `battle_pack.bin`" (CLS:291); "fourth section (index 36" (CLS:371).
+- RC-1 classes named: "code names 25 classes … Never named … 4, 15, 16, 19, 22 and 27" (CLS:322-324) vs "**Code names 26 classes** … Classes 4, 16, 22 and 27 are passed by no caller" (CLS:332-334, answered 2026-09-30, matches CLS:4).
+- ABI control rows: "46 signatures" (ABI:9, ABI:18) vs "control rows parsed from contracts | **47**" (ABI:47; 46 comparable).
+- ABI typed rows: "position 1 typed for 51" (ABI:4) vs 40 + 7 = 47 (ABI:190-191) vs "228 typed" (ABI:192).
+- ABI frontier: "the 562 functions below are still in it" (ABI:38) vs "the frontier now holds **342**" (ABI:88, 2026-09-17).
+
+#### 3.1.C6 Counts that disagree: Shared transform workbench (EE/VU0 register bank, save/restore, primitives)
+
+- vf00 readers: `WB:371` "98 functions read `01EF93F0`" / `EEVU:70` "**129 readers**" / `EEVU:225` "`vf00` by 136" / `C-PRIM:414` "176 sites".
+- ACC users: `EEVU:69` "83 writers, 46 readers" / `C-PRIM:368` "356/535 (47r/84w)" / `PRIM:299` "**70 functions reference it**" / `C-PRIM:113` "67 writers" / `EEVU:225` "ACC by 142".
+- `022D9300`: `PRIM:300` "68 functions" vs `PRIM:346` "41 writers / 63 readers" and `C-PRIM:114` "`022D9300` has 41 writers and 63 readers" vs `C-PRIM:368` "47r/63w" (replaced 2026-09-21 at C-PRIM:365).
+- `022D8F90`: `PRIM:301` "64 functions and 668 references" vs `PRIM:346`/`C-PRIM:114` "47 / 59" vs `C-PRIM:368` "44r/60w" vs `WB:205` "8 aligned rows, 2 Presentation functions" vs `WB:516` "| 2 | `022D8F90`–`022D9010` | 128 | 64 | 47 |" (columns: bytes, max writers, max readers).
+- Callers of the primitives: `PRIM:52-53` 82 / 74 non-EH vs `C-PRIM:283` 86 / 81 fns vs `PRIM:628` "64 frontier callers" (`00398F90`); `C-PRIM:37` "156 non-EH callers" vs `C-PRIM:283` "137-fn union".
+- `003970A0` callers: `PRIM:317` "the getter `003970A0`'s seven callers" / `PRIM:692` "28 frontier callers at census" / `C-WB:247` "Twenty-nine Presentation bodies" / `README:53` "28 of its 29 callers are **Presentation**".
+- Population touching the region: `C-WB:93` "267" (`022D8F00`–`022D9500`) vs `EEVU:40` "267 functions" (range `022D8F10`–`022D949F` + vf00, EEVU:9) — same number over different ranges, unreconciled; `WB:133` "216" row-touchers; `APP:415` "247" (`022D91B0..+0x400`).
+- Objects in the region: `WB:443` "**62 groups**" vs `README:42` and other 00 page `Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md:277` "It is 13 objects".
+- Vector rows: `WB:36`/`EEVU:96` 31 rows vs `WB:204`/`WB:218` "32 rows" over `022D91A0`–`022D939F` (includes ACC).
+
+#### 3.1.C7 Counts that disagree: Object model (RTTI and the vtable method index)
+
+- VTIDX composition table (VTIDX:111-118) sums to **4,245**, not 4,275: it omits `SebAudioBank`, `btTriangleShape`, `btDbvtBroadphase` (10 each; VTIDX:2229, 2239, 2249).
+- "92 of 125 classes now have a code-stated object size" (VTIDX:2472) vs AGREE 12 + A_ONLY 80 + B_ONLY 3 = 95 (VTIDX:2464-2467).
+- NEITHER 30 (VTIDX:2468) vs 19 (VTIDX:2491) + 5 named + "7 filter edge cases" (VTIDX:2505-2508) = 31.
+- Attack false positive "**2,134 admitted addresses missing**" (VTIDX:2551) vs "**2,141 ≈ 4,275 / 2.**" (VTIDX:2556).
+- Battle action table "337" slots (RTTI:676) vs "8 distinct handlers across 341 slots" (RTTI:699).
+- AS-4 singletons: 3,639 (RTTI:633) / 3,643 (RTTI:638) vs per-section 1,963 + 1,678 = 3,641 (RTTI:646-647).
+- SQEX: "254 `SQEX::Sd` classes" (RTTI:161) vs "218 classes / 254 vtables" (RTTI:333).
+- Physics: "**23 of 73** `Phyre.*Physics` functions" (RTTI:144) vs "3 of 70 `Phyre.Physics` functions" (RTTI:151).
+- AS-1b: "Seventeen classes … **Sixteen of them are reflection metadata**" (RTTI:594-595) vs the table, which lists 12 descriptor vtables + 1 object (RTTI:599-603).
+- Unreached residue: 351 fn / 87,959 B (VTIDX:2658) vs 435 fn / 81.8 KB (VTIDX:2666) vs 485 fn / 107,931 B (VTIDX:2751) — stated by the page as instrument differences.
+
+#### 3.1.C8 Counts that disagree: Shared-state accessors and the ownership boundary
+
+- "168 callers across 14 subsystems" (HUBS:30; README:59-60; OWN:261) vs the three tables, which name 16 distinct owner subsystems (11 at HUBS:60-71, plus World/Area/Field, Platform, Save at HUBS:106-115, plus Combat AI, Items at HUBS:133-139).
+- "There are nine" resolvers (HUBS:154) vs 11 rows in the table (HUBS:161-171).
+- "ran `audit_crossrefs.py` over all 33 existing documents and reported **128 UNACCOUNTED NEIGHBOUR findings across 43 documents**" (HUBS:395-396): 43 > 33.
+- `FieldData_GetActiveFieldRecordBit15` (00377C20) "(65 callers)" (HUBS:948, dated 2026-09-30) vs "Combined, the predicate has **110 distinct callers**" (HUBS:496).
+- Ledger totals: OWN:31 "38,131 … 28,137" (re-derived at GN161) vs OWN:267 "9,409 + 585 + 28,009 = 38,003" and OWN:351 same; OWN:120 "28,137 *(was 28,009)*".
+- Census base: "over 34,270 function bodies" (OWN:321) vs "all 38,161 real bodies" (OWN:354, 380).
+- Gi* factory objects: "eight" (OWN:315) vs sizes listed for seven: "Three of the eight objects are **8 bytes** … The others are `0x10`, `0x18`, `0x70` and `0x90`." (OWN:327-330).
+- Timeline inline-without-call: "a dozen others" (OWN:537) vs 10 TSV rows after the 128 correction.
+- Scratch-pool consumers: "the ~75 resource consumers" (OWN:915) vs "the seven consumers" (OWN:935).
+- Pass-22 neighbours: "all 1,551 neighbours" (NBR:55) vs "the 1,545 remaining neighbours" after naming 8 read functions (NBR:258-259).
+- Neighbour hub cut: "remove **35 of the 922 pairs**" (NBR:60-61) vs "**32 pairs** … dispositioned `MECHANICAL`" (NBR:196) and "changes the shipped findings by 0, and the R3 clauses-1+2 findings by −12" (NBR:335).
+- Layer census: "spans thirteen subsystems" (NBR:355, 374) vs "nineteen layer names account for every measured edge" (NBR:384).
+
+#### 3.1.C9 Counts that disagree: Developer tuning console: dispatcher, tunables, second table, event slot, names
+
+- Arms: CON282:34 "runs one of **226** distinct arms" vs C-CON:117 "**I-3 — 282 IDS, 227 DISTINCT ARMS**". Both count 227 targets (CON282:84), so this is wording.
+- Addresses: CON282:246 "**97 addresses in a 1,132-byte block at `02CB7FD0`**" vs CON282:321 "**97 distinct `.data` addresses**, and **86 of them fall in one span**". The TSV agrees with 86. Also CON282:335 "Three of the 88 nudged addresses".
+- Block reader count: TUNES:96-97 "**The function count of 25, and every identification below, are unaffected.**", TUNES:762 "The function counts — 25 here", TUNES:785 "**Take 25 as a floor**" vs TUNES:90-92 "**28 referencing functions, 24 of which access the block**" *(corrected 2026-09-30)*. Favoured 28/24. The 25 stays unstruck at 96, 762 and 785.
+- Labels: C-CON:67 "**293** (ids 1–294)" vs CON282:270 "the id space is one array of 294 rows".
+- Adapter: CON282:262 "the three-instruction adapter `001CD040`" vs CON282:505, which quotes four instructions.
+- `005DC580` offsets: TUNES:550 "`005DC580` writes 43 offsets" vs `map-lighting-tuning-02cb7fd0-accesses.tsv`, 45 distinct write displacements (uncited file).
+- Event paths: EVSLOT:108-109 "the US table alone carries 284 such paths including 39 `sum_`, 15 `0001` and one `spc_`" vs EVSLOT:197-201 "329 event-script paths … 13 are `sum_<x>0001` … 1 is `spc_z0000` … 26 are other `sum_` names … 289 set nothing".
+- cbuffer variables: CON282:250 "154 variables" vs 148 distinct names in `scenewide-cbuffer-map.tsv` (stored ones only).
+- Directory size: C-CON:31 "the directory holds **thirteen documents**" vs 16 `.md` files now (adds the contract, ARM-CATALOGUE-WORK-DIVISION and EVSLOT).
+- Withdrawn split: CMDNAMES:81 "the withdrawn **102 / 71**" vs CON282:90-92 "110 | 63".
+
+#### 3.1.C10 Counts that disagree: Developer tuning console: the arm catalogue (work division and slices A-I)
+
+- ARM-A:114 "touching **26 distinct fields**" (also ARM-A:213, ARMDIV:201, ARMDIV:231) vs ARM-A:237 "classifies eighteen of the thirty offsets" and ARM-A:241-249 (4 + 14 + 12 = 30).
+- ARM-A:296 five `01DF6E48` readers vs ARM-A:301 parser + "three siblings" (4) vs consumers TSV (4); ARM-A:303 "five JSON readers".
+- ARM-B:198 "The 16 "other" arms" vs ARM-B:200 "**twelve** arms `other`" (self-corrected 2026-09-25).
+- ARM-B:37 "thirteen … walk a floating-point value … by a hundredth" vs ARM-B:129 two of them at `0.001`.
+- ARM-B:179 "68 slots are touched" in `02CB8000`–`02CB8120` (73 dwords ⇒ 5 untouched) vs ARM-D:380-381 "**Only four dwords in the whole span are unreferenced**".
+- ARM-D:376 "all 89 dwords from `02CB7FE8` to `02CB8144`" vs (0x8144 − 0x7FE8)/4 + 1 = 88.
+- ARM-D:37 & ARM-D:112 & ARM-D:253 & ARM-D:404 "Thirteen"/"13 accessor arms" vs ARM-D:110 "Twelve float fields" / 12 table ids (self-flagged ARM-D:128).
+- ARM-C:52 "the other 24 float arms are unbounded" vs 27 float arms − 2 clamped = 25.
+- ARM-E:331 "the 21 `Map Eye` / `Map BGNPC` / `Map Hair` **floats**" vs 23 such float rows (ids 140–146, 148–151, 153–164; ARM-E:86-110).
+- ARM-E:168-169 "named 21 offsets … **Twenty of those 21 have a console arm**" vs TUNES:367 "**21 of the 86 console-arm addresses now carry a name.** The other 8 named offsets … have no console arm" (29 named).
+- ARM-H:39 "Fourteen rows show the selected party member's stats and the game's running counters" vs ARM-H:44/105 "**Fifteen**" (236, 237, 246–258).
+- ARMDIV:378 "**21-25 float arms use `addss`/`addss`**" vs ARMDIV:382 per-slice 25 + 21 + 1 = 47 (History section; ARMDIV:44 supersedes with 47).
+- ARMDIV:382 per-slice line "F 0" vs ARMDIV:45 "+ ids 173 / 174" in the signed `ADD/ADD` 50.
+- ARM-A:338 etc. "duplicate labels … **0 of 283**" vs ARMDIV:43 "293 non-empty" labels + id 298 (populations differ: 282 + id 294).
+- CMDNAMES:44 "**293 labels, ids 1-294**" omits ARMDIV:43's id 298 label (2026-09-13).
+
+### 3.2 Stale "not read / open" claims, struck-but-repeated text, and banner disagreements
+
+These do not change a value; a re-implementer would only be misled about what is known or about a page's status.
+"Answered by" names the dated line that settles it where there is one.
+
+#### 3.2.1 Boot fixups, startup data construction and the application root
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S1 | README:14 "**PARTIAL, tier 1.**" (System-Stop-Registry) | STOP:4 "status: AUDITED — … answered 2026-09-17" |
+| C-S2 | README:25 "**PARTIAL, tier 1.**" (FLOAT) | FLOAT:4 "status: DOCUMENTED — … owner read 2026-09-30" |
+| C-S3 | README:29 "**DOCUMENTED, tier 1.**" (APP) | APP:4 "status: AUDITED" |
+| C-S4 | README:33 "**DOCUMENTED, tier 1.**" (VTIDX) | VTIDX:4 "status: AUDITED" |
+| C-S5 | README:37 "**DOCUMENTED, tier 1, one falsification pass.**" (OWN) | OWN:4 "status: AUDITED" |
+| C-S6 | README:45 "**PARTIAL, tier 1.**" (EEVU) | EEVU:4 "status: DOCUMENTED — … Re-statused 2026-09-29 (FABLE)" |
+| C-S7 | README:50 "**DOCUMENTED, tier 1, one falsification pass.**" (WB) | WB:4 "status: AUDITED" |
+| C-S8 | README:59 "**DOCUMENTED, tier 1.**" (HUBS) | HUBS:4 "status: AUDITED" |
+| C-S9 | README:64 "**DOCUMENTED, tier 1.**" (TICK) | TICK:4 "status: AUDITED"; TICK:8 "readiness: BEHAVIORALLY UNDERSTOOD" |
+| C-S10 | README:25-26 "197 functions / 522 KB of generated float math that build 75 objects" | FLOAT:70-74 "There are **66** objects, not 75. The 65 builders total **32,848 bytes**, not 522 KB" and "the values are **not computed**" (falsification 2026-09-02) |
+| C-S11 | README:31 "Never deleted, hence no stated object size." | APP:293-294 "**BE-4 ANSWERED — exactly `0x1140` = 4,416 bytes**" (falsification 2026-09-02, APP:371-374) |
+| C-S12 | README lists 9 systems (README:13-68); folder also holds GATE, FORCE, MODE, LOG, DUP, ONES, EID, CLS, QREC, BASIS, ABI, SAVE, PRIM, RTTI, NBR, console pages and 6 CONTRACT pages | not listed (index incomplete; no dated note) |
+| C-S13 | FLOAT:55 "**Status is `PARTIAL` deliberately.**" | FLOAT:4 "DOCUMENTED … owner read 2026-09-30"; FLOAT:56-58 itself says status waits for the owner read |
+| C-S14 | FLOAT:37-39 "The boxes below stay unticked until the question ledger is free" | FLOAT:38-39 "*(Stale since: every box in §7 is ticked …; noted 2026-09-30)*" |
+| C-S15 | FLOAT:18/21 last_reviewed / last_pass 2026-09-02 | dated edits to 2026-09-30 (FLOAT:4, 171, 202, 316) |
+| C-S16 | FLOAT:645 "the header initialiser §12 already counts at 40 call sites" | no §12 on the page (sections 1-8, 10, 9, 11) |
+| C-S17 | BOOT:22 audit.last_pass 2026-09-03; BOOT:18 last_reviewed 2026-09-30 | page has 2026-10-01 section (BOOT:540) |
+| C-S18 | BOOT:90-91 "`00379CF0` is a **5-byte thunk** … and is **not in the function list**" | BOOT:240 "listed in the function list since this page was written" |
+| C-S19 | BOOT:162 "**what they are is not established by this function.**" | BOOT:170-178 "*RC-3 answered 2026-09-30*" |
+| C-S20 | BOOT:152-153 "what the extra tail bytes serve is not established" | BOOT:159-160, 301-306 "RC-2 … ANSWERED 2026-09-30" |
+| C-S21 | BOOT:181-182 "**Whether id 10 is registered elsewhere or does not exist is not answered here**" | BOOT:183 "*Answered 2026-09-30 (SWE2-CONTRACT), static: no code in the image registers id 10.*" |
+| C-S22 | BOOT:379 "What `02064ACC` feeds is not established here." | BOOT:382 "**Its one reader is the field frame … (answered 2026-09-30 …)**" |
+| C-S23 | BOOT:220 "**Not read: the tempering constants**" | BOOT:220 "*Read since (cited 2026-09-30 …)*" |
+| C-S24 | BOOT:405 "`00259180` (the RNG stream seed — one of two `022D9138` writers, §"random number generator")" | BOOT §"random number generator" (BOOT:35-93) discusses only `00863D30` / `02EB4234`; `022D9138` is "RNG enable/mode" per WB:224 |
+| C-S25 | C-BOOT:138-139 "**what they are is not established by this function**" (two allocations) | BOOT:170-178 RC-3 answered 2026-09-30 |
+| C-S26 | C-BOOT:140-142 "**Whether it is registered elsewhere or does not exist is unanswered**" | BOOT:183 answered 2026-09-30 |
+| C-S27 | C-BOOT:101 "**What the tail bytes are *for* is still open**"; C-BOOT:480-482 | BOOT:301-306 RC-2 ANSWERED 2026-09-30 |
+| C-S28 | C-BOOT:483-488 §14 unresolved: two allocations, "Whether pool id 10 exists" | BOOT:170-178, 183 (2026-09-30) |
+| C-S29 | C-BOOT:15 last_reviewed 2026-09-29 vs C-BOOT:21-22 `by: OPUS` / `date: 2026-09-20` | C-BOOT:18 last_pass 2026-09-29 (internal mismatch) |
+| C-S30 | C-BOOT two sections numbered "### 13d" (C-BOOT:336 and C-BOOT:365) | — |
+| C-S31 | C-BOOT:386 "**§13c already established that no allocation return is ever tested**" | the finding is in §13b (C-BOOT:226-234); C-BOOT:496 also says "§13b" |
+| C-S32 | APP:18/21 last_reviewed / last_pass 2026-09-02 | dated edits to 2026-10-01 (APP:2121, 2404) |
+| C-S33 | APP:291-292 "What the base class *is* remains open, and is carried below." | APP:295-296 "**BE-5** … **ANSWERED — `Phyre::PFramework::PApplication`**" |
+| C-S34 | APP:302-305 "The remaining seven … need runtime or authored evidence from outside the executable"; APP:582 "The remaining seven need runtime evidence" | APP:313-315 "*ANSWERED 2026-09-27 …: all 13 have a role read from code.*" |
+| C-S35 | APP:318 "Five remain uncharacterised by role." | APP:313 ANSWERED 2026-09-27 (all 13) |
+| C-S36 | APP:640 "`00199790` →`[01F810F0]` (the BE-2 focus singleton's global)" | APP:264 "*The byte is the pause flag.*" (BE-2 ANSWERED 2026-09-12) |
+| C-S37 | APP:654 "the still-unnamed `0x238` singleton" | role answered APP:495 (2026-09-26) — name still unclaimed, so only partly stale |
+| C-S38 | APP:1025, 1031 "SWE2-EC7-18 update (2026-05-15)", "SWE2-EC7-19 update (2026-05-15)" | date precedes all other page work (2026-09); likely mis-dated |
+| C-S39 | APP:820 and APP:824 identical "Script_VM_Native_Bridge — CLIENT (45 edges)" bullets; APP:2310 and APP:2314 identical `001A09E0` paragraphs | duplicates |
+| C-S40 | APP:827 "`001D7A20` … the body §"render pass" names as running "from the slot-4 pump through" the pass list" | APP:276-277 says `001D7A20` is "from the slot-4 pump through `001D8AB0`", and `001D72F0` is the pass-list one |
+| C-S41 | `boot-singleton-01f7f598-accesses.tsv` has 22 ctor rows at `+0xB08`…`+0xD08` | APP:1046-1048, 1061-1062 call those spans "unobserved" before 2026-09-18 (instrument scope differs; TSV not cited) |
+
+#### 3.2.2 World tick, field frame and force-fight mode
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S42 | "three unread gates that skip the tick entirely" (TICK:59) | EX-6 "ANSWERED 2026-09-12 (FABLE)" (TICK:920); C-TICK:198-200 struck "stale" 2026-09-22 |
+| C-S43 | "**those gates are unread** and this contract does not claim what they test" (C-TICK:151-152) | C-TICK:198-212 (struck/answered 2026-09-22) — §10 left unstruck |
+| C-S44 | "whether ordinary callbacks change the mask during a pass is not established (`EX-9`)" (TICK:93-94) | "ANSWERED 2026-09-18 (FABLE)" (TICK:956) |
+| C-S45 | "\| What the unread callees do \| **not established** \| — \| UNKNOWN \|" (TICK:978) | EX-3 "ANSWERED 2026-09-12 (FABLE)" (TICK:865) |
+| C-S46 | "Bits 1 / 3 / 24 setters and clearers; bit 16 has none" (TICK:977) | "**Bit 16 answered 2026-09-12 (FABLE)**" (TICK:941) |
+| C-S47 | "the widget constructor reads it for exactly that reason" (TICK:762) | getter has "12 call sites in 12 bodies" (C-TICK:222, CLOSED 2026-09-23) |
+| C-S48 | `02089340` row "6 script-driven" (TICK:430) | §2.5 bit 6 "**a treasure is being opened**" (TICK:336; FZ-1 2026-09-11, TICK:772) |
+| C-S49 | "The `02098E10` cell is the shared stop-registry context" (TICK:1272-1273) | "actor-manager slot array at `02098E10`" (TICK:63); C-STOP:217 |
+| C-S50 | `001EC690` "~~`01F832C4` flag read~~" corrected (TICK:487) | struck with dated correction 2026-10-01; TICK:1103 agrees — fine |
+| C-S51 | `0051E800`/`0051E840` "~~set `+0x128` `=1`~~" (TICK:466) | corrected 2026-10-01 and TICK:1213-1214 agree |
+| C-S52 | `00392710` struck (TICK:706) | corrected 2026-09-28 — fine |
+| C-S53 | "~~12 / 15 / 16 / 17 / 19~~" (TICK:870-871) | corrected 2026-09-21 (TICK:877-883) — fine |
+| C-S54 | "`0x18`" latch and "`0x0B`/`0x18` … what each opens on screen is still the router page's open item" (TICK:244-245) | EX-2 "ANSWERED 2026-09-12 (FABLE)" (TICK:840) |
+| C-S55 | "**Correction to the static read**: the `267310` gate is inverted — `test eax; je` *skips* the slot calls." (C-TICK:185-186) | TICK:103/TICK:565 already state skip when byte == 0; the correction names no page claim it overturns |
+| C-S56 | "Which actor managers slots 3 and 4 hold is not established here." (C-TICK:108) | TICK:183-184 "sub-steps 1–15 exist for the cutscene managers (slots 1–4)" (2026-09-11) — partial answer |
+| C-S57 | "(its meaning is not named on this page)" re `00265680` (C-TICK:316) | TICK:930-933 decodes `00265680` (EX-6, 2026-09-12) |
+| C-S58 | "the null predicate the same page names" / "the null predicate `00253B90`" (TICK:217, TICK:947) | FORCE:60-63: `00253B90` is the force-fight `flag == 0` predicate (FORCE AUDITED); TICK never names force fight |
+| C-S59 | main loop `0022A770` (STOP:49) | TICK:54 `0022A770` is the field frame; main loop is `0022B8C0` (TICK:55) |
+| C-S60 | `last_reviewed: 2026-09-10` (TICK:16), `last_pass: 2026-09-12` (TICK:19) | page carries dated edits to 2026-10-01 (TICK:466, TICK:1091) |
+| C-S61 | TICK `status: AUDITED` (TICK:4) | README:63-64 "**DOCUMENTED, tier 1.**" |
+| C-S62 | `last_reviewed: 2026-09-02` (FORCE:18) | dated edits 2026-09-11..2026-09-21 (FORCE:13, FORCE:170, FORCE:183) |
+| C-S63 | FORCE `status: AUDITED` (FORCE:4) | body banner "**DOCUMENTED.**" (FORCE:32); FORCE is not listed in README (no "force" in README) |
+| C-S64 | "\| `BattleUnit_UpdateCombatFrame`, `FUN_0030C010` \| unread \|" (FORCE:117) | "AN-4 ANSWERED 2026-09-12 (FABLE)" (FORCE:183) |
+| C-S65 | "\| `00252C80` \| the second writer — 134 B, unread \|" (FORCE:148) | AN-2 answered (propagated 2026-09-11) (FORCE:177-180) |
+| C-S66 | "What they are remains open" (FORCE:280) and "`FUN_00252C80` (the second writer, still unread)" (FORCE:271-272) | AN-1 "ANSWERED 2026-09-17" (FORCE:170, FORCE:277); AN-5 (FORCE:272-273) |
+| C-S67 | "What those two bytes are is answered in §5" fine; but "`0027768A` … writes `0208F570`, the shared mode-state field this page's §5 documents" (FORCE:295) | FORCE §5 (FORCE:165-199) never mentions `0208F570` |
+| C-S68 | "presentation `00308130` calls `00253B90`" (FORCE:301) | FORCE:330 lists `BattleUnit_ComputePartyBattleStance` (00308130) under Gameplay |
+| C-S69 | "*Not read:* the identity of the `0208E6A4` handle" (FORCE:198) | TICK:330 "arms the one-shot at `0208E6A8` with a handle at `0208E6A4`; its caller `00306B10` … registers `00306560` for a unit's handle"; MODE:400 (owner registration) |
+| C-S70 | "`00253B90` gate the paths and are **not read**" (NBR:160) | FORCE:60 whole 12-byte body read (2026-09-02) |
+| C-S71 | SWE2-EC7-18/19 sections dated "2026-05-15" (TICK:1699, TICK:1707) | predate the page's own `last_reviewed: 2026-09-10` and surrounding 2026-09 sections — date anomaly |
+
+#### 3.2.3 Per-frame update gate and system stop registry
+
+| id | stale or banner text (quote + cite) | answered or contradicted by (quote + cite, dated) |
+|---|---|---|
+| C-S72 | GATE `last_reviewed: 2026-09-11` (GATE:17); `last_pass: 2026-09-13` (GATE:21) | dated edits to 2026-09-30: "re-read 2026-09-30, SWE2-CONTRACT" (GATE:416); 2026-09-25 sections (GATE:409-415, 510) |
+| C-S73 | C-GATE `last_reviewed: 2026-09-11` (C-GATE:17) | edits to 2026-10-01 ("(OPUS, 2026-10-01)", C-GATE:418, 1790) |
+| C-S74 | STOP `last_reviewed: 2026-09-12` (STOP:10); no `readiness:` field (STOP:1-17) | edits to 2026-10-01 ("(OPUS, 2026-10-01)", STOP:818) |
+| C-S75 | README: STOP "**PARTIAL, tier 1.**" (README:14) | STOP front matter "status: AUDITED" (STOP:4) |
+| C-S76 | README: "seven per-actor stop sets (movement, script execution, animation rate, …) … switches audio groups, character culling, UI and input words" (README:16-18) | "*(a label this row should not have kept - corrected 2026-09-19, FABLE: **the value is an opacity, not a rate.**…*" (STOP:203); A29 pair "not a UI pair but the **pad-vibration pause and resume**" (STOP:299, answered 2026-09-17) |
+| C-S77 | README lists no entry for the Per-Frame-Update-Gate page or C-GATE (README:11-40, grep) | GATE exists with status AUDITED (GATE:4) |
+| C-S78 | GATE §10: "Both now have one, and neither is answered." (GATE:279) | "**DZ-2 ANSWERED 2026-09-11**" (GATE:247); DZ-1 answered by "***ANSWERED 2026-09-17 (FABLE): the node is the target-line object…" (GATE:225) |
+| C-S79 | GATE: "**The route it must take is visible one address away.**… it names where to look next." (GATE:289-300) | "**Closed 2026-09-11 (OPUS-CONTRA-GATEWORD…)** The registry route does not reach the word" (GATE:308-309) |
+| C-S80 | GATE: "**No name is proposed for the node type.**" (GATE:207) | UQ-25 answered 2026-09-17: "the node is the target-line object" (GATE:225) |
+| C-S81 | GATE: "**Which field uses which is not established.**" (GATE:185) | UQ-27 "ANSWERED 2026-09-17 (FABLE): no field is in thousandths of a degree" (GATE:252) |
+| C-S82 | GATE: "the head of `DT-1`'s list of 112" (GATE:160-161) | UQ-29 "ANSWERED BY CITATION 2026-09-17 … of the 139 residual functions **131 are cited**" (GATE:256) |
+| C-S83 | GATE: "Whether it is retired, reserved, or handled elsewhere is **not established**." (GATE:79-80); C-GATE:155-156 repeats it | UQ-26 "NO ADMISSIBLE SOURCE — reviewed and signed 2026-09-16" (GATE:227); C-GATE:284 "closed 2026-09-22" |
+| C-S84 | GATE duplicated bullet "**Script_VM_Native_Bridge — CLIENT and SERVICE (15 edges).**" (GATE:419 and GATE:421) | — (duplicate) |
+| C-S85 | C-GATE duplicated paragraph "The check that would matter needs a modified word…" (C-GATE:272-275 and 277-280); C-GATE:273 says "§9 says nothing in the image writes the word" | the claim is in §10 (C-GATE:171-178) |
+| C-S86 | C-GATE §14: "~~What `0x0010` was for~~" etc., all closed 2026-09-22 (C-GATE:284-311) | — (consistent) |
+| C-S87 | C-GATE: "the 3,862 are where it will not" (C-GATE:1335-1336) | "**The residue is at most 3,079 bytes in 191 spans**, not 3,862." (C-GATE:1288, "CORRECTED SAME DAY") |
+| C-S88 | STOP: "a **UI** bit pair `0035B4B0(5)` / `0035B510(0xFF)` on A bit 29" (STOP:185) | "*A bit 29*, … not a UI pair but the **pad-vibration pause and resume**" (STOP:299, ANSWERED 2026-09-17); C-STOP:282-283 "an **owner in that layer, not UI**" |
+| C-S89 | STOP: "requester bitsets whose consumers are not read here" (STOP:186-187) | SM-3 "***ANSWERED 2026-09-17 (FABLE): every listed consumer is named…" (STOP:299) |
+| C-S90 | STOP set-5 "animation"/"rate" labels: column header "5 animation" (STOP:106); "animation set 5" (STOP:143); "the apply's rate-1.0 animation path" (STOP:155); "the set-5 animation-rate machinery" (STOP:219); "rate arm, 0.0" / "rate arm, 1.0" (STOP:226-227); "animation hook" (STOP:230) | "corrected 2026-09-19, FABLE: **the value is an opacity, not a rate.**" (STOP:203); "no reader uses it as a simulation rate" (STOP:213-214); struck row STOP:333 |
+| C-S91 | STOP: "## SWE2-EC7-18 update (2026-05-15)" (STOP:535) | dated four months before the page was authored, "Authored by FABLE, 2026-09-12" (STOP:27) |
+| C-S92 | STOP labels render-record functions as registry bodies: "`00477B10` (889 B) is the stop-registry row accessor - `cl*64` row into `02CA6CA0`" (STOP:545); "`00423B10` … is the registry's record enumerator" (STOP:541) | `02CA6CA0` is "the **packed channel table**" for add-motion (STOP:457, 294); a parallel correction for `0051CC30` "is not a system-stop body" (STOP:561, 2026-09-19) |
+| C-S93 | STOP duplicated `0035C750` paragraph (STOP:794 and STOP:798); duplicated PlatformOnlineAchievements bullet (STOP:450 and STOP:453) | — (duplicate) |
+| C-S94 | STOP: "the id dispatch at `00225E44`–`00225E5F` is not tabulated here" (STOP:84); C-STOP:285-286 "the page does not tabulate the cancel's id dispatch either" | EXP-191 tabulates the `00225EB0` dispatch "(`0`→`2DDC30`/`182DA0`, `0xC`→`182D60`, `0xD`→clears recB bit41 then `182D40`, `0xF`→`182D40`)" (C-STOP:213-214), for the sweep, not the cancel |
+| C-S95 | STOP manager count "~~1 or 3 managers by record A bit 30~~" (STOP:61) | corrected in place 2026-09-12 (STOP:61-63); C-STOP SS-7 agrees (C-STOP:131-134) — resolved, no unstruck repeat found |
+| C-S96 | C-STOP: "the world tick and field frame remains uncontracted and this document does not claim it" (C-STOP:34-35); "**Uncontracted** \| the world tick and field frame" (C-STOP:148) | C-TICK exists: `Battle-Frame/CONTRACT-world-simulation-tick.md`, `method: address-resolution verification 2026-09-22`, `last_reviewed: 2026-09-29` (C-TICK:12, 20) |
+| C-S97 | C-STOP `crossref_clean: false` (C-STOP:26); C-GATE `crossref_clean: false` (C-GATE:22) | — (banner) |
+| C-S98 | C-GATE: "Two of the seven — `_5380` … and `_8FA0` … are passed to no handler at all" struck (C-GATE:473-476); GATE:476 struck | corrected 2026-09-18 (C-GATE:478) and 2026-09-25 (GATE:562-570) — struck in both places |
+| C-S99 | GATE §8 evidence row "| bit `0x0010` is unused | no `test` with that mask anywhere in the function |" (GATE:263) | widened image-wide by UQ-26 (GATE:236-239) — consistent, scope stale |
+
+#### 3.2.4 Battle runtime mode ladder, diagnostics log, duplicated names, all-ones convention
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S100 | MODE:35 "**PARTIAL.** The ladder, its inputs and its persistence are read at tier 1." | MODE:5 "status: AUDITED … status line brought up to date 2026-09-18 (FABLE)" |
+| C-S101 | MODE:18 `last_reviewed: 2026-09-12`, MODE:21 `last_pass: 2026-09-02` | dated edits MODE:357 (2026-09-14), MODE:427 (2026-09-19), MODE:731/740 (2026-09-25) |
+| C-S102 | MODE:153-154 "**Bits 0 and 1 have no script verbs at all** — the complementary evidence that they are engine-internal, driven by UI and combat" | MODE:289-290 "**The two unnamed bits have script verbs after all**" (2026-09-12); MODE:545-546 "**ANSWERED 2026-09-12:** both have verbs" |
+| C-S103 | MODE:506-507 "**All four bits are live, but from different places.** Bit 0 is UI, bit 1 is combat/audio" | MODE:110-111 "corrected 2026-09-12, §2c"; MODE:185-187 "(Diagram and sentence corrected 2026-09-12, OPUS-CONTRA-LADDER-LABELS…)" |
+| C-S104 | MODE:665-669 "a script outranks authored area data which outranks combat which outranks UI … **O-4 stays open**" | MODE:515-517 "**ANSWERED 2026-09-12 (FABLE):** … **O-4.**" |
+| C-S105 | MODE:543-544 "which of entry 3's readers (`0031B950`, `BattleSlotMap_ResolveMappedBattleSlot`, five more) an event script relies on is not read" | C-MODE:386-387 "**ANSWERED 2026-09-22 (SWE2-CONTRACT) — the reader is the party-read-in state machine `0037B4D0`**" |
+| C-S106 | MODE:305 "the battle-menu builder, the target cursor — is asking *"is the party riding a chocobo?"*" (as callers of `00303EC0`) | MODE:204 "`FUN_00313DB0` — tests `== 2` **inline**, without the wrapper" |
+| C-S107 | MODE:1004-1019 and MODE:1021-1036 — the same `00303F00`/`00304060` section twice | — (duplicate block) |
+| C-S108 | MODE:1059 "SWE2-EC7-19 update (2026-05-15)"; DUP:421 same | dates earlier than both pages' own creation-era dates (2026-09-xx) |
+| C-S109 | MODE:1083-1085 "`00254B50` — the mode-ladder body proper" ; MODE:1369 "`0035D6B0`/`0035D8D0`/`0035D980`/`0035DA80` ladder quartet" | MODE:1089 "`00254B50` (263 B) is the body … `ecx & 0x7FFF` is the request id" (a UI request executor); C-MODE:469 "`00254B50 ← 00253C50/00254B40/002E09A0`" |
+| C-S110 | MODE:232 "`WorldTransitionSnapshot_RestorePersistencePairForActor` (`005843E0`)" | MODE:588 / MODE:962 "`WorldTransitionSnapshot_RestorePersistencePairForActiveSlot` (005843E0)" |
+| C-S111 | C-MODE:6 `readiness: CONTRACT READY` | C-MODE:263-264 "Live capture: still absent, and that is the gate this subsystem fails." |
+| C-S112 | C-MODE:521 "| any execution of this operation, isolated or live | **none**; §13 | none | UNKNOWN |" | C-MODE:266-269 "**Executed 2026-09-12** … **55 comparisons, 0 mismatches**"; C-MODE:343 executed 2026-09-26 |
+| C-S113 | C-MODE:579 "**The four setters are still not driven**" | C-MODE:343-349 "**The setters, the reset, the getters and the save round trip are executed since (2026-09-26 …)**" |
+| C-S114 | C-MODE:117 "`003148F0` — whose result is used as the row index and whose body is **not read here**"; C-MODE:241 "/* the active field index; body not read */" | C-MODE:334-336 (2026-09-18) "**The negative-index clamp is in `003148F0`** … `00314903 cmovs eax, ecx`"; HUBS:293 "(`003148F0`, 27 B) reads **one** field — the persistent payload's dword `+0x1044`" |
+| C-S115 | C-MODE:162 "/* the fourth slot - the guest's */"; C-MODE:171 "loses the ride timer, the guest slot and the event" | MODE:322 "**Roster slot 3 is the mount.**" (§2c, 2026-09-12); C-MODE:478 "**ANSWERED 2026-09-15 (OPUS) — it does nothing to the guest slot**" |
+| C-S116 | C-MODE:17 `last_reviewed: 2026-09-12`, C-MODE:22 `crossref_clean: false` | dated edits C-MODE:82 (2026-09-26), C-MODE:386 (2026-09-22), C-MODE:642 (2026-09-18) |
+| C-S117 | C-MODE:625 and C-MODE:629 — identical "Script_VM_Native_Bridge — CLIENT and SERVICE (48 edges)" bullets | — (duplicate) |
+| C-S118 | C-MODE:34-38 says the two stale MODE statements are "routed rather than repeated" (`OPUS-CONTRA-LADDER-LABELS`) | MODE:506-507 still carries "Bit 0 is UI, bit 1 is combat/audio" unstruck |
+| C-S119 | C-MODE:502 "*Not claimed:* what `[record + 0x284]` is." | outside 00, not audited: `17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md:209` "+0x284  u32   objectFlags" |
+| C-S120 | (outside 00, cited by MODE:310/536) `11-Party/Battle-State-Block/the-battle-state-block-field-map.md:120` "**the mode flags** — bit 0 UI, bit 1 combat / audio" | MODE:518-521 "**ANSWERED 2026-09-12:** bit 0 the summon … bit 1 the chocobo" |
+| C-S121 | LOG:17 `last_reviewed: 2026-09-08` | LOG:25 "promoted: 2026-10-01"; edits LOG:112, LOG:177, LOG:191 (2026-09-30) |
+| C-S122 | LOG:28/30 title and filename "level-gate" | LOG:31 "**there is no level gate** (§9, 2026-09-13)" (kept deliberately) |
+| C-S123 | LOG:176 "**What the channel id means**, or its range." ; LOG:201 "what the other channel ids mean stays open" | LOG:177 "**Answered functionally 2026-09-30 (SWE2-CONTRACT):** channel **4** is the debugger-break channel"; LOG:191-193 RC-9 answered 2026-09-30 |
+| C-S124 | LOG:342-345 "**Not claimed.** Which class the sink is … What `02EBA3D0` holds. Whether any caller of `005CDAA0` is itself gated" | LOG:347-349 annotation; LOG:201 (2026-09-18); LOG:78 (2026-09-21); LOG:354 RC-10 answered 2026-09-30 |
+| C-S125 | DUP:20 `last_reviewed: 2026-09-03` | DUP:264 pass 2026-09-13; DUP:373 2026-09-14 |
+| C-S126 | DUP:83 "the thunk is identifiable without ambiguity" | DUP:86 "**Not without ambiguity — the rule misses the one chain §2 counts (2026-09-13, §9).**" |
+| C-S127 | DUP:107 "~~while their thunk has some~~" (struck) | DUP:111 "**Corrected 2026-09-13 (§9): the 30 is right; the clause holds for 13 of them.**" — consistent |
+| C-S128 | ONES:19 `last_reviewed: 2026-09-03` | ONES:145 reconciled 2026-09-30 |
+| C-S129 | ONES:371 "What `+0xB8`/`+0xB9` and `+0x412` *hold* is still unread" | ONES:145 "*(Reconciled 2026-09-30 (FABLE …): that item is UQ-218, ANSWERED 2026-09-30 … so this half is no longer open.)*" (for `+0xB8`/`+0xB9`) |
+| C-S130 | ONES:71 "adjacent handle pair `+0x695`, `+0x696` \| 1 \| released \| `16-UI`" | ONES:139-140 "`+0x695` is `presentationSlot1` and `+0x696` `presentationSlot2`" (2026-09-13); ONES:237 "`0030688B  mov byte ptr [rbx + 0x696], al   ; hand the handle across`" |
+| C-S131 | README:13-68 lists no Battle-Runtime-Mode, Diagnostics-Logging, DUP or ONES page | front matter of all five pages: AUDITED |
+| C-S132 | APP:894 "a 0x4050-byte frame under `_chkstk` (`00808F10`)" | LOG:165 "`00808F10` \| `_alloca_probe`" (same function, two names; MODE:683 also `_alloca_probe`) |
+
+#### 3.2.5 Encoded-id space, class registry, query record, basis helpers, ABI recovery
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S133 | EID front matter "independent acceptance pending" (EID:4) | "SECTION-05 is accepted by a non-author review … `verdict:ACCEPT`" (CLS:50-53, 2026-09-30 citing 2026-09-29) |
+| C-S134 | C-EID "independent acceptance pending" (C-EID:14, C-EID:26-27) | CLS:50-55 (2026-09-29/30); C-EID's own OV-3 "NOT A QUESTION 2026-09-29" (C-EID:317) |
+| C-S135 | QREC `status: PARTIAL`, "formal peer acceptance pending" (QREC:4, QREC:12) | "the same review accepts the query-record page (OV-9)" (CLS:54-55) |
+| C-S136 | EID OV-5 open: "shipped-state reachability of unusual count/high-pointer/fourth-key-range cases, and formal independent acceptance" (EID:608-609) | "**CLOSED 2026-09-23 (SWE2-CONTRACT): both named anomalies are unreachable on shipped data**" (C-EID:250-251); acceptance CLS:50-55 |
+| C-S137 | QREC "Shipped reachability of that fourth interval is not proven by this fixture." (QREC:179-180); OV-8 open (QREC:196) | C-EID:252-261 (2026-09-23): "ids ≥ `0x8200` can never validate on shipped data" |
+| C-S138 | EID 02EBF008: "what those two do is unread, so the table stays unnamed (FY-7)" (EID:444) | "**Slot 0 named 2026-09-12 (FABLE):** the **movie fade schedule**" (EID:645-649) |
+| C-S139 | EID 02EBF020 Potion/Elixir row retained in table text (EID:441, retracted inline 2026-09-12) | same line, "retracted 2026-09-12, FABLE" |
+| C-S140 | CLS §5c: "a correspondence across two numbering schemes and is **not** an identity: no code was read that converts one into the other" (CLS:194-195) | "**`class = (id >> 12) + 5`**" (CLS:487, 2026-09-13); EID:98-101 (2026-09-11) |
+| C-S141 | CLS §3 "Four documents … none of them could see the others' numbers" / §3 omits id bases (CLS:31-33, CLS:497-499) | CLS:490-492 id-base table (2026-09-13) |
+| C-S142 | CLS "Only the `us` pack was decoded; other language packs are not checked" (CLS:376, CLS:540) | "the other eight language copies carry byte-identical authored tables" (EID:71; EID:659-660, 2026-09-11) |
+| C-S143 | CLS owner_layer "CodeDomain — shared; no PrimaryOwner" (CLS:5) | "`00322C50` itself is Gameplay-owned" (CLS:211) |
+| C-S144 | BASIS "**Cited by no document in this database.**" / "**Nothing in the database cites either address**" (BASIS:31, BASIS:113) | VTIDX:1409-1410 lists `0062DDE0`/`0062DFB0` as `PWorldMatrixFlyController` vtable slots 7 and 8 (undated row) |
+| C-S145 | BASIS last_reviewed 2026-09-03 (BASIS:19) | dated sections 2026-09-14 … 2026-09-20 (BASIS:158-185) |
+| C-S146 | EID last_reviewed 2026-09-22 (EID:19), audit last_pass 2026-09-12 (EID:47) | dated edits 2026-09-25 (EID:181, EID:187) and 2026-09-29 (EID:607) |
+| C-S147 | CLS last_reviewed 2026-09-22 (CLS:19) | 2026-09-30 sections (CLS:50, CLS:58, CLS:225, CLS:327) |
+| C-S148 | QREC last_reviewed 2026-09-22 (QREC:11) | falsification 2026-09-29 (QREC:203) |
+| C-S149 | C-EID audit `last_pass: 2026-09-30` vs `date: 2026-09-21` (C-EID:17, C-EID:21) | internal |
+| C-S150 | ABI "the 562 functions below are still in it" (ABI:38); audit "562 functions … analysed" (ABI:16) | "the frontier now holds **342**" (ABI:88, 2026-09-17) |
+| C-S151 | ABI UQ-1 example "`002465F0` is the known case" (ABI:123) | "**`002465F0` IS NOT IN THE DATASET.**" (ABI:172) |
+| C-S152 | EID "two snapshots"/census figures 76/14/14 vs 75/14/12 | "a drift the page already records" (EID:749-750) |
+| C-S153 | README of 00 does not list any of the six pages (README:11-68) | pages exist in folder |
+
+#### 3.2.6 Shared transform workbench (EE/VU0 register bank, save/restore, primitives)
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S154 | WB:4 "status: AUDITED" | WB:485 "`DOCUMENTED`, one falsification pass."; README:50 "**DOCUMENTED, tier 1, one falsification pass.**" |
+| C-S155 | WB:18 "last_reviewed: 2026-09-02" | dated edits to WB:105 (2026-09-26), WB:279 (2026-09-08), WB:315 (2026-09-12) |
+| C-S156 | WB:40-41 "The ledger mirror is pending." | not answered on the page |
+| C-S157 | WB:217 "row array (grouping beyond matrix 0 unproven, BQ-16)"; WB:480-481 "left open (BQ-16)"; WB:528-529 "Offered as a lead for `BQ-16`" | WB:304 "**BQ-16 ANSWERED**" (ticked 2026-09-13) |
+| C-S158 | WB:563 "Whether anything ever does is `BQ-19`'s question, not answered here." | EEVU:271 "***ANSWERED 2026-09-18 (FABLE) — the pools carry no jobs, so the bank has exactly one user thread.**" |
+| C-S159 | WB:186 "the only initializer" / WB:291 "It is the only thing that clears the area" | C-WB:247 shows it run from the rig frame `003E00C0` and `003DFFE0` (2026-09-29); not a boot-only initializer |
+| C-S160 | EEVU:4 "status: DOCUMENTED" | README:45 "**PARTIAL, tier 1.**" |
+| C-S161 | EEVU:12 "last_reviewed: 2026-09-14" | dated edits EEVU:225 (09-18), EEVU:261-262 (09-27/28), EEVU:370 (09-29) |
+| C-S162 | SAVE:17 "last_reviewed: 2026-09-08" | edits SAVE:86 (2026-09-28), SAVE:269 (2026-09-27), SAVE:287 (2026-09-28) |
+| C-S163 | SAVE:260 "what it selects is not established" | SAVE:292 "***ANSWERED 2026-09-17 (FABLE)***" (UQ-42) |
+| C-S164 | SAVE:294 "the row's byte 1 (UQ-42) stays open" | SAVE:292 (UQ-42 answered same date) |
+| C-S165 | SAVE:319 "what any of it is for | **not established** … UNKNOWN" | SAVE:294 "***ANSWERED 2026-09-17 (FABLE): colour arithmetic in the PS2 seven-bit convention***" |
+| C-S166 | SAVE:320 "any runtime observation | **none exists**" | SAVE:298 UQ-45 "**SUPERSEDED** (2026-09-14 …)" |
+| C-S167 | SAVE:46 quotes WB "**nothing restores it**" | WB:279 "**CORRECTED 2026-09-08**" |
+| C-S168 | C-SAVE:28 "249 functions write one shared area and nothing restores it" | WB:279-285 (2026-09-08) |
+| C-S169 | C-SAVE:17 "last_reviewed: 2026-09-11"; C-SAVE:6 "BEHAVIORALLY UNDERSTOOD" | C-SAVE:71, 83, 234 (2026-09-28 edits); C-SAVE:260 "**0 mismatches**" differential |
+| C-S170 | C-SAVE:192 / C-SAVE:386 (struck) "no relationship to the workbench" | C-SAVE:192-195 "*Resolved 2026-09-23*" |
+| C-S171 | C-WB:84-85 "*That grouping is `BQ-16` and this contract does not close it.*" | C-WB:178 "**CLOSED 2026-09-23**" |
+| C-S172 | C-WB:192 "Whether any pair of borrowers can overlap in time (§10)." | EEVU:271 (2026-09-18) one user thread |
+| C-S173 | C-PRIM:113-115 "`022D91A0` has 67 writers … `022D8F90` has 47 and 59" | C-PRIM:365 "**Replaced 2026-09-21 (SWE2-CONTRACT) with a defined instrument**" |
+| C-S174 | PRIM:345-347 "**who consumes them is not**" | C-PRIM:269-280 "**Answered 2026-09-21 (SWE2-CONTRACT): yes — pervasively, but by the workbench family**" |
+| C-S175 | PRIM:357-358 "What the live blocks … are … their meaning is not." | PRIM:224 "**Answered 2026-09-14 (FABLE, `BQ-16`)**"; C-PRIM:288 |
+| C-S176 | PRIM:361-363 "That `00397910` is only a matrix multiply." | C-PRIM:302 "**Answered 2026-09-20 by a full line-by-line read: yes.**" |
+| C-S177 | PRIM:17 "last_reviewed: 2026-09-08" | edits PRIM:174 (09-21), PRIM:604 (10-01), PRIM:1538 (09-30) |
+| C-S178 | PRIM:805 "## SWE2-EC7-19 update (2026-05-15)" | date precedes every other dated line in the group (earliest otherwise 2026-09-02) |
+| C-S179 | PRIM:1586/1594 and PRIM:1590/1598 duplicate `00276430`/`003F74F0` paragraphs; PRIM:553/557 two different "Script_VM_Native_Bridge" paragraphs; C-SAVE:487/488 duplicates; SAVE:303/327 two "## 9" headings | — |
+| C-S180 | C-PRIM:11 "last_reviewed: 2026-09-17" | C-PRIM:295 "*(corrected 2026-10-01, OPUS …)*" |
+| C-S181 | README:41-42 "a 660-byte buffer at `022D9198` … thirteen objects rather than one" | WB:439 "### CORRECTED: 62 objects, not 13" (2026-09-02); EEVU:113 |
+
+#### 3.2.7 Object model (RTTI and the vtable method index)
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S182 | `last_reviewed: 2026-09-02` / `last_pass: 2026-09-02` (RTTI:22, 25) | dated edits to 2026-09-22: "**CONFIRMED 2026-09-22 (FABLE)**" (RTTI:190), "(FABLE, 2026-09-22)" (RTTI:248, 259) |
+| C-S183 | `last_reviewed: 2026-09-02` / `last_pass: 2026-09-02` (VTIDX:19, 22) | "2026-09-28, applied by FABLE" (VTIDX:145); "SUPERSEDED 2026-09-26" (VTIDX:154) |
+| C-S184 | "**Still open:** which *game* subsystem calls that narrow interface … **AS-1a.**" (RTTI:157-159) | "~~Which *game* subsystem calls Phyre's physics interface.~~ **ANSWERED as far as it can be**" (RTTI:367-368; §6 dated 2026-09-02, RTTI:464) |
+| C-S185 | "~~**that reading is a lead, not a finding.**~~ … **Still open on the narrower point:** *battle* voice specifically" (RTTI:190, 200-201) | "**ANSWERED 2026-09-22 (FABLE): battle voice specifically**" (RTTI:382-383) |
+| C-S186 | "**Still open:** whether Phyre's reflection glue (the descriptor instances) describes exactly these RTTI classes." (RTTI:462, narrowing dated 2026-09-14, RTTI:409) | "**GLUE HALF ANSWERED 2026-09-22 (FABLE)**" (RTTI:410) |
+| C-S187 | "191 apart and not explained by these three. **AS-8.**" (RTTI:490-491) | "**AS-8 closed**" (RTTI:587) — itself contested, see C.1 |
+| C-S188 | "- [x] Replace `vtable_map.py`'s `demangle()` … **AS-9.**" (RTTI:376-378) ticked with no answer; "**AS-9** tracks replacing the demangler" (RTTI:589-590) | "correcting the demangler does not move it" (RTTI:712-713); "**AS-9a is closed.**" (RTTI:892) — whether AS-9 itself was done is not stated |
+| C-S189 | "Those are the real dispatch tables" (RTTI:670-671); "two of the largest are now documented" (RTTI:691) | "**Correction to section 8.** … **The largest of them is not a dispatch table at all**" (RTTI:706-708, undated) |
+| C-S190 | RTTI §6 reads the three AS-7 qwords as slots "past the true end of three vtables" (RTTI:484-487) | §14: "**they are inline ASCII strings, not pointers**" in "Phyre's field-descriptor tables" (RTTI:888, 917) |
+| C-S191 | "`BattleFormula_EvaluateTargetPreview` (`003859FF`)" / "`BattleFormula_ResolveTargetResult` (`003863D0`)" (RTTI:401-402) | function entries are `00385680` / `00385F60` (RTTI:683, 1002, 1009) — names attached to interior call sites |
+| C-S192 | RTTI section numbering jumps §9 → §12 (RTTI:693, 710) | — (no §10/§11) |
+| C-S193 | Links `members/rtti-class-vtables.tsv`, `members/phyre-registrar-classes.tsv` (RTTI:414, 438) | files live in `22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/`; `Object-Model/members/` holds only the zero-at-load file |
+| C-S194 | "**4,265 of the 4,275 sit at exactly one slot; 10 occupy two slots of the same class** — multiple inheritance, where a class has more than one vtable." (VTIDX:106-107); "multiple inheritance, 10 cases" (VTIDX:236) | "*Answered on the page 2026-09-14 (FABLE)…: neither — all ten are two virtual slots of the same single vtable*" and "The sentence … above is corrected by this." (VTIDX:157-158, 176-177) — still unstruck at VTIDX:106-107 and VTIDX:236 |
+| C-S195 | BA-2 "**Nothing here has had its body read.**" (VTIDX:153) | "five families have been read so far" (VTIDX:2529-2530); ~250 bodies read in SWE2-EC7 updates dated 2026-09-19..21 (e.g. VTIDX:3365-5219); "SUPERSEDED 2026-09-26" (VTIDX:154) |
+| C-S196 | "Following them would move essentially nothing out of the 9.9 %" (VTIDX:2611); "**3,395 functions holding 748 KB are reached by none of the three static routes**" (VTIDX:2588) and the `BattleMenu_…` example (VTIDX:2602) | "## 14. RETRACTION" — 351 fn / 1.0 % (VTIDX:2614, 2658); `002778C0` "is address-taken" (VTIDX:2629-2631) — only the table row VTIDX:2575 is struck |
+| C-S197 | §14 "**88 KB**" residue (VTIDX:2675) | §14a: "§14's *"88 KB"* is at most about **64 KB**" (VTIDX:2747-2748; FABLE measured 2026-09-16, OPUS 2026-09-17, VTIDX:2700) |
+| C-S198 | BA-1 "The 2,611 folded addresses' owners" (VTIDX:143) | "for the true owner of the 2,179 FOLDED addresses, 2026-09-28" (VTIDX:145) with INHERITANCE 320 / ONE-TEMPLATE-FAMILY 73 / STUB 39 answered (VTIDX:149) — 2,611 is reused unqualified at VTIDX:80, 135, 234, 2528 |
+| C-S199 | `0068AF90` "`+0x70`/`+0x74`=1.0f" (VTIDX:3900) | its interior anchor "(the `+0x24` = 1.0f store)" (VTIDX:3900) names a field the line does not list |
+| C-S200 | duplicate bullet "**Script_VM_Native_Bridge — CLIENT (1 edge).**" (VTIDX:2859) | repeated verbatim at VTIDX:2862 |
+| C-S201 | "`FieldData_GetActiveFieldRecordBit15` (00313F60), `FieldData_GetActiveFieldRecordBit15` (00377C20)" (VTIDX:2861) | one name on two addresses — the DUP page's subject; unresolved here |
+| C-S202 | README lists VTIDX (README:32-35) but **not** RTTI | RTTI is `status: AUDITED` (RTTI:4) |
+| C-S203 | README: "Never deleted, hence no stated object size." (README:31) | APP:129, APP:361 (Falsification pass 1 - 2026-09-02, APP:340) |
+
+#### 3.2.8 Shared-state accessors and the ownership boundary
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S204 | HUBS key table: "`00362850` … not read" (HUBS:209) | TICK:893 "**`00362850` is the audio listener update:**" (TICK §7 EX-3) |
+| C-S205 | HUBS key table: "`00233780` `SpawnKeep_RotatePersistenceBanksForAreaTransition` … not read" (HUBS:210) | NBR:445 "`SpawnKeep_RotatePersistenceBanksForAreaTransition` is the worked example, read in full" (2026-09-14) |
+| C-S206 | HUBS key table: "— \| `SaveImage_GetPersistentPayloadBase` \| — \| — \| not read" (HUBS:212) | HUBS:331 "**U-5 ANSWERED 2026-09-12 (FABLE):** `002EF2B0` is …"; HUBS:606-612 (2026-09-18) |
+| C-S207 | "The 49 callers of hub 2 include 21 with no owner tag … identifying them is **U-3**." (HUBS:418-419) | HUBS:297-298 "**U-3 ANSWERED 2026-09-12 (FABLE)**" |
+| C-S208 | "recorded as **U-4** rather than dressed up as a runtime claim" (HUBS:416) | HUBS:325 U-4 "(closed — the register row is WITHDRAWN.)"; bounded 2026-09-22 (HUBS:327) |
+| C-S209 | HUBS `last_reviewed: 2026-09-02` (HUBS:18) | dated edits to 2026-09-12/13/14/17/18/19/20/22/26 and "re-read 2026-09-30" (HUBS:948) |
+| C-S210 | HUBS front matter `status: AUDITED` (HUBS:4) | README:59 "**DOCUMENTED, tier 1.**" |
+| C-S211 | HUBS has two "## 9." headings ("## 9. Related" HUBS:421, "## 9. Falsification pass 2026-09-02" HUBS:430); HUBS:49 "Corrected 2026-09-02 (§9)" | structural only |
+| C-S212 | NBR: "`0022AF50` sets to **3** and `0022B000` sets to **5** (§3 and §4)" (NBR:243-244) | NBR §3 is the audio chain (NBR:69) and §4 the class validator (NBR:108); no section of NBR describes those mode bodies |
+| C-S213 | NBR `last_reviewed: 2026-09-14` (NBR:12) | dated edits 2026-09-15, 09-17 (NBR:326-332), 09-21 (NBR:84), 09-28 (NBR:178, 236) |
+| C-S214 | NBR not listed in README "Systems in this category" (no README line names `the-shared-neighbours-pass-22-keeps-finding.md`) | NBR front matter AUDITED (NBR:4) |
+| C-S215 | NBR §10.4 "the 922 denominator no longer exists" (NBR:432-433) | headline still states "130 of pass 22's 922" (NBR:24) — historical by NBR:433 |
+| C-S216 | OWN `last_reviewed: 2026-09-02` (OWN:19); `last_pass_state:` is a sha (OWN:23) | dated edits through 2026-09-30 (OWN:537) |
+| C-S217 | OWN body "### Status `DOCUMENTED`, one falsification pass." (OWN:488-490); README:37 "DOCUMENTED" | front matter `status: AUDITED` (OWN:4) |
+| C-S218 | OWN "SWE2-EC7-18 update (2026-05-15)" (OWN:687) | date earlier than every other dated section of the page (2026-09-xx) |
+| C-S219 | `003B8670` "has no document" (struck, OWN:304-308) | OWN:308 "**BQ-12 ANSWERED 2026-09-12 (FABLE)**" — correctly struck |
+| C-S220 | Ownership of `002BAF80`: HUBS:316 "Input — `002B7B80`, `002BAF80` (the two 4.8 KB dispatchers)" | NBR:366-367 "`Presentation` `002BAF80`"; HUBS:883-886 Presentation |
+| C-S221 | OWN "is a 660-byte buffer … written by **215 functions**" (README:41-42) | OWN:159-160 "the "660-byte buffer" is three separate 64-byte row blocks plus several unrelated slots" (2026-09-02) |
+
+#### 3.2.9 Developer tuning console: dispatcher, tunables, second table, event slot, names
+
+| id | stale or banner text (quote+cite) | answered or contradicted by (quote+cite, dated) |
+|---|---|---|
+| C-S222 | C-CON:297 "**Empty.** … nothing here has been observed running." | C-CON:139 "*(2026-09-25, FABLE, …, on OPUS block 315, which executed every id …)*" |
+| C-S223 | C-CON:305-308 Unresolved 1 "Whether the 111 codes are area codes" and 2 "Why `dst0104` appears at two ids" | CON2:75-83 "**Answered 2026-09-30 (SWE2-CONTRACT): they are map-pack names** … fields 230 and 232 both load `dst0104.mpk`" |
+| C-S224 | C-CON:311 Unresolved 4 "The eight-entry uniform array the console cannot reach" | TUNES:564 "**What the eight entries at `+190` are** — **eight shadow-map matrices**"; TUNES:568 UQ-24 "**cascades**" (2026-09-16) |
+| C-S225 | C-CON:19 `last_reviewed: 2026-09-21` | dated edits at C-CON:77 (2026-09-25), 87 (2026-09-30), 139 (2026-09-25), 166 (2026-09-26) |
+| C-S226 | C-CON:8 `implements:` lists four pages and omits EVSLOT | EVSLOT is in the same folder (EVSLOT:9 `owner_layer: CodeDomain:DeveloperConsole`) |
+| C-S227 | CON282:4 `status: DOCUMENTED` | CON282:501 "**Status stays `PARTIAL`.**" (2026-09-03 pass; never updated) |
+| C-S228 | CON282:18 `last_reviewed: 2026-09-03`, `last_pass: 2026-09-03` | edits dated 2026-09-29/30 (CON282:113, 153, 94); C-CON pass 1 2026-09-29 corrected CON282's counts (CON282:113) |
+| C-S229 | CON282:32 "the biggest function in the executable that no document has cited" | the page and C-CON now cite it (C-CON:52) |
+| C-S230 | CON282:54 "**Fifty-six of the numbered commands do nothing at all.**" | CMDNAMES:396-398 "38 of them still draw a live value, 12 are labelled buttons with the action removed, 6 draw blank." (2026-09-03) |
+| C-S231 | CON282:345 "97 addresses, none named. This is the open question" | CON282:346 pointer; CON282:250 "**ANSWERED 2026-09-27 (OPUS)**" |
+| C-S232 | CON282:274 "Which code serves rows 1–11 was not traced." | CON282:275 "*Now traced as far as the image allows (2026-09-30 …)*" |
+| C-S233 | CON282:502-503 "this pass did not trace its caller" | CON282:504 "*Answered since (2026-09-30 pointer …)*" |
+| C-S234 | TUNES:18 `last_reviewed: 2026-09-03` | edits to 2026-10-01 (TUNES:589, 691, 1229) |
+| C-S235 | TUNES:169 "`.data`, uninitialised" | TUNES:65 "**Corrected 2026-09-03 …** The block is a **C++ static object**" |
+| C-S236 | TUNES:471-472 "**This does not identify `01F82D20`.** … §7 leaves it open." | TUNES:607 "**Answered 2026-09-14 (FABLE): it is the `GameSettingConfig` singleton pointer**" |
+| C-S237 | TUNES:522-524 "nothing here establishes *how* it is opened, and this document does not claim a route to it." | CON282:261-262 "**Answered 2026-09-13 (FABLE), statically:**" (Config screen route) |
+| C-S238 | TUNES:574-575 "whether the five unfilled elements are dead capacity … is not settled." | TUNES:585 RC-8 "**ANSWERED 2026-09-30 …** elements 3–7 are built but never counted in." |
+| C-S239 | TUNES:667-669 "The integer-form accesses … are still unexplained." | TUNES:670 "*Narrowed 2026-09-30 …*" and RC-7 ANSWERED (684) |
+| C-S240 | TUNES:779-780 "The difference is not reconciled." | TUNES:780 pointer (2026-09-30) and TUNES:1082-1084 (2026-09-12) |
+| C-S241 | TUNES:1093-1096 "Left unverified and said so." | TUNES:1097 "*Verified 2026-09-30 (SWE2-CONTRACT): disjoint.*" |
+| C-S242 | CON2:19 `last_reviewed: 2026-09-03` | sections dated 2026-09-30 (CON2:75, 126, 217-283) |
+| C-S243 | CON2:72-73 "**What the codes name is not established here.**" | CON2:75 "**Answered 2026-09-30**" |
+| C-S244 | CON2:149-150 asm comment "the console arm writes it"; 155 "the glyph-record builder copies it"; 162-163 "**The console writes a byte on one object; a render-record builder copies it**" (kept unstruck) | CON2:126-136 "**Corrected 2026-09-30** … `001C977B` is not a console arm … `0018F316` is not a glyph-record builder" |
+| C-S245 | CON2:205-207 "**What this document does not claim:** …" | CON2:208 "*All six are answered since (2026-09-30 …)*" |
+| C-S246 | EVSLOT file name `the-event-slot-panel-and-its-dead-feeder.md` | EVSLOT:4 "earlier "dead feeder" verdict retracted" (2026-09-25); title EVSLOT:25 "live feeder" |
+| C-S247 | EVSLOT:88 "`01F832C4` | dword | cleared by the pusher each push" (only writer listed) | EVSLOT:302 "`01F832C4` has one more writer than §2 lists: `001EC690` increments it" |
+| C-S248 | EVSLOT:340-341 "Section 6's open items stay open." (2026-09-29) | §6 answers dated 2026-09-30 (EVSLOT:180, 219, 230) |
+| C-S249 | CMDNAMES:19 `last_reviewed: 2026-09-03` | CMDNAMES:419 "**Resolved 2026-09-18 (FABLE)**" |
+| C-S250 | CMDNAMES:416-417 "**Raised, not resolved**" | CMDNAMES:419 resolved 2026-09-18 |
+| C-S251 | CMDNAMES:31 "**GENERATED — do not hand-edit.**" | the hand-added paragraph CMDNAMES:419 |
+| C-S252 | README:11-63 "## Systems in this category" lists no Developer-Tuning-Console page | the folder has 16 pages (C-CON:30-31) |
+
+#### 3.2.10 Developer tuning console: the arm catalogue (work division and slices A-I)
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S253 | ARMDIV:290 "**96 of 282 ids catalogued; 186 remain.**" | ARMDIV:456 "**The table is closed.** Nine slices, five sessions, every action id catalogued." |
+| C-S254 | ARMDIV:276-277 claims table: H "**offered, awaiting reply**", I "claimed" | ARMDIV:454 "## H delivered — 282 of 282"; ARM-H, ARM-I exist |
+| C-S255 | ARMDIV:294 "Slices A and B read `GN158` and **stay that way.**" | ARM-A:12, ARM-B:12 `parent_tag: GN162` ("CARRIED TO GN162 2026-09-21", ARM-A:13) |
+| C-S256 | ARMDIV:14 `last_reviewed: 2026-09-13` | dated body edits 2026-09-14 (ARMDIV:540), 2026-09-19 (ARMDIV:578-612) |
+| C-S257 | ARMDIV:98 "**102 of 102 stepping arms have this shape.**" (History) | ARMDIV:44 "**but only 55 have that shape.** The other **47 are signed pairs**" (re-derived 2026-09-13) |
+| C-S258 | ARMDIV:185-186 "zero-filled tail of `.data`, built at run time." / ARM-C:205-206 "It is in the zero-filled tail of `.data`, so it holds no value in the file and is built at run time." / ARM-B:153 "the array is in `.data` BSS, so it holds no value in the file." | TUNES:65-68 "**Corrected 2026-09-03: "uninitialised, built at run time, no file image" was wrong.** The block is a **C++ static object**" |
+| C-S259 | Slices A–I `last_reviewed: 2026-09-03` (e.g. ARM-A:19) | dated body answers up to 2026-09-26 (ARM-A:304; ARM-D:298; ARM-G:191; ARM-I:317) |
+| C-S260 | ARM-C:19, ARM-D:18, ARM-E:18, ARM-F:19, ARM-G:19, ARM-H:19, ARM-I:19 `parent_tag: GN159` | same front matter `parent_tag: GN162` (e.g. ARM-C:12) |
+| C-S261 | ARM-B:61 "Who calls it is still untraced." | ARM-B:191-197 "**Answered 2026-09-14 (FABLE)**" |
+| C-S262 | ARM-B:118-119 "slices C–I have not been read" | ARM-B:121 "**Resolved by slice C, 2026-09-03.**" |
+| C-S263 | ARM-C:60 "**No target in this slice is identified by name** — see §8" | ARM-C:215-219 (ANSWERED 2026-09-25: all 36 named); §8 is the call chain |
+| C-S264 | ARM-C:235/239 garbled struck UQ-12 heading ("~~…its `+0xCC4`/`+0xCC8`/`+0xCCC`~~" … "fields are.") | ARM-C:241 ANSWERED 2026-09-17 |
+| C-S265 | ARM-D:153-156 "ids 140–293 are unread" | ARM-D:319-335 (UQ-16 answered 2026-09-25/26) |
+| C-S266 | ARM-E:290-291 "the `0x0E` is a channel or key selector, not decoded" | ARM-E:427-429 / ARMDIV:475 (`0x38/4 = 14`, property 14) |
+| C-S267 | ARM-E:328-334, ARM-E:348 consumer of the 21 Map floats open | CON282:250 ANSWERED 2026-09-27 (cbuffer) |
+| C-S268 | ARM-F:256-257 "**No field in this slice was traced to a reader.**" | ARM-F:260 ANSWERED 2026-09-25 |
+| C-S269 | ARM-G:121 "ids 236–293 are unread" | ARM-H / ARM-I delivered (ARMDIV:454-456) |
+| C-S270 | ARM-I:97-98 "Slice H (ids 236–267) is unread" | ARM-I:100-106 "Tested by slice H §8" |
+| C-S271 | ARM-I:316-317 UQ-21 checkbox open wording | "*Answered 2026-09-26 (OPUS)*" same line |
+| C-S272 | CMDNAMES:111 id 28 field `02CB8130` (generated table) | CMDNAMES:419 "**Resolved 2026-09-18 (FABLE)** … id 28 does not own it"; ARM-A:117-142 |
+| C-S273 | CMDNAMES:410-417 "**Raised, not resolved**" | CMDNAMES:419 same page, 2026-09-18 |
+| C-S274 | ARM-A:304 UQ-7 premise "far outside the contiguous run" | "DISSOLVED in the register 2026-09-26" (same line) |
+| C-S275 | ARM-D:128 "Flagged 2026-09-08, unresolved." | still unresolved (no later dated line) — listed in G.1 |
+| C-S276 | ARMDIV:20 `crossref_clean: true` | slices all `crossref_clean: false` (e.g. ARM-A:25); C.1 items above |
 
