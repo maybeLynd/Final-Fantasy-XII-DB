@@ -1,0 +1,105 @@
+[
+  {
+    "retained_prefix": "retained/rig",
+    "parent_packet": "rig-index-list-producer",
+    "commit": "f20407498c26fab2502ed2f3e2660f02efb8e3bc",
+    "manifest_sha256": "49f2d7af98080cdde1a4ba3fa36fa7ec4f44439e7f8f40d3d3d95f6b3daf37f7",
+    "retained_files": [
+      {
+        "path": "manifest.json",
+        "sha256": "49f2d7af98080cdde1a4ba3fa36fa7ec4f44439e7f8f40d3d3d95f6b3daf37f7",
+        "bytes": 10912
+      },
+      {
+        "path": "source-01.json",
+        "sha256": "06c046a07c978b47980f5b9c46cff55dbf1e2465af294b828e0cb14c1f6d6b81",
+        "bytes": 245356
+      },
+      {
+        "path": "capture.py",
+        "sha256": "ce8b1a3473d50968f292808474ea248e2fdb0955889668c33a8b007e77f8d06f",
+        "bytes": 921
+      },
+      {
+        "path": "capture-01.status.json",
+        "sha256": "e6b4a969b168275ea5b33b1eb47951df2919f7adff34eeb44693320de50bf577",
+        "bytes": 539
+      },
+      {
+        "path": "capture-01.stdout",
+        "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+        "bytes": 90
+      },
+      {
+        "path": "capture-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "retained/retained/source-01.json",
+        "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+        "bytes": 35579
+      },
+      {
+        "path": "retained/retained/capture.py",
+        "sha256": "cd59a93886c6aeedc6c07ba44cf778d9e5f19d871660bf4791b2aaee57fade1b",
+        "bytes": 911
+      },
+      {
+        "path": "retained/retained/capture-01.status.json",
+        "sha256": "45a087db48e31b3f9cba16547d9433b77942b46921c79e6d97eb307e34bf4e5c",
+        "bytes": 545
+      },
+      {
+        "path": "retained/retained/capture-01.stdout",
+        "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+        "bytes": 90
+      },
+      {
+        "path": "retained/retained/capture-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ],
+    "limits": "Published producer evidence, independent packet review pending; no new native/live capture credit."
+  },
+  {
+    "retained_prefix": "retained/factory",
+    "parent_packet": "skeleton-workspace-factory",
+    "commit": "1fccf591e98a2975cc358a619fbb47a047cbb25a",
+    "manifest_sha256": "d4927fd135f97861ee64af294f75f898acf6c654da660d3b50d8324a16d8783c",
+    "retained_files": [
+      {
+        "path": "manifest.json",
+        "sha256": "d4927fd135f97861ee64af294f75f898acf6c654da660d3b50d8324a16d8783c",
+        "bytes": 9791
+      },
+      {
+        "path": "source-01.json",
+        "sha256": "0fa442952ee10250c7f3932aaebcb96e363d87052fa5b0d40b7501428228f764",
+        "bytes": 86758
+      },
+      {
+        "path": "capture.py",
+        "sha256": "f9dd0a9fd7207088047d82c2278c62353d8385d6ee76037c403a10feed2f187d",
+        "bytes": 943
+      },
+      {
+        "path": "capture-01.status.json",
+        "sha256": "60db7da5255bd95b84694bd3d1dd2fe966346f1adba134adb5a2535e4a4d72e4",
+        "bytes": 542
+      },
+      {
+        "path": "capture-01.stdout",
+        "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+        "bytes": 90
+      },
+      {
+        "path": "capture-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ],
+    "limits": "Published producer evidence, independent packet review pending; no new native/live capture credit."
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "name": "incomplete-capture-wrapper",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-owner-rebind-preconditions\\controls-01\\incomplete-capture-wrapper\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "248fdd5feacbdd11a1420715d3ae1bf46d4596c9aba543c1f8f98d10839c2ca7",
+  "diagnostic": "actual capture incomplete",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "f65f0e777bcedc1a11490fd49ccb9f9b091ecca70a6a2fce788f8c4ce908fa10"
+}

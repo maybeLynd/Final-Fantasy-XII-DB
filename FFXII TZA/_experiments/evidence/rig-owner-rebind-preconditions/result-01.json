@@ -1,0 +1,861 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original rig owner rebinder proof",
+  "driver_sha256": "248fdd5feacbdd11a1420715d3ae1bf46d4596c9aba543c1f8f98d10839c2ca7",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "effbbbdc4afac331ffed826ad03046e93891eba14c03768012240d0127017ced"
+    },
+    {
+      "path": "retained/rig/source-01.json",
+      "sha256": "06c046a07c978b47980f5b9c46cff55dbf1e2465af294b828e0cb14c1f6d6b81"
+    },
+    {
+      "path": "retained/rig/retained/source-01.json",
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "path": "retained/rig/retained/retained/source-01.json",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    },
+    {
+      "path": "retained/factory/source-01.json",
+      "sha256": "0fa442952ee10250c7f3932aaebcb96e363d87052fa5b0d40b7501428228f764"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 523,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 879,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 442,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 128,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 332,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 125,
+  "graphs": [
+    {
+      "entry": "0x372350",
+      "source": "source-01.json",
+      "instructions": 22,
+      "calls": [
+        [
+          3613550,
+          "0x20e600"
+        ],
+        [
+          3613566,
+          "0x20e600"
+        ],
+        [
+          3613580,
+          "0x20e600"
+        ],
+        [
+          3613588,
+          "0x3e3d70"
+        ]
+      ],
+      "returns": [
+        "0x3723a3"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x3e3ca0",
+      "source": "source-01.json",
+      "instructions": 51,
+      "calls": [
+        [
+          4078818,
+          "0x20e620"
+        ],
+        [
+          4078828,
+          "0x20e600"
+        ],
+        [
+          4078836,
+          "0x421d20"
+        ],
+        [
+          4078844,
+          "0x20e620"
+        ],
+        [
+          4078903,
+          "0x20e620"
+        ],
+        [
+          4078913,
+          "0x20e600"
+        ],
+        [
+          4078921,
+          "0x421d20"
+        ],
+        [
+          4078929,
+          "0x20e620"
+        ]
+      ],
+      "returns": [
+        "0x3e3d63"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x3e3d70",
+      "source": "source-01.json",
+      "instructions": 263,
+      "calls": [
+        [
+          4079026,
+          "0x20e620"
+        ],
+        [
+          4079036,
+          "0x20e600"
+        ],
+        [
+          4079044,
+          "0x421d20"
+        ],
+        [
+          4079052,
+          "0x20e620"
+        ],
+        [
+          4079110,
+          "0x20e620"
+        ],
+        [
+          4079120,
+          "0x20e600"
+        ],
+        [
+          4079128,
+          "0x421d20"
+        ],
+        [
+          4079136,
+          "0x20e620"
+        ],
+        [
+          4079147,
+          "0x3e3c30"
+        ],
+        [
+          4079154,
+          "0x20e600"
+        ],
+        [
+          4079166,
+          "0x20e600"
+        ],
+        [
+          4079174,
+          "0x40f390"
+        ],
+        [
+          4079182,
+          "0x20e600"
+        ],
+        [
+          4079195,
+          "0x20e600"
+        ],
+        [
+          4079203,
+          "0x512ad0"
+        ],
+        [
+          4079211,
+          "0x20e600"
+        ],
+        [
+          4079224,
+          "0x20e600"
+        ],
+        [
+          4079232,
+          "0x5154b0"
+        ],
+        [
+          4079240,
+          "0x20e600"
+        ],
+        [
+          4079253,
+          "0x20e600"
+        ],
+        [
+          4079261,
+          "0x515da0"
+        ],
+        [
+          4079269,
+          "0x20e600"
+        ],
+        [
+          4079282,
+          "0x20e600"
+        ],
+        [
+          4079290,
+          "0x51afd0"
+        ],
+        [
+          4079298,
+          "0x20e600"
+        ],
+        [
+          4079311,
+          "0x20e600"
+        ],
+        [
+          4079319,
+          "0x471660"
+        ],
+        [
+          4079327,
+          "0x20e600"
+        ],
+        [
+          4079340,
+          "0x20e600"
+        ],
+        [
+          4079348,
+          "0x4715b0"
+        ],
+        [
+          4079356,
+          "0x20e600"
+        ],
+        [
+          4079369,
+          "0x20e600"
+        ],
+        [
+          4079377,
+          "0x5173b0"
+        ],
+        [
+          4079385,
+          "0x20e600"
+        ],
+        [
+          4079398,
+          "0x20e600"
+        ],
+        [
+          4079406,
+          "0x5175f0"
+        ],
+        [
+          4079414,
+          "0x20e600"
+        ],
+        [
+          4079427,
+          "0x20e600"
+        ],
+        [
+          4079435,
+          "0x518e60"
+        ],
+        [
+          4079443,
+          "0x20e600"
+        ],
+        [
+          4079456,
+          "0x20e600"
+        ],
+        [
+          4079464,
+          "0x519730"
+        ],
+        [
+          4079472,
+          "0x20e600"
+        ],
+        [
+          4079485,
+          "0x20e600"
+        ],
+        [
+          4079493,
+          "0x4712f0"
+        ],
+        [
+          4079501,
+          "0x20e600"
+        ],
+        [
+          4079514,
+          "0x20e600"
+        ],
+        [
+          4079522,
+          "0x4719f0"
+        ],
+        [
+          4079530,
+          "0x20e600"
+        ],
+        [
+          4079543,
+          "0x20e600"
+        ],
+        [
+          4079551,
+          "0x519a30"
+        ],
+        [
+          4079559,
+          "0x20e600"
+        ],
+        [
+          4079572,
+          "0x20e600"
+        ],
+        [
+          4079580,
+          "0x51b870"
+        ],
+        [
+          4079588,
+          "0x20e600"
+        ],
+        [
+          4079601,
+          "0x20e600"
+        ],
+        [
+          4079609,
+          "0x472820"
+        ],
+        [
+          4079645,
+          "0x20e600"
+        ],
+        [
+          4079672,
+          "0x20e600"
+        ],
+        [
+          4079682,
+          "0x40b5d0"
+        ],
+        [
+          4079703,
+          "0x20e600"
+        ],
+        [
+          4079721,
+          "0x20e600"
+        ],
+        [
+          4079734,
+          "0x20e600"
+        ],
+        [
+          4079742,
+          "0x512c00"
+        ],
+        [
+          4079750,
+          "0x20e600"
+        ],
+        [
+          4079763,
+          "0x20e600"
+        ],
+        [
+          4079776,
+          "0x20e600"
+        ],
+        [
+          4079784,
+          "0x517590"
+        ],
+        [
+          4079792,
+          "0x20e600"
+        ],
+        [
+          4079805,
+          "0x20e600"
+        ],
+        [
+          4079818,
+          "0x20e600"
+        ],
+        [
+          4079826,
+          "0x519870"
+        ],
+        [
+          4079834,
+          "0x20e600"
+        ],
+        [
+          4079847,
+          "0x20e600"
+        ],
+        [
+          4079860,
+          "0x20e600"
+        ],
+        [
+          4079868,
+          "0x51a320"
+        ],
+        [
+          4079876,
+          "0x20e600"
+        ],
+        [
+          4079889,
+          "0x20e600"
+        ],
+        [
+          4079902,
+          "0x20e600"
+        ],
+        [
+          4079910,
+          "0x51b110"
+        ]
+      ],
+      "returns": [
+        "0x3e4130"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x4215a0",
+      "source": "source-01.json",
+      "instructions": 187,
+      "calls": [
+        [
+          4330953,
+          "0x20e600"
+        ],
+        [
+          4330978,
+          "0x20e600"
+        ],
+        [
+          4331001,
+          "0x2ed570"
+        ],
+        [
+          4331029,
+          "0x20e600"
+        ],
+        [
+          4331050,
+          "0x2ed570"
+        ],
+        [
+          4331114,
+          "0x4219c0"
+        ],
+        [
+          4331126,
+          "0x20e600"
+        ],
+        [
+          4331157,
+          "0x20e600"
+        ],
+        [
+          4331182,
+          "0x20e600"
+        ],
+        [
+          4331198,
+          "0x20e600"
+        ],
+        [
+          4331222,
+          "0x20e600"
+        ],
+        [
+          4331237,
+          "0x20e600"
+        ],
+        [
+          4331245,
+          "0x3e3ca0"
+        ],
+        [
+          4331326,
+          "0x3e5ad0"
+        ],
+        [
+          4331356,
+          "0x46e640"
+        ],
+        [
+          4331373,
+          "0x422380"
+        ],
+        [
+          4331386,
+          "0x4219c0"
+        ],
+        [
+          4331424,
+          "0x422d50"
+        ],
+        [
+          4331435,
+          "0x422d50"
+        ],
+        [
+          4331465,
+          "0x41cfc0"
+        ],
+        [
+          4331478,
+          "0x41cfc0"
+        ],
+        [
+          4331504,
+          "0x512c80"
+        ],
+        [
+          4331522,
+          "0x3326c0"
+        ],
+        [
+          4331533,
+          "0x41f010"
+        ],
+        [
+          4331550,
+          "0x3e5cf0"
+        ],
+        [
+          4331569,
+          "0x3b30a0"
+        ],
+        [
+          4331588,
+          "0x422310"
+        ],
+        [
+          4331602,
+          "0x4218a0"
+        ],
+        [
+          4331636,
+          "0x3e5d30"
+        ]
+      ],
+      "returns": [
+        "0x421891"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x421d20",
+      "source": "retained/rig/source-01.json",
+      "instructions": 22,
+      "calls": [
+        [
+          4332849,
+          "0x20e600"
+        ],
+        [
+          4332868,
+          "0x2ed570"
+        ]
+      ],
+      "returns": [
+        "0x421d65"
+      ],
+      "tails": [
+        "0x421d59"
+      ]
+    },
+    {
+      "entry": "0x20e600",
+      "source": "retained/rig/retained/source-01.json",
+      "instructions": 3,
+      "calls": [],
+      "returns": [
+        "0x20e609"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x20e620",
+      "source": "retained/rig/retained/retained/source-01.json",
+      "instructions": 3,
+      "calls": [],
+      "returns": [
+        "0x20e628"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x41f340",
+      "source": "retained/factory/source-01.json",
+      "instructions": 236,
+      "calls": [
+        [
+          4322164,
+          "0x20e600"
+        ],
+        [
+          4322179,
+          "0x409f50"
+        ],
+        [
+          4322209,
+          "0x409660"
+        ],
+        [
+          4322223,
+          "0x20e600"
+        ],
+        [
+          4322243,
+          "0x409fa0"
+        ],
+        [
+          4322255,
+          "0x20e600"
+        ],
+        [
+          4322270,
+          "0x409f50"
+        ],
+        [
+          4322292,
+          "0x20e600"
+        ],
+        [
+          4322315,
+          "0x409660"
+        ],
+        [
+          4322323,
+          "0x409240"
+        ],
+        [
+          4322334,
+          "0x20e600"
+        ],
+        [
+          4322371,
+          "0x3712e0"
+        ],
+        [
+          4322381,
+          "0x3e6d10"
+        ],
+        [
+          4322450,
+          "0x3e55f0"
+        ],
+        [
+          4322523,
+          "0x3ab8b0"
+        ],
+        [
+          4322531,
+          "0x20e620"
+        ],
+        [
+          4322548,
+          "0x20e600"
+        ],
+        [
+          4322556,
+          "0x3ab7f0"
+        ],
+        [
+          4322569,
+          "0x861ec0"
+        ],
+        [
+          4322589,
+          "0x20e600"
+        ],
+        [
+          4322599,
+          "0x3ab910"
+        ],
+        [
+          4322611,
+          "0x20e600"
+        ],
+        [
+          4322623,
+          "0x20e600"
+        ],
+        [
+          4322682,
+          "0x46e4d0"
+        ],
+        [
+          4322701,
+          "0x2ed570"
+        ],
+        [
+          4322738,
+          "0x20e600"
+        ],
+        [
+          4322746,
+          "0x3ab7f0"
+        ],
+        [
+          4322766,
+          "0x3e6d10"
+        ],
+        [
+          4322777,
+          "0x3e6cf0"
+        ],
+        [
+          4322791,
+          "0x861eba"
+        ],
+        [
+          4322806,
+          "0x51d220"
+        ],
+        [
+          4322831,
+          "0x372350"
+        ],
+        [
+          4322844,
+          "0x373100"
+        ],
+        [
+          4322872,
+          "0x20e600"
+        ],
+        [
+          4322898,
+          "0x20e600"
+        ],
+        [
+          4322910,
+          "0x20e600"
+        ],
+        [
+          4322974,
+          "0x4780c0"
+        ],
+        [
+          4323000,
+          "0x421cd0"
+        ],
+        [
+          4323043,
+          "0x20e600"
+        ],
+        [
+          4323058,
+          "0x409f50"
+        ],
+        [
+          4323070,
+          "0x3b3550"
+        ]
+      ],
+      "returns": [
+        "0x41f72d"
+      ],
+      "tails": []
+    }
+  ],
+  "primary_producer": "372350 stores incoming EDX as DWORD rig68 after signed-positive resource90 and decoded rig94 non-NULL gates. The retained factory passes MOVSX(WORD owner0). The rebinder reads WORD68 then sign-extends it for the 740h table. This preserves the factory signed16 value, but is not a bound or active-owner consistency proof.",
+  "secondary_producer": "4215A0 keeps first argument in RSI and third in RDI. On its qualified branch, MOVSX EBX,WORD[RSI] is stored as DWORD rig6C, then the link-only refresher 3E3CA0 is called. This producer sign-extends FFFF to FFFFFFFF; it cannot produce the distinct 0000FFFF sentinel representation under unchanged source/private-state assumptions.",
+  "primary_lookup": "Both 3E3CA0 and 3E3D70 return for an outer NULL rig. For a non-NULL rig they refresh primary70 and call421D20 without a derived-owner NULL guard. Missing68 or inactive indexed owner selects Encode(0). At stable B0 its next Decode passes RCX0 to the helper first DWORD[RCX+18h] read. This differs from parent3E1C50 initial70 skip; no natural failure or EXP127 cause inferred.",
+  "secondary_skip": "The full DWORD rig6C==FFFFFFFF branch skips the secondary74/7C refresh. It does not directly clear those fields. The low-WORD reader is reached only when the full-DWORD skip is false. Low WORD FFFF or inactive indexed owner then selects Encode(0) and still calls421D20. At B0 the conditional first-read address is18h. For nonzero B use low64(Decode(Encode0)+18h).",
+  "reset_order": "3E3D70 calls configured-bone reset3E3C30 only after both applicable owner/core refresh paths. 3E3CA0 is a link-only refresh and has no such reset call in its complete body. Core writes require normal native return and valid input preconditions.",
+  "representation_control": {
+    "domain": "All 65536 signed16 source representations, Python fixed-width arithmetic only",
+    "property": "Sign-extended DWORD producer and signed low-WORD reader agree; full-DWORD FFFFFFFF skip iff original WORDFFFF. No native/emulated/live execution credit.",
+    "examples": [
+      {
+        "stored_dword": "0xffffffff",
+        "full_dword_skip": true,
+        "reader_signed_index": -1,
+        "low_word_missing": true
+      },
+      {
+        "stored_dword": "0xffff",
+        "full_dword_skip": false,
+        "reader_signed_index": -1,
+        "low_word_missing": true
+      },
+      {
+        "stored_dword": "0x7fff",
+        "full_dword_skip": false,
+        "reader_signed_index": 32767,
+        "low_word_missing": false
+      },
+      {
+        "stored_dword": "0xffff8000",
+        "full_dword_skip": false,
+        "reader_signed_index": -32768,
+        "low_word_missing": false
+      }
+    ]
+  },
+  "consumer_change": "Qualify staged-look/rig prose: outer rig NULL guard is not derived-owner safety; absent full-DWORD secondary skips refresh rather than clearing cached pointers. State signed16-producing caller contracts and valid active indexed-owner premises; preserve source-only/natural-reachability/opaque-effect limits.",
+  "limits": [
+    "No execution of FF12 instructions, live gameplay, process observation, fault, or natural invalid-state reachability.",
+    "Complete local CFG for eight selected bodies, exact retained source verification for all supplied ranges; not an all-caller/all-writer closure or opaque callee semantic proof.",
+    "Stable decoder base, valid original objects/table/private frames, ordinary native ABI, no aliasing/interference, and normal callee returns are conditional premises.",
+    "Actual owner0=index consistency, table extent/index bounds and active state at each lookup require separate proof; earlier factory flag write cannot prove survival across opaque calls.",
+    "A counterrepresentation 0000FFFF distinguishes predicates, but this known secondary writer cannot produce it. No gameplay bug inferred.",
+    "Lifetime/reuse/native reset effects, original copy/default count and current authored inputs remain separate; UQ220 not repeated.",
+    "Producer controls and owner consumption are distinct from independent acceptance. EXP127 remains invalid; menu allowance remains spent/unapproved; K14 closed; wholeOV rows not closed."
+  ]
+}

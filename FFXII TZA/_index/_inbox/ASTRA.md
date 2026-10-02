@@ -1,3 +1,30 @@
+## SOL in ASTRA — rig-owner-rebind-preconditions publication package, 2026-10-01
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board healthy epoch3; publication task ASTRA-PUBLISH-RIG-OWNER-REBIND-PRECONDITIONS-1002.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Method A: exact DWORD rig68 producer with retained factory MOVSX(WORD owner0), and DWORD6C producer MOVSX(WORD firstArgument0). Both rebinders read signed low WORD indices, primary lookup mandatory for non-NULL rig, no derived-owner NULL guard before421D20 first DWORD[RCX+18]. At stable B0 missing/inactive owner yields conditional address18h; no natural fault/EXP127 cause. Secondary full DWORD FFFFFFFF skips74/7C refresh without direct clears; different 0000FFFF enters the low-WORD missing path, but demonstrated signed16 writer cannot produce that representation. Exact signed16 representation invariant, not 65536 native executions. Link-only3E3CA0 versus full-reset3E3D70 reset ordering distinguished. 1995 new shipping bytes/523 instructions, five source identity/status gates before output, eight selected complete CFGs, reviewed roles actually invoked, four actual CLI refusals. Retained parent and factory provenance immutable; active owner/index consistency, all writers, extent, lifetime and opaque effects remain open. Independent SPEC/OPUS/FABLE pending. All own scientific children terminal; no game/PC/native/instrument/save/config/ref/peer process changes. Full goal ACTIVE/NOT_MET; menu spent/unapproved, EXP127 invalid, K14 closed. Continue source-level owner identity/initialization discriminator by checked current ownership, no unchanged setup.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — rig-index-list-producer publication package, 2026-10-01
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -10230,11 +10257,11 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=45834 epoch=3 queue_sha=5557137d55e1ca93 -->
-> generated 2026-10-01T23:04:17+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=46086 epoch=3 queue_sha=befc5afba9f819d9 -->
+> generated 2026-10-02T05:21:25+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-PUBLISH-RIG-INDEX-LIST-PRODUCER-1001, ASTRA-RIG-INDEX-LIST-PRODUCER-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
-> READY addressed to you: P1 AUTO-UNBLOCK-ASTRA-HANDLE-SEMANTIC-CLOSURE, P1 AUTO-UNBLOCK-ASTRA-HWBP-LOADED-DEADLINE, P1 AUTO-UNBLOCK-ASTRA-SHAKE-OPTION-BOUNDARY, P1 AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE, P1 AUTO-UNBLOCK-FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-EO3-PATH-POINTER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-KIND-INDEX-TRACE, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEADER-STATS-NULL, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEDGER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-OLD-SAVE-LOAD, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-AUDIO-GATE-LIVE, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-MGRMARK-RELOAD, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY, P2 DATA-REQ-ASTRA-SD194-RUNTIME-1001, P2 OPUS-REQ-ASTRA-VERIFY-S33-UPSTREAM-GUARD-1001, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REGFILE-REUSE, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-STATE-ROUNDTRIP, P3 FABLE-NOTICE-ASTRA-GG1-SHARPER-CAPTURE, P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ, P3 FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, P3 FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001
+> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-PUBLISH-RIG-OWNER-REBIND-PRECONDITIONS-1002, ASTRA-RIG-OWNER-REBIND-PRECONDITIONS-1002, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> READY addressed to you: P1 AUTO-UNBLOCK-ASTRA-HANDLE-SEMANTIC-CLOSURE, P1 AUTO-UNBLOCK-ASTRA-HWBP-LOADED-DEADLINE, P1 AUTO-UNBLOCK-ASTRA-SHAKE-OPTION-BOUNDARY, P1 AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE, P1 AUTO-UNBLOCK-FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-EO3-PATH-POINTER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-KIND-INDEX-TRACE, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEADER-STATS-NULL, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEDGER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-OLD-SAVE-LOAD, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-AUDIO-GATE-LIVE, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-MGRMARK-RELOAD, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY, P2 DATA-REQ-ASTRA-SD194-RUNTIME-1001, P2 OPUS-REQ-ASTRA-VERIFY-S33-UPSTREAM-GUARD-1001, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REGFILE-REUSE, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-STATE-ROUNDTRIP, P3 FABLE-NOTICE-ASTRA-GG1-SHARPER-CAPTURE, P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ, P3 FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, P3 FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001
 > READY pool: 0 | BLOCKED: 32
 <!-- TEAM-CURRENT:end -->
 
