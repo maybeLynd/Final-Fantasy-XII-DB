@@ -1,0 +1,456 @@
+{
+ "page": "13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {
+   "fn": "0017F9E0",
+   "text": "calls `001B5FB0()` and tail-jumps to `001B44A0` with `rcx` = that result, `edx` = the incoming `ecx` and `r8d` = the incoming `dl` zero-extended",
+   "anchors": [
+    [
+     "0017F9EA",
+     "movzx"
+    ],
+    [
+     "0017F9EF",
+     "call"
+    ],
+    [
+     "0017F9F7",
+     "movzx"
+    ],
+    [
+     "0017FA07",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020CB50",
+   "text": "scans the seven 12-byte entries ending before `009062E8` (first pair at `00906294 - 4`) for one whose dwords `+0` and `+4` equal `edx` and `r8d`, returning when none does; for match `i` it updates record `k` (`k` = signed dword at `00906298 + i * 12`) of the `0x198`-byte records at qword `rcx+8`, and when `i` is 6 also records 31 to 37 (offsets `0x3168` up to `0x3C90`); a record whose byte `+0x190` is 0 gets that byte set to 1 and dword `+0x194` set to 0 and, when byte `rcx+0x18` is non-zero, the qword `+0x28` of `[008C3190](01DFE0D0)` has its vtable slot `+0x38` called with the record's qword `+8` and then slot `+0x50`",
+   "anchors": [
+    [
+     "0020CB74",
+     "cmp"
+    ],
+    [
+     "0020CBB0",
+     "imul"
+    ],
+    [
+     "0020CBC8",
+     "mov"
+    ],
+    [
+     "0020CBF2",
+     "call"
+    ],
+    [
+     "0020CC80",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020CCA0",
+   "text": "returns the zero-extended byte `+0x190` of record `edx` (sign-extended) in the `0x198`-byte records at qword `rcx+8`",
+   "anchors": [
+    [
+     "0020CCA3",
+     "imul"
+    ],
+    [
+     "0020CCAA",
+     "mov"
+    ],
+    [
+     "0020CCAE",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "002494A0",
+   "text": "when qword `0208F578` is 0, stores `02090910` to it and calls `00861EC0(02090910, 0, 0x780)`; on both paths then tail-jumps to `00861EC0(02090790, 0, 0x180)`",
+   "anchors": [
+    [
+     "002494A4",
+     "cmp"
+    ],
+    [
+     "002494BD",
+     "mov"
+    ],
+    [
+     "002494C4",
+     "call"
+    ],
+    [
+     "002494CB",
+     "lea"
+    ],
+    [
+     "002494DC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0024A660",
+   "text": "tail-jumps to `00861EC0(0208F580, 0, 0x1208)`",
+   "anchors": [
+    [
+     "0024A662",
+     "lea"
+    ],
+    [
+     "0024A669",
+     "mov"
+    ],
+    [
+     "0024A66F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00272470",
+   "text": "zeroes qwords `rcx+0` and `rcx+0x10`, stores the 32-bit sum `ecx + edx` zero-extended to qword `+0x18`, and stores the low 32 bits of `rcx` plus 0x30, rounded up to a multiple of 0x10 in 32 bits when not already one, to qword `+0x20`",
+   "anchors": [
+    [
+     "00272472",
+     "add"
+    ],
+    [
+     "00272477",
+     "mov"
+    ],
+    [
+     "0027247B",
+     "mov"
+    ],
+    [
+     "0027248B",
+     "and"
+    ],
+    [
+     "00272495",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00274840",
+   "text": "when `rcx` is non-null calls `002446E0(rcx)`, `002473B0(rcx)` and `002482E0(rcx)` in that order; a null `rcx` returns at once",
+   "anchors": [
+    [
+     "00274843",
+     "je"
+    ],
+    [
+     "0027484D",
+     "call"
+    ],
+    [
+     "00274855",
+     "call"
+    ],
+    [
+     "0027485D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002800F0",
+   "text": "when qword `0209AC30` is 0, stores `0209AC60` to it and tail-jumps to `00861EC0(0209AC60, 0, 0xE00)`; otherwise returns",
+   "anchors": [
+    [
+     "002800F8",
+     "jne"
+    ],
+    [
+     "002800FA",
+     "lea"
+    ],
+    [
+     "00280109",
+     "mov"
+    ],
+    [
+     "00280110",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00290430",
+   "text": "stores `ecx` to dword `+0xAA44` of the qword at `0209BE80` when that qword is non-null; otherwise returns without writing",
+   "anchors": [
+    [
+     "00290437",
+     "test"
+    ],
+    [
+     "0029043C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00290DF0",
+   "text": "when `rcx` is non-null, tail-jumps to `00273B40` with `rcx` = qword `+0x10FC0` of the qword at `0209BE80` and `rdx` = the incoming `rcx`; a null `rcx` returns",
+   "anchors": [
+    [
+     "00290DF5",
+     "mov"
+    ],
+    [
+     "00290DF8",
+     "mov"
+    ],
+    [
+     "00290DFF",
+     "mov"
+    ],
+    [
+     "00290E06",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002BE490",
+   "text": "tail-jumps to `005C5230(rcx, rdx)` unless dword `[rdx]` is 2; when it is 2, zeroes word `rcx+0x10F8` if `001EDEC0(dword rcx+0xB4)` is non-zero and `002BF4F0(rcx, word rcx+0x10F8)` returns 1, then calls `002BE290(rcx+0xAC0)` and returns 0",
+   "anchors": [
+    [
+     "002BE4A3",
+     "jmp"
+    ],
+    [
+     "002BE4AE",
+     "call"
+    ],
+    [
+     "002BE4C1",
+     "call"
+    ],
+    [
+     "002BE4CD",
+     "mov"
+    ],
+    [
+     "002BE4DB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00300500",
+   "text": "clamps `ecx` to 0 when it is negative (`cmovns` keeps it when non-negative), calls `00254EE0` with the clamped value and returns that value",
+   "anchors": [
+    [
+     "0030050A",
+     "cmovns"
+    ],
+    [
+     "0030050F",
+     "call"
+    ],
+    [
+     "00300514",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0034C9A0",
+   "text": "takes `a` = `00267E10(r9)`, calls `00863240(0032F240(dword +0x28 of 002640C0()), a)` and tail-jumps to `0026B750(a)`",
+   "anchors": [
+    [
+     "0034C9A9",
+     "call"
+    ],
+    [
+     "0034C9B5",
+     "mov"
+    ],
+    [
+     "0034C9B8",
+     "call"
+    ],
+    [
+     "0034C9C1",
+     "call"
+    ],
+    [
+     "0034C9CD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0035C560",
+   "text": "calls `00861EC0(022C8060, 0, 0x23C8)`, ORs dword `022C83E8` with 0x20, calls `0028F8B0()`, `00253480()` and `00290430(1)`, and stores `003C5E40()` to qword `022C83B8`",
+   "anchors": [
+    [
+     "0035C573",
+     "call"
+    ],
+    [
+     "0035C578",
+     "or"
+    ],
+    [
+     "0035C58E",
+     "call"
+    ],
+    [
+     "0035C593",
+     "call"
+    ],
+    [
+     "0035C598",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00365DD0",
+   "text": "takes `p` = `004745D0(0xA00)` and fills 0x40 records of 0x28 bytes there, each with qword `+0` = the previous record, qword `+8` = the next record, dword `+0x10` = 0xFF0000 and qwords `+0x18` and `+0x20` = 0; it then stores `p` to qwords `+0x220` and `+0x228` and `p + 0x9D8` to qword `+0x230` of the qword at `022CBE00`, and zeroes the first record's qword `+0` and the last record's qword `+8`",
+   "anchors": [
+    [
+     "00365DD9",
+     "call"
+    ],
+    [
+     "00365DF4",
+     "mov"
+    ],
+    [
+     "00365DFC",
+     "mov"
+    ],
+    [
+     "00365E1C",
+     "mov"
+    ],
+    [
+     "00365E3A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0039BB30",
+   "text": "calls `00861EC0(02AEE810, 0, 0xF0)` and tail-jumps to `0039C3F0`",
+   "anchors": [
+    [
+     "0039BB36",
+     "lea"
+    ],
+    [
+     "0039BB43",
+     "call"
+    ],
+    [
+     "0039BB4C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003F30A0",
+   "text": "when `rcx` is non-null, walks the chain from `rcx` through each node's qword `+0x70` (read before the call) until it is null, calling `rdx` with the node in `rcx` whenever `rdx` is non-null; a null `rcx` returns at once",
+   "anchors": [
+    [
+     "003F30A3",
+     "je"
+    ],
+    [
+     "003F30B2",
+     "mov"
+    ],
+    [
+     "003F30BB",
+     "call"
+    ],
+    [
+     "003F30C3",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "003F4BD0",
+   "text": "builds a stack block (byte 0, qword `rdx`, dword `ecx`) and a stack record (dword 0, a pointer to that block, qword 0), calls `00244F50(0x100, 003F4E70, &record)`, and checks the stack cookie from `01F44830` through `00808C40`",
+   "anchors": [
+    [
+     "003F4BE9",
+     "mov"
+    ],
+    [
+     "003F4BF5",
+     "mov"
+    ],
+    [
+     "003F4BF9",
+     "lea"
+    ],
+    [
+     "003F4C15",
+     "call"
+    ],
+    [
+     "003F4C22",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003FA760",
+   "text": "calls `00275550(rcx, 0x26C0)` and then stores 0xFFFF to word `rcx+0x249A`",
+   "anchors": [
+    [
+     "003FA766",
+     "mov"
+    ],
+    [
+     "003FA76E",
+     "call"
+    ],
+    [
+     "003FA773",
+     "or"
+    ],
+    [
+     "003FA776",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00863240",
+   "text": "calls `0020CE00()` and, when it is non-null, calls `0020CB50(0020CE00(), ecx, edx)` with a second `0020CE00()` call supplying `rcx`; a null result returns without the second call",
+   "anchors": [
+    [
+     "0086324E",
+     "call"
+    ],
+    [
+     "00863256",
+     "je"
+    ],
+    [
+     "00863258",
+     "call"
+    ],
+    [
+     "00863265",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0020CB50: the entry table spans from four bytes before 00906294 up to 009062E8 (seven 12-byte entries, dwords +0, +4 compared and +8 the record index); only the lea targets 00906294, 00906298 and 009062E8 are named in the row. The indirect call through 008C3190 (listing decodes its qword as 0x1CCBFA6, an import slot) is made with rcx = 01DFE0D0; slot +0x50 is called with rcx only. 003F4BD0: 003F4E70 is the lea target passed as the second argument to 00244F50; it lies 0x244 bytes after this body, not directly after it. 0034C9A0: the arguments 002640C0 receives are not set in the listing. 00272470: all arithmetic on the +0x18 and +0x20 values is 32-bit and zero-extended into the qword stores."
+}
