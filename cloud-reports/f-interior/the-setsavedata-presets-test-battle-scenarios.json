@@ -1,0 +1,11 @@
+{
+ "page": "11-Party/the-setsavedata-presets-test-battle-scenarios.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "00238640",
+   "text": "sign-extends `ecx`, forms the pointer `02F973C0 + ecx*8` in `rcx` and tail-jumps `003845F0` with it, leaving the other argument registers unchanged",
+   "anchors": [["00238643", "lea"], ["0023864A", "lea"], ["0023864E", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "Same row as 00238640 in where-mp-comes-from."
+}
