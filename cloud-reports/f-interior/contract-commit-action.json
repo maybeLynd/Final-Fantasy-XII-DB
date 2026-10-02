@@ -1,0 +1,34 @@
+{
+ "page": "07-Combat-Action/CONTRACT-commit-action.md",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "rows": [
+  {
+   "fn": "002ED2A0",
+   "text": "calls `003588B0` with `rcx` unchanged and returns without further work when its result is null, when the result's qword `+0xC0` is null, when the dword that qword points at is -1, when its low word is `0xFFFF`, when the sign-extended word times `0x740` plus qword `022C6F28` is zero, or when that record's dword `+0x284` is zero; otherwise tail-jumps `003E6B50(record, rdx)`",
+   "anchors": [
+    [
+     "002ED2A9",
+     "call"
+    ],
+    [
+     "002ED2B3",
+     "mov"
+    ],
+    [
+     "002ED2D1",
+     "imul"
+    ],
+    [
+     "002ED2E1",
+     "cmp"
+    ],
+    [
+     "002ED2F2",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
