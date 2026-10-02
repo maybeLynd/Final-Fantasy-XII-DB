@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`86b70c69`); no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. Several pages in this folder are being edited by other lanes; every quotation is of the snapshot text. |
 
-**Counts:** _filled in when the report is complete (see the end of the commit history)._
+**Counts:** 23 pages read in full (20,227 lines; 3 CONTRACT pages, 18 system pages, 2 READMEs), member `.tsv` files opened for layout and counts only · interface mapped for **8 sub-systems** (§1.1-§1.8) · **34** self-stated open gaps + **25** structural gaps + **6** unexplained-field items (§2) · **155 contradictions**: **101 value-changing**, all "page-text only - needs local check" (**45** with a favoured side settled by a dated correction on the pages, **56** with no favoured side), and **54 stale / banner** · **Rating: NOT YET** overall (MOSTLY: application slots, module registry, header and namespace, reflection, script bridge, animation, camera; NOT YET: frame/render stream, full `.phyre` load, post-process, shader variants).
 
 Citation form: `path:line`, where `path` is relative to `FFXII TZA/22-Middleware-PhyreEngine/`. To keep the tables
 readable, the long page paths are abbreviated as follows (the abbreviation is always followed by `:line`):
@@ -265,7 +265,7 @@ u32 field offset, `+0x50` 0 (`MR:638-651`). Array members add `+0x58` element si
 dynamic pointer, 3 `PArray`, 4 `PSharray`) (`AR:65-71`, `AR:90`). Array header `{u32 count (bit 31 adopted), u32,
 pointer or inline element}`; `PSharray` size `8 + max(8, sizeof T)` (`MR:2310-2321`, `MR:2347`). **Field address**:
 `instance + (member.offset − classdesc[0xF4])` (`MR:1727`, `MR:2319`; `CDMS:433`). The recovered schema is
-`phyre-field-schema.tsv` (count disputed, §3 C-V20).
+`phyre-field-schema.tsv` (count disputed, §3 C-V50).
 
 State: id counter `02CF8260`, pre-order total `02CF8264`, root `PBase` descriptor `02CF8270`, registry table
 `02CF82E0` (`CDMS:359`, `CDMS:373`, `CDMS:1926-1941`); registration guard `02CB0A98` (`MR:596-598`); default
@@ -606,7 +606,7 @@ line; nothing is paraphrased inside quotation marks. Two kinds:
 
 **C-V19. Mode 3 and the world tick.**
 - "mode 3 does not advance the world." (`FRM:816`)
-- "`World_UpdateSimulationTick` (`00314020`), reached from mode 3 as well as mode 2, so \"the menu" / "is open\" is not by itself a reason to expect the simulation to be stopped" (`FRM:817-818`)
+- "`World_UpdateSimulationTick` (`00314020`), reached from mode 3 as well as mode 2, so "the menu" / "is open" is not by itself a reason to expect the simulation to be stopped" (`FRM:817-818`)
 - No favoured side (same bullet).
 
 **C-V20. Which passes each mask bit gates: pass list vs bit table.**
@@ -615,8 +615,8 @@ line; nothing is paraphrased inside quotation marks. Two kinds:
 - No favoured side.
 
 **C-V21. "AO render" and "Water effect": gates and order.**
-- "\"AO render\"             <- only if 0017FE10() != 0" / "bit 4   VFXSystem_RenderLayerPass(3), EffectSystem_...ForPass(3)" / "\"Water effect\"          <- only if 0017FE20() != 0" (`FRM:389-391`)
-- "`00229F20` | 110 B | when dword `01FD49E8` is non-zero: marks `\"AO render\"` … when it is still non-zero and the argument is non-zero, marks `\"Water effect\"`" (`FRM:1519`), with no VFX pass between them and different gate globals.
+- ""AO render"             <- only if 0017FE10() != 0" / "bit 4   VFXSystem_RenderLayerPass(3), EffectSystem_...ForPass(3)" / ""Water effect"          <- only if 0017FE20() != 0" (`FRM:389-391`)
+- "`00229F20` | 110 B | when dword `01FD49E8` is non-zero: marks `"AO render"` … when it is still non-zero and the argument is non-zero, marks `"Water effect"`" (`FRM:1519`), with no VFX pass between them and different gate globals.
 - No favoured side.
 
 **C-V22. Who passes the 512×448 viewport.**
@@ -679,7 +679,7 @@ line; nothing is paraphrased inside quotation marks. Two kinds:
 
 **C-V33. `bswap`s in the namespace header swap: fourteen vs eight.**
 - "**fourteen `bswap`s over eight fixed dwords," (`C-HDR:168`); "fourteen" / "`bswap`s over eight fixed dwords at `+0x00`…`+0x1C`" (`C-HDR:571-572`, 2026-09-18)
-- "**eight `bswap`s, one per fixed dword** (*\"fourteen\" corrected 2026-09-25, OPUS - counted at `0059C18B`...`0059C1C2`*)" (`C-NS:172`)
+- "**eight `bswap`s, one per fixed dword** (*"fourteen" corrected 2026-09-25, OPUS - counted at `0059C18B`...`0059C1C2`*)" (`C-NS:172`)
 - **Favoured: eight**, dated 2026-09-25; the cluster-header contract was not updated.
 
 **C-V34. Class-record swap: "nine words … the rest `bswap`" vs "only five … use `bswap`".**
@@ -688,7 +688,7 @@ line; nothing is paraphrased inside quotation marks. Two kinds:
 - No dated correction (§15a is the later read). The bytes produced are the same; the description differs.
 
 **C-V35. Which `w7` bit marks a header class.**
-- "class\" is a class whose namespace record carries **bit 4 of class word `w7`** — in this title" / "exactly three: `PParameterBuffer` (`w7` = 12), `PAnimationClipBinding` and" / "`PModifierNetworkInfoPacket` (`w7` = 20)" (`HDR:299-301`); 12 has no bit 4 (0x10).
+- "class" is a class whose namespace record carries **bit 4 of class word `w7`** — in this title" / "exactly three: `PParameterBuffer` (`w7` = 12), `PAnimationClipBinding` and" / "`PModifierNetworkInfoPacket` (`w7` = 20)" (`HDR:299-301`); 12 has no bit 4 (0x10).
 - "abstract, `0x04` header, `0x08` no default constructor.** Bit `0x10` is set exactly on the two `Header`" / "classes in the corpus" (`C-NS:354-355`, NS-1 answered 2026-09-26)
 - "bits 1–5 stay" / "unexplained." (`NS:276-277`, a 2026-09-30 note)
 - **Favoured: `0x04` = header**, by NS-1 (2026-09-26, `C-NS:349`). The later-dated `NS:276-277` is stale despite its date.
@@ -914,8 +914,8 @@ line; nothing is paraphrased inside quotation marks. Two kinds:
 - No favoured side.
 
 **C-V79. Is `"PhyreObject"` the only metatable gate?**
-- "**`\"PhyreObject\"` in the Lua registry is the gate.** A userdata without that exact metatable" / "is rejected by every accessor." (`LUA:324-325`)
-- "`0080FA50(rcx, 0xFFF0B9D8, \"Vector\")` decorates" (`ACC:945`, 2026-09-20), in a helper the accessor vtable rows share (`ACC:935-936`)
+- "**`"PhyreObject"` in the Lua registry is the gate.** A userdata without that exact metatable" / "is rejected by every accessor." (`LUA:324-325`)
+- "`0080FA50(rcx, 0xFFF0B9D8, "Vector")` decorates" (`ACC:945`, 2026-09-20), in a helper the accessor vtable rows share (`ACC:935-936`)
 - No favoured side.
 
 #### Animation
@@ -1058,16 +1058,16 @@ line; nothing is paraphrased inside quotation marks. Two kinds:
 | C-S22 | `LUA:307` "**Upstream:** whatever schedules script execution — not yet identified (**R-5**)." | `LUA:384` "**R-5 ANSWERED 2026-09-22 (FABLE): neither — the question has a third answer," | 2026-09-22 |
 | C-S23 | `LUA:229` "| `00684D10` / `00686280` | Lua execution sites (`lua_pcall`) | not read |" | `LUA:512` "## 12. The two callers executed — [`EXP-110`]…, folded in 2026-09-19 (OPUS)" | 2026-09-19 |
 | C-S24 | `LUA:338` "- [x] What `00684D10` and `00686280` actually execute — which scripts, from where, and when. *(closed — the register row is WITHDRAWN.)*" | `LUA:515-516` "**It does not answer §7's open item** — *which* scripts these execute, from where" / "and when, is still unknown and stays open." | no favoured side (box closed, text open) |
-| C-S25 | `ACC:175-176` "the script side reads engine objects through" / "this path and does not write them through it."; `ACC:208` "these are read-side accessors" | `ACC:221` "**But `Get` hands out writable access.**"; `ACC:249` "`AZ-2`'s \"script cannot write\" reading is refuted." | 2026-09-14 |
+| C-S25 | `ACC:175-176` "the script side reads engine objects through" / "this path and does not write them through it."; `ACC:208` "these are read-side accessors" | `ACC:221` "**But `Get` hands out writable access.**"; `ACC:249` "`AZ-2`'s "script cannot write" reading is refuted." | 2026-09-14 |
 | C-S26 | `ACC:894` "four shared implementations named above remain not dispositioned." | `ACC:880` "*not in these rows — updated 2026-09-13: `00811130`, `00812960` and `008119F0` are Lua API bodies declared on the Lua library row," | 2026-09-13 (but `ACC:894` is dated later, 2026-09-16; no favoured side) |
 | C-S27 | `HDR:251` "| `0059A6F0` | reads the packed namespace — **not read here** | 116 B |" | `C-HDR:147` "### The namespace reader imposes no bound of its own — `0059A6F0`, 116 bytes, read in full" | contract 2026-09-12 |
 | C-S28 | `NS:225` "| `0059C180` | the namespace byte-swap fixup — **not read** | — |" | `NS:249` "~~`FUN_0059C180`, the byte-swap fixup — not read.~~ **READ — section 8," | 2026-09-07 |
 | C-S29 | `C-HDR:636` "| any execution of this ladder, isolated or live | **none**; §13 | none | UNKNOWN |" | `C-HDR:359` "**Executed 2026-09-12** by [`diff_phyre_header.py`]" | 2026-09-12 |
-| C-S30 | `C-HDR:382` "**The byte-swap block is the one that matters and the one that cannot be run.**" | `C-HDR:422` "### 13a. The block that \"cannot be run\" was run — 2026-09-18" | 2026-09-18 |
+| C-S30 | `C-HDR:382` "**The byte-swap block is the one that matters and the one that cannot be run.**" | `C-HDR:422` "### 13a. The block that "cannot be run" was run — 2026-09-18" | 2026-09-18 |
 | C-S31 | `C-NS:478` "`NS-1`'s bit names and `NS-4` stay open," | `C-NS:349` "**ANSWERED 2026-09-26 …: `w7` is the file copy of the runtime class descriptor's `+0xFC` flag byte.**"; `C-NS:382` "**`NS-4` — answered 2026-09-26 …: the loader does read it.**" | 2026-09-26 |
 | C-S32 | `NS:360` "| **Why they cluster there** | **not established — a reading, no constructor read** | 8 |" | `NS:195` "**Answered 2026-09-26 (FABLE, Claude Opus 5.5) (`CW-3`): the obvious reading is wrong," | 2026-09-26 |
 | C-S33 | `CDMS:244` "| `0063D640` | descriptor sub-object destructor | not read |" | `C-CD:375` "#### `0063D640` takes `(rcx = the sub-object, rdx = the descriptor)` — and this contract had it the other way" | 2026-09-18 |
-| C-S34 | `CDMS:158` "**Four separate intrusive linked lists.** Their individual roles are not established — see §7." | `C-CD:115` "### ⚠ CORRECTED 2026-09-12 by the destructor pilot — the destructor does not \"walk four lists\"" | 2026-09-12 |
+| C-S34 | `CDMS:158` "**Four separate intrusive linked lists.** Their individual roles are not established — see §7." | `C-CD:115` "### ⚠ CORRECTED 2026-09-12 by the destructor pilot — the destructor does not "walk four lists"" | 2026-09-12 |
 | C-S35 | `C-CD:551` "| any execution of any of this | **none**; §13 | none | UNKNOWN |"; `C-CD:598` "**Not claimed:** none of this was executed — §13 is unchanged — and `PCD-1`…`PCD-4` stay open" | `C-CD:488` (PCD-3 struck and answered); `C-CD:368` (EXP-097 execution) | 2026-09-18 / 2026-09-25 |
 | C-S36 | `C-CD:528` "**Not established:** what `+0x38` measures, and so what the two totals mean." | `C-CD:748` "`+0x38` is this contract's own size field — the one `0063C910` passes to `memcpy`" | 2026-09-20 |
 | C-S37 | `MR:498` "Only `+0x80` is identified." | `MR:867` "**Four of six are now identified**"; `+0x60` identified 2026-09-25 (`MR:878-880`) | 2026-09-25 |
@@ -1096,3 +1096,28 @@ immediate (`0x8000`) is what a port should reproduce, but the label should be ch
 
 ---
 
+## 4. Rating
+
+**Overall: NOT YET.** The category documents the *shell* of PhyreEngine unusually well — the application slot table,
+the frame-mode dispatch, the module registry, the `.phyre` header and namespace, the class-descriptor and
+member-record layouts, the Lua bridge and the animation composer are each written to the byte, several with
+executed pilots. But three structural gaps block a working port: the frame draws by emitting a PS2 GS command stream
+that nothing in the executable consumes (G-1, S-8); a `.phyre` file cannot be fully loaded because the fixup-entry
+semantics, the end-to-end file layout and the per-type user-fixup resolvers are not stated (S-2 … S-4); and the
+shader-variant key cannot be matched against shipped tables without the file → runtime `PEffect` mapping and the key
+bit order (S-5 … S-7). On top of that, 101 value-changing contradictions (§3.1) need a local check, 56 of them with no
+favoured side on the pages.
+
+| sub-system | rating | why |
+|---|---|---|
+| Application boundary (§1.1, slots) | **MOSTLY** | full slot map and per-slot behaviours (`APP:239-270`, `APP:389-398`, `APP:431-478`); named gaps: several slot bodies (S-23), slot 22/25 classification (C-V7) |
+| Frame and render-command stream (§1.1) | **NOT YET** | dispatch, modes, record layouts and GS register formulas are stated (`FRM:78-128`, `FRM:594-636`), but no consumer exists and the GS stream's meaning on PC is "not decidable from this executable" (`FRM:870`, `FRM:885`); mode 3/5 body order missing (S-9); 9 value contradictions (C-V14 … C-V22) |
+| Module registry (§1.2) | **MOSTLY** | registration, list, walkers and ordering fully stated (`MOD:74-223`); no module's init or shutdown body is given (S-1) |
+| Asset container: header and packed namespace (§1.3) | **MOSTLY** | two CONTRACT READY pages with executed pilots (`C-HDR:359-362`, `C-NS:276`); 18 value contradictions inside the four pages (C-V24 … C-V41), 10 of them settled by dated corrections |
+| Asset container: full file load (§1.3) | **NOT YET** | fixup entries "**Not decoded**" (`HDR:370-371`), `+0x48` resolvers and user-fixup consumption open (`HDR:746-749`), no end-to-end layout (S-2), 36-byte instance-list header not covered by a contract (`C-HDR:701`) |
+| Reflection: descriptors and members (§1.4) | **MOSTLY** | byte layouts of `PClassDescriptor`, `PClassDataMember` and array members are stated and partly executed (`C-CD:66-99`, `MR:638-651`, `AR:65-71`); but 25 value contradictions (C-V42 … C-V66), the field-schema count is unsettled (C-V50), 211 registrations were never harvested (G-15), default-instance bytes are not in the database (G-14) |
+| Script bridge: Lua 5.2.1 and accessors (§1.5) | **MOSTLY** | stock Lua 5.2.1 (an upstream port suffices for the VM) and the userdata/accessor protocol are stated (`LUA:236-361`, `ACC:88-192`); whether any `lua_State` is ever created is open (G-6), and the adapter families disagree with the bridge page on null and gate semantics (C-V74 … C-V79) |
+| Animation channel binding (§1.6) | **MOSTLY** | every composition formula verified exact (`ANI:883-905`); gaps: group-boundary detection and component mapping (S-21), kind-2 offset (C-V80, settled), element-size offset (C-V82) |
+| Post-process passes and post-effects (§1.7) | **NOT YET** | SMAA and both AO blocks are stated to the constant (`PPF:107-202`), but most pass constants have no source (S-13), most post-effect worker bodies are only counted (S-14), and the one constructed effect's (PFXAA) constants are not named |
+| Shader-variant selection (§1.7) | **NOT YET** | the eight axes and the key formula are stated (`CTX:128-153`), but the file → runtime `PEffect` mapping is "not established" (`CTX:514-518`), the 64-byte variant entry is unnamed (S-6), the key bit order is unstated (S-7), and the light cap is ambiguous (C-V100) |
+| Camera snapshot (§1.8) | **MOSTLY** | record layout and the depth formula are stated (`CAM:136-166`); the execute-slot and factory addresses are not (S-24) |
