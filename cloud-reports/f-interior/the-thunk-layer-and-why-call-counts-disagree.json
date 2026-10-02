@@ -1,0 +1,20 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md",
+ "session": "session_01C3h8BLp4DosVqvFsrqPP3a",
+ "rows": [
+  {"fn": "002C9040",
+   "text": "stores dword 0 at `0209E638 + ecx * 0x10` (`ecx` sign-extended), that is, at `+0x00` of the `0x10`-byte record `ecx` of the table at `0209E638`",
+   "anchors": [["002C9043", "lea"], ["002C904A", "add"], ["002C904D", "mov"]]},
+  {"fn": "002CEAE0",
+   "text": "when bit `0x2` of byte `+0xD3C` of the object at qword `0209AC30` is set, calls `00249180(rcx, 7, byte +0xB2D of that object + 0x10, 2)` with `rcx` passed through unchanged and 1 and 0 as the fifth and sixth (stack) arguments, and stores the returned qword at `+0x3C0` of the object at qword `0209AC30` (re-read); when the bit is clear it returns without the call or the store",
+   "anchors": [["002CEAEB", "test"], ["002CEAF2", "je"], ["002CEB01", "add"], ["002CEB1A", "call"], ["002CEB26", "mov"]]},
+  {"fn": "0037B2C0",
+   "text": "when `ecx` < 5 (signed compare), stores the floats `xmm1`, `xmm2` and `xmm3` at `+0x40`, `+0x44` and `+0x48` of the `0x50`-byte record `ecx` (sign-extended) of the table at `02EBF420`; when `ecx` >= 5 it returns without a store",
+   "anchors": [["0037B2C3", "jge"], ["0037B2D6", "movss"], ["0037B2DC", "movss"], ["0037B2E2", "movss"]]},
+  {"fn": "003B5440",
+   "text": "compares bit 0 of byte `02B40518` with the whole of `ecx`; when they are equal it returns without a store, otherwise it replaces bit 0 of that byte with bit 0 of `cl` (other bits kept), stores the byte back to `02B40518` and tail-jumps to `003B4FD0`",
+   "anchors": [["003B544C", "cmp"], ["003B544E", "je"], ["003B5457", "xor"], ["003B5459", "mov"], ["003B545F", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002CEAE0: the six-argument reading of the 00249180 call takes [rsp+0x20]=1 and [rsp+0x28]=0 as stack arguments five and six; rcx is never written before the call, so it is the caller's rcx. 0037B2C0: the guard is a signed compare only (no lower bound), so a negative ecx would store before the table. 003B5440: since the compare is against the full ecx, an ecx other than 0 or 1 always takes the store-and-jump path."
+}
