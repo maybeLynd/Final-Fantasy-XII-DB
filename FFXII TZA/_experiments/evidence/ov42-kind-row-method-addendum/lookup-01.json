@@ -1,0 +1,70 @@
+{
+  "complete": true,
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "requested": [
+    "0x306c5b",
+    "0x306cec"
+  ],
+  "requested_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9",
+  "maps_examined": 1270,
+  "matches": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\autoattack-commit-exception\\retained\\current-row-source-01.json",
+      "file_sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9",
+      "range": [
+        "0x306c5b",
+        "0x306cec"
+      ],
+      "range_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\ov42-kind-row-coherence\\source-01.json",
+      "file_sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59",
+      "range": [
+        "0x306c5b",
+        "0x306cec"
+      ],
+      "range_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\summon-kind-row-carrier\\source-01.json",
+      "file_sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9",
+      "range": [
+        "0x306c5b",
+        "0x306cec"
+      ],
+      "range_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\autoattack-commit-exception\\retained\\current-row-source-01.json",
+      "file_sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9",
+      "range": [
+        "0x306c5b",
+        "0x306cec"
+      ],
+      "range_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-kind-row-coherence\\source-01.json",
+      "file_sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59",
+      "range": [
+        "0x306c5b",
+        "0x306cec"
+      ],
+      "range_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\summon-kind-row-carrier\\source-01.json",
+      "file_sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9",
+      "range": [
+        "0x306c5b",
+        "0x306cec"
+      ],
+      "range_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9"
+    }
+  ],
+  "malformed_candidates": [],
+  "decision": "REUSE_VERIFIED_RETAINED_BYTES",
+  "limits": "Bounded physical byte coverage in named source-map corpus, not global absence, provenance acceptance, source semantics or live initialization. Retain/check original lineage and receipts before semantic use."
+}

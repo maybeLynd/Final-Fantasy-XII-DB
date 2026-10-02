@@ -36,7 +36,7 @@ audit:
 
 > ## ⚠ READ THIS BEFORE THE REST
 >
-> **No `.efx` or `.efb` file was opened to write this sheet.** Neither is in the local extraction and
+> ~~**No `.efx` or `.efb` file was opened to write this sheet.**~~ *(answered: see the 2026-09-30 update below - every file has now been opened, §2b; 2026-10-02, OPUS)* Neither is in the local extraction and
 > no `.vbf` archive exists on this machine, so the corpus half is limited to the archive index —
 > names, sizes and directories. **Everything in §2 and §3 is read from the loaders in the shipped
 > executable, at tier 1, and nothing in it is corroborated by a file.**
@@ -78,7 +78,7 @@ effect simply does not appear.
 
 ```struct EfxHeader base=file size=0x10
 +0x00  char[8]  magic     'EFX0010' | 'EFX0009' | 'EFX0008', NUL-terminated, compared as 8 bytes
-+0x08  byte[8]  _unread   no reader found in the loader body at 0x003EDAD0
++0x08  byte[8]  _unread   no reader found in the loader body at 0x003EDAD0   <- corrected 2026-10-02, OPUS - +0x0C is read by the caller 003B0660+0xDF as the stream length (section 2b)
 ```
 
 ```struct EfbHeader base=file size=0x10
@@ -98,7 +98,7 @@ After the header the EFX loader walks a chunk list until it reaches `base + size
 ```struct EfxChunk base=record
 +0x00  u32   length    distance to the next chunk; the walk adds it to the cursor
 +0x04  u16   flag      gate: the loader's branch requires this to equal 0x100
-+0x06  u16   type      0x600 | 0x610 | 0x620 | 0x630 | 0x700 | 0x800 | 0xA00   (0x701 withdrawn 2026-09-12)
++0x06  u16   type      0x600 | 0x610 | 0x620 | 0x630 | 0x700 | 0x800 | 0xA00   (0x701 withdrawn 2026-09-12)   <- corrected 2026-10-02, OPUS - the header is 0x0C bytes: an i32 at +0x08 follows, stored to 02EBB738 before each handler (003EDAD0+0x4A6..+0x4AC), and the handler gets chunk + 0xC (003EDAD0+0x4C3); section 2b
 ```
 
 **Seven chunk-type constants are compared in the loader body**, and they fall into two families that
@@ -331,7 +331,7 @@ They are static, plus the installed archive.
   script verb `mapload` (`0050D4D0`) asks for mode 1 only. These are `00378A60`'s only three call sites.
 - Each call loads a map_ctrl pack through `00378030` and asks `00377DC0` for the `.efb` named after it. The name is
   namespace 4's entry for the index (`002DF880`), cut to the stem after the last `\` or `/` and its four-character
-  extension: `PS2Data\efb\<stem>.efb`.
+  extension: `PS2Data\efb\<stem>.efb` *(qualified 2026-10-02, OPUS: that name is built on one branch only - when the copied name has a `\` or `/` with more than four bytes after the last one; with no separator, or exactly four bytes after it, the request names an empty string, and with 0-3 bytes after it the copied name is kept whole - the 'Not settled here' paragraph below, from ASTRA's SPEC-accepted [`sd194-stale-name-slice`](../../_experiments/evidence/sd194-stale-name-slice/README.md), method A)*.
 - So mode 0 is the request for the `.efb` of the block's shared pack. Its completion `003789A0` hands a delivered block
   to the stub `0053DD10` (`mov eax, 1` / `ret`) and publishes it at `02ADD088`. Only the teardown `00378230` reads
   that global (Q9). Nothing parses the block.
@@ -384,7 +384,7 @@ in [the batch record](../../_index/candidates/swe2contract-ddres-b14-0930/README
 | no mode-0 `.efb` ships; the mode-1 split 945 / 249 / 121 | Q11 (archive, TSV control), Q13 | 1 |
 | a missing file fails through the queue and frees its block | Q5–Q10 | 1 |
 | no mode-0 path's cache key collides with an archive name's | Q12 (unicorn control) | 1 |
-| the null-name fields' path | — | runtime (**SD-194**, registered 2026-10-01) |
+| the null-name fields' path | — | runtime (**SD-194**, registered 2026-10-01) *(qualified 2026-10-02, OPUS: the static branch footprint on that path is settled under stated premises by ASTRA's SPEC-accepted sd194-stale-name-slice; the inherited bytes and which fields load stay runtime)* |
 
 ## 3. The loader contract
 
@@ -454,8 +454,8 @@ Same construction, two versions, and **a real failure return** rather than a voi
 **EFB rejects by returning 0**, and ~~releases the lock it took at entry~~ pops the arena selection it pushed at entry (`0x0026FBA6`; `0036C1D0` pushes a selection record tagged with its caller, `0036C140` pops it — a selector stack, not a mutex, and a pop below depth 0 spins forever at `0036C150`) before doing
 so — so a rejected EFB is a clean failure a caller can see, where a rejected EFX is not.
 
-**What loading normalises:** nothing in the header. The `0x600` chunk zero-fill (§2) is the only
-normalisation found, and it is per-chunk rather than per-file.
+**What loading normalises:** nothing in the header. ~~The `0x600` chunk zero-fill (§2) is the only~~
+~~normalisation found, and it is per-chunk rather than per-file.~~ Per chunk, the `0x600` zero-fill and the binder `00333C80`, which rewrites an `EFX0009` / `EFX0008` record into the `EFX0010` layout *(corrected 2026-10-02, OPUS: `00333C80`+0x21 `mov ecx, dword ptr [01EFF3B0]`, +0x27 `cmp ecx, 9`; section 2b)*.
 
 **The write path is not documented here.** No writer was found; the search that failed is named in §7.
 
@@ -533,7 +533,7 @@ whether `.efx` and `.efb` are a container and its payload, noting the different 
 evidence against. **They are not container and payload — they are two formats sharing one container
 convention**, each with its own loader, its own magic family, its own version space and its own
 version global. The shared convention is specific: an 8-byte NUL-terminated ASCII magic ending in a
-version number, compared byte-by-byte, a 16-byte header whose second half nothing reads, and a
+version number, compared byte-by-byte, a 16-byte header ~~whose second half nothing reads~~ whose `+0x0C` is the stream length four of the loader's callers pass *(corrected 2026-10-02, OPUS: `003B0660`+0xDF `mov edx, dword ptr [rbx + 0xc]` before the loader call; section 2b)*, and a
 payload at `+0x10`.
 
 ## 6. Falsification pass — 2026-09-05
@@ -544,7 +544,7 @@ payload at `+0x10`.
 | Could the decompiler have invented the control flow? | **It did, on the one branch that mattered.** Its rendering of the EFX reject reads as *"set version 10 and continue"*; the listing shows `JNZ 0x003EE24D` → set 10 → `RET`. §3 follows the listing, and the difference is parse-anyway versus reject-silently — opposite advice to a modder. |
 | Are these really versions, not filenames? | Three consecutive `EFX00nn` strings referenced from **one function** at three `LEA`s `0x2F` apart, each followed by an 8-byte compare and a distinct constant store into **one global**. A filename table would not be consumed that way. |
 | Does the claim rest on a file? | **No file was opened**, and that is stated at the top rather than buried. Everything is the loader's own parse. |
-| Is `+0x08..+0x0F` really unread? | **No reader in these two function bodies.** That is not the same as inert across the engine — another function handed the same buffer could read it, and that search was not run. §7. |
+| Is `+0x08..+0x0F` really unread? | **No reader in these two function bodies.** That is not the same as inert across the engine — another function handed the same buffer could read it, ~~and that search was not run~~ *(answered: see §2b - `003B0660`+0xDF reads `+0x0C` before calling the loader; 2026-10-02, OPUS)*. §7. |
 | Is `EFB4305` a third EFB version? | **No.** It matches the `EFB\d{4}` pattern but is not referenced by the loader, which compares against exactly two strings. Recorded because the regex found it and a reader will find it too. |
 
 **The killer observation for the central claim** — *"three accepted EFX magics, everything else
@@ -607,7 +607,7 @@ measured magic distribution is consistent with §2 in every one of 3,698 files. 
 might simply be rare rather than absent — it is absent, 0 of 3,288.
 
 **What this pass did not do.** It read **the first eight bytes of each file only**. §2's `+0x08`
-second header half and the payload at `+0x10` remain unmeasured, so §7's caveats about them stand
+second header half and the payload at `+0x10` ~~remain unmeasured, so §7's caveats about them stand~~ *(answered: see §2b, measured 2026-09-30; 2026-10-02, OPUS)*
 unchanged. **The version question is closed; the body of the format is not.**
 
 ## 7. What this document does not claim

@@ -26,7 +26,7 @@ still the only hint about what distinguishes them, and it may distinguish nothin
 whose first entry is the `@FCP` parameter block ([decoded](fcp-character-parameter-block.md)), `.ca` a
 motion set.
 
-`.adm` is `04 00 01 00` and the binary names it `./PS2Data/add_motion/%s.adm` and `%s_town.adm`
+~~`.adm` is `04 00 01 00`~~ `.adm` opens with an `i16` track count, so 35 of the 39 files begin `04 00 01 00` and the two-track and one-track files do not; nothing compares a magic *(corrected 2026-10-02, OPUS: `001BE1A0`+0x5B reads the count with `movsx`; the add-motion sheet's census)* and the binary names it `./PS2Data/add_motion/%s.adm` and `%s_town.adm`
 (`008F…`), so the "additive motion" reading now has a **`_town` variant** to explain.
 *2026-09-13:* [the `.adm` sheet](adm-add-motion-tables.md) walks all 39 by the parser's rules — tracks of groups of
 28-byte per-bone records, loaded for the 23 stems in `add_motion_list.txt` (`hn1018_12.adm` is never loaded); the

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\filecache-zero-handle-return\prove.py", line 106, in <module>
+    if any(writes(q,rax) for q in ix if 0x20c2bc<=q<=0x20c2f1):raise RuntimeError('lookup epilogue return changed')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: lookup epilogue return changed

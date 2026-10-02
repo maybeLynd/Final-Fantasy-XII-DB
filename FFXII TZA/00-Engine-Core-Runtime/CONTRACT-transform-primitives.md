@@ -84,8 +84,8 @@ take their buffers from the caller.
    `in[3]` is loaded and never used. **So this transforms a POSITION and can never express a direction**, which
    would need `w = 0`.
 2. **There is no perspective divide.** All four components are emitted and nothing is divided.
-3. **Aliasing is safe on the composer.** Both inputs are staged to the stack frame (`[rsp+0x40]` and
-   `[rsp+0x80]`) before any multiply, so `out == a` and `out == b` give the same answer as three
+3. **Aliasing is safe on the composer.** Both inputs are staged to the stack frame (~~`[rsp+0x40]` and~~
+   ~~`[rsp+0x80]`~~ `[rsp+0x40]`–`+0x70` and `[rsp]`–`+0x30` *(corrected 2026-10-02, OPUS: `00397910+0x67` and `+0x97`, as the §15a table says)*) before any multiply, so `out == a` and `out == b` give the same answer as three
    distinct buffers.
 
 ## 5. State — the deposits are not a side effect to drop
@@ -110,7 +110,7 @@ reading:
 022D9310[c] = 022D91A0[c] + M[3][c]                   (the result)
 ```
 
-**All four deposit slots are SHARED, not owned here.** `022D91A0` has 67 writers image-wide,
+**All four deposit slots are SHARED, not owned here.** *(answered: see the census below that replaced these counts 2026-09-21 (SWE2-CONTRACT); 2026-10-02, OPUS)* `022D91A0` has 67 writers image-wide,
 `022D9300` has 41 writers and 63 readers, `022D8F90` has 47 and 59. That these two functions write
 them is proven; **who consumes them is not**.
 
@@ -376,7 +376,7 @@ runtime; see §15b, which corrects this pass's word *"constant"*.
 
 **Untouched by this pass:** the live row — *"the workbench deposit slots are idle at the title
 screen"*, 40 samples with a moving control — is **one of the three live claims in the entire
-database**, and nothing here bears on it. §14's 156 call sites and the four `UNKNOWN` rows stay open.
+database**, and nothing here bears on it. §14's ~~156 call sites~~ 231 call sites (156 caller functions) *(corrected 2026-10-02, OPUS: 129 direct call sites to `00397910`, 102 to `00398F90`)* and the four `UNKNOWN` rows stay open.
 
 
 ## 15b. `w` is a load, not an immediate — [`EXP-115`](../_experiments/EXP-115-transform-primitives-exec.md), folded in 2026-09-19 (OPUS)

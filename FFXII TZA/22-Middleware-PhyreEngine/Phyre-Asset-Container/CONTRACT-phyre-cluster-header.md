@@ -953,3 +953,14 @@ the record init
 `0059E300` pairs with it.
 Interior anchor `00686C2D`
 (the `+0x18` store).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-contract-phyre-cluster-header-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00584E10` | 67 B | calls `00599770(rdx)` and copies `0x54` bytes from the returned pointer to `r8` (five 16-byte `movups` blocks at `+0` through `+0x40`, then dword `+0x50`), returning that last dword in `eax` | `00584E1C`, `00584E24`, `00584E43`, `00584E4A` |
+| `0062F080` | 27 B | on the two-qword link pair at `rdx+8` (next at `+0`, previous at `+8`), stores the previous pointer at `+8` of the next node and the next pointer at `+0` of the previous node, then points both of the pair's own qwords at `rdx+8` itself | `0062F084`, `0062F08C`, `0062F090`, `0062F093`, `0062F096` |
+| `0067ADD0` | 89 B | copies dword `rdx+0x10` to `rcx+0x10` and returns `rcx` at once when it is zero; otherwise calls `0067B100(rcx, dword [rdx] with bit 31 cleared)` and then, when qword `rcx+8` is non-null, `00861EBA(qword rcx+8, qword rdx+8, dword rcx+0x10)`, and returns `rcx` | `0067ADDC`, `0067ADED`, `0067ADF4`, `0067ADF8`, `0067AE0D` |
+| `006CC920` | 56 B | returns 0 in `al` when byte `rcx+0x48` is zero; otherwise calls `005CD840(rcx+0x28)` and `005CD5E0(rcx+0x28)` and returns 1 | `006CC928`, `006CC938`, `006CC940`, `006CC94A`, `006CC951` |

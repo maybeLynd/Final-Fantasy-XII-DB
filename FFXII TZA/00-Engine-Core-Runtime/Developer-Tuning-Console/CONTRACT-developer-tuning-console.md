@@ -65,12 +65,12 @@ and is why it is contracted as one.
 |---|---|---:|---:|---|
 | **arm dispatch** | `001D4C1C`, immediately *after* the body | 4 | **282** | `id − 12` |
 | **labels** | `ctx + id*8 + 0x130` | 8 | **293** (ids 1–294) | `id` |
-| **authored codes** | `01DF6E68` in `.data` | **16** | 294 (ids 0–293) | `id` |
+| **authored codes** | `01DF6E68` in `.data` | **16** | ~~294 (ids 0–293)~~ 1,314 (rows 0–1313) *(corrected 2026-10-02, OPUS: `+0x08` = row + 1 through row 1313; the next 16 bytes break the pattern)* | ~~`id`~~ the field id `[r15 + 0xAB4]` (`001CD0E0+0xAFF`) |
 
 ```
 authored-code entry, read here from the image
   +0x00  char*  codePtr     a pointer to an ASCII code, or NULL
-  +0x08  u32    sequence    EQUALS index + 1 for all 294 entries, no exception
+  +0x08  u32    sequence    EQUALS index + 1 for all 294 entries, no exception   <- corrected 2026-10-02, OPUS: for all 1,314 entries, 01DF6E68 + 1,314 x 16
   +0x0C  u32    (zero in every entry read)
 ```
 
@@ -138,8 +138,8 @@ measuring slightly different things and the difference is method, not error.*
 
 **At run time the steps are these, and two are not in the table above** *(2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 315, which executed every id; [its package](../../_index/candidates/s06-opus-replay-console-arms/README.md) was read.)*. Started from zero, the value a
 float-stepping arm writes is its step. **56 arms step by exactly 0.01**, then 0.1 (7), 0.02 (7), 0.001 (6), 0.05 (5),
-1.0 (4), **0.005 (4)**, 0.03 (3) and **0.005556 (2)**. The last two are loaded as no literal. The arms compute them,
-so a census of literal operands, like the one above, cannot list every step size. *The headline holds: the step is
+1.0 (4), **0.005 (4)**, 0.03 (3) and **0.005556 (2)**. ~~The last two are loaded as no literal. The arms compute them,~~ All three are `.rdata` literals: 0.005 at `009002B4` (−0.005 at `009002F0`), 0.03 at `009002C4`, 0.005556 at `009002B8` *(corrected 2026-10-02, OPUS: the scalar-float rip operands of `001D1660`, e.g. `subss` / `addss` on `009002B8` at `001D1660+0x14F9` / `+0x150E`)*;
+~~so a census of literal operands, like the one above, cannot list every step size~~ the table above omits them by its cut, not because they are computed. *The headline holds: the step is
 mostly a hundredth.*
 
 **I-5 — THE MENU DRAWS A ROW THE DISPATCHER CANNOT REACH.** The label table has **293 labels for ids
@@ -165,7 +165,7 @@ the shape and the banding.* **One code appears twice** — `dst0104` at ids ~~23
 reading of the table as a per-id key has to account for.
 *Corrected 2026-09-26 (OPUS), on a census re-derived from the image
 (`_index/candidates/s06-opus-console-tables-census/`).*
-- **The duplicate's ids.** The renderer indexes the table by the id itself (`001CDBDF`–`001CDBF7`: `[base + id*16 +
+- **The duplicate's ids.** The renderer indexes the table ~~by the id itself~~ by the dword at `[r15 + 0xAB4]`, the field id, not the console id *(corrected 2026-10-02, OPUS: `001CD0E0+0xAFF` `movsxd r8, dword ptr [r15+0xab4]`, `+0xB17` `mov rax, qword ptr [rsi+rdx*8+0x1cd6e68]`)* (`001CDBDF`–`001CDBF7`: `[base + id*16 +
   0x1CD6E68]`), and `+0x08` holds `id + 1`. The two `dst0104` entries are therefore ids **230 and 232**, whose `+0x08`
   fields read 231 and 233. Id 231 holds `dst0109` and id 233 `dst0108`. The earlier "232 and 233" matched no
   convention.
@@ -258,7 +258,7 @@ I-10 for why there is no second thread here).
 1. **Out-of-range id** → the shared do-nothing arm; no diagnostic (I-2).
 2. **In-range id with no behaviour** → one of the 56; indistinguishable from 1 to the caller (I-3).
 3. **Id 294** → drawn, not dispatchable (I-5).
-4. **A NULL code pointer** → 183 of the 294 entries; the renderer must tolerate it (I-7).
+4. **A NULL code pointer** → ~~183 of the 294 entries~~ 713 of the 1,314 entries (183 of the first 294) *(corrected 2026-10-02, OPUS: 601 rows carry a pointer)*; the renderer must tolerate it (I-7).
 5. **A stepped value has no clamp in most arms** — ~~110 arms carry both `addss` and `subss`~~ **110 arms reach `addss`,
    and 59 of them also reach `subss`; 51 step one way only** *(CORRECTED 2026-09-29, falsification pass 1)*. The catalogue
    slices record clamped pairs only in slices C and E, so most values walk unbounded.
@@ -288,13 +288,13 @@ armStep(slot, +k):                                # the 110 stepping arms
 
 renderRow(id):                                    # 001CD0E0
     label = [ctx + id*8 + 0x130]                  # ids 1..294
-    code  = qword[0x01DF6E68 + id*16]             # NULL in 183 of 294
+    code  = qword[0x01DF6E68 + id*16]             # NULL in 183 of 294   <- corrected 2026-10-02, OPUS: indexed by dword [r15+0xAB4] (001CD0E0+0xAFF), not by id; 1,314 rows, 713 NULL
     print("%s%s%f", label, code?, block[slot])
 ```
 
 ## 13. Runtime validation
 
-**Empty.** The console is a developer build's menu; nothing here has been observed running.
+**Empty.** The console is a developer build's menu; nothing here has been observed running *(answered: see the 2026-09-25 note above, OPUS block 315 executed every id; 2026-10-02, OPUS)*.
 
 | claim | how it was observed live | date | result |
 |---|---|---|---|
@@ -302,13 +302,13 @@ renderRow(id):                                    # 001CD0E0
 
 ## 14. Unresolved
 
-1. **Whether the 111 codes are area codes** (I-7) — the form and the banding support it; nothing
+1. **Whether the 111 codes are area codes** (I-7) *(answered: see the second-console-table page, Answered 2026-09-30 (SWE2-CONTRACT): map-pack names indexed by field id; 2026-10-02, OPUS)* — the form and the banding support it; nothing
    read here binds one to a map load. Resolved by following one id's arm to what it does with the
    pointer.
 2. **Why `dst0104` appears at two ids** (I-7).
 3. **What the 56 shared ids were** before they were retired to the do-nothing arm — the labels still
    exist for them, so the names may say.
-4. **The eight-entry uniform array the console cannot reach** — owned by
+4. **The eight-entry uniform array the console cannot reach** *(answered: see what-the-console-tunes.md, eight shadow-map cascade matrices, UQ-24 2026-09-16; 2026-10-02, OPUS)* — owned by
    [what-the-console-tunes.md](what-the-console-tunes.md) §4.
 
 ## 15. Evidence

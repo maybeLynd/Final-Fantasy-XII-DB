@@ -97,7 +97,7 @@ if (tail[0x42] == 1 && tail[0x43] == 0)                  /* the system gate */
 
 The list head is a 32-bit index at the very start of the tail; each record's **`+0x04` is a 16-bit
 index of the next live record**; `-1` terminates. A record's `+0x00` is a 16-bit id which is `-1`
-when the slot is not in use, and every consumer tests that first.
+when the slot is not in use~~, and every consumer tests that first~~; the id is not a validity test every consumer makes first - the list walks select by link, and the allocator publishes a new slot into the pending list before it writes the id *(corrected 2026-10-02, FABLE, Claude Opus 5.5: see section 11a)*.
 
 That is why the whole system costs nothing when the world is empty: an empty list is one comparison,
 not 160.
@@ -199,10 +199,10 @@ would be the index-as-offset defect that `check_layout_units.py` exists to catch
 
 ```
 CharacterRenderRecord -- 0x740 bytes
-  +0x000  i16   id                 -1 when the slot is free; every consumer tests this first
+  +0x000  i16   id                 -1 when the slot is free (was 'every consumer tests this first' - corrected 2026-10-02, section 11a)
   +0x002  i16   prevActiveIndex    intrusive list link back, -1 at the head (section 11)
   +0x004  i16   nextActiveIndex    intrusive list link, -1 terminates
-  +0x006  i16   (tested == -1 as a latch precondition)
+  +0x006  i16   (tested == -1 as a latch precondition)   <- corrected 2026-10-02, OPUS - the piece's owner-record link, -1 = unattached (CONTRACT-coast-down-latch.md section 15 row, answered 2026-09-22)
   +0x010  ptr   encodedContextPtr   8-byte pointer, stored whole (was listed u32 - corrected 2026-09-27, see below)
   +0x0C4  i32   presentationEntryId -1 when absent
   +0x0CC  u16   subtype             used as (subtype & 0xFFF)
@@ -259,7 +259,7 @@ if (cachedSpeed <= 0.05f) flags &= ~1;
 && subtype == 0x10
 && *speed == 0.0f
 && (u32)stopFrameCounter >= (u32)(DAT_01DFE0B4 * 30)
-   -> cachedHeading = liveHeading; cachedSpeed = liveSpeed; flags |= 1;
+   -> cachedHeading = liveHeading; cachedSpeed = liveSpeed; flags |= 1;   // <- corrected 2026-10-02, OPUS - arming replays the CACHED pair (+0x620 heading, +0x624 speed times 0.83) to the caller and sets +0x62C bit 0 (00424080+0xD8..+0xFB); the live-to-cache copy runs only when the test fails (00424080+0x105)
 ```
 
 From `0.83` per call and a `0.05` floor: a speed of `1.0` takes `ceil(log(0.05)/log(0.83)) = 17`
@@ -445,7 +445,7 @@ scanner gives 3,097 accesses in 525 functions, so the committed file predates sc
 (pop-kill exemption, TWOREG refusal); the thirteen argseeds are the `CharacterRenderRecord_*`
 functions the named-gap audit found outside the census, each proven to carry the record in the
 seeded argument by reading its entry block (`0042E7F0` holds it in `arg1` — `mov rdi, rdx` —
-not `arg0`). Result **3,381 accesses in 545 functions over 368 displacements** (was
+not `arg0`). Result **3,381 accesses in 545 functions over 368 displacements** *(not in the committed file: `character-render-record-accesses.tsv` holds 2,872 rows in 499 functions over 351 displacements - recount 2026-10-02, OPUS; regeneration routed to SWE2-STRUCT)* (was
 2,874/499/351; the delta is the widened seeds plus scanner-generation drift, not field movement —
 two stale `nop`-operand rows were dropped by the TWOREG fix and four hand-corrected
 mis-attribution rows were carried forward). One named function
@@ -493,7 +493,7 @@ base + 0x4880C   i32   live record count   compared against 160 to refuse alloca
 **What this changes for a modder**, and it is the practical half: §6 can now say *why* the pool
 cannot simply be grown. There is no capacity field to edit — **160 is compiled into three
 immediates in one function**, and the allocation size is a fourth literal in `003325D0`. Raising the
-pool means patching all four and nothing in the data will tell you that.
+pool means patching ~~all four~~ more than four - the three in `004279B0` (`004279B0`+0x39, +0xD5, +0x108), the size `0x48930` at `003325D0`+0x17, and also the constructor's loop count (`004269A0`+0x16) and the refusal in `0042FB80` (`0042FB80`+0x88) *(corrected 2026-10-02, OPUS: `mov edi, 0xa0` and `cmp dword ptr [rax + 0x4880c], 0xa0`)* - and nothing in the data will tell you that.
 
 ### The 160 derivation is sound, and the tautology risk was checked
 
@@ -561,8 +561,8 @@ at `+0x00`. **Both are right: they are two lists.**
 |---|---|---|---|
 | `+0x00` | `headActiveIndex` | `CharacterRenderSystem_Initialize` (−1, `004269E1`); the promoter `00428710` when the active list is empty (`0042882A`–`00428833`); the remover `00427C90` when the head is removed (`00427D21`–`00427D2D`) | the reconcile walk (`0042643D`), the name lookup `004278E0` (`004278EF`), `RenderRecords_ProcessDirtyState` and some thirty more — every walk of the live records |
 | `+0x04` | `tailActiveIndex` | initialise (−1); the promoter appends here (`00428840`–`0042886A`); the remover when the tail is removed (`00427D36`–`00427D42`) | the promoter, to link the new last record |
-| `+0x08` | `nextFreeIndex` | initialise (0, `004269ED`); the allocator advances it (`00427A96`–`00427AC2`); the remover resets it to 0 when the count reaches 0 (`00427D48`–`00427D50`) | the allocator (`004279FA`) |
-| `+0x0C` | `liveCount` | the allocator increments (`00427A7F`), the remover decrements (`00427D18`) | the allocator refuses at 160 (`004279E9`, `00427A85`) |
+| `+0x08` | `nextFreeIndex` | initialise (0, `004269ED`); the allocator advances it (`00427A96`–`00427AC2`); the remover resets it to 0 when the count reaches 0 (`00427D48`–`00427D50`) | the allocator (`004279FA`), read signed with no range check before the clear it addresses, so that clear is in range only under the precondition 0..159 *(qualified 2026-10-02, OPUS: render-slot-identity-publication, accepted)* |
+| `+0x0C` | `liveCount` | the allocator increments (`00427A7F`), the remover decrements (`00427D18`) | the allocator refuses at 160 (`004279E9`, `00427A85`) - a bound on the count only, not on the cursor, and neither remover tests the count before decrementing it *(qualified 2026-10-02, OPUS: render-slot-identity-publication and render-removal-phase-contracts, accepted)* |
 | `+0x10` | `headPendingIndex` | initialise (−1); the allocator links a fresh record here (`00427A18`–`00427A21`); the promoter unlinks (`00428803`–`0042880F`) and finally resets it to −1 (`00428893`) | the name lookup's second pass (`00427945`), the promoter (`00428724`) |
 | `+0x14` | `tailPendingIndex` | initialise (−1); the allocator (`00427A29`–`00427A47`); the promoter (`00428818`–`00428824`, `0042888C`) | the allocator, to link the new last record |
 
@@ -585,11 +585,11 @@ census never saw it:
 | repoints `+0x14` when it was the pending tail | `0042926B`, `00429277` | — |
 | decrements `+0x0C` | `0042924D`, retested at `0042927D` | `00427D18` |
 | resets `+0x08` to 0 once the count reaches zero | `00429288` | `00427D50` |
-| hands the record to `CharacterRenderRecord_ResetDefaults` | `00429291` → `0041F730` | same |
+| hands the record to `CharacterRenderRecord_ResetDefaults` | `00429291` → `0041F730` | ~~same~~ only through the per-record teardown called at `00427DAE`, which tail-jumps there *(corrected 2026-10-02, FABLE, Claude Opus 5.5: see section 11a)* |
 
 It touches **neither** `+0x00` nor `+0x04`, which is what makes the split a fact rather than a
 reading: a record destroyed before the promoter runs is unlinked here, and nothing on this page
-previously described that path. Measured with `disp_image_census.py`, an image-wide sweep of `.text`
+previously described that path *(qualified 2026-10-02, OPUS: only one of its three non-null arms removes anything - `+0x284` mask 04 clear with `+0x290` mask 01 set; with mask 04 set it marks the row for the retire sweep (`+0x290` mask 02, `+0x2AE` mask 01) and writes through three helper-returned objects, with no count change and no clear, and with both masks clear it makes no call and no non-stack write; all three return 1, so a 1 is not a free-slot certificate. Both removers decrement the one shared count `+0x0C` and reset the one shared cursor `+0x08`; render-removal-phase-contracts with FABLE's narrowing, accepted)*. Measured with `disp_image_census.py`, an image-wide sweep of `.text`
 (2,110,203 instructions, 3,869 resyncs, positive control on `0x48824`/`0x4881C`), and attributed
 through the function list.
 
@@ -599,6 +599,73 @@ counts of what one function list reached. The `+0x18` flag word is the other cor
 in 12 distinct functions**, not the 23 in 10 the census has. The two extra are reads, in
 `CharacterRenderRecord_UpdateChildInheritedState` (`0042D004`) and
 `CharacterRenderRecord_UpdateRootLODAndPresentationState` (`0042D3A2`).
+
+### 11a. The slot lifecycle in order - allocation, clear, removal request, active sweep (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming three ASTRA packets that FABLE reviewed independently and accepted with narrowing:
+slot identity and publication (`aac0489ac`, review [`f1a265c5b`](../../_index/candidates/fable-review-astra-render-slot-identity-publication-1002/REVIEW.md)),
+the clear's callee footprints (`621dbd2cc`, review [`b3fb2d6cf`](../../_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md))
+and the removal phases (`31f29775a`, review [`b3fb2d6cf`](../../_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/REVIEW.md));
+SWE2-AUDIT-SPEC accepted at `fd96f1634`. Every order below is a dominance fact in one body, re-derived at the bytes;
+the record is [`render-lifecycle-consumption-fable-1002`](../../_index/candidates/render-lifecycle-consumption-fable-1002/README.md).*
+
+**Allocation publishes the slot before it names it.** In `004279B0` the only tests before the clear are the name
+lookup and the signed live-count gate (`jge` against 160, `004279E9`-`004279F3`); the next-free cursor is read signed
+(`004279FA`) and nothing bounds it. Then, in this order:
+
+1. the clear, `0041F730` (call at `00427A13`);
+2. the pending-list writes: the head `+0x10` (`00427A21`) when the list is empty, otherwise the old tail record's
+   `+0x04` (`00427A37`) and the new record's `+0x02` (`00427A43`); then the tail `+0x14` (`00427A47`);
+3. the record's own index into WORD `+0x00` (`00427A4D`), which the clear had left at `-1`;
+4. the initialiser `00420480` (`00427A71`), whose first non-stack access ORs `0x2010F9` into `+0x284` (`0042049A`);
+5. `+0x290` bit 0 (`00427A76`), the bit the promoter later clears;
+6. the live-count increment (`00427A7F`), then the cursor scan to the next row whose dword `+0x284` is 0.
+
+So a record is reachable from the pending list while its id is still `-1`, and the id is written before `+0x290`
+bit 0 and the count. A reimplementation must not read "listed" as "id valid", nor "id valid" as "counted".
+
+**The clear's postcondition.** `0041F730` fills the whole `0x740` bytes with 0 (`memset`, call at `0041F754`), and
+after that exactly one write reaches WORD `+0x00`: `-1` at `0041F795`. No later write overlaps dword `+0x284` at full
+width. So on return the id is `0xFFFF` and `+0x284` is 0. This holds under two premises the review states: `memset`
+behaves as the C library's and preserves the ABI's non-volatile registers, and the constant inputs it copies are
+readable. The two `006C0520` calls each make four 4-byte scalar (`movss`) stores, 16 bytes per call, over
+`+0x210`..`+0x220` and `+0x220`..`+0x230`.
+
+**The removal request, `00429140`, has four arms, and only one of them removes.**
+
+| input | what it does | returns |
+|---|---|---|
+| null record | nothing: no call, no write, no record read (`0042915C`) | 0 |
+| `+0x284` bit 2 set (mark) | `+0x290` bit 1 (`0042916F`), `+0x2AE` bit 0 (`00429178`), qword `+0x108` and dword `+0x110` cleared, `+0x284` = (old without bit 2) with bit 30 (`00429199`), all before its first call; then helper calls, and it writes three helper-returned objects (`004291A9`, `004291E4`, `004291F3`); no count, cursor or list write, no clear | 1 (`00429203`) |
+| bit 2 clear, `+0x290` bit 0 clear | nothing (`00429204` to the `ret`) | 1 |
+| bit 2 clear, `+0x290` bit 0 set (pending unlink) | the neighbours' `+0x04`/`+0x02`, the pending head `+0x10` and tail `+0x14`; the single count decrement (`0042924D`) dominates both the cursor reset (`00429288`, when the new count is 0) and the clear (`00429291` → `0041F730`) | 1 (`004292A5`) |
+
+The mark arm is therefore not record-only, and a return of 1 does not mean the record was released.
+
+**The active sweep, `00427C90`, decrements before it cleans up.** It walks the active list from tail `+0x00`; for a
+row whose `+0x290` bit 1 is set it caches the signed next index (WORD `+0x04`) before branching and reads no id. The
+single count decrement (`00427D18`) dominates every call of that iteration: `0042F4C0` (`00427D59`), the child loop
+(`00427D7E`), `003B6000` (`00427D97`), `003AFBE0` (`00427DA6`) and the per-record teardown (`00427DAE`), which ends by
+tail-jumping to the clear `0041F730`. The cursor is reset to 0 when the new count is 0 (`00427D50`). After the teardown
+returns, the sweep ORs `0x20` into the pool flag word `+0x48818` (`00427DB3`, the "active list dirty" bit of section
+12) and continues on the cached next index.
+
+**What the two lists share.** The active and pending removals keep separate list ends (tail `+0x00`/`+0x04` and
+`+0x10`/`+0x14`) but one live count (`+0x0C`) and one next-free cursor (`+0x08`), so a pending removal and an active
+removal decrement the same count. A count of 0 decrements to -1, and the zero test then skips the cursor reset; that is
+arithmetic, never executed.
+
+**Not established here.** These are static orders inside single bodies. The reviews accept nothing about:
+- what the native helpers do beyond the footprints listed;
+- ABI preservation by anything but the modelled `memset`;
+- that rows and indices are valid (the cursor is unbounded, and an out-of-range cursor addresses outside the 160-row
+  pool);
+- frame placement, aliasing, interference between callers, or that list chains are finite;
+- lifetimes and scheduling;
+- a census of every writer of these fields.
+
+ASTRA's later 76-check additive packet is producer-valid but unpublished and has not been independently reviewed, so
+nothing here rests on it.
 
 ## 12. Extension 2026-09-11 — the tail's other fields, and what the record's two strings are (OPUS-REQ-FABLE-TAILNAMES, -RECORDNAMES)
 
@@ -739,9 +806,9 @@ record with work done gets `+0x294` bit 25 set on its `+6`-chain tail records (`
 The full 56-block census — mechanically enumerated from the disassembly, merged with the measured setters and each
 handler's distinctive callee — is [`members/dirty-bits.tsv`](members/dirty-bits.tsv). Reading it column-wise:
 
-- **Pass 1** (`00427E33`–`004280BA`, 13 blocks): `+0x290` bits {2,3,12,19,20,22,23,24,25,29,30} and `+0x294` bit 26.
+- **Pass 1** (`00427E33`–`004280BA`, 13 blocks): `+0x290` bits ~~{2,3,12,19,20,22,23,24,25,29,30}~~ {2,3,12,18,19,20,22,23,24,25,29,30} and `+0x294` bit 26 *(corrected 2026-10-02, OPUS: bit 18 is tested at `00427DE0`+0x1B4 `bt eax, 0x12`; twelve bits plus one make the 13 blocks)*.
 - **Pass 2** (`0042810D`–`00428173`, 4 blocks): `+0x290` bits {9,10,11,17}.
-- **Pass 3** (`004281C3`–`004284A4`, 26 blocks): `+0x290` bits {26,27,28,31,9-again} and `+0x294` bits
+- **Pass 3** (`004281C3`–`004284A4`, 26 blocks): `+0x290` bits ~~{26,27,28,31,9-again}~~ {26,28,31,9-again} *(corrected 2026-10-02, OPUS: bit 27 is tested only in pass 4, at `00427DE0`+0x7F7; four bits plus 22 make the 26 blocks)* and `+0x294` bits
   {0,1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20,22,23} — the bulk of the protocol lives here.
 - **Pass 4** (`00428531`–`00428660`, 11 blocks): `+0x290` bits {4,5,6,13,14,15,16,21,27}, `+0x294` bits {24,27}.
 - **Pass 5** (`004286A7`–`0042870A`, 2 blocks): the `+0x290` bit-1 gate described above.
@@ -949,7 +1016,7 @@ Interior citations are instruction addresses inside each member's declared exten
 | | `0041E550` | 35 B — zeroes pool `+0xD90`/`+0xD98`/`+0xDA0`/`+0xDA8`, tails `0051C270` | [`0041E552`](../../_index/ADDRESS-INDEX.md) |
 | | `0041E3A0` | 233 B — the eleven-arm subcontainer battery (all eleven callees are members) | [`0041E40B`](../../_index/ADDRESS-INDEX.md) |
 | | `004269A0` | 741 B — `0041F730`×160 record clear, tail-field seeds, ~25 `0041D6xx` handler registrations, member-init battery, `+0x48818 |= 5` + config floats | [`004269C3`](../../_index/ADDRESS-INDEX.md) |
-| | `00426480` | 30 B — `0020E620` image-pointer store of the `0xA0` handle into pool `+0x48830` | [`00426493`](../../_index/ADDRESS-INDEX.md) |
+| | `00426480` | 30 B — `0020E620` image-pointer store of ~~the `0xA0` handle~~ the caller's pointer (`rdx`, `[022C6F20]`; the `0xA0` in `ecx` is unused) into pool `+0x48830` *(corrected 2026-10-02, OPUS: `00426480`+0x4 `mov rcx, rdx` before `call 0020E620`)* | [`00426493`](../../_index/ADDRESS-INDEX.md) |
 | `0041E3A0` arms | `00409F80` | 18 B — `0040A230` table-seed, tails `0051FB70` | [`00409F84`](../../_index/ADDRESS-INDEX.md) |
 | | `0040A230` | 2017 B — flat installer: exactly 144 `lea`(~~.text fn~~ **`.rdata` `obj_finish` path string**, CON-196)/`mov`(global) pairs seeding `02C65BF0`–`02C83C78`; no other logic | [`0040A237`](../../_index/ADDRESS-INDEX.md) |
 | | `0046E4B0` | 28 B — `0051FB70(rcx)` then `005371A0(rcx+0x60)` | [`0046E4B9`](../../_index/ADDRESS-INDEX.md) |
@@ -963,7 +1030,7 @@ Interior citations are instruction addresses inside each member's declared exten
 | | `005211F0` | 87 B — create-once `0x3000` alloc→`02CA8450`; fills 256×`0x30` records with `{0xFFFF,0xFFFFFFFF}` sentinels | [`00521201`](../../_index/ADDRESS-INDEX.md) |
 | `004269A0` arms | `0041D6D0` | 15 B — `02CA4670[ecx*8] = rdx` handler-slot store | [`0041D6DA`](../../_index/ADDRESS-INDEX.md) |
 | | `0041D6E0` | 8 B — `02CA4668 = rcx` handler-head store | [`0041D6E0`](../../_index/ADDRESS-INDEX.md) |
-| | `003B6890` | 110 B — create-once `0x8C00`→`02B40528`; flag clears over 80×`0x1C0` records; `02B40520`/`02B40524` counters | [`003B68AC`](../../_index/ADDRESS-INDEX.md) |
+| | `003B6890` | 110 B — create-once `0x8C00`→`02B40528`; flag clears over ~~80×`0x1C0` records~~ the 160 `0xE0`-byte records, two per `0x1C0` step of an 80-pass loop *(corrected 2026-10-02, OPUS: `003B6890`+0x52 clears `+0x40` bit 0 at `-0xE0` and at `+0`, looping at `003B6890`+0x67; `0x8C00` / `0xE0` = 160)*; `02B40520`/`02B40524` counters | [`003B68AC`](../../_index/ADDRESS-INDEX.md) |
 | | `003AFCD0` | 45 B — `02B3F554`=1, `02B3F550`=0, first-dword clear of 32×`0x70` table at `02B3F574` | [`003AFCD2`](../../_index/ADDRESS-INDEX.md) |
 | | `004778A0` | 46 B — `02CA6C94`/`02CA6C90`=0, first-word clear of 32×`0x40` table at `02CA6CA0` | [`004778C0`](../../_index/ADDRESS-INDEX.md) |
 | | `003AF2B0` | 102 B — create-once `0x3000`→`02B3F530`; byte-clear of 128×`0x60` records; `02B3F538`/`02B3F540`/`02B3F53C` counters | [`003AF2CA`](../../_index/ADDRESS-INDEX.md) |
@@ -1099,7 +1166,7 @@ jump. Interior anchor `003E55CB` (the `0020E600` context resolve).
 | `00423050` | 70 B | when dword `+0xC4` is not -1, looks up `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC4)` and tail-calls `0041C6B0` on it; returns 0 when there is none | `00423056`, `00423065`, `00423077`, `00423089`, `0042308E` |
 | `00423570` | 76 B | when dword `+0xC4` is not -1, looks up `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC4)` and, when found, calls `0041CEA0(it, edx)` | `0042357A`, `0042359D`, `004235AC` |
 | `00423AB0` | 87 B | stores `xmm1` in float `+0x2BC`; when dword `+0xC4` is not -1, looks up `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC4)` and, when found, calls `0041C7C0(it)` with `xmm1` | `00423AC8`, `00423AE7`, `00423AF7` |
-| `004270A0` | 85 B | when `xmm1` is 0.0, calls `00426FA0` and sets dword `+0x294` to (itself AND `0xFFFDFA7F`) OR 0x20; otherwise stores `xmm1` in float `+0x308` and sets `+0x294` to (itself AND `0xFFFDFB5F`) with bit 8 set | `004270AC`, `004270B3`, `004270BE`, `004270D2`, `004270E5` |
+| `004270A0` | 85 B | when `xmm1` is 0.0, calls a 249-byte record helper and sets dword `+0x294` to (itself AND `0xFFFDFA7F`) OR 0x20; otherwise stores `xmm1` in float `+0x308` and sets `+0x294` to (itself AND `0xFFFDFB5F`) with bit 8 set | `004270AC`, `004270B3`, `004270BE`, `004270D2`, `004270E5` |
 | `004272C0` | 26 B | sets bit 23 of dword `+0x294`, stores `xmm1` in float `+0x3C0` and `r8d` in dword `+0x3C4` | `004272CA`, `004272D2` |
 | `004272E0` | 21 B | sets dword `+0x294` to (itself AND `0xFFFDFA7F`) OR 0x20 | `004272E6`, `004272EB`, `004272EE` |
 | `00427300` | 19 B | sets bit 15 of dword `+0x294` and stores `xmm1` in float `+0x3BC` | `0042730A` |
@@ -1114,5 +1181,5 @@ jump. Interior anchor `003E55CB` (the `0020E600` context resolve).
 | `0042E4B0` | 63 B | when word `+6` is -1 or word `+0x2F2` is 1, calls `0016D6A0` with its own incoming arguments; then, when word `+6` is -1, zeroes dword `+0x58` of `rdx` | `0042E4C7`, `0042E4D1`, `0042E4D6`, `0042E4DD` |
 | `00504740` | 117 B | returns 1.0 (`01CEBBA8`) unless a match is found: for a non-null `rcx` with dword `+0x208` not -1, takes A = dword `+0x1F8` + dword `+0x208` (a 32-bit sum used as an address), scans the byte `A+0x30` count of 0xE0-byte records from `A` + word `A+0x38` for one whose byte `+0` equals signed byte `+0xB8` of `rcx`, and returns that record's float `+0x18` | `0050475E`, `00504764`, `0050478B`, `00504796`, `005047AD` |
 | `0051EE10` | 20 B | zeroes dwords `+0` and `+0x10` and qword `+8`, and stores 0x800 in qword `+0x14` | `0051EE12`, `0051EE1A`, `0051EE1C`, `0051EE20` |
-| `0051EE30` | 69 B | copies from `rdx` its qword `+8` passed through `003AB880` (null stays null) and its dwords `+0x10`, `+0x14` and `+0x18` | `0051EE4F`, `0051EE54`, `0051EE5B`, `0051EE67` |
-| `0051F020` | 91 B | stores `003AB8B0(edx, dword [rcx])` in qword `+8` and `edx` in dword `+0x10`, calls `003AB880` on the new qword, and when `r8d` is 1 zeroes `edx` bytes at `003AB7F0(qword +8)` with `00861EC0` | `0051F03C`, `0051F044`, `0051F04B`, `0051F059`, `0051F066` |
+| `0051EE30` | 69 B | copies from `rdx` its qword `+8` passed through the 42-byte external-source handle check (null stays null) and its dwords `+0x10`, `+0x14` and `+0x18` | `0051EE4F`, `0051EE54`, `0051EE5B`, `0051EE67` |
+| `0051F020` | 91 B | stores `003AB8B0(edx, dword [rcx])` in qword `+8` and `edx` in dword `+0x10`, calls the 42-byte external-source handle check on the new qword, and when `r8d` is 1 zeroes `edx` bytes at `003AB7F0(qword +8)` with `00861EC0` | `0051F03C`, `0051F044`, `0051F04B`, `0051F059`, `0051F066` |

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\s33-upstream-guard-review\check.py", line 10, in <module>
+    need(up.get('terminal') is True and up.get('exit')==0 and up.get('exception') is None,'incomplete actual review invocation')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\s33-upstream-guard-review\check.py", line 7, in <lambda>
+    need=lambda ok,msg: None if ok else (_ for _ in ()).throw(RuntimeError(msg))
+                                        ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\s33-upstream-guard-review\check.py", line 7, in <genexpr>
+    need=lambda ok,msg: None if ok else (_ for _ in ()).throw(RuntimeError(msg))
+RuntimeError: incomplete actual review invocation

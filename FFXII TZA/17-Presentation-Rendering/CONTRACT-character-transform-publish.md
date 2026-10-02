@@ -133,7 +133,7 @@ None. The matrices arrive as pointers from the caller; no authored table or opco
 ## 9. Determinism
 
 **RNG** — none.
-**Ordering** — the publish must run before whatever flips the parity byte, and the renderer must read
+**Ordering** — ~~the publish must run before whatever flips the parity byte,~~ *(answered: see §14.1 - nothing flips it per frame; it is a camera-source flag; 2026-10-02, OPUS)* and the renderer must read
 the other bank while it runs. Neither ordering is enforced here; both are assumed.
 **Threading** — no synchronisation. The double buffer *is* the synchronisation, and it only works if
 the parity flip happens between publishes rather than during one.
@@ -276,7 +276,7 @@ Every claim is otherwise a decoded instruction from the verified image.
    parity byte at all: it is a **camera-source flag**, written by the view publish. Folded from
    FABLE's E-9 note by OPUS 2026-09-13, with its three load-bearing instructions re-verified at the
    image first: `00185A1D mov byte ptr [rcx + 0x1c], 1` and `001860E6 mov byte ptr [rcx + 0x1c], 0`
-   are the only two other writers image-wide, both reached through the getter `00189120`; and
+   are ~~the only two other writers image-wide~~ two of the three writers besides the constructor (the third is the per-frame method `00189CE0`, at `00189CE0`+0x40A) *(corrected 2026-10-02, OPUS: the constructor is `00184F20`, `00184F20`+0x39 `mov word ptr [rcx + 0x1c], si`; `00189CE0` is called from the per-frame pump at its `+0x89`)*, both reached through the getter `00189120`; and
    `00259FA0` is `lea rdx, [02097B80]` / `cmp rcx, rdx` / `sete al` — it returns 1 **iff the
    published view IS the static default view object**, 0 for anything else. `003829D0` chooses
    between the two writers on that result. So the byte says *default camera versus scripted or
@@ -289,7 +289,7 @@ Every claim is otherwise a decoded instruction from the verified image.
    > *Answered 2026-09-12 (FABLE, E-9). **FOLDED INTO THE CONTRACT BY OPUS 2026-09-13**, with its key instructions re-verified at the image; the item above carries it.* **Nothing
    > flips it per frame; the camera publish writes it.** The object behind `01F7F598` is the
    > thrice-pumped per-frame singleton of [the application root](../00-Engine-Core-Runtime/Application-Root/game-application.md) (`Ensure` `00189000`, constructed by
-   > `00189CE0`, which zeroes the byte at `0018A0EA`). Image-wide, the byte has exactly two other
+   > ~~`00189CE0`, which zeroes the byte at `0018A0EA`~~ `00184F20` (`00189000`+0x61); `00189CE0` is a per-frame method that also zeroes the byte, at `00189CE0`+0x40A *(corrected 2026-10-02, OPUS: `00189000`+0x67 stores the constructed object in `01F7F598`; `00189CE0` is called from the per-frame pump at its `+0x89`)*). ~~Image-wide,~~ Besides it, the byte has exactly two other
    > writers, both reached through the getter `00189120`: `00185A10` stores **1** (`00185A1D`) and
    > `001860E0` stores **0** (`001860E6`), each then queueing one of the object's callback blocks
    > (`+0x358` / `+0x690`) on the queue behind `0018CA40` (`0018CBC0`). Their only callers are the
@@ -332,7 +332,7 @@ Every claim is otherwise a decoded instruction from the verified image.
    > writes), `+0xC8` `paletteEnabled`, `+0xD0` `indexTex`, `+0xD8` `palette`, `+0xE0`
    > `PS2ZBiasEnabled`, `+0xE8` `PS2ZBiasNoGS`, `+0xF0` `PS2ZBiasOriginal`, `+0xF8`
    > `PS2ZBiasInstance`, `+0x100` `PS2WHMatrix`, `+0x108` `PS2HSMatrix` — and `001FAD50` copies the
-   > two 192-byte matrix banks (`+0x4C4` / `+0x584`) into the last two (`001FADCD`–`001FAE23`,
+   > ~~two 192-byte matrix banks (`+0x4C4` / `+0x584`) into the last two~~ three 64-byte matrices of one bank (`+0x4C4` or `+0x584`, chosen by byte `+0x1D`) into `+0x100`, `+0x108` and a third slot `+0x110` *(corrected 2026-10-02, OPUS: `001FAD50`+0x71, `001FAD50`+0xAF and `001FAD50`+0xED test the record's `+0x100`, `+0x108` and `+0x110`; the bank test is `001FAD50`+0x3B `cmp byte ptr [rax + 0x1d], 0`)* (`001FADCD`–`001FAE23`,
    > `001FAEC8`–`001FAF1E`), which corroborates the family. So the two null tests are "does this
    > material's shader declare the parameter": a material without the PS2 z-bias parameters skips
    > the two dword writes and nothing else. The PS2 z-bias emulation is therefore switched per
@@ -343,7 +343,7 @@ Every claim is otherwise a decoded instruction from the verified image.
 3. **What `r8d` selects.** It is tested only for zero and the result feeds a byte the operation writes
    *(2026-09-12, FABLE: the byte lands in the shader parameter `PS2ZBiasNoGS` — see item 2; the
    selector's own meaning stays with the caller, which the function list does not reach: `001FB120`
-   has no direct call site, so it is a vtable or callback entry.)*
+   has no direct call site, so it is a vtable or callback entry.)* *(answered: see character-render-object.md - it is slot 13 of the vtable `00903B68`, called through `[rax+0x68]` by slot 16 at `001FA3D0`+0x378; 2026-10-02, OPUS)*
    through a computed address; the consumer is outside this function.
 
 ## 15. Evidence
@@ -414,7 +414,7 @@ corresponding bank changes.
 frame.
 `CALCULATION` — drive the motion scalars with `0.0f`, `-0.0f` and a NaN and assert the flag is 0, 0
 and 1.
-`TIMING` — the one this contract cannot specify until §14.1 is answered.
+`TIMING` — ~~the one this contract cannot specify until §14.1 is answered~~ *(answered: see §14.1, answered: no per-frame flip exists to order against; 2026-10-02, OPUS)*.
 
 **Done offline 2026-09-12** — see §13. `CALCULATION`, `STRUCTURAL`, `STATE-TRANSITION`, `EDGE-CASE`
 and **`CONTRACT`** are covered; this is the fourth pilot to cover `CONTRACT`, because every

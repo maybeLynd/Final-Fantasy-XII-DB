@@ -1,0 +1,90 @@
+{
+  "complete": true,
+  "driver_sha256": "487223f21545165d2b16773a0059cfa667f0a4672b913d58dd97144119084c3b",
+  "producer_sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9",
+  "positive_result_sha256": "acc1ee9abfe6c34e071d02e99c2891de64324cd8b4e04374c7e699d941efc488",
+  "positive": "Exact original source derive reproduces all facts",
+  "CLI_cases": [
+    {
+      "case": "missing-capture-receipt",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9"
+      },
+      "limits": "Actual Python CLI refusal on disposable input; no original FF12 execution"
+    },
+    {
+      "case": "failed-capture-exit",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9"
+      },
+      "limits": "Actual Python CLI refusal on disposable input; no original FF12 execution"
+    },
+    {
+      "case": "missing-retained-identity",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9"
+      },
+      "limits": "Actual Python CLI refusal on disposable input; no original FF12 execution"
+    }
+  ],
+  "synthetic_derive_cases": [
+    {
+      "case": "post-retargeted-as-free",
+      "pc": "0x3db37d",
+      "field": "args",
+      "before": "0x3dc0d0",
+      "after": "0x3db650",
+      "refusal": "required operation changed 0x3db37d",
+      "method": "Synthetic annotation mutation of actual derive; no original instruction patch/execution"
+    },
+    {
+      "case": "unhook-writes-actor-free-head",
+      "pc": "0x3dc233",
+      "field": "args",
+      "before": "byte ptr [r8 + 0x11], 0",
+      "after": "byte ptr [r9 + 0x60], 0",
+      "refusal": "required operation changed 0x3dc233",
+      "method": "Synthetic annotation mutation of actual derive; no original instruction patch/execution"
+    },
+    {
+      "case": "removal-forwards-notification-result",
+      "pc": "0x3db402",
+      "field": "args",
+      "before": "eax, r14d",
+      "after": "eax, eax",
+      "refusal": "required operation changed 0x3db402",
+      "method": "Synthetic annotation mutation of actual derive; no original instruction patch/execution"
+    },
+    {
+      "case": "notification-function-id-changed",
+      "pc": "0x3dc115",
+      "field": "args",
+      "before": "dword ptr [rsp + 0x24], 0x80000000",
+      "after": "dword ptr [rsp + 0x24], 0x80000001",
+      "refusal": "required operation changed 0x3dc115",
+      "method": "Synthetic annotation mutation of actual derive; no original instruction patch/execution"
+    },
+    {
+      "case": "regression-wrong-entry-address-LEA",
+      "pc": "0x3dc1d1",
+      "field": "args",
+      "before": "r8, [rax + rdx*4]",
+      "after": "r8, [rax + rax*4]",
+      "refusal": "required operation changed 0x3dc1d1",
+      "method": "Synthetic annotation mutation of actual derive; no original instruction patch/execution"
+    }
+  ],
+  "limits": "Prerequisite/derive controls are producer validation, not independent acceptance or new game/native samples."
+}

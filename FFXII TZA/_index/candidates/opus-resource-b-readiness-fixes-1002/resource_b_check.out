@@ -1,0 +1,13 @@
+ok   002DF7BF mov rax, qword ptr [r15 + rbx*8 + 0x203f000]
+ok   003EA852 lea r8d, [rsi + 1]
+ok   0023A1AF xor r8d, r8d
+ok   002EB7A3 ja 0x2eb7d1
+ok   00324629 mov r9d, dword ptr [rbx]
+ok   00431121 cmp al, 2
+ok   002FC58C mov ecx, 0xb
+ok   0019EB94 lea r14, [rax + 0x120]
+ok   002806CA cmp rbx, 0x388
+ok   002C8F18 lea edx, [rdi + 0x74]
+ok   002492F3 call 0x32e620
+ok   00575CD2 mov byte ptr [rbp + 0xd2], cl
+FAILS 0

@@ -1,11 +1,15 @@
 ---
 system: The event slot panel and its live feeder
 category: 00-Engine-Core-Runtime
-status: CORRECTED — earlier "dead feeder" verdict retracted; both producers are reachable through
-  5-byte thunk hops that the four-instrument census does not follow (2026-09-25, SWE2-DATA on
-  FABLE counter-evidence); falsification pass 1 (2026-09-29) corrected one reachability row and one count
-  (CON-185); section 6's residue answered from existing pages 2026-09-30, and the one open item is RC-5, narrowed 2026-09-30 to the
-  one value, the number typed at `evctrl.ebp`'s `event_menu` debug prompt (1–9999; ORACLE `be7c6fcd6`), with the counters bounded to intervals and ANSWERED proposed for review — `+0x24` enumerated, `debug_eventload` constant, region arm closed (status line current 2026-09-30, SWE2-CONTRACT)
+status: DOCUMENTED — every register row is closed: RC-5 ruled ANSWERED 2026-10-02 (OPUS's non-author
+  ruling `67f9e40e1` on FABLE's consolidation — every stored value is an authored constant or a
+  per-session player input with a static domain). Earlier "dead feeder" verdict retracted (producers
+  reachable through 5-byte thunk hops, 2026-09-25, SWE2-DATA on FABLE counter-evidence); falsification
+  pass 1 corrected one reachability row and one count (CON-185); section 6's residue answered from
+  existing pages 2026-09-30. Stated limit, kept as a live-game observation not a static gap: which
+  retail states run the §3 routes (the `evctrl`/`ctrl` debug controllers' retail reachability).
+  (owner re-status 2026-10-02, SWE2-CONTRACT on FABLE's prechecks — documented_rule READY,
+  adrift_predict HITS 0, audit_crossrefs 0 findings on this page)
 owner_layer: CodeDomain:DeveloperConsole; no PrimaryOwner
 evidence_tier: 1
 verified_against:
@@ -85,7 +89,7 @@ marker:
 | address | extent | contents |
 |---|---|---|
 | `01F832B0` | 5 × dword | per-slot pending-event counter |
-| `01F832C4` | dword | cleared by the pusher each push |
+| `01F832C4` | dword | cleared by the pusher each push *(answered: see the note below, `001EC690` also increments it; 2026-10-02, OPUS)* |
 | `01F832C8` | `std::string` (0x20) | "current" name — copied from the slot record on every push |
 | `01F832E8` | byte | set when the name contains `sum_` **and** `0001` (read via getter `0020AA40`); cleared at every setter entry |
 | `01F832E9` | byte | set when the name contains `spc_` and **not** `sum_` (read via getter `0020AA30`); cleared at every setter entry |
@@ -229,8 +233,8 @@ The flags are read both by console arms and by the script driver's wait-park gat
 - `00265680` (run when a slot reports pending events) is unexamined.
   *Answered (2026-09-30 pointer, SWE2-CONTRACT):* it is read. It requires manager slot 0 live with `+0x10` bit 7 and
   `+0x11` bit 0 clear, every live slot's `+0x17` bits 0–1 set (`002656C0`–`002656DF`), no entry of the eight
-  `0x68`-byte records at `0215F200` flagged at `+0x38`/`+0x3E` bit 7 (`002E0540`), and then `00265720()`; it is one of
-  the field frame's three entry gates ([the world tick and the field frame](../Battle-Frame/the-world-tick-and-the-field-frame.md),
+  `0x68`-byte records at `0215F200` flagged at `+0x38`/`+0x3E` bit 7 (`002E0540`), and then `00265720()`; ~~it is one of~~
+  ~~the field frame's three entry gates~~ it is not a gate itself but the test inside the third gate `001EC560` (called at `001EC560+0x20`; the field frame `0022A770` calls its gates `001800E0`, `001800C0`, `001EC560` at `0022A770+0x449`, `+0x452`, `+0x45B`) *(corrected 2026-10-02, OPUS: read at those calls)* ([the world tick and the field frame](../Battle-Frame/the-world-tick-and-the-field-frame.md),
   "The three entry gates" row, tier 1).
 
 ## Key addresses (SWE2-CONTRACT, 2026-09-30)
@@ -251,7 +255,7 @@ The flags are read both by console arms and by the script driver's wait-park gat
 | `0032FCA0` | `ActorResource_BeginManagerResourceSetLoad` | 936 B | calls the setter at `0032FD64` |
 | `0025DF00` | `WorldActor_UpdateRuntimeAndScriptExecutionState` | 1,228 B | reads both flags at `0025E0F0` / `0025E100` |
 | `001CD0E0` | console row renderer | 11,276 B | draws the panel |
-| `00265680` | manager-slot readiness gate | 149 B | one of the field frame's entry gates |
+| `00265680` | manager-slot readiness ~~gate~~ test | 149 B | ~~one of the field frame's entry gates~~ the test inside gate `001EC560` *(corrected 2026-10-02, OPUS: `001EC560+0x20`)* |
 
 ## Call chain (SWE2-CONTRACT, 2026-09-30)
 

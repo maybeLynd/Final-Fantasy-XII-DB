@@ -1,0 +1,16 @@
+{
+  "case": "positive",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\check.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\controls-01\\positive"
+  ],
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "checker_sha256": "8b92184743ea5b96d24d81c6ad50bddd12f458f4d7bcab23466d02c1b1b1fc55",
+  "expected_behavior_observed": true,
+  "stdout_sha256": "52b974b1c7d55f0264b338099eb90f2987e909433d9c5f20b088475a57225b04",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

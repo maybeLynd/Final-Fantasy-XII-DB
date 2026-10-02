@@ -42,7 +42,7 @@ audit:
 | files examined | **436** — 52 logical units across 9 locale copies |
 | units | **52**: `menumap_sub00` … `menumap_sub47`, plus four `_e3` variants (`sub01`, `sub07`, `sub25`, `sub26`) |
 | magic `sloc` at `+0x00` | **52 / 52** |
-| size | **1,049,520 B – 11,544,192 B** — 4.5 GB of `.bin` in total, the largest thing under `ps2data/image` |
+| size | **1,049,520 B – 11,544,192 B** — ~~4.5 GB of `.bin` in total~~ 2.41 GB over the 436 copies *(corrected 2026-10-02, OPUS: the archive index; every `.bin` in the archive totals 2.48 GB)*, the largest thing under `ps2data/image` |
 | directory entries | **424** across the 52 units |
 | `NPS2` records | **430**, stride 32, in 52 / 52 |
 
@@ -75,7 +75,7 @@ images in the whole corpus have no map record pointing at them.
 
 **All offsets are from the start of the file.**
 
-### 2.1 Header — 16 bytes, then the directory
+### 2.1 Header — ~~16 bytes~~ 20 bytes (`0x14`), then the directory *(corrected 2026-10-02, OPUS: the struct below and the directory at `+0x14`)*
 
 ```struct SlocHeader base=file size=0x14
 +0x00  char[4]  magic        'sloc' - bytes 73 6C 6F 63, in 52 of 52
@@ -329,9 +329,9 @@ already scopes out.
 ## 8. Related
 
 - [`README.md`](README.md) — the `ps2data/image` long tail, which records that **`.bin` is the weak
-  census row** and that `sloc` is one of the seven signatures found in it. **The `.bin` signature
+  census row** and that `sloc` is one of the seven signatures found in it. *(corrected 2026-10-02, OPUS: the full census of 2026-09-19 in that README counts 26 magics over 178 of the 236 units, `st2e` the largest at 73 and `sloc` second at 52; the 28 below includes leading dwords that are not magics, such as `CCdd`)* **The `.bin` signature
   census has since measured 28 signatures over 236 logical units**
-  (`Tools/work/formats/bin-signature-census.tsv`), and `sloc` is the largest of them at 52 units.
+  (`Tools/work/formats/bin-signature-census.tsv`), and `sloc` is ~~the largest of them~~ the second largest, after `st2e`'s 73, at 52 units.
 - `agent_flow/tools/lcmpos_decode_progress.md` — **the prior work this sheet builds on and partly
   corrects.** It establishes the `LCMPOS1` polyline layout, the 4 px/world-unit ratio and the `NPS2`
   field offsets, **confirmed at runtime** through a live DLL MapCalib harvest, and it records that
@@ -354,3 +354,7 @@ already scopes out.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00377400` | 54 B | returns without work unless `ecx` is 0 to 3 (unsigned compare); otherwise stores its low byte at `02ADD0E8`, calls `003C63A0` with the qword at `02ADD010 + ecx*8` and tail-jumps `00379870(ecx)` | `0037740C`, `00377415`, `0037741B`, `0037741F`, `0037742B` |
+
+## Cross-subsystem neighbours of the interior rows (OPUS, 2026-10-02)
+
+- **Script/VM native bridge — CLIENT (1 edge).** The 23-byte script verb `00356BF0` pops one operand through `00267E10` and tail-jumps into the row's `00377400` with it, so a script selects which of the four `02ADD010` entries is opened. Edge from `edges.tsv`; both bodies read.

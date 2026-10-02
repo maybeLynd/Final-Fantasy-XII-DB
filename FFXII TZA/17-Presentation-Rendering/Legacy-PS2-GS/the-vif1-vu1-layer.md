@@ -29,11 +29,11 @@ audit:
 > The VU1 microprograms they call exist as recompiled x64 functions, working over an emulated 1,024-word VU
 > memory. Their GS output goes to a callback. This is where most of the `0x480000`–`0x500000` region comes from.
 
-**PARTIAL.** The interpreter, the machine state, the installation paths and the program population are read.
+~~**PARTIAL.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`, UQ-213 and UQ-215 answered 2026-09-27)* The interpreter, the machine state, the installation paths and the program population are read.
 **Not read:**
-- what any single microprogram draws;
-- how the GS data is finally turned into PC draw calls;
-- the UNPACK formats.
+- ~~what any single microprogram draws;~~ *(answered: see §7, UQ-213; 2026-10-02, OPUS)*
+- ~~how the GS data is finally turned into PC draw calls;~~ *(answered: see §2.1b, the GS translator; 2026-10-02, OPUS)*
+- ~~the UNPACK formats.~~ *(answered: see §7, UQ-215; 2026-10-02, OPUS)*
 
 *(2026-09-13, FABLE. The region had been catalogued as "generated float-table builders" and "unexplained
 float code". Found while choosing frontier families; see §8.)*
@@ -101,8 +101,8 @@ table above leaves implicit. None of them is a claim that a shipped packet break
 - **UNPACK cycles** (`ASTRA-RETURN-FABLE-VIF-CYCLE-AND-CURSOR`). See UQ-215 in §7.
 
 On the PS2, MPG uploads microcode words into VU1 micro memory. **Here it uploads a pointer to a function
-that already is that microcode, compiled.** MSCAL then calls it. The `0x3FF` masks and the 1,024-entry
-address space are VU1's.
+that already is that microcode, compiled.** MSCAL then calls it. ~~The `0x3FF` masks and the 1,024-entry~~ On PS2 the `0x3FF` masks and the 1,024-entry
+~~address space are VU1's.~~ address space are VU1's; here only the OFFSET and BASE arms mask, and MPG stores at the unmasked imm16 *(corrected 2026-10-02, OPUS: `0022C970`+0x99 and +0xBD `and bx, r8w`; `0022C970`+0xD5 `movzx ecx, bx`, +0xDF `mov qword ptr [r9 + rcx*8], rax`; the micro-memory row below)*.
 
 **The entry.** `001DB550` walks an object's chunked packet list and calls `0022C940` once per chunk
 (`001DB5E0`), with callback `001DB640` (`001DB5C0`) and the object as context. `001DB550` is reached only through
@@ -227,13 +227,13 @@ interpreter's MPG case (§2.1) installs `program` where a later MSCAL in the pay
 `+0x20` and **appends it to an EASTL vector held in the global `01F7F5E0`**. The vector is drained by the **render pass
 list `00187950`** — application slot 8's render path
 ([the game application](../../00-Engine-Core-Runtime/Application-Root/game-application.md) §3) — which calls
-`0018B100(list, whole, device)` twice a frame. `0018B100` asks each record for its mask (slot 2, `001F49E0`), tests it
+~~`0018B100(list, whole, device)`~~ `0018B100(list, whole, renderer)`, with the renderer object `&GameApplication[0xE8]` (a `PRendererBase`), whose `+0x18C0` is the device *(corrected 2026-10-02, OPUS: `0017D000`+0x4F `lea rcx, [rbx + 0xe8]` is stored at record `+8` by `00184F20`+0x2C; `00187950`+0x3AF `mov r8, qword ptr [r14 + 8]` passes it; Gi family page section 19b)*, twice a frame. `0018B100` asks each record for its mask (slot 2, `001F49E0`), tests it
 against the list's own `+0x20`, and only then calls slot 1 with the device. **A mode of 4 or more therefore produces a
 record that can never run**, because `test mask, 0` is always zero.
 
 **Census of the 31 submit sites** (every `call`/`jmp` to `0020E630` in the listed bodies, mode read back from the last
 write to `edx` within 24 instructions): **18 use mode 2**, 2 use mode 0 (`001D8BB0`, `001EB800`), 10 forward a
-caller-supplied mode — the eight `Gi*` arena factories at `0086xxxx` plus `GiBeginScene`/`GiEndScene`
+caller-supplied mode — the eight `Gi*` ~~arena factories~~ submit helpers at `0086xxxx` *(scope named 2026-10-02, OPUS: `00862E90`, `00863010`, `00863060`, `00863B90`, `00864E60`, `00865170`, `008652F0` and `00865360` call `0020E630`; only `00863060` is also one of the Gi page's eleven factories)* plus `GiBeginScene`/`GiEndScene`
 (`001FBD80`/`001FBE50`) — and one computes it (`0039D890`, `lea edx, [rbp + 2]`). So **`0x40` is the ordinary category
 for this family** and the two other constants are the exception.
 
@@ -267,7 +267,7 @@ chunk with `001DB340` before tail-jumping `0020E670` — a thunk to `001FB840`, 
 **So the effect system draws through this layer too**, and the `0x4A000000` MPG chunk is not built for it: the
 element's own packet carries its program.
 
-**Not read here:** the render-thread command stream that `001F49F0` hands the replay to — see the Gi family page §12e,
+**Not read here:** ~~the render-thread command stream that `001F49F0` hands the replay to~~ *(answered: see the Gi family page §20d - BG-11 is answered; 2026-10-02, OPUS)* — see the Gi family page §12e,
 where the remaining gap is now stated; `001DB640`/`001DB660` beyond §2.1a; what `002105C0` measures.
 
 ### 2.1b The GS translator — which GS registers the PC port honours
@@ -366,13 +366,13 @@ where the remaining gap is now stated; `001DB640`/`001DB660` beyond §2.1a; what
    - it copies the 48-byte vertices (`0020EBE1`–`0020EC0C`, `memcpy` from `01FC3620`);
    - it copies the indices (`0020EC0F`–`0020EC45`, `memcpy` from `01FCB610`);
    - it draws through that object's slot `+0x28` (`0020EC67`).
-   The object's class is not identified here.
+   ~~The object's class is not identified here.~~ *(answered: see §7 - `[01FC35F8]` holds `02CC1CD0`, the embedded `PrimitiveRendererD3D11`; 2026-10-02, OPUS)*
 6. **`0020ED30` selects draw state.** Among other checks, it calls `0020F250`, which looks up a 16-byte texture
    entry in the table `01F83580`. The key is `(TEX0 >> 37) & 0x3FFF` (`0020F260`–`0020F274`), and the lookup applies
    only when `TEX0 & 0x3F00000` is at least `0x300000` (`0020F253`–`0020F25E`).
 
-**Not read:** ~~how list and strip variants are separated~~ (read 2026-09-27, item 3), the rest of `0020ED30`'s state selection, the class behind
-`[01FC35F8]`, and what the individual state handlers store.
+**Not read:** ~~how list and strip variants are separated~~ (read 2026-09-27, item 3), the rest of `0020ED30`'s state selection, ~~the class behind~~
+~~`[01FC35F8]`~~ *(answered: see §7, the embedded `PrimitiveRendererD3D11`; 2026-10-02, OPUS)*, and what the individual state handlers store.
 
 ### 2.2 The machine state
 
@@ -524,7 +524,7 @@ programs a type installs run in one MSCALF each or one of them is a fallback.
 [the bone trails](../Character-Render-Records/the-bone-trails.md) §5d found in one program: the microprogram
 *stamps* `NLOOP` at emit time but **copies `PRIM`, `FLG`, `NREG` and `REGS` from a VU cell its template uploaded**.
 The register list is authored data. §5e decoded one such cell by hand; this applies the same decode to **all 74
-hub-called builders**.
+hub-called builders** *(scope named 2026-10-02, OPUS: the census of that day; §2.4a's union is now 76 builders, the two jmp-reached ones added 2026-09-27)*.
 
 **Method.** Replay each builder's immediate stores into a byte image, find its `UNPACK` command words, and decode
 every 16-byte payload quadword as a candidate GIF tag, accepting only quadwords whose reserved bits 16–45 are zero,
@@ -544,7 +544,7 @@ ones a size-independent run gives.
 *The predicate is not perfectly specific, and the threshold was not moved to make it look so.* Against that base
 rate, ~~**45 of the 74 builders (61 %) carry at least one tag**~~ *(corrected 2026-09-27, FABLE, Claude Opus 5.5: sixteen more carry one, e.g. `00476C80`, `004795D0`, `004A8860`, `004C3610` - so at least 61; [record](../../_index/candidates/uq213-microprogram-draws/README.md))*.
 
-**And the 29 that carry none mostly cannot.** **21 of them author no `UNPACK` command at all** — a template with
+**And the 29 that carry none mostly cannot.** *(corrected 2026-10-02, OPUS: the 29 predate the correction above - with at least 61 of the 76 carrying a tag, at most 15 carry none, so the 21 / 8 split below was not re-run)* **21 of them author no `UNPACK` command at all** — a template with
 no payload has nowhere to keep a tag — leaving **8** that upload a payload and still yield nothing. *That is the
 honest size of the unexplained remainder: eight builders, not thirty.* A tag reaching VU memory by a route the
 replay does not model, a `memcpy` or a computed store, would still read as empty, so those eight were left
@@ -651,7 +651,7 @@ two rows §2.4a already reports as ending its `UNPACK` payload with literal `{qw
 (`ST=0`, `CLAMP_1=0`, `RGBAQ=0`, `XYZF2=0`) — **raw pairs, not an `A+D` GIF tag**, which is exactly why a tag
 decoder passes over it. *An independent page's description and this decoder's silence agree on the same row.*
 
-**So §2.4c's 29 tagless builders are fully accounted:** 21 author no `UNPACK` at all, and the 8 that do contain no
+~~**So §2.4c's 29 tagless builders are fully accounted:**~~ *(corrected 2026-10-02, OPUS: not fully: `00476C80` above writes an A+D GIF tag, and §2.4c's tag count was corrected to at least 61)* 21 author no `UNPACK` at all, and the 8 that do contain no
 tag. **Bound:** "read" here means every *immediate store* was classified. A payload arriving by a route the replay
 does not model would still be invisible — though for these eight the VIF command stream *is* authored, so a second
 payload source would have to overwrite bytes the builder itself wrote.
@@ -666,12 +666,12 @@ the 45 builders that do yield a tag** — overlapping distributions, and `004E31
 
 `004EF860` is the 219-byte leaf of the AC-7 twins. Functions of about the same size sit beside several microprograms
 (219 B: `004C4C40`, `004C7F00`, `004CF3B0`, `004D7B10`, `004DB270`, `004DF360`, `004E78A0`; 197 B `004CF280`; 216 B
-`004ECB70`). **Form comparison (SWE2-FRONTIER, this pass):** eight of them share `004EF860`'s exact shape —
+`004ECB70`). **Form comparison (SWE2-FRONTIER, this pass):** eight of them share `004EF860`'s exact shape *(scope named 2026-10-02, OPUS: of the neighbours listed; the region census `vu1-region-functions.tsv` has a ninth, `00479370`, 219 B)* —
 219 B (216 B for `004ECB70`), exactly one call and it is `call r11` (the indirect GS callback), 14 rip-relative
 state accesses. `004CF280` (197 B) does **not** match the form — zero calls, three rip refs; it is a different
 kind of leaf. `004EF860` itself:
-1. writes a 16-bit word `+ 0x8000` into the VU cell at register `02064DB0` (`004EF8A7`–`004EF8B6`);
-2. copies the cell at register `02064DD0` beside it;
+1. writes ~~a 16-bit word `+ 0x8000`~~ the dword `word[02064DB8] + 0x8000` into the VU cell at register `02064DB0` (`004EF8A7`–`004EF8B6`) *(corrected 2026-10-02, OPUS: `004EF860`+0x3C `movzx eax, word ptr [02064DB8]`, +0x47 `add ax, r9w`, +0x56 `mov dword ptr [rcx], eax`)*;
+2. ~~copies the cell at register `02064DD0` beside it;~~ copies bytes `+0x04`..`+0x0F` of the cell at register `02064DD0` into `+0x04`..`+0x0F` of it, staged at `02064C60` *(corrected 2026-10-02, OPUS: `004EF860`+0x26 `movups xmm1, xmmword ptr [r8 + rbx]`, +0x8C `movsd qword ptr [rdx + rbx + 4], xmm0`, +0x92 `movd dword ptr [rdx + rbx + 0xc], xmm1`)*;
 3. calls its callback with a pointer into VU memory (`004EF910`).
 
 **Handing a pointer into VU memory to the GS callback is what VU1's XGKICK does.** The shape is read; the claim
@@ -746,7 +746,7 @@ GiVmax vtable 009007E8 slot 0  ->  001DB550
        -> 0022C970  decode
             MPG    -> 02068E30[addr] = program
             UNPACK -> 0022BFF0 -> VU memory
-            MSCAL  -> program(callback, context)      47 microprograms, mostly 0x470000-0x500000; also 002F0280, 0053F490
+            MSCAL  -> program(callback, context)      47 microprograms, mostly 0x470000-0x500000; also 002F0280, 0053F490   <- corrected 2026-10-02, OPUS - 57 (section 2.3's correction, UQ-213)
                         -> 0022CC40 / 0022CC30        sticky flags
                         -> 004EF860-shaped leaves      -> callback(pointer into VU memory)
             DIRECT -> callback(data)
@@ -776,7 +776,7 @@ are FABLE's `vu1_census.json` + `vu1_registered_programs.json` + the raw E8/E9 e
 | microprogram (registrar-path, via `003A34D0`/`003A35E0`/`001DB840`) | 28 |
 | MPG packet builder | 36 |
 | startup template (called only from hubs `0037DF90`/`0037E0F0`) | 73 |
-| VU helper — VU-state toucher, not installed | 54 |
+| VU helper — VU-state toucher, not installed | 54 *(corrected 2026-10-02, OPUS: ten of them are VU1 microprogram entries, role `VU1-microprogram(VU-state-toucher)` in the TSV, UQ-213; 44 remain helpers)* |
 | VU helper — sticky-flag user | 40 |
 | sub-program (called only from microprograms) | 21 |
 | XGKICK-shaped leaf (form-matches `004EF860`) | 9 + the `004EF860` reference |
@@ -791,7 +791,7 @@ every listed function including the `0x470000`–`0x480000` head, which is mostl
 two have non-microprogram callers at all, and in both cases the callers are themselves touchers — `004A6780` is
 called by six sibling touchers (`00499A20`, `0049B9E0`, `0049D540`, `004A0090`, `004A33B0`, `004A4410`) and
 `004EF860` by `004EDB50`/`004F5360` (both touchers). The other 33 have only microprogram callers and 19 have no
-E8/E9 caller — consistent with VU `JAL`/`JR` sub-programs or install paths not yet found (§7).
+E8/E9 caller — ~~consistent with VU `JAL`/`JR` sub-programs or install paths not yet found~~ *(answered: see §7 - none of the 19 is a `JAL` / `JR` target; all 19 are VU1 microprogram entries; 2026-10-02, OPUS)* (§7).
 
 ## 7. What is not known
 

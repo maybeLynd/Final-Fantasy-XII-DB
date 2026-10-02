@@ -6,7 +6,7 @@
  "rows": [
   {
    "fn": "001E0E00",
-   "text": "calls `00796E20()` and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax`",
+   "text": "calls the framework-singleton getter and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax`",
    "anchors": [
     [
      "001E0E08",

@@ -63322,3 +63322,75 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
   already split by a peer and dropped from the open set.
 - fields.tsv +32/-20; interior-offset-leads.tsv regenerated (15 settled).
   check_interior_offsets exits 0; types_index clean.
+
+## 2026-10-02 SWE2-CONTRACT — event-slot DOCUMENTED re-status + resource-A readiness apply
+
+- `FABLE-NOTICE-CONTRACT-EVENT-SLOT-RC5-1002` / `-PRECHECK-1002` (claimed rev 47189-47190):
+  RC-5 tick verified at HEAD `aee791dd5` (FABLE's self-publish; owner-route no-op by design);
+  prechecks re-run — documented_rule READY, adrift_predict HITS 0, audit_crossrefs 0.
+  Owner re-status `CORRECTED` -> `DOCUMENTED` on the-event-slot-panel-and-its-dead-feeder.md;
+  the `evctrl`/`ctrl` retail-reachability limit is kept in the status line as a live-game
+  observation (RC-5's ANSWERED ruling `67f9e40e1` covers the static domain only).
+- `OPUS-REQ-CONTRACT-RESOURCE-A-READINESS-EDITS-1002` (claimed rev 47191): 3 OPUS-tagged
+  strike edits applied to the-resource-owner-from-copy-or-borrow-to-disposal.md via
+  `apply_by_owner.py SWE2-CONTRACT --apply` (FAILS 0; `resource_a_check.py` 9/9, FAILS 0).
+  Owner spot-check at the shipped image: `003B31E7` `cmp r8d, 0x20` (32-record free list,
+  second pool at `02EBD480`) and the `cdq`/`and edx,0xf`/`add`/`and eax,0xfffffff0`
+  truncate-toward-zero-16 idiom confirm both corrections.
+- Consumer-check record `_index/candidates/swe2contract-readiness-apply-1002c/` (affected =
+  exactly the two touched pages; OPUS's own consumer-check declares the ten OPUS-led pages
+  and would trip the gate if republished here).
+- Gates: check_questions consistent; verify_doc_addresses ok on both touched docs.
+
+## 2026-10-02 SWE2-CONTRACT — pass-22 graph-churn residue, six folders (15 pairs)
+
+- Fresh `audit_crossrefs.py` (report6) showed 15 new UNACCOUNTED NEIGHBOUR findings in the
+  pass-22 folders 00/01/02/24/25 — edge churn from peers' newly classified functions, all on
+  subjects newly cited by OPUS's readiness corrections or already-cited helpers. 14 dispositioned
+  and landing here; the 15th is held (see below) and will report as one finding until it lands:
+  - native-command-lifecycle.md (UI 1), typed-list page (Audio 1), section-012 (Party/UI/WAF 4),
+    section-000-bytecode (`00379CD0` RNG-thunk fan-in: CombatFormula 53, CoreRuntimeScheduling 2,
+    Rewards 2, Status_Periodic_Terminal 1), maths page (CombatFormula 3 + `00233C10`'s save-path
+    edges across 4 layers), static-init page (`00189CE0` caller `0017D6E0`).
+  - Prose bullets appended per the fleet MECHANICAL/SERVICE/CLIENT convention; 14 registry rows
+    tagged `SWE2-CONTRACT 2026-10-02` land here. The 15th (static-init page bullet + row) is
+    HELD: OPUS's uncommitted interior-citation section sits on that file — publishing it would
+    sweep their parked work; it lands after their interior publish.
+    `pass22-tripwires.tsv` regenerated (1,333 rows).
+- audit_crossrefs re-run before the hold: 0 findings across the six folders; with the held pair
+  it reports exactly 1 (the static-init/CoreRuntimeScheduling pair). 185 remain elsewhere, all in other
+  lanes' folders). documented_rule READY x6; verify_doc_addresses ok on all six docs.
+
+## 2026-10-02 SWE2-CONTRACT — engine-B + resource-B readiness applies
+
+- `OPUS-REQ-CONTRACT-ENGINE-B-READINESS-EDITS-1002`: 7 OPUS-tagged edits via
+  `apply_by_owner.py SWE2-CONTRACT` — save-restore contract x3 (`0036D9E0` range, Save-row
+  count convention, `0036D930+0x23/+0x2A` lea sites), the 282-console `01F82D20` dereference
+  wording, event-slot page x3 (`01F832C4` also incremented by `001EC690`; `00265680` is the
+  test inside gate `001EC560`, not a gate itself). `engine_b_check.py` FAILS 0.
+- `OPUS-REQ-CONTRACT-RESOURCE-B-1002`: 4 edits — btm band is `[[022CBE00]+0x110+(slot-1)*8]`
+  (held pointer, slot-1 indexing; ready bit `[[022CBE00]+0x240]` bit `slot-1`), cl2 kind-7
+  order `Loca_gil`/`Loca_bhm`/`Loca_rbl`, resource-owner's open owner-family question struck
+  (OV-25 census is the answer). `resource_b_check.py` FAILS 0.
+- Consumer-check record `_index/candidates/swe2contract-readiness-apply-1002d/` (affected =
+  the six touched pages, runs pinned at `5d4e7e087`).
+- Gates: documented_rule READY x5 + PARTIAL(OV-42 named); verify_doc_addresses ok x6;
+  fresh audit_crossrefs sweep re-run for new-citation churn (report7: 0 six-folder hits).
+- `FABLE-REQ-CONTRACT-OV10-OV16-SCRIPT-BINDS-TEXT-1002`: two qualifications on the script-binds
+  page — `AllocateAndSubmitEntry`'s refusal order corrected (id check first at `003DBD0C`, unsigned,
+  return 3; free-head `0xFF` test second, return 2 at `003DBD32`; verified in-image) and §2.5 now
+  routes the `freqcancel` verbs through `003DB420` mode 4 (`00352980`/`00353660`, verified) to
+  `003DB2A0`/`003DC0D0`. Citations: fable-review-astra-notification-retirement-order-1002 /
+  fable-review-astra-request-cancel-notification-1002.
+
+## 2026-10-02 SWE2-CONTRACT — six-folder status sweep
+
+- `documented_rule.py` over all 124 pages in the six CONTRACT folders: FAILS 0, READY 105,
+  READY-WITH-POINTER 7, PARTIAL 11 (all name their live runtime rows), one EVIDENCE-UNTRACKED.
+- UQ-2's disposed row cited `Tools/work/rtti/methods.tsv` (gitignored scratch). Re-pointed at the
+  durable recipe in both places the sentence lives (`derived-call-signatures.md`, OPEN-QUESTIONS
+  row): `rtti_recover.py --out-methods` on the shipped image + the audited `vtable-method-index.md`.
+  Claim unchanged; 7 untracked-evidence rows db-wide remain, all on other owners' pages.
+- `the-encoded-id-space-and-the-query-record.md` status line now names its open row OV-5
+  (b21 currency convention); `CONTRACT-per-frame-update-gate.md` uses contract front matter
+  (`readiness:`), its live OV-21 box is the runtime row — no edit needed.

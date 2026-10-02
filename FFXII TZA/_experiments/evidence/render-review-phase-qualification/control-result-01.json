@@ -1,0 +1,114 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "09a4d3950623f11f132a3f1f30bc8f2d309ff34a21b7ddaa541562d57d4e1b21",
+  "positive_producer_sha256": "7346d436e99072e9079ee449a7615a693aba1218793c1bcf00adb7abb332eed4",
+  "actual_CLI_refusals": [
+    {
+      "name": "failed-parent-producer",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-phase-qualification\\controls-01\\failed-parent-producer\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "7346d436e99072e9079ee449a7615a693aba1218793c1bcf00adb7abb332eed4",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": []
+    },
+    {
+      "name": "missing-parent-result",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-phase-qualification\\controls-01\\missing-parent-result\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "7346d436e99072e9079ee449a7615a693aba1218793c1bcf00adb7abb332eed4",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "parents/render-removal-phase-contracts/result-01.json"
+      ]
+    },
+    {
+      "name": "missing-returned-review",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-phase-qualification\\controls-01\\missing-returned-review\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "7346d436e99072e9079ee449a7615a693aba1218793c1bcf00adb7abb332eed4",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "fable-render-removal-phase-contracts-REVIEW.md"
+      ]
+    }
+  ],
+  "CLI_count": 3,
+  "synthetic_derive_controls": [
+    {
+      "name": "pending-tail-before-ID",
+      "pc": "0x427a47",
+      "synthetic_change": [
+        "args",
+        "word ptr [rdi], si"
+      ],
+      "refused": true,
+      "diagnostic": "required reviewed phase operation changed 0x427a47"
+    },
+    {
+      "name": "scalar-is-four-bytes",
+      "pc": "0x6c0526",
+      "synthetic_change": [
+        "size",
+        16
+      ],
+      "refused": true,
+      "diagnostic": "scalar store width/class changed"
+    },
+    {
+      "name": "returned-helper-object-width",
+      "pc": "0x4291a9",
+      "synthetic_change": [
+        "size",
+        8
+      ],
+      "refused": true,
+      "diagnostic": "reviewed phase width/role changed 0x4291a9"
+    },
+    {
+      "name": "postclear-poolflag",
+      "pc": "0x427db3",
+      "synthetic_change": [
+        "args",
+        "dword ptr [rdi + 0x48818], 0"
+      ],
+      "refused": true,
+      "diagnostic": "required reviewed phase operation changed 0x427db3"
+    },
+    {
+      "name": "same-pool-source-root",
+      "pc": "0x429146",
+      "synthetic_change": [
+        "rip_target",
+        "0x22c6f30"
+      ],
+      "refused": true,
+      "diagnostic": "shared pool root changed"
+    }
+  ],
+  "derive_count": 5,
+  "limits": "Three actual producer CLI prerequisite refusals and five synthetic mutations of the exact derive() used by the checked original-byte producer. No patched-EXE, native, emulator or FF12 executions; external reviewer runs not counted."
+}

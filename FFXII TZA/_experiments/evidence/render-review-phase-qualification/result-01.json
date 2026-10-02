@@ -1,0 +1,397 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY retained shipping-byte returned-review qualification",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "7346d436e99072e9079ee449a7615a693aba1218793c1bcf00adb7abb332eed4",
+  "source_pins": [
+    {
+      "path": "render-slot-identity-publication-source-01.json",
+      "sha256": "b9f327aad786343ca1e7479745d438392e996af2af95239ed4cc07e3ca895001"
+    },
+    {
+      "path": "render-clear-callee-footprints-source-01.json",
+      "sha256": "abe73322b004d45ebc58c4a859f3c2e6a58badd088bc02b982b5b48caa13d868"
+    },
+    {
+      "path": "render-removal-phase-contracts-source-01.json",
+      "sha256": "82e6aa6d5c40ef4fff7870448a3f05815400db77e4d98d6e2e66c4fcb1e7e15c"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 609,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 28,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 233,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "parent_identities": [
+    {
+      "slug": "render-slot-identity-publication",
+      "commit": "aac0489acecac507503bfc3ed28f063b37e631b2",
+      "manifest_sha256": "a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee",
+      "members_at_publication": 81,
+      "retained_files": [
+        {
+          "path": "manifest.json",
+          "sha256": "a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee"
+        },
+        {
+          "path": "source-01.json",
+          "sha256": "b9f327aad786343ca1e7479745d438392e996af2af95239ed4cc07e3ca895001"
+        },
+        {
+          "path": "capture.py",
+          "sha256": "48f04b9b16feffdbe185db65cdcd1dbf76ad66d9d94a1b696f9ee451d50e2290"
+        },
+        {
+          "path": "capture-01.status.json",
+          "sha256": "7034bd26cb48fa4adadea16257bda7096b4bf9f15c98d77b95bf10dfe5ddbd4b"
+        },
+        {
+          "path": "capture-01.stdout",
+          "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+        },
+        {
+          "path": "capture-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "prove.py",
+          "sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc"
+        },
+        {
+          "path": "prove-01.status.json",
+          "sha256": "9d6b107c81cce7bee6788f7d9608ae608bf5eac5f1780e6a3ee309151720e039"
+        },
+        {
+          "path": "prove-01.stdout",
+          "sha256": "f48852a23eaba12024d7cb17bd647bfbebb6200566fb3a223f254557425b4b58"
+        },
+        {
+          "path": "prove-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "result-01.json",
+          "sha256": "e8fc12d18c1840ac44de82aac9aa1c71a3fb239cec74298c55c12d46cdb08a1c"
+        }
+      ]
+    },
+    {
+      "slug": "render-clear-callee-footprints",
+      "commit": "621dbd2cc584f14de1d993f844d0a0122ca9a56d",
+      "manifest_sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc",
+      "members_at_publication": 61,
+      "retained_files": [
+        {
+          "path": "manifest.json",
+          "sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc"
+        },
+        {
+          "path": "source-01.json",
+          "sha256": "abe73322b004d45ebc58c4a859f3c2e6a58badd088bc02b982b5b48caa13d868"
+        },
+        {
+          "path": "capture.py",
+          "sha256": "71297c947d6745eb7e3f3c5d13292a87f6f486d259704c86cb24080a9fddc149"
+        },
+        {
+          "path": "capture-01.status.json",
+          "sha256": "e44e8801708a70b4d39b819148cfd3a7011ff1a7326fd7c178a864bd1948a263"
+        },
+        {
+          "path": "capture-01.stdout",
+          "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+        },
+        {
+          "path": "capture-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "prove.py",
+          "sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85"
+        },
+        {
+          "path": "prove-01.status.json",
+          "sha256": "7f78280524ed9b72669aa2a58c95cdf5c9dd40121ce71de288f8d89af60511fe"
+        },
+        {
+          "path": "prove-01.stdout",
+          "sha256": "1ce6915850949f0f667b1644ad2eda7605ba8d7528722e48f14a3372f3b17b1f"
+        },
+        {
+          "path": "prove-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "result-01.json",
+          "sha256": "43f0a7944405f9ed51687dd4599ed98540e7bcd69d978b3b38de5c18df5a876c"
+        }
+      ]
+    },
+    {
+      "slug": "render-removal-phase-contracts",
+      "commit": "31f29775afd989f8678d0e364cd0066de63cda52",
+      "manifest_sha256": "fc26ae31f8ddb389fff58deeb7616680334f0e93723e35f4556159e32b47bc5c",
+      "members_at_publication": 53,
+      "retained_files": [
+        {
+          "path": "manifest.json",
+          "sha256": "fc26ae31f8ddb389fff58deeb7616680334f0e93723e35f4556159e32b47bc5c"
+        },
+        {
+          "path": "source-01.json",
+          "sha256": "82e6aa6d5c40ef4fff7870448a3f05815400db77e4d98d6e2e66c4fcb1e7e15c"
+        },
+        {
+          "path": "capture.py",
+          "sha256": "130168736da06ffa0a3b8bb6b8cb6b393538977a40d80794f7da17197148e02d"
+        },
+        {
+          "path": "capture-01.status.json",
+          "sha256": "73940a456af33a8481f156f75d1b9f5fe11e8f865b655db197938931ce640e1f"
+        },
+        {
+          "path": "capture-01.stdout",
+          "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+        },
+        {
+          "path": "capture-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "prove.py",
+          "sha256": "4431e22ebe23e8f785fea3c11df00eea9332a7cba0f13b4985bbd48e95d66060"
+        },
+        {
+          "path": "prove-01.status.json",
+          "sha256": "b5dba662547c84b92acb14ed7fba365b3439aee60749542e9c8e88f6bd741096"
+        },
+        {
+          "path": "prove-01.stdout",
+          "sha256": "58337e31f95b67f3acc2d1345917d52eca5c66e96f3506281632529ccb8b0cbb"
+        },
+        {
+          "path": "prove-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "result-01.json",
+          "sha256": "fabf2fbe7c8476bbab4680e964a3164df713ab409ea8f5bbe7ddff731e25c645"
+        }
+      ]
+    }
+  ],
+  "review_identities": [
+    {
+      "reviewer": "fable",
+      "commit": "f1a265c5be653c350b0a6052304912c7ed07f41d",
+      "canonical_path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/REVIEW.md",
+      "retained_path": "fable-render-slot-identity-publication-REVIEW.md",
+      "sha256": "31e01c6415dc5647e3486271f347f372fc944eca03ee5a4f51b057a797f57a21",
+      "working_sha256_at_read": "31e01c6415dc5647e3486271f347f372fc944eca03ee5a4f51b057a797f57a21",
+      "checkout_CRLF_only": false,
+      "verdict": "ACCEPT-WITH-NARROWING"
+    },
+    {
+      "reviewer": "auditspec",
+      "commit": "fd96f1634bd298b92c4b57ef9a6642245c2d6ba0",
+      "canonical_path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-render-slot-identity-publication-1002/REVIEW.md",
+      "retained_path": "auditspec-render-slot-identity-publication-REVIEW.md",
+      "sha256": "5589bd6264c39a4759c3fcf5532549409deb69977ed2fd043ebc1b845d7f0ca0",
+      "working_sha256_at_read": "f504a8fc66f3bcceae1c6560c87762cc59db820f03481c266889e43a42dc9688",
+      "checkout_CRLF_only": true,
+      "verdict": "ACCEPT"
+    },
+    {
+      "reviewer": "fable",
+      "commit": "b3fb2d6cf3d8ea15fd3ee55d91a12dddb62c17c6",
+      "canonical_path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "retained_path": "fable-render-clear-callee-footprints-REVIEW.md",
+      "sha256": "c14cd29c37bffd88d7637216501e733dbfac9837a43e32c6c3d5bc16d02299c4",
+      "working_sha256_at_read": "f6c6a9af98f2f82c505f71f110aaf7247e0f23fe4b32dae529fc2b623e6622ba",
+      "checkout_CRLF_only": true,
+      "verdict": "ACCEPT-WITH-NARROWING"
+    },
+    {
+      "reviewer": "auditspec",
+      "commit": "fd96f1634bd298b92c4b57ef9a6642245c2d6ba0",
+      "canonical_path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "retained_path": "auditspec-render-clear-callee-footprints-REVIEW.md",
+      "sha256": "498f969f7bdb70742cdc8df6faddd765f5173698338b9a997ddbb66c6227c76d",
+      "working_sha256_at_read": "00510b570fa721964af0c51a393e61acbfe99ee72a85b79e20d31fe6b932c7f6",
+      "checkout_CRLF_only": true,
+      "verdict": "ACCEPT"
+    },
+    {
+      "reviewer": "fable",
+      "commit": "b3fb2d6cf3d8ea15fd3ee55d91a12dddb62c17c6",
+      "canonical_path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/REVIEW.md",
+      "retained_path": "fable-render-removal-phase-contracts-REVIEW.md",
+      "sha256": "69cb15d5e6e2faabd322b58da649dcea53881f0d6c79504541565d181bed5324",
+      "working_sha256_at_read": "103d671aa510fed420c263cfa6b54d911969fef7364787015374cae1bde14324",
+      "checkout_CRLF_only": true,
+      "verdict": "ACCEPT-WITH-NARROWING"
+    },
+    {
+      "reviewer": "auditspec",
+      "commit": "fd96f1634bd298b92c4b57ef9a6642245c2d6ba0",
+      "canonical_path": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-render-removal-phase-contracts-1002/REVIEW.md",
+      "retained_path": "auditspec-render-removal-phase-contracts-REVIEW.md",
+      "sha256": "bdb2847f96057a3fd52941fa64e3fe4c653c7952d6879991f93547c571cd9b04",
+      "working_sha256_at_read": "c7cdea947a9efad5804c0b71a81a69927c3f14b17b1c98ad2afa1e00a0e3181b",
+      "checkout_CRLF_only": true,
+      "verdict": "ACCEPT"
+    }
+  ],
+  "facts": {
+    "slot_publication": {
+      "partitions": [
+        {
+          "pending_list_nonempty": false,
+          "before_tail_sites": [
+            "0x427a21"
+          ]
+        },
+        {
+          "pending_list_nonempty": true,
+          "before_tail_sites": [
+            "0x427a37",
+            "0x427a43"
+          ]
+        }
+      ],
+      "normal_return_source_order": [
+        "clear41F730",
+        "pending head-or-neighbor links",
+        "pending tail48814",
+        "selfWORD ID0",
+        "metadata420480 active284",
+        "dirty290",
+        "shared count4880C"
+      ],
+      "qualification": "ID precedes active flag and count, but list links and tail precedeID. Reset calls include sentinel/default writes; not all-zero returned rows."
+    },
+    "scalar_reset": {
+      "writes": [
+        {
+          "pc": "0x6c0526",
+          "offset": 12,
+          "store_bytes": 4
+        },
+        {
+          "pc": "0x6c052b",
+          "offset": 0,
+          "store_bytes": 4
+        },
+        {
+          "pc": "0x6c052f",
+          "offset": 4,
+          "store_bytes": 4
+        },
+        {
+          "pc": "0x6c0534",
+          "offset": 8,
+          "store_bytes": 4
+        }
+      ],
+      "store_bytes": 4,
+      "stores_per_call": 4,
+      "bytes_per_call": 16,
+      "calls": [
+        {
+          "pc": "0x41f95f",
+          "span": [
+            528,
+            544
+          ]
+        },
+        {
+          "pc": "0x41f97a",
+          "span": [
+            544,
+            560
+          ]
+        }
+      ],
+      "qualification": "four4-byte MOVSS stores percall,16B total percall; not four16B scalarstores."
+    },
+    "mark_external_writes": [
+      {
+        "pc": "0x4291a9",
+        "object": "422D50 normalreturnRAX ifnonnull",
+        "offset": 12,
+        "bytes": 4,
+        "operation": "AND~2"
+      },
+      {
+        "pc": "0x4291e4",
+        "object": "2ED570 normalreturnRAX ifnonnull on reached binding branch",
+        "offset": 0,
+        "bytes": 4,
+        "operation": "AND~4"
+      },
+      {
+        "pc": "0x4291f3",
+        "object": "2ED570 result preservedRBX on reached nonnull branch",
+        "offset": 160,
+        "bytes": 4,
+        "operation": "store20E620 EAX onnormalreturn"
+      }
+    ],
+    "post_active_cleanup": {
+      "pc": "0x427db3",
+      "object": "pool loadedfrom022C6F28",
+      "offset": 296984,
+      "bytes": 4,
+      "operation": "OR20h",
+      "normal_return_order": [
+        "DEC sharedcount",
+        "cleanup4200A0->clear41F730",
+        "ORpool48818,20h",
+        "cached-next comparison/continuation"
+      ]
+    },
+    "shared_bookkeeping": {
+      "root_global": "0x22c6f28",
+      "pending_endpoints": [
+        296976,
+        296980
+      ],
+      "active_endpoints": [
+        296960,
+        296964
+      ],
+      "count": 296972,
+      "cursor": 296968,
+      "count_and_cursor_bytes": 4,
+      "qualification": "one shared source count/cursor, separate pending/active endpoints; not two independent counts or sampled pointer identity."
+    }
+  },
+  "limits": [
+    "No new capture, native/emulated/live execution. Review executions are external corroboration, not ASTRA tests.",
+    "Original normal-return source phases require valid pool/rows/privateframes/indices, nativeABI/normalreturns, reached validhelperobjects and noalias/nointerference.",
+    "Source root and instruction order do not establish runtime pointers, atomicity, scheduling, allwriter coherence, naturalreachability or lifetime.",
+    "Existing originals/acceptance history immutable; supplemental producer validity still requires independent review and actual canonical consumption."
+  ],
+  "cleanup": "Only owned offline evidence files; no game/PC/control/instrument/save/config/reference/peer mutations."
+}

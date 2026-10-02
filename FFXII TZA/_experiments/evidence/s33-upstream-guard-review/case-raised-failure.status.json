@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\raised-failure\\s33-opus-replay-op1-real\\check.py"
+  ],
+  "cwd": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\raised-failure",
+  "driver_sha256": "42cf1e2db3fe19d138ae6bdbf221b84dbc0878a4b4b6c11e8ea58660874305f2",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 2,
+  "exception": null,
+  "stdout_sha256": "1a93553ca7d6f7b8c6ba20f9e845a4e6eeac0ce5da7e6f542cf9f5167b3d382f",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "HEAD:Database/FFXII TZA/_experiments/evidence/continuation-section12-actor-request-waits/original_body_manifest.json"
+  ],
+  "terminal": true,
+  "exit": 0,
+  "stdout_sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

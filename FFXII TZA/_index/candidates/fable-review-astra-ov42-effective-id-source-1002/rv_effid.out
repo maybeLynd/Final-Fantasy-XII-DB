@@ -1,0 +1,71 @@
+== packet integrity
+PASS  manifest.json sha256 = d548df12a842f390...  | d548df12a842f390c1e65bfb5de0968cc290ebea94622de6415e8c76754e54c7
+PASS  all 49 manifest members hash as listed  | []
+NOTE  committed manifest at 2cce275ad: sha256 d548df12a842f390c1e65bfb5de0968cc290ebea94622de6415e8c76754e54c7
+PASS  packet's getter, resolver and retained caller range hashes equal this image's bytes (00387090 .. + 0x95, 0031B860 .. + 0x53, 00304850 + 0x520 .. + 0x5D9, script adapter 0030EEA0 .. + 0x65)  | 387090..387125 31B860..31B8B3 304D70..304E29 30EEA0..30EF05
+PASS  getter / resolver bytes hash to the README's pins (7fe99655..., 9a162077...)
+PASS  retained-callers-01.json is byte-identical to 0ada5145's retained/slot-acquisition-callers-raw-01.json (sha256 b27ee5a0...)
+PASS  packet keeps open: observed fault, natural null caller, table initialization, interior fragment, owner lifetime, whole OV-42
+== raw direct-reference census (E8/E9 rel32 and 0F 8x jcc, .text)
+NOTE  00387090 raw direct references (3): 304E12 call, 304ECC call, 329958 call (indirect callers not covered)
+PASS  00387090 is called directly at 00304850 + 0x5C2 (among its raw references)
+NOTE  0031B860 raw direct references: 136 (the getter's two among them: ['3870BF', '3870EC'])
+NOTE  00304850 raw direct references: 307C19 call (so neither 00387090 nor any other body cited here calls it directly; indirect callers not covered)
+== shipping-image re-derivation
+PASS  getter 00387090, 149 B: decodes exactly; three .pdata records (the root 00387090 .. + 0x6 and two CHAININFO records + 0x6 .. + 0x6B, + 0x6B .. + 0x95, both rooted at 00387090) tile it exactly  | [('0x387090', '0x387096'), ('0x387096', '0x3870fb'), ('0x3870fb', '0x387125')]
+PASS  resolver 0031B860, 83 B: decodes exactly; one .pdata record covers it exactly
+PASS  both bodies end in int3 padding up to the next .pdata root (00387125 .. 00387130, 0031B8B3 .. 0031B8C0 all CC; 00387130 and 0031B8C0 are root records)
+PASS  getter local CFG closed: two rets (+ 0x87 after the table load, + 0x94 the last instruction), no tail, no out-of-body branch, no indirect jump; calls only 0031B860, twice (+ 0x2F, + 0x5C)
+PASS  resolver local CFG closed: two rets (+ 0x15 null query, + 0x52 the last instruction), no tail; calls only 00236850 (+ 0x1D, + 0x3D) and 00236820 (+ 0x28)
+PASS  query carrier: RDI = incoming RCX (+ 0xB) after its home save (+ 0x6); RDI written only there and at the reload + 0x61; no RCX write before the first call; the second call's RCX = RDI (+ 0x59, the instruction before the call)
+PASS  query leg: `test rcx, rcx` / `je` -> the first call (+ 0xE/+ 0x11); BYTE [rcx + 5] zero-extended, `test` / `jne` -> the first call (+ 0x13 .. + 0x19); else RBX = 0208D480 + (BYTE [rcx + 4] << 6) and `jmp` + 0x59, past the first call
+PASS  O1 leg: the first return is stored as a QWORD to 02EBF188 (+ 0x34); `test rax` / `je` -> `xor ebx, ebx` (+ 0x57); else RBX = 0208DE80 + (BYTE [O1 + 0xEA9] << 6)
+PASS  RBX (table pointer) is written only on the two legs and by the two `pop rbx` restores; nothing writes it between the second call and the table test
+PASS  the selected pointer is never 0 on the query leg (0208D480 + 64*k, k <= 255) or for a non-null O1; RBX = 0 only when the first resolver returned NULL
+PASS  O2: RAX from the second call is tested (`test rax` / `je` + 0x88, at + 0x66/+ 0x69) and then only read; no RAX write between the second call's return and a result load
+PASS  the substitution: `test rbx, rbx` / `je` + 0x88 (+ 0x6B), ECX = 0x9F (+ 0x70), WORD compare [rax + 0x714] with CX (+ 0x75, 2 bytes), `jne` + 0x88; else `movzx eax, word ptr [rbx + 0x10]` (2 bytes) and ret
+PASS  the direct leg: + 0x88 `movzx eax, word ptr [rax + 0x714]` (2 bytes) then ret; it is the target of all three `je`/`jne` (O2 null, RBX null, word != 9F)
+PASS  no sentinel: O2 = NULL goes straight to the + 0x88 load through RAX (address 0 + 0x714); every path to a ret passes a load through RAX or RBX
+PASS  compare census: six compares/tests - query, BYTE +5, O1, O2, RBX, and the one WORD compare with 0x9F; nothing compares the +0x714 word with any bound (no local candidate bound)  | 38709E test rcx, rcx; 3870A7 test eax, eax; 3870CB test rax, rax; 3870F6 test rax, rax; 3870FB test rbx, rbx; 387105 cmp word ptr [rax + 0x714], cx
+PASS  getter memory writes: the RDI home slot and the QWORD 02EBF188 only (plus the push)  | 387096 rsp+30/8; 3870C4 rip+2B380BD/8
+PASS  both rets restore RBX (`pop rbx`) and RSP, and return EAX by `movzx` (a 32-bit write, so RAX's upper half is zero)
+PASS  resolver NULL query: `test rcx` / `jne` (+ 0x9/+ 0xC); NULL falls to `xor eax, eax` and ret with no call reachable
+PASS  resolver scan: EBX = 0; count call, `jle` -> return 0; loop: ECX = EBX, by-index call, null entry skipped, QWORD [rax + 0x698] == RDI (the query) -> `je` + 0x48 returning that RAX; else `inc ebx`, count re-read (+ 0x3D), signed `cmp ebx, eax` / `jl`
+PASS  resolver memory writes: the RBX home slot only  | [(3258486, 'rsp', 48, 8)]
+PASS  00304850's .pdata chain: seven records 00304850 .. + 0x828 tile exactly (root + 0xA6, six CHAININFO records rooted at 00304850); 00304850 + 0x5C2 (the getter call) lies in the chained record + 0x520 .. + 0x741, and + 0x520 is not a function entry (not a root record)  | [('0x304850', '0x3048f6'), ('0x3048f6', '0x304a46'), ('0x304a46', '0x304d70'), ('0x304d70', '0x304f91'), ('0x304f91', '0x305006'), ('0x305006', '0x305017'), ('0x305017', '0x305078')]
+PASS  00304850's code 00304850 .. + 0x7F4 decodes exactly; its one indirect jmp (+ 0x10A) is a 13-way phase switch on BYTE [rsi + 4] (`cmp eax, 0xc` / `ja`), table = image base + 0x1E5044 = 00304850 + 0x7F4, 13 DWORDs ending exactly at the chain end + 0x828  | 30495C 3049FA 304A49 304A4C 304BA5 304D73 304DA5 304E2C 304EB3 304EBE 304F62 304FE9 304FF3
+PASS  the getter call is in phase case 6: table entry 6 = 00304850 + 0x555; no other table entry and no direct jump or jcc anywhere in the body lands in + 0x555 .. + 0x5D4 except the case's own `jne` + 0x55E -> + 0x56D; case 5 (+ 0x523) falls through into + 0x555 after `inc byte ptr [rsi + 4]`  | into [(3165614, 3165629)]
+PASS  the straight line + 0x5AD .. + 0x5D4: RCX = QWORD [rdi + 0x698] (+ 0x5AD), `or dword [rdi+4]`, EBX = BYTE [rdi + 0xEA9], `call 00387090` (+ 0x5C2), EDX = DWORD [rdi + 8], R8D = `movzx r8d, ax` (+ 0x5CA), R9D = EBX, RCX = R12, `call 0030CFB0` (+ 0x5D4)
+PASS  between the getter call and 0030CFB0: one call each end and none between; RAX not written before + 0x5CA; R8 written only at + 0x5CA; RCX not written between + 0x5AD and the getter call
+PASS  emulated getter, query +5 = 0: each of 511..534 and 0, 9E, A0, 19F, 7FFF, 8000, FFFF at O2+0x714 is returned unchanged with RAX's upper bits zero; one resolver call; 2EBF188 untouched; RBX/RDI restored; no non-frame write
+PASS  emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns WORD 0208D480 + 3*64 + 0x10 = 8123 zero-extended (not sign-extended)  | rax 8123
+PASS  emulated getter, query +5 = 1, O1 = O2 = unit (+0xEA9 = 5), word 9F: two resolver calls; 2EBF188 = O1; returns WORD 0208DE80 + 5*64 + 0x10  | rax 321 o1 40001000
+PASS  emulated getter, O1 leg: each of 511..534 returned unchanged with a nonzero table pointer
+PASS  emulated getter, registry changes between the calls (O1 = unit A slot 5, O2 = unit B slot 9, B's word 9F): the table is chosen by O1 and the word by O2 - returns A's slot record +0x10 (555), not B's (999)  | rax 555
+PASS  emulated getter, O1 null (empty registry on the first scan), O2 = B with word 9F: RBX = 0, so 9F is returned unchanged; 2EBF188 = 0  | rax 9F o1 0
+PASS  emulated getter(NULL): both resolver calls return 0 with no registry callback; 2EBF188 = 0; the getter then reads address 0x714 (unmapped-read fault) - no sentinel return  | calls [] fault 1812 rip 387118
+PASS  emulated getter, non-null query whose owner is absent (O2 = 0): reads address 0x714 (fault), even with a nonzero table pointer  | fault 1812 rax 0
+PASS  emulated resolver: entries [NULL, key 77, key 99 (A), key 99 (B)] -> returns A (first match); the count helper is called once before the scan and once per non-matching entry (3), the by-index helper for 0, 1, 2  | [('count', None), ('byidx', 0), ('count', None), ('byidx', 1), ('count', None), ('byidx', 2)]
+PASS  emulated resolver: no match returns RAX = 0; an empty registry (count 0) returns 0 after one count call
+PASS  emulated caller line 304DFD -> 0030CFB0 (unit's own query, word 9F, query table word ABC): reaches 0030CFB0 with R8 = ABC (upper bits zero), RCX = R12, EDX = unit DWORD +8, R9D = unit BYTE +0xEA9  | rip 30CFB0 r8 ABC rcx 60000000 rdx CAFEBABE r9 11
+PASS  emulated caller line: each of 511..534 at the unit's +0x714 arrives at 0030CFB0 as R8 unchanged
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 37 of 37
+PASS  control: 00387090 + 0x70 `mov ecx, 0x9f` -> 0xA0 (wrong replacement id)  | 6 failed: the substitution: `test rbx, rbx` / `je` + 0x88 (+ 0x6B), EC; emulated getter, query +5 = 0: each of 511..534 and 0, 9E, A; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W
+PASS  control: 00387090 + 0x88 WORD read -> BYTE read (`movzx eax, byte ptr [rax + 0x714]`)  | 4 failed: the direct leg: + 0x88 `movzx eax, word ptr [rax + 0x714]` (; emulated getter, query +5 = 0: each of 511..534 and 0, 9E, A; emulated getter, O1 leg: each of 511..534 returned unchanged
+PASS  control: 00387090 + 0x7E table word +0x10 -> +0x12  | 5 failed: the substitution: `test rbx, rbx` / `je` + 0x88 (+ 0x6B), EC; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W; emulated getter, query +5 = 1, O1 = O2 = unit (+0xEA9 = 5), 
+PASS  control: 00387090 + 0x7E `movzx` -> `movsx` (sign-extended table word)  | 2 failed: the substitution: `test rbx, rbx` / `je` + 0x88 (+ 0x6B), EC; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W
+PASS  control: 00387090 + 0x6E table-pointer `je` -> two nops (RBX = 0 no longer skips the substitution)  | 3 failed: the substitution: `test rbx, rbx` / `je` + 0x88 (+ 0x6B), EC; the direct leg: + 0x88 `movzx eax, word ptr [rax + 0x714]` (; emulated getter, O1 null (empty registry on the first scan),
+PASS  control: 00387090 + 0x69 O2-null `je + 0x88` -> `je + 0x82` (an invented safe-null return of 0)  | 5 failed: O2: RAX from the second call is tested (`test rax` / `je` + ; the direct leg: + 0x88 `movzx eax, word ptr [rax + 0x714]` (; no sentinel: O2 = NULL goes straight to the + 0x88 load thro
+PASS  control: 00387090 + 0x59 second resolver input `mov rcx, rdi` -> `mov rcx, rax` (O1 passed as the query)  | 9 failed: query carrier: RDI = incoming RCX (+ 0xB) after its home sav; emulated getter, query +5 = 0: each of 511..534 and 0, 9E, A; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W
+PASS  control: 00387090 + 0x1B table index BYTE +4 -> +5  | 3 failed: query leg: `test rcx, rcx` / `je` -> the first call (+ 0xE/+; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W; emulated caller line 304DFD -> 0030CFB0 (unit's own query, w
+PASS  control: 00387090 + 0x1F query table base 0208D480 -> 0208D4C0  | 3 failed: query leg: `test rcx, rcx` / `je` -> the first call (+ 0xE/+; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W; emulated caller line 304DFD -> 0030CFB0 (unit's own query, w
+PASS  control: 00387090 + 0x34 O1 cell 02EBF188 -> 02EBF190  | 7 failed: O1 leg: the first return is stored as a QWORD to 02EBF188 (+; getter memory writes: the RDI home slot and the QWORD 02EBF1; emulated getter, query +5 = 1, O1 = O2 = unit (+0xEA9 = 5), 
+PASS  control: 0031B860 + 0xC null-query `jne` -> `jmp` (NULL enters the registry scan)  | 2 failed: resolver NULL query: `test rcx` / `jne` (+ 0x9/+ 0xC); NULL ; emulated getter(NULL): both resolver calls return 0 with no 
+PASS  control: 0031B860 + 0x32 match key +0x698 -> +0x6A0  | 10 failed: resolver scan: EBX = 0; count call, `jle` -> return 0; loop:; emulated getter, query +5 = 0: each of 511..534 and 0, 9E, A; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W
+PASS  control: 0031B860 + 0x39 match `je + 0x48` -> `je + 0x46` (a match returns 0)  | 10 failed: resolver scan: EBX = 0; count call, `jle` -> return 0; loop:; emulated getter, query +5 = 0: each of 511..534 and 0, 9E, A; emulated getter, query +5 = 0, +4 = 3, O2 word 9F: returns W
+PASS  control: 00304850 + 0x5CA `movzx r8d, ax` -> `movzx r8d, bx`  | 3 failed: the straight line + 0x5AD .. + 0x5D4: RCX = QWORD [rdi + 0x6; emulated caller line 304DFD -> 0030CFB0 (unit's own query, w; emulated caller line: each of 511..534 at the unit's +0x714 
+PASS  control: 00304850 + 0x5CE `mov r9d, ebx` -> `mov r8d, ebx` (an R8 write after the transfer)  | 4 failed: the straight line + 0x5AD .. + 0x5D4: RCX = QWORD [rdi + 0x6; between the getter call and 0030CFB0: one call each end and ; emulated caller line 304DFD -> 0030CFB0 (unit's own query, w
+PASS  control: 00304850 + 0x5AD query QWORD +0x698 -> +0x6A0  | 3 failed: the straight line + 0x5AD .. + 0x5D4: RCX = QWORD [rdi + 0x6; emulated caller line 304DFD -> 0030CFB0 (unit's own query, w; emulated caller line: each of 511..534 at the unit's +0x714 
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 62 checks, 62 PASS, 0 FAIL (16 controls)

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-caller-quotient-bound\\control.py"
+  ],
+  "driver_sha256": "b7d9d2ed9e2a5599e9ec46b99f3c562b3b3c7db5abdbd80bc6d2c460d0e130ad",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

@@ -1,0 +1,57 @@
+== packet integrity
+PASS  manifest.json sha256 = 93e2351f2132231d...  | 93e2351f2132231d53da0597dbef418c7870e0a795e04e0090c4e5089c93c521
+PASS  all 72 manifest members hash as listed  | []
+PASS  packet's captured and retained range sha256 values equal this image (10 ranges, incl. all seven bodies reviewed)  | []
+PASS  retained manifest = filecache-route2-commit-key's (f3365d0e..., FABLE-reviewed ACCEPT-WITH-NARROWING)  | f3365d0eb049fb0c84b6150f1d410a2d1e2b01e36f4025973dc3063c4215392d
+== shipping-image re-derivation
+PASS  body 0020C300 + 0x138 (312 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 00808C40 + 0x21 (33 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 0020C1B0 + 0x142 (322 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 001D6D20 + 0x4F (79 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 0059EE90 + 0x36C (876 B) decodes exactly and one .pdata record covers it exactly
+PASS  thunk 00210EC0 + 0xB (11 B) decodes exactly, has no .pdata record, int3 before and after
+PASS  thunk 0085E730 + 0x7 (7 B) decodes exactly, has no .pdata record, int3 before and after
+PASS  source-01 bodies total 330 B (312 + 11 + 7); with the 33 B cookie body 363 B  | 330
+PASS  0020C300 local CFG closed: single ret is the last instruction, no tail or out-of-body branch  | rets=['20C437']
+PASS  00210EC0 = `or r8d, 0xffffffff; xor edx, edx; jmp 0x85e730`
+PASS  0085E730 is `jmp qword ptr [rip + ...]` through IAT 008C2B40 = api-ms-win-crt-heap-l1-1-0.dll!malloc, hint/name at 01DEEE88 (PE import directory)  | ('api-ms-win-crt-heap-l1-1-0.dll', 'malloc', 31387272)
+PASS  0020C300 + 0x28: `inc dword ptr [rcx + 0x88]` (4 B) with rcx still the incoming first argument
+PASS  0020C300 + 0xFB/+0x100: `mov ecx, 0x10` then the call to 00210EC0 (a 16-byte request)
+PASS  the +0x88 increment dominates the allocation call
+PASS  every entry -> allocation path (17 paths) passes exactly one record `inc byte ptr [r + 0x10]` (+0x54, +0x8B or +0xF8)  | 17 paths
+PASS  each incremented record is loaded as [rax] straight after a call to 0020B5F0
+PASS  the incremented record is the hit entry itself: 0020B5F0 walks root [rcx+18h] against header rcx+8 with key [rdx] and returns node+0x28; all 6 calls in 0020C300 pass rcx = manager+0x20 (so root +0x38, header +0x28: the lookup's tree) and rdx = &[rsp+58h] = entry SP+10h, where +0x0 saved the key (edx)  | 6 sites
+PASS  the lookup holds its lock across the 0020C300 call: lock 005CD4F0 (0020C1B0 + 0x8C) dominates it and the unlock 005CD820 (+0x103) follows it on the hit path
+PASS  all non-stack writes before the allocation: +0x88 dword, the three +0x10 bytes, +0x14 dword (+0x68), +0x0E word (+0xC3), +0x0C word (+0xE1)  | [('20C328', '0x88', 4), ('20C354', '0x10', 1), ('20C368', '0x14', 4), ('20C38B', '0x10', 1), ('20C3C3', '0xe', 2), ('20C3E1', '0xc', 2), ('20C3F8', '0x10', 1)]
+PASS  the fifth argument (ebx, entry SP+28h) and sixth (ecx, entry SP+30h) drive the arms: frame = 3 pushes + 30h
+PASS  0020C300 + 0x10A/+0x10D: `test rax, rax` / `je 0x20c423` on the allocation result
+PASS  NULL arm: `xor eax, eax` (full RAX 0), then no call, no memory write and no rax writer to the ret; the constructor 00217A60 is unreachable from it
+PASS  non-NULL arm: 00217A60 gets rcx = the allocation (+0x118), and its RAX is returned unchanged
+PASS  0020C1B0 hit path: `mov dword ptr [r15], r9d` (+0xDC, the size out) dominates the 0020C300 call (+0xF8)
+PASS  0020C1B0 passes 0020C300 the selector as the fifth argument: ebp = incoming r8d (+0x35), `mov dword ptr [rsp + 0x20], ebp` (+0xEB); sixth = entry dword +0x14 (+0xE3/+0xE7)
+PASS  hit return: rbx = rax (+0xFD), unlock 005CD820 (+0x103), rax = rbx (+0x109), jmp to the cookie block; the miss arm's `or rax, -1` (+0x117) is not on that path
+PASS  from +0x10C to the ret the only call is the cookie check 00808C40 and nothing writes rax
+PASS  00808C40 is exactly cmp / bnd jne / rol rcx / test cx / bnd jne / bnd ret / ror rcx / jmp 00809654; the returning path (both jne not taken) writes no rax
+PASS  001D6D20 returns 0020C1B0's RAX: no rax writer after the +0x35 call
+PASS  resolver: `mov qword ptr [r15 + 0x20], rax` (8 B) directly after the lookup call (0059EE90 + 0x15A)
+PASS  the only test of the result is `test rax, rax` / `js 0x59f000` (+0x15E/+0x161): negative only
+PASS  zero/positive arm: eax = dword [rbp] (the size out), stored to [r15]; `xor eax, eax`; jmp to the epilogue; its only call is the cookie check, and no archive call (0019AEE0, 0059A9B0) is reachable
+NOTE  record stamps by arm (offset, width) -> runs: [((), 56), (((12, 2),), 36), (((14, 2),), 12), (((20, 4),), 8)]
+PASS  sandbox, 0020C300 over selectors 0-7 x kinds 0-6, allocation NULL and non-NULL: +0x88 +1 and record +0x10 +1 exactly once, both before the malloc call; NULL -> full RAX 0, no constructor, no later non-stack write; non-NULL -> constructor(rcx = block), its RAX returned  | 112 runs, bad []
+PASS  sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1  | status 0 fields {'q28': 'FFFFFFFFFFFFFFFF', 'q30': '0', 'q40': '0', 'd20': '1234', 'd48': '2B5E6', 'b38': '3'} calls ['1D6B20', '865390', '1D6B20', '1D6B90', '1D6B70', '20C700', '861EC0', '20C440', '5CD4F0', '20B5F0', '20B5F0', 'iat', '5CD820']
+PASS  sandbox contrast, a route-1 miss: the lookup returns -1, +0x40 = -1, no allocation or counter, and the resolver reaches the archive fallback 0059EE90 + 0x170  | +0x40 FFFFFFFFFFFFFFFF
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every image check  | 35 of 35
+PASS  control: 0020C300 + 0x10D NULL `je` -> `jne` (NULL constructs, non-NULL returns 0)  | 3 failed: 0020C300 + 0x10A/+0x10D: `test rax, rax` / `je 0x20c423` on the allocation result; sandbox, 0020C300 over selectors 0-7 x kinds 0-6, allocation NULL and non-NULL: +0x88 +1 and record +0x10 +1 exactly once, both before the malloc call; NULL -> full RAX 0, no constructor, no later non-stack write; non-NULL -> constructor(rcx = block), its RAX returned; sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1
+PASS  control: 0020C300 + 0x123 `xor eax, eax` -> `xor al, al` (upper RAX kept)  | 1 failed: NULL arm: `xor eax, eax` (full RAX 0), then no call, no memory write and no rax writer to the ret; the constructor 00217A60 is unreachable from it
+PASS  control: 0020C300 + 0x28 `inc [rcx + 0x88]` -> `inc [rcx + 0x8c]`  | 4 failed: 0020C300 + 0x28: `inc dword ptr [rcx + 0x88]` (4 B) with rcx still the incoming first argument; all non-stack writes before the allocation: +0x88 dword, the three +0x10 bytes, +0x14 dword (+0x68), +0x0E word (+0xC3), +0x0C word (+0xE1); sandbox, 0020C300 over selectors 0-7 x kinds 0-6, allocation NULL and non-NULL: +0x88 +1 and record +0x10 +1 exactly once, both before the malloc call; NULL -> full RAX 0, no constructor, no later non-stack write; non-NULL -> constructor(rcx = block), its RAX returned
+PASS  control: 0020C300 + 0xF8 `inc byte [rcx + 0x10]` -> three nops (one arm without the record increment)  | 3 failed: every entry -> allocation path (17 paths) passes exactly one record `inc byte ptr [r + 0x10]` (+0x54, +0x8B or +0xF8); all non-stack writes before the allocation: +0x88 dword, the three +0x10 bytes, +0x14 dword (+0x68), +0x0E word (+0xC3), +0x0C word (+0xE1); sandbox, 0020C300 over selectors 0-7 x kinds 0-6, allocation NULL and non-NULL: +0x88 +1 and record +0x10 +1 exactly once, both before the malloc call; NULL -> full RAX 0, no constructor, no later non-stack write; non-NULL -> constructor(rcx = block), its RAX returned
+PASS  control: 0020C300 + 0xFB `mov ecx, 0x10` -> `mov ecx, 0x20`  | 1 failed: 0020C300 + 0xFB/+0x100: `mov ecx, 0x10` then the call to 00210EC0 (a 16-byte request)
+PASS  control: 0020C300 + 0x48 `lea rcx, [rdi+20h]` -> `[rdi+28h]` (another tree)  | 1 failed: the incremented record is the hit entry itself: 0020B5F0 walks root [rcx+18h] against header rcx+8 with key [rdx] and returns node+0x28; all 6 calls in 0020C300 pass rcx = manager+0x20 (so root +0x38, header +0x28: the lookup's tree) and rdx = &[rsp+58h] = entry SP+10h, where +0x0 saved the key (edx)
+PASS  control: 0020C1B0 + 0x109 `mov rax, rbx` -> `mov rax, rsi` (hit result dropped)  | 2 failed: hit return: rbx = rax (+0xFD), unlock 005CD820 (+0x103), rax = rbx (+0x109), jmp to the cookie block; the miss arm's `or rax, -1` (+0x117) is not on that path; sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1
+PASS  control: 0059EE90 + 0x161 `js` -> `jle` (zero takes the archive fallback)  | 2 failed: the only test of the result is `test rax, rax` / `js 0x59f000` (+0x15E/+0x161): negative only; sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1
+PASS  control: 001D6D20 + 0x3A `mov rbx, [rsp+40h]` -> `mov rax, [rsp+40h]` (wrapper clobbers RAX)  | 3 failed: 001D6D20 returns 0020C1B0's RAX: no rax writer after the +0x35 call; sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1; sandbox contrast, a route-1 miss: the lookup returns -1, +0x40 = -1, no allocation or counter, and the resolver reaches the archive fallback 0059EE90 + 0x170
+PASS  control: 0085E730 IAT slot moved 8 bytes (another import)  | 3 failed: 0085E730 is `jmp qword ptr [rip + ...]` through IAT 008C2B40 = api-ms-win-crt-heap-l1-1-0.dll!malloc, hint/name at 01DEEE88 (PE import directory); sandbox, 0020C300 over selectors 0-7 x kinds 0-6, allocation NULL and non-NULL: +0x88 +1 and record +0x10 +1 exactly once, both before the malloc call; NULL -> full RAX 0, no constructor, no later non-stack write; non-NULL -> constructor(rcx = block), its RAX returned; sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1
+PASS  control: 00808C40 + 0xA `rol rcx, 0x10` -> `rol rax, 0x10` (a RAX writer on the cookie's return path)  | 3 failed: 00808C40 is exactly cmp / bnd jne / rol rcx / test cx / bnd jne / bnd ret / ror rcx / jmp 00809654; the returning path (both jne not taken) writes no rax; sandbox, resolver over a route-1 hit whose allocation is NULL: status RAX 0, stream +0x40 = 0, +0x30 = 0, +0x28 = -1, +0x20 = the entry size; no archive call; counters +1; sandbox contrast, a route-1 miss: the lookup returns -1, +0x40 = -1, no allocation or counter, and the resolver reaches the archive fallback 0059EE90 + 0x170
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 52 checks, 52 PASS, 0 FAIL (11 controls)

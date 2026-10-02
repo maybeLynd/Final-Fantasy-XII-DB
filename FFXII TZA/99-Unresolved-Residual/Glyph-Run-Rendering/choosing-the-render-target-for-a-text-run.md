@@ -199,8 +199,8 @@ what makes this the shared mode — nothing here says what block 0 is drawn to.
 | `001E9D20` | (render-target selection) | 472 B | **read here, complete — previously unread** |
 | `001E9C30` | (setter for `+0x2379`) | 7 B | read here, complete |
 | `001E71B0` | (record initialiser) | 717 B | initialiser loop read in context |
-| `001B5FB0`, `001B51C0`, `001FDD60` | resource acquisition | — | **not read** |
-| `006B5C70`, `005C5310` | buffer rebuild | — | **not read** |
+| `001B5FB0`, `001B51C0`, `001FDD60` | resource acquisition | — | **not read** *(answered: see UQ-359 in §8: all read; 2026-10-02, OPUS)* |
+| `006B5C70`, `005C5310` | buffer rebuild | — | **not read** *(answered: see UQ-359 in §8: plain field getters; 2026-10-02, OPUS)* |
 
 ## 4. Data structures
 
@@ -208,7 +208,7 @@ what makes this the shared mode — nothing here says what block 0 is drawn to.
 
 | offset | what |
 |---|---|
-| `+0x00` | primary resource, from `001B51C0`; **null means the whole call failed** |
+| `+0x00` | primary resource, from `001B51C0`; **~~null means the whole call failed~~** *(answered: see §8: "This falsifies §4.1's null means the whole call failed"; 2026-10-02, OPUS)* |
 | `+0x08` | secondary resource, from `001FDD60` |
 | `+0x10` | the selected `0x38`-byte buffer |
 | `+0x18`, `+0x1C` | the memo keys, copied from descriptor `+0x00` and `+0x0C` |
@@ -304,7 +304,7 @@ That is a fifth item for the list of ways a field hides, and it differs in kind 
         `rcx+0x30`, key at `node+0x20`: it descends `[node]` while `node->key < edx` and `[node+8]`
         otherwise, keeping the last non-less node, then returns it only if `edx >= node->key` — an
         exact-match find that returns the terminator on a miss.
-      - **`001FDD60` is the same algorithm byte for byte**, on the container at `[rcx+0xC0]` with
+      - **`001FDD60` is the same ~~algorithm byte for byte~~ walk with a different exit** *(corrected 2026-10-02, OPUS: a miss returns 0, `xor eax, eax` at `001FDD60`+0x4B, and a hit returns `node + 0x28` at +0x46; the terminator is never returned)*, on the container at `[rcx+0xC0]` with
         terminator `rcx+0xB0`. The caller hands it the node `001B51C0` just returned
         (`001E9DCD mov rcx, rax`), so §4.1's “primary” and “secondary resource” are really
         **one two-level nested lookup** — outer key `[rdi+4]`, inner key `[rdi+8]`.
@@ -390,7 +390,7 @@ off by three.
 
 **Not claimed.** Anything past §2.1 — the claiming path, the reuse rule and the descriptor pair were
 **not re-read**; the five callees (`001B5FB0`, `001B51C0`, `001FDD60`, `006B5C70`, `005C5310`) were
-**not read at all**; and the `0x1E` bound is recorded as present, not as understood. The `+0x2379`
+**~~not read at all~~** *(answered: see UQ-359 in §8; 2026-10-02, OPUS)*; and the `0x1E` bound is recorded as present, not as understood. The `+0x2379`
 interpretation stays where the page put it — with the four-reader argument on the sibling page, not
 here. Nothing executed.
 

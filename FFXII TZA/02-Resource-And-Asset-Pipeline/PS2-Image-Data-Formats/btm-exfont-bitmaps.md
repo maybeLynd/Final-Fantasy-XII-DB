@@ -73,8 +73,8 @@ consumer rounds cell dims to pow2 (8..128) and copies the cell into its own text
 |---|---|
 | loader | `00365810` — iterates the 12-id table at `00D10C98` = `{130..135, 218..223}` |
 | request chain | `0032E400` size (`00365882`) + `0032E620` request (`003658C7`), kind `0x7`. The pair is the generic resource-pool API — also called by ActorEntity (`0032FCA0`, `00330310`, `003306E0`), Presentation (`003B2310`, `003B53C0`), Script_VM_Native_Bridge (`0050DF70`, `0050DFE0`), Input (`00291C80`) and Save_Load_Settings (`002EF300`) clients for unrelated resources; fellow API consumers, not `.btm` readers |
-| buffer slot | `[022CBE00 + 0x110 + slot*8]` — the `.btm` half of the 12 ids |
-| ready bit | `[022CBE00 + 0x240]` bit `slot` — set on completion |
+| buffer slot | ~~`[022CBE00 + 0x110 + slot*8]`~~ `[[022CBE00] + 0x110 + (slot − 1)*8]` *(corrected 2026-10-02, OPUS: `00365810+0x1E` `dec ecx` and `00365810+0x2E` `movsxd rdi, ecx` index the band with `slot - 1`, and `00365810+0x4A` loads the pointer held in `022CBE00` before `00365810+0x56` / `00365810+0xA5` address `[ptr + 0x110 + rdi*8]`)* — the `.btm` half of the 12 ids |
+| ready bit | ~~`[022CBE00 + 0x240]` bit `slot`~~ `[[022CBE00] + 0x240]` bit `slot − 1` *(corrected 2026-10-02, OPUS: `00364380` loads the pointer held in `022CBE00` at `+0x0`, shifts 1 by the request's `slot - 1` (`00364380+0x11` `shl eax, cl`) and ORs it into `[ptr + 0x240]` at `00364380+0x13`)* — set on completion |
 | glyph table slot | `[022CBE00 + 0x10 + fontId*8]` — companion resource (the `fontpack`/`fontheader` half, ids 130–135) *(superseded: ids 130–135 are never requested; the glyph tables come from `fontpack_fs.bin`, RC-27)* |
 | consumers | glyph measure/draw at `00364210`/`00364380`/`003649A0` — read `pixelOffset` into the `.btm` buffer *(`00364380` is the `.btm` requests' completion callback, not a glyph measure, RC-27)* |
 | magic check | none possible — no magic exists |

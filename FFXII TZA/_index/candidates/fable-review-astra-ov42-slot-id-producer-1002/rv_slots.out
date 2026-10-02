@@ -1,0 +1,61 @@
+== packet integrity
+PASS  manifest.json sha256 = 0bc1d6929da2afbf...  | 0bc1d6929da2afbf082639aa697c516b625c6ae8e924145690c49249731edda7
+PASS  all 45 manifest members hash as listed  | []
+NOTE  committed manifest at 0ada51452: sha256 0bc1d6929da2afbf082639aa697c516b625c6ae8e924145690c49249731edda7
+PASS  packet's retained allocator, wrapper prefix and new suffix range hashes equal this image's bytes (allocator 0030D070..+0xE5, prefix 0030CFB0..+0xA6, suffix 0030CFB0 + 0xA6..+0xB9)  | 30D070..30D155 30CFB0..30D056 30D056..30D069
+PASS  packet keeps open: upstream producers, natural FFFF submission, pool ownership/reuse, whole OV-42
+== raw direct-reference census (E8/E9 rel32 and 0F 8x jcc, .text)
+PASS  0030D070 has one raw direct reference: the call at 0030CFB0 + 0xA1  | 30D051 call
+NOTE  0030CFB0 raw direct references: 304E24 call, 30EF00 call (indirect callers not covered)
+== shipping-image re-derivation
+PASS  body 0030D070 + 0xE5 (229 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 0030CFB0 + 0xB9 (185 B) decodes exactly and one .pdata record covers it exactly
+PASS  wrapper 185 B = the 166 B retained prefix (0030CFB0 .. + 0xA6) + the 19 B suffix (+ 0xA6 .. + 0xB9)
+PASS  0030D070 local CFG closed: three rets (+0x51 full, +0x5E sign arm, +0xE4 success, the last instruction), no tail, no call, no indirect jump
+PASS  0030CFB0 local CFG closed: one ret, the last instruction; calls only 0020E600 (twice) and 0030D070
+PASS  ECX (identity) -> R11D at 0030D070 + 0x5; r11 has no other writer and one reader, the DWORD store +0x20 (0030D070 + 0xDB)
+PASS  DX -> R10D by zero extension at 0030D070 + 0x14, the only read of the incoming RDX (RDX is next written at +0x82); r10 has one writer and one reader, the final WORD store 0030D070 + 0xDF  | 30D084
+PASS  no compare or test in 0030D070 reads r10, rdx or r11 (no action-range, category or identity test)  | 30D090 cmp r8b, 0x1f; 30D0AA cmp word ptr [r9 + 0x1c], cx; 30D0B4 cmp r8b, 0x20; 30D0C2 test r8b, r8b; 30D0CF cmp r8b, 0x1f; 30D0E8 cmp r8b, 0x1f; 30D10D test rax, rax
+PASS  slot base: rdi = 022C17B0 (0030D070 + 0x8), written only there and at the three restores; slot i = rdi + 48*i in all three pointer formations (+0x2A/+0x2E, +0x69/+0x6D, +0x82/+0x86)
+PASS  marker: ecx = 0xFFFF (0030D070 + 0xF), no rcx write inside the scan, WORD compare +0x1C (+0x3A), `je` to the found arm
+PASS  scan index r8b: 0 (+0x18), `inc r8b` (+0x41), `cmp r8b, 0x20` / `jl` back (+0x44/+0x48); r8 has no other writer
+PASS  own reading of r8b: the loop head sees exactly 0..31, so the null-record arm (+0x37), the sign arm (+0x57) and both > 31 arms (+0x76, +0x7C) are dead for this body
+PASS  the link block always runs on success: `je` at +0x8D tests ZF of `add rdx, rdi`, and 022C17B0 + 48k is never 0
+PASS  0030D070 memory writes: entry home slot; slot +0/+8 links; head 022BE978 / tail 022BEB88; slot +0x18/+0x14/+0x10 DWORD 1; +0x20 DWORD; +0x1C WORD - and none on the full-array path  | 30D070 rsp+8/8; 30D106 rdx+0/8; 30D112 rip+1FB185F/8; 30D119 rdx+8/8; 30D11F rax+0/8; 30D122 rdx+8/8; 30D126 rip+1FB1A5B/8; 30D136 rcx+18/4; 30D13D rcx+14/4; 30D144 rcx+10/4; 30D14B rcx+20/4; 30D14F rcx+1C/2
+PASS  success return: EAX = movzx r8b (0030D070 + 0xC2); full return: `mov al, 0xff` (+0x4A)
+PASS  0030CFB0: `cmp byte ptr [rcx + 4], 0xff` (+0xF) / `jne` to the epilogue (+0x1C -> +0xA9): a set unit+4 skips the call and the unit+4 store
+PASS  carriers: ebx = zero-extended R8W (+0x13), esi = EDX (+0x17), rdi = RCX (+0x19); each written only there and at its restore
+PASS  call: EDX = zero-extended BX (+0x9C), ECX = ESI (+0x9F), `call 0x30d070` (+0xA1), then `mov byte ptr [rdi + 4], al` (+0xA6)
+PASS  0030CFB0's own writes: two home slots, 022C2158 (DWORD), unit+4 (byte); none at +0x1C and none into the slot array - the WORD store is the allocator's  | 30CFB0 rsp+8/8; 30CFB5 rsp+10/8; 30D046 rip+1FB510C/4; 30D056 rdi+4/1
+PASS  row: rcx = low32(WORD [desc+8] * BX + low32(0020E600([desc+0xC]))), desc = [02EBF138]; a null desc or a null first resolve sets rcx = 0 and still reads [rcx + 0xC]
+PASS  bit 30 clear -> straight to the call (+0x68 `je` +0x9C); set -> D0..F1 test: `sub ax, cx` with cx = 0xD0, `cmp ax, 0x21` / `ja` to the flag gate; inside, 022C2160 - 5 <= 1 allocates
+PASS  flag gate: 022C2158 bit 1 set -> epilogue without the call (+0x91); clear -> set bit 1 (+0x93/+0x96) then call
+PASS  candidates 511..534: WORD (w - 0xD0) is 303..326 > 0x21, so they take the flag gate, not the exception
+PASS  emulated 0030D070, first free slot at each k = 0..31 (later free slots present): returns EAX = k; its only non-frame writes are slot k +0/+8 (links), +0x10/+0x14/+0x18 = DWORD 1, +0x20 = ECX, WORD +0x1C = the incoming DX, plus the list head/tail cells
+PASS  emulated 0030D070 with all 32 markers occupied: AL = 0xFF, no non-frame write at all  | rax FF writes []
+NOTE  all-occupied return: RAX = FF (the arm sets AL only; the rest is the last index's movsx)
+PASS  emulated 0030D070: each of 511..534, FFFF, D0, F1 and 0 (upper RDX bits set) is stored unchanged in the first free slot 7, and slot 9 stays free  | []
+PASS  sentinel: after a FFFF word slot 7 still reads free (marker FFFF) although +0x10/+0x14/+0x18/+0x20 and the links were written
+PASS  emulated 0030CFB0: unit+4 = 5 (not FF) returns without calling the allocator and with no non-frame write  | []
+PASS  emulated 0030CFB0, bit-30 clear: each of 511..534 lands in free slot 3 with identity EDX, and AL = 3 becomes unit+4; 022C2158 untouched  | 24 of 24
+PASS  emulated 0030CFB0, bit-30 set, word 511: flag bit 1 clear -> sets it and allocates; bit 1 set -> no allocation, unit+4 stays FF  | (3, 2) / (255, [])
+PASS  emulated 0030CFB0: a D0..F1 word with bit 30 bypasses the set flag only while 022C2160 is 5 or 6  | 3 255
+PASS  emulated 0030CFB0, bit-30 set, all slots occupied: unit+4 = FF and 022C2158 bit 1 is left SET  | u4 FF flags 2
+PASS  emulated 0030CFB0 with word FFFF: unit+4 = 3 while slot 3's marker still reads FFFF (free)
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 33 of 33
+PASS  control: 0030D070 + 0xF marker 0xFFFF -> 0xFFFE  | 8 failed: marker: ecx = 0xFFFF (0030D070 + 0xF), no rcx write inside the scan, W; emulated 0030D070, first free slot at each k = 0..31 (later free slots; emulated 0030D070: each of 511..534, FFFF, D0, F1 and 0 (upper RDX bit
+PASS  control: 0030D070 + 0x44 scan bound 0x20 -> 0x1F (31 slots)  | 2 failed: scan index r8b: 0 (+0x18), `inc r8b` (+0x41), `cmp r8b, 0x20` / `jl` b; emulated 0030D070, first free slot at each k = 0..31 (later free slots
+PASS  control: 0030D070 + 0x2E scan stride `shl r9, 4` -> `shl r9, 5` (96 B)  | 8 failed: slot base: rdi = 022C17B0 (0030D070 + 0x8), written only there and at ; emulated 0030D070, first free slot at each k = 0..31 (later free slots; emulated 0030D070: each of 511..534, FFFF, D0, F1 and 0 (upper RDX bit
+PASS  control: 0030D070 + 0x41 `inc r8b` -> `dec r8b` (scan direction)  | refused: UcError() after 1 failed: scan index r8b: 0 (+0x18), `inc r8b` (+0x41), `cmp r8b, 0x20` / `jl` b
+PASS  control: 0030D070 + 0xDF WORD store r10w -> r11w (identity stored as the action)  | 9 failed: ECX (identity) -> R11D at 0030D070 + 0x5; r11 has no other writer and ; DX -> R10D by zero extension at 0030D070 + 0x14, the only read of the ; emulated 0030D070, first free slot at each k = 0..31 (later free slots
+PASS  control: 0030D070 + 0xDB identity store r11d -> r10d  | 6 failed: ECX (identity) -> R11D at 0030D070 + 0x5; r11 has no other writer and ; DX -> R10D by zero extension at 0030D070 + 0x14, the only read of the ; emulated 0030D070, first free slot at each k = 0..31 (later free slots
+PASS  control: 0030D070 + 0x14 `movzx r10d, dx` -> `movzx r10d, cx` (marker copied instead of the word)  | 6 failed: DX -> R10D by zero extension at 0030D070 + 0x14, the only read of the ; emulated 0030D070, first free slot at each k = 0..31 (later free slots; emulated 0030D070: each of 511..534, FFFF, D0, F1 and 0 (upper RDX bit
+PASS  control: 0030D070 + 0x4C full-arm restore -> `mov [rcx], rdi` + 2 nops (a non-frame write on the full path)  | refused: UcError() after 2 failed: slot base: rdi = 022C17B0 (0030D070 + 0x8), written only there and at ; 0030D070 memory writes: entry home slot; slot +0/+8 links; head 022BE9
+PASS  control: 0030CFB0 + 0x9C `movzx edx, bx` -> `movzx edx, si` (identity forwarded as the word)  | 5 failed: call: EDX = zero-extended BX (+0x9C), ECX = ESI (+0x9F), `call 0x30d07; emulated 0030CFB0, bit-30 clear: each of 511..534 lands in free slot 3; emulated 0030CFB0, bit-30 set, word 511: flag bit 1 clear -> sets it a
+PASS  control: 0030CFB0 + 0xA6 unit+4 -> unit+5  | 7 failed: wrapper 185 B = the 166 B retained prefix (0030CFB0 .. + 0xA6) + the 1; call: EDX = zero-extended BX (+0x9C), ECX = ESI (+0x9F), `call 0x30d07; 0030CFB0's own writes: two home slots, 022C2158 (DWORD), unit+4 (byte)
+PASS  control: 0030CFB0 + 0x13 `movzx ebx, r8w` -> `nop; movzx ebx, dx`  | 6 failed: carriers: ebx = zero-extended R8W (+0x13), esi = EDX (+0x17), rdi = RC; emulated 0030CFB0, bit-30 clear: each of 511..534 lands in free slot 3; emulated 0030CFB0, bit-30 set, word 511: flag bit 1 clear -> sets it a
+PASS  control: 0030CFB0 + 0xA6 `mov byte [rdi+4], al` -> `mov dword [rdi+0x1c], eax` (the wrapper writing a +0x1C word, the attribution being corrected)  | 7 failed: wrapper 185 B = the 166 B retained prefix (0030CFB0 .. + 0xA6) + the 1; call: EDX = zero-extended BX (+0x9C), ECX = ESI (+0x9F), `call 0x30d07; 0030CFB0's own writes: two home slots, 022C2158 (DWORD), unit+4 (byte)
+PASS  control: 0030CFB0 + 0x8F flag test bit 1 -> bit 2  | 3 failed: flag gate: 022C2158 bit 1 set -> epilogue without the call (+0x91); cl; emulated 0030CFB0, bit-30 set, word 511: flag bit 1 clear -> sets it a; emulated 0030CFB0: a D0..F1 word with bit 30 bypasses the set flag onl
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 53 checks, 53 PASS, 0 FAIL (13 controls)

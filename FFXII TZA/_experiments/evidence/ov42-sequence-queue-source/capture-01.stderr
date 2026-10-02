@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\capture.py", line 10, in <module>
+    sys.argv=[sys.argv[0],str(P/'source-01.json')];C.main()
+                                                   ~~~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\capture-index-path.py", line 69, in main
+    instructions=decode(blob,a)))
+                 ~~~~~~^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\capture-index-path.py", line 53, in decode
+    raise ValueError('incomplete decoder span %x: covered %x of %x; next %x' % (a,covered,len(blob),a+covered))
+ValueError: incomplete decoder span 306760: covered 399 of 3a8; next 306af9

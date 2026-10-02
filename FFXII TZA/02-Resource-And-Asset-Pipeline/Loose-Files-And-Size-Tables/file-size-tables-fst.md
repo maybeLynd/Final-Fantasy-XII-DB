@@ -72,7 +72,7 @@ demands (`0xC8320`, `002E0439`). The 41 kinds are the 41 slots of the resource-k
 | `size[kind][id]` | `002DF960(kind, id)` — the whole function is the index arithmetic and one load (`002DF960`–`002DF97B`) | — | — | — |
 | `size[kind][id]` | `0032E400(kind, id)` — the request builder's size: a per-kind runtime override array at `022C51F0[kind]` (up to `0x400` ids) is consulted first (`0032E40C`–`0032E428`), else `002DF960` through `0046DE70` (`0032E431`); a positive size is rounded up to a multiple of 64 (`0032E43B`–`0032E448`); kind `0xFF` yields `-1` (`0032E438`) | — | ↑ 64 | — |
 | `size[kind][id]` | `0032EB40` — the same lookup and rounding for the staged (2 KB-chunk) request path (`0032EB60`–`0032EBA3`) | — | ↑ 64 | — |
-| `size[kind][id]` | `002DF780` — the read issuer: **a `(kind, id)` whose entry is `-1` is refused before any path is resolved** (`002DF7B0`–`002DF7B9`); otherwise the path comes from the kind array (`002DF7BF`–`002DF7CC`) and the read goes through the loose-file check (`0017D930`, `001D6EF0`, `001D6B40`, `001D6F20`) or the archive (`001D6D90`) | entry `== -1` | — | — |
+| `size[kind][id]` | `002DF780` — the read issuer: **a `(kind, id)` whose entry is `-1` is refused before any path is resolved** (`002DF7B0`–`002DF7B9`); otherwise the path comes from the kind array (`002DF7BF`–`002DF7CC`) and the read goes through the ~~loose-file check~~ stream-open check *(answered: see the Presentation and Audio neighbour line below - `001D6F20` opens a stream from the file cache or the VBF, never a loose file; 2026-10-02, OPUS)* (`0017D930`, `001D6EF0`, `001D6B40`, `001D6F20`) or the archive (`001D6D90`) | entry `== -1` | — | — |
 
 **How the file is found.** The path is `sprintf("%sFileSizeTables/FileSizeTable_%s.fst", "../", name)`
 with `name` the language's entry in the twelve-string table at `01E88B00` — `JP US FR DE IT ES UK
@@ -182,7 +182,7 @@ those files to the byte (§6).
   found (DG-6, 2026-09-13):** the 256-pointer array at `022C51F0` is **never filled in this build**. Its only references are the resource initialiser `0032EA90`, which zeroes all 256 qwords (`0x20` iterations of 8 stores, `0032EAB1`–`0032EAD8`), and the two size readers `0032E400` and `0032EB40`, which fall back to the `.fst` table (`002DF960`) whenever the pointer is null. Controls: the RIP scan that finds those three sites finds no other; no absolute displacement and no data qword addresses the array. So every request size comes from the `.fst`, and the pointer path — which skips the round-up to 64 — is dormant. A write through a pointer computed from an unrelated base would
   escape these instruments.
 - **The request queue** beyond the placement of the size — the 64 slots' state machine, the chunked
-  mode, and the completion callback are unread (**FZ-12**).
+  mode, and the completion callback are unread (**FZ-12**) *(answered: see [the queue page](../the-resource-request-queue.md) §2.3, the six-state pump, and part A's done / cancel callbacks; 2026-10-02, OPUS)*.
 - **Why ten kinds are unsized** although four of them have path arrays — whether those paths are
   loaded by another mechanism or are dead.
 - **The two byte-identical pairs among the twelve files** are not identified here.
@@ -226,7 +226,7 @@ references, and nothing else in the image touches it.
 | ext | files | signature | note |
 |---|---:|---|---|
 | `dat` | 2,948 | `'himg'`, `'hdat'`, `01 00 00 00` | several layouts under one extension |
-| `bin` | 1,439 | `'sloc'`, `'st2e'`, `'gmap'`, `'hctg'`, `'FLAG'`, `'CCdd'` | several layouts; `st2e` is documented |
+| `bin` | 1,439 | `'sloc'`, `'st2e'`, `'gmap'`, `'hctg'`, `'FLAG'`, ~~`'CCdd'`~~ *(corrected 2026-10-02, OPUS: `CCdd` is not a magic: the 18 `face_guest08`/`09` copies open with byte-doubled image data, `43 43 64 64 6c 6c …`; [the PS2 README](../PS2-Image-Data-Formats/README.md), 2026-09-19)* | several layouts; `st2e` is documented |
 | `mrp` | 116 | `4D 52 50 00` = `MRP\0` | uniform across the sample |
 | `cl2` | 20 | `'CLT2'` | uniform; sits beside `.tm2` in the arrays |
 | `as7` | 18 | `41 37 00 40` / `41 37 0C 18` | two variants |
@@ -234,7 +234,7 @@ references, and nothing else in the image touches it.
 | `lst` | 9 | `'qstl'` | uniform; the quest list beside `menuquest*.bin` |
 | `mg` | 2 | `10 00 00 00` | `WorldMap\meshdata.mg` |
 
-**Open:** none of the eight has a loader sheet, and `dat` and `bin` cannot get one row each - the
+**Open:** none of the eight has a loader sheet *(answered: see the *Re-derived 2026-09-18* note below - six of the eight have one; 2026-10-02, OPUS)*, and `dat` and `bin` cannot get one row each - the
 census already refuses to disposition an extension with several signatures, and both have several.
 
 > *Re-derived 2026-09-18 (FABLE):* the reservation above is closed by the sheets written since. `check_assets.py` now lists **six of the eight as explained**, each with a loader sheet in [PS2-Image-Data-Formats](../PS2-Image-Data-Formats/README.md): [`mrp`](../PS2-Image-Data-Formats/mrp-menu-resource-packages.md), [`cl2`](../PS2-Image-Data-Formats/cl2-menu-colour-tables.md), [`as7`](../PS2-Image-Data-Formats/as7-menu-graphics-containers.md), [`btm`](../PS2-Image-Data-Formats/btm-exfont-bitmaps.md), [`lst`](../PS2-Image-Data-Formats/lst-menuquest-list.md) and [`mg`](../PS2-Image-Data-Formats/mg-worldmap-mesh.md); and **`dat` and `bin` as buckets** ([the dat and bin extension buckets](../VBF-Archive-And-Authored-Tables/the-dat-and-bin-extension-buckets.md), [the bin_menu image families](../PS2-Image-Data-Formats/binmenu-guest-face-and-map-effect-images.md)), which is the only disposition the sentence above said a multi-signature extension could take. The status line follows. The eight sheets carry their own open questions; none of them is this page's.

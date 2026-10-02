@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-phase-qualification\\control.py"
+  ],
+  "driver_sha256": "09a4d3950623f11f132a3f1f30bc8f2d309ff34a21b7ddaa541562d57d4e1b21",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

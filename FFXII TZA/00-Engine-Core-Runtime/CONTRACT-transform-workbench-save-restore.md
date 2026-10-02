@@ -25,7 +25,7 @@ audit:
 
 # Contract — the transform workbench's save and restore
 
-249 functions write one shared area and nothing restores it; the house rule is *"treat the workbench
+249 functions write one shared area and nothing restores it *(answered: see the workbench page's CORRECTED 2026-09-08, the nine Save / Restore users; 2026-10-02, OPUS)*; the house rule is *"treat the workbench
 as caller-saved."* **Nine functions opt out of that rule** through one explicit save/restore pair,
 and this contract states what those nine are promising and what they may rely on.
 
@@ -165,7 +165,7 @@ make Restore loop over a wrong count and write through whatever the pointer arra
 nine Save callers, the transitive set reachable through direct calls was taken and asked whether Save
 is reachable again. **Eight of the nine cannot reach Save by any path**, which is decisive for them:
 a function that cannot reach Save at all cannot reach it between its own Save and Restore. The ninth,
-`0044BAC0`, can — and only through `0026EE00`, which is itself one of the nine. That reduced the
+`0044BAC0`, can — ~~and only through `0026EE00`, which is itself one of the nine~~ and through six of the other eight *(corrected 2026-10-02, OPUS: it calls `0042FDB0` at `0044BAC0+0x2C8`, `0026EE00` at `+0x2EB`, `00431D30` at `+0x32E`, `003D8E50` at `+0x580`, `003AFDD0` at `+0x598`, and reaches `002F1D90` through `002F1F40` (`+0x5A8`, then `002F1F40+0x10C`); none of these calls is inside its save window)*. That reduced the
 question to one window:
 
 ```
@@ -197,7 +197,7 @@ workbench borrowers in the image (111 rip-operands into `022D8F00`–`022D9500`,
 `(mode_byte ^ 2) << 4` at `00502670`/`005027C1` immediately before `call 00501820`, and the callee
 reads it rip-relative — 0 = verbatim 16-byte copy, `0x40` = half-swap, else funnel-shift a 128-bit
 window at that bit offset from a 32-byte pair. **So the workbench does begin at `022D8F00`; the
-cell is borrowed scratch like every other row, and the wholesale-clear hazard stays: clearing the
+cell is borrowed scratch like every other row, ~~and the wholesale-clear hazard stays~~ and no clear reaches it, since `0036D9E0` stores only `022D91B0`–`022D942F` and vf00 *(corrected 2026-10-02, OPUS: `0036D9E0+0x25`–`+0x38A`)*; still, clearing the
 region between `00502280`'s store and `00501820`'s read would corrupt the parameter.**
 
 ## 11. Observable behaviour
@@ -339,8 +339,8 @@ Requested from ASTRA; not claimed by me.
   (SWE2-CONTRACT): no — and nobody could.** All nine call sites decoded: eight pass `ecx = 1`
   (`0026EE2C`, `002F1CF5`, `002F1DAC`, `003AFDEC`, `003D8E78`, `00431D4C`, `0044C43E`,
   `0046227C`), one passes `ecx = 2` (`004300F9`, saving rows `022D8F30`+`022D8F40`). Since a
-  second Save overwrites the first frame in place (§10), a single save window can protect at
-  most two rows — a whole matrix is unreachable through this convention.
+  second Save overwrites the first frame in place (§10), ~~a single save window can protect at~~
+  ~~most two rows — a whole matrix is unreachable through this convention~~ no shipped save window protects more than two rows, but the convention itself takes any count *(corrected 2026-10-02, OPUS: Save's loop walks `ecx` pointers, `0036D930+0x31`–`+0x50`, bounded only by the 32-entry layout below; a caller passing four pointers would save a whole matrix)*.
 - ~~What `022D8F0C` belongs to, and therefore where the workbench really begins — see §10.~~
   **CLOSED 2026-09-23 (SWE2-CONTRACT): it belongs to the workbench — specifically to borrower
   `00502280`, which is not foreign at all (111 rip-operands into the region).** The cell is its
@@ -350,7 +350,7 @@ Requested from ASTRA; not claimed by me.
   are not established here.~~ **BOUNDED 2026-09-23 (SWE2-CONTRACT): the layout itself bounds N
   at 32 — enforced by nothing.** A decode-verified raw-disp32 census over all of `.text`
   (covering the non-`.pdata` Save body `0036D930`, which the `.pdata` census misses) finds:
-  values array `lea`'d at `0036D954` = `02EC0800` (16 B/item), pointers `lea`'d at `0036D95B` =
+  values array `lea`'d at ~~`0036D954`~~ `0036D930+0x23` = `02EC0800` (16 B/item), pointers `lea`'d at ~~`0036D95B`~~ `0036D930+0x2A` *(corrected 2026-10-02, OPUS: the two `lea` instructions start at `0036D930+0x23` and `+0x2A`)* =
   `02EC0A00` (8 B/item) — exactly `0x200` apart, so `values[32]` would write `pointers[0]`. The
   pointer array is separately bounded at 36 by foreign flag words at `02EC0B24`/`02EC0B28`
   (`0036D840`'s mask pair). No instruction compares `ecx` against anything — the bound is

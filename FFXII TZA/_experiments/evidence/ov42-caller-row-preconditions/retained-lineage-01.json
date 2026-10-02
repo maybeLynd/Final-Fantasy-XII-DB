@@ -1,0 +1,14 @@
+[
+  {
+    "copy": "current-row-source-01.json",
+    "commit": "fd45553c7d715dbe3e9e1a919b7961114f0df8e4",
+    "member": "Database/FFXII TZA/_experiments/evidence/autoattack-commit-exception/retained/current-row-source-01.json",
+    "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+  },
+  {
+    "copy": "current-row-source-02.json",
+    "commit": "fd45553c7d715dbe3e9e1a919b7961114f0df8e4",
+    "member": "Database/FFXII TZA/_experiments/evidence/autoattack-commit-exception/retained/current-row-source-02.json",
+    "sha256": "1b6bebb2a932b09c387ead6830cd4088236ad551ccbc1c52b9651ca0d8faa9b8"
+  }
+]

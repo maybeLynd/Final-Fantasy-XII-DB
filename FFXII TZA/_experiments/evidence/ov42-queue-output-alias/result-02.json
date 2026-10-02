@@ -1,0 +1,219 @@
+{
+  "producer_complete": true,
+  "method": "A retained original shipping bytes/local CFG and write-range algebra; no new capture/native/emulator/game execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "6734ed9df59e8e5659229725ab2b2469a5b4e1836689167856d08b03bbbd0faf",
+  "source_pins": [
+    {
+      "path": "spattack-queue-reader-raw-01.json",
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c"
+    },
+    {
+      "path": "spattack-info-raw-01.json",
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 15,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 42,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "input_pins": [
+    {
+      "path": "retained-remap-manifest.json",
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230"
+    },
+    {
+      "path": "spattack-queue-reader-raw-01.json",
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c"
+    },
+    {
+      "path": "spattack-info-raw-01.json",
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    }
+  ],
+  "facts": {
+    "native_partitions": [
+      {
+        "queue_available": false,
+        "action_pointer_nonnull": false,
+        "unit_pointer_nonnull": false,
+        "writes": [],
+        "return_DWORD": 0
+      },
+      {
+        "queue_available": false,
+        "action_pointer_nonnull": false,
+        "unit_pointer_nonnull": true,
+        "writes": [],
+        "return_DWORD": 0
+      },
+      {
+        "queue_available": false,
+        "action_pointer_nonnull": true,
+        "unit_pointer_nonnull": false,
+        "writes": [],
+        "return_DWORD": 0
+      },
+      {
+        "queue_available": false,
+        "action_pointer_nonnull": true,
+        "unit_pointer_nonnull": true,
+        "writes": [],
+        "return_DWORD": 0
+      },
+      {
+        "queue_available": true,
+        "action_pointer_nonnull": false,
+        "unit_pointer_nonnull": false,
+        "writes": [
+          "0x309c22"
+        ],
+        "return_DWORD": 1
+      },
+      {
+        "queue_available": true,
+        "action_pointer_nonnull": false,
+        "unit_pointer_nonnull": true,
+        "writes": [
+          "0x309c20",
+          "0x309c22"
+        ],
+        "return_DWORD": 1
+      },
+      {
+        "queue_available": true,
+        "action_pointer_nonnull": true,
+        "unit_pointer_nonnull": false,
+        "writes": [
+          "0x309c13",
+          "0x309c22"
+        ],
+        "return_DWORD": 1
+      },
+      {
+        "queue_available": true,
+        "action_pointer_nonnull": true,
+        "unit_pointer_nonnull": true,
+        "writes": [
+          "0x309c13",
+          "0x309c20",
+          "0x309c22"
+        ],
+        "return_DWORD": 1
+      }
+    ],
+    "source_order": [
+      "queue DWORD read22C2178",
+      "conditional action DWORD store RDX",
+      "conditional unit DWORD read22C218C/store RCX",
+      "queue DWORD reset22C2178=FFFFFFFF",
+      "DWORD return1"
+    ],
+    "both_null": "Available queue with both output pointersNULL: no output dereference/write, queue still reset, DWORD return1. Unavailable queue returnsDWORD0, leaves queue and outputs unchanged.",
+    "overlap_formula": "For nonNULL source-global-disjoint outputs, delta=RCX-RDX. Final action byte[j] is unit byte[j-delta] when0<=j-delta<4, otherwise original action byte[j]. Samebuffer leaves unit DWORD in both views. Only byte-range-disjoint outputs guarantee preservation of both values independent of their contents.",
+    "arithmetic_countermodels": [
+      {
+        "unit_pointer_minus_action_pointer": -4,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "2f010000",
+        "final_action_DWORD": 303,
+        "overlap_bytes": 0
+      },
+      {
+        "unit_pointer_minus_action_pointer": -3,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "89010000",
+        "final_action_DWORD": 393,
+        "overlap_bytes": 1
+      },
+      {
+        "unit_pointer_minus_action_pointer": -2,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "ab890000",
+        "final_action_DWORD": 35243,
+        "overlap_bytes": 2
+      },
+      {
+        "unit_pointer_minus_action_pointer": -1,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "cdab8900",
+        "final_action_DWORD": 9022413,
+        "overlap_bytes": 3
+      },
+      {
+        "unit_pointer_minus_action_pointer": 0,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "efcdab89",
+        "final_action_DWORD": 2309737967,
+        "overlap_bytes": 4
+      },
+      {
+        "unit_pointer_minus_action_pointer": 1,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "2fefcdab",
+        "final_action_DWORD": 2882400047,
+        "overlap_bytes": 3
+      },
+      {
+        "unit_pointer_minus_action_pointer": 2,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "2f01efcd",
+        "final_action_DWORD": 3454992687,
+        "overlap_bytes": 2
+      },
+      {
+        "unit_pointer_minus_action_pointer": 3,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "2f0100ef",
+        "final_action_DWORD": 4009754927,
+        "overlap_bytes": 1
+      },
+      {
+        "unit_pointer_minus_action_pointer": 4,
+        "initial_action_hex": "2f010000",
+        "unit_hex": "efcdab89",
+        "final_action_bytes": "2f010000",
+        "final_action_DWORD": 303,
+        "overlap_bytes": 0
+      }
+    ],
+    "source_alias_limit": "Unit global22C218C is read after the first output store. If an output aliases source/reset globals, the unchanged-unit/overlap formula premises fail. Such aliases are not included in this proof.",
+    "bridge_limit": "348330 unconditionally reads DWORD[*RBX] and DWORD[*RSI] after309C00 normal return, even when its queue result is0. Primitive null guards therefore do not certify a safe whole bridge call; valid destinations still required. No actual null pointer, exception/fault or authored alias observed."
+  },
+  "limits": "Valid stable readable source globals, nonwrapping readable/writable output ranges if nonNULL; overlap algebra requires output ranges disjoint from both source/reset globals. Private frame, normal ABI/returns/no interference. No actual authored pointer alias, allocation size, fault, owner/lifetime, concurrent state, interpreter or natural command reachability.",
+  "affected_claims": [
+    "OV42 two-field native output representation and unchanged transfer premise",
+    "FABLE script-to-native queue reader versus full bridge safety",
+    "OPUS nullable primitive and disjoint out-range ABI preconditions"
+  ]
+}

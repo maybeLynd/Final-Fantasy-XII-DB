@@ -1,0 +1,165 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "the-six-vfx-display-layers.json",
+ "rows": [
+  {
+   "fn": "0017FDE0",
+   "text": "passes the pointer the 8-byte getter of qword `01F7F598` returns to a 15-byte helper as `rcx`; when byte `+0x8` of the record that call returns is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "anchors": [
+    [
+     "0017FDE4",
+     "call"
+    ],
+    [
+     "0017FDEC",
+     "call"
+    ],
+    [
+     "0017FDF1",
+     "cmp"
+    ],
+    [
+     "0017FDF7",
+     "mov"
+    ],
+    [
+     "0017FDFF",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0017FE60",
+   "text": "when `ecx` is non-zero calls a 66-byte helper, otherwise a 93-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "anchors": [
+    [
+     "0017FE64",
+     "test"
+    ],
+    [
+     "0017FE70",
+     "call"
+    ],
+    [
+     "0017FE7F",
+     "call"
+    ],
+    [
+     "0017FE84",
+     "cmp"
+    ],
+    [
+     "0017FE8A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0017FEE0",
+   "text": "when `ecx` is non-zero calls a 33-byte helper, otherwise a 75-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "anchors": [
+    [
+     "0017FEE4",
+     "test"
+    ],
+    [
+     "0017FEF0",
+     "call"
+    ],
+    [
+     "0017FEFF",
+     "call"
+    ],
+    [
+     "0017FF04",
+     "cmp"
+    ],
+    [
+     "0017FF0A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001B2600",
+   "text": "calls a 157-byte helper (`rcx`); then, when byte `+0x98` of `rcx` is non-zero, tail-jumps a 38-byte helper with 3, otherwise returns",
+   "anchors": [
+    [
+     "001B2609",
+     "call"
+    ],
+    [
+     "001B260E",
+     "cmp"
+    ],
+    [
+     "001B2617",
+     "mov"
+    ],
+    [
+     "001B2621",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003A3990",
+   "text": "when dword `02AEF414` is non-zero, calls a 63-byte helper (qword, 2) for each qword of the array at `02AEF420` while the index stays unsigned-below dword `02AEF414` (re-read every pass), then zeroes dword `02AEF414`; when that dword is zero it returns without work",
+   "anchors": [
+    [
+     "003A3994",
+     "mov"
+    ],
+    [
+     "003A39C9",
+     "call"
+    ],
+    [
+     "003A39D0",
+     "cmp"
+    ],
+    [
+     "003A39E2",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0017FDE0",
+   "was": "passes the pointer `00189120()` returns to `001867B0` as `rcx`; when byte `+0x8` of the record that call returns is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "now": "passes the pointer the 8-byte getter of qword `01F7F598` returns to a 15-byte helper as `rcx`; when byte `+0x8` of the record that call returns is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 0017FDE0+0x4, 0017FDE0+0xC)"
+  },
+  {
+   "fn": "0017FE60",
+   "was": "when `ecx` is non-zero calls `001868A0(00189120())`, otherwise `00186840(00189120())`; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "now": "when `ecx` is non-zero calls a 66-byte helper, otherwise a 93-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 0017FE60+0x8, 0017FE60+0x10, 0017FE60+0x17, 0017FE60+0x1F)"
+  },
+  {
+   "fn": "0017FEE0",
+   "was": "when `ecx` is non-zero calls `00186A50(00189120())`, otherwise `00186A00(00189120())`; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "now": "when `ecx` is non-zero calls a 33-byte helper, otherwise a 75-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 0017FEE0+0x8, 0017FEE0+0x10, 0017FEE0+0x17, 0017FEE0+0x1F)"
+  },
+  {
+   "fn": "001B2600",
+   "was": "calls `001FBE50(rcx)`; then, when byte `+0x98` of `rcx` is non-zero, tail-jumps `001823E0(3)`, otherwise returns",
+   "now": "calls a 157-byte helper (`rcx`); then, when byte `+0x98` of `rcx` is non-zero, tail-jumps a 38-byte helper with 3, otherwise returns",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 001B2600+0x9, 001B2600+0x21)"
+  },
+  {
+   "fn": "003A3990",
+   "was": "when dword `02AEF414` is non-zero, calls `0020E630(qword, 2)` for each qword of the array at `02AEF420` while the index stays unsigned-below dword `02AEF414` (re-read every pass), then zeroes dword `02AEF414`; when that dword is zero it returns without work",
+   "now": "when dword `02AEF414` is non-zero, calls a 63-byte helper (qword, 2) for each qword of the array at `02AEF420` while the index stays unsigned-below dword `02AEF414` (re-read every pass), then zeroes dword `02AEF414`; when that dword is zero it returns without work",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 003A3990+0x39 reaches an unowned function"
+  }
+ ]
+}

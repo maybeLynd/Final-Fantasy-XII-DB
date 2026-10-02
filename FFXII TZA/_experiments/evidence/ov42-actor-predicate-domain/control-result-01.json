@@ -1,0 +1,77 @@
+{
+  "complete": true,
+  "CLI_cases": [
+    {
+      "case": "missing-CFG",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\missing-CFG\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\missing-CFG\\fresh-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false,
+      "expected_refusal": true,
+      "driver_sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    },
+    {
+      "case": "wrong-CFG-interface",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\wrong-CFG-interface\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\wrong-CFG-interface\\fresh-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false,
+      "expected_refusal": true,
+      "driver_sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    },
+    {
+      "case": "missing-class-contract",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\missing-class-contract\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\missing-class-contract\\fresh-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false,
+      "expected_refusal": true,
+      "driver_sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    }
+  ],
+  "synthetic_derive_cases": [
+    {
+      "case": "action-carrier",
+      "pc": "0x2ffe9a",
+      "bytes": "0fb7c8",
+      "args": "ecx, ax",
+      "refused": true,
+      "diagnostic": "availability source witness changed 0x2ffe9a"
+    },
+    {
+      "case": "parsed-record-carrier",
+      "pc": "0x2ffe97",
+      "bytes": "488bd6",
+      "args": "rdx, rsi",
+      "refused": true,
+      "diagnostic": "availability source witness changed 0x2ffe97"
+    },
+    {
+      "case": "class-failure-return",
+      "pc": "0x2ffd94",
+      "bytes": "b800000000",
+      "args": "eax, 0",
+      "refused": true,
+      "diagnostic": "availability source witness changed 0x2ffd94"
+    }
+  ],
+  "limits": "Three actual CLI prerequisites and three synthetic decoded-record controls; no new shipping capture, table census or original-code execution"
+}

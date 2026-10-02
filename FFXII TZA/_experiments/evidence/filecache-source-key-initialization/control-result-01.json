@@ -1,0 +1,57 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "77a4f6118d3fa89b42cf97340d7ca066c610f6d92989b297b49effe221dd89aa",
+  "positive_producer_sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e",
+  "cases": [
+    {
+      "name": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-source-key-initialization\\controls-01\\failed-capture\\prove.py",
+        "refused-result.json"
+      ],
+      "driver_sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic": "required capture failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true
+    },
+    {
+      "name": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-source-key-initialization\\controls-01\\missing-source\\prove.py",
+        "refused-result.json"
+      ],
+      "driver_sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true
+    },
+    {
+      "name": "coherent-nonzero-key-initializer",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-source-key-initialization\\controls-01\\coherent-nonzero-key-initializer\\prove.py",
+        "refused-result.json"
+      ],
+      "driver_sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true
+    }
+  ],
+  "count": 3,
+  "limits": "Three actual disposable producer CLI refusals plus reused positive. Not original instructions/native/game tests or independent acceptance."
+}

@@ -1,0 +1,226 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY Closebranch effects and sentinelpostcondition counterexample",
+  "driver_sha256": "d498f547510f5998b7cf0b33bea37c4e20073cf86724dde064752bbd92d329d7",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "f5ee21d7eeb66b9955599566e1cdb9586efd295a856af78f2f2bc9547d5fc177"
+    },
+    {
+      "path": "retained-open/source-01.json",
+      "sha256": "c150eafdf574433fb99361957edd40c96890544eb1009c0ff6ee507cbee8b510"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 18,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 10,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "new_original_bytes": 64,
+  "retained_predicate": {
+    "lineage": {
+      "manifest_sha256": "7479a4f8d544249b398a57419aab50ac4296bc14eb717c4517cd478320ad2f45",
+      "files": [
+        {
+          "path": "manifest.json",
+          "sha256": "7479a4f8d544249b398a57419aab50ac4296bc14eb717c4517cd478320ad2f45"
+        },
+        {
+          "path": "source-01.json",
+          "sha256": "c150eafdf574433fb99361957edd40c96890544eb1009c0ff6ee507cbee8b510"
+        },
+        {
+          "path": "capture.py",
+          "sha256": "3e7b43355efa4d88f238e2e82c9cfd951dcc42c15d5b15723c6eeded38d0219b"
+        },
+        {
+          "path": "capture-01.status.json",
+          "sha256": "8083b7ff8fbb97714f4910585f324c0c8e61f5a029239aaede90cd08c2f39411"
+        },
+        {
+          "path": "capture-01.stdout",
+          "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+        },
+        {
+          "path": "capture-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "prove.py",
+          "sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e"
+        },
+        {
+          "path": "prove-01.status.json",
+          "sha256": "1a69710267387b9aeebf36e7a5c11e0754076e6dcfe9cf6e73d20fde686088bd"
+        },
+        {
+          "path": "prove-01.stdout",
+          "sha256": "7eeeb5c0c9cd6312e0be4edd5d30b7cc344fabadc157da4de26192558d4e3a10"
+        },
+        {
+          "path": "prove-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "result-01.json",
+          "sha256": "767d3544309632f115c9b183d1cb85dcbbbba426d5b05616724dba7dc392e5f6"
+        }
+      ],
+      "state_at_retention": "Frozen producer-valid, independent review/canonical consumption pending",
+      "use": "Reuse exactcheckedgetter(), not replayed original execution or accepted fullcomposedfailure path"
+    },
+    "getter_driver_sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e",
+    "use": "Purecheckedoriginaloperation predicate reused; not original-code execution or independent acceptance"
+  },
+  "facts": {
+    "Close_partitions": [
+      {
+        "buffer30_nonzero": false,
+        "cache40_signed_positive": false,
+        "calls": [],
+        "own_backing_writes": [],
+        "AL": 1
+      },
+      {
+        "buffer30_nonzero": false,
+        "cache40_signed_positive": true,
+        "calls": [
+          [
+            5881195,
+            "0x1d6aa0"
+          ]
+        ],
+        "own_backing_writes": [
+          {
+            "pc": "0x59bd70",
+            "offset": 64,
+            "bytes": 8
+          }
+        ],
+        "AL": 1
+      },
+      {
+        "buffer30_nonzero": true,
+        "cache40_signed_positive": false,
+        "calls": [
+          [
+            5881170,
+            "0x2150d0"
+          ]
+        ],
+        "own_backing_writes": [
+          {
+            "pc": "0x59bd57",
+            "offset": 48,
+            "bytes": 8
+          }
+        ],
+        "AL": 1
+      },
+      {
+        "buffer30_nonzero": true,
+        "cache40_signed_positive": true,
+        "calls": [
+          [
+            5881170,
+            "0x2150d0"
+          ],
+          [
+            5881195,
+            "0x1d6aa0"
+          ]
+        ],
+        "own_backing_writes": [
+          {
+            "pc": "0x59bd57",
+            "offset": 48,
+            "bytes": 8
+          },
+          {
+            "pc": "0x59bd70",
+            "offset": 64,
+            "bytes": 8
+          }
+        ],
+        "AL": 1
+      }
+    ],
+    "signed_cache_guard": {
+      "instruction": "TEST RDX,RDX; JLE",
+      "condition": "signed64(cache40)<=0 skipsrelease andreset",
+      "boundary_models": [
+        {
+          "QWORD40": 0,
+          "signed64": 0,
+          "skips_release_and_reset": true
+        },
+        {
+          "QWORD40": 1,
+          "signed64": 1,
+          "skips_release_and_reset": false
+        },
+        {
+          "QWORD40": 9223372036854775807,
+          "signed64": 9223372036854775807,
+          "skips_release_and_reset": false
+        },
+        {
+          "QWORD40": 9223372036854775808,
+          "signed64": -9223372036854775808,
+          "skips_release_and_reset": true
+        },
+        {
+          "QWORD40": 18446744073709551614,
+          "signed64": -2,
+          "skips_release_and_reset": true
+        },
+        {
+          "QWORD40": 18446744073709551615,
+          "signed64": -1,
+          "skips_release_and_reset": true
+        }
+      ],
+      "limits": "Fixed-width source arithmetic, not six native pointer values sampled"
+    },
+    "post_Close_zero": {
+      "pre": {
+        "QWORD28": 18446744073709551615,
+        "QWORD30": 0,
+        "QWORD40": 0
+      },
+      "Close_AL": 1,
+      "Close_calls": [],
+      "Close_own_nonstack_writes": [],
+      "post": {
+        "QWORD28": 18446744073709551615,
+        "QWORD30": 0,
+        "QWORD40": 0
+      },
+      "then_IsOpen_AL": 1,
+      "claim_refuted": "NormalCloseAL1 universally implies IsOpenAL0",
+      "limits": "Conditional readableinput/source sequence; no actual caller invocation, naturalallocationNULL or gameplay consequence observed"
+    },
+    "other_limit": "Close body has no own28access; when30=0 and40<=0 it callsnohelpers regardless of28. A non-sentinel28 is another mathematical witness, not an observed Win32handle or leak. Helperarms require normalABI/returns/nativeeffect premises."
+  },
+  "limits": [
+    "Validreadablerecord/privateframe/normalexecution for no-helper path; helperarms additionallynormalABI/returns/nativeeffects/noalias/nointerference.",
+    "Fourlogicalsourcepartitions/signedboundarymodels are mathematics, not native/live runs. No currentcaller or naturalallocationfailure/actualClose/IsOpen observed.",
+    "No leak/lifetime/allwriter/resourcecardinality/actualWin32handle/readfault/scheduling proof. AL-only returns, not fullRAX. Parentpendingacceptance remainsqualified."
+  ],
+  "cleanup": "Onlyownedoffline files; no game/PC/native/instrument/save/config/reference/peer changes."
+}

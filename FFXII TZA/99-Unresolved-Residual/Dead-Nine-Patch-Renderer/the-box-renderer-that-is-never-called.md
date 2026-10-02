@@ -1,5 +1,5 @@
 ---
-system: The nine-patch box renderer that is never called
+system: The nine-patch box renderer that is never called   # <- corrected 2026-10-02, OPUS: it is reached through 00392A00+0x5 (REFUTED box)
 category: 99-Unresolved-Residual
 status: AUDITED
 owner_layer: CodeDomain:Presentation.UI
@@ -140,7 +140,7 @@ only the middle row and middle column. This code does exactly that, and tints ea
 pieces by blending four colours set at the box's corners, so the finished panel carries a smooth
 gradient rather than a flat fill.
 
-**It is never invoked.** Nothing in the shipping executable calls it, mentions its address, or
+**~~It is never invoked.~~** *(answered: see the REFUTED box at the top — `00392A00` is `cmp word [rcx+0x58], 0` then `jne 00392A10` at `00392A00`+0x5, and `00392A00` has four callers; 2026-10-02, OPUS)* ~~Nothing in the shipping executable calls it,~~ mentions its address, or
 stores a pointer to it. Whatever menu style it was written for, the game you can buy does not use
 it — the boxes you actually see are drawn by a different, simpler routine that this code was
 evidently meant to replace.
@@ -160,7 +160,7 @@ had been the census rather than the evidence. Two functions survived that repair
 **The other of the two, `0020AC30`, has since proved reachable** — through a five-byte `JMP` thunk
 that a call-graph census cannot see, documented in
 [cutscene name slots](../Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md).
-The corrected figure is **1 of 158, not 2**, and `00392A10` is that one: no caller, no code
+The corrected figure is **~~1 of 158, not 2~~ 0 of 158** *(answered: see the REFUTED box above; 2026-10-02, OPUS)*, and ~~`00392A10` is that one:~~ no caller, no code
 reference, no data slot, no string, and no thunk. It is the single place in the binary where "we
 cannot explain this" was still a statement about the binary.
 
@@ -173,14 +173,14 @@ It is explained now, and the answer is that nothing calls it.
 ### The island
 
 ```
-00392A10   707 B   nine-patch box renderer          <- NOTHING reaches this
+00392A10   707 B   nine-patch box renderer          <- NOTHING reaches this   <- corrected 2026-10-02, OPUS: reached by jne from 00392A00+0x5, whose four callers are live (REFUTED box)
    |
    +-> 002DD1E0   268 B   open the batch             sole caller: 00392A10
    +-> 002DC7F0  2194 B   draw one cell              sole caller: 00392A10
    +-> 00392CE0   589 B   single-quad fallback       sole caller: 00392A10
-   |      \-> 002DC290  1363 B  the LIVE cell drawer  (11 other callers - not dead)
+   |      \-> 002DC290  1363 B  the LIVE cell drawer  (11 other callers - not dead)   <- corrected 2026-10-02, OPUS: 10 other callers (11 functions, 17 rel32 sites, with 00392CE0)
    +-> 002DD090   332 B   close the batch            sole caller: 00392A10
-   +-> 002DD4B0     7 B   a static global getter     (10 other callers - not dead)
+   +-> 002DD4B0     7 B   a static global getter     (10 other callers - not dead)   <- corrected 2026-10-02, OPUS: 9 other callers (10 functions with 00392A10)
 ```
 
 **Four functions are reachable only through `00392A10`.** If it is dead they are dead, and that is
@@ -231,14 +231,14 @@ consumed separately by the fallback path (§ below).
 The cell drawer blends them where a corner needs a single colour, by successive halving:
 
 ```c
-blended = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);   // per channel
+blended = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);   // per channel   <- corrected 2026-10-02, OPUS: blended = (((c0 + c1) >> 1) + c2 >> 1) + c3 >> 1 per byte, no >> 24 term (002DC7F0+0x253..+0x305; UQ-353 replay below)
 ```
 
 ### The two paths
 
 ```c
 if (FUN_002dd4b0() == 0)
-        FUN_00392ce0(ctx, rect, colours);      // ONE gradient quad, no slicing
+        FUN_00392ce0(ctx, rect, colours);      // ONE gradient quad, no slicing   <- corrected 2026-10-02, OPUS: nine slices - a 3 x 3 loop (00392CE0+0x1B6, +0x1C6) calling 002DC290 per non-empty cell (+0x193)
 else {
         FUN_002dd1e0(batch, ctx);              // open
         ... nine cells via FUN_002dc7f0 ...
@@ -246,9 +246,9 @@ else {
 }
 ```
 
-`002DD4B0` is a 7-byte static global getter with ten callers elsewhere, so it is a **mode flag read
-from a global**, not a computed decision. The fallback `00392CE0` builds a single quad — four
-corner positions and the same four colours, arranged 2×2 — and hands it to `002DC290`, the live
+`002DD4B0` is a 7-byte static global getter with ~~ten callers elsewhere~~ nine callers elsewhere *(corrected 2026-10-02, OPUS: ten functions call it, `00392A10` included)*, so it is a **mode flag read
+from a global**, not a computed decision. The fallback `00392CE0` ~~builds a single quad — four~~
+~~corner positions and the same four colours, arranged 2×2 — and hands it~~ walks the nine cells in a 3 × 3 loop and hands each non-empty one *(corrected 2026-10-02, OPUS: loop bounds at `00392CE0`+0x1B6 and +0x1C6, the `002DC290` call at +0x193, cells (0,0) and (2,2) special-cased at +0x1F7; the nine-patch window frame page's reading)* to `002DC290`, the live
 cell drawer. **So the dead code's own fallback path routes into live code**, which is why the
 fallback looks ordinary while the nine-slice path does not.
 
@@ -285,11 +285,11 @@ are drawn differently from large ones.
 |---|---|---:|---|
 | `00392A10` | `UiBox_DrawNinePatchGradient` | 707 B | **classified GN161** `Presentation.Primitive.NinePatchWindowDispatch`. The root. Derives the 3×3 grid, expands the corner colours, draws nine cells |
 | `002DC7F0` | `UiBox_DrawGradientCell` | 2194 B | **classified GN161** `Presentation.Primitive.SplittingPatchQuadEmit`. One cell: four vertex colours, corner blend, size-banded styling |
-| `00392CE0` | `UiBox_DrawSingleQuadFallback` | 589 B | **classified GN161** `Presentation.Primitive.NinePatchWindowFallback`. The un-sliced path: one gradient quad |
+| `00392CE0` | `UiBox_DrawSingleQuadFallback` | 589 B | **classified GN161** `Presentation.Primitive.NinePatchWindowFallback`. The un-sliced path: ~~one gradient quad~~ nine `002DC290` slices *(corrected 2026-10-02, OPUS: `00392CE0`+0x193 inside the 3 × 3 loop)* |
 | `002DD1E0` | — | 268 B | Opens the draw batch. Sole caller `00392A10` |
 | `002DD090` | — | 332 B | Closes the draw batch. Sole caller `00392A10` |
-| `002DC290` | — | 1363 B | The **live** cell drawer, 11 other callers — not dead |
-| `002DD4B0` | — | 7 B | Static global getter selecting the two paths, 10 other callers — not dead |
+| `002DC290` | — | 1363 B | The **live** cell drawer, ~~11 other callers~~ 10 other callers, 11 in all with `00392CE0` *(corrected 2026-10-02, OPUS: rel32 sweep: 17 sites in 11 functions)* — not dead |
+| `002DD4B0` | — | 7 B | Static global getter selecting the two paths, ~~10 other callers~~ 9 other callers *(corrected 2026-10-02, OPUS: 10 rel32 sites in 10 functions, `00392A10`+0xD4 among them)* — not dead |
 | `002D6990` | `ThreeByThreeAtlasPatchGeometryBuild` | 783 B | A **different, live** 3×3 system — see §5 |
 
 Addresses are Ghidra image base `0x00120000`.
@@ -356,7 +356,7 @@ four; row 2 by eight. The stride is what makes the four corner colours interpola
 **The per-channel corner blend** in the cell drawer:
 
 ```c
-blended_channel = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);
+blended_channel = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);   <- corrected 2026-10-02, OPUS: (((c0 + c1) >> 1) + c2 >> 1) + c3 >> 1 per byte, weights 1/8, 1/8, 1/4, 1/2 (002DC7F0+0x253..+0x305)
 ```
 
 ---
@@ -379,7 +379,7 @@ blended_channel = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);
                         002DD090  close batch
 ```
 
-**Upstream: none.** Established in §8 by four independent routes.
+**~~Upstream: none.~~** *(answered: see the REFUTED box — `00392A00` is `cmp word [rcx+0x58], 0` then `jne 00392A10` at `00392A00`+0x5, and `00392A00` has four callers; 2026-10-02, OPUS)* ~~Established in §8 by four independent routes.~~
 
 **Downstream:** the fallback path reaches live drawing code; the nine-slice path reaches only its
 own cell drawer.
@@ -397,7 +397,7 @@ shows and is reached from eleven callers that have nothing to do with this islan
 
 ## 6. Modding notes
 
-- **Do not patch this expecting a visual change.** It is unreachable; edits have no effect. This is
+- **~~Do not patch this expecting a visual change.~~** ~~It is unreachable; edits have no effect.~~ *(answered: see the REFUTED box — it is reachable through `00392A00`; 2026-10-02, OPUS)* This is
   the practical consequence of §8 and the first thing to know about the file.
 - **It is, however, a working implementation.** To *use* it, a mod would have to call `00392A10`
   itself with a `BoxRect` and four colours. Every callee it needs is present and intact, and its
@@ -724,3 +724,13 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **Presentation — MECHANICAL, 80 edges.** `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`) is called by `0024A710`, `002B0280`, `002DB080`, `002DC290` and 12 more; `00181460` is called by `002AFDC0`, `002D9DB0`, `002DA2D0`, `002DA7C0` and 10 more; `002DD4B0` is called by `00245170`, `002455A0`, `0029E840`, `0029ED50` and 3 more; `002DAC70` is called by `00245170`, `002455A0`, `002D0650`, `002D6990` and 1 more; `002DAF30` is called by `00245170`, `002455A0`, `002D0650`, `002D6990` and 1 more; `002DD350` is called by `003C2870`, `003C2E60`, `003C37B0`, `003C4B20` and 1 more; `00245E60` calls `00245170`, `002455A0`, `00245E60`; `002DA7C0` is called by `00245170`, `002455A0`, `002D6990`; `00275440` is called by `002B7B80`, `002BAF80`; `00392A10` calls `002DC7F0`, `00392CE0`; `00181460` calls `001B06D0`; `0020AC30` calls `001C5750`; `00245E60` is called by `00245E60`; `00246480` is called by `00245E60`; `002D6990` calls `002DA7C0`; `002D6990` is called by `003C6B70`; `002D8C00` is called by `00245E60`; `002DAC70` calls `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`); `002DC290` calls `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`); `002DC290` is called by `00392CE0`; `002DC7F0` is called by `00392A10`; `002DD090` calls `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`); `002DD090` is called by `00392A10`; `002DD1E0` is called by `00392A10`; `002DD350` calls `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`); `00392CE0` calls `002DC290`; `00392CE0` is called by `00392A10`; `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`) calls `GraphicsCommand_PublishCompletedBatchState100` (`0036F360`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-box-renderer-that-is-never-called-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0029B7D0` | 50 B | returns 0 unless `edx` is 1; for 1 calls `002973E0(rcx, dword at r8, dword +0x24 of the object at qword +0x48 of rcx, dword at r8+4)` and returns -1 when that returns 0, else 0 | `0029B7DB`, `0029B7E4`, `0029B7EA`, `0029B7F3`, `0029B7FB` |
+| `0029B810` | 82 B | with the object at qword `+0x48` of `rcx`: when `edx` is 2 stores its dword `+0x2C` shifted left by 4 at `+0x4` of `rcx` and returns 0; when `edx` is 1 calls `002973E0(rcx, dword at r8, its dword +0x30 multiplied by its byte +0x87 when that byte is non-zero, dword at r8+4)` and returns -1 when that returns 0, else 0; any other `edx` returns 0 | `0029B81E`, `0029B829`, `0029B82C`, `0029B846`, `0029B851` |
+| `002C0B40` | 148 B | switches on the dword at `rdx`: 1 stores the qword pointed to by qword `+0x8` of `rdx` at `+0xC0` of `rcx`, clears bit 7 of dword `+0x40`, calls `00247570(rcx, 002735E0(1))`, stores dword 0x800080 at `+0xD8` and returns 0; 3 scales, on the object at qword `+0x38`, word `+0x5A` by word `+0xD8` and word `+0x58` by word `+0xDA` of `rcx` (signed product shifted right by 7) and returns 0; other values tail-jump `005C5230` with `rcx` and `rdx` as passed in | `002C0B5D`, `002C0B7B`, `002C0B8C`, `002C0BBD`, `002C0BC4` |

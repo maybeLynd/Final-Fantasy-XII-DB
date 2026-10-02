@@ -162,3 +162,18 @@ unread, as the page says.
 | B7 | section 2: "each pops its arguments … then raises flag `0x13`" | **precision**: `setbattlemember` runs its preamble and raises the flag (`0034D542`) before its first pop (`0034D558`). The other begins pop first. In every begin the flag still rises before the party changes |
 
 No correction.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-how-a-script-changes-the-battle-party-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00324360` | 23 B | calls `0037CB50()` and returns 1 when its result is non-zero, otherwise 0 | `00324364`, `0032436B`, `0032436D` |
+| `0034CDF0` | 97 B | dispatches on dword `[r8]`: 0 stores 1 to it and continues as 1; 1 calls `00328B20(byte r8+4)` and `003601B0(0x13)`, stores 2 to dword `[r8]` and returns 1; 2 calls `003596B0()` and returns that result when it is non-zero, otherwise calls `003601C0(0x13)` and returns 0; any other value returns 1 | `0034CE0A`, `0034CE18`, `0034CE25`, `0034CE31`, `0034CE40` |
+| `003596B0` | 24 B | calls `00324360()` and returns 1 when its result is not 1, and 0 when it is 1 | `003596B4`, `003596BB`, `003596BE` |
+| `003596D0` | 107 B | fills a stack buffer of dwords with `n` = `0031B510(buffer, 4)` and returns 1 when `ecx` equals one of the first `n` dwords, otherwise 0 (also 0 when signed `n` is 0 or below), closing with the stack-cookie check `00808C40` against qword `01F44830` | `003596F1`, `003596FD`, `00359700`, `0035970E`, `00359723` |
+| `00359740` | 107 B | fills a stack buffer of dwords with `n` = `00320800(buffer, 9)` and returns 1 when `ecx` equals one of the first `n` dwords, otherwise 0 (also 0 when signed `n` is 0 or below), closing with the stack-cookie check `00808C40` against qword `01F44830` | `00359761`, `0035976D`, `00359770`, `0035977E`, `00359793` |
+| `00359BA0` | 93 B | fills a stack buffer of dwords with `n` = `0031B510(buffer, 4)` and returns the OR of `1 << d` over the first `n` dwords `d` (a 32-bit `shl` by `cl`), or 0 when signed `n` is 0 or below | `00359BBF`, `00359BCB`, `00359BDA`, `00359BE0`, `00359BE8` |
+| `00359C00` | 93 B | fills a stack buffer of dwords with `n` = `00320800(buffer, 9)` and returns the OR of `1 << d` over the first `n` dwords `d` (a 32-bit `shl` by `cl`), or 0 when signed `n` is 0 or below | `00359C1F`, `00359C2B`, `00359C3A`, `00359C40`, `00359C48` |
+| `0037CB50` | 46 B | returns 1 when qword `02EBF400` is 0; otherwise, when signed byte `02EBF3FD` is above 0 it returns 1 when signed byte `02EBF3FE` is 4 or more and 0 when below 4, and when `02EBF3FD` is 0 or below it returns 1 when signed byte `02EBF3FE` is negative and 0 otherwise | `0037CB58`, `0037CB61`, `0037CB6A`, `0037CB79`, `0037CB7B` |

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-zero-handle-return\\capture.py"
+  ],
+  "driver_sha256": "08bf5f6f2dbf30726f9bc77015ebf39ecf2f1c9e7f4eca2b470af271deb22bfa",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

@@ -192,7 +192,7 @@ and twenty-seven others.
 > tuning console rather than a debug display**, and it is a fact no per-arm reading could have
 > produced.
 
-The hottest single address is `01F82D20`, nudged by **18** different commands.
+The hottest single address is `01F82D20`, ~~nudged by~~ dereferenced by **18** different commands *(corrected 2026-10-02, OPUS: the slot itself is only loaded, 159 `mov r64` loads image-wide and 24 in `001D1660`, e.g. `001D1660+0x12C3`; its one store is at `+0x1C1` of a 2,153-byte Phyre framework body; the corrections below)*.
 
 ## The arms mostly do NOT touch globals — read slice A before starting
 
@@ -241,8 +241,8 @@ For each id in the slice, a row:
 
 > **`id · arm address · field · width · step MAGNITUDE · direction mechanism · bound`**
 
-**The magnitude is the invariant; the sign is not a property of the arm.** Every stepping arm
-holds both directions - `addss`/`subss` on one constant in the float arms, `test bl,bl ; cmovne`
+**The magnitude is the invariant; the sign is not a property of the arm.** ~~Every stepping arm~~
+~~holds both directions~~ Every stepping arm but id 38 holds both directions *(corrected 2026-10-02, OPUS: id 38 at `001D1660+0x623` only increments, `+0x62E` `inc ecx`, then wraps mod 3)* - `addss`/`subss` on one constant in the float arms, `test bl,bl ; cmovne`
 selecting `+1`/`-1` in the integer arms - so **a row that records "a step" has already lost the
 thing that makes it a console.** Record the mechanism that chooses, not one branch of it. Rows for ids landing on `001D4BFA` say **do-nothing** and stop there — 56 of the
 282 do, and they are gaps in a tool edited over years, not work.
@@ -256,8 +256,8 @@ thing that makes it a console.** Record the mechanism that chooses, not one bran
   exists because one inviting command out of ~250 nearly named the system, and **a slice is exactly
   the position from which that mistake is easiest to make.** State what your slice contains; the
   distribution is already measured elsewhere.
-- **Cite by address only what you have accounted for.** A shared singleton — `001A9930` is used by 45
-  arms, `00193D50` by 33 — is a hub, and citing it by address commits your rows to its whole
+- **Cite by address only what you have accounted for.** A shared singleton — `001A9930` is ~~used by 45~~ called at 45 sites
+  ~~arms~~ in `001D1660`, `00193D50` at 33 *(corrected 2026-10-02, OPUS: direct call sites in the dispatcher)* — is a hub, and citing it by address commits your rows to its whole
   neighbourhood. **Name it; do not cite it.**
 - **Any absence claim needs a known-positive control chosen before the scan.** If a slice reports "no
   arm in this range touches X", the scan must first find something you already know is there.
@@ -287,7 +287,7 @@ thing that makes it a console.** Record the mechanism that chooses, not one bran
 > the answer.** Otherwise it is documentation of collisions after the fact — which is what it had been
 > until this line was added.
 
-**96 of 282 ids catalogued; 186 remain.**
+**96 of 282 ids catalogued; 186 remain** *(answered: see H delivered and The table is closed, 282 of 282, below; 2026-10-02, OPUS)*.
 
 ### A slice is stamped with the parent it was checked against, not the current one
 
@@ -325,7 +325,7 @@ dereference to reach fields of the object behind it — id 134 steps the dword a
 
 > **A `data_touched` column cannot separate an 8-byte pointer load from a 4-byte float nudge**, which
 > is how a pointer became the most-nudged address in the binary. *Control:* the same scan does find
-> float-shaped references — `01F82ED0`, sixteen bytes further into the same region, is read and
+> float-shaped references — `01F82ED0`, ~~sixteen bytes further~~ `0x1B0` (432) bytes further *(corrected 2026-10-02, OPUS: `0x01F82ED0 − 0x01F82D20`)* into the same region, is read and
 > written as a float.
 
 **Both corrections are to figures this work order published**, and both came from a slice re-deriving

@@ -1,0 +1,224 @@
+{
+ "page": "16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01GAVL9pjWiJ4RaEZv212gfL",
+ "report": "the-license-board-grid-build-and-its-change-sweep.json",
+ "rows": [
+  {
+   "fn": "001E0A40",
+   "text": "returns 0 when `00198790()` returns null, otherwise calls `00198790()` again and returns the zero-extended byte `001976E0(that pointer)` returns",
+   "anchors": [
+    [
+     "001E0A44",
+     "call"
+    ],
+    [
+     "001E0A4E",
+     "call"
+    ],
+    [
+     "001E0A56",
+     "call"
+    ],
+    [
+     "001E0A5B",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "001E0A70",
+   "text": "returns 0 when `00198790()` returns null, otherwise calls `00198790()` again and returns the zero-extended byte `001976F0(that pointer)` returns",
+   "anchors": [
+    [
+     "001E0A74",
+     "call"
+    ],
+    [
+     "001E0A7E",
+     "call"
+    ],
+    [
+     "001E0A86",
+     "call"
+    ],
+    [
+     "001E0A8B",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "002C1000",
+   "text": "switches on dword `[rdx]`: 2 calls `002D0410(rcx)` and returns 0, 18 returns 0, values other than 1 tail-jump `005C5230`; for 1 resolves `00282DF0(word +0xDE0 of qword 0209AC30)`, reads its dwords `+0x90`, `+0xB0`, `+0x94` (-1 read as 0, then capped unsigned at `0x5F5E0FF`, `0x1869F`, `0xF423F`), calls `002432B0(rcx+0x50, qword +0x30 of qword 0209AC30, 0xF, rcx)` and copies its words `+4`..`+0xA` to `+0x98`..`+0x9E`, and prints the values with `0029FF60(child, buffer, 0x20, value, 0, 0)` into children (qwords of `[rcx+0x60]`): `+0x30` from `+0xD4` with the first; then when record word `+0x60` is not negative and bit 1 of its byte `+0` is set, clears bit 0 of dword `+8` of child `+0x10`, prints the third into `+0x38` from `+0xF4` and gives child `+0x20` `002F9860(0x3EB)`, `0020E620(0)` and `002DD7E0(2)` at `+0x18`/`+0x20`/`+0x24`; otherwise clears bit 0 of children `+0x10`, `+0x20`, prints the third into `+0x38`, sets bit 0 of children `+0x28` and `+0x18` to `00283730(0x4B5)` AND 1 and prints the second into `+0x28` from `+0x114`; finally clears bit 11 of dword `+0x40` and returns 0",
+   "anchors": [
+    [
+     "002C1062",
+     "call"
+    ],
+    [
+     "002C10EE",
+     "cmova"
+    ],
+    [
+     "002C113C",
+     "cmp"
+    ],
+    [
+     "002C123B",
+     "call"
+    ],
+    [
+     "002C128C",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "002C12B0",
+   "text": "when qword `+0x118` of qword `0209AC30` is non-null and `0027EDA0(that+0xC8, 0, 0)` returns 1, calls `00249C60(0x51)`, `002C1800()`, `002C38B0()` and `002C4720()`; returns 0 on every path",
+   "anchors": [
+    [
+     "002C12C2",
+     "test"
+    ],
+    [
+     "002C12D3",
+     "call"
+    ],
+    [
+     "002C12DD",
+     "lea"
+    ],
+    [
+     "002C12E0",
+     "call"
+    ],
+    [
+     "002C12EF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002C1320",
+   "text": "when qword `+0x118` of qword `0209AC30` is non-null and `0027F430(that+0xC8, 0, 0)` returns 1, calls `00249C60(0x51)`, `002C1800()`, `002C38B0()` and `002C4720()`; returns 0 on every path",
+   "anchors": [
+    [
+     "002C1332",
+     "test"
+    ],
+    [
+     "002C1343",
+     "call"
+    ],
+    [
+     "002C134D",
+     "lea"
+    ],
+    [
+     "002C1350",
+     "call"
+    ],
+    [
+     "002C135F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002D0270",
+   "text": "returns the sign-extended byte `+1` of `rdx` minus the sign-extended byte `+1` of `rcx`",
+   "anchors": [
+    [
+     "002D0275",
+     "movsx"
+    ],
+    [
+     "002D0279",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "002D6680",
+   "text": "returns the byte at `02F973A1` zero-extended when it is non-zero, else 8",
+   "anchors": [
+    [
+     "002D6687",
+     "test"
+    ],
+    [
+     "002D6689",
+     "movzx"
+    ],
+    [
+     "002D668E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00556570",
+   "text": "returns 1 when word `+8` of `rcx` is not `0xFFFF`, else 0",
+   "anchors": [
+    [
+     "00556572",
+     "mov"
+    ],
+    [
+     "00556577",
+     "cmp"
+    ],
+    [
+     "0055657B",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "00556580",
+   "text": "returns bit 13 of dword `+0x18` of `rcx` (shift right by `0xD`, AND 1)",
+   "anchors": [
+    [
+     "00556583",
+     "shr"
+    ],
+    [
+     "00556586",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00558CE0",
+   "text": "switches on dword `[rdx]`: 2 returns 0; 18 returns 0 after, when dword `02CA9678` is non-zero, zeroing qword `02CA8FE0`, calling `00247730(qword 0209AC18, 0)` when that is non-null and zeroing `02CA9678`; values other than 1 tail-jump `005C5230`; for 1 calls `002432B0(rcx+0x50, qword +0x98 of qword 0209AC30, 1, rcx)`, copies its words `+4`..`+0xA` to `+0x98`..`+0x9E` (skipped for a null `rcx`), calls `00247570(rcx, 00D23030)`, stores the payload's first qword at `+0xC0` and its dword `+0x354` at `+0xC8`, resolves `00282DF0(that dword)`, fills child `+0x10` (`+0x18` from `002B58B0`, `+0x20` from `0020E620(0)`) and child `+8` (word `+0xA` from `002C9BD0`, byte `+0x39` from that entry's byte `+7`), then calls `00558E70(rcx)`, `00247930(rcx, 0x5F)` and `00247730(rcx, 1)` and returns 0",
+   "anchors": [
+    [
+     "00558D14",
+     "cmp"
+    ],
+    [
+     "00558D3D",
+     "mov"
+    ],
+    [
+     "00558D74",
+     "call"
+    ],
+    [
+     "00558DF5",
+     "call"
+    ],
+    [
+     "00558E4B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

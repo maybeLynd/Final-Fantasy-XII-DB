@@ -1,0 +1,109 @@
+{
+  "complete_case_file_set": true,
+  "files": [
+    {
+      "case_path": "receipt.json",
+      "bytes": 271,
+      "sha256": "98e6b7f755a115cad624e9d56af09c5744db1659d569e97a8a0e00cab59e5efc",
+      "retained_overlay": "receipt.json"
+    },
+    {
+      "case_path": "result-02.json",
+      "bytes": 8846,
+      "sha256": "2749c7b6e14a2c20fbe6db5aaef283985ae63b57022865240367131fcd95708f",
+      "retained_overlay": "result-02.json"
+    },
+    {
+      "case_path": "retained/capture-filecache-hash-loop.py",
+      "bytes": 1145,
+      "sha256": "3cd757ce5614ef1f4e189fd8b8e08a203a5110900035832f250d5e53bbb3da99",
+      "inherited_base": "retained/capture-filecache-hash-loop.py"
+    },
+    {
+      "case_path": "retained/capture-filecache-key-boundaries.py",
+      "bytes": 2760,
+      "sha256": "e8f0546565a2b5d088b74d544fbeef32a73fcfe726e7bd96c3eeedaca39b504e",
+      "inherited_base": "retained/capture-filecache-key-boundaries.py"
+    },
+    {
+      "case_path": "retained/filecache-hash-loop-capture-01.status.json",
+      "bytes": 66,
+      "sha256": "2534a201ad804d81f93faa12013ca06d9b7ed7879b5507fd8ac8dfd93e32d499",
+      "inherited_base": "retained/filecache-hash-loop-capture-01.status.json"
+    },
+    {
+      "case_path": "retained/filecache-hash-loop-source-01.json",
+      "bytes": 5075,
+      "sha256": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f",
+      "inherited_base": "retained/filecache-hash-loop-source-01.json"
+    },
+    {
+      "case_path": "retained/filecache-key-boundaries-capture-02.status.json",
+      "bytes": 377,
+      "sha256": "4014aab07d746a61ec42005a09311e9410609c80354687f8c6d605f0e7eefff8",
+      "inherited_base": "retained/filecache-key-boundaries-capture-02.status.json"
+    },
+    {
+      "case_path": "retained/filecache-key-boundaries-source-02.json",
+      "bytes": 31339,
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e",
+      "inherited_base": "retained/filecache-key-boundaries-source-02.json"
+    },
+    {
+      "case_path": "retained/filecache-key-preprocessing-positive-02.status.json",
+      "bytes": 506,
+      "sha256": "466b60bfb216a02bbe32e5eb0336c2efcd69bfffc373b4977c94350846ad0048",
+      "inherited_base": "retained/filecache-key-preprocessing-positive-02.status.json"
+    },
+    {
+      "case_path": "retained/filecache-key-preprocessing-result-02.json",
+      "bytes": 30131,
+      "sha256": "ae7ed53bb3128adc748b5012b751791d54297adc5af9e68127426d1a74628e3e",
+      "inherited_base": "retained/filecache-key-preprocessing-result-02.json"
+    },
+    {
+      "case_path": "retained/fst-page-at-read.md",
+      "bytes": 35668,
+      "sha256": "c9f33166be937052bc499e97d2030a6a358aaacf907c366240797ac3d57514a6",
+      "inherited_base": "retained/fst-page-at-read.md"
+    },
+    {
+      "case_path": "retained/manifest.json",
+      "bytes": 10653,
+      "sha256": "f7b5ffccc16ae832d1a7279e1f616c2687e97868b4d98d4378db48ba17e15db6",
+      "inherited_base": "retained/manifest.json"
+    },
+    {
+      "case_path": "retained/path-page-at-read.md",
+      "bytes": 27205,
+      "sha256": "99eb6f544e7d0fe11b219e09d97328f5c7df903fda1349cd0f8c10d854ae3a0b",
+      "inherited_base": "retained/path-page-at-read.md"
+    },
+    {
+      "case_path": "retained/pc1-route-at-read.py",
+      "bytes": 9097,
+      "sha256": "edd0365dc52bf66f42f956cf6a87afddf5d0eb8d1551d75ade63005d0cff561f",
+      "inherited_base": "retained/pc1-route-at-read.py"
+    },
+    {
+      "case_path": "retained/prove-filecache-key-preprocessing.py",
+      "bytes": 9670,
+      "sha256": "72f3ef8b553112461fcf31e3d19d385af39e3c3a6f9e6d938ce4d511b1709cdc",
+      "inherited_base": "retained/prove-filecache-key-preprocessing.py"
+    },
+    {
+      "case_path": "retained/REVIEW.md",
+      "bytes": 934,
+      "sha256": "7cfbc1d54f08735d4705b2f9bbb597eddd30282a2223879dbc1aad42d5bdbd8f",
+      "inherited_base": "retained/REVIEW.md"
+    },
+    {
+      "case_path": "source-01.json",
+      "bytes": 108807,
+      "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69",
+      "inherited_base": "source-01.json"
+    }
+  ],
+  "explicit_removed_base_files": [],
+  "limits": "Exact case file set; unchanged case producer code resolves to archived metadata producer if necessary, not the current final driver."
+}

@@ -1332,7 +1332,7 @@ two questions have been separated.
 
 **NOT CLAIMED:** that a zeroed byte is understood. Not one byte above is better explained than it was
 — `unobservedSpan0298` is still 1,016 bytes of unread `BattleUnit`. The claim is only that a
-reimplementation which zeroes these objects will agree with the engine there, and that the 3,862 are
+reimplementation which zeroes these objects will agree with the engine there, and that the 3,862 *(answered: see the CORRECTED SAME DAY note above, at most 3,079 bytes in 191 spans; 2026-10-02, OPUS)* are
 where it will not.
 
 ## SWE2-EC7-40 update (2026-09-19) - `002E6700`

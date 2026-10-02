@@ -114,7 +114,7 @@ from **8 more** — **15 in total**. Named consumers:
 | `BattleUnit_ComputePartyBattleStance` | party stance |
 | `BattleUnit_UpdateEngagementStateFlag` | engagement state |
 | `BattleRuntime_GetModeDependentDistanceThreshold` | a distance threshold |
-| `BattleUnit_UpdateCombatFrame`, `FUN_0030C010` | unread |
+| `BattleUnit_UpdateCombatFrame`, `FUN_0030C010` | unread *(answered: see AN-4, ANSWERED 2026-09-12 (FABLE); 2026-10-02, OPUS)* |
 
 **Three separately documented systems already branch on this one flag** — action availability, the
 capability-inhibition policy, and battle locomotion — which is why it kept reappearing before it was
@@ -145,7 +145,7 @@ available when everything else is shut down.
 | `00254EA0` | the setter, with veto — 54 B |
 | `003BA2E0` | **feature enable** — two adjacent bytes `0x02B4053C` / `0x02B4053D` both non-zero; 27 B, 3 callers |
 | `003444D0` | `setforcefightmode` handler, script call id `0x0334` |
-| `00252C80` | the second writer — 134 B, unread |
+| `00252C80` | the second writer — 134 B, unread *(answered: see AN-2, answered 2026-09-11; 2026-10-02, OPUS)* |
 | `0030C0D0` | `thunk_FUN_00253b90` — the jump thunk, 8 callers |
 
 ## 4. Modding notes
@@ -277,7 +277,7 @@ still unread) is not so constrained. **AN-5.** *(Answered since — `AN-5`: the 
 *Answered 2026-09-17 (FABLE): see §5's closed box; the two bytes are the `debug_setfightstatusbyevent` enable (`02B4053C`, reset to 1 at boot and at every area unload) and its boot-set companion (`02B4053D`), and the verb occurs in none of the 1,115 `us` event containers.*
 
 `FUN_003BA2E0` is 27 bytes and reads two **adjacent byte globals**, `0x02B4053C` and `0x02B4053D`,
-requiring **both** non-zero. What they are remains open, but the shape — two adjacent bytes acting as
+requiring **both** non-zero. What they are remains open *(answered: see AN-1, ANSWERED 2026-09-17 (FABLE); 2026-10-02, OPUS)*, but the shape — two adjacent bytes acting as
 one enable — is now known, and it has only **3 callers** image-wide.
 
 ### Not changed

@@ -1,0 +1,304 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01AMK5Z5hoS1AZfS1i6skiJ3",
+ "report": "weather-apply-and-environment-materialization.json",
+ "rows": [
+  {
+   "fn": "001AA3B0",
+   "text": "calls `00265920` with the incoming registers and tail-jumps to `001A7E40(rcx, result - 1)`, with the incoming `rcx` kept across the call",
+   "anchors": [
+    [
+     "001AA3B9",
+     "call"
+    ],
+    [
+     "001AA3C1",
+     "lea"
+    ],
+    [
+     "001AA3C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001DC000",
+   "text": "calls `00210B30` with the incoming registers and tail-jumps to `00210F60` with its result in `rcx`, the incoming `rcx` in `rdx`, the incoming `rdx` in `r8` and the incoming `xmm2` in `xmm3`",
+   "anchors": [
+    [
+     "001DC018",
+     "call"
+    ],
+    [
+     "001DC020",
+     "movaps"
+    ],
+    [
+     "001DC023",
+     "mov"
+    ],
+    [
+     "001DC026",
+     "mov"
+    ],
+    [
+     "001DC038",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00210ED0",
+   "text": "calls `0016D6A0` with `ecx` = 1 when `xmm1` lies between 0 and 1.0 (`01CEBBA8`) inclusive (0 otherwise, including NaN) and the incoming `rdx` untouched; then builds a local object at `rsp + 0x78` with `007A4380`, calls `007A4C70(obj, r8d)` and `007A45C0(obj, xmm1, 0.0, 0)`, and finishes with `001243B0(obj)`; the incoming `rcx` is not used",
+   "anchors": [
+    [
+     "00210F02",
+     "jb"
+    ],
+    [
+     "00210F0D",
+     "call"
+    ],
+    [
+     "00210F24",
+     "call"
+    ],
+    [
+     "00210F37",
+     "call"
+    ],
+    [
+     "00210F42",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002EFA20",
+   "text": "stores 3 to byte `022BDD5D` and 0 to byte `022BDD5C`, zeroes the dwords `022BDD60`, `022BDD90`, `022BDDC0`, `022BDDF0`, `022BDE20`, `022BDE50`, `022BDE80` (stride 0x30), `022BDEB0` and `022BDEB8`, and stores 6 to dword `022BDEB4`",
+   "anchors": [
+    [
+     "002EFA22",
+     "mov"
+    ],
+    [
+     "002EFA29",
+     "mov"
+    ],
+    [
+     "002EFA53",
+     "mov"
+    ],
+    [
+     "002EFA5F",
+     "mov"
+    ],
+    [
+     "002EFA65",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002F1A00",
+   "text": "zeroes dword `022BE7C0` and qwords `022BE7C8` and `022BE7D0`",
+   "anchors": [
+    [
+     "002F1A02",
+     "mov"
+    ],
+    [
+     "002F1A08",
+     "mov"
+    ],
+    [
+     "002F1A0F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0036C5A0",
+   "text": "when `ecx` is at most 14 (unsigned), stores `rdx` to the qword at `+0xA0` of entry `ecx` of the 0xA8-byte-stride table at `022D7FD0`; otherwise stores `rdx` to the qword at address `0xA0` (a null base)",
+   "anchors": [
+    [
+     "0036C5A3",
+     "ja"
+    ],
+    [
+     "0036C5A8",
+     "imul"
+    ],
+    [
+     "0036C5B6",
+     "mov"
+    ],
+    [
+     "0036C5C1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003777A0",
+   "text": "tail-jumps to `003777C0` with `r8d` = 3 and `r9d` = 4, passing `rcx` and `rdx` through",
+   "anchors": [
+    [
+     "003777A6",
+     "lea"
+    ],
+    [
+     "003777AA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003777B0",
+   "text": "tail-jumps to `003777C0` with `r8d` = 7 and `r9d` = 2, passing `rcx` and `rdx` through",
+   "anchors": [
+    [
+     "003777B6",
+     "lea"
+    ],
+    [
+     "003777BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003DA2C0",
+   "text": "zeroes `xmm3`, `xmm2`, `edx` and `xmm0` and tail-jumps to `002564D0`, passing `rcx` through",
+   "anchors": [
+    [
+     "003DA2C3",
+     "xorps"
+    ],
+    [
+     "003DA2C6",
+     "xor"
+    ],
+    [
+     "003DA2C8",
+     "xorps"
+    ],
+    [
+     "003DA2CB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003DD7E0",
+   "text": "zeroes qwords `02B58A60` and `02B58A68` and dword `02B58A70`, then walks 5 x 16 records of 0x1C bytes addressed from `02B581AD`, storing for each the inner index (0 to 15) to word `+1`, 0 to qword `-0xD` and to byte `+0`, and the outer index (0 to 4) to byte `-1` (offsets relative to that pointer)",
+   "anchors": [
+    [
+     "003DD7ED",
+     "mov"
+    ],
+    [
+     "003DD820",
+     "mov"
+    ],
+    [
+     "003DD826",
+     "mov"
+    ],
+    [
+     "003DD82D",
+     "mov"
+    ],
+    [
+     "003DD83B",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003DF030",
+   "text": "walks 5 x 8 records of 0x38 bytes from `02B59360` (record 8 x outer + inner), storing the inner index (0 to 7) to byte `+0x12` and the outer index (0 to 4) to byte `+0x11` and zeroing dword `+0`, qwords `+8`, `+0x18` and `+0x20`, byte `+0x10` and word `+0x28`; its fallback to a null record for an inner index above 7 cannot be reached within the loop bound",
+   "anchors": [
+    [
+     "003DF04F",
+     "imul"
+    ],
+    [
+     "003DF05B",
+     "mov"
+    ],
+    [
+     "003DF076",
+     "mov"
+    ],
+    [
+     "003DF07F",
+     "cmp"
+    ],
+    [
+     "003DF08B",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003EBE40",
+   "text": "zeroes the six qwords `02B5EC60`, `02B5EC68`, `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88`",
+   "anchors": [
+    [
+     "003EBE42",
+     "mov"
+    ],
+    [
+     "003EBE49",
+     "mov"
+    ],
+    [
+     "003EBE50",
+     "mov"
+    ],
+    [
+     "003EBE5E",
+     "mov"
+    ],
+    [
+     "003EBE65",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0050CDE0",
+   "text": "calls `00267E10(r9)` twice, keeping the first result as `a` and the second as `b`, then calls `0016D6A0(b, 00264F10(a))` and `0016D6A0(b, 00264F40(a))` and tail-jumps to `0016D6A0(b, 00264F90(a))`",
+   "anchors": [
+    [
+     "0050CDF0",
+     "call"
+    ],
+    [
+     "0050CDFA",
+     "call"
+    ],
+    [
+     "0050CE0C",
+     "call"
+    ],
+    [
+     "0050CE1C",
+     "call"
+    ],
+    [
+     "0050CE36",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00299090": "a 29-way switch on dword [rdx] - 1 (0 to 0x1C, out of range calls 005C5230(rcx)) dispatched through a byte index table and a dword offset table that the listing does not decode, so which case value reaches which arm cannot be read from the listing; a sentence stating every path would be a guess"
+ },
+ "missing": [],
+ "corrections": []
+}

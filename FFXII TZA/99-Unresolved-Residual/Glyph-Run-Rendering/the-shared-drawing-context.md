@@ -32,7 +32,7 @@ audit:
 > struct** that is zeroed once at startup and never reallocated — and the part of it this cluster
 > touches directly is **the last sixty bytes**.
 
-**PARTIAL.** The lifecycle, the size, the single initialiser and the directly-attributable field map
+**PARTIAL.** *(answered: see the front matter, now `status: AUDITED` with every register row closed; 2026-10-02, OPUS)* The lifecycle, the size, the single initialiser and the directly-attributable field map
 are read at tier 1. **Section 5 was corrected on 2026-09-03** after the instrument that produced it
 was found to be control-flow blind; the correction is recorded there in full.
 
@@ -250,8 +250,8 @@ a struct. `002B4730` (218 B) shows all of it, ending in a buffer swap:
 
 *(Counts anchored 2026-09-30, SWE2-DATA: they are function counts over the rip-relative operands into each cell, a write being a `mov` whose destination is the cell. The same sweep gives `0209CC40` 1 writer and 25 readers over 121 sites, the figures §2 states; `_index/candidates/dd-data-3-0930/shared_context_checks.py` S1, C1.)*
 
-**So "cleared beside every column-1 dispatch" is a cursor reset**, not a flag clear: the dispatch
-re-points `0209CC48` at the record the swap selected and rewinds `0209CC50` to its start. The
+**So "cleared beside every column-1 dispatch" is a cursor reset**, not a flag clear: ~~the dispatch~~
+~~re-points `0209CC48` at the record the swap selected and rewinds `0209CC50` to its start.~~ *(corrected 2026-10-02, OPUS: the column-1 dispatchers clear it — `mov qword [0209CC48], 0` at `002ABEC0`+0x20 and `002ABF20`+0xF; the re-point to the selected record and the cursor rewind are the flush `002B4730`'s, at `002B4730`+0xB7 in the listing above)* The
 16-byte stride, the `bts` of **bit 28**, and constants of the shape `0x6C008150` / `0x10000000` /
 `0x15000000` / `0x13000000` are **GS qwords with GIF-shaped tags** — the legacy PS2 display-list
 family this database already reads elsewhere, reached here from the text cluster.
@@ -608,7 +608,7 @@ structure is not part of this test.
 | `0209CC40` | the pointer; **1 writer, 121 reference sites** |
 | `0209D490` | the struct itself, static, `0x1108` bytes |
 | `002B3550` | the only initialiser: zeroes the struct, publishes the pointer |
-| `0209CC48` | ~~cleared by both column-1 dispatchers alongside the publish~~ the current render-buffer record, re-pointed with its cursor `0209CC50` at each dispatch (§3d; corrected 2026-09-30, SWE2-DATA) |
+| `0209CC48` | ~~cleared by both column-1 dispatchers alongside the publish~~ the current render-buffer record, ~~re-pointed with its cursor `0209CC50` at each dispatch~~ (§3d; corrected 2026-09-30, SWE2-DATA) *(corrected 2026-10-02, OPUS: both column-1 dispatchers store 0 here, `002ABEC0`+0x20 and `002ABF20`+0xF; it is re-pointed with its cursor by the flush `002B4730`, +0xB7)* |
 | `002B3480` / `002432B0` | the `+0x000` table's builder and its row writer (§3b) |
 | `002B5C90` | reads the `+0x400` table and the three pointer slots (§3a, §3c) |
 | `002B4730` | the render-buffer swap (§3d) |
@@ -732,10 +732,10 @@ branches, and a census that reports an offset the struct cannot have is announci
 past it — **not read**; what any field means. The 121 sites were counted, not classified beyond the
 single write. Nothing executed.
 
-*(Pass 22 adjacency, 2026-09-14: `00254A10` calls the `CoreRuntimeScheduling` yield `00229E40`
+*(Pass 22 adjacency, 2026-09-14: `00254A10` calls the `CoreRuntimeScheduling` ~~yield~~ getter `00229E40` *(corrected 2026-10-02, OPUS: `00229E40` is `mov eax, [01E02814]; ret`, 7 bytes, the read §3's listing shows at `00254A10`+0x4; it yields nothing)*
 (1 edge), and `00229E40` is itself called by `Script_VM_Native_Bridge` bodies `0033FED0`/
-`0034BA00` and `Rewards_Progression_Economy` `00317ED0` (3). The drawing-context setup yields to
-the scheduler like every other leg of the text walk; the shared yield accessor is consumed from
+`0034BA00` and `Rewards_Progression_Economy` `00317ED0` (3). ~~The drawing-context setup yields to~~
+~~the scheduler like every other leg of the text walk;~~ *(corrected 2026-10-02, OPUS: `00229E40` is a 7-byte getter, not a yield)* the shared ~~yield accessor~~ getter is consumed from
 the script bridge and economy code too.)*
 
 ### Four layers section 5a cites only to EXCLUDE (FABLE, 2026-09-21)

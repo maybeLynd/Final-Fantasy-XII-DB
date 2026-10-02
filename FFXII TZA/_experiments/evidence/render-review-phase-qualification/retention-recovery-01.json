@@ -1,0 +1,10 @@
+{
+  "failed_setup_driver_sha256": "305bc5e21ca8a6e2ee1d6a330ff6f4eb02dbbb9d5a5c22516e42f221d461a1f0",
+  "completed_board_operations": [
+    47205,
+    47206
+  ],
+  "failure": "Exact checkout-versus-Git blob check refused at audit-spec review: CRLF checkout only. No semantic output or claim.",
+  "recovery": "Reconcile only unfinished retention suffix. Preserve exact committed LF review bytes plus current-checkout hashes; allow CRLF conversion only, no other normalization. Original source/receipt comparisons remain byte-exact. No board ADD/claim replay.",
+  "review_count": 6
+}

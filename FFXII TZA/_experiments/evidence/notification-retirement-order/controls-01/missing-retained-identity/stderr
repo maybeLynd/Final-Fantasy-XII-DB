@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\controls-01\missing-retained-identity\prove.py", line 147, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\controls-01\missing-retained-identity\prove.py", line 122, in main
+    if receipt.get('terminal') is not True or receipt.get('exit')!=0 or receipt['stdout_sha256']!=sha(P/'retained-manifest.stdout') or receipt['stderr_sha256']!=sha(P/'retained-manifest.stderr'):raise ValueError('retained input receipt failed/stale')
+                                                                                                  ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\controls-01\missing-retained-identity\prove.py", line 8, in <lambda>
+    sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\notification-retirement-order\\controls-01\\missing-retained-identity\\retained-manifest.stdout'

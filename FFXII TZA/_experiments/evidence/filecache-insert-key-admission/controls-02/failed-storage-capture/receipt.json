@@ -1,0 +1,18 @@
+{
+  "name": "failed-storage-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-insert-key-admission\\controls-02\\failed-storage-capture\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "8ec0b0d0750ad45a552950cbcd871ba8ea3716d86e20d7ffd036a0f56a5cedcb",
+  "diagnostic": "required storage capture failed",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "0b704851a008fb8adb4957b64f9954b37f5e9f0fb732b3046155f5d78d31cff8"
+}

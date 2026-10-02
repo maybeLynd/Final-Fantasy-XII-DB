@@ -1,0 +1,70 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "bodies": [
+    {
+      "entry": "00263FF0",
+      "end": "00264004",
+      "length": 21,
+      "name": "FUN_00263ff0",
+      "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003587C0",
+      "end": "003587f1",
+      "length": 50,
+      "name": "FUN_003587c0",
+      "sha256": "bf9121862b5d78d0c3f2fe3048be03d21d58cd801f4e51942501161c65250fda",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB2A0",
+      "end": "003db419",
+      "length": 378,
+      "name": "ActorResource_RemoveActiveEntry",
+      "sha256": "fd2a8a09ed5831524fedc90bfe9931fe3f432c7f90dc433a7aa3906b1301525e",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB550",
+      "end": "003db572",
+      "length": 35,
+      "name": "ActorResource_GetEntryByOrdinal",
+      "sha256": "caded04469b9641cf38872f867c93693fc0dc028daa6a6f0363758146f66fe1d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB650",
+      "end": "003db6d4",
+      "length": 133,
+      "name": "FUN_003db650",
+      "sha256": "7eec6ca24b90e0fbc7a1c9d13d25cb977cac1659642d050250d45caa7e52bfd2",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DBCF0",
+      "end": "003dbdb1",
+      "length": 194,
+      "name": "ActorResource_AllocateAndSubmitEntry",
+      "sha256": "2ce8e3e81b65f5f3261dcdf1699ad2934eacea2c80cd7c36b3a5f7f3ae4f4c25",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC0D0",
+      "end": "003dc12c",
+      "length": 93,
+      "name": "FUN_003dc0d0",
+      "sha256": "a289ececb1c4ca46bb341e1b4a7ed43a09426a81c6c57384c7cfa0248762daed",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC1B0",
+      "end": "003dc238",
+      "length": 137,
+      "name": "FUN_003dc1b0",
+      "sha256": "33b57ac01c2b793712a38d2293c7a6603421f844c82f4aca8be593cf9daf7745",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    }
+  ],
+  "source_receipt": "retained-manifest.status.json"
+}

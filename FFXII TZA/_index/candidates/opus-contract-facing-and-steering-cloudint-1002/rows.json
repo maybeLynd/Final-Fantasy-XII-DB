@@ -1,0 +1,450 @@
+{
+ "page": "06-Movement-And-Navigation/CONTRACT-facing-and-steering.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "contract-facing-and-steering.json",
+ "rows": [
+  {
+   "fn": "00265550",
+   "text": "when the top three bits of byte `[rcx + 3]` are 3 (`AND 0xE0` equals `0x60`) it returns float `+0x154` of the `0x80`-byte slot selected by the signed byte `+0xDC` of `[rcx + 0xB8]`; otherwise it returns 0.0",
+   "anchors": [
+    [
+     "00265556",
+     "cmp"
+    ],
+    [
+     "0026555A",
+     "xorps"
+    ],
+    [
+     "00265565",
+     "movsx"
+    ],
+    [
+     "0026556D",
+     "shl"
+    ],
+    [
+     "00265571",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00265580",
+   "text": "when the top three bits of byte `[rcx + 3]` are 3 (`AND 0xE0` equals `0x60`) it returns float `+0x154` of a `0x80`-byte slot of `[rcx + 0xB8]`: the slot is the signed byte `+0xDC` when `edx` is negative, else `edx` capped (signed) at that byte; otherwise it returns 0.0",
+   "anchors": [
+    [
+     "00265586",
+     "cmp"
+    ],
+    [
+     "00265597",
+     "jns"
+    ],
+    [
+     "002655A7",
+     "movss"
+    ],
+    [
+     "002655BA",
+     "cmovg"
+    ],
+    [
+     "002655C4",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00265600",
+   "text": "when the top three bits of byte `[rcx + 3]` are 3 (`AND 0xE0` equals `0x60`) it returns the low seven bits of byte `+0x28` of qword `[[rcx + 0xB8] + 0xF0]`; otherwise it returns 0",
+   "anchors": [
+    [
+     "00265606",
+     "cmp"
+    ],
+    [
+     "0026560A",
+     "xor"
+    ],
+    [
+     "00265614",
+     "mov"
+    ],
+    [
+     "0026561F",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0026A9C0",
+   "text": "adds pi (`01CEBC50`) to the angle `xmm1` when it is at least 0.0, else -pi (`00915620`); then, when the top three bits of byte `[rcx + 3]` are 3 (`AND 0xE0` equals `0x60`), it subtracts the truncated quotient of that sum by 2pi (`01CEBC78`) times 2pi and the same signed pi again, and stores the result to float `+0xB4` of `[rcx + 0xB8]`; otherwise it stores nothing",
+   "anchors": [
+    [
+     "0026A9C9",
+     "jb"
+    ],
+    [
+     "0026A9E1",
+     "addss"
+    ],
+    [
+     "0026A9F6",
+     "cvttss2si"
+    ],
+    [
+     "0026AA14",
+     "subss"
+    ],
+    [
+     "0026AA18",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "002EDB30",
+   "text": "when the word `cx` is not -1 and the `0x740`-byte record at that signed index under qword `022C6F28` is non-null with a nonzero dword `+0x284`, passes the record to a 12-byte forwarder (which works on `record + 0x580`) and ORs `0x800` into its dword `+0x290`; otherwise it returns without a call",
+   "anchors": [
+    [
+     "002EDB34",
+     "cmp"
+    ],
+    [
+     "002EDB43",
+     "imul"
+    ],
+    [
+     "002EDB53",
+     "cmp"
+    ],
+    [
+     "002EDB5F",
+     "call"
+    ],
+    [
+     "002EDB64",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "00343F90",
+   "text": "pops an integer through `VMValueStack_PopInt32CoerceFloat32(r9)` and a float through `VMValueStack_PopNumericDiscard`, calls `002EC1C0(rdx)` with the float in `xmm1` and 0.0 in `xmm2`, then `002EC380(rdx, 2)` with the integer converted to float in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "00343FA8",
+     "call"
+    ],
+    [
+     "00343FB2",
+     "call"
+    ],
+    [
+     "00343FC0",
+     "call"
+    ],
+    [
+     "00343FD4",
+     "call"
+    ],
+    [
+     "00343FF2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034EB40",
+   "text": "pops two floats through `VMValueStack_PopNumericDiscard`, calls `0026AAD0(rdx)` with the first in `xmm1`, `002EC1C0(rdx)` with the second in `xmm1` and 0.0 in `xmm2`, `002EC380(rdx, 0)` with 0.0 in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "0034EB5D",
+     "call"
+    ],
+    [
+     "0034EB76",
+     "call"
+    ],
+    [
+     "0034EB84",
+     "call"
+    ],
+    [
+     "0034EB91",
+     "call"
+    ],
+    [
+     "0034EBB4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034F470",
+   "text": "pops two floats through `VMValueStack_PopNumericDiscard`, calls `0026AAD0(rdx)` with the first in `xmm1`, `002EC140(rdx)` with the second in `xmm1` and 0.0 in `xmm2`, `002EC380(rdx, 0)` with 0.0 in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "0034F48D",
+     "call"
+    ],
+    [
+     "0034F4A6",
+     "call"
+    ],
+    [
+     "0034F4B4",
+     "call"
+    ],
+    [
+     "0034F4C1",
+     "call"
+    ],
+    [
+     "0034F4E4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034FBB0",
+   "text": "pops three floats through `VMValueStack_PopNumericDiscard`, calls `0026AAD0(rdx)` with the first in `xmm1`, `002EC140(rdx)` with the third in `xmm1` and the second in `xmm2`, `002EC380(rdx, 0)` with 0.0 in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "0034FBEA",
+     "call"
+    ],
+    [
+     "0034FBF8",
+     "call"
+    ],
+    [
+     "0034FC07",
+     "call"
+    ],
+    [
+     "0034FC14",
+     "call"
+    ],
+    [
+     "0034FC3D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00350410",
+   "text": "pops three floats through `VMValueStack_PopNumericDiscard`, calls `0026AAD0(rdx)` with the first in `xmm1`, `002EC1C0(rdx)` with the third in `xmm1` and the second in `xmm2`, `002EC380(rdx, 0)` with 0.0 in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "0035044A",
+     "call"
+    ],
+    [
+     "00350458",
+     "call"
+    ],
+    [
+     "00350467",
+     "call"
+    ],
+    [
+     "00350474",
+     "call"
+    ],
+    [
+     "0035049D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003517E0",
+   "text": "pops two floats through `VMValueStack_PopNumericDiscard`, calls `002EC140(rdx)` with the second in `xmm1` and 0.0 in `xmm2`, then `002EC380(rdx, 2)` with the first in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "003517F8",
+     "call"
+    ],
+    [
+     "00351803",
+     "call"
+    ],
+    [
+     "00351811",
+     "call"
+    ],
+    [
+     "00351821",
+     "call"
+    ],
+    [
+     "0035183F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00351D10",
+   "text": "pops three floats through `VMValueStack_PopNumericDiscard`, calls `002EC140(rdx)` with the third in `xmm1` and the second in `xmm2`, then `002EC380(rdx, 2)` with the first in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "00351D43",
+     "call"
+    ],
+    [
+     "00351D48",
+     "movaps"
+    ],
+    [
+     "00351D51",
+     "call"
+    ],
+    [
+     "00351D61",
+     "call"
+    ],
+    [
+     "00351D84",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003520B0",
+   "text": "pops three floats through `VMValueStack_PopNumericDiscard`, calls `002EC1C0(rdx)` with the third in `xmm1` and the second in `xmm2`, then `002EC380(rdx, 2)` with the first in `xmm2`, and tail-jumps `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "003520E3",
+     "call"
+    ],
+    [
+     "003520E8",
+     "movaps"
+    ],
+    [
+     "003520F1",
+     "call"
+    ],
+    [
+     "00352101",
+     "call"
+    ],
+    [
+     "00352124",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00357B10",
+   "text": "calls an 8-byte global getter (result unused), pops a float through `VMValueStack_PopNumericDiscard` and two integers through `VMValueStack_PopInt32CoerceFloat32`, and passes the second integer to a 53-byte actor lookup; when it returns non-null it calls `002EBFA0(rdx, byte [actor + 0x15], word [actor], first integer)`, `002EC380(rdx, 2)` with the float in `xmm2` and `002EBE50(rdx, 1, 0)`; a null lookup returns without those calls",
+   "anchors": [
+    [
+     "00357B2A",
+     "call"
+    ],
+    [
+     "00357B4E",
+     "call"
+    ],
+    [
+     "00357B66",
+     "call"
+    ],
+    [
+     "00357B76",
+     "call"
+    ],
+    [
+     "00357B85",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00357BA0",
+   "text": "pops a float through `VMValueStack_PopNumericDiscard` and two integers through `VMValueStack_PopInt32CoerceFloat32`, and passes the second integer to a 53-byte actor lookup; when it returns non-null it calls `0026AAD0(rdx)` with the float in `xmm1`, `002EBFA0(rdx, byte [actor + 0x15], word [actor], first integer)`, `002EC380(rdx, 0)` with 0.0 in `xmm2` and `002EBE50(rdx, 1, 0)`; a null lookup returns without those calls",
+   "anchors": [
+    [
+     "00357BD9",
+     "call"
+    ],
+    [
+     "00357BE4",
+     "je"
+    ],
+    [
+     "00357BEC",
+     "call"
+    ],
+    [
+     "00357BFF",
+     "call"
+    ],
+    [
+     "00357C1B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00357C40",
+   "text": "builds a four-float stack block whose last float is 1.0 (`01CEBBA8`): pops a first float through `VMValueStack_PopNumericDiscard` and a second into float `+8` of the block, then a third into `+4` when a 39-byte predicate on `rdx` is zero (0.0 there, with no pop, when it is nonzero), and a fourth into `+0`; it calls `002EC2C0(rdx, &block)`, `002EC380(rdx, 2)` with the first float in `xmm2` and `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "00357C69",
+     "movss"
+    ],
+    [
+     "00357C8E",
+     "call"
+    ],
+    [
+     "00357CA1",
+     "xorps"
+    ],
+    [
+     "00357CC0",
+     "call"
+    ],
+    [
+     "00357CD0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00357D10",
+   "text": "builds a four-float stack block whose last float is 1.0 (`01CEBBA8`): pops a first float through `VMValueStack_PopNumericDiscard` and a second into float `+8` of the block, then a third into `+4` when a 39-byte predicate on `rdx` is zero (0 there, with no pop, when it is nonzero), and a fourth into `+0`; it calls `0026AAD0(rdx)` with the first float in `xmm1`, `002EC2C0(rdx, &block)`, `002EC380(rdx, 0)` with 0.0 in `xmm2` and `002EBE50(rdx, 1, 0)`",
+   "anchors": [
+    [
+     "00357D47",
+     "movss"
+    ],
+    [
+     "00357D5E",
+     "call"
+    ],
+    [
+     "00357D77",
+     "mov"
+    ],
+    [
+     "00357D93",
+     "call"
+    ],
+    [
+     "00357DA0",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

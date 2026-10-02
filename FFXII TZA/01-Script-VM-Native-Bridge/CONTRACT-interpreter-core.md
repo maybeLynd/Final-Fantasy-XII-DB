@@ -163,11 +163,18 @@ transitions and must not be implemented as one generic successful instruction.
 ### Cross-actor request scheduling — SECTION-12 (2026-09-24)
 
 Original `REQSW` (24) and `REQEW` (27) each arm kind4 at their continuation PC. Mode2 generates
-its requester notification when the target entry starts; mode3 does so at target removal/RET.
-The former permits caller continuation before target bytecode runs; the latter waits for return.
+its requester notification when the target entry starts. Mode3 does so when the target entry is removed: on RET,
+or when a mode-4 `freqcancel` recycle (`003DB420`) removes the target as its channel head without running it
+(FABLE 2026-10-02, [review](../_index/candidates/fable-review-astra-request-cancel-notification-1002/REVIEW.md)).
+The former permits caller continuation before target bytecode runs; the latter waits for removal, which is
+normally, but not necessarily, the target's return.
 The requested target is separate from the issuer whose class/counter selects immediate versus
 filed-only insertion. Notifications use the requester's ordinary entry capacity and can fail
-without undoing target progress. Their match key is channel plus low32 continuation offset, not
+without undoing target progress. A mode-3 end notification is attempted before the removed entry is relinked onto
+the free list, so a self-requested notification on an already-full pool is refused even though the removal then
+frees a slot. The removal's return is the entry's `+0x12` bit 0, not a delivery result
+([the actor request](Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md) section 3; a
+conditional static reading, premises there; FABLE 2026-10-02). Their match key is channel plus low32 continuation offset, not
 a new generation-bearing identity.
 
 Opcode32 uses original entry lookup/encoding to arm kind3 only while a matching entry exists.

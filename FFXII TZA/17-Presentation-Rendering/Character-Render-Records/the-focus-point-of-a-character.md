@@ -177,3 +177,13 @@ Corrected in place: the EC7-83 note. The consumer record is `_index/candidates/f
 **CoreRuntimeScheduling — CLIENT, OUT-OF-SCOPE (2 edges).** The boot frame-base selector `0022BDF0` (it computes `FrameLimit == 1` and tail-calls on) reaches the frame-base writer `001EDDC0`, and `001EDDC0` calls `0033F020`, the entry of the ease-table rescale that item 3's 2026-09-29 qualification describes. The engine's boot-time frame-limit setup is what resizes the ease table under `FrameLimit=60`; the focus point only reads that table, so the crossing is the table's size, not any scheduling this page owns.
 
 **Movement — OUT-OF-SCOPE (1 edge).** `001EDDC0` also calls the Movement-owned `00337A00`, which reads the same frame multiplier and stores two locomotion globals from it, an integer 240 × multiplier and a float 2 / (30 × multiplier). It is a sibling of the ease-table rescale in the same frame-limit setup and plays no part in computing the focus point.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-focus-point-of-a-character-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0040A210` | 28 B | stores a 99-byte helper's result for qword `+0x30` of `rcx` at qword `+0x38` of `rcx` | `0040A219`, `0040A21D`, `0040A222` |
+| `00423510` | 85 B | returns 0 when a 99-byte helper (`rdx`) returns null, when an 8-byte helper (that pointer, `0x4D524640`, 0) returns -1, when the sign-extended result of a 10-byte helper (that pointer, that index) plus `0x30` is zero, or when dword `+0xC` at that sum is zero; otherwise returns that dword plus the low 32 bits of the sum | `00423519`, `00423531`, `00423540`, `0042354E`, `00423555` |
+| `004288E0` | 87 B | starting from the index in dword `+0x48800` of qword `022C6F28` and stopping at -1, walks `0x740`-byte records at that base, calling `003E43D0(record)` (and re-reading qword `022C6F28`) for each record whose byte `+0x290` has bit `0x2` clear, and takes the next index from the record's sign-extended word `+0x4` | `004288EB`, `00428903`, `0042890E`, `00428917`, `00428923` |

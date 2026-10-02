@@ -1,0 +1,256 @@
+{
+ "page": "22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01AMK5Z5hoS1AZfS1i6skiJ3",
+ "report": "the-game-is-a-phyre-application.json",
+ "rows": [
+  {
+   "fn": "00186820",
+   "text": "returns `0x870` when byte `+0xDB8` of `rcx` is non-zero or dword `+0xC30` equals 3; otherwise returns dword `+0xADC`",
+   "anchors": [
+    [
+     "00186827",
+     "mov"
+    ],
+    [
+     "0018682C",
+     "jne"
+    ],
+    [
+     "0018682E",
+     "cmp"
+    ],
+    [
+     "00186835",
+     "je"
+    ],
+    [
+     "00186837",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0020CD30",
+   "text": "when qword `01F83450` is null, calls `00210EC0(0x80)` and, when that is non-null, `0020C730(result, 01DFE410, 0x29)`, then stores the last result (null when `00210EC0` returned null) to `01F83450`; when `01F83450` is already non-null it does nothing",
+   "anchors": [
+    [
+     "0020CD45",
+     "jne"
+    ],
+    [
+     "0020CD4C",
+     "call"
+    ],
+    [
+     "0020CD59",
+     "je"
+    ],
+    [
+     "0020CD6B",
+     "call"
+    ],
+    [
+     "0020CD71",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00793750",
+   "text": "stores `01CB2468` to qword `[rcx]`, then calls `005CD6D0(rcx + 0x20)` and `007A3980(rcx + 0x48)`",
+   "anchors": [
+    [
+     "00793762",
+     "lea"
+    ],
+    [
+     "00793769",
+     "mov"
+    ],
+    [
+     "00793770",
+     "call"
+    ],
+    [
+     "0079377A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00796E30",
+   "text": "stores qword `02EA5368` plus 8 to qword `[rcx]` (0 when `02EA5368` is null) and qword `01F40120` (`0x02EA5660` in the image) to qword `+8`, and returns `rcx`",
+   "anchors": [
+    [
+     "00796E3A",
+     "je"
+    ],
+    [
+     "00796E43",
+     "add"
+    ],
+    [
+     "00796E47",
+     "mov"
+    ],
+    [
+     "00796E4A",
+     "mov"
+    ],
+    [
+     "00796E59",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00798F80",
+   "text": "when `ecx` is 0, `rdx` is `0x202` and byte `02EA5244` is non-zero, calls the import at `008C2820` with qword `02EA5248`, `0xA2`, 0, 0; then on every path tail-jumps through the import at `008C2848` with qword `02EA5258`, the incoming `ecx`, `rdx` and `r8`",
+   "anchors": [
+    [
+     "00798F99",
+     "jne"
+    ],
+    [
+     "00798FA2",
+     "jne"
+    ],
+    [
+     "00798FAA",
+     "je"
+    ],
+    [
+     "00798FBE",
+     "call"
+    ],
+    [
+     "00798FE2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0079F140",
+   "text": "stores 1 to byte `+0x21` and `dl` to byte `+0x26` of `rcx` and returns 0",
+   "anchors": [
+    [
+     "0079F144",
+     "xor"
+    ],
+    [
+     "0079F146",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0079F9E0",
+   "text": "calls `007943E0`, `00794E80`, `00795590` and `00795320` in that order (the first with the incoming registers, none with arguments set here) and returns 0",
+   "anchors": [
+    [
+     "0079F9E4",
+     "call"
+    ],
+    [
+     "0079F9E9",
+     "call"
+    ],
+    [
+     "0079F9EE",
+     "call"
+    ],
+    [
+     "0079F9F3",
+     "call"
+    ],
+    [
+     "0079F9F8",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "007A0AF0",
+   "text": "when byte `+0x23` of `rcx` is 0 stores 1 to byte `+0x22`, otherwise stores 0 to byte `+0x23`; returns 0 on both paths",
+   "anchors": [
+    [
+     "007A0AF2",
+     "cmp"
+    ],
+    [
+     "007A0AF5",
+     "jne"
+    ],
+    [
+     "007A0AF7",
+     "mov"
+    ],
+    [
+     "007A0AFC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A0B10",
+   "text": "stores 1 to bytes `+0x20` and `+0x1E` of `rcx` and `dl` to byte `+0xD20`, and returns 0",
+   "anchors": [
+    [
+     "007A0B14",
+     "xor"
+    ],
+    [
+     "007A0B16",
+     "mov"
+    ],
+    [
+     "007A0B1A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A0B30",
+   "text": "stores `dl` to byte `+0x28` of `rcx` and returns 0",
+   "anchors": [
+    [
+     "007A0B33",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "007A0FB0",
+   "text": "stores 1 to byte `+0x24` of `rcx` and returns 0",
+   "anchors": [
+    [
+     "007A0FB4",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "007A1180",
+   "text": "stores 1 to byte `+0x29` of `rcx`, `edx` to dword `+0x2C` and `r8d` to dword `+0x30`, and returns 0",
+   "anchors": [
+    [
+     "007A1184",
+     "xor"
+    ],
+    [
+     "007A1186",
+     "mov"
+    ],
+    [
+     "007A1189",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

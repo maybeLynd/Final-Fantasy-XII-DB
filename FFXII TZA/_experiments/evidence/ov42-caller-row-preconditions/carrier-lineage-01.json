@@ -1,0 +1,23 @@
+[
+  {
+    "copy": "carrier-manifest.json",
+    "commit": "c40b243400bea566a89600d77e4d12cc3440a1cd",
+    "member": "Database/FFXII TZA/_experiments/evidence/summon-kind-row-carrier/manifest.json",
+    "blob": "65f628f973e64d92b42a6c7dff9610946d91148c",
+    "sha256": "56100abc27fc97e1fdcd85e7488dc1f712365a4296c3ad819f2622800caed1dd"
+  },
+  {
+    "copy": "carrier-result-01.json",
+    "commit": "c40b243400bea566a89600d77e4d12cc3440a1cd",
+    "member": "Database/FFXII TZA/_experiments/evidence/summon-kind-row-carrier/result-01.json",
+    "blob": "46b95435c8e7915e8dad00f3dbd2cb8d3f1454fe",
+    "sha256": "1b8bdd9a9e12700e88ef339186ef9fdef3d52c156666567ecc1e55bb50eeb5a8"
+  },
+  {
+    "copy": "action_data_us.st2e",
+    "commit": "c40b243400bea566a89600d77e4d12cc3440a1cd",
+    "member": "Database/FFXII TZA/_experiments/evidence/summon-kind-row-carrier/retained/action-selector-local-exclusions-special-action-frozen-ready--action-selectors-01--tables--action_data_us.st2e",
+    "blob": "a5638fb2560be2590ed168c390b95aebd59ffecf",
+    "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+  }
+]

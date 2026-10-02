@@ -1,0 +1,46 @@
+{
+ "page": "00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "generated-float-table-builders.json",
+ "rows": [
+  {
+   "fn": "004795D0",
+   "text": "registers `rcx` through an 84-byte registrar with a 4,524-byte callback in `rdx` and `r8d = 0`, then stores `0x3000000` and `0x2000000` to dwords `+8` and `+0xC`, initialises `rcx + 0x10` through a 15-byte header setter with `edx = 2`, and stores `0x1000404` to dword `+0x18`, `0x6C020000` to qword `+0x1C`, `0x302E4000` to dword `+0x24`, `0x412` to qword `+0x28`, and the float bits `0x45000000` (2048.0) to dwords `+0x30` and `+0x34`, `0x43800000` (256.0) to `+0x38` and `0x43600000` (224.0) to `+0x3C`",
+   "anchors": [
+    [
+     "004795D9",
+     "lea"
+    ],
+    [
+     "004795E3",
+     "call"
+    ],
+    [
+     "004795FF",
+     "call"
+    ],
+    [
+     "0047960B",
+     "mov"
+    ],
+    [
+     "00479630",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "004825F0": "619-byte generated branch ladder over the word and float globals 02064B00-02064DD8 and the 16-byte table 02064E30, with seven exits, int bits stored into float slots and three helper calls on some paths; a one-sentence row cannot state every path precisely",
+  "004B0CF0": "same 619-byte generated ladder as 004825F0 (only the 0xD2 step becomes 0x10E); skipped for the same reason",
+  "004B1190": "32,136-byte body (about 6,500 instructions, 276 calls)",
+  "004C8320": "28,422-byte body (about 5,400 instructions)",
+  "004E31E0": "18,098-byte body (about 3,400 instructions)",
+  "004E7D90": "15,212-byte body (about 2,900 instructions)",
+  "004F7070": "24,541-byte body (about 4,900 instructions)"
+ },
+ "missing": [],
+ "corrections": []
+}

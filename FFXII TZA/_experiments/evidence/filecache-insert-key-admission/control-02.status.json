@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-insert-key-admission\\control.py"
+  ],
+  "driver_sha256": "b26880a1f5a55cdec7a30a3053c21f3bc2086c0d3c6364a1dd1153cc8b5a46a5",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

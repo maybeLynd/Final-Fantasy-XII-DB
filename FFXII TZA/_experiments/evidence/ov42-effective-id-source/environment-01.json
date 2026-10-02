@@ -1,0 +1,7 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "method": "A STATIC_ONLY original getter/resolver and retained caller transfer"
+}

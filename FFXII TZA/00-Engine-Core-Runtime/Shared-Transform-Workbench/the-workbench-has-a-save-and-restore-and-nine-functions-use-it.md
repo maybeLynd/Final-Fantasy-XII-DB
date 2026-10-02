@@ -143,8 +143,8 @@ Decoding the argument setup at each of the nine `Save` sites:
 | `022D8F90` | **3** |
 | two rows, both passed in registers | 1 — `0042FDB0`, `count = 2` |
 
-Eight of the nine save **one** row and one saves two. **`022D8F30` and `022D8F90` are the only two
-addresses that anything in this image bothers to protect**, which makes them the workbench's
+Eight of the nine save **one** row and one saves two. **~~`022D8F30` and `022D8F90` are the only two~~
+~~addresses that anything in this image bothers to protect~~ `022D8F30`, `022D8F40` and `022D8F90` are the only three addresses that anything in this image bothers to protect** *(corrected 2026-10-02, OPUS: the two-row caller `0042FDB0` saves `022D8F30` and `022D8F40`: `0042FDB0+0x330` `lea rbx, [022D8F40]`, `+0x337` `mov ecx, 2`, `+0x349` `call 0036D930`)*, which makes them the workbench's
 contended slots rather than merely two of its 46 sixteen-byte rows.
 
 ## 6. A worked user: `0026EE00`, 1,560 bytes, 104 callers
@@ -257,7 +257,7 @@ result.
 `0x7F` there does nothing; `0x80`, `0xC0`, `0xFE`, `0xFF` all produce `FFFFFFFF`. The equivalent
 byte one lane up, `row[3] = 0x80`, does **not** do this — it obeys the positional rule.
 
-**So it is byte 1 specifically, not a lane's sign bit**, and what it selects is not established.
+**So it is byte 1 specifically, not a lane's sign bit**, and what it selects is not established *(answered: see UQ-42, ANSWERED 2026-09-17 (FABLE), below; 2026-10-02, OPUS)*.
 
 ## 7. Modding notes
 
@@ -378,7 +378,7 @@ fetch legs, not workbench plumbing.)*
 more, 5) and `Party` (`00358C60`, `00358EE0`, 2) — the field-side caller of `002DEBA0` walks
 actor, locomotion and party state like every field body.)*
 
-`0044B8C0` (160 B) is the matrix-scalar helper `0044BAC0` runs inside its save window: `[rcx]`'s row stages into `022D92E0`, `xmm3 = splat([01EF93FC]) * row` lands at `022D91A0`, and the `xmm1`-scaled lane products accumulate back through `022D92E4`/`022D92E8`/`022D92EC`/`022D92F0` before the rebuilt row copies back to `[rcx]` - the workbench bank doing double duty as operand scratch
+`0044B8C0` (160 B) is the matrix-scalar helper `0044BAC0` runs ~~inside its save window~~ before its save window opens *(corrected 2026-10-02, OPUS: called at `0044BAC0+0x601`; the window runs from `call 0036D930` at `+0x97E` to `call 0036D8E0` at `+0xA03`, with only `sqrtf` at `+0x9CE` between)*: `[rcx]`'s row stages into `022D92E0`, `xmm3 = splat([01EF93FC]) * row` lands at `022D91A0`, and the `xmm1`-scaled lane products accumulate back through `022D92E4`/`022D92E8`/`022D92EC`/`022D92F0` before the rebuilt row copies back to `[rcx]` - the workbench bank doing double duty as operand scratch
 
 Interior anchor `0044B8E8` (function `0044B8C0`).
 

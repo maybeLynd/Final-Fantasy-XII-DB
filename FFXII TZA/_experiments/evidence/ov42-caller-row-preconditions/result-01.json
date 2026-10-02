@@ -1,0 +1,453 @@
+{
+  "producer_complete": true,
+  "method": "A retained caller/switch/resource plus focused original helper analysis",
+  "driver_sha256": "cbaed30b746c1467988a21d34110b53eba44a36a3751439a28a86dbea671eb2d",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "current-row-source-01.json",
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "path": "current-row-source-02.json",
+      "sha256": "1b6bebb2a932b09c387ead6830cd4088236ad551ccbc1c52b9651ca0d8faa9b8"
+    },
+    {
+      "path": "helper-source-01.json",
+      "sha256": "3d48bd904ec39d658a372a9376026971bddaffca97a2e7fa6b2f674764f9a5cc"
+    }
+  ],
+  "retained_lineage": [
+    {
+      "copy": "current-row-source-01.json",
+      "commit": "fd45553c7d715dbe3e9e1a919b7961114f0df8e4",
+      "member": "Database/FFXII TZA/_experiments/evidence/autoattack-commit-exception/retained/current-row-source-01.json",
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "copy": "current-row-source-02.json",
+      "commit": "fd45553c7d715dbe3e9e1a919b7961114f0df8e4",
+      "member": "Database/FFXII TZA/_experiments/evidence/autoattack-commit-exception/retained/current-row-source-02.json",
+      "sha256": "1b6bebb2a932b09c387ead6830cd4088236ad551ccbc1c52b9651ca0d8faa9b8"
+    },
+    {
+      "copy": "carrier-manifest.json",
+      "commit": "c40b243400bea566a89600d77e4d12cc3440a1cd",
+      "member": "Database/FFXII TZA/_experiments/evidence/summon-kind-row-carrier/manifest.json",
+      "blob": "65f628f973e64d92b42a6c7dff9610946d91148c",
+      "sha256": "56100abc27fc97e1fdcd85e7488dc1f712365a4296c3ad819f2622800caed1dd"
+    },
+    {
+      "copy": "carrier-result-01.json",
+      "commit": "c40b243400bea566a89600d77e4d12cc3440a1cd",
+      "member": "Database/FFXII TZA/_experiments/evidence/summon-kind-row-carrier/result-01.json",
+      "blob": "46b95435c8e7915e8dad00f3dbd2cb8d3f1454fe",
+      "sha256": "1b8bdd9a9e12700e88ef339186ef9fdef3d52c156666567ecc1e55bb50eeb5a8"
+    },
+    {
+      "copy": "action_data_us.st2e",
+      "commit": "c40b243400bea566a89600d77e4d12cc3440a1cd",
+      "member": "Database/FFXII TZA/_experiments/evidence/summon-kind-row-carrier/retained/action-selector-local-exclusions-special-action-frozen-ready--action-selectors-01--tables--action_data_us.st2e",
+      "blob": "a5638fb2560be2590ed168c390b95aebd59ffecf",
+      "sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 161,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 405,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 371,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "terminal_entry": [
+      {
+        "entry_phase": 8,
+        "dispatch_target": "0x304eb3",
+        "visited": 161,
+        "target_builder_dominates_sequence": true,
+        "earlier_slot_readiness_calls": [],
+        "limits": "Local normal-return graph, not feasible/natural phase entry or transitive callee effects. Phase breakdown already canonical; not a new census."
+      },
+      {
+        "entry_phase": 9,
+        "dispatch_target": "0x304ebe",
+        "visited": 158,
+        "target_builder_dominates_sequence": true,
+        "earlier_slot_readiness_calls": [],
+        "limits": "Local normal-return graph, not feasible/natural phase entry or transitive callee effects. Phase breakdown already canonical; not a new census."
+      }
+    ],
+    "carriers": {
+      "current_row": "R13W latched from entry unit+714; R15 = zeroextend32(second lookup base + latched ID * WORD(third descriptor+8)). The terminal sequence gets this R15.",
+      "target_builder": "387090 receives unit+698; AX is zeroextended into EDX at304EDC.30D160 latches DX, constructs its separate row with its own descriptor/resolver loads. It is not passed caller R15.",
+      "helper": "305430 receives the original latched R13W. Its EAX return is overwritten at304EF3, not tested by the terminal caller."
+    },
+    "stock_helper": {
+      "domain": "IDs511..534, u16 entry; stable readable descriptor/resolver bound to the retained US table, valid ABI/stack, normal lookup return. This is a conditional original-source proof, not live binding.",
+      "cases": [
+        {
+          "id": 511,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 512,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 513,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 514,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 515,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 516,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 517,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 518,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 519,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 520,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 521,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 522,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 523,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 524,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 525,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 526,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 527,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 528,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 529,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 530,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 531,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 532,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 533,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        },
+        {
+          "id": 534,
+          "row_byte_2c": 0,
+          "helper_return": 0,
+          "calls": [
+            "0x20e600",
+            "0x20e600"
+          ],
+          "own_nonstack_writes": []
+        }
+      ],
+      "positive_flag40_control": "Supplied changed row bit6 reaches311F70 boundary, demonstrating the proof distinguishes the side-effect branch. Mathematical CFG control; not native execution.",
+      "limits": "No callee20E600 side-effect guarantee. Normal lookup/initialized US binding is a premise; no actual storage pointer or owner lifetime proved."
+    },
+    "builder_opaque_boundaries": [
+      {
+        "pc": "0x30d18a",
+        "target": "0x31b7e0"
+      },
+      {
+        "pc": "0x30d1bc",
+        "target": "0x20e600"
+      },
+      {
+        "pc": "0x30d1d0",
+        "target": "0x20e600"
+      },
+      {
+        "pc": "0x30d1f3",
+        "target": "0x316cf0"
+      },
+      {
+        "pc": "0x30d200",
+        "target": "0x316cd0"
+      },
+      {
+        "pc": "0x30d227",
+        "target": "0x320ab0"
+      },
+      {
+        "pc": "0x30d2e7",
+        "target": "0x31ac90"
+      },
+      {
+        "pc": "0x30d313",
+        "target": "0x236850"
+      },
+      {
+        "pc": "0x30d339",
+        "target": "0x321170"
+      },
+      {
+        "pc": "0x30d35f",
+        "target": "0x2ffef0"
+      },
+      {
+        "pc": "0x30d38d",
+        "target": "rax"
+      },
+      {
+        "pc": "0x30d3a3",
+        "target": "0x31e620"
+      },
+      {
+        "pc": "0x30d3ce",
+        "target": "0x31ac90"
+      },
+      {
+        "pc": "0x30d3d9",
+        "target": "0x31a930"
+      },
+      {
+        "pc": "0x30d3ff",
+        "target": "0x325ea0"
+      },
+      {
+        "pc": "0x30d422",
+        "target": "0x316cd0"
+      },
+      {
+        "pc": "0x30d431",
+        "target": "0x236850"
+      },
+      {
+        "pc": "0x30d482",
+        "target": "0x31b810"
+      },
+      {
+        "pc": "0x30d4a9",
+        "target": "0x377c20"
+      },
+      {
+        "pc": "0x30d4eb",
+        "target": "0x316d70"
+      },
+      {
+        "pc": "0x30d4ff",
+        "target": "0x316cd0"
+      },
+      {
+        "pc": "0x30d538",
+        "target": "0x808c40"
+      }
+    ],
+    "answer": "The local terminal invocation does not re-establish earlier slot readiness or a shared classifier row. Its target builder and sequence use separately constructed action-row carriers. For the disputed511..534 band,305430 cannot itself enforce ownership through its target-side-effect branches under the exact stock-row binding premises: only two lookups and return0 remain. Natural pairing still requires phase/writer/scheduler and helper-interference evidence.",
+    "remaining": [
+      "387090 owner mapping/initialized descriptor consistency at phase9, not sampled pointer identity",
+      "unit714/phase6B4 writer continuity versus queued slot+1C classifier and global owner/kind persistence",
+      "opaque30D160 virtual/helper,303830 preview and305640 resource effects between row construction and sequence; no transitive absence claim",
+      "normal gameplay reachability, timing, lifetime and wholeOV42"
+    ]
+  },
+  "novelty": "New conditional helper branch/return and terminal ID-carrier composition. Existing phase census, resource bits census and caller no-direct-owner read are consumed, not new experiments.",
+  "limits": "No native/emulator/live execution. No initialized table/owner binding, natural state, transitive helper effects or wholeOV42 closure. Source/CFG controls and independent acceptance remain separate.",
+  "cleanup": "Finite offline children terminal; no PC/game/save/config/reference/peer-process mutation."
+}

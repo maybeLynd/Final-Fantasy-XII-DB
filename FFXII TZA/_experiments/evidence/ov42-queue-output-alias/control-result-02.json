@@ -1,0 +1,128 @@
+{
+  "complete": true,
+  "driver_sha256": "8cdbf47b8fdbc602485552f3cf79af398aac41ea73b1706897bee9580f0eff12",
+  "producer_sha256": "6734ed9df59e8e5659229725ab2b2469a5b4e1836689167856d08b03bbbd0faf",
+  "positive": "exact actual producer facts/current driver equality",
+  "CLI_cases": [
+    {
+      "case": "missing-queue-source",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false
+    },
+    {
+      "case": "coherently-repinned-output-width",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false
+    }
+  ],
+  "synthetic_derive_cases": [
+    {
+      "case": "action-output-retargeted",
+      "pc": "0x309c13",
+      "before": {
+        "pc": "0x309c13",
+        "bytes": "8902",
+        "mnemonic": "mov",
+        "args": "dword ptr [rdx], eax",
+        "memory": [
+          {
+            "base": "rdx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          }
+        ]
+      },
+      "after": {
+        "pc": "0x309c13",
+        "bytes": "8902",
+        "mnemonic": "mov",
+        "args": "dword ptr [rcx], eax",
+        "memory": [
+          {
+            "base": "rdx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          }
+        ]
+      },
+      "refused": true,
+      "reason": "native output witness changed 0x309c13",
+      "limits": "synthetic decoded-record mutation, not original code or execution"
+    },
+    {
+      "case": "null-guard-reversed",
+      "pc": "0x309c18",
+      "before": {
+        "pc": "0x309c18",
+        "bytes": "7408",
+        "mnemonic": "je",
+        "args": "0x309c22",
+        "memory": []
+      },
+      "after": {
+        "pc": "0x309c18",
+        "bytes": "7408",
+        "mnemonic": "jne",
+        "args": "0x309c22",
+        "memory": []
+      },
+      "refused": true,
+      "reason": "native output witness changed 0x309c18",
+      "limits": "synthetic decoded-record mutation, not original code or execution"
+    },
+    {
+      "case": "bridge-output-read-removed",
+      "pc": "0x3483a9",
+      "before": {
+        "pc": "0x3483a9",
+        "bytes": "8b0b",
+        "mnemonic": "mov",
+        "args": "ecx, dword ptr [rbx]",
+        "memory": [
+          {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "r",
+            "rip_target": null
+          }
+        ]
+      },
+      "after": {
+        "pc": "0x3483a9",
+        "bytes": "8b0b",
+        "mnemonic": "mov",
+        "args": "ecx, ebx",
+        "memory": [
+          {
+            "base": "rbx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "r",
+            "rip_target": null
+          }
+        ]
+      },
+      "refused": true,
+      "reason": "native output witness changed 0x3483a9",
+      "limits": "synthetic decoded-record mutation, not original code or execution"
+    }
+  ],
+  "limits": "two actual prerequisite refusals/three synthetic source mutations; no new capture or original-code/native/live executions"
+}

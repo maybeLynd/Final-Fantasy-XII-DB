@@ -27,15 +27,15 @@ audit:
 > **The world map's topology file: which areas exist, which region each belongs to, which
 > routes connect them, and where the Strahl can land.** 2,040 bytes, four count-prefixed
 > sections reached through a `u16` offset directory, plus a parallel per-area sub-table.
-> Every count is reproduced by the shipped generator header `menumap_world.h` (§5), and every
-> name field resolves into `menu_mapname.bin`'s string-id table (§6).
+> Every count is reproduced by the shipped generator header `menumap_world.h` (~~§5~~ §4 *(corrected 2026-10-02, OPUS: the header-constant section is §4)*), and every
+> name field resolves into `menu_mapname.bin`'s string-id table (~~§6~~ §5 *(corrected 2026-10-02, OPUS: the 60000-range ids are §5)*).
 
 **Corpus validation, before anything else.**
 
 | | |
 |---|---|
 | file examined | `ps2data/image/ff12/myoshiok/<lang>/worldmap/menumap_world.bin` — all **9** locale copies, 2,040 B each |
-| distinct contents | **4**: `{us, ch, cn, de, kr}`, `es`, `fr`, `{in, it}` — every differing byte sits inside the area table's position/label fields; **no id or route byte ever differs** (§7) |
+| distinct contents | **4**: `{us, ch, cn, de, kr}`, `es`, `fr`, `{in, it}` — every differing byte sits inside the area table's position/label fields; **no id or route byte ever differs** (~~§7~~ §6 *(corrected 2026-10-02, OPUS: locale behaviour is §6)*) |
 | magic | `wmap` + `u32 0x000000CA` in all copies (`menumap_location.bin` carries the same `0xCA`; `menumap_area.bin` is `amap`/`0xC9`, `menumap_common.bin` is `cmap`/`0xCB`) |
 | section closure | four populated offsets; each section is `{u32 count, count × fixed record}` and the last ends exactly at EOF |
 | decoder | `Tools/work/DATA/menumap/decode_menumap.py` (session scratch — untracked, not linkable), full dump `decode_menumap.out.txt` |

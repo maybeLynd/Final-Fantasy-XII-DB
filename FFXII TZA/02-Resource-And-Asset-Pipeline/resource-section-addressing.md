@@ -536,7 +536,7 @@ data at `+0x10`, handle at `+0x30`, cached base at `+0x38`. **None of that is in
 `ActorResourceEntry`, which is a different 0x14-byte structure.
 
 > **A formula that lives only in prose has no consumer that can be checked against it.**
-> `types_index.py` cannot validate a width it has never been told about, and the nine functions that
+> `types_index.py` cannot validate a width it has never been told about, and the ~~nine functions~~ eleven functions *(answered: see *There are 17 call sites in 11 functions, not nine* below; 2026-10-02, OPUS)* that
 > call `004096C0` - `PresentationEntry_RebuildDerivedReferences` `0041CA70` four times, `00372820`,
 > `0041B4E0`, `00504940`, `0041FCF0`, `0042A390` and two more - have no declared type to disagree
 > with. **ASTRA asked whether the structured consumers preserve the width. There are none.**
@@ -636,11 +636,11 @@ return bank + sign32(u32((index & rowMask) * rowStride))      ; rowStride = desc
 ```
 
 **So an entry is a row inside a loaded bank blob**, addressed by `index & rowMask` at a stride the
-DESCRIPTOR carries at `+0x48`. It is never a heap object, which is why no allocation site exists to
+DESCRIPTOR carries at `+0x48`. It is never ~~a heap object~~ its own heap object (the bank blob it sits in is heap-allocated by `0051F9F0`, *(answered: see the `RS-1` answer below; 2026-10-02, OPUS)*), which is why no allocation site exists to
 find, and why every caller looks like a consumer: they all are.
 
 **What that means for declaring the type.** `rowStride` is a runtime dword read out of the
-descriptor, not an immediate anywhere in `.text`. **The extent is authored data.** Declaring `0x40`
+descriptor, not an immediate anywhere in `.text`. ~~**The extent is authored data.**~~ *(answered: see the `RS-1` answer below - falsified by the writer, the geometry comes from `.text` immediates; 2026-10-02, OPUS)* Declaring `0x40`
 would still assert a lower bound as a size — the objection `RS-1` already makes — and no reading of
 the code can raise it, because the code does not contain the number.
 

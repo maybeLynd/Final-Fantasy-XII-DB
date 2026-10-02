@@ -1,0 +1,92 @@
+== packet integrity
+PASS  manifest.json sha256 = 6efd33a9b850a11b...  | 6efd33a9b850a11bdded356cc64cc04ae411f5f5f75d52e2bbb75edd790f874d
+PASS  all 96 manifest members hash as listed  | []
+== shipping-image re-derivation
+PASS  body 001D6A20..001D6A6D (77 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  body 0020B680..0020B83B (443 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  body 0020B5F0..0020B675 (133 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  body 001AE9B0..001AEAFC (332 B) decodes exactly and .pdata tiles it (3 record(s))
+PASS  body 001AE850..001AE9A8 (344 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  body 0020BA70..0020BB0C (156 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  leaf 0016D840..0016DA54 (532 B) decodes exactly; no .pdata covers it; int3 padding on both sides; next .pdata begins 0016DA60
+PASS  capture-01 bodies total 653 B (77 + 443 + 133)  | 653
+PASS  capture-02 bodies total 1364 B (332 + 344 + 156 + 532)  | 1364
+PASS  001D6A20 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[1927788] tails=[] outs=[]
+PASS  0020B680 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[2144314] tails=[] outs=[]
+PASS  0020B5F0 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[2143860] tails=[] outs=[]
+PASS  001AE9B0 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[1764091] tails=[] outs=[]
+PASS  001AE850 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[1763751] tails=[] outs=[]
+PASS  0020BA70 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[2145035] tails=[] outs=[]
+PASS  0016D840 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=[1497683] tails=[] outs=[]
+PASS  1D6A20 carriers: ebx=r9d, edi=r8d, rsi=rdx, ebp=ecx before the getter call
+PASS  1D6A20 getter result is the receiver: rcx = rax at 1D6A44, no rcx write before call 20B680
+PASS  1D6A20 forwards: [rsp+20h]=ebx (kind32), r9d=edi (value32), r8=rsi (64-bit pointer), edx=ebp (key32)
+PASS  1D6A20 key carriers: ebp written only at 1D6A3D (+ epilogue restore), edx only at 1D6A51  | rbp ['0x1d6a3d', '0x1d6a5d'] rdx ['0x1d6a51']
+PASS  1D6A20 no value-changing op (and/btr/shift/arith) on rcx/rbp/rdx anywhere in the body
+PASS  1D6A20 [rsp+20h] at the call is the callee's entry SP+28h (fifth argument); frame 38h
+PASS  1D6A20 the four incoming carriers land in four distinct callee-saved registers, none rewritten before its forward  | ['ebx', 'edi', 'rsi', 'ebp']
+PASS  20B680 entry: `mov dword ptr [rsp + 0x10], edx` before any push (key home = entry SP+10h, 4 B)
+PASS  20B680 prologue: seven pushes + sub 40h = 78h  | 7 78
+PASS  20B680 rsp changed only by the prologue and epilogue (no alloca)  | ['0x20b684', '0x20b685', '0x20b686', '0x20b687', '0x20b689', '0x20b68b', '0x20b68d', '0x20b68f', '0x20b82b', '0x20b82f', '0x20b831', '0x20b833', '0x20b835', '0x20b837', '0x20b838', '0x20b839', '0x20b83a']
+PASS  key home current SP+88h = entry SP+10h; fifth arg current SP+A0h = entry SP+28h
+PASS  20B680 ebp = edx at 20B6AA; ebp written nowhere else but the epilogue pop  | ['0x20b6aa', '0x20b839']
+PASS  20B680 r12 = r8 (pointer), r14d = r9d (value32); each written once (+ epilogue)
+PASS  20B680 every key compare is a DWORD cmp against node+20h with an unsigned consumer (2 found)  | []
+PASS  20B680 existing-key test: rbx==header -> new; `cmp ebp,[rbx+20h]` jae keeps rbx (equal key)
+PASS  existing-key arm: 20C300 gets edx = ebp (20B721), rcx = receiver, fifth = kind from SP+A0h
+PASS  existing-key arm never calls 20B5F0
+PASS  new arm: 20B7D0 `lea rdx, [rsp + 0x88]` (key home) then call 20B5F0 with rcx = receiver+20h
+PASS  no own stack write overlapping key home 88h..8Bh on any entry -> 20B7DC path (76 insns)  | []
+NOTE  stack writes on that path: ['20B680 mov dword ptr [rsp + 0x10], edx', '20B693 mov qword ptr [rsp + 0x30], 0xfffffffffffffffe', '20B69C mov qword ptr [rsp + 0x90], rbx', '20B74E mov qword ptr [rsp + 0x80], rax']
+PASS  new arm is gated on the 1BA860 result: `test rax,rax; je 20B7E4` skips 20B5F0
+PASS  after 20B5F0: `mov qword ptr [rax], rbx` stores the descriptor pointer through the returned slot
+PASS  20B5F0 reads the key only as full DWORDs through rdx (20B607, 20B62F, 20B633)  | [('0x20b607', 4), ('0x20b62f', 4), ('0x20b633', 4)]
+PASS  20B5F0 rdx never rewritten before the call
+PASS  20B5F0 r9 written only at 20B607 (key load) and 20B635 (pair address)  | ['0x20b607', '0x20b635']
+PASS  20B5F0 compares are unsigned: 20B610 cmp [r8+20h],r9d -> jb; 20B62F cmp [rdx],ecx -> jae
+PASS  20B5F0 pair: ecx = [rdx] (20B633), [rsp+30h] = ecx (20B64E), qword [rsp+38h] = 0 (20B659); no rcx write between
+PASS  20B5F0 stack writes are 50h/8, 30h/4, 20h/1, 38h/8 only (pair+4..+7 is never written)  | [(2143802, 80, 8), (2143822, 48, 4), (2143829, 32, 1), (2143833, 56, 8)]
+PASS  20B5F0 passes the pair: r9 = rsp+30h, rcx = map, rdx = out rsp+60h, then call 1AE9B0
+PASS  20B5F0 returns out-node + 28h; 20B66C is also the target of the existing-key jae (find-or-insert)
+PASS  001AE9B0 pair register r14 set once from the incoming pair arg (`mov r14, r9` at 1AE9CB) + epilogue restore  | ['0x1ae9cb', '0x1aeaf6']
+PASS  001AE850 pair register r15 set once from the incoming pair arg (`mov r15, r8` at 1AE874) + epilogue restore  | ['0x1ae874', '0x1ae9a1']
+PASS  0020BA70 pair register rbp set once from the incoming pair arg (`mov rbp, r9` at 20BA8D) + epilogue restore  | ['0x20ba8d', '0x20baf5']
+PASS  exactly five 16-byte loads and five 16-byte stores in 1AE9B0/1AE850/20BA70  | 5 loads 5 stores
+NOTE  copy site 1AEA28/1AEA2C in 001AE9B0: `movups xmm0, xmmword ptr [r14]` ; `movups xmmword ptr [rax], xmm0`; node rbp; guard `add rax, 0x20`/`je 0x1aea2f`; alloc 30h; then 16D840(rcx=rbp)
+NOTE  copy site 1AEAA4/1AEAA8 in 001AE9B0: `movups xmm0, xmmword ptr [r14]` ; `movups xmmword ptr [rax], xmm0`; node r13; guard `add rax, 0x20`/`je 0x1aeaab`; alloc 30h; then 16D840(rcx=r13)
+NOTE  copy site 1AE91A/1AE91E in 001AE850: `movups xmm0, xmmword ptr [r15]` ; `movups xmmword ptr [rax], xmm0`; node r14; guard `add rax, 0x20`/`je 0x1ae921`; alloc 30h; then 16D840(rcx=r14)
+NOTE  copy site 1AE95B/1AE95F in 001AE850: `movups xmm0, xmmword ptr [r15]` ; `movups xmmword ptr [rax], xmm0`; node rbx; guard `add rax, 0x20`/`je 0x1ae962`; alloc 30h; then 16D840(rcx=rbx)
+NOTE  copy site 20BAD1/20BAD5 in 0020BA70: `movups xmm0, xmmword ptr [rbp]` ; `movups xmmword ptr [rax], xmm0`; node r14; guard `add rax, 0x20`/`je 0x20bad8`; alloc 30h; then 16D840(rcx=r14)
+PASS  all five copy sites load [pair+0] 16 B and store to fresh 30h node+20h (guard skips only when node+20h == 0), node then passed to 16D840  | [('hint', '0x1aea28', True), ('hint', '0x1aeaa4', True), ('uniq', '0x1ae91a', True), ('uniq', '0x1ae95b', True), ('tail', '0x20bad1', True)]
+PASS  copy sites are 1AEA28, 1AEAA4 (1AE9B0), 1AE91A, 1AE95B (1AE850), 20BAD1 (20BA70)
+PASS  1AE9B0 forwards the same pair: `mov r9, r14` -> 20BA70; `mov r8, r14` -> 1AE850
+PASS  no write through a pair register in the three bodies  | []
+PASS  every DWORD key compare in the three tree bodies has an unsigned consumer (11)  | []
+PASS  1AE9B0/1AE850/20BA70 write no node+20h..2Fh after the copy (only [map+28h] inc, out slot, flag)
+PASS  1AE850 existing-key exit 1AE97F stores the found node with flag 0 and makes no copy
+PASS  16D840 has no call, no indirect jump and no rsp use
+PASS  every 16D840 write is [reg+disp] with no index and lies in 0h..19h (49 writes)  | []
+NOTE  16D840 write spans: [(0, 8), (8, 16), (16, 24), (24, 25)]
+PASS  16D840 initialises the new node (rcx): +10h = parent rdx, +0/+8 = 0, byte +18h = 0
+PASS  16D6D0 (68 B) and 16D720 (94 B), the only direct callees before a copy site, are read-only leaves (no call, no memory write)  | [True, True]
+PASS  1AE9B0 entry -> its 20BA70 / 1AE850 forwards passes no call but 16D6D0 (1AE9E5)  | [(1763813, 1496784)]
+PASS  calls on any entry -> copy-site path: the 30h allocator callback and 16D6D0 / 16D720 only  | [('1AE9B0', '1AEA1C', None), ('1AE9B0', '1AE9E5', 1496784), ('1AE9B0', '1AEA98', None), ('1AE850', '1AE90E', None), ('1AE850', '1AE8C3', 1496864), ('1AE850', '1AE94F', None), ('20BA70', '20BAC5', None)]
+PASS  packet's seven captured range sha256 values equal this image's bytes  | []
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 62 of 62
+PASS  control: 20B60A alignment nop -> `btr r9d, 31` (mask the key in 20B5F0)  | 1 failed: 20B5F0 r9 written only at 20B607 (key load) and 20B635 (pair address)
+PASS  control: 1D6A51 `mov edx, ebp` -> `mov edx, edi` (forward value32 as key)  | 1 failed: 1D6A20 forwards: [rsp+20h]=ebx (kind32), r9d=edi (value32), r8=rsi (64-bit pointer), edx=ebp (key32)
+PASS  control: 20B6AA `mov ebp, edx` -> `and ebp, edx`  | 1 failed: 20B680 ebp = edx at 20B6AA; ebp written nowhere else but the epilogue pop
+PASS  control: 20B6CB unsigned jb -> signed jl  | 1 failed: 20B680 every key compare is a DWORD cmp against node+20h with an unsigned consumer (2 found)
+PASS  control: 20B614 unsigned jb -> signed jl  | 1 failed: 20B5F0 compares are unsigned: 20B610 cmp [r8+20h],r9d -> jb; 20B62F cmp [rdx],ecx -> jae
+PASS  control: 20B680 key home [rsp+10h] -> [rsp+14h]  | 1 failed: 20B680 entry: `mov dword ptr [rsp + 0x10], edx` before any push (key home = entry SP+10h, 4 B)
+PASS  control: 20B7D0 `lea rdx,[rsp+88h]` -> [rsp+8Ch]  | 1 failed: new arm: 20B7D0 `lea rdx, [rsp + 0x88]` (key home) then call 20B5F0 with rcx = receiver+20h
+PASS  control: 20B74E descriptor spill [rsp+80h] -> [rsp+84h] (overlaps key home)  | 1 failed: no own stack write overlapping key home 88h..8Bh on any entry -> 20B7DC path (76 insns)
+PASS  control: 20B659 pair+8 seed [rsp+38h] -> [rsp+40h]  | 2 failed: 20B5F0 pair: ecx = [rdx] (20B633), [rsp+30h] = ecx (20B64E), qword [rsp+38h] = 0 (20B659); no rcx write between; 20B5F0 stack writes are 50h/8, 30h/4, 20h/1, 38h/8 only (pair+4..+7 is never written)
+PASS  control: 1AEA22 copy store node+20h -> node+18h  | 1 failed: all five copy sites load [pair+0] 16 B and store to fresh 30h node+20h (guard skips only when node+20h == 0), node then passed to 16D840
+PASS  control: 1AE91A copy loads [r14] (node) instead of the pair [r15]  | 1 failed: all five copy sites load [pair+0] 16 B and store to fresh 30h node+20h (guard skips only when node+20h == 0), node then passed to 16D840
+PASS  control: 16D84D colour byte store +18h -> +20h  | 2 failed: every 16D840 write is [reg+disp] with no index and lies in 0h..19h (49 writes); 16D840 initialises the new node (rcx): +10h = parent rdx, +0/+8 = 0, byte +18h = 0
+PASS  control: 16D885 alignment nop -> call 16D6D0 (+6 nop)  | 1 failed: 16D840 has no call, no indirect jump and no rsp use
+PASS  control: 20B66C returned slot +28h -> +20h  | 1 failed: 20B5F0 returns out-node + 28h; 20B66C is also the target of the existing-key jae (find-or-insert)
+PASS  control: 16D6D0 `mov rax, rcx` -> `mov qword ptr [rcx], rax` (step helper writes)  | 1 failed: 16D6D0 (68 B) and 16D720 (94 B), the only direct callees before a copy site, are read-only leaves (no call, no memory write)
+TOTAL: 81 checks, 81 PASS, 0 FAIL (15 controls)

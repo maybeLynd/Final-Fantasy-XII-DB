@@ -1,0 +1,114 @@
+{
+  "complete": true,
+  "driver_sha256": "e0852be141383ebe69ca7b2afb7957da440a7e104ba7a961cf6f798a513be7c6",
+  "producer_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558",
+  "positive_result_sha256": "1bc04a20d47551132f3a729c8cc750cf48ad66f868bee5a7cb316f68a9c98fbd",
+  "CLI_cases": [
+    {
+      "case": "valid-disposable-CLI",
+      "status": {
+        "terminal": true,
+        "exit": 0,
+        "exception": null,
+        "result_written": true,
+        "driver_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558"
+      },
+      "limits": "Actual disposable producer CLI; no FF12 instruction execution"
+    },
+    {
+      "case": "failed-capture-status",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558"
+      },
+      "limits": "Actual disposable producer CLI; no FF12 instruction execution"
+    },
+    {
+      "case": "missing-prefix-lineage",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558"
+      },
+      "limits": "Actual disposable producer CLI; no FF12 instruction execution"
+    },
+    {
+      "case": "failed-data-with-output-present",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558"
+      },
+      "limits": "Actual disposable producer CLI; no FF12 instruction execution"
+    },
+    {
+      "case": "missing-retained-queue",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558"
+      },
+      "limits": "Actual disposable producer CLI; no FF12 instruction execution"
+    }
+  ],
+  "synthetic_source_cases": [
+    {
+      "case": "narrow-classifier-before-range",
+      "pc": "0x306c84",
+      "field": "args",
+      "after": "ax, 0xff6c",
+      "refusal": "classifier operation changed 0x306c84",
+      "limits": "Synthetic mutation of actual source derive, not EXE patch/native execution"
+    },
+    {
+      "case": "signed-range-branch",
+      "pc": "0x306c8c",
+      "field": "mnemonic",
+      "after": "jg",
+      "refusal": "classifier operation changed 0x306c8c",
+      "limits": "Synthetic mutation of actual source derive, not EXE patch/native execution"
+    },
+    {
+      "case": "kind4-publishes7",
+      "pc": "0x306cb7",
+      "field": "args",
+      "after": "ebx, 7",
+      "refusal": "classifier operation changed 0x306cb7",
+      "limits": "Synthetic mutation of actual source derive, not EXE patch/native execution"
+    },
+    {
+      "case": "byte-divisor",
+      "pc": "0x306c7c",
+      "field": "args",
+      "after": "ecx, byte ptr [rax + 8]",
+      "refusal": "classifier operation changed 0x306c7c",
+      "limits": "Synthetic mutation of actual source derive, not EXE patch/native execution"
+    },
+    {
+      "case": "queue-sign-extends-word",
+      "pc": "0x3068c7",
+      "field": "mnemonic",
+      "after": "movsx",
+      "refusal": "queue comparison operation changed 0x3068c7",
+      "limits": "Synthetic mutation of actual source derive, not EXE patch/native execution"
+    },
+    {
+      "case": "bypass-classifier-arithmetic",
+      "pc": "0x306c6c",
+      "field": "jmp",
+      "after": "0x306cdb",
+      "refusal": "classifier operation changed 0x306c6c",
+      "limits": "Synthetic mutation of actual source derive, not EXE patch/native execution"
+    }
+  ],
+  "limits": "Producer controls and portable execution only; conditional invariant not natural reachability or independent acceptance."
+}

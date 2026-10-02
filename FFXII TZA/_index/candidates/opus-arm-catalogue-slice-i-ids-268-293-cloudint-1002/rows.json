@@ -34,7 +34,7 @@
   },
   {
    "fn": "001E04F0",
-   "text": "calls `0017FE30()` and picks the double 0.01666666667 (`009010A0`) when the unsigned result is a multiple of 10, otherwise 0.01668333333 (`00900378`); returns the signed dword result of `00184950()` converted to double and multiplied by the picked value",
+   "text": "calls a 21-byte framework forwarder and picks the double 0.01666666667 (`009010A0`) when the unsigned result is a multiple of 10, otherwise 0.01668333333 (`00900378`); returns the signed dword result of the getter of dword `01F3DA18` converted to double and multiplied by the picked value",
    "anchors": [
     [
      "001E04F9",

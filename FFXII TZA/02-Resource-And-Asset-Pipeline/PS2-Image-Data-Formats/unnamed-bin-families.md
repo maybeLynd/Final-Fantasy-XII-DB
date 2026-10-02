@@ -128,7 +128,7 @@ occur, inside other names), but every `sprintf` argument was not enumerated.
       `katano/event.bin`). `UB-1`. *(Split 2026-09-14, FABLE: this box asked two questions.)*
       *Narrowed 2026-09-26 (FABLE, Claude Opus 5.5): two of the five are decoded.* Control: [`uq70_name_tables.py`](../../_index/candidates/uq70-name-tables/uq70_name_tables.py) (5 checks,
       FAILS 0).
-      - **The two `_name` tables** are a `u32` count, then that many ascending offsets, each to a NUL-terminated
+      - **The two `_name` tables** are a `u32` count, then ~~that many~~ count + 1 ascending offsets, the last the file size *(corrected 2026-10-02, OPUS: `basic_skill` 1,345 and `growth_rate` 128 rows; the first string sits at `4 + 4·(count + 1)` and `offsets[count]` equals the file size, `kr` and `cn`)*, each to a NUL-terminated
         UTF-16LE string. Each count equals the row count of its `st2e` sibling: 1,345 for `basic_skill`, 128 for
         `growth_rate`. So they are the **designer names of those rows**, in Japanese (`LEVEL-00基本値`,
         `[sav]Mons[ウルフ／ハイエナ]`, `テスト成長値`, `街の人成長値`). The `cn` and `kr` copies are identical.

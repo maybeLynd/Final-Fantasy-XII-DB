@@ -1,0 +1,350 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/sead-win-config.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "sead-win-config.json",
+ "rows": [
+  {
+   "fn": "0021D990",
+   "text": "copies `0x30`-byte records backward from the range `rcx` to `rdx` into the area ending at `r8`, moving each record's qword `+8` (read through a null guard), dword `+0x10`, byte `+0x14`, dword `+0x18` and qwords `+0x20` and `+0x28` but not its first qword, and returns the destination start; when `rdx` equals `rcx` it returns `r8` unchanged",
+   "anchors": [
+    [
+     "0021D996",
+     "je"
+    ],
+    [
+     "0021D9A0",
+     "sub"
+    ],
+    [
+     "0021D9B2",
+     "cmove"
+    ],
+    [
+     "0021D9E7",
+     "mov"
+    ],
+    [
+     "0021D9EB",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0021DA00",
+   "text": "copies `0x28`-byte records backward from the range `rcx` to `rdx` into the area ending at `r8`, moving each record's qword `+8`, dword `+0x10`, qword `+0x18` and byte `+0x20` but not its first qword, and returns the destination start; when `rdx` equals `rcx` it returns `r8` unchanged",
+   "anchors": [
+    [
+     "0021DA03",
+     "je"
+    ],
+    [
+     "0021DA10",
+     "mov"
+    ],
+    [
+     "0021DA15",
+     "sub"
+    ],
+    [
+     "0021DA35",
+     "mov"
+    ],
+    [
+     "0021DA3D",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0021DA50",
+   "text": "copies `0x30`-byte records backward from the range `rcx` to `rdx` into the area ending at `r8`, moving each record's qword `+8` (read through a null guard) and the eight dwords `+0x10` to `+0x2C` but not its first qword, and returns the destination start; when `rdx` equals `rcx` it returns `r8` unchanged",
+   "anchors": [
+    [
+     "0021DA53",
+     "je"
+    ],
+    [
+     "0021DA60",
+     "sub"
+    ],
+    [
+     "0021DA73",
+     "cmove"
+    ],
+    [
+     "0021DAB9",
+     "mov"
+    ],
+    [
+     "0021DABD",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0021DAD0",
+   "text": "copies `0x30`-byte records forward from the range `rcx` to `rdx` to `r8`, moving each record's qword `+8` (read through a null guard) and the eight dwords `+0x10` to `+0x2C` but not its first qword, and returns the destination end (`r8` itself when `rcx` equals `rdx`)",
+   "anchors": [
+    [
+     "0021DAD3",
+     "je"
+    ],
+    [
+     "0021DAEF",
+     "cmove"
+    ],
+    [
+     "0021DB36",
+     "mov"
+    ],
+    [
+     "0021DB3E",
+     "add"
+    ],
+    [
+     "0021DB42",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0021DBE0",
+   "text": "copies `0x218`-byte records forward from the range `rcx` to `rdx` to `r8`, moving each record's qword `+8`, the `0x200` bytes from `+0x10` two bytes per step over 256 steps, and qword `+0x210` but not its first qword, and returns the destination end (`r8` itself when `rcx` equals `rdx`)",
+   "anchors": [
+    [
+     "0021DC00",
+     "mov"
+    ],
+    [
+     "0021DC07",
+     "mov"
+    ],
+    [
+     "0021DC20",
+     "movzx"
+    ],
+    [
+     "0021DC44",
+     "mov"
+    ],
+    [
+     "0021DC4B",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0021DE80",
+   "text": "copies `0x28`-byte records forward from the range `rcx` to `rdx` to `r8`, writing for each non-null destination record the template pointer `00908808` to its first qword and the source's qword `+8`, dword `+0x10`, qword `+0x18` and byte `+0x20`, and returns the destination end (`r8` itself when `rcx` equals `rdx`)",
+   "anchors": [
+    [
+     "0021DE8F",
+     "lea"
+    ],
+    [
+     "0021DE99",
+     "je"
+    ],
+    [
+     "0021DE9B",
+     "mov"
+    ],
+    [
+     "0021DEBA",
+     "mov"
+    ],
+    [
+     "0021DEC3",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0021E020",
+   "text": "fills `edx` consecutive `0x30`-byte records from `rcx` (none when `edx` is zero) as copies of the record at `r8`: for each non-null slot it writes qword `+8` from the source (read through a null guard), the template pointer `009087A8` to the first qword, and the source's dword `+0x10`, byte `+0x14`, dword `+0x18` and qwords `+0x20` and `+0x28`",
+   "anchors": [
+    [
+     "0021E025",
+     "je"
+    ],
+    [
+     "0021E02E",
+     "lea"
+    ],
+    [
+     "0021E050",
+     "mov"
+    ],
+    [
+     "0021E074",
+     "mov"
+    ],
+    [
+     "0021E07C",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "002207E0",
+   "text": "moves the 10-byte elements (a qword then a word) from `r8` up to the end qword `[rcx + 8]` down to `rdx`, then adds the signed `(rdx - r8) / 10 * 10` to qword `[rcx + 8]` and returns `rdx`",
+   "anchors": [
+    [
+     "00220800",
+     "movsd"
+    ],
+    [
+     "00220815",
+     "mov"
+    ],
+    [
+     "0022082C",
+     "imul"
+    ],
+    [
+     "00220844",
+     "add"
+    ],
+    [
+     "00220848",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00221310",
+   "text": "counts the 10-byte elements between qwords `[rcx]` and `[rcx + 8]` (signed divide by 10); when `edx` is above that count (unsigned) it calls `0021F130(rcx, [rcx + 8], edx - count, &zeroed 10-byte stack element)`, otherwise it tail-jumps `002207E0(rcx, [rcx] + edx * 10, [rcx + 8])`",
+   "anchors": [
+    [
+     "00221317",
+     "movabs"
+    ],
+    [
+     "0022133F",
+     "cmp"
+    ],
+    [
+     "00221344",
+     "sub"
+    ],
+    [
+     "0022135F",
+     "call"
+    ],
+    [
+     "0022137C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00225490",
+   "text": "calls `007A5F10(rcx + 8)`, then stores the template pointer `009087A8` to qword `[rcx]`, -1 to dword `+0x10`, 0 to dword `+0x18`, byte `+0x14` and qwords `+0x20` and `+0x28`, and returns `rcx`",
+   "anchors": [
+    [
+     "0022549D",
+     "call"
+    ],
+    [
+     "002254A2",
+     "lea"
+    ],
+    [
+     "002254A9",
+     "mov"
+    ],
+    [
+     "002254B0",
+     "mov"
+    ],
+    [
+     "002254C0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002255C0",
+   "text": "calls `007A5F10(rcx + 8)`, then stores the template pointer `009087C0` to qword `[rcx]`, 0 to dwords `+0x10` and `+0x28`, -1 to qword `+0x14`, `0x7F` to dword `+0x1C`, `0x40` to dword `+0x20` and -1 to dword `+0x24`, and returns `rcx`",
+   "anchors": [
+    [
+     "002255CD",
+     "call"
+    ],
+    [
+     "002255D9",
+     "mov"
+    ],
+    [
+     "002255E7",
+     "mov"
+    ],
+    [
+     "002255EF",
+     "mov"
+    ],
+    [
+     "002255F6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00225830",
+   "text": "stores the template pointer `00908808` to qword `[rcx]` and 0 to qword `+8`, dword `+0x10` and byte `+0x20`, then stores to qword `+0x18` the result of an 11-byte wrapper that tail-jumps `malloc` with size `0x10000`, and returns `rcx`",
+   "anchors": [
+    [
+     "00225846",
+     "lea"
+    ],
+    [
+     "0022584D",
+     "mov"
+    ],
+    [
+     "0022585C",
+     "mov"
+    ],
+    [
+     "00225861",
+     "call"
+    ],
+    [
+     "00225866",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00225880",
+   "text": "stores the template pointer `009087E0` to qword `[rcx]` and 0 to qwords `+8` and `+0x210`, then stores to qword `+8` the result of an 11-byte wrapper that tail-jumps `malloc` with size `0x100000`, and returns `rcx`",
+   "anchors": [
+    [
+     "00225896",
+     "lea"
+    ],
+    [
+     "0022589D",
+     "mov"
+    ],
+    [
+     "002258A6",
+     "mov"
+    ],
+    [
+     "002258B2",
+     "call"
+    ],
+    [
+     "002258B7",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

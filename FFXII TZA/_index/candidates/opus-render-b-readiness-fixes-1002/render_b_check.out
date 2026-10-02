@@ -1,0 +1,10 @@
+ok   001DB875 mov edx, 0x640
+ok   00467AB7 sub eax, dword ptr [rip + 0x283e54b]
+ok   00467AC3 and eax, 0xfffff800
+ok   002F743B cmovl esi, eax
+ok   002F2DA4 and byte ptr [rcx + 1], 0xf9
+ok   002F377A test byte ptr [rdi + 0x4b], 4
+ok   003A3B53 mov eax, dword ptr [rsi + r9 + 8]
+ok   00193EF0 movss xmm0, dword ptr [rip + 0x75f234]
+ok   008F312C float 35.0
+FAILS 0

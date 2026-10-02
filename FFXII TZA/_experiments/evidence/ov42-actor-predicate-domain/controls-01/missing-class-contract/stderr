@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-actor-predicate-domain\controls-01\missing-class-contract\prove.py", line 59, in <module>
+    if sha(P/x['path'])!=x['sha256']:raise RuntimeError('retained prerequisite changed '+x['path'])
+       ~~~^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-actor-predicate-domain\controls-01\missing-class-contract\prove.py", line 6, in <lambda>
+    sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-actor-predicate-domain\\controls-01\\missing-class-contract\\retained\\ov42-class20-action-admission\\class20-admission-result-01.json'

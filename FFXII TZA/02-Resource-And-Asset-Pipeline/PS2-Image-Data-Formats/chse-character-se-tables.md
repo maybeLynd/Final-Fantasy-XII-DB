@@ -318,7 +318,7 @@ reader: still not found" predate the reader section below (FABLE, 2026-09-25), w
 
 *Tightened word test (R3 clauses 1+2), 2026-09-14 (FABLE):* these crossings were previously matched only through front matter or a link path; tier 2: ledger names, sizes and `edges.tsv`; no body read for this note.
 
-- **Audio — SERVICE** *(the helper is `003A1650`, the SE block registration, [seb-se-block-index.md](../../18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md) §3.2; pointer 2026-09-30, OPUS)*~~, not read~~. A 491-byte body this page cites calls a 256-byte Audio-filed helper. What that helper does is not read here.
+- **Audio — SERVICE** *(the helper is `003A1650`, the SE block registration, [seb-se-block-index.md](../../18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md) §3.2; pointer 2026-09-30, OPUS)*~~, not read~~. A 491-byte body this page cites calls a 256-byte Audio-filed helper. ~~What that helper does is not read here.~~ *(answered: see the line below - the helper is the SE block registration; 2026-10-02, OPUS)*
   *Answered 2026-09-30 (SWE2-CONTRACT, from the database):* the body is `002E60F0` and the helper is `003A1650`, the SE
   block registration, read in full at [seb-se-block-index.md §3.2](../../18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md).
   `002E60F0` stores its return at `002E61E9`.

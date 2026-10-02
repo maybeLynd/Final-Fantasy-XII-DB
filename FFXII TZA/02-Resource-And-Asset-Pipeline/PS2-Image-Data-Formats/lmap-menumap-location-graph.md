@@ -302,7 +302,7 @@ offset scattered, kills it. Tested on all 48 records in all 9 copies.
   *Narrowed 2026-09-30 (SWE2-CONTRACT): §3's rebuilt contract names every field a traced reader uses. Left: the 8-byte
   block (RC-35) and array B's `+0xC` (RC-36).*
 - ~~**That array C's `+10` cross-references array A's `id`.**~~ **Answered 2026-09-13 (OPUS), and
-  the offset was wrong**: it is `+12` **and** `+14`, each an A id from the same record in **501 of
+  the offset was wrong**: it is ~~`+12` **and** `+14`~~ `+0` **and** `+2` at native offsets *(corrected 2026-10-02, OPUS: §10.3: the shipped `us` file gives 545 of 545 for each; `+12` / `+14` was the shifted model)*, each an A id from the same record in ~~**501 of~~ **545 of
   545** entries with wrong-record controls at **0**, and array D's `+0` in **97 of 97**. §9.
 - ~~**What the 60,000-range value in array B is.**~~ **Answered 2026-09-16 (SWE2-DATA, §10.7)**: a `menu_mapname.bin` string id — array B is keyed by "To X" destination-label ids 60,201–60,244.
 - ~~**What the 8 bytes at record `+0x04` hold.**~~ **Dissolved 2026-09-13 (FABLE, §10)**: they are not a head. They are
@@ -621,8 +621,8 @@ onto zones. The equalities for A, B and A + B are bounds, not proofs; C's is the
 `menumap_world.h` also defines 38 areas, 8 named regions, 45 normal and 15 special world routes (60 in all), 18 Strahl
 destinations and 59 locations with at most 2 sub-locations each. Those belong to `menumap_world.bin` and are not
 tested here. `menumap_sub.h` limits a sub-location to 18 images and 17 info entries, with data at most 320 KB in a
-"double buffer" or 512 KB in a "single buffer". Those are PS2-era sizes: the TZA `menumap_sub00`–`47.bin` files are
-4–11 MB, every one above both limits. The two-slot cache the reader keeps at map-data widget `+0x120` (two `0xA8`
+"double buffer" or 512 KB in a "single buffer". Those are PS2-era sizes: the TZA `menumap_sub00`–`47.bin` files are *(corrected 2026-10-02, OPUS: 1,049,520 – 11,544,192 B over the 436 shipped copies, the sloc sheet's corpus)*
+~~4–11 MB~~ 1.0–11.5 MB, every one above both limits. The two-slot cache the reader keeps at map-data widget `+0x120` (two `0xA8`
 slots, keyed by record index, loading kind 7 id `0x142 + index` = `menumap_subNN.bin`; `003C1F00`, `003C1FF6`) is the
 double buffer's shape, and the byte limit did not survive the remaster.
 
@@ -691,7 +691,7 @@ array B's `+12` is the marker's destination-name id, the same way array A's `+12
 (48/48 join, wrong-offset controls 0/48) — the "text-id reading likely" note in §10.5 was right.
 
 Full join evidence and the decoded id-space map are in
-[wmap-menumap-world-map-graph.md](wmap-menumap-world-map-graph.md) §6 and
+[wmap-menumap-world-map-graph.md](wmap-menumap-world-map-graph.md) ~~§6~~ §5 *(corrected 2026-10-02, OPUS: the join and the id-space map are its §5)* and
 [cmap-menumap-common-sublocation-directory.md](cmap-menumap-common-sublocation-directory.md).
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)

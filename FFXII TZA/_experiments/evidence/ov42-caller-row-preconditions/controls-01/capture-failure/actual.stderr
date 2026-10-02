@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\capture-failure\prove.py", line 96, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\capture-failure\prove.py", line 69, in main
+    for tag,driver in [('helper-extents-01','prepare-helper-extents.py'),('helpers-capture-01','capture-helpers.py')]:checked(tag,driver)
+                                                                                                                      ~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\capture-failure\prove.py", line 20, in checked
+    need(x.get('terminal') is True and x.get('exit')==0 and x.get('exception') is None and x.get('driver_sha256')==sha(P/driver) and bool((P/(tag+'.stdout')).read_bytes()) and not(P/(tag+'.stderr')).read_bytes(),'required successful current invocation '+tag)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\capture-failure\prove.py", line 15, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required successful current invocation helpers-capture-01

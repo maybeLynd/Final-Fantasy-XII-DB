@@ -173,7 +173,7 @@ Four things a reimplementation must not get wrong:
 
 ## 7. What this document does not establish
 
-- **What the channel id means**, or its range. It is passed through untouched.
+- **What the channel id means**, or its range *(answered: see the 2026-09-30 answer below, channel 4 is the debugger-break channel; 2026-10-02, OPUS)*. It is passed through untouched.
   **Answered functionally 2026-09-30 (SWE2-CONTRACT):** channel **4** is the debugger-break channel — the only value
   the sink `Phyre::PTTYCallback`'s slot 1 acts on, and then only with a debugger attached (§7 below, `005CDB90`);
   channels **0–3** have no effect in the sink; and no call in the image passes 4 (RC-9 below). *Limit, not a question:*
@@ -216,7 +216,7 @@ Four things a reimplementation must not get wrong:
 ## 8. Falsification checklist
 
 - [x] **`0016D670` is `__local_stdio_printf_options`.** *Killer:* a body that does anything but
-      return a constant address. It is `lea rax, [rip+…] ; ret`, and both callers immediately use
+      return a constant address. It is `lea rax, [rip+…] ; ret`, and ~~both callers~~ both callers read here (of 23 direct call sites in 23 functions) *(corrected 2026-10-02, OPUS: `retool.py callers 0016D670`; the 2026-09-14 killer run below)* immediately use
       `[rax]` as the first argument to a `__stdio_common_*` import — the documented expansion.
 - [x] **The format happens before the gate.** *Killer:* the comparison preceding the call. The call
       is at `005CDB08`, the `cmp` at `005CDB29`.

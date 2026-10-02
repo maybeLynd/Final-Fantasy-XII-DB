@@ -1,0 +1,45 @@
+{
+  "producer_complete": true,
+  "method": "A additive method/coverage correction, not a behavior experiment",
+  "driver_sha256": "8017644f3a3a087484bc6b32a9949b74fdf511d40bb55ff325db74aa468bd5ff",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "old-source.json",
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "path": "current-source.json",
+      "sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 161,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 37,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "suffix_bytes": 145,
+    "suffix_sha256": "5339c1ccb4e5e88f3166de79da53bd0821048cda697806a00b0161cd3ae114c9",
+    "redundant_capture": true,
+    "new_experiment_coverage": 0,
+    "new_work": "Conditional full32 classifier versus low16 queue invariant analysis remains valid.",
+    "cause": "Preparation searched only shallow source files, missing earlier retained subfolders.",
+    "procedure": "Before new instruction capture, run bounded original-byte retained lookup over named W and canonical source-map corpus, including retained subfolders. Reuse a matching source with its original lineage/receipts; a physical match is not semantic acceptance."
+  },
+  "limits": "Published d8328725 raw/result/manifest remain immutable. Correct only method/novelty wording; no new native/live sample or global absence/reachability conclusion.",
+  "cleanup": "Offline only, reference/save/config/process untouched."
+}

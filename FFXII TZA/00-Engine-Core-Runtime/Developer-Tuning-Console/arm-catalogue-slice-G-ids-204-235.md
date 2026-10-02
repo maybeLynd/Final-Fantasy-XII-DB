@@ -77,7 +77,7 @@ Row shape per the work order: **field · width · step magnitude · direction me
 | **221–224** | `001D4BFA` | **unimplemented** (4 consecutive) | — | — | — | — |
 | **225** | `001D405C` | **8-digit numeric entry** | digits `d+0xDB8`…`+0xDD4`, cursor `d+0xDD8`, value `d+0xDB4` | 1 | two-button, on the selected digit | **each digit mod 10** |
 | **226** | `001D4155` | **8-digit numeric entry** | digits `d+0xDE4`…`+0xE00`, cursor `d+0xE04`, value `d+0xDE0` | 1 | two-button, on the selected digit | **each digit mod 10** |
-| **227** | `001D424E` | **sexagesimal entry** | sub-field selected by `d+0xE14`, value `d+0xE0C` | 1 | two-button, on the selected sub-field | **each sub-field mod 60** |
+| **227** | `001D424E` | **sexagesimal entry** | sub-field selected by `d+0xE14`, value `d+0xE0C` | 1 | two-button, on the selected sub-field | ~~**each sub-field mod 60**~~ two sub-fields mod 60, one mod the runtime `d+0xE18` *(corrected 2026-10-02, OPUS: `001D1660+0xC5E` `mov ecx, dword ptr [rdi+0xe18]`, `+0xC69` `idiv ecx`)* |
 | 228 | `001D3B1C` | boolean toggle | `b+0xE1C` | — | none | 0/1 |
 | 229 | `001D3B31` | boolean toggle | `b+0xE1D` | — | none | 0/1 |
 | 230 | `001D3B46` | boolean toggle | `b+0xE1E` | — | none | 0/1 |
@@ -118,7 +118,7 @@ Each widget is a contiguous ten-dword block — **value, eight digits, cursor**:
 ```
 
 > `0xDDC` sits between the two widgets and **no id in this slice touches it. That is not evidence it
-> is unused** — the same caution slice C discharged for slice B, and ids 236–293 are unread.
+> is unused** — the same caution slice C discharged for slice B, and ids 236–293 are unread *(answered: see slices H and I, delivered; 2026-10-02, OPUS)*.
 
 **Id 227 is the same idea in base 60.** Its selector at `rdi+0xE14` chooses one of three sub-fields,
 and each is wrapped with `add 0x3B` (59) then a magic divide whose shift is `sar edx, 5` and whose

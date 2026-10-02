@@ -3,7 +3,7 @@ system: Exception funclets and lazy-static guards
 category: 24-Compiler-And-CRT-Runtime
 status: AUDITED
 owner_layer: CodeDomain:CompilerGeneratedEH
-evidence_tier: 1 (one group of 128 relies on tier 8 for its *identity*, see §8)
+evidence_tier: 1 (one group of 128 relies on tier 8 for its *identity*, see §8)   # <- corrected 2026-10-02, OPUS - B-2/b answered 2026-09-26: the image's POGO record places all 128 in .text$x, so their identity no longer rests on tier 8
 verified_against:
   gzf_sha256: 2ed8affb732f0def0a7852e0788298ae36b81206099dd1712f59825fc1c00bb9
   transfers_to:
@@ -172,7 +172,7 @@ gate.
 ### Where the exception machinery actually lives in the game
 
 Every funclet belongs to a parent function, and the parents are not spread evenly. Of the
-**1,609 distinct parent functions**:
+~~**1,609 distinct parent functions**~~ **4,314 parent functions** in the EH tables (the split below was taken over a 1,609-function population that is not preserved) *(corrected 2026-10-02, OPUS: a `.pdata` walk to every `__CxxFrameHandler3` / `__GSHandlerCheck_EH` `FuncInfo` finds 4,446 records owned by 4,518 functions, 4,314 of which name an unwind or catch funclet; 3,820 distinct unwind and 72 catch funclets; B-2/e's answer)*:
 
 | parent's subsystem (V120 PrimaryOwner) | parents |
 |---|---:|
@@ -210,7 +210,7 @@ They are registered in §5 because no other document mentions them.
 
 ### Two ways the compiler leaves work that does nothing
 
-**172 funclets tail-jump to `0016D6A0`, whose entire body is `C2 00 00` — `ret`.** That address
+**172 funclets tail-jump to `0016D6A0`, whose entire body is `C2 00 00` — ~~`ret`~~ `ret 0`.** *(answered: see B-2/a - `ret 0`, not a bare `ret`; 2026-10-02, OPUS)* That address
 is also what the PE load configuration names as the Control Flow Guard check function (the
 `GuardCFCheckFunctionPointer` slot at `008C31C0` holds `0016D6A0`), which is why Ghidra labels
 it `_guard_check_icall` and why the decompiler prints these funclets as "call the CFG check".
@@ -418,7 +418,7 @@ void _Init_thread_abort(int *g) {                      // the funclet's tail tar
 ```
 *guard ==  0   never initialised
 *guard == -1   a thread is constructing it right now; everyone else waits 100 ms and retries
-*guard  >  0   built; its value is the epoch at which it completed
+*guard  >  0   built; its value is the epoch at which it completed   <- corrected 2026-10-02, OPUS - not > 0: 01F44850 ships 0x80000000 and the footer stores ++epoch (0080929C+0x29, 0080929C+0x31), so a built guard is negative as a signed int
 ```
 
 and the fast path is one TLS read and one compare:
@@ -544,7 +544,7 @@ disposition them by reference to this document rather than absorb them.
   `Phyre.Reflection.DataMemberMetadataStaticTeardown` (853),
   `Phyre.Reflection.ClassDescriptorStaticTeardown` (404),
   `Runtime.StaticIntrusiveListTeardown` (224) and friends — have the *identical* two-instruction
-  shape `lea rcx,[rip+global]; jmp ~T()`. They run at normal shutdown, not on an exception.
+  shape `lea rcx,[rip+global]; jmp ~T()`. They run ~~at normal shutdown~~ only on a CRT `exit` path, never on the normal quit, and not on an exception *(corrected 2026-10-02, OPUS: the 2,153-byte Phyre framework body calls `ExitProcess` at its `+0x7DF` through `008C2260`; the teardown page's UQ-331 answer)*.
   1,328 of them match an EH skeleton byte for byte. The distinction is settled in §8 by the fact
   that every one of them has its address taken by an `atexit` call and **not one of the 3,895
   funclets does**. See [`../Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md`](../Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md).
@@ -679,7 +679,7 @@ declared funclet without the tag, and six did.
 | `CompilerGeneratedCpp` | 417 | **No.** Generated C++ lifecycle (static teardown, container teardown, scalar deleting destructors). Runs at shutdown or on `delete`, not on an unwind. The 2,579 `atexit` thunks in §5 live here. |
 | `CxxObjectLifecycle` | 225 | **No.** Same reason. |
 | `CxxStandardLibrary` | 167 | **No.** Real STL implementation code; several are *callees* of funclets, none is one. |
-| `CompilerGeneratedCFG` | 145 | **No.** The CFG guard adapters. Touches this document only because empty destructors were folded onto `0016D6A0`. |
+| `CompilerGeneratedCFG` | 145 | **No.** ~~The CFG guard adapters.~~ The 145 empty-destructor teardowns the tag misnames *(corrected 2026-10-02, OPUS: each is `lea rcx, [static]; jmp 0016D6A0` and is registered with `atexit` `00808B90`; the hardening page's S-3 correction)*. Touches this document only because empty destructors were folded onto `0016D6A0`. |
 | `Thunk` | 689 | **Partly, and it is checked.** 118 bare `jmp [rip+k]` thunks share a body shape with the terminate funclet, and 749 bare `jmp imm` thunks share one with the 86. The separation is in §10, not in the tag. |
 | `Microsoft` | 106 | **No**, but two of its members (`001952E0`, `00195310`) are exact-body clones of a *tagged* pair and appear in finding 1. |
 | everything else | — | **No.** None contains a declared funclet; check 2 proves it. |
@@ -750,7 +750,7 @@ That is an ordinary member function performing a virtual-base-adjusted virtual d
 classifications — at least one pair is wrong, and the EH pair is the wrong one, since neither
 instrument places them in the funclet population. *This is the "real mechanism hiding behind
 the classification" that B-2 asked about.* Its concrete identity — which class, which interface,
-which slot-`+0x10` method — is not recovered here and stays numeric.
+which slot-`+0x10` method — ~~is not recovered here and stays numeric~~ is recovered in the BK-6 answer below *(answered: see BK-6, answered 2026-09-12; 2026-10-02, OPUS)*.
 
 > **BK-6 answered 2026-09-12 (FABLE): the four bodies are `std::basic_ostream<char>` /
 > `basic_istream<char>` `_Sentry_base::~_Sentry_base`, and both classifications were half right.**
@@ -983,8 +983,8 @@ funclet addresses were re-derived from the embedded EXE whose SHA-256 reproduced
 verification.
 
 **Not attempted, and therefore not claimed:** runtime confirmation that any funclet ever
-executes; the source-level identity of the folded empty destructor; individual verification of
-the 136 magic statics without a funclet.
+executes~~; the source-level identity of the folded empty destructor; individual verification of~~
+~~the 136 magic statics without a funclet~~. *(answered: see B-2/a, closed 2026-09-07 - there is no single identity to recover - and B-2/c, all 136 verified 2026-09-26; 2026-10-02, OPUS)*
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 

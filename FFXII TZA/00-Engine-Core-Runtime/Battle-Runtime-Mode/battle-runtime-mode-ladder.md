@@ -32,7 +32,7 @@ audit:
 > which outranks the **interface**. The top two levels are named in the game's own script
 > vocabulary — `seteventpartymode` and `seteventparty2mode`.
 
-**PARTIAL.** The ladder, its inputs and its persistence are read at tier 1. **Modes 1, 2, 4 and 5
+**PARTIAL.** *(answered: see the front matter, status AUDITED, brought up to date 2026-09-18 (FABLE); 2026-10-02, OPUS)* The ladder, its inputs and its persistence are read at tier 1. **Modes 1, 2, 4 and 5
 are named** from the script verbs that set their bits — summon mode, chocobo mode, event party
 mode, event party 2 mode (§2b, §2c, 2026-09-12); mode 3 is the area's field-record bit 15 and mode
 0 the absence of all four. What keeps the page PARTIAL is the residue of the two consumers opened
@@ -150,7 +150,7 @@ four: the `set…` verbs take **1 argument** and their handlers contain exactly 
 `VMValueStack_PopInt32CoerceFloat32`; the `…bit` verbs take **0 arguments** and their handlers
 contain exactly one `VMResult_WriteInt32`.
 
-**Bits 0 and 1 have no script verbs at all** — the complementary evidence that they are
+**Bits 0 and 1 have no script verbs at all** *(answered: see section 2c, ANSWERED 2026-09-12: both have verbs; 2026-10-02, OPUS)* — the complementary evidence that they are
 engine-internal, driven by UI and combat, and unreachable from a script.
 
 ### So the modes are about who owns the party
@@ -503,7 +503,7 @@ state[0x5B04] bits 0..3 -----------------------------------------+--> 0030D9A0 m
   ordinary script verbs taking one argument, sitting at the **top** of the ladder — above the area's
   own authored bit. A script that sets one and never clears it leaves the party in an event
   configuration.
-- **All four bits are live, but from different places.** Bit 0 is UI, bit 1 is combat/audio, and
+- **All four bits are live, but from different places.** Bit 0 is UI, bit 1 is combat/audio *(answered: see the ANSWERED 2026-09-12 notes, bit 0 the summon and bit 1 the chocobo; 2026-10-02, OPUS)*, and
   **bits 2 and 3 are set by event scripts**.
 - **XIIOnline:** this mode is per-client runtime state that is *persisted*, so two clients can
   disagree about it across a transition. Anything gated on mode 2 — input arbitration included —
@@ -541,7 +541,7 @@ state[0x5B04] bits 0..3 -----------------------------------------+--> 0030D9A0 m
       only and restores entry 3 to what it held before the refresh (`003267E8`–`003267F7`, from
       the copy taken at `003266F4`).** Entry 2 keeps all nine selectors in every mode. That is the
       whole native distinction; which of entry 3's readers (`0031B950`,
-      `BattleSlotMap_ResolveMappedBattleSlot`, five more) an event script relies on is not read.
+      `BattleSlotMap_ResolveMappedBattleSlot`, five more) an event script relies on is not read *(answered: see the mode contract, ANSWERED 2026-09-22 (SWE2-CONTRACT): the party read-in state machine `0037B4D0`; 2026-10-02, OPUS)*.
 - [x] ~~What modes 0, 1 and 2 are in their own terms. Neither live bit has a script verb.~~
       **ANSWERED 2026-09-12:** both have verbs, reached through thunks (§2c).
 - [x] ~~Why enabling the mode-2 bit writes **180.0f** to `+0x5AE4`, and what that field is.~~
@@ -665,7 +665,7 @@ table reconciles exactly, including the nine functions with a single site.
 The interpretive core — the ladder as a **party-control authority ladder**, mode 3 pre-empting
 mode 2, and the reading that a script outranks authored area data which outranks combat which
 outranks UI — rests on the ladder's fixed test order, which was re-read byte for byte and holds.
-**O-4 stays open**: what the six modes *mean* is still not established, and this pass did not
+**O-4 stays open** *(answered: see O-4, ANSWERED 2026-09-12 (FABLE); 2026-10-02, OPUS)*: what the six modes *mean* is still not established, and this pass did not
 attempt it.
 
 ## `0035BC50` opened — the battle-menu selection state builder (2026-09-03, `repos-78`)

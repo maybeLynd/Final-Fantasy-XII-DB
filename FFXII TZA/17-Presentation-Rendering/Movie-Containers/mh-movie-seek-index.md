@@ -102,7 +102,7 @@ The kind-28 array has 45 `.mh` names against 43 shipped files; the two extra nam
 `us\dlb.mh`, have no file (and `anx.webm` ships with no `.mh`).
 
 > **The array is NULL-*sparse*, not NULL-terminated** (measured 2026-09-13, §6). Indices
-> **76–81 and 92–93** are empty and the array continues past them; the 45 pairs occupy 92 of
+> **76–81 and 92–93** are empty and the array continues past them; the 45 pairs occupy ~~92 of~~ 90 *(corrected 2026-10-02, OPUS: the 98 qwords from `01ECB4D0` hold 90 non-null pointers)* of
 > the first 94 slots. A walk that stops at the first NULL reports 38 `.mh` and loses
 > `in\ANX.mh` — which is what happened on the first attempt at this check.
 
@@ -178,7 +178,7 @@ lookups read and neither opening the file, and **no direct reader of the array a
 Walking `01ECB4D0` and stopping at the first NULL gives **38** `.mh` names, no `in\ANX.mh`, and a
 folder split of us 34 / in 4. **All three are artefacts.** The array has NULL entries at indices
 **76–81 and 92–93** and continues past them; read to the end it holds **45 `.md` + 45 `.mh`**
-(us 36 / in 8 / jp 1) in 92 populated slots, exactly as §3 says.
+(us 36 / in 8 / jp 1) in ~~92~~ 90 populated slots *(corrected 2026-10-02, OPUS: slots 0-97, less the NULLs at 76-81 and 92-93)*, exactly as §3 says.
 
 > I drafted *"the array holds 38, not 45"* as a correction before checking where the strings are
 > pointed from. Every one of the 45 is pointed at from **one contiguous run, `01ECB4D8`–`01ECB7D8`**
@@ -192,7 +192,7 @@ folder split of us 34 / in 4. **All three are artefacts.** The array has NULL en
 **Not claimed.** `MH-1` stands — what `+0x04`, `+0x06` and the entry flags meant is still
 unrecoverable from a build with no reader, and this pass adds no evidence about their meaning. The
 width/height reading is still an inference from the values, not from a consumer. The two constant
-kind-28 lookups were **not** re-derived here; §3's own account of `001B7F30` and `0035B840` is taken
+kind-28 lookups were **not** re-derived here *(answered: see the screen-fade page, which re-derives `001B7F30` (2026-09-25); 2026-10-02, OPUS)*; §3's own account of `001B7F30` and `0035B840` is taken
 as read, and only the array-reference route was measured independently. The archive was **read, never
 written**, and nothing was executed.
 

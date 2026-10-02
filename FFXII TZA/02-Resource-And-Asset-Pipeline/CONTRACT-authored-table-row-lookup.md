@@ -195,7 +195,7 @@ bound from the registrar (§7), not a proven total: nothing observed shows where
 | `+0x18` | 4 | — | `uint32` | a third reference | `00384625`–`0038462F` |
 | `+0x1C` | 4 | — | `uint32` | a fourth reference, the highest field the registrar touches | `00384636`–`00384640` |
 
-The registry is a band of qword slots at `02EBEF70..02EBF3FC`, 8 bytes apart. **Forty of them are
+~~The registry is a band of qword slots at `02EBEF70..02EBF3FC`, 8 bytes apart.~~ The census band is `02EBEF70..02EBF3FC`, 8 bytes apart; the registry array inside it is `02EBF008`–`02EBF200`, and the band also holds other globals *(corrected 2026-10-02, OPUS: `00236C30+0x3E0` binds `02EBF008` and `00236C30+0x401` stores `02EBF200`; `02EBF000` is a float that `0039AF20+0x7` stores with `movss`, and `02EBEF78` is the EFX rebase table `003A9BA0+0x20` loads)*. **Forty of them are
 headers of this shape.** Not all are: `02EBF190` holds `BattleSystemState`. Membership is established
 by a slot exhibiting the idiom, never by its address falling in the band — a distinction that cost a
 first measurement its extra fields.
@@ -342,7 +342,7 @@ at `00237FE3` and loops. The gambit one announces its extra work in its name.
 **`02EBF118`'s binder is a tail-jump thunk and a `call`-matching sweep cannot see it.** `FUN_003847B0`
 is fifteen bytes — `movsxd rdx, ecx` / `lea rcx, <02EBF118>` / **`jmp 0x3845F0`**. A sweep of every
 `call 003845F0` in the image reports 36 registrations and **omits this one**; widening it to `jmp`
-finds exactly one tail-jump binder image-wide, this. Recorded because the same sweep briefly made the
+finds ~~exactly one tail-jump binder image-wide, this~~ six tail-jump sites: this one, `00238640` (into `02F973C0`, outside the registry) and four in `0023A160` (the `.ard` slots `02EBF120`/`140`/`148`/`150`), plus a seventh in `0023A160` that jumps to `003846F0` for `02EBF168` *(corrected 2026-10-02, OPUS: `003847B0+0xA`, `00238640+0xE` and `0023A160+0x22` / `0023A160+0x31` / `0023A160+0x40` / `0023A160+0x61` jump to `003845F0`, and `0023A160+0x52` to `003846F0`)*. Recorded because the same sweep briefly made the
 status-definition table look unregistered.
 
 So the registry is filled two ways: **35 tables in bulk from one blob's directory, and a handful
@@ -713,7 +713,7 @@ test.*
 
 §11's observation is unchanged and still worth one reading: a known slot's `+0x08` against the row
 width the authored data actually uses. Nothing here bears on what writes `01F83530` — it is `.bss`,
-begins as zero, and no instruction in the image writes it — nor on the `.data` dword at `01DFE0B4`.
+begins as zero, and ~~no instruction in the image writes it~~ one in-image store can write it *(corrected 2026-10-02, OPUS: the texture-id table writer's `+0x18` reaches it for id `0xFFFB`, its `+0x5` compare being signed; undriven, not absent - §7's reconciliation)* — nor on the `.data` dword at `01DFE0B4`.
 
 **A correction made by the run, 2026-09-12.** A draft of this section said that dword was **zero in
 the shipped image**, taken from a disassembler annotation printing the QWORD at that address —
@@ -847,15 +847,15 @@ this contract should not have to find them from the experiment side only.
    through the `003846F0` variant, `blob+0x2C`→`02EBF160` and `blob+0xF8`→`02EBF170` (the
    two `slotCount`/ref-array bands of §3), plus scalar `blob+0x11C`→`02EBF200`.
    (`00236C30(0)` re-registers `00238850` — the no-blob arm, reached only through the
-   registered-callback path.) Six more calls consume the blob whole; three of them are
-   inner binders that fill four additional slots — `00237FC0`→`02EBF138`,
+   registered-callback path.) Six more calls consume the blob whole; ~~three of them are~~ five of them are
+   inner binders that fill ~~four~~ five additional slots — `00237FC0`→`02EBF138`,
    `00238160`→`02EBF0F8`, `00238880` (`GambitTargetDefinition_BindAndBuildMenuLookup`, fed
-   `blob+0x20`)→`02EBF0D8`, and `00238660`→`02EBF158`. **39 of the 47 slots' provenance is
+   `blob+0x20`)→`02EBF0D8`, ~~and~~ `00238660`→`02EBF158` and `003847B0`→`02EBF118` *(corrected 2026-10-02, OPUS: `00236C30+0x164` calls `003847B0` with `blob+0x40`, and `003847B0+0x3` names `02EBF118` before its `jmp 0x3845f0`)*. **~~39~~ 40 of the 47 slots' provenance is
    thus named.**
-   The remaining eight — `02EBF000`, `02EBF0D0`, `02EBF118`, `02EBF120`, `02EBF140`,
-   `02EBF148`, `02EBF150`, `02EBF168` — have **no binder-family provenance**: the
-   `003845F0`/`003846F0` caller census is complete (36 and 5 sites, all enumerated above or
-   internal), so those slots are either written by non-binder paths (`0039AF20`'s float
+   The remaining ~~eight — `02EBF000`, `02EBF0D0`, `02EBF118`, `02EBF120`, `02EBF140`,~~ seven split: the five `.ard` slots `02EBF150`, `02EBF168`, `02EBF120`, `02EBF148` and `02EBF140` are bound by the dispatcher `0023A160` through tail-jumps, and only `02EBF000` and `02EBF0D0`
+   ~~`02EBF148`, `02EBF150`, `02EBF168` —~~ have **no binder-family provenance** *(corrected 2026-10-02, OPUS: `003847B0+0xA`, `00238640+0xE` and `0023A160+0x22` / `0023A160+0x31` / `0023A160+0x40` / `0023A160+0x61` jump to `003845F0`, and `0023A160+0x52` to `003846F0`)*: the
+   `003845F0`/`003846F0` caller census is complete ~~(36 and 5 sites, all enumerated above or~~ for `call` (36 and 5 sites), and the tail-jumps add six and one,
+   ~~internal)~~, so those slots are either written by non-binder paths (`0039AF20`'s float
    block is the known example) or delivered by other loader ids; their contents are authored
    data either way, which the image cannot name.
 3. **Whether the two null guards are reachable at all.** If the registry is always filled before any
@@ -863,13 +863,13 @@ this contract should not have to find them from the experiment side only.
    is a runtime question and §11 does not answer it.
    > *Static half settled 2026-09-12 (FABLE, J-B; a note only — the contract's own text is the
    > owner's).* The slot band `02EBF000`–`02EBF178` has **no rip-relative writer in the image** (a
-   > capstone pass over every function; the only stores in the band are `00238660`'s `02EBF158`
-   > and `0039AF20`'s float block) — every slot is written **through the pointer** the binder
+   > capstone pass over every function; ~~the only stores in the band are~~ the stores in the band are `00238660`'s `02EBF158`
+   > and `0039AF20`'s float block, and `00324510`'s two at `02EBF178` *(corrected 2026-10-02, OPUS: `00324510+0x48` and `00324510+0x18A` store `rax` there)*) — every slot is written **through the pointer** the binder
    > `00236C30` hands to `AreaData_BindAndRebaseSectionDescriptor` (`003845F0`), which stores its
    > `rdx` **unconditionally** (`003845F4`), so a blob whose directory entry resolves to null leaves
-   > the slot null rather than untouched. `00236C30` is not called by anyone: it is the **delivery
+   > the slot null rather than untouched. `00236C30` is ~~not called by anyone: it is~~ tail-jumped to by the registered stub `00238850` *(corrected 2026-10-02, OPUS: `00238850+0x1F` `jmp 0x236c30` with `ecx = 1`; the call at `002368D0+0xFE` registers `00238850`, whose address `002368D0+0xF7` loads)*, the body of the **delivery
    > callback** `BattleStorage_InitializeWorkArrays` registers at boot for loader id `0x13`, name
-   > `"STATIC"` (`002369BB`–`002369CE`: `003843F0` → `00384420(0x13, 00236C30, "STATIC", 4, 6, 4)`, the
+   > `"STATIC"` (`002369BB`–`002369CE`: `003843F0` → ~~`00384420(0x13, 00236C30, "STATIC", 4, 6, 4)`~~ `00384420(0x13, 00238850, "STATIC", 4, 6, 4)` *(corrected 2026-10-02, OPUS: `002368D0+0xF7` loads `00238850` into `rdx`)*, the
    > same request path [the registry page](authored-data-table-registry.md) §M-7 documents for ids `0x47`–`0x52`), under the bootstrap
    > frame `0022A0B0` ← `0017D4C0`. So the band is **null from process start until the STATIC blob
    > is delivered**, and the guards are reachable in exactly two cases: a consumer ticking inside
@@ -888,7 +888,7 @@ this contract should not have to find them from the experiment side only.
 | the band is mixed | `02EBF190` holds `BattleSystemState` per `_types/types.tsv` | 1 (static, isolated original code) | PROVEN |
 | the failure path dereferences a null base | `00387712 xor ecx, ecx` then `00387714 movzx eax, byte ptr [rcx + 9]`; `0030E686`/`0030E68A` for the second. **Executed**, and a one-sided probe with no page at zero shows the shipped bytes fault | 1 (isolated original-code) | PROVEN |
 | the resolver zero-extends its reference and adds a 64-bit base | `0020E600` whole: `mov eax, ecx` / `add rax, qword [01F83530]`. Executed at references up to `0xFFFFFFFF` and at bases above 4 GB | 1 (isolated original-code) | PROVEN |
-| the encoder subtracts the same global read as a DWORD, so the two are inverses only below 4 GB | `0020E620` whole. Executed in both directions at a base of `0x100000000`, where the round trip does not return the reference | 1 (isolated original-code) | PROVEN |
+| the encoder subtracts the same global read as a DWORD, so the two are inverses ~~only below 4 GB~~ exactly while `(p - base) mod 2^64 < 2^32`, whatever the base's high half *(corrected 2026-10-02, OPUS: `0020E620` subtracts the base's low dword and `0020E600+0x2` adds the full qword back, so the pair returns `base + ((p - base) mod 2^32)`; the next row's ruling)* | `0020E620` whole. Executed in both directions at a base of `0x100000000`, ~~where the round trip does not return the reference~~ where a reference below `2^32` comes back unchanged by that algebra | 1 (isolated original-code) | PROVEN |
 | **the exact round-trip condition is `((p - base) mod 2^64) < 2^32`** | the two encodings read at byte level: resolver `8B C1 48 03 05` (REX.W, qword) against encoder `2B 0D` (no REX.W, dword), both at `01F83530`, and BOTH OPERATIONS ARE MODULAR. **This row first read `0 <= p - base < 2^32` and called a 32-bit base necessary; `ASTRA-CONTRA-OPUS-REFERENCE-MODULO-WINDOW` refuted both halves and the counterexamples were re-checked here** — base `0x100000000` round-trips, and so does the `FFFFFFFFFFFFF000` wrap window EXP-076 already captured | 1 (static) | PROVEN |
 | the header carries a `uint32` row count at `+0x04`, and nine consumers bound-check on it | FABLE's J-A band-register census (120 `+0x04` reads vs 592 `+0x08` / 1,034 `+0x0C`), independently reproduced 2026-09-20 (140/583/1,001 over 1,799 band loads; difference is window policy); three bound-checkers re-read in the image: `00237FF5`, `002388B5`, `0023AE25` — all `cmp index, [hdr+4]; jae` before resolving `+0x0C` | 1 (static) | PROVEN |
 | `+0x00` is `slotCount` — the index bound of the encoded-pointer array at `+0x04` — and `+0x02` is a reserved header word; headers are not uniform across band families | function-list census over all 38,161 bodies (register tracked until rewrite or clobbering call), 2026-09-20: four true `+0x00` readers all range an index `≤ word[+0x00]−1` before `dword[+0x04+idx*4]` → `0020E600` (`0023A717`, `002FE06C` on `02EBF168`; `00308EE9`/`00308F11` pairwise ranges on `02EBF160`; `003214CD` on `02EBF170`, nested via `003214DF`); zero verified band-header `+0x02` readers — `003155E6`/`003063C1` are row `+0x02` reads | 1 (static) | PROVEN |
@@ -901,7 +901,7 @@ this contract should not have to find them from the experiment side only.
 | an unlinked block is tagged `0xFF99` over its header word **only when the caller's `edx` is non-zero** | `0036CA4E test ebp, ebp` / `0036CA50 je 0036CAAE` **jumps past** `0036CA92 mov eax, 0xff99` / `0036CA99 mov word ptr [rbx], ax`. Corrected 2026-09-13: this row previously said every unlink tags the block | 1 | PROVEN |
 | the `+0x3E` word is a corruption guard every writer stores zero to and every reader compares against zero — nonzero is not a state the code produces | store row `ImageAddressArenaBlockHeader.0x3E = guardWord` (OPUS 2026-09-20: 33 stores all-zero over 38,161 bodies, no non-word overlap that writes it); re-read 2026-09-20: five identical `cmp word[+0x3E],0 → 0036A570` report gates (`0036B8C3`/`0036B743`/`0036B683`/`0036B803`/`0036CB76`) plus the free path's `00369A80` MCB-Broken abort, and all sampled stores are zero (`0036CA20`-`0036CAB8`, `0036BE91`/`0036BEA5`) | 1 (static) | PROVEN |
 | the free-list links are an encoded doubly-linked chain — `+0x04` is `prev`, `+0x08` is `next` | read 2026-09-20: `0036B670` decodes `rcx->+0x08` for the forward neighbour then stores `rsi->+0x08`/`rbp->+0x04`/`rbx->+0x04`/`rbx->+0x08` as a between-insert; `0036B730` is the mirror through `+0x04`. Both decode via `0020E600` and encode via `0020E620`, gate on `+0x3E` and clear it on every touched block; `rsi==0` encodes `0` into both links | 1 (static) | PROVEN |
-| the STATIC delivery populates 39 of the 47 band slots, through a fully enumerated binding map | read 2026-09-20: loader `0x13` `"STATIC"` → delivery stub `00238850` (binds `0208E680` via `003846F0`, tail-jumps `00236C30(1)`) → 35 slot bindings in `00236C30` (33×`003845F0` + 2×`003846F0` for `02EBF160`/`02EBF170`) + scalars `02EBF180`/`02EBF200` + four inner-binder slots (`00237FC0`→`02EBF138`, `00238160`→`02EBF0F8`, `00238880`→`02EBF0D8`, `00238660`→`02EBF158`). Binder caller census complete: 36 `003845F0` + 5 `003846F0` sites | 1 (static) | PROVEN |
+| the STATIC delivery populates ~~39~~ 40 *(corrected 2026-10-02, OPUS: `003847B0`→`02EBF118` is the fifth inner binder, `00236C30+0x164`)* of the 47 band slots, through a fully enumerated binding map | read 2026-09-20: loader `0x13` `"STATIC"` → delivery stub `00238850` (binds `0208E680` via `003846F0`, tail-jumps `00236C30(1)`) → 35 slot bindings in `00236C30` (33×`003845F0` + 2×`003846F0` for `02EBF160`/`02EBF170`) + scalars `02EBF180`/`02EBF200` + ~~four~~ five inner-binder slots (`00237FC0`→`02EBF138`, `00238160`→`02EBF0F8`, `00238880`→`02EBF0D8`, `00238660`→`02EBF158`, `003847B0`→`02EBF118`). Binder caller census ~~complete: 36 `003845F0` + 5 `003846F0` sites~~: 36 `call` and 6 `jmp` sites of `003845F0`, 5 `call` and 1 `jmp` of `003846F0` *(corrected 2026-10-02, OPUS: `003847B0+0xA`, `00238640+0xE` and `0023A160+0x22` / `0023A160+0x31` / `0023A160+0x40` / `0023A160+0x61` jump to `003845F0`, and `0023A160+0x52` to `003846F0`)* | 1 (static) | PROVEN |
 | where the arena actually sits in a running game | **BOUNDED OBSERVATION, 2026-09-13** ([EXP-079](../_experiments/EXP-079-arena-live-placement.md), ASTRA). In **two named states** of one session: arena 11 backing moved `7C5D3040` → `7C5D2040`, arena 14 sat at `6610EF40` and was **newly enabled**, and **arena 7 stayed enabled** with an `EFX0010` backing, pointer `763A2940`, and **all-zero 64 bytes at `+0x38` / `+0x90` / `+0x98`. **Two states are not all-time safety**, there is **no causal free/allocation trace**, and **“enabled” is not “an initialized, usable allocator”** — ASTRA states that limit explicitly and it is carried here rather than softened. So the 4 GiB question this contract turns on is **still not settled by placement evidence**: these backings are all below 4 GiB, which is consistent with the round-trip condition holding in these two states and proves nothing about others | 3 | PARTIAL |
 | the worked instance resolves the same reference TWICE and tests only the first result | `003876E7` and `003876FB` against one null test at `003876EC`. Executed: **33 resolver calls across 21 timer calls** (re-run 2026-09-12; this row read 31 and 18, which no longer matched the suite), and the control that resolved once failed | 1 (isolated original-code) | PROVEN |
 | the row address is built in 32-bit arithmetic and truncates the resolved base | `0038770B imul ecx, ebx` / `0038770E add ecx, eax`, both 32-bit. Executed at a stride and index whose product is exactly 2^32; the control doing it in 64 bits failed | 1 (isolated original-code) | PROVEN |
@@ -1232,7 +1232,7 @@ inference being contradicted.
 
 **What the codec constrains is RANGE, not storage kind.** The asymmetry is the whole content:
 the decoder adds the full 64-bit base while the encoder subtracts only its **low 32 bits**, so
-the pair round-trips only while the base's high half is zero and the delta fits 32 bits — the
+the pair round-trips ~~only while the base's high half is zero and the delta fits 32 bits~~ exactly while `(p - base) mod 2^64 < 2^32`, whatever the base's high half *(corrected 2026-10-02, OPUS: `0020E620` subtracts the base's low dword and `0020E600+0x2` adds the full qword back, so the pair returns `base + ((p - base) mod 2^32)`)* — the
 bound §10.1 already states as `((p - base) mod 2^64) < 2^32`. That constrains where the arena
 may sit. It says nothing about who produced its contents.
 
@@ -1356,7 +1356,7 @@ Interior anchor `0036C313` (function `0036C290`).
 **WorldAreaField and World — CLIENT, 70 edges: the area loaders use the same arena and request machinery as the row
 binds.**
 - **The arena helpers.** This contract's bind helper `00384510` runs the arena push/pop pair `0036C1D0` / `0036C1A0` /
-  `0036C110`, the row fetch `0036A190` and the rebase `0036C660`. The field loaders run the same helpers:
+  `0036C110`, the row fetch `0036A190` and ~~the rebase~~ the header tagger `0036C660` *(corrected 2026-10-02, OPUS: `0036C660+0x1A` checks the `0xFF12` block magic at payload `-0x40`, `0036C660+0x30` `strncpy`s seven name bytes into payload `-0xC` and `0036C660+0x40` stores the tag word at `-0x22`; nothing is rebased)*. The field loaders run the same helpers:
   `MapRef_BeginLoadResources`, `AreaArd_LoadOrUnloadFieldResource`, `AreaArd_BindLoadedRootAndBattleSections`,
   `00377DC0`, `00378030`, `003788F0`, `003789A0`, `00378BC0`, `00267930` and `003319D0`. The map-table requester
   `00378540` (filed World) runs them too.

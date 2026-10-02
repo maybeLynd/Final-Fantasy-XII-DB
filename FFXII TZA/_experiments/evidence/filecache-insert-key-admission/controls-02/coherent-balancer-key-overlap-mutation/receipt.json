@@ -1,0 +1,18 @@
+{
+  "name": "coherent-balancer-key-overlap-mutation",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-insert-key-admission\\controls-02\\coherent-balancer-key-overlap-mutation\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "8ec0b0d0750ad45a552950cbcd871ba8ea3716d86e20d7ffd036a0f56a5cedcb",
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "92ba01573f03b34b9df4d963a89fdb8fa64c93049f4bfdf749248351134c16d0"
+}

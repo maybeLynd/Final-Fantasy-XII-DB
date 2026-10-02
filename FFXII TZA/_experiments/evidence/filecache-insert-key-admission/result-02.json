@@ -1,0 +1,783 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY pre-keyed insertion ABI and key forwarding",
+  "driver_sha256": "8ec0b0d0750ad45a552950cbcd871ba8ea3716d86e20d7ffd036a0f56a5cedcb",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "7b1683169d121522d38a62c4fde6730e27e2cb19098fb55d7456db2c2745173a"
+    },
+    {
+      "path": "source-02.json",
+      "sha256": "f65febe598f3cfb3ff285f835939a72f6fcf0ca4ddcb6badebd0ba3193aff3f7"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 181,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 407,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x1d6a20",
+      "bytes": 77,
+      "instructions": 22,
+      "calls": [
+        [
+          1927743,
+          "0x20c700"
+        ],
+        [
+          1927763,
+          "0x20b680"
+        ]
+      ],
+      "returns": [
+        "0x1d6a6c"
+      ]
+    },
+    {
+      "entry": "0x20b680",
+      "bytes": 443,
+      "instructions": 122,
+      "calls": [
+        [
+          2143923,
+          "0x5cd4f0"
+        ],
+        [
+          2144002,
+          "0x20b0f0"
+        ],
+        [
+          2144038,
+          "0x20c300"
+        ],
+        [
+          2144050,
+          "0x5cd820"
+        ],
+        [
+          2144070,
+          "0x1ba860"
+        ],
+        [
+          2144220,
+          "0x20b5f0"
+        ],
+        [
+          2144232,
+          "0x5cd820"
+        ],
+        [
+          2144242,
+          "0x210ec0"
+        ],
+        [
+          2144273,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        "0x20b83a"
+      ]
+    },
+    {
+      "entry": "0x20b5f0",
+      "bytes": 133,
+      "instructions": 37,
+      "calls": [
+        [
+          2143842,
+          "0x1ae9b0"
+        ]
+      ],
+      "returns": [
+        "0x20b674"
+      ]
+    },
+    {
+      "entry": "0x1ae9b0",
+      "bytes": 332,
+      "instructions": 100,
+      "calls": [
+        [
+          1763813,
+          "0x16d6d0"
+        ],
+        [
+          1763868,
+          "qword ptr [rax + 0x10]"
+        ],
+        [
+          1763899,
+          "0x16d840"
+        ],
+        [
+          1763929,
+          "0x20ba70"
+        ],
+        [
+          1763992,
+          "qword ptr [rax + 0x10]"
+        ],
+        [
+          1764023,
+          "0x16d840"
+        ],
+        [
+          1764058,
+          "0x1ae850"
+        ]
+      ],
+      "returns": [
+        "0x1aeafb"
+      ]
+    },
+    {
+      "entry": "0x1ae850",
+      "bytes": 344,
+      "instructions": 105,
+      "calls": [
+        [
+          1763523,
+          "0x16d720"
+        ],
+        [
+          1763598,
+          "qword ptr [rax + 0x10]"
+        ],
+        [
+          1763629,
+          "0x16d840"
+        ],
+        [
+          1763663,
+          "qword ptr [rax + 0x10]"
+        ],
+        [
+          1763694,
+          "0x16d840"
+        ]
+      ],
+      "returns": [
+        "0x1ae9a7"
+      ]
+    },
+    {
+      "entry": "0x20ba70",
+      "bytes": 156,
+      "instructions": 48,
+      "calls": [
+        [
+          2144965,
+          "qword ptr [rax + 0x10]"
+        ],
+        [
+          2144997,
+          "0x16d840"
+        ]
+      ],
+      "returns": [
+        "0x20bb0b"
+      ]
+    },
+    {
+      "entry": "0x16d840",
+      "bytes": 532,
+      "instructions": 154,
+      "calls": [],
+      "returns": [
+        "0x16da53"
+      ]
+    }
+  ],
+  "original_bytes": 2017,
+  "entry_abi": {
+    "1D6A20": {
+      "ecx": "precomputed key32",
+      "rdx": "pointer forwarded as insertion r8",
+      "r8d": "forwarded insertion r9d",
+      "r9d": "forwarded insertion arg5 DWORD"
+    },
+    "20B680": {
+      "rcx": "service/map receiver",
+      "edx": "key32",
+      "r8": "input data-pointer carrier",
+      "r9d": "size/value32 carrier",
+      "arg5_at_entry_rsp28": "numeric kind32"
+    }
+  },
+  "key_stack": {
+    "entry_saved_key_offset": 16,
+    "push_bytes": 56,
+    "sub_bytes": 64,
+    "current_saved_key_offset": 136,
+    "width": 4,
+    "overlapping_own_writes_before_map_call": [],
+    "kind_current_offset": 160
+  },
+  "map_helper": {
+    "20B5F0_input": "RDX -> original DWORD key home at caller SP+88h",
+    "pair_key_current_offset": 48,
+    "pair_key_width": 4,
+    "pair_value_current_offset": 56,
+    "pair_value_seed": 0,
+    "native_insert_boundary": "1AE9B0 with R9 pointing to private key/value pair; no native effect executed",
+    "result_boundary": "returned node+28h value slot, caller stores its descriptor pointer there under normal helper contract"
+  },
+  "native_key_creation": {
+    "copy_sites": [
+      {
+        "entry": "0x1ae9b0",
+        "allocator_call": "0x1aea1c",
+        "source_pair_register": "r14",
+        "copy_load": "0x1aea28",
+        "copy_store": "0x1aea2c",
+        "node_pair_interval": [
+          32,
+          48
+        ],
+        "guard": "node+20h !=0 under valid fresh nonwrapping30h node",
+        "balance_call": "0x1aea3b"
+      },
+      {
+        "entry": "0x1ae9b0",
+        "allocator_call": "0x1aea98",
+        "source_pair_register": "r14",
+        "copy_load": "0x1aeaa4",
+        "copy_store": "0x1aeaa8",
+        "node_pair_interval": [
+          32,
+          48
+        ],
+        "guard": "node+20h !=0 under valid fresh nonwrapping30h node",
+        "balance_call": "0x1aeab7"
+      },
+      {
+        "entry": "0x1ae850",
+        "allocator_call": "0x1ae90e",
+        "source_pair_register": "r15",
+        "copy_load": "0x1ae91a",
+        "copy_store": "0x1ae91e",
+        "node_pair_interval": [
+          32,
+          48
+        ],
+        "guard": "node+20h !=0 under valid fresh nonwrapping30h node",
+        "balance_call": "0x1ae92d"
+      },
+      {
+        "entry": "0x1ae850",
+        "allocator_call": "0x1ae94f",
+        "source_pair_register": "r15",
+        "copy_load": "0x1ae95b",
+        "copy_store": "0x1ae95f",
+        "node_pair_interval": [
+          32,
+          48
+        ],
+        "guard": "node+20h !=0 under valid fresh nonwrapping30h node",
+        "balance_call": "0x1ae96e"
+      },
+      {
+        "entry": "0x20ba70",
+        "allocator_call": "0x20bac5",
+        "source_pair_register": "rbp",
+        "copy_load": "0x20bad1",
+        "copy_store": "0x20bad5",
+        "node_pair_interval": [
+          32,
+          48
+        ],
+        "guard": "node+20h !=0 under valid fresh nonwrapping30h node",
+        "balance_call": "0x20bae5"
+      }
+    ],
+    "balancing_header_writes": [
+      {
+        "pc": "0x16d842",
+        "base": "rcx",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d846",
+        "base": "rcx",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d849",
+        "base": "rcx",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d84d",
+        "base": "rcx",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d855",
+        "base": "rdx",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d85e",
+        "base": "r8",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d86a",
+        "base": "r8",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d870",
+        "base": "rdx",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d878",
+        "base": "r8",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d8d5",
+        "base": "rcx",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d8e1",
+        "base": "rax",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d8e9",
+        "base": "r9",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d901",
+        "base": "rax",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d907",
+        "base": "rax",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d90a",
+        "base": "r9",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d90e",
+        "base": "rcx",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d912",
+        "base": "r8",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d91a",
+        "base": "rax",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d922",
+        "base": "rdx",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d92d",
+        "base": "rdx",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d939",
+        "base": "rax",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d941",
+        "base": "r9",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d94d",
+        "base": "r9",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d95e",
+        "base": "rax",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d961",
+        "base": "r9",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d969",
+        "base": "rax",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d96d",
+        "base": "r9",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d981",
+        "base": "rax",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d988",
+        "base": "r9",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d98d",
+        "base": "rdx",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9aa",
+        "base": "rcx",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9b6",
+        "base": "rax",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9be",
+        "base": "r9",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9d5",
+        "base": "rax",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9da",
+        "base": "rax",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9de",
+        "base": "r9",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9e1",
+        "base": "rcx",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9e5",
+        "base": "r8",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9ed",
+        "base": "rax",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16d9f4",
+        "base": "rdx",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da00",
+        "base": "rdx",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da0c",
+        "base": "rax",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da14",
+        "base": "r9",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da2c",
+        "base": "rax",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da32",
+        "base": "rax",
+        "interval": [
+          0,
+          8
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da35",
+        "base": "r9",
+        "interval": [
+          8,
+          16
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da39",
+        "base": "rdx",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da3d",
+        "base": "r8",
+        "interval": [
+          16,
+          24
+        ],
+        "role": "w"
+      },
+      {
+        "pc": "0x16da4f",
+        "base": "rax",
+        "interval": [
+          24,
+          25
+        ],
+        "role": "w"
+      }
+    ],
+    "premises": "Valid fresh disjoint nonwrapping30h allocation, readable original pair/private stack, valid pointer-linked nodes/header, ABI/normal returns/no interference. Allocator callbacks and predecessor/successor helpers remain named native boundaries; no execution or initialized state observed."
+  },
+  "established": [
+    "1D6A20 receives a precomputed DWORD key in ECX and forwards unchanged low32 through saved EBP to insertion EDX after obtaining the service receiver. Its data-pointer,size/value32 and numeric-kind32 arguments are distinct; no pathname or prefix processing occurs in this supplied wrapper.",
+    "20B680 uses full DWORD key comparisons with unsigned JB/JAE and unchanged EBP. The existing-key arm forwards EDX=EBP to20C300; the new-descriptor arm passes the exact saved DWORD key home to20B5F0. No own full-width stack write overlaps that saved home before the map call.",
+    "20B5F0 reads the full DWORD key and uses unsigned comparison. On insertion preparation it copies the full DWORD to private pair+0, seeds QWORD pair+8=0 and forwards the pair to named native tree boundary1AE9B0. No local BTR31/hash/prefix normalization or own input-key write on the supplied value path.",
+    "All32 key bits are preserved to these boundaries, including bit31. Numeric ABI preservation is an invariant of the MOV widths/carriers, not a sampled native value. It does not prove that natural callers supply bit31-set keys.",
+    "The path normalizer output domain alone therefore cannot establish the whole insertion entry input domain. Actual caller derivation and native map effects need their own evidence; absence/collision/eviction conclusions cannot come from lookup normalization alone.",
+    "All supplied original native new-node creation alternatives in1AE9B0/1AE850/20BA70 copy16 bytes from the same input pair into node20..30 without key masking. Complete leaf16D840 balances only node/header pointer/color spans0..19 and has no calls; under valid node/header identities it leaves pair20..30 intact. Thus a successful valid new-node path preserves the full32 key in node20. Caller descriptor store through returned value slot28 changes the value pointer, not key20. Allocator/caller/natural-state premises remain, not merely assumed tree-copy semantics."
+  ],
+  "source_countermodel": {
+    "key": 2147483648,
+    "forwarded_key_at_existing_or_new_boundary": 2147483648,
+    "would_be_31bit_masked_key": 0,
+    "method": "Fixed-width source representation calculation, not original/native execution or naturally inserted record"
+  },
+  "affected_claims": [
+    "FABLE path-resolution and OV33E2 insert-domain prerequisite",
+    "OPUS cache insertion key32/data/size/kind ABI and lookup-vs-insert domain contract"
+  ],
+  "limits": [
+    "No FF12 instructions executed or emulated, no live process or natural cache contents captured.",
+    "Complete seven supplied local bodies, not full transitive native library/helper or all-caller closure. Valid initialized service/map/data/private-frame, nonaliasing, standard ABI/normal returns and stable ordered tree are explicit premises.",
+    "Original new-node pair copies and header-only balancing writes proved conditionally; allocator callbacks/predecessor-successor/20C300/20B0F0/lock/wrapper getter and actual replacement/lifetime effects remain named boundaries, not proved from stubs or names.",
+    "Full32 entry domain does not prove naturally supplied high-bit/nonhash keys; original callers may constrain inputs. No collision/archive namespace/eviction or six-candidate acceptance claim.",
+    "Prior accepted normalizer/prefix result not recaptured/retested. Its startup/native/import/locale limits remain.",
+    "Independent review and canonical consumption pending; no wholeOV or fullL1L2 closure. K14 closed, EXP127 invalid, menu spent/unapproved."
+  ],
+  "cleanup": "Owned offline evidence writes only; no game/PC/native instrumentation/save/config/reference or peer consumer changes."
+}

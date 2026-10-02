@@ -1,0 +1,158 @@
+[
+  {
+    "slug": "render-slot-identity-publication",
+    "commit": "aac0489acecac507503bfc3ed28f063b37e631b2",
+    "manifest_sha256": "a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee",
+    "members_at_publication": 81,
+    "retained_files": [
+      {
+        "path": "manifest.json",
+        "sha256": "a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee"
+      },
+      {
+        "path": "source-01.json",
+        "sha256": "b9f327aad786343ca1e7479745d438392e996af2af95239ed4cc07e3ca895001"
+      },
+      {
+        "path": "capture.py",
+        "sha256": "48f04b9b16feffdbe185db65cdcd1dbf76ad66d9d94a1b696f9ee451d50e2290"
+      },
+      {
+        "path": "capture-01.status.json",
+        "sha256": "7034bd26cb48fa4adadea16257bda7096b4bf9f15c98d77b95bf10dfe5ddbd4b"
+      },
+      {
+        "path": "capture-01.stdout",
+        "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+      },
+      {
+        "path": "capture-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "prove.py",
+        "sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc"
+      },
+      {
+        "path": "prove-01.status.json",
+        "sha256": "9d6b107c81cce7bee6788f7d9608ae608bf5eac5f1780e6a3ee309151720e039"
+      },
+      {
+        "path": "prove-01.stdout",
+        "sha256": "f48852a23eaba12024d7cb17bd647bfbebb6200566fb3a223f254557425b4b58"
+      },
+      {
+        "path": "prove-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "result-01.json",
+        "sha256": "e8fc12d18c1840ac44de82aac9aa1c71a3fb239cec74298c55c12d46cdb08a1c"
+      }
+    ]
+  },
+  {
+    "slug": "render-clear-callee-footprints",
+    "commit": "621dbd2cc584f14de1d993f844d0a0122ca9a56d",
+    "manifest_sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc",
+    "members_at_publication": 61,
+    "retained_files": [
+      {
+        "path": "manifest.json",
+        "sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc"
+      },
+      {
+        "path": "source-01.json",
+        "sha256": "abe73322b004d45ebc58c4a859f3c2e6a58badd088bc02b982b5b48caa13d868"
+      },
+      {
+        "path": "capture.py",
+        "sha256": "71297c947d6745eb7e3f3c5d13292a87f6f486d259704c86cb24080a9fddc149"
+      },
+      {
+        "path": "capture-01.status.json",
+        "sha256": "e44e8801708a70b4d39b819148cfd3a7011ff1a7326fd7c178a864bd1948a263"
+      },
+      {
+        "path": "capture-01.stdout",
+        "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+      },
+      {
+        "path": "capture-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "prove.py",
+        "sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85"
+      },
+      {
+        "path": "prove-01.status.json",
+        "sha256": "7f78280524ed9b72669aa2a58c95cdf5c9dd40121ce71de288f8d89af60511fe"
+      },
+      {
+        "path": "prove-01.stdout",
+        "sha256": "1ce6915850949f0f667b1644ad2eda7605ba8d7528722e48f14a3372f3b17b1f"
+      },
+      {
+        "path": "prove-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "result-01.json",
+        "sha256": "43f0a7944405f9ed51687dd4599ed98540e7bcd69d978b3b38de5c18df5a876c"
+      }
+    ]
+  },
+  {
+    "slug": "render-removal-phase-contracts",
+    "commit": "31f29775afd989f8678d0e364cd0066de63cda52",
+    "manifest_sha256": "fc26ae31f8ddb389fff58deeb7616680334f0e93723e35f4556159e32b47bc5c",
+    "members_at_publication": 53,
+    "retained_files": [
+      {
+        "path": "manifest.json",
+        "sha256": "fc26ae31f8ddb389fff58deeb7616680334f0e93723e35f4556159e32b47bc5c"
+      },
+      {
+        "path": "source-01.json",
+        "sha256": "82e6aa6d5c40ef4fff7870448a3f05815400db77e4d98d6e2e66c4fcb1e7e15c"
+      },
+      {
+        "path": "capture.py",
+        "sha256": "130168736da06ffa0a3b8bb6b8cb6b393538977a40d80794f7da17197148e02d"
+      },
+      {
+        "path": "capture-01.status.json",
+        "sha256": "73940a456af33a8481f156f75d1b9f5fe11e8f865b655db197938931ce640e1f"
+      },
+      {
+        "path": "capture-01.stdout",
+        "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+      },
+      {
+        "path": "capture-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "prove.py",
+        "sha256": "4431e22ebe23e8f785fea3c11df00eea9332a7cba0f13b4985bbd48e95d66060"
+      },
+      {
+        "path": "prove-01.status.json",
+        "sha256": "b5dba662547c84b92acb14ed7fba365b3439aee60749542e9c8e88f6bd741096"
+      },
+      {
+        "path": "prove-01.stdout",
+        "sha256": "58337e31f95b67f3acc2d1345917d52eca5c66e96f3506281632529ccb8b0cbb"
+      },
+      {
+        "path": "prove-01.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "result-01.json",
+        "sha256": "fabf2fbe7c8476bbab4680e964a3164df713ab409ea8f5bbe7ddff731e25c645"
+      }
+    ]
+  }
+]

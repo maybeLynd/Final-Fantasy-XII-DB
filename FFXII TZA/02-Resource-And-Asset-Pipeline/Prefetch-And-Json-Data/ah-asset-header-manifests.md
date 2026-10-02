@@ -150,11 +150,11 @@ which in-game language each value is remains `KE-1`.
 | `0x001BB2B0` | `FUN_001bb2b0` — the character asset-header path builder; format loaded at `0x001BB7B7` | ✅ |
 | `0x001A7A50` · `0x001B44A0` · `0x001BE730` | map, font and procedural-texture path builders | partial |
 | `0x008F9158` · `0x008F9180` · `0x008F91B0` · `0x008F65B0` · `0x008F99D0` | `.rdata` — the five path formats | ✅ |
-| `0x0018A330` | the token scanner both manifest families call | ❌ entry only |
+| `0x0018A330` | the token scanner both manifest families call | ~~❌ entry only~~ read *(answered: see the interior citation of `0018A330` below; 2026-10-02, OPUS)* |
 
 ## 5. Corpus survey
 
-**No `.ah` file was opened.** `gamedata/d3d11` is not in the local extraction and no `.vbf` exists on
+**No `.ah` file was opened.** *(answered: see the corpus table - all 2,564 opened 2026-09-13, §7; 2026-10-02, OPUS)* `gamedata/d3d11` is not in the local extraction and no `.vbf` exists on
 this machine. The corpus column is the archive index plus the frozen leading-signature census, which
 gives **one signature, `/Gam`, in 12 of 12 sampled** — consistent with a file whose first token is a
 `/GameData/…` path, and the strongest single corpus fact available here.
@@ -238,8 +238,8 @@ locale-coverage claim.
 - **Request kind `4`.** The constant is stamped at `FUN_0019EB60`; the dispatch that interprets it
   was not read.
 - **Why only five languages have a `fontlist.ah`** — narrowed in §3: five lists serve every language value.
-- **The five monster and one npc assets missing a `chr_shadow` header** — counted, not explained.
-- **Anything measured from a `.ah` file**, for the reason in §5.
+- **The five monster and ~~one npc~~ two npc assets missing a `chr_shadow` header** *(corrected 2026-10-02, OPUS: the 2026-09-13 recount in §3)* — counted, not explained.
+- **Anything measured from a `.ah` file**, for the reason in §5 *(answered: see the corpus table - all 2,564 measured 2026-09-13; 2026-10-02, OPUS)*.
 
 ## 8. Related
 

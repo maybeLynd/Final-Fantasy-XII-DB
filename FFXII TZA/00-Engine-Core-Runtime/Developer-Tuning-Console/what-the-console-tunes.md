@@ -185,7 +185,7 @@ belongs to both.**
 ```
 +000 .. +18F   console-tunable settings    84 arm-touched addresses; 21 now named below
 +190 .. +38F   8 x 64 B shadow matrices    001F0AD0; NO console arm touches it
-+390 .. +44F   shadow scalars and counts   001F0AD0; includes the four mMapShadow* names below
++390 .. +44F   shadow scalars and counts   001F0AD0; includes the four mMapShadow* names below   <- corrected 2026-10-02, OPUS: 001F0AD0's stores end at +0x434 (02CB8404, 001F0AD0+0x9E9); +438..+44F is not its
 +450 .. +470   copied separately           two of these are arm-touched and unnamed
 ```
 
@@ -468,7 +468,7 @@ part of the tuning block and no console arm touches it:
 
 `01F82EE4` and `01F82F04` fall inside the run and are not named by either loader.
 
-> **This does not identify `01F82D20`.** It is 0x1B8 bytes below this run in the same uninitialised
+> **This does not identify `01F82D20`.** *(answered: see section 7, Answered 2026-09-14 (FABLE): the `GameSettingConfig` singleton pointer; 2026-10-02, OPUS)* It is 0x1B8 bytes below this run in the same uninitialised
 > `.data`, and proximity in uninitialised `.data` is not evidence of anything — §7 leaves it open.
 
 ### Where the other settings go
@@ -600,7 +600,7 @@ values are live engine settings rather than a display buffer.
   stands. Its stated assumption: code given an element pointer does not write at a negative offset from it.*
 - [x] **`01F82D20`, the console's hottest single address** — 18 commands touch it. It has **61
       referencing functions** spanning the console, the debug menu, `InputManager_*`, and a large
-      cluster in the `0079xxxx`–`007Axxxx` audio-driver range, and every access found is a `MOV r32`
+      cluster in the `0079xxxx`–`007Axxxx` audio-driver range, and every access found is a ~~`MOV r32`~~ `MOV r64` *(corrected 2026-10-02, OPUS: 159 qword loads `mov r64, qword ptr [01F82D20]`, e.g. `001D1660+0x12C3`, and one store at `007980A0+0x1C1`)*
       read. **It is not part of the tuning block and it is not identified here** — a global read by
       audio, input and UI alike is not a render setting, and guessing further would be exactly the
       inference this database bans.

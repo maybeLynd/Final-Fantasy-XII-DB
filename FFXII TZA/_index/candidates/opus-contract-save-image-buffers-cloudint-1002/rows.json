@@ -1,0 +1,226 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "contract-save-image-buffers.json",
+ "rows": [
+  {
+   "fn": "00162370",
+   "text": "runs four initialisers, each with the object address in `rcx`: a 139-byte one on `02CBBE00`, an 89-byte one on `02CBBF88`, a 102-byte one on `02CBC018` and a 31-byte one on `02CBC368`; then tail-jumps `atexit` with a 12-byte exit stub",
+   "anchors": [
+    [
+     "00162384",
+     "call"
+    ],
+    [
+     "00162391",
+     "call"
+    ],
+    [
+     "0016239E",
+     "call"
+    ],
+    [
+     "001623AB",
+     "call"
+    ],
+    [
+     "001623BC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00185A50",
+   "text": "calls a 209-byte routine with the incoming `rcx`, a 15-byte callback in `rdx` and dword `01F7F590` in `r8d`, then stores dword `01F7F590` plus 1, ANDed with 3, back to `01F7F590`",
+   "anchors": [
+    [
+     "00185A54",
+     "mov"
+    ],
+    [
+     "00185A62",
+     "call"
+    ],
+    [
+     "00185A6F",
+     "and"
+    ],
+    [
+     "00185A72",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00186230",
+   "text": "advances dword `[rcx + 0xCB8]` to `(value + 1) AND 3`, then for that index walks the 16-byte entries from qword `[rcx + 0xC38 + index * 0x20]` up to qword `[rcx + 0xC40 + index * 0x20]`, calling each entry's first qword with its second qword in `rcx`, and finally stores the `+0xC38` qword over the `+0xC40` qword",
+   "anchors": [
+    [
+     "0018624A",
+     "and"
+    ],
+    [
+     "0018624D",
+     "mov"
+    ],
+    [
+     "00186277",
+     "call"
+    ],
+    [
+     "0018627D",
+     "cmp"
+    ],
+    [
+     "0018629A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00186610",
+   "text": "tail-jumps to the 167-byte slot reset with qword `01F7F5B8` in `rcx` and dword `[rcx + 0x10]` of the incoming `rcx` in `edx`",
+   "anchors": [
+    [
+     "00186613",
+     "mov"
+    ],
+    [
+     "0018661A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001AA0A0",
+   "text": "when qword `[rcx + 0x28]` is null it zeroes qwords `[rcx]`, `+8` and `+0x10` and dword `+0x18`; otherwise, with `s = [rcx + 0x28]` and `r = [s + 0x50]`, it stores dword `[r + 0x38]` to `+0x10`, qword `[s + 0x60]` to `[rcx]`, dword `[s + 0x74]` to `+0x14`, dword `[r + 0xF8]` to `+0x18` and qword `[s + 0x10]` to `+8`, and when the `+0x14` value is nonzero it then, while `[rcx]` equals `[rcx + 8]`, adds the `+0x10` value to `[rcx]` and replaces `[rcx + 8]` by the qword it points to",
+   "anchors": [
+    [
+     "001AA0A7",
+     "je"
+    ],
+    [
+     "001AA0B9",
+     "mov"
+    ],
+    [
+     "001AA0D1",
+     "mov"
+    ],
+    [
+     "001AA0F0",
+     "add"
+    ],
+    [
+     "001AA0F6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001B11D0",
+   "text": "gets a key from the 159-byte routine that formats `rdx` through `%s%s%s` and lower-cases it, then searches the tree rooted at qword `[rcx + 0x2218]` with head `rcx + 0x2208`, keeping each node whose dword `+0x20` is at least the key (unsigned) and descending `+8` from it, else descending `+0`; when the kept node is the head or its key is above the key it returns 0, otherwise it tail-jumps a 4-byte getter that returns qword `[[node + 0x28]]`",
+   "anchors": [
+    [
+     "001B11D9",
+     "call"
+    ],
+    [
+     "001B11F4",
+     "cmp"
+    ],
+    [
+     "001B120F",
+     "cmp"
+    ],
+    [
+     "001B122C",
+     "jmp"
+    ],
+    [
+     "001B1231",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0028E630",
+   "text": "calls a 648-byte routine with `ecx = 0` and `edx = 6`, then a 19-byte setter that stores its `ecx` argument (the incoming `ecx`) into dword `+0x179D4` of a global object when that object exists, and tail-jumps to a 364-byte routine",
+   "anchors": [
+    [
+     "0028E638",
+     "mov"
+    ],
+    [
+     "0028E63F",
+     "call"
+    ],
+    [
+     "0028E646",
+     "call"
+    ],
+    [
+     "0028E650",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00623DF0",
+   "text": "clears bit 31 of dword `[rcx + 0x30]` and returns `base + edx * 0x58 + 0x38` (edx zero-extended), where the base is qword `[rcx + 0x38]` when the remaining value is above 1 (unsigned), `rcx + 0x38` when it is 1 and null when it is 0",
+   "anchors": [
+    [
+     "00623DF3",
+     "btr"
+    ],
+    [
+     "00623DFA",
+     "jbe"
+    ],
+    [
+     "00623E02",
+     "imul"
+    ],
+    [
+     "00623E18",
+     "cmove"
+    ],
+    [
+     "00623E20",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0062EBC0",
+   "text": "takes the `0x38`-byte slot `rcx + edx * 0x38` (edx zero-extended): walks its node chain from qword `+0x10` up to the head `slot + 8` through a 68-byte successor helper, calling the first virtual slot of each node's `+0x20` object; then, for each node from qword `+0x18` along the `+8` links, calls a 96-byte recursive helper on `(slot, [node])` and frees the node through virtual slot `+0x18` of `slot + 0x30` with size `0x28`; finally stores `slot + 8` to `+0x10` and `+8`, 0 to qword `+0x18`, byte `+0x20` and dword `+0x28`",
+   "anchors": [
+    [
+     "0062EBD1",
+     "imul"
+    ],
+    [
+     "0062EBEC",
+     "call"
+    ],
+    [
+     "0062EC16",
+     "call"
+    ],
+    [
+     "0062EC30",
+     "call"
+    ],
+    [
+     "0062EC49",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

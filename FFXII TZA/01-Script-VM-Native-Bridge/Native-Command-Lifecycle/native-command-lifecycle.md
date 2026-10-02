@@ -793,3 +793,9 @@ sibling getter `003DC270` (`GetBeginCallback`, record `+0`) is shared, not exclu
 | `0030EAE0` | arg-forward wrapper — repacks two stack args and `0030E360` (`0030EAE8`/`0030EAFC`) | [`0030EAFC`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `0031B760`, `0030E360`.
+
+## Cross-subsystem neighbours — pass-22 residue (SWE2-CONTRACT, 2026-10-02)
+
+- **UI — SERVICE (1 edge).** 1 outbound (`00228C70`, cited in the RC-17 box — the pause-menu
+  skip-confirm path `00228C70` → `00285EA0` — calls the 174-byte UI body `0029DBE0`); the
+  skip path's own cross-layer call.

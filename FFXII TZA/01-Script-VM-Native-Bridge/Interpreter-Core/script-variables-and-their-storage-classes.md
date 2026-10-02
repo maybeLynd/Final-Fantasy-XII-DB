@@ -599,3 +599,12 @@ Interior anchor `0035912B` (the `004745B0` call).
 stores - the small global block the storage-class layer
 clears on reset.
 Interior anchor `002E15D2` (the first clear).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-script-variables-and-their-storage-class-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00267560` | 85 B | when the dword at `rcx` is below 2 (signed) calls a 14-byte helper with 1 and returns 0; otherwise compares the bytes at `rcx + 4 + (n - 1)` and `rcx + 4 + (n - 2)`, with n that dword, and returns 1 when they are equal and both are 1, else 0 | `0026756E`, `00267577`, `0026758F`, `0026759D`, `002675AA` |
+| `004745B0` | 21 B | stores the dwords 1 at `+0x0`, `0x12` at `+0x4` and 0 at `+0xC` of `rcx`, leaving `+0x8` untouched | `004745B6`, `004745BD` |

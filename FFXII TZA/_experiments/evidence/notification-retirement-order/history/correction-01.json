@@ -1,0 +1,6 @@
+{
+  "prior_driver_sha256": "22123e85aba01289120992054c43a7fcb1d048b2232e2980911e340166dd4038",
+  "failed_receipt": "prove-01.status.json",
+  "status": "INVALID_BEFORE_SEMANTIC_RESULT",
+  "cause": "Expected LEA transcribed as [rax+rax*4], actual original [rax+rdx*4] at003DC1D1; fix assertion to verified instruction without changing source bytes or weakening controls"
+}

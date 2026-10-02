@@ -1,0 +1,111 @@
+{
+  "complete": true,
+  "verdict": "ACCEPT_SCOPED_UPSTREAM_ADMISSION_REPAIR",
+  "method": "A exact committed Python driver with labelled disposable host module fixtures; no native/game execution",
+  "driver_sha256": "42cf1e2db3fe19d138ae6bdbf221b84dbc0878a4b4b6c11e8ea58660874305f2",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "commit": "fa6764a4878849dab1747634f72e6cb06083fe7b",
+  "inputs": {
+    "check.py": {
+      "commit": "fa6764a4878849dab1747634f72e6cb06083fe7b",
+      "git_sha256": "01f5361c88f5c71d449fa945774c322046b78cee6eac28a69db91d67d29009ef",
+      "checkout_sha256": "01f5361c88f5c71d449fa945774c322046b78cee6eac28a69db91d67d29009ef",
+      "comparison": "EXACT"
+    },
+    "upstream_guard.py": {
+      "commit": "fa6764a4878849dab1747634f72e6cb06083fe7b",
+      "git_sha256": "1f226019216a2b9726a7a453d79dfb58d40e2856673376f9fb0e81771abe673f",
+      "checkout_sha256": "1f226019216a2b9726a7a453d79dfb58d40e2856673376f9fb0e81771abe673f",
+      "comparison": "EXACT"
+    },
+    "test_upstream_guard.py": {
+      "commit": "fa6764a4878849dab1747634f72e6cb06083fe7b",
+      "git_sha256": "1d07a674f28451732f2c5f430fd84a75d786f1963a251168d18dff87151d1a1a",
+      "checkout_sha256": "1d07a674f28451732f2c5f430fd84a75d786f1963a251168d18dff87151d1a1a",
+      "comparison": "EXACT"
+    },
+    "historical-result.json": {
+      "sha256": "fc9e621bcb40c61defb0f8a511e8c52e7fa558ba5365f197a6b0da6cb1531146",
+      "limits": "historical native output, not a new run or test oracle"
+    }
+  },
+  "cases": [
+    {
+      "case": "positive",
+      "receipt": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\positive\\s33-opus-replay-op1-real\\check.py"
+        ],
+        "cwd": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\positive",
+        "driver_sha256": "42cf1e2db3fe19d138ae6bdbf221b84dbc0878a4b4b6c11e8ea58660874305f2",
+        "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+        "terminal": true,
+        "exit": 0,
+        "exception": null,
+        "stdout_sha256": "744b326dc340fce9aded4483afddf91f5592e8fa760bbb5cfa88864a7e6620fd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "fixture_sha256": "b5e4e564a4a0c6284327ea792be66b083368590bdb1eb8eef1ed0f9479fff834",
+      "tested_check_sha256": "01f5361c88f5c71d449fa945774c322046b78cee6eac28a69db91d67d29009ef",
+      "tested_guard_sha256": "1f226019216a2b9726a7a453d79dfb58d40e2856673376f9fb0e81771abe673f",
+      "downstream_state_reached": true,
+      "no_result": true,
+      "required_observation": true
+    },
+    {
+      "case": "reported-fail",
+      "receipt": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\reported-fail\\s33-opus-replay-op1-real\\check.py"
+        ],
+        "cwd": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\reported-fail",
+        "driver_sha256": "42cf1e2db3fe19d138ae6bdbf221b84dbc0878a4b4b6c11e8ea58660874305f2",
+        "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+        "terminal": true,
+        "exit": 2,
+        "exception": null,
+        "stdout_sha256": "e590e0b21efafadd912233a9f30374960946177661a10a1651842e87d1a85b2e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "fixture_sha256": "f15b49bab300cc0c6d483af16891a39242bc19224d38b4f289e1849644e5cf37",
+      "tested_check_sha256": "01f5361c88f5c71d449fa945774c322046b78cee6eac28a69db91d67d29009ef",
+      "tested_guard_sha256": "1f226019216a2b9726a7a453d79dfb58d40e2856673376f9fb0e81771abe673f",
+      "downstream_state_reached": false,
+      "no_result": true,
+      "required_observation": true
+    },
+    {
+      "case": "raised-failure",
+      "receipt": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\raised-failure\\s33-opus-replay-op1-real\\check.py"
+        ],
+        "cwd": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\cases\\raised-failure",
+        "driver_sha256": "42cf1e2db3fe19d138ae6bdbf221b84dbc0878a4b4b6c11e8ea58660874305f2",
+        "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+        "terminal": true,
+        "exit": 2,
+        "exception": null,
+        "stdout_sha256": "1a93553ca7d6f7b8c6ba20f9e845a4e6eeac0ce5da7e6f542cf9f5167b3d382f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "fixture_sha256": "68302509d99632412d019576c52ebe5b8e89dc0a97be2a966cfdb1ed682575f7",
+      "tested_check_sha256": "01f5361c88f5c71d449fa945774c322046b78cee6eac28a69db91d67d29009ef",
+      "tested_guard_sha256": "1f226019216a2b9726a7a453d79dfb58d40e2856673376f9fb0e81771abe673f",
+      "downstream_state_reached": false,
+      "no_result": true,
+      "required_observation": true
+    }
+  ],
+  "scientific_native_runs": 0,
+  "game_runs": 0,
+  "established": "Failed nonempty upstream and import exception refuse exit2 before downstream state; positive passes the real guard and reaches the first state boundary.",
+  "limits": "The positive fixture deliberately stops at C.W, before native cases. No claim of complete S33 native success or changed historical result. Valid existing observation scope and natural scheduling/allocator/reachability remain unchanged.",
+  "cleanup": "All bounded own children terminal; disposable files retained, historical result unchanged; no game/PC/instrument/save/config/reference/peer edits."
+}

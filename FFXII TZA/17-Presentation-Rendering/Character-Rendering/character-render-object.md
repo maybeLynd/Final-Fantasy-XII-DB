@@ -41,7 +41,7 @@ model in and out.
 **A character can exist and not draw.** The class carries a single byte — `+0x4B4` — that the
 constructor clears and the setup method sets when construction finishes. **Twelve of its thirty-one
 methods check it as the first thing they do**, and a thirteenth consults it deep inside a
-submission loop. Until it is set, update, submit, material propagation and transform propagation
+submission loop. Until it is set, update, submit~~, material propagation and transform propagation~~ and material propagation *(corrected 2026-10-02, OPUS: slot 26 `001FAA10`, transform propagation, never reads `+0x4B4`; §5's 2026-09-27 note)*
 all return immediately. That is the mechanism behind a model that is present in the world but not
 yet visible.
 
@@ -186,7 +186,7 @@ The three descriptive names in bold-italic come from the GFZ's own `CodeDomain` 
 +0x050  boundSubobjectRef — ctor-seeded, read as a call receiver (001FB0F2)
 +0x058, +0x060, +0x068   recordArray vector (begin/end/capacity, element stride 0x318),
                        allocator object at +0x070
-+0x0C .. +0x74    early scalar block (slots 2, 13 read; not characterised)
++0x0C .. +0x74    early scalar block (slots 2, 13 read; not characterised)   <- corrected 2026-10-02, OPUS - no such block: the constructor fills +0x08..+0x77 as the three vectors, their allocator objects and the two refs above (001F4DA0+0x41..+0x95), and slot 13's only read in this range is the +0x58 vector (001FB120+0x3C)
 +0x100, +0x108    slot 2
 +0x2C8 .. +0x2E0  slot 24 — material override propagation working set
 +0x2E8 .. +0x310  slot 30 — a second 8-byte-strided run
@@ -291,19 +291,19 @@ FUN_001BD4A0
         slot 26  NamedTransformPalettePropagation
 ```
 
-**The ordering within a frame is not established** — the guard tells you these methods refuse to run
+~~**The ordering within a frame is not established**~~ *(answered: see §7, BB-3 answered 2026-09-26 - the render record's draw fixes the order; 2026-10-02, OPUS)* — the guard tells you these methods refuse to run
 before setup, not the sequence in which they run. **BB-3.**
 
 ## 6. Modding notes
 
 - **`+0x4B4` is a hard gate.** Anything driving this object externally must respect it: with the byte
-  clear, twelve of the class's methods return at their first branch and no amount of correct
+  clear, ~~twelve of the class's methods return at their first branch~~ eleven of the class's vtable methods and two non-virtual helpers gate on it at entry *(corrected 2026-10-02, OPUS: slots 3, 8, 9, 10, 12, 13, 14, 19, 20, 24 and 30, plus `001F89E0` and `001FAD50`; slot 16 reads it late and slot 27 returns it; CONTRACT-character-render-object.md R-4)* and no amount of correct
   parameter setting will produce a draw.
 - **The object is 1,640 bytes with a single construction site**, so it is cheap to find at runtime by
   the vtable pointer at `+0` (`0x00903B68`) and nothing else needs to be pattern-matched.
 - **XIIOnline:** material override propagation (slot 24) and named transform palette propagation
   (slot 26) are the two paths that would carry a remote player's appearance — equipment, tint, and
-  the bone palette a weapon hangs from. Neither has been read; both are named only.
+  the bone palette a weapon hangs from. ~~Neither has been read; both are named only.~~ *(answered: see §1's 2026-09-27 correction - slot 24 is read and writes the four refraction parameters, not a tint; 2026-10-02, OPUS)*
 
 ## 7. What is not known
 
@@ -416,7 +416,7 @@ before setup, not the sequence in which they run. **BB-3.**
 
       **Bounds:**
       - the pool singleton's own update also acquires, with id `−1`, for its entries;
-      - the pooled element's `3` (a likely expiry count) is not followed here.
+      - the pooled element's `3` (a likely expiry count) ~~is not followed here~~ *(answered: see the slot-3 bullet above - the pool's per-frame update calls slot 3 when that three-frame countdown ends; 2026-10-02, OPUS)*.
 
       Control: [`bb4_render_object_per_model.py`](../../_index/candidates/bb4-render-object-per-model/bb4_render_object_per_model.py) (5 checks, FAILS 0). Its sensitivity check pins the unlink that the "shared" reading
       would lack. See also the [consumer check](../../_index/candidates/bb4-render-object-per-model/consumer-check.md).
@@ -490,7 +490,7 @@ before setup, not the sequence in which they run. **BB-3.**
 
 **The ready flag was established by a write/read asymmetry, not by its name.** All 14 accesses to
 `+0x4B4` across the vtable were enumerated: **exactly one is a write**, at offset +2233 of a 2,328-byte
-method — the end of setup — and **all 12 methods that read it do so within their first 12
+method — the end of setup — and *(corrected 2026-10-02, OPUS: thirteen vtable methods read it, and slot 16 only at its instruction 118 - §8c's overturns)* **all ~~12~~ 13 methods that read it, all but slot 16, do so within their first 12
 instructions**. A field with one writer at the end of initialisation and every reader at method entry
 is a ready flag; nothing weaker was assumed from the offset or the surrounding names.
 
@@ -504,7 +504,7 @@ shared with another class.
 
 **What is deliberately not claimed.** That the class draws characters is inferred from its name, its
 GFZ tags (`Presentation.CharacterRenderObject.*`) and its method inventory — **not from reading a draw
-call**. No rendering API call has been traced out of these methods, and the "what the player sees"
+call**. ~~No rendering API call has been traced out of these methods~~ *(answered: see §7, BB-1 answered 2026-09-27 - the class draws through `001F5D70`, reached by slot 1 `00215320`+0x4 `jmp`, which calls Phyre's submit at `001F5D70`+0x1C8 `call 0060B980`; 2026-10-02, OPUS)*, and the "what the player sees"
 section above should be read as the reading those names support, not as a proven path. **BB-1
 tracks exactly this gap.**
 
@@ -514,7 +514,7 @@ vtable slots plus the constructor `001F4DA0` and destructor body `001F51E0` are 
 with same-offset register copies only — no `lea`/`add`/`sub` rebasing, matching the committed
 generation. The named-function gap was `001F89E0` `CharacterRenderObject_ResetState` (the public
 non-slot the BB section already lists): seeded, it contributes 16 rows across `+0x390`–`+0x4B5`, all
-writes/clears consistent with a reset. The census is now 160 rows in 31 functions over 69 distinct
+writes/clears consistent with a reset. The census ~~is now~~ was then 160 rows *(the TSV now holds 323 rows in 41 functions over 91 offsets - the later `emit_seeded_census.py` generation; recount of `character-render-object-accesses.tsv` 2026-10-02, OPUS)* in 31 functions over 69 distinct
 offsets, from 144/30/63. Three committed `cmp` rows were also reclassified write→read — a kind
 correction, not a coverage change.
 
@@ -535,7 +535,7 @@ renders as `g_pCharacterRenderRecordArray`. **That array is not this class.**
 | allocation | one object at a time via `FUN_00210EC0` | one block of `0x48930` = 297,264 bytes via `FUN_0036A100` |
 | allocated by | `FUN_001BD4A0`, the sole construction site | `CharacterRenderSystem_AllocateAndInitialize` (`003325D0`) |
 | base pointer | none — objects are held by their owners | `022C6F28` |
-| count | not established (**BB-4**) | **exactly 160** — `160 × 0x740 = 0x48830`, the offset at which `FUN_00426480` writes a trailing dword |
+| count | not established (**BB-4**) | **exactly 160** — ~~`160 × 0x740 = 0x48830`, the offset at which~~ `160 × 0x740 = 0x48800`, where the tail block starts; `FUN_00426480` writes a trailing dword at `+0x48830` *(corrected 2026-10-02, OPUS: 160 x 1,856 = 296,960 = `0x48800`; the store is `00426480`+0x13 `mov dword ptr [rcx + 0x48830], eax`)* |
 
 **The separating observation, and it is exhaustive.** A memory-operand census over the exact body
 extent of all 38,161 functions in the current parent finds:
@@ -566,10 +566,10 @@ document: its element is `1,856` bytes, there are `160` of them, and the pass di
 **`"display character : after emission"`** (strings at `00D10A38`, `00D10A60`, `00D10A18`,
 `00D10A80`, `00D10AA8`). Those five names are the strongest evidence yet available about what the
 character-drawing path actually does per frame, and they are tier 2 — which is one tier better than
-anything currently supporting **BB-1**, this document's standing admission that no draw call has
-been traced out of these methods.
+anything currently supporting **BB-1**, ~~this document's standing admission that no draw call has~~
+~~been traced out of these methods~~ *(answered: see §7 - BB-1 answered 2026-09-27 (`001F5D70` to `0060B980`); 2026-10-02, OPUS)*.
 
-**Status unchanged at `DOCUMENTED`.** This is a separation check, not a falsification pass; the
+**Status unchanged at `DOCUMENTED`** *(on 2026-09-02; the page's front matter says `status: AUDITED` now - 2026-10-02, OPUS)*. This is a separation check, not a falsification pass; the
 document still owes the first named attack on its own claims.
 
 ## 8c. Falsification pass 1 - 2026-09-02
@@ -792,7 +792,7 @@ argument.
       - **The 1 was missed because it is reached by a tail jump.** The forwarder `001821F0` is "if the singleton
         exists, `jmp` to `00185A10`"; that method sets `+0x1C = 1` and enqueues a command built from `this + 0x358`.
         Its sibling `00182340` jumps to `001860E0`, which sets `+0x1C = 0` and enqueues a command built from
-        `this + 0x690`. `003829D0` calls the two back to back (`00382B21`, `00382B28`).
+        `this + 0x690`. ~~`003829D0` calls the two back to back (`00382B21`, `00382B28`).~~ `003829D0` calls one of the two, chosen on `00259FA0`'s result *(corrected 2026-10-02, OPUS: `003829D0`+0x14D `test eax, eax` and `003829D0`+0x14F `je` to the `00182340` call, else `call 001821F0` and `jmp` past it)*.
       - **Each pass command captures the byte.** The command constructor `001F1E80` reads `+0x1C` (`001F1EB7`) and
         stores it at the command's `+0x20` (`001F1EBB`). That `+0x20` is the byte the per-pass setter copies into
         `+0x1D`. So the uploader's bank is stamped per pass: 1 for the `+0x358` pass and 0 for the `+0x690` pass.
@@ -840,7 +840,7 @@ argument.
 - [x] **UQ-203.** What `this + 0x4B4` represents beyond gating this publish.
       **ANSWERED (negative) 2026-09-21 (OPUS): nothing.** A fixpoint receiver census seeded on
       the vtable reached **45 functions** — wider than the 31 slots §5 enumerated — and returned
-      **the same 14 accesses, 1 write and 13 reads**, so that count now has a second instrument
+      **the same 14 accesses, 1 write and 13 reads** *(scope named 2026-10-02, OPUS: within that census's reach; image-wide the byte accesses at `+0x4B4` are 19 - two writes, `001F4DA0`+0x129 and `001F6E70`+0x8B9, and 17 reads in 16 functions, all in the class's bodies; CONTRACT-character-render-object.md R-3 / R-4)*, so that count now has a second instrument
       behind it. Tracking each load to its first consumer, **12 of the 13 reads are `test al, al`
       into a branch**. The 13th is slot 27's getter `001F86D0`, which returns the byte — and that
       getter has **no direct caller anywhere in the image**, its address appearing exactly once,
@@ -1077,8 +1077,8 @@ piece of it**, and this object is the reason: it is one of the few that is never
 | the constructor | `CharacterRenderObject_Construct` (`001F4DA0`, 516 B) initialises **field by field** — `[rdi]`, `+0x8`, `+0x28`, `+0x30` and so on. **No `memset` of `this`.** |
 | the whole image | **no `memset` with a literal length of `0x668` exists anywhere in the executable.** Zero sites. |
 
-So the 632 bytes at `+0x118` are **allocated from an unzeroed heap, never cleared, never written
-individually, and never read**. They hold whatever the allocator last left there.
+So the 632 bytes at `+0x118` are **allocated from an unzeroed heap, ~~never cleared~~ then cleared with the rest of `+0x78`..`+0x38F` *(corrected 2026-10-02, OPUS: `001F4DA0`+0x16D `memset(stack buffer, 0, 0x318)` and the copy to `this+0x78` at `001F4DA0`+0x172..+0x1DC, quoted above)*, never written
+individually, and never read**. ~~They hold whatever the allocator last left there.~~ They hold zero.
 
 ### Why this is worth stating separately from "unknown"
 
@@ -1095,7 +1095,7 @@ call would not appear in any of them. What is claimed is narrower and firmer: **
 them**, and that was settled by exhaustion rather than by absence of evidence — the `0x668` sweep
 covers the whole image, not a closure.
 
-*The other two `CharacterRenderObject` spans, `+0x80` (144 B) and `+0x420` (96 B), are in the same
+*The other two `CharacterRenderObject` spans, ~~`+0x80` (144 B) and~~ `+0x420` (96 B) *(corrected 2026-10-02, OPUS: `+0x80` lies inside the block the constructor zeroes at `001F4DA0`+0x172..+0x1DC; `+0x420` lies outside it)*, are in the same
 position for the same reasons; `+0x118` is simply the largest.*
 
 ## SWE2-EC7-41 update (2026-09-19) - `001F5C20`

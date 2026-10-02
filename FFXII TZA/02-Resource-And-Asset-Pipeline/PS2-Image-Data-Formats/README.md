@@ -7,8 +7,8 @@ individual format is for.
 | ext | files | note |
 |---|---:|---|
 | `dat` | 2,885 | plus 63 in `gamedata/d3d11` — **possibly not the same format** |
-| `bin` | 1,437 | 2,366 MB |
-| `tm2` | 447 | **likely TIM2**, the PS2 image format — candidate `standard` |
+| `bin` | ~~1,437~~ 1,439 *(corrected 2026-10-02, OPUS: the archive index; the census below counts the same 1,439)* | 2,366 MiB (2,481 MB) |
+| `tm2` | 447 | ~~**likely TIM2**~~ **TIM2**, the PS2 image format, magic `TIM2` in 447 of 447 *(answered: see [the TIM2 sheet](tim2-images-and-the-seven-slot-registry.md) §8, all 456 files opened; 2026-10-02, OPUS)* — candidate `standard` |
 | `mrp` | 116 | |
 | `cl2` · `as7` · `btm` | 20 · 18 · 12 | |
 | `sav` | 16 | likely 19-Save-Load-Settings, not here |
@@ -127,4 +127,4 @@ Write sheets to `_templates/FORMAT.md`. See [_index/ASSET-FORMATS.md](../../_ind
 
 *2026-09-16:* [the `himg` handbook image bundle](himg-handbook-image-bundles.md) — 90% of `.dat` by unit; `{base, count}` window + `u32` TIM2 offset table, natively bound by the Handbook page widget (`00575B80`).
 
-*2026-09-18:* [the loader-bound `.bin` families](loader-bound-bin-families.md) — thirteen families reachable only by kind/subtype request: the six `*pack_ys`/`fontpack_*` sentinel-filled offset directories, the kind-9 named objects (`behindcamera`, `pc_skillmotion`, `summoneffectdata`), and the `ch`/`in`-only font tables (`fontcolor`, `monotone_chr` — whose loader grafts the `clutpack_ys` palette).
+*2026-09-18:* [the loader-bound `.bin` families](loader-bound-bin-families.md) — ~~thirteen~~ fourteen families *(corrected 2026-10-02, OPUS: six pack directories, three kind-9 files and five kind-7 singletons, whose 52 + 4 + 31 files make the 87; fourteen families)* reachable only by kind/subtype request: the six `*pack_ys`/`fontpack_*` sentinel-filled offset directories, the kind-9 ~~named objects~~ files (`behindcamera` and `pc_skillmotion` named objects, `summoneffectdata` read into the fixed `.data` buffer `02AD9B60`, the loader-bound sheet §3), and the `ch`/`in`-only font tables (`fontcolor`, `monotone_chr` — whose loader grafts the `clutpack_ys` palette).

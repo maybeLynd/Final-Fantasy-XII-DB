@@ -1,0 +1,16 @@
+{
+  "name": "failed-Read-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-read-zero-view\\controls-01\\failed-Read-capture\\prove.py",
+    "control-output.json"
+  ],
+  "driver_sha256": "e3f7b5fb43f90fc9488947e87be262f9790dfd2e823247bad13b9aead8a76c25",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "explicit_removed_base_files": []
+}

@@ -1,0 +1,322 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "add-motion-skeleton-and-high-model-tables.json",
+ "rows": [
+  {
+   "fn": "001F6E00",
+   "text": "measures the zero-terminated string at `rcx`; returns 0 when its first byte is `_` (`0x5F`), otherwise walks the bytes up to the next `_` or the string end, folding each byte from `0` to `9` into `value * 10 + digit` and skipping every other byte, and returns the value",
+   "anchors": [
+    [
+     "001F6E09",
+     "cmp"
+    ],
+    [
+     "001F6E0F",
+     "cmp"
+    ],
+    [
+     "001F6E31",
+     "cmp"
+    ],
+    [
+     "001F6E3F",
+     "lea"
+    ],
+    [
+     "001F6E45",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00263F80",
+   "text": "masks `edx` to its low 24 bits; when qword `[rcx + 0x100]` is null it returns the masked value, when the value is below (signed) that table's first dword it returns dword `[table + 4 + value * 4]`, and otherwise it returns 0",
+   "anchors": [
+    [
+     "00263F87",
+     "and"
+    ],
+    [
+     "00263F90",
+     "je"
+    ],
+    [
+     "00263F92",
+     "cmp"
+    ],
+    [
+     "00263F97",
+     "mov"
+    ],
+    [
+     "00263F9D",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "002E3A60",
+   "text": "returns 0 for a null `rcx`; otherwise, when dword `[rcx]` is not -1, it first (only if `edx` is nonzero) calls `0042F250(word [rcx])`, ORs `0xB` into byte `+0x10` and sets byte `+0x11` to `(byte AND 0x9F) OR 6`, then passes dword `[rcx]` to a 103-byte release and dword `+4` to a 92-byte list lookup and stores -1 to qword `[rcx]`; in both cases it then masks byte `+0x10` to its low nibble, stores -1 to dword `[rcx]` and 0 to qword `+8`, calls a 29-byte flag setter with both flags zero and stores 0 to dword `+0x20`, returning 1 when the release ran and 0 when `[rcx]` was -1",
+   "anchors": [
+    [
+     "002E3A7B",
+     "cmp"
+    ],
+    [
+     "002E3A87",
+     "call"
+    ],
+    [
+     "002E3AAA",
+     "mov"
+    ],
+    [
+     "002E3AB6",
+     "and"
+    ],
+    [
+     "002E3AD1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003466A0",
+   "text": "pops a value through `VMValueStack_PopInt32CoerceFloat32(r9)`; when byte `[rdx + 0x20]` is non-negative it passes it sign-extended to a 63-byte slot release; it then stores to byte `[rdx + 0x20]` the result of the 318-byte four-slot allocator called with `(0, value)`, and tail-jumps a 7-byte byte-global setter with `ecx = 1`",
+   "anchors": [
+    [
+     "003466B0",
+     "call"
+    ],
+    [
+     "003466BD",
+     "js"
+    ],
+    [
+     "003466C2",
+     "call"
+    ],
+    [
+     "003466D5",
+     "mov"
+    ],
+    [
+     "003466E2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0036EAB0",
+   "text": "picks the 24-byte record `(ecx AND 0xF) * 0x18` into `022D9AE0` when any of bits 4 to 7 of `ecx` is set, else into `022D9AB0` (a null record when `ecx` is -1); it resolves dword `[rec + 0xC]` through a 79-byte resolver, reads dword `[resolved - 0x28]` (0 for null) through a 12-byte getter, and stores to dword `[rec + 4]` the result of a 5-byte thunk called with `ecx` = signed byte `+1` (plus 2 when byte `+2` is nonzero), `edx` = signed word `+0x14`, the resolved pointer, that dword and 1; a zero result passes `+0xC` to an 85-byte release, zeroes `+0xC` and stores 3 to byte `[rec]`, a nonzero result stores 3 there only when dword `+8` is nonzero",
+   "anchors": [
+    [
+     "0036EAE2",
+     "lea"
+    ],
+    [
+     "0036EB2C",
+     "cmove"
+    ],
+    [
+     "0036EB34",
+     "mov"
+    ],
+    [
+     "0036EB4E",
+     "mov"
+    ],
+    [
+     "0036EB56",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0036F050",
+   "text": "when byte `022D9B40` is 2 it stores 1 there, calls a 5-byte thunk with `ecx = 0` and passes each 24-byte record from `022D9AB0` below `022D9AE0` whose first byte is 3 to a 342-byte routine; then, when byte `022D9B41` is 2, it stores 1 there, calls the same thunk with `ecx = 1` and does the same for the records from `022D9AE0` below `022D9B40`",
+   "anchors": [
+    [
+     "0036F05A",
+     "cmp"
+    ],
+    [
+     "0036F065",
+     "mov"
+    ],
+    [
+     "0036F080",
+     "cmp"
+    ],
+    [
+     "0036F0A4",
+     "mov"
+    ],
+    [
+     "0036F0C8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0036F240",
+   "text": "when `ecx` is nonzero it scans the four 24-byte records at `022D9AE0`, else the two at `022D9AB0`, and returns the first record whose first byte is nonzero and whose sign-extended word `+0x14` equals `edx`; returns null when none matches",
+   "anchors": [
+    [
+     "0036F24C",
+     "je"
+    ],
+    [
+     "0036F25F",
+     "cmp"
+    ],
+    [
+     "0036F26D",
+     "cmp"
+    ],
+    [
+     "0036F2AE",
+     "cmp"
+    ],
+    [
+     "0036F27B",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "004719B0",
+   "text": "resolves dword `[rdx]` through `ImageAddress_ResolveRuntimePointer`, stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `rdx` plus that result back to dword `[rdx]`, then stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]`",
+   "anchors": [
+    [
+     "004719C2",
+     "call"
+    ],
+    [
+     "004719C7",
+     "lea"
+    ],
+    [
+     "004719D2",
+     "mov"
+    ],
+    [
+     "004719D4",
+     "call"
+    ],
+    [
+     "004719DE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00512A90",
+   "text": "resolves dword `[rdx + 0x30]` through `ImageAddress_ResolveRuntimePointer`, stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `rdx` plus that result back to dword `[rdx + 0x30]`, then stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]`",
+   "anchors": [
+    [
+     "00512AA3",
+     "call"
+    ],
+    [
+     "00512AA8",
+     "lea"
+    ],
+    [
+     "00512AB3",
+     "mov"
+    ],
+    [
+     "00512AB6",
+     "call"
+    ],
+    [
+     "00512AC0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005161D0",
+   "text": "resolves dword `[rcx]` through `ImageAddress_ResolveRuntimePointer` and stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `edx` plus that result back to dword `[rcx]`",
+   "anchors": [
+    [
+     "005161E1",
+     "call"
+    ],
+    [
+     "005161E6",
+     "lea"
+    ],
+    [
+     "005161E9",
+     "call"
+    ],
+    [
+     "005161F3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0051A380",
+   "text": "resolves dword `[rdx + 0x10]` through `ImageAddress_ResolveRuntimePointer`, stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `rdx` plus that result back to dword `[rdx + 0x10]`, then stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]`",
+   "anchors": [
+    [
+     "0051A393",
+     "call"
+    ],
+    [
+     "0051A398",
+     "lea"
+    ],
+    [
+     "0051A3A3",
+     "mov"
+    ],
+    [
+     "0051A3A6",
+     "call"
+    ],
+    [
+     "0051A3B0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0051B850",
+   "text": "stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]`",
+   "anchors": [
+    [
+     "0051B859",
+     "mov"
+    ],
+    [
+     "0051B85C",
+     "call"
+    ],
+    [
+     "0051B861",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00537260",
+   "text": "loads dword `[rcx + 0x20]` into `r8d` and tail-jumps to a 138-byte routine with `rcx` and `rdx` unchanged",
+   "anchors": [
+    [
+     "00537264",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

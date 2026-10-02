@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\prove.py", line 57, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\prove.py", line 53, in main
+    ix={int(i['pc'],16):i for i in r['instructions']};facts=derive(ix,d,G)
+                                                            ~~~~~~^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\prove.py", line 27, in derive
+    need(G.dominates(g,0x3068d4,0x306898) and G.dominates(g,0x3068d4,0x3068b8),'queue source arithmetic not mandatory')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-sequence-queue-source\prove.py", line 10, in need
+    if not ok:raise ValueError(msg)
+              ^^^^^^^^^^^^^^^^^^^^^
+ValueError: queue source arithmetic not mandatory

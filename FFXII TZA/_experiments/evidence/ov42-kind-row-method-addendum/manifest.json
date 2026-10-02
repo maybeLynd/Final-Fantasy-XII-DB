@@ -1,0 +1,67 @@
+{
+  "package": "ov42-kind-row-method-addendum",
+  "method": "A additive method/coverage correction, not a behavior experiment",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "current-source.json",
+      "bytes": 9825,
+      "sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59"
+    },
+    {
+      "path": "locate-retained-span.py",
+      "bytes": 3462,
+      "sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd"
+    },
+    {
+      "path": "lookup-01.json",
+      "bytes": 3284,
+      "sha256": "bdb1ba3c024765e545f80af04633a711c6d58070fb33f61c52cbcfb227842602"
+    },
+    {
+      "path": "old-source.json",
+      "bytes": 44698,
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2188,
+      "sha256": "98e6b2776672958ab67be5770c77ba16ef9490965142bab72f6d802c46160e52"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 2482,
+      "sha256": "3402f228b845c66b42b8e2410028bc4e90c1d05656ff5830db8cdf779d6f538f"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "verify-01.status.json",
+      "bytes": 243,
+      "sha256": "2015a10943ca09f66de67f6d4302ec750c7ef4ed6d6acee2daa39f801f603b56"
+    },
+    {
+      "path": "verify-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verify-01.stdout",
+      "bytes": 93,
+      "sha256": "9d09d60a6babfc3486c28b9a68bd9ad83ab7bea4f63a034051063168761b01df"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3355,
+      "sha256": "8017644f3a3a087484bc6b32a9949b74fdf511d40bb55ff325db74aa468bd5ff"
+    }
+  ],
+  "limits": "Published d8328725 raw/result/manifest remain immutable. Correct only method/novelty wording; no new native/live sample or global absence/reachability conclusion."
+}

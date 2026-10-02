@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "method": "A original PE metadata; not whole function extent or runtime unwind observation",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "c772d0a5ecef7de4b93b186793995387c9f80c21dcd9b131f49948f38fc71f67",
+  "directory_bytes": "0080e7020c8a0600",
+  "record_va": "0x2fc24a4",
+  "record_bytes": "20b42b003cb42b005c2ac301",
+  "begin_va": "0x3db420",
+  "end_va_exclusive": "0x3db43c",
+  "unwind_info_va": "0x1d52a5c",
+  "fragment_bytes": 28,
+  "fragment_sha256": "4b50fb7b97817b4206e92d897545ea96170d6b7a5a727afb89b24d7d83ac4e70",
+  "limits": "One original runtime-function entry covers entry fragment only. Actual full local CFG proof is separate; no census, chained-unwind semantic or live behavior claim."
+}

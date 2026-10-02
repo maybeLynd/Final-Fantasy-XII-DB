@@ -1,0 +1,303 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original-byte CFG/carrier/finite flag proof",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "dfeb9effa4d0551414fa738a5a02c9b39618463430b46b76f553e1366e6fb1b6",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69"
+    },
+    {
+      "path": "retained/filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e"
+    },
+    {
+      "path": "retained/filecache-hash-loop-source-01.json",
+      "sha256": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f"
+    }
+  ],
+  "annotations": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 436,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 113,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 14,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x59ee90",
+      "bytes": 876,
+      "instructions": 266,
+      "calls": [
+        [
+          5893852,
+          "0x1d6b20"
+        ],
+        [
+          5893864,
+          "0x865390"
+        ],
+        [
+          5893913,
+          "0x5cdaa0"
+        ],
+        [
+          5893931,
+          "0x1d6b20"
+        ],
+        [
+          5894059,
+          "0x1d6b90"
+        ],
+        [
+          5894075,
+          "0x1d6b70"
+        ],
+        [
+          5894117,
+          "0x1d6d20"
+        ],
+        [
+          5894174,
+          "0x808f10"
+        ],
+        [
+          5894354,
+          "0x808f10"
+        ],
+        [
+          5894378,
+          "0x599250"
+        ],
+        [
+          5894399,
+          "0x808f10"
+        ],
+        [
+          5894461,
+          "0x17d2e0"
+        ],
+        [
+          5894535,
+          "0x19b1f0"
+        ],
+        [
+          5894546,
+          "0x19aee0"
+        ],
+        [
+          5894563,
+          "0x215280"
+        ],
+        [
+          5894583,
+          "0x59a9b0"
+        ],
+        [
+          5894604,
+          "0x5cdaa0"
+        ],
+        [
+          5894621,
+          "0x808c40"
+        ]
+      ],
+      "returns": [
+        "0x59f1fb"
+      ]
+    },
+    {
+      "entry": "0x59a9b0",
+      "bytes": 293,
+      "instructions": 81,
+      "calls": [
+        [
+          5876175,
+          "0x1d6bb0"
+        ],
+        [
+          5876225,
+          "0x2150e0"
+        ],
+        [
+          5876263,
+          "qword ptr [rip + 0x327713]"
+        ],
+        [
+          5876284,
+          "0x1d6ca0"
+        ],
+        [
+          5876310,
+          "0x5cdaa0"
+        ],
+        [
+          5876324,
+          "0x2150d0"
+        ],
+        [
+          5876347,
+          "qword ptr [rip + 0x3276c7]"
+        ],
+        [
+          5876357,
+          "qword ptr [rip + 0x327955]"
+        ],
+        [
+          5876388,
+          "0x1d6a20"
+        ],
+        [
+          5876412,
+          "0x1d6b00"
+        ]
+      ],
+      "returns": [
+        "0x59a9f4",
+        "0x59aad4"
+      ]
+    },
+    {
+      "entry": "0x20c1b0",
+      "bytes": 322,
+      "instructions": 89,
+      "calls": [
+        [
+          2146819,
+          "0x861ec0"
+        ],
+        [
+          2146835,
+          "0x20c440"
+        ],
+        [
+          2146856,
+          "0x674a00"
+        ],
+        [
+          2146876,
+          "0x5cd4f0"
+        ],
+        [
+          2146984,
+          "0x20c300"
+        ],
+        [
+          2146995,
+          "0x5cd820"
+        ],
+        [
+          2147009,
+          "0x5cd820"
+        ],
+        [
+          2147030,
+          "0x808c40"
+        ]
+      ],
+      "returns": [
+        "0x20c2f1"
+      ]
+    },
+    {
+      "entry": "0x1d6d20",
+      "bytes": 79,
+      "instructions": 22,
+      "calls": [
+        [
+          1928511,
+          "0x20c700"
+        ],
+        [
+          1928533,
+          "0x20c1b0"
+        ]
+      ],
+      "returns": [
+        "0x1d6d6e"
+      ]
+    },
+    {
+      "entry": "0x674a00",
+      "bytes": 40,
+      "instructions": 14,
+      "calls": [],
+      "returns": [
+        "0x674a27"
+      ]
+    }
+  ],
+  "established": [
+    "The supplied resolver reads key DWORD record+28 into EDX at59F1B0.59A9B0 preserves that incoming full32 value in ESI and supplies ECX=ESI to1D6A20; no local archive-path rehash at this boundary.",
+    "A bounded finite original-CFG proof of r12b shows every locally armed59F1B7 commit passed59EFE5 cache lookup, under normal nonvolatile-register ABI. Other predicates are nondeterministic; this is not natural-state execution.",
+    "1D6D20 maps R9 out-key address into the fifth20C1B0 argument; its5push/SUB150 frame reads that address atcurrentSP1A0 intoR14.",
+    "Nonempty normalized lookup calls674A00 then stores fullDWORD returned key at20C22D before every local normal return, including miss. All hash exits passBTR EAX31, so this fresh output lies0..7FFFFFFF.",
+    "Empty normalized lookup branches straight to return-1 without hash or direct out-key store. The resolver itself has no direct record+28 write. Under valid nonaliasing state and no opaque callee interference, subsequent armed archive-hit commit forwards the prior field, rather than a newly initialized hash. This conditional boundary does not establish that such an archive hit or high-bit key occurs naturally."
+  ],
+  "retained_hash_invocation": "LEGACY_INCOMPLETE_INVOCATION_RECEIPT; no terminal/driver-bound capture credit. Needed hash bytes independently verified against pinned shipping EXE and reviewed decoder in this producer.",
+  "arm_flag_proof": {
+    "states": 606,
+    "commit_states": [
+      {
+        "flag": 1,
+        "lookup_seen": true
+      }
+    ],
+    "bound": 1596,
+    "limits": "One byte plus lookup visitation only; no concrete path length, native execution, archive feasibility or all-caller proof"
+  },
+  "empty_lookup": {
+    "returns": [
+      "0x20c2f1"
+    ],
+    "direct_out_key_writes": [],
+    "hash_called": false,
+    "return_value": "FFFFFFFFFFFFFFFF"
+  },
+  "direct_record28_writes": [],
+  "private_pointer_nonoverlap_writes": [
+    {
+      "pc": "0x59aa0a",
+      "start": 64,
+      "end": 68
+    },
+    {
+      "pc": "0x59aa22",
+      "start": 32,
+      "end": 40
+    }
+  ],
+  "interpretation": "Keep pre-keyed insertion interface distinct from a qualified caller. Fresh31bit key follows nonempty lookup, not a universal insert-domain claim. Empty normalization has a retained-out-field precondition. FABLE/OPUS must preserve stable-state/nonalias/callback limits and natural reachability as separate obligations.",
+  "limits": [
+    "Static original bytes only. No shipping instruction, harness, real process or game input executed.",
+    "Valid record and distinct out-fields, private frame, readable terminated input/output buffers and successful normalization premises where used; no memory stability inferred from pointer carriers.",
+    "Normal Win64 ABI/returns and opaque callees do not interfere with record28 before its key read; allocator/native callback/lifetime/actual bindings and concurrent scheduling unproved.",
+    "Supplied local caller path only, no all-indirect/external caller closure; empty normalization plus successful archive hit or a natural high-bit key is unproved.",
+    "Retained accepted wrapper/hash evidence reused; no repeat prefix samples or selector/filter/archive census. Producer controls, independent verdict and canonical consumption are separate."
+  ],
+  "affected_claims": [
+    "FABLE path page \u00a75/\u00a78 RAM cache backfill key provenance; OV33E2 insertion-domain prerequisite, not whole row closure",
+    "OPUS source-record+28 output/pre-keyed1D6A20 ABI and empty-normalizer contract"
+  ],
+  "cleanup": "No game/PC/native instruments, saves/configuration/reference/peer writes; bounded offline child only."
+}

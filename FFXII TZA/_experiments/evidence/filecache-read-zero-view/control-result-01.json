@@ -1,0 +1,101 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "e838ee46e91edcd125bfa1c481f4c1ed1c204675b2d5998414831526b2bc1688",
+  "positive_producer_sha256": "e3f7b5fb43f90fc9488947e87be262f9790dfd2e823247bad13b9aead8a76c25",
+  "cases": [
+    {
+      "name": "failed-Read-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-read-zero-view\\controls-01\\failed-Read-capture\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "e3f7b5fb43f90fc9488947e87be262f9790dfd2e823247bad13b9aead8a76c25",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": []
+    },
+    {
+      "name": "missing-retained-predicate-result",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-read-zero-view\\controls-01\\missing-retained-predicate-result\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "e3f7b5fb43f90fc9488947e87be262f9790dfd2e823247bad13b9aead8a76c25",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "retained-open/result-01.json"
+      ]
+    },
+    {
+      "name": "missing-Read-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-read-zero-view\\controls-01\\missing-Read-source\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "e3f7b5fb43f90fc9488947e87be262f9790dfd2e823247bad13b9aead8a76c25",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "source-01.json"
+      ]
+    }
+  ],
+  "count": 3,
+  "metadata_correction_control": "Exact derive/import AST and scientific facts/sourcepins unchanged; metadata corrected before publication",
+  "predicate_controls": [
+    {
+      "name": "requested-bytecount-guard",
+      "pc": "0x59d4d1",
+      "synthetic_change": {
+        "mnemonic": "jne"
+      },
+      "refused": true,
+      "diagnostic": "Read source operation changed 0x59d4d1"
+    },
+    {
+      "name": "fullQWORD-buffer-read",
+      "pc": "0x59d4b4",
+      "synthetic_change": {
+        "size": 4
+      },
+      "refused": true,
+      "diagnostic": "Read field/count width or role changed"
+    },
+    {
+      "name": "signed-nonpositive-cache-skip",
+      "pc": "0x59d500",
+      "synthetic_change": {
+        "mnemonic": "jl"
+      },
+      "refused": true,
+      "diagnostic": "Read source operation changed 0x59d500"
+    },
+    {
+      "name": "API-return-replaced-by-count",
+      "pc": "0x59d4f0",
+      "synthetic_change": {
+        "args": "eax, 1"
+      },
+      "refused": true,
+      "diagnostic": "Read source operation changed 0x59d4f0"
+    }
+  ],
+  "predicate_count": 4,
+  "limits": "Three actual producer CLI prerequisite refusals and four synthetic mutations of actual Close derive checker. Original Read logical partitions are mathematical analysis, not machine-code/native/emulated/live executions or parent independent acceptance."
+}

@@ -32,7 +32,7 @@ Nothing on its own — and this page says so up front rather than inventing a st
 does with a number derived from a position is decide things a player feels without naming: which of
 two things is drawn in front, how large something appears, whether a distant effect is worth drawing
 at all. **Seventy-five places in the presentation layer ask this one function to turn a position into
-a scalar.** What each of them then does with that scalar is **not established here**, and this page
+a scalar.** What each of them then does with that scalar ~~is **not established here**~~ *(answered: see §13 - at every one of the 76 sites the output is a modulate; 2026-10-02, OPUS)*, and this page
 does not pretend otherwise.
 
 ## 2. Why this function
@@ -58,7 +58,7 @@ entirely.
 ```c
 switch (mode) {
 case 2:                                     /* 002F1FDC - mode 2, not 1 (§11) */
-    stash   = *(vec4 *)02AED5F0;            /* a constant, §4 */
+    stash   = *(vec4 *)02AED5F0;            /* a constant, §4 */   /* <- corrected 2026-10-02, OPUS - not a constant: the camera update writes it (003820C0+0x3A0) */
     point   = *(vec4 *)rdx;                 /* the caller's position */
     stash[1] = 0;                           /* this arm only, BEFORE the transform (§11) */
     SetWorkbenchMatrix(02AEEA20);           /* 0039AF70 */
@@ -169,9 +169,9 @@ transform" reading is now doubly disfavoured.
 | `00398F90` | the point transform | 377 B | called for its **deposits** on this path |
 | `0039B550`, `0039ABF0` | the third arm — `Workbench_InstallMatrix4x4` / `Workbench_TransformPointReturnW` | 195 / 489 B | **read 2026-09-12 (§10)** — install a 4×4 into `022D91B0`; transform the point and return lane 3 (`w`, the projective depth) |
 | `02AEEA20` | the installed matrix | 64 B | BSS; **identity** at runtime |
-| `02AED5F0` | the stashed constant | 16 B | BSS; `[0, 0, 0, 2.0]` at runtime |
+| `02AED5F0` | the stashed ~~constant~~ camera vector *(corrected 2026-10-02, OPUS: `003820C0`+0x3A0 writes it)* | 16 B | BSS; `[0, 0, 0, 2.0]` at runtime |
 | `02AEECB0` | a projection × viewport matrix | 64 B | BSS; §5 |
-| `02F97348` | the singleton | 8 B | BSS; non-null, dereferenced 7× |
+| `02F97348` | ~~the singleton~~ the effect container currently being drawn *(corrected 2026-10-02, OPUS: §12 - not one object)* | 8 B | BSS; non-null, dereferenced 7× |
 | `022C6F28` | the character render record array | — | read; documented in [character render object](../Character-Rendering/character-render-object.md) |
 | `02EBF278` | authored-data table | — | in the [authored-data table registry](../../02-Resource-And-Asset-Pipeline/authored-data-table-registry.md) |
 
@@ -208,8 +208,8 @@ transform" reading is now doubly disfavoured.
   (`002F2424`–`002F2509`; the three callees are not read here).
 
 **So the "scalar" is the drawn object's distance from the viewer (projective depth in mode 0,
-Euclidean in modes 1–2), and the node is the per-object distance-fade colour**: the 75 call sites
-(the draw-side family `0045E930`–`00537410` and `004427D0`) obtain the modulate colour whose alpha
+Euclidean in modes 1–2), and the node is the per-object distance-fade colour**: the ~~75 call sites~~ 76 call sites in 75 functions *(corrected 2026-10-02, OPUS: §13's census)*
+(the draw-side family ~~`0045E930`–`00537410` and `004427D0`~~ `00442550`–`00537410` *(corrected 2026-10-02, OPUS: §11 - the lowest caller is `00442550`)*) obtain the modulate colour whose alpha
 fades an object out between the authored near and far distances. None of depth-ordering, size or
 culling is what it feeds; it feeds a colour. What the fade record's kinds mean in authoring terms,
 and the three unread modifier callees, are the residue.
@@ -227,7 +227,7 @@ and the three unread modifier callees, are the residue.
   PS2 GS primitive coordinate plane.** The engine builds a viewport matrix for it. `004679C0(m, w, h)` writes:
   - `m00 = w/2` and `m11 = −h/2` (`00467A0F`–`00467A26`);
   - row-3 translation **`2048.0, 2048.0`** (`00467A33`, `00467A3A`: `0x45000000`) and `m33 = 1`;
-  - `m22` / `m32` map z between the constants `1024.0` and `16,777,215.0` (`0x44800000` / `0x4B7FFBFF` at `+0x4C` /
+  - `m22` / `m32` map z between the constants `1024.0` and ~~`16,777,215.0`~~ `16,776,191.0` *(corrected 2026-10-02, OPUS: `004679C0`+0x17 `mov dword ptr [rcx + 0x50], 0x4b7ffbff`; `16,777,215.0` would be `0x4B7FFFFF`)* (`0x44800000` / `0x4B7FFBFF` at `+0x4C` /
     `+0x50`, `004679D0`–`00467A62`), a 24-bit Z range.
 
   `00382910` builds the one at `02AED4A0` with `022D8EAC` × `022D8EB4` = **512 × 448**, the PS2 NTSC frame size
@@ -240,8 +240,8 @@ and the three unread modifier callees, are the residue.
   them. At start-up `0039CD50` also records the same centre (`2048, 2048`, `0039AED0`) and a screen distance of `512`
   (`0039AF20`), in write-only globals. So "4096" is the width of the GS's 12.4 fixed-point drawing plane, whose centre
   2048 the PS2 port kept: the projected points are GS primitive coordinates.
-- **The meaning of `mode`.** Three arms are distinguished; what selects them is the caller's, and no
-  caller was read.
+- **The meaning of `mode`.** Three arms are distinguished; what selects them is the caller's~~, and no~~
+  ~~caller was read~~ *(answered: see §10 - byte `+1` of the fade record is the distance mode; 2026-10-02, OPUS)*.
 - ~~**Why `020926E8` is zero**, or what it scales when it is not.~~ **Answered 2026-09-19 (section 12): it is the
   time stop's effect-dimming ramp, and at the title screen nothing had started one.**
 
@@ -324,11 +324,11 @@ point.
 | every global on these paths is BSS | **all past `SizeOfRawData`** — `.data` raw ends at rva `01E5E400`, virtual at `02E77530`, and `02AEEA20`, `02AED5F0`, `02AEECB0`, `02F97348`, `020926E8` all sit above the raw end. **`02EBF278` and `022C6F28` too**, which §9's item does not cover |
 
 The callers run **`00442550` … `00537410`**. §10 describes them as *"the draw-side family
-`0045E930`–`00537410` and `004427D0`"*; the lowest is **`00442550`**, and **57 of the 75** sit below
+`0045E930`–`00537410` and `004427D0`"*; the lowest is **`00442550`**, and **~~57~~ 46 of the 75** *(corrected 2026-10-02, OPUS: recount of `members/fade-node-consumers.tsv`'s callers)* sit below
 `0045E930`, in the `0044xxxx`–`0045xxxx` run. The family is the same; its stated bounds are not.
 
 **Not claimed.** Nothing live: §5, §6 and `BI-9` are untouched, and **no reading of `02AEEA20`,
-`02AEECB0`, `02F97348` or `020926E8` was re-made.** Which axis lane 1 is. What selects the mode
+`02AEECB0`, `02F97348` or `020926E8` was re-made.** ~~Which axis lane 1 is.~~ *(answered: see §9's cross-reference - lane 1 is Y, the up axis; 2026-10-02, OPUS)* What selects the mode
 beyond the fade record's byte `+1`. The three unread modifier callees of §10. Nothing was executed.
 
 ## 12. Extension 2026-09-19 (FABLE) - whose colour it is: the node belongs to the effect container being drawn
@@ -418,7 +418,7 @@ relationship to the position-to-scalar projection.
 **Movement — SERVICE (SWE2-CONTRACT 2026-09-15, 2 edges).** The projection body `003820C0` calls Movement helpers `00233230` and `0026E500` — the position the page reduces comes through the movement layer's accessors. Small, real.
 
 **CoreRuntimeScheduling — SERVICE (SWE2-CONTRACT 2026-09-15, 4 edges).** The projection body
-`003820C0` calls scheduling helpers `00229D20` and `00229D60`; `003CBB30` shares `00229D60` and
+`003820C0` calls ~~scheduling helpers~~ `00229D20` *(corrected 2026-10-02, OPUS: the aspect ratio, how-a-camera-reaches-the-renderer.md `CON-184`)* and `00229D60`; `003CBB30` shares `00229D60` and
 `004679C0` shares `00229D20`. Small helper fan-in.
 - **ActorEntity - SERVICE (4 edges).** `00465690` reaches bodies filed to ActorEntity: `00263C30`, `00263FF0`, ActorManager_GetRecordByOrdinal (`00358940`), ActorHandle_EncodeRegistryEntry (`003589B0`) - shared machinery across the layer boundary, no shared ownership.
 - **UI - CLIENT (2 edges).** `0024C060`, `0024ED80` are called by bodies filed to UI: `0024B9B0` - shared machinery across the layer boundary, no shared ownership.

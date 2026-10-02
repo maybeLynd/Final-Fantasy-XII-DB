@@ -139,7 +139,7 @@ predecessors in
 | block | what it is | how it is reached | population today |
 | --- | --- | --- | --- |
 | `0076666F`, `0078F3AF`, `007C2A29`, `007C9BF8`, `007DF1E2` | tails of the function before | direct `jcc` from the predecessor | covered: the applied UC-1 band extends each predecessor over it |
-| `001491CE`, `001492FF` | switch data after `repz ret` | read by the predecessor's dispatch | held (UC-1 held rows, accepted) |
+| `001491CE`, `001492FF` | ~~switch data after `repz ret`~~ one `nop` of padding after `repz ret`, then code *(corrected 2026-10-02, OPUS: `001491CE`+0x2 begins the v 32x32 intra predictor and `001492FF`+0x1 the h 32x32 predictor, the libvpx bodies UC-3 names)* | ~~read by the predecessor's dispatch~~ no rel32 or pointer reference to either entry | held (UC-1 held rows, accepted) |
 | `007137BC` | the 14-entry table after `jmp rcx` | the predecessor's table | held |
 | `006A3A5C` | the predecessor's jump table itself | `006A39B1 mov edx, [rcx+rax*4+0x583A5C]` | not a body; outside the population |
 | `00862028`, `00862034` | 6-byte `jmp qword ptr [rip+x]` import thunks | called directly (`call` x1 each) | correctly admitted as frontier bodies |
@@ -172,7 +172,7 @@ they inherit the defect:
 `check_extent_overruns.py` audits the OPPOSITE defect — `entry + body_bytes` past the next listed
 entry, 29 cases — and adjudicates them. ~~There is no sibling instrument for the underrun~~ **The sibling now exists**
 (2026-09-29): [`check_body_underruns.py`](../../../Tools/analysis-kit/gfz-scripts/check_body_underruns.py), with its three
-controls. The 159 extensions not yet applied are prepared as `_index/FUNCTION-EXTENT-ERRATA.tsv` rows in
+controls. The 159 extensions ~~not yet applied~~ *(answered: see "The 159 extensions applied (OPUS, 2026-09-29)" and "Resolved 2026-09-30" below; 2026-10-02, OPUS)* are prepared as `_index/FUNCTION-EXTENT-ERRATA.tsv` rows in
 [`underrun-errata-rows-0929.tsv`](underrun-errata-rows-0929.tsv); applying them moves extents that `program_coverage.py`,
 `receiver_flow_census.py` and `field_disp_scan.py` read, so the application is FRONTIER's
 (OPUS-REQ-FRONTIER-EXTENT-ERRATA-UNDERRUN-159).

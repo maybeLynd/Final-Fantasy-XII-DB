@@ -1,0 +1,6 @@
+{
+  "case": "all-extractions-fail",
+  "collector_sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad",
+  "fail_mode": "all",
+  "limits": "fake archive index/extractor/decoder isolate real collector admission; no actual VBF, shipped bytecode/name/type or natural game reachability"
+}

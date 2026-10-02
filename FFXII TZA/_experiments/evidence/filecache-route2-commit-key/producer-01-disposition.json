@@ -1,0 +1,7 @@
+{
+  "status": "REFUSED_BEFORE_RESULT",
+  "receipt": "prove-01.status.json",
+  "driver": "prove-before-legacy-receipt-qualification-01.py",
+  "cause": "Retained hash capture has a legacy exit-only receipt. It cannot satisfy a terminal/driver-hash assertion. Retained original-byte evidence can be separately revalidated directly against the shipping EXE; no new capture or completed invocation is inferred.",
+  "repair": "Classify the legacy invocation receipt as incomplete, check its exact schema and exit, revalidate all needed retained bytes against current pinned original EXE and shared decoder; retain strict actual new/boundary/parent-producer completion gates."
+}

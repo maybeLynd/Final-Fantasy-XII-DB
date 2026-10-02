@@ -88,7 +88,7 @@ three per draw; the 66 MT consumers are that page's caller census of `00379CD0`,
 > tier 1.)*
 
 **A note on how the call was nearly missed:** `00379CF0` is a **5-byte thunk** (`jmp 00863D30`) and is
-**not in the function list**. A caller census of the seeding function that did not follow thunks would
+**not in the function list** *(answered: see the key-address table below, listed in the function list since; 2026-10-02, OPUS)*. A caller census of the seeding function that did not follow thunks would
 report this site as absent — **the second time tonight the function list's shape decided what could be
 absent from an answer.**
 

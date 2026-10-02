@@ -686,9 +686,11 @@ the same caution: **what survives is not established here.**
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 
 **CombatFormula — CLIENT and SERVICE (SWE2-CONTRACT 2026-09-15, 38 edges).** The dispatch consults the formula
-layer's effective-action-id resolvers directly: `00304850` both calls and is called by
+layer's effective-action-id resolvers directly: `00304850` ~~both calls and is called by~~ calls
 `BattleRuntime_GetEffectiveActionId` `00387090` and `BattleRuntime_ResolveAndCacheEffectiveActionId`
-`00387A50` — the handler table resolves the effective action id through them before dispatching.
+`00387A50` — the handler table resolves the effective action id through them before dispatching. *(corrected
+2026-10-02, FABLE: neither calls `00304850` directly; the getter's only calls are its two owner-resolver calls,
+and the raw census gives `00304850` one direct caller elsewhere; FABLE review of ASTRA `ov42-effective-id-source`)*
 The other ~34 edges are `0031B860` caller fan-in: the `BattleFormula_*`/`BattleStats_*` bodies
 (`BattleFormula_ApplyTargetResult`, `BattleFormula_RollAvoidGuardParryOutcome`,
 `BattleFormula_RollGuardParryMode`, `BattleStats_ModifyHPAndProcessLethalState`,

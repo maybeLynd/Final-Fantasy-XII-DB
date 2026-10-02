@@ -198,3 +198,12 @@ qwords into `+0xC0` / `+0xC8`"*.
 - **Script_VM_Native_Bridge — CLIENT.** The storage-operation pending pair `003BB420` / `003BB430` (7 B each) is also
   polled by script verbs: five bodies for `003BB420` and two for `003BB430`. **Script verbs poll the same pending
   pair.**
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-the-save-load-screen-widgets-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003BB2C0` | 38 B | stores 5 to dword `02B40E1C`, zero to dwords `02B40EC0`, `02B40FE4` and `02B40E10` and to qword `02B40E14`, and returns 0 | `003BB2C2`, `003BB2CC`, `003BB2D2`, `003BB2D8`, `003BB2DF` |
+| `0057E950` | 238 B | with `rbx` set from `r8d` (zero-extended): for `ecx` 4 with `edx` zero and bit 1 of byte `rbx+0xC0` set, calls `00393630(stack buffer, 0x40)` and, only when qword `02CA99C0` is non-null, copies that NUL-terminated buffer to `+8` of a stack record whose first dword is 5 and calls `00582540(qword 02CA99C0, record)`; for `ecx` 5, or 4 when `edx` is non-zero or that bit is clear, calls `00247510(qword rbx+0xC8, 0x1D, record)` with a record of dword 0xD, byte `+0x39A` of `[02CA99C0]` (0xFF when that qword is null) at `+4` and `edx` at `+8`, then clears bit 0 of dword `rbx+0xC0`; any other `ecx` does nothing | `0057E96E`, `0057E9B1`, `0057E9E9`, `0057EA19`, `0057EA1E` |

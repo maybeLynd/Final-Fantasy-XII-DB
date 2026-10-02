@@ -1,0 +1,109 @@
+{
+ "page": "08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "the-battle-stats-record-field-map.json",
+ "rows": [
+  {
+   "fn": "003478A0",
+   "text": "calls `Actor_GetWorldPosition(rdx)` with three stack dword out-slots and zeroes the second; calls `VMValueStack_PopNumericDiscard(r9)` four times and lays the floats out as two stack triples (second, 0, first) and (fourth, 0, third); calls a 158-byte helper with pointers to the (fourth, 0, third) triple, the (second, 0, first) triple and the out-slot triple, then `VMResult_WriteFloat32(rcx)` with that float result in `xmm1`; the body is wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`)",
+   "anchors": [
+    [
+     "003478D4",
+     "call"
+    ],
+    [
+     "003478DC",
+     "mov"
+    ],
+    [
+     "003478F4",
+     "call"
+    ],
+    [
+     "00347938",
+     "call"
+    ],
+    [
+     "00347943",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003509E0",
+   "text": "reads `VMValueStack_PopInt32CoerceFloat32(r9)`, fills a stack dword buffer through `PartyConfiguration_CollectRuntimeRosterSelectors0To3(buffer, 4)` and calls `VMResult_WriteInt32(rcx, 0)`; for each index below the sign-extended count the roster-selector call returned (signed) whose buffer dword equals the popped value, takes `PartyRoster_GetActorBySlot(index)` and, when it is non-null and either a 32-byte helper of it returns zero or a 70-byte helper of it returns non-zero, calls `VMValueStack_PushInt32(r9, index)` and a 166-byte helper (`rcx`, `rdx`, `r8`, `r9`) and sets a flag; finally calls `VMResult_WriteInt32(rcx, flag)`; wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`)",
+   "anchors": [
+    [
+     "00350A26",
+     "call"
+    ],
+    [
+     "00350A33",
+     "call"
+    ],
+    [
+     "00350A50",
+     "cmp"
+    ],
+    [
+     "00350A98",
+     "call"
+    ],
+    [
+     "00350ABB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00560210",
+   "text": "looks up a 19-byte lookup helper with the dword at `rcx + 0x120 + 4*r9d` and, through qword `+0x10` of `rdx` (call it Q), stores at `+0x18` of Q's `+0x40` record a 62-byte helper's result for the qword `+0x18` of a 72-byte helper's result for (2, word `+0x60` of the looked-up record); takes bytes from `BattleStats_GetActiveLicenseBoardSelector`, `BattleStats_GetLicenseBoardSelectorA` and `BattleStats_GetLicenseBoardSelectorB` (each with byte `+0x60`), sets bit 0 of dword `+0x8` in Q's `+0x78`, `+0x70` and `+0x80` records to whether each is not `0xFF`, and for the valid second and third (reordered) stores a 180-byte helper's result for (byte + `0x3ED`) at `+0x18` and calls a 126-byte helper; writes a 116-byte helper's index for (word `+0x60`, 3) and words built from 12-bit fields into Q's `+0x60` record; fills dwords `+0x28` to `+0x34` of Q's `+0x0` and `+0x8` records (low 24 bits only, top byte kept) and of its `+0x28`, `+0x30` and `+0x38` records (whole dwords) from a 36-byte helper with `0xFC`/`0xFA` when word `+0xDE0` of qword `0209AC30` equals the indexed dword, else `0xFD`/`0xFB`; calls a 247-byte helper on Q's `+0x50` record and returns 1",
+   "anchors": [
+    [
+     "00560239",
+     "call"
+    ],
+    [
+     "005602F8",
+     "call"
+    ],
+    [
+     "005603A9",
+     "call"
+    ],
+    [
+     "0056043D",
+     "cmp"
+    ],
+    [
+     "005605EB",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003478A0",
+   "was": "calls `00265020(rdx)` with three stack dword out-slots and zeroes the second; calls `00267DB0(r9)` four times and lays the floats out as two stack triples (second, 0, first) and (fourth, 0, third); calls `003A1C90` with pointers to the (fourth, 0, third) triple, the (second, 0, first) triple and the `00265020` triple, then `0026B4C0(rcx)` with that float result in `xmm1`; the body is wrapped in the stack-cookie check (`01F44830`, `00808C40`)",
+   "now": "calls `Actor_GetWorldPosition(rdx)` with three stack dword out-slots and zeroes the second; calls `VMValueStack_PopNumericDiscard(r9)` four times and lays the floats out as two stack triples (second, 0, first) and (fourth, 0, third); calls a 158-byte helper with pointers to the (fourth, 0, third) triple, the (second, 0, first) triple and the out-slot triple, then `VMResult_WriteFloat32(rcx)` with that float result in `xmm1`; the body is wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`)",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (ActorEntity, Script_VM, unowned and CRT callees at 003478A0+0x34, 003478A0+0x54, 003478A0+0x98, 003478A0+0xA3, 003478A0+0xB0)"
+  },
+  {
+   "fn": "003509E0",
+   "was": "reads `00267E10(r9)`, fills a stack dword buffer through `0031B510(buffer, 4)` and calls `0026B4E0(rcx, 0)`; for each index below that call's sign-extended count (signed) whose buffer dword equals the `00267E10` value, takes `00263750(index)` and, when it is non-null and either `002373A0` of it is zero or `00233D70` of it is non-zero, calls `00267F90(r9, index)` and `00352FA0(rcx, rdx, r8, r9)` and sets a flag; finally calls `0026B4E0(rcx, flag)`; wrapped in the stack-cookie check (`01F44830`, `00808C40`)",
+   "now": "reads `VMValueStack_PopInt32CoerceFloat32(r9)`, fills a stack dword buffer through `PartyConfiguration_CollectRuntimeRosterSelectors0To3(buffer, 4)` and calls `VMResult_WriteInt32(rcx, 0)`; for each index below the sign-extended count the roster-selector call returned (signed) whose buffer dword equals the popped value, takes `PartyRoster_GetActorBySlot(index)` and, when it is non-null and either a 32-byte helper of it returns zero or a 70-byte helper of it returns non-zero, calls `VMValueStack_PushInt32(r9, index)` and a 166-byte helper (`rcx`, `rdx`, `r8`, `r9`) and sets a flag; finally calls `VMResult_WriteInt32(rcx, flag)`; wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`)",
+   "why": "the loop count is the return of the selector call at 003509E0+0x46 (movsxd r12, eax at 003509E0+0x4D), taken before the result-writer call at 003509E0+0x53, not 'that call's'; pass-22: callee(s) outside the page's layer renamed by ledger name or role (Script_VM, Party, ActorEntity and CRT callees at 003509E0+0x35, 003509E0+0x46, 003509E0+0x53, 003509E0+0x79, 003509E0+0x89, 003509E0+0x95, 003509E0+0xA3, 003509E0+0xB8, 003509E0+0xDB, 003509E0+0xE8)"
+  },
+  {
+   "fn": "00560210",
+   "was": "looks up `00282DF0` with the dword at `rcx + 0x120 + 4*r9d` and, through qword `+0x10` of `rdx` (call it Q), stores `002B58B0` of the `0035D330(2, word +0x60 of the looked-up record)` result's qword `+0x18` into Q's `+0x40` record; takes bytes from `003236B0`, `00323670` and `00323630` (each with byte `+0x60`), sets bit 0 of dword `+0x8` in Q's `+0x78`, `+0x70` and `+0x80` records to whether each is not `0xFF`, and for the valid second and third (reordered) stores `002F9860(byte + 0x3ED)` at `+0x18` and calls `0029FB50`; writes the `002C9B30(word +0x60, 3)` index and words built from 12-bit fields into Q's `+0x60` record; fills dwords `+0x28` to `+0x34` of Q's `+0x0`, `+0x8`, `+0x28`, `+0x30` and `+0x38` records from `002DD7E0` with `0xFC`/`0xFA` when word `+0xDE0` of qword `0209AC30` equals the indexed dword, else `0xFD`/`0xFB`; calls `0029FF60` on Q's `+0x50` record and returns 1",
+   "now": "looks up a 19-byte lookup helper with the dword at `rcx + 0x120 + 4*r9d` and, through qword `+0x10` of `rdx` (call it Q), stores at `+0x18` of Q's `+0x40` record a 62-byte helper's result for the qword `+0x18` of a 72-byte helper's result for (2, word `+0x60` of the looked-up record); takes bytes from `BattleStats_GetActiveLicenseBoardSelector`, `BattleStats_GetLicenseBoardSelectorA` and `BattleStats_GetLicenseBoardSelectorB` (each with byte `+0x60`), sets bit 0 of dword `+0x8` in Q's `+0x78`, `+0x70` and `+0x80` records to whether each is not `0xFF`, and for the valid second and third (reordered) stores a 180-byte helper's result for (byte + `0x3ED`) at `+0x18` and calls a 126-byte helper; writes a 116-byte helper's index for (word `+0x60`, 3) and words built from 12-bit fields into Q's `+0x60` record; fills dwords `+0x28` to `+0x34` of Q's `+0x0` and `+0x8` records (low 24 bits only, top byte kept) and of its `+0x28`, `+0x30` and `+0x38` records (whole dwords) from a 36-byte helper with `0xFC`/`0xFA` when word `+0xDE0` of qword `0209AC30` equals the indexed dword, else `0xFD`/`0xFB`; calls a 247-byte helper on Q's `+0x50` record and returns 1",
+   "why": "the +0x40-record store lands at +0x18 (00560210+0x59 mov [rbx+0x18], rax); the +0x0 and +0x8 records keep their top byte (00560210+0x246 and [rbx+0x28], 0xFF000000 with 00560210+0x24D and eax, 0xFFFFFF) while +0x28/+0x30/+0x38 take whole dwords (00560210+0x2C4); pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned, Boundary and Items/License callees at 00560210+0x29, 00560210+0x47, 00560210+0x52, 00560210+0x69, 00560210+0x7F, 00560210+0x8B, 00560210+0xE8, 00560210+0x118, 00560210+0x199, 00560210+0x241, 00560210+0x3DB)"
+  }
+ ]
+}

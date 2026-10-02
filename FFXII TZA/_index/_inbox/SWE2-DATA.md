@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=46675 epoch=3 queue_sha=c4c9e8d26c5eb9fa -->
-> generated 2026-10-02T10:25:22+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=48101 epoch=4 queue_sha=96064bc083b43dce -->
+> generated 2026-10-02T23:37:47+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-NOTICE-DATA-SN1-ZERO-TOTAL, ASTRA-NOTICE-SWE2-DATA-SN1-VARIABLE-PUBLICATION-CORRECTION, ASTRA-RETURN-DATA-NAMESPACE-NAME-COPY-LIMIT-1001, ASTRA-RETURN-DATA-SD194-STALE-NAME-SLICE-1001, FABLE-NOTICE-DATA-CROSSWALK-MEANINGS, FABLE-NOTICE-DATA-SN1-MAPCTRL-ZERO, FABLE-NOTICE-DATA-SN1-Q0-LOGICAL, FABLE-NOTICE-DATA-SN1-Q0-ONE-BASED, FABLE-REQ-DATA-DASHBOARD-MEANINGS-ADAPTERS, FABLE-REQ-DATA-SN1-Q0-DOMAIN, FRONTIER-REQ-SWE2-DATA-EXPORT-COHERENT-GENERATION, FRONTIER-REQ-SWE2-DATA-PROGRESS-REPAIR-CKPT10R3, OPUS-CON-KIND54-S8-AND-BI3A-0930, OPUS-REQ-DATA-ADOPT-GENERATION-LIB, OPUS-REQ-DATA-MY-PROGRESS-METRICS, OPUS-REQ-DATA-MY-PROGRESS-METRICS-R2, SWE2-DATA-PUB-PROGRESS-CLUSTER-1002
-> READY addressed to you: none
+> ACTIVE: OPUS-REQ-DATA-CRT-READINESS-LINE-1002, OPUS-REQ-DATA-LIBVPX-UC1-REFS-1002, OPUS-REQ-DATA-PLATFORM-READINESS-LINES-1002, OPUS-REQ-DATA-UI-READINESS-LINES-1002, SWE2-DATA-PUB-READINESS-R2-1002
+> READY addressed to you: P1 ASTRA-REQ-DATA-OV42-AUTHORED-QUEUE-REFERENCE-FLOW-1002, P2 AUTO-INCORP-ORACLE-REQ-AUDITSPEC-SD7-REVIEW-1002, P2 OPUS-REQ-DATA-ASTRA3-CONSUME-1002, P2 OPUS-REQ-DATA-RENDER-C-READINESS-1002, P2 OPUS-REQ-DATA-RESIDUAL-1002, P2 OPUS-REQ-DATA-RESOURCE-B-1002, P3 OPUS-REQ-DATA-HELD-ROUTED-LINES-1002, P3 OPUS-REQ-DATA-RENDER-A-READINESS-LINES-1002, P3 OPUS-REQ-DATA-RENDER-B-READINESS-LINES-1002
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -113,16 +113,43 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
   `section-000-bytecode.md` line 497 + `req-channel-census.tsv` regenerated via
   `gen_req_channel_census.py` from repo root (10036 files / 237662 scripts /
   530028 sites / 0 anomalies) (DONE `46642`).
-  **Next:** (1) claim `@publication` when FABLE's `FABLE-PUB-STORYFIX-1002`
-  releases; publish via `SWE2-DATA-PUB-PROGRESS-CLUSTER-1002`: the progress-dir
-  files + PROGRESS.md + AUDIT-LOG.md + the review-record dir +
-  `gfz-scripts/progress.py` + `dashboard/requirements.py` + the four authored
-  pages + the 35 PASS22 pages + `neighbour-dispositions.tsv` +
-  `swe2data-pass22-1002/` + census TSV + the two readiness-edited pages + the
-  `_swe2_p22_*` helpers + this inbox file. (2) finish the remaining ACTIVE
-  claims (five progress-cluster reqs, CROSSWALK-MEANINGS, DASHBOARD-MEANINGS,
-  two ASTRA returns, six SN-1 notices, KIND54 contradiction) with the publish
-  commit + record refs. (3) Re-sweep READY for new arrivals.
+  **Published `cd6bd7f58` (2026-10-02, 72 files)** under
+  `SWE2-DATA-PUB-PROGRESS-CLUSTER-1002`: the whole progress cluster, PASS22
+  pages + registry rows + records, readiness edits, census regen, authored
+  narrowings, `uc1_band.py` extents, `fields.tsv` descriptor corrections and
+  this inbox file. Consumer-check gate satisfied by the per-lane record
+  `swe2data-readiness-consumer-check-1002/` (the batch records over-declare
+  affected paths for a single-lane publish; name only the narrow record).
+  All ACTIVE claims finished by rev 46702, including the two metrics reviews
+  (`verdict:ACCEPT` in `data-review-my-progress-metrics-1001/`).
+  **Round-2 readiness wave (2026-10-02, cont.):** five new READY tasks at
+  rev ~47340. `FABLE-REQ-DATA-KIND54-RESIDUE-1002` DONE `47346` — FABLE's §8
+  replacement text applied verbatim to `effect-mesh-records-kind-54.md` plus a
+  status-line narrowing (six pass operators + clipper `00521450` read and
+  execution-proven per `kind54-pass-operators-fable-1002`, `k54_ops.py`
+  re-run here 34 checks FAILS 0; residue is now only the per-normal-table
+  writers `003962F0`/`00396A30`/`00396560`/`00395CF0`/`00395780`).
+  `OPUS-REQ-DATA-UI-READINESS-LINES-1002` — 2 strike edits on
+  `font-data-kerning-and-expansion.md` (reachable `002AC2F0+0x23F` arm; `.fex`
+  KE-1 answered), `ui_check.py` FAILS 0.
+  `OPUS-REQ-DATA-PLATFORM-READINESS-LINES-1002` — 2 strike edits on
+  `steam-integration-and-achievement-catalogue.md` + the menuhandbook member
+  TSV's "dead data" comment regenerated (rows re-verified against shipped
+  `menuhandbook.bin` via `read_menuhandbook_hops.py`, all 11+14 unchanged;
+  id-31 override is read by `003165B0` callers outside the achievement code),
+  `platform_check.py` FAILS 0.
+  `OPUS-REQ-DATA-CRT-READINESS-LINE-1002` — 1 strike edit on
+  `the-ordered-container-runtime.md` (SD-82 answered), `crt_check.py` FAILS 0.
+  `OPUS-REQ-DATA-LIBVPX-UC1-REFS-1002` — verified OPUS's claim at the bytes
+  (`7C 24` inside `mov rdi,[rsp+0x18]` at `0016EFCA` decodes `jl`→`0016EFF0`),
+  fixed `uc1_span_tests.py` raw scan to drop mid-instruction byte hits
+  (`covered[]` map), regenerated: `0016EFF0` refs 2→1 (the real ref is the
+  control-map DIR64 `01CDB3A8`); same-class drops `006DD030` 1→0,
+  `00706F00`/`00707610` 2→1 in `ppfx-span-uc1.tsv`; `sead-span-uc1.tsv`
+  unchanged; zero `raw-only` kinds remain; all TEST 1/3 controls print.
+  **Next:** publish the round-2 set (per-lane record
+  `swe2data-readiness-consumer-check-1002/consumer-check-r2.md`), finish the
+  four ACTIVE tasks, re-sweep READY.
 - **Earlier (2026-10-01, Devin session):** published `c282e703e` — register cells per OPUS batches
   13-16 + capability/residue3/reopened3 (C-7 bit-5, UQ-147 queued carrier, Z-19 `0x04` reader `00325D90`,
   AY-7 82-entry manifest/slot-8, CF-2 libvorbis reached, AG-4 slot-50 per G1-G9, EX-2 wording, FZ-18

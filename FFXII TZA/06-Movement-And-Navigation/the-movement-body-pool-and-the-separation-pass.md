@@ -614,3 +614,18 @@ Interior anchor `00381EDB` (function `00381EB0`).
 `003DA730` (244 B) is the steering normalise `003DA5A0` runs: `xmm6 = -[rcx+8]`, the xz delta `r8-rdx`, `00861F08`/`00861F0E` of `xmm6` give the sin/cos pair that forms cross `xmm4 = cos*dz - sin*dx` and along `xmm9 = sin*dz + cos*dx`; when `xmm4^2 + xmm9^2` is nonzero it scales by `1/[rbx]^2` and `1/[rbx+4]^2` and returns the summed correction, else `0.0`
 
 Interior anchor `003DA7C5` (function `003DA730`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-movement-body-pool-and-the-separatio-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0026BEE0` | 115 B | takes the top three bits of byte `[rcx + 3]`: when they are 1 it calls `003DA860([rcx + 0xB8] + 0x30, null, xmm1, xmm1)` with 1.0 (`01CEBBA8`) as both stack arguments; when they are 3 it calls `003DA890(rbx + 0x60, rbx + 0x50)` with `rbx = [rcx + 0xB8]` and `xmm1` as the third (float) argument, then stores 1 to byte `[rbx + 0xDF]`; any other value returns without a call | `0026BEE8`, `0026BF0C`, `0026BF11`, `0026BF22`, `0026BF49` |
+| `0026E130` | 22 B | stores 0 to dword `[0209A3E0 + sign-extended ecx * 8]` and tail-jumps to `003278D0` | `0026E133`, `0026E13A`, `0026E141` |
+| `0026E150` | 71 B | when `edx` is positive (signed), walks `edx` 8-byte entries of `0209A3E0` from the sign-extended index `ecx`, storing 0 to each entry's first dword and calling `003278D0` after each store; when `edx` is zero or negative it returns at once | `0026E152`, `0026E176`, `0026E178`, `0026E17D`, `0026E185` |
+| `002E9830` | 36 B | returns the sign-extended word `+0x8A` of `[[rcx + 0xC0] + 0x138]`, or -1 when `[rcx + 0xC0]` or its `+0x138` pointer is null | `002E983A`, `002E983C`, `002E9848`, `002E9850` |
+| `002E9890` | 36 B | returns the sign-extended word `+0x86` of `[[rcx + 0xC0] + 0x138]`, or -1 when `[rcx + 0xC0]` or its `+0x138` pointer is null | `002E989A`, `002E989C`, `002E98A8`, `002E98B0` |
+| `00347240` | 82 B | pops a value through `VMValueStack_PopInt32CoerceFloat32(r9)`, resolves it with `PartyRoster_GetActorBySlotOrCurrentFocus`, and when the actor is non-null reads its value through the getter that returns the signed word `+0x86` of `[[actor + 0xC0] + 0x138]` (-1 when either pointer is null); it tail-jumps `VMResult_WriteInt32(rcx, value)` with the value kept only when non-negative, else 0 (also 0 when there is no actor) | `00347255`, `00347260`, `0034726D`, `00347279`, `0034728D` |
+| `003476B0` | 82 B | pops a value through `VMValueStack_PopInt32CoerceFloat32(r9)`, resolves it with `PartyRoster_GetActorBySlotOrCurrentFocus`, and when the actor is non-null reads its value through the getter that returns the signed word `+0x8A` of `[[actor + 0xC0] + 0x138]` (-1 when either pointer is null); it tail-jumps `VMResult_WriteInt32(rcx, value)` with the value kept only when non-negative, else 0 (also 0 when there is no actor) | `003476C5`, `003476D0`, `003476DD`, `003476E9`, `003476FD` |
+| `003791D0` | 21 B | when `ecx` is negative it tail-jumps `0026E150(0, 0x20)`; otherwise it tail-jumps `0026E130(ecx)` | `003791D2`, `003791D4`, `003791DB`, `003791E0` |

@@ -1,0 +1,88 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original dispatch table and queue arithmetic",
+  "driver_sha256": "b07bf14ec0e8e2913d1cbbef03998020df2e01384eab32c41c6530710600d89d",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-02.json",
+      "sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1"
+    }
+  ],
+  "data_pin": {
+    "path": "data-01.json",
+    "sha256": "19e148fb2cd82900f6a23f91282c34ffeca83bf7bdddb533a0effc4c02b407eb"
+  },
+  "metadata_pin": {
+    "path": "extent-01.json",
+    "sha256": "b9f62cfe6e7412f451c7d4e33fbba157ea3f37de52b7b7d5cb6f9e816f947e6b"
+  },
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 204,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "dispatch": [
+      {
+        "kind": 1,
+        "target": "0x306931",
+        "queue_store_reachable": false
+      },
+      {
+        "kind": 2,
+        "target": "0x306a3d",
+        "queue_store_reachable": false
+      },
+      {
+        "kind": 3,
+        "target": "0x3067db",
+        "queue_store_reachable": false
+      },
+      {
+        "kind": 4,
+        "target": "0x306848",
+        "queue_store_reachable": true
+      },
+      {
+        "kind": 5,
+        "target": "0x3069f8",
+        "queue_store_reachable": false
+      },
+      {
+        "kind": 6,
+        "target": "0x306a8e",
+        "queue_store_reachable": false
+      }
+    ],
+    "input": "Entry RDX -> nonvolatile RDI; earlier helper effects and valid ABI/stability explicitly conditional.",
+    "formula": "D = (low32(incoming row pointer) - low32(20E600(context+C) return)) mod 2^32. S = u16(second context load+8). With S>0, q=floor(D/S), w=q&0xFFFF. w==FFFF -> queue DWORDFFFFFFFF; otherwise queue DWORD=w-208 mod2^32.",
+    "context": "Two independent loads of QWORD2EBF138 at306898/3068AB; first supplies lookup key DWORD+C, second supplies divisor WORD+8. Do not assume identical contexts or immutable descriptor/lookup.",
+    "divisor": "No zero-divisor guard between WORD load and DIV ECX; S>0 is a precondition, not an observed initialized invariant or fault.",
+    "candidate_examples": [
+      {
+        "supplied_row_id": 511,
+        "assumed_stride": 60,
+        "assumed_low32_difference": 30660,
+        "quotient": 511,
+        "queue_dword": 303
+      },
+      {
+        "supplied_row_id": 534,
+        "assumed_stride": 60,
+        "assumed_low32_difference": 32040,
+        "quotient": 534,
+        "queue_dword": 326
+      }
+    ],
+    "scope": "Examples are arithmetic consequences under coherent row/base/stride premises, not original-code executions. Kind4 alone does not locally check row ID; any exclusion requires the relationship between global kind and this call's row pointer.",
+    "limits": "No natural kind4/candidate pair, caller/owner coherence, setter/dispatch scheduling, initialized descriptors, native helper effects, lifetime/reuse or whole OV42 closure. Normal Win64 ABI, readable disjoint state and no interference required. Entry earlier helper calls can affect state; no side-effect-free whole-function claim."
+  },
+  "limits": "No natural kind4/candidate pair, caller/owner coherence, setter/dispatch scheduling, initialized descriptors, native helper effects, lifetime/reuse or whole OV42 closure. Normal Win64 ABI, readable disjoint state and no interference required. Entry earlier helper calls can affect state; no side-effect-free whole-function claim.",
+  "cleanup": "All tools offline and bounded; no FF12/native/emulator/PC control or save/config/reference/process intervention."
+}

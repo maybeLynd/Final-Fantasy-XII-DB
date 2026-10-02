@@ -1,0 +1,175 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_019LqHiXRaWmgLrNYjxULfMf",
+ "report": "phyre-subsystem-map.json",
+ "rows": [
+  {
+   "fn": "005AA2C0",
+   "text": "stores `00D31298` at qword `[rcx]` and, when qword `rcx+8` is non-null, calls a 10-byte helper on it",
+   "anchors": [
+    [
+     "005AA2D4",
+     "mov"
+    ],
+    [
+     "005AA2D7",
+     "mov"
+    ],
+    [
+     "005AA2E0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00646AB0",
+   "text": "stores `00D61E50` at qword `[rcx]`; when bit 31 of dword `rcx+0x30` is clear, its value is above 1 (unsigned) and qword `rcx+0x38` is non-null, calls a 10-byte helper on that qword; then on every path zeroes qword `rcx+0x38` and dword `rcx+0x30`",
+   "anchors": [
+    [
+     "00646AC9",
+     "mov"
+    ],
+    [
+     "00646AD1",
+     "shr"
+    ],
+    [
+     "00646ADE",
+     "cmp"
+    ],
+    [
+     "00646AEC",
+     "call"
+    ],
+    [
+     "00646AF4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00691DB0",
+   "text": "stores `00D79830` at qword `[rcx]`; when qword `rcx+0x78` is non-null calls that object's vtable slot 0 with `edx` = 1; then zeroes qwords `rcx+0x78` and `rcx+0x68` and stores `00D79790` at qword `[rcx]`",
+   "anchors": [
+    [
+     "00691DC0",
+     "mov"
+    ],
+    [
+     "00691DD4",
+     "call"
+    ],
+    [
+     "00691DD8",
+     "mov"
+    ],
+    [
+     "00691DDC",
+     "mov"
+    ],
+    [
+     "00691DE7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007933C0",
+   "text": "stores `01CB24A8` at qword `[rcx]`, calls a 10-byte helper on qword `rcx+0x28` when it is non-null, zeroes qwords `rcx+0x28` and `rcx+0x30` and dword `rcx+0x40`, then tail-jumps `00793410(rcx)`",
+   "anchors": [
+    [
+     "007933D9",
+     "mov"
+    ],
+    [
+     "007933E5",
+     "call"
+    ],
+    [
+     "007933ED",
+     "mov"
+    ],
+    [
+     "007933F5",
+     "mov"
+    ],
+    [
+     "00793400",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00793570",
+   "text": "stores `01CB24C8` at qword `[rcx]`, calls eh_vector_destructor_iterator (`rcx+0xB0`, `0x48`, 4, the address of `_guard_check_icall`), then stores `01CB23C0` at qword `[rcx]`",
+   "anchors": [
+    [
+     "00793589",
+     "mov"
+    ],
+    [
+     "007935A3",
+     "call"
+    ],
+    [
+     "007935B0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00793750",
+   "text": "stores `01CB2468` at qword `[rcx]`, then calls a 37-byte helper (`rcx+0x20`) and `007A3980(rcx+0x48)`",
+   "anchors": [
+    [
+     "00793769",
+     "mov"
+    ],
+    [
+     "00793770",
+     "call"
+    ],
+    [
+     "0079377A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "005AA2C0",
+   "was": "stores `00D31298` at qword `[rcx]` and, when qword `rcx+8` is non-null, calls `00584730` on it",
+   "now": "stores `00D31298` at qword `[rcx]` and, when qword `rcx+8` is non-null, calls a 10-byte helper on it",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 005AA2C0+0x20 reaches a Boundary-domain function"
+  },
+  {
+   "fn": "00646AB0",
+   "was": "stores `00D61E50` at qword `[rcx]`; when bit 31 of dword `rcx+0x30` is clear, its value is above 1 (unsigned) and qword `rcx+0x38` is non-null, calls `00584730` on that qword; then on every path zeroes qword `rcx+0x38` and dword `rcx+0x30`",
+   "now": "stores `00D61E50` at qword `[rcx]`; when bit 31 of dword `rcx+0x30` is clear, its value is above 1 (unsigned) and qword `rcx+0x38` is non-null, calls a 10-byte helper on that qword; then on every path zeroes qword `rcx+0x38` and dword `rcx+0x30`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 00646AB0+0x3C reaches a Boundary-domain function"
+  },
+  {
+   "fn": "007933C0",
+   "was": "stores `01CB24A8` at qword `[rcx]`, calls `00584730` on qword `rcx+0x28` when it is non-null, zeroes qwords `rcx+0x28` and `rcx+0x30` and dword `rcx+0x40`, then tail-jumps `00793410(rcx)`",
+   "now": "stores `01CB24A8` at qword `[rcx]`, calls a 10-byte helper on qword `rcx+0x28` when it is non-null, zeroes qwords `rcx+0x28` and `rcx+0x30` and dword `rcx+0x40`, then tail-jumps `00793410(rcx)`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 007933C0+0x25 reaches a Boundary-domain function"
+  },
+  {
+   "fn": "00793570",
+   "was": "stores `01CB24C8` at qword `[rcx]`, calls `00809054(rcx+0xB0, 0x48, 4, 0016D6A0)`, then stores `01CB23C0` at qword `[rcx]`",
+   "now": "stores `01CB24C8` at qword `[rcx]`, calls eh_vector_destructor_iterator (`rcx+0xB0`, `0x48`, 4, the address of `_guard_check_icall`), then stores `01CB23C0` at qword `[rcx]`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (CRT callee at 00793570+0x33 and the CRT address loaded at 00793570+0x23)"
+  },
+  {
+   "fn": "00793750",
+   "was": "stores `01CB2468` at qword `[rcx]`, then calls `005CD6D0(rcx+0x20)` and `007A3980(rcx+0x48)`",
+   "now": "stores `01CB2468` at qword `[rcx]`, then calls a 37-byte helper (`rcx+0x20`) and `007A3980(rcx+0x48)`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 00793750+0x20 reaches a Boundary-domain function"
+  }
+ ]
+}

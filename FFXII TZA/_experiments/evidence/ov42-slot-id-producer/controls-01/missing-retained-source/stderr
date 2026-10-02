@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-slot-id-producer\controls-01\missing-retained-source\prove.py", line 79, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-slot-id-producer\controls-01\missing-retained-source\prove.py", line 54, in main
+    if sha(P/q['path'])!=q['sha256'] or(q['path']!='retained/manifest.json' and mf[q['path'].split('/',1)[1]]['sha256']!=q['sha256']):raise ValueError('committed retained source moved')
+       ~~~^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-slot-id-producer\controls-01\missing-retained-source\prove.py", line 7, in <lambda>
+    sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-slot-id-producer\\controls-01\\missing-retained-source\\retained\\slot-action-id-raw-01.json'

@@ -18,13 +18,14 @@ static bytes and every rip store self-link all three heads.
 | head | what it chains | link | writer (static) | readers |
 |---|---|---|---|---|
 | `+0x10` | **class descriptors** whose owner (`descriptor +0x70`) is the root | `descriptor +0x50` | `00639160` (L1) | `008AF490` (exit: deleting destructor `vt+0x38` when `+0xFC` bit 0), `00637A70` (size and offset pass over the `+0x78` base chain), `00638C90` (unregister-all) (L2) |
-| `+0x28` | **other owner objects**: owners that are not the root, linked when they receive their first descriptor | the owner's own `+0x00` node | `00639160` at `0063924C`-`00639277` (L3) | `00638C90` unlinks an owner when its `+0x10` list empties (L3) |
+| `+0x28` | **other owner objects**: owners that are not the root, linked when they receive their first descriptor | the owner's own `+0x00` node | `00639160` at `0063924C`-`00639277` (L3) | `00638C90` has an owner-unlink arm (`00638D6B`-`00638D89`), but it walks only root `+0x10`, whose descriptors carry owner = root when linked, so it is not shown to unlink a non-root owner. No unlinker of root `+0x28` is shown. (L3) |
 | `+0x00` | **nothing**: it is the root's own membership node, the one that would put it on `+0x28` | - | only the self-link initialisers. There are 30 rip stores to `+0x00`/`+0x08`, all of the root's own address (L4). `00639160` skips the root at `0063925B` (L3). | - |
 
 **The link writer is `00639160(owner, descriptor)`** (L1). It has 12 call sites. Among them are `00636280`, a
 module's batch registration, and `00635B80`, which registers `PWorld`.
 - If the descriptor's base class (`+0x78`) has the same owner, the descriptor's `+0x50` node goes right after the
-  base's node. Otherwise it goes at the tail of the owner's `+0x10` list.
+  base's node. Otherwise it goes at the front of the owner's `+0x10` list, as `[head+0]`. That makes it the first
+  node the `+0x00` walkers `008AF490` / `00637A70` / `00638C90` visit (`0063922E`-`00639244`).
 - A duplicate name, found by `0063BA10`, is refused through `005CDAA0`.
 - Owner phase `+0x20 == 1` re-runs the size pass `0063E410`. Phase 2 reports an error.
 
@@ -56,13 +57,18 @@ SWE2-AUDIT-SPEC's review. List membership is `00639160`'s work, not the construc
 
   The regression is L5 + L6: they reject reading those two slots as part of `01F2E780`. This also means the objects
   from `01F2E780` up do not follow the section's `0x50` stride: `01F2E780` is 0x30 bytes, and `01F2E7B0` is a record
-  of about 0x28 bytes. The rest of the section 7 array was not re-read here.
+  of at least 0x30 bytes. `00635B80` also sets its `+0x28` to `01F2E7E0` and writes `01F2E7E0` / `01F2E7E8`
+  (`00D59070` / `0063BEF0`) on every path (`00635C2F`-`00635C52`). Whether the pair at `01F2E7E0` belongs to the
+  record is not settled. The rest of the section 7 array was not re-read here.
 
 ## Controls (C1) and limits (SWE2-ORACLE)
 
-- **C1:** over the reflection range `00630000`-`0063FFFF`, the scan looks for `lea r, [x+0x50]` followed by a store
-  of `r` that is not a self-link, stopping when `r` is redefined. It finds `00639160` and nothing else. The shape is
-  therefore detected, and the range has one `+0x50` inserter.
+- **C1:** over the reflection range `00630000`-`0063FFFF`, the scan looks for a node address (`lea r, [x+0x50]` or
+  `add r, 0x50`) followed by a store of `r` that is not a self-link, stopping when `r` is redefined. It finds
+  `00639160` and nothing else, and the gate pins the exact set (`fs == [00639160]`). Both shapes are exercised by
+  positive controls inside `00639160` itself (`lea` at `00639212`/`00639231`, `add` at `0063921A`; store
+  displacements below 10 print decimal, and the store regex accepts that). The shape is therefore detected, and the
+  range has one `+0x50` inserter.
   - Outside that range the scan was not run. A descriptor linked by code elsewhere, or by a different instruction
     shape, would not be seen. This is a domain-limited negative.
 - **Dynamic owners.** Which non-root owners exist at run time is not decided here. Examples are the `rdx` a module

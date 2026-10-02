@@ -1,0 +1,18 @@
+{
+  "commit": "1f6569546",
+  "files": [
+    {
+      "path": "retained/manifest.json",
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230"
+    },
+    {
+      "path": "retained/slot-action-id-raw-01.json",
+      "sha256": "e9b94feb62cf24cd175b432dafb76f31724517d8fe55dfa09cbc573c984f6878"
+    },
+    {
+      "path": "retained/slot-acquisition-callers-raw-01.json",
+      "sha256": "b27ee5a03712f3d9bbfcf429fe3277e38de86f236f3ea593ec4aabd479c5e0ab"
+    }
+  ],
+  "limits": "Exact committed retained members; SPEC review/FABLE consumption apply only their accepted scopes. Newly derived slot gate must receive its own independent review."
+}

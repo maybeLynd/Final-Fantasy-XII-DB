@@ -575,7 +575,7 @@ This registry indexes *authored game content*. Different systems, different data
 
 | Claim | Evidence | Tier |
 |---|---|---|
-| 60 of 63 slots referenced at a regular 8-byte stride | `.text` scan for `MOV`/`LEA` loads with `modrm.rm == 101` into `0x02EBF000`–`0x02EBF400` | 1 |
+| 60 of 63 slots referenced at a regular 8-byte stride *(answered: see *Result: OVERTURNED on two of the three* below and the 64-slot extent; 2026-10-02, OPUS)* | `.text` scan for `MOV`/`LEA` loads with `modrm.rm == 101` into `0x02EBF000`–`0x02EBF400` | 1 |
 | Slot bounds `0x02EBF008` – `0x02EBF1F8` *(2026-09-26, FABLE, Claude Opus 5.5: the upper bound is `0x02EBF200` since section 2's 2026-09-22 correction; this row had not followed it)* | first and last referenced slots on the stride | 1 |
 | The three unreferenced in-span slots | set difference against the full stride | 1 |
 | Header shape `+0x04` count, `+0x08` stride, `+0x0C` RVA | complete bodies of `Loot_RollNormalSlotChance` and `Equipment_CheckPrimarySecondaryDefinitionCompatibility` | 1 |
@@ -1034,7 +1034,7 @@ Two documented exceptions inside the clean run: `0x02EBF0D0` (one read, no `LEA`
 (`0x02EBF190`) is a runtime state block rather than a table. The census shows that was not an
 isolated intruder: **the upper third of the claimed span is a different class of global entirely**,
 and the authored-table pointer registry proper is the `0x02EBF008`–`0x02EBF170` run. The headline
-should be read as *"most authored content is reached through one array of ~46 pointers, which sits
+should be read as *"most authored content is reached through one array of ~46 pointers, which sits *(answered: see AG-2's ANSWERED 2026-09-26 - every one of the 64 slots has an identity; 2026-10-02, OPUS)*
 at the head of a larger mixed global block."*
 
 **Bounds confirmed at the bottom, fuzzy at the top.** `0x02EBEFF8` and `0x02EBF000`, immediately
@@ -1992,7 +1992,7 @@ and `003DCF10` from `003EA6B0` and `003EAA00`.)*
 `MainLoop_UpdateAndRenderFrame`, `0022BAEF`) is a three-state builder on the dword `022C27A0`:
 state 1 writes a `u16 301` header into the buffer at `022C27B0` and points the cursor past its
 302 offsets (`00324587`–`003245CF`); state 2 loads up to ten items per call — `0032E620(0x1a, i,
-cursor, id)` for every positive id in the `{i32 id, i32 size}` pairs at `022C27B8` — recording
+cursor, id)` ~~for every positive id in the `{i32 id, i32 size}` pairs~~ for every positive size in the `{i32 size, i32 requestId}` pairs, that size being the fourth argument, *(corrected 2026-10-02, OPUS: the assembler `00324510` passes the entry's first dword as the fourth argument (`00324510+0x119` `mov r9d, dword ptr [rbx]`), which is the byte count (part A, C-V2), advances the cursor by it, and stores the returned request id into the second (`00324510+0x133` `mov dword ptr [rbx + 4], eax`))* at `022C27B8` — recording
 each offset and size and advancing the cursor by the size rounded up to four (`003245D9`–
 `0032467A`); when all 301 are done it publishes the buffer pointer to `02EBF178` and sets state 3
 (`0032468F`–`003246A1`); the teardown branch frees the buffer through `003697F0` and clears both

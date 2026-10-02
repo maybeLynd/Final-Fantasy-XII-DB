@@ -60,7 +60,7 @@ and runs one call per changed bit. Then, changed or not, it runs the two block u
 
 **The record keeps one flag dword per status at `+0xC0 + 4 x bit`** - KO at `+0xC0`, Stone at `+0xC4`, ... Float at
 `+0x128`, HP Critical at `+0x134` - and every arm begins by storing 1 or 0 there. After that an arm does one of five
-things (the forty-two non-empty arms, summarised by script from their bodies):
+things (the ~~forty-two~~ forty-four non-empty arms *(corrected 2026-10-02, OPUS: bit 31's pair `0051E7A0` / `0051E7B0` too, `003E7650`+0x318 and +0x580)*, summarised by script from their bodies):
 
 | what the arm does | statuses (bit) and the index they pass |
 |---|---|
@@ -245,7 +245,7 @@ bytes from it:
 
 **The update (`0051E3A0`, 362 B)** runs the same *wanted / shown / changing / step callback* protocol as section 3,
 once for each channel: channel A installs `0051E0A0` for 2 and `0051DC90` for 3 (Invisible); channel B installs
-`0051DE30` for 0 (Immobilize) and `0051E170` for 1 (Slow) - three of the four are read in section 4b. While the Stop flag
+`0051DE30` for 0 (Immobilize) and `0051E170` for 1 (Slow) - ~~three~~ all four are read in section 4b *(corrected 2026-10-02, OPUS: Immobilize `0051DE30` was read the same night)*. While the Stop flag
 is up it calls a render-record routine every frame - *named 2026-09-19 (FABLE): it raises the pose sequencer's
 event 0 with choice 0, only-if-changed, which holds the character at that event's resting value and stops the
 random blinking; [the pose sequencer](../Model-And-Motion-Formats/the-pose-sequencer.md) §4b*. **While status display is denied the whole update is replaced by a reset**: a record routine with mode 5
@@ -254,7 +254,7 @@ forwarder with channel 5: denial makes an Invisible character fully opaque again
 
 ## 4b. The second block's looks, read (added 2026-09-19)
 
-Three of the four step bodies were read whole. They use the block's phase and envelope the way the tint does - a
+~~Three~~ All four of the step bodies were read whole *(corrected 2026-10-02, OPUS: Immobilize's the same night, below)*. They use the block's phase and envelope the way the tint does - a
 thirty-frame phase, an envelope that moves `0.1 x [01DFE0BC]` a frame and must reach zero before the step reports
 *left* - and the pulse table of section 3.
 
@@ -266,7 +266,7 @@ channel 5 = 1 - (0.60 + 0.20 p) x envelope        a pulsing 20 to 40 percent opa
 channel 5 = 1 - (0.88 + 0.08 p) x envelope        when the block's dword +0x14 is non-zero: 4 to 12 percent
 ```
 
-and sets a two-bit field of the render record (`00428AF0`, arguments 1, 1 and the mask byte `0x60`). Leaving, it puts
+and sets ~~a two-bit field of the render record~~ two flag bits (17 and 18) and a byte field (bits 19 to 26) of the render record's `+0x304` (`00428AF0`, arguments 1, 1 and the mask byte `0x60`, which lands in bits 24 and 25) *(corrected 2026-10-02, OPUS: `00428AF0`+0x0 clears `0xF801FFFF`, ten bits; `00428AF0`+0xE `movzx eax, r9b` takes the whole byte, unmasked; `00428AF0`+0x1E `shl eax, 0x11`)*. Leaving, it puts
 the channel back to 1.0 and clears that field. **Invisibility is an opacity, not a material**; and because fade
 selector `0x0B` leaves channel 5 out, anything that asks for `0x0B` - the alpha of effect containers tied to the
 character, for one - does not fade with it. What sets the block's `+0x14` was not found in the bodies read.
@@ -278,8 +278,8 @@ ten frames, and back. No status arm of the push selects it.
 `+0x114` is an entry of the shadow-object pool (`02B40528`, 160 x `0xE0`;
 [the authored-command ramp channels](../CONTRACT-authored-command-ramp-channels.md), `UQ-191`) - and does nothing
 visible when the handle is zero. With `s = (0.5 + 0.3 p) x envelope` it gives the shadow the integer colour
-`(128 s, 32 s, 8 s)` and a vector `(1 + q, 1 - q, 1 - q)`, `q` being the pulse times a double constant not converted
-here, and raises a per-record flag through `0051E510`. Leaving, it restores the scalar 1.0, a zero colour and a unit
+`(128 s, 32 s, 8 s)` and a vector `(1 + q, 1 - q, 1 - q)`, `q` being the pulse times ~~a double constant not converted~~ 0.1
+~~here~~ *(answered: see the Immobilize paragraph below - the two double constants are 0.1 and 0.3; 2026-10-02, OPUS)*, and raises a per-record flag through `0051E510`. Leaving, it restores the scalar 1.0, a zero colour and a unit
 vector and drops the flag. **Slow is shown on the ground: the character's shadow pulses orange-red.** What the shadow
 draw does with that colour and vector was not read here.
 
@@ -349,8 +349,8 @@ read; besides the gather, one body stores 1.0 there and one small setter writes 
 2,342 B, *read in part and therefore not anchored here*), an ambient entry that does not carry bit 4 of its byte `+5`
 has its colour changed before it is summed: **mode 2 multiplies it by `+0x5DC`** - Stone's 1.0 climbing to 1.3 - and
 **mode 1 blends it toward the record's own colour at `+0x5D0` by `+0x5DC`**; any other value leaves it alone. Mode 1 is
-what HP Critical's step writes (section 3's table; that step was not read, so the colour it blends toward is not on
-this page).
+what HP Critical's step writes (section 3's table; ~~that step was not read, so the colour it blends toward is not on~~
+~~this page~~ *(answered: see section 3a - step `00470230` read whole, record colour `+0x5D0` = (0.84, 0.84, 0.84); 2026-10-02, OPUS)*).
 
 *The whole of the lighting layer these fields feed - which lights reach a character, how ambient is settled, what a
 light's request bytes mean - is on its own page: [how a character is lit](../Character-Rendering/how-a-character-is-lit.md).*
@@ -367,13 +367,13 @@ light's request bytes mean - is on its own page: [how a character is lit](../Cha
 
 ## 6. What is not known
 
-- ~~Petrify's look and Berserk's step~~ (*read; every look of the colour list is now read*), and the four step bodies of the second block - named,
-  not read. So what Slow, Stop, Immobilize and Invisible *look like* is not on this page.
+- ~~Petrify's look and Berserk's step~~ (*read; every look of the colour list is now read*), and the four step bodies of the second block ~~- named,~~
+  ~~not read. So what Slow, Stop, Immobilize and Invisible *look like* is not on this page.~~ *(answered: see section 4b - all four read; Stop has no step and holds the pose sequencer's event 0 (section 4); 2026-10-02, OPUS)*
 - What the model's variant blocks hold (the mode selects among them; section 3), and what pass the model draw skips for variant 3. ~~What the renderer does with `+0x5DC`, `+0x5E0` and `+0x5EC`.~~ *Read
   the same night: they are lighting parameters, section 4a.* The light selector itself - which of the area's lights
   reach which character - was read only in part.
-- ~~What the two effect requests (`0x0100BF06`, `0x0100BE01`) create.~~ *Lights; decoded in section 3.* What light kind
-  1 is (directional, point, spot) was not read.
+- ~~What the two effect requests (`0x0100BF06`, `0x0100BE01`) create.~~ *Lights; decoded in section 3.* ~~What light kind~~
+  ~~1 is (directional, point, spot) was not read.~~ *(answered: see how-a-character-is-lit.md section 5a - kind 1 is a directional light, `003AD540` read whole; 2026-10-02, OPUS)*
 - Whether anything selects look 12 or the second block's index 2 from outside the push.
 - Nothing here was observed running; "green pulled down" is arithmetic on constants.
 

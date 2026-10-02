@@ -1,0 +1,10 @@
+{
+  "terminal": true,
+  "exit": null,
+  "exception": "FileNotFoundError(2, 'No such file or directory')",
+  "driver": "intentionally-missing-driver.py",
+  "driver_sha256": null,
+  "argv": [],
+  "start": 1790979525.781091,
+  "end": 1790979525.782265
+}

@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_FREEZE",
+  "exception": "FileExistsError: parent manifest already occupied packet manifest path",
+  "semantic_result_changed": false,
+  "scientific_driver1_preserved": true,
+  "partial_folder": "ov42-queue-output-alias-frozen-ready",
+  "plan": "Keep partial folder and original producers/results. Namespace retained parent manifest; final additive input index02/producer/control receipts; frozen-ready02 only after all pass. No publication of incomplete folder."
+}

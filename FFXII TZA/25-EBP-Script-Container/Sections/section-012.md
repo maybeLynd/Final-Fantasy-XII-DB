@@ -410,6 +410,15 @@ claim moved.**
 - **Movement — CLIENT.** The same accessor is called by Movement bodies of 702 and 2,026 bytes.
 - **Actor — SERVICE (1 edge).** 1 outbound (page-cited `ActorResource_FinalizeManagerRuntimeAfterLoads` (0032F1B0) call Actor bodies `0037AA90`). Substantive edges include `ActorResource_FinalizeManagerRuntimeAfterLoads` (0032F1B0) calls `0037AA90`.
 - **ActorEntity — CLIENT and SERVICE (79 edges).** 53 inbound (ActorEntity bodies `0032FA10`, `0032FAC0`, `ActorResource_OnPrimaryPayloadLoadedAndDispatchSubresources` (003304A0) call page-cited `00263FF0`, `ActorResource_FinalizeManagerRuntimeAfterLoads` (0032F1B0), `0026CE00`); 26 outbound (page-cited `ActorResource_OnPrimaryPayloadLoadedAndDispatchSubresources` (003304A0), `ActorResource_FinalizeManagerRuntimeAfterLoads` (0032F1B0), `0032FB70` call ActorEntity bodies `00263FF0`, `ActorResource_FinalizeManagerRuntimeAfterLoads` (0032F1B0), `0037B290`). Substantive edges include `0026CE00` is called by `ActorResource_ResetManagerLoadState` (0032ED80); `0026CE00` is called by `0032FA10`; `0026CE20` is called by `ActorResource_ResetManagerLoadState` (0032ED80); `0026CE20` is called by `0032FAC0`; the remaining edges run through shared helpers the page cites.
+- **Party — MECHANICAL (1 edge).** 1 outbound (page-cited `ActorSystem_InitializeManagerRuntime`
+  (`0026CE60`, cited in the `0032F1B0` row correction) calls the 5-byte Party thunk `00358BB0`) -
+  shared plumbing, not a Party relationship. *(residue bullet 2026-10-02, SWE2-CONTRACT)*
+- **UI — SERVICE (1 edge).** 1 outbound (`0026CE60` calls the 67-byte UI body `00253A30`).
+  *(residue bullet 2026-10-02, SWE2-CONTRACT)*
+- **WorldAreaField — CLIENT and SERVICE (2 edges).** 1 outbound (`0026CE60` calls
+  `BattleSystem_InitializeAreaState` (`002342F0`)); 1 inbound (WorldAreaField body `003775D0`
+  calls the page-cited light binder `0037AA90`). *(residue bullets 2026-10-02, SWE2-CONTRACT)*
+
 ## The id list, written out — UQ-334 answered (FABLE, Claude Opus 5.5, 2026-09-25)
 
 The narrowing above named the missing piece: the id list, which no file stored.

@@ -1,0 +1,165 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_019LqHiXRaWmgLrNYjxULfMf",
+ "report": "static-initialization-order-and-injection-timing.json",
+ "rows": [
+  {
+   "fn": "00163DB0",
+   "text": "calls `00631A60(02CF8370, 02CF8680, 8)`, clears bit 1 and sets bit 3 of dword `02CF846C`, stores `02CF8E80`, `02CF8EE0` and `02CF8F40` at qwords `02CF8430`, `02CF8438` and `02CF8440`, stores `00D56AD8` at qword `02CF8370`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "anchors": [
+    [
+     "00163DC8",
+     "call"
+    ],
+    [
+     "00163DDA",
+     "mov"
+    ],
+    [
+     "00163DFF",
+     "mov"
+    ],
+    [
+     "00163E13",
+     "mov"
+    ],
+    [
+     "00163E25",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00163E30",
+   "text": "calls `00631C40(02CF8470, 02CF8270, 0x30)`, ORs 2 into dword `02CF856C`, stores `02CF7F60`, `02CF8060` and `02CF8160` at qwords `02CF8530`, `02CF8538` and `02CF8540`, stores `00D56768` at qword `02CF8470`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "anchors": [
+    [
+     "00163E48",
+     "call"
+    ],
+    [
+     "00163E4D",
+     "or"
+    ],
+    [
+     "00163E5B",
+     "mov"
+    ],
+    [
+     "00163E8C",
+     "mov"
+    ],
+    [
+     "00163E97",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00163EA0",
+   "text": "calls `00631E20(02CF8580, 02CF8470, 0)`, clears bit 1 and sets bit 3 of dword `02CF867C`, stores `02CF7AE0`, `02CF7C20` and `02CF7D60` at qwords `02CF8640`, `02CF8648` and `02CF8650`, stores `00D56ED0` at qword `02CF8580`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "anchors": [
+    [
+     "00163EB5",
+     "call"
+    ],
+    [
+     "00163EC7",
+     "mov"
+    ],
+    [
+     "00163EEC",
+     "mov"
+    ],
+    [
+     "00163F00",
+     "mov"
+    ],
+    [
+     "00163F12",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00164180",
+   "text": "calls `006318A0(02CF8270)`, stores 0 at dword `02CF82A8` and `00D582D0` at qword `02CF8270`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "anchors": [
+    [
+     "0016418B",
+     "call"
+    ],
+    [
+     "00164197",
+     "mov"
+    ],
+    [
+     "001641A8",
+     "mov"
+    ],
+    [
+     "001641B3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001E0F70",
+   "text": "when `InputManager_GetSingleton()` is non-null, calls `InputManager_MaterializeRuntimeBindingProfiles(InputManager_GetSingleton())` and tail-jumps `InputManager_RestoreDefaultBindingProfiles(InputManager_GetSingleton())`; otherwise returns",
+   "anchors": [
+    [
+     "001E0F74",
+     "call"
+    ],
+    [
+     "001E0F7C",
+     "je"
+    ],
+    [
+     "001E0F86",
+     "call"
+    ],
+    [
+     "001E0F97",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00163DB0",
+   "was": "calls `00631A60(02CF8370, 02CF8680, 8)`, clears bit 1 and sets bit 3 of dword `02CF846C`, stores `02CF8E80`, `02CF8EE0` and `02CF8F40` at qwords `02CF8430`, `02CF8438` and `02CF8440`, stores `00D56AD8` at qword `02CF8370`, and tail-jumps `00808B90(008AF090)`",
+   "now": "calls `00631A60(02CF8370, 02CF8680, 8)`, clears bit 1 and sets bit 3 of dword `02CF846C`, stores `02CF8E80`, `02CF8EE0` and `02CF8F40` at qwords `02CF8430`, `02CF8438` and `02CF8440`, stores `00D56AD8` at qword `02CF8370`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the Phyre-domain address loaded at 00163DB0+0x6A for the jmp at 00163DB0+0x75"
+  },
+  {
+   "fn": "00163E30",
+   "was": "calls `00631C40(02CF8470, 02CF8270, 0x30)`, ORs 2 into dword `02CF856C`, stores `02CF7F60`, `02CF8060` and `02CF8160` at qwords `02CF8530`, `02CF8538` and `02CF8540`, stores `00D56768` at qword `02CF8470`, and tail-jumps `00808B90(008AF0B0)`",
+   "now": "calls `00631C40(02CF8470, 02CF8270, 0x30)`, ORs 2 into dword `02CF856C`, stores `02CF7F60`, `02CF8060` and `02CF8160` at qwords `02CF8530`, `02CF8538` and `02CF8540`, stores `00D56768` at qword `02CF8470`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the Phyre-domain address loaded at 00163E30+0x32 for the jmp at 00163E30+0x67"
+  },
+  {
+   "fn": "00163EA0",
+   "was": "calls `00631E20(02CF8580, 02CF8470, 0)`, clears bit 1 and sets bit 3 of dword `02CF867C`, stores `02CF7AE0`, `02CF7C20` and `02CF7D60` at qwords `02CF8640`, `02CF8648` and `02CF8650`, stores `00D56ED0` at qword `02CF8580`, and tail-jumps `00808B90(008AF0D0)`",
+   "now": "calls `00631E20(02CF8580, 02CF8470, 0)`, clears bit 1 and sets bit 3 of dword `02CF867C`, stores `02CF7AE0`, `02CF7C20` and `02CF7D60` at qwords `02CF8640`, `02CF8648` and `02CF8650`, stores `00D56ED0` at qword `02CF8580`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the Phyre-domain address loaded at 00163EA0+0x67 for the jmp at 00163EA0+0x72"
+  },
+  {
+   "fn": "00164180",
+   "was": "calls `006318A0(02CF8270)`, stores 0 at dword `02CF82A8` and `00D582D0` at qword `02CF8270`, and tail-jumps `00808B90(008AF190)`",
+   "now": "calls `006318A0(02CF8270)`, stores 0 at dword `02CF82A8` and `00D582D0` at qword `02CF8270`, and tail-jumps `00808B90` with the address of a 26-byte stub",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the Phyre-domain address loaded at 00164180+0x21 for the jmp at 00164180+0x33"
+  },
+  {
+   "fn": "001E0F70",
+   "was": "when `00198790()` is non-null, calls `00198B60(00198790())` and tail-jumps `00195DF0(00198790())`; otherwise returns",
+   "now": "when `InputManager_GetSingleton()` is non-null, calls `InputManager_MaterializeRuntimeBindingProfiles(InputManager_GetSingleton())` and tail-jumps `InputManager_RestoreDefaultBindingProfiles(InputManager_GetSingleton())`; otherwise returns",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (Input callees at 001E0F70+0x4, 001E0F70+0x16, 001E0F70+0x27)"
+  }
+ ]
+}

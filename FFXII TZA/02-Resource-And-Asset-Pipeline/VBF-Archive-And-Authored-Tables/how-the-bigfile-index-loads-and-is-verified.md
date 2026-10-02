@@ -216,7 +216,7 @@ FUN_0019B070  (Resource, the only caller)
                          archive[0]    = the index buffer
                          archive[0x78] = the path string
 later, per asset:
-  -> FUN_0059F4A0        ReadFile leaf, 12 callers  (Resource, Audio)
+  -> FUN_0059F4A0        ReadFile leaf, 12 callers  (Resource, Audio)   <- corrected 2026-10-02, OPUS: archive blocks arrive through CRT fread instead, 0019A860+0x71 (§5 table)
 ```
 
 ## 7. What is not known
@@ -439,7 +439,7 @@ question stays open rather than closed.
 **Not claimed.** ~~The per-entry record layout — §7's first unknown is untouched.~~ *(Corrected 2026-09-30
 (SWE2-CONTRACT, DD batch 9): now read, §3a.)* Whether a `false`
 return from `0019B070` ultimately refuses to start the game: the flag was followed one level, not to
-a message or an exit. Which of the two `CreateFileA` sites opens what. The residual gap §8 already
+a message or an exit. ~~Which of the two `CreateFileA` sites opens what.~~ *(answered: see the §7 box - minidump files, 2026-09-27; 2026-10-02, OPUS)* The residual gap §8 already
 states — a pointer copied out of an IAT slot into a register or structure is invisible to this census
 — still stands, and this pass did not close it. **The archive was read, never written**, and nothing
 was executed.

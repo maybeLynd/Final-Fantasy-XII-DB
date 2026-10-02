@@ -71,7 +71,7 @@ exactly 100 %, and it is why scaled-up text in this game looks blurry in a speci
 than blocky.
 
 And there is a second text renderer. A string whose data begins with the two letters `ex` is
-handed to a completely different drawing path. Which strings those are is not established here.
+handed to ~~a completely different drawing path~~ this page's glyph-run path, and the others to `002B0280` *(corrected 2026-10-02, OPUS: `002D8690`+0x90 tests the prefix and an `ex` string goes to `003649A0` at +0xAC)*. ~~Which strings those are is not established here.~~ *(answered: see §7, ANSWERED 2026-09-25: an `ex` string is `ex00` and UTF-16LE text; 2026-10-02, OPUS)*
 
 ### Why it matters that these were unexplained
 
@@ -82,7 +82,7 @@ strings, and that they must be read one at a time. For a modder that meant: some
 hiding in it was *how the game draws words*. You cannot retime a message box, restyle a menu,
 or add a language to a game whose text renderer you cannot find.
 
-Four of them are now found. The other 153 are not, and this document says so plainly.
+Four of them are now found. The other ~~153~~ 154 *(corrected 2026-10-02, OPUS: 158 − 4)* are not, and this document says so plainly.
 
 ---
 
@@ -97,7 +97,7 @@ Drawing one line of text is four functions cooperating over one small state reco
      -> 0053E0B0   for each line in a scrolling window: cull it, draw a shadow pass,
         |          draw the real pass, or draw an inline icon
         v
-     002D8690 / 002D87D0   pick a renderer: strings tagged "ex" go elsewhere
+     002D8690 / 002D87D0   pick a renderer: strings tagged "ex" go elsewhere   <- corrected 2026-10-02, OPUS: inverted - ex strings come here (002D8690+0xAC calls 003649A0); the others go to 002B0280
         |
         v
      003649A0   walk the characters, look each glyph up, emit a textured quad per character
@@ -223,7 +223,7 @@ engine's own word for what the code above it does.
 `002AF960` (1,117 B). Three of the four are now classified; `002AC5F0` alone remains in the
 certified 30. See §8; this is the most consequential thing this block found.
 
-> **Corrected 2026-09-14 (OPUS): two of the four are no longer residual.** The certified parent
+> **Corrected 2026-09-14 (OPUS): ~~two~~ three of the four are no longer residual** *(answered: see the paragraph above and the end of this note: `002AF960` followed at GN161; 2026-10-02, OPUS)*. The certified parent
 > classified `003649A0` as `Presentation.Text.GlyphRunTexturedQuadEmissionAndPenAdvance` and
 > `002AAE40` as `Presentation.Text.GlyphRunCharacterWalkAndScreenWidthBatchSplit`, and both left
 > the residual list when it went **158 → 139**. `002AF960` followed when the list went **139 → 30** at GN161 — classified `UI.Text.GlyphRunPositioner`. `002AC5F0` alone remains residual — it is the largest unclassified function in the game.
@@ -247,7 +247,7 @@ until it sees `}`. Eleven tags, verified against the raw jump table in the binar
 | `{c}` | restore the default colour | `A B G R` | a coloured word inside a white sentence |
 | `{f}` | clear the cell-size override | `w h` | glyphs forced into a fixed cell |
 | `{h}` | — | signed 16-bit | a horizontal nudge, in pixels |
-| `{i}` | — | 3 bytes | an inline icon |
+| `{i}` | — | 3 bytes | an inline icon *(answered: see §7: the three bytes have no reader in this build; 2026-10-02, OPUS)* |
 | `{k}` | font 0 | font index, bounds-checked | a different typeface |
 | `{n}` | cursor back to the box origin | `dx`, `dy` from the origin | a line break, or an exact placement |
 | `{p}` | palette `0x20` | index + `0x20`, bounds-checked | a different colour ramp for the same font |
@@ -339,7 +339,7 @@ not observe, so the *mechanism* is established and the visual result is inferred
 | `01CEBB70` | — | `.rdata` float | `0.5` — half-texel inset |
 | `01CEBBA8` | — | `.rdata` float | `1.0` — the "unscaled" comparand |
 | `008F3134` | — | `.rdata` float | `100.0` — the `{s}` percent divisor |
-| `008C5F80` | — | `.rdata` `float[4]` pool | **a pool of six ± axis vectors, not a matrix object.** Four of them — `+0x00`, `+0x10`, `+0x30`, `+0x50` — are loaded here and do assemble to the identity; `+0x20` and `+0x40` hold the negations `0 -1 0 0` and `0 0 -1 0` and are not read by this path. **Corrected 2026-09-02** — see the note below |
+| `008C5F80` | — | `.rdata` `float[4]` pool | **a pool of six ± axis vectors, not a matrix object.** *(answered: see §10, "Both readings are over-reads": `+0x60` is no axis vector and `+0x70` is past the pool; 2026-10-02, OPUS)* Four of them — `+0x00`, `+0x10`, `+0x30`, `+0x50` — are loaded here and do assemble to the identity; `+0x20` and `+0x40` hold the negations `0 -1 0 0` and `0 0 -1 0` and are not read by this path. **Corrected 2026-09-02** — see the note below |
 | `00D10F40` | — | `.rdata` string table | `"RS=%p"`, `"M2/l"`, `"M2/U"`, `"M2/L"`, `"M /l"`, `"M /U"`, `"M /L"`, `"FREE"`, `"/I"`, `"/C"` — referenced by `0036A570` (§8; classified GN161 `Runtime.Diagnostics.MemUsageReport`) |
 
 Addresses are Ghidra image base `0x00120000`.
@@ -479,7 +479,7 @@ if (rotation != 0.0f)
     for (c in {TL, BL, TR, BR})
         c = Vec3TransformByMatrix(c, sharedMatrix_022CBE00_plus_0x1E0);
 
-projectCallback(&packed[4], &TL);      // -> four packed screen positions
+projectCallback(&packed[4], &TL);      // -> four packed screen positions   <- answered 2026-10-02, OPUS: no callback - a direct call of the empty 0016D6A0 (ret 0) at 003649A0+0x5D8 (UQ-365)
 ```
 
 ### The filter bit
@@ -545,7 +545,7 @@ and the buffer is submitted and swapped whenever it exceeds `0x180` records.
 ```
 message / menu / HUD text request
   -> 0053E0B0  scrolled window line loop            (GN161: ScrolledWindowLineCullShadowAndGlyphRunDispatch)
-     -> 002D8690 / 002D87D0  renderer selection
+     -> 002D8690 / 002D87D0  renderer selection   <- corrected 2026-10-02, OPUS: 0053E0B0 calls neither; it calls 003659F0 then 003649A0 twice (0053E0B0+0x159/+0x181 and +0x1B2/+0x1D6), without the ex test
         -> 00364980   "ex" prefix?  no  -> 002B0280  (the byte-charset renderer)
         -> 003649A0   yes -> glyph-run emitter over UTF-16 units  (GN161: GlyphRunTexturedQuadEmissionAndPenAdvance)
            -> 003647E0   control codes and '{'
@@ -770,7 +770,7 @@ glyph pixel uploads into graphics local memory. The **owner transition** is at
 - [x] ~~**What `002AC5F0`, `002AAE40` and `002AF960` draw.**~~ **WITHDRAWN 2026-09-03 — the question
       could not be answered because its premise was wrong, twice.**
 
-      **None of the three draws.** The glyph emitter is `002A9F00`, which is not among them. And the
+      **~~None of the three draws.~~** ~~The glyph emitter is `002A9F00`, which is not among them.~~ *(corrected 2026-10-02, OPUS: `002AAE40` draws: it calls the painter begin `0017FA10` at `002AAE40`+0x52C and the per-glyph draw `0017F7C0` at +0x66E, as `002A9F00` does)* And the
       three are **not peers**: `002AAE40` calls `002AC5F0` (`002AB5B0`), so the question asked about
       a function and one of its own callers as if they were alternatives. Sharing the
       `"display : draw Font"` scope made them look like siblings; **a profiler scope groups a call
@@ -790,7 +790,7 @@ glyph pixel uploads into graphics local memory. The **owner transition** is at
       > checked instead of the answers.**
 
 - [x] **UQ-366.** **Replacing it: what divides `002AAE40` from `002A8C50`, `002AF340`, `002B1FB0` and
-      `002B5730`** — the other four callers of the interpreter. **That is the question the original
+      `002B5730`** — ~~the other four callers~~ four of the six other callers *(corrected 2026-10-02, OPUS: `002AC5F0` has seven calling functions; `002A9F00` and `002B2150` are the two not named here)* of the interpreter. **That is the question the original
       was reaching for**, asked about functions that really are peers, since all five sit at the same
       level of the call tree.
       **PARTIAL 2026-09-15 (FABLE) — the five are not reached the same way, and that is the first
@@ -839,7 +839,7 @@ glyph pixel uploads into graphics local memory. The **owner transition** is at
       |---|---|---|
       | `002AF340` | **measure** | `002AC2F0` per object → pen += its resolved width and `r12d` counts them (`bit31` of the metric row → `ctx+0x10FC` = 1/2); `002B2150` per text run → `{w,h}` out-params; `0x03` commits line metrics into the caller's extent struct — `+0x10` pen, `+0x14` line height, `+0x20`/`+0x30`/`+0x34` running maxima. Draws nothing. |
       | `002AAE40` | **emit** (kind 3) | `002AC2F0` per object → emits a `0x20`-byte descriptor pair **plus** a `0x40`-byte parameter record `{colour, pen, 1.0f scales, shadow flag}` into the draw queue whose write cursor lives at `020A2C50`; `ctx+0x10D4` counts queued items and `002B4730` flushes at `0x14`. Text runs go to `002AC5F0`; `0x03` runs `002B2150` + `002B1F20`. |
-      | `002A8C50` | **draw** (slot 1, kinds 0/1) | Object bytes are only counted and skipped (`r14d` vs `word[+0x12]`/`+0x10` caps → flush); `002B2150` draws each text run; `0x03` commits the working state into the *live element* — `+0x8A` cursor advance, `+0x90`/`+0x92`, `+0xB0` mode bits, `+0x54` — i.e. incremental/scroll-aware drawing. Bounded by a `0x2710` iteration cap and a caller-supplied stop byte (`r15b = dl`). |
+      | `002A8C50` | **draw** (slot 1, kinds 0/1) | Object bytes are only counted and skipped (`r14d` vs `word[+0x12]`/`+0x10` caps → flush); `002B2150` ~~draws~~ measures each text run *(corrected 2026-10-02, OPUS: it sums the width in `xmm6` and the maximum height in `xmm7` and stores them to its out-parameters at `002B2150`+0x315 and +0x32F; it never calls the glyph draw)*; `0x03` commits the working state into the *live element* — `+0x8A` cursor advance, `+0x90`/`+0x92`, `+0xB0` mode bits, `+0x54` — i.e. incremental/scroll-aware drawing. Bounded by a `0x2710` iteration cap and a caller-supplied stop byte (`r15b = dl`). |
 
       **So the full division is route x role:** the table slot chooses which pass runs
       (slot 1 = draw for kinds 0/1, slot 2 = emit for kind 3), `002AF340` is the caller-driven
@@ -1234,9 +1234,9 @@ glyph pixel uploads into graphics local memory. The **owner transition** is at
 - [x] **UQ-367.** **The 147 residual functions this block did not read at all.** 138 bodies were extracted;
       27 were read; 153 of the 158 remain unresolved. **This is the category's standing
       question AC-1 and is not closed.** *(Ledger note 2026-09-14: the residual itself is now
-      **30** — R109 classified 128, so the "not read at all" tail is correspondingly smaller; the
+      **30** — R109 classified ~~128~~ 109, and GN159 to GN161 128 in all *(corrected 2026-10-02, OPUS: `residual-109-classification.tsv` has 109 rows; 158 − 30 = 128)*, so the "not read at all" tail is correspondingly smaller; the
       153/158 figures record the block's own read coverage at its date.)*
-      *SUPERSEDED 2026-09-26 (FABLE, Claude Opus 5.5) under FRONTIER's class-1 ruling: a population-coverage statement; the population is carried by 99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md. See the register row.*
+      *SUPERSEDED 2026-09-26 (FABLE, Claude Opus 5.5) under FRONTIER's class-1 ruling: a population-coverage statement; the population is carried by 99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md. See the register row.* *(answered: see this pointer names this page; the residual population is carried by the-unresolved-158.md and its member TSVs; 2026-10-02, OPUS)*
 
 ---
 
@@ -1392,7 +1392,7 @@ the Audio boundary document offered to attack it and was declined on exactly tha
 functions documented here are also the four rows of batch A, so an audit of this evidence by the
 person who produced it is the weakest available check on a mutation.
 
-**Still owed: a first falsification pass, by a session that did not write this.** One
+**~~Still owed: a first falsification pass, by a session that did not write this.~~** *(answered: see "Falsification pass 1 — 2026-09-03" below; front matter `falsification_passes: 1`; 2026-10-02, OPUS)* One
 unresolved-neighbour finding below is flagged for it rather than answered here.
 
 ### Corrected 2026-09-03 — two body sizes
@@ -1478,7 +1478,7 @@ snapshot `46f02e26…`, EXE `73461d08…`, project `proj_hd2` / `GFZ_HD2`, `CHEC
 |---|---|
 | `003649A0` `Text_EmitGlyphRunQuads` | 23 distinct callees, **6 render/scope**: `FontScope_CloseAndFlush`, `RenderCommand_BeginSubpacket` / `FinalizeSubpacket` / `SubmitCurrentBufferAndSwap`, plus both glyph-cache functions, `Log2OfPowerOfTwo` and `Vec3TransformByMatrix` |
 | `00366110` `Text_InterpretBraceTag` | compares against `}`; the 90-byte trailer decodes **exactly** as a 2-byte `NOP` plus **22** image-base-relative offsets, all 22 landing in-body, **12 distinct targets**, dispatched by `jmp rcx` at `0036618B` |
-| `00364530` `Text_MeasureGlyphRun` | 12 call sites, **zero** render or scope calls, sharing six `0017Fxxx` metric helpers with the emitter and calling `00366110` |
+| `00364530` `Text_MeasureGlyphRun` | 12 call sites, **~~zero~~ two** render-target chooser calls and no scope call *(corrected 2026-10-02, OPUS: `0017FD00` at `00364530`+0xB0 and +0x169, as the render-target page says)*, sharing six `0017Fxxx` metric helpers with the emitter and calling `00366110` |
 | `0053E0B0` `Text_DrawScrolledWindowLines` | call order `003659F0 → 003649A0` **twice**, then `002D8BB0 → 002D8C80 → 002D8BB0`; `add rsi, 0x20` at `0053E337` is the 32-byte line-record stride; five comparisons precede the first pass |
 
 **Two of those deserve their method noted rather than their result.**
@@ -1510,7 +1510,7 @@ explained it. **Both readings are over-reads, and the missing `−X` is not an a
 +0x00   1  0  0  0        +0x40   0  0 -1  0
 +0x10   0  1  0  0        +0x50   0  0  0  1
 +0x20   0 -1  0  0        +0x60   0  1  0  1     <- not an axis vector at all
-+0x30   0  0  1  0        +0x70   0  0  0  0     <- referenced by nothing
++0x30   0  0  1  0        +0x70   0  0  0  0     <- referenced by nothing   <- corrected 2026-10-02, OPUS: +0x70 (008C5FF0) holds 22 05 93 19 01 00 00 00 40 45 C3 01, not zeros; the pool ends at +0x70
 ```
 
 A reference census over all 38,161 bodies settles what the region is:
@@ -2038,3 +2038,20 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **WorldAreaField — MECHANICAL, 20 edges.** `0032E400` is called by `MapRef_BeginLoadResources` (`00268750`), `003319D0`, `00378030`, `00379A10` and 1 more; `0032E620` is called by `MapRef_BeginLoadResources` (`00268750`), `00378030`, `AreaArd_LoadOrUnloadFieldResource` (`003EA820`); `00267930` is called by `MapRef_BeginLoadResources` (`00268750`); `ActorManager_BindLoadedDefinitionPayload` (`0026C8C0`) calls `WorldPersistence_ResetBanksForFieldTransition` (`0026DB30`); `ActorSystem_InitializeManagerRuntime` (`0026CE60`) calls `BattleSystem_InitializeAreaState` (`002342F0`); `0032F430` calls `003EA6B0`; `003320D0` calls `003EAA00`; `003320E0` calls `003DFE60`; `00332100` calls `003DFDC0`; `00332110` calls `003DFE60`; `00378540` is called by `00377CC0`; `003EAA00` calls `003DCF10`; `003EAA00` is called by `003319D0`; `003F9720` calls `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-how-a-line-of-text-becomes-glyph-quads-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00267BB0` | 102 B | calls `0036B200(0xD)`, then `0036C1D0(0xD, 5)` when that returned non-zero and `0036C1D0(5, 5)` otherwise; takes `0036C750(009156E8)` (the string "..\..\katano\ateldecode.c"), returns `0036C660(0036A100(ecx), that result, 0x16C1)` after calling `0036C140()` | `00267BC1`, `00267BD2`, `00267BE0`, `00267BFB`, `00267C03` |
+| `00267C20` | 102 B | calls `0036B200(0xE)`, then `0036C1D0(0xE, 5)` when that returned non-zero and `0036C1D0(5, 5)` otherwise; takes `0036C750(009156E8)` (the string "..\..\katano\ateldecode.c"), returns `0036C660(0036A100(ecx), that result, 0x16E6)` after calling `0036C140()` | `00267C31`, `00267C42`, `00267C50`, `00267C6B`, `00267C73` |
+| `00271380` | 39 B | calls `003588B0(rcx)`; returns the float -1.0 (`01CEBC9C`) when that is null, otherwise tail-jumps `00263940(object)` | `00271384`, `0027138E`, `002713A2` |
+| `002A35B0` | 66 B | stores `rdx` at qword `+0x1A8` of `rcx`, overwrites it with the result of a second `0039C480()` call when the first `0039C480()` returns non-null, then tail-jumps `002A3250(rcx, r8)` | `002A35BD`, `002A35C7`, `002A35D1`, `002A35D6`, `002A35ED` |
+| `002B2D90` | 82 B | walks runs from `rcx`, each a byte whose low 7 bits (AND `0x7F`) give the count of bytes that follow it, stopping at a zero byte or after run index `r9d`; runs whose index bit (`bt`) is set in `edx` are not counted, and at the unskipped run number `r8d` (from 0) it stores the run's low 7 bits at the dword the fifth (stack) argument points to and returns the pointer past that byte; when the walk stops first it stores 0 there and returns 0 | `002B2D96`, `002B2D9B`, `002B2DA1`, `002B2DBA`, `002B2DCD` |
+| `003666E0` | 88 B | forms `r8` = sign-extended `ecx+ecx` minus 1, finds its highest set bit by scanning down from bit 63 (`sar`, `test al, 1`), then keeps scanning down while bits stay set and returns that highest bit index minus the index where the second scan stopped (the first clear bit, or 0); for a power-of-two `ecx` this is its log2 | `003666E7`, `003666EC`, `00366709`, `00366729`, `00366731` |
+| `003EA6B0` | 43 B | stores -1 at dword `02B5E0B8`, zeroes the 16 bytes at `02B5E0C0`, calls `003DCF00(0)` and tail-jumps `003DCF10(0)` | `003EA6B7`, `003EA6C3`, `003EA6CB`, `003EA6D6` |
+| `003F7F50` | 187 B | unless dword `[rdx]` is 4, calls `005C5230(rcx, rdx)` and returns its value; for 4 fills a stack record with `002B3400(&rec, qword +0xC0, 0)`, sets its float `+0x34` to 1.0 (`01CEBBA8`) and its byte `+0x9F` to byte `+0x5C` of the qword `+0x38` object, stores word `0x40` at that object's `+0x5A` when bit 0 of byte `+0xD4` is set and `0x80` otherwise (`cmovne`), calls `002D8650(object, word +0xC8, word +0xCA, &rec)` with the words sign-extended and returns 0 | `003F7F6B`, `003F7F95`, `003F7FC9`, `003F7FD0`, `003F7FE3` |
+| `0053ED10` | 73 B | calls `00244F50(0xC8, 0053EB90, 0)` when qword `02CA8A78` is zero, then tail-jumps `00244F50(0x1498, 0053E380, 0)` when qword `02CA8A80` is zero and returns otherwise | `0053ED14`, `0053ED2D`, `0053ED32`, `0053ED4F` |
+| `00799980` | 92 B | calls `0071F970(rdx, 008F6D40, &f)` and stores the float `f` at `+0x6C` of `rcx`; when `f` is not greater than 0.0 (`comiss`, `jb` skips otherwise, also skipping on NaN) stores at qword `+0x50` the double `005CC930()` minus qword `02CB60E8` minus qword `+0x50` minus qword `+0x40` plus qword `+0x50`; returns 0 | `0079999B`, `007999A9`, `007999AC`, `007999B3`, `007999CF` |

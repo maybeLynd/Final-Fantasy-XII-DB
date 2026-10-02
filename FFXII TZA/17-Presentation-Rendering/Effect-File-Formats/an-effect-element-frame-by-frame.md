@@ -128,8 +128,8 @@ record's first byte is `0xFF` - the definition's own at `+0x60`.
 
 The distance is measured from the stashed point `02AED5F0` to the position after the workbench transform
 (`02AEEA20`) - the same stash and the same matrix as the distance-fade node of
-[how a position becomes a single number](../Position-To-Scalar/how-a-position-becomes-a-single-number.md). *Whose
-position the stash holds is that page's open runtime item, not settled here.*
+[how a position becomes a single number](../Position-To-Scalar/how-a-position-becomes-a-single-number.md). *~~Whose~~*
+*~~position the stash holds is that page's open runtime item, not settled here.~~* *(answered: see how-a-camera-reaches-the-renderer.md - the eye, added at `02AED5F0`; 2026-10-02, OPUS)*
 
 **On 0 the tail calls the seventh method `002F31C0(element, owner)`, and that is the element's release** (233 B, read
 whole): the per-type teardown through the jump table, then the element is unlinked from its owner's active list (head
@@ -160,7 +160,7 @@ death bursts respectively. *The spawner itself was not read here.*
 | `005002E0` cull test (389 B) | `0050030A`, `0050030F`, `00500319`, `00500348`, `0050036E`, `0050037B`, `005003C4`, `005003D9`, `005003F4`, `00500403`, `0050041A`, `00500442`, `00500448` |
 | `003A8950` child-spawn slots (394 B) | `003A8981`, `003A89B0`, `003A89DF`, `003A89E8`, `003A89F2`, `003A8A01`, `003A8A2A`, `003A8A39`, `003A8A4A`, `003A8A58`, `003A8A97`, `003A8AA7` |
 
-## 4. The other seven tails: types `0x02`, `0x04`, `0x05`, `0x06`, `0x07`, `0x0A`
+## 4. The other ~~seven~~ six tails (corrected 2026-10-02, OPUS: CON-179 below): types `0x02`, `0x04`, `0x05`, `0x06`, `0x07`, `0x0A`
 
 *Counts (corrected 2026-09-29, OPUS falsification pass 1, `CON-179`): this section has six tails, not seven, and the method's "ten per-type tails" are nine tails
 plus `0044B960`. That body is a shared random helper with 48 direct call sites, not a tail.*

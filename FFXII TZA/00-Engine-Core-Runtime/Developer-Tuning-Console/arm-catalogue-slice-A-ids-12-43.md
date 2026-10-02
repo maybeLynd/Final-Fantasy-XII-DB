@@ -107,8 +107,8 @@ field or a helper without stepping.
 | 38 | `001D1C83` | integer step | `d+0xAC0` | 1 | `inc` only — no direction test; then `0018B0A0(obj, value != 0)` | `3` — wraps: modulo 3 through `0x55555556` (`001D1C83`–`001D1C9E`); corrected 2026-09-13, found by the same scan |
 | 39 | `001D1CCE` | — | `0` | helper call only |
 | 40 | `001D1CE9` | `b+0xAC4` | `0` | boolean, then a helper call |
-| 41 | `001D1D17` | — | `0` | calls the 33-arm shared helper |
-| 42 | `001D1D36` | — | `0` | calls the 33-arm shared helper and one other |
+| 41 | `001D1D17` | — | `0` | calls the ~~33-arm~~ 33-call-site shared helper *(corrected 2026-10-02, OPUS: 33 direct calls to `00193D50` in `001D1660`)* |
+| 42 | `001D1D36` | — | `0` | calls the ~~33-arm~~ 33-call-site shared helper and one other *(corrected 2026-10-02, OPUS: 33 direct calls to `00193D50` in `001D1660`)* |
 | 43 | `001D1D5A` | integer step | `d+0xC04` | 1 | `inc`/`dec` | `2`, `0x13` |
 
 **27 real arms and 5 do-nothing ids** (13, 16, 17, 18, 23), touching **26 distinct fields** of the
@@ -150,16 +150,16 @@ parks and restores them.
 
 ### The two shared helpers are named, not cited
 
-Ids 28, 41, 42 and 43 reach helpers the parent document enumerates as hubs — one serving **45** arms,
-the other **33**. They are named here by that role and **deliberately kept out of this document's
+Ids 28, 41, 42 and 43 reach helpers the parent document enumerates as hubs — one serving **45** ~~arms~~ call sites,
+the other **33** *(corrected 2026-10-02, OPUS: 45 direct calls to `001A9930` and 33 to `00193D50` in `001D1660`)*. They are named here by that role and **deliberately kept out of this document's
 address citations**: citing a hub commits these rows to its entire caller neighbourhood, and the
 census that would justify that lives in the parent document, not this one.
 
 ### Slice A contains no `0.01` step arm
 
 The parent document records `0.01` as the console's most common step constant, referenced 88 times.
-**Not one of those references is in slice A.** The only float constants here are `1` and `-1`, in
-id 26.
+**Not one of those references is in slice A.** ~~The only float constants here are `1` and `-1`, in~~
+~~id 26~~ The step constants are `1` and `-1`, in id 26; id 28 also reads the Rec.709 weights `0.2126`, `0.7152` and `0.0722` (`008F6D48`, `008F6D4C`, `008F6D44`) *(corrected 2026-10-02, OPUS: `mulss` at `001D1660+0x3D0`, `+0x3C0`, `+0x3D8`)*.
 
 *Control, chosen before the scan:* the extractor must find a float constant where one exists. It
 finds id 26's `1` / `-1`, so the zero for `0.01` is a measurement and not a silent non-match. **This

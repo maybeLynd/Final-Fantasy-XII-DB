@@ -87,7 +87,7 @@ component bytes `0x30..0x39` coincidentally in the digit range.
 || |
 |---|---|
 | request path | ~~**no constant-request site in the census**~~ *(superseded by RC-30: the request is `003C1F00`'s computed site `003C208D`, see the answered contract below)* — the `.cl2` ids ride the **menu resource manifest**: `008FCE00`–`008FD2D0` in `.rdata` is a sequence of 14 `u32-2`-tagged id lists; the third (`008FCEB0`) opens `0xDF, 0xE1, 0xE2, 0xE3, 0xE4, 0xE5…0xF2, 0xD1, 0xD2` — the `Loca`/`bin_menu` set. `0xD1`/`0xD2` recur as list tails. **No rip-relative reference and no pointer-table entry reaches the block** (both scans run) — the walker addresses it by index/base not yet identified |
-| kind-7 ids | `0xE2`–`0xE4` per the path arrays (`Loca_bhm`/`Loca_gil`/`Loca_rbl`) |
+| kind-7 ids | `0xE2`–`0xE4` per the path arrays (~~`Loca_bhm`/`Loca_gil`/`Loca_rbl`~~ `Loca_gil`/`Loca_bhm`/`Loca_rbl` in id order *(corrected 2026-10-02, OPUS: kind-7 array `01EDD7E0` entries `0xE2`, `0xE3`, `0xE4`; RC-30 below)*) |
 | path resolution | kind-7 per-language path array: `…\myoshiok\<lang>\bin_menu\loca_*.cl2` — 27/27 membership checks |
 | consumer family | location-map rendering — the `Loca` pages; ~~field-level binder not isolated~~ the reader is `003C26C0` (RC-30) |
 | magic check | none found — no `CLT2`/`0x32544C43` constant compare located (ORACLE's RC-30 record: `CLT2` is not tested) |

@@ -142,7 +142,7 @@ names.** Static plus the shipped data. This is the subsystem's script/data relat
   | `+0x1C` | `+0xF8` | `mGlareThreshold` — the second float, library `+0x6E0` |
   | `+0x20` | `+0x110` | `EnableDof` — the byte step 7 passes as the enable |
   | `+0x24` / `+0x28` | `+0x114` / `+0x118` | `mDofFocusDistance` / `mDofApertureFnumber`; a computed pair replaces them when the caller's `+0x124` is 1 |
-  | `+0x2C` | `+0x120` | the `35.0` both loaders pass — the lens length step 7 divides by 1000 |
+  | `+0x2C` | `+0x120` | the `35.0` both loaders pass ~~— the lens length step 7 divides by 1000~~; step 7 does not read it: its lens is the constant `35.0` at `008F312C`, and it passes `cfg+0x21`, `+0x30` and `+0x34` too *(corrected 2026-10-02, OPUS: `00193DA0`+0x150 `movss xmm0, dword ptr [008F312C]`; `00193DA0`+0x126..+0x146 the other arguments)* |
 
 - **So:**
   - The two graphics options only choose whether these authored values reach the library (§4 steps 5 and 7).
@@ -253,7 +253,7 @@ so `006DB4C0` loads a null object.
     (`postprocess-context-accesses.tsv`, cross-call tracked), `+0x330` has only those two writers and no reader. The
     authored switch has nowhere to go, which agrees with I-3.
 - Treat the Glare or DepthofField option as skipping a call. It changes the arguments (I-4).
-- Let a library error abort the frame. The game ignores it (I-5).
+- Let a library error abort the frame. The game ignores it (I-5) *(corrected 2026-10-02, OPUS: an `ApplyEffects` error; an initialisation failure does reach the game - the corrected heading of I-5's section)*.
 
 ## 8. What this contract does NOT establish (FABLE)
 
@@ -263,7 +263,7 @@ so `006DB4C0` loads a null object.
 - ~~Who fills `cfg`~~ *(answered 2026-09-25 by OPUS's type census, `_index/candidates/s40-types-cposteffect-and-cfg.md`:
   `0018EEE0` allocates the `0xF0` block through `001A1470([01F7F4C0])`, fills it (copying `PostProcessParamContext`
   `+0xF4` / `+0xF8` into `+0x18` / `+0x1C` at `0018EFF3` / `0018EFFC`), and `005FEA50` enqueues it as a kind-`0x2F`
-  command's `+0x10`)*, and which float carries the cutscene focus distance.
+  command's `+0x10`)*~~, and which float carries the cutscene focus distance~~. *(answered: see the `cfg` table above - `+0x24` is `mDofFocusDistance`; 2026-10-02, OPUS)*
 - For the I-3 features other than motion blur, whether `ApplyEffects` could reach them by a test other
   than their enable.
 - Anything live. No frame was observed.

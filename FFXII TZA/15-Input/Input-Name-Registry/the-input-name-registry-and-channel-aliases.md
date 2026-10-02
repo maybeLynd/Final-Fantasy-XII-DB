@@ -494,4 +494,4 @@ harness. Nothing was executed or observed live.
 
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
-| `001E0E00` | 37 B | calls `00796E20()` and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax` | `001E0E08`, `001E0E0D`, `001E0E10`, `001E0E17`, `001E0E1C` |
+| `001E0E00` | 37 B | calls the framework-singleton getter and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax` | `001E0E08`, `001E0E0D`, `001E0E10`, `001E0E17`, `001E0E1C` |

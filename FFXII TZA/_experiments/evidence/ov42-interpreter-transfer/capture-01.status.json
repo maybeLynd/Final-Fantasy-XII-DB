@@ -1,0 +1,12 @@
+{
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "driver": "capture.py",
+  "driver_sha256": "f27d1402235f891280547a693375ed78a305117be4443dd5fa1aadadfe11a53b",
+  "argv": [
+    "Database/Tools/work/ASTRA/runtime-residue-method-retriage/ov42-interpreter-transfer/source-01.json"
+  ],
+  "start": 1790965366.3907006,
+  "end": 1790965366.6351182
+}

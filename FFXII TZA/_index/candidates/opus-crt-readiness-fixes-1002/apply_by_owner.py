@@ -82,6 +82,10 @@ LINE_OWNERS = {
 }
 
 
+# Holds lifted 2026-10-02 (OPUS): these pages' holds are lifted; their held edits on other identities' lines go to them.
+OWNERS["OPUS-HELD"] = set(OWNERS.get("OPUS-HELD", set())) - set(['24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md'])
+
+
 def owner_of(e):
     for o, prefixes in LINE_OWNERS.items():
         if e[1].startswith(prefixes):

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-phase-qualification\controls-01\failed-parent-producer\prove.py", line 153, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-phase-qualification\controls-01\failed-parent-producer\prove.py", line 116, in main
+    if s.get('terminal') is not True or s.get('exit')!=0 or s.get('exception') is not None or s['driver_sha256']!=sha(d/driver) or not(d/(tag+'.stdout')).read_bytes() or(d/(tag+'.stderr')).read_bytes():raise RuntimeError('required parent invocation failed '+q['slug']+'/'+tag)
+                                                                                                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: required parent invocation failed render-removal-phase-contracts/prove-01

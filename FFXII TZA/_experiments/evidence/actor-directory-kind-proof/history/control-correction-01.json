@@ -1,0 +1,6 @@
+{
+  "failed_run": "control-01 exit1; no control result",
+  "cause": "synthetic overwrite changed args only, leaving original memory record unchanged. Actual original-byte validator would refuse inconsistent annotations; derive-only control failed to model its intended store.",
+  "repair": "control-02 changes both printed target and displacement; derive rejects category-byte overwrite. Original producer source/evidence unchanged.",
+  "remaining": "Invalid control run has no passing credit; independent review pending."
+}

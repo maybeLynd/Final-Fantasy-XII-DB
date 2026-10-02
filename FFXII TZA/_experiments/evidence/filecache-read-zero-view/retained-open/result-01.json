@@ -1,0 +1,264 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original IsOpen sentinel invariant and conditional zero-view composition",
+  "driver_sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "c150eafdf574433fb99361957edd40c96890544eb1009c0ff6ee507cbee8b510"
+    },
+    {
+      "path": "parents/filecache-source-key-initialization/source-01.json",
+      "sha256": "0533f9c1497752403aca4bca1d621f0f174f8204d37124a5ddde876563c161b3"
+    },
+    {
+      "path": "parents/filecache-zero-handle-return/retained/source-01.json",
+      "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 10,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 104,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 436,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "parent_identities": [
+    {
+      "slug": "filecache-source-key-initialization",
+      "manifest_sha256": "d5cc7655d068357ee5bd9496b5674f82d4e4679d30d12356ba5411d8b713350e",
+      "state_at_retention": "Frozen producer-valid, independent review/canonical consumption pending",
+      "files": [
+        {
+          "path": "manifest.json",
+          "sha256": "d5cc7655d068357ee5bd9496b5674f82d4e4679d30d12356ba5411d8b713350e"
+        },
+        {
+          "path": "source-01.json",
+          "sha256": "0533f9c1497752403aca4bca1d621f0f174f8204d37124a5ddde876563c161b3"
+        },
+        {
+          "path": "result-02.json",
+          "sha256": "430aae9bf122020126bc65aee47d55c4ce10195ee7e271446d29020e12daebf4"
+        },
+        {
+          "path": "prove.py",
+          "sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e"
+        },
+        {
+          "path": "prove-02.status.json",
+          "sha256": "c09cbaab3458a7b16f20540cc6a219ed48324aa7c40b5b6afb9df4a8dbe0c062"
+        }
+      ]
+    },
+    {
+      "slug": "filecache-zero-handle-return",
+      "manifest_sha256": "93e2351f2132231d53da0597dbef418c7870e0a795e04e0090c4e5089c93c521",
+      "state_at_retention": "Frozen producer-valid, independent review/canonical consumption pending",
+      "files": [
+        {
+          "path": "manifest.json",
+          "sha256": "93e2351f2132231d53da0597dbef418c7870e0a795e04e0090c4e5089c93c521"
+        },
+        {
+          "path": "result-01.json",
+          "sha256": "55f1489bb67769dba34194480ef38b559f82e459b9d2fd75810c8e94b5916a83"
+        },
+        {
+          "path": "prove.py",
+          "sha256": "3d016099266d7413ad648331d64503e635cb03d4de02c322cd7cd7b9c334e4e9"
+        },
+        {
+          "path": "prove-02.status.json",
+          "sha256": "fa3053ab04bd249231726a0315941cd03b05596847d0d956633eb9902f382795"
+        },
+        {
+          "path": "retained/source-01.json",
+          "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69"
+        }
+      ]
+    }
+  ],
+  "new_original_bytes": 27,
+  "facts": {
+    "formula": "AL = !(QWORD28 == FFFFFFFFFFFFFFFF && QWORD30 == 0 && QWORD40 == FFFFFFFFFFFFFFFF)",
+    "logical_partitions": [
+      {
+        "equal_to_sentinels": [
+          false,
+          false,
+          false
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          false,
+          false,
+          true
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          false,
+          true,
+          false
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          false,
+          true,
+          true
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          true,
+          false,
+          false
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d927",
+          "0x59d92c",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          true,
+          false,
+          true
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d927",
+          "0x59d92c",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          true,
+          true,
+          false
+        ],
+        "AL": 1,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d927",
+          "0x59d92c",
+          "0x59d92e",
+          "0x59d933",
+          "0x59d938",
+          "0x59d93a"
+        ]
+      },
+      {
+        "equal_to_sentinels": [
+          true,
+          true,
+          true
+        ],
+        "AL": 0,
+        "source_path": [
+          "0x59d920",
+          "0x59d925",
+          "0x59d927",
+          "0x59d92c",
+          "0x59d92e",
+          "0x59d933",
+          "0x59d935",
+          "0x59d937"
+        ]
+      }
+    ],
+    "zero_view_witness": {
+      "QWORD28": 18446744073709551615,
+      "QWORD30": 0,
+      "QWORD40": 0,
+      "AL": 1,
+      "source_path": [
+        "0x59d920",
+        "0x59d925",
+        "0x59d927",
+        "0x59d92c",
+        "0x59d92e",
+        "0x59d933",
+        "0x59d938",
+        "0x59d93a"
+      ]
+    },
+    "return_width": "OnlyAL is written on both return arms; no fullRAX clean0/1 claim",
+    "limits": "Eight exhaustive equality classes are static proof partitions, not eight native/game/harness runs. Valid readablefield bytes/private code/frame required; no actual caller or backing validity observed.",
+    "conditional_composition": {
+      "constructor": "597970 receiver+20 ->59EE90 R15",
+      "cache_zero_source": "retained checked normalNULL path produceslookupRAX0;59EFEA stores source20=reader40 zero",
+      "other_fields": "constructor reader28=FFFFFFFFFFFFFFFF/30=0; own prefix/post/late-constructor backing-write checks preserve under ABI/noalias/noopaqueinterference",
+      "then_IsOpen": "On reached later getter with this preserved state AL1 despite zero cacheview",
+      "consumer_qualification": "Open means sentinel disjunction, not valid/nonnull cacheview certification; constructor returnsobjectRAX, resolverstatus0 distinct. No actual later getter trigger or naturalfailure proved."
+    }
+  },
+  "limits": [
+    "Static equality partitions and composed conditional state, not native/original-code emulation/live execution.",
+    "Retained parents producer-valid at retention, independent acceptance/canonical consumption pending.",
+    "Validrecord/readableQWORDfields/nonalias/privateframes/nativeABI/normalreturns, reachedlookupcachepath and noopaqueinterference/successfulcookie prerequisites.",
+    "No naturalheapfailure/actuallatergetter/validview lifetime/readconsequence/allwriter/atomicity/scheduling proof. AL return only; upperRAX unassigned."
+  ],
+  "cleanup": "Own bounded offline tools only; no game/PC/instrument/save/config/reference/peer changes."
+}

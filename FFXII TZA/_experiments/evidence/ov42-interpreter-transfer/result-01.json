@@ -1,0 +1,519 @@
+{
+  "producer_complete": true,
+  "method": "A retained shipping code and conditional representation invariant; bounded static decode only, no new native/emulator/live calls",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "004de1f44f49189f508374a6ee90a7749eaa9f7f88358dd5287bdc95e21ffff9",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "35bc1525b738058fad19ef08266236394fa52028b1d252ba0a0a45f5826ac21d"
+    },
+    {
+      "path": "retained/remap/spattack-info-raw-01.json",
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4"
+    },
+    {
+      "path": "retained/remap/effective-and-script-id-raw-01.json",
+      "sha256": "645e4431cd0934dfd8b94eb42cd871a0b80540605bf2b1a64adaaafd64a23477"
+    },
+    {
+      "path": "retained/remap/spattack-queue-reader-raw-01.json",
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c"
+    },
+    {
+      "path": "retained/remap/spattack-output-writers-raw-02.json",
+      "sha256": "e08b6907771a2d9439e18e4890342ae1acabdf6a9841fb83889c79acfd3c0022"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 170,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 42,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 87,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 15,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 235,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "input_pins": [
+    {
+      "path": "retained/remap/manifest.json",
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230"
+    },
+    {
+      "path": "retained/remap/spattack-info-raw-01.json",
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4"
+    },
+    {
+      "path": "retained/remap/effective-and-script-id-raw-01.json",
+      "sha256": "645e4431cd0934dfd8b94eb42cd871a0b80540605bf2b1a64adaaafd64a23477"
+    },
+    {
+      "path": "retained/remap/spattack-queue-reader-raw-01.json",
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c"
+    },
+    {
+      "path": "retained/remap/spattack-output-writers-raw-02.json",
+      "sha256": "e08b6907771a2d9439e18e4890342ae1acabdf6a9841fb83889c79acfd3c0022"
+    },
+    {
+      "path": "retained/remap/spattack-word-roundtrip-result-01.json",
+      "sha256": "531b5fcfe99a875d463e4a86c7a1cec9b7cd1e1dedd216f777f58dee734ecda9"
+    },
+    {
+      "path": "retained/remap/prove-spattack-word-roundtrip.py",
+      "sha256": "f52b12862b1edc648f40922c25f766d3d2f54c81ba0998b99a4ce1dac3c1fcca"
+    },
+    {
+      "path": "retained/EXP013/observations.json",
+      "sha256": "3c56d8902eb273c732d740bff04b09cede0c259d91126d0f1b0fc003e2475b6e"
+    },
+    {
+      "path": "retained/EXP013/probe.py",
+      "sha256": "140d92ed707beca597aaa48cee08ec4b01a50b20b6f182a42c96cf97634ed6e9"
+    },
+    {
+      "path": "retained/EXP013/reader-snapshot.py",
+      "sha256": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+    },
+    {
+      "path": "retained/storage-classes.md",
+      "sha256": "3985aed9849cc0a9a3d5e0b62ba79b047056a97316c80edd689fbe7c458a751e"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    }
+  ],
+  "facts": {
+    "original_pop": "positive valid-depth tag1 returns exact payload DWORD; tag2 CVTTSS2SI; empty/negative depth returns0; unknown tags call original error handler then local zero only if it returns normally",
+    "native_store": "309C13 writes raw DWORD through first native out pointer. It does not use typed POPV clamps. Both descriptors are popped before2650B0; first return pointer is retained inRSI and becomesRDX. Width/float fields do not select this write.",
+    "selector_argument": "348880 first integer pop->EBX preserved across34888A second pop->EDX at348893/30EEA0. Second pop->ECX. This does not prove authored stack argument order.",
+    "typed_load_paths": [
+      {
+        "width": 0,
+        "resolved_kind": 1,
+        "tag": 1,
+        "load_entry": "0x267ffc",
+        "tag_pc": "0x2680b9",
+        "payload_store": "0x2680c9"
+      },
+      {
+        "width": 0,
+        "resolved_kind": 2,
+        "tag": 2,
+        "load_entry": "0x267ffc",
+        "tag_pc": "0x268080",
+        "payload_store": "0x268098"
+      },
+      {
+        "width": 1,
+        "resolved_kind": 1,
+        "tag": 1,
+        "load_entry": "0x26800d",
+        "tag_pc": "0x2680b9",
+        "payload_store": "0x2680c9"
+      },
+      {
+        "width": 1,
+        "resolved_kind": 2,
+        "tag": 2,
+        "load_entry": "0x26800d",
+        "tag_pc": "0x268080",
+        "payload_store": "0x268098"
+      },
+      {
+        "width": 2,
+        "resolved_kind": 1,
+        "tag": 1,
+        "load_entry": "0x26801e",
+        "tag_pc": "0x2680b9",
+        "payload_store": "0x2680c9"
+      },
+      {
+        "width": 2,
+        "resolved_kind": 2,
+        "tag": 2,
+        "load_entry": "0x26801e",
+        "tag_pc": "0x268080",
+        "payload_store": "0x268098"
+      },
+      {
+        "width": 3,
+        "resolved_kind": 1,
+        "tag": 1,
+        "load_entry": "0x26802f",
+        "tag_pc": "0x2680b9",
+        "payload_store": "0x2680c9"
+      },
+      {
+        "width": 3,
+        "resolved_kind": 2,
+        "tag": 2,
+        "load_entry": "0x26802f",
+        "tag_pc": "0x268080",
+        "payload_store": "0x268098"
+      },
+      {
+        "width": 4,
+        "resolved_kind": 1,
+        "tag": 1,
+        "load_entry": "0x268040",
+        "tag_pc": "0x2680b9",
+        "payload_store": "0x2680c9"
+      },
+      {
+        "width": 4,
+        "resolved_kind": 2,
+        "tag": 2,
+        "load_entry": "0x268040",
+        "tag_pc": "0x268080",
+        "payload_store": "0x268098"
+      },
+      {
+        "width": 5,
+        "resolved_kind": 1,
+        "tag": 1,
+        "load_entry": "0x268050",
+        "tag_pc": "0x2680b9",
+        "payload_store": "0x2680c9"
+      },
+      {
+        "width": 5,
+        "resolved_kind": 2,
+        "tag": 2,
+        "load_entry": "0x268050",
+        "tag_pc": "0x268080",
+        "payload_store": "0x268098"
+      }
+    ],
+    "low16_invariant": "For available original queue words w other thanCF/FFFF, e=w-D0. Any integer-tagged transfer v with low16(v)=low16(e) and v!=-1 decodes to w because (v+D0) mod2^16=w. u16/s16 loads satisfy both; -1 occurs for either only when low16(e)=FFFF, corresponding to excluded wordCF. Full32 identity is stronger than required.",
+    "candidate_calculations": [
+      {
+        "word": 511,
+        "encoded": 303,
+        "int_kind_decoded": {
+          "u8": 255,
+          "s8": 255,
+          "u16": 511,
+          "s16": 511,
+          "s32": 511
+        }
+      },
+      {
+        "word": 512,
+        "encoded": 304,
+        "int_kind_decoded": {
+          "u8": 256,
+          "s8": 256,
+          "u16": 512,
+          "s16": 512,
+          "s32": 512
+        }
+      },
+      {
+        "word": 513,
+        "encoded": 305,
+        "int_kind_decoded": {
+          "u8": 257,
+          "s8": 257,
+          "u16": 513,
+          "s16": 513,
+          "s32": 513
+        }
+      },
+      {
+        "word": 514,
+        "encoded": 306,
+        "int_kind_decoded": {
+          "u8": 258,
+          "s8": 258,
+          "u16": 514,
+          "s16": 514,
+          "s32": 514
+        }
+      },
+      {
+        "word": 515,
+        "encoded": 307,
+        "int_kind_decoded": {
+          "u8": 259,
+          "s8": 259,
+          "u16": 515,
+          "s16": 515,
+          "s32": 515
+        }
+      },
+      {
+        "word": 516,
+        "encoded": 308,
+        "int_kind_decoded": {
+          "u8": 260,
+          "s8": 260,
+          "u16": 516,
+          "s16": 516,
+          "s32": 516
+        }
+      },
+      {
+        "word": 517,
+        "encoded": 309,
+        "int_kind_decoded": {
+          "u8": 261,
+          "s8": 261,
+          "u16": 517,
+          "s16": 517,
+          "s32": 517
+        }
+      },
+      {
+        "word": 518,
+        "encoded": 310,
+        "int_kind_decoded": {
+          "u8": 262,
+          "s8": 262,
+          "u16": 518,
+          "s16": 518,
+          "s32": 518
+        }
+      },
+      {
+        "word": 519,
+        "encoded": 311,
+        "int_kind_decoded": {
+          "u8": 263,
+          "s8": 263,
+          "u16": 519,
+          "s16": 519,
+          "s32": 519
+        }
+      },
+      {
+        "word": 520,
+        "encoded": 312,
+        "int_kind_decoded": {
+          "u8": 264,
+          "s8": 264,
+          "u16": 520,
+          "s16": 520,
+          "s32": 520
+        }
+      },
+      {
+        "word": 521,
+        "encoded": 313,
+        "int_kind_decoded": {
+          "u8": 265,
+          "s8": 265,
+          "u16": 521,
+          "s16": 521,
+          "s32": 521
+        }
+      },
+      {
+        "word": 522,
+        "encoded": 314,
+        "int_kind_decoded": {
+          "u8": 266,
+          "s8": 266,
+          "u16": 522,
+          "s16": 522,
+          "s32": 522
+        }
+      },
+      {
+        "word": 523,
+        "encoded": 315,
+        "int_kind_decoded": {
+          "u8": 267,
+          "s8": 267,
+          "u16": 523,
+          "s16": 523,
+          "s32": 523
+        }
+      },
+      {
+        "word": 524,
+        "encoded": 316,
+        "int_kind_decoded": {
+          "u8": 268,
+          "s8": 268,
+          "u16": 524,
+          "s16": 524,
+          "s32": 524
+        }
+      },
+      {
+        "word": 525,
+        "encoded": 317,
+        "int_kind_decoded": {
+          "u8": 269,
+          "s8": 269,
+          "u16": 525,
+          "s16": 525,
+          "s32": 525
+        }
+      },
+      {
+        "word": 526,
+        "encoded": 318,
+        "int_kind_decoded": {
+          "u8": 270,
+          "s8": 270,
+          "u16": 526,
+          "s16": 526,
+          "s32": 526
+        }
+      },
+      {
+        "word": 527,
+        "encoded": 319,
+        "int_kind_decoded": {
+          "u8": 271,
+          "s8": 271,
+          "u16": 527,
+          "s16": 527,
+          "s32": 527
+        }
+      },
+      {
+        "word": 528,
+        "encoded": 320,
+        "int_kind_decoded": {
+          "u8": 272,
+          "s8": 272,
+          "u16": 528,
+          "s16": 528,
+          "s32": 528
+        }
+      },
+      {
+        "word": 529,
+        "encoded": 321,
+        "int_kind_decoded": {
+          "u8": 273,
+          "s8": 273,
+          "u16": 529,
+          "s16": 529,
+          "s32": 529
+        }
+      },
+      {
+        "word": 530,
+        "encoded": 322,
+        "int_kind_decoded": {
+          "u8": 274,
+          "s8": 274,
+          "u16": 530,
+          "s16": 530,
+          "s32": 530
+        }
+      },
+      {
+        "word": 531,
+        "encoded": 323,
+        "int_kind_decoded": {
+          "u8": 275,
+          "s8": 275,
+          "u16": 531,
+          "s16": 531,
+          "s32": 531
+        }
+      },
+      {
+        "word": 532,
+        "encoded": 324,
+        "int_kind_decoded": {
+          "u8": 276,
+          "s8": 276,
+          "u16": 532,
+          "s16": 532,
+          "s32": 532
+        }
+      },
+      {
+        "word": 533,
+        "encoded": 325,
+        "int_kind_decoded": {
+          "u8": 277,
+          "s8": 277,
+          "u16": 533,
+          "s16": 533,
+          "s32": 533
+        }
+      },
+      {
+        "word": 534,
+        "encoded": 326,
+        "int_kind_decoded": {
+          "u8": 278,
+          "s8": 278,
+          "u16": 534,
+          "s16": 534,
+          "s32": 534
+        }
+      }
+    ],
+    "float_countermodel": {
+      "word": 511,
+      "encoded": 303,
+      "payload_hex": "0000012f",
+      "binary32_class": "positive subnormal <1",
+      "int_pop": 0,
+      "decoder_word": 208,
+      "condition": "Same raw encoded DWORD is loaded as payload and tagged2; relevant SIMD exceptions masked, including denormal if applicable. DAZ changes the subnormal to0 but not the resulting integer0. No authored float binding or machine-code execution claimed."
+    },
+    "remaining": "Actual source declarations/references, successful resolver same-cell binding, valid backing capacity, stack depth, absence of intervening writes/aliasing, natural interpreter reachability and later command admission remain open."
+  },
+  "retained_EXP013": {
+    "cases": 14,
+    "new_cases": 0,
+    "limits": "historical synthetic0x284 stack/error-handlerRETstub/Unicorn2.1.4; corroboration, not actual interpreter state"
+  },
+  "limits": "Valid stable resolved record and four writable output bytes; typed load width0..5 and kind1/2; PUSHV depth0..62 then valid pop, private stack/frame, normal native ABI/returns/no interference. Static resolved dispatch edges are not natural reachability; no entire interpreter, reference lifetime, actual authored widths/aliases or command execution proven.",
+  "affected_claims": [
+    "OV42 unchanged VM-transfer premise of spattack-native-word-remap",
+    "FABLE native queue output versus typed PUSHV/kind representation",
+    "OPUS exact out-pointer/selector pop argument contract"
+  ]
+}

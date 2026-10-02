@@ -95,7 +95,7 @@ shows what the codes name, and the console is its only known reader.
 
 ## The accessor that this reader bypasses
 
-The same field the renderer reads at `+0xAAC` **has a dedicated nineteen-byte accessor:**
+The same field the renderer reads at `+0xAAC` **has a dedicated ~~nineteen-byte~~ twenty-byte accessor:** *(corrected 2026-10-02, OPUS: `0017D490` runs to its `ret` at `0017D490+0x13`, 20 B)*
 
 ```asm
 0017D490  sub  rsp, 0x28

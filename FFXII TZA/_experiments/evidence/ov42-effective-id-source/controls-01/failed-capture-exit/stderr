@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-effective-id-source\controls-01\failed-capture-exit\prove.py", line 84, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-effective-id-source\controls-01\failed-capture-exit\prove.py", line 57, in main
+    for tag,d in [('capture-01','capture.py'),('owner-01','capture-owner.py'),('feasibility-01','feasibility.py')]:receipt(tag,d)
+                                                                                                                   ~~~~~~~^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-effective-id-source\controls-01\failed-capture-exit\prove.py", line 13, in receipt
+    if s.get('terminal') is not True or s.get('exit')!=0 or s.get('exception') is not None or s['driver_sha256']!=sha(P/driver) or not(P/(tag+'.stdout')).read_bytes() or(P/(tag+'.stderr')).read_bytes():raise ValueError('required invocation failed '+tag)
+                                                                                                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required invocation failed capture-01

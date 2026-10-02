@@ -61,24 +61,33 @@ behaviour.*
 | slot | body | what it does |
 |---:|---|---|
 | 0 | `00598280` | destructor, over `PStream`'s `00598210` |
-| 1 | `0059BD40` | **Close** - releases the buffer backing, then the second backing, returns true |
+| 1 | `0059BD40` | **Close** - releases the buffer if `+0x30` is non-zero, then the `+0x40` backing if it is signed-positive; returns AL 1 on every path; never touches the `+0x28` handle (§5c) |
 | 2 | `0059D920` | **IsOpen** |
 | 3 | `0059ED70` | **Rebind** - re-resolves a new path, re-copies it, frees the old copy conditionally |
 | 4 | `0059FAC0` | **Close-then-rebind** - slot 1, then slot 3, then clears `+0x18` |
-| 5 | `0059D4B0` | **Read** - from the buffer, else `ReadFile`, else the second backing |
+| 5 | `0059D4B0` | **Read** - from the buffer, else `ReadFile`, else the `+0x40` backing; returns 0, calling nothing, when none applies (§5c) |
 | 6 | `0059FDA0` | **Seek** on the buffer backing |
 
 **Slot 2 is twenty-seven bytes and settles what "open" means here.** It returns
-`!(+0x28 == -1 && +0x30 == 0 && +0x40 == -1)` - false in exactly the state the constructor writes,
-true as soon as any one of the three backings is bound. That is the test
+`!(+0x28 == -1 && +0x30 == 0 && +0x40 == -1)`, comparing all three as full 64-bit values, and it sets only AL
+(RAX bits 8-63 are not assigned). It is false in exactly the state the constructor writes, and true as soon as any
+one of the three fields leaves its sentinel. *That is weaker than "a backing is bound".* A `+0x40` of 0 is not the
+`-1` sentinel, so a stream whose route-1 view failed to allocate counts as open (§5c). That is the test
 [the resource request queue](../the-resource-request-queue.md) means when it says a kind-2 record
 proceeds "when `0059D920` accepts it".
 
-**Slot 5 is where the three backings show themselves.** It reads from the in-memory buffer if there
-is one; otherwise, if its third argument is set and `+0x28` is not `-1`, it calls
-**`KERNEL32!ReadFile`** on that handle (resolved from the import directory, not guessed); otherwise
-it falls to `+0x40`. So a stream is backed by *a buffer, a Win32 handle, or a package entry*, and
-`IsOpen` is the disjunction of the three.
+**Slot 5 is where the three backings show themselves.** It tries them in this order:
+- **The buffer.** If `+0x30` is non-zero, it reads from the in-memory buffer.
+- **A zero-byte request.** Otherwise, if the low 32 bits of its third argument (the byte count) are zero, it
+  returns 0 at once.
+- **The handle.** Otherwise, if `+0x28` is not `-1`, it calls **`KERNEL32!ReadFile`** on that handle (resolved
+  from the import directory, not guessed). It returns the DWORD count that ReadFile wrote into a slot Read zeroed
+  first, not ReadFile's BOOL.
+- **The `+0x40` backing.** Otherwise it reads from `+0x40`, but only if that value is signed-positive. If it is
+  not, Read returns 0 and calls nothing.
+
+So a stream is backed by *a buffer, a Win32 handle, or a package entry*. `IsOpen` tests only that the three fields
+are not all at their sentinels, which is weaker than any one of them being a usable backing (§5c).
 
 ### 2a. The path pointer carries an ownership bit
 
@@ -134,9 +143,11 @@ token it **constructs a stream and then immediately closes and destroys it, with
 001DA83F  jne  001DA810               ; next token
 ```
 
-*Construction is the whole operation.* Resolving with selector 5 takes a branch in §5's lookup that
-bumps a counter and stamps the entry rather than delivering bytes - so **a prefetch token is a
-resolve-and-mark, not a read**, which is what "handed to the file cache" was standing in for.
+*Construction is the whole operation.* On a route-1 hit, selector 5 takes the arm of §5's lookup
+that bumps the counters and, when the entry's kind is 1-4, stamps it to 5 (§5c). The small view
+onto the cached bytes is still allocated, but the loop closes the stream without ever reading it -
+so **a prefetch token is a resolve-and-mark, not a read**, which is what "handed to the file cache"
+was standing in for.
 
 ## 4. The resolver, and what it logs
 
@@ -180,6 +191,175 @@ builds a key, hashes it, and searches a tree:
    `b8` A1: the lock `+0x58` is taken at `0020C230` / `0020C23C` and released at `0020C2B3` / `0020C2C1`; the root
    `+0x38` is read at `0020C242`, the sentinel `+0x28` at `0020C246`, and the node key `+0x20` compared at
    `0020C255`.)*
+
+### 5a. Insertion takes a key it is given, all 32 bits (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming ASTRA's packet `filecache-insert-key-admission` (`1b2154feb`) at the scope FABLE's
+independent review accepted ([review](../../_index/candidates/fable-review-astra-filecache-insert-key-admission-1002/REVIEW.md),
+ACCEPT-WITH-NARROWING, 81 checks; record [`filecache-insert-consumption-fable-1002`](../../_index/candidates/filecache-insert-consumption-fable-1002/README.md)).*
+
+Section 5's key is produced for a **lookup**: the path is normalised, hashed, and bit 31 is cleared. The cache's
+**insertion** entry is a different interface, and nothing on it applies that domain:
+
+- **`001D6A20` takes the key ready-made.** The key arrives in `ecx` as a 32-bit number, is held in `ebp` and is
+  passed on in `edx` to `0020B680`, beside a data pointer (`rdx`), a 32-bit size/value (`r8d`) and a 32-bit kind
+  (`r9d`). There is no hash, prefix scan or bit-31 clear on that path; a key with bit 31 set would pass through
+  unchanged, where the section 5 producer would have cleared it.
+- **`0020B680` keeps it whole.** The key's saved dword survives to the insertion call, and every key comparison is an
+  unsigned full-dword compare. An existing key takes the replace branch; a new one has its saved dword's address
+  passed to `0020B5F0`.
+- **`0020B5F0` finds or inserts.** It walks the tree with unsigned compares on the dword at each node's `+0x20` (the
+  same node layout section 5 reads). If the key is already there it returns that node's `+0x28` slot and copies
+  nothing (`0020B5F0` + 0x41). Otherwise it builds a 16-byte pair on its stack (key at `+0`, a zero qword at `+8`)
+  and hands it to the tree's insert helper (`0020B5F0` + 0x72). The new node takes all 16 bytes at `+0x20`..`+0x2F`,
+  and the caller stores the value pointer through the returned `+0x28` slot.
+- **Only the dword at `+0x20` is the key.** The pair's bytes `+4`..`+7` are never written, so a node's `+0x24`..`+0x27`
+  hold stale stack bytes. Read the key as a dword, never as a qword.
+- **Rebalancing does not touch it.** The tree's colour-and-link leaf writes only node and header bytes `+0x00`..`+0x19`.
+- **Insertion can be skipped.** It happens only when the call at `0020B680` + 0xC6 returns non-null. On null nothing
+  is inserted, but the qword add into the receiver's `+0x90` (`0020B680` + 0x199) still happens.
+
+So the 31-bit domain is a property of section 5's lookup producer, not a bound on what the cache accepts. Whether any
+caller ever inserts a key with bit 31 set is **not established**: the callers' key domain was not traced, and they may
+all restrict keys to 31 bits.
+
+**Premises and limits.** The key survives into the node only under these premises:
+- the input pair and the private frames are stable;
+- nodes are valid, fresh and disjoint `0x30`-byte allocations at addresses that do not wrap;
+- the tree and its header are well formed;
+- returns and register preservation follow the normal ABI;
+- nothing interferes concurrently.
+
+That a pointer is carried through intact does not prove the memory it points at stays the same. Not established
+here: the allocator callback's effects, what the replace branch does, eviction, lifetime, collisions and cache
+occupancy.
+
+### 5b. Which key a route-2 backfill puts in the cache (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming two ASTRA packets at the scope FABLE's independent reviews accepted:
+`filecache-route2-commit-key` (`81cbc06f0`, [review](../../_index/candidates/fable-review-astra-filecache-route2-commit-key-1002/REVIEW.md),
+ACCEPT-WITH-NARROWING, 72 checks) and `filecache-source-key-initialization` (`50dd4cc33`,
+[review](../../_index/candidates/fable-review-astra-filecache-source-key-initialization-1002/REVIEW.md), ACCEPT-WITH-NARROWING,
+56 checks). Record: [`filecache-backfill-key-consumption-fable-1002`](../../_index/candidates/filecache-backfill-key-consumption-fable-1002/README.md).*
+
+When route 1 misses and route 2 reads the file from the archive, the resolver can copy the result into the RAM cache
+(section 8's "whether a route-2 hit is copied into the cache"). The key that copy is filed under is **not always
+section 5's fresh hash**.
+
+**Route 1 writes the key only when there is a key.** The resolver hands `0020C1B0` a pointer to the source frame's
+dword `+0x28` as its fifth argument, the out-key.
+- If the normalised key's first byte is non-zero, `0020C1B0` hashes it (bit 31 cleared) and stores the result through
+  that pointer (`0020C1B0` + 0x7D), before it knows whether the tree holds the key.
+- If the first byte is zero, nothing is hashed and nothing is stored; it returns -1 (the branch at `0020C1B0` + 0x6D).
+
+**The commit carries whatever `+0x28` holds.**
+- On an armed commit the resolver loads the dword at frame `+0x28` (`0059EE90` + 0x320). The arm requires that the
+  lookup has already missed.
+- The backfill `0059A9B0` keeps that dword in `esi` (`0059A9B0` + 0x13) and passes it as the key to the insertion
+  entry `001D6A20` (`0059A9B0` + 0xF4; section 5a).
+- The resolver writes nothing at `+0x28` itself.
+- The backfill inserts only when its first call returns non-null; otherwise it returns -1 and the cache is not
+  touched.
+
+**What `+0x28` held before the lookup** depends on how the stream was set up:
+- The record constructor `00597930` zeroes the dword at `+0x28` (`00597930` + 0x21) before it calls the resolver.
+- The reader constructor `00597970` zeroes its `+0x48` (`00597970` + 0x33). It passes the resolver `this + 0x20`, so
+  that is the same frame field.
+- A rebind, `0059ED70`, calls the resolver first (`0059ED70` + 0x27) and resets nothing. It carries the value the
+  field held when the rebind began. That can be a constructor's 0, because both constructors store the zero even when
+  they skip the resolver on a null name.
+
+**So:**
+- After a non-empty normalisation, the cached key is the fresh 31-bit hash.
+- After an empty one, it is 0 on a first construction and the previous value on a rebind.
+
+This is the cache's key-interface contract, not a claim about play. **No natural input has been shown to reach an
+empty-key archive hit.** "Empty" here means only that the normaliser left a zero first byte; which paths do that is
+the normaliser's question.
+
+**Premises and limits.** These conclusions hold only if:
+- `+0x28` does not overlap a private frame;
+- every callee follows the normal ABI and returns normally;
+- no opaque callee or concurrent writer touches the field.
+
+`esi` has to survive eight calls between the save and the insert, three of them imports. Not established here:
+- a census of every writer of the field;
+- its lifetime and reuse;
+- all callers;
+- high-bit keys, collisions and eviction.
+
+### 5c. A cache hit whose view cannot be allocated (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming four ASTRA packets at the scope FABLE's independent reviews accepted:
+`filecache-zero-handle-return` (`5b659b28d`, [review](../../_index/candidates/fable-review-astra-filecache-zero-handle-return-1002/REVIEW.md),
+ACCEPT-WITH-NARROWING, 52 checks), `filecache-open-sentinel` (`446a56af9`,
+[review](../../_index/candidates/fable-review-astra-filecache-open-sentinel-1002/REVIEW.md), ACCEPT, 32 checks),
+`filecache-read-zero-view` (`4a818c6d3`, [review](../../_index/candidates/fable-review-astra-filecache-read-zero-view-1002/REVIEW.md),
+ACCEPT, 34 checks) and `filecache-close-zero-sentinel` (`a30d4772a`,
+[review](../../_index/candidates/fable-review-astra-filecache-close-zero-sentinel-1002/REVIEW.md), ACCEPT, 28 checks).*
+
+A route-1 hit does not hand the cached bytes straight to the stream. The lookup first allocates a small view onto
+them. **That allocation can fail, and a failed one looks like success everywhere downstream.**
+
+**What a hit does before it allocates.** Having found the entry, `0020C1B0` writes the entry's size through the
+caller's size pointer (`0020C1B0` + 0xDC). It then calls `0020C300` (`0020C1B0` + 0xF8), passing the selector and
+the entry's kind dword `+0x14`, while still holding its lock. `0020C300` does four things:
+- It increments the manager's dword `+0x88` (`0020C300` + 0x28).
+- It increments the entry's byte `+0x10`, exactly once on every path.
+- It may stamp the entry:
+  - selector 5, when the kind is 1-4: kind `+0x14` = 5;
+  - otherwise, kind 5 or selector 5: no stamp;
+  - otherwise, selector 3: word `+0x0E`;
+  - otherwise, selector 1, 2 or 4: word `+0x0C`;
+  - any other selector: no stamp.
+- Last, it asks the CRT `malloc` for 16 bytes.
+
+If the block is null, `0020C300` returns 0 (`0020C300` + 0x123). It does not construct the view, and it undoes
+neither the counters nor the stamp. Otherwise it constructs the view in the block and returns it.
+
+**Zero is not a miss.**
+- The lookup returns that 0 past its unlock and the cookie check, and `001D6D20` passes it on.
+- The resolver stores it in the stream's `+0x40` (`0059EE90` + 0x15A) and tests only its sign (`0059EE90` + 0x161,
+  `js`).
+- A -1 sends the name to route 2. A 0 takes the cache-success exit: it copies the size into `+0x20` and returns
+  status 0 without touching the archive.
+- The reader's constructor ignores that status in any case. It overwrites RAX straight after the call
+  (`00597970` + 0x4B) and returns the stream.
+
+**The stream left behind** has `+0x28` = -1, `+0x30` = 0, `+0x40` = 0 and a non-zero size at `+0x20`. The three
+slots treat it as follows:
+
+| slot | result on this stream | why |
+|---|---|---|
+| IsOpen | AL 1, "open" | `+0x40` = 0 is not the `-1` sentinel |
+| Read | 0, calling nothing, for any byte count | `+0x30` is 0, `+0x28` is -1, and `+0x40` fails the signed `> 0` test |
+| Close | AL 1, calling nothing and writing nothing | `+0x30` is 0 and `+0x40` is not positive; IsOpen still returns AL 1 afterwards |
+
+**Close's "true" never means "now closed".** Close never touches `+0x28`. It zeroes `+0x30`, and it sets `+0x40` to
+-1 only when `+0x40` was positive. So the IsOpen after a true Close is false only when `+0x28` was already -1 and
+`+0x40` was positive or already -1. In particular, this body never makes a handle-backed stream "closed".
+
+**A reimplementation must keep:**
+- the three sentinels exactly (`-1`, `0`, `-1`), compared as full 64-bit values;
+- the signed test on `+0x40`, in both Read and Close;
+- the AL-only booleans;
+- Read's full-zero return, and its stack-count return on the ReadFile path;
+- a null view as 0, not -1, so that it is not treated as a miss.
+
+**Premises and limits.** These are static, conditional contracts. They hold only if:
+- the manager, tree, entry and stream pointers are valid and the frames are private;
+- every callee returns normally under the Win64 ABI, including the lock and unlock, the tree helper, the view
+  constructor and the release helpers;
+- no opaque callee or concurrent writer touches these fields;
+- the cookie check succeeds.
+
+Not established here:
+- that natural play ever reaches a failed 16-byte allocation;
+- what any caller does after a 0-byte Read;
+- whether anything leaks, and what the helpers release;
+- the counters as live handle counts, and the entry byte `+0x10` wrapping;
+- what the stamps mean;
+- every writer, all callers, ownership, lifetime and scheduling.
 
 ## 6. Route 2 - a lowercased key and MD5
 
@@ -308,6 +488,7 @@ at runtime.**
 | `00865390` → `001DB050` | the four-folder predicate that forces selector 5 | §8 |
 | `001D6D20` → `0020C1B0` | route 1: the RAM-cache lookup, lock `+0x58`, tree `+0x38` / `+0x28` | §5 |
 | `0020C440` / `00674A00` | route 1's key builder and its 33-multiplicative hash | §5 |
+| `0020C300` | route 1's view allocation on a hit: counters, entry stamp, a 16-byte `malloc`; 0 on failure | §5c |
 | `0019AEE0` / `001F47D0` | route 2: MD5 of the lowercased key and the digest-tree compare | §6 |
 | `0059A9B0` | copies a route-2 hit into the RAM cache | §8 |
 | `00599250` | UTF-8 to UTF-16 conversion whose output nothing reads | §8 |
@@ -328,6 +509,7 @@ Anything that hooks file access, such as a loader, has to act at or above this r
 | The selector census and the prefetch loop | whole-image call index; falsification R3–R4 (`falsify_path_resolve.py`) | 1 (static) |
 | The six resolver callers and the three tags | falsification R5–R6 | 1 (static) |
 | Route 1's key, hash and tree | `0020C1B0` / `0020C440` / `00674A00`; falsification R7; `b8` A1 | 1 (static) |
+| A failed route-1 view allocation leaves an "open" stream that reads 0 and closes "true" | the four FABLE reviews named in §5c (`0020C300`, `0059D920`, `0059D4B0`, `0059BD40` read whole; sandbox runs of the shipped bytes with stubbed callees) | 1 (static) |
 | Route 2's MD5 and digest tree | `0019AEE0` / `001F47D0`, the `CryptCreateHash` imports; falsification R8 | 1 (static) |
 | The selector's three effects, the forced 5 and the two helpers | `0059EE90` read whole; `b8` S1–S6 | 1 (static) |
 | The UTF-16 copy is unread | `b8` U1 | 1 (static) |

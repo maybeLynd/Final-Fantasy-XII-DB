@@ -1,0 +1,83 @@
+{
+ "page": "19-Save-Load-Settings/the-save-load-screen-widgets.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01CsdbXqRd5h9LCs97R3i5zB",
+ "report": "the-save-load-screen-widgets.json",
+ "rows": [
+  {
+   "fn": "003BB2C0",
+   "text": "stores 5 to dword `02B40E1C`, zero to dwords `02B40EC0`, `02B40FE4` and `02B40E10` and to qword `02B40E14`, and returns 0",
+   "anchors": [
+    [
+     "003BB2C2",
+     "mov"
+    ],
+    [
+     "003BB2CC",
+     "mov"
+    ],
+    [
+     "003BB2D2",
+     "mov"
+    ],
+    [
+     "003BB2D8",
+     "mov"
+    ],
+    [
+     "003BB2DF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0057E950",
+   "text": "with `rbx` set from `r8d` (zero-extended): for `ecx` 4 with `edx` zero and bit 1 of byte `rbx+0xC0` set, calls `00393630(stack buffer, 0x40)` and, only when qword `02CA99C0` is non-null, copies that NUL-terminated buffer to `+8` of a stack record whose first dword is 5 and calls `00582540(qword 02CA99C0, record)`; for `ecx` 5, or 4 when `edx` is non-zero or that bit is clear, calls `00247510(qword rbx+0xC8, 0x1D, record)` with a record of dword 0xD, byte `+0x39A` of `[02CA99C0]` (0xFF when that qword is null) at `+4` and `edx` at `+8`, then clears bit 0 of dword `rbx+0xC0`; any other `ecx` does nothing",
+   "anchors": [
+    [
+     "0057E96E",
+     "sub"
+    ],
+    [
+     "0057E9B1",
+     "call"
+    ],
+    [
+     "0057E9E9",
+     "call"
+    ],
+    [
+     "0057EA19",
+     "call"
+    ],
+    [
+     "0057EA1E",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0057E610",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "0057EDB0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "005812B0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

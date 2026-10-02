@@ -1,0 +1,237 @@
+{
+  "package": "ov42-slot-id-producer",
+  "method": "A STATIC_ONLY retained original admission/dataflow and finite scan invariant",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-01.status.json",
+      "bytes": 249,
+      "sha256": "f6ae98857520b0ea4072bc1c0ad2fb8b5b884794cba23b8b574e89c53e248dff"
+    },
+    {
+      "path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-tail.py",
+      "bytes": 892,
+      "sha256": "ddfdfaa48f1d072ac1efd2f30d2dfa11456b81a7754afb79d9401d16e25a98dd"
+    },
+    {
+      "path": "control-01.status.json",
+      "bytes": 243,
+      "sha256": "60f94011d4898aae4cdaa31a47038e01ecf68cb365cd255924b13ca9322e9deb"
+    },
+    {
+      "path": "control-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-01.stdout",
+      "bytes": 109,
+      "sha256": "4d81948a44e83bd38874791283b4fc48875c44ddbba7486dc92d38d226ea2753"
+    },
+    {
+      "path": "control-result-01.json",
+      "bytes": 3520,
+      "sha256": "339590fe6a997d3ed85820dcf93faa43d3d1de26fb75cc8ba38c460a99ec0f6d"
+    },
+    {
+      "path": "control.py",
+      "bytes": 3775,
+      "sha256": "bcacfede3997eac72247286f44d47c9edd789aa00998c5bf94e5f6cc7fa44dd4"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/capture-01.status.json",
+      "bytes": 232,
+      "sha256": "d4e0c97bdb4c6e42893ac35e85691ffb5e4d839109fec6d914a092eeebee6d30"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/status.json",
+      "bytes": 171,
+      "sha256": "7d0fef9e771f3d489351a094c37f73a7a9a8735f115ab1cbcee59d336bde2960"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/stderr",
+      "bytes": 1082,
+      "sha256": "043800c744608bf097e099ba8f1013b1be713ea4c624248192ede3a5fc8d2176"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/missing-capture-status/status.json",
+      "bytes": 171,
+      "sha256": "7d0fef9e771f3d489351a094c37f73a7a9a8735f115ab1cbcee59d336bde2960"
+    },
+    {
+      "path": "controls-01/missing-capture-status/stderr",
+      "bytes": 1314,
+      "sha256": "26c1d7a19b1400cd1df5edb36b5239711e900cd888d0190b42ca7009c62193a6"
+    },
+    {
+      "path": "controls-01/missing-capture-status/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/missing-retained-source/status.json",
+      "bytes": 171,
+      "sha256": "7d0fef9e771f3d489351a094c37f73a7a9a8735f115ab1cbcee59d336bde2960"
+    },
+    {
+      "path": "controls-01/missing-retained-source/stderr",
+      "bytes": 1657,
+      "sha256": "2c81c51841b53bc0f6ec8144c6b920509af188e892b9b679279fd5eb9bf53eb4"
+    },
+    {
+      "path": "controls-01/missing-retained-source/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "environment-01.json",
+      "bytes": 457,
+      "sha256": "5bbb83e6c2cab3058edf087e99d9c6a44d96b66a2a957fed6887eef0107d73bf"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1542,
+      "sha256": "1c81e50d9d81017467c5b57d8cca7de4518c07056dd55210a80650ca7ef03502"
+    },
+    {
+      "path": "prove-01.status.json",
+      "bytes": 241,
+      "sha256": "d5cddf63e67ffdd68961a694dc521ea3201d7e52813399daca1305807dbb0f8e"
+    },
+    {
+      "path": "prove-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-01.stdout",
+      "bytes": 114,
+      "sha256": "0eb4d333ca68f963976d61501630058c6c0c60965d3d5ac4d7f43aa6af5a78ff"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 10295,
+      "sha256": "eea6d4a5d8efd03db4cbd0226b4c007b51fad6dad678bed3d09081d631a4446b"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5186,
+      "sha256": "3cca9538cd26e66f7f4f4e0c27619fc8f6b934c0bf28b18829b8d622d8b0f590"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 4474,
+      "sha256": "e3d0d8538effa34f8702c09767cf2fdf8eeaf15338cf16ebd0be4464afc58e13"
+    },
+    {
+      "path": "retained/manifest.json",
+      "bytes": 6808,
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230"
+    },
+    {
+      "path": "retained/manifest.json.git.status.json",
+      "bytes": 208,
+      "sha256": "c5d9e9d1d955dcbfc9fe7abf003636f4138c43c666f4d3fc56b17432dc6a02c0"
+    },
+    {
+      "path": "retained/manifest.json.git.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/manifest.json.git.stdout",
+      "bytes": 6808,
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230"
+    },
+    {
+      "path": "retained/slot-acquisition-callers-raw-01.json",
+      "bytes": 18486,
+      "sha256": "b27ee5a03712f3d9bbfcf429fe3277e38de86f236f3ea593ec4aabd479c5e0ab"
+    },
+    {
+      "path": "retained/slot-acquisition-callers-raw-01.json.git.status.json",
+      "bytes": 231,
+      "sha256": "a33780a0a1367fa5b2328ed02ad83b785d9e39716b63ebbb74fa780aef4c6467"
+    },
+    {
+      "path": "retained/slot-acquisition-callers-raw-01.json.git.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/slot-acquisition-callers-raw-01.json.git.stdout",
+      "bytes": 18486,
+      "sha256": "b27ee5a03712f3d9bbfcf429fe3277e38de86f236f3ea593ec4aabd479c5e0ab"
+    },
+    {
+      "path": "retained/slot-action-id-raw-01.json",
+      "bytes": 28964,
+      "sha256": "e9b94feb62cf24cd175b432dafb76f31724517d8fe55dfa09cbc573c984f6878"
+    },
+    {
+      "path": "retained/slot-action-id-raw-01.json.git.status.json",
+      "bytes": 221,
+      "sha256": "3787e05120291dabd57ebdd98d102a08f613bbd6cecc0ccbff3149dbd53efd1d"
+    },
+    {
+      "path": "retained/slot-action-id-raw-01.json.git.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/slot-action-id-raw-01.json.git.stdout",
+      "bytes": 28964,
+      "sha256": "e9b94feb62cf24cd175b432dafb76f31724517d8fe55dfa09cbc573c984f6878"
+    },
+    {
+      "path": "retained-identities-01.json",
+      "bytes": 685,
+      "sha256": "b0439e76d52c290d3ad84810eb1c0a3740ef5fdceb39bc6b9be3a4d2b4151d9a"
+    },
+    {
+      "path": "source-tail-01.json",
+      "bytes": 2765,
+      "sha256": "7db7271499ea92452ae9812d0d48eb61a694ae70b4233d84e0a8ac7936d911c0"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "limits": [
+    "Upstream command/AI/authored VM producer domains, current descriptor/row identity, initialized pool/list ownership/reuse, normal control/command reachability and wholeOV42 natural rejection stay open.",
+    "Unit+4!=FF skips acquisition without defining a fresh AL. Bit30 row path may skip while22C2158 bit1 is set; D0..F1 special-state exception is separate. For511..534 WORDdiff303..326>33 reaches that flag gate. Readable stable resolved row and unchanged carriers required; resolver/descriptor/natural command state not proved.",
+    "No original-code execution/emulator/live state. Stable valid disjoint slot/list/frame storage and normal native ABI/returns are premises."
+  ],
+  "acceptance": "Producer valid, independent review/canonical incorporation pending"
+}

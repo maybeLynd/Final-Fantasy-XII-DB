@@ -1,0 +1,2 @@
+file	script	pc	verb	name	opcode	status	args_push_order
+fixture/a.ebp	fixture_first	60	0x29A	getspattackskillinfo	CALL	ok	synthetic-reference:1;synthetic-reference:2

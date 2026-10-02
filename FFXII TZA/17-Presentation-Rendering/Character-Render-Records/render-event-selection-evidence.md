@@ -483,7 +483,7 @@ These formulas refine the unrestricted `base + offset` notation in the resource
 addressing page and the pointer assumptions feeding this initializer. Corrections
 are routed to the semantic and structured-record owners; closure remains pending
 their agreement. The initialized live address domain, source ownership, external
-ID invalidation, cleanup-flag producers and remaining native animation callbacks
+~~ID invalidation, cleanup-flag producers and~~ *(answered: see UQ-193 above for id invalidation - every release caller resets the id to -1 - and the 2026-09-30 note above for the flag: its only setter is `0041D4D0`; 2026-10-02, OPUS)* remaining native animation callbacks
 remain architectural questions. No original-game process was accessed for this package.
 
 ## The `02CA4410`/`02CA4670` handler arrays, and who fills them — 2026-09-14 (NOCALLER-INSTALLERS)
@@ -498,7 +498,7 @@ caller; each is reached only by its array slot.
 
 **How a slot becomes a call.** `.data` `01EFFAF0` is a pair table of 16-byte records
 `{invoker, dword flag}`; the command id is `word[record] & 0x7F` clamped to `0x4B`
-(`0041DB1D`–`0041DB4B`), so the table covers all 75 ids. Three stream drains —
+(`0041DB1D`–`0041DB4B`), so the table covers ~~all 75 ids~~ 76 ids, `0x00`–`0x4B`, one more than the 75-slot banks *(corrected 2026-10-02, OPUS: `0041DA90`+0x95 `cmp al, 0x4b` then `jbe` keeps `0x4B` itself)*. Three stream drains —
 `0041DA90` `PresentationEmbeddedRecord_UpdateCurrentState`, `0041E000`
 `PresentationEmbeddedRecord_ExecuteCommandStreamUntilThreshold`, and `0041E1D0`
 `PresentationEmbeddedRecord_ExecuteDeferredCommandSubset` — walk command records at
@@ -534,7 +534,7 @@ directly (its sole rip ref is the float const at `01CEBBA8`).
 | 0x11 | `00520160` | 23 B — touches `+0x3D0` | `00520160` |
 | 0x12 | `005207C0` | `003E6DA0` + `003E29F0` pair | `005207C9` |
 | 0x13 | `00520430` | flag work on `+0x290`/`+0x3F4`–`+0x3F6`; `00429500`,`004288B0`,`0042B580` | `00520482` |
-| 0x14 | `00520E70` | tail into `0042DC10` region | `00520E70` |
+| 0x14 | `00520E70` | ~~tail into `0042DC10` region~~ posts the per-node body `00521050` through `00426870` with `word[rec + 0]` and the command *(corrected 2026-10-02, OPUS: `00520E70`+0xA `lea rdx, [00521050]`, `00520E70`+0x11 `call 00426870`)* | `00520E70` |
 | 0x15 | `00520740` | 58 B — touches `+0x3D1` | `00520740` |
 | 0x16 | `00520BD0` | `0042B550`; flag pair `+0x3D2`/`+0x3D3`, `+0x3F8` | `00520BF8` |
 | 0x18 | `00520C80` | `00421E20` + `003B0C50`; `+0x60`/`+0x90` fields | `00520C8A` |

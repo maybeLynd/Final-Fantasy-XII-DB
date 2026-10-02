@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-queue-output-alias\controls-01\coherently-repinned-output-width\prove.py", line 76, in <module>
+    if __name__=='__main__':main(Path(sys.argv[1]))
+                            ~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-queue-output-alias\controls-01\coherently-repinned-output-width\prove.py", line 64, in main
+    r=json.loads((P/n).read_text());checks.append(V.validate(r));sourcepins.append(dict(path=n,sha256=sha(P/n)))
+                                                  ~~~~~~~~~~^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-queue-output-alias\controls-01\coherently-repinned-output-width\validate-title-source-annotations.py", line 61, in validate
+    raise ValueError("memory/address/access annotation disagrees at " + record["pc"])
+ValueError: memory/address/access annotation disagrees at 0x309c13

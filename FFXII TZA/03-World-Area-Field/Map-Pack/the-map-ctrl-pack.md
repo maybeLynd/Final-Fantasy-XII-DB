@@ -1083,7 +1083,7 @@ file with `0032E400(4, index)`, allocates an arena block tagged `MapN` (`00D1112
 whose completion is **`00378BC0`** (`003780B1`) with the argument `block | mode` — the mode in the low
 two bits. It also stores `MapRef_GetAuxValue1(field) + 500` at `02ADD078` (`003780EB`–`003780FA`).
 Before the pack, `00377DC0` requests the loose `PS2Data\efb\<map>.efb` built from the same path
-(`00377E8A`–`00377EEE`), with completion `003788F0` → `02ADD050` in mode 1 and `003789A0` → `02ADD098`
+(`00377E8A`–`00377EEE`) *(qualified 2026-10-02, OPUS: that name is built only when the copied path has a `\` or `/` with more than four bytes after the last one; otherwise the request carries an empty string or the copied path unchanged - ASTRA's SPEC-accepted [`sd194-stale-name-slice`](../../_experiments/evidence/sd194-stale-name-slice/README.md), method A, under valid stack memory, a first NUL within 259 bytes and normal ABI; [the EFX/EFB page](../../17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md) §2b)*, with completion `003788F0` → `02ADD050` in mode 1 and `003789A0` → `02ADD098`
 in mode 0. The debug verb `mapload` (`0x2001`, `0050D4D0`) requests a single pack in mode 1.
 
 Only the mode-1 request names the scene: `00378A60` calls `00379A10(4, index)` — the map-name setter —

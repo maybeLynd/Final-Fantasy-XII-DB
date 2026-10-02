@@ -121,7 +121,7 @@ mystery to be solved one function at a time - it is a property of the instrument
 8-byte-aligned qword in the image's data sections for values equal to a function entry address:
 
 ```
-pointer slots found in data:   29,000 in .rdata,  3,015 in .data,  8 in _RDATA
+pointer slots found in data:   29,000 in .rdata,  3,015 in .data,  8 in _RDATA   <- answered 2026-10-02, OPUS: _RDATA has no base relocation, so 0 slots ("The _RDATA 8 were never real")
 distinct functions addressed:  10,472        <-- CORRECTED 2026-09-02, was 7,331
 ```
 
@@ -286,7 +286,7 @@ Phyre and the game.
 
 ## 6. A fixed table of 112 records with a heap fallback
 
-`00244F50`, 203 callers, read in full:
+`00244F50`, ~~203 callers~~ 206 calling functions *(corrected 2026-10-02, OPUS: 231 `call` sites and 16 tail-`jmp` sites, 247 in all, rel32 sweep)*, read in full:
 
 ```c
 if (size == 0) size = 0xC0;
@@ -817,7 +817,7 @@ The stale slot table sits beside this claim; **it does not carry it.**
 | 65.8 % address-taken among no-caller unowned | independent scan, full candidate set | **7,186 / 10,923 = 65.8 %** — holds |
 | Dark set: `Phyre` 1,743 | independent derivation | **exact** |
 | Dark set: `NativeRoutine` 514, `Runtime` 361, `NativeAdapter` 243, `Boundary` 173, `CompilerGeneratedCFG` 145, `NativeLeaf` 91 | same | **all six exact** |
-| `_RDATA` holds 8 slots | independent scan | **exact** |
+| ~~`_RDATA` holds 8 slots~~ *(answered: see §15, "The `_RDATA` 8 were never real"; `_RDATA` carries no base relocation; 2026-10-02, OPUS)* | independent scan | **exact** |
 | 10,472 distinct functions addressed | independent scan | **10,473** — within 1 |
 | §2 `substantial`: 10,613 functions, 2,573,049 bytes, mean 242 | independent derivation | **exact, all three** |
 | §1's retraction of pass 51 — an edge census is not a function census | re-derivation | **sound**, and the distinction is real |
@@ -939,10 +939,10 @@ documents state — base, stride and extent, not proximity to a cited address:
 | slots | table | documented in |
 |---:|---|---|
 | 1,740 | ScriptVM native dispatch, family 0 — `01EED700`, 1,496 × `0x20` | [`scriptvm-native-dispatch-table.md`](../../01-Script-VM-Native-Bridge/scriptvm-native-dispatch-table.md) |
-| 339 | Battle action handler table — `01EEC460`, 359 slots | [`battle-action-handler-table.md`](../../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md) |
+| ~~339~~ 340 *(corrected 2026-10-02, OPUS: re-derived as in §17: 340 relocated function-entry slots in `01EEC460`–`01EECD98`)* | Battle action handler table — `01EEC460`, 359 slots | [`battle-action-handler-table.md`](../../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md) |
 | 202 | Combat formula step table — `01EFA5C0`, 202 × 8 | [`combat-formula-step-table.md`](../../08-Combat-Formula/Step-Table/combat-formula-step-table.md) |
-| **2,281** | **inside an already-documented table (75.7 %)** | |
-| 734 | outside every documented span (24.3 %) | |
+| **~~2,281~~ 2,282** *(corrected 2026-10-02, OPUS: 1,740 + 340 + 202)* | **inside an already-documented table (75.7 %)** | |
+| ~~734~~ 733 *(corrected 2026-10-02, OPUS: 3,015 − 2,282)* | outside every documented span (24.3 %) | |
 
 Of the 734, **501 point at `Script_VM_Native_Bridge`-owned functions** and cluster around
 `01F26xxx` — consistent with the four further ScriptVM tables that document describes (five tables,
@@ -1015,7 +1015,7 @@ metadata"*. That census counts only references the database happens to contain.
   overwrites them is untested, and that is the whole point of their being in a writable section.
   **PROPOSED-repos9e-12.**
 - **How many of the 158 gain an admissible reference once the reference census is redone properly.**
-  One was found by intersecting with relocations; the full re-census has not been run.
+  One was found by intersecting with relocations; ~~the full re-census has not been run.~~ *(answered: see the category README, "The re-census has now been run", and the-unresolved-158.md, 158 of 158; 2026-10-02, OPUS)*
   **PROPOSED-repos9e-13.**
 - The `.rdata` side was certified (27,202 of 29,000) but **not read** — it is nine times larger.
 
@@ -1148,8 +1148,8 @@ P4  the slot carries an IMAGE_REL_BASED_DIR64 relocation
 | **accounted for by those three** | **26,936** | **99.02 %** |
 | **uncharacterised** | **266** | **0.98 %** |
 
-The vtable figure comes from recovering **2,335 RTTI type descriptors → 2,271 complete-object
-locators → 2,271 vtables** and walking each until a slot fails the predicate. The two initializer
+The vtable figure comes from recovering **~~2,335~~ 2,350 RTTI type descriptors → ~~2,271~~ 2,286 complete-object
+locators → ~~2,271~~ 2,286 vtables** *(corrected 2026-10-02, OPUS: RTTI recount: 2,350 `.?AV`/`.?AU` descriptors sharing one `type_info` vftable, 2,286 locators whose self-RVA checks, 2,286 `.rdata` qwords pointing at them — §3's 2,286; the slot totals above were walked from 2,271 and are not re-derived here)* and walking each until a slot fails the predicate. The two initializer
 tables are documented in
 [static initialization order and injection timing](../../24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md),
 whose extents and `_initterm_e` / `_initterm` split this census reproduces independently. Its count

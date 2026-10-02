@@ -44,7 +44,7 @@ anything here (pass 6, 2026-09-15; the instrument still unions it,
 | ~~a chained `.pdata` range~~ | ~~1~~ banned as evidence; not a reference |
 | a rip-relative `lea` | 1 |
 
-**129 of the 135 are called only from other unlisted code.** The remaining **fourteen have a caller
+**~~129~~ 121 of the 135 are called only from other unlisted code.** *(corrected 2026-10-02, OPUS: 135 − 14 = 121, rel32 sweep against the listed extents; 129 is 143 − 14 and counts the six relocated, the one `lea` and the one `.pdata` block)* The remaining **fourteen have a caller
 the function list does contain**, and every one of those fourteen is reached by a **tail `jmp`**,
 never a `call`.
 

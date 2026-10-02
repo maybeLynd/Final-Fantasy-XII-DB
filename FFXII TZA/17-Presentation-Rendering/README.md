@@ -11,31 +11,31 @@
 ## Systems in this category
 
 - [`Authored-Commands/the-authored-presentation-command-handlers.md`](Authored-Commands/the-authored-presentation-command-handlers.md) —
-  **PARTIAL, tier 1.** The **28-body `00520xxx` family**: authored presentation commands dispatched
+  ~~**PARTIAL, tier 1.**~~ **DOCUMENTED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`, owner re-status 2026-10-01)* The **28-body `00520xxx` family**: authored presentation commands dispatched
   two tables deep — `01EFFAF0[id]` generated invoker → `02CA4410[id]` bank slot → handler — all 25
-  `CharacterRenderSystem_Initialize` registrations instruction-exact, plus the deferred-work pair
+  `CharacterRenderSystem_Initialize` registrations instruction-exact, plus the ~~deferred-work~~ apply-and-recurse pair *(corrected 2026-10-02, OPUS: `00426870`+0x33 `call rsi` applies the callback to the record at once and +0x4A `call 0042EF90` walks its children - this page's own 2026-09-20 correction, `00426870` defers nothing)*
   (`00520100` → `00520E90`) and the shared helper `00520010`.
 - [`CONTRACT-authored-command-ramp-channels.md`](CONTRACT-authored-command-ramp-channels.md) -
-  **SPECIFIED, tier 1, not differentially tested.** 160 slot records of `0xE0` bytes (`0x8C00`
+  **SPECIFIED, tier 1, ~~not~~ differentially tested.** *(corrected 2026-10-02, OPUS: the contract's front matter says `readiness: DIFFERENTIAL TESTED` - `diff_ramp_channels.py`, 483 commands, 0 mismatches)* 160 slot records of `0xE0` bytes (`0x8C00`
   exactly), each with **five linear ramp channels**. Four authored-command classes `0x0D`-`0x10` drive
   four of them, and **two of the four setters are absent from the function census** - precisely the
   two reached by a tail `jmp` rather than a `call`. `steps == 0` means immediate, not 256, and the
   value is **never clamped** to its target.
 - [`Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md`](Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md) -
-  **PARTIAL, tier 1.** `setResolutionSize` logs the request and **tail-jumps into the arithmetic**, and
+  ~~**PARTIAL, tier 1.**~~ **DOCUMENTED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`, every register row answered)* `setResolutionSize` logs the request and **tail-jumps into the arithmetic**, and
   the arithmetic - `001DDAC0` - **is not in the function census**. It fits the requested shape against
   **`16/9` and `16/3`**, clamping height below the first bound and width above the second. **The
   middle branch is not built like the other two**: two integer divides where the others write `1.0f`,
   and one field it never writes at all. What that does on screen is **not** established.
 - [`Scripted-Camera/the-scripted-camera-player.md`](Scripted-Camera/the-scripted-camera-player.md) —
-  **DOCUMENTED, tier 1 (2026-09-12).** How a script's `camerastart` becomes a camera move: four
+  ~~**DOCUMENTED, tier 1 (2026-09-12).**~~ **AUDITED, tier 1 (2026-09-12).** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* How a script's `camerastart` becomes a camera move: four
   channels per actor-manager slot, the `CAM7` **key/segment command stream** (`00258350`), 13 eased
   timing channels, cubic paths with arc-length tables, five interpolation kinds (linear, orbit,
   flat orbit, turn, flat turn; two path-follow kinds with no shipped user), actor/joint attachment,
   and hand-off to **camera record 5** of the eight-record priority stack.
 
 - [`Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md`](Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md) —
-  **DOCUMENTED, tier 1 (2026-09-12).** The **seven screen-fade layers** at `022BDD60` — one starter
+  ~~**DOCUMENTED, tier 1 (2026-09-12).**~~ **AUDITED, tier 1 (2026-09-12).** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The **seven screen-fade layers** at `022BDD60` — one starter
   `002EFA70(layer, frames, direction, white)` behind the `fadeout` / `whiteout` / `fadein` verbs,
   the field transitions and the cutscene skip's instant black — and the **49-row movie fade
   schedule** at registry slot 0, decoded from `battle_pack.bin`.
@@ -52,7 +52,7 @@
   [how a character fades](Character-Render-Records/how-a-character-fades-the-ten-channels.md) and
   [the focus point](Character-Render-Records/the-focus-point-of-a-character.md).
 - [`Character-Render-Records/how-a-status-shows-on-a-character.md`](Character-Render-Records/how-a-status-shows-on-a-character.md) —
-  **DOCUMENTED, tier 1 (2026-09-19), static.** A body shows **one status colour look at a time**, the lowest index of a
+  ~~**DOCUMENTED, tier 1 (2026-09-19), static.**~~ **AUDITED, tier 1 (2026-09-19), static.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* A body shows **one status colour look at a time**, the lowest index of a
   fourteen-entry list winning (Stone first, HP Critical last); a look must leave before the next arrives; **Poison,
   Silence, Sap, Disable and Disease share one pulsing tint**; Immobilize, Slow, Invisible and Stop run through a second
   block; control denial holds the look still.
@@ -62,7 +62,7 @@
   into a sum only when the winner is additive; six directional lights at most. A light's request bytes are named.
   The status tints are private ambient lights of this system.
 - [`Effect-File-Formats/an-effect-element-frame-by-frame.md`](Effect-File-Formats/an-effect-element-frame-by-frame.md) —
-  **DOCUMENTED, tier 1 (2026-09-19), static.** The per-frame update of effect element types `0x00`-`0x0A`: what each
+  ~~**DOCUMENTED, tier 1 (2026-09-19), static.**~~ **AUDITED, tier 1 (2026-09-19), static.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The per-frame update of effect element types `0x00`-`0x0A`: what each
   type's tail samples, the orientation mode (authored, or aligned to the element's own motion), and the fork every
   tail ends in - **an element outside its cull window is destroyed, not hidden; one that passes fires its child-spawn
   slots**. The draws are not on it.
@@ -86,28 +86,28 @@
 
 
 - [`Render-Command-List/the-ordered-render-command-list.md`](Render-Command-List/the-ordered-render-command-list.md) —
-  **DOCUMENTED, tier 1, crossref-clean.** Every render pass is **an object appended to a list**, not a
+  ~~**DOCUMENTED, tier 1, crossref-clean.**~~ **AUDITED, tier 1, crossref-clean.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* Every render pass is **an object appended to a list**, not a
   function that draws. **36 command classes** on a shared `OrderedObject` base whose third vtable slot
-  returns a **draw-order key** — `1` for scene begin, `0x10` for the ordinary passes, `0x80` for video.
+  returns a ~~**draw-order key**~~ **class mask** — `1` for scene begin, `0x10` for ~~the ordinary passes~~ most ordinary passes and `0x100` for the opaque and after-water passes, `0x80` for video *(corrected 2026-10-02, OPUS: the walks AND it and never sort, `0018B100`+0x67 `test dword ptr [rsi + 0x20], eax`; `001F2890` is `mov eax, 0x100`)*.
   Carries the complete **frame scope → wrapper → enqueue → constructor → vtable → RTTI class** map for
   every named pass, and the byte switches that turn each effect off.
 - [`Gi-Render-Commands/gi-render-command-family.md`](Gi-Render-Commands/gi-render-command-family.md) —
-  **DOCUMENTED, tier 1.** Eighteen classes carrying the **PlayStation 2 drawing vocabulary**
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* Eighteen classes carrying the **PlayStation 2 drawing vocabulary**
   into the remaster, in **four shapes**. The PS2 naming survives into the bodies: four
   fixed-quad commands hardcode a vertex count of 4, and the one generic primitive reads it.
 - [`Character-Rendering/character-render-object.md`](Character-Rendering/character-render-object.md) —
-  **DOCUMENTED, tier 1.** The **1,640-byte object that draws a character**: a complete
-  31-slot vtable, one construction site, and a **ready flag at `+0x4B4`** with one writer
-  at the end of setup and twelve readers at method entry.
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The **1,640-byte object that draws a character**: a complete
+  31-slot vtable, one construction site, and a **ready flag at `+0x4B4`** with ~~one writer~~ two byte writers, the constructor's clear and the set
+  at the end of setup, and ~~twelve readers at method entry~~ seventeen byte reads in sixteen functions, thirteen of them gating at entry *(corrected 2026-10-02, OPUS: `001F4DA0`+0x129 and `001F6E70`+0x8B9 write it; vtable slots 3, 8, 9, 10, 12, 13, 14, 16, 19, 20, 24, 27 and 30 read it; CONTRACT-character-render-object.md R-3 / R-4)*.
 - [`Legacy-PS2-GS/texture-mip-local-memory-budget.md`](Legacy-PS2-GS/texture-mip-local-memory-budget.md) - the 4 MiB GS local-memory texture budget still live in the PC port
 
 ### [`Post-Processing/`](Post-Processing/) — **documented**
 
 - [`ppfx-function-identification.md`](Post-Processing/ppfx-function-identification.md) —
-  **DOCUMENTED, tier 2.** **147 post-processing functions named** from authored diagnostics
+  ~~**DOCUMENTED, tier 2.**~~ **AUDITED, tier 2.** **147 post-processing ~~functions~~ names** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`; 147 is 135 functions and 12 funclets)* from authored diagnostics
   (317 references, 0 unattributed, 23 cross-validated against RTTI). Covers `CPostEffect`,
   `IGPUDevice`, `CDepthOfField`, `CRenderGlare`, `CTextureUtil` and more — the Yebis
-  middleware behind FFXII's bloom, depth of field and glare. Identity only; no body read yet.
+  middleware behind FFXII's bloom, depth of field and glare. Identity only~~; no body read yet~~ *(corrected 2026-10-02, OPUS: the page's H-4 and H-6 read three bodies)*.
 
 Undocumented sub-families with existing CodeDomain labels: `Presentation.Rendering` (26), `Presentation.UI` (7), `Presentation.CharacterRender` (7), `Presentation.Geometry` (5), `Presentation.LegacyPS2Effect` (4, the VIF/VU path), `Presentation.ProceduralPose` (4), `Presentation.EffectFont` (4), `Presentation.Camera*` (4), `Presentation.Cutscene` (2).
 
@@ -127,7 +127,7 @@ Undocumented sub-families with existing CodeDomain labels: `Presentation.Renderi
 
 - [`Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md`](Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md) —
   **PARTIAL, tier 2.** ~150 authored parameter names (shadows, SAO/HBAO, DOF f-number, water,
-  eyes, tonemap) and the 15 `.phyre` shader assets that consume them. The look of FFXII is data.
+  eyes, tonemap) and the ~~15~~ 18 `.phyre` ~~shader~~ assets *(corrected 2026-10-02, OPUS: the page's §2 count - 16 shaders, a font and a map-texture template)* that consume them. The look of FFXII is data.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 
@@ -135,7 +135,7 @@ Undocumented sub-families with existing CodeDomain labels: `Presentation.Renderi
 
 **SaveLoad — CLIENT.** `FUN_00280140`, owned by that layer, calls `002EFA70` on this page. That caller is the save/load screen's message handler: message 1 picks save or load from `(qword[+0x10] & 0x7FFF)` and takes the state block at `[0209AC30] + 0x3F8`, message 2 runs the image operation and records the outcome in that block's `byte[+8]`, and message `0x10` tears the screen down and clears `[0209AC30] + 0xC0`; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
 
-**Resource — SERVICE.** `00520E90` on this page — the posted deferred worker for the authored-command
+**Resource — SERVICE.** `00520E90` on this page — the ~~posted deferred worker~~ per-record callback `00426870` applies at once *(corrected 2026-10-02, OPUS: `00426870`+0x33 `call rsi` applies the callback to the record at once and +0x4A `call 0042EF90` walks its children - this page's own 2026-09-20 correction, `00426870` defers nothing)* for the authored-command
 family — calls `002ED570`, the resource-table entry lookup, resolving the record's
 `dword[+0x18]`/`dword[+0x10]` indices. The crossing is the worker's resource fetch; descent, not
 shared ownership. Read from `edges.tsv` 2026-09-17 (SWE2-FRONTIER).

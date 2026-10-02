@@ -1,0 +1,16 @@
+{
+  "name": "failed-parent-producer",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-phase-qualification\\controls-01\\failed-parent-producer\\prove.py",
+    "control-output.json"
+  ],
+  "driver_sha256": "7346d436e99072e9079ee449a7615a693aba1218793c1bcf00adb7abb332eed4",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "explicit_removed_base_files": []
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-interpreter-transfer\controls-01\failed-upstream-capture\prove.py", line 149, in <module>
+    if __name__=='__main__':main(Path(sys.argv[1]))
+                            ~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-interpreter-transfer\controls-01\failed-upstream-capture\prove.py", line 109, in main
+    if receipt.get('terminal') is not True or receipt.get('exit')!=0 or receipt.get('exception') is not None or receipt.get('driver_sha256')!=sha(P/'capture.py'):raise RuntimeError('upstream capture failed/incomplete/stale')
+                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: upstream capture failed/incomplete/stale

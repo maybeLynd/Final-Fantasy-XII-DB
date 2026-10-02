@@ -227,7 +227,7 @@ in one primitive.
 ## 8. What this document does not claim
 
 What the three atlases `0208EA98`, `0208EAA0` and `0208EAB0` contain, or what flag bit 22 selects
-between the latter two. What `002DAC70`, `002DAF30`, `002DD4B0` and `002DD7B0` do — `002DD7B0` is
+between the latter two. ~~What `002DAC70`, `002DAF30`, `002DD4B0` and `002DD7B0` do~~ *(answered: see the widget-tree page's 2026-09-18 note: `002DD4B0` returns `0215E6D0`, `002DD7B0` is the `fontcolor` shadow-byte getter; `002DAF30` is read below; 2026-10-02, OPUS)* — `002DD7B0` is
 called with the same style-derived index as the palette and its result is used as a **bit**, so it is
 some per-style boolean, and that is as far as this goes. What the style index at `node + 0xA3`
 enumerates. **Why the two primitives use different edge conventions** — §6b establishes that they do, not why.

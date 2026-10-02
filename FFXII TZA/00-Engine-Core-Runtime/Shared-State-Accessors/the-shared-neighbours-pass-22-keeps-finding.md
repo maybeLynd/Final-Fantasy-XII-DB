@@ -157,7 +157,7 @@ is that all of them ask the same actor the same question.**
 
 Its side effects are named because they are not local: on one path it clears bits `0x06` of
 `byte [022C1F48]`, zeroes the qword at `022C1F40` and zeroes `[actor+0xDCC]`. `00377C20` and
-`00253B90` gate the paths and are **not read**.
+`00253B90` gate the paths and are **not read** *(answered: see force-fight-mode.md, which reads `00253B90`'s whole body; 2026-10-02, OPUS)*.
 
 ## 4c. The two hubs are an addition and a subtraction — 32 pairs
 

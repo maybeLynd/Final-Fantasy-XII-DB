@@ -347,8 +347,8 @@ kept as written. (Marked 2026-09-30, SWE2-CONTRACT, DD batch 6.)*
 >
 > - **20,459 atlas references resolve to 28 distinct names; zero indices are out of bounds and zero required
 >   `+0x0C` ids are `0xFFFF`** — the unguarded-deref path in `0029F130` can never fire on shipped data. All 20
->   standalone-file type-7 items carry `+0x40 = 0xFFFF` (no second atlas); pack unit 01's 258 type-7s author
->   `+0x40 = 0x0001` (`battle_4_c`, same as the required id).
+>   standalone-file type-7 items carry `+0x40 = 0xFFFF` (no second atlas); ~~pack unit 01's 258 type-7s author~~ the 258 pack type-7s sit in eight units: unit 01's 150 author `+0x40 = 0x0001` (140) or `0xFFFF` (10), units 03 and 12 `0xFFFF`, units 05, 13 and 16 `0x0000`, units 14 and 15 `0x0002` / `0x0001` with the required id `partytop_4_c`; every authored second atlas resolves to `battle_4_c` *(corrected 2026-10-02, OPUS: `members/atlas-name-census.tsv`, regenerated from the shipped VBF and byte-identical)*
+>   ~~`+0x40 = 0x0001` (`battle_4_c`, same as the required id).~~
 > - **25 names are registered literals** — covered by the `01E0C1E0` block, the `00D231C0`/`00393460`-family
 >   static tables, or direct wrapper-call-site strings: `battle_4_c`, `battle_4_p`, `buttonicon`, `cursol_4_p`,
 >   `dataface_c`, `extra_c`, `gameover_c`, `hand_4_c`, `icons_c`, `itemgra_c`, `keyboard`, `lic_4_c`,
@@ -367,7 +367,7 @@ kept as written. (Marked 2026-09-30, SWE2-CONTRACT, DD batch 6.)*
 >   no literal, table, row or format supplies them, and `0024A610`'s byte-exact scan finds nothing — every
 >   resolve permanently misses onto slot 0.
 >
-> Supplementary: the arrays declare 48 distinct names but items reference only 28 — 20 names are authored yet
+> Supplementary: the arrays declare ~~48~~ 49 distinct names but items reference only 28 — ~~20~~ 21 names are authored yet *(corrected 2026-10-02, OPUS: the census's distinct-name section: 49 rows, 28 `yes`, 21 `no`)*
 > never indexed (including `faceunder` in mrppack units 14/15, `window_8_c`, `sort_cha_c`, and the lowercase
 > `loca_8_c`/`locaback_c`, which would miss `0024A610`'s case-sensitive compare against the registered
 > `Loca_8_c`/`LocaBack_c` if any item ever indexed them). Part (b) — a *transient* miss before registration —
@@ -745,3 +745,7 @@ its population, not what it decodes. Nothing was executed or observed live.
 - **Movement — SERVICE (5 edges).** 4 outbound (page-cited `MainLoop_UpdateAndRenderFrame` (0022B8C0), `MainLoop_Draw` (0022B0B0), `0022BC20` call Movement bodies `00263560`, `00357780`, `0037CF00`).
 - **Party — SERVICE (2 edges).** 2 outbound (page-cited `MainLoop_UpdateAndRenderFrame` (0022B8C0), `0022BC20` call Party bodies `PartyFocus_CommitPendingPackedActorHandle_Thunk` (00358BB0)).
 - **RNG_Random_Selection — MECHANICAL (2 edges).** 2 outbound (page-cited `0022B6E0`, `0022B7E0` call RNG_Random_Selection bodies `RNG_MT19937_NextU32_Thunk` (00379CD0)) - shared-helper call surface, not a RNG_Random_Selection relationship of this page's subjects.
+
+- **Audio — SERVICE (1 edge).** 1 outbound (page-cited `00280DE0`, the UI proc named beside
+  `002D70F0` as another clearing site, calls the 27-byte Audio body `002DEE50`) - the proc's own
+  call, borrowed here only as a clearing-site example. *(residue bullet 2026-10-02, SWE2-CONTRACT)*

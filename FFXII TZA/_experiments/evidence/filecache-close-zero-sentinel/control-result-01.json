@@ -1,0 +1,100 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "601edfd2d79c8b50f78fa19be86fb34d87541e0ee6ef07a3479300fa099201d8",
+  "positive_producer_sha256": "d498f547510f5998b7cf0b33bea37c4e20073cf86724dde064752bbd92d329d7",
+  "cases": [
+    {
+      "name": "failed-Close-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-close-zero-sentinel\\controls-01\\failed-Close-capture\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "d498f547510f5998b7cf0b33bea37c4e20073cf86724dde064752bbd92d329d7",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": []
+    },
+    {
+      "name": "missing-retained-predicate-result",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-close-zero-sentinel\\controls-01\\missing-retained-predicate-result\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "d498f547510f5998b7cf0b33bea37c4e20073cf86724dde064752bbd92d329d7",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "retained-open/result-01.json"
+      ]
+    },
+    {
+      "name": "missing-Close-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-close-zero-sentinel\\controls-01\\missing-Close-source\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "d498f547510f5998b7cf0b33bea37c4e20073cf86724dde064752bbd92d329d7",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "source-01.json"
+      ]
+    }
+  ],
+  "count": 3,
+  "predicate_controls": [
+    {
+      "name": "signed-nonpositive-not-zero-only",
+      "pc": "0x59bd66",
+      "synthetic_change": {
+        "mnemonic": "je"
+      },
+      "refused": true,
+      "diagnostic": "Close phase changed 0x59bd66"
+    },
+    {
+      "name": "cache-reset-fullQWORD",
+      "pc": "0x59bd70",
+      "synthetic_change": {
+        "size": 4
+      },
+      "refused": true,
+      "diagnostic": "Close backing width/role changed"
+    },
+    {
+      "name": "Close-AL-not-EAX",
+      "pc": "0x59bd78",
+      "synthetic_change": {
+        "args": "eax, 1"
+      },
+      "refused": true,
+      "diagnostic": "Close phase changed 0x59bd78"
+    },
+    {
+      "name": "skip-release-also-skips-reset",
+      "pc": "0x59bd66",
+      "synthetic_change": {
+        "args": "0x59bd70"
+      },
+      "refused": true,
+      "diagnostic": "Close phase changed 0x59bd66"
+    }
+  ],
+  "predicate_count": 4,
+  "limits": "Three actual producer CLI prerequisite refusals and four synthetic mutations of actual Close derive checker. Original Close logical partitions are mathematical analysis, not machine-code/native/emulated/live executions or parent independent acceptance."
+}

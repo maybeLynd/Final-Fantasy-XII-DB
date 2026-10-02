@@ -1,0 +1,6 @@
+ok   00377EC9 call 0x861eba
+ok   00377EF3 movsxd rax, edi
+ok   003092C0 cmp rbx, rcx
+ok   00313563 cmp eax, ecx
+ok   00273E9E mov qword ptr [rcx], rax
+FAILS 0

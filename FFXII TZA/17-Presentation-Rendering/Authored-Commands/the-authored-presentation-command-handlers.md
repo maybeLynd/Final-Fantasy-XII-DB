@@ -87,10 +87,10 @@ registration, which is why `00417C60`'s bespoke invoker reads `02CA4698` (bank-B
 | 0x05 | `00520C50` | **bank B** — registered via `0041D6D0` at `00426A1C`; calls `0046CBA0` — **a character sound** *(FABLE 2026-09-20)*: word `+2` = `mode << 12 \| type`, to the record's sound emitter `+0x5F0`; [how an animation makes a sound](../../18-Audio/how-an-animation-makes-a-sound.md) |
 | 0x11 | `00520160` | 23 B — **trails on / off** *(FABLE 2026-09-19)*: stores the command's byte `+2` at record `+0x3D0` and raises bit 24 of `+0x294`; the dirty pass then builds or switches off the record's [bone trails](../Character-Render-Records/the-bone-trails.md) |
 | 0x12 | `005207C0` | `RelationLook_SetTrackingEnabled` — `003E6DA0`/`003E29F0` pair |
-| 0x13 | `00520430` | flag work on `+0x290`, `+0x3F4`–`+0x3F6`; `00429500`,`004288B0`,`0042B580` — **store the controller switch and broadcast it across the render hierarchy** *(FABLE 2026-09-20, below)*: three arms by `byte+2 & 0xB9`, `+0x290` bit 9 held as a re-entrancy guard; 5,805 authored, all three arms used |
+| 0x13 | `00520430` | flag work on `+0x290`, `+0x3F4`–`+0x3F6`; `00429500`,`004288B0`,`0042B580` — **store the controller switch and broadcast it across the render hierarchy** *(FABLE 2026-09-20, below)*: three arms by `byte+2 & 0xB9`, `+0x290` bit 9 held as a re-entrancy guard; 5,805 authored in the `.ca` containers *(scope named 2026-10-02, OPUS: 17,416 in all 62,208 blocks, 11,611 of them in event blocks - the census section below)*, all three arms used |
 | 0x14 | `00520E70` | ~~posts deferred work via `00426870`~~ — **`00426870` is an immediate hierarchy broadcast, not a deferral** *(FABLE 2026-09-20, below)*: it applies `00521050` to the record's entity and its sub-tree, filtered on `word[entity+0x2F2]`; 7,193 authored, event blocks only, `word+4` only ever 2 or 3 |
 | 0x15 | `00520740` | 58 B — touches `+0x3D1` — **draw / sheathe: re-attach the record's children** *(FABLE 2026-09-20)*: byte `+2` to bits 0-2, byte `+3` to bits 3-5, dirty bit 23; the dirty pass runs `00429760` (204 B, read whole), which re-attaches child `+0x2C8` with attachment mode 1 when the first field is non-zero and mode 0 when it is zero, and child `+0x2CA` by the second ([the FCP block](../Model-And-Motion-Formats/fcp-character-parameter-block.md), section 3). Authored only in `active` (field set, 609) and `deact` (field clear, 609) blocks; [tally](../../_experiments/evidence/reattach-and-rotator-reset-commands/census.out.txt) |
-| 0x16 | `00520BD0` | `0042B550`; flag pair `+0x3D2`/`+0x3D3`, `+0x3F8` — **bind the model's sub-resource variants of slot *n*** *(FABLE 2026-09-20, below)*: word `+2` is an enable bit plus an 8-bit variant index, word `+4` the value; 329 authored, all `enable=1` / `value=0xFFFF` |
+| 0x16 | `00520BD0` | `0042B550`; flag pair `+0x3D2`/`+0x3D3`, `+0x3F8` — **bind the model's sub-resource variants of slot *n*** *(FABLE 2026-09-20, below)*: word `+2` is an enable bit plus an 8-bit variant index, word `+4` the value; 329 authored in the `.ca` containers *(scope named 2026-10-02, OPUS: 373 in all blocks, 44 of them in event blocks - the census section below)*, all `enable=1` / `value=0xFFFF` |
 | 0x18 | `00520C80` | `00421E20` + `003B0C50`; `+0x60`/`+0x90` fields — **the footstep effect** *(FABLE 2026-09-20; `003B0C50`, 656 B, read whole)*: refused under the record test the footstep sound uses; the movement body's ground type (0..18) picks the effect through the table at `003B0EE0` - `0x64` for types 0-3, 7, 9, 13, 14; `0x65` for 4; `0x66` for 5; `0x67` for 11, 12, 15, with a depth float when the body reports one; `0x94` for 16 and 18; none for 6, 8, 10, 17 - which is spawned on the record, tinted by the ambient colour times the record's own (`003B0D92`..`003B0E67`) and given the command's byte `+2` plus one as a sub-index. That byte is 0 on 14,299 commands and 1 on 13,923 - the shape of left and right, as a reading. [How an animation makes a sound](../../18-Audio/how-an-animation-makes-a-sound.md) §4 is its audible half |
 | 0x19 | `00520CE0` | 32 B — calls `0046CC70` (interior read 2026-09-17, SWE2-FRONTIER: 1,069 B — `00237420` first at [`0046CCAE`](../../_index/ADDRESS-INDEX.md), `004FE270`/`00421E20`/`002EDBD0` ×2) |
 | 0x1A | `00520C10` | `00422D50` + `003E6340`; `+0x30`/`+0x370` — **move and turn toward the target along profile *n*** *(FABLE 2026-09-20)*: word `+2` is the mode - an index into the profile table of the container's `@FRM` entry, or `0x16` for the record's own profile; 12,876 authored, in `attack`, `avoid`, `magic`, `ability`; [how an animation moves and turns a character](../../06-Movement-And-Navigation/how-an-animation-moves-and-turns-a-character-toward-its-target.md) |
@@ -106,8 +106,8 @@ registration, which is why `00417C60`'s bespoke invoker reads `02CA4698` (bank-B
 | 0x29 | `00520D00` | 37 B — calls `0046CC70` — **a footstep** *(FABLE 2026-09-20)*: sound type 1 with the volume in word `+2` (128 = full); [how an animation makes a sound](../../18-Audio/how-an-animation-makes-a-sound.md) |
 | 0x2A | `005206B0` | `003E7140` then CFG guard `00808C40` — **take a pooled, generation-tagged handle for a three-float request** *(FABLE 2026-09-20, below)*: a two-slot current/previous ring at `+0x44C`/`+0x448`; 7,183 authored, four distinct float triples, both words always zero |
 | 0x2F | `00520E30` | `0042EF90`; `+0x20`/`+0x28`/`+0x1AF` — **send presentation event `word+2 | 0x2000` to the child sub-tree** *(FABLE 2026-09-20, below)*: 30 authored, all `npc`, all the same event `0x203D` |
-| 0x34 | `00520800` | the largest (811 B): `003AFD30`/`003B6930`/`003AFC10`; `+0x1C`–`+0x28` state — **the shadow command** *(FABLE 2026-09-20, below)*: `byte+2 = 0xFF` toggles the shadow pools globally, otherwise a **one-hot** sub-dispatch of eight arms over the record's shadow object; 9,540 authored, all eight arms used, the default arm never |
-| 0x3F | `00520510` | 147 B — ~~posts deferred work via~~ **broadcasts through** `00426870` (*corrected 2026-09-20, see `0x14`*) — **a directed sway** *(FABLE 2026-09-20)*: on a root record only, posts `00520E90` across the hierarchy, which hands the rig's controller 0 a preset (word `+2`; 0 = off), a direction (floats `+4`..`+0xC`), an id and a flag (word `+0x10`); 3,108 authored, in the casting blocks - [the oscillators](../Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md), last section |
+| 0x34 | `00520800` | the largest (811 B): `003AFD30`/`003B6930`/`003AFC10`; ~~`+0x1C`–`+0x28` state~~ the shadow object's `+0x1C`... state *(corrected 2026-10-02, OPUS: `00520800`+0x50 loads the record's `+0x118` handle, +0x5E `call 003AFC10` resolves the shadow slot, and the stores go through its result, e.g. +0xA8 `mov byte ptr [rdx + 0x1c], al`)* — **the shadow command** *(FABLE 2026-09-20, below)*: `byte+2 = 0xFF` toggles the shadow pools globally, otherwise a **one-hot** sub-dispatch of eight arms over the record's shadow object; 9,540 authored, all eight arms used, the default arm never |
+| 0x3F | `00520510` | 147 B — ~~posts deferred work via~~ **broadcasts through** `00426870` (*corrected 2026-09-20, see `0x14`*) — **a directed sway** *(FABLE 2026-09-20)*: on a root record only, posts `00520E90` across the hierarchy, which hands the rig's controller 0 ~~a preset (word `+2`; 0 = off), a direction (floats `+4`..`+0xC`), an id and a flag (word `+0x10`)~~ a bone (word `+2`), a direction (floats `+4`..`+0xC`), a preset (word `+0x10` masked `0xFFF`; 0 = off) and a flag (word `+0x10` bit 15) *(corrected 2026-10-02, OPUS: `00520510`+0x18 reads `word [r8 + 0x10]` and `00520510`+0x23 `word [rdx + 2]`; the GI-15 section)*; 3,108 authored, in the casting blocks - [the oscillators](../Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md), last section |
 | 0x48 | `005205B0` | `0020E600`/`002ED570` lookups + `00372800`/`00426870` — **command `0x3F` with its target resolved by NAME** *(FABLE 2026-09-20, below)*: same precondition, same block, same broadcast, same body `00520E90`; 5,771 authored, event blocks only |
 
 The boot-time request-ring seeder `002EA320` (and its sibling `002EA5F0`, which re-registers the
@@ -121,11 +121,11 @@ id 0x0C → `002E70A0`, id 0x26 → `002E7080` — and two into the separate `02
 
 | body | reach | role |
 |---|---|---|
-| `00520100` | called by `PresentationEmbeddedRecord_ActivatePendingState` (`0041DD40`) | submit wrapper: if `word[rcx+6] == -1` it posts `00520E90` through the deferred-work poster `00426870`, record packed on the stack |
-| `00520E90` | the posted callback | deferred worker: resolves `0020E600` (runtime pointer) + `002ED570` (resource-table entry by index) against `dword[rcx+0x18]`/`dword[rcx+0x10]`, security-cookie frame, 361 B |
+| `00520100` | called by `PresentationEmbeddedRecord_ActivatePendingState` (`0041DD40`) | submit wrapper: if `word[rcx+6] == -1` it ~~posts `00520E90` through the deferred-work poster `00426870`~~ applies `00520E90` at once through `00426870` *(corrected 2026-10-02, OPUS: `00426870`+0x33 `call rsi` applies the callback to the record at once and +0x4A `call 0042EF90` walks its children - this page's own 2026-09-20 correction, `00426870` defers nothing)*, record packed on the stack |
+| `00520E90` | the ~~posted~~ callback `00426870` applies | ~~deferred worker~~ per-record callback *(corrected 2026-10-02, OPUS: `00426870` calls it at once, `00426870`+0x33)*: resolves `0020E600` (runtime pointer) + `002ED570` (resource-table entry by index) against `dword[rcx+0x18]`/`dword[rcx+0x10]`, security-cookie frame, 361 B |
 | `00520010` | called by `0046E3E0`, `0046E6F0`, `RenderModelInstanceContainer_ProcessActiveEntries` (`00477F20`) | shared helper, not a command handler: iterates on `dword[rcx+0x40]` as an index (−1 = done), resolving `0020E600` + `003AB7F0` per step |
 
-`00426870` — the deferred-work poster — is called by `00520100`, by `003E6A60`, and by three of the
+`00426870` — ~~the deferred-work poster~~ the apply-and-recurse helper *(corrected 2026-10-02, OPUS: `00426870`+0x33 `call rsi` applies the callback to the record at once and +0x4A `call 0042EF90` walks its children - this page's own 2026-09-20 correction, `00426870` defers nothing)* — is called by `00520100`, by `003E6A60`, and by three of the
 handlers themselves (`00520E70`, `00520510`, `005205B0`): the family both consumes deferred work and
 produces it.
 
@@ -134,11 +134,11 @@ produces it.
 The handler family is the write side of *authored presentation state*: flag words `+0x290`/`+0x294`
 (the render record's dirty channels), state bytes `+0x3D0`–`+0x3F8` and `+0x413`/`+0x4B7`, the
 `+0x30`/`+0x370`/`+0x60`/`+0x90` fields several handlers touch, and — through `00520800` — the
-`+0x1C`–`+0x28` block. Four of the classes (`0x0D`–`0x10`, registered elsewhere) drive the five
+~~`+0x1C`–`+0x28` block~~ shadow object's `+0x1C`... block, not the record's *(corrected 2026-10-02, OPUS: `00520800`+0x5E `call 003AFC10`, then stores through its result)*. Four of the classes (`0x0D`–`0x10`, registered elsewhere) drive the five
 per-slot ramp channels covered by
 [the authored-command ramp contract](../CONTRACT-authored-command-ramp-channels.md); the 25 ids here
 (24 bank-A + 1 bank-B) are the rest of the authored vocabulary — visibility/tracking flags,
-lookup-and-bind commands, and the deferred resource-bind pair.
+lookup-and-bind commands, and the ~~deferred~~ resource-bind pair (applied at once through `00426870` *(corrected 2026-10-02, OPUS: `00426870`+0x33 `call rsi`)*).
 
 ## 6. Residuals
 
@@ -166,7 +166,7 @@ lookup-and-bind commands, and the deferred resource-bind pair.
   id 4 is the action-timeline event routed to the battle unit's handler, subtypes 0-9 reaching it
   ("Where the commands are authored"); id 5 is the character sound (bank B, above); id `0x2C` is the
   blend-in rule keyed on the motion being left ("The commands that run the motion itself").
-- The `00520xxx` bodies at `00521000`+ (handle-table allocate/resolve/release, `005210F0`/
+- The `00520xxx` bodies at ~~`00521000`+~~ `005210F0`+ *(corrected 2026-10-02, OPUS: `00521000` and `00521050` are the per-node bodies the `0x2F` and `0x14` handlers post, `00520E30`+0x1A and `00520E70`+0xA `lea`)* (handle-table allocate/resolve/release, `005210F0`/
   `005212E0`/`00521250`) are a *different* family — the 256-entry × 48-byte handle table at
   `02CA8450` — recorded here only to bound the band.
 
@@ -282,7 +282,7 @@ All four read whole; one census. This narrows §6's "per-command semantics" resi
 | id | invoker | what it does |
 |---|---|---|
 | `0x00` | `00417810` (258 B) | **Begin.** Exactly one per block. Moves the entry's current motion number `+0x324` to *previous* `+0x326` and stores the new one (kept only when its class nibble is 1 or 2, else `0xFFFF`; with no previous, previous becomes current); zeroes the state's frame; the signed word `+2` is an **explicit end frame** - negative means none (`+0x16` / `+0x18` = `0x7FFF`), otherwise `+0x16` = `+0x18` = `n - 1`, state flag bit 2 and a normalised step at `+0x1C`; sets the state playing (`+4` = 1), copies the entry's speed `+0x340`, clears the entry's finished mark (flag bit 9 - the bit the end-of-track callback sets, above) and tail-calls the play method of the selector table |
-| `0x03` | `00417A80` (72 B) | **Hold here.** If the command's state is the entry's current one it only raises entry flag bit 3. Otherwise the state's end frame becomes its current frame, state flag `0x40` goes up, and a hold counter `+0x5E` is loaded - once - with word `+2` times the frame-rate word (or 1 when the word is -1) |
+| `0x03` | `00417A80` (72 B) | **Hold here.** If the command's state is the entry's current one it only raises entry flag bit 3. Otherwise the state's end frame becomes its current frame, state flag `0x40` goes up, and a hold counter `+0x5E` is loaded - once - with word `+2` times the frame-rate word ~~(or 1 when the word is -1)~~ (times 1 instead when the word is -1, so -1 stays -1) *(corrected 2026-10-02, OPUS: `00417A80`+0x38 `cmove cx, r8w` replaces the multiplier, not the value, before `00417A80`+0x40 `imul ecx, eax`)* |
 | `0x2C` | `00417DE0` (345 B) | **Blend-in rule, by where you came from.** Ignored under entry flags `0x24000`. Word `+2` is the motion being *left*: it must equal the entry's previous motion number (12 bits) or be `0xFFFF` for *any*; then a list of byte pairs from `+8` (count at `+7`) is matched against entry byte `+0x329`. A match has a rank - 1 *any*, 2 wildcard pair, 3 exact pair - and is applied only if it is at least the rank already held (`+0x32A`), so **the most specific rule authored for a transition wins, whatever the order**. Applying it: blend rate `+0x354` = `1 / byte +4` (0 = cut; `0xFF` = raise the no-blend flag, bit 1 of `+0x2E8`), `+0x358` = the low seven bits of byte `+5`, sign-extended, `+0x35A` = byte `+6`, bit 0 of `+0x2E8` = bit 7 of byte `+5`; entry flag bit 11 up (and bit 14 when bit 13 is) |
 | `0x08` | `00417D00` (219 B) | **Default blend.** The same fields with no *from* test - rate `1 / (byte +2 + 1)`, `+0x358` = `0x10` - skipped under entry flag bits 17 or 14. **Never authored** |
 
@@ -559,7 +559,7 @@ table) and `005048A0` beyond its `-1` contract; what `word[+0x2F2]` *is*, beyond
 **It refuses outright while `word[rec + 0x2F2]` is non-zero** (`00520436`) — the first thing the handler does, before
 looking at the command at all.
 
-**Then it splits three ways on `byte[cmd + 2] & 0xB9`.** *(`0xB9` is `1000 1001 1` — bits 0, 3, 4, 5 and 7; the mask
+**Then it splits three ways on `byte[cmd + 2] & 0xB9`.** *(`0xB9` is ~~`1000 1001 1`~~ `1011 1001` *(corrected 2026-10-02, OPUS: `0xB9` = 128 + 32 + 16 + 8 + 1)* — bits 0, 3, 4, 5 and 7; the mask
 is what classifies, and the unmasked byte is what is stored.)*
 
 | arm | taken when | what it does |
@@ -1000,7 +1000,7 @@ record)*:
 
 `band_names.py` checks both: S0/S1/T, FAILS 0. ~~Where the kind-1 and kind-2 state bytes are reset~~ — resolved
 2026-09-29 (SWE2-DATA): the bytes live in the `0x740`-record at `qword[ctx+0x2E0]` (pool `0xA0 × 0x740` at
-`[02B3EF28]`); record init `0041F730` zeroes `+0x40E`/`+0x411` and sets `+0x410`/`+0x412`/`+0x2AF` = `0xFF`, and the
+~~`[02B3EF28]`~~ `[022C6F28]` *(corrected 2026-10-02, OPUS: `02B3EF28` has no reference in the image; the pool pointer is `022C6F28`, read by the pool init at `004269A0`+0xF)*); record init `0041F730` zeroes `+0x40E`/`+0x411` and sets `+0x410`/`+0x412`/`+0x2AF` = `0xFF`, and the
 `@FMC`-bind site `004252A7` re-arms `+0x40E` = 0 / `+0x412` = `0xFF` on every new motion block. `+0x410`/`+0x411` have
 no external writer, so a decided kind-2 stick survives a rebind until the record is re-initialised (full bodies and
 the writer sweep in

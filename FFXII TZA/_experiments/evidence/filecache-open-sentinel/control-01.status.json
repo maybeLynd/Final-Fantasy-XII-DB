@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-open-sentinel\\control.py"
+  ],
+  "driver_sha256": "d51fa6b10d4669d8f439f6ca3f8d16ceaf1a65ec75d73f6ccc03766b25947107",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

@@ -138,7 +138,7 @@ subsystem despite its address:** the record table (TW-6).
 ## 7. State transitions
 
 Per use: *write operands into rows → call a shared routine → read the result back.* There is no
-transition the area itself owns; `0036D9E0` clears it wholesale and belongs to nobody.
+transition the area itself owns; `0036D9E0` ~~clears it wholesale~~ clears `022D91B0`–`022D942F` and vf00, not the whole area *(corrected 2026-10-02, OPUS: 80 qword stores at `0036D9E0+0x25`–`+0x38A`; `022D8F00`–`022D91AF` is not touched)*, and belongs to nobody.
 
 ## 8. Script · resource · event interactions
 
@@ -245,3 +245,11 @@ No correction.
 *Added 2026-09-29 (FABLE, pass-22 debt): one paragraph per layer the audit still reported for this page. Section 16a's heading is numbered, so the crossings gate does not read it; this section names the edges of the two cited bodies.*
 
 **Presentation — CLIENT (32 edges).** Twenty-nine Presentation bodies of 793 to 1,983 bytes in one address run (among them `0044CC50`, `0044D080`, `00455560`, `004584E0` and `0045D2F0`; thirteen are called directly by the effect type dispatcher, nine by neighbouring bodies in the run, seven by no direct call) call the one consumer `003970A0` to copy the workbench matrix at `022D91B0` out as one 64-byte block; the channel-rate emit `003DFFE0` and the rig frame `CharacterRender_UpdateCombatLookAndAuxControllers` (`003E00C0`) call the one initialiser `0036D9E0`, the bulk clear of 80 slots; and `00502280` calls `00501820`, the read-only body that reads the dword at `022D8F0C`, which `00502280` itself writes twice. These are the presentation side of TW-5's fan-in: these effect-side bodies read the one established matrix, the rig frame and the channel emit run the bulk clear, and the region is shared scratch that no presentation body owns.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-shared-transform-workbench-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00455560` | 1112 B | copies the 64 bytes at `rcx+0x250` to a stack matrix and, by bits 2-4 of byte `+0x4A` of R = qword `rcx+0x20`, calls an 861-byte routine on it with `02AEEC30` (1), `02AEEC70` (2), or `02AEEA60` after a 360-byte routine (4) or a 466-byte routine (5); calls a 13-byte helper (dword `rcx+0x290`), a 195-byte helper (`02AEECB0`) and a 567-byte routine with `02AE0310`; returns unless R byte `+0x240` is 2 or 4 and a 728-byte routine (`R+0x1A0`, out, 0, dword `rcx+0x44`) returns non-null; fills globals `02AEE908`, `02AEE900`, `02AE0370`, `02AE0360`, `02AE02B0`, `02AE02B4` and `02AE02A0` to `02AE02AC`; then, when P = `0020E600(dword R+0x2A0+4*dword rcx+0x298)` is non-null, calls the 195-byte helper (`02AEECB0`) again and, by bits 1-2 of R byte `+0x294` (0 returns), sets dword `02AE0280` to 0 (1) or 2 (2) and calls a 154-byte routine (bits 0-2 of R word `+0x24A` clear) or a 280-byte routine with `0x118`, the address of a 7,726-byte routine and `0020E600(dword P+0x10)`; 3 calls twice, `02AE0280` = 2 then 0 | `004555C2`, `0045560E`, `00455672`, `00455795`, `004557BB` |

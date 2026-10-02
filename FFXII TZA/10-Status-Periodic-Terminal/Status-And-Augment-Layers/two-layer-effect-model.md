@@ -409,3 +409,11 @@ accept: the *behaviour* is proven, the *label* is not.
 **Rewards_Progression_Economy — CLIENT and SERVICE (5 edges).** `0030C470` and `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` call `0030FED0`; `003112F0` calls `GameState_GetGil` `00253690`, `GameState_SetGil` `00254EE0` and `0030C650`. A level-up rebuilds the derived layer, and the applier also carries gil and level results; the reward layer and the status layers share the applier, not state.
 
 **WorldAreaField — SERVICE (1 edge).** `00313DB0` calls `FieldData_GetActiveFieldRecordBit15` `00377C20`. The ring consumer re-checks a status-bearing unit against the area's action-permission bit; this page's layers are not read there.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-two-layer-effect-model-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0046A790` | 108 B | builds a stack record of `rcx`, `rcx` and four zero qwords; when the word `dx` is `0x37`, `0x38` or `0x39` returns a 371-byte routine's result for (`rcx`, `0x3E`, record), (`rcx`, `0x40`, record) or (`rcx`, `0x42`, record) respectively, and for any other value returns 0 | `0046A7B1`, `0046A7BE`, `0046A7C8`, `0046A7D8`, `0046A7F2` |

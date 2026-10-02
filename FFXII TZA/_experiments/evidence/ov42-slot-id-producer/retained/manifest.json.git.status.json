@@ -1,0 +1,10 @@
+{
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "command": [
+    "git",
+    "show",
+    "1f6569546:Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/manifest.json"
+  ]
+}

@@ -1,0 +1,66 @@
+### 11a. The slot lifecycle in order - allocation, clear, removal request, active sweep (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming three ASTRA packets that FABLE reviewed independently and accepted with narrowing:
+slot identity and publication (`aac0489ac`, review [`f1a265c5b`](../../_index/candidates/fable-review-astra-render-slot-identity-publication-1002/REVIEW.md)),
+the clear's callee footprints (`621dbd2cc`, review [`b3fb2d6cf`](../../_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md))
+and the removal phases (`31f29775a`, review [`b3fb2d6cf`](../../_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/REVIEW.md));
+SWE2-AUDIT-SPEC accepted at `fd96f1634`. Every order below is a dominance fact in one body, re-derived at the bytes;
+the record is [`render-lifecycle-consumption-fable-1002`](../../_index/candidates/render-lifecycle-consumption-fable-1002/README.md).*
+
+**Allocation publishes the slot before it names it.** In `004279B0` the only tests before the clear are the name
+lookup and the signed live-count gate (`jge` against 160, `004279E9`-`004279F3`); the next-free cursor is read signed
+(`004279FA`) and nothing bounds it. Then, in this order:
+
+1. the clear, `0041F730` (call at `00427A13`);
+2. the pending-list writes: the head `+0x10` (`00427A21`) when the list is empty, otherwise the old tail record's
+   `+0x04` (`00427A37`) and the new record's `+0x02` (`00427A43`); then the tail `+0x14` (`00427A47`);
+3. the record's own index into WORD `+0x00` (`00427A4D`), which the clear had left at `-1`;
+4. the initialiser `00420480` (`00427A71`), whose first non-stack access ORs `0x2010F9` into `+0x284` (`0042049A`);
+5. `+0x290` bit 0 (`00427A76`), the bit the promoter later clears;
+6. the live-count increment (`00427A7F`), then the cursor scan to the next row whose dword `+0x284` is 0.
+
+So a record is reachable from the pending list while its id is still `-1`, and the id is written before `+0x290`
+bit 0 and the count. A reimplementation must not read "listed" as "id valid", nor "id valid" as "counted".
+
+**The clear's postcondition.** `0041F730` fills the whole `0x740` bytes with 0 (`memset`, call at `0041F754`), and
+after that exactly one write reaches WORD `+0x00`: `-1` at `0041F795`. No later write overlaps dword `+0x284` at full
+width. So on return the id is `0xFFFF` and `+0x284` is 0. This holds under two premises the review states: `memset`
+behaves as the C library's and preserves the ABI's non-volatile registers, and the constant inputs it copies are
+readable. The two `006C0520` calls each make four 4-byte scalar (`movss`) stores, 16 bytes per call, over
+`+0x210`..`+0x220` and `+0x220`..`+0x230`.
+
+**The removal request, `00429140`, has four arms, and only one of them removes.**
+
+| input | what it does | returns |
+|---|---|---|
+| null record | nothing: no call, no write, no record read (`0042915C`) | 0 |
+| `+0x284` bit 2 set (mark) | `+0x290` bit 1 (`0042916F`), `+0x2AE` bit 0 (`00429178`), qword `+0x108` and dword `+0x110` cleared, `+0x284` = (old without bit 2) with bit 30 (`00429199`), all before its first call; then helper calls, and it writes three helper-returned objects (`004291A9`, `004291E4`, `004291F3`); no count, cursor or list write, no clear | 1 (`00429203`) |
+| bit 2 clear, `+0x290` bit 0 clear | nothing (`00429204` to the `ret`) | 1 |
+| bit 2 clear, `+0x290` bit 0 set (pending unlink) | the neighbours' `+0x04`/`+0x02`, the pending head `+0x10` and tail `+0x14`; the single count decrement (`0042924D`) dominates both the cursor reset (`00429288`, when the new count is 0) and the clear (`00429291` → `0041F730`) | 1 (`004292A5`) |
+
+The mark arm is therefore not record-only, and a return of 1 does not mean the record was released.
+
+**The active sweep, `00427C90`, decrements before it cleans up.** It walks the active list from tail `+0x00`; for a
+row whose `+0x290` bit 1 is set it caches the signed next index (WORD `+0x04`) before branching and reads no id. The
+single count decrement (`00427D18`) dominates every call of that iteration: `0042F4C0` (`00427D59`), the child loop
+(`00427D7E`), `003B6000` (`00427D97`), `003AFBE0` (`00427DA6`) and the per-record teardown (`00427DAE`), which ends by
+tail-jumping to the clear `0041F730`. The cursor is reset to 0 when the new count is 0 (`00427D50`). After the teardown
+returns, the sweep ORs `0x20` into the pool flag word `+0x48818` (`00427DB3`, the "active list dirty" bit of section
+12) and continues on the cached next index.
+
+**What the two lists share.** The active and pending removals keep separate list ends (tail `+0x00`/`+0x04` and
+`+0x10`/`+0x14`) but one live count (`+0x0C`) and one next-free cursor (`+0x08`), so a pending removal and an active
+removal decrement the same count. A count of 0 decrements to -1, and the zero test then skips the cursor reset; that is
+arithmetic, never executed.
+
+**Not established here.** These are static orders inside single bodies. The reviews accept nothing about:
+- what the native helpers do beyond the footprints listed;
+- ABI preservation by anything but the modelled `memset`;
+- that rows and indices are valid (the cursor is unbounded, and an out-of-range cursor addresses outside the 160-row
+  pool);
+- frame placement, aliasing, interference between callers, or that list chains are finite;
+- lifetimes and scheduling;
+- a census of every writer of these fields.
+
+ASTRA's later 76-check additive packet is producer-valid but unpublished and has not been independently reviewed, so
+nothing here rests on it.

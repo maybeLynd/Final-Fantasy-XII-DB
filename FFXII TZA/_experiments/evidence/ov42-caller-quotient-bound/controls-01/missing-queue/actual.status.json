@@ -1,0 +1,117 @@
+{
+  "case": "missing-queue",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-caller-quotient-bound\\controls-01\\missing-queue\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-caller-quotient-bound\\controls-01\\missing-queue\\rejected-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "eac994cb0fcdca4ec6e91260096439761d630f18e28dbe92176a231e1a3a7eb5",
+  "expected": "queue-source-01.json",
+  "refused_without_result": true,
+  "inputs": [
+    {
+      "path": "caller-source-01.json",
+      "bytes": 44698,
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "path": "caller-source-02.json",
+      "bytes": 119772,
+      "sha256": "1b6bebb2a932b09c387ead6830cd4088236ad551ccbc1c52b9651ca0d8faa9b8"
+    },
+    {
+      "path": "carrier-result-01.json",
+      "bytes": 7961,
+      "sha256": "1b8bdd9a9e12700e88ef339186ef9fdef3d52c156666567ecc1e55bb50eeb5a8"
+    },
+    {
+      "path": "control.py",
+      "bytes": 4884,
+      "sha256": "b7d9d2ed9e2a5599e9ec46b99f3c562b3b3c7db5abdbd80bc6d2c460d0e130ad"
+    },
+    {
+      "path": "KNOWN-PRECONDITIONS.md",
+      "bytes": 887,
+      "sha256": "7002fafe12d1a8e133ac39556f1cf35fc9ae5a222b2491883a9648eb7cabfde8"
+    },
+    {
+      "path": "lineage.json",
+      "bytes": 1208,
+      "sha256": "0efc35b66858d667bd2ceb34e5c5696ec393bedebd704ffeab3ba4736007ad9d"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1008,
+      "sha256": "8a9af89c472b7164f74e6ef349b3d626188070de42012c14dad2b57d5397b0b6"
+    },
+    {
+      "path": "proof-01.status.json",
+      "bytes": 563,
+      "sha256": "2c4600f25450804c597b57f5347bee72279c3c60bc78e85219422e13dc1b90ab"
+    },
+    {
+      "path": "proof-01.stderr",
+      "bytes": 1174,
+      "sha256": "de578b6f83d070383ae5e20794ffdcb3e8ca41c15a6bf6a25327ea14f59c5cd2"
+    },
+    {
+      "path": "proof-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.status.json",
+      "bytes": 563,
+      "sha256": "5b88a6231ba8345dee92c539b557a07b2ae5b248e652c325870710dd2e429a36"
+    },
+    {
+      "path": "proof-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.stdout",
+      "bytes": 115,
+      "sha256": "d7108328c03c7e93e6b89e4cf820952419adf8999c702f539daeec7d9d1b816e"
+    },
+    {
+      "path": "prove-before-site-correction.py",
+      "bytes": 8982,
+      "sha256": "27fdbaca7f3551f079e1fa98b8384aa410448da680303d5d8f9f5674c039cf49"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 9050,
+      "sha256": "eac994cb0fcdca4ec6e91260096439761d630f18e28dbe92176a231e1a3a7eb5"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4350,
+      "sha256": "3701261dfad7f8c324d29bf45958a4fd03c829f537204ec267531c8a07fcc135"
+    },
+    {
+      "path": "result-02.json",
+      "bytes": 7619,
+      "sha256": "2e9283f6a5e9b9c7e9f02a6fd844f9523b6d0ddbccc885429c8c6843baee22f6"
+    },
+    {
+      "path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

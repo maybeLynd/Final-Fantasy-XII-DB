@@ -1,0 +1,738 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "bodies": [
+    {
+      "entry": "0016D6A0",
+      "end": "0016d6a2",
+      "length": 3,
+      "name": "_guard_check_icall",
+      "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001EC560",
+      "end": "001ec59a",
+      "length": 59,
+      "name": "FUN_001ec560",
+      "sha256": "eea3b70d8fc7c21d2d301418e7b9c5f36aac4e515899e6d8f336586aecc703ef",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001EC5C0",
+      "end": "001ec5d0",
+      "length": 17,
+      "name": "FUN_001ec5c0",
+      "sha256": "0edbbfff57f6c4103fdc48b6736b9c2c65c435d940ef809d06b01c5414d34ffa",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001EC5E0",
+      "end": "001ec5f0",
+      "length": 17,
+      "name": "FUN_001ec5e0",
+      "sha256": "a996c3e32226d9f7dd5eedae2e4418d61fb3130b052b2ef172ee558215800bb4",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001ED130",
+      "end": "001ed178",
+      "length": 73,
+      "name": "FUN_001ed130",
+      "sha256": "b4a7b1c3bdcf89f11e27475469c58fca32e32a0a98284da5f976234500e10863",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001ED180",
+      "end": "001ed1d2",
+      "length": 83,
+      "name": "FUN_001ed180",
+      "sha256": "7ea10eea0ad9eef16eccb2d974313f85336bbc150303cd5bf455b093cb5356ea",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001EDC80",
+      "end": "001edccc",
+      "length": 77,
+      "name": "FUN_001edc80",
+      "sha256": "cda4c27e745697a25fdd1ada41f96239d4b9cf3c698182204a765599fa775eee",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001EDDA0",
+      "end": "001eddba",
+      "length": 27,
+      "name": "FUN_001edda0",
+      "sha256": "a732b1d18fd5f604441cba1061a064a0c2029122eae0c414b41c53f64340d273",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "001EDE80",
+      "end": "001edebc",
+      "length": 61,
+      "name": "FUN_001ede80",
+      "sha256": "41ba827c866d989629f556addefe4d246f84b8c12bca5613628732ca0fb28fa5",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0020E620",
+      "end": "0020e628",
+      "length": 9,
+      "name": "RuntimePointer_EncodeImageAddress",
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025B400",
+      "end": "0025b46b",
+      "length": 108,
+      "name": "WorldActorScriptVM_ServiceRequestWaitState",
+      "sha256": "8af7e9d1664572312bd35baa8e283e1df8e22650021e48bce5694b2afa342b40",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025B500",
+      "end": "0025b57c",
+      "length": 125,
+      "name": "FUN_0025b500",
+      "sha256": "7b193f704ee230bc6d467bb09b470d1b431380d1acc0b67ab035ae9f080d3109",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025B580",
+      "end": "0025b5fb",
+      "length": 124,
+      "name": "FUN_0025b580",
+      "sha256": "9b398db95d518c2f5b46bf7202d32bf3bbf87543e00708e53edc0b0aaaa22960",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025D460",
+      "end": "0025d473",
+      "length": 20,
+      "name": "ScriptExecutionState_ResetCore",
+      "sha256": "25d1141d5b6c02b3c6093ec345b883c7330ff0572ea45e894802b78f20b0e64c",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025D9E0",
+      "end": "0025def0",
+      "length": 1297,
+      "name": "ActorManager_RunFieldRuntimePass",
+      "sha256": "d2f00ca3caa9c3a789b30ef6d98b9f334a40fa6bcc4f6838e95bf57bec74a939",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025DF00",
+      "end": "0025e3cb",
+      "length": 1228,
+      "name": "WorldActor_UpdateRuntimeAndScriptExecutionState",
+      "sha256": "fd07cd5b2637aa837f3cc6f00a946be8cabe02823c250eb783cd0b05954be8fc",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0025E4C0",
+      "end": "00261df5",
+      "length": 14646,
+      "name": "WorldActorScriptVM_InterpretBytecode",
+      "sha256": "cd5e652e4323fdccf2a05a06da193822f30b370b3cea93c88fe33338b1d06335",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002621D0",
+      "end": "0026239c",
+      "length": 461,
+      "name": "VMNativeCommand_ExecuteLifecycle",
+      "sha256": "41f6d711514f65f1545d96604cc5eca98214cf6d644cbb7579a3f63e8464a043",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00263E40",
+      "end": "00263e4d",
+      "length": 14,
+      "name": "FUN_00263e40",
+      "sha256": "7a0175ade056fb28864d26519882bf044cecf42b87ba6694eba752893b5f98d8",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00263FF0",
+      "end": "00264004",
+      "length": 21,
+      "name": "FUN_00263ff0",
+      "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00265020",
+      "end": "0026505c",
+      "length": 61,
+      "name": "Actor_GetWorldPosition",
+      "sha256": "cf09b85d637d05ca695217249179536c30ad2813ed42f5fc678f79963eec6e2d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002651A0",
+      "end": "002651b9",
+      "length": 26,
+      "name": "FUN_002651a0",
+      "sha256": "da21bdd53336677b5610fdc16973fdaf588e91efadeedd5689f52e95f6611acd",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00265270",
+      "end": "0026528b",
+      "length": 28,
+      "name": "FieldData_GetVariable0",
+      "sha256": "17c90ed9080aa333f0908e9c6377230bb6fb15504dcb38a15ffec22e1fd9fe24",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00265760",
+      "end": "00265767",
+      "length": 8,
+      "name": "FUN_00265760",
+      "sha256": "8cbd0966373f88c3c79230b3c7f8cba599f2d49dbcee0c635f23daefdbc422bb",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00265880",
+      "end": "002658ad",
+      "length": 46,
+      "name": "FUN_00265880",
+      "sha256": "4a0dd9e32b8d0a55ddc20f91c8fad46b3b26637ecd36bdc42c1ca4d421fb2151",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267310",
+      "end": "00267325",
+      "length": 22,
+      "name": "FUN_00267310",
+      "sha256": "a23490763048c1cc89123c96c319fc2e6c0c76f134a68d61d06c2ea9a79055df",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267420",
+      "end": "002674a3",
+      "length": 132,
+      "name": "ScriptVM_WaitList_HasAnyActorChannelActive",
+      "sha256": "57951d801ccaf555e80d4c785f0fbc023257f1d3f35f5dfba6ce645a4ef39acd",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002674B0",
+      "end": "00267555",
+      "length": 166,
+      "name": "ScriptVM_WaitList_HasAnyActorResourceEntryActive",
+      "sha256": "19aa9bbf47d240436a8f0dcccf9e43ee277c4287edc699f830b0f009b9a9026e",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267D40",
+      "end": "00267da7",
+      "length": 104,
+      "name": "FUN_00267d40",
+      "sha256": "c373b72ed6cebf72ebe70f7978656cf35c97e80df05fb4d62e2a4a16ee3f5f5f",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267DB0",
+      "end": "00267e03",
+      "length": 84,
+      "name": "VMValueStack_PopNumericDiscard",
+      "sha256": "842641db8a74264c544eadc0c2fdefaa2052369da2bc57d9457787dece4d937d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267E10",
+      "end": "00267e5d",
+      "length": 78,
+      "name": "VMValueStack_PopInt32CoerceFloat32",
+      "sha256": "cc8a8ea3b56301310d36fd816a0ed7b1967651ec087004a646f6cbb1d554f04b",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267F60",
+      "end": "00267f88",
+      "length": 41,
+      "name": "VMValueStack_PushFloat32Bits",
+      "sha256": "0aa2b96f423b38989791564d037be95fe9670f85aa3792a454d815dec9b2041b",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00267F90",
+      "end": "00267fb6",
+      "length": 39,
+      "name": "VMValueStack_PushInt32",
+      "sha256": "3deddfdd9b3b01fa895a4004de2b107ca6d409a99de72ef1baaa9970a5bf5703",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002681E0",
+      "end": "002682c5",
+      "length": 230,
+      "name": "FUN_002681e0",
+      "sha256": "62d69468b1b3766bbecd535f3827b94e760256484ed860a6f7c2e8f7f1e62d15",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00268850",
+      "end": "00268a70",
+      "length": 545,
+      "name": "ScriptVM_SubmitActorRuntimeRequest",
+      "sha256": "32aaeceec2531f8ca1f7837c66b96f1631ef7a9150832f54d173e89ad6d296cb",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0026B4C0",
+      "end": "0026b4db",
+      "length": 28,
+      "name": "VMResult_WriteFloat32",
+      "sha256": "3454829d4382e2dd1ff9043bd0319489452445deb6b30fd736e497f8c32f45a1",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0026B4E0",
+      "end": "0026b4fb",
+      "length": 28,
+      "name": "VMResult_WriteInt32",
+      "sha256": "84ae4f92a43102ca40881beaa0879934ac240a97780cad7888fdb5704ea2b249",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0026B500",
+      "end": "0026b51f",
+      "length": 32,
+      "name": "FUN_0026b500",
+      "sha256": "75798c45303dce3da4301a874b95061d0a61ea357f1255aa38e33bf8ebf17b76",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002E0540",
+      "end": "002e0591",
+      "length": 82,
+      "name": "FUN_002e0540",
+      "sha256": "93d682e87ae8b07d3a964a97042ddbef41432f53fcf3ef960e951b9baa8cbfa2",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002E5030",
+      "end": "002e5179",
+      "length": 330,
+      "name": "Movement_UpdateActorFrame",
+      "sha256": "f739335670ae32f1bffe17b78e178d4ee4a009406894fd1f064a6cc76ea813e9",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002E5750",
+      "end": "002e5af6",
+      "length": 935,
+      "name": "FUN_002e5750",
+      "sha256": "e643554f8a478cc27a4ab773e71d3ed2c165964c6c59f3178bb9e7dadb430dfd",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002E97B0",
+      "end": "002e97bf",
+      "length": 16,
+      "name": "FUN_002e97b0",
+      "sha256": "6e232e22130c3b78e5a57cc1a16a9b29af15ea82ea28b0aae354c35c8aca541a",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002EF2B0",
+      "end": "002ef2c3",
+      "length": 20,
+      "name": "SaveImage_GetPersistentPayloadBase",
+      "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "002EF640",
+      "end": "002ef647",
+      "length": 8,
+      "name": "SaveImage_GetActiveRuntimeBuffer",
+      "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00303EC0",
+      "end": "00303ed7",
+      "length": 24,
+      "name": "FUN_00303ec0",
+      "sha256": "f16bd80d5b664d035ec522472c0706d8a6d5fcf1284553f902728e73da66efb5",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003135C0",
+      "end": "003135d7",
+      "length": 24,
+      "name": "FUN_003135c0",
+      "sha256": "680512174286d75152895f584c4ee87f4425fb95df34db041070f2fd979487ac",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003148D0",
+      "end": "003148e3",
+      "length": 20,
+      "name": "WorldTransition_GetOptions",
+      "sha256": "8f26c65884b765ce9ec8bfebce9d02e62f24b00388f3ba523e6b24ee7de6edfe",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003148F0",
+      "end": "0031490a",
+      "length": 27,
+      "name": "WorldTransition_GetActiveOrPendingFieldId",
+      "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00314910",
+      "end": "00314923",
+      "length": 20,
+      "name": "WorldTransition_GetTransitionFieldId",
+      "sha256": "658b0458f8e50b00466ff2c97922834390cb19649691c1cf4fa967b6bfdff54f",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0033F310",
+      "end": "0033f32c",
+      "length": 29,
+      "name": "FUN_0033f310",
+      "sha256": "0c74b6a97c6df17aaadde15810483b8d2fee11757db1688b69bc3ef9170b790c",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00346710",
+      "end": "00346746",
+      "length": 55,
+      "name": "FUN_00346710",
+      "sha256": "f9224f79aebf4d019c036fc6fe11c4430c87aea71044c45237f808df4fa539fe",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00349910",
+      "end": "00349917",
+      "length": 8,
+      "name": "FUN_00349910",
+      "sha256": "ca05e13588d6dcb72c6577ae43f315c127d48f29814affb573b58089889a6d23",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00349C90",
+      "end": "00349caf",
+      "length": 32,
+      "name": "FUN_00349c90",
+      "sha256": "a9c1092681b40c8f29d756bb1067529fb5a0cd571491d2e0540482cbe701fc2c",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0034CF90",
+      "end": "0034d018",
+      "length": 137,
+      "name": "FUN_0034cf90",
+      "sha256": "b50cd58dd0383b876f1068f7113f5129c715159aba84e6958cb280ea8d436498",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "0034DCC0",
+      "end": "0034dcf4",
+      "length": 53,
+      "name": "FUN_0034dcc0",
+      "sha256": "d6ac80447fa90faf883322f316bcf6517bb11f3d8bab4270418895f9d2c6eaf4",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00356000",
+      "end": "00356020",
+      "length": 33,
+      "name": "FUN_00356000",
+      "sha256": "6016125cff35606ba34e4a6ab588006704257eb035eea3ee76a46347462573fa",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00357760",
+      "end": "0035776a",
+      "length": 11,
+      "name": "FUN_00357760",
+      "sha256": "ac4c415787e18699da7b10193a3c67df36836f507126638809a64669a9fa06ec",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00357770",
+      "end": "00357776",
+      "length": 7,
+      "name": "FUN_00357770",
+      "sha256": "e3ec66576d544153b624b6848b7d584368e3845554b1e1786418e2a26ca049f6",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003587C0",
+      "end": "003587f1",
+      "length": 50,
+      "name": "FUN_003587c0",
+      "sha256": "bf9121862b5d78d0c3f2fe3048be03d21d58cd801f4e51942501161c65250fda",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00358940",
+      "end": "0035895d",
+      "length": 30,
+      "name": "ActorManager_GetRecordByOrdinal",
+      "sha256": "e7d50b2c2b1279720b63b38b1d754f6e1ecf4a188afdb1a4a3a4045a7306024d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003589E0",
+      "end": "003589f4",
+      "length": 21,
+      "name": "FUN_003589e0",
+      "sha256": "4e2a6b8775209b05a8df1facbbca56b2f0850e55c8e63b9fd271d0516b2f2f20",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00358A00",
+      "end": "00358a14",
+      "length": 21,
+      "name": "ActorScriptResource_GetBytecodeOffsetById",
+      "sha256": "3f08aa00712c50b8e7ac8adb8953dfd07443c4e34eeb0b86de96eedb2930310e",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00377C20",
+      "end": "00377c6d",
+      "length": 78,
+      "name": "FieldData_GetActiveFieldRecordBit15",
+      "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB2A0",
+      "end": "003db419",
+      "length": 378,
+      "name": "ActorResource_RemoveActiveEntry",
+      "sha256": "fd2a8a09ed5831524fedc90bfe9931fe3f432c7f90dc433a7aa3906b1301525e",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB550",
+      "end": "003db572",
+      "length": 35,
+      "name": "ActorResource_GetEntryByOrdinal",
+      "sha256": "caded04469b9641cf38872f867c93693fc0dc028daa6a6f0363758146f66fe1d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB580",
+      "end": "003db636",
+      "length": 183,
+      "name": "FUN_003db580",
+      "sha256": "349a6eb208e6da297195b84e377e79338db9a3848656d4f76e82cfc67df0167d",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB640",
+      "end": "003db64c",
+      "length": 13,
+      "name": "ActorResource_IsChannelBitActive",
+      "sha256": "c8311f9d439de3e83da4075106db0084c4675a477748fd29af68af58a8ba664f",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB650",
+      "end": "003db6d4",
+      "length": 133,
+      "name": "FUN_003db650",
+      "sha256": "7eec6ca24b90e0fbc7a1c9d13d25cb977cac1659642d050250d45caa7e52bfd2",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB6E0",
+      "end": "003db787",
+      "length": 168,
+      "name": "ActorResource_SelectPendingEntryForExecution",
+      "sha256": "5aad9a43864044a4ec4034f08646f6245b4d3b4be49e3d4cb97525aeceda1c36",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB790",
+      "end": "003db79a",
+      "length": 11,
+      "name": "FUN_003db790",
+      "sha256": "572755df13c96299d2db9b5bf7c79b9cc825634b570d2d7ef7aefd1bff5a0683",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DB7A0",
+      "end": "003dbad0",
+      "length": 817,
+      "name": "ActorResource_InsertEntryFromDescriptor",
+      "sha256": "6a8bdbc62fe1fb8ad5edf44ec4b37f5ede88aa9817b700b05059354f9dcc8c93",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DBAE0",
+      "end": "003dbb5e",
+      "length": 127,
+      "name": "FUN_003dbae0",
+      "sha256": "724d257fbff8aec505d5a015752077cf95dabe02a21a9118bdd6d9d230a12c00",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DBCF0",
+      "end": "003dbdb1",
+      "length": 194,
+      "name": "ActorResource_AllocateAndSubmitEntry",
+      "sha256": "2ce8e3e81b65f5f3261dcdf1699ad2934eacea2c80cd7c36b3a5f7f3ae4f4c25",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DBDC0",
+      "end": "003dbe91",
+      "length": 210,
+      "name": "ActorResource_StartEntryScriptExecution",
+      "sha256": "c20ff7d55aa706600e571831769524ff004d068ec5cb983b24c4f62ded6c8557",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DBF60",
+      "end": "003dc041",
+      "length": 226,
+      "name": "ActorResource_FindActiveEntryByIdOrClass",
+      "sha256": "ef47858e59bb619c5e2aa24d4baeff3aa3b6179da14327bbec09139715738764",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC050",
+      "end": "003dc0c8",
+      "length": 121,
+      "name": "ActorResource_FindScriptRequestEntry",
+      "sha256": "c10dba1da83fc5daab96664bb017b205b69d9edf673496e1e29f85331b4cb82f",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC0D0",
+      "end": "003dc12c",
+      "length": 93,
+      "name": "FUN_003dc0d0",
+      "sha256": "a289ececb1c4ca46bb341e1b4a7ed43a09426a81c6c57384c7cfa0248762daed",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC130",
+      "end": "003dc1a9",
+      "length": 122,
+      "name": "ActorResource_UnlinkEntryAndMarkFree",
+      "sha256": "4bc39fa548e155a672bd3afe7e26a01e8c1b6643f1cab8ea5ba5a1ff8eeec35e",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC1B0",
+      "end": "003dc238",
+      "length": 137,
+      "name": "FUN_003dc1b0",
+      "sha256": "33b57ac01c2b793712a38d2293c7a6603421f844c82f4aca8be593cf9daf7745",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC240",
+      "end": "003dc266",
+      "length": 39,
+      "name": "VMNativeCommandDispatch_GetPollCallback",
+      "sha256": "9ad30c08acd5b42dcd8efae9183ea0fe08c30e557834195b4d4c60149446a41c",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC270",
+      "end": "003dc296",
+      "length": 39,
+      "name": "VMNativeCommandDispatch_GetBeginCallback",
+      "sha256": "d7c2e93dccc4ae272f67e44e3cb51427ccd414b3223580a7cd361b6789bea354",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC2A0",
+      "end": "003dc2c8",
+      "length": 41,
+      "name": "VMNativeCommandDispatch_GetResultCallback",
+      "sha256": "0eeb67716ea5fd46ed45e25e56e72b370697624c24c74aeb21981378032e32f2",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "003DC2D0",
+      "end": "003dc328",
+      "length": 89,
+      "name": "VMNativeCommandDispatch_InitializeFamilyTables",
+      "sha256": "2cae58d2b6e2125be459c7c42eac0fba33583b63e25b9de5bc4e2c030f49aadb",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "00808C40",
+      "end": "00808c60",
+      "length": 33,
+      "name": "__security_check_cookie",
+      "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    },
+    {
+      "entry": "008620C0",
+      "end": "008620cd",
+      "length": 14,
+      "name": "FUN_008620c0",
+      "sha256": "0d21a1f5d20ef0ba8d7d3e91c612aeb506cbd465779fd79134051c832e1ae95e",
+      "scope": "selected original body, not exhaustive executed instruction coverage"
+    }
+  ],
+  "data_spans": [
+    {
+      "name": "opcode_jump_rvas",
+      "address": "00261DF8",
+      "length": 400,
+      "sha256": "4a926003bd1191c045a7810224482cc45daca16d61c3f7c141f90bdb8ecdc52d"
+    },
+    {
+      "name": "opcode_lengths_and_metadata",
+      "address": "01EFEA60",
+      "length": 2400,
+      "sha256": "495af2eed7cfe6ceca3a621eca4a52fc06c94502a738c6e5e439490512fe4c62"
+    },
+    {
+      "name": "callback_table_01EED700",
+      "address": "01EED700",
+      "length": 47880,
+      "sha256": "ad3d3f56f96e7c2e915d8c4a9a2ec78a32fa7dff113969f2abb30204d0b51a44"
+    },
+    {
+      "name": "callback_table_01F281B0",
+      "address": "01F281B0",
+      "length": 4712,
+      "sha256": "4925c5148735df393a80453405fcc90c75e6e87168e0b7b32982a639905cb9e1"
+    },
+    {
+      "name": "callback_table_01F29418",
+      "address": "01F29418",
+      "length": 40,
+      "sha256": "7b35cb6a3ff5b19c6d7186dca2cde487a52128b899df7ef2c29876beb6abfbb4"
+    },
+    {
+      "name": "callback_table_01F29440",
+      "address": "01F29440",
+      "length": 3336,
+      "sha256": "e95691645e468f0d04bd86f807017e80934eee6ee1796ed1572bdcba2292923e"
+    },
+    {
+      "name": "callback_table_01F26720",
+      "address": "01F26720",
+      "length": 6792,
+      "sha256": "f8c923e0b98620bcdb88d0d3b318edd4a820a2f6645ae8d462b9973953edf5d7"
+    },
+    {
+      "address": "0025E3CC",
+      "length": 32,
+      "name": "Request-driver wait-kind jump table",
+      "sha256": "5b669761bfb1fd1679ca20e7f719628101b57a3d014cd799c638db57e0ae4eef"
+    }
+  ],
+  "historical_extents": true,
+  "fresh_ghidra_import": false,
+  "note": "Selected bodies rehashed against original EXE. Bytes/provenance do not prove complete path coverage."
+}

@@ -1,0 +1,265 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01GAVL9pjWiJ4RaEZv212gfL",
+ "report": "how-a-line-of-text-becomes-glyph-quads.json",
+ "rows": [
+  {
+   "fn": "00267BB0",
+   "text": "calls `0036B200(0xD)`, then `0036C1D0(0xD, 5)` when that returned non-zero and `0036C1D0(5, 5)` otherwise; takes `0036C750(009156E8)` (the string \"..\\..\\katano\\ateldecode.c\"), returns `0036C660(0036A100(ecx), that result, 0x16C1)` after calling `0036C140()`",
+   "anchors": [
+    [
+     "00267BC1",
+     "call"
+    ],
+    [
+     "00267BD2",
+     "mov"
+    ],
+    [
+     "00267BE0",
+     "call"
+    ],
+    [
+     "00267BFB",
+     "call"
+    ],
+    [
+     "00267C03",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00267C20",
+   "text": "calls `0036B200(0xE)`, then `0036C1D0(0xE, 5)` when that returned non-zero and `0036C1D0(5, 5)` otherwise; takes `0036C750(009156E8)` (the string \"..\\..\\katano\\ateldecode.c\"), returns `0036C660(0036A100(ecx), that result, 0x16E6)` after calling `0036C140()`",
+   "anchors": [
+    [
+     "00267C31",
+     "call"
+    ],
+    [
+     "00267C42",
+     "mov"
+    ],
+    [
+     "00267C50",
+     "call"
+    ],
+    [
+     "00267C6B",
+     "call"
+    ],
+    [
+     "00267C73",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00271380",
+   "text": "calls `003588B0(rcx)`; returns the float -1.0 (`01CEBC9C`) when that is null, otherwise tail-jumps `00263940(object)`",
+   "anchors": [
+    [
+     "00271384",
+     "call"
+    ],
+    [
+     "0027138E",
+     "movss"
+    ],
+    [
+     "002713A2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002A35B0",
+   "text": "stores `rdx` at qword `+0x1A8` of `rcx`, overwrites it with the result of a second `0039C480()` call when the first `0039C480()` returns non-null, then tail-jumps `002A3250(rcx, r8)`",
+   "anchors": [
+    [
+     "002A35BD",
+     "mov"
+    ],
+    [
+     "002A35C7",
+     "call"
+    ],
+    [
+     "002A35D1",
+     "call"
+    ],
+    [
+     "002A35D6",
+     "mov"
+    ],
+    [
+     "002A35ED",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002B2D90",
+   "text": "walks runs from `rcx`, each a byte whose low 7 bits (AND `0x7F`) give the count of bytes that follow it, stopping at a zero byte or after run index `r9d`; runs whose index bit (`bt`) is set in `edx` are not counted, and at the unskipped run number `r8d` (from 0) it stores the run's low 7 bits at the dword the fifth (stack) argument points to and returns the pointer past that byte; when the walk stops first it stores 0 there and returns 0",
+   "anchors": [
+    [
+     "002B2D96",
+     "cmp"
+    ],
+    [
+     "002B2D9B",
+     "bt"
+    ],
+    [
+     "002B2DA1",
+     "cmp"
+    ],
+    [
+     "002B2DBA",
+     "add"
+    ],
+    [
+     "002B2DCD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003666E0",
+   "text": "forms `r8` = sign-extended `ecx+ecx` minus 1, finds its highest set bit by scanning down from bit 63 (`sar`, `test al, 1`), then keeps scanning down while bits stay set and returns that highest bit index minus the index where the second scan stopped (the first clear bit, or 0); for a power-of-two `ecx` this is its log2",
+   "anchors": [
+    [
+     "003666E7",
+     "add"
+    ],
+    [
+     "003666EC",
+     "dec"
+    ],
+    [
+     "00366709",
+     "sar"
+    ],
+    [
+     "00366729",
+     "sar"
+    ],
+    [
+     "00366731",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "003EA6B0",
+   "text": "stores -1 at dword `02B5E0B8`, zeroes the 16 bytes at `02B5E0C0`, calls `003DCF00(0)` and tail-jumps `003DCF10(0)`",
+   "anchors": [
+    [
+     "003EA6B7",
+     "mov"
+    ],
+    [
+     "003EA6C3",
+     "movdqu"
+    ],
+    [
+     "003EA6CB",
+     "call"
+    ],
+    [
+     "003EA6D6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003F7F50",
+   "text": "unless dword `[rdx]` is 4, calls `005C5230(rcx, rdx)` and returns its value; for 4 fills a stack record with `002B3400(&rec, qword +0xC0, 0)`, sets its float `+0x34` to 1.0 (`01CEBBA8`) and its byte `+0x9F` to byte `+0x5C` of the qword `+0x38` object, stores word `0x40` at that object's `+0x5A` when bit 0 of byte `+0xD4` is set and `0x80` otherwise (`cmovne`), calls `002D8650(object, word +0xC8, word +0xCA, &rec)` with the words sign-extended and returns 0",
+   "anchors": [
+    [
+     "003F7F6B",
+     "cmp"
+    ],
+    [
+     "003F7F95",
+     "call"
+    ],
+    [
+     "003F7FC9",
+     "cmovne"
+    ],
+    [
+     "003F7FD0",
+     "mov"
+    ],
+    [
+     "003F7FE3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0053ED10",
+   "text": "calls `00244F50(0xC8, 0053EB90, 0)` when qword `02CA8A78` is zero, then tail-jumps `00244F50(0x1498, 0053E380, 0)` when qword `02CA8A80` is zero and returns otherwise",
+   "anchors": [
+    [
+     "0053ED14",
+     "cmp"
+    ],
+    [
+     "0053ED2D",
+     "call"
+    ],
+    [
+     "0053ED32",
+     "cmp"
+    ],
+    [
+     "0053ED4F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00799980",
+   "text": "calls `0071F970(rdx, 008F6D40, &f)` and stores the float `f` at `+0x6C` of `rcx`; when `f` is not greater than 0.0 (`comiss`, `jb` skips otherwise, also skipping on NaN) stores at qword `+0x50` the double `005CC930()` minus qword `02CB60E8` minus qword `+0x50` minus qword `+0x40` plus qword `+0x50`; returns 0",
+   "anchors": [
+    [
+     "0079999B",
+     "call"
+    ],
+    [
+     "007999A9",
+     "comiss"
+    ],
+    [
+     "007999AC",
+     "movss"
+    ],
+    [
+     "007999B3",
+     "call"
+    ],
+    [
+     "007999CF",
+     "movsd"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00267BB0",
+   "why": "the 0036C1D0 call also passes edx = 5 on both paths (the callee stores edx to 022D8E18); the sentence gave only the first argument"
+  },
+  {
+   "fn": "00267C20",
+   "why": "the 0036C1D0 call also passes edx = 5 on both paths (the callee stores edx to 022D8E18); the sentence gave only the first argument"
+  }
+ ]
+}

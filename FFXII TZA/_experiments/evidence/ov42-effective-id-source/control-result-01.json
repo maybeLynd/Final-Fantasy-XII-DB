@@ -1,0 +1,118 @@
+{
+  "complete": true,
+  "driver_sha256": "7ddea0db27b7d7995b236208baa21e74d37ea527528ef089286363afffcedd5c",
+  "producer_sha256": "eddb5ca33c3405c44fa3cba56d1675c079e9466144538cfaecd9ea11676ca618",
+  "positive_result_sha256": "322929e6dae3531724e37a6c57bfe8896f898a92f468690127e80bca3ac3a79e",
+  "CLI_cases": [
+    {
+      "case": "failed-feasibility-with-output-present",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eddb5ca33c3405c44fa3cba56d1675c079e9466144538cfaecd9ea11676ca618"
+      },
+      "limits": "Actual producer CLI on disposable input, no original-code execution"
+    },
+    {
+      "case": "missing-feasibility-status",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eddb5ca33c3405c44fa3cba56d1675c079e9466144538cfaecd9ea11676ca618"
+      },
+      "limits": "Actual producer CLI on disposable input, no original-code execution"
+    },
+    {
+      "case": "failed-capture-exit",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eddb5ca33c3405c44fa3cba56d1675c079e9466144538cfaecd9ea11676ca618"
+      },
+      "limits": "Actual producer CLI on disposable input, no original-code execution"
+    },
+    {
+      "case": "missing-owner-source",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eddb5ca33c3405c44fa3cba56d1675c079e9466144538cfaecd9ea11676ca618"
+      },
+      "limits": "Actual producer CLI on disposable input, no original-code execution"
+    }
+  ],
+  "synthetic_source_cases": [
+    {
+      "case": "changes-special-ID",
+      "pc": "0x387100",
+      "field": "args",
+      "before": "ecx, 0x9f",
+      "after": "ecx, 0x1ff",
+      "refusal": "effective-ID operation changed 0x387100",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    },
+    {
+      "case": "widens-direct-return",
+      "pc": "0x387118",
+      "field": "args",
+      "before": "eax, word ptr [rax + 0x714]",
+      "after": "eax, dword ptr [rax + 0x714]",
+      "refusal": "effective-ID operation changed 0x387118",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    },
+    {
+      "case": "safe-null-return-invented",
+      "pc": "0x3870f9",
+      "field": "args",
+      "before": "0x387118",
+      "after": "0x387124",
+      "refusal": "effective-ID operation changed 0x3870f9",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    },
+    {
+      "case": "second-resolver-query-changed",
+      "pc": "0x3870e9",
+      "field": "args",
+      "before": "rcx, rdi",
+      "after": "rcx, rbx",
+      "refusal": "effective-ID operation changed 0x3870e9",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    },
+    {
+      "case": "owner-null-return-changed",
+      "pc": "0x31b86e",
+      "field": "mnemonic",
+      "before": "xor",
+      "after": "mov",
+      "refusal": "effective-ID operation changed 0x31b86e",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    },
+    {
+      "case": "caller-truncates-to-byte",
+      "pc": "0x304e1a",
+      "field": "args",
+      "before": "r8d, ax",
+      "after": "r8d, al",
+      "refusal": "effective-ID operation changed 0x304e1a",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    },
+    {
+      "case": "caller-passes-other-getter",
+      "pc": "0x304e12",
+      "field": "args",
+      "before": "0x387090",
+      "after": "0x387a50",
+      "refusal": "effective-ID operation changed 0x304e12",
+      "limits": "Synthetic source annotation mutation of actual derive, no EXE patch or native run"
+    }
+  ],
+  "limits": "Producer controls/conditional source proof, not independent acceptance or observed natural values/owner identity/NULL fault."
+}

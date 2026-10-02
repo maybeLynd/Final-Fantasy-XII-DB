@@ -339,7 +339,7 @@ Interior anchor `0053A13D` (function `0053A120`).
 
 Interior anchor `0053A07D` (function `0053A060`).
 
-`0053A5D0` (287 B) is the ~~`+0x44 = 0x65`~~ **`+0x44 = 0x67` (corrected 2026-09-29, FABLE, GI-10: `005004C0`'s table and `members/effect-type-methods.tsv`)** creation arm (`005004C0` stub 38): `00500470` prelude, `0042FCF0`/`004304F0`x8/`00430AF0`x3 over `+0x80`-`+0x5F0`, closed by `00431770` - the eight-group 0x65 setup this page already names.
+`0053A5D0` (287 B) is the ~~`+0x44 = 0x65`~~ **`+0x44 = 0x67` (corrected 2026-09-29, FABLE, GI-10: `005004C0`'s table and `members/effect-type-methods.tsv`)** creation arm (`005004C0` stub 38): `00500470` prelude, `0042FCF0`/`004304F0`x8/`00430AF0`x3 over `+0x80`-`+0x5F0`, closed by `00431770` - the eight-group ~~0x65~~ `0x67` setup *(corrected 2026-10-02, OPUS: the arm's type was corrected to `0x67` at the head of this paragraph)* this page already names.
 
 Interior anchor `0053A5FD` (function `0053A5D0`).
 

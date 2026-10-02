@@ -1,0 +1,95 @@
+{
+  "method": "A static source feasibility only, NOT a semantic producer result",
+  "source_sha256": "7b1683169d121522d38a62c4fde6730e27e2cb19098fb55d7456db2c2745173a",
+  "capture_driver_sha256": "17226afad980fa02d38476c1e55a3ced69e67fd0171d59420c60c21f8b1af38c",
+  "capture_status_sha256": "91971edfe042bda91574c83e89c96d21530580b8343b6797d100dc3c7768848b",
+  "annotation_validation": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 181,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "graphs": [
+    {
+      "entry": "0x1d6a20",
+      "bytes": 77,
+      "instructions": 22,
+      "calls": [
+        [
+          1927743,
+          "0x20c700"
+        ],
+        [
+          1927763,
+          "0x20b680"
+        ]
+      ],
+      "returns": [
+        "0x1d6a6c"
+      ]
+    },
+    {
+      "entry": "0x20b680",
+      "bytes": 443,
+      "instructions": 122,
+      "calls": [
+        [
+          2143923,
+          "0x5cd4f0"
+        ],
+        [
+          2144002,
+          "0x20b0f0"
+        ],
+        [
+          2144038,
+          "0x20c300"
+        ],
+        [
+          2144050,
+          "0x5cd820"
+        ],
+        [
+          2144070,
+          "0x1ba860"
+        ],
+        [
+          2144220,
+          "0x20b5f0"
+        ],
+        [
+          2144232,
+          "0x5cd820"
+        ],
+        [
+          2144242,
+          "0x210ec0"
+        ],
+        [
+          2144273,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        "0x20b83a"
+      ]
+    },
+    {
+      "entry": "0x20b5f0",
+      "bytes": 133,
+      "instructions": 37,
+      "calls": [
+        [
+          2143842,
+          "0x1ae9b0"
+        ]
+      ],
+      "returns": [
+        "0x20b674"
+      ]
+    }
+  ],
+  "next": "Prove full32 pre-keyed entry and map-helper forwarding with exact stack/key width/carriers and originalEXE checks; map native1AE9B0 effect boundary/allcaller natural domains remain open. Do not treat completeCFG as acceptance."
+}

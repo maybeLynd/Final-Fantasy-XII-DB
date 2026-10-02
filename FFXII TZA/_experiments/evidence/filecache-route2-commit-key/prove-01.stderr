@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\filecache-route2-commit-key\prove.py", line 33, in <module>
+    if t.get('terminal') is not True or t.get('exit')!=0 or t.get('exception') is not None or t['driver_sha256']!=sha(P/'retained'/driver):raise RuntimeError('required retained capture failed')
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: required retained capture failed

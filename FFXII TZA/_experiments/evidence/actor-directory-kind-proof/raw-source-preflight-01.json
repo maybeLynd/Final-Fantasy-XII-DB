@@ -1,0 +1,20 @@
+{
+  "status": "RETAINED_EXTRACTED_BYTES_ONLY",
+  "source_path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\us\\plan_map\\asp_a\\asp_a03\\global\\asp_a03.ebp",
+  "sha256": "e92d26899e523429695a97686732abdc46b518487f2870e4ba258fef16977a15",
+  "bytes": 80000,
+  "section_offset": 128,
+  "section_bytes": 61152,
+  "section_sha256": "bec45aaf12600e049d48bee9d7c1d5a0c3fc8bc67f25360b5a10933ef1523168",
+  "directory_offset": "0xcdf0",
+  "actor_count": 96,
+  "actor_ordinal": 25,
+  "entry_offset": "0xd2a4",
+  "entry_bytes": "360500000600ff007a590000070100002019000084190000b01900001000000000001900000000000000000000000000",
+  "raw_name_bytes": "8389836f83695f92ca8fed5f4e50433031",
+  "cp932_name": "ラバナ_通常_NPC01",
+  "scriptType": 6,
+  "type_table_offset": "0x730",
+  "type_table_preview": "080009000b0000000000000004004800000000000000000000000000000000000100000018000003",
+  "limits": "Physical extracted file/strict raw-name identity only. Native header-count width/order/binding and shipping archive member provenance must be independently validated before semantic promotion."
+}

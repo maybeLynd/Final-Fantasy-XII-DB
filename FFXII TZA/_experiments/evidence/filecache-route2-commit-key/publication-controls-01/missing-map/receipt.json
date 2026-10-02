@@ -1,0 +1,7 @@
+{
+  "case": "missing-map",
+  "status": "EXPECTED_ACTUAL_GUARD_REFUSAL",
+  "exception": "ValueError('missing/incomplete source prerequisite map')",
+  "diagnostic_matched": true,
+  "guard_sha256": "05344fbc99d84d69cea71acc43a87ae82d4f8205aabe6568e53ac56527f87609"
+}

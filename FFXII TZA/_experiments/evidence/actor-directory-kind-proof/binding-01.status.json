@@ -1,0 +1,10 @@
+{
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "driver": "capture-binding.py",
+  "driver_sha256": "ec1883591b8599a8e63accffdffbf4b19f3f8b7a885861ef99ddde638e1ce986",
+  "argv": [],
+  "start": 1790973895.151746,
+  "end": 1790973895.3435497
+}

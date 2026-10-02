@@ -46,7 +46,7 @@ budget**, and textures referenced only once are never admitted at all.
 2. for each, compute the **complete mip-chain footprint** via `00466190`, which reads a
    format code, a mip count capped at 7, and two dimensions, then calls `003A1E50(w, h, fmt)`
    per level, halving both dimensions each time;
-3. compute the maximum single-image footprint and a weighted aggregate; publish both through
+3. compute the maximum ~~single-image~~ single-record mip-chain footprint *(corrected 2026-10-02, OPUS: `002F7380`+0xB1 `call 00466190` (the chain sum), +0xB6 `cmp esi, eax`, +0xBB `cmovl esi, eax`)* and a weighted aggregate; publish both through
    `00467B10` / `00467B00`;
 4. clear every record's derived reference/slot field;
 5. obtain the remaining budget from `00467AA0`;
@@ -349,7 +349,7 @@ Two further facts fell out, neither previously recorded:
   to one page rather than truncated.
 
 **Consequence for section 6:** the texture budget is not "~4 MiB minus some things", it is a
-**fixed 1.375 MiB / 176 pages** on every machine. Section 6 now says so.
+**~~fixed 1.375 MiB / 176 pages~~** at most 1.375 MiB / 176 pages on every machine, less the two runtime totals rounded to whole pages, so 175 pages or fewer once any texture record with a level is present *(corrected 2026-10-02, OPUS: `00467AA0`+0x17 and +0x1D subtract `[02CA6008]` and `[02CA6004]` before the `and eax, 0xfffff800` at +0x23; every class's minimum footprint is `0x800` words, section 6's precision)*. Section 6 now says so.
 
 **Consequence for D-5:** the three reserved surfaces are now known to be **512 x 448 at 4
 bytes/pixel, 0.875 MiB each**. Their count, geometry and depth are fact; only the role labels

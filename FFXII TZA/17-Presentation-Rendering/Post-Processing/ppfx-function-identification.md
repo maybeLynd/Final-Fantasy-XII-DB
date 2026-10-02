@@ -128,7 +128,7 @@ Full mapping: `Tools/work/rtti/ppfx_xrefs.tsv` (317 rows).
 
 ## 4. Data structures and formulas
 
-None. This document produces identity, not mechanism — no PPFX function body has been read.
+None. This document produces identity, not mechanism ~~— no PPFX function body has been read~~ *(corrected 2026-10-02, OPUS: H-4 and H-6 below read three bodies)*.
 
 **Reference resolution** (as for audio):
 
@@ -139,7 +139,7 @@ function(addr) = the f with  f.entry <= addr < f.entry + f.body_bytes
 
 ## 5. Call chain
 
-Not derived. One ordering constraint is stated by the strings themselves:
+~~Not derived.~~ *(answered: see the-post-processing-effect-catalogue.md §5 and CONTRACT-post-processing-subsystem.md for the call chain; 2026-10-02, OPUS)* One ordering constraint is stated by the strings themselves:
 
 ```
 CPostEffect::BeginPostEffectScene()
@@ -152,7 +152,7 @@ CPostEffect::EndPostEffectScene()
 
 ## 6. Modding notes
 
-- **Start from `ppfx_xrefs.tsv`.** 147 named functions is the entry point for any
+- **Start from `ppfx_xrefs.tsv`.** 147 named ~~functions~~ entries *(corrected 2026-10-02, OPUS: 135 functions and 12 funclets, the correction below)* is the entry point for any
   post-processing work — bloom, DoF, glare, exposure.
 - **Respect the scene bracket.** `SetFramebuffer` outside `Begin/EndPostEffectScene` is
   explicitly refused.
@@ -455,7 +455,7 @@ pair and one with seventeen, which is a dispatcher and is excluded. **137 of the
 `FUN_xxxxxxxx`.**
 
 By class: `CPostEffect` 59, `IGPUDevice` 17, `CTextureUtil` 12, `CTinyEffect` 9, `CDepthOfField` 5,
-`CRenderGlare` 5, and sixteen more classes with 1–3 each.
+`CRenderGlare` 5, and ~~sixteen~~ at least seventeen more classes with 1–3 each *(corrected 2026-10-02, OPUS: the list below alone names seventeen more)*.
 
 ```
 0077ECE0  CDepthOfField::ApplyDepthOfField
@@ -610,7 +610,7 @@ the collisions among NAMES are 7. Different quantities on opposite sides of the 
 
 **NOT APPLIED AS NAMES.** This is evidence for the page that owns PPFX function identity, not a
 rename. What the string proves is *which method reports this error*, which is strong; whether that
-becomes the recorded name — and how the three collisions resolve — is this page's call.
+becomes the recorded name — and how the ~~three~~ seven collisions *(corrected 2026-10-02, OPUS: the count above)* resolve — is this page's call.
 
 *Static: every `C*::`/`I*::`/`TEXSHADERSET::` method-name string in the image resolved to its VA and
 matched against every RIP-relative operand in all listed function bodies. The same pass over
@@ -671,9 +671,9 @@ the count.** An unrolled prologue followed by a loop would show only its prologu
 *strides* are exact — each run is an arithmetic progression with no gaps — and the strides are what
 a reconstruction needs.
 
-> **The object is at least `0x220E0` bytes.** The highest displacement `CreateEffect` touches is
-> `+0x220DC`, and that is through `r14 = rcx + 8`, so the allocation is at least `0x220E4` from
-> `rcx`. Three strides repeat — `0x580` twice, `0x2C0` three times, `0x58` twice — which is what a
+> **The object is at least ~~`0x220E0`~~ `0x221DC` bytes.** The highest displacement `CreateEffect` touches is
+> ~~`+0x220DC`~~ `+0x221D0`, and that is through `r14 = rcx + 8`, so the allocation is at least ~~`0x220E4`~~ `0x221DC` from
+> `rcx` *(corrected 2026-10-02, OPUS: `0072A320`+0x176 `lea r14, [rbx + 8]`, +0x34B8 `mov dword ptr [r14 + 0x221d0], eax`; the catalogue's `+0x221D8`)*. Three strides repeat — `0x580` twice, `0x2C0` three times, `0x58` twice — which is what a
 > class holding several arrays of a few record types looks like.
 
 ### Why this is recorded here and not on the type it was first attributed to

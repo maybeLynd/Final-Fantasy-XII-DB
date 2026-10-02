@@ -1,0 +1,10 @@
+{
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "driver": "capture.py",
+  "driver_sha256": "6dd0223470aea3733fa683752976b3b904b743efbbdce2aba2e12275f07ef581",
+  "argv": [],
+  "start": 1790978382.2793949,
+  "end": 1790978382.4898348
+}

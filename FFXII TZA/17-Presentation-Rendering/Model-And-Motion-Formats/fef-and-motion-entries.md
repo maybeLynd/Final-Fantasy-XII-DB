@@ -299,7 +299,7 @@ are registered at startup (`00426A0D`–`00426B84` for ops `0x11`–`0x48`;
 `002EA4xx` registers `tabA[4]=002E70C0`, `tabA[5]=0016D6A0` stub,
 `tabA[6]=002E7090`, `tabA[0x0C]=002E70A0`, `tabA[0x26]=002E7080`); the thunk
 machinery also reads `tabB` at `02CA4670` (op `0x05` additionally posts to
-`tabB[5]=00520C50`). Command lengths below are corpus-verified; operand
+`tabB[5]=00520C50`). Command lengths below are corpus-verified *(scope named 2026-10-02, OPUS: the `uses` column counts the container `.ca` + `.cm` blocks (32,151); the all-block census of the authored-command page adds the 30,057 event `.mot` blocks - e.g. `0x09` 78,455 here and 108,511 there, `0x13` 5,805 and 17,416, `0x16` 329 and 373; recount of the extracted archive by file kind)*; operand
 semantics are read from the handler bodies. Semantic names crosswalk to
 [the authored presentation command handlers](../Authored-Commands/the-authored-presentation-command-handlers.md),
 [the ramp-channel contract](../CONTRACT-authored-command-ramp-channels.md) and
@@ -311,12 +311,12 @@ re-verified here FAILS 0).
 |---|---|---|---|---|
 | `0x00` | 4 | 32,151 | `00417810` | **begin — motion number + end frame** — `word+2` sign bit ⇒ held (`0x7FFF7FFF` to `state+0x16`, flag `+0x96` bit 4 cleared); else `frames−1` → `+0x16`/`+0x18`, normalized phase `+0x1C`. Rotates selector `+0x31C`→`+0x324`→`+0x326`; tail-calls `[[02CA4668]+0x2F8]`. |
 | `0x01` | 4 | 64,880 | `00417920` | **play track *n*** — `word+2` = `{id:12, mode:4}` (authored modes `{0: 26,026, 1: 36,362, 2: 2,492}`); mode 0 or 2 (with `rec+4==2`) resolve via `0041C9A0` → desc row `+0x80=id`, `+0x96|=2`, `+0x88`→`+0x8C`; mode 1 either initialises the descriptor row (clears + `+0x18=0x1E0000`, `+0x20=30.0f`, `+0x50/+0x52/+0x68=−1`) or sets `ctx+0xC` bit 7. |
-| `0x03` | 4 | 6,464 | `00417A80` | **hold here** — if `rec == ctx+0x18` set `ctx+0xC|=8`; else `word[rec+0x18]=word[+0x14]`, `+0x96|=0x40`, and if `rec+0x5E==−1` fill `rec+0x5E = s16[cmd+2] · global_word` (with a `−1→1` coercion). |
+| `0x03` | 4 | 6,464 | `00417A80` | **hold here** — if `rec == ctx+0x18` set `ctx+0xC|=8`; else `word[rec+0x18]=word[+0x14]`, `+0x96|=0x40`, and if `rec+0x5E==−1` fill `rec+0x5E = s16[cmd+2] · global_word` (with ~~a `−1→1` coercion~~ the multiplier coerced to 1 when the word is −1, so −1 stays −1 *(corrected 2026-10-02, OPUS: `00417A80`+0x38 `cmove cx, r8w`)*). |
 | `0x04` | 4 | 27,631 | `00417AD0` | **action-timeline event** (bank A id 4) — 12-mode dispatch on `byte[cmd+2]−1` (jump table). Arm 0 posts four `{dword[cmd], tag 0x80..0x83}` messages to the `ctx+0x2C0` receiver via `tabA[4]`; other arms set `ctx+0xC` bits `0x8000`/`0x200000`, `byte[obj+0x419]|=1|2`, or run `0041F2F0`+`00423F20` on `s16[obj+0xCC]`; always `ctx+0x2C8|=0x10`. |
 | `0x05` | 4 | 23,784 | `00417C60` | **character sound** (bank B id 5) — posts `cmd` to `tabA[5]` (the `ret 0` stub — dead) and `tabB[5]`=`00520C50` (`0046CBA0(obj+0x5F0, w+2&0xFFF, w+2>>12)`); `ctx+0x2C8|=0x20`. |
 | `0x06` | 4 | 7,008 | `00417CC0` | **second battle guard** (bank A id 6) — posts `cmd` to `tabA[6]`=`002E7090` (conditional `byte[rcx+0xD]&1` gate → `00325090`); `ctx+0x2C8|=0x40`. |
 | `0x08` | — | 0 | `00417D00` | **completion** (body exists, never authored) — gated on `ctx+0xC` bits `0x11`/`0x0E`; `+0x2E8` bit0 `^=` `s8[cmd+3]&1`; `byte+2==0xFF` ⇒ bit1 + `+0x354=0`, else `+0x354 = 1/(n+1)`; `ctx+0xC|=0x800` (and `0xE` when `0xD`); clears bit `0x400` on the `002ED570`-resolved `+0x338` object. |
-| `0x09` | 4 | 78,455 | `00417F40` | **play this bone motion** (`@FMN` select) — resolves `word[ctx+0x364]` into the `022C6F28` `0x740`-stride record array, `word[ctx+0x318]` via `00409F50`, then tag-looks-up `'@FMN'` (`00409930`/`00409FA0`); index `s16[ctx+0x2A] + word[cmd+2]>>1` (`word[cmd+4]==1` selects the alternate arm). |
+| `0x09` | 4 | 78,455 | `00417F40` | **play this bone motion** (`@FMN` select) — resolves `word[ctx+0x364]` into the `022C6F28` `0x740`-stride record array, `word[ctx+0x318]` via `00409F50`, then tag-looks-up `'@FMN'` (`00409930`/`00409FA0`); ~~index `s16[ctx+0x2A] + word[cmd+2]>>1` (`word[cmd+4]==1` selects the alternate arm)~~ by the name at `cmd+2`, or, when the stream header's byte `+4` has bit 0 or 1, by index `s16[ctx+0x2A] + word[cmd+2]>>1` *(corrected 2026-10-02, OPUS: `00417F40`+0xA3 `test byte ptr [r12 + 4], 3`; +0xBB looks the name up, +0x11C..+0x147 build the index)*. |
 | `0x0A` | 6 | 6,726 | `00418600` | **set the selector for `0x0B`** — `byte[cmd+2..5]` → `ctx+0x2DC..0x2DF` (`+0x2DC` = selector kind; `+0x2DD`/`+0x2DE` are the `lo`/`hi` some kinds read); stamps `word[rec+4]=1`, `+8|=2`, `rec+0x20=ctx+0x340`. |
 | `0x0B` | `6+2·count` | 6,726 | `00417110` | **choose the next track from a list** — always follows a `0x0A` (all 6,726); gated on `ctx+0xC&0x40000`; `byte[ctx+0x2DC]` is the selector kind — ten authored (`0`/`1`/`2`/`0xA`/`0xB`/`0x10`/`0x20`/`0x21`/`0x24`/`0x25`), each dispatching a selector fn in `.data` table `01F000A0` (installed at `02CA4668` via `0041D6E0`; unlisted kinds → `005C5230` = return 0); kinds `0`/`2`/`0xA`/`0x10` first read back their prior result byte at `obj+0x4B8+i`. `word[cmd+2]>>4` → `ctx+0x2DA`; result `−1` = no change, else lo16 = list index, hi16 = track offset → `obj+0x6DC`/`+0x6D8` and `byte[obj+0x4B8+i]`; then for `i` in `[result&0xFFFF, word[cmd+4])` resets matching `0xA0`-stride desc rows and issues a synthetic op-`0x01` `{0x201, ((word[cmd+6+2i]+resultHi16)<<4) \| (word[cmd+2]&0xF)}`. |
 | `0x0D` | 12 | 268,691 | `004173D0` | **per-slot ramp channel, tag 0** — `003B6A90(row, byte+2, {f32+4, f32+8}, 0, 1.0)`; tag byte `+0`, fields `+0x50/+0x54`, targets `+0x60/+0x64`. |
@@ -330,7 +330,7 @@ re-verified here FAILS 0).
 | `0x16` | 6 | 329 | →`00520BD0` | **bind sub-resource variants** — `byte+2&1`→`+0x3D2`; `word+2>>1`→`+0x3D3`; `word+4`→`+0x3F8`; then `0042B550(obj)` (refresh). |
 | `0x18` | 4 | 28,222 | →`00520C80` | **footstep effect** — gated on `00421E20(obj,0,0x100,…)` hit → `003B0C50(s16[obj], byte+2)`. |
 | `0x1A` | 4 | 12,876 | →`00520C10` | **move/turn toward the target along a profile** — `00422D50` resolves a sub-object with nonzero `+0x370` → `003E6340(obj2, word+2)`. |
-| `0x1D` | 4 | 5,639 | →`00520D30` | **pose-sequencer event** — multi-mode on `byte+2`: `0xFD`→`obj+0x4B7|=0x40`; `0xFF`→ `003E55B0` section `+0xB8=byte+3` + `00477610(dword+0x450)`; `0xFE`→`00428B30(word[obj],1)`; else hi nibble gates `byte+0x413` counter, lo nibble → `003E7450(obj, byte+3, 0, lo)`. |
+| `0x1D` | 4 | 5,639 | →`00520D30` | **pose-sequencer event** — multi-mode on `byte+2`: `0xFD`→`obj+0x4B7|=0x40`; `0xFF`→ `003E55B0` section `+0xB8=byte+3` + `00477610(dword+0x450)`; `0xFE`→`00428B30(word[obj],1)`; else hi nibble gates `byte+0x413` counter, lo nibble → ~~`003E7450(obj, byte+3, 0, lo)`~~ `003E7450(obj, lo, byte+3, 0)` *(corrected 2026-10-02, OPUS: `00520D30`+0x8D `and edx, 0xf`, +0xA1 `movzx r8d, byte ptr [rdi + 3]`, +0xA6 `xor r9d, r9d`, +0xAC the call)*. |
 | `0x1E` | 4 | 0 | →`00520DF0` | nibble-selector sibling of `0x1D` (registered, unauthored). |
 | `0x1F` | 4 | 0 | →`00520140` | `003E6710(…, word+2&1)` — flag set (registered, unauthored). |
 | `0x20` | 4 | 148 | →`005207A0` | **alias bone `0x107`** — `word[obj+0x2F4] = (word+2 != 0) + 0x303`. |
@@ -342,10 +342,10 @@ re-verified here FAILS 0).
 | `0x28` | 8 | 115 | →`00520720` | **effect request lane** — `003E6AA0(obj, dword+4)` stores `dword+4` into `obj+0x304` bits 27–31 with dirty bit 27 of `+0x294`; the dirty pass `00427DE0` invokes `003B3C00(handle=[obj+0x288], value)`, which range-checks `value ∈ 0..10` and dispatches `0024FE70(effectCtx, value)` — the authored dword is a **lane index into an 11-entry request map** on the bound effect's definition (`def = [[ctx+0x130]+0x80]`): `byte[def+0xA+lane]` selects `dword[def+0x2C+4·map]` (a resource id), resolved by `0020E600` and spawned into the object's 16-slot child table by `00333280(childObj, id, lane)` (lane stamped at `child+0x11`). Lane 0 = no request. Authored: `{1: 112}` across exactly four monster files (`m1043_10`/`m1044_10`/`m1132_10`/`m1133_10`, blocks `ready`/`knockback_s`/`knockback_l`/`c_turbo`/`ev_walk`/`avoid`), `{10: 3}` in `m1143_10.ca` (`knockback_l` ×2, `dead` ×1) — per-effect authored lanes, not global semantics (`members/fmc_op28_census.py`, FAILS 0). |
 | `0x29` | 4 | 47,472 | →`00520D00` | **footstep sound** — `0046CC70(obj+0x5F0, 0, 1, s16+2)`. |
 | `0x2A` | 20 | 7,183 | →`005206B0` | **pooled, generation-tagged handle** — `003E7140(obj, s16+2, s16+4, f32+8, f32+0xC, f32+0x10)`. |
-| `0x2C` | 10 | 387,789 | `00417DE0` | **blend-in rule by previous motion** (selector/match) — `word+2` vs `state+0x326&0xFFF` (`0xFFFF` default); `s8` pair list at `+7`/`+8` scanned for match/`0xFF`; match advances cursor `+0x32A`. |
+| `0x2C` | 10 | 387,789 | `00417DE0` | **blend-in rule by previous motion** (selector/match) — `word+2` vs `state+0x326&0xFFF` (`0xFFFF` default); `s8` pair list at `+7`/`+8` scanned for match/`0xFF`; ~~match advances cursor `+0x32A`~~ the match score is stored at `+0x32A` when it is at least the rank held there *(corrected 2026-10-02, OPUS: `00417DE0`+0x92 `movsx eax, word ptr [r8 + 0x32a]`, +0x9A `cmp r11d, eax`, +0xA3 the store)*. |
 | `0x2F` | 4 | 30 | →`00520E30` | **presentation event to the child sub-tree** — deferred post `0042EF90(word[obj+8], cb `00521000`, s16+2|0x2000, obj)`. |
 | `0x34` | 8 | 28 | →`00520800` | **character shadow-parameter write** — `byte+2==0xFF` is the global arm: `003AFD30(byte+3!=0)` writes `dword[02B3F554]` and `003B6930(4|6)` rewrites the low 2 bits of `dword[02B3F524]`. Otherwise `003AFC10(dword[obj+0x118])` resolves the object's handle in the shadow-param pool (32 × `0x70` records at `02B3F570`, tag `dword[+4]`) and a compressed jump table dispatches on `byte+2−1`: byte map `u8[00520B50+sel]`→case, dword target `u32[00520B2C+case*4]+0x120000`. The "128-way" table has **8 real cases** — only the power-of-two selectors `1/2/4/8/16/32/64/128` (`byte+2` is a field bitmask, one bit per field) reach code; everything else falls to the `00520B20` return stub. |
-| `0x3F` | 18 | 3,108 | →`00520510` | **a directed sway** (op `0x48` is the same command) — deferred event, gated `word[obj+6]==−1`; `00426870(obj, cb `00520E90`, {word+2, word+0x10&0xFFF, bit15, dword+4/+8/+0xC})`. |
+| `0x3F` | 18 | 3,108 | →`00520510` | **a directed sway** (op `0x48` is the same command) — ~~deferred~~ event applied at once *(corrected 2026-10-02, OPUS: `00426870`+0x33 `call rsi` applies the callback to the record at once and +0x4A `call 0042EF90` walks its children - this page's own 2026-09-20 correction, `00426870` defers nothing)*, gated `word[obj+6]==−1`; `00426870(obj, cb `00520E90`, {word+2, word+0x10&0xFFF, bit15, dword+4/+8/+0xC})`. |
 
 So the authored stream is a **motion-event bytecode**: `0x00` begin +
 `0x01`/`0x09` track/motion select, `0x0A`+`0x0B` the track selector pair
@@ -642,7 +642,7 @@ into `+0x6`), `f32 +0x8` = current key value, `f32 +0xC` = next-key value (lerp
 pair), `word[+0x10]`/`dword[+0x12]`/`word[+0x16]`/`u8 +0x18`/`u8 +0x19` =
 stream cursors and key index. The walker `0041C040`–`0041C1D9` is gated on
 `container+0x54` (`@FMN`); `0041C260`'s snapshot arm copies the eight dwords
-`row+0xF0..0x10C` to `+0x130..+0x14C`.
+~~`row+0xF0..0x10C`~~ `+0xF0..+0x10C` of a `0x290`-stride bone record, not of this node row, to `+0x130..+0x14C` *(corrected 2026-10-02, OPUS: `0041C260`+0x85 `imul rbx, rax, 0x290`)*.
 
 **Apply path — the channel→component map (executor-proven).** The per-frame
 sampler `0041A470(slot, @FMW, frame)` advances the key cursors
@@ -670,7 +670,7 @@ linked sibling receives the same value. Group-written bits (`1`=rot, `2`=trans,
 `4`=scale) then gate the copy-back into the matrix, and `word[node+0x280] |=
 0x10` marks the node dirty when the state flag `+0x96 & 0x20` is set.
 `00418650`/`004186A0`/`00418700` are the same three group stores factored as
-leaf setters (`f32[obj + nodeKey*0x10 + chIdx*4 + {0x190,0x1B0,0x1D0}]`).
+leaf setters (~~`f32[obj + nodeKey*0x10 + chIdx*4 + {0x190,0x1B0,0x1D0}]`~~ `f32[node + group*0x10 + chIdx*4 + base]` on each node of the `+0x278` chain, base `+0x190` for `00418650`, `+0x1D0` for `004186A0` and `+0x1B0` for `00418700` *(corrected 2026-10-02, OPUS: `00418650`+0x20, `004186A0`+0x30, `00418700`+0x20)*).
 
 **`+0x100` downstream read.** The bone's scale vec4 is consumed by the
 final-pose composer `00373860` (sole caller `003705BA`; the `0x290` records are

@@ -198,7 +198,6 @@ doc	subsystem	edges	detail
 01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md	Items_Equipment_Shops_License	5	003112F0 callee 003008A0; 0031B860 caller 0031A410; 0031B860 caller 0031A510; 0031B860 caller 0031A630
 01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md	PlatformOnlineAchievements	1	00312280 callee 00316A50
 01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md	Save_Load_Settings	2	0025D9E0 callee 002EF2B0; 0025D9E0 callee 00583920
-01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md	UI	3	001EDDA0 caller 0024B9B0; 001EDE80 caller 003FA790; 002E09A0 callee 00254B50
 01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md	CoreRuntimeScheduling	2	00234590 callee 0032A100; 00234590 callee 0032A150
 01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md	Input	2	00313F60 caller 00253C70; 00377C20 caller 00253C70
 01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md	InputGameplay	2	00234590 callee 00313A00; 00377C20 caller 00313A00
@@ -322,7 +321,6 @@ doc	subsystem	edges	detail
 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mrp-menu-resource-packages.md	Story_Event_Quest_Hunt	1	00265270 caller 00377970
 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md	ActorEntity	1	00378120 callee 00332130
 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md	Movement	3	00378120 callee 0026E760; 00378120 callee 0026E7D0; 00378120 callee 00384160
-02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md	Script_VM_Native_Bridge	1	00377400 caller 00356BF0
 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/unnamed-bin-families.md	ActorEntity	1	0022A0B0 callee 002368D0
 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/unnamed-bin-families.md	Input	1	0022A0B0 callee 0035B270
 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/unnamed-bin-families.md	Presentation	2	0022A0B0 callee 0036FFF0; 0022A0B0 callee 0037CCC0
@@ -354,12 +352,11 @@ doc	subsystem	edges	detail
 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/the-dat-and-bin-extension-buckets.md	RNG_Random_Selection	1	001946E0 callee 0018EE20
 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	Movement	3	00266D10 callee 00263560; 00266D10 callee 002EBE40; 00266D10 callee 003DAE30
 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	ActorEntity	6	00263560 callee 00238B40; 00263560 callee 00312130; 00263560 caller 002628B0; 00263560 caller 0037B4D0
-02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	Audio	1	00581350 callee 0024A1A0
 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	CombatAction	2	00379CD0 caller 002F8060; 00379CD0 caller 002FA740
 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	CombatFormula	53	00379CD0 caller 003851F0; 00379CD0 caller 00387130; 00379CD0 caller 00387FD0; 00379CD0 caller 00388350
 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	Gameplay	1	00576A50 callee 00309EC0
 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	Rewards_Progression_Economy	2	00379CD0 caller 002F9A60; 00379CD0 caller 002F9B20
-02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	Script_VM_Native_Bridge	2	00379CD0 caller 00354BF0; 00379CD0 caller 00355140
+02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	Script_VM_Native_Bridge	4	002DEE50 caller 00340260; 002DEE50 caller 00345B60; 00379CD0 caller 00354BF0; 00379CD0 caller 00355140
 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	Status_Periodic_Terminal	1	00379CD0 caller 00386C70
 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	Story_Event_Quest_Hunt	1	00583D60 callee 0032A8A0
 02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md	Story_Event_Quest_Hunt	12	002EF2B0 caller 0032A8A0; 002EF2B0 caller 0032A930; 002EF2B0 caller 0032A9A0; 002EF2B0 caller 0032AA00
@@ -1034,7 +1031,7 @@ doc	subsystem	edges	detail
 17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md	RNG_Random_Selection	3	0022A0B0 callee 00379CF0; 003014C0 callee 00308EC0; 003014C0 callee 00328370
 17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md	Spawn_Encounter_Lifecycle	1	00300530 callee 00306F00
 17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md	Story_Event_Quest_Hunt	1	00253C70 callee 0032A8A0
-17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	Party	5	00344740 callee 00263750; 00352FA0 callee 00263750; 00352FA0 callee 002647C0; 003537D0 callee 00263750
+17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	Spawn_Encounter_Lifecycle	3	00265020 caller 00234AF0; 00265020 caller 00234DA0; 00265020 caller 002350C0
 17-Presentation-Rendering/Model-And-Motion-Formats/fdm-and-for-entries.md	Input	1	001EDE70 caller 00253C70
 17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	PlatformOnlineAchievements	2	00265270 caller 003154B0; 00265270 caller 003161A0
 17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	StoryEvent	1	00265270 caller 001ED240
@@ -1043,10 +1040,10 @@ doc	subsystem	edges	detail
 17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md	WorldAreaField	2	001ED240 callee 00265270; 001ED240 callee 00314910
 17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md	WorldAreaField	1	003714A0 callee 00377C20
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	ActorEntity	14	00226BE0 callee 00263FF0; 00226BE0 callee 003588B0; 00226BE0 callee 00358940; 00226BE0 callee 00359B80
+17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	Application	1	005CC930 caller 00799980
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	CombatAI	6	00234590 callee 00325060; 00234590 callee 0032A650; 0031B7E0 caller 00301AD0; 00377C20 caller 003014C0
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	CombatFormula	1	00377C20 caller 00300530
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	Items_Equipment_Shops_License	2	00377C20 caller 00309FB0; 00377C20 caller 0030FD10
-17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	Platform	1	001D9F90 callee 005CC930
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	Rewards_Progression_Economy	2	00234590 callee 00319600; 00377C20 caller 00312280
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	Script_VM_Native_Bridge	4	00377C20 caller 00344740; 00377C20 caller 00352FA0; 00377C20 caller 003537D0; 00377C20 caller 00355680
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	Spawn_Encounter_Lifecycle	1	00234590 callee 00307030
@@ -1223,11 +1220,12 @@ doc	subsystem	edges	detail
 24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md	Platform	1	00212130 callee 005CD0A0
 24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md	Save_Load_Settings	2	0017D6E0 callee 001C18E0; 0017D6E0 callee 001C1910
 24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md	Developer	1	0017D6E0 callee 001C2F50
-24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	CoreRuntimeScheduling	1	0051C3C0 callee 001EDDA0
-24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	Resource	1	003F3710 callee 0024A5A0
+24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	Resource	2	00280140 callee 0032E4D0; 003F3710 callee 0024A5A0
+24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	Status_Periodic_Terminal	11	003112F0 callee 0030E130; 003112F0 callee 0030E360; 003112F0 callee 0030FED0; 003112F0 caller 0030E130
 24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	CoreRuntimeScheduling	1	0053AB50 callee 001EDE70
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md	Save_Load_Settings	2	0017D6E0 callee 001C18E0; 0017D6E0 callee 001C1910
 25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Gameplay	1	003590D0 caller 0031ADB0
-25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Resource	2	00268750 callee 0032E400; 00268750 callee 0032E620
+25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Resource	4	0022B6E0 callee 0032E520; 0022B7E0 callee 0032E520; 00268750 callee 0032E400; 00268750 callee 0032E620
 25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	UI	2	003590D0 caller 00299BD0; 003590D0 caller 002C7660
 25-EBP-Script-Container/Container/ebp2-container.md	Rewards_Progression_Economy	1	002342F0 callee 00319B10
 25-EBP-Script-Container/Container/ebp2-container.md	Spawn_Encounter_Lifecycle	2	002342F0 callee 00233780; 002342F0 callee 00307090
@@ -1248,6 +1246,13 @@ doc	subsystem	edges	detail
 25-EBP-Script-Container/Sections/section-008.md	Input	2	00263FF0 caller 00226BE0; 00263FF0 caller 002E09A0
 25-EBP-Script-Container/Sections/section-008.md	Movement	2	00263FF0 caller 002E28E0; 00263FF0 caller 00392740
 25-EBP-Script-Container/Sections/section-009.md	Input	2	00263FF0 caller 00226BE0; 00263FF0 caller 002E09A0
+25-EBP-Script-Container/Sections/section-012.md	Audio	1	003775D0 callee 003635E0
+25-EBP-Script-Container/Sections/section-012.md	CombatAction	3	002342F0 callee 00306570; 002342F0 callee 0030E010; 002342F0 callee 0030FE60
+25-EBP-Script-Container/Sections/section-012.md	CoreRuntimeScheduling	3	00358BB0 caller 0022A770; 00358BB0 caller 0022B8C0; 00358BB0 caller 0022BC20
+25-EBP-Script-Container/Sections/section-012.md	RNG_Random_Selection	1	002342F0 callee 00328D80
+25-EBP-Script-Container/Sections/section-012.md	Rewards_Progression_Economy	1	002342F0 callee 00319B10
+25-EBP-Script-Container/Sections/section-012.md	Spawn_Encounter_Lifecycle	2	002342F0 callee 00233780; 002342F0 callee 00307090
+25-EBP-Script-Container/Sections/section-012.md	Status_Periodic_Terminal	1	002342F0 callee 0030E990
 25-EBP-Script-Container/Sections/section-014.md	Input	3	00263FF0 caller 00226BE0; 00263FF0 caller 002E09A0; 0032E620 caller 00291C80
 25-EBP-Script-Container/Sections/section-014.md	Movement	4	00263FF0 caller 002E28E0; 00263FF0 caller 00392740; 003DE920 caller 00379080; 003DE920 caller 00379110
 25-EBP-Script-Container/Sections/section-014.md	Save_Load_Settings	1	0032E620 caller 002EF300
@@ -1300,10 +1305,8 @@ doc	subsystem	edges	detail
 99-Unresolved-Residual/README.md	RNG_Random_Selection	1	00312B40 callee 00328370
 99-Unresolved-Residual/README.md	Resource	2	001C5750 caller 0020AC30; 0020A800 caller 0020AC30
 99-Unresolved-Residual/Unlisted-Code/the-bodies-the-list-cuts-short.md	Audio	1	002EF2B0 caller 00261F90
-99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	ActorEntity	2	002E4A40 caller 002693D0; 002E4A40 caller 0037B4D0
 99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	Input	3	00229DF0 caller 00250130; 00229DF0 caller 002501A0; 00229DF0 caller 00250200
 99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	Resource	1	001D1660 callee 002EEEE0
-99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	Script_VM_Native_Bridge	2	0026A420 caller 00349E40; 0026A420 caller 0034ACE0
 99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	WorldAreaField	1	002E4A40 callee 00377DB0
 99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	Input	3	00313F60 caller 00253C70; 003590D0 caller 00226BE0; 00582860 callee 00182D40
 99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	Items_Equipment_Shops_License	1	00238A80 callee 0030B6A0

@@ -95,7 +95,7 @@ a mostly-sentinel array; the comparison downstream (`003C17E0` → `003C0380` �
 struct CmapGateRec {                  /* 8 bytes */
     u16  gate;   /* +0 ascending thresholds 0x00..? — compared against the value 00265270 returns */
     u16  key;    /* +2 0x40xx-range id, validated through 0032A8A0; 0xFFFF = skip */
-    u16  pad;    /* +4 = 0 in all 77 */
+    u16  pad;    /* +4 = 0 in all 77 */   /* <- corrected 2026-10-02, OPUS: read: the guide-text request adds this byte to 0x496 (gmap sheet G2) */
     u16  seq;    /* +6 0..76 sequential */
 };
 ```
@@ -167,4 +167,4 @@ the parent location's name, and Giza's dry variant is the one exception that shi
 
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
-| `0029C530` | 569 B | switches on the dword at `rdx`: 2 and 3 return 0; 14 ORs 8 and 15 ORs 4 into word `+0xE6` of `rcx` and return 0; other values tail-jump `005C5230` with `rcx` and `rdx` as passed in; 1 takes `p = 002432B0(rcx+0x50, qword +0x8 of the object qword 0209AC30 points to, 0x14, rcx)` and copies p's words `+0x4` to `+0xA` to `+0x98` to `+0x9E` (skipped when `rcx` is null; the later `rcx`-null tests only substitute a null entry pointer), then with `f = 003148F0()` stores `003778B0(00314910())` when `0032A8A0(0x5E)` is non-zero, else `003778B0(f)`, at `+0x18` of the entry at qword `+0x18` of qword `+0x60`, `00377B60(f)` at `+0x18` of the `+0x20` entry (each with `0020E620(0)` at entry `+0x20`) and the word `002543D0(00254380(00264F90(f)))` at `+0xA` of the `+0x28` entry; copies dword `+0x24` and words `+0xC` to `+0x12` of the `+0x18` and `+0x20` entries to `+0xC0`/`+0xC4`..`+0xCA` and `+0xD0`/`+0xD4`..`+0xDA`, calls `00247930(rcx, 0xA0)` and `00247570(rcx, 002735E0(3))`, zeroes word `+0xE0` and returns 0 | `0029C564`, `0029C5B5`, `0029C60A`, `0029C6A6`, `0029C750` |
+| `0029C530` | 569 B | switches on the dword at `rdx`: 2 and 3 return 0; 14 ORs 8 and 15 ORs 4 into word `+0xE6` of `rcx` and return 0; other values tail-jump `005C5230` with `rcx` and `rdx` as passed in; 1 takes `p = 002432B0(rcx+0x50, qword +0x8 of the object qword 0209AC30 points to, 0x14, rcx)` and copies p's words `+0x4` to `+0xA` to `+0x98` to `+0x9E` (skipped when `rcx` is null; the later `rcx`-null tests only substitute a null entry pointer), then with `f = WorldTransition_GetActiveOrPendingFieldId()` stores `003778B0(00314910())` when `0032A8A0(0x5E)` is non-zero, else `003778B0(f)`, at `+0x18` of the entry at qword `+0x18` of qword `+0x60`, `00377B60(f)` at `+0x18` of the `+0x20` entry (each with `0020E620(0)` at entry `+0x20`) and the word `002543D0(00254380(00264F90(f)))` at `+0xA` of the `+0x28` entry; copies dword `+0x24` and words `+0xC` to `+0x12` of the `+0x18` and `+0x20` entries to `+0xC0`/`+0xC4`..`+0xCA` and `+0xD0`/`+0xD4`..`+0xDA`, calls `00247930(rcx, 0xA0)` and `00247570(rcx, 002735E0(3))`, zeroes word `+0xE0` and returns 0 | `0029C564`, `0029C5B5`, `0029C60A`, `0029C6A6`, `0029C750` |

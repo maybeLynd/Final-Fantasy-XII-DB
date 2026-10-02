@@ -186,9 +186,9 @@ per-corner multipliers at `+0x137C` back to `1.0f`.
 > **So the initialiser is not special — `001E9920` is the same reset run every frame**, and the
 > record's starting values are the *begin's* values, not the constructor's.
 
-**Who calls it settles the residual cluster with a call edge instead of a string.** Eleven sites in
-seven functions, and **three of them were on the 158 list**: `002AC5F0` (7,489 B — still residual,
-the largest unclassified function in the game), `003649A0` (3,020 B — GN161 `Presentation.Text.GlyphRunTexturedQuadEmissionAndPenAdvance`) and `002AF960` (1,117 B — GN161 `UI.Text.GlyphRunPositioner`), plus `002A9F00`,
+**Who calls it settles the residual cluster with a call edge instead of a string.** ~~Eleven sites in~~
+~~seven functions~~ Twelve sites in eight functions *(corrected 2026-10-02, OPUS: rel32 sweep; the kind-1 column-2 drawer and `002AAE40` call it too, at +0x3FD of the kind-1 column-2 drawer and at `002AAE40`+0x52C)*, and **three of them were on the 158 list**: `002AC5F0` (7,489 B — ~~still residual,~~
+~~the largest unclassified function in the game~~ classified at GN162 as `UI.Text.ControlCodeInterpreter` *(answered: see the dispatch-table page §1; 2026-10-02, OPUS)*), `003649A0` (3,020 B — GN161 `Presentation.Text.GlyphRunTexturedQuadEmissionAndPenAdvance`) and `002AF960` (1,117 B — GN161 `UI.Text.GlyphRunPositioner`), plus `002A9F00`,
 `002B0280` and `002D28E0`.
 
 > **Corrected 2026-09-14 (OPUS): two of the three, against today's list.** The residual list has
@@ -267,11 +267,11 @@ document's §4 and §5 present the offscreen path as the branch that has to be s
 branch that has to be turned off.**
 
 **The alpha pair starts at `1.0f`, and that is why the flush never resets it.** `001E9122`–`001E9143`
-deliberately stop short of `+0x2340`; the values are seeded once at construction and thereafter only
-ever carry a run's own alphas.
+deliberately stop short of `+0x2340`; ~~the values are seeded once at construction and thereafter only~~
+~~ever carry a run's own alphas.~~ *(answered: see the begin re-seeds them each frame, and the falsification row "An earlier version of this row"; 2026-10-02, OPUS)*
 
 **`+0x2378` and `+0x2379` are cleared together by one `word` store**, so at construction the flush
-takes the *flush-and-forget* path of §5 and the suspend flag is off.
+takes the *flush-and-forget* path of §5 ~~and the suspend flag is off~~ *(answered: see "CORRECTED — `+0x2379` is not a suspend flag" below; 2026-10-02, OPUS)*.
 
 **`+0x2378` is a different byte from `+0x2348` and nothing established here sets it.** The begin
 above sets the **per-record** flag; `+0x2378` is the **outer gate**, and until it is non-zero the
@@ -568,7 +568,7 @@ closes two of the 154. **Ledger rows are authored and staged** at
 GlyphQuadVertexEmissionAndLineBoundsAccumulation` and `Presentation.Text.
 GlyphBatchFlushAndOffscreenTextTargetComposite` — and are **not applied**, because
 `Apply-GfzBatch.ps1` requires the project unlocked and it is open to the analysis server. **The
-score therefore still reads 154 unresolved**; that is a staging state, not a claim about the code.
+score therefore still reads 154 unresolved** *(answered: see the correction above, 158 → 139, and the-unresolved-158.md: 30 at GN161; 2026-10-02, OPUS)*; that is a staging state, not a claim about the code.
 
 *(Pass 22 adjacency, 2026-09-14: the paint path crosses out through shared helpers — `001E9A20`
 is called by **resource** `001B58E0`, `001E8070` calls **audio** `00225690`, and `002134A0` is

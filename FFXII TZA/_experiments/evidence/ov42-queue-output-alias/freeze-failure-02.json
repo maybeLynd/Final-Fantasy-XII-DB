@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_FREEZE",
+  "exception": "Missing control01/input-identities02 overlay path",
+  "semantic_result_changed": false,
+  "partial_folder": "ov42-queue-output-alias-frozen-ready-02",
+  "plan": "Preserve partial folder; correct selected overlay tocontrols02 and preflight all selected paths before making final frozen-ready03. Do not rerun science."
+}

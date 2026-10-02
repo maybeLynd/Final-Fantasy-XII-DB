@@ -1,0 +1,51 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY retained original admission/dataflow and finite scan invariant",
+  "driver_sha256": "eea6d4a5d8efd03db4cbd0226b4c007b51fad6dad678bed3d09081d631a4446b",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "retained/slot-action-id-raw-01.json",
+      "sha256": "e9b94feb62cf24cd175b432dafb76f31724517d8fe55dfa09cbc573c984f6878"
+    },
+    {
+      "path": "source-tail-01.json",
+      "sha256": "7db7271499ea92452ae9812d0d48eb61a694ae70b4233d84e0a8ac7936d911c0"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 106,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 6,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "allocator": "30D070, complete229B. ECX identity copied toR11D; DX zero-extended toR10D. No action-ID use except final WORD store and no native calls.",
+    "invariant": "Scan R8B starts0 and increments1 through31; signed JL after CMP32 stops on32. Each slot is22C17B0+48*i; only WORD(slot+1C)==FFFF selects a free slot. Under stable valid backed array/frame/list globals there is no wrap/NULL scan access.",
+    "success": "First free slotk0..31 receives DWORD1 at+10/+14/+18, originalECX at+20 and incomingDX at+1C. EAX iszero-extendedk. Valid disjoint queue tail/list/frame storage required for intervening linked-list writes.",
+    "full": "If all32 markers differ fromFFFF, returnsALFF; no own nonframe write, no final action-ID store. AL is the relevant return; EAX upper bits are not promised on this arm.",
+    "wrapper": "30CFB0 receives actionWORD inR8W, savesBX, and forwardsEDX=zeroextendBX/ECX=identityESI to30D070; returnedAL becomes unit+4 at30D056. Native WORD store30D14F belongs to30D070, not30CFB0.",
+    "wrapper_limits": "Unit+4!=FF skips acquisition without defining a fresh AL. Bit30 row path may skip while22C2158 bit1 is set; D0..F1 special-state exception is separate. For511..534 WORDdiff303..326>33 reaches that flag gate. Readable stable resolved row and unchanged carriers required; resolver/descriptor/natural command state not proved.",
+    "candidates": "The allocator has no class14/category/action-range exclusion. Given a valid free slot, supplied511..534 are copied unchanged. This settles a local gate, not proof any shipped AI/script supplies those words.",
+    "sentinel": "A suppliedWORDFFFF is also copied, so occupancy marker remainsFFFF despite other initialization/list writes. Original helper has no special input-sentinel refusal. No natural FFFF submission or repeated-allocation/list consequence is claimed.",
+    "remaining": "Upstream command/AI/authored VM producer domains, current descriptor/row identity, initialized pool/list ownership/reuse, normal control/command reachability and wholeOV42 natural rejection stay open."
+  },
+  "limits": [
+    "Upstream command/AI/authored VM producer domains, current descriptor/row identity, initialized pool/list ownership/reuse, normal control/command reachability and wholeOV42 natural rejection stay open.",
+    "Unit+4!=FF skips acquisition without defining a fresh AL. Bit30 row path may skip while22C2158 bit1 is set; D0..F1 special-state exception is separate. For511..534 WORDdiff303..326>33 reaches that flag gate. Readable stable resolved row and unchanged carriers required; resolver/descriptor/natural command state not proved.",
+    "No original-code execution/emulator/live state. Stable valid disjoint slot/list/frame storage and normal native ABI/returns are premises."
+  ],
+  "cleanup": "Finite offline source reads, checked children/handles close; no PC/game/save/config/reference/peer mutation."
+}

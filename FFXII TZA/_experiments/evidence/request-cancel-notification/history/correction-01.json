@@ -1,0 +1,5 @@
+{
+  "status": "INVALID_BEFORE_IMPORT_SEMANTIC_OUTPUT",
+  "driver_sha256": "73ad5d97d0893969a64939b4c857dded1ded2eabf7ab24701681984b96c70f1e",
+  "cause": "Python reserved return used as dict keyword. Correct output key; also replace insufficient drafted return reasoning with reverse reaching-definition check before first valid proof."
+}

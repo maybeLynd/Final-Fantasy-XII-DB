@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\extent-failure\capture-helpers.py", line 23, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\extent-failure\capture-helpers.py", line 9, in main
+    if s.get('terminal') is not True or s.get('exit')!=0 or s.get('exception') is not None or s.get('driver_sha256')!=sha(P/'prepare-helper-extents.py') or not(P/'helper-extents-01.stdout').read_bytes() or(P/'helper-extents-01.stderr').read_bytes():raise ValueError('required successful current extent invocation')
+                                                                                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required successful current extent invocation

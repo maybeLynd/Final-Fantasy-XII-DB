@@ -1,0 +1,22 @@
+{
+  "baseline": "immutable packet",
+  "controls": {
+    "missing-capture-receipt": [
+      {
+        "delete": "capture-01.status.json"
+      }
+    ],
+    "failed-upstream-capture": [
+      {
+        "copy": "controls-01/failed-upstream-capture/capture-01.status.json",
+        "to": "capture-01.status.json"
+      }
+    ],
+    "missing-historical-observations": [
+      {
+        "delete": "retained/EXP013/observations.json"
+      }
+    ]
+  },
+  "limits": "Replay recipes and exact changed status/raw output; unchanged cloned input trees omitted. Synthetic decoded mutations retained in control-result01."
+}

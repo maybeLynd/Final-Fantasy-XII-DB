@@ -1,0 +1,152 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-menu-effect-registry.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01CsdbXqRd5h9LCs97R3i5zB",
+ "report": "the-menu-effect-registry.json",
+ "rows": [
+  {
+   "fn": "00374930",
+   "text": "stores 0 to the dword at `02EBFA48` and every `0x70` bytes after it while the address is below `02EC0848` (signed compare), 32 dwords in all",
+   "anchors": [
+    [
+     "00374940",
+     "mov"
+    ],
+    [
+     "00374942",
+     "add"
+    ],
+    [
+     "00374946",
+     "cmp"
+    ],
+    [
+     "00374949",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "003A7420",
+   "text": "for byte offsets 0 to `0x78` in steps of 8 (16 slots), re-reads the pointer qword `02EBEFB0` and calls `00332FA0` on the qword at that offset of its target when the qword is non-null",
+   "anchors": [
+    [
+     "003A7430",
+     "mov"
+    ],
+    [
+     "003A7437",
+     "mov"
+    ],
+    [
+     "003A7440",
+     "call"
+    ],
+    [
+     "003A7449",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00460120",
+   "text": "calls `003697F0` on qword `rcx+0x338` and then on qword `rcx+0x3D0`, each only when non-null; then, when bit 0 of byte `rcx+0x3C0` is set and qword `rcx+0x3B0` is non-null, tail-jumps `0024B1C0(qword rcx+0x3B0)`, otherwise returns",
+   "anchors": [
+    [
+     "00460135",
+     "call"
+    ],
+    [
+     "00460146",
+     "call"
+    ],
+    [
+     "0046014B",
+     "test"
+    ],
+    [
+     "00460165",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050D9A0",
+   "text": "calls `00267E10(r9)`, `00254CB0(1)`, `00266D00()`, `002EF300` with the `00267E10` result, `0032E520(0)`, `00254CB0(0)` and `0036FCC0()` in that order, then `0026B8E0(k)` for `k` 0 to 3",
+   "anchors": [
+    [
+     "0050D9A9",
+     "call"
+    ],
+    [
+     "0050D9C1",
+     "call"
+    ],
+    [
+     "0050D9C8",
+     "call"
+    ],
+    [
+     "0050D9E2",
+     "call"
+    ],
+    [
+     "0050D9E9",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005294B0",
+   "text": "calls `0024B1C0` on qword `rcx+0x338` when it is non-null; then, when bit 0 of byte `rcx+0x3C0` is set and qword `rcx+0x3B0` is non-null, tail-jumps `0024B1C0(qword rcx+0x3B0)`, otherwise returns",
+   "anchors": [
+    [
+     "005294B9",
+     "mov"
+    ],
+    [
+     "005294C5",
+     "call"
+    ],
+    [
+     "005294CA",
+     "test"
+    ],
+    [
+     "005294E4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0057E950",
+   "text": "with `rbx` set from `r8d` (zero-extended): for `ecx` 4 with `edx` zero and bit 1 of byte `rbx+0xC0` set, calls `00393630(stack buffer, 0x40)` and, only when qword `02CA99C0` is non-null, copies that NUL-terminated buffer to `+8` of a stack record whose first dword is 5 and calls `00582540(qword 02CA99C0, record)`; for `ecx` 5, or 4 when `edx` is non-zero or that bit is clear, calls `00247510(qword rbx+0xC8, 0x1D, record)` with a record of dword 0xD, byte `+0x39A` of `[02CA99C0]` (0xFF when that qword is null) at `+4` and `edx` at `+8`, then clears bit 0 of dword `rbx+0xC0`; any other `ecx` does nothing",
+   "anchors": [
+    [
+     "0057E96E",
+     "sub"
+    ],
+    [
+     "0057E9B1",
+     "call"
+    ],
+    [
+     "0057E9E9",
+     "call"
+    ],
+    [
+     "0057EA19",
+     "call"
+    ],
+    [
+     "0057EA1E",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

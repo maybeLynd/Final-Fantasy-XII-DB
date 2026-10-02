@@ -52,7 +52,7 @@ audit:
 function size 2,649 — twelve times the binary's average — reached through a single call at startup and
 never again.
 
-**Status is `PARTIAL` deliberately.** The chain, the trigger, the targets and the code's character are
+**Status is `PARTIAL` deliberately.** *(answered: see the front matter, status DOCUMENTED after the owner read of 2026-09-30; 2026-10-02, OPUS)* The chain, the trigger, the targets and the code's character are
 established. **What the 75 objects it builds actually are is not.** *(Superseded: there are 66 objects (§10), and they
 are pre-built VIF1 packets, each decoded on the VIF1/VU1 page — BH-1 and BH-2 in §7. The status word stays until the
 owner read; 2026-09-30, SWE2-CONTRACT.)*
@@ -650,3 +650,11 @@ locomotion state on the way through.)*
 
 NOT claimed: byte `+1`/`+2` are never written by this helper — any value there is the caller's
 or the emitter `008631E0`'s.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-generated-float-table-builders-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `004795D0` | 116 B | registers `rcx` through an 84-byte registrar with a 4,524-byte callback in `rdx` and `r8d = 0`, then stores `0x3000000` and `0x2000000` to dwords `+8` and `+0xC`, initialises `rcx + 0x10` through a 15-byte header setter with `edx = 2`, and stores `0x1000404` to dword `+0x18`, `0x6C020000` to qword `+0x1C`, `0x302E4000` to dword `+0x24`, `0x412` to qword `+0x28`, and the float bits `0x45000000` (2048.0) to dwords `+0x30` and `+0x34`, `0x43800000` (256.0) to `+0x38` and `0x43600000` (224.0) to `+0x3C` | `004795D9`, `004795E3`, `004795FF`, `0047960B`, `00479630` |

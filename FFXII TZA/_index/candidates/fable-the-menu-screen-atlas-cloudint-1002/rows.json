@@ -1,0 +1,367 @@
+{
+ "page": "16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01GAVL9pjWiJ4RaEZv212gfL",
+ "report": "the-menu-screen-atlas.json",
+ "rows": [
+  {
+   "fn": "00556DB0",
+   "text": "switches on dword `[rdx]`: 18 returns 0, any value other than 1 tail-jumps `005C5230`; for 1 calls `002432B0(rcx+0x50, qword +0x98 of qword 0209AC30, 0, rcx)`, stores the first qword of the payload `[rdx+8]` at `+0xC8`, copies words `+4`, `+6`, `+8`, `+0xA` of the result to `+0x98`..`+0x9E` and calls `00247570(rcx, 00D22FE0)`; then takes `o` = qword `+0x18` of the first child (`[qword +0x60]`), stores `o` at `+0xC0`, puts the address of a stub that returns 1 at `o+0x120` and `rcx` at `o+0xD8`, clears bit 21 of dword `o+0xE0`, calls `002D45C0(o, 0)`, clears bit 27 of dword `o+0xE0`, calls `002445C0()` and `00247930(rcx, 0x73)` and returns 0",
+   "anchors": [
+    [
+     "00556DC2",
+     "cmp"
+    ],
+    [
+     "00556DD1",
+     "jmp"
+    ],
+    [
+     "00556DF7",
+     "call"
+    ],
+    [
+     "00556E5E",
+     "mov"
+    ],
+    [
+     "00556EAE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00558CE0",
+   "text": "switches on dword `[rdx]`: 2 returns 0; 18 returns 0 after, when dword `02CA9678` is non-zero, zeroing qword `02CA8FE0`, calling `00247730(qword 0209AC18, 0)` when that is non-null and zeroing `02CA9678`; values other than 1 tail-jump `005C5230`; for 1 calls `002432B0(rcx+0x50, qword +0x98 of qword 0209AC30, 1, rcx)`, copies its words `+4`..`+0xA` to `+0x98`..`+0x9E` (skipped for a null `rcx`), calls `00247570(rcx, 00D23030)`, stores the payload's first qword at `+0xC0` and its dword `+0x354` at `+0xC8`, resolves `00282DF0(that dword)`, fills child `+0x10` (`+0x18` from the n-th-string lookup, `+0x20` from `0020E620(0)`) and child `+8` (word `+0xA` from `002C9BD0`, byte `+0x39` from that entry's byte `+7`), then calls `00558E70(rcx)`, `00247930(rcx, 0x5F)` and `00247730(rcx, 1)` and returns 0",
+   "anchors": [
+    [
+     "00558D14",
+     "cmp"
+    ],
+    [
+     "00558D3D",
+     "mov"
+    ],
+    [
+     "00558D74",
+     "call"
+    ],
+    [
+     "00558DF5",
+     "call"
+    ],
+    [
+     "00558E4B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00560210",
+   "text": "resolves `r` = `00282DF0(dword rcx+0x120+4*r9d)` and works on the children qwords of `[rdx+0x10]`: child `+0x40` gets the n-th-string lookup's result at `+0x18` and `0020E620(0)` at `+0x20`; reads bytes `a`, `b`, `c` from `003236B0`, `00323670` and `00323630` of `r` byte `+0x60` (`0xFF` = absent); when `c` is present and equals `a` it replaces `c` with `b` and `b` with `a`, then when `c` is present orders `b` and `c` (smaller signed first); sets bit 0 of dword `+8` of children `+0x70`, `+0x78` and `+0x80` to the presence of the original `b`, `a` and `c`; children `+0x70`/`+0x80`, when the original `b`/`c` is present, get `002F9860(b+0x3ED)`/`002F9860(c+0x3ED)` at `+0x18`, and `+0x78` gets `a` as word `+0xA`; child `+0x60` takes entry `002C9B30(word +0x60, 3)` and its two 12-bit fields; children `+0`, `+8`, `+0x28`, `+0x30`, `+0x38` get `002DD7E0` colours `0xFC`/`0xFA` in dwords `+0x28`..`+0x34` (low 24 bits for `+0`, `+8`) when word `+0xDE0` of qword `0209AC30` equals that index dword, else `0xFD`/`0xFB`; calls `0029FF60(child +0x50, 0, 0, r dword +0xB0, ...)` and returns 1",
+   "anchors": [
+    [
+     "00560239",
+     "call"
+    ],
+    [
+     "005602DE",
+     "cmp"
+    ],
+    [
+     "005603A9",
+     "call"
+    ],
+    [
+     "0056043D",
+     "cmp"
+    ],
+    [
+     "005605EB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00560610",
+   "text": "returns 1 without drawing when `00323670(byte +0x60 of 00282DF0(dword rcx+0x120+4*r9d))` is `0xFF`; otherwise takes a layout entry of qword `+0xE0` (12-bit fields of its dword `+4` as cell width and height), saves byte `+0x5C` and dword `+0x90` of `r8`, sets them from the entry's byte `+7` nibbles and `002DD7E0(0)`, and walks the 4-byte cells at qword `rcx+0x150+8*r9d` over the rows (word `+6`) and columns (word `+4`) of the grid qword at `02EBF1A0` indexed by that byte, starting x and y at words `+0xC`/`+0xE` of child `+0x58` of `[rdx+0x10]` and stepping them by the cell size; each cell whose word is not negative is drawn with `002D9380` in colour `002DD7E0(0xDB plus word +2 when the word is 1)`, flushing through `002D9B00` and `002D9C40(buf, r8, 1)` every 12 cells; finally flushes, restores the two fields and returns 1",
+   "anchors": [
+    [
+     "00560657",
+     "je"
+    ],
+    [
+     "0056072B",
+     "call"
+    ],
+    [
+     "005607B2",
+     "cmp"
+    ],
+    [
+     "0056085F",
+     "call"
+    ],
+    [
+     "005608B4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0056FEF0",
+   "text": "calls `003946B0(rcx, qword +0xD0, 0x14)`, `00394700(rcx, 0)`, `00247930(rcx, 0x5F)` and `005760A0(&out, word +0xE2)`; when byte `+0xE1` is 0, 1, 3 or 4 calls `00574BA0(out, 0)` and `00247870(00394660(rcx, 0), 0)`, otherwise stores `out` at `+0x18` and `0020E620(0)` at `+0x20` of `003931E0(rcx, 0, 3)`, calls `00392FA0(003931E0(rcx, 0, 0), 3, 3, word +0xE2 plus 1)` and stores `00244F50(0xC0, 00570460, ...)` (sign-extended dword `+0xD0` in its descriptor) at `+0x148`, passing it to `00246AD0(rcx, ...)`; then, when qword `+0xD8` is non-null, stores `00244F50(0xC8, 0056FD30, ...)` (sign-extended dword `+0xD8` in its descriptor) at `+0x150` and calls `00246AD0(qword +0xC0, ...)`",
+   "anchors": [
+    [
+     "0056FF41",
+     "call"
+    ],
+    [
+     "0056FF4F",
+     "cmp"
+    ],
+    [
+     "0056FF5E",
+     "call"
+    ],
+    [
+     "0056FFF3",
+     "call"
+    ],
+    [
+     "0057003E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00574BA0",
+   "text": "returns without work when qword `+0x100` of qword `02CA9718` is null; otherwise calls `00244F00` on its qword `+0xD0` when that is non-null, calls `0029CD00(qword +0xC0, qword +0xC8, float +0x28 of [qword +0x60], &a, &b)`, and stores at its `+0xD0` the result of `00244F50(0xC0, 00573B40, ...)` with a descriptor pointing at `{rcx, rdx, qword +0x128 of qword 02CA9718, a}`",
+   "anchors": [
+    [
+     "00574BD5",
+     "test"
+    ],
+    [
+     "00574BEA",
+     "call"
+    ],
+    [
+     "00574C18",
+     "call"
+    ],
+    [
+     "00574C68",
+     "call"
+    ],
+    [
+     "00574C7B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00576C70",
+   "text": "returns 0 when qword `02CA9738` is null, its qword `+0x118` is null, or byte `+0xC9` of that object is not 1; otherwise returns the object's qword `+0xF8`",
+   "anchors": [
+    [
+     "00576C77",
+     "test"
+    ],
+    [
+     "00576C7C",
+     "mov"
+    ],
+    [
+     "00576C8B",
+     "cmp"
+    ],
+    [
+     "00576C94",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00577F00",
+   "text": "when qword `+0x128` of qword `02CA9748` is zero, stores there the result of `00244F50(0xD8, 00577F90, ...)` whose descriptor points at a stack record holding byte `cl`, a dword whose bit 0 is replaced by bit 0 of `r9d`, then `rdx` and `r8`; otherwise does nothing",
+   "anchors": [
+    [
+     "00577F1D",
+     "cmp"
+    ],
+    [
+     "00577F3C",
+     "xor"
+    ],
+    [
+     "00577F68",
+     "call"
+    ],
+    [
+     "00577F74",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00579130",
+   "text": "when qword `+0x118` of qword `02CA9748` is zero, stores there the result of `00244F50(0xE0, 00579420, ...)` whose descriptor points at a stack record holding byte `cl`, then `rdx` and `r8`; otherwise does nothing",
+   "anchors": [
+    [
+     "0057914D",
+     "cmp"
+    ],
+    [
+     "00579157",
+     "mov"
+    ],
+    [
+     "00579186",
+     "call"
+    ],
+    [
+     "00579192",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0057E610",
+   "text": "tail-jumps `005C5230` unless dword `[rdx]` is 1; for 1 copies the payload `[rdx+8]` qword `+0` to `+0xC0` and byte `+8` to `+0xC8`, zeroes qword `+0xD0`, calls `002432B0(rcx+0x50, payload qword +0x10, 7, rcx)` and copies its words `+4`, `+6`, `+8`, `+0xA` to `+0x98`..`+0x9E` (word `+4` also to `+0xCA`), calls `00247930(rcx, 0x64)` and `00244960(qword +0xC0, rcx)`, zeroes `+0xD0` again and returns 0",
+   "anchors": [
+    [
+     "0057E616",
+     "cmp"
+    ],
+    [
+     "0057E638",
+     "mov"
+    ],
+    [
+     "0057E65C",
+     "call"
+    ],
+    [
+     "0057E699",
+     "mov"
+    ],
+    [
+     "0057E6B0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0057EDB0",
+   "text": "switches on dword `[rdx]`: 15 and 18 call `00247510(qword +0xC0, 0xF or 0x12, 5)` and return 0, values other than 1 call `005C5230(rcx)`; for 1 stores the payload's first qword at `+0xC0`, zeroes `+0x100`, calls `002432B0(rcx+0x50, payload qword +8, 2, rcx)` and copies its words `+4`..`+0xA` to `+0x98`..`+0x9E`, calls `00394700(rcx, 0)`, `00247930(rcx, 0x63)` and `00246AD0(qword +0xC0, rcx)`, stores `002F9860(0x875)`, `0x876` and `0x877` with `0020E620(0)` at `+0x18`/`+0x20` of the children of `00394660(rcx, 1)` and `00394660(rcx, 2)`, calls `00247870(rcx, 0)`, then for indices 0 to 6 stores `00244F50(0xD8, 0057E610, ...)` (descriptor record `{rcx, index byte, payload qword +8}`) into the qwords from `+0xC8` (stride 8) and returns 0",
+   "anchors": [
+    [
+     "0057EE0D",
+     "call"
+    ],
+    [
+     "0057EE57",
+     "call"
+    ],
+    [
+     "0057EECE",
+     "call"
+    ],
+    [
+     "0057EF96",
+     "call"
+    ],
+    [
+     "0057EFA4",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0057F6B0",
+   "text": "when dword `[rdx+8]` is at most 1 (unsigned): calls `00582540(qword 02CA99C0, &{1, 0057F630, low dword of rcx})` when that global is non-null, fills a `0x40`-byte stack string with `00393630`, and when the global is non-null passes a second record (dword `0xA`, the string copied up to its NUL, qword `+0xD8` of `rcx`, dword `0xA0`) to `00582540(qword 02CA99C0, ...)`; then sets byte `+0xCC` to 2; for larger values stores `0xA` at dword `+0xE0`, byte `+0x39A` of qword `02CA99C0` (`0xFF` when null) at `+0xE4`, dword `[rdx+8]` at `+0xE8` and 4 at byte `+0xCC`",
+   "anchors": [
+    [
+     "0057F6CB",
+     "cmp"
+    ],
+    [
+     "0057F701",
+     "call"
+    ],
+    [
+     "0057F766",
+     "call"
+    ],
+    [
+     "0057F76B",
+     "mov"
+    ],
+    [
+     "0057F7A4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005812B0",
+   "text": "when qword `02CA99C8` is non-null, stores the qword `0xFFFF` at its `+0xD4`, zeroes qword `+0xDC` and dword `+0xC8`, calls `00225580(qword +0xF0, 0)` when that is non-null and zeroes dword `+0xFC`",
+   "anchors": [
+    [
+     "005812BD",
+     "test"
+    ],
+    [
+     "005812D0",
+     "mov"
+    ],
+    [
+     "005812DB",
+     "mov"
+    ],
+    [
+     "005812EF",
+     "call"
+    ],
+    [
+     "005812F4",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00556DB0",
+   "why": "002D45C0 gets qword +0x18 of the first child (reloaded from +0xC0), not the child; 'its' fields are that object's"
+  },
+  {
+   "fn": "00560210",
+   "why": "omitted the first==third rewrite at 005602BC (c := b, b := a) that precedes the signed ordering; named the bytes and the 002F9860 argument per child"
+  },
+  {
+   "fn": "0056FEF0",
+   "why": "the descriptor holds movsxd of dword +0xD8, not the qword tested for null"
+  },
+  {
+   "fn": "0057F6B0",
+   "why": "'ebx' is the incoming rcx (mov rbx, rcx); 'sends' characterised the callee - now states only the call"
+  },
+  {
+   "fn": "00556DB0",
+   "why": "neighbour gate: the stub whose address the `lea` at `00556DB0` + 0xA0 loads (6 bytes, `mov eax, 1; ret`, an Input-layer hub) is named by role on the page"
+  },
+  {
+   "fn": "00558CE0",
+   "why": "neighbour gate: the callee at `00558CE0` + 0x115 (null for a null p, p when it starts with a non-empty string, else the n-th NUL-terminated string after a 2-byte zero header; ActorEntity layer) is named by role on the page"
+  },
+  {
+   "fn": "00560210",
+   "why": "neighbour gate: the same n-th-string lookup, called at `00560210` + 0x52, is named by role on the page"
+  }
+ ]
+}

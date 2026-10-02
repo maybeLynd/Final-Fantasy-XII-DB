@@ -1,0 +1,185 @@
+{
+  "complete": true,
+  "driver_sha256": "355c3b8286e779b3d35121811a54b726ce11a452c32a1594262f9c3872dada7a",
+  "producer_sha256": "9056e01fcf208e0ad6cae8deb46d738e20ec42beeeacb5d3a8d58d719f2a5d4e",
+  "actual_positive": "result02 complete/current producer exact derive equality",
+  "CLI_cases": [
+    {
+      "case": "missing-capture-receipt",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false,
+      "driver_sha256": "9056e01fcf208e0ad6cae8deb46d738e20ec42beeeacb5d3a8d58d719f2a5d4e",
+      "start": 1790965522.226338,
+      "end": 1790965522.4060483
+    },
+    {
+      "case": "failed-upstream-capture",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false,
+      "driver_sha256": "9056e01fcf208e0ad6cae8deb46d738e20ec42beeeacb5d3a8d58d719f2a5d4e",
+      "start": 1790965522.4260473,
+      "end": 1790965522.5938785
+    },
+    {
+      "case": "missing-historical-observations",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "result_exists": false,
+      "driver_sha256": "9056e01fcf208e0ad6cae8deb46d738e20ec42beeeacb5d3a8d58d719f2a5d4e",
+      "start": 1790965522.6131732,
+      "end": 1790965522.7428412
+    }
+  ],
+  "synthetic_derive_cases": [
+    {
+      "case": "float-pop-no-conversion",
+      "pc": "0x267e42",
+      "before": {
+        "pc": "0x267e42",
+        "bytes": "f3420f2c848184010000",
+        "mnemonic": "cvttss2si",
+        "args": "eax, dword ptr [rcx + r8*4 + 0x184]",
+        "memory": [
+          {
+            "base": "rcx",
+            "index": "r8",
+            "scale": 4,
+            "displacement": 388,
+            "size": 4,
+            "role": "r",
+            "rip_target": null
+          }
+        ]
+      },
+      "after": {
+        "pc": "0x267e42",
+        "bytes": "f3420f2c848184010000",
+        "mnemonic": "mov",
+        "args": "eax, dword ptr [rcx + r8*4 + 0x184]",
+        "memory": [
+          {
+            "base": "rcx",
+            "index": "r8",
+            "scale": 4,
+            "displacement": 388,
+            "size": 4,
+            "role": "r",
+            "rip_target": null
+          }
+        ]
+      },
+      "refused": true,
+      "reason": "original transfer witness changed 0x267e42",
+      "limits": "synthetic decoded record, not executed or claimed original bytes"
+    },
+    {
+      "case": "native-store-narrowed",
+      "pc": "0x309c13",
+      "before": {
+        "pc": "0x309c13",
+        "bytes": "8902",
+        "mnemonic": "mov",
+        "args": "dword ptr [rdx], eax",
+        "memory": [
+          {
+            "base": "rdx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          }
+        ]
+      },
+      "after": {
+        "pc": "0x309c13",
+        "bytes": "8902",
+        "mnemonic": "mov",
+        "args": "word ptr [rdx], ax",
+        "memory": [
+          {
+            "base": "rdx",
+            "index": null,
+            "scale": 1,
+            "displacement": 0,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          }
+        ]
+      },
+      "refused": true,
+      "reason": "original transfer witness changed 0x309c13",
+      "limits": "synthetic decoded record, not executed or claimed original bytes"
+    },
+    {
+      "case": "selector-first-argument-changed",
+      "pc": "0x34888f",
+      "before": {
+        "pc": "0x34888f",
+        "bytes": "8bd3",
+        "mnemonic": "mov",
+        "args": "edx, ebx",
+        "memory": []
+      },
+      "after": {
+        "pc": "0x34888f",
+        "bytes": "8bd3",
+        "mnemonic": "mov",
+        "args": "edx, eax",
+        "memory": []
+      },
+      "refused": true,
+      "reason": "original transfer witness changed 0x34888f",
+      "limits": "synthetic decoded record, not executed or claimed original bytes"
+    },
+    {
+      "case": "typed-payload-temporary-changed",
+      "pc": "0x26804b",
+      "before": {
+        "pc": "0x26804b",
+        "bytes": "894df0",
+        "mnemonic": "mov",
+        "args": "dword ptr [rbp - 0x10], ecx",
+        "memory": [
+          {
+            "base": "rbp",
+            "index": null,
+            "scale": 1,
+            "displacement": -16,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          }
+        ]
+      },
+      "after": {
+        "pc": "0x26804b",
+        "bytes": "894df0",
+        "mnemonic": "mov",
+        "args": "dword ptr [rbp - 0xc], ecx",
+        "memory": [
+          {
+            "base": "rbp",
+            "index": null,
+            "scale": 1,
+            "displacement": -16,
+            "size": 4,
+            "role": "w",
+            "rip_target": null
+          }
+        ]
+      },
+      "refused": true,
+      "reason": "original transfer witness changed 0x26804b",
+      "limits": "synthetic decoded record, not executed or claimed original bytes"
+    }
+  ],
+  "limits": "Three actual prerequisite refusal invocations; four synthetic source-record controls. No new machine-code/emulator/game calls; historical EXP01314 not rerun."
+}

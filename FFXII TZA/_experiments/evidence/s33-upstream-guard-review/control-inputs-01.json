@@ -1,0 +1,20 @@
+{
+  "baseline": "this immutable packet",
+  "mutations": {
+    "positive": [],
+    "failed-review": [
+      {
+        "path": "review-01.status.json",
+        "set": {
+          "exit": 1
+        }
+      }
+    ],
+    "missing-positive-observation": [
+      {
+        "delete": "case-positive.stdout"
+      }
+    ]
+  },
+  "limits": "Exact baseline overlay recipes replayed by control.py; unchanged clone bytes omitted, not missing evidence or zero-case success"
+}

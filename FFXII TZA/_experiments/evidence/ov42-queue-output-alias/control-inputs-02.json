@@ -1,0 +1,21 @@
+{
+  "baseline": "this immutable packet",
+  "controls": {
+    "missing-queue-source": [
+      {
+        "delete": "spattack-queue-reader-raw-01.json"
+      }
+    ],
+    "coherently-repinned-output-width": [
+      {
+        "copy": "controls-02/coherently-repinned-output-width/spattack-queue-reader-raw-01.json",
+        "to": "spattack-queue-reader-raw-01.json"
+      },
+      {
+        "copy": "controls-02/coherently-repinned-output-width/input-identities-02.json",
+        "to": "input-identities-02.json"
+      }
+    ]
+  },
+  "limits": "Exact replay recipes/changed input overlays; unchanged clones omitted. Synthetic record mutations in control-result01."
+}

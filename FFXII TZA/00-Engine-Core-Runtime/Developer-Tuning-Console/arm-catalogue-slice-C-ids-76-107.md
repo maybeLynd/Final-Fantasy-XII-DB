@@ -57,7 +57,7 @@ floats**. The answer for C:
 
 Row shape per the work order: **field · width · step magnitude · direction mechanism · bound.**
 `b` = byte, `d` = dword, `f32` = 4-byte float. `rdi` offsets are fields of the settings object;
-`02CBxxxx` and `01DFxxxx` are globals. **No target in this slice is identified by name** — see §8.
+`02CBxxxx` and `01DFxxxx` are globals. **No target in this slice is identified by name** *(answered: see UQ-11, ANSWERED 2026-09-25: all 36 named; 2026-10-02, OPUS)* — see §8.
 
 | id | arm | kind | target | width | magnitude | direction mechanism | bound |
 |---:|---|---|---|---|---|---|---|
@@ -213,19 +213,19 @@ console dispatch  001D1660   (arg1 rcx = settings object -> rdi, arg2 dl = direc
 ## 10. What is not known
 
 - [x] **UQ-11.** ~~**What any of the 36 array slots is.**~~ **ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): character
-      Fresnel-specular and hair / eye lighting tuning values. All 36 are named, and in this build nothing
-      outside the console reads any of them.**
+      Fresnel-specular and hair / eye lighting tuning values. All 36 are named, ~~and in this build nothing~~
+      ~~outside the console reads any of them~~ and `006084B0` copies all of them into the staged shader-constant buffer.** *(corrected 2026-10-02, OPUS: `006084B0+0x3CE` `lea rdx, [02CB7FD0]`, `+0x3D8` `lea rax, [rdx+0xd0]` (= `02CB80A0`), then 16-byte `movups` loads over `02CB7FD0`–`02CB815F` into the staged shader-constant buffer; the 282-command page's ANSWERED 2026-09-27)*
       - **Named:** every id 63–98 by its console label ([console command names](console-command-names.md)). Nine
         are also named by the scene-config key the loaders store under (the 2026-09-17 narrowing below).
-      - **Read by nothing but the console.** Over the whole array `02CB80A0`–`02CB812C`, the only accesses are:
+      - ~~**Read by nothing but the console.**~~ **Read by the console and by the staged shader-constant copy.** *(corrected 2026-10-02, FABLE, Claude Opus 5.5: `006084B0` takes the base `02CB7FD0`, below every range these checks covered, and copies the whole block with 16-byte loads into the staged shader constants; the 282-command page's ANSWERED 2026-09-27 maps each slot to a SceneWideParameterConstantBuffer variable)* Over the whole array `02CB80A0`–`02CB812C`, the only rip-relative accesses are:
         - the menu renderer (`DebugMenu_Render`), which prints the values;
         - the console arm `001D1660`, which steps them;
         - **writes** by the scene-config loaders `001C3D50` / `001C7940` to the nine keyed slots.
       - **The routes a rip census would miss are closed.** No `lea` of any address in `02CB8000`–`02CB8140`,
         no stored 8-byte or 4-byte-RVA pointer into it anywhere in the file, and every access in the 32 bytes
-        below it is 4 bytes wide, so no wide load reaches in.
-      - **So even the nine that the scene JSON sets per scene are never read by a renderer.** The bank is
-        written and displayed, and nothing consumes it. UQ-8 is the same finding for the thirteen hair and
+        below it is 4 bytes wide~~, so no wide load reaches in~~ - but a register-based wide load does: the copy's 16-byte `movups` loads from `02CB7FD0` cover the whole array.
+      - ~~**So even the nine that the scene JSON sets per scene are never read by a renderer.**~~ The bank is
+        written and displayed, ~~and nothing consumes it~~ and `006084B0` reads it whole *(corrected 2026-10-02, OPUS: `006084B0+0x3CE` `lea rdx, [02CB7FD0]`, `+0x3D8` `lea rax, [rdx+0xd0]` (= `02CB80A0`), then 16-byte `movups` loads over `02CB7FD0`–`02CB815F` into the staged shader-constant buffer; a register-based walk the rip census does not see)*. UQ-8 is the same finding for the thirteen hair and
         eye slots.
       *Original box follows:* **What any of the 36 array slots is.** Known: their step magnitudes, their bounds where they
       have them, and their one-to-one id mapping. **None was traced to a reader.**

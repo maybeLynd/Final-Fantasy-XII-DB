@@ -1,0 +1,10 @@
+ok   0041D5E7 call 0x3b5d40
+ok   001FBDB6 mov edx, 8
+ok   001DB875 mov edx, 0x640
+ok   004268A3 call rsi
+ok   001FA748 call qword ptr [rax + 0x68]
+ok   001F5F38 call 0x60b980
+ok   00427DB3 or dword ptr [rdi + 0x48818], 0x20
+ok   0041F754 call 0x861ec0
+ok   0042EB79 test byte ptr [rsi + 0x48818], 0x10
+FAILS 0

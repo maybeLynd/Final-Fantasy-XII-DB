@@ -29,12 +29,12 @@ audit:
 
 # The text-element dispatch table — how the residual drawing cluster is entered
 
-> The largest unclassified function in the game is not called by name from anywhere. It is reached
+> ~~The largest unclassified function in the game is not called by name from anywhere.~~ *(corrected 2026-10-02, OPUS: `002AC5F0` is classified at GN162 (§1) and has seven direct callers; it is the column-1 and column-2 handlers, not it, that are reached through the table)* It is reached
 > through a **twelve-slot handler table** selected by **one signed byte on the object being drawn** -
 > four kinds, three operations each — and three tiny dispatchers that do nothing but index it and
 > tail-jump.
 
-**PARTIAL.** The dispatch architecture, the selector, the table and all three dispatchers are read at
+**PARTIAL.** *(answered: see the front matter, now `status: AUDITED`; 2026-10-02, OPUS)* The dispatch architecture, the selector, the table and all three dispatchers are read at
 tier 1. ~~**Which text each drawer is responsible for remains open** (`PROPOSED-repos9e-6`), though §6~~
 ~~narrows it.~~ *(Corrected 2026-09-30, SWE2-DATA: GJ-7 answered it on 2026-09-25, by builder (§7).)*
 
@@ -195,7 +195,7 @@ to a global instead of a field.
 **bit 0 of its argument**:
 
 ```asm
-001EDEC0  cmp dword ptr [01F82E38], 0   ; scale mode active?
+001EDEC0  cmp dword ptr [01F82E38], 0   ; scale mode active?   <- answered 2026-10-02, OPUS: the FrameLimit time base, not a scale mode (name corrected 2026-09-21 above)
 001EDEC7  je  001edee2                  ;   no  -> return 1
 001EDEC9  cmp dword ptr [01DFE0C0], 0   ; suppressed?
 001EDED0  je  001ededa
@@ -218,14 +218,14 @@ a disassembler that reads its file offset prints garbage for it, and this docume
 only from `00184960`, which sets it to `1` on entry (`0018496D`) and clears it (`001849A2`) unless its
 argument is `1` and `byte [001EBA40() + 0x118]` is zero. It **ships as `1`**.
 
-So the predicate says: **"1 unless the 2x scale mode is on, unsuppressed, and bit 0 of the argument is
+So the predicate says: **"1 unless the ~~2x scale mode~~ 60 fps time base is on *(answered: see "Name corrected 2026-09-21" above; 2026-10-02, OPUS)*, unsuppressed, and bit 0 of the argument is
 set."** Its argument is the window's `+0xB4`. Two sibling predicates read the same pair — `001EDDA0`
 (the same two globals in the other order, returning 0 in the same case) and `001EDE80` (returning
 `0022A080() + 0022A030()` in that case and `1` otherwise).
 
 ### The object byte is a test nothing satisfies (FABLE, 2026-09-21)
 
-`002ABEC0`'s `rcx` is **not the widget**. Its nine callers pass the widget's embedded text-draw block
+`002ABEC0`'s `rcx` is **not the widget**. Its ~~nine callers~~ callers *(corrected 2026-10-02, OPUS: five functions, six rel32 sites — the 5 of §4's table)* pass the widget's embedded text-draw block
 at `+0xC0`, `+0xD0` or `+0xE0`, or a stack local — established on
 [the request-router page](../../16-UI/Request-Router/ui-request-router.md). So `[rcx + 0xAC]` is a
 field of that block, and the widget contract's `+0xAC` (always `6`) is a **different byte of a
@@ -367,8 +367,8 @@ and the table is emptier than "four kinds x three operations" suggests.
 | 2 | — | — | — |
 | 3 | — | — | `002AAE40` |
 
-**Kind 2 is entirely null, and kind 3 has only its third column.** Of twelve slots, five are filled by
-four distinct bodies. This is not a gap in the reading: `002ABEC0` and its twin both `test rax, rax`
+**Kind 2 is entirely null, and kind 3 has only its third column.** Of twelve slots, ~~five are filled by~~
+~~four distinct bodies.~~ seven are filled by five distinct bodies *(corrected 2026-10-02, OPUS: the table at `009164C0` read as qwords: `002A9980` ×2, `002A8C50` ×2, `002A9F00`, `002AA800`, `002AAE40`)*. This is not a gap in the reading: `002ABEC0` and its twin both `test rax, rax`
 after the load and return on zero (`002ABF08`), so the dispatchers are written for exactly this.
 
 ### `002AC5F0` is the layer above them, not the fourth of them (FABLE, 2026-09-21)
@@ -654,7 +654,7 @@ element. See the SD-107 note in §7.)*
 | Both writes are in the **message id 2** arm | the 21-entry table at `002A698C` decoded, targets mapped to ids; `002A6412` is id 2's and is the greatest target below `002A6464` | 1 |
 | `01F82E38` initialises to **0** | it lies past `.data`'s `SizeOfRawData` in the section header — no raw bytes back it | 1 |
 | `01DFE0C0` ships as **1** | raw `.data` bytes at its file offset, with the raw-backing test stated per cell | 1 |
-| Nothing writes `1` to the block's `+0xAC` | byte-write sweep at `+0xAC`, `+0x16C`, `+0x17C`, `+0x18C` — every embedded base the nine callers use — plus the three stack frames read at their own displacements | 1 |
+| Nothing writes `1` to the block's `+0xAC` | byte-write sweep at `+0xAC`, `+0x16C`, `+0x17C`, `+0x18C` — every embedded base ~~the nine callers use~~ its callers use *(corrected 2026-10-02, OPUS: five functions, six sites)* — plus the three stack frames read at their own displacements | 1 |
 | The four drawers call no imports | indirect-call census against every resolved IAT slot | 1 |
 | The four reference no strings directly | rip-relative operand scan over each body | 1 |
 | Only `"display : draw Font"` appears within two calls | downward call-cone walk, 161 functions below `002AC5F0` | 1 |
@@ -712,7 +712,7 @@ the arithmetic that produced it.
 
 ### ➕ §4's listing for `002ABF20` is missing three instructions
 
-As printed, `002ABF20` runs `mov rax, [rax + r8*8]` straight into `jmp rax` — no null test. The bytes
+As printed, `002ABF20` runs `mov rax, [rax + r8*8]` straight into `jmp rax` — no null test *(answered: see §4's listing, which now carries the `test rax, rax` / `je` pair; 2026-10-02, OPUS)*. The bytes
 have one: `test rax, rax` / `je 0x2ABF60` / `ret` at `002ABF58`–`002ABF60`. **So §3's claim that the
 null rows "are why every dispatcher null-tests the loaded pointer" is correct, and it is §4's
 transcription that is short.** Worth fixing because the two sections otherwise contradict each other
@@ -808,3 +808,15 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **WorldAreaField — MECHANICAL, 8 edges.** `ActorManager_RunFieldRuntimePass` (`0025D9E0`) calls `002677B0`, `WorldTransition_GetOptions` (`003148D0`), `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`), `WorldTransition_SetOptions` (`00314DA0`) and 3 more; `ActorManager_RunFieldRuntimePass` (`0025D9E0`) is called by `World_UpdateSimulationTick` (`00314020`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-text-element-dispatch-table-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002477A0` | 108 B | when `rcx` is non-null, replaces bits 16-18 of dword `rcx+0x44` with `dx AND 7` and reads them back; with bit 18 set it stores 0xF9 to byte `+0xAD` when bit 17 is set and 0xF9 to byte `+0xAC` when bit 16 is set, leaving each byte unchanged otherwise; with bit 18 clear it stores 0xF9 (bit 17 set) or 6 (clear) to byte `+0xAD` and 0xF9 (bit 16 set) or 6 (clear) to byte `+0xAC`; a null `rcx` returns at once | `002477A8`, `002477B8`, `002477C4`, `002477CE`, `002477F2` |
+| `0029B870` | 720 B | with `w` = word `02F9736A`, `v` = word `02F9736C` and `b` = signed byte `rcx+0xB48`, tests `w` in turn against word `01E0C2A4` (0x4000), bit 15, mask 0xA0, word `01E0C2A0` (0x2000), 0x400 and 0x800 for the codes 3, 8, 6, 2, 4, 5: on a match it returns the code when qword `rcx+0xB20` is null or `[rcx+0xB20](qword rcx+0xB30, code, b, b)` is non-zero, and on a zero result returns 0 for code 3 but goes on to the next test for the others; past the tests `x`, `y` = bit 6 minus bit 4 of `w`, `v`, and when `e` = `001E0A10()` is non-zero `y` -= `e` and `x` becomes 0 if `001E0E30()` (called either way) is non-zero, else `x` -= `e`; `n` = `002975B0(rcx, b, x, y)`; it returns 0 when `x` and `y` are both 0; when `n` equals `b` it returns 7 if `0029B790(rcx, 7, n)` is non-zero, else 0; otherwise it returns 0 when `0029B790(rcx, 1, n)` is zero, and else ANDs word `+0x318` of 0x160-byte entry `b` with 0xFFFB, ORs 4 into that word of entry `n`, stores `n` to byte `rcx+0xB48` and returns 1 | `0029B889`, `0029B8BC`, `0029BA69`, `0029BAAC`, `0029BB12` |
+| `0029C770` | 216 B | with `w` = `rcx+0x180`, returns 0 when `00273A20(w)` is non-zero; otherwise calls `00245000(w, 0xC0, 005C5230, 0)`, `002974E0(rcx, rcx+0x218)`, `002475D0(w, 0)`, `00247930(w, 9)`, `00247570(w, 002735E0(0))`, `00244960(rcx, w)` and `00246AC0(w)`, ORs 0x80 into word `rcx+0x318+0x160*i` for `i` below unsigned byte `rcx+0xB42`, and returns 1 | `0029C787`, `0029C7AF`, `0029C7F2`, `0029C820`, `0029C838` |
+| `0029C9D0` | 219 B | with `w` = `rcx+0xC0`, returns 0 when `00273A20(w)` is non-zero; otherwise calls `00245000(w, 0xC0, 005C5230, 0)`, `002974E0(rcx, rcx+0x158)`, `002475D0(w, 0)`, `00247930(w, 9)`, `00247570(w, 002735E0(0))`, `00244960(rcx, w)` and `00246AC0(w)`, calls `00247930(rcx+0x7C0+0xD8*i, 0xB)` for `i` below unsigned byte `rcx+0xB42`, and returns 1 | `0029C9E7`, `0029CA0F`, `0029CA52`, `0029CA89`, `0029CA9B` |
+| `00299090` | 1040 B | switches on dword `[rdx]` through a byte map at `002994BC` and a dword offset table at `002994A0` (read from the image, not the listing); only 0x1, 0x2, 0x6, 0xF, 0x14 and 0x1D have arms: 0x1 calls `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x32, rcx)`, stores `0028F830(dword [rdx+8])` as the state record at `+0xC0` with byte `[rdx+8]` in its byte `+0`, calls `00247570(rcx, 002735E0(5))`, stores the `002432B0` result's words `+4`, `+8`, `+0xA` at `+0x98`, `+0x9C`, `+0x9E` and the low word of dword `[rdx+0x10]` at `+0x9A`, calls `00247930(rcx, 3)`, re-seeds the record when its byte `+1` differs from word `+0x80` of its `0xC0`-byte entry in the `0035D320()` table, sets the colour dwords `+0x28`..`+0x34` of qword `+0x18` of qword `rcx+0x60`, and either clears the record again or calls `00225580` with the record's byte `+0x13`, depending on the entry's dword `+0x20` bits 6 and 9 and its words `+0x7C`/`+0x7E` against `0x4000`; 0x2, only when `001EDEC0(dword +0xB4)` is non-zero and word `+0xC8` is 0, calls `002986E0(rcx, entry+0x20)` and `00297290(record+0x18, rcx)` (after `00246AC0(rcx)` when bit 0 of the record's word `+2` is clear) or, once word `+0xCA` has counted to 4, `00244DD0(rcx)`, under the same entry tests and bits 0 and 1 of word `+2`; 0x6 clears bit 26 of dword `+0x20` of qword `[qword rcx+0x60]`, re-seeds the record when its byte `+1` differs from the entry's byte `+0x80` or bit 1 of its word `+2` is set, then sets bit 0 of word `+2` and stores `0xFFFF` to word `+4`; 0xF sets bit 1 and 0x14 clears bit 0 of the record's word `+2`; 0x1D stores 1 to word `+0xC8`; these arms return 0, and every other value, in range or not, calls `005C5230(rcx)` and returns its result | `002990AC`, `002990D1`, `00299333`, `00299406`, `00299488` |

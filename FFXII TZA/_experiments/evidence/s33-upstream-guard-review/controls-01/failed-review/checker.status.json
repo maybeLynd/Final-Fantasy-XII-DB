@@ -1,0 +1,16 @@
+{
+  "case": "failed-review",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\check.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\s33-upstream-guard-review\\controls-01\\failed-review"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "checker_sha256": "8b92184743ea5b96d24d81c6ad50bddd12f458f4d7bcab23466d02c1b1b1fc55",
+  "expected_behavior_observed": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "016533e3e1b95378232aa7ef306b74d88ed982404c3dd6ba29effac023c351e9"
+}

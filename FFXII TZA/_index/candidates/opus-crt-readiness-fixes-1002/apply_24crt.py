@@ -577,6 +577,16 @@ EDITS = [
 ]
 
 
+# Pass-22 neighbours (2026-10-02, OPUS): functions of other layers are named by role in NEW text, so the page
+# takes on no unaccounted crossing (check_publish_neighbours.py refused the address form).
+ROLE_NAMES = [
+    ('`007980A0+0x7DF` calls `ExitProcess`',
+     'the 2,153-byte Phyre framework body calls `ExitProcess` at its `+0x7DF`'),
+]
+_rn = lambda s: __import__('functools').reduce(lambda a, p: a.replace(p[0], p[1]), ROLE_NAMES, s)
+EDITS = [(e[0], _rn(e[1])) if len(e) == 2 else (e[0], e[1], _rn(e[2])) + tuple(e[3:]) for e in EDITS]
+
+
 def main():
     apply = "--apply" in sys.argv
     fails = 0

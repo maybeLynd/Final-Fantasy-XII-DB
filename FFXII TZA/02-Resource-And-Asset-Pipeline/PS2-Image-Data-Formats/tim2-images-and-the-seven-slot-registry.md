@@ -152,7 +152,7 @@ up the slot, and its body was not read.
 | `0x00D11470` | `.rdata` — the string `TIM2`, the **only** occurrence in the image | ✅ |
 | `0x008C2FF8` | the imported 4-byte compare the magic test calls | ❌ import thunk only |
 | `0x02AEE810` | the seven-slot TIM2 registry; entries `[1]`–`[7]` | ✅ |
-| `0x0039BF50` | slot initialiser, called once per newly claimed slot | ❌ not read |
+| `0x0039BF50` | slot initialiser, called once per newly claimed slot | ~~❌ not read~~ read *(answered: see the SWE2-EC7-91 update below; 2026-10-02, OPUS)* |
 | `0x0029CAC0` · `0x0037F1F0` · `0x003BC4E0` · `0x00575710` | the four callers | ❌ not read |
 
 ## 5. Corpus survey
@@ -194,7 +194,7 @@ searched for** — only the four callers are known, and none was read.
 - **What `+0x40` means in the spec.** The engine tests its low nibble against 1; **mapping that onto
   a named TIM2 header field would be inheriting an external reading**, and this sheet reports the
   test rather than the interpretation.
-- **What the decoder does with the other fields**, or what `FUN_0039BF50` initialises.
+- **What the decoder does with the other fields**, ~~or what `FUN_0039BF50` initialises~~ *(answered for `0039BF50`: see the SWE2-EC7-91 update below; 2026-10-02, OPUS)*.
 - **Whether the seven-slot ceiling is ever reached in play.** The limit is in the code; the pressure
   on it is not established.
 - **Anything measured from a shipped file**, for the reason in §5.
@@ -296,7 +296,7 @@ by **exactly one** instruction, `0039BEDC` in `FUN_0039BEC0`. §6's point stands
 **Not claimed.** Which loader the 446 `.tm2` files actually go through — the four callers are still
 unread, and this pass adds a reason to read them rather than reading them. What `eXt` means: the
 bytes are measured, the meaning is external. What `FUN_0039C150` is, beyond that it owns slot 0 and
-resolves a relative pointer from `02AEE868`. `FUN_0039BF50` is still unread. The archive was **read,
+resolves a relative pointer from `02AEE868`. ~~`FUN_0039BF50` is still unread.~~ *(answered: see the SWE2-EC7-91 update below; 2026-10-02, OPUS)* The archive was **read,
 never written**, and nothing was executed.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)

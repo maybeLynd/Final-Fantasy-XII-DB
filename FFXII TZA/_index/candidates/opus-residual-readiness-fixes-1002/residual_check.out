@@ -1,0 +1,13 @@
+ok   00392C5C cmp esi, 2
+ok   002DC9C3 test r13b, 8
+ok   002AAFDE cmp dl, 0xf
+ok   002AC32A cmp al, 0x20
+ok   002AB36C call 0x17fa10
+ok   002ABF2F mov qword ptr [rip + 0x1df0d0e], 0
+ok   001FDDAB xor eax, eax
+ok   001E865F call 0x1fbe50
+ok   001E9175 lea rdi, [rcx + 0x70]
+ok   001E7A49 add rbx, 0x3c
+ok   002DC30A lea rdx, [rbx + 0x10]
+ok   00180124 call 0x1ec5c0
+FAILS 0

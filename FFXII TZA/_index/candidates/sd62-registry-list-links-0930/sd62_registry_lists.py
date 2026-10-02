@@ -53,7 +53,7 @@ def has(a, s):
 
 
 # L1 - 00639160(owner, desc): desc +0x50 goes after the parent's node when the parent (+0x78) has the same owner,
-#      else before owner+0x10 (tail of the owner's list)
+#      else at the front of the owner's +0x10 list (the new node becomes [head+0]; auditspec-review-sd62-oracle-0930)
 check("L1", all(has(a, s) for a, s in [
     (0x00639173, "mov rdi, rdx"), (0x00639179, "mov rbx, rcx"), (0x006391C2, "lea r14, [rbx + 0x10]"),
     (0x006391FF, "mov rdx, qword ptr [rdi + 0x78]"), (0x00639208, "cmp qword ptr [rdx + 0x70], rbx"),
@@ -83,7 +83,9 @@ check("L3", all(has(a, s) for a, s in [
     (0x00639265, "mov rcx, qword ptr [rax + 0x28]"), (0x00639269, "add rax, 0x28"), (0x0063926D, "mov qword ptr [rbx], rcx"),
     (0x00639270, "mov qword ptr [rbx + 8], rax"), (0x00639274, "mov qword ptr [rax], rbx"),
     (0x00638D6B, "cmp rbx, rbp"), (0x00638D86, "mov qword ptr [rbx], rbx")]),
-    "a non-root owner whose descriptor list was empty is linked by its +0x00 node into root+0x28; 00638C90 unlinks it again")
+    "a non-root owner whose descriptor list was empty is linked by its +0x00 node into root+0x28; 00638C90 has an "
+    "owner-unlink arm (00638D6B-00638D89), but it walks only root +0x10, whose descriptors carry owner = root when "
+    "linked, so it is not shown to unlink a non-root owner (no unlinker of root +0x28 is shown)")
 
 # L4 - rip stores to root+0x00 / +0x08 carry only the root's own address
 bad, n4 = [], 0
@@ -139,23 +141,33 @@ check("L8", all(has(a, s) for a, s in [(0x006388FA, "mov edi, 0x7b5"), (0x006389
                                      (0x006363A0, "and ecx, 0x1f"), (0x006363A3, "imul edx, edx, 0x21")]),
       "name hash h0 = 0x7B5, h = h*33 + (c & 0x1F), shared by 006388C0 (insert) and 00636280 (replace)")
 
-# C1 - control for the +0x50 link-writer shape: lea r,[x+0x50] followed by a store of r
+# C1 - control for the +0x50 link-writer shape: lea r,[x+0x50] or add r,0x50 followed by a store of r.
+# (auditspec-review-sd62-oracle-0930 widened the scan: the add form 00639160 itself uses at 0063921A, and decimal
+# displacements - capstone prints <10 in decimal, which the old hex-only store regex could not match. The gate now
+# pins the exact function set, and both shapes are positive controls: lea 00639212/00639231, add 0063921A.)
 hits = []
 for f in SZ:
     if not 0x00630000 <= f < 0x00640000:
         continue
     ins = body(f)
     for k, i in enumerate(ins):
-        m = re.match(r"(\w+), \[(\w+) \+ 0x50\]$", i.op_str)
-        if i.mnemonic != "lea" or not m or m.group(2) in ("rsp", "rbp", "rip"):
+        lm = re.match(r"(\w+), \[(\w+) \+ 0x50\]$", i.op_str)
+        am = re.match(r"(\w+), 0x50$", i.op_str)
+        if i.mnemonic == "lea" and lm and lm.group(2) not in ("rsp", "rbp", "rip"):
+            node, shape = lm.group(1), "lea"
+        elif i.mnemonic == "add" and am:
+            node, shape = am.group(1), "add"
+        else:
             continue
         for c in ins[k + 1:k + 14]:
-            mm = re.match(r"qword ptr \[(\w+)(?: \+ 0x[0-9a-f]+)?\], (\w+)$", c.op_str)
-            if c.mnemonic == "mov" and mm and mm.group(2) == m.group(1) and mm.group(1) != m.group(1):  # not a self-link
-                hits.append((f, c.address))
+            mm = re.match(r"qword ptr \[(\w+)(?: [+-] (?:0x[0-9a-f]+|\d+))?\], (\w+)$", c.op_str)
+            if c.mnemonic == "mov" and mm and mm.group(2) == node and mm.group(1) != node:  # not a self-link
+                hits.append((f, c.address, shape))
                 break
-            if m.group(1) in {R.md.reg_name(r) for r in c.regs_access()[1]}:
+            if node in {R.md.reg_name(r) for r in c.regs_access()[1]}:
                 break  # the node register was redefined
-fs = sorted(set(f for f, _ in hits))
-check("C1", 0x00639160 in fs, "reflection-range (00630000-0063FFFF) +0x50 link writers: %s" % " ".join("%08X" % f for f in fs))
+fs = sorted(set(f for f, _, _ in hits))
+check("C1", fs == [0x00639160] and {"lea", "add"} <= {s for _, _, s in hits},
+      "reflection-range (00630000-0063FFFF) +0x50 link writers: %s (shapes: %s)"
+      % (" ".join("%08X" % f for f in fs), " ".join(sorted({s for _, _, s in hits}))))
 print("FAILS %d" % fails)

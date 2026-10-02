@@ -1,0 +1,71 @@
+== packet integrity
+PASS  manifest.json sha256 = ca8a35ee40fa75f9...  | ca8a35ee40fa75f941fe4feac3d4308f3b55dd1c65fdafc90bf44de02a3babb3
+PASS  all 61 manifest members hash as listed  | []
+== shipping-image re-derivation
+PASS  body 002FFCF0 + 0x1DF (479 B) decodes exactly; six .pdata records tile it, the first unchained and five CHAININFO records rooted at 002FFCF0 (002FFCF0+0x8B fl0, 002FFD7B+0x33 fl4, 002FFDAE+0x68 fl4, 002FFE16+0x6B fl4, 002FFE81+0x39 fl4, 002FFEBA+0x15 fl4)
+PASS  002FFCF0 is int3-padded on both sides (entry - 1 and the byte after 002FFECE)
+PASS  002FFCF0 local CFG closed: no tail jump, no out-of-body branch; exactly two rets, 002FFDAD and 002FFECE (the last instruction)  | rets=['2FFDAD', '2FFECE']
+PASS  00322C50 + 0x401 (1025 B) decodes exactly; its single .pdata record (00322C50..003230D4) also covers the 3-byte pad and the 32-entry jump table at 00323054
+PASS  all 32 jump-table targets are instruction boundaries inside 00322C50's code  | []
+PASS  00306480 + 0x63 (99 B) decodes exactly and 1 .pdata record(s) tile it
+PASS  003060E0 + 0x253 (595 B) decodes exactly and 5 .pdata record(s) tile it
+PASS  00323EC0 + 0x152 (338 B) decodes exactly and 5 .pdata record(s) tile it
+PASS  002FFD0C `movzx ebx, cx`: the id is the zero-extended low 16 bits of incoming RCX, with no earlier rcx or rbx write
+PASS  002FFCF0 rbx written only at 002FFD0C and the two epilogue restores (002FFD9E, 002FFEBA)  | ['2FFD0C', '2FFD9E', '2FFEBA']
+PASS  class-query id: 002FFD80 `movzx r14d, bx`, 002FFD84 `mov edx, r14d`; r14 written only there and at the restore 002FFD99  | ['2FFD80', '2FFD99']
+PASS  002FFD0C dominates the class query 002FFD8B and no rbx/rdx writer lies between 002FFD84 and the call
+PASS  class-query arguments: 002FFD75 `mov r8d, 1`, 002FFD87 `lea ecx, [r8 + 0x13]` (ECX = 0x14 = class 20), 002FFD8B call 00322C50; r8 written only at 002FFD75 and 002FFE94  | ['2FFD75', '2FFE94']
+PASS  the class query dominates the shared return 002FFDAD; the early return 002FFECE is not reachable from it
+PASS  early return: 002FFEBA..002FFECE sets EAX = 2 (002FFEBF) and is entered only from the five gates before the class query  | ['2FFD0F', '2FFD18', '2FFD32', '2FFD54', '2FFD6F']
+PASS  failed class: 002FFD90 `test eax, eax` / 002FFD92 `jne 0x2ffdae`; the fall-through 002FFD94 `mov eax, 4` reaches only the shared epilogue and ret, with no call and no further EAX write
+PASS  reverse reaching definitions of EAX at 002FFDAD are exactly 002FFD94, 002FFDE6, 002FFE08 and the calls 002FFE6F, 002FFE87, 002FFE9D, 002FFEB0  | ['2FFD94', '2FFDE6', '2FFE08', '2FFE6F', '2FFE87', '2FFE9D', '2FFEB0']
+PASS  the three constant definitions are nonzero (4, 0x24, 0x2C)  | [(3145108, 4), (3145190, 36), (3145224, 44)]
+PASS  the call definitions 002FFE6F (0030E9C0), 002FFE87 (0031A7B0), 002FFE9D (00306480) reach the ret only through `test eax, eax; jne 0x2ffd99`, i.e. only when nonzero  | {'2FFE6F': True, '2FFE87': True, '2FFE9D': True}
+PASS  so the only definition that can give EAX 0 at 002FFDAD is 002FFEB0 call 00303BD0, followed by 002FFEB5 `jmp 0x2ffd99`
+PASS  002FFEB0 is unreachable once the class-success edge 002FFD92 -> 002FFDAE is removed (a normal zero return has passed class 0x14)
+PASS  every path to 002FFEB0 also passes 00306480 (002FFE9D) and its zero arm
+PASS  00322C50 entry: `lea eax, [rcx - 1]`, `cmp eax, 0x1f`, `ja` to the 0 return, image-relative table `[rdi + rax*4 + 0x203054]` with rdi = image base (00322C64 lea), indirect `jmp rcx`
+PASS  class 0x14 selects table entry 19 = 00322F72  | 322F72
+PASS  class-0x14 arm loads descriptor 02EBF138 (00322F72) and count [desc+4] (00322F84); NULL -> count 0
+PASS  shared tail: 0032302C `mov edx, eax`, `cmp ebx, edx` / `jl` (signed), `lea eax, [rcx - 1]`, `cmp ebx, eax` / `jg` (signed), `mov eax, 1`; refusals go to 00322C8D `xor eax, eax`
+PASS  static slice for class 0x14 (entry, arm 00322F72, shared tail, 0 return; 36 instructions) reads no R8  | []
+NOTE  whole 00322C50: R8 read only at ['322E7D'] (class-14 arm, after its own r8 writes at 00322E65/00322E6B); the class-1 arm's call 00309440 (00322C81) would receive incoming R8 unchanged
+PASS  own evaluator, count 543: class 0x14 accepts exactly ids [[0, 542]] of 65536 u16 ids tested, visits 00322F72, never reads R8 (poisoned)  | r8 reads []
+PASS  own evaluator: ids 511..534 are all accepted at count 543 (in range; not zero-return feasibility)
+PASS  own evaluator, NULL descriptor: class 0x14 refuses every id
+PASS  own evaluator, count 511: accepts exactly 0..510 (the bound follows the runtime count)  | [[0, 510]]
+PASS  02EBF138 lies in .data's virtual tail (past SizeOfRawData): its load value is 0, so the count 543 is runtime-bound, a premise here
+PASS  002FFD02 `mov rsi, rdx`; 002FFD05 `mov rdi, qword ptr [rdx + 0x698]` (8-byte read of incoming RDX+698)
+PASS  002FFCF0 rdi written only at 002FFD05 and the two epilogue pops (002FFDAC, 002FFECD)  | ['2FFD05', '2FFDAC', '2FFECD']
+PASS  002FFD05 dominates 002FFE9D and no rdi writer lies on any path between them (96 instructions)
+PASS  the later unit+698 reloads 002FFD38 (into rcx) and 002FFDB4 (into rax) do not write rdi  | ['2FFD38', '2FFDB4']
+PASS  00306480 arguments: 002FFE94 `xor r8d, r8d`, 002FFE97 `mov rdx, rdi`, 002FFE9A `movzx ecx, bx`, 002FFE9D call 00306480
+PASS  no rbx writer on any 002FFD0C -> 002FFE9D path, so ECX there is the same low-16 id
+NOTE  callees on 002FFD05 -> 002FFE9D paths (RDI/RBX kept only by the Win64 nonvolatile ABI): ['20E600', '253B90', '30D9A0', '30E9C0', '31A7B0', '322C50', '377C20']
+NOTE  of those, the record pointer itself is passed in RCX to the calls at ['2FFE6F', '2FFE87']
+PASS  00306480: rbx = rdx (0030648A); no rdx or r8 write before the 003060E0 call 003064A6; rcx = rbx at the 00323EC0 call 003064C5
+PASS  003060E0 takes the record from RDX (00306101 `mov rdi, rdx`) and R8 into ebp (003060F8), then reads byte [rdi + 5] at 00306129; 00306101 dominates it and no rdi writer lies on any path between
+PASS  00323EC0 takes the record from RCX (00323ECD `mov rsi, rcx`) and reads byte [rsi + 5] at 00323EF3; 00323ECD dominates it and no rsi writer lies on any path between (the `pop rsi` at 00323EE8 is on the class-refusal return, not on these paths)
+PASS  both downstream helpers ask class 0x14 again: 00323EC0 with R8D = 0 (00323ECA `xor r8d, r8d`, 00323ED2 `lea ecx, [r8 + 0x14]`, 00323ED6) and 003060E0 with R8D = 1 (003060FB, 00306109 `lea ecx, [r8 + 0x13]`, 0030610D)
+PASS  category reason: 003060E0 returns 5 at 00306300 and 00306480 maps a nonzero 003060E0 result to 0xF (003064AF)
+PASS  retained range sha256 values equal this image's bytes (6 ranges, incl. 002FFCF0, 00322C50, 00306480, 003060E0, 00323EC0)  | []
+PASS  packet result-02 facts agree with this review: 479 B, normal returns 2FFDAD/2FFECE, call 2FFE9D -> 306480, R8D 0
+PASS  producer commit 2b341ca3a is ASTRA's and its committed manifest hashes to the working-tree manifest  | 2b341ca3a ASTRA: prove availability success-domain and parsed-record argument from retained code
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every image check (boundary id set)  | 43 of 43
+PASS  control: 002FFD0C `movzx ebx, cx` -> `movsx ebx, cx` (sign-extended id)  | 1 failed: 002FFD0C `movzx ebx, cx`: the id is the zero-extended low 16 bits of incoming RCX, with no earlier rcx or rbx write
+PASS  control: 002FFD87 `lea ecx, [r8+0x13]` -> [r8+0x14] (class 0x15)  | 1 failed: class-query arguments: 002FFD75 `mov r8d, 1`, 002FFD87 `lea ecx, [r8 + 0x13]` (ECX = 0x14 = class 20), 002FFD8B call 00322C50; r8 written only at 002FFD75 and 002FFE94
+PASS  control: 002FFD75 `mov r8d, 1` -> `mov r8d, 2` (R8D and the class both change)  | 1 failed: class-query arguments: 002FFD75 `mov r8d, 1`, 002FFD87 `lea ecx, [r8 + 0x13]` (ECX = 0x14 = class 20), 002FFD8B call 00322C50; r8 written only at 002FFD75 and 002FFE94
+PASS  control: 002FFD92 class-success `jne` -> `je` (failed class falls into the cascade)  | 1 failed: failed class: 002FFD90 `test eax, eax` / 002FFD92 `jne 0x2ffdae`; the fall-through 002FFD94 `mov eax, 4` reaches only the shared epilogue and ret, with no call and no further EAX write
+PASS  control: 002FFD94 `mov eax, 4` -> `xor eax, eax` + 3 nops (failed class returns 0)  | 2 failed: failed class: 002FFD90 `test eax, eax` / 002FFD92 `jne 0x2ffdae`; the fall-through 002FFD94 `mov eax, 4` reaches only the shared epilogue and ret, with no call and no further EAX write; the three constant definitions are nonzero (4, 0x24, 0x2C)
+PASS  control: 002FFD05 carrier `[rdx+0x698]` -> `[rdx+0x6a0]`  | 1 failed: 002FFD02 `mov rsi, rdx`; 002FFD05 `mov rdi, qword ptr [rdx + 0x698]` (8-byte read of incoming RDX+698)
+PASS  control: 002FFDB4 reload `mov rax, [rsi+0x698]` -> `mov rdi, [rsi+0x698]` (a later reload replaces RDI)  | 3 failed: 002FFCF0 rdi written only at 002FFD05 and the two epilogue pops (002FFDAC, 002FFECD); 002FFD05 dominates 002FFE9D and no rdi writer lies on any path between them (96 instructions); the later unit+698 reloads 002FFD38 (into rcx) and 002FFDB4 (into rax) do not write rdi
+PASS  control: 002FFE97 `mov rdx, rdi` -> `mov rdx, rsi` (outer unit passed)  | 1 failed: 00306480 arguments: 002FFE94 `xor r8d, r8d`, 002FFE97 `mov rdx, rdi`, 002FFE9A `movzx ecx, bx`, 002FFE9D call 00306480
+PASS  control: 002FFE94 `xor r8d, r8d` -> `mov r8d, ebx` (R8D = id)  | 1 failed: 00306480 arguments: 002FFE94 `xor r8d, r8d`, 002FFE97 `mov rdx, rdi`, 002FFE9A `movzx ecx, bx`, 002FFE9D call 00306480
+PASS  control: 002FFE9A `movzx ecx, bx` -> `movsx ecx, bx`  | 1 failed: 00306480 arguments: 002FFE94 `xor r8d, r8d`, 002FFE97 `mov rdx, rdi`, 002FFE9A `movzx ecx, bx`, 002FFE9D call 00306480
+PASS  control: 00322F84 `mov ecx, [rcx+4]` -> `mov ecx, r8d` (class-0x14 arm reads R8)  | 4 failed: class-0x14 arm loads descriptor 02EBF138 (00322F72) and count [desc+4] (00322F84); NULL -> count 0; static slice for class 0x14 (entry, arm 00322F72, shared tail, 0 return; 36 instructions) reads no R8; own evaluator, count 543: class 0x14 accepts exactly ids [[0, 2], [275, 275], [510, 512], [534, 535], [541, 544], [32767, 32768], [65534, 65535]] of 17 u16 ids tested, visits 00322F72, never reads R8 (poisoned)
+PASS  control: 0032303B `jg` -> `jge` (upper bound becomes count-2)  | 3 failed: shared tail: 0032302C `mov edx, eax`, `cmp ebx, edx` / `jl` (signed), `lea eax, [rcx - 1]`, `cmp ebx, eax` / `jg` (signed), `mov eax, 1`; refusals go to 00322C8D `xor eax, eax`; own evaluator, count 543: class 0x14 accepts exactly ids [[0, 2], [275, 275], [510, 512], [534, 535], [541, 541]] of 17 u16 ids tested, visits 00322F72, never reads R8 (poisoned); own evaluator, count 511: accepts exactly 0..510 (the bound follows the runtime count)
+PASS  control: 00322F72 descriptor disp + 8 (another registry slot)  | 2 failed: class-0x14 arm loads descriptor 02EBF138 (00322F72) and count [desc+4] (00322F84); NULL -> count 0; own evaluator runs the class-0x14 path without refusal
+PASS  control: 00306101 `mov rdi, rdx` -> `mov rdi, rcx` (003060E0 reads byte +5 off another carrier)  | 1 failed: 003060E0 takes the record from RDX (00306101 `mov rdi, rdx`) and R8 into ebp (003060F8), then reads byte [rdi + 5] at 00306129; 00306101 dominates it and no rdi writer lies on any path between
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 64 checks, 64 PASS, 0 FAIL (14 controls)

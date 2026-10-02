@@ -68,7 +68,7 @@ This sheet stays the container.)*
 +0x04  u32       variant        0 or 1 -- the loader rejects anything else
 +0x08  u32       contentLength  bytes of real content; <= file size in 4,230 / 4,230
 +0x0C  u32       entryCount     number of entries; bounds-checks the lookup index
-+0x10  char[16]  name           NUL-terminated; matches the filename stem 4,230 / 4,230
++0x10  char[16]  name           NUL-terminated; matches the filename stem 4,230 / 4,230   <- corrected 2026-10-02, OPUS - char[32]: 00408F30+0x0..+0x3C compares eight dwords, so +0x20..+0x2F below are the name's NUL tail (section 7)
 +0x20  u32       _zero0         0 in 4,230 / 4,230
 +0x24  u32       _zero1         0 in 4,230 / 4,230
 +0x28  u32       _zero2         0 in 4,230 / 4,230
@@ -108,7 +108,7 @@ FRP_FindEntry(void* blob, u32 wantId, const char* wantName, int startIndex) -> i
       e = base + *(u32*)tbl                            0x00408FF3 / 0x00409053
       if (*(u32*)e != wantId) continue                 0x00408FF5 / 0x00409055
       if (wantName == NULL)  -> hit                    0x00408FFA / 0x0040905A
-      if (NameEquals(blob+0x10, wantName)) -> hit       0x00409006 / 0x00409066
+      if (NameEquals(blob+0x10, wantName)) -> hit       0x00409006 / 0x00409066   <- corrected 2026-10-02, OPUS - the helper returns 0 when the 32 bytes match (00408F30+0x3E) and 1 otherwise (+0x41), and the finder takes non-zero as the hit (00408FA0+0x6E jne), so a supplied name selects files whose name differs (section 7)
   return -1                                            0x0040901B
 ```
 
@@ -146,7 +146,7 @@ Seven more load `'@FRP'` into a register as an argument — `0x004180BF`, `0x004
 (`mov r9d, 0x50524640`) — so the tag is used both as a file magic and as a lookup key passed to
 generic code. **Eleven sites in total, and `0x00408FC9` above is the eleventh.**
 
-> **The seven argument sites, read 2026-09-18 (FABLE).** All seven hand the tag to the resource entry's section-lookup family with the object's name — `ResourceEntry_FindSectionOffsetByTagAndName` `00409A30`, `00409FA0` (the index form), `00409660` (block by tag), or the wrapper `00504E70` — so as a key `@FRP` names **the container's own section inside a resource entry**, and at five of the seven it is the *fallback* tried when a more specific tag is absent: after `@FMN` at `004180BF` (`PresentationAuthoredCommand_Class09_ActivateLoadedResourceState`, `004180AA`–`004180C7`, the block then handed to `00408F80`) and at `0041C003` (`0041BEE0`, offset into `+0x54`, followed by `@FMW` into `+0x58`); after `@FMC` at `0041D301` (`PresentationEntry_InitializeFromResourceDefinition`, offset into `+0x320`, followed by `@FRM`), at `00424691` (`00424550`) and at `0042510E` (`00424D80`) — those two fall through to `@FMN` next. It is the *first* key at `0041FDA6` (`0041FCF0`, the character render record's bind: the index goes to the record's `+0x408`, see [the render record array](../Character-Render-Records/the-character-render-record-array.md), UQ-196) and at `00504F58` (`00504F00`, through `00504E70` into the context's `+0x1F0`, then `@FEF` into `+0x228` and `@FOR` by offset). So the seven sites are one idiom — *find this object's section by name, preferring the motion or model-parameter section when the entry has one* — and none reads the container's parts; what the parts are stays open.
+> **The seven argument sites, read 2026-09-18 (FABLE).** All seven hand the tag to the resource entry's section-lookup family with the object's name — `ResourceEntry_FindSectionOffsetByTagAndName` `00409A30`, `00409FA0` (the index form), `00409660` (block by tag), or the wrapper `00504E70` — so as a key `@FRP` names **the container's own section inside a resource entry**, and at five of the seven it is the *fallback* tried when a more specific tag is absent: after `@FMN` at `004180BF` (`PresentationAuthoredCommand_Class09_ActivateLoadedResourceState`, `004180AA`–`004180C7`, the block then handed to `00408F80`) and at `0041C003` (`0041BEE0`, offset into `+0x54`, followed by `@FMW` into `+0x58`); after `@FMC` at `0041D301` (`PresentationEntry_InitializeFromResourceDefinition`, offset into `+0x320`, followed by `@FRM`), at `00424691` (`00424550`) and at `0042510E` (`00424D80`) — those two fall through to `@FMN` next. It is the *first* key at `0041FDA6` (`0041FCF0`, the character render record's bind: the index goes to the record's `+0x408`, see [the render record array](../Character-Render-Records/the-character-render-record-array.md), UQ-196) and at `00504F58` (`00504F00`, through `00504E70` into the context's `+0x1F0`, then `@FEF` into `+0x228` and `@FOR` by offset). So the seven sites are one idiom — *find this object's section by name, preferring the motion or model-parameter section when the entry has one* — and none reads the container's parts~~; what the parts are stays open~~. *(answered: see the 2026-09-30 corrections - each entry type is read on its own sheet; 2026-10-02, OPUS)*
 
 > **These ten addresses were corrected on 2026-09-05 (§6b) and the correction is instructive.** They
 > previously read `0x004090DD`, `0x0040981D`, `0x00409ACC`, `0x004180C0`, `0x0041C004`, `0x0041D302`,
@@ -350,7 +350,7 @@ begins with the same header shape the container uses**: a four-byte tag, a word 
 entry's byte length at `+0x08`, a word at `+0x0C`, and a 32-byte NUL-padded name at `+0x10` that
 the tag + name finder compares ([the addressing page](../../02-Resource-And-Asset-Pipeline/resource-section-addressing.md));
 the `+0x04` / `+0x0C` words vary by tag (`@FCP` is always `0, 1`; `@FDM` and `@FOR` `0, 0`; `@FTR`
-`2, n`; `@FMN` carries `0x02000211` and a count) and no reader of them was found.
+`2, n`; `@FMN` carries ~~`0x02000211`~~ `0x02001111` or `0x02001011` *(corrected 2026-10-02, OPUS: read through `vbf_read_entry` from `FFXII_TZA.vbf`, a 200-file `.ca` sample: no `@FMN` carries `0x02000211`)* and a count) and no reader of them was found.
 
 | population | entry tags | files |
 |---|---|---:|
@@ -365,7 +365,7 @@ the `+0x04` / `+0x0C` words vary by tag (`@FCP` is always `0, 1`; `@FDM` and `@F
 *Added 2026-09-20 (FABLE) - three of the motion entries identified from their readers, and what the fixed slots are.*
 `@FMC` is the **authored command block** - named `ready`, `attack`, `magic` ..., track count in its word `+0x0C`, format
 and a census of all 62,208 on [the authored-command page](../Authored-Commands/the-authored-presentation-command-handlers.md).
-`@FMN` is the **bone motion** such a block binds *by name* through command `0x09` (that invoker is only partly read),
+`@FMN` is the **bone motion** such a block binds *by name* through command `0x09` (that invoker ~~is only partly read~~ *(answered: see the handler page - `00417F40` read whole; 2026-10-02, OPUS)*),
 and `@FMN` / `@FMW` come in equal numbers in every one of the 3,164 `.ca` files. **A version-1 container's slot number
 is the motion id**: the presentation entry records the child number of the motion it plays, and the blend-in rule
 `0x2C` matches its *from* word against it - in the data all **362,594** such words are below their own container's

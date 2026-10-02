@@ -219,3 +219,15 @@ The execution is OPUS's S-45 replays, and is not repeated.
 
 Corrected in place: I-1's falsifier; §9 and I-3 gained notes. The consumer record is
 `_index/candidates/steam-falsification-pass-1-0929/`.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-steam-integration-subsystem-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001F3E10` | 131 B | zeroes the twenty qwords `rcx+0x00` through `rcx+0x98`, then calls the import through `008C31A0`; when that returns non-zero it tail-jumps `001F3AE0(rcx)`, otherwise it returns that zero | `001F3E1B`, `001F3E6F`, `001F3E76`, `001F3E7E`, `001F3E88` |
+| `0020C8C0` | 121 B | returns at once unless the sign-extended dword `[rcx]` equals qword `[rdx]`; otherwise increments dword `rcx+0x14` and, when it then equals dword `rcx+0x10` minus 1, takes the `+0x28` interface of `008C3190(01DFE0D0)` and calls its vtable slot `+0x30` with qword `[[rcx+8]+8]` and `[rcx+8]+0x190`, then calls `0020CE10(rcx, qword [[rcx+8]+8])` when byte `[[rcx+8]+0x190]` is zero; on both count paths it ends with a tail jump to `005CDAA0(2, 00906490)` | `0020C8CC`, `0020C8D4`, `0020C901`, `0020C918`, `0020C92E` |
+| `0020CB20` | 48 B | returns at once unless the sign-extended dword `[rcx]` equals qword `[rdx]`; otherwise tail-jumps `005CDAA0(2, 00906458, dword [rdx+8])` when dword `[rdx+8]` is 1 and `005CDAA0(2, 00906470, dword [rdx+8])` for any other value | `0020CB23`, `0020CB31`, `0020CB3E`, `0020CB4A` |
+| `0020CCC0` | 105 B | re-fetches `008C3190(01DFE0D0)` before each step and returns 0 in `al` when its qword `+0x28` is null, when its qword `+8` is null, or when vtable slot `+8` of the `+8` interface returns zero in `al`; otherwise tail-jumps vtable slot `+0` of the `+0x28` interface with that interface as `rcx` | `0020CCD1`, `0020CCE5`, `0020CD00`, `0020CD1F`, `0020CD22` |
+| `0020CE10` | 78 B | returns 0 in `al` when byte `rcx+0x18` is zero; otherwise calls vtable slot `+0x38` of the `+0x28` interface of `008C3190(01DFE0D0)` with `rdx`, re-fetches that interface and tail-jumps its vtable slot `+0x50` | `0020CE16`, `0020CE36`, `0020CE52`, `0020CE56` |

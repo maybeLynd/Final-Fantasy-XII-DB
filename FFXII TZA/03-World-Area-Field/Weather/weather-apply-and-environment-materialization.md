@@ -573,3 +573,23 @@ Interior anchor `003DC95F` (function `003DC8D0`).
 `003DCBC0` (300 B) is the `02B57F70` bank init `00266D10` calls: sixteen 0x14-stride records take `(i&0xF)` slot tags with `dword[+8] = i|0x10`, zeroed links and `byte[+0x13]=i`; `02B580BA`..`02B5817A` at 0xC stride fill `0xFF`, `02B58174`=0 / `02B58170`=1 / `02B58178`/`+0x80`/`+0x88` clear, then `0032E400(9,5)` drives the issue loop - the deque-family list build the accessor table names.
 
 Interior anchor `003DCC59` (function `003DCBC0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-weather-apply-and-environment-materializ-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001AA3B0` | 30 B | calls `00265920` with the incoming registers and tail-jumps to `001A7E40(rcx, result - 1)`, with the incoming `rcx` kept across the call | `001AA3B9`, `001AA3C1`, `001AA3C9` |
+| `001DC000` | 61 B | calls `00210B30` with the incoming registers and tail-jumps to `00210F60` with its result in `rcx`, the incoming `rcx` in `rdx`, the incoming `rdx` in `r8` and the incoming `xmm2` in `xmm3` | `001DC018`, `001DC020`, `001DC023`, `001DC026`, `001DC038` |
+| `00210ED0` | 135 B | calls `0016D6A0` with `ecx` = 1 when `xmm1` lies between 0 and 1.0 (`01CEBBA8`) inclusive (0 otherwise, including NaN) and the incoming `rdx` untouched; then builds a local object at `rsp + 0x78` with `007A4380`, calls `007A4C70(obj, r8d)` and `007A45C0(obj, xmm1, 0.0, 0)`, and finishes with `001243B0(obj)`; the incoming `rcx` is not used | `00210F02`, `00210F0D`, `00210F24`, `00210F37`, `00210F42` |
+| `002EFA20` | 80 B | stores 3 to byte `022BDD5D` and 0 to byte `022BDD5C`, zeroes the dwords `022BDD60`, `022BDD90`, `022BDDC0`, `022BDDF0`, `022BDE20`, `022BDE50`, `022BDE80` (stride 0x30), `022BDEB0` and `022BDEB8`, and stores 6 to dword `022BDEB4` | `002EFA22`, `002EFA29`, `002EFA53`, `002EFA5F`, `002EFA65` |
+| `002F1A00` | 23 B | zeroes dword `022BE7C0` and qwords `022BE7C8` and `022BE7D0` | `002F1A02`, `002F1A08`, `002F1A0F` |
+| `0036C5A0` | 41 B | when `ecx` is at most 14 (unsigned), stores `rdx` to the qword at `+0xA0` of entry `ecx` of the 0xA8-byte-stride table at `022D7FD0`; otherwise stores `rdx` to the qword at address `0xA0` (a null base) | `0036C5A3`, `0036C5A8`, `0036C5B6`, `0036C5C1` |
+| `003777A0` | 15 B | tail-jumps to `003777C0` with `r8d` = 3 and `r9d` = 4, passing `rcx` and `rdx` through | `003777A6`, `003777AA` |
+| `003777B0` | 15 B | tail-jumps to `003777C0` with `r8d` = 7 and `r9d` = 2, passing `rcx` and `rdx` through | `003777B6`, `003777BA` |
+| `003DA2C0` | 16 B | zeroes `xmm3`, `xmm2`, `edx` and `xmm0` and tail-jumps to `002564D0`, passing `rcx` through | `003DA2C3`, `003DA2C6`, `003DA2C8`, `003DA2CB` |
+| `003DD7E0` | 97 B | zeroes qwords `02B58A60` and `02B58A68` and dword `02B58A70`, then walks 5 x 16 records of 0x1C bytes addressed from `02B581AD`, storing for each the inner index (0 to 15) to word `+1`, 0 to qword `-0xD` and to byte `+0`, and the outer index (0 to 4) to byte `-1` (offsets relative to that pointer) | `003DD7ED`, `003DD820`, `003DD826`, `003DD82D`, `003DD83B` |
+| `003DF030` | 98 B | walks 5 x 8 records of 0x38 bytes from `02B59360` (record 8 x outer + inner), storing the inner index (0 to 7) to byte `+0x12` and the outer index (0 to 4) to byte `+0x11` and zeroing dword `+0`, qwords `+8`, `+0x18` and `+0x20`, byte `+0x10` and word `+0x28`; its fallback to a null record for an inner index above 7 cannot be reached within the loop bound | `003DF04F`, `003DF05B`, `003DF076`, `003DF07F`, `003DF08B` |
+| `003EBE40` | 45 B | zeroes the six qwords `02B5EC60`, `02B5EC68`, `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88` | `003EBE42`, `003EBE49`, `003EBE50`, `003EBE5E`, `003EBE65` |
+| `0050CDE0` | 91 B | calls `00267E10(r9)` twice, keeping the first result as `a` and the second as `b`, then calls `0016D6A0(b, 00264F10(a))` and `0016D6A0(b, 00264F40(a))` and tail-jumps to `0016D6A0(b, 00264F90(a))` | `0050CDF0`, `0050CDFA`, `0050CE0C`, `0050CE1C`, `0050CE36` |

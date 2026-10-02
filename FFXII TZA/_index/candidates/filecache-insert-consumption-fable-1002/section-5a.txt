@@ -1,0 +1,41 @@
+### 5a. Insertion takes a key it is given, all 32 bits (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming ASTRA's packet `filecache-insert-key-admission` (`1b2154feb`) at the scope FABLE's
+independent review accepted ([review](../../_index/candidates/fable-review-astra-filecache-insert-key-admission-1002/REVIEW.md),
+ACCEPT-WITH-NARROWING, 81 checks; record [`filecache-insert-consumption-fable-1002`](../../_index/candidates/filecache-insert-consumption-fable-1002/README.md)).*
+
+Section 5's key is produced for a **lookup**: the path is normalised, hashed, and bit 31 is cleared. The cache's
+**insertion** entry is a different interface, and nothing on it applies that domain:
+
+- **`001D6A20` takes the key ready-made.** The key arrives in `ecx` as a 32-bit number, is held in `ebp` and is
+  passed on in `edx` to `0020B680`, beside a data pointer (`rdx`), a 32-bit size/value (`r8d`) and a 32-bit kind
+  (`r9d`). There is no hash, prefix scan or bit-31 clear on that path; a key with bit 31 set would pass through
+  unchanged, where the section 5 producer would have cleared it.
+- **`0020B680` keeps it whole.** The key's saved dword survives to the insertion call, and every key comparison is an
+  unsigned full-dword compare. An existing key takes the replace branch; a new one has its saved dword's address
+  passed to `0020B5F0`.
+- **`0020B5F0` finds or inserts.** It walks the tree with unsigned compares on the dword at each node's `+0x20` (the
+  same node layout section 5 reads). If the key is already there it returns that node's `+0x28` slot and copies
+  nothing (`0020B5F0` + 0x41). Otherwise it builds a 16-byte pair on its stack (key at `+0`, a zero qword at `+8`)
+  and hands it to the tree's insert helper (`0020B5F0` + 0x72). The new node takes all 16 bytes at `+0x20`..`+0x2F`,
+  and the caller stores the value pointer through the returned `+0x28` slot.
+- **Only the dword at `+0x20` is the key.** The pair's bytes `+4`..`+7` are never written, so a node's `+0x24`..`+0x27`
+  hold stale stack bytes. Read the key as a dword, never as a qword.
+- **Rebalancing does not touch it.** The tree's colour-and-link leaf writes only node and header bytes `+0x00`..`+0x19`.
+- **Insertion can be skipped.** It happens only when the call at `0020B680` + 0xC6 returns non-null. On null nothing
+  is inserted, but the qword add into the receiver's `+0x90` (`0020B680` + 0x199) still happens.
+
+So the 31-bit domain is a property of section 5's lookup producer, not a bound on what the cache accepts. Whether any
+caller ever inserts a key with bit 31 set is **not established**: the callers' key domain was not traced, and they may
+all restrict keys to 31 bits.
+
+**Premises and limits.** The key survives into the node only under these premises:
+- the input pair and the private frames are stable;
+- nodes are valid, fresh and disjoint `0x30`-byte allocations at addresses that do not wrap;
+- the tree and its header are well formed;
+- returns and register preservation follow the normal ABI;
+- nothing interferes concurrently.
+
+That a pointer is carried through intact does not prove the memory it points at stays the same. Not established
+here: the allocator callback's effects, what the replace branch does, eviction, lifetime, collisions and cache
+occupancy.

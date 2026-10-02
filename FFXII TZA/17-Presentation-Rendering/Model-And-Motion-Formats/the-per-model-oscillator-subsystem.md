@@ -282,7 +282,7 @@ rig's sway-only mode is decided by the rig byte `+0x63` alone.**
 
 **`02B59D68`** is the status-error display-deny latch: its one writer `003E0B40` is tail-called by `003E7C70` with 1 or
 0 ([how a position becomes a single number](../Position-To-Scalar/how-a-position-becomes-a-single-number.md) section
-12). While it is set, section 3's mode byte is forced to 0 (the light stage) for records whose byte `+7` is set, and the
+12). ~~While it is set, section 3's mode byte is forced to 0~~ While it is clear, section 3's mode byte is forced to 0 *(corrected 2026-10-02, OPUS: `0040ACF0`+0x23A `cmp byte ptr [rdi + 7], r15b`, +0x240 `cmp dword ptr [02B59D68], r15d` / `jne`, +0x249 `xor esi, esi`; `r15d` is zero)* (the light stage) for records whose byte `+7` is set, and the
 rig frame skips its last three applies (the rig page, corrected the same day).
 
 **`0054B1F0`'s callers are effect element type `0x72`.** Its only two callers (C5) are `0052B5E0` and `0052BBD0`, the
@@ -363,7 +363,7 @@ belongs to the rig slot loaded before its call, and the order is a slot table - 
 | `01FD4A90` | `.data` ptr | shared table stored to `02CA43C0` by mode-1/0 arms |
 | `02B59D60` | `.data` u16 | flag word OR'd into the driver arg - **never written on PC, always 0** (section 6b) |
 | `02B59D68` | `.data` u32 | global override tested beside `[record + 7]` - the status-error display-deny latch (section 6b) |
-| `02CA4380`–`02CA439C` | `.data` f32 ×4-ish | global base/amplitude params gated by `02CA4390` - **the map wind** (preset byte `02CA4390`, direction/tilt `02CA4391`/`02CA4392`, section 6b) |
+| `02CA4380`–`02CA439C` | `.data` ~~f32 ×4-ish~~ six f32 (`80`/`84`/`88`/`8C`/`98`/`9C`), bytes `90`–`92`, dword `94` *(corrected 2026-10-02, OPUS: `0040B3B0`+0x0 byte store, +0x6F dword store; `0040AAD0`+0x2A and +0x31 byte stores)* | global base/amplitude params gated by `02CA4390` - **the map wind** (preset byte `02CA4390`, direction/tilt `02CA4391`/`02CA4392`, section 6b) |
 | `02CA43C0` | `.data` ptr | per-frame shared table install |
 | `02EBB750` | `.data` ptr | object whose `+0x3C` feeds `001EDCD0` |
 | `022D9198` / `022D9390` / `022D8FB0` / `022D9350` | `.data` | VU0 bank rows Q / row 31 / staging — see the-ee-and-vu0-register-bank §6 |

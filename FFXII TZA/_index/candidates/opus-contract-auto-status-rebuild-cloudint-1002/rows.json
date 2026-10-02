@@ -1,0 +1,325 @@
+{
+ "page": "10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md",
+ "date": "2026-10-02",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "report": "contract-auto-status-rebuild.json",
+ "rows": [
+  {
+   "fn": "001E0C30",
+   "text": "tail-jumps `00225680` with `rcx` = qword `+0xDF8` of the pointer the framework-singleton getter returns (a one-instruction load and return)",
+   "anchors": [
+    [
+     "001E0C34",
+     "call"
+    ],
+    [
+     "001E0C39",
+     "mov"
+    ],
+    [
+     "001E0C44",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002B3E30",
+   "text": "stores float `+0x14` plus float `+0x24` of `rcx` back at `+0x24`; when float `+0x10` is greater than float `+0x20` copies it there, then raises float `+0x30` to float `+0x20` and float `+0x34` to the new `+0x24` when they are greater (`comiss`); finally zeroes dwords `+0x10`, `+0x14`, `+0x18`, `+0x20`, `+0x24` and `+0x28` and stores the dword `0x3F800000` at `+0x1C` and `+0x2C`",
+   "anchors": [
+    [
+     "002B3E43",
+     "movss"
+    ],
+    [
+     "002B3E4A",
+     "movss"
+    ],
+    [
+     "002B3E5A",
+     "movss"
+    ],
+    [
+     "002B3E65",
+     "movss"
+    ],
+    [
+     "002B3E6C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002EBB80",
+   "text": "returns without work unless byte `+3` of `rcx` ANDed with `0xE0` equals `0x60` and qword `+0xC0` is non-null; then replaces bit 3 (`0x08`) of byte `+0x10` of that object with bit 0 of `dl` and tail-jumps `002E8FD0` with `rcx` unchanged",
+   "anchors": [
+    [
+     "002EBB86",
+     "cmp"
+    ],
+    [
+     "002EBB8A",
+     "mov"
+    ],
+    [
+     "002EBB96",
+     "and"
+    ],
+    [
+     "002EBBA0",
+     "or"
+    ],
+    [
+     "002EBBA3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003241D0",
+   "text": "returns 0 unless `ecx` minus 1 is at most `0x1D` unsigned (`ecx` 1 to 30); for those values dispatches through a byte index table and a dword offset table after the body, which (decoded from the bytes) give: `ecx` 1 to 3 returns 0x15, 4 to 6 0x16, 7 0x17, 8 0x18, 9 to 13 0x19, 14 0x1A, 15 to 17 0x1B, 18 0x1C, 19 and 20 0x1D, 30 0x1E, and 21 to 29 return 0",
+   "anchors": [
+    [
+     "003241D2",
+     "cmp"
+    ],
+    [
+     "003241D5",
+     "ja"
+    ],
+    [
+     "003241E1",
+     "movzx"
+    ],
+    [
+     "003241F3",
+     "jmp"
+    ],
+    [
+     "00324231",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0033F7F0",
+   "text": "tail-jumps `0026B4E0(rcx, 00264CE0(00263FF0(0), 003148B0()))`",
+   "anchors": [
+    [
+     "0033F7FF",
+     "call"
+    ],
+    [
+     "0033F807",
+     "call"
+    ],
+    [
+     "0033F811",
+     "call"
+    ],
+    [
+     "0033F825",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003415D0",
+   "text": "for indices 0 to 3 calls `00263750(index)` and, when the result is non-null, `0026DC40(result, 0)`",
+   "anchors": [
+    [
+     "003415DA",
+     "call"
+    ],
+    [
+     "003415E4",
+     "xor"
+    ],
+    [
+     "003415E9",
+     "call"
+    ],
+    [
+     "003415F0",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00342250",
+   "text": "for indices 0 to 3 calls `00263750(index)` and, when the result is non-null, `0026DC40(result, 1)`",
+   "anchors": [
+    [
+     "0034225A",
+     "call"
+    ],
+    [
+     "00342264",
+     "mov"
+    ],
+    [
+     "0034226C",
+     "call"
+    ],
+    [
+     "00342273",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348130",
+   "text": "calls `00263FF0(3)` and `003B6F30()`, then tail-jumps `003B72F0` with the `00263FF0` result",
+   "anchors": [
+    [
+     "00348136",
+     "mov"
+    ],
+    [
+     "0034813B",
+     "call"
+    ],
+    [
+     "00348143",
+     "call"
+    ],
+    [
+     "00348150",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003592C0",
+   "text": "sets (`edx` non-zero) or clears (`edx` zero) bit `ecx` of byte `022C8005`; then, when bit 0 of bytes `022C8004`, `022C8006`, `022C8007` and the new `022C8005` ORed together is set and `003588B0(dword 022C7FE0)` is non-null, tail-jumps `0026D6D0` with that result, otherwise returns",
+   "anchors": [
+    [
+     "003592CF",
+     "bts"
+    ],
+    [
+     "003592E1",
+     "btr"
+    ],
+    [
+     "00359302",
+     "test"
+    ],
+    [
+     "0035930C",
+     "call"
+    ],
+    [
+     "0035931D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0042DE90",
+   "text": "calls `00426220(rcx, qword +8 of rdx)` and, only when it returns zero, ORs `0x100000` into dword `+0x284` of `rcx` and clears the `0x40` bit (bit 6) of byte `+0xC0`",
+   "anchors": [
+    [
+     "0042DE96",
+     "mov"
+    ],
+    [
+     "0042DE9D",
+     "call"
+    ],
+    [
+     "0042DEA4",
+     "jne"
+    ],
+    [
+     "0042DEA6",
+     "or"
+    ],
+    [
+     "0042DEB0",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0050E060",
+   "text": "calls `002640C0` (result t) and zeroes three stack floats p, q, r; when `003590D0()` is non-zero fills them through `00265020(003588B0(that value), &p, &q, &r)`; then calls `002650B0(t, rcx, 00267E10(r9))` three times and stores r through the first returned pointer, q through the second and p through the third",
+   "anchors": [
+    [
+     "0050E0A0",
+     "call"
+    ],
+    [
+     "0050E0C2",
+     "call"
+    ],
+    [
+     "0050E0D8",
+     "call"
+    ],
+    [
+     "0050E11F",
+     "movss"
+    ],
+    [
+     "0050E138",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0051F150",
+   "text": "returns -10 (`0xFFFFFFF6`) when dword `+0x14` of `rcx` is greater than or equal to dword `+0x10` (signed), otherwise dword `+0x18`",
+   "anchors": [
+    [
+     "0051F153",
+     "cmp"
+    ],
+    [
+     "0051F156",
+     "mov"
+    ],
+    [
+     "0051F15D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00863240",
+   "text": "calls `0020CE00()` and, when it is non-null, calls it again and then `0020CB50(that result, ecx, edx)`; otherwise returns",
+   "anchors": [
+    [
+     "0086324E",
+     "call"
+    ],
+    [
+     "00863256",
+     "je"
+    ],
+    [
+     "00863265",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0057FB00": "887-byte body with flag-gated arms (bits 0 and 2 of byte +0x57 of r8), a seven-entry index loop, a four-way 00264F90 switch to 0x7EB-0x7EE and three clamped 00393160 calls; every path does not fit one accurate row"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0042DE90",
+   "was": "calls `00426220(rcx, qword +8 of rdx)` and, only when it returns zero, ORs `0x100000` into dword `+0x284` of `rcx` and clears bit `0x40` of byte `+0xC0`",
+   "now": "calls `00426220(rcx, qword +8 of rdx)` and, only when it returns zero, ORs `0x100000` into dword `+0x284` of `rcx` and clears the `0x40` bit (bit 6) of byte `+0xC0`",
+   "why": "ambiguous bit naming: `bit 0x40` reads as bit 64; the AND 0xBF clears mask 0x40 = bit 6"
+  },
+  {
+   "fn": "003241D0",
+   "was": "returns 0 unless `ecx` minus 1 is at most `0x1D` unsigned (`ecx` 1 to 30); for those values dispatches through a byte index table and a dword offset table to arms that each return a constant: 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E or 0",
+   "now": "returns 0 unless `ecx` minus 1 is at most `0x1D` unsigned (`ecx` 1 to 30); for those values dispatches through a byte index table and a dword offset table after the body, which (decoded from the bytes) give: `ecx` 1 to 3 returns 0x15, 4 to 6 0x16, 7 0x17, 8 0x18, 9 to 13 0x19, 14 0x1A, 15 to 17 0x1B, 18 0x1C, 19 and 20 0x1D, 30 0x1E, and 21 to 29 return 0",
+   "why": "incomplete branch account: the case-to-constant mapping was not stated; decoded from the byte table and offset table that follow the body"
+  }
+ ]
+}

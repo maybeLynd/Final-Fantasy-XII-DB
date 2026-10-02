@@ -1,0 +1,104 @@
+{
+  "complete": true,
+  "driver_sha256": "bcacfede3997eac72247286f44d47c9edd789aa00998c5bf94e5f6cc7fa44dd4",
+  "producer_sha256": "eea6d4a5d8efd03db4cbd0226b4c007b51fad6dad678bed3d09081d631a4446b",
+  "positive_result_sha256": "e3d0d8538effa34f8702c09767cf2fdf8eeaf15338cf16ebd0be4464afc58e13",
+  "CLI_cases": [
+    {
+      "case": "missing-capture-status",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eea6d4a5d8efd03db4cbd0226b4c007b51fad6dad678bed3d09081d631a4446b"
+      }
+    },
+    {
+      "case": "failed-capture-exit",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eea6d4a5d8efd03db4cbd0226b4c007b51fad6dad678bed3d09081d631a4446b"
+      }
+    },
+    {
+      "case": "missing-retained-source",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "eea6d4a5d8efd03db4cbd0226b4c007b51fad6dad678bed3d09081d631a4446b"
+      }
+    }
+  ],
+  "synthetic_source_cases": [
+    {
+      "case": "wrong-scan-step",
+      "pc": "0x30d0b1",
+      "field": "mnemonic",
+      "before": "inc",
+      "after": "dec",
+      "refusal": "slot admission operation changed 0x30d0b1",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    },
+    {
+      "case": "wrong-slot-stride",
+      "pc": "0x30d09e",
+      "field": "args",
+      "before": "r9, 4",
+      "after": "r9, 5",
+      "refusal": "slot admission operation changed 0x30d09e",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    },
+    {
+      "case": "wrong-free-sentinel",
+      "pc": "0x30d07f",
+      "field": "args",
+      "before": "ecx, 0xffff",
+      "after": "ecx, 0xfffe",
+      "refusal": "slot admission operation changed 0x30d07f",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    },
+    {
+      "case": "stores-identity-instead-of-action",
+      "pc": "0x30d14f",
+      "field": "args",
+      "before": "word ptr [rcx + 0x1c], r10w",
+      "after": "word ptr [rcx + 0x1c], r11w",
+      "refusal": "slot admission operation changed 0x30d14f",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    },
+    {
+      "case": "capacity-bound-off-by-one",
+      "pc": "0x30d0b4",
+      "field": "args",
+      "before": "r8b, 0x20",
+      "after": "r8b, 0x21",
+      "refusal": "slot admission operation changed 0x30d0b4",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    },
+    {
+      "case": "wrapper-forwards-identity-as-action",
+      "pc": "0x30d04c",
+      "field": "args",
+      "before": "edx, bx",
+      "after": "edx, esi",
+      "refusal": "slot admission operation changed 0x30d04c",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    },
+    {
+      "case": "missing-post-call-unit-binding",
+      "pc": "0x30d056",
+      "field": "args",
+      "before": "byte ptr [rdi + 4], al",
+      "after": "byte ptr [rdi + 5], al",
+      "refusal": "slot admission operation changed 0x30d056",
+      "limits": "Synthetic annotation derive control, no FF12 code patch/execution"
+    }
+  ],
+  "limits": "Producer invocation controls and original-source analytical mutations, not independent acceptance, native execution or natural reachability."
+}

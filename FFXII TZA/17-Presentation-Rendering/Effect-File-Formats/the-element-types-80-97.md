@@ -79,11 +79,11 @@ definition record and tail-jump into a shared emit body:
 | walk | gate | targets |
 |---|---|---|
 | `0045AEE0` (`0x94`) | `*rcx != 0` | `0045AEF0` shared tail |
-| `0045B2A0` (`0x95`) | `*rcx != 0` | shared tail `0045B640` (read 2026-09-29, GI-11 group B1) |
+| `0045B2A0` (`0x95`) | `*rcx != 0` | ~~shared tail `0045B640`~~ its own body `0045B2B0` (902 B) *(corrected 2026-10-02, OPUS: `0045B2A0`+0x3 `jne 0045B2B0`; `0045B640` is the step's tail)* (read 2026-09-29, GI-11 group B1) |
 | `00455540` (`0x8C`) | record `[+0x20] + 0x294 & 6` | `004559C0` vs `00455560` |
 | `0045A200` (`0x92`) | record `[+0x20] + 0x2A4 & 6` | `0045A6A0` vs `0045A220` |
 | `00457FE0` (`0x90`) | record `[+0x20] + 0x337`, then `+0x330` — **three-way**: `+0x330 == 0` falls into ~~an inline body at~~ its own function `00458010` | `004584E0` vs `00458CA0` (or inline `00458010`) |
-| `0045BAD0` (`0x97`) | `*rcx != 0` | shared tail `0045B640` (read 2026-09-29, GI-11 group B1) |
+| `0045BAD0` (`0x97`) | `*rcx != 0` | ~~shared tail `0045B640`~~ its own body `0045BAE0` (1,068 B) *(corrected 2026-10-02, OPUS: `0045BAD0`+0x3 `jne 0045BAE0`)* (read 2026-09-29, GI-11 group B1) |
 
 The `[element+0x20]` record flag bytes `+0x294`, `+0x2A4`, `+0x330`, `+0x337`
 therefore carry authored mode bits that choose between emit paths — the first

@@ -1,0 +1,119 @@
+{
+  "complete": true,
+  "driver_sha256": "b471d8758df8e66e69de17c75b683d76646bbb052e96f47a3af4195c3dc5806d",
+  "producer_sha256": "01096b3d7d3d4a54ce2881bdc632f1a642800d46eb5594c58800893c0c4d678a",
+  "positive_result_sha256": "07f01a78a341fc75381709ee9d008f96c62f84d93aa4c5031573fcde4aa3a52a",
+  "CLI_cases": [
+    {
+      "case": "missing-binding-status",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "01096b3d7d3d4a54ce2881bdc632f1a642800d46eb5594c58800893c0c4d678a",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI on disposable owned input, no native/game execution"
+    },
+    {
+      "case": "failed-capture-exit",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "01096b3d7d3d4a54ce2881bdc632f1a642800d46eb5594c58800893c0c4d678a",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI on disposable owned input, no native/game execution"
+    },
+    {
+      "case": "missing-archive-block",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "01096b3d7d3d4a54ce2881bdc632f1a642800d46eb5594c58800893c0c4d678a",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI on disposable owned input, no native/game execution"
+    }
+  ],
+  "synthetic_source_cases": [
+    {
+      "case": "wrong-count-width",
+      "pc": "0x267aca",
+      "field": "args",
+      "before": "ecx, word ptr [rax + r12 + 2]",
+      "after": "ecx, dword ptr [rax + r12 + 2]",
+      "refusal": "required actor binding operation changed 0x267aca"
+    },
+    {
+      "case": "ordinal-reset-per-row",
+      "pc": "0x267b2a",
+      "field": "mnemonic",
+      "before": "inc",
+      "after": "xor",
+      "refusal": "required actor binding operation changed 0x267b2a"
+    },
+    {
+      "case": "wrong-directory-stride",
+      "pc": "0x266723",
+      "field": "args",
+      "before": "rdi, 4",
+      "after": "rdi, 5",
+      "refusal": "required actor binding operation changed 0x266723"
+    },
+    {
+      "case": "wrong-kind-table-row",
+      "pc": "0x267abb",
+      "field": "memory_target",
+      "before": "0x1e0c328",
+      "after": "0x1e0c32c",
+      "refusal": "kind size table identity changed"
+    },
+    {
+      "case": "pre-preset-overwrites-kind",
+      "pc": "0x266b5b",
+      "field": "args",
+      "before": "qword ptr [rdx + 0xb8], rax",
+      "after": "qword ptr [rdx + 3], rax",
+      "refusal": "pre-preset helper overwrites category byte"
+    },
+    {
+      "case": "preset-bit17-absent",
+      "pc": "0x266c12",
+      "field": "args",
+      "before": "dword ptr [rcx + 0x1c], 0x30004",
+      "after": "dword ptr [rcx + 0x1c], 0x10004",
+      "refusal": "required actor binding operation changed 0x266c12"
+    },
+    {
+      "case": "unapproved-init-tail",
+      "pc": "0x266aca",
+      "field": "args",
+      "before": "0x3db280",
+      "after": "0x3db650",
+      "refusal": "unclosed local CFG 0x3db650"
+    }
+  ],
+  "data_refusals": [
+    {
+      "case": "count-sum-mismatch",
+      "offset": 1970,
+      "refusal": "type-count sum and directory population disagree"
+    },
+    {
+      "case": "wrong-name-pool-origin",
+      "offset": 204,
+      "refusal": "exact CP932 actor identity disagrees"
+    }
+  ],
+  "label_countermodel": {
+    "method": "Synthetic bytearray label change, not original execution",
+    "descriptor_script_type": 7,
+    "unchanged_native_row": 6,
+    "unchanged_preset": "0x30004",
+    "meaning": "scriptType equality is not enforced/used by this assignment path"
+  },
+  "limits": "Producer/control validation only; not independent project acceptance, new native tests or shipped malformed-data occurrence."
+}

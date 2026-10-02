@@ -153,7 +153,7 @@ setup `00538C80` = base + `3G@+0x80` + `3G@+0xC0` + `3G@+0x100` + **seven** `1T`
 
 setup `00538DB0` = base + `4G@+0x80` + `3G@+0xD0` + `3G@+0x110` + `3G@+0x150` +
 `1T@+0x190` + `1T@+0x1A0` + a **4-iteration `00431770` loop** at `+0x1B0` +
-`RS@+0x5A0` — the record reaches `+0x5A0`, the largest of the group. Its walk's helper set (`00394B70`–`00396F20`, `0039E6B0`–`0039F9F0`,
+`RS@+0x5A0` — the record ~~reaches `+0x5A0`, the largest of the group~~ ends at `+0x620`, and types `0x06`/`0x07`'s at `+0x6E0` is larger *(corrected 2026-10-02, OPUS: `00538DB0`+0xE7 `lea rax, [rbp + 0x620]`; `00538EB0`+0x15E `lea rax, [rbp + 0x6e0]`)*. Its walk's helper set (`00394B70`–`00396F20`, `0039E6B0`–`0039F9F0`,
 `00432300`, `00432CC0`) is already identified by
 [the ee-and-vu0-register-bank](../../00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md)
 §"effect element type 5's walker helpers" as **translated MMI / VU0 loops over ACC
@@ -220,7 +220,7 @@ setup `00539170` = base + five `3G` `+0x80`–`+0x180` + `1T@+0x1C0` + `4G@+0x1D
 
 ## The update side moved to its own page (2026-09-19, FABLE)
 
-All ten step/update tails, the cull test, the release and the child-spawn slots were read whole and are described on
+All ~~ten~~ nine step/update tails and the shared helper `0044B960` *(corrected 2026-10-02, OPUS: CON-179 on an-effect-element-frame-by-frame.md; `0044B960` has 48 call sites)*, the cull test, the release and the child-spawn slots were read whole and are described on
 [an effect element, frame by frame](an-effect-element-frame-by-frame.md). This page keeps the method matrix, the
 setups and the walks.
 
@@ -346,12 +346,12 @@ view.
 
 **Not read (explicit):** ~~every step/update tail helper~~ *(all ten read 2026-09-19 - [an effect element, frame by frame](an-effect-element-frame-by-frame.md))*;
 ~~**every walk except those of `0x01`, `0x02` and `0x03`** - and the sprite frame drawers the `0x02` walk calls - the draws, where what a type looks like is decided;~~ *(every walk read 2026-09-29 - [what every walk draws](#what-every-walk-draws-and-who-authors-it-gi-8-2026-09-29-fable))*; the blended line
-emitter `0039D6C0`;
+emitter ~~`0039D6C0`~~ *(answered: see the GI-14 section - read 2026-10-01; 2026-10-02, OPUS)*;
 ~~`00431770`;~~ `003AA280`'s internals; ~~`0039C550`, `0039C4C0`,~~ `003992B0`,
 `00398030`, `00399110`, `00399B80`, `0039A150`, `003697F0`, `0036A190`,
 `00397ED0`, `00398480`, `003A3D00`, `003A2B20`, `0017FFD0`, `0024E640`,
 `0042FDB0`, `004309C0`, `003A6E60`, `003D8E50`, `001EDBB0`, `001EDDA0`,
-`00250010`, `003A8240`, ~~`003A8950`~~, `00432300`, `00441EA0`, `002F3750`,
+`00250010`, `003A8240`, ~~`003A8950`~~, ~~`00432300`~~ *(answered: see effect-mesh-records-kind-54.md §8 - the PS2 colour modulate; 2026-10-02, OPUS)*, `00441EA0`, `002F3750`,
 `002F3890`, `003A2900`, `00808C40`. ~~**Player-facing names: three primitive names only (`0x01` a point, `0x02` a sprite, `0x03` a line), none from authored data** — no
 EFX data or caller evidence read this pass names any of these types; naming needs
 the emit calls (`0039C550` family) traced to draw-list ops or EFX records.~~ **Answered 2026-09-29 (FABLE, GI-8):** every
@@ -359,7 +359,7 @@ type of the band now has its primitive, its shape and its authored usage - [what
 
 **Globals written:** `02AEE900` (mode/flag dword from record `+0x49 >> 5`) and
 `02AEE908` (track-eval result qword) by type-`0x01` walk — draw-state args,
-unconfirmed consumers.
+~~unconfirmed consumers~~ *(answered: see the walks of `0x01` and `0x03` above - mode 6 takes `02AEE908`, the others `02AEE900` chooses an emitter; 2026-10-02, OPUS)*.
 
 ## What every walk draws, and who authors it (GI-8, 2026-09-29, FABLE)
 
@@ -479,7 +479,7 @@ either `002F31C0(element, [element + 8])` or the per-element command interpreter
 | `004428F0` (`0x03`) | rows `+0x110` / `+0x120` (`00430B90`); integer `def+0x180` -> `+0x258`; `003A2B20` -> `+0x240`; colours `def+0x190` -> `+0x250` and `def+0x1E0` -> `+0x254` | `00398480(+0x110)`, `003970F0`, `0039ADE0`, `00397ED0`, `0039AF70` / `00398F90` |
 | `0044B3C0` (`0x08`) | rows `+0x230`, `+0x240` (then `0043EEB0`), `+0x120`, `+0x280`, `+0x290` (`00430B90`); floats `def+0x1C0` -> `+0x260`, `def+0x1D0` -> `+0x264`; integers `def+0x2C0` -> `+0x270`, `def+0x2D0` -> `+0x274`, `def+0x2E0` -> `+0x278`; `003A2A10(+0x240)` | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0`, `003970F0` and `0039ADE0` on `+0x2C0` into `+0x2F0` |
 | `00449560` (`0x02`) | integer `def+0x150` -> `+0x284`; colour `def+0x80` -> `+0x280`; rows `+0x110` / `+0x120` (`00430B90`) | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0`, `0039ADE0(+0x230)` into `+0x260` |
-| `00447830` (`0x06`) | rows `+0x110` / `+0x120` (`00430B90`); ten floats `def+0x140`..`def+0x1D0` -> `+0x240`..`+0x264` (each `def+0x10*k` to its own field); integers `def+0x1F0` -> `+0x268`, `def+0x200` -> `+0x26C`, `def+0x210` -> `+0x270`; colour -> `+0x274`; float `def+0x1E0` -> `+0x280` | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0` into `+0x80`, `002F3570`, `00397910`, `003970F0`, `0039ADE0` into `+0x2E0` |
+| `00447830` (`0x06`) | rows `+0x110` / `+0x120` (`00430B90`); ten floats `def+0x140`..`def+0x1D0` -> `+0x240`..`+0x264` (~~each `def+0x10*k` to its own field~~ `+0x1C0`/`+0x1D0` to `+0x240`/`+0x244`, `+0x140`..`+0x160` to `+0x254`..`+0x25C`, `+0x170`..`+0x190` to `+0x248`..`+0x250`, `+0x1A0`/`+0x1B0` to `+0x260`/`+0x264` *(corrected 2026-10-02, OPUS: `00447830`+0x1B4..+0x29B)*); integers `def+0x1F0` -> `+0x268`, `def+0x200` -> `+0x26C`, `def+0x210` -> `+0x270`; colour -> `+0x274`; float `def+0x1E0` -> `+0x280` | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0` into `+0x80`, `002F3570`, `00397910`, `003970F0`, `0039ADE0` into `+0x2E0` |
 | `00448800` (`0x07`) | the same ladder as `0x06` one slot along: floats `def+0x140`..`def+0x1B0` -> `+0x24C`..`+0x268`, integer `def+0x1F0` -> `+0x26C`, `def+0x1C0` / `def+0x200` read, colour -> `+0x29C`, float `def+0x1E0` -> `+0x278` | the same compose chain as `0x06`, into `+0x80` and `+0x2E0` |
 
 **The mode 1-7 line emitter `0039D6C0` (457 B).** It appends a `0x28`-byte entry to the depth-sorted display list

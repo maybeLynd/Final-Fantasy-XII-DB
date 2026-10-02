@@ -1,0 +1,304 @@
+{
+ "page": "22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01RVcdaF6Dqd3Q7WioinVNng",
+ "report": "the-post-process-passes-and-their-shader-constants.json",
+ "rows": [
+  {
+   "fn": "00167050",
+   "text": "when `006B8D20(01F2EC18)` returns 0, increments dword `02E522E0` and stores 1 in dword `01F2EC38`; on both paths then stores the address `00D80F20` in qword `01F2EC18` and tail-jumps `00808B90` with `rcx` = `008B5830`",
+   "anchors": [
+    [
+     "0016705B",
+     "call"
+    ],
+    [
+     "00167064",
+     "inc"
+    ],
+    [
+     "0016706A",
+     "mov"
+    ],
+    [
+     "00167082",
+     "mov"
+    ],
+    [
+     "0016708D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00167280",
+   "text": "when `006B8D20(01F2ECB8)` returns 0, increments dword `02E522E0` and stores 1 in dword `01F2ECD8`; on both paths then stores the address `00D80FC0` in qword `01F2ECB8` and tail-jumps `00808B90` with `rcx` = `008B5BB0`",
+   "anchors": [
+    [
+     "0016728B",
+     "call"
+    ],
+    [
+     "00167294",
+     "inc"
+    ],
+    [
+     "0016729A",
+     "mov"
+    ],
+    [
+     "001672B2",
+     "mov"
+    ],
+    [
+     "001672BD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00182E50",
+   "text": "when `001DDAB0()` is non-null, calls it again and tail-jumps `001DD110` with that pointer in `rcx`; otherwise returns the float 1.777778 (`008C5B38`) in `xmm0`",
+   "anchors": [
+    [
+     "00182E54",
+     "call"
+    ],
+    [
+     "00182E5E",
+     "call"
+    ],
+    [
+     "00182E6A",
+     "jmp"
+    ],
+    [
+     "00182E6F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0019EE50",
+   "text": "for each qword in the array from qword `rcx+0x100` to qword `rcx+0x108` (count `(end - start) >> 3`, re-read every pass, unsigned index compare), calls `0063DA50` and then `0063B010` on qword `+0x108` of the pointed-to object; on both the empty and the looped path then stores 1 in byte `rcx+0x128`",
+   "anchors": [
+    [
+     "0019EE6D",
+     "sar"
+    ],
+    [
+     "0019EE9A",
+     "call"
+    ],
+    [
+     "0019EEB1",
+     "call"
+    ],
+    [
+     "0019EECC",
+     "jb"
+    ],
+    [
+     "0019EECE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001D6AA0",
+   "text": "returns 1 when the low byte of `0020B9A0(0020C700(), ecx, rdx)` is non-zero and 0 otherwise",
+   "anchors": [
+    [
+     "001D6AAF",
+     "call"
+    ],
+    [
+     "001D6ABC",
+     "call"
+    ],
+    [
+     "001D6ACA",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "001F39B0",
+   "text": "calls `001F9A60(00193D50(), dword rcx+0x18)` and then stores 1 in byte `01DFE0C4`",
+   "anchors": [
+    [
+     "001F39B9",
+     "call"
+    ],
+    [
+     "001F39BE",
+     "mov"
+    ],
+    [
+     "001F39C4",
+     "call"
+    ],
+    [
+     "001F39C9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CE850",
+   "text": "calls `0063BC00` with `rcx` = `02E58060` (`rdx` passed through) and returns 0 when the result is null or the result minus 8 is null; otherwise, when `rdx` is non-null, writes `00D498B0` and then `00D498D0` to qword `[rdx]`, the result minus 8 to qword `+8`, 0 to dwords `+0x10` and `+0x18` and to qword `+0x20`, and returns 1 (also 1 when `rdx` is null)",
+   "anchors": [
+    [
+     "005CE860",
+     "call"
+    ],
+    [
+     "005CE86A",
+     "add"
+    ],
+    [
+     "005CE881",
+     "mov"
+    ],
+    [
+     "005CE88C",
+     "mov"
+    ],
+    [
+     "005CE899",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D6E00",
+   "text": "calls `0063BC00` with `rcx` = `02E58060` (`rdx` passed through) and returns 0 when the result is null or the result minus 8 is null; otherwise, when `rdx` is non-null, writes `00D498B0` to qword `[rdx]`, the result minus 8 to qword `+8` and 0 to dword `+0x10`, and returns 1 (also 1 when `rdx` is null)",
+   "anchors": [
+    [
+     "005D6E10",
+     "call"
+    ],
+    [
+     "005D6E1A",
+     "add"
+    ],
+    [
+     "005D6E2C",
+     "mov"
+    ],
+    [
+     "005D6E2F",
+     "mov"
+    ],
+    [
+     "005D6E33",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005DBF60",
+   "text": "stores the address `00D498B0` at qword `[rcx]`, `rdx` at qword `+8` and 0 at dword `+0x10`, and returns `rcx`",
+   "anchors": [
+    [
+     "005DBF67",
+     "mov"
+    ],
+    [
+     "005DBF6A",
+     "mov"
+    ],
+    [
+     "005DBF6D",
+     "mov"
+    ],
+    [
+     "005DBF71",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005DDD60",
+   "text": "walks the singly linked list headed by qword `02CBF998` through each node's qword `+8`, keeping the address of the link that points at the current node; when a node equals `rcx` (its `+8` address equals `rcx+8`), stores that node's qword `+8` into the previous link (the head itself for the first node) and zeroes the node's `+8`; returns without change when the list is empty or `rcx` is not found",
+   "anchors": [
+    [
+     "005DDD8B",
+     "cmp"
+    ],
+    [
+     "005DDD90",
+     "lea"
+    ],
+    [
+     "005DDD94",
+     "mov"
+    ],
+    [
+     "005DDDA7",
+     "mov"
+    ],
+    [
+     "005DDDAA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0061CFA0",
+   "text": "returns 0 when `edx` is 0; otherwise uses `rcx+8` as the storage when `edx` is 1, or `0017D260(edx * 0x40, 8)` when it is larger (unsigned), returning 0 if that is null; then for `edx` elements of `0x40` bytes zeroes qwords `+0`, `+8`, `+0x10`, `+0x18` and dword `+0x20` and stores the address `00D54358` at qword `+0x28`, and returns the storage pointer",
+   "anchors": [
+    [
+     "0061CFBB",
+     "jbe"
+    ],
+    [
+     "0061CFC9",
+     "call"
+    ],
+    [
+     "0061CFF9",
+     "mov"
+    ],
+    [
+     "0061D00B",
+     "mov"
+    ],
+    [
+     "0061D019",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00659A90",
+   "text": "when qword `rcx+0x58` is non-null, calls `001B81B0(qword +8 of qword rcx+0x10, qword rcx+0x58, &{0x42, 02D34718, r9})` and returns its result if non-zero; does the same with qword `rcx+0x60` and the fifth (stack) argument in place of `r9` when both are non-null; then calls `005DC190(&local, r8, 0)`, stores `02D38000` at qword `rdx+0x80` when `r8` is non-null and bit 1 of its dword `+0xC` is set, else `02D37FE0`; then calls `0060D4F0(rdx, &local, 0)`, `0060DB50(rdx, 0)`, `005FEFD0(rdx, 0)`, `0060B980(rdx, qword 02D34710, &{008C6C98, rcx+0x30}, 0, dword rdx+0x220, 0)` and `00600A60(rdx, 0)` in order, stopping at the first non-zero result; finally calls `0016D6A0(&local)` and returns the last result",
+   "anchors": [
+    [
+     "00659AE2",
+     "call"
+    ],
+    [
+     "00659B3D",
+     "call"
+    ],
+    [
+     "00659B67",
+     "cmovne"
+    ],
+    [
+     "00659BDD",
+     "call"
+    ],
+    [
+     "00659BF9",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

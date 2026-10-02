@@ -1,0 +1,53 @@
+### 5b. Which key a route-2 backfill puts in the cache (FABLE, 2026-10-02)
+
+*FABLE (Claude Opus 5.5), consuming two ASTRA packets at the scope FABLE's independent reviews accepted:
+`filecache-route2-commit-key` (`81cbc06f0`, [review](../../_index/candidates/fable-review-astra-filecache-route2-commit-key-1002/REVIEW.md),
+ACCEPT-WITH-NARROWING, 72 checks) and `filecache-source-key-initialization` (`50dd4cc33`,
+[review](../../_index/candidates/fable-review-astra-filecache-source-key-initialization-1002/REVIEW.md), ACCEPT-WITH-NARROWING,
+56 checks). Record: [`filecache-backfill-key-consumption-fable-1002`](../../_index/candidates/filecache-backfill-key-consumption-fable-1002/README.md).*
+
+When route 1 misses and route 2 reads the file from the archive, the resolver can copy the result into the RAM cache
+(section 8's "whether a route-2 hit is copied into the cache"). The key that copy is filed under is **not always
+section 5's fresh hash**.
+
+**Route 1 writes the key only when there is a key.** The resolver hands `0020C1B0` a pointer to the source frame's
+dword `+0x28` as its fifth argument, the out-key.
+- If the normalised key's first byte is non-zero, `0020C1B0` hashes it (bit 31 cleared) and stores the result through
+  that pointer (`0020C1B0` + 0x7D), before it knows whether the tree holds the key.
+- If the first byte is zero, nothing is hashed and nothing is stored; it returns -1 (the branch at `0020C1B0` + 0x6D).
+
+**The commit carries whatever `+0x28` holds.**
+- On an armed commit the resolver loads the dword at frame `+0x28` (`0059EE90` + 0x320). The arm requires that the
+  lookup has already missed.
+- The backfill `0059A9B0` keeps that dword in `esi` (`0059A9B0` + 0x13) and passes it as the key to the insertion
+  entry `001D6A20` (`0059A9B0` + 0xF4; section 5a).
+- The resolver writes nothing at `+0x28` itself.
+- The backfill inserts only when its first call returns non-null; otherwise it returns -1 and the cache is not
+  touched.
+
+**What `+0x28` held before the lookup** depends on how the stream was set up:
+- The record constructor `00597930` zeroes the dword at `+0x28` (`00597930` + 0x21) before it calls the resolver.
+- The reader constructor `00597970` zeroes its `+0x48` (`00597970` + 0x33). It passes the resolver `this + 0x20`, so
+  that is the same frame field.
+- A rebind, `0059ED70`, calls the resolver first (`0059ED70` + 0x27) and resets nothing. It carries the value the
+  field held when the rebind began. That can be a constructor's 0, because both constructors store the zero even when
+  they skip the resolver on a null name.
+
+**So:**
+- After a non-empty normalisation, the cached key is the fresh 31-bit hash.
+- After an empty one, it is 0 on a first construction and the previous value on a rebind.
+
+This is the cache's key-interface contract, not a claim about play. **No natural input has been shown to reach an
+empty-key archive hit.** "Empty" here means only that the normaliser left a zero first byte; which paths do that is
+the normaliser's question.
+
+**Premises and limits.** These conclusions hold only if:
+- `+0x28` does not overlap a private frame;
+- every callee follows the normal ABI and returns normally;
+- no opaque callee or concurrent writer touches the field.
+
+`esi` has to survive eight calls between the save and the insert, three of them imports. Not established here:
+- a census of every writer of the field;
+- its lifetime and reuse;
+- all callers;
+- high-bit keys, collisions and eviction.

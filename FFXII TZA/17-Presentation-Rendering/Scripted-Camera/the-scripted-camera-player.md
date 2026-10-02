@@ -1194,3 +1194,25 @@ multiply).
 `00217060` (235 B) is the vec4-by-mat4 multiply `00202B70` runs: `r8`'s four floats are each `mulss`-paired against one column of the `rdx` 4x4 (`+0`, `+0x10`, `+0x20`, `+0x30` for `x`; `+4`/`+0x14`/`+0x24`/`+0x34` for `y`; `+8`/`+0x18`/`+0x28`/`+0x38` for `z`; `+0xC`/`+0x1C`/`+0x2C`/`+0x3C` for `w`), the four sums landing in `[rcx]`..`+0xC` - the call-free transform product the camera player applies.
 
 Interior anchor `00217075` (function `00217060`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-scripted-camera-player-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00255C20` | 40 B | returns 1 when float `02096274` is at least float `02096270` (`comiss`) or float `02096270` equals 0.0, else 0 (also when `02096270` is NaN) | `00255C28`, `00255C30`, `00255C38`, `00255C42` |
+| `00255C50` | 92 B | stores the fifth (stack) argument at dword `0209627C`, `ecx` at `02096284`, `edx` at `02096280`, `r9d` at `02096278`, the float `xmm2` at `02096270`, 0.0 at `02096274` and word 0 at `02096360`; calls `003CBFF0(02096290)` and stores the address `02096370` in qword `020963F0` | `00255C5B`, `00255C77`, `00255C7F`, `00255C94`, `00255CA0` |
+| `00255CB0` | 53 B | returns without work when float `02096274` is at least float `02096270` (`comiss`) or `02096270` equals 0.0; otherwise stores float `02096270` minus 1.0 (`01CEBBA8`) at `02096274` and tail-jumps `00255850` | `00255CC0`, `00255CC8`, `00255CCF`, `00255CD7`, `00255CDF` |
+| `00257800` | 40 B | returns 1 when float `020963FC` is at least float `020963F8` (`comiss`) or float `020963F8` equals 0.0, else 0 (also when `020963F8` is NaN) | `00257808`, `00257810`, `00257818`, `00257822` |
+| `002578B0` | 53 B | returns without work when float `020963FC` is at least float `020963F8` (`comiss`) or `020963F8` equals 0.0; otherwise stores float `020963F8` minus 1.0 (`01CEBBA8`) at `020963FC` and tail-jumps `00257520` | `002578C0`, `002578C8`, `002578CF`, `002578D7`, `002578DF` |
+| `00257AA0` | 35 B | stores the byte `r8b` at `020929B8` plus sign-extended `ecx` times `0xBB0` plus sign-extended `edx` times `0x2E0` | `00257AA3`, `00257AAD`, `00257AB4`, `00257ABE` |
+| `0025A3B0` | 24 B | tail-jumps `0025A2C0(edx, r8)` when `ecx` is zero, otherwise `0025A3D0(r8, edx)` | `0025A3B2`, `0025A3BB`, `0025A3C3` |
+| `0025A4A0` | 42 B | indexes the `0x110`-byte records at `02097300` by sign-extended `ecx` and stores the floats `xmm1`, `xmm2`, `xmm3` at `+0`, `+4`, `+8` and the dword `0x3F800000` (1.0) at `+0xC` | `0025A4A3`, `0025A4AA`, `0025A4B4`, `0025A4BD`, `0025A4C2` |
+| `0025A4D0` | 43 B | indexes the `0x110`-byte records at `02097300` by sign-extended `ecx` and stores the floats `xmm1`, `xmm2`, `xmm3` at `+0x10`, `+0x14`, `+0x18` and the dword `0x3F800000` (1.0) at `+0x1C` | `0025A4D3`, `0025A4DA`, `0025A4E4`, `0025A4EE`, `0025A4F3` |
+| `00341AB0` | 99 B | passes the float `00267DB0(r9)` returns through `003A1C50`, calls `0026C090(rdx, value)` and `0026C290(rdx, 00265200(rdx))`, stores the value as a float at `[r8]` and tail-jumps `0026C120(rdx, 3)` | `00341ACD`, `00341ADB`, `00341AEE`, `00341AF8`, `00341B0E` |
+| `003445E0` | 48 B | calls `00267310(byte +0x15 of rdx)`; when that is non-zero calls `002578B0()` and returns 0, otherwise returns 1 when `00257800()` returns 0 and 0 when it returns non-zero | `003445E4`, `003445E8`, `003445F1`, `003445FD`, `00344606` |
+| `0034A530` | 48 B | calls `00267310(byte +0x15 of rdx)`; when that is non-zero calls `00255CB0()` and returns 0, otherwise returns 1 when `00255C20()` returns 0 and 0 when it returns non-zero | `0034A534`, `0034A538`, `0034A541`, `0034A54D`, `0034A556` |
+| `00350660` | 59 B | calls `00267F90(r9, 0)`, then tail-jumps `003DA4D0(002640C0(), 00267E10(r9))` | `00350672`, `00350677`, `00350682`, `00350696` |
+| `00350B00` | 73 B | calls `002640C0()`, then pops a float with `00267DB0(r9)` and an int with `00267E10(r9)`, and tail-jumps `003DA2D0(first result, int)` with the float in `xmm2` | `00350B12`, `00350B1D`, `00350B28`, `00350B2D`, `00350B44` |
+| `00351190` | 109 B | converts the int `00267E10(r9)` to float (`cvtdq2ps`), calls `00267F90(r9, 0)` and `00267F60(r9, that float)`; then calls `002640C0()`, pops a float with `00267DB0(r9)` and an int with `00267E10(r9)` and tail-jumps `003DA2D0(002640C0 result, int)` with the popped float in `xmm2` | `003511A5`, `003511B3`, `003511C1`, `003511D1`, `003511F8` |

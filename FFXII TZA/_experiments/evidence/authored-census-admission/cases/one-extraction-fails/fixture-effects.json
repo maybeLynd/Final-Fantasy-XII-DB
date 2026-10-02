@@ -1,0 +1,28 @@
+{
+  "case": "one-extraction-fails",
+  "attempted": [
+    "fixture/a.ebp",
+    "fixture/b.ebp"
+  ],
+  "failed": [
+    "fixture/b.ebp"
+  ],
+  "returned": [
+    "fixture/a.ebp"
+  ],
+  "input_identities": [
+    {
+      "path": "fixture/a.ebp",
+      "sha256": "599eeb5e8019f71c36ffe80066e2d074ab5d767d1695ac9b57f591e891d0be3b",
+      "bytes": 352
+    },
+    {
+      "path": "fixture/b.ebp",
+      "sha256": "45e135da854ef339b5c3558aa2d5f2d5d8849f086cca5c0f91bf075d37506a0b",
+      "bytes": 352
+    }
+  ],
+  "limits": "fake archive index/extractor/decoder isolate real collector admission; no actual VBF, shipped bytecode/name/type or natural game reachability",
+  "collector_sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad",
+  "wrapper_sha256": "13904b56f82bd54b046ceafb98366da14ca354643d3f7e5463695822040e411b"
+}

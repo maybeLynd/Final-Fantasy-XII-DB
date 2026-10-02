@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=47015 epoch=3 queue_sha=826c1e91fdd88130 -->
-> generated 2026-10-02T14:17:09+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=48009 epoch=3 queue_sha=481b603516f26ff5 -->
+> generated 2026-10-02T23:04:21+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002, OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929, SWE2CONTRACT-PUB-B21Z4-1002
+> ACTIVE: OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929, SWE2CONTRACT-PUB-UQ2-EVIDENCE-FIX-1002
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -119,10 +119,50 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
     gate demand the batch's pages be touched again). `SWE2CONTRACT-REQ-AUDITSPEC-DDRES-B21-1002` DONE.
     Memory page resolved by FABLE (`mempage-residue-fable-1002` + `c0-receiver-fable-1002`);
     SWE2-STRUCT's interior-offset section landed `149926294`, so AUDIT-LOG is clear to publish.
-  - **Exact next action:** publish `b21_checks.py` + `AUDIT-LOG.md` + this file under the held lease;
-    finish `AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002` + the publish task. DD-RESIDUE stays
-    ACTIVE+checkpointed: every PARTIAL page's residue is now registered runtime rows — remaining
-    opens need ASTRA observation, not prose work.
+  - **Session 2026-10-02 cont. 3:** `097a3a739` landed the Z4 checker repair + AUDIT-LOG entry;
+    `AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002` and the publish task finished.
+    Then: two FABLE event-slot notices (`FABLE-NOTICE-CONTRACT-EVENT-SLOT-RC5-1002`,
+    `FABLE-NOTICE-CONTRACT-EVENT-SLOT-PRECHECK-1002`) — RC-5 box tick at HEAD `aee791dd5`,
+    prechecks verified (documented_rule READY, adrift HITS 0, audit_crossrefs 0); page re-statused
+    `status: DOCUMENTED` keeping the `evctrl`/`ctrl` retail-reachability limit. And
+    `OPUS-REQ-CONTRACT-RESOURCE-A-READINESS-EDITS-1002`: 3 OPUS-tagged edits applied to
+    `the-resource-owner-from-copy-or-borrow-to-disposal.md` via `apply_by_owner.py SWE2-CONTRACT
+    --apply` (FAILS 0; `resource_a_check.py` FAILS 0; owner spot-check at `003B31E7` `cmp r8d,0x20`
+    and the `cdq`/`and 0xfffffff0` truncation idiom confirms both corrections). Record
+    `_index/candidates/swe2contract-readiness-apply-1002c/`. **PUBLISHED `f06980e06`**; all four
+    tasks finished (pub lease released).
+  - **Session 2026-10-02 cont. 4 (pass-22 graph-churn residue):** the report6 audit sweep after
+    that publish showed 15 new UNACCOUNTED NEIGHBOUR findings in my six folders (peer graph churn
+    on subjects OPUS's readiness corrections newly cited). 14 dispositioned here (fleet-format
+    bullets on 5 pages + 14 CROSSING-ACCOUNTED registry rows); the 15th (static-init page bullet
+    + row for `00189CE0` caller `0017D6E0`) is HELD — OPUS's uncommitted interior-citation section
+    parks on that file, so publishing it would sweep their work. Re-add the bullet (text kept in
+    this session's edit script) + row after OPUS's interior publish lands.
+    `pass22-tripwires.tsv` regenerated (1,333). Gates: documented_rule READY x6,
+    verify_doc_addresses ok, check_questions consistent.
+    Both publishes landed: `43358b678` (14 pairs: 5 docs + registry + tripwires + log + inbox)
+    and `495a95052` (held 15th: static-init bullet + row, after OPUS's `c73d0f046` interior
+    publish cleared the collision). Six-folder audit surface: 0 findings.
+  - **Session 2026-10-02 cont. 5:** two more OPUS readiness waves routed and claimed —
+    `OPUS-REQ-CONTRACT-ENGINE-B-READINESS-EDITS-1002` (7 edits: save-restore x3, 282-console x1,
+    event-slot x3) and `OPUS-REQ-CONTRACT-RESOURCE-B-1002` (4 edits: btm x2, cl2 x1,
+    resource-owner x1). Applied via `apply_by_owner.py --apply`, both batch checkers FAILS 0,
+    `documented_rule.py` green on all six, `verify_doc_addresses.py` ok. Record:
+    `_index/candidates/swe2contract-readiness-apply-1002d/`.
+  - `FABLE-REQ-CONTRACT-OV10-OV16-SCRIPT-BINDS-TEXT-1002` claimed and applied: refusal-order fix
+    (id check first, verified at `003DBD0C`) + §2.5 `freqcancel` mode-4 route (`00352980`/`00353660`,
+    verified). Page stays PARTIAL on live OV-10.
+  - **Exact next action:** publish under `SWE2CONTRACT-PUB-ENGINEB-RESOURCEB-OV10OV16-1002` (lease
+    held): the 6 batch pages + script-binds page + `swe2contract-readiness-apply-1002d/README.md`
+    + `AUDIT-LOG.md` + this file; then finish the three claimed requests with the sha.
+    Published `a7cb39140` (10 paths; lease released); all three requests + the publish task finished.
+  - **Session 2026-10-02 cont. 6 (six-folder sweep):** `documented_rule.py` over all 124 pages —
+    FAILS 0; UQ-2's EVIDENCE-UNTRACKED fixed by re-pointing its `Tools/work/rtti/methods.tsv` cite
+    to the durable recipe (`rtti_recover.py` + audited `vtable-method-index.md`) on the page and the
+    register row; encoded-id page status now names OV-5. All 11 PARTIALs name their live rows.
+  - **Exact next action:** publish the 3 docs + AUDIT-LOG + this file (independent lane fix, no
+    routed task). DD-RESIDUE stays ACTIVE+checkpointed (remaining PARTIAL residue = registered
+    runtime rows for ASTRA). Latest coherent commit: `a7cb39140`.
 <!-- AWN-A-RESUME -->
 - **Session 2026-10-01 (AWN wave A).** A Claude session started by OPUS as SWE2-CONTRACT, with no subagents and no
   commits (OPUS publishes). Board task `SWE2CONTRACT-AWN-WAVE-A-1001` (research): added rev 44490, claimed 44491,

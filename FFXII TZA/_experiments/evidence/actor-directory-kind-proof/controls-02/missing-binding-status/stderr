@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\actor-directory-kind-proof\controls-02\missing-binding-status\prove.py", line 162, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\actor-directory-kind-proof\controls-02\missing-binding-status\prove.py", line 121, in main
+    receipt(tag,driver);x=json.loads((P/name).read_text())
+    ~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\actor-directory-kind-proof\controls-02\missing-binding-status\prove.py", line 17, in receipt
+    s=json.loads((P/(tag+'.status.json')).read_text())
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\actor-directory-kind-proof\\controls-02\\missing-binding-status\\binding-01.status.json'

@@ -203,7 +203,7 @@ indent: **a negative value widens the first line, a positive one indents every l
 
 | field | role |
 |---|---|
-| `+0x88` | a **countdown**; states 3 and 7 decrement it and act at zero |
+| `+0x88` | a **countdown**; states 3 and 7 decrement it and act at zero *(answered: see §7, corrected 2026-09-30: state 3 also steps the target by `+0xA0` on every tick while it is non-zero; 2026-10-02, OPUS)* |
 | `+0x8C` | ~~the target line~~ the **head**, in characters *(corrected 2026-09-30, SWE2-DATA, per UQ-173)*, **clamped at 32000** |
 | `+0x8E` | the previous value of `+0x8C` |
 | `+0x90`, `+0x92` | a **following pair** that trails `+0x8C` by `+0xA0` |
@@ -292,7 +292,7 @@ offset. ~~What `DAT_00916548` contains — it is the stop-set installed during s
 | | |
 |---|---|
 | read | `002AC5F0`, `002AAE40`, `002B2150`, `002ABB20`, `002ABF70`, `002AF340` — **6 of 13** *(on 2026-09-03; all 13 have a reading since 2026-09-18, UQ-383)* |
-| unread | `002A4830`, `002AE610`, `002AF960`, `002A4430`, `00573BE0`, `002B5390`, `002B2DF0` |
+| unread | `002A4830`, `002AE610`, `002AF960`, `002A4430`, `00573BE0`, `002B5390`, `002B2DF0` *(answered: see the row above: all 13 have a reading since 2026-09-18, UQ-383; 2026-10-02, OPUS)* |
 | bytes read | ~13,900 of 21,162 |
 
 **`002B2150` is the cluster's hub** — six neighbours that were residual when surveyed, more than any other member, and it is itself classified at GN162 as `UI.Text.MeasurePass` — and
@@ -301,8 +301,8 @@ component: **the measure pass, the draw pass and the interpreter are the same wa
 settings of two globals.**
 
 *(Pass 22 adjacency, 2026-09-14: the measure pass uses the same scheduler yields as the draw pass —
-`002AAE40`, `002AC2F0`, `002AE610` call the `CoreRuntimeScheduling` yield `0020E600` and
-`002AC5F0` calls `00229E40` (7 edges), and `00229E40` is itself called by
+`002AAE40`, `002AC2F0`, `002AE610` call the `CoreRuntimeScheduling` ~~yield~~ `0020E600` and
+`002AC5F0` calls `00229E40` (7 edges) *(corrected 2026-10-02, OPUS: neither is a scheduler yield: `0020E600` is the 10-byte image-address resolver `mov eax, ecx; add rax, [01F83530]; ret` and `00229E40` the 7-byte getter `mov eax, [01E02814]; ret`, so they are not preemption points)*, and `00229E40` is itself called by
 `Rewards_Progression_Economy` `00317ED0`. Expected: this page's thesis is that measure and draw
 are the same walk under two settings, so the walk's preemption points are shared by
 construction.)*

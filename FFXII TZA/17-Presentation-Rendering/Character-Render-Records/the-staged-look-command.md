@@ -481,3 +481,30 @@ exit 0. The per-bit applier table beyond the target group, and the verb joins, a
 | L6 | section 4 | **survives**: six tail-jumps (two conditional) to exactly the six services; the five callers as named |
 
 No correction.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-staged-look-command-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00372350` | 84 B | when the signed dword `+0x90` of `rcx` is greater than 0 and `0020E600(dword +0x94)` is non-null, stores `edx` to dword `+0x68` of the object a second `0020E600(dword +0x94)` call returns and then calls `003E3D70` with the result of a third `0020E600(dword +0x94)` call; otherwise it does nothing | `0037235A`, `00372366`, `00372376`, `00372383`, `00372394` |
+| `003E0B20` | 19 B | replaces bit 22 of dword `[rcx]` with bit 0 of `edx`, sets bit 0 and stores the dword back | `003E0B25`, `003E0B2D`, `003E0B30` |
+| `003E29B0` | 28 B | clears bit 27 and sets bit 28 of dword `[rcx]`, then stores `xmm1`, `xmm2` and `xmm3` to the floats at `+0x40`, `+0x44` and `+0x48` | `003E29B6`, `003E29BC`, `003E29C1`, `003E29C6` |
+| `003E29D0` | 28 B | clears bit 28 and sets bit 27 of dword `[rcx]` and stores `xmm1`, `xmm2` and `xmm3` to the floats at `+0x40`, `+0x44` and `+0x48` | `003E29D2`, `003E29DB`, `003E29E4`, `003E29D6`, `003E29E6` |
+| `003E30A0` | 122 B | calls `0020E600(dword +8 of rcx)` twice and, when the second result is non-null, calls `003E2FD0(rcx, x, xmm2, xmm3)` where `x` is the larger of `xmm1` and float `+0x18` of the first result multiplied by 1.0 (`01DFE0B8`); when the second result is null it does nothing | `003E30DD`, `003E30EA`, `003E30F5`, `003E30FA` |
+| `003E3140` | 122 B | calls `0020E600(dword +8 of rcx)` twice and, when the second result is non-null, calls `003E3200(rcx, x, xmm2, xmm3)` where `x` is the larger of `xmm1` and float `+0x18` of the first result multiplied by 1.0 (`01DFE0B8`); when the second result is null it does nothing | `003E317D`, `003E318A`, `003E3195`, `003E319A` |
+| `003E33C0` | 19 B | clears bits 15 to 18 and 20 of dword `[rcx]` (AND `0xFFE87FFF`), sets bit 19 and stores the dword back, and stores `xmm1` to the float at `+4` | `003E33C2`, `003E33CC`, `003E33D0`, `003E33C7` |
+| `003E3400` | 57 B | when `0020E600(dword +8 of rcx)` is non-null, replaces the low nibble of byte `+0x1D` of the object a second `0020E600(dword +8)` call returns with the low nibble of `edx` (high nibble kept); otherwise it does nothing | `003E341A`, `003E3424`, `003E3427`, `003E342B` |
+| `003E3570` | 17 B | sets bit 8 of dword `[rcx]` and stores `xmm1` and `xmm2` to the floats at `+0x18` and `+0x1C` | `003E3576`, `003E357B` |
+| `003E36A0` | 17 B | sets bit 7 of dword `[rcx]` and stores `xmm1` and `xmm2` to the floats at `+0x10` and `+0x14` | `003E36A6`, `003E36AB` |
+| `003E36C0` | 46 B | when `edx` is 0, clears bit 10 and sets bits 9 and 11 of dword `[rcx]` and stores `r8d` and `r9d` to dwords `+0x20` and `+0x24`; otherwise clears bit 13 and sets bits 12 and 14 and stores `r8d` and `r9d` to dwords `+0x30` and `+0x34` | `003E36C4`, `003E36CA`, `003E36CE`, `003E36DE`, `003E36E2` |
+| `003E36F0` | 48 B | when `edx` is 0, sets bits 9 and 10 and clears bit 11 of dword `[rcx]` and copies the 16 bytes at `r8` to `+0x20`; otherwise sets bits 12 and 13, clears bit 14 and copies the 16 bytes at `r8` to `+0x30` | `003E36F4`, `003E36F6`, `003E3705`, `003E370B`, `003E371A` |
+| `003E3720` | 115 B | calls `0020E600(dword +8 of rcx)` twice and, when the second result is non-null, replaces bit 5 of byte `+0x1C` of the first result with bit 0 of `dx`; when that bit is then set, bit 0 of the byte is clear and a third `0020E600(dword +8)` call is non-null, it calls `00513150` with a fourth call's result; every other path does nothing more | `003E374B`, `003E3759`, `003E375F`, `003E3764`, `003E377E` |
+| `003E37A0` | 27 B | rewrites dword `[rcx]` with bit 31 replaced by bit 0 of `dx` and bit 30 set (bits 0 to 29 kept) | `003E37A6`, `003E37AB`, `003E37B2`, `003E37B7` |
+| `003E37C0` | 21 B | replaces bit 26 of dword `[rcx]` with bit 0 of `dx`, sets bit 4 and stores the dword back | `003E37C3`, `003E37C8`, `003E37CF`, `003E37D2` |
+| `0042D970` | 72 B | calls `00426220(rcx, qword +8 of rdx)` and, when it returns 0 and `003E6DA0(rcx)` is non-null, calls `003E37F0` with that result and qword `+8` of `rdx` plus `0x580`; otherwise it does nothing | `0042D984`, `0042D98B`, `0042D998`, `0042D9A1`, `0042D9A8` |
+| `004712F0` | 24 B | zeroes word `+2`, byte `+0` and qword `+0x18` of `rcx`, stores the four floats 0, 0, 0, 1.0 (`01EF93F0`) to `+0x20`..`+0x2C`, and returns 0 | `004712F9`, `004712FD`, `00471301`, `00471303` |
+| `004715B0` | 23 B | zeroes word `+0` and qword `+0x10` of `rcx` and stores the four floats 0, 0, 0, 1.0 (`01EF93F0`) to `+0x20`..`+0x2C` | `004715B9`, `004715BE`, `004715C2` |
+| `00471660` | 49 B | zeroes byte `+3`, qword `+0x14`, dword `+0x10` and word `+0` of `rcx`, stores the four floats 0, 0, 0, 1.0 (`01EF93F0`) to `+0x20`..`+0x2C` and `0x3F800000` (1.0) to dword `+4`, and stores byte `01F223A8` (0x1E in the image) minus 1 to byte `+2` | `00471669`, `0047166D`, `00471674`, `0047167D`, `0047168D` |
+| `005175F0` | 23 B | clears the high nibble of byte `+1` of `rcx`, zeroes dwords `+0x10`, `+0x40` and `+0x4C`, and zeroes bytes `+2` and `+0` | `005175F6`, `005175F9`, `005175FC`, `005175FF`, `00517603` |

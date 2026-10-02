@@ -423,3 +423,16 @@ from unowned adapter code rather than from any documented game subsystem.
 - **Presentation - SERVICE (19 edges).** `001E2AF0`, MainLoop_Draw (`0022B0B0`), MainLoop_UpdateAndRenderFrame (`0022B8C0`) reach bodies filed to Presentation: `001ABF50`, `002512B0`, `002528A0`, `002529F0` (+11 more) - shared machinery across the layer boundary, no shared ownership.
 - **Resource - SERVICE (1 edge).** MainLoop_UpdateAndRenderFrame (`0022B8C0`) reaches bodies filed to Resource: `00324510` - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - SERVICE (1 edge).** MainLoop_UpdateAndRenderFrame (`0022B8C0`) reaches bodies filed to WorldAreaField: World_UpdateSimulationTick (`00314020`) - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-phyre-subsystem-map-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `005AA2C0` | 43 B | stores `00D31298` at qword `[rcx]` and, when qword `rcx+8` is non-null, calls a 10-byte helper on it | `005AA2D4`, `005AA2D7`, `005AA2E0` |
+| `00646AB0` | 81 B | stores `00D61E50` at qword `[rcx]`; when bit 31 of dword `rcx+0x30` is clear, its value is above 1 (unsigned) and qword `rcx+0x38` is non-null, calls a 10-byte helper on that qword; then on every path zeroes qword `rcx+0x38` and dword `rcx+0x30` | `00646AC9`, `00646AD1`, `00646ADE`, `00646AEC`, `00646AF4` |
+| `00691DB0` | 64 B | stores `00D79830` at qword `[rcx]`; when qword `rcx+0x78` is non-null calls that object's vtable slot 0 with `edx` = 1; then zeroes qwords `rcx+0x78` and `rcx+0x68` and stores `00D79790` at qword `[rcx]` | `00691DC0`, `00691DD4`, `00691DD8`, `00691DDC`, `00691DE7` |
+| `007933C0` | 69 B | stores `01CB24A8` at qword `[rcx]`, calls a 10-byte helper on qword `rcx+0x28` when it is non-null, zeroes qwords `rcx+0x28` and `rcx+0x30` and dword `rcx+0x40`, then tail-jumps `00793410(rcx)` | `007933D9`, `007933E5`, `007933ED`, `007933F5`, `00793400` |
+| `00793570` | 73 B | stores `01CB24C8` at qword `[rcx]`, calls eh_vector_destructor_iterator (`rcx+0xB0`, `0x48`, 4, the address of `_guard_check_icall`), then stores `01CB23C0` at qword `[rcx]` | `00793589`, `007935A3`, `007935B0` |
+| `00793750` | 54 B | stores `01CB2468` at qword `[rcx]`, then calls a 37-byte helper (`rcx+0x20`) and `007A3980(rcx+0x48)` | `00793769`, `00793770`, `0079377A` |

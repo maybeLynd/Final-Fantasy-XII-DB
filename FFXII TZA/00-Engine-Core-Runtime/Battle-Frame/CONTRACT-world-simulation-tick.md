@@ -148,7 +148,7 @@ Deterministic. No generator is drawn in the tick's own body.
 
 ## 10. Failure paths and edge conditions
 
-- The field frame reaches its call only past three gates; **those gates are unread** and this
+- The field frame reaches its call only past three gates; **those gates are unread** *(answered: see the world-tick page's EX-6, ANSWERED 2026-09-12 (FABLE), and the 2026-09-22 notes below; 2026-10-02, OPUS)* and this
   contract does not claim what they test.
 - A deferred request staged while a tick is running is consumed by the **next** tick, since the
   consume happens once, early, and the slot is cleared immediately (WT-4).

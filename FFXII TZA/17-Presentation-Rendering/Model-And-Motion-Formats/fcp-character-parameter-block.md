@@ -119,7 +119,7 @@ cover 997 of the 1,066 files. The two sections the engine's static readers addre
 *Corrected 2026-09-18 (FABLE): the last 64 bytes of section 1 (`+0x14C`..`+0x18B`, float slots 83–98) are not floats but a `u16[32]` table of bone indices, indexed by special-bone ids 0–31 through `003E5AD0(record, id)` (`section1 + 0x14C + id × 2`, `003E5AEF`). Across all 1,066 blocks ids 0–25 hold `0xFFFF` or a bone index (id 4 and 5 are 1 in 482, id 25 is 1 in 193, id 0 is `0xFFFF` in 627), and ids 26–31 are `0xFFFF` everywhere — which is what §5's “non-numeric bit patterns” in slots 87–98 were.*
 
 ```struct FcpSection9 base=section9 size=0x180
-+0x00  f32[49]   slot           authored floats; slots 0-9, 30, 32-36, 38-41, 43, 45-48 are read (section 3)
++0x00  f32[49]   slot           authored floats; slots 0-9, 30, 32-36, 38-41, 43, 45-48 are read (section 3)   <- corrected 2026-10-02, OPUS - slots 10, 14-25 and 31 are read too: 01EED320 indices 11, 12-23 and 33 hold 09000A0A, 09000E0F..09001819 and 09001E1F; slots 40 and 41 are read as dwords (29010128, 29010229)
 +0xC4  u32       slot49         an integer: 60 in 420 files, -1 in 173, 15 / 30 / 120 in the rest
 +0xC8  f32[46]   slot50plus     slot 50 is read (an angle: 0.7854 in 426, 0 in 173, 1.5708 in 39, 6.2832 in 25); 57-67 are -1.0 and 68-95 zero in the files opened
 ```
@@ -210,16 +210,16 @@ is not `0xFF` (`00239E3D`–`00239E5C`).
 
 | unit field | index (`sel`) | id | section · min-ver · file slot (default slot) | scaled | `c1054` / `m1002` |
 |---|---|---|---|---|---|
-| `+0x178` | 0 (7) | `0x09000000` (`0x09000706`) | 9 · 0 · 0 (0), or 6 (7) | × y-scale; `003E6150` × | 0.0667 / 0.1333 |
-| `+0x180` → `+0x17C` → `+0x150` | 1 (8) | `0x09000202` (`0x09000908`) | 9 · 0 · 2 (2), or 8 (9) | × y-scale; `003E6150` × | 0.2 / 0.4 |
-| `+0x184` → render record `+0x420` | 2 (9) | `0x09000201` (`0x09000807`) | 9 · 0 · 1 (2), or 7 (8) | × y-scale; `003E6150` leaves it | 0.1333 / 0.2667 |
-| `+0x16C` | 3 (10) | `0x09000403` (`0x09000A09`) | 9 · 0 · 3 (4), or 9 (10) | raw | 0.1047 / 0.1047 |
-| `+0x164` | 4 | `0x09000504` | 9 · 0 · 4 (5) | raw | 0.1047 / 0.0931 |
-| `+0x168` | 5 | `0x09052A2F` | 9 · 5 · 47 (42) | raw | 0.0931 / 0.0291 |
+| `+0x178` | 0 (7) | `0x09000000` (~~`0x09000706`~~ `0x09000606`) | 9 · 0 · 0 (0), or ~~6 (7)~~ 6 (6) *(corrected 2026-10-02, OPUS: `01EED320` index 7)* | × y-scale; `003E6150` × | 0.0667 / 0.1333 |
+| `+0x180` → `+0x17C` → `+0x150` | 1 (8) | `0x09000202` (~~`0x09000908`~~ `0x09000808`) | 9 · 0 · 2 (2), or ~~8 (9)~~ 8 (8) *(corrected 2026-10-02, OPUS: `01EED320` index 8)* | × y-scale; `003E6150` × | 0.2 / 0.4 |
+| `+0x184` → render record `+0x420` | 2 (9) | ~~`0x09000201` (`0x09000807`)~~ `0x09000101` (`0x09000707`) | ~~9 · 0 · 1 (2), or 7 (8)~~ 9 · 0 · 1 (1), or 7 (7) | × y-scale; `003E6150` ~~leaves it~~ × *(corrected 2026-10-02, OPUS: `01EED320` indices 2 and 9; `003E6150`+0x7D `cmp ebx, 0x9000101` and +0x71 `cmp ebx, 0x9000707` are on its multiply list)* | 0.1333 / 0.2667 |
+| `+0x16C` | 3 (10) | ~~`0x09000403` (`0x09000A09`)~~ `0x09000303` (`0x09000909`) | ~~9 · 0 · 3 (4), or 9 (10)~~ 9 · 0 · 3 (3), or 9 (9) *(corrected 2026-10-02, OPUS: `01EED320` indices 3 and 10)* | raw | 0.1047 / 0.1047 |
+| `+0x164` | 4 | ~~`0x09000504`~~ `0x09000404` | ~~9 · 0 · 4 (5)~~ 9 · 0 · 4 (4) *(corrected 2026-10-02, OPUS: `01EED320` index 4)* | raw | 0.1047 / 0.0931 |
+| `+0x168` | 5 | ~~`0x09052A2F`~~ `0x09052B2F` | ~~9 · 5 · 47 (42)~~ 9 · 5 · 47 (43) *(corrected 2026-10-02, OPUS: `01EED320` index 5)* | raw | 0.0931 / 0.0291 |
 | `+0x170` | 25 | `0x09012726` | 9 · 1 · 38 (39) | raw | 0.1047 / 0.1105 |
 | `+0x198` | 27 | `0x09012827` | 9 · 1 · 39 (40) | raw | 0.7854 / 0.3491 |
-| `+0x1AC` | 32 | `0x09082032` | 9 · 8 · 50 (32) | raw | 0.7854 / 0 |
-| `+0x1B0` (int) | 31 | `0x29081131` | 9 · 8 · 49 (17), dword mode | — | 0 / −1 (60 in 420 files) |
+| `+0x1AC` | 32 | ~~`0x09082032`~~ `0x09082C32` | ~~9 · 8 · 50 (32)~~ 9 · 8 · 50 (44) *(corrected 2026-10-02, OPUS: `01EED320` index 32)* | raw | 0.7854 / 0 |
+| `+0x1B0` (int) | 31 | ~~`0x29081131`~~ `0x29081031` | 9 · 8 · 49 ~~(17)~~ (16), dword mode *(corrected 2026-10-02, OPUS: `01EED320` index 31)* | — | 0 / −1 (60 in 420 files) |
 | `+0x1F0` bit 2 | 24 | `0x29010229` | 9 · 1 · 41 (2), dword mode: set when the dword is non-zero | — | clear / clear (slot 41 is non-zero in 360 of 723 files) |
 | `+0x1F5` (byte) | 26 | `0x29010128` | 9 · 1 · 40 (1), dword mode: the low byte | — | 0 / 0 |
 
@@ -296,7 +296,7 @@ Slot 75 and several of slots 87–98 hold non-numeric bit patterns in the three 
 |---|---|
 | Is `'@FCP'` compared, or are the immediates coincidence? | Compared: the four bytes occur in exactly six `.text` sites — `002EDC3D`, `0041FDE9`, `00420589`, `004205C4`, `0042DA71`, `00505011` — every one a `mov edx, 0x50434640` feeding the tag lookup, and once in `.rdata` (`00D122CC`) in the tag list `@FVX … @FCP` that precedes `"unknown format!!"`. |
 | Does the same slot byte index the file and the default table? | **No, and the first draft of this sheet said yes.** The default path shifts the id right by eight before taking the low byte (`004FE2C6`–`004FE2D1`); the file path takes the low byte of the unshifted id (`004FE2DA`). Reading `0x9001D1E` as file slot 29 gave `0.0` in every file opened; as slot 30 it gives the 1.7 / 1.85 / 4.4 the default table's slot 29 predicts. |
-| Could section 9 be shorter than the slots the ids reach? | Slot 50 is the highest the battle unit addresses; section 9 spans 384 bytes (96 slots) wherever a higher section follows it, and no offset points outside its entry in 1,066 / 1,066. The five files where section 21 starts inside that span are named in section 2. |
+| Could section 9 be shorter than the slots the ids reach? | Slot 50 is the highest the battle unit addresses; section 9 spans 384 bytes (96 slots) wherever a higher section follows it, and no offset points outside its entry in 1,066 / 1,066. ~~The five files where section 21 starts inside that span are named in section 2.~~ *(corrected 2026-10-02, OPUS: there is no section 21, §2's correction)* |
 | Is the y-scale really the multiplier? | `00265240` copies `movementState + 0x20 / +0x24 / +0x28` into three outputs and `003204E0` divides or multiplies by the second (`[rsp + 0x68]`, `00320564`, `00320576`); `002E5FD0` writes the same three from one uniform argument. |
 | Positive control for the corpus reader | The reader applies the finder's own rule (offset table at `+0x30` or `+0x40` by `variant`, entries tagged at those offsets) to all 4,230 files, re-derives the container page's invariants (magic, variant, `+0x08` equal to the last entry's end in every variant-0 file) and finds a valid tag at every offset; the three files opened decode to the values `004FE270` would return for the twelve ids. |
 
@@ -437,7 +437,7 @@ fails only at slot 21. Profiling all 25 slots over the corpus separates them cle
 
 | slots | non-zero in | distinct values | out of range |
 |---|---|---|---|
-| 0–10, 18 — the real table | 7 to 1,066 files | 1–239 | **0** |
+| 0–10~~, 18~~ — the real table *(corrected 2026-10-02, OPUS: no section 18 exists, the 2026-09-21 tail-section extension)* | 7 to 1,066 files | 1–239 | **0** |
 | 11–17, 19, 20 | **0** | — | 0 |
 | **21** | **1,066** | **924** | **988** |
 | 22–24 | the six-byte event map | 3–4 | (bytes, not offsets) |
@@ -450,7 +450,7 @@ payload is `0x306B` against `0xF26` for the rest, which is exactly how a random 
 `c1054` is one of those 78. Its `+0x2A` reads `0x11DF`, which lands inside its `0x3260`-byte payload,
 and §2 listed it as *"`21` (`+0x11DF`)"* among the sections in file order. **That was a coincidence,
 and the corpus shows it.** `+0x2A` is removed from the section list and the fence narrowed to
-`u16[19]`, since slots 11–17 are zero in every file.
+~~`u16[19]`~~ `u16[18]` *(corrected 2026-10-02, OPUS: the current fence, §2 and the 2026-09-21 extension)*, since slots 11–17 are zero in every file.
 
 > This is the shape a layout sheet is most vulnerable to: **one file, read carefully, cannot tell a
 > field from a value that happens to look like one.** Only the population separates them — and the

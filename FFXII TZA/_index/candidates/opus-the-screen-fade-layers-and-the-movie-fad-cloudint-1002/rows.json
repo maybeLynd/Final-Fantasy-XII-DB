@@ -1,0 +1,170 @@
+{
+ "page": "17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "the-screen-fade-layers-and-the-movie-fade-schedule.json",
+ "rows": [
+  {
+   "fn": "00264830",
+   "text": "walks a pointer from `02099010` up to and including `02099520` in `0x288` steps (three records) and returns 1 at the first record whose byte `[pointer - 0x1F0]` has bit 0 set and whose byte `[pointer]` has bit 2 set; returns 0 when no record matches",
+   "anchors": [
+    [
+     "00264840",
+     "test"
+    ],
+    [
+     "00264849",
+     "test"
+    ],
+    [
+     "0026484E",
+     "add"
+    ],
+    [
+     "00264857",
+     "jle"
+    ],
+    [
+     "0026485C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0026C3C0",
+   "text": "sign-extends `ecx`, multiplies it by `0x288`, adds `02098E10` and tail-jumps to a 475-byte routine with that record address in `rcx` and `edx = 1`",
+   "anchors": [
+    [
+     "0026C3C3",
+     "mov"
+    ],
+    [
+     "0026C3C8",
+     "imul"
+    ],
+    [
+     "0026C3CF",
+     "lea"
+    ],
+    [
+     "0026C3D9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0026DE00",
+   "text": "keeps `ecx`, calls `WorldTransition_GetActiveOrPendingFieldId()` and tail-jumps to a 124-byte two-argument routine with the kept `ecx` as the first argument and the returned value in `edx`",
+   "anchors": [
+    [
+     "0026DE06",
+     "mov"
+    ],
+    [
+     "0026DE08",
+     "call"
+    ],
+    [
+     "0026DE0D",
+     "mov"
+    ],
+    [
+     "0026DE16",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00283B30",
+   "text": "switches on dword `[rcx + 0xE4]`: when it is 1 and a 23-byte nonzero-to-1 predicate returns nonzero, it calls a 108-byte four-slot byte refresher and stores 2 to `+0xE4`; when it is 2 and the same predicate returns nonzero, it clears bit 0 of dword `+0xE8` and stores 1 to `+0xE4` when that bit was set, else stores 0 to `+0xE4`; any other value, or a zero predicate, returns with no store",
+   "anchors": [
+    [
+     "00283B39",
+     "mov"
+    ],
+    [
+     "00283B5F",
+     "mov"
+    ],
+    [
+     "00283B75",
+     "mov"
+    ],
+    [
+     "00283B8E",
+     "call"
+    ],
+    [
+     "00283B93",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002EFD50",
+   "text": "when dword `022BDEB8` is nonzero, passes it in `ecx` to a 58-byte dispatcher keyed on the top four bits of its argument and then stores 0 to `022BDEB8`; otherwise returns without a call",
+   "anchors": [
+    [
+     "002EFD54",
+     "mov"
+    ],
+    [
+     "002EFD5C",
+     "je"
+    ],
+    [
+     "002EFD5E",
+     "call"
+    ],
+    [
+     "002EFD63",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002EFE10",
+   "text": "stores 1 to byte `022BDD5C` and stores `cl`, `dl`, `r8b` and `r9b` to bytes `022BDD58`, `022BDD59`, `022BDD5A` and `022BDD5B`",
+   "anchors": [
+    [
+     "002EFE17",
+     "mov"
+    ],
+    [
+     "002EFE1D",
+     "mov"
+    ],
+    [
+     "002EFE23",
+     "mov"
+    ],
+    [
+     "002EFE2A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035D010",
+   "text": "stores 1 to dword `022CA45C` when `ecx` is zero, else 0",
+   "anchors": [
+    [
+     "0035D012",
+     "test"
+    ],
+    [
+     "0035D014",
+     "sete"
+    ],
+    [
+     "0035D017",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

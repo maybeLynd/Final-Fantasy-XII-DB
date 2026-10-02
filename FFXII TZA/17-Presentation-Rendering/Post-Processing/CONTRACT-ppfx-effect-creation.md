@@ -54,7 +54,7 @@ because there is no per-effect fallback: the failure is reported at the file, no
 | entry point(s) | `0072A320` `TEXSHADERSET_CreateEffect`, **13,547 B, 2,965 instructions** *(the database's working name; the authored log string inside it spells the C++ form)*, — the largest body this database has contracted. Interior: the first gated log call is `0072A383`, the descriptor staging call `0072A3A6` |
 | calling convention | Microsoft x64, `this` in `rcx`. **One caller**: `0072D820` (396 B), at `0072D872`. |
 | return type | `int`, an HRESULT-shaped code |
-| return semantics | **0 is success.** The caller tests it at `0072D879` and, on non-zero, logs through `006DF480` with the source line `0x1084` and calls `0071B3C0` before abandoning the sequence. Inside, the same shape guards the file load: `IGPUEffect::CreateEffectFromFile` via `0078A120` is called once and its failure is returned unchanged, so **the HRESULT a caller sees is the loader's, not this function's**. |
+| return semantics | **0 is success.** The caller tests it at `0072D879` and, on non-zero, logs through `006DF480` with the source line `0x1084` and calls `0071B3C0` before abandoning the sequence. Inside, the same shape guards the file load: ~~`IGPUEffect::CreateEffectFromFile`~~ `IGPUEffect::CreateEffect` *(corrected 2026-10-02, OPUS: `0078A120`+0xEA logs that name)* via `0078A120` is called once and its failure is returned unchanged, so **the HRESULT a caller sees is the loader's, not this function's**. |
 | callbacks / indirect dispatch | the caller continues into `call qword ptr [rax + 0x38]` at `0072D8D9` — a vtable slot on the object the previous step returned. That step is outside this operation. |
 
 ## 3. Types
@@ -113,7 +113,7 @@ names plus `%s%d` and the two `..\src\GPU\GPUTextureUtil.cpp` source strings. Th
 *"register 325 techniques and 36 uniforms"* — is exact.
 
 **I-4 — THE COUNT ARGUMENT IS A VARIANT MULTIPLIER, SO THE HANDLE COUNT EXCEEDS THE NAME COUNT.**
-The two helpers that take a count (`0072DCF0`, 65 sites; `0072EB20`, 26) register *n* handles under
+The two helpers that take a count (`0072DCF0`, 65 sites; `0072EB20`, 26) register ~~*n* handles~~ *n* handles, *n* × 22 for `0072DCF0` *(corrected 2026-10-02, OPUS: `0072DCF0` formats `%s%d` for each counted variant (`0072DCF0`+0x90..+0xA4) and registers each one under all 22 suffixes of the table at `02EA2250` (`0072DCF0`+0x1EC `lea rdi, [02EA2250]`, +0x1F3 `lea esi, [rbp + 0x16]`))*, under
 one name, and the literal at the call site says how many — observed ~~4, 8, 17 (`0x11`) and 25
 (`0x19`)~~ **(CORRECTED 2026-09-29, falsification pass 1: that list was incomplete)**. The count arrives in `r9d`, as an
 immediate or as `r15d + k`, with `r15d = 1` set once at `0072A85F` and incremented only after the last counted site.
@@ -153,13 +153,13 @@ the caller abandons the sequence.
      non-zero -> 006DF480 line 0x1094 -> 0071B3C0
 
 0072A320
-   0078A120   IGPUEffect::CreateEffectFromFile wrapper, once
+   0078A120   IGPUEffect::CreateEffectFromFile wrapper, once   <- corrected 2026-10-02, OPUS - IGPUEffect::CreateEffect (0078A120+0xEA)
    ~~fourteen registration helpers, 332 of the 358 sites~~   (corrected, pass 1:)
    effect vtable lookups inline: [rax+0x60] x224, [rax+0x48] x33, [r8+0xC8] x8
    registration wrappers: 0072DCF0 x65, 0072EB20 x26 (both counted), 0072DFD0 x4, 0072DAC0 x3,
                           0072E5B0 x2, 0072E940 x1, 0072EC00 x3 (sampler arrays), 0071A380 x2
    string utilities: 00715C70 x91, 007157A0 x48, 00719380 x40, 007182F0 x40, 00715CC0 x8 (227 sites)
-   006DF480 x10, sprintf x8, memset, a string release (00715360), the stack-cookie check
+   006DF480 x10, sprintf x8, memset, a string release (00715360), the stack-cookie check   <- corrected 2026-10-02, OPUS - and single calls to 0078A530, 0078A960 and 0071B3C0 (0072A320+0x86, +0xBB, +0xEB): 22 direct targets in all
 ```
 
 ## 7. State transitions
@@ -195,7 +195,7 @@ nothing observed makes it re-entrant.
 2. **A technique is absent from the compiled effect** → not distinguished here; the registration
    helpers' own failure behaviour is not read, and that is a limit of this contract rather than a
    statement that they cannot fail.
-3. **Logging disabled** → the normal case; no diagnostic is emitted on any path (I-4).
+3. **Logging disabled** → the normal case; no diagnostic is emitted on any path (~~I-4~~ I-5 *(corrected 2026-10-02, OPUS: I-5 is the retail silence; I-4 is the count multiplier)*).
 4. **Partial registration** → no unwind observed (§5).
 
 ## 11. Observable behaviour
@@ -214,7 +214,7 @@ CreateEffect(this):                                  # 0072A320
     if logMaster and verbose:
         log("..\\src\\GPU\\GPUTextureUtil.cpp(%d) : PPFX: ", 0x90B)
         log("==== TEXSHADERSET::CreateEffect() ====")
-    hr = CreateEffectFromFile(device, <name>, "_LUMINANCE_REMAP_S1.pso", 0)   # via 0078A120
+    hr = CreateEffectFromFile(device, <name>, "_LUMINANCE_REMAP_S1.pso", 0)   # via 0078A120   # <- corrected 2026-10-02, OPUS - 0078A120 is IGPUEffect::CreateEffect (0078A120+0xEA)
     if hr: log(" ... failed (0x%x: %s)"); return hr                            # I-1
     log(" ... succeeded"); log("get parameter handles ...")
     for each of the 325 technique names and 36 uniform names:
@@ -235,7 +235,7 @@ are gated off in a retail build (I-5), so observing it needs the gates set rathe
 ## 14. Unresolved
 
 1. **Whether a registration helper can fail, and what happens if one does.** §10.2. Resolved by
-   reading the fourteen helpers' bodies; none was read here.
+   reading the fourteen helpers' bodies~~; none was read here~~. *(answered: see §10's pass 1 - five are string utilities and registration is the vtable; 2026-10-02, OPUS)*
 2. **What the vtable step at `0072D8D9` is**, and whether it is part of the same initialisation
    contract. It is the caller's, and this contract stops at its own return.
 3. **The handle count**, as opposed to the name count (I-4). **Partly resolved by pass 1:** the two counted helpers

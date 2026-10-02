@@ -1,0 +1,7 @@
+{
+  "case": "missing-queue-source",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "result_exists": false
+}

@@ -19,13 +19,13 @@
   modes, one of them cached behind a global re-resolve flag.
 
 - [`the-resource-request-queue.md`](the-resource-request-queue.md) — **PARTIAL, tier 1.** The 64-slot
-  request queue every file load goes through: the builder that sizes a request from the file-size
-  table and stalls when no slot is free, the pump the frame drives through six states, 512 KB
+  request queue every file load goes through: ~~the builder that sizes a request from the file-size~~
+  ~~table and stalls when no slot is free,~~ the builder that records the byte count its caller passes (the caller takes it from the file-size table), the requester `0032E870` that pumps while no slot is free *(answered: see [the queue page](the-resource-request-queue.md) §2, "The bytes come from the caller" and "`0032E870` is where the queue's only stall lives"; 2026-10-02, OPUS)*, the pump the frame drives through six states, 512 KB
   parts, and the three callbacks a requester hands in.
 - [`VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md`](VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md) —
   **DOCUMENTED, tier 1.** The 31 GB `SRYK` archive (89,414 entries, index-only queries) and the
   **`st2e`** authored table header — magic plus count/recordSize/headerSize, checked by file-length
-  arithmetic. **`action_data.bin` is the file behind registry slot `0x02EBF138`**: 543 records of 60
+  arithmetic. ~~**`action_data.bin` is the file behind registry slot `0x02EBF138`**~~ **registry slot `0x02EBF138` is bound from `battle_pack.bin`'s directory entry `+0x3C`** *(answered: see the VBF sheet's *Corrected 2026-10-01* note in its opening and §12; `action_data.bin` is a copy of that section; 2026-10-02, OPUS)*: 543 records of 60
   bytes, its own count field confirming the executable's `0x21E` bound.
 
 - [`Standard-Formats/shipped-standard-formats.md`](Standard-Formats/shipped-standard-formats.md) —
@@ -34,7 +34,7 @@
   the memory-card icon pair. The `.ico` files are PS2 icon models, not Windows icons; the ledger's
   2026-09-03 row is overturned.
 
-Other priority targets: `0037F1F0` `Runtime.Resource.AsyncAssetSlotPollFinalizeNotifyOrRetry`, `002D81D0` resource handle table, VBF/EBP container layout (use `ff12-vbf.exe` and `ff12-script.exe`).
+Other priority targets: `0037F1F0` `Runtime.Resource.AsyncAssetSlotPollFinalizeNotifyOrRetry`, `002D81D0` resource handle table, VBF/EBP container layout (use `ff12-vbf.exe` and `ff12-script.exe`) *(answered for VBF: see [the bigfile page](VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md) §3a; 2026-10-02, OPUS)*.
 
 ## Hooking constraint: Resource-owned one-time-init holders (BK-8, OPUS, 2026-09-27)
 

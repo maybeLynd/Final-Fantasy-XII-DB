@@ -1,7 +1,7 @@
 ---
 system: The encoded-id space — the fifteen inventory class descriptors behind id >> 12, and the class-normalised query record
 category: 00-Engine-Core-Runtime
-status: "REOPENED — SECTION-05 corrects producer semantics; historical audit retained, independent acceptance pending"
+status: "REOPENED — SECTION-05 corrects producer semantics; historical audit retained, independent acceptance pending (the open row is OV-5)"
 owner_layer: both
 evidence_tier: 1
 verified_against:

@@ -1,0 +1,314 @@
+{
+  "package": "ov42-actor-predicate-domain",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "control-01.status.json",
+      "bytes": 543,
+      "sha256": "315b11b5436cf244e97f51af5a3c7346e4480d16bb01232d2413401bcd9df2de"
+    },
+    {
+      "path": "control-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-01.stdout",
+      "bytes": 65,
+      "sha256": "ab235e819c0d4ceed1c751efcf78a15b021483c5852ea06a1bbf37ecb9c2f5f7"
+    },
+    {
+      "path": "control-inputs-01.json",
+      "bytes": 831,
+      "sha256": "d4a6d432c262c2d89006af94fd4c8b8e82c0f635d91b2624d866e7bbae89b1e3"
+    },
+    {
+      "path": "control-result-01.json",
+      "bytes": 3391,
+      "sha256": "a248640d0ffaba1242d9f609f32ec3d6aae9aa2367dddfec16e11f9201de4393"
+    },
+    {
+      "path": "control.py",
+      "bytes": 3925,
+      "sha256": "f4866189a8fba93eb02ce4daae70b21a9eec568db7d9991e02635399354b1a81"
+    },
+    {
+      "path": "controls-01/missing-CFG/prove.py",
+      "bytes": 8684,
+      "sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    },
+    {
+      "path": "controls-01/missing-CFG/status.json",
+      "bytes": 747,
+      "sha256": "b85927243fba7a485369d9e4c151314a0012fd3c4466da958cd6689814d69879"
+    },
+    {
+      "path": "controls-01/missing-CFG/stderr",
+      "bytes": 1278,
+      "sha256": "07f39dd4afecc2a63124aea3802831d27b00ddb66f83db01ef41a6d20a84754d"
+    },
+    {
+      "path": "controls-01/missing-CFG/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/missing-class-contract/prove.py",
+      "bytes": 8684,
+      "sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    },
+    {
+      "path": "controls-01/missing-class-contract/status.json",
+      "bytes": 780,
+      "sha256": "7f25c18ffd9ac0473eeca403791d080c711d7aec13a82558e3ff33343f6c17d1"
+    },
+    {
+      "path": "controls-01/missing-class-contract/stderr",
+      "bytes": 1357,
+      "sha256": "deb5b08f47410da0b778cd88c1ca53bcebbb3fc7aa9fb64d95013c434c15d253"
+    },
+    {
+      "path": "controls-01/missing-class-contract/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/wrong-CFG-interface/input-identities-02.json",
+      "bytes": 2152,
+      "sha256": "e37189c2e46c516c0643f042266370f681110eeecd9df17146b37a0263fcc26f"
+    },
+    {
+      "path": "controls-01/wrong-CFG-interface/prove.py",
+      "bytes": 8684,
+      "sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    },
+    {
+      "path": "controls-01/wrong-CFG-interface/prove_owner_reload_order.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "controls-01/wrong-CFG-interface/status.json",
+      "bytes": 771,
+      "sha256": "3a8cfbd6322f3ecd5a6375114962c2ecc39df2eccb7d6d9831c707cff1e0bc87"
+    },
+    {
+      "path": "controls-01/wrong-CFG-interface/stderr",
+      "bytes": 612,
+      "sha256": "d6e2a859cfa3ba4ef0e98f1309a2a6c21017b335dedff3a7ced720a7472e4c09"
+    },
+    {
+      "path": "controls-01/wrong-CFG-interface/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "input-identities-01.json",
+      "bytes": 2359,
+      "sha256": "893ca94354a28765af1be6fe34477de5fe3a562d680b91f8ccdcf7f722675079"
+    },
+    {
+      "path": "input-identities-02.json",
+      "bytes": 2506,
+      "sha256": "ceb5b29e22903188794a3818b55e482c51c7956a46541371720b6c0b1b69a158"
+    },
+    {
+      "path": "metadata-01.status.json",
+      "bytes": 544,
+      "sha256": "d87d5fe249fe93feb31c5f944f65a7ba1f7a8c5b617da0a2359f09493d7cb039"
+    },
+    {
+      "path": "metadata-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "metadata-01.stdout",
+      "bytes": 99,
+      "sha256": "ece37ff4d81431d877b67c642f397ab272bb274b5e84bd98de636d646f626d8b"
+    },
+    {
+      "path": "metadata-controls-01/changed-class-memory-width/result-02.json",
+      "bytes": 4939,
+      "sha256": "051aa8ccbccd3916bf1a320cffd39f039fb6c270e3fe60e44a47157990f3b04f"
+    },
+    {
+      "path": "metadata-controls-01/changed-class-memory-width/retained/action-selector-local-exclusions/action-availability-gates-raw-01.json",
+      "bytes": 101222,
+      "sha256": "f716b46195813971da4b262c79ef20b13bc2c5a4683d4af7df55904c8c764f1d"
+    },
+    {
+      "path": "metadata-controls-01/changed-class-memory-width/retained/ov42-class20-action-admission/action-admission-guards-raw-01.json",
+      "bytes": 44426,
+      "sha256": "c72f2278234dd4aae2afaf33c76760501cba262899a207239de81581f2b8aa68"
+    },
+    {
+      "path": "metadata-correction-01.json",
+      "bytes": 2318,
+      "sha256": "b8eac65396445af75bd6f19010a8ae4bf3c5c3288872e1febe15713e3f77a0ee"
+    },
+    {
+      "path": "metadata.py",
+      "bytes": 2735,
+      "sha256": "75d61822dff9a34378d5061792eca1e4c72bc83da2c90df9af442b6ca5b9d1ce"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1735,
+      "sha256": "ee5becef726fd060880cc026c42d361db048b1f459c0151e149bfdb40c233522"
+    },
+    {
+      "path": "proof-01.status.json",
+      "bytes": 541,
+      "sha256": "405a74d0adccb1da7d47d136080d2eb918d34276116a51edf658a6ffe7a43f83"
+    },
+    {
+      "path": "proof-01.stderr",
+      "bytes": 527,
+      "sha256": "e42f46ff2b799df906a9030253acd36a2642693ce4ad97e9abd9758b57836b59"
+    },
+    {
+      "path": "proof-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.status.json",
+      "bytes": 541,
+      "sha256": "2be3980eadd87e536babaa7c2a85b193226aa3f338db8459048bc8925fe330d6"
+    },
+    {
+      "path": "proof-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.stdout",
+      "bytes": 111,
+      "sha256": "2da0f3a7033aba99fafde20724a53116f740089c3258aa71d87424d971ca2610"
+    },
+    {
+      "path": "proof-03.status.json",
+      "bytes": 650,
+      "sha256": "dc57e4a5f70eb43268ded4e49dd9fa1ac30a29059ad91b1235e35b9dd6091c3b"
+    },
+    {
+      "path": "proof-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-03.stdout",
+      "bytes": 111,
+      "sha256": "2da0f3a7033aba99fafde20724a53116f740089c3258aa71d87424d971ca2610"
+    },
+    {
+      "path": "prove-before-cfg-prerequisite-01.py",
+      "bytes": 5643,
+      "sha256": "defbf415a75ed74e2ea63a877021aa34ee133eca4875f240a529759a55d2d990"
+    },
+    {
+      "path": "prove-before-source-map-metadata-02.py",
+      "bytes": 8684,
+      "sha256": "7190d3f246bdb487a019a6d35af2333554d967f09bae008885cf07370cf60c3a"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 8704,
+      "sha256": "534e44a5c27e18da772379006052d5ef0bd55cfa439aff4ebe712179be74564c"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3563,
+      "sha256": "604ca1207f954358832a31e5454081616254525d3550b1f5f5928158a20f9495"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 5414,
+      "sha256": "1c90ac1fcc65dcce4ca28ee11573462439adf47137fb6b1937047d508bfdb3c9"
+    },
+    {
+      "path": "result-02.json",
+      "bytes": 5606,
+      "sha256": "7ada6a2658327af646debebc675fa15b7c839c87bedf850a863071060fad805a"
+    },
+    {
+      "path": "retained/action-selector-local-exclusions/action-availability-gates-raw-01.json",
+      "bytes": 101222,
+      "sha256": "f716b46195813971da4b262c79ef20b13bc2c5a4683d4af7df55904c8c764f1d"
+    },
+    {
+      "path": "retained/action-selector-local-exclusions/capture-action-availability-gates.py",
+      "bytes": 819,
+      "sha256": "623010552ca539f1086dd8da7c314a2ed04eb2992b0979894dfd89ad3a4200b6"
+    },
+    {
+      "path": "retained/action-selector-local-exclusions/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "retained/action-selector-local-exclusions/capture-spattack-leaves-and-guard.py",
+      "bytes": 776,
+      "sha256": "ad620f58068354192b1297fa388c83b09d51f88eefe6c2079baff7a5418cba5f"
+    },
+    {
+      "path": "retained/action-selector-local-exclusions/manifest.json",
+      "bytes": 14139,
+      "sha256": "8221834782de76d5d53743a53d436240d9e3fd89adb8460e11f1017bdd82c81a"
+    },
+    {
+      "path": "retained/action-selector-local-exclusions/spattack-leaves-and-guard-raw-01.json",
+      "bytes": 37166,
+      "sha256": "8c07f2f5c89d0b8b025da5b3d1690345b469899f84d343e3ef58bd19f8d77530"
+    },
+    {
+      "path": "retained/ov42-class20-action-admission/action-admission-guards-raw-01.json",
+      "bytes": 83859,
+      "sha256": "b68e052df6e19c6674c8e8cc692ec4dc764e7e31223d82eaff6328e0bcfe2bc5"
+    },
+    {
+      "path": "retained/ov42-class20-action-admission/class20-admission-result-01.json",
+      "bytes": 2084,
+      "sha256": "d55fd32f64d4e79a4f730069a31fffd16b5878d7c49e6aabbe83b68128e22490"
+    },
+    {
+      "path": "retained/ov42-class20-action-admission/manifest.json",
+      "bytes": 3531,
+      "sha256": "67e7df297497326a5b98d9d21355923750442981e8121cfb4d4e7840de5e4d92"
+    },
+    {
+      "path": "retained/ov42-class20-action-admission/prove-class20-admission.py",
+      "bytes": 5773,
+      "sha256": "9fd429f301e86d94fd68ad09a487ae7aa1d39556436611ef000f52831752d263"
+    },
+    {
+      "path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "method": "A retained original code/control-flow implication; no new capture, table census or native/live execution",
+  "question": "Original zero-return/class20 implication and later parsed-record argument",
+  "limits": "Valid readable unit/parsed records/private frame, initialized and stable original table count543, original class20 contract, normal nonvolatile ABI/returns/no interference. No caller/natural state/zero-result feasibility/all producer/override writer/loader/I/O/owner/lifetime closure.",
+  "acceptance": "producer-valid only; independent review/canonical consumer agreement pending"
+}

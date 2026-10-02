@@ -79,7 +79,7 @@ ActorResource_BeginManagerResourceSetLoad   0032FCA0
 
 ### The slot
 
-The first argument is a slot index, bounded before anything else happens:
+The first argument is a slot index, ~~bounded before anything else happens~~ stored to the latch first and bounded after *(corrected 2026-10-02, OPUS: `0020AC30`+0x34 stores it to `01DFE40C`, +0x3A tests `≤ 4`; UQ-341 below)*:
 
 ```c
 if (param_1 < 5) { ... }        // five slots, checked, not masked
@@ -156,7 +156,7 @@ directory and the parameter names:
 `mDof…` is a member-name convention — an `m`-prefixed field. **Aperture f-number and focus distance
 are the two parameters a depth-of-field effect needs**, which is what §1 describes in plain terms.
 
-A wider family of about fifteen functions in `001C…` and `001EC…` references the same three strings,
+A wider family of ~~about fifteen~~ twelve functions *(answered: see §7, ANSWERED 2026-09-26: twelve, each with a role; 2026-10-02, OPUS)* in `001C…` and `001EC…` references the same three strings,
 so this is a subsystem rather than one path; only the part reachable from `0020AC30` was read here.
 
 ### What the names look like
@@ -171,8 +171,8 @@ spc_z0000   hc1006      sum_m0001   sum_l0001   sum_h0001   hne_e0100
 wdl_b0101   m1009       m1266       m1222       m1223       m1151
 ```
 
-~~Eight~~ **Seven** `sum_` entries (`j`, `a`, `f`, `i`, `m`, `l`, `h`), each `sum_` + one letter + `0001`; one `spc_z0000`. **What the prefixes denote
-is not established here** — the names are authored data and the bridge that would settle it lives in
+~~Eight~~ **Seven** `sum_` entries (`j`, `a`, `f`, `i`, `m`, `l`, `h`), each `sum_` + one letter + `0001`; one `spc_z0000`. **~~What the prefixes denote~~
+~~is not established here~~** *(answered: see §7: `sum_` is the summon scenes and `spc_` the special-attack event; 2026-10-02, OPUS)* — the names are authored data and the bridge that would settle it lives in
 the VBF archives, not the executable. §7 records it.
 
 ---
@@ -293,7 +293,7 @@ releasing it via `0020A760`.
 **Downstream:** a JSON load, and two flags that reach `WorldActor_UpdateRuntimeAndScriptExecutionState` and gate whether an actor's script stands down for the frame (§10). The slot array is read by four
 functions and the per-slot flags by fourteen.
 
-**Do not confuse with the marker at `01DFE40C`.** It is written here but read by 24 functions across
+**Do not confuse with the marker at `01DFE40C`.** It is written here but ~~read by 24 functions~~ referenced by 23 functions *(corrected 2026-10-02, OPUS: 16 read it only, 7 write it, 2 of those also read — §2's correction)* across
 the engine; it is shared context, not this system's private state, and its other readers were not
 examined.
 
@@ -305,7 +305,7 @@ examined.
   contain `sum_` and a `JsonData/CutScenes/<name>.json` must exist with the two keys. No code change
   is required, which makes this the cheapest cinematic-look intervention in the engine.
 - **`0001` and `spc_` set flags, not behaviour, here.** What the two accessors' callers do with them
-  was not read. Do not assume the flags cause anything on their own.
+  ~~was not read.~~ *(answered: see §10 and UQ-336: all four consumers are read; 2026-10-02, OPUS)* Do not assume the flags cause anything on their own.
 - **The change guard will silently swallow an edit.** If you rewrite a scene's JSON but the slot
   already holds that name, nothing re-reads it — the guard compares the *name*, not the file. Force
   a different name, or a different slot, when iterating.
@@ -360,7 +360,7 @@ examined.
       **PROPOSED-repos9e-18 closes** — with the bound that one consumer of three (flag A) and of
       four (flag B) was read.
 - [x] **UQ-336.** **The other consumers of the two flags.** `0034CF90` and `0034D790` (137 B each) have **zero
-      callers by graph or bytes**; `00180120` is now read — a two-predicate conjunction (`001EC5C0`/`001EC560`, a mode-indexed probe) called by the PauseMenu handler `00229590` ([game-application §`00229590` subtree](../../00-Engine-Core-Runtime/Application-Root/game-application.md)); it does not name flag B, so the consumer count stands. **PROPOSED-repos9e-20.**
+      callers by graph or bytes**; `00180120` is now read — a two-predicate conjunction (`001EC5C0`/`001EC560`, a mode-indexed probe) called by the PauseMenu handler `00229590` ([game-application §`00229590` subtree](../../00-Engine-Core-Runtime/Application-Root/game-application.md)); ~~it does not name flag B, so the consumer count stands.~~ *(corrected 2026-10-02, OPUS: it calls the flag-B wrapper `001EC5C0` at `00180120`+0x4, so it is a flag-B consumer — the count of four call sites below includes it)* **PROPOSED-repos9e-20.**
       *Both named consumers are now READ (2026-09-15, OPUS): identical twins applying a rate
       multiplier that ships as 1.*
       - **`0034CF90` and `0034D790` are the same function with one call swapped.** Byte for byte the
@@ -448,12 +448,12 @@ examined.
 - [x] **UQ-339 ANSWERED 2026-09-15 (OPUS) — the file holds far more: **116 distinct keys**, and
       it is an *editor document* of which the shipped build reads a subset. Censused over every
       shipped sidecar, not inferred.**
-      - **Corpus.** `jsondata/CutScenes/` and `jsondata/cutscenes/` hold **674** files. **620 parse**,
-        **52 are zero bytes**, and 2 more have syntax errors. Together they carry **7,560 sections**.
+      - **Corpus.** `jsondata/CutScenes/` and `jsondata/cutscenes/` hold **~~674~~ 337** files. **~~620~~ 310 parse**,
+        **~~52~~ 26 are zero bytes**, and ~~2~~ 1 more ~~have~~ has syntax errors. Together they carry **~~7,560~~ 3,780 sections** *(corrected 2026-10-02, OPUS: the shipped VBF has one `jsondata/cutscenes/` directory of 337 files; the two spellings are the same files counted twice, so every figure here halves — UQ-249's 337 and 26)*.
       - **Shape.** Each file is an object of sections: **`Common`** plus **`Cut 1` … `Cut 61`**
-        (61 is the highest seen). Section sizes cluster hard: **9 keys** in 5,148 sections and
-        **4 keys** in 1,360, with a rich **80-key** variant in 530.
-      - **Four keys appear in every one of the 7,560 sections** — `mShadowValueLerpMinForMap`,
+        (61 is the highest seen). Section sizes cluster hard: **9 keys** in ~~5,148~~ 2,574 sections and
+        **4 keys** in ~~1,360~~ 680, with a rich **80-key** variant in ~~530~~ 265 *(corrected 2026-10-02, OPUS: same shipped-VBF recount)*.
+      - **Four keys appear in every one of the ~~7,560~~ 3,780 sections** *(corrected 2026-10-02, OPUS: same recount)* — `mShadowValueLerpMinForMap`,
         `mShadowValueLerpMinForChr`, `mContrastR` and `m_iPCFBlurSize` — so the document is a
         **post-process and shadow parameter block**, not a depth-of-field pair.
       - **The DoF family is five keys, and the code reads two of them.** `mDofApertureFnumber`
@@ -535,7 +535,7 @@ examined.
           `001EC520` (`001EC532`) and `001EC540` (`001EC552`) then tail-jump `001C5570` with a key string
           (`008FA470` / `008FA488`); `001EC620` (`001EC638`) then calls `0018CA40`; `001EC680` (`001EC689`) only stores.
         - `0020AC30`, the slot fill, stores the index unchecked (`0020AC64`), then tests `≤ 4`. It resets the latch to
-          `−1` when the name does not parse (`0020AE48`).
+          `−1` ~~when the name does not parse~~ on every exit (`0020AE48`) *(corrected 2026-10-02, OPUS: the out-of-range branch, the parse failure and the normal end all reach `0020AC30`+0x218)*.
         - `0020A760`, the slot clear, stores the index (`0020A760`), empties that slot's strings and zeroes
           `01F832B0[i]`, and always ends by resetting the latch to `−1` (`0020A7E7`).
         - `0020AF10` stores the index (`0020AF5B`) and copies a string into that slot.
@@ -636,8 +636,8 @@ against byte-decoded callers for all 158 residual functions:
 | neither | 14 |
 
 So the thunk hole cost exactly one function — and that one function was half of the "two are
-evidence-free" result. **The corrected figure is 144 of 158 with a direct caller, and 1 of 158 with
-no admissible reference of any kind.**
+evidence-free" result. **The corrected figure is 144 of 158 with a direct caller, and ~~1 of 158~~ 0 of 158 with
+no admissible reference of any kind.** *(answered: see the-unresolved-158.md, "158 of 158" — the nine-patch box renderer is entered by a conditional jump at +0x5 of its 12-byte opacity gate, and that gate has four callers; 2026-10-02, OPUS)*
 
 ### It does not weaken the dead-code finding next door
 
@@ -677,7 +677,7 @@ you nothing until it has found something you already knew was there.**
 ## 9. Related
 
 - [`../Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md`](../Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md)
-  — the other function from the same pair, and genuinely dead.
+  — the other function from the same pair, ~~and genuinely dead~~ *(answered: see the box-renderer page's REFUTED box: it is reachable; 2026-10-02, OPUS)*.
 - [`../Unowned-Code-Census/why-the-unowned-code-has-no-owner.md`](../Unowned-Code-Census/why-the-unowned-code-has-no-owner.md)
   — §16, the reference census this corrects.
 - [`../../24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md`](../../24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md)
@@ -772,7 +772,7 @@ convention encodes, it reaches past the depth-of-field sidecar and into script p
 - **`entry[0x16]` is described by its behaviour in this loop.** Whether anything outside this
   function reads it was not established.
 - `FUN_001ed130`, `FUN_001ed180`, `FUN_001edda0`, `FUN_001ede80` and `FUN_00357770` are treated as
-  opaque predicates. Naming what they test would sharpen the gate considerably and none was read.
+  opaque predicates. Naming what they test would sharpen the gate considerably and ~~none was read~~ *(answered: see §7, "The predicates in the gate", ANSWERED 2026-09-03: all five read; 2026-10-02, OPUS)*.
 - The world-state value (`param_1[5]`) is used as 1, 2 or 3 and its meaning is not established here.
 
 ## 11. The five gate predicates, named — `PROPOSED-repos9e-21` answered
@@ -915,7 +915,7 @@ finished.
   bridge is the same VBF-side data that would name `sum_`/`spc_`. **PROPOSED-repos9e-22.**~~ *Answered
   2026-09-25 (UQ-337): three are maps, and two are story-progress values, not field ids.*
 - **What ScriptVM commands 45–48, 641, 1056, 1304, 1305, 1415, 1018–1021, 1485 and 1486 are.** They
-  are located in the dispatch table and none of their bodies was read. **PROPOSED-repos9e-23.**
+  are located in the dispatch table and ~~none of their bodies was read~~ *(answered: see §12: all twenty-three handler bodies are read; 2026-10-02, OPUS)*. **PROPOSED-repos9e-23.**
 - **What the `01F82E38` / `01DFE0C0` mode is.** 50 callers; not this document's to settle.
 - `FUN_001EC560`, `FUN_00265760`, `FUN_002E0540`, `FUN_0022A030`, `FUN_0022A080` remain opaque —
   the second rank of predicates behind the first.
@@ -977,7 +977,7 @@ So an authored `wait-for-button` is one command id plus one integer mask on the 
 > **This closes a loop opened at the start of this session.** The four
 > `InputGameplay_GetActorStateAwareRemappedMask04/08/0C/10` functions are exactly the four that
 > [the-unresolved-158 §11](../the-unresolved-158.md) identified as the readers of the eight-slot
-> actor registry at `0209C4D0`. The cutscene stand-down gate, the ScriptVM wait commands and that
+> ~~actor registry~~ message-window registry *(corrected 2026-10-02, OPUS: the slots are filled by the message-window handler, the-unresolved-158 §11)* at `0209C4D0`. The cutscene stand-down gate, the ScriptVM wait commands and that
 > registry are one connected mechanism, arrived at from three unrelated directions.
 
 ### Family B — wait for a condition (two commands)
@@ -1059,7 +1059,7 @@ to stand the whole script down.
 
 - **`FUN_00267310`**, the shared escape used by families B and C, tested against `actor[0x15]`.
   Naming it would say what cancels every scripted wait — likely the highest-value single lookup left
-  in this thread. **PROPOSED-repos9e-24.**
+  in this thread *(answered: see §13, which names `FUN_00267310`; 2026-10-02, OPUS)*. **PROPOSED-repos9e-24.**
 - What families B and D actually test and read — `002673D0`, `002E7330`, `002E4CE0`, `002E7380`,
   `003EB720`, `002E12B0`, `002E1290`.
 - The two helper pairs in the bracket: `00182D10`/`00182DA0` and `002B5B60`/`002B5C90`.
@@ -1170,7 +1170,7 @@ assignments, which live behind the same authored-data boundary as `-17` and `-22
 
 - **The bit assignments.** Eight bits, and this pass recovered none of their meanings. The setter
   takes the bit index as a runtime argument, so the constants sit in the callers — `00360710`,
-  `00360A50`, `00360880`, `003603F0` — none of which was read. **PROPOSED-repos9e-25.**
+  `00360A50`, `00360880`, `003603F0` — ~~none of which was read~~ *(answered: see §7, ANSWERED 2026-09-15: bit *k* is the manager's skip request *k*; 2026-10-02, OPUS)*. **PROPOSED-repos9e-25.**
 - What ScriptVM commands **1306** and **1337** are, beyond reaching the setter.
 - The rest of the 648-byte record. Twelve field offsets are located by the stride sweep and none is
   identified.
@@ -1332,7 +1332,7 @@ the policy is the call, not the data.**
         OPUS.
 - [x] **UQ-344.** Whether the nine regions are drawn from one texture; **no texture handle is read in this
       function.**
-      **ANSWERED 2026-09-18 (FABLE): from no texture at all - on either back-end the nine regions are plain alpha-blended quads.** The sliced path is `002DD1E0` (open), `002DC7F0` three times and `002DD090` (close). *PS2 side:* the opener's GIF tag is `0x8026400000000001` with the register list `0x41414141` (`002DD294`, `002DD2B2`): eight registers, RGBAQ and XYZF2 four times, PRIM = triangle strip, Gouraud, blending on, **texturing off** - no ST or UV register anywhere in it. *PC side:* the batcher takes its texture as a **name string** - the third argument of `00181930`, copied into the singleton at `+0x3938` by `001B2410`, or an empty string when the pointer is null (`001B2426`..`001B2432`) - and the close passes `(1, 1, null, 0)` (`002DD1A6`..`002DD1B3`), as the rectangle does. The opener sets the colour from the draw context as `(w5A, w5A, w5A, w58)` through `001816F0` (`002DD2C4`..`002DD2D2`) - a brightness repeated three times and an alpha, the same four values the quad emitter puts in its thirteenth vector - and the two state handles go to the blend and alpha-test setters (`+0x3A68`, `+0x3A70`). So a window frame drawn this way would be nine flat-tinted, vertex-coloured rectangles; a textured frame is some other renderer's work. Static; and the renderer itself still has no caller.
+      **ANSWERED 2026-09-18 (FABLE): from no texture at all - on either back-end the nine regions are plain alpha-blended quads.** The sliced path is `002DD1E0` (open), `002DC7F0` three times and `002DD090` (close). *PS2 side:* the opener's GIF tag is `0x8026400000000001` with the register list `0x41414141` (`002DD294`, `002DD2B2`): eight registers, RGBAQ and XYZF2 four times, PRIM = triangle strip, Gouraud, blending on, **texturing off** - no ST or UV register anywhere in it. *PC side:* the batcher takes its texture as a **name string** - the third argument of `00181930`, copied into the singleton at `+0x3938` by `001B2410`, or an empty string when the pointer is null (`001B2426`..`001B2432`) - and the close passes `(1, 1, null, 0)` (`002DD1A6`..`002DD1B3`), as the rectangle does. The opener sets the colour from the draw context as `(w5A, w5A, w5A, w58)` through `001816F0` (`002DD2C4`..`002DD2D2`) - a brightness repeated three times and an alpha, the same four values the quad emitter puts in its thirteenth vector - and the two state handles go to the blend and alpha-test setters (`+0x3A68`, `+0x3A70`). So a window frame drawn this way would be nine flat-tinted, vertex-coloured rectangles; a textured frame is some other renderer's work. Static; ~~and the renderer itself still has no caller.~~ *(answered: see the box-renderer page's REFUTED box — the nine-patch box renderer is entered by a conditional jump at +0x5 of its 12-byte opacity gate, and that gate has four callers; 2026-10-02, OPUS)*
       *Bearing, 2026-09-18 (FABLE), not an answer:* every quad that reaches the shared emitter is **untextured** - its GIF tag's PRIM has texturing off and its vertices carry no ST / UV register (UQ-347). Whether the sliced renderer's other two callees bind a texture was not read.
 - [x] ~~**UQ-345.** What `00392CE0`, the simple path, does differently.~~ **ANSWERED 2026-09-14 (FABLE), by the
       section below plus when it runs.**
@@ -1401,7 +1401,7 @@ renderers above. **Extent**: 256 instructions, ends `ret` at `002DC7E2`, no `jmp
 002DC2FE  mov   dword ptr [rbx + 0x1c], 0x6c0d8000    ; two command words
 ```
 
-Then **four vertices**, each built the same way:
+Then **four vertices**, each built the same way *(corrected 2026-10-02, OPUS: the offsets below are from `rdx`, which is `command + 0x10` (`lea rdx, [rbx+0x10]` at `002DC290`+0x7A), so vertex 0's colour sits at command `+0x60` and nothing overlaps the matrix at command `+0x20`–`+0x5F`)*:
 
 | vertex | colour dwords | position dwords |
 |---:|---|---|
@@ -1451,7 +1451,7 @@ Submission advances the ring cursor by the bytes written, **16-byte aligned**, t
         constants and an ordinary bit-28 mask. Only the pair means anything.
       - **Two of the four also write `0x13000000` at `+0xE0`** (`002717BD`, `003F2F47`) — a second
         constant on the same commands, not examined here.
-      - **Still open, and it is what the row now asks:** what the 64-bit value selects. **No
+      - **~~Still open, and it is what the row now asks:~~** ~~what the 64-bit value selects.~~ *(answered: see the ANSWERED 2026-09-18 line above: a VIF1 UNPACK header; 2026-10-02, OPUS)* **No
         instruction in `.text` compares against it**, so it is consumed downstream — by the driver
         or GPU, or by a test on a masked field rather than the whole word. Neither was read here,
         and the ring's consumer was not found: a census of `02EBEFC0` returns thirty-plus
@@ -1825,14 +1825,14 @@ This page describes unowned code in the residual folder, and it cites the bodies
 | `00347B00` | 186 B | takes `002640C0()`, a float and two ints `a`, `b` from the operand stack, resolves `b` through `0016D6A0` and `003EB720`, splits `a` into its low 24 bits and (`a` >> 24) - `0x10`, and when an object comes back, `00267310(byte +0x15 of argument 2)` is 0 and the high part is at most `0xF`, calls `003DD980(object, dword +0x28 of the 002640C0 result, high part, low part, float)` | `00347B57`, `00347B5A`, `00347B7D`, `00347B95` |
 | `0034A1D0` | 121 B | resolves dword `r8[+8]` through `003EB720`, ORs `002E4CE0(object)` with `002E7380(object)` (the latter only when dword `r8[+4]` is non-zero); returns 0 when that is non-zero or `00267310(byte +0x15 of argument 2)` is non-zero, else stores 1 in dword `022C7F88` and returns 1 | `0034A1F9`, `0034A209`, `0034A218`, `0034A225` |
 | `0034BBD0` | 113 B | the same as `0034A1D0` on argument 2 itself, with `002673D0` and `002E7330`: stores 1 in dword `022C7F88` and returns 1 only when both tests and `00267310(byte +0x15)` are 0 | `0034BBE8`, `0034BBF8`, `0034BC07`, `0034BC31` |
-| `0034C370` | 96 B | a state machine on dword `r8[0]`: states 0 and 1 (state 0 first writes 1 and falls through in the same call) call `003601B0(0x13)` and `003172E0(byte r8[+4])`, set state 2 and return 1; state 2 returns `003596B0()`, calling `003601C0(0x13)` when that is 0; any other state returns 1 | `0034C38A`, `0034C398`, `0034C3A5`, `0034C3B1`, `0034C3BF` |
+| `0034C370` | 96 B | a state machine on dword `r8[0]`: states 0 and 1 (state 0 first writes 1 and falls through in the same call) call the bit setter on 0x13 (bit 0x13 of dword `022CB720`) and `PartyConfiguration_AddSelector00To06ToAvailableIndex4To8(byte r8[+4])`, set state 2 and return 1; state 2 returns `003596B0()`, calling `003601C0(0x13)` when that is 0; any other state returns 1 | `0034C38A`, `0034C398`, `0034C3A5`, `0034C3B1`, `0034C3BF` |
 | `0034C7E0` | 59 B | takes `002640C0()` and an int from the operand stack, then tail-calls `001EC620(dword +0x28 of the 002640C0 result, the int, 00358320())` | `0034C7F8`, `0034C7FF`, `0034C816` |
 | `0034E630` | 147 B | decrements dword `r8[0]` and returns 0 once it goes negative; otherwise (zeroing it when `00267310(byte +0x15 of argument 2)` is non-zero) stores 1 in dword `022C7F88`, returns 1 when `001ED180()` is 0, and otherwise decrements once more, returning 0 if negative and 1 if not | `0034E63F`, `0034E670`, `0034E67A`, `0034E683` |
 | `0034E6D0` | 58 B | when dword `r8[+4]` is non-negative calls `003600D0()` and `00360480(byte +0x15 of argument 2)`; then calls `002260E0` and tail-calls `002E4150(0, 1 if that branch ran else 0)` | `0034E6D6`, `0034E6E9`, `0034E6F7`, `0034E705` |
 | `003506A0` | 33 B | returns `003596B0()`, calling `003601C0(0x13)` first when that is 0 | `003506A6`, `003506B1`, `003506B4` |
 | `003526F0` | 73 B | takes `002640C0()` and an int from the operand stack and tail-calls `0026B4C0(rcx, float)` with the float `001EC520(dword +0x28 of the 002640C0 result, the int)` returns | `00352710`, `0035271A`, `00352734` |
 | `00352B30` | 73 B | the same as `003526F0` with `001EC540` in place of `001EC520` | `00352B50`, `00352B5A`, `00352B74` |
-| `00354B20` | 98 B | takes an int `n` from the operand stack and clamps `n + 1` to 1..3; unless `001C3370()` is 1 or `00264170()` is 0, calls `00332130`, `001EC680` and `001EC6A0(.., -1)` with it and tail-calls `001EC600` | `00354B31`, `00354B44`, `00354B5C`, `00354B77` |
+| `00354B20` | 98 B | takes an int `n` from the operand stack and clamps `n + 1` to 1..3; unless `001C3370()` is 1 or `00264170()` is 0, calls a 93-byte actor helper, `001EC680` and `001EC6A0(.., -1)` with it and tail-calls `001EC600` | `00354B31`, `00354B44`, `00354B5C`, `00354B77` |
 | `00354D00` | 89 B | takes three ints from the operand stack into dwords `r8[+0xC]`, `r8[+8]` and `r8[+4]`, calls `001831A0` when `00229EA0()` is 2, and stores 2 in dword `r8[0]` when `005C5230()` is non-zero, else 0 | `00354D1B`, `00354D36`, `00354D40`, `00354D51` |
 | `00354E80` | 111 B | calls `00267F90(stack, 0)`, then does what `00354B20` does | `00354E8E`, `00354EB1`, `00354EC9`, `00354EE4` |
 | `003559B0` | 69 B | takes two ints `a`, `b` from the operand stack, calls `00183070` and `001D6C20`, and tail-calls `002EFA70(b, a, 1, 0)` | `003559CA`, `003559D1`, `003559E2`, `003559F0` |

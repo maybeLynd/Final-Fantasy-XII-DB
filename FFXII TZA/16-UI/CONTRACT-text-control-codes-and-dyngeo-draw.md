@@ -639,5 +639,5 @@ touches audio. The edge is real, and the layer label on its far end is the ledge
 
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
-| `001E0C30` | 25 B | calls `00796E20()` and tail-jumps to `00225680` with `rcx` replaced by qword `+0xDF8` of that result, leaving `rdx`, `r8` and `r9` as passed in | `001E0C34`, `001E0C39`, `001E0C44` |
+| `001E0C30` | 25 B | calls the framework-singleton getter and tail-jumps to `00225680` with `rcx` replaced by qword `+0xDF8` of that result, leaving `rdx`, `r8` and `r9` as passed in | `001E0C34`, `001E0C39`, `001E0C44` |
 | `00214890` | 24 B | tail-jumps through `rdx`'s vtable slot `+0x118` with `rcx` = `rdx`, both `edx` and `r9d` set to the zero-extended low byte of `r8`, and `r8d` = 0 | `00214893`, `00214897`, `0021489A`, `0021489D`, `002148A1` |

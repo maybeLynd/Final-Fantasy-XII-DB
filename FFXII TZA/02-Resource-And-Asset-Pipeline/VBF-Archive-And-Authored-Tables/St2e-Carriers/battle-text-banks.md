@@ -128,7 +128,7 @@ fence grammar cannot express a length read from the header.*
 
 | bank | count | first entries | what it is |
 |---:|---:|---|---|
-| 0 | 545 | Cure, Blindna, Vox, … Dismount (`0x95`) … Belias–Zodiark (`0x106`–`0x112`) … Dismiss (`0x113`), Quickening (543), SecondJob (544) | **action names**, indexed by `action_data.bin` row `+0x34` |
+| 0 | 545 | Cure, Blindna, Vox, … Dismount (`0x95`) … Belias–Zodiark (`0x106`–`0x112`) … Dismiss (`0x113`), Quickening (543), SecondJob (544) | **action names**, indexed by ~~`action_data.bin`~~ action-table row `+0x34` *(answered: see the row-`+0x34` entry above - the table is `battle_pack.bin` `+0x3C`, AY-6; 2026-10-02, OPUS)* |
 | 1 | 544 | Unarmed, Broadsword, Longsword, … Agate Ring (345), Cameo Belt (372) | equipment names |
 | 2 | 1 | dummy | — |
 | 3 | 362 | Red Spiral, White Whorl, … Serenity (226), Spellbound (228), Channeling (233–235), … Second Board, Quickening | licence-board node names |
@@ -164,14 +164,14 @@ fence grammar cannot express a length read from the header.*
   Zeromus, Exodus, Ultima, Zodiark**. Row byte `+0x2B` is 13 for every human, 30 for the Chocobo and
   20 for every Esper. The kind page's "type ids `0x1B`–`0x27`" are rows 27–39: the Espers.
 - **The augment rows are named elsewhere.** The 129-row augment table (registry slot 29,
-  directory offset `+0xEC`, `{u16 nameId, u16 0x5000 + row, u16 parameter, u16 0xFF}`) carries
+  directory offset `+0xEC`, ~~`{u16 nameId, u16 0x5000 + row, u16 parameter, u16 0xFF}`~~ `{u16 helpId, u16 nameWord = 0x5000 + row, u16 parameter, u16 0xFF}`) *(corrected 2026-10-02, OPUS: the query-record filler reads the augment name from word `+2` (its `+0x1F0A` `movzx ecx, word ptr [rax + 2]`, bank `>> 11`, index `& 0x7FF`); word `+0` is a help id `13000 + n` with `n` the help-text index, not the row (row 103 carries 13041, the `us` `listhelp_ability.bin` text 41 "Increases magick power when HP is full."; row 115 carries 13063))* carries
   `nameId = 13000 + n` for the rows that have a description and `0` for the rest; `13000 + n`
   corresponds to string id `130000 + n` of `listhelp_ability.bin` (64 ids, `130000`–`130063`):
   row 2 → "Improves chance to hit." (the AccuracyBoost the formula pages name), row 16 →
   "Nullifies weather and terrain effects on elemental damage." (Weatherproof), row 17 → "Enables
   the theft of superior and rare items." (Thievery), row 103 → "Increases magick power when HP is
   full."; rows 116–127 have `nameId = 0` and only parameters (`0, 0, 0, 40, 30, 20, 30, 20, 10, 10,
-  10, 10`). How the engine composes `13000 + n` into `130000 + n` is not read; the correspondence
+  10, 10`). ~~How the engine composes `13000 + n` into `130000 + n` is not read;~~ *(answered: see §7 - nothing composes it, the row stores the second id; 2026-10-02, OPUS)* the correspondence
   is asserted from the three rows whose descriptions match names the database already had.
 
 ### 5.1 The six other readers of `02EBF170`, and which words they pass (FX-1, 2026-09-11)
@@ -230,7 +230,7 @@ that tie the two together are the same in all nine.
       40 `NOT USED`), so **rows 116–127 have no help text at all** — their identity is still what the
       formula slots do with them. What `0020E600` makes of a row word of 130,000 is not read. **FX-2.**
       > *Narrowed further 2026-09-12 (FABLE).* Two facts from the bytes. **(1) Rows 116–127 do carry a
-      > text reference**: their word `+2` is `0x5070`–`0x507F` = 20,592–20,607 — in the same low-pool
+      > text reference**: their word `+2` is ~~`0x5070`–`0x507F` = 20,592–20,607~~ `0x5074`–`0x507F` = 20,596–20,607, bank 10 rows 116–127 *(corrected 2026-10-02, OPUS: `0x5000 + row` in the shipped `us` augment table; the query-record filler reads it as a bank word, `>> 11` and `& 0x7FF`)* — in the same low-pool
       > scheme that is **group 20, rows 592–607**, a group this page has not yet bound to a file (the
       > `13000 + n` rows are group 13); their `+4` parameters are 0, 0, 0, 40, 30, 20, 30, 20, 10, 10, 10, 10.
       > **(2) Only 116, 117 and 118 are consumed by an immediate mask anywhere in `.text`** — an image-wide
@@ -242,7 +242,7 @@ that tie the two together are the same in all nine.
       > inflict a status class" augments, parameterless~~ *(wrong: see the answer below)*. Ids 119–127, the ones with the 40 / 30 / 20 / 10
       > parameters, are tested by no immediate mask; their consumers, if any, address the layers
       > through computed bit indices and remain to be found.
-- [x] ~~What augments 116–127 are (FX-2).~~ **ANSWERED 2026-09-15 in the register, carried here 2026-09-18 (FABLE):** the licence board names them. The twelve Lore nodes (group `0x1B`, byte `+5` = 16) each grant one of ids `0x74`–`0x7F`: Remedy Lore 3/2/1 = 116/117/118 (parameter 0), Potion Lore 3/2/1 = 119/120/121 (40/30/20), Ether Lore 3/2/1 = 122/123/124 (30/20/10), Phoenix Lore = 125/126/127 (10 each); 116–118 act only for action `0x62` Remedy through `BattleAction_ComputeAuthoredStatusMask`, and their name ids `0x5070`–`0x507F` are low-pool group 20 rows 592–607. The composition residue above is closed by the same box: nothing composes `13000 + n` into `130000 + n`, the second id is stored in the row.
+- [x] ~~What augments 116–127 are (FX-2).~~ **ANSWERED 2026-09-15 in the register, carried here 2026-09-18 (FABLE):** the licence board names them. The twelve Lore nodes (group `0x1B`, byte `+5` = 16) each grant one of ids `0x74`–`0x7F`: Remedy Lore 3/2/1 = 116/117/118 (parameter 0), Potion Lore 3/2/1 = 119/120/121 (40/30/20), Ether Lore 3/2/1 = 122/123/124 (30/20/10), Phoenix Lore = 125/126/127 (10 each); 116–118 act only for action `0x62` Remedy through `BattleAction_ComputeAuthoredStatusMask`, and their name ids ~~`0x5070`–`0x507F` are low-pool group 20 rows 592–607~~ `0x5074`–`0x507F` are bank 10 rows 116–127 *(corrected 2026-10-02, OPUS: `0x5000 + row` in the shipped augment table; the query-record filler reads word `+2` as a bank word)*. The composition residue above is closed by the same box: nothing composes `13000 + n` into `130000 + n`, the second id is stored in the row.
 
       **FX-2 ANSWERED 2026-09-15 (FABLE): the twelve are the Lore augments — the licence board names them.**
       Static reading plus authored data; nothing was executed.
@@ -371,7 +371,7 @@ re-derived. Nothing was executed or observed live.
 
 **Save_Load_Settings — CLIENT.** `SaveSlotMetadata_BuildSubmissionDescriptor`, owned by that layer, calls `00254A10` on this page. That caller is the descriptor build, working over a **`0x3C4`-byte** region from `[02CA99B8]` in a `0xA8`-byte frame with a stack cookie; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
 
-**Input — SERVICE (SWE2-CONTRACT 2026-09-15, 3 edges).** Text-bank bodies `002878E0`/`00287C20` call the input helpers `001E0B90` and `0017DE60` — the bank playback path consults input state. 3 edges, named.
+**Input — SERVICE (SWE2-CONTRACT 2026-09-15, 3 edges).** Text-bank bodies `002878E0`/`00287C20` call ~~the input helpers `001E0B90` and~~ a keyboard-layout language selector (French 1, German 2, else 0, from `GetKeyboardLayout`) and the input helper `0017DE60` *(corrected 2026-10-02, OPUS: the first is no input poll, the SWE2-EC7-71 update below)* — the bank playback path consults ~~input state~~ the layout language and input state. 3 edges, named.
 - **ActorEntity — CLIENT and SERVICE (7 edges).** 1 inbound (ActorEntity bodies `BattleUnit_ApplyUnitDefinition` (0023A570) call page-cited `002B58B0`); 6 outbound (page-cited `00329220` call ActorEntity bodies `ActorHandle_ResolveRegistryEntryByPackedId` (003588B0), `BattleUnit_GetBySlotIndex` (00236820), `ActorRuntime_GetClassNibble` (00263C20)). Substantive edges include `00329220` calls `ActorRuntime_GetClassNibble` (00263C20); the remaining edges run through shared helpers the page cites.
 - **CombatAI — CLIENT and SERVICE (3 edges).** 2 inbound (CombatAI bodies `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880), `AiOrder_BuildCandidateTargetBufferFromStoredRangeAndStatus` (0030F130) call page-cited `AreaData_BindAndRebaseSectionDescriptor` (003845F0), `BattleAction_ComputeAuthoredStatusMask` (003872D0)); 1 outbound (page-cited `00236C30` call CombatAI bodies `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880)). Substantive edges include `00236C30` calls `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880); `BattleAction_ComputeAuthoredStatusMask` (003872D0) is called by `AiOrder_BuildCandidateTargetBufferFromStoredRangeAndStatus` (0030F130); the remaining edges run through shared helpers the page cites.
 - **CombatAction — CLIENT and SERVICE (4 edges).** 2 inbound (CombatAction bodies `00237FC0`, `BattleAction_ComputeActiveTargetStatusIntersection` (0031C500) call page-cited `AreaData_BindAndRebaseSectionDescriptor` (003845F0), `BattleAction_ComputeAuthoredStatusMask` (003872D0)); 2 outbound (page-cited `00236C30`, `00329220` call CombatAction bodies `00237FC0`, `003879C0`). Substantive edges include `00236C30` calls `00237FC0`; `00329220` calls `003879C0`; `BattleAction_ComputeAuthoredStatusMask` (003872D0) is called by `BattleAction_ComputeActiveTargetStatusIntersection` (0031C500); the remaining edges run through shared helpers the page cites.

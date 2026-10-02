@@ -1,0 +1,191 @@
+{
+  "package": "ov42-caller-quotient-bound",
+  "method": "A original retained instructions + modular invariant",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "caller-source-01.json",
+      "bytes": 44698,
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    },
+    {
+      "path": "caller-source-02.json",
+      "bytes": 119772,
+      "sha256": "1b6bebb2a932b09c387ead6830cd4088236ad551ccbc1c52b9651ca0d8faa9b8"
+    },
+    {
+      "path": "carrier-result-01.json",
+      "bytes": 7961,
+      "sha256": "1b8bdd9a9e12700e88ef339186ef9fdef3d52c156666567ecc1e55bb50eeb5a8"
+    },
+    {
+      "path": "control-01.status.json",
+      "bytes": 542,
+      "sha256": "49407330860cf668611dd6c05ee96570ff65e85e31b2ed1f7267dacd1427c4e4"
+    },
+    {
+      "path": "control-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-01.stdout",
+      "bytes": 108,
+      "sha256": "4c66453faf21c8403a6bbd20ca9cd144772abc98feb81e83951471a44039ce5e"
+    },
+    {
+      "path": "control-result-01.json",
+      "bytes": 15440,
+      "sha256": "01fb5859b4decdb3457ad96df22d07d3ed62dede9ac60a975b7a4f9eb018587c"
+    },
+    {
+      "path": "control.py",
+      "bytes": 4884,
+      "sha256": "b7d9d2ed9e2a5599e9ec46b99f3c562b3b3c7db5abdbd80bc6d2c460d0e130ad"
+    },
+    {
+      "path": "controls-01/changed-current-bound/actual.status.json",
+      "bytes": 4118,
+      "sha256": "2567e08d51ff6c9aac3e9e6b922682600a38ce16c2d59e0b1c8da0c18aa4023a"
+    },
+    {
+      "path": "controls-01/changed-current-bound/actual.stderr",
+      "bytes": 964,
+      "sha256": "e05c76c0234c5f7d3669837a7a7b28fd2c3d8cc2f20670aa4088e1b434196605"
+    },
+    {
+      "path": "controls-01/changed-current-bound/actual.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/changed-current-bound/caller-source-01.json",
+      "bytes": 23959,
+      "sha256": "6d8fc394b301840f201705ac3d34e936f3ce8da01a0d5b4827fee0eba3999938"
+    },
+    {
+      "path": "controls-01/missing-lineage-member/actual.status.json",
+      "bytes": 4131,
+      "sha256": "17a27df0da6cd5154da9a6f66ee960491c3750b538887e9097a88bbc47154ae5"
+    },
+    {
+      "path": "controls-01/missing-lineage-member/actual.stderr",
+      "bytes": 1058,
+      "sha256": "6de971028d6f197f4c23fdab7aa55d234b30af804abad451d79c81718cdfccfa"
+    },
+    {
+      "path": "controls-01/missing-lineage-member/actual.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/missing-lineage-member/lineage.json",
+      "bytes": 831,
+      "sha256": "e24f2fd30e4167a537c7c53765142f0aefd2c0db39fa6e331f389236d74230ae"
+    },
+    {
+      "path": "controls-01/missing-queue/actual.status.json",
+      "bytes": 3930,
+      "sha256": "8947a4ad320b219dbfa77f03625040b8538b6b0f3bf150ee189b46cfd4932d9c"
+    },
+    {
+      "path": "controls-01/missing-queue/actual.stderr",
+      "bytes": 1660,
+      "sha256": "15a8bfa0f223c679a817e77bb929aa034ea0e98e76ae2475c2207f159e6d08ba"
+    },
+    {
+      "path": "controls-01/missing-queue/actual.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "KNOWN-PRECONDITIONS.md",
+      "bytes": 887,
+      "sha256": "7002fafe12d1a8e133ac39556f1cf35fc9ae5a222b2491883a9648eb7cabfde8"
+    },
+    {
+      "path": "lineage.json",
+      "bytes": 1208,
+      "sha256": "0efc35b66858d667bd2ceb34e5c5696ec393bedebd704ffeab3ba4736007ad9d"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1008,
+      "sha256": "8a9af89c472b7164f74e6ef349b3d626188070de42012c14dad2b57d5397b0b6"
+    },
+    {
+      "path": "proof-01.status.json",
+      "bytes": 563,
+      "sha256": "2c4600f25450804c597b57f5347bee72279c3c60bc78e85219422e13dc1b90ab"
+    },
+    {
+      "path": "proof-01.stderr",
+      "bytes": 1174,
+      "sha256": "de578b6f83d070383ae5e20794ffdcb3e8ca41c15a6bf6a25327ea14f59c5cd2"
+    },
+    {
+      "path": "proof-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.status.json",
+      "bytes": 563,
+      "sha256": "5b88a6231ba8345dee92c539b557a07b2ae5b248e652c325870710dd2e429a36"
+    },
+    {
+      "path": "proof-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.stdout",
+      "bytes": 115,
+      "sha256": "d7108328c03c7e93e6b89e4cf820952419adf8999c702f539daeec7d9d1b816e"
+    },
+    {
+      "path": "prove-before-site-correction.py",
+      "bytes": 8982,
+      "sha256": "27fdbaca7f3551f079e1fa98b8384aa410448da680303d5d8f9f5674c039cf49"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 9050,
+      "sha256": "eac994cb0fcdca4ec6e91260096439761d630f18e28dbe92176a231e1a3a7eb5"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "queue-source-01.json",
+      "bytes": 56901,
+      "sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4350,
+      "sha256": "3701261dfad7f8c324d29bf45958a4fd03c829f537204ec267531c8a07fcc135"
+    },
+    {
+      "path": "result-02.json",
+      "bytes": 7619,
+      "sha256": "2e9283f6a5e9b9c7e9f02a6fd844f9523b6d0ddbccc885429c8c6843baee22f6"
+    },
+    {
+      "path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

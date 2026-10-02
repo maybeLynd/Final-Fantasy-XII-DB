@@ -1,0 +1,26 @@
+{
+  "baseline": "this immutable packet",
+  "common_overlay": "copy prove-before-source-map-metadata-02.py as prove.py (actual driver7190d3f2)",
+  "controls": {
+    "missing-CFG": [
+      {
+        "delete": "prove_owner_reload_order.py"
+      }
+    ],
+    "missing-class-contract": [
+      {
+        "delete": "retained/ov42-class20-action-admission/class20-admission-result-01.json"
+      }
+    ],
+    "wrong-CFG-interface": [
+      {
+        "copy": "prove-title-queue-consumption.py",
+        "to": "prove_owner_reload_order.py"
+      },
+      {
+        "update": "its input-identities-02 SHA, exactly as retained overlay"
+      }
+    ]
+  },
+  "limits": "Exact replay recipes/changed input overlays; unchanged duplicate clone trees omitted. Synthetic source records are preserved in control-result01."
+}

@@ -1,0 +1,378 @@
+{
+ "page": "17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01GAVL9pjWiJ4RaEZv212gfL",
+ "report": "the-scripted-camera-player.json",
+ "rows": [
+  {
+   "fn": "00255C20",
+   "text": "returns 1 when float `02096274` is at least float `02096270` (`comiss`) or float `02096270` equals 0.0, else 0 (also when `02096270` is NaN)",
+   "anchors": [
+    [
+     "00255C28",
+     "movss"
+    ],
+    [
+     "00255C30",
+     "comiss"
+    ],
+    [
+     "00255C38",
+     "ucomiss"
+    ],
+    [
+     "00255C42",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00255C50",
+   "text": "stores the fifth (stack) argument at dword `0209627C`, `ecx` at `02096284`, `edx` at `02096280`, `r9d` at `02096278`, the float `xmm2` at `02096270`, 0.0 at `02096274` and word 0 at `02096360`; calls `003CBFF0(02096290)` and stores the address `02096370` in qword `020963F0`",
+   "anchors": [
+    [
+     "00255C5B",
+     "mov"
+    ],
+    [
+     "00255C77",
+     "movss"
+    ],
+    [
+     "00255C7F",
+     "movss"
+    ],
+    [
+     "00255C94",
+     "call"
+    ],
+    [
+     "00255CA0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00255CB0",
+   "text": "returns without work when float `02096274` is at least float `02096270` (`comiss`) or `02096270` equals 0.0; otherwise stores float `02096270` minus 1.0 (`01CEBBA8`) at `02096274` and tail-jumps `00255850`",
+   "anchors": [
+    [
+     "00255CC0",
+     "comiss"
+    ],
+    [
+     "00255CC8",
+     "ucomiss"
+    ],
+    [
+     "00255CCF",
+     "subss"
+    ],
+    [
+     "00255CD7",
+     "movss"
+    ],
+    [
+     "00255CDF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00257800",
+   "text": "returns 1 when float `020963FC` is at least float `020963F8` (`comiss`) or float `020963F8` equals 0.0, else 0 (also when `020963F8` is NaN)",
+   "anchors": [
+    [
+     "00257808",
+     "movss"
+    ],
+    [
+     "00257810",
+     "comiss"
+    ],
+    [
+     "00257818",
+     "ucomiss"
+    ],
+    [
+     "00257822",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002578B0",
+   "text": "returns without work when float `020963FC` is at least float `020963F8` (`comiss`) or `020963F8` equals 0.0; otherwise stores float `020963F8` minus 1.0 (`01CEBBA8`) at `020963FC` and tail-jumps `00257520`",
+   "anchors": [
+    [
+     "002578C0",
+     "comiss"
+    ],
+    [
+     "002578C8",
+     "ucomiss"
+    ],
+    [
+     "002578CF",
+     "subss"
+    ],
+    [
+     "002578D7",
+     "movss"
+    ],
+    [
+     "002578DF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00257AA0",
+   "text": "stores the byte `r8b` at `020929B8` plus sign-extended `ecx` times `0xBB0` plus sign-extended `edx` times `0x2E0`",
+   "anchors": [
+    [
+     "00257AA3",
+     "imul"
+    ],
+    [
+     "00257AAD",
+     "imul"
+    ],
+    [
+     "00257AB4",
+     "lea"
+    ],
+    [
+     "00257ABE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0025A3B0",
+   "text": "tail-jumps `0025A2C0(edx, r8)` when `ecx` is zero, otherwise `0025A3D0(r8, edx)`",
+   "anchors": [
+    [
+     "0025A3B2",
+     "test"
+    ],
+    [
+     "0025A3BB",
+     "jmp"
+    ],
+    [
+     "0025A3C3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0025A4A0",
+   "text": "indexes the `0x110`-byte records at `02097300` by sign-extended `ecx` and stores the floats `xmm1`, `xmm2`, `xmm3` at `+0`, `+4`, `+8` and the dword `0x3F800000` (1.0) at `+0xC`",
+   "anchors": [
+    [
+     "0025A4A3",
+     "imul"
+    ],
+    [
+     "0025A4AA",
+     "lea"
+    ],
+    [
+     "0025A4B4",
+     "movss"
+    ],
+    [
+     "0025A4BD",
+     "movss"
+    ],
+    [
+     "0025A4C2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0025A4D0",
+   "text": "indexes the `0x110`-byte records at `02097300` by sign-extended `ecx` and stores the floats `xmm1`, `xmm2`, `xmm3` at `+0x10`, `+0x14`, `+0x18` and the dword `0x3F800000` (1.0) at `+0x1C`",
+   "anchors": [
+    [
+     "0025A4D3",
+     "imul"
+    ],
+    [
+     "0025A4DA",
+     "lea"
+    ],
+    [
+     "0025A4E4",
+     "movss"
+    ],
+    [
+     "0025A4EE",
+     "movss"
+    ],
+    [
+     "0025A4F3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00341AB0",
+   "text": "passes the float `00267DB0(r9)` returns through `003A1C50`, calls `0026C090(rdx, value)` and `0026C290(rdx, 00265200(rdx))`, stores the value as a float at `[r8]` and tail-jumps `0026C120(rdx, 3)`",
+   "anchors": [
+    [
+     "00341ACD",
+     "call"
+    ],
+    [
+     "00341ADB",
+     "call"
+    ],
+    [
+     "00341AEE",
+     "call"
+    ],
+    [
+     "00341AF8",
+     "movss"
+    ],
+    [
+     "00341B0E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003445E0",
+   "text": "calls `00267310(byte +0x15 of rdx)`; when that is non-zero calls `002578B0()` and returns 0, otherwise returns 1 when `00257800()` returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "003445E4",
+     "movzx"
+    ],
+    [
+     "003445E8",
+     "call"
+    ],
+    [
+     "003445F1",
+     "call"
+    ],
+    [
+     "003445FD",
+     "call"
+    ],
+    [
+     "00344606",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A530",
+   "text": "calls `00267310(byte +0x15 of rdx)`; when that is non-zero calls `00255CB0()` and returns 0, otherwise returns 1 when `00255C20()` returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "0034A534",
+     "movzx"
+    ],
+    [
+     "0034A538",
+     "call"
+    ],
+    [
+     "0034A541",
+     "call"
+    ],
+    [
+     "0034A54D",
+     "call"
+    ],
+    [
+     "0034A556",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00350660",
+   "text": "calls `00267F90(r9, 0)`, then tail-jumps `003DA4D0(002640C0(), 00267E10(r9))`",
+   "anchors": [
+    [
+     "00350672",
+     "call"
+    ],
+    [
+     "00350677",
+     "call"
+    ],
+    [
+     "00350682",
+     "call"
+    ],
+    [
+     "00350696",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00350B00",
+   "text": "calls `002640C0()`, then pops a float with `00267DB0(r9)` and an int with `00267E10(r9)`, and tail-jumps `003DA2D0(first result, int)` with the float in `xmm2`",
+   "anchors": [
+    [
+     "00350B12",
+     "call"
+    ],
+    [
+     "00350B1D",
+     "call"
+    ],
+    [
+     "00350B28",
+     "call"
+    ],
+    [
+     "00350B2D",
+     "movaps"
+    ],
+    [
+     "00350B44",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00351190",
+   "text": "converts the int `00267E10(r9)` to float (`cvtdq2ps`), calls `00267F90(r9, 0)` and `00267F60(r9, that float)`; then calls `002640C0()`, pops a float with `00267DB0(r9)` and an int with `00267E10(r9)` and tail-jumps `003DA2D0(002640C0 result, int)` with the popped float in `xmm2`",
+   "anchors": [
+    [
+     "003511A5",
+     "call"
+    ],
+    [
+     "003511B3",
+     "cvtdq2ps"
+    ],
+    [
+     "003511C1",
+     "call"
+    ],
+    [
+     "003511D1",
+     "call"
+    ],
+    [
+     "003511F8",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

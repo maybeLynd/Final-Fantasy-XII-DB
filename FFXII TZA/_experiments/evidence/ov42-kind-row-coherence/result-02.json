@@ -1,0 +1,115 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY conditional kind/full32-to-low16 coherence",
+  "driver_sha256": "f08e0fd21c8a17389ae7835c91e0faacd2dcdd1d5080f553642600e04aef6558",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59"
+    },
+    {
+      "path": "retained-prefix-01.json",
+      "sha256": "33276301865c4c6aca31720248a0afe6c6832924b97bd40e754abdc2b45c307a"
+    },
+    {
+      "path": "retained/queue-source-02.json",
+      "sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1"
+    }
+  ],
+  "retained_queue": {
+    "manifest_sha256": "59f6be899f03c3b65ba88f73fff8bb82e15e25565eacabb860ad72289a063c24",
+    "member_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+    "limits": "Producer-valid source parent, independent acceptance pending; original bytes reverified, not rerun/credited."
+  },
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 37,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 167,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 204,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "classifier": "Unsigned full32 q=floor(((low32(row)-low32(lookup base)) mod2^32)/u16(second context+8)). Positive divisor/normal ABI/readable state required. ADD EAX,-94 and unsigned CMP7F admit full q148..275, not low16(q).",
+    "kind4": "Published kind4 iff admitted full classifier quotient lies208..225, under this function's kind-publishing path and unchanged original embedded table.",
+    "arms": [
+      {
+        "selector": 0,
+        "target": "0x306cbe",
+        "published_kind": 5
+      },
+      {
+        "selector": 1,
+        "target": "0x306cc5",
+        "published_kind": 6
+      },
+      {
+        "selector": 2,
+        "target": "0x306cd1",
+        "published_kind": 3
+      },
+      {
+        "selector": 3,
+        "target": "0x306cb7",
+        "published_kind": 4
+      },
+      {
+        "selector": 4,
+        "target": "0x306ca9",
+        "published_kind": 1
+      },
+      {
+        "selector": 5,
+        "target": "0x306cb0",
+        "published_kind": 2
+      },
+      {
+        "selector": 6,
+        "target": "0x306ccc",
+        "published_kind": 7
+      }
+    ],
+    "conditional_invariant": "If the queue dispatch still uses this published kind4 and its full quotient equals the classifier quotient, queued WORD is208..225 and queue DWORD0..17. Thus511..534 excluded under that explicit equality/stable-kind premise.",
+    "sufficient_binding": "Same incoming row low32, same lookup-base low32 and same positive divisor suffice for equal quotients. Exact quotient equality is the weaker sufficient premise; pointer identity is not necessary and is not established.",
+    "unproved": "Actual same-row/caller/owner relationship, descriptor consistency between the two loads and across calls, kind persistence and scheduling are not proved. This is a conditional invariant, not natural impossibility.",
+    "countermodels": [
+      {
+        "classifier_q": 208,
+        "published_kind": 4,
+        "queue_q": 511,
+        "queue_dword": 303,
+        "meaning": "Changing bindings can invalidate the conditional exclusion; mathematical supplied-state model only."
+      },
+      {
+        "classifier_q": 65744,
+        "published_kind": 7,
+        "queue_q": 65744,
+        "queue_dword": 0,
+        "meaning": "Classifier uses full32, queue low16 aliases208; do not narrow classifier before its guard."
+      }
+    ],
+    "request_status": "On the kind-publishing normal-return path,32FC30 result is not tested before32ED70; its RAX is dead at that call and subsequently overwritten by the context load. No native armer/slot effects or successful presentation are certified by this.",
+    "limits": "STATIC_ONLY conditional original-code facts. No full interpreter/live initialization, natural candidate use, resource success, owner/kind reachability/lifetime/reuse or whole OV42 closure."
+  },
+  "limits": "STATIC_ONLY conditional original-code facts. No full interpreter/live initialization, natural candidate use, resource success, owner/kind reachability/lifetime/reuse or whole OV42 closure.",
+  "cleanup": "Offline only, all finite children terminated; no game/native/emulator/PC/save/config/reference/peer intervention."
+}

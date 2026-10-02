@@ -17,7 +17,9 @@ TEST 3 (per body)  every reference TO the body comes from inside the span or fro
     code   - every census body (listed + UC-1) and every unlisted code block is decoded linearly; call / jmp / jcc /
              loop targets and rip-relative operands are indexed by target;
     raw    - an image-wide byte scan of .text for E8/E9 rel32, 0F 80-8F rel32 and EB/70-7F rel8 whose target is a UC-1
-             body start; a hit whose source is not a decoded instruction is kept as 'raw-only' (conservative);
+             body start; a hit whose source byte lies inside a decoded instruction is dropped (a misaligned
+             pattern, not a transfer); a hit whose source is not otherwise a decoded transfer is kept as
+             'raw-only' (conservative);
     dir64  - every base-relocation (.reloc DIR64) cell whose 8-byte value is the body's VA;
     rva32  - every 4-byte-aligned cell in .rdata/_RDATA/.data/.text whose value is the body's RVA; .pdata records are
              read separately (an unwind record is a function signal, not a reference).
@@ -154,6 +156,9 @@ for o in range(tro, tro + trs - 6):
         hits.append((src, src + 2 + struct.unpack_from("<b", d, o + 1)[0]))
     for s, t in hits:
         if t in uc1 and s not in decoded_src:
+            if 0 <= s - tlo < len(covered) and covered[s - tlo]:
+                continue                      # bytes inside a decoded instruction - a misaligned pattern,
+                                              # not a transfer (0016EFCA: '7C 24' inside mov rdi,[rsp+0x18])
             ob = owner(s)
             if ob is not None and ob <= t < ob + bodies.get(ob, 0):
                 continue                      # a byte pattern inside the target body itself

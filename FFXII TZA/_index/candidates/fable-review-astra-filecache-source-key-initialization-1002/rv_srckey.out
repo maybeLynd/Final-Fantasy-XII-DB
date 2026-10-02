@@ -1,0 +1,64 @@
+== packet integrity
+PASS  manifest.json sha256 = d5cc7655d068357e...  | d5cc7655d068357ee5bd9496b5674f82d4e4679d30d12356ba5411d8b713350e
+PASS  all 43 manifest members hash as listed  | []
+== shipping-image re-derivation (image base 120000, sha 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8)
+PASS  B1 body 00597930..0059796B (59 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  B2 00597930 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['0x59796a'] tails=[] outs=[]
+PASS  B3 00597930 is bounded by int3 on both sides
+PASS  B1 body 00597970..00597A12 (162 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  B2 00597970 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['0x597a11'] tails=[] outs=[]
+PASS  B3 00597970 is bounded by int3 on both sides
+PASS  B1 body 0059ED70..0059EE0C (156 B) decodes exactly and .pdata tiles it (1 record(s))
+PASS  B2 0059ED70 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['0x59ee0b'] tails=[] outs=[]
+PASS  B3 0059ED70 is bounded by int3 on both sides
+PASS  B4 three complete bodies total 377 B (59 + 162 + 156)  | 377
+PASS  C1 00597930 makes exactly one resolver call, and it is the body's first call  | [('0x59795d', '0x59ee90')]
+PASS  C2 a DWORD constant-0 store to object+28h..2Bh exists  | 597951 obj+28h/4=('c', 0)
+PASS  C3 that zero store dominates the resolver call 59795D (every entry path passes it)  | 597951 obj+28h/4=('c', 0)
+PASS  C4 entry -> call is straight-line: the on-path set equals the linear prefix (12 insns)  | extra=[] missing=[]
+PASS  C5 no write after the zero store and before the call overlaps object+28h..2Bh (and none is unresolved)
+PASS  C6 zero carrier: rax is written before 597951 only by 597936 `xor eax, eax`  | src=rax writers=['0x597936']
+PASS  C7 rcx at the resolver call = object + 0h (frame bias)  | ('obj', 0)
+PASS  C8 whole body: no other write (before or after the call) overlaps object+28h..2Bh, none unresolved
+PASS  D1 00597970 makes exactly one resolver call, and it is the body's first call  | [('0x5979b6', '0x59ee90'), ('0x5979cf', '0x1c26b0')]
+PASS  D2 a DWORD constant-0 store to object+48h..4Bh exists  | 5979A3 obj+48h/4=('c', 0)
+PASS  D3 that zero store dominates the resolver call 5979B6 (every entry path passes it)  | 5979A3 obj+48h/4=('c', 0)
+PASS  D4 entry -> call is straight-line: the on-path set equals the linear prefix (18 insns)  | extra=[] missing=[]
+PASS  D5 no write after the zero store and before the call overlaps object+48h..4Bh (and none is unresolved)
+PASS  D6 zero carrier: rbp is written before 5979A3 only by 597984 `xor ebp, ebp`  | src=rbp writers=['0x597984']
+PASS  D7 rcx at the resolver call = object + 20h (frame bias)  | ('obj', 32)
+PASS  D8 whole body: no other write (before or after the call) overlaps object+48h..4Bh, none unresolved
+PASS  F1 0059ED70's first call is the resolver 0059EE90, and it is unconditional (dominates the ret)  | [('0x59ed97', '0x59ee90'), ('0x59eda4', '0x1c26b0'), ('0x59edc9', '0x584730')]
+PASS  F2 no object write (and no unresolved write) on any entry -> 59ED97 path; stack writes only
+PASS  F3 the pre-call stack writes are the caller's home slots entry SP+8h..+27h  | 59ED70 stk+8h/8=None; 59ED75 stk+10h/8=None; 59ED7A stk+18h/8=None; 59ED7F stk+20h/8=None
+PASS  F4 rcx at the resolver call = object + 20h (rebind frame bias)  | ('obj', 32)
+PASS  F5 every memory write in the whole body resolves to object or stack (none unresolved)
+PASS  F6 no write anywhere in the body overlaps object+48h..4Bh (full byte intervals)
+PASS  F7 the object writes are exactly five: +8h/4, +10h/8, +1Ch/4, +18h/4, +1Ch/4 (spans 8h..0Ch, 10h..20h)  | [('0x59ed9f', '0x8', 4), ('0x59edce', '0x10', 8), ('0x59ede3', '0x1c', 4), ('0x59edf0', '0x18', 4), ('0x59edf5', '0x1c', 4)]
+PASS  F8 all five object writes lie after the resolver call
+PASS  E1 key field in resolver-frame terms: record+28h - bias 0 = reader+48h - bias 20h = rebind+48h - bias 20h = 28h  | 40 40 40
+PASS  E2 corroboration: the reader's pre-call writes at object+20h.. rebased by -20h equal the record constructor's six pre-call writes (offset, width, constant/argument)  | record=[(0, 4, ('c', 0)), (8, 8, ('c', 18446744073709551615)), (16, 8, ('c', 0)), (24, 1, 'arg'), (32, 8, ('c', 18446744073709551615)), (40, 4, ('c', 0))] reader-20h=[(0, 4, ('c', 0)), (8, 8, ('c', 18446744073709551615)), (16, 8, ('c', 0)), (24, 1, 'arg'), (32, 8, ('c', 18446744073709551615)), (40, 4, ('c', 0))]
+PASS  G1 composition: both constructors enter the resolver with frame+28h = 0; rebind enters it with frame+28h untouched by its own code (conditional on ABI / valid distinct object / no interference)  | []
+PASS  R1 resolver 0059EE90 (876 B, .pdata) forms frame+28h once, as `lea r9, [r15 + 0x28]`, and no store in its body resolves to frame+28h..2Bh  | lea at ['0x59efd7']; direct=[]
+NOTE  resolver frame+28h address sites -> next call: [('0x59efd7', '0x1d6d20')]
+PASS  packet's three captured range sha256 values equal this image's bytes, and its ranges are the three .pdata bodies  | [] [('0x597930', '0x59796b'), ('0x597970', '0x597a12'), ('0x59ed70', '0x59ee0c')]
+== controls (each patched private image must FAIL its named check(s))
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 38 of 38
+PASS  control: 597951 key store +28h -> +2Ch  | failed ['C2', 'C3', 'C5', 'C6', 'C8', 'E2', 'G1']; required fail ['C2']
+PASS  control: 597951 DWORD store -> byte store (`mov [rcx+0x28], al`)  | failed ['C2', 'C3', 'C5', 'C6', 'C8', 'E2', 'G1']; required fail ['C2']
+PASS  control: 597936 `xor eax, eax` -> `mov al, 1` (nonzero carrier)  | failed ['C2', 'C3', 'C5', 'C6', 'C8', 'E2', 'G1']; required fail ['C2']
+PASS  control: move the record zero store after the call: 597951 nop, 597962 -> `mov dword [rbx+0x28], 0`  | failed ['C3', 'C5', 'C6', 'C8', 'E2', 'G1']; required fail ['C3']; required pass ['C2']
+PASS  control: 597949 -> `jmp 597954` + nops (a path skips the zero store)  | failed ['C2', 'C3', 'C4', 'C5', 'C6', 'C8', 'E2', 'G1']; required fail ['C3', 'C4']
+PASS  control: 597954 byte store +18h -> +28h (overwrites the key after the zero store)  | failed ['C5', 'C8', 'E2', 'G1']; required fail ['C5']
+PASS  control: 5979A3 reader +48h zero store removed (nop)  | failed ['D2', 'D3', 'D5', 'D6', 'D8', 'E2', 'G1']; required fail ['D2']
+PASS  control: 597984 `xor ebp, ebp` -> `or ebp, ebp` (carrier keeps caller's rbp)  | failed ['D2', 'D3', 'D5', 'D6', 'D8', 'E2', 'G1']; required fail ['D2']
+PASS  control: 5979B2 reader bias `add rcx, 0x20` -> 0x24  | failed ['D7', 'E1', 'G1']; required fail ['D7', 'E1']
+PASS  control: 59ED90 rebind bias `add rcx, 0x20` -> 0x28  | failed ['E1', 'F4', 'G1']; required fail ['F4', 'E1']
+PASS  control: 59ED94 -> `mov [rcx+0x28], ebp` (direct key reset through the biased pointer before the call)  | failed ['F2', 'F6', 'F7', 'F8', 'G1']; required fail ['F2', 'F6']
+PASS  control: 59ED9F `mov [rdi+8], eax` -> `mov [rdi+0x48], eax` (rebind writes the key)  | failed ['F6', 'F7', 'G1']; required fail ['F6']
+PASS  control: 59EDCE qword store +10h -> +41h (8-byte span 41h..48h reaches the key)  | failed ['F6', 'F7', 'G1']; required fail ['F6']
+PASS  control: boundary: 59EDCE qword store +10h -> +40h (span 40h..47h is adjacent, must not be flagged)  | failed ['F7']; required fail ['F7']; required pass ['F6']
+TOTAL: 56 checks, 56 PASS, 0 FAIL (14 controls)
+WRITES 00597930: 597938 obj+8h/8=('c', 18446744073709551615); 597940 obj+0h/4=('c', 0); 597945 obj+10h/8=('c', 0); 597949 obj+20h/8=('c', 18446744073709551615); 597951 obj+28h/4=('c', 0); 597954 obj+18h/1=('argpart', 'r9', 1)
+WRITES 00597970: 597970 stk+8h/8=None; 597975 stk+10h/8=None; 59797A stk+18h/8=None; 597986 obj+28h/8=('c', 18446744073709551615); 59798E obj+20h/4=('c', 0); 597994 obj+30h/8=('c', 0); 59799B obj+40h/8=('c', 18446744073709551615); 5979A3 obj+48h/4=('c', 0); 5979A6 obj+38h/1=('argpart', 'r8', 1); 5979C2 obj+8h/4=('c', 11); 5979CC obj+0h/8=None; 5979DE obj+10h/8=None; 5979EE obj+0h/8=None; 5979F1 obj+1Ch/4=('c', 4294967295); 5979FE obj+18h/4=('c', 0); 597A06 obj+1Ch/4=None
+WRITES 0059ED70: 59ED70 stk+8h/8=None; 59ED75 stk+10h/8=None; 59ED7A stk+18h/8=None; 59ED7F stk+20h/8=None; 59ED9F obj+8h/4=None; 59EDCE obj+10h/8=None; 59EDE3 obj+1Ch/4=('c', 4294967295); 59EDF0 obj+18h/4=('c', 0); 59EDF5 obj+1Ch/4=None

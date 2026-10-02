@@ -1,0 +1,403 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "date": "2026-10-02",
+ "session": "local-opus-1002",
+ "report": "class-descriptor-and-metadata-system.json",
+ "rows": [
+  {
+   "fn": "00219C40",
+   "text": "passes `rcx + 0xB8` to the 9-byte thunk that adds `+0x20` as the second argument, decrements dword `[rdx + 0x58]` and, when it reaches 0, calls virtual slot `+0x10` of `rdx` and then a 161-byte routine with `(rcx + 0x20, rdx)`; it always ends by tail-jumping a 32-byte release on `rcx + 0xB8`",
+   "anchors": [
+    [
+     "00219C5C",
+     "call"
+    ],
+    [
+     "00219C61",
+     "sub"
+    ],
+    [
+     "00219C70",
+     "call"
+    ],
+    [
+     "00219C7A",
+     "call"
+    ],
+    [
+     "00219C95",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A3E50",
+   "text": "stores the result of a 98-byte getter and the pointer `00D2D310` into a stack pair, calls virtual slot `+0x78` of `rcx` with `(rcx, rdx, &pair)`, and returns 1 in `al`",
+   "anchors": [
+    [
+     "005A3E6A",
+     "call"
+    ],
+    [
+     "005A3E74",
+     "lea"
+    ],
+    [
+     "005A3E8E",
+     "call"
+    ],
+    [
+     "005A3E92",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CB140",
+   "text": "byte-swaps dword `[rdx]` in place and returns 1 in `al`",
+   "anchors": [
+    [
+     "005CB142",
+     "bswap"
+    ],
+    [
+     "005CB144",
+     "mov"
+    ],
+    [
+     "005CB146",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CE120",
+   "text": "passes `02E404B0` and then `02CB6E80` to a 112-byte lookup; when either result is null it returns 0 in `al`, otherwise, when `rdx` is non-null, it stores the two results to qwords `[rdx]` and `[rdx + 8]` and 0 to dword `[rdx + 0x10]`, and returns 1",
+   "anchors": [
+    [
+     "005CE134",
+     "call"
+    ],
+    [
+     "005CE143",
+     "call"
+    ],
+    [
+     "005CE14B",
+     "je"
+    ],
+    [
+     "005CE15A",
+     "mov"
+    ],
+    [
+     "005CE172",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "005D18C0",
+   "text": "stores the result of a 98-byte getter and the pointer `00D2D310` into a stack pair and calls virtual slot `+0x78` of `rcx` with `(rcx, rdx, &pair)`; then, when bit 31 of dword `[rdx + 0x10]` is clear, passes qword `[rdx + 0x18]` and that dword to a 104-byte release; it zeroes qword `+0x18` and dword `+0x10` and returns 1 in `al`",
+   "anchors": [
+    [
+     "005D18FE",
+     "call"
+    ],
+    [
+     "005D1907",
+     "shr"
+    ],
+    [
+     "005D1918",
+     "call"
+    ],
+    [
+     "005D191F",
+     "mov"
+    ],
+    [
+     "005D1923",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006132E0",
+   "text": "when qword `[rdx + 0x20]` is non-null it calls that object's virtual slot `+0x10` and zeroes the qword; it then clears bit 7 of dword `[rdx + 0x1C]`, calls `_guard_check_icall` with `rdx` and returns 1 in `al`",
+   "anchors": [
+    [
+     "006132F9",
+     "je"
+    ],
+    [
+     "006132FE",
+     "call"
+    ],
+    [
+     "00613301",
+     "mov"
+    ],
+    [
+     "00613309",
+     "and"
+    ],
+    [
+     "00613313",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00633240",
+   "text": "stores `00D580B0` to qword `[rcx]`; when qword `[rcx + 8]` does not point at `rcx + 8` it calls virtual slot `+0x48` of qword `[rcx + 0x18]` with `rcx` as the second argument; it then passes `rcx + 0x38` to a 71-byte routine and, when bit 0 of byte `[rcx + 0x28]` is set, passes qword `[rcx + 0x20]` to a 10-byte null-guarded forwarder",
+   "anchors": [
+    [
+     "0063325E",
+     "mov"
+    ],
+    [
+     "00633265",
+     "cmp"
+    ],
+    [
+     "00633274",
+     "call"
+    ],
+    [
+     "0063327C",
+     "call"
+    ],
+    [
+     "00633282",
+     "test"
+    ]
+   ]
+  },
+  {
+   "fn": "006332A0",
+   "text": "stores `00D580B0` to qword `[rcx]`; when qword `[rcx + 8]` does not point at `rcx + 8` it calls virtual slot `+0x48` of qword `[rcx + 0x18]` with `rcx` as the second argument; it then passes `rcx + 0x38` to a 71-byte routine and, when bit 0 of byte `[rcx + 0x28]` is set, passes qword `[rcx + 0x20]` to a 10-byte null-guarded forwarder",
+   "anchors": [
+    [
+     "006332BE",
+     "mov"
+    ],
+    [
+     "006332C5",
+     "cmp"
+    ],
+    [
+     "006332D4",
+     "call"
+    ],
+    [
+     "006332DC",
+     "call"
+    ],
+    [
+     "006332E2",
+     "test"
+    ]
+   ]
+  },
+  {
+   "fn": "0063E050",
+   "text": "reverses the byte order of dword `[rdx]` with masks and shifts (`0xFF00`, `<< 16`, `<< 8`, `>> 8`, `>> 24`), stores it back and returns 1 in `al`",
+   "anchors": [
+    [
+     "0063E055",
+     "and"
+    ],
+    [
+     "0063E06E",
+     "shl"
+    ],
+    [
+     "0063E075",
+     "sar"
+    ],
+    [
+     "0063E080",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063FC60",
+   "text": "takes `rdx - 8` as an object (null when `rdx` is null), calls its first virtual slot with `edx = 0` and returns 1 in `al`",
+   "anchors": [
+    [
+     "0063FC66",
+     "lea"
+    ],
+    [
+     "0063FC6D",
+     "cmove"
+    ],
+    [
+     "0063FC76",
+     "call"
+    ],
+    [
+     "0063FC78",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00674BE0",
+   "text": "passes the address from an 8-byte getter to a 112-byte lookup and returns 0 in `al` when it is null; otherwise, when `rdx` is non-null, it calls a 124-byte routine with `(rdx, 0, lookup result, getter address)`, and returns 1",
+   "anchors": [
+    [
+     "00674C03",
+     "call"
+    ],
+    [
+     "00674C0E",
+     "je"
+    ],
+    [
+     "00674C18",
+     "je"
+    ],
+    [
+     "00674C2A",
+     "call"
+    ],
+    [
+     "00674C30",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00676F50",
+   "text": "when qword `[r9 + 8]` is null it scans the table at qword `[r9]` (count = dword `[table]` AND `0x7FFFFFFF`, entries from qword `[table + 8]` when the count is above 1, else inline at `table + 8`) for the first non-null entry whose qword `+0x50` is `02D3E780` and caches it in `[r9 + 8]`, returning 7 when the table is null, empty or has no match; with the cached entry it gets a buffer from a 12-byte allocator called with `(2, 2)` and, when non-null, stores into its first word the byte-swapped 16-bit index `(rcx - qword [entry + 0x58]) / 24` (signed), stores the buffer to qword `[rdx]` and `0x80000002` to dword `[r8]`; it returns 0 (also when the allocation fails)",
+   "anchors": [
+    [
+     "00676FB1",
+     "cmp"
+    ],
+    [
+     "00676FD8",
+     "mov"
+    ],
+    [
+     "00676FE8",
+     "call"
+    ],
+    [
+     "00677014",
+     "rol"
+    ],
+    [
+     "0067701E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00677470",
+   "text": "byte-swaps word `[rdx]` into an index; when qword `[r9 + 8]` is null it scans the table at qword `[r9]` (count = dword `[table]` AND `0x7FFFFFFF`, entries from qword `[table + 8]` when the count is above 1, else inline at `table + 8`) for the first non-null entry whose qword `+0x50` is `02D3E780` and caches it in `[r9 + 8]`, returning 7 when the table is null, empty or has no match; with the cached entry it takes the 24-byte record `qword [entry + 0x58] + index * 24`, stores the record's qword `+0x10` to `[rcx]` and `rcx` to that qword, and returns 0",
+   "anchors": [
+    [
+     "00677488",
+     "rol"
+    ],
+    [
+     "006774D0",
+     "cmp"
+    ],
+    [
+     "006774ED",
+     "mov"
+    ],
+    [
+     "00677510",
+     "mov"
+    ],
+    [
+     "00677515",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00680910",
+   "text": "takes `rdx - 8` as an object (null when `rdx` is null), calls its virtual slot `+0x10` with `edx = 0` and returns 1 in `al`",
+   "anchors": [
+    [
+     "00680916",
+     "lea"
+    ],
+    [
+     "0068091D",
+     "cmove"
+    ],
+    [
+     "00680926",
+     "call"
+    ],
+    [
+     "00680929",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00689FC0",
+   "text": "calls virtual slot `+8` of qword `[rdx + 0x118]` and the first virtual slot of qword `[rdx + 0x120]`, each with `edx = 1` and only when the pointer is non-null, then zeroes qwords `+0x120`, `+0x118` and `+0xC8`, passes `rdx` to a 109-byte routine and returns 1 in `al`",
+   "anchors": [
+    [
+     "00689FE6",
+     "call"
+    ],
+    [
+     "00689FFD",
+     "call"
+    ],
+    [
+     "0068A001",
+     "mov"
+    ],
+    [
+     "0068A00F",
+     "mov"
+    ],
+    [
+     "0068A019",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0068C4E0",
+   "text": "takes `rdx - 8` as an object (null when `rdx` is null), calls its virtual slot `+0x18` with `edx = 0` and returns 1 in `al`",
+   "anchors": [
+    [
+     "0068C4E6",
+     "lea"
+    ],
+    [
+     "0068C4ED",
+     "cmove"
+    ],
+    [
+     "0068C4F6",
+     "call"
+    ],
+    [
+     "0068C4F9",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00657140": "its whole work is the entry instruction (xor al, al; ret: returns 0)",
+  "00660570": "its whole work is the entry instruction (or eax, -1; ret: returns -1)"
+ },
+ "missing": [],
+ "corrections": []
+}

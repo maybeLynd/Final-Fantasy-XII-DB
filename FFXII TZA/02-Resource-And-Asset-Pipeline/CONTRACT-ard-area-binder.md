@@ -49,7 +49,7 @@ Get the current area's authored battle data into the five registry slots the bat
 | refresh, skipping if already loaded | `AreaArd_RefreshForMapRefField` (`003EA6E0`) | 43 B |
 | **the reader** | `AreaArd_LoadOrUnloadFieldResource` (`003EA820`) | 476 B |
 | **the binder** (read-completion callback) | `AreaArd_BindLoadedRootAndBattleSections` (`003EA710`) | 267 B |
-| path resolver | `002DF980` | **22 B** |
+| ~~path resolver~~ path getter of the same table, not on the `.ard` read *(corrected 2026-10-02, OPUS: the `.ard` request reads that table inline in the read issuer `002DF780` (`002DF780+0x3F` `mov rax, qword ptr [r15 + rbx*8 + 0x203f000]`, `002DF780+0x4C` `mov rdi, qword ptr [rax + r14*8]`), reached through `0046E030+0xE`; nothing on the `.ard` path calls `002DF980`)* | `002DF980` | **22 B** |
 
 ## 3. Types
 
@@ -67,7 +67,7 @@ path tables: a table-of-tables at 0215F000; namespace 21 is 0215F0A8
 ### The seven cross-operation invariants
 
 **AB-1 — `.ard` is never opened by name; it is `(namespace 21, index 2 × areaIndex)`.** Read at the
-instructions: `003EA840 mov ecx, 0x15` is the namespace (21), and `003EA845 lea esi, [r14 + r14]`
+instructions: ~~`003EA840 mov ecx, 0x15` is the namespace (21)~~ the namespace (21) is `mov ecx, 0x15` at the reader's `+0x43` for its size lookup and `lea edx, [rax + 0x15]` at its `+0x38` for the sibling request *(corrected 2026-10-02, OPUS: the reader's `+0x20` `mov ecx, 0x15` feeds the `005C5230` test at its `+0x29`, not a request)*, and `003EA845 lea esi, [r14 + r14]`
 is the doubled area index. *The filename never enters the request.*
 
 **AB-2 — The path resolver is 22 bytes and validates NOTHING.**
@@ -170,7 +170,7 @@ already loaded replaces nothing.
 
 Assert the request is `(21, 2i)` and the sibling `(21, 2i+1)` for a known area index. Walk the
 namespace-21 array in full and assert 215 `.ard` at even indices and zero at odd (AB-4) — **not from
-the head, which is 24 NULLs**. Count the category-setter calls in both bodies and assert five and ten
+the head, which is 24 NULLs**. Count the category-setter calls in both bodies and assert five and ~~ten~~ fifteen *(corrected 2026-10-02, OPUS: the binder makes 5 and the reader 15, the three groups of five AB-7 lists)*
 (AB-7).
 
 ## 13. Runtime validation

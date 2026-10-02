@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\missing-caller\prove.py", line 96, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\missing-caller\prove.py", line 71, in main
+    origins=lineage('retained-lineage-01.json')+lineage('carrier-lineage-01.json')
+            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\missing-caller\prove.py", line 24, in lineage
+    q=P/row['copy'];need(sha(q)==row['sha256'],'retained member changed')
+                         ~~~^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-row-preconditions\controls-01\missing-caller\prove.py", line 13, in <lambda>
+    sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-caller-row-preconditions\\controls-01\\missing-caller\\current-row-source-02.json'

@@ -1,0 +1,501 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY removal branches and phase boundaries",
+  "driver_sha256": "4431e22ebe23e8f785fea3c11df00eea9332a7cba0f13b4985bbd48e95d66060",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "82e6aa6d5c40ef4fff7870448a3f05815400db77e4d98d6e2e66c4fcb1e7e15c"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 233,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x429140",
+      "bytes": 358,
+      "instructions": 86,
+      "calls": [
+        [
+          4362655,
+          "0x422d50"
+        ],
+        [
+          4362684,
+          "0x20e600"
+        ],
+        [
+          4362707,
+          "0x2ed570"
+        ],
+        [
+          4362729,
+          "0x20e620"
+        ],
+        [
+          4362897,
+          "0x41f730"
+        ]
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x427c90",
+      "bytes": 328,
+      "instructions": 77,
+      "calls": [
+        [
+          4357465,
+          "0x42f4c0"
+        ],
+        [
+          4357502,
+          "0x426ec0"
+        ],
+        [
+          4357527,
+          "0x3b6000"
+        ],
+        [
+          4357542,
+          "0x3afbe0"
+        ],
+        [
+          4357550,
+          "0x4200a0"
+        ]
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x4200a0",
+      "bytes": 331,
+      "instructions": 70,
+      "calls": [
+        [
+          4325556,
+          "0x46c240"
+        ],
+        [
+          4325564,
+          "0x41e860"
+        ],
+        [
+          4325576,
+          "0x3aef30"
+        ],
+        [
+          4325584,
+          "0x3e69a0"
+        ],
+        [
+          4325596,
+          "0x512c80"
+        ],
+        [
+          4325613,
+          "0x24cff0"
+        ],
+        [
+          4325631,
+          "0x17f100"
+        ],
+        [
+          4325655,
+          "0x19c570"
+        ],
+        [
+          4325679,
+          "0x19c570"
+        ],
+        [
+          4325703,
+          "0x19c570"
+        ],
+        [
+          4325727,
+          "0x19c570"
+        ],
+        [
+          4325751,
+          "0x19c570"
+        ],
+        [
+          4325775,
+          "0x19c570"
+        ],
+        [
+          4325799,
+          "0x19c570"
+        ],
+        [
+          4325823,
+          "0x19c570"
+        ]
+      ],
+      "tails": [
+        "0x4201e6"
+      ]
+    }
+  ],
+  "original_bytes": 1017,
+  "partitions": [
+    {
+      "name": "null",
+      "input_nonnull": false,
+      "record284_mask04": null,
+      "record290_mask01": null,
+      "calls": [],
+      "returns": [
+        "0x42915c"
+      ],
+      "direct_count_decrement": false,
+      "direct_clear": false,
+      "nonstack_writes": []
+    },
+    {
+      "name": "bound-mark",
+      "input_nonnull": true,
+      "record284_mask04": true,
+      "record290_mask01": null,
+      "calls": [
+        [
+          4362655,
+          "0x422d50"
+        ],
+        [
+          4362684,
+          "0x20e600"
+        ],
+        [
+          4362707,
+          "0x2ed570"
+        ],
+        [
+          4362729,
+          "0x20e620"
+        ]
+      ],
+      "returns": [
+        "0x429203",
+        "0x4292a5"
+      ],
+      "direct_count_decrement": false,
+      "direct_clear": false,
+      "nonstack_writes": [
+        {
+          "pc": "0x42916f",
+          "mnemonic": "or",
+          "args": "dword ptr [rcx + 0x290], 2",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": null,
+              "scale": 1,
+              "displacement": 656,
+              "size": 4,
+              "role": "rw",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429178",
+          "mnemonic": "or",
+          "args": "byte ptr [rcx + 0x2ae], 1",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": null,
+              "scale": 1,
+              "displacement": 686,
+              "size": 1,
+              "role": "rw",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x42917f",
+          "mnemonic": "mov",
+          "args": "qword ptr [rcx + 0x108], rax",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": null,
+              "scale": 1,
+              "displacement": 264,
+              "size": 8,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429186",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx + 0x110], eax",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": null,
+              "scale": 1,
+              "displacement": 272,
+              "size": 4,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429199",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx + 0x284], eax",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": null,
+              "scale": 1,
+              "displacement": 644,
+              "size": 4,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x4291a9",
+          "mnemonic": "and",
+          "args": "dword ptr [rax + 0xc], 0xfffffffd",
+          "memory": [
+            {
+              "base": "rax",
+              "index": null,
+              "scale": 1,
+              "displacement": 12,
+              "size": 4,
+              "role": "rw",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x4291e4",
+          "mnemonic": "and",
+          "args": "dword ptr [rax], 0xfffffffb",
+          "memory": [
+            {
+              "base": "rax",
+              "index": null,
+              "scale": 1,
+              "displacement": 0,
+              "size": 4,
+              "role": "rw",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x4291f3",
+          "mnemonic": "mov",
+          "args": "dword ptr [rbx + 0xa0], eax",
+          "memory": [
+            {
+              "base": "rbx",
+              "index": null,
+              "scale": 1,
+              "displacement": 160,
+              "size": 4,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "unbound-unmarked-no-op",
+      "input_nonnull": true,
+      "record284_mask04": false,
+      "record290_mask01": false,
+      "calls": [],
+      "returns": [
+        "0x4292a5"
+      ],
+      "direct_count_decrement": false,
+      "direct_clear": false,
+      "nonstack_writes": []
+    },
+    {
+      "name": "unbound-pending-unlink-clear",
+      "input_nonnull": true,
+      "record284_mask04": false,
+      "record290_mask01": true,
+      "calls": [
+        [
+          4362897,
+          "0x41f730"
+        ]
+      ],
+      "returns": [
+        "0x4292a5"
+      ],
+      "direct_count_decrement": true,
+      "direct_clear": true,
+      "nonstack_writes": [
+        {
+          "pc": "0x42922a",
+          "mnemonic": "mov",
+          "args": "word ptr [rcx + rdx + 4], ax",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": "rdx",
+              "scale": 1,
+              "displacement": 4,
+              "size": 2,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429248",
+          "mnemonic": "mov",
+          "args": "word ptr [rcx + rdx + 2], ax",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": "rdx",
+              "scale": 1,
+              "displacement": 2,
+              "size": 2,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x42924d",
+          "mnemonic": "dec",
+          "args": "dword ptr [rdx + 0x4880c]",
+          "memory": [
+            {
+              "base": "rdx",
+              "index": null,
+              "scale": 1,
+              "displacement": 296972,
+              "size": 4,
+              "role": "rw",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429262",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdx + 0x48810], eax",
+          "memory": [
+            {
+              "base": "rdx",
+              "index": null,
+              "scale": 1,
+              "displacement": 296976,
+              "size": 4,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429277",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdx + 0x48814], eax",
+          "memory": [
+            {
+              "base": "rdx",
+              "index": null,
+              "scale": 1,
+              "displacement": 296980,
+              "size": 4,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x429288",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdx + 0x48808], eax",
+          "memory": [
+            {
+              "base": "rdx",
+              "index": null,
+              "scale": 1,
+              "displacement": 296968,
+              "size": 4,
+              "role": "w",
+              "rip_target": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "retained_clear": {
+    "manifest_sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc",
+    "producer_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+    "result_sha256": "43f0a7944405f9ed51687dd4599ed98540e7bcd69d978b3b38de5c18df5a876c",
+    "state_at_read": "FROZEN_PUBLICATION_READY; producer valid, independent acceptance pending",
+    "use": "Conditional clear ID0FFFF/active284zero, no reexecution or independent acceptance"
+  },
+  "established": [
+    "429140 NULL input returns0. Non-NULL input returns1 on every local normal-return branch, so return1 is not itself an immediate-release certificate.",
+    "record284 mask04 set takes marking path: OR290 mask02, OR2AE mask01, clear108/110, clear284 mask04 and set bit30, then named binding/model helpers. It does not directly decrement count or call41F730. Opaque helper effects remain separate.",
+    "mask04 clear and record290 mask01 clear takes a no-op success path with no nonstack writes or helper calls. Thus a source return1 can leave the supplied record unchanged; natural reachability of a particular state is unproved.",
+    "mask04 clear and290 mask01 set unlinks pending neighbors/endpoints, decrements count, optionally resets cursor at new count0, then calls41F730 directly. It does not call4200A0 resource cleanup. Retained clear result applies only with its explicit valid/library/ABI premises.",
+    "427C90 walks active-list head48800 and caches signed next WORD4 in ESI before any selected-record callback. record290 mask02 selects unlink/decrement/cleanup. Count decrement427D18 precedes42F4C0, optional child/owner cleanup,4200A0 and its final tail41F730. New count0 resets cursor before cleanup.",
+    "4200A0 names embedded/resource cleanup calls before its final41F730 tail. Standard ABI preserves record in RBX until restoring it after RCX=record. Native helpers/resource releases, failures and child-loop termination are not inferred from names.",
+    "Neither removal body has a count-positive guard before its selected DEC; new-count0 comparison occurs afterward. A coherent count/list/row premise is required. Active sweep does not test ID0 before dirty290/action; universal every-consumer-tests-ID-first wording needs qualification."
+  ],
+  "source_countermodels": {
+    "return_success_without_free": {
+      "input_nonnull": true,
+      "record284": 2101497,
+      "record290": 0,
+      "id": 3,
+      "return": 1,
+      "own_nonstack_writes": 0,
+      "own_calls": 0,
+      "limits": "Mathematical supplied source-state model, not naturally reached game state"
+    },
+    "selected_remove_with_count0": {
+      "new_signed32_count": -1,
+      "zero_reset_taken": false,
+      "limits": "Fixed-width DEC calculation, not executed underflow/natural corruption"
+    }
+  },
+  "affected_claims": [
+    "FABLE dual-list remover branch/return semantics and deferred marking versus immediate clear",
+    "OPUS render removal return/count/initialization contracts",
+    "Render-slot occupancy/lifetime evidence requirements and observer phase attribution"
+  ],
+  "limits": [
+    "No FF12 instruction execution/emulation or live process; branch partitions and countermodels are source calculations.",
+    "Complete local supplied CFGs only; named helper/library effects, standard ABI, valid pool/record/neighbor indices, nonaliasing and interference premises remain.",
+    "Count-before-cleanup is source order, not atomic state or proof of reentrant/async observation. Stable coherent count/list/flags at operation boundaries and caller reachability remain open.",
+    "Active/child loops require finite valid chains and helper progress; no general termination or malformed-input safety established.",
+    "No new all-writer/caller/list census; existing canonical counts/history preserved. Conditional retained clear producer not independently accepted at read.",
+    "Independent review/canonical incorporation pending; no whole OV or full database closure. K14 closed, EXP127 invalid, menu spent/unapproved."
+  ],
+  "cleanup": "Only owned offline evidence writes; all bounded children terminal, no game/PC/instrument/save/config/reference or peer consumer edits."
+}

@@ -1,0 +1,106 @@
+{
+  "complete": true,
+  "driver_sha256": "8b44795fab5cf029d36b4f9479f9ac68df0cbeb194c53bb0097e2443819a26d4",
+  "producer_sha256": "464d9c0c645083d7ee05f0388e61b64dec3a7f56afb880848fd5a147a28fec35",
+  "positive_result_sha256": "817197ec8135a5de6481cf44ccbc0b48a96b487e31304208b50fe294742ec989",
+  "positive": "Exact derive reproduces all original facts",
+  "CLI_cases": [
+    {
+      "case": "missing-capture-status",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "464d9c0c645083d7ee05f0388e61b64dec3a7f56afb880848fd5a147a28fec35",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI disposable control, no original FF12 execution"
+    },
+    {
+      "case": "failed-capture-exit",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "464d9c0c645083d7ee05f0388e61b64dec3a7f56afb880848fd5a147a28fec35",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI disposable control, no original FF12 execution"
+    },
+    {
+      "case": "truncated-first-unwind-fragment",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "464d9c0c645083d7ee05f0388e61b64dec3a7f56afb880848fd5a147a28fec35",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI disposable control, no original FF12 execution"
+    },
+    {
+      "case": "missing-retained-source",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "driver_sha256": "464d9c0c645083d7ee05f0388e61b64dec3a7f56afb880848fd5a147a28fec35",
+        "result_written": false
+      },
+      "limits": "Actual Python CLI disposable control, no original FF12 execution"
+    }
+  ],
+  "synthetic_derive_cases": [
+    {
+      "case": "wrong-native-mode",
+      "pc": "0x352991",
+      "field": "args",
+      "before": "r8d, 4",
+      "after": "r8d, 1",
+      "refusal": "required cancel operation changed 0x352991",
+      "method": "Synthetic annotation mutation on actual derive, not original code execution"
+    },
+    {
+      "case": "wrong-mode4-normalization",
+      "pc": "0x3db484",
+      "field": "mnemonic",
+      "before": "cmovne",
+      "after": "cmove",
+      "refusal": "required cancel operation changed 0x3db484",
+      "method": "Synthetic annotation mutation on actual derive, not original code execution"
+    },
+    {
+      "case": "only-state3-admission",
+      "pc": "0x3db4ca",
+      "field": "mnemonic",
+      "before": "test",
+      "after": "cmp",
+      "refusal": "required cancel operation changed 0x3db4ca",
+      "method": "Synthetic annotation mutation on actual derive, not original code execution"
+    },
+    {
+      "case": "same-channel-after-removal",
+      "pc": "0x3db50d",
+      "field": "args",
+      "before": "rbp",
+      "after": "rsi",
+      "refusal": "required cancel operation changed 0x3db50d",
+      "method": "Synthetic annotation mutation on actual derive, not original code execution"
+    },
+    {
+      "case": "return-false",
+      "pc": "0x3db51a",
+      "field": "args",
+      "before": "eax, 1",
+      "after": "eax, 0",
+      "refusal": "required cancel operation changed 0x3db51a",
+      "method": "Synthetic annotation mutation on actual derive, not original code execution"
+    },
+    {
+      "case": "first-fragment-actual-CFG",
+      "refusal": "unclosed local CFG 0x3db43c",
+      "method": "Synthetic truncated source passed to actual derive/CFG; no FF12 execution"
+    }
+  ],
+  "limits": "Producer controls, not independent acceptance or runtime samples."
+}

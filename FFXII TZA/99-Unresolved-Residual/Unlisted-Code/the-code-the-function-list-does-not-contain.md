@@ -422,13 +422,13 @@ and targets owned by `ActorEntity`, `Presentation` and `Movement`.
 ## 9. What this does to every number in the database
 
 `engine_explained` is *cited listed functions / listed functions*. EC-7 is *dispositioned / 34,270*.
-**Both denominators are the function list, and the function list is short by at least 1,471 bodies.**
+**Both denominators are the function list, and the function list is short by ~~at least 1,471 bodies~~ 874 bodies and 3 ambiguous blocks** *(corrected 2026-10-02, OPUS: `unlisted-body-admissions.tsv`: of 1,471 blocks, 431 are jump tables, 162 continuations and 1 covered)*.
 
 These bytes are in neither column. They are not explained, and they are **not in the frontier
 either** - they are invisible to the measurement rather than counted against it. That is precisely
 the failure the EC-7 ownership rule names: *no function may silently disappear.*
 
-**The denominator is NOT changed by this document.** Changing it would rewrite every historical
+**The denominator is NOT changed by this document.** *(answered: see the applied populations 34,965, 35,064 and 35,065 recorded later on this page; 2026-10-02, OPUS)* Changing it would rewrite every historical
 figure the database has published, and the denominator is shared with FABLE and ASTRA. The
 measurement is recorded, the decision is routed, and until it is decided every percentage in this
 database should be read as *"of the 34,270 bodies the list contains"* and not *"of the engine"*.
@@ -485,7 +485,7 @@ database should be read as *"of the 34,270 bodies the list contains"* and not *"
 | **the function list is reference-derived** | **33,914 of 34,270** listed bodies carry a reference from the union of the three admissible forms (~~34,262 from four, one of them `.pdata`~~); 0 of 66 head blocks do | 1 |
 | only 3 of 66 head blocks are reachable by direct branches | transitive closure from the 29 doors | 1 |
 | the head of `.text` is media transform code | instruction mix plus the classifier tags on both sides | 2 |
-| **it is libvpx VP8 1.6.0** | the library's banner at `01CEB6A5`; no block matched to a named routine | 2 |
+| **it is libvpx VP8 1.6.0** | the library's banner at `01CEB6A5`; ~~no block matched to a named routine~~ *(answered: see UC-3, narrowed 2026-09-27: the intra predictors are matched byte for byte; 2026-10-02, OPUS)* | 2 |
 | **retained by object-file granularity rather than reachable** | 22 listed runs against 21 unlisted runs in the window; 64 of 66 blocks begin after a returned function | 3 |
 
 ## 12. Related
@@ -746,7 +746,7 @@ uncertain tiny fragments** (the extras decomposition was adjudicated on the pre-
 re-measured 2026-09-17 as 132 extras: 43 external-evidence, 89 post-term-only) — the unlisted-body
 count is a range **~1,425 .. ~1,428** (±3 against
 the 1,301 admitted blocks — and 15 of those blocks are jump tables that leave the count entirely).
-The denominator stays at 34,270 until this package is reviewed and applied.
+The denominator stays at 34,270 until this package is reviewed and applied *(answered: see the applied UC-1 bands later on this page; 2026-10-02, OPUS)*.
 
 *(Pass 22 adjacency, 2026-09-14: the entry-region bodies this census names cross into the
 **audio** layer — `00121000` itself is called by `007AC4F0` and calls `00121DB0`/`00124350`,

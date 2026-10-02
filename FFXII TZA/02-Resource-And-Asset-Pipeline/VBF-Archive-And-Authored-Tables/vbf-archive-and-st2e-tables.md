@@ -487,7 +487,7 @@ languages and unrelated asset types (`.vpcjp`, `.fpk`, `.mot`, `.ebp`, `.efx`, `
 > `const char*` array at `0x01E4D830`, per language, in fixed order. This section looked at the
 > strings and stopped; it should have followed the pointers **to** them.
 
-> **Downgraded:** `action_data.bin` → slot `0x02EBF138` is a **strongly supported lead**, resting on
+> **Downgraded:** `action_data.bin` → slot `0x02EBF138` is a **strongly supported lead** *(answered: see §12, AY-6 closed - the slot is bound from `battle_pack.bin` `+0x3C`; 2026-10-02, OPUS)*, resting on
 > two independent circumstantial facts — the exact path literal in the executable, and a record count
 > matching the enforced bound `0x21E` — and **not on any observed binding**. **AY-6.**
 
@@ -618,7 +618,7 @@ table only.** The CJK tables index a different glyph set and were not tested —
 not be assumed to carry.
 
 **The set is incomplete:** entry 15 of the command block decodes as `Magicks ? Technicks`, where `?`
-is an unmapped byte (almost certainly `&`). **AY-8.**
+is an unmapped byte (almost certainly `&`). **AY-8.** *(answered: see AY-8 above, 2026-09-18 - the byte `0xA0` is `&`; 2026-10-02, OPUS)*
 
 ### `word.bin` is a container, and block 3 is the battle command menu
 
@@ -700,7 +700,7 @@ wrong table.
 > inside bank 0 (545 action names, 528 of them at the row's own index — the "permutation"), and
 > `0x113` decodes as **Dismiss**, `0x95` as **Dismount**, `0x106`–`0x112` as the thirteen Espers.
 > The negative above stands for the nine string-id files; it never covered the banks.
-`battle_pack.bin` (281 KB, same directory) is the obvious unopened candidate. **AY-9.**
+`battle_pack.bin` (281 KB, same directory) is the obvious unopened candidate. **AY-9.** *(answered: see §9 and §12 - the pack is opened and binds the action table; AY-9 is ANSWERED; 2026-10-02, OPUS)*
 
 ## 8. AY-7 — `0x0215F000` is the asset-category path directory
 
@@ -1040,7 +1040,7 @@ document's **4**, and 449 against 450. Rather than report a disagreement, I chec
 had scanned from**. The document's count of 4 is right; my window was too narrow, and the same edge
 explains the off-by-one at the other registry. **A count disagreement is a question about two
 populations before it is a finding about either.** Recorded because the near-miss is the useful part:
-those twelve bytes are an unread header on the directory (**PROPOSED-reposd2-9**).
+those twelve bytes are an unread header on the directory (**PROPOSED-reposd2-9**) *(answered: see UQ-74, 2026-09-14 - a status word and a directory slot, not one header; 2026-10-02, OPUS)*.
 
 ### What was tried and did not break anything
 
@@ -1292,3 +1292,11 @@ The other consumer pass 7 named, [the registry page](../authored-data-table-regi
 
 **What this pass did not attack:** §1's archive figures (pass 7 re-measured them), §7's charset and §9's resolver
 bytes (pass 7), and §13's request census.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-vbf-archive-and-st2e-tables-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0035C630` | 38 B | calls four UI-layer helpers in order (a 19-byte thunk, then 88-, 48- and 31-byte bodies), then tail-jumps a 27-byte UI-layer body with `ecx` = 1 | `0035C634`, `0035C639`, `0035C63E`, `0035C643`, `0035C651` |

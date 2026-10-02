@@ -1,0 +1,24 @@
+{
+  "inputs": [
+    {
+      "path": "retained-remap-manifest.json",
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230"
+    },
+    {
+      "path": "spattack-queue-reader-raw-01.json",
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c"
+    },
+    {
+      "path": "spattack-info-raw-01.json",
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    }
+  ]
+}

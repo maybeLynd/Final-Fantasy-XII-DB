@@ -1,0 +1,10 @@
+{
+  "case": "failed-upstream-capture",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "result_exists": false,
+  "driver_sha256": "9056e01fcf208e0ad6cae8deb46d738e20ec42beeeacb5d3a8d58d719f2a5d4e",
+  "start": 1790965522.4260473,
+  "end": 1790965522.5938785
+}

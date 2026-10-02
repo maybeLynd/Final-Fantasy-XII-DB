@@ -115,7 +115,7 @@ a documented side-effect set (§7).
 ~~`0035BC50`,~~ `00313DB0` (inline), and the two mode getters. *(corrected 2026-10-02, OPUS: `0023B040`, `00253C70`, `0023A570`, `00235EA0`, `00320230` and `0035BC50` call the wrapper `00303EC0`, which calls the ladder at `00303EC0+0x4` and answers `mode == 2`; the ladder's own 22 direct call sites are in 21 functions from `002FFCF0` to `003266C0`)*
 
 **Callee:** `FieldData_GetActiveFieldRecordBit15` (`00377C20`), which itself calls `003148F0` —
-whose result is used as the row index and whose body is **not read here** — and reads the table
+whose result is used as the row index and whose body is **not read here** *(answered: see the 2026-09-18 note below: the negative-index clamp is in `003148F0`; 2026-10-02, OPUS)* — and reads the table
 at `02ADD100`.
 
 **Crossing layers, accounted.** The ladder's neighbourhood is not confined to this category:
@@ -174,7 +174,7 @@ event.
 The bit-2 and bit-3 setters are the plain shape — write the bit, **write nothing when it already
 equals the argument**. *The bit-0 setter `00313550` is not quite plain (added 2026-09-26, OPUS, by execution): after its one
 write it **tail-jumps to `0035C620`** with `edx` = the new flags word; when the bit already equals the argument it writes
-nothing and does not jump.*
+nothing and does not jump.* *(qualified 2026-10-02, OPUS, from ASTRA's SPEC-accepted [`mode-summon-tail`](../../_experiments/evidence/mode-summon-tail/README.md), method A: 'equals' is `(flags & 1)` against the raw 32-bit ECX (`00313550`+0x13), so the no-write path is guaranteed only for the 0/1 values the API is meant to pass; with bit 0 set, any other nonzero argument stores the same flags and still jumps - a source countermodel, no shipped caller shown passing one. And the jump is not an inert notification: `0035C620` replaces RCX with the fixed object `022CA408` - the battle-menu text widths of [five-small-bin-tables.md](../../02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md) (FABLE) - and enters the 2,382-byte UI initializer whose prefix, given a normal stack-probe return, a valid private frame, a writable receiver and no interference, zeroes `[022CA408, 022CA428)`; the rest of that body, its later effects and any notifications are not read, and a stub at either address shows only the interception)*
 
 ## 8. Script · resource · event interactions
 
@@ -343,7 +343,7 @@ exercised, and this contract does not promote them.
 **The setters, the reset, the getters and the save round trip are executed since (2026-09-26, OPUS,
 `candidates/s03-opus-replay-mode-setters/`, NATIVE-REPLAY, no application stub, 10/10, identical ×2):** the ladder over all 16
 low-nibble values with bits 4–31 set and clear (invariants 1/2); the bit-3/bit-2 setters (one write, none when equal); the bit-0
-setter (one write, then the tail call to `0035C620`, a recorded boundary); the chocobo setter §7 (enable: flags `|= 2`,
+setter (one write, then the tail call to `0035C620`, a recorded boundary *(qualified 2026-10-02, OPUS: the replay recorded the jump, not what the native tail does - its prefix zeroes 32 bytes at `022CA408`, §7's 2026-10-02 qualification)*); the chocobo setter §7 (enable: flags `|= 2`,
 `+0x5AE0 |= 0xC`, `+0x5AE4 = 180.0f`, nothing else; disable: flags `&= ~2`, `002E73C0(slot-3 actor, 3)`, `+0x5AEC = 0`; the
 `002EB030` post was not reached — roster slot 3 is empty in this world); the reset (`+0x5B04` and `+0x5B08`); the bit and
 mode getters; and the save pair (§3 above, corrected).
@@ -518,7 +518,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/battle_mode` and `battle_mode2` (i
 | the chocobo setter's asymmetric side effects | the page's §"Bit 1 has a getter and a setter" | 1 | PROVEN |
 | mode 4 writes slot-map entries 0, 1 and 3 and mode 5 restores entry 3 | the page's §7, from `003266C0` at `00326756`–`003268EE` | 1 | PROVEN |
 | `*(0x02EBF190)` can be null only before the first save-image init — the slot is BSS-zero, the two writers `00238A92` (unconditional, `002EF650` tail) and `00233C33` (lazy fill in `00233C10`) both store the constant `021B290C` (`SaveImage_GetActiveBuffer()+0x4E68C`), and **no consumer can call the ladder while it is null**: the master tick `0022A580` dispatches on `byte[02064AD3]`, state 0 is exactly the boot frame `0022B6E0`, and the state-0 exit write `0022B74E` is the first instruction of the `0209273C==5` block that ends with `call 002EF650` (`0022B78B`) — leaving state 0 requires running the init in the same tick | rip-rel census over `.text`: **131** reader functions, two stores (`00238A92`, `00233C33`); `002EF650` called from `0022B78B` and `0028037B` (the `003941E5`/`003942F2` sites are in a fully orphaned body). Cut-closures 2026-09-22: PE entry with tick cut → 621 fns, 0 readers; `0022B6E0` pre-init → 1,482 fns, 0 readers; `00280140` pre-init → 1,827 fns, 6 readers incl. the ladder, but `00280140` is message-`0xD8` handler registered only via `00314020` ← state arms {2,3,>6} — unregistrable during the null window. Residual: thread-entry census not enumerated | 1 (static) | PROVEN (single-threaded frame sequence; thread-side bounded but unenumerated) |
-| any execution of this operation, isolated or live | **none**; §13 | none | UNKNOWN |
+| any execution of this operation, isolated or live | **none**; §13 *(answered: see the executions of 2026-09-12 and 2026-09-26 above; 2026-10-02, OPUS)* | none | UNKNOWN |
 | which entry-3 reader an event script relies on | the party-read-in machine `0037B4D0`, at 14 sites via `0031C250`/`0031BEC0`/`00320170` — installed by `partyallread` `0x3EB`, `partyallread2` `0x46F`, `summonread` `0x203` through `0037C980`/`0037CA00`/`0037CA80` → `0037C730`; mode 4's `+0x5A90` rewrite makes the machine's slot→row resolutions return the leader, mode 5's restore preserves them — §14 item 1, 2026-09-22 | 1 (static) | PROVEN (per-site visible outcome inferred, not observed) |
 
 ## 15a. Falsification pass 1 — 2026-09-12 (OPUS)
@@ -576,7 +576,7 @@ through to the chocobo and summon bits.
 pointer) is the one edge **not** driven: it faults the original rather than comparing, which is the
 behaviour and not a result.
 
-**The four setters are still not driven**, so `STATE-TRANSITION` covers the ladder's own transitions
+**The four setters are still not driven** *(answered: see the 2026-09-26 note above, setters, reset, getters and the save round trip executed; 2026-10-02, OPUS)*, so `STATE-TRANSITION` covers the ladder's own transitions
 and not the writes that cause them — the contract's §7 table is half-tested, and the half that is
 tested is the half this pilot claims.
 

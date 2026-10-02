@@ -1,0 +1,126 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original initializer/rebind local rules",
+  "driver_sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "0533f9c1497752403aca4bca1d621f0f174f8204d37124a5ddde876563c161b3"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 104,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "graphs": [
+    {
+      "entry": "0x597930",
+      "bytes": 59,
+      "instructions": 17,
+      "calls": [
+        [
+          5863773,
+          "0x59ee90"
+        ]
+      ],
+      "returns": [
+        "0x59796a"
+      ]
+    },
+    {
+      "entry": "0x597970",
+      "bytes": 162,
+      "instructions": 41,
+      "calls": [
+        [
+          5863862,
+          "0x59ee90"
+        ],
+        [
+          5863887,
+          "0x1c26b0"
+        ]
+      ],
+      "returns": [
+        "0x597a11"
+      ]
+    },
+    {
+      "entry": "0x59ed70",
+      "bytes": 156,
+      "instructions": 46,
+      "calls": [
+        [
+          5893527,
+          "0x59ee90"
+        ],
+        [
+          5893540,
+          "0x1c26b0"
+        ],
+        [
+          5893577,
+          "0x584730"
+        ]
+      ],
+      "returns": [
+        "0x59ee0b"
+      ]
+    }
+  ],
+  "rebind_direct_object_writes": [
+    {
+      "pc": "0x59ed9f",
+      "start": 8,
+      "end": 12,
+      "role": "w"
+    },
+    {
+      "pc": "0x59edce",
+      "start": 16,
+      "end": 24,
+      "role": "w"
+    },
+    {
+      "pc": "0x59ede3",
+      "start": 28,
+      "end": 32,
+      "role": "w"
+    },
+    {
+      "pc": "0x59edf0",
+      "start": 24,
+      "end": 28,
+      "role": "w"
+    },
+    {
+      "pc": "0x59edf5",
+      "start": 28,
+      "end": 32,
+      "role": "w"
+    }
+  ],
+  "established": [
+    "597930 zeroes standalone source-record DWORD28 before every local59EE90 call.",
+    "597970 zeroes full reader object DWORD48 before every local59EE90 call and passes receiver+20, so this is source-record28.",
+    "59ED70 passes receiver+20 into59EE90 before its path-copy/update work, with no own direct write overlapping reader48..4C anywhere in its complete body. It therefore does not locally reset the prior cache-key field before re-resolving.",
+    "Compose only under valid disjoint state and no opaque interference: the prior field of an empty-normalized first constructor resolve is zero; a rebind may retain the earlier field. This narrows the prior arbitrary-field boundary for these demonstrated producers, not every caller or state."
+  ],
+  "limits": [
+    "No shipping instructions, native harness or game execution; initialized-state rule is static, not a live initialization capture.",
+    "Valid record/frame/distinct fields, normal ABI/returns and no opaque/concurrent key interference. Rebind callees receive object/source pointers; their native effects and all-writer closure remain unproved.",
+    "Key zero only at the demonstrated constructor boundary; no allocator freshness/portable snapshot-default/universal lifetime guarantee.",
+    "A natural empty-name archive hit, actual key values and collision/eviction/reuse scheduling are unproved. Existing accepted RTTI/base identity and caller census not redone.",
+    "This supplement does not independently accept the prior99-member backfill package or close wholeOV33."
+  ],
+  "affected_claims": [
+    "FABLE cache-backfill retained-field initial-state qualification",
+    "OPUS source-record28/reader48 zero initialization versus rebind contracts"
+  ],
+  "cleanup": "Only bounded own offline children; no PC/game/instrument/save/config/reference/peer writes."
+}

@@ -98,7 +98,7 @@ and lays out only `size` bytes** — so ~~**what the extra tail bytes serve is n
 > and **the last 64 bytes of every allocation are still the fixture's `0xAA` fill**. So the extra
 > `0x10` / `0x100` / `0x400` is **not** a region of slot records at the end of the block, which is how
 > a static reading of a size-plus-tail allocation naturally reads; it is headroom for a head-resident
-> ledger whose extent scales with the pool. **What the tail bytes are *for* is still open** — nothing
+> ledger whose extent scales with the pool. **What the tail bytes are *for* is still open** *(answered: see what-the-engine-fixes-at-boot.md, RC-2 answered 2026-09-30; 2026-10-02, OPUS)* — nothing
 > observed writes them — but the shape of the answer has changed, and a reimplementation that lays
 > records into the tail would be wrong **[EXP-142]**.
 
@@ -136,7 +136,7 @@ starts "the RNG is seeded identically every launch" is correct only for a sessio
 
 * **`FrameLimit != 1`** → the 30 branch, and **`001EDDC0` does not write the triple** (I3).
 * **Two allocations are never registered** (0.5 MiB and 1 MiB). They are stored to globals and used
-  elsewhere; **what they are is not established by this function** **[page]**.
+  elsewhere; **what they are is not established by this function** **[page]** *(answered: see what-the-engine-fixes-at-boot.md, RC-3 answered 2026-09-30; 2026-10-02, OPUS)*.
 * **Id 10 is absent from the otherwise dense range 2–11.** **Whether it is registered elsewhere or
   does not exist is unanswered** — and a gap in a dense range is either a second registrar or a
   retired pool **[page]**.

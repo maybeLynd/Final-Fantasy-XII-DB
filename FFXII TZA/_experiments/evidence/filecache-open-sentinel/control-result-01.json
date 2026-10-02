@@ -1,0 +1,100 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "d51fa6b10d4669d8f439f6ca3f8d16ceaf1a65ec75d73f6ccc03766b25947107",
+  "positive_producer_sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e",
+  "cases": [
+    {
+      "name": "failed-getter-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-open-sentinel\\controls-01\\failed-getter-capture\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": []
+    },
+    {
+      "name": "missing-retained-zero-result",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-open-sentinel\\controls-01\\missing-retained-zero-result\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "parents/filecache-zero-handle-return/result-01.json"
+      ]
+    },
+    {
+      "name": "missing-getter-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-open-sentinel\\controls-01\\missing-getter-source\\prove.py",
+        "control-output.json"
+      ],
+      "driver_sha256": "36759f394f6c326d98ac60a4d68d1280db88ab7e702c5d8e297e02e4aca9a17e",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "explicit_removed_base_files": [
+        "source-01.json"
+      ]
+    }
+  ],
+  "count": 3,
+  "predicate_controls": [
+    {
+      "name": "zero-versus-allones-sentinel",
+      "pc": "0x59d92e",
+      "synthetic_change": {
+        "args": "qword ptr [rcx + 0x40], 0"
+      },
+      "refused": true,
+      "diagnostic": "getter predicate changed 0x59d92e"
+    },
+    {
+      "name": "full64-bit-comparison",
+      "pc": "0x59d92e",
+      "synthetic_change": {
+        "size": 4
+      },
+      "refused": true,
+      "diagnostic": "getter predicate width/role changed"
+    },
+    {
+      "name": "inequality-branch-polarity",
+      "pc": "0x59d933",
+      "synthetic_change": {
+        "mnemonic": "je"
+      },
+      "refused": true,
+      "diagnostic": "getter predicate changed 0x59d933"
+    },
+    {
+      "name": "AL-versus-full-EAX",
+      "pc": "0x59d938",
+      "synthetic_change": {
+        "args": "eax, 1"
+      },
+      "refused": true,
+      "diagnostic": "getter predicate changed 0x59d938"
+    }
+  ],
+  "predicate_count": 4,
+  "limits": "Three actual producer CLI prerequisite refusals and four synthetic mutations of actual getter checker. Original predicate equality partitions are mathematical analysis, not machine-code/native/emulated/live executions or parent independent acceptance."
+}

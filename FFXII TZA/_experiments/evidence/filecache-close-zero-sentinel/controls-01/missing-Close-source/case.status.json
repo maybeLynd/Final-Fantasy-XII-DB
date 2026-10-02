@@ -1,0 +1,18 @@
+{
+  "name": "missing-Close-source",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-close-zero-sentinel\\controls-01\\missing-Close-source\\prove.py",
+    "control-output.json"
+  ],
+  "driver_sha256": "d498f547510f5998b7cf0b33bea37c4e20073cf86724dde064752bbd92d329d7",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "explicit_removed_base_files": [
+    "source-01.json"
+  ]
+}

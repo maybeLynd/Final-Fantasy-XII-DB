@@ -1,0 +1,9 @@
+{
+  "status": "VALID_SCOPED_SUPERSEDED_ADDITIVELY",
+  "archived_driver": "prove-key-forwarding-01.py",
+  "result": "result-01.json",
+  "receipt": "prove-01.status.json",
+  "scope": "Full32 key forwarded to named native tree boundary, complete original three-body proof; native key-storage effects deliberately not established at this version.",
+  "next_discriminator": "Read complete original1AE9B0/1AE850/20BA70 key-copy alternatives and16D840 header-only writes to settle conditional native key storage without running game.",
+  "limits": "No recapture or invalidation of prior result/controls; additive next proof uses new source and preserves original receipts."
+}

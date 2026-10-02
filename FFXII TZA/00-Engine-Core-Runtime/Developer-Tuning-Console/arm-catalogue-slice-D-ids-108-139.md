@@ -152,7 +152,7 @@ The field map this slice establishes:
 
 > **`+0x2E4` and `+0x2F8` are recorded as unreached, not as unused.** Slice C settled that question
 > for slice B by finding the ids that owned its gap in a later range. **The same caution applies here
-> and for the same reason:** ids 140–293 are unread, and nothing in this slice licenses a claim about
+> and for the same reason:** ids 140–293 are unread *(answered: see slices E to I, delivered; 2026-10-02, OPUS)*, and nothing in this slice licenses a claim about
 > those two slots.
 
 **Ids 114 and 115 are the only bounded arms here, and their ceilings differ** — `1.0` and `10.0`,
@@ -181,7 +181,7 @@ dword at `+0x40`. A `data_touched` column cannot separate an 8-byte pointer load
 nudge, which is how a pointer became the most-nudged address in the binary.
 
 *Control:* the same scan does report `movss`-shaped float references elsewhere — id 112's
-`01F82ED0`, sixteen bytes further into the same region, is read and written as a float by this very
+`01F82ED0`, ~~sixteen bytes further~~ `0x1B0` (432) bytes further *(corrected 2026-10-02, OPUS: `0x01F82ED0 − 0x01F82D20`)* into the same region, is read and written as a float by this very
 slice. So the zero above is a measurement, not a silent non-match.
 
 ### 5.2 The hub figures 45 and 33 are call sites, not arms
@@ -373,7 +373,7 @@ characterised here, and what they do with the new value is open.
 - [x] **UQ-17 ANSWERED 2026-09-15 (OPUS) — neither. They are not two arrays, and they are
       not one array: the whole span is a block of *individually addressed* `float` globals, and the
       “gap” between the two named clusters is not empty.**
-      - **The separation is not real.** Whole-image census over all 89 dwords from `02CB7FE8` to
+      - **The separation is not real.** Whole-image census over all ~~89~~ 88 dwords *(corrected 2026-10-02, OPUS: `(0x02CB8144 − 0x02CB7FE8) / 4 + 1` = 88)* from `02CB7FE8` to
         `02CB8144`, stride 4, control `02098E10` returning 61 references so absence is meaningful:
         **85 of the 89 are referenced**, and **44 of the 48 dwords *between* the two named clusters
         are referenced too**, by 10 functions. There is no unused interval to separate them.
@@ -385,9 +385,9 @@ characterised here, and what they do with the new value is open.
         23 `mov`, 4 `cmp`, and one each of `sub`, `sete`, `movzx`, `movsxd`). Every one is an
         absolute RIP-relative access to a *named* slot — `001C3D50` alone writes 19 of them as an
         unrolled run at a uniform `0x1F`-byte instruction spacing (`001C4C6E` onward).
-      - **Nothing can walk it as an array, and that is the decisive part.** The census finds
-        **zero `lea`** anywhere in the span: **no instruction takes the address of any slot**, so no
-        pointer into the block can be formed and no `base + index*4` access can exist. A computed
+      - ~~**Nothing can walk it as an array, and that is the decisive part.**~~ **`006084B0` walks it from a register base** *(corrected 2026-10-02, OPUS: `006084B0+0x3CE` `lea rdx, [02CB7FD0]`, `+0x3D8` `lea rax, [rdx+0xd0]` (= `02CB80A0`), then 16-byte `movups` loads over `02CB7FD0`–`02CB815F` into the staged shader-constant buffer)*. The census finds
+        **zero `lea`** anywhere in the span: ~~**no instruction takes the address of any slot**, so no~~
+        ~~pointer into the block can be formed and no `base + index*4` access can exist.~~ but a base below it is formed and offset into it. A computed
         access would not appear in an absolute-reference census — but it would need a `lea` to get
         its base, and there is none.
       - *Re-checkable by anyone: one range census with a stated control. If any `lea` into

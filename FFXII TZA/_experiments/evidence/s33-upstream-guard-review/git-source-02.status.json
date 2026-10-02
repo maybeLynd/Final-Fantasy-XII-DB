@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "fa6764a4878849dab1747634f72e6cb06083fe7b:Database/FFXII TZA/_index/candidates/s33-opus-replay-op1-real/upstream_guard.py"
+  ],
+  "cwd": "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+  "driver_sha256": "42cf1e2db3fe19d138ae6bdbf221b84dbc0878a4b4b6c11e8ea58660874305f2",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "stdout_sha256": "1f226019216a2b9726a7a453d79dfb58d40e2856673376f9fb0e81771abe673f",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

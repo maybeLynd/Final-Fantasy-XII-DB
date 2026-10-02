@@ -162,7 +162,7 @@ object is built, and the action set `Global` with its eighteen action names, is 
 
 | Address | Name | Size | Verified |
 |---|---|---:|---|
-| `007A1CD0` | `SteamController_PollState` | 1,124 B | not read (`SD-163`) |
+| `007A1CD0` | `SteamController_PollState` | 1,124 B | ~~not read~~ (`SD-163`) *(answered: see the register row SD-163, ANSWERED 2026-09-30 — it reads 16 buttons and two sticks and drives the rumble; record `_index/candidates/sd163-steamcontroller-poll-0930/`; 2026-10-02, OPUS)* |
 | `001F3AE0` | *(Platform-owned)* | 809 B | ~~not read~~ read 2026-09-17 (FABLE): the SDK context fetcher that fills the twenty interface slots (§7, AB-3) |
 | `0020C940` | *(Platform-owned)* | 470 B | ~~not read~~ the 1101 `UserStatsReceived` handler: it refreshes every entry from Steam and awards entry 0 when all others are achieved ([the Steam contract](CONTRACT-steam-integration-subsystem.md) §6; `pf_steam_checks.py` S1) |
 | `0020CB50` | *(Platform-owned)* | 334 B | ~~not read~~ the by-id award body ([the Steam contract](CONTRACT-steam-integration-subsystem.md) §5) |
@@ -695,7 +695,7 @@ as `float`, two of them are plausible (`2.379`, `-2.496`) and **one is not** (`7
       `00316787`/`0031678C`; ~~how id 18's chain count reaches the compare is the consumer side,~~
       ~~not read here~~ *(read 2026-09-30, SWE2-DATA: for id 18, `00316760` returns -1, so the checker's compare never passes. The updater's kind-0 arm compares the value `0028F0C0` passes (§7, AB-7 note) against the override 50 and fires on it, `pf_steam_checks.py` S3–S5)*). Id 13 is mode 3, and its arm (`00315F87`) does consume `003165C0`: Mist
       Walker fires when the 16-bit counter's popcount reaches **8**, not the default 16. Id 31 is
-      dead through the engine - the checker refuses `id >= 0x1F` and the updater `id >= 0x1E` - so
+      ~~dead through the engine~~ out of every achievement check's range *(corrected 2026-10-02, OPUS: `003165B0` has callers outside the achievement code, `00572920+0x9E` among them; see the 2026-09-29 correction below)* - the checker refuses `id >= 0x1F` and the updater `id >= 0x1E` - so
       ~~its override ships unread.~~ **Corrected 2026-09-29 (FABLE, GI-2):** no achievement check reads
       its override, but the value is read: the Sky Pirate's Den layout `00572920` calls `003165C0`
       (through the `003165B0` thunk, `005729BE`) with the index of each `0xFF`-keyed `hodr` record,

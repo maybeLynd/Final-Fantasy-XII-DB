@@ -1,0 +1,91 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original getter/resolver and retained caller transfer",
+  "driver_sha256": "eddb5ca33c3405c44fa3cba56d1675c079e9466144538cfaecd9ea11676ca618",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "97c7e802c7b4ef7f5eb1a46a669b8a2834d03cd7d812512e65afe4ce73ac24ab"
+    },
+    {
+      "path": "source-owner-01.json",
+      "sha256": "af95b1abb878e8dd75408eab6eb99ddb77bf0164fb6203aff2bcbad625155c8b"
+    },
+    {
+      "path": "retained-callers-01.json",
+      "sha256": "b27ee5a03712f3d9bbfcf429fe3277e38de86f236f3ea593ec4aabd479c5e0ab"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 42,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 29,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 70,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "conditional_returns": [
+      {
+        "second_owner": "valid nonNULL O2",
+        "table_pointer": false,
+        "owner_word_is_9F": false,
+        "load": "0x387118",
+        "return_pc": "0x387124"
+      },
+      {
+        "second_owner": "valid nonNULL O2",
+        "table_pointer": false,
+        "owner_word_is_9F": true,
+        "load": "0x387118",
+        "return_pc": "0x387124"
+      },
+      {
+        "second_owner": "valid nonNULL O2",
+        "table_pointer": true,
+        "owner_word_is_9F": false,
+        "load": "0x387118",
+        "return_pc": "0x387124"
+      },
+      {
+        "second_owner": "valid nonNULL O2",
+        "table_pointer": true,
+        "owner_word_is_9F": true,
+        "load": "0x38710e",
+        "return_pc": "0x387117"
+      }
+    ],
+    "direct": "Given a valid second resolved owner O2, return zero-extends WORD(O2+714) unless it equals9F and RBX table pointer is nonzero. There is no local bound on the direct word; supplied511..534 are non9F and flow unchanged.",
+    "special": "Only O2word9F with nonzero valid table pointer returns zero-extended WORD(table+10). RBX=0 returns9F directly. Table contents/domain/initialization are not established.",
+    "table_selection": "NonNULL query with BYTE(query+5)==0:208D480+BYTE(query+4)*64, no first resolver call. Otherwise first resolver O1 is written to2EBF188; O1nonNULL selects208DE80+BYTE(O1+EA9)*64, O1NULL yieldsRBX0. Mandatory second resolver O2 controls final714 read; O1 andO2 need not be assumed identical.",
+    "owner_relation": "31B860 NULL query returns0 before registry callbacks. NonNULL query scans count236850/index236820, returns matching unit whoseQWORD698 equalsquery or0; count is re-read, state/ABI/valid access/termination premises remain separate.",
+    "null_boundary": "Second owner NULL branches to387118, which reads WORD at0+714, not a sentinel return. NULL query makes both original31B860 calls return0 without registry callbacks, so this source path predicts the low-address714 read. No native execution/observed fault or naturalNULL-caller occurrence.",
+    "caller_transfer": "Exact retained304DFD argument=query atunit698; getter304E12 returnAX zeroextends toR8D304E1A; no intervening call before30CFB0 at304E24. Interior caller fragment, not natural entry/receiver identity proof.",
+    "acceptance": "Local getter does not exclude511..534 on direct non9F valid-owner path. Upstream unitWORD714 writer/admission is the next discriminator; existing slot allocator does not add an ID bound.",
+    "limits": "Stable backed caller/owner/table/frame accesses, normal native ABI/returns and preserved callee-saved carriers are premises. No natural owner identity/lifetime, current table contents/size, full pipeline reachability/accepted command, actual scene timing or wholeOV42 conclusion."
+  },
+  "limits": [
+    "Stable backed caller/owner/table/frame accesses, normal native ABI/returns and preserved callee-saved carriers are premises. No natural owner identity/lifetime, current table contents/size, full pipeline reachability/accepted command, actual scene timing or wholeOV42 conclusion.",
+    "NULL read is source prediction, not observed fault; inputs/owner returns are conditions, not invented natural game state."
+  ],
+  "cleanup": "Finite offline tools/handles only; no PC/game/native/emulator/save/config/reference/peer changes."
+}

@@ -187,7 +187,7 @@ execution.*
 
 ## 14. Unresolved
 
-- What the bank-selecting byte at `+0x1C` of the shared accessor's result is, and who writes it.
+- ~~What the bank-selecting byte at `+0x1C` of the shared accessor's result is, and who writes it.~~ *(answered: see CONTRACT-character-transform-publish.md §14.1 - a camera-source flag written by the view publish - and character-render-object.md's slot-13 section for its writers; 2026-10-02, OPUS)*
 - The extent of the embedded object at `+0x3E0`.
 - ~~Which of the sixteen latch readers are vtable slots and which are not — the page's list of thirteen
   is the vtable's, and the image-wide byte sweep finds sixteen.~~ *Answered 2026-09-26 in R-4: twelve are vtable slots

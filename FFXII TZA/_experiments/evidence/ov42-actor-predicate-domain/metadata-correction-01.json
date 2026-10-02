@@ -1,0 +1,44 @@
+{
+  "complete": true,
+  "derive_unchanged": true,
+  "scientific_fields_unchanged": true,
+  "source_map_correction": "result01 has availability map; additive result02 also declares the class20 map already checked by the producer",
+  "actual_publication_positive": {
+    "status": "VERIFIED_PREREQUISITE",
+    "result": "result-02.json",
+    "source_checks": [
+      {
+        "path": "retained/action-selector-local-exclusions/action-availability-gates-raw-01.json",
+        "sha256": "f716b46195813971da4b262c79ef20b13bc2c5a4683d4af7df55904c8c764f1d",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 415,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      },
+      {
+        "path": "retained/ov42-class20-action-admission/action-admission-guards-raw-01.json",
+        "sha256": "b68e052df6e19c6674c8e8cc692ec4dc764e7e31223d82eaff6328e0bcfe2bc5",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 322,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      }
+    ],
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Annotation consistency only; independent acceptance and native effects remain separate"
+  },
+  "negative": {
+    "refused": true,
+    "diagnostic": "memory/address/access annotation disagrees at 0x322c50"
+  },
+  "publisher_sha256": "5fdaeeb909b4fa8f9c9343287b8f4311be559d84057b94c7de5b6effd9575d9b",
+  "limits": "Metadata/prerequisite invocation controls, not an extra original-code or game experiment"
+}

@@ -149,18 +149,37 @@ def _hidden_kwargs(detached=False):
     return kw
 
 
+def _console_python(cmd):
+    """Swap a leading pythonw.exe for the python.exe beside it.
+
+    The no-window flag is ignored for GUI-subsystem programs, so a pythonw
+    child gets no console at all - and every console program IT runs
+    (goal_gate/check_questions' git, goal_resume's claude) then opens a
+    fresh VISIBLE window: the repeating flashes reported 2026-10-02.
+    python.exe under the no-window flag gets a hidden console that all its
+    descendants inherit, so nothing below it can flash."""
+    if os.name != "nt" or not cmd:
+        return cmd
+    exe = str(cmd[0])
+    if os.path.basename(exe).lower() == "pythonw.exe":
+        py = os.path.join(os.path.dirname(exe), "python.exe")
+        if os.path.exists(py):
+            return [py] + list(cmd[1:])
+    return cmd
+
+
 def run_hidden(cmd, **kw):
     """subprocess.run() that cannot open, focus or flash a console."""
     merged = _hidden_kwargs()
     merged.update(kw)
-    return subprocess.run(cmd, **merged)
+    return subprocess.run(_console_python(cmd), **merged)
 
 
 def popen_hidden(cmd, detached=False, **kw):
     """subprocess.Popen() that cannot open, focus or flash a console."""
     merged = _hidden_kwargs(detached=detached)
     merged.update(kw)
-    return subprocess.Popen(cmd, **merged)
+    return subprocess.Popen(_console_python(cmd), **merged)
 
 
 # --------------------------------------------------------------------------

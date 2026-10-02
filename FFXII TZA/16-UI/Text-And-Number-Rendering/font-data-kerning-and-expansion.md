@@ -63,7 +63,7 @@ kerning for its subtitle, `venus`, `square` and six `stf` fonts, and no `.fex` a
 `.fex` for `fontex_expand`, `fontex_subtitle` and `fontmonster`. (The paired-kern path is **populated but mis-keyed in the shipped build** — §3: the loader does build the
 nested `map<leftCp, map<rightCp, adjust>>` the reader walks, but with the two record fields in the opposite
 slots, so a lookup can only ever return the adjustment authored for the *reversed* pair, and only when the
-corpus carries one; the authored pair data is unreachable in practice.) What a `.fex` key names is not established (§7).
+corpus carries one; the authored pair data is unreachable in practice.) ~~What a `.fex` key names is not established (§7).~~ *(answered: see §7 — KE-1 closed 2026-09-27; 2026-10-02, OPUS)*
 
 ## 2. The layout
 
@@ -614,7 +614,7 @@ bind). `lib` layout relevant here:
   is a byte-identical duplicate corpus-wide) via `0017F9C0` →
   `trunc(adv / fontScale)`; `rbx+0x20` = `w8` kern cp, `−1` gated at
   `002AC527` → `0017F8E0` → `001E9780` → `001FDDD0` pair find
-  (structurally unreachable — see §3). Plus `[r14]` flag bits —
+  (~~structurally unreachable~~ reachable: `002AC2F0+0x23F` calls `0017F8E0` → `001E9780` → `001FDDD0` when the record's `+0x20` word is not −1, `002AC2F0+0x237` *(corrected 2026-10-02, OPUS)* — see §3). Plus `[r14]` flag bits —
   the advance for expansion glyphs routes through the `(fileId,slot)` metric
   slot bound at `ctx+0x10`, not through the TIM2.
 
@@ -990,7 +990,7 @@ ordered-map lower_bound + insert: walks `rax = [r10+0x18]` via
 `[rax+8]` links comparing `dword[+0x20]` against `edx` (`001FDBC0`–
 `001FDBCE`), refuses the duplicate when `rcx == r9` (`001FDBD6`),
 inserts through `001FC640` + member `001FDF90` (`001FDBF8`/
-`001FDC02`), and the second arm repeats the walk off `001FC420`
+`001FDC02`) and returns (`001FDB90+0x7E` `ret`); ~~and the second arm repeats the walk off `001FC420`~~ the next function, `001FDC10`, repeats the walk off `001FC420` *(corrected 2026-10-02, OPUS: the two sites cited next are `001FDC10+0x1D` and `001FDC10+0x56`, past `001FDB90`'s last instruction)*
 (`001FDC2D`) ending in `dword[rcx+0x24] = edi` — the value store
 (`001FDC66`).
 

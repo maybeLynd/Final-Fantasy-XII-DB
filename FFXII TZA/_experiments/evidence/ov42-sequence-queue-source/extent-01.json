@@ -1,0 +1,160 @@
+{
+  "complete": true,
+  "method": "A original chained PE metadata; not execution or semantic reachability",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "1e2456146a02b00528735c603a5e4e4992a0f9a9ea4b37cc271f0b560d844292",
+  "directory_bytes": "0080e7020c8a0600",
+  "entry": "0x306760",
+  "end_exclusive": "0x306b08",
+  "bytes": 936,
+  "body_sha256": "11d908d011ff1f921f0e3188f157e4ecaccbdeec1b48b10753ee9bfa0920efb3",
+  "records": [
+    {
+      "begin": "0x306760",
+      "end_exclusive": "0x306770",
+      "record_bytes": "60671e0070671e00d029c301",
+      "chain": [
+        {
+          "record": [
+            "0x306760",
+            "0x306770",
+            "0x1d529d0"
+          ],
+          "header_bytes": "01060200",
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "begin": "0x306770",
+      "end_exclusive": "0x3067c2",
+      "record_bytes": "70671e00c2671e00cc4fc501",
+      "chain": [
+        {
+          "record": [
+            "0x306770",
+            "0x3067c2",
+            "0x1d74fcc"
+          ],
+          "header_bytes": "21470400",
+          "flags": 4,
+          "chain_footer_va": "0x1d74fd8",
+          "chain_footer_bytes": "60671e0070671e00d029c301"
+        },
+        {
+          "record": [
+            "0x306760",
+            "0x306770",
+            "0x1d529d0"
+          ],
+          "header_bytes": "01060200",
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "begin": "0x3067c2",
+      "end_exclusive": "0x306a9a",
+      "record_bytes": "c2671e009a6a1e00e44fc501",
+      "chain": [
+        {
+          "record": [
+            "0x3067c2",
+            "0x306a9a",
+            "0x1d74fe4"
+          ],
+          "header_bytes": "21050200",
+          "flags": 4,
+          "chain_footer_va": "0x1d74fec",
+          "chain_footer_bytes": "70671e00c2671e00cc4fc501"
+        },
+        {
+          "record": [
+            "0x306770",
+            "0x3067c2",
+            "0x1d74fcc"
+          ],
+          "header_bytes": "21470400",
+          "flags": 4,
+          "chain_footer_va": "0x1d74fd8",
+          "chain_footer_bytes": "60671e0070671e00d029c301"
+        },
+        {
+          "record": [
+            "0x306760",
+            "0x306770",
+            "0x1d529d0"
+          ],
+          "header_bytes": "01060200",
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "begin": "0x306a9a",
+      "end_exclusive": "0x306ab6",
+      "record_bytes": "9a6a1e00b66a1e00f84fc501",
+      "chain": [
+        {
+          "record": [
+            "0x306a9a",
+            "0x306ab6",
+            "0x1d74ff8"
+          ],
+          "header_bytes": "21000000",
+          "flags": 4,
+          "chain_footer_va": "0x1d74ffc",
+          "chain_footer_bytes": "70671e00c2671e00cc4fc501"
+        },
+        {
+          "record": [
+            "0x306770",
+            "0x3067c2",
+            "0x1d74fcc"
+          ],
+          "header_bytes": "21470400",
+          "flags": 4,
+          "chain_footer_va": "0x1d74fd8",
+          "chain_footer_bytes": "60671e0070671e00d029c301"
+        },
+        {
+          "record": [
+            "0x306760",
+            "0x306770",
+            "0x1d529d0"
+          ],
+          "header_bytes": "01060200",
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "begin": "0x306ab6",
+      "end_exclusive": "0x306b08",
+      "record_bytes": "b66a1e00086b1e000850c501",
+      "chain": [
+        {
+          "record": [
+            "0x306ab6",
+            "0x306b08",
+            "0x1d75008"
+          ],
+          "header_bytes": "21000000",
+          "flags": 4,
+          "chain_footer_va": "0x1d7500c",
+          "chain_footer_bytes": "60671e0070671e00d029c301"
+        },
+        {
+          "record": [
+            "0x306760",
+            "0x306770",
+            "0x1d529d0"
+          ],
+          "header_bytes": "01060200",
+          "flags": 0
+        }
+      ]
+    }
+  ],
+  "limits": "Physical chained extent only; decoded CFG, indirect targets and source dataflow require separate verification."
+}

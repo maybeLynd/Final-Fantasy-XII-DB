@@ -153,7 +153,7 @@ and the Script-VM bridge — against the band's 28. **It is a narrower category,
 ## 5. The one site that indexes the band instead of testing it
 
 `BattleSpecialSequence_DeriveActionPresentationCode` (`00309230`) is the 28th site, and it is the
-only one that uses the band as an **index**:
+only one that uses the band as an **index** *(qualified 2026-10-02, OPUS, from ASTRA's SPEC-accepted [`presentation-index-domain`](../../_experiments/evidence/presentation-index-domain/README.md), method A: the test below compares the full 64-bit entry RDX, the row pointer, with a zero-extended 32-bit value at `00309230`+0x90 - `low32(the second ImageAddress_ResolveRuntimePointer return) + u16(context+8) × 0x113`, or 0 when the global context or the first return is null; the two returns and the two context reads are not assumed identical, and equality also needs RDX's upper 32 bits zero. The ordinary arm returns the u16 at row `+0x24` zero-extended (0..65535) without looking at the type. The indexed arm has no local bound: its read stays inside the thirteen initialised DWORDs only for type 27..39, and other types predict reads of the frame's gap, its stack cookie, saved registers, the return address or caller bytes - predicted addresses under a normal call and a valid frame, not observed values or faults. Which types and contexts naturally reach the equal arm stays open)*:
 
 ```c
 if (actionRow != table(02EBF138)[0x113])      // one specific action id
@@ -343,7 +343,7 @@ reached another way, below.
 ### ⚠ The 28th site is the one place the thirteen are not interchangeable
 
 `BattleSpecialSequence_DeriveActionPresentationCode` (`00309230`, 199 B) is the site that uses
-`0x1B` differently, and the difference is not the bound — **it uses `type − 0x1B` as an index**:
+`0x1B` differently, and the difference is not the bound — **it uses `type − 0x1B` as an index** *(qualified 2026-10-02, OPUS: and it applies no bound of its own - nothing tests the type between its load at `00309230`+0xA2 and the table read at +0xAB; see the §5 qualification above)*:
 
 ```asm
 003092CB  mov   rax, qword ptr [rdi + 0x698]
@@ -434,8 +434,8 @@ Nothing was executed or observed live.
 |---|---|---|---|
 | `00322350` | 12 B | subtracts 7 from the byte `cl` and returns 1 when the result is at most `0x12` unsigned (byte values 7 to 25), else 0 | `00322352`, `00322355`, `00322358` |
 | `0034E7D0` | 211 B | pops three values through `00267E10(r9)`, ORing bit v into a mask for each non-negative value v and counting those for which `00322350(v)` is non-zero; starts a budget at 3 when none counted, else at 4 minus the count; when `00359C00()` lacks any mask bit it tail-jumps `0026B4E0(rcx, 0)`; otherwise it subtracts the number of set bits among the 32 of `0035A050(00359BA0() OR mask)` from the budget and tail-jumps `0026B4E0(rcx, 1 when the result is non-negative, else 0)` | `0034E814`, `0034E82B`, `0034E83C`, `0034E865`, `0034E89E` |
-| `00350160` | 98 B | pops a value through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte)` returns 0 and `0031B510(stack buffer, 4)` returns more than 1 (signed) it calls `003286E0(low byte)`; otherwise returns without that call | `00350178`, `00350184`, `0035018C`, `003501A2`, `003501AA` |
-| `00351A40` | 81 B | pops two values a then b through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte of b)` returns 0 it calls `00328FB0(low byte of b, 1 when a is non-zero else 0)`, otherwise it returns without that call | `00351A50`, `00351A5A`, `00351A66`, `00351A6E`, `00351A81` |
-| `00352190` | 94 B | pops a value through `00267E10(r9)`; for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = 00263750(index)`; calls `003601B0(0x13)` and, when `00322350(low byte of the value)` is non-zero, `003170E0(low byte)` | `003521A8`, `003521B7`, `003521BE`, `003521D1`, `003521DE` |
-| `00352AF0` | 57 B | pops a value through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte)` is non-zero it tail-jumps `003288F0(low byte)`, otherwise returns | `00352AF9`, `00352B05`, `00352B0D`, `00352B14`, `00352B1E` |
+| `00350160` | 98 B | pops a value through `00267E10(r9)` and sets bit 0x13 of dword `022CB720` (a 14-byte bit setter); when `00322350(low byte)` returns 0 and `0031B510(stack buffer, 4)` returns more than 1 (signed) it calls `003286E0(low byte)`; otherwise returns without that call | `00350178`, `00350184`, `0035018C`, `003501A2`, `003501AA` |
+| `00351A40` | 81 B | pops two values a then b through `00267E10(r9)` and sets bit 0x13 of dword `022CB720` (a 14-byte bit setter); when `00322350(low byte of b)` returns 0 it calls `00328FB0(low byte of b, 1 when a is non-zero else 0)`, otherwise it returns without that call | `00351A50`, `00351A5A`, `00351A66`, `00351A6E`, `00351A81` |
+| `00352190` | 94 B | pops a value through `00267E10(r9)`; for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = PartyRoster_GetActorBySlot(index)`; sets bit 0x13 of dword `022CB720` (a 14-byte bit setter) and, when `00322350(low byte of the value)` is non-zero, `003170E0(low byte)` | `003521A8`, `003521B7`, `003521BE`, `003521D1`, `003521DE` |
+| `00352AF0` | 57 B | pops a value through `00267E10(r9)` and sets bit 0x13 of dword `022CB720` (a 14-byte bit setter); when `00322350(low byte)` is non-zero it tail-jumps `003288F0(low byte)`, otherwise returns | `00352AF9`, `00352B05`, `00352B0D`, `00352B14`, `00352B1E` |
 | `00353CB0` | 69 B | pops a value through `00267E10(r9)` and tail-jumps `0026B4E0(rcx, r)` where r is `003596D0(value)` when `00322350(low byte)` is non-zero and `00359740(value)` when it is zero | `00353CC0`, `00353CCA`, `00353CD5`, `00353CDC`, `00353CF0` |

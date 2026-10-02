@@ -1,0 +1,6 @@
+ok   0036DD87 movups xmmword ptr [rip + 0x1b8b662], xmm0
+ok   0025A8EE shl eax, 6
+ok   008AB7C7 jmp 0x5dddb0
+ok   00798261 mov qword ptr [rip + 0x17eaab8], rax
+ok   001D1C8E inc ecx
+FAILS 0

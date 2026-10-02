@@ -1,0 +1,85 @@
+== packet integrity
+PASS  manifest.json sha256 = 5c2ebb1d1ec6b576...  | 5c2ebb1d1ec6b57644b884b59cfdec39f6d4ef86568ad03797f47d44271dfd9e
+PASS  all 68 manifest members hash as listed  | []
+NOTE  committed manifest at 317ebd1b8: sha256 5c2ebb1d1ec6b57644b884b59cfdec39f6d4ef86568ad03797f47d44271dfd9e
+PASS  packet's captured range hashes (6 ranges), both native table spans and the region-switch table equal this image's bytes  | []
+PASS  packet keeps open: transitive callbacks, the 266ACA -> 3DB280 tail, natural scene initialization and talkterm timing; no complete archive hash
+== archive provenance (own VBF parse) and the extract's US file
+PASS  archive identity re-read: size 31,196,932,183, magic SRYK, header 11,995,716 B with the packet's sha256, 89,414 members  | 31196932183 b'SRYK' 11995716
+PASS  member 45552 record (own parse): blocks from 647240, 80,000 B at 24,281,213,565, name ps2data/plan_master/us/plan_map/asp_a/asp_a03/global/asp_a03.ebp
+PASS  the two compressed blocks (14,963 + 5,413 B) read from the archive equal the packet's retained blocks, decode strictly (zlib eof, no tail) to 65,536 + 14,464 B, and the 80,000 B equal the extract's US file  | blocks [14963, 5413]
+NOTE  WORD +4 labels equal the count-prefix row for 96 of 96 US entries (agreement, not selection)
+NOTE  ch copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  cn copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  de copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  es copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  fr copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  in copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  it copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+NOTE  kr copy: counts [9, 11, 0, 0, 0, 4, 72, 0], ordinal 25 row 6, label 6, name ラバナ_通常_NPC01
+== shipping-image re-derivation (with the extract's US bytes)
+PASS  body 002679F0 + 0x1B4 (436 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 00266530 + 0x59F (1439 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 00268EA0 + 0x1B7 (439 B) decodes exactly and one .pdata record covers it exactly
+PASS  00266530 has no ret; its single exit is the last instruction, 00266530 + 0x59A `jmp 0x3db280`, then int3
+PASS  00266AD0 dispatch: `cmp eax, 7` / `ja` to its ret, table 00266BA4 = image base + [r9 + rax*4 + 0x146ba4]
+PASS  00266AD0 + 0xD3 (211 B): exact decode, no .pdata, all 8 table targets are boundaries, every instruction reached, one ret (00266AD0 + 0xD2) then one nop pad, then the table; int3 before entry  | targets 266AFB,266B15,266B15,266B36,266B36,266B54,266B54,266B54
+PASS  00266BD0 + 0x60 (96 B): exact decode, no .pdata, dispatch on `+3 & 0x1F` <= 7 through table 00266C30, every instruction reached, last instruction a ret abutting the table; 12 int3 before entry  | 5 rets
+PASS  allocator: r12 = [rcx] (descriptor, 002679F0 + 0x1C), r15 = rcx (+0x25), N = [rcx+0x20] spilled to [rsp+0x50] (+0x21/+0x28); r12, r15 have no other writer but the epilogue pops
+PASS  count prefix: signed DWORD header +0x14 (002679F0 + 0x30), then the WORD row count (+0x35) in r13d; r13 has no other writer but the pop
+PASS  loop entry state: ebp = 0 (+0x1F); ebx = ebp (+0xA4), r10d = ebp (+0xA9), rdi = rbp (+0xC8), r8 = native table 01E0C328 (+0xCB); rbp written only at +0x1F, the call-loop inc (+0x18E) and the restore
+PASS  row k's count is WORD [descriptor + DWORD(+0x14) + 2 + rdi] (002679F0 + 0xD2..+0xDA); a zero count skips the inner loop (+0xED test / +0xEF jle to the row advance +0x13A)
+PASS  inner loop runs exactly count times: r11d = count (+0xF5), `sub r11, 1` / `jne` (+0x134/+0x138); r11 has no other writer in the row loop  | ['267AE5', '267B24']
+PASS  publish: pool[1 + old ebx] = record pointer (`movsxd rax, ebx` +0x100, `inc ebx` +0x103, `mov qword ptr [r14 + rax*8 + 8], rdx` +0x105); ebx's only writer in the row loop is that inc
+PASS  stamp: +3 low five bits = row (r9b = r10b & 0x1F, +0xF1/+0xF8; +0x10A..+0x114), upper three = the native table byte << 5 (+0x117..+0x123)
+PASS  advance: rdx += (WORD [r8+2] + 15) & ~15 (+0x126..+0x131), rdx's only writer in the row loop
+PASS  outer step: inc r10d (+0x13A), rdi += 2 (+0x13D), r8 += 4 (+0x141), `cmp r10d, r13d` / `jl` (+0x145); each is its register's only writer in the row loop
+PASS  the two loop heads have no entries but their fall-in and their back-edge  | ['267AEC', '267B28'] ['267ABB', '267B38']
+PASS  records start after pool and second array: rdx = r14 + 2*esi, esi = (8N + 0x17) & ~0xF; pool[0] = N
+PASS  then 00266530(rcx = manager, rdx = pool, r8d = ordinal) for ordinal 0 .. N-1 (002679F0 + 0x173..+0x192)
+PASS  the allocator touches the descriptor only at +0x14 and the count table (the +0x3F operand is an address-only lea of the count WORDs); it never reads a directory entry  | [('267A20', 20), ('267A25', 0), ('267A2F', 2), ('267AC2', 20), ('267ACA', 2)]
+PASS  native table 01E0C328 row 6 = kind 3, sub 0, 0x6E0 (1760 B); stamp (3 << 5) | 6 = 0x66  | [(0, 0, 808), (1, 0, 936), (1, 1, 816), (2, 0, 840), (2, 1, 720), (3, 0, 1760), (3, 0, 1760), (3, 1, 1640)]
+PASS  extract asp_a03 (US): section_000 at file+0x80, version WORD 11 (stride 48), 8 rows, counts [9,11,0,0,0,4,72,0], sum 96 = directory count  | ver 11 rows 8 counts [9, 11, 0, 0, 0, 4, 72, 0] dir 96
+PASS  own model: ordinal 25 is in row 6, whose interval is 24..95  | row 6
+PASS  entry 25 is at section offset 0xD2A4 (= DWORD +0x18 0xCDF0 + 4 + 48*25), WORD +4 label 6, pcId 0xFF  | eoff D2A4 label 6
+PASS  entry 25's name (pool +0x4C + nameOff) decodes strictly as CP932 to ラバナ_通常_NPC01  | 8389836f83695f92ca8fed5f4e50433031
+PASS  00266530: rsi = [rcx] (+0x1C), r10 = movsxd r8d (+0x26), rbx = [rdx + r10*8 + 8] (+0x3A), r14 = rcx; no rdx write before +0x3A; rbx written only there and at the restore
+PASS  r10 (volatile) has one writer (+0x26); between it and its last use (+0x1EF) the only calls are the two leaves 00266AD0 and 00266BD0, called with rcx = rbx (+0x76/+0x7E)  | calls ['266AD0', '266BD0']
+PASS  the two leaves write only rax/rcx/rdx/r8/r9: r10 (ordinal) and r11 (image base) survive them  | 00266AD0 ['r8', 'r9', 'rax', 'rcx', 'rdx'] 00266BD0 ['r8', 'r9', 'rax', 'rdx']
+PASS  binding: rcx = descriptor + signed DWORD +0x18 (+0x1E0/+0x1E7); WORD +0 >= 8 gives rdi = 48*i (+0x1EF/+0x1F3), else 32*i (+0x1F9); +4 (+0x1FD), + rcx (+0x201), stored to record +0x40 (+0x204)
+PASS  the initializer reads the entry at +6, +8, +0x10, +0x14, +0x18 only; never the WORD +4 label  | ['6', '8', '10', '14', '18']
+PASS  00266AD0: row 6 goes to 00266AD0 + 0x84; the body's only writes are record +0xA0/+0xA8/+0xB8/+0xC0 through rdx = the record (+0x00); nothing writes +3  | [(2517758, 'rdx', 184, 8), (2517765, 'rdx', 192, 8), (2517791, 'rdx', 192, 8), (2517805, 'rdx', 184, 8), (2517824, 'rdx', 192, 8), (2517835, 'rdx', 184, 8), (2517851, 'rdx', 184, 8), (2517864, 'rdx', 192, 8), (2517881, 'rdx', 160, 8), (2517915, 'rdx', 168, 8)]
+PASS  00266BD0: rows 5 and 6 go to 00266BD0 + 0x3E; row 6 stores DWORD 0x30004 at +0x1C (00266BD0 + 0x42), `cmp r8b, 5` / `jne` to the ret (+0x5F); 0x30004 has bits 16 and 17
+PASS  00266BD0 and 00266AD0 never write rcx's +3, and the preset's +0x1C store is a full DWORD on every arm
+PASS  00266530's direct writes that meet record +0x1C..+0x1F: exactly six, all after the preset call, each an OR or an AND whose mask keeps bits 16 and 17  | 2666F1 and dword ptr [rbx + 0x1c], 0xffffdeff; 266A3A or dword ptr [rbx + 0x1c], 4; 266A4E and dword ptr [rbx + 0x1c], 0xfffffffb; 266A89 or dword ptr [rbx + 0x1c], 0x400; 266A9E and dword ptr [rbx + 0x1c], 0xfffffffb; 266AA4 and dword ptr [rbx + 0x1c], 0xfffffbff
+PASS  the 0xFFFF fill is rep stosw over record +0xC8 for 0x12 WORDs (ends at +0xEC), clear of +0x1C
+PASS  the initializer leaves by `jmp 0x3db280` with rcx = record (00266530 + 0x57B, + 0x59A)
+PASS  callees after the preset that could still reach the record: 0020E600 plus the seven stubbed in the emulation (003DB580, 00265FF0, 00265B60, 00268380, 002681E0, 003DBB60, 00268EA0)  | ['20E600', '265B60', '265FF0', '2681E0', '268380', '268EA0', '3DB580', '3DBB60']
+PASS  00266530's direct writes to record +0x0B (byte stores of al after `and al, 0xf7` +0x107 and `and al, 0xfc`) never set bit 3; its two filer calls (+0x517, +0x569) are guarded by `test byte ptr [rbx + 0xb], 8`  | 266643 mov byte ptr [rbx + 0xb], al; 266660 mov byte ptr [rbx + 0xb], al
+PASS  filer 00268EA0 gates talkterm on +0x1C bit 17 (00268EA0 + 0x3C) and talkhold on bit 16 (+0x8B), rdi = rcx
+PASS  emulated original allocator: pool[0] = N = 96, all 96 pointers set, spaced by each row's rounded native size, and every +3 stamp = (kind << 5) | model row  | bad None N 96 pool0 96
+PASS  emulated: the ordinals stamped row 6 are exactly 24..95, and ordinal 25's +3 is 0x66  | row6 [24]..[95]
+PASS  emulated 00266530(25): it selects pool[26]; right after 00266BD0 returns, +0x1C = 0x30004 and +3 = 0x66  | ('0x30004', '0x66')
+PASS  emulated, at the 003DB280 tail with the seven callees stubbed: record +0x40 = descriptor + 0xD2A4, WORD +0 = 25, +0x1C keeps bits 16 and 17  | +0x40 = desc+D2A4, +0x1C = 30004
+NOTE  emulated stub order (effects NOT modelled): 3DB580 265FF0 265B60 268380 268380 3DBB60 3DBB60; final stubbed +0x1C = 0x30004
+== controls (each private patched image / mutated map copy must FAIL at least one check above)
+PASS  null control: an unchanged private image copy (sha check off) and an unchanged data copy pass every check  | 43 of 43
+PASS  control: 002679F0 + 0x13D `add rdi, 2` -> `add rdi, 4` (count WORD stride)  | 5 failed: outer step: inc r10d (+0x13A), rdi += 2 (+0x13D), r8 += 4 (+0x141), `c; emulated original allocator: pool[0] = N = 96, all 96 pointers set, sp; emulated: the ordinals stamped row 6 are exactly 24..95, and ordinal 2
+PASS  control: 002679F0 + 0x103 `inc ebx` -> two nops (ordinal not advanced)  | refused: UcError() after 1 failed: publish: pool[1 + old ebx] = record pointer (`movsxd rax, ebx` +0x100,
+PASS  control: 002679F0 + 0x11E `shl al, 5` -> `shl al, 4` (kind bits misplaced)  | 5 failed: stamp: +3 low five bits = row (r9b = r10b & 0x1F, +0xF1/+0xF8; +0x10A.; emulated original allocator: pool[0] = N = 96, all 96 pointers set, sp; emulated: the ordinals stamped row 6 are exactly 24..95, and ordinal 2
+PASS  control: 002679F0 + 0xCB native table +4 (r8 starts at row 1's entry)  | 2 failed: loop entry state: ebp = 0 (+0x1F); ebx = ebp (+0xA4), r10d = ebp (+0xA; emulated original allocator: pool[0] = N = 96, all 96 pointers set, sp
+PASS  control: 00266530 + 0x1EA `cmp eax, 8` -> `cmp eax, 0xC` (version 11 takes stride 32)  | 2 failed: binding: rcx = descriptor + signed DWORD +0x18 (+0x1E0/+0x1E7); WORD +; emulated, at the 003DB280 tail with the seven callees stubbed: record 
+PASS  control: 00266530 + 0x1F3 `shl rdi, 4` -> `shl rdi, 5` (stride 96)  | 2 failed: binding: rcx = descriptor + signed DWORD +0x18 (+0x1E0/+0x1E7); WORD +; emulated, at the 003DB280 tail with the seven callees stubbed: record 
+PASS  control: 00266530 + 0x3A pool select +8 -> +0x10 (ordinal 25 gets record 26)  | 3 failed: 00266530: rsi = [rcx] (+0x1C), r10 = movsxd r8d (+0x26), rbx = [rdx + ; emulated 00266530(25): it selects pool[26]; right after 00266BD0 retur; emulated, at the 003DB280 tail with the seven callees stubbed: record 
+PASS  control: 00266BD0 + 0x42 0x30004 -> 0x10004 (bit 17 missing)  | 3 failed: 00266BD0: rows 5 and 6 go to 00266BD0 + 0x3E; row 6 stores DWORD 0x300; emulated 00266530(25): it selects pool[26]; right after 00266BD0 retur; emulated, at the 003DB280 tail with the seven callees stubbed: record 
+PASS  control: preset table row 6 -> the 0x40 arm (00266BD0 + 0x36)  | 3 failed: 00266BD0: rows 5 and 6 go to 00266BD0 + 0x3E; row 6 stores DWORD 0x300; emulated 00266530(25): it selects pool[26]; right after 00266BD0 retur; emulated, at the 003DB280 tail with the seven callees stubbed: record 
+PASS  control: 00266AD0 + 0x8B `mov [rdx+0xb8], rax` -> `mov [rdx+3], al; 4 nops` (+3 overwritten)  | 5 failed: 00266AD0: row 6 goes to 00266AD0 + 0x84; the body's only writes are re; emulated original allocator: pool[0] = N = 96, all 96 pointers set, sp; emulated: the ordinals stamped row 6 are exactly 24..95, and ordinal 2
+PASS  control: 00266BD0 + 0x3E `and r8b, 0x1f` -> `and r10b, 0x1f` (ordinal carrier written)  | 2 failed: the two leaves write only rax/rcx/rdx/r8/r9: r10 (ordinal) and r11 (im; 00266BD0: rows 5 and 6 go to 00266BD0 + 0x3E; row 6 stores DWORD 0x300
+PASS  control: 00266530 + 0x1C1 AND mask 0xffffdeff -> 0xfffcdeff (bits 16/17 cleared)  | 2 failed: 00266530's direct writes that meet record +0x1C..+0x1F: exactly six, a; emulated, at the 003DB280 tail with the seven callees stubbed: record 
+PASS  control: data: count WORD row 5 4 -> 6 (ordinal 25 moves to row 5)  | 4 failed: extract asp_a03 (US): section_000 at file+0x80, version WORD 11 (strid; own model: ordinal 25 is in row 6, whose interval is 24..95; emulated: the ordinals stamped row 6 are exactly 24..95, and ordinal 2
+PASS  control: data: version WORD 11 -> 7 (stride 32)  | 4 failed: extract asp_a03 (US): section_000 at file+0x80, version WORD 11 (strid; entry 25 is at section offset 0xD2A4 (= DWORD +0x18 0xCDF0 + 4 + 48*25; entry 25's name (pool +0x4C + nameOff) decodes strictly as CP932 to ラバ
+PASS  control: data: row count 8 -> 5 (row 6 never carved)  | 5 failed: extract asp_a03 (US): section_000 at file+0x80, version WORD 11 (strid; own model: ordinal 25 is in row 6, whose interval is 24..95; emulated: the ordinals stamped row 6 are exactly 24..95, and ordinal 2
+PASS  countermodel: entry 25's WORD +4 label 6 -> 7 changes nothing but the label check (row 6, 0x66, 0x30004, binding all still PASS)  | ['entry 25 is at section offset 0xD2A4 (= DWORD +0x18 0xCDF0 + 4 + 48*25), WORD +4 label 6, pcId 0xFF']
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS  extract US asp_a03.ebp on disk unchanged after all controls
+TOTAL: 69 checks, 69 PASS, 0 FAIL (16 controls)

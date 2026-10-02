@@ -1,0 +1,67 @@
+{
+  "manifest_sha256": "814b83ad013385518de8a269ee75b4ac949ba574ad8b998940231065edb0f7cd",
+  "commit": "e46090c353c4b7a244ee427590ec18f5216e10cd",
+  "files": [
+    {
+      "path": "retained/manifest.json",
+      "sha256": "814b83ad013385518de8a269ee75b4ac949ba574ad8b998940231065edb0f7cd"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "a2299be8f2f8eb79f0da7aaaff41e0e5b9d4f444117ba39e79e1bb032cdbc735"
+    },
+    {
+      "path": "retained/result-01.json",
+      "sha256": "acc1ee9abfe6c34e071d02e99c2891de64324cd8b4e04374c7e699d941efc488"
+    },
+    {
+      "path": "retained/prove.py",
+      "sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9"
+    },
+    {
+      "path": "retained/prove-02.status.json",
+      "sha256": "5eae1c59717c50b99a82434771bf9436e0fd76a39faa0504c12c03b327a705bd"
+    },
+    {
+      "path": "retained/prove-02.stdout",
+      "sha256": "bfee0dd4a4cccd5a13712d02516fd2bb512a73581656aded876883272d70b71f"
+    },
+    {
+      "path": "retained/prove-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/capture.py",
+      "sha256": "873529d06e0710afc888b8144dfed8f041c41819f37da564ca31263bc8538644"
+    },
+    {
+      "path": "retained/capture-01.status.json",
+      "sha256": "5e33a6d34680ac29e056eb7046c5ed688cc7b5934c65a718059278eb3931ec69"
+    },
+    {
+      "path": "retained/capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "retained/capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/retained-body-identities.json",
+      "sha256": "3c7d63e6e16e57efb3d205c6b2cece8d5e6ee9a83d37ef21d5db47d5d1b5f065"
+    },
+    {
+      "path": "retained/retained-manifest.status.json",
+      "sha256": "0b76880679d45c500743e0bacdbe349755f5546f8e80f444e0701d740923080d"
+    },
+    {
+      "path": "retained/retained-manifest.stdout",
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "retained/retained-manifest.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "acceptance": "Producer-valid published parent; independent acceptance pending, not assumed here"
+}

@@ -38,7 +38,7 @@ one signal renamed twice would not be.
 
 ## Eleven genuinely open keys
 
-Absent from the binary and **not** tool-marked, so neither reading explains them:
+Absent from the binary as literal strings and **not** tool-marked~~, so neither reading explains them~~ *(answered: see the reflected-parameter page's W-9, answered 2026-09-15: the six `mCascadePartition<c>_<q>` keys are read through the template `"mCascadePartition%d_%d"`, and `mCascadeNumber` is 3 wherever authored; 2026-10-02, OPUS)*:
 
 | key | in files |
 |---|---:|

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\prove.py", line 147, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\prove.py", line 139, in main
+    annotations=V.validate(source);facts=derive(source,G)
+                                         ~~~~~~^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\prove.py", line 47, in derive
+    ]:need(*op)
+      ~~~~^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\notification-retirement-order\prove.py", line 18, in need
+    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,a):raise ValueError('required operation changed '+hex(pc))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required operation changed 0x3dc1d1

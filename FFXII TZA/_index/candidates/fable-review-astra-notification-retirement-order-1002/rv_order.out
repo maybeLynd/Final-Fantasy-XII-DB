@@ -1,0 +1,78 @@
+== packet integrity
+PASS  manifest.json sha256 = 814b83ad01338551...  | 814b83ad013385518de8a269ee75b4ac949ba574ad8b998940231065edb0f7cd
+PASS  all 41 manifest members hash as listed  | []
+PASS  committed manifest at e46090c35 hashes as the working-tree manifest  | 814b83ad013385518de8a269ee75b4ac949ba574ad8b998940231065edb0f7cd
+PASS  packet's captured range sha256 values equal this image's bytes (8 ranges = the eight bodies)  | []
+PASS  retained-body-identities: 8 bodies, lengths sum 1041, each sha256 equals the image  | []
+PASS  result-01 names the order 3DB346 -> 3DB37D/3DC122 -> 3DB3F0 -> 3DB3F9 and limits flags >= 2 to 263050
+== shipping-image re-derivation
+PASS  body 003587C0 + 0x32 (50 B) decodes exactly and one .pdata record covers it exactly (003587C0+0x32 fl0)
+PASS  body 003DB2A0 + 0x17A (378 B) decodes exactly and one .pdata record covers it exactly (003DB2A0+0x17A fl0)
+PASS  body 003DC0D0 + 0x5D (93 B) decodes exactly and one .pdata record covers it exactly (003DC0D0+0x5D fl0)
+PASS  body 003DBCF0 + 0xC2 (194 B) decodes exactly; three .pdata records tile it, the first unchained at the entry and both later ones CHAININFO records rooted at 003DBCF0 (003DBCF0+0x31 fl0 root 003DBCF0,003DBD21+0x26 fl4 root 003DBCF0,003DBD47+0x6B fl4 root 003DBCF0)
+PASS  leaf 00263FF0 + 0x15 (21 B) decodes exactly; no .pdata record begins in or covers it; before entry: int3; after the last ret: 11 B int3
+PASS  leaf 003DB550 + 0x23 (35 B) decodes exactly; no .pdata record begins in or covers it; before entry: a record ending at the entry; after the last ret: 13 B int3
+PASS  leaf 003DB650 + 0x85 (133 B) decodes exactly; no .pdata record begins in or covers it; before entry: int3; after the last ret: 11 B int3
+PASS  leaf 003DC1B0 + 0x89 (137 B) decodes exactly; no .pdata record begins in or covers it; before entry: int3; after the last ret: 7 B int3
+PASS  eight bodies total 1041 B (21 + 50 + 378 + 35 + 133 + 194 + 93 + 137)  | 1041
+PASS  00263FF0 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 264004)
+PASS  003587C0 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3587E9,3587F1)
+PASS  003DB2A0 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3DB2C7,3DB419)
+PASS  003DB550 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3DB56F,3DB572)
+PASS  003DB650 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3DB6D4)
+PASS  003DBCF0 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3DBD20,3DBD46,3DBDB1)
+PASS  003DC0D0 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3DC12C)
+PASS  003DC1B0 local CFG closed: no tail or out-of-body branch; last instruction is a ret (rets 3DC238)
+PASS  3DB2A0: rsi = movsxd edx (index), rbx = rcx (actor); index 0xFF -> 3DB2B8 `mov eax, 1` and ret 3DB2C7
+PASS  3DB2A0: entry = [actor+0A0h] + index*20 (3DB2D7..3DB2E2, 14h-byte entries) held in rdi
+PASS  3DB2A0: rdi written only at 3DB2E2, 3DB2E8 (null actor), 3DB334 (non-head walk) and the restore 3DB3FD  | ['3DB2E2', '3DB2E8', '3DB334', '3DB3FD']
+PASS  3DB2A0: r14d = byte entry+12h AND 1 (3DB2EA movzx, 3DB2EF and), read before any call
+PASS  3DB2A0: r14 written only at 3DB2EA, 3DB2EF and the restore 3DB405  | ['3DB2EA', '3DB2EF', '3DB405']
+PASS  3DB2A0 return EAX (own reverse reaching definitions): ret 3DB2C7 <- 3DB2B8 `mov eax, 1` only; ret 3DB419 <- 3DB402 `mov eax, r14d` only  | {'3DB2C7': ['3DB2B8'], '3DB419': ['3DB402']}
+PASS  3DB2A0: mode byte entry+10h == 4 -> ebp = -1 (3DB311); else rbp = signed byte entry+2 (channel), negative -> actor+61h list (3DB314), else head = byte [rbp+rbx+94h]
+PASS  3DB2A0: head == index -> 3DB32B `cmp esi, eax` / 3DB32D `je 0x3db346` with eax = the list head (3DB318); a 0xFF head exits to 3DB3FD with no unlink
+PASS  3DB346 `call 0x3dc1b0` (unhook) with rcx = actor, edx = index; it dominates the notification call 3DB37D
+PASS  notification gate: 3DB34D `jns` (channel >= 0), 3DB36B 16-bit `cmp word [rdi+6], 8000h` / `je` skip, 3DB371 `cmp byte [rdi+10h], 3` / `jne` skip; then rdx = entry, rcx = actor, 3DB37D call 3DC0D0
+PASS  the negative-channel / mode-4 branch (3DB34F) reaches the relink without any notification call
+PASS  3DB37D's result is discarded: 3DB382 `movzx eax, byte ptr [rdi + 0x12]` rewrites eax next
+PASS  order: relink 3DB3F0 `call 0x3db650` and head publish 3DB3F9 `mov byte ptr [rbx + 0x60], sil` post-dominate the attempt's return 3DB382; 3DB3F0 precedes 3DB3F9 on every path
+PASS  no path returns from 3DB3F0/3DB3F9 to the attempt (3DB37D unreachable from the relink)
+PASS  relink arguments: 3DB3E6 edx = byte actor+60h (current free head), 3DB3EA r8d = index, rcx = actor
+PASS  census: before the attempt the removal writes nothing that overlaps actor+60h; its only actor+60h write in the whole body is 3DB3F9  | [(4043769, 'rbx', 96)]
+PASS  flags: 3DB386 `cmp al, 2` / 3DB388 `jb` (unsigned) skips 3DB392 `call 0x263050` for flags 0/1; edx = flags >> 1; 263050 lies after the attempt
+PASS  non-head walk: 3DB326 `mov edx, esi` passes the removed index, not the walked index, to 3DB550 on every iteration (3DB33F `jne 0x3db326`)
+PASS  3DC1B0 writes three bytes, all through entry-pool pointers derived from [actor+0A0h]: 3DC220 next.prev = prev, 3DC230 prev.next = next, 3DC233 entry+11h = 0; nothing through the actor (r9)  | [(4047392, 'rax', 1, 1), (4047408, 'r10', 0, 1), (4047411, 'r8', 17, 1)]
+PASS  3DC1B0: the entry+11h clear 3DC233 dominates its single ret; there are no calls
+PASS  3DB650 relink writes only entry bytes (bases r8/r9/r10 from [actor+0A0h]); no actor field, no calls  | [(4044474, 'r8', 1), (4044478, 'r9', 0), (4044483, 'r8', 1), (4044493, 'r10', 1), (4044497, 'r8', 0)]
+PASS  3DC0D0: rbx = entry; edx = word entry+6 zero-extended (requester), ecx = dword entry+8; call 3587C0; a NULL requester skips the post (3DC0E8 `je 0x3dc127`)
+PASS  3DC0D0 descriptor at [rsp+20h]: +0 word 402h, +2 byte entry+3, +4 dword 80000000h (WORD at +4 = 0, the function id), +8 byte 1, +0Ch entry+8, +10h entry+0Ch; no other store overlaps +4..+5  | [(32, 2, 4047118), (34, 1, 4047091), (36, 4, 4047125), (40, 1, 4047133), (44, 4, 4047111), (48, 4, 4047104)]
+PASS  3DC122 `call 0x3dbcf0` with rcx = requester (rax), rdx = &descriptor, r8d = 1; return 3DC127 is the call origin
+PASS  3DC0D0 writes only its own stack (the descriptor)
+PASS  3587C0: requester = [list + 8 + index*8] where list = [slot+8], slot = 2098E10h + (int)entry+8 * 288h; NULL list, negative or out-of-range index (signed jge vs dword [list]) -> 0
+PASS  3587C0 / 263FF0 / 3DB550 write no memory (stack pushes only)
+PASS  3DBCF0 admission: rax = [actor+48h] (function table), r9d = word descriptor+4 (function id), 3DBD0C `cmp r9d, dword ptr [rax]` / 3DBD0F `jb` (unsigned): id >= count -> eax = 3 (3DBD11), ret 3DBD20
+PASS  3DBCF0 capacity: 3DBD26 `movzx edi, byte ptr [rcx + 0x60]` (rcx = incoming actor, unwritten before it) / `cmp edi, 0xff` / 3DBD30 `jne`: FF -> eax = 2 (3DBD32), ret 3DBD46
+PASS  function-0 admission precedes capacity: 3DBD0C dominates 3DBD26, and no path reaches 3DBD26 from 3DBD11
+PASS  the result-3 and result-2 paths make no call and write only the own stack home slots  | []
+PASS  3DBCF0 return EAX (own reverse reaching definitions): 3DBD20 <- 3DBD11, 3DBD46 <- 3DBD32, 3DBDB1 <- 3DBDA0 `mov eax, ebp` (ebp = 3DB7A0 result, 3DBD64)  | {'3DBD20': ['3DBD11'], '3DBD46': ['3DBD32'], '3DBDB1': ['3DBDA0']}
+PASS  a non-FF free head reaches the insertion helpers: 3DBD4E 3DC130, 3DBD5F 3DB7A0, then only when that returns 3: 3DBD75 3DB650, 3DBD82 263FF0, 3DBD96 263E40  | [('3DBD4E', '3DC130'), ('3DBD5F', '3DB7A0'), ('3DBD75', '3DB650'), ('3DBD82', '263FF0'), ('3DBD96', '263E40')]
+PASS  composition: between removal entry and 3DBD26 nothing writes actor+60h through the actor pointer (removal census above; 3DC1B0, 3DB550, 3DC0D0, 3587C0 and 263FF0 write no actor field), so with the requester resolving to the same actor the capacity byte read at 3DBD26 is actor+60h as at removal entry
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 51 of 51
+PASS  control: 3DB37D `call 0x3dc0d0` -> five nops (no attempt)  | 2 failed: notification gate: 3DB34D `jns` (channel >= 0), 3DB36B 16-bit `cmp word [rdi+6], 8000h` / `je` skip, 3DB371 `cmp byte [rdi+10h], 3` / `jne` skip; then rdx = entry, rcx = actor, 3DB37D call 3DC0D0; 3DB37D's result is discarded: 3DB382 `movzx eax, byte ptr [rdi + 0x12]` rewrites eax next
+PASS  control: 3DB2F3 `mov [rsp+30h], rbp` -> `mov [rbx+60h], sil; nop` (slot published before the attempt)  | 2 failed: census: before the attempt the removal writes nothing that overlaps actor+60h; its only actor+60h write in the whole body is 3DB3F9; composition: between removal entry and 3DBD26 nothing writes actor+60h through the actor pointer (removal census above; 3DC1B0, 3DB550, 3DC0D0, 3587C0 and 263FF0 write no actor field), so with the requester resolving to the same actor the capacity byte read at 3DBD26 is actor+60h as at removal entry
+PASS  control: 3DB3A6 `jne 3DB3D1` -> `jne 3DB3FD` (a path after the attempt skips relink and publish)  | 1 failed: order: relink 3DB3F0 `call 0x3db650` and head publish 3DB3F9 `mov byte ptr [rbx + 0x60], sil` post-dominate the attempt's return 3DB382; 3DB3F0 precedes 3DB3F9 on every path
+PASS  control: 3DB2EF `and r14d, 1` -> `and r14d, 3` (return no longer bit 0)  | 1 failed: 3DB2A0: r14d = byte entry+12h AND 1 (3DB2EA movzx, 3DB2EF and), read before any call
+PASS  control: 3DB402 `mov eax, r14d` -> `nop; mov eax, ebp` (return from another carrier)  | 1 failed: 3DB2A0 return EAX (own reverse reaching definitions): ret 3DB2C7 <- 3DB2B8 `mov eax, 1` only; ret 3DB419 <- 3DB402 `mov eax, r14d` only
+PASS  control: 3DC115 descriptor dword 80000000h -> 80000001h (function id 1)  | 1 failed: 3DC0D0 descriptor at [rsp+20h]: +0 word 402h, +2 byte entry+3, +4 dword 80000000h (WORD at +4 = 0, the function id), +8 byte 1, +0Ch entry+8, +10h entry+0Ch; no other store overlaps +4..+5
+PASS  control: 3DBD0F `jb` -> `jl` (signed admission compare)  | 1 failed: 3DBCF0 admission: rax = [actor+48h] (function table), r9d = word descriptor+4 (function id), 3DBD0C `cmp r9d, dword ptr [rax]` / 3DBD0F `jb` (unsigned): id >= count -> eax = 3 (3DBD11), ret 3DBD20
+PASS  control: 3DBD30 `jne 3DBD47` -> `je 3DBD47` (FF head admitted)  | 1 failed: 3DBCF0 capacity: 3DBD26 `movzx edi, byte ptr [rcx + 0x60]` (rcx = incoming actor, unwritten before it) / `cmp edi, 0xff` / 3DBD30 `jne`: FF -> eax = 2 (3DBD32), ret 3DBD46
+PASS  control: 3DBD32 `mov eax, 2` -> `call 3DC130` (a call on the full-pool path)  | 3 failed: 3DBCF0 capacity: 3DBD26 `movzx edi, byte ptr [rcx + 0x60]` (rcx = incoming actor, unwritten before it) / `cmp edi, 0xff` / 3DBD30 `jne`: FF -> eax = 2 (3DBD32), ret 3DBD46; the result-3 and result-2 paths make no call and write only the own stack home slots; a non-FF free head reaches the insertion helpers: 3DBD4E 3DC130, 3DBD5F 3DB7A0, then only when that returns 3: 3DBD75 3DB650, 3DBD82 263FF0, 3DBD96 263E40
+PASS  control: 3DC233 `mov byte [r8+11h], 0` -> [r8+12h]  | 1 failed: 3DC1B0 writes three bytes, all through entry-pool pointers derived from [actor+0A0h]: 3DC220 next.prev = prev, 3DC230 prev.next = next, 3DC233 entry+11h = 0; nothing through the actor (r9)
+PASS  control: 3DB371 `cmp byte [rdi+10h], 3` -> 4 (mode gate)  | 1 failed: notification gate: 3DB34D `jns` (channel >= 0), 3DB36B 16-bit `cmp word [rdi+6], 8000h` / `je` skip, 3DB371 `cmp byte [rdi+10h], 3` / `jne` skip; then rdx = entry, rcx = actor, 3DB37D call 3DC0D0
+PASS  control: 3DB388 `jb 3DB397` -> two nops (263050 for flags 0/1)  | 1 failed: flags: 3DB386 `cmp al, 2` / 3DB388 `jb` (unsigned) skips 3DB392 `call 0x263050` for flags 0/1; edx = flags >> 1; 263050 lies after the attempt
+PASS  control: 3DC220 `mov [rax+1], r11b` -> `mov [r9+60h], r11b` (unhook writes the free head)  | 2 failed: 3DC1B0 writes three bytes, all through entry-pool pointers derived from [actor+0A0h]: 3DC220 next.prev = prev, 3DC230 prev.next = next, 3DC233 entry+11h = 0; nothing through the actor (r9); composition: between removal entry and 3DBD26 nothing writes actor+60h through the actor pointer (removal census above; 3DC1B0, 3DB550, 3DC0D0, 3587C0 and 263FF0 write no actor field), so with the requester resolving to the same actor the capacity byte read at 3DBD26 is actor+60h as at removal entry
+PASS  control: 3DBD26 `movzx edi, byte [rcx+60h]` -> [rcx+61h]  | 1 failed: 3DBCF0 capacity: 3DBD26 `movzx edi, byte ptr [rcx + 0x60]` (rcx = incoming actor, unwritten before it) / `cmp edi, 0xff` / 3DBD30 `jne`: FF -> eax = 2 (3DBD32), ret 3DBD46
+PASS  control: 3DB366 `mov eax, 8000h` -> 8001h (requester sentinel)  | 1 failed: notification gate: 3DB34D `jns` (channel >= 0), 3DB36B 16-bit `cmp word [rdi+6], 8000h` / `je` skip, 3DB371 `cmp byte [rdi+10h], 3` / `jne` skip; then rdx = entry, rcx = actor, 3DB37D call 3DC0D0
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 74 checks, 74 PASS, 0 FAIL (15 controls)

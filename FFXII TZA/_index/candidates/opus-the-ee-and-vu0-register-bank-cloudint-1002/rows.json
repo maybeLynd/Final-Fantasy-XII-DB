@@ -1,0 +1,263 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_019LqHiXRaWmgLrNYjxULfMf",
+ "report": "the-ee-and-vu0-register-bank.json",
+ "rows": [
+  {
+   "fn": "002330D0",
+   "text": "calls a 114-byte helper with its arguments unchanged and, when the returned word is non-negative, adds to it the low 16 bits of (word `rcx+0x40` plus 1) times the sign-extended low word of `r8d`; returns the word, unchanged when negative",
+   "anchors": [
+    [
+     "002330E0",
+     "call"
+    ],
+    [
+     "002330E8",
+     "js"
+    ],
+    [
+     "002330EE",
+     "inc"
+    ],
+    [
+     "002330F8",
+     "imul"
+    ],
+    [
+     "002330FC",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0029BC80",
+   "text": "switches on dword `[rdx]`: for 4 it fills a stack vector (dword `01EF93F0`, -1.0 `01CEBC9C`, dword `01EF93F8`, 0), calls a 72-byte helper (`02AED560`, buffer), zeroes the buffer's dword `+0xC`, calls a 33-byte helper (buffer, buffer) and stores at word `+0x58` of qword `rcx+0x38` that signed word times (1.0 minus 1.428571 times (min(1.0, max(0.3, the xyz dot product of the vector and the buffer from a 37-byte helper)) minus 0.3)), truncated; for 2 it returns 0 at once when a 19-byte helper Q returns a negative value, else calls Q twice more and, when `rcx` is non-null, stores the third result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and dword `01E0C1DC` minus the second result at `+0x9E`; for 1 it calls a 24-byte helper with `rcx` and the result of a 19-byte table-address helper for 0, then (when `rcx` is non-null) stores dword `01E0C1DC` minus the second Q result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and the first Q result at `+0x9E`, and on both paths calls a 26-byte helper (`rcx`, `0xA1`); those three cases return 0, and any other value returns the result of a 3-byte stub that returns 0 (called with `rcx`, `rdx`)",
+   "anchors": [
+    [
+     "0029BCA1",
+     "mov"
+    ],
+    [
+     "0029BCBD",
+     "call"
+    ],
+    [
+     "0029BD75",
+     "mov"
+    ],
+    [
+     "0029BDAA",
+     "mov"
+    ],
+    [
+     "0029BE1F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00398390",
+   "text": "multiplies float `022D930C` in place by dword `01EF93F0`, copies the 16-byte vectors at `rcx` and `rdx` to `022D92E0` and `022D92F0`, stores the products y1*z2, z1*x2 and x1*y2 at `022D91A0`, `022D91A4` and `022D91A8`, stores the cross product of the two xyz parts (y1*z2-z1*y2, z1*x2-x1*z2, x1*y2-y1*x2) at `022D9300`, `022D9304` and `022D9308`, and copies the 16 bytes at `022D9300` to `r8`",
+   "anchors": [
+    [
+     "0039839C",
+     "mulss"
+    ],
+    [
+     "003983B7",
+     "movups"
+    ],
+    [
+     "003983ED",
+     "movups"
+    ],
+    [
+     "00398450",
+     "movss"
+    ],
+    [
+     "00398467",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "003A2B90",
+   "text": "stores the bit pattern of `xmm1`, sign-extended to a qword, at `022D8F30`, copies the 16 bytes at `022D8F30` to `022D92F0`, subtracts `xmm1` from each of the four floats of the 16-byte vector at `rcx`, and writes the result to both `022D92E0` and `rcx`",
+   "anchors": [
+    [
+     "003A2B9E",
+     "mov"
+    ],
+    [
+     "003A2BAC",
+     "movups"
+    ],
+    [
+     "003A2BB7",
+     "subps"
+    ],
+    [
+     "003A2BBA",
+     "movups"
+    ],
+    [
+     "003A2BC1",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "0050C670",
+   "text": "takes `v` from the 7-byte getter of dword `02B40E18` (called with the incoming registers), calls an 85-byte helper (`00D22888`, v) and tail-jumps `VMResult_WriteInt32(rcx, v)`",
+   "anchors": [
+    [
+     "0050C67D",
+     "call"
+    ],
+    [
+     "0050C68D",
+     "call"
+    ],
+    [
+     "0050C6A1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050C8D0",
+   "text": "takes `v` from the 7-byte getter of dword `02B40E18` (called with the incoming registers), calls an 85-byte helper (`00D228A8`, v) and tail-jumps `VMResult_WriteInt32(rcx, v)`",
+   "anchors": [
+    [
+     "0050C8DD",
+     "call"
+    ],
+    [
+     "0050C8ED",
+     "call"
+    ],
+    [
+     "0050C901",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00510870",
+   "text": "reads three values a, b, c with three `VMValueStack_PopInt32CoerceFloat32(r9)` calls and takes `p` = a 421-byte helper's result for (c, b, a); when `p` is non-null and a 50-byte helper (`rdx`, `p`) returns non-zero it calls `VMResult_WriteInt32(rcx, 1)`, an 85-byte helper (`00D22B30`, c), a 27-byte helper (`p`, 1) and the 85-byte helper (`00D22B58`, a 109-byte helper's result for (byte `p+0x15`, word `p`)); otherwise it calls `VMResult_WriteInt32(rcx, 0)` and the 85-byte helper (`00D22B80`, c)",
+   "anchors": [
+    [
+     "005108B8",
+     "call"
+    ],
+    [
+     "005108CB",
+     "call"
+    ],
+    [
+     "005108DC",
+     "call"
+    ],
+    [
+     "00510903",
+     "call"
+    ],
+    [
+     "0051091E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BA940",
+   "text": "stores `00D81200` at qword `[rcx]`, calls a 300-byte helper (`rcx`), then eh_vector_destructor_iterator (`rcx+0x58`, `0x10`, 2, the address of `_guard_check_icall`) and eh_vector_destructor_iterator (`rcx+0x38`, `0x10`, 2, the address of `_guard_check_icall`), and tail-jumps a 34-byte helper (`rcx`)",
+   "anchors": [
+    [
+     "006BA959",
+     "mov"
+    ],
+    [
+     "006BA95C",
+     "call"
+    ],
+    [
+     "006BA976",
+     "call"
+    ],
+    [
+     "006BA990",
+     "call"
+    ],
+    [
+     "006BA99E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00863410",
+   "text": "when qword `rcx+0x18` is non-null calls it with qword `rcx+0x20` as `rcx`; returns 0 on both paths",
+   "anchors": [
+    [
+     "00863414",
+     "mov"
+    ],
+    [
+     "0086341D",
+     "mov"
+    ],
+    [
+     "00863421",
+     "call"
+    ],
+    [
+     "00863423",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002330D0",
+   "was": "calls `00233050` with its arguments unchanged and, when the returned word is non-negative, adds to it the low 16 bits of (word `rcx+0x40` plus 1) times the sign-extended low word of `r8d`; returns the word, unchanged when negative",
+   "now": "calls a 114-byte helper with its arguments unchanged and, when the returned word is non-negative, adds to it the low 16 bits of (word `rcx+0x40` plus 1) times the sign-extended low word of `r8d`; returns the word, unchanged when negative",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 002330D0+0x10 reaches a Movement-owned function"
+  },
+  {
+   "fn": "0029BC80",
+   "was": "switches on dword `[rdx]`: for 4 it fills a stack vector (dword `01EF93F0`, -1.0 `01CEBC9C`, dword `01EF93F8`, 0), calls `003CBFA0(02AED560, buffer)`, zeroes the buffer's dword `+0xC`, calls `00202DE0(buffer, buffer)` and stores at word `+0x58` of qword `rcx+0x38` that signed word times (1.0 minus 1.428571 times (min(1.0, max(0.3, `00202D20(vector, buffer)`)) minus 0.3)), truncated; for 2 it returns 0 at once when `0028F810()` is negative, else calls `0028F810` twice more and, when `rcx` is non-null, stores the third result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and dword `01E0C1DC` minus the second result at `+0x9E`; for 1 it calls `00247570(rcx, 002735E0(0))`, then (when `rcx` is non-null) stores dword `01E0C1DC` minus the second `0028F810()` at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and the first `0028F810()` at `+0x9E`, and calls `00247930(rcx, 0xA1)`; those three cases return 0, and any other value returns `005C5230(rcx, rdx)`",
+   "now": "switches on dword `[rdx]`: for 4 it fills a stack vector (dword `01EF93F0`, -1.0 `01CEBC9C`, dword `01EF93F8`, 0), calls a 72-byte helper (`02AED560`, buffer), zeroes the buffer's dword `+0xC`, calls a 33-byte helper (buffer, buffer) and stores at word `+0x58` of qword `rcx+0x38` that signed word times (1.0 minus 1.428571 times (min(1.0, max(0.3, the xyz dot product of the vector and the buffer from a 37-byte helper)) minus 0.3)), truncated; for 2 it returns 0 at once when a 19-byte helper Q returns a negative value, else calls Q twice more and, when `rcx` is non-null, stores the third result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and dword `01E0C1DC` minus the second result at `+0x9E`; for 1 it calls a 24-byte helper with `rcx` and the result of a 19-byte table-address helper for 0, then (when `rcx` is non-null) stores dword `01E0C1DC` minus the second Q result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and the first Q result at `+0x9E`, and on both paths calls a 26-byte helper (`rcx`, `0xA1`); those three cases return 0, and any other value returns the result of a 3-byte stub that returns 0 (called with `rcx`, `rdx`)",
+   "why": "the 0xA1 call is not under the rcx test: the null branch at 0029BC80+0x177 lands on 0029BC80+0x197, just before the call at 0029BC80+0x19F; pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned and Boundary callees at 0029BC80+0x3D, 0029BC80+0x85, 0029BC80+0x9C, 0029BC80+0xAB, 0029BC80+0xFE, 0029BC80+0x14A, 0029BC80+0x155, 0029BC80+0x19F)"
+  },
+  {
+   "fn": "0050C670",
+   "was": "takes `v = 003BB420(rcx)` (other arguments passed through), calls `0017D280(00D22888, v)` and tail-jumps `0026B4E0(rcx, v)`",
+   "now": "takes `v` from the 7-byte getter of dword `02B40E18` (called with the incoming registers), calls an 85-byte helper (`00D22888`, v) and tail-jumps `VMResult_WriteInt32(rcx, v)`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned, Runtime and Script_VM callees at 0050C670+0xD, 0050C670+0x1D, 0050C670+0x31)"
+  },
+  {
+   "fn": "0050C8D0",
+   "was": "takes `v = 003BB420(rcx)` (other arguments passed through), calls `0017D280(00D228A8, v)` and tail-jumps `0026B4E0(rcx, v)`",
+   "now": "takes `v` from the 7-byte getter of dword `02B40E18` (called with the incoming registers), calls an 85-byte helper (`00D228A8`, v) and tail-jumps `VMResult_WriteInt32(rcx, v)`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned, Runtime and Script_VM callees at 0050C8D0+0xD, 0050C8D0+0x1D, 0050C8D0+0x31)"
+  },
+  {
+   "fn": "00510870",
+   "was": "reads three values a, b, c with three `00267E10(r9)` calls and takes `p = 00359EA0(c, b, a)`; when `p` is non-null and `00262F50(rdx, p)` is non-zero it calls `0026B4E0(rcx, 1)`, `0017D280(00D22B30, c)`, `0035AE10(p, 1)` and `0017D280(00D22B58, 00263A30(byte p+0x15, word p))`; otherwise it calls `0026B4E0(rcx, 0)` and `0017D280(00D22B80, c)`",
+   "now": "reads three values a, b, c with three `VMValueStack_PopInt32CoerceFloat32(r9)` calls and takes `p` = a 421-byte helper's result for (c, b, a); when `p` is non-null and a 50-byte helper (`rdx`, `p`) returns non-zero it calls `VMResult_WriteInt32(rcx, 1)`, an 85-byte helper (`00D22B30`, c), a 27-byte helper (`p`, 1) and the 85-byte helper (`00D22B58`, a 109-byte helper's result for (byte `p+0x15`, word `p`)); otherwise it calls `VMResult_WriteInt32(rcx, 0)` and the 85-byte helper (`00D22B80`, c)",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (Script_VM, unowned, Runtime and ActorEntity callees at 00510870+0x26, 00510870+0x48, 00510870+0x5B, 00510870+0x6C, 00510870+0x7A, 00510870+0x87, 00510870+0x93, 00510870+0xA2, 00510870+0xAE, 00510870+0xBC)"
+  },
+  {
+   "fn": "006BA940",
+   "was": "stores `00D81200` at qword `[rcx]`, calls `006BAED0(rcx)`, then `00809054(rcx+0x58, 0x10, 2, 0016D6A0)` and `00809054(rcx+0x38, 0x10, 2, 0016D6A0)`, and tail-jumps `006AA200(rcx)`",
+   "now": "stores `00D81200` at qword `[rcx]`, calls a 300-byte helper (`rcx`), then eh_vector_destructor_iterator (`rcx+0x58`, `0x10`, 2, the address of `_guard_check_icall`) and eh_vector_destructor_iterator (`rcx+0x38`, `0x10`, 2, the address of `_guard_check_icall`), and tail-jumps a 34-byte helper (`rcx`)",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (Boundary, CRT and Phyre callees at 006BA940+0x1C, 006BA940+0x36, 006BA940+0x50, 006BA940+0x5E)"
+  }
+ ]
+}

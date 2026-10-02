@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\actor-directory-kind-proof\control.py", line 41, in <module>
+    else:raise ValueError('source mutation accepted '+label)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: source mutation accepted pre-preset-overwrites-kind

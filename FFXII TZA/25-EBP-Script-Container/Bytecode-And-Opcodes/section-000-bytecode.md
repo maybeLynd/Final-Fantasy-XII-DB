@@ -688,3 +688,11 @@ Interior anchor `0033009F` (function `00330060`).
 - **Save_Load_Settings — MECHANICAL (3 edges).** 3 calls from page-cited bodies into shared Save_Load_Settings plumbing (`SaveImage_GetPersistentPayloadBase` (002EF2B0)) - the helpers' general call surface, not a Save_Load_Settings relationship of this page's subjects.
 - **Story_Event_Quest_Hunt — SERVICE (1 edge).** 1 outbound (page-cited `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) call Story_Event_Quest_Hunt bodies `EventMemory_QueryDefinitionIdAbsent` (00377440)). Substantive edges include `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) calls `EventMemory_QueryDefinitionIdAbsent` (00377440).
 - **WorldAreaField - CLIENT and SERVICE (11 edges).** 4 inbound (WorldAreaField bodies `0025ACA0`, `0025ABA0`, `MapRef_BeginLoadResources` (00268750) call page-cited `002658B0`, `0025ABA0`, `00267930`); 7 outbound (page-cited `0025ACA0`, `002620E0`, `0025ABA0` call WorldAreaField bodies `002658B0`, `0025ABA0`, `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910)).
+
+*(pass-22 residue, 2026-10-02, SWE2-CONTRACT — the cited thunk's fan-in, now in the graph)*
+- **CombatFormula — MECHANICAL (53 edges).** 53 inbound calls from CombatFormula bodies to the cited
+  `RNG_MT19937_NextU32_Thunk` (`00379CD0`) - the thunk's general call surface, not a CombatFormula
+  relationship of this page's subjects.
+- **CoreRuntimeScheduling — MECHANICAL (2 edges).** `0022B6E0` and `0022B7E0` call `00379CD0`.
+- **Rewards_Progression_Economy — MECHANICAL (2 edges).** `002F9A60` and `002F9B20` call `00379CD0`.
+- **Status_Periodic_Terminal — MECHANICAL (1 edge).** `00386C70` calls `00379CD0`.

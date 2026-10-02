@@ -1068,3 +1068,22 @@ sticks. Interior anchor
 `00792F10` (306 B) is the priority and working-set tuner the start-up `007980A0` constructs early: after a normal object head (vtable `01CB2468`, arg2 stored at `+8`, member ctors `005CC8A0` at `+0x20` and `007A3810` at `+0x48`) it calls `GetCurrentProcess` and applies `SetPriorityClass` with `0x8000` (HIGH_PRIORITY_CLASS), fills a `GetSystemInfo` block and a 0x40-byte `GlobalMemoryStatusEx` report, reads the current working set through `GetProcessWorkingSetSize`, and when both bounds differ from -1 applies `SetProcessWorkingSetSize` with min = `dwPageSize * 50` (or the queried min when the query fails) and max = `ullTotalPhys - dwPageSize*512 - 1`; a final `005CD0A0` pass on the `+0x20` member completes the object.
 
 Interior anchor `00792FBC` (function `00792F10`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-game-is-a-phyre-application-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00186820` | 30 B | returns `0x870` when byte `+0xDB8` of `rcx` is non-zero or dword `+0xC30` equals 3; otherwise returns dword `+0xADC` | `00186827`, `0018682C`, `0018682E`, `00186835`, `00186837` |
+| `0020CD30` | 77 B | when qword `01F83450` is null, calls `00210EC0(0x80)` and, when that is non-null, `0020C730(result, 01DFE410, 0x29)`, then stores the last result (null when `00210EC0` returned null) to `01F83450`; when `01F83450` is already non-null it does nothing | `0020CD45`, `0020CD4C`, `0020CD59`, `0020CD6B`, `0020CD71` |
+| `00793750` | 54 B | stores `01CB2468` to qword `[rcx]`, then calls `005CD6D0(rcx + 0x20)` and `007A3980(rcx + 0x48)` | `00793762`, `00793769`, `00793770`, `0079377A` |
+| `00796E30` | 52 B | stores qword `02EA5368` plus 8 to qword `[rcx]` (0 when `02EA5368` is null) and qword `01F40120` (`0x02EA5660` in the image) to qword `+8`, and returns `rcx` | `00796E3A`, `00796E43`, `00796E47`, `00796E4A`, `00796E59` |
+| `00798F80` | 105 B | when `ecx` is 0, `rdx` is `0x202` and byte `02EA5244` is non-zero, calls the import at `008C2820` with qword `02EA5248`, `0xA2`, 0, 0; then on every path tail-jumps through the import at `008C2848` with qword `02EA5258`, the incoming `ecx`, `rdx` and `r8` | `00798F99`, `00798FA2`, `00798FAA`, `00798FBE`, `00798FE2` |
+| `0079F140` | 10 B | stores 1 to byte `+0x21` and `dl` to byte `+0x26` of `rcx` and returns 0 | `0079F144`, `0079F146` |
+| `0079F9E0` | 31 B | calls `007943E0`, `00794E80`, `00795590` and `00795320` in that order (the first with the incoming registers, none with arguments set here) and returns 0 | `0079F9E4`, `0079F9E9`, `0079F9EE`, `0079F9F3`, `0079F9F8` |
+| `007A0AF0` | 17 B | when byte `+0x23` of `rcx` is 0 stores 1 to byte `+0x22`, otherwise stores 0 to byte `+0x23`; returns 0 on both paths | `007A0AF2`, `007A0AF5`, `007A0AF7`, `007A0AFC` |
+| `007A0B10` | 17 B | stores 1 to bytes `+0x20` and `+0x1E` of `rcx` and `dl` to byte `+0xD20`, and returns 0 | `007A0B14`, `007A0B16`, `007A0B1A` |
+| `007A0B30` | 6 B | stores `dl` to byte `+0x28` of `rcx` and returns 0 | `007A0B33` |
+| `007A0FB0` | 7 B | stores 1 to byte `+0x24` of `rcx` and returns 0 | `007A0FB4` |
+| `007A1180` | 14 B | stores 1 to byte `+0x29` of `rcx`, `edx` to dword `+0x2C` and `r8d` to dword `+0x30`, and returns 0 | `007A1184`, `007A1186`, `007A1189` |

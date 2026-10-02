@@ -157,8 +157,8 @@ independent checks, none of which relies on the others:
    steps by *ratio* rather than by addition is "Camera scale".
 3. **Structure matches structure.** Ids 92/93 are the only clamped pair in slice C and are labelled
    "Eye A and B Ambient **Scale**/**Bound**"; ids 145/146 are the only clamped pair in slice E and are
-   labelled "Map Eye Ambient **Modifier**/**Bound**". Every `cmp`/`sete` arm in both slices carries a
-   label ending in "enable" or "Enabled".
+   labelled "Map Eye Ambient **Modifier**/**Bound**". ~~Every `cmp`/`sete` arm in both slices carries a~~
+   ~~label ending in "enable" or "Enabled"~~ Every `cmp`/`sete` arm but one carries a label ending in "enable" or "Enabled"; id 103's is "Camera Over Write (O to capture): " *(corrected 2026-10-02, OPUS: id 103 at `001D1660+0x149D` is `cmp`/`sete`; its label `008FDC00` is stored at menu `+0x468` by `001D0390+0x4D7`)*.
 4. **A second table agrees.** The renderer draws ids 247–258 with
    `lea eax,[r13-0xF7]` into a stride-12 array — twelve consecutive slots from id 247, whose labels
    are exactly twelve character stats (Level, HP, MP, ATPOW … SPD).
@@ -254,7 +254,7 @@ So **`02CB7FD0` is an object base, not a global**, and every `02CBxxxx` field in
   4-byte fields into one 8-byte store: `+0x34` = `1.3`, `+0x38` = `0.0`. Three such stores cover ids
   143/153, 154/155 and 161/162.
 
-`005DC580` covers `0x00–0xC4` and `005DC720` covers `0x42C–0x4D8`; **the two ranges do not overlap**,
+`005DC580` covers `0x00–0xC4` and `005DC720` covers ~~`0x42C–0x4D8`~~ `0x42C`–`0x4D8` directly, then re-runs `005DC580` / `005DC430` on two copies at `+0x5F0` / `+0x6C0` and `+0xB88` / `+0xC58` with its own fields `+0xA1C`–`+0xA5B` and `+0xFB4`–`+0xFF3`, and zeroes `+0x1010`–`+0x1027` *(corrected 2026-10-02, OPUS: `005DC720+0xD1` `lea rbx, [rdi+0xa1d]`, loop back at `+0x13B`, stores at `+0x13D`–`+0x14B`)*; **the two ranges do not overlap**,
 so no field takes a default from an ambiguous source. `005DC430`'s displacements are *not* object
 offsets and are excluded — they are the sub-object's, which is where
 [what-the-console-tunes.md](what-the-console-tunes.md) places `chrFresnelSpecular*` at `+0xD0`.
@@ -288,7 +288,7 @@ does not return through `001D4BFA`:
 It reads a subsystem's current state, derives a boolean from it, and pushes that boolean to **two**
 places: a setter and a virtual method on an object the console holds at `rdi + 0xA80`. `001DF340` is
 a 10-byte setter with **15 callers across 2 owner subsystems** — small enough to name here; the
-`0x0E` is a channel or key selector, not decoded. **The virtual target is not resolved**: the object
+`0x0E` is a channel or key selector, not decoded *(answered: see the cross-check below, `0x38 / 4 = 14`, property 14; 2026-10-02, OPUS)*. **The virtual target is not resolved**: the object
 at `rdi + 0xA80` has no static type in this slice, so slot `+0x60` names nothing.
 
 ## 8. Data structures and formulas

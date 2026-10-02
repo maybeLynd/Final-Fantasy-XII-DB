@@ -127,7 +127,7 @@ then raises entry bit 9 either way.
 
 **A sibling, command class `0x06` - `00417CC0` (58 B, read whole).** It calls a second global callback, `[02CA4440]`,
 when one is installed - with the entry's `+0x2C0` and the command itself - and then sets bit 6 of the entry's qword
-`+0x2C8` either way. *Who installs the two callbacks was not read.*
+`+0x2C8` either way. *~~Who installs the two callbacks was not read.~~* *(answered: see render-event-selection-evidence.md - the installer that page names registers both through `0041D6C0` (`02CA4410 + id*8`): id 6 `002E7090` into `02CA4440` and id 0xC `002E70A0` into `02CA4470`; 2026-10-02, OPUS; installer named by role here, FABLE, so the far-end address stays on the page that reads it)*
 
 ## 7a. Two neighbouring commands that act on the same fields, read whole
 
@@ -161,7 +161,7 @@ first pass". That is a lead from a label, not a reading.*
 - Attached records never roll their own selector; they read the parent's cached byte.
 
 **Not read:** the command interpreter that advances a cursor; what starts a *pending* state; the meanings of the state
-word's values beyond "2 is tested by mode 1"; the selector objects behind `[02CA4668]`; who raises entry bit 6.
+word's values beyond "2 is tested by mode 1"; ~~the selector objects behind `[02CA4668]`~~ *(answered: see the handler page's `0x09` section - the pointer is a table of `0x30` entries of `{1, cell}`, stored by `0041D6E0`; 2026-10-02, OPUS)*; who raises entry bit 6.
 
 | body | anchors |
 |---|---|

@@ -1,0 +1,108 @@
+{
+  "stage": "SOURCE_CFG_QUALIFIED_NOT_SEMANTIC_CLOSURE",
+  "producer_complete": false,
+  "driver_sha256": "9d4e2dfda64ea31bbd4769eeb10bc55e1b54ed5cb0f5388f009a9af024f3ead0",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "graphs": [
+    {
+      "entry": "0x20c300",
+      "bytes": 312,
+      "calls": [
+        [
+          2147148,
+          "0x20b5f0"
+        ],
+        [
+          2147168,
+          "0x20b5f0"
+        ],
+        [
+          2147203,
+          "0x20b5f0"
+        ],
+        [
+          2147259,
+          "0x20b5f0"
+        ],
+        [
+          2147282,
+          "0x20b5f0"
+        ],
+        [
+          2147312,
+          "0x20b5f0"
+        ],
+        [
+          2147328,
+          "0x210ec0"
+        ],
+        [
+          2147355,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        "0x20c437"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x210ec0",
+      "bytes": 11,
+      "calls": [],
+      "returns": [],
+      "tails": [
+        "0x210ec6"
+      ]
+    },
+    {
+      "entry": "0x85e730",
+      "bytes": 7,
+      "calls": [],
+      "returns": [],
+      "tails": [
+        "0x85e730"
+      ]
+    },
+    {
+      "entry": "0x808c40",
+      "bytes": 33,
+      "calls": [],
+      "returns": [
+        "0x808c56"
+      ],
+      "tails": [
+        "0x808c5c"
+      ]
+    }
+  ],
+  "annotation_checks": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 92,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 8,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "malloc_static_declaration": {
+    "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+    "name": "malloc",
+    "iat_va": "0x8c2b40",
+    "hint_name_va": "0x1deee88",
+    "iat_file_bytes": "88eecc0100000000",
+    "lookup_file_bytes": "88eecc0100000000"
+  },
+  "cookie_observation": "Supplied complete33B has no own RAX-family writes, no calls, in-body successful return808C56 and failure tail809654. BND prefix removed only in temporary control-edge view; raw bytes/annotations preserved. External failure tail effects not proved.",
+  "next": "Build composed allocation-zero/own-count-phase/lookup-return propagation proof with exact retained source/status and controls; do not promote capture/CFG feasibility alone.",
+  "limits": "Original bytes read, not executed. Import declaration is not live binding. Successful cookie in-body RET is a distinct native precondition, not a generic Win64 volatile-RAX promise. No natural allocation failure/collision/leak/game session claim."
+}

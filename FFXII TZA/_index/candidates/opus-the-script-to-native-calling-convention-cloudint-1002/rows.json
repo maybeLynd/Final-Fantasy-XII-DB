@@ -1,0 +1,153 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "the-script-to-native-calling-convention.json",
+ "rows": [
+  {
+   "fn": "0034E5C0",
+   "text": "reads dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns, calls `00267E10(r9)` three times, and returns a 52-byte helper's result for (that dword, second result, third result, first result, 0) with 0 as the fifth (stack) argument",
+   "anchors": [
+    [
+     "0034E5DF",
+     "mov"
+    ],
+    [
+     "0034E5E2",
+     "call"
+    ],
+    [
+     "0034E5F6",
+     "call"
+    ],
+    [
+     "0034E5FE",
+     "mov"
+    ],
+    [
+     "0034E60D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034EC80",
+   "text": "reads dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns, calls `00267E10(r9)` three times, and returns a 52-byte helper's result for (that dword, second result, third result, first result, 1) with 1 as the fifth (stack) argument",
+   "anchors": [
+    [
+     "0034EC9F",
+     "mov"
+    ],
+    [
+     "0034ECA2",
+     "call"
+    ],
+    [
+     "0034ECB6",
+     "call"
+    ],
+    [
+     "0034ECBE",
+     "mov"
+    ],
+    [
+     "0034ECCD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034F380",
+   "text": "calls `00267E10(r9)` twice, then the 8-byte getter of qword `02099D70`, and tail-jumps a 200-byte helper with (dword `+0x28` of that pointer, second `00267E10` result, first `00267E10` result)",
+   "anchors": [
+    [
+     "0034F390",
+     "call"
+    ],
+    [
+     "0034F39A",
+     "call"
+    ],
+    [
+     "0034F3A1",
+     "call"
+    ],
+    [
+     "0034F3AB",
+     "mov"
+    ],
+    [
+     "0034F3B8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00394600",
+   "text": "returns at once when byte `01EFAC10` equals 2; otherwise tail-jumps a 175-byte helper with (`0x108`, the address of a 326-byte routine, 0), that address in `rdx`",
+   "anchors": [
+    [
+     "00394607",
+     "je"
+    ],
+    [
+     "0039460C",
+     "lea"
+    ],
+    [
+     "00394613",
+     "mov"
+    ],
+    [
+     "00394618",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003DB790",
+   "text": "tail-jumps `ActorResource_AllocateAndSubmitEntry` with `r8d` = 1, passing `rcx` and `edx` through unchanged",
+   "anchors": [
+    [
+     "003DB796",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0034E5C0",
+   "was": "reads dword `+0x28` of the pointer `002640C0()` returns, calls `00267E10(r9)` three times, and returns `00269A90(that dword, second result, third result, first result, 0)` with 0 as the fifth (stack) argument",
+   "now": "reads dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns, calls `00267E10(r9)` three times, and returns a 52-byte helper's result for (that dword, second result, third result, first result, 0) with 0 as the fifth (stack) argument",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 0034E5C0+0x17, 0034E5C0+0x4D)"
+  },
+  {
+   "fn": "0034EC80",
+   "was": "reads dword `+0x28` of the pointer `002640C0()` returns, calls `00267E10(r9)` three times, and returns `00269A90(that dword, second result, third result, first result, 1)` with 1 as the fifth (stack) argument",
+   "now": "reads dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns, calls `00267E10(r9)` three times, and returns a 52-byte helper's result for (that dword, second result, third result, first result, 1) with 1 as the fifth (stack) argument",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 0034EC80+0x17, 0034EC80+0x4D)"
+  },
+  {
+   "fn": "0034F380",
+   "was": "calls `00267E10(r9)` twice, then `002640C0()`, and tail-jumps `00269AD0(dword +0x28 of that pointer, second `00267E10` result, first `00267E10` result)`",
+   "now": "calls `00267E10(r9)` twice, then the 8-byte getter of qword `02099D70`, and tail-jumps a 200-byte helper with (dword `+0x28` of that pointer, second `00267E10` result, first `00267E10` result)",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned and ActorEntity callees at 0034F380+0x21, 0034F380+0x38)"
+  },
+  {
+   "fn": "00394600",
+   "was": "returns at once when byte `01EFAC10` equals 2; otherwise tail-jumps `00244F50(0x108, 00393EA0, 0)` with the address `00393EA0` as `rdx`",
+   "now": "returns at once when byte `01EFAC10` equals 2; otherwise tail-jumps a 175-byte helper with (`0x108`, the address of a 326-byte routine, 0), that address in `rdx`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (Boundary jmp target at 00394600+0x18 and the unowned routine address loaded at 00394600+0xC)"
+  },
+  {
+   "fn": "003DB790",
+   "was": "tail-jumps `003DBCF0` with `r8d` = 1, passing `rcx` and `edx` through unchanged",
+   "now": "tail-jumps `ActorResource_AllocateAndSubmitEntry` with `r8d` = 1, passing `rcx` and `edx` through unchanged",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the jmp at 003DB790+0x6 reaches an ActorEntity-owned function"
+  }
+ ]
+}

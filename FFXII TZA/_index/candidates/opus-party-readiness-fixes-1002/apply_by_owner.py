@@ -67,6 +67,10 @@ LINE_OWNERS = {
 }
 
 
+# Holds lifted 2026-10-02 (OPUS): these pages' holds are lifted; their held edits on other identities' lines go to them.
+OWNERS["OPUS-HELD"] = set(OWNERS.get("OPUS-HELD", set())) - set(['11-Party/party-roster-and-control-suppression.md'])
+
+
 def owner_of(e):
     for o, prefixes in LINE_OWNERS.items():
         if e[1].startswith(prefixes):

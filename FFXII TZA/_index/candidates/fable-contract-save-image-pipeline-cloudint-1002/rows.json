@@ -1,0 +1,114 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-pipeline.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01BbJEW8EUsZAfZd7QTFetdW",
+ "report": "contract-save-image-pipeline.json",
+ "rows": [
+  {
+   "fn": "002DF060",
+   "text": "sets `ecx` to -1 and tail-jumps to `001DBE40(-1)`",
+   "anchors": [
+    [
+     "002DF063",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002EF890",
+   "text": "for `i` = 0 to 6 (the index clamped to 0..6 by a signed test and `cmovg`), reads dword `+0` of the 0x30-byte entry `i` of the table at `022BDD60` and, when it is non-zero, calls `0024CFF0` with it and then zeroes that dword and byte `+4` of the entry; returns nothing",
+   "anchors": [
+    [
+     "002EF8C4",
+     "cmovg"
+    ],
+    [
+     "002EF8D0",
+     "mov"
+    ],
+    [
+     "002EF8D8",
+     "call"
+    ],
+    [
+     "002EF8DD",
+     "mov"
+    ],
+    [
+     "002EF8E1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00349B30",
+   "text": "takes `e` = `00267E10(r9)`, calls `0017DB70(00D10C20)` and tail-jumps to `002EF840(e)`",
+   "anchors": [
+    [
+     "00349B39",
+     "call"
+    ],
+    [
+     "00349B47",
+     "call"
+    ],
+    [
+     "00349B53",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A050",
+   "text": "calls `00267F90(r9, 0)`, takes `e` = `00267E10(r9)`, calls `0017DB70(00D10C20)` and tail-jumps to `002EF840(e)`",
+   "anchors": [
+    [
+     "0034A05E",
+     "call"
+    ],
+    [
+     "0034A066",
+     "call"
+    ],
+    [
+     "0034A074",
+     "call"
+    ],
+    [
+     "0034A080",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003633B0",
+   "text": "when `ecx` is non-zero, calls `00363840()` unless unsigned byte `022CBB2D` already equals `ecx`, and stores `cl` to byte `022CBB2D`; when `ecx` is 0, calls `002DF0F0(0)` if dword `022CBA70` or dword `022CBA7C` is non-zero, then zeroes dword `022CBA70` and byte `022CBB2D`",
+   "anchors": [
+    [
+     "003633C3",
+     "cmp"
+    ],
+    [
+     "003633C7",
+     "call"
+    ],
+    [
+     "003633CC",
+     "mov"
+    ],
+    [
+     "003633ED",
+     "call"
+    ],
+    [
+     "003633F2",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -1,0 +1,89 @@
+== packet integrity
+PASS  manifest.json sha256 = 8a463282899676c2...  | 8a463282899676c2b8a1248a23bacf8c48280431105374d9bd49481146d461b2
+PASS  all 62 manifest members hash as listed  | []
+== shipping-image re-derivation
+PASS  body 00352980 + 0x2E (46 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 00353660 + 0x4C (76 B) decodes exactly and one .pdata record covers it exactly
+PASS  body 003DB420 + 0x130 (304 B) decodes exactly and the .pdata records inside it tile it exactly  | 3DB420+0x1C fl0, 3DB43C+0x55 fl4, 3DB491+0x8E fl4, 3DB51F+0x1F fl4, 3DB53E+0x7 fl4, 3DB545+0xB fl4
+PASS  003DB420's first .pdata record is 003DB420 + 0x1C (28 B), flags 0 (the primary record)  | 3DB420..3DB43C fl0
+PASS  the other 5 records are CHAININFO (flag 4): 3DB43C, 3DB53E, 3DB545 chain directly to 3DB420; 3DB491 and 3DB51F chain to 3DB43C; every chain resolves to 3DB420 in at most 2 hops  | ['3DB43C->3DB420', '3DB491->3DB43C', '3DB51F->3DB43C', '3DB53E->3DB420', '3DB545->3DB420']
+PASS  the primary record's 28 B end at 003DB420 + 0x1C, which is before the first branch target outside it (003DB545) and before the removal call (003DB506)
+PASS  003DB420 local CFG closed: no tail/out branch; rets exactly 3DB53D and 3DB54F (the last instruction)  | rets=['3DB53D', '3DB54F'] tails=[] outs=[]
+PASS  00352980 local CFG: no ret, single exit is the final tail jmp to 003DB6E0
+PASS  00353660 local CFG: no ret, single exit is the final tail jmp to 003DB6E0
+PASS  new original bytes total 426 (46 + 76 + 304)  | 426
+PASS  retained body 00263FF0 + 0x15 (21 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003587C0 + 0x32 (50 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003DB2A0 + 0x17A (378 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003DB550 + 0x23 (35 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003DB650 + 0x85 (133 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003DBCF0 + 0xC2 (194 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003DC0D0 + 0x5D (93 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained body 003DC1B0 + 0x89 (137 B) decodes exactly and is bounded (.pdata chain, or closed leaf CFG)
+PASS  retained bodies total 1041 B over 8 bodies  | 1041; ['263FF0:leaf', '3587C0:1 rec', '3DB2A0:1 rec', '3DB550:leaf', '3DB650:leaf', '3DBCF0:3 rec', '3DC0D0:1 rec', '3DC1B0:leaf']
+PASS  00352980: rbx = incoming rdx (352989), the popped value (267E10's eax) -> edx, r8d = 4, rcx = rbx, call 3DB420 (35299C)
+PASS  00352980: after 3DB420, rcx = rbx again and the body tail-jumps to 003DB6E0 (3529A9); 3DB420's EAX is never read
+PASS  00353660: first pop -> edi (353678), second pop -> ecx -> 264010 (353681); r8d = 4; edx = `lea edx, [rdi + 1]` (35368C); rcx = rbx = 264010's rax; call 3DB420 (353695)
+PASS  00353660: rdi written only at 353678 (+ epilogue pop); the lower bound is a 32-bit lea, so first pop 0x7FFFFFFF wraps to a negative bound  | ['353678', '3536A6']
+PASS  00353660: after 3DB420, rcx = rbx (the resolved actor, possibly NULL) and the body tail-jumps to 003DB6E0 (3536A7)
+PASS  00267E10 (the pop both carriers call): empty stack (count <= 0) returns 0; type byte 1 returns the DWORD, type 2 returns `cvttss2si` of the float, any other type calls 008620C0(1) and returns 0
+PASS  00264010 can return NULL: `xor eax, eax` + ret at 26403E, reached when 3590D0 returns 0 for a negative input
+PASS  003DB6E0 reads byte [rcx + 0x63] at 3DB6E6 before any test of rcx (push rdi, sub rsp only before it)
+PASS  NULL actor: 3DB429 `test rcx, rcx`, 3DB42C `je 0x3db545`; 3DB545 `mov eax, 1` then ret, no call
+PASS  lower bound = max(0, signed edx): 3DB43A `xor eax, eax`, 3DB441 `test edx, edx`, 3DB44F `cmovns eax, edx`, no flag producer between  | ['mov qword ptr [rsp + 0x48], rsi', 'movzx esi, byte ptr [rcx + 0x89]']
+PASS  mode 3 alone narrows the range (3DB466 `cmp r8d, 3`, 3DB46A `jne 0x3db473` skips it for mode 4)
+PASS  start channel = byte actor+88h - 1 (3DB432, 3DB47D, 3DB481 movsxd rbp); lower bound r15 = movsxd eax (3DB476)
+PASS  the range compares are signed 64-bit: 3DB488 `cmp rbp, r15` / `jl 0x3db53e`, 3DB510 `cmp rbp, r15` / `jge 0x3db4a0`; rbp is decremented once per channel (3DB50D)
+PASS  rbp written only at 3DB481, 3DB50D (+ restore 3DB52E); r15 only at 3DB476 (+ restore 3DB533)  | ['3DB481', '3DB50D', '3DB52E', '3DB476', '3DB533']
+PASS  active bits are a snapshot: r12d = WORD actor+6 at 3DB457, r12 not written in the loop (only the 3DB524 restore); 3DB4A9 `test r12d, edi` / `je 0x3db50b` gates each channel
+PASS  channel bit mask: edi = 1 rotated left by cl = low byte of (count - 1) (3DB496, 3DB49B, no rcx write after 3DB47D), then `ror edi, 1` per channel (3DB50B)
+PASS  mode filter r14d = (r8d != 4) ? r8d : 0: 3DB473 `xor r14d, r14d`, 3DB479 `cmp r8d, 4`, 3DB484 `cmovne r14d, r8d`, no flag producer between  | ['lea ecx, [r9 - 1]', 'movsxd rbp, ecx']
+PASS  r14 written only at 3DB473, 3DB484 (+ restore 3DB51F); r8 before 3DB479 written only on the mode-3 arm (3DB470)  | ['3DB473', '3DB484', '3DB51F']
+PASS  per channel: head = BYTE [actor + channel + 94h] (3DB4A0); 0xFF head skips (3DB4B0/3DB4B7)
+PASS  entry state = BYTE entry+11h, entry stride 14h (3DB4B9 entries = actor+A0h, 3DB4C0 r8*5, 3DB4C4 [rcx+rdx*4+0x11]); 3DB4CA `test r9d, r9d` / `jne 0x3db4dc` selects any nonzero state
+PASS  a zero state follows the entry's +0 link (3DB4D3) under a signed count bound (3DB4CF `cmp eax, esi`, 3DB4D1 `jg`, esi = BYTE actor+89h at 3DB448)
+PASS  mode 4 (r14d = 0): 3DB4DC -> 3DB4E2 `je 0x3db500` -> 3DB500 edx = r8d (the walked entry) -> 3DB503 rcx = actor -> 3DB506 call 3DB2A0; no r9 (state) read on that path  | ['3DB4DC', '3DB4DF', '3DB4E2', '3DB500', '3DB503', '3DB506']
+PASS  the only call in 003DB420 is 3DB506 -> 003DB2A0; no indirect call
+PASS  the walk's back edge into 3DB4B0 comes only from the zero-state arm 3DB4DA (and 3DB4AE falls in)
+PASS  once per channel: 3DB506's only successor is 3DB50B; from the nonzero arm 3DB4DC no path re-enters the entry walk (3DB4B0) without passing `dec rbp` (3DB50D)
+PASS  3DB2A0's EAX is dead in the recycler: every path from 3DB506 writes rax before reading it  | []
+PASS  reverse reaching definitions: EAX at ret 3DB53D <- {3DB51A, 3DB53E}; at ret 3DB54F <- {3DB545}; all three are `mov eax, 1`  | 3DB53D<-['3DB51A', '3DB53E'] 3DB54F<-['3DB545']
+PASS  the three normal outcomes map to those definitions: empty range 3DB48B -> 3DB53E; loop exit 3DB513 falls to 3DB515 -> 3DB51A; NULL actor -> 3DB545
+PASS  removal premise path: index != FF, actor non-null, +10h != 4, +2 >= 0, head != FF, head == index, +6 != 8000h, +10h == 3 reaches 3DB37D `call 0x3dc0d0` (43 instructions)
+PASS  that path reads entry +12h, +10h, +2, +6 and the head byte; it never reads entry +11h (run state)  | [('rbp', 148), ('rbx', 160), ('rdi', 2), ('rdi', 6), ('rdi', 16), ('rdi', 18)]
+PASS  the only call before 3DB37D on that path is the unhook 3DB346 -> 003DC1B0  | ['3DC1B0', '3DC0D0']
+PASS  3DB37D precedes the flags test (3DB386 `cmp al, 2`) and the 00263050 call (3DB392): the attempt does not depend on entry +12h
+PASS  removal EAX = BYTE entry+12h & 1 (3DB2EA, 3DB2EF, 3DB402); r14 has no other writer (+ restore)
+PASS  non-head search: the loop 3DB326..3DB33F reloads edx = esi each turn (3DB326 `mov edx, esi`) and calls 003DB550 with the same index; rsi has no writer in it
+PASS  003DB550 is pure: no memory write, no call; returns &entries[edx] or 0
+PASS  so a non-head index leaves the loop only to 3DB346 (its own +0 link == index) or to 3DB3FD (+0 link == FF); 3DB3FD reaches neither 3DC1B0 nor 3DC0D0
+PASS  003DC1B0 clears entry +11h: 3DC233 `mov byte ptr [r8 + 0x11], 0` dominates its ret; no call
+PASS  003DC0D0: rbx = entry (3DC0D6); 3587C0(dword +8, word +6) (3DC0D9..3DC0E0); NULL -> 3DC127 skips the 3DC122 call to 003DBCF0
+PASS  003587C0 returns NULL for a null table, a negative ordinal or ordinal >= count; else the slot
+PASS  call closure in front of the 3DC122 attempt = {3DB420, 3DB2A0, 3DC1B0, 3DC0D0, 3587C0, 263FF0}: no 0025E4C0 (interpreter), no indirect call, every callee below it is a leaf  | ['263FF0', '3587C0', '3DB2A0', '3DB420', '3DC0D0', '3DC1B0']
+PASS  the recycler's own path from entry to 3DB506 contains no call
+PASS  packet's 11 captured/retained range sha256 values equal this image's bytes (all 11 bodies)  | []
+PASS  retained-body-identities: 8 bodies, 1041 B, each hash equals the image  | []
+PASS  unwind-fragment result: record at 0x2fc24a4 has the image's bytes, 28 B fragment hash equals the image
+PASS  result-01's return reaching definitions equal this review's ({3DB51A, 3DB53E} and {3DB545})
+PASS  retained/manifest.json is byte-identical to the parent packet notification-retirement-order's manifest.json  | 814b83ad01338551
+PASS  the producer commit's manifest.json (git show 011e013c7) hashes to the same 8a463282899676c2...  | 8a463282899676c2
+PASS  README scopes the claim: head entry, mode-3 descriptor, non-8000 requester, flags 0/1 for the no-opaque composition, notification not proven admitted/delivered
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 60 of 60
+PASS  control: 3DB484 `cmovne r14d, r8d` -> `mov r14d, r8d; nop` (mode 4 no longer normalised)  | 1 failed: mode filter r14d = (r8d != 4) ? r8d : 0: 3DB473 `xor r14d, r14d`, 3DB479 `cmp r8d, 4`, 3DB484 `cmovne r14d, r8d`, no flag producer between
+PASS  control: 3DB44F `cmovns eax, edx` -> `cmovs eax, edx` (negative bound kept, positive dropped)  | 1 failed: lower bound = max(0, signed edx): 3DB43A `xor eax, eax`, 3DB441 `test edx, edx`, 3DB44F `cmovns eax, edx`, no flag producer between
+PASS  control: 3DB48B `jl` -> `jb` (unsigned range test)  | 1 failed: the range compares are signed 64-bit: 3DB488 `cmp rbp, r15` / `jl 0x3db53e`, 3DB510 `cmp rbp, r15` / `jge 0x3db4a0`; rbp is decremented once per channel (3DB50D)
+PASS  control: 3DB4CD `jne 3DB4DC` -> `je` (zero state selected)  | 1 failed: entry state = BYTE entry+11h, entry stride 14h (3DB4B9 entries = actor+A0h, 3DB4C0 r8*5, 3DB4C4 [rcx+rdx*4+0x11]); 3DB4CA `test r9d, r9d` / `jne 0x3db4dc` selects any nonzero state
+PASS  control: 3DB50B `ror edi, 1` -> `jmp 3DB4B0` (re-walk the same channel after a removal)  | 4 failed: channel bit mask: edi = 1 rotated left by cl = low byte of (count - 1) (3DB496, 3DB49B, no rcx write after 3DB47D), then `ror edi, 1` per channel (3DB50B); the walk's back edge into 3DB4B0 comes only from the zero-state arm 3DB4DA (and 3DB4AE falls in); once per channel: 3DB506's only successor is 3DB50B; from the nonzero arm 3DB4DC no path re-enters the entry walk (3DB4B0) without passing `dec rbp` (3DB50D)
+PASS  control: 3DB51A `mov eax, 1` -> `mov eax, 0` (loop-exit return no longer 1)  | 1 failed: reverse reaching definitions: EAX at ret 3DB53D <- {3DB51A, 3DB53E}; at ret 3DB54F <- {3DB545}; all three are `mov eax, 1`
+PASS  control: 3DB457 `movzx r12d, word [rcx+6]` -> [rcx+4] (snapshot of another word)  | 1 failed: active bits are a snapshot: r12d = WORD actor+6 at 3DB457, r12 not written in the loop (only the 3DB524 restore); 3DB4A9 `test r12d, edi` / `je 0x3db50b` gates each channel
+PASS  control: 3DB375 `jne 3DB382` -> `jmp 3DB382` (mode-3 post skipped)  | 4 failed: removal premise path: index != FF, actor non-null, +10h != 4, +2 >= 0, head != FF, head == index, +6 != 8000h, +10h == 3 reaches 3DB37D `call 0x3dc0d0` (0 instructions); that path reads entry +12h, +10h, +2, +6 and the head byte; it never reads entry +11h (run state); the only call before 3DB37D on that path is the unhook 3DB346 -> 003DC1B0
+PASS  control: 3DB371 `cmp byte [rdi+0x10], 3` -> [rdi+0x11] (post gated on run state)  | 2 failed: removal premise path: index != FF, actor non-null, +10h != 4, +2 >= 0, head != FF, head == index, +6 != 8000h, +10h == 3 reaches 3DB37D `call 0x3dc0d0` (43 instructions); that path reads entry +12h, +10h, +2, +6 and the head byte; it never reads entry +11h (run state)
+PASS  control: 3DC0E0 call 3587C0 -> call 0025E4C0 (interpreter in front of the attempt)  | 2 failed: 003DC0D0: rbx = entry (3DC0D6); 3587C0(dword +8, word +6) (3DC0D9..3DC0E0); NULL -> 3DC127 skips the 3DC122 call to 003DBCF0; call closure in front of the 3DC122 attempt = {3DB420, 3DB2A0, 3DC1B0, 3DC0D0, 3587C0, 263FF0}: no 0025E4C0 (interpreter), no indirect call, every callee below it is a leaf
+PASS  control: 3DB326 `mov edx, esi` -> `mov edx, eax` (removal search becomes a real walk)  | 1 failed: non-head search: the loop 3DB326..3DB33F reloads edx = esi each turn (3DB326 `mov edx, esi`) and calls 003DB550 with the same index; rsi has no writer in it
+PASS  control: 352991 `mov r8d, 4` -> `mov r8d, 3` (freqcancel passes mode 3)  | 1 failed: 00352980: rbx = incoming rdx (352989), the popped value (267E10's eax) -> edx, r8d = 4, rcx = rbx, call 3DB420 (35299C)
+PASS  control: 35368C `lea edx, [rdi+1]` -> `lea edx, [rdi]` (two-argument bound without +1)  | 1 failed: 00353660: first pop -> edi (353678), second pop -> ecx -> 264010 (353681); r8d = 4; edx = `lea edx, [rdi + 1]` (35368C); rcx = rbx = 264010's rax; call 3DB420 (353695)
+PASS  control: 3DB420 primary .pdata record end 3DB43C -> 3DB440 (records no longer tile the body)  | 2 failed: body 003DB420 + 0x130 (304 B) decodes exactly and the .pdata records inside it tile it exactly; 003DB420's first .pdata record is 003DB420 + 0x1C (28 B), flags 0 (the primary record)
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 85 checks, 85 PASS, 0 FAIL (14 controls)

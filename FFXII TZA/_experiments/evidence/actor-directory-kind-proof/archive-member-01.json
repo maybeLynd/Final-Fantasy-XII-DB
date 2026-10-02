@@ -1,0 +1,56 @@
+{
+  "complete": true,
+  "method": "A retained archive member",
+  "driver_sha256": "b2077f911264666867b27b29c46073f8a27fed55a5951b3e93a89ab0a6165c6f",
+  "archive": {
+    "path": "D:\\FFXII MP Mod\\FFXII_TestClient1\\FFXII_TZA.vbf",
+    "bytes": 31196932183,
+    "mtime_ns": 1745004555950129800,
+    "header_bytes": 11995716,
+    "header_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+    "members": 89414,
+    "full_archive_sha256": null
+  },
+  "member": {
+    "path": "ps2data/plan_master/us/plan_map/asp_a/asp_a03/global/asp_a03.ebp",
+    "index": 45552,
+    "index_record_offset": 2888304,
+    "index_record_hex": "48e0090048e0090080380100000000007dea45a7050000001fb3350000000000",
+    "string_table_offset": 4291888,
+    "name_offset": 3519263,
+    "raw_name_hex": "707332646174612f706c616e5f6d61737465722f75732f706c616e5f6d61702f6173705f612f6173705f6130332f676c6f62616c2f6173705f6130332e656270",
+    "bytes": 80000,
+    "sha256": "e92d26899e523429695a97686732abdc46b518487f2870e4ba258fef16977a15"
+  },
+  "blocks": [
+    {
+      "index": 647240,
+      "offset": 24281213565,
+      "compressed_bytes": 14963,
+      "table_u16": 14963,
+      "expected_bytes": 65536,
+      "mode": "zlib",
+      "path": "archive-block-00.bin",
+      "sha256": "1bb359f8ebee3c102979c2357e5be00b5185f0a898f391b35650affb3566e1b4",
+      "decoded_sha256": "51b003e3c5d9a62ef801ab38303afd9b0b16d84a11d000d1fe5a1b8a6e61eae5"
+    },
+    {
+      "index": 647241,
+      "offset": 24281228528,
+      "compressed_bytes": 5413,
+      "table_u16": 5413,
+      "expected_bytes": 14464,
+      "mode": "zlib",
+      "path": "archive-block-01.bin",
+      "sha256": "6a9f24d94ee2fec4aa21c88bef151a450e1e8bb6acb94d2262659af68087a1eb",
+      "decoded_sha256": "9ce4de94389d2e81a47ce6314ac4444b5b8e08d6ffbf271c004133933dc8a548"
+    }
+  ],
+  "positive": "strict selected block decode equals exact retained80KB bytes",
+  "negative_controls": [
+    "truncated-zlib",
+    "wrong-decompressed-length"
+  ],
+  "limits": "Exact header/selected-member identity, no full archive digest, installation authenticity, live binding or all-corpus claim.",
+  "cleanup": "Read-only source handle closed; only owned workspace receipts written."
+}

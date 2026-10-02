@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-actor-predicate-domain\controls-01\wrong-CFG-interface\prove.py", line 61, in <module>
+    if not callable(getattr(G,'graph',None)) or not callable(getattr(G,'dominates',None)):raise RuntimeError('required actual CFG prerequisite unavailable')
+                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: required actual CFG prerequisite unavailable

@@ -45,7 +45,7 @@ for a sheet is 166 areas, and the file count double-counts.
 **Two open questions the counts raise.** Only **166 of 251 areas** have an `.ard` at all — so
 whatever it holds, a third of areas do without it. And a per-area data file shipping under exactly
 two locale trees, neither of them `us` or `jp`, is not what a localisation split looks like.
-**Neither is explained; both are recorded rather than smoothed over.**
+**~~Neither is explained;~~ both are recorded rather than smoothed over.** *(answered: see [the loader sheet](how-the-ard-loader-binds-area-battle-data.md) - the 85 `.ard`-less areas need no battle data, and `in` / `ch` are the two region variants of the path table; 2026-10-02, OPUS)*
 
 ## Census — 166 of 166 areas, 2026-09-03
 
@@ -92,7 +92,7 @@ by file**, so the locale duplication is reported rather than inherited.
 the census names this sheet coined are kept in the comments. OPUS-REQ-FABLE-FENCEDUP.)*
 
 **`varD`/`varE`/`varF` ascend together** — in the smallest area they are 128 / 160 / 192, spaced 32.
-That is the shape of a directory, and it is a **lead, not a reading**: no loader has been consulted.
+That is the shape of a directory, and it is a **lead, not a reading**: ~~no loader has been consulted.~~ *(answered: see [the loader sheet](how-the-ard-loader-binds-area-battle-data.md), which reads the binder; 2026-10-02, OPUS)*
 
 ### How `.ard` is reached — hardcoded paths, not a pattern — 2026-09-04
 
@@ -107,7 +107,7 @@ That is the shape of a directory, and it is a **lead, not a reading**: no loader
 
 ```struct ArdTableEntry base=record size=0x10
 +0x00  u64  ardPath   char* to a full PS2Data\...\<area>.ard path
-+0x08  u64  fpkPath   char* to the matching .fpk path - USUALLY NULL
++0x08  u64  fpkPath   char* to the matching .fpk path - USUALLY NULL   <- corrected 2026-10-02, OPUS: null exactly where ardPath is null; all 215 .ard records carry an .fpk path
 ```
 
 **`FF12AR03` appears nowhere in the binary** — zero occurrences as text, zero as the dword `AR03`.
@@ -122,7 +122,7 @@ so this is a property of container headers rather than a blanket no-validation p
 ### `.fpk` — 7,520 paths in the binary and not one file in the archive
 
 The second field of every table entry is a **`.fpk`** path beside the `.ard`
-(`…\ttl_a\area\ttl_a.fpk`). It is null in 33 of the first 40 records.
+(`…\ttl_a\area\ttl_a.fpk`). It is null in ~~33~~ 37 of the first 40 records *(corrected 2026-10-02, OPUS: both shipped arrays, `01E0CFA0` and `01EDC280`: the 37 are exactly the records whose `.ard` path is null too, and 215 of 215 `.ard` records carry an `.fpk`)*.
 
 | | in the EXE | in `FFXII_TZA.vbf` |
 |---|---:|---:|
@@ -210,7 +210,7 @@ reporting anything.** Recorded because the next gap of this shape will be found 
 - **where the `st2e` tables begin and how many there are** — from the corpus, not one file
 - **the loader contract**: which reader consumes the carrier, what it rejects, and which fields
   nothing reads
-- whether the 71-slot `battle_pack` directory is the same layout as EBP2's and PKFL's, or merely
+- whether the 71-slot `battle_pack` directory is the same layout as EBP2's and PKFL's, or merely *(answered: see the 2026-09-04 correction above - it is not; 2026-10-02, OPUS)*
   similar — *similar shapes are a lead, and this database has been wrong on exactly that before*
 
 ## Related

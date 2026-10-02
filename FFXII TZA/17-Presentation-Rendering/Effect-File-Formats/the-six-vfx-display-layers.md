@@ -267,3 +267,15 @@ image `73461d08…`, 0 BROKEN, exit 0. Still not read, as the page says: layer 3
 | V8 | the notes that name an instruction and hold | **survives**: the forwarders, `0024C640`'s body, the latch, `00376320`, `0036F550`'s submit, `0036F9F0`'s records, `001B2530`'s stores |
 
 Corrected in place: the four notes. The consumer record is `_index/candidates/vfx-layers-falsification-pass-1-0929/`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-six-vfx-display-layers-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0017FDE0` | 38 B | passes the pointer the 8-byte getter of qword `01F7F598` returns to a 15-byte helper as `rcx`; when byte `+0x8` of the record that call returns is zero it returns that record's qword `+0x0`, otherwise it returns 0 | `0017FDE4`, `0017FDEC`, `0017FDF1`, `0017FDF7`, `0017FDFF` |
+| `0017FE60` | 57 B | when `ecx` is non-zero calls a 66-byte helper, otherwise a 93-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0 | `0017FE64`, `0017FE70`, `0017FE7F`, `0017FE84`, `0017FE8A` |
+| `0017FEE0` | 57 B | when `ecx` is non-zero calls a 33-byte helper, otherwise a 75-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0 | `0017FEE4`, `0017FEF0`, `0017FEFF`, `0017FF04`, `0017FF0A` |
+| `001B2600` | 44 B | calls a 157-byte helper (`rcx`); then, when byte `+0x98` of `rcx` is non-zero, tail-jumps a 38-byte helper with 3, otherwise returns | `001B2609`, `001B260E`, `001B2617`, `001B2621` |
+| `003A3990` | 97 B | when dword `02AEF414` is non-zero, calls a 63-byte helper (qword, 2) for each qword of the array at `02AEF420` while the index stays unsigned-below dword `02AEF414` (re-read every pass), then zeroes dword `02AEF414`; when that dword is zero it returns without work | `003A3994`, `003A39C9`, `003A39D0`, `003A39E2` |

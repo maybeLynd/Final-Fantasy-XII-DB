@@ -133,7 +133,7 @@ Controls (`ov16m_census.out`), all PASS:
 | C2 positive | 32,374 functions not named by footer slot 16/17 contain a primary waited request (REQEW 115,757, REQSW 27,898). |
 | C3 | Every slot-16 word names `talkhold*` and every slot-17 word names `talkterm*` (0 exceptions). |
 | C4 | Every one of the 450 `REQCHG` slot-16/17 values resolves to a function of the target actor. |
-| C4b | 441 of 450 resolved targets are named `talkhold*` / `talkterm*`. This checks the reading "record ordinal = directory index", which is an **inference**. The 9 others are `rbn_a01`'s `catrine_talk_term` (×9 language copies) on slot 17. |
+| C4b | 441 of 450 resolved targets are named `talkhold*` / `talkterm*`. This checks the reading "record ordinal = directory index", which is an **inference** here. *(For `asp_a03` actor 25 it is now read in the bytes: the initialiser binds `pool[1 + i]` to directory entry i; see §4, 2026-10-02.)* The 9 others are `rbn_a01`'s `catrine_talk_term` (×9 language copies) on slot 17. |
 
 **Result:**
 
@@ -170,11 +170,42 @@ channel 5 (channel 3 for a sequence-7 record). It appears in all 9 language copi
 functions wait, and neither do any of the 450 `REQCHG` override functions.
 
 What stays open, kept separate:
-- **Static inference, not read here:** that this actor's record gets `+0x1C` bits 16/17 at birth. The initialiser sets
-  them for sequences 5, 6 and 7 (`actor-storage-record-flags1c-initial-values.tsv`, `0x00030004` for 6). The record's
-  sequence is the carve-loop class `k` (`the-record-behind-every-actor.md`, EH-1, `00267AFA`–`00267B13`). That `k`
-  equals the directory `scriptType` (6 here) through the header `+0x14` per-type counts is the one link not read in the
-  bytes. Even without it, `attack_02`'s `reqenable(17)` sets bit 17 explicitly.
+- **Read in the bytes and the data (2026-10-02), replacing the inference that stood here:** this actor's record gets
+  `+0x1C` bits 16 and 17 from its initialiser, and what selects them is the actor's ordinal, not its `scriptType`
+  label. *(From ASTRA's `actor-directory-kind-proof` (`317ebd1b8`), reviewed by FABLE ACCEPT-WITH-NARROWING:
+  [record](../fable-review-astra-actor-directory-kind-proof-1002/REVIEW.md), 69 checks, 0 FAIL, 16 controls.)*
+  - **The ordinal.** In the US `asp_a03.ebp`, the header `+0x14` table has 8 rows with counts 9, 11, 0, 0, 0, 4, 72,
+    0 (sum 96, the directory count). All nine language copies have the same counts.
+    - The record allocator carves the rows in order and publishes one pool pointer per record. So ordinal i
+      belongs to row k exactly when sum(counts[:k]) <= i < sum(counts[:k+1]).
+    - Row 6 spans ordinals 24..95, so actor 25 is in row 6.
+    - The carve stamps the record's `+3` with `0x66`: row 6 in the low five bits, and the native table's kind 3 in
+      the upper three.
+  - **The binding.** The initialiser `00266530` receives the same pool and ordinal.
+    - It selects `pool[1 + 25]` (`00266530` + 0x3A).
+    - It binds the record's `+0x40` to directory entry 25 (`00266530` + 0x204). That entry is at section offset
+      `0xD2A4` = `[+0x18]` + 4 + 48 × 25. The stride is 48 because the descriptor's WORD `+0` is 11.
+    - Entry 25 is `ラバナ_通常_NPC01`. This also puts §3 C4b's "record ordinal = directory index" in the bytes for
+      this actor.
+  - **The preset.** The preset leaf that the initialiser calls switches on `+3 & 0x1F`, which is the row.
+    - Rows 5 and 6 store DWORD `0x00030004` into `+0x1C`. That is bits 16 (`talkhold`) and 17 (`talkterm`),
+      exactly the masks `00268EA0` tests.
+    - The six later direct `+0x1C` writes in `00266530` (two ORs and four ANDs) all keep bits 16 and 17.
+  - **The label is not the selector.** The directory WORD `+4` (`scriptType`) is 6 here, and it equals the
+    count-prefix row for all 96 entries.
+    - No instruction on the allocator, initialiser or preset path reads it.
+    - A copy of the map with entry 25's label changed to 7 still gives row 6 and `0x00030004`.
+    - The kind bits never reach the preset either, and row 5 gets the same `0x00030004`.
+  - **Gate, not filing.** The initialiser does not file `talkhold` / `talkterm` itself. It clears `+0x0B` bit 3, and
+    its two `00268EA0` calls test that bit. Bits 16 and 17 are therefore a gate for a later filer run, such as
+    `0026CE60`'s, `reqenable`'s or `REQCHG`'s.
+  - **Still open, not read:**
+    - what the initialiser's later callees and its tail do to `+0x1C` (the review emulated them as bare returns);
+    - the record's final live flags;
+    - natural scene setup, including which caller first runs `00268EA0` for this actor.
+
+    The manager count covering ordinal 25 (96 here) is a premise. Whatever the birth state, `attack_02`'s
+    `reqenable(17)` still sets bit 17 explicitly.
 - **The live fact (the interleaving) for OV-16's motion route**, now pinned to one actor: in play, does `00268EA0`
   re-run, or does `reqdisable(17)` / `reqenable(17)` fire, while this `talkterm` is parked in its `REQEW` on the TRAP
   actor's `re_on`? And does `talkterm` then re-run to the same continuation offset (`+0x35`, right after the `REQEW` at

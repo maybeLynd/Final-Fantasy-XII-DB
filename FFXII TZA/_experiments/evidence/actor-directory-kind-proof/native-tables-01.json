@@ -1,0 +1,20 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "783a6009af28ed5ccc54142af52590207c69f33291c8767010d186845451ea52",
+  "spans": [
+    {
+      "address": "0x1e0c328",
+      "bytes": 32,
+      "label": "kind size table",
+      "hex": "000028030100a80301013003020048030201d0020300e0060300e00603016806",
+      "sha256": "4da91677ea401715f88284c04a83ccde5694384fd7ff1305d1306c7ab95e0e3c"
+    },
+    {
+      "address": "0x266c30",
+      "bytes": 32,
+      "label": "preset switch destinations",
+      "hex": "f66b1400fe6b1400fe6b1400066c1400066c14000e6c14000e6c1400246c1400",
+      "sha256": "6a3feb2715fd154f06eae736efeb08ce8fd8fd4ff966d29ed1c3cf93f791f507"
+    }
+  ]
+}

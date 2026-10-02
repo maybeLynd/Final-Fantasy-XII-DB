@@ -1,0 +1,191 @@
+{
+  "status": "PRODUCER_VALIDATED_PENDING_INDEPENDENT_REVIEW",
+  "limits": "STATIC_ONLY conditional native composition; full VM/natural admission OPEN",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-effective-and-script-id.py",
+      "bytes": 3114,
+      "sha256": "68e6ef438ae1eef7a3e48364c6e0676ed30041f3e67f6c0f29e14f0e802e5725"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-slot-acquisition-callers.py",
+      "bytes": 3070,
+      "sha256": "d83e91d293d74f460b2827ee4408cce90702503033c3499dce7f1c30c3f51fed"
+    },
+    {
+      "path": "capture-slot-action-id.py",
+      "bytes": 2692,
+      "sha256": "fff5d09498604bb1dad1b2ee7b7a3a3d4e619c45f02cecbe6293a94f5e4bb33b"
+    },
+    {
+      "path": "capture-spattack-info.py",
+      "bytes": 752,
+      "sha256": "2b679cfa36d0dc30c316aff91eb90ecc1dff39d1e293d444cbb6090966feb355"
+    },
+    {
+      "path": "capture-spattack-leaves-and-guard.py",
+      "bytes": 776,
+      "sha256": "ad620f58068354192b1297fa388c83b09d51f88eefe6c2079baff7a5418cba5f"
+    },
+    {
+      "path": "capture-spattack-output-writers.py",
+      "bytes": 3783,
+      "sha256": "3f74b236ac7c11e2c9760c89724a49dfb783e47b5444ec78281469a78be3e7ac"
+    },
+    {
+      "path": "capture-spattack-queue-reader.py",
+      "bytes": 758,
+      "sha256": "e593575c9235fddeabb02b409c0f28940229d5e9e4965f830df3cc86bfbb3321"
+    },
+    {
+      "path": "effective-and-script-id-raw-01.json",
+      "bytes": 21330,
+      "sha256": "645e4431cd0934dfd8b94eb42cd871a0b80540605bf2b1a64adaaafd64a23477"
+    },
+    {
+      "path": "exercise-spattack-prerequisites.py",
+      "bytes": 3496,
+      "sha256": "bb6a5a9c4900889a56a21d29bc082b7fdccdc7b9bab5d36039ba2ea9541c0656"
+    },
+    {
+      "path": "invalid-output-writer-01/driver.py",
+      "bytes": 3452,
+      "sha256": "cd7570d2cc2bb03b0793d86208f88ea451d2194049ebd782b40f86f63988f901"
+    },
+    {
+      "path": "invalid-output-writer-01/inner-capture.json",
+      "bytes": 62048,
+      "sha256": "79769982b3d2da8bcd6e080d02b2a307e880264d0d9d3225d1f755faac5582a9"
+    },
+    {
+      "path": "invalid-output-writer-01/STATUS.json",
+      "bytes": 401,
+      "sha256": "b98cd8c7557aedf5e3371642ca052c3332d75801e5fc21f114cb44155900f628"
+    },
+    {
+      "path": "prerequisite-controls/failed_upstream_role/checker-input-adapted.py",
+      "bytes": 6272,
+      "sha256": "2b5120aa946ab89786df156cbcfc7dd25673c9ad249b125e3c21188b24f9e48e"
+    },
+    {
+      "path": "prerequisite-controls/failed_upstream_role/stderr.txt",
+      "bytes": 555,
+      "sha256": "32055d76fa0be4228e6b6a82f97c0063c9cfb1f4515d2cec1d175ec9260c49a5"
+    },
+    {
+      "path": "prerequisite-controls/failed_upstream_role/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prerequisite-controls/missing_required_input/checker-input-adapted.py",
+      "bytes": 6274,
+      "sha256": "403aac546a688809003fe261101a9c7d631a336b033da8900b0b3fd06a3e036c"
+    },
+    {
+      "path": "prerequisite-controls/missing_required_input/stderr.txt",
+      "bytes": 1051,
+      "sha256": "6fcd5b5d713a8fbc444ff6f3f9333e960cfd6207ff08f3957659c17f29f9c4d2"
+    },
+    {
+      "path": "prerequisite-controls/missing_required_input/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prerequisite-controls/missing_wrapper_completion/checker-input-adapted.py",
+      "bytes": 6278,
+      "sha256": "9a7752e43f68e52c0d336ece0d96f2b31b3ee8be17fabd2d3c0fcc792b9d64d1"
+    },
+    {
+      "path": "prerequisite-controls/missing_wrapper_completion/stderr.txt",
+      "bytes": 590,
+      "sha256": "3d985db8605bdaa75c319a46703e8a13d446a0e03c3839ddfda5875214745973"
+    },
+    {
+      "path": "prerequisite-controls/missing_wrapper_completion/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prerequisite-controls/positive/checker-input-adapted.py",
+      "bytes": 6260,
+      "sha256": "f59d15b41cd74f38446aab0045b8bad8b1e81c85bff211e64c89acb282a453ab"
+    },
+    {
+      "path": "prerequisite-controls/positive/result.json",
+      "bytes": 5777,
+      "sha256": "32076723e7e7d6906633e67313572fb4d901089cc46edd398d94c3bf898bc9b9"
+    },
+    {
+      "path": "prerequisite-controls/positive/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prerequisite-controls/positive/stdout.txt",
+      "bytes": 105,
+      "sha256": "4488fb2fd010d31d06594807ea9f373d69beba6387a6c23f19da317c73faf0c4"
+    },
+    {
+      "path": "prerequisite-controls/receipt.json",
+      "bytes": 3257,
+      "sha256": "2bc19e3d4b6f9dbc83f9ba7b88a303c8417192081c0a74b29a63af82c2a02538"
+    },
+    {
+      "path": "prove-spattack-word-roundtrip.py",
+      "bytes": 6001,
+      "sha256": "f52b12862b1edc648f40922c25f766d3d2f54c81ba0998b99a4ce1dac3c1fcca"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3497,
+      "sha256": "7eaefd058d2ff7266af3c3f645d086ea29233f378563ea41eeff2b50519f3b09"
+    },
+    {
+      "path": "slot-acquisition-callers-raw-01.json",
+      "bytes": 18486,
+      "sha256": "b27ee5a03712f3d9bbfcf429fe3277e38de86f236f3ea593ec4aabd479c5e0ab"
+    },
+    {
+      "path": "slot-action-id-raw-01.json",
+      "bytes": 28964,
+      "sha256": "e9b94feb62cf24cd175b432dafb76f31724517d8fe55dfa09cbc573c984f6878"
+    },
+    {
+      "path": "spattack-info-raw-01.json",
+      "bytes": 12107,
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4"
+    },
+    {
+      "path": "spattack-leaves-and-guard-raw-01.json",
+      "bytes": 37166,
+      "sha256": "8c07f2f5c89d0b8b025da5b3d1690345b469899f84d343e3ef58bd19f8d77530"
+    },
+    {
+      "path": "spattack-output-writers-raw-02.json",
+      "bytes": 68867,
+      "sha256": "e08b6907771a2d9439e18e4890342ae1acabdf6a9841fb83889c79acfd3c0022"
+    },
+    {
+      "path": "spattack-queue-reader-raw-01.json",
+      "bytes": 5031,
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c"
+    },
+    {
+      "path": "spattack-word-roundtrip-result-01.json",
+      "bytes": 5777,
+      "sha256": "531b5fcfe99a875d463e4a86c7a1cec9b7cd1e1dedd216f777f58dee734ecda9"
+    }
+  ]
+}

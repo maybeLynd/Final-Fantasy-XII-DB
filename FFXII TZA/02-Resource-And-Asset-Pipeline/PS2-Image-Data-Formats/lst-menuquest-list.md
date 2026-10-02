@@ -91,7 +91,7 @@ text-data sheets, not re-derived here.
 | requester | `0037F4D0` — the quest-list widget procedure (747 B; answers widget messages 1/16/18; also requests `menuquest.dat`) |
 | request site | `0037F76F` — kind `0x7`, id `0x13A`, through `00249210`. `00249210` is the shared pool core — the SaveLoad screen `00582790` also calls it (the load-menu reuse), an API-sharing edge, not a `.lst` consumer |
 | path resolution | kind-7 path array: `…\myoshiok\<lang>\quest\menuquest.lst` |
-| buffer consumer | quest-list subsystem — the pane builder `00575710` resolves rows from the loaded quest data; the `.lst` half is the string side (see §7) |
+| buffer consumer | quest-list subsystem — ~~the pane builder `00575710` resolves rows from the loaded quest data~~ *(corrected 2026-10-02, OPUS: `00575710` is the handbook image pane's bind: it registers the pane's `+0xF0` buffer as a TIM2 at `00575710+0x5C` and keeps the handle at `+0xF8`, `00575710+0x55`; the `.lst` readers are RC-31's two)*; the `.lst` half is the string side (see §7) |
 | magic check | none found — no `qstl`/`0x6C747371` constant in `.text` |
 
 | Field | Read by | Rejected if | Clamped to | Inert |

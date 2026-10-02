@@ -140,7 +140,7 @@ same party in the same breath. The region answers plainly:
 `003970A0`, the getter in §2.3 — one function in the whole image consumes a matrix it did not write.
 
 Across the wider region, 18 functions read without ever writing, and **16 of those read only two
-slots**, `022D94B0` and `022D94B4`, always 8 bytes wide and never as floats. Those two are pointers,
+slots**, `022D94B0` and `022D94B4`, ~~always 8 bytes wide~~ indexed at an `*8` scale and never as floats. ~~Those two are pointers,~~ They are one 32-entry table of 24-byte records (BQ-17) *(corrected 2026-10-02, OPUS: `0036DF80+0x15` `lea rcx, [rax+rax*2]`, `+0x20` `cmp word ptr [rax+rcx*8+4], 0`)*,
 not matrix data, and no RIP-relative store to them exists anywhere — they are written through a
 register. They are a separate object that happens to live in the same page.
 
@@ -204,7 +204,7 @@ sizes**, and this block carries no body-size column for that reason.
 | `022D91A0`–`022D939F` | the row array | BSS region, 512-byte | 32 aligned 16-byte rows, accessed in runs |
 | `022D8F90`–`022D900F` | second row block | BSS region, 128-byte | 8 aligned rows, 2 Presentation functions |
 | `022D8F30`–`022D8F6F` | third row block | BSS region, 64-byte | 9 functions, 14 four-row sequences |
-| `022D94B0`, `022D94B4` | two pointers | BSS region, 8-byte each | read by 16 functions in the `0036Dxxx`–`0036Exxx` family, never RIP-written |
+| `022D94B0`, `022D94B4` | ~~two pointers~~ one 32 × 24-byte record table *(corrected 2026-10-02, OPUS: `0036DF80+0x15` `lea rcx, [rax+rax*2]`, `+0x20` `cmp word ptr [rax+rcx*8+4], 0`)* | BSS region, ~~8-byte each~~ a `+0` dword and a `+4` word per record | read by 16 functions in the `0036Dxxx`–`0036Exxx` family, never RIP-written |
 
 ## 4. Data structures and formulas
 
@@ -214,13 +214,13 @@ transform workbench        022D8F00 .. 022D94FF        1,536 B, BSS (no file ima
   proven:
     022D91B0  float[4][4]  matrix 0      -- 003970A0 copies rows +0x00 +0x10 +0x20 +0x30
                                             into a 64-byte destination
-  row array (grouping beyond matrix 0 unproven, BQ-16):
+  row array (grouping beyond matrix 0 unproven, BQ-16):   <- corrected 2026-10-02, OPUS - answered: BQ-16 ANSWERED in section 7 (ticked 2026-09-13)
     022D91A0 .. 022D939F   32 rows x 16 B, every SSE access 16-byte aligned (46/46)
     022D8F90 .. 022D900F    8 rows
     022D8F30 .. 022D8F6F    4 rows
   separate objects in the same page:
-    022D94B0   void*        read 8 bytes wide by 16 functions, never RIP-written
-    022D94B4   void*        same
+    022D94B0   void*        read 8 bytes wide by 16 functions, never RIP-written   <- corrected 2026-10-02, OPUS: base of a 32 x 24-byte record table (0036DF80+0x15..+0x20), not a pointer
+    022D94B4   void*        same   <- corrected 2026-10-02, OPUS: record 0's +4 state word (stored at 0036DE20+0x3A), not a pointer
     022D9138   u32          RNG enable/mode - see rng-streams.md, NOT part of the workbench
 ```
 
@@ -250,7 +250,7 @@ There is no call chain. That is the point of the document.
   2 Movement functions      ┘
  97 unowned / CodeDomain functions
 
-              0036D9E0 ── clears the whole area, reads nothing (unowned)
+              0036D9E0 ── clears the whole area, reads nothing (unowned)   <- corrected 2026-10-02, OPUS: it clears 022D91B0-022D942F (80 qword stores, 0036D9E0+0x25..+0x38A) and vf00 01EF93F0, not 022D8F00-022D91AF
               003970A0 ── reads matrix 0 without writing it (the only such function)
 ```
 
@@ -278,8 +278,8 @@ shared *code*.
 
   > **CORRECTED 2026-09-08 — this said “nothing restores it”.** An explicit save/restore pair
   > exists — `0036D930` and `0036D8E0` — and **nine functions use it**, each of them both
-  > saving and restoring, protecting one of exactly two rows: `022D8F30` (5 callers) or
-  > `022D8F90` (3), with one saving both. The depth counter is at **`022D8F08`, inside this
+  > saving and restoring, protecting ~~one of exactly two rows~~ one or two of three rows: `022D8F30` (5 callers) or
+  > `022D8F90` (3), ~~with one saving both~~ with the ninth, `0042FDB0`, saving `022D8F30` and `022D8F40` together *(corrected 2026-10-02, OPUS: `0042FDB0+0x330`–`+0x349`, `ecx = 2`)*. The depth counter is at **`022D8F08`, inside this
   > very region**. The conclusion above still holds — 240 of the 249 writers restore nothing —
   > but *“nothing restores it”* was a property of most users stated as a property of the area.
   > [the save/restore pair](the-workbench-has-a-save-and-restore-and-nine-functions-use-it.md).
@@ -362,7 +362,7 @@ shared *code*.
       `0036D9E0` loads `1.0f` from `01CEBBA8` and stores it to `01EF93FC` (`movss`), then zeroes
       `01EF93F4` as a **qword** — covering `F4` *and* `F8` — and `01EF93F0` as a dword. So the block
       is `{0.0, 0.0, 0.0, 1.0}`: the identity homogeneous vector, W = 1.
-      **It has exactly two writers and they write the same thing.** The second is `0036D990`
+      **It has ~~exactly two writers~~ three writers and they write the same thing.** *(corrected 2026-10-02, OPUS: the third is `0036DD80`, 15 B, which copies the 16-byte constant `008C5FD0` = (0, 0, 0, 1.0) at `0036DD80+0x7` `movups xmmword ptr [01EF93F0], xmm0`.)* The second is `0036D990`
       (74 B), which sets the identical values and then announces itself through the variadic logger
       `0017D280` — `"Sizeof 64 bit int = %d\n"` with 8, then
       **`"PS2 Assembly emulation initilization completed! *** \n"`**. So this cell belongs to the
@@ -379,7 +379,7 @@ shared *code*.
       **exactly two `lea`s, at `0036E70C` and `0036E75D`, and both target `01EF9400`** — the
       adjacent int table, which they only index and read (`mov r9d, [r8 + rax*4]`). **Nothing takes
       the address of `01EF93F0`–`01EF93FF`**, so the RIP-relative census is complete over this block
-      and the two-writer count is exact rather than merely unseen.
+      and the ~~two-writer count~~ three-writer count (`0036D9E0`, `0036D990`, `0036DD80`) is exact rather than merely unseen *(corrected 2026-10-02, OPUS: `0036DD80+0x7` is the third store)*.
 
 ## 8. Evidence
 
@@ -391,7 +391,7 @@ shared *code*.
 | `0036D9E0` clears the area and reads nothing | complete body: 80 slot writes `022D91B0`–`022D9428`, zero reads | 1 |
 | 215 of 216 row-touchers write; one reads only | per-slot writer and reader sets over all 38,161 function bodies | 1 |
 | Non-Presentation owners write no private sub-area | slot-set difference against Presentation's slots: ActorEntity 0, UI 0, Movement 0, Audio 4 | 1 |
-| `022D94B0`/`B4` are pointers, not matrix data | 8-byte access width on every one of 150 accesses, never a float instruction, no RIP-relative store | 1 |
+| `022D94B0`/`B4` are ~~pointers~~ a 32 × 24-byte record table *(corrected 2026-10-02, OPUS: `0036DF80+0x15` `lea rcx, [rax+rax*2]`, `+0x20` `cmp word ptr [rax+rcx*8+4], 0`)*, not matrix data | 8-byte access width on every one of 150 accesses, never a float instruction, no RIP-relative store | 1 |
 | Object boundaries | writer-set similarity, not adjacency — see §10 | 1 |
 | `01EF93F0` is one vec4 `(0,0,0,1)`, not three globals | `0036D9E0` header: `movss` of `1.0f` from `01CEBBA8` to `+0xC`, qword `0` at `+4` covering `F4`/`F8`, dword `0` at `+0`; 98 readers, many `movups` 16 bytes wide; second writer `0036D990` writes the same values and logs "PS2 Assembly emulation initilization completed!" | 1 |
 | Nothing takes the address of `01EF93F0`–`01EF93FF` | scan of `01EF93E0`–`01EF9410` for address-taking: exactly two `lea`s, `0036E70C` and `0036E75D`, both targeting the adjacent int table `01EF9400` and only reading it — so the rip census is complete over this block | 1 |
@@ -520,7 +520,7 @@ objects must nest inside them, and no object crosses a hole.
 | 6 | `022D9190`–`022D9430` | **672** | 128 | 103 | `0,4,8,C` — **the workbench** |
 | 7 | `022D9450`–`022D9460` | 16 | 2 | 0 | `0,4,8,C` |
 | 8 | `022D9470`–`022D9480` | 16 | 5 | 0 | `0,8` |
-| 9 | `022D94A0`–`022D94C0` | 32 | 42 | 28 | `+0x0` 8-wide, `+0x4` — **`BQ-17`'s two pointers** |
+| 9 | `022D94A0`–`022D94C0` | 32 | 42 | 28 | `+0x0` 8-wide, `+0x4` — ~~**`BQ-17`'s two pointers**~~ **`BQ-17`'s record table** *(corrected 2026-10-02, OPUS: `0036DF80+0x15`–`+0x20`)* |
 
 **Run 6 is this document's subject** and contains most of the 62. **Runs 1, 2 and 5 are byte-granular
 and float-free**, which is a different object kind from the workbench's clean `0,4,8,C` float4
@@ -560,7 +560,7 @@ void Vec4AddInPlace(float4 *a /*rcx*/, const float4 *b /*rdx*/);   /* 002F1EC0 *
 **Consequence for reconstruction, and it is the reason this matters:** a reimplementation must **not**
 model these slots as engine state. They are the argument registers of a math library that spills to
 memory. **And the pair is not reentrant** — two threads calling this simultaneously would corrupt
-each other's operands. Whether anything ever does is `BQ-19`'s question, not answered here.
+each other's operands. Whether anything ever does is `BQ-19`'s question, not answered here *(answered: see the register-bank page, BQ-19 ANSWERED 2026-09-18 (FABLE): one user thread; 2026-10-02, OPUS)*.
 
 ### Method
 

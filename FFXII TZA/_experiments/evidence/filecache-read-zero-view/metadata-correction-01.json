@@ -1,0 +1,8 @@
+{
+  "original_producer_sha256": "b61ee196e2f6abbf63ac685966dc22025e7976085c05df716597ccdb14cdc781",
+  "original_receipt": "prove-01.status.json",
+  "original_result": "result-01.json",
+  "disposition": "Producer01 source/branch/import derivation valid; inherited Close metadata wrongly saidfour partitions/AL-only. Preserve immutable result01, correctproducer limits beforepublication. No consumer used oldresult.",
+  "correction": "Metadata-only finalemit qualifications now five source partitions and fullzeroRAX onno-callRead arms. Source/derive/import/prerequisite logic unchanged. Future reusemustselect prerequisite blocks, not inheritsemantic metadata fromotherfunction.",
+  "current_producer_sha256": "e3f7b5fb43f90fc9488947e87be262f9790dfd2e823247bad13b9aead8a76c25"
+}

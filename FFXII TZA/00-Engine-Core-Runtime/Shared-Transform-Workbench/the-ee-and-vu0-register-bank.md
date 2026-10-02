@@ -35,7 +35,7 @@ audit:
 > - `01EF93F0` is **vf00**, the constant (0, 0, 0, 1).
 >
 > The engine names the layer itself. The routine that sets vf00 at start-up prints
-> **`"PS2 Assembly emulation initilization completed! "`** (`0036D990` → `00908D80`; the spelling is the game's).
+> ~~**`"PS2 Assembly emulation initilization completed! "`**~~ **`"PS2 Assembly emulation initilization completed! *** \n"`** *(corrected 2026-10-02, OPUS: the string at `00908D80` runs on to `*** ` and a newline before its NUL)* (`0036D990` → `00908D80`; the spelling is the game's).
 >
 > **267 functions (389,071 bytes) address the bank. 257 of them are ARCH frontier, and 188 are cited by no page.** The
 > census is [`members/ee-register-census.tsv`](members/ee-register-census.tsv).
@@ -274,7 +274,7 @@ translate-perspective, clip-screen, normalize, outer product) or read as Square'
 
 | claim | evidence | tier |
 |---|---|---|
-| the layer names itself | `0036D990` → `0017D280` with `00908D80` = `"PS2 Assembly emulation initilization completed! "`; called from `0022A125` | 1 |
+| the layer names itself | `0036D990` → `0017D280` with `00908D80` = ~~`"PS2 Assembly emulation initilization completed! "`~~ `"PS2 Assembly emulation initilization completed! *** \n"` *(corrected 2026-10-02, OPUS: read from the image)*; called from `0022A125` | 1 |
 | vf00 is the constant (0, 0, 0, 1) with 3 writers | `0036D990`, `0036D9E0` (`0036D9E0`–`0036D9FB`), `0036DD80` (`008C5FD0` = 0, 0, 0, 1.0); census `vf00` row | 1 |
 | GPR[0] never written | census: 44 readers, 0 writers; `0039502A` / `003952AF` loop exits | 1 |
 | GPR role order | census register table (§2) | 1 |
@@ -388,3 +388,19 @@ thread; the platform edges are what a boot chain and a timer look like from the 
 **World — OUT-OF-SCOPE (1 edge).** `0022A0B0` calls `00266D10`. Another step of the boot routine, outside the one call (`0022A125`) this page cites it for.
 
 **WorldAreaField — CLIENT and SERVICE (3 edges).** `World_UpdateSimulationTick` `00314020` calls `0017D280`, `0022B8C0` calls `00314020`, and `0025C830` calls `FieldData_GetActiveFieldRecordBit15` `00377C20`. The world tick prints through the shared stdout routine, the frame calls the world tick, and the bank-using actor body reads the field's action-permission bit; none of these is a register-bank relationship.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-ee-and-vu0-register-bank-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002330D0` | 59 B | calls a 114-byte helper with its arguments unchanged and, when the returned word is non-negative, adds to it the low 16 bits of (word `rcx+0x40` plus 1) times the sign-extended low word of `r8d`; returns the word, unchanged when negative | `002330E0`, `002330E8`, `002330EE`, `002330F8`, `002330FC` |
+| `0029BC80` | 451 B | switches on dword `[rdx]`: for 4 it fills a stack vector (dword `01EF93F0`, -1.0 `01CEBC9C`, dword `01EF93F8`, 0), calls a 72-byte helper (`02AED560`, buffer), zeroes the buffer's dword `+0xC`, calls a 33-byte helper (buffer, buffer) and stores at word `+0x58` of qword `rcx+0x38` that signed word times (1.0 minus 1.428571 times (min(1.0, max(0.3, the xyz dot product of the vector and the buffer from a 37-byte helper)) minus 0.3)), truncated; for 2 it returns 0 at once when a 19-byte helper Q returns a negative value, else calls Q twice more and, when `rcx` is non-null, stores the third result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and dword `01E0C1DC` minus the second result at `+0x9E`; for 1 it calls a 24-byte helper with `rcx` and the result of a 19-byte table-address helper for 0, then (when `rcx` is non-null) stores dword `01E0C1DC` minus the second Q result at word `+0x9A`, 0 at `+0x98`, dword `01E0C1D8` at `+0x9C` and the first Q result at `+0x9E`, and on both paths calls a 26-byte helper (`rcx`, `0xA1`); those three cases return 0, and any other value returns the result of a 3-byte stub that returns 0 (called with `rcx`, `rdx`) | `0029BCA1`, `0029BCBD`, `0029BD75`, `0029BDAA`, `0029BE1F` |
+| `00398390` | 224 B | multiplies float `022D930C` in place by dword `01EF93F0`, copies the 16-byte vectors at `rcx` and `rdx` to `022D92E0` and `022D92F0`, stores the products y1*z2, z1*x2 and x1*y2 at `022D91A0`, `022D91A4` and `022D91A8`, stores the cross product of the two xyz parts (y1*z2-z1*y2, z1*x2-x1*z2, x1*y2-y1*x2) at `022D9300`, `022D9304` and `022D9308`, and copies the 16 bytes at `022D9300` to `r8` | `0039839C`, `003983B7`, `003983ED`, `00398450`, `00398467` |
+| `003A2B90` | 53 B | stores the bit pattern of `xmm1`, sign-extended to a qword, at `022D8F30`, copies the 16 bytes at `022D8F30` to `022D92F0`, subtracts `xmm1` from each of the four floats of the 16-byte vector at `rcx`, and writes the result to both `022D92E0` and `rcx` | `003A2B9E`, `003A2BAC`, `003A2BB7`, `003A2BBA`, `003A2BC1` |
+| `0050C670` | 54 B | takes `v` from the 7-byte getter of dword `02B40E18` (called with the incoming registers), calls an 85-byte helper (`00D22888`, v) and tail-jumps `VMResult_WriteInt32(rcx, v)` | `0050C67D`, `0050C68D`, `0050C6A1` |
+| `0050C8D0` | 54 B | takes `v` from the 7-byte getter of dword `02B40E18` (called with the incoming registers), calls an 85-byte helper (`00D228A8`, v) and tail-jumps `VMResult_WriteInt32(rcx, v)` | `0050C8DD`, `0050C8ED`, `0050C901` |
+| `00510870` | 220 B | reads three values a, b, c with three `VMValueStack_PopInt32CoerceFloat32(r9)` calls and takes `p` = a 421-byte helper's result for (c, b, a); when `p` is non-null and a 50-byte helper (`rdx`, `p`) returns non-zero it calls `VMResult_WriteInt32(rcx, 1)`, an 85-byte helper (`00D22B30`, c), a 27-byte helper (`p`, 1) and the 85-byte helper (`00D22B58`, a 109-byte helper's result for (byte `p+0x15`, word `p`)); otherwise it calls `VMResult_WriteInt32(rcx, 0)` and the 85-byte helper (`00D22B80`, c) | `005108B8`, `005108CB`, `005108DC`, `00510903`, `0051091E` |
+| `006BA940` | 99 B | stores `00D81200` at qword `[rcx]`, calls a 300-byte helper (`rcx`), then eh_vector_destructor_iterator (`rcx+0x58`, `0x10`, 2, the address of `_guard_check_icall`) and eh_vector_destructor_iterator (`rcx+0x38`, `0x10`, 2, the address of `_guard_check_icall`), and tail-jumps a 34-byte helper (`rcx`) | `006BA959`, `006BA95C`, `006BA976`, `006BA990`, `006BA99E` |
+| `00863410` | 26 B | when qword `rcx+0x18` is non-null calls it with qword `rcx+0x20` as `rcx`; returns 0 on both paths | `00863414`, `0086341D`, `00863421`, `00863423` |

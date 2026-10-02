@@ -1,0 +1,91 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original notification-before-entry-reclaim proof",
+  "driver_sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "a2299be8f2f8eb79f0da7aaaff41e0e5b9d4f444117ba39e79e1bb032cdbc735"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 295,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "original_body_bytes": 1041,
+  "facts": {
+    "order": [
+      "003DB346 unlink channel entry/clear entry+11",
+      "003DB37D ->003DC122 attempt end notification",
+      "003DB3F0 relink removed index onto current free list",
+      "003DB3F9 publish removed index as actor+60"
+    ],
+    "unlink_own_effects": [
+      [
+        "0x3dc220",
+        "rax",
+        1,
+        1,
+        "w"
+      ],
+      [
+        "0x3dc230",
+        "r10",
+        0,
+        1,
+        "w"
+      ],
+      [
+        "0x3dc233",
+        "r8",
+        17,
+        1,
+        "w"
+      ]
+    ],
+    "allocation_partitions": [
+      {
+        "function0_valid": false,
+        "has_free_slot": null,
+        "outcome": "EAX=3, no own object writes/no calls",
+        "source_calls": []
+      },
+      {
+        "function0_valid": true,
+        "has_free_slot": false,
+        "outcome": "EAX=2, no own object writes/no calls",
+        "source_calls": []
+      },
+      {
+        "function0_valid": true,
+        "has_free_slot": true,
+        "outcome": "reaches original unlink/insertion helpers; result/effects not established here",
+        "source_calls": [
+          "0x3dbd4e",
+          "0x3dbd5f",
+          "0x3dbd75",
+          "0x3dbd82",
+          "0x3dbd96"
+        ]
+      }
+    ],
+    "descriptor_function_id": "WORD0 at descriptor+4 from DWORD80000000; count>0 required before capacity rejection",
+    "conditional_self_full": "For a valid head mode3 entry whose requester resolves to the same actor, positive function count, free headFF, flags byte0/1, stable disjoint actor/pool/frame and normal ABI/returns: end-notification allocation returns2 before the removed entry becomes allocatable. This is a conditional original-code proof, not a naturally observed full pool.",
+    "outer_return": "EAX at003DB402 is entry+12 bit0 retained inR14D, independent of ignored notification allocation result. Flags1 gives return1 even in the conditional lost-notification path.",
+    "observer_implication": "A free slot seen after removal cannot prove it existed at notification allocation. Capture requester identity/free head at003DBD26/32 and call origin003DC127, not only post-removal occupancy.",
+    "excluded": "No natural full-pool/same-actor request/cancel-reentry occurrence, universal entry lifetime, concurrent mutation, all writer, native helper or imported effect proof. Flags>=2 additionally cross263050 and need its effect/noninterference proof."
+  },
+  "limits": [
+    "No natural full-pool/same-actor request/cancel-reentry occurrence, universal entry lifetime, concurrent mutation, all writer, native helper or imported effect proof. Flags>=2 additionally cross263050 and need its effect/noninterference proof.",
+    "Normal initialized valid records/linked head/private frames/ABI and disjoint actor, entry pool and caller stack required. No native or game experiment performed.",
+    "Static graph partitions are proofs of control-flow boundaries, not calls with injected state or independent project acceptance."
+  ],
+  "cleanup": "Finite offline tools only; no PC/game/native/emulator/instrument/save/config/reference/peer writes."
+}

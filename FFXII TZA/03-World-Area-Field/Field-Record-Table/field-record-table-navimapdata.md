@@ -1222,3 +1222,13 @@ byte fetch).
 - **Status_Periodic_Terminal - CLIENT and SERVICE (31 edges).** `002F9400`, `002FEF30` are also called by bodies filed to status/periodic terminal: `00310DB0`, `0030FED0`; `002F9400` reaches bodies filed to status/periodic terminal: `00320450`, `00329A20` - shared machinery across the layer boundary, no shared ownership.
 - **Story_Event_Quest_Hunt - SERVICE (3 edges).** `00253C70`, `0026C8C0`, `00583D60` reach bodies filed to story/event: `0032A8A0`, `00377440` - shared machinery across the layer boundary, no shared ownership.
 - **UI - SERVICE (103 edges).** `00251F40` reaches bodies filed to UI: `0028FF20`, `00290030`, `00290060` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-field-record-table-navimapdata-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00255330` | 132 B | when `ecx` is not 1, calls `00251F40(dword 020927E8)`, ORs word `01E0C2AC` with 0xC and returns; when `ecx` is 1, unless both bits 0xC0 of dword `01E0C320` are set it calls `003C8990()`, `0035DAC0()`, `0028FF20()`, `003C58B0()`, `002B6140()`, `0035D5A0()`, `0035D0E0(dword 020927EC)`, `003C9900()` and `003BBFA0(0)` and clears bit 7 of dword `020927EC`, then in either case ANDs word `01E0C2AC` with 0xFFF3 and tail-jumps to `0017E7D0()` | `00255344`, `0025537D`, `0025538C`, `00255397`, `002553A7` |
+| `002AC2C0` | 17 B | stores `cl` OR 0x80 to byte `01E0CDFF` and returns the address `01E0CDFC` | `002AC2C3`, `002AC2CA` |
+| `003778B0` | 68 B | takes `i` = `00264F90()` and `p` = qword `02ADD0F8`; when `p` is non-null, `i` is below dword `p+8` (unsigned) and the word `w` at `p+0x10+2*(dword p+4 + i)` is non-zero, returns `p + w`, and otherwise returns the address `01CEB638` | `003778B4`, `003778C7`, `003778D3`, `003778E0`, `003778E8` |

@@ -1,0 +1,66 @@
+== packet integrity
+PASS  manifest.json sha256 = 59f6be899f03c3b6...  | 59f6be899f03c3b65ba88f73fff8bb82e15e25565eacabb860ad72289a063c24
+PASS  all 58 manifest members hash as listed  | []
+NOTE  committed manifest at 0c4215736: sha256 59f6be899f03c3b65ba88f73fff8bb82e15e25565eacabb860ad72289a063c24
+PASS  packet's source range 00306760 .. + 0x38F hashes to this image's bytes
+PASS  packet's physical body (936 B) and table bytes equal this image's: body sha256 11d908d011ff..., table at + 0x390
+PASS  packet README keeps open: kind-to-row/caller/owner consistency, S > 0 as a precondition, arithmetic not native runs, descriptor initialization, whole OV-42
+== raw direct-reference census (E8/E9 rel32 and 0F 8x jcc, .text)
+NOTE  00306760 raw direct references (1): 304F4D call (indirect callers not covered)
+PASS  00306760 has exactly one raw direct reference, the call at 00304850 + 0x6FD (indirect callers not covered)
+NOTE  raw direct references to the kind-4 arm entry + 0xE8: 0; to the store + 0x174 from outside the routine: 0
+== shipping-image re-derivation
+PASS  image sha256 = 73461d0896204b1c259c...
+PASS  00306760's .pdata: five records tile 00306760 .. + 0x3A8 (936 B) exactly - the root .. + 0x10, then CHAININFO records + 0x10 .. + 0x62, + 0x62 .. + 0x33A, + 0x33A .. + 0x356, + 0x356 .. + 0x3A8, each resolving to the root 00306760  | [('0x0', '0x10', 0), ('0x10', '0x62', 4), ('0x62', '0x33a', 4), ('0x33a', '0x356', 4), ('0x356', '0x3a8', 4)]
+PASS  int3 padding 00306760 + 0x3A8 .. + 0x3B0 up to the next root record 00306B10
+PASS  code: 00306760 .. + 0x38F (911 B) decodes exactly, and its last instruction is the one `ret` (+ 0x38E)
+PASS  + 0x38F is a one-byte NOP (90) that no instruction falls into or branches to; + 0x390 .. + 0x3A8 are six DWORDs (24 B) addressed by the dispatch load, not code
+PASS  local CFG closed: one ret, no tail jump other than the one indirect `jmp rax` (+ 0x79), no branch leaves the code
+PASS  dispatch head: + 0x4A EAX = DWORD [022C215C] (4 B); + 0x50 `dec eax`; + 0x57 `cmp eax, 5`; + 0x5A `ja` + 0x33A (unsigned); + 0x60 `cdqe`; + 0x67 R14 = image base (`lea`, rip-relative); + 0x6E EAX = DWORD [r14 + rax*4 + 0x1E6AF0] = 00306760 + 0x390 + 4*(kind - 1); + 0x76 `add rax, r14`; + 0x79 `jmp rax`
+PASS  between the kind load and the jump only the dispatch writes RAX (+ 0x4A, + 0x50, + 0x60, + 0x6E, + 0x76) and R14 is written only by the `lea` (+ 0x67)
+PASS  the six DWORDs resolve to arm entries on instruction boundaries: kind 1 + 0x1D1, kind 2 + 0x2DD, kind 3 + 0x7B, kind 4 + 0xE8, kind 5 + 0x298, kind 6 + 0x32E  | +1D1 +2DD +7B +E8 +298 +32E
+PASS  local CFG from each arm entry: only kind 4 reaches the queue store + 0x174; the entry's own direct CFG (the indirect jump and the `ja` default + 0x33A) does not  | {1: False, 2: False, 3: False, 4: True, 5: False, 6: False}
+PASS  no direct branch from outside the kind-4 arm lands in + 0xE8 .. + 0x174, and kind 3's arm ends with `jmp` + 0x335 at + 0xE3 (no fall-through into kind 4)  | []
+PASS  RDI = entry RDX: home save `mov qword ptr [rsp + 0x38], rdi` (+ 0x10), `mov rdi, rdx` (+ 0x15), no RDX write before it; RDI written only at + 0x15, + 0xBC (kind 3's `sub`), + 0x147 (kind 4's `sub`) and the reload + 0x348; none on the kind-4 arm before + 0x147
+PASS  the entry path reads row BYTE [rdx + 0x1C] (+ 0x32, `cmp ... , 8`) before the dispatch; the arm callees between + 0x15 and + 0x147 (00306D90, 00861EC0, 0030D720, 0030D550, 0020E600, and on the + 0x1C == 8 path 003098D0 / 003299B0) are trusted to preserve RDI by the Win64 ABI
+PASS  first descriptor: + 0x138 RAX = QWORD [02EBF138] (8 B); + 0x13F ECX = DWORD [rax + 0xC] (4 B); + 0x142 `call 0020E600`; + 0x147 `sub edi, eax` - a 32-bit subtraction of the lookup's EAX from EDI
+PASS  second descriptor: + 0x149 `xor edx, edx`; + 0x14B RAX = QWORD [02EBF138] again (8 B); + 0x152 ECX = `movzx ecx, word ptr [rax + 8]` (2 B, zero-extended); + 0x156 `mov eax, edi`; + 0x158 `div ecx` (F7 F1: unsigned, 32-bit, EDX:EAX / ECX)
+PASS  two separate descriptor loads: the call 0020E600 (+ 0x142) lies between them; apart from the + 0x11E / + 0x122 byte tests, no compare, test or branch from the arm entry to the DIV; nothing writes ECX between the WORD load and the DIV, and EDX is written only by the `xor` there (no zero-divisor guard)
+PASS  the only compares on the arm before the DIV are the two `+0x695`/`+0x696` byte tests (+ 0x11E, + 0x122); their branches rejoin at + 0x138; the DIV dominates the store
+PASS  the remap: + 0x15A ECX = DWORD [rbx + 8]; + 0x15D EDX = 0xFFFF; + 0x162 `cmp ax, dx` (16-bit); + 0x165 `je` + 0x171; + 0x167 `movzx eax, ax`; + 0x16A `sub eax, 0xd0`; + 0x16F `jmp` + 0x174; + 0x171 `or eax, 0xffffffff`; no EAX write between the DIV and the compare
+PASS  the store: + 0x174 `mov dword ptr [rip + ...], eax` to 022C2178 (4 B); it is the routine's only write to the queue
+PASS  after the store the arm writes DWORD 0 to 022C21B4 (+ 0x17C) and the unit DWORD +8 (ECX from + 0x15A) to 022C218C (+ 0x185) - the unit value the queue reader returns - then copies unit +0x77C QWORDs from +0x780 (stride 0x10) to 022C21B8 + 8*i
+PASS  kind 3's arm computes the same quotient (+ 0xAD .. + 0xCD: first load, key +0xC, 0020E600, `sub edi, eax`, second load, WORD +8, unsigned `div ecx`) but passes the full 32-bit EAX as EDX to 0030EC00 (+ 0xD4) with no FFFF test or - 0xD0, and does not reach the queue
+PASS  every path to the ret passes + 0x37F, which writes DWORD 5 to 022C2160
+PASS  emulated full routine from the entry, kind cell 022C215C = 0..7 (row + 0x1C != 8): every run returns with RBX/RSI/RDI/R14 restored; the queue 022C2178 is written in exactly one run, kind 4, once, as a 4-byte store from 00306760 + 0x174  | writers [4]; 
+PASS  emulated: kinds 0 and 7 call no arm callee - their first callee is the tail's 00236850 (the `ja` to 00306760 + 0x33A); kind 4's callees run 00306D90, 00861EC0, 0030D720, 0030D550, 0020E600, then the tail  | k0 ['236850', '236820', '332130'] / k4 ['306D90', '861EC0', '30D720', '30D550', '20E600', '236850', '236820', '332130']
+PASS  emulated: kind 4 queues the coherent row 3 (row = base + 3*60) as (3 - 0xD0) mod 2^32 = FFFFFF33, and the lookup receives ECX = descriptor DWORD +0xC (1D74)  | queue FFFFFF33
+PASS  emulated kind-4 arm, coherent row = base + 60*id: each of 511..534 queues id - 208 = 303..326
+PASS  emulated kind-4 arm, 10 edge cases (row 0x113; id 0xCF and quotients FFFF / 1FFFF give FFFFFFFF; low16 wrap; floor; a row below the base wraps as unsigned 32-bit; upper 32 bits of the row ignored; stride FFFF): each equals the packet formula
+PASS  emulated kind-4 arm, 60 random 64-bit rows / lookup returns / strides 1..FFFF: each queue DWORD equals ((low32(row) - low32(base)) mod 2^32) // S, low 16 bits, FFFF -> FFFFFFFF else - 0xD0
+PASS  emulated: when 02EBF138 is repointed during the lookup call, the key came from the first descriptor (+0xC = 1D74) and the divisor from the second (+8 = 30): 60*520 / 30 = 1040 -> queue 1040 - 208 = 832  | key 1D74 queue 340
+PASS  emulated: stride WORD 0 -> divide error (#DE, interrupt 0) at the DIV 00306760 + 0x158; the queue is not written (no zero-divisor guard)  | intr (0, 3172536) fault None rip 3068B8
+PASS  the one raw direct call 00304850 + 0x6FD: RDX = R15 (+ 0x6F7), RCX = RDI (+ 0x6FA), reached only when `test dword ptr [r15 + 0xc], 0x40000000` (+ 0x6ED) / `je` (+ 0x6F5) finds bit 30 set; then `jmp` + 0x70F
+PASS  R15 before the 13-way phase switch: R13 = WORD [rsi + 0x64] (+ 0x3D), `cmp r13w, bx` (BX = 0x21E) / `ja` exit (+ 0x8E/+ 0x92); then R15 = 0020E600([02EBF138] + 0xC) (+ 0xCF) and `add r15d, ecx` with ECX = WORD [02EBF138 reloaded] + 8 * R13W (+ 0xD9 .. + 0xE4, a 32-bit add); a null descriptor or lookup gives R15 = R14 (+ 0xE9)
+PASS  the call sits in phase case 9 (+ 0x66E .. + 0x70F); in the local CFG, case entries 0..9 reach it (earlier cases continue into later ones) and 10..12 do not; no R15 write after + 0xE9 lies on any path from a case entry to the call, so RDX at the call is the R15 formed before the switch  | hits [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] bad []
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy passes every check  | 33 of 33; []
+PASS  control: table cell kind 4 -> kind 3's arm (+ 0x39C := RVA of + 0x7B)  | 4 failed: the six DWORDs resolve to arm entries on instruction boundar; emulated full routine from the entry, kind cell 022C215C = 0; emulated: kinds 0 and 7 call no arm callee - their first cal
+PASS  control: table cell kind 1 -> kind 4's arm (+ 0x390 := RVA of + 0xE8)  | 2 failed: the six DWORDs resolve to arm entries on instruction boundar; emulated full routine from the entry, kind cell 022C215C = 0
+PASS  control: + 0x50 `dec eax` -> `inc eax` (kind index shifted)  | 4 failed: dispatch head: + 0x4A EAX = DWORD [022C215C] (4 B); + 0x50 `; emulated full routine from the entry, kind cell 022C215C = 0; emulated: kinds 0 and 7 call no arm callee - their first cal
+PASS  control: + 0x5A `ja` -> `jg` (signed bound)  | 3 failed: dispatch head: + 0x4A EAX = DWORD [022C215C] (4 B); + 0x50 `; emulated full routine from the entry, kind cell 022C215C = 0; emulated: kinds 0 and 7 call no arm callee - their first cal
+PASS  control: + 0x15 `mov rdi, rdx` -> `mov rdi, rcx` (RDI from the unit)  | 2 failed: RDI = entry RDX: home save `mov qword ptr [rsp + 0x38], rdi`; emulated: kind 4 queues the coherent row 3 (row = base + 3*6
+PASS  control: + 0x147 `sub edi, eax` -> `sub edi, ecx`  | 6 failed: first descriptor: + 0x138 RAX = QWORD [02EBF138] (8 B); + 0x; emulated: kind 4 queues the coherent row 3 (row = base + 3*6; emulated kind-4 arm, coherent row = base + 60*id: each of 51
+PASS  control: + 0x13F key DWORD +0xC -> +0x10  | 3 failed: first descriptor: + 0x138 RAX = QWORD [02EBF138] (8 B); + 0x; emulated: kind 4 queues the coherent row 3 (row = base + 3*6; emulated: when 02EBF138 is repointed during the lookup call,
+PASS  control: + 0x14B second descriptor cell 02EBF138 -> 02EBF140  | 9 failed: second descriptor: + 0x149 `xor edx, edx`; + 0x14B RAX = QWO; two separate descriptor loads: the call 0020E600 (+ 0x142) l; emulated full routine from the entry, kind cell 022C215C = 0
+PASS  control: + 0x152 stride WORD -> BYTE (`movzx ecx, byte ptr [rax + 8]`)  | 3 failed: second descriptor: + 0x149 `xor edx, edx`; + 0x14B RAX = QWO; emulated kind-4 arm, 10 edge cases (row 0x113; id 0xCF and q; emulated kind-4 arm, 10 random 64-bit rows / lookup returns 
+PASS  control: + 0x158 `div ecx` -> `idiv ecx` (signed division)  | 3 failed: second descriptor: + 0x149 `xor edx, edx`; + 0x14B RAX = QWO; emulated kind-4 arm, 10 random 64-bit rows / lookup returns ; emulated: stride WORD 0 -> divide error (#DE, interrupt 0) a
+PASS  control: + 0x156 `mov eax, edi` -> `test ecx, ecx` (a divisor test inserted before the DIV)  | 8 failed: second descriptor: + 0x149 `xor edx, edx`; + 0x14B RAX = QWO; two separate descriptor loads: the call 0020E600 (+ 0x142) l; the only compares on the arm before the DIV are the two `+0x
+PASS  control: + 0x162 `cmp ax, dx` -> `cmp eax, edx` + NOP (32-bit sentinel compare)  | 2 failed: the remap: + 0x15A ECX = DWORD [rbx + 8]; + 0x15D EDX = 0xFF; emulated kind-4 arm, 10 edge cases (row 0x113; id 0xCF and q
+PASS  control: + 0x16A `sub eax, 0xd0` -> `sub eax, 0xd1`  | 6 failed: the remap: + 0x15A ECX = DWORD [rbx + 8]; + 0x15D EDX = 0xFF; emulated: kind 4 queues the coherent row 3 (row = base + 3*6; emulated kind-4 arm, coherent row = base + 60*id: each of 51
+PASS  control: + 0x171 `or eax, 0xffffffff` -> `or eax, 0` (no FFFFFFFF sentinel)  | 2 failed: the remap: + 0x15A ECX = DWORD [rbx + 8]; + 0x15D EDX = 0xFF; emulated kind-4 arm, 10 edge cases (row 0x113; id 0xCF and q
+PASS  control: + 0x167 `movzx eax, ax` -> `movzx eax, al` (BYTE queue width)  | 5 failed: the remap: + 0x15A ECX = DWORD [rbx + 8]; + 0x15D EDX = 0xFF; emulated kind-4 arm, coherent row = base + 60*id: each of 51; emulated kind-4 arm, 10 edge cases (row 0x113; id 0xCF and q
+PASS  control: + 0x174 store target 022C2178 -> 022C217C  | 7 failed: the store: + 0x174 `mov dword ptr [rip + ...], eax` to 022C2; emulated full routine from the entry, kind cell 022C215C = 0; emulated: kind 4 queues the coherent row 3 (row = base + 3*6
+PASS  control: + 0x165 `je` + 0x171 -> `jne` (sentinel test inverted)  | 6 failed: the remap: + 0x15A ECX = DWORD [rbx + 8]; + 0x15D EDX = 0xFF; emulated: kind 4 queues the coherent row 3 (row = base + 3*6; emulated kind-4 arm, coherent row = base + 60*id: each of 51
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 58 checks, 58 PASS, 0 FAIL (17 controls)

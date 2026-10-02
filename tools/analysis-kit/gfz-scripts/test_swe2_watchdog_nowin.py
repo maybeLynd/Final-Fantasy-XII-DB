@@ -136,6 +136,21 @@ check(re.search(r"recovery_probe\"\)\s+for\s+w\s+in\s+state\[\"inflight\"\]",
                 src) is not None,
       "recovery gate tests for an actual in-flight recovery probe")
 
+# 6. A pythonw child ignores the no-window flag and gets NO console, so its
+#    own git/claude children each pop a visible window (2026-10-02). The
+#    helpers must launch the console python.exe beside it instead, whose
+#    hidden console every descendant inherits.
+if os.name == "nt":
+    pyw = os.path.join(os.path.dirname(sys.executable), "pythonw.exe")
+    py = os.path.join(os.path.dirname(sys.executable), "python.exe")
+    if os.path.exists(pyw) and os.path.exists(py):
+        check(wd._console_python([pyw, "x.py", "--a"]) == [py, "x.py", "--a"],
+              "helpers launch python.exe, never a console-less pythonw.exe")
+    check(wd._console_python(["git", "status"]) == ["git", "status"],
+          "_console_python leaves non-pythonw commands untouched")
+check(src.count("(_console_python(cmd), **merged)") == 2,
+      "run_hidden and popen_hidden both route through _console_python")
+
 print()
 if FAILURES:
     print("%d FAILURE(S)" % len(FAILURES))

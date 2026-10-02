@@ -1,0 +1,85 @@
+{
+ "page": "03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01BbJEW8EUsZAfZd7QTFetdW",
+ "report": "field-record-table-navimapdata.json",
+ "rows": [
+  {
+   "fn": "00255330",
+   "text": "when `ecx` is not 1, calls `00251F40(dword 020927E8)`, ORs word `01E0C2AC` with 0xC and returns; when `ecx` is 1, unless both bits 0xC0 of dword `01E0C320` are set it calls `003C8990()`, `0035DAC0()`, `0028FF20()`, `003C58B0()`, `002B6140()`, `0035D5A0()`, `0035D0E0(dword 020927EC)`, `003C9900()` and `003BBFA0(0)` and clears bit 7 of dword `020927EC`, then in either case ANDs word `01E0C2AC` with 0xFFF3 and tail-jumps to `0017E7D0()`",
+   "anchors": [
+    [
+     "00255344",
+     "cmp"
+    ],
+    [
+     "0025537D",
+     "and"
+    ],
+    [
+     "0025538C",
+     "and"
+    ],
+    [
+     "00255397",
+     "jmp"
+    ],
+    [
+     "002553A7",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "002AC2C0",
+   "text": "stores `cl` OR 0x80 to byte `01E0CDFF` and returns the address `01E0CDFC`",
+   "anchors": [
+    [
+     "002AC2C3",
+     "lea"
+    ],
+    [
+     "002AC2CA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003778B0",
+   "text": "takes `i` = `00264F90()` and `p` = qword `02ADD0F8`; when `p` is non-null, `i` is below dword `p+8` (unsigned) and the word `w` at `p+0x10+2*(dword p+4 + i)` is non-zero, returns `p + w`, and otherwise returns the address `01CEB638`",
+   "anchors": [
+    [
+     "003778B4",
+     "call"
+    ],
+    [
+     "003778C7",
+     "cmp"
+    ],
+    [
+     "003778D3",
+     "movzx"
+    ],
+    [
+     "003778E0",
+     "add"
+    ],
+    [
+     "003778E8",
+     "lea"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0050CDE0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

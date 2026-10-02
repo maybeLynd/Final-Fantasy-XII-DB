@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-quotient-bound\controls-01\changed-current-bound\prove.py", line 68, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-quotient-bound\controls-01\changed-current-bound\prove.py", line 46, in main
+    q=P/row['copy'];need(sha(q)==row['sha256'],'retained member changed')
+                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-caller-quotient-bound\controls-01\changed-current-bound\prove.py", line 12, in need
+    if not ok:raise ValueError(msg)
+              ^^^^^^^^^^^^^^^^^^^^^
+ValueError: retained member changed

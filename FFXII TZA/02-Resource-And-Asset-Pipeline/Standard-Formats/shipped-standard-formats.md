@@ -145,7 +145,7 @@ ledger carries the correction.
 
 The EBML magic `1A 45 DF A3` on the 12 sampled files is the magic census's finding, not
 re-derived here. **The player, located 2026-09-11:** `001B7F30` formats the path as `%s%s.webm`
-(`008F8D75`, `001B8009`–`001B8015`) from a 0x1C-stride movie table (`002DF980`) and opens it through
+(`008F8D75`, `001B8009`–`001B8015`) from ~~a 0x1C-stride movie table (`002DF980`)~~ the path table `0215F000`'s kind-`0x1C` array through `002DF980` *(corrected 2026-10-02, OPUS: `002DF980` is the path getter `[0215F000][kind][index]`; the player passes kind `0x1C` (28, the movie kind) at its `+0x5C` `mov ecx, 0x1c` and a doubled index (`+0x61` `add edx, edx`), and the other ten callers pass other kinds)* and opens it through
 the player object at its record's `+0x678` (`0067A480`), which sets a 1920 × 1080 frame
 (`0067A551`–`0067A558`) before `0016F070`. The container is read by the executable's own Matroska
 parser — `00801210` (Segment `0x18538067` at `00801391`), `00801550` (interior read 2026-09-17, SWE2-FRONTIER: `008019A0` first at [`00801569`](../../_index/ADDRESS-INDEX.md) — the element-walk core) / `008025B0` / `00802A10` /
@@ -158,7 +158,7 @@ therefore still unread (`FR-1`, narrowed).
 
 ## 3. Key addresses
 
-None — this sheet is about files. The readers of `.json` (the engine's JSON parser), `.tga` and
+~~None~~ *(answered: the body cites the player `001B7F30`, the parser `00801210`–`00806F20` and the save-slot name builders `SavePath_FormatSlotAssetName` / `SavePath_BuildSlotAssetName`; 2026-10-02, OPUS)* — this sheet is about files. The readers of `.json` (the engine's JSON parser), `.tga` and
 `.webm` are the questions below.
 
 ## 4. Data structures and formats
@@ -187,7 +187,7 @@ submits to storage. Nothing copies the pool pair into a slot.)* The save-slot as
   emit **`icon.sys`** for kind 0 and **`static.ico`** for kinds 2–4 beside the numbered slot file
   (`"%s%03d"` for kind 1), from the literals at `00D23EC8` / `00D23ED8` (`005846CB`–`005846DE`,
   `00584674`–`0058468F`); the shipped `in/icon.sys` and `in/icon1.ico` are resource-pool entries
-  494 and 495. Which routine copies the pool files into the slot is not read (`FR-2`). `system.cnf`
+  494 and 495. ~~Which routine copies the pool files into the slot is not read (`FR-2`).~~ *(answered: see FR-2 in §7 - there is no such routine, 2026-09-26; 2026-10-02, OPUS)* `system.cnf`
   and the `.h` headers have no reader: their strings are referenced by nothing (sweep, 2026-09-11).
 
 ## 7. What is not known
@@ -299,7 +299,7 @@ row's own caveat (12 of 40 sampled, codecs unread) stands. This is physical acce
 - **Presentation and Rewards_Progression_Economy — CLIENT.** The locale getter `00229E40`, which picks the directory
   code here, is also read by three Presentation bodies and by `EnemyChain_UpdateOnDefeat`
   ([the chain page](../../13-Rewards-Progression-Economy/the-chain-and-its-sticky-coin.md): the 999 / 998 clamp is
-  locale-dependent). The movie table `002DF980` is read by a 1,636-byte Presentation body.
+  locale-dependent). The ~~movie table~~ path getter `002DF980` *(corrected 2026-10-02, OPUS: `002DF980` is the path getter `[0215F000][kind][index]`; the player passes kind `0x1C` (28, the movie kind) at its `+0x5C` `mov ecx, 0x1c` and a doubled index (`+0x61` `add edx, edx`), and the other ten callers pass other kinds)* is read by a 1,636-byte Presentation body.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

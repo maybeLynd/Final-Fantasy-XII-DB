@@ -116,7 +116,7 @@ is directly tested, while higher-level priority policy remains separate.
 
 ### 2.3 The pump — `0032E070`, six states
 
-Called once per frame by `0032E040` when a loader is present (`001EDE80()` or `0017D930()`) —
+Called ~~once per frame~~ by `0032E040` when a loader is present (`001EDE80()` or `0017D930()`) *(corrected 2026-10-02, OPUS: the wrapper carries no once-per-frame guarantee: the script native and `0032E520(0)` below call it inside wait loops; [the contract](CONTRACT-resource-request-queue.md)'s `0032E040()` row)* —
 from **every one of the seven main-loop mode bodies** of [the between-two-frames page](../22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md) (mode 0 `0022B6E0` at
 `0022B7A9`, mode 1 `0022B7E0` at `0022B870`, the field frame `0022A770` at `0022AE79`, the full
 menu `0022B8C0` at `0022BB03`, the screen capture `0022AF50` at `0022AFB5`, mode 5 `0022BC20` at
@@ -337,10 +337,10 @@ it frees the path the index pointed at (`0032E5B9`–`0032E5CB`, `003697F0`). Ca
 | `0032E870` | — | 285 B | take a slot, fill it, stall while none is free |
 | `0032E990` / `0032EC40` | — | 186 / 147 B | link into the pending list / return to the free list |
 | `0032E070` | — | 605 B | the pump |
-| `0032E040` / `0032E520` | — | 38 / 107 B | pump once per frame / drain until idle (argument 0) or only ask whether anything is outstanding (non-zero) |
+| `0032E040` / `0032E520` | — | 38 / 107 B | pump ~~once per frame~~ when a loader is present (no frame guarantee, the contract's `0032E040()` row) / drain until idle (argument 0) or only ask whether anything is outstanding (non-zero) |
 | `0032E330` / `0032E370` / `0032E3B0` / `0032E2F0` | — | 59 / 62 / 58 / 50 B | the delivery, error, part and cancel callback sites |
 | `0032E4D0` / `0032E590` | — | 66 / 129 B | in flight? / cancel |
-| `0046E030` → `002DF780` | — | 29 / 243 B | issue a read (loose file first, then the archive) |
+| `0046E030` → `002DF780` | — | 29 / 243 B | issue a read (~~loose file first~~ the stream open first, then the archive *(answered: see the Presentation and Audio neighbour line below - `001D6F20` is a stream open served from the RAM file cache or the VBF, never a loose file, 2026-09-27; 2026-10-02, OPUS)*) |
 | `002DF6C0` | — | 192 B | issue a read of a raw path (kind `0xFF`) |
 | `003EADD0` → `003EADE0` | — | 12 / 522 B | the script BGM stream's eight-state machine over the descriptor at `02B5E0E0` — served before the queue in the state-1 arm ([the music-control page](../18-Audio/the-music-control-file-and-the-bgm-stream.md) §3) |
 
@@ -352,7 +352,7 @@ inside its declared extent (`interior_cite.py scan`; no boundary crossings).
 
 | cluster | members | interior |
 |---|---|---|
-| read issue | `0046E030` (29 B — dispatcher) → `002DF780` (243 B — loose file, then archive); `002DF6C0` (192 B — kind `0xFF` raw path) | `0046E03E` / `002DF7D0` / `002DF6E1` |
+| read issue | `0046E030` (29 B — dispatcher) → `002DF780` (243 B — ~~loose file~~ stream open, then archive *(answered: as above; 2026-10-02, OPUS)*); `002DF6C0` (192 B — kind `0xFF` raw path) | `0046E03E` / `002DF7D0` / `002DF6E1` |
 | slot callbacks | `0032E370` (62 B — error callback `+0x40`, fires only when `+0x28 == −1`), `0032E3B0` (58 B — part callback `+0x50`) | `0032E392` (`call rax`) / `0032E3C2` (`call rax`) |
 | read-layer tick (dormant) | `0046DD50` (251 B — four-state machine over `02CA6068`, §8), `00368F30` (62 B — pointer-table slot test), `00369050` (19 B — callback register), `0046E0E0` (7 B — status-word getter `0215EFF4`) | `0046DD54` / `00368F39` / `00369057` / `0046E0E6` |
 | post-pass services | `003E9780` (297 B — starts voice cues whose bank finished loading, §8), `0036FD50` (8 B — `02AD9E00` gate byte getter) | `003E97B0` / `0036FD57` |
@@ -446,7 +446,7 @@ requestId = ((counter++) << 6) | slotIndex; counter wraps to 1 past 0xFFFFFF
 requester -> 0032E400(kind, index) [size] -> 0032E620(kind, index, dest, bytes, &desc)
           -> 0032E870 -> [stall: 0032E070 / 0046DFE0 / 0035EA30 while 022C51D0 == 0] -> 0032E990
 frame     -> 0022A770 / 0022AF50 / 0022B000 -> 0032E040 -> 0032E070
-             state 1 -> 0046E030 -> 002DF780 -> loose file (001D6F20 ..) or archive (001D6D90)
+             state 1 -> 0046E030 -> 002DF780 -> loose file (001D6F20 ..) or archive (001D6D90)   <- corrected 2026-10-02, OPUS: 001D6F20 is a stream open (file cache or VBF), never a loose file
              state 5 -> 0032E330 -> desc.onDone(arg, dest0, 1) ; state 6 -> 0032E370 -> onDone(arg, dest0, 0)
              every pass -> 0046DD50, 003E9780
 boot      -> 0022B6E0 / 0022B7E0 -> 0032E040 once a frame; advance when 0032E520(1) == 0 (idle)
@@ -707,7 +707,7 @@ DD batch 15 (`OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929`). Every item below is p
 **The status word is `0215EFF4`, and −1 means "in flight", not "error".** This page first printed
 it as `01F5EFF4`; the operand at `0046DFE7` resolves to `0215EFF4`, inside the audio / file layer's
 global block. The read issuer `002DF780` passes its address to whichever reader it chooses — the
-loose-file open (`001D6FB0`, `002DF808`) or the archive read (`001D6D90`, `002DF838`) — and the
+~~loose-file open~~ stream-open read (`001D6FB0`, `002DF808`) *(answered: `001D6F20`'s stream comes from the file cache or the VBF, as corrected below; 2026-10-02, OPUS)* or the archive read (`001D6D90`, `002DF838`) — and the
 archive reader stores the pointer in a global (`001D6DCD`) and writes **−1** into the word when the
 job is queued (`001D6DD4`), before the job's completion (its callback `001D6D70`) overwrites it.
 `0046DFE0` returns 2 while the word is −1 — the pump's "leave, still waiting" — and once it changes,

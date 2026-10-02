@@ -41,14 +41,14 @@ picture darkens toward the corners, the grain that appears as the image is tone-
 high dynamic range — all of it is post-processing, and **this one function is where the engine
 learns the name of every piece of it.**
 
-It runs once, at start-up. It loads a compiled shader file, then walks a list of 361 names and asks
+It runs once, ~~at start-up~~ on the first frame the post-process command runs *(corrected 2026-10-02, OPUS: `00193DA0`+0x31..+0x48 calls create only when `0065E5B0` reports the library absent; UQ-226)*. It loads a compiled shader file, then walks a list of 361 names and asks
 the graphics layer for a handle to each. Nothing it does is visible on its own. What it produces is
 the index the rest of the post-processing layer uses for the whole session — and what it *tells us*
 is the complete inventory, which nobody had written down.
 
 **The headline for a modder is the list itself** (§4). It answers, by name and without guessing:
 
-- **Depth of field** is the largest family by far — 63 techniques — with a separate **Bokeh** family
+- **Depth of field** is the largest family by far — 63 techniques *(scope named 2026-10-02, OPUS: §4's Depth list - 53 `tech_DepthOfField`, 8 `tech_DepthFromDofFactor`, 2 `tech_DepthEncode`)* — with a separate **Bokeh** family
   of 40 on top of it. This game spends more shader variety on defocus than on anything else.
 - **Motion blur** has 50.
 - **Ambient occlusion** is present and it is **Alchemy SSAO**, named outright.
@@ -102,7 +102,7 @@ if (hr != 0) {
 log("... succeeded.\n");
 log("get parameter handles ...\n");
 
-/* then 332 registrations, in seven shapes */
+/* then 332 registrations, in seven shapes */   // <- corrected 2026-10-02, OPUS - 219 of the 332 are string operations (section 8's UQ-225 answer); the registrations are mostly inline
 registerHandle (this, &this->slot, "tech_Name");
 registerArray  (this, &this->slot, "tech_Name_Tn", count);
 ...
@@ -118,7 +118,7 @@ strings are present but never printed.
 >
 > **Extended 2026-09-29 (FABLE, adopting OPUS's falsification pass 1, P11):** `00715CC0` (112 B, 8 sites), the string truncate the family helpers call with length − 1 after construction, is a fifth string utility. The string class therefore accounts for **227 of the 332** sites (91 + 48 + 40 + 40 + 8). None of the five reaches the lookup slots; every family helper does (`_index/candidates/ppfx-falsification-pass-1-0929/`).
 
-The body makes **358 direct calls** to **22 real targets** (*corrected 2026-09-12 from 364 / 24 — see the falsification pass*). The registration helpers, by call count:
+The body makes **358 direct calls** to **22 real targets** (*corrected 2026-09-12 from 364 / 24 — see the falsification pass*). The ~~registration helpers~~ callees *(corrected 2026-10-02, OPUS: the four most-called are the string class, the correction above)*, by call count:
 
 | helper | body | calls | shape |
 |---|---:|---:|---|
@@ -133,8 +133,8 @@ The body makes **358 direct calls** to **22 real targets** (*corrected 2026-09-1
 | `0072DAC0`, `0072EC00` | 547 / 492 B | 3 each | |
 | `0071A380`, `0072E5B0` | 320 / 386 B | 2 each | |
 
-plus `006DF480` (the logger) ×10, `sprintf` ×8, and single calls to the effect loader, `memset`,
-`free` and the stack-cookie check.
+plus `006DF480` (the logger) ×10, `sprintf` ×8, and single calls to ~~the effect loader, `memset`,~~
+~~`free` and the stack-cookie check~~ eight targets *(corrected 2026-10-02, OPUS: every direct call of `0072A320` recounted, 358 sites to 22 targets: `0078A530`, `0078A120` the effect loader, `0078A960`, `0071B3C0`, `00861EC0` (`memset`), `00715360`, `0072E940` and `00808C40` the cookie check, once each)*.
 
 **The count argument is the variant multiplier.** A call like
 
@@ -142,10 +142,10 @@ plus `006DF480` (the logger) ×10, `sprintf` ×8, and single calls to the effect
 FUN_0072dcf0(this, &this->slot, "tech_DepthOfField_BackgroundLayerMaskT1_Sn", 0x19);
 ```
 
-registers **25** handles under one name — the `_Sn` suffix is a family of shader variants, and the
+registers ~~**25** handles~~ **25 × 22 = 550** handles under one name *(corrected 2026-10-02, OPUS: `0072DCF0` formats `%s%d` for each counted variant (`0072DCF0`+0x90..+0xA4) and registers each one under all 22 suffixes of the table at `02EA2250` (`0072DCF0`+0x1EC `lea rdi, [02EA2250]`, +0x1F3 `lea esi, [rbp + 0x16]`); the handle slots of `ppfx-handle-layout.tsv` step `0x898` bytes from `0xDB60` to `0xE3F8`)* — the `_Sn` suffix is a family of shader variants, and the
 literal says how many. Observed counts include 4, 8, 17 (`0x11`) and 25 (`0x19`).
 
-**The complete list (2026-09-29, OPUS's falsification pass 1, P4):** across the two counted helpers' 91 sites, the count is always one of 1, 4, 8, 16, 17, 25, 32, 33 or 64, with 15, 2, 42, 6, 8, 5, 4, 8 and 1 sites respectively. That registers **1,172 handles** in all, and every site's count resolves.
+**The complete list (2026-09-29, OPUS's falsification pass 1, P4):** across the two counted helpers' 91 sites, the count is always one of 1, 4, 8, 16, 17, 25, 32, 33 or 64, with 15, 2, 42, 6, 8, 5, 4, 8 and 1 sites respectively. That ~~registers **1,172 handles** in all~~ names 1,172 counted variants; the 640 of them at `0072DCF0`'s 65 sites carry 22 handles each, so the two helpers register 14,612 handles *(corrected 2026-10-02, OPUS: `0072DCF0` formats `%s%d` for each counted variant (`0072DCF0`+0x90..+0xA4) and registers each one under all 22 suffixes of the table at `02EA2250` (`0072DCF0`+0x1EC `lea rdi, [02EA2250]`, +0x1F3 `lea esi, [rbp + 0x16]`))*, and every site's count resolves.
 
 ### The suffix grammar
 
@@ -169,9 +169,9 @@ The uniform names carry their type in the prefix: `f` scalar float, `af` float a
 |---|---|---:|---|
 | `0072A320` | `TEXSHADERSET_CreateEffect` | 13,547 B | **this document**: load the effect, register 325 techniques and 36 uniforms; interior verified 2026-09-17 (SWE2-FRONTIER) — first `006DF480` log call at [`0072A383`](../../_index/ADDRESS-INDEX.md), then `0078A530` (interior read 2026-09-17, SWE2-FRONTIER: 1,057 B, call-free — a `movups` block-copy leaf, descriptor fields staged at [`0078A586`](../../_index/ADDRESS-INDEX.md)) at `0072A3A6` |
 | `0072D820` | — | 396 B | its only caller |
-| `0078A120` | — | 273 B | `IGPUEffect::CreateEffectFromFile` wrapper; called once |
+| `0078A120` | — | 273 B | ~~`IGPUEffect::CreateEffectFromFile` wrapper~~ `IGPUEffect::CreateEffect` *(corrected 2026-10-02, OPUS: `0078A120`+0xEA logs `IGPUEffect::CreateEffect()`; `0078A240`+0x109 is the `CreateEffectFromFile` string)*; called once |
 | `006DF480` | — | 137 B | the PPFX logger; 160 callers image-wide |
-| `00715C70` | — | 70 B | registration helper, 91 call sites here |
+| `00715C70` | — | 70 B | ~~registration helper~~ the string destructor *(corrected 2026-10-02, OPUS: UQ-225, 2026-09-18)*, 91 call sites here |
 | `0072DCF0` | — | 718 B | registration helper with a count argument, 65 sites |
 | `007157A0` | — | 256 B | registration helper, 48 sites |
 | `007182F0` | — | 82 B | registration helper, 40 sites |
@@ -751,11 +751,11 @@ vParam_LensDistortion
 ## 5. Call chain
 
 ```
-start-up / device init
+start-up / device init   <- corrected 2026-10-02, OPUS - the first post-processed frame: 00193DA0+0x31..+0x48 (UQ-226)
   -> 0072D820                      the sole caller, 396 B
      -> 0072A320                   THIS FUNCTION
-        -> 0078A120                CreateEffectFromFile("<base>" + "_LUMINANCE_REMAP_S1.pso")
-        -> 00715C70 x88            \
+        -> 0078A120                CreateEffectFromFile("<base>" + "_LUMINANCE_REMAP_S1.pso")   <- corrected 2026-10-02, OPUS - 0078A120 is IGPUEffect::CreateEffect (its own log string at 0078A120+0xEA)
+        -> 00715C70 x88            \   <- corrected 2026-10-02, OPUS - x91, 007157A0 x48, 00719380 x40 (the 2026-09-12 re-census); 332 calls, not ~323, and the first two are string utilities
            0072DCF0 x65             |  ~323 handle registrations
            007157A0 x45             |  across seven helper shapes,
            007182F0 x40             |  each taking a name and a
@@ -843,16 +843,16 @@ of string that identifies code.
 
 **2. A linear `E8` byte scan over-reports call targets.** The decode found 37 apparent targets, of
 which **13 are not functions** — negative or absurd addresses produced by an `E8` byte occurring
-inside another instruction's operand. They are excluded above; the 24 real targets all resolve in
+inside another instruction's operand. They are excluded above; the ~~24~~ 22 real targets *(corrected 2026-10-02, OPUS: the struck row above; 358 sites to 22 targets)* all resolve in
 the function list and carry the high call counts. **The per-helper counts are sound; the target
 count would not have been if reported raw.**
 
 ### How many instances this rests on
 
 - The **suffix grammar** in §2 is read from 325 names and is the best-supported claim here.
-- The **count-argument-as-multiplier** reading rests on **four observed literals** (4, 8, 17, 25) at
-  call sites of two of the seven helpers. It is consistent with every one of them and is **not**
-  established for the five helpers whose bodies were not read.
+- The **count-argument-as-multiplier** reading rests on ~~**four observed literals** (4, 8, 17, 25)~~ the complete list of §2 (nine values over 91 sites) at
+  call sites of two of the seven helpers. It is consistent with every one of them ~~and is **not**~~
+  ~~established for the five helpers whose bodies were not read~~ *(answered: see §8's UQ-225 answer - the helper bodies are read; 2026-10-02, OPUS)*.
 - The **`fParam_FocusDistance` ↔ `mDofFocusDistance` link** rests on **one** parameter name pair and
   the separately documented JSON reader. It is a name correspondence, not a traced dataflow — no
   code path was followed from the JSON value to this uniform.
@@ -912,8 +912,8 @@ the page, and this pass confirms all four surviving log strings byte for byte at
 addresses.
 
 **Not claimed:** nothing here was executed or observed live. The helper *bodies* were not read, so
-§'s caveat stands: the count-argument-as-multiplier reading still rests on four observed literals at
-two of the seven helpers, and is not established for the five whose bodies are unread.
+§'s caveat ~~stands~~ *(answered: see §2's complete list and §8's helper bodies; 2026-10-02, OPUS)*: the count-argument-as-multiplier reading ~~still rests on four observed literals at~~
+~~two of the seven helpers, and is not established for the five whose bodies are unread~~ rests on nine values at 91 sites.
 
 ## The frame half: what the game hands the library every post-processed frame (2026-09-25, FABLE, Claude Opus 5.5)
 
@@ -937,7 +937,7 @@ one- or two-instruction forwarders into the library; the render command list pag
 | 1 | `cfg+0x99` set | `0065E6C0` → `006CC2F0` | nothing from `cfg`: two virtual calls on the library object (slot 1, then slot 0); not named here |
 | 1′ | otherwise, library object absent (`0065E5B0` false) | `0065E5A0` → `006CBD20` | `cfg[0]` and the context's first qword: the **lazy create** that builds the catalogue above (`UQ-226`) |
 | 2 | library object absent | — | **return: nothing else runs this frame** (`00193DFC`) |
-| 3 | always | `0065E6A0` → `006CC1F0` | `&cfg+0x9C`: its contents land in two 16-byte stores at `+0x28`/`+0x38` of an object `006CC1F0` resolves through `006DB900`/`006DB8C0` |
+| 3 | always | `0065E6A0` → `006CC1F0` | `&cfg+0x9C`: its contents land in ~~two 16-byte stores at `+0x28`/`+0x38` of an object `006CC1F0` resolves through `006DB900`/`006DB8C0`~~ four 16-byte stores at `+0x28`..`+0x58` of the receiver itself, which also clears byte `+0x24`; `006DB900`/`006DB8C0` run first only while that byte is clear *(corrected 2026-10-02, OPUS: `006CC1F0`+0xA, +0x3D..+0x5C)* |
 | 4 | always | `0065E6B0` → `006CC260` | three floats `cfg+0xDC`/`+0xE0`/`+0xE4`, the last halved (`xmm3 × 0.5`) |
 | 5 | **Glare option on** | `0065E670` → `006CC1E0` → `006DB9A0` | two floats `cfg+0x18`, `cfg+0x1C` (plus `1.0`, `1`) |
 | 5′ | Glare option off | same call | **`1.0` and `0.0`** instead |
@@ -965,12 +965,12 @@ called.**
    lens at all.
 
 This is where the uniform `fParam_FocusDistance`, and behind it the cutscene sidecar's
-`mDofFocusDistance` (§1), would have to enter. **Which `cfg` float carries the focus distance is not
-read here.**
+`mDofFocusDistance` (§1), would have to enter. ~~**Which `cfg` float carries the focus distance is not~~
+~~read here.**~~ *(answered: see CONTRACT-post-processing-subsystem.md - `+0x24` / `+0x28` carry `mDofFocusDistance` / `mDofApertureFnumber`; 2026-10-02, OPUS)*
 
 **What step 5 corroborates, and what it does not.** Glare off passes `(1.0, 0.0)` into the same
 setter rather than skipping it. A zero second argument is consistent with a zero intensity, but
-`006DB9A0`'s body is not read here. **So "Glare off disables the glare passes" is an inference; that
+~~`006DB9A0`'s body is not read here.~~ *(answered: see CONTRACT-post-processing-subsystem.md - the chain to `00707560` `SetGlareParameters`, read 2026-09-25; 2026-10-02, OPUS)* **So "Glare off disables the glare passes" is an inference; that
 the option changes the passed values is not.**
 
 **What this establishes for S-40's pass chain:**
@@ -982,7 +982,7 @@ the option changes the passed values is not.**
 
 **Not established:**
 - which catalogue techniques step 8 executes for a given configuration (`UQ-227`, now PARTIAL: the next section measures which families can never run);
-- who fills `cfg`, and in particular which float is the cutscene focus distance;
+- ~~who fills `cfg`, and in particular which float is the cutscene focus distance;~~ *(answered: see CONTRACT-post-processing-subsystem.md - the post-processing set-up that contract names allocates the `0xF0` block, and `+0x24` is the focus distance; 2026-10-02, OPUS; set-up named by role here, FABLE, so the far-end address stays on the contract)*
 - what steps 3, 4 and 6 configure. Their names are not in the image, and nothing here names them.
 
 ## Which families can run at all: the feature flags the game initialises with (2026-09-25, FABLE, Claude Opus 5.5)

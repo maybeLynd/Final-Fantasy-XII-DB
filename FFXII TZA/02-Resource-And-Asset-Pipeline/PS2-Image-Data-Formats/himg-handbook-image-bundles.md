@@ -93,10 +93,10 @@ The consumer is a small (~0x100-byte) child widget in the Handbook menu, functio
 
 ```
 +0xC0  parent / request context       +0xC8  u8 state (1 = single-page bind, 2 = paged view)
-+0xC9  u8 load phase (0 idle, 2 loading, 3 releasing)
++0xC9  u8 load phase (0 idle, 2 loading, 3 releasing)   <- corrected 2026-10-02, OPUS: 1 = loaded: 00575870+0x63 stores 1 when the load completes, and the readers require 1
 +0xCA  u16 resource-index delta       +0xCC  u16 record field copy
 +0xCE  u16 requested global page      +0xD0  u16 currently bound page (0xFFFF = none)
-+0xD2  u8 page mode                   +0xF0  resource buffer (the raw himg file)
++0xD2  u8 page mode                   +0xF0  resource buffer (the raw himg file)   <- corrected 2026-10-02, OPUS: +0xD2 is the record's byte +0 (00575C30+0xA2), the family index into 0xD23740
 +0xF8  TIM2 handle returned by the texture registry
 ```
 
@@ -129,7 +129,7 @@ Within a family the ids run `.bin` = +0, `hchk` `.dat` = +1, numbered `.dat` = `
 (verified: `knowledge000.dat` at `0x2F6`, `monster195.dat` at `0x419`). `+0xCA` is seeded `2`
 for state-1 objects (`005759E2`) — the first numbered file — and for state-2 objects is set from
 `word[hctg+0x14] + 2` (`005773D2`): **`hctg +0x14` is the family's `hdat` file count** (1 for
-story/world/person/tutorial, 2 for knowledge, 4 for monster — matching the shipped file names),
+story/world/person/tutorial, 2 for knowledge, ~~4 for monster~~ 4, 5 or 11 for monster by locale *(corrected 2026-10-02, OPUS: the shipped monster catalogs hold `+0x14` = 4 in `de`, `it`, `kr`, `us`, 5 in `ch`, `cn`, `es`, `fr` and 11 in `in`, and each equals that locale's leading `hdat` file count)* — matching the shipped file names),
 so the first `himg` delta is `2 + hdatCount` ([the sibling page](hchk-hctg-hdat-handbook-indexes.md)).
 
 ### 3.2 Bind — the two paths that read `+0x0C`
@@ -208,7 +208,7 @@ The state-1 bind path's `buf + dword[+0x0C]` works for both `himg` (first offset
 - **Measured:** TIM2 dims/type distribution, the `0x00D8` version anomaly confined to
   `tutorial001`, per-locale page-window gaps.
 - **Unbound:** the two request-flag arguments (`r9d` 2-vs-3, stack flag 0-vs-1)
-  passed to `00249210`; the record field `+2` added in state 1 (a file-index delta, but which
+  passed to `00249210`; the record field `+2` added in state 1 (a file-index delta, but which *(answered: see [the index sheet](hchk-hctg-hdat-handbook-indexes.md) - `00575D10` fills it from the record's `+0x06` `hdatFile`; 2026-10-02, OPUS)*
   index table authors it is not yet traced).
 - **Negative control:** no `himg` file's offset table entry falls outside the file or off a
   `TIM2` magic; `menuhandbook_order.bin`/`menuhandbook.bin` (ids `0xC9`/`0xC8`) are loaded by the

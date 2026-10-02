@@ -245,8 +245,8 @@ the entry's bit 1 and sets its bit 2** from `00420FB0` (81 B), which is the same
 the one-frame permission the effect draw consumes
 ([the six VFX display layers](../Effect-File-Formats/the-six-vfx-display-layers.md),
 section 1b): **an effect hung on a character is drawn exactly while the character and everything it is attached to is
-flagged shown, renewed every frame.** ~~What bits 3, 4 and 5 are called was not established.~~ *The setter's two other callers, both record phases, were
-not read.*
+flagged shown, renewed every frame.** ~~What bits 3, 4 and 5 are called was not established.~~ *The setter's two other callers, both record phases, ~~were~~*
+*~~not read~~.* *(answered: see the setter `003B33A0` has three callers, `0042CBF0`+0x330, `0042D7A0`+0x59 and `0042D830`+0x3A; `0042CBF0` is read whole in section 4a; 2026-10-02, OPUS)*
 
 **The three bits, by their setters (added the same day; a displacement sweep finds one setter each).** **Bit 3 is
 "not culled this frame"**: `00421010` (29 B, read whole) is called by this page's fade-and-cull routine with 1 when
@@ -331,10 +331,10 @@ read here consumes it.
 
 *Left open at first, settled the same day:* the same matrix `02AEDDF0` serves an outcode test against `|w|`, which wants
 a projection, and a distance taken from the product's translation, which looks like a view matrix's job. The block's
-only builder is the camera update `003820C0` (2,125 B, one caller; **not read whole** - only its calls and the
+only builder is the camera update `003820C0` (2,125 B, one caller; ~~**not read whole** - only its calls and the~~ *(answered: see how-a-camera-reaches-the-renderer.md section 4, read instruction by instruction 2026-09-19; 2026-10-02, OPUS)* - here only its calls and the
 addresses it hands them). It builds a matrix into `02AEDDF0` from the working camera's parameters (`003CBB30` on
 `02AED560`, called just after a field-of-view tangent is stored there - a projection by its inputs; its body was not
-read), copies the working camera's view matrix from `02AED580` to `02AEDE70` and adjusts eight of its elements, and
+read), copies the working camera's view matrix from `02AED580` to `02AEDE70` and ~~adjusts eight of its elements~~, only when the device override predicate `00181DD0` is true, replaces eight of its elements *(corrected 2026-10-02, OPUS: `003820C0`+0x5BF `call 00181DD0`, +0x5CE `je` past the eight stores)*, and
 then **replaces `02AEDDF0` with the product of that view matrix and the projection**; `02AEDDB0` is the same view matrix
 times `02AEDD30`, itself a product that includes the projection. So **`02AEDDF0` is a world-to-clip matrix**, the outcode
 test is the ordinary clip test, and the routine's *distance* is the length of the record's **clip-space** position - its
@@ -421,19 +421,19 @@ So a character's effects fade with the character, except the kind that is exempt
 
 ## 6. What is not known
 
-- What channels 2, 3 and 5 were for. No body writes them; nothing in this executable can say.
+- What ~~channels 2, 3 and 5 were for. No body writes them; nothing in this executable can say.~~ channel 3 is for: no body writes it *(corrected 2026-10-02, OPUS: section 3's 2026-09-19 correction - channels 2 and 5 are written, through the forwarder `00428940`)*.
 - What the owner states behind channel 1 are in the player's vocabulary (`+0x284` bit 27, the value `0x35` in
   `+0xCC`, bits 0-1 of `+0x40B`), and which kinds `0x11`..`0x15` and `0x1C` and above are.
 - What `+0x22C` and `+0x2EC` are beyond being 0..255-scaled factors of the final scalar.
 - ~~The root record's counterpart of section 4a.~~ *Read; section 4d.* What the two handle tables of 4d and the object
-  in the table at `02EBD480` are; what the effect object and the four auxiliary handles are; what bit 14 of `+0x284`
+  in the table at `02EBD480` are *(answered: see section 4d - the render-object handle table; 2026-10-02, OPUS)*; what the effect object ~~and the four auxiliary handles~~ is *(answered: see section 4d - the four auxiliary handles are bone trails; 2026-10-02, OPUS)*; what bit 14 of `+0x284`
   and the word `+0x2CA` mean in the climb of step 2.
 - What the three large bodies that read channel 4 alone do with it.
 - ~~That the point channel 4 measures against is the camera.~~ *Settled 2026-09-19 in section 4b: it is the
-  translation row of the camera's view-to-world matrix at `02AEDEF0`.* What fills that matrix was not traced.
+  translation row of the camera's view-to-world matrix at `02AEDEF0`.* ~~What fills that matrix was not traced.~~ *(answered: see how-a-camera-reaches-the-renderer.md - the camera update `003820C0` copies the capped-field-of-view copy's matrix into it; 2026-10-02, OPUS)*
 - What attachment slots `0x10A` and `0x7FFF` are in the game's vocabulary, and what `0042F4C0`, `004215A0` and
   `00426E40` do beyond the roles their arguments show in section 3a.
-- What the global `01F82E38` is, whose non-zero value gives a new ramp a head start of one step.
+- ~~What the global `01F82E38` is~~ *(answered: see an-effect-element-frame-by-frame.md - the half-rate flag; `001EDDC0`, the frame-rate switch, stores 2.0 to `01DFE0B8` (+0x18), 0.5 to `01DFE0BC` (+0x20) and 1 to `01F82E38` (+0x28) on its non-zero arm; the image holds 1.0, 1.0 and 0; 2026-10-02, OPUS)*, whose non-zero value gives a new ramp a head start of one step.
 - Nothing here was observed running; the page is static evidence throughout.
 
 ## 7. Evidence
@@ -442,8 +442,8 @@ So a character's effects fade with the character, except the kind that is exempt
 |---|---|---|
 | the channel layout and formula | `003E5D60`, `003E5D00`, `003E4370`, `003E48E0` disassembled whole | 1 |
 | ten channels, not seven | the stepper's loop count `0xA`; `ResetDefaults` loops to `0xA` | 1 |
-| who writes which channel | members census, 22 sites, counts equal to a raw call sweep | 1 |
-| channels 2, 3, 5 have no writer | displacement sweep `+0x4C0`..`+0x4F8` over the band: nine functions, all read here; the two index-taking writers are called with constant channels 0, 1, 4, 6, 7, 8, 9 and the reset loop | 1 |
+| who writes which channel | members census, 22 sites, counts equal to a raw call sweep *(scope named 2026-10-02, OPUS: direct `call` / `jmp` sites only; the conditional-jump forwarders `00428940` (six callers) and `004293C0` (one) add channels 2 and 5 - section 3's 2026-09-19 correction)* | 1 |
+| ~~channels 2, 3, 5 have no writer~~ channel 3 has no writer *(corrected 2026-10-02, OPUS: 2 and 5 are written through the conditional-jump forwarder `00428940`, section 3)* | displacement sweep `+0x4C0`..`+0x4F8` over the band: nine functions, all read here; the two index-taking writers are called with constant channels 0, 1, 4, 6, 7, 8, 9 and the reset loop | 1 |
 | the verb names | `scriptvm-verb-table.tsv` rows `03B2`, `0535` | 1 |
 
 *Limit of the no-writer claim:* the sweep covers displacement-addressed accesses inside `003E0000`..`00430000`;
@@ -512,7 +512,7 @@ The statements above were read at these instructions; each address is an instruc
 | | reference `w` chosen and stored | `0041ED80`, `0041ED8F`, `0041ED9C` |
 | `0042E850` distance fade and cull (1,238 B) | cull bits test | `0042EB05` |
 | | band test, `sin`, channel 0 ramp over 1 frame | `0042EB43`, `0042EB54`, `0042EB6C` |
-| | viewer block flag bit 4, horizontal distance, `0.15 + [+0x2A8]` | `0042EB79`, `0042EBB1`, `0042EBCB` |
+| | ~~viewer block~~ system-tail flag bit 4 *(corrected 2026-10-02, OPUS: `0042E850`+0x329 `test byte ptr [rsi + 0x48818], 0x10`, `rsi` the record array base - the tail's camera-inside fade bit, section 4c)*, horizontal distance, `0.15 + [+0x2A8]` | `0042EB79`, `0042EBB1`, `0042EBCB` |
 | | channel 4 to `0.0` / to `1.0` over 3 frames, bit 5 of `+0x4B7` | `0042EC4D`, `0042EC78`, `0042EC52`, `0042EC7D` |
 | | culled: channels 0 and 4 to `0.0` over 1 frame | `0042ECC3`, `0042ECD8` |
 
@@ -569,7 +569,7 @@ Interior anchor `003E6D58` (the `0020E600` resolve).
 
 `003E5D00` (44 B) is the scaled channel init: `xmm2 * float[00915258]`,
 `cvttss2si`, the word lands at `[rcx + idx*8 + 0x4C0]` with the
-`[+0x4C2]` dword zeroed and the word echoed at `[+0x4C6]` - an 8-byte
+`[+0x4C2]` dword zeroed and ~~the word echoed at `[+0x4C6]`~~ the word at `[+0x4C6]` zeroed too *(corrected 2026-10-02, OPUS: `003E5D00`+0x18 `xor eax, eax` comes before `003E5D00`+0x22 `mov word ptr [rcx + r8*8 + 0x4c6], ax`)* - an 8-byte
 stride element restamp.
 Interior anchor `003E5D0F` (the `+0x4C0` word store).
 
@@ -614,7 +614,7 @@ Interior anchor `004210F1` (the `imul` chain step).
 
 `00420FB0` (81 B) is the stricter sibling: `+0x284` bit 3 plus
 `(flags & 0x30) == 0x30` gate the same `word[+6]` walk, continuing
-while bit 3 persists on each linked record - 1 at chain end, else 0.
+while ~~bit 3 persists~~ bit 3 and `(flags & 0x30) == 0x30` both hold on each linked record *(corrected 2026-10-02, OPUS: `00420FB0`+0x46 `jne` returns to the mask test at `00420FB0`+0x14)* - 1 at chain end, else 0.
 Interior anchor `00420FC4` (the `& 0x30` mask test).
 
 `004209C0` (38 B) is the `+0x2E0`-block hand-off: `003E55B0()` yields
@@ -669,7 +669,7 @@ Interior anchor `003E57A0` (the second `mulss`).
 
 `003E4730` (66 B) is the fixed-point channel evaluator the fade
 callers run: `movsx word[+0x4B4]` is converted to double and
-multiplied by `00D117C0` (2^-13), `float[+0x22C]`, `float[+0x2EC]`
+multiplied by `00D117C0` (~~2^-13~~ the double 2^-12, 1/4096) *(corrected 2026-10-02, OPUS: read from the image; `00D117C8` is the double 1/255, so this is the `/4096 ... /255` formula above; the multiplies are `003E4730`+0x25 and `003E4730`+0x35)*, `float[+0x22C]`, `float[+0x2EC]`
 and `00D117C8`, then `cvtpd2ps` back to float - one channel
 weight, call-free.
 Interior anchor `003E4755` (the first `mulsd`).
@@ -677,7 +677,7 @@ Interior anchor `003E4755` (the first `mulsd`).
 `003E4370` (88 B) is the ten-channel ramp step the fade's callers
 run: over the 8-stride word records at `[rcx+0x4C0]` (10 slots)
 each live `word[+6]` step adds into `word[+4]` until it reaches
-`0x1000`, where `word[+0]` takes `word[+2]` and the `+4` counter
+`0x1000`, where ~~`word[+0]` takes `word[+2]`~~ `word[+2]` is added into `word[+0]` *(corrected 2026-10-02, OPUS: `003E4370`+0x2D `add word ptr [rax], cx`)* and the `+4` counter
 resets - the per-channel tick that drives the fade.
 Interior anchor `003E43A6` (the accumulate arm).
 

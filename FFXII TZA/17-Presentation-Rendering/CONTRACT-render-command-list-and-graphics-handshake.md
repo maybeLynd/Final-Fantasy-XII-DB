@@ -57,7 +57,7 @@ other end**.
 
 | | |
 |---|---|
-| entry point(s) | `0018B480` (85 B) make the **ordered list**, `0018AD00` (105 B) its constructor, `0018B4E0` (33 B) its getter · `0018C9E0` (95 B) make the **owning vector**, `0018CA40` (8 B) its getter · ~40 enqueue functions, `0018C610` (148 B) the worked example · `0018B100` (173 B) the forward walk · `0018B1B0` (361 B) the reverse/class-filtered walk · `0018B040` (36 B) clear the ordered list · `0018B810` (159 B) destroy the objects · `0018C8F0` (233 B) flush-then-destroy · `0036F2C0` (43 B) the settle-spin clear |
+| entry point(s) | `0018B480` (85 B) make the **ordered list**, `0018AD00` (105 B) its constructor, `0018B4E0` (33 B) its getter · `0018C9E0` (95 B) make the **owning vector**, `0018CA40` (8 B) its getter · ~40 enqueue functions *(scope named 2026-10-02, OPUS: 36 builders - the `0018xxxx` callers of `0018AFF0`; 40 counts every appender, four of which allocate nothing)*, `0018C610` (148 B) the worked example · `0018B100` (173 B) the forward walk · `0018B1B0` (361 B) the reverse/class-filtered walk · `0018B040` (36 B) clear the ordered list · `0018B810` (159 B) destroy the objects · `0018C8F0` (233 B) flush-then-destroy · `0036F2C0` (43 B) the settle-spin clear |
 | calling convention | Microsoft x64 throughout. `enqueue(rcx = owning vector, edx…= the command's own arguments)`; `0018B100(rcx = ordered list, dl = part, r8 = device)`; `0018B1B0(rcx = ordered list, rdx = device, r8d = class mask, r9b = reverse)`; the manager methods all take the list in `rcx`. |
 | parameters | `0018B100`'s `dl` selects the half: **non-zero = part 1**, entries `[0, split)`; **zero = part 0**, entries `[split, count)` (`0018B11B`–`0018B138`). `0018B1B0`'s `r8d` is ANDed with each command's order key. |
 | return type | The enqueue functions return nothing useful; `0018C610` **tail-jumps** into `0018AFF0` at `0018C69F`, so its result is that call's. The walks return `void`. |
@@ -91,7 +91,7 @@ RenderCommandOwnerList             [01F7F5E8], 0x20 bytes, malloc'd at 0018C9FE
 
 OrderedObject                       0x18 bytes base; subclasses are larger (0018C610 mallocs 0x20
                                     via ctor 001F1B80, which uses +0x18 for a subclass dword)
-  +0x00  void*   vftable            3 slots in subclasses; base vtable 009010B8 has 7;
+  +0x00  void*   vftable            3 slots in subclasses; base vtable 009010B8 has 7;   <- corrected 2026-10-02, OPUS - 009010B8 has 3 slots; the qword at 009010D0 is MapOrderedObject's complete object locator, and its vtable 009010D8 follows
                                     42 subclass vtables exist
   +0x08  void*   executeTarget      nullable delegate target: slot-1 execute trampolines
                                     load it and forward it as the callee's 'this' - see §14.3
@@ -113,7 +113,7 @@ program holds.
 
 ## 4. Preconditions · postconditions · invariants
 
-**I-1 — OWNERSHIP IS SPLIT, AND ONLY ONE LIST OWNS.** Every enqueue appends the same pointer to
+**I-1 — OWNERSHIP IS SPLIT, AND ONLY ONE LIST OWNS.** ~~Every enqueue appends~~ The 36 owner-side enqueues append *(corrected 2026-10-02, OPUS: not every appender - `001E5270`+0x1A and `001F89B0`+0x1F tail-jump to `0018AFF0` with no owner push; the list page counts 40 = 36 + 4)* the same pointer to
 both lists: to the owning vector inline (`0018C65C`–`0018C673`) and to the ordered list through the
 tail call (`0018C68A`–`0018C69F`). **The owning vector destroys; the ordered list never does.**
 `0018B810` walks `[01F7F5E8]` and calls each object's slot 0 with `edx = 1` — the scalar-deleting
@@ -135,7 +135,7 @@ destroyers' callers finds exactly these three, each with the clear first)*.
 
 **I-3 — THE ~~LIST~~ ORDERED LIST NEVER GROWS IN PRACTICE; THE OWNING VECTOR DOES.** `0018AD00` calls `0018B320(this, 0x1388)` at `0018AD48`
 — a reserve of **5,000 entries** at construction. The grow path `001AB570` exists and the
-push_backs branch to it (`0018C664`, `0018B004`), but a frame would need five thousand commands to
+push_backs branch to it (`0018C664`, `0018B004`), but ~~a frame would need five thousand commands to~~ only the ordered list's needs five thousand commands to *(corrected 2026-10-02, OPUS: the first cited branch is `0018C610`+0x54, the OWNING vector's push, whose capacity starts at 0, so its grow call `0018C610`+0x70 runs from the first enqueue)*
 reach it. A reimplementation that reserves nothing is functionally correct and allocates on a path
 the original never takes.
 **The owning vector `[01F7F5E8]` is the opposite.** *(2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 312; bytes re-read.)* `0018C9E0` creates it with begin, end and
@@ -215,7 +215,7 @@ bit set; the owning vector's `pEnd == pBegin`; and `02EBA3F8` has bits 2, 3 and 
 |---|---|---|
 | read | `[01F7F5E0]`, `[01F7F5E8]`; `byte[01DF08FC]`, `byte[01F7F594]`; `byte[01FD4A88]`; render params `+0x199` and `+0x49C`; `dword[02EBA3F8]` | `0018B4F5`, `0018CA40`, `0018B16C`, `0018B175`, `0017CD42`, `00188103`, `0018D630`, `0036F2D0` |
 | written | `[01F7F5E0]` (`0018B4C8`), `[01F7F5E8]` (`0018CA32`), the two marks and the mask, `byte[01DF08FC]`/`byte[01F7F594]` (`0018810C`, `00188113`, `00188144`, `001F29A3`), `dword[02EBA3F8]` | as cited |
-| allocated | the two lists, once each, through `malloc` `0085E730` (0x30 and 0x20); one element array per list, 5,000 entries reserved; **one command object per enqueue per frame** | `0018B4AE`, `0018C9FE`, `0018AD48`, `0018C632` |
+| allocated | the two lists, once each, through `malloc` `0085E730` (0x30 and 0x20); ~~one element array per list, 5,000 entries reserved~~ 5,000 entries reserved for the ordered list only (`0018AD00`+0x48), none for the owning vector, which `0018C9E0` creates empty (`0018C9E0`+0x30) *(corrected 2026-10-02, OPUS: I-3's dated note)*; **one command object per enqueue per frame** | `0018B4AE`, `0018C9FE`, `0018AD48`, `0018C632` |
 | deallocated | every command object, once per frame, by slot 0 with the free bit — `0018B860` and `0018C987`. **The two lists themselves are never freed on any path read here.** | as cited |
 
 **Reader/writer census** (`globals_index.py`; its blind spot is RIP-relative references only):
@@ -247,7 +247,7 @@ bit set; the owning vector's `pEnd == pBegin`; and `02EBA3F8` has bits 2, 3 and 
 001E0590  the scene teardown (79 B)
    0018B040  at 001E05A9   then   0018C8F0  at 001E05B6          flush, then destroy
 
-enqueue (x40)   e.g. 0018C610
+enqueue (x40)   e.g. 0018C610   <- corrected 2026-10-02, OPUS - 36 builders; 40 counts the four appenders that allocate nothing
    malloc(0x18|0x20|0x28) -> class ctor -> 00212CC0 base ctor
    push_back onto the OWNER inline
    tail -> 0018AFF0(0018B4E0(), node)  push_back onto the ORDERED list
@@ -270,7 +270,7 @@ The command list is a per-frame object with four states and one strict cycle.
 | previous | resulting | condition, and the exact test |
 |---|---|---|
 | absent | constructed | first call of `0018B480` / `0018C9E0` — `cmp qword [glob], 0` at `0018B4A2` / `0018C9EF`; the constructors run **once per process** |
-| empty | accumulating | any enqueue; the push_back's capacity test at `0018C660` never takes the grow arm in practice (I-3) |
+| empty | accumulating | any enqueue; the ~~push_back's capacity test at `0018C660` never takes the grow arm in practice (I-3)~~ ordered list's push never grows in practice, but the owning vector's capacity test `0018C610`+0x50 takes the grow arm from the first enqueue *(corrected 2026-10-02, OPUS: I-3's dated note, capacities 1, 2, 4, 8)* |
 | accumulating | split | `0018B510` via the wrapper `0018CB10` — the only caller |
 | accumulating | marked | `0018B030` via the wrapper `001829F0` — the only caller |
 | accumulating | part 1 run | `0018B100(dl != 0)`; entries `[0, split)` whose key ANDs with `classMask` |
@@ -327,8 +327,8 @@ must add the synchronisation too, because the original has none to inherit.**
 4. **`+0x2C == -1`** → the reverse walk covers the whole list (`0018B1EB`, `0018B217`).
 5. **Early exit (I-7)** → every remaining entry of part 0 is skipped, including the teardown-relevant
    ones; the teardown itself still runs, because it is not inside the walk.
-6. **Capacity exhausted** → `001AB570` reallocates and moves. Unreached in practice (I-3) and
-   therefore **untested by the shipped game**, which is a risk a reimplementation inherits.
+6. **Capacity exhausted** → `001AB570` reallocates and moves. ~~Unreached in practice (I-3) and~~ Reached on the owning vector from the first enqueue (`0018C610`+0x70), so exercised every frame *(corrected 2026-10-02, OPUS: I-3's dated note)*.
+   ~~therefore **untested by the shipped game**, which is a risk a reimplementation inherits.~~
 7. **An entry with no vtable** is impossible by construction — the base constructor writes one
    before any list sees the pointer.
 
@@ -350,7 +350,7 @@ must add the synchronisation too, because the original has none to inherit.**
 ## 12. Reproduction formula
 
 ```
-enqueue(owner, args):                             # 0018C610 and ~39 siblings
+enqueue(owner, args):                             # 0018C610 and ~39 siblings   # <- corrected 2026-10-02, OPUS - 35 siblings: 36 builders call 0018AFF0 from 0018xxxx
     node = malloc(0x18 | 0x20 | 0x28)             # 0085E730(size, 0, -1)
     if node: node = ClassCtor(node, args)         # which calls 00212CC0:
                                                   #   [node+8] = 0 ; [node] = vftable ; [node+0x10] = 1
@@ -363,7 +363,7 @@ push_back(list, v):                               # 0018AFF0 / inline
     if p < list.pCapacityEnd:
         list.pEnd = p + 8
         if p: *p = v
-    else: grow_and_insert(list, p, &v)            # 001AB570 - never reached, see I-3
+    else: grow_and_insert(list, p, &v)            # 001AB570 - never reached, see I-3   # <- corrected 2026-10-02, OPUS - reached on the owning vector from its first push (0018C610+0x70); only the reserved ordered list never grows
 
 walkForward(list, part, device):                  # 0018B100
     if part: lo, hi = 0, list.forwardSplit
@@ -425,7 +425,7 @@ routes.
 
 Each is registered in `OPEN-QUESTIONS.md`; the first three are new with this contract.
 
-1. **Why does ambient occlusion terminate the walk?** I-7 is instruction-exact and its purpose is
+1. ~~**Why does ambient occlusion terminate the walk?**~~ *(answered: see §4 - GC-1 answered 2026-09-25, the console's "Display AO Only" view; 2026-10-02, OPUS)* I-7 is instruction-exact and its purpose is
    not in the bytes. *Resolved by:* the live probe in §11, or by reading what the render pass does
    between the two walks with the switch set. Routed to ASTRA.
 2. **`+0x29`–`+0x2B` — RESOLVED (SWE2-CONTRACT).** The "u16 at `+0x29`" was wrong: it is two
@@ -471,8 +471,8 @@ Each is registered in `OPEN-QUESTIONS.md`; the first three are new with this con
    [the handshake page](Graphics-Thread-Handshake/the-shared-command-state-word.md) §7.
 5. **`CG-3`'s limit.** The Tk workers dispatch through per-thread callback tables that the thread
    walk could not follow, so "the main thread and no other party" is bounded by that.
-6. **The grow path is untested by the shipped game** (§10.6) and therefore unverifiable from
-   behaviour.
+6. ~~**The grow path is untested by the shipped game** (§10.6) and therefore unverifiable from~~ The grow path runs on the owning vector every frame (`0018C610`+0x70) *(corrected 2026-10-02, OPUS: I-3's dated note)*.
+   ~~behaviour.~~
 
 ## 15. Evidence
 
@@ -492,7 +492,7 @@ Each is registered in `OPEN-QUESTIONS.md`; the first three are new with this con
 | Thread topology; the eleven-site census; the DMA reading | [the handshake page](Graphics-Thread-Handshake/the-shared-command-state-word.md) §2, §7 (`CG-1`–`CG-4`, UQ-211), `audit.passes: 1` | carried, tier 1 at source | VERY HIGH |
 | The pass → class map and the 43-class slot matrix | [the list page](Render-Command-List/the-ordered-render-command-list.md) §2.3, §2.5 and `members/ordered-object-vtable-slots.tsv` | carried, tier 1 at source | VERY HIGH |
 | `+0x29`/`+0x2A` are u8 pass-context flags, `+0x2B` is dead pad | writer/reader bodies `001F3570` (arm `001F3582`, clear `001F3628`), `001F3650` (`001F3671`/`001F3696`), `001F36B0` (`001F36F4`/`001F3719`), `001F3510` (`001F3531`/`001F3556`), each around `0018B1B0` with `classMask=2`; reader `001F5D70` (`001F5DD6`/`001F5DE2`, guards `001F635C`/`001F6366`, mode-select `001F6684`/`001F672A`/`001F67CD`); ctor word store `0018AD50`; zero disp-`0x2B` operands across all 56 `0018B4E0`-caller functions | 1 | PROVEN |
-| `+0x08` is a live nullable execute-target pointer, not an order value | readers `00212C60` and `00215320` read in full; base vtable `009010B8` slot map (7 slots, slot 5 = `00212C60`), `MapOrderedObject 009010D8` slot 1, `CharacterOrderedObject 00903940` slot 1; zero-subobject-offset RTTI locators `01CED7C8`/`01CEECD8`; no writer in the 42-ctor / 40-appender / 41-caller / rep-movs census — assignment path open | 1 | PROVEN (readers); OPEN (writer) |
+| `+0x08` is a live nullable execute-target pointer, not an order value | readers `00212C60` and `00215320` read in full; base vtable `009010B8` slot map (~~7 slots, slot 5 = `00212C60`~~ 3 slots; `00212C60` is slot 1 of `MapOrderedObject` `009010D8` *(corrected 2026-10-02, OPUS: the complete object locator at `009010D0` ends the base vtable)*), `MapOrderedObject 009010D8` slot 1, `CharacterOrderedObject 00903940` slot 1; zero-subobject-offset RTTI locators `01CED7C8`/`01CEECD8`; no writer in the 42-ctor / 40-appender / 41-caller / rep-movs census — assignment path open | 1 | PROVEN (readers); OPEN (writer) |
 
 **Superseded by this contract** — filed in `CONTRADICTIONS.tsv`:
 

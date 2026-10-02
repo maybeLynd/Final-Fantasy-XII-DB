@@ -367,3 +367,16 @@ Interior anchor `0024EF06` (function `0024EEE0`).
 `003A9950` (156 B) is the teardown `0024F410` runs on the menu-effect bank: with `02F97340` byte `+3` bit `0` set it `003697F0`s the `[+0x878]` record (when `+2` bit `2` is clear) and clears the slot; otherwise it walks the `02EBEF78` table's `0x1800` bytes freeing each live entry, then tail-frees `02EBEF78`'s own head
 
 Interior anchor `003A99B3` (function `003A9950`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-menu-effect-registry-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00374930` | 28 B | stores 0 to the dword at `02EBFA48` and every `0x70` bytes after it while the address is below `02EC0848` (signed compare), 32 dwords in all | `00374940`, `00374942`, `00374946`, `00374949` |
+| `003A7420` | 56 B | for byte offsets 0 to `0x78` in steps of 8 (16 slots), re-reads the pointer qword `02EBEFB0` and calls `00332FA0` on the qword at that offset of its target when the qword is non-null | `003A7430`, `003A7437`, `003A7440`, `003A7449` |
+| `00460120` | 80 B | calls `003697F0` on qword `rcx+0x338` and then on qword `rcx+0x3D0`, each only when non-null; then, when bit 0 of byte `rcx+0x3C0` is set and qword `rcx+0x3B0` is non-null, tail-jumps `0024B1C0(qword rcx+0x3B0)`, otherwise returns | `00460135`, `00460146`, `0046014B`, `00460165` |
+| `0050D9A0` | 84 B | calls `00267E10(r9)`, `00254CB0(1)`, `00266D00()`, `002EF300` with the `00267E10` result, `0032E520(0)`, `00254CB0(0)` and `0036FCC0()` in that order, then `0026B8E0(k)` for `k` 0 to 3 | `0050D9A9`, `0050D9C1`, `0050D9C8`, `0050D9E2`, `0050D9E9` |
+| `005294B0` | 63 B | calls `0024B1C0` on qword `rcx+0x338` when it is non-null; then, when bit 0 of byte `rcx+0x3C0` is set and qword `rcx+0x3B0` is non-null, tail-jumps `0024B1C0(qword rcx+0x3B0)`, otherwise returns | `005294B9`, `005294C5`, `005294CA`, `005294E4` |
+| `0057E950` | 238 B | with `rbx` set from `r8d` (zero-extended): for `ecx` 4 with `edx` zero and bit 1 of byte `rbx+0xC0` set, calls `00393630(stack buffer, 0x40)` and, only when qword `02CA99C0` is non-null, copies that NUL-terminated buffer to `+8` of a stack record whose first dword is 5 and calls `00582540(qword 02CA99C0, record)`; for `ecx` 5, or 4 when `edx` is non-zero or that bit is clear, calls `00247510(qword rbx+0xC8, 0x1D, record)` with a record of dword 0xD, byte `+0x39A` of `[02CA99C0]` (0xFF when that qword is null) at `+4` and `edx` at `+8`, then clears bit 0 of dword `rbx+0xC0`; any other `ecx` does nothing | `0057E96E`, `0057E9B1`, `0057E9E9`, `0057EA19`, `0057EA1E` |

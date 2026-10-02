@@ -708,3 +708,14 @@ Interior anchor `0029023C` (function `00290230`).
 `004041D0` (83 B) is the four-slot teardown the same shared callers (`002BA700`, `003CB650`) run on their record pairs: `0024A680(?, 1)` releases the pointers at `+0x00`, `+0x08` and `+0x10` in turn, while a live `+0x18` pointer goes through `003697F0` and the slot is then zeroed - the symmetric cleanup for the records this family builds.
 
 Interior anchor `004041F4` (function `004041D0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-npc-name-dictionary-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001DA220` | 102 B | does nothing unless `001D6B20(rcx)` returns non-zero, `001D6B90()` returns zero and `00265270()` returns zero in `ax`; then stores word 0 at `rcx+0xE8` and calls `005CD4F0(rcx+0xF0)`, `001D9930(rcx)`, `005CD820(rcx+0xF0)` and `001D9EC0(rcx)` | `001DA229`, `001DA232`, `001DA23B`, `001DA253`, `001DA276` |
+| `001DA970` | 100 B | does nothing unless `001D6B20(rcx)` returns non-zero and `00265270()` returns an `ax` that is above zero (signed) and differs from word `rcx+0xE8`; then stores that `ax` at `rcx+0xE8` and calls `005CD4F0(rcx+0xF0)`, `001D9930(rcx)`, `005CD820(rcx+0xF0)` and `001D9EC0(rcx)` | `001DA982`, `001DA98A`, `001DA98C`, `001DA9A1`, `001DA9C4` |
+| `00275F10` | 231 B | switches on dword `[rdx]`: id 1 copies qword `[[rdx+8]]` to `rcx+0xC0` and dwords `[[rdx+8]+8]` and `[[rdx+8]+0xC]` to `+0xC8` and `+0xCC`; id `0x10` calls `00244F00(rcx)` when qword `[rdx+8]` equals the sign-extended dword `+0xCC`; id `0x12` calls the function pointer at qword `[[rcx+0xC0]]`, when both qwords are non-null, with `rcx` = qword `+0xC0` and a stack record holding dword `+0xC8` at its `+0` and 16 zero bytes at its `+8` (`+4` is not written); these three return 0, and any other id returns `005C5230(rcx, rdx)` | `00275F31`, `00275F3E`, `00275F82`, `00275FA8`, `00275FC8` |
+| `00521290` | 70 B | scans the `0x100` entries of `0x30` bytes starting at the pointer in qword `02CA8450`, skipping entries whose first word is `0xFFFF`, and returns the address of the first entry whose dword `+4` equals `ecx`, or 0 when none does | `005212A6`, `005212AC`, `005212B7`, `005212C4`, `005212CE` |

@@ -1,0 +1,141 @@
+{
+ "page": "20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01CsdbXqRd5h9LCs97R3i5zB",
+ "report": "contract-steam-integration-subsystem.json",
+ "rows": [
+  {
+   "fn": "001F3E10",
+   "text": "zeroes the twenty qwords `rcx+0x00` through `rcx+0x98`, then calls the import through `008C31A0`; when that returns non-zero it tail-jumps `001F3AE0(rcx)`, otherwise it returns that zero",
+   "anchors": [
+    [
+     "001F3E1B",
+     "mov"
+    ],
+    [
+     "001F3E6F",
+     "mov"
+    ],
+    [
+     "001F3E76",
+     "call"
+    ],
+    [
+     "001F3E7E",
+     "je"
+    ],
+    [
+     "001F3E88",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020C8C0",
+   "text": "returns at once unless the sign-extended dword `[rcx]` equals qword `[rdx]`; otherwise increments dword `rcx+0x14` and, when it then equals dword `rcx+0x10` minus 1, takes the `+0x28` interface of `008C3190(01DFE0D0)` and calls its vtable slot `+0x30` with qword `[[rcx+8]+8]` and `[rcx+8]+0x190`, then calls `0020CE10(rcx, qword [[rcx+8]+8])` when byte `[[rcx+8]+0x190]` is zero; on both count paths it ends with a tail jump to `005CDAA0(2, 00906490)`",
+   "anchors": [
+    [
+     "0020C8CC",
+     "cmp"
+    ],
+    [
+     "0020C8D4",
+     "inc"
+    ],
+    [
+     "0020C901",
+     "call"
+    ],
+    [
+     "0020C918",
+     "call"
+    ],
+    [
+     "0020C92E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020CB20",
+   "text": "returns at once unless the sign-extended dword `[rcx]` equals qword `[rdx]`; otherwise tail-jumps `005CDAA0(2, 00906458, dword [rdx+8])` when dword `[rdx+8]` is 1 and `005CDAA0(2, 00906470, dword [rdx+8])` for any other value",
+   "anchors": [
+    [
+     "0020CB23",
+     "cmp"
+    ],
+    [
+     "0020CB31",
+     "cmp"
+    ],
+    [
+     "0020CB3E",
+     "jmp"
+    ],
+    [
+     "0020CB4A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020CCC0",
+   "text": "re-fetches `008C3190(01DFE0D0)` before each step and returns 0 in `al` when its qword `+0x28` is null, when its qword `+8` is null, or when vtable slot `+8` of the `+8` interface returns zero in `al`; otherwise tail-jumps vtable slot `+0` of the `+0x28` interface with that interface as `rcx`",
+   "anchors": [
+    [
+     "0020CCD1",
+     "cmp"
+    ],
+    [
+     "0020CCE5",
+     "cmp"
+    ],
+    [
+     "0020CD00",
+     "call"
+    ],
+    [
+     "0020CD1F",
+     "jmp"
+    ],
+    [
+     "0020CD22",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0020CE10",
+   "text": "returns 0 in `al` when byte `rcx+0x18` is zero; otherwise calls vtable slot `+0x38` of the `+0x28` interface of `008C3190(01DFE0D0)` with `rdx`, re-fetches that interface and tail-jumps its vtable slot `+0x50`",
+   "anchors": [
+    [
+     "0020CE16",
+     "cmp"
+    ],
+    [
+     "0020CE36",
+     "call"
+    ],
+    [
+     "0020CE52",
+     "jmp"
+    ],
+    [
+     "0020CE56",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0020CD30",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

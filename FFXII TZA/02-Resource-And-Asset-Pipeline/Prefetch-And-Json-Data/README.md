@@ -2,7 +2,7 @@
 
 | ext | files | tree |
 |---|---:|---|
-| `txt` | 10,253 | `prefetchdata/<lang>` — ~1,040 per language |
+| `txt` | ~~10,253~~ 9,341 (with 10 `.csv`, 9,351 files) *(corrected 2026-10-02, OPUS: the archive index: 9,351 entries under `prefetchdata/`; 10,253 is every `.txt` in the archive)* | `prefetchdata/<lang>` — ~1,040 per language |
 | `json` | 830 | `jsondata/maps` (459), `jsondata/cutscenes` (337), `jsondata/fontcluts` (28) |
 | `csv` | 17 | `ps2data/soft_particle`, `jsondata`, `prefetchdata` |
 
@@ -10,7 +10,7 @@
 exactly why they stay undocumented. Nobody needs a sheet to open one; everybody needs a sheet to
 know what the loader does with it.
 
-**`prefetchdata` is a streaming hint system.** 10,253 files, roughly 1,040 per language. **What it
+**`prefetchdata` is a streaming hint system.** ~~10,253 files~~ 9,351 files *(corrected 2026-10-02, OPUS: the archive index; 10,253 counts every `.txt`)*, roughly 1,040 per language. **What it
 does for the player is hide loading**; what it does to a modder is decide whether a replaced asset
 is even fetched.
 
@@ -33,7 +33,7 @@ language across nine languages. Each file is a flat list of asset paths preceded
 
 **That size header is the interesting part.** It is an authored, per-scene data budget — observed
 from 0 MB to 1,548 MB — and what a sheet must establish is whether the engine *reads* it (a
-reservation) or merely records it (a build-time note). `common.txt` additionally carries category
+reservation) or merely records it (a build-time note) *(answered: see [the manifest sheet](how-the-prefetch-manifests-are-read.md) - the engine discards the `##Total_data_Size` line; 2026-10-02, OPUS)*. `common.txt` additionally carries category
 sections: `##PhyreShader`, `##UI`, `##JSON`, `##OTHERS`.
 
 **What this buys beyond format completeness:** it is a complete **asset → scene map** for the whole
@@ -45,7 +45,7 @@ see [17-Presentation-Rendering/Visual-Tuning-Parameters](../../17-Presentation-R
 and the rule in [_index/EVIDENCE-STANDARD.md](../../_index/EVIDENCE-STANDARD.md).
 
 `eventlist.csv` sits in the same tree and is a four-column integer table
-(`274,0,240,0`) — unexamined.
+(`274,0,240,0`) — ~~unexamined~~ *(answered: see [the manifest sheet](how-the-prefetch-manifests-are-read.md) - `%d,%d,%d,%d` quads with no per-record request; 2026-10-02, OPUS)*.
 
 Write sheets to `_templates/FORMAT.md`. See [_index/ASSET-FORMATS.md](../../_index/ASSET-FORMATS.md).
 

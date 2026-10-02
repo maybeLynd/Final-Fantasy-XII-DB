@@ -1,0 +1,4 @@
+CALL-family sites decoded: 2 | matching calls: 2
+      1  0x29A getspattackskillinfo
+      1  0x29B spattackread
+zone files: 2 (language copies agree on (script, verb) in 2)

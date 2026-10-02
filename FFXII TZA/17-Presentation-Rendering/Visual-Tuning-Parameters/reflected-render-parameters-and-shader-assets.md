@@ -30,7 +30,7 @@ audit:
 
 > **The people who made FFXII left the names of roughly 150 tuning knobs in the executable** —
 > shadow softness per character, ambient occlusion radius for scenery, the *aperture f-number* of
-> the depth-of-field blur — along with the paths of the 15 shader files that consume them.
+> the depth-of-field blur — along with the paths of the ~~15 shader files~~ 18 `.phyre` assets *(corrected 2026-10-02, OPUS: 16 under `shaders`, the font `tuffysdf.fgen` and the map-texture template - §2's count)* that consume them.
 
 **PARTIAL.** The names and asset paths are authored strings read directly from the shipping EXE
 (tier 2) and are exact. ~~What each parameter numerically does, and where the values live, is not
@@ -122,11 +122,11 @@ consistent with a mirrored pass — a reflection or an inverted-projection rende
 
 ### The parameter surface
 
-These follow the `m<Name>` member convention and are **the embedded strings that Phyre
-reflection's `PClassDataMember` holds** — the reflection document establishes that each member
+These follow the `m<Name>` member convention and are ~~**the embedded strings that Phyre~~
+~~reflection's `PClassDataMember` holds**~~ JSON keys: the strings checked are reached only by code `lea`s into the scene loaders' key lookups *(corrected 2026-10-02, OPUS: `001C3D50`+0x556 `lea rdx, [008FA4D0]` then +0x560 `call 001C51D0`; W-3 below)* — the reflection document establishes that each member
 descriptor carries its field name as an embedded string, and this is that data.
 
-**Shadow — 28 parameters.** Separately tunable for maps and characters:
+**Shadow — ~~28~~ 32 parameters.** *(corrected 2026-10-02, OPUS: the names listed below; 31 occur as strings, `mCascadePartition` only as a stem)* Separately tunable for maps and characters:
 
 ```
 mShadowValueLerpMinForMap / Map2 / Map3        mShadowValueLerpMinForChr / Chr2 / Chr3
@@ -157,7 +157,7 @@ mMapChrUpwardDirLightAngleThres       mMapChrUpwardDirLightColorIntensity
 mColorR / G / B
 ```
 
-**Ambient occlusion — 12 parameters**, and the structure is the informative part:
+**Ambient occlusion — ~~12~~ 14 parameters** *(corrected 2026-10-02, OPUS: the fourteen below, 2 x 2 x 3 + 2)*, and the structure is the informative part:
 
 ```
 mSAOBiasChr   mSAORadiusChr   mSAOIntensityChr     mSAOFadeoutScale
@@ -182,7 +182,7 @@ mGammaValue          mUseLinearTonemap
 **`mDofApertureFnumber` is a photographic f-number** — the depth of field is parameterised the way
 a real lens is, not as an arbitrary blur radius.
 
-**Water — 16 parameters**, all shipped with `Debug` in the name:
+**Water — ~~16~~ 18 parameters** *(corrected 2026-10-02, OPUS: the eighteen below, each a string in the image)*, all shipped with `Debug` in the name:
 
 ```
 mDebugRefractionFactor      mDebugWaterSpecFactor        mDebugWaterTexBlendFactor
@@ -260,7 +260,7 @@ class-1 ruling; they are declared unread, not pending.)*
 ```
 Asset path convention
   /GameData/<GraphicsAPI>/ArtData/<kind>/<name>.<type>.phyre
-  observed: GraphicsAPI = D3D11 ; kind = shaders | font
+  observed: GraphicsAPI = D3D11 ; kind = shaders | font   <- corrected 2026-10-02, OPUS - and map/<mapcode>/tex - three directories, section 2
 
 Ambient occlusion parameter grid           2 x 2 x 3 + 2
   algorithm : { SAO, HBAO }
@@ -275,14 +275,14 @@ Shadow map cascades
 Depth of field
   mDofFocusDistance          focus plane distance
   mDofApertureFnumber        photographic f-number
-  mDofSpecialApertureFnumber alternate aperture (cutscene?)
+  mDofSpecialApertureFnumber alternate aperture (cutscene?)   <- corrected 2026-10-02, OPUS - a map key: its only readers are 001C7940+0x171 and +0x188, the map loader
 
 Reflected member naming convention
   m<Name>       where Map = scenery, Chr = character, Sce = scene, USM = unsharp mask
 ```
 
 **No numeric formula is asserted.** These are names and their organisation; the arithmetic that
-consumes them has not been read. Recorded as **W-1**.
+consumes them has not been read. ~~Recorded as **W-1**.~~ *(corrected 2026-10-02, OPUS: W-1 is where the values live, answered in §8b; this arithmetic is not a register row)*
 
 ## 5. Call chain
 
@@ -405,7 +405,7 @@ post-processing framework in the same binary.
 
 | Claim | Evidence | Tier |
 |---|---|---|
-| The 15 asset paths | authored strings in the authorized EXE, extracted verbatim | 2 |
+| The ~~15~~ 18 asset paths *(corrected 2026-10-02, OPUS: §2)* | authored strings in the authorized EXE, extracted verbatim | 2 |
 | Post-processing class hierarchy | mangled RTTI names `PGlow`/`PGlowBase`/`PGlowGPUBase`/`PGlowD3D11` etc. | 4 |
 | Render entry-point names | authored strings | 2 |
 | ~150 reflected member names | authored strings, `m<Name>` convention | 2 |

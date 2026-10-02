@@ -1,0 +1,309 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original composed normal-NULL return rules",
+  "driver_sha256": "3d016099266d7413ad648331d64503e635cb03d4de02c322cd7cd7b9c334e4e9",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "687a5774c1998642b865e1db2d7a05fdbf09a87587286e6bd0d5be2c8c6f49f1"
+    },
+    {
+      "path": "source-02.json",
+      "sha256": "aa895f5b485cf9ec68f1bd0e4bc58a06d65c5debf823311d5c702f8c79a36fcb"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69"
+    },
+    {
+      "path": "retained/filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e"
+    }
+  ],
+  "annotations": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 92,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 8,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 436,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 113,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x20c300",
+      "bytes": 312,
+      "calls": [
+        [
+          2147148,
+          "0x20b5f0"
+        ],
+        [
+          2147168,
+          "0x20b5f0"
+        ],
+        [
+          2147203,
+          "0x20b5f0"
+        ],
+        [
+          2147259,
+          "0x20b5f0"
+        ],
+        [
+          2147282,
+          "0x20b5f0"
+        ],
+        [
+          2147312,
+          "0x20b5f0"
+        ],
+        [
+          2147328,
+          "0x210ec0"
+        ],
+        [
+          2147355,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        "0x20c437"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x210ec0",
+      "bytes": 11,
+      "calls": [],
+      "returns": [],
+      "tails": [
+        "0x210ec6"
+      ]
+    },
+    {
+      "entry": "0x85e730",
+      "bytes": 7,
+      "calls": [],
+      "returns": [],
+      "tails": [
+        "0x85e730"
+      ]
+    },
+    {
+      "entry": "0x808c40",
+      "bytes": 33,
+      "calls": [],
+      "returns": [
+        "0x808c56"
+      ],
+      "tails": [
+        "0x808c5c"
+      ]
+    },
+    {
+      "entry": "0x59ee90",
+      "bytes": 876,
+      "calls": [
+        [
+          5893852,
+          "0x1d6b20"
+        ],
+        [
+          5893864,
+          "0x865390"
+        ],
+        [
+          5893913,
+          "0x5cdaa0"
+        ],
+        [
+          5893931,
+          "0x1d6b20"
+        ],
+        [
+          5894059,
+          "0x1d6b90"
+        ],
+        [
+          5894075,
+          "0x1d6b70"
+        ],
+        [
+          5894117,
+          "0x1d6d20"
+        ],
+        [
+          5894174,
+          "0x808f10"
+        ],
+        [
+          5894354,
+          "0x808f10"
+        ],
+        [
+          5894378,
+          "0x599250"
+        ],
+        [
+          5894399,
+          "0x808f10"
+        ],
+        [
+          5894461,
+          "0x17d2e0"
+        ],
+        [
+          5894535,
+          "0x19b1f0"
+        ],
+        [
+          5894546,
+          "0x19aee0"
+        ],
+        [
+          5894563,
+          "0x215280"
+        ],
+        [
+          5894583,
+          "0x59a9b0"
+        ],
+        [
+          5894604,
+          "0x5cdaa0"
+        ],
+        [
+          5894621,
+          "0x808c40"
+        ]
+      ],
+      "returns": [
+        "0x59f1fb"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x20c1b0",
+      "bytes": 322,
+      "calls": [
+        [
+          2146819,
+          "0x861ec0"
+        ],
+        [
+          2146835,
+          "0x20c440"
+        ],
+        [
+          2146856,
+          "0x674a00"
+        ],
+        [
+          2146876,
+          "0x5cd4f0"
+        ],
+        [
+          2146984,
+          "0x20c300"
+        ],
+        [
+          2146995,
+          "0x5cd820"
+        ],
+        [
+          2147009,
+          "0x5cd820"
+        ],
+        [
+          2147030,
+          "0x808c40"
+        ]
+      ],
+      "returns": [
+        "0x20c2f1"
+      ],
+      "tails": []
+    },
+    {
+      "entry": "0x1d6d20",
+      "bytes": 79,
+      "calls": [
+        [
+          1928511,
+          "0x20c700"
+        ],
+        [
+          1928533,
+          "0x20c1b0"
+        ]
+      ],
+      "returns": [
+        "0x1d6d6e"
+      ],
+      "tails": []
+    }
+  ],
+  "malloc_declaration": {
+    "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+    "name": "malloc",
+    "iat_va": "0x8c2b40",
+    "hint_name_va": "0x1deee88",
+    "iat_file_bytes": "88eecc0100000000",
+    "lookup_file_bytes": "88eecc0100000000"
+  },
+  "allocation_prephase": {
+    "abstract_states": 88,
+    "descriptor_increments_per_allocation": [
+      1
+    ],
+    "manager_increment_before_allocation": true,
+    "limits": "Own original-CFG event counts, not runs/actual live values"
+  },
+  "established": [
+    "20C300 increments manager DWORD88 before its16B handle allocation, and every local allocation path has exactly one direct selected-record BYTE10 increment.",
+    "If that allocation returnsNULL normally, the function skips217A60 construction, returns0 and has no own subsequent object-write rollback or other call. Earlier selected kind/word changes can remain too; opaque/native interference excluded by premise.",
+    "210EC0 forwards through85E730 to the static PE malloc import at8C2B40. Named declaration is not live binding or observed heap failure.",
+    "On the demonstrated found-record lookup path,20C1B0 saves a zero20C300 result inRBX, unlocks then returns it. Successful in-body808C40 cookieRET preservesRAX by original instructions; generic Win64 ABI alone would not prove this.1D6D20 epilogue also preservesRAX.",
+    "Resolver59EE90 stores zero in record20 and tests only the sign ofRAX for the miss branch. Zero follows the cache path, copies the size out-field and returns status0; it does not enter the archive fallback or cache-fill call on this path."
+  ],
+  "interpretation": "Allocation-NULL zero and lookup-miss -1 are distinct at these supplied interfaces. A status0 or the preceding local counters alone cannot certify a successfully constructed cache-view handle. This is a conditional failure contract, not an observed leak or natural exhaustion claim.",
+  "limits": [
+    "No shipping instructions/native harness/game execution. Actual malloc target/DLL, occurrence ofNULL or exhaustion unobserved.",
+    "Valid existing map/record/private frames and distinct fields; selected helpers return valid records normally and do not alter the counted fields outside stated effects. Normal Win64 nonvolatile ABI and successful in-bodycookieRET; native exception/failure tail effects unproved.",
+    "All own local increments only; no universal successful-handle cardinality, allcounterwriter closure, natural bytewrap, heap leak, lifetime/reuse/scheduling or later reader consequence proof.",
+    "Retained99 producer source revalidated against originalEXE but remains pending independent acceptance; its verdict/consumption not assumed. Parent wrapper bytes reused, no selector/filter/prefix/archive census.",
+    "Normal allocator-NULL path only; exceptional native unwinding and imported allocator hooks are distinct."
+  ],
+  "affected_claims": [
+    "FABLE cache lookup/fallback success and failure semantics, OV33 prerequisite only",
+    "OPUS cache handle acquire/accounting/return-value contract"
+  ],
+  "cleanup": "Only bounded own offline children. No PC/game/nativeinstrument/save/config/reference/peer writes."
+}

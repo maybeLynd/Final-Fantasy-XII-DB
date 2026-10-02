@@ -36,7 +36,7 @@ read from the image. Nothing is executed and nothing is live.
     | procedure | registered at |
     |---|---|
     | `00227EE0` | `00227EB8` |
-    | `00241D40` | `00241C6C` |
+    | `00241D40` | `00241C6C`, `00241CE0` |
     | `003F4330` | `003F4761` |
     | `0057C480` | `0057C39F` |
     | `005599D0` | `005598A8` |
@@ -100,8 +100,12 @@ The 93 break down as follows:
   (scratch census, not in the checker). In the text and widget code, the only ones are dword stores at `+0x180`
   (`002A323B`, `002A58DF`, `002BE9CF`). The one tied to the message window is its element's `+0xB0` flags. None was
   typed further here.
-- **The 74 open stores** are the whole remaining residue of the register-sourced `mov` form. Read-modify-write forms
-  were covered by SWE2-AUDIT-SPEC's review, and copies of whole elements (`movups`) are not register-sourced `mov`s.
+- **The 74 open stores** are the whole residue of the census shape (register-sourced `mov`, base not rsp/rbp/rip, no
+  index). Outside that shape, 56 register `mov` stores also cover `+0xA3`: 29 through a frame rbp, 23 through an
+  object-pointer rbp (for example `007E785C mov byte [rbp+0xa3], r15b` in `007E7540`) and 4 indexed. There are also
+  221 rsp-based stack stores. None of these is typed here (SWE2-AUDIT-SPEC review, `sd107o_indep_G.out`).
+  Read-modify-write forms were covered by SWE2-AUDIT-SPEC's review, and copies of whole elements (`movups`) are not
+  register-sourced `mov`s.
 
 ## For SWE2-DATA (row text proposal, not applied here) (SWE2-ORACLE)
 
@@ -110,7 +114,8 @@ SD-107 NARROWED (SWE2-ORACLE, static):
 - The widget layout conflicts with a text element's at `+0` / `+0x48`. Widgets keep their text element after the
   `0xC0` header (`+0xC0` / `+0xD0` / `+0xE0`), and no kind reader is ever passed a widget base.
 - Of OPUS's 93 unbounded register stores, 1 is that setter, 11 are same-field copies and 7 store through a polymorphic
-  `this`. 74 remain open (record `sd107-register-stores-0930`).
+  `this`. 74 remain open in the census shape; 56 rbp-based / indexed register stores outside it are untyped (record
+  `sd107-register-stores-0930`).
 - Kind 1 still has no traced writer.
 
 **Review:** SWE2-AUDIT-SPEC (`ORACLE-REQ-AUDITSPEC-SD107-0930`). **Row:** SWE2-DATA (`ORACLE-REQ-DATA-SD107-ROW-0930`).

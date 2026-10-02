@@ -1,0 +1,80 @@
+== packet integrity
+PASS  manifest.json sha256 = f3365d0eb049fb0c...  | f3365d0eb049fb0c84b6150f1d410a2d1e2b01e36f4025973dc3063c4215392d
+PASS  all 99 manifest members hash as listed  | []
+== shipping-image re-derivation
+PASS  body 0059EE90 + 0x36C (876 B) decodes exactly and one .pdata record covers it exactly (0059EE90+0x36C fl3)
+PASS  body 0059A9B0 + 0x125 (293 B) decodes exactly and one .pdata record covers it exactly (0059A9B0+0x125 fl0)
+PASS  body 0020C1B0 + 0x142 (322 B) decodes exactly and one .pdata record covers it exactly (0020C1B0+0x142 fl3)
+PASS  body 001D6D20 + 0x4F (79 B) decodes exactly and one .pdata record covers it exactly (001D6D20+0x4F fl0)
+PASS  leaf 00674A00 + 0x28 (40 B) decodes exactly; no .pdata covers it; int3 before entry and after the ret  | int3 run after = 8 B
+PASS  new shipping bodies total 1491 B (876 + 293 + 322)  | 1491
+PASS  retained selected bodies total 119 B (79 wrapper + 40 hash)  | 119
+PASS  0059EE90 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['59F1FB'] tails=[] outs=[]
+PASS  0020C1B0 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['20C2F1'] tails=[] outs=[]
+PASS  001D6D20 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['1D6D6E'] tails=[] outs=[]
+PASS  00674A00 local CFG closed: no tail/out branch, single ret is the last instruction  | rets=['674A27'] tails=[] outs=[]
+PASS  0059A9B0 local CFG closed: no tail/out branch; two rets, 59A9F4 (early) and 59AAD4 (last)
+PASS  resolver's single ret is 59F1FB, the last instruction (epilogue included in the body)
+PASS  59F1B0 `mov edx, dword ptr [r15 + 0x28]` is a 4-byte read; 59F1B4 rcx = r15; 59F1B7 call 59A9B0
+PASS  resolver r15 = incoming rcx (59EEC4); r15 written nowhere else but the epilogue pop  | ['59EEC4', '59F1F2']
+PASS  the commit read is guarded by the arm byte: 59F1AB `test r12b, r12b`, 59F1AE `je 0x59f1bc`
+PASS  59A9B0 saves the incoming key: `mov esi, edx` (59A9C3) with no rdx write before it, and before `setne dl` (59A9CA) overwrites dl
+PASS  59A9B0 rsi written only at 59A9C3 and the two epilogue restores (59A9EA, 59AACA)  | ['59A9C3', '59A9EA', '59AACA']
+PASS  no rsi writer on any 59A9C3 -> 59AAA4 path; 59A9C3 dominates 59AAA4  | 56 insns on path
+PASS  59AAA2 `mov ecx, esi`, 59AAA4 call 1D6A20, no rcx write between
+PASS  59A9B0 no value-changing op writes rsi anywhere in the body
+PASS  1D6A20's other arguments are separate: rdx = &[rsp+50h] (1D6BB0 result, 59A9D4), r8d = edi = record+0 (59A9C5), r9d = signed byte record+18h (59AA93)
+PASS  59A9B0 frame: push rdi + sub 30h = 38h; rsi saved at entry SP+20h and restored from SP+58h
+PASS  the insertion is gated on 1D6BB0: null result -> 59A9E1 `or rax, -1` and ret 59A9F4 without 1D6A20
+NOTE  callees on 59A9C3 -> 59AAA4 paths (ESI kept only by the Win64 nonvolatile ABI): 59A9CF->1D6BB0, 59AA01->2150E0, 59AA27->IAT:ReadFile, 59AA3C->1D6CA0, 59AA56->5CDAA0, 59AA64->2150D0, 59AA7B->IAT:SetEndOfFile, 59AA85->IAT:CloseHandle
+PASS  resolver lookup call site: 59EFD2 edx = signed record+18h, 59EFD7 r9 = record+28h, 59EFDB r8 = &[rbp], 59EFE2 rcx = name, 59EFE5 call 1D6D20; no r9 write between
+PASS  1D6D20: rbx = r9 (1D6D34), rbx written only there + epilogue restore, [rsp+20h] = rbx (1D6D47)  | ['1D6D34', '1D6D5A']
+PASS  1D6D20 frame 38h, so [rsp+20h] at the 20C1B0 call is the callee's entry SP+28h (fifth argument)  | frame 38
+PASS  1D6D20 other mappings: r9 = rdi = incoming r8, r8d = esi = incoming edx, rdx = rbp = incoming rcx, rcx = rax from 20C700
+PASS  1D6D20 writes only its own stack (home slots and the fifth-argument slot); nothing through r9/rbx  | [(1928480, 'rsp', 8), (1928485, 'rsp', 16), (1928490, 'rsp', 24), (1928519, 'rsp', 32)]
+PASS  20C1B0 prologue: five pushes + sub 150h = 178h; rsp otherwise changed only by the epilogue  | 178
+PASS  20C1B0 out-key carrier: 20C1EE `mov r14, qword ptr [rsp + 0x1a0]` = entry SP+28h = fifth argument
+PASS  20C1B0 r14 written only at 20C1EE and the epilogue pop 20C2EC  | ['20C1EE', '20C2EC']
+PASS  20C1B0 writes through r14 exactly once: 20C22D `mov dword ptr [r14], eax` (4 B)  | [(2146861, 0, 4)]
+PASS  r14 is used only as a memory base (never copied into an argument register)  | []
+PASS  the stored value is the hash's eax: 20C228 call 674A00, then 20C22D directly
+PASS  empty test: 20C218 `cmp byte ptr [rsp + 0x40], 0` (first byte of the normalized buffer), 20C21D `je 0x20c2c7`; the buffer is memset and passed to 20C440 as r8
+PASS  empty arm 20C2C7 `or rax, -1` reaches the ret with no write through r14, no hash call, and only __security_check_cookie called; rax not rewritten after 20C2C7
+PASS  store dominance: every entry -> ret path passes 20C22D except through the empty branch 20C21D -> 20C2C7
+PASS  the miss (20C2BE) and the hit (20C284) both follow the store: 20C22D dominates both
+PASS  calls before the hash are memset (861EC0) and the normalizer 20C440 only; neither gets r14
+PASS  __security_check_cookie (808C40) writes no rax on its returning path (cmp, rol rcx, test, ret)
+PASS  674A00: eax = 1505h, loop `imul eax, eax, 0x21` + movsx of the byte, then `btr eax, 0x1f` (674A23) and ret (674A27)
+PASS  674A00: the btr dominates the single ret, and eax is not written between them
+PASS  674A00 has no call, no memory write and no indirect jump
+PASS  a non-negative lookup result returns: 59EFF1 `js 0x59f000`; from 59EFF3 the commit is unreachable
+PASS  resolver r12 writers: 59EED6 `xor r12b, r12b`, 59EFC4 `mov r12b, 1`, 59EFCE `setne r12b` (+ pop)  | ['59EED6 xor r12b, r12b', '59EFC4 mov r12b, 1', '59EFCE setne r12b', '59F1F8 pop r12']
+PASS  own r12b abstract interpretation: every state at the 59F1B7 commit call has r12b != 0 and has passed the 59EFE5 lookup (774 states over 266 instructions, bound 1596; 1 commit state(s))  | [(5894583, 1, True)]
+NOTE  those 774 are analysis states (pc x r12b in {0,1,T} x lookup-seen), not executions
+PASS  no write through r15 overlaps record+28h..2Bh on any 59EFEA -> 59F1B0 path (142 insns)  | []
+PASS  resolver writes through r15 anywhere: +0/4, +10h/8, +18h/1, +20h/8 only (the +20h qword ends at +27h)  | [(0, 4), (16, 8), (24, 1), (32, 8)]
+PASS  on those paths r15 is used only as a memory base, so no callee receives a record pointer  | []
+NOTE  other writes on those paths use bases ['rax', 'rcx', 'rdx'] (stack / alloca buffers: private-frame premise)
+NOTE  callees on those paths: ['17D2E0', '19AEE0', '19B1F0', '215280', '599250', '808F10', '808F10', '808F10']
+PASS  the archive fill gates the commit: 59F197 stores 19AEE0's result to record+10h, 59F19E `je 0x59f1c0` skips the commit when it is null
+PASS  59A9B0 writes no record+28h before its 1D6A20 call (rbx-based writes: +0, +8, +10h only)  | [(5876289, 0, 4), (5876329, 16, 8), (5876363, 8, 8), (5876384, 0, 4)]
+PASS  packet's captured/retained range sha256 values equal this image's bytes (7 ranges, incl. all five bodies)  | []
+PASS  packet frames the 606 as abstract states, not executions (README + result-02 limits)
+PASS  retained hash capture receipt is exit-only (no terminal flag, no driver hash) and result-02 labels it LEGACY_INCOMPLETE  | {'exit': 0, 'driver': 'capture-filecache-hash-loop.py'}
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every check  | 52 of 52
+PASS  control: 674A23 `btr eax, 0x1f` -> four nops (hash no longer clears bit 31)  | 2 failed: 674A00: eax = 1505h, loop `imul eax, eax, 0x21` + movsx of the byte, then `btr eax, 0x1f` (674A23) and ret (674A27); 674A00: the btr dominates the single ret, and eax is not written between them
+PASS  control: 674A0A empty-string `je 674A23` -> `je 674A27` (an exit that skips the btr)  | 1 failed: 674A00: the btr dominates the single ret, and eax is not written between them
+PASS  control: 20C1EE out-key carrier [rsp+1A0h] -> [rsp+1A8h] (sixth slot)  | 1 failed: 20C1B0 out-key carrier: 20C1EE `mov r14, qword ptr [rsp + 0x1a0]` = entry SP+28h = fifth argument
+PASS  control: 20C22D `mov [r14], eax` -> `nop; mov [rsi], eax` (store moved off the carrier)  | 1 failed: 20C1B0 writes through r14 exactly once: 20C22D `mov dword ptr [r14], eax` (4 B)
+PASS  control: 20C21D empty-key `je 20C2C7` retargeted to 20C22D (early return moved after the store)  | 2 failed: empty test: 20C218 `cmp byte ptr [rsp + 0x40], 0` (first byte of the normalized buffer), 20C21D `je 0x20c2c7`; the buffer is memset and passed to 20C440 as r8; store dominance: every entry -> ret path passes 20C22D except through the empty branch 20C21D -> 20C2C7
+PASS  control: 59F1B0 `mov edx, [r15+28h]` -> [r15+2Ch]  | 1 failed: 59F1B0 `mov edx, dword ptr [r15 + 0x28]` is a 4-byte read; 59F1B4 rcx = r15; 59F1B7 call 59A9B0
+PASS  control: 59AAA2 `mov ecx, esi` -> `mov ecx, edi` (size passed as the key)  | 1 failed: 59AAA2 `mov ecx, esi`, 59AAA4 call 1D6A20, no rcx write between
+PASS  control: 59AA47 `mov r8d, esi` -> `mov esi, r8d` (59A9B0 overwrites ESI before the call)  | 2 failed: 59A9B0 rsi written only at 59A9C3 and the two epilogue restores (59A9EA, 59AACA); no rsi writer on any 59A9C3 -> 59AAA4 path; 59A9C3 dominates 59AAA4
+PASS  control: 1D6D47 fifth-argument store [rsp+20h] -> [rsp+28h]  | 1 failed: 1D6D20: rbx = r9 (1D6D34), rbx written only there + epilogue restore, [rsp+20h] = rbx (1D6D47)
+PASS  control: 59EFD7 `lea r9, [r15+28h]` -> [r15+2Ch]  | 1 failed: resolver lookup call site: 59EFD2 edx = signed record+18h, 59EFD7 r9 = record+28h, 59EFDB r8 = &[rbp], 59EFE2 rcx = name, 59EFE5 call 1D6D20; no r9 write between
+PASS  control: 59EED6 `xor r12b, r12b` -> `mov r12b, 1` (commit armed without the lookup)  | 1 failed: own r12b abstract interpretation: every state at the 59F1B7 commit call has r12b != 0 and has passed the 59EFE5 lookup (620 states over 266 instructions, bound 1596; 2 commit state(s))
+PASS  control: 59EFEA `mov [r15+20h], rax` -> [r15+28h] (record+28h written after the lookup)  | 2 failed: no write through r15 overlaps record+28h..2Bh on any 59EFEA -> 59F1B0 path (142 insns); resolver writes through r15 anywhere: +0/4, +10h/8, +18h/1, +20h/8 only (the +20h qword ends at +27h)
+PASS  control: 1D6D34 `mov rbx, r9` -> `mov rbx, r8` (fourth argument forwarded as the out-key)  | 1 failed: 1D6D20: rbx = r9 (1D6D34), rbx written only there + epilogue restore, [rsp+20h] = rbx (1D6D47)
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 72 checks, 72 PASS, 0 FAIL (13 controls)

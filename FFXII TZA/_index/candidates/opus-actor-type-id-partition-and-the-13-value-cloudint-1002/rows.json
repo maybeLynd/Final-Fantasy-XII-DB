@@ -50,7 +50,7 @@
   },
   {
    "fn": "00350160",
-   "text": "pops a value through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte)` returns 0 and `0031B510(stack buffer, 4)` returns more than 1 (signed) it calls `003286E0(low byte)`; otherwise returns without that call",
+   "text": "pops a value through `00267E10(r9)` and sets bit 0x13 of dword `022CB720` (a 14-byte bit setter); when `00322350(low byte)` returns 0 and `0031B510(stack buffer, 4)` returns more than 1 (signed) it calls `003286E0(low byte)`; otherwise returns without that call",
    "anchors": [
     [
      "00350178",
@@ -76,7 +76,7 @@
   },
   {
    "fn": "00351A40",
-   "text": "pops two values a then b through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte of b)` returns 0 it calls `00328FB0(low byte of b, 1 when a is non-zero else 0)`, otherwise it returns without that call",
+   "text": "pops two values a then b through `00267E10(r9)` and sets bit 0x13 of dword `022CB720` (a 14-byte bit setter); when `00322350(low byte of b)` returns 0 it calls `00328FB0(low byte of b, 1 when a is non-zero else 0)`, otherwise it returns without that call",
    "anchors": [
     [
      "00351A50",
@@ -102,7 +102,7 @@
   },
   {
    "fn": "00352190",
-   "text": "pops a value through `00267E10(r9)`; for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = 00263750(index)`; calls `003601B0(0x13)` and, when `00322350(low byte of the value)` is non-zero, `003170E0(low byte)`",
+   "text": "pops a value through `00267E10(r9)`; for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = PartyRoster_GetActorBySlot(index)`; sets bit 0x13 of dword `022CB720` (a 14-byte bit setter) and, when `00322350(low byte of the value)` is non-zero, `003170E0(low byte)`",
    "anchors": [
     [
      "003521A8",
@@ -128,7 +128,7 @@
   },
   {
    "fn": "00352AF0",
-   "text": "pops a value through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte)` is non-zero it tail-jumps `003288F0(low byte)`, otherwise returns",
+   "text": "pops a value through `00267E10(r9)` and sets bit 0x13 of dword `022CB720` (a 14-byte bit setter); when `00322350(low byte)` is non-zero it tail-jumps `003288F0(low byte)`, otherwise returns",
    "anchors": [
     [
      "00352AF9",

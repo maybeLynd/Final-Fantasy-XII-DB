@@ -1,0 +1,103 @@
+{
+  "complete": true,
+  "driver_sha256": "f4be90aca3b3cab318cb744468e2e4ddc2cf0bd6296f6d484b10ee9b7e184758",
+  "producer_sha256": "b07bf14ec0e8e2913d1cbbef03998020df2e01384eab32c41c6530710600d89d",
+  "positive_result_sha256": "174b441149c8c657208f8693e1565fb3b9a927e8a88699357dc1cfd9b0b51801",
+  "CLI_cases": [
+    {
+      "case": "failed-extent-with-output-present",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "b07bf14ec0e8e2913d1cbbef03998020df2e01384eab32c41c6530710600d89d"
+      },
+      "limits": "Real CLI on disposable inputs; no native FF12 execution"
+    },
+    {
+      "case": "failed-capture-exit",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "b07bf14ec0e8e2913d1cbbef03998020df2e01384eab32c41c6530710600d89d"
+      },
+      "limits": "Real CLI on disposable inputs; no native FF12 execution"
+    },
+    {
+      "case": "missing-data-status",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "b07bf14ec0e8e2913d1cbbef03998020df2e01384eab32c41c6530710600d89d"
+      },
+      "limits": "Real CLI on disposable inputs; no native FF12 execution"
+    },
+    {
+      "case": "missing-table-data",
+      "status": {
+        "terminal": true,
+        "exit": 1,
+        "exception": null,
+        "result_written": false,
+        "driver_sha256": "b07bf14ec0e8e2913d1cbbef03998020df2e01384eab32c41c6530710600d89d"
+      },
+      "limits": "Real CLI on disposable inputs; no native FF12 execution"
+    }
+  ],
+  "synthetic_source_cases": [
+    {
+      "case": "wrong-table-kind4",
+      "pc": "dispatch DWORD3",
+      "field": null,
+      "after": null,
+      "refusal": "dispatch table changed",
+      "limits": "Synthetic mutation of actual derive annotations/data, not an EXE patch or code execution"
+    },
+    {
+      "case": "wrong-stride-width",
+      "pc": "0x3068b2",
+      "field": "args",
+      "after": "ecx, byte ptr [rax + 8]",
+      "refusal": "sequence operation changed 0x3068b2",
+      "limits": "Synthetic mutation of actual derive annotations/data, not an EXE patch or code execution"
+    },
+    {
+      "case": "signed-division",
+      "pc": "0x3068b8",
+      "field": "mnemonic",
+      "after": "idiv",
+      "refusal": "sequence operation changed 0x3068b8",
+      "limits": "Synthetic mutation of actual derive annotations/data, not an EXE patch or code execution"
+    },
+    {
+      "case": "wrong-queue-width",
+      "pc": "0x3068d4",
+      "field": "args",
+      "after": "word ptr [rip + 0x1fbb89e], ax",
+      "refusal": "sequence operation changed 0x3068d4",
+      "limits": "Synthetic mutation of actual derive annotations/data, not an EXE patch or code execution"
+    },
+    {
+      "case": "wrong-low16-conversion",
+      "pc": "0x3068c7",
+      "field": "mnemonic",
+      "after": "movsx",
+      "refusal": "sequence operation changed 0x3068c7",
+      "limits": "Synthetic mutation of actual derive annotations/data, not an EXE patch or code execution"
+    },
+    {
+      "case": "bypass-arithmetic-dominance",
+      "pc": "0x306854",
+      "field": "jmp",
+      "after": "0x3068d4",
+      "refusal": "missing domination boundary",
+      "limits": "Synthetic mutation of actual derive annotations/data, not an EXE patch or code execution"
+    }
+  ],
+  "limits": "Producer controls only, independent acceptance pending. Previous invalid capture/proof retained without semantic credit."
+}

@@ -1,0 +1,8 @@
+{
+  "complete": true,
+  "scientific_facts_equal": true,
+  "source_maps_equal": true,
+  "old_input_index": "input-identities-01.json",
+  "new_input_index": "input-identities-02.json",
+  "limits": "Only parent-manifest location/producer prerequisite path changed; original proof/control01 retained. New actual controls exercise corrected final invocation path."
+}

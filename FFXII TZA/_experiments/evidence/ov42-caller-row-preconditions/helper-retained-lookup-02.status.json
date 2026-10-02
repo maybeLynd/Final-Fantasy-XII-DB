@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\locate-retained-span.py",
+    "305430",
+    "305480",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-caller-row-preconditions\\helper-retained-lookup-02.json"
+  ],
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "prior": "lookup01 produced no output and no recoverable tool handle; OS process inventory denied, not absence proof. No process termination attempted."
+}

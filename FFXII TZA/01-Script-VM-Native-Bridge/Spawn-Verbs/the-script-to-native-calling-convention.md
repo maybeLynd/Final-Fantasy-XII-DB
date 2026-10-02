@@ -810,3 +810,15 @@ Interior anchor `0023F81F` (function `0023F7D0`).
 `0023F190` (163 B) is the spawn-cost check `0023F240`/`0023F7D0` run on the `+0xD8` record: `r8d = (s16[+0xF2] + s16[+0xF4]) * u8[+0xEC] + s8[+0xEE] + s8[+0xED]` indexes the `01E0BF60` pointer table by `u8[+0xC0]` (< 0x2D), bounds-checks against the row's `+2` u16, then walks `row + (r8d + (r8d+1)*2) * 2` to a byte < 0x2D whose own table row must not carry first-byte `0x0B`/`0x0C` - returns `result != 0x12`
 
 Interior anchor `0023F1C8` (function `0023F190`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-script-to-native-calling-convention-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034E5C0` | 103 B | reads dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns, calls `00267E10(r9)` three times, and returns a 52-byte helper's result for (that dword, second result, third result, first result, 0) with 0 as the fifth (stack) argument | `0034E5DF`, `0034E5E2`, `0034E5F6`, `0034E5FE`, `0034E60D` |
+| `0034EC80` | 103 B | reads dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns, calls `00267E10(r9)` three times, and returns a 52-byte helper's result for (that dword, second result, third result, first result, 1) with 1 as the fifth (stack) argument | `0034EC9F`, `0034ECA2`, `0034ECB6`, `0034ECBE`, `0034ECCD` |
+| `0034F380` | 61 B | calls `00267E10(r9)` twice, then the 8-byte getter of qword `02099D70`, and tail-jumps a 200-byte helper with (dword `+0x28` of that pointer, second `00267E10` result, first `00267E10` result) | `0034F390`, `0034F39A`, `0034F3A1`, `0034F3AB`, `0034F3B8` |
+| `00394600` | 30 B | returns at once when byte `01EFAC10` equals 2; otherwise tail-jumps a 175-byte helper with (`0x108`, the address of a 326-byte routine, 0), that address in `rdx` | `00394607`, `0039460C`, `00394613`, `00394618` |
+| `003DB790` | 11 B | tail-jumps `ActorResource_AllocateAndSubmitEntry` with `r8d` = 1, passing `rcx` and `edx` through unchanged | `003DB796` |

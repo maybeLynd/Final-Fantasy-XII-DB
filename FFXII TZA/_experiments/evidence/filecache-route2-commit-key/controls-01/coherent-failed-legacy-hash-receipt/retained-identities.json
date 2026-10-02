@@ -1,0 +1,75 @@
+{
+  "files": [
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/manifest.json",
+      "snapshot": "manifest.json",
+      "sha256": "5f8e1beb4cb906372252cfd2e000d26e36734bf12e9c933844fe80ba2a7f1475"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-key-boundaries-source-02.json",
+      "snapshot": "filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-hash-loop-source-01.json",
+      "snapshot": "filecache-hash-loop-source-01.json",
+      "sha256": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-key-preprocessing-result-02.json",
+      "snapshot": "filecache-key-preprocessing-result-02.json",
+      "sha256": "ae7ed53bb3128adc748b5012b751791d54297adc5af9e68127426d1a74628e3e"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-key-preprocessing-positive-02.status.json",
+      "snapshot": "filecache-key-preprocessing-positive-02.status.json",
+      "sha256": "466b60bfb216a02bbe32e5eb0336c2efcd69bfffc373b4977c94350846ad0048"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/prove-filecache-key-preprocessing.py",
+      "snapshot": "prove-filecache-key-preprocessing.py",
+      "sha256": "72f3ef8b553112461fcf31e3d19d385af39e3c3a6f9e6d938ce4d511b1709cdc"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-key-boundaries-capture-02.status.json",
+      "snapshot": "filecache-key-boundaries-capture-02.status.json",
+      "sha256": "4014aab07d746a61ec42005a09311e9410609c80354687f8c6d605f0e7eefff8"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/capture-filecache-key-boundaries.py",
+      "snapshot": "capture-filecache-key-boundaries.py",
+      "sha256": "e8f0546565a2b5d088b74d544fbeef32a73fcfe726e7bd96c3eeedaca39b504e"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-hash-loop-capture-01.status.json",
+      "snapshot": "filecache-hash-loop-capture-01.status.json",
+      "sha256": "10b08ddf0812dd9ffe3c9846cfb89fa5b9dfeca69e1e8f55cd65e394b8d23d81"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/capture-filecache-hash-loop.py",
+      "snapshot": "capture-filecache-hash-loop.py",
+      "sha256": "3cd757ce5614ef1f4e189fd8b8e08a203a5110900035832f250d5e53bbb3da99"
+    },
+    {
+      "source": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-filecache-key-preprocessing-1001/REVIEW.md",
+      "snapshot": "REVIEW.md",
+      "sha256": "7cfbc1d54f08735d4705b2f9bbb597eddd30282a2223879dbc1aad42d5bdbd8f"
+    },
+    {
+      "source": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md",
+      "snapshot": "path-page-at-read.md",
+      "sha256": "99eb6f544e7d0fe11b219e09d97328f5c7df903fda1349cd0f8c10d854ae3a0b"
+    },
+    {
+      "source": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md",
+      "snapshot": "fst-page-at-read.md",
+      "sha256": "c9f33166be937052bc499e97d2030a6a358aaacf907c366240797ac3d57514a6"
+    },
+    {
+      "source": "Database/FFXII TZA/_index/candidates/pc1-config-route/pc1_route.py",
+      "snapshot": "pc1-route-at-read.py",
+      "sha256": "edd0365dc52bf66f42f956cf6a87afddf5d0eb8d1551d75ade63005d0cff561f"
+    }
+  ],
+  "limits": "Exact at-read source/review/consumer snapshots, not independent acceptance of this new packet."
+}

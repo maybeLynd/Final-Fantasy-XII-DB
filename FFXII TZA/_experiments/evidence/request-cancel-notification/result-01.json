@@ -1,0 +1,64 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY native cancellation selection and end-notification gate",
+  "driver_sha256": "464d9c0c645083d7ee05f0388e61b64dec3a7f56afb880848fd5a147a28fec35",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "cf9b44878297c8751a745bf38896658666d9d4d5a13181f524aadb3f2725feb3"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "a2299be8f2f8eb79f0da7aaaff41e0e5b9d4f444117ba39e79e1bb032cdbc735"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 119,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 295,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "new_original_bytes": 426,
+  "facts": {
+    "native_carriers": {
+      "352980": "one popped integer goes toEDX; receiverRBX;R8D4; then tail3DB6E0",
+      "353660": "first popped integer savedEDI; second goes through264010 actor resolution; EDX=EDI+1; R8D4; then tail3DB6E0"
+    },
+    "range": "Mode4: descending channels BYTEactor88-1 down to max(0,signedEDX); initial actorWORD6 active-bit snapshot gates each channel.",
+    "mode_state_gate": "Mode4 leaves XORzeroR14D (CMOVNE not taken for4). First nonzero BYTEentry11 reaches3DB506 without a state3 test; states1 and2 qualify as well as3.",
+    "multiplicity": "At most one selected nonzero entry per considered channel per invocation, then DEC RBP; not a loop removing every entry on each channel.",
+    "notification_composition": "For valid head mode3 descriptor/non8000 requester ordinal, original3DB2A0 reaches3DC0D0 regardless of incoming entry11. Cancelling state1/2 can attempt endnotification without a target interpreter call in this scoped path.",
+    "return_semantics": "3DB420 returnsEAX1 on all normal paths including NULLreceiver/empty channel range/no selected entry; removal/notification results are not propagated. Caller tails into3DB6E0; its effects are separate.",
+    "return_reaching_definitions": {
+      "0x3db53d": [
+        "0x3db51a",
+        "0x3db53e"
+      ],
+      "0x3db54f": [
+        "0x3db545"
+      ]
+    },
+    "revised_claim": "End-notification attempt is removal completion, not a certificate that target bytecode executed RET. Whether a receipt is admitted/delivered/consumed is a separate stage.",
+    "extent": "3DB420 first runtime-function/unwind fragment is28B; complete local304B includes3DB506 call andNULLreturn3DB545. An entry-fragment decode is invalid for this semantic claim.",
+    "limits": "No natural shipped cancel/interleaving, successful receipt, same-key reuse, actual function completion, lifetime or tail-scheduler effects proved. Normal valid linked head/descriptor, disjoint records/frame/nativeABI/returns/stable state and flags0/1 for retained noopaque-helper countermodel required."
+  },
+  "limits": [
+    "No natural shipped cancel/interleaving, successful receipt, same-key reuse, actual function completion, lifetime or tail-scheduler effects proved. Normal valid linked head/descriptor, disjoint records/frame/nativeABI/returns/stable state and flags0/1 for retained noopaque-helper countermodel required.",
+    "Published parent producer-valid only; no independent acceptance inherited.",
+    "Source code/CFG proof, no native/emulator/live execution."
+  ],
+  "cleanup": "Finite offline tools only; no PC/game/save/config/reference/peer changes."
+}

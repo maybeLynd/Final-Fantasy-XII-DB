@@ -1,0 +1,47 @@
+{
+  "actual_guard": {
+    "status": "VERIFIED_PREREQUISITE",
+    "result": "result-02.json",
+    "source_checks": [
+      {
+        "path": "source-01.json",
+        "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 436,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      },
+      {
+        "path": "retained/filecache-key-boundaries-source-02.json",
+        "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 113,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      },
+      {
+        "path": "retained/filecache-hash-loop-source-01.json",
+        "sha256": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 14,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      }
+    ],
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Annotation consistency only; independent acceptance and native effects remain separate"
+  },
+  "publisher_sha256": "05344fbc99d84d69cea71acc43a87ae82d4f8205aabe6568e53ac56527f87609"
+}

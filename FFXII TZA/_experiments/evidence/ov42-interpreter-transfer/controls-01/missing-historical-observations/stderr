@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-interpreter-transfer\controls-01\missing-historical-observations\prove.py", line 149, in <module>
+    if __name__=='__main__':main(Path(sys.argv[1]))
+                            ~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-interpreter-transfer\controls-01\missing-historical-observations\prove.py", line 107, in main
+    if sha(P/x['path'])!=x['sha256']:raise RuntimeError('retained prerequisite changed '+x['path'])
+       ~~~^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-interpreter-transfer\controls-01\missing-historical-observations\prove.py", line 5, in <lambda>
+    P=Path(__file__).resolve().parent;sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                                                  ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-interpreter-transfer\\controls-01\\missing-historical-observations\\retained\\EXP013\\observations.json'

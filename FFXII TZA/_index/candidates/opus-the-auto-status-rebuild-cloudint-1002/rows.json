@@ -1,0 +1,189 @@
+{
+ "page": "08-Combat-Formula/the-auto-status-rebuild.md",
+ "date": "2026-10-02",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "report": "the-auto-status-rebuild.json",
+ "rows": [
+  {
+   "fn": "0030BEB0",
+   "text": "calls `0031B760(rcx)` with the incoming `rcx` and returns 0 when the result is null, when bit 3 of its dword `+0` is clear, when its qword `+0x698` is null or when byte `+5` of that object is non-zero; otherwise returns the inverse of bit 23 of the dword `+0`",
+   "anchors": [
+    [
+     "0030BEB4",
+     "call"
+    ],
+    [
+     "0030BEC3",
+     "test"
+    ],
+    [
+     "0030BEC7",
+     "mov"
+    ],
+    [
+     "0030BED3",
+     "movzx"
+    ],
+    [
+     "0030BEDE",
+     "not"
+    ]
+   ]
+  },
+  {
+   "fn": "003241D0",
+   "text": "returns 0 when `ecx - 1` is above 0x1D (unsigned); otherwise indexes a byte table after the body by `ecx - 1` and dispatches through a jump table, which (decoded from the bytes) give: `ecx` 1 to 3 returns 0x15, 4 to 6 0x16, 7 0x17, 8 0x18, 9 to 13 0x19, 14 0x1A, 15 to 17 0x1B, 18 0x1C, 19 and 20 0x1D, 30 0x1E, and 21 to 29 return 0",
+   "anchors": [
+    [
+     "003241D2",
+     "cmp"
+    ],
+    [
+     "003241D5",
+     "ja"
+    ],
+    [
+     "003241E1",
+     "movzx"
+    ],
+    [
+     "003241F3",
+     "jmp"
+    ],
+    [
+     "00324231",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0033F100",
+   "text": "calls `002640C0` with the incoming registers, pops a value with `00267E10(r9)`, resolves `002650B0(002640C0 result, rdx, value)` and tail-jumps `003E92F0(002640C0 result, resolved pointer)`",
+   "anchors": [
+    [
+     "0033F115",
+     "call"
+    ],
+    [
+     "0033F120",
+     "call"
+    ],
+    [
+     "0033F12E",
+     "call"
+    ],
+    [
+     "0033F148",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00505560",
+   "text": "tail-jumps through the eight-byte entry, indexed by the sign-extended byte `+0x3C` of `rcx`, of the code-pointer table at `00D22790`, with `rcx`, `r8` and `r9` as passed in and `rdx` overwritten with the table base",
+   "anchors": [
+    [
+     "00505565",
+     "lea"
+    ],
+    [
+     "0050556C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050E060",
+   "text": "calls `002640C0` with the incoming registers and zeroes three stack floats; when `PartyFocus_GetCurrentPackedActorHandle()` is non-zero calls `Actor_GetWorldPosition(003588B0(that value), &float0, &float1, &float2)`; then resolves three pointers with `002650B0(002640C0 result, rcx, 00267E10(r9))` in turn and stores float0 through the third, float1 through the second and float2 through the first",
+   "anchors": [
+    [
+     "0050E0A0",
+     "call"
+    ],
+    [
+     "0050E0C2",
+     "call"
+    ],
+    [
+     "0050E0D8",
+     "call"
+    ],
+    [
+     "0050E11F",
+     "movss"
+    ],
+    [
+     "0050E138",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "005105A0",
+   "text": "pops a value with `00267E10(r9)`, resolves `002650B0(002640C0(), rdx, value)` and tail-jumps `002393E0(rdx, resolved pointer)`",
+   "anchors": [
+    [
+     "005105B0",
+     "call"
+    ],
+    [
+     "005105B7",
+     "call"
+    ],
+    [
+     "005105C5",
+     "call"
+    ],
+    [
+     "005105DA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005106D0",
+   "text": "pops a value with `00267E10(r9)`, resolves `002650B0(002640C0(), rdx, value)` and tail-jumps `002395A0(resolved pointer)`",
+   "anchors": [
+    [
+     "005106E0",
+     "call"
+    ],
+    [
+     "005106E7",
+     "call"
+    ],
+    [
+     "005106F5",
+     "call"
+    ],
+    [
+     "00510707",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003241D0",
+   "was": "returns 0 when `ecx - 1` is above 0x1D (unsigned); otherwise indexes a byte table after the body by `ecx - 1` and dispatches through a jump table to an arm that returns one of 0x15 to 0x1E, or 0; the byte table's contents are not decoded in the listing",
+   "now": "returns 0 when `ecx - 1` is above 0x1D (unsigned); otherwise indexes a byte table after the body by `ecx - 1` and dispatches through a jump table, which (decoded from the bytes) give: `ecx` 1 to 3 returns 0x15, 4 to 6 0x16, 7 0x17, 8 0x18, 9 to 13 0x19, 14 0x1A, 15 to 17 0x1B, 18 0x1C, 19 and 20 0x1D, 30 0x1E, and 21 to 29 return 0",
+   "why": "incomplete branch account: the case-to-constant mapping was left undecoded; decoded from the bytes"
+  },
+  {
+   "fn": "0030BEB0",
+   "was": "calls `0031B760()` and returns 0 when the result is null, when bit 3 of its dword `+0` is clear, when its qword `+0x698` is null or when byte `+5` of that object is non-zero; otherwise returns the inverse of bit 23 of the dword `+0`",
+   "now": "calls `0031B760(rcx)` with the incoming `rcx` and returns 0 when the result is null, when bit 3 of its dword `+0` is clear, when its qword `+0x698` is null or when byte `+5` of that object is non-zero; otherwise returns the inverse of bit 23 of the dword `+0`",
+   "why": "argument naming: 0031B760 consumes rcx (it tests rcx and tail-jumps 00263E30); `()` claimed no argument"
+  },
+  {
+   "fn": "00505560",
+   "was": "tail-jumps through the eight-byte entry, indexed by the sign-extended byte `+0x3C` of `rcx`, of the code-pointer table that the `lea` at `00505560+0x5` loads, with the incoming registers",
+   "now": "tail-jumps through the eight-byte entry, indexed by the sign-extended byte `+0x3C` of `rcx`, of the code-pointer table at `00D22790`, with `rcx`, `r8` and `r9` as passed in and `rdx` overwritten with the table base",
+   "why": "register-preservation claim wrong: rdx is overwritten by the lea before the jump"
+  }
+ ]
+}

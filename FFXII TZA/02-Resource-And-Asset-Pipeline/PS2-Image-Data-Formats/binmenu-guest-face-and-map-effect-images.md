@@ -117,12 +117,12 @@ Shared resource API (verified in the exe):
 | `002F8040` | loaded-state check — `g_slotTable[0x02EC3D80 + id*8] != 0` |
 | `002F83E0` | release by id |
 | `002FA560` | per-kind dispatcher (kind 0–0x1B) → `002385D0` |
-| `00238640` | indexes the per-kind record table `0x050E53C0 + kind*8` → `003845F0` |
-| `003845F0` | record pointer fixup: `dword` offset fields at `rec+0xC/0x10/0x14/0x18/0x1C` relocated to absolute (plus a sub-offset table via `+0x14`) |
+| `00238640` | indexes the per-kind record table ~~`0x050E53C0 + kind*8`~~ `0x02F973C0 + kind*8` *(corrected 2026-10-02, OPUS: the 19-byte binder's `+0x3` `lea rcx, [rip + ...]` resolves to `02F973C0`)* → `003845F0` |
+| `003845F0` | record pointer fixup: `dword` offset fields at ~~`rec+0xC/0x10/0x14/0x18/0x1C` relocated to absolute~~ `rec+0xC/0x10/0x18/0x1C` relocated to absolute, and `+0x14` relocated then re-encoded image-relative *(corrected 2026-10-02, OPUS: `AreaData_BindAndRebaseSectionDescriptor` adds the base at its `+0x62` and hands the sum to `RuntimePointer_EncodeImageAddress` at its `+0x6D`, storing the encoding at its `+0x72`)* (plus a sub-offset table via `+0x14`) |
 
 The record-fixup shape (`+0xC…+0x1C` self-relative offsets) shows kind-7 loads produce a
 **record whose fields point into the blob**; for these headerless units the blob is the
-pixel buffer itself. The per-kind descriptor table `0x050E53C0` is **runtime-populated**
+pixel buffer itself. The per-kind descriptor table ~~`0x050E53C0`~~ `0x02F973C0` *(corrected 2026-10-02, OPUS: as in the table above; it lies past `.data`'s raw end `0x01F7E400`, so BSS)* is **runtime-populated**
 (null in the offline image), so the texture-format descriptor for these ids is not
 recoverable statically — §5 states the consequence.
 

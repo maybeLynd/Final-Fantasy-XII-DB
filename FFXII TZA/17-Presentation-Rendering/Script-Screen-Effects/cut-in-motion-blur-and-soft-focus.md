@@ -428,3 +428,22 @@ Section 7's open items stay open.
 
 Corrected in place: the two notes. The consumer record is
 `_index/candidates/cutin-blur-softfocus-falsification-pass-1-0929/`.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-cut-in-motion-blur-and-soft-focus-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003DE240` | 91 B | takes `n = 00265860()`; when `n` is 0 tail-jumps `0024EB20`; otherwise, when qword `02B58C48` is null, stores `002F16B0()` there and writes into that record qword `+0x10` = `003DE160`, qword `+8` = `003DE1F0`, dword `+4` = `n`, dword `+0x28` = 1 and byte `+0x20` = 0, and when it is non-null returns untouched | `003DE24F`, `003DE256`, `003DE25B`, `003DE271`, `003DE28A` |
+| `003DE2A0` | 98 B | takes `n = 00265860()`; when `n` is 0 tail-jumps `0024EC00` with `rcx` = `02B58C38`; otherwise, when qword `02B58C48` is null, stores `002F16B0()` there and writes into that record qword `+0x10` = `003DE160`, qword `+8` = `003DE1F0`, dword `+4` = `n`, dword `+0x28` = 0 and byte `+0x20` = 0, and when it is non-null returns untouched | `003DE2B1`, `003DE2BD`, `003DE2C2`, `003DE2D8`, `003DE2F1` |
+| `003DE360` | 51 B | stores into byte `02B58C39` a value chosen by `ecx`: 1 maps to 2, 2 to 3, 3 to 0, and 0 or any other value to 1 | `003DE36E`, `003DE373`, `003DE37B`, `003DE383`, `003DE38B` |
+| `003DE3A0` | 51 B | stores into byte `02B58C3A` a value chosen by `ecx`: 0 to 3 are stored as they are and any other value stores 0 | `003DE3AE`, `003DE3B3`, `003DE3BB`, `003DE3C3`, `003DE3CB` |
+| `003DE400` | 38 B | stores into byte `02B58C38` a value chosen by `ecx`: 1 maps to 2, 2 to 3, and 0 or any other value to 1 | `003DE409`, `003DE40E`, `003DE416`, `003DE41E` |
+| `003DE430` | 24 B | when `ecx` is non-zero stores 2 in byte `02B58C3B` and keeps it when `ecx` is 1; any other value (including 0) ends with 1 stored there | `003DE432`, `003DE434`, `003DE43E`, `003DE440` |
+| `003DF950` | 27 B | stores `cl`, `dl`, `r8b` and `r9b` in the bytes `02B59D3C`, `02B59D3D`, `02B59D3E` and `02B59D3F` | `003DF956`, `003DF95C`, `003DF963` |
+| `003DF970` | 27 B | stores `cl`, `dl`, `r8b` and `r9b` in the bytes `02B59D40`, `02B59D41`, `02B59D42` and `02B59D43` | `003DF976`, `003DF97C`, `003DF983` |
+| `003DF990` | 23 B | replaces bit 0 of byte `02B59D21` with 1 when `ecx` is non-zero and 0 when it is 0, keeping the other bits (old byte AND `0xFE`, OR the `setne` result) | `003DF997`, `003DF999`, `003DF99C`, `003DF99E`, `003DF9A0` |
+| `003DF9C0` | 17 B | stores the float `xmm0` in dword `02B59D24` and the float `xmm1` in dword `02B59D28` | `003DF9C8` |
+| `003DF9F0` | 64 B | stores into byte `02B59D20` a value chosen by `ecx`: 0 to 4 are stored as they are and any other value stores 2 | `003DFA03`, `003DFA08`, `003DFA18`, `003DFA20`, `003DFA28` |
+| `003DFA30` | 17 B | stores the float `xmm0` in dword `02B59D34` and the float `xmm1` in dword `02B59D38` | `003DFA38` |

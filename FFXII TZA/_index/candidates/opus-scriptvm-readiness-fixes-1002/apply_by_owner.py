@@ -117,6 +117,10 @@ LINE_OWNERS = {
 }
 
 
+# Holds lifted 2026-10-02 (OPUS): these pages' holds are lifted; their held edits on other identities' lines go to them.
+OWNERS["OPUS-HELD"] = set(OWNERS.get("OPUS-HELD", set())) - set(['01-Script-VM-Native-Bridge/Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md'])
+
+
 def owner_of(e):
     for o, prefixes in LINE_OWNERS.items():
         if e[1].startswith(prefixes):

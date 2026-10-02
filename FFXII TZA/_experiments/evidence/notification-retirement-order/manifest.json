@@ -1,0 +1,218 @@
+{
+  "package": "notification-retirement-order",
+  "method": "A STATIC_ONLY original notification-before-entry-reclaim proof",
+  "question": "Does completion post before or after returning its own request slot to the free pool?",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-01.status.json",
+      "bytes": 254,
+      "sha256": "5e33a6d34680ac29e056eb7046c5ed688cc7b5934c65a718059278eb3931ec69"
+    },
+    {
+      "path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 996,
+      "sha256": "873529d06e0710afc888b8144dfed8f041c41819f37da564ca31263bc8538644"
+    },
+    {
+      "path": "control-01.status.json",
+      "bytes": 253,
+      "sha256": "760fe60b901341fb86d4ace3af24c425b34f2c0bd004becd8cc153de816c5335"
+    },
+    {
+      "path": "control-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-01.stdout",
+      "bytes": 107,
+      "sha256": "11a0d18724af40df9012d92d81c722c7c82c846492b8d67fc505f689eb3522cb"
+    },
+    {
+      "path": "control-result-01.json",
+      "bytes": 3379,
+      "sha256": "14e79f5a2d8f7afade33650e4a12249fb9dfee65fd390e1424fef18d818a63af"
+    },
+    {
+      "path": "control.py",
+      "bytes": 4178,
+      "sha256": "487223f21545165d2b16773a0059cfa667f0a4672b913d58dd97144119084c3b"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/capture-01.status.json",
+      "bytes": 227,
+      "sha256": "88a64f1cfb099394af53473c8811dffc78db7ed06286fb8c3abcd3f7c5b0140d"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/status.json",
+      "bytes": 178,
+      "sha256": "207981738bed3c93a78aa72ffeed2fbe27462552a92071ec1e5721d7136b0565"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/stderr",
+      "bytes": 1150,
+      "sha256": "8df5ac8a43b3161b443da6d238593f997945da9c980e3a0e668148bf07608944"
+    },
+    {
+      "path": "controls-01/failed-capture-exit/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/missing-capture-receipt/status.json",
+      "bytes": 178,
+      "sha256": "207981738bed3c93a78aa72ffeed2fbe27462552a92071ec1e5721d7136b0565"
+    },
+    {
+      "path": "controls-01/missing-capture-receipt/stderr",
+      "bytes": 1405,
+      "sha256": "499580e0668fe8c24264128ec491a264f7974ec6156c70a9a2269a9f80d862d3"
+    },
+    {
+      "path": "controls-01/missing-capture-receipt/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-01/missing-retained-identity/status.json",
+      "bytes": 178,
+      "sha256": "207981738bed3c93a78aa72ffeed2fbe27462552a92071ec1e5721d7136b0565"
+    },
+    {
+      "path": "controls-01/missing-retained-identity/stderr",
+      "bytes": 1860,
+      "sha256": "f955334e96376fb38815b4728e9d40ea089d954eb6d06b9bd1bc94950c5fc9e2"
+    },
+    {
+      "path": "controls-01/missing-retained-identity/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "environment-01.json",
+      "bytes": 524,
+      "sha256": "b2636aacb06fbb21a22f78b6cb1856cd5124909227ce2e6f884a31b3b15e4c1e"
+    },
+    {
+      "path": "history/correction-01.json",
+      "bytes": 375,
+      "sha256": "90ea5f850c138b1e9c63790c2cb16389cbc3217af69936d86df0e5516d17aef7"
+    },
+    {
+      "path": "history/prove-01-invalid-before-result.py",
+      "bytes": 13059,
+      "sha256": "22123e85aba01289120992054c43a7fcb1d048b2232e2980911e340166dd4038"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1003,
+      "sha256": "a2eb0f7db3b7f730ae331385914d47a25e7831afaf406c4463e58cba0ad90e77"
+    },
+    {
+      "path": "prove-01.status.json",
+      "bytes": 278,
+      "sha256": "3cb6fd04308901976efd41316bdad21934b23e2e0e0684e3f5d810d47275c409"
+    },
+    {
+      "path": "prove-01.stderr",
+      "bytes": 1195,
+      "sha256": "0d93e8a135b395a0c1ebec17fa5b4ad3c3b316dc7dc0273b4e51096c18211c98"
+    },
+    {
+      "path": "prove-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-02.status.json",
+      "bytes": 278,
+      "sha256": "5eae1c59717c50b99a82434771bf9436e0fd76a39faa0504c12c03b327a705bd"
+    },
+    {
+      "path": "prove-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-02.stdout",
+      "bytes": 108,
+      "sha256": "bfee0dd4a4cccd5a13712d02516fd2bb512a73581656aded876883272d70b71f"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 13059,
+      "sha256": "357329c0f8d21388800e6c41d4c79653b829475bc902b27450ca07891f676ad9"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3224,
+      "sha256": "3ac9c9f325d6f92794f81d1576a619c4cb38e1e4a63034fa58566f2d5a18dfb3"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 4071,
+      "sha256": "acc1ee9abfe6c34e071d02e99c2891de64324cd8b4e04374c7e699d941efc488"
+    },
+    {
+      "path": "retained-body-identities.json",
+      "bytes": 2574,
+      "sha256": "3c7d63e6e16e57efb3d205c6b2cece8d5e6ee9a83d37ef21d5db47d5d1b5f065"
+    },
+    {
+      "path": "retained-manifest.status.json",
+      "bytes": 384,
+      "sha256": "0b76880679d45c500743e0bacdbe349755f5546f8e80f444e0701d740923080d"
+    },
+    {
+      "path": "retained-manifest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained-manifest.stdout",
+      "bytes": 26992,
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "source-01.json",
+      "bytes": 76908,
+      "sha256": "a2299be8f2f8eb79f0da7aaaff41e0e5b9d4f444117ba39e79e1bb032cdbc735"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "limits": [
+    "No natural full-pool/same-actor request/cancel-reentry occurrence, universal entry lifetime, concurrent mutation, all writer, native helper or imported effect proof. Flags>=2 additionally cross263050 and need its effect/noninterference proof.",
+    "Normal initialized valid records/linked head/private frames/ABI and disjoint actor, entry pool and caller stack required. No native or game experiment performed.",
+    "Static graph partitions are proofs of control-flow boundaries, not calls with injected state or independent project acceptance."
+  ],
+  "acceptance": "Producer valid; independent acceptance and canonical consumption pending"
+}

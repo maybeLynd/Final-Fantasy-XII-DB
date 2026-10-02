@@ -1,0 +1,18 @@
+{
+  "name": "missing-source",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-insert-key-admission\\controls-01\\missing-source\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "867b3a4ea40b0944a79c8d458d3ca0285037500d2471e8e4857cdac57bb5e3f3",
+  "diagnostic": "source-01.json",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "59cd4e82d5024f9b2daf1a558c3dd6490c0721c3af187df3f80d3be98aba3ae4"
+}

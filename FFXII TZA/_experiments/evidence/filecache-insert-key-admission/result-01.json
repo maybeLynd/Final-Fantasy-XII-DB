@@ -1,0 +1,162 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY pre-keyed insertion ABI and key forwarding",
+  "driver_sha256": "867b3a4ea40b0944a79c8d458d3ca0285037500d2471e8e4857cdac57bb5e3f3",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "7b1683169d121522d38a62c4fde6730e27e2cb19098fb55d7456db2c2745173a"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 181,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x1d6a20",
+      "bytes": 77,
+      "instructions": 22,
+      "calls": [
+        [
+          1927743,
+          "0x20c700"
+        ],
+        [
+          1927763,
+          "0x20b680"
+        ]
+      ],
+      "returns": [
+        "0x1d6a6c"
+      ]
+    },
+    {
+      "entry": "0x20b680",
+      "bytes": 443,
+      "instructions": 122,
+      "calls": [
+        [
+          2143923,
+          "0x5cd4f0"
+        ],
+        [
+          2144002,
+          "0x20b0f0"
+        ],
+        [
+          2144038,
+          "0x20c300"
+        ],
+        [
+          2144050,
+          "0x5cd820"
+        ],
+        [
+          2144070,
+          "0x1ba860"
+        ],
+        [
+          2144220,
+          "0x20b5f0"
+        ],
+        [
+          2144232,
+          "0x5cd820"
+        ],
+        [
+          2144242,
+          "0x210ec0"
+        ],
+        [
+          2144273,
+          "0x217a60"
+        ]
+      ],
+      "returns": [
+        "0x20b83a"
+      ]
+    },
+    {
+      "entry": "0x20b5f0",
+      "bytes": 133,
+      "instructions": 37,
+      "calls": [
+        [
+          2143842,
+          "0x1ae9b0"
+        ]
+      ],
+      "returns": [
+        "0x20b674"
+      ]
+    }
+  ],
+  "original_bytes": 653,
+  "entry_abi": {
+    "1D6A20": {
+      "ecx": "precomputed key32",
+      "rdx": "pointer forwarded as insertion r8",
+      "r8d": "forwarded insertion r9d",
+      "r9d": "forwarded insertion arg5 DWORD"
+    },
+    "20B680": {
+      "rcx": "service/map receiver",
+      "edx": "key32",
+      "r8": "input data-pointer carrier",
+      "r9d": "size/value32 carrier",
+      "arg5_at_entry_rsp28": "numeric kind32"
+    }
+  },
+  "key_stack": {
+    "entry_saved_key_offset": 16,
+    "push_bytes": 56,
+    "sub_bytes": 64,
+    "current_saved_key_offset": 136,
+    "width": 4,
+    "overlapping_own_writes_before_map_call": [],
+    "kind_current_offset": 160
+  },
+  "map_helper": {
+    "20B5F0_input": "RDX -> original DWORD key home at caller SP+88h",
+    "pair_key_current_offset": 48,
+    "pair_key_width": 4,
+    "pair_value_current_offset": 56,
+    "pair_value_seed": 0,
+    "native_insert_boundary": "1AE9B0 with R9 pointing to private key/value pair; no native effect executed",
+    "result_boundary": "returned node+28h value slot, caller stores its descriptor pointer there under normal helper contract"
+  },
+  "established": [
+    "1D6A20 receives a precomputed DWORD key in ECX and forwards unchanged low32 through saved EBP to insertion EDX after obtaining the service receiver. Its data-pointer,size/value32 and numeric-kind32 arguments are distinct; no pathname or prefix processing occurs in this supplied wrapper.",
+    "20B680 uses full DWORD key comparisons with unsigned JB/JAE and unchanged EBP. The existing-key arm forwards EDX=EBP to20C300; the new-descriptor arm passes the exact saved DWORD key home to20B5F0. No own full-width stack write overlaps that saved home before the map call.",
+    "20B5F0 reads the full DWORD key and uses unsigned comparison. On insertion preparation it copies the full DWORD to private pair+0, seeds QWORD pair+8=0 and forwards the pair to named native tree boundary1AE9B0. No local BTR31/hash/prefix normalization or own input-key write on the supplied value path.",
+    "All32 key bits are preserved to these boundaries, including bit31. Numeric ABI preservation is an invariant of the MOV widths/carriers, not a sampled native value. It does not prove that natural callers supply bit31-set keys.",
+    "The path normalizer output domain alone therefore cannot establish the whole insertion entry input domain. Actual caller derivation and native map effects need their own evidence; absence/collision/eviction conclusions cannot come from lookup normalization alone."
+  ],
+  "source_countermodel": {
+    "key": 2147483648,
+    "forwarded_key_at_existing_or_new_boundary": 2147483648,
+    "would_be_31bit_masked_key": 0,
+    "method": "Fixed-width source representation calculation, not original/native execution or naturally inserted record"
+  },
+  "affected_claims": [
+    "FABLE path-resolution and OV33E2 insert-domain prerequisite",
+    "OPUS cache insertion key32/data/size/kind ABI and lookup-vs-insert domain contract"
+  ],
+  "limits": [
+    "No FF12 instructions executed or emulated, no live process or natural cache contents captured.",
+    "Complete three supplied local bodies, not full transitive native library/helper or all-caller closure. Valid initialized service/map/data/private-frame, nonaliasing, standard ABI/normal returns and stable ordered tree are explicit premises.",
+    "1AE9B0/20C300/20B0F0/allocator/lock/wrapper getter effects not proved from stubs or names; actual key/value insertion or replacement/lifetime needs separate original-code/library contract evidence.",
+    "Full32 entry domain does not prove naturally supplied high-bit/nonhash keys; original callers may constrain inputs. No collision/archive namespace/eviction or six-candidate acceptance claim.",
+    "Prior accepted normalizer/prefix result not recaptured/retested. Its startup/native/import/locale limits remain.",
+    "Independent review and canonical consumption pending; no wholeOV or fullL1L2 closure. K14 closed, EXP127 invalid, menu spent/unapproved."
+  ],
+  "cleanup": "Owned offline evidence writes only; no game/PC/native instrumentation/save/config/reference or peer consumer changes."
+}

@@ -69,16 +69,76 @@ function-table offset. The reset covers+00..16 only. Scratch+18..27 and peer slo
 |---|---|
 | 1 | No start/end notification in these paths |
 | 2 | At003DBDC0 selection/start, BEFORE target bytecode executes |
-| 3 | At003DB2A0 removal/RET through003DC0D0 |
+| 3 | At `003DB2A0` removal through `003DC0D0`: on RET, and also when a mode-4 `freqcancel` recycle (`003DB420`) removes the entry as its channel head |
 | 4 | The notification itself, filed on the requester detached list |
 
 OriginalREQSW arms kind4 then can resume its caller before the target's first bytecode instruction.
-OriginalREQEW remains blocked until the target executes RET and removal posts the notification.
+OriginalREQEW remains blocked until the target entry is removed and the removal posts the notification. RET is the
+usual removal, but not the only one.
+
+**A cancellation can attempt the end notification without RET** *(2026-10-02, FABLE, from ASTRA's
+[`request-cancel-notification`](../../_experiments/evidence/request-cancel-notification/README.md) (`011e013c7`),
+FABLE independent review ACCEPT-WITH-NARROWING,
+[`fable-review-astra-request-cancel-notification-1002`](../../_index/candidates/fable-review-astra-request-cancel-notification-1002/REVIEW.md)).*
+
+- **What the cancel verbs pass.** `freqcancel` (`00352980`) passes its popped channel and mode 4 to
+  `ActorResource_RecycleEntryRange` (`003DB420`). The two-argument form (`00353660`) passes its first pop + 1 and
+  resolves the second pop to another actor.
+- **What the recycler selects.** Mode 4 clears the state filter. The recycler walks channels from
+  `byte actor+0x88` - 1 down to max(0, signed bound), keeping only those set in its entry snapshot of
+  `word actor+6`. For each such channel it hands the first entry with a nonzero `+0x11` to `003DB2A0`: at most one
+  entry per channel per call.
+- **When the notification is attempted.** The entry must be its channel's head, with mode `+0x10` = 3 and a
+  requester ordinal other than `0x8000`. `003DB2A0` then unhooks it (clearing `+0x11`) and calls `003DC0D0`
+  whatever the run state was. The interpreter is not called in front of that attempt.
+- **A non-head entry is not removed.** The removal's search passes the removed index itself to its index leaf on
+  every pass instead of walking the list, so a cancel does not remove an entry that sits behind a zero-state head.
+- **What an end notification means.** It is evidence that the target entry was removed, not that the target's
+  bytecode executed RET. Admission, delivery and consumption of the notification are separate stages (below).
+- **The recycler's return value** is 1 on every normal path, including a NULL actor, an empty range and no
+  selection, so it says nothing about removal or notification.
+- **The NULL-actor hazard.** After a NULL actor both verbs still tail-jump to the request scheduler `003DB6E0`, which
+  reads `[rcx + 0x63]` without testing rcx.
+- **Premises:** valid, stable and disjoint actor and entry storage; normal ABI and returns. The removal past the
+  attempt is opaque for entry flags 2 and above (a flags helper whose effects are not read; its address is on the binding-and-channels page).
+- **Still open:** whether an authored scene cancels a mode-3 entry; natural interleaving; same-key re-entry; the
+  scheduler's own effects.
 
 The notification is not a separate guaranteed-delivery primitive. It allocates from the requester's
 ordinary finite entry pool. Both notification producers ignore the allocation return. Controls
 with caller capacity exhausted leave target progress intact and caller kind4 still waiting.
 No shipped deadlock, automatic retry or higher recovery is inferred.
+
+**The end notification is attempted before the finishing entry's own slot is free** *(2026-10-02, FABLE, from
+ASTRA's [`notification-retirement-order`](../../_experiments/evidence/notification-retirement-order/README.md)
+(`e46090c35`), FABLE independent review ACCEPT-WITH-NARROWING,
+[`fable-review-astra-notification-retirement-order-1002`](../../_index/candidates/fable-review-astra-notification-retirement-order-1002/REVIEW.md)).*
+In a head-entry removal, `003DB2A0` first calls the unhook `003DC1B0`, which relinks the neighbours, clears entry
+`+0x11` and writes nothing on the actor. Next comes the mode-3 attempt through `003DC0D0`. Only after that does
+the removal relink the index onto the free list and publish it as the free head `+0x60`; every path from the
+attempt's return passes both steps.
+
+The attempt is made only when the entry is the list head, its mode `+0x10` is 3, its signed channel byte `+0x02` is
+not negative, its requester word `+0x06` is not `0x8000`, and the requester resolves to a non-null actor.
+
+- **Two refusals come first.** The posted descriptor selects function 0. `003DBCF0` checks that id against the
+  requester's function count before anything else, as an unsigned compare: a zero count returns 3. Only then does
+  it test the requester's free head: `0xFF` returns 2. Neither refusal calls anything or writes outside its own
+  stack.
+- **So a self-requested notification on a full pool is lost.** When the requester is the removing actor itself and
+  its free list is already empty, the notification is refused with 2 before the retiring slot becomes
+  allocatable. Conditions: a valid head mode-3 entry; a positive function count; entry flags `+0x12` 0 or 1 (2
+  and above also cross a flags helper whose effects are not established); stable, disjoint actor, pool and frame
+  storage; normal returns under the ABI; no concurrent writer. This is a conditional reading of the original code,
+  not an observed full pool. "Same actor" is a premise on the resolved requester pointer; the code compares nothing.
+- **The removal's return is not a delivery result.** It is bit 0 of the entry's `+0x12`, read before the attempt;
+  the attempt's own result is overwritten unread. With flags 1 the removal returns 1 even when the notification was
+  refused. Index `0xFF` returns a constant 1 without reading an entry.
+- **An observer has to read the attempt itself:** the requester, its free head and the call origin at
+  `003DBCF0` + 0x36 with return origin `003DC0D0` + 0x57. Spare capacity seen after the removal does not show that
+  capacity existed when the notification was allocated.
+- **Still open:** whether shipped play reaches a full self-pool; actor lifetime and reuse; concurrent mutation;
+  cancel and re-entry scheduling; the insertion helpers' success and effects on a non-`0xFF` free head.
 
 ## 4. Notification identity
 
@@ -161,6 +221,10 @@ memory are outside the demonstrated preconditions. This is not a blanket memory-
       new payload is bound, and the field pass reaches records only through slot `+0x08`. Addresses are on the
       actor-manager pages; this page names the functions by role.
 - [ ] **OV-10.** Real authored input bounds and higher recovery/delivery policy for exhausted notification capacity.
+  - *Qualified 2026-10-02 (FABLE, review of ASTRA `notification-retirement-order`):* the end notification is
+    attempted before the removed slot is relinked and published, so the capacity that matters is the requester's
+    free head at the attempt (section 3). A runtime observation for the residue counts only when it is taken at the
+    attempt, with the requester and the call origin; capacity seen after the removal does not count.
 - [x] ~~**OV-11.** Outer-frame ordering, reentrancy, live actor allocation/reuse, and remaining native wait services.~~ *ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5): the native wait services are a closed set - `0025DF00`'s bounded eight-entry kind table, one predicate per service arm; actor reuse is this section's own 2026-09-26 answer; in-frame order is the field-pass page sections 4-5; reentrancy stays superseded under OV-2; [`ov11-wait-services-fable/`](../../_index/candidates/ov11-wait-services-fable/README.md). Register OV-11.*
 - [x] ~~Required independent review and claim-level incorporation into the major-system L2 assessment.~~ *NOT A QUESTION 2026-09-29 (SWE2-FRONTIER) under the class-2 ruling: an independent-acceptance/process item, carried by board task FABLE-CARRIER-SECTION-OVERLAY-ACCEPTANCE-0929. Register OV-12.*
 

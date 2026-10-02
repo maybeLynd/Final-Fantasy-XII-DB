@@ -1,0 +1,214 @@
+{
+  "package": "authored-census-admission",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "cases/all-extractions-fail/case.json",
+      "bytes": 310,
+      "sha256": "97db61cdc744e6def0e5cebfdb8d093d2a6e6b3b72c8c1833284328d5aa257e3"
+    },
+    {
+      "path": "cases/all-extractions-fail/Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py",
+      "bytes": 5226,
+      "sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad"
+    },
+    {
+      "path": "cases/all-extractions-fail/fixture-archive.bin",
+      "bytes": 58,
+      "sha256": "61a4b7bb09d5c9e69112fc7dafb02c08717f07d9eb8328604a38923b43be5827"
+    },
+    {
+      "path": "cases/all-extractions-fail/fixture-effects.json",
+      "bytes": 860,
+      "sha256": "b0ff741140635ec5f410d6ef33d882af2288a6a4b3cab51fd23aa7f70a214190"
+    },
+    {
+      "path": "cases/all-extractions-fail/inputs/fixture/a.ebp",
+      "bytes": 352,
+      "sha256": "599eeb5e8019f71c36ffe80066e2d074ab5d767d1695ac9b57f591e891d0be3b"
+    },
+    {
+      "path": "cases/all-extractions-fail/inputs/fixture/b.ebp",
+      "bytes": 352,
+      "sha256": "45e135da854ef339b5c3558aa2d5f2d5d8849f086cca5c0f91bf075d37506a0b"
+    },
+    {
+      "path": "cases/all-extractions-fail/status.json",
+      "bytes": 210,
+      "sha256": "c96261645024b5020fc8a90368f084e5eccebfd940c27a2617a9f1043c9906ba"
+    },
+    {
+      "path": "cases/all-extractions-fail/stderr",
+      "bytes": 54,
+      "sha256": "407f5af8254e98898d46534548616b66dfa0deb8bf65f2615fb69bc792f41914"
+    },
+    {
+      "path": "cases/all-extractions-fail/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cases/all-readable/calls.tsv",
+      "bytes": 268,
+      "sha256": "7f542da81eb8b0d872fc553400f710a7fca2d462f4f773087e8967f69ed08193"
+    },
+    {
+      "path": "cases/all-readable/case.json",
+      "bytes": 303,
+      "sha256": "2636a6c485d0162d785cc85d286f51271b9ee3b17f81ccfa12f6997c86901bff"
+    },
+    {
+      "path": "cases/all-readable/Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py",
+      "bytes": 5226,
+      "sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad"
+    },
+    {
+      "path": "cases/all-readable/fixture-archive.bin",
+      "bytes": 58,
+      "sha256": "61a4b7bb09d5c9e69112fc7dafb02c08717f07d9eb8328604a38923b43be5827"
+    },
+    {
+      "path": "cases/all-readable/fixture-effects.json",
+      "bytes": 852,
+      "sha256": "8bd85b792e6935490271f8d3d0a8d89b5c45dc67d788dcfe445b26419e356275"
+    },
+    {
+      "path": "cases/all-readable/inputs/fixture/a.ebp",
+      "bytes": 352,
+      "sha256": "599eeb5e8019f71c36ffe80066e2d074ab5d767d1695ac9b57f591e891d0be3b"
+    },
+    {
+      "path": "cases/all-readable/inputs/fixture/b.ebp",
+      "bytes": 352,
+      "sha256": "45e135da854ef339b5c3558aa2d5f2d5d8849f086cca5c0f91bf075d37506a0b"
+    },
+    {
+      "path": "cases/all-readable/status.json",
+      "bytes": 210,
+      "sha256": "3b8123475857b0edd70c2c95ce19a7d9165f5748f88e8511ec5c8b47dc1a863a"
+    },
+    {
+      "path": "cases/all-readable/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cases/all-readable/stdout",
+      "bytes": 178,
+      "sha256": "e2a2b81dc5fea97846da20698abd6fbf136ed4e9e5e6aa4bfb2eb84d11d6c8d7"
+    },
+    {
+      "path": "cases/one-extraction-fails/calls.tsv",
+      "bytes": 165,
+      "sha256": "f933513cb0e9c18d03288680df0b1785ea52c69042be6582e5d22e6fc6cd5a20"
+    },
+    {
+      "path": "cases/one-extraction-fails/case.json",
+      "bytes": 313,
+      "sha256": "9d9c34a35817398e547506d47a3862096b7bb54b8639800997aa6dee1f9bb781"
+    },
+    {
+      "path": "cases/one-extraction-fails/Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py",
+      "bytes": 5226,
+      "sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad"
+    },
+    {
+      "path": "cases/one-extraction-fails/fixture-archive.bin",
+      "bytes": 58,
+      "sha256": "61a4b7bb09d5c9e69112fc7dafb02c08717f07d9eb8328604a38923b43be5827"
+    },
+    {
+      "path": "cases/one-extraction-fails/fixture-effects.json",
+      "bytes": 863,
+      "sha256": "bc7c17c22e33a518888d1ab82195833b6d82ae34136dd28167f8498d6c4fc909"
+    },
+    {
+      "path": "cases/one-extraction-fails/inputs/fixture/a.ebp",
+      "bytes": 352,
+      "sha256": "599eeb5e8019f71c36ffe80066e2d074ab5d767d1695ac9b57f591e891d0be3b"
+    },
+    {
+      "path": "cases/one-extraction-fails/inputs/fixture/b.ebp",
+      "bytes": 352,
+      "sha256": "45e135da854ef339b5c3558aa2d5f2d5d8849f086cca5c0f91bf075d37506a0b"
+    },
+    {
+      "path": "cases/one-extraction-fails/status.json",
+      "bytes": 209,
+      "sha256": "827bdb5a3219bfdaeeb73f99a20e54718f8622030089cfd0bcc78546f9a7e4e4"
+    },
+    {
+      "path": "cases/one-extraction-fails/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cases/one-extraction-fails/stdout",
+      "bytes": 149,
+      "sha256": "91798510a1d87cc147b71cb209c07f8d541c225ff7cae20fd4e05ecb5a264b65"
+    },
+    {
+      "path": "current-source-agreement-01.json",
+      "bytes": 329,
+      "sha256": "0703b72ccfdc9fc0940b16b0d06bc10171c054fe293d625565f3bdf12c886084"
+    },
+    {
+      "path": "environment-01.json",
+      "bytes": 458,
+      "sha256": "3674c047c236285ae7f64a2efe3ba46fe52e3a5384951b84a97b7bfe2ddba6b2"
+    },
+    {
+      "path": "fixture_entry.py",
+      "bytes": 2405,
+      "sha256": "13904b56f82bd54b046ceafb98366da14ca354643d3f7e5463695822040e411b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3622,
+      "sha256": "1ec6c94f182a72d78ed6a0c1783e592d10e48f9bd7839d512b6968c79a9b91f0"
+    },
+    {
+      "path": "reduce-01.status.json",
+      "bytes": 148,
+      "sha256": "244e30805089422b7244a28dcb348c57a2563d73e4c94d8b3baf6016e72cd3c0"
+    },
+    {
+      "path": "reduce-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reduce-01.stdout",
+      "bytes": 96,
+      "sha256": "c0030491ba3a94b31ef6183c46b428beaef9305ebb7794554916e7984c57d135"
+    },
+    {
+      "path": "reduce.py",
+      "bytes": 4070,
+      "sha256": "3c7c8e4a1cb31f33ba6fb1e4581d0cbf8368f8469ad6ccb006cd6df7b1385f74"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 3017,
+      "sha256": "9827e5a93809ac1ad2cdf703dcb779a81721dbe7b4f97ffbe752585f008726f9"
+    },
+    {
+      "path": "retention-01.json",
+      "bytes": 422,
+      "sha256": "0eaf6e07f3c3a8491494593053a9ce962ffb16fdafc21af14ea40e9a23311923"
+    },
+    {
+      "path": "script_verb_census.py",
+      "bytes": 5226,
+      "sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad"
+    }
+  ],
+  "method": "A independent actual research-tool invocation with synthetic archive/index/extractor/decoder; not original FF12 or real VBF execution",
+  "question": "Does nonzero sibling CALL count hide an extraction failure?",
+  "limits": "Independent research-tool failure-handling control; synthetic archive/index/extractor/decoder and names/reference arguments. Not original FF12 code execution, actual shipped callsites, bytecode decoder correctness, real VBF read failure or natural gameplay.",
+  "acceptance": "producer-valid control/reducer; independent project acceptance and owned helper policy/repair pending"
+}

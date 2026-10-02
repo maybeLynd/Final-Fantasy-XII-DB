@@ -1,0 +1,18 @@
+{
+  "name": "missing-retained-wrapper",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\filecache-route2-commit-key\\controls-01\\missing-retained-wrapper\\prove.py",
+    "refused-result.json"
+  ],
+  "driver_sha256": "4d5de163285f1e5c3f541f0fd6982262a1547e494ccbccf7fe5dbdf9e3a71810",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "diagnostic": "filecache-key-boundaries-source-02.json",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "854888fda2d904bfc4c853906e2ae7cb326bbab88adb8c6d1cd0c7b963a931c6"
+}

@@ -362,3 +362,14 @@ reach) are not re-executed.
 | U8 | R-6 | **survives**: both root slots are tested before `00252B40` at `00280A60`; the two widget procs are `0027FB70` and `00280140` |
 
 No correction.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-ui-request-router-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002E0DA0` | 104 B | keeps `ecx AND 0x8000` and clears bit 15 of `ecx`; a remaining value above 6 (unsigned) returns 2 OR the kept bit, and 0 to 6 go through the seven-entry offset table at `002E0E08` to arms returning, in order, 0x11, 0x12, 0xA, 0xF, 0x13, 6 and 0x16, each ORed with the kept bit | `002E0DA2`, `002E0DA6`, `002E0DAF`, `002E0DC6`, `002E0E05` |
+| `002E1AE0` | 37 B | when byte `0215F1A1` is 0, stores 1 to byte `0215F1A0`, 0xC to dword `0215F1A4` and 0 to dword `0215F1A8`; otherwise returns without a write | `002E1AE7`, `002E1AE9`, `002E1AF0`, `002E1AFA` |
+| `003462D0` | 81 B | stores the zero-extended byte `00229EB0()` to dword `r8+4` and 0 to dword `r8+8`, takes `a` then `b` from two `00267E10(r9)` calls, calls `002E1A60(b, a)` and `002E1690()`, and tail-jumps to `002E0650()` | `003462EB`, `003462EE`, `00346308`, `0034630D`, `0034631C` |
+| `003470D0` | 91 B | calls `00267F90(r9, 0)`, stores the zero-extended byte `00229EB0()` to dword `r8+4` and 0 to dword `r8+8`, takes `a` then `b` from two `00267E10(r9)` calls, calls `002E1A60(b, a)` and `002E1690()`, and tail-jumps to `002E0650()` | `003470E5`, `003470F5`, `00347112`, `00347117`, `00347126` |

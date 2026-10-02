@@ -1,0 +1,11 @@
+{
+  "complete": true,
+  "commit": "4a818c6d3bd70c381e8f807f893d5d30def08d5d",
+  "source": "Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py",
+  "exit": 0,
+  "stderr": "",
+  "sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad",
+  "bytes": 5226,
+  "checkout_equal": true,
+  "limits": "unmodified committed research-tool driver; not original FF12 code or real resource corpus"
+}

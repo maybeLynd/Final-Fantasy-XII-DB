@@ -1,0 +1,204 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01BbJEW8EUsZAfZd7QTFetdW",
+ "report": "how-a-script-changes-the-battle-party.json",
+ "rows": [
+  {
+   "fn": "00324360",
+   "text": "calls `0037CB50()` and returns 1 when its result is non-zero, otherwise 0",
+   "anchors": [
+    [
+     "00324364",
+     "call"
+    ],
+    [
+     "0032436B",
+     "test"
+    ],
+    [
+     "0032436D",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "0034CDF0",
+   "text": "dispatches on dword `[r8]`: 0 stores 1 to it and continues as 1; 1 calls `00328B20(byte r8+4)` and `003601B0(0x13)`, stores 2 to dword `[r8]` and returns 1; 2 calls `003596B0()` and returns that result when it is non-zero, otherwise calls `003601C0(0x13)` and returns 0; any other value returns 1",
+   "anchors": [
+    [
+     "0034CE0A",
+     "call"
+    ],
+    [
+     "0034CE18",
+     "call"
+    ],
+    [
+     "0034CE25",
+     "mov"
+    ],
+    [
+     "0034CE31",
+     "call"
+    ],
+    [
+     "0034CE40",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003596B0",
+   "text": "calls `00324360()` and returns 1 when its result is not 1, and 0 when it is 1",
+   "anchors": [
+    [
+     "003596B4",
+     "call"
+    ],
+    [
+     "003596BB",
+     "cmp"
+    ],
+    [
+     "003596BE",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "003596D0",
+   "text": "fills a stack buffer of dwords with `n` = `0031B510(buffer, 4)` and returns 1 when `ecx` equals one of the first `n` dwords, otherwise 0 (also 0 when signed `n` is 0 or below), closing with the stack-cookie check `00808C40` against qword `01F44830`",
+   "anchors": [
+    [
+     "003596F1",
+     "call"
+    ],
+    [
+     "003596FD",
+     "jle"
+    ],
+    [
+     "00359700",
+     "cmp"
+    ],
+    [
+     "0035970E",
+     "xor"
+    ],
+    [
+     "00359723",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00359740",
+   "text": "fills a stack buffer of dwords with `n` = `00320800(buffer, 9)` and returns 1 when `ecx` equals one of the first `n` dwords, otherwise 0 (also 0 when signed `n` is 0 or below), closing with the stack-cookie check `00808C40` against qword `01F44830`",
+   "anchors": [
+    [
+     "00359761",
+     "call"
+    ],
+    [
+     "0035976D",
+     "jle"
+    ],
+    [
+     "00359770",
+     "cmp"
+    ],
+    [
+     "0035977E",
+     "xor"
+    ],
+    [
+     "00359793",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00359BA0",
+   "text": "fills a stack buffer of dwords with `n` = `0031B510(buffer, 4)` and returns the OR of `1 << d` over the first `n` dwords `d` (a 32-bit `shl` by `cl`), or 0 when signed `n` is 0 or below",
+   "anchors": [
+    [
+     "00359BBF",
+     "call"
+    ],
+    [
+     "00359BCB",
+     "jle"
+    ],
+    [
+     "00359BDA",
+     "shl"
+    ],
+    [
+     "00359BE0",
+     "or"
+    ],
+    [
+     "00359BE8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00359C00",
+   "text": "fills a stack buffer of dwords with `n` = `00320800(buffer, 9)` and returns the OR of `1 << d` over the first `n` dwords `d` (a 32-bit `shl` by `cl`), or 0 when signed `n` is 0 or below",
+   "anchors": [
+    [
+     "00359C1F",
+     "call"
+    ],
+    [
+     "00359C2B",
+     "jle"
+    ],
+    [
+     "00359C3A",
+     "shl"
+    ],
+    [
+     "00359C40",
+     "or"
+    ],
+    [
+     "00359C48",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0037CB50",
+   "text": "returns 1 when qword `02EBF400` is 0; otherwise, when signed byte `02EBF3FD` is above 0 it returns 1 when signed byte `02EBF3FE` is 4 or more and 0 when below 4, and when `02EBF3FD` is 0 or below it returns 1 when signed byte `02EBF3FE` is negative and 0 otherwise",
+   "anchors": [
+    [
+     "0037CB58",
+     "je"
+    ],
+    [
+     "0037CB61",
+     "jle"
+    ],
+    [
+     "0037CB6A",
+     "jl"
+    ],
+    [
+     "0037CB79",
+     "jl"
+    ],
+    [
+     "0037CB7B",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

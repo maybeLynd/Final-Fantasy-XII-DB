@@ -32,6 +32,9 @@ RC-11 (`_index/OPEN-QUESTIONS.md`, from `what-the-engine-fixes-at-boot.md`, the 
   that feed them.
 - `verb_census.py` (part 3, authored data): shipped bytecode calls of the script verbs whose argument reaches a push.
 
+The census windows are `riprefs.py` `02096A00` `02096C78` (the `02096Axx` output), `riprefs.py` `022D89B8` `022D89BC`,
+`basedisp.py` `02096A00` `02096C78` and `basedisp.py` `022D89B8` `022D89BC`.
+
 ## Result
 
 ### Part 1: the arena-10 branch cannot run on shipped data

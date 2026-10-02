@@ -48,10 +48,10 @@ Seven records of 48 bytes at `022BDD60` (`layer × 0x30`; every accessor clamps 
 | `+0x00` | the **effect handle** the layer owns — `0x80000000 \| counter`, from `00375900` (below); 0 when free |
 | `+0x04` | state: 0 free, **1 running** (set when the handle came back non-zero, `002EFCE7`), **2 finished** (`002EF977`) |
 | `+0x05` | direction — the `direction` argument (`002EFC8D`): 1 = fade **in** (to the scene), 0 = fade **out** (to the colour) |
-| `+0x08`–`+0x2F` | the 0x28-byte descriptor handed to `00375900`: `+8 = 1`, `+9` two nibbles from `022BDD57` and `022BDD5D` (`002EFC85`–`002EFCC9`), `+0xA = 1`, `+0xB` = byte `022BDD5B`, `+0x24` flags (bit 0 = direction 1), **`+0x28`–`+0x2B` the colour**, `+0x2C = 2 × frames` (`002EFAF3`, `002EFCB0`) |
+| `+0x08`–`+0x2F` | the ~~0x28-byte~~ descriptor handed to `00375900`, which copies `0x68` bytes from `+0x08`, into the next records *(corrected 2026-10-02, OPUS: `00375900`+0xC9..+0x101)*: `+8 = 1`, `+9` two nibbles from ~~`022BDD57`~~ `022BDEB4` (low) and `022BDD5D` (high) (`002EFC85`–`002EFCC9`), `+0xA = 1`, `+0xB` = byte ~~`022BDD5B`~~ `022BDEB0` *(corrected 2026-10-02, OPUS: `002EFA70`+0x20B and +0x225 for `+0xB`, +0x215 and +0x244 for `+9`)*, `+0x24` flags (bit 0 = direction 1), **`+0x28`–`+0x2B` the colour**, `+0x2C = 2 × frames` (`002EFAF3`, `002EFCB0`) |
 
-**The colour** (`002EFBD5`–`002EFC6F`): when the one-shot byte `022BDD58` is set, the four bytes
-`022BDD59`–`022BDD5C` are copied in and the byte cleared — a scripted colour override
+**The colour** (`002EFBD5`–`002EFC6F`): when the one-shot byte ~~`022BDD58`~~ `022BDD5C` is set, the four bytes
+~~`022BDD59`–`022BDD5C`~~ `022BDD58`–`022BDD5B` *(corrected 2026-10-02, OPUS: `002EFE10`+0x0 `mov byte ptr [022BDD5C], 1`, +0x7..+0x1A the four colour bytes; `002EFA70`+0x165 tests `022BDD5C`)* are copied in and the byte cleared — a scripted colour override
 (`002EFE10` sets it); otherwise, when a fade-in follows a running record (`direction == 1` and
 the record was in state ≥ 1), the previous colour is kept; otherwise **`0x80000000` (black) or
 `0x80FFFFFF` (white)** by the `white` argument (`002EFC5D`, `002EFC67`).
@@ -65,7 +65,7 @@ from the record base by the state query `00375AE0`), with a free-slot search in 
 (`00375926`–`0037595C`; its `lea` of `02EBFAB8` is record 1's `+0x68`, so it tests `[rax-0x70]` first), the slot chosen by `00375A20(kind nibble, priority)`,
 the handle `0x80000000 \| (++counter & 0x0FFFFFFF)` (`003759A3`–`003759BB`, counter `02EC07E8`), the 0x68-byte descriptor copied in
 (`003759C9`–`00375A01`) — and `003B0F80(handle, 1)` marks it live in a 36-entry `0x18`-stride
-handle list (`003B0F90`–`003B0FBF`). The globals `022BDD56 = 3`, `022BDEB0 = 0`, `022BDEB4 = 6`
+handle list (`003B0F90`–`003B0FBF`). The globals ~~`022BDD56 = 3`~~ `022BDD5D = 3`, `022BDEB0 = 0`, `022BDEB4 = 6` *(corrected 2026-10-02, OPUS: `002EFA70`+0x284 `mov byte ptr [022BDD5D], 3`)*
 are reset at the end (`002EFCF4`–`002EFD05`).
 
 **The handle's top nibble is its class**: `0024DE70` (state) and `0024CFF0` (release) dispatch on
@@ -87,17 +87,17 @@ remains black or white until something starts a fade-in), a finished **fade-in f
 | `002EF840(layer)` | release and free one layer |
 | `002EF890()` | release and free all seven — the `mapjump` verb (`008D`, `00355350`) |
 | `002EF9F0(layer)` / `002EFD20(layer)` | the layer's handle / state byte |
-| `002EFA20()` | reset: state byte `022BDD56 = 3`, the seven handles and the two words zeroed, `022BDEB4 = 6` |
-| `002EFE10(colour…)` | arm the one-shot colour override at `022BDD58` |
+| `002EFA20()` | reset: state byte ~~`022BDD56 = 3`~~ `022BDD5D = 3` *(corrected 2026-10-02, OPUS: `002EFA20`+0x2 `mov byte ptr [022BDD5D], 3`)*, the seven handles and the two words zeroed, `022BDEB4 = 6` |
+| `002EFE10(colour…)` | arm the one-shot colour override ~~at `022BDD58`~~: flag `022BDD5C`, colour `022BDD58`–`022BDD5B` *(corrected 2026-10-02, OPUS: `002EFE10`+0x0..+0x1A)* |
 | `002EFE40(n)` / `002EFE50(n)` / `002EFE60(n)` | write `022BDEB4` / `022BDEB0` / `022BDEB8` — the kind and wait words the schedule and the skip set before starting a layer (`5`/`6` and `0xFF` are the values seen) |
 | `002EFD50` / `002EFD80(n)` / `002EFDC0(n)` | a single **effect fade** handle beside the layers, through `0036E750(0, 0, &params, n, 9)` — the `efffadein` / `efffadeout` verbs (`0268` / `0269`) |
 
-The layer verbs pop two integers and tail-jump into `002EFA70` with the direction and colour
+The layer verbs ~~pop two integers and tail-jump into `002EFA70`~~ *(corrected 2026-10-02, OPUS: §9's correction - that describes the `_d` variants `00D0`–`00D2`, not `00B6`–`00B8`)* with the direction and colour
 fixed: **`fadeout`** (`00B6`, `00356650`: direction 0, black), **`whiteout`** (`00B7`, `00356FE0`:
 direction 0, white), **`fadein`** (`00B8`, `00355EB0`: direction 1, after `00183070` and
 `001D6C20`); the `_d0` / `_d1` / `_d2` variants (`00D0`–`00D2`) are **three further handlers, not the same three** — `00356270` / `00356A50` / `003559B0`, and they are the ones that take **two** integers (§9). The
 other direct callers are the three `WorldTransition_*` entries, the runtime pass, the mode
-machine `0035CA70`, the skip family (`003601D0`, `003603F0`, `00360480`, `00360710`) and four
+machine `0035CA70`, the skip family (`003601D0`, `003603F0`, `00360480`, `00360710`) and ~~four~~ six *(corrected 2026-10-02, OPUS: six are listed)*
 Presentation / UI callers (`00228C70`, `0027EFA0`, `00280140`, `003939B0`, `00394130`, `003EFAA0`).
 
 ### 2.4 The movie fade schedule — registry slot 0
@@ -111,7 +111,7 @@ elapsed frames, `ctx+0xC0 → +0x10` the movie's length, `ctx+0xF0` bits 3 / 4 "
 issued":
 
 ```
-row  +0  id            +1 fadeInStart   +2 fadeInLength   +3 fadeOutLength   +4 fadeOutLead   +7 flags (bit 0 white in, bit 1 white out)
+row  +0  id            +1 fadeInStart   +2 fadeInLength   +3 fadeOutLength   +4 fadeOutLead   +7 flags (bit 0 white in, bit 1 white out)   <- corrected 2026-10-02, OPUS - +3 is fadeOutLead and +4 fadeOutLength: 0037DEA0+0x7F gates the fade-out on byte +4, and +0x8E subtracts byte +3 from the length for the frame count
 fade in : when elapsed >= fadeInStart and fadeInLength != 0:
           002EFE40(5); 002EFA70(0, fadeInLength - elapsed + fadeInStart, 1, flags & 1)          0037DED0-0037DF0F
 fade out: when fadeOutLength != 0 and elapsed >= length - fadeOutLength - fadeOutLead:
@@ -124,7 +124,7 @@ frames ending 60 before the end) — the commonest pattern, not a majority. **Id
 29, 31 have no fade-in at all** (`fadeInLength == 0`, so the first condition never fires —
 corrected §9; the rows that *start* at frame 0 are a different twelve). Ids 4, 10, 42, 48 have no
 fade-out lead (`00 0F`); id 25 is the outlier (`1E 0F CD 96`); ids 17, 19, 21 fade to white on
-the way out (flags 1), 26, 35, 43 both ways (flags 3), and **flags 2 never occurs**; ids **0**,
+the way ~~out~~ in *(corrected 2026-10-02, OPUS: flags 1 is bit 0, the fade-in's white argument, `0037DEA0`+0x46..+0x4E)* (flags 1), 26, 35, 43 both ways (flags 3), and **flags 2 never occurs**; ids **0**,
 32, 37–41, 44–47 are all-zero rows. `002EFE40(5)` before each start marks the fade as the
 schedule's.
 
@@ -133,7 +133,7 @@ schedule's.
 `00360710`, after its eleven notifications, issues `002EFE40(6)`, `002EFE50(0xFF)` and
 `002EFA70(4, 0, 0, 0)` when the manager byte is still 0 (`00360832`–`0036084F`): **layer 4 goes
 to black in zero frames** — the instant cut a skipped scene shows — with kind 6 and a wait of
-`0xFF` recorded in the two words for whoever resumes the scene.
+`0xFF` ~~recorded in the two words for whoever resumes the scene.~~ in the two words, which this same start copies into its descriptor before resetting them to 6 and 0 *(corrected 2026-10-02, OPUS: `002EFA70`+0x20B and +0x215 read them, +0x284..+0x295 reset them)*.
 
 ### 2.6 The mode machine `0035CA70`, decoded (SWE2-FRONTIER, switch-families package)
 
@@ -717,3 +717,17 @@ caller.
 `0037DEA0` (239 B) is the two-phase schedule notify `0037DDD0` runs on the `[rcx+0xC8]` record: with `+0xF0` bit 8 clear and the `[rbp+2]`/`[rbp+1]` window reached by `[rsi+0x14]`, it fires `002EFE40(5)` then `002EFA70(0, edi, 1, [rbp+7]&1)` and sets bit 8; the mirror block under bit `0x10` does the same from `[rbp+4]`/`[rbp+3]` against `[rsi+0xC0]+0x10` with `002EFA70`'s flag from `[rbp+7]&2` - the layer's arrival markers, once each
 
 Interior anchor `0037DF33` (function `0037DEA0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-screen-fade-layers-and-the-movie-fad-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00264830` | 50 B | walks a pointer from `02099010` up to and including `02099520` in `0x288` steps (three records) and returns 1 at the first record whose byte `[pointer - 0x1F0]` has bit 0 set and whose byte `[pointer]` has bit 2 set; returns 0 when no record matches | `00264840`, `00264849`, `0026484E`, `00264857`, `0026485C` |
+| `0026C3C0` | 30 B | sign-extends `ecx`, multiplies it by `0x288`, adds `02098E10` and tail-jumps to a 475-byte routine with that record address in `rcx` and `edx = 1` | `0026C3C3`, `0026C3C8`, `0026C3CF`, `0026C3D9` |
+| `0026DE00` | 27 B | keeps `ecx`, calls `WorldTransition_GetActiveOrPendingFieldId()` and tail-jumps to a 124-byte two-argument routine with the kept `ecx` as the first argument and the returned value in `edx` | `0026DE06`, `0026DE08`, `0026DE0D`, `0026DE16` |
+| `00283B30` | 115 B | switches on dword `[rcx + 0xE4]`: when it is 1 and a 23-byte nonzero-to-1 predicate returns nonzero, it calls a 108-byte four-slot byte refresher and stores 2 to `+0xE4`; when it is 2 and the same predicate returns nonzero, it clears bit 0 of dword `+0xE8` and stores 1 to `+0xE4` when that bit was set, else stores 0 to `+0xE4`; any other value, or a zero predicate, returns with no store | `00283B39`, `00283B5F`, `00283B75`, `00283B8E`, `00283B93` |
+| `002EFD50` | 34 B | when dword `022BDEB8` is nonzero, passes it in `ecx` to a 58-byte dispatcher keyed on the top four bits of its argument and then stores 0 to `022BDEB8`; otherwise returns without a call | `002EFD54`, `002EFD5C`, `002EFD5E`, `002EFD63` |
+| `002EFE10` | 34 B | stores 1 to byte `022BDD5C` and stores `cl`, `dl`, `r8b` and `r9b` to bytes `022BDD58`, `022BDD59`, `022BDD5A` and `022BDD5B` | `002EFE17`, `002EFE1D`, `002EFE23`, `002EFE2A` |
+| `0035D010` | 14 B | stores 1 to dword `022CA45C` when `ecx` is zero, else 0 | `0035D012`, `0035D014`, `0035D017` |

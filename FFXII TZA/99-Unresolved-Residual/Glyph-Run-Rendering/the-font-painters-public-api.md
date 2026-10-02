@@ -28,11 +28,11 @@ audit:
 
 # The font painter's public API
 
-**Every function in FFXII that draws text goes through eighteen entry points**, and they were found
+**Every function in FFXII that draws text goes through ~~eighteen~~ twenty-one entry points** *(corrected 2026-10-02, OPUS: a rel32 sweep finds 25 call sites of `001B5FA0` in 23 functions: 21 in the band, including `0017FC00`, `0017FC50` and `0017FC70`, which §2's table lacks, and the two consumers)*, and they were found
 by one mechanical test rather than by judgement: **`001B5FA0` is the one-line accessor that returns
 the font painter singleton `DAT_01F811F8`, so anything that calls it is holding the painter.**
 
-**22 call sites, 18 distinct functions. Sixteen sit in one contiguous band, `0017F650`–`0017FD30`.**
+**~~22 call sites, 18 distinct functions. Sixteen~~ 25 call sites, 23 distinct functions. Twenty-one sit in one contiguous band, `0017F650`–`0017FD30`.** *(corrected 2026-10-02, OPUS: rel32 sweep of `.text` for calls to `001B5FA0`)*
 Two are elsewhere (`001C76E0`, `00184460`) and are consumers rather than API entries — they fetch the
 singleton to use it, not to expose it.
 
@@ -73,7 +73,7 @@ performed against these eighteen calls.
 | `0017FD00` | `001E9D20` | select, with the second argument fixed at **2** |
 | `0017FD30` | `001E9D20` | select, with a caller-supplied owner key |
 
-**The surface is now closed — all eighteen implementations have been opened.** The three that were
+**The surface is ~~now closed — all eighteen implementations have been opened~~ not closed** *(corrected 2026-10-02, OPUS: three band entries that fetch the singleton, `0017FC00`, `0017FC50` and `0017FC70`, are not in the table)*. The three that were
 listed as unread in this document's first version turned out to be the least surprising of the
 eighteen: two more metrics and one setter (§5, §5b).
 

@@ -1,0 +1,6 @@
+{
+  "commit": "0ada5145281822af82186ab4f5ee9ec12d46cd81",
+  "path": "retained/slot-acquisition-callers-raw-01.json",
+  "sha256": "b27ee5a03712f3d9bbfcf429fe3277e38de86f236f3ea593ec4aabd479c5e0ab",
+  "limits": "Original standard-action prefix304D70 is an interior fragment, not a complete function entry or natural caller reachability proof."
+}

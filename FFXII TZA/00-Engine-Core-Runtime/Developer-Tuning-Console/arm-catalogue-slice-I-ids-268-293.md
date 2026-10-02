@@ -95,7 +95,7 @@ measured" is not a measurement.**
 > holds fifteen of them and says what they do with it.
 
 **The gaps in that table — properties 11, 14, 16, 19, 20, 21 — are unreached, not absent.** Slice H
-(ids 236–267) is unread, and it is precisely the range that could hold them.
+(ids 236–267) is unread *(answered: see slice H, delivered, and the test against its section 8 below; 2026-10-02, OPUS)*, and it is precisely the range that could hold them.
 
 > **Tested by [slice H](arm-catalogue-slice-H-ids-236-267.md) §8, and the prediction failed on its
 > locations while confirming its rule.** H holds none of the six. Properties **14** and **16** are
@@ -424,4 +424,4 @@ page already lists — and returns the entry. Interior anchor
 |---|---|---|---|
 | `0017D9C0` | 14 B | tail-jumps `001DF2B0(qword 01F82D20, ecx)` | `0017D9C2`, `0017D9C9` |
 | `001DF2B0` | 16 B | sets bit `edx` (modulo 32, via `bts`) of dword `+0x44C` of `rcx` and stores the dword back | `001DF2B6`, `001DF2B9` |
-| `001E04F0` | 83 B | calls `0017FE30()` and picks the double 0.01666666667 (`009010A0`) when the unsigned result is a multiple of 10, otherwise 0.01668333333 (`00900378`); returns the signed dword result of `00184950()` converted to double and multiplied by the picked value | `001E04F9`, `001E0511`, `001E0520`, `001E0528`, `001E0535` |
+| `001E04F0` | 83 B | calls a 21-byte framework forwarder and picks the double 0.01666666667 (`009010A0`) when the unsigned result is a multiple of 10, otherwise 0.01668333333 (`00900378`); returns the signed dword result of the getter of dword `01F3DA18` converted to double and multiplied by the picked value | `001E04F9`, `001E0511`, `001E0520`, `001E0528`, `001E0535` |

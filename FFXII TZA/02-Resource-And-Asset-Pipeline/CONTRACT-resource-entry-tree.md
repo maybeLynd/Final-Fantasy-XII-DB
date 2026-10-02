@@ -166,7 +166,7 @@ offset, and the tree would be structurally wrong from the first re-insertion of 
 silently, because every traversal step still resolves through `0020E600` and lands on a real node.
 
 **What this pass did NOT attack**, and so cannot be read as having cleared: `0036C790`'s rebalancing
-(§4 already says it is not re-derived here), the 4 GiB narrowing inherited from
+~~(§4 already says it is not re-derived here)~~ *(answered: see §4, re-derived 2026-09-18; 2026-10-02, OPUS)*, the 4 GiB narrowing inherited from
 `CONTRACT-efx-source-rebase.md` §4, and the handle-ABI behaviour of `003AB880` / `003AB940`, whose
 trampolines were read only far enough to confirm they tail-call `0036A000` and `0036D170`.
 
@@ -220,7 +220,7 @@ touching the tree — the resolver sibling `0036B130` notably does not (see
 
 **Inside the tree.** `0036D170` → `0036B410` (insert: clears `+0x2C`/`+0x24`/`+0x28` via
 `0020E620(0)`, zeroes `+0x3E`, walks the signed ordering). `0036A000` → `0036C790` (remove, 359
-bytes — the rebalancing is ASTRA's reading, §4). Every link store goes through `0020E620` and every
+bytes — the rebalancing is ~~ASTRA's reading~~ byte-proven, §4 *(answered: re-derived 2026-09-18; 2026-10-02, OPUS)*). Every link store goes through `0020E620` and every
 link load through `0020E600`; the root at `arena+0x50` is the exception, a full pointer.
 
 **Above the pair.** SECTION-06 connects the matched `00409D60` path through effect-ticket and
@@ -246,8 +246,8 @@ guards:    untagged input -> no-op; generation mismatch -> no-op;
 
 No script verb or authored table participates directly — this is the **arena's internal index**:
 resource entries are the rows the resource pipeline allocates, and the tree is how an arena finds
-one. The ordering key at `+0x18` is the quantity the arena orders by (ASTRA calls it a payload
-length; signed comparison proven, the quantity itself not).
+one. The ordering key at `+0x18` is the quantity the arena orders by *(corrected 2026-10-02, OPUS: it is the payload byte length the mover copies: `0036A2A0+0x2B` `mov r13d, dword ptr [r8 + 0x18]` passes it at `0036A2A0+0x100` / `+0x107` to the copy; §4's `+0x18` bullet)* (ASTRA calls it a payload
+length; signed comparison proven, ~~the quantity itself not~~ the quantity too, as corrected above).
 
 ## 9. Determinism
 
@@ -354,7 +354,7 @@ the state before the record existed; kept as history.*
 | `[0x01F83530]` is ~~zero for the life of this build~~ **zero at image load; one undriven in-image store route exists (2026-09-26)** | past `.data`'s file-backed extent `01F7E400`, and `check_contract_globals` finds no writer and no `lea` by its own instruments (its controls pass); the texture-id writer's signed-index store reaches the cell at id `0xFFFB` and no producer read drives it (the authored-table row lookup contract §7) | 1 (static) |
 | `0036D170` lacks the null-object check `0036A000` has — index ≥ `0xF` yields `ctx = 0` and faults at `[0x50]` | EXP-083 | 1 |
 | removing a non-member returns `obj+0x40` with no observable removal | EXP-083 | 1 |
-| **what the `+0x18` key measures** | **not established** | none |
+| **what the `+0x18` key measures** | ~~**not established**~~ the allocated payload-byte extent the mover copies *(answered: see §4's `+0x18` bullet; `0036A2A0+0x2B`; 2026-10-02, OPUS)* | none |
 
 ## 16. Parity plan
 
@@ -368,7 +368,7 @@ against an independent reconstruction of §12's algorithm.
 children), `STATE-TRANSITION` (membership bit per call), `EDGE-CASE` (equal keys go right, untagged
 no-op, generation mismatch, double add/remove). **Not covered, recorded:** `INTEGRATION` — the
 release chain above the pair now has bounded original-code SECTION-06 evidence (§14), not
-independent reconstruction parity or whole-game lifetime proof; the 4 GiB wrap is a fixture-only hazard unless the allocator's
+independent reconstruction parity or whole-game lifetime proof; ~~the 4 GiB wrap~~ the codec-domain overflow *(answered: see *Outside the codec domain*, corrected 2026-09-15 from "4 GiB wrap"; 2026-10-02, OPUS)* is a fixture-only hazard unless the allocator's
 guarantee (BW-2) is established. `RNG`, `TIMING`, `PRESENTATION` are `N/A`.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
@@ -426,7 +426,7 @@ freed. Cache+38 survives row reset and must not establish validity.
 The fixture executes the original allocator, membership pair and tagged/raw release. It constructs
 its own arena/handle slots; it does not execute the game's source movement/reclamation scheduler,
 all tree shapes or live deletion. Historical EXP-083 coverage remains separate. The meaning of the
-node's +18 ordering key remains as previously bounded, not silently solved by this new lifecycle.
+node's +18 ordering key ~~remains as previously bounded, not silently solved by this new lifecycle~~ is the payload-byte extent *(answered: see §4's `+0x18` bullet, SECTION-07; 2026-10-02, OPUS)*.
 
 ## Tree membership controls movement eligibility — SECTION-07 (2026-09-23)
 

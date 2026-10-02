@@ -1,0 +1,30 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY feasibility, not semantic closure",
+  "driver_sha256": "b26a19f85efdffd6a5e94b036cc9c4ead62639de71fee492ca569edc2dabd5d5",
+  "source_sha256": "97c7e802c7b4ef7f5eb1a46a669b8a2834d03cd7d812512e65afe4ce73ac24ab",
+  "annotation": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 42,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "calls": [
+    {
+      "pc": "0x3870bf",
+      "target": "0x31b860"
+    },
+    {
+      "pc": "0x3870ec",
+      "target": "0x31b860"
+    }
+  ],
+  "returns": [
+    "0x387117",
+    "0x387124"
+  ],
+  "next_discriminator": "Prove non9F supplied owner WORD714 reaches EAX/callerAX->R8W with no local range exclusion; keep two resolver returns distinct. Prove special9F substitution separately and determine field writer/admission prerequisites. Null second return branches to the raw WORD714 read; source-only low-address prediction, no live fault claim.",
+  "limits": "This validates exact source/CFG and the intended discriminator, not natural callback returns, table initialization/identity, caller reachability, output-domain closure or independent acceptance."
+}

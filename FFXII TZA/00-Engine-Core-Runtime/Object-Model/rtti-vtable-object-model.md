@@ -100,8 +100,8 @@ A function can appear in several classes' vtables. **It happens to 2,611 of the 
 **This is mostly inheritance, not COMDAT folding.** A derived class's vtable copies every base method
 it does not override, so a base method appears once per descendant. Only **14 %** of the multi-class
 functions are 16 bytes or smaller, which is the size range where `/OPT:ICF` folds unrelated bodies
-together - and this image is known to fold (`0016D6A0`, a bare `ret 0`, is shared by three unrelated
-tables).
+together - and this image is known to fold (`0016D6A0`, a bare `ret 0`, is shared by ~~three unrelated~~
+~~tables~~ 1,291 vtables of 1,291 classes *(corrected 2026-10-02, OPUS: every vtable found from its complete-object locator, 2,286 in all)*).
 
 **Consequence, and it is the number that matters:** attribution is only safe for the **4,272**
 functions that appear in exactly one class. Of those, **3,784 were previously unowned**. That is the
@@ -154,7 +154,7 @@ physics through a **narrow Phyre interface**, and everything below that interfac
 Phyre's own physics layer down to Bullet. The narrowness of the seam was evidence of encapsulation,
 which this pass misread as evidence of disuse.
 
-**Still open:** which *game* subsystem calls that narrow interface. Six hops of direct calls reach no
+**Still open:** *(answered: see section 6, AS-1a ANSWERED as far as it can be; 2026-10-02, OPUS)* which *game* subsystem calls that narrow interface. Six hops of direct calls reach no
 owned code, and 95 % of Bullet's own methods are virtual-only, so the remaining link is through
 vtable dispatch the edge list cannot represent. **AS-1a.**
 
@@ -234,7 +234,7 @@ counts:
 |---|---:|---|
 | `PrimitiveRendererD3D11` | 42 | immediate-mode drawing |
 | `CharacterRenderObject` | 31 | |
-| `GameApplication` | 30 | the root application object |
+| `GameApplication` | ~~30~~ 31 *(corrected 2026-10-02, OPUS: the vtable at `008C5760` holds 31 code pointers, slot 0 `0017CC70`)* | the root application object |
 | `DynGeoUIInstance`, `DynGeoTextureInstance`, `DynGeo3DInstance` | 21 each | "dynamic geometry" instances |
 | `DynGeoFontTextSpecialShadowInstance` (+3 siblings) | 12 each | drop-shadowed text |
 | `ChrModel` | - | 8 constructors, `NativeRoutine`-owned |
@@ -459,7 +459,7 @@ figures published here use a plain set built directly from the edge file.
         `PClassDescriptorHeaderWithoutDefaultConstructor<…>`; and `PMethodCallerConcrete<PPhysicsWorld, …>` variants.
       - **Why 1,733 is not 1,604 or 1,743.** The difference is each tool's rule for what "`Phyre::`" means (outermost
         namespace of the decorated name versus the class's own namespace), not a different set of objects.
-      - **Still open:** whether Phyre's reflection glue (the descriptor instances) describes exactly these RTTI classes.
+      - **Still open:** *(answered: see the GLUE HALF ANSWERED 2026-09-22 (FABLE) note; 2026-10-02, OPUS)* whether Phyre's reflection glue (the descriptor instances) describes exactly these RTTI classes.
 
 ## 6. Falsification pass 2026-09-02 (second) - AS-7 settled, and the game is not object-oriented
 

@@ -79,7 +79,7 @@ built like either of them.**
 
 Both of its divisions are `div r10d` on integers. For any ordinary landscape resolution `H < W`, so
 `H / W` truncates to **0** and `+0x04` receives **`(float)W`** - not a scale near `1.0f` but the
-pixel width itself. `(W - H) / W` truncates to **0** for everything up to `W = 2H`, so `+0x0C`
+pixel width itself. `(W - H) / W` truncates to **0** ~~for everything up to `W = 2H`~~ for every `W > H`, the whole branch *(corrected 2026-10-02, OPUS: `001DDAC0`+0xBD `div r10d` with `0 < W - H < W`)*, so `+0x0C`
 receives **`0.0f`** across the whole ordinary ultrawide range. And `+0x08`, which both other branches
 set to `1.0f`, **is left holding whatever it held before.**
 
@@ -87,7 +87,7 @@ set to `1.0f`, **is left holding whatever it held before.**
 > the instructions: the fields mean something different under mode 1 and the values are correct;
 > the integer divides are a defect and ultrawide scaling is wrong between 16:9 and 16:3; or a
 > consumer re-derives these fields and never reads them. **Separating them needs the consumers, and
-> this pass did not find them.** What is certain is the arithmetic, because it was read.
+> ~~this pass did not find them.~~** *(answered: see §6, UE-1 answered 2026-09-14 - the three fields branch C writes have no reader, and "a consumer re-derives these fields" is the reading the code supports; 2026-10-02, OPUS)* What is certain is the arithmetic, because it was read.
 
 ## 5. Where the sizes come from
 

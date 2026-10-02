@@ -102,6 +102,12 @@ LINE_OWNERS = {
 }
 
 
+# Holds lifted 2026-10-02 (OPUS): these pages' holds are lifted; their held edits on other identities' lines go to them.
+OWNERS["OPUS-HELD"] = set(OWNERS.get("OPUS-HELD", set())) - set(['02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md', '02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md'])
+LINE_OWNERS['SWE2-EC7'] = tuple(LINE_OWNERS.get('SWE2-EC7', ())) + ('the `027A2E10` flag is armed,',)
+LINE_OWNERS['FRONTIER'] = tuple(LINE_OWNERS.get('FRONTIER', ())) + ('`0036BC60` (~179 B) —',)
+
+
 def owner_of(e):
     if e[0] in OWNERS["OPUS-HELD"]:
         return "OPUS-HELD"

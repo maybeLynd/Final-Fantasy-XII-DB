@@ -6,7 +6,7 @@
  "rows": [
   {
    "fn": "001E0C30",
-   "text": "calls `00796E20()` and tail-jumps to `00225680` with `rcx` replaced by qword `+0xDF8` of that result, leaving `rdx`, `r8` and `r9` as passed in",
+   "text": "calls the framework-singleton getter and tail-jumps to `00225680` with `rcx` replaced by qword `+0xDF8` of that result, leaving `rdx`, `r8` and `r9` as passed in",
    "anchors": [
     [
      "001E0C34",

@@ -54,8 +54,8 @@ Census: [`census.py`](../../_experiments/evidence/add-motion-bin-tables/census.p
 
 **A model that changes as the story advances, and one model's joint remapping.** `highmodelreplace.bin` maps 22
 model ids to replacement ids, with a story-progress threshold per replacement — one entry switches at progress
-1570. `skeletonmapping.bin` gives the high-detail model `hc1006_03` a 39-slot joint index list. Which models these
-are on screen is not established here (§7).
+1570. `skeletonmapping.bin` gives the high-detail model `hc1006_03` a 39-slot joint index list. ~~Which models these~~
+~~are on screen is not established here~~ *(answered: see §7, HM-1 2026-09-27 - the ids name a model's own high-detail variants; `hc1006_03` is `c1006`'s replacement body; 2026-10-02, OPUS)* (§7).
 
 ## 2. The layout
 
@@ -232,8 +232,8 @@ loop, so a longer authored list would overrun the record, and no such list ships
     value makes that joint follow the given joint of the skeleton the record names at `+0xC`; `-1` leaves the
     joint alone.
   - **`0022A0B0`** is the boot routine on [what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md).
-  - **Still open:** which models the ids name (the id space is not a simple `c`+number rule: `C:43` has no
-    `c1043` model), what pose mode 2 is, and which model the mapping's second skeleton is.
+  - **Still open:** ~~which models the ids name (the id space is not a simple `c`+number rule: `C:43` has no~~
+    ~~`c1043` model)~~ *(answered: see the OPUS narrowings above - the ids name files, and the second skeleton is the element row's parent; 2026-10-02, OPUS)*, what pose mode 2 is~~, and which model the mapping's second skeleton is~~.
 
 ## 8. Related
 
@@ -296,8 +296,8 @@ character.** The search could not have succeeded.
 > future census that keys on a capitalised name must go to those, never to the index.
 
 **Not claimed.** What the 22 model ids and their replacements are on screen — §7's first unknown
-stands. What `keyB` / `keyC` select when they are not `-1` — four records set them and nothing here
-says to what. Whether `1570` is a story-progress value in the units the flag banks use — the number
+stands. ~~What `keyB` / `keyC` select when they are not `-1` — four records set them and nothing here~~
+~~says to what.~~ *(answered: see §7, HM-1 2026-09-26 - `b` / `c` are the actor's model local number and CLUT number, and every shipped lookup is keyed (1, 0); 2026-10-02, OPUS)* Whether `1570` is a story-progress value in the units the flag banks use — the number
 is read, the scale is not. Whether an uppercase-lettered resource exists anywhere — **untestable
 against the index, and not tested against file contents here.** The archive was **read, never
 written**, and nothing was executed.
@@ -518,3 +518,23 @@ Interior anchor `00373F97` (function `00373F40`).
 `00373EA0` (151 B) is the fan-out `00372820` runs on its record: `0020E600([rsi+0x84])` twice resolves the `0x290` table and the `[rsi+0x88]`-indexed row's embedded word list; then for each of `word[+0x8A]` entries it calls `0046D340(row + idx*0x290 + 0x150, row + idx*0x290 + 0x80)` - a per-index apply over the record's sub-table.
 
 Interior anchor `00373F0C` (function `00373EA0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-add-motion-skeleton-and-high-model-table-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001F6E00` | 77 B | measures the zero-terminated string at `rcx`; returns 0 when its first byte is `_` (`0x5F`), otherwise walks the bytes up to the next `_` or the string end, folding each byte from `0` to `9` into `value * 10 + digit` and skipping every other byte, and returns the value | `001F6E09`, `001F6E0F`, `001F6E31`, `001F6E3F`, `001F6E45` |
+| `00263F80` | 35 B | masks `edx` to its low 24 bits; when qword `[rcx + 0x100]` is null it returns the masked value, when the value is below (signed) that table's first dword it returns dword `[table + 4 + value * 4]`, and otherwise it returns 0 | `00263F87`, `00263F90`, `00263F92`, `00263F97`, `00263F9D` |
+| `002E3A60` | 134 B | returns 0 for a null `rcx`; otherwise, when dword `[rcx]` is not -1, it first (only if `edx` is nonzero) calls `0042F250(word [rcx])`, ORs `0xB` into byte `+0x10` and sets byte `+0x11` to `(byte AND 0x9F) OR 6`, then passes dword `[rcx]` to a 103-byte release and dword `+4` to a 92-byte list lookup and stores -1 to qword `[rcx]`; in both cases it then masks byte `+0x10` to its low nibble, stores -1 to dword `[rcx]` and 0 to qword `+8`, calls a 29-byte flag setter with both flags zero and stores 0 to dword `+0x20`, returning 1 when the release ran and 0 when `[rcx]` was -1 | `002E3A7B`, `002E3A87`, `002E3AAA`, `002E3AB6`, `002E3AD1` |
+| `003466A0` | 71 B | pops a value through `VMValueStack_PopInt32CoerceFloat32(r9)`; when byte `[rdx + 0x20]` is non-negative it passes it sign-extended to a 63-byte slot release; it then stores to byte `[rdx + 0x20]` the result of the 318-byte four-slot allocator called with `(0, value)`, and tail-jumps a 7-byte byte-global setter with `ecx = 1` | `003466B0`, `003466BD`, `003466C2`, `003466D5`, `003466E2` |
+| `0036EAB0` | 192 B | picks the 24-byte record `(ecx AND 0xF) * 0x18` into `022D9AE0` when any of bits 4 to 7 of `ecx` is set, else into `022D9AB0` (a null record when `ecx` is -1); it resolves dword `[rec + 0xC]` through a 79-byte resolver, reads dword `[resolved - 0x28]` (0 for null) through a 12-byte getter, and stores to dword `[rec + 4]` the result of a 5-byte thunk called with `ecx` = signed byte `+1` (plus 2 when byte `+2` is nonzero), `edx` = signed word `+0x14`, the resolved pointer, that dword and 1; a zero result passes `+0xC` to an 85-byte release, zeroes `+0xC` and stores 3 to byte `[rec]`, a nonzero result stores 3 there only when dword `+8` is nonzero | `0036EAE2`, `0036EB2C`, `0036EB34`, `0036EB4E`, `0036EB56` |
+| `0036F050` | 145 B | when byte `022D9B40` is 2 it stores 1 there, calls a 5-byte thunk with `ecx = 0` and passes each 24-byte record from `022D9AB0` below `022D9AE0` whose first byte is 3 to a 342-byte routine; then, when byte `022D9B41` is 2, it stores 1 there, calls the same thunk with `ecx = 1` and does the same for the records from `022D9AE0` below `022D9B40` | `0036F05A`, `0036F065`, `0036F080`, `0036F0A4`, `0036F0C8` |
+| `0036F240` | 128 B | when `ecx` is nonzero it scans the four 24-byte records at `022D9AE0`, else the two at `022D9AB0`, and returns the first record whose first byte is nonzero and whose sign-extended word `+0x14` equals `edx`; returns null when none matches | `0036F24C`, `0036F25F`, `0036F26D`, `0036F2AE`, `0036F27B` |
+| `004719B0` | 54 B | resolves dword `[rdx]` through `ImageAddress_ResolveRuntimePointer`, stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `rdx` plus that result back to dword `[rdx]`, then stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]` | `004719C2`, `004719C7`, `004719D2`, `004719D4`, `004719DE` |
+| `00512A90` | 56 B | resolves dword `[rdx + 0x30]` through `ImageAddress_ResolveRuntimePointer`, stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `rdx` plus that result back to dword `[rdx + 0x30]`, then stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]` | `00512AA3`, `00512AA8`, `00512AB3`, `00512AB6`, `00512AC0` |
+| `005161D0` | 43 B | resolves dword `[rcx]` through `ImageAddress_ResolveRuntimePointer` and stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `edx` plus that result back to dword `[rcx]` | `005161E1`, `005161E6`, `005161E9`, `005161F3` |
+| `0051A380` | 56 B | resolves dword `[rdx + 0x10]` through `ImageAddress_ResolveRuntimePointer`, stores `RuntimePointer_EncodeImageAddress` of the low 32 bits of `rdx` plus that result back to dword `[rdx + 0x10]`, then stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]` | `0051A393`, `0051A398`, `0051A3A3`, `0051A3A6`, `0051A3B0` |
+| `0051B850` | 25 B | stores `RuntimePointer_EncodeImageAddress(rdx)` to dword `[rcx]` | `0051B859`, `0051B85C`, `0051B861` |
+| `00537260` | 9 B | loads dword `[rcx + 0x20]` into `r8d` and tail-jumps to a 138-byte routine with `rcx` and `rdx` unchanged | `00537264` |

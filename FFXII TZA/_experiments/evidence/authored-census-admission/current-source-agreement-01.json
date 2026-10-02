@@ -1,0 +1,6 @@
+{
+  "collector_snapshot_sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad",
+  "current_checkout_sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad",
+  "equal": true,
+  "limits": "Current check at packaging; concurrent future owner repair may supersede this exact snapshot."
+}

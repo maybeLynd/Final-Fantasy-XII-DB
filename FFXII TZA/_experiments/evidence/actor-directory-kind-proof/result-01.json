@@ -1,0 +1,172 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY source-bound induction and one retained exact archive member",
+  "driver_sha256": "9eab32bed42186a313248d3948f6de00b44a09c9856b8115ec5493c08f9804b3",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "a5c1caa40b393f55ab3a988d0b7a48add48aed0ea83f35bbedd7247e06f5c20a"
+    },
+    {
+      "path": "source-binding-01.json",
+      "sha256": "b9e0484c9a688a89d895d9a20fa769e38e0db60e19ea6b0cac0cd925219c159f"
+    },
+    {
+      "path": "source-setup-01.json",
+      "sha256": "d3ae7209726a89af0d75a22f5235a05577e6531d018cd1b6822f092caeea0bb5"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 652,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 43,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 369,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "data": {
+      "section_bytes": 61152,
+      "section_sha256": "bec45aaf12600e049d48bee9d7c1d5a0c3fc8bc67f25360b5a10933ef1523168",
+      "version": 11,
+      "type_count_offset": "0x730",
+      "counts": [
+        9,
+        11,
+        0,
+        0,
+        0,
+        4,
+        72,
+        0
+      ],
+      "directory_offset": "0xcdf0",
+      "directory_count": 96,
+      "ordinal": 25,
+      "entry_offset": "0xd2a4",
+      "entry_hex": "360500000600ff007a590000070100002019000084190000b01900001000000000001900000000000000000000000000",
+      "raw_name_hex": "8389836f83695f92ca8fed5f4e50433031",
+      "name": "\u30e9\u30d0\u30ca_\u901a\u5e38_NPC01",
+      "descriptor_script_type": 6,
+      "row": 6,
+      "prefixes": [
+        0,
+        9,
+        20,
+        20,
+        20,
+        20,
+        24,
+        96,
+        96
+      ],
+      "boundaries": [
+        {
+          "row": 0,
+          "first_ordinal": 0,
+          "last_ordinal": 8
+        },
+        {
+          "row": 1,
+          "first_ordinal": 9,
+          "last_ordinal": 19
+        },
+        {
+          "row": 5,
+          "first_ordinal": 20,
+          "last_ordinal": 23
+        },
+        {
+          "row": 6,
+          "first_ordinal": 24,
+          "last_ordinal": 95
+        }
+      ]
+    },
+    "native_kind": {
+      "kind": 3,
+      "sub": 0,
+      "size": 1760
+    },
+    "actor_byte3": "0x66",
+    "preset_at_266c12": "0x30004",
+    "talk_gate_bits": [
+      16,
+      17
+    ],
+    "direct_initializer_request_word_writes": [
+      {
+        "pc": "0x2666f1",
+        "mnemonic": "and",
+        "mask": "0xffffdeff"
+      },
+      {
+        "pc": "0x266a3a",
+        "mnemonic": "or",
+        "mask": "0x4"
+      },
+      {
+        "pc": "0x266a4e",
+        "mnemonic": "and",
+        "mask": "0xfffffffb"
+      },
+      {
+        "pc": "0x266a89",
+        "mnemonic": "or",
+        "mask": "0x400"
+      },
+      {
+        "pc": "0x266a9e",
+        "mnemonic": "and",
+        "mask": "0xfffffffb"
+      },
+      {
+        "pc": "0x266aa4",
+        "mnemonic": "and",
+        "mask": "0xfffffbff"
+      }
+    ],
+    "ordinal_invariant": {
+      "basis": "EBX=R10D=RDI=0 before carve; R8=kind table row0",
+      "inner": "For row k with count c[k], exactly c[k] iterations: old EBX is pointer slot; EBX++, stamp low5=k/top3=table[k].kind; advance by rounded size; R11-- until0.",
+      "outer": "After row k, EBX=S[k+1], R10D=k+1, RDI=2(k+1), R8=table+4(k+1). Zero-count row skips inner and still increments k; S[k]=sum(c[:k]).",
+      "consequence": "Ordinal i in [S[k],S[k+1]) maps to carve rowk. Initializer gets same pool, i; RBX=pool[1+i]; directory=desc+signedDWORD18+4+48*i for version>=8 (32*i for older).",
+      "bounds": "This member N8 and96 counts, valid nonnegative signed count/offsets, directory extent61152B and stable disjoint descriptors/pool/frame required; normal native ABI/returns. No malformed/all-corpus safety claim."
+    },
+    "claim_established": "This exact asp_a03 ordinal25 is carve row6 and descriptor ordinal25 on the valid allocator/initializer path; original row6 preset writes request bits16/17.",
+    "label_limit": "Descriptor WORD+4 agrees with6 in this member, but this binding/stamp/preset path does not use it as a selector. Category assignment follows header count prefixes and ordinal, not an independent runtime read of scriptType.",
+    "callback_limit": "Later direct initializer AND/OR stores preserve bits16/17. The original initializer exits through a tail to3DB280; transitive callback/tail effects, final returned/live flags and natural scene reachability are not proved here.",
+    "unresolved": [
+      "natural initialize/load of this scene and runtime pointer identity",
+      "native later callback effects/final flags",
+      "OV16 talkterm cancellation/reentry timing/end-notification consumption",
+      "all-corpus correspondence between descriptor labels and prefix rows"
+    ]
+  },
+  "limits": [
+    "No native/emulated/game execution.",
+    "Archive header/selected compressed/member identity only, no full archive digest or install-authenticity assertion.",
+    "Valid stable disjoint native inputs, adequate allocation, normal ABI/returns and positive manager count covering ordinal25; actual scene setup remains separate.",
+    "Later direct initializer AND/OR stores preserve bits16/17. The original initializer exits through a tail to3DB280; transitive callback/tail effects, final returned/live flags and natural scene reachability are not proved here."
+  ],
+  "cleanup": "Finite offline source reads/proofs only; all own handles/children closed. No PC/game/save/config/reference or peer changes."
+}

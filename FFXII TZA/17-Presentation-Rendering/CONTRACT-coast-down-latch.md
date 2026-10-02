@@ -121,7 +121,7 @@ tail at `0042419F`** — see §7a.
 ## 6. Relationships
 
 Calls `0020E600` after the latch logic to resolve `+0x010` when `+0x0C4 != -1` — the presentation
-entry path, outside this transition.
+entry path, ~~outside this transition~~ the fourth stage of this transition *(answered: see §7a, added 2026-09-11 - it runs on every path except servicing; 2026-10-02, OPUS)*.
 
 ## 7. State transitions
 
@@ -241,7 +241,7 @@ boundary value releases.
 
 ## 10. Failure paths and edge conditions
 
-1. **Arming requires FIVE conditions, not three.** The document lists the first three. All five, in
+1. **Arming requires FIVE conditions, not three.** ~~The document lists the first three.~~ *(answered: see the record-array page, which now lists all five; 2026-10-02, OPUS)* All five, in
    order, each with its exit:
    `+0x284 & 0x08000000` (`0042411F test / je`); `+0x006 == -1` (`0042412B cmp / jne`);
    `(subtype & 0xFFF) == 0x10` (`004240B5 and ebp, 0xfff`, `00424132 cmp ebp, 0x10 / jne`);
@@ -264,7 +264,7 @@ boundary value releases.
    00425C3A  mov    byte ptr [rdi + 0x457], cl           ; ...into a SIGNED BYTE
    ```
 
-   **The saturation bound cannot fit the field it saturates into.** The counter is clamped to 180 and
+   **The saturation bound cannot fit the field it saturates into.** The counter is clamped to ~~180~~ `90 x timeBase`, which is 180 when the time base is 2; at the image value 1 the clamp is 90, which fits, and the byte never wraps *(corrected 2026-10-02, OPUS: `004256E0`+0x545 `imul ecx, dword ptr [01DFE0B4], 0x5a`)*; at 180 it is
    stored in an `int8` whose maximum is 127, so on the 128th increment `cl` is `0x80` and the next
    `movsx` reads **-128**. From then on the value is negative, the unsigned `cmp`/`jb` at
    `00424154` always falls through, and **the arming threshold is satisfied permanently for that
@@ -282,7 +282,7 @@ boundary value releases.
    them into two independent fields loses the atomic reset.
 
    **The time base is read at two widths in that one function** -- `dword` at `00425BC8` and
-   `00425C25`, signed **byte** at `00425BED` (`movsx eax, byte ptr [01DFE0B4]`). Its value is `2`, so
+   `00425C25`, signed **byte** at `00425BED` (`movsx eax, byte ptr [01DFE0B4]`). ~~Its value is `2`, so~~ It holds `1` in the image and `2` once `001EDDC0` runs with a non-zero argument (the 60 fps switch); either value fits a byte, so *(corrected 2026-10-02, OPUS: the one writer `001EDDC0`+0x32 sits behind `001EDDC0`+0x6 `je`, taken when `ecx` is 0)*
    the readings agree today; a reimplementation that types the global once must still know both
    accesses exist.
 
@@ -321,7 +321,7 @@ modifyHeadingSpeed(id, pHeading, pSpeed):
              && subtype == 0x10
              && *pSpeed == 0.0f
              && (uint32)(int8)*(rec+0x457) >= (uint32)(*(uint32*)0x01DFE0B4 * 30)
-                 /* timeBase is 2 -- ONE writer in the image, 001EDDF2 stores the        */
+                 /* timeBase is 2 -- ONE writer in the image, 001EDDF2 stores the        */   /* <- corrected 2026-10-02, OPUS - the image holds 1; 001EDDC0+0x32 stores 2 only when 001EDDC0 is entered with a non-zero ecx (the 60 fps switch), so the threshold is 30 or 60 */
                  /* constant -- so the threshold is 60. The counter saturates at 180 in  */
                  /* an int8, so it turns negative on the 128th call and this test then   */
                  /* passes forever. See section 10.2; the wrap is load-bearing.          */
@@ -378,8 +378,8 @@ old invariant — conditions 1 and 2 falling into the cache like the other three
   harness compares numbers.
 - **The decay is per *call*.** §9 says the glide length is frame-rate dependent by construction; the
   suite drives calls, so it reproduces the decay and says nothing about how many calls a frame makes.
-- **`0020E600` and `0051B9E0` are supplied**, so the tail's *decision* is established and those two
-  functions are not.
+- **`0020E600` and `0051B9E0` are supplied**, so the tail's *decision* is established ~~and those two~~
+  ~~functions are not~~ *(answered: see §7a and §15a - both read 2026-09-13; supplying them here is a harness choice; 2026-10-02, OPUS)*.
 - **The `+0x457` writer at `004256E0` was read, not run.** §10.2's wrap is established for the
   *reader*; that the writer drives it there is still a reading.
 
@@ -390,7 +390,7 @@ old invariant — conditions 1 and 2 falling into the cache like the other three
    defect is reachable in play or only in principle.
 2. **Which subtypes occur.** The tail's `0x0D` branch zeroes the caller's speed; nothing here shows
    that any real render record carries subtype `0x0D`.
-3. **What `0020E600` and `0051B9E0` are**, which is static work rather than live, and out of this
+3. ~~**What `0020E600` and `0051B9E0` are**~~ *(answered: see §7a - `0020E600` is `ImageAddress_ResolveRuntimePointer`, `0051B9E0` a tail jump to `0051F240`; 2026-10-02, OPUS)*, which is static work rather than live, and out of this
    package's scope rather than blocked.
 
 Queued; the live-automation pause stands.
@@ -546,7 +546,7 @@ drawn and no caller runs.
 ## 17. Related
 
 - `17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md` §"The
-  coast-down latch, exactly" — which this formalises, and whose arming list is three of the five.
+  coast-down latch, exactly" — which this formalises, and whose arming list is ~~three of the five~~ all five *(answered: see the record-array page's latch section; 2026-10-02, OPUS)*.
 - `_types/types.tsv` — `CharacterRenderRecord`; the mirrored blocks and `+0x61C` were added from this
   work.
 

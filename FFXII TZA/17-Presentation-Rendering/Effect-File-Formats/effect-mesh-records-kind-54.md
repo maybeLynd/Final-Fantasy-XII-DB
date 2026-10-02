@@ -1,7 +1,7 @@
 ---
 system: kind-0x54 effect mesh records
 category: 17-Presentation-Rendering
-status: PARTIAL — record layout and census complete; the consumers read 2026-09-30 renormalise the +0x24 vectors (normals); SD-140 answered 2026-10-01 (SWE2-ORACLE, execution-proven: +0x28 is a per-corner RGBA8 vertex colour on the GS 0x80=1.0 scale, +0x2C a per-corner float texture coordinate, the 00432300 kernel the PS2 colour modulate); open residue: the uncharacterised pass operators and the clipper 00521450 (status line current 2026-10-01, SWE2-DATA)
+status: PARTIAL — record layout and census complete; the consumers read 2026-09-30 renormalise the +0x24 vectors (normals); SD-140 answered 2026-10-01 (SWE2-ORACLE, execution-proven: +0x28 is a per-corner RGBA8 vertex colour on the GS 0x80=1.0 scale, +0x2C a per-corner float texture coordinate, the 00432300 kernel the PS2 colour modulate); the six pass operators and the clipper 00521450 read and execution-proven 2026-10-02 (FABLE, kind54-pass-operators-fable-1002, k54_ops.py 34 checks FAILS 0); open residue: what 003962F0/00396A30/00396560/00395CF0/00395780 write into the per-normal table (status line current 2026-10-02, SWE2-DATA)
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -221,8 +221,27 @@ blended as floats, which is consistent with UVs. ~~Neither label is consumer-ver
   kernel unblended. Per pass, all three draw paths re-colour — flat broadcast when `param+0x1A8+p` is set, else
   per-corner modulate by `param+0x138+4p`, with `00432CC0` writing `alpha = trunc(alpha·L[n].w) mod 256` from the lit
   per-normal table — and the builders emit the colour as `float(byte)` lanes 0..255 and the UV pair as GS STQ divided
-  back by the corner's `Q`. What stays open is the uncharacterised pass operators
-  (`0043E7B0`/`00434630`/`00434760`/`00396F20`/`00394B70`/`0043E840`) and the clipper `00521450` itself.*
+  back by the corner's `Q`. The pass operators and the clipper `00521450` are now read and execution-proven
+  (`kind54-pass-operators-fable-1002`, below).*
+
+The pass operators are read and execution-proven (FABLE, 2026-10-02,
+kind54-pass-operators-fable-1002 (`../../_index/candidates/kind54-pass-operators-fable-1002/`)). Each one
+writes the per-pass UV copy, never the prepared one.
+
+- Pass byte `+0x1B0` can replace the UV with the first two floats of the lit per-normal table at each corner's normal
+  index (`00396F20`). For value 2 it also adds a screen-position term `((X/16)/512 − 3.5, (Y/16)/512 − 3.5625)`
+  (`00394B70`).
+- Byte `+0x1AC` then swaps the pair (`0043E7B0`), applies `offset + uv·scale` from `param + 0x150 + 16p` (`00434630`),
+  or does both (`00434760`).
+- `param + 0x1F2` bits 0 and 1 scale the pair about 0.5 (`0043E840`). The scale is the pass pair (which is then reset
+  to 0.5) or `param + 0x1EC`.
+
+The clipper `00521450` clips each triangle in homogeneous space against `|x|, |y|, |z| ≤ |w|`, using six planes
+(Sutherland–Hodgman). It interpolates position, colour, UV and clip position linearly and returns the polygon's vertex
+count. A count of 0 drops the triangle; any other count is re-projected and emitted as an n-gon.
+
+What stays open is what the lighting routines write into the per-normal table (`003962F0` / `00396A30` /
+`00396560` / `00395CF0` / `00395780`), which decides what the regenerated UVs mean.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

@@ -117,9 +117,9 @@ mask, then category, then unit, then cost.
 `BattleAction_CheckUnitActionAvailability` (`00306480`) is short enough to give in full:
 
 ```c
-if (unit == NULL)                                        return 0x2C;
+if (raw == NULL)  /* RDX = 002FFCF0's RDI, q[unit+0x698] */  return 0x2C;
 if (BattleAction_CheckDefinitionCategoryAvailability(actionId))  return 0x0F;
-if (BattleStats_HasRequiredLicenseForAction(unit, actionId))     return 0;
+if (BattleStats_HasRequiredLicenseForAction(raw, actionId))      return 0;
 return 0x10;
 ```
 
@@ -754,7 +754,7 @@ natural action selection and whole OV-42 stay OPEN.
     (`0030CF0D`).
   - `00306BD0` hands `00309230`'s result to `0032FC30` as group 3 (`00306C4D`..`00306C56`). That result is the row's
     `+0x24` word. For row `0x113` (decimal 275, `003092B4`) it is instead an entry of a 13-entry table, indexed by the
-    raw record's type byte minus `0x1B` with no bound check (`003092D6`..`003092DB`).
+    raw record's type byte minus `0x1B` with no bound check (`003092D6`..`003092DB`) *(qualified 2026-10-02, OPUS, from ASTRA's SPEC-accepted [`presentation-index-domain`](../../_experiments/evidence/presentation-index-domain/README.md), method A: 'row `0x113`' is a full 64-bit compare of the entry RDX with the zero-extended 32-bit `low32(second resolver return) + u16(context+8) × 0x113`, or 0 when the context or the first return is null, the two resolver returns and context reads not assumed identical; the `+0x24` arm returns the word zero-extended (0..65535) without the type; the table read is in bounds only for type 27..39, and out-of-band addresses are source predictions, not observed faults or values; the returned EAX reaches `0032FC30` as EDX with no index check between, a source transfer not shown to occur in play; natural type and context admission stays OPEN)*.
   - Group 3's index is `4w+1`. The owner path narrows it to a WORD ([the indexed-source
     page](../../02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md), FABLE
     2026-09-30 subsection).
@@ -764,15 +764,27 @@ natural action selection and whole OV-42 stay OPEN.
   - FFFF narrows to the WORD -3. FFFF with bit 30 occurs on row `0x113` and on rows **511..534**. All of rows 511..534
     have `+0x1E` 7.
 - **What does not exclude 511..534.**
-  - Class `0x14` accepts 0..542. The count is `[02EBF138]+4` = 543 (`00322F84`, `0032302C`..`0032303B`).
+  - Class `0x14` accepts 0..542. The count is the runtime value `[02EBF138]+4` (`00322F84`, `0032302C`..`0032303B`).
+    543 is the shipped table's row count, and that is a premise: `02EBF138` lies in `.data`'s virtual tail, so it is
+    0 at load, and a NULL descriptor refuses every id (FABLE 2026-10-02, review below).
   - The D0..F1 refusal (`0030CEC2`..`0030CEFE`) applies only while the special-sequence state `022C2160` is 5 or 6.
     Rows 511..534 lie above `0xF1` in any case.
-  - The queue remap. The queue cell `022C2178` holds `word - 0xD0` (`0030DBDA`, `0030DC7B`, `003068CA`) or -1, and
+  - The queue remap. The queue cell `022C2178` holds `word - 0xD0` (`0030DBDA`, `0030DC7B`, `003068CA`) or -1
+    *(qualified 2026-10-02, FABLE: at `003068CA` = `00306760` + 0x16A the word is the low 16 bits of a row
+    quotient that the routine computes, not a stored word; the special-sequence queue-writer subsection below)*, and
     its reader `00309C00` consumes the value. The script adapter `0030EEA0` adds `0xD0` back as a 16-bit add
-    (`0030EEB2`) before `0030CFB0` stores the word into the slot's `+0x1C` (`0030D14F`). Rows 511..534 queue as
-    303..326 and decode unchanged. Only `0xCF` and FFFF read as unavailable, so the remap has no universal inverse.
+    (`0030EEB2`) before ~~`0030CFB0` stores the word into the slot's `+0x1C` (`0030D14F`)~~ the acquire wrapper
+    `0030CFB0` passes the word to the slot allocator `0030D070`, whose last store writes it into the slot's `+0x1C`
+    (`0030D070` + 0xDF) *(corrected 2026-10-02, FABLE: the store is the allocator's, not the wrapper's; ASTRA's
+    `ov42-slot-id-producer`, FABLE review [record](../../_index/candidates/fable-review-astra-ov42-slot-id-producer-1002/REVIEW.md), slot-allocator subsection below)*.
+    Rows 511..534 queue as 303..326 and decode unchanged. Only `0xCF` and FFFF read as unavailable, so the remap has
+    no universal inverse.
 - **What does exclude them, on two legs only.**
-  - (a) `0030DB70`'s record arm. If the unit's raw record (`002FFD05`) has byte `+5` = 0, `003060E0` returns 5 for
+  - (a) `0030DB70`'s record arm. The raw record is the pointer `002FFCF0` loads from the incoming RDX `+0x698` at
+    `002FFD05` and keeps in RDI; it passes that pointer as RDX to `00306480` (`002FFCF0` + 0x1A7), which forwards it
+    unchanged to `003060E0`, where `003060E0` + 0x49 reads `+5`. The later reloads of `+0x698` do not replace it, so
+    the `+5` test concerns that parsed record, not a byte of the outer unit (FABLE 2026-10-02). If the unit's raw
+    record has byte `+5` = 0, `003060E0` returns 5 for
     `+0x1E` 7 (`00306300`). `00306480` turns that into `0x0F`, `002FFCF0` refuses, and `0030DB70` returns at
     `0030DBC5`, before its stores. A nonzero `+5` bypasses the test (`0030612F`).
   - (b) Its null-record arm, when the override `01EEBAF0` is negative. The matcher above then returns a byte 0..255
@@ -783,15 +795,238 @@ natural action selection and whole OV-42 stay OPEN.
 
   These are the "idle or same owner" and "allows it" conditions of [the mode ladder,
   §2d](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md). Separately,
-  `00306760`'s six-way dispatch (`003067AA`) switches on the kind `022C215C`, not on `+0x1E`.
+  `00306760`'s six-way dispatch (`003067AA`) switches on the kind `022C215C`, not on `+0x1E`. Only its kind-4 arm
+  writes the queue (FABLE 2026-10-02, the special-sequence queue-writer subsection below).
+
+**What a zero availability reason proves about the id** *(FABLE 2026-10-02, from ASTRA's
+[`ov42-actor-predicate-domain`](../../_experiments/evidence/ov42-actor-predicate-domain/README.md) (`2b341ca3a`),
+FABLE independent review ACCEPT-WITH-NARROWING,
+[`fable-review-astra-ov42-actor-predicate-domain-1002`](../../_index/candidates/fable-review-astra-ov42-actor-predicate-domain-1002/REVIEW.md)).*
+
+- `002FFCF0` has two returns: the early constant 2, and the shared reason return.
+- The only EAX definition that can make the shared return 0 is the final cost call `00303BD0`, reachable only
+  through the class-success edge after the class query at `002FFCF0` + 0x9B.
+- The class query receives EDX = the zero-extended low 16 bits of the incoming id (`002FFCF0` + 0x1C), ECX = `0x14`
+  (decimal 20) and R8D = 1. The class-`0x14` arm and the shared tail never read R8.
+- So a normal zero reason requires class `0x14` to accept the id. Under the count-543 premise the id is then
+  0..542, which still includes 511..534.
+- This is a necessary condition only. A zero reason also requires `0030E9C0`, `0031A7B0`, `00306480` and
+  `00303BD0` each to return 0; nothing here shows that any of 511..534 passes those gates.
+- The record's byte `+5` staying unchanged from its load to the `00306480` leg is a premise. Two callees on that
+  path, `0030E9C0` and `0031A7B0`, receive the record pointer itself.
 
 **Limits kept.** These limits are ASTRA's and SPEC's.
 
-- The row-`0x113` type bound, the row/codec identity and the descriptor count staying unmodified are premises. So are
-  the interpreter's value transfer (`00309C13` -> `00267E10`) and stable raw-record state.
+- The row-`0x113` type bound, the row/codec identity and the descriptor count staying unmodified are premises. So is
+  stable raw-record state. So is the interpreter's value transfer: the reader stores the action DWORD through its
+  RDX destination (`00309C13`), and a later script read takes it from there; that read is not part of the bridge,
+  and its reader is unread. The bridge pops both out-references through `00267E10` *before* the reader runs, so
+  the transfer is unchanged only if the two destinations are valid, byte-disjoint and not overwritten before the
+  read (next subsection; FABLE 2026-10-02).
 - A nonzero raw `+5` bypasses the category test.
 - The nonnegative override word is bounded only by the 2026-09-30 subsection above, under its premises.
-- `003068D4`, the `00387090` effective-id leg and the other callers of these functions are not covered.
+- ~~`003068D4`,~~ ~~the `00387090` effective-id leg~~ and the other callers of these functions are not covered.
+  *(narrowed 2026-10-02, FABLE: the effective-id leg is now read where the standard-action route hands its
+  word to the acquire wrapper - the effective-id subsection below)* *(narrowed 2026-10-02, FABLE: the queue
+  store `00306760` + 0x174 is now read - the special-sequence queue-writer subsection below)*
 - The queue's five direct-reference instructions are a census, not an alias closure.
-- No slot allocation, command, AI or script selection, successful load, owner submission or rejection is observed or
-  proved. Natural rejection and whole OV-42 stay OPEN.
+- No natural slot allocation, command, AI or script selection, successful load, owner submission or rejection is
+  observed or proved. The slot allocator's own admission is now read: it stores any word into a free slot (the
+  slot-allocator subsection below). Natural rejection and whole OV-42 stay OPEN.
+
+### FABLE 2026-10-02: what the queue reader writes, in what order, and what its script bridge then reads (OV-42)
+
+*From ASTRA's packet [`ov42-queue-output-alias`](../../_experiments/evidence/ov42-queue-output-alias/README.md)
+(`4fe271b46`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-queue-output-alias-1002/REVIEW.md), 49 checks, 0 FAIL, 11 controls).*
+
+- **The reader `00309C00` (50 B, no `.pdata`, a leaf).** It reads the queue DWORD `022C2178`.
+  - If the DWORD is FFFFFFFF, the reader returns DWORD 0. It writes nothing and does not reset the queue.
+  - Otherwise it stores the DWORD through RDX when RDX is non-null. Then, when RCX is non-null, it loads the unit
+    DWORD `022C218C` and stores it through RCX. Finally it resets the queue to FFFFFFFF and returns DWORD 1. Each
+    store is 4 bytes.
+  - With both pointers NULL, a pending value is still consumed: the queue is reset and the reader returns 1.
+- **The two stores are ordered.** The unit load and store come after the action store. If the two destinations
+  overlap, the unit store overwrites the overlapping bytes: action byte j becomes unit byte j - d when
+  0 <= j - d < 4, where d = RCX - RDX. A shared destination ends holding the unit DWORD in both views. Only
+  byte-disjoint destinations keep both values whatever they are, and a sample in which the two values happen to
+  agree cannot show that the destinations do not overlap.
+- **The formula assumes neither destination aliases `022C2178` or `022C218C`.** An action store into `022C218C`
+  would change the unit value loaded after it, and any output in `022C2178` is overwritten by the reset.
+- **The script bridge (165 B; FABLE confirmed the extent against `.pdata`).** It pops two out-references through
+  the interpreter's pop, decodes each to a destination, and passes them as RDX (action) and RCX (unit). After any
+  normal return it reads both destinations on a straight line with no test of the result, so it also reads them
+  when the reader returned 0, and copies the two values to a pair of globals after shifting their old values. The
+  reader's null guards therefore do not make a bridge call with invalid destinations safe; on a 0 return the
+  copies are whatever the destinations already held. (The bridge's address is on the script-native pages; it is
+  named by role here.)
+- **The reader has one other direct caller,** which passes two stack locals `0x20` apart. That raw `E8`/`E9`
+  census does not cover indirect callers.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- No authored out-reference binding, backing capacity, alias, lifetime, null or invalid destination, fault or
+  natural command-to-action path is observed or proved.
+- Whether the bridge's decode can yield an invalid destination is not read.
+- The role of the bridge's copy globals is not established; no reader census was taken.
+- The 8 branch partitions are logical, not native calls. The overlap rows are arithmetic.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what the presentation-slot allocator admits (OV-42)
+
+*From ASTRA's packet [`ov42-slot-id-producer`](../../_experiments/evidence/ov42-slot-id-producer/README.md)
+(`0ada51452`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-slot-id-producer-1002/REVIEW.md), 53 checks, 0 FAIL,
+13 controls). Static, plus an emulation of the original bytes on synthetic slots and rows.*
+
+- **The allocator `0030D070` (229 B, one `.pdata` record, no calls).** It scans the 32 slots at `022C17B0` + 48*i
+  from slot 0 upward and stops at 32. A slot is free when its WORD `+0x1C` is FFFF, and the first free slot wins.
+  - It writes that slot's list links (`+0`, `+8` and the list's head or tail cells), DWORD 1 at `+0x10`, `+0x14`
+    and `+0x18`, and the incoming ECX at `+0x20`. Its last store is the incoming DX, zero-extended, at `+0x1C`
+    (`0030D070` + 0xDF). It returns EAX = the slot index, 0..31.
+  - That store is the action word's only use. No compare in the body reads the word, so there is no action-range,
+    category or identity test. Each of 511..534 is stored unchanged when a slot is free.
+  - With all 32 slots occupied, it returns AL = FF and writes nothing outside its frame. That is a capacity
+    failure, not a refusal of the id. Only AL is defined on that arm.
+  - A supplied FFFF is also copied, so the slot is linked and initialised but still reads free. No natural FFFF
+    submission is claimed.
+- **The acquire wrapper `0030CFB0` (185 B).** It takes the action word in R8W and the identity in EDX. It passes
+  them to `0030D070` as EDX (the word, zero-extended) and ECX, then stores the returned AL in unit+4. The wrapper
+  itself never writes `+0x1C`; the word store is the allocator's.
+  - A unit+4 that is not FF skips the whole acquisition.
+  - A row whose `+0x0C` bit 30 is clear allocates directly.
+  - With bit 30 set, a word in D0..F1 allocates while `022C2160` is 5 or 6.
+  - Every other bit-30 row meets a one-shot flag, bit 1 of `022C2158`. If the bit is set, the row is skipped. If it
+    is clear, the wrapper sets it and allocates. The words 511..534 are 303..326 above D0, so they meet this flag.
+  - The flag is set *before* the allocator runs, and the wrapper never clears it. That includes the case where the
+    array is full and unit+4 stays FF. Whatever clears it is not read.
+  - The row comes from `[02EBF138]` through `0020E600` as a zero-extended 32-bit pointer. A null descriptor or a
+    null resolve sets that pointer to 0, and the wrapper still reads `+0x0C` (address 0xC). There is no null guard.
+- **Direct callers (raw `E8`/`E9` census).** `0030D070` has one direct caller, the wrapper (`0030CFB0` + 0xA1). The
+  wrapper has two: the script adapter `0030EEA0` (+ 0x60), and a call in a battle-action routine that this page does
+  not otherwise cite (its word source is the next subsection). Indirect callers are not covered.
+
+So the slot allocator does not exclude 511..534. Its only refusals are capacity, a slot the unit already holds and,
+for bit-30 rows, the special-sequence state and the one-shot flag.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- No command, AI or authored-VM producer is read that supplies 511..534 or FFFF. *(narrowed 2026-10-02, FABLE:
+  on the standard-action route the word is the effective-id getter's return, which passes the owner's `+0x714`
+  word unchanged unless it is `0x9F`; that route's frontier is now whatever writes `+0x714` and what it admits,
+  next subsection)*
+- Current row and descriptor identity, readable stable rows, and the pool's initialization, ownership and reuse
+  are premises. The slot array lies in `.data`'s virtual tail, so its FFFF markers come from the pool reset, which
+  is not read here.
+- What a FFFF allocation leads to (a linked slot that still reads free) is not claimed.
+- No natural slot allocation, command execution or rejection is observed.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: where the standard-action route's slot word comes from (OV-42)
+
+*From ASTRA's packet [`ov42-effective-id-source`](../../_experiments/evidence/ov42-effective-id-source/README.md)
+(`2cce275ad`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-effective-id-source-1002/REVIEW.md), 62 checks, 0 FAIL,
+16 controls). Static, plus an emulation of the original bytes on synthetic query records, units, tables and a
+scripted unit registry.*
+
+- **The transfer.** The acquire wrapper's other direct caller (previous subsection) sits in case 6 of a
+  battle-action routine's 13-way phase switch. There the routine passes its unit's QWORD `+0x698` as RCX to the
+  effective-id getter `00387090`, and its next call is `0030CFB0`. Between the two calls, the returned AX is
+  zero-extended into R8D, and nothing else writes R8 or calls anything. So the word that the wrapper hands to the
+  slot allocator is the getter's return. EDX is the unit's DWORD `+8`. R9D is the unit's BYTE `+0xEA9`, loaded
+  before the getter call and kept in RBX, which the getter restores. The routine is named by role here; its
+  addresses are in the record.
+- **The getter `00387090` (149 B; one root and two chained `.pdata` records).** It calls the owner resolver
+  `0031B860` once or twice and returns a zero-extended WORD.
+  - *Which record.* A non-null query whose BYTE `+5` is 0 selects record BYTE `+4` of the 64-byte bank at
+    `0208D480`, without a first resolver call. Otherwise the first resolver return, O1, is stored to `02EBF188`
+    (0 when null). A non-null O1 selects record BYTE `+0xEA9` of the bank at `0208DE80`. A null O1 selects none,
+    and the record pointer is 0. A selected pointer is never 0, and the getter bounds neither byte index.
+  - *Which word.* The second resolver return, O2, is the owner whose WORD `+0x714` is read. If that word is `0x9F`
+    and a record was selected, the getter returns the record's WORD `+0x10` instead (`00387090` + 0x7E).
+    Otherwise it returns the `+0x714` word itself (`00387090` + 0x88). A stored `0x9F` therefore comes back
+    unchanged only when the first resolver returned null.
+  - *No bound.* The getter makes six tests: the query, BYTE `+5`, O1, O2, the record pointer, and the one
+    compare with `0x9F`. In the emulation, each of 511..534 is returned unchanged on both legs, and through the
+    caller's line it reaches the wrapper as R8 unchanged.
+  - *Two owners.* O1 and O2 come from separate resolver calls. The record follows O1 and the word follows O2.
+    When the registry changes between the calls, the substitute comes from O1's record (emulated). No stable or
+    shared owner is assumed. The `0x9F` compare and the returned word are also two separate reads of `+0x714`.
+  - *No safe NULL.* The resolver returns 0 for a NULL query before any registry call. Otherwise it returns the
+    first registry unit whose QWORD `+0x698` equals the query, or 0. A null O2 goes straight to the `+0x714`
+    read, at address 0x714, and there is no sentinel return. That is a source prediction, not an observed
+    fault, and no caller is shown to pass NULL.
+- **Other direct callers (raw `E8`/`E9` census).** The getter has three. One is this call. One is in a later case
+  of the same routine, where its AX goes to EDX for a different callee. One is in the unit display-record builder.
+  Only the first is read for the transfer. Indirect callers are not covered.
+
+So on this route the effective-id getter adds no bound. A non-`0x9F` word at O2's `+0x714` reaches the slot
+allocator unchanged. The standard producer frontier therefore narrows to whatever writes `+0x714` and what that
+writer admits. [The battle-unit field map](../../04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md) lists
+three writers of the field in its census: the commit, the cancel and the reuse reset. None of them is read here for its domain. [The
+formula scratch-block page](../../08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md) describes the
+`0x9F` substitute as a drawn id. That writer is not read here either.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- Valid, readable and stable query, owner, record and frame accesses, the normal native ABI and preserved
+  nonvolatile registers are premises.
+- O1 and O2 are not shown to be the same unit, or to be the caller's own unit. O2 is the first registry unit with
+  the query's `+0x698`. Owner lifetime, reuse and registry order are not read.
+- The banks' initialization, contents and extent are not read. No value domain is claimed for record `+0x10`.
+- No natural `+0x714` value, NULL caller, fault, command acceptance or execution is observed.
+- The caller's line is placed inside one case of the routine. It is not proved from a natural entry, and the
+  routine's unit, records and phase byte are premises.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what the special-sequence queue store writes (OV-42)
+
+*From ASTRA's packet [`ov42-sequence-queue-source`](../../_experiments/evidence/ov42-sequence-queue-source/README.md)
+(`0c4215736`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-sequence-queue-source-1002/REVIEW.md), 58 checks, 0 FAIL,
+17 controls). Static, plus an emulation of the original bytes on synthetic rows, descriptors and lookup returns.*
+
+- **The routine `00306760` (five chained `.pdata` records, 936 bytes).** Its 911 code bytes end at its one `ret`
+  (`00306760` + 0x38E). A NOP and six DWORD jump entries follow (+ 0x390 .. + 0x3A8). They are data, not code.
+- **The dispatch.** It loads the kind DWORD `022C215C` (+ 0x4A), subtracts 1 and compares the result unsigned with
+  5. Kinds 1..6 jump through the six entries. Kind 0 and every kind above 6 (unsigned) go straight to the shared tail. Only the
+  kind-4 arm (+ 0xE8) reaches the queue store (+ 0x174). In the emulation of the whole routine with the kind cell
+  set to 0..7, only the kind-4 run writes `022C2178`.
+- **The value.** The routine keeps its incoming RDX, the row pointer, in RDI. The kind-4 arm then works as follows.
+  - It loads `02EBF138` and passes its DWORD `+0xC` to `0020E600`. It subtracts the returned EAX from EDI, a 32-bit
+    subtraction: D = (low32(row) - low32(base)) mod 2^32.
+  - It loads `02EBF138` again and divides D by the WORD `+8`, zero-extended, with an unsigned 32-bit `div`
+    (+ 0x158). The quotient is q.
+  - It compares q's low 16 bits, w, with FFFF. If w is FFFF it stores FFFFFFFF. Otherwise it stores
+    (w - 0xD0) mod 2^32 to `022C2178` (+ 0x16A, + 0x174). The store is a DWORD.
+  - For a row formed as base + 60 * id, ids 511..534 queue as 303..326 (emulated). These are arithmetic results,
+    not native runs.
+  - Quotients alias modulo 65536 before the test. w = `0xCF` also stores FFFFFFFF.
+- **Two loads, no guard.** The descriptor is loaded twice, and the lookup call comes between the loads. The key comes
+  from the first load and the divisor from the second. In the emulation, repointing the cell during the call changes
+  only the divisor. Nothing tests the divisor before the `div`. A zero WORD faults (#DE in the emulation); that is a
+  source prediction, not an observed fault.
+- **The arm's other writes.** After the store, the arm writes the unit's DWORD `+8` to `022C218C`, the value the
+  queue reader returns with the queue (subsection above). Every return of the routine stores 5 to `022C2160`.
+- **Kind 3** computes the same full 32-bit quotient. It passes it to another callee, not to the queue.
+- **The caller.** The raw `E8`/`E9` census gives the routine one direct caller. That caller is in the same
+  battle-action routine as the acquire wrapper's second caller (slot-allocator subsection), and it calls only when
+  row bit 30 (`+0x0C`) is set. Indirect callers are not covered.
+
+So the local producer leg has a single bound: the kind. Whatever row the caller passes, kind 4 queues that row's
+quotient through the remap. Nothing in this routine tests the row's id or category. Excluding 511..534 on this leg
+needs the kind-to-row, caller and owner consistency: the kind in `022C215C` must refer to the same row this call
+passes. That consistency is not established.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- Kind-to-row, caller and owner consistency stays OPEN. A normal kind-4 call is not shown to carry a row in the
+  usual Quickening range. The kind cell's writers and persistence are not read. ASTRA's later packet
+  `ov42-kind-row-coherence` (`d83287255`) bears on this and is not yet reviewed.
+- The two descriptor loads are not shown to read the same, initialized descriptor. A positive WORD `+8` is a
+  precondition.
+- The arm's five earlier callees (four helpers and a `memset`) are opaque. The Win64 ABI, which preserves RDI and
+  RBX, and valid, readable, stable row, unit and descriptor state are premises.
+- No natural kind-4 call, queue consumption, command execution or rejection is observed.
+- Whole OV-42 stays OPEN.

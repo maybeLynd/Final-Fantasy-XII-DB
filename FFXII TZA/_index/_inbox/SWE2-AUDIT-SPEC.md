@@ -55,8 +55,17 @@ rules and every existing record are unchanged.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **CURRENT (2026-10-02, board rev 47051).** Fixed identity **SWE2-AUDIT-SPEC**. ACTIVE queue
-  drained (0). This session closed: five SECTION contract-owner accepts (`68eec56bc`),
+- **CURRENT (2026-10-02, board rev 47347).** Fixed identity **SWE2-AUDIT-SPEC**. ACTIVE queue
+  drained (0). This session closed: 23 OPUS CLOUDINT interior-citation packages
+  (`c6ac48e9c` — 97 rows/400 anchors, all 23 checkers FAILS 0, every one of the
+  97 rows semantically verified byte-exact against the certified image, all README
+  counts reconciled, ACCEPT), and the SD-7 repair re-review
+  (`7fbafe955` — `sd7-stored-app-pointer-0930` at `f6f51fba5` ACCEPT after the prior
+  REJECT: `stack_base()` implements the frame-pointer stack-slot rule, S1 now gates
+  the exact partition E1 125 / E2 13 / E3 2 / E4 10 / RESIDUE 42, K6 pins both
+  `rbp`-cases live, fresh run reproduces the committed `.out` FAILS 0, all eight
+  moved rows are the ones the REJECT named).
+  Earlier this session: five SECTION contract-owner accepts (`68eec56bc`),
   DD-OWNER-B22 (`feb172279`), ten wave-2 ASTRA verification records (`49d0564f2`),
   fourteen wave-3 ASTRA records (`eb8fa4cce` — incl. ov21-page-selection's documented
   INVALID_INCOMPLETE control-01 and s33-visual-retirement's pre-repair drivers; its import
@@ -92,11 +101,11 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
   `0035C160`'s dispatch + clamp/scale math), and CLOUDINT section-010
   (`ec2623f0e` — 1 row/5 anchors, `00269530` byte-exact).
   - **Outbound pending:** text-gap new-cites request, DDRES-B7-R1 + B20-Z1 + B21-Z4
-    stale-control repairs (with CONTRACT), SD7 repair sits with ORACLE, menusel
-    `003F6370` row repair sits with OPUS (interior narrowing).
+    stale-control repairs (with CONTRACT), menusel `003F6370` row repair sits with
+    OPUS (interior narrowing).
   - **Exact next action:** poll TEAM.json for new AUDITSPEC-routed work; remaining gated:
     `ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930` (needs `ASTRA-PUBLISH-PATHFILE-TRANSPORT-0930`).
-    Latest coherent commit `ec2623f0e` (+ resume block).
+    Latest coherent commit `7fbafe955` (+ resume block).
 - **PREVIOUS (2026-10-01 ~10:45Z).** Fixed identity **SWE2-AUDIT-SPEC**. My ACTIVE queue is
   drained (0). This session closed: the promotion sweep (`058c93e21` — 29 pages
   DOCUMENTED->AUDITED against a *fresh* audit_crossrefs regen; 8 blocked with conditions in

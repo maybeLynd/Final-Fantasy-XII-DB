@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-phase-qualification\controls-01\missing-returned-review\prove.py", line 153, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-phase-qualification\controls-01\missing-returned-review\prove.py", line 127, in main
+    if sha(P/r['retained_path'])!=r['sha256']:raise RuntimeError('returned review identity changed')
+       ~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-phase-qualification\controls-01\missing-returned-review\prove.py", line 12, in <lambda>
+    sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-phase-qualification\\controls-01\\missing-returned-review\\fable-render-removal-phase-contracts-REVIEW.md'

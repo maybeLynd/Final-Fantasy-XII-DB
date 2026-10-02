@@ -1,0 +1,12 @@
+{
+  "terminal": true,
+  "exit": 0,
+  "exception": null,
+  "driver": "prove.py",
+  "driver_sha256": "9056e01fcf208e0ad6cae8deb46d738e20ec42beeeacb5d3a8d58d719f2a5d4e",
+  "argv": [
+    "Database/Tools/work/ASTRA/runtime-residue-method-retriage/ov42-interpreter-transfer/result-02.json"
+  ],
+  "start": 1790965506.2478113,
+  "end": 1790965506.4742165
+}

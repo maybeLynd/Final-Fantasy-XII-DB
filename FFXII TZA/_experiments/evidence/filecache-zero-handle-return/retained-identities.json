@@ -1,0 +1,65 @@
+{
+  "files": [
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/manifest.json",
+      "snapshot": "manifest.json",
+      "sha256": "f3365d0eb049fb0c84b6150f1d410a2d1e2b01e36f4025973dc3063c4215392d",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/source-01.json",
+      "snapshot": "source-01.json",
+      "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/capture-01.status.json",
+      "snapshot": "capture-01.status.json",
+      "sha256": "2477dec832ddaa3299c9ec6efae654b3b4a6a892c08db3ab7aa0e4c2fe9e1ec1",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/capture.py",
+      "snapshot": "capture.py",
+      "sha256": "50997b6633b448f263db4809955c5ddf52cab647aea769a3a099952f63e2657b",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/result-02.json",
+      "snapshot": "result-02.json",
+      "sha256": "35dbfbbde76d6ac28825db40769ea3ccb38d8c36be3bf7e4d0eef9dee831ba0b",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/prove-03.status.json",
+      "snapshot": "prove-03.status.json",
+      "sha256": "8914eaa7b90486fda90d8bd72906189f7f1024c7bb9e791049c87ad00233ced4",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/filecache-route2-commit-key-frozen-ready/prove.py",
+      "snapshot": "prove.py",
+      "sha256": "dfeb9effa4d0551414fa738a5a02c9b39618463430b46b76f553e1366e6fb1b6",
+      "level": "Frozen producer validated/pending independent review"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-key-boundaries-source-02.json",
+      "snapshot": "filecache-key-boundaries-source-02.json",
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e",
+      "level": "Published accepted parent bytes"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/filecache-key-boundaries-capture-02.status.json",
+      "snapshot": "filecache-key-boundaries-capture-02.status.json",
+      "sha256": "4014aab07d746a61ec42005a09311e9410609c80354687f8c6d605f0e7eefff8",
+      "level": "Published accepted parent bytes"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/filecache-key-preprocessing/capture-filecache-key-boundaries.py",
+      "snapshot": "capture-filecache-key-boundaries.py",
+      "sha256": "e8f0546565a2b5d088b74d544fbeef32a73fcfe726e7bd96c3eeedaca39b504e",
+      "level": "Published accepted parent bytes"
+    }
+  ],
+  "limits": "Own99 packet pending independent acceptance; sources revalidate against original EXE. Parent published wrapper original bytes reused, not new execution."
+}

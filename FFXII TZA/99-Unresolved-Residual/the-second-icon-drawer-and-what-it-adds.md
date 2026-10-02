@@ -142,7 +142,7 @@ FUN_002DD2F0(context, &expanded);       // 128 units larger on every side
 ```
 
 **Both calls happen on all three of the non-atlas drawing paths**, in that order, and `002DD2F0`
-appears nowhere in the twin. **What it draws is not established** — only that it receives a
+appears nowhere in the twin. **~~What it draws is not established~~** *(answered: see SWE2-EC7-18 below and the rectangle page: `002DD2F0` translates a child rectangle by its parent's origin and clips, it draws nothing; the blinking-icon page answers what the drawer shows, the track map's markers; 2026-10-02, OPUS)* — only that it receives a
 rectangle inflated by exactly the margin the cull uses.
 
 ## 6. Falsification pass — 2026-09-03
@@ -159,7 +159,7 @@ rectangle inflated by exactly the margin the cull uses.
 
 ## 7. What this document does not claim
 
-What `002DD2F0` draws. What `01E0CE80` is set from. Why the two variants read different position
+~~What `002DD2F0` draws.~~ *(answered: see the note above; 2026-10-02, OPUS)* What `01E0CE80` is set from. Why the two variants read different position
 offsets — the two global pairs sit `0x30` apart and nothing here says what distinguishes them. What
 `00403970`'s depth argument means, such that one caller computes it and the other passes zero. Which
 subsystem either drawer serves; **the twin's document does not claim this either, and finding the

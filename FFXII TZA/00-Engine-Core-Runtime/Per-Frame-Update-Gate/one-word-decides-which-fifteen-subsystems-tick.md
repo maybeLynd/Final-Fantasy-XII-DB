@@ -77,7 +77,7 @@ eight of the fifteen groups.
 
 **Bit 4 (`0x0010`) is absent, and it is the only absentee.** **Fifteen** distinct bits are used —
 every bit of the low 16 except `0x0010`, which appears nowhere in the function. Whether it is
-retired, reserved, or handled elsewhere is **not established**. *(This paragraph previously said
+retired, reserved, or handled elsewhere is **not established** *(answered: see section 7, UQ-26, NO ADMISSIBLE SOURCE, signed 2026-09-16; 2026-10-02, OPUS)*. *(This paragraph previously said
 "fourteen consecutive bits", which undercounted by one and described a contiguous run that does not
 exist: the used set has a hole at `0x0010`.)*
 
@@ -182,7 +182,7 @@ and `00861F02` is **`atan2f`**, called twice.
 > either frame-rate setting.**
 
 **Two units appear, and they are a thousand apart.** `pi/180` and `pi/180000` both convert to
-radians; the second takes thousandths of a degree. **Which field uses which is not established.**
+radians; the second takes thousandths of a degree. **Which field uses which is not established** *(answered: see section 7, UQ-27 ANSWERED 2026-09-17 (FABLE): no field is in thousandths of a degree; 2026-10-02, OPUS)*.
 
 ### The node's own shape, as far as the arithmetic shows
 
@@ -204,7 +204,7 @@ The busiest displacements are `+0x0D34` (14 sites), `+0x0D4C` (10), `+0x0D54` (8
 size **`0xBB8`** (`BE-6`), and this node is **at least `0xD78`** — too large to be one. The angle
 maths invites the guess and the size refuses it.
 
-**No name is proposed for the node type.** Degrees, `atan2f`, a UI-gated list and a frame-rate
+**No name is proposed for the node type.** *(answered: see section 7, UQ-25 ANSWERED 2026-09-17 (FABLE): the target-line object; 2026-10-02, OPUS)* Degrees, `atan2f`, a UI-gated list and a frame-rate
 scale are consistent with a minimap, a compass, a targeting reticle or a 3D-positioned UI element,
 and **consistent-with is not evidence**. `DZ-1`.
 
@@ -276,7 +276,7 @@ and **consistent-with is not evidence**. `DZ-1`.
 
 ## 10. Reopened 2026-09-08 — nothing writes the enable word, and the node is not dispatched through
 
-§7 left two unknowns with no method attached. Both now have one, and neither is answered.
+§7 left two unknowns with no method attached. Both now have one, and neither is answered *(answered: see section 7, UQ-25 / DZ-1 ANSWERED 2026-09-17 (FABLE) and DZ-2 ANSWERED 2026-09-11; 2026-10-02, OPUS)*.
 
 ### `DZ-2` — there is no direct writer, and that is a measurement
 

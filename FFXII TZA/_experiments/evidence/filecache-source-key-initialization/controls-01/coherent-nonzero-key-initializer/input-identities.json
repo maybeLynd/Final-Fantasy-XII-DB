@@ -1,0 +1,144 @@
+{
+  "complete_case_file_set": true,
+  "files": [
+    {
+      "case_path": "capture-01.status.json",
+      "bytes": 551,
+      "sha256": "0c775b596667537927447844e0bb10c66c345f6cea6fb93297bbc487c2834252",
+      "inherited_base": "capture-01.status.json"
+    },
+    {
+      "case_path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "capture-01.stderr"
+    },
+    {
+      "case_path": "capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "inherited_base": "capture-01.stdout"
+    },
+    {
+      "case_path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+      "inherited_base": "capture-index-path.py"
+    },
+    {
+      "case_path": "capture.py",
+      "bytes": 900,
+      "sha256": "b0486152271a338d438115dbe29d918f201dd9e1c49bc69ecaf059a36a460dab",
+      "inherited_base": "capture.py"
+    },
+    {
+      "case_path": "control.py",
+      "bytes": 3204,
+      "sha256": "77a4f6118d3fa89b42cf97340d7ca066c610f6d92989b297b49effe221dd89aa",
+      "inherited_base": "control.py"
+    },
+    {
+      "case_path": "PLAN.md",
+      "bytes": 2395,
+      "sha256": "4bc33df860b7c76740ebd88a34fb81b297f451f56283bbb34c4263a918731a62",
+      "inherited_base": "PLAN.md"
+    },
+    {
+      "case_path": "prove-01.status.json",
+      "bytes": 549,
+      "sha256": "d233647a5faed0c4d8a3c20ba35fb9d91d99fb2485ccd9ec9764e2d96711e75e",
+      "inherited_base": "prove-01.status.json"
+    },
+    {
+      "case_path": "prove-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "prove-01.stderr"
+    },
+    {
+      "case_path": "prove-01.stdout",
+      "bytes": 81,
+      "sha256": "c26efaaed57a2547591c83361d5eeb7f5434b1601977eb4c142eec7f028b4bba",
+      "inherited_base": "prove-01.stdout"
+    },
+    {
+      "case_path": "prove-02.status.json",
+      "bytes": 572,
+      "sha256": "c09cbaab3458a7b16f20540cc6a219ed48324aa7c40b5b6afb9df4a8dbe0c062",
+      "inherited_base": "prove-02.status.json"
+    },
+    {
+      "case_path": "prove-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "prove-02.stderr"
+    },
+    {
+      "case_path": "prove-02.stdout",
+      "bytes": 81,
+      "sha256": "c26efaaed57a2547591c83361d5eeb7f5434b1601977eb4c142eec7f028b4bba",
+      "inherited_base": "prove-02.stdout"
+    },
+    {
+      "case_path": "prove-before-nonzero-carrier-check-01.py",
+      "bytes": 7747,
+      "sha256": "536cb54c0582a096261c7b00a41482d38d1d8c875507628eca409f8757eb483e",
+      "inherited_base": "prove-before-nonzero-carrier-check-01.py"
+    },
+    {
+      "case_path": "prove.py",
+      "bytes": 7903,
+      "sha256": "db0c9027379968619024e58ae43750d971d918a97fbffca61e7aa1f14dfd285e",
+      "inherited_base": "prove.py"
+    },
+    {
+      "case_path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+      "inherited_base": "prove_owner_reload_order.py"
+    },
+    {
+      "case_path": "receipt.json",
+      "bytes": 686,
+      "sha256": "45e784e263232d75ef6e464fcda2beb2557d8ec0c4aac5fddd2ae956a085c03b",
+      "retained_overlay": "receipt.json"
+    },
+    {
+      "case_path": "result-01.json",
+      "bytes": 4099,
+      "sha256": "a5350e561c09c19dde5422e9fe1949546c99afb897ccba42221b711b41da7e33",
+      "inherited_base": "result-01.json"
+    },
+    {
+      "case_path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3",
+      "inherited_base": "run.py"
+    },
+    {
+      "case_path": "source-01.json",
+      "bytes": 31161,
+      "sha256": "c5245e24429d2aa3f4f0987b9844cfd2e01f4be72949d61271c81df13b395565",
+      "retained_overlay": "source-01.json"
+    },
+    {
+      "case_path": "stderr.raw",
+      "bytes": 551,
+      "sha256": "2602c3154067f97b178c950e90b814915b719b7214d22caee27d7db441c923db",
+      "retained_overlay": "stderr.raw"
+    },
+    {
+      "case_path": "stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_overlay": "stdout.raw"
+    },
+    {
+      "case_path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "inherited_base": "validate-title-source-annotations.py"
+    }
+  ],
+  "explicit_removed_base_files": []
+}

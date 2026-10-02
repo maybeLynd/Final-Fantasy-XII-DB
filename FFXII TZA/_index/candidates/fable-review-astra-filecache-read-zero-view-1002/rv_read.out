@@ -1,0 +1,38 @@
+== packet integrity
+PASS  manifest.json sha256 = 43e05ee2e8590e06...  | 43e05ee2e8590e069317987d26526716c7f59833018855d8315528c75901e7f2
+PASS  all 55 manifest members hash as listed  | []
+PASS  packet's captured and retained range sha256 values equal this image (2 ranges: Read, IsOpen)  | []
+PASS  retained IsOpen manifest = filecache-open-sentinel's committed manifest (7479a4f8...)  | 7479a4f8d544249b398a57419aab50ac4296bc14eb717c4517cd478320ad2f45
+PASS  metadata-correction-01.json is present (producer01's inherited Close metadata corrected before publication)
+== shipping-image re-derivation
+PASS  Read 0059D4B0 + 0x5C (92 B) decodes exactly and one .pdata record covers it exactly
+PASS  closed local CFG: three rets (+0x19, +0x48, +0x5B), no tail or out-of-body branch
+PASS  exactly five entry -> ret paths  | 5
+PASS  retained IsOpen 0059D920 + 0x1B (27 B) decodes exactly, int3-bounded, same ten instructions
+PASS  buffer test is full 64-bit: `mov rax, qword ptr [rcx + 0x30]` (8 B) / `test rax, rax` / `je 0x59d4ca`
+PASS  non-zero buffer: rcx = buffer, the first and only call is 002150E0 (+0x10), then ret with its RAX
+PASS  zero buffer: `mov dword ptr [rsp + 0x40], eax` (+0x1A) stores EAX = 0 into entry SP+8 (frame 38h, the caller's home slot) before any other test
+PASS  size guard is the low 32 bits only: `test r8d, r8d` (+0x1E) / `je 0x59d507`
+PASS  handle test is full 64-bit: `mov r10, qword ptr [rcx + 0x28]` / `cmp r10, -1` / `je 0x59d4f9`
+PASS  the handle arm calls through IAT 008C2140 = KERNEL32.dll!ReadFile (PE import directory)  | ('KERNEL32.dll', 'ReadFile', 31375902)
+PASS  ReadFile arguments: rcx = handle, rdx/r8 the caller's (no rdx/r8 writer in the body), r9 = &[rsp+40h] (the pre-zeroed count slot), fifth [rsp+20h] = rax (0 on this arm)
+PASS  after ReadFile, `mov eax, dword ptr [rsp + 0x40]` (+0x40, 4 B, zero-extending) replaces the API return
+PASS  cache arm: `mov rcx, qword ptr [rcx + 0x40]` / `test rcx, rcx` / `jle 0x59d507` (signed <= 0 skips), else call 001D6CA0
+PASS  the two no-call paths end at +0x5B and their only rax writer is the +0x4 qword load (RAX = the zero buffer value)
+PASS  Read writes no memory except its own stack/home slots (no stream write)  | []
+PASS  sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write  | 11 cases, bad []
+PASS  sandbox, ReadFile arm: handle, caller's buffer and size, &count = entry SP+8, lpOverlapped 0; RAX = the DWORD count (BOOL ignored); a call that writes no count returns 0 (slot pre-zeroed)  | args ['44', '58000800', '110', '60080000', '0'] rax C; no count written -> rax 0
+PASS  witness q28 = -1, q30 = 0, q40 = 0: IsOpen AL 1; Read with size 0 and 0x100 returns full RAX 0 with no call and no stream write  | IsOpen AL 1; Read [(0, [], 0), (0, [], 0)]
+PASS  sandbox, the composed zero view (constructor -> resolver -> route-1 hit -> NULL allocation): IsOpen AL 1, Read returns 0 with no call for size 0 and 0x100  | IsOpen AL 1; Read [(0, [], 0), (0, [], 0)]
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy (sha check off) passes every image check  | 19 of 19
+PASS  control: Read + 0x1E `test r8d, r8d` -> `test r8, r8` (size guard widened)  | 2 failed: size guard is the low 32 bits only: `test r8d, r8d` (+0x1E) / `je 0x59d507`; sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write
+PASS  control: Read + 0x4 `mov rax, [rcx+30h]` -> `mov eax, [rcx+30h]; nop` (buffer read narrowed)  | 2 failed: buffer test is full 64-bit: `mov rax, qword ptr [rcx + 0x30]` (8 B) / `test rax, rax` / `je 0x59d4ca`; sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write
+PASS  control: Read + 0x50 `jle` -> `jl` (cache 0 would call)  | 4 failed: cache arm: `mov rcx, qword ptr [rcx + 0x40]` / `test rcx, rcx` / `jle 0x59d507` (signed <= 0 skips), else call 001D6CA0; sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write; witness q28 = -1, q30 = 0, q40 = 0: IsOpen AL 1; Read with size 0 and 0x100 returns full RAX 0 with no call and no stream write
+PASS  control: Read + 0x40 `mov eax, [rsp+40h]` -> four nops (API BOOL returned)  | 3 failed: after ReadFile, `mov eax, dword ptr [rsp + 0x40]` (+0x40, 4 B, zero-extending) replaces the API return; sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write; sandbox, ReadFile arm: handle, caller's buffer and size, &count = entry SP+8, lpOverlapped 0; RAX = the DWORD count (BOOL ignored); a call that writes no count returns 0 (slot pre-zeroed)
+PASS  control: Read + 0x3A call through IAT slot + 8 (SetEndOfFile)  | 3 failed: the handle arm calls through IAT 008C2140 = KERNEL32.dll!ReadFile (PE import directory); sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write; sandbox, ReadFile arm: handle, caller's buffer and size, &count = entry SP+8, lpOverlapped 0; RAX = the DWORD count (BOOL ignored); a call that writes no count returns 0 (slot pre-zeroed)
+PASS  control: Read + 0x1A `mov [rsp+40h], eax` -> four nops (count slot not pre-zeroed)  | 2 failed: zero buffer: `mov dword ptr [rsp + 0x40], eax` (+0x1A) stores EAX = 0 into entry SP+8 (frame 38h, the caller's home slot) before any other test; sandbox, ReadFile arm: handle, caller's buffer and size, &count = entry SP+8, lpOverlapped 0; RAX = the DWORD count (BOOL ignored); a call that writes no count returns 0 (slot pre-zeroed)
+PASS  control: Read + 0x27 `cmp r10, -1` -> `cmp r10d, -1` (handle sentinel narrowed)  | 2 failed: handle test is full 64-bit: `mov r10, qword ptr [rcx + 0x28]` / `cmp r10, -1` / `je 0x59d4f9`; sandbox, eleven arm cases (buffer, size, handle, cache; width- and sign-sensitive values): calls and full RAX as derived, no stream write
+PASS  control: IsOpen + 0xE `cmp [rcx+40h], -1` -> `cmp [rcx+40h], 0` (retained predicate rejects the zero view)  | 3 failed: retained IsOpen 0059D920 + 0x1B (27 B) decodes exactly, int3-bounded, same ten instructions; witness q28 = -1, q30 = 0, q40 = 0: IsOpen AL 1; Read with size 0 and 0x100 returns full RAX 0 with no call and no stream write; sandbox, the composed zero view (constructor -> resolver -> route-1 hit -> NULL allocation): IsOpen AL 1, Read returns 0 with no call for size 0 and 0x100
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 34 checks, 34 PASS, 0 FAIL (8 controls)

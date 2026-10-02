@@ -44,4 +44,7 @@ override_id	mask_bit	descriptor_mode	achievement	threshold
 # mode-0 descriptor ids are {0-8, 11, 14, 17, 18}; the mask covers all but 11
 #   (ACH_MASTER_LICENSE counter): 003165C0(11)=0 -> fallback threshold desc+4 = 0 ->
 #   signed counter >= 0 on save +0x384C+0x10 (kind 4 dword).
-# id 31 is out of range for every caller (checker id<0x1F, updater id<0x1E) — dead data.
+# id 31 is out of range for every achievement check (checker id<0x1F, updater id<0x1E) — but not dead
+#   data: `003165B0` has callers outside the achievement code (`00572920+0x9E` among them); the id-31
+#   override is read by the Sky Pirate's Den layout (corrected 2026-10-02, per OPUS readiness C-S20;
+#   rows re-verified against shipped menuhandbook.bin — all 11 ids and 14 overrides unchanged).

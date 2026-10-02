@@ -43,11 +43,11 @@ draws.**
 
 **This document was originally about absence.** As of 2026-09-02 that is no longer entirely true:
 **the five largest have been read** (section 9), and the set has been characterised structurally —
-it is not 158 scattered singletons but **14 connected clusters plus 109 singletons**, and **15
-functions have no caller at all**, which is itself the best available explanation of why they
+it is not 158 scattered singletons but **14 connected clusters plus 109 singletons**, and **~~15~~
+~~functions have no caller at all~~** *(answered: see §7, NARROWED 2026-09-16: thirteen of the 139 have no incoming edge, and edges are not reach; 2026-10-02, OPUS)*, which is itself the best available explanation of why they
 resisted classification.
 
-> **Ledger status, 2026-09-14 (GN161).** The 109 singletons named here are **no longer
+> **Ledger status, 2026-09-14 (GN161).** The 109 ~~singletons~~ bodies of `residual-109-classification.tsv` *(corrected 2026-10-02, OPUS: the batch's rows include cluster members `002A4830`, `002A4430`, `002AF960` and `00256CA0`, so they are 109 of the 139, not the singletons)* are **no longer
 > unresolved**: batch `R109` applied the body-read CodeDomain classification of
 > `residual-109-classification.tsv` (65 ENTRY-MENTION + 44 UNTOUCHED rows, AUDIT-SEM
 > accept-with-narrowing). The certified ledger now reads `unresolved=30`,
@@ -100,9 +100,9 @@ every mechanical test at once.
 
 ### Distribution
 
-The 158 are scattered over **37 distinct 64 KB pages** from `0x0018xxxx` to `0x004Fxxxx`. They are
+The 158 are scattered over **37 distinct 64 KB pages** from `0x0018xxxx` to ~~`0x004Fxxxx`~~ `0x005Dxxxx` *(corrected 2026-10-02, OPUS: recount of `residual_addrs.txt.GN158`: 37 pages, the last member in page `0x005D`, 33 members at or above `0x0050xxxx`)*. They are
 not one unclassified module — they are spread thinly through the whole text section, with the
-heaviest single page holding 9.
+heaviest single page holding ~~9~~ 13 *(corrected 2026-10-02, OPUS: pages `0x002A` and `0x0057` hold 13 each, same recount)*.
 
 ### The largest
 
@@ -149,7 +149,7 @@ The complete list is
 | `001E8580` | 3,572 B | **yes — 2026-09-03**, [painting-a-line-of-text-into-a-render-target](Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md) |
 | *(152 more)* | 310–3,020 B | no |
 
-**Eight of 158 have been read** (section 9). The other 150 have not.
+**~~Eight of 158 have been read~~** ~~(section 9). The other 150 have not.~~ *(answered: see §7: "Every member now has a reading"; 2026-10-02, OPUS)*
 
 **A doubt was raised against this document's "no caller" claim about `002AAE40` and it has been withdrawn.** The
 live analysis program reports a **zero-byte body** for `002AAE40` and returns **no callees** for it,
@@ -236,8 +236,8 @@ In the order a future pass should try them:
       decisive evidence**; four of thirteen functions are read and the result is documented as
       [`16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md`](../16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md).
       **Nine functions remain.** The Audio question is answered: both doors are **object message
-      handlers** entering from their per-frame update case, and `0209C4D0` is an **8-slot actor
-      registry** whose readers are named `InputGameplay_GetActorStateAwareRemappedMask*`. The
+      handlers** entering from their per-frame update case, and `0209C4D0` is an **8-slot ~~actor~~
+      ~~registry~~ message-window registry** *(corrected 2026-10-02, OPUS: §11's correction, slots filled by `002A6190`+0x6B..+0xAE)* whose readers are named `InputGameplay_GetActorStateAwareRemappedMask*`. The
       cluster therefore holds actor update logic *as well as* text layout, and how those relate is
       the remaining question.
       ***ANSWERED 2026-09-18 (FABLE) — the cluster is the message and selection window's text engine, and the two Audio doors are that window's per-frame draw and its animation.** Every member now has a reading: six on 2026-09-03, five more placed on 2026-09-15, and the two doors read today. `002A4830` (1,701 B) **draws the window's rows**: for each of the `+0x3C2` records of the `0x28`-byte array at `0209C700` (the store's `TextLayoutRecord`) it copies the window's `+0xD0` draw block to the stack, scales the window's RGBA bytes `+0x90`..`+0x93` by the fade words `+0x58` / `+0x5A` (`imul`, `sar 7`; `002A4954`..`002A49B8`), takes the record's fields — `+0x08` to state `+0x60`, `+0x18` into flag `0x800`, `+0x1C` to `+0x54`, `+0x20` to `+0xA6` — lays the row at the pen y accumulated from each record's `+0x24` row height (`002A4A0D`, `002A4A12`), and draws its `+0x22` runs through `002B2930` / `002B2880` (`002A4A21`..`002A4A62`); the row whose index equals `+0x3C0` is the **cursor row** and takes the special arm at `002A4A67` (its `+0x10` text is what `0209C980` publishes). `002A4430` (1,020 B) is the **open / close / scroll animation** path: it tests the window word `+0xB0` for `0x20000000`, `0x40000000` and `0x100000`, steps with the timing constants `01E0CDAC` / `01E0CDB0` / `01E0CDB4` / `01E0CDBC` / `01E0CDC0` through `00244070` / `002B2D60` / `00368360`, and fills the line scratch `0209C630`. `002A6190`'s case 4 chooses between them by the flag bits §5 names. The four-field group is the window's list state, named by its writers: **`+0x3BE`** (word) the scroll offset `002A5020` returns (stored at `002A5E50` and `002A599B`, copied to `0209C61C` on every cursor move, `002A6132`); **`+0x3C0`** the cursor row — `002A5F40` moves it down or up on the input bits, bounded by `+0x3C1 − 1` (`002A60B6`..`002A6102`), and `002A5CC0` resets it to the last row (`002A5E2C`..`002A5E31`); **`+0x3C1`** the row total, `002A5CC0` summing each record's `+0x22` over the `+0x3C2` records plus one (`002A5DF3`..`002A5E1C`); **`+0x3C2`** the record count (`002A3250` increments it per added record, `002A2720` and `002A2C00` zero it, `00241D40` fixes it at 4); and **`+0x3C5`** the input-wait flag (`0x80` by `002A3730`, 0 by `002A38C0`, read by the four `InputGameplay_GetA*` getters and `002A6190`). So in player terms: a text window with selectable rows — the choice lists and menus built from text records — redrawn every frame with its fade and its highlighted cursor row, scrolled by the offset, animated open and closed, and moved by the pad. Static: the two door bodies, the field-group sweep (every access at `+0x3BE`..`+0x3C5`), the record array's uses.*
@@ -358,7 +358,7 @@ Every differing byte is accounted for:
 
 | Kind | Bytes | Detail |
 |---|---:|---|
-| rel32 displacements shifted by exactly `0x7810` | ~1,186 | 395+ groups, all the same delta |
+| rel32 displacements shifted by exactly `0x7810` | ~~~1,186~~ 1,184 | 395+ groups, all the same delta *(corrected 2026-10-02, OPUS: byte diff of the twins: 1,228 differing bytes, 1,184 of them in 395 rel32 fields, 44 single bytes)* |
 | small immediates, **exactly +2** in B | 42 | ~23 distinct constants |
 | a differing constant `0x0A` -> `0x45` | 2 | at `+0xCF2` and `+0x1AAB` |
 
@@ -599,7 +599,7 @@ grouped by the call graph **before any member had been opened.**
 
 **Cluster 4 is closed too** — [the nine-patch window frame](the-nine-patch-window-frame.md). All
 four members are one mechanism: a resizable box drawn as nine rectangles with a gradient sampled
-across the whole window. **`00392A10` is one of the fifteen no-caller residuals** and its own
+across the whole window. **~~`00392A10` is one of the fifteen no-caller residuals~~** *(answered: see §"What would settle the cluster", UPDATED 2026-09-16: `00392A00` is `cmp word [rcx+0x58], 0` then `jne 00392A10` at `00392A00`+0x5, and `00392A00` has four callers; 2026-10-02, OPUS)* and its own
 fallback `00392CE0` has exactly one caller, so **the pair was invisible from either end.**
 
 **Cluster 5 is closed too** — [the widget tree draw pass](the-widget-tree-draw-pass.md)
@@ -776,7 +776,7 @@ Facts, no interpretation:
   them, returning a third float. So: a **7-bit-indexed, in-place mutation of a NUL-terminated
   buffer, producing two accumulated floats**.
 - **`002ABF70`** (577 B) is a per-tick state machine: `switch (*(uint *)(obj + 0xB0) & 0xFF)` over
-  labels **0, 1, 2, 3, 4, 5, 7** (seven, no `default`) — *corrected 2026-09-02, see §12*;
+  labels **0, 1, 2, 3, 4, 5, 7** (~~seven, no `default`~~ eight table entries, mode 6 and any value above 7 going to the epilogue *(corrected 2026-10-02, OPUS: `cmp eax, 7` / `ja` at `002ABF70`+0x15 and the eight table dwords its +0x22 load indexes, entry 6 = `002ABF70`+0x23B)*) — *corrected 2026-09-02, see §12*;
   accumulates `obj[0x9B] += obj[0x9C]`; fires when `obj[0x9C] == 0x1E` (30) or
   `obj[0x9B] > 0x1D` (29); clamps a `short` at **32000**. Thresholds of 29/30 on an accumulator are
   the shape of a **frame counter**, though nothing here proves the unit is frames.
@@ -864,7 +864,7 @@ InputGameplay_GetActorStateAwareRemappedMask10   (002A2A00)
 
 Each reads **slot 0** (`LEA` the base, then `MOV RAX, [RCX]`), while six further functions scan the
 array with `CMP dword ptr [base + index*8], reg`. An array of at most eight entries, whose readers
-compute **actor-state-aware input remapping**, is an **actor registry**.
+compute **actor-state-aware input remapping**, is ~~an **actor registry**~~ the live **message-window registry** *(corrected 2026-10-02, OPUS: the slots are filled by the message handler `002A6190`, case 1 (`002A6190`+0x6B..+0xAE), whose same object draws a nine-patch frame through `00392A00` (+0x15E) and text through the font painter (+0x202); the four readers' bodies return the confirm-button mask while a window waits, and *actor* rests only on their GFZ working names — §"It is connected", `MessageWindowRecord`)*.
 
 **This revises the cluster's identity.** It is not only text and number layout — that is one role
 inside it. It also holds **per-frame update logic for a registered actor type**. How the two roles
@@ -1064,7 +1064,7 @@ residual functions emitting a PPFX string                : 0 / 158
 virtual method of any RTTI-bearing class** and emit **none** of the three authored string families
 that named 5,000+ functions elsewhere. Whatever they are, they are neither polymorphic class methods
 nor diagnostic-carrying middleware — which is consistent with, and independent of, the existing
-finding that 96 % of their incoming references are banned exception metadata.
+finding that 96 % of their incoming references are banned exception metadata *(answered: see the category README, QUALIFIED 2026-09-02: the figure describes the reference dump, not the image; 2026-10-02, OPUS)*.
 
 **It also bounds the effort saved:** the cheapest high-yield techniques available have now been tried
 against this set and eliminated. The tail really is complete-body reading, one function at a time.
@@ -1263,7 +1263,7 @@ Identities established after this page was written, by page:
 
 The frontier ledger `coverage.tsv` is a frozen export, so these citations do not change the `ledger_resolved` figure until
 that ledger is regenerated. What they change is the worklist: the ~~89~~ 84 residual functions no page cites are the real AC-1
-backlog. They are listed in the TSV with an empty `pages` column.
+backlog. ~~They are listed in the TSV with an empty `pages` column.~~ *(answered: see the member TSV now holds the 30 of GN161, each `interior_cited=yes` and none with an empty `pages` column; 2026-10-02, OPUS)*
 
 ## Interior citations — entry-only-large pass (2026-09-14, SWE2-FRONTIER)
 
@@ -1564,7 +1564,7 @@ which remains true of those fifteen and false as an account of the class.
 classifiers, and §*"the 112 will not shrink on their own"* said they survived three passes untouched.
 **Both stand, and this strengthens them**: the bodies are not deficient in classifier inputs, so a
 fourth pass with the same inputs has no reason to behave differently. What moves them is the tagging
-pass on the 29 DESCRIBED bodies in
+pass on the ~~29~~ 30 DESCRIBED bodies *(corrected 2026-10-02, OPUS: the member TSV's `band` column reads `DESCRIBED` on all 30 rows, `0036A2A0` included — the split stated in §"what kind of work the 30 are")* in
 [`residual-30-GN161.tsv`](residual-30-GN161.tsv), which uses prose rather than signals.
 
 *(Measured by OPUS 2026-09-14 over `graph/functions.tsv` and `edges.tsv` at the current generation,

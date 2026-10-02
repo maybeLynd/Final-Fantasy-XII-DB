@@ -183,8 +183,11 @@ If the issuer's `+0x02` class is 1 and its `+0x10` is 0,
 `003DBAE0` files it in **state 2**, then — only when target and issuer differ — if the target's `entryListFlags` is non-zero, walks the
 target's whole entry array promoting every state-1 entry to 2 (`003DBB30`–`003DBB40`), runs the
 channel walk on the target (`003DBB45`) and halves `entryListFlags` (`003DBB4A`).
-`AllocateAndSubmitEntry` returns 2 when the free list is exhausted (`003DBD32`) and 3 when the id is
-out of range; on 1 the submitter sets bit *channel* of the target's `+0x26` word (`00268A2B`) and
+`AllocateAndSubmitEntry` returns 3 when the id is out of range, tested first as an unsigned
+compare against the function count, and 2 when the free list is exhausted (`003DBD32`); neither
+refusal calls anything or writes the actor *(2026-10-02, FABLE, on its independent review of ASTRA's
+notification-retirement-order packet; record
+[fable-review-astra-notification-retirement-order-1002](../../_index/candidates/fable-review-astra-notification-retirement-order-1002/REVIEW.md))*; on 1 the submitter sets bit *channel* of the target's `+0x26` word (`00268A2B`) and
 calls `0025B580(target)`; on any other result it decrements the target's `+0x10` (`00268A48`).
 
 ### 2.5 The entry's life, from every writer of its run-state byte
@@ -202,8 +205,13 @@ actor code, the entry base proved at each):
 `RET` (`0x2D`) and `RETT` remove the running entry through `ActorResource_RemoveActiveEntry`
 (`003DB2A0`, which treats an entry whose `+0x10` is 4 as being on the detached list, `003DB2F8`, and
 calls `003DC0D0` when `+0x10` is 3 and `+6` is not `0x8000`) and immediately re-run the channel walk; `RETN` / `RETTN` /
-`REQCANCEL` go through `ActorResource_RecycleEntryRange` (`003DB420`) first. Who else promotes a
-state-1 entry to 2 was not found in the functions read (the wait resolver `0025DF00` is the
+`REQCANCEL` go through `ActorResource_RecycleEntryRange` (`003DB420`) first. So do the `freqcancel`
+verbs, through mode 4 (`00352980`, and `00353660` for another actor): mode 4 hands each active
+channel's first nonzero-state entry to `003DB2A0`, which removes it only when it is the channel
+head, and a removed mode-3 entry reaches `003DC0D0` exactly as on `RET`
+([FABLE review 2026-10-02](../../_index/candidates/fable-review-astra-request-cancel-notification-1002/REVIEW.md)).
+Who else promotes a
+state-1 entry to 2 was not found in the functions read *(answered: RC-14, 2026-09-30 — image-wide exactly three stores reach an entry's `+0x11`, plus the insert; section 7; 2026-10-02, OPUS)* (the wait resolver `0025DF00` is the
 candidate) — a limit, not an absence. *Registered as RC-14 (2026-09-30, SWE2-CONTRACT); the SECTION-12 specification
 adds that immediate insertion reselects and promotes only when the target is not the issuer
 ([the actor request](the-actor-request-from-arming-through-start-and-return.md) §1).*
@@ -259,7 +267,7 @@ The record's script pointers, all into the slot's bound image:
 `ActorStorage_AllocateAndInitializeRecords` → `ActorStorage_InitializeRecord` (binding) ·
 `ActorManager_RunFieldRuntimePass` → `WorldActor_UpdateRuntimeAndScriptExecutionState` →
 (`SelectPendingEntryForExecution` from the interpreter and seven other callers) →
-`StartEntryScriptExecution` → `WorldActorScriptVM_InterpretBytecode`.
+`StartEntryScriptExecution` ~~→ `WorldActorScriptVM_InterpretBytecode`~~ (sets the PC and wait kind 1) *(corrected 2026-10-02, OPUS: `003DBE09`/`003DBE0C`; the interpreter's only caller is `0025DF00`, `0025E0D3`)*.
 
 ## 6. Modding notes
 
@@ -378,7 +386,7 @@ RUNNABLE)`. That byte is the one `0025DF00` switches on with `cmp eax, 7` and an
 table — so **the wait slot's `+0x14` is a `waitKind` enum `0…7`, and kind `1` is RUNNABLE**. Two
 pages, two halves: one had the range, the other has a name for a value in it.
 
-**Not claimed:** the other seven kinds remain unnamed — this pass adds one value to the enum, not a
+**Not claimed:** the other seven kinds remain unnamed *(answered: wait kinds 0–7 are enumerated, OV-14 — the-actor-request-from-arming-through-start-and-return.md section 5; 2026-10-02, OPUS)* — this pass adds one value to the enum, not a
 table for it. §2.1's binding arithmetic, §2.4's `REQ` family, §2.5 and §2.6 were not re-derived, and
 nothing here was executed or observed live.
 
@@ -522,7 +530,7 @@ notification -> `0025DF00` resumption. See [the connected specification](the-act
 
 The 139 named assertions and eight targeted variants are bounded isolated original-code evidence,
 not a live game, full opcode census or independent acceptance. Earlier audit receipts are history;
-this correction reopens the mechanism pending review rather than silently retaining AUDITED.
+this correction reopens the mechanism pending review rather than silently retaining AUDITED *(answered: the review is done — the 2026-09-30 reconciliation below; 2026-10-02, OPUS)*.
 
 *Reconciled 2026-09-30 (SWE2-CONTRACT, cited).* **The review is done:** SWE2-AUDIT-SEM re-executed
 `continuation-section12-actor-request-waits/run_review.py` non-author (139 assertions, an identical repeat, 8 mutants

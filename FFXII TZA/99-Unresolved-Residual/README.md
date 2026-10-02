@@ -17,7 +17,7 @@ There is no cheap evidence left in this tail. Every easy signal is exhausted:
 
 | Signal | Available |
 |---|---:|
-| Direct authored strings | **0** |
+| Direct authored strings | **0** *(answered: see the glyph-quads page, "Superseded reading" — the zero was the scanner's; `0020AC30`, one of the 158, loads `"sum_"` at `0020AC30`+0xFA; 2026-10-02, OPUS)* |
 | Exact-body clone hits | **0** |
 | Qualified Phyre/std/EASTL symbols | **0** |
 | Functions with direct PrimaryOwner references | **2** |
@@ -49,10 +49,10 @@ banned-ness and the denominator is the wrong population.
 | direct caller in the call graph | ~~143~~ **144** |
 | verified RIP-relative `LEA` | 12 |
 | relocated data slot pointing at the entry | 1 |
-| **at least one admissible reference** | ~~156~~ **157** |
-| **no admissible reference of any kind** | ~~2~~ **1** |
+| **at least one admissible reference** | ~~156~~ **~~157~~ 158** *(answered: see the-unresolved-158.md, "The count is now 158 of 158" — the nine-patch box renderer is entered by a conditional jump at +0x5 of its 12-byte opacity gate, and that gate has four callers; 2026-10-02, OPUS)* |
+| **no admissible reference of any kind** | ~~2~~ **~~1~~ 0** *(answered: see the box-renderer page's REFUTED box; 2026-10-02, OPUS)* |
 
-~~**156 of 158**~~ **157 of 158 have admissible incoming evidence.**
+~~**156 of 158**~~ **~~157 of 158~~ 158 of 158 have admissible incoming evidence.** *(answered: see the-unresolved-158.md, UPDATED 2026-09-16; 2026-10-02, OPUS)*
 
 > **Corrected within the hour, and the correction is the same defect this section is about.**
 > `0020AC30` is reached through `thunk_FUN_0020ac30` (`001EC660`, five bytes, one `JMP`) from
@@ -133,21 +133,21 @@ percentage is not.
 ## Systems in this category
 
 - [`Unlisted-Code/referenced-code-the-list-never-had.md`](Unlisted-Code/referenced-code-the-list-never-had.md) -
-  **PARTIAL, tier 1.** The sharper half of the same defect: **143 of those blocks ARE pointed at**,
+  **PARTIAL, tier 1.** *(answered: see the page's front matter, now `status: DOCUMENTED`; 2026-10-02, OPUS)* The sharper half of the same defect: **143 of those blocks ARE pointed at**,
   and fourteen are reached by a tail `jmp` from a function the list does contain. **Twelve of the
   fourteen are named nowhere else in this database** - the list took the thunk and never took the
   implementation. Also measures a third defect: 29 listed bodies whose recorded range **contains**
   49 others.
 - [`Unlisted-Code/the-code-the-function-list-does-not-contain.md`](Unlisted-Code/the-code-the-function-list-does-not-contain.md) -
-  **PARTIAL, tier 1.** A **third residual, and the only one outside every denominator**: the
+  **PARTIAL, tier 1.** *(answered: see the page's front matter, now `status: DOCUMENTED`; 2026-10-02, OPUS)* A **third residual, and the only one outside every denominator**: the
   568,793 bytes `progress.py` reports between listed bodies, classified. **244,619 of them are
-  code in at least 1,471 blocks the function list does not contain** - not cited, and not in the
+  code in ~~at least 1,471 blocks~~ 1,471 blocks** *(corrected 2026-10-02, OPUS: 874 bodies, 162 continuations, 3 ambiguous, 1 covered and 431 jump tables of data, `unlisted-body-admissions.tsv`)* ** the function list does not contain** - not cited, and not in the
   frontier either. Three quarters of it is 66 blocks of hand-written SIMD at the head of `.text`,
   attributed to **libvpx VP8 1.6.0** at tier 2. ~~The linker's own `.pdata` census agrees with the
   list **perfectly** (24,360 of 24,360) and is blind in exactly the same place.~~ *(Withdrawn 2026-09-15, pass 6:
   banned evidence. The page's unreferenced finding rests on relocations and branch targets alone.)*
 - [`Largest-Unclassified-Code/the-largest-unclassified-functions.md`](Largest-Unclassified-Code/the-largest-unclassified-functions.md) -
-  **PARTIAL, tier 1.** A **second, larger residual**: 10,024 functions / **2.41 MB with no
+  **PARTIAL, tier 1.** *(answered: see the page's front matter, now `status: DOCUMENTED`; its three largest are identified there; 2026-10-02, OPUS)* A **second, larger residual**: 10,024 functions / **2.41 MB with no
   `CodeDomain`** *(GN161; 10,154 when written)*, of which **9,409 do have an owner**. The three largest are characterised and
   placed in their call chains; **none is identified**.
 - [`the-unresolved-158.md`](the-unresolved-158.md) -

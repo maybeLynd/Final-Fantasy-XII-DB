@@ -51,7 +51,9 @@ Controls, all PASS:
 - **The generator's tie-break is not a rule, it is hash order.** It takes `Counter.most_common(1)` over callees
   iterated from Python `set`s of address strings. Among tied owners, that returns whichever one the set iteration met
   first, which depends on the per-process string-hash seed.
-- Across 100 seeds on the current census, the depth-1 partition always totals 616. Nine rows move between draws:
+- Across 100 seeds on the current census, the depth-1 partition always totals 616. Across all twenty subsystems
+  twelve rows move between draws — the nine GN160-published rows below, plus the three omitted rows whose ranges the
+  table prints as `[1,2]` (`Items_Equipment_Shops_License`, `PlatformOnlineAchievements`, `Save_Load_Settings`):
   - Movement 181 to 190;
   - ActorEntity 135 to 154;
   - Party 37 to 52;

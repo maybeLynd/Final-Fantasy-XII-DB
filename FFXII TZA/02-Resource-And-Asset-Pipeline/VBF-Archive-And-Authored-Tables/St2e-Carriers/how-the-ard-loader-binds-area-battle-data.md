@@ -128,7 +128,7 @@ The directory ends at `0x30` and the first block begins at `0x30`, which is why 
 `0x30`: it is simultaneously the first block's offset and the header's length.
 
 `+0x0C` is a **trailer offset**, not a directory slot — it sits below the directory and, uniquely
-among the offset-shaped fields, **nothing reads it** (§3).
+among the offset-shaped fields, ~~**nothing reads it**~~ the loader does not read it *(answered: see CC-8 in §7 - `003EA650` reads it through the root accessor; 2026-10-02, OPUS)* (§3).
 
 ## 3. The loader contract
 
@@ -149,7 +149,7 @@ MapRef_GetAreaArdFieldResourceIndex  0x00264ED0   field id -> u16 area index
 ```
 
 **Namespace 21 is the `.ard` path table.** The engine holds a per-locale array of path tables at
-`0x0215F000`, filled by `FUN_002DF9A0` (2,831 B, a `switch` on locale id), and the resolver is
+`0x0215F000`, filled by `FUN_002DF9A0` (2,831 B, a `switch` on locale id), and ~~the resolver is~~ the 22-byte getter of that table is *(corrected 2026-10-02, OPUS: the `.ard` request reads that table inline in the read issuer `002DF780` (`002DF780+0x3F` `mov rax, qword ptr [r15 + rbx*8 + 0x203f000]`, `002DF780+0x4C` `mov rdi, qword ptr [rax + r14*8]`), reached through `0046E030+0xE`; nothing on the `.ard` path calls `002DF980`)*
 
 ```asm
 002DF980  movsxd rax, ecx              ; namespace
@@ -173,7 +173,7 @@ table is a **flat `char*[]` at 8-byte stride**, and the pair a reader sees as
 ```
 
 `.ard` is fetched with `field_index * 2` (`003EA868`, `003EA97F`) and the sibling slot with
-`field_index * 2 + 1` (`003EA83E`, via `FUN_0032eb40(0, 0x15, field_index*2+1)`). **So the "16-byte
+`field_index * 2 + 1` (~~`003EA83E`~~ `AreaArd_LoadOrUnloadFieldResource+0x32` `lea r8d, [rsi + 1]`, via `FUN_0032eb40(0, 0x15, field_index*2+1)`) *(corrected 2026-10-02, OPUS: the old address falls inside the reader's `+0x1B` call; the request is its `+0x3B`)*. **So the "16-byte
 record" and the "flat pointer array" are the same bytes described from two ends** — the file corpus
 sees records, the engine sees a doubled index.
 
@@ -197,7 +197,7 @@ bases, with none unreachable.**
 **Re-verified within a derived extent, after the same measurement went wrong on another namespace.**
 The counts above were first taken with an arbitrary scan window, which is the *span-is-not-a-
 structure* error in miniature — **where an array ends is not observable from the array.** Taking the
-extent as the distance to the next base in address order, over all **83** path-table bases recovered
+extent as the distance to the next base in address order, over all ~~**83**~~ **94** path-table bases recovered *(corrected 2026-10-02, OPUS: `002DF9A0` makes 94 `lea`-then-store installs of 94 distinct values into the 41 slots; 88 are image arrays and six point into the table's own BSS block; the 642-slot extent holds with all 94)*
 from `FUN_002DF9A0`'s stores, each namespace-21 array is **642 slots**, and inside that bound the
 figures are unchanged: **215 `.ard` + 215 `.fpk` = 430 entries, first at index 24.** The window had
 overrun here too; it simply happened that the neighbouring array carries no `.ard` or `.fpk`, so
@@ -373,10 +373,10 @@ take it, it should come here rather than stay unclaimed.**
 ### 7a. Slot 1 read whole — the order-set directory's format (CC-5, 2026-09-12, FABLE)
 
 The "count-shaped" opening is a directory, and the binder that takes this slot instead of the
-`st2e` one (`FUN_003846F0`, 177 B) is its reader: `slot = resolve(desc)` (`00384704`–`00384709`),
+`st2e` one (`FUN_003846F0`, 177 B) is its reader: ~~`slot = resolve(desc)`~~ `slot = encode(desc)`, the image-relative encoding `RuntimePointer_EncodeImageAddress` makes (`00384704`–`00384709`) *(corrected 2026-10-02, OPUS: the directory binder's `+0x14` calls the encoder, not the resolver)*,
 then `count = u16 [desc + 0]` (`00384727`), and for entries `0 … count` (the loop runs `count + 1`
 times, `0038478B`–`0038478E`) each `u32` at `desc + 4 + 4i` is **rebased by the section's address**
-— the first `count` through a recursive call with the depth argument decremented (`0038475B`–
+— ~~the first `count` through a recursive call with the depth argument decremented (`0038475B`–~~ every entry in place, because this slot's depth argument is 0 *(corrected 2026-10-02, OPUS: `BattleData_SetAreaArdSectionCategory+0x4F` `xor r8d, r8d` before its `+0x52` `jmp`; with depth 0 the directory binder's `+0x60` `test ecx, ecx` / `+0x62` `je` skip the recursion at its `+0x7B` and every entry takes the `+0x90` `add dword ptr [rbx], ebp`)* (recursion would be `0038475B`–
 `0038476B`), the last in place (`00384780`). Over the 166 shipped files (the `in` copies, byte-equal
 to `ch`):
 
@@ -484,7 +484,7 @@ in 140 of 166, zero in the other 26.
 > **Slots 3 and 4** are the other half of the question and were already settled
 > above: never read by the loader, zero in 166 of 166 — the same sparse-index fact as the EBP
 > container's unused slots, stated here once. A field nobody reads that is nevertheless *different in 134
-areas* is not padding — **it is authored data the shipped engine ignores.** That is the same shape as
+areas* is not padding — ~~**it is authored data the shipped engine ignores.**~~ *(answered: see CC-8 - the trailer is read; 2026-10-02, OPUS)* That is the same shape as
 EBP `section_017`: a live handler with zero users — capacity present in the data or the code that
 this build does not exercise.
 
@@ -521,8 +521,8 @@ count; the sharper comparison is against **what the engine asks for**, and by th
 shortfall is 49, not 85.
 
 **It does not explain the `ch`/`in` duplication.** Both trees name the identical 215 stems and the
-shipped copies are byte-identical, so the redundancy is packaging; *why those two trees* remains
-open.
+shipped copies are byte-identical, so the redundancy is packaging; ~~*why those two trees* remains~~
+~~open.~~ *(answered: see CC-9 below - the two path-table region variants; 2026-10-02, OPUS)*
 
 ### Six fields, five slots, four `st2e` tables — the three counts reconcile
 
@@ -599,10 +599,10 @@ slot `0215F0A8 ← 01EDC280` (`002DFA9E`) — the array whose 430 non-null entri
 **`in`** tree (`PS2Data\plan_master\in\plan_map\<area>\area\<area>.ard` / `.fpk`, `ttl_a` …
 `tri_t`). The bodies re-install between four and nine pointers each — the per-locale text and menu
 tables at `0215F008`, `0215F010`, `0215F028`, `0215F040`, `0215F048`, `0215F060` (`0215F038` for the
-9 / 10 / default body) — and **exactly one body touches the `.ard` slot: locale 7** (`002DFDF6`),
+9 / 10 / default body) — and ~~**exactly one body touches the `.ard` slot: locale 7**~~ **three locales reach the `.ard` store: 7, 8 and 11** *(corrected 2026-10-02, OPUS: the jump-table bodies of locales 8 and 11 end in `jmp` to the tail of locale 7's body (`002DF9A0+0x58D` and `002DF9A0+0x534` to `002DF9A0+0x4AA`), which stores the `ch` array into `0215F0A8` at `002DF9A0+0x4C6`)* (`002DFDF6`),
 which replaces it with `01E0CFA0` (`002DFE66`), the same 430-of-642 layout over the **`ch`** tree,
 and also re-points `0215F0D0` and `0215F128`. So there are exactly two `.ard` trees because the
-loader has exactly two `.ard` arrays: `in` for every locale but one, `ch` for locale 7.
+loader has exactly two `.ard` arrays: ~~`in` for every locale but one, `ch` for locale 7.~~ `in` for every locale but three, `ch` for locales 7, 8 and 11 (as corrected above).
 
 ### Audit pass — 2026-09-05, `repos-4b` (independent; not the author)
 
@@ -628,7 +628,7 @@ base in the resolver.
 > RuntimePointer` and returns `base + trailerOff` — a double indirection no displacement census on
 > the header could see, which is why three searches found nothing. Its callers (raw `E8`/`E9`
 > index): **`0035A3A0`** and **`0035AC60`**, a matched pair that walk both bases (`r12` 0..1) over a
-> counted list of 8-byte `{selector, mask}` records at the trailer (`+0` count, `+4`…): the selector
+> counted list of 8-byte ~~`{selector, mask}`~~ `{u32 key, u32 mask}` records at the trailer (`+0` count, `+4`…) *(corrected 2026-10-02, OPUS: `0035A3A0+0x43` loads the whole dword as the key and `0035A3A0+0x46` the mask; `002EB7A0` maps only keys 0–13 (`002EB7A0+0x3` `ja` to `+0x31` `mov eax, ecx` passes any larger key through), and all 998 shipped keys are above 13, a letter `c`/`m`/`n`/`s`/`w` in the high word)*: the selector
 > (0–13) is mapped by `002EB7A0` to an encoded actor kind / id (`0x630000`, `0x6E0001`, …), the actor
 > is resolved by `002E99C0`, and for every set bit of the 32-bit mask `002ECAB0(selector, bit, on)`
 > is applied — `0035A3A0` sets actor `+0x19` bit 0 and passes `on = 1`, `0035AC60` clears the bit and
@@ -674,18 +674,18 @@ base in the resolver.
 - ~~**`FUN_003DCF00` and `FUN_003DCF10` were not read.** `slot7`'s consumer is named and not explained.~~ **CC-10 answered 2026-09-12 (FABLE).** `FUN_003DCF00` and `FUN_003DCF10` are eight-byte setters (`003DCF00`, `003DCF10`) of two table
   pointers, `02B58178` (slot 7 of the `.ard`) and `02B58180` (`section_019`'s `+0x2C` table); a scan of
   every rip-relative access finds one reader, **`003DCA30`**, plus the binder `003DCBC0` that nulls both
-  at start-up. `003DCA30(modelKey, groupId, class, &primary, &secondary)` sets `primary = 0x1E` and
-  searches the **`.ard` table first, then `section_019`'s**, over 16-byte entries
-  `{u32 modelKey; u16 class; u16 groupId; u16 motionIndex}`: a `(modelKey, groupId)` match yields
-  `secondary = motionIndex`, a `(modelKey, groupId, class)` match `primary = motionIndex`
+  at start-up. ~~`003DCA30(modelKey, groupId, class, &primary, &secondary)` sets `primary = 0x1E`~~ `003DCA30(modelKey, groupId, class, &kind, &index)` sets `kind = 0x1E` (as corrected below) and
+  searches ~~the **`.ard` table first, then `section_019`'s**~~ a third table first, then the `.ard` table, then `section_019`'s, over 16-byte entries
+  `{u32 modelKey; u16 class; u16 groupId; u16 motionIndex}`: ~~a `(modelKey, groupId)` match yields~~ a `(modelKey, groupId)` match in the first table, or a `(modelKey, groupId, class)` match in the other two, yields `index = motionIndex` *(corrected 2026-10-02, OPUS: `003DCA30+0x19` `mov dword ptr [r9], 0x1e` is its only store to the fourth argument; every match is stored to the fifth (`003DCA30+0x6A`, `003DCA30+0x12A`, `003DCA30+0x150`), and the tables are searched in the order `02B58188` (`003DCA30+0xF`, key and `+6` only), `02B58178` (`003DCA30+0x81`), `02B58180` (`003DCA30+0xCC`); the prototype above is restated from `&primary, &secondary`)*
+  ~~`secondary = motionIndex`, a `(modelKey, groupId, class)` match `primary = motionIndex`~~
   (`003DCA5F`–`003DCB85`). Its callers are `003DC5B0` (key = the caller record's `+0x0C`, group its
   word `+0x10`, class its byte `+0x12`) and `003DC8D0` — the swing motion-file selection that picks
   `cNNNN_10_XXXX.ca` / `mNNNN_10_XXXX.ca`, [the authored-data table registry](../../../02-Resource-And-Asset-Pipeline/authored-data-table-registry.md). So **slot 7 / `section_019` is the per-model
   motion-index override table**, the area's overriding the script's. Corpus (271 `section_019`
   carriers, 2,116 entries, up to 33 per file): keys are a letter in the high word (`m` 109 ×1,449,
   `n` 110 ×658, `s` 115 ×9) over a model number, classes 1 (×1,698), 3, 9, 11–15, groups 500–743,
-  904–944 and 4000–4008, motion indices 60–2306 (1,161 distinct). The `.ard` slot is 0 in all 166
-  `in` files, so in the shipped game only the script-side table is ever bound.
+  904–944 and 4000–4008, motion indices 60–2306 (1,161 distinct). ~~The `.ard` slot is 0 in all 166~~ The `.ard` slot is bound in all 166 *(corrected 2026-10-02, OPUS: the binder `AreaArd_BindLoadedRootAndBattleSections` loads `+0x2C` at its `+0x79` and hands `base + offset` to the slot setter at its `+0x98`; the shipped `in` files hold a non-zero `+0x2C` in 166 of 166, 136 of them a non-empty table, 1,773 entries in all)*
+  ~~`in` files, so in the shipped game only the script-side table is ever bound.~~ `in` files, so the area's table is consulted before `section_019`'s wherever it has rows.
 - **The `.fpk` slot is described from the table, not from a load.** No `.fpk` ships, so the
   `2i + 1` path is never exercised in retail data.
 
@@ -710,9 +710,9 @@ base in the resolver.
   > 0 files as *"capacity the shipped game never uses"*. **Nothing chose to name 7,520 packages — a
   > record width did.** Three fields wide in namespace 5, two here, and an `.fpk` name exists
   > wherever a record exists. That is a different kind of fact from unused authored intent, and it
-  > removes the `.fpk` half of §5's "third instance of one shape" — `trailerOff` and the 49 dead
+  > removes the `.fpk` half of §5's "third instance of one shape" — ~~`trailerOff` and~~ *(answered: `trailerOff` is read, CC-8; 2026-10-02, OPUS)* the 49 dead
   > `.ard` paths remain; `.fpk` was never an instance of it.
-- **`AreaData_BindAndRebaseSectionDescriptor`'s descriptor fields** (`+0x00`, `+0x10`, `+0x14`,
+- **`AreaData_BindAndRebaseSectionDescriptor`'s descriptor fields** (~~`+0x00`~~ `+0x0C` *(corrected 2026-10-02, OPUS: `AreaData_BindAndRebaseSectionDescriptor` stores the base into the slot at its `+0x4`, never into the descriptor's `+0x00`; its `+0x10` reads `+0x0C`, the table above)*, `+0x10`, `+0x14`,
   `+0x18`, `+0x1C`) are recorded as rebased; **what they point at is not established.**
 
 ## 8. Corrections and record
@@ -778,7 +778,7 @@ sets are unchanged and tier 1. Only the declaration decision was wrong.
   functions: `PartyConfiguration_ReconcileRuntimeRosterFir…`, `PartyConfiguration_CollectRuntimeRosterSelec…`,
   `PartyFocus_SelectAndRequestDefaultActor` and five more.
 - **Movement — MECHANICAL.** The same query is asked by two locomotion bodies.
-- **Audio and Presentation — CLIENT.** `0035A490` is called by the 335-byte Audio body. The movie table `002DF980` is
+- **Audio and Presentation — CLIENT.** `0035A490` is called by the 335-byte Audio body. The ~~movie table~~ path getter `002DF980` *(corrected 2026-10-02, OPUS: `002DF980` is the path getter `[0215F000][kind][index]`; the player passes kind `0x1C` (28, the movie kind) at its `+0x5C` `mov ecx, 0x1c` and a doubled index (`+0x61` `add edx, edx`), and the other ten callers pass other kinds)* is
   read by a 1,636-byte Presentation body, and the swing motion-file selector `003DC8D0` by a 504-byte one.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22

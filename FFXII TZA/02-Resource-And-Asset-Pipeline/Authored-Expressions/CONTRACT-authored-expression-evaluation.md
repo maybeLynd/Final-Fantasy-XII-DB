@@ -144,7 +144,7 @@ a wrong rounding law corrupts one value; **a wrong draw count corrupts every val
 * **`b == a` under op 5** → `a` with **no draw** (I2, I5).
 * **`b == 0`** → ops 0-4 return `a` with **no draw**; op 5 draws `f(−a)` when `a ≠ 0` *(2026-09-29, pass 1, `CON-162`)*.
 * **Kinds 2 and 3 of the curve evaluator return 0**; a value past the last point returns the last
-  `y`; three points or fewer fall back to linear **[page]**.
+  `y`; ~~three points or fewer~~ two points or fewer fall back to linear *(corrected 2026-10-02, OPUS: `00431080+0xA1` `cmp al, 2` / `00431080+0xA3` `jbe` send a point count of two or fewer to the linear path, so three points already take the spline; the kinds 2 and 3 above are the operand's two-bit curve selector, `00431080+0x93`)* **[page]**.
 
 ## 11. Observable behaviour
 
@@ -215,7 +215,7 @@ exemption to hide it.
 
 ## 14. Unresolved
 
-* **The other eleven bits of `+0x0E`** — only bits 4–7 are the operator **[page]**.
+* **The other ~~eleven~~ eight bits of `+0x0E`** — only bits 4–7 are the operator *(answered in part: bits 0–3 are the A and B curve selectors, `00431080+0x47` and `+0x4D`; 2026-10-02, OPUS)* **[page]**.
 * **What the record is part of, and who authors it** **[page]**.
 * **Whether this stream is used outside Presentation** — 96 of 99 callers are Presentation-owned,
   3 untagged and **not read** **[page]**.

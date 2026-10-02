@@ -1,0 +1,47 @@
+{
+ "page": "00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "contract-shared-transform-workbench.json",
+ "rows": [
+  {
+   "fn": "00455560",
+   "text": "copies the 64 bytes at `rcx+0x250` to a stack matrix and, by bits 2-4 of byte `+0x4A` of R = qword `rcx+0x20`, calls an 861-byte routine on it with `02AEEC30` (1), `02AEEC70` (2), or `02AEEA60` after a 360-byte routine (4) or a 466-byte routine (5); calls a 13-byte helper (dword `rcx+0x290`), a 195-byte helper (`02AEECB0`) and a 567-byte routine with `02AE0310`; returns unless R byte `+0x240` is 2 or 4 and a 728-byte routine (`R+0x1A0`, out, 0, dword `rcx+0x44`) returns non-null; fills globals `02AEE908`, `02AEE900`, `02AE0370`, `02AE0360`, `02AE02B0`, `02AE02B4` and `02AE02A0` to `02AE02AC`; then, when P = `0020E600(dword R+0x2A0+4*dword rcx+0x298)` is non-null, calls the 195-byte helper (`02AEECB0`) again and, by bits 1-2 of R byte `+0x294` (0 returns), sets dword `02AE0280` to 0 (1) or 2 (2) and calls a 154-byte routine (bits 0-2 of R word `+0x24A` clear) or a 280-byte routine with `0x118`, the address of a 7,726-byte routine and `0020E600(dword P+0x10)`; 3 calls twice, `02AE0280` = 2 then 0",
+   "anchors": [
+    [
+     "004555C2",
+     "sub"
+    ],
+    [
+     "0045560E",
+     "call"
+    ],
+    [
+     "00455672",
+     "call"
+    ],
+    [
+     "00455795",
+     "call"
+    ],
+    [
+     "004557BB",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "004584E0": "1983-byte body with three nested selectors (R word +0x24A, R word +0x33A, R byte +0x337, R byte +0x384) and about forty global stores; it cannot be stated precisely in one row within the 1,200-character limit. It is the larger sibling of 00455560 (same leading matrix copy and +0x4A selector, a second 00431830 block on R+0x290, and 003A33B0 with 0x1C8 and 004A4410); OPUS should draft it from the listing."
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00455560",
+   "was": "copies the 64 bytes at `rcx+0x250` to a stack matrix and, by bits 2-4 of byte `+0x4A` of R = qword `rcx+0x20`, calls `00398030` on it with `02AEEC30` (1), `02AEEC70` (2), or `02AEEA60` after `00434900` (4) or `00434A70` (5); calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)` and `00397910` with `02AE0310`; returns unless R byte `+0x240` is 2 or 4 and `00431830(R+0x1A0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE0370`, `02AE0360`, `02AE02B0`, `02AE02B4` and `02AE02A0` to `02AE02AC`; then, when P = `0020E600(dword R+0x2A0+4*dword rcx+0x298)` is non-null, calls `0039B550(02AEECB0)` and, by bits 1-2 of R byte `+0x294` (0 returns), sets dword `02AE0280` to 0 (1) or 2 (2) and calls `003A2F70` (bits 0-2 of R word `+0x24A` clear) or `003A33B0` with `0x118`, `00499A20` and `0020E600(dword P+0x10)`; 3 calls twice, `02AE0280` = 2 then 0",
+   "now": "copies the 64 bytes at `rcx+0x250` to a stack matrix and, by bits 2-4 of byte `+0x4A` of R = qword `rcx+0x20`, calls an 861-byte routine on it with `02AEEC30` (1), `02AEEC70` (2), or `02AEEA60` after a 360-byte routine (4) or a 466-byte routine (5); calls a 13-byte helper (dword `rcx+0x290`), a 195-byte helper (`02AEECB0`) and a 567-byte routine with `02AE0310`; returns unless R byte `+0x240` is 2 or 4 and a 728-byte routine (`R+0x1A0`, out, 0, dword `rcx+0x44`) returns non-null; fills globals `02AEE908`, `02AEE900`, `02AE0370`, `02AE0360`, `02AE02B0`, `02AE02B4` and `02AE02A0` to `02AE02AC`; then, when P = `0020E600(dword R+0x2A0+4*dword rcx+0x298)` is non-null, calls the 195-byte helper (`02AEECB0`) again and, by bits 1-2 of R byte `+0x294` (0 returns), sets dword `02AE0280` to 0 (1) or 2 (2) and calls a 154-byte routine (bits 0-2 of R word `+0x24A` clear) or a 280-byte routine with `0x118`, the address of a 7,726-byte routine and `0020E600(dword P+0x10)`; 3 calls twice, `02AE0280` = 2 then 0",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned/Presentation callees at 00455560+0xAE, 00455560+0x8C, 00455560+0x7A, 00455560+0xB9, 00455560+0xC5, 00455560+0x24D, 00455560+0xE2, 00455560+0x112, 00455560+0x2C5, 00455560+0x352, and the routine address loaded at 00455560+0x2A4)"
+  }
+ ]
+}

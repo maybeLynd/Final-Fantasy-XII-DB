@@ -596,7 +596,7 @@ behind — `[rcx+0xC0]` then `[+0x138]` then `+0x30`, three null gates, at
 ## SWE2-EC7-24 update (2026-09-18) — `0035C620` singleton forward
 
 `0035C620` (12 B) loads `rcx = 022CA408` and tail-jumps `00273E30` — the
-state-block singleton handed to the shared setter. Interior anchor
+state-block singleton handed to the shared setter *(qualified 2026-10-02, OPUS: `022CA408` is a fixed static object, the battle-menu text-width words of [five-small-bin-tables.md](../../02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md) (FABLE), not the block behind `02EBF190`; and the jump is not a bare forward - given a normal stack-probe return, a valid private frame, a writable receiver and no interference, `00273E30`'s prefix zeroes `[022CA408, 022CA428)` with four QWORD stores (`00273E30`+0x6E..+0x85) before the uncaptured rest of its 2,382 B; a stub at either address shows only the interception; ASTRA's SPEC-accepted [`mode-summon-tail`](../../_experiments/evidence/mode-summon-tail/README.md), method A)*. Interior anchor
 `0035C627` (the jump).
 
 ## SWE2-EC7-25 update (2026-09-18) — `003271D0` state byte getter

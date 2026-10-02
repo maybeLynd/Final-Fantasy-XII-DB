@@ -1,0 +1,128 @@
+{
+  "complete": true,
+  "head": "0a366237f367142cb0044218903c2a011cf0ab17",
+  "checked_Git_inputs": [
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/manifest.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 6808,
+      "sha256": "294ec7aea17d2e2df94950c6db0949383cfb5f6fe62fdb65ebd7c06a237ae230",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/manifest.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/spattack-info-raw-01.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 12107,
+      "sha256": "bf14538abdfb50cd14d71435c8103771caadf2ef12c3846ad46eea2a393f50c4",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/spattack-info-raw-01.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/effective-and-script-id-raw-01.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 21330,
+      "sha256": "645e4431cd0934dfd8b94eb42cd871a0b80540605bf2b1a64adaaafd64a23477",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/effective-and-script-id-raw-01.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/spattack-queue-reader-raw-01.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 5031,
+      "sha256": "039166cea3b6db95095ab060dd46ce337254b0c8648e758e9d04b63d9a8e253c",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/spattack-queue-reader-raw-01.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/spattack-output-writers-raw-02.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 68867,
+      "sha256": "e08b6907771a2d9439e18e4890342ae1acabdf6a9841fb83889c79acfd3c0022",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/spattack-output-writers-raw-02.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/spattack-word-roundtrip-result-01.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 5777,
+      "sha256": "531b5fcfe99a875d463e4a86c7a1cec9b7cd1e1dedd216f777f58dee734ecda9",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/spattack-word-roundtrip-result-01.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/spattack-native-word-remap/prove-spattack-word-roundtrip.py",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 6001,
+      "sha256": "f52b12862b1edc648f40922c25f766d3d2f54c81ba0998b99a4ce1dac3c1fcca",
+      "checkout_equal": true,
+      "stdout_file": "retained/remap/prove-spattack-word-roundtrip.py",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-013-vm-pop-boundaries/observations.json",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 47678,
+      "sha256": "3c56d8902eb273c732d740bff04b09cede0c259d91126d0f1b0fc003e2475b6e",
+      "checkout_equal": false,
+      "stdout_file": "retained/EXP013/observations.json",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-013-vm-pop-boundaries/probe.py",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 4746,
+      "sha256": "140d92ed707beca597aaa48cee08ec4b01a50b20b6f182a42c96cf97634ed6e9",
+      "checkout_equal": true,
+      "stdout_file": "retained/EXP013/probe.py",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-013-vm-pop-boundaries/reader-snapshot.py",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 20931,
+      "sha256": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b",
+      "checkout_equal": true,
+      "stdout_file": "retained/EXP013/reader-snapshot.py",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    },
+    {
+      "source": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md",
+      "commit": "0a366237f367142cb0044218903c2a011cf0ab17",
+      "exit": 0,
+      "bytes": 52207,
+      "sha256": "3985aed9849cc0a9a3d5e0b62ba79b047056a97316c80edd689fbe7c458a751e",
+      "checkout_equal": true,
+      "stdout_file": "retained/storage-classes.md",
+      "stderr": "",
+      "limits": "checked committed blob; differing working copy left untouched"
+    }
+  ],
+  "limits": "EXP013 observations working copy differs; only this committed snapshot is used. Historical calls not rerun or counted as new experiments."
+}

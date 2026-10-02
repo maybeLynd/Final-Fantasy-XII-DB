@@ -946,5 +946,25 @@ Which pools the sound engine initialises is the 18 pages' subject.
 - `001FE8B0` is called by `001C5750`, `001C6E20` and `001CCB20`.
 - The 28-lazy-static body `005AD8F0` is called from `005C5C80`.
 
+
+
+**CoreRuntimeScheduling — CLIENT, 1 edge: the scheduler runs the cited commit.** (2026-10-02,
+ SWE2-CONTRACT, graph-churn residue)
+- `0017D6E0` calls `00189CE0` (the `ActiveCameraSnapshotAndDerivedRenderMatrixCommit` body cited
+  for its `_Init_thread` epoch gate) — the camera commit's caller surface, not a scheduling
+  relationship of this page's subjects.
+
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-static-initialization-order-and-injectio-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00163DB0` | 122 B | calls `00631A60(02CF8370, 02CF8680, 8)`, clears bit 1 and sets bit 3 of dword `02CF846C`, stores `02CF8E80`, `02CF8EE0` and `02CF8F40` at qwords `02CF8430`, `02CF8438` and `02CF8440`, stores `00D56AD8` at qword `02CF8370`, and tail-jumps `00808B90` with the address of a 26-byte stub | `00163DC8`, `00163DDA`, `00163DFF`, `00163E13`, `00163E25` |
+| `00163E30` | 108 B | calls `00631C40(02CF8470, 02CF8270, 0x30)`, ORs 2 into dword `02CF856C`, stores `02CF7F60`, `02CF8060` and `02CF8160` at qwords `02CF8530`, `02CF8538` and `02CF8540`, stores `00D56768` at qword `02CF8470`, and tail-jumps `00808B90` with the address of a 26-byte stub | `00163E48`, `00163E4D`, `00163E5B`, `00163E8C`, `00163E97` |
+| `00163EA0` | 119 B | calls `00631E20(02CF8580, 02CF8470, 0)`, clears bit 1 and sets bit 3 of dword `02CF867C`, stores `02CF7AE0`, `02CF7C20` and `02CF7D60` at qwords `02CF8640`, `02CF8648` and `02CF8650`, stores `00D56ED0` at qword `02CF8580`, and tail-jumps `00808B90` with the address of a 26-byte stub | `00163EB5`, `00163EC7`, `00163EEC`, `00163F00`, `00163F12` |
+| `00164180` | 56 B | calls `006318A0(02CF8270)`, stores 0 at dword `02CF82A8` and `00D582D0` at qword `02CF8270`, and tail-jumps `00808B90` with the address of a 26-byte stub | `0016418B`, `00164197`, `001641A8`, `001641B3` |
+| `001E0F70` | 49 B | when `InputManager_GetSingleton()` is non-null, calls `InputManager_MaterializeRuntimeBindingProfiles(InputManager_GetSingleton())` and tail-jumps `InputManager_RestoreDefaultBindingProfiles(InputManager_GetSingleton())`; otherwise returns | `001E0F74`, `001E0F7C`, `001E0F86`, `001E0F97` |

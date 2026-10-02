@@ -893,5 +893,18 @@ leaves.**
 - The loot searches (`Loot_FindNearestActivePickupPosition`, `Loot_FindOverlappingPickupIndex`) measure XZ distances.
 - The facing writer `002E5E10` calls `003EC260`, and `00337D90` calls `BattleUnit_ComputePresentationSuppressionMask`.
 
+
+**CombatFormula, SaveLoad, Save_Load_Settings, Items_Equipment_Shops_License and
+CoreRuntimeScheduling — CLIENT, 7 edges: the cited writers' own paths.** (2026-10-02,
+SWE2-CONTRACT, graph-churn residue)
+- `00385BA0` (`BattleFormula_ApplyResultMetadata`, cited at `+0x31` as a `02EBF190`-byte write
+  site) is called by `BattleFormula_ApplyTargetResult` (`003112F0`) and calls
+  `BattleStats_FindOwningBattleUnit` (`0031B860`) and `BattleFormula_DispatchPostResultEvents`
+  (`00469EC0`) — the combat layer's own result pipeline.
+- `00233C10` (cited at `+0x81` as the third `+0x5B0E` zero site) is the save path's reset
+  helper: called by the save/load lifecycle `00280140`, it reads the active save buffer through
+  `SaveImage_GetActiveRuntimeBuffer` (`002EF640`), rebase-clears derived inventory state through
+  the Items layer's `0030B6A0`, and hops the 7-byte thunk `00229ED0`.
+
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*

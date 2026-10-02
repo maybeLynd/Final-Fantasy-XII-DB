@@ -517,3 +517,18 @@ items stay open.
 
 Corrected in place: section 4a's script side, and the note on `00229D20`. The consumer record is
 `_index/candidates/camera-renderer-falsification-pass-1-0929/`.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-how-a-camera-reaches-the-renderer-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001824E0` | 72 B | when `00189120()` is non-null, calls `00186AB0` with the result of a second `00189120()` call followed by the incoming `rcx`, `rdx` and `r8`; otherwise it does nothing | `001824F8`, `00182500`, `00182502`, `00182513` |
+| `00182570` | 33 B | when `00189120()` is non-null, returns byte `+0x1C` (zero-extended) of the object a second `00189120()` call returns; otherwise returns 0 | `00182574`, `0018257C`, `0018257E`, `00182583` |
+| `0034A370` | 59 B | calls `00267F90(r9, 0)`, then `002640C0()`, then `00267E10(r9)`, and tail-jumps to `003DD320(002640C0 result, 00267E10 result)` | `0034A37A`, `0034A382`, `0034A387`, `0034A392`, `0034A3A6` |
+| `0037DB40` | 35 B | stores `r8d` to the dword at `02ADDA7C` + sign-extended `ecx` x `0x3D0` + sign-extended `edx` x `0xF0` | `0037DB43`, `0037DB4D`, `0037DB5E` |
+| `0037DCC0` | 35 B | returns the dword at `02ADDA78` + sign-extended `ecx` x `0x3D0` + sign-extended `edx` x `0xF0` | `0037DCC3`, `0037DCD4`, `0037DCDE` |
+| `00382080` | 58 B | zeroes 0x100 bytes from `02EBF278` as 4 iterations of eight qword stores with a 0x40 stride | `00382090`, `0038209F`, `003820AF`, `003820B3`, `003820B7` |
+| `003CBA50` | 114 B | with `a` = float `+0` and `b` = float `+4` of `rcx`, `s` = `xmm3` x float `+0x10` of `rcx` and `d` = `b - a`, writes the floats at `rdx`: `+0x14` = `s`, `+0` = `s / xmm2`, `+0x28` = -((`a + b`) / `d`) (sign flip with `01CEBDA0`), `+0x2C` = -1.0 (`0xBF800000`), `+0x38` = `a` x `b` x -2 (`008F3148`) / `d`, and zeroes `+4`..`+0x10`, `+0x18`..`+0x24`, `+0x30`, `+0x34` and `+0x3C`; returns 0 | `003CBA60`, `003CBA7C`, `003CBA89`, `003CBA9F`, `003CBABC` |
+| `003CBC40` | 91 B | stores `xmm1` to the floats `+8` and `+0xC` of `rcx`, `xmm2` to `+0` and `xmm3` to `+4`, calls `00861F1A(xmm1 x 0.5)` (0.5 at `01CEBB70`), and stores to float `+0x10` 0 when that result equals 0.0 (ordered compare) and otherwise 1.0 (`01CEBBA8`) divided by it | `003CBC4E`, `003CBC53`, `003CBC67`, `003CBC79`, `003CBC90` |

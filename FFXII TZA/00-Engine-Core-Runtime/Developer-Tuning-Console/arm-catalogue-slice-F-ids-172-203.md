@@ -60,7 +60,7 @@ arms in **18 distinct body sizes**, from 20 bytes to 149.
 | **neither — the command is unconditional** | **8** |
 
 > **Eight of the 27 arms ignore the direction flag completely.** Pressing the command flips the value
-> whichever way the caller set argument 2. In slices A–D the flag was universal among stepping arms;
+> whichever way the caller set argument 2. ~~In slices A–D the flag was universal among stepping arms~~ In slices A–D the flag was nearly universal among stepping arms, id 38 ignoring it *(corrected 2026-10-02, OPUS: `001D1660+0x623`–`+0x62E`, an `inc` with no direction test)*;
 > here a third of the range does not consult it.
 
 ## 3. Argument 3 is finally used, and it is used two different ways
@@ -236,7 +236,7 @@ rewards plumbing, 2), `00305A00` calls **achievements** `00316C60` → `00316760
 dispatcher itself reaches **audio** `002DEBA0`/`001DBB00` and **resource** `002EEEE0` (3).)
 
 The accessor used by ids 172–174 and 179 is the one this catalogue names rather than cites: **16 arms,
-33 call sites, 47 caller functions image-wide.** The getter/setter pairs behind ids 189–193 are not
+33 call sites, ~~47 caller functions image-wide~~ 37 caller functions image-wide.** *(corrected 2026-10-02, OPUS: `00193D50` has 125 direct call sites in 37 functions; 47 is `001A9930`'s count)* The getter/setter pairs behind ids 189–193 are not
 characterised here.
 
 ## 7. Modding notes
@@ -254,7 +254,7 @@ characterised here.
 ## 8. What is not known
 
 - [x] **UQ-18.** **What any of these fields is.** The object at `rdi` is still unidentified, so `+0xAC6`–`+0xD90`
-      are offsets, not names. **No field in this slice was traced to a reader.**
+      are offsets, not names. **No field in this slice was traced to a reader** *(answered: see the ANSWERED 2026-09-25 note below; 2026-10-02, OPUS)*.
       *Narrowed 2026-09-14 (FABLE), not answered: the object is identified.* `001D50D0` returns it: a `0x10E8`-byte singleton built on first use by `001CCB20` and cached at `01F81428` (`001D50DD`–`001D5106`). The same object carries the console's labels at `+0x130 + 8 × id`, which `001CCB20` clears (`001CCE6F`) before `001D0390` fills them (`001CCEA4`). `001D1660` receives it through `001CD040`'s pass-through `rcx` (the steal page's `FK-3`, [the steal roll](../../08-Combat-Formula/Steal/the-steal-roll.md)). The fields still have no
       traced reader.
       **ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): each field is named by its own console label, and four have

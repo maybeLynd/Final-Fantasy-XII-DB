@@ -1,0 +1,58 @@
+{
+  "complete": true,
+  "verdict": "REJECT_STANDALONE_CORPUS_COMPLETENESS_INFERENCE",
+  "driver_sha256": "3c7c8e4a1cb31f33ba6fb1e4581d0cbf8368f8469ad6ccb006cd6df7b1385f74",
+  "collector_sha256": "ad23888c8a6db0d815c6d7c08ad5d31707012f3b5b07c327ed8ebd9ddd6299ad",
+  "fixture_sha256": "13904b56f82bd54b046ceafb98366da14ca354643d3f7e5463695822040e411b",
+  "observations": [
+    {
+      "case": "all-readable",
+      "exit": 0,
+      "attempted": [
+        "fixture/a.ebp",
+        "fixture/b.ebp"
+      ],
+      "failed": [],
+      "reported_CALL_count": 2,
+      "stderr_empty": true,
+      "output_table_rows": 2,
+      "limits": "fake archive index/extractor/decoder isolate real collector admission; no actual VBF, shipped bytecode/name/type or natural game reachability"
+    },
+    {
+      "case": "one-extraction-fails",
+      "exit": 0,
+      "attempted": [
+        "fixture/a.ebp",
+        "fixture/b.ebp"
+      ],
+      "failed": [
+        "fixture/b.ebp"
+      ],
+      "reported_CALL_count": 1,
+      "stderr_empty": true,
+      "output_table_rows": 1,
+      "limits": "fake archive index/extractor/decoder isolate real collector admission; no actual VBF, shipped bytecode/name/type or natural game reachability"
+    },
+    {
+      "case": "all-extractions-fail",
+      "exit": 1,
+      "attempted": [
+        "fixture/a.ebp",
+        "fixture/b.ebp"
+      ],
+      "failed": [
+        "fixture/a.ebp",
+        "fixture/b.ebp"
+      ],
+      "reported_CALL_count": 0,
+      "stderr_empty": false,
+      "output_table_rows": 0,
+      "limits": "fake archive index/extractor/decoder isolate real collector admission; no actual VBF, shipped bytecode/name/type or natural game reachability"
+    }
+  ],
+  "conclusion": "Actual unmodified collector accepts one positive sibling while another read_entry raises: CLI0, stderr empty, selected29B absent, no failure/completeness field. All-failed control CLI1 proves its globalzero guard, not per-input admission.",
+  "scope": "Independent research-tool failure-handling control; synthetic archive/index/extractor/decoder and names/reference arguments. Not original FF12 code execution, actual shipped callsites, bytecode decoder correctness, real VBF read failure or natural gameplay.",
+  "affected_claim": "Nonzero all-CALL count alone cannot establish all selected/corpus inputs decoded, nor support universal absence of29B. Positive real captures are not automatically retracted; completeness consumers need separate coverage/error evidence.",
+  "repair_owner": "OPUS helper/contract; DATA selected authored-flow capture must account read/parse/decode/unresolved states. No peer helper modified and no competing partition repair.",
+  "acceptance": "After owner fix, actual invocation must either refuse/mark INCOMPLETE for failed input when completeness is requested, or explicitly label partial positive-only results and withhold absence inference; retain fully readable positive and all-failed controls."
+}

@@ -1,0 +1,7 @@
+ok   004279FA movsxd rsi, dword ptr [rbx + 0x48808]
+ok   00427A4D mov word ptr [rdi], si
+ok   0041F754 call 0x861ec0
+ok   0041F795 mov word ptr [rbx], bp
+ok   0042915C ret 
+ok   00427D18 dec dword ptr [rdi + 0x4880c]
+FAILS 0

@@ -256,7 +256,7 @@ read.*
 - What the two typed-handle predicates test, and what byte of the character's object sets the camera-anchored light's
   float. ~~What `003AED20` derives the group bits from.~~ *Read: it returns the dword at render record `+0x28C`, or 0 for
   id -1 or a free record (45 B). What writes `+0x28C` was not traced.*
-- What sets `02B3F520`, `02B3F503` and `02B3F51C`.
+- What sets `02B3F520`~~, `02B3F503` and `02B3F51C`~~. *(answered: see the `003AC900` paragraph below for `02B3F503` and `02B3F51C`; 2026-10-02, OPUS)*
 - ~~The weights of the strength sum were not converted from their double constants.~~ *Converted 2026-09-19: 0.299,
   0.587 and 0.114 on red, green and blue - **a light's strength is the luminance of its absolute colour.***
 - Nothing here was observed running.
@@ -329,7 +329,7 @@ owns what the `02B3F51C` scale means to a lit character, not the scheduler that 
 
 ## SWE2-EC7-52 update (2026-09-19) - `003AC110`
 
-`003AC110` (1876 B) is the record-less light gather - `01FD4A78` list, `00861EC0`/`003ACAA0`/`003AEBC0` plus per-kind calls `003ADC40`/`003AE4C0`/`003AD830`/`003AE0E0`, `02B3F5xx` slots. Interior anchor `003AC190` (a `00861EC0` call).
+`003AC110` (1876 B) is the record-less light gather - ~~`01FD4A78` list~~ it walks the light list `02B3F508`; `01FD4A78` is a work-area base whose `+0x1000` and `+0x2000` it takes as two sub-areas *(corrected 2026-10-02, OPUS: `003AC110`+0xB1 `mov r10, qword ptr [02B3F508]` and `003AC110`+0xE8 `test r10, r10`; `003AC110`+0x1F, +0x49 and +0x58 for `01FD4A78`)*, `00861EC0`/`003ACAA0`/`003AEBC0` plus per-kind calls `003ADC40`/`003AE4C0`/`003AD830`/`003AE0E0`, `02B3F5xx` slots. Interior anchor `003AC190` (a `00861EC0` call).
 
 
 ## SWE2-EC7-52 update (2026-09-19) - `003ADC40`

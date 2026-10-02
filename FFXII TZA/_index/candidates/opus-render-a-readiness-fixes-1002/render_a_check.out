@@ -1,0 +1,5 @@
+ok   00426493 mov dword ptr [rcx + 0x48830], eax
+ok   003AC1C1 mov r10, qword ptr [rip + 0x2793340]
+ok   00417AB8 cmove cx, r8w
+ok   003E439D add word ptr [rax], cx
+FAILS 0

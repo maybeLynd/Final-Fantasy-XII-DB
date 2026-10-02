@@ -156,8 +156,8 @@ Each section is `u32 count` followed by its records:
 | section | at | count | record | ends |
 |---|---|---:|---|---|
 | 0 | `0x010` | 27 | `{u32 textId, u32 buttonMask}` | **`0xEC`** |
-| 1 | `0x0EC` | 24 | `{u16, u16}` | **`0x150`** |
-| 2 | `0x150` | 19 | `{u16, u16}` | `0x1A0` |
+| 1 | `0x0EC` | 24 | ~~`{u16, u16}`~~ `{u24 labelTextId, u8 buttonIndex}` *(corrected 2026-10-02, OPUS: `0029DA70+0xAA` takes byte 3 as the index and `0029DA70+0x100` masks the dword `0xFFFFFF`, the answer below)* | **`0x150`** |
+| 2 | `0x150` | 19 | ~~`{u16, u16}`~~ `u16[19]` offsets over 8-byte scene records *(corrected 2026-10-02, OPUS: offsets `0x2C` … `0xBC` in the shipped `key_signal_data.bin`, the answer below)* | ~~`0x1A0`~~ `0x214`, the file end |
 
 **Sections 0 and 1 end exactly where the next one begins.** That is not an assumption that happened
 to work - `0x10 + 4 + 27*8 = 0xEC` and `0xEC + 4 + 24*4 = 0x150`, both to the byte, which

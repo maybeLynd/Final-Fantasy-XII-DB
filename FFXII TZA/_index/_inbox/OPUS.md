@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=47214 epoch=3 queue_sha=5989cb6614004c70 -->
-> generated 2026-10-02T15:13:52+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=47699 epoch=3 queue_sha=f3d27cd93ece52da -->
+> generated 2026-10-02T19:46:55+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-CLOUD-F-INTERIOR-W31-1002, OPUS-CLOUD-F-INTERIOR-W32-1002, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-1002-1530, OPUS-RE-READINESS-00-VALUES-1002, OPUS-RE-READINESS-02-VALUES-1002, OPUS-RE-READINESS-17-VALUES-1002, OPUS-RE-READINESS-99-VALUES-1002
-> READY addressed to you: P1 ASTRA-REQ-OPUS-RENDER-CLEAR-CALLEE-FOOTPRINTS-1002, P1 ASTRA-REQ-OPUS-RENDER-REMOVAL-PHASE-CONTRACTS-1002, P1 ASTRA-REQ-OPUS-RENDER-SLOT-IDENTITY-PUBLICATION-1002, P1 FABLE-NOTICE-OPUS-CLOUD-F-SPLIT-1002, P1 FABLE-NOTICE-OPUS-RC5-RESTATEMENT-UNCOMMITTED-1002, P2 ASTRA-RETURN-OPUS-MODE-SUMMON-TAIL-1001, P2 ASTRA-RETURN-OPUS-PRESENTATION-INDEX-DOMAIN-1001, P2 ASTRA-RETURN-OPUS-SD194-STALE-NAME-SLICE-1001
+> ACTIVE: OPUS-CLOUD-F-LOCAL-W41-1002, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-1002-1800
+> READY addressed to you: P1 ASTRA-REQ-OPUS-AUTHORED-CENSUS-ADMISSION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-CLOSE-ZERO-SENTINEL-1002, P1 ASTRA-REQ-OPUS-FILECACHE-INSERT-KEY-ADMISSION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-OPEN-SENTINEL-1002, P1 ASTRA-REQ-OPUS-FILECACHE-READ-ZERO-VIEW-1002, P1 ASTRA-REQ-OPUS-FILECACHE-ROUTE2-COMMIT-KEY-1002, P1 ASTRA-REQ-OPUS-FILECACHE-SOURCE-KEY-INITIALIZATION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-ZERO-HANDLE-RETURN-1002, P1 ASTRA-REQ-OPUS-OV42-ACTOR-PREDICATE-DOMAIN-1002, P1 ASTRA-REQ-OPUS-OV42-QUEUE-OUTPUT-ALIAS-1002, P1 ASTRA-REQ-OPUS-RENDER-REVIEW-ADDENDUM-1002, P1 FABLE-NOTICE-OPUS-CLOUD-F-SPLIT-1002, P1 FABLE-NOTICE-OPUS-RC5-RESTATEMENT-UNCOMMITTED-1002, P2 FABLE-REQ-OPUS-CLOUD-F-ON-OPUS-PAGES-1002
 > READY pool: 0 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
 
@@ -17,42 +17,34 @@
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
 
-## Resume state - 2026-10-02 15:30 UTC (OPUS)
+## Resume state - 2026-10-02 18:00 UTC (OPUS)
 
-- **STANDING:** keep the GitHub repos current. **The cloud credit is spent (user, 2026-10-02): launch no cloud
-  sessions.** FABLE now runs cloud sessions on its own credit. Don't duplicate its scopes; see
-  OPUS-NOTICE-FABLE-CLOUD-F3-PAGES-1002. FABLE is active, so apply only OPUS-led / unprefixed pages and OPUS-written
-  lines (git blame). Route the rest with `apply_by_owner.py`.
-- **NEW GATE, every OPUS publish:** the pass-22 neighbours differential. OPUS's queue never ran it, and today it
-  refused drafts naming another layer's function by address.
-  - Preview a page in seconds with `Tools/work/OPUS/nb_page.py PAGE` (add `--vs-stripped` for published interior
-    sections).
-  - Run `check_publish_neighbours.py` (about 9 min; `core.longpaths` now set) once per batch on every pending path.
-  - The fix is a role or ledger name, or an honest crossing bullet.
-  - Done today: 12 published pages repaired (`Tools/work/OPUS/nb_fix_pub_1002.py`) and pending packages renamed
-    (`nb_fix_1002.py`, a `ROLE_NAMES` pass in each applier). The full batch measured 225 -> 224, then the fcp Party
-    bullet.
-  - `interior_ingest.py apply` now refuses a record with a new hit.
-- **F frontier:**
-  - F2 ingest done: 34 records published (119 functions) plus queued records.
-  - F3: 21 FABLE-led pages (consented). 20 records were re-read (6 accuracy fixes, 53 pass-22 renames) and are being
-    applied.
-  - vbf-archive-and-st2e-tables waits until 02 part A publishes.
-  - Retry numeric-formatting and verbs-that-only-wait once their guard clears.
-- **Readiness stream R:**
-  - Published: 19, 21, 09, 05, 07, 14, 06, 11, 03, 04, 25, 01, 22, 16, 20, 24, 00a.
-  - Queued: 00b, 17a, 17b, 23, 26, 02a.
-  - Drafted and waiting for 17a/17b to publish: 17c (counts and stale, 79 OPUS edits) and the render-slot consumption
-    (6 OPUS edits; 20 go to SWE2-EC7, plus a type request to SWE2-STRUCT).
-  - Still to verify: 02 part B (report lines 1008-1723) and 99-Residual.
-  - RE maps still to file: 00, 17, 23, 26.
-- **Board items handled today:**
-  - RC-5 ruled ANSWERED; the box tick is routed to SWE2-CONTRACT.
-  - FABLE's softedges and OV42 notices closed.
-  - Title R3/R4 and S33 consumed (queued).
-  - Still open: ASTRA's SD194, presentation-index and mode-summon returns.
-- **Tools added today:** `queue_simple.py` (plain publishes), `nb_page.py`. `census_pkfl_container.py` now reads
-  PKFL {offset, size} pairs.
+- **STANDING:**
+  - No cloud credit is left, so OPUS launches no cloud sessions. FABLE has its own.
+  - FABLE is active: apply only OPUS-led / unprefixed pages and OPUS-written lines (git blame); route the rest with
+    `apply_by_owner.py`.
+  - Keep the GitHub repos synced.
+- **Gates on every OPUS publish:**
+  - pass-22 neighbours: preview `Tools/analysis-kit/gfz-scripts/check_page_neighbours.py PAGE...` in seconds; run the
+    full `check_publish_neighbours.py` per batch. Name other layers' functions by ledger name or role.
+  - foreign-hunk check: publish stages whole files, so drop pages that carry a peer's uncommitted hunk.
+  - consumer-check records pin their control run with "verified at <sha>".
+- **Readiness stream R: COMPLETE.**
+  - All 22 folder maps are verified at the bytes, applied, routed and filed (RE repo docs/readiness/).
+  - All readiness board tasks are DONE.
+  - Held edits released (c7667382f). Owner maps with LINE_OWNERS for 14 routed held lines are queued (0m_owner_maps,
+    plus 4 requests).
+  - Still held: the-largest-unclassified-functions.md (16 edits), until SWE2-ORACLE's SD-140 hunk publishes.
+- **F frontier, now drafted locally.**
+  - At 15:00 UTC, 1,239 entry-only functions remained: OPUS-led 834 on 169 pages, SWE2-EC7 312, FABLE 71.
+  - Local wave W41: 12 OPUS pages, 140 rows (13 skipped as too large or trivial), all applied and queued. Board task
+    OPUS-CLOUD-F-LOCAL-W41-1002: close it when the records publish.
+  - Next local wave: the other 27 top OPUS pages as their 24 h peer-commit windows clear (re-run scope_guard).
+    Also retry numeric-formatting and verbs-that-only-wait after FABLE's 3742dc706 passes 24 h.
+  - The 1001 audio record (page now SWE2-EC7-led) stays parked with the BLOCKED OPUS-CLOUD-F-INTERIOR-W1-1001.
+- **Dashboard (progress.py, 15:20 UTC):** overall 67.09%, engine_explained 50.29% (17,633 / 35,065).
+- **Tools added today:** `make_check.py` (builds a control from a verdict table), `lift_holds.py`,
+  `release_holds_map.py`, `queue_simple.py`, `check_page_neighbours.py` (published, shared).
 
 ## RESUME PROTOCOL - read this first (OPUS, 2026-09-26)
 

@@ -42,7 +42,7 @@ presentation command**, fade in over two steps and out over five, and free thems
 
 What the vertex program draws from the histories was **not read** (section 5). Everything the C side does says
 "a textured strip laid through the base and tip points, sixteen samples long" - two points per sample, a parameter of
-32, one 64 x 64 image, an opacity - but that sentence is an inference and nothing below depends on it.
+32, one 64 x 64 image, an opacity - ~~but that sentence is an inference and nothing below depends on it~~ *(answered: see section 5e - the tag decodes to a textured, Gouraud-shaded, alpha-blended triangle strip; 2026-10-02, OPUS)*.
 
 ## 1. The descriptor - FCP section 4
 
@@ -162,7 +162,7 @@ immediately before the trails, inside the same bracket - binds the engine's trai
   `003E6D80` - the branch no shipped model takes (section 1);
 - copies the three histories (`0x100` bytes each) and a parameter block into the template - `0x20`, the sample count,
   `+0x14`, **`fade x opacity`** (`0051C15A`..`0051C16C`), the descriptor's float `+8` and its four vectors - and
-  queues one render command of `0x488` bytes with the VU1 microprogram `0053F490` through the registrar 003A35E0
+  queues one render command ~~of `0x488` bytes~~ with a `0x488`-byte payload (the `GiVmax` command itself is `0x640` bytes) *(corrected 2026-10-02, OPUS: `0051BC70`+0x4F4 `mov dword ptr [rsp + 0x20], 0x488`; `001DB840`+0x35 `mov edx, 0x640` before the arena call at +0x3A)* with the VU1 microprogram `0053F490` through the registrar 003A35E0
   ([the VIF1 / VU1 layer](../Legacy-PS2-GS/the-vif1-vu1-layer.md)).
 
 **No vertex is built on this side.** The strip, if it is one, is made by the 5,417-byte recompiled vertex program,
@@ -202,8 +202,8 @@ The three arguments line up exactly: `0x18 + 0x488 = 0x4A0`, so the payload the 
 it.
 
 **So the trail histories do reach the vertex program, every frame a trail is visible**, and the only thing still
-unread is what the program computes from them. The inference in section 5 about a textured strip is unchanged and is
-still an inference.
+unread is what the program computes from them. ~~The inference in section 5 about a textured strip is unchanged and is~~
+~~still an inference.~~ *(answered: see section 5e - no longer an inference; 2026-10-02, OPUS)*
 
 **One neighbour of that drain crosses a layer line.** The render pass list `00187950` also calls the singleton getter
 pair `00182E80` / `00182EB0`, which the function list still tags **Audio**
@@ -216,7 +216,7 @@ an inference from the two constants; the ownership page reads the same fallbacks
 ### 5b. `0053F490` mapped, not read — where its loop is and what it iterates over (FABLE, Claude Opus 5, 2026-09-20)
 
 *A structural map only. It says where to start in 5,417 bytes and what the main loop runs over; it does **not**
-say what the program draws, and section 5's inference about a textured strip is unchanged.*
+say what the program draws~~, and section 5's inference about a textured strip is unchanged~~.* *(answered: see section 5e; 2026-10-02, OPUS)*
 
 **Everything it touches is the emulated VU machine.** The prologue loads the VU memory base **once** —
 `0053F4B6  lea r14, [rip + …]` → `02064E30` — and every data access is `[index + r14]` with the index shifted
@@ -252,7 +252,7 @@ dword writes (`00540878`, `0054087D`) setting the fourth component, and a three-
 
 **What a reader gets from this:** start at `0053FAD0`, read one iteration, and the six quadword stores in it are
 the per-sample output. **What is still unknown is what those quadwords mean** — which is `UQ-213` for this
-program, and the reason section 5's strip remains an inference.
+program~~, and the reason section 5's strip remains an inference~~. *(answered: see section 5e, where the strip stops being an inference; 2026-10-02, OPUS)*
 
 ### 5c. One iteration, read — six cells, and a conditional fourth component on the last two (FABLE, same day)
 
@@ -327,8 +327,8 @@ count into the tag* — which is why the loop's trip count could be data (§5b) 
 to know it.
 
 **And the rest of the tag is copied, not computed.** The upper twelve bytes come from `xmm0` and from `xmm1`,
-and `xmm1` was loaded at `00540905` **out of a VU cell** — one of the twenty-seven the template's
-`UNPACK V4-32 num=27` at `+0x1C` uploads from `005409C0`'s own bytes. **So the `PRIM`, `FLG`, `NREG` and `REGS`
+and `xmm1` was loaded at `00540905` **out of a VU cell** — one of the ~~twenty-seven~~ 69 *(corrected 2026-10-02, OPUS: NUM `0x45`, `005409C0`+0x2D)* the template's
+~~`UNPACK V4-32 num=27`~~ `UNPACK V4-32` with NUM `0x45` at `+0x1C` uploads from `005409C0`'s own bytes *(corrected 2026-10-02, OPUS: `005409C0`+0x2D stores `0x6C450000` at `+0x1C`; the template table's NUM `0x45` is right)*. **So the `PRIM`, `FLG`, `NREG` and `REGS`
 fields — the descriptor list that names every cell — are authored data sitting in the template, not values the
 program derives.**
 
@@ -341,7 +341,7 @@ program derives.**
 **The cell is 0.** `00540905`'s index comes from `[rsp + 0x70]`, written once at `0053F7E1` from `r15d`, which
 `0053F7D6` loads from the bank cell **`02064B0C`** — and an image-wide sweep of that cell finds **470 references
 and not one write**. Nothing in the program writes it either. So the tag is built from **VU cell 0**, which the
-template's `UNPACK V4-32 num=27 addr=0` fills from `005409C0`'s bytes at `+0x20`:
+template's ~~`UNPACK V4-32 num=27 addr=0`~~ `UNPACK V4-32 NUM 0x45 addr=0` *(corrected 2026-10-02, OPUS: `005409C0`+0x2D stores `0x6C450000`)* fills from `005409C0`'s bytes at `+0x20`:
 
 ```
 +0x20  0x00008000   +0x24  0x602E4000   +0x28  0x00412412   +0x2C  0x00008000
@@ -489,7 +489,7 @@ Interior anchor `00424027` (function `00424010`).
 exit 0. Carried:
 - section 1's file census (`census.py`, 216 blocks);
 - section 4's per-step arithmetic;
-- the unread VU1 program's geometry, which the page itself labels an inference.
+- ~~the unread VU1 program's geometry, which the page itself labels an inference.~~ *(answered: see section 5e - the geometry is decoded from the program's own GIF tag; 2026-10-02, OPUS)*
 
 | # | Clause attacked | Result |
 |---|---|---|

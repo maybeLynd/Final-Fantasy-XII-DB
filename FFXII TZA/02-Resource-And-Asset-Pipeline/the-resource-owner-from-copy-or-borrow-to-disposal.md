@@ -80,7 +80,7 @@ fields. Source-name normalization still writes original input in both modes.
 ## 2. The parser borrows mutable runs, not its lookup allocations
 
 `003EDAD0` checks context byte2 mask4 for families800/A00. Clear selects arena8 allocation and a
-signed32 rounded-down copy; set stores the input run cursor. Both then register individual payloads.
+~~signed32 rounded-down copy~~ copy of the signed-32 length truncated toward zero to a multiple of 16 *(corrected 2026-10-02, OPUS: `003EDAD0+0x67D` `cdq`, `003EDAD0+0x67E` `and edx, 0xf`, `003EDAD0+0x681` `add eax, edx` and `003EDAD0+0x68D` `and eax, 0xfffffff0`)*; set stores the input run cursor. Both then register individual payloads.
 Original `003A9730` and `003A9A70` write index/subtype metadata INTO the selected payload and
 store pointers into the context's lookup table. Borrowed bytes are writable and must remain alive.
 
@@ -103,7 +103,7 @@ A separate new context does not itself free or replace an older context's borrow
 
 ## 4. The effect ticket pool is not the resource request queue
 
-Type3 creation uses the 64 slots at `02EBCD80`, each0x38 bytes, with active/free links at
+Type3 creation uses the ~~64 slots~~ 32 slots at `02EBCD80`, each0x38 bytes *(corrected 2026-10-02, OPUS: `003B3160+0x87` `cmp r8d, 0x20` ends the free-list build at 32 records whose words carry the slot index 0-31 (`003B3160+0x57` `and eax, 0x3f`); the next 32 records, at `02EBD480`, are the separate container-handle pool `003B3160+0x9B` builds)*, with active/free links at
 `02EBDB80/88/90`. It preserves low6 slot bits and high tag bits while changing generation bits.
 This is distinct from the request queue already studied in Update02.
 
@@ -209,7 +209,7 @@ Caller0041FCF0's bracket is read statically; arbitrary consumer callbacks or a w
 validated. The source-deletion wrapper also releases its pin BEFORE disposal, not after it.
 
 [Full current owner state machine and reconstruction obligations](the-external-source-owner-and-borrowed-view-lifetime.md)
-replace the old unrestricted question of whether ANY external owner is known. Other owner families,
+replace the old unrestricted question of whether ANY external owner is known. ~~Other owner families,~~ *(answered: see OV-25 above - exactly four owner families; 2026-10-02, OPUS)*
 real producer/retry schedules, nonempty specialized registration and whole concurrent/reentrant
 consumer lifetimes remain open. [SECTION-08 review](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md).
 
@@ -236,7 +236,7 @@ The behavioural results are SECTION-06 and SECTION-10's executed controls and ar
 |---|---|---|
 | O0 | §1 the type-3 context template | **survives**: `003B38B0` sets type byte 3 at `rsp+0x20`, ORs `0x0C` into byte 2, and stores source32 and offset32 at template `+0x860`/`+0x864` |
 | O1 | §2 the borrow bit | **survives**: `003EDAD0` tests byte 2 mask 4 at two sites |
-| O2 | §4 the ticket pool | **survives**: 64 slots of `0x38` at `02EBCD80`, ending at the link cells `02EBDB80`/`88`/`90`; `003B37E0` compares the whole ID before its first write |
+| O2 | §4 the ticket pool | **survives**: ~~64 slots~~ 32 slots *(corrected 2026-10-02, OPUS: `003B3160+0x87` `cmp r8d, 0x20`)* of `0x38` at `02EBCD80`, ending at the link cells `02EBDB80`/`88`/`90`; `003B37E0` compares the whole ID before its first write |
 | O3 | §5 disposal order | **survives**: `00409D60` finds (`0051FE30`), sweeps render records, cancels the ticket (`003B37E0`), tears the row down (`00409730`), removes the slot (`0051FCF0`), and looks for the next match |
 | O4 | §5 "leaves cache +38" | **survives**: `00409730` stores `+0`, `+4`, `+0x30`, `+0x40` and `+0x44`, never `+0x38` |
 

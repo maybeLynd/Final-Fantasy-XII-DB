@@ -1,0 +1,4 @@
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\request-cancel-notification\prove.py", line 81
+    return='3DB420 returnsEAX1 on all normal paths including NULLreceiver/empty channel range/no selected entry; removal/notification results are not propagated. Caller tails into3DB6E0; its effects are separate.',
+    ^^^^^^
+SyntaxError: invalid syntax

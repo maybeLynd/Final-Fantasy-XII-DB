@@ -304,7 +304,7 @@ applies to its own kind-26 claim, and with a populated array behind it the narro
 too.)*
 
 **A requester for kind 26 exists, and the file-size table fixes its index (2026-09-11, FABLE).**
-`00324510`, from `MainLoop_UpdateAndRenderFrame` (`0022BAEF`), issues `0032E620(0x1a, i, cursor, id)`
+`00324510`, from `MainLoop_UpdateAndRenderFrame` (`0022BAEF`), issues ~~`0032E620(0x1a, i, cursor, id)`~~ `0032E620(0x1a, i, cursor, size)` *(corrected 2026-10-02, OPUS: the assembler `00324510` passes the entry's first dword as the fourth argument (`00324510+0x119` `mov r9d, dword ptr [rbx]`), which is the byte count (part A, C-V2), advances the cursor by it, and stores the returned request id into the second (`00324510+0x133` `mov dword ptr [rbx + 4], eax`))*
 for up to 301 ids read from a runtime table at `022C27B8` (`003245F6`–`0032463C`) and publishes the
 buffer it assembles at registry slot `02EBF178` — so the literal scan above could not see it, and
 it is the reader of `.nmb` bytes §7 says was not found, loading them into one buffer rather than
@@ -381,8 +381,8 @@ kind 26**:
 ```
 
 **The `in` array is installed unconditionally in the prologue; one arm of the region switch
-overwrites the slot with the `ch` array.** So the default build reaches `in\...` paths and exactly
-one region reaches `ch\...` — which is what the archive shows from the other side, and it means
+overwrites the slot with the `ch` array.** So the default build reaches `in\...` paths and ~~exactly~~
+~~one region reaches `ch\...`~~ three regions reach `ch\...` *(corrected 2026-10-02, OPUS: three locale bodies reach the `ch` store: locales 8 and 11 jump into locale 7's tail (`002DF9A0+0x58D`, `002DF9A0+0x534` to `002DF9A0+0x4AA`), which writes `0215F0D0` at `002DF9A0+0x4B8`; §8's locale table)* — which is what the archive shows from the other side, and it means
 **the two trees are not a localisation split at all.** They are the two region variants of one
 resource kind, and no `.nmb` text is localised: the two copies are byte-identical.
 
@@ -503,7 +503,7 @@ head** — which is why a head-only reading cannot tell them apart.
 
 **Kind 26's length is measured, and it is the only one that is.** The independent bound is a scan
 of `.rdata`/`.data`/`_RDATA` for qwords pointing at `.nmb` path strings, which yields **contiguous
-stride-8 runs of 321 (`in`) and 313 + 7 (`ch`)** — bounded by string identity rather than by
+stride-8 runs of 321 (`in`) and ~~313 + 7~~ 321 (`ch`)** *(corrected 2026-10-02, OPUS: the `ch` array `01EAE0D0` holds 321 consecutive qwords, every one a pointer to a `ch\...\.nmb` path, with no break)* — bounded by string identity rather than by
 walking, so it cannot overrun into a neighbour.
 
 **That method works for `.nmb` and provably cannot work for `.ard`.** The same scan for `.ard` and
@@ -692,7 +692,7 @@ the `.nmb` array is made of.
 | Are the offsets relative to the file, the header, or the entry array? | **The file.** `offset[count]` equals the file size in 166 of 166, and `offset[0]` equals `4 + 4*(count+1)` — both only true on a file-relative origin. Two independent checks, same answer. |
 | Is the 3-byte entry a format rule or a corpus accident? | **A corpus accident, and the sheet says so.** The offset table can express any length; nothing in `ResourcePath_Get` or `ResourcePath_Copy` touches entry contents at all. Recorded as an observation over 1,146 entries, not as a constraint. |
 | Are the two locale copies really identical, or was that inherited? | **Re-hashed here.** SHA-256 of both copies of all 166 areas: identical in 166 of 166, for `.ard` as well as `.nmb`. Not taken from the README. |
-| Does `.nmb` share an index with `.ard`? | **No.** They live in different structures — `.nmb` in `g_pathTables[26]` at 321 entries per region, `.ard` in a separate 16-byte record array at 215 per tree. Same *ordering*, different *length*, so the same area has different indices in each. The shared ordering says both were emitted from one authored area list; it does not make them co-indexed. |
+| Does `.nmb` share an index with `.ard`? | **No.** They live in different structures — `.nmb` in `g_pathTables[26]` at 321 entries per region, `.ard` ~~in a separate 16-byte record array at 215 per tree~~ in `g_pathTables[21]`, a flat `char*[]` at 8-byte stride with 215 `.ard` at even and 215 `.fpk` at odd indices *(corrected 2026-10-02, OPUS: the `.ard` contract's AB-3)*. Same *ordering*, different *length*, so the same area has different indices in each. The shared ordering says both were emitted from one authored area list; it does not make them co-indexed. |
 | Was the first `.ard` comparison sound? | **No, and it was redone.** The first pass assumed a contiguous 215-record array based at `0x01E0D060` and read mostly nulls — the `.ard` pointers are not contiguous. Every pointer position in the final comparison is found by scanning `.rdata`/`.data`/`_RDATA` for qwords that resolve to a path string, never by positing a base. |
 | **Does the kind-26 array have a sparse head, so that every area index here is shifted?** | **No — tested, not assumed.** `repos-1e` found the namespace-21 (`.ard`/`.fpk`) arrays carry **24 NULL qwords at the head**, which is why head-only inspection of those finds nothing. If kind 26 did the same, the base stored in `g_pathTables[26]` would sit before the first `.nmb` pointer and **every index in this sheet would be wrong by that offset.** Recovering the base from the initialiser's own `lea`/`mov` pair rather than from where pointers were found: `0x002DFAE4` → `0x01E4DC30` and `0x002DFE58` → `0x01EAE0D0`. Both have **0 NULL qwords at the head**, index 0 is already a `.nmb` (`tst_a`), the run is **321 consecutive `.nmb` pointers with no other extension inside**, and the **first NULL is at index 321**. The sparse-head hazard is real for namespace 21 and absent here. *(`repos-4b`, 2026-09-04, prompted by `repos-1e`.)* |
 | **Was the base recovered by judgement, or by luck?** | **By luck, and the sheet says so because it is the reason the method is mandatory.** I read the base out of the initialiser because it was the cheapest way to confirm *which slot was 26* — not because I had considered that the first pointer in a dense run might not be the base. Doing the obvious thing instead, and taking `0x01E4DC30` as the base because that is where the run starts, would have been **right here and wrong on namespace 21**, and nothing in the data distinguishes the two cases: dense and sparse arrays look identical once you are reading from the first non-NULL entry. **A correct answer reached for the wrong reason is a latent defect everywhere the reason stops holding** — here, every sparse array. Hence the rule, which is not about this format: **recover a path-table base from the initialiser that writes it, never from where its first pointer is found.** |
@@ -793,7 +793,7 @@ the five sites are resolved in §3, "All eleven sites resolve, and the kind-26 r
   indexes the language-name table `01E88B00` that names the `.fst` (`002E03F5`), and
   `r8` is not rewritten in between. That table reads `JP US FR DE IT ES UK KR CH ASIA IN CN`, so the `ch` tree
   serves the Korean and Chinese builds, and every other language reads `in`.
-- **The three 2000-entry arrays in the §3 table are lower bounds**, cut off by the profiler's walk
+- **The three 2000-entry arrays in the §3 table are lower bounds** *(answered: see §3 - the `entries` column is withdrawn, 2026-09-04; 2026-10-02, OPUS)*, cut off by the profiler's walk
   limit rather than by their own terminators.
 - **Callers of `ResourcePath_Get` were not audited**, so the unbounded `kind`/`index` is a property
   of that function and not a reachability claim. *(2026-09-30, SWE2-CONTRACT, DD batch 9: the eleven sites'

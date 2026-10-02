@@ -1,0 +1,266 @@
+{
+  "complete_case_file_set": true,
+  "files": [
+    {
+      "case_path": "capture-01.status.json",
+      "bytes": 544,
+      "sha256": "e797e75fa9ec7f3be5ff554902c97148aea7eeb515de5bf49c11e8e020a67541",
+      "inherited_base": "capture-01.status.json"
+    },
+    {
+      "case_path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "capture-01.stderr"
+    },
+    {
+      "case_path": "capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "inherited_base": "capture-01.stdout"
+    },
+    {
+      "case_path": "capture-02.status.json",
+      "bytes": 510,
+      "sha256": "bd6cd3d6adbdc11f37e98b7bfae265526f2b76fcb43bc004e46c41e5d0f4dbbd",
+      "retained_overlay": "capture-02.status.json"
+    },
+    {
+      "case_path": "capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "capture-02.stderr"
+    },
+    {
+      "case_path": "capture-02.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "inherited_base": "capture-02.stdout"
+    },
+    {
+      "case_path": "capture-cookie.py",
+      "bytes": 873,
+      "sha256": "ff5344df788f58a13119b9f3200c03dddca66d31b9117547d38606d0e6f614f1",
+      "inherited_base": "capture-cookie.py"
+    },
+    {
+      "case_path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+      "inherited_base": "capture-index-path.py"
+    },
+    {
+      "case_path": "capture.py",
+      "bytes": 2419,
+      "sha256": "08bf5f6f2dbf30726f9bc77015ebf39ecf2f1c9e7f4eca2b470af271deb22bfa",
+      "inherited_base": "capture.py"
+    },
+    {
+      "case_path": "control.py",
+      "bytes": 3533,
+      "sha256": "61e09600b592221bdc96bd6c936983253f1d10bb053edb7ccdc5aea35f22ee0e",
+      "inherited_base": "control.py"
+    },
+    {
+      "case_path": "PLAN.md",
+      "bytes": 2750,
+      "sha256": "122ddf3f461ba98183f8bd06a2a6a281332f2febe3aca42d07e05e08ff7a83da",
+      "inherited_base": "PLAN.md"
+    },
+    {
+      "case_path": "prove-01.status.json",
+      "bytes": 542,
+      "sha256": "ccb21f657f23792800a6c6759c5554d95619a63988570402ceec1084202b2538",
+      "inherited_base": "prove-01.status.json"
+    },
+    {
+      "case_path": "prove-01.stderr",
+      "bytes": 486,
+      "sha256": "f9a2c946b059727b05863752bde00b5f3c6ecca6268a058f9e1f1f97353431c8",
+      "inherited_base": "prove-01.stderr"
+    },
+    {
+      "case_path": "prove-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "prove-01.stdout"
+    },
+    {
+      "case_path": "prove-02.status.json",
+      "bytes": 542,
+      "sha256": "fa3053ab04bd249231726a0315941cd03b05596847d0d956633eb9902f382795",
+      "inherited_base": "prove-02.status.json"
+    },
+    {
+      "case_path": "prove-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "prove-02.stderr"
+    },
+    {
+      "case_path": "prove-02.stdout",
+      "bytes": 98,
+      "sha256": "44ac92d29e0e006817e24e8e9e0538c5e091fdb53c65fbbcdf4bdb5b2facb542",
+      "inherited_base": "prove-02.stdout"
+    },
+    {
+      "case_path": "prove-before-reachable-return-slice-01.py",
+      "bytes": 11889,
+      "sha256": "e4fc43632b6988be1240cec381d406aede4c5806a49f65d05db9c32d91747377",
+      "inherited_base": "prove-before-reachable-return-slice-01.py"
+    },
+    {
+      "case_path": "prove.py",
+      "bytes": 12185,
+      "sha256": "3d016099266d7413ad648331d64503e635cb03d4de02c322cd7cd7b9c334e4e9",
+      "inherited_base": "prove.py"
+    },
+    {
+      "case_path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864",
+      "inherited_base": "prove_owner_reload_order.py"
+    },
+    {
+      "case_path": "qualify-source.py",
+      "bytes": 4228,
+      "sha256": "9d4e2dfda64ea31bbd4769eeb10bc55e1b54ed5cb0f5388f009a9af024f3ead0",
+      "inherited_base": "qualify-source.py"
+    },
+    {
+      "case_path": "receipt.json",
+      "bytes": 661,
+      "sha256": "cd04abf9e4066d905ea9f030c094c653c0f2a448b44d285eba078f9d546e382d",
+      "retained_overlay": "receipt.json"
+    },
+    {
+      "case_path": "retained/capture-01.status.json",
+      "bytes": 543,
+      "sha256": "2477dec832ddaa3299c9ec6efae654b3b4a6a892c08db3ab7aa0e4c2fe9e1ec1",
+      "inherited_base": "retained/capture-01.status.json"
+    },
+    {
+      "case_path": "retained/capture-filecache-key-boundaries.py",
+      "bytes": 2760,
+      "sha256": "e8f0546565a2b5d088b74d544fbeef32a73fcfe726e7bd96c3eeedaca39b504e",
+      "inherited_base": "retained/capture-filecache-key-boundaries.py"
+    },
+    {
+      "case_path": "retained/capture.py",
+      "bytes": 897,
+      "sha256": "50997b6633b448f263db4809955c5ddf52cab647aea769a3a099952f63e2657b",
+      "inherited_base": "retained/capture.py"
+    },
+    {
+      "case_path": "retained/filecache-key-boundaries-capture-02.status.json",
+      "bytes": 377,
+      "sha256": "4014aab07d746a61ec42005a09311e9410609c80354687f8c6d605f0e7eefff8",
+      "inherited_base": "retained/filecache-key-boundaries-capture-02.status.json"
+    },
+    {
+      "case_path": "retained/filecache-key-boundaries-source-02.json",
+      "bytes": 31339,
+      "sha256": "d937bf026d36fba7f36f1c6fbe56a0218a986b669c748f3c5ce360ab7eb6c69e",
+      "inherited_base": "retained/filecache-key-boundaries-source-02.json"
+    },
+    {
+      "case_path": "retained/manifest.json",
+      "bytes": 18012,
+      "sha256": "f3365d0eb049fb0c84b6150f1d410a2d1e2b01e36f4025973dc3063c4215392d",
+      "inherited_base": "retained/manifest.json"
+    },
+    {
+      "case_path": "retained/prove-03.status.json",
+      "bytes": 564,
+      "sha256": "8914eaa7b90486fda90d8bd72906189f7f1024c7bb9e791049c87ad00233ced4",
+      "inherited_base": "retained/prove-03.status.json"
+    },
+    {
+      "case_path": "retained/prove.py",
+      "bytes": 14806,
+      "sha256": "dfeb9effa4d0551414fa738a5a02c9b39618463430b46b76f553e1366e6fb1b6",
+      "inherited_base": "retained/prove.py"
+    },
+    {
+      "case_path": "retained/result-02.json",
+      "bytes": 9027,
+      "sha256": "35dbfbbde76d6ac28825db40769ea3ccb38d8c36be3bf7e4d0eef9dee831ba0b",
+      "inherited_base": "retained/result-02.json"
+    },
+    {
+      "case_path": "retained/source-01.json",
+      "bytes": 108807,
+      "sha256": "56afb4b62f298898274af248c276584d5e13fb118ecd24f3f9bde699d7690c69",
+      "inherited_base": "retained/source-01.json"
+    },
+    {
+      "case_path": "retained-identities.json",
+      "bytes": 3624,
+      "sha256": "ef1bd9d9c6db3375fe8aeafb4096531561d9633fd73612ccae48a61c287cc27e",
+      "inherited_base": "retained-identities.json"
+    },
+    {
+      "case_path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3",
+      "inherited_base": "run.py"
+    },
+    {
+      "case_path": "source-01.json",
+      "bytes": 26858,
+      "sha256": "687a5774c1998642b865e1db2d7a05fdbf09a87587286e6bd0d5be2c8c6f49f1",
+      "inherited_base": "source-01.json"
+    },
+    {
+      "case_path": "source-02.json",
+      "bytes": 2624,
+      "sha256": "aa895f5b485cf9ec68f1bd0e4bc58a06d65c5debf823311d5c702f8c79a36fcb",
+      "inherited_base": "source-02.json"
+    },
+    {
+      "case_path": "source-feasibility-01.json",
+      "bytes": 3281,
+      "sha256": "97c6a3d69e5c5c6856a9d159f9efc7827c7f56f36f81d12791fe280fdf9e7049",
+      "inherited_base": "source-feasibility-01.json"
+    },
+    {
+      "case_path": "source-qualification-01.status.json",
+      "bytes": 551,
+      "sha256": "1e2e4768bd06882772d374d8d49db37ca1d7d8cb0a5cae05d2b678509a7d912c",
+      "inherited_base": "source-qualification-01.status.json"
+    },
+    {
+      "case_path": "source-qualification-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inherited_base": "source-qualification-01.stderr"
+    },
+    {
+      "case_path": "source-qualification-01.stdout",
+      "bytes": 91,
+      "sha256": "3da7ca20292d984a1a07ec3ed1ac0b19f00b93a5d02bec4f4c38006f3555ad85",
+      "inherited_base": "source-qualification-01.stdout"
+    },
+    {
+      "case_path": "stderr.raw",
+      "bytes": 799,
+      "sha256": "df75cacee4c13e445bd607209a56c0155304d767c13b3b59466bea18b2c30c63",
+      "retained_overlay": "stderr.raw"
+    },
+    {
+      "case_path": "stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_overlay": "stdout.raw"
+    },
+    {
+      "case_path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "inherited_base": "validate-title-source-annotations.py"
+    }
+  ],
+  "explicit_removed_base_files": [
+    "README.md"
+  ]
+}

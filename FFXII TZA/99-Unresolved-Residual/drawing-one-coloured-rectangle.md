@@ -119,7 +119,7 @@ leaving its opacity alone, or the reverse, because the two scales are different 
 | 6 | the tinted colour |
 | 7 | `1` |
 | 8 | `0x1022400000008004` — the literal at `002DBFAB` |
-| 9 | `4` — the vertex count |
+| 9 | `4` — ~~the vertex count~~ the register list, XYZF2 *(corrected 2026-10-02, OPUS: word 8 is a GIF tag with NLOOP 4 and NREG 1, so word 9 is its REGS descriptor, register 4; the vertex count is the tag's NLOOP)* |
 | 10–17 | four 16-byte vertices: `(x, y)`, then `context[0x70]`, then `0` |
 
 **Then the same rectangle again through a second interface** — `00181560`, `00181910(context[0x80])`,
@@ -174,13 +174,13 @@ four transformed points and written into the vertex records. **Something wrote t
 | Is `>> 7` really a divide by 128 and not a bit-field extract? | It is applied to the **product** of a colour byte and a signed brightness (`imul` then `sar`, `002DBEBF`–`002DBEC2`), and the result is stored as a byte. **A product then a shift is a fixed-point multiply.** |
 | Does the fourth channel really use a different field, or did the decompiler duplicate a variable? | `002DBEE4  movsx ecx, word ptr [rbx + 0x58]` **reloads `ecx` between the third and fourth multiply**, in the instruction stream. Two fields, read four instructions apart. |
 | Do three channels really use `+0x5A` and one `+0x58`? | Three `CONCAT` terms take `iVar8`, itself `(short)context[0x5A]`; the fourth takes `(short)context[0x58]` directly. **Four terms, two source fields.** |
-| Are the two back-ends really both emitting, or is one a state query? | Both take the **same two handles** and both terminate in a four-element submission — `local_1a0[9] = 4` in the first, `FUN_00181460(&points, 4)` in the second. |
+| Are the two back-ends really both emitting, or is one a state query? | Both take the **same two handles** and both terminate in a four-element submission — `local_1a0[9] = 4` in the first *(answered: see the 2026-09-18 read: that `4` is the register list XYZF2, and the four comes from the tag's NLOOP; 2026-10-02, OPUS)*, `FUN_00181460(&points, 4)` in the second. |
 | Could `002DBDD0` be a vertex helper rather than a draw? | It advances a command cursor by `0x90` and calls a submit pair (`00248EB0` … `00248E10`, then `00181460` … `00181330`). **It ends the work rather than handing it on.** |
 | Is `0016D6A0` really the folded `ret`? | Its identity is established in the register (BQ-27) and in the exception-handling document; **this document does not re-derive it** and does not rest on it beyond noting the call cannot be what it appears. |
 
 ## 7. What this document does not claim
 
-The target of the indirect call in §5. What `00202B70` computes beyond dividing by the `w` it
+~~The target of the indirect call in §5.~~ *(answered: see "CORRECTED 2026-09-18 (FABLE): there is no dropped indirect call"; 2026-10-02, OPUS)* What `00202B70` computes beyond dividing by the `w` it
 returns. What the two command words `0x1000000000000003` and `0x1022400000008004` encode. What
 `context + 0x70` holds — it becomes the third component of every vertex. ~~Which of the two back-ends
 actually reaches the hardware, or whether both do. What `00181330`, `00181460`, `00181560`,
@@ -201,7 +201,7 @@ shipping image.
 
 | body | interior cite | what is there |
 |---|---|---|
-| `002BCB00` | `002BCE28` | `call sinf` — first of two sine calls; body stores `0209E5D8`/`0209E5DC` and ends through `002DD7E0`/`002DBDD0`, the rectangle draw path |
+| `002BCB00` | `002BCE28` | `call sinf` — first of two sine calls; body ~~stores~~ reads `0209E5D8`/`0209E5DC` *(corrected 2026-10-02, OPUS: `movd xmm1` loads at `002BCB00`+0x112 and +0x17A; no instruction in the image stores either)* and ends through `002DD7E0`/`002DBDD0`, the rectangle draw path |
 
 *(Pass 22 adjacency, 2026-09-14: `00241D40` — the rectangle body — calls `Audio` `00249C60`/
 `00249CA0` and the `CoreRuntimeScheduling` yield `001EDEC0` (3 edges), and `00249CA0` is itself
