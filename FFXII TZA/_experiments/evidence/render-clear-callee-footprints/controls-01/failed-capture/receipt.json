@@ -1,0 +1,18 @@
+{
+  "name": "failed-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-clear-callee-footprints\\controls-01\\failed-capture\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+  "diagnostic": "required capture status failed",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "abc7543e575d667c2a8c6cb929a1235a4fa60cbc7b21d7a2a1ec4ab58cd4ae11"
+}

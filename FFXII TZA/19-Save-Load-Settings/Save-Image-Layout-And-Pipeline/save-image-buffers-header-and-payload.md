@@ -31,7 +31,7 @@ container_format: save-image
 > Your entire save is **353,936 bytes**, and the game keeps **four copies of it in memory at all
 > times**, evenly spaced 353,984 bytes apart.
 
-**PARTIAL.** The buffer layout, sizes, header constants and the payload base are read at tier 1
+~~**PARTIAL.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, every register row closed 2026-09-30)* The buffer layout, sizes, header constants and the payload base are read at tier 1
 and are exact. ~~The full header field map and the payload's interior are not.~~ *(Corrected 2026-09-30, SWE2-DATA: the header map is
 `V-3`, answered on [the version-stamps page](version-stamps-and-what-loading-normalises.md); the payload interior is
 `V-1`, ANSWERED 2026-09-27 (OPUS) in the register — `UQ-271` is SUPERSEDED as its duplicate.)*
@@ -93,7 +93,7 @@ void SaveImage_ClearActiveRuntimeBuffer(void)
 void SaveImage_CopyCaptureToWriteSubmissionBuffer(void)
 {
     ...
-    FUN_0020e540(handle, &DAT_02211000, 0x56690);   // same size
+    FUN_0020e540(handle, &DAT_02211000, 0x56690);   // same size   <- corrected 2026-10-02, OPUS: 'handle' is a one-bit selector (a static bit getter), and 0020E540 is a stub (one call, then a jump to an empty ret 0; addresses in save-readiness-apply-fable-1002)
 }
 ```
 
@@ -230,12 +230,12 @@ Header (V-3, mapped 2026-09-11 from every read writer; 0x200 bytes)
   +0x18   word    play time, hours (mod 10000)   } derived from +0x10 by 00254CC0 (00254D3E-00254DBF);
   +0x1A   byte    play time, minutes             } 002536B0 rebuilds seconds = h*3600 + m*60 + s;
   +0x1B   byte    play time, seconds             } 00254C90 returns the three; the mode-3 stash saves them
-  +0x20   4 B x N the slot preview roster, one entry per living party page (N <= 9, written by the
+  +0x20   4 B x N the slot preview roster, one entry per living party page (N <= 9, written by the   <- corrected 2026-10-02, OPUS: seven entries, +0x20..+0x3B (00583EBE-00583EEB fill 0xFF up to 7; an eighth or ninth page lands on +0x3C, rewritten at 00583F0D; CONTRACT-save-image-buffers.md)
                   finaliser 00583DC2-00583EB4): +0 character id (page +0x60), +1 level (+0xBA),
                   +2 job nibbles (+0x86 << 4 | +0x87), +3 flags: bit 0 = the leader, bit 1 = unit
                   flag 0x400, bit 2 = the page flagged bit 1 (written last)
   +0x3C   dword   [0x0F]  0xFF unless (flags & 1)
-  +0x44   dword   [0x11]  written as 0
+  +0x44   dword   [0x11]  written as 0   <- corrected 2026-10-02, OPUS: zeroed, then, when the story-flag test of 0x400B is non-zero, the clan rank byte is stored here and the counter read of 0x11 at +0x40 (getters named in save-readiness-apply-fable-1002) (00583F03-00583F32)
   +0x48   dword   [0x12]  map persistence group, derived from area id
   +0x4C   dword   [0x13]  active or pending field (area) id
   +0x50   dword   [0x14]  the finaliser's value, then in the submitted image the save counter
@@ -249,13 +249,13 @@ Header (V-3, mapped 2026-09-11 from every read writer; 0x200 bytes)
   +0x68   dword   magic 0x0131F3EA  } the pair SaveImage_ValidateRuntimeFormatHeader tests
   +0x6C   dword   size  0x00004818  } (written by 00253A80 for the image-backed state block)
   +0x57   byte    flags: bit 0 = stash pending (from block +4 bit 12, 00583F63);
-                         bit 2 from block +4 bit 14 (00583F70)
+                         bit 2 from block +4 bit 14 (00583F70)   <- corrected 2026-10-02, OPUS: bit 1 is set too, from a second static bit getter (00583F74-00583F7D)
   +0x70   qword   } the mode-3 stash (the normalise page section 4): +0x70..+0x7B = the play clock
   +0x78   word    } (+0x10..+0x1B), +0x7C = the walked-distance total, +0x80..+0x90 = the
   +0x7A/B bytes   } world-transition record payload +0x1044..+0x1054
   +0x7C   dword   }
   +0x80   5 dwords}
-  +0xC0..+0x1FF   untouched by any enumerated route (320 B)
+  +0xC0..+0x1FF   untouched by any enumerated route (320 B)   <- corrected 2026-10-02, OPUS: zero - both clears memset the whole image (002EF5F6-002EF603, 002EF656-002EF663), the boot frame first
 
 Persistent payload
   +0x1044  i32    active or pending field (area) id   (= image +0x1244)
@@ -321,7 +321,7 @@ an Audio function (`007B9F80`). So whatever acceptance a loaded image gets is th
 validator (§8), the container layer (§8b), or none — not this checksum. The limits: a CRC
 computed with a table outside `.rdata`'s 256-entry form, or by code the function list does not
 cover (7.1 % of the span), would escape the sweeps. One more writer of the header's first dwords
-~~remains unread~~ *(Corrected 2026-09-30, SWE2-DATA: read under `FV-3`, §7 — `+0xD8` is the finaliser's return, the complemented CRC)*: `SaveSlotTransaction_StateMachine` (`00581DA0`) stores its record's `+0xD8` at
+~~remains unread~~ *(Corrected 2026-09-30, SWE2-DATA: read under `FV-3`, §7 — `+0xD8` is the finaliser's return, the ~~complemented~~ plain CRC)* *(corrected 2026-10-02, OPUS: `00583F97`–`00583FA1` keep `crc` in `eax`; the complement is only the finaliser's own `+0` store, which state 8 overwrites at `00581FA8`–`00581FBA`)*: `SaveSlotTransaction_StateMachine` (`00581DA0`) stores its record's `+0xD8` at
 image `+0x00` and `1` at `+0x04` in one of its states (`00581FA8`–`00581FBA`), the same shape as
 the submit path.
 
@@ -341,7 +341,7 @@ while playing
   -> game systems read and write the ACTIVE RUNTIME buffer continuously
      (WorldTransition_GetActiveOrPendingFieldId reads payload +0x1044 from it)
 
-player saves
+player saves   <- corrected 2026-10-02, OPUS: a manual save writes ACTIVE, not STAGING (00581DCA-00581DCF, 00581F27-00581F2F, kind 8 at 00581F51); staging and submission serve the autosave 0057E310 only
   -> capture into STAGING (0x021BA940) — WorldTransitionSnapshot_CaptureRuntimeState (00229B40,
      read 2026-09-11; its direct caller is WorldTransition_StageFieldTransition, 003147BB):
        -> ACTIVE state block +0x4E68C, 0x6000 bytes  -> ACTIVE +0x2200 (the mirror)   00229B76-00229BE2
@@ -366,7 +366,7 @@ player saves
      `SaveImage_FinalizeHeaderAndChecksum` (`00581EE7`) and `SaveSlotMetadata_BuildSubmissionDescriptor`
      (`00581ED2`) on the same active buffer before enqueueing; state 8 stores the finaliser's dword
      at active `+0x00` and `1` at `+0x04` (`00581FA8`-`00581FBA`) then probes the written file's
-     first 8 bytes back into active+0 (op 7, `00581FD9`). So the file carries whatever is live in
+     first 8 bytes back into active+0 (op 7, `00581FD9`). So the file carries whatever is live in   <- corrected 2026-10-02, OPUS: op 7 is a write, not a read-back - kind 7 -> 003BB920 (00582149-00582160) arms 02B40E1C = 2 at 003BB98C, the write command; state 8 writes {checksum, 1} into the file
      the active block at write time — no staging refresh is needed, and whether the menu re-captures
      staging is moot for the file's contents. Staging `021BA940` and submission `02211000` belong to
      the autosave path only (`SaveWrite_PrepareAndSubmitFullImage` `0057E310`, slot 0, calls
@@ -381,7 +381,7 @@ player saves
        -> PersistentFlag_QueryPrimaryOrAuthoredThresholdGate(0x400B)
   -> SaveImage_CopyCaptureToWriteSubmissionBuffer      (one caller: 001C1910)
        -> copy STAGING -> WRITE SUBMISSION, 0x56690 bytes
-       -> FUN_0020e540(handle, 0x02211000, 0x56690)      -> to disk
+       -> FUN_0020e540(handle, 0x02211000, 0x56690)      -> to disk   <- corrected 2026-10-02, OPUS: not to disk; 0020E540 is one call then a jump to an empty ret 0, and 'handle' is a static bit getter's one-bit selector (addresses in save-readiness-apply-fable-1002)
 
   or, from the operation state machine (read 2026-09-11):
   -> SaveWrite_OperationStateCallback (0057E4D0; reached by pointer, no direct caller)
@@ -392,7 +392,7 @@ player saves
   -> SaveWrite_PrepareAndSubmitFullImage (0057E310)
        -> copy STAGING -> WRITE SUBMISSION, 0x56690 bytes (inline)
        -> submission +0x00 = CRC32(ACTIVE +0x08..+0xE200), +0x04 = 1, +0x50 = save counter 02CA99B4
-       -> slot asset name (index 0x40) -> rec +0xD0; rec +0xF8 = submission, +0x100 = 0x56690
+       -> slot asset name (index 0x40) -> rec +0xD0; rec +0xF8 = submission, +0x100 = 0x56690   <- corrected 2026-10-02, OPUS: 0x40 is the name buffer's size and the slot is r9b = 0 (the autosave note in section 4)
        -> FUN_003bb9b0(rec, path, 1)                     -> the write submission (read under FV-3, §7)
        -> 02CA99E8 = 1                                    (SaveWrite_GetBusyFlag's global)
 
@@ -447,7 +447,7 @@ only the save image.
       `0057E310` from the operation callback) a given save takes, what `003BB9B0` does with the
       record, and what `SaveSlotTransaction_StateMachine` stores at `+0x00` from its `+0xD8`.
       **FV-3**, narrowed twice 2026-09-11.
-      ***CLOSED 2026-09-17 (FABLE), the three leftovers read.** *The route:* `0057E310` is the autosave path, slot 0, which submits directly (§5 above); `002EF690` is reached only from the `SaveloadManager` method `001C1910` (`001C1929`), which copies the capture into the submission buffer when the manager's byte `+0x10` is clear and its flag `+0xA70` is set, and then clears that flag (`001C1919`..`001C192E`): the manual save's deferred hand-off, driven from `0017D6E0`. *`003BB9B0(_, records, count)`:* refuses with 0 while the storage machine is busy (`[02B40E10]` non-zero, `003BB9B4`), clamps the count to 5, copies that many `0x38`-byte descriptors from `records` into `02B40EC8` (`003BB9F0`..`003BBA21`), sets `02B40FE0` = count, `02B40E1C` = 2, `02B40E10` = 1 (busy), `02B40EC0`, `02B40E18` and `02B40FE4` = 0 (`003BBA25`..`003BBA48`), runs the storage handler `003BAEB0` and returns 1: it queues up to five descriptors into the storage machine's block and starts it. *The `+0x00` store:* `SaveSlotTransaction_StateMachine` caches the finaliser's return in `+0xD8` (`00581EF8`, right after `SaveImage_FinalizeHeaderAndChecksum`) and state 8 writes it to active `+0x00` with 1 at `+0x04` (`00581FA8`..`00581FBA`); by V-4 that dword is the complemented CRC-32 of `+0x0008`..`+0xE200`, so `+0xD8` is the header's checksum word held across the file operation. Static, bodies read.*
+      ***CLOSED 2026-09-17 (FABLE), the three leftovers read.** *The route:* `0057E310` is the autosave path, slot 0, which submits directly (§5 above); `002EF690` is reached only from the `SaveloadManager` method `001C1910` (`001C1929`), which copies the capture into the submission buffer when the manager's byte `+0x10` is clear and its flag `+0xA70` is set, and then clears that flag (`001C1919`..`001C192E`): ~~the manual save's deferred hand-off~~ a copy that reaches no file, because its tail is a compiled-out stub *(corrected 2026-10-02, OPUS: checked at `002EF72C` and `0020E540`–`0020E576` — `0020E540` is one call then a jump to an empty `ret 0` (both addresses in save-readiness-apply-fable-1002); the manual save writes the active buffer, §5)*, driven from `0017D6E0`. *`003BB9B0(_, records, count)`:* refuses with 0 while the storage machine is busy (`[02B40E10]` non-zero, `003BB9B4`), clamps the count to 5, copies that many `0x38`-byte descriptors from `records` into `02B40EC8` (`003BB9F0`..`003BBA21`), sets `02B40FE0` = count, `02B40E1C` = 2, `02B40E10` = 1 (busy), `02B40EC0`, `02B40E18` and `02B40FE4` = 0 (`003BBA25`..`003BBA48`), runs the storage handler `003BAEB0` and returns 1: it queues up to five descriptors into the storage machine's block and starts it. *The `+0x00` store:* `SaveSlotTransaction_StateMachine` caches the finaliser's return in `+0xD8` (`00581EF8`, right after `SaveImage_FinalizeHeaderAndChecksum`) and state 8 writes it to active `+0x00` with 1 at `+0x04` (`00581FA8`..`00581FBA`); by V-4 that dword is the ~~complemented~~ plain CRC-32 *(corrected 2026-10-02, OPUS: the finaliser stores `~crc` at dest `+0` but returns `crc` in `eax`, `00583F97`–`00583FA1`; `00808C40` preserves `eax` and `00581EF8` caches it; katano-debug-savedata.md, the `+0x00` row)* of `+0x0008`..`+0xE200`, so `+0xD8` is the header's checksum word held across the file operation. Static, bodies read.*
 - [x] ~~What `PersistentFlag_QueryPrimaryOrAuthoredThresholdGate(0x400B)` gates.~~ **V-5 CLOSED
       in section 8c** - bit 14 set selects the authored threshold schedule; index 11.
 - [x] ~~Why a fourth backup buffer exists and who reads it.~~ **V-6** — ANSWERED 2026-09-11 as a

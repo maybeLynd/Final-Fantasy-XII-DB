@@ -28,7 +28,7 @@ audit:
 
 > [The record page](the-record-behind-every-actor.md) reads this record's allocator, its handle, its embedded sub-objects and
 > its resource lists, and the store carries 62 rows for it. This page is the other axis:
-> every offset any reached function touches — 81 of them, from 272 functions — with
+> every offset any reached function touches — ~~81 of them, from 272 functions~~ 94 displacements from 271 functions in the census on disk, 90 of them inside the `0x120` header *(answered: see the §2.1 table; measured on `actor-storage-record-accesses.tsv`; 2026-10-02, OPUS)* — with
 > writers and readers per byte, the store's name where it has one, and the bytes nothing enumerated
 > reaches. It does not re-read the semantics; it locates them.
 
@@ -77,7 +77,7 @@ go to the ActorManager record ([the manager map](../Actor-Manager-Record/the-act
 > `+0x74` / `+0x78` / `+0x7C` / `+0x80`, each with a writing handler and a reading twin — the store's
 > 8-byte `+0x78` row was the context read and needs OPUS's correction (FZ-21 asks what the eight are).
 >
-> **What a census like this cannot see (2026-09-11, OPUS-NOTICE-CENSUSWRITES).** Seeds: the two record-returning accessors, and — since 2026-09-11 — the per-sequence initialiser `00266BD0` as a constructor seed (eight rows, five of them its `+0x1C` stores). `ActorStorage_InitializeRecord` `00266530` and `ActorStorage_AllocateAndInitializeRecords` `002679F0` derive the record from an index, not an argument, and stay outside: their stores (e.g. `+0x03` at `00267B04` / `00267B13`, `+0x1C` at `002666F1` / `00266A3A` / `00266A4E`) are not in the TSV.
+> **What a census like this cannot see (2026-09-11, OPUS-NOTICE-CENSUSWRITES).** Seeds: the two record-returning accessors, and — since 2026-09-11 — the per-sequence initialiser `00266BD0` as a constructor seed (eight rows, five of them its `+0x1C` stores). `ActorStorage_InitializeRecord` `00266530` and `ActorStorage_AllocateAndInitializeRecords` `002679F0` derive the record from an index, not an argument, and stay outside: their stores (e.g. `+0x03` at `00267B04` / `00267B13`, `+0x1C` at `002666F1` / `00266A3A` / `00266A4E`) ~~are not in the TSV~~ were not in the TSV when this was written *(answered: the TSV now carries 96 `ctor` rows for `00266530`, these among them; `002679F0`'s `+0x03` stores are still absent — measured; 2026-10-02, OPUS)*.
 > A scan seeded on *accessors* reaches *consumers*: a constructor that builds the record before
 > any accessor can return it is reached only if it is seeded on its own. So the **reads** below are
 > the well-covered side and the **writes** are under-covered wherever a constructor or an
@@ -108,7 +108,7 @@ column is the store's `ctype` where the offset has a row.
 | `+0x011` | 1 | int8 | `currentWaitSlot` | 1 / 5 | `ActorResource_SelectPendingEntryForExecution` `003DB6E0` (`003DB754`) | `WorldActor_UpdateRuntimeAndScriptExecutionState` `0025DF00` (`0025DFB6` +1); `WorldActorScriptVM_InterpretBytecode` `0025E4C0` (`00261250` +7); +3 more |
 | `+0x012` | 1 | uint8 | *not in the store* | 0 / 10 |  | `ActorSystem_BindBattleUnitsForEligibleRecords` `00265A20` (`00265AD2`); `002677F0` (`00267817`); +8 more |
 | `+0x013` | 1 | uint8 | `flags13` | 0 / 4 |  | `WorldActor_UpdateRuntimeAndScriptExecutionState` `0025DF00` (`0025E1E7` +2); `00264DF0` (`00264DF0`); +2 more |
-| `+0x014` | 1 | uint8 | `flags14` — **bit 4 drive the bound battle unit** (init sets `0x30`, cleared when the unit pool is full), bit 5 set at init (meaning open), **bit 6 idle / settled**, **bit 7 battle-unit eligible** (sequences 5 / 7 at bind); **bits 0–3 are never written** — the drive loop's inner repeat is dead; support (restated 2026-09-17): the image-wide writer census sees the constructor the route census cannot — every record-based `+0x14` write preserves the nibble (`& 0x7F` and `& 0xB0 | 0x30` in `00266530`, `| 0x80`, `& 0xEF`, `& 0xCF | 0x40`, the bit-6 ops), and every other `+0x14` store in a proven function lands on the wait slot, a `0x28`-stride resource entry, the secondary context or a global table, never the record ([the runtime pass](../the-field-runtime-pass.md) §4; `actor-storage-record-flag-bit-writes.tsv`) | 5 / 12 | `ActorSystem_BindBattleUnitsForEligibleRecords` `00265A20` (`00265B13`); `00266BD0` (`00266C1F` +1); `0026B8E0` (`0026B929`); +2 more | `ActorSystem_ReleaseManagerRecords` `0025B070` (`0025B212`); `0025B250` (`0025B29A`); +10 more |
+| `+0x014` | 1 | uint8 | `flags14` — **bit 4 drive the bound battle unit** (init sets `0x30`, cleared when the unit pool is full), bit 5 set at init (~~meaning open~~ the script enable flag *(answered: `FRP-1`, 2026-09-18, the-field-runtime-pass.md §4; 2026-10-02, OPUS)*), **bit 6 idle / settled**, **bit 7 battle-unit eligible** (sequences 5 / 7 at bind); **bits 0–3 are never written** — the drive loop's inner repeat is dead; support (restated 2026-09-17): the image-wide writer census sees the constructor the route census cannot — every record-based `+0x14` write preserves the nibble (`& 0x7F` and `& 0xB0 | 0x30` in `00266530`, `| 0x80`, `& 0xEF`, `& 0xCF | 0x40`, the bit-6 ops), and every other `+0x14` store in a proven function lands on the wait slot, a `0x28`-stride resource entry, the secondary context or a global table, never the record ([the runtime pass](../the-field-runtime-pass.md) §4; `actor-storage-record-flag-bit-writes.tsv`) | 5 / 12 | `ActorSystem_BindBattleUnitsForEligibleRecords` `00265A20` (`00265B13`); `00266BD0` (`00266C1F` +1); `0026B8E0` (`0026B929`); +2 more | `ActorSystem_ReleaseManagerRecords` `0025B070` (`0025B212`); `0025B250` (`0025B29A`); +10 more |
 | `+0x015` | 1 | uint8 | `handleTag4` | 0 / 18 |  | `0025AAD0` (`0025AAE8`); `00268B10` (`00268BEA` +1); +16 more |
 | `+0x016` | 2 | uint16 | `handleTag11` | 0 / 6 |  | `0046B690` (`0046B806`); `0046B870` (`0046B9E6`); +4 more |
 | `+0x018` | 1 | uint32 | *not in the store* | 2 / 35 | `002693D0` (`00269500`); `00262F90` (`00262FDB` +1) | `0025B820` (`0025B8EC`); `00268B10` (`00268BBE` +1); +33 more |
@@ -192,15 +192,15 @@ context reads at `+0x28` and `+0x98` were withdrawn). None of 32 bytes or more.
 - **`+0xC0` is read by 94 functions** and `+0xB8` (`contextPtr`) by 66 —
   the two pointers at the end of the header are the record's most-followed links, and their one
   enumerated writer is `00266AD0` (211 B): it switches on the record's kind (`+0x03 & 0x1F`, 0–7,
-  jump table at `00266AE7`) and points `+0xB8` / `+0xC0` **into the record's own embedded area at
-  `+0x120`** (`+0x120`, `+0x120 + 0x80`, `+0x120 + 0x20`, `+0x120 + 0x230` by kind; `00266AFB`–`00266B68`),
+  jump table at ~~`00266AE7`~~ `00266BA4` *(corrected 2026-10-02, OPUS: `00266AE7` is `lea r9, [00120000]`, the image base)*) and points `+0xB8` / `+0xC0` **into the record's own embedded area at
+  `+0x120`** (~~`+0x120`, `+0x120 + 0x80`, `+0x120 + 0x20`, `+0x120 + 0x230` by kind~~ `+0xB8` NULL for row 0 and `rec + 0x120` for rows 1–7, `+0xC0` `rec + 0x350` (`+0x120 + 0x230`) for rows 5–7 and NULL otherwise; `+0x80` and `+0x20` are `+0xA0`'s offsets from `+0x120` for rows 1–2 and 3–4 *(corrected 2026-10-02, OPUS: the four arms the table at `00266BA4` selects, `00266AFB` / `00266B15` / `00266B36` / `00266B54`)*; `00266AFB`–`00266B68`),
   then derives `+0xA0` and `+0xA8` from the same base (`00266B79`–`00266B9B`) — the sub-object
   layout the record page's §12 derives, per kind.
 - **`+0x03` (`packedKindAndSequence`) has 78 readers and no enumerated writer** —
   written by the allocator the record page reads, outside these routes.
 - **`+0x09` (`flags09`) has 14 writers** — the most-written flag byte; `+0x0C`
   (`flags0C`) 9.
-- **41 touched offsets have no store row**, each with cited sites to start from.
+- ~~**41 touched offsets have no store row**, each with cited sites to start from.~~ *(answered: see the 2026-09-27 re-measure directly below — 34 flagged, each now with a store row; 2026-10-02, OPUS)*
   *Re-measured 2026-09-27 (FABLE, Claude Opus 5.5, FI-1): the table now flags 34, and every one has a store row; the
   twelve in `+0xC8`–`+0xEA` are one `u16[18]` override array. Each is named in [the FI-1 record](../../_index/candidates/fi1-offset-names/README.md).*
 - **The image-wide flag writer census** (SWE2-STRUCT EH-4, 2026-09-17; domain repaired
@@ -234,7 +234,7 @@ context reads at `+0x28` and `+0x98` were withdrawn). None of 32 bytes or more.
 >
 > **And the `0 /` in this row's writer column is wrong — not as a page error but as a census gap.**
 > `0026670D mov byte ptr [rbx + 2], al` is a real write to this field and it is **not in
-> `actor-storage-record-accesses.tsv`**, so the table above reports no writer for a field that is
+> `actor-storage-record-accesses.tsv`** *(answered: it is now — a `ctor` row of `00266530`, measured; 2026-10-02, OPUS)*, so the table above reports no writer for a field that is
 > written by the record's own initialiser. The generation-3 `hop_scan` did not attribute `rbx` to
 > the record at that point. Raised with FABLE, who own the census; the count is left as the census
 > reports it rather than hand-edited, because a field map that silently disagrees with its own
@@ -276,9 +276,9 @@ an argument; the TSV's `route` column records which, per access.
   written by the allocator / initialiser path the scan does not seed.~~ **FI-2 ANSWERED 2026-09-12
   (FABLE) — enumerated on that path.** `ActorStorage_AllocateAndInitializeRecords` (`002679F0`, the
   only caller of the initialiser by a function-list-independent `E8`/`E9` index) writes **`+0x03`**
-  per record at `00267B04` / `00267B13`: `(old & 0xE0) | (kind & 0x1F)`, then `| (sequenceByte << 5)`
-  — the packed kind (low 5 bits) and sequence (high 3) the 78 readers consume — and `+0x08` (word)
-  at `00267B53`. `ActorStorage_InitializeRecord` (`00266530`) writes the rest of the header: `+0x00`
+  per record at `00267B04` / `00267B13`: ~~`(old & 0xE0) | (kind & 0x1F)`, then `| (sequenceByte << 5)`~~ `(old & 0xE0) OR (row & 0x1F)`, then `OR (kind << 5)`
+  — the packed ~~kind (low 5 bits) and sequence (high 3)~~ row of `01E0C328` (low 5 bits) and kind (high 3) *(corrected 2026-10-02, OPUS: `00267AE1`–`00267AE8` `r9b = i & 0x1F` with `i` the table row, `00267B0A`–`00267B11` `TAB[i].byte0 << 5`)* the 78 readers consume — and ~~`+0x08` (word)~~
+  ~~at `00267B53`~~ the manager slot's per-kind start words `+0x1D8 + kind × 2` at `00267B53` *(corrected 2026-10-02, OPUS: there `rax = r15 + 0x1D0`, the slot, not the record; the counts are at `+0x1D0 + kind × 2`, `00267AD4`)*. `ActorStorage_InitializeRecord` (`00266530`) writes the rest of the header: `+0x00`
   word (`002665EB`), `+0x02` (`0026670D`), `+0x04` word `0xFF00` (`00266692`), `+0x08` (`002665FD`,
   `0026663E`, `00266677`, masked `0x7F` at `0026667A`), `+0x09` (`002665C8` `& 0xDF`, `002666A8` `& 0x7F`),
   `+0x0A` (`002667C6`), `+0x0B` (`00266643`, `00266660`), `+0x0C` (`0026661B`, `0026667E`, `002666AC`),

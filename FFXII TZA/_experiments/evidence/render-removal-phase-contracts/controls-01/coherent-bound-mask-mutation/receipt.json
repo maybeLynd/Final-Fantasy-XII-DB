@@ -1,0 +1,18 @@
+{
+  "name": "coherent-bound-mask-mutation",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-removal-phase-contracts\\controls-01\\coherent-bound-mask-mutation\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "4431e22ebe23e8f785fea3c11df00eea9332a7cba0f13b4985bbd48e95d66060",
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "8ea0e3a2010afffd997a5fa2756e63de54519d71a67034c3ecf8afd15b70c365"
+}

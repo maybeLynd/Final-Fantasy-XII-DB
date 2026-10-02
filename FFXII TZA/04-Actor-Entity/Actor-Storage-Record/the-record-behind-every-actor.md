@@ -25,7 +25,7 @@ audit:
 # The record behind every actor
 
 > **Imported from the research backlog, then re-derived.** The layout is in
-> [`../../_types/fields.tsv`](../../_types/fields.tsv) as `ActorStorageRecord` — 41 fields,
+> [`../../_types/fields.tsv`](../../_types/fields.tsv) as `ActorStorageRecord` — ~~41 fields~~ 85 rows on 2026-10-02, 41 at import *(answered: measured on `_types/fields.tsv`; 2026-10-02, OPUS)*,
 > validated, 0 errors. Query it with `types_index.py --type ActorStorageRecord`.
 
 ## 1. What the player sees
@@ -118,7 +118,7 @@ function touch" answer for `00266530` from that dataset is incomplete by constru
 
 ## 4. The layout
 
-**41 fields, `+0x00` to `+0x11C`.** The full table with widths, values and evidence is in
+~~**41 fields, `+0x00` to `+0x11C`.**~~ **85 rows, `+0x00` to `+0x5A0`, 81 of them inside the `0x120` header** *(answered: `_types/fields.tsv`, measured; 41 at import; 2026-10-02, OPUS)*. The full table with widths, values and evidence is in
 [`../../_types/fields.tsv`](../../_types/fields.tsv); the shape:
 
 | region | contents |
@@ -138,7 +138,7 @@ their layout is **unrecovered, not absent**, and the type store records them as 
 hiding them.
 
 > **`0x11C` is a lower bound, not the size.** It is where the highest field this routine touches
-> ends. No allocation site was read, so the record may be larger. The type store says so.
+> ends. ~~No allocation site was read, so the record may be larger.~~ *(answered: see "Records are 720 to 1,760 bytes, by kind" below — the allocation site `002679F0` was read; 2026-10-02, OPUS)* The type store says so.
 
 ## 5. Two correspondences with the actor in the movement code
 
@@ -162,8 +162,8 @@ and **low 5 bits = something this initialiser masks off**.
 | `00266530` | 1,439 B | `ActorStorage_InitializeRecord` |
 | `0020E600` | 10 B | `ImageAddress_ResolveRuntimePointer` — called ~~6×~~ **7×** (*corrected 2026-09-12 by falsification pass 1; the sites are `00266798`, `002667A9`, `00266903`, `00266976`, `002669C5`, `00266A1F`, `00266A69`*) |
 | `003DBB60` | 120 B | `ActorResource_SubmitRequestDescriptor` — called 4×; builds a 9-byte stack descriptor `{kind@+0 (r9 mapped 1→0, 3→2, else keeps r9 — `003DBB7B`–`003DBB9D`), 1@+1, arg-dl@+2, arg-r8w@+4, 0x8000@+6, flag byte@+8 = (arg-byte&1)|(arg2≪1), with bit0 **set** on the unmapped-kind path (`003DBB87`)}` at `003DBBA0`–`003DBBC9`, then submits via `003DBCF0` (`003DBBCE`) |
-| `00266AD0`, `00266BD0`, `00268EA0`, `003DB580` | 211/96/439/183 B | `ActorEntity` callees — **not read** |
-| `00265FF0`, `00268380` | 1,339/420 B | `Movement` callees — **not read** |
+| `00266AD0`, `00266BD0`, `00268EA0`, `003DB580` | 211/96/439/183 B | `ActorEntity` callees — ~~**not read**~~ read later on this page *(answered: see the region map, §12–§13, and the `+0x1C` passes; 2026-10-02, OPUS)* |
+| `00265FF0`, `00268380` | 1,339/420 B | `Movement` callees — ~~**not read**~~ *(answered: `00265FF0` is read on the-movement-and-secondary-context-censuses.md, UQ-91; `00268380` in CONTRACT-actor-storage-record-initialisation.md's pass-22 section; 2026-10-02, OPUS)* |
 | `00265B60`, `002681E0` | 1,067/230 B | unowned callees — **not read** |
 
 ## 7. Modding notes
@@ -176,8 +176,8 @@ and **low 5 bits = something this initialiser masks off**.
   record is zero everywhere this routine does not write**, which is the opposite of the advice
   this bullet gave.
 - **`+0x00` is the slot index**, so a record can be identified without the table.
-- **`+0xB8` is not initialised here.** Whatever sets the context pointer runs elsewhere; a record
-  fresh from this routine still points at the previous occupant's context until it does.
+- ~~**`+0xB8` is not initialised here.** Whatever sets the context pointer runs elsewhere; a record~~
+  ~~fresh from this routine still points at the previous occupant's context until it does.~~ *(answered: see §16's table, "`00266B54` plants the pointer" — `00266530` calls the planter `00266AD0` at `002665A9`; 2026-10-02, OPUS)*
 - **Four `ActorResource_SubmitRequestDescriptor` calls** mean this routine also kicks off resource
   loading — resetting a record is not purely a memory operation.
 
@@ -208,7 +208,7 @@ and **low 5 bits = something this initialiser masks off**.
         `and byte [rcx+9], 0xDF` (`0035A754`) and the resume path `002E97B0` → `00269D60`, then
         `0026A770`. `0035A7A0(managerIndex, groupOrMinus1, mode)` inlines the same body for the
         all-actors case (`0035A843` set, `0035A86B` clear) over the manager's records
-        `+0x1D6`…`+0x1D6 + 0x1DE`, **skipping active party members** — its gate is
+        ~~`+0x1D6`…`+0x1D6 + 0x1DE`~~ `[+0x1DE]`…`[+0x1DE] + [+0x1D6]` *(corrected 2026-10-02, OPUS: `0035A7C6 movzx edi, word ptr [rax + 0x1DE]` is the start and `0035A7CD movzx esi, word ptr [rax + 0x1D6]` the count)*, **skipping active party members** — its gate is
         `002647B0(record) == 0`, and `002647B0` is `(u8)(int8)[record + 0x12] <= 3`, so it answers
         *"is this record's `partySlot` one of 0..3"* and `0xFF` fails it.
       - **Reader, three sites, one idiom.** `00226A50` and `00226AB0` (the single-actor publishers) and
@@ -284,9 +284,9 @@ and **low 5 bits = something this initialiser masks off**.
       `or [+0x1C], 0x2000` (`0026A00C`, `0026A01E`), each followed by `00268EA0(record)` when
       `byte[+0x0B] & 8`; **any other mode takes `and [+0x1C], 0xFFFFDEFF`** (`0026A003`), which clears
       exactly that pair. `00267CC0` is the same thing specialised to mode 4, reached when
-      `byte[[unit + 0x6A0]] & 0x20` (`00238D98`–`00238DA0`). **So `EH-4`'s `&0xFFFFDEFF` is not an
-      initialiser mask at all** — the route-proven census puts it at `00265AC3`, in
-      `ActorSystem_BindBattleUnitsForEligibleRecords`, and the second copy is `0026A003`.
+      `byte[[unit + 0x6A0]] & 0x20` (`00238D98`–`00238DA0`). **So `EH-4`'s `&0xFFFFDEFF` ~~is not an~~
+      ~~initialiser mask at all~~ is an initialiser mask too** *(corrected 2026-10-02, OPUS: `002666F1 and dword ptr [rbx + 0x1C], 0xFFFFDEFF` is inside `00266530`, the initialiser — three sites in all)* — the route-proven census puts ~~it~~ a copy at `00265AC3`, in
+      `ActorSystem_BindBattleUnitsForEligibleRecords`, and ~~the second copy is~~ another at `0026A003`.
 
       **Swept, because a two-bit flag nobody sets would be the more interesting answer.** Every write
       at displacement `+0x1C` in all **38,161** listed bodies, immediate or register-sourced
@@ -360,7 +360,7 @@ and **low 5 bits = something this initialiser masks off**.
       | `+0x13` | 7 | ~~written by `0026AD00` as the sign of `edx`~~ **as `edx != 0` — corrected 2026-09-16 (FABLE), fourteenth pass: `neg` sets the carry on a non-zero operand, not on a negative one** — [the battle-unit field map](../Battle-Unit/the-battle-unit-field-map.md) |
       | `+0x14` | 4 | **cleared when the unit pool is full** — [the battle-unit slot pool](../battleunit-slot-pool-and-actor-class.md), 2026-09-12 |
       | `+0x14` | 5 | ~~**explicitly NOT established**~~ **the script *enable* flag** — `FRP-1`, answered 2026-09-18 (FABLE): set by verb `001E enable` and cleared by `001F disable` through the unlisted setter `00269E00` (disable also tail-jumps the entry removal `0025B500`); every pass that would build, line-test or step an entry skips it while clear; [the field-runtime-pass contract](../CONTRACT-field-runtime-pass.md) |
-      | `+0x14` | 6 | the field pass's running conjunction, published into slot `+0x12` — the world-tick page and the same contract |
+      | `+0x14` | 6 | the field pass's running conjunction, ~~published into slot `+0x12`~~ returned in `eax` *(corrected 2026-10-02, OPUS: `0025DEAB and r12d, eax` folds it, `0025DEE0 mov eax, r12d` returns it; the settled exit stores 0 into slot `+0x12`, `0025DB79`)* — the world-tick page and the same contract |
       | `+0x1C` | 8, 13 | raised when the free-target type is **4** on a kind-3 actor and cleared for any other value — **`AL-3` ANSWERED 2026-09-12** |
 
       **This is a lower bound built by grep and reading, not a census.** It excludes hits that turned
@@ -415,8 +415,8 @@ and **low 5 bits = something this initialiser masks off**.
       **The remainder, rebuilt bit by bit against this page's body:** **`+0x0D` bits 2 and 3,
       `+0x13` bits 2–6, `+0x14` bits 0–3, and `+0x1C` outside bits 8 and 13.** Separately, and
       in a different column because they are **stated non-findings rather than unknowns**: `+0x08`
-      bit 5 (read twice, no writer found — seventh pass) and `+0x14` bit 5 (`FRP-1` owns it as not
-      established).
+      bit 5 (read twice, no writer found — seventh pass) and `+0x14` bit 5 (~~`FRP-1` owns it as not~~
+      ~~established~~ the script enable flag *(answered: `FRP-1`, 2026-09-18, in the bit table above; 2026-10-02, OPUS)*).
 
       > *Kept current, 2026-09-16 (FABLE).* The ninth pass closed `+0x0C` bits 4 and 5 and the tenth
       > closed `+0x09` bits 3, 4 and 7, and **this sentence is the one the tenth pass names as having
@@ -891,7 +891,7 @@ and **low 5 bits = something this initialiser masks off**.
 
       > **And reading that sequence is worth more than the bit.** The initialiser **does not zero
       these bytes** — it reads them and masks them. `+0x0C` comes out as `0x08` plus **whatever bit 7
-      was**; `+0x08` keeps its prior value with only bit 7 cleared (`002665BA`, `0026667A`); and
+      was**; ~~`+0x08` keeps its prior value with only bit 7 cleared (`002665BA`, `0026667A`)~~ `+0x08` comes out with bit 0 set, bits 5, 6 and 7 cleared and bit 4 set or cleared by a condition *(corrected 2026-10-02, OPUS: `002665E8 and dl, 0xBF`, `002665FA or dl, 1`, `00266607 and dl, 0xDF`, `0026664F` / `00266657`, `0026667A and byte ptr [rbx + 8], 0x7F`)*; and
       `+0x13`'s `and 0x3C` at `002666B0` **preserves bits 2–5**. On a freshly carved record that is a
       no-op, so the masks only mean something if the initialiser is ever re-run on a used record —
       which is exactly what an allocator that recycles slots would do. **That is a question about
@@ -1017,7 +1017,7 @@ and **low 5 bits = something this initialiser masks off**.
       mode equals 1 (`00355A5A`–`00355A64`).
 
       > **That pairs with the ninth pass.** `+0x0C` bit 5 is the **event-wake-rect** flag, set only
-      > through verb `03DF` `seteventwakerect` and read by a shared predicate `talktreasure`,
+      > through verb `03DF` `seteventwakerect` and read by ~~a shared predicate~~ the request-bit clearer *(answered: see the 2026-09-16 correction, "the request-bit clearer"; 2026-10-02, OPUS)* `talktreasure`,
       > `reqdisable` and **`fieldsign`** all consult. So one bit says *an event wake area was
       > accepted* and this one says *treat it as a circle rather than a rectangle* — **two bits, one
       > geometry**, and `fieldsign` writes into both halves.
@@ -1120,7 +1120,7 @@ and **low 5 bits = something this initialiser masks off**.
 
       | | |
       | --- | --- |
-      | **which indices the engine reads for itself** | 0, 2, 3, 4, 5, 6, 7, 10, 11, 13, 14, 16, 17 — each with named readers in the actor block |
+      | **which indices the engine reads for itself** | ~~0, 2, 3, 4, 5, 6, 7, 10, 11, 13, 14, 16, 17~~ 0, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, 14, 16, 17 *(corrected 2026-10-02, OPUS: `003DF73A test dword ptr [rbx + 0x1C], 0x2100` reads bit 8 with bit 13)* — each with named readers in the actor block |
       | **which it protects** | **4 and 5 cannot be cleared at all while `+0x0C` bit 5 is set** — the clearer returns before touching anything (`0025D5EA`–`0025D5FB`) |
       | **which carry side effects beyond the bit** | **16** also clears `+0x0B` bit 2 and calls `00262740`; **17** calls `002626C0` |
 
@@ -1249,7 +1249,7 @@ and **low 5 bits = something this initialiser masks off**.
       **So the byte-level frontier of `EH-4` is closed, and the question is not.** Every flag bit of
       `+0x08`, `+0x09`, `+0x0C`, `+0x0D`, `+0x13`, `+0x14` and `+0x1C` is now either **named**,
       **stated as a non-finding with the five shapes checked**, or **routed** — the `+0x1C` indices
-      to `SWE2-DATA` as an argument census, and the preserved-bit pattern to whoever takes record
+      to `SWE2-DATA` as an argument census *(answered: see the 2026-09-27 correction above, "the engine does set all eight"; 2026-10-02, OPUS)*, and the preserved-bit pattern to whoever takes record
       reuse. **Fourth pass running without a new bit.** That is what a frontier closing looks like
       from the inside, and it is a better reason to stop counting than a round number.
 
@@ -1347,8 +1347,8 @@ and **low 5 bits = something this initialiser masks off**.
 | ~~It recycles rather than constructs~~ **It constructs; the masks run on zeroed memory** | eleven read-modify-write masks, listed in §2 with their exact constants — **the masks are real, the conclusion drawn from them was not**; §2 (2026-09-08) and `EH-6` | 1 | **CORRECTED 2026-09-13** |
 | `+0x00` is the slot index | `mov word ptr [rbx], r10w` with `r10 = movsxd(r8d)`, the index argument | 1 | PROVEN |
 | The table is pointers with an 8-byte header | `[rdx + r10*8 + 8]` | 1 | PROVEN |
-| Same type as the movement actor | two offsets agree with complementary masks | 3 | **PROBABLE** |
-| The record's true size | **not established** — `0x11C` is a lower bound | — | UNKNOWN |
+| Same type as the movement actor | two offsets agree with complementary masks; the carve loop writes `+0x03` itself *(answered: see "`EH-1` answered — PROVEN, not probable"; 2026-10-02, OPUS)* | 3 | ~~**PROBABLE**~~ PROVEN |
+| The record's true size | ~~**not established** — `0x11C` is a lower bound~~ 720 to 1,760 bytes by kind *(answered: see "Records are 720 to 1,760 bytes, by kind"; 2026-10-02, OPUS)* | — | UNKNOWN |
 | Any field's meaning | **not established** | — | UNKNOWN |
 
 ## 10. Related
@@ -1443,7 +1443,7 @@ The carve loop **writes `+0x03` itself**:
 ```
 
 ```
-record[+0x03] = (kindCode << 5) | (sequenceWithinKind & 0x1F)
+record[+0x03] = (kindCode << 5) | (sequenceWithinKind & 0x1F)   // <- corrected 2026-10-02, OPUS - the low field is the row i of 01E0C328 (00267AE1-00267AE8 r9b = i & 0x1F), counted 0-7 across the table, not restarted per kind
 ```
 
 **`Movement_SetSteeringMode`'s gate `(byte@+0x03 & 0xE0) == 0x60` therefore selects kind `0x60 >> 5`
@@ -1509,7 +1509,7 @@ taint on any write to it or any call that clobbers it. It recovered **4 of the 4
 
 ### What is actually in the tail
 
-Full table, all 70 offsets with their function/read/write counts:
+Full table, all ~~70~~ 56 offsets *(answered: the file holds 56 rows, the highest `0x118`, measured; 2026-10-02, OPUS)* with their function/read/write counts:
 [`actor-record-offsets-observed.tsv`](actor-record-offsets-observed.tsv).
 
 The six offsets seen through **two or more independent functions** are the only ones promoted into
@@ -1538,7 +1538,7 @@ The six offsets seen through **two or more independent functions** are the only 
 | `+0x107` | 2 | 2 | 0 | 1 |
 
 The eight beyond `0x118` — `0x148`, `0x184`, `0x1C8`, `0x1D6`, `0x1DE`, `0x204`, `0x220`, and
-`0x11A` on the boundary — are each seen in **one** function only and are recorded in the TSV, **not**
+`0x11A` on the boundary — are each seen in **one** function only and ~~are recorded in the TSV~~ are not in the TSV *(corrected 2026-10-02, OPUS: the file's highest row is `0x118`)*, **not**
 promoted. `+0x220` is the most interesting of them: two reads and two writes at 4 bytes, so it is
 live state rather than a constant.
 
@@ -1971,7 +1971,7 @@ For kind 3, sequences 5 and 6 — the `0x6E0` size the type row carries:
 
 **1,472 of the 1,476 bytes.** The record's undeclared tail is now four bytes.
 
-**ONE REFINEMENT THE SPAN TABLE DOES NOT CARRY - 2026-09-16 (FABLE).** Re-read `00266B40`'s planting sequence to verify §16 independently. All four anchors decode exactly as stated - `00266B54 lea rax, [rdx + 0x120]` into `+0xB8`, `00266B62 add rax, 0x230` into `+0xC0`, `00266B6F lea r8, [rax + 0x188]` into `+0xA0` - and the arithmetic is exact: `0x230 + 0x188 + 0xC8 + 0x140 = 1,472`, leaving the stated 4 bytes. **But the fourth region's size is chosen at runtime, not fixed.** `00266B83` tests the per-sequence table byte `[r9 + rax*4 + 0x1CEC329]` against 1, then `00266B8C` loads **`0xC8`** if it matches and `00266B93` **`0xA0`** if it does not, before `add rax, r8` plants `+0xA8`. So `resourceEntryPool` is **10 × `0x14`** in the kind-3 / sequences-5-6 case the table is scoped to, and **8 × `0x14` wherever that byte is not 1** - which moves `waitSlotArray` to `+0x578` and makes the whole record **`0x6B8`, not `0x6E0`**. **The §16 table is correct for the case it names and easy to over-read as universal.** The record's layout is **sequence-dependent**, and the 1,472-of-1,476 accounting holds for the `0x6E0` variant only. *I did not read the table at `01CEC329` to say which sequences take which branch.*
+**ONE REFINEMENT THE SPAN TABLE DOES NOT CARRY - 2026-09-16 (FABLE).** Re-read `00266B40`'s planting sequence to verify §16 independently. All four anchors decode exactly as stated - `00266B54 lea rax, [rdx + 0x120]` into `+0xB8`, `00266B62 add rax, 0x230` into `+0xC0`, `00266B6F lea r8, [rax + 0x188]` into `+0xA0` - and the arithmetic is exact: `0x230 + 0x188 + 0xC8 + 0x140 = 1,472`, leaving the stated 4 bytes. **But the fourth region's size is chosen at runtime, not fixed.** `00266B83` tests the per-sequence table byte `[r9 + rax*4 + 0x1CEC329]` against 1, then ~~`00266B8C` loads **`0xC8`** if it matches and `00266B93` **`0xA0`** if it does not~~ `00266B8C` loads `0xC8` and `00266B93` replaces it with `0xA0` when the byte is 1 *(corrected 2026-10-02, OPUS: `00266B91 jne 00266B98` skips the `0xA0` load when the byte is not 1; rows 2, 4 and 7 of `01E0C328` carry 1)*, before `add rax, r8` plants `+0xA8`. So `resourceEntryPool` is **10 × `0x14`** in the kind-3 / sequences-5-6 case the table is scoped to, and **8 × `0x14` wherever that byte is ~~not~~ 1** - which moves `waitSlotArray` to `+0x578` and makes the sequence-7 record ~~**`0x6B8`, not `0x6E0`**~~ **`0x668`** *(corrected 2026-10-02, OPUS: the table's size word for row 7 at `01E0C344` is 1,640 = `0x668`, with six wait slots, `0x578 + 6 × 0x28`)*. **The §16 table is correct for the case it names and easy to over-read as universal.** The record's layout is **sequence-dependent**, and the 1,472-of-1,476 accounting holds for the `0x6E0` variant only. ~~*I did not read the table at `01CEC329` to say which sequences take which branch.*~~ *(answered: the table is `01E0C328` — `r9` holds the image base, so `[r9 + rax*4 + 0x1CEC329]` is `01E0C329`, the `+1` byte — and rows 2, 4 and 7 take the `0xA0` branch; 2026-10-02, OPUS)*
 
 ### Why the earlier instrument saw nothing there, and why that was the right answer
 
@@ -2166,7 +2166,7 @@ reaches `003DB2A0`, `003DBCF0` and `003DC130` — the byte users of `+0x60` — 
 | `+0x5C`, `+0x107` | **still withdrawn.** Their withdrawal rested on the six-body scan and its positive control, not on this function |
 
 The 28-byte gap §17 claimed to close is therefore **open again** — now 36 bytes at
-`+0x64`–`+0x88`. `ActorStorageRecord` declares 1,662 of 1,760 bytes, not 1,698.
+`+0x64`–`+0x88` *(answered: CLOSED 2026-09-12 — the script VM's register file, four `int32` at `+0x64`–`+0x70` and four `float` at `+0x74`–`+0x80`; see §2's `+0x64` row; 2026-10-02, OPUS)*. `ActorStorageRecord` declares 1,662 of 1,760 bytes, not 1,698.
 
 ### And the contradiction it resolves
 
@@ -2199,7 +2199,7 @@ three identities to take together.
 | key types | `ActorResourceEntry` `0x14`, `ActorWaitSlot` `0x28`, both promoted | **answered** |
 | initialization | `002679F0` carves and stamps `+0x03`; `00266530` initialises; `00266AD0` plants the region map per sequence; `003DB580` builds the free list | **answered** |
 | update ordering | `World_UpdateSimulationTick` → `ActorManager_RunFieldRuntimePass` → `WorldActor_UpdateRuntimeAndScriptExecutionState`, several times per actor per frame, terminated by the `parked` byte | **answered** |
-| lifetime / destruction | **no destructor identified.** The pool is carved once and records are re-bound, not freed — but nothing has been read that proves records are never destroyed | **NOT answered** |
+| lifetime / destruction | ~~**no destructor identified.**~~ *(answered: see "RETRACTED 2026-09-21 (OPUS): the pool IS released"; 2026-10-02, OPUS)* The pool is carved once and records are re-bound, not freed — but nothing has been read that proves records are never destroyed | ~~**NOT answered**~~ answered *(answered: RETRACTED 2026-09-21; 2026-10-02, OPUS)* |
 | inputs / outputs | inputs: the definition payload and the wait slots' armed state. Outputs: the channel lists and the bytecode the wait slots release | **partly** — the payload's own format is not recovered |
 | state transitions | the wait-slot machine is explicit: eight kinds, who arms, who clears, and the `parked` flag that ends the drive loop | **answered** |
 | important globals | the manager array at `02098E10`, the record pool through `+0x08`, the half-rate family | **answered** |
@@ -2388,7 +2388,7 @@ pointer depends on. The right shape is arena or static allocation with no teardo
 §19's verdict stands — the subsystem is still not reconstruction-ready — but this blocker changes
 character. It was *"no destructor, and no proof one is absent"*. It is now **a controlled absence
 claim with four instruments and a named boundary**, which is what the charter asks for. What
-remains is the runtime confirmation, and that is blocker 1.
+remains is the runtime confirmation, and that is blocker 1. *(answered: the absence claim is retracted — see "RETRACTED 2026-09-21 (OPUS): the pool IS released"; 2026-10-02, OPUS)*
 
 ## 21. Two fabricated addresses, a false absence, and what produced each (2026-09-11)
 
@@ -2659,7 +2659,7 @@ way.** Neither alone would be worth much; together they are a lifetime distincti
   chain would be reached only through the slot field, and the slot field's own readers are the two
   accessors above — but a pointer copied out of a slot by some path not read here would be
   invisible to this instrument.
-- What the bank's `u16` entries *mean* is still unknown for both. This section is about lifetime,
+- What the bank's ~~`u16`~~ `int16` *(corrected 2026-10-02, OPUS: `003211C2` / `003211D7` / `003211EC` `movsx ecx, ax` on kinds 1–3, §24)* entries *mean* is still unknown for both. This section is about lifetime,
   not semantics.
 
 ## 24. The banks are operand storage, and there is a ten-kind get/set family over them (2026-09-11)
@@ -2850,7 +2850,7 @@ Every §9 claim is a count over one body — `00266530 ActorStorage_InitializeRe
 | claim | measured |
 |---|---|
 | **the base register is the record throughout** | **exactly two writes to `rbx` in the whole body**: the load `0026656A mov rbx, [rdx + r10*8 + 8]` and the epilogue restore `00266AAE mov rbx, [rsp+0x60]` — precisely the two §9 names, and nothing else |
-| `+0x00` is the slot index | `0026656B mov word ptr [rbx], r10w` |
+| `+0x00` is the slot index | ~~`0026656B mov word ptr [rbx], r10w`~~ `002665EB mov word ptr [rbx], r10w` *(corrected 2026-10-02, OPUS: `0026656B` is not an instruction boundary)* |
 | the table is pointers with an 8-byte header | `[rdx + r10*8 + 8]`, the same instruction that loads the base |
 | **eleven read-modify-write masks** | **eleven distinct mask constants** — `0x3C`, `0x04`, `0x400`, `0x7F`, `0x8F`, `0xDF`, `0xF0`, `0xFE`, `0xFFFFDEFF`, `0xFFFFFBFF`, `0xFFFFFFFB` |
 | `003DBB60` called 4× | 4 |
@@ -2878,7 +2878,7 @@ enumeration would not see. **The claim is not refuted; its unit is unstated and 
 reproduces it.** Recorded here rather than adjusted, because guessing which of 39, 40 or 41 the author
 meant would replace a checkable number with a chosen one.
 
-**Not claimed:** the record's true size stays `UNKNOWN` (`0x11C` remains a lower bound), and no field's
+**Not claimed:** ~~the record's true size stays `UNKNOWN` (`0x11C` remains a lower bound), and~~ *(answered: the size was settled later — "Records are 720 to 1,760 bytes, by kind"; 2026-10-02, OPUS)* no field's
 meaning is established by this pass.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)

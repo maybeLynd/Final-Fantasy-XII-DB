@@ -40,7 +40,7 @@ audit:
 Every actor in the field — a townsperson, a door, a cutscene trigger, a party member — carries a
 small script, and this is the function that runs them, once per frame, for one manager slot. It is
 also the reason a scripted event can start, run several statements and reach a wait **all in the
-frame you triggered it**: the actor is driven, asked whether it settled, and driven again.
+frame you triggered it**: the actor is driven ~~, asked whether it settled, and driven again~~ once per loop that names it *(answered: the inner repeat is dead code — §6, and the-field-runtime-pass.md §4, corrected 2026-09-12; 2026-10-02, OPUS)*.
 
 ## 2. Interface
 
@@ -71,7 +71,7 @@ frame you triggered it**: the actor is driven, asked whether it settled, and dri
 | `02CA99E8` | 4 | the save-write busy global |
 
 **The actor record's `+0x14` is a status byte with four live bits and a dead nibble** — bit 4 drives
-the bound battle unit, bit 5 is read by seven sites and unexplained, bit 6 is **settled**, bit 7 is
+the bound battle unit, bit 5 is read by seven sites and ~~unexplained~~ is the script enable flag *(answered: see open item 1, `FRP-1`, 2026-09-18; 2026-10-02, OPUS)*, bit 6 is **settled**, bit 7 is
 battle-unit-eligible. **Bits 0–3 are never written by any instruction in the image**, which is what
 makes the inner repeat dead (§6).
 
@@ -117,7 +117,7 @@ the actor — and **never** from the drive loop's inner repeat, which is dead.
 0025DB4F  jne  0025DB76                    ; SETTLED   -> exit A
 0025DB51  test cl, 0x0F
 0025DB54  je   0025DECB                    ; NOTHING PENDING -> exit B
-0025DB5A  call 003DB280                    ; (dead: the nibble is never set)
+0025DB5A  call 003DB280                    ; (dead: the nibble is never set)   <- corrected 2026-10-02, OPUS - 0025DB5A is mov rcx, rdi; the call is at 0025DB5D
 0025DB68  call 0025DF00                    ; (dead) drive it again, same frame
 0025DB74  je   0025DB51                    ; (dead) loop
 ```
@@ -179,7 +179,7 @@ these helper calls and do not recheck entries already passed.
 this behavior with original arming, list and entry operations and the original interpreter.
 It does not execute the whole outer field pass or validate live timing.
 
-Resource side: slot 0 issues `WorldSimulation_ProcessDeferredModeRequest(0, 0xD4)` **once**, latching
+Resource side: slot 0 issues ~~`WorldSimulation_ProcessDeferredModeRequest(0, 0xD4)`~~ `WorldSimulation_ProcessDeferredModeRequest(1, 0xD4)` *(corrected 2026-10-02, OPUS: the slot argument is 1 — `0025DA86 mov r12d, 1`, `0025DAE1 mov ecx, r12d`, `0025DAE8 mov edx, 0xD4` — so the callee's slot-0 branch, `0032FC3E`–`0032FC40`, is not taken)* **once**, latching
 `+0x10` bit 3 so it is not repeated, when `00377DB0()` is non-zero and `+0x10` bit 4 is clear.
 
 ## 9. Determinism
@@ -226,13 +226,13 @@ uint32_t ActorManager_RunFieldRuntimePass(int slot)
     *(void **)0x02099D78 = ActorHandle_ResolveRegistryEntryByPackedId(
                                PartyFocus_GetCurrentPackedActorHandle());   /* may be null */
 
-    rec = ActorManager_GetRecordByOrdinal(b, *(uint16_t *)(actor + 0x50));
+    rec = ActorManager_GetRecordByOrdinal(b, *(uint16_t *)(actor + 0x50));   /* <- corrected 2026-10-02, OPUS - the ordinal is the signed word at +0x50 of the slot's payload *(void **)b: 0025DB2B mov rax, [rbx]; 0025DB31 movsx edx, word [rax+0x50] */
     WorldActor_UpdateRuntimeAndScriptExecutionState(b, rec);
     if (rec[0x14] & 0x40) {                 /* exit A */
-        b[0x12] = (uint8_t)conj;
+        b[0x12] = (uint8_t)conj;   /* <- corrected 2026-10-02, OPUS - stores 0: r12d = edi = 0 (0025DA98, 0025DB2E), written at 0025DB79 */
         call_002620E0(b);
     }                                       /* exit B falls straight to the tail */
-    /* ... the roster loop and the two folds, both bounded by *(uint32_t *)(b + 0x20) ... */
+    /* ... the roster loop and the two folds, both bounded by *(uint32_t *)(b + 0x20) ... */   /* <- corrected 2026-10-02, OPUS - not after the designated drive: exit A jumps to the tail 0025DECB (0025DB82) and exit B too (0025DB54); the roster loop and folds (0025DE7A-0025DEC6) are the other branch */
     if (r14 == 0) call_0025B600();
     ++*(uint32_t *)(b + 0x24);
     ++*(uint32_t *)(b + 0x38);
@@ -243,7 +243,7 @@ uint32_t ActorManager_RunFieldRuntimePass(int slot)
 ## 13. Runtime validation
 
 **Evidence class: isolated original-code, for the ENTRY GATE only — the first 120 bytes of a
-1,297-byte pass. There is no live evidence and the pass itself is still unexecuted.**
+1,297-byte pass. There is no live evidence ~~and the pass itself is still unexecuted~~.** *(answered: the pass body was executed from shipped bytes 2026-09-18, §13a; 2026-10-02, OPUS)*
 
 | what | pilot | cases | mismatches |
 |---|---|---:|---:|
@@ -413,7 +413,7 @@ Other semantics adopted, each pinned by a mutant to a branch or immediate: the s
 `G_DFA`/`G_DFB` **alias slot 1's own block** at `+0x10`/`+0x13` rather than being independent
 globals; the deferred arm runs `dreq(1,0xD4)` → `b10 |= 8` → epilogue **before** the
 `(dfa&1)|dfb` early exit, so the order is not the one a reader infers from the test's position;
-kind dispatch is `cmp eax, 7 / ja`, with kinds 0–8 all armed; the interpreter arm **always** funnels
+kind dispatch is `cmp eax, 7 / ja`, ~~with kinds 0–8 all armed~~ with eight table entries for kinds 0–7, kind 0 sharing the `ja` default `0025E127` *(corrected 2026-10-02, OPUS: the table at `0025E3CC`, `0025DFF4`–`0025E008`)*; the interpreter arm **always** funnels
 to settle via `+0x14 = 1`; and the init core re-arms only when `b10 & 4` is clear, with the `ice`
 return compared **signed** (`jle`).
 
@@ -527,7 +527,7 @@ return compared **signed** (`jle`).
    > at all.
    >
    > **Therefore: accept FABLE's mechanism, reject the word *deferred*.** A deferred request is one
-   > that is consumed; this one never is. `022C6D20[m]` reads as a **sticky “this manager has been
+   > that is consumed; ~~this one never is~~ this one is cleared in two places *(answered: see the CORRECTION 2026-09-21 below; 2026-10-02, OPUS)*. `022C6D20[m]` reads as a **sticky “this manager has been
    > asked to dispose” mark**, and every one-shot property people would attribute to it lives in
    > `+0x10` bit 0 and `+0x11` bit 3 instead. §13's mechanism is unchanged; only the name is.
 
@@ -623,7 +623,7 @@ return compared **signed** (`jle`).
    >
    > ### The one consequence that is not closed, stated so it can fail
    >
-   > If the mark is truly never cleared, then a manager disposed once by a script and **later
+   > ~~If the mark is truly never cleared, then~~ *(answered: the mark is cleared — the CORRECTION 2026-09-21 and "DISSOLVED rather than answered" below; 2026-10-02, OPUS)* If it were never cleared, a manager disposed once by a script and **later
    > re-loaded** becomes live with bit 3 clear, and the very next pass requests its unload again.
    > Either something clears the byte by a route no static method reaches, **or a re-loaded manager
    > is torn down on the pass after its load completes.** The second is observable and cheap:
@@ -714,7 +714,7 @@ things in one sentence. `0025DD64`/`0025DEAE` are `cmp edi, [rbx+0x20]` — the 
 `AND` beside them (`0025DEAB and r12d, eax`, after `shr eax, 6`) folds each actor's **result** into
 the accumulator returned as `r12d`. Both happen twice; they are not the same operation.
 
-**Not claimed:** no live observation, and the pass itself is still unexecuted — §13's "this is the
+**Not claimed:** no live observation~~, and the pass itself is still unexecuted~~ *(answered: §13a, executed 2026-09-18; 2026-10-02, OPUS)* — §13's "this is the
 first 120 bytes of 1,297" stands; `FRP-1` closed 2026-09-18 (the script enable flag, item 1 above).
 
 ## 16. Parity plan

@@ -1,0 +1,108 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "cc1bff25acc7e682d95488067d3e8bf3bace765483a7325288240b8d0ce2c6a7",
+  "positive_producer_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+  "source_order_control": {
+    "actual_checked_capture_call_lines": [
+      35,
+      43
+    ],
+    "output_line": 260,
+    "gate_before_output": true
+  },
+  "cases": [
+    {
+      "name": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-clear-callee-footprints\\controls-01\\failed-capture\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+      "diagnostic": "required capture status failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "abc7543e575d667c2a8c6cb929a1235a4fa60cbc7b21d7a2a1ec4ab58cd4ae11"
+    },
+    {
+      "name": "exception-with-zero-exit",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-clear-callee-footprints\\controls-01\\exception-with-zero-exit\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+      "diagnostic": "required capture status failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4f0af52d0367fa86ea4f3cb5ae9fa02548720f9dc08c156e92ffed0415523473"
+    },
+    {
+      "name": "incomplete-wrapper",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-clear-callee-footprints\\controls-01\\incomplete-wrapper\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+      "diagnostic": "actual capture incomplete",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "047993b58a0302aff3d1af4c4584b8a80fbe482f174f8cde65192eee23b24a30"
+    },
+    {
+      "name": "missing-helper-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-clear-callee-footprints\\controls-01\\missing-helper-source\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c8dd9a2ad8d456bc5a91668ef59cca76f37caaad80541e1c6ecb3b3bb5d0a193"
+    },
+    {
+      "name": "coherent-index-store-address-mutation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-clear-callee-footprints\\controls-01\\coherent-index-store-address-mutation\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "69d5a26c2be521061a21d064260d03056f449689fb1898d619587bf2a47e0b8e"
+    }
+  ],
+  "count": 5,
+  "width_role_controls_sha256": "27077c77da526ee451537095a71ce9df0dd49182d3a1541717925545bcbfb2b6",
+  "limits": "Five actual disposable producer refusals and four synthetic decoder/classifier controls. Checked producer positive is static original-source proof, not native/live execution or independent acceptance."
+}

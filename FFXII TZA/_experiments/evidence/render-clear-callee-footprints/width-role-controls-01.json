@@ -1,0 +1,242 @@
+{
+  "method": "Synthetic decoder/exact producer function controls, no original-code execution",
+  "producer_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+  "actual_classifier_call_lines": {
+    "write_spans": [
+      192,
+      193,
+      194,
+      225
+    ],
+    "protected_hits": [
+      226,
+      215,
+      230
+    ]
+  },
+  "fixtures": [
+    {
+      "name": "wide-store-crossing-active",
+      "synthetic_capture": {
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "capstone": "5.0.7",
+        "ranges": [
+          {
+            "start": "0x1000",
+            "end_exclusive": "0x1007",
+            "sha256": "b084346e1a76398964b19f7b6a70e70880006338e2def7c2d9a76e005233e4eb",
+            "instructions": [
+              {
+                "pc": "0x1000",
+                "bytes": "0f118378020000",
+                "mnemonic": "movups",
+                "args": "xmmword ptr [rbx + 0x278], xmm0",
+                "memory": [
+                  {
+                    "base": "rbx",
+                    "index": null,
+                    "scale": 1,
+                    "displacement": 632,
+                    "size": 16,
+                    "role": "w",
+                    "rip_target": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 1,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "write_spans": [
+        {
+          "pc": "0x1000",
+          "start": 632,
+          "end_exclusive": 648,
+          "role": "w"
+        }
+      ],
+      "protected_hits": {
+        "id0": [],
+        "active284": [
+          {
+            "pc": "0x1000",
+            "start": 632,
+            "end_exclusive": 648,
+            "role": "w"
+          }
+        ]
+      },
+      "expected_active_overlap": true
+    },
+    {
+      "name": "address-only-same-start",
+      "synthetic_capture": {
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "capstone": "5.0.7",
+        "ranges": [
+          {
+            "start": "0x1000",
+            "end_exclusive": "0x1007",
+            "sha256": "50024bae0ae5b7f1094de2da567027af46eeabcf055b23c2c12719e9f6fcd8ca",
+            "instructions": [
+              {
+                "pc": "0x1000",
+                "bytes": "488d8378020000",
+                "mnemonic": "lea",
+                "args": "rax, [rbx + 0x278]",
+                "memory": [
+                  {
+                    "base": "rbx",
+                    "index": null,
+                    "scale": 1,
+                    "displacement": 632,
+                    "size": 8,
+                    "role": "addr",
+                    "rip_target": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 1,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "write_spans": [],
+      "protected_hits": {
+        "id0": [],
+        "active284": []
+      },
+      "expected_active_overlap": false
+    },
+    {
+      "name": "read-modify-write-active",
+      "synthetic_capture": {
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "capstone": "5.0.7",
+        "ranges": [
+          {
+            "start": "0x1000",
+            "end_exclusive": "0x1007",
+            "sha256": "91bf94928f64479862d1f7db6a9cf1276dcd5cb0a26babb3465444a7c8aacec0",
+            "instructions": [
+              {
+                "pc": "0x1000",
+                "bytes": "838b8402000001",
+                "mnemonic": "or",
+                "args": "dword ptr [rbx + 0x284], 1",
+                "memory": [
+                  {
+                    "base": "rbx",
+                    "index": null,
+                    "scale": 1,
+                    "displacement": 644,
+                    "size": 4,
+                    "role": "rw",
+                    "rip_target": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 1,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "write_spans": [
+        {
+          "pc": "0x1000",
+          "start": 644,
+          "end_exclusive": 648,
+          "role": "rw"
+        }
+      ],
+      "protected_hits": {
+        "id0": [],
+        "active284": [
+          {
+            "pc": "0x1000",
+            "start": 644,
+            "end_exclusive": 648,
+            "role": "rw"
+          }
+        ]
+      },
+      "expected_active_overlap": true
+    },
+    {
+      "name": "adjacent-store-ends-at-active",
+      "synthetic_capture": {
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "capstone": "5.0.7",
+        "ranges": [
+          {
+            "start": "0x1000",
+            "end_exclusive": "0x100a",
+            "sha256": "6daff033c69c4bbe630c6872ad905a89dc08ebf01d5150bff789dba0aa529c4b",
+            "instructions": [
+              {
+                "pc": "0x1000",
+                "bytes": "c7838002000000000000",
+                "mnemonic": "mov",
+                "args": "dword ptr [rbx + 0x280], 0",
+                "memory": [
+                  {
+                    "base": "rbx",
+                    "index": null,
+                    "scale": 1,
+                    "displacement": 640,
+                    "size": 4,
+                    "role": "w",
+                    "rip_target": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+        "instruction_records": 1,
+        "capstone": "5.0.7",
+        "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+        "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+      },
+      "write_spans": [
+        {
+          "pc": "0x1000",
+          "start": 640,
+          "end_exclusive": 644,
+          "role": "w"
+        }
+      ],
+      "protected_hits": {
+        "id0": [],
+        "active284": []
+      },
+      "expected_active_overlap": false
+    }
+  ]
+}

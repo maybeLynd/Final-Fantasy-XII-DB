@@ -1,3 +1,57 @@
+## SOL in ASTRA — render-removal-phase-contracts publication package, 2026-10-01
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board healthy epoch3; publication task ASTRA-PUBLISH-RENDER-REMOVAL-PHASE-CONTRACTS-1002.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+MethodA complete429140/427C90/4200A0 original1017B: NULL429140 returns0; all local nonNULL normal-return branches return1. Mask28404 set marks deferred deletion (290OR02/2AEOR01/108110zero/284clear04setbit30), named helpers, no direct countdec/clear. Mask04clear/290mask01clear no-op success has zero objectwrites/helpers. Mask04clear/290mask01set pendingunlink/DEC/count0cursorreset/direct41F730, no4200A0 cleanup. Active sweep427C90 mask29002 caches nextWORD4 beforecallbacks, unlinks/DEC count427D18 before42F4C0/child-owner cleanup/4200A0->41F730tail; cursorresetbeforecleanup. No countpositive defense in these bodies; comparisonafterDEC. Source phases notatomic/live/reentrant observation; valid index/list/count/ABI/normalreturns/nativeeffects/finitechildprogress/lifetime remainopen. Countermodels source math notnaturalstates/faults. Active sweep noID0gate beforedirty/action, qualify universal ID-first wording withoutrejecting possiblevalid-listpremise. Sharedreviewedroles actualpath/originalbytes/fullCFG/carriers/order/fourpredicatepartitions, producer01 andfouractualCLI refusalcontrols valid; retainedconditionalclear frozenatread notaccepted/reexecuted.53 immutablemembers fc26ae31f8ddb389fff58deeb7616680334f0e93723e35f4556159e32b47bc5c. Independent SPEC/OPUS/FABLE pending; no wholeOV orfullgoalclosure, historical4 runtime-needs elimination unchanged. Allownscientificchildren terminal/no game/PC/native/instrument/save/config/ref/peerchanges. FullL1L2/M0M5ACTIVE/NOT_MET; menu spent/unapproved EXP127invalid K14closed. Continue independent evidence/returned-consumer reconciliation during publication waits.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
+## SOL in ASTRA — render-clear-callee-footprints publication package, 2026-10-01
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board healthy epoch3; publication task ASTRA-PUBLISH-RENDER-CLEAR-CALLEE-FOOTPRINTS-1002.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+MethodA composed original clear footprints: 6C0520 writes16 bytes at record210/220; 46D110 sets source01F204E0 and tails202C70 four sequential16-byte copies into180/1C0, not zero-fill/general overlap safety. 3E5D00 indexed eight-byte records4C0, caller resets EDI from zeroESI then exact0..9 loop bound10, union4C0..510. 3E37E0 requests50h zero fill580 under named861EC0 library contract. All helper spans disjoint WORD0/DWORD284; complete supplied caller direct w/rw full-width spans have only WORD0=FFFF store41F795, no284 overlap. Given valid740h record/private nonalias frame/readable constants, normal returns/native ABI and bounded library fill, normal clear return ID0=FFFF/active284=0. Removes supplied opaque-helper-write premise, not natural caller/all-writer/lifetime/scheduling/atomicity.124 new shipping bytes and retained immutable caller; completeCFG/carrier/dominance/shared-reviewed-role actualpath checks. Producer01 terminal0, five actual CLI refusals plus four synthetic full-width store/LEA/RMW/adjacency controls; synthetic controls notnative tests.61 immutable members, parent at-read frozen/publication-ready history preserved. Independent SPEC/OPUS/FABLE consumption pending. All own scientific children terminal/no game/PC/native/instrument/save/config/ref/peer changes. FullL1+L2 goalACTIVE/NOT_MET, historical four runtime-needs eliminated unchanged/zero wholeOV closures; menu spent/unapproved EXP127invalid K14closed. Continue eligible owner-lifecycle discriminator during publication/review waits.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — render-slot-identity-publication publication package, 2026-10-01
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -10284,10 +10338,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=46425 epoch=3 queue_sha=b16c196b1b315e43 -->
-> generated 2026-10-02T07:48:12+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=46504 epoch=3 queue_sha=fcb7b565d0ead653 -->
+> generated 2026-10-02T08:48:17+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-FILECACHE-INSERT-KEY-ADMISSION-1002, ASTRA-FILECACHE-ROUTE2-COMMIT-KEY-1002, ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-PUBLISH-RENDER-SLOT-IDENTITY-PUBLICATION-1002, ASTRA-RENDER-CLEAR-CALLEE-FOOTPRINTS-1002, ASTRA-RENDER-REMOVAL-PHASE-CONTRACTS-1002, ASTRA-RENDER-SLOT-IDENTITY-PUBLICATION-1002, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-FILECACHE-INSERT-KEY-ADMISSION-1002, ASTRA-FILECACHE-ROUTE2-COMMIT-KEY-1002, ASTRA-FILECACHE-SOURCE-KEY-INITIALIZATION-1002, ASTRA-FILECACHE-ZERO-HANDLE-RETURN-1002, ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-PUBLISH-RENDER-REMOVAL-PHASE-CONTRACTS-1002, ASTRA-RENDER-REMOVAL-PHASE-CONTRACTS-1002, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P1 AUTO-UNBLOCK-ASTRA-HANDLE-SEMANTIC-CLOSURE, P1 AUTO-UNBLOCK-ASTRA-HWBP-LOADED-DEADLINE, P1 AUTO-UNBLOCK-ASTRA-SHAKE-OPTION-BOUNDARY, P1 AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE, P1 AUTO-UNBLOCK-FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-EO3-PATH-POINTER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-KIND-INDEX-TRACE, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEADER-STATS-NULL, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEDGER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-OLD-SAVE-LOAD, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-AUDIO-GATE-LIVE, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-MGRMARK-RELOAD, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY, P2 AUTO-UNBLOCK-SWE2STRUCT-REQ-ASTRA-OV58D-ESPER-ORDER-0930, P2 DATA-REQ-ASTRA-SD194-RUNTIME-1001, P2 OPUS-REQ-ASTRA-VERIFY-S33-UPSTREAM-GUARD-1001, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REGFILE-REUSE, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-STATE-ROUNDTRIP, P3 FABLE-NOTICE-ASTRA-GG1-SHARPER-CAPTURE, P3 FABLE-NOTICE-ASTRA-OV42-PACKET-WORDING-AND-NEXT-1002, P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ, P3 FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, P3 FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001
 > READY pool: 0 | BLOCKED: 32
 <!-- TEAM-CURRENT:end -->

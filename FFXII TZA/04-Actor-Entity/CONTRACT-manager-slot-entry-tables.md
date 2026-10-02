@@ -209,7 +209,7 @@ bind(slot, recordIndex, entryIndex, word, f, selector, SIDE):
     *(uint16*)(e + 0x08) = 1
     *(uint32*)(e + 0x10) = 0x3F800000   # rate = 1.0f
     if SIDE is A: *(uint8*)(e + 0x14) = 0
-    call 00257230(slot->0x28)
+    call 00257230(slot->0x28)   # <- corrected 2026-10-02, OPUS - side A only (003DA4A2); side B calls 0037DCF0(slot->0x28) (003DD2D5)
     if *(void**)(slot + SIDE.defPtr) != 0:                    # re-tested, see 10.2
         *(uint16*)(slot + SIDE.lookup + 2*(*(int32*)(e+0x04))) = entryIndex
 
@@ -264,7 +264,7 @@ see, and a consequence neither half of the contract recorded**:
 2. **The reverse-lookup subscript is unbounded, on both sides.** The store is
    `mov word [slot + sub*2 + 0x18]` with `sub` read back from the entry's own `+0x04` — clamped
    non-negative by A, supplied by `005C5230` for B (always 0: the retail stub), and **never capped above** by either. A fifth
-   argument of 250 writes at `slot + 0x20C`, outside the `0x200` slot. Observed against 64 planted
+   argument of 250 writes at `slot + 0x20C`, ~~outside the `0x200` slot~~ inside the game's `0x288` slot and outside only the harness's `0x200` image *(corrected 2026-10-02, OPUS: `002630AB imul r14, rax, 0x288` over `02098E10`)*. Observed against 64 planted
    guard bytes, not inferred.
 
    §4 lists three preconditions and this is not among them, because it is not checked: the bound
@@ -278,7 +278,7 @@ A differential suite that passes proves the reconstruction matches on the cases 
 nothing about the cases it *doesn't*. The mechanically generated mutation campaign asks the second
 question — change the reconstruction, and see whether the suite notices.
 
-**45 mutants: 34 KILLED · 4 EQUIVALENT · 4 SURVIVED · 3 NO_BUILD · 0 TIMEOUT · 0 INVALID.**
+~~**45 mutants: 34 KILLED · 4 EQUIVALENT · 4 SURVIVED · 3 NO_BUILD · 0 TIMEOUT · 0 INVALID.**~~ *(answered: superseded by the 49-point run below; 2026-10-02, OPUS)*
 Production inputs verified stable across the whole campaign.
 
 > **That 45 is a FLOOR, not a total** — recorded the same day it was published, under
@@ -465,7 +465,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/manager_slot2` (ignored path). Ins
    > reset clears, and past the B side's word at `+0x1C` for any index ≥ 2. **So yes: the index can
    > and does exceed 1 in shipped scripts**, and the "lookup" is a per-sub-frame word table the
    > reset only partly clears (or the reset is right and those writes are stray); which, and the
-   > runtime range of `getcamerasubframe`, is the residue for the contract's owner.
+   > ~~runtime range of `getcamerasubframe`, is the residue for the contract's owner.~~ *(answered: see the 2026-09-12 note above — the writes past `+0x1B` are real stores, and `getcamerasubframe` is a `mov eax, 1` / `ret` stub; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -497,10 +497,10 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/manager_slot2` (ignored path). Ins
 | bind requires a non-negative record index below the count | `003DA42C test edx,edx / js` — a SIGNED test — and `003DA434 cmp r8d, [rcx+4] / jae`; **executed** with each failing alone | 1 (static + **executed**) | PROVEN |
 | the definition pointer must be non-null | tested at entry and **re-tested at `003DA4A7`** after the call at `003DA4A2`, because the callee could have cleared it; **executed** with each side's pointer null in turn | 1 (static + **executed**) | PROVEN |
 | **both sides compute the SAME value — `(x >= 0) ? x : 0`** | **found 2026-09-12 (§15a)**: side B's resolver `005C5230` is a **three-byte retail stub**, `xor eax, eax / ret`. Side A is `003DA45A xor ecx, ecx` + `003DA46E cmovns ecx, eax`. The clamp/resolve distinction is real in the **mechanism** and absent from the **result** | 1 | PROVEN |
-| **the two sides validate the record index differently** | **re-read 2026-09-12**: side A uses one unsigned compare, `003DA434 cmp r8d, [rcx+4]` / `jae`, which rejects negatives by itself; side B uses **two**, `003DD27A test ebp, ebp / js` then `003DD27E cmp ebp, [r14+4] / jae`. Same rejections, different instructions | 1 | PROVEN |
-| side A clamps a negative fifth argument and side B resolves it | `003DA46E cmovns ecx, eax` against `003DD265 call 005C5230` / `mov ecx, eax`; **executed** with the same negative value on both sides — the entry's `+0x04` and the call trace both differ | 1 (static + **executed**) | PROVEN |
+| **the two sides validate the record index ~~differently~~ the same way** | ~~**re-read 2026-09-12**: side A uses one unsigned compare, `003DA434 cmp r8d, [rcx+4]` / `jae`, which rejects negatives by itself;~~ side A also uses two, `003DA42C test edx, edx` / `js` then `003DA434 cmp r8d, [rcx+4]` / `jae` *(corrected 2026-10-02, OPUS: both are in `003DA400`, with `r8` from `003DA417 movsxd r8, edx`)*; side B uses **two**, `003DD27A test ebp, ebp / js` then `003DD27E cmp ebp, [r14+4] / jae`. Same rejections, different instructions | 1 | PROVEN |
+| side A clamps a negative fifth argument and side B resolves it | `003DA46E cmovns ecx, eax` against `003DD265 call 005C5230` / `mov ecx, eax`; **executed** with the same negative value on both sides — ~~the entry's `+0x04` and the call trace both differ~~ only the call trace differs; the entry's `+0x04` is 0 on both *(corrected 2026-10-02, OPUS: `005C5230` is `xor eax, eax` / `ret`; side A `003DA45A xor ecx, ecx` / `003DA46E cmovns ecx, eax`)* | 1 (static + **executed**) | PROVEN |
 | side B resolves BEFORE validating and side A clamps after | `003DD265` precedes the checks at `003DD26C`–`003DD282`; `003DA46E` follows them. **Executed on refused inputs, where neither side writes anything and only the trace separates them** | 1 (static + **executed**) | PROVEN |
-| the reverse-lookup subscript is unbounded | `003DA4B9 mov word [rbx + rax*2 + 0x18], si` with `rax` from the entry's own `+0x04`, clamped below and never capped above; **executed** with a fifth argument of 250, which writes at `slot + 0x20C` — outside the `0x200` slot and into planted guard bytes | 1 (static + **executed**) | PROVEN |
+| the reverse-lookup subscript is unbounded | `003DA4B9 mov word [rbx + rax*2 + 0x18], si` with `rax` from the entry's own `+0x04`, clamped below and never capped above; **executed** with a fifth argument of 250, which writes at `slot + 0x20C` — ~~outside the `0x200` slot and~~ inside the game's `0x288` slot, outside the harness's `0x200` image and into its planted guard bytes *(corrected 2026-10-02, OPUS: `002630AB`)* | 1 (static + **executed**) | PROVEN |
 | `entry+0x0C` is the channel playback clock, `entry+0x10` the rate multiplier | all four bind callers pass `xmm2 = 0.0f` (`xorps` at `0034F33A`/`0034F985`/`0034933A`/`00349785`); the ticks advance `clock += frameStep × rate × const` — A `003DA050` at `003DA0F3`–`003DA111` over `rbx = entry+0x0C`, B `003DCFB0` at `003DD08B`–`003DD0A5` over `rbx = entry+0x08` — and pass it to the samplers (`003DA133` → `002555A0`, `003DD05D` → `0037D1F0`); rate setters `003DA2D0`/`003DD1F0` write `+0x10` under the `cameraratio*`/`camerashakeratio*` verbs | 1 | PROVEN |
 | side A is the camera-shot table, side B the camera-shake table | E8/E9 census over all `.pdata` bodies: 13 call sites for the eight functions, **every owner a verb handler** — A: `camerastart_7d`/`_7e`→`003DA400`, `resumebehindcamera_289`/`_1e4`→`003DA370`, `camerastop_54`/`_53`→`003DA4D0`, `camerachange`→`003DA570`; B: `camerashakestart_1a2`/`_1a3`→`003DD230`, `camerashakeclear`→`003DCF60`, `camerashakestop_19e`/`_19d`→`003DD320`, `camerashakechange`→`003DD350`; table pointers installed by `0026CE00`→`02098EE8` (`+0xD8`) and `0026D3A0`→`02098F00` (`+0xF0`), both `imul 0x288` | 1 (static) | PROVEN |
 | `lookupIndex` exceeds 1 in shipped play | the mechanism admits it — clamped only below (`003DA46E` cmovns; B resolves negatives via stub `005C5230`), stored unbounded at `003DA4B9`/`003DD2EC` (`slot + 0x18`/`+0x1C + 2×idx`); the exercise is authored — FABLE's script corpus: literal `110` in one `camerastart_7d` call, `getcamerasubframe` results in 38 of 39 | 1 (static) + authored corpus | PROVEN |
@@ -581,7 +581,7 @@ evidence *class* in §13, which is still `isolated original-code`, and this pilo
 `EDGE-CASE` now also covers a record index of **zero** — the accepted side of the signed guard. It
 was added because a mutation survived without it (§13), which is the only reason the gap was visible.
 
-**The suite has been mutation-tested: 45 mutants, 34 killed, 4 proven byte-identical, 4 adjudicated
+**The suite has been mutation-tested: ~~45 mutants, 34 killed~~ 49 points, 38 killed *(answered: §13's 49-point run supersedes the 45-mutant line; 2026-10-02, OPUS)*, 4 proven byte-identical, 4 adjudicated
 equivalent with reasons, 3 refused at compile time by the entry-size check. No unexplained
 survivor.** §13 has the table. A reimplementer can therefore treat a disagreement with this
 reconstruction as a real difference rather than as a possible gap in the comparison.
@@ -589,11 +589,11 @@ reconstruction as a real difference rather than as a possible gap in the compari
 **Five things a reimplementer must take from this contract:**
 
 1. **Do not write one bind with a side parameter.** The two differ in *when* they resolve the fifth
-   argument, in *what* they resolve it to, in whether they clear the entry's `+0x14`, and in which
+   argument, ~~in *what* they resolve it to,~~ *(corrected 2026-10-02, OPUS: both resolve a negative one to 0 — `005C5230` is `xor eax, eax` / `ret`)* in whether they clear the entry's `+0x14`, and in which
    function they call afterwards. Only `clear-one` and `republish` are genuinely one operation twice.
-2. **Side B calls out before it validates.** A refused bind is not side-effect-free on the B side.
-3. **The reverse-lookup subscript is not bounded above.** Reproducing that faithfully reproduces an
-   out-of-slot write; adding the bound is a deliberate divergence and must be recorded as one.
+2. **Side B calls out before it validates.** ~~A refused bind is not side-effect-free on the B side.~~ On a refused bind its one extra effect is the call itself, visible only in a call trace *(corrected 2026-10-02, OPUS: `005C5230` is `xor eax, eax` / `ret`)*.
+3. **The reverse-lookup subscript is not bounded above.** Reproducing that faithfully reproduces ~~an~~
+   ~~out-of-slot write~~ writes past the lookup words into the slot's later fields, and past the `0x288` slot only from subscript 312 *(corrected 2026-10-02, OPUS: a subscript of 250 lands at `+0x20C`, inside the slot)*; adding the bound is a deliberate divergence and must be recorded as one.
 4. **`republish` takes two arguments, not three.** The value written into the lookup is the entry
    index itself — `mov word [rcx + rax*2 + 0x18], dx` with `dx` the index. A three-argument
    signature invents a parameter.

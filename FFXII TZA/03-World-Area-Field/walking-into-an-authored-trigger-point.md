@@ -27,14 +27,14 @@ audit:
 
 # Walking into an authored trigger point
 
-`BattleUnit_TryTriggerNearbyAuthoredFieldActivation` at **`002F8060`**, 648 bytes. Eight documents
+~~`BattleUnit_TryTriggerNearbyAuthoredFieldActivation`~~ `BattleUnit_TryTriggerNearbyAuthoredFieldAction` *(corrected 2026-10-02, OPUS: the ledger name in `functions.tsv`, as this page's crossings section and the contract use)* at **`002F8060`**, 648 bytes. Eight documents
 cited it at its entry; none had opened it.
 
 ## What the player sees
 
 **Every field can carry up to 32 invisible authored points. Walk close enough to one and it fires —
-once, ever.** The point is removed from the field's live set the moment it triggers, so nothing about
-the encounter is repeatable by walking back over the same ground.
+~~once, ever.~~** once, while its field keeps one of three ring slots *(corrected 2026-10-02, OPUS: `002FB3B0` stores `{field, mask}` at the ring index `+0x24`, advances it modulo 3 and caps the count `+0x28` at 3, `002FB3CF`–`002FB417`, so a fourth fired-in field overwrites the oldest; `002FA230` clears all three)*. The point is removed from the field's live set the moment it triggers, so ~~nothing about~~
+~~the encounter is repeatable by walking back over the same ground.~~ it does not fire again while that field's ring entry survives.
 
 **Each point carries two outcome values, and which one you get is a 75 / 25 coin flip** made at the
 moment of the trigger — not authored, not seeded by position, drawn when you step on it.
@@ -49,12 +49,12 @@ moment of the trigger — not authored, not seeded by position, drawn when you s
 ```
 
 **Coordinates are authored in tenths and divided by 10 at read time** — two 16-bit values, a
-horizontal pair. The threshold is **1.3**.
+horizontal pair. The threshold is ~~**1.3**~~ **`1.2999999523162842`**, the `f32` nearest 1.3 *(corrected 2026-10-02, OPUS: read at `00901B34`, compared by `002F81F4 comiss xmm7, xmm0`)*.
 
 > **The authored point has no height.** The third component is written **zero** (`002F81C1`,
-> `mov dword ptr [rsp+0x44], 0`) while the unit's own position is real in all three. **The unit's
-> height therefore counts against the 1.3 budget directly** — a point is harder to reach from above or
-> below it, and how much harder is a property of the area's authored ground level, not of the point.
+> `mov dword ptr [rsp+0x44], 0`) ~~while the unit's own position is real in all three.~~ and so is the unit's: `002F8150 mov [rsp+0x54], edi` overwrites the height `Actor_GetWorldPosition` returned with `edi = 0` (zeroed at `002F80A5`) *(corrected 2026-10-02, OPUS: unit position into `[rsp+0x50/0x54/0x58]` at `002F811F`–`002F8131`, point height 0 at `002F81C1`, distance `003A1920` at `002F81EF`; CONTRACT-authored-trigger-points.md TP-2)*. ~~**The unit's~~
+> ~~height therefore counts against the 1.3 budget directly** — a point is harder to reach from above or~~
+> ~~below it, and how much harder is a property of the area's authored ground level, not of the point.~~ **The radius is horizontal; height does not count.**
 
 That is a consequence of the code as written, not an inference about intent, and it is the kind of
 detail that a distance check summarised as *"within 1.3 units"* would lose.
@@ -96,8 +96,8 @@ activation from the record (`002FB8C0`), hand the chosen value to the acting uni
 break;                                                 // at most one per call
 ```
 
-**The live set is a 32-bit mask stored per field** in a 12-byte-stride table at `0x2EC3EA0`, found by
-scanning for the current field id. **Clearing the bit is what makes the trigger once-only**, and the
+**The live set is a 32-bit mask stored per field** in a ~~12-byte-stride table~~ three-slot ring of 12-byte `{field, mask}` records *(corrected 2026-10-02, OPUS: `002FB3B0` stores `{field, mask}` at the ring index `+0x24`, advances it modulo 3 and caps the count `+0x28` at 3, `002FB3CF`–`002FB417`)* at `0x2EC3EA0`, found by
+scanning for the current field id. **Clearing the bit is what makes the trigger ~~once-only~~ not fire again** while the field keeps its ring slot, and the
 `break` means **at most one point can fire per call** even if two overlap.
 
 **The 32-point ceiling is not a coincidence of the data**: the loop bound is `min(count, 0x20)`, and
@@ -115,7 +115,7 @@ Read from the acting unit's battle record at `+0x698`:
 
 > **That last pair is the same directional byte and the same 13-value band as the experience split**,
 > written the same way — `sub 0x1B; cmp 0xC; jbe`. **Two unrelated systems excluding the same band of
-> kinds is a fact about the band, and neither function says what it is.**
+> kinds is a fact about the band, ~~and neither function says what it is.~~** *(answered: the band is the thirteen Espers — CONTRACT-authored-trigger-points.md §14, closed 2026-09-23; 2026-10-02, OPUS)*
 
 ## Falsification pass — 2026-09-03
 
@@ -128,8 +128,8 @@ Read from the acting unit's battle record at `+0x698`:
 | Does the 32 cap come from the data or the code? | **Both, and they agree**: `min(count, 0x20)` bounds the loop and the live set is 32 bits. |
 
 **What this document does not claim:** what the two outcome values are, what `0046A9D0` does with the
-chosen one, what the persistent flag ids mean, what `003EC700`'s second argument `3` selects, or what
-the excluded kind band `0x1B … 0x27` contains.
+chosen one, what the persistent flag ids mean, what `003EC700`'s second argument `3` selects~~, or what~~
+~~the excluded kind band `0x1B … 0x27` contains~~ *(answered for the band: the thirteen Espers — CONTRACT-authored-trigger-points.md §14; 2026-10-02, OPUS)*.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 
@@ -137,8 +137,8 @@ the excluded kind band `0x1B … 0x27` contains.
 
 **Answered from the callee — the falsification table's first attack.** `003A1920` returns a **distance**, not its
 square. It computes `(a.x−b.x)² + (a.y−b.y)² + (a.z−b.z)²` (`003A1920`–`003A194C`) and tail-jumps to `sqrtf`
-(`003A1950`). So `1.3` is a radius in world units, and the zero height of the authored point counts against it
-linearly.
+(`003A1950`). So `1.3` is a radius in world units, ~~and the zero height of the authored point counts against it~~
+~~linearly~~ and a horizontal one: both heights are zeroed before the call *(corrected 2026-10-02, OPUS: `002F8150 mov [rsp+0x54], edi` zeroes the unit's, `002F81C1` the point's)*.
 
 - **Movement — SERVICE shared with its owners.** `003A1920` is Movement's general 3-D distance. It is also called by:
   - `Movement_UpdateSteeringTowardTarget`;
@@ -152,7 +152,7 @@ linearly.
     uses for the record's persistent flag, so scripts can set the same bank.
 - **Story_Event_Quest_Hunt — SERVICE.** On a hit, `BattleUnit_TryTriggerNearbyAuthoredFieldAction` (`002F8060`) sets
   the record's persistent flag (`+0x04`, unless `0xFF`) with `PersistentFlag_SetBank512Low`. That is a story-flag side
-  effect. The once-ever guarantee itself is still the per-field mask clear described above.
+  effect. The ~~once-ever~~ once-only guarantee itself is still the per-field mask clear described above, held in a three-field ring *(corrected 2026-10-02, OPUS: `002FB3B0`, `002FB3CF`–`002FB417`)*.
 - **ActorEntity — SERVICE.** `002F8060` and `002FB8C0` read unit positions through `Actor_GetWorldPosition`. `002FB8C0`
   also maps a definition selector through `BattleUnit_FindMappedDefinitionSelectorByIndex`.
 - **Party — CLIENT.** `PartyFocus_ProcessActorControlPresentati…` calls the distance.

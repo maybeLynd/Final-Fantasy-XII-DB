@@ -108,7 +108,7 @@ message is on [the storage read completion contract](CONTRACT-storage-read-compl
 
 - **The header is the commit stamp.** The image's first dword is its checksum and the second is 1 only on a finished
   save; the first thing the transaction does is zero both - in memory and on disk - and the last thing is to write them.
-  A save interrupted anywhere between has a data file whose first 8 bytes are zero, or no data file at all.
+  A save interrupted anywhere between has a data file whose ~~first 8 bytes are zero~~ decoded image's first 8 bytes are zero (the file itself opens with the `SAFH` container header) *(corrected 2026-10-02, OPUS: every write-mode close builds the container — `0086623F`, `'SAFH'` at `008663BD`, the 12-byte header `fwrite` at `008663FB`; CONTRACT-save-container-transform.md)*, or no data file at all.
 - **The old save is removed before the new one is written**, but not equally in the two variants: **`icon.sys` goes in
   both** (state 2 runs either way), while **the data file and `static.ico` go only in the full variant** (states 3 and
   4). So in a full save the slot holds nothing between step 3 and step 7; in a short save the old data file survives
@@ -117,7 +117,7 @@ message is on [the storage read completion contract](CONTRACT-storage-read-compl
   in place. *Open* (`008666B0`, 833 B) always tries `_wfopen_s "rb"` first and, if the file exists, **reads all of it
   into a byte vector** (`01F44D40`); in write mode a missing file is simply an empty vector. *Write* (`00866AD0`, 176 B)
   touches no file: it overwrites the vector's bytes at the record's cursor and appends past its end. *Close* (`00866200`,
-  1,195 B) writes the whole vector to a file under `GetTempPathW` (`"wb"`), copies it over the target with `CopyFileW`,
+  1,195 B) ~~writes the whole vector to a file~~ deflates the whole vector (`compress2`, level 9), RC4-encrypts it behind a 12-byte `SAFH` header and writes that to a file *(corrected 2026-10-02, OPUS: mode 0 takes the container path at `0086623F`, `'SAFH'` at `008663BD`, `rand` rotation at `008663C5`–`008663ED`, header `fwrite` at `008663FB`; CONTRACT-save-container-transform.md)* under `GetTempPathW` (`"wb"`), copies it over the target with `CopyFileW`,
   and removes the temporary. So the 8-byte header write loads the image step 7 wrote, replaces its first 8 bytes in
   memory, and rewrites the file - and every file written through this storage layer is replaced by a copy of a completed
   temporary, never written through. *`00866200` was read for its calls, not whole.*

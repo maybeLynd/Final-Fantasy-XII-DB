@@ -1,0 +1,38 @@
+{
+  "parent": "render-slot-identity-publication",
+  "state_at_read": "FROZEN_PUBLICATION_READY, peer publication lease busy; not independent acceptance",
+  "manifest_sha256": "a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee",
+  "files": [
+    {
+      "path": "manifest.json",
+      "sha256": "a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee",
+      "bytes": 14177
+    },
+    {
+      "path": "source-01.json",
+      "sha256": "b9f327aad786343ca1e7479745d438392e996af2af95239ed4cc07e3ca895001",
+      "bytes": 206842
+    },
+    {
+      "path": "capture.py",
+      "sha256": "48f04b9b16feffdbe185db65cdcd1dbf76ad66d9d94a1b696f9ee451d50e2290",
+      "bytes": 967
+    },
+    {
+      "path": "capture-01.status.json",
+      "sha256": "7034bd26cb48fa4adadea16257bda7096b4bf9f15c98d77b95bf10dfe5ddbd4b",
+      "bytes": 548
+    },
+    {
+      "path": "capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae",
+      "bytes": 90
+    },
+    {
+      "path": "capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "limits": "Frozen original caller source and receipts only; no new capture/native/live execution credit for retained source. Later publication is separate provenance."
+}

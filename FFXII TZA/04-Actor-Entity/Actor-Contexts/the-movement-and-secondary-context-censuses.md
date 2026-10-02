@@ -35,7 +35,7 @@ audit:
 > (0x230 bytes at `+0x120`, pointer at `+0xB8`) and the **secondary context** (0x188 bytes at
 > `+0x350`, pointer at `+0xC0`). Code reaches them through the pointers, so a scan seeded on the
 > record attributes their accesses nowhere. This page seeds on the pointers instead and publishes
-> what it finds: 313 accesses at 58 offsets of the movement context, 302 at 40 of the secondary. It
+> what it finds: ~~313 accesses at 58 offsets of the movement context, 302 at 40 of the secondary~~ 708 accesses at 101 offsets of the movement context, 309 at 42 of the secondary *(answered: the files on disk, measured; 2026-10-02, OPUS)*. It
 > names nothing — the store owns the layouts — it locates them.
 
 ## 1. What the player sees
@@ -215,7 +215,7 @@ the table's 2 / 7 counts are actor-relative sites only (9 / 14 through the contr
 
 | offset | width | w / r | writers | readers |
 |---|---|---|---|---|
-| `+0x000` | 2 | 1 / 49 | `002E35B0` (`002E3A0A` +1) — **the reset to `−1`** (a qword of ones covers `+0x00`–`+0x07`) | `002E4150` (`002E420A` +3); `002E6420` (`002E647B` +1); +47 more — **the actor's character-render record index** (`s16`, `−1` = none): every reader tests the dword against `−1`, then the word against `−1`, then indexes the 160 × `0x740`-byte array at `[022C6F28]` and requires the record's `+0x284` to be non-zero (`002E420A`–`002E423B`, `002ED2BF`–`002ED2E8`; [the party-presentation verbs](../../01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md) §3, [heading and speed](../../06-Movement-And-Navigation/heading-speed-to-position-delta.md)). The write that assigns a real index is not in this census (`FS-2`) |
+| `+0x000` | 2 | 1 / 49 | `002E35B0` (`002E3A0A` +1) — **the reset to `−1`** (a qword of ones covers `+0x00`–`+0x07`) | `002E4150` (`002E420A` +3); `002E6420` (`002E647B` +1); +47 more — **the actor's character-render record index** (`s16`, `−1` = none): every reader tests the dword against `−1`, then the word against `−1`, then indexes the 160 × `0x740`-byte array at `[022C6F28]` and requires the record's `+0x284` to be non-zero (`002E420A`–`002E423B`, `002ED2BF`–`002ED2E8`; [the party-presentation verbs](../../01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md) §3, [heading and speed](../../06-Movement-And-Navigation/heading-speed-to-position-delta.md)). ~~The write that assigns a real index is not in this census (`FS-2`)~~ *(answered: the element binder `002E3110` — FS-2, 2026-09-17, §7; 2026-10-02, OPUS)* |
 | `+0x004` | 4 | 0 / 2 |  | `002E6BD0` (`002E6C5E` +2); `002E35B0` (`002E39B5`) |
 | `+0x008` | 8 | 1 / 4 | `002E35B0` (`002E3A2A`) — the release epilogue stores the resolved resource-chain entry here | `002EA6A0` (`002EA6BC`); `002E9A00` (`002E9A11`); +2 more — **`boundRecord`: the resolved resource-record pointer** (2026-09-18, SWE2-STRUCT-EL-FIELDS): the release path walks the resource chain (each entry `+0x14` dword == `boundResourceId`, `+0x08` = next link) and stores the found entry; readers prefer it over re-resolving `+0x04` — `002E6C7B` feeds it to `002E9C60` with `002E3F00(boundResourceId)` as the null fallback, and `002EC714` uses its `+0x1E` word as a `0x120`-stride table index and `+0x24` dword as a serial tag |
 | `+0x010` | 1 | 2 / 3 | `002ECD50` (`002ECD6A` +1) — **bit 0 writer** (`and 0xFE; or arg&1`); `002E35B0` (`002E3A16`) — the release mask `and 0xF` (bits 4-7 transient, cleared on release) | `002E9FE0` (`002EA009`); `002E7E90` (`002E7EB6`); +1 more — **bit 0 = shown by script target group**: `hidetargetgroup` clears it and `showtargetgroup` sets it through `0026DC70` → `002ECD50`, and the presence predicate requires it (2026-09-12, [the stop registry](../../00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md) §7 `SM-2`) |
@@ -235,7 +235,7 @@ the table's 2 / 7 counts are actor-relative sites only (9 / 14 through the contr
 | `+0x120` | 8 | 1 / 0 | `0025D480` (`0025D493`) |  |
 | `+0x128` | 8 | 1 / 0 | `0025D480` (`0025D4A1`) |  |
 | `+0x130` | 8 | 1 / 0 | `0025D480` (`0025D4AF`) |  |
-| `+0x138` | 8 | 2 / 20 | `002E3D00` (`002E3D2D`); `002E3AF0` (`002E3BB5`) | `0025B600` (`0025B644` +1); `0025B740` (`0025B778` +1); +18 more |
+| `+0x138` | 8 | ~~2 / 20~~ 3 / 20 *(answered: see the note above — `002E3546` is the third writer; 2026-10-02, OPUS)* | `002E3D00` (`002E3D2D`); `002E3AF0` (`002E3BB5`) | `0025B600` (`0025B644` +1); `0025B740` (`0025B778` +1); +18 more |
 | `+0x140` | 4 | 1 / 4 | `Actor_SetPresentationYOffsetPrimary` `00269E20` (`00269E2C`) | `0025BAD0` (`0025BBA0`); `0025C230` (`0025C29E`); +2 more |
 | `+0x144` | 4 | 1 / 4 | `Actor_SetPresentationYOffsetSecondary` `00269E40` (`00269E4C`) | `0025BAD0` (`0025BBAC`); `0025C230` (`0025C2AA`); +2 more |
 | `+0x14C` | 1 | 0 / 1 |  | `0050D860` (`0050D8C2`) — *2026-09-26: one writer, the setter (see the corrected note above); readers also include the high-model key getter* |
@@ -363,8 +363,8 @@ Not a chain — two censuses. The routes column of each TSV records how every ac
 
 ## 6. Modding notes
 
-- **Read the contexts through the pointers, not the record offsets.** The planter has a second
-  branch that points them elsewhere; code that assumes `record+0x120` will be wrong there.
+- **Read the contexts through the pointers, not the record offsets.** ~~The planter has a second~~
+  ~~branch that points them elsewhere; code that assumes `record+0x120` will be wrong there.~~ *(answered: there is no second branch — see "CORRECTED 2026-09-11" in §2; `+0xB8` is `rec + 0x120` or NULL, `+0xC0` `rec + 0x350` or NULL, `00266AFB`–`00266B68`; 2026-10-02, OPUS)*
 - **The position is the first three floats of the movement context** and twenty functions read it
   from there — a mover that writes the record's own position fields moves nothing.
 

@@ -1,0 +1,47 @@
+PASS C3 synthetic 'straight reset-then-increment': (loop, reset-free loop, undominated) = (False, False, False) | (False, False, False)
+PASS C3 synthetic 'increment under a backward JMP': (loop, reset-free loop, undominated) = (True, True, True) | (True, True, True)
+PASS C3 synthetic 'loop re-running its reset': (loop, reset-free loop, undominated) = (True, False, False) | (True, False, False)
+PASS C3 synthetic 'increment then reset': (loop, reset-free loop, undominated) = (False, False, True) | (False, False, True)
+PASS C1 startscene sites 34125 (RC-5 / ORACLE: 34,125)
+PASS C2 every PUSHV operand's descriptor decodes to a legal class and width (bad: 0)
+PASS C0 ORACLE's counter populations reproduce: startscene variable operands 3429 (3,429) = constant+increment 3141 (3,141) + increment-only 288 (288); startscene_4b3 45 (45); counter eventread_e8 4 (4)
+PASS C4 the loop detector fires on the corpus: 1510427 backward JMP-family edges in 87464 of 223532 actors; an I-register for loop: ('bhm_a0200.ebp', 'Camera', 'cut004', '12C', 'D0', 'PUSHI0 PUSHII OPLSE UNK5C PUSHI0 PUSHII OPADD POPI0 PUSHF PUSHF PUSHI0 PUSHII OPDIV OPMUL')
+PASS C4 over every `x = x + k` POPV in the us copy (31600 increments), 8540 lie on a reset-free cycle (examples [('sav_a01.ebp', '黒水晶パターン', 'ゲージ増加_通常', '660', 0, '0x99f'), ('sav_a01.ebp', '黒水晶パターン', 'ゲージ増加_弱体', '6B9', 0, '0x99f'), ('sav_a02.ebp', '黒水晶パターン', 'ゲージ増加_通常', '660', 0, '0x99f')])
+PASS C5 every JMP-family index resolves to an instruction boundary of its actor (unresolved 0)
+
+startscene constant+increment: 3141 operand sites; 270 counter variables (30 distinct by file name and offset; classes {1: 270}); 2880 increment sites
+   (a) loops: on any cycle 0; literal backward-jump span 0; on a RESET-FREE cycle 0
+   (b) dominance: increment reachable from its own function entry without a reset 72; from any function entry 72; own entry does not reach it 0
+   containment of the cut body: jumps out 0; falls through 0; actors with unresolved jumps 0
+      18  variables with a reset, but some increment undominated
+     252  variables: every increment dominated by a reset of the same variable in its actor
+   operand sites: 3141; reached by an increment on a reset-free cycle 0; by an undominated increment 603; read reachable from a function entry before any store of the variable 0; interval changed 603
+      dgl_g0100.ebp    class1+0x18 declared 0: ORACLE [7, 102] -> [0, 102]  (477 sites, all copies)
+      gil_a0200.ebp    class1+0x13 declared 0: ORACLE [5, 18] -> [0, 18]  (126 sites, all copies)
+startscene increment-only: 288 operand sites; 54 counter variables (6 distinct by file name and offset; classes {1: 54}); 279 increment sites
+   (a) loops: on any cycle 9; literal backward-jump span 18; on a RESET-FREE cycle 9
+   (b) dominance: increment reachable from its own function entry without a reset 279; from any function entry 279; own entry does not reach it 0
+   containment of the cut body: jumps out 0; falls through 0; actors with unresolved jumps 0
+       9  variables with an increment on a reset-free cycle
+      54  variables with no reset in scope (every increment undominated)
+   operand sites: 288; reached by an increment on a reset-free cycle 9; by an undominated increment 288; read reachable from a function entry before any store of the variable 9; interval changed 9
+      str_z0000.ebp    class1+0x2a declared 0: ORACLE [0, 1] -> [0, fails: width clamp 127]  (9 sites, all copies)
+startscene_4b3 constant+increment: 45 operand sites; 36 counter variables (4 distinct by file name and offset; classes {1: 36}); 882 increment sites
+   (a) loops: on any cycle 0; literal backward-jump span 0; on a RESET-FREE cycle 0
+   (b) dominance: increment reachable from its own function entry without a reset 0; from any function entry 0; own entry does not reach it 0
+   containment of the cut body: jumps out 0; falls through 0; actors with unresolved jumps 0
+      36  variables: every increment dominated by a reset of the same variable in its actor
+   operand sites: 45; reached by an increment on a reset-free cycle 0; by an undominated increment 0; read reachable from a function entry before any store of the variable 0; interval changed 0
+eventread_e8 constant+increment: 4 operand sites; 4 counter variables (2 distinct by file name and offset; classes {1: 2, 7: 2}); 2 increment sites
+   (a) loops: on any cycle 2; literal backward-jump span 2; on a RESET-FREE cycle 2
+   (b) dominance: increment reachable from its own function entry without a reset 0; from any function entry 0; own entry does not reach it 0
+   containment of the cut body: jumps out 0; falls through 0; actors with unresolved jumps 0
+       2  variables with an increment on a reset-free cycle
+       4  variables: every increment dominated by a reset of the same variable in its actor
+   operand sites: 4; reached by an increment on a reset-free cycle 4; by an undominated increment 0; read reachable from a function entry before any store of the variable 0; interval changed 4
+      evctrl.ebp       class7+0x1c50 declared None: ORACLE [0, 3] -> [not a counter, see F1, not a counter, see F1]  (4 sites, all copies)
+
+PASS F1 image: POPV's store helper 00267E60 resolves the variable first (call 00262440 at 00267E7F; the resolver pops one index per array dimension) and only then pops the value (count load / decrement / store at 00267E9C / 00267EA2 / 00267EA7), so for an array POPV the stack top is the INDEX | call 0x262440 / mov ecx, dword ptr [rbx] / mov dword ptr [rbx], ecx
+PASS F1 bytecode evctrl.ebp class7+0x1c50: every store pushes the value, then the index; ORACLE's resolver read the index. Indices ["('const', 0)", "('const', 1)", "('var', (1, 2308, 0, 16779524))"]; stored values ["('const', 0)", "('var', (1, 2268, 4, 1090521308))"] -> operand domain [0] plus ['class1+0x8dc has no POPV in scope (initial value 0)']
+PASS F1 bytecode evctrl.ebp class7+0x1c50: every store pushes the value, then the index; ORACLE's resolver read the index. Indices ["('const', 0)", "('const', 1)", "('var', (1, 2308, 0, 16779524))"]; stored values ["('const', 0)", "('var', (1, 2268, 4, 1090521308))"] -> operand domain [0] plus ['class1+0x8dc has no POPV in scope (initial value 0)']
+FAILS 0

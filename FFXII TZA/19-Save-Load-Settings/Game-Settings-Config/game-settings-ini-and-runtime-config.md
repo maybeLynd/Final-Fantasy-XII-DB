@@ -34,7 +34,7 @@ container_format: game-settings-ini
 
 > **Every option the player can set lives in one 0x65C-byte object with 31 slots**, one dword each,
 > described by three parallel tables in the image and persisted as plain text to
-> `%DOCUMENTS%\My Games\FINAL FANTASY XII THE ZODIAC AGE\GameSetting.ini`.
+> ~~`%DOCUMENTS%\My Games\FINAL FANTASY XII THE ZODIAC AGE\GameSetting.ini`~~ `%DOCUMENTS%\My Games\FINAL FANTASY XII THE ZODIAC AGE\<Steam id>\\GameSetting.ini` *(corrected 2026-10-02, OPUS: checked at `0079817E`–`00798234` — `L"%s%s\"` with the Steam-id folder from `001F3ED0`, then `L"%s\%s"` + `L"GameSetting.ini"`; CONTRACT-game-setting-config.md, the per-account path)*.
 > **Slot index × 4 is the field offset**, which is why the singleton's fields land where they do.
 
 **For a player.** This is the options menu, and the file behind it. Language, resolution, shadow
@@ -57,7 +57,7 @@ button masks immediately; quitting writes the line `DecideButton=Circle` (or `Cr
 
 ```
 keys          0x01DFD050    31 x qword char*
-value names   0x01DFD150    31 x 9 qword char*, NULL-terminated per row
+value names   0x01DFD150    31 x 9 qword char*, NULL-terminated per row   <- corrected 2026-10-02, OPUS: not terminated - row 0 (Language) fills all nine slots, read at 01DFD150; CONTRACT-game-setting-config.md
 defaults      0x00900CE0    31 x 16 bytes, column 0 read at init
 ```
 
@@ -134,12 +134,12 @@ An earlier pass looked for a write to `[reg+0x64]` on this object and found none
 **No literal `[reg+0x64]` write to this object exists anywhere in the image.** All three writers reach
 the field through a **computed index** (`[base + index*4]`), never a literal displacement.
 
-A full access-role scan of the image finds **157 instructions referencing `0x01F82D20`: 156 reads and
-exactly one write** — the singleton store itself.
+A full access-role scan of the image finds **~~157~~ 159 instructions referencing `0x01F82D20`: ~~156~~ 158 reads and
+exactly one write** *(corrected 2026-10-02, OPUS: `retool.py refs 01F82D20`, in 63 functions)* — the singleton store itself.
 
 **This is a new blind-spot shape and it is now on record:** a scan keyed on a *displacement* cannot
 see a field written through an index, and an array-of-settings object is written that way by
-construction. Finding it required enumerating all 36 call sites of the generic setter and recovering
+construction. Finding it required enumerating all ~~36~~ 38 *(corrected 2026-10-02, OPUS: `retool.py callers 001DF340`, 38 call sites in 15 functions)* call sites of the generic setter and recovering
 the constant index at each — **exactly one passes 25**.
 
 ## 7. Provenance of this document
@@ -162,8 +162,8 @@ and 5 are re-derived measurements, not transcription.
       on a row of the in-game Config screen, and nowhere else in the image. `0023B330` / `0023B6F0` are
       the **procs of two row objects**, not registered callbacks; `FUN_0023BD40` is the screen's own proc.
       [the Config screen](../../16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md). **AX-6a.**
-- [x] ~~Which of the 31 settings the options UI actually exposes, versus ini-only.~~ **ANSWERED — 16 of
-      31.** Full split in [the Config screen](../../16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md) section 5. **AX-2.**
+- [x] ~~Which of the 31 settings the options UI actually exposes, versus ini-only.~~ **ANSWERED — ~~16 of~~
+      ~~31.~~** 22 of 31 *(corrected 2026-10-02, OPUS: the correction this list records under AX-3, the Config screen page §11)*. Full split in [the Config screen](../../16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md) section 5. **AX-2.**
 - [x] `LUIDLow` / `LUIDHigh` / `DeviceID` / `Monitor` — the adapter-selection group. **AX-3.**
       *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (AX-3): they record the selected display
       adapter and output, and the in-game Config screen's row 4 edits them.* The display object `[01F82D18]` enumerates
@@ -258,11 +258,11 @@ After the defaults copy, `008C2110` returns a LANGID, and:
 `0xFFFFE7FF` clears exactly bits `0x0800` and `0x1000`, so that test passes for **four** LANGIDs —
 `0x0404`, `0x0C04`, `0x1404`, `0x1C04` — which are the **Traditional Chinese** sublanguage group,
 with `0x1C04` then singled out. **The mapping from Windows locale to the game's language index is not
-a plain table lookup; it has a Chinese-variant branch.** Which index each arm selects is not read
-here. **AX-4.**
+a plain table lookup; it has a Chinese-variant branch.** ~~Which index each arm selects is not read~~
+~~here.~~ *(answered: see §9, "AX-4 answered — the whole locale mapping"; 2026-10-02, OPUS)* **AX-4.**
 
 Three more object fields, measured in passing: `+0x44C` = 1, `+0x658` = `0x0101` (two bytes),
-`+0x65A` = 1 — all set before the defaults copy, all unidentified. **AX-5.**
+`+0x65A` = 1 — all set before the defaults copy~~, all unidentified~~ *(answered: see the AX-5 box above — `+0x44C` is the MSAA availability mask, `+0x658` / `+0x65A` fresh-defaults markers; 2026-10-02, OPUS)*. **AX-5.**
 
 ## 9. AX-4 answered — the whole locale mapping, and `ch` versus `cn` settled
 
@@ -380,8 +380,8 @@ end, the `memset` origin at `0x7C`, and this mask's length.
 
 ### One thing not established
 
-`FUN_001DE4F0` has a single caller, `FUN_001D5120`. **Whether anything applies a preset at startup is
-not shown here** — and it matters, because init copies **column 0 (`VQ_LOW`)** into every setting
+`FUN_001DE4F0` has a single caller, `FUN_001D5120`. **~~Whether anything applies a preset at startup is~~
+~~not shown here~~** *(answered: nothing does — `AX-6` answered NO, "Resolved 2026-09-08" below; 2026-10-02, OPUS)* — and it matters, because init copies **column 0 (`VQ_LOW`)** into every setting
 while `Quality`'s own column-0 value is **1 (`VQ_MEDIUM`)**. Immediately after init the config
 therefore says "Medium" while holding Low values, until something reconciles them. **AX-6.**
 
@@ -405,7 +405,7 @@ pushes the resulting settings into the renderer.
 PostAA, SoftParticle are all in the mask's set of ten. That is independent corroboration of section
 10's mask, from a consumer rather than from the table.
 
-It also resolves the resolution path: `FUN_001DE5A0` is called twice on the config and the second
+~~It also resolves the resolution path:~~ *(corrected 2026-10-02, OPUS: `001DE5A0` is the shadow-map size from `Shadow`, not the resolution — `setting[7]` mod 3 indexes `00900F00` = {512,512}, {1024,1024}, {2048,2048}, checked at `001DE5A0`–`001DE5CD`; the SWE2-EC7-32 note)* `FUN_001DE5A0` is called twice on the config and the second
 result is `sar`-ed by 16, splitting the packed `width << 16 | height` into two arguments.
 
 ### The chain, and where it stops
@@ -433,7 +433,7 @@ graph.
 **Established:** the quality preset is applied by the graphics-apply routine, which then pushes the
 preset-controlled settings into the renderer.
 
-**Not established, and not establishable from the call graph:** *when* that runs. The chain terminates
+**~~Not established, and not establishable from the call graph:~~** ~~*when* that runs.~~ *(answered: a left/right press on a Config row — "Resolved 2026-09-08" below; `AX-6a` answered; 2026-10-02, OPUS)* The chain terminates
 in callbacks whose invocation is dynamic. Answering it needs the registrar's dispatch semantics —
 what `FUN_0023BD40` registers them *as* — not more call-graph walking. **AX-6a.**
 
@@ -571,17 +571,17 @@ FrameLimit=60 :  450 * 2 =  900 frames  /  60 fps  = 15.0 s
 ### `01F82E38` — a process-wide "running at 60" gate
 
 The flag written alongside the time base has, across the whole image, **exactly one write — the one
-above — and thirteen reads, every one of them `cmp dword ptr [...], 0`**, in thirteen different
+above — and thirteen reads, ~~every one of them `cmp dword ptr [...], 0`~~ not all of them `cmp` — `001EDE70` reads it with `mov eax, [01F82E38]`** *(corrected 2026-10-02, OPUS: `retool.py refs 01F82E38`, 13 reads and 1 write; the list below omits `001EDE70`)*, in thirteen different
 functions clustered in `001EC6B0`–`001EDEC0`:
 
 ```
 001EC6B6  001EC776  001ED026  001ED0DA  001ED1E4  001ED270  001EDAE9
-001EDBD0  001EDCD6  001EDDA9  001EDE84  001EDEC0      (+ the write at 001EDDE8)
+001EDBD0  001EDCD6  001EDDA9  001EDE84  001EDEC0      (+ the write at 001EDDE8)   <- corrected 2026-10-02, OPUS: the read in 001EDE70 (mov eax, [01F82E38]) is missing from this list
 ```
 
 > **Thirteen functions branch on whether the game is running at 60**, and at 30 the flag is BSS and
-> stays zero forever, so all thirteen take their other branch permanently. **What those thirteen do
-> is not read here** — but the shape is worth recording: this is not a value, it is a mode switch
+> stays zero forever, so all thirteen take their other branch permanently. **~~What those thirteen do~~
+> ~~is not read here~~** *(answered: see §17.3, `DH-3` — four accessors and nine content exceptions; 2026-10-02, OPUS)* — but the shape is worth recording: this is not a value, it is a mode switch
 > with thirteen consumers.
 
 ### The seven initialisers that only run at 60
@@ -594,7 +594,7 @@ functions clustered in `001EC6B0`–`001EDEC0`:
 
 It has **exactly one caller, `001EDDC0`, inside the `isSixty` branch**, so all seven run only at 60.
 The ledger assigns six of the seven to `Presentation` — **that is a tag, a prior session's claim, not
-a reading**; none of the seven has been disassembled here.
+a reading**~~; none of the seven has been disassembled here~~ *(answered: see §17.2, `DH-4` — they convert authored presentation timing tables at boot; 2026-10-02, OPUS)*.
 
 ### `DH-2` answered — there is no 4x mode
 
@@ -618,7 +618,7 @@ so the quality preset never touches it, and the value copied at init is column 0
 
 > **The compiled-in default is 30.** What a shipped installation actually contains is a different
 > question: `GameSettingConfig_LoadOrCreateFile` writes the file from these defaults **only when no
-> file exists**, and this document has not examined an installed `GameSetting.ini` or the launcher.
+> file exists**~~, and this document has not examined an installed `GameSetting.ini` or the launcher~~ *(answered: see "What a fresh install writes for `FrameLimit` — 30"; 2026-10-02, OPUS)*.
 > **The claim here is about the image's default, not about what players find on disk.**
 
 ### `FrameLimit` also filters the display-mode list
@@ -678,9 +678,9 @@ so a shorter argument is not read past its terminator unless its bytes happen to
 | The config object is built before `main` | `007980A0` ← `007A3770` ← `00808D78` (`MSVCCRT.ExecutableStartup`); `0022BDF0` is the first call in `0022A0B0` | 1 |
 | `"-nologo"` at `0x00908BD8` | RIP target computed with the tool; 8 bytes read | 1 |
 | `001DD420` reads `FrameLimit` and keeps only modes ≥1280×720 with integer refresh 59/60 (limit 60) or 29/30/59/60 (limit 30) | `001DD581` `sete dil` on `==1`; `001DD5A6`–`001DD654` compact loop over 28-byte `DXGI_MODE_DESC` records; constants `008F8D80`, `00900A10`, `00900A14`, `008F6D54`; callers `001DC5C0`, `001DC7A0` | 1 |
-| What the thirteen `01F82E38` readers do | **not read** | — |
-| What `0033F020`'s seven targets do | **not read** | — |
-| What a shipped `GameSetting.ini` contains | **not examined** | — |
+| What the thirteen `01F82E38` readers do | ~~**not read**~~ read, §17.3 *(answered: `DH-3`; 2026-10-02, OPUS)* | — |
+| What `0033F020`'s seven targets do | ~~**not read**~~ read, §17.2 *(answered: `DH-4`; 2026-10-02, OPUS)* | — |
+| What a shipped `GameSetting.ini` contains | ~~**not examined**~~ none ships; both writers default `FrameLimit` to 30 *(answered: "What a fresh install writes for `FrameLimit`"; 2026-10-02, OPUS)* | — |
 
 ### An independent re-derivation, unplanned
 
@@ -1086,7 +1086,7 @@ lanes)` weighting each output `0.5`/`1.0` between neighbour rows with
 math, no I/O.
 ## SWE2-EC7-19 update (2026-05-15) — `001DFD40`/`007A4190` settings-init helpers
 
-`001DFD40` (214 B) is one of the settings-entry bodies the CONTRACT lists (`007980A0`, `001DE050`…`001DFD40`…): an IAT-driven buffered read over the entry's `+0x450` source — `call qword[008C2E00]` opens it into an `rbp`-frame record (`001DFD7A`, `00901018` descriptor arg); when `[rbp]` is non-null it measures the source with `001DEE90` (`001DFD8C`), stack-probes `size+0xF` via `00808F10`, `00861EC0`-clears the scratch buffer, reads a second `001DEE90` into it, posts through `call qword[008C2F40]` (`001DFDE2`), and releases via `call qword[008C2F00]`/`call qword[008C20A8]` (`001DFDEC`/`001DFDF2`) — the read-measure-fill-post shape of the config-entry initialisers.
+`001DFD40` (214 B) is one of the settings-entry bodies the CONTRACT lists (`007980A0`, `001DE050`…`001DFD40`…): ~~an IAT-driven buffered read over the entry's `+0x450` source~~ the settings file writer *(corrected 2026-10-02, OPUS: `001DFD7A` opens `+0x450` with `_wfopen_s` mode `L"wb"` (`00901018`), `001DFDE2` is `fwrite` and `001DFDEC` `fclose`; CONTRACT-game-setting-config.md, `001DFD40` = write file)* — `call qword[008C2E00]` opens it into an `rbp`-frame record (`001DFD7A`, `00901018` descriptor arg); when `[rbp]` is non-null it measures the source with `001DEE90` (`001DFD8C`), stack-probes `size+0xF` via `00808F10`, `00861EC0`-clears the scratch buffer, reads a second `001DEE90` into it, posts through `call qword[008C2F40]` (`001DFDE2`), and releases via `call qword[008C2F00]`/`call qword[008C20A8]` (`001DFDEC`/`001DFDF2`) — the read-measure-fill-post shape of the config-entry initialisers.
 
 `007A4190` (155 B) is the `02EACF68`-guarded lazy init the `00798xxx` config entries (`007980A0`/`00798FF0`/`0079B160`/`0079EDD0`/`0079F150`) call: the TLS-slot version check (`ecx=[02EAED3C]` slot in `gs:[0x58]`, `[rcx+4]` vs `[02EACF68]`, `007A419F`..`007A41C0`) skips when current; behind `008092FC`/`0080929C` init-once bracket it runs `005CC900` on both `02EACF10` and `02EACF40` records, clears the `02EACF28`/`02EACF58` flag bytes, and registers `008B8620` for teardown via `00808B90` (`007A41CE`..`007A4214`). Returns `&02EACF10` either way (`007A4219`/`007A421E`) — the MSVC-style once-init the config entries' shared record pair needs before first use.
 ## SWE2-EC7-32 update (2026-09-18) — `001DE5A0` mod-3 config lookup + `001DFA00` SSO selector (via `001DF350`)
@@ -1145,7 +1145,7 @@ characters). Interior anchor `001DFA07` (the heap-pointer load).
 
 ## SWE2-EC7-41 update (2026-09-19) - `007A3810`
 
-`007A3810` (357 B) is a call-free multi-sub-record ctor - installs `01CB3EF8`/`01CB3F50`/`01CB3FA8`/`01CB4000`/`01CB4058`/`01CB40B0`/`01CB4108` vtables across `+0x38`-stride sub-records (`+0x38`/`+0x58`/`+0x78`/`+0x90`/`+0xb0`/`+0xc8`), `0xffffffff` id fields, and copies `dword[01F82D20+4]` (the locale id) into each `+0x10`. Interior anchor `007A3847` (the `01F82D20` read).
+`007A3810` (357 B) is a call-free multi-sub-record ctor - installs `01CB3EF8`/`01CB3F50`/`01CB3FA8`/`01CB4000`/`01CB4058`/`01CB40B0`/`01CB4108` vtables across `+0x38`-stride sub-records (`+0x38`/`+0x58`/`+0x78`/`+0x90`/`+0xb0`/`+0xc8`), `0xffffffff` id fields, and copies `dword[01F82D20+4]` (~~the locale id~~ `Resolution`, setting 1 *(corrected 2026-10-02, OPUS: `007A3847`–`007A3859` `mov rax, [01F82D20]` / `mov edx, [rax + 4]`; the key table puts `Resolution` at `+0x04`, the language at `+0x00`)*) into each `+0x10`. Interior anchor `007A3847` (the `01F82D20` read).
 
 ## SWE2-EC7-41 update (2026-09-19) - `00416FB0`
 
@@ -1315,7 +1315,7 @@ call: `call qword [008C2B20]`
 runs the wrapped primitive with
 `edx = 0`; only a `-1` answer
 tails into `qword [008C2B10]`
-(the failure/handler IAT slot),
+(~~the failure/handler IAT slot~~ `_wmkdir`; `008C2B20` is `_waccess` *(corrected 2026-10-02, OPUS: the import directory names both; `001F3EA0` creates the directory when `_waccess(path, 0)` fails, checked at `001F3EA0`–`001F3EBE`)*),
 otherwise it returns inline -
 the checked-wrapper shape the
 config file I/O uses.
@@ -1798,6 +1798,6 @@ Interior anchor `001EDD03` (function `001EDCD0`).
 
 Interior anchor `00476EBF` (function `00476E70`).
 
-`001ED020` (174 B) is the module-probe bias `00418880` consults: gated on `[01F82E38]` and `001EC560()`, `00265270` supplies a setting id `ax` and `01DFE40C` indexes the `01F832B0` dword table (clamped 0..4); id `0x15AE` with table value 1 probes `GetModuleHandle`-family IAT `008C2A08` for `"g0111"` and returns `0.5f` when present, id `0x15E0` with value `0xF` probes `"c1006"` and returns `-1.0f` when present, else `0.0f`
+`001ED020` (174 B) is the module-probe bias `00418880` consults: gated on `[01F82E38]` and `001EC560()`, `00265270` supplies a setting id `ax` and `01DFE40C` indexes the `01F832B0` dword table (clamped 0..4); id `0x15AE` with table value 1 ~~probes `GetModuleHandle`-family IAT `008C2A08`~~ matches an asset name with `strstr` (IAT `008C2A08`) *(corrected 2026-10-02, OPUS: the import directory names `008C2A08` `VCRUNTIME140!strstr`; §17.3, asset names matched with `strstr`)* for `"g0111"` and returns `0.5f` when present, id `0x15E0` with value `0xF` probes `"c1006"` and returns `-1.0f` when present, else `0.0f`
 
 Interior anchor `001ED07C` (function `001ED020`).

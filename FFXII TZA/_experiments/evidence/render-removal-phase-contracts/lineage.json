@@ -1,0 +1,48 @@
+{
+  "package": "render-clear-callee-footprints",
+  "state_at_read": "FROZEN_PUBLICATION_READY; producer valid, independent acceptance pending",
+  "manifest_sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc",
+  "files": [
+    {
+      "path": "manifest.json",
+      "bytes": 10838,
+      "sha256": "c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 26478,
+      "sha256": "43f0a7944405f9ed51687dd4599ed98540e7bcd69d978b3b38de5c18df5a876c"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 17258,
+      "sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85"
+    },
+    {
+      "path": "prove-01.status.json",
+      "bytes": 567,
+      "sha256": "7f78280524ed9b72669aa2a58c95cdf5c9dd40121ce71de288f8d89af60511fe"
+    },
+    {
+      "path": "prove-01.stdout",
+      "bytes": 92,
+      "sha256": "1ce6915850949f0f667b1644ad2eda7605ba8d7528722e48f14a3372f3b17b1f"
+    },
+    {
+      "path": "prove-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-result-01.json",
+      "bytes": 5200,
+      "sha256": "bdefb4f43d10cd01b711fed230af3da7d028809d621606f2bbac913cd68cddc5"
+    },
+    {
+      "path": "control-01.status.json",
+      "bytes": 546,
+      "sha256": "6b2e2fdadc18de9289b738950c921208191d87ba5f20beb44d79d6ca8e8cbc28"
+    }
+  ],
+  "limits": "Reuse conditional producer claim, no recapture/reexecution or project acceptance"
+}

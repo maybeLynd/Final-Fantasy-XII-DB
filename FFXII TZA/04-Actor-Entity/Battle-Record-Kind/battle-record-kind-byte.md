@@ -283,7 +283,7 @@ applied, which initialises the record embedded in its spawn-keep entry.
       Registry slot `02EBF130` is `battle_pack.bin`'s directory entry at the blob's `+0x44`
       (`00236D99`–`00236DAB`): an `st2e` table of 40 rows × 128 bytes whose `+0x30` name references
       ([the battle text banks](../../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md) §5)
-      decode as rows 0–5 Vaan, Ashe, Fran, Balthier, Basch, Penelo; 6–16 the guests (Reks, Amalia,
+      decode as rows 0–5 Vaan, Ashe, Fran, Balthier, Basch, Penelo; ~~6–16 the guests (Reks,~~ 6 Reks, inside the roster span *(corrected 2026-10-02, OPUS: `002F90EF cmp al, 6` / `002F90F1 jbe` accept row 6 with rows 0–5)*; 7–16 the guests (Amalia,
       three Basch variants, Lamont, two Vosslers, Larsa, two Reddases); 17–25 "No name"; 26 Chocobo;
       **27–39 (`0x1B`–`0x27`) Belias, Mateus, Adrammelech, Hashmal, Cúchulainn, Famfrit, Zalera,
       Shemhazai, Chaos, Zeromus, Exodus, Ultima, Zodiark**. So `FUN_002F8E90`'s class 2 is "an
@@ -323,7 +323,7 @@ applied, which initialises the record embedded in its spawn-keep entry.
       rebuild uses is a local sentinel for a null record, never written to one.
 - [x] ~~What writes the byte, and when.~~ **ANSWERED 2026-09-02** — **nothing** writes it through
       `unit + 0x698`. The record is installed by `BattleUnit_ApplyUnitDefinition` (`0023ABFA`) and
-      `BattleUnit_ResetStateForReuse` (`00236AB4`); the byte is **authored definition data**, set
+      `BattleUnit_ResetStateForReuse` (`00236AB4`); the byte is ~~**authored definition data**~~ definition data *(answered: see "CORRECTED: this is not a shared authored definition" — only the word "authored" was too strong; 2026-10-02, OPUS)*, set
       once. Section 10. **AL-5.**
 - [x] ~~What the 16-bit field at `record + 4` identifies, of which `+4` is a type id and `+5` this
       kind. In definition terms this is the word at **`+0x84`**.~~ **AL-6 ANSWERED 2026-09-11:** it is
@@ -335,7 +335,7 @@ applied, which initialises the record embedded in its spawn-keep entry.
 - [x] What the **592-byte per-unit battle record** contains. **MAPPED 2026-09-02** — 72 offsets,
       917 accesses, 49 with no scalar store at their displacement and 23 with one — **not**
       "never written", and at least six of the forty-nine are written (section 12a); full map in
-      `Tools/work/rtti/unit_record_fields.tsv`. What most individual fields *mean* is still open.
+      `Tools/work/rtti/unit_record_fields.tsv`. ~~What most individual fields *mean* is still open.~~ *(answered: see the note below — 69 of the 72 observed offsets have a name or meaning, and `FE-1` was answered 2026-09-26; 2026-10-02, OPUS)*
       **AL-8.** *ANSWERED 2026-09-18 (OPUS) by prior art, closed 2026-09-25 (FABLE, Claude Opus 5.5):* the 592-byte
       record is the SpawnKeep entry, and its `+0x80`..`+0x247` is the embedded `0x1C8` `BattleStatsRecord`. So two maps
       cover it: [the spawn-keep entry field map](../../05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md)
@@ -507,7 +507,7 @@ void *SpawnKeep_ResolvePrimaryEntry(byte *keep, int index)
     if (keep == NULL || index < 0)      return NULL;
     if (index > (int)keep[0] - 1)       return NULL;   /* keep[0] = entry count */
     id = keep[1 + index];                              /* the entry's definition id */
-    if (id == 0xFF || (int8)id < 0)     return NULL;   /* 0xFF marks an empty slot */
+    if (id == 0xFF || (int8)id < 0)     return NULL;   /* 0xFF marks an empty slot */   /* <- corrected 2026-10-02, OPUS - the sign test reads a zero-extended byte (0023611F movzx eax, dl; 00236122 test eax, eax; js), so it never rejects: ids 0x00-0xFE all resolve */
     return *(void **)0x0208E690 + id * 0x250;
 }
 ```
@@ -818,7 +818,7 @@ in the same function, taint dropped at calls. The rule finds fifteen `or` sites.
 the AL-10 table below.)*
 
 So `+0x000` is best described as a **per-unit lifecycle and target-eligibility flag byte**. That is
-as specific as the evidence goes: the consumers are named, the individual bits are not.
+as specific as the evidence goes: the consumers are named, ~~the individual bits are not~~ *(answered on the spawn side: see AL-10 below; 2026-10-02, OPUS)*.
 
 ### Why the bits are not named here
 
@@ -889,8 +889,8 @@ availability (`BattleAction_CheckDefinitionCategoryAvailability`, twice), the pe
 
 > **Eight subsystems test the same thirteen-value band on the same byte, under the same `+5 == 0`
 > guard, and none of them says what it is.** That is the same shape as the `0x80000003` predicate — a
-> set membership consulted by many questions — and it strengthens **AL-2** and **N-4** without
-> answering either: the band is not a local convention in the reward path where it was first seen.
+> set membership consulted by many questions — and it strengthens **AL-2** and **N-4** ~~without~~
+> ~~answering either~~ *(answered: both on 2026-09-11 — see the correction below; 2026-10-02, OPUS)*: the band is not a local convention in the reward path where it was first seen.
 
 **What this does not establish** is ~~any of the thirteen values' meaning, or~~ whether the band is an
 inclusion or an exclusion — **the sense differs by call site.** In

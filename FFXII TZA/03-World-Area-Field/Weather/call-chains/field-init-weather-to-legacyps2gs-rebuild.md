@@ -53,8 +53,8 @@ boundaries without any of them inheriting ownership from another.
                        v
 [ActorEntity]        002620E0  continues
                        |-> 00265920  re-read committed slot
-                       |-> publish to notification channel 0
-                       |-> publish to notification channel 0x1F
+                       |-> publish to notification channel 0   <- corrected 2026-10-02, OPUS: EFB binding channel 0 - 0026FAD0 -> 0026F470 builds the rows whose channel byte +4 is 0 (0026F534)
+                       |-> publish to notification channel 0x1F   <- corrected 2026-10-02, OPUS: EFB binding channel 0x1F, as above
                        |-> 00379860(weatherSlot)
                        v
 [WorldAreaField]     00379290  field-resource bridge
@@ -201,7 +201,7 @@ The body is three passes over two arrays:
 | entries | `[rdi+0x178]` | `[rdi+0x174]` | **0x30** |
 
 **Pass 1 — measure.** For each record: `00466190(rec, i)` yields a value tracked as a **maximum**;
-`00466220(rec)` is a predicate selecting an increment of either `i+1` or `4`, accumulated into a
+`00466220(rec)` is a predicate selecting an increment of either ~~`i+1`~~ `1` *(corrected 2026-10-02, OPUS: `002F73D0 xor ecx, ecx`, `002F7416 lea ebp, [rcx+1]`, `002F744A mov edx, 4` / `002F744F cmovne edx, ebp`)* or `4`, accumulated into a
 **sum**. *(Corrected 2026-09-14 (FABLE): the increment is **1**, not `i+1`. `ebp` is `lea [rcx + 1]` at `002F7416` with `rcx` zeroed at `002F73D0` and not changed before it; the loop counter is `r12d`. So the sum is 1 per 4-bit-indexed record plus 4 per other record, as UQ-90 below uses.)* Each record's `word +0x0E` is zeroed. The max and the sum are then handed to
 `00467B10(max)`, `00467B00(sum)` and `00467AA0()`, the last returning a **budget**.
 
@@ -260,7 +260,7 @@ not:
   and `00467B00` the 1-vs-4 aggregate; both are subtracted by `00467AA0` to give the budget
   (`UQ-90`, answered 2026-09-14). **What the 1-vs-4 factor MEANS is still open** — `D-6`, where
   all four candidate readings are now argued against.
-- **Two of the forty bytes are read.** `+0x00` is cleared and `+0x20` is set to `0xFF`, every frame,
+- **Two of the forty bytes are ~~read~~ written, and none is read** *(corrected 2026-10-02, OPUS: UQ-89's answer below — only their initial and per-frame reset values exist, because nothing reads them)*. `+0x00` is cleared and `+0x20` is set to `0xFF`, every frame,
   by `002F4520` (`UQ-89`). **The other thirty-one are not**, and no reader of any of them has been
   identified — which is a bounded observation and not an absence claim, since thirteen other
   qword readers of displacement `+0x218` elsewhere in the image have not been excluded as this
@@ -321,7 +321,7 @@ UQ-90 budget formula itself, confirmed byte-for-byte.
 
 `003EC8A0` (entry point's early call) and `003EC8D0` (the `+0x218` allocator) are shared
 callees with other callers — deliberately not census members. UQ-89 (the `0x28`-byte
-selected-record entries' content) stays open: none of the six reads or writes them.
+selected-record entries' content) ~~stays open~~ *(answered 2026-09-26: see UQ-89 above — nothing reads them; 2026-10-02, OPUS)*: none of the six reads or writes them.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

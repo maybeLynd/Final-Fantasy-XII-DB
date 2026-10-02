@@ -238,7 +238,7 @@ presentation code:  42 + 3 * (type - 0x1B)                for action id 0x113 on
 - **What the three codes per type in §5 select** — the block of three is inferred from the stride,
   and the consumer of codes 42–80 is not read.
 - ~~**What span `≥ 0x28` (40+) contains**, which the LP path accepts along with the main roster.~~ **Nothing ships there** — the party table has 40 rows (§12).
-- **Whether kind values other than 0 and 1 exist** — still the parent document's open item.
+- ~~**Whether kind values other than 0 and 1 exist** — still the parent document's open item.~~ *(answered: AL-4, 2026-09-12 — `{0, 1}`, from the writer; battle-record-kind-byte.md §7; 2026-10-02, OPUS)*
 - **`FUN_0050FF20` has zero callers** in the function list; as a Script-VM bridge it is presumably
   reached through a dispatch table that was not traced.
 
@@ -391,7 +391,7 @@ check is necessary, not sufficient. That `+0x64 | +0x3C` pair is the same merged
 builds into its `+0x04` and `+0x08`; **whether it is the same record type is not established here.**
 
 **Not claimed:** §3's 28-site figure and its owner attribution were taken as given, for the reason in
-the method note. What the thirteen types *are*, and what a presentation code selects, are untouched.
+the method note. ~~What the thirteen types *are*, and~~ What a presentation code selects ~~, are~~ is untouched *(answered in part: §12 names the thirteen types — the Espers; 2026-10-02, OPUS)*.
 Nothing was executed or observed live.
 
 ## SWE2-EC7-48 update (2026-09-19) - `00309230`

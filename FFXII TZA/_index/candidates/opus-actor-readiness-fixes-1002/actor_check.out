@@ -1,0 +1,25 @@
+ok   00267B0E shl al, 5
+ok   00266B83 cmp byte ptr [r9 + rax*4 + 0x1cec329], 1
+ok   00266B8C mov eax, 0xc8
+ok   00266B93 mov eax, 0xa0
+ok   002665EB mov word ptr [rbx], r10w
+ok   002666F1 and dword ptr [rbx + 0x1c], 0xffffdeff
+ok   002668A0 lea rdi, [rbx + 0xc8]
+ok   002668B0 rep stosw word ptr [rdi], ax
+ok   00266607 and dl, 0xdf
+ok   0026667A and byte ptr [rbx + 8], 0x7f
+ok   00225D36 movzx ebp, word ptr [rax + 0x1de]
+ok   00225D45 add r14d, ebp
+ok   003DF73A test dword ptr [rbx + 0x1c], 0x2100
+ok   002630AB imul r14, rax, 0x288
+ok   003DA42E js 0x3da4c3
+ok   003DA438 jae 0x3da4c3
+ok   003DD1F3 add rax, 0x10
+ok   0037DCFA lea rax, [rip + 0x275fc7f]
+ok   002369E5 lea rdi, [rip + 0x2c887b4]
+ok   002368FE mov dword ptr [rip + 0x1e57d9c], eax
+ok   00234503 and dword ptr [rbx], 0xffdfffff
+ok   0023611F movzx eax, dl
+ok   005C5230 xor eax, eax
+ok   0030C4B1 mov byte ptr [rcx + 0x88], r8b
+FAILS 0

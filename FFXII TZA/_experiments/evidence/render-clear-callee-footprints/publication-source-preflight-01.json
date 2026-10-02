@@ -1,0 +1,35 @@
+{
+  "actual_guard": {
+    "status": "VERIFIED_PREREQUISITE",
+    "result": "result-01.json",
+    "source_checks": [
+      {
+        "path": "source-01.json",
+        "sha256": "abe73322b004d45ebc58c4a859f3c2e6a58badd088bc02b982b5b48caa13d868",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 28,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      },
+      {
+        "path": "retained/source-01.json",
+        "sha256": "b9f327aad786343ca1e7479745d438392e996af2af95239ed4cc07e3ca895001",
+        "agreement": {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 609,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      }
+    ],
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Annotation consistency only; independent acceptance and native effects remain separate"
+  },
+  "publisher_sha256": "4d4cf1fe212ac61899b065c4da882d6b05573b4e382197922f83e08488a8143d"
+}

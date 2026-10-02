@@ -114,19 +114,19 @@ teardown path (§14.1).
 descriptors, and ends by zeroing further ranges of the `020927C0` object. OPUS's run also saw it apply the sound
 settings through the audio registry. That step is attributed to the run, not re-read here.
 
-**SV-6 — The submission buffer is handed to the writer by tail-call, with the size passed
-explicitly.** `002EF690` ends `jmp 0020E540` with the submission buffer in `rdx`, `0x56690` in `r8d`
+**SV-6 — The submission buffer is handed ~~to the writer~~ by tail-call to `0020E540`, with the size passed
+explicitly.** *(corrected 2026-10-02, OPUS: `0020E540` is no writer — `0020E540` is `call 001C18E0` then `jmp 0016D6A0`, and `0016D6A0` is `ret 0`, checked at `0020E540`–`0020E576`; the copy reaches no file, and only `0057E310` and `00581DA0` reach the storage machine)* `002EF690` ends `jmp 0020E540` with the submission buffer in `rdx`, `0x56690` in `r8d`
 and a ~~handle~~ **0/1 selector** in `ecx` obtained from `00236760` **before** the copy begins. ~~*So the handle is acquired
 first and the copy is not conditional on it — an implementation that acquires the handle after
 copying changes what happens when acquisition fails.*~~ *(2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 335, which executed it; `00236760` and `00253A80`'s first and last stores re-read.)* `00236760` is five instructions long. It returns bit 12 of
 the dword `d[q[02EBF190] + 4]` (`0023676A shr eax, 0xc` / `and eax, 1`). So there is nothing to acquire and nothing
-that can fail. The writer receives a one-bit choice with `rdx = 02211000` and `r8d = 0x56690`. *What the writer
-selects with that bit is the writer's question, not this contract's.*
+that can fail. The writer receives a one-bit choice with `rdx = 02211000` and `r8d = 0x56690`. *~~What the writer~~
+~~selects with that bit is the writer's question, not this contract's.~~* *(answered: it selects nothing — `0020E540` is a compiled-out stub, as corrected above; 2026-10-02, OPUS)*
 
 ## 5. State
 
 **Owned:** the four buffers. **Written and never read:** the backup (SV-4). **Read, never written
-here:** the handle source. **Not this contract's:** the compress/encrypt transform and the read-result
+here:** the ~~handle source~~ selector source `00236760`, a one-bit read, not a handle *(answered: see SV-6 and CONTRACT-save-image-buffers.md §14 item 2; 2026-10-02, OPUS)*. **Not this contract's:** the compress/encrypt transform and the read-result
 reporting, which are the two sibling family contracts.
 
 ## 6. Relationships
@@ -136,11 +136,11 @@ reporting, which are the two sibling family contracts.
 | **Sibling** | [`CONTRACT-save-image-buffers.md`](CONTRACT-save-image-buffers.md) — the buffers as a family |
 | **Sibling** | [`CONTRACT-save-container-transform.md`](CONTRACT-save-container-transform.md) — what happens to the submission buffer's contents |
 | **Sibling** | [`CONTRACT-storage-read-completion.md`](CONTRACT-storage-read-completion.md) — what a read reports |
-| **Downstream** | `0020E540`, the writer |
+| **Downstream** | `0020E540`, ~~the writer~~ a compiled-out stub, not a writer *(corrected 2026-10-02, OPUS: `0020E540` is `call 001C18E0` then `jmp 0016D6A0`, and `0016D6A0` is `ret 0`, checked at `0020E540`–`0020E576`)* |
 
 ## 7. State transitions
 
-*live → (capture) staging → (copy, SV-2) submission → (tail-call, SV-6) writer.* Separately and off
+~~*live → (capture) staging → (copy, SV-2) submission → (tail-call, SV-6) writer.*~~ *live → (storage queue, kind 8) file* for a manual save; the staging and submission copies serve only the autosave `0057E310` *(corrected 2026-10-02, OPUS: checked at `00581DCA`–`00581DCF` `rdi = 002EF640()`, `00581F27`–`00581F2F` element `+0x28 = rdi`, `+0x30 = 0x56690`, kind 8 at `00581F51`; and `0020E540` is `call 001C18E0` then `jmp 0016D6A0`, and `0016D6A0` is `ret 0`; save-image-buffers-header-and-payload.md §5)*. Separately and off
 that path: *live → (copy, SV-2) backup → nothing (SV-4).*
 
 ## 8. Script · resource · event interactions
@@ -232,11 +232,11 @@ first**: the natural reading of either copy loop is sixteen bytes short of corre
 
 - **Save_Load_Settings — internal.** All seven bodies are this category's own.
 - **CoreRuntimeScheduling — MECHANICAL.** The guarded clear `002EF650` is called from that layer;
-  which of the two clears a caller takes is SV-5's open question, and that caller is one of the cases
+  ~~which of the two clears a caller takes is SV-5's open question,~~ *(answered: see §14 — resolved 2026-09-23, this caller `0022B6E0` takes the compound clear `002EF650`; 2026-10-02, OPUS)* and that caller is one of the cases
   it is about. *Its address is deliberately not cited: it is a hub whose own callee set spans several
   further layers, none of which this contract says anything about.*
 - **ActorEntity, Input, Script_VM_Native_Bridge, WorldAreaField — MECHANICAL.** All four are reached
-  through `00236760`, the handle source SV-6 names, or through the two 8-byte buffer getters. **A
+  through `00236760`, the ~~handle source~~ one-bit selector *(answered: see SV-6; 2026-10-02, OPUS)* SV-6 names, or through the two 8-byte buffer getters. **A
   getter's callers are not this subsystem's relationships** — they are everyone who needs the
   address.
 - **Every other layer reached is MECHANICAL** in the same way, through the writer and the CRT

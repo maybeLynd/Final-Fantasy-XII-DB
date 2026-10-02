@@ -56,7 +56,7 @@ set of invariants.
 
 ## 2. Interface
 
-The subsystem has **four entry points**, and they are not peers: one decides, one applies, one
+The subsystem has ~~**four entry points**~~ **six entry points** in the table below *(corrected 2026-10-02, OPUS: the table lists six; the four roles are those of `0025ACA0`, `0026D910`, `0026D8F0` and `00265920`)*, and they are not peers: one decides, one applies, one
 arms, one reads.
 
 | | |
@@ -65,12 +65,12 @@ arms, one reads.
 | calling convention | Microsoft x64. `002620E0(rcx = ActorManager record)`; `0025ACA0()` takes nothing; `0026D910(ecx = slot, authored 1..3 domain)`; `00265920()` takes nothing; `003565C0(rcx, rdx = actor record, r8, r9 = VM stack)` — the standard result-class native signature. |
 | parameters | `0026D910`'s `ecx` is the **requested** slot in the authored `1..3` domain. It is clamped, never validated: see I-2. |
 | return type | `0026D910` has **no return value of its own** — it ends in `jmp 002E3D40` at `0026DAAD`, so the caller sees whatever the presentation refresh returns. `0025ACA0` likewise tail-jumps into it at `0025AD06`. `00265920` returns `int` in `1..3`. `002658B0` returns `int8` probability. |
-| return semantics | `0025ABA0` returns the slot to switch to, in `1..3`, **and may return the slot it was asked to leave** (I-5). |
+| return semantics | `0025ABA0` returns the slot to switch to, in `1..3`, **and may return the slot it was asked to leave** (~~I-5~~ I-6 *(corrected 2026-10-02, OPUS: I-6 is the resolver's invariant; I-5 is the slot bound)*). |
 | callbacks / indirect dispatch | none on this path. `003565C0` is reached through the ScriptVM verb table as call id `0x021A`; the table is the dispatch, the handler is a direct body. |
 
 ## 3. Types
 
-The subsystem owns **two persistent bytes, five published globals and one authored table shape**.
+The subsystem owns **two persistent bytes, ~~five published globals~~ four published globals and one authored table shape** *(corrected 2026-10-02, OPUS: `0026D910` stores `02099DA8` (`0026DA26`), `02099DAC` (`0026DA3C`, `0026DA4E`), `02099DB0` (`0026DA5B`) and `02099DBC` (`0026D946`, `0026DA7D`); the old fifth was the selector, which is the first persistent byte)*.
 It declares no object of its own.
 
 | offset | size | field | type | meaning | evidence |
@@ -80,9 +80,9 @@ It declares no object of its own.
 | debug singleton `+0xAAC` | 4 | `debugWeatherSlotOverride` | `s32` | positive value forces the slot | `0017D490`, called at `0026D921`/`0026D92A`/`00265924` |
 
 `payload` is the SaveImage persistent payload from `SaveImage_GetPersistentPayloadBase`
-(`002EF2B0`, 20 B) — obtained **four separate times** inside one `0026D910` call
-(`0026D94C`, `0026D959`, `0026D96A`, `0026D9AF`, `0026DA83`; five call sites, four of them before
-the tail).
+(`002EF2B0`, 20 B) — obtained ~~**four separate times**~~ **five times, or four while `+0x1061` is set,** inside one `0026D910` call
+(`0026D94C`, `0026D959`, `0026D96A`, `0026D9AF`, `0026DA83`; five call sites, ~~four of them before~~
+~~the tail~~ all five before the tail jump at `0026DAAD`; `0026D957 jne` skips `0026D959` while the flag is set) *(corrected 2026-10-02, OPUS: read in order through `0026D910`)*.
 
 **The authored table: `map_ref.bin`, magic `MRF` + `02` (`4D 52 46 02` at `+0`).** Published at
 `[02099D88]`, with `[02099D90]` as the "loaded" guard that `0026D910` (`0026D98F`, `0026D9CC`) and
@@ -103,7 +103,7 @@ the tail).
 map_ref field row (stride 8, indexed by field id)
   +0x00  u16  mweatherSelector     -> the MWeather table's selector; shipped range 1..775
   +0x02  s16  blockIndex           -> which 16-byte block; shipped range 0..92, never negative
-  +0x04  s32  (not read by weather)
+  +0x04  s32  (not read by weather)   <- corrected 2026-10-02, OPUS: two u16 words as read - +0x04 the area (movzx 00264EF9), +0x06 the group (movzx 00264FB9 / 0026DBB2 / 0026DBE7)
 
 map_ref 16-byte block (stride 0x10, one per blockIndex)
   +0x00  u8[4]  lane 0   -- NEVER read by weather (the slot index is biased by +1)
@@ -219,15 +219,15 @@ references only**; an indirect or computed access would not appear):
 | `02099DB0` | `0026D910` only | **none** | — |
 | `02099DBC` | `0026D910` **and `0026AB40`** | `00264D50` (7 B) | from `002E9D90` |
 
-**`02099DB0` is published and never read.** Two independent facts say so: no RIP-relative reader
+**`02099DB0` is published and ~~never read~~ has no reader found** *(corrected 2026-10-02, OPUS: an absence claim, bounded as the GB-3 residual below states; choosing-the-field-environment-variant.md, 2026-09-30)*. Two independent facts say so: no RIP-relative reader
 exists, and the byte it carries — lane `+2` — is **`0` in all 279 authored lanes** of the shipped
 table. It is inert in the shipped build by both routes.
 
 > **2026-09-24 (SWE2-CONTRACT, GB-3 — resolved):** the publication is a **mirror block
 > consumed field-by-field, and `02099DB0` is its one cell with no accessor.** The block
-> `02099DA8`–`02099DBC` is written together by `0026D910` and read through dedicated 7-byte
+> `02099DA8`–`02099DBC` is ~~written together by `0026D910`~~ written by `0026D910` except `02099DB4` and `02099DB8`, which it never stores *(corrected 2026-10-02, OPUS: `retool.py refs 02099DB4 02099DBB` — `02099DB4` is written by `002628B0`, `00263050`, `00263230`, `00266D10` and `0026CE60`, `02099DB8` by `0025B500`, `0025C830`, `002628B0` and `00266D10`)*, and read through dedicated 7-byte
 > getter thunks — `00263E10` returns `02099DA8`, `00263E20` returns `02099DAC`, `00264D50`
-> returns `02099DBC`, `02099DB4` is read by five `cmp` sites (`0026324D`, `00265450`,
+> returns `02099DBC`, `02099DB4` is read by ~~five `cmp` sites~~ eight `cmp` sites and the 7-byte getter `00265450` *(corrected 2026-10-02, OPUS: `retool.py refs 02099DB4` — `00265450` is `mov eax, [02099DB4]`, the other eight are `cmp`)* (`0026324D`, `00265450`,
 > `00267605`, `0026778E`, `00268DDE`, `0026C4A2`, `0026C678`, `0026C6A9`, `0026E012`),
 > `02099DB8` by `00264180`. Every cell has a reader **except `02099DB0`** — the full
 > rip-relative census of `02099DA0`–`02099DBF` shows its only access is the `0026DA5B`
@@ -256,7 +256,7 @@ ActorManager_RunFieldRuntimePass 0025D9E0
        -> 0025ACA0  the roll  -- tail --> 0026D910  the apply -- tail --> 002E3D40 -> 0040AAD0
        -> 0026FAD0(0,    committedSlot+1, managerIndex)     EFB channel 0
        -> 0026FAD0(0x1F, committedSlot+1, managerIndex)     EFB channel 0x1F
-       -> 00379860(committedSlot+1) ; 00379290 ; 003DE920(0,1,0) ; 00363B40
+       -> 00379860(committedSlot+1) ; 00379290 ; 003DE920(0,1,0) ; 00363B40   <- corrected 2026-10-02, OPUS: 00379860 takes 0017D490() when positive, else committedSlot+1 (00262167-00262187), the same override the two 0026FAD0 posts take (0026210E-0026212A, 00262139-00262155)
        -> set init bit 4 at 002621A4
        -> 003601C0(0x0B) ; 003601C0(0x0C)          <-- also reached when latched (P-2)
 
@@ -525,7 +525,7 @@ Each of these is filed in `OPEN-QUESTIONS.md`; the first three are new with this
    was never shipped or was deleted. *Residual:* a reader that reaches the global through a
    pointer derived from something other than its own address is outside
    this census, and the design intent stays naming residue with item 2.
-4. **F-1 — thread/frame requirements for calling `0026D910` safely.** Unchanged and still open.
+4. **F-1 — thread/frame requirements for calling `0026D910` safely.** ~~Unchanged and still open.~~ *(answered: SUPERSEDED 2026-09-26 — the static half is settled, the Threading paragraph; 2026-10-02, OPUS)*
    *2026-09-26 (FABLE, Claude Opus 5.5): the static half is settled and the row is SUPERSEDED; see the Threading paragraph.*
 5. **D-4 — what the published direction basis physically is.** Owned by
    [the MWeather page](Weather/mweather-resource-format.md); narrowed, not answered.
@@ -550,7 +550,7 @@ Each of these is filed in `OPEN-QUESTIONS.md`; the first three are new with this
 | The generator is the gameplay MT19937, lazily seeded 5489 | complete body of `00863BF0` (141 B, `b158ad91…3c2d`); tempering masks pre-shifted | 1 | PROVEN |
 | map_ref layout, populations and reachable global values | `map_ref.bin` from the shipped `FFXII_TZA.vbf`, `in` and `ch` byte-identical (`7c63552f…`), decoded with the code's own header offsets | data (2026-09-21) | PROVEN |
 | `02099DB0` has no reader; `02099DBC` has a second writer | `globals_index.py --addr`, RIP-relative only — a negative from it is bounded by that blind spot | 1 | VERY HIGH |
-| `02099DB0` is a write-only dead global — one accessor total, the store | five-form census over all `.pdata` bodies + raw image 2026-09-23 (SWE2-CONTRACT): exactly one hit, the `mov dword [rip+0x1E2C34F], eax` store at `0026DA5B` in `0026D910`; zero rip-readers, zero immediates, zero data qwords, zero `lea`s, and zero `0x1F79DB0` disp32-RVA bytes in `.text` (the image-base-relative form); sibling `02099DA8` identical (one store, `0026DA26`). Residual: aliased access not derived from the global's own address | 1 (static) | PROVEN |
+| `02099DB0` is a write-only dead global — one accessor total, the store | five-form census over all `.pdata` bodies + raw image 2026-09-23 (SWE2-CONTRACT): exactly one hit, the `mov dword [rip+0x1E2C34F], eax` store at `0026DA5B` in `0026D910`; zero rip-readers, zero immediates, zero data qwords, zero `lea`s, and zero `0x1F79DB0` disp32-RVA bytes in `.text` (the image-base-relative form); sibling `02099DA8` ~~identical (one store, `0026DA26`)~~ not identical: one store, `0026DA26`, and one reader, the getter `00263E10` *(corrected 2026-10-02, OPUS: `retool.py refs 02099DA8`; the 2026-09-30 correction in §14)*. Residual: aliased access not derived from the global's own address | 1 (static) | PROVEN |
 | The combat stage has no arm for `02099DA8` = 4 | `0038B2A8`, `0038B3F4`, `0038B478`, `0038B4FE`, `0038B584`, and `003214A0` arms at `0038B387`, `0038B609`, `0038B66E` | 1 | PROVEN |
 
 **Superseded by this contract** — each also filed in `CONTRADICTIONS.tsv`:
@@ -575,7 +575,7 @@ Each of these is filed in `OPEN-QUESTIONS.md`; the first three are new with this
 
 **Not tested, and why:**
 
-- **TIMING** and **INTEGRATION** — the frame phase and thread requirements are open (§14.4). A
+- **TIMING** and **INTEGRATION** — the frame phase ~~and thread requirements are open~~ is untested, and the thread requirement's static half is settled *(answered: F-1 SUPERSEDED 2026-09-26, the Threading paragraph; 2026-10-02, OPUS)* (§14.4). A
   parity claim on ordering would assert what is not established.
 - **PRESENTATION** — everything past `0040AAD0` belongs to
   [the MWeather page](Weather/mweather-resource-format.md) and to S-40/S-39, not to this contract.

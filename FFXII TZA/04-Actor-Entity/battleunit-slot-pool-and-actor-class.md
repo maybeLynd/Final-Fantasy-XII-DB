@@ -168,7 +168,7 @@ Bounds-checked both ends, returning `NULL` out of range.
 | `00236850` | `BattleUnit_GetSlotCount` | ✅ read |
 | `00263C20` | `ActorRuntime_GetClassNibble` | ✅ read |
 | `00265020` | `Actor_GetWorldPosition` | ✅ read |
-| `00234200` | `ActorSystem_ReleaseBattleUnitSlotForActor` | not read |
+| `00234200` | `ActorSystem_ReleaseBattleUnitSlotForActor` | ~~not read~~ *(answered: see "The slot is scrubbed on RELEASE too" below; 2026-10-02, OPUS)* |
 | `00236A60` | `BattleUnit_ResetStateForReuse` | not read here; read on [the unit-definition page](Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md) (among much else it nulls `+0x698`, `+0x6A0`, `+0xE60` and `+0xE68`; pointer added 2026-09-29, FABLE) |
 | `002368D0` | `BattleStorage_InitializeWorkArrays` | ✅ read 2026-09-15 (§12) |
 | `002134A0` | *(actor↔BattleUnit bind)* — plants the unit pointer at actor `+0x30` (§11) | ✅ read |
@@ -269,7 +269,7 @@ leaving combat
 - [x] ~~What actor classes other than 1 and 3 mean, and the full class enumeration.~~ **M-1
       ANSWERED 2026-09-12 (FABLE):** the four carved layout classes 0–3 of the descriptor table
       `01E0C328` (4–7 never carved); 142 sites require 3, one — `setline` — requires 2, the position
-      accessor admits 1 or 3; what classes 0 and 1 hold is the residue (§2).
+      accessor admits 1 or 3; ~~what classes 0 and 1 hold is the residue (§2).~~ *(answered: §2, BV-4 — class 0 the script-only controller, class 1 the placed never-moving object; 2026-10-02, OPUS)*
 - [x] ~~Whether the `+0x0E` nibble and `bActor_class_flags` are the same byte.~~ **M-2 ANSWERED
   2026-09-12 (FABLE): no.** `bActor_class_flags` is the record's byte `+0x03` — `(kind << 5) |
   sequence`, written by the carve loop ([the actor storage record map](Actor-Storage-Record/the-actor-storage-record-field-map.md)) — and the nibble is the low half of byte
@@ -627,8 +627,8 @@ shipping image:
   `00236C30` mode-0 frees — is released through `00384500` and nulled, and section
   `0x13` is re-registered through `003843F0` with handler block `00238850`.
 - Members `0030CF40` and `002EA5F0` run back-to-back, then the tail clears the
-  12-qword channel table at `02EFF1A0` (`rep stosq`, 0xC qwords), stores
-  `float[008A46E4]` to `0208935C`, zeroes `02089340`, writes `0xFFFF` to
+  12-qword channel table at ~~`02EFF1A0`~~ `02EBF1A0` *(corrected 2026-10-02, OPUS: `002369E5 lea rdi, [02EBF1A0]`; nothing references `02EFF1A0`)* (`rep stosq`, 0xC qwords), stores
+  ~~`float[008A46E4]`~~ `float[009146E4]` *(corrected 2026-10-02, OPUS: `002369DD movss xmm0, [009146E4]`)* to `0208935C`, zeroes `02089340`, writes `0xFFFF` to
   `0208D455` and `0x12C` to `0208936C`, and loops `00238260` over channels 0–0xB.
 
 | member | role | interior |
@@ -636,7 +636,7 @@ shipping image:
 | `0030CF40` (99 B) | `BattleAction_ResetPresentationSlotPool` — clears list heads `022BEB88`/`022BE978` and resets the 32-record `0x30`-stride pool at `022C17B0`: mask `+0x2C &= ~0x1F`, links nulled, `+0x28 = 0x80000000`, `+0x24 = -1`, word `+0x1C = 0xFFFF` | [`0030CF6E`](../_index/ADDRESS-INDEX.md) |
 | `002EA5F0` (93 B) | script-verb registration battery — five `0041D6C0` calls: id 5 → `0016D6A0`, id 4 → `002E70C0`, id 6 → `002E7090`, id `0xC` → `002E70A0`, id `0x26` → `002E7080` | [`002EA5FB`](../_index/ADDRESS-INDEX.md) |
 | `00238260` (296 B) | per-channel init, called for `cl` = 0–0xB — builds a 12-pointer case table on the stack, checks `02EBF1A0[cl]`, probes capacity through `00233E00`, and on success calls `00384420` with `ecx = cl + 0x47`, `r9 = 3`, stack args 4/8 | [`00238329`](../_index/ADDRESS-INDEX.md) |
-| `00233E00` (156 B) | channel-capacity probe — `cl > 0xB` → 0; `02EFF1A0[cl]` already set → 1; else counts non-null qwords across the 12 slots and returns `count < 6` — a channel is usable when claimed or fewer than half the slots are in use | [`00233E40`](../_index/ADDRESS-INDEX.md) |
+| `00233E00` (156 B) | channel-capacity probe — `cl > 0xB` → 0; ~~`02EFF1A0[cl]`~~ `02EBF1A0[cl]` *(corrected 2026-10-02, OPUS: `00233E0D lea rcx, [02EBF1A0]`)* already set → 1; else counts non-null qwords across the 12 slots and returns `count < 6` — a channel is usable when claimed or fewer than half the slots are in use | [`00233E40`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees — all deliberately outside the census: `003844F0`/`00384500`/
 `00384510`/`00384420`/`003843F0` (tagged alloc/free/register family), `00861EC0`
@@ -656,7 +656,7 @@ measurements bound it without explaining it, and the distinction matters:
 and this gap is the last `0x3F8` bytes of exactly that block, stopping on the same byte, eight
 short of the stats-record pointer at `+0x698`. The gap is not an arbitrary hole between fields; it
 is the unnamed tail of a region the acquire path already treats as one unit. That is **extent, not
-meaning**, and the span stays `DISCOVERED` / `UNKNOWN`.
+meaning**, and the span ~~stays `DISCOVERED` / `UNKNOWN`~~ *(answered: `+0x298`–`+0x68F` is entries 1–127 of the navigation path record's waypoint table — the-battle-unit-field-map.md FF-2, 2026-09-26; 2026-10-02, OPUS)*.
 
 **Nothing that can reach the pool reaches it.** A pool closure over this type — seeded from the
 callers of every accessor, tainting the accessor's **return value**, then following each handoff
@@ -734,15 +734,15 @@ analogous blind spot was here produced one immediately — the closure seeds fro
 *callers*, so the accessor **bodies** were never members, and
 `BattleUnit_AllocateSlotAndBindActor` is precisely where a back-pointer into the actor record
 would be written. Scanned directly, all six pool-base readers store nothing and touch no offset in
-the span; **the binder writes no back-pointer**, which closes the `actorWork` route as well.
+the span; ~~**the binder writes no back-pointer**~~ **the binder writes no back-pointer inside the span** — its two back-pointers, unit `+0x10` = actor (`002344EF`) and actor `+0x30` = unit (`002344E7` → `002134A0`), lie outside it *(corrected 2026-10-02, OPUS: `00234480`)*, which closes the `actorWork` route as well.
 
 `member_reach_scan.py` adds the accessor bodies to the member set now, so the hole cannot recur
 silently, and its self-test asserts they are present. The hole was real and closing it
 **strengthened** the result rather than changing it — which is the outcome one should hope for
 from this kind of check, and not the one to assume.
 
-**`+0x298` is written by the acquire-side clear and read by nothing in the shipped image that
-static analysis can reach.** For reconstruction that is a usable, bounded fact: the 1016 bytes
+**`+0x298` is written by the acquire-side clear ~~and read by nothing in the shipped image that~~
+~~static analysis can reach~~.** *(answered: it is reached by index, as the waypoint table — the-battle-unit-field-map.md FF-2, 2026-09-26; 2026-10-02, OPUS)* For reconstruction that is a usable, bounded fact: the 1016 bytes
 must be *allocated and zeroed*, because the slot stride and the `0x610` fill both depend on them,
 and **no observable behaviour reads them back**.
 
@@ -793,7 +793,7 @@ full-slot clear on the other side of the lifetime, and no page records it.*
 ```
 002342A1  mov     rdx, [rip+0x1E5A3E0]     ; the pool base
 002342AD  movsxd  rax, dword [rip+0x1E5A3EC]
-002342B4  imul    rcx, rax, 0xEA7900       ; the pool extent
+002342B4  imul    rcx, rax, 0xEA7900       ; the pool extent   <- corrected 2026-10-02, OPUS - not the pool extent: 0xEA7900 = 0xF50 x 0xF50, and 002342AB jae 002342C3 sends every slot at or above the base straight to the memset; this bound is tested only for a pointer below the base
 002342BE  cmp     rbx, rcx                 ; bounds-check the slot against the pool
 002342C3  xor     edx, edx
 002342C5  mov     r8d, 0xf50
@@ -801,8 +801,8 @@ full-slot clear on the other side of the lifetime, and no page records it.*
 002342CE  call    00861EC0                 ; memset(slot, 0, 0xF50)
 ```
 
-**The clear is guarded by a pool bounds check** — the slot must lie between the base and
-`base + count × 0xEA7900` — so a pointer that is not a pool slot is not scrubbed. That is the
+~~**The clear is guarded by a pool bounds check** — the slot must lie between the base and~~
+~~`base + count × 0xEA7900` — so a pointer that is not a pool slot is not scrubbed.~~ **The clear is not bounded above:** `002342A8 cmp rbx, rdx` / `002342AB jae 002342C3` takes every slot at or above the base straight to the memset, and `base + count × 0xEA7900` is compared only for a pointer below the base *(corrected 2026-10-02, OPUS: `002342A1`–`002342CE`)*. That is the
 release-side counterpart of the allocation-side `memset` at `002344D2`, and the two together mean a
 slot is zero at both ends of its life.
 

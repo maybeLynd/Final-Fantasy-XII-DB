@@ -15,7 +15,7 @@ verified_against:
     adjudicated: OPUS-REQ-FABLE-PROVENANCE-TRANSFER-144 (9bedb5e0), established for this document 2026-09-14 under EVIDENCE-STANDARD addendum 2026-09-14bh
     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
-corpus_validated: "229 OR-sites across 162 functions, scanned over all 8,001,280 bytes of .text, 2026-09-06"
+corpus_validated: "229 OR-sites across 162 functions, scanned over all 8,001,280 bytes of .text, 2026-09-06"  # <- corrected 2026-10-02, OPUS - .text is 7,996,981 bytes virtual / 7,997,440 raw by the section table; 8,001,280 matches neither
 last_reviewed: 2026-09-06
 audit:
   passes: 1
@@ -36,7 +36,7 @@ audit:
 
 | | |
 |---|---:|
-| `.text` scanned | **8,001,280 bytes**, every byte |
+| `.text` scanned | ~~**8,001,280 bytes**~~ **7,996,981 bytes** virtual, 7,997,440 raw *(corrected 2026-10-02, OPUS: the PE section table; 8,001,280 matches neither)*, every byte |
 | sites matching `MOV r32,[base+0x64]` … `OR r32,[base+0x3C]` | **229** |
 | distinct functions containing one | **162** |
 | distinct masks tested against the result | **9** |
@@ -137,7 +137,7 @@ selector (`0x0030E4CB` `CMP EAX,5`) indexes a **six-entry jump table at `0x0030E
 > **All three are WRITTEN, which constrains what the record is.** A field the status system mutates
 > is not authored data being read. **Either `BattleUnit + 0x698` does not always point at the
 > authored `.ard`-derived record, or the record is a per-unit copy of it.** The second is the
-> ordinary reading and this sheet does not choose between them — but a modder must take from it that
+> ordinary reading and ~~this sheet does not choose between them~~ *(answered: a per-unit copy — CB-7, 2026-09-12, below; 2026-10-02, OPUS)* — but a modder must take from it that
 > **editing an authored row sets a starting value, not a live one.**
 
 ## 3. What the flags gate — named from readers, not from position
@@ -228,7 +228,7 @@ selector (`0x0030E4CB` `CMP EAX,5`) indexes a **six-entry jump table at `0x0030E
 **Bit usage across all masks:** bits 0, 1 and 31 appear in 135 sites each; bit 27 in 12; bits 4 and 5
 in 11 each; bit 3 in 9; bit 13 in 5; bit 14 in 2; bit 16 in 1.
 
-**Twenty-two bits of the 64 available are never tested by this idiom at all.** That is a finding
+**Twenty-two bits of the ~~64~~ 32 available are never tested by this idiom at all.** *(corrected 2026-10-02, OPUS: the idiom ORs two dwords into one 32-bit register, `003868F1 mov eax, [rdi + 0x64]` / `003868F4 or eax, [rdi + 0x3C]`, so ten tested positions leave 22 of 32)* That is a finding
 about the idiom, not about the fields — a bit could be tested elsewhere without the `OR`.
 
 ## 6. Falsification pass — 2026-09-06

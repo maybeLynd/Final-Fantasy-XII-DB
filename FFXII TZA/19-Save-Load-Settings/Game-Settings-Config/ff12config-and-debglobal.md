@@ -120,7 +120,7 @@ file's `fieldId`, `02B62DAD` is 0, and step 5 never runs.
 > **What this does not exclude:** a store to a fully computed address, which no static sweep can rule out. *That
 > residual is the reason this is recorded as narrowing the clause rather than striking it* — and the rest of `PC-1`
 > (the ten fields' meanings, options-word bits 13 and 14, the value 3, field id 236, which callers enter
-> `002DDA30` with 1, and whether `001D6F20` reads the archive entry or a loose file) is untouched by it.
+> `002DDA30` with 1~~, and whether `001D6F20` reads the archive entry or a loose file~~ *(answered: the archive — see `PC-1`, answered 2026-09-27; 2026-10-02, OPUS)*) is untouched by it.
 
 **What each copied byte reaches** (every RIP reference to `02B62DA8`–`02B62DC1` was listed; the readers are the
 one-instruction getters `00408B00`–`00408B90`):
@@ -321,10 +321,10 @@ function body, the control reproduces at `0051E03C` and the DebGlobal literal st
 choosing one that is not the same shape as the thing under test.
 
 **Not claimed.** Anything in `PC-1`: what the development build used the options for, what bits 13
-and 14 mean, what `fieldId` 236 names, which callers enter `002DDA30` with 1, whether `001D6F20`
-reads the archive entry or a loose file, and whether the two override dwords are written through a
-handed pointer. What `0035FCA0` and `0035FF90` would do if the flag were 1 — **their bodies were not
-read past the gate.** What sets `02B62DB9` in a build where it is settable. Nothing was executed.
+and 14 mean, what `fieldId` 236 names, which callers enter `002DDA30` with 1, ~~whether `001D6F20`~~
+~~reads the archive entry or a loose file,~~ *(answered: the archive, `PC-1` 2026-09-27; 2026-10-02, OPUS)* and whether the two override dwords are written through a
+handed pointer. ~~What `0035FCA0` and `0035FF90` would do if the flag were 1 —~~ **~~their bodies were not~~
+~~read past the gate.~~** *(answered: flag 1 updates both registered input channels — `PC-2`, 2026-09-14; 2026-10-02, OPUS)* What sets `02B62DB9` in a build where it is settable. Nothing was executed.
 
 ## 7. What this document does not claim
 
@@ -356,8 +356,8 @@ read past the gate.** What sets `02B62DB9` in a build where it is settable. Noth
         whether the loader's stream reads the archive entry or a loose file; and the pointer-store question.
       - **Archive or loose file - answered 2026-09-27 (FABLE, Claude Opus 5.5), static: the archive.** `001D6F20` hands the path to the stream resolver `0059EE90` with selector 1. The resolver fills only two sources: route 1, the RAM file cache (`01F83440`, budget from `GlobalMemoryStatusEx` at `0020C610`), which route 2's own hits fill through `0059A9B0`, and route 2, the package lookup, whose five slots are mounted only by `0019B070` from one call site with `../FFXII_TZA.vbf`. The only `CreateFile*` import is `CreateFileA`, used by two minidump writers. So `FF12CONFIG` is the archive entry or the cache's copy of it. [Record and control](../../_index/candidates/pc1-config-route/README.md) (7 checks, FAILS 0). **Still open:** the ten reader-less bytes, the value 3 in `opt02`, and the pointer-store question.
 - [x] **PC-2.** *(status restated in the register 2026-09-26, FABLE, Claude Opus 5.5: see the row)* What `0035FCA0` and `0035FF90` do when `02B62DB9` is 1, and what could set it — the flag
-      has no writer but the reset, so both bodies are unreachable in this build and were not
-      read past their gate. `PC-2`, opened 2026-09-13.
+      has no writer but the reset, so both bodies are unreachable in this build ~~and were not~~
+      ~~read past their gate~~ *(answered: read since — the 2026-09-14 note directly below; 2026-10-02, OPUS)*. `PC-2`, opened 2026-09-13.
       *Partly answered 2026-09-14 (FABLE); the register row is PARTIAL (PC-2, first half): **flag = 1 updates both
       registered input channels; flag = 0 updates channel 0 only.*** The registered-channel block runs from `022CAE90` to `022CB3B8`,
       which is `0x528` bytes, i.e. **two** `0x294`-byte channels. With the flag at 0 (every run of this build),
@@ -384,7 +384,7 @@ read past the gate.** What sets `02B62DB9` in a build where it is settable. Noth
 - **Presentation and Audio — CLIENT of the FF12CONFIG file helpers.** The file close `001D6E80`, open `001D6F20` and
   read `001D6FA0` are also used by `AddMotion_LoadSkeletonMapping`, `AddMotion_LoadResources` and
   `AddMotion_LoadHighModelReplace`, and by a 451-byte Audio-filed body. **They are the engine's generic ~~loose-file~~ file-stream
-  helpers, not config-only.** *(corrected 2026-09-27, FABLE, Claude Opus 5.5: a stream open that the resolver serves from the RAM file cache or the `FFXII_TZA.vbf` archive, never a loose file - [record](../../_index/candidates/pc1-config-route/README.md))* The debug-status getter `00184950` (7 B) is read by an 881-byte Presentation body and by
+  helpers, not config-only.** *(corrected 2026-09-27, FABLE, Claude Opus 5.5: a stream open that the resolver serves from the RAM file cache or the `FFXII_TZA.vbf` archive, never a loose file - [record](../../_index/candidates/pc1-config-route/README.md))* The ~~debug-status getter~~ present-sync-interval getter `00184950` (7 B) *(corrected 2026-10-02, OPUS: `00184950` is `mov eax, [01F3DA18]` / `ret`; the debug status is `02B62DB9`, getter `00408B00`; game-settings-ini-and-runtime-config.md `DH-7`)* is read by an 881-byte Presentation body and by
   two Audio-filed bodies (120 B and 306 B).
 - **Audio — SERVICE.** `002DDA30` calls a 34-byte Audio-filed helper, and the start-up routine `003692D0` calls a
   188-byte one.

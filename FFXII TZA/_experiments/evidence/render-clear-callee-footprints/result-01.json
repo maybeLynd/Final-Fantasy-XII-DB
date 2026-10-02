@@ -1,0 +1,1285 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY composed original write footprints",
+  "driver_sha256": "b8ca12da919999a484c513d0f25ca080d6db1a0b9e96a7bd98c60acba7b06f85",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "abe73322b004d45ebc58c4a859f3c2e6a58badd088bc02b982b5b48caa13d868"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "b9f327aad786343ca1e7479745d438392e996af2af95239ed4cc07e3ca895001"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 28,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 609,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "graphs": [
+    {
+      "entry": "0x6c0520",
+      "instructions": 6,
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x46d110",
+      "instructions": 2,
+      "tails": [
+        "0x46d117"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x202c70",
+      "instructions": 9,
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x3e5d00",
+      "instructions": 8,
+      "tails": [],
+      "calls": []
+    },
+    {
+      "entry": "0x3e37e0",
+      "instructions": 3,
+      "tails": [
+        "0x3e37e6"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x41f730",
+      "instructions": 177,
+      "tails": [],
+      "calls": [
+        [
+          4323156,
+          "0x861ec0"
+        ],
+        [
+          4323679,
+          "0x6c0520"
+        ],
+        [
+          4323706,
+          "0x6c0520"
+        ],
+        [
+          4323728,
+          "0x46d110"
+        ],
+        [
+          4323740,
+          "0x46d110"
+        ],
+        [
+          4324090,
+          "0x3e5d00"
+        ],
+        [
+          4324186,
+          "0x3e37e0"
+        ]
+      ]
+    }
+  ],
+  "new_original_bytes": 124,
+  "retained_caller_bytes": 1208,
+  "question": "Can the seven exact caller call sites and all direct post-fill writes establish the clear result at ID0 and active284 without opaque-helper preservation assumptions?",
+  "bindings": [
+    {
+      "definition": "0x41f761",
+      "call": "0x41f95f",
+      "offset": 528,
+      "target": "0x6c0520"
+    },
+    {
+      "definition": "0x41f964",
+      "call": "0x41f97a",
+      "offset": 544,
+      "target": "0x6c0520"
+    },
+    {
+      "definition": "0x41f97f",
+      "call": "0x41f990",
+      "offset": 384,
+      "target": "0x46d110"
+    },
+    {
+      "definition": "0x41f995",
+      "call": "0x41f99c",
+      "offset": 448,
+      "target": "0x46d110"
+    },
+    {
+      "definition": "0x41fb0d",
+      "call": "0x41fb5a",
+      "offset": 1408,
+      "target": "0x3e37e0"
+    }
+  ],
+  "indexed_domain": {
+    "entry_reset": "0x41f9c0",
+    "zero_origin": "0x41f775",
+    "body": "0x41faf2",
+    "call": "0x41fafa",
+    "increment": "0x41faff",
+    "signed_bound": 10,
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "method": "Source induction, no execution"
+  },
+  "composed_helper_writes": [
+    {
+      "pc": "0x6c0526",
+      "start": 540,
+      "end_exclusive": 544,
+      "role": "w",
+      "call": "0x41f95f"
+    },
+    {
+      "pc": "0x6c052b",
+      "start": 528,
+      "end_exclusive": 532,
+      "role": "w",
+      "call": "0x41f95f"
+    },
+    {
+      "pc": "0x6c052f",
+      "start": 532,
+      "end_exclusive": 536,
+      "role": "w",
+      "call": "0x41f95f"
+    },
+    {
+      "pc": "0x6c0534",
+      "start": 536,
+      "end_exclusive": 540,
+      "role": "w",
+      "call": "0x41f95f"
+    },
+    {
+      "pc": "0x6c0526",
+      "start": 556,
+      "end_exclusive": 560,
+      "role": "w",
+      "call": "0x41f97a"
+    },
+    {
+      "pc": "0x6c052b",
+      "start": 544,
+      "end_exclusive": 548,
+      "role": "w",
+      "call": "0x41f97a"
+    },
+    {
+      "pc": "0x6c052f",
+      "start": 548,
+      "end_exclusive": 552,
+      "role": "w",
+      "call": "0x41f97a"
+    },
+    {
+      "pc": "0x6c0534",
+      "start": 552,
+      "end_exclusive": 556,
+      "role": "w",
+      "call": "0x41f97a"
+    },
+    {
+      "pc": "0x202c73",
+      "start": 384,
+      "end_exclusive": 400,
+      "role": "w",
+      "call": "0x41f990"
+    },
+    {
+      "pc": "0x202c7a",
+      "start": 400,
+      "end_exclusive": 416,
+      "role": "w",
+      "call": "0x41f990"
+    },
+    {
+      "pc": "0x202c82",
+      "start": 416,
+      "end_exclusive": 432,
+      "role": "w",
+      "call": "0x41f990"
+    },
+    {
+      "pc": "0x202c8a",
+      "start": 432,
+      "end_exclusive": 448,
+      "role": "w",
+      "call": "0x41f990"
+    },
+    {
+      "pc": "0x202c73",
+      "start": 448,
+      "end_exclusive": 464,
+      "role": "w",
+      "call": "0x41f99c"
+    },
+    {
+      "pc": "0x202c7a",
+      "start": 464,
+      "end_exclusive": 480,
+      "role": "w",
+      "call": "0x41f99c"
+    },
+    {
+      "pc": "0x202c82",
+      "start": 480,
+      "end_exclusive": 496,
+      "role": "w",
+      "call": "0x41f99c"
+    },
+    {
+      "pc": "0x202c8a",
+      "start": 496,
+      "end_exclusive": 512,
+      "role": "w",
+      "call": "0x41f99c"
+    },
+    {
+      "pc": "0x3e37e6",
+      "start": 1408,
+      "end_exclusive": 1488,
+      "role": "library-fill-contract",
+      "call": "0x41fb5a"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1216,
+      "end_exclusive": 1218,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1224,
+      "end_exclusive": 1226,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1232,
+      "end_exclusive": 1234,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1240,
+      "end_exclusive": 1242,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1248,
+      "end_exclusive": 1250,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1256,
+      "end_exclusive": 1258,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1264,
+      "end_exclusive": 1266,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1272,
+      "end_exclusive": 1274,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1280,
+      "end_exclusive": 1282,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d0f",
+      "start": 1288,
+      "end_exclusive": 1290,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1218,
+      "end_exclusive": 1222,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1226,
+      "end_exclusive": 1230,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1234,
+      "end_exclusive": 1238,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1242,
+      "end_exclusive": 1246,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1250,
+      "end_exclusive": 1254,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1258,
+      "end_exclusive": 1262,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1266,
+      "end_exclusive": 1270,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1274,
+      "end_exclusive": 1278,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1282,
+      "end_exclusive": 1286,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d1a",
+      "start": 1290,
+      "end_exclusive": 1294,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1222,
+      "end_exclusive": 1224,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1230,
+      "end_exclusive": 1232,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1238,
+      "end_exclusive": 1240,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1246,
+      "end_exclusive": 1248,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1254,
+      "end_exclusive": 1256,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1262,
+      "end_exclusive": 1264,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1270,
+      "end_exclusive": 1272,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1278,
+      "end_exclusive": 1280,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1286,
+      "end_exclusive": 1288,
+      "role": "w",
+      "call": "0x41fafa"
+    },
+    {
+      "pc": "0x3e5d22",
+      "start": 1294,
+      "end_exclusive": 1296,
+      "role": "w",
+      "call": "0x41fafa"
+    }
+  ],
+  "direct_caller_writes": [
+    {
+      "pc": "0x41f771",
+      "start": 2,
+      "end_exclusive": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f777",
+      "start": 4,
+      "end_exclusive": 6,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f780",
+      "start": 6,
+      "end_exclusive": 8,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f787",
+      "start": 8,
+      "end_exclusive": 10,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f78e",
+      "start": 10,
+      "end_exclusive": 12,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f795",
+      "start": 0,
+      "end_exclusive": 2,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f798",
+      "start": 28,
+      "end_exclusive": 29,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f79c",
+      "start": 24,
+      "end_exclusive": 28,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f79f",
+      "start": 100,
+      "end_exclusive": 102,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7a3",
+      "start": 196,
+      "end_exclusive": 200,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7a9",
+      "start": 204,
+      "end_exclusive": 206,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7b0",
+      "start": 200,
+      "end_exclusive": 204,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7b6",
+      "start": 206,
+      "end_exclusive": 208,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7bd",
+      "start": 760,
+      "end_exclusive": 762,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7c4",
+      "start": 96,
+      "end_exclusive": 98,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7c8",
+      "start": 160,
+      "end_exclusive": 164,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7ce",
+      "start": 164,
+      "end_exclusive": 168,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7d8",
+      "start": 168,
+      "end_exclusive": 172,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7e2",
+      "start": 172,
+      "end_exclusive": 176,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7ec",
+      "start": 176,
+      "end_exclusive": 180,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f7f6",
+      "start": 180,
+      "end_exclusive": 184,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f800",
+      "start": 184,
+      "end_exclusive": 188,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f80a",
+      "start": 188,
+      "end_exclusive": 192,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f814",
+      "start": 636,
+      "end_exclusive": 640,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f81e",
+      "start": 628,
+      "end_exclusive": 632,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f828",
+      "start": 684,
+      "end_exclusive": 686,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f82f",
+      "start": 672,
+      "end_exclusive": 676,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f839",
+      "start": 1104,
+      "end_exclusive": 1108,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f843",
+      "start": 292,
+      "end_exclusive": 300,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f84a",
+      "start": 288,
+      "end_exclusive": 292,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f850",
+      "start": 300,
+      "end_exclusive": 308,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f85b",
+      "start": 324,
+      "end_exclusive": 332,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f862",
+      "start": 316,
+      "end_exclusive": 324,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f86d",
+      "start": 332,
+      "end_exclusive": 340,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f878",
+      "start": 1588,
+      "end_exclusive": 1596,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f87f",
+      "start": 1584,
+      "end_exclusive": 1588,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f885",
+      "start": 1596,
+      "end_exclusive": 1600,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f88f",
+      "start": 364,
+      "end_exclusive": 368,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f899",
+      "start": 360,
+      "end_exclusive": 364,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8a3",
+      "start": 356,
+      "end_exclusive": 360,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8ad",
+      "start": 352,
+      "end_exclusive": 356,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8b7",
+      "start": 308,
+      "end_exclusive": 316,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8be",
+      "start": 340,
+      "end_exclusive": 348,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8c5",
+      "start": 348,
+      "end_exclusive": 352,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8cf",
+      "start": 380,
+      "end_exclusive": 384,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8d9",
+      "start": 376,
+      "end_exclusive": 380,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8e3",
+      "start": 372,
+      "end_exclusive": 376,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8ed",
+      "start": 368,
+      "end_exclusive": 372,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8f7",
+      "start": 788,
+      "end_exclusive": 796,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f8fe",
+      "start": 784,
+      "end_exclusive": 788,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f904",
+      "start": 796,
+      "end_exclusive": 804,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f90f",
+      "start": 804,
+      "end_exclusive": 812,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f916",
+      "start": 812,
+      "end_exclusive": 816,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f920",
+      "start": 828,
+      "end_exclusive": 832,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f92a",
+      "start": 824,
+      "end_exclusive": 828,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f934",
+      "start": 820,
+      "end_exclusive": 824,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f93e",
+      "start": 816,
+      "end_exclusive": 820,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f948",
+      "start": 516,
+      "end_exclusive": 524,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f94f",
+      "start": 512,
+      "end_exclusive": 516,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f955",
+      "start": 524,
+      "end_exclusive": 528,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f986",
+      "start": 640,
+      "end_exclusive": 644,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9a1",
+      "start": 1207,
+      "end_exclusive": 1208,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41f9b2",
+      "start": 752,
+      "end_exclusive": 754,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9b9",
+      "start": 1039,
+      "end_exclusive": 1041,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9c2",
+      "start": 708,
+      "end_exclusive": 712,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9c8",
+      "start": 620,
+      "end_exclusive": 624,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9d2",
+      "start": 676,
+      "end_exclusive": 680,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9dc",
+      "start": 688,
+      "end_exclusive": 692,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9e6",
+      "start": 692,
+      "end_exclusive": 696,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9f0",
+      "start": 696,
+      "end_exclusive": 700,
+      "role": "w"
+    },
+    {
+      "pc": "0x41f9fa",
+      "start": 700,
+      "end_exclusive": 704,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa04",
+      "start": 1032,
+      "end_exclusive": 1034,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa0b",
+      "start": 756,
+      "end_exclusive": 760,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa15",
+      "start": 588,
+      "end_exclusive": 590,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa1c",
+      "start": 687,
+      "end_exclusive": 688,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa23",
+      "start": 1042,
+      "end_exclusive": 1043,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa2a",
+      "start": 648,
+      "end_exclusive": 652,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa30",
+      "start": 608,
+      "end_exclusive": 612,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa3a",
+      "start": 612,
+      "end_exclusive": 616,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa44",
+      "start": 616,
+      "end_exclusive": 620,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa4e",
+      "start": 1076,
+      "end_exclusive": 1080,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa54",
+      "start": 1060,
+      "end_exclusive": 1064,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa5e",
+      "start": 1064,
+      "end_exclusive": 1068,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa68",
+      "start": 1044,
+      "end_exclusive": 1048,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa72",
+      "start": 1052,
+      "end_exclusive": 1056,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa7c",
+      "start": 1056,
+      "end_exclusive": 1060,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa86",
+      "start": 1080,
+      "end_exclusive": 1088,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa8d",
+      "start": 1088,
+      "end_exclusive": 1096,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fa99",
+      "start": 1048,
+      "end_exclusive": 1049,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41faa0",
+      "start": 1184,
+      "end_exclusive": 1188,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41faa7",
+      "start": 1188,
+      "end_exclusive": 1192,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41faae",
+      "start": 1188,
+      "end_exclusive": 1192,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41fab5",
+      "start": 1204,
+      "end_exclusive": 1206,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fabc",
+      "start": 632,
+      "end_exclusive": 636,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fac6",
+      "start": 712,
+      "end_exclusive": 714,
+      "role": "w"
+    },
+    {
+      "pc": "0x41facd",
+      "start": 714,
+      "end_exclusive": 716,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fad4",
+      "start": 1192,
+      "end_exclusive": 1196,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fade",
+      "start": 1200,
+      "end_exclusive": 1204,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fae8",
+      "start": 1180,
+      "end_exclusive": 1184,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb14",
+      "start": 1645,
+      "end_exclusive": 1646,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41fb1d",
+      "start": 1645,
+      "end_exclusive": 1646,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41fb26",
+      "start": 977,
+      "end_exclusive": 978,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41fb2d",
+      "start": 192,
+      "end_exclusive": 193,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41fb34",
+      "start": 1035,
+      "end_exclusive": 1036,
+      "role": "rw"
+    },
+    {
+      "pc": "0x41fb3b",
+      "start": 1207,
+      "end_exclusive": 1208,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb41",
+      "start": 1612,
+      "end_exclusive": 1616,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb47",
+      "start": 1644,
+      "end_exclusive": 1645,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb4e",
+      "start": 1700,
+      "end_exclusive": 1704,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb54",
+      "start": 1704,
+      "end_exclusive": 1708,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb64",
+      "start": 1712,
+      "end_exclusive": 1716,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb6a",
+      "start": 1720,
+      "end_exclusive": 1728,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb71",
+      "start": 1728,
+      "end_exclusive": 1736,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb78",
+      "start": 1736,
+      "end_exclusive": 1740,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb7e",
+      "start": 1744,
+      "end_exclusive": 1752,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb85",
+      "start": 1760,
+      "end_exclusive": 1764,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb8b",
+      "start": 1768,
+      "end_exclusive": 1776,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb92",
+      "start": 1776,
+      "end_exclusive": 1784,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fb99",
+      "start": 1784,
+      "end_exclusive": 1792,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fba0",
+      "start": 1792,
+      "end_exclusive": 1800,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fba7",
+      "start": 1800,
+      "end_exclusive": 1808,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fbae",
+      "start": 1808,
+      "end_exclusive": 1816,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fbb5",
+      "start": 1816,
+      "end_exclusive": 1820,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fbc0",
+      "start": 1824,
+      "end_exclusive": 1832,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fbc7",
+      "start": 1832,
+      "end_exclusive": 1840,
+      "role": "w"
+    },
+    {
+      "pc": "0x41fbd3",
+      "start": 1848,
+      "end_exclusive": 1852,
+      "role": "w"
+    }
+  ],
+  "direct_protected_hits": {
+    "id0": [
+      {
+        "pc": "0x41f795",
+        "start": 0,
+        "end_exclusive": 2,
+        "role": "w"
+      }
+    ],
+    "active284": []
+  },
+  "private_stack_write_sites": [
+    "0x41f730",
+    "0x41f735",
+    "0x41f73a",
+    "0x41f746",
+    "0x41f76b",
+    "0x41f96b"
+  ],
+  "established": [
+    "6C0520 leaf writes exactly sixteen bytes at RCX, with fifth scalar read at callee RSP+28h. Exact caller RCX binds to record210 and220 without an intervening call/branch/register overwrite. Windows call return-address shift makes caller RSP+20h the fifth scalar source; values not sampled.",
+    "46D110 sets RDX=01F204E0 and tails to202C70. Four sequential MOVUPS reads/writes copy64 bytes to each of record180 and1C0. This is copy, not zero-fill; no general overlap safety or live constant binding inferred.",
+    "3E5D00 writes WORD/DWORD/WORD totaling eight contiguous bytes at record4C0+8*sign32(EDX). Caller resets EDI from zero ESI, then runs indices0..9, so composed union is4C0..510. Earlier EDI=FFFF is superseded; bound is ten, not sixteen. Floating arithmetic output/exception behavior not established.",
+    "3E37E0 supplies EDX=0,R8D=50h and tails to named library fill861EC0. Exact caller RCX is record580, requesting580..5D0 under that contract. No stub or native execution.",
+    "All composed helper writes are disjoint from WORD ID0 and DWORD active284. Whole supplied caller direct w/rw spans use full widths; its only post-fill ID write is WORD0=FFFF at41F795, and it has no direct write overlapping284..288.",
+    "Given valid private stack/nonaliased readable constants/740h record, normal returns, standard library fill confined to requested span and native ABI nonvolatile preservation, normal return from41F730 leaves ID0=FFFF and active284=0. This replaces the blanket opaque-helper preservation premise for these exact supplied bodies; library effects and validity premises remain explicit."
+  ],
+  "affected_claims": [
+    "Render-slot identity/publication parent clear premise; OPUS CharacterRenderRecord000/284 initialization",
+    "FABLE render allocation/system-clear and rig owner sentinel preconditions"
+  ],
+  "limits": [
+    "No original instructions executed, emulated or forced; no live process/input/screenshot/state observation.",
+    "Original local call/body closure only, named861EC0 library semantics/ABI assumed. Native implementation, exceptions, private-frame aliasing, constant accessibility and interference are not independently executed here.",
+    "Matrix constant source is original LEA identity, not sampled runtime values or a lifetime guarantee. Sequential copy is not a general overlap-safety proof.",
+    "Indexed write address bound is proved for exact caller domain, not arbitrary signed32 index safety or conversion/MXCSR values.",
+    "Normal return result is not proof all natural callers initialize or hold a valid row, all writers preserve it, or field reads are atomic. Ownership/reuse, scheduling and lifetime remain open.",
+    "Parent source was frozen/publication-ready at retention, not independently accepted. Its immutable lineage remains unchanged after publication.",
+    "Independent review/canonical consumption pending; no whole OV row or full L1+L2 goal closure. K14 closed, EXP127 invalid, menu spent/unapproved."
+  ],
+  "cleanup": "Offline read-only EXE; only owned disposable evidence writes. No FF12/PC/native instrument/save/config/reference/peer changes."
+}

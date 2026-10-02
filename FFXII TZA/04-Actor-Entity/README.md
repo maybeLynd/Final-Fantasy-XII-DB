@@ -11,7 +11,7 @@
 ## Systems in this category
 
 - [`battleunit-slot-pool-and-actor-class.md`](battleunit-slot-pool-and-actor-class.md) —
-  **DOCUMENTED, tier 1.** The fixed BattleUnit pool (3,920 bytes per slot, linear first-free
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The fixed BattleUnit pool (3,920 bytes per slot, linear first-free
   allocation, **silent failure when full**) and the three-bit actor class that decides whether
   something can be moved (class 3) or merely positioned (class 1).
 
@@ -25,31 +25,31 @@ Known anchor: ActorManager records have stride `0x288`, manager index at `+0x28`
   and gambit preset. Resolves `OPUS-CONTRA-BU698`.
 
 - [`Battle-Unit/the-battle-unit-field-map.md`](Battle-Unit/the-battle-unit-field-map.md) —
-  **DOCUMENTED, tier 1.** The 3,920-byte battle unit, offset by offset, from a typed field scan
-  seeded by the pool and the three unit-returning accessors: 144 offsets across 310 functions with
-  writers and readers, the names the store and the pages established, and the 45 ranges nothing
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The 3,920-byte battle unit, offset by offset, from a typed field scan
+  seeded by the pool and the three unit-returning accessors: ~~144 offsets across 310 functions~~ 168 offsets across 345 functions with
+  writers and readers, the names the store and the pages established, and the ~~45~~ 35 ranges *(answered: the census on disk and the page's §2.3 re-count; 2026-10-02, OPUS)* nothing
   enumerated reaches. The access table is published beside it.
 
 - [`Actor-Manager-Record/the-actor-manager-record-field-map.md`](Actor-Manager-Record/the-actor-manager-record-field-map.md) —
-  **DOCUMENTED, tier 1.** The 648-byte manager record, five slots at `02098E10`, from two
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The 648-byte manager record, five slots at `02098E10`, from two
   controlled routes plus the bind: 57 touched offsets with writers and readers, the tick's two
   bytes, the bind's pointer block — and the type `OPUS-CONTRA-REC60` was really about.
 
 - [`Actor-Storage-Record/the-actor-storage-record-field-map.md`](Actor-Storage-Record/the-actor-storage-record-field-map.md) —
-  **DOCUMENTED, tier 1.** A companion to the record page: 81 touched offsets from 272 functions
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* A companion to the record page: ~~81 touched offsets from 272 functions~~ 94 touched displacements from 271 functions *(answered: the census on disk, measured; 2026-10-02, OPUS)*
   with writers and readers per byte, the store's names where they exist, and the 31 untouched
   bytes; the access table beside it.
 
 - [`Unit-Display-Record/the-record-00329220-builds.md`](Unit-Display-Record/the-record-00329220-builds.md) —
-  **DOCUMENTED, tier 1.** The party member status view: the 0xC0-byte snapshot `00329220` builds
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The party member status view: the 0xC0-byte snapshot `00329220` builds
   per call for the UI from a party stats record, its unit and its row — every displayed number with
   its source, the eighteen flag bits, the 20-unit "out of range" circle, the points to the next level.
 
 - [`Actor-Names/the-npc-name-dictionary.md`](Actor-Names/the-npc-name-dictionary.md) — `npcdic.bin`: 1,141 name pairs, the actor's `+0x102` id, and the persistent flag with the same number that swaps in the second name (247 pairs differ).
 - [`Actor-Contexts/the-movement-and-secondary-context-censuses.md`](Actor-Contexts/the-movement-and-secondary-context-censuses.md) —
-  **PARTIAL, tier 1.** The two regions every actor record reaches only through pointers — the
+  ~~**PARTIAL, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`, both open items answered 2026-09-17)* The two regions every actor record reaches only through pointers — the
   movement context (0x230 at `+0x120`) and the secondary context (0x188 at `+0x350`) — censused
-  through the pointers: 313 and 302 accesses at 58 and 40 offsets, the position as three floats at
+  through the pointers: ~~313 and 302 accesses at 58 and 40 offsets~~ 708 and 309 accesses at 101 and 42 offsets *(answered: the files on disk, measured; 2026-10-02, OPUS)*, the position as three floats at
   the front of the first, and a third pointer at `+0xA0` found beside them. The layouts are the
   store's to declare.
 
@@ -71,7 +71,7 @@ Known anchor: ActorManager records have stride `0x288`, manager index at `+0x28`
 
 **CombatFormula — SERVICE.** `00329220` on this page calls `BattleRuntime_GetEffectiveActionId`, owned by that layer. What it reaches is a 149-byte action-id resolution: a record with `byte[+5] == 0` indexes the `0x40`-byte rows at `0208D480` by `byte[+4]`, anything else resolves its owning unit and indexes the rows at `0208DE80` by `byte[+0xEA9]`, and the row's `word[+0x10]` is substituted only when the unit's current `word[+0x714]` is `0x9F`; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 
-**Presentation — SERVICE.** `002620E0` on this page calls `FUN_00259b30`, owned by that layer. What it reaches is a 699-byte reset of two `0x860`-byte presentation slots based at `02098378`: each slot's `0x630`-byte body and its three `0xB0`-byte sub-blocks are zeroed and re-seeded from one transform, with the `+0x1F8` scale set to 1.0; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
+**Presentation — SERVICE.** `002620E0` on this page calls `FUN_00259b30`, owned by that layer. What it reaches is a 699-byte reset of two `0x860`-byte presentation slots based at ~~`02098378`~~ `02097D20`, `02098378` being slot 0's `+0x658` *(corrected 2026-10-02, OPUS: `002593D0` / `00259470` copy `0x860` bytes between `02097D20` and `02098580`; the two end at `02098DE0`, before the manager array at `02098E10`)*: each slot's `0x630`-byte body and its three `0xB0`-byte sub-blocks are zeroed and re-seeded from one transform, with the `+0x1F8` scale set to 1.0; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **Rewards_Progression_Economy — SERVICE.** `00329220` on this page calls `FUN_002f8f20`, owned by that layer. What it reaches is a bounded id mapping: zero returns zero and ids outside `1..0x62` take the out-of-range path; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 

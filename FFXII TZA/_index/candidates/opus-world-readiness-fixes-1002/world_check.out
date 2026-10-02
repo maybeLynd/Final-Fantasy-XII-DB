@@ -1,0 +1,23 @@
+ok   002F8150 mov dword ptr [rsp + 0x54], edi
+ok   002F81C1 mov dword ptr [rsp + 0x44], 0
+ok   00377728 xor dl, dl
+ok   0037772D not eax
+ok   0037773C mov eax, 1
+ok   00377C99 shr eax, 4
+ok   00377C9C and eax, 7
+ok   00377BE7 shr edx, 0xc
+ok   00377BEA and edx, 3
+ok   0025ABB8 call 0x379cd0
+ok   002620F7 jne 0x2621a8
+ok   002621BC jmp 0x3601c0
+ok   0026D951 cmp byte ptr [rax + 0x1061], bl
+ok   0026DA92 mov byte ptr [rax + 0x1061], 0
+ok   003777F9 lea r10d, [r9 - 9]
+ok   00210575 cmp cx, ax
+ok   00210588 mov qword ptr [rcx + rax*8], rdx
+ok   0026E8E1 mov dword ptr [rip + 0x1e2be01], ecx
+ok   002F7394 add ecx, 0x17
+ok   00466228 test cl, 0xe7
+ok   002F7416 lea ebp, [rcx + 1]
+ok   0026DA1E mov edx, dword ptr [rcx + rax*4 + 4]
+FAILS 0

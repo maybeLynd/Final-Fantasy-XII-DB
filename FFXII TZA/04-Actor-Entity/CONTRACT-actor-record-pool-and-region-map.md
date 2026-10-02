@@ -6,7 +6,7 @@ level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 04-Actor-Entity/battleunit-slot-pool-and-actor-class.md
-entries: ["00267A20", "00266AD0", "00266530"]
+entries: ["00267A20", "00266AD0", "00266530"]  # <- corrected 2026-10-02, OPUS - 00267A20 is an interior address of 002679F0 (section 7)
 verified_against:
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
   method: address-resolution verification 2026-09-14 (OPUS) - 69 addresses cited - 5 data, 8 entry, 54 interior, 2 text-data, every one resolving
@@ -420,8 +420,8 @@ non-zero differs on 24 lines.
 
 **What this run does not establish.**
 
-- **Nothing here has been observed in a running game.** The check below still stands.
-- **The pool allocation `00267A20` and the record initialiser `00266530` are out of scope.** The
+- ~~**Nothing here has been observed in a running game.**~~ *(answered: the region map was observed live afterwards in `EXP-026`, §13's opening; 2026-10-02, OPUS)* The check below still stands.
+- **The pool allocation ~~`00267A20`~~ `002679F0` *(answered: §7 — `00267A20` is an interior address of it; 2026-10-02, OPUS)* and the record initialiser `00266530` are out of scope.** The
   first is the allocator and the second is 0x300+ bytes over six callees; §15's rows about sizes,
   rounding, counts and the header are **unchanged by this run** and remain static.
 - The region map is one pure function. That it writes the right four pointers says nothing about
@@ -522,8 +522,8 @@ All 40 samples in each capture match their column, so the per-sequence extents a
   > payload + `+0x2C` (`tableOff2C`) (`0026CB3C`–`0026CB6B`). A function-list-independent census
   > finds **no load** of `+0x60`, `+0x68`, `+0x70`, `+0x78` or `+0x80` as a qword through any record
   > route — the base table, the `0x288` stride, the accessors' return or the `[actor + 0xB8]`
-  > pointer — in the binder's family or anywhere else, so the five copies are **dead stores** that
-  > the register file overwrites as soon as a script pops a register. What the three construction
+  > pointer — in the binder's family or anywhere else, so the five copies are ~~**dead stores** that~~
+  > ~~the register file overwrites as soon as a script pops a register.~~ *(answered: see "CORRECTED 2026-09-20 (SWE2-CONTRACT)" below — the stores land on the slot, and the interpreter loads `+0x68` / `+0x70` at `00261855` / `0026187D`; 2026-10-02, OPUS)* What the three construction
   > paths missed is therefore a bind-time writer of a region that is a union in time: sub-table
   > pointers at load, VM registers thereafter.
 
@@ -663,7 +663,7 @@ the first byte is a layout class rather than an unrelated field.
 **Claim table added 2026-09-12 (`OPUS-S15-CLAIM-TABLES-SIX`).** The prose above states the method
 and the two instruments, one of which was discarded, and is kept. This enumerates the claims so a
 pilot's `CONTRACT_MAP` can be derived from them rather than asserted. **Nothing here has been
-executed** (§13), so no row claims more than static evidence.
+executed** (§13), so no row claims more than static evidence. *(answered: §13 — executed 2026-09-12 as the region-map pilot and observed live in `EXP-026`; 2026-10-02, OPUS)*
 
 | claim | evidence | tier | confidence |
 |---|---|---|---|
