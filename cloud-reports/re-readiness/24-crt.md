@@ -386,3 +386,100 @@ finding" (`LZ:455`).
 | maths | Movement, Presentation, UI, Audio, Party, CombatAction; OS `ucrtbase.dll` "varies by Windows version" | `MATH:61-64`, `:296-308`, `:502` |
 | hardening | Phyre serialization (the 144 scalar-conversion initialisers) | `HARD:27`, `:165-184` |
 
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, live-only, or out of evidence)
+
+Only gaps the pages still leave open are listed. Rows the pages answer are not listed, even where a stale "open"
+sentence remains. Those are in §3.2.
+
+| # | gap as the page states it | cite |
+|---|---|---|
+| G-1 | Which of the 1,681 lazy statics a normal boot builds: "live-only by measurement"; NATIVE-REPLAY lower bound 19, residue 1,662 | `LZ:452-454` |
+| G-2 | "Nothing here has been seen to execute; the hang is derived from the control flow, not witnessed." | `LZ:682-683` |
+| G-3 | What each of the 1,172 eager initialisers costs: T-6 is ticked, but "**Not claimed:** that these shares reflect startup *time*." | `SI:290-291`, `:715-716` |
+| G-4 | SEAD static pools: "**Not established:** that the prototype copies are these containers' header initialisation …, each container's capacity, and the unnamed fields between the objects listed." | `SI:326-328` |
+| G-5 | "**Developer — CLIENT, not read.**" (the 18-byte function with a 1,046-byte Developer caller) | `SI:894` |
+| G-6 | The lock-pair dispatch: "**Not claimed:** `005CD570`'s dispatch target list … or the lock object's owner type." | `LZ:710-711` |
+| G-7 | EH: "**Not attempted, and therefore not claimed:** runtime confirmation that any funclet ever executes" | `EH:985-987` |
+| G-8 | EH: "**Not challenged this pass:** the identity of the 827 downstream callees, the 250 unclassified parents, and whether the 46 skeletons are stable"; "The original parent list is not preserved" | `EH:197-198`, `:896-897` |
+| G-9 | 254 Phyre per-type constructors "untouched"; 83 frontier `.CRT$XI` members "each … needs individual reading" | `ST:107-110`, `:117-121` |
+| G-10 | Every `ST` family row ends "NOT dispositioned: …" (per-type destructors, record types, callback targets) | `ST:23-44` |
+| G-11 | "**The per-class mapping is still not established.**" (26 `PInputSource` deleting destructors to classes) | `OBJ:701` |
+| G-12 | BQ-27: whether bit 2 is ever passed (so whether those objects leak) is "checkable at runtime"; 61 live-breakpoint sites | `OBJ:604`, `:815-822`, `:830` |
+| G-13 | "Which containers the 60 hosts own is still open." | `OBJ:943` |
+| G-14 | `02ADD100`: "**NOT CLAIMED:** what the handle indexes, or whether the resource system releases the buffer" | `OBJ:1012-1013` |
+| G-15 | "**What the game does when memory runs out has not been observed.**" | `MEM:66` |
+| G-16 | "**Which overrun the guard is positioned to catch is not settled**" | `MEM:248` |
+| G-17 | Memory-status readers `0020C610` / `00792F10`: "whether either reader influences any size is not established" | `MEM:271-272` |
+| G-18 | The accounting array: "**So the closure holds for the literal call sites, and is open for this one path.**" | `MEM:1526-1528` |
+| G-19 | "Six of the new rows say "NOT UNDERSTOOD"" (header fields) | `MEM:1742-1745` |
+| G-20 | Asset registry: "**Not read:** whether entries are removed when a cluster unloads." / "**Not claimed:** how often either pool is built" | `MEM:929-933` |
+| G-21 | SECTION-07: "The callback bodies and whole game scheduling are not certified by these static call sites"; actual Windows CRT behaviour is "an explicit evidence boundary" | `MEM:1893-1894`, `:1899-1901` |
+| G-22 | MSVC tree C: element type "not recoverable from use" | `MS:221` |
+| G-23 | Adapters: "Not claimed: what descriptor slot 5 *does* is untouched"; "Nothing was executed or observed live" | `RV:372-375` |
+| G-24 | BU-1 residue "needs the analysis log, not the EXE"; `003F1290` "was not read" | `TH:248`, `:283` |
+| G-25 | 354 of 749 forwarder targets still in the frontier; "The import **slots** (538) are not dispositioned" | `TH:31`, `:624-625` |
+| G-26 | Crash path: "Actual initialisation and live main-module-only behaviour are not established"; "Not observed here: which language copy is chosen at run time, that the box appears, or how the process ends." | `RS:266`, `:278-279` |
+| G-27 | Licence check: "the per-adapter comparison after that was not traced"; Steam: "the rest of the Steam surface is not examined here" | `RS:317`, `:322-324` |
+| G-28 | "**Not attacked:** the per-DLL import counts, the busiest-import table" | `RS:383-385` |
+| G-29 | Hardening: OS behaviour "needs runtime evidence (tier 10) and has not been done"; record `02D3E880` "was not read"; guard `003F9C96` "not traced" | `HARD:186`, `:695`, `:728-729` |
+| G-30 | Maths: the scalar CRT algorithms are excluded on purpose and come from the OS's `ucrtbase.dll`, which varies by Windows build | `MATH:61-64`, `:74-82`, `:550-554` |
+| G-31 | UQ-323: "The **21 `movaps` and 19 `subss` sites are unresolved**" | `MATH:592` |
+| G-32 | UQ-324's answer is "exactly as strong as the inventory is complete" | `MATH:615-618` |
+| G-33 | Generated families: "**Nothing here is a claim about behaviour.**"; leftovers "NOT dispositioned" (435 globals' meanings, 559 and 613 leftovers) | `GEN:23-25`, `:226` |
+
+### 2.2 Structural gaps (a port needs these and no page states them)
+
+| # | missing | where the gap shows |
+|---|---|---|
+| SG-1 | **One coherent lazy-guard numeric model.** The gate, the guard's built value and the epoch's start value disagree (§3, X-2/X-3/X-4). A bit-exact port of the guard protocol cannot be written until they agree. | `LZ:235`, `:250`; `SI:340-343`; `EH:421`, `:427` |
+| SG-2 | **IP-to-state map layout and state numbering** (`pIPToStateMap`, `toState`, `dispUnwindHelp`, `EHFlags`): named, not described | `EH:486-490` |
+| SG-3 | **Per-funclet tables** (parent, state, destructor target): counts only; "The original parent list is not preserved" | `EH:116-121`, `:197` |
+| SG-4 | **What each eager initialiser constructs.** Family counts cover 90 + 227 + 145 + 11 = 473 of 1,172; the remaining entries' targets are not described | `SI:236-238`; `OBJ:199` |
+| SG-5 | **`_onexit` table storage and `.CRT$XI` bounds on the teardown page.** `ST` gives neither address; `SI` gives the `__xc` bounds (disputed, X-1) | `ST:115`, `:156` |
+| SG-6 | **A consolidated arena-record table.** Fields are scattered over ~20 places; `+0x00`–`+0x07` and `+0x8C`–`+0x8F` are never named | `MEM:107-108`, `:148-153`, `:174-176`, `:1086-1089`, `:1118` |
+| SG-7 | **Header fields `+0x1C`, `+0x1E`, `+0x30`, and `+0x15` bits other than 0x02/0x04** | `MEM:1046`, `:1743` |
+| SG-8 | **Arena sizes for ids 0, 1 and 10** (12–14 rest on ASTRA's evidence only) | `MEM:126-137` |
+| SG-9 | **The link-encoding base value and who sets it** (`01F83530` vs "base `0`" in experiments vs `ptr − arena`) | `MEM:113`, `:147`, `:254`, `:1032` |
+| SG-10 | **Arena callees named but not described:** `0036B200` (per-kind choice), `0036B210` (coalescer), `0036B5F0`, `0036C4B0`, `0036D050`, `0036A490`, `0036C660` (tag constant `0x1676`), `0036A190` (difference from `0036A100`) | `MEM:113`, `:115`, `:186`, `:226`, `:303`, `:817-819`, `:1025-1026`, `:1710` |
+| SG-11 | **Actor-pool size table contents** (`recordSizeTable` at `DAT_01E0C32A`, `countArray`, `L`) | `MEM:617-618` |
+| SG-12 | **EASTL erase / increment / decrement calling conventions and return values**; the empty-anchor state | `OC:95-102`, `:119`, `:123-128` |
+| SG-13 | **Offset of the tree head inside its container** (`[rcx+0x10]` read as "first node" vs head +0x10 = root) | `OC:120`, `:264` |
+| SG-14 | **Who frees EASTL nodes** (the erase does not) | `OC:507` |
+| SG-15 | **SD-82's answer** (inlined rotations): only "answered 2026-09-30" is on the page | `OC:358` |
+| SG-16 | **MSVC head initial state** (`_Isnil`, `_Color` red value) and erase / tidy / erase-range interfaces | `MS:111`, `:127-135`, `:381` |
+| SG-17 | **Who calls descriptor slot 5, and what adapter argument 1 ("context") is** | `RV:74`, `:92`, `:119-121`, `:414-416` |
+| SG-18 | **Bit-exact scalar maths.** No reference `ucrtbase` version; no coefficients | `MATH:74-82`, `:550-554` |
+| SG-19 | **Floating-point environment.** MXCSR, FP control word, rounding mode and denormal handling: not stated on any page; `/fp:precise` is inferred | `MATH:628`; `HARD:583-585` |
+| SG-20 | **16 of the 45 maths imports are not named** (29 are tabulated) | `MATH:70`, `:94-113` |
+| SG-21 | **`VectorPowf4` `0080A270` / core `0080B8A0`**: no algorithm, no coefficients | `MATH:85-87`, `:733-745` |
+| SG-22 | **How the turn solver applies `turnRate`, and the speed gate that picks `+0xE4` / `+0xE8`** | `MATH:427-441` |
+| SG-23 | **Cookie pseudocode is incomplete**: `r` is used after the `if` when the cookie is not the default; the check's jump target `00808C58` is never shown | `HARD:624-635`, `:645-651` |
+| SG-24 | **66 of the 68 scalar-conversion routines** are not described (two are) | `HARD:27`, `:175-177` |
+| SG-25 | **Two declared thunk families are not described in the body** (forward-second-argument, call-result) | `TH:32-33` |
+| SG-26 | **The full import list.** The page's per-DLL table covers 21 of 30 DLLs; only `iat-any-reference.tsv` has all 538 | `RS:60`, `:63-73` |
+| SG-27 | **Service-layer IAT slots used but not named** (`008C2348` "tagged allocator", `008C2368`, `008C2130`, `008C21F8`, `008C20A8`, `008C27E8`, …) and linker-block helpers `00861EC0`, `00861ED2`, `00861EEA`, `00861F20` | `RS:483-535`; `TH:736`, `:794` |
+| SG-28 | **Crash dump file name** built by `0079B1E0`: not given | `RS:255`, `:493` |
+| SG-29 | **The 27 payload records and nine init callees** of the descriptor-pair families | `LZ:26-28` |
+| SG-30 | **Frame-level order.** Apart from the arena-6 latch (`MEM:1891-1893`) and the HUD element (`TH:274-275`), no page says when, within a frame, any runtime service runs. A port of the frame loop gets nothing from this category. | not stated |
+| SG-31 | **The 132 sub-threshold generated groups (415 functions)** are deliberately undeclared | `GEN:217-224` |
+| SG-32 | **The sized-delete path's leak behaviour** cannot be settled statically, so a port cannot know whether to free | `OBJ:602-604`, `:820-821` |
+
+### 2.3 Fields written by documented functions whose meaning is not given
+
+| # | field | cite |
+|---|---|---|
+| F-1 | Memory-log record `+0x08`, `+0x0C`, `+0x1C` (never written; purpose not given) | `MEM:572-583` |
+| F-2 | `022D8E28` (compared by `0036A490`) and `022D8E20` (the tag, "no reader") | `MEM:303-306` |
+| F-3 | Teardown body `mov qword ptr [rsp+0x20], -2 ; EH state` | `ST:73` |
+| F-4 | `007DF6D0`'s 0x24 zeroed bytes after the `CRITICAL_SECTION` | `GEN:279-280` |
+| F-5 | `003008A0`'s `edx = 0x63` | `GEN:116` |
+| F-6 | Locomotion fields `+0xE0`, `+0xBC`, `+0xEC` (untyped) | `MATH:593` |
+| F-7 | Record `02D3E880` (0x28 B, zeroed by `00165F80`) | `HARD:185-186` |
+| F-8 | HUD singleton `0209BE80` fields `+0x7EA0`, `+0x10F60` / `+0x10F68`, `+0x57E0` | `TH:255-257` |
+| F-9 | Container counter `[container+0x28]` (seen, "not adopted") | `OC:289-291` |
+| F-10 | YEBIS block (0xD40 B at `02EA0B70`): fields other than the three maps and the current-pointer latches | `MS:197` |
+| F-11 | `0036C660`'s header tag constant `0x1676` | `MEM:818-819` |
+| F-12 | Region 2's three cells zeroed by `0036D260` | `MEM:1354` |
+
