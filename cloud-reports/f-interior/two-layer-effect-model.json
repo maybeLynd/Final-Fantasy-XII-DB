@@ -1,0 +1,11 @@
+{
+ "page": "10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "0046A790",
+   "text": "builds a stack record of `rcx`, `rcx` and four zero qwords; when the word `dx` is `0x37`, `0x38` or `0x39` returns `0046AB10(rcx, 0x3E, record)`, `0046AB10(rcx, 0x40, record)` or `0046AB10(rcx, 0x42, record)` respectively, and for any other value returns 0",
+   "anchors": [["0046A7B1", "cmp"], ["0046A7BE", "call"], ["0046A7C8", "cmp"], ["0046A7D8", "call"], ["0046A7F2", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "0046A790: the record address is the same in all three calls (r11-0x38 equals rsp+0x20 after the sub rsp, 0x58). The 'returns 0' path relies on eax being zeroed near the entry and not changed before the fall-through ret."
+}
