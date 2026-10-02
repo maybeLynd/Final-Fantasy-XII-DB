@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "0017FDE0",
+   "text": "passes the pointer `00189120()` returns to `001867B0` as `rcx`; when byte `+0x8` of the record that call returns is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "anchors": [["0017FDE4", "call"], ["0017FDEC", "call"], ["0017FDF1", "cmp"], ["0017FDF7", "mov"], ["0017FDFF", "xor"]]},
+  {"fn": "0017FE60",
+   "text": "when `ecx` is non-zero calls `001868A0(00189120())`, otherwise `00186840(00189120())`; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "anchors": [["0017FE64", "test"], ["0017FE70", "call"], ["0017FE7F", "call"], ["0017FE84", "cmp"], ["0017FE8A", "mov"]]},
+  {"fn": "0017FEE0",
+   "text": "when `ecx` is non-zero calls `00186A50(00189120())`, otherwise `00186A00(00189120())`; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0",
+   "anchors": [["0017FEE4", "test"], ["0017FEF0", "call"], ["0017FEFF", "call"], ["0017FF04", "cmp"], ["0017FF0A", "mov"]]},
+  {"fn": "001B2600",
+   "text": "calls `001FBE50(rcx)`; then, when byte `+0x98` of `rcx` is non-zero, tail-jumps `001823E0(3)`, otherwise returns",
+   "anchors": [["001B2609", "call"], ["001B260E", "cmp"], ["001B2617", "mov"], ["001B2621", "jmp"]]},
+  {"fn": "003A3990",
+   "text": "when dword `02AEF414` is non-zero, calls `0020E630(qword, 2)` for each qword of the array at `02AEF420` while the index stays unsigned-below dword `02AEF414` (re-read every pass), then zeroes dword `02AEF414`; when that dword is zero it returns without work",
+   "anchors": [["003A3994", "mov"], ["003A39C9", "call"], ["003A39D0", "cmp"], ["003A39E2", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "All five listings read cleanly. 003A3990: the loop counter starts at 0 and the first test of dword 02AEF414 at 003A3994 guards both the loop and the final zeroing store."
+}
