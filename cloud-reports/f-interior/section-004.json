@@ -1,0 +1,11 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-004.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "003DFCC0",
+   "text": "loads qword `02B59D58` and returns 0 when it is null, when its byte `+0x7` is below 0x32 (unsigned), when `ecx` is not below its word `+0x8` (signed compare), when `ecx` is 0 or when `ecx - 1` is above 8 (unsigned); otherwise returns the word at `+0xC + ecx*4`",
+   "anchors": [["003DFCC7", "test"], ["003DFCCC", "cmp"], ["003DFCD6", "cmp"], ["003DFCE1", "cmp"], ["003DFCE9", "movzx"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
