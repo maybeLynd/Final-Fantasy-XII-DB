@@ -365,3 +365,62 @@ The system has seven parts. The pages give them in this order:
 | 21 RNG | CRT `rand` (avoidance) and the gameplay LCG (order sampler) | `LOCO:750-758` |
 | 18 Audio | clients of the clamp family and of `003A1C50` | `CLAMP:205-215`; `C-FS:656-659` |
 | 19 Save | `00266D10` clears the `0x1538`-byte persistent block | `TURN:452` |
+
+---
+
+## 2. Gaps
+
+### 2.1 Open or partly open items the pages list themselves
+
+| id | item | cite |
+|---|---|---|
+| O-01 | **No live runtime observation anywhere in the folder.** Every contract records isolated or replayed execution at best. The search and the follower are not even replayed. | `C-FS:327-342`, `:498`; `C-TL:151-155`; `C-CQ:338-345`, `:436`; `C-NAV:184-190`; `C-POOL:217-219`, `:343-357`; `C-SEP:241-246` |
+| O-02 | Whether the actor class is stable across `002E45E0` against **other writers or another thread**. The direct-actor-store question is answered 2026-09-30. | `C-HSD:249`, `:375-377` |
+| O-03 | Why two facing entry points exist for **kind-1** callers. | `C-FS:436-439` |
+| O-04 | Single-threaded access to the steering entries is not proven. | `C-FS:244-246` |
+| O-05 | Whether ordinary play approaches 128 movement bodies, and what the live list's order means to the pass. | `C-POOL:359-363`; `C-SEP:250-253` |
+| O-06 | What `00313F80` (the query-mode caller of the resolver) does with its output. | `C-SEP:250` |
+| O-07 | What `003DAE30`'s two extra globals `02B57CC8` / `02B57CD0` are. The pool page calls them "unexplained" (see `C-V27`). | `POOL:418-419` |
+| O-08 | Who writes `+0x114` through a path other than `[x+0x138]`. Answered "never written" by the 2026-09-18 sweep, which still excludes indexed or block-copy stores. Bit classes are unnamed. | `POOL:347-349`, `:357` |
+| O-09 | Why a locomotion reset keeps the dead-end cache; what class 3's "probe gate bit 3" means; what verb kinds 0, 7 and 9 gate. | `C-NAV:194-198`; `NAV:236-237` |
+| O-10 | The direct-route check `Navigation_CheckDirectRouteAcrossRegionsXZ` and six other callers of the region lookup are not read. | `NAV:234-236`; `LOCO:322-323` |
+| O-11 | Which consumer reads obstacle ids ≥ 128 from the mask; the registry count's double read; the `u8` occupancy wrap. | `NAV:267`, `:271-275` |
+| O-12 | Whether the nav root pointer stays 0 until the grid teardown finishes. | `NAV:42` |
+| O-13 | `QWALK == 1` read as "blocked" only from `BLKCHK`'s use, which fixes `PATHW`'s polarity at HIGH. `GATE`'s candidate population is a fixture. | `C-CQ:367-370`, `:430` |
+| O-14 | `003912E0` with a zero count dimension. | `C-CQ:261-264` |
+| O-15 | Animation layer: battle-unit view selector bit 3; where mode `0x16`'s profile comes from; the `@FRM` entry's other parts; the last `0x50` bytes of `003AEF90`; what the engine plays for the 24 commands naming an empty slot; the setters of the two switches. | `ANIM:22-25`, `:47-48`, `:112-113`, `:124` |
+| O-16 | The `evt_t0505` debug accumulator may pass 5π if that event is reachable in retail. | `LOCO:918` |
+| O-17 | Why force-fight mode skips the ease-in (design intent, not asserted). | `LOCO:309` |
+| O-18 | The largest input for which the facing wrap lands in range is "not derived". The `2^58` absorption threshold is derived but not executed. | `HSD:1116-1117`, `:1150-1153` |
+| O-19 | The class-1 object behind `+0xB8` is described only by its two offsets. The pair's producer inside `0025DF00` was "not read", later answered by the update notes. | `HSD:1223-1231` |
+| O-20 | What `00267260` tests is listed under K-4 as "not traced", and so is the part of `0033BFB0` after the angle. The first half is answered elsewhere (`C-S05`). | `HSD:532` |
+| O-21 | What the two zero/negative helpers of the ellipse clamp do. | `CLAMP:179-181` |
+| O-22 | The planted siblings `0022D7E0`, `0022DE60`, `00230790`, `0022E7D0`, `003810B0` are "read at call level only and have not been executed". | `SHAPE:205-206` |
+| O-23 | The commit-dispatch flags `+0x3D4` / `+0x3D8` / `+0x434` / `+0x3F8`: what object, what they mean, their lifetime, and whether `002F2530` ever returns non-zero. | `C-HSD:261-262`, `:297-312` |
+| O-24 | Whether the pre-call zero stores at body `+0x100` / `+0x108` matter, which depends on whether `003DA830` reads them. | `C-POOL:327-330` |
+| O-25 | The `+0x88` "mj" class: its mechanism is complete, but "what 'mj' abbreviates is authoring vocabulary the image does not carry". | `POOL:295` |
+
+### 2.2 Structural gaps — a function, formula or format a port needs that no page states
+
+| id | gap | where it shows |
+|---|---|---|
+| G-01 | **The weather-indexed field-resource banks.** The README names the category as covering them, with the anchors `0026E8D0` resource reconfiguration, `0026E290` dirty observation, `00379290` the WorldAreaField→Movement bridge and `00379630` the alternate rebuild. **No page in the folder documents any of the four.** | `README:3`, `:39-42`, `:56-59` |
+| G-02 | **Frame order inside `0025DF00`.** It is not stated whether `002E5030` runs before or after `002E5750`, or where the speed re-issue sits relative to both. Within the world tick, the relative order of `0046AFA0`, the obstacle builder (step 21), the per-slot `002623A0` / `002E5180` consumer and the separation tail is not given as one sequence. Nor is where the frame steps fall relative to the tick. | `HSD:393-395`; `MODE:187-189`; `TURN:236-240`; `POOL:137-141`, `:179`, `:301`; `NAV:249` |
+| G-03 | **The field-cell solver.** When `00267260` holds, every walking step goes `002E54A0` → `003DB140` → `00380C40` → `002327D0` / `0022F9B0`. The pages state only that the solver adds sub-steps into the placement displacement and sets bit 4. Its per-cell bodies (`0022D7E0`, `003810B0`, `0022E7D0`, `00381450`, `00380EB0`, `00380E00`) have census-level one-liners only. **No collision-against-terrain formula is stated.** | `HSD:516-524`, `:1494-1544`; `SHAPE:205-216` |
+| G-04 | **The field cell lookup and ground height.** `00233050` / `00233110` (cell resolution), `00232090` (blocked mask), `00231890` (second height) and `00231F80` are named with roles but not formulas. The step-toward-radius tail of `003808A0` (bounded increments) gives no increment value. The `026E530` solve of the derived position `+0x50` is census-level. | `POOL:96-115`, `:508-512`, `:533-547` |
+| G-05 | **Battle steering modes 1/4, 2 and 6.** The pages carry only the SD-183 summary: "turn toward the goal, move inside a cone"; "turns or gives way to the turning circle"; "orbits a point". The record's "What changes on the page" amendments have not been applied to §6. **No formula.** | `LOCO:270-274` |
+| G-06 | **Avoidance and recovery bodies.** The pages give no formula for: `QueryDynamicActorObstruction` `003357B0` geometry (the contract gives only its return codes), `TryStartRandomizedAvoidanceManeuver` `003343D0`, `TryChooseReachableRandomDetour` `00334E00` (beyond one constant `+5`), `ResetAvoidanceStateRandomized` `0033E1F0`, `CheckActorPairClearance` `0033D660` (only `×0.5`, `÷3`), `ResolveDefaultHeadingConstraint` `0033A570`, the stall walker `0033C310` (1,362 B), `SamplePointAlongCurrentPath` `003347C0`, `TryRecoverFromStalledPath` `0033BD70`, the rest of `FinalizeHeadingState` `0033BFB0`, and the publish tail `00469A50`. | `LOCO:112-136`, `:187-191`; `C-CQ:97-101`; `HSD:532` |
+| G-07 | **What the stall counter does at 60.** AM-4 says the counter is "capped at 60". Nothing states what reaching 60 triggers. | `LOCO:346-351`, `:119-123` |
+| G-08 | **Initial values and sources of the locomotion rates and speeds.** `st+0xF0` (fast rate), `+0xF8` / `+0xFC` (speeds A/B), `+0xE4` / `+0xE8` / `+0x104` (the simple limiter's rates and threshold) and `+0xD0` (stop radius) have no stated writer. Only `+0xEC` has one (`@FCP` slot 3). | `LOCO:266-268`, `:862-868`; `C-TL:50-52` |
+| G-09 | **The body weight's source.** `+8` copies the context's float `+0x148`. Who writes context `+0x148`, and its default, are not stated. | `POOL:63-64` |
+| G-10 | **The initial value of the `+0xF8` sentinel.** The movement state's `+0xF8` is "a `<0` means unset" sentinel. No page states that it starts negative, or who sets it. | `HSD:201-209` |
+| G-11 | **The mode-3 step `003EC040`.** SD-193 says it turns "at a constant angular step per call". The step value, the "forced direction" input and the snap rule are not on the page. The step is in the register record only. | `MODE:182`, `:433` |
+| G-12 | **The render-record override's inputs.** `00424080` arms the slide latch on a counter at record `+0x457` reaching `(int)([01DFE0B4] × 30)`. The counter's writer is not stated. Neither are the meanings of the object states `0x10`, `0x35`, `0x36`, `0x0D`, nor what sets record `+0x284` bit `0x8000000`. | `HSD:168-177`, `:303-312` |
+| G-13 | **`Movement_PrepareCandidatePosition`'s mode ≠ 0 block** (`world_ctx+0xE8/0xEC/0xEE/0xEF`, `+0x100..+0x108`). The pages give its only reachable use as the push add (`POOL:182`), and the flag block is "described nowhere". | `HSD:243-246`, `:742-745` |
+| G-14 | **`002E5180`'s whole behaviour.** The pages state the push consumption, `+0x151` bit 2, the `+0xD4` ground-height store and the `003A1920` measure under `+0x08` bit 2. They do not give the function as a whole; it is cited in pieces from four pages. | `POOL:179-186`; `3DF:306-307`, `:390-392` |
+| G-15 | **The corridor leaves `QWALK` `0033D3E0`, `PRED` `00335E50`, `AGENTQ` `00318CA0`.** They are named as callees with no body description. `PATHW`'s polarity rests on `QWALK`'s unread meaning. | `C-CQ:200-205`, `:367-368` |
+| G-16 | **The obstacle builder's address and trailer kinds ≥ 2.** The builder is identified only in an `_index` record. Trailer records of kinds other than 0 and 1 "are skipped but still use an id" — their meaning is not stated. | `NAV:242-243`, `:256` |
+| G-17 | **The separation extent `003DA730`.** It is given only as an EC7 one-liner ("scales by `1/[rbx]^2` and `1/[rbx+4]^2` and returns the summed correction"). The ellipse-extent formula a port needs is not written as a formula. The `D5A0` output disagrees between pages (`C-V33`). | `POOL:614`; `SHAPE:116-118`; `C-CQ:406-412` |
+| G-18 | **Nav dataset trailer `+0x28` layout.** "Readers since read" (`00392740`, `00391597`), but the 32 × `0x20` records are described only as position, radius and kind for kinds 0/1. | `NAV:56`, `:256` |
+| G-19 | **The commit dispatch `002EC3F0`'s six apply arms.** Their targets (`003E3120` etc.) store into the render record's `+0x580` sub-record. What that sub-record drives is left to a Presentation page ("the staged look command"). | `C-FS:666-703`; `SLOTS:313-318` |
+
