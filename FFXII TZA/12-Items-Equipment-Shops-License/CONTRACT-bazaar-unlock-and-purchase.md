@@ -6,7 +6,7 @@ level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md
-entries: ["0030B1D0", "0030B33F", "0030B570", "003008A0", "003108ED"]
+entries: ["0030B1D0", "0030B33F", "0030B570", "003008A0", "003108ED"]  # <- corrected 2026-10-02, OPUS: per section 2, 0030B1D0 is 0x50 into the purchase entry 0030B180 and 0030B33F is the loop body of the refresh entry 0030B270; 003108ED is the refresh call site inside the sale commit 00310870
 verified_against:
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
   method: address-resolution verification 2026-09-14 (OPUS) - 49 addresses cited - 3 data, 8 entry, 38 interior, every one resolving
@@ -41,7 +41,7 @@ arithmetic rather than observation**, and §13 names the one assumption that lea
 
 | | |
 |---|---|
-| refresh availability | **`0030B270`**, called only from `BattleIdClassD_RefreshPrerequisiteRuntimeFlags` `003108ED`. `0030B33F` is the loop BODY, not the entry |
+| refresh availability | **`0030B270`**, called only from ~~`BattleIdClassD_RefreshPrerequisiteRuntimeFlags`~~ the sale commit `Shop_CommitSaleItemAndGil` (`00310870`), at `003108ED`. *(corrected 2026-10-02, OPUS: `retool.py callers 0030B270`; `0030B270` is itself `BattleIdClassD_RefreshPrerequisiteRuntimeFlags`, the-bazaar-recipe-unlock-and-purchase.md §2.3–§2.4)* `0030B33F` is the loop BODY, not the entry |
 | purchase | **`0030B180`** — `rcx` = the encoded good id. This row said `0030B1D0`, which is `0x50` into the body: past the prologue, past the gate and past the state-pointer setup. Corrected 2026-09-12 by execution |
 | script-set availability | `0030B570`, reached through `0032AB50(good, bool)` |
 | zero a loot tally | `003008A0(loot, 0, absolute = 1, 3)` |
@@ -133,7 +133,7 @@ rather than observation:
 
 - both the flag byte and the tallies are inside `BattleSystemState`, which is a declared sub-object of
   `SavePayload` (§3), so **both are written to the save file and restored from it**;
-- on reload, refresh runs over every row. For a row that is **not** repeatable, the first clause of
+- ~~on reload, refresh runs over every row.~~ on reload nothing recomputes the flag bytes: refresh `0030B270` has one caller, the sale commit `00310870` at `003108ED`, so it runs only after a sale and the loaded bytes stand *(corrected 2026-10-02, OPUS: checked by `retool.py callers 0030B270`; the-bazaar-recipe-unlock-and-purchase.md §2.3)*. When a later sale runs it: For a row that is **not** repeatable, the first clause of
   its predicate — *repeatable or never unlocked* — is false, because bit 0 survived the purchase.
   The row is rejected before any tally is consulted;
 - and even for a repeatable row, the three tallies were zeroed, so the thresholds must be earned
@@ -176,13 +176,13 @@ This is the same class as `OPUS-NOTICE-REWARDNULL` and the preparation family's 
 
 ## 11. Observable behaviour
 
-Not established. What would be observable: a one-time good bought, then a save and reload, and the
+~~Not established.~~ *(answered in part: see the-bazaar-recipe-unlock-and-purchase.md §7, FZ-3 — an older `FFXII_004` loaded in a live process brought both regions back full, 18 nonzero flag bytes and 44 nonzero loot-sold counters, each matching the file's decoding (ASTRA, 2026-09-21); the purchase round trip below is still unobserved; 2026-10-02, OPUS)* What would be observable: a one-time good bought, then a save and reload, and the
 good still gone — which is FZ-3 read directly rather than derived.
 
 ## 12. Reproduction formula
 
 ```c
-void Bazaar_Purchase(uint16_t goodId)
+void Bazaar_Purchase(uint16_t goodId)   // <- corrected 2026-10-02, OPUS: returns int; section 7 step 0 is missing here - if (!00322C50(0x12, goodId, 0)) return 0; before anything is touched (0030B194-0030B19F)
 {
     Row *row = goods_row(goodId);              /* 02EBF058, index goodId - 0xD000 */
     state->goodFlags[row_index] &= ~2;         /* 0030B203 - bit 0 SURVIVES */
@@ -380,7 +380,7 @@ demonstration that the path is reachable — §14's third item is untouched.
   which stores `movsxd [parent + 0xE8]` **unconditionally** (`003845F4`). The slot is null
   only if that parent resource field was zero at bind; no clearer or second writer exists.
   The second leg is narrower than §10's phrasing: the row resolver `0020E600` is
-  `ref + *(01F85530)` (`0020E602`), so a zero `+0x0C` reference resolves to the **base**, not
+  ~~`ref + *(01F85530)`~~ `ref + *(01F83530)` (`0020E602`) *(corrected 2026-10-02, OPUS: checked at `0020E602` `add rax, qword ptr [01F83530]`)*, so a zero `+0x0C` reference resolves to the **base**, not
   NULL — the `je 0x30B201` fires only when `ref == -base` or the base itself is zero, i.e.
   the goods resource unbound. So the null path is reachable exactly in a
   goods-resource-absent state; the three entry points don't test it because registration is
@@ -418,7 +418,7 @@ I computed independently of its statement there.
 
 **Claim table added 2026-09-12 (`OPUS-S15-CLAIM-TABLES-SIX`).** The prose above states the method
 and is kept; this enumerates the claims so a pilot's `CONTRACT_MAP` can be derived from them.
-**Nothing here has been executed** (§13). Two rows are cited from the referenced page rather than
+~~**Nothing here has been executed** (§13).~~ *(answered: see §13 — the twenty-ninth differential pilot of 2026-09-12 ran the three entry points as shipped bytes, 297 lines, and the rows below marked "isolated original-code" are executed; nothing is observed live; 2026-10-02, OPUS)* Two rows are cited from the referenced page rather than
 re-derived, and they say so.
 
 | claim | evidence | tier | confidence |
@@ -443,7 +443,7 @@ re-derived, and they say so.
 | every one of the three entry points reaches a NULL goods row and none tests it | `0030B201`, `0030B333`, `0030B5F4`. Executed with a page planted at address zero so the two sides are comparable; **the shipped process has nothing mapped there**, so this establishes the arithmetic and NOT that the path survives | 1 (isolated original-code) | PROVEN |
 | what the three scripted callees do | **ANSWERED 2026-09-18 by EXP-092** (§13a): all three executed from shipped bytes, 80/80 cases and 11/11 mutants, zero stubs. The ~~`+0x50`~~ `+0x48` (mutate) handler is `002FD150` (corrected 2026-09-25), and its `r9` arm map is read from the dispatch at `002FD198`–`002FD1B9` | 1 (isolated original-code, hand-built fixtures) | PROVEN |
 | flag byte bit 2 is the "newly unlocked" marker — written by `0030B630`, read by `0030B4B0`, bulk-marked by `0057B6F0`, cleared by `0056D370`, mirrored to UI record `+0x44` | whole-image `+0x59C8` displacement census (14 sites): `0030B502`–`0030B505`, `0030B67E`/`0030B686`, `0057B743`/`0057B752`, `0056D4C0`, `0031DA69`–`0031DA9D` | 1 (static) | PROVEN |
-| `02EBF058` has exactly one writer — the `003845F0` relocation bind at `00236F6E`, unconditional — and `0020E600` is `ref + *(01F85530)`, so the §10 null path fires only in a goods-resource-absent state | image-wide rip-reference census of `02EBF058` (24 sites, one `lea` into the binder, no stores) plus `0020E600` read whole | 1 (static) | PROVEN (bounded) |
+| `02EBF058` has exactly one writer — the `003845F0` relocation bind at `00236F6E`, unconditional — and `0020E600` is ~~`ref + *(01F85530)`~~ `ref + *(01F83530)` *(corrected 2026-10-02, OPUS: `0020E602`)*, so the §10 null path fires only in a goods-resource-absent state | image-wide rip-reference census of `02EBF058` (24 sites, one `lea` into the binder, no stores) plus `0020E600` read whole | 1 (static) | PROVEN (bounded) |
 | nothing observed at runtime, and the containment argument carries one untested assumption | — see §13: that the save path writes the payload wholesale rather than selectively | none | UNKNOWN |
 
 ## 15a. Falsification pass 1 — 2026-09-12 (OPUS)

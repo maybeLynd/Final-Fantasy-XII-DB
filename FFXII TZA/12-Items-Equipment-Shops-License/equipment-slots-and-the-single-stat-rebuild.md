@@ -36,10 +36,10 @@ audit:
 > if that changed the slot, throws the character's entire effective-stat state away and rebuilds it
 > from scratch. There is no "apply a bonus" path in this engine, because there is nothing to undo.
 
-**PARTIAL.** The slot model, the equip path and the complete set of rebuild triggers are read at
+~~**PARTIAL.**~~ **AUDITED** *(corrected 2026-10-02, OPUS: the front matter's status; GR-12 answered 2026-09-30)*. The slot model, the equip path and the complete set of rebuild triggers are read at
 tier 1. ~~**The contribution formula inside the rebuild is not read** (§7).~~ *Corrected 2026-09-30 (FABLE):
-the rebuild's whole body is read and its formula is written out in §6; the one item still open is what the
-battle menu's two equip-branch actions `0x9C` / `0x9D` do (§11.3, `GR-12`).*
+the rebuild's whole body is read and its formula is written out in §6; ~~the one item still open is what the~~
+~~battle menu's two equip-branch actions `0x9C` / `0x9D` do (§11.3, `GR-12`).~~* *(answered: see §11.3 — `GR-12` ANSWERED 2026-09-30, actions `0x9C` / `0x9D` do nothing; 2026-10-02, OPUS)*
 
 ## 1. What the player sees
 
@@ -104,7 +104,7 @@ Three details that are easy to miss and change the meaning:
 - **Reconciliation runs *before* the change test**, and it can itself rewrite the slot — so an off-hand
   dropped for being incompatible with a new main hand is included in "did anything change".
 - **The rebuild is conditional on the slot actually differing.** Re-equipping what you already wear
-  costs nothing. Note the comparison is against `old`, re-read *after* reconciliation, so the test is
+  costs nothing. Note the comparison is against `old`, ~~re-read *after* reconciliation~~ captured *before* the store (`0031A68E`), against the slot re-read after reconciliation (`0031A6BB`) *(corrected 2026-10-02, OPUS: §10, the falsification pass)*, so the test is
   "is the array different now", not "did the caller ask for a different id".
 
 ## 4. There is exactly one place effective stats exist
@@ -372,11 +372,11 @@ the auto-status rebuild, which runs in the same call and owns the status set
   eligibility short-circuit table's only real entry is `(slot 0, 0x1000)` and why the AI condition in
   §11 counts `0x1000` as *not* equipped: bare hands are a weapon record, not an occupied slot.
 - ~~Whether `00328BD0`, the unnamed trigger, is gameplay or tooling.~~ **Gameplay — already
-  answered in the register.** `FZ-6` (2026-09-11) names it: it is
-  `GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders`, reached by the script verb
-  **`resetJobs` (`05D6`)** through `00342230` and the family-0 handler table, as well as by the
-  definition initialiser and the SetSaveData apply. §10.
-- **What battle actions `0x9C` and `0x9D` do** — the two the battle menu issues when the selected entry is, or is
+  answered in the register.** `FZ-6` (2026-09-11) names it: ~~it is~~
+  ~~`GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders`,~~ the body reached by the script verb
+  **`resetJobs` (`05D6`)** through `00342230` and the family-0 handler table~~, as well as by the~~
+  ~~definition initialiser and the SetSaveData apply~~. It is not the gambit preset loader: its only caller is `00342230` (`00342242`), and it clears every equipment slot (`0031A260`, `00328C11`), un-learns licences with an LP refund through `00328990` twice (`00328C23`, `00328C35`; license-board-grid-format.md §3), rebuilds the stats (`0030FED0`, `00328C66`) and then calls the preset loader `00327CB0` (`00328CAA`) — the callee the definition initialiser and the SetSaveData apply share (its callers `0023AC80`, `00239960`) *(corrected 2026-10-02, OPUS: checked by `retool.py callers`)*. §10.
+- ~~**What battle actions `0x9C` and `0x9D` do**~~ *(answered: see §11.3 — `GR-12` ANSWERED 2026-09-30, neither action does anything; 2026-10-02, OPUS)* — the two the battle menu issues when the selected entry is, or is
   not, the stashed slot-0 item (§11.3). Their action rows name no action: both point at a *Reserve* placeholder in
   the battle text (2026-09-30, §11.3). Registered as **`GR-12`**.
 - **Whether any shipped AI order authors the one-past-the-array slot `N = 5` (§11.4)** — **ANSWERED 2026-09-30
@@ -387,7 +387,7 @@ the auto-status rebuild, which runs in the same call and owns the status set
 
 | Claim | Evidence | Tier |
 |---|---|---|
-| Slots are `uint16` at `stats + 0x50 + slot*2` | `lea r14,[rbx+rbp*2]` / `[r14+0x50]` in `0031A630`; `[rbp+0x50/0x52/0x54]` in `0030A4E0` | 1 |
+| Slots are `uint16` at `stats + 0x50 + slot*2` | `lea r14,[rbx+rbp*2]` / `[r14+0x50]` in `0031A630`; ~~`[rbp+0x50/0x52/0x54]` in `0030A4E0`~~ `+0x50` … `+0x58`, all five, in `0030A4E0` (`0030A565`–`0030A5BA`) *(corrected 2026-10-02, OPUS: §10, "the preview diffs five slots, not three")* | 1 |
 | `0xFFFF` is the empty marker | `mov eax,0xFFFF ; cmp si,ax ; je` skipping the eligibility call | 1 |
 | Clearing bypasses eligibility | the same branch target skips `call 0x317930` | 1 |
 | Reconciliation precedes the change test | instruction order: `call 0x318B40` then `cmp word [r14+0x50], r15w` | 1 |
@@ -487,9 +487,9 @@ would be a preview that could disagree.
 ### ✔ Answered from the register: `00328BD0` is gameplay
 
 §7's last item asks whether the unnamed fourteenth trigger is gameplay or tooling. **`FZ-6` answered
-it on 2026-09-11**: `00328BD0` is `GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders`, and the
+it on 2026-09-11**: `00328BD0` is ~~`GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders`, and the~~ the `resetJobs` body: the
 script verb **`resetJobs` (`05D6`)** reaches it through `00342230` and the family-0 handler table at
-`01EF91E0` — alongside the definition initialiser and the SetSaveData apply. **Gameplay**, and the
+`01EF91E0` ~~— alongside the definition initialiser and the SetSaveData apply~~, its only caller (`00342242`); it strips the equipment, un-learns licences with an LP refund (`00328990`, twice) and rebuilds the gambits through its callee `00327CB0`, the preset loader that the definition initialiser and the SetSaveData apply call directly *(corrected 2026-10-02, OPUS: checked by `retool.py callers` and at `00328C11`–`00328CAA`; §7's item, corrected the same day)*. **Gameplay**, and the
 answer was one register row away from the question. Credited, not re-derived.
 
 ### ○ Narrowed: `FUN_00324470`
@@ -647,8 +647,8 @@ shared setter's argument 1) while its predicate holds, and 0 otherwise. The pred
 boolean wrappers ending at the read-in task's end test — true while the task has not yet rebuilt all four
 roster slots ([how a script changes the battle party](../01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md)
 §4). So **takeaway and giveback each restart the party read-in after moving the loadout, and the verb waits
-until the roster is rebuilt.** The authored order table is answered in §11.4. The command ids remain `GR-12`
-(§11.3).
+until the roster is rebuilt.** The authored order table is answered in §11.4. ~~The command ids remain `GR-12`~~
+~~(§11.3).~~ *(answered: `GR-12` is ANSWERED 2026-09-30 — the two command ids do nothing, §11.3; 2026-10-02, OPUS)*
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 

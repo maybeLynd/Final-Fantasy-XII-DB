@@ -67,7 +67,7 @@ answers **without reading the board at all**.
 ## 3. Types
 
 **The owned-licence bitmask is 46 bytes at `statsRecord + 0x194`** — `_types` declares it
-`licenceOwnedBits`, `uint8[46]`, **node ids 0..360, so 361 of the 368 bits are spoken for**. The
+`licenceOwnedBits`, `uint8[46]`, ~~**node ids 0..360, so 361 of the 368 bits are spoken for**~~ ~~**the boards use node ids 0..360, but the node table holds 360 records, ids 0..359, so 360 bits can be granted**; bit 360 is set only by a save image that already carries it *(corrected 2026-10-02, OPUS: license-board-grid-format.md §2.3, `32 + 360 * 24 = 8672` on the four shipped `license_data.bin` copies; license-check-what-the-board-actually-tests.md §11)*~~ **node ids 0..360, so 361 of the 368 bits are spoken for**: the node table the game loads holds 361 records, ids 0..360, and node 360 passes the range check; the square is refused with reason 8 until presence bit `0xC01F` is set *(corrected 2026-10-02, OPUS: the same-day correction struck here was wrong - the node table the game checks is `02EBF038`, bound only by `00236C30` at `00236D5C`–`00236D67` from the `battle_pack.bin` blob (`0208E680`) directory `+0x34`, an `st2e` table of 361 records of 24 bytes in all nine language copies; `00322C50` reads its count `[02EBF038]+4` (`00322FCB`–`00322FD9`); the `license_data.bin` path strings `00A400B8` and `00C19F18` have no code reference, so the standalone 360-record files are not what the game loads; the 360 records are the standalone file's; the `0xC01F` test is at `00323E88`, license-check-what-the-board-actually-tests.md the section "13. Buying a licence square: 00323D10")*. The
 requirement mask built per action has the same `0x2E`-byte shape.
 
 > **THE RECEIVER IS THE `BattleStatsRecord`, AND THIS CONTRACT SAID OTHERWISE — corrected
@@ -101,8 +101,8 @@ if (rec[4] > 6)   return 1;   // +0x004, see CON-145: 00323EFF, UNSIGNED, so 0..
 
 **I2 — THE LICENCE SYSTEM APPLIES ONLY TO RECORD KIND 0 WITH SLOT ≤ 6. Everything else is licensed
 for everything**, returned before a single node is read. **The board is not a property of the
-ability; it is a property of being a licensed party member** — guests and non-party units do not
-*fail* this check, they never reach it **[page]**.
+ability; it is a property of being a licensed party member** — ~~guests and non-party units do not~~
+~~*fail* this check, they never reach it~~ **[page]**; non-party units and guests 7–16 never reach it, but the guest row 6, Reks, does: the test is the type id `+4` ≤ 6 *(corrected 2026-10-02, OPUS: checked at `00323EFF`; §10, "slot 6 included")*.
 
 **I3 — a per-action escape hatch.** `row = decode(*(02EBF138) + 0x0C) + u16(*(02EBF138) + 0x08) * actionId`
 — **a descriptor, not an array; see §15**, and the sum is formed **in 32 bits** (`imul ecx, ebx` / `add ecx, eax`,

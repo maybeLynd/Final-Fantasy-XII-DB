@@ -243,8 +243,8 @@ Fully deterministic given the record and the three tables.
   gate call. ~~What `r14` holds at that point was not established.~~ *(answered: `r14` is zero there — `0030FF07 xor r14d, r14d`, used at `003100DF` / `0031018F` — and §13's table shows the gate receiving row address 0; 2026-10-02, OPUS)*
 - **The licence node lookup is unbounded.** `imul edx, ebp` at `00310187` with no comparison against
   the table's count at `[table + 4]` — the only `cmp` on the index in the loop body is the loop's own
-  `cmp ebp, 0x169`. Since the id space is 361 and `license_data.bin` declares 360 records, a set bit
-  for node 360 reads one record past the end. **Whether that bit is reachable is open**
+  `cmp ebp, 0x169`. Since the id space is 361 and ~~`license_data.bin` declares 360 records, a set bit~~
+  ~~for node 360 reads one record past the end.~~ so is the table this loop indexes, a set bit for node 360 reads that table's last row, in range: `license_data.bin` declares 360 records, but the game does not load it into `02EBF038` *(corrected 2026-10-02, OPUS: the node table the game checks is `02EBF038`, bound only by `00236C30` at `00236D5C`–`00236D67` from the `battle_pack.bin` blob (`0208E680`) directory `+0x34`, an `st2e` table of 361 records of 24 bytes in all nine language copies; `00322C50` reads its count `[02EBF038]+4` (`00322FCB`–`00322FD9`); the `license_data.bin` path strings `00A400B8` and `00C19F18` have no code reference, so the standalone 360-record files are not what the game loads)*. **Whether that bit is reachable is open** — the grant refuses node 360 with reason 8 until presence bit `0xC01F` is set (`00323E88`; license-check-what-the-board-actually-tests.md, the section "13. Buying a licence square: 00323D10"), and what sets that bit is not traced
   (`OPUS-NOTICE-NODE360`), and the bit is tested before the row is computed, so an unreachable bit
   costs nothing.
 - **The status index is treated as signed** in the apply loop (`test edi, edi` / `jns` /

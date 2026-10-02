@@ -1,0 +1,15 @@
+ok   00387714 movzx eax, byte ptr [rcx + 9]
+ok   0038788D movzx eax, byte ptr [rbx + 8]
+ok   0030E581 call 0x387730
+ok   0030E594 mov dword ptr [rsi + rdx*4 + 0xbc], ecx
+ok   0030E5A2 call 0x3876d0
+ok   0030E5AF mov word ptr [rsi + rcx*2 + 0x13c], ax
+ok   00385CC2 mov ebp, 1
+ok   00385D65 mov ecx, 2
+ok   0030C496 mov byte ptr [rcx + 0x1c2], dil
+ok   0030C6CC cmp byte ptr [rdi + 0x1c2], 0x63
+ok   0030AC22 sete cl
+ok   0030AC25 lea eax, [rcx + 1]
+ok   0030AC42 xor eax, eax
+ok   0030AC46 xor eax, eax
+FAILS 0

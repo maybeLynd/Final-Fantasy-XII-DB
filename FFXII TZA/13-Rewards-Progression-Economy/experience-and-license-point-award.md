@@ -52,7 +52,7 @@ Espers and the chocobo do not count, nor does anyone KO'd, so a smaller party ea
 summoned, the summoner receives the whole amount and no one else receives any. The number the game shows for the
 kill is that per-member share, not the total.
 
-License points are **not shared**: every eligible member receives the full amount. Guests earn both. A summoned
+License points are **not shared**: every eligible member receives the full amount. ~~Guests earn both.~~ Guests earn experience; of the eleven guests only Reks (party row 6) can also earn license points *(corrected 2026-10-02, OPUS: checked at `002F90E7`–`002F90F5` — the LP filter admits ids `0..6`, `0x1A` and `≥ 0x28`, so guest rows 7–16 are refused; CONTRACT-experience-and-licence-award.md §4)*. A summoned
 Esper earns neither.
 
 Three accessories change what their wearer receives. The Embroidered Tippet doubles experience, the Golden Amulet
@@ -195,7 +195,7 @@ snapshot of the entire party. No network implementation is part of this update.
       2026-09-11:** `recipient[5]` is the definition table (0 party, 1 enemy) and `recipient[4]` the row
       in it, so for a nonnull recipient EXP first requires kind 0 and an owner, then excludes rows `27`–`39` — **the thirteen
       Espers** ([the kind page](../04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md) AL-2,
-      decoded from the party table's name references). A summoned Esper earns no EXP or LP; a guest does.
+      decoded from the party table's name references). A summoned Esper earns no EXP or LP; ~~a guest does~~ a guest earns EXP, and LP only for row 6, Reks *(corrected 2026-10-02, OPUS: `002F90E7`–`002F90F5`; CONTRACT-experience-and-licence-award.md §4)*.
 - [x] ~~What `wDefinitionSelector[+1] == 1` selects — which foes award anything at all. **N-5.**~~
       **ANSWERED 2026-09-12 (FABLE) by cross-reference:** `wDefinitionSelector` is the stats
       record's `u16` at `+4` — the unit's definition id — and its high byte `+5` is the **kind byte**:
@@ -242,9 +242,9 @@ controls. The old retained checker also reproduces its preserved output and four
 controls. No current Ghidra re-import, full EXP-090 campaign, fresh live session, or formal peer
 acceptance is claimed.
 
-**Still PARTIAL:** actual retained reward header/row bytes and lifetime, full payout/event behavior,
-and initialized-game reachability of synthetic edge states are not supplied by these observations.
-That is a real residual, not missing arithmetic placeholders. *(Dispositioned item by item in §7, 2026-09-30
+~~**Still PARTIAL:** actual retained reward header/row bytes and lifetime, full payout/event behavior,~~
+~~and initialized-game reachability of synthetic edge states are not supplied by these observations.~~
+~~That is a real residual, not missing arithmetic placeholders.~~ *(answered: see §7 — the row bytes are decoded statically, the lifetime is GR-17 (answered 2026-09-30), the payout is read statically on what-happens-when-an-enemy-dies.md; of the four synthetic edge states only GR-18's high relocation base stays open; 2026-10-02, OPUS)* *(Dispositioned item by item in §7, 2026-09-30
 (FABLE): lifetime is GR-17, reachability is GR-18, and the other two are answered or are not questions.)*
 
 | Claim | Evidence | Tier |

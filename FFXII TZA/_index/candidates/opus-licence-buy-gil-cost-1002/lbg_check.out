@@ -1,0 +1,29 @@
+ok   00236D5C lea rcx, [rip + 0x2c882d5]
+ok   00236D63 movsxd rdx, dword ptr [rax + 0x34]
+ok   00322FCB mov rcx, qword ptr [rip + 0x2b9c066]
+ok   00322FD9 mov ecx, dword ptr [rcx + 4]
+ok   00323D85 movzx r8d, byte ptr [rcx + rbp + 0x194]
+ok   00323DF0 movzx ecx, byte ptr [rdx + 6]
+ok   00323E88 cmp byte ptr [rdx + 5], 0x1e
+ok   00323E8E mov cx, 0xc01f
+ok   0055D9B1 mov eax, 0x168
+ok   0055D9B6 cmp word ptr [rcx + 8], ax
+ok   0055DA6A movzx edx, word ptr [rax + 8]
+ok   0055DA6E call 0x3235c0
+ok   002F97EB mulss xmm0, dword ptr [rip + 0x61cb25]
+ok   002F97F3 divss xmm0, dword ptr [rip + 0x5f9935]
+ok   002F97FB cvttss2si eax, xmm0
+ok   002F97FF lea eax, [rax + rax*4]
+ok   002F9802 add eax, eax
+ok   ch licence table count 361
+ok   cn licence table count 361
+ok   de licence table count 361
+ok   es licence table count 361
+ok   fr licence table count 361
+ok   in licence table count 361
+ok   it licence table count 361
+ok   kr licence table count 361
+ok   us licence table count 361
+ok   00916318 = 64.0
+ok   008F3130 = 50.0
+FAILS 0

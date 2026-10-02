@@ -113,8 +113,8 @@ header, and the arithmetic closes exactly:
 32 + 360 * 24 = 8672 = the file size          (headerSize + count * recordSize)
 ```
 
-So the node table holds **360 records, valid indices `0 … 359`** — and the boards use **361**
-distinct values. **The id space is one larger than the table it indexes**, and §5 shows that the
+So ~~the node table~~ `license_data.bin` holds **360 records, valid indices `0 … 359`** — and the boards use **361**
+distinct values. ~~**The id space is one larger than the table it indexes**~~ **The id space is one larger than this file, and exactly the size of the node table the game loads** *(corrected 2026-10-02, OPUS: the node table the game checks is `02EBF038`, bound only by `00236C30` at `00236D5C`–`00236D67` from the `battle_pack.bin` blob (`0208E680`) directory `+0x34`, an `st2e` table of 361 records of 24 bytes in all nine language copies; `00322C50` reads its count `[02EBF038]+4` (`00322FCB`–`00322FD9`); the `license_data.bin` path strings `00A400B8` and `00C19F18` have no code reference, so the standalone 360-record files are not what the game loads)*, and §5 shows that the
 extra value is not a rounding artefact but a specific, identifiable square.
 
 > **This is deliberately stated as a binding with a hole in it, not as a clean join.** The
@@ -178,8 +178,8 @@ references to the eight runtime path-table globals (`0x0215F008`, `0x0215F010`, 
 argument, or through an accessor. **An address-based scan cannot follow that**, which is the same
 structural limit recorded in `COVERAGE.md` for a base held in a register.
 
-So §3 is honest about its own shape: **the location contract is complete and the parse contract is
-empty.** Opened as **PROPOSED-repos-c7-11**.
+So §3 is honest about its own shape: **the location contract is complete and ~~the parse contract is~~
+~~empty.~~** Opened as **PROPOSED-repos-c7-11**. *(answered: see the correction at the top of this subsection, 2026-09-13 — the header is read by `0055B3F0` and the cells by six readers, `00328990`, `0055E2C0`, `0055E600`, `00560070`, `0055F830` and `003FC900`; §7; 2026-10-02, OPUS)*
 
 ## 4. Key addresses
 
@@ -227,7 +227,7 @@ This is the corpus's sharpest outlier and it was found twice by accident before 
 
 | property | measurement |
 |---|---|
-| out of range of the node table | `license_data.bin` holds **360** records, valid `0…359`; **360 is not one of them** |
+| ~~out of range of the node table~~ out of range of `license_data.bin`, not of the table the game loads | `license_data.bin` holds **360** records, valid `0…359`; **360 is not one of them**; the node table the game checks, `02EBF038`, holds 361, and node 360 is its only category-`0x1E` row *(corrected 2026-10-02, OPUS: the node table the game checks is `02EBF038`, bound only by `00236C30` at `00236D5C`–`00236D67` from the `battle_pack.bin` blob (`0208E680`) directory `+0x34`, an `st2e` table of 361 records of 24 bytes in all nine language copies; `00322C50` reads its count `[02EBF038]+4` (`00322FCB`–`00322FD9`); the `license_data.bin` path strings `00A400B8` and `00C19F18` have no code reference, so the standalone 360-record files are not what the game loads)* |
 | appears exactly once per job board | **12 of 12**, one cell each |
 | absent from `license_board.bin` | **yes** |
 | **the only value that ever differs between locale variants** | **12 of 12 job boards**, and no other value ever moves |
@@ -242,7 +242,7 @@ relocated, not added or removed** — the board keeps the same number of filled 
 > the same partition of the same four locales** — which is evidence that the split is a real
 > regional build distinction and not a per-file accident.
 
-**What node 360 is, is not established.** It is out of the table's range, present once on every job
+**What node 360 is, is not established.** ~~It is out of the table's range,~~ It is out of `license_data.bin`'s range but in range of the table the game loads, where it is the only category-`0x1E` square, gated by presence bit `0xC01F` (`00323E88`) *(corrected 2026-10-02, OPUS: the node table the game checks is `02EBF038`, bound only by `00236C30` at `00236D5C`–`00236D67` from the `battle_pack.bin` blob (`0208E680`) directory `+0x34`, an `st2e` table of 361 records of 24 bytes in all nine language copies; `00322C50` reads its count `[02EBF038]+4` (`00322FCB`–`00322FD9`); the `license_data.bin` path strings `00A400B8` and `00C19F18` have no code reference, so the standalone 360-record files are not what the game loads)*, present once on every job
 board and never on `license_board`, and it is the only thing regional builds disagree about.
 **Naming it would be a guess and this sheet does not make one.** **PROPOSED-repos-c7-13.**
 
@@ -256,9 +256,9 @@ path array per language, with `license_data.bin` at index 12 and the boards at 7
 US, FR, DE, IT, ES, UK, ASIA and IN (and JP, through the default arm) name `test_battle\in\BinaryFile\`,
 and those for KR, CH and CN name `test_battle\ch\BinaryFile\` — the `kr` and `cn` directories
 occur in the string pool only for their thirty text files (`battle_message.bin`, `listhelp_*.bin` …).
-So every language of this build loads a 360-record table under 361-node boards, and the grant path
-refuses the square (the licence-check page §11): the id space is the size of the largest table
-shipped, and the tables actually loaded are one record short of it. On the `in` job boards the
+~~So every language of this build loads a 360-record table under 361-node boards, and the grant path~~
+~~refuses the square (the licence-check page §11):~~ No language loads the standalone file into the node table, and the grant path does not refuse the square on range: the id space is the size of the largest table
+shipped~~, and the tables actually loaded are one record short of it~~, and that 361-record table is the one loaded *(corrected 2026-10-02, OPUS: the node table the game checks is `02EBF038`, bound only by `00236C30` at `00236D5C`–`00236D67` from the `battle_pack.bin` blob (`0208E680`) directory `+0x34`, an `st2e` table of 361 records of 24 bytes in all nine language copies; `00322C50` reads its count `[02EBF038]+4` (`00322FCB`–`00322FD9`); the `license_data.bin` path strings `00A400B8` and `00C19F18` have no code reference, so the standalone 360-record files are not what the game loads; node 360 passes `00322C50`'s range check and is gated by presence bit `0xC01F` at `00323E88`, the licence-check page's the section "13. Buying a licence square: 00323D10")*. On the `in` job boards the
 square sits, for `board_1`, at row 9, column 14; on the `kr` boards at row 4, column 18.
 
 ## 5b. Independent audit pass — 2026-09-06, `repos-1e`
@@ -409,7 +409,7 @@ is not pinned (inferred). What `+4` / `+5` and the layer-0 value mean is not nam
 - **CombatAI — SERVICE.** `00328BD0` (424 B), which calls the grid reader `00328990` twice, also clears all
   equipment slots (`BattleStats_ClearAllEquipmentSlotsByStatsIndex`). It rebuilds gambit state through
   `GambitConfig_LoadAuthoredPresetAndRe…`, `GambitRuntime_RebuildOrderSetForStat…` and
-  `GambitConfig_InitializeThreeBanksFro…`. What `00328BD0` is for as a whole is not read.
+  `GambitConfig_InitializeThreeBanksFro…`. ~~What `00328BD0` is for as a whole is not read.~~ *(answered: it is the `resetJobs` body - it clears equipment, un-learns licences with an LP refund and rebuilds gambits; its only caller is `00342230`; 2026-10-02, OPUS)*
 - **Party — CLIENT.** `00328BD0` itself is filed under Party.
 - **Gameplay — MECHANICAL.** The 8,136-byte body `0031C5D0` asks the encoded-id queries `BattleEncodedId_IsValidForClass`,
   `…DispatchQueryMode1`, `…DispatchQueryMode0Va…` and `…QueryMode0Positive`. It is itself called by `00328990`.

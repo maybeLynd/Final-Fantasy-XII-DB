@@ -28,8 +28,8 @@ audit:
 
 An item id is `(class << 12) | index`. The class picks one of **fifteen descriptors**, and the
 descriptor decides *everything else*: how many ids exist, which of two storage schemes holds them,
-where that storage is, and whether the class works at all. **Two of the fifteen answers are "it does
-not work", and four more classes declare items with no storage behind them.**
+where that storage is, and whether the class works at all. **~~Two~~ Three of the fifteen answers are "it does
+not work", and four more classes declare items with no storage behind them.** *(corrected 2026-10-02, OPUS: descriptor `+0x3C` is 0 on rows 5, 7 and 11, §10; the four storage-less classes 9, 10, 13 and 14 still grant through their `+0x48` handlers)*
 
 A reimplementation that models inventory as one array of counts will be wrong for eight of the fifteen
 classes.
@@ -58,7 +58,7 @@ get from the encoding alone.
 | the ±1 entry point | `003008A0` `Inventory_ModifyEncodedItemAndUpdateDiscoveryState` |
 | a mode-1 wrapper of it | `00300BA0`, 28 bytes (read whole 2026-09-19): the first two arguments pass through, the third and fourth are the constants 1 and 1, and the wrapper's own third argument goes on the stack |
 
-**Dispatch is per class, through a pointer in the descriptor** (`+0x50`), not by a switch. `rcx` is the
+**Dispatch is per class, through a pointer in the descriptor** (~~`+0x50`~~ `+0x50` for a query, `+0x48` for a mutate *(corrected 2026-10-02, OPUS: checked at `00309F96` `mov rax, [rdx+0x50]` and `00300943`–`00300960` `mov rax, [rsi+0x48]` / `test` / `call rax`; CONTRACT-bazaar-unlock-and-purchase.md §13a)*), not by a switch. `rcx` is the
 encoded id; `edx` is a **query kind**, `0..4`, and the kind chooses which of the class's arrays is read.
 
 ## 3. Types
@@ -73,7 +73,7 @@ encoded id; `edx` is a **query kind**, `0..4`, and the kind chooses which of the
 | `+0x30` | a second byte-addressed bit array, bitset kind 4 only |
 | `+0x38` | the registry class id — exactly `nibble + 5` for all fifteen rows |
 | `+0x3C` | how many item ids the class defines |
-| `+0x50` | the handler, or **NULL** |
+| `+0x50` | ~~the handler, or **NULL**~~ the query handler, or **NULL**; the mutate handler is a second pointer at `+0x48` *(corrected 2026-10-02, OPUS: checked at `00300943`–`00300960`; CONTRACT-bazaar-unlock-and-purchase.md §13a)* |
 
 **`+0x10` is the field a reimplementation gets wrong.** For packed classes it equals `+0x3C`; for every
 bitset class it is `ceil(+0x3C / 16)` — 81 ids to 6 elements, 24 to 2, 256 to 16, 512 to 32, 32 to 2.
@@ -123,7 +123,7 @@ The three arrays a class may own, and nothing else. The descriptor table itself 
 
 ## 6. Relationships
 
-**Dispatch is per class, through a function pointer in the descriptor at `+0x50`** — not a switch —
+**Dispatch is per class, through a function pointer in the descriptor at ~~`+0x50`~~ `+0x50` (query) or `+0x48` (mutate)** *(corrected 2026-10-02, OPUS: `00309F96`, `00300943`–`00300960`)* — not a switch —
 so every operation below reaches its class's code the same way and the descriptor table is the only
 thing that binds an id's class to an implementation. The encoded id splits into
 `class = id >> 12` and `index = id & 0xFFF`, and both halves are validated against the descriptor
@@ -153,8 +153,8 @@ nothing because the clamp is in the rebuild.
 
 **The packed word carries two counts.** `(reserved << 10) | (owned & 0x3FF)`, built at
 `002FD28C`–`002FD294` and read three ways by the query kinds: kind 1 returns `owned`, kind 2 returns
-`reserved`, and **kind 0 returns `owned - reserved`**. That subtraction is the availability the
-item-use path needs, because an item is reserved when the character commits and consumed later.
+`reserved`, and **kind 0 returns `owned - reserved`**. ~~That subtraction is the availability the~~
+~~item-use path needs, because an item is reserved when the character commits and consumed later.~~ The high six bits are the **equipped** count, not an item-use reservation: equipping adds 1 on channel 2 (`0030C447`–`0030C45C`) and unequipping takes 1 (`0030F9D7`–`0030F9EB`), only for `0x1nnn` ids other than `0x1000` (`0030C426`–`0030C445`), while an item action takes from the owned count at once on channel 1 (`0030EF9F`–`0030EFB0`) and keeps its reservation on the unit at `+0xDC8`. So kind 0 is owned minus equipped, the free copies *(corrected 2026-10-02, OPUS: checked at those addresses; equipment-slots-and-the-single-stat-rebuild.md §3, using-an-item-is-an-action-that-costs-an-item.md §3)*.
 
 ## 8. Script · resource · event interactions
 
@@ -166,12 +166,12 @@ Total. No RNG, no timing, no threading.
 
 ## 10. Failure paths and edge conditions
 
-**A NULL handler is not a crash.** Both call sites null-test `+0x50` (`00309F9A`, `00300946`), so a
+**A NULL handler is not a crash.** Both call sites null-test ~~`+0x50` (`00309F9A`, `00300946`)~~ their own slot, the query entry `+0x50` (`00309F9A`) and the ±1 entry `+0x48` (`00300946`) *(corrected 2026-10-02, OPUS: checked at `00300943`–`00300960`)*, so a
 query on a handler-less class returns `0` and a mutate does nothing.
 
 **Four classes declare items that nothing can store.** Classes 9, 10, 13 and 14 have `itemCount` of
-512, 256, 128 and 4095 with **no handler and `+0x10 == 0`** — two independent fields agreeing. Those
-ids pass the bound check and then reach nothing. **4,991 encodable, inert ids.**
+512, 256, 128 and 4095 with ~~**no handler and `+0x10 == 0`** — two independent fields agreeing. Those~~
+~~ids pass the bound check and then reach nothing. **4,991 encodable, inert ids.**~~ `+0x10 == 0` and no **query** handler, so a query answers 0 — but each has a **mutate** handler at `+0x48`: `002FD530` (reward package: gil and nested items), `002FD640` (package selector), `002FD780` (bazaar good: its granted pairs) and `002FD880` (gil as the id, `(id & 0xFFF) × delta`, `002FD89A`–`002FD8B4`). They are grant-expanding classes, not inert ones *(corrected 2026-10-02, OPUS: descriptor `+0x48` of rows 9, 10, 13 and 14 read from `01EEBCC0`; item-id-encoding-and-equipment-compatibility.md §3)*.
 
 **Three classes are simply empty** — 5, 7 and 11, `itemCount == 0`, rejecting every id.
 
@@ -190,7 +190,7 @@ typedef struct {                 /* 0x58, fifteen rows at 01EEBCC0 */
     uint8_t  *auxB;              /* +0x30  bit array, bitset kind 4 only */
     uint32_t  classId;           /* +0x38  == (row + 5) */
     uint32_t  itemCount;         /* +0x3C  how many ids exist */
-    QueryFn   handler;           /* +0x50  NULL on seven of fifteen */
+    QueryFn   handler;           /* +0x50  NULL on seven of fifteen */   // <- corrected 2026-10-02, OPUS: the query handler; the mutate handler is a separate pointer at +0x48 (00300943-00300960), null only on rows 5, 7, 11
 } ItemClassDescriptor;
 
 int Query(uint16_t id, int kind) {
@@ -214,8 +214,8 @@ absent.** (2026-09-12)
 
 **What ran:** the class reader `00309440`, the packed query `002FD8D0` and the bitset query
 `002FD970`, at their real virtual addresses with the descriptor table at `01EEBCC0`.
-**What did not:** both mutators, the clear-all and the ±1 entry — they dispatch through the function
-pointer at descriptor `+0x50`, which is a different shape and a different fixture. Said here rather
+**What did not:** ~~both mutators, the clear-all and the ±1 entry — they dispatch through the function~~
+~~pointer at descriptor `+0x50`, which is a different shape and a different fixture.~~ *(answered: see the supersession directly below — on 2026-09-26 the ±1 entry `003008A0` and both mutators ran as native replay, 16 / 16; they dispatch through descriptor `+0x48`, not `+0x50` (`00300943`–`00300960`); only the clear-all `003047F0` has not run; 2026-10-02, OPUS)* Said here rather
 than left to be inferred from a green result.
 
 **Superseded for §4, 2026-09-26 (OPUS):**
@@ -262,7 +262,7 @@ one number:
 | kind | what it returns |
 |---|---|
 | 1 | `word & 0x3FF` — the **total**, ten bits |
-| 2 | `word >> 10` — the **reserved** count, six bits |
+| 2 | `word >> 10` — the ~~**reserved**~~ **equipped** count, six bits *(corrected 2026-10-02, OPUS: channel 2 moves it on equip and unequip, `0030C447`–`0030C45C`, `0030F9D7`–`0030F9EB`; §7)* |
 | **0** | **`(word & 0x3FF) − (word >> 10)`** — the **available** amount |
 | 3 | a byte from a different array, at descriptor `+0x20` |
 
@@ -309,10 +309,10 @@ this contract should not have to find them from the experiment side only.
 
 ## 14. Unresolved
 
-- **Who binds `+0x08`, `+0x20` and `+0x30` at runtime, and from where.** Routed as
+- ~~**Who binds `+0x08`, `+0x20` and `+0x30` at runtime, and from where.**~~ *(answered: see §3 — the rebase pass `0030B6A0` binds them, run from the state block's first bind `00233C10` and the save rebind `00238A80`; item-class-descriptor-accesses.tsv, its `+0x08`, `+0x20` and `+0x30` rows; 2026-10-02, OPUS)* Routed as
   `OPUS-REQ-FABLE-INVBINDER`. Both candidates I first named are eliminated: `003047F0` is the clearer
   and `00309440` is a 30-byte reader of `+0x38`.
-- Whether the four inert classes are unreleased content or an allocation that moved.
+- ~~Whether the four inert classes are unreleased content or an allocation that moved.~~ *(answered: see §10 — classes 9, 10, 13 and 14 are not inert; their `+0x48` mutate handlers expand a write into gil or nested items; 2026-10-02, OPUS)*
 - The remaining bytes of the `0x58` descriptor.
 
 ## 15. Evidence
@@ -330,7 +330,7 @@ as bits — so the element depends on the class's handler and the field cannot b
 **Claim table added 2026-09-12 (`OPUS-INVQUERY-ISOLATED`).** The prose above states the method and is
 kept; this enumerates the claims so `diff_inventory_query.py` can map to them. "Executed" means the
 shipped bytes ran under Unicorn at their real virtual addresses against the reconstruction — and only
-for the **three read entry points**, which is why so many rows below are not exercised.
+for the **three read entry points**~~, which is why so many rows below are not exercised~~ *(answered: see §13's supersession of 2026-09-26 — the ±1 entry, the query entry and all four storage handlers have since run as native replay, 16 / 16; 2026-10-02, OPUS)*.
 
 | claim | evidence | tier | confidence |
 |---|---|---|---|
@@ -345,7 +345,7 @@ for the **three read entry points**, which is why so many rows below are not exe
 | the byte-bitset paths carry a signed-division correction the 0xFFF mask makes unreachable | `cdq` / `and edx, 7` / add / `sar 3` at `002FD9C4`–`002FD9D1` and `002FD9FE`–`002FDA0B` on both byte paths and on neither word path. Executed, and **mutation testing confirms the unreachability**: the three mutants of the correction (`>> 31` → `>> 32`, `& 7` → `& 8`, `>>` → `<<`) compile byte-identical, which is what an unreachable branch looks like from the outside | 1 (isolated original-code) | PROVEN |
 | the index is rejected against +0x3C as a signed compare, so a class with itemCount 0 rejects every id | **raised from HIGH by falsification pass 1**: the mechanism is read whole at `00309F7B mov eax, [rdx+0x3c]` / `00309F7E **dec eax**` / `00309F80 cmp ecx, eax` / `00309F82 **jg**`. The `dec` is what makes it work — at `itemCount 0` the bound is `-1`, and `00309F75 and ecx, 0xfff` keeps the index non-negative, so **every id is rejected**. Still **not** in either query handler | 1 | PROVEN |
 | +0x10 is an element count, not an item count, and is ceil(+0x3C / 16) for every bitset class | all fifteen rows' `+0x10` and `+0x3C` read out of `.data` | 1 (static) | PROVEN |
-| the stored count is clamped to 99 in the writer, not in the field | `002FD204`–`002FD209`, in `002FD150`, which this pilot does not execute | 1 (static) | PROVEN |
+| the stored count is clamped to 99 in the writer, not in the field | `002FD204`–`002FD209`, in `002FD150`, ~~which this pilot does not execute~~ executed since by the 2026-09-26 replay, whose postcondition holds over 168 mutates *(answered: see §13; 2026-10-02, OPUS)* | 1 (static) | PROVEN |
 | dispatch is per class through the handler pointer at +0x50, and **SEVEN** of the fifteen rows carry NULL | **CORRECTED 2026-09-12 by falsification pass 1 (§15a): the claim said four.** Re-read from `.data`, rows **5, 7, 9, 10, 11, 13 and 14** have `+0x50 == 0`; the other eight dispatch to `002FD8D0` (rows 0–2) or `002FD970` (rows 3, 4, 6, 8, 12) | 1 | PROVEN |
 | **four rows declare items and still have no handler — 9, 10, 13 and 14** | **EXECUTED path, re-read 2026-09-12**: `+0x3C` is 512, 256, 128 and 4095 on those four while `+0x50` is NULL, so `00309F96 mov rax,[rdx+0x50]` / `test rax,rax` / `je 0x309FA9` returns the default for **every id in them**. The other three NULL rows (5, 7, 11) declare `itemCount 0` and reject on the bound first | 1 | PROVEN |
 | all three storage pointers are NULL in the image and are bound at runtime | all fifteen rows' `+0x08`, `+0x20` and `+0x30` read out of `.data`. **Who binds them is §14's open question**; the differential fixture plants them | 1 (static) | PROVEN |
@@ -402,10 +402,10 @@ a local matter.
 ## 16. Parity plan
 
 Reproduce, hardest to notice first: the **`+0x10` ratio** (§3); the **99 clamp in the writer** rather
-than in the field (§6); the **`owned - reserved` availability** of kind 0; the **silent zero** on a
-NULL handler (§9); and the **inert classes** — giving them working storage would make a
-reimplementation more capable than the original in a way no test notices until something addresses one
-of those 4,991 ids.
+than in the field (§6); the ~~**`owned - reserved` availability**~~ **`owned - equipped` free count** *(corrected 2026-10-02, OPUS: §7)* of kind 0; the **silent zero** on a
+NULL handler (§9); and ~~the **inert classes** — giving them working storage would make a~~
+~~reimplementation more capable than the original in a way no test notices until something addresses one~~
+~~of those 4,991 ids.~~ the **grant-expanding classes** 9, 10, 13 and 14: no storage and a query that answers 0, but a write through `+0x48` that grants gil or nested items — modelling them as inert breaks every bazaar purchase and reward bundle *(corrected 2026-10-02, OPUS: §10)*.
 
 ## 17. Related
 

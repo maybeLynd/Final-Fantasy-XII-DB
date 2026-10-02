@@ -80,7 +80,7 @@ once to each increment (`cmp eax, 0x63` / `cmova`). **Belt and braces on the sam
 
 ## 4. Stats are grown per level, not recomputed
 
-Each iteration applies four growth calls, each taking a **growth byte from the character's own growth
+Each iteration applies ~~four growth calls, each taking~~ six growth calls *(corrected 2026-10-02, OPUS: the table below has six rows, as §9 and CONTRACT-level-advance-and-growth.md say)*; the four float calls each take a **growth byte from the character's own growth
 record** — **but only when the record kind byte `stats + 5` is zero** (`0030C6D9`, §11); for any
 other kind the whole growth block is skipped and only the level byte moves:
 
@@ -88,7 +88,7 @@ other kind the whole growth block is skipped and only the level byte moves:
 |---|---|---|---|
 | `stats + 0x08` | dword | `002F9A60(level, value, 0)` | table `02EBF108[level].hp` (u8) — see below |
 | `stats + 0x0C` | word | `002F9B20(level, value, 0)` | table `02EBF108[level].mp` (u8) — see below |
-| `stats + 0x10` | float | `002F9BD0(level, growth, 0, value)` | `record + 0x1F` |
+| `stats + 0x10` | float | ~~`002F9BD0(level, growth, 0, value)`~~ `002F9BD0(value, growth)` *(corrected 2026-10-02, OPUS: the value in `xmm0`, the growth byte in `edx`, an unused 0 in `r8d`; no level argument - section 4a)* | `record + 0x1F` |
 | `stats + 0x14` | float | `002F9BD0` | `record + 0x22` |
 | `stats + 0x18` | float | `002F9BD0` | `record + 0x25` |
 | `stats + 0x1C` | float | `002F9BD0` | `record + 0x28` |
@@ -113,6 +113,72 @@ rather than by this one alone.
 **`BattleStats_RecomputeDerivedStateAndAutoStatuses` runs once, on the final level only**
 (`lea eax, [r14-1]; cmp esi, eax; jne skip`). **The derived layer is not rebuilt per level** — a
 four-level gain rebuilds it once, at the end.
+
+## 4a. The four float stats grow linearly: base + level x g / 128 (OPUS, 2026-10-02)
+
+**How Strength, Magick Power, Vitality and Speed grow: `002F9BD0`, read whole (2026-10-01, OPUS, static plus shipped data).** `002F9BD0` is 41 bytes, `002F9BD0`–`002F9BF8`, followed by `int3` padding. It has **no callees**, so "one level down" is empty. It reads no table, no global state and no generator. Its only memory reads are three float constants.
+
+```asm
+002F9BD0  movd     xmm1, edx                 ; growth byte (already zero-extended by the caller)
+002F9BD4  cvtdq2ps xmm1, xmm1                ; -> float
+002F9BD7  mulss    xmm1, [008C5B34]          ; * 0.0078125  (= 1/128, bytes 00 00 00 3C)
+002F9BDF  addss    xmm1, xmm0                ; + current stat value
+002F9BE3  comiss   xmm1, [008F3134]          ; compare with 100.0 (00 00 C8 42)
+002F9BEA  jbe      002F9BF5
+002F9BEC  movss    xmm0, [00D0F97C]          ; > 100.0 -> 99.99999237 (FF FF C7 42, largest float below 100)
+002F9BF4  ret
+002F9BF5  movaps   xmm0, xmm1                ; <= 100.0 -> the sum
+002F9BF8  ret
+```
+
+**1. Arguments and callers.** `retool.py callers 002F9BD0` lists four direct call sites, all in `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650`, and no RIP-relative references. Each site passes:
+- **arg 1, `xmm0`**: the current f32 stat, loaded from the stats record (`0030C74B`, `0030C76C`, `0030C782`, `0030C798`);
+- **arg 2, `edx`**: one growth byte from the party row, zero-extended with `movzx` (`0030C757`, `0030C768`, `0030C77E`, `0030C794`);
+- **arg 3, `r8d = 0`**: set by `xor r8d, r8d` (`0030C750`, `0030C765`, `0030C77B`, `0030C791`), but the callee never reads `r8`.
+
+`ecx` is not loaded before any of the four calls, and the callee does not read it, so **there is no level argument**. The return value in `xmm0` is stored back to the same field (`0030C760`, `0030C776`, `0030C78C`, `0030C7A2`).
+
+| stat | record field (read / write) | growth byte | call |
+|---|---|---|---|
+| Strength | `+0x10` (`0030C74B` / `0030C760`) | row `+0x1F` (`0030C757`) | `0030C75B` |
+| Magick Power | `+0x14` (`0030C76C` / `0030C776`) | row `+0x22` (`0030C768`) | `0030C771` |
+| Vitality | `+0x18` (`0030C782` / `0030C78C`) | row `+0x25` (`0030C77E`) | `0030C787` |
+| Speed | `+0x1C` (`0030C798` / `0030C7A2`) | row `+0x28` (`0030C794`) | `0030C79D` |
+
+The caller `0030C650` itself is reached from `0030C470` (`0030C56E`), `00305960` (`003059CB`), `003112F0` (`003113DF`, `003113FD`) and `00312280` (`003124A3`).
+
+**2. The per-stat computation.**
+- **Table.** The row is computed by the caller, not by `002F9BD0`. It is `ImageAddress_ResolveRuntimePointer([02EBF130]+0xC)` (`0020E600`: `ecx + [01F83530]`) plus `u16 [[02EBF130]+8] × byte stats[+4]` (`0030C6FC`–`0030C71D`). This is the party definition table `chr_data`, `battle_pack.bin` directory `+0x44`. In the shipped file it is an `st2e` header at file offset `0x1B6A0` with count 40, record size **128**, and rows starting 0x20 bytes after the header.
+- **Columns.** Each stat has a three-byte group: base at `+0x1E`, `+0x21`, `+0x24`, `+0x27`; growth at `+0x1F`, `+0x22`, `+0x25`, `+0x28`; and a third byte at `+0x20`, `+0x23`, `+0x26`, `+0x29`. The third byte is 0 in all 40 shipped rows, and neither `0030C470` nor `0030C650` reads it.
+- **Random draw.** There is none. `002F9BD0` makes no call, and therefore never reaches `RNG_MT19937_NextU32_Thunk` `00379CD0`. Only the HP helper `002F9A60` and the MP helper `002F9B20` draw (`002F9AD3`, `002F9B8C`).
+- **Arithmetic.** `new = value + (float)g × 2⁻⁷`, so the stat gains g/128 per level (`002F9BD0`–`002F9BDF`).
+  - g is an unsigned byte, 0–255, so the per-level gain ranges from 0 to 1.9921875. `cvtdq2ps` is a signed conversion, but a 0–255 input is exact.
+  - The multiply is exact. The add rounds to nearest, but every value the walk can produce, below 128 in steps of 1/128, fits in 14 significant bits, so the accumulation is exact fixed-point with 7 fractional bits.
+  - There is no lower clamp, because the increment is never negative.
+- **Clamp.** If the sum is **strictly greater than 100.0**, the result is 99.99999237 (`002F9BE3`–`002F9BEC`). A sum of exactly 100.0 is kept (`jbe`). A capped value stays capped, because the next add exceeds 100 again.
+- **Store.** The result goes back to the f32 field it was read from (table above).
+- **Display.** The integer the game shows is produced later. `BattleStats_RebuildEffectiveStatsAndAffinityState` truncates each float with `cvttss2si` (`002FF0C2` Str, `002FF0CD` Mag, `002FF099` Vit, `002FF0B7` Spd). After equipment and licence bonuses it clamps each to 99 and stores the effective bytes `+0x2A`–`+0x2D` (`002FF840`–`002FF88E`).
+
+**The walk around it.**
+- `0030C470` zeroes the level byte `+0x1C2` (`0030C496`) and seeds each float with `(float)` of the row's base byte, with no clamp (`0030C50B`–`0030C546`). It then calls `0030C650(rec, target, 2)` (`0030C562`–`0030C56E`).
+- `0030C650` runs one iteration per level from the current level to `min(target, 99)` (`0030C67A`–`0030C682`, back-edge `0030C865`). It skips growth when the level is already 99 (`0030C6CC`) or when the record kind `+5` is non-zero (`0030C6D9`).
+- So for a party record walked up from 0, **`stat(L) = min-clamp(base + L × g / 128)`**. The level itself never enters the float formula.
+
+**3. One formula or four?** One formula. All four stats call the same function with the same operation; only the f32 field and the row byte differ. The groups are three bytes apart in the row and four bytes apart in the record. HP and MP use different functions: a level-indexed table with a random bonus (`002F9A60`, `002F9B20`).
+
+**4. Worked example: Vaan, party row 0 (shipped `battle_pack.bin`, row bytes `+0x1E`–`+0x29` = `17 48 00 16 43 00 18 30 00 18 12 00`).**
+
+| stat | base | growth g | per level (exact) | level 1 | level 99 | level-ups adding +1 / +0 (levels 2–99) |
+|---|---|---|---|---|---|---|
+| Strength | 23 | 72 | +0.5625 | 23.5625 → 23 | 78.6875 → 78 | 55 / 43 |
+| Magick Power | 22 | 67 | +0.5234375 | 22.52 → 22 | 73.82 → 73 | 51 / 47 |
+| Vitality | 24 | 48 | +0.375 | 24.375 → 24 | 61.125 → 61 | 37 / 61 |
+| Speed | 24 | 18 | +0.140625 | 24.14 → 24 | 37.92 → 37 | 13 / 85 |
+
+- **Fixed increments.** The float gain per level is fixed, and the displayed base stat rises by 0 or 1 per level. It never rises by 2, because every character row's g is below 128.
+- **Other characters.** The other five main characters' g bytes are: Ashe 68/70/44/17, Fran 64/63/47/18, Balthier 67/59/45/19, Basch 69/56/36/16, Penelo 65/72/48/16.
+- **When the cap matters.** The cap never fires for the main cast, whose largest level-99 value is 78.69. It does fire for the Esper rows' Magick Power (base 47, g 75–78) and on the first growth of rows 17, 25 and 26. Those rows have base `0xFF` (255) and sit above 100 until `002F9BEC` clamps them.
+- **Method.** The level-1 and level-99 values were computed with float32 arithmetic that mirrors `002F9BD7`–`002F9BEC`. None of this was executed in the game.
 
 ## 5. The third argument is a silence flag
 
@@ -195,7 +261,7 @@ called with exactly the literals that document decodes: **`0x40` is centre pan**
   `002FF0CD`), **Vitality** (`+0x18`, `002FF099`) and **Speed** (`+0x1C`, `002FF0B7`). They are converted with
   `cvttss2si`, clamped, and stored as the effective bytes 6, 7, 8 and 9 (`002FF840`–`002FF88E`), in that order.
   *(Original text: which stats they are; the note 2026-09-11 follows)* (note 2026-09-11: the four
-  f32 at `+0x10`–`+0x1C` exist only for party records of type `0x1B`–`0x27`; a spawn-backed record
+  f32 at `+0x10`–`+0x1C` exist ~~only for party records of type `0x1B`–`0x27`~~ on every kind-0 (party-table) record, rows 0–5 included *(corrected 2026-10-02, OPUS: the growth block is gated on the kind byte `+5`, not the type id, `0030C6D9`–`0030C6DD`; §4 and CONTRACT-level-advance-and-growth.md)*; a spawn-backed record
   holds eight i16 in the same bytes — [the field map](../08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md) §2.2). **Their widths, growth
       functions and growth-record bytes are read; their names are not.**
 - [x] ~~What the two non-float growth functions (`002F9A60`, `002F9B20`) compute — neither takes a growth
@@ -416,8 +482,8 @@ where the `1` comes from — returns 0 when its second argument is zero, and oth
 `003B02A0(unitId, &unitId, 1, 0x71, 5)`. §6 stops the fanfare at `002DF220`; two instructions later
 the block ends `mov edx, eax / mov ecx, 1 / call 00329210`, with the voice handle `002DF220` returned.
 
-**Not claimed.** What `0035D8C0`, `0046A690`, `003B02A0`, `00329210` or bank 7 do — **their bodies
-were not read beyond their argument shapes.** Which stats the six fields are. Nothing was executed.
+**Not claimed.** What ~~`0035D8C0`, `0046A690`, `003B02A0`,~~ `00329210` ~~or bank 7~~ do — **their bodies
+were not read beyond their argument shapes.** ~~Which stats the six fields are.~~ Nothing was executed. *(answered: see §8 — `0046A690` posts the level-up message, event 4, and there is no bank 7, only slot 7 of the live bank (UQ-135); `003B02A0` spawns presentation `0x71` (narrowed 2026-09-25); the six fields are HP, MP, Strength, Magick Power, Vitality and Speed (UQ-134); `0035D8C0` is the `002905D0` manager dispatch ("The `0035D8C0` exclusive subtree"); 2026-10-02, OPUS)*
 
 *Since answered in part (2026-09-29, FABLE, Claude Opus 5.5): the six growth calls write HP `+0x08`, MP `+0x0C` and the four
 f32 base stats `+0x10`, `+0x14`, `+0x18`, `+0x1C` ([the level-advance contract](CONTRACT-level-advance-and-growth.md) §3, LU-5, LU-8).

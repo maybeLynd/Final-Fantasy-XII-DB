@@ -141,8 +141,8 @@ at `002F9F37`/`002F9F42` and indexed by `slot*4`:
 | 2 | `0x10DC` | `0x1118` | 60 |
 | 3 | `0x1118` | `0x1154` | 60 |
 
-**Slot 1's range contains slots 2 and 3 entirely.** The item-id page's §3 lists slot 1 as
-`0x10C8`..`0x10DB` — the value that would make the four ranges contiguous — while **its own text two
+**Slot 1's range contains slots 2 and 3 entirely.** The item-id page's §3 ~~lists~~ listed slot 1 as
+`0x10C8`..`0x10DB` — the value that would make the four ranges contiguous — *(answered: corrected there 2026-09-22 to `0x10C8`..`0x11A3`; see item-id-encoding-and-equipment-compatibility.md §3, the `002F9F20` row; 2026-10-02, OPUS)* while **its own text two
 clauses later speaks of ids `0x1184`..`0x11A3` being reached during the walk**, which is only
 possible under the measured bound. *So the ranges are coarse search bounds and not slot definitions;
 the slot filter is EQ-3, and that is why they are allowed to overlap.*

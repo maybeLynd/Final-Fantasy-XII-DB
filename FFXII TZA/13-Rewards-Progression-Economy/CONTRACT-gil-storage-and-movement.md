@@ -30,7 +30,7 @@ audit:
 
 > **Authored 2026-09-22 by FABLE.** S-32's binding gap is *"EXP/LP division only, of 5 pages"*. The
 > loot rolls and the chain were taken at `8cfdf3851`; **this takes the gil paths.** The death
-> sequence and the level-up remain uncontracted and this document does not claim them.
+> sequence and the level-up ~~remain uncontracted~~ have since been contracted *(answered: see CONTRACT-defeat-rewards-sequence.md and CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)*, and this document does not claim them.
 >
 > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
 > system's operations have no cross-operation invariant or ordering it leaves unstated.* §4 is six
@@ -121,7 +121,7 @@ maintains, which this subsystem updates but does not own.
 | **Sibling** | [`CONTRACT-experience-and-licence-award.md`](CONTRACT-experience-and-licence-award.md) — S-32's first |
 | **Sibling** | [`CONTRACT-loot-rolls-and-the-chain.md`](CONTRACT-loot-rolls-and-the-chain.md) — S-32's second |
 | **Meters into** | `PlatformOnlineAchievements`' counters (GL-2) |
-| **Uncontracted** | the death sequence and the level-up — S-32's other two pages, not claimed here |
+| ~~**Uncontracted**~~ **Contracted separately** | the death sequence and the level-up — S-32's other two pages, not claimed here *(answered: CONTRACT-defeat-rewards-sequence.md, CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)* |
 
 ## 7. State transitions
 
@@ -189,7 +189,7 @@ thunk from the body's own list (GL-5).
   `*(01F84450)` via `008632B0` (kinds 6/7 → counter ids 8 / `0xA` at `00D10550`). The
   counter-object getter `0020CE00` has exactly three callers — `00863240`, `00863280`,
   `008632B0` — and the bodies calling that accessor family (`00315FDA`, `003162E0`,
-  `00316440`, `00316A63`, `0034C9A0`, `00352250`) are disjoint from all 21 bodies calling
+  `00316440`, `00316A63`, `0034C9A0`, `00352250`) are disjoint from all ~~21~~ 22 *(corrected 2026-10-02, OPUS: 19 + 3, GL-5)* bodies calling
   `GameState_GetGil`/`00309BF0`: **no function both touches a counter accessor and reads the
   balance**, so no code path compares metered totals to `+0x08`. Residual: a reconciliation
   split across a queued message or stored intermediate is outside a per-body census; within
@@ -206,7 +206,7 @@ thunk from the body's own list (GL-5).
 | GL-6 — the three-phase spend | the three `BattleAction_*` writers present in the same census | 1 |
 | the thirteen callers' identities and `AI-8` | [the gil page](gil-storage-clamp-and-every-path-that-moves-it.md) §§4–5 | 1 |
 | `003F4AA0` is a reward-bundle record applier; feeder `00290130` ~~is statically orphaned~~ **is reached from verb `037C questresultwindow` through the thunk `002E1A50` (`CON-174`; `falsify_gil.py` K1)** | `003F4AAA`–`003F4B3B` read whole; `00290130`–`0029016E` and `003F4C30`–`003F4DCA` read; route census over all `.pdata` bodies — zero call/jmp/lea/imm edges, zero data qword slots, sole RVA32 slot is its own `.pdata` record | 1 |
-| GL-3 — no consumer reconciles meter against balance | `0020CE00` caller census = `00863240`/`00863280`/`008632B0` only; accessor-family callers `00315FDA`/`003162E0`/`00316440`/`00316A63`/`0034C9A0`/`00352250` disjoint from the 21 `GetGil`/thunk bodies | 1 |
+| GL-3 — no consumer reconciles meter against balance | `0020CE00` caller census = `00863240`/`00863280`/`008632B0` only; accessor-family callers `00315FDA`/`003162E0`/`00316440`/`00316A63`/`0034C9A0`/`00352250` disjoint from the ~~21~~ 22 *(corrected 2026-10-02, OPUS: 19 + 3, GL-5)* `GetGil`/thunk bodies | 1 |
 
 ## 16. Parity plan
 

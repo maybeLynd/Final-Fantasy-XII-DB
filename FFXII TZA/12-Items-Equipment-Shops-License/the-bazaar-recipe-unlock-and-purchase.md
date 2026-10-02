@@ -72,7 +72,7 @@ Shards …) come back every time, and the seven Grimoires behave differently aga
 | `+0x16` / `+0x18` | u16 / u8 | required loot 1 and the **sold count** it needs | the refresh (`0030B375`–`0030B3DA`); the purchase reset (`0030B20C`) |
 | `+0x1A` / `+0x1C` | u16 / u8 | required loot 2 and count | `0030B3E0`–`0030B44C`; `0030B225` |
 | `+0x1E` / `+0x20` | u16 / u8 | required loot 3 and count | `0030B44E`–`0030B45F`; `0030B240` |
-| `+0x22` | u16 | 120 on every shipped row; no reader found | — |
+| `+0x22` | u16 | 120 on every shipped row; ~~no reader found~~ the good's icon frame, read by `0057AC10`, `0057B1A0`, `003F41C0` and `0057DC30` *(answered: see §7, UQ-130 ANSWERED 2026-09-17; 2026-10-02, OPUS)* | — |
 
 An unused granted slot has count 0 (the id word is then 0, *Potion*, and is skipped by the count
 test at `002FD7FA`); an unused requirement likewise ships as id 0 with count 0 (§2.4 step 4).
@@ -88,7 +88,7 @@ marker** — set and cleared by `BattleIdClassD_SetRuntimeFlagBit2` (`0030B630`)
 the refresh, the reset, the rebaser and the query arm (fourteen sites; re-counted 2026-09-22 SWE2-CONTRACT). The query record's class-18 arm copies
 bits 0–2 into record `+0x44` (`0031DA69`–`0031DA9D`), which is what the bazaar list draws from.
 The rebaser `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` masks all 128 bytes
-with `0xF8` (`0030B739`–`0030B75B`) when the block is bound (`00233C10`) and after a save image is
+with `0xF8` (`0030B739`–`0030B75B`), having first zeroed the 512 loot-sold tally bytes at `+0x57C8` (`0030B702`–`0030B737`) *(corrected 2026-10-02, OPUS: checked at `0030B702`–`0030B737`; CONTRACT-bazaar-unlock-and-purchase.md §14 states it)*, when the block is bound (`00233C10`) and after a save image is
 rebound (`SaveRuntime_RebindImageBackedGameplayState`, `00238A80`) — see §7.
 
 **The loot's sold tally** — one byte per loot id in the loot class's **region B** at `state +
@@ -180,9 +180,9 @@ buy(good):       grant the three pairs ; gil -= price ; availableNow = 0 ; tally
 
 ```
 shop UI (0056D370)
-  -> Shop_CommitSaleItemAndGil(item, n, gil, flags)
+  -> Shop_CommitSaleItemAndGil(item, n, gil, flags)   <- corrected 2026-10-02, OPUS: (id, qty, total, 0) - the fourth argument is a literal 0 (0056D457 xor r9d, r9d), so no gil line
        -> 003008A0(item, -n, 0, 1, flags) ; GameState_SetGil ; 003008A0(item, +n, 0, 3, 0) ; 0030B270
-  -> Shop_CommitPurchaseItemAndGil(good, 1, price, flags)
+  -> Shop_CommitPurchaseItemAndGil(good, 1, price, flags)   <- corrected 2026-10-02, OPUS: (good, qty, total, 0) - qty is the panel's word +0xDC, total = (price & 0x7FFFFFFF) x qty, the fourth argument 0 (0056D457-0056D49A); section 7, UQ-131
        -> 003008A0(good, 1, 0, 1, flags) -> InventoryBundleClass0D_ApplyNestedItems -> 003008A0(item, count, 0, 1, flags) x3
        -> GameState_SetGil ; 0030B180(good) -> flags[row] &= ~2 ; 003008A0(loot, 0, 1, 3, 0) x3
 menu: 0035D3x0 / 0031C5D0(class 18, row) -> record +0x44 = flags[row] & 7
@@ -287,8 +287,8 @@ menu: 0035D3x0 / 0031C5D0(class 18, row) -> record +0x44 = flags[row] & 7
           `Shop_CommitPurchaseItemAndGil(id, qty, total, 0)`. The fourth argument is a literal 0, and the quantity is
           the panel's, not a fixed 1.
       - **Only in bazaar mode.** When the mode byte is `0x0B` (`+0xE4 & 0x3FC0 == 0x2C0`), a purchase also calls
-        `BattleIdClassD_SetRuntimeFlagBit2(id, 0)` (`0056D4AC`–`0056D4C0`). Then:
-        - a purchase calls the 411-byte achievement routine with id `0x13` and the good;
+        `BattleIdClassD_SetRuntimeFlagBit2(id, 0)` (`0056D4AC`–`0056D4C0`). ~~Then:~~ That test guards only this call; the rest runs in every mode *(corrected 2026-10-02, OPUS: checked at `0056D4AC`–`0056D4D2` — the `0x2C0` test skips only `call 0030B630`, and `cl = 0x13` / `call 00316A50` runs on every purchase; the PlatformOnlineAchievements crossing below)*:
+        - a purchase, bazaar or not, calls the 411-byte achievement routine with id `0x13` and the good;
         - a sale in mode `0x07` (`0x1C0`) calls it with id `0x0E` and the quantity;
         - the gil display is moved by the signed total (`0056D4D9`).
 

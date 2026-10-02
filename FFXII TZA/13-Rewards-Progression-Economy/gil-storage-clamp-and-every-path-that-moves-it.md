@@ -122,7 +122,7 @@ many places as it is written.
 ## 5. Gil is an execution resource — confirming `AI-8`'s flagged inference
 
 `AI-8` lists three execution-resource pools — `raw[0x4C]` (int16), `raw[0x4E]` (byte), and a global
-pool via `FUN_00253690` with per-unit fallback `unit[0xE58]` — and records **gil as a flagged
+pool via `FUN_00253690` with ~~per-unit fallback~~ `unit[0xE58]` *(corrected 2026-10-02, OPUS: `+0xE58` is the gil cost reserved for the action in progress, not a purse: `0030EFC0` stores `00309060`'s result there, the refund `00300280` adds it back and the consume path `00305640` clears it; 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:234; using-an-item-is-an-action-that-costs-an-item.md, "The action gil cost: 00309060")* — and records **gil as a flagged
 inference for the third**. The inference is correct, and here is the evidence:
 
 ```asm
@@ -138,7 +138,7 @@ inference for the third**. The inference is correct, and here is the evidence:
 
 So `BattleAction_PrepareExecutionResources` **reads gil through `00253690`, subtracts the action's
 cost, and writes the result back** — with the reserved amount stored at `unit + 0xE58`, exactly the
-per-unit fallback field `AI-8` names. `00305640` commits and `00300280` refunds against the same
+~~per-unit fallback~~ field `AI-8` names *(corrected 2026-10-02, OPUS: a reservation, not a fallback pool; `+0xE58` is the gil cost reserved for the action in progress, not a purse: `0030EFC0` stores `00309060`'s result there, the refund `00300280` adds it back and the consume path `00305640` clears it; 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:234; using-an-item-is-an-action-that-costs-an-item.md, "The action gil cost: 00309060")*. `00305640` commits and `00300280` refunds against the same
 field.
 
 **This confirms a flagged inference; it does not discover it.** `AI-8` remains the owner of the
@@ -196,11 +196,11 @@ prepare and consume changes what is refunded.
 
 ## 10. What is not known
 
-- ~~**and whether it reads `cl` or `ecx`**~~ — **`cl`, settled §13.** Still open: **what `00316A50`
+- ~~**and whether it reads `cl` or `ecx`**~~ — **`cl`, settled §13.** ~~Still open:~~ *(answered: see CONTRACT-gil-storage-and-movement.md GL-2 and §14 — kind 6 adds to the saturating gained dword `[020927C0] + 0x3860`, kind 7 to the spent dword `+0x3864`, and they feed counter ids 8 / `0xA`; 2026-10-02, OPUS)* **what `00316A50`
   does with kinds 6 and 7** beyond rejecting kinds ≥ 30 and indexing its 30-entry table.
-- **How the award amount is computed** — `BattleUnit_ProcessDefeatRewardsAndLoot` is named as the
-  award caller but its computation is not read here. It is the natural next step and belongs beside
-  [`loot-drops-and-enemy-chain.md`](loot-drops-and-enemy-chain.md).
+- ~~**How the award amount is computed** — `BattleUnit_ProcessDefeatRewardsAndLoot` is named as the~~
+  ~~award caller but its computation is not read here. It is the natural next step and belongs beside~~
+  ~~[`loot-drops-and-enemy-chain.md`](loot-drops-and-enemy-chain.md).~~ *(answered: see CONTRACT-defeat-rewards-sequence.md DR-4 and what-happens-when-an-enemy-dies.md — gil = (defeated level − baseline) × `[+0xE78] + 0x30` + `[+0xE70] + 0x30`, plus the effect-12 conversion, `0031251D`–`00312546`; 2026-10-02, OPUS)*
 - ~~**`003F4AA0`**, the one unnamed caller.~~ **Read §13a (2026-09-22, SWE2-CONTRACT)**: a
   reward-bundle record applier — when bit 0 of `[rcx]` is set it does
   `SetGil(GetGil() + [rcx+4])`, then grants `[rcx+8]` counted items (stride-4 entries at
@@ -209,7 +209,7 @@ prepare and consume changes what is refunded.
   keyed on `(edx, r8d)` (key2 stored at record `+0x24`), applies it, then posts message
   `0x100` via `00244F50`. ~~**`00290130` is statically orphaned** — zero edges of every
   enumerated route form; the bundle-claim entry has no invoker in the shipped image.~~ **`00290130` is reached through its 5-byte thunk `002E1A50` (`jmp 0x290130`), which is called at `00344C9A` in `FUN_00344C60`, the begin handler of script verb `037C questresultwindow`** (2026-09-29, OPUS falsification pass 1, `CON-174`).
-- **What determines an action's gil cost** — `00309060` in §5 is called but not read.
+- ~~**What determines an action's gil cost** — `00309060` in §5 is called but not read.~~ *(answered: see using-an-item-is-an-action-that-costs-an-item.md, the section "The action gil cost: 00309060" - `10 × trunc(row.b[+0x0A] × 64.0 / 50.0)` under its gates, else 0; 2026-10-02, OPUS)*
 - ~~Whether the two wrappers (`003004B0`, `00300500`) add behaviour beyond their names.~~ **Both
   do — §13**, and one of them changes what the meter records.
 
@@ -291,7 +291,7 @@ mean is not established, and this pass does not read the rest of `00316A50`.
 
 > **The pre-floor is not redundant with the setter's clamp — it changes the statistics.** Spending
 > 1,000 from a balance of 500 through `003004B0` sets 0 and meters a **spent** delta of **500**; the
-> same intent expressed as `SetGil(-500)` meters **500** as well, but `SetGil(newValue)` computed by a
+> same intent expressed as `SetGil(-500)` ~~meters **500** as well, but~~ meters **1,000**, the distance from 500 to `-500`, because the delta is taken on the raw argument before the floor (`00254EF1`–`00254F02`; GL-3) *(corrected 2026-10-02, OPUS)*; generally, `SetGil(newValue)` computed by a
 > caller that went further negative meters the full negative distance. §3 already says the delta is
 > measured before the clamp; this says which callers keep the meter honest and which do not.
 
@@ -326,7 +326,7 @@ The same pass bounds §10's last question: **no consumer reconciles the meter ag
 balance.** The meter's counter records live behind `0020CE00()` (singleton `01F84450`), which
 has exactly three callers — `00863240`/`00863280`/`008632B0` — and every body calling that
 accessor family (`00315FDA`, `003162E0`, `00316440`, `00316A63`, `0034C9A0`, `00352250`) is
-disjoint from all 21 bodies calling `GameState_GetGil` or its thunk. Metered totals and the
+disjoint from all ~~21~~ 22 bodies calling `GameState_GetGil` or its thunk *(corrected 2026-10-02, OPUS: 19 direct and 3 through `00309BF0`, §4's census and CONTRACT-gil-storage-and-movement.md GL-5)*. Metered totals and the
 balance never meet in one body.
 
 ### ✔ New: the direct-write question is now bounded
@@ -365,9 +365,9 @@ from `00320D50()`. **`FU-2` names that field**: the **walked-distance total**, m
 exact ceiling is not**, and a reimplementation that clamps only gil would let one of the two fields
 run past a limit the engine enforces on both.
 
-**Not claimed.** What `00316A50` does with kinds 6 and 7 — only its argument handling and its table's
-shape were read. How the award amount is computed, what determines an action's gil cost (`00309060`
-unread) and what `00320D50` returns. Whether anything writes
+**Not claimed.** ~~What `00316A50` does with kinds 6 and 7 — only its argument handling and its table's~~
+~~shape were read. How the award amount is computed,~~ *(answered: the kinds 6 / 7 meter — CONTRACT-gil-storage-and-movement.md GL-2 and §14; the award amount — CONTRACT-defeat-rewards-sequence.md DR-4; 2026-10-02, OPUS)* Still not claimed: ~~what determines an action's gil cost (`00309060`~~
+~~unread)~~ *(answered: see using-an-item-is-an-action-that-costs-an-item.md, the section "The action gil cost: 00309060"; 2026-10-02, OPUS)* and what `00320D50` returns. Whether anything writes
 `[02092758] + 8` through a handed pointer — **outside this instrument's reach and said so.** Nothing
 was executed and nothing was observed live.
 
@@ -450,7 +450,7 @@ becomes `rdx`, then `jmp 00246AD0` at [`00246ACA`](../_index/ADDRESS-INDEX.md). 
 
 ## SWE2-EC7-37 update (2026-09-19) - `008626C0`
 
-`008626C0` (529 B) is a gil move/clamp body - `01F44830`, `00203170` pair plus `00202D70`/`00808C40`. Interior anchor `0086275F` (a `00203170` call).
+`008626C0` (529 B) is ~~a gil move/clamp body~~ the 529-byte pool helper of the binder subtree, not a gil path: an SSE float body that is not among `00254EE0`'s thirteen callers *(corrected 2026-10-02, OPUS: checked at `008626C0`; §4's census)* - `01F44830`, `00203170` pair plus `00202D70`/`00808C40`. Interior anchor `0086275F` (a `00203170` call).
 
 
 ## SWE2-EC7-64 update (2026-09-19) - `0029CE40`
@@ -473,7 +473,7 @@ is set and the `0x160`-stride record's `word[+0x2DA]`
 minus `word[[+0x298]+6]` plus `word[[+0x118]+6]` still
 equals `word[+0x15A]`, nothing changes - otherwise bit 2
 arms and the index lands at `+0xB58` - the
-position-watch flag the gil paths maintain.
+position-watch flag ~~the gil paths maintain~~ of the UI binder, which moves and reads no gil *(corrected 2026-10-02, OPUS: the UI crossing paragraph above)*.
 Interior anchor `00296B2D` (the `0x160` index).
 
 ## SWE2-EC7-103 update (2026-09-20) - `00272EE0` measured
@@ -483,6 +483,6 @@ Interior anchor `00296B2D` (the `0x160` index).
 four-iteration `0035BB20(i)` scan finds the entry
 with `dword[rax + 4] == edi` and returns
 `movsx word[rax + 0x60]`; no match returns 6 -
-the code-to-word translate the gil paths share.
+the code-to-word translate ~~the gil paths share~~ of the UI menus, which no gil path reads *(corrected 2026-10-02, OPUS: the UI crossing paragraph above)*.
 Interior anchor `00272EFC` (the `+4`
 compare).

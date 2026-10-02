@@ -261,8 +261,8 @@ listed separately in §11.
   session were not retained. New observation would be needed for those contents.
 - No continuous binding/allocation lifetime, setter-to-consumer chronology, death timing, or
   rendered amount is established by EXP-081.
-- Shipped reachability of zero-count/missing descriptors, high relocation bases, level-zero
-  rewards, and the synthetic kind-`0xFF` roster case remains separately unproved.
+- ~~Shipped reachability of zero-count/missing descriptors, high relocation bases, level-zero~~
+  ~~rewards, and the synthetic kind-`0xFF` roster case remains separately unproved.~~ Shipped reachability of a high relocation base, an `.ard` buffer at or above 4 GB, remains open *(answered for the other three: see experience-and-license-point-award.md §7, GR-18 — with shipped data every unit row selects inside a present, non-empty reward table, a level below its baseline is unreachable and a `0xFF` selector is refused; 2026-10-02, OPUS)*.
 - Names and producer semantics of the status-mask bits and ID policies remain in their owning
   system pages; reading a shared constant does not prove a shared control variable.
 - Full defeat orchestration, notification subscribers and all reward/growth/resource dependencies
@@ -610,8 +610,8 @@ static int award(BattleUnit *c)   /* 002F8C63-002F8C85 */
   contract's arithmetic (§3), and traced to registry slots `02EBF148` and `02EBF140` with the
   definition-row words that index them (§6). What the rows' own fields mean beyond `+0x34` is
   still open.
-- Which statuses occupy bits 0, 1 and 31 of the `0x80000003` mask; the question is already open in
-  `03-World-Area-Field`.
+- ~~Which statuses occupy bits 0, 1 and 31 of the `0x80000003` mask; the question is already open in~~
+  ~~`03-World-Area-Field`.~~ *(answered: see what-happens-when-an-enemy-dies.md, "What the player sees" — KO, Stone and X-Zone, statuses 0, 1 and 31; 2026-10-02, OPUS)*
 - Why the licence filter admits `0x1A` and `0x00`–`0x06` specifically.
 
 **One scope note of my own.** The byte premise behind the kind-1 correction holds on the roster
@@ -638,7 +638,7 @@ their upper bound. They belong to `BattleLocomotion_DecodeOrderGoal`, not to any
 | the stored row pointer is built in 32-BIT arithmetic and zero-extended, so a base above 4 GiB truncates and a non-zero base can store exactly NULL | `0023A99C imul ecx, edx`, `0023A99F add ecx, eax`, `0023A9A5 mov [rdi+0xE70], rcx`. Executed — `EXP-076` drives base `0x100000000` with reference 0 and index 0 as its own control | 1 (isolated original-code) | PROVEN |
 | three of the four bound guards are UNSIGNED and one is SIGNED, so a zero count is the only case an index passes | `ja` at `0023A6BB`, `0023A747`, `0023A768` against `jg` at `0023A726`; `dec ecx` on 0 gives `0xFFFFFFFF` | 1 (isolated original-code) | PROVEN |
 | the divided path uses a SIGNED divide over a subtraction that can go negative | `cdq` / `idiv ebp` at `002F8D1C`–`002F8D1F`; `level - 1` is `-1` for a level-0 corpse and the rebuild writes level 0 at `0030C496` before growth. Nothing clamps it | 1 (isolated original-code) | PROVEN |
-| whether a level-0 unit can be alive at kill time is unknown | that is what decides whether the negative path is reachable — one observation, §13 | none | UNKNOWN |
+| whether a level-0 unit can be alive at kill time ~~is unknown~~ *(answered: see experience-and-license-point-award.md §7, GR-18 — an enemy is grown to level 1 at init (`0023AD37`) and the only other enemy grower keeps level ≥ baseline for every shipped argument, so not with shipped data; 2026-10-02, OPUS)* | that is what decides whether the negative path is reachable — one observation, §13 | ~~none~~ static, shipped-data census (GR-18) | ~~UNKNOWN~~ ANSWERED (GR-18) |
 | the doubling happens after the division, and zero wins over double | `002F8D26`–`002F8D40`, in that order: double adds, then zero assigns | 1 (isolated original-code) | PROVEN |
 | either modifier bank carries the effect alone | the two banks `+0x6B` and `+0x7B` are tested with OR — `002F8D2A`/`002F8D2E` and `002F8D36`/`002F8D3A` in `002F8BB0`, `002F914B`/`002F9151` in `002F90C0` | 1 (isolated original-code) | PROVEN |
 | licence points are gated globally before any argument is examined | `00264150` at the top of `002F90C0`: a non-zero return means 0 | 1 (isolated original-code) | PROVEN |

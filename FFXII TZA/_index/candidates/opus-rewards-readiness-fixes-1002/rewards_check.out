@@ -1,0 +1,19 @@
+ok   002F90E7 movzx eax, byte ptr [rbx + 4]
+ok   002F90EB cmp al, 0x1a
+ok   002F90EF cmp al, 6
+ok   003181C7 movzx eax, byte ptr [rcx + 5]
+ok   0031815C cmp dword ptr [rip + 0x1fab001], r14d
+ok   00318165 call 0x318820
+ok   00318527 cmp dx, ax
+ok   00312489 mov cl, 0xb
+ok   0031248F mov dword ptr [rdi + 0x190], r8d
+ok   00312432 mov ecx, dword ptr [rdi + 0x18c]
+ok   00312438 mov eax, 0x5f5e0ff
+ok   00312444 mov dword ptr [rdi + 0x18c], ecx
+ok   0030C7DB cmp byte ptr [rdi + 5], 0
+ok   0030C7E4 call 0x46a690
+ok   0030C6D9 cmp byte ptr [rdi + 5], 0
+ok   00319C3E mov dword ptr [rip + 0x2ba7418], 2
+ok   0028EF07 mov dword ptr [rax + 0x7c7c], 0
+ok   0028EF18 or dword ptr [rax + 0x7c7c], 8
+FAILS 0

@@ -78,7 +78,7 @@ are XOR-folded through two 10-bit shifts, then reduced `% 100` by the usual reci
 > counter** — exactly as the determinism work established for everything on this LCG. **Reloading a
 > save does not reroll either**, because that generator is seeded by a counter, not by the clock.
 
-## Two counters, not one
+## ~~Two~~ Three counters, not one (count corrected 2026-10-02, OPUS: the table has three rows; the third is the break counter)
 
 | global | keyed on | clamp |
 |---|---|---:|
@@ -100,7 +100,7 @@ record of how many times the chain has been broken, separately from how long it 
 | Is the 5 % / 60 % split really conditioned on the previous flip? | The tested bit and the written bit are **the same bit of the same global** — `022C3178 & 1` tested at `00318034`, and the flip's result OR-ed back into it before return. |
 | Is `0x28` a threshold or an index? | `cmp ecx, 0x28` / `setge` on a value that has just been reduced `% 100`. **A comparison against a modulo-100 result is a percentage.** |
 | Is this the same LCG as loot? | **Same multiplier `0x41C64E6D`, same increment `0x3039`, same state address `022C256C`** — three matches, not one. |
-| Could the chain key be a unit id rather than a kind? | It is **one byte at `+0x56`**, compared against a single global; a unit id would not survive the unit's death as a comparison target for the next kill. **Stated as a kind on that basis, not proven to be one.** |
+| Could the chain key be a unit id rather than a kind? | It is **one byte at `+0x56`**, compared against a single global; a unit id would not survive the unit's death as a comparison target for the next kill. ~~**Stated as a kind on that basis, not proven to be one.**~~ *(answered: see loot-drops-and-enemy-chain.md §8b, the AE-11 note — `+0x56` is the class row's type byte `+5`, sixty-four values in the shipped areas; 2026-10-02, OPUS)* |
 | Does chain length feed the coin? | **No.** The length is clamped and reported; the threshold selection reads only the sticky bit. |
 
 **What `0028EF00` and `0028EF70` present (added 2026-09-19, FABLE; five bodies read whole): the chain counter on the
@@ -115,10 +115,10 @@ up the number is redrawn every frame in a pulsing grey. *What flag bits 1 and 2 
 established.* Interior: `0028EF07`, `0028EF18`, `0028EF39`, `0028EF47`; `0028EF7F`, `0028EF93`, `0028EFA9`;
 `003F9E6F`, `003F9E84`, `003F9EC0`, `003F9EEC`, `003F9F06`, `003F9F0D`, `003F9F1B`.
 
-**What this document does not claim:** ~~what `0028EF70` and `0028EF00` present,~~ what `003183D0` does,
-what the `u16` at `[actor + 0xE68] + 0x40` identifies, what the state predicate at `00229E40`
-distinguishes (it changes a clamp from 999 to 998 and adds 1 to a reported length), or what the coin's
-success actually causes — **this function computes and reports it; the consequence is elsewhere.**
+**What this document does not claim:** ~~what `0028EF70` and `0028EF00` present,~~ ~~what `003183D0` does,~~
+~~what the `u16` at `[actor + 0xE68] + 0x40` identifies, what the state predicate at `00229E40`~~
+~~distinguishes (it changes a clamp from 999 to 998 and adds 1 to a reported length), or what the coin's~~
+~~success actually causes~~ *(answered: see loot-drops-and-enemy-chain.md §7 — AE-5: `003183D0` is the rank advance; AE-6: the coin waives its pickup penalty (`0031841D`); AE-10: the `u16` is the model id palette-swaps share; AE-9: `00229E40` returns the language id; 2026-10-02, OPUS)* — **this function computes and reports it; the consequence is elsewhere.**
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 
@@ -129,8 +129,8 @@ success actually causes — **this function computes and reports it; the consequ
 the language-code mapper, which maps the configured language code (`jp en fr de it es kr ch cn`) to the locale id
 ([language selection and locale ids](../19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md)).
 **The chain's 999 / 998 clamp and its +1 on the reported length therefore depend on the locale.** The companion
-test `00229E50` returns 0 for locale ids 0, 6, 7, 8, 10 and 11 (mask `0xD81`). Which clamp belongs to which locale is
-for the locale page to state; this note only names the input.
+test `00229E50` returns 0 for locale ids 0, 6, 7, 8, 10 and 11 (mask `0xD81`). ~~Which clamp belongs to which locale is~~
+~~for the locale page to state; this note only names the input.~~ *(answered: see loot-drops-and-enemy-chain.md §7 AE-9 — locale 0, Japanese, makes the predicate zero and keeps the 999 cap; every other locale selects 998, `0x3E6` (checked at `00317F2D`–`00317F61`); 2026-10-02, OPUS)*
 
 - **Presentation — CLIENT.** Three Presentation bodies (610, 896 and 6,441 bytes) read the same locale getter.
 - **Script_VM_Native_Bridge — CLIENT.** Two script-verb bodies (37 B and 47 B) read it.

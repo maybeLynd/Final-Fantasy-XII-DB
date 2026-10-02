@@ -346,7 +346,7 @@ register-path write is the only known access and the bit is, as far as the image
 | address | what |
 |---|---|
 | `02EBF120` | enemy definition table (ARD slot 2); rows by low byte; words `+0x00`, `+0x22`, `+0x24`, `+0x50`, `+0x08`, `+0x1C`, `+0x32`–`+0x36`; bytes `+2`, `+3`, `+4`, `+5`, `+0x15`, `+0x22`, `+0x23`, `+0x27` read here |
-| `02EBF130` | party definition table, 456-byte rows; words `+0x0A`–`+0x12`, `+0x14`, `+0x16`, `+0x1A`, `+0x30`, `+0x44`; bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27`, `+0x2B`, `+0x2C`, `+0x2E`, `+0x46`, `+0x47` read here |
+| `02EBF130` | party definition table, ~~456-byte rows~~ rows of the descriptor's word `+8` bytes, 128 in the shipped `battle_pack.bin` *(corrected 2026-10-02, OPUS: `0030C70B`-`0030C71D` multiply that word by the type byte; `0x1C8` = 456 is the spacing of the party stats records at `[02EBF190]`)*; words `+0x0A`–`+0x12`, `+0x14`, `+0x16`, `+0x1A`, `+0x30`, `+0x44`; bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27`, `+0x2B`, `+0x2C`, `+0x2E`, `+0x46`, `+0x47` read here |
 | `02EBF140`, `02EBF148`, `02EBF150`, `02EBF168` | the sibling tables the enemy row cross-references |
 | `02EBF170` | the text bank table: ≤ 32 banks (dwords from `+4`) of ≤ 2,048 text blocks, addressed by a row word split 5 : 11 (section 2.7) |
 | `02EBF028` | the area-state party table `00239960` walks: byte `+0` class, `+1` battle slot, `+2` starting level, word `+0x20` starting LP |

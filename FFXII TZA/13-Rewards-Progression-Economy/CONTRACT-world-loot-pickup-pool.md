@@ -240,8 +240,8 @@ remove (op 3) — identical but for the opcode and payload. Reimplement it once.
 ## 13. Runtime validation
 
 ~~**None.** Nothing here was observed running; every statement is static.~~ **[live]** The page's own
-`UQ-137` — that the `+0x58` handle requires the world-object manager to sit below 4 GB — is a live
-question and remains open.
+`UQ-137` — that the `+0x58` handle requires the world-object manager to sit below 4 GB — ~~is a live~~
+~~question and remains open.~~ is closed *(answered: see the register row UQ-137, SUPERSEDED 2026-09-26 under the runtime rule — the requirement chain is static and replayed (EXP-141) — and the pool page's ticked §5 box; 2026-10-02, OPUS)*.
 
 ### 13a. The five ops execute — `EXP-141`, and why nothing cited it (FABLE, 2026-09-21)
 
@@ -272,7 +272,7 @@ authority for the inputs supplied; **the pool, descriptor, item rows and manager
 fixtures and are MODEL-PROVEN**, and five leaf calls are scripted at their boundaries (the
 dispatcher, marshalling and return plumbing are real). **So this does not make the row live**: what
 is still unobserved is that *initialized gameplay* drives these inputs — reachability, not
-behaviour. `UQ-137` is untouched by it.
+behaviour. ~~`UQ-137` is untouched by it.~~ *(answered: `UQ-137` is closed, SUPERSEDED 2026-09-26 — see §13; 2026-10-02, OPUS)*
 
 > **Why this subsection had to be written at all.** `EXP-141` declares
 > `contract: 08-World-Entities/CONTRACT-world-loot-pickup-pool.md` in its frontmatter, and **that
@@ -319,7 +319,7 @@ of the pickup pool.
   so order `0x4165` resolves to "the nearest active world pickup". The function-graph index simply never
   recorded the edge; a whole-`.pdata` immediate-operand census finds it (and no other caller —
   `call`/`jmp`, `lea`, data-slot and disp32-RVA forms all negative besides this one site).
-* **`UQ-137`** **[live]**.
+* ~~**`UQ-137`** **[live]**.~~ *(answered: `UQ-137` is closed, SUPERSEDED 2026-09-26 — see §13; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 

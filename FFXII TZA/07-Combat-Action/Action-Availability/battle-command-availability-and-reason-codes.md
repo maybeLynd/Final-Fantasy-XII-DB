@@ -300,7 +300,7 @@ UI menu build (16 sites)
       [where MP comes from](../../10-Status-Periodic-Terminal/where-mp-comes-from.md)) — reason `0x13` is "not enough MP"; `+0x4E` is **the Mist charge count**, the whole
       max-MP units the secondary pool `+0x06` holds, which a kind-5 / 6 action needs its row `+0x0A`
       of (reason `0x14`, `00303C4B`; Consume takes `max × +0x0A` from `+0x06`); the third is **gil**,
-      confirmed 2026-09-03 from `0030EFBB`–`0030EFD8` (reason `0x15`), and its check runs only for a
+      confirmed 2026-09-03 from `0030EFBB`–`0030EFD8` (reason `0x15`); the struck question's `unit[0xE58]` is not a per-unit fallback pool but the gil cost reserved for the action in progress *(corrected 2026-10-02, OPUS: `+0xE58` is the gil cost reserved for the action in progress, not a purse: `0030EFC0` stores `00309060`'s result there, the refund `00300280` adds it back and the consume path `00305640` clears it; 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:234; using-an-item-is-an-action-that-costs-an-item.md, "The action gil cost: 00309060")*, and its check runs only for a
       **party-table** unit — `raw[5] == 0` at `00303C6D` (AI-5). Section 11's inference stands as read.
 - [x] ~~What `raw[5]` selects.~~ **AI-5 ANSWERED by AL-1 (2026-09-10; ledger closed 2026-09-12,
       FABLE):** the byte is **the high byte of the encoded definition id** — `0` for a unit built from
@@ -477,7 +477,7 @@ different mask would reach the other two.
 | `0x12` | `00303BD0` | `FUN_003037A0` refused the action |
 | `0x13` | `00303BD0` | **16-bit resource pool** `raw[0x4C]` below the cost |
 | `0x14` | `00303BD0` | **8-bit resource pool** `raw[0x4E]` below the cost |
-| `0x15` | `00303BD0` | a **global** pool *and* a per-unit pool `unit[0xE58]` both below the cost |
+| `0x15` | `00303BD0` | a **global** pool *and* ~~a per-unit pool~~ `unit[0xE58]`, the gil cost already reserved for the action in progress, both below the cost *(corrected 2026-10-02, OPUS: `+0xE58` is the gil cost reserved for the action in progress, not a purse: `0030EFC0` stores `00309060`'s result there, the refund `00300280` adds it back and the consume path `00305640` clears it; 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:234; using-an-item-is-an-action-that-costs-an-item.md, "The action gil cost: 00309060")* |
 | `0x24` | `002FFCF0` | global gate; all ids refused except `0x113` and `0x95` |
 | `0x2C` | `002FFCF0`, `00306480` | null unit; or ids `0x106`–`0x112` in runtime mode 1 |
 
@@ -515,7 +515,7 @@ family. The convention is now attested at three offset pairs across status, rewa
 
 ### What this pass did not settle
 
-`FUN_003037A0`, `FUN_00309110`, `FUN_00308FF0`, `FUN_00309060` and `FUN_00253690` are unread, so the
+`FUN_003037A0`, `FUN_00309110`, `FUN_00308FF0`, ~~`FUN_00309060`~~ and `FUN_00253690` are unread *(answered for `00309060`: see using-an-item-is-an-action-that-costs-an-item.md, the section "The action gil cost: 00309060" - the gil cost reason `0x15` compares; 2026-10-02, OPUS)*, so the
 *cost* side of the resource check is still opaque — only the comparison shape is known. **AI-4 is
 closed** (the codes are enumerated); **AI-3 is largely answered** (the mapper is read and the opt-in
 bit identified); **AI-1 remains fully open** — nothing here maps a code to on-screen text.
@@ -624,7 +624,7 @@ from the bodies and this pass did not touch them. What changed is **who the syst
 
 **RNG_Random_Selection — SERVICE (2 edges).** `AiOrder_EvaluateAndResolveActionTarget` `003014C0` calls `BattleData_ResolveWeightedId` `00308EC0` and `RNG_SharedGameplayLCG_NextU32` `00328370`. The AI's target resolution takes weighted and random picks from the shared gameplay LCG; availability itself (`002FFCF0`) draws nothing.
 
-**Rewards_Progression_Economy — SERVICE and CLIENT (11 edges).** The cost leg `00303BD0` calls `GameState_GetGil` `00253690`: reason `0x15` is returned when the action's gil cost exceeds both the party's gil and the unit's own pool at `+0xE58`. The accessors are also called by `GameState_AddGilClampedAndNotify` `003004B0`, `003F4AA0`, `BattleUnit_ProcessDefeatRewardsAndLoot` `00312280`, `Loot_FindOverlappingPickupIndex` `002FB150`, `Loot_RollAdditionalItemChance` `00318510`, `Loot_FindNearestActivePickupPosition` `00319850`, `Reward_ComputeExperienceForRecipient` `002F8BB0` and `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650`. Gil is an availability input through `00303BD0`; the reward and loot bodies use the same gil, position, id and owner accessors for payouts.
+**Rewards_Progression_Economy — SERVICE and CLIENT (11 edges).** The cost leg `00303BD0` calls `GameState_GetGil` `00253690`: reason `0x15` is returned when the action's gil cost exceeds both the party's gil and ~~the unit's own pool~~ the cost already reserved for the unit's action in progress at `+0xE58` *(corrected 2026-10-02, OPUS: `+0xE58` is the gil cost reserved for the action in progress, not a purse: `0030EFC0` stores `00309060`'s result there, the refund `00300280` adds it back and the consume path `00305640` clears it; 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:234; using-an-item-is-an-action-that-costs-an-item.md, "The action gil cost: 00309060")*. The accessors are also called by `GameState_AddGilClampedAndNotify` `003004B0`, `003F4AA0`, `BattleUnit_ProcessDefeatRewardsAndLoot` `00312280`, `Loot_FindOverlappingPickupIndex` `002FB150`, `Loot_RollAdditionalItemChance` `00318510`, `Loot_FindNearestActivePickupPosition` `00319850`, `Reward_ComputeExperienceForRecipient` `002F8BB0` and `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650`. Gil is an availability input through `00303BD0`; the reward and loot bodies use the same gil, position, id and owner accessors for payouts.
 
 **Script_VM_Native_Bridge — CLIENT, OUT-OF-SCOPE (85 edges).** Script-side bodies call the page's actor accessors: `WorldActorScriptVM_InterpretBytecode` `0025E4C0`, `VMNativeCommand_ExecuteLifecycle` `002621D0`, `ScriptVM_WaitList_HasAnyActorChannelActive` `00267420` and `ScriptVM_WaitList_HasAnyActorResourceEntryActive` `002674B0` call `ActorManager_GetRecordByOrdinal` `00358940`; and native verb bodies such as `0033F7F0`, `0033FD60`, `00345CD0`, `00350DD0`, `003516E0` and `0050E060` (85 edges in all) call `00263FF0`, `Actor_GetWorldPosition` `00265020`, `002EA6A0`, `00358940`, `003590D0` and `00377C20`. Scripts address actors through the same manager record, position, predicate and focus accessors the menu's candidate enumeration uses (section 12); none of those verbs asks for command availability.
 

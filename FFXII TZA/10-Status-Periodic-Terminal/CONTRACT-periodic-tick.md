@@ -310,7 +310,7 @@ CONTRACT READY header as evidence of execution.*
 
 - ~~The other 62 bytes of stage 5's 64-byte records.~~ The rest of those records: they are the per-combatant records based at `0208D480` / `0208DE80` (where-mp-comes-from.md §5, CS-6); stage 5's counter is their field `+0x14` and `+0x18` is the walk-MP carry, so not 62 unread bytes; the remaining fields are not mapped here *(corrected 2026-10-02, OPUS: `00386885` / `003868AD`, `002F9474`)*.
 - ~~What values above 1 `0030AB40` returns — this caller reduces it to `> 1`, which constrains `Z-13`
-  without answering it.~~ *(answered: see CONTRACT-auto-status-rebuild.md §13f, EXP-197 — `0030AB40` returns `(computed == expected) + 1`, 1 or 2; 2026-10-02, OPUS)*
+  without answering it.~~ *(answered: see CONTRACT-auto-status-rebuild.md §13f, EXP-197 — `0030AB40` returns `(computed == expected) + 1`, 1 or 2, and 0 when its input guards fail (`0030AC42` / `0030AC46`); 2026-10-02, OPUS)*
 - Whether the `+0x2C` and `+0x140` flag bits are read anywhere but `003112F0`.
 - ~~What `byte[stats + 0x1C2]` is~~ *(answered: see the status write §2.4a — `(rand % level) + 1`, the unit level at `+0x1C2` — and CONTRACT-auto-status-rebuild.md §13al; 2026-10-02, OPUS)* — it bounds Regen's random heal and divides without a guard in that
   arm. ~~Named here as a field, not as a meaning.~~

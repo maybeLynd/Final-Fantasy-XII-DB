@@ -1,0 +1,16 @@
+ok   002F9BD0 movd xmm1, edx
+ok   002F9BD4 cvtdq2ps xmm1, xmm1
+ok   002F9BD7 mulss xmm1, dword ptr [rip + 0x5cbf55]
+ok   002F9BDF addss xmm1, xmm0
+ok   002F9BE3 comiss xmm1, dword ptr [rip + 0x5f954a]
+ok   002F9BEC movss xmm0, dword ptr [rip + 0xa15d88]
+ok   0030C757 movzx edx, byte ptr [rbp + 0x1f]
+ok   0030C768 movzx edx, byte ptr [rbp + 0x22]
+ok   0030C77E movzx edx, byte ptr [rbp + 0x25]
+ok   0030C794 movzx edx, byte ptr [rbp + 0x28]
+ok   0030C712 movzx ebp, word ptr [rcx + 8]
+ok   0030C71A imul ebp, ecx
+ok   008C5B34 = 0.0078125
+ok   008F3134 = 100.0
+ok   00D0F97C = 99.99999237060547
+FAILS 0

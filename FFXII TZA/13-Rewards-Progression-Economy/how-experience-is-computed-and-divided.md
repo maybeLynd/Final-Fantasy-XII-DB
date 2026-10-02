@@ -191,8 +191,8 @@ Fresh game-session evidence, complete orchestration and peer acceptance remain s
 *(Section added 2026-09-30 (FABLE); it replaces the last sentence of Evidence as the statement of what stays open.)*
 
 - **Peer acceptance:** SECTION-03 has the owner's review
-  ([`section03-owner-review.md`](../_index/candidates/section03-owner-review.md)) but no independent auditor
-  verdict. That is GR-16.
+  ([`section03-owner-review.md`](../_index/candidates/section03-owner-review.md)) ~~but no independent auditor~~
+  ~~verdict. That is GR-16.~~ *(answered: see the banner at the top — independently accepted with a narrowing 2026-10-01, SWE2-AUDIT-SEM, GR-16; 2026-10-02, OPUS)*
 - **Complete orchestration:** the whole defeat body is now read statically on
   [what happens when an enemy dies](what-happens-when-an-enemy-dies.md). No run executed it end to end.
 - **Fresh game-session evidence:** none. The claims above are tier-1 static, and the native controls ran the original

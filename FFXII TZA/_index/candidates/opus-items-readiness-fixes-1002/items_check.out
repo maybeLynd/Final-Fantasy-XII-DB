@@ -1,0 +1,13 @@
+ok   00300943 mov rax, qword ptr [rsi + 0x48]
+ok   0030904A movzx eax, byte ptr [rcx + 0x1e]
+ok   0030904E sub al, 5
+ok   00309054 movzx eax, byte ptr [rcx + 0xa]
+ok   00323EF3 movzx eax, byte ptr [rsi + 5]
+ok   00323EFF cmp byte ptr [rsi + 4], 6
+ok   0030B194 lea ecx, [r8 + 0x12]
+ok   0030B198 call 0x322c50
+ok   0056D4AC cmp eax, 0x2c0
+ok   0020E602 add rax, qword ptr [rip + 0x1d74f27]
+ok   00317B36 mov rax, qword ptr [rip + 0x2ba7653]
+ok   00317B3D add rax, 8
+FAILS 0

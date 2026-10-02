@@ -227,7 +227,7 @@ post-result event family (event `0x04`, *"… is now level {level}"*), per
 ## 9. Determinism
 
 **Not deterministic** — see `LU-8`. *This corrects the natural assumption: a level-up looks like pure
-table arithmetic and is not.* The four float stats **are** deterministic; only HP and MP roll.
+table arithmetic and is not.* The four float stats **are** deterministic; only HP and MP roll. *(Added 2026-10-02, OPUS: each grows by `g / 128` per level with no draw, `stat(L) = base + L * g / 128`, clamped to `99.99999237` once a sum exceeds `100.0` - `002F9BD0`; the level-up page, section 4a.)*
 
 ## 10. Failure paths and edge conditions
 
@@ -236,7 +236,7 @@ table arithmetic and is not.* The four float stats **are** deterministic; only H
 - A non-zero kind byte advances the level and changes no stat (`LU-4`).
 - A failed resolve faults on the first float growth call, **after HP and MP have been written**
   (`LU-5`, `LU-6`).
-- A record no battle unit owns levels silently (`LU-7`).
+- A record no battle unit owns ~~levels silently~~ still levels and posts event 4 (`0030C7E4`, before the owner test at `0030C7ED`); only the forwarding and audio calls need an owner, so it is silent only when notification is suppressed (`LU-7`) *(corrected 2026-10-02, OPUS: §4 LU-7's correction of 2026-09-25)*.
 
 ## 11. Observable behaviour
 

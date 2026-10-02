@@ -32,8 +32,8 @@ registry_slots:
 > and whether two pieces of equipment can be worn together comes down to one byte matching
 > another.
 
-**PARTIAL.** The ID encoding and the compatibility test are read at tier 1. The full category
-enumeration and the comparison/optimise logic are not.
+~~**PARTIAL.**~~ **AUDITED** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`)*. The ID encoding and the compatibility test are read at tier 1. ~~The full category~~
+~~enumeration and the comparison/optimise logic are not.~~ The full category enumeration and the comparison / Optimise logic are read too (§7, P-1 and P-4; §3, the `002F9F20` row).
 
 ## 1. What the player sees
 
@@ -118,7 +118,7 @@ carries both a *provides* byte and a *requires* byte, and only one direction is 
 | `002FD530` | `InventoryBundleClass09_ApplyGilAndNestedItems` | **read 2026-09-18 (FABLE).** `(id, count, r8, r9, flags)`: acts only for `r8 == 0` and `r9 == 1` (`002FD53F`..`002FD54C`); the row is registry slot `02EBF070`'s base plus `(id - 0x9000) × stride` (`+8`). It adds `count × row +0` gil (`GameState_GetGil` / `SetGil`, clamped at 0, `002FD5A9`..`002FD5C0`) and, when `flags` bit 0 is set, reports the difference through `00469E80`; then for each of the two nested entries `{u16 id +4, u16 qty +6}` and `{+8, +0xA}` whose id is not `0xFFFF` it calls `Inventory_ModifyEncodedItemAndUpdateDiscoveryState(id, qty × count, 0, 1, flags)`. Returns 0. |
 | `002FD640` | `InventoryBundleClass0A_ApplyNestedItems` | **read 2026-09-18 (FABLE).** Same guard and row rule over slot `02EBF068` with base `0xA000`; the row is six `u16` ids in two triples, `+0`..`+4` and `+6`..`+0xA`, and `flags` bit 1 selects the second triple (`002FD6BA`); every id of the chosen triple that is not `0xFFFF` is added with quantity `count` (not multiplied) through the same modify call (`002FD6C0`..`002FD757`). Returns 0. |
 | `002FD780` | `InventoryBundleClass0D_ApplyNestedItems` | **read 2026-09-18 (FABLE).** Same guard and row rule over slot `02EBF058` (the bazaar goods) with base `0xD000`; the row holds three `{u16 id, u8 qty}` pairs at `+4`/`+6`, `+8`/`+0xA` and `+0xC`/`+0xE`, and each pair with a non-zero quantity is added as `qty × count` through the same modify call (`002FD7F2`..`002FD85D`). Returns 0. |
-| `002FD880` | `InventoryEncodedGilClass0E_ApplyGilDelta` | not read |
+| `002FD880` | `InventoryEncodedGilClass0E_ApplyGilDelta` | ~~not read~~ read: adds `(id & 0xFFF) × delta` gil, the id is the amount *(answered: see §7, P-5; checked at `002FD880`–`002FD8C5`; 2026-10-02, OPUS)* |
 | `02EBF0F8` | equipment definition table header | — |
 
 ## 4. Data structures and formulas
@@ -163,9 +163,9 @@ Note the offsets differ by side — the test is **asymmetric**, comparing two di
 
 ```
 equip attempt / loadout build
-  -> Equipment_BuildRecommendedLoadoutForMappedStats     (not read)
-     -> Equipment_SelectPreferredCandidateByAuthoredStats (not read)
-        -> Equipment_ComputeComparisonMetricWithCompatiblePartner (not read)
+  -> Equipment_BuildRecommendedLoadoutForMappedStats     (not read)   <- corrected 2026-10-02, OPUS: read 2026-09-18 (section 3)
+     -> Equipment_SelectPreferredCandidateByAuthoredStats (not read)   <- corrected 2026-10-02, OPUS: read, P-4, 2026-09-12 (section 3)
+        -> Equipment_ComputeComparisonMetricWithCompatiblePartner (not read)   <- corrected 2026-10-02, OPUS: read, P-4, 2026-09-12 (section 3)
            -> Equipment_CheckPrimarySecondaryDefinitionCompatibility   <- THIS
               -> resolve definition records, compare one byte
 ```
@@ -198,7 +198,7 @@ Interior: `003231F9`, `0032322A`, `0032323B`, `0032324B`, `00323250`, `0032325F`
 - **The equipment table is data-driven** — stride at `+8`, record RVA at `+0xC`. Adding or
   resizing records is a data change, not a code change.
 - **One byte governs every weapon/off-hand restriction.** To change what pairs with what, edit
-  `+0x09` (primary side) and `+0x11` (secondary side) on the definitions — no code patch needed.
+  `+0x09` ~~(primary side)~~ on the off-hand item and `+0x11` ~~(secondary side)~~ on the main-hand weapon *(corrected 2026-10-02, OPUS: the main hand's `+0x11` must equal the off-hand's `+0x09`, checked at `002F7ECF` / `002F7F76` and both call sites `002FA00D`–`002FA013`, `002FA062`–`002FA069`; CONTRACT-equipment-compatibility.md EQ-1)* on the definitions — no code patch needed.
 - **The test is asymmetric.** Swapping which item is primary changes which fields are compared,
   so a pairing may validate in one order and not the other. Do not assume symmetry.
 - **XIIOnline:** equipment state is authoritative character data. Compatibility is computed
@@ -260,8 +260,8 @@ Interior: `003231F9`, `0032322A`, `0032323B`, `0032324B`, `00323250`, `0032325F`
       one of its class `+9` beats one that is not (`002F7BF0`–`002F7C37`) — then row byte `+6`
       equality and finally **the higher id** (`002F7C4D`–`002F7C5A`). **Slots 1–3** compare two row
       bytes lexicographically, larger wins: `+0x18` then `+0x19` for slots 1 and 3, `+0x19` then
-      `+0x18` for slot 2 (`002F7B15`–`002F7B76`; what the two bytes are on non-weapon rows this page
-      has not named — on weapon rows `+0x19` is the recipe, §10), ties again by `+6` then the higher id.
+      `+0x18` for slot 2 (`002F7B15`–`002F7B76`; ~~what the two bytes are on non-weapon rows this page~~
+      ~~has not named~~ *(answered: see equipment-slots-and-the-single-stat-rebuild.md §6.1 — a shield's evade and magick evade; a helmet's, armour's or accessory's defence and magick resist, grouped by `0031E9A0`, checked at `0031E9A0`–`0031E9DF`; 2026-10-02, OPUS)* — on weapon rows `+0x19` is the recipe, §10), ties again by `+6` then the higher id.
       **The metric** (`002F7C80(id, stats)`): 0 for Unarmed or `0xFFFF`; the row's byte **`+0x1A`**
       for an ordinary weapon; for a weapon whose partner class `+0x11` is 23–26 (bow, crossbow, gun,
       hand-bomb) it finds the best eligible ammunition of that class among `0x1184`–`0x11A3` — the
@@ -288,9 +288,9 @@ Interior: `003231F9`, `0032322A`, `0032323B`, `0032324B`, `00323250`, `0032325F`
 | Compatibility is one byte equality | `*(char *)(secRec + 0x11) == *(char *)(priRec + 9)` — the function's return expression | 1 |
 | The test is asymmetric | the two sides read different offsets, `+0x11` vs `+0x09` | 1 |
 
-**Scope honesty.** Only two of this category's functions were read. The "Optimise" behaviour —
-which most players would consider the interesting part — sits in three unread functions and is
-recorded as **P-4** rather than guessed at from their names.
+**Scope honesty.** ~~Only two of this category's functions were read. The "Optimise" behaviour —~~
+~~which most players would consider the interesting part — sits in three unread functions and is~~
+~~recorded as **P-4** rather than guessed at from their names.~~ *(answered: see §3 and §7 — the three Optimise functions `002F9F20`, `002F7A10` and `002F7C80` are read, P-4 answered 2026-09-12 and the builder 2026-09-18; 2026-10-02, OPUS)*
 
 ## 9. Related
 
@@ -335,8 +335,8 @@ asymmetry is never exercised in both directions; it is **consistently oriented**
 
 That makes the two fields readable as a pair of roles rather than an oddity: slot 0 advertises a
 value at `+0x11`, and the item being fitted against it must carry the matching value at `+0x09`.
-Which of the two is "requirement" and which is "capability" is still not established — **P-2 stays
-open** — but the direction is now fixed, and a modder editing these bytes needs to know which slot
+Which of the two is "requirement" and which is "capability" ~~is still not established — **P-2 stays~~
+~~open**~~ *(answered: see §7, P-2 ANSWERED 2026-09-12 — `+0x09` is the item's own equipment class and `+0x11` the class the other slot's item must carry; 2026-10-02, OPUS)* — but the direction is now fixed, and a modder editing these bytes needs to know which slot
 they are editing for.
 
 ### NEW: an empty slot is compatible with everything
@@ -482,7 +482,7 @@ Dawn Shard, class 22). The reserve rows of class 0 mostly carry 18 like Unarmed 
 
 ## The `002F9F20` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`002F9F20` (`Equipment_BuildRecommendedLoadoutForMappedStats`, ~212 B) —
+`002F9F20` (`Equipment_BuildRecommendedLoadoutForMappedStats`~~, ~212 B~~, 435 B *(corrected 2026-10-02, OPUS: its `ret` is at `002FA0D2`; 212 B is `002F7EC0`'s size; CONTRACT-equipment-compatibility.md §2)*) —
 stack-cookie frame (`01F44830`), seeds `xmm0` with the `00D0F9C0`
 `0x1000`/`0x10C8` constant pair (`002F9F28`/`002F9F37`).
 
@@ -521,7 +521,7 @@ Interior anchor `003FEBAB` (the first `[rcx+r9+0xC8]` store).
 
 `00317B20` (70 B) is the `0x1C8`-stride sibling of `00317B70`
 that `002F7C80` and `002F9F20` call: `cl <= 0x27` indexes the
-same `02EBF183`-rooted table, but the stack out-slot is fixed at
+same ~~`02EBF183`-rooted~~ table, rooted at `[02EBF190] + 8` with stride `0x1C8` *(corrected 2026-10-02, OPUS: checked at `00317B36`–`00317B41` `mov rax, [02EBF190]` / `add rax, 8`; `02EBF183` is not even pointer-aligned)*, but the stack out-slot is fixed at
 1 and `00317930` gets `r9d = r8w`, `r8d = r10d` - the flag-set
 variant of the record fetch.
 Interior anchor `00317B55` (the `00317930` call).

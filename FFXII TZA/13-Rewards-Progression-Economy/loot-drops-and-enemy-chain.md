@@ -32,8 +32,8 @@ registry_slots:
 > **Every loot roll in FFXII is `draw % 100` against an authored percentage** — and the draw comes
 > from a generator seeded by a **counter**, not a clock. Loot is deterministic.
 
-**PARTIAL.** The roll shapes, the chain rank bounds and the RNG source are read at tier 1. The
-profile table layouts and the chain's full state machine are not.
+~~**PARTIAL.**~~ **AUDITED** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED` and every §7 box is ticked)*. The roll shapes, the chain rank bounds and the RNG source are read at tier 1. ~~The~~
+~~profile table layouts and the chain's full state machine are not.~~ The profile table layouts (§8c) and the chain's state machine (§8b) are read too.
 
 ## 1. What the player sees
 
@@ -201,12 +201,12 @@ enemy defeated
   -> EnemyChain_UpdateOnDefeat (00317ED0)
        -> foe-class gate + authored exclusion flag (field_0x28 & 2)
        -> bGenusId == DAT_022C3168 ?  count+1 (cap 999/998)  :  count = 0
-  -> EnemyChain_TryAdvanceRank (003183D0)
+  -> EnemyChain_TryAdvanceRank (003183D0)   <- corrected 2026-10-02, OPUS: not a separate step; EnemyChain_UpdateOnDefeat calls it at 00317FBC, on the same-genus path only, before the coin draw (00317FC1-0031800C) and coin store (003180C6); the break path (00317F27 jne 0031806C) never calls it
        -> authored threshold for the current rank
        -> rank-scaled penalty, clamp 0..10
 
 loot generation
-  -> Loot_SelectChanceProfileByWeight (00318820)     LCG draw -> which profile
+  -> Loot_SelectChanceProfileByWeight (00318820)     LCG draw -> which profile   <- corrected 2026-10-02, OPUS: only while 022C3164 > 0; otherwise the chance profile is the chain rank 022C3158 (Loot_RollDropEntries 003180F0, 00318116, 0031815C-0031816A)
      -> Loot_RollNormalSlotChance (003185D0)          LCG draw % 100 -> does the slot drop
         -> Loot_RollNormalSlotQuantityBucket (003186F0)  LCG draw % 100 -> how many
      -> Loot_RollAdditionalItemChance (00318510)      LCG draw % 100 < chance_percent
@@ -248,14 +248,14 @@ the `0x80000003` functional gate. Loot has no such gate in the functions read.
 - [x] ~~How many normal loot slots exist per enemy.~~ **AE-3 ANSWERED — five** (`slot_index > 4`
       rejects), each with **four** quantity buckets.
 - [x] ~~Which profile index a given enemy uses — the caller is unread.~~ **AE-12 ANSWERED
-      2026-09-12 (FABLE):** none of its own — the chance profile is the **chain rank** (0–3) and the
+      2026-09-12 (FABLE):** none of its own — ~~the chance profile is the **chain rank** (0–3)~~ the chance profile is the **chain rank** (0–3) except on a kill that breaks a live chain (every kill, while the player alternates genera), when `022C3164` is positive and `Loot_SelectChanceProfileByWeight` (`00318820`) draws it *(corrected 2026-10-02, OPUS: checked at `00317F6A`, `00318088`–`003180B5` and `0031815C`–`0031816A`)*; and the
       quantity profile the **same-model tier** (0–3, thresholds 8 / 16 / 24 consecutive kills); the
       enemy contributes only its five item words and two Monograph entries (§8b correction).
 - [x] ~~What the profile-row byte at `+0x05` holds.~~ **AE-13 ANSWERED 2026-09-12 (FABLE): the
       row's same-model chain requirement.** `Loot_RollDropEntries` walks the table's four rows
       from row 0 and admits a row only while the second counter `DAT_022C3160` **exceeds** the row's
       signed byte `+0x05` — 8, 16, 24 and −1 in the shipped table (`003181C7`–`003181DE`: a
-      negative byte or a counter ≤ the byte stops the walk; `ebp = min(rows admitted, n)`), so the
+      negative byte or a counter ≤ the byte stops the walk; ~~`ebp = min(rows admitted, n)`~~ `ebp` = the rows admitted when the walk stops early, but **0** when it admits all `n` rows — `mov ebp, r14d` (0), then `cmovl ebp, edi` *(corrected 2026-10-02, OPUS: checked at `003181E0`–`003181EF`; unreachable with the shipped table, whose row 3 byte −1 stops the walk, but a port that edits that byte would see it)*), so the
       count of admitted rows is the **quantity tier** 0–3 — the chain-loot rule, keyed on the model
       streak; the drop *chance* profile is the chain rank (AE-12, and the §8b correction).
 - [x] ~~`EnemyChain_UpdateOnDefeat` — how the chain rises and breaks.~~ **AE-4 ANSWERED in section
@@ -279,11 +279,11 @@ the `0x80000003` functional gate. Loot has no such gate in the functions read.
       kill from a roll on the shared gameplay LCG (`022C256C`, inlined, three steps, `% 100`,
       `00317FC1`–`00318032`; [the RNG streams page](../21-RNG-And-Determinism/rng-streams.md)): when the bit is **clear** it turns on if `r < 5`, when
       **set** it stays on if `r ≥ 40` (`00318034`–`0031804B`, stored at `003180C6`) — a 5 % chance
-      to start and a 60 % chance per kill to keep; while it holds, the rank advance skips the
+      to start and a 60 % chance per kill to keep; ~~while it holds~~ while the bit stored by the previous continued kill holds — the rank advance runs at `00317FBC`, before this kill's coin draw (`00317FC1`–`0031800C`) and store (`003180C6`), so its roll also precedes the coin's in the LCG stream *(corrected 2026-10-02, OPUS: checked at `00317ED0`)* — the rank advance skips the
       penalty (`0031841D`–`00318424`). The bit is passed to the HUD writer `0028EF70` as its second
       argument and cleared with the chain (`003183A0`).
-- [x] ~~Whether chain rank affects loot profile selection.~~ **AE-7 ANSWERED in section 8b — not in
-      the functions read.** No chain global appears in any `Loot_*` function.
+- [x] ~~Whether chain rank affects loot profile selection.~~ **AE-7 ANSWERED in section 8b — ~~not in~~
+      ~~the functions read.~~** ~~No chain global appears in any `Loot_*` function.~~ **Yes** — reversed by §8b's correction of 2026-09-12: `Loot_RollDropEntries` (`003180F0`) takes the chance profile from the chain rank `022C3158` (`00318116`), so chain rank sets the drop chance and the model streak the quantity *(corrected 2026-10-02, OPUS: checked at `00318116`)*.
 - [x] ~~Why the chain count has two caps, 999 and 998, split by `FUN_00229E40()`.~~ **AE-9 ANSWERED
       2026-09-12 (FABLE): the language.** `FUN_00229E40` returns the cached **language id**
       `01E02814` ([the locale page](../19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md), AV-4; 0 = Japanese). The stored count is capped at 999 in Japanese
@@ -410,14 +410,14 @@ differing by one, which is an oddity worth flagging rather than smoothing over (
 foe's class record matches `DAT_022C316C`, and is separately clamped to `0..999`. So the system
 tracks two things at once, not one. **AE-10.**
 
-### AE-7 answered - no, chain rank does not reach the loot rolls
+### AE-7 answered - ~~no, chain rank does not reach the loot rolls~~ yes, chain rank sets the drop chance (corrected 2026-10-02, OPUS)
 
 The question was whether chain rank feeds loot profile selection - the connection a player would
 most expect.
 
-**In the functions read, it does not.** All 22 references to the chain globals (`DAT_022C3158`,
-`DAT_022C315C`, `DAT_022C3170`, `DAT_022C3174`) fall inside `EnemyChain_UpdateOnDefeat` and
-`EnemyChain_TryAdvanceRank`. **Not one appears in any `Loot_*` function.**
+~~**In the functions read, it does not.** All 22 references to the chain globals (`DAT_022C3158`,~~
+~~`DAT_022C315C`, `DAT_022C3170`, `DAT_022C3174`) fall inside `EnemyChain_UpdateOnDefeat` and~~
+~~`EnemyChain_TryAdvanceRank`. **Not one appears in any `Loot_*` function.**~~ **It does:** `Loot_RollDropEntries` (`003180F0`) reads the chain rank `022C3158` at `00318116`, a reference the 22-reference census missed *(corrected 2026-10-02, OPUS: checked at `00318116`; see the correction below)*.
 
 > **Corrected 2026-09-12 (FABLE) — the negative was bounded to the wrong six functions.** The
 > caller that was "not read", `Loot_RollDropEntries` (`003180F0`, from
@@ -449,8 +449,8 @@ most expect.
 is not rank-dependent. `Loot_RollNormalSlotChance` receives `chance_profile_index` from a caller.
 
 So if chain rank influences drops, it does so by **the caller choosing a different profile index** -
-a path that has not been read. The negative is bounded to the six functions examined, and recorded
-that way rather than as "chain does not affect loot".
+~~a path that has not been read. The negative is bounded to the six functions examined, and recorded~~
+~~that way rather than as "chain does not affect loot".~~ *(answered: see the correction above — the caller `003180F0` takes the chance profile index from the chain rank at `00318116`, so chain rank does reach the drop chance; 2026-10-02, OPUS)*
 
 ### A seventh sighting of the foe-class gate
 
@@ -513,12 +513,12 @@ Loot profile table    header at DAT_02EBF0C0
 
 Profile row           (stride bytes)
   +0x00 .. +0x04     i8[5]      per-slot drop chance, as a percentage
-  +0x05              -          unaccounted
+  +0x05              -          unaccounted   <- corrected 2026-10-02, OPUS: i8 same-model requirement 8/16/24/-1, read by 003180F0 (003181C7-003181DE, AE-13)
   +0x06 + slot*4     i8[4]      per-slot cumulative quantity weights   (slots 0..4 -> +0x06..+0x19)
 ```
 
-**Chance and quantity live in the same row**, indexed off the same profile - so a "profile" is a
-complete drop table for one enemy class: five chances followed by five groups of four weights.
+**Chance and quantity live in the same row**, ~~indexed off the same profile - so a "profile" is a~~
+~~complete drop table for one enemy class:~~ but a drop reads them from two rows: the chance from the chain-rank row (or a weighted draw after a chain break) and the quantity from the same-model-tier row, so a profile is a chain level, not an enemy class *(corrected 2026-10-02, OPUS: `00318116`, `0031815C`–`0031816A`, `003181C7`–`003181DE`; §7 AE-12, AE-13)*. Each row holds five chances followed by five groups of four weights.
 
 **Both values are signed bytes** compared against a `0..99` roll, so a chance of `0` or negative
 never drops and `100+` is unrepresentable - the maximum effective chance is 127, i.e. always.
@@ -540,11 +540,11 @@ general mechanism rather than a per-system detail.
 
 ### What this does not close
 
-The **profile index** passed to both functions still comes from the caller, unread - so which
-profile a given enemy uses is unknown, and AE-7's negative (chain rank does not reach the loot
-rolls) still leaves that path open. **AE-12.**
+~~The **profile index** passed to both functions still comes from the caller, unread - so which~~
+~~profile a given enemy uses is unknown, and AE-7's negative (chain rank does not reach the loot~~
+~~rolls) still leaves that path open.~~ **AE-12.** *(answered: see §7 AE-12 and §8b's 2026-09-12 correction — the caller `003180F0` passes the chain rank as the chance profile (`00318116`) and the same-model tier as the quantity profile; no enemy has a profile of its own; 2026-10-02, OPUS)*
 
-The byte at row `+0x05` is not touched by either function. **AE-13.**
+~~The byte at row `+0x05` is not touched by either function.~~ **AE-13.** *(answered: see §7 AE-13 — the caller `003180F0` reads it as the row's same-model requirement, `003181C7`–`003181DE`; 2026-10-02, OPUS)*
 
 ## 9. Related
 
@@ -641,14 +641,14 @@ exactly four rows:
 the authored data is written to be consumed by a modulo-100 cumulative comparison, and would be
 malformed under any other modulus.
 
-**What the player experiences.** This is the numeric core of *"keep your chain up for better
-drops"*. At chain rank 0 outcome 0 is certain — there is no variety at all. Rank 1 opens outcomes 1
+**What the player experiences.** ~~This is the numeric core of~~ This is not the numeric core of *"keep your chain up for better
+drops"* — that is the drop chance the chain rank sets (§8b) — but the pickup chain bonus, AE-3 below *(corrected 2026-10-02, OPUS: AE-3's answer)*. At chain rank 0 outcome 0 is certain — there is no variety at all. Rank 1 opens outcomes 1
 and 2 at 10% each. Rank 2 halves outcome 0 to 50% and unlocks outcomes 3 and 5 at 5% each. Rank 3
 drops outcome 0 to 40%, pushes outcomes 1 and 2 to 25% each, and swaps in outcomes 4 and 6 at 5%.
 The rarest results exist **only** at high chain, and even there they are one-in-twenty.
 
-**Not established:** what the seven outcomes *are*. The selector returns an index `0..6`; which loot
-tier or table that indexes has not been traced. Registered as **AE-3**.
+~~**Not established:** what the seven outcomes *are*.~~ The selector returns an index `0..6`; ~~which loot~~
+~~tier or table that indexes has not been traced.~~ Registered as **AE-3**. *(answered: see AE-3 directly below — the seven outcomes are the loot-pickup chain bonus, not a loot tier; 2026-10-02, OPUS)*
 
 > **AE-3 answered 2026-09-12 (FABLE): the seven outcomes are the loot-pickup chain bonus — nothing,
 > 10 % HP, 10 % MP, Protect for the picker, Protect for the party, Shell for the picker, Shell for
@@ -676,8 +676,8 @@ tier or table that indexes has not been traced. Registered as **AE-3**.
 > | 5 / 6 | 3 | **Shell** (status 19), the same gate ([the thirty-two statuses](../10-Status-Periodic-Terminal/the-thirty-two-statuses.md)) |
 >
 > So at chain rank 0 a pickup gives nothing; rank 1 adds a 10 % chance each of the HP and MP
-> tenths; rank 2 halves "nothing" and adds Protect (5 % picker-only, 5 % party-wide); rank 3 pushes
-> HP and MP to 25 % each and swaps the Protect rolls for Shell — the authored table of §8d read
+> tenths; rank 2 halves "nothing", ~~and adds Protect (5 % picker-only, 5 % party-wide)~~ raises HP and MP to 20 % each and adds Protect and Shell for the picker alone, 5 % each; rank 3 pushes
+> HP and MP to 25 % each and ~~swaps the Protect rolls for Shell~~ swaps both picker-only rolls for their party-wide forms, Protect 5 % and Shell 5 % *(corrected 2026-10-02, OPUS: weights `01EED3B8` rows 2 and 3, variants `00D102C0`; outcomes 3 and 5 are picker-only at `003111DD`–`003111F1`)* — the authored table of §8d read
 > against the code that consumes it.
 
 ### Row layout refined
@@ -686,7 +686,7 @@ The consumers give exact offsets into a chance-profile row, and they are not qui
 
 ```
 row + 0x00 .. 0x04   5 chance bytes, one per slot   (Loot_RollNormalSlotChance: row[slot])
-row + 0x05           NOT read by any consumer seen
+row + 0x05           NOT read by any consumer seen   <- corrected 2026-10-02, OPUS: read by Loot_RollDropEntries 003180F0 as the same-model requirement (003181C7-003181DE, AE-13)
 row + 0x06 .. 0x19   5 slots x 4 quantity weights   (row + slot*4 + 6 + bucket)
 row + 0x22           per-profile selection weight   (Loot_SelectChanceProfileByWeight)
 ```
@@ -716,7 +716,7 @@ unaccounted for. Both slot indices are validated with `4 < slot_index`, confirmi
 
 **CoreRuntimeScheduling — SERVICE (2 edges).** `00310DB0` calls `GameClock_GetRawTickCounter` `0032A150`, and `EnemyChain_UpdateOnDefeat` `00317ED0` calls `00229E40`, a 7-byte getter of one scheduling global. The tick reads the raw game clock, and the chain update reads the scheduling global only to decide whether the count it hands to the HUD chain counter is increased by one.
 
-**Gameplay — SERVICE and CLIENT (3 edges).** `00310DB0` calls `BattleEncodedId_IsValidForClass` `00322C50`; `BattleSystem_ResetRuntimeState` `00237DF0` calls the chain teardown `003183A0`; `Loot_RollAdditionalItemChance` `00318510` calls `BattleEncodedId_QueryMode0Positive` `0030B0E0` and draws only when it answers non-zero. A battle-system reset clears the chain record, and the extra-item roll is gated on the encoded-id query for the item.
+**Gameplay — SERVICE and CLIENT (3 edges).** `00310DB0` calls `BattleEncodedId_IsValidForClass` `00322C50`; `BattleSystem_ResetRuntimeState` `00237DF0` calls the chain teardown `003183A0`; `Loot_RollAdditionalItemChance` `00318510` calls `BattleEncodedId_QueryMode0Positive` `0030B0E0` and draws only when it answers non-zero. A battle-system reset clears the chain record, and the extra-item roll is gated on the encoded-id query ~~for the item~~ for the spawn row's condition key item, not the loot *(corrected 2026-10-02, OPUS: `00318527`–`00318533`; §7 AE-8)*.
 
 **Party — SERVICE (1 edge).** `00310DB0` calls `PartyFocus_IsCurrentPackedActorHandle` `003273B0`. The tick asks whether the unit is the player's focus; the pickup path itself is gated on the unit being a party member (the stats kind byte), not on focus.
 
@@ -728,7 +728,7 @@ unaccounted for. Both slot indices are validated with `4 < slot_index`, confirmi
 
 ## The `00317ED0` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
-`00317ED0` `EnemyChain_UpdateOnDefeat` (149 B) — the defeat-side chain
+`00317ED0` `EnemyChain_UpdateOnDefeat` (~~149 B~~ 529 B, `00317ED0`–`003180E0` *(corrected 2026-10-02, OPUS)*) — the defeat-side chain
 update. Gates: `rax = [rcx+0x698]` unit definition, `byte[rax+5] == 1`
 (`00317EF8`); `[rcx+0xE68]` runtime object, `byte[rax+0x28] & 2`
 (`00317F09`); `byte[rdi+0x56]` vs `dword[022C3168]` (`00317F21`/
@@ -737,17 +737,17 @@ chain cap — compared against `dword[022C315C]` (`00317F34`/`00317F4A`).
 
 | member | role | interior |
 | --- | --- | --- |
-| `0028EF00` | chain-record field writes on the `[0209BE80]` manager — `dword[+0x7C7C] = 0` (`0028EF07`), `word[+0x7C78] = cx` (`0028EF39`), `word[+0x7C82] = dx` (`0028EF47`) | [`0028EF39`](../_index/ADDRESS-INDEX.md) |
+| `0028EF00` | chain-record field writes on the `[0209BE80]` manager — ~~`dword[+0x7C7C] = 0` (`0028EF07`)~~ `dword[+0x7C7C] = 0x9`: zeroed at `0028EF07`, then OR-ed with 8 (`0028EF18`) and with 1 (`0028EF26`) *(corrected 2026-10-02, OPUS: the-chain-and-its-sticky-coin.md)*, `word[+0x7C78] = cx` (`0028EF39`), `word[+0x7C82] = dx` (`0028EF47`) | [`0028EF39`](../_index/ADDRESS-INDEX.md) |
 | `0028EF70` | chain-record update — `0028F0C0` helper (`0028EF7F`), then `word[[0209BE80]+0x7C82] = di` (`0028EFA9`) | [`0028EFA9`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00229E40`, `0028F0C0`. The chain
 counters are `dword[022C315C]` (current, capped at 999) and
-`dword[022C3168]`; the record fields `+0x7C78`/`+0x7C7C`/`+0x7C82` live
+~~`dword[022C3168]`~~ `dword[022C3170]`, the count at the last rank-up; `dword[022C3168]` is not a counter but the genus being chained, −1 = none, stored from `byte [rdi+0x56]` at `003180D0` *(corrected 2026-10-02, OPUS: checked at `003180D0`; §8b)*; the record fields `+0x7C78`/`+0x7C7C`/`+0x7C82` live
 on the shared `[0209BE80]` manager.
 
 ## The `003183D0`/`00318820` exclusive-subtree pair — both roots bound (SWE2-FRONTIER, followup queue)
 
-`003183D0` (`EnemyChain_TryAdvanceRank`, ~29 B) — `022C315C` minus
+`003183D0` ~~(`EnemyChain_TryAdvanceRank`, ~29 B)~~ (`EnemyChain_TryAdvanceRank`, 315 B, `003183D0`–`0031850A` *(corrected 2026-10-02, OPUS)*) — `022C315C` minus
 `022C3170` delta under `movsxd 022C3158` (`003183D6`/`003183E6`) — the
 same chain-counter bank `00317ED0` publishes.
 

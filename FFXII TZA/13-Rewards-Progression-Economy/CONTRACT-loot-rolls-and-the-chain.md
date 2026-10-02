@@ -34,7 +34,7 @@ audit:
 > one contract,
 > [`CONTRACT-experience-and-licence-award.md`](CONTRACT-experience-and-licence-award.md), covers the
 > experience and licence division. **This takes the loot rolls and the chain**; the death sequence,
-> the gil paths and the level-up remain uncontracted and this document does not claim them.
+> the gil paths and the level-up ~~remain uncontracted~~ have since been contracted *(answered: see CONTRACT-defeat-rewards-sequence.md, CONTRACT-gil-storage-and-movement.md and CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)*, and this document does not claim them.
 >
 > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
 > system's operations have no cross-operation invariant or ordering it leaves unstated.* §4 is seven
@@ -54,7 +54,7 @@ Decide what falls off a dead enemy, and how the kill streak changes the odds.
 | roll one slot | `Loot_RollNormalSlotChance` (`003185D0`) | 1 per non-empty slot |
 | roll its quantity | `Loot_RollNormalSlotQuantityBucket` (`003186F0`) | 1 per kept slot |
 | roll an extra item | `Loot_RollAdditionalItemChance` (`00318510`) | 1, twice, each guarded |
-| chain on a kill | `EnemyChain_UpdateOnDefeat` (`00317ED0`) → `EnemyChain_TryAdvanceRank` (`003183D0`) | 1 each |
+| chain on a kill | `EnemyChain_UpdateOnDefeat` (`00317ED0`) ~~→ `EnemyChain_TryAdvanceRank` (`003183D0`)~~, which itself calls `EnemyChain_TryAdvanceRank` (`003183D0`) at `00317FBC` on a continued chain only, before its coin draw *(corrected 2026-10-02, OPUS: checked at `00317ED0`; a break, `00317F27 jne 0031806C`, never calls it)* | 1 each |
 | the chain-rank outcome | `00319530` | 1, **from the periodic tick** (LC-5) |
 
 ## 3. Types
@@ -181,11 +181,11 @@ entries.
 | **Advances** | [the gameplay-generators contract](../21-RNG-And-Determinism/CONTRACT-gameplay-generators.md)'s shared LCG — **by inlining**, which [`rng-streams.md`](../21-RNG-And-Determinism/rng-streams.md) already records and LC-1 reproduces from the state side |
 | **Shares a tick** | [the periodic tick](../10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md) — LC-5 |
 | **Shares the selector** | equipment compatibility and enmity, on `stats[+0x05]` (LC-5) |
-| **Uncontracted** | the death sequence, the gil paths and the level-up — S-32's other three pages, not claimed here |
+| ~~**Uncontracted**~~ **Contracted separately** | the death sequence, the gil paths and the level-up — S-32's other three pages, not claimed here *(answered: each has its own contract — CONTRACT-defeat-rewards-sequence.md, CONTRACT-gil-storage-and-movement.md, CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)* |
 
 ## 7. State transitions
 
-Per kill: *chain update → rank advance → profile (rank, or drawn) → five slot rolls → a quantity roll
+Per kill: *~~chain update → rank advance~~ chain update, which calls the rank advance itself (`00317FBC`) on a continued chain only, before the coin draw (`00317FC1`–`0031800C`) and the coin store (`003180C6`), while a break (`00317F27 jne 0031806C`) never calls it (corrected 2026-10-02, OPUS) → profile (rank, or drawn) → five slot rolls → a quantity roll
 per kept slot → two guarded extra-item rolls.* The chain rank transitions `0..3` upward only, by
 `EnemyChain_TryAdvanceRank`.
 
@@ -239,9 +239,9 @@ evidence of execution.*
 ## 14. Unresolved
 
 - What object the `+0xE64` slot override in LC-6 reads, and whether it is a developer facility.
-- Whether `[022C3164]` is ever positive in shipped play, which decides if the chance profile is ever
-  drawn rather than taken from the rank.
-- The three uncontracted pages of S-32.
+- ~~Whether `[022C3164]` is ever positive in shipped play, which decides if the chance profile is ever~~
+  ~~drawn rather than taken from the rank.~~ *(answered: yes — `00317ED0` increments it on every genus switch from a live chain (`00318088`–`003180B5`) before `003180F0` runs for the same kill, and zeroes it only on a continued chain (`00317F6A`), so a kill that breaks a chain draws its chance profile through `00318820`; see loot-drops-and-enemy-chain.md §7 AE-12; 2026-10-02, OPUS)*
+- ~~The three uncontracted pages of S-32.~~ *(answered: all three are contracted — CONTRACT-defeat-rewards-sequence.md, CONTRACT-gil-storage-and-movement.md, CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -325,6 +325,6 @@ Corrected in place: §2, LC-4 and §12. The consumer record is `_index/candidate
 
 **CoreRuntimeScheduling — SERVICE (1 edge).** `EnemyChain_UpdateOnDefeat` `00317ED0` calls `00229E40`, a 7-byte getter of one scheduling global, three times; when it answers non-zero the chain count handed on to the chain display is increased by one. It changes what is shown, not the chain state this contract describes.
 
-**Gameplay — SERVICE and DEPENDENCY (2 edges).** `Loot_RollAdditionalItemChance` `00318510` calls `BattleEncodedId_QueryMode0Positive` `0030B0E0` on the item id before it draws, and skips the draw when the query answers 0; the domain-filed `00312B40` is one more caller of `00328370`. The extra-item roll therefore consumes a draw only for an item id the encoded-id query accepts, and `00312B40` is another consumer of the shared stream.
+**Gameplay — SERVICE and DEPENDENCY (2 edges).** `Loot_RollAdditionalItemChance` `00318510` calls `BattleEncodedId_QueryMode0Positive` `0030B0E0` ~~on the item id~~ on the spawn row's condition word (`+0x48` / `+0x4C`, the Monograph or Canopic Jar the party must hold), not on the loot item, before it draws *(corrected 2026-10-02, OPUS: checked at `00318527`–`00318533` with `dx` from `0031823F` / `00318267`; loot-drops-and-enemy-chain.md §7 AE-8)*, and skips the draw when the query answers 0; the domain-filed `00312B40` is one more caller of `00328370`. The extra-item roll therefore consumes a draw only ~~for an item id the encoded-id query accepts~~ when the party holds the condition key item *(corrected 2026-10-02, OPUS: AE-8)*, and `00312B40` is another consumer of the shared stream.
 
 **Status_Periodic_Terminal — CLIENT (1 edge).** `BattleUnit_RunPeriodicCombatMaintenance` `00310DB0` calls the chain-rank outcome selector `00319530`. This is LC-5: the periodic tick, not only a kill, advances the loot stream through `00319530`, so the status layer's tick is a caller of this contract's roll.

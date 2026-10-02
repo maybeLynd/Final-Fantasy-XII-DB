@@ -43,7 +43,7 @@ production_review:
 
 > **Authored 2026-09-22 by FABLE.** S-32's binding gap is *"EXP/LP division only, of 5 pages"*. The
 > loot rolls were taken at `8cfdf3851` and the gil paths at `68135b186`; **this takes the death
-> sequence.** The level-up page remains uncontracted and this document does not claim it.
+> sequence.** The level-up page ~~remains uncontracted~~ has since been contracted *(answered: see CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)*, and this document does not claim it.
 >
 > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
 > system's operations have no cross-operation invariant or ordering it leaves unstated.* §4 is six
@@ -68,7 +68,7 @@ function table's name; `…AndRetire` is a misnomer — the body retires nothing
 
 ```
 recipient (BattleStats)
-  +0x069 / +0x079  u8   the two status layers; bit 4 of byte 1 is status id 12 (DR-5)
+  +0x069 / +0x079  u8   the two status layers; bit 4 of byte 1 is status id 12 (DR-5)   <- corrected 2026-10-02, OPUS: byte 1 of the two EFFECT layers +0x68 / +0x78; bit 4 is effect id 12 (LP -> gil), not status 12 (Reverse); what-happens-when-an-enemy-dies.md
   +0x18C           i32  accumulated experience
   +0x1C2           u8   the level -- read by the walk and by DR-5 (00312415); ~~AND by the gil term~~
                         (corrected 2026-09-25: the gil term reads the DEFEATED unit's level, below)
@@ -88,7 +88,7 @@ defeated unit
 
 **DR-1 — Local orchestration order, not a global non-reentrancy proof.** Build the recipient
 list → per recipient compute, clamp, award, re-derive level, notify → recompute presentation
-inputs with NULL recipients → gil → item placement → retirement. The visible order in this
+inputs with NULL recipients → gil → item placement ~~→ retirement~~ → counter 17 (`00317090`) *(corrected 2026-10-02, OPUS: the body retires nothing, §2; its last calls are `00317090` and the cookie check, `003125B9`–`003125D8`)*. The visible order in this
 body is established. Callback re-entry and every external consequence have not been excluded.
 **One external consequence is now named** *(2026-09-25, FABLE, Claude Opus 5.5, on [OPUS block 344](../_index/candidates/s32-opus-replay-defeat-rewards/README.md), which executed it 6/6; `0031251D`–`00312546`, `0023A965`–`0023A9F4` and the level advance's event post re-read.)*. Inside the recipient loop, when the level advance
 changes a party-class record's level, it posts **event 4** carrying the record and its new level. The advance
@@ -125,8 +125,8 @@ area definitions have both gil terms zero; the experience formula uses `+0x34` o
 inputs, one field apart — which is what makes `+0x30` gil and `+0x34` experience rather than a
 guess.*
 
-**DR-5 — Status id 12 CONVERTS a recipient's licence points into party gil, and it is not a bonus.**
-When bit 4 is set in either status layer (`00312409`, `0031240F`), the body computes
+**DR-5 — ~~Status id 12~~ Effect id 12 *(corrected 2026-10-02, OPUS: `00312409` / `0031240F` test the effect layers `+0x69` / `+0x79`, not the status words; status 12 is Reverse — what-happens-when-an-enemy-dies.md, "An equipment effect that turns LP into gil")* CONVERTS a recipient's licence points into party gil, and it is not a bonus.**
+When bit 4 is set in either ~~status~~ effect layer *(corrected 2026-10-02, OPUS)* (`00312409`, `0031240F`), the body computes
 `level × LP` and adds **five times** it to the gil accumulator — as `x + 4x`, via
 `lea eax, [r12 + rcx]` then `lea r12d, [rax + rcx*4]` (`00312421`, `00312425`) — and **replaces the
 recipient's LP with zero**, so that recipient receives none. The converted amount lands in the same
@@ -163,12 +163,12 @@ recipient status layers.
 | **Sibling** | [`CONTRACT-experience-and-licence-award.md`](CONTRACT-experience-and-licence-award.md) — the distinct EXP/LP gates and mode-dependent NULL calls in DR-2 |
 | **Sibling** | [`CONTRACT-loot-rolls-and-the-chain.md`](CONTRACT-loot-rolls-and-the-chain.md) — the drop this sequence places |
 | **Calls** | [`CONTRACT-gil-storage-and-movement.md`](CONTRACT-gil-storage-and-movement.md) — DR-6 compares requested, metered, notified and actually stored values |
-| **Uncontracted** | the level-up page — S-32's last, not claimed here |
+| ~~**Uncontracted**~~ **Contracted separately** | the level-up page — S-32's last, not claimed here *(answered: CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)* |
 
 ## 7. State transitions
 
 *recipients → per recipient: award, clamp, walk the level table, notify → fresh mode-dependent presentation inputs → gil
-(floor, set, report) → drop → retire.* A recipient transitions level once per kill, by a walk rather
+(floor, set, report) → drop ~~→ retire~~ → counter 17 (`00317090`).* *(corrected 2026-10-02, OPUS: §2 — the body retires nothing)* A recipient transitions level once per kill, by a walk rather
 than a step (DR-3).
 
 ## 8. Script · resource · event interactions
@@ -188,13 +188,13 @@ out randomness or state changes inside every growth/event/drop dependency, so th
 - The caps are `999,999` experience and `999` LP per award, `99,999,999` and `99,999` accumulated
   (`003123ED`, `003123FF`, `00312438`, `0031247C`) — and the per-award cap is applied **again**
   before the display call (`003124B4`).
-- A recipient carrying status 12 receives **no** licence points at all (DR-5).
+- A recipient carrying ~~status 12~~ effect 12, the Cat-ear Hood's augment *(corrected 2026-10-02, OPUS: DR-5)*, receives **no** licence points at all (DR-5).
 
 ## 11. Observable behaviour
 
 The published EXP input is a fresh mode-dependent computation without recipient modifiers; it
 is not universally an undivided total or different from every recipient's gain. This review does
-not follow the rendering beyond the call boundary. The inherited status-12 conversion path
+not follow the rendering beyond the call boundary. The inherited ~~status-12~~ effect-12 *(corrected 2026-10-02, OPUS: DR-5)* conversion path
 replaces that recipient's LP with its gil contribution (DR-5).
 
 ## 12. Reproduction formula
@@ -216,8 +216,8 @@ level advance's event post. The evidence class is native replay, not live. The p
 **No complete execution of `00312280` is supplied by SECTION-03.** The new 71 original-instruction
 controls execute its EXP/LP consumers and their real gate closure under synthetic state. The
 caller, gil setter and notifier are inspected statically; EXP-081 is retained historical live
-observation of bindings, not reward payout. Formal peer acceptance and full S-32 obligations
-remain open. A CONTRACT READY header is not a whole-sequence execution claim.
+observation of bindings, not reward payout. ~~Formal peer acceptance and full S-32 obligations~~
+~~remain open.~~ *(answered: see the banner at the top — independently accepted with a narrowing 2026-10-01, GR-16; and all five of S-32's pages now carry a contract, CONTRACT-level-advance-and-growth.md; 2026-10-02, OPUS)* A CONTRACT READY header is not a whole-sequence execution claim.
 
 ## 14. Unresolved
 
@@ -245,7 +245,7 @@ remain open. A CONTRACT READY header is not a whole-sequence execution claim.
   `Reward_ComputeLicensePointsForRecipient` (`002F90C0`) — the same uncapped evaluators the award
   loop used — on `r14`, and clamps *their fresh results* (`edi` to `0xF423F` at `003124E6`,
   `ebx` to `0x3E7` at `003124FB`–`00312502`) before `0028FB80`. The first cap bounded what was
-  accumulated into `[rdi+0x190]`; this one bounds an independent recomputation for display. It is
+  accumulated into ~~`[rdi+0x190]`~~ `[rdi+0x18C]` *(corrected 2026-10-02, OPUS: the EXP accumulator, stored at `00312444`; `+0x190` is the LP total, `0031248F`)*; this one bounds an independent recomputation for display. It is
   not redundant: the evaluators return raw row-derived amounts, so without the second clamp the
   display could show a number above the stored cap.
 
@@ -313,7 +313,7 @@ interactions need their own evidence before a whole-subsystem parity claim.
 
 **Party — CLIENT (1 edge).** `PartyControl_RecomputeSuppressionFromLeaderBattleState` (`0023B040`) calls the mode predicate `003135C0`: the party-suppression recompute asks whether an Esper is out, the same question the EXP evaluator asks, and shares nothing else with this sequence.
 
-**PlatformOnlineAchievements — SERVICE and CLIENT (5 edges).** `00254EE0` and `00312280` both call `00316A50`, the achievement-counter updater (the setter meters gil gained and spent; the defeat body passes each recipient's experience award as counter 11 inside the recipient loop); and the page's `0020CE00`, that layer's 8-byte achievement-manager getter, is called by the three thunks `00863240` (award by id), `00863280` (already-achieved query by index) and `008632B0` (award by index), each of which returns when the manager is null. The reward sequence writes that layer's counters one way and reads nothing back from it (DR-6).
+**PlatformOnlineAchievements — SERVICE and CLIENT (5 edges).** `00254EE0` and `00312280` both call `00316A50`, the achievement-counter updater (the setter meters gil gained and spent; the defeat body passes each recipient's ~~experience award~~ awarded licence points as counter 11 inside the recipient loop *(corrected 2026-10-02, OPUS: `00312484 mov edx, esi` (the LP after clamp and conversion), `00312489 mov cl, 0xb`, `00312496 call 00316A50`)*); and the page's `0020CE00`, that layer's 8-byte achievement-manager getter, is called by the three thunks `00863240` (award by id), `00863280` (already-achieved query by index) and `008632B0` (award by index), each of which returns when the manager is null. The reward sequence writes that layer's counters one way and reads nothing back from it (DR-6).
 
 **Presentation — SERVICE (1 edge).** `00312280` calls `Reward_PublishExpLpPresentation` (`0028FB80`), which pushes the EXP and LP floating-text entries; DR-2 is about the arguments that call receives, and nothing here follows the numbers into the text queue.
 

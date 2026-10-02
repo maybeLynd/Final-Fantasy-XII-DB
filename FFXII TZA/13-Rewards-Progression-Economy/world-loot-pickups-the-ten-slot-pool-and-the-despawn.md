@@ -258,7 +258,7 @@ ASTRA's [EXP-052](../_experiments/EXP-052-loot-pickup-selection.md) executed the
 isolation over synthetic lists (eleven cases, the tie branch mutated and detected) with only the
 security-cookie callee controlled; the reading above is the static tier. The radius test the
 player experiences belongs to the overlap collector `Loot_FindOverlappingPickupIndex` (`002FB150`),
-still unread (`CM-5`).
+~~still unread (`CM-5`).~~ *(answered: read 2026-09-11, the next subsection; `CM-5` ANSWERED in §5; 2026-10-02, OPUS)*
 
 ### Finding the pickup under foot — `Loot_FindOverlappingPickupIndex` (`002FB150`), read 2026-09-11
 
@@ -275,7 +275,7 @@ distance from the actor (`Vector3_ComputeXZDistance` `004686D0`, a `sqrtf`) is *
 than `max(r1, r2) + extra`** (`maxss` `002FB1F0`, `addss` `002FB205`, `comiss` / `ja`
 `002FB209`–`002FB20C`) is returned; none → `-1`. So collection is *first-in-slot-order within the
 actor's own radius plus the caller's margin*, not nearest — the two selectors answer different
-questions, and neither has a caller in the function graph (`CM-5`'s residue).
+questions, and ~~neither has a caller in the function graph (`CM-5`'s residue)~~ each has one static caller the function graph missed: `00310DB0` runs the overlap test (`003110DC`–`00311141`, "Who runs the collector" below) and `00312730` calls the nearest selector at `003129AF` *(corrected 2026-10-02, OPUS: §5's `CM-5` answer, corrected 2026-09-23)*.
 
 ASTRA's [EXP-053](../_experiments/EXP-053-loot-overlap-controls.md) executed the six bodies in
 isolation with `sqrtf` and the cookie check controlled — eleven cases, the equality mutant detected,
@@ -389,7 +389,7 @@ returns, so a pickup shows its best contents, not an average.
   `Loot_CreateWorldPickup` and the pool allocation in `Loot_InitializeWorldPickupPool`. Raising one
   without the other walks off the end of a `0x60`-stride array.
 - ⚠ **`01DFE0B8` is NOT a loot knob, and this note said it was.** It is the **60 fps frame-rate
-  scalar**, one of a triple read **438 times** across the image (`01DFE0B4` 211, `01DFE0B8` 45,
+  scalar**, one of a triple read **438 times** *(reconciled 2026-10-02, OPUS: reads only; the table under "What the page did not have" counts 441 references, the same reads plus one writer instruction each, `001EDDF2` / `001EDDD8` / `001EDDE0`)* across the image (`01DFE0B4` 211, `01DFE0B8` 45,
   `01DFE0BC` 182) and written once at startup. Changing it to lengthen loot **rescales every timed
   system in the game at once.** The original wording — *"the single cheapest lever on this system,
   one float, no code change"* — was true about the arithmetic and badly wrong about the consequence.
@@ -694,7 +694,7 @@ Interior anchor `00231A0F` (the `call 00231890` score).
 
 ## SWE2-EC7-40 update (2026-09-19) - `00319B10`
 
-`00319B10` (387 B) is the `Loot_InitializeWorldPickupPool` body the page names - call-free block initializer zeroing and seeding the `02EC0FA0`..`02EC1xxx` pool record region (`02EC1000` set to 1, the rest to zero). Interior anchor `00319B12` (the `02EC1000` seed store).
+`00319B10` (387 B) is the `Loot_InitializeWorldPickupPool` body the page names - call-free block initializer zeroing and seeding the `02EC0FA0`..`02EC1xxx` pool record region (~~`02EC1000` set to 1, the rest to zero~~ each node's `slotIndex` set to its index `0…9`: `02EC0FA0` 0, `02EC1000` 1, `02EC1060` 2, … `02EC1300` 9 *(corrected 2026-10-02, OPUS: checked at `00319C3E`–`00319C84`; CONTRACT-world-loot-pickup-pool.md I1)*). Interior anchor `00319B12` (the `02EC1000` seed store).
 
 ## SWE2-EC7-51 update (2026-09-19) - `002711E0`
 

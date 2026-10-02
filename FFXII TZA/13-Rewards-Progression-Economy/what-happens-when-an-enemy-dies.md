@@ -46,8 +46,8 @@ production_review:
 already use; `…AndRetire` named a retirement step that step 6 withdrew on 2026-09-28. PKG-GP-HP-LETHAL item G5 let
 the label pair stand as a label, not a claim; the owner read of 2026-09-29 asked for the page to agree with itself.)*
 Three documents leaned on it
-and none had opened it — **and it is where experience, LP, gil, levelling and the item drop all
-happen, in that order, in one function.**
+and none had opened it — **and it is where experience, LP, ~~gil, levelling~~ levelling, gil and the item drop all
+happen, in that order, in one function.** *(corrected 2026-10-02, OPUS: the level walk and advance, `0031244A`–`003124A3`, run inside the per-recipient step, before gil at `0031251D`; steps 2 and 4 below)*
 
 ## What the player sees (FABLE, 2026-09-30)
 
@@ -208,7 +208,7 @@ page's N-2 names. Scripts and output:
 | attack | result |
 |---|---|
 | Does zero ECX prove undivided EXP? | **No; corrected in SECTION-03.** The NULL argument is real, but the callee still takes the shared divisor when that mode is selected. LP has no divisor in either case. |
-| Is the LP conversion a bonus or a replacement? | **Replacement** — `lp` is overwritten with the running total's previous value before the award, so the recipient's LP add is zero. |
+| Is the LP conversion a bonus or a replacement? | **Replacement** — ~~`lp` is overwritten with the running total's previous value before the award~~ `lp` is set to zero (`ebp` zeroed at `003122A9`, `0031241F mov esi, ebp`) *(corrected 2026-10-02, OPUS: the running total is never copied into LP; see the listing in "An equipment effect that turns LP into gil")*, so the recipient's LP add is zero. |
 | Are gil and experience really the same tables? | Same two pointers (`+0xE70`, `+0xE78`), same difference of the same two bytes, **fields `+0x30` and `+0x34`.** |
 | Does the recipient list admit nine or fewer? | The store is guarded at `< 9` and the counter increments in the same branch, **so the count cannot exceed the array** — both move together. |
 | Could the level walk be an off-by-one? | It advances **while the next threshold is reachable**, then applies the level it stopped at — the exit condition is the first unreachable threshold, and a zero threshold also exits. |
@@ -395,7 +395,7 @@ Every entry is also a register row.
 - [x] **Section 03's independent peer acceptance** (GR-16). The production review on which this page's corrections
       rest has had the owner's review but no independent auditor verdict. *(GR-16 answered 2026-10-01: SWE2-AUDIT-SEM's independent review `f41194772`, [record](../_index/candidates/auditsem-review-section03-1001/REVIEW.md), ACCEPT-WITH-NARROWING; register restated by OPUS for SWE2-DATA.)*
 - [x] **What the drop gate's nearby-actor test decides** (GR-19) *(answered 2026-09-30, FABLE: whether the party leader could stand at the death position; see the answer above)*: the 565-byte body behind `00319490`, and so under
-      what circumstances a kill leaves no loot. *(Narrowed 2026-09-30, C4: it is the shared placement test `003377C0` that DE-4 names; open is what that test accepts.)*
+      what circumstances a kill leaves no loot. *(Narrowed 2026-09-30, C4: it is the shared placement test `003377C0` that DE-4 names; ~~open is what that test accepts.~~)* *(answered: GR-19's question is answered — the gate asks whether the party leader could stand at the death position, see the drop-gate answer above, "Answered 2026-09-30"; what the shared test accepts in full is a residual of the placement test, not of GR-19; 2026-10-02, OPUS)*
 
 ## Evidence (FABLE, 2026-09-30)
 

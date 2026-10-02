@@ -998,7 +998,7 @@ is changed; only this title is, and I noticed because the duplication made it un
 
 ## The `00315390` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00315390` (~289 B) — `002536A0()` then `+0x3868` dword deref
+`00315390` ~~(~289 B)~~ (94 B *(corrected 2026-10-02, OPUS: its `ret` is at `003153ED`; §3; 289 B is `00316480`'s size)*) — `002536A0()` then `+0x3868` dword deref
 (`0031539A`/`003153A4`).
 
 | member | role | interior |
