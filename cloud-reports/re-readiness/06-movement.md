@@ -424,3 +424,269 @@ The system has seven parts. The pages give them in this order:
 | G-18 | **Nav dataset trailer `+0x28` layout.** "Readers since read" (`00392740`, `00391597`), but the 32 × `0x20` records are described only as position, radius and kind for kinds 0/1. | `NAV:56`, `:256` |
 | G-19 | **The commit dispatch `002EC3F0`'s six apply arms.** Their targets (`003E3120` etc.) store into the render record's `+0x580` sub-record. What that sub-record drives is left to a Presentation page ("the staged look command"). | `C-FS:666-703`; `SLOTS:313-318` |
 
+### 2.3 CONTRADICTIONS — statements a re-implementer would have to choose between
+
+Every quotation below is exact, cut to the clause that matters, with `TAG:line`. The items are in two groups:
+- **A** — value-changing: a port gets a different number, address, branch or layout depending on the side it takes. **All of them are page-text only - needs local check.** This session cannot see the executable.
+- **B** — stale "not read / open" claims, status banners, naming and counts that do not change a ported value.
+
+A **favoured side** is named only where a dated correction on these pages settles the point. Otherwise the entry says "none by the rule".
+
+#### A. Value-changing (page-text only - needs local check)
+
+**C-V01 — The range of the sign-biased truncating-`fmod` wrap: three different intervals.**
+- `HSD:87`: "Both angles are first wrapped into `(-π, π]` by the truncating-`fmod` idiom". `HSD:322`: "**Angle wrap into `(-π, π]`** — used identically by `Actor_SetDesiredMovementHeading` and by both angles inside `ComputeDelta`". `TURN:86`: "makes the result land in (−π, +π]".
+- `C-HSD:133`: "**LD-6 — Both angles are wrapped into ~~`(−π, π]`~~ `[−π, π]` before use** *(2026-09-25 …)*". `C-HSD:135`: "That maps `+π → −π` and `−π → +π`, so both endpoints are reachable". `C-FS:170` (corrected 2026-09-28): "+π maps to −π and back to +π, and −π maps to +π and back: a two-cycle". `HSD:1106-1107`: the facing writer stores `+pi` as `-pi` and `-pi` as `+pi`.
+- `C-FS:777-778` (`0026A8E0` / `0026A870`, the same idiom): "two `subss` recentre into `[-pi, pi)`".
+- `MODE:467` (`0026AC70`, the same idiom): "an exact `(-π, π]` normalize".
+- **Favoured:** `[−π, π]` with the endpoints swapping, for `002E4380` and the facing setters. The dated corrections `C-HSD:133` (2026-09-25) and `C-FS:168-170` (2026-09-28) settle it. For `0026A8E0` / `0026A870` / `0026AC70` no correction names those functions, so their ranges are open.
+
+**C-V02 — The loop normaliser `003A1C50`: open or closed at −π.**
+- `C-FS:55`: "`xmm0` in **`[−π, π]`** — closed at **both** ends, corrected 2026-09-08 from the 61-byte body". `C-FS:71-72`: "The first loop exits when **`−π ≤ x`** … an input of exactly `−π` skips both loops and is returned unchanged".
+- `MODE:98`: "call  0x3A1C50 ; wrap into (-pi, pi]". `MODE:113`: "wrapped into (−π, π] before its sign is taken". `MODE:338`: "the angle normaliser into (−π, π]". `MODE:306-307` (falsification pass 2026-09-13, which postdates the correction): "so the result is closed at `+π` and open at `-π` — which is what §5's "(−π, π]" says".
+- **Favoured:** `C-FS:57`'s dated correction (2026-09-08). A **later** pass (`MODE:306-307`, 2026-09-13) re-asserts the old interval without citing the correction, so the dates alone do not close it.
+
+**C-V03 — `Angle_NormalizeRadiansPi` `0033CB70`: range and algorithm.**
+- `LOCO:518`: "normalises an angle into (−π, π] by repeated addition".
+- `HSD:1160-1163` (the 2026-09-11 correction section): "only when `|x| > 4pi` … does it take the truncating division, and then it **loops** … and leaves an exact `±pi` untouched".
+- **Favoured:** `HSD:1160-1163`, a dated correction that names the function.
+
+**C-V04 — The sign of the bias in `0026B5A0`.**
+- `C-FS:752-753` (EC7-22, 2026-09-18): "`comiss xmm6, 0` selects `xmm1 = [01CEBC50]` (a `+pi`-class constant) when the input is negative, else `[00915620]` (`-pi`-class)".
+- `C-FS:261`: "float bias = (h >= 0.0f) ? +3.14159274f : -3.14159274f;". `TURN:65-66` and `TURN:83`: "+π when heading ≥ 0, −π when heading < 0". `C-FS:708-709`: the same rule for `0026B620`.
+- **Favoured:** none by the rule. Four statements against one.
+
+**C-V05 — Does commit flag 0 write the previous-value lanes `+0x250..+0x258`?**
+- `C-FS:93-94`: "flag **0** stages the new `{rate, heading, 0}` triple into the steering slot's `+0x120`–`+0x128` and returns; flag **1** additionally shifts the triple into `+0x250`–`+0x258`". `C-FS:481`: "0 stages … 1 additionally shifts it to `+0x250`–`+0x258`".
+- `C-FS:99-100` (2026-09-25): "**Flag 0 also writes `+0x250`–`+0x258`.** When the triple changed, the **old** triple is copied there before the flag is tested". `HSD:1193-1195` agrees.
+- **Favoured:** `C-FS:99-100`, a dated refinement backed by OPUS block 308's execution.
+
+**C-V06 — The commit tail: `004288B0` *or* `003B3CA0`, or both in turn.**
+- `C-FS:95`: "~~or~~ **and then**, when `[slot+0x288]` is set". `HSD:1196-1198`: "calls `FUN_004288B0(record, -1)` unless `+0x284` bit 17 is already set … and, if `+0x288 != -1`, tail-calls `FUN_003B3CA0(+0x288, 30)`".
+- Unstruck "or" remains at `C-FS:481` ("calls `004288B0(slot,-1)` or `003B3CA0([slot+0x288],0x1E)`") and `C-FS:766` ("commits through `004288B0` or `003B3CA0`").
+- **Favoured:** none by the rule; the strike at `C-FS:95` is undated. Two statements say "and then".
+
+**C-V07 — `003EC260`'s reset arm: word `+6` equal to −1, or not.**
+- `C-FS:101-102` (2026-09-25): "A slot whose word `+6` is not `−1`, with `+0x290` bit `0x100000` clear, is reset to `{0, 0, 0}` with `+0x12C = 1.0`".
+- `HSD:1191-1192`: "with `+0x290` bit 20 clear and word `+6 == -1` it zeroes the four-lane group `+0x120..+0x12C` to `{0, 0, 0, 1.0}` and returns".
+- **Favoured:** none by the rule.
+
+**C-V08 — What context `+0xAC` is: the pitch, or a "rate".**
+- `HSD:1202` (K-13, answered 2026-09-12): "**`+0xAC` is the actor's pitch — the rotation about the X axis**".
+- `C-FS:479`: "`xmm2 = context[+0xAC]` (the prior rate, handed back unchanged)". `C-FS:93`, `C-FS:765` and `TURN:302` name the group "`{rate, heading, 0}`".
+- **Favoured:** none by the rule. K-13 is the only dated determination of the field; the "rate" wording does not cite it.
+
+**C-V09 — Which arm of `0026C120` writes `turn_step` / `turn_limit`.**
+- `TURN:472-475` (EC7, 2026-09-18): "arm-4 additionally stamps `dword[obj+0x58] = 0x3E20D97C`, `dword[obj+0x5C] = 0x40490FDB` (π) at [`0026C224`]".
+- `MODE:115`: "### Modes 2 and 3 also set the rate". `MODE:165`: "| 2, 3 | choose the turn direction; set rate `π/20` and limit `π`". `C-FS:228` agrees. `SLOTS:283-285` places `0026C1D2` in "its mode-4 epilogue" and the `+0x58` / `+0x5C` stores in "the mode-2/3 block at `0026C1E6`".
+- **Favoured:** none by the rule.
+
+**C-V10 — `0026C120` with mode 1: return, or call `002E6300`.**
+- `MODE:155-156`: "**Mode 1 does nothing at all in this routine** beyond writing `+0x28` — it falls straight to the epilogue". `MODE:164` and `C-FS:227`: "writes `+0x28` and returns".
+- `TURN:476`: "`edx <= 1` falls to `002E6300(rec, rbx, sil)`".
+- **Favoured:** none by the rule.
+
+**C-V11 — `turn_limit` π: a ceiling, or a dead store.**
+- `C-FS:306`: "The turn is **9 degrees per step with a half-turn ceiling** (`π/20`, `π`)". `MODE:36-37`: "**9 degrees per step, and never more than a half-turn at once.**". `MODE:122`: "**Nine degrees, and a ceiling of a half-turn.**".
+- `C-FS:443-445` (DP-1, answered 2026-09-12): "`+0x5C` (π) is read by nothing — a dead store". `MODE:123` (superseded 2026-09-26) and `SLOTS:197` agree.
+- **Favoured:** dead store. DP-1 (2026-09-12) and the supersession note (2026-09-26) settle it. The "ceiling" sentences are a corrected claim still repeated unstruck.
+
+**C-V12 — What `002EBE50` runs `003A1C50` as.**
+- `TURN:461-462` (EC7, 2026-09-18): "measures `[+0xF0]` sub-record fields `+0x70`/`+0x74` minus the stored values through `003A1C50` (fabsf-shaped)".
+- `C-FS:62-68`: `003A1C50` is the two-loop wrap, with no absolute value. `C-FS:486`: "snapshots `sub[+0x70]`/`+0x74` into them after `003A1C50`-wrapping the deltas, derives a frame count `abs(Δ)/sub[+0x6C]`".
+- **Favoured:** none by the rule.
+
+**C-V13 — Which op of `00263050` pops the steering slot, and how many pop paths exist.**
+- `SLOTS:302-306` (DW-2, 2026-09-12): "**op 2** pops when the record's "pushed" bit (`+0xB` bit 4) is set and clears it … **op 1** decrements `+0x1E0` … and, when the record's slot word `[rcx + rbx + 0x24]` is negative, pops". So there are two pop sites.
+- `C-FS:207`: "`003DB2A0 -> 00263050 (op 4, actor+0xB bit 4) -> 002EAAA0 pop`". `C-FS:428-429` (2026-09-18): "`003DB2A0`→`00263050`(op 4, gated on `actor+0xB` bit 4, cleared after) pops". `C-FS:490`: "(`edx-1`/`edx-3`/`edx-4` arms)".
+- **Favoured:** none by the rule.
+
+**C-V14 — `002651C0`'s class dispatch.**
+- `HSD:1214-1216`: "for class 3 it returns `movementState + 0xAC`, for class 1 the bound object's `[+0xB8] + 0x54`". `MODE:237`: "class 1 → `pitch_approach_step`, class 3 → `+0xAC`". Note that `pitch_approach_step` is the steering record's `+0x54` name (`SLOTS:195`), not the class-1 object's.
+- `SLOTS:246`: "`+0xB8`-record floats `+0x54`/`+0xAC` selected by kind 1/2".
+- **Favoured:** none by the rule.
+
+**C-V15 — The pitch formula of `003A19C0`.**
+- `TURN:200`: "pitch `atan2(dy, √(dx²+dz²))`".
+- `TURN:534`: "`xmm8 = [r9] - [r8]`, `xmm6 = [r9+4] - [r8+4]`, `xmm7 = [r9+8] - [r8+8]`; `00861F14` square-roots `dy^2 + dx^2` for the planar magnitude". That is the y and x lanes, not x and z.
+- **Favoured:** none by the rule.
+
+**C-V16 — The stall-recovery constants: steps, or thresholds.**
+- `LOCO:118-119`: "compares remaining path distance, decrements by **0.01**, adds **1.5**, and tests a counter against **60**". `LOCO:226`: "distance stepped by -0.01, +1.5".
+- `LOCO:347-349` (AM-4, 2026-09-12): "dropped by more than **0.01** … → store it and zero the counter `fl+0x14` …; risen above the old value **+ 1.5** … → store it; otherwise **`fl+0x14 += 1`, capped at 60**".
+- **Favoured:** none by the rule. AM-4 is the only body-level reading and is not phrased as a correction of §2 / §4.
+
+**C-V17 — The order-goal decoder's accepted opcode range.**
+- `LOCO:621-623` (2026-09-02): "bounds it at **`0x4000`-`0x4024`** (37 ids), and switches to **six** goal-resolution bodies". `LOCO:636-637`: "Movement bounds at `0x4024`, and the action table's first empty slot is `0x4025`".
+- `LOCO:681-695` (2026-09-08): three tests (`cmp 0x4035`, `cmp 0x4026`, `sub 0x4000 / cmp 0x24`), the band `0x4026`–`0x4035` (16), and five higher opcodes `0x4124`, `0x4125`, `0x414A`, `0x414E`, `0x4165`. `LOCO:358-368` agrees (DE-3, 2026-09-12).
+- **Favoured:** none by the rule; no strike or correction note is attached to `LOCO:621-637`. Both later dated readings give the wider band.
+
+**C-V18 — Order `0x4020`: whose `+0x50`.**
+- `LOCO:782` (DE-4, 2026-09-12): "`0x4020` samples around the actor record's `+0x50` (an enemy-kind unit only, `003127D7`–`003127FF`)".
+- `LOCO:390` (2026-09-18): "takes the **SpawnRecord** at unit `+0x6A0` and points at its `+0x50` — the *live persisted world position*".
+- **Favoured:** none by the rule.
+
+**C-V19 — Order `0x4125`: is 20 a radius or a reference.**
+- `LOCO:365`: "the 32-family sampler `00312DF0(unit + 0xD0, −1, 20, unit, aux)` — reference position **20**". `LOCO:390`: "`0x4125` (which samples around reference 20)".
+- `LOCO:775-783` (DE-4): the signature is `00312DF0(ref, index, param, unit, out)`, and "`0x4125` around the unit's own `+0xD0`". On that reading 20 is the ±param, not a reference index.
+- **Favoured:** none by the rule.
+
+**C-V20 — The arrival curve's clamp.**
+- `LOCO:560` (the decoded body): "speed = (st->[0xF8] > v) ? v : min(st->[0xFC], v);". If speed A exceeds `v`, the result is `v`, below speed A.
+- `LOCO:306-307`: "the quadratic arrival curve below (`rem² × speedB`, clamped between speed A and speed B)".
+- **Favoured:** none by the rule.
+
+**C-V21 — The turn limiter's committed-direction path.**
+- `LOCO:469-471`: the pseudo-code always recomputes `d = Angle_NormalizeRadiansPi(desired - cur)` and snaps when `|d| <= rate`. `C-TL:96-98` (BL-6): "When the remaining delta is within the rate the result is exactly `desired`".
+- `C-TL:174-178` (closed 2026-09-23): "when either bit is set jumps to `003365FF`, which selects `current + rate` … — **stepping in the latched direction without recomputing the wrap delta or the arrival snap**". `C-TL:246` (pass 1, 2026-09-29) scopes the read differently: "It is also **read** above 120° (`0033659D`)".
+- **Favoured:** none by the rule. Two open questions follow. Does the snap apply on the latched path? Is the latch read at every error, or only above 120°?
+
+**C-V22 — Mode 3: a curve, or a constant step; and which mode's flag `002654E0` is.**
+- `MODE:199`: "along the curve `003EC040(target, +0x78, …)`". `MODE:355`: "`003EC040` (mode-3 curve)". `MODE:239`: "`002654E0` … the mode-4 curve-eligibility flag".
+- `MODE:182` (answered 2026-09-30): "there is no easing curve. `003EC040` turns the heading toward the target at a constant angular step per call". `MODE:199` itself uses `002654E0` in the **mode-3** arm.
+- **Favoured:** a constant step, settled by the dated answer at `MODE:182`. The "mode-4" label at `MODE:239` is settled by nothing.
+
+**C-V23 — Which kinds `00268380` sizes, and with which defaults.**
+- `POOL:80`: "secondary `+0xA8` (class 2) or `+0x38` (class 1), else 0". `POOL:82`: the height for "(class 2) or `+0x68` (class 1)". `POOL:84`: "37 / 37 / 50 for the party class `0x60`, else the secondary context's bytes `+0x104`–`+0x106`". `C-POOL:126`: "**`00268380` sizes the shape only for kind 3**".
+- `C-POOL:257-259` (EXP-087, consumed 2026-09-16): "kind 1 → `pb+0x68`/`pb+0x38` with rgb defaults `0x25`/`0x32`/`0x25`, kind 3 → `pb+0xC0 * pb+0x24` / `pb+0xA8` with rgb from `pb+0x104..106`". `HSD:1059` agrees that the class-3 path feeds `state[0x104..0x106]`.
+- These conflict on four points: the class labels, which kind gets the 37/50 defaults, their order (37/37/50 against 37/50/37), and whether kind 1 is sized at all.
+- **Favoured:** none by the rule. EXP-087 is executed evidence, but not a correction of the page.
+
+**C-V24 — `003DAF20`'s scale: percent, or per-fifty.**
+- `POOL:84`: "`a % × +0xF0`, `c % × +0xF4`, `b % × +0xE0 + +0xE4`".
+- `HSD:1180-1182`: "`+0xA0 = s104 × [+0xF0] / 50` … (`50.0` at `008F3130`). So the three state bytes are percent-of-fifty scale factors".
+- **Favoured:** none by the rule.
+
+**C-V25 — A zero weight: immovable, or fully yielding.**
+- `POOL:283-284`: "A zero weight (or a mask bit `00314E10` honours) makes a body immovable; the other body takes the whole separation".
+- `POOL:336`: "the weights decide: `w = wB / (wA + wB)`". `POOL:171` and `C-SEP:175`: "A receives `w × separation` and B `(1 − w) × separation`". With `wA = 0`, `w = 1` and A takes all of it. `POOL:41-42` ("the lighter body yielding more") agrees with the formula.
+- **Favoured:** none by the rule.
+
+**C-V26 — The free-list head's address.**
+- `POOL:207` (key-address table, unstruck): "`02B525C4` / `02B57CC0` | … | free-list head / active-list head".
+- `POOL:54`: "**`02B57CC4`** — *corrected 2026-09-13; this read `02B525C4`, which is inside the pool*". `POOL:394-416` and `C-POOL:54` agree.
+- **Favoured:** `02B57CC4`, settled by the dated correction of 2026-09-13. A port reading the table would corrupt entry 54 (`POOL:413-416`).
+
+**C-V27 — The cell-mask array and the deferred-registration list: `02AC7Cxx` or `02B57Cxx`.**
+- `HSD:446`: "ORs `1<<(id&0x3F)` into the `02AC7CE0` bucket array by `id>>6` (16-byte stride)". `HSD:448-449`: "tail-appends the record to the `02AC7CC8`/`02AC7CD0` list … head `02AC7CC8` / tail `02AC7CD0`". `TURN:231`: "the `02AC7CC8` deferred-register tail".
+- `POOL:131-133`: `003DB020` "ORs the body's own bit into the 128-bit mask of every cell it touches (`02B57CE0`, sixteen bytes per cell". `C-SEP:78` agrees. `POOL:418-419`: "`003DAE30` also references `02B57CC8` and `02B57CD0` … Recorded as unexplained".
+- `separation-cell-masks-accesses.tsv` routes `STATIC 0x02B57CE0` for `003DAA40`, `003DAAB0` and `003DAE30`. It has **no row for `003DB020`** at either address.
+- **Favoured:** none by the rule. If the two pairs are the same globals, `O-07` closes as well.
+
+**C-V28 — What the resolver writes to `out` in query mode.**
+- `POOL:174-175`: "the raw separation is written to `out` when the caller did not ask for a push (`00315377`)". `C-SEP:225-226` agrees.
+- `C-SEP:316-318` (pass 1, 2026-09-29): "query mode to `00315377`, which stores only the out-parameter `[r15]`, A's share".
+- **Favoured:** none by the rule.
+
+**C-V29 — Does the resolver refuse an inactive body in query mode.**
+- `POOL:156-158`: a flat list including "both are active this tick (`00314FD6`–`00314FE4`)".
+- `C-SEP:134` (P-4): "**`test esi, esi` / `je 00314FEA` — with `mode == 0` the next test is skipped entirely**". `C-SEP:144-146`: "The pool page §2.7 lists "both are active this tick" in a flat list of refusals; it is conditional on the mode". Also `C-SEP:139-140`: push mode adds a seventh, vertical refusal.
+- **Favoured:** `C-SEP` P-4. The contract (authored 2026-09-21, pass 1 2026-09-29) explicitly corrects the page.
+
+**C-V30 — Header `+0x0A` of the navigation dataset: region count, or triangle count.**
+- `NAV:49`: "+0x0A  u16   regionCount      <= 0x80". This is tested on 461 files: `NAV:59-66`.
+- `NAV:344` (EXP-131 table): "`deg = w[root+0xA]` — the triangle count".
+- `nav-run-state-block-accesses.tsv`: `+0xA` is read by the search (`003830F4` …), by the cost function next to the `+0x1C` adjacency (`00383883`) and by the re-aim. `+0x6` is read only by `00383A30`, the whole-mesh triangle loop (`NAV:95-96`). The layout favours `regionCount`.
+- **Favoured:** none by the rule.
+
+**C-V31 — The portal record's bytes `+5` and `+6`.**
+- `NAV:52`: "u8 gated (+4), u8 mapId (+5), u8 classMask (+6)". `NAV:150-156` uses `+5` as the map id and `+6` as the class mask.
+- `NAV:346` (EXP-131): "`{w va, w vb, b +4, b class@+5, b flag@+6}`".
+- `nav-portal-record-accesses.tsv`: `00383850` compares `+4` with `0xff`, loads `+5` into `ecx` (the map id passed on), and tests `+6` against `r8b` (the class bit). The layout favours `NAV:52`.
+- **Favoured:** none by the rule.
+
+**C-V32 — The out-vector of the capsule distance `D5A0`.**
+- `C-CQ:409-411`: "Optional out `r14` receives `{Δx, Δy, Δz, horizontalDist}`".
+- `SHAPE:116-117`: "`out = {posA - posB, 1.0}`".
+- **Favoured:** none by the rule.
+
+**C-V33 — Which verbs reach the navigation caches.**
+- `C-NAV:154-155`: "**`setmapidfloor` is the only script verb that reaches this subsystem**". `C-NAV:227-228` repeats it.
+- `NAV:191`: "Every change to the override table ends in `003278D0`". `POOL:294` (2026-09-18): the setters "each end in the notify `003278D0`. Their callers are the family `003791D0`..`003795A0`, and those are the tails of the script verbs `00F6`..`010B`". That family includes the floor-ground, wall and mj override verbs.
+- **Favoured:** none by the rule.
+
+**C-V34 — Does the time base ever leave 1.**
+- `HSD:781-782` (2026-09-02): "It does **not** show the triple ever being written away from `1.0` during play".
+- `MODE:136-138`: "**1 or 2**, chosen by the player's Frame Rate setting". `MODE:313-314` (2026-09-13): "**1 at 30 fps, 2 at 60**, written only when `FrameLimit=60`". `TURN:224`: "`01DFE0B8` is the `FrameLimit` scale, 1.0 or 2.0". `C-HSD:471`: "`2 / [01DFE0B4]` in half-rate".
+- **Favoured:** none by the rule; the later pages cite another folder's page and do not strike `HSD:781-782`. This decides the mode-4 frame difference (`MODE:140-144`) and every `× [01DFE0B4]` / `× [01DFE0BC]` in §1.2.
+
+**C-V35 — Who drops and raises flag B `02B40534`.**
+- `3DF:561` (2026-09-03): "`003B6ED0` and three others store `1`; **three store `0`**; two store a register". That totals 9 stores for 8 sites.
+- `3DF:459-466` (BV-5, 2026-09-14): `003B6ED0` 1; `003B7E00` the argument; `003B6F30`, `003B7080` 0; `003B72F0`, `003B7E20` 0 through a register; `003B7BB0`, `003B7C60` 1. `3DF:468`: "§10's "two store a register" are these two zero stores".
+- **Favoured:** none by the rule; BV-5 is itemised and later.
+
+**C-V36 — How many `+0x14F` bit-0 readers veto movement.**
+- `3DF:329-331`: "**six of its eight readers are movement vetoes** — the two field-pass selectors, `Movement_UpdateActorFrame` …, `002E5750` …, `002E6000` …, `002E6330` … and `002EA7F0`".
+- `3DF:358` (narrowed 2026-10-01): "every movement-side reader refuses (the attach guard and two presentation readers excepted)". That implies one of the six does not refuse, and the page does not say which.
+- **Favoured:** the 2026-10-01 narrowing. Which reader is "the attach guard" is not stated.
+
+**C-V37 — The animation step's frame windows.**
+- `ANIM:95-101`: "the frame counter `+4` goes up; past `duration` the entry is unlinked … **while the counter is below `moveFrames`** … `move += direction x speed[frame] x distance x scale x timebase`".
+- `ANIM:163` (pass 1, 2026-09-29): "**survives**: duration and move windows × the frame-rate word; the curve indexed by counter / word". So the windows and the curve index are scaled by the frame-rate word, which §4 does not state.
+- **Favoured:** none by the rule; the pass records "survives" without amending §4.
+
+**C-V38 — What the corridor agent's `+0x108` points to.**
+- `C-CQ:133`: "every path passes `BattleUnit + 0x80`" (seven `lea` sites).
+- `C-CQ:356-359`: "at `003019BF`, `lea rcx, [rsp+0x30]` … copies `unit+0x80..+0x68F` … and overwrites `+0x40`, `+0xD0` and `+0x160` … **The corridor is asked about an edited snapshot of the unit, not the unit.**"
+- **Favoured:** none by the rule. Both are dated 2026-09-25.
+
+**C-V39 — What produces the battle stop-and-pivot.**
+- `LOCO:104-106`: "**That attribution was wrong**: neither is called from anywhere inside this family. The behaviour comes from the limiter's own 45° deadband". `LOCO:510-514` agrees.
+- `LOCO:254-268` (AM-7, 2026-09-12): "two of the six steering modes, and they are inside the family after all … **`ApplyStopAndTurn` (`0033CE60`)** zeroes the speed `+0xB0` … — a stop-in-place pivot". The struck question at `LOCO:252-253` agrees.
+- **Favoured:** AM-7, the dated answer that strikes the earlier claim.
+
+**C-V40 — The render-record trailer.**
+- `HSD:833-834` (§8f, unstruck): "with a dword at `base + 0x48830` and a 256-byte trailer".
+- `HSD:131-132`: "The trailer is therefore `0x130` = **304 bytes**, not 256", under "**PROPAGATED 2026-09-19 (OPUS)**" (`HSD:134`).
+- **Favoured:** 304 bytes, settled by the 2026-09-19 correction.
+
+**C-V41 — The headline formula in the index.**
+- `README:15`: "`x = sin(heading)*speed`, `z = cos(heading)*speed`, plus a separate vertical term".
+- `HSD:91-93` and the correction `HSD:683-690` ("Correction 1 — the headline formula was incomplete (OVERTURNED)", 2026-09-02): X and Z carry `cos(pitch)`.
+- **Favoured:** `HSD`, settled by the 2026-09-02 correction.
+
+**C-V42 — How many facing copies a facing change writes.**
+- `C-FS:197-199`: "`002E5FB0 -> 002E5E10` steering-record write (wraps again; context->+0xA8; three/four {id,target} sub-records".
+- `HSD:1065-1068`: "~~Three or four sub-objects …~~ **Corrected 2026-09-11:** `FUN_003DA850` is a six-byte store, so a facing change writes **one to four copies**".
+- **Favoured:** one to four, settled by the dated correction of 2026-09-11.
+
+**C-V43 — `usemapid(0)` actors: no branch, or the default 3-D branch.**
+- `3DF:393-394`: "an actor with `usemapid(0)` is neither flat nor 3-D by these selectors".
+- `3DF:209-216`: the consumers take the planar path only when flat is true, "else -> spherical path"; "**3-D is the default.**" On that formula a `usemapid(0)` actor takes the spherical branch.
+- **Favoured:** none by the rule.
+
+#### B. Stale "not read / open" claims, banners, names and counts (no ported value changes)
+
+| id | the stale or banner side | the side that answers it | note |
+|---|---|---|---|
+| C-S01 | `README:14` "**DOCUMENTED, tier 1.**" (HSD); `README:20` (ANIM) and `README:23` (NAV) the same; `README:29` "**PARTIAL, tier 1.**" (SHAPE); `README:34` "**PARTIAL, tier 1.**" (POOL) | `HSD:4`, `ANIM:4`, `NAV:4` `status: AUDITED`; `SHAPE:6` `status: DOCUMENTED …`; `POOL:4` `status: AUDITED` | The README also lists 5 of the 18 pages; facing/steering, the mode pages, battle locomotion, the clamps and all seven contracts are absent |
+| C-S02 | `LOCO:33` "**PARTIAL.**" | `LOCO:4` "`status: AUDITED`"; `LOCO:37` "nothing on this line stays unread" | body banner against front matter |
+| C-S03 | `NAV:23-24` front-matter note "Not read - the locomotion solver that consumes the waypoint …; pending first review"; `NAV:234` "**Not read:** the locomotion solver that consumes the waypoint"; `C-NAV:198` the same | `NAV:24` "promoted: 2026-10-01 DOCUMENTED -> AUDITED"; the solver is read on `LOCO:446-565` | — |
+| C-S04 | `HSD:273-274` "`002E45E0` is named but its body is not yet read here" | `TURN:186-228` ("`002E45E0` read in full", `TURN:358`); `HSD:1277-1282` | — |
+| C-S05 | `HSD:532` "**Not traced:** what `00267260` tests" (K-4, 2026-09-14) | `HSD:558` K-7 answered 2026-09-02; `3DF:100-108` | the answer predates the "not traced" note |
+| C-S06 | `TURN:254-256` "`0026B6A0` … **not read**", "`0026C090` … **not read**", "`002E55C0` … **not read**"; `TURN:363` "What `0026B6A0` / `0026C090` do \| **not read**"; `TURN:421-422` "remain unread" | `TURN:139-142` (ED-5, 2026-09-12); `TURN:321-323` (ED-3, 2026-09-08); `C-FS:476`, `:479-480` | — |
+| C-S07 | `SLOTS:106` "`FUN_002627C0(ctx); /* unread */`"; `SLOTS:311-312` "What `FUN_002627C0`, `FUN_002EC2C0`, `FUN_002EBFA0`, `FUN_002EC3F0` or `FUN_002E8EE0` do. Named as the push/pop chain, unread." | `C-FS:413-426` "**All read.**" (2026-09-18) | `SLOTS:313` reads only one of the five |
+| C-S08 | `SLOTS:139-140` "**Only 0 and 1 were observed**; what the remaining six encode is not established" | `SLOTS:328` "**Answered 2026-09-15 (FABLE): 4–7 are never written**" | — |
+| C-S09 | `SLOTS:215` "**Bits 3–5 and 7 are untouched by any site in the census.**" | `SLOTS:337-340` (2026-09-15): bits 3–5 written by `002EC380` / `002EBE50`, bit 7 by `0026A1A0` / `00263230` | scoped to "the census", but unstruck |
+| C-S10 | `C-FS:546-547` "the seven remaining named callees are still unread"; `C-FS:610` "**Eight named callees unread**" (closed at `C-FS:613`) | `C-FS:413-426` | seven against eight is itself a count disagreement |
+| C-S11 | `C-SEP:251` "The units and meaning of the weight masks `+0x110` / `+0x114`" (open) | `POOL:334-349` (2026-09-14 / -18): priority bits, vetoes, freezes; `+0x114` never written | — |
+| C-S12 | `C-CQ:236-239` "two concurrent `RDEC` calls would race — nothing in this family protects it" | `C-CQ:415-421` (2026-09-25): "**no caller can run concurrently** … the bank has exactly one user thread" | `C-CQ:238` (2026-09-29) re-words it as overwriting by every workbench user |
+| C-S13 | `POOL:196-197` "What the nibble and its two sibling fields mean, and what fills the mask table, is **FZ-11**"; `POOL:328-330` "The bullet stays open for those" | `POOL:295` (FZ-11 ANSWERED 2026-09-18); `POOL:301` (UQ-103 ANSWERED 2026-09-18) | — |
+| C-S14 | `C-HSD:354-357` "**Still OPEN:** … Class stability and the refusal's reachability stay OPEN"; `HSD:584` (2026-09-29) "the contract's section-14 closure that used one is reopened, CON-172" | `C-HSD:358-361` "**ANSWERED 2026-09-30 … The refusal does not run there, and no caller receives `{0,0,0,1.0}`.**" | `C-HSD:249` (2026-10-01) still keeps "the class's stability across other writers" open (`O-02`) |
+| C-S15 | `LOCO:705-707` "**What is not read:** what any of the six cases *does*"; `LOCO:715` "The shared handler is `002367A0`" | `LOCO:709-787` (DE-1..DE-4) and `LOCO:390` (2026-09-18); `LOCO:355` and `LOCO:694`: "~~one shared handler `002367A0`~~" corrected 2026-09-13 | — |
+| C-S16 | `HSD:422` "`Movement_SetRequestedSpeed` (`0026D6F0`), 10 distinct callers" | `HSD:1373` "`0026D6F0` — 275 B, 7 A-measured callers" | different measures, unlabelled |
+| C-S17 | `3DF:486` "It has 33 distinct callers at 33 sites" | `3DF:605` "33 callers over 37 sites" | — |
+| C-S18 | Steering-record size: `SLOTS:166` "32 distinct fields"; `SLOTS:180` "32 fields, **13 named, 19 `UNRESOLVED`**"; `C-FS:188` "the record's 32 fields"; `TURN:290` "The full 32-field census"; `SLOTS:218-221` "21 of 128 bytes are undeclared … `+0x30..+0x33`, `+0x40..+0x4F` and `+0x6B`"; `SLOTS:347-348` "the 33 unaccounted bytes" | `C-FS:118-121` "40 field rows, 33 semantically named (re-measured and extended 2026-09-18)"; `C-FS:449-451` "**9 bytes** in two never-observed spans (`+0x44`–`+0x4B`, `+0x6B`), plus 12 ctor-zeroed bytes" | `steering-record-fields-observed.tsv` has **32** rows, with no `+0x04C` and no `+0x054`; `steering-record-accesses.tsv` has rows at `0x4c` (2) and `0x54` (3) and **57** distinct functions (`SLOTS:215`'s "57") |
+| C-S19 | `C-POOL:173` "all four functions the creation sequence calls"; `C-POOL:367` "all four consumers"; `C-POOL:390` "all four consumers" | `C-POOL:93-97` (pass 1, 2026-09-12): "**There are FIVE consumers, not four.**"; `C-POOL:225` names five | — |
+| C-S20 | `POOL:27`, `:29-30`, `:61` and `README:33-34` place the body at "the movement context's `+0x138`" | `POOL:74` (corrected 2026-09-18): "`+0xB8` is the **movement** context … and `+0xC0` the **secondary** context"; `C-POOL:56` "`secondaryContext + 0x138`"; `HSD:397` "`pSwbiPresentationState[0x138]`" (actor `+0xC0`) | a naming-only change; the offset is the same |
+| C-S21 | `HSD:403` "`Movement_PublishHeadingState` (`002E5C10`) -> CharacterRenderObject +0x240"; `HSD:427` "the CharacterRenderObject record (`+0x240`)"; `HSD:754` "the heading publication into the CharacterRenderObject array" | `HSD:784-830` §8f (2026-09-02): it is the `0x740` render-record array, **not** the `0x668` `CharacterRenderObject` | the offset is the same, the structure differs |
+| C-S22 | EC7 notes on `HSD` call nav-shape bodies "heading" helpers: `HSD:1506` `00381450` "the heading delta's length arm"; `HSD:1522` `00381D90` "the three-kind transformer"; `HSD:1538` `00380EB0` "the heading-record builder"; `HSD:1542` `00380E00` "the per-component heading wrap" | `SHAPE:77` `00381450` "box primitive"; `SHAPE:169` and `SHAPE:215` `00381D90` "push-out direction", whose callees include `00380E00` / `00380EB0` | role naming only |
+| C-S23 | `MODE:343` and `MODE:525` call `00263CC0` "the movement-kind speed read" | `MODE:198` and `MODE:525` itself: it returns `[+0xB8]+0xA4` (class 3) / `+0x38` (class 1), the **desired heading** | name against value |
+| C-S24 | `SLOTS:243` "`edx==0` dispatches on the steering mode (`00265600`)" | `C-FS:483`: `00265600` reads "`sub[+0x28]&0x7F`", which `SLOTS:153-154` names the **movement** mode | the page's own two-field distinction |
+| C-S25 | `C-FS:95` "`004288B0(slot, -1)` (slot bit `0x20000` clear)" | `C-FS:803-807` "the `-1` arm *sets* the `0x20000` bit where the contract prose above calls it a clear"; `HSD:1196-1197` reads it as a precondition, "unless `+0x284` bit 17 is already set" | wording; both readings agree on the bytes |
+| C-S26 | `CLAMP:119-120` "a fixed global block around `022D9198 … 022D9318`"; `CLAMP:172` "Both write `022D92B0` and `022D9198`" | `CLAMP:199` "`022D92A0`..`022D9318` \| the shared scratch block" | the range start disagrees |
+| C-S27 | `CLAMP:113-115` "**Nothing in this function reads the history back**, so what it is for is not established here" | `CLAMP:174` "Its reader is found (2026-09-18, FABLE): `0025C830`" | — |
+| C-S28 | `ANIM:124` "Two global switches and a per-list enable can stop all of it" | `ANIM:61-63` (corrected 2026-09-29, `CON-186`): "with it up requests still queue while nothing advances or frees" | — |
+| C-S29 | `LOCO:269` "*Not read:* modes 1 / 4, 2 and 6's bodies, and what authors the mode bits"; `LOCO:270-273` "no writer … is traced" | `LOCO:274` (SD-183 answered 2026-09-30) | the answer's amendments are not applied (`G-05`) |
+| C-S30 | `3DF:134-136` "it reads as a guard against running the flat path during bootstrap or after a teardown"; `3DF:229-231` "actor system bootstrap … [the gate opens]" | `3DF:116-120` banner "**OVERTURNED in section 10.**"; `3DF:552-597` | flagged by a banner, the text unstruck |
+
