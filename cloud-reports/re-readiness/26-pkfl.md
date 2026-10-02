@@ -191,3 +191,51 @@ that package return -1." (`PK:391-397`.)
 | `01-Script-VM` | script argument supplies the slot index (`voiceread`); `0050DFE0` calls `0032E620` | `PK:189-190`, `PK:501` |
 | `03-World-Area-Field`, `16-UI`, `19-Save-Load-Settings` | callers only (CLIENT crossings) | `PK:496-503` |
 
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, or never closed)
+
+| # | gap | where |
+|---|---|---|
+| S-1 | **Slot meaning.** "**Nothing is claimed about what any slot holds.**" Payload meaning is delegated to `17-…` and `18-Audio`; "no reading of 'even = data, odd = descriptor' is asserted" (that last clause is itself stale, see X-6). | `PK:399-402`, `RM:132`, `RM:170-172` |
+| S-2 | **No slot denominator.** "**So the 14-pair denominator is NOT established, and no sheet should be scored against it yet.**" Steps 2-3 of the plan (`check_pkfl.py`, one sheet per unit) have no stated outcome; `Slots/` and `Variants/` do not exist in the snapshot. | `RM:86-90`, `RM:150-158`, `RM:160-166` |
+| S-3 | **Write path.** "None found. Nothing in the executable emits `PKFL`." A port's tooling would have to infer a writer from the layout. | `PK:193` |
+| S-4 | **Code half of the audit.** "**The corpus half of this sheet is now independently confirmed; the code half is not.**" The 2026-09-18 body reads (`PK:381-398`) are author reads, not an audit pass; front matter still `last_pass_state: … §3 loader contract NOT audited`. | `PK:360-363`, `PK:28` |
+| S-5 | **`ResourcePath_Init` is half-read.** "◐ the slot-install region". | `PK:200` |
+| S-6 | **Crossings are tier 2.** "tier 2: ledger names, sizes and `edges.tsv`; no body read for this note"; ActorEntity: "**4 of the 15 bodies on that layer are read, the rest are counted**". | `PK:488`, `PK:494` |
+| S-7 | **`evt_t0005.mot` source.** "`evt_t0005.ebp` does load and play motion … while its own `.mot` is empty, so what it plays is served from another package" — which package is not stated. | `PK:410-411` |
+| S-8 | **Ordering under the pair reading.** "'Offsets are not ascending in slot order' was not re-measured and is not asserted." | `PK:250-251` |
+
+### 2.2 Structural gaps (a port needs these and no page in the folder states them)
+
+| # | missing | why a port needs it | evidence of the gap |
+|---|---|---|---|
+| G-1 | **Byte order of the header and directory words.** | Reading `{offset, size}` at all. | Only implicit: `PK:272` dump, `PK:338` "LE dword"; `PK:72-86` give `u32` with no endianness. |
+| G-2 | **Payload alignment / padding rule under the pair reading.** The `0x10`-alignment invariant (`PK:220`, `PK:327`) was measured over the four-byte reading and is in neither the "artefact" list nor the "survives" list (`PK:236-237`, `PK:249-251`); "padded to the sector" (`PK:407`) gives no sector size; "the first payload usually sits at `0x800`" (`PK:260`) says "usually". | A writer, and any validator. | `PK:220`, `PK:249-251`, `PK:260`, `PK:407` |
+| G-3 | **Whether `size` is the stored (compressed) or the decoded length**, and whether a slot payload is itself compressed. Only the outer VBF block compression is mentioned ("decompressing only block 0 of each", `PK:238`, `PK:313`). | The sub-file request passes `size` straight through (`PK:165`). | not stated |
+| G-4 | **Path-table element format and index formula.** `ResourcePath_Get` "returns `g_pathTables[namespace][index]`, 22 bytes" (`PK:113`) — whether "22 bytes" is the function size or the element; the element type (string pointer?) and the map → index formula (`index = 3·map + field`? from "`i%3 == 0,1,2`", `PK:120`) are not written out. Delegated to `area-nmb-index.md` §3 (outside). | Building `(ns, index)` for a map. | `PK:113`, `PK:118-122` |
+| G-5 | **Region-variant selection.** Ten arrays for ns 5 and ns 8, two for ns 37 (`PK:120-122`, `PK:301`); which array the engine uses, and what selects it, is not stated. | Picking the path. | `PK:138-142`, `PK:300-301` |
+| G-6 | **Language (namespace 8 vs 37) selection mechanism.** "the engine selects the namespace" (`PK:126`). | Loading `.vpc` vs `.vpcjp`. | `PK:65-68`, `PK:124-126` |
+| G-7 | **Path → shipped file resolution, and the 9 vs 10 mismatch.** Files ship under nine locale roots (`PK:404-405`) while paths come in ten region variants (`PK:120-121`); 1,809 `.vpc` files against 3,290 `.vpc` strings (`PK:133`), 2,304 `.snd` files against 3,290 strings (`PK:132`). How a path string maps to an archive entry, and why the file counts are what they are, is not stated (the `.fpk` "path with no file" case is explained, `PK:150-154`; the PKFL cases are not). | Every load. | `PK:43-48`, `PK:130-136`, `PK:404-405` |
+| G-8 | **When the walker "does not request a package".** "the walker writes a zero into byte 0 when it does not request a package (`0032FEC7`, `0032FF2D`, `0032FF98`, `00330004`)" — the condition is not given (missing path? field absent in ns 5 records, which have no `snd`/`vpc`?). | Reproducing which tables are live per manager. | `PK:394-395` |
+| G-9 | **Which records `0032FCA0` reads for fields +1 / +2.** Fields +3 are tied to "namespace 8" and "namespace 37" (`PK:384-385`); fields +1 (`mot`) and +2 (`snd`) are not tied to a namespace, and ns 5 records have `fpk`, not `snd`, at +2 (`PK:120`). | Map vs. non-map managers. | `PK:382-385` |
+| G-10 | **Manager count, per-manager buffer stride, and the readers' argument list.** "gives each manager slot a `0x208` buffer" (`PK:386`); how a reader selects the manager, what `r8d` values pick which 64-slot table (`PK:390`), and the full argument list of the seven readers are not stated. | Calling the readers. | `PK:386-391` |
+| G-11 | **Out-of-range `k`.** `k` is "not bounded" (`PK:165`), `slotCount` is not read (`PK:189`), and a 16-slot package is loaded as `0x88` bytes into a `0x208` buffer (`PK:165`, `PK:386`). What a read at `k ≥ 16` of a 16-slot table returns (stale bytes of an earlier load?) is not stated. | Faithful edge behaviour. | `PK:165`, `PK:189-190`, `PK:386` |
+| G-12 | **Caller handling of `-1`.** Readers "return -1 if zero" (`PK:391`); what `003E9EF0` and the `.mot`/`.snd` consumers do with `-1` is not stated (only "a zero size loads nothing", `PK:165`). | Error path. | `PK:165`, `PK:391` |
+| G-13 | **Manager state word `022C6E48`.** Who sets bits 14/15, which completion clears which bit, and the other bits. | Load sequencing. | `PK:392-393` |
+| G-14 | **Trigger and frame position of `0032FCA0`, `0032ED80`, `0032F430`.** Only layers are named (`PK:494`, `PK:502-503`); the calling functions and when they run are not. | Order (§1.6). | `PK:206-209`, `PK:494`, `PK:502-503` |
+| G-15 | **`0032E620` contract.** Argument list (four vs five arguments, X-12), `kind` values for PKFL requests, the callback record, completion semantics. Only called-by lists are given. | The sub-file request itself. | `PK:165`, `PK:167-179`, `PK:494-504` |
+| G-16 | **`0024AB90` and `00249810`** appear only in the `00291C80` crossing ("queries `0024AB90(7, 0x98 + n)`", "allocates `00249810(2, result)`", `PK:171-172`) and as "the allocation arm `00249810` … this page's container init describes" (`PK:498`); no page section describes a "container init". | If the PKFL loads use the same query/allocate shape (not stated). | `PK:171-172`, `PK:498`, `PK:500` |
+| G-17 | **`PKFL_Bind`.** Named once — "`PKFL_Bind` and the slot-consumer functions were not read" (`PK:360`) — and nowhere else in the database snapshot (searched all of `FFXII TZA/`). No address, no role. | Unknown whether it is one of the named functions under another name. | `PK:360` |
+| G-18 | **`.mot` occupancy by slot under the pair reading**, and a per-extension present-pair total. The only total, "74,340 present offsets" (`PK:213`, `PK:326`), is listed as an artefact (`PK:237`); no replacement is given. | Corpus validation of a port. | `PK:213`, `PK:237`, `PK:244-246` |
+
+### 2.3 Fields or figures given without meaning
+
+| # | item | where |
+|---|---|---|
+| U-1 | `+0x04 slotCount` — written in every file (16 / 64) and "not read by any function read here"; whether any engine path reads it is bounded only by the six/seven readers' sweep (`PK:387-391`). A writer must still emit it. | `PK:74`, `PK:164`, `PK:189` |
+| U-2 | `0032F3A0` reads "slot `k+8`'s size at `+0x4C`" for field +2 (`.snd`) — why a `.snd` consumer needs slot `k+8`'s size is not stated (cf. `.snd` "slot 9 in 1,809", `PK:245`). | `PK:389` |
+| U-3 | The figure **321** in "709, 329, 321 and the ten/two array counts are unaffected" — 321 appears nowhere else on either page. | `PK:469` |
+| U-4 | `.fpk` field of ns 5 and ns 21 (215 area stems × 2) — named for the string reconciliation only; ns 21 is not otherwise described. | `PK:144-149` |
+| U-5 | The `0x288`-stride manager records at `02098E10` — named in a crossing; their relation to the per-manager directory tables is not stated. | `PK:494` |
+
