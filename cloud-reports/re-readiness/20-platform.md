@@ -247,3 +247,55 @@ context's `+0x18` is already set, skip to step 3" (`STM:59-60`).
 | Presentation (debug menu) | `DebugMenu_Render` reads ids 0–4, 11 | `CTR:54-61` |
 | 12 Shops (bazaar) | `sethoridashi` → `0032AB50` | `CAT:116-120`, `CAT:250-252` |
 | Steamworks (`steam_api64.dll`) | nine imports (`CAT:389-397`) | `CAT:389-397` |
+
+---
+
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, or live-only)
+
+| # | gap, as the page puts it | cite |
+|---|---|---|
+| O-1 | "Whether any caller re-issues an award that I-2 drops. The periodic checker `00315E90` is the likely candidate, and it is not read for that here." | `STM:161-162` |
+| O-2 | By-id table keys: "What the keys name is not read." | `STM:168` |
+| O-3 | "Still open: what `0020CCC0` does after registration." | `STM:170` |
+| O-4 | "What `[02EA5368]+0x69` means (the pump's early return)." | `STM:171` |
+| O-5 | "Anything live." (STM); "Evidence class: isolated original-code. Live capture: still absent." and "any runtime observation \| — \| none \| UNKNOWN" (CTR) | `STM:172`, `CTR:251`, `CTR:410`, `CTR:456` |
+| O-6 | The two live checks requested from ASTRA (save block after a counter achievement; `kind == 2` held at `0x7FFF`) | `CTR:335-344` |
+| O-7 | "§11 Observable behaviour — Not established." | `CTR:215-218` |
+| O-8 | Award ordering: "whether it is intended is not established here" | `CTR:89` |
+| O-9 | The debug menu's second number: "The format suggests the second number is a target; that is **not established**" | `CTR:60-61` (`CTR:356` and `CAT:663-667` since identify `003165C0` as the threshold lookup; the box is not updated) |
+| O-10 | `SteamController_PollState`: "not read (`SD-163`)" | `CAT:165` (status line `CAT:4` says SD-163 is answered in the register; the answer is not on this page — C-S16) |
+| O-11 | `ISteamUserStats` slot names "rest on the public SDK's vtable order (tier 6), not on a string in the image" | `CAT:729-730`, `CAT:353` |
+| O-12 | Whether class-3 units are excluded from the bestiary tally: "Which units carry it is `SD-160`" | `CAT:339` |
+| O-13 | HORIDASHI: "Which of them the achievement `ACH_SPECIAL_HORIDASHI` counts is not tied in the image" | `CAT:263-265` (partly stale — C-S13; the mode-1 value 53375 is still unexplained, G-18) |
+| O-14 | `.\GameData\code_steam.txt` "a **Steam-specific authored data file**, not previously recorded" — nothing more | `CAT:543` |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no 20 page states them)
+
+| # | missing | why a port needs it | where the gap shows |
+|---|---|---|---|
+| G-1 | **Which evaluator arm each mode 4–7 reaches.** The two pages decode the eight-arm table at `00316098` differently (C-V1). | Decides whether Cartographer (id 15, mode 5), Scrivener (id 16, mode 6) and the ten `MONSTER` marks (ids 20–29, mode 7) can ever be awarded, and by which test. | `CAT:662` vs `CTR:354-363` |
+| G-2 | **The updater's trigger-path test and fire body.** CTR §7 says mode 0 fires "unconditionally"; CAT and CTR's own claim table say it compares (C-V2). The comparison operator (`>=`? `==`?), which source wins when `003165C0` and `+0x04` are both non-zero, and what `Fire(id)` in the §12 formula does (it is never defined) are not stated. | Ids 5, 8, 18 (Wayfarer, Exemplar, The Unrelenting) and 19 (Collector) are kind 0 and fire only here. | `CTR:139-143`, `CTR:229-230`, `CAT:578-588`, `CTR:407-408` |
+| G-3 | **What calls the periodic sweep `00316930`, and how often.** | Decides when evaluator-only achievements (modes 2, 5, 6, 7) fire, and whether "awarded on the *next* update" (`CTR:86-87`) is ever corrected sooner. | `CAT:297`, `CAT:331`, `CAT:662` (caller never named) |
+| G-4 | Descriptor byte `+0x03`; the per-id values of `+0x01` (the offset byte) as a table. | A port that builds its own descriptor table needs all eight bytes; the offsets are only implied by the listing order of `CTR:445-449`. | `CAT:566` (fields `+0x00`, `+0x02`, `+0x04` only), `CTR:100-102` |
+| G-5 | How `00316760` produces the values for ids 5 and 8 ("special-cases 5 and 8 at `00316787`/`0031678C`"). | Wayfarer (50,000 steps) and Exemplar (average level 50) compare against these values. | `CAT:693-694` |
+| G-6 | The exploration predicate's bitmap: "the handbook's hop-1 bitmap (`[022C2550]+8`, bit `n` at `+4+(n>>3)`)" — whether `+8` is the blob position before hop 1 (the member TSV says hop 1 lands at `+0x3C`) is not stated, nor the bitmap's length. `00255120` / `00255060` semantics are 03's. | Cartographer's test. | `CAT:662`, `CAT:170` |
+| G-7 | The bestiary-completion predicate's keyed-record format (type 0 / type 1, the `word & 0xFFF` key at `[022C2550]`). | Scrivener's test. | `CAT:662`, `CAT:169` |
+| G-8 | Mode 2's "packed word pair `[lo,hi)`": which half is `lo`; the meaning of `00309EC0`'s answer. The three shipped values are printed only as signed dwords (`810627072`, `1075331072`, `-1071661038`). | Ids 9, 10, 12 (Runeweaver, Jack-of-All-Trades, High Summoner). | `CTR:358`, `CAT:617-620`, `CAT:662` |
+| G-9 | What the load-time normaliser `00316810` changes. | A loaded save must be normalised the same way; the member TSV shows it reads descriptor bytes `+0x00`/`+0x01` six times. | `CAT:331` |
+| G-10 | The new-game initial contents of save `+0x3844`..`+0x386B` (and who writes them). | A fresh game's counters and award bits. | not stated on any of the four pages |
+| G-11 | The kind-7 flag bitmap at `+0x3848`: who calls `00315B50`/`003157E7` with `cl == 7`, and what the 30 flags mean. | Reversible save state with no named consumer. | `CTR:377-386` |
+| G-12 | `003154B0`'s callers, and what categories 0–4 (count/base tables at `0x00D10640`/`0x00D10630`, bitset `+0x32CC`) and 6 represent. | A query into achievement state (category 7) with no named consumer. | `CAT:169` |
+| G-13 | The 1101 handler in full: whether the achieved count is recounted during the refresh (it is "reset"), what happens to entry 0's local byte (only entries 1…n−1 are refreshed), what a non-matching game id or `result != 1` does, and whether `+0x10`/`+0x90` are overwritten (C-V12). | Session state after receipt. | `STM:104-109`, `CAT:288-289` |
+| G-14 | Start-up step 1: what the context's `+0x18` is and what sets it before `007980A0` ("If the context's `+0x18` is already set, skip to step 3"). | Whether `SteamAPI_Init` can be skipped. | `STM:59-60` |
+| G-15 | Who calls `008653B0` and `0020CD80` (and when), and who reads the listener's `+0x80` / `+0x88`. | Shutdown and connection-lifecycle behaviour. | `CAT:289`, `STM:121-124` |
+| G-16 | How `startscene` arguments map to the by-id table's `{key1, key2}` (34,125 `startscene` rows in the member census, no page maps them). | Which story scenes award entries 31–38. | `STM:99-100`, `STM:163-168` |
+| G-17 | The amounts some feeders pass: counter 17's `(byte [+0x1C2] - byte [+0x88]) x word [[+0xE78]] + word [[+0xE70]]` (fields not described); counter 18's value from `0028F0C0` (also stored at block `+0x7C78`); counter 13's "row index" (how it lands at or above the mode-3 bias `0xE2`). | The counters' inputs. | `CAT:331`, `CAT:318-319`, `CAT:316-317`, `CTR:185-187` |
+| G-18 | Counter 19 (Collector, mode 1, threshold 53375) fires when `0056D370`'s "record's word `+8`" equals 53375 on a purchase; what that record and value are is not stated. | Collector's condition. | `CAT:319-320`, `CAT:331`, `CTR:145` |
+| G-19 | `008632B0`'s return value when the manager is null, and whether any caller uses `0020CE60`'s 1 / 0. | Caller behaviour. | `STM:91`, `STM:94-98` |
+| G-20 | "`007A0C60` matches the Steam language against `japanese`, `english`, `french` and the rest (this page's `Language` finding)" — the page has no `Language` section; the result's consumer is not stated. | Locale selection. | `CAT:288` |
+| G-21 | `code_steam.txt`'s contents and reader. | Authored Steam data. | `CAT:543` |
+| G-22 | `00315390` (one of the "twenty achievement-counter bodies", `CAT:288`) appears in the unlinked `achievement-state-accesses.tsv` reading the `+0x3844` route at `base+0x24` (`+0x3868`, counter 17); CAT's displacement-scan list (`CAT:331`) does not name it. Pointer only. | A possible extra reader of counter 17. | `CAT:331`; member TSV row `00315390 … 003153A4 0x24 r` |
+| G-23 | What `003162E0` and `00316440` decide before calling `008632B0` (the TSV shows `00316440` reading `+0x3845`). | Two award callers with no stated condition. | `STM:89-90`, `STM:192` |
+| G-24 | Thread and frame relation between gameplay counter updates and the window pump. | I-2's "lost award" window depends on when 1101 arrives relative to the first awards. | `STM:84-85`, `STM:126-130` |
