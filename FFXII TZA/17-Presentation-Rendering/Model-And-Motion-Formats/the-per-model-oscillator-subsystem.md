@@ -400,6 +400,22 @@ The rig's `+0x78` holds `encode(00421D20(render record))`, written at `003E1CC3`
 record's resource entry (owner `+0x10`, table `+0xD98`, key `+0x18`) and returns that entry's `+0x84`: the skeleton's
 `0x290`-stride bone array.
 
+**Qualified 2026-10-02 (OPUS, on ASTRA's rig-index-list and rig-owner-rebind packages, re-read at the bytes):**
+- `003E1C50` rewrites `+0x70` and `+0x78` only when the rig's initial `+0x70` decodes non-zero
+  (`003E1C66`-`003E1C78`). Otherwise both keep their values; there is no implicit clear.
+- When WORD `+0x68` is `0xFFFF` (`003E1C7E`) or the indexed render record is inactive (`+0x284` zero,
+  `003E1C9A`/`003E1CA0`), `+0x70` becomes `encode(0)` and the decoded zero goes to `00421D20`, whose first
+  read is `[rcx+0x18]` with no input check (`00421D26`). The `encode(00421D20(render record))` above therefore
+  needs a valid active owner. The helper's miss on key `-1` (`00421D29`) is a result for a valid input, not a NULL
+  guard. This is a precondition read from the code, not an observed fault.
+- The secondary pair `+0x74`/`+0x7C` is skipped when the full DWORD `+0x6C` is `-1` (`003E1CD3`). In `003E1C50`
+  a missing secondary owner sets `+0x6C` to `-1` and stores `encode(0)` without calling the lookup
+  (`003E1D19`-`003E1D27`). The rebinds `003E3CA0` and `003E3D70` call `00421D20` on the derived secondary
+  pointer unguarded (`003E3D34`-`003E3D49`, `003E3E18`). The demonstrated writer stores a sign-extended WORD into
+  `+0x6C` (`004216D3` `movsx ebx, word [rsi]`, `004216DB`), so it writes `0xFFFFFFFF`, never `0x0000FFFF`.
+- The rig's own `+0x84` is a **raw** low-32-bit self-address cache, compared with `edi` at `003E1D49`-`003E1D51`
+  and stored raw at `003E27EA`. It is not the render element's encoded `+0x84` that `00421D20` returns.
+
 **So the chain's objects are named.**
 - The record's `+0x08` resolves to **the rig's own field `+0x78`**, a slot rather than an object. Its `+0x00` is the
   encoded bone array. A rebind can rewrite the slot (`003E3CA0` rewrites `+0x70`..`+0x7C`) without touching the

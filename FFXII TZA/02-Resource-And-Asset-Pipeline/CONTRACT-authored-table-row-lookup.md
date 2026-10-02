@@ -1262,6 +1262,12 @@ base and is not answered here.
 **Left open exactly as ASTRA asked:** the actual `003E3C30` entry remains unobserved, and the
 storage-kind question stays separate from encoding and placement.
 
+**The `003E3C30` body, read 2026-10-02 (OPUS, on ASTRA's rig-index-list package, re-read at the bytes).** It
+decodes the rig's `+0x88` list (`003E3C42`/`003E3C48`) before it tests the **unsigned** DWORD count `+0x8C`
+(`003E3C52`, `jbe`). Each list entry is an unsigned DWORD index (`003E3C68` `mov ecx, [rbx]`), scaled to
+`decode(+0x78) + 0x230 + index * 0x290` (`003E3C6A`-`003E3C77`) and passed to `00203170`. The loop compares
+unsigned (`003E3C8B`, `jb`) and checks no index against a bone count. Its entry remains unobserved, as above.
+
 ## SWE2-EC7-92 update (2026-09-20) - `00384420` row-fetch orchestrator measured
 
 `00384420` (204 B) is the lookup orchestrator `003843F0` wraps:

@@ -1,0 +1,23 @@
+ok   00301B14 movzx r12d, byte ptr [rdx + rdi*2 + 9]
+ok   00301B44 not r12d
+ok   00301B4C and r12d, 1
+ok   00301BE8 mov dword ptr [rsp + 0x138], 0x80000001
+ok   00301BF9 mov dword ptr [rsp + 0x138], 0x7fffffff
+ok   00301511 test byte ptr [rip + 0x1d87e28], 0x20
+ok   00301518 jne 0x30150a
+ok   00301576 mov eax, 0x414d
+ok   003218DF mov r12d, 1
+ok   0032191D test ebx, ebx
+ok   0032191F jg 0x321927
+ok   00321923 cmovg ebx, r12d
+ok   00328160 imul r13, rax, 0x170
+ok   00328187 lea r15d, [r12 + 0xc]
+ok   00325DF4 test byte ptr [rax + 4], 4
+ok   00301917 cmp edx, 0x4050
+ok   0030191D jbe 0x301a31
+ok   00301923 cmp edx, 0x4091
+ok   0030192F cmp edx, 0x4122
+ok   00301A1B sub edx, 0x414b
+ok   00301A21 je 0x30193b
+ok   01EEC460 zero entries: 4025 4036 4037 4038 4039 403A 403B 403C 403D 403E 403F 4040 4041 4042 4043 4044 4045 4128
+FAILS 0

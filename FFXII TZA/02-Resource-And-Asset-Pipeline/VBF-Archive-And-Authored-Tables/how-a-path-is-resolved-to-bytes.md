@@ -168,8 +168,8 @@ builds a key, hashes it, and searches a tree:
 
 1. **`0020C440` builds the key.** It copies the path, then **skips leading non-alphanumerics** -
    the loop advances while the character is neither `a`-`z` nor, by a 64-bit mask test, `0`-`9` or
-   `A`-`Z` - so a leading `.\` or drive prefix is dropped and the key starts at the first
-   alphanumeric. It then converts `/` to `\`, copies through **CRT `toupper`** while **collapsing
+   `A`-`Z` - so a leading `.\` ~~or drive prefix~~ is dropped and the key starts at the first
+   alphanumeric. A drive prefix is **not** dropped: the `C` of `C:` is alphanumeric, so the scan stops there and the key keeps `C:` *(Corrected 2026-10-02, FABLE, on ASTRA's filecache-key-preprocessing, SWE2-AUDIT-SPEC ACCEPT; [record](../../_index/candidates/astra-returns-misc-fable-1002/README.md))*. The two entry routes also differ before this step: the gate `001D6B40` runs `0020BE50`, which strips a leading `/hostapp/`, `/app0/` or `/host/` (a case-sensitive compare through the import the table names `strncmp`), while the direct `001D6D20` → `0020C1B0` passes the raw path. So one raw path need not give one key across the two routes. It then converts `/` to `\`, copies through **CRT `toupper`** while **collapsing
    doubled backslashes**, and strips **trailing spaces**.
 2. **The hash is the 33-multiplicative path hash** already published in full on
    [`ta-texture-animation-lists.md`](../Prefetch-And-Json-Data/ta-texture-animation-lists.md) -

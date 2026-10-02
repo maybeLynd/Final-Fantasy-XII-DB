@@ -11,11 +11,11 @@
 ## Systems in this category
 
 - [`gambit-evaluation-and-enmity.md`](gambit-evaluation-and-enmity.md) -
-  **PARTIAL, tier 1.** The gambit walk (**first match wins**, 24-byte records, 32-byte header)
-  and the hidden **40-entry enmity table** that decays by exactly **-10** per interval, held
+  ~~**PARTIAL, tier 1.**~~ **DOCUMENTED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`)*. The gambit walk (**first match wins**, 24-byte records, 32-byte header)
+  and the hidden **40-entry enmity table** that decays by ~~exactly **-10**~~ **-10** per interval down to 1, never to 0 *(corrected 2026-10-02, OPUS: `0032191D`–`00321923`)*, held
   while engaged. Third sighting of the shared foe-class gate.
 - [`which-gambit-set-fires-and-how-a-command-switches-it.md`](which-gambit-set-fires-and-how-a-command-switches-it.md) -
-  **PARTIAL, tier 1.** Where the walk's `subgroup_index` comes from: a one-byte field at
+  ~~**PARTIAL, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. Where the walk's `subgroup_index` comes from: a one-byte field at
   `unit + 0x6B5` touched by **four instructions in the whole image**. A unit tries **four order
   sets in a fixed order** and only one of them uses the selected subgroup; **twelve command ids
   map onto subgroups 0-11**; a failed third set **skips the subgroup-selected one entirely**.

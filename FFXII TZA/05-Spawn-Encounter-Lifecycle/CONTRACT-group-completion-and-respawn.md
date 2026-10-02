@@ -72,16 +72,21 @@ The native side says *why* `(0,0)` is the overwhelming majority, and it is not t
 00306EC3  lea   r8,  [rdx+rcx*8]         ; base + (group-1) * 0x18
 ```
 
-> **The group table is 1-based, so `0` means “no group”, not “group zero, suppressed”.** The index is `group − 1` with a `0x18` stride, so entries exist for groups 1–5 and there is no slot a 0 could address. A reimplementation that allocates a zeroth entry and skips it has built a different structure that happens to behave the same until something iterates it.
+> **The group table is 1-based, so `0` means “no group”, not “group zero, suppressed”.** The index is `group − 1` with a `0x18` stride, so entries exist for groups ~~1–5~~ 1–64 (the authored corpus uses 1–5) *(corrected 2026-10-02, OPUS: the reset `00307090` walks `02EC13D0` to `02EC19D0` in `0x60` steps of four `0x18` entries, 64 entries)* and there is no slot a 0 could address. A reimplementation that allocates a zeroth entry and skips it has built a different structure that happens to behave the same until something iterates it.
 
 > **And the precondition above it ties this contract to the unit union:** `00306E60` acts only when `[[unit+0x698] + 5] == 1`, i.e. only on **spawn-backed** units — `+0x05` is the discriminator of the `BattleStatsRecord` union recorded in [`_types/fields.tsv`](../_types/fields.tsv). Party (kind 0) units never reach the group logic at all.
+
+*(table header restored 2026-10-02, OPUS: the rows below continue the interface table above §4a; without a blank line and a header they rendered inside the quote)*
+
+| operation | entry | signature | returns |
+|---|---|---|---|
 | set group id + mode, then register | `00239710` (114 B) | `(ActorWork* rcx, int mode edx, int group r8d)` | `eax` = `0`, or `-1` with no battle unit |
 | verb `0x3030` `btlAtelSetEventFlagGroup` | `0050F8C0` (67 B) | `(…, ActorWork* target rdx, …, VmValueStack* r9)` | two int pops, tail-jumps `00239710` |
 | consume every pending flag, post the group | `00307030` (82 B) | `()` | — ; per field frame, gated by `00233D20` |
 | any flag pending | `003070E0` (39 B) | `()` | `eax` = 1 if any entry's flags bit 0 |
 | raise the flag after the death reaction | `00307110` (40 B) | `(BattleUnit* rcx)` | — ; clears unit bit 47 |
 | the dispatch gate | `00233D20` (47 B) | `()` | `eax` = `(02089340 & 0xF00) == 0 && !(01FD46D4 bit 10)` |
-| post a value to the field table | `0026ADC0` (35 B) | `(int index ecx, int value edx)` | — ; `((~~u16~~ **i16***)*(02098E68))[index] = value` if `index < 64`, `02098E20` bit 0, pointer non-null — **CORRECTED 2026-09-11 (OPUS-REQ-FABLE-OPERAND):** the element is **signed**: the consumer `AiTargetSelector_ResolveOperandValue` (`00321190`) sign-extends every kind-1 / 2 / 3 element (`movsx ecx, ax` at `003211C2`, `003211D7`, `003211EC`), while its arm 9 reads its own table at `0208D334` with `movzx` (`0032125C`) — the control that shows the extension is deliberate |
+| post a value to the field table | `0026ADC0` (35 B) | `(int index ecx, int value edx)` | — ; `((~~u16~~ **i16***)*(02098E68))[index] = value` if `index < 64`, `02098E20` bit 0, pointer non-null — **CORRECTED 2026-09-11 (OPUS-REQ-FABLE-OPERAND):** ~~the element is **signed**~~ the element is a plain 16-bit word, read unsigned by the getter `00264D20` (`00264D3D` `movzx`) and signed by this consumer *(corrected 2026-10-02, OPUS: signedness is per reader - `003211BD` `call 00264D20`, then `003211C2` `movsx ecx, ax`)*: the consumer `AiTargetSelector_ResolveOperandValue` (`00321190`) sign-extends every kind-1 / 2 / 3 element (`movsx ecx, ax` at `003211C2`, `003211D7`, `003211EC`), while its arm 9 reads its own table at `0208D334` with `movzx` (`0032125C`) — the control that shows the extension is deliberate |
 | event lock: capability row 12, party suppression | `00307140` (183 B) | `(int on ecx)` | — |
 | event lock: `02089340` bit `0x20` + per-unit `0x30B` message | `00238B70` (120 B) | `(int on ecx)` | — |
 | event lock: `02089340` bit `0x80` | `00238AE0` (29 B) | `(int on ecx)` | — |
@@ -242,7 +247,7 @@ unit frame (00233F70)
 
 authored script
   -> VM_SpawnEntry_GetDeathCount / GetElapsedTicksSinceLastDeath / GetRespawnCooldownTicks
-     -> the three record accessors                     [THE ONLY READERS]
+     -> the three record accessors                     [THE ONLY READERS]   # <- corrected 2026-10-02, OPUS - not the only readers; Spawn_SelectAndPrepareAutomaticEntry reads +0x08/+0x0A/+0x0C/+0x10 directly (002358A1-002358D7), section 2
 ```
 
 ## 7. State transitions
@@ -257,7 +262,7 @@ The ledger has one transition per registration, one per death, one on completion
            --[(member & dead) == member]--------> COMPLETE: event lock; mode 1: flags |= 1 now
                                                             else: unit bit 47, and flags |= 1 only if
                                                             00307110 runs -- its sole caller 003250F0
-                                                            has NO static route (section 10)
+                                                            has NO static route (section 10)   # <- corrected 2026-10-02, OPUS - it has one; 002EA4C5 registers 002E70A0 in slot 0xC (02CA4470), the engine calls it at 0041DC9E/0041DD1D/0041CEE3, 002E70B0 jne 003250F0, and 003251A4 calls 00307110 (section 10)
            --[next field frame, gate open]------> flags &= ~1 ; table[3] = group
 ```
 
@@ -283,7 +288,7 @@ The ledger has one transition per registration, one per death, one on completion
 `0x3030` `btlAtelSetEventFlagGroup` — `pops_int = 2`, family 3, handler `0050F8C0` in
 [the verb table](../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv) — is the only
 route to `+0xE98`, `+0xE99` and a set `memberMask` bit. As written in a script the order is
-`(group, mode)` by the pop-order law; no decompiled script has confirmed it (`EE-11`).
+`(group, mode)` by the pop-order law; ~~no decompiled script has confirmed it~~ *(answered: see §4a and §14 item 8 - observed in 6,746 shipped calls, `EE-11` 2026-09-13; 2026-10-02, OPUS)* (`EE-11`).
 
 Its write side fires two presentation events, `0x2005` and `0x2008`, through
 `BattleUnit_DispatchActorPresentationEvent`, and **posts the completed group's number to `u16` slot 3
@@ -326,7 +331,7 @@ assumed, not proven**.
 
 ## 10. Failure paths and edge conditions
 
-- **Every accessor failure is `-1`**, and `-1` is not a legal value for any of the three fields.
+- **Every ~~accessor~~ respawn-reader failure is `-1`** *(corrected 2026-10-02, OPUS: in the wider family `SpawnEntry_GetScriptSelection` `00236140` returns `-2`, `00236194` `mov eax, 0xfffffffe`; the three readers return `-1` at `00235FA4`, `00236020`, `00236734`)*, and `-1` is not a legal value for any of the three fields.
 - **A zero `memberMask` completes on the first death**, because `0 & anything == 0`. The ledger is
   BSS and starts at zero, so **whatever writes `memberMask` must run before the first death** or
   every group completes immediately. ~~**That writer is not identified** — `EE-2`.~~ **Identified
@@ -361,7 +366,7 @@ assumed, not proven**.
 re-verified owner-side 2026-09-22): the conclusion does not survive — the table is read and
 dispatched.** The "no reader" sweep searched the base `02CA4410`; readers reference their own
 slots — `call qword [02CA4430]` (id 4) at `00417B52`/`69`/`80`, `call rax` on `[02CA4440]`
-(id 6) at `00417CC6`, `call rax` on `[02CA4470]` (id 0xC) at `0041DC84`/`0041DD03`/`0041CEC6`.
+(id 6) at ~~`00417CC6`~~ `00417CDF`, `call rax` on `[02CA4470]` (id 0xC) at ~~`0041DC84`/`0041DD03`/`0041CEC6`~~ `0041DC9E`/`0041DD1D`/`0041CEE3` *(corrected 2026-10-02, OPUS: the struck addresses are the `mov rax, [slot]` loads; the `call rax` instructions are the ones restated)*.
 `003250F0` runs; the deferred arm can post.
 
 > ### The clock reads seconds, and the imported name said ticks
@@ -382,10 +387,10 @@ slots — `call qword [02CA4430]` (id 4) at `00417B52`/`69`/`80`, `call rax` on 
 
 > ### `EE-1` ANSWERED 2026-09-13 — whole seconds, and the box below predicted exactly how
 >
-> `EE-1` asks whether the cooldown at `+0x10` is in seconds. **Nothing native relates the two
-> values**: each of the three accessors has exactly one caller, all three are VM verb wrappers, and
-> no function reads more than one of them. **The comparison is made in authored script or not at
-> all**, so the unit is a script-side convention. **Answering `EE-1` needs the authored script or a
+> `EE-1` asks whether the cooldown at `+0x10` is in seconds. **~~Nothing native relates the two~~
+> ~~values~~** *(corrected 2026-10-02, OPUS: `Spawn_SelectAndPrepareAutomaticEntry` relates them natively - `002358D1` `sub ecx, dword ptr [r14 + 0xc]`, `002358D5` `cmp ecx, eax`, `002358D7` `jb` skips while elapsed < cooldown; the 2026-09-29 correction in §2)*: each of the three accessors has exactly one caller, all three are VM verb wrappers, and
+> no function reads more than one of them. **~~The comparison is made in authored script or not at~~
+> ~~all~~** **the scripts compare with `>` and the selector natively with `>=`**, ~~so the unit is a script-side convention~~ and both read it as whole seconds *(corrected 2026-10-02, OPUS: the selector divides the frame counter by `30 × [01DFE0B8]` at `002357F9`)*. **Answering `EE-1` needs the authored script or a
 > runtime observation — a static instrument cannot do it**, and that is now stated rather than left
 > as work not yet done.
 >
@@ -396,7 +401,7 @@ slots — `call qword [02CA4430]` (id 4) at `00417B52`/`69`/`80`, `call rax` on 
 > whatever `btlAtelGetElapseTime` returns, and OPUS re-derived that from `00235FB0`:**
 >
 > ```asm
-> 00235FFA  call 0x32A150                ; the 30 Hz tick counter at 0208D45C
+> 00235FFA  call 0x32A150                ; the 30 Hz tick counter at 0208D45C   # <- corrected 2026-10-02, OPUS - a field-frame counter, not 30 Hz; 0032A100 increments it once per 00234590 frame (0032A135), and the divisor below is 30 x [01DFE0B8] = 30 or 60 (2.0 stored at 001EDDD8)
 > 00235FFF  movss xmm0, [01DFE0B8]       ; 1.0f
 > 00236009  mulss xmm0, [008F8D80]       ; x 30.0f
 > 00236011  cvttss2si ecx, xmm0          ; ecx = 30
@@ -607,7 +612,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/group_completion` (ignored path). 
 | ~~`003250F0` has no static caller of any enumerated form~~ **— REFUTED 2026-09-16 (FABLE): reached by `jne` from `002E70A0`; the enumerated forms omitted `0F 8x rel32`. The "handler table has no reader" inference was then itself refuted (`EE-12`, 2026-09-19): readers reference their own slots, not the base. Re-verified 2026-09-22 — all three run: `call [02CA4430]` id 4 → `00325260` at `00417B52`/`69`/`80`, `[02CA4440]` id 6 → `00325090` at `00417CC6`, `[02CA4470]` id 0xC → `003250F0` at `0041DC84`/`0041DD03`/`0041CEC6`; guards `lea`'d into the table by `002EA320`/`002EA5F0` (8 sites)** | boundary-free `.text` sweep (`E8`, `E9`, both `LEA` encodings; controls `00265A4F`, `003251A4`), whole-file pointer/VA/RVA searches; owner-side re-verification of every dispatch edge | 1 | PROVEN |
 | the flag is consumed per frame into table slot 3 | `00307050`–`00307071`, `0026ADDD` | 1 | PROVEN |
 | no one-shot in helper or caller | `00300530` consults no flag before `0030082F` | 1 | PROVEN |
-| script-side order `(group, mode)` | pop-order law only; no decompiled script | 2 (static) | PROBABLE |
+| script-side order `(group, mode)` | pop-order law only; ~~no decompiled script~~ observed in 6,746 shipped calls *(answered: see §4a, `EE-11` 2026-09-13; 2026-10-02, OPUS)* | ~~2 (static)~~ 2 (static) + authored-data census | ~~PROBABLE~~ OBSERVED |
 | the `+0xF6` word is the record's script-assigned entry-group index (the bkei), written by verb `00BE` `setentrygroupall` and zeroed at init | `00263D30` is `movzx eax, word [rcx+0xF6]; ret`. The init loop's four `bp` stores (`0026CF63`/`0026D001`/`0026D0A7`/`0026D182`) all write `xor ebp,ebp`'d zero (`0026CED3`, never rewritten) inside `00358940`-resolved record loops. The live writer is `0025AE00` (`mov word [rax+0xF6], r12w` at `0025AE5A`), reached only from `00340970` = verb `00BE` `setentrygroupall` (dispatch slot `0x1EEEEE0`), which pops the value via `00267E10` and stamps records 0–4 of the bound slot `*(02099D70)`. Added 2026-09-20 (SWE2-CONTRACT) | 1 (static) | PROVEN |
 | group `0` is the not-a-member sentinel — both ledger paths gate on `+0xE98` before indexing, so no group-0 completion can post | `00306E8F` and `00306F31` read `movzx edi, byte [rcx+0xE98]` then `test edi,edi`/`je` to the epilogue, ahead of the `group-1` ledger indexing at `00306EB2`/`00306F57`; `00239710` stores the verb's argument raw at `+0xE98`. Corpus side: 6,206 of 6,746 shipped `btlAtelSetEventFlagGroup` calls are `(0,0)` (the `spawnGroup` preamble default — FABLE's census, system page `EE-9`). Added 2026-09-21 (SWE2-CONTRACT) | 1 (static) + authored-data census | PROVEN |
 | any runtime observation | ~~**none exists**~~ one: EXP-019, live and read-only, before any kill (the member mask set, the dead mask 0; §13). Nothing is observed across a kill (corrected 2026-09-29, FABLE) | EXP-019 | LIVE (pre-kill only) |

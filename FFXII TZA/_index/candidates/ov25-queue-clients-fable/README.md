@@ -63,7 +63,7 @@ The families differ in this, and it is the difference a reimplementation gets wr
   1. A release request (`002EAFA0`) sets the requested bit. It links the record onto the sweep list `0215FD90` only when the lane is loaded.
   2. The sweep releases a lane only when it is requested **and** loaded, so a lane requested while pending is not freed in flight.
   3. The completion sets loaded, clears pending, and registers only while the record's node still carries the record's generation. Otherwise it calls the release request.
-- **The script name-binding record** (`families.py` S). The completion unpins `+0x10`'s handle. It then registers unless flag byte `+0x18` has bit 4, in which case it sets bit 8 instead. It then calls `002EA6E0(record, 3)` and sets bit 2. What sets bit 4, and what releases this record, are not read.
+- **The script name-binding record** (`families.py` S). The completion unpins `+0x10`'s handle. It then registers unless flag byte `+0x18` has bit 4, in which case it sets bit 8 instead. It then calls `002EA6E0(record, 3)` ~~and sets bit 2. What sets bit 4, and what releases this record, are not read.~~ *(Corrected 2026-10-02, FABLE, on ASTRA's [`namebinding-deletion`](../../../_experiments/evidence/namebinding-deletion/README.md), SWE2-AUDIT-SPEC ACCEPT ([review](../auditspec-review-namebinding-deletion-1001/REVIEW.md)); check [`ov25_astra_check.py`](ov25_astra_check.py), FAILS 0)*: bit 2 is **not** set unconditionally. `002EA6E0` returns 0 at once when `+0x18` has bit 4 (`002EA6EF`), and the completion then sets bit 2 and retires the record. Without bit 4 the follow-up allocation may return 1, and bit 2 is set only at the reached completion tail. **Who sets bit 4:** the removal `002EAEB0`. With `+0x18` bit 2 clear and `+0x19` bit 4 clear it only sets `+0x18` bit 4 and returns (`002EAEC4`-`002EAECC`), a mark-only delete with no free. Otherwise it advances the stamp, unlinks and retires the record. **What releases it:** the cleanup drain. `002E6D60` enters only when `002E6900(0)` returns 0, for a selected retired record with a nonzero `+0x10` handle. `+0x18` bit 8 or `+0x19` bit 4 skips the unregister `0041E490`, but not `002E9360`, which requests the child releases, calls `00369800` on the handle, clears it and recycles the record. `+0x19` bit 4 is an explicit exception whose meaning and natural states stay open.
 
 ## What this enables
 
@@ -71,11 +71,13 @@ A reimplementation now knows every place a loaded file becomes a registered reso
 
 ## Not claimed (explicit obligations)
 
-- **The script name-binding record's deletion policy:**
-  - who sets `+0x18` bit 4;
-  - `002EAEB0` and `002EA6E0` are unread past their flag writes;
-  - the record's release site.
-- **A per-lane release requested in flight whose node then goes stale:** does it reach the sweep list? `002EAFA0` returns early when the requested bit is already set, and `002EB890` is unread.
+- ~~**The script name-binding record's deletion policy:**~~
+  - ~~who sets `+0x18` bit 4;~~
+  - ~~`002EAEB0` and `002EA6E0` are unread past their flag writes;~~
+  - ~~the record's release site.~~
+  *(Corrected 2026-10-02, FABLE, on ASTRA's [`namebinding-deletion`](../../../_experiments/evidence/namebinding-deletion/README.md), SWE2-AUDIT-SPEC ACCEPT ([review](../auditspec-review-namebinding-deletion-1001/REVIEW.md)); check [`ov25_astra_check.py`](ov25_astra_check.py), FAILS 0)*: read; see family S above. Still open: what sets `+0x19` bit 4 and what it means, actual timing, allocator completion, and the opaque callees' effects.
+- ~~**A per-lane release requested in flight whose node then goes stale:** does it reach the sweep list? `002EAFA0` returns early when the requested bit is already set, and `002EB890` is unread.~~
+  *(Corrected 2026-10-02, FABLE, on ASTRA's [`lane-stale-release`](../../../_experiments/evidence/lane-stale-release/README.md), SWE2-AUDIT-SPEC ACCEPT ([review](../auditspec-review-astra-lane-stale-release-1001/REVIEW.md)); check [`ov25_astra_check.py`](ov25_astra_check.py), FAILS 0)*: **the stale completion does not enqueue it.** The completion `002E4E50` sets loaded and clears pending, then its stale-owner arm calls `002EAFA0`, which for an already-requested lane goes from `002EAFB2` straight to its `ret` (`002EB026`) before any write or call. It neither adds nor removes sweep membership. `002EB890` only adjusts the lane's 16-bit count, with no calls and no queue writes. Still open: membership the lane already had, other relink paths, and the game's actual sequence; this is not a leak claim.
 - **A store of 4 to a motion-cache `+6` through a slot pointer held outside the twelve functions that address the table.** Not excluded.
 - **Authored reachability of any of these states.** No live run was made.
 

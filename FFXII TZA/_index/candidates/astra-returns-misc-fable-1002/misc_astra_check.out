@@ -1,0 +1,13 @@
+PASS  K0 control: 0020C440 entry tests its path argument  | 0020C440  4885d2                         test rdx, rdx
+PASS  K1 scanner mask: digits (bits 0-9) and A-Z (bits 17-42) of c - '0'  | 0020C497  49b8ff03feffff070000           movabs r8, 0x7fffffe03ff
+PASS  K2 a-z stops the scan  | 0020C4A1  8d429f                         lea eax, [rdx - 0x61] / 0020C4A4  3c19                           cmp al, 0x19 / 0020C4A6  761d                           jbe 0x20c4c5
+PASS  K3 a mask hit (digit or capital, e.g. the C of C:) stops the scan  | 0020C4B4  490fa3c0                       bt r8, rax / 0020C4B8  720b                           jb 0x20c4c5
+PASS  K4 gate 0020BE50 compares /hostapp/ ...  | 0020BE93  488d1526a06f00                 lea rdx, [rip + 0x6fa026]  ; 00905EC0  .rdata  "/hostapp/"
+PASS  K5 ... through the import slot 008C2FF8  | 0020BE9D  ff1555716b00                   call qword ptr [rip + 0x6b7155]  ; 008C2FF8  .rdata  qword=0000000001CCEFDA
+PASS  K6 ... and advances 9 on a match  | 0020BEA7  4883c309                       add rbx, 9
+PASS  K7 /host/ advances 6  | 0020BEE1  4883c306                       add rbx, 6
+PASS  A0 control: the group reset 003DD790 entry  | 003DD790  4533d2                         xor r10d, r10d
+PASS  A1 reset clears each owner's handle+state qword, no state test  | 003DD7B6  4c8950f3                       mov qword ptr [rax - 0xd], r10
+PASS  A2 reset clears the group's pending mask  | 003DD7D0  46891480                       mov dword ptr [rax + r8*4], r10d
+PASS  A3 the armer admits only owner state 0  | 003DDA3B  837c080400                     cmp dword ptr [rax + rcx + 4], 0
+FAILS 0

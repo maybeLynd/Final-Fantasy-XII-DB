@@ -294,7 +294,7 @@ reference censuses are whole-image. Script: `Tools/analysis-kit/gfz-scripts/fals
 * **P4: I4 survives, but its mechanism is a slot walk, not the leader pointer.**
   * Point mode's band is `Spawn_ValidateCandidateDistanceToPlayers` (`00234DA0`). It walks party slots 0-3 through
     `0031B810`, never calls the leader getter, and rejects on the first eligible slot outside `[min², max²]`.
-  * Its sixth argument decides eligibility. With 0, only the slot whose actor handle equals
+  * Its ~~sixth argument~~ fifth argument (`00234AF0`'s sixth) decides eligibility *(corrected 2026-10-02, OPUS: `00234DC3` `mov r12d, dword ptr [rsp + 0xb0]` is the first stack argument; both callers store it at `[rsp + 0x20]`, `00234C2B` and `003080C0`; P0 below agrees)*. With 0, only the slot whose actor handle equals
     `PartyFocus_GetCurrentPackedActorHandle` (`003590D0`, through `003273B0`) is eligible.
   * `BattleUnit_GetPartyLeader` (`003272A0`) resolves that same handle. So with 0 the band is measured to the leader's
     own slot, and the one caller, `Spawn_SelectAndPrepareAutomaticEntry`, passes 0 (`mov dword ptr [rsp + 0x28], 0`

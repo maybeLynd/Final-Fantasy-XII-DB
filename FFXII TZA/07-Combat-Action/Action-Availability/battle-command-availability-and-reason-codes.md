@@ -733,3 +733,65 @@ lifetime closure is OPEN: nine image-wide disp32 stores overlap `+0xAE0`..`+0xAE
 combat effect, player presentation nor normal selection. Unwritten slot padding is unknown, and the constructor's other
 calls are assigned no effect. The external EXP190 replay's stubs are not live initialisation. Other action-id producers,
 natural action selection and whole OV-42 stay OPEN.
+
+### FABLE 2026-10-02: which action rows the special-sequence path could turn into a rejected request (OV-42)
+
+*Consumed from four ASTRA packets after SWE2-AUDIT-SPEC review (records committed in `2e88eceef`):
+[`ov42-special-action-preconditions`](../../_experiments/evidence/ov42-special-action-preconditions/README.md)
+(`_index/candidates/auditspec-review-astra-ov42-action-preconditions-0930/REVIEW.md`, ACCEPT-WITH-NARROWING, narrowings applied),
+[`ov42-class20-action-admission`](../../_experiments/evidence/ov42-class20-action-admission/README.md)
+(`_index/candidates/auditspec-review-astra-ov42-class20-admission-0930/REVIEW.md`, ACCEPT),
+[`spattack-native-word-remap`](../../_experiments/evidence/spattack-native-word-remap/README.md)
+(`_index/candidates/auditspec-review-astra-spattack-remap-0930/REVIEW.md`, ACCEPT) and
+[`action-selector-local-exclusions`](../../_experiments/evidence/action-selector-local-exclusions/README.md)
+(`_index/candidates/auditspec-review-astra-action-selector-exclusions-0930/REVIEW.md`, ACCEPT); FABLE record
+[`astra-returns-ov42-fable-1002`](../../_index/candidates/astra-returns-ov42-fable-1002/README.md). Static only.*
+
+- **The path.** `0030CBE0` reads the presentation slot's u16 action id (`0030CC25`). It checks the id as class `0x14`
+  (`0030CC32`), builds the row pointer from the same word (`0030CC7A`..`0030CC81`) and passes the pointer to
+  `0030CE10` (`0030CD99`).
+  - `0030CE10` drops a row whose `+0x0C` bit 30 is clear (`0030CE93`/`0030CE9A`). Otherwise it calls `00306BD0`
+    (`0030CF0D`).
+  - `00306BD0` hands `00309230`'s result to `0032FC30` as group 3 (`00306C4D`..`00306C56`). That result is the row's
+    `+0x24` word. For row `0x113` (decimal 275, `003092B4`) it is instead an entry of a 13-entry table, indexed by the
+    raw record's type byte minus `0x1B` with no bound check (`003092D6`..`003092DB`).
+  - Group 3's index is `4w+1`. The owner path narrows it to a WORD ([the indexed-source
+    page](../../02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md), FABLE
+    2026-09-30 subsection).
+- **The rows.** The nine shipped tables are one table of 543 rows of 60 bytes.
+  - No word other than FFFF gives a negative narrowed WORD. This is the WORD sign only. The ten bit-15 words
+    32775..32907 (rows 111-123, 246-261, 427-435 and 440) narrow to positive WORDs, and none of their rows has bit 30.
+  - FFFF narrows to the WORD -3. FFFF with bit 30 occurs on row `0x113` and on rows **511..534**. All of rows 511..534
+    have `+0x1E` 7.
+- **What does not exclude 511..534.**
+  - Class `0x14` accepts 0..542. The count is `[02EBF138]+4` = 543 (`00322F84`, `0032302C`..`0032303B`).
+  - The D0..F1 refusal (`0030CEC2`..`0030CEFE`) applies only while the special-sequence state `022C2160` is 5 or 6.
+    Rows 511..534 lie above `0xF1` in any case.
+  - The queue remap. The queue cell `022C2178` holds `word - 0xD0` (`0030DBDA`, `0030DC7B`, `003068CA`) or -1, and
+    its reader `00309C00` consumes the value. The script adapter `0030EEA0` adds `0xD0` back as a 16-bit add
+    (`0030EEB2`) before `0030CFB0` stores the word into the slot's `+0x1C` (`0030D14F`). Rows 511..534 queue as
+    303..326 and decode unchanged. Only `0xCF` and FFFF read as unavailable, so the remap has no universal inverse.
+- **What does exclude them, on two legs only.**
+  - (a) `0030DB70`'s record arm. If the unit's raw record (`002FFD05`) has byte `+5` = 0, `003060E0` returns 5 for
+    `+0x1E` 7 (`00306300`). `00306480` turns that into `0x0F`, `002FFCF0` refuses, and `0030DB70` returns at
+    `0030DBC5`, before its stores. A nonzero `+5` bypasses the test (`0030612F`).
+  - (b) Its null-record arm, when the override `01EEBAF0` is negative. The matcher above then returns a byte 0..255
+    (`002F8E36`) or -1 (`002F8E28`). Those queue as -208..47 or as -1, never as 303..326.
+- **The request needs two gates open.** `00306BD0` returns 0 before `00306C4D` unless both of these hold:
+  - `022C2160` is 0, or it is 1 with the same owner in `022C2168`;
+  - `0032F6E0(3)` is 0.
+
+  These are the "idle or same owner" and "allows it" conditions of [the mode ladder,
+  §2d](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md). Separately,
+  `00306760`'s six-way dispatch (`003067AA`) switches on the kind `022C215C`, not on `+0x1E`.
+
+**Limits kept.** These limits are ASTRA's and SPEC's.
+
+- The row-`0x113` type bound, the row/codec identity and the descriptor count staying unmodified are premises. So are
+  the interpreter's value transfer (`00309C13` -> `00267E10`) and stable raw-record state.
+- A nonzero raw `+5` bypasses the category test.
+- The nonnegative override word is bounded only by the 2026-09-30 subsection above, under its premises.
+- `003068D4`, the `00387090` effective-id leg and the other callers of these functions are not covered.
+- The queue's five direct-reference instructions are a census, not an alias closure.
+- No slot allocation, command, AI or script selection, successful load, owner submission or rejection is observed or
+  proved. Natural rejection and whole OV-42 stay OPEN.

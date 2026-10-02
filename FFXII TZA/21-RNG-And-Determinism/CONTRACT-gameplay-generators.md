@@ -15,7 +15,7 @@ verified_against:
     that date, NOT the method of the original derivation**, which this block never
     carried; see this document's own Evidence section and `audit.last_pass_state`
     for that.
-last_reviewed: 2026-09-11
+last_reviewed: 2026-09-11   # <- corrected 2026-10-02, OPUS: the last whole-page review, not the last change - the body carries additions through 2026-09-22 (section 14)
 audit:
   passes: 1                    # falsification passes survived. 0 = NOT yet fact.
   last_pass: 2026-09-12        # YYYY-MM-DD
@@ -32,7 +32,7 @@ diverges on the first roll and every comparison after it is meaningless.
 
 **Scope, stated first because it is narrower than the category.** This contract covers the two
 generators whose bodies were read end to end: the **shared LCG** at `022C256C` and the **gameplay
-MT19937** at `02EB3870`. `rng-streams.md` records six families; the other four are not specified
+MT19937** at `02EB3870`. `rng-streams.md` records ~~six families; the other four~~ at least eight generators *(corrected 2026-10-02, OPUS: the GFZ's six families, the presentation PRNG and the PPFX xorshift128 `0074BDE0`, checked at `0074BFE0`–`0074C0C4`)*; the others are not specified
 here, and nothing below should be read as covering them.
 
 The first contract in `21-RNG-And-Determinism`.
@@ -110,7 +110,7 @@ control returning 637 sites. Counts exclude `CompilerGeneratedEH` bodies.
 
 | | sites | functions | what they are |
 |---|---:|---:|---|
-| LCG draw `00328370` | 23 | 15 | `Spawn_*` position and candidate selection (6 functions), `SpawnKeep_InitializeEntriesFromDefinitionTable`, `AiOrder_*` target resolution and precondition checks, `BattleUnit_SeedPartyCombatStanceRecheckTimer`, `BattleData_ResolveWeightedId` |
+| LCG draw `00328370` | 23 | 15 | `Spawn_*` position and candidate selection ~~(6 functions)~~ (four functions: `00234AF0`, `002355A0`, `00236450`, `002398F0`), `SpawnKeep_InitializeEntriesFromDefinitionTable`, `AiOrder_*` target resolution and precondition checks, `BattleUnit_SeedPartyCombatStanceRecheckTimer`, `BattleData_ResolveWeightedId`, and five more — `00236210` and `002394C0` (ActorEntity), `00239210` and `00312DF0` (Movement), `00312B40` *(corrected 2026-10-02, OPUS: the 15 callers of `00328370`, checked with `retool callers`; which-roll-is-on-which-generator.md §3 note)* |
 | LCG seed `00328D80` | **1** | **1** | `BattleSystem_InitializeAreaState` at `00234320` — see §7 |
 | MT draw thunk `00379CD0` | 98 | 66 | overwhelmingly `BattleFormula_*`: knockback, guard/parry, combo count, poach selection, the four `Prepare*AttackVsDefense` variants, status masks and timers |
 | MT seed thunk `00379CF0` | 2 | 2 | a boot-time init call and a save-load tail jump — see §7 |
@@ -119,7 +119,7 @@ control returning 637 sites. Counts exclude `CompilerGeneratedEH` bodies.
 
 This replaces the earlier prose, which named `BattleData_ResolveWeightedId` and `0025ACA0` as
 examples. Both survive the census — but the shape it shows is sharper than "a gameplay stream":
-**the LCG is the SPAWN and AI-ORDER generator and the MT is the COMBAT-FORMULA generator**, and
+**~~the LCG is the SPAWN and AI-ORDER generator~~ the LCG is the spawn, AI-order, loot and enemy-chain generator *(corrected 2026-10-02, OPUS: seven loot and chain functions inline it — 21 `0x41C64E6D` sites in 7 functions, besides the 3 in `00328370`; rng-streams.md struck the call-census split in §8b and restated it in §8c)* and the MT is the COMBAT-FORMULA generator**, and
 they barely overlap in consumers.
 
 Because many consumers share each state, a later value cannot be predicted from the seed alone
@@ -196,8 +196,8 @@ MT, at boot                0022A40B  ecx = 0x11B9            4537, a literal
 ```
 
 seeded inside a long sequential subsystem-initialisation function (`0022A0B0`, ~40 consecutive
-calls). **The gameplay MT is seeded from a fixed constant at startup**, so a fresh run is
-deterministic — and 4537 is *not* 5489: the lazy default in §7 is never what a real session uses.
+calls). **The gameplay MT is seeded from a fixed constant at startup**, so ~~a fresh run is~~
+~~deterministic~~ a fresh run has a fixed seed but not an established position *(corrected 2026-10-02, OPUS: §9's fresh-boot row, narrowed 2026-09-14 — the boot frame modes draw and discard at `0022B706` / `0022B7EB`, and camera shake's float draws advance the same cursor, §12c)* — and 4537 is *not* 5489: the lazy default in §7 is never what a real session uses.
 
 ```
 MT, on save load           0058439F  call [008C3060]         api-ms-win-crt-time-l1-1-0!_time64
@@ -534,7 +534,7 @@ this contract should not have to find them from the experiment side only.
 
 ## 14. Unresolved
 
-- The other four RNG families `rng-streams.md` records.
+- ~~The other four RNG families `rng-streams.md` records.~~ The other generators `rng-streams.md` records, at least six *(corrected 2026-10-02, OPUS: the image holds at least eight, the xorshift128 `0074BDE0` the eighth)*. Families 3, 4 and 5 and the xorshift128 are read there; only family 6, the Bullet solver LCG, is not *(answered: see rng-streams.md's `rand` census, its family-4 note of 2026-09-14, `CQ-6` and its streams-4-and-5 section of 2026-09-19; 2026-10-02, OPUS)*. None of them is specified in this contract.
 - ~~`00866B90`, the twist body~~ — **read, and it is the standard twist**; see §7 for the three
   constants that establish it independently. ~~And what the dispatch value at `01F44858` is~~ —
   **resolved**: it is the CRT's `__isa_available`, so the two paths are one auto-vectorised loop.
@@ -657,7 +657,7 @@ generated into [`PARITY-STATUS.md`](../_index/PARITY-STATUS.md): `CALCULATION`, 
 
 ## 17. Related
 
-- `21-RNG-And-Determinism/rng-streams.md` — the six families and their consumers.
+- `21-RNG-And-Determinism/rng-streams.md` — the ~~six families~~ generators, at least eight *(corrected 2026-10-02, OPUS: the GFZ's six families plus the presentation PRNG and the xorshift128 `0074BDE0`)*, and their consumers.
 - `21-RNG-And-Determinism/which-roll-is-on-which-generator.md`
 - `_types` — `Mt19937State`, `SharedGameplayLcgState`
 

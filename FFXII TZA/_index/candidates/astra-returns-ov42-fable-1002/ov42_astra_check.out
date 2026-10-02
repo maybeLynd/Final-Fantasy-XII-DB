@@ -1,0 +1,189 @@
+PASS image sha256
+PASS P 0030CD93 mov rdx, rsi
+PASS P 0030CD99 call 0x30ce10
+PASS P 0030CE93 test dword ptr [rax + 0xc], 0x40000000
+PASS P 0030CE9A je 0x30cf31
+PASS P 0030CEC2 cmp eax, 0xd0
+PASS P 0030CEC7 jb 0x30cf00
+PASS P 0030CEEB cmp eax, 0xf1
+PASS P 0030CEF0 ja 0x30cf00
+PASS P 0030CEF2 mov eax, dword ptr [rip + 0x1fb5268] -> 022C2160
+PASS P 0030CEF8 add eax, -5
+PASS P 0030CEFB cmp eax, 1
+PASS P 0030CEFE jbe 0x30cf31
+PASS P 0030CF0D call 0x306bd0
+PASS P 00306BDA mov eax, dword ptr [rip + 0x1fbb580] -> 022C2160
+PASS P 00306BE8 je 0x306c05
+PASS P 00306BEA cmp eax, 1
+PASS P 00306BED je 0x306bfc
+PASS P 00306BEF xor eax, eax
+PASS P 00306BFC cmp rdi, qword ptr [rip + 0x1fbb565] -> 022C2168
+PASS P 00306C03 jne 0x306bef
+PASS P 00306C0A mov ebx, 3
+PASS P 00306C22 call 0x32f6e0
+PASS P 00306C29 je 0x306c3d
+PASS P 00306C4D call 0x309230
+PASS P 00306C52 mov edx, eax
+PASS P 00306C54 mov ecx, ebx
+PASS P 00306C56 call 0x32fc30
+PASS P 0032F6E0 movsxd rax, ecx
+PASS P 0032F6E3 lea rcx, [rip + 0x1f97636] -> 022C6D20
+PASS P 0032F6EA movsx eax, byte ptr [rax + rcx]
+PASS P 0032F6EE ret
+PASS P 003092B4 imul ecx, edx, 0x113
+PASS P 003092C0 cmp rbx, rcx
+PASS P 003092C3 je 0x3092cb
+PASS P 003092C5 movzx eax, word ptr [rbx + 0x24]
+PASS P 003092CB mov rax, qword ptr [rdi + 0x698]
+PASS P 003092D2 movzx eax, byte ptr [rax + 4]
+PASS P 003092D6 sub eax, 0x1b
+PASS P 003092D9 cdqe
+PASS P 003092DB mov eax, dword ptr [rsp + rax*4 + 0x20]
+PASS C 0030CC25 movzx edx, word ptr [rbx + 0x1c]
+PASS C 0030CC29 mov ecx, 0x14
+PASS C 0030CC32 call 0x322c50
+PASS C 0030CC7A movzx ecx, word ptr [rbx + 0x1c]
+PASS C 0030CC7E imul esi, ecx
+PASS C 0030CC81 add esi, eax
+PASS C 00322C5A lea eax, [rcx - 1]
+PASS C 00322C5D mov ebx, edx
+PASS C 00322C5F cmp eax, 0x1f
+PASS C 00322C62 ja 0x322c8d
+PASS C 00322C64 lea rdi, [rip - 0x202c6b] -> 00120000
+PASS C 00322F72 mov rcx, qword ptr [rip + 0x2b9c1bf] -> 02EBF138
+PASS C 00322F79 xor eax, eax
+PASS C 00322F7E je 0x32302a
+PASS C 00322F84 mov ecx, dword ptr [rcx + 4]
+PASS C 00322F87 jmp 0x32302c
+PASS C 0032302A mov ecx, eax
+PASS C 0032302C mov edx, eax
+PASS C 0032302E cmp ebx, edx
+PASS C 00323030 jl 0x322c8d
+PASS C 00323036 lea eax, [rcx - 1]
+PASS C 00323039 cmp ebx, eax
+PASS C 0032303B jg 0x322c8d
+PASS C 0030CBE0 calls the readiness helper 0030C890
+PASS C installer 003845F0 rebases +0xC/+0x10/+0x14/+0x18/+0x1C and stores nothing at +4 or +8
+PASS C class table 00323054: 32 image-relative entries, entry 19 (class 0x14) = 00322F72
+PASS R 0030DB9D movzx r8d, word ptr [rbx + 4]
+PASS R 0030DBCB mov eax, 0xffff
+PASS R 0030DBD2 cmp cx, ax
+PASS R 0030DBD5 je 0x30dbea
+PASS R 0030DBD7 movzx eax, cx
+PASS R 0030DBDA sub eax, 0xd0
+PASS R 0030DBEA or eax, 0xffffffff
+PASS R 0030DC7B lea eax, [rbx - 0xd0]
+PASS R 0030DC83 or eax, 0xffffffff
+PASS R 0030DC98 mov dword ptr [rip + 0x1fb44da], eax -> 022C2178
+PASS R 003068C7 movzx eax, ax
+PASS R 003068CA sub eax, 0xd0
+PASS R 003068D1 or eax, 0xffffffff
+PASS R 003068D4 mov dword ptr [rip + 0x1fbb89e], eax -> 022C2178
+PASS R 00309C00 mov eax, dword ptr [rip + 0x1fb8572] -> 022C2178
+PASS R 00309C06 cmp eax, -1
+PASS R 00309C09 jne 0x309c0e
+PASS R 00309C0B xor eax, eax
+PASS R 00309C0D ret
+PASS R 00309C13 mov dword ptr [rdx], eax
+PASS R 00309C22 mov dword ptr [rip + 0x1fb854c], 0xffffffff -> 022C2178
+PASS R 0030D722 mov dword ptr [rip + 0x1fb4a4c], 0xffffffff -> 022C2178
+PASS R 0034838A call 0x309c00
+PASS R 002D6175 call 0x309c00
+PASS R 00348880 call 0x267e10
+PASS R 00348888 mov ebx, eax
+PASS R 0034888A call 0x267e10
+PASS R 0034888F mov edx, ebx
+PASS R 00348891 mov ecx, eax
+PASS R 00348893 call 0x30eea0
+PASS R 0030EEA6 mov ebx, edx
+PASS R 0030EEA8 cmp edx, -1
+PASS R 0030EEAB je 0x30eeb7
+PASS R 0030EEAD mov eax, 0xd0
+PASS R 0030EEB2 add bx, ax
+PASS R 0030EEB7 mov ebx, 0xffff
+PASS R 0030EEBC call 0x31b7e0
+PASS R 0030EEC6 or eax, 0xffffffff
+PASS R 0030EECF cmp dword ptr [rip + 0x1fb329a], 4 -> 022C2170
+PASS R 0030EED8 mov eax, 0xfffffffe
+PASS R 0030EEF5 movzx r8d, bx
+PASS R 0030EF00 call 0x30cfb0
+PASS R 0030CFC3 movzx ebx, r8w
+PASS R 00304E12 call 0x387090
+PASS R 00304E1A movzx r8d, ax
+PASS R 00304E24 call 0x30cfb0
+PASS R 0030D14F mov word ptr [rcx + 0x1c], r10w
+PASS X 0030610D call 0x322c50
+PASS X 00306116 mov eax, 4
+PASS X 00306120 test rdi, rdi
+PASS X 00306123 je 0x30632c
+PASS X 00306129 movzx eax, byte ptr [rdi + 5]
+PASS X 0030612F jne 0x30632c
+PASS X 00306181 movzx eax, byte ptr [rcx + 0x1e]
+PASS X 00306185 cmp eax, 6
+PASS X 00306188 ja 0x3062f4
+PASS X 003062F4 cmp eax, 9
+PASS X 003062F7 je 0x306311
+PASS X 003062F9 cmp eax, 0xff
+PASS X 003062FE je 0x30630a
+PASS X 00306300 mov eax, 5
+PASS X 0030632C xor eax, eax
+PASS X 00306493 jne 0x3064a3
+PASS X 00306495 lea eax, [rdx + 0x2c]
+PASS X 003064A6 call 0x3060e0
+PASS X 003064AD je 0x3064bf
+PASS X 003064AF mov eax, 0xf
+PASS X 003064C5 call 0x323ec0
+PASS X 002FFD05 mov rdi, qword ptr [rdx + 0x698]
+PASS X 002FFD15 test rdi, rdi
+PASS X 002FFE97 mov rdx, rdi
+PASS X 002FFE9D call 0x306480
+PASS X 002FFEA4 jne 0x2ffd99
+PASS X 0030DBBE call 0x2ffcf0
+PASS X 0030DBC5 jne 0x30dc24
+PASS X 0030DBDF mov dword ptr [rip + 0x1fb45a7], edx -> 022C218C
+PASS X 0030DC24 mov eax, 1
+PASS X 0030DC33 ret
+PASS X 0030DC34 movzx eax, word ptr [rip + 0x1fb4555] -> 022C2190
+PASS X 0030DC3B mov ecx, 0xe2
+PASS X 0030DC48 cmp ax, 0xf
+PASS X 0030DC4C jbe 0x30dc83
+PASS X 0030DC55 call 0x2f8d60
+PASS X 0030DC5A movzx edi, ax
+PASS X 0030DC64 lea ecx, [r8 + 0x14]
+PASS X 0030DC68 call 0x322c50
+PASS X 0030DC6F je 0x30dc83
+PASS X 0030DC76 cmp di, ax
+PASS X 0030DC79 je 0x30dc83
+PASS X 0030DC8B movss dword ptr [rip + 0x1fb44f1], xmm6 -> 022C2184
+PASS X 002F8D66 movsxd rax, dword ptr [rip + 0x1bf2d83] -> 01EEBAF0
+PASS X 002F8D72 js 0x2f8d85
+PASS X 002F8D74 lea rcx, [rip + 0x1fc5bb5] -> 022BE930
+PASS X 002F8D7B movzx eax, word ptr [rcx + rax*2]
+PASS X 002F8D84 ret
+PASS X 002F8E28 or eax, 0xffffffff
+PASS X 002F8E35 ret
+PASS X 002F8E36 movzx eax, byte ptr [r10]
+PASS X 002F8E49 ret
+PASS X 002F8D60 has exactly three ret exits (002F8D84, 002F8E35, 002F8E49)
+PASS X 01EEBAF0 file value is -1
+PASS X 003067AA mov eax, dword ptr [rip + 0x1fbb9ac] -> 022C215C
+PASS X 003067B0 dec eax
+PASS X 003067B7 cmp eax, 5
+PASS X 003067BA ja 0x306a9a
+PASS X 00306AF0 six entries then int3 padding
+PASS T ch: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T cn: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T de: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T es: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T fr: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T in: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T it: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T kr: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T us: 543 x 60; 68 FFFF; 0 non-FFFF negative 4w+1 WORD; FFFF+bit30 = 0x113 and 511..534; 511..534 +0x1E = 7 (235 such rows); 10 bit-15 words 32775..32907, no bit30; row 113 = 0x808B
+PASS T the nine tables are one distinct table
+PASS M unavailable words are exactly CF and FFFF; every other word decodes unchanged
+PASS M 511..534 queue as 303..326 and decode unchanged; word 0 queues -208
+PASS M a byte fallback (0..255) queues -208..47, disjoint from 303..326
+PASS K1 control: a width-changed expectation at 003092C5 is reported as a mismatch
+PASS K2 control: the wrong kind mapping 3w+1 finds 39 counterexamples in each table
+FAILS 0

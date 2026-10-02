@@ -1,0 +1,33 @@
+ok   00306F74 shl eax, cl
+ok   00306F76 cdqe 
+ok   00306F78 or qword ptr [rdx + 8], rax
+ok   00264D3D movzx eax, word ptr [rdx + rax*2]
+ok   003211BD call 0x264d20
+ok   003211C2 movsx ecx, ax
+ok   00235413 test r8b, 2
+ok   00235419 test r8b, 5
+ok   002368EB mov eax, 0x20
+ok   002368FE mov dword ptr [rip + 0x1e57d9c], eax
+ok   00236914 imul ecx, eax, 0xf50
+ok   00234DC3 mov r12d, dword ptr [rsp + 0xb0]
+ok   0032A135 inc dword ptr [rip + 0x1d63321]
+ok   002345CA call 0x32a100
+ok   002358D1 sub ecx, dword ptr [r14 + 0xc]
+ok   002358D5 cmp ecx, eax
+ok   002358D7 jb 0x2359c4
+ok   003251A4 call 0x307110
+ok   00307133 or byte ptr [rax + rcx*8], 1
+ok   0041DC9E call rax
+ok   0041DD1D call rax
+ok   0041CEE3 call rax
+ok   00417CDF call rax
+ok   00236194 mov eax, 0xfffffffe
+ok   00307090 lea rax, [rip + 0x2bba339]
+ok   00307099 lea rdx, [rip + 0x2bba930]
+ok   00235B76 call 0x2ef4a0
+ok   00233C3F call 0x237df0
+ok   00233C48 jmp 0x237df0
+ok   00233C59 jmp 0x237df0
+ok   00239E33 mov esi, 1
+ok   00239FA7 mov ecx, esi
+FAILS 0

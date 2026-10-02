@@ -1,5 +1,5 @@
 ---
-contract: route every gameplay roll to one of four generators and keep their streams apart - which consumer draws from which, what reseeds each, and therefore what can correlate with what
+contract: route every gameplay roll to one of four generators and keep their streams apart - which consumer draws from which, what reseeds each, and therefore what can correlate with what   # <- corrected 2026-10-02, OPUS: not every gameplay roll - the CRT rand() (IAT 008C3098, 48 call sites in 30 functions, among them 002FA1A0 at 002FA1BB-002FA1D9) also serves gameplay and is not routed here; see section 2
 category: 21-RNG-And-Determinism
 scope: subsystem
 level: L2
@@ -11,7 +11,7 @@ verified_against:
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
   method: the generator inventory, both censuses, the reseed paths and the correlation adjudication
     are the page's, carried with their site citations and their corrections. OPUS assembled and
-    scoped this contract on 2026-09-20 and did not re-derive the bodies.
+    scoped this contract on 2026-09-20 and did not re-derive the bodies.   # <- corrected 2026-10-02, OPUS - falsification pass 1 (2026-09-29) re-derived every static claim from the shipping image, and EXP-144 executed the routing (section 13)
 last_reviewed: 2026-09-29
 audit:
   by: OPUS
@@ -32,7 +32,7 @@ audit:
 > `which-roll-is-on-which-generator.md`, had no contract at all.
 >
 > **Provenance**: **[page]** marks that page's reading. **[live]** marks what only a running game
-> settles. Nothing here is executed.
+> settles. ~~Nothing here is executed.~~ The routing was executed in `EXP-144` (§13) *(corrected 2026-10-02, OPUS: `EXP-144`, `s46-generator-routing`, 9 cases, superseded §13's nothing-executed line on 2026-09-22)*.
 
 ## 1. Purpose
 
@@ -42,12 +42,12 @@ states that routing.
 
 ## 2. Interface
 
-Four generators, and they are not interchangeable **[page]**:
+~~Four generators~~ Four of the image's generators *(corrected 2026-10-02, OPUS: at least eight exist, and a fifth, the CRT `rand()` — IAT `008C3098`, 48 call sites in 30 functions plus the thunk `00861F38` — also decides gameplay: `002FA1A0` returns `rand() % (900·tb) + 1200·tb` at `002FA1BB`–`002FA1D9`; rng-streams.md §8g. This routing does not cover it)*, and they are not interchangeable **[page]**:
 
 | # | generator | state | seeded by | drives |
 |---|---|---|---|---|
-| 1 | **Gameplay MT19937** | `02EB3870` (624 dwords), index `02EB4230` | constant **4537** at boot; **the wall clock** on save load | combat formula (53 sites), weather — 66 consumer functions |
-| 2 | **Graphics-noise MT19937** | `01F7F600` (624 dwords); **no index of its own** — see I5 | time and clock, `0015BCF0` | presentation noise only — **one drawing body, `001946E0`** |
+| 1 | **Gameplay MT19937** | `02EB3870` (624 dwords), index `02EB4230` | constant **4537** at boot; **the wall clock** on save load | combat formula (53 sites), weather — ~~66 consumer functions~~ 67 consumer functions, 66 through `00379CD0` and the camera-shake sampler `0037D1F0` through `00379CE0` *(corrected 2026-10-02, OPUS: `callers 00379CE0` = 9 sites, all in `0037D1F0`; CONTRACT-gameplay-generators.md §12c)* |
+| 2 | **Graphics-noise MT19937** | `01F7F600` (624 dwords); ~~**no index of its own**~~ an index kept as a `u32*` cursor at `+0x9C0` and a `u32` refill count at `+0x9C8`, both set by the twist *(corrected 2026-10-02, OPUS: `0018EECD` `mov dword [r10+0x9c8], 0x270`, `0018EED8` `mov qword [r10+0x9c0], r10`; I5 as corrected 2026-09-29)* — see I5 | time and clock, `0015BCF0` | presentation noise only — **one drawing body, `001946E0`** |
 | 3 | **Shared gameplay LCG** | `022C256C` | **a counter**, once per battle-area init | loot, the enemy chain, weighted action selection, spawn placement, AI order |
 | 4 | **Presentation bit-feedback PRNG** | `01EF93E8` | constant `0x458DC800` at startup | procedural rendering |
 
@@ -121,7 +121,7 @@ are register-relative, which is why a rip-relative census missed them. The origi
 `01F7FFC0` is walked as an **8-byte pointer** — `mov rax, qword ptr [01F7FFC0]` / `mov ecx, [rax]` /
 `add rax, 4` / `mov [01F7FFC0], rax` at `00194855`–`00194862` — and `01F7FFC8` is a **refill count**
 that gates the twist and is then decremented. ~~Neither generator routine touches either: `0018EE20`
-has no operand at or above `+0x9A0`, and~~ *(refuted: the twist writes both)* `0018D740` has one operand there, `lea rdx, [rcx + 0x9bc]`, the array's
+has no operand at or above `+0x9A0`, and~~ *(refuted: the twist writes both)* `0018D740` has ~~one operand~~ two operands there, `lea rdx, [rcx + 0x9bc]` and `lea r10, [r9 + 0x9bc]` *(corrected 2026-10-02, OPUS: `0018D761` and `0018D76C`)*, the array's
 end sentinel. The gameplay instance is the opposite case — its own seeder writes its index at
 `02EB4230`, 4 bytes, across four bodies. **So `Mt19937State`'s `index` field is the gameplay
 instance's and not a property of the type**, on the same principle the type row already used to
@@ -170,7 +170,7 @@ None directly; the consumers are gameplay systems.
 ## 9. Determinism
 
 **This is the subsystem that decides what "deterministic" means for the whole game**, and the answer
-differs per generator: the **PRNG** and the **boot MT** are constant-seeded and reproducible; the
+differs per generator: the **PRNG** and the **boot MT** are constant-seeded ~~and reproducible~~ — the boot MT's seed is fixed but its position at the first gameplay draw is not established *(corrected 2026-10-02, OPUS: the boot frame modes draw and discard at `0022B706` / `0022B7EB` once per dispatch, and camera shake's float draws advance the same cursor; CONTRACT-gameplay-generators.md §9, narrowed 2026-09-14, and §12c)*; the
 **LCG** is reproducible only for a given count of areas entered since launch (I4); the **MT after a
 load** is not reproducible at all, being clock-seeded. **A determinism claim that does not say which
 generator it is about is not a claim.**
@@ -178,8 +178,8 @@ generator it is about is not a claim.**
 ## 10. Failure paths and edge conditions
 
 * **`DAT_02089300` false** → the LCG reseed is skipped. There **is** an unconditional clear of it in
-  `BattleStorage_InitializeWorkArrays`, so the gate is reachable in code; **whether it is ever false
-  in normal play is not established** **[page]**.
+  `BattleStorage_InitializeWorkArrays`, so the gate is reachable in code; **~~whether it is ever false~~
+  ~~in normal play is not established~~** **[page]** *(answered from the code, not observed: `002368D0`, the only clear, is called once, from boot `0022A0B0` at `0022A41A`, and `00236A40`, the only set, once, from boot frame mode 0 `0022B6E0` at `0022B77C` — so the gate is 0 only between boot initialisation and boot mode 0, and 1 for the rest of the process; 2026-10-02, OPUS)*.
 * **Counter never resets** (I4), so the LCG's seed grows monotonically for the whole process.
 
 ## 11. Observable behaviour
@@ -223,13 +223,13 @@ auditor's.*
   consumer pair is **complete, not sampled**. So the second seed input is a monotonically rising
   counter read once and multiplied by 600 — *what unit the 600 converts to is not claimed*, and the
   value at any given save still requires runtime observation.
-* **Whether `DAT_02089300` is ever false in play** (§10) **[live]**.
+* ~~**Whether `DAT_02089300` is ever false in play** (§10) **[live]**.~~ *(answered from the code, not observed: `002368D0`, the only clear, is called once, from boot `0022A0B0` at `0022A41A`, and `00236A40`, the only set, once, from boot frame mode 0 `0022B6E0` at `0022B77C` — so the gate is 0 only between boot initialisation and boot mode 0, and 1 for the rest of the process; only a live capture would confirm it; 2026-10-02, OPUS)*
 * **How often the AI draw paths run during a fight** — the open part of I6, and the thing that would
   quantify how much fighting shifts loot **[page]**.
 
 ## 15. Evidence
 
-Entirely the page's, including its two published corrections — the two-census distinction and the
+~~Entirely the page's~~ The page's readings, re-derived from the shipping image in falsification pass 1 (2026-09-29, below) and executed for the routing in `EXP-144` (§13) *(corrected 2026-10-02, OPUS: the pass re-derived every static claim, `falsify_which_generator.py`)*, including its two published corrections — the two-census distinction and the
 refuted half of the correlation claim **[page]**. This contract's contribution is I1–I6 stated as a
 subsystem contract, §9's rule that a determinism claim must name its generator, and §12's warning
 that either census alone wires the wrong consumers.

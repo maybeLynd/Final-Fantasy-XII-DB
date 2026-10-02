@@ -50,12 +50,12 @@ not sufficient, and that is the whole of the behaviour players see.
 
 ## 3. Types
 
-`AiOrderSet` at `0x02089378 + setIndex * 0x170`; `AiOrderRecord`, 24 bytes, twelve per set.
+`AiOrderSet` at `0x02089378 + setIndex * 0x170`; `AiOrderRecord`, 24 bytes, ~~twelve per set~~ room for fourteen per set (`0x170` = `0x20` + 14 × `0x18`, `00328160`), of which the rebuilders fill at most twelve (`00328187`) *(corrected 2026-10-02, OPUS)*.
 
 | | | |
 |---|---|---|
 | `set + 0x00` | `u8[32]` | per-subgroup order counts — the header this operation exists to walk |
-| `set + 0x20` | `AiOrderRecord[12]` | the records, stride 24 |
+| `set + 0x20` | ~~`AiOrderRecord[12]`~~ `AiOrderRecord[14]`, at most 12 filled *(corrected 2026-10-02, OPUS: `00328160`, `00328187`)* | the records, stride 24 |
 | `record + 0x04` | `uint16` | flags; bit `0x40` and bit `0x80` govern resumption (§6) |
 | `unit + 0x708` | pointer | the action context; its `+0x04` word's `0x4000` says a resume is in progress, **and the same pointer is compared against a record address** for the resume point (§6) |
 | `unit + 0x714` | `uint16` | **ADDED 2026-09-11.** Latched at `00305CE5` before anything else; used only as the third call's third argument (§7) |
@@ -161,8 +161,8 @@ same thing — the first additionally requires a context with `0x4000`.
 ```
 
 **Both must succeed.** A satisfied condition whose commit fails does not stop the walk and does not
-act — the loop moves to the next order. This is why a gambit can visibly do nothing while its
-condition is plainly true, and a reimplementation that treats a matched condition as a commitment
+act — the loop moves to the next order. ~~This is why a gambit can visibly do nothing while its~~
+~~condition is plainly true, and~~ *(answered: not in the game — over the shipped action table a matched line is never refused by the commit, see the 2026-09-26 reachability note below; 2026-10-02, OPUS)* A reimplementation that treats a matched condition as a commitment
 will act where the original declines.
 
 *Reachability, qualified 2026-09-25 (FABLE, Claude Opus 5.5), on OPUS block 305:* the control flow above is real, but
@@ -328,7 +328,7 @@ already says the two are tested against different conditions. Re-read here: `003
 00301964  mov  edi, 1            ; match
 ```
 
-**`chance == 0` is an unconditional match, and otherwise the order fires iff `roll % 100 < chance`.**
+**`chance == 0` is an unconditional match, and otherwise ~~the order~~ an order that reaches this arm fires iff `roll % 100 < chance`.** *(corrected 2026-10-02, OPUS: the arm is reached only by `0x4051`–`0x4121` other than `0x4091` (`00301917`–`00301935`) and by `0x414B` (`00301A1B`–`00301A21`); every other order id takes an arm without a draw — the wait `0x4021` and the rest up to `0x4050`, `0x4091`, `0x4122`–`0x4123` and most ids above `0x4124` return 1 at `00301A31`, `0x4022`, `0x4124` and `0x4165` decode a goal, `0x414D` reads the stance — and an action-row id is rolled instead in `003014C0` at `00301608`–`00301637`, so one evaluation draws at most one percent roll)*
 *The division truncates toward zero and the comparison is signed, so a negative roll would match any
 non-zero chance; EXP-095 describes the generator as folding 30 bits of state, which would keep the
 value non-negative — so the signedness is unobservable rather than harmless, and a reimplementation
@@ -348,22 +348,22 @@ non-zero**. The details around it differ:
 
 Entries are **qwords**, `[rcx + rax*8]`, tested against zero at `003018F7`.
 
-**The hole lists are not measuring the same thing and neither side can settle it alone.** EXP-095
+**The hole lists are not measuring the same thing ~~and neither side can settle it alone~~; the image settles the table** *(corrected 2026-10-02, OPUS: `01EEC460` re-read whole, below)*. EXP-095
 probed *returns*, and a spec can return 0 without its entry being zero — the ladder immediately below
 the table test (`00301901`–`00301935`) routes `0x4124`, `0x4022`, `≤ 0x4050`, `0x4091` and
-`≥ 0x4122` to other arms, which plausibly accounts for `0x4129`–`0x412F` answering 0 with non-zero
-entries. **What that does not explain is the two-id shift on the first run**: `0x4036` and `0x4037`
+`≥ 0x4122` to other arms, ~~which plausibly accounts for `0x4129`–`0x412F` answering 0 with non-zero~~
+~~entries.~~ but `00301830` returns 1 for `0x4129`–`0x412F` (`00301A1B`–`00301A36`: above `0x4124` only `0x414B`, `0x414D` and `0x4165` go elsewhere), so the ladder does not account for the finding's second hole either *(corrected 2026-10-02, OPUS: all 359 qwords at `01EEC460` re-read — the 18 zero entries are exactly `0x4025`, `0x4036`–`0x4045` and `0x4128`; `0x4046`/`0x4047` hold `002FDDA0` and `0x4129`–`0x412F` hold `002FDC30`)*. **What that does not explain is the two-id shift on the first run**: `0x4036` and `0x4037`
 hold zero entries here and the finding reports them populated, while `0x4046` and `0x4047` hold
 non-zero entries and the finding reports them as holes. Routed to the experiment's author rather than
 resolved here, because the probe's per-id returns are in its trace and not in this image read.
 
 ### What this does NOT show
 
-- **No evaluation and no commit ran.** Nothing here says which gambits would fire in a real
+- ~~**No evaluation and no commit ran.**~~ *(answered: the evaluator `003014C0` ran from shipped bytes in EXP-095, §13a, its selector `00301AD0` scripted per slot, and the commit in `commit_walk.py`, §7's 2026-09-26 correction; 2026-10-02, OPUS)* Nothing here says which gambits would fire in a real
   battle, only that the walk offers the right lines in the right order given answers.
-- **The `02089340` bit-5 suspension (§4a) was not driven.** It sits inside
-  `AiOrder_EvaluateAndResolveActionTarget`, which is supplied here, so this run says nothing about
-  it.
+- ~~**The `02089340` bit-5 suspension (§4a) was not driven.** It sits inside~~
+  ~~`AiOrder_EvaluateAndResolveActionTarget`, which is supplied here, so this run says nothing about~~
+  ~~it.~~ *(answered: driven by execution 2026-09-26, case G4 — §4a's correction; 2026-10-02, OPUS)*
 - **`004697C0` is unidentified, but it is no longer unconnected.** *(Falsification pass 1,
   2026-09-12.)* It **calls `0046AB10`** — the function
   [the status write](../10-Status-Periodic-Terminal/CONTRACT-status-write.md)'s **`SW-4`** is already
@@ -430,7 +430,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/gambit_walk3` (ignored path). Inst
    gated on `r14 == [rdi+0x738]`); `0x1000` is retry-after-cancel (`00301B47`–`00301B74`, compared
    against `+0x744`); `0x2000` skips the execution-timeout check while current (`002FFCB1 test word
    [rax+4], 0x2000`); `0x4000` is the resumable bit the walk itself reads (`00305D74`–`00305D84`).
-   `0x0004` is authored but has no reader, and `0x0001`/`0x0002`/`0x8000` are never set in shipped
+   `0x0004` is authored but ~~has no reader~~ is read by the navigation gate `00325D90` at `00325DF4` *(answered: see the gambit page's section 8g table, corrected 2026-10-01; 2026-10-02, OPUS)*, and `0x0001`/`0x0002`/`0x8000` are never set in shipped
    data. **The word is not "two resume bits plus unknown" — it is the record's whole behaviour
    flags word, consumed by four different functions.**
 3. ~~**What makes a commit fail**~~ — **answered**, in
@@ -463,7 +463,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/gambit_walk3` (ignored path). Inst
 | there is a third call on the success path | `00305E31`–`00305E5A`, gated on resume mode and on the latched `unit+0x714` not being `0xFFFF` | 1 (static + **executed**; omitting it fails on the trace only) | PROVEN |
 | the subgroup index is sign-extended and never bounds-checked | `00305CCC movsxd rax, r8d` with no compare against the header | 1 (static + **executed**, with a negative index reading a planted byte in front of the header) | PROVEN |
 | at most twelve header bytes are counts; `subgroupIndex` cannot exceed 11 | `+0x6B5` writer census — four touchers: `00236BA3`/`002FE09F` store 0, `002FE0BB` stores `(id&0xFF)-0x16` ∈ 0–11, `00305C34` reads; sole walk caller `00305AB0` passes `r8d=0` on three of four sites | 1 (static) | PROVEN |
-| `record + 0x04` is the record's whole behaviour flags word — every shipped bit has a named reader | Z-19 census over 50,050 authored records, owner-verified at `003016BE`, `00301587`/`003015A6`, `00301B47`, `00301B79`, `00325C83`/`00325CAA`, `002FFCB1`, `00305D74`; `0x0004` unread, `0x0001`/`0x0002`/`0x8000` never set | 1 (static; readers outside the walk are not replayed) | PROVEN |
+| `record + 0x04` is the record's whole behaviour flags word — every shipped bit has a named reader | Z-19 census over 50,050 authored records, owner-verified at `003016BE`, `00301587`/`003015A6`, `00301B47`, `00301B79`, `00325C83`/`00325CAA`, `002FFCB1`, `00305D74`; ~~`0x0004` unread~~ `0x0004` read at `00325DF4` *(answered: the gambit page's section 8g table; 2026-10-02, OPUS)*, `0x0001`/`0x0002`/`0x8000` never set | 1 (static; readers outside the walk are not replayed) | PROVEN |
 | what `004697C0` does | **not established** — 251 bytes, not read for this contract | none | UNKNOWN |
 | nothing observed live | — | none | — |
 

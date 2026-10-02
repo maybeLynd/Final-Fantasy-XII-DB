@@ -1,0 +1,9 @@
+PASS  C0 control: 002EAEB0 loads flag byte +0x18  | 002EAEB0  440fb64118                     movzx r8d, byte ptr [rcx + 0x18]
+PASS  N1 removal: +0x18 bit 0x02 set leaves the mark-only arm  | 002EAEB8  41f6c002                       test r8b, 2 / 002EAEBC  750f                           jne 0x2eaecd
+PASS  N2 removal: +0x19 bit 0x04 set also leaves it (the exception)  | 002EAEBE  f6411904                       test byte ptr [rcx + 0x19], 4 / 002EAEC2  7509                           jne 0x2eaecd
+PASS  N3 mark-only arm: sets +0x18 bit 0x04 ...  | 002EAEC4  4180c804                       or r8b, 4 / 002EAEC8  44884118                       mov byte ptr [rcx + 0x18], r8b
+PASS  N4 ... and returns with no other write or call  | 002EAECC  c3                             ret
+PASS  N5 follow-up 002EA6E0 tests +0x18 bit 0x04 first  | 002EA6EF  f6411804                       test byte ptr [rcx + 0x18], 4
+PASS  L1 stale release 002EAFA0: requested bit already set ...  | 002EAFB0  85ca                           test edx, ecx / 002EAFB2  7572                           jne 0x2eb026
+PASS  L2 ... jumps straight to a ret (no write, no call)  | 002EB026  c3                             ret
+FAILS 0

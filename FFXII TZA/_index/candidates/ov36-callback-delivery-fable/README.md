@@ -1,4 +1,4 @@
-# OV-36: a queue slot delivers its callback at most once, and an owner has one live request (FABLE, Claude Opus 5.5, 2026-09-29)
+# OV-36: a queue slot delivers its callback at most once, and ~~an owner has one live request~~ an owner is admitted only from state 0 (FABLE, Claude Opus 5.5, 2026-09-29; narrowed 2026-10-02)
 
 **Box (OV-36, `02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md` §8):** "Complete callback
 single-delivery/reuse and relevant scheduling/reentrancy obligations." The register classes the re-entrancy universality
@@ -17,7 +17,7 @@ part as superseded under OV-2's limit; the delivery specifics are static.
 - **H.** The helpers call the completion pointer without clearing it. Uniqueness therefore comes from P, not from the
   pointer being consumed.
 - **O.** The armer admits only owner state 0, and the producer only state 2, which it leaves at 3
-  ([OV-34's record](../ov34-state1-owner-fable/README.md)). So an owner never has two queued slots. The same owner address
+  ([OV-34's record](../ov34-state1-owner-fable/README.md)). ~~So an owner never has two queued slots.~~ *(Narrowed 2026-10-02, FABLE, on ASTRA's owner-admission-scope, SWE2-AUDIT-SPEC ACCEPT; [record](../astra-returns-misc-fable-1002/README.md) section 2)*: O proves admission only. The group reset `003DD790` zeroes every owner's state with no state test, so if a reset can precede the retirement of a still-queued request, the armer admits a second one. Whether that order occurs is **open**; D, P and H do not depend on it. The same owner address
   across successive requests (the page's §8) is sequential, not concurrent, and a recycled slot cannot deliver an earlier
   request's callback.
 - **R (bounded).** The owner callback runs before its slot is reset. Its direct callees do not include the pump: the

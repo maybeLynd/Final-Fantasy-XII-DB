@@ -56,7 +56,7 @@ Each key below places or tints one element of the battle screen: the command men
 | `002778C0` | the command dispatcher widget's procedure |
 | `00405310` | the boss gauge's procedure |
 | `003FDFE0`, `003FF360` | the status window's procedures |
-| `002C7660` | ~~the unlabelled parent of the HP-gauge and overhead-status paths~~ the per-unit overhead-display evaluation (one call per `[hud+0x1D70]` node from `002C62B0`): fade level, anchor, gauge kind, then the HP-gauge and overhead-status paths and the name-label layout (SD-128) |
+| `002C7660` | ~~the unlabelled parent of the HP-gauge and overhead-status paths~~ the per-unit overhead-display evaluation (one call per `[hud+0x1D70]` node from `002C62B0`): ~~fade level, anchor,~~ a level (a per-unit render channel, read as fade: `00272DE0` forwards to `002E7E90`, the character render record's channel 11, which is named nowhere), an offset labelled anchor *(Corrected 2026-10-02, FABLE, on SWE2-AUDIT-SEM's review [`auditsem-review-sd125-128-0930`](../../_index/candidates/auditsem-review-sd125-128-0930/REVIEW.md) N3)*, gauge kind, then the HP-gauge and overhead-status paths and the name-label layout (SD-128) |
 | `002C1DDC`, `002CF41C`, `0029E0FA` | the rip-relative `lea` installers of `002C1E20`, `002CF440`, `0029E110` |
 
 ## The command menu and mist layer

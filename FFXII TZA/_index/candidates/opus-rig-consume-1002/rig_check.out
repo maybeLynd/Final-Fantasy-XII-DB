@@ -1,0 +1,29 @@
+ok   003E1C66 mov ecx, dword ptr [rcx + 0x70]
+ok   003E1C78 je 0x3e1cc6
+ok   003E1C7E cmp ax, -1
+ok   003E1C84 mov ecx, ebx
+ok   003E1CA0 cmove rcx, rbx
+ok   003E1CB6 call 0x421d20
+ok   003E1CC3 mov dword ptr [rdi + 0x78], eax
+ok   003E1CD3 cmp dword ptr [rdi + 0x6c], -1
+ok   003E1D1B mov dword ptr [rdi + 0x6c], 0xffffffff
+ok   003E1D49 mov eax, dword ptr [rdi + 0x84]
+ok   003E1D4F cmp eax, edi
+ok   003E27EA mov dword ptr [rdi + 0x84], edi
+ok   00421D26 mov ebx, dword ptr [rcx + 0x18]
+ok   00421D29 cmp ebx, -1
+ok   003E3D01 cmp dword ptr [rbx + 0x6c], -1
+ok   003E3D2D cmove rdx, rdi
+ok   003E3D49 call 0x421d20
+ok   003E3E18 call 0x421d20
+ok   004216D3 movsx ebx, word ptr [rsi]
+ok   004216DB mov dword ptr [rax + 0x6c], ebx
+ok   003E3C42 mov ecx, dword ptr [rcx + 0x88]
+ok   003E3C52 cmp dword ptr [rsi + 0x8c], edi
+ok   003E3C58 jbe 0x3e3c8d
+ok   003E3C68 mov ecx, dword ptr [rbx]
+ok   003E3C6A add rax, 0x230
+ok   003E3C70 imul rcx, rcx, 0x290
+ok   003E3C7A call 0x203170
+ok   003E3C8B jb 0x3e3c60
+FAILS 0

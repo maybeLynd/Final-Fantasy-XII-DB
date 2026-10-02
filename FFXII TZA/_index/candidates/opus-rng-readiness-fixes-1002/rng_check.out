@@ -1,0 +1,26 @@
+ok   0074BFF5 mov dword ptr [rip + 0x17f0d70], r8d
+ok   0074C007 imul r8d, eax, 0x6c078965
+ok   0074C0BD sar edi, 8
+ok   00863C84 cmp byte ptr [rip + 0x26505a9], 0
+ok   00863C99 mov edx, 0x1571
+ok   00863CA3 call 0x866d60
+ok   00863CBA mov byte ptr [rip + 0x2650573], 1
+ok   00863CCE call 0x866b90
+ok   00863CE8 mov dword ptr [rip + 0x2650542], edx
+ok   0018EE39 and r8d, 0x7ffffffe
+ok   0018EE40 and edx, 1
+ok   0018EE54 xor r8d, dword ptr [rax + 0x634]
+ok   0018EE68 mov r9d, 0x18c
+ok   0018EE92 xor edx, dword ptr [rax - 0x38c]
+ok   0018EECD mov dword ptr [r10 + 0x9c8], 0x270
+ok   0018EED8 mov qword ptr [r10 + 0x9c0], r10
+ok   0018D761 lea rdx, [rcx + 0x9bc]
+ok   0018D76C lea r10, [r9 + 0x9bc]
+ok   002368E1 xor ebx, ebx
+ok   002368F8 mov dword ptr [rip + 0x1e52a02], ebx
+ok   00236A44 mov dword ptr [rip + 0x1e528b2], 1
+ok   0022A41A call 0x2368d0
+ok   0022B77C call 0x236a40
+ok   0037D291 call 0x379ce0
+ok   0018EE20-0018EEDF has no rip-relative operand
+FAILS 0
