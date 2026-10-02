@@ -94,3 +94,13 @@ the-scripted-camera-player	17-Presentation-Rendering/Scripted-Camera/the-scripte
 the-menu-screen-atlas	16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	13	4492	2026-10-02 09:51	PACKED-FABLE
 how-a-line-of-text-becomes-glyph-quads	99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	10	874	2026-10-02 09:51	PACKED-FABLE
 the-license-board-grid-build-and-its-change-sweep	16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md	10	1361	2026-10-02 09:51	PACKED-FABLE
+how-a-script-changes-the-battle-party	01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md	8	590	2026-10-02 10:27	PACKED-FABLE
+the-text-element-dispatch-table	99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	5	2303	2026-10-02 10:27	PACKED-FABLE
+contract-save-image-pipeline	19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	5	309	2026-10-02 10:27	PACKED-FABLE
+contract-ui-request-router	16-UI/CONTRACT-ui-request-router.md	4	313	2026-10-02 10:27	PACKED-FABLE
+field-record-table-navimapdata	03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	4	308	2026-10-02 10:27	PACKED-FABLE
+contract-steam-integration-subsystem	20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	6	560	2026-10-02 10:27	PACKED-FABLE
+the-menu-effect-registry	17-Presentation-Rendering/Effect-File-Formats/the-menu-effect-registry.md	6	549	2026-10-02 10:27	PACKED-FABLE
+the-save-load-screen-widgets	19-Save-Load-Settings/the-save-load-screen-widgets.md	5	1097	2026-10-02 10:27	PACKED-FABLE
+contract-phyre-cluster-header	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	4	239	2026-10-02 10:27	PACKED-FABLE
+the-npc-name-dictionary	04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md	4	503	2026-10-02 10:27	PACKED-FABLE
