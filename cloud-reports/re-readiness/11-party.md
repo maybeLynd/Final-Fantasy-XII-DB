@@ -337,3 +337,58 @@ Cites: `the-setsavedata-presets-test-battle-scenarios.md:46`, `:111`–`:123`, `
 | Camera (17) | the two camera contexts and the record stack | `active-party-reserve-and-the-moment-the-leader-changes.md:405`–`:421` |
 | Save image (19) | the static buffer, `SaveImage_GetActiveBuffer` `002EF640`, the transition record | `the-five-parallel-slot-maps.md:215`–`:247` |
 | Script VM (01) | verbs `changetosummonparty`, `setinterventioncamera`, `setuclockstatus`, `setucpcmovelockstatus`, `removeguestbattlemember`, `btlAtelSetNextSetSaveData`, `debug_setpc` | sections above |
+
+---
+
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, or live-only)
+
+| # | gap | cite |
+|---|---|---|
+| G-1 | What `+0x0F`'s two values select: "Two writers, no reader observed." Also whether `+0x0F = 2 / 3` is "the 'in party / not' kind the page's suppression gate reads is not established here" | `CONTRACT-party-slot-assignment.md:353`; `party-roster-and-control-suppression.md:152`–`:153` |
+| G-2 | `002681C0` `PartyRoster_ReapplyActorStoredSlot`: "not read" | `party-roster-and-control-suppression.md:217` |
+| G-3 | The two predicates in the role notice (`00265680`, `002672B0`): "their names are the residue" | `party-roster-and-control-suppression.md:125`–`:126` |
+| G-4 | Null `pBkbi` / null `+0x698` in the suppression recompute faults at `0023B15E`: "Whether initialized gameplay can reach that state is not established" | `party-roster-and-control-suppression.md:181`–`:183`; `CONTRACT-party-focus-and-control-suppression.md:212`–`:213` |
+| G-5 | Bit 3 of the STOP word: "*Which of the five managers slot 3 is was not established here*" | `party-roster-and-control-suppression.md:651` |
+| G-6 | "The identity of `002695A0`"; what `0025BFB0`'s five request bits mean; what `0026CE60` and `002628B0` do natively | `CONTRACT-party-slot-assignment.md:355`, `:188`–`:192` |
+| G-7 | "Whether `00263770` writes the roster in a callee": the writer taint does not follow the address into a callee | `CONTRACT-party-slot-assignment.md:356`, `:390`–`:392` |
+| G-8 | Live-only: §4's staleness across a field transition, and whether any caller passes a slot above 3 | `CONTRACT-party-slot-assignment.md:337`–`:347` |
+| G-9 | "What `003D9B80` resetting `record + 0x10` means for a summon, beyond the fields it writes" | `CONTRACT-party-focus-and-control-suppression.md:240` |
+| G-10 | What the five map classes mean: "What the class byte *is* semantically (which roster generation a caller intends) stays open"; class 4 has no literal call site, "reachable only through computed `edx` at `0030A804` and the `0050FD1A` family" | `CONTRACT-the-five-parallel-slot-maps.md:250`–`:253`; `active-party-reserve-and-the-moment-the-leader-changes.md:145`–`:147` |
+| G-11 | "what `01EED260` holds, or what `00316DF0` and `00323540` do to a registered entry" | `the-five-parallel-slot-maps.md:197`–`:198` |
+| G-12 | The upper byte of each selector: "so far, never read" | `the-five-parallel-slot-maps.md:262`–`:264` |
+| G-13 | `BattleUnit +0x698`: a pointer into the forty-record array or a spawn record: "**Recorded as a contradiction (`OPUS-CONTRA-BU698`), not resolved**" | `the-five-parallel-slot-maps.md:277`–`:281` |
+| G-14 | `+0x5AD0` is sixteen bytes by its copy; "Only two bits of its first word have known consumers" | `the-five-parallel-slot-maps.md:288`–`:289` |
+| G-15 | The pooled-task-full path of a removal (maps 1–4 stay stale): "Read here and not executed" | `CONTRACT-the-five-parallel-slot-maps.md:158`–`:160` |
+| G-16 | The scenario arm's map 1–4 state: "Indirect calls were not followed" | `Battle-State-Block/CONTRACT-battle-state-block.md:117`–`:118` |
+| G-17 | Why the binder resets twice: "nothing read here says why … Any difference lies in state outside the block" | `Battle-State-Block/CONTRACT-battle-state-block.md:187`–`:190` |
+| G-18 | The block's writer side: "writes are under-covered wherever a constructor or an index-derived writer sits outside the seeds" | `Battle-State-Block/CONTRACT-battle-state-block.md:191`–`:194`; `Battle-State-Block/the-battle-state-block-field-map.md:57`–`:62` |
+| G-19 | Block `+4` bit 6 before any load: "**Which writer sets it before any load is not read.**" | `Battle-State-Block/the-battle-state-block-field-map.md:313`–`:314` |
+| G-20 | When the compatibility-copy import fires in real play; whether a null party table `02EBF130` is reachable | `Battle-State-Block/the-battle-state-block-field-map.md:272`, `:279`–`:283` |
+| G-21 | `00317400`: "what `+0x7A` is authored as is the residue" | `Battle-State-Block/the-battle-state-block-field-map.md:432`–`:433` |
+| G-22 | No execution of the suppression recompute, the slot-map bodies or the block bodies ("**None.** No experiment executes …") | `CONTRACT-party-focus-and-control-suppression.md:232`–`:236`; `CONTRACT-the-five-parallel-slot-maps.md:223`; `Battle-State-Block/CONTRACT-battle-state-block.md:182` |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no 11-Party page states them)
+
+| # | gap | where the page stops | cite |
+|---|---|---|---|
+| S-1 | **The suppression mask as a formula.** The page lists the contributions by name and defers the rest elsewhere: "the party-down bits `0x600`, a combo in progress, unit flag 46, the leader's knockback / evade / parry events, an action in phase ≥ 9, unit flag 24, and the wider control-status masks — see the policy page §10". Which contribution sets which of the three bits, the `0x400000000000` bit, and what the `00322600` / `00322920` id-set tests feed are not stated in 11-Party. | the correction block and the subtree note | `party-roster-and-control-suppression.md:184`–`:187`, `:479`–`:482`, `:490`–`:491` |
+| S-2 | **The mode-1 second gate.** "`003135C0` can replace the whole mask from a second selected unit (`003137F0` → `0031B770`)": the replacement rule is not stated | — | `party-roster-and-control-suppression.md:189`–`:190`, `:482` |
+| S-3 | **`[0208E6B8]` written by the recompute** (`0023B22F`–`0023B238`): no meaning and no reader stated. **`0209A2C5`'s consumer** is not stated either | — | `party-roster-and-control-suppression.md:483`–`:485` |
+| S-4 | **When the suppression recompute runs.** Only two callers are named (`00234520`, `00234590`), with no frame position | — | `CONTRACT-party-focus-and-control-suppression.md:338`, `:345` |
+| S-5 | **The follow formation.** `PartyFollow_SolveFormation` (4,101 B) is described by its three skip gates and what a slot receives ("a homogeneous position, its angle around the leader wrapped to `[0, 2*pi)`"). The positions themselves (spacing, ordering, which member gets which slot) and the slot's `+0x24` / `+0x30` / `+0x40` / `+0x50` are not stated. Who calls the solver and the lookup, and when, is not stated | "**NOT CLAIMED**" | `party-roster-and-control-suppression.md:525`–`:526`, `:625`–`:626` |
+| S-6 | **The refresher's per-mode values.** SM-5's table says modes 1, 3, 4 and 5 "rewrite" entries of maps 1, 2 and 4 among `[0..3]`, and gives values only for mode 2 (`0x1A`). Which selector goes where in each mode is not stated | the SM-5 box | `CONTRACT-the-five-parallel-slot-maps.md:117`–`:124` |
+| S-7 | **`PartyConfiguration_SetDefinitionSelectorForIndex` `00329080`**: its body and its third argument (`3` from the scenario apply) are not described anywhere in the folder; the field map gives only its write site | — | `Battle-State-Block/the-battle-state-block-field-map.md:87`; `the-setsavedata-presets-test-battle-scenarios.md:104`–`:105` |
+| S-8 | **The reconcile's compaction rule.** `003261D0` "compacts the staged selectors and writes map 0 back", given by one example ("Removing member 2 from `0..6` gives `0, 1, 3, FFFF, 4, 5, 6`"). The general rule (does `[0..3]` close up from `[4..8]`? which entry becomes `FFFF`?) and `PartyConfiguration_SetEmptyIndexSelector` `00326110`'s full body are not stated | — | `CONTRACT-the-five-parallel-slot-maps.md:150`–`:152`; `active-party-reserve-and-the-moment-the-leader-changes.md:437`–`:438` |
+| S-9 | **What a definition activation and release do** (`00316DF0` / `00323540`, called by the slot-map initialiser and the removers). Only crossing notes exist ("grants items and increments equipment counts", "adds gil") | — | `the-five-parallel-slot-maps.md:302`–`:309`; `CONTRACT-the-five-parallel-slot-maps.md:92`–`:94` |
+| S-10 | **The SetSaveData tail.** `00327870(R.u8[+0xA])` ("selects through the state block's `+0x5A48` selectors"), `002CFD10(−1)` (= `002527B0(6, 4, 0)` then `0028E880`, both unread) and the preset path's `0016D6A0(record)` call for slots ≤ 6 with LP `0xFFFF` are named but not described | — | `the-setsavedata-presets-test-battle-scenarios.md:95`–`:96`, `:106`–`:107`, `:346`–`:348` |
+| S-11 | **The licence-node row of `02EBF038`** beyond its byte `+7` per-slot mask | — | `the-setsavedata-presets-test-battle-scenarios.md:100`–`:102`, `:161` |
+| S-12 | **`0035BAA0`, "one-shot native party-leader setter - do not repeatedly pin it"**: named only in the README anchors; no page describes it | — | `README.md:22`, `:46` |
+| S-13 | **Roster writers the TSV records and no page describes:** `00266D10` (`00266E1B`), `0026AD90` (`0026ADA0`, `0026ADB9`), `0026CE60` (`0026CF13`), and a second, indexed store in `002695A0` at `00269628` (`mov qword ptr [r9 + rcx*8], rdx`), which the contract describes only as "Zero all four pointers" | — | `party-roster-slots-accesses.tsv` (rows for those sites); `CONTRACT-party-slot-assignment.md:151` |
+| S-14 | **The camera copy direction.** `00259470` is "copy `02098580 -> 02097D20` … the roster state bank's push direction" and `002593D0` the reverse. The page does not say which one `00359410` calls at `00359470` / `0035948F`, while the active-party table says context 0 is copied over context 1 at `00359470` and back at `0035948F` | the interior notes | `CONTRACT-party-focus-and-control-suppression.md:322`–`:326`; `active-party-reserve-and-the-moment-the-leader-changes.md:415`–`:416` |
+| S-15 | **The `022BE974` bracket.** `00311E20` runs only when the global is zero; what sets `022BE974` and what it means are not stated | — | `Battle-State-Block/the-battle-state-block-field-map.md:183`, `:415`–`:421` |
+| S-16 | **Initial values.** The value of a record's `+0x12` before its first assignment, and whether the focus block or the lock words survive a save / load, are not stated | — | `CONTRACT-party-slot-assignment.md:62`; `active-party-reserve-and-the-moment-the-leader-changes.md:300` |
+| S-17 | **The wider masks' other bits.** `0x8800403B` / `0x8800003B` add bits 3, 4, 5 and 27 to `0x80000003` (and bit 14 for the first). Only bit 14 (Immobilize) is named; the others' identities are not stated in 11-Party | PF-7 | `CONTRACT-party-focus-and-control-suppression.md:151`–`:159` |
+| S-18 | **The packed-handle encoding** (`ActorHandle_EncodeRegistryEntry`, `003589B0`, the resolver `003588B0`) is used throughout and defined outside the category | dependency on 04 | `party-roster-and-control-suppression.md:104`; `Battle-State-Block/the-battle-state-block-field-map.md:193` |
+| S-19 | **`003202F0` (reached as `00320230` → block `+0x2E58`)**: the FO-5 answer places its five reads in stats record 26, but what that function does with record 26 is not stated | — | `Battle-State-Block/the-battle-state-block-field-map.md:446`–`:448` |
