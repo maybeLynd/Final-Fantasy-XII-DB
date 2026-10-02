@@ -175,7 +175,7 @@ add and its removal), `BattleFormula_ApplyTargetResult`'s two mask loops, the tw
 extra effect, statuses 1 and 31 only), `00300FC0` (defeat cleanup), `00312280` (rewards),
 `00301140` (recover), `0030FED0` (the recompute).
 
-> **`003112F0` IS STRUCK FROM THIS LIST: IT CAN NEVER FIRE THROUGH `0030E360`.** Refuted by
+> ~~**`003112F0` IS STRUCK FROM THIS LIST: IT CAN NEVER FIRE THROUGH `0030E360`.**~~ **`003112F0` stays on this list: it fires through `0030E360` for exactly one transition, removing status 28 with a non-zero `+0x48`** *(corrected 2026-10-02, OPUS: for id `0x1C` with `[rsi+0x48]` non-zero, `00386A70` returns at `00386AC2` without reaching `00386AC3`, so bit 0 stays set and `0030E610` lets `0030E638 call 003112F0` run; §13's builder table gives the same mask, `0x109`)*. Refuted by
 > [`EXP-086`](../_experiments/EXP-086-status-write-execution.md) — **zero calls across all 67 cases**
 > — and verified independently by OPUS from the authority image, because a reimplementer told to
 > reproduce a callee that cannot be reached would be reproducing nothing:
@@ -183,15 +183,15 @@ extra effect, statuses 1 and 31 only), `00300FC0` (defeat cleanup), `00312280` (
 > ```
 > 0038498D  or   dword [rbx+0x2C], 1            003848E0 SETS the gate bit
 > 00386A66  and  dword [rbx+0x2C], 0xFFFFFFFE   builder A CLEARS it
-> 00386AC3  and  dword [rdi+0x2C], 0xFFFFFFFE   builder B CLEARS it
+> 00386AC3  and  dword [rdi+0x2C], 0xFFFFFFFE   builder B CLEARS it, except for status 28 with +0x48 non-zero, which returns at 00386AC2 first (corrected 2026-10-02, OPUS)
 > ```
 >
-> **Both builders clear the one bit the setter sets**, and every path to the applier runs through a
+> ~~**Both builders clear the one bit the setter sets**, and every path to the applier runs through a
 > builder, so the gate is closed before it is ever tested. **A static call graph shows the edge and
-> the edge is dead** — which is exactly the class this contract's §13 exists to catch and exactly
+> the edge is dead**~~ Both builders clear the bit on every path but one: the remove builder leaves it set for status 28 with a non-zero `+0x48`, so the gate is open for that removal and the edge is live *(corrected 2026-10-02, OPUS: `00386A94`–`00386AC2`, `0030E610`–`0030E638`)* — which is exactly the class this contract's §13 exists to catch and exactly
 > what an execution finds that a reading does not. The function is real and does real work for
-> *other* callers (§17 records its audio and its stolen-item grant); what is false is listing it
-> among the callees a reimplementation of **this** operation must provide.
+> *other* callers (§17 records its audio and its stolen-item grant); ~~what is false is listing it
+> among the callees a reimplementation of **this** operation must provide.~~ a reimplementation of **this** operation must provide it for the status-28 removal *(corrected 2026-10-02, OPUS: see the correction above)*.
 
 ## 7. State transitions
 
@@ -220,12 +220,12 @@ eight image-base-relative targets (`0030E740`–`0030E759`, base `rdx = 0x001200
 |---:|---|---|---|
 | 0 | `0030E80A` | **0** KO | add → defeat cleanup + `BattleUnit_ProcessDefeatRewardsAndLoot`; remove → recover |
 | 1 | `0030E850` | **1** Stone | add → event `0x200C`, then cleanup + rewards; remove → recover |
-| 6 | `0030E85E` | **31** Vanished | add → event `0x200E`, then the same; remove → recover |
+| 6 | `0030E85E` | **31** ~~Vanished~~ X-Zone *(corrected 2026-10-02, OPUS: id 31 is X-Zone in the thirty-two statuses §2; "Vanish" is id 24, Invisible)* | add → event `0x200E`, then the same; remove → recover |
 | 2 | `0030E7DD` | **2** Petrify | unit `+0xE9A` bit 1 := `adding && source is a kind-0 record` |
 | 5 | `0030E7B3` | **8** Poison | unit `+0xE9A` bit 0 := the same predicate |
 | 3 | `0030E75B` | **4** Sleep | event `0x2001`, on add and on remove alike |
 | 4 | `0030E770` | **5** Confuse, **27** Berserk | `BattleUnit_ResetActionControlForStatusTransition`, then `BattleUnit_UpdateEngagementStateFlag` |
-| 7 | `0030E816` | the other 24 | nothing |
+| 7 | `0030E816` | the other 24 | ~~nothing~~ the shared tail only: `0030FED0` unless `flags` bit 9 *(corrected 2026-10-02, OPUS: `0030E816`–`0030E828`; §15a)* |
 
 > **Doom (6) has no terminal case**, though it ends the unit. It reaches KO through the periodic
 > tick's countdown instead, never through this switch — a distinction a reimplementation that
@@ -254,8 +254,8 @@ Events `0x200C` (Stone) and `0x200E` (Vanished) go to `BattleUnit_DispatchActorP
 **No RNG here.** The operation draws nothing. The status *system* draws once — Regen's per-beat heal
 uses `RNG_MT19937_NextU32` in the tick's stage 2 — and that is the tick's contract, not this one.
 
-**Ordering.** Called from the applier's two mask loops, from the HP write's lethal transition, and
-from the tick. Within the operation the order is fixed and observable: mask → arrays → presence test
+**Ordering.** Called from the applier's two mask loops, from the HP write's lethal transition~~, and
+from the tick~~ *(corrected 2026-10-02, OPUS: `00310DB0` has no call to `0030E360`; the two meet only at `003112F0`, CONTRACT-periodic-tick.md §6, and §6's caller list here has no tick)*. Within the operation the order is fixed and observable: mask → arrays → presence test
 → result record → applier → cascade → reaction → extra effect → terminal case → recompute. **The
 cascade runs before the reaction**, so a cascaded removal's own effects land first.
 
@@ -312,7 +312,7 @@ cascade runs before the reaction**, so a cascaded removal's own effects land fir
 ## 11. Observable behaviour
 
 From outside, without a debugger: the status icon; the Petrify/Doom counter, which the display shows
-as `+0xBC[s] − 1`; a character dropping and the party collecting rewards (foe) or not (party-side);
+as `+0xBC[s] − 1`; a character dropping and the party collecting rewards (foe) or not (~~party-side~~ a summoned Esper; a party member takes the full path of reaction, defeat and rewards, §10 row 3 *(corrected 2026-10-02, OPUS)*);
 Haste and Slow cancelling each other; ~~a status refusing to refresh when re-cast~~ a re-cast restarting the
 duration of the fourteen refreshable statuses (invariant 3) and doing nothing to the others, Poison among them. In memory:
 `target +0x38 / +0x3C / +0x64`, `+0xBC[32]`, `+0x13C[32]`, unit `+0xE9A` bits 0–1, and
@@ -536,7 +536,7 @@ same battle and compare `0x02089340`.
    consumers are not identified, and that is now carried by `SW-3`'s neighbourhood rather than by
    this item.
 3. **`SW-3` — the 24 bytes of `StatusDefinitionRecord` past `+0x10`**, 22 of which carry data in the
-   shipped table. Only `+0x20` has a known consumer (calculator slot 118's exclusion test).
+   shipped table. ~~Only `+0x20` has a known consumer (calculator slot 118's exclusion test).~~ *(answered: see the-thirty-two-statuses.md §4 — the query arm copies `+0x10`, `+0x26`, `+0x27` and `+0x13` into its record, and `+0x02` and `+0x24` are read too; `+0x20` remains calculator slot 118's exclusion test; 2026-10-02, OPUS)*
 4. **`SW-4` — what `0046AB10` does with codes `0x12` and `0x11`** beyond posting the event.
    **Widened 2026-09-12**: `0046AB10` is also reached from `004697C0`, whose three callers are the
    action lifecycle — `BattleUnit_TrySelectAndCommitAiOrderFromSet`, `BattleUnit_AdvanceActionState`
@@ -566,11 +566,11 @@ same battle and compare `0x02089340`.
 | **the initialiser leaves `+0x00`–`+0x07` exactly as the caller left them** | **EXECUTED**: the record is handed over pre-filled with `0xC7`, `0x00` and `0xFF`, and those eight bytes come back unchanged in each | 1 | PROVEN |
 | the table pointer is resolved and then truncated to 32 bits | **EXECUTED**: two different tables planted, one at the full `0x100500000` and one at the truncated `0x00500000`, and the byte returned is the truncated one's. Read statically at `0038770E` and `0030E680` | 1 | PROVEN |
 | **`0020E600` ZERO-extends the encoded value** | **EXECUTED**: an encoded `0x80000000` over a base of `0x10000` reads `0x80010000`, not an address 2 GB below it. `mov eax, ecx` before the 64-bit add | 1 | PROVEN |
-| the timer default faults when the table is absent while the cascade degrades | **EXECUTED** on the timer side: with the handle NULL it reads **`[0 + 9]`** — address nine, not "somewhere invalid" — and returns that byte × multiplier × 30. `0030E686` is still static | 1 | PROVEN |
+| the timer default faults when the table is absent ~~while the cascade degrades~~ and so does the cascade (`0030E686`–`0030E68A`) *(corrected 2026-10-02, OPUS: §10's REFUTED note of 2026-09-16)* | **EXECUTED** on the timer side: with the handle NULL it reads **`[0 + 9]`** — address nine, not "somewhere invalid" — and returns that byte × multiplier × 30. `0030E686` is still static | 1 | PROVEN |
 | **a resolve that returns zero takes the same unguarded read** | **EXECUTED**: the second refusal at `003876EF` also falls through to `00387714` with `rcx` zero | 1 | PROVEN |
-| the party-side shortcut, the gates and the terminal-on-terminal refusal | the page's §2.2, `0030E424`–`0030E49C` | 1 | PROVEN |
+| the ~~party-side~~ Esper shortcut *(corrected 2026-10-02, OPUS: §10 row 3)*, the gates and the terminal-on-terminal refusal | the page's §2.2, `0030E424`–`0030E49C` | 1 | PROVEN |
 | the defeat cleanup, its predicates and the four `02089340` latches | the page's §2.7 and §2.7a | 1 | PROVEN |
-| the arithmetic half executed in isolation | **EXECUTED**: `diff_status_write.py`, the 41st pilot — 155 cases, 0 mismatches, only `memset` scripted | 1 | PROVEN |
+| the arithmetic half executed in isolation | **EXECUTED**: `diff_status_write.py`, the 41st pilot — 155 cases, 0 mismatches, ~~only `memset` scripted~~ not only `memset` scripted *(corrected 2026-10-02, OPUS: §13, 2026-09-25)* | 1 | PROVEN |
 | any runtime observation of this operation, or any execution of `0030E360` | EXECUTED by [`EXP-086`](../_experiments/EXP-086-status-write-execution.md) - the shipped `0030E360` at its canonical VA, 67 cases, 0 mismatches, 9/9 mutants; the live-observation alternative remains open (§13's stated class is isolated original-code) | isolated original-code | PROVEN |
 | what the builders write beyond the initialiser | **EXECUTED, and `SW-2` is answered**: the apply side clears bit 0 of `+0x2C` and writes nothing else, reading neither the status id nor the unit; the remove side ORs `0x108` for status 28 with a non-zero `+0x48` — leaving the mask at `0x109` — and writes `(counter + 1) / 2` rounding toward zero into `+0x24` | 1 | PROVEN |
 | **neither builder writes any byte of the unit** | **EXECUTED**: all `0x60` bytes compared on 98 builder cases | 1 | PROVEN |

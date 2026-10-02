@@ -1,0 +1,18 @@
+ok   00310E41 movzx eax, byte ptr [rcx + 5]
+ok   00310E51 sub al, 0x1b
+ok   00310E53 cmp al, 0xc
+ok   00310E5B cmp dword ptr [rcx + 0x48], 0
+ok   00310EF8 call 0x3138d0
+ok   00310EFD jmp 0x3112c1
+ok   00310F12 call 0x265680
+ok   00310F19 je 0x3112a1
+ok   00310FAC call 0x3112f0
+ok   00310FC9 call 0x2f8060
+ok   003110C3 call 0x2f9400
+ok   003110D7 call 0x300ce0
+ok   00311114 mov rcx, qword ptr [rsi + 0x698]
+ok   0031111B call 0x469e30
+ok   003112A4 call 0x321530
+ok   003112AC call 0x2fe950
+ok   0031983B lea rax, [rip + 0x2ba775e]
+FAILS 0

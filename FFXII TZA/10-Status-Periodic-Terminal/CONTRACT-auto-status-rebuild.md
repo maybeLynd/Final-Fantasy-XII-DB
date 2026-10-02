@@ -41,7 +41,7 @@ does not touch — **including the thing it does not do at all**, which is compu
 rebuild.md` describes equipping as throwing "the character's entire effective-stat state away", and
 a reader will look for that formula in this function's equipment loop. It is not there: that loop
 accumulates auto-statuses. Four calls in the apply tail — `0030E130` twice, `002FEF30` and
-`0030E060` — were not read, so *"no stat work happens anywhere in `0030FED0`"* is **not** claimed;
+`0030E060` — ~~were not read, so *"no stat work happens anywhere in `0030FED0`"* is **not** claimed;~~ have since run from shipped bytes, and `002FEF30` is the derived-stat rebuild of `rec+0x24..0x47`, so stat work does happen in `0030FED0`, through that call at `003103AD` *(answered: see §13b, §13d and §13al; 2026-10-02, OPUS)*;
 what is claimed is that none of the three accumulation loops does any.
 
 ## 2. Interface
@@ -127,8 +127,8 @@ diff in §7 a diff rather than a read-back.
 
 **Corrected 2026-09-12 (`OPUS-AUTOSTATUS-ISOLATED`), from a read of the whole body.** What follows
 described a **kind-0 record only**, stopped at the applier, and understated two of its own loops.
-The corrections are marked; all of them are **static**, from the shipping image — nothing here has
-been executed (§13).
+The corrections are marked; all of them are **static**, from the shipping image — ~~nothing here has
+been executed (§13).~~ *(answered: see §13 — the whole function ran as isolated original code under Unicorn, and §13ak re-ran it, EXP-228; 2026-10-02, OPUS)*
 
 **The accumulation source depends on the record's kind byte, and the two sources share nothing.**
 
@@ -184,7 +184,7 @@ removed = changed & current      00310320   -> rsp+0x60
 
 Then `002FEF30(stats, 0, 0)` once (`003103AD`).
 
-## 7a. And then it keeps going — four stages this contract did not have
+## 7a. And then it keeps going — ~~four~~ three stages this contract did not have *(count corrected 2026-10-02, OPUS: three numbered items follow)*
 
 **Added 2026-09-12 (`OPUS-AUTOSTATUS-ISOLATED`), and corrected the same day by executing it.** §7
 ended at the call above. The function does not: `003103B2` tests the record again and runs four more
@@ -240,7 +240,7 @@ Fully deterministic given the record and the three tables.
 
 - **A null or unresolvable table yields a fallback row**, not a skip: both the equipment path
   (`003100DF`) and the licence path (`0031018F`) set the row pointer to `r14` and continue into the
-  gate call. What `r14` holds at that point was not established.
+  gate call. ~~What `r14` holds at that point was not established.~~ *(answered: `r14` is zero there — `0030FF07 xor r14d, r14d`, used at `003100DF` / `0031018F` — and §13's table shows the gate receiving row address 0; 2026-10-02, OPUS)*
 - **The licence node lookup is unbounded.** `imul edx, ebp` at `00310187` with no comparison against
   the table's count at `[table + 4]` — the only `cmp` on the index in the loop body is the loop's own
   `cmp ebp, 0x169`. Since the id space is 361 and `license_data.bin` declares 360 records, a set bit
@@ -331,15 +331,15 @@ authored-table lookups. **What did not run:** anything inside those eight, and n
 **Result: 1463 commands, 1055 compared lines, 0 mismatches** — 275 applier calls, 36 cascade calls
 at mode 5, and six traces over a null row.
 
-### Four things the static read got wrong, and the run found
+### ~~Four~~ Five things the static read got wrong, and the run found *(count corrected 2026-10-02, OPUS: five rows, as the paragraph after the table says)*
 
-The six corrections §7 and §7a carry were read out of the body before this pilot was built. **Four
+The six corrections §7 and §7a carry were read out of the body before this pilot was built. **~~Four~~ Five
 more were wrong, and only executing them showed it:**
 
 | what the reading said | what the run showed |
 |---|---|
 | the second half runs for a kind-0 record | it runs for **kind 1**; `lea r13d, [rax+1]` is the comparand, and every other kind lands **on** the clamps rather than past them |
-| `+0x78` holds the accumulation afterwards | **nothing writes it back**; the diff stores only `added` and `removed`, both to the stack |
+| `+0x78` holds the accumulation afterwards | ~~**nothing writes it back**~~ this function's own instructions do not write it back, but the applier `0030E130` does, so `+0x78` equals the accumulation on return *(corrected 2026-10-02, OPUS: this run scripted `0030E130`; §4, 2026-09-25)*; the diff stores only `added` and `removed`, both to the stack |
 | the spawn record gives four bytes and the stats record five | **five each way** |
 | the two copies are stages 2 and 3 | they are **alternatives**, chosen by `test byte ptr [spawn], 0x80`, and the first ends in a jump to the clamps |
 | the equipment gate receives the resolved row | it receives the row **ADDRESS** (`003100E2 mov rcx, rdi`), which is **0** when the resolve failed — so a caller that has a real page at address zero must still pass the zero, not a pointer into it |
@@ -741,7 +741,7 @@ Two null-guard facts worth the record: `00300FC0`'s edx==0 head checks
 `q[obj+0x698]` but the shared full path re-reads it unguarded at `0030105A`
 (fault proven), and `00301140` derefs the record at `00301150` before any check
 (fault proven). And a fixture correction now canonical: `00322C50` kind-2 is the
-**FOED** descriptor `q[02EBF130]` — the foe-table range bound, reused by
+~~**FOED** descriptor `q[02EBF130]` — the foe-table range bound,~~ descriptor `q[02EBF130]`, the range bound of the 40-row party definition table *(corrected 2026-10-02, OPUS: where-mp-comes-from.md §5 CS-6 — a kind-0 record's byte `+4` is its row)*, reused by
 `003219D0`'s capability check.
 
 ~~`00312280` (EXP/LP guest-share distribution) is split out as EXP-199.~~ —
@@ -1092,7 +1092,7 @@ direct `2AC5F0` entry (`ccp` cursor-cell fixture): **466/466, stable
 
 - **Shared advance arm `0x2ACB96` (tags 1/4/6/7):** advance =
   `17F920(0/1)` for tags 1/4, shipped `10.0f` const for tag 6,
-  `d[01E02E14]==7 ? 0x1A : int(24ABA0·10.0)` for tag 7 — all `×f34·f38`
+  ~~`d[01E02E14]==7 ? 0x1A : int(24ABA0·10.0)`~~ `d[01E02814]==7 ? 0x1A : int(24ABA0·10.0)` *(corrected 2026-10-02, OPUS: §13t's correction of record — `229E40` reads `d[01E02814]`)* for tag 7 — all `×f34·f38`
   into `f[cc68]`; height `int(17F880) ×f34·f3C` (note the different
   `+0x3C` scale and the integer truncation vs tag 5's float).
 - **Tag 2 returns 1** — nested `2B2150` on `cursor+1`, results folded
@@ -1615,14 +1615,14 @@ and field-tail clamps read — now runs shipped bytes
 `out = rec+0x24`; `r8==0` → slots `rec+0x50`. Then
 `out = rec+0x24..0x47` **zeroed** and rebuilt:
 
-- **Foe arm** (`b[rec+5]==0`): `foed` row `b[rec+4]` → HP acc =
+- **~~Foe arm~~ Kind-0 (party-table) arm** (`b[rec+5]==0`) *(corrected 2026-10-02, OPUS: kind 0 is the record of the 40-row party definition table `02EBF130`, byte `+4` its row — where-mp-comes-from.md §5 CS-6; kind 1 is the spawn-backed, enemy-table record — §7 here and the periodic tick §13; the `foed` / `memd` labels in this block follow the struck reading and are not re-checked here)*: `foed` row `b[rec+4]` → HP acc =
   `2F8E50(d[rec+8], b[row+0x18], b[row+0x19])` (`(a*(r8+1)*b)/100`
   magic-div `0x51EB851F`), MP acc = `2F9180(w[rec+0xC], b[row+0x1D])`
   (x·y/100), `d[rsi+0x14] |= d[row+0x4C]`, `d[rsi+0x18] |=
   d[row+0x48]`, float stat seeds `cvttss2si` `f[rec+0x10..0x1C]`.
   `rsp+0x5C` = 1 iff `(b[rec+4]-0x1B)<=0xC` — foe-class second HP
   clamp (`min 0x7FFF`).
-- **Member arm** (`b[rec+5]==1`): `memd` row `b[rec+4]` fans out to
+- **~~Member arm~~ Kind-1 (spawn-backed) arm** (`b[rec+5]==1`) *(corrected 2026-10-02, OPUS: see the kind-0 arm above)*: `memd` row `b[rec+4]` fans out to
   **three chained growth descriptors** — `q[02EBF148]` row
   `w[memd+0x22]`, `q[02EBF140]` row `w[memd+0x24]`, `q[02EBF150]` row
   `w[memd+0]` — and scales growth fields by level delta
@@ -2367,12 +2367,12 @@ nothing here runs inside a real frame, against real neighbouring state, at real 
 
 ## 14. Unresolved
 
-- The four calls in the apply tail: `0030E130` (specified only by its two argument shapes here) and
-  `0030E060`. ~~`002FEF30`~~ — **executed from shipped bytes 2026-09-18, see §13b**, with its two
-  tail sinks (`003105D0`, `00307D10`) still scripted and therefore still owed.
-- What `r14` holds on the fallback paths.
+- ~~The four calls in the apply tail: `0030E130` (specified only by its two argument shapes here) and~~
+  ~~`0030E060`.~~ *(answered: see §13d — APPLY `0030E130` and TAIL `0030E060` run from shipped bytes; 2026-10-02, OPUS)* ~~`002FEF30`~~ — **executed from shipped bytes 2026-09-18, see §13b**, with its two
+  tail sinks (`003105D0`, `00307D10`) ~~still scripted and therefore still owed.~~ *(answered: see §13d — SINK `00307D10` and RESET `003105D0` run from shipped bytes too; 2026-10-02, OPUS)*
+- ~~What `r14` holds on the fallback paths.~~ *(answered: zero — `0030FF07 xor r14d, r14d`; see §10 and §13; 2026-10-02, OPUS)*
 - What the gate values `3` (equipment rows) and `2` (licence rows) distinguish — FABLE's.
-- Where the **stat** contribution lives, if the referenced page's description is accurate.
+- ~~Where the **stat** contribution lives, if the referenced page's description is accurate.~~ *(answered: see §13al and §7 — `002FEF30`, called by `0030FED0` at `003103AD`, zeroes and rebuilds `rec+0x24..0x47`; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -2381,12 +2381,12 @@ accumulation loops, its diff and its apply loop read instruction by instruction 
 packages; the byte counts (`0x10`) and loop bounds (`0x20`, `5`, `0x169`, `0x80`) are read from the
 compares, not assumed.
 
-The most useful thing here is the negative in §1: this function does not compute a stat
-contribution, and a reader sent to it for one will not find it.
+The most useful thing here is the negative in §1: ~~this function does not compute a stat
+contribution, and a reader sent to it for one will not find it.~~ this function's own loops compute no stat contribution, but its call to `002FEF30` at `003103AD` rebuilds the derived stats `rec+0x24..0x47` *(corrected 2026-10-02, OPUS: §13al and §7)*.
 
 **Claim table added 2026-09-12 (`OPUS-S15-CLAIM-TABLES-SIX`).** The prose above states the method
 and is kept; this enumerates the claims so a pilot's `CONTRACT_MAP` can be derived from them.
-**This function has never been executed** (§13), so no row claims more than static evidence.
+~~**This function has never been executed** (§13), so no row claims more than static evidence.~~ The function has been executed as isolated original code under Unicorn (§13, 2026-09-12; §13ak, EXP-228); each row's tier says what its evidence is, and none is live *(corrected 2026-10-02, OPUS)*.
 
 | claim | evidence | tier | confidence |
 |---|---|---|---|
@@ -2410,7 +2410,7 @@ and is kept; this enumerates the claims so a pilot's `CONTRACT_MAP` can be deriv
 | the function does not end at the applier: four further stages follow | §7a — a mode-5 pass over `[unit + 0xE90]`, two byte exchanges with the spawn record, and three clamps that write `+0x48`, `+0x4C` and `+0x06` | 1 (isolated original-code) | PROVEN |
 | a status change can lower current HP here rather than in the HP write | `003104BF`–`00310508` recomputes the HP write's own cap and stores the clamped value | 1 (isolated original-code) | PROVEN |
 | the second half is gated on kind ONE, and every other kind lands on the clamps | `0030FF12 lea r13d, [rax+1]` sets the comparand and `003103BB` / `jne 003104BF` jumps **into** the clamps. Executed at kinds 0, 1 and 2; the control that gated it on kind 0 failed on 612 of 730 lines | 1 (isolated original-code) | PROVEN |
-| nothing writes the accumulation back into +0x78 | `00310310`–`00310336` stores only `added` and `removed`, both to the stack. Executed; the control that copied it back failed on 19 of 719 lines | 1 (isolated original-code) | PROVEN |
+| ~~nothing writes the accumulation back into +0x78~~ this function's own instructions do not write the accumulation back into +0x78; the applier `0030E130` does, so `+0x78` equals it on return *(corrected 2026-10-02, OPUS: §4, 2026-09-25)* | `00310310`–`00310336` stores only `added` and `removed`, both to the stack. Executed; the control that copied it back failed on 19 of 719 lines | 1 (isolated original-code) | PROVEN |
 | the spawn record and the stats record exchange FIVE bytes, in one direction chosen by a flag | `0031043A test byte ptr [spawn], 0x80`, and the set arm ends `0031047E jmp 003104BF`. Executed with the flag set, clear, and with no spawn record at all | 1 (isolated original-code) | PROVEN |
 | the equipment gate receives the row ADDRESS, which is zero when the resolve failed | `003100E2 mov rcx, rdi`. Executed with all three registry slots null, where the original passes 0 and a fixture pointer into its own page-zero would not | 1 (isolated original-code) | PROVEN |
 | nothing observed at runtime | — see §13 | none | UNKNOWN |

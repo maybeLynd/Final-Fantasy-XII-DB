@@ -1,0 +1,6 @@
+ok   007AF06A mov dword ptr [rip + 0x26fe2d8], 8
+ok   007AECE0 mov eax, dword ptr [rip + 0x26fe666]
+ok   01CEBBA8 = 1.0
+ok   01CEBBA8 writers = 0
+ok   02EAD34C writers = 1
+FAILS 0

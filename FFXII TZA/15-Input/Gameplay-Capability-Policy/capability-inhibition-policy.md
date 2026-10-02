@@ -1064,7 +1064,7 @@ SHA-256 (P2).
 
 The headline holds: the row-2 set, the table and the request set are exact. Two attributions inside it were wrong,
 and one polarity was reversed. All three are struck and re-stated where they stood. The C-7 register row repeats
-"all but 1 / 5 / 10"; it is routed to the register's owner and not edited here.
+"all but 1 / 5 / 10"; it is routed to the register's owner and not edited here *(The row was corrected on 2026-10-01 by SWE2-DATA, citing `00313AA0`-`00313AA8`; checked 2026-10-02, OPUS.)*
 
 ### The null-leader state, narrowed statically (SWE2-STRUCT for OPUS)
 

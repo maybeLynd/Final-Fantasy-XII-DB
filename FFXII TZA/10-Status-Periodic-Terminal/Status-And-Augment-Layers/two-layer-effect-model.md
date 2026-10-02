@@ -97,9 +97,9 @@ This is a namespace map, **not** a claim that the paired names are related.
 
 ### Observable consequence
 
-Because the layers merge, a combatant with **Disease** (status bit 16) satisfies the same
+~~Because the layers merge, a combatant with **Disease** (status bit 16) satisfies the same
 early-out as one with **Weatherproof** (augment bit 16). The intended identity is
-Weatherproof; the alias is a real, observable engine property.
+Weatherproof; the alias is a real, observable engine property.~~ The merge aliases only what the two layers hold: effect id 16 in `+0x68` with Weatherproof in `+0x78`. The battle status Disease lives in the status words `+0x64` / `+0x3C`, which `003847C0` copies to context `+4` / `+8`, not into the merged `+0x1A`, so a combatant with the Disease status does not satisfy the Weatherproof early-out unless something writes id 16 into `+0x68`, and no such writer is shown *(corrected 2026-10-02, OPUS: checked at `00384820`–`00384858`; `0030E360` has no call to `0030E130`; §5's 2026-09-29 clarification)*.
 
 ## 5. Call chain
 

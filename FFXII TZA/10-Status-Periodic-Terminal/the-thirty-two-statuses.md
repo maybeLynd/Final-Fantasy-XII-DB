@@ -15,7 +15,7 @@ verified_against:
     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
   snapshot_sha256: b57264ba73231665bf226da6d5761feee72df36c5999fc68ae14adfdd18fea34
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
-corpus_validated: "ps2data/image/ff12/test_battle/us/binaryfile/listhelp_status.bin (3,568 B, st2e, 32 string ids 120,000-120,031, 33 string offsets from +0xAC of which entries 1-32 are the statuses in id order and 33 is empty) decoded with the battle-text charset; status_data.bin (battle_pack.bin directory +0x40, 32 x 40 B) read for the name reference at +0, the timer units at +9 and the clear mask at +0xC; the 32 names resolved through text bank 5 in id order, 2026-09-11"
+corpus_validated: "ps2data/image/ff12/test_battle/us/binaryfile/listhelp_status.bin (3,568 B, st2e, 32 string ids 120,000-120,031, ~~33 string offsets from +0xAC of which entries 1-32 are the statuses in id order and 33 is empty~~ 34 u32 offsets from +0xAC, entry 0 not a string, entries 1-32 the statuses in id order and entry 33 empty (corrected 2026-10-02, OPUS, as the evidence table and section 9 count them)) decoded with the battle-text charset; status_data.bin (battle_pack.bin directory +0x40, 32 x 40 B) read for the name reference at +0, the timer units at +9 and the clear mask at +0xC; the 32 names resolved through text bank 5 in id order, 2026-09-11"
 last_reviewed: 2026-09-11
 audit:
   passes: 1
@@ -39,7 +39,7 @@ audit:
 | | |
 |---|---|
 | `listhelp_status.bin` (`us`) | 3,568 B; `st2e`, 32 rows of one `u32` string id (`0x1D4C0` … `0x1D4DF` = 120,000 … 120,031); a second section at `+0xA0` — `{u32 1, u32 0xC, u32 size}` then 34 `u32` offsets from `+0xAC`, entries 1–32 the statuses in id order, entry 0 not a string, entry 33 empty |
-| charset | the one [the string-table page](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md) §7 decoded: `0x20`–`0x39` → `A`–`Z`, `0x3A`–`0x53` → `a`–`z`, `0x04` space, `0x02` line break; three codes are left undecoded below (`<85>` where a count would print, `<AE>` / `<AF>` around *Requires the proper license*) |
+| charset | the one [the string-table page](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md) §7 decoded: `0x20`–`0x39` → `A`–`Z`, `0x3A`–`0x53` → `a`–`z`, `0x04` space, `0x02` line break; ~~three codes are left undecoded below (`<85>` where a count would print, `<AE>` / `<AF>` around *Requires the proper license*)~~ the three codes are decoded in §3 and §4 `GA-2` (2026-09-15): `<85>` is the digit 0, `<AE>` / `<AF>` are `(` / `)` *(corrected 2026-10-02, OPUS)* |
 | `status_data.bin` | 32 rows × 40 B ([the field-record page](../03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md) §*the status definition table*): `+0` the name reference, `+9` the default timer in units, `+0xC` the clear-on-apply mask |
 | positive control | row 0's name reference resolves to bank 5 string 0 `KO`, and the help text for id 0 says *lost consciousness … Phoenix Down*; row 31 → `X-Zone`, *vanished without a trace* |
 | other languages | `in` 2,440 B, `kr` 3,336 B, `it` 3,508 B — different sizes, not decoded |
@@ -52,7 +52,7 @@ only about the menu.
 
 ## 2. The table
 
-Timer units are `status_data.bin` `+9`; the frame count is `units × DAT_01DFE0B4 × 30`
+~~Timer units are `status_data.bin` `+9`~~ The beat is `status_data.bin` `+9` and the duration is `+8` *(corrected 2026-10-02, OPUS: `003876D0` reads `+9`, `00387730` reads `+8` at `0038788D` / `0038792C`; §2.1 and the status write §2.4a, 2026-09-12)*; the beat's frame count is `units × DAT_01DFE0B4 × 30`
 (`003876D0`). "Clears" is the `+0xC` mask decoded to ids — every set bit is removed with mode 0 when
 the status is applied ([the status write](Status-Write/the-status-write-and-its-side-effects.md) §2.6).
 "Read" points at where the database has read the engine acting on that id; a blank means no page
@@ -115,11 +115,11 @@ steps — which is why it is blank on every status that has no periodic effect.
 |---:|---|---:|---|---:|---|---:|---|
 | 0 | KO | — | harmful | 16 | Disease | — | harmful |
 | 1 | Stone | — | harmful | 17 | Lure | 20 | beneficial |
-| 2 | Petrify | — (count 10) | harmful | 18 | Protect | 72 | beneficial |
+| 2 | Petrify | — (count ~~10~~ 11 stored, shown as 10 *(corrected 2026-10-02, OPUS: `00387740`–`00387759`)*) | harmful | 18 | Protect | 72 | beneficial |
 | 3 | Stop | 30 | harmful | 19 | Shell | 72 | beneficial |
 | 4 | Sleep | 25 | harmful | 20 | Haste | 40 | beneficial |
 | 5 | Confuse | 40 | harmful | 21 | Bravery | 40 | beneficial |
-| 6 | Doom | — (count 10) | harmful | 22 | Faith | 50 | beneficial |
+| 6 | Doom | — (count ~~10~~ 11 stored, shown as 10 *(corrected 2026-10-02, OPUS: `00387740`–`00387759`)*) | harmful | 22 | Faith | 50 | beneficial |
 | 7 | Blind | — | harmful | 23 | Reflect | 60 | beneficial |
 | 8 | Poison | 50 | harmful | 24 | Invisible | 90 | beneficial |
 | 9 | Silence | — | harmful | 25 | Regen | 100 | beneficial |
@@ -135,11 +135,11 @@ knows which way Vitality pushes the duration. Blind, Silence, Sap, Oil and Disea
 duration in the shipped table — they persist until cured — and Berserk is in the class Vitality
 lengthens.
 
-**Two things the merged layers imply.** `BattleFormula_BuildEvaluationContext` ORs the status layer
+**Two things the merged layers imply.** ~~`BattleFormula_BuildEvaluationContext` ORs the status layer
 and the augment layer into one bitmap per id (`00384820`–`00384858`), so a calculator that tests
 merged id 9 cannot tell Silence from Brawler, nor id 16 Disease from Weatherproof, nor id 17 Lure
 from Thievery. Slot 72's half-formula is therefore reachable by a **Silenced** unarmed attacker as
-well as by one with Brawler — a consequence of the merge as read, not observed.
+well as by one with Brawler — a consequence of the merge as read, not observed.~~ `BattleFormula_BuildEvaluationContext` ORs the two effect-id layers `+0x68` / `+0x78` into one bitmap (`00384820`–`00384858`). The 32 statuses are in neither layer: they are the status words, copied to context `+4` / `+8`, so a merged-id test does not see Silence, Disease or Lure, and this merge does not open slot 72's half-formula to a Silenced attacker *(corrected 2026-10-02, OPUS: checked at `003847C0`; two-layer-effect-model.md §5, clarified 2026-09-29)*.
 
 ## 3. Modding notes
 
@@ -147,7 +147,7 @@ well as by one with Brawler — a consequence of the merge as read, not observed
   bank 5 and its help text at `120,000 + id`; all four must move together.
 - **The clear masks are where mutual exclusion lives** — Slow ↔ Haste, Sap ↔ Regen, and the wide
   masks on KO / Stone / X-Zone — not in the code that applies a status.
-- **The timers are in `status_data.bin` `+9`**, in units the engine scales by `DAT_01DFE0B4 × 30`;
+- ~~**The timers are in `status_data.bin` `+9`**~~ **The beats are in `status_data.bin` `+9`** (the durations are `+8`, §2.1) *(corrected 2026-10-02, OPUS: `003876D0` reads `+9`, `00387730` reads `+8`)*, in units the engine scales by `DAT_01DFE0B4 × 30`;
   only Petrify (45), Doom (100), Poison (120), Sap (1) and Regen (15) ship one.
 - ~~The help text's `<85>` is where the Petrify / Doom count prints;~~ The help text's `<85>` is the **digit 0**, so the
   sentence reads *…KO'd when the count reaches 0*, not a placeholder (corrected 2026-09-15). The `<AE>` … `<AF>` pair is
@@ -227,8 +227,8 @@ well as by one with Brawler — a consequence of the merge as read, not observed
         anywhere in the image — an RVA jump-table route is not excluded. So *what bank 12 holds* is a loader and data
         question, not an executable one. `GE-1`.
         ***GE-1 resolved 2026-09-24 (SWE2-CONTRACT), static + shipped data.*** The missing dispatch is a bank-index
-        switch, not a call edge: `002F7800` is one of **27 sibling stubs** (`002F7680`–`002F79C0`, `0x20` stride,
-        one per bank 1–27 — the "MMSG value receiver adapters" census already catalogued) reached through
+        switch, not a call edge: `002F7800` is one of ~~**27 sibling stubs** (`002F7680`–`002F79C0`, `0x20` stride,
+        one per bank 1–27~~ **28 case bodies** (`002F7660`–`002F79C0`, one per bank `0..0x1B`: case 0 → `002F7660`, case 4 → `002F7680`, … *(corrected 2026-10-02, OPUS: checked at `002FA560`, as pass 22 below reads it)* — the "MMSG value receiver adapters" census already catalogued) reached through
         **`002FA560(bank)`**, a linear `cmp ecx, K; lea rdx,[stubK]; jmp 002385D0` switch. `002385D0` bounds-checks
         the bank (`≤ 0x1B`), maps it through the per-bank group byte table `01E09F68` (bank 12 → **`0x31` = 49**),
         and issues `00384420(group, rdx = stub, r8 = "MMSG", r9 = 3, stack: 4, 8)` — a resource request whose
@@ -254,7 +254,7 @@ well as by one with Brawler — a consequence of the merge as read, not observed
         defect is claimed. `GE-2`.
       - **And the read is not guarded by its own build.** `0031E259` and `0031E266` both branch to `0031E288` — the
         read itself — when the registry slot is null or the resolve fails, so on those paths `[rsi + 0x0A]` is taken
-        through whatever `rsi` already held. `GE-3`. *`+0x0C`..`+0x0F` is a 32-bit status mask, the statuses this one removes:* KO `0x7FFEF57C` (everything but Stone, Doom, Reverse, Lure and X-Zone), Stone `0x1FFC0004` (Petrify and the eleven buffs Protect..Bubble), X-Zone `0x7FFFFFFC` (everything but KO and Stone), and four mutual pairs, Haste `0x8000` (Slow) and Slow `0x100000` (Haste), Sap `0x2000000` (Regen) and Regen `0x400` (Sap), plus Stop `0x20000` (Lure); the other 24 rows are zero. *Also from the rows:* `+0x06`..`+0x07` is a flag word with `0x0020` on every buff, `0xA000` and above on the debuffs (`0xA0DF` on KO and Stone, `0x21DF` on X-Zone, `0x2000` on HP Critical), and `+0x21`, `+0x22`, `+0x25` are zero except `+0x22` = 1 on Bubble. Which reader turns `+0x08` into the running timer (the candidates are the two `ComputeDefault*` bodies the pass tagged) and what consumes the `+0x0A` index are what remains. DATA from `status_data.bin` (the four copies are identical) joined to bank 5's names.*
+        through whatever `rsi` already held. `GE-3`. *`+0x0C`..`+0x0F` is a 32-bit status mask, the statuses this one removes:* KO `0x7FFEF57C` (everything but Stone, Doom, Reverse, Lure and X-Zone), Stone `0x1FFC0004` (Petrify and the eleven buffs Protect..Bubble), X-Zone `0x7FFFFFFC` (everything but KO and Stone), and four mutual pairs, Haste `0x8000` (Slow) and Slow `0x100000` (Haste), Sap `0x2000000` (Regen) and Regen `0x400` (Sap), plus Stop `0x20000` (Lure); the other 24 rows are zero. *Also from the rows:* `+0x06`..`+0x07` is a flag word with ~~`0x0020` on every buff~~ `0x0020` (bit 5) on exactly fourteen rows — Stop, Sleep, Confuse, Lure, Protect, Shell, Haste, Bravery, Faith, Reflect, Invisible, Regen, Float and Bubble — and not on Berserk (`0x0040`) or Libra (`0x0100`) *(corrected 2026-10-02, OPUS: checked against `status_data.bin`; CONTRACT-status-write.md §4, invariant 3)*, `0xA000` and above on the debuffs (`0xA0DF` on KO and Stone, `0x21DF` on X-Zone, `0x2000` on HP Critical), and `+0x21`, `+0x22`, `+0x25` are zero except `+0x22` = 1 on Bubble. Which reader turns `+0x08` into the running timer (the candidates are the two `ComputeDefault*` bodies the pass tagged) and what consumes the `+0x0A` index are what remains. DATA from `status_data.bin` (the four copies are identical) joined to bank 5's names.*
       - ***GE-3 and GE-2 resolved 2026-09-23 (SWE2-CONTRACT), static.*** `rsi` is not "whatever it already held" — it is
         the function's null constant. `0031C5D0`'s prologue clears it at `0031C5EC` (`xor esi, esi`) and no dispatch
         path writes it before an arm runs: the only `mov rsi, rax` sites (`0031C6FF`, `0031C808`) sit on other arms'
@@ -301,7 +301,7 @@ well as by one with Brawler — a consequence of the merge as read, not observed
           in the eight displacements above. So at least one real reader of a row field reaches rows by
           a route this census does not see, which is exactly the tracker's known limit: it is local to
           one body, so a callee handed a row pointer as an *argument* is invisible to it. **The
-          eighteen-body result bounds where a consumer is not, it does not prove there is none.**
+          eighteen-body result bounds where a consumer is not~~, it does not prove there is none~~.** *(answered: see GA-1 at the top of §4 — the later census of 44 status rows across the 18 users of the slot finds no reader of `+0x11`, `+0x12`, `+0x14`–`+0x1D`; 2026-10-02, OPUS)*
         - *Also confirmed while reading:* the header is the standard **`st2e`** container — magic
           `st2e`, count `32`, stride `40`, header size `32`, and the `+0x18` / `+0x1C` trailing-byte
           declarations that `AY-11` established are both zero here. All four copies are byte-identical.
@@ -310,7 +310,7 @@ well as by one with Brawler — a consequence of the merge as read, not observed
         *Not claimed:* that this is the beneficial/harmful split. It nearly is, but **Reflect is a
         beneficial status and carries the index, not `0xFF`**, so a one-line reading of `+0x26` as
         “is a buff” is refuted by the data and is not offered.
-      **Still open: `+0x11` … `+0x25`**, twenty-one bytes per row. They are mostly `0xFF` with a
+      ~~**Still open: `+0x11` … `+0x25`**, twenty-one bytes per row.~~ *(answered: see GA-1 at the top of §4 — `+0x11`, `+0x12` and `+0x14`–`+0x1D` are read by no code, and the narrowings below decode the rest; 2026-10-02, OPUS)* They are mostly `0xFF` with a
       scattering of small values in the same `0x00`–`0x1F` space, which looks like a per-status list of
       other statuses, but nothing here reads a consumer and no reader has been traced. `GA-1`.
       *Narrowed 2026-09-15 (FABLE): six more of those bytes are decoded; `+0x11`–`+0x1F` stay open.* Evidence is the
@@ -367,12 +367,12 @@ well as by one with Brawler — a consequence of the merge as read, not observed
           *Limits:*
           - which on-screen list each kind is (the listing names above are the readers', not screens);
           - which readers of the cached orderings run in which menu;
-          - `+0x11`–`+0x1D`, which none of these readers touch, stay open.
+          - `+0x11`–`+0x1D`, which none of these readers touch, ~~stay open~~ are read by no code *(answered: see GA-1 at the top of §4; 2026-10-02, OPUS)*.
 
           Static, from the image and the retained table. The code addresses are in the control, [`ga1_status_order_keys.py`](../_index/candidates/ga1-status-order-keys/ga1_status_order_keys.py)
           (7 checks, FAILS 0). Its sensitivity check shows the old `+0x13` reading fails against the table.
       - **`+0x25` is 0** in all 32 rows.
-  **NARROWED FURTHER 2026-09-27 (OPUS). Two of the three open clauses move and the third is bounded. (1) The reader that turns +0x08 into the running timer is already on record: BattleStatus_ComputeDefaultDwordParameter (00387730, FA-1, answered 2026-09-12) scales row +0x08 by the target's Vitality, x [01DFE0B4] x 300, 0 when 0xFF; this row had not taken it. (2) The query arm reads three more row fields. The +0x0A word goes through 002F9860 into record +0x10. 002F9860 is a text resolver: bank = id / 1000 (fewer than 28 banks), entry = the remainder, the empty string otherwise. So +0x0A is the status's text id. The +0x06 bit 13 and the +0x24 bits 0-3 are packed into record +0x25 bits 0 and 1-4. (3) +0x11, +0x12 and +0x14..+0x1D are twelve sparse ranking columns. Each is 0xFF in most rows and otherwise one of 25..31, distinct and counting down from 31, never equal to +0x10, so they are NOT the listing-key family. +0x1E / +0x1F are 0xFF in every row. No reader: 44 status rows formed across the 18 users of the class-26 slot 02EBF118, receiver-typed and followed through unconditional jumps, read no byte of the band. The positive control finds the arm's +0x13 / +0x26 / +0x27 reads. The arm copies only the five keys into its record. Still open: what the twelve rankings rank, a reader that resolves class 26 without naming the slot, and which on-screen list each key kind drives. Control _index/candidates/ga1-row-band/ga1_row_band.py (B1-B4, FAILS 0).**
+  **NARROWED FURTHER 2026-09-27 (OPUS). Two of the three open clauses move and the third is bounded. (1) The reader that turns +0x08 into the running timer is already on record: BattleStatus_ComputeDefaultDwordParameter (00387730, FA-1, answered 2026-09-12) scales row +0x08 by the target's Vitality, x [01DFE0B4] x 300, 0 when 0xFF; this row had not taken it. (2) The query arm reads three more row fields. The +0x0A word goes through 002F9860 into record +0x10. 002F9860 is a text resolver: bank = id / 1000 (fewer than 28 banks), entry = the remainder, the empty string otherwise. So +0x0A is the status's text id. The +0x06 bit 13 and the +0x24 bits 0-3 are packed into record +0x25 bits 0 and 1-4. (3) +0x11, +0x12 and +0x14..+0x1D are twelve sparse ranking columns. Each is 0xFF in most rows and otherwise one of 25..31, distinct and counting down from 31, never equal to +0x10, so they are NOT the listing-key family. +0x1E / +0x1F are 0xFF in every row. No reader: 44 status rows formed across the 18 users of the class-26 slot 02EBF118, receiver-typed and followed through unconditional jumps, read no byte of the band. The positive control finds the arm's +0x13 / +0x26 / +0x27 reads. The arm copies only the five keys into its record. ~~Still open: what the twelve rankings rank, a reader that resolves class 26 without naming the slot, and~~ *(answered: see GA-1 at the top of §4, 2026-09-27 — the band is read by no code, authored and unread; 2026-10-02, OPUS)* Still open: which on-screen list each key kind drives. Control _index/candidates/ga1-row-band/ga1_row_band.py (B1-B4, FAILS 0).**
 - [x] **GA-2.** The three undecoded help-text codes (`<85>`, `<AE>`, `<AF>`) and whether the other language
       copies carry the same 32 entries. `GA-2`.
       *Codes decoded 2026-09-15 (FABLE); the language-copy half is answered below.* All 3837 strings in the `us` battle pack's
@@ -477,7 +477,7 @@ owns nothing in Gameplay;** the validator `00322C50` is accounted the same way f
 `ImageAddress_ResolveRuntimePointer`, the image-address resolver that most table readers call. The edge is mechanical
 and says nothing about the status table's meaning.
 
-`002FA560` (476 B) is the status-handler dispatch: `ecx` 0..0x1B selects one of twenty-eight dedicated bodies in the `002F7660`..`002F79C0` run (ids 0x00,0x04,0x08,0x0D,0x0E,0x0F,0x14,0x16,0x17,0x18,0x19 in the 0x7xx band, the rest in 0x79x) and tail-jumps `002385D0` with it; out-of-range returns - the effect-id to executor switch the statuses callers share.
+`002FA560` (476 B) is ~~the status-handler dispatch~~ the MMSG text-bank switch of §4 `GE-1` *(corrected 2026-10-02, OPUS: checked at `002FA560` and `002F7800`, which sets `ecx = 0xC`, stores `02EC3DE0` and jumps to `00238640`)*: `ecx` 0..0x1B selects one of twenty-eight dedicated bodies in the `002F7660`..`002F79C0` run (ids 0x00,0x04,0x08,0x0D,0x0E,0x0F,0x14,0x16,0x17,0x18,0x19 in the 0x7xx band, the rest in 0x79x) and tail-jumps `002385D0` with it; out-of-range returns ~~- the effect-id to executor switch the statuses callers share~~ - a bank selector, not an effect-id executor switch *(corrected 2026-10-02, OPUS)*.
 
 Interior anchor `002FA5E2` (function `002FA560`).
 
@@ -493,4 +493,4 @@ Interior anchor `002FA5E2` (function `002FA560`).
 
 **CombatFormula — CLIENT and SERVICE (8 edges).** `BattleFormula_AppendStatusAddOperation` (`00387BB0`) calls `BattleStatus_ComputeDefaultShortTimer` (`003876D0`) for a status's default timer; the candidate-status applier `BattleFormula_ResolveCandidateStatusApplications` (`00387CB0`) calls `BattleFormula_BuildCandidateStatusMask` (`003851F0`), `00387BB0` and `0038D680`, and is itself called by the two calculator-slot wrappers `BattleFormula_CalcApplyCandidateStatusesRequired` (`0038FCC0`) and `BattleFormula_CalcApplyCandidateStatusesOptional` (`0038FCD0`); the apply-mask writer `0038FCE0` also calls `0038D680`, a 41-byte step that sets the miss pair at `02AEDFBC`/`02AEDFB8` when the entry's word `+0x18` is `0xD` and otherwise stores twice the dword at `+0x48` into `02AEE02C`; and the Protect/Shell add `003908A0` calls `00387BB0`. The formula layer is where a status id from this table is turned into an add operation on a result: it reads the table's default timer and clear masks through these bodies, and the table itself is data this page describes.
 
-**UI — CLIENT (3 edges).** The UI bodies `00273E30` (2,382 B), `002BFD20` (1,652 B) and `0035D380` call `0031C5D0`, the 8,136-byte generic per-class encoded-id query that fills a caller-supplied 0x98-byte record (the page locates the read of the status row's `+0x0B` word inside it); `0035D380` stores the id pair into a static record at `022CA480`, calls the query and zeroes the record when it fails. Menus fetch a status's descriptive record through the same query this page read; the UI owns the display, not the status rows.
+**UI — CLIENT (3 edges).** The UI bodies `00273E30` (2,382 B), `002BFD20` (1,652 B) and `0035D380` call `0031C5D0`, the 8,136-byte generic per-class encoded-id query that fills a caller-supplied 0x98-byte record (the page locates the read of the status row's ~~`+0x0B`~~ `+0x0A` word inside it — `[rsi + 0x0A]` at `0031E288`, §4 *(corrected 2026-10-02, OPUS)*); `0035D380` stores the id pair into a static record at `022CA480`, calls the query and zeroes the record when it fails. Menus fetch a status's descriptive record through the same query this page read; the UI owns the display, not the status rows.

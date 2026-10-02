@@ -42,7 +42,7 @@ status's `status_data +9`, and lasts `+9` / 10 seconds: Poison 12 s, Sap 0.1 s, 
 global belongs to the field drains of stage 4 (a third of a second). *(Corrected 2026-09-29, FABLE, Claude Opus 5.5;
 `_index/candidates/pkg-gp-status-poison/beat.py`.)*
 
-## 2. Nothing happens at all unless six gates pass
+## 2. ~~Nothing happens at all unless six gates pass~~ Three gates stop everything, four more skip to the tail (OPUS, 2026-10-02)
 
 `BattleUnit_RunPeriodicCombatMaintenance` (`00310DB0`, 1,338 B) spends its first ninety instructions
 refusing to run:
@@ -52,9 +52,12 @@ refusing to run:
 | the unit has a stats block | `[unit + 0x698] != 0` |
 | a global mode is not 5 or 6 | `(mode - 5) > 1` |
 | the field permits action | `FieldData_GetActiveFieldRecordBit15()` returns 0 |
+| *(added 2026-10-02, OPUS)* the actor manager is ready - fails to the tail | `00265680()` is non-zero (`00310F12`-`00310F19`) |
 | no global target suppression | `BattleTarget_ComputeGlobalEligibilityMask()` is 0 |
 | no per-unit suppression | `BattleTarget_ComputeUnitEligibilityMask(unit, 0)` is 0 |
 | a 64-bit unit flag is clear | `!(unit->qwFlags & 0x1000000000)` |
+
+*(Corrected 2026-10-02, OPUS - section 14, the tick after its first apply: only the first three gates stop everything (they exit to `003112D1`). The readiness probe, the two masks and the flag exit to the common tail `003112A1`, which still runs the enmity decay `00321530` and `002FE950`. Between gate 3 and the probe, a party Esper record whose HP is gone or whose summoner is unavailable is dismissed (`003138D0(0)` at `00310EF8`), and then nothing else runs.)*
 
 **And a deadline check that is not a gate but an expiry**, run before any of them:
 
@@ -132,7 +135,7 @@ no "does this unit have poison" short-circuit at this level — the stages thems
 Four things this fixes exactly:
 
 - **Timers are per status, live at `statsRecord + 0x17C + slot*2`, `u16`** (the `BattleStatsRecord` behind unit `+0x698` — corrected 2026-09-11 from "unit"; the unit's own `+0x17C` is a float), and the slot index is authored —
-  it is a byte at `+6` of the status's own record, not the status id.
+  it is a byte at `+6` of ~~the status's own record~~ the id's row in the effect table `02EBF040`, not of `status_data` (whose `+6` is the flag word) *(corrected 2026-10-02, OPUS: `00385585`, `003855FD`–`00385604`; §13's 2026-09-12 correction)*, not the status id.
 - **`0xFF` in that byte means "no timer"** — the status is permanent until something removes it.
 - **One decrement per tick, unconditionally**, for every status the unit holds in either layer. There
   is no rate field: every timed status ticks at the same speed and the *duration* is the start value.
@@ -187,8 +190,8 @@ sampled values, **with a control against 101 that fails** — and the sign is th
 > later.** A drain of one-fiftieth is written as `v / −50` directly into the result record.
 
 The `≥ 50` guard means a source value below fifty produces a **fallback** written from a different
-register rather than a rounded-to-zero drain. **What the field at `+0x28` is has not been
-established**, so "one-fiftieth of *what*" is not claimed here.
+register rather than a rounded-to-zero drain. ~~**What the field at `+0x28` is has not been
+established**, so "one-fiftieth of *what*" is not claimed here.~~ *(answered: see §10 and §13 "Still not established" — the base is the stats record and `+0x28` is max MP, resolved 2026-09-11; 2026-10-02, OPUS)*
 
 ## 6. What refuses a status on the way in
 
@@ -197,7 +200,7 @@ any layer is touched it computes:
 
 ```asm
 0030E404  mov   eax, dword ptr [rsi + 0x3c]
-0030E407  or    eax, dword ptr [rsi + 0x64]        ; the unit's two status words
+0030E407  or    eax, dword ptr [rsi + 0x64]        ; the unit's two status words  <- corrected 2026-10-02, OPUS: rsi is the target's stats record, which holds them (§13)
 0030E410  shl   edi, cl                            ; 1 << status id
 0030E412  test  edi, eax                           ; already present?
 0030E42C  call  BattleTarget_HasLow16EligibilitySuppression
@@ -211,7 +214,7 @@ any layer is touched it computes:
 refuses when the status being applied is itself in the `0x80000003` set — **an eighth sighting of that
 mask, and the first where it selects which status is blocked rather than whether a unit may act.**
 
-The caller also passes a mode (`0`–`3`) and a flags word whose **bit 1** and **bit 4** are each
+The caller also passes a mode (~~`0`–`3`~~ `0`–`5` *(corrected 2026-10-02, OPUS: `0030E4CB cmp eax, 5` / `ja`)*) and a flags word whose **bit 1** and **bit 4** are each
 inverted into a local — two independent "do not suppress" switches supplied by the caller.
 
 ## 7. Key addresses
@@ -240,8 +243,8 @@ crossings).
 | owner lookup | `0031E800` `BattleStats_GetOwningActorHandle` (91 B) | scans `00236820(i)` records for `[rec+0x698] == arg` across the `00236850` count, returns `[rec+8]` — the unit that owns a stats block | `0031E82C` (`cmp [rax+0x698], rdi` — the match) |
 | enmity decay | `00321530` `BattleEnmity_UpdatePeriodicDecay` (142 B) | `+0x698`-gated (`[rec+5]==1`): the counter byte at `[[+0x6A0]+0x19]` increments until it reaches `cvttss2si([01DFE0B8] × [008F8D80])` — the frame-scaled decay threshold — then `00321D30(unit, −0xA, 0)` resets the row | `00321587` (`mulss xmm0, [008F8D80]` — the rate mul, constant 30.0f) |
 | combatant writes | `00321D30` `BattleEnmity_WriteAllCombatantIds` (141 B) | the 0x28-slot loop the decay reset calls: per slot, `+0x6A0`/`+0x698` records present and `([+0x64] | [+0x3C]) & 0x80000003` nonzero → `00313F60` gate → `00321850(unit, slot, edx, r8)` | `00321D9C` (`call 00321850`) |
-| world pickups | `00319830` `Loot_RemoveWorldPickupByIndexWithoutGrant` (26 B), `00319A00` `Loot_CollectWorldPickupByIndex` (26 B) | twin index adapters: `idx × 0x60` into the `02EB0FA0` pickup table, tail to `003197B0` (remove) / `00319920` (collect-grant) | `00319833` / `00319A03` (`lea rcx, [rax+rax*2]` — the ×0x60 index) |
-| kind-8 dispatch | `00469E30` (73 B) | builds a `0x28` stack block; when `002F8E90(unit)` returns 8, `0046AB10(unit, 0x4E, &block)` — the kind-8 periodic-effect spawn | `00469E5E` (`cmp eax, 8`) |
+| world pickups | `00319830` `Loot_RemoveWorldPickupByIndexWithoutGrant` (26 B), `00319A00` `Loot_CollectWorldPickupByIndex` (26 B) | twin index adapters: `idx × 0x60` into the ~~`02EB0FA0`~~ `02EC0FA0` *(corrected 2026-10-02, OPUS: `0031983B`, `00319A0B`)* pickup table, tail to `003197B0` (remove) / `00319920` (collect-grant) | `00319833` / `00319A03` (`lea rcx, [rax+rax*2]` — the ×0x60 index) |
+| kind-8 dispatch | `00469E30` (73 B) | builds a `0x28` stack block; when ~~`002F8E90(unit)`~~ `002F8E90(stats)` *(corrected 2026-10-02, OPUS: the tick passes the stats record, `00311114`)* returns 8, `0046AB10(unit, 0x4E, &block)` — ~~the kind-8 periodic-effect spawn~~ a post through the battle event poster *(corrected 2026-10-02, OPUS: the status write §2.6 row 5 names `0046AB10` the battle event poster; §13 "Still not established" ties category 8 to the post-result "steals your loot" message)* | `00469E5E` (`cmp eax, 8`) |
 
 `00322C50`/`0020E600`/`00307CE0`/`00236820`/`00236850`/`00313F60`/`00321850`, the
 `0038xxxx` stage helpers, `003197B0`/`00319920`, `002F8E90`, `0046AB10` are shared
@@ -270,7 +273,7 @@ BattleUnit_RunPeriodicCombatMaintenance 00310DB0
   Vitality factor × frame base × 300, [the status write](../Status-Write/the-status-write-and-its-side-effects.md) §2.4a); for the effect-table timers, the word at
   `statsRecord + 0x17C + slot*2` that stage 3 spends one per tick (corrected 2026-09-12; "unit" until
   2026-09-11). Neither has a rate field: duration is entirely in the number you start with.
-- **A status record whose byte `+6` is `0xFF` never expires.** That is the difference between a timed
+- ~~**A status record whose byte `+6` is `0xFF` never expires.**~~ **An effect id whose effect-table row (`02EBF040`) has byte `+6` = `0xFF` has no stage-3 timer**; in the shipped table only rows 55, 56 and 57 carry a slot (3, 4 and 5) *(corrected 2026-10-02, OPUS: `003855FD`–`00385604`; checked against `battle_pack.bin` slot 29)*. That is the difference between a timed
   ailment and a permanent one, and it is one authored byte.
 - **The drain beat is `frame base × 10` ticks** — a third of a second at either frame rate. The
   word is `01DFE0B4`, the frame base itself (corrected 2026-09-12), so it is not a drain tunable:
@@ -285,7 +288,7 @@ BattleUnit_RunPeriodicCombatMaintenance 00310DB0
 - [x] ~~Stages 2 and 5 are not read.~~ **Read — see §13.** ~~Stage 2 advances **no** duration timer
       despite its name~~ — **corrected 2026-09-12:** stage 2 advances the 32 statuses' own durations
       and beats through a record-relative address (§13, last block); **stage 3 is the only decrementer
-      of the `+0x17C` array**, and stages 2 and 5 accumulate the HP delta besides.
+      of the `+0x17C` array**, and stages 2 and 5 ~~accumulate~~ write the HP delta besides, stage 5 by overwriting it (`00386A23`) *(corrected 2026-10-02, OPUS)*.
 - [x] ~~**What the field at `+0x28` is**, so the `/−50` drain is "one fiftieth" of an unnamed quantity.~~
       **Resolved 2026-09-11 in §13:** the base is the stats record and `+0x28` is max MP.
 - [x] ~~What the two suppression gates test.~~ **Read — see §13.** They are one shape on **two halves
@@ -320,7 +323,7 @@ BattleUnit_RunPeriodicCombatMaintenance 00310DB0
 | Stage 2 advances the 32 statuses' durations and beats | `00386C70` read whole on the status-write page §2.4a — `record + (target − record + 0x60)` addressing, `00386CA9`–`00386CB2`, `00386CEB`, `00386E3E`, `00386EE4` | 1 |
 | Bit 30 has exactly one reader | capstone sweep of `.text` for `test` / `and` / `or` / `bt` with `0x40000000` (or bit 30) on a displacement-0 memory operand: three hits, the set, the clear and `002F701D` (2026-09-12) | 1 |
 | Stage 5's ramp and its refusal on a perceived foe | `003868F1`–`00386A2C` read whole; `002F8E70` = `002F8E90(BattleStats_GetOwningRecord(unit)) & 7`; the `+0xBC4` / `+0xBC8` writers from the unit census | 1 |
-| Stage 5's two tables are one 64-byte-record array | `00386885` `lea 0208D494` indexed by the type byte `+4` for kind-0 records; `003868AD` `lea 0208DE94` = `0208D494 + 40 × 64`, indexed by the owning unit's slot index `+0xEA9`; index `0x14` when no owner (`003868BD`) | 1 |
+| Stage 5's two tables are one 64-byte-record array | `00386885` `lea 0208D494` indexed by the type byte `+4` for kind-0 records; `003868AD` `lea 0208DE94` = `0208D494 + 40 × 64`, indexed by the owning unit's slot index `+0xEA9`; ~~index `0x14`~~ the raw pointer value `0x14`, not an index, when no owner (`003868BD`; read through at `003869A2`) *(corrected 2026-10-02, OPUS)* | 1 |
 | The drain divisors are `−50` and `−100` | `0xAE147AE1` with `sar 4` / `sar 5` evaluated against integer division over ±20,000 values, **control against 101 fails** | 1 |
 | Two suppression gates refuse an application | both calls and both `jne refuse` edges decoded in `0030E360` | 1 |
 
@@ -354,14 +357,14 @@ name.
 question *"are stage 2's timers the same timers stage 3 decrements?"* — filed rather than assumed,
 because both names say "timers".
 
-**They are not the same, and stage 2 does not touch the duration array at all.** Scanning all three
+~~**They are not the same, and stage 2 does not touch the duration array at all.**~~ **They are not the same arrays, but stage 2 does reach the duration array**: it addresses the target's `+0xBC[s]` through `r14` (`00386EEC`) and writes the result's `+0xDC[s]` word array through `r15` (`00386E84 mov word ptr [r15], ax`) *(corrected 2026-10-02, OPUS: see "Corrected 2026-09-12" below; only the heading had been struck)*. Scanning all three
 stages for the timer array's displacement, **with stage 3 as its own positive control**:
 
 | stage | touches `0x17C` | writes a `[base + idx*2]` word array | accumulates into result `+0x24` |
 |---|---|---|---|
-| 2 — `AdvanceStatusTimersAndBuildResult` | **no** | none | **yes** |
+| 2 — `AdvanceStatusTimersAndBuildResult` | **no** | ~~none~~ result `+0xDC[s]` through `r15` (`00386E84`) *(corrected 2026-10-02, OPUS)* | **yes** |
 | 3 — `AdvanceStatusLinkedAuxTimers` | **yes** | `0x17C` and `0x42` | no |
-| 5 — `BuildRuntimeCounterPeriodicHpCredit` | **no** | none | **yes** |
+| 5 — `BuildRuntimeCounterPeriodicHpCredit` | **no** | none | ~~**yes**~~ **overwrites** it (`00386A23`) *(corrected 2026-10-02, OPUS)* |
 
 > **Stage 3 is the only decrementer of ~~status durations~~ the `+0x17C` array in the whole pipeline.** The control matters:
 > the same scan that reports "no" for stages 2 and 5 reports `0x17C` and `0x42` for stage 3, so the
@@ -370,13 +373,13 @@ stages for the timer array's displacement, **with stage 3 as its own positive co
 > no displacement scan can see.
 
 **What stage 2 actually does is accumulate a per-status delta.** It reads the combined status words
-`[unit+0x3C] | [unit+0x64]`, and per status either decrements the result accumulator or subtracts a
+~~`[unit+0x3C] | [unit+0x64]`~~ `[stats+0x3C] | [stats+0x64]` of the stats record, not the unit *(corrected 2026-10-02, OPUS: "Still not established" below and CONTRACT-periodic-tick.md §5)*, and per status either decrements the result accumulator or subtracts a
 unit field from it:
 
 ```asm
 00386D96  dec   dword ptr [rbx + 0x24]            ; rbx = the RESULT record
 00386DA2  mov   ecx, dword ptr [rsi + 0x3c]
-00386DA5  or    ecx, dword ptr [rsi + 0x64]       ; rsi = the UNIT
+00386DA5  or    ecx, dword ptr [rsi + 0x64]       ; rsi = the UNIT  <- corrected 2026-10-02, OPUS: rsi is the stats record, not the unit (see below)
 00386DC0  mov   eax, dword ptr [rsi + 0x24]
 00386DC3  bt    ecx, 0x1c                         ; status bit 28...
 00386E18  neg   eax
@@ -393,7 +396,7 @@ the 2026-09-12 correction below.)*
 ### Result `+0x24` is an accumulator, and three stages write it
 
 Section 5 recorded the drain writing `result + 0x24` and could not say what it was. It is the **HP
-delta accumulator**, and **stages 2, 4 and 5 all add into it**; stage 3 never does. Its flag words are
+delta accumulator**, and ~~**stages 2, 4 and 5 all add into it**~~ **stages 2 and 4 add into it and stage 5 overwrites it**: `00386A23 mov dword ptr [r13 + 0x24], edx` whenever its gates pass and the counter is a multiple of `fb × 30`, storing 0 when the beat count is below 10 (`003869AF jl 003869EB`), so the stage order matters for `+0x24` *(corrected 2026-10-02, OPUS: checked at `00386A23`)*; stage 3 never does. Its flag words are
 `+0x2C` (stages 2, 4, 5) and `+0x140` (stage 2).
 
 > **A caution for anyone reading these bodies: `+0x24` appears on two different bases.** `[rbx+0x24]`
@@ -464,23 +467,23 @@ u = BattleTarget_ComputeUnitEligibilityMask(unit, variant);
 `bx`/`ax` directly — **the low half**, the same question `HasLow16` asks.
 
 **And the variant argument comes from the relationship class.** `BattleTarget_ClassifyRelationshipClass`
-is the subject of **Z-13** in the gambit document; here its return is reduced to `> 1`, so **whatever
+is the subject of **Z-13** in the gambit document; here its return is reduced to `> 1`, so ~~**whatever
 values above 1 exist, this caller only distinguishes "1 or less" from "more than 1."** That is a
-constraint on Z-13 from a second subsystem, not an answer to it.
+constraint on Z-13 from a second subsystem, not an answer to it.~~ `> 1` means the classifier returned 2 *(answered: see CONTRACT-auto-status-rebuild.md §13f, EXP-197 — it returns `(computed == expected) + 1`, 1 or 2; 2026-10-02, OPUS)*.
 
 ### Still not established
 
-- [x] ~~What the field at `unit + 0x28` is (the `/ −50` drain source) — unchanged from section 10.~~ **Resolved 2026-09-11:** the base is the stats record, not the unit, and [its field map](../../08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md) names `+0x28` as the MP capacity (max MP) — the drain is max MP / 50 per tick. The `[unit+0x24]` / `[unit+0x48]` in §10's listing are likewise the record's max HP and current HP.
+- [x] ~~What the field at `unit + 0x28` is (the `/ −50` drain source) — unchanged from section 10.~~ **Resolved 2026-09-11:** the base is the stats record, not the unit, and [its field map](../../08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md) names `+0x28` as the MP capacity (max MP) — the drain is max MP / 50 per ~~tick~~ beat, every `frame base × 10` ticks *(corrected 2026-10-02, OPUS: §5 and CONTRACT-periodic-tick.md §11)*. The `[unit+0x24]` / `[unit+0x48]` in §10's listing are likewise the record's max HP and current HP.
 - [x] ~~What status bits `0x10`, `0x10000`, bit 16 and bit 28 are named.~~ **ANSWERED by
       cross-reference 2026-09-12:** bit 4 **Sleep**, bit 16 **Disease** (both spellings of the same
       bit), bit 28 **Bubble** ([the thirty-two statuses](../the-thirty-two-statuses.md)) — so the credit is refused to a sleeping or diseased
       unit, and Bubble doubles the max-HP source exactly as it doubles the HP cap.
 - [x] ~~What the 64-byte records in stage 5's ~~two tables~~ table hold.~~ **ANSWERED 2026-09-12
-      (FABLE), for the word the stage uses:** one array at `0208D494` — forty 64-byte records
-      indexed by a kind-0 record's type byte `+4`, then from `0208DE94` records indexed by the
-      owning unit's slot index `+0xEA9`, `0x14` when no owning unit is found — and word `+0` of the
-      record is the unit's **out-of-combat tick counter** driving the 1 / 2 / 5 % ramp (§13, "the
-      rest of stage 5"). The other 62 bytes are unread.
+      (FABLE), for the word the stage uses:** one array ~~at `0208D494`~~ based at `0208D480` (stage 5 addresses field `+0x14` of each record, hence `0208D494`) — forty 64-byte records
+      indexed by a kind-0 record's type byte `+4`, then from ~~`0208DE94`~~ `0208DE80` (field `+0x14` at `0208DE94`) records indexed by the
+      owning unit's slot index `+0xEA9`, ~~`0x14` when no owning unit is found~~ and, when no owning unit is found, the raw address `0x14` as the record pointer, not an index (`003868BD mov ebx, 0x14`, read by `movzx eax, word ptr [rbx]` at `003869A2`) *(corrected 2026-10-02, OPUS)* — and word ~~`+0` of the
+      record~~ `+0x14` of the record is the unit's **out-of-combat tick counter** driving the 1 / 2 / 5 % ramp (§13, "the
+      rest of stage 5"). ~~The other 62 bytes are unread.~~ The other bytes are not all unread: `+0x18` is the walk-MP carry, read and written by `002F9400` *(corrected 2026-10-02, OPUS: `00386885` / `003868AD` and `002F9439` / `002F9461` / `002F9474`; where-mp-comes-from.md §5, CS-6)*.
 - [x] ~~What the `[rbp+0xBC8]` list stage 5 walks (count at `+0xBC4`, stride `0x10`) contains.~~
       **ANSWERED 2026-09-12:** the unit's perception candidate cache — the actors it currently
       perceives — and the stage refuses the credit when any of them is of a non-zero relationship
@@ -509,6 +512,47 @@ decrements it accumulates into `+0x24` (the block above) are those beats landing
 countdown is the *other* timer — the eight-slot `+0x17C` array keyed by the effect table at
 `02EBF040` (`003855FD`–`00385604`), not `status_data`; the two coexist, and "stage 3 is the only
 decrementer" holds for `+0x17C` alone.
+
+## 14. The tick after its first apply - the Esper dismiss, the traps, walk MP, the pickup and the common tail (OPUS, 2026-10-02)
+
+**Scope and reading.** `BattleUnit_RunPeriodicCombatMaintenance` (`00310DB0`, 296 instructions, `00310DB0`–`003112E9`) was read whole from the shipping image (`retool.py dis 00310DB0`, image `73461d08…`). This draft orders what the existing pages leave unordered: the Esper check between gate 3 and gate 4, the gate before the eligibility masks that the pages do not list, and everything after the first apply at `00310FAC`. `unit` = `rsi` (`00310DD3`). `stats` = `[unit+0x698]`. `result` = the `0x148`-byte stack record at `rsp+0x40`. Paths are relative to `Database/FFXII TZA/`.
+
+**Execution order.** Steps 1–3 come after the documented gates 1–3 (`00310DCB`, `00310E08`, `00310E14`). Steps 4–6 come after the documented build and first apply (`00310F5D`–`00310FAC`).
+
+1. **Esper dismiss check, before any eligibility gate (`00310E21`–`00310EFD`).** The tick re-reads `stats` (`00310E21`). It skips this block, going to `00310F02`, when `stats` is null (`00310E38`), when the kind byte `[stats+5]` is not 0 (`00310E41`–`00310E47`, so the record is not a party record), or when the type byte `[stats+4]` is outside `0x1B`–`0x27` (`00310E4D`–`00310E55`). That range is the thirteen Esper rows (`00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md:335-339`). Otherwise it dismisses when any of these holds:
+   - current HP `[stats+0x48]` ≤ 0 (`00310E5B`–`00310E5F`);
+   - the summoner is missing. The summoner is found by `BattleUnit_FindByCombatantId` (`0031B770`) on the byte `[[02EBF190]+0x5AD5]` (`00310E65`–`00310E7B`), the caster's type byte that the summon sequence stores (`battle-runtime-mode-ladder.md:335`);
+   - the summoner's unit byte `+0` lacks bit `0x10` (`00310E93`), the unit-present flag (`04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:1347-1348`);
+   - the summoner has no `+0x698` (`00310EA8`–`00310EB0`);
+   - the summoner's `([+0x3C] | [+0x64]) & 0x80000003` is non-zero (`00310EE0`–`00310EEB`, the functional predicate) **and** `FieldData_GetActiveFieldRecordBit15` (`00377C20`) returns 0 (`00310EED`–`00310EF4`).
+
+   The dismiss is `003138D0(0)` (`00310EF6`–`00310EF8`). That function acts only when `BattleRuntime_GetMode0To5FromFlagsAndFieldBit15` returns 1, summon mode (`003138D8`–`003138E0`; ladder `:82`). It resolves `0031B8C0(3)` (`003138E6`–`003138F1`) and issues command `0x113`, Dismiss (ladder `:388`), through `BattleUnit_IssueCommand` `00311CF0(unit, handle, 0, 0x113, 0)` (`0031394A`–`0031395D`). It then sets bit 0 of the word `[02EBF190]+0x5AD0` to its argument, 0 (`00313962`–`00313981`). The issue and the bit write are both skipped when the slot unit already has `0x113` pending at `+0xBA0` (with flag bit 14 set) or committed at `+0x714` (`00313903`–`0031391C`). **After the dismiss the tick jumps to `003112C1` (`00310EFD`), which only restores registers and returns.** That skips gates 4–7, every result build, walk MP, pickups, enmity decay and `002FE950`.
+2. **Gate 4 (not in the pages' gate list): `00265680() != 0` (`00310F12`–`00310F19`).** A failure goes to `003112A1`. `00265680` is the actor-manager readiness probe: manager slot 0 live, every live slot's `+0x17` bits 0–1 set, `002E0540`, then `00265720` (`00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:929-933`). The documented global and per-unit eligibility masks (`0030B770` at `00310F1F`, `0030B7F0(unit, 0)` at `00310F2B`) and the unit flag `0x1000000000` (`00310F42`–`00310F4F`) follow as gates 5–7. Each also fails to `003112A1`, not to the epilogue.
+3. **Build 1 and apply 1** are documented (`00310F7A` memset, `00310F8B` `00385DF0(stats, &result)`, `00310FAC` `003112F0(&result, 0, stats, 0xFFFF, 0)`; the fifth argument `[rsp+0x20] = 0` is at `00310FA7`).
+4. **Authored trigger point, then build 2 and apply 2 once per affected unit (`00310FB1`–`003110BA`).** The tick writes 4 to a count at `[rsp+0x30]` (`00310FB6`) and calls `BattleUnit_TryTriggerNearbyAuthoredFieldAction` `002F8060(unit, &list[rsp+0x190], &count)` (`00310FBE`–`00310FC9`). That function zeroes the count at entry (`002F80A7`) and, on a hit, writes the number of affected units (`002F8274`). It returns the chosen outcome word, the 75/25 roll, or `0xFFFF` (`002F82C6`; `03-World-Area-Field/walking-into-an-authored-trigger-point.md:36-102`). The id is checked with `BattleEncodedId_IsValidForClass(0x14, id, 0)` (`00310FD2`–`00310FE7`); class 20 is the action table `02EBF138` (`00-Engine-Core-Runtime/the-encoded-id-class-registry.md:150`). The block runs only if the id is valid and `count > 0` (`00310FF0`–`00310FF5`). **Loop:** `ebp` runs from 0 to `count`, `rbx` steps by 8 through the pointer list (`00311003`, `003110B0`–`003110BA`); the list has 4 slots, `rsp+0x190`–`0x1AF`, below the cookie at `0x1B0`. Per affected unit `u`:
+   - (a) `memset(result, 0, 0x148)` (`00311003`–`00311010`);
+   - (b) the action row for `id` is resolved through `ImageAddress_ResolveRuntimePointer` `0020E600([02EBF138]+0xC)` plus `word[02EBF138+8] × id` (`00311015`–`0031104B`). **The row address is computed in 32 bits** (`imul ecx, edi` / `add ecx, eax`, `00311048`–`0031104B`). If the table or the resolve is null, the row pointer becomes 0 (`0031104F`) and is still dereferenced at `0031105A`;
+   - (c) `002EACD0([u+8], 1, &u+8, row.+0x24 & 0x7FFF)` (`00311052`–`0031106B`), the attached-effect creator, and the "trap applier" use of row `+0x24` (`07-Combat-Action/Action-Definition-Row/the-action-definition-row.md:79`). Its handle goes to `0024ED50` (`00311070`–`00311072`), the handle-class router (`99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md:1596`). For the class-5 handle that `002EACD0` creates, the router reaches `003B0F30`, which sets bit `0x800` of the presentation record's `+0x36A` word (`003B0F71`–`003B0F76`);
+   - (d) `BattleFormula_ResolveTargetResult` `00385F60(id, 0, [u+0x698], &result)` (`00311077`–`0031108C`);
+   - (e) `003112F0(&result, 0, [u+0x698], id, 0)` (`00311091`–`003110AB`).
+5. **Walk MP (`003110C0`–`003110D7`).** This step is reached whether or not step 4 ran (`00310FE7` and `00310FF5` both target `003110C0`). The tick calls `BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep` `002F9400(unit)`, which returns 0 or 1, then `BattleStats_ModifyPrimaryResource` `00300CE0(stats, ret, 0x90)` with no test of `ret` (`10-Status-Periodic-Terminal/where-mp-comes-from.md:277-321`).
+6. **World pickup and Chain Bonus (`003110DC`–`00311284`).** All exits from this step go to `00311289`. For the reading see `13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md:285-299` and `13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md:653-680`.
+   - **Qualify.** The unit qualifies if `PartyFocus_IsCurrentPackedActorHandle([unit+8])` is true (`003110DC`–`003110E6`) or its committed action `+0x714 == 0x4165` (`003110E8`–`003110F4`). `0x4165` is the walk-to-nearest-pickup goal (`06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md:368`).
+   - **Find.** `Loot_FindOverlappingPickupIndex` `002FB150(unit, [01CEBBA8])` (`003110FA`–`00311105`); a negative result exits (`0031110E`). The slot is kept in `ebx`.
+   - **Post.** `00469E30(stats)` (`00311114`–`0031111B`) posts battle event `0x4E` (`00469E6B`–`00469E6E`) when `002F8E90(stats) == 8`, the "steals your loot" message (`07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:348`).
+   - **Remove.** If `stats` is re-read null (`00311120`–`0031112A`) or `[stats+5] != 0` (`00311130`–`00311136`), the tick calls `Loot_RemoveWorldPickupByIndexWithoutGrant(slot, [unit+8])` (`0031127F`–`00311284`).
+   - **Collect.** Otherwise it calls `Loot_CollectWorldPickupByIndex(slot, [unit+8])` (`0031113C`–`00311141`), then the chain-rank outcome selector `00319530()` (`00311146`; `13-Rewards-Progression-Economy/CONTRACT-loot-rolls-and-the-chain.md:136`). It exits unless the outcome is 1–6 (`0031114E`–`0031115D`).
+   - **Gather loop** (`ebp` 0..8, `00311173`–`003111B7`). Per slot it takes `s = BattleStats_GetByMappedBattleSlot(i, 1)` (`0032117A`). It keeps a non-null `s` whose `([s+0x64] | [s+0x3C]) & 0x80000003` is 0. When that value is non-zero it keeps `s` only if `00377C20()` is non-zero (`00311182`–`0031119C`). **Store:** `qword [022C1740 + n×8] = s` (`003111A4`, guarded by `n < 9`, `0031119E`). That is the same global the chocobo collector fills (`battle-runtime-mode-ladder.md:353`). If no member is kept, the step exits (`003111BC`–`003111BF`).
+   - **Bonus loop** (`rbx` 0..n−1, `003111D0`–`00311277`). It takes `h = BattleStats_GetOwningActorHandle(member)` (`003111D0`–`003111D8`; stored to `[rsp+0x30]`, `003111E1`). For outcomes 3 and 5 (`r15−3 ∈ {0, 2}`, `003111DD`–`003111EC`), a member whose `h` differs from `[unit+8]` is skipped (`003111EE`–`003111F1`). When `h != 0` it calls `002EACD0(h, 1, &h, 0x76)` (`003111F3`–`00311208`), the return discarded. Then it runs `memset(result)` (`0031120D`–`0031121A`). **Store:** `result+0x00` bits 3–4 `= table[outcome] & 3`, where the table at `00D102C0` holds `{−1, 0, 1, 2, 2, 3, 3}` (`0031121F`–`00311241`). Next is build 3, `00385F60(0xF5, 0, member, &result)` (`00311245`–`0031124D`), then apply 3, `003112F0(&result, 0, member, 0xF5, 0)` (`00311252`–`0031126C`). Action `0xF5` is "Chain Bonus" (`loot-drops-and-enemy-chain.md:662`).
+7. **Common tail (`003112A1`–`003112AC`).** It is reached from step 6 (`00311289` restores `r12`, `rbp` and `r14`) and from every failure of gates 4–7. It calls `BattleEnmity_UpdatePeriodicDecay` `00321530(unit)` (`003112A4`; `09-Combat-AI-And-Gambits/CONTRACT-enmity.md:52`), then `002FE950(unit)` (`003112AC`). `002FE950` is the HP-stage pulse for category-`0xF` foes, which writes unit `+0xEAC`/`+0xEB0` (`the-battle-unit-field-map.md:504`; its own gate is `[+0x698]+5 == 1` and `[unit+0x56] == 0xF`, `002FE974`–`002FE97E`). After that come the register restores (`003112B1`–`003112C9`), the cookie check `00808C40` (`003112DC`) and `ret`.
+
+**Exit map.**
+- Gates 1–3 (`00310DD6`, `00310E0E`, `00310E1B`) → `003112D1`: nothing below them runs, not even the decay.
+- The Esper dismiss (`00310EFD`) → `003112C1`: the dismiss runs, then nothing else.
+- Gates 4–7 (`00310F19`, `00310F33`, `00310F3C`, `00310F4F`) → `003112A1`: only the decay and `002FE950` run.
+- The normal path runs steps 3–7 in order.
+
+**Loops.** There are exactly three: the trap list (step 4), the party gather (step 6) and the bonus loop (step 6). There is no other back-edge in the body. Of the three `003112F0` calls, the first runs once; the second runs once per affected unit (at most 4); the third runs once per gathered member, or only for the picker on outcomes 3 and 5.
 
 ## Falsification pass 1 — 2026-09-12 (OPUS)
 
@@ -563,8 +607,8 @@ wrong; when it fails *alongside* a claim that should hold, the instrument is the
 the claim. Recorded because the same shape will recur: every compiler-emitted division by a constant
 carries this correction, and reading it off the input is the natural mistake.
 
-**Not claimed:** nothing here was executed or observed live. `+0x28` — "one-fiftieth of *what*" —
-remains unestablished, as §5 says; the five-stage bodies were not re-read beyond their entry sizes,
+**Not claimed:** nothing here was executed or observed live. ~~`+0x28` — "one-fiftieth of *what*" —
+remains unestablished, as §5 says;~~ *(answered: `+0x28` is max MP — see §10 and §13, resolved 2026-09-11; 2026-10-02, OPUS)*; the five-stage bodies were not re-read beyond their entry sizes,
 and the two suppression gates were left to §13's treatment.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)

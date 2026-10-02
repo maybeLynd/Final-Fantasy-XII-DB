@@ -101,7 +101,7 @@ fact in this subsystem:
 
 ## 4. Preconditions · postconditions · invariants
 
-**Preconditions.** Six gates, all of which must pass, in `00310DB0`'s first ninety instructions, and
+**Preconditions.** ~~Six gates, all of which must pass,~~ Seven gates *(corrected 2026-10-02, OPUS: gates 1-3 stop everything; the readiness probe `00265680` (`00310F12`), gates 4-5 and gate 6 skip to the common tail `003112A1`, which still runs the enmity decay `00321530` and `002FE950`; a party Esper record can be dismissed (`00310EF8`) between gate 3 and the probe - the periodic tick page, section 14)*, in `00310DB0`'s first ninety instructions, and
 **their order is load-bearing** (see I-1):
 
 | | gate | site |
@@ -116,7 +116,7 @@ fact in this subsystem:
 untouched**: between gate 1 and gate 2, and unconditionally once gate 1 passes, the tick recomputes
 two of the unit's own fields — `00310DE4` stores `00305E70`'s result into `[unit + 0x24]` and
 `00310DEC` stores `002E8100([unit + 8])`'s into `[unit + 0x60]` — and I-1's deadline check may clear a
-flag bit. Everything else the unit receives comes through `003112F0`.
+flag bit. ~~Everything else the unit receives comes through `003112F0`.~~ The unit also receives two further `003112F0` applies, each built by `00385F60` (`003110AB`, `0031126C`), walk MP through `00300CE0` (`003110D7`), enmity decay `00321530` (`003112A4`) and, before the record, the Esper dismiss `003138D0` (`00310EF8`) *(corrected 2026-10-02, OPUS: checked at `00310DB0`)*.
 
 ### The seven cross-operation invariants
 
@@ -164,10 +164,10 @@ a scan looking for one will report a clean, wrong zero. *This invariant is the r
 page carries a published correction, and it is why it belongs in a contract.*
 
 **I-5 — The result record is the only channel between the stages.** No stage calls another; they
-communicate solely by accumulating into `+0x24` and setting bits in `+0x2C` / `+0x140`. Three stages
+communicate solely by accumulating into `+0x24` and setting bits in `+0x2C` / `+0x140`. ~~Three stages
 add to one accumulator, and the sum does not depend on the order in which they do — *but the
-generator's stream position does*, because stage 2 draws (§9) and stages 4 and 5 do not. **An
-implementation may not reorder the stages even though the arithmetic would survive it.**
+generator's stream position does*,~~ Stages 2 and 4 add to the accumulator and stage 5 overwrites it (`00386A23 mov dword ptr [r13 + 0x24], edx`, which can store 0: `003869AF jl 003869EB`), so the order matters for `+0x24` — *and so does the generator's stream position* *(corrected 2026-10-02, OPUS: checked at `00386A23`)*, because stage 2 draws (§9) and stages 4 and 5 do not. **An
+implementation may not reorder the stages~~ even though the arithmetic would survive it~~.** *(The arithmetic would not survive it either: stage 5 overwrites `+0x24`; corrected 2026-10-02, OPUS.)*
 
 **I-6 — Expiry detects; it never removes.** Stage 3 appends the expired id to `+0x3E` and writes the
 zeroed timer to `+0x42 + slot*2`; removal is `003112F0`'s. **This is why a status wearing off and a
@@ -211,14 +211,14 @@ I-1; and stage 5's per-unit tick counter in the 64-byte record selected from `02
 ## 7. State transitions
 
 Per tick, per eligible unit: *gate 1 → recompute `[unit+0x24]` and `[unit+0x60]` → deadline check
-(I-1) → gates 2–6 → zero the record → stage 1..5 → apply*.
+(I-1) → gates 2–6 → zero the record → stage 1..5 → ~~apply~~ apply → the rest of the body, which this order omitted: 26 more calls after `00310FAC`, among them two further `00385F60` builds applied through `003112F0` (`003110AB`, `0031126C`), walk MP (`003110C3` / `003110D7`) and enmity decay (`003112A4`)*. *(corrected 2026-10-02, OPUS: checked at `00310DB0`)*
 A status transitions `present → expired` only by its timer reaching zero in stage 3 (effect-slot) or
 its duration running out in stage 2 (status-word), and `expired → absent` only inside `003112F0`.
 
 ## 8. Script · resource · event interactions
 
 Three authored inputs, none of them written here: `status_data.bin` (`+8` duration factor, `+9` beat
-factor, `+6` effect-timer slot index, `0xFF` meaning none), the effect table at `02EBF040` that keys
+factor~~, `+6` effect-timer slot index, `0xFF` meaning none~~ — its `+6` is the flag word; the effect-timer slot index, `0xFF` meaning none, is byte `+6` of the effect table's rows *(corrected 2026-10-02, OPUS: `00385585`, `003855FD`–`00385604`; checked against `status_data.bin`)*), the effect table at `02EBF040` that keys
 stage 3's eight slots, and the forty 64-byte records at `0208D494` (with `0208DE94` for the
 owner-indexed case) whose first word is stage 5's per-unit counter.
 
@@ -278,8 +278,8 @@ beat, `status_data +9` / 10 seconds at either frame rate: Poison every 12 s, Sap
 second is the stage-4 drain's interval, not theirs. *(Corrected 2026-09-29, FABLE, Claude Opus 5.5;
 `_index/candidates/pkg-gp-status-poison/beat.py` S D M. The seconds rest on the tick running once per unit per frame.)* Poison
 and Sap hurt for an exact amount; **Regen, alone among them, heals a different amount every beat**; ~~MP creeps back at max
-MP / 50 per beat~~ **on a field whose word `022C314C` has bit 2, MP drains by max MP / 50 per beat (at least 1)**; on one with
-bit 1, HP drains by 1 % of max HP per beat *(Corrected 2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 310; bytes re-read.)*. Stage 4 (`00385CA0`, gated by bits 1 and 2 of the active field's word) stores
+MP / 50 per beat~~ **on a field whose word `022C314C` has ~~bit 2~~ mask 2 (bit 1, counting from zero), MP drains by max MP / 50 per beat (at least 1)**; on one with
+~~bit 1~~ mask 1 (bit 0), HP drains by 1 % of max HP per beat *(corrected 2026-10-02, OPUS: §T12's narrowing, `00385CCE` passes mask 1 and `00385D6A` mask 2)* *(Corrected 2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 310; bytes re-read.)*. Stage 4 (`00385CA0`, gated by ~~bits 1 and 2~~ masks 1 and 2, bits 0 and 1, of the active field's word) stores
 `+0x2A = maxMP / −50` (`00385DBC`–`00385DCD`) and `+0x24 = maxHP / −100` (`00385D51`–`00385D62`). The sink adds both:
 `00311673` passes `+0x2A` to `BattleStats_ModifyPrimaryResource`, which adds the delta to the current MP,
 and `00311620` passes `+0x24` to the HP write. The positive heal of stage 5 (`00386A12`–`00386A23`) is the control; a disengaged enemy out of anyone's sight heals 1 %, then 2 %, then 5 % of its max HP
@@ -308,12 +308,12 @@ CONTRACT READY header as evidence of execution.*
 
 ## 14. Unresolved
 
-- The other 62 bytes of stage 5's 64-byte records.
-- What values above 1 `0030AB40` returns — this caller reduces it to `> 1`, which constrains `Z-13`
-  without answering it.
+- ~~The other 62 bytes of stage 5's 64-byte records.~~ The rest of those records: they are the per-combatant records based at `0208D480` / `0208DE80` (where-mp-comes-from.md §5, CS-6); stage 5's counter is their field `+0x14` and `+0x18` is the walk-MP carry, so not 62 unread bytes; the remaining fields are not mapped here *(corrected 2026-10-02, OPUS: `00386885` / `003868AD`, `002F9474`)*.
+- ~~What values above 1 `0030AB40` returns — this caller reduces it to `> 1`, which constrains `Z-13`
+  without answering it.~~ *(answered: see CONTRACT-auto-status-rebuild.md §13f, EXP-197 — `0030AB40` returns `(computed == expected) + 1`, 1 or 2; 2026-10-02, OPUS)*
 - Whether the `+0x2C` and `+0x140` flag bits are read anywhere but `003112F0`.
-- What `byte[stats + 0x1C2]` is — it bounds Regen's random heal and divides without a guard in that
-  arm. Named here as a field, not as a meaning.
+- ~~What `byte[stats + 0x1C2]` is~~ *(answered: see the status write §2.4a — `(rand % level) + 1`, the unit level at `+0x1C2` — and CONTRACT-auto-status-rebuild.md §13al; 2026-10-02, OPUS)* — it bounds Regen's random heal and divides without a guard in that
+  arm. ~~Named here as a field, not as a meaning.~~
 
 ## 15. Evidence
 

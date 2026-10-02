@@ -64,7 +64,7 @@ nothing back, and then writes to it anyway. The result is an instant close to de
 dialog — the classic "it just disappeared" report. It is not a corrupted save and it is not a bad
 install; it is the engine trusting an allocation that failed.~~
 *(corrected 2026-09-28, FABLE, Claude Opus 5.5, on ASTRA's allocator-retry return: the crash narrative was never observed, and it leaves out the retries and the null checks the code does have.)* **What the game does when memory runs out has not been observed.** In the code:
-- **The arena retries before it fails.** `0036BFE0` returns null only when the heap's callback slot answered 0 (or is empty) and the reclaim step (`0036AAD0` / `0036ABE0`) produced 0 (`0036C0AE`–`0036C0C4`). Otherwise it tries again. ~~What the callback and the reclaim do is not established.~~ *(Reconciled 2026-09-30, SWE2-DATA: the reclaim is the compaction. `0036AAD0` / `0036ABE0` pick a tagged source block and `0036A2A0` relocates it, so a retry can succeed after a move (the SECTION-07 section below). What the heap's callback slot holds is `SD-164`.)*
+- **The arena retries before it fails.** `0036BFE0` returns null only when the heap's callback slot answered 0 (or is empty) and the reclaim step (`0036AAD0` / `0036ABE0`) produced 0 (`0036C0AE`–`0036C0C4`). Otherwise it tries again — and when the selected arena's init bit is clear it spins forever at `0036C000` instead (RC-11 part 2; added 2026-09-30 on SWE2-AUDIT-SEM's batch-4 review §5). ~~What the callback and the reclaim do is not established.~~ *(Reconciled 2026-09-30, SWE2-DATA: the reclaim is the compaction. `0036AAD0` / `0036ABE0` pick a tagged source block and `0036A2A0` relocates it, so a retry can succeed after a move (the SECTION-07 section below). What the heap's callback slot holds is `SD-164`.)*
 - **Some callers handle a null.** The nav grid's allocation helper skips its initializer, and two effect constructors take an allocation-failure branch (§2).
 - **Some do not.** The nav grid rebuild stores the result and `memset`s it with no test (both sites in [the record](../../_index/candidates/fable-returns-0928g/README.md)), so a null there would fault on the first write.
 - **Not established here:** whether any player-visible message, fallback or crash follows. No census of which callers test the result has been made (`SD-165`, SWE2-DATA, 2026-09-30).
@@ -497,7 +497,7 @@ actor.
 ### Failure is not handled
 
 ~~`_set_new_mode` is imported and **never called**, so the CRT's new-handler mode stays at its~~
-~~default of 0~~ *(Corrected 2026-09-30, SWE2-DATA: it is called once, as `_set_new_mode(0)`, by the first C++ initializer `00808D5C` through the import thunk `00862046`; the argument comes from the folded `return 0` stub (`pf_mem_checks.py` M1d). So the new-handler mode is 0 by an explicit call)*: `malloc` returns `NULL` on failure rather than invoking a handler. The EXE imports
+~~default of 0~~ *(Corrected 2026-09-30, SWE2-DATA: it is called once, as `_set_new_mode(0)`, by the first C++ initializer `00808D5C` through the import thunk `00862046`; the argument comes from the folded `return 0` stub (`pf_mem_checks.py` M1d). The shape is MSVC's stock `pre_cpp_initialization` — set the unhandled-exception filter, then `_set_new_mode(_get_startup_new_mode())` with the default stub returning 0 — toolchain startup, not a game decision (SWE2-AUDIT-SEM batch-4 review §2). So the new-handler mode is 0 by an explicit call)*: `malloc` returns `NULL` on failure rather than invoking a handler. The EXE imports
 no `operator new` and no `operator delete` — every allocation route read for this document goes to
 `malloc` or `_aligned_malloc` directly.
 
@@ -1488,15 +1488,15 @@ current one (`0036C5FD  cmp eax, r8d`). So the callers give the range.
 
 **Every literal is 0 or 1.** And the four computed sites forward a caller's parameter rather than
 deriving a wide value — `FUN_003AB910` is the clearest: `test cl, 3` / `setne r8b` / `cmp r8d, 1`,
-then `jmp 0036C5D0` when it is 1 and `jmp 0036C620` when it is not. **A boolean dispatch.**
+then `jmp 0036C5D0` when it is 1 and `jmp 0036C620` when it is not. ~~**A boolean dispatch.**~~ The boolean only picks the helper; the index rides in `edx` unchanged *(qualified 2026-10-02, OPUS - see the qualification below)*.
 
 ### So the accounting "array" is the two dword halves of the qword at `022D8E10`
 
 Index 0 is skipped at `00369B1F` (`test al, al` / `je`), index 1 writes `022D8E14`, and the
 initializer's `qword [022D8E10] = 0` at `00369DC5` zeroes both at once — which is exactly why the
 initializer writes a qword there and dwords elsewhere. **`022D8E18` is element 2 and is never
-reached.** The current-category byte is safe, `022D8E1C`, `022D8E20` and `022D8E28` are safe, and
-**this page's scalar model stands.**
+reached.** ~~The current-category byte is safe, `022D8E1C`, `022D8E20` and `022D8E28` are safe, and
+**this page's scalar model stands.**~~ That holds for the literal call sites *(qualified 2026-10-02, OPUS - see the qualification below)*.
 
 The category pushed onto the selection stack (3–18, measured above) and `[rec+0x17]` (0 or 1) are
 **different value spaces**, which is what the narrowing suspected and could not yet show.
@@ -1505,6 +1505,28 @@ The category pushed onto the selection stack (3–18, measured above) and `[rec+
 ways, and it resolved in favour of the document I raised it against. The residual uncertainty is the
 four forwarding sites: each passes a caller's parameter, and none of their callers was read. That is
 a smaller claim than the one this section started with, and it is stated rather than closed over.)*
+
+### The closure qualified: the forwarding path carries a nibble, not a boolean (OPUS, 2026-10-02)
+
+*On ASTRA's accounting-dispatch-index (`_experiments/evidence/accounting-dispatch-index/`), re-read at the bytes
+(control: `_index/candidates/opus-accounting-qualify-1002/accounting_check.py`).* The closure above called `003AB910` a
+boolean dispatch. It is not.
+- The boolean in `r8` (`test cl, 3` / `setne r8b`) only picks the helper for the storage representation: `0036C5D0`
+  or `0036C620`.
+- The new index rides in `edx`, which `003AB910` never writes.
+- `0036C5D0` replaces `r8` at once (`movsxd r8, edx`, `0036C5D0`), and `0036C620` sign-extends `edx` the same way.
+  Both debit `022D8E10 + old * 4`, credit `022D8E10 + new * 4`, and store the low byte at `+0x17`, with no 0/1
+  bound.
+
+`003AB910` has one caller: the instance factory `0041F340`. It forwards CharacterRenderRecord `+0x0C1`, read with
+`movsx` (`0041F515`, `0041F525`). Both known writers of `+0x0C1`, `002E28E0` and `002E3110`, store a source byte's
+upper nibble (`shr edx, 4`), so on those paths the index is 0..15. It is 0 or 1 exactly when the source byte is below
+`0x20`.
+
+**So the closure holds for the literal call sites, and is open for this one path.** If a source byte at or above
+`0x20` reaches the factory, the credit lands at `022D8E18` or beyond, on the struct fields the initializer writes.
+Whether the shipped game ever supplies such a byte, and whether other writers of `+0x0C1` exist, is not established
+statically. The stored fields' own record is the type store's CharacterRenderRecord `+0x0C1` row (`b83439b6c`).
 
 ## The `0036CB00` exclusive subtree — all 3 members bound (SWE2-FRONTIER, followup queue)
 

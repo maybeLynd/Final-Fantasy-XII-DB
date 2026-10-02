@@ -119,7 +119,7 @@ body at [`007EBB51`](../_index/ADDRESS-INDEX.md); the decoder calls land at the 
 the `0019C5D0` logger carries all 27 `[sead][!!error!!]` strings.
 
 `Sound::SetPanning` reporting three separate ranges — `pan`, `frpan`, `udpan` — indicates
-**three panning axes**, not one: left/right, front/rear, and up/down.
+~~**three panning axes**, not one: left/right, front/rear, and up/down.~~ three ranges, but not three axes: the driver turns `pan` into an azimuth and `frpan` into a distance factor, and carries `udpan` down to `007B8430` without using it *(corrected 2026-10-02, OPUS, from UQ-242's dated answer - the request page's geometry)*.
 
 ## 3. Key addresses
 
@@ -159,8 +159,8 @@ Sound::SetVolume(this, float volume, ...)
         warn "[sead][!warn!]Sound::SetVolume failed range over %f"
 ```
 
-The upper bound is a global (`DAT_01cebba8`), not a literal — so the volume ceiling is
-configurable rather than hardcoded.
+The upper bound is a global (`DAT_01cebba8`), not a literal — ~~so the volume ceiling is
+configurable rather than hardcoded.~~ but that global is the float constant 1.0, which no instruction writes (1,488 reads), so the ceiling is fixed at 1.0 *(corrected 2026-10-02, OPUS, at the bytes)*.
 
 ## 4. Data structures and formulas
 
@@ -299,7 +299,7 @@ three that do are:
 [sead][!warn!]Sound:*SetPanning udpan range over! %f
 ```
 
-The summary is accurate in substance — the function does handle three panning axes — but it sat in a
+The summary is accurate in substance — the function does handle three panning ~~axes~~ ranges *(only two are used; see §2, corrected 2026-10-02, OPUS)* — but it sat in a
 column of otherwise **verbatim** quotations, where a reader has no way to tell a synthesis from a
 literal. In a database that treats an authored string as tier-2 evidence, **a quoted string must be
 quotable**. Corrected in §2, and it also strengthens the attribution: three separate diagnostics all

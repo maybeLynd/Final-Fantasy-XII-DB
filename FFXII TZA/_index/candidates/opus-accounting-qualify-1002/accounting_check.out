@@ -1,0 +1,22 @@
+ok   003AB91A test cl, 3
+ok   003AB923 setne r8b
+ok   003AB932 jmp 0x36c5d0
+ok   003AB937 jmp 0x36c620
+ok   0036C5D0 movsxd r8, edx
+ok   0036C616 mov byte ptr [rdx + 0x17], r8b
+ok   0036C646 movsxd rax, edx
+ok   0041F515 movsx ebx, byte ptr [r14 + 0xc1]
+ok   0041F525 mov edx, ebx
+ok   0041F527 call 0x3ab910
+ok   002E29B6 shr edx, 4
+ok   002E29E9 mov byte ptr [rcx + 0xc1], dl
+ok   002E3380 shr edx, 4
+ok   002E33B3 mov byte ptr [rcx + 0xc1], dl
+ok   0036BFF8 bt eax, ecx
+ok   0036BFFB jb 0x36c002
+ok   0036C000 jmp 0x36c000
+ok   00808D60 call 0x809b44
+ok   00808D65 call 0x5c5230
+ok   00808D70 jmp 0x862046
+ok   00809B4B jmp qword ptr [rip + 0xb86fe]
+FAILS 0

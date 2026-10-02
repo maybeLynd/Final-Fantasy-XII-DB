@@ -60,7 +60,7 @@ BattleStatsRecord
   +0x78  u8[16]   derived augment layer   — 128 bits, rebuilt from equipment, passives, licences
 
 FormulaEvaluationContext
-  +0x08  u32      flag word (bits 12, 16 and 23 participate in §4's revocation)
+  +0x08  u32      flag word (bits 12, 16 and 23 participate in §4's revocation)   <- corrected 2026-10-02, OPUS: not a flag word; the TARGET's status words +0x64 | +0x3C (0038485F-00384868), so bits 12, 16, 23 are Reverse, Disease, Reflect
   +0x18  u16      ~~a value from the global record at 02EBF188 (+0x55), or 0xFFFF when it is null~~
                   the TARGET's owning unit's byte +0x55; 0xFFFF when the lookup finds no unit; and 0x0000,
                   left from the clear at 003847E5, when the target argument is null  (corrected 2026-09-25)
@@ -108,9 +108,9 @@ copy while the other still holds the bit is equally silent.
 can tell which layer a bit came from**, because the information is not carried anywhere else.
 
 **L-4 — Shared bit positions plus disjoint namespaces produce a real, observable alias.** The layers
-index the same bit for different meanings — bit 2 is *Petrify* in the mutable layer and
+index the same bit for different meanings — ~~bit 2 is *Petrify* in the mutable layer and
 *AccuracyBoost* in the derived, bit 16 is *Disease* and *Weatherproof*. Because L-3 merges them, **a
-unit with Disease satisfies the early-out intended for Weatherproof.** This is a property of the
+unit with Disease satisfies the early-out intended for Weatherproof.**~~ bits 2 and 16 of the mutable layer are effect ids, aliased by L-3 with *AccuracyBoost* and *Weatherproof* of the derived layer. The battle statuses Petrify and Disease are not in either layer: they live in the status words `+0x64` / `+0x3C` (§3), which `003847C0` copies to context `+4` / `+8`, not `+0x1A`, so a unit with the Disease status does not satisfy the Weatherproof early-out unless something writes id 16 into `+0x68`, and no such writer is shown *(corrected 2026-10-02, OPUS: checked at `00384820`–`00384858` and `0030E360`, which has no call to `0030E130`; two-layer-effect-model.md §5, clarified 2026-09-29)*. This is a property of the
 engine, not a documentation ambiguity, and it follows from L-3 and L-4 together — which is precisely
 why neither operation's own contract can state it.
 
@@ -162,7 +162,7 @@ many functions (`tools/ripscan.py`). It is a shared "current target unit" slot, 
 
 | | |
 |---|---|
-| **Sibling** | [`CONTRACT-status-write.md`](CONTRACT-status-write.md) — the *operation*; it calls the mutate body and states nothing about the layers |
+| **Sibling** | [`CONTRACT-status-write.md`](CONTRACT-status-write.md) — the *operation*; ~~it calls the mutate body and~~ it does not call the mutate body *(corrected 2026-10-02, OPUS: checked at `0030E360`, whose call targets do not include `0030E130`; two-layer-effect-model.md §5)* and states nothing about the layers |
 | **Sibling** | [`CONTRACT-periodic-tick.md`](CONTRACT-periodic-tick.md) — reads both layers to decide expiry, and is the clearest consumer of L-3 |
 | **Downstream** | every formula calculator, through the merged bitmap |
 
@@ -216,7 +216,7 @@ L-2, L-5 and §5. The evidence class is native replay, not live.
 
 ## 14. Unresolved
 
-- What the flag bits 12, 16 and 23 of context `+0x8` mean, and what effect id 15 is named.
+- ~~What the flag bits 12, 16 and 23 of context `+0x8` mean,~~ *(answered: see the-thirty-two-statuses.md §4 — context `+0x8` is the target's status words `+0x64` / `+0x3C`, `0038485F`–`00384868`, so bits 12, 16 and 23 are Reverse, Disease and Reflect; 2026-10-02, OPUS)* and what effect id 15 is named.
 - What `byte [rsi]` bit 5 is in L-5's second condition.
 - The rest of the namespace map beyond the three bits the page establishes.
 
@@ -245,8 +245,8 @@ this contract for a one-line remark.*
 
 - **CombatFormula — SERVICE, and the only real relationship.** `003847C0` belongs to that layer and
   is how it reads this one. Stated in §2 and §6; it is the contract's subject.
-- **Status_Periodic_Terminal — internal.** `0030E360`, this category's own status write, is the
-  principal caller of the mutate operation.
+- **Status_Periodic_Terminal — internal.** `0030E360`, this category's own status write, ~~is the
+  principal caller of the mutate operation~~ does not call the mutate operation; its callers are `003112F0` (applier step 14), `002FDDA0` and `0030FED0` *(corrected 2026-10-02, OPUS: checked at `0030E360`)*.
 - **CombatAction, Gameplay, Spawn_Encounter_Lifecycle, Party, Rewards_Progression_Economy —
   MECHANICAL.** Each appears only as a *caller of the rebuild or the mutate operation*, or as a
   callee of one of them. **That fan-in is itself a fact this contract asserts**: L-1 holds no matter

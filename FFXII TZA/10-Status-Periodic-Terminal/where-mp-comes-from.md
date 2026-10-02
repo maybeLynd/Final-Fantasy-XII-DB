@@ -57,7 +57,7 @@ own data says whether it does.
 - **Across sides only.** Friendly fire gives nothing; so does an enemy hurting another enemy.
 - **A delta, not a set.** An action that *sets* HP to a number rather than subtracting from it grants
   no MP to anybody.
-- **KO, Stone and Vanish stop passive recovery** — and certain zones let it run anyway.
+- **KO, Stone and ~~Vanish~~ X-Zone stop passive recovery** *(corrected 2026-10-02, OPUS: the predicate is `0x80000003`, ids 0, 1 and 31; id 31 is X-Zone in the thirty-two statuses §2, and "Vanish" there is id 24, Invisible)* — and certain zones let it run anyway.
 
 **And some zones are simply richer in MP.** In 173 of the game's 1,154 fields, every MP gain from
 damage is **tripled** and walking recovery is **three times faster**. It is one two-bit number on the
@@ -192,7 +192,7 @@ calls take the same `(caster, target)` pair, and the *target* function's result 
 `target->pBkbi` while the *caster* function's result is credited to `caster->pBkbi`.
 
 **And `killed` is proven to be a kill flag** — it is 1 exactly when the target is now out of play
-(`(bkbi[+0x64] | bkbi[+0x3C]) & 0x80000003`, the KO / Stone / Vanish predicate from
+(`(bkbi[+0x64] | bkbi[+0x3C]) & 0x80000003`, the KO / Stone / ~~Vanish~~ X-Zone (id 31) *(corrected 2026-10-02, OPUS)* predicate from
 [`../03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md`](../03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md))
 **and** the field's bit 15 does not override it.
 
@@ -347,7 +347,7 @@ distribution `0`: 945, `1`: 36, `2`: 69, `3`: 104 over 1,154 fields.
 comes from save payload 1063 bits 4–5 instead of the field record — so the MP economy can be switched
 globally without touching a single field row.
 
-### Five new entries for the effect namespace
+### ~~Five~~ Nine new entries for the effect namespace *(count corrected 2026-10-02, OPUS: the table has nine rows)*
 
 All proven by function, none named on the licence board here:
 
@@ -422,7 +422,7 @@ answered 2026-09-11): registry slot 29 is bound by `00236C30` from directory slo
 `BattleStorage_InitializeWorkArrays` through `003843F0(0x13, …, "STATIC")` — via
 `AreaData_BindAndRebaseSectionDescriptor` (`00236F88`–`00236F96`, the dword at `+0xEC` of the
 blob); that section (file offset `0x267B0` in the `us` file) is an `st2e` table of 129 rows × 8
-bytes `{u16 nameId, u16 0x5000 + row, u16 parameter, u16 0xFF}`, and rows `0x5B`, `0x5C`, `0x5D`
+bytes `{u16 nameId, u16 0x5000 + row, u16 parameter,` ~~`u16 0xFF}`~~ `u16}` whose low byte `+6` is the stage-3 timer-slot index: `0xFF` in 126 rows, `03` / `04` / `05` in rows 55 / 56 / 57 *(corrected 2026-10-02, OPUS: checked against `battle_pack.bin` slot 29; the periodic tick reads it at `00385619`)*, and rows `0x5B`, `0x5C`, `0x5D`
 carry `parameter = 10` each — so Channeling 1 / 2 / 3 cut the MP cost by 10 % apiece, 30 % with
 all three, and a 31-MP spell costs 27 / 24 / 21.
 
@@ -496,7 +496,7 @@ all three, and a 31-MP spell costs 27 / 24 / 21.
   (`00236C92`–`00236C9D`, `003845F0`); in the shipped file that is an `st2e` table at `0x1B58`
   ([the string-table page](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md) §2) with **25 rows of 8 bytes** (header count 25, record size 8, header 32) —
   exactly the compiled-in 20 + 5, so the "adding rows does nothing" note above is also the file's
-  own shape. Bytes `+4`–`+7` of every row are zero.
+  own shape. ~~Bytes `+4`–`+7` of every row are zero.~~ Bytes `+4`–`+7` are zero in rows 0–19 only; rows 20–24 hold 25, 50, 100, 200 and 1,000 there, the `mpThreshold` column *(corrected 2026-10-02, OPUS: checked against `battle_pack.bin` at `0x1B58`; §2, walking recovery)*.
 
   **The damage ladder (rows 0–19):**
 
@@ -702,8 +702,8 @@ the row block *before* the `inc`/bound check can run, and the escape is reached 
 **Not attacked, and still resting where the document says it rests:** the identification of record
 `+0x28` as maximum MP, which depends on the `.ard`-column-plus-four join in
 [`../08-Combat-Formula/where-a-stat-number-comes-from.md`](../08-Combat-Formula/where-a-stat-number-comes-from.md);
-the "173 of 1,154 fields" figure, borrowed at tier 2 and not re-censused; and the four functions
-listed as unread in §5, which remain unread.
+the "173 of 1,154 fields" figure, borrowed at tier 2 and not re-censused; ~~and the four functions
+listed as unread in §5, which remain unread.~~ *(answered: see §5 — every item there is ticked, CS-1 to CS-6 and FV-4 among them; 2026-10-02, OPUS)*
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 

@@ -78,7 +78,7 @@ Both records are mapped to their units (`BattleStats_FindOwningBattleUnit` at `0
 | `bit` | `1 << status` | (`0030E40A`–`0030E410`) |
 | `wasPresent` | `((+0x3C \| +0x64) & bit) != 0` | presence is the OR of the two status words (`0030E404`–`0030E41C`) |
 
-### 2.2 The gates, and the party-side shortcut
+### 2.2 The gates, and the ~~party-side~~ Esper shortcut *(corrected 2026-10-02, OPUS)*
 
 With flag bit 0 clear, `BattleTarget_HasLow16EligibilitySuppression(targetUnit, sourceUnit)`
 (`0030B9B0`) non-zero **refuses** (`0030E424`–`0030E433`), and when adding,
@@ -88,7 +88,7 @@ status** — `bit & 0x80000003` (`0030E443`–`0030E45A`). The two are the halve
 
 Then, when adding (`0030E460`):
 
-- **the party-side shortcut**: a target unit whose record has kind byte `+5 == 0` and type byte
+- **the ~~party-side~~ Esper shortcut** *(corrected 2026-10-02, OPUS: type `0x1B..0x27` is the thirteen Esper rows; §1 and CONTRACT-status-write.md §10 row 3)*: a target unit whose record has kind byte `+5 == 0` and type byte
   `+4` in `0x1B..0x27` (`0030E478`–`0030E488` — the same thirteen-value range
   [the kind byte page](../../04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md) §2 found
   the type-keyed classification testing) given a **terminal** status runs `00300FC0(unit, 0)` —
@@ -131,8 +131,8 @@ the table at registry slot `02EBF118`, stride `*(u16*)(base+8)`, relocated throu
 `ImageAddress_ResolveRuntimePointer` (`003876D6`–`0038770E`) — takes its byte **`+9`**, and returns
 `byte9 × [01DFE0B4] × 30` (`00387714`–`0038771F`): the definition's duration unit, scaled by the
 status timer scale, in thirtieths. `BattleStatus_ComputeDefaultDwordParameter` (`00387730`, 645 B)
-is not read here (`FA-1`). **These are not the eight `+0x17C` timers the periodic tick decrements**;
-those come from the applier's `+0x42`–`+0x50`. What reads `+0xBC` and `+0x13C` is `FA-2`.
+~~is not read here (`FA-1`).~~ *(answered: see §2.4a and §7 `FA-1` — the default duration; 2026-10-02, OPUS)* **These are not the eight `+0x17C` timers the periodic tick decrements**;
+those come from the applier's `+0x42`–`+0x50`. ~~What reads `+0xBC` and `+0x13C` is `FA-2`.~~ *(answered: see §2.4a and §7 `FA-2` — the periodic tick's stage 2, `00386C70`; 2026-10-02, OPUS)*
 
 ### 2.4a What the two arrays are: a duration countdown and a beat timer, both driven by the periodic tick (FA-1 / FA-2, 2026-09-12)
 
@@ -232,7 +232,7 @@ two layers ([two-layer effect model](../Status-And-Augment-Layers/two-layer-effe
 | # | site | gate | what |
 |---|---|---|---|
 | 1 | `0030E5D1`–`0030E60E` | — | a `0x148`-byte result record is zeroed and built, `(target, status, &record)`: **adding** → `00386A50`, **removing** → `00386A70`. Both start with `BattleFormula_InitializeResultRecord(&record, 0, target)` (`003848E0`, at `00386A61` / `00386A8F`). **On add the record is then marked inactive** (`00386A66 and [+0x2C], ~1`) — nothing is applied. **On remove, only status 28 with current HP non-zero does anything**: `+0x2C \|= 0x108` (apply HP, absolute) and `+0x24 = (HP + 1) / 2` (`00386A94`–`00386AB0`); every other removal is marked inactive (`00386AC3`) |
-| 2 | `0030E610`–`0030E638` | record `+0x2C` bit 0 | `BattleFormula_ApplyTargetResult(&record, NULL, target, 0xFFFF, flags)` — so in the shipped data this fires for exactly one transition: **removing status 28 halves the unit's current HP, rounded up**, through the ordinary HP write. Status 28 is also the bit that doubles the HP cap ([the HP write](../../08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md) §2.3); the two mechanics together are the shape players know as Bubble, and the name is still not attached here (`EY-1`) |
+| 2 | `0030E610`–`0030E638` | record `+0x2C` bit 0 | `BattleFormula_ApplyTargetResult(&record, NULL, target, 0xFFFF, flags)` — so in the shipped data this fires for exactly one transition: **removing status 28 halves the unit's current HP, rounded up**, through the ordinary HP write. Status 28 is also the bit that doubles the HP cap ([the HP write](../../08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md) §2.3); the two mechanics together are the shape players know as Bubble, ~~and the name is still not attached here (`EY-1`)~~ and status 28 is **Bubble** *(answered: see the thirty-two statuses §2, row 28; 2026-10-02, OPUS)* |
 | 3 | `0030E63D`–`0030E6D7` | adding | **the cascade**: the status's definition record (`02EBF118`, stride from `+8`, relocated as in 2.4) gives a 32-bit mask at **`+0x0C`**; for every set bit *i*, **`0030E360(target, source, i, 0, 0, flags \| 0x200, mode 0)`** — *clear* status *i*, without the final recompute. This is the `clearMask` [the field-record page](../../03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md) §10 used to check the help-text alignment (Stone clears Petrify, Haste clears Slow) |
 | 4 | `0030E6E7`–`0030E6FF` | `showReaction`, adding, target unit | `003284D0(unit, status)`: behind `002FA3B0(unit->p_10)` (`003284E4`; the gate reads only `rcx` — "within 24 units of the party leader", corrected 2026-09-12, `EY-5`), enqueues `{p_10, status, 2}` through `BattlePresentation_EnqueueReactionWithRandomizedVariant` (`00328513`) — **the status-applied reaction** |
 | 5 | `0030E704`–`0030E727` | `extraEffect` | adding → `0046A800(target, status)`: only for status **1** (`0046A83A` → `0x12`) and **31** (`0046A847` → `0x11`), behind `002FA390()`, into `0046AB10(target, code, &zeros)` — **the battle event poster**: `0x12` posts "… turns to stone." and `0x11` "… is cast into the void.", rows `0x12` / `0x11` of `battle_message.bin` ([the post-result events page](../../07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md) §2.7; `FA-3`'s poster half, **answered**); removing → the 3-byte stub `0016D6A0`, reached by the same `call rax` through a `cmovne` — the call happens either way, only the callee differs |
@@ -253,7 +253,7 @@ status id, decoded from the image):
 | **8** | `0030E7B3` | unit `+0xE9A` bit 0 := the same predicate (`0030E7B7`–`0030E7D4`) |
 | **4** | `0030E75B` | event `0x2001`, add or remove |
 | **5**, **27** | `0030E770` | `BattleUnit_ResetActionControlForStatusTransition(unit, flag)` with `flag = 0` when the unit has bit 24, or `+0x714 ≤ 0x21E` with `+0x6B4 ≥ 9`, or `+0x714 == 0x113` (`0030E770`–`0030E79F` — the field frame's reset loop uses the identical filter), then `BattleUnit_UpdateEngagementStateFlag` (`00307D10`) |
-| all others | `0030E816` | nothing |
+| all others | `0030E816` | ~~nothing~~ the shared tail: `0030FED0` runs unless `flags` bit 9 is set *(corrected 2026-10-02, OPUS: `0030E816`–`0030E828`; "Falsification pass 1" below)* |
 
 The three terminal cases were already read by the field-record page §2d; the other four are new
 here. Events go through `BattleUnit_DispatchActorPresentationEvent` (`003299B0`) with `r8d = 0`.
@@ -305,7 +305,7 @@ The four callees and two predicates §2.7 left unread, from their bodies:
 | `003001D0()` | collects the active members (slots 0–3, `0031B810`) that are not down — no terminal status, or the `00377C20()` waiver — into a four-entry table at `022C1788` and calls `002ECEC0([member + 0x10])` on each (`003001F8`–`00300263`): **the survivors' pass**, run only before requests `0x0B` and `0x18` |
 | `003138D0(flag)` | **dismisses the summoned Esper**: only in mode 1 ([the mode ladder](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md) §2c), it takes the slot-3 unit (`0031B8C0(3)`), and unless its current or remembered command (`+0x714`, or `+0xBA0` when flag bit 14 is set) is already `0x113` **Dismiss** ([the handler table](../../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md)), issues `00311CF0(actor, combatantId, 0, 0x113, 0)` — then toggles `+0x5AD0` bit 0 by `flag` (`003138D8`–`00313981`) |
 | `002372E0()` | **the whole roster is down**: every active slot 0–3 and reserve entry 0–8 holding a kind-0 unit of type ≤ 6 carries a terminal status (with the `00313F60` waiver) — request `0x0B`, the same predicate [the world tick](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md) §2.5 reads for battle-state bit 10 |
-| `002373C0()` | **the leader is down during a summon**: `003135C0()` is `mode == 1` (`getsummonmode`), and `BattleUnit_FindByCombatantId(003137F0())` — the summoner recorded at `+0x5AD5` — carries a terminal status — request `0x17` |
+| `002373C0()` | **the leader is down during a summon**: `003135C0()` is `mode == 1` (`getsummonmode`), and `BattleUnit_FindByCombatantId(003137F0())` — the summoner recorded at `+0x5AD5` — carries a terminal status — ~~request `0x17`~~ latch `0x800` only (`003010CE`); request `0x17` belongs to the party-focus test, with `0x100` (`003010D8`–`003010F1`) *(corrected 2026-10-02, OPUS: checked at `003010C5`–`003010F1`; §2.7)* |
 
 So the cleanup's tail reads as a whole: a fallen **Esper** (the party shortcut, kind 0 and type
 `0x1B`–`0x27`) has its action cancelled and is dismissed; any other fallen unit is stopped and
@@ -321,7 +321,7 @@ party control recomputed** — the summoner's fall ends the summon.
 |---|---:|---|
 | `0030E360` | 1,323 B | `BattleStats_ChangeStatusAndProcessSideEffects` — 14 call sites in 10 functions |
 | `0030E990` / `0030EAE0` | 35 / 38 B | `RemoveStatusMode0` / `AddStatusMode3` wrappers (field-record page §3) |
-| `0030F690` | 196 B | `BattleStats_RemoveStatusesFromMaskAndRecompute` — a caller, unread |
+| `0030F690` | 196 B | `BattleStats_RemoveStatusesFromMaskAndRecompute` — a caller, ~~unread~~ *(answered: see §4 — it passes the flags literal `0x217` at `0030F721` and recomputes once itself; 2026-10-02, OPUS)* |
 | `0030E130` | 553 B | the status-layer sibling; modes in 2.8 |
 | `00387730` | 645 B | `BattleStatus_ComputeDefaultDwordParameter(unused, target, status)` — the default duration, §2.4a |
 | `003876D0` | 88 B | `BattleStatus_ComputeDefaultShortTimer(status)` = definition `+9` × `[01DFE0B4]` × 30 — the beat timer, §2.4a |
@@ -341,7 +341,7 @@ party control recomputed** — the summoner's fall ends the summon.
 | `003112F0` | 2,040 B | `BattleFormula_ApplyTargetResult` |
 | `003848E0` | 205 B | `BattleFormula_InitializeResultRecord` — both builders start here; decoded on the result-record page's *create* row (FA-5) |
 | `00310780`, `003105D0`, `003219D0` | 225 / 418 / 296 B | defeat cleanup callees: release target relation, cancel the current action, propagate enmity |
-| `002372E0`, `002373C0`, `003001D0`, `003138D0` | 188 / 88 / 174 / 195 B | the defeat-condition predicates and the two unread steps |
+| `002372E0`, `002373C0`, `003001D0`, `003138D0` | 188 / 88 / 174 / 195 B | the defeat-condition predicates and the two ~~unread~~ steps *(answered: see §2.7a; 2026-10-02, OPUS)* |
 
 ### Named callees and their entries
 
@@ -366,7 +366,7 @@ party control recomputed** — the summoner's fall ends the summon.
 
 | address / offset | what |
 |---|---|
-| `02EBF118` | registry slot: the status definition table (`status_data.bin` by the field-record page); record stride at `+8`, records reached through the relocation; `+9` = duration unit, `+0x0C` = the mask of statuses this one clears |
+| `02EBF118` | registry slot: the status definition table (`status_data.bin` by the field-record page); record stride at `+8`, records reached through the relocation; ~~`+9` = duration unit~~ `+9` = beat, `+8` = duration base (§2.4a) *(corrected 2026-10-02, OPUS: `003876D0` reads `+9`, `00387730` reads `+8`)*, `+0x0C` = the mask of statuses this one clears |
 | `01DFE0B4` | the status timer scale (u32) |
 | BKBI `+0x38`, `+0x3C`, `+0x64` | the three status words; presence = `+0x3C \| +0x64` |
 | BKBI `+0xBC[32]` u32 | per-status parameter A, written on the `+0x64` modes |
@@ -382,7 +382,7 @@ negative `paramB`; **default parameter**: `+0xBC[s] = 00387730(0, target, s)` wh
 `adding && terminal && (+0x3C|+0x64) & 0x80000003 && !Bit15 → refuse`; the mode's own
 already-in-state test → refuse; `mode > 5 → refuse`.
 
-**The party shortcut**: `adding && kind == 0 && 0x1B ≤ type ≤ 0x27 && terminal → 00300FC0(unit,0); return`.
+**The ~~party~~ Esper shortcut** *(corrected 2026-10-02, OPUS: §2.2)*: `adding && kind == 0 && 0x1B ≤ type ≤ 0x27 && terminal → 00300FC0(unit,0); return`.
 
 **Side-effect gate**: `presentAfter != presentBefore`, over `+0x3C | +0x64`.
 
@@ -426,8 +426,8 @@ ChangeStatus(target, source, s, A, B, flags, mode)
   `_index/candidates/pkg-gp-status-poison/refresh.py`.)*
 - **The cascade is data**: `status_data.bin` record `+0x0C` is the mask of statuses cleared when
   this one is applied. Editing it changes what cures what without touching code.
-- **The duration unit is data too**: byte `+9`, scaled by `01DFE0B4` and `× 30`. A status with
-  byte 9 = 0 gets timer 0.
+- ~~**The duration unit is data too**: byte `+9`, scaled by `01DFE0B4` and `× 30`. A status with
+  byte 9 = 0 gets timer 0.~~ **The beat is data too**: byte `+9`, scaled by `01DFE0B4` and `× 30` (`003876D0`); a status with byte 9 = 0 gets beat 0. The duration is byte `+8` (`00387730`, §2.4a) *(corrected 2026-10-02, OPUS: §2.4a, 2026-09-12)*.
 - **KO, Stone and Vanished are the terminal three** — and for ~~party-type units~~ **summoned Espers** they bypass
   the masks entirely (defeat cleanup only), ~~which is why a party member's KO never posts rewards~~ so an Esper's KO
   never posts rewards. *Corrected 2026-09-26 (FABLE): party members take the full path (`row3.py` E1/E2).*
@@ -451,7 +451,7 @@ ChangeStatus(target, source, s, A, B, flags, mode)
   event poster (the ledger's 2026-09-11 narrowing — events `0x12` / `0x11` are "turns to stone" /
   "is cast into the void"); the cleanup's steps are §2.7a — the render side's defeat call, the
   stop-where-fallen writes, the survivors' pass, the Esper dismiss, and the two party-down
-  predicates. What `003E6B40` and `002ECEC0` do on the render record and the actor is not read. `FA-3`.
+  predicates. What `003E6B40` ~~and `002ECEC0` do~~ does on the render record ~~and the actor~~ is not read *(`002ECEC0` answered: see "Interior citation — frontier hub `002ECEC0`" below, 2026-09-18 — a context-to-render-record resolve that tails to `003AEEF0`; 2026-10-02, OPUS)*. `FA-3`.
 - [x] ~~**The names of statuses 4, 5, 8 and 27**, the four with terminal cases of their own; and
   what unit `+0xE9A` bits 0–1 ("applied by a party-side source", statuses 8 and 2) are read by.~~
   **ANSWERED 2026-09-12:** Sleep, Confuse, Poison and Berserk ([the thirty-two statuses](../the-thirty-two-statuses.md)); the two bits are
@@ -487,7 +487,7 @@ ChangeStatus(target, source, s, A, B, flags, mode)
 | `+0xE9A` bits 0–1 read only by the defeat-rewards function | the battle-unit census (`0xE9A`: 7 writes in two functions, one read) and `003122F4`–`0031232A` | 1 | PROVEN (static) |
 | The defeat cleanup's steps and predicates | `00300FC0`, `002ED180`, `0026DAC0`, `003001D0`, `003138D0`, `002372E0`, `002373C0`, `BattleUnit_FindByCombatantId` read whole; `003135C0` = `getsummonmode` (the mode ladder §2c); the `−1.0` at `01CEBC9C` | 1 | PROVEN (static) |
 | What `0046AB10` posts | the ledger's 2026-09-11 narrowing (the event poster; the steal-roll page §2.5) | 1 | PROVEN |
-| What the two builders do beyond the initialiser | **not established** | — | UNKNOWN |
+| What the two builders do beyond the initialiser | ~~**not established**~~ the add builder clears `+0x2C` bit 0; the remove builder, for status 28 with HP non-zero, sets `0x108` and halves HP into `+0x24` (§2.6 row 1) — `00386A50`, `00386A70`, executed in CONTRACT-status-write.md §13 *(corrected 2026-10-02, OPUS: checked at `00386A70`; CONTRACT-status-write.md `SW-2`, answered 2026-09-12)* | ~~—~~ 1 | ~~UNKNOWN~~ PROVEN |
 
 ## 9. Related
 
@@ -622,8 +622,8 @@ result discarded.)*
 `0030E877 call 00300FC0` was not re-read. **Correction to this section, same day:** `FA-3` is
 **answered**, not open — `0046AB10` is the battle event poster and `0x12` / `0x11` are the
 "turns to stone" / "cast into the void" rows of `battle_message.bin`, decoded from the archive
-on 2026-09-12. What remains open under that id is only `003E6B40` / `002ECEC0`, as §7 already
-says. `EY-1` remains open.
+on 2026-09-12. What remains open under that id is only `003E6B40` ~~/ `002ECEC0`~~ *(`002ECEC0` answered: see "Interior citation — frontier hub `002ECEC0`" below; 2026-10-02, OPUS)*, as §7 already
+says. ~~`EY-1` remains open.~~ *(answered: status 28 is Bubble — see the thirty-two statuses §2, row 28; 2026-10-02, OPUS)*
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 

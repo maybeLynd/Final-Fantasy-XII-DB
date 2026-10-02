@@ -1,0 +1,25 @@
+ok   00386A94 cmp ebx, 0x1c
+ok   00386AAE sar eax, 1
+ok   00386AB0 mov dword ptr [rdi + 0x24], eax
+ok   0030E610 test byte ptr [rsp + 0xac], bpl
+ok   0030E638 call 0x3112f0
+ok   00384827 test byte ptr [r9 + r11 + 0x68], dl
+ok   00384831 test byte ptr [r9 + r11 + 0x78], dl
+ok   0038484C or byte ptr [r9 + rbx + 0x1a], r8b
+ok   003855FD mov r8, qword ptr [rip + 0x2b39a3c]
+ok   00385604 movzx ecx, word ptr [r8 + 8]
+ok   00386885 lea rax, [rip + 0x1d06c08]
+ok   002F9439 lea rax, [rip + 0x1d94040]
+ok   0030E4CB cmp eax, 5
+ok   003010C5 call 0x2373c0
+ok   003010CE or dword ptr [rip + 0x1d88268], 0x800
+ok   003010D8 call 0x3272e0
+ok   00387746 mov eax, 0xb
+ok   0030FF07 xor r14d, r14d
+ok   0030E816 mov eax, dword ptr [rsp + 0x228]
+ok   0030E828 call 0x30fed0
+ok   00386A23 mov dword ptr [r13 + 0x24], edx
+ok   003868BD mov ebx, 0x14
+ok   003868C2 test rbx, rbx
+ok   00386E84 mov word ptr [r15], ax
+FAILS 0
