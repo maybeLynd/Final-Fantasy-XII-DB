@@ -8,7 +8,15 @@
 | Snapshot | this repo's text snapshot at `f26c5667` only; no executable, Ghidra, extracted data or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item quotes or paraphrases a page and gives its location. Several pages in this folder are being edited by other lanes; every quotation is of the snapshot text. |
 
-**Counts:** COUNTS-PLACEHOLDER
+**Counts:** **23 pages read in full** (`README.md` + 22 system pages; 18,141 lines). 18 `.tsv` members and 2 `.out` files were checked for layout and counts only; `.py` headers only.
+
+- **Interface:** 38 entry-point rows mapped (24 text pipeline, 14 widget, primitive and icon), plus cutscene, binding-machine, effect, libvpx, verb-tail and queue summaries.
+- **Gaps:** 21 self-stated open items (G-1–G-21) and 21 structural gaps (S-1–S-21).
+- **Contradictions:** 125 in all.
+  - **67 value-changing** (C-V1–C-V67): 53 [engine], 14 [ledger]. All are "page-text only - needs local check". 3 have a favoured side settled by a dated correction (C-V31, C-V51, C-V66); 64 have none.
+  - **58 stale or banner** (C-S1–C-S58). 3 of these have a favoured side (C-S16, C-S29, C-S40).
+- **Checks:** 9 cross-checks found consistent. Every quotation was checked string-for-string against the snapshot (about 470 checks, 0 misses).
+- **Rating: NOT YET** overall. Widget tree, rectangle, icons, cutscene slots and the verb tails are MOSTLY. libvpx is READY as a dependency. The text pipeline, nine-patch frame, binding machine, effect mesh draw and deferred queue are NOT YET. The ledger pages are not a port target.
 
 Citation form: `NAME:line` or `NAME:a-b`. `NAME` is a short name for one page, listed in the table below with its path inside
 `FFXII TZA/99-Unresolved-Residual/`, so `NAME:line` reads as `page-path:line`. Line numbers are the snapshot's 1-based line
@@ -88,7 +96,7 @@ for the per-function readings they carry.
 
 | function | role as stated | callers as stated | cite |
 |---|---|---|---|
-| `0053E0B0` `Text_DrawScrolledWindowLines` (718 B) | cull, shadow pass, text pass, icon path per 32-byte window line record | "`0053E0B0` is called with the widget by its procedure `0053E380` (message 4, `0053E44B`; installed by `0053ED10`)" | `GQ:316`, `GQ:291-302`, `GQ:711` |
+| `0053E0B0` `Text_DrawScrolledWindowLines` (718 B) | cull, shadow pass, text pass, icon path per 32-byte window line record | "`0053E0B0` is called with the widget by its procedure `0053E380` (message 4, `0053E44B`; installed by `0053ED10`)" | `GQ:316`, `GQ:291-302`, `GQ:710-711` |
 | `002D8690` / `002D87D0` (306 B each) | select renderer by `ex` prefix; modulate colour by window intensity `(channel * intensity) >> 7` | `0053E0B0` (as the call chain draws it; see C-V9) | `GQ:325-326`, `GQ:517`, `GQ:547-550` |
 | `00364980` `Text_IsExPrefixed` (28 B) | returns 1 iff the record's first two bytes are `'e'`,`'x'`; null `rcx` returns 0 | 11 callers / 12 sites listed | `GQ:321`, `GQ:660-663`, `GQ:1831` |
 | `003649A0` `Text_EmitGlyphRunQuads` (3,020 B) | the `ex` (UTF-16) arm: pen walk, glyph cache, 16-byte GS command records | `0053E0B0`; also "a single caller (`002DD5D0`)" per PAINT | `GQ:313`, `GQ:567`, `GQ:690-693`, `PAINT:238-239` |
@@ -133,7 +141,7 @@ for the per-function readings they carry.
   `+0x12` fontId, `+0x13` resident, `+0x14`/`+0x15` texture w/h (power of two, ladder `<9→8 … else 128`, `GQ:440-444`),
   `+0x18` pixels, `+0x20` glyph record. Node count and pool: **not stated**.
 - **GS command records** (16 B), codes `0x3F`, `0x42`, `0x47`, `0x08`, `0x06`, `0x14`, `0x00`, `0x01`, `0x03`, `0x05` (`GQ:162-173`).
-  Corner order is TL, BL, TR, BR (`GQ:176-178`). UV: `U_min = V_min = 8`, `U_max = (int)((cellWidth + 0.0f + 0.5f) * 16.0f)`
+  Corner order is TL, BL, TR, BR (`GQ:176-178`). UV: `U_min = V_min = 8`, `U_max = (int)((cellWidth  + 0.0f + 0.5f) * 16.0f)`
   (`GQ:454-456`). Pen: `penX += advanceWidth(glyph) * scaleX`; `scaleX = sx / 100.0f; scaleY = (sy != 0) ? sy / 100.0f : 1.0f`
   (`GQ:499-506`). Submit-and-swap past `0x180` records (`GQ:539`).
 - **160-byte glyph record** (font painter side; `API:93-102`, `CBC:98-111`): `+0x00` source U ×2, `+0x08` source V ×2, `+0x10`–`+0x1B`
@@ -244,7 +252,7 @@ for the per-function readings they carry.
   `BIG:1303-1312`, `BIG:1366`). The eight operations are palette (CLUT) animation effects on an 8.8 fixed-point colour table
   (`BIG:928`). Which opcode is which effect: **not stated**. `003CD840` (21,276 B) and `003D2B60` (20,710 B) are translated PS2 MMI kernels over the
   EE/VU0 register bank `022D8F10`–`022D94A0` (`BIG:286-312`). Init `003CD6E0` allocates a 32 × 64 B handle table and a
-  128 × 0x50 B pool (`BIG:795-811`). Handle `= (gen<<8)|index` (`BIG:890`). Entry and pool layouts: `BIG:905-923`. Chain A
+  128 × 0x50 B pool (`BIG:795-811`). "handle = (gen << 8) | index" (`BIG:890`). Entry and pool layouts: `BIG:905-923`. Chain A
   callers: `00258E40` from `MainLoop_UpdateAndRenderFrame` (`0022B8C0`), `00258D70` from `0022A770` (`BIG:1563`).
 - **Event-effect load table** `022D94B0` (32 × 24 B; `BIG:1162-1183`) and the typed-handle layer `0024Cxxx`. Class nibble `>>28`:
   1 = magic-effect files, 5/6/9 = presentation records, 7 = event-effect loads, 8 = screen-effect descriptors (`BIG:1187-1231`).
@@ -424,7 +432,7 @@ dropped.
 - NINEP: "`if (col == 1 || (uint)(size - 8) > 0x27 || (uint)(axis - 8) > 0x27)` `flags = (index == 2) ? 0 : 4;     // no split`
   `else flags = (index == 1) ? 0 : 8;     // split through the centre`" (`NINEP:207-209`).
 - The split condition and the split arm agree. In the no-split arm, DB gives cell index 2 flag 4 and the others 0; NINEP
-  gives cell index 2 flag 0 and the others 4. Flag 4 selects "one quad, drawn with `flags & ~4`" (`NINEP:183-187`).
+  gives cell index 2 flag 0 and the others 4. Flag 4 selects "**one quad**, drawn with `flags & ~4`" (`NINEP:183-187`).
   **Local check:** the two `cmov`/`setcc` sequences in `00392A10` around the `0x27` compares.
 
 **C-V4 [engine] — the corner-blend colour.** *No favoured side.* No correction strikes either version. The dated 2026-09-26 replay
@@ -770,7 +778,7 @@ the two code blocks above".
 | C-S9 | "the full re-census has not been run" (`CENSUS:1017-1019`) | "**The re-census has now been run" (`README:45`); `U158:915` |
 | C-S10 | "96 % of their incoming references are banned exception metadata" (`U158:1066-1067`, unstruck) | "**QUALIFIED 2026-09-02.**" (`README:35`) |
 | C-S11 | "Fifteen have no caller at all" (`U158:618`, also `U158:47-48`, `U158:990`) | "the number re-measures as thirteen" (`U158:266`); the first statement struck at `U158:255-256` |
-| C-S12 | "**Eight of 158 have been read**" (`U158:152`); "The first five read" (`U158:471`) | `U158:228` counts nine described; "every cluster member now has a reading" (`U158:243`) |
+| C-S12 | "**Eight of 158 have been read**" (`U158:152`); "The first five read" (`U158:471`) | `U158:228` counts nine described; "Every member now has a reading" (`U158:243`) |
 | C-S13 | "**24,116 functions - 70.4 % of the executable - are classified but unexplained.**" (`CENSUS:38`) | §15: against all 38,161 functions it is "**63.2 %**" (`CENSUS:783-786`) |
 | C-S14 | "8 in _RDATA" (`CENSUS:124`; also `CENSUS:820`) | "**The `_RDATA` 8 were never real.**" (`CENSUS:915`) |
 | C-S15 | "Which strings those are is not established here." (`GQ:73-74`); "strings tagged "ex" go elsewhere" (`GQ:100`) | "question's premise was inverted: `002B0280` draws the strings that are NOT `ex`.**" (`GQ:675`) |
@@ -835,3 +843,25 @@ the two code blocks above".
 - **Atlas entry decode.** 8-byte entries, `u = entry[+4] & 0xFFF`, `v = entry[+4] >> 12 & 0xFFF` agree in BLINK (`BLINK:73-77`), WBG
   (`WBG:65-66`) and ICON2 (`ICON2:71-80`).
 - **The 30.** README "**30**" (`README:9`), U158 `unresolved=30` (`U158:53-54`), and `residual-30-GN161.tsv` (30 rows) agree.
+
+---
+
+## 4. Rating
+
+**NOT YET** overall. The folder is a residual ledger, and the systems it reads out have structural gaps. On the text and nine-patch
+paths, the pages disagree with each other about core behaviour.
+
+| part | rating | why |
+|---|---|---|
+| Ledger pages (README, U158, CENSUS, UNL, REF counts, CUT) | **not a port target** | They measure classification coverage and define no runtime behaviour. Their counts disagree in many places (C-V39–C-V48, C-V54, C-V56, C-V65–C-V67, C-S1–C-S14). This matters to the bookkeeping, not to a re-implementation |
+| Text pipeline (GQ, CBC, RT, PAINT, API, CTX, DISP, MEASURE) | **NOT YET** | No frame-level order across the widget pass, message window, reveal stepper, painter begin/flush and buffer swap (S-1). Control-code meanings (C-V1), the glyph cache's nature (C-V2), the compiled-stream byte meanings (C-V14), what `0020E600` returns (C-V8) and which functions draw (C-V13, C-V15) are each stated two ways. `TextState`, the `~0xD0` state, the 32-byte line record and the 16-byte GS record are partial (S-2, S-3, S-5). The painter's offscreen path may be unreachable: "**Whether anything sets `+0x2378` at all**" (`PAINT:546-547`). The parts that are stated well are a solid base: the ladder table (`PAINT:88-119`), the 44-byte records (`PAINT:137-151`), the render-target key and selection (`RT:60-193`), the pen and UV formulas (`GQ:454-506`) and the glyph table (`GQ:389-401`) |
+| Widget tree and backgrounds (WTREE, WBG) | **MOSTLY** | The gate, recursion, transform, brightness and clip rules are stated (`WTREE:52-153`), as are the background descriptor and colour tables (`WBG:62-155`). Open: message 3/4/5 semantics (G-17), node layout (S-12), `002DAF30`'s source (C-V36), the word count (C-V61), and pass order within a frame (S-1) |
+| Rectangle primitive (RECT) | **MOSTLY** | The tint formula and the GS packet are decoded (`RECT:63-142`). The batcher path is the one drawn (`RECT:142`). Open: `context + 0x70` and the `00181870`/`00181930` arguments (G-13), the `+0x2C` slot init (C-V35) |
+| Nine-patch frame (NINEP, DB) | **NOT YET** | The inputs, the 3×3 derivation and the guard are stated (`DB:302-341`, `NINEP:57-75`). But the per-cell flag rule (C-V3), the corner blend (C-V4), what the fallback draws (C-V5) and which function opens the bracket (C-V7) all conflict. The GS words of `002DC290` are not decoded (S-13) |
+| Icons (BLINK, ICON2) | **MOSTLY** | The pulse, the atlas decode, the palette fallback and the tick counter are stated (`BLINK:47-123`, `BLINK:287-288`). Open: the `01E0CE60` overwrite (G-15), the record layout (S-14), whether `002BCB00` reads or writes its position globals (C-V17), and `002DD7E0`'s role (C-V18) |
+| Cutscene name slots and DoF sidecar (CS) | **MOSTLY** | Entry, caller chain, slot record, classification order, sidecar keys and the stand-down predicates are stated (`CS:72-264`, `CS:847-905`). Use the favoured side of C-V31 (latch). Open: where the DoF values go and the source object (S-15), the recorder address (S-16), command offsets (C-V32), the flag-B consumer set (C-V33) |
+| Render-model binding machine (BIG) | **NOT YET** | The dispatch, the handle and pool layouts and the init are stated (`BIG:697-923`). But which opcode is which palette effect is not stated, nor what the two MMI kernels compute (S-17). Register-bank extents (C-V49, C-V50), tag values (C-V52) and call counts (C-V53) disagree. The payload is 48 B (C-V51, favoured) |
+| Effect element type `0x05` mesh draw (BIG chain B) | **NOT YET** | The mesh record and the `+0x1F1` builder are stated (`BIG:1413-1426`, `BIG:1492-1496`). What each of the three draw paths does differently, and the parameter entries, are unread (G-19) |
+| Script-verb tail bodies (REF) | **MOSTLY** | The fourteen bodies are decoded instruction by instruction, with verb mappings (`REF:61-76`, `REF:225`). Tail targets `00263A30`, `00269860`, `003B1560`, `004256E0`, `002E1CD0` are named only. The 129 unlisted-only blocks are unread (G-18) |
+| libvpx VP8 SIMD (UNL) | **READY** (as a dependency) | Pinned to libvpx 1.6.0 by byte match. The 63 head blocks are dead, and the rtcd pointers are named (`UNL:443-453`). A port links the library. The page itself does not name the 159 routines (S-18) |
+| Deferred-work queue `0024B580` (U158) | **NOT YET** | The walk is stated (`U158:1300-1351`). The kinds, the callees and the schedule are not (G-21, S-20) |
