@@ -22,7 +22,7 @@
 | — B. counts, sizes and addresses that disagree but change no ported behaviour | 18 |
 | — C. stale "open / not read" claims, banners and names | 28 |
 | — of all 62, items where a dated correction on the pages names a favoured side (A 14, B 3, C 23) | 40 |
-| **Rating (§3)** | **NOT YET** overall. Container and dispatch, section 0 image, sections 2/3, 6, 8–11, 16: MOSTLY. Section 12: READY (store only). Sections 4, 14, 19: NOT YET. |
+| **Rating (§3)** | **NOT YET** overall. Container and dispatch, section 0 image, sections 2/3, 6, 8–11, 16: MOSTLY. Sections 12 and 17: READY (store only; no shipped data). Sections 4, 14, 19: NOT YET. |
 
 ## Citation form
 
