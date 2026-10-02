@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`f26c5667`); no executable, Ghidra, archive or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. Pages in this folder are being edited by other lanes; every quotation is of the snapshot text. |
 
-**Counts:** _filled in when the report is complete._
+**Counts:** 2 pages read in full (682 lines: `README.md` 178, `Container/pkfl-package-container.md` 504); 0 member `.tsv` in the folder (the two `.tsv` the pages cite are not in the snapshot) · interface mapped in **7 parts** (§1.1-§1.7) · **8** self-stated open gaps + **18** structural gaps + **5** unexplained-field items (§2) · **35 contradictions**: **15 value-changing**, all "page-text only - needs local check" (**8** with a favoured side settled by a dated correction on the pages, **3** split - one part settled, one not, **4** with no favoured side), and **20 stale / banner** (10 stale or repeated-unstruck claims, 8 of them settled by a dated line and 1 partly; 6 front-matter / banner disagreements, 1 of them superseded by a dated re-parse; 4 attribution, dangling-pointer, duplicate or explanation items) · **12** cross-checks found consistent (§3.3) · **Rating: MOSTLY** overall (MOSTLY: reading the layout, directory load and slot readers, state; NOT YET: writing a package, `(ns, index)` addressing, the sub-file request).
 
 Citation form: `ABBREV:line`, where the abbreviation stands for a page path relative to
 `FFXII TZA/26-PKFL-Package-Container/`. Line numbers are those of the snapshot file.
@@ -430,7 +430,7 @@ reading. (This report's arithmetic suggests the old 16-slot read reached only ne
 | B-6 | `PK:14` "verified: 9 cited function entries" | §3, §4 and §7 alone cite 22 distinct function addresses (`002DF980`, `002DF9A0`, `0032FCA0`, `0032F320`, `0032F360`, `003E9EF0`, `0032E620`, `0032F430`, `0032ED80`, `0032F260`, `0032F290`, `0032F2C0`, `0032F2F0`, `0032F3A0`, `003302B0`, `00331760`, `00331820`, `003317C0`, `00291C80`, `0024AB90`, `00249810`, `00291C60`; `PK:165-209`, `PK:381-398`) | no — provenance count predates the 2026-09-11 / 09-18 additions |
 | B-7 | `PK:296` "**It is still weaker than a body read**, which is why §7 keeps it open." | `PK:381` "**Closed 2026-09-18 (FABLE) by a body read of every reader of the directory.**" | yes — 2026-09-18 |
 | B-8 | `PK:360-362` "**Not audited here:** §3's loader contract. `PKFL_Bind` and the slot-consumer functions were not read, so the *"magic never validated"* row still rests on the whole-image scan the sheet itself flags as the weaker instrument in §7." | `PK:381-398` (2026-09-18 body reads) | yes — 2026-09-18 (for the magic row; the *audit* gap S-4 remains) |
-| B-9 | `PK:187` "The engine never walks the directory" | `PK:371-372` "The walker exists and is named there"; `PK:381` "The walker `0032FCA0`"; `PK:401`-adjacent §4 "Listed 2026-09-11" (`PK:205`) | wording only; both dated 2026-09-11 / 09-18 — no value differs |
+| B-9 | `PK:187` "The engine never walks the directory" | `PK:371-372` "The walker exists and is named there"; `PK:381` "The walker `0032FCA0`"; §4 "Listed 2026-09-11" (`PK:205`) | wording only; both dated 2026-09-11 / 09-18 — no value differs |
 | B-10 | `RM:82-84` "*"Every occupied slot has its even/odd partner"* is **true, 10,314 / 10,314** — but it is **partly an artefact of that aliasing**"; `PK:275-280` "This qualifies the category README's headline finding rather than contradicting it." | `RM:39-46` "⚠ Withdrawn 2026-09-11 — the pairing is the directory's entry width"; `PK:434-435` "the README's headline finding is withdrawn there" | yes — 2026-09-11 |
 | B-11 | `RM:86-89` "**So the 14-pair denominator is NOT established** … until the container sheet's open questions are settled." | `PK:4` "the four residues of section 7 closed 2026-09-18"; `PK:412-422` (16 / 14 slot ceilings) — but no page then states a denominator (S-2) | partly — the open questions are closed 2026-09-18; the denominator is still unstated |
 | B-12 | `RM:128-133` "**Not measured, and required before any sheet is written:** … the full slot census … whether the 16-slot and 64-slot forms are versions … the header beyond the count, and whether a magic/version field is validated" (under the heading "superseded", `RM:120`) | `RM:21` census 2026-09-04; `RM:34` "The 16/64 question is answered"; `PK:381-397` (2026-09-18) magic / header | yes — 2026-09-04 and 2026-09-18 (the slot-meaning item, `RM:132`, is still open: S-1) |
@@ -475,3 +475,29 @@ reading. (This report's arithmetic suggests the old 16-slot read reached only ne
 - **Struck text is handled correctly** at `PK:77-79`, `PK:181-185`, `PK:205`, `PK:367-370`, `PK:378-380`,
   `PK:403`, `PK:412`, `PK:417-418`, `RM:48` — each struck claim is followed by its dated replacement.
 
+## 4. Rating
+
+**Overall: MOSTLY.** The container itself is small and the pages state enough to *read* every shipped
+package: an eight-byte header, a `{u32 offset, u32 size}` directory of `slotCount` entries ending at
+`8 + 8 × slotCount`, `{0, 0}` for an absent slot, stored sizes, and an engine that loads the directory as one
+block and indexes it by slot with a single "byte 0 non-zero" check (§1.1, §1.3). What keeps it from READY is
+(a) the page still carries unbannered four-byte-era figures beside the corrected ones (X-1 to X-8, X-13, X-14),
+so a re-implementer must know which half to ignore; and (b) the addressing and request layers around the
+container are only pointed at, not stated (G-4 to G-7, G-15), and those belong to `02-Resource-And-Asset-Pipeline`.
+
+| part | rating | why |
+|---|---|---|
+| §1.1 on-disk layout (reading) | **MOSTLY** | Layout stated and corpus-checked under the pair reading (`PK:81-86`, `PK:240-247`); byte order only implicit (G-1); size semantics unstated (G-3); page conflicts X-1 to X-8, X-13 |
+| §1.1 on-disk layout (writing) | **NOT YET** | No writer in the executable (S-3); padding / alignment / order rules not restated under the pair reading (G-2, X-2, X-8, X-13); slot population per extension known only as index ranges (S-2, G-18) |
+| §1.2 addressing `(ns, index)` | **NOT YET** (here) | Namespaces, record widths and variant counts stated (`PK:116-142`), but element format, index formula, region-variant and language selection, and path → file resolution are not (G-4 to G-7); delegated to `area-nmb-index.md` |
+| §1.3 directory load and slot readers | **MOSTLY** | Tables, widths, displacements and the guard are stated from body reads (`PK:381-398`); open: reader count (X-10), completion count (X-11), manager count / stride / arguments (G-10), the "not requested" condition (G-8), `-1` handling (G-12), state-word bits (G-13), `k ≥ 16` on a 16-slot table (G-11) |
+| §1.4 sub-file request | **NOT YET** | `0032E620`'s argument list disagrees (X-12) and its contract is not described anywhere in the folder (G-15, G-16) |
+| §1.5-1.6 state and order | **MOSTLY** | State objects named with addresses; triggers and frame position of `0032FCA0` / `0032ED80` / `0032F430` not stated (G-14) |
+| slot payloads | **out of scope** | by the folder's own rule (`RM:170-172`, `PK:399-400`); no slot meaning is stated (S-1) |
+
+**Highest-value fixes for the database** (each removes several items above): (1) strike or banner `PK:43-49`,
+`PK:95-98`, `PK:213-230`, §6 and §6b, `PK:399-402` and `RM:96-118` the way `PK:232` and `RM:39` already do
+(X-1 to X-8, X-13, X-14, B-10); (2) reconcile the reader and completion counts in `PK:381-398` (X-10, X-11)
+and list the five `.mot` / `.snd` readers in §4; (3) restate the alignment, ordering and first-payload rules
+under the pair reading (G-2, X-2, X-8, X-13); (4) refresh the front matter (B-1 to B-6) and decide whether
+`pkfl-container-census.tsv` is re-frozen under the pair reading (X-4).
