@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`df2c9f47`); no executable, Ghidra or live game was used. Several 04 pages are being edited by other lanes; every quotation is the text **as the snapshot has it** |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. |
 
-**Counts:** *(filled in when the report is complete)*
+**Counts:** 18 pages read in full (17 system pages + `README.md`, 16,027 lines); 24 member `.tsv` files checked for layout and row count only · **36 entry-point rows** mapped (10 record construction, 5 manager slot, 5 field pass, 13 battle unit and definition, 3 names) · **28** self-stated open gaps + **20** structural gaps · **contradictions: 52 value-changing** (§3.1: 9 with a favoured side settled by a dated correction — C-V3, C-V14, C-V15, C-V16, C-V32, C-V43, C-V44, C-V45, C-V50 — and 43 with no favoured side; all 52 are "page-text only - needs local check") **+ 20 value-changing counts and census figures** (§3.2) **+ 56 stale / struck-but-repeated** (§3.3) **+ 13 banner** (§3.4) · **Rating: NOT YET** overall (names READY bar one address; BattleUnit pool, field pass, manager slot, kind byte and StatusView MOSTLY; unit construction, the actor record and the contexts NOT YET).
 
 Citation form: `page:line`, where `page` is the path inside `FFXII TZA/04-Actor-Entity/`. The paths are given in full
 every time. "Not stated" means none of the 04 pages says it. Where only another category's page makes a point, the
@@ -45,16 +45,16 @@ only for their header and row count.
 
 | file | rows | agrees with the page? |
 |---|---:|---|
-| `Actor-Storage-Record/actor-storage-record-accesses.tsv` | 1,130 (271 functions, 111 displacements) | no: `Actor-Storage-Record/the-actor-storage-record-field-map.md:53-55` states 1042 rows / 275 functions / 86 offsets (C-V12) |
-| `Actor-Storage-Record/actor-record-offsets-observed.tsv` | 56 (highest offset `0x118`) | no: `Actor-Storage-Record/the-record-behind-every-actor.md:1512` says "all 70 offsets"; `Actor-Storage-Record/the-record-behind-every-actor.md:1540-1541` says the eight beyond `0x118` "are recorded in the TSV" (C-V13) |
+| `Actor-Storage-Record/actor-storage-record-accesses.tsv` | 1,130 (271 functions, 111 displacements) | no: `Actor-Storage-Record/the-actor-storage-record-field-map.md:53-55` states 1042 rows / 275 functions / 86 offsets (C-N1) |
+| `Actor-Storage-Record/actor-record-offsets-observed.tsv` | 56 (highest offset `0x118`) | no: `Actor-Storage-Record/the-record-behind-every-actor.md:1512` says "all 70 offsets"; `Actor-Storage-Record/the-record-behind-every-actor.md:1540-1541` says the eight beyond `0x118` "are recorded in the TSV" (C-N9) |
 | `Actor-Storage-Record/actor-storage-record-flags1c-initial-values.tsv` | 8 sequence rows + 1 comment | yes: matches the presets at `Actor-Storage-Record/the-record-behind-every-actor.md:309-311` and `Actor-Storage-Record/the-actor-storage-record-field-map.md:117` |
 | `Actor-Storage-Record/actor-storage-record-flag-bit-writes.tsv` | 121,759 | yes: `Actor-Storage-Record/the-actor-storage-record-field-map.md:208` |
 | `Actor-Storage-Record/actor-storage-record-flag-bits.tsv`, `actor-arg-proven-closure.tsv`, `actor-static-proven-bases.tsv`, `actor-resource-entry-accesses.tsv`, `actor-wait-slot-accesses.tsv`, `actor-sequence-descriptor-accesses.tsv`, `actor-definition-payload-accesses.tsv` | 88 / 251 / 48 / 82 / 14 / 3 / 7 | layout only; the wait-slot file has none of `0025DF00`'s `+0x14`/`+0x27` stores that `the-field-runtime-pass.md:741` lists (S-20) |
-| `Battle-Unit/battle-unit-accesses.tsv` | 2,205 (345 functions) | no: `Battle-Unit/the-battle-unit-field-map.md:59-61` states 2203 rows / 342 functions; `Battle-Unit/the-battle-unit-field-map.md:643` "the committed 2,207 in 344" (C-V15) |
+| `Battle-Unit/battle-unit-accesses.tsv` | 2,205 (345 functions) | no: `Battle-Unit/the-battle-unit-field-map.md:59-61` states 2203 rows / 342 functions; `Battle-Unit/the-battle-unit-field-map.md:643` "the committed 2,207 in 344" (C-N4) |
 | `Battle-Unit/battle-target-buffer-accesses.tsv`, `battle-target-result-entry-accesses.tsv`, `navigation-path-state-accesses.tsv` | 68 / 4 / 14 | no count stated on any page |
-| `Actor-Manager-Record/actor-manager-record-accesses.tsv` | 204 | no: `Actor-Manager-Record/the-actor-manager-record-field-map.md:409` "holds **194** rows today" (C-V16) |
+| `Actor-Manager-Record/actor-manager-record-accesses.tsv` | 204 | no: `Actor-Manager-Record/the-actor-manager-record-field-map.md:409` "holds **194** rows today" (C-N11) |
 | `Actor-Manager-Record/actor-manager-record-rip-accesses.tsv`, `actor-manager-slot-accesses.tsv`, `actor-manager-slot-entry-accesses.tsv` | 113 / 330 / 26 | not cited by any page; `Actor-Manager-Record/the-actor-manager-record-field-map.md:55` gives the array route as "51 / 31 / 17" |
-| `Actor-Contexts/movement-context-accesses.tsv` | 708 (124 displacements, no `chain:0xB8` rows) | no: `Actor-Contexts/the-movement-and-secondary-context-censuses.md:19-20` "1,028 rows, 122 distinct displacements; chain-only rows carry route `chain:0xB8`" (C-V16) |
+| `Actor-Contexts/movement-context-accesses.tsv` | 708 (124 displacements, no `chain:0xB8` rows) | no: `Actor-Contexts/the-movement-and-secondary-context-censuses.md:19-20` "1,028 rows, 122 distinct displacements; chain-only rows carry route `chain:0xB8`" (C-N12) |
 | `Actor-Contexts/secondary-context-accesses.tsv` | 309 (91 functions, 43 displacements) | no: `Actor-Contexts/the-movement-and-secondary-context-censuses.md:214` "302 accesses, 89 functions, 40 offsets" |
 | `Actor-Contexts/movement-context-proven-bases.tsv`, `secondary-context-element-accesses.tsv` | 68 / 176 | not cited |
 | `field-pending-request-cells-022c8030-accesses.tsv` | 8 | layout only; no count stated |
@@ -1049,3 +1049,34 @@ Each row quotes the stale side first and then the text that answers or corrects 
 | B-11 | `last_reviewed` dates older than the pages' own dated edits: `Actor-Storage-Record/the-record-behind-every-actor.md:15` (2026-09-08), `Actor-Storage-Record/the-actor-storage-record-field-map.md:17` (09-10), `CONTRACT-actor-record-pool-and-region-map.md:17` (09-11), `the-definition-record-flag-pair.md:19` (09-06), `Battle-Unit/the-battle-unit-field-map.md:23` (09-12), `battleunit-slot-pool-and-actor-class.md:18` (09-02), `Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:16` (09-22), `Unit-Display-Record/the-record-00329220-builds.md:15` (09-10), `Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md:19` (09-03), `Actor-Manager-Record/the-actor-manager-record-field-map.md:17` (09-10), `CONTRACT-manager-slot-entry-tables.md:17` (09-11), `Actor-Contexts/the-movement-and-secondary-context-censuses.md:22` (09-12), `the-field-runtime-pass.md:19` (09-03), `CONTRACT-field-runtime-pass.md:17` (09-12) | dated edits reach 2026-09-30 to 2026-10-02 on these pages (for example `Actor-Storage-Record/the-record-behind-every-actor.md:109`, `Battle-Unit/the-battle-unit-field-map.md:488`, `Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md:349`, `the-field-runtime-pass.md:137`) | none |
 | B-12 | section dates "2026-05-15": `the-field-runtime-pass.md:904`, `CONTRACT-field-runtime-pass.md:821` | the program and the pages' other dated sections run from 2026-09 | none (a date anomaly only) |
 | B-13 | duplicate section numbers: `Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md:227`/`:312` (two §9), `Battle-Record-Kind/battle-record-kind-byte.md:483`/`:861` (two §11), `Actor-Names/the-npc-name-dictionary.md:221`/`:227` (two §9), `battleunit-slot-pool-and-actor-class.md:339`/`:346` (two §9) | cross-references such as "§11" and "§9" are ambiguous on those pages | none |
+
+---
+
+## 4. Rating
+
+**Overall: NOT YET.** The category holds the core layouts every other system rests on: the actor record, the
+manager slot and the battle unit. The record's own layout still has structural gaps. Value conflicts sit at its root
+(C-V1, C-V2, C-V5, C-V6), and the two embedded contexts have no declared layout on these pages. The parts are
+uneven:
+
+| part | rating | why |
+|---|---|---|
+| NPC name dictionary (`npcdic.bin`, `+0x102`, display lookup) | **READY** apart from S-17 | The file format, the relocation, the pair rule and the lookup are all stated (`Actor-Names/the-npc-name-dictionary.md:52-90`). The missing piece is the flag setter's address. The page's "dictionary" label is also applied to an unrelated UI global (C-V42), and a port must not follow it there. |
+| BattleUnit pool, allocation, handle and release | **MOSTLY** | Size, count, first-free scan, silent failure, handle encoding and both full-slot clears are stated (`battleunit-slot-pool-and-actor-class.md:96-160`, `:354-376`, `:474-524`, `:790-807`). Open: the release bounds-check multiplier (C-V24), the channel table address (C-V23) and the back-pointer statement (C-V25). |
+| Field runtime pass and wait resolver | **MOSTLY** | The pass's order, refusals, branches and wait-kind arms are stated and executed (`CONTRACT-field-runtime-pass.md:384-386`). Most of its value conflicts carry a dated correction (C-V43, C-V44, C-V45), but the contract's reproduction formula still carries the stale side. Open: the callees `002620E0`/`0025B600`/`00269860`, the fold region, the slot fields `+0x13`/`+0x17` (S-8), wait-kind 3–5 arming (S-7), and C-V46–C-V48. |
+| Manager slot and camera entry tables | **MOSTLY** | The bind, the 57-offset field map, the banks and the eight entry operations are stated, and seven of the eight are executed (`CONTRACT-manager-slot-entry-tables.md:228`). Open: the slot size the contract uses (C-V13), the camera player and shake sampler effects (S-12), the unnamed slot fields (G-15), and the `+0x1D6`/`+0x1DE` order (C-V8). |
+| Kind byte and type-id partition | **MOSTLY** | The kind domain `{0, 1}` and the table it selects are settled (`Battle-Record-Kind/battle-record-kind-byte.md:314-315`). So are the type-id spans and the reward rule (`Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md:47-87`, `:218-224`). Open: the per-site band polarity (S-15), the valid id range (C-V39) and Reks's classification (C-V41). |
+| StatusView (`00329220`) | **MOSTLY** | Every field of the `0xC0` record has a stated source (`Unit-Display-Record/the-record-00329220-builds.md:57-91`). Open: bits 16/17's meaning (G-22, S-18). Its bit-4 predicate depends on bit 43, which the definition page calls unread (C-V29). |
+| Unit construction and the stats record | **NOT YET** | The installer is mapped site by site and executed against shipped data (`Unit-Definition/CONTRACT-battle-unit-construction.md:217-314`). But **value conflicts sit inside the install itself**: unit `+0x52` (C-V28), the old-id condition (C-V34), the leader-selector store width (C-V35), enemy growth (C-V36), the spawn counter at its cap (C-V31) and the tracked-HP table layout (C-V33). It also lacks the reset's full field list (S-9), the table strides (S-10) and the growth formula (S-11). |
+| Actor record: pool, region map, initialiser | **NOT YET** | **Structural gaps.** The allocator is unidentified (S-1). The constructor's output is not stated field by field (S-2). The movement-context initialisers are unread (S-3). The definition payload format is not recovered (S-4). Four value conflicts sit at the root of the layout: the `+0x03` field names (C-V1), the sequence-7 record size (C-V2), whether the initialiser fills the override array (C-V5), and what the table's byte `+0x01` is (C-V6). |
+| Movement and secondary contexts | **NOT YET** | The census locates offsets and "names nothing — the store owns the layouts" (`Actor-Contexts/the-movement-and-secondary-context-censuses.md:38-39`). Most fields a mover or renderer needs have no declared meaning on these pages (S-5, G-10), and the census files no longer match the counts the page states (C-N12). |
+
+**To reach MOSTLY overall**, the database would need:
+- a local check of C-V1, C-V2, C-V5 and C-V6 against the image (the record layout);
+- the record-pool allocator (S-1), and the constructor's full store list with values (S-2), on a page in this
+  folder rather than only in `_types/fields.tsv`;
+- declared layouts for the movement and secondary contexts (S-5), and the bodies of `00265FF0` and `00268380` (S-3);
+- a local check of the install conflicts C-V28, C-V31, C-V33, C-V34, C-V35 and C-V36, and the reset's field list
+  (S-9);
+- the stale side of each settled item struck in place. That covers the contract formula at `CONTRACT-field-runtime-pass.md:229-235`, the 56
+  rows in §3.3, and the banners in §3.4. A re-implementer reading top to bottom meets the stale text first.
