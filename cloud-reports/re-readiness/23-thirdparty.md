@@ -139,7 +139,7 @@ stay undeclared, "because their upstream — SEAD's or a third party's — is no
 
 #### Inputs and outputs (record layouts)
 
-- **Phyre body, fields read by the seam** (`BUL:202-221`): `+0x28/+0x2C/+0x30` "centreOfMass.z / .y / .x" (but see
+- **Phyre body, fields read by the seam** (`BUL:202-221`): `+0x28/+0x2C/+0x30` centre of mass z / y / x (but see
   X-1), `+0x58..+0x60` authored inertia ((0,0,0) means compute), `+0x88..+0x90` scale, `+0x98` geometry,
   `+0xB0` child count (bit 31 an ownership flag), `+0xB8` children (inline when count < 2), `+0xC0` damping pair,
   `+0xE4` mass, `+0xE8` `isDynamic` (u8), outputs `+0x118` `btRigidBody*` and `+0x120` `btCompoundShape*`.
@@ -301,3 +301,80 @@ Where post-effects sit relative to UI, and when physics, scripts or audio decodi
 | save pipeline (cat. 19) | zlib `uncompress` / `compress2`, then RC4 | `INV:429-431`, `:671` |
 | static initialisation (cat. 24) | EASTL statics, ImGui, the MSVC tail | `EASTL:434`, `INV:727` |
 | JSON consumers (Presentation, ItemsEquipment) | JsonBox | `INV:575-576` |
+
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, live-only, or out of evidence)
+
+Only gaps the pages still leave open are listed. Rows the pages answer are not listed, even where a stale "open"
+sentence remains; those are in §3.2.
+
+| # | gap as the page states it | cite |
+|---|---|---|
+| G-1 | Whether a Lua chunk is ever supplied: "**Bounded statically 2026-09-26 (OPUS), not closed:**" — no `lua_State` constructor is in the image; "What remains open: whether any module does that, and `EB-1`" | `LUAC:369` |
+| G-2 | "**The equivalent enumeration for `PClassCallableMethodScript`'s two descriptors has not been run, and is the next step for this row.**" | `LUA:398-399` |
+| G-3 | The `+0x48` tag bit: "What the tag bit at `+0x48` marks (the SSO reading in §3.2 is a guess from its subtraction) is the residue." | `LUAC:281-282` |
+| G-4 | Loader parity: "`INTEGRATION` is not covered … and `FULL-SUBSYSTEM` is not, because this is one operation of the loader and the fork, the parser and the undumper are not reconstructed." | `LUAC:510-513` |
+| G-5 | Parser identification is by strings and call position: "No body was read line by line."; "`0082F000`'s exact `lcode.c` name was not recovered." | `LUA:470`, `:492` |
+| G-6 | "What `0081C6A0`, `00811530` or `00811130` are." (listed under **Not claimed**) | `LUA:567-568` |
+| G-7 | Bullet: "The Bullet API names behind vtable slots `+0xA0`, `+0x28`, `+0x78` and `+0x130` are **not read**"; "`006A57C0`, `00853FE0` and `0083A030` are called and **not entered**." | `BUL:648-650` |
+| G-8 | Bullet: of the 102 generically tagged bodies, "The other ninety install no vtable … need a structural match against a Bullet release to name." | `BUL:466` |
+| G-9 | Bullet: BN-4 excludes only the Phyre route — "**What is excluded is the Phyre component route — the one this page traced — not physics in the game.**" | `BUL:448-452` |
+| G-10 | VPX: control `2` "has the same guard and image conversion (not read in full)"; 62 displacement-`0x20` operands "are not triaged" | `VPX:130`, `:168-169` |
+| G-11 | PPFX: what the 193 attributed functions do (BQ-29, superseded as a population statement, not answered); "What the 1,657 bodies compute is §7's open work" | `PPFX:252-255`, `:427-428` |
+| G-12 | PPFX TinyEffect: "Not established: that retail FFXII feeds it any text (`00717760` has no direct caller)." | `PPFX:263-264` |
+| G-13 | PPFX source lines: BQ-31 — the `__LINE__` values "are not determinate" | `PPFX:268-269`, `:287-292` |
+| G-14 | PPFX UC-1: "2 UC-1 bodies of the span that RVA-valued data cells outside it match … stay frontier" | `PPFX:29` |
+| G-15 | `0071F970` (shared CRT `sscanf_s` reading): "*Narrowed, not closed:* the match is by shape." | `PPFX:378` |
+| G-16 | YEBIS licence outcome: "The verifier's outcome for this build is decided by step 1, the signature and field match, which this reading does not re-derive." | `INV:720-721` |
+| G-17 | YEBIS product version and EASTL version: OUT OF EVIDENCE BOUNDARY | `INV:808`, `EASTL:4`, `:377-381` |
+| G-18 | Game debug menu (not ImGui): "whether mode 1 ever receives a non-zero mask in shipped play is the one thing not settled statically" | `INV:739-740` |
+| G-19 | MS ADPCM decoder `007F6FB0` / `007F7350`: upstream "not established" | `INV:294-295` |
+| G-20 | libvorbis `00887630` left out "because nothing but its position says what it is"; DSP kernels nothing references (`001274D0`, `00129870`, `0012A290`) "are left undeclared" | `INV:322-323`, `:455` |
+| G-21 | Tremor stream vtables: "Which driver object owns which vtable is the residue." | `INV:773` |
+| G-22 | "*Reached* means a static caller exists, not that it runs in a given scene." (libvorbis / Tremor) | `INV:781` |
+| G-23 | EASTL container set: "The absence of `hash_map`, `deque`, `fixed_*` and the others is therefore not proven." | `EASTL:338-340` |
+| G-24 | EASTL statics: "NOT dispositioned: 001EDF00 (documented here), the per-object destructors, the literals, and which game string each object holds" | `EASTL:27` |
+| G-25 | Selectors that do not reproduce their own file at HEAD: `select_jsonbox.py` "does not re-run at HEAD"; `select_imgui.py` "does not re-run at HEAD" | `INV:40`, `:41` |
+| G-26 | Inventory scope: "Bodies of every third-party function — this is an inventory, not an analysis." (X-1, superseded as a population statement) | `INV:703-704` |
+| G-27 | Inventory evidence ceiling: libogg, Tremor and libvorbis carry no upstream text; "YEBIS is a third case: Silicon Studio's middleware is not open source, so there is no upstream text in existence to match against." | `INV:1130-1135` |
+
+### 2.2 Structural gaps (a port needs these and no page states them)
+
+| # | missing | where the gap shows |
+|---|---|---|
+| SG-1 | **Yebis / PPFX behaviour.** No page gives any post-effect algorithm (depth of field, glare, luminance, the post-effect chain), its parameters, its shaders, or the order of passes. The library is closed (`INV:1133-1134`), so a port has no upstream to link. The pages give file identity only ("This document establishes **where they came from**, not what they compute.") | `PPFX:252-253`, `:192-205` |
+| SG-2 | **Where the post-effects sit in a frame**, and their inputs and outputs (which render targets, which formats). §5's chain names only "**Upstream:** the renderer. **Downstream:** the frame buffer." | `PPFX:205`; `INV:662-665` (contradicted, X-7) |
+| SG-3 | **The YEBIS licence decode and signature check.** `0071C550` (decode) and step 1 (signature and field match) are named, not described. A port that keeps the check needs both; one that drops it needs to know the success path is the only one taken. | `INV:708-713`, `:720-721` |
+| SG-4 | **The PPFX integration client** (`006C9B20` onward, 23 functions) is excluded from every family and documented nowhere in this folder; it is the code that feeds Yebis its parameters. | `PPFX:28`, `:409-410` |
+| SG-5 | **CRI HCA decoder behaviour.** Extent, version and callers only; no API, no bitstream, no tables. The decoder is proprietary (no upstream). | `INV:29`, `:297-302`, `:810` |
+| SG-6 | **The Bullet world**: who creates the `btDiscreteDynamicsWorld`, the broadphase type (both `btAxisSweep3` and `btDbvtBroadphase` are named), gravity, the fixed time step and sub-steps, solver iterations, and where in the frame the world is stepped. Not stated. | `BUL:342`, `:354`, `:466` |
+| SG-7 | **The Phyre physics classes beyond the seam**: sixteen `PPhysics*` classes are registered, and only `PPhysicsRigidBody`'s seam fields are laid out. Shape, material, world and character-controller records are not described. | `BUL:436-440` |
+| SG-8 | **The collision-group mask table** read by `006A4A60` (a `u16` table at `+0x78` of the object behind `self+0xC8 → +0x10`): its contents and owner. | `BUL:633-634` |
+| SG-9 | **Lua build configuration beyond the header.** The header fixes `lua_Number` = `float`, `int` 4, `size_t` 8. Number formatting (`LUA_NUMBER_FMT`), `lua_str2number`, integer conversion and any other `luaconf.h` change that a `float` build implies are not stated. A port that builds stock 5.2.1 with `float` cannot know whether it matches. | `LUAC:83-101` |
+| SG-10 | **The Lua state's construction and the Phyre binding layer.** No page in this folder says how a `lua_State` is made (none is in the image, `LUAC:369`), how the four libraries are opened, or what the `PhyreObject` bindings expose; the bindings page is in category 22. | `LUAC:178-181`; `LUA:513-515` |
+| SG-11 | **The PScheduler task and pool records** beyond the fields listed in §1.5 (task list layout, what the `+0x20` dword passed as the third argument means, the scheduler object's other fields). | `LUA:425-434` |
+| SG-12 | **EASTL ordered containers and lists.** `map` / `set` node layout, comparator and iteration, and the `list` node layout (only `[rcx+0x18]` chain and key at `node+0x20` are given). The rbtree is on a category-24 page. | `EASTL:572`; `INV:124-129` |
+| SG-13 | **EASTL allocator `flags` and alignment.** The call-site signature is `allocate(self, size, flags)`; slot 1 takes an alignment and slot 2 fixes 16. Which slot each container uses, and what `flags` selects, are not stated. Slot 0 is not described. | `EASTL:203-204`, `:391-396` |
+| SG-14 | **Third-party build options other than those read.** Stated: libvpx caps (decoder, postproc, input fragments; no frame threading, `VPX:211-217`); Lua header; Bullet's `enableDynamicAabbTree = 0`. Not stated: zlib compile options, Tremor's variant (low-memory or not), libvorbis options, libwebm options, JsonBox's EASTL port details beyond `String32` (`INV:810`). | `VPX:211-217`; `INV:810` |
+| SG-15 | **The movie path's data flow**: how `mkvparser` frames reach `vpx_codec_decode`, the output image format handed to the renderer, and how `00679600` feeds libvorbis output to audio (its two strided arrays and channel list are named, not explained). | `VPX:152-156`; `INV:1188-1189` |
+| SG-16 | **The MS ADPCM decoder's full algorithm** (only the tables and the samples-per-block formula are given) and whether it is SEAD's or a third party's. | `INV:289-295` |
+| SG-17 | **SEAD's use of Tremor**: callback set passed to `ov_open_callbacks`, the read size and the output format. | `INV:282` |
+| SG-18 | **Save body encryption**: the save line gives `compress2` level 9 then RC4; the RC4 key and its derivation are not stated in this folder. | `INV:671`, `:676-678` |
+
+### 2.3 Fields written or read by documented functions whose meaning is not given
+
+| # | field | cite |
+|---|---|---|
+| F-1 | Phyre body `+0x38..+0x40`, `+0x48` (16 B), `+0x68..+0x70`, `+0x78..+0x80`, `+0xC8`, `+0xE0`, `+0xE9`: read by `006A4A60` but absent from the §4 layout; the two vec3s land in Bullet's velocity slots (`+0x150` / `+0x160`) | `BUL:593-607`, `:626-634` vs `:202-221` |
+| F-2 | `006A0A50` record `+0x260/+0x264/+0x268` (per-axis scale) and the write into `+0x160..+0x164` | `BUL:654` |
+| F-3 | VP8 control 3 context fields `+0xF8` (flag), `+0xFC` (8 B), `+0x104` (4 B), and `+0x108` / `+0x110` (decryptor pointer and state): ids named (`VPX:131-135`), fields not | `VPX:65`, `:73` |
+| F-4 | VP8 `+0x30` slot `0016E3A0` "(unnamed, 26 B sibling of `vp8_peek_si`)" | `VPX:44` |
+| F-5 | EASTL inert record `01F82E48`: `0x2000000`, `0x200000`, 0, 0 — "nothing ever reads the record" | `EASTL:398-401` |
+| F-6 | EASTL map ctor `001E6FD0` "`-2` scope mask"; `00212D60` vtable `00906DA0`, `dword[rbx+0x18] = 0` | `EASTL:562-563` |
+| F-7 | ImGui owner record: nine qword fields `+0x34A0`, `+0xFA0`, … freed through `[[01F40380] + 0xC0]` | `INV:1232` |
+| F-8 | `00679600`: `dword[rcx+0x324]`, strides `0x17700` / `0xBB80`, `qword[rcx+0x4E8]`; `0067A240`: sub-list heads `+0x10/+0x18/+0x20`, counter `+0x28`, latch `+0x40` | `INV:1188-1189` |
+| F-9 | Info-page builder `001D5260`: `byte[rcx+0xA70]` gate; dispatcher `001D0190`'s `[01DFE40C]` mode index and `[rdi+0xA74]` | `INV:1161-1172` |
+| F-10 | Debug gates: frame mode byte `02064AD3`, mask `[022C7F94]`, latch `01F81258` `+9` / `+0xA74` | `INV:734-736` |
+| F-11 | PPFX nesting counter `02EA0B3C` (incremented / decremented / tested; meaning not given) | `PPFX:348` |
+| F-12 | `PScheduler` task `+0x20` dword (third argument) and the running-scheduler refusal code `0x17` | `LUA:427-429` |
