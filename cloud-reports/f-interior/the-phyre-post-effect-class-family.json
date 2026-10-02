@@ -1,0 +1,205 @@
+{
+ "page": "22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md",
+ "session": "session_01Tuxsu5PvhCRfeUeyC5pKSu",
+ "rows": [
+  {
+   "fn": "0018FD70",
+   "text": "calls `0065A630(rcx+0x378, rdx, qword rcx+0x278, P, 1)` with `P` = qword `[r8]` when byte `r8+8` is 0, else null; then calls `001EE8E0(Q, r9, a zeroed 24-byte stack block, 0)` with `Q` = qword `[qword rcx+0x278]` when byte `+8` of that block is 0, else null",
+   "anchors": [
+    [
+     "0018FD87",
+     "cmp"
+    ],
+    [
+     "0018FDA8",
+     "call"
+    ],
+    [
+     "0018FDC9",
+     "cmp"
+    ],
+    [
+     "0018FDDF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063F850",
+   "text": "tail-jumps to `005CDAA0(2, 00D24110)`",
+   "anchors": [
+    [
+     "0063F857",
+     "mov"
+    ],
+    [
+     "0063F85C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00646770",
+   "text": "stores `00D62530` to qword `[rcx]` and calls `006505A0(qword rcx+0x50)`; then stores `00D61E50` to qword `[rcx]`; when bit 31 of dword `+0x30` is clear, its low 31 bits are above 1 (unsigned) and qword `+0x38` is non-null, calls `00584730(qword +0x38)`; then zeroes qword `+0x38` and dword `+0x30`",
+   "anchors": [
+    [
+     "00646789",
+     "mov"
+    ],
+    [
+     "00646790",
+     "call"
+    ],
+    [
+     "0064679D",
+     "mov"
+    ],
+    [
+     "006467B5",
+     "jbe"
+    ],
+    [
+     "006467C0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00646AB0",
+   "text": "stores `00D61E50` to qword `[rcx]`; when bit 31 of dword `+0x30` is clear, its low 31 bits are above 1 (unsigned) and qword `+0x38` is non-null, calls `00584730(qword +0x38)`; then zeroes qword `+0x38` and dword `+0x30`",
+   "anchors": [
+    [
+     "00646AC9",
+     "mov"
+    ],
+    [
+     "00646AD8",
+     "je"
+    ],
+    [
+     "00646AE1",
+     "jbe"
+    ],
+    [
+     "00646AEC",
+     "call"
+    ],
+    [
+     "00646AF4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00658470",
+   "text": "sets byte `rcx+0x62` to 1 when any float pair `+0x84`/`+0xF4`, `+0x88`/`+0xF8`, `+0x90`/`+0x100`, `+0x94`/`+0x104`, `+0x98`/`+0x108`, `+0xA0`/`+0x110`, `+0xA4`/`+0x114`, `+0xA8`/`+0x118`, `+0xC0`/`+0x120`, `+0xC4`/`+0x124` differs or is unordered; when bytes `+0x60` and `+0x62` are both non-zero, calls `0065C080(rcx, rdx)` and `00657870(rcx, rdx)` between `005CDAA0(0, 00D63438)` and `005CDAA0(0, 00D63450)` and clears byte `+0x62`; returns the first non-zero of `0065CD60(rcx)` and, for each non-null qword `+0x198`, `+0x1A0`, `+0x1A8`, `+0x170`, `+0x178`, `001B81B0` (`0065CC90` for `+0x1A8`) on qword `+8` of qword `+0x58`, that qword and a record {0x42 (0x43 for `+0x1A8`), `02D35140`, qword `+0x128`/`+0x130`/`+0x138`, `r9`, the fifth (stack) argument}; then stores `02D36FC0` to qword `rdx+0x80` when byte `+0x61` is non-zero, else `02D37FC0` when `r8` is non-null with bit 1 of dword `r8+0xC`, else `02D36FA0`, and returns the first non-zero of `0060D4F0`, `0060DB50`, `005FEFD0`, `0060B980` and `00600A60` on `rdx`, or 0",
+   "anchors": [
+    [
+     "006584B6",
+     "mov"
+    ],
+    [
+     "00658599",
+     "call"
+    ],
+    [
+     "00658604",
+     "call"
+    ],
+    [
+     "00658732",
+     "mov"
+    ],
+    [
+     "0065879E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006587F0",
+   "text": "with `B` = qword `+8` of qword `rcx+0x50`, for each non-null descriptor qword `rcx+0x88`, `+0x90`, `+0xA0`, `+0x98`, `+0xA8` calls `00861EBA(B + off, rcx+0x58`/`+0x5C`/`+0x64`/`+0x60`/`+0x74, len)` with `off` = word `+0x10` and `len` = word `+0x12` AND 0x1FFF of the descriptor, returning 3 when `off` is below 4 or `off + len` exceeds dword `[B]`; does the same for qword `+0xB0` from a stack block {1.0 (`01CEBBA8`) / float `+0x30` and 1.0 / float `+0x44` of qword `rdx+0xA8`, qword 0}; when qword `+0xB8` is non-null returns any non-zero `001B81B0(qword +8 of qword rcx+0x50, qword +0xB8, {0x42, 02D34718, r9})`; then stores `02D37A60` to qword `rdx+0x80` when `r8` is non-null with bit 1 of dword `r8+0xC` set, else `02D36E20`, and returns the first non-zero of `0060D4F0`, `0060DB50`, `005FEFD0`, `0060B980` (with qword `02D34710`, `008C6C98` and `rcx+0x30`) and `00600A60` on `rdx`, or 0",
+   "anchors": [
+    [
+     "00658863",
+     "cmp"
+    ],
+    [
+     "0065886F",
+     "mov"
+    ],
+    [
+     "00658887",
+     "call"
+    ],
+    [
+     "00658A08",
+     "divss"
+    ],
+    [
+     "00658AE2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00659A90",
+   "text": "returns any non-zero `001B81B0(qword +8 of qword rcx+0x10, Q, {0x42, 02D34718, V})` for `Q` = qword `rcx+0x58` with `V` = `r9` when `Q` is non-null, then for `Q` = qword `rcx+0x60` with `V` = the fifth (stack) argument when both are non-null; then stores `02D38000` to qword `rdx+0x80` when `r8` is non-null with bit 1 of dword `r8+0xC` set, else `02D37FE0`, and returns the first non-zero of `0060D4F0`, `0060DB50`, `005FEFD0`, `0060B980` (with qword `02D34710`, `008C6C98` and `rcx+0x30`) and `00600A60` on `rdx`, or 0, around a `005DC190(stack, r8, 0)` object released by `0016D6A0`",
+   "anchors": [
+    [
+     "00659AE2",
+     "call"
+    ],
+    [
+     "00659B25",
+     "call"
+    ],
+    [
+     "00659B67",
+     "cmovne"
+    ],
+    [
+     "00659B7D",
+     "call"
+    ],
+    [
+     "00659BDD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00659C20",
+   "text": "calls `0065D720(rcx, r9)`; with `H` = qword `+8` of qword `rcx+0xD20`, returns any non-zero `001B81B0(H, qword +0xD28, {0x42, 02D35140, fifth (stack) argument})` and `001B81B0(H, qword +0xD30, {0x42, 02D34718, sixth (stack) argument})`, each run when its qword is non-null; for non-null descriptors qword `+0xD40` and `+0xD58` calls `00861EBA(H + off, rcx+0xD10` or `rcx+0xD0, len)` with `off` = word `+0x10` and `len` = word `+0x12` AND 0x1FFF, returning 3 when `off` is below 4 or `off + len` exceeds dword `[H]`; returns a non-zero `0060D4F0(rdx, ...)` (passed a `005DC190(stack, r8, 0)` object when `r8` is non-null, else null); stores `02D376A0` to qword `rdx+0x80` when `r8` is non-null with bit 1 of dword `r8+0xC` set, else `02D37680`; returns the first non-zero of `0060DB50`, `005FEFD0`, `0060B980` (with qword `02D34710`, `008C6C98` and `rcx+0x30`) and `00600A60` on `rdx`, else `0060D4F0(rdx, 0, 0)`",
+   "anchors": [
+    [
+     "00659C4A",
+     "call"
+    ],
+    [
+     "00659C8D",
+     "call"
+    ],
+    [
+     "00659D4C",
+     "call"
+    ],
+    [
+     "00659E1C",
+     "cmovne"
+    ],
+    [
+     "00659E99",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00657140",
+   "why": "3-byte body `xor al, al; ret`: its whole work is the entry instruction (returns 0 in al)"
+  }
+ ],
+ "notes": "Doubt: 00658470, 006587F0, 00659C20 (391-930-byte render workers; each row is a structural summary of guards, copies, globals and call order, re-read against the listing, but long). Clarifications (no doubt on the row): 00658470 also wraps the 0060D4F0 chain in a 005DC190(stack, r8, 0) object released by 0016D6A0, and its 0060B980 call takes qword rcx+0x50 as second argument and a record {008C6C98, qword +0x20 of qword rcx+0x50}, then 0, dword rdx+0x220 and byte 0; in 006587F0, 00659A90 and 00659C20 the 0060B980 record is {008C6C98, rcx+0x30} and the remaining arguments are 0, dword rdx+0x220 and byte 0. 006587F0 and 00659C20: each descriptor copy first tests that the destination field address (rcx+0x58 and so on) is non-null and returns 1 if not; that path is reachable only for a near-null rcx, so the rows omit it. 00659C20: 0065D720 also receives the incoming r8 and r9 untouched (the listing sets only rdx = r9). 0018FD70: the 0065A630 call passes the incoming rdx unchanged; the fifth argument is the byte 1."
+}
