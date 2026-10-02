@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "0035C630",
+   "text": "calls `0028E220()`, `0028FF80()`, `003CA280()` and `003C98E0()` in that order, then tail-jumps `00290450(1)`",
+   "anchors": [["0035C634", "call"], ["0035C639", "call"], ["0035C63E", "call"], ["0035C643", "call"], ["0035C651", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0035C630: the listing sets no argument registers before the four calls."
+}
