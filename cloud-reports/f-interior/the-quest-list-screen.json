@@ -1,0 +1,112 @@
+{
+ "page": "16-UI/Quest-List/the-quest-list-screen.md",
+ "session": "session_01F7SYgmZJApKhfTARtFcaab",
+ "rows": [
+  {
+   "fn": "001B6430",
+   "text": "scans the qword pointers from qword `rcx+0x250` up to qword `rcx+0x258` (stride 8) and stores to qword `rcx+0x270` the first pointed-to entry whose dword `+4` equals `edx` and whose byte `+0x10` is non-zero, or 0 when none matches",
+   "anchors": [
+    [
+     "001B643E",
+     "cmp"
+    ],
+    [
+     "001B6446",
+     "cmp"
+    ],
+    [
+     "001B644C",
+     "cmp"
+    ],
+    [
+     "001B6459",
+     "mov"
+    ],
+    [
+     "001B6461",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001B6510",
+   "text": "gets an entry from `001BA860(rcx+0x190)`, zeroes its qword `+8`, dwords `+4` and `+0x14` and bytes `+0` and `+0x10`, stores `(dword rcx+0 shifted left 5) + edx` to its dword `+0x18`, and tail-jumps `001B4590(rcx, entry)`",
+   "anchors": [
+    [
+     "001B6526",
+     "call"
+    ],
+    [
+     "001B6530",
+     "mov"
+    ],
+    [
+     "001B653D",
+     "shl"
+    ],
+    [
+     "001B654D",
+     "mov"
+    ],
+    [
+     "001B655B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00274790",
+   "text": "swaps dwords `rcx+0` and `rcx+4` when the first is greater (signed), then swaps dwords `rcx+8` and `rcx+0xC` under the same test",
+   "anchors": [
+    [
+     "00274795",
+     "cmp"
+    ],
+    [
+     "00274799",
+     "mov"
+    ],
+    [
+     "0027479B",
+     "mov"
+    ],
+    [
+     "002747A4",
+     "cmp"
+    ],
+    [
+     "002747A8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00402BF0",
+   "text": "returns when `rcx` is null; otherwise walks the list from `rcx` through qword `+0x60` links and, for every node whose byte `+2` is 1, clears bits 1 and 2 (AND `0xFFF9`) and then sets bits 0 and 3 (OR 9) of word `+0x4E`, stores `0x3F800000` to dword `+0x38` and `0x80` to word `+0x4C`",
+   "anchors": [
+    [
+     "00402C00",
+     "cmp"
+    ],
+    [
+     "00402C06",
+     "and"
+    ],
+    [
+     "00402C0A",
+     "or"
+    ],
+    [
+     "00402C0F",
+     "mov"
+    ],
+    [
+     "00402C16",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00402BF0: `0x3F800000` is written as raw hex because the listing does not decode it (1.0 in IEEE single). No doubts."
+}
