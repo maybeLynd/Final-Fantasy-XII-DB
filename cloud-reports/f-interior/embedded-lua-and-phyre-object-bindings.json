@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "00685FB0",
+   "text": "calls through qword `+0x8` of `rcx` with the incoming arguments; then, when `r9` is non-null and `r8` equals the address `02E41370` OR 1, stores qword 0 at `r9+0x0` and that call's result at `r9+0x8` and returns 1, otherwise returns 0",
+   "anchors": [["00685FC0", "call"], ["00685FC6", "test"], ["00685FD6", "cmp"], ["00685FDB", "mov"], ["00685FE7", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00685FB0: the indirect call receives rcx, rdx, r8 and r9 as they arrived (no register is changed before it)."
+}
