@@ -1,0 +1,454 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md",
+ "session": "session_019LqHiXRaWmgLrNYjxULfMf",
+ "rows": [
+  {
+   "fn": "002915C0",
+   "text": "walks the list headed at qword `rcx+0x10F20` (next pointer at node `+0x9B0`) and returns the first node whose dword `+0x980` equals `r9d`; otherwise allocates `00273A30(0, qword (qword 0209BE80)+0x10FC0, 0x9D0)`, returning null when that fails, and on the new node calls `00275550(node, 0x9D0)` twice, then either `00202C90(node+0x960, r8)` when `r8` is non-null or ORs 2 into byte `+0x991`, stores `r9d` at `+0x980` and calls `002713E0(node+0x960, r9d)`; stores `dl` at byte `+0x990`, ORs 4 into byte `+0x991` when the fifth (stack) argument is non-zero, stores the sixth (stack) float at `+0x9A8`, fills qword `rcx+0x10F50` with `0024A5A0(qword 01E0C1E0)` when it is null and copies it to `+0x988`, calls `00271140` on a stack buffer and `003F2600(node, that buffer)`, sets word `+0x9C0` to 1, stores `003F2580(old list head, node)` as the new head and returns the node",
+   "anchors": [
+    [
+     "002915F1",
+     "cmp"
+    ],
+    [
+     "00291624",
+     "call"
+    ],
+    [
+     "0029166E",
+     "mov"
+    ],
+    [
+     "002916B3",
+     "call"
+    ],
+    [
+     "0029171F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E84B0",
+   "text": "when `rcx` is non-null, its qword `+0xC0` is non-null and the dword it points to is not -1 with a low word that is not -1, takes that sign-extended word times `0x740` plus qword `022C6F28` and, when the result is non-null and its dword `+0x284` is non-zero, tail-jumps `00428C40` with `rcx` set to that address (`xmm1` and the other arguments unchanged); every other path returns without a call",
+   "anchors": [
+    [
+     "002E84B8",
+     "mov"
+    ],
+    [
+     "002E84C4",
+     "cmp"
+    ],
+    [
+     "002E84D6",
+     "imul"
+    ],
+    [
+     "002E84E6",
+     "cmp"
+    ],
+    [
+     "002E84F2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E8500",
+   "text": "when `rcx` is non-null and the dword at `rcx` is not -1 with a low word that is not -1, takes that sign-extended word times `0x740` plus qword `022C6F28` and, when the result is non-null and its dword `+0x284` is non-zero, tail-jumps `00428C40` with `rcx` set to that address (`xmm1` and the other arguments unchanged); every other path returns without a call",
+   "anchors": [
+    [
+     "002E8508",
+     "cmp"
+    ],
+    [
+     "002E8510",
+     "cmp"
+    ],
+    [
+     "002E851A",
+     "imul"
+    ],
+    [
+     "002E852A",
+     "cmp"
+    ],
+    [
+     "002E8536",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002EBBB0",
+   "text": "clears bit 0 of byte `0215FD56` when `ecx` is non-zero and sets it when `ecx` is zero, stores the byte back, then ORs 1 into dword `+0x48818` of the object at qword `022C6F28` when the whole byte is now zero and clears that bit 0 otherwise",
+   "anchors": [
+    [
+     "002EBBBB",
+     "and"
+    ],
+    [
+     "002EBBBF",
+     "or"
+    ],
+    [
+     "002EBBC1",
+     "mov"
+    ],
+    [
+     "002EBBD2",
+     "or"
+    ],
+    [
+     "002EBBDA",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "002EBBF0",
+   "text": "builds the mask `1 << cl` and clears it in byte `0215FD56` when `edx` is non-zero or sets it when `edx` is zero, stores the byte back, then ORs 1 into dword `+0x48818` of the object at qword `022C6F28` when the whole byte is now zero and clears that bit 0 otherwise",
+   "anchors": [
+    [
+     "002EBBFD",
+     "shl"
+    ],
+    [
+     "002EBC07",
+     "and"
+    ],
+    [
+     "002EBC0F",
+     "mov"
+    ],
+    [
+     "002EBC20",
+     "or"
+    ],
+    [
+     "002EBC28",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00348700",
+   "text": "reads one float with `00267DB0(r9)`, calls `002EDA70` with it in `xmm0` and tail-jumps `0026A460` with the same float in `xmm0`",
+   "anchors": [
+    [
+     "0034870C",
+     "call"
+    ],
+    [
+     "00348714",
+     "call"
+    ],
+    [
+     "00348725",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348B00",
+   "text": "reads two floats with two `00267DB0(r9)` calls, calls `0026A460` with the second in `xmm0` and tail-jumps `002E83A0` with the first in `xmm0`",
+   "anchors": [
+    [
+     "00348B11",
+     "call"
+    ],
+    [
+     "00348B1C",
+     "call"
+    ],
+    [
+     "00348B21",
+     "call"
+    ],
+    [
+     "00348B33",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348F20",
+   "text": "reads two floats with two `00267DB0(r9)` calls, then passes them in `xmm0` in this order: the second to `002EDA70`, the first to `002EDA80`, the second to `0026A460`, and tail-jumps `002E83A0` with the first",
+   "anchors": [
+    [
+     "00348F41",
+     "call"
+    ],
+    [
+     "00348F49",
+     "call"
+    ],
+    [
+     "00348F51",
+     "call"
+    ],
+    [
+     "00348F59",
+     "call"
+    ],
+    [
+     "00348F70",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003497D0",
+   "text": "reads one float with `00267DB0(r9)`, calls `002EDA80` with it in `xmm0` and tail-jumps `002E83A0` with the same float in `xmm0`",
+   "anchors": [
+    [
+     "003497DC",
+     "call"
+    ],
+    [
+     "003497E4",
+     "call"
+    ],
+    [
+     "003497F5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00373160",
+   "text": "returns at once when `0020E600(dword rcx+0xA0)` is null; otherwise decodes table A `0020E600(dword rcx+0x84)` and table E `0020E600(dword rdx+0x84)`, copies dword `rdx+4` to `rcx+8`, stores `r8w` at word `rcx+0x14` when `r8d` is not -1 or else copies dword `rcx+4` to `rdx+0x10`, then walks the signed word `rcx+0x8A` count of word indices stored from the start of A's `0x290`-stride entry `word rcx+0x88`; for each indexed A entry it copies word `+0x270` to `+0x28E` and, only when `r8d` is -1, `dword rdx+0x9C` is 2 and dword `+4` of `00409270(the rcx+0xA0 table, word +0x27E)` has bit `0x100`, takes `003737C0(rdx, 00409250(that result))`; when that is not -1 and `003725A0(rdx, it)` is non-zero, it stores `0020E620(A entry)` at `+0x278` and the A entry's word `+0x27E` at `+0x27C` of E's entry of that index, calls `0046D100` from the A entry's `+0xC0` and `+0x150` to E's, and ORs 2 into the A entry's word `+0x280` (first setting its `+0x270` to -1 and copying E's `+0x270` to its `+0x276` when its `+0x270` names an A entry whose `+0x28E` is -1)",
+   "anchors": [
+    [
+     "00373244",
+     "mov"
+    ],
+    [
+     "00373255",
+     "test"
+    ],
+    [
+     "0037327F",
+     "call"
+    ],
+    [
+     "003732F7",
+     "mov"
+    ],
+    [
+     "00373331",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "003AFD50",
+   "text": "takes the `0x70`-stride entry of `02B3F570` indexed by `cl` and, when its dword `+4` equals `ecx`, stores `xmm1` at its `+8`; otherwise stores nothing",
+   "anchors": [
+    [
+     "003AFD53",
+     "imul"
+    ],
+    [
+     "003AFD63",
+     "cmp"
+    ],
+    [
+     "003AFD66",
+     "cmovne"
+    ],
+    [
+     "003AFD6F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003AFD80",
+   "text": "takes the `0x70`-stride entry of `02B3F570` indexed by `cl` and, when its dword `+4` equals `ecx` and its float `+0x10` differs from float `rdx+4` (or the compare is unordered), stores that float at `+0x10` and 1.0 (`01CEBBA8`) divided by it at `+0x14`; otherwise stores nothing",
+   "anchors": [
+    [
+     "003AFD95",
+     "cmp"
+    ],
+    [
+     "003AFDAB",
+     "ucomiss"
+    ],
+    [
+     "003AFDBA",
+     "divss"
+    ],
+    [
+     "003AFDBE",
+     "movss"
+    ],
+    [
+     "003AFDC3",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003B6BB0",
+   "text": "takes the `0xE0`-stride entry indexed by `cl` in the table at qword `02B40528` and, when its dword `+0x10` equals `ecx`, stores `xmm1` at its `+0x2C`; otherwise stores nothing",
+   "anchors": [
+    [
+     "003B6BB3",
+     "imul"
+    ],
+    [
+     "003B6BC1",
+     "cmp"
+    ],
+    [
+     "003B6BC6",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003B6BD0",
+   "text": "takes the `0xE0`-stride entry indexed by `cl` in the table at qword `02B40528` and, when its dword `+0x10` equals `ecx`, stores `xmm1` at its `+0x44`; otherwise stores nothing",
+   "anchors": [
+    [
+     "003B6BD3",
+     "imul"
+    ],
+    [
+     "003B6BE1",
+     "cmp"
+    ],
+    [
+     "003B6BE6",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003E4780",
+   "text": "returns, computed in double and converted to float, the signed word `rcx+0x4B4` times 0.000244140625 (`00D117C0`) times float `rcx+0x22C` times `xmm1` times 0.003921568859 (`00D117C8`)",
+   "anchors": [
+    [
+     "003E4787",
+     "movss"
+    ],
+    [
+     "003E479E",
+     "mulsd"
+    ],
+    [
+     "003E47AA",
+     "mulsd"
+    ],
+    [
+     "003E47AE",
+     "mulsd"
+    ],
+    [
+     "003E47B6",
+     "cvtpd2ps"
+    ]
+   ]
+  },
+  {
+   "fn": "0041FBF0",
+   "text": "when dword `rcx+0x18` is not -1 takes `002ED570(qword 0020E600(dword rcx+0x10)+0xD98, dword rcx+0x18)` as a pointer (null otherwise); when `edx` is 1 ORs `0x20` into dword `rcx+0x284`, ORs 4 into the dword at that pointer when it is non-null and calls `00422F80(rcx)`, otherwise clears those two bits and calls `00422F30(rcx)`; then tail-jumps `00421030(rcx)`",
+   "anchors": [
+    [
+     "0041FC22",
+     "call"
+    ],
+    [
+     "0041FC30",
+     "or"
+    ],
+    [
+     "0041FC42",
+     "call"
+    ],
+    [
+     "0041FC49",
+     "and"
+    ],
+    [
+     "0041FC72",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00420F90",
+   "text": "ORs `0x10` into dword `rcx+0x284` when `edx` is 1 and clears that bit otherwise, then on both paths tail-jumps `00421030(rcx)`",
+   "anchors": [
+    [
+     "00420F95",
+     "or"
+    ],
+    [
+     "00420F9C",
+     "jmp"
+    ],
+    [
+     "00420FA1",
+     "and"
+    ],
+    [
+     "00420FA8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "004293C0",
+   "text": "tail-jumps `003E5D00` with its arguments unchanged when `r9d` is at most 1 (signed); otherwise, when the fifth (stack) argument is 1, replaces `rcx` with the sign-extended word `rcx+8` times `0x740` plus qword `022C6F28` (returning when that word is -1, and using null when that entry's dword `+0x284` is zero), and then tail-jumps `003E5D60` when `rcx` is non-null and returns otherwise",
+   "anchors": [
+    [
+     "004293C4",
+     "jle"
+    ],
+    [
+     "004293CA",
+     "cmp"
+    ],
+    [
+     "004293DF",
+     "imul"
+    ],
+    [
+     "004293F5",
+     "cmove"
+    ],
+    [
+     "004293FC",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "0042DE50",
+   "text": "when `00426220(rcx, qword rdx+8)` returns zero, calls `0041FBF0(rcx, dword rdx+0x38)` and then `00421030(rcx)`; otherwise calls neither",
+   "anchors": [
+    [
+     "0042DE64",
+     "call"
+    ],
+    [
+     "0042DE6D",
+     "mov"
+    ],
+    [
+     "0042DE73",
+     "call"
+    ],
+    [
+     "0042DE7B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Appended-row drafts only (page led by FABLE); no edits proposed to existing text. 00373160: the long sentence was re-read twice; table A is decoded twice from the same handle (dword rcx+0x84) and treated as one table; on the r8d == -1 path the non-2 branch ORs r8d into the index, which yields -1 and skips the entry, so only dword rdx+0x9C == 2 reaches 003725A0. 002915C0: the pointer passed to 00271140 is computed from qword +0x20 of the qword stored at +0x988 (word offsets +0x10 and +0x14 of a header at +0x30); not spelled out in the sentence. 003E4780: the float at rcx+0x22C is widened with cvtps2pd. 00348700/00348B00/00348F20/003497D0: 00267DB0 is assumed to return its float in xmm0 since the bodies move xmm0 after each call."
+}
