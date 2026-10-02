@@ -1,0 +1,154 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md",
+ "session": "session_01DvkUokim1xrVUS78Zq26tk",
+ "rows": [
+  {
+   "fn": "0017ECB0",
+   "text": "copies dword `+0x10` of `rcx` into dword `01DF08F8`",
+   "anchors": [
+    [
+     "0017ECB3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001DA090",
+   "text": "returns without work when `edx` is negative (signed); otherwise stores byte 1 at `+0x88` of `rcx` and, when dword `+0x7C` differs from `edx`, moves the old `+0x7C` into dword `+0x80`, stores `edx` at `+0x7C`, calls `0020C1A0(0020C700(), new +0x80, edx)` and then `005CDAA0(0, 009006E8, edx)`; when `+0x7C` already equals `edx` it returns after the byte store",
+   "anchors": [
+    [
+     "001DA092",
+     "js"
+    ],
+    [
+     "001DA0A3",
+     "mov"
+    ],
+    [
+     "001DA0AF",
+     "je"
+    ],
+    [
+     "001DA0CB",
+     "call"
+    ],
+    [
+     "001DA0DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001DF760",
+   "text": "checks that the count `rdx` times the size `r8` does not overflow (compares `rdx` against all-ones divided by `r8`) and calls the import at `008C2DA8` on failure; when the product is at least `0x1000` it requires `rcx` to be 32-byte aligned, takes the qword at `rcx - 8` as the base, and requires the base to lie below `rcx` at a distance of 8 to `0x27`, calling `008C2DA8` on any failure and otherwise replacing `rcx` with the base; then tail-jumps to `00210EB0(rcx)`",
+   "anchors": [
+    [
+     "001DF76D",
+     "div"
+    ],
+    [
+     "001DF780",
+     "cmp"
+    ],
+    [
+     "001DF795",
+     "mov"
+    ],
+    [
+     "001DF7B5",
+     "cmp"
+    ],
+    [
+     "001DF7C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001ED0D0",
+   "text": "returns 0.0 only when dword `01F82E38` is non-zero, `001EC560()` returns zero, the import at `008C2A08(rcx, \"hc1006\" 009025EC)` returns non-null and the low word of `edx` equals `0x57`; on every other path returns 0.5 (`01CEBB70`)",
+   "anchors": [
+    [
+     "001ED0DA",
+     "cmp"
+    ],
+    [
+     "001ED0F0",
+     "jne"
+    ],
+    [
+     "001ED0FC",
+     "call"
+    ],
+    [
+     "001ED107",
+     "cmp"
+    ],
+    [
+     "001ED11B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "001ED1E0",
+   "text": "returns 0 when dword `01F82E38` is zero or `001EC560()` returns zero; otherwise takes the sign-extended low word of `00265270()` and a value v that is dword `01F832B0[i]` (stride 4) for the dword index i at `01DFE40C` when i is 0 to 4 (unsigned compare) and 0 otherwise, and returns 1 when the word equals `0x14B7` and v equals 4, else 0",
+   "anchors": [
+    [
+     "001ED1F4",
+     "je"
+    ],
+    [
+     "001ED1F6",
+     "call"
+    ],
+    [
+     "001ED211",
+     "mov"
+    ],
+    [
+     "001ED218",
+     "cmp"
+    ],
+    [
+     "001ED220",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020C1A0",
+   "text": "stores `edx` at dword `+0x84` and `r8d` at dword `+0x80` of `rcx` and returns 1 in `al`",
+   "anchors": [
+    [
+     "0020C1A6",
+     "mov"
+    ],
+    [
+     "0020C1A8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008B9040",
+   "text": "stores the address `01CC6B60` into qword `02EAEA68` and tail-jumps through the import at `008C20D0` with `rcx` = `02EAEA70`",
+   "anchors": [
+    [
+     "008B9047",
+     "lea"
+    ],
+    [
+     "008B904E",
+     "mov"
+    ],
+    [
+     "008B9055",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0017ECB0 and 0020C1A0 are short (entry instruction is a load / the first store) but each has an interior store, so they are rowed; FABLE may prefer to skip 0017ECB0 as near-entry-only. 001DA090: the listing does not decode the data at 009006E8 (the page calls it the FileCache log format), so the row names only the address; no return value is set explicitly. 001DF760: reads as the MSVC aligned-deallocate check before the free at 00210EB0; the row states only the checks. The import targets 008C2DA8, 008C2A08 and 008C20D0 are named by their IAT slot addresses because the listing does not name the imports. 001ED0D0 and 001ED1E0 test 001EC560() with opposite senses (0.0 path needs it zero; the 1 path needs it non-zero). 001ED1E0: i is sign-extended to 64 bits before the unsigned ja, so a negative i (the initial value FFFFFFFF) gives v = 0."
+}
