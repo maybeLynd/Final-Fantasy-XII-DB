@@ -382,3 +382,456 @@ listed under 3.2 as stale.
 | S-19 | **The residual set itself**: the 158 addresses are not enumerated on U158 (external `GM160_CURRENT160_ADDRS.txt`). The live 30 are listed only in `residual-30-GN161.tsv` | `U158:132-134`, `README:11` |
 | S-20 | **`0024B580` queue**: when it runs in a frame, what the nine kinds are, and the meaning of `002FC010`'s return | `U158:1360-1365` |
 | S-21 | **Ownership**: README lists only 4 of the 22 system pages (`README:133-156`). A port reading the index would not find the text, widget, cutscene or census pages | `README:133-156` |
+
+---
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Each item quotes both sides exactly, with `NAME:line`. Every quotation was checked string-for-string against the snapshot
+`f26c5667`. Where a quote spans a wrapped line, the line break is shown as a space and the leading `> ` of a blockquote line is
+dropped.
+
+- **3.1 Value-changing items** would change what a port computes, stores or calls. Each one is
+  **page-text only - needs local check**, because this session cannot see the executable. Each is tagged **[engine]** (behaviour,
+  layout, address, formula) or **[ledger]** (a count or extent that affects only the residual bookkeeping).
+- **Favoured side.** A side is named only where a dated correction on the pages settles the question. Even then the byte check is
+  still owed.
+- **3.2 Stale or banner items** change no value. Each is an "open / not read" claim that another page or a later dated section
+  answers, a corrected claim repeated unstruck, or a status banner that disagrees with front matter.
+
+### 3.1 Value-changing — page-text only - needs local check
+
+**C-V1 [engine] — `003647E0` control codes 1 and 3 are swapped, and the gating differs.** *No favoured side.*
+- §2: "| `0x0001` | advance the pen by the advance width of the character `'0'` — **a figure space** |" (`GQ:272`) and
+  "| `0x0003` | restore the alpha byte from the saved copy — **undim** |" (`GQ:274`). Also "Codes `2` and `3` are gated on bit 0
+  of the state byte at `+0x63`" (`GQ:277`).
+- Subtree table: "opcode 1 copies `[rdi+0x37]`→`[rdi+0x33]` (`00364843`), opcode 2 writes `[+0x37]/5` …, opcode 3 scans the
+  `[022CBE00]` layer's `0xC`-stride table for `word == 0x30` (`00364893`) — all gated on `byte[rdi+0x63] & 1`" (`GQ:1787`).
+- Code 2 (dim to `/5`) agrees on both sides. **Local check:** the arms at `00364843` and `00364893`, and which arms the `+0x63`
+  test guards.
+
+**C-V2 [engine] — what `00364210` and `00365FD0` are.** *No favoured side.*
+- §3: `00364210` "Evicts the LRU tail, fills it from the font glyph table, rounds cell dims to powers of two" (`GQ:318`).
+  `00365FD0` "Finds the node and moves it to the list head" (`GQ:319`).
+- Subtree table: `00364210` is "the span clipper — u16 tag scan over `[022CBE00]` records …, returning the clipped span"
+  (`GQ:1789`). `00365FD0` is "the u16-key cache scan" with no promote step (`GQ:1788`).
+- This decides whether a port needs an LRU glyph cache at all (S-4).
+
+**C-V3 [engine] — the nine-patch per-cell split rule: the no-split arm is inverted.** *No favoured side.*
+- DB: "`if (col != 1 && (cellWidth - 8) <= 0x27 && (rowHeight - 8) <= 0x27)` … `flag = (colIndex == 1) ? 0 : 8;` else
+  `flag = (colIndex == 2) ? 4 : 0;`" (`DB:271-274`). DB's prose agrees: "// bottom row:  4 when the cell index is 2, else 0"
+  (`DB:260-262`).
+- NINEP: "`if (col == 1 || (uint)(size - 8) > 0x27 || (uint)(axis - 8) > 0x27)` `flags = (index == 2) ? 0 : 4;     // no split`
+  `else flags = (index == 1) ? 0 : 8;     // split through the centre`" (`NINEP:207-209`).
+- The split condition and the split arm agree. In the no-split arm, DB gives cell index 2 flag 4 and the others 0; NINEP
+  gives cell index 2 flag 0 and the others 4. Flag 4 selects "one quad, drawn with `flags & ~4`" (`NINEP:183-187`).
+  **Local check:** the two `cmov`/`setcc` sequences in `00392A10` around the `0x27` compares.
+
+**C-V4 [engine] — the corner-blend colour.** *No favoured side.* No correction strikes either version. The dated 2026-09-26 replay
+(`DB:453-462`) agrees with NINEP.
+- DB (twice, unstruck): "`blended = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);   // per channel`" (`DB:234`) and
+  "`blended_channel = (a + (b + (c + (d >> 24) >> 1) >> 1) >> 1);`" (`DB:359`).
+- DB's UQ-353 replay: "whose colour is `(((c0+c1)/2 + c2)/2 + c3)/2`: weighted toward corner 3, not an average." (`DB:462`).
+  NINEP: "`mid = ((((c0 + c1) >> 1) + c2) >> 1) + c3) >> 1;`" (`NINEP:195`).
+- The first form nests the other way and carries a `d >> 24` term (alpha byte into a colour channel). The second weights the
+  corners 1/8, 1/8, 1/4, 1/2 (`NINEP:198-199`). **Local check:** the `& 8` arm of `002DC7F0`.
+
+**C-V5 [engine] — what the fallback `00392CE0` draws.** *No favoured side.*
+- DB: "`FUN_00392ce0(ctx, rect, colours);      // ONE gradient quad, no slicing`" (`DB:241`). "The fallback `00392CE0` builds a
+  single quad — four corner positions and the same four colours, arranged 2×2" (`DB:250-252`). The key table says "The
+  un-sliced path: one gradient quad" (`DB:288`).
+- NINEP: "`00392CE0` has a special case for **two of the nine cells** — the top-left (`row 0, col 0`) and the bottom-right
+  (`row 2, col 2`)" (`NINEP:139-140`). CS: "derives nine region widths …, iterates the nine slices and calls the shared emitter
+  `002DC290` per slice" (`CS:1553`).
+
+**C-V6 [engine] — who calls `002DC290`.** *No favoured side.*
+- CS: "**eleven callers across seven address neighbourhoods**, including both renderers above" (`CS:1390-1391`).
+- CS (same page): `00392CE0` "emits through one callee, `002DC290`. The sliced path uses `002DD1E0`, `002DC7F0` (×3) and
+  `002DD090`" (`CS:1342`). DB: "The **live** cell drawer, 11 other callers — not dead" (`DB:291`).
+
+**C-V7 [engine] — what `002DD090` does.** *No favoured side.*
+- DB: "Closes the draw batch. Sole caller `00392A10`" (`DB:290`).
+- CS: `002DD090` is "the packet submitter", which "writes the `0x10000000` bracket-open command" and the `0x6C008000` header
+  (`CS:1551`). The bracket-open command is what sets the flag `002DD4B0` returns (`DB:447`). So which function opens the
+  bracket changes the order a port must emit.
+
+**C-V8 [engine] — what `0020E600` is.** *No favoured side.*
+- A scheduler yield: "call the `CoreRuntimeScheduling` yield `0020E600`" (`CBC:256-258`, `MEASURE:304`). "`CoreRuntimeScheduling`
+  `0020E600`" (`REF:288`). CBC also lists "What `0020E600` returns." as open (`CBC:239-240`).
+- An address resolver: "`ImageAddress_ResolveRuntimePointer   (10 B)`" (`GQ:1453`). "`0020E600` is `mov eax, ecx; add rax, [01F83530];
+  ret`" (`BIG:1386`). "calling `0020E600`, `ImageAddress_ResolveRuntimePointer` — the shared image-address resolver the core
+  runtime layer owns" (`CENSUS:1469`).
+- A port of the text walk (`002AAE40` → `0020E600` per glyph cell, `CBC:72`) needs to know whether this returns a pointer.
+
+**C-V9 [engine] — the `0053E0B0` call chain.** *No favoured side.*
+- Call chain: "`0053E0B0` … `-> 002D8690 / 002D87D0  renderer selection` `-> 00364980   "ex" prefix?`" (`GQ:546-548`).
+- Same page: "this page's `0053E0B0` calls `003649A0` without the test" (`GQ:704`), with call order "`003659F0 → 003649A0`
+  **twice**" (`GQ:1482`).
+
+**C-V10 [engine] — what `00229E40` is.** *No favoured side.*
+- "`00254A14  call 00229E40          ; returns [01E02814], which SHIPS AS 0x0A`" (`CTX:322`).
+- "`00254A10` calls the `CoreRuntimeScheduling` yield `00229E40`" (`CTX:735-738`).
+
+**C-V11 [engine] — what the 8-slot registry `0209C4D0` holds.** *No favoured side.* Neither page strikes the other.
+- "`0209C4D0` is an 8-slot actor registry" (`U158:839`, also `U158:239-240`, `U158:867`). CS repeats it (`CS:977-981`).
+- "the **live** message-window registry" (`U158:551`). "the window objects as **`MessageWindowRecord`**" (`U158:560`).
+
+**C-V12 [engine] — whether `00364530` reaches the render-target chooser.** *No favoured side.*
+- GQ: `00364530` has "12 call sites, **zero** render or scope calls" (`GQ:1481`) and is `Text_MeasureGlyphRun` (`GQ:315`).
+- RT: the mode-2 chooser `0017FD00`, which forwards to `001E9D20`, is "called only by the message-window family
+  (`00364530`, …)" (`RT:288`).
+
+**C-V13 [engine] — whether `002B2150` draws.** *No favoured side.*
+- "`002B2150` draws each text run" (`GQ:842`).
+- "a score-summing pass over the line's elements, not a draw" (`CBC:288-289`). GN162 `UI.Text.MeasurePass` (`MEASURE:228`). GQ itself:
+  "a *scoped* pass, not a compiler … accumulating `xmm6` (width) / `xmm7` (max height)" (`GQ:853-856`).
+
+**C-V14 [engine] — byte meanings in the compiled line stream.** *No favoured side.*
+- CBC: "bytes `0x01`–`0x0F` are tokens, `0x10` and up are text. **`0x03` is handled here rather than there**, and it ends the
+  run" (`CBC:93-95`).
+- GQ: "`0x02` is an inline marker, `0x03` is a line commit, `0x10`–`0x1F` are two-byte object references and `>= 0x20` one-byte
+  object references" (`GQ:833-835`). And "by the line-break token `0x02`" (`GQ:1736`).
+- MEASURE's walk agrees with neither as a whole: `3` hard break, `2` calls `002B2150` on the remainder (`MEASURE:165-170`).
+
+**C-V15 [engine] — whether `002AAE40` draws.** *No favoured side.*
+- "**None of the three draws.** The glyph emitter is `002A9F00`, which is not among them." (`GQ:773`)
+- "| `002AAE40` | **a drawing pass** …" (`GQ:784`). CBC's walk calls "`FontPainter_DrawGlyph(&record);                    // 0017F7C0`"
+  (`CBC:76`).
+
+**C-V16 [engine] — what a column-1 dispatch does to `0209CC48`.** *Not settled.* CTX's dated correction reinterprets the store, but
+it does not account for the immediate `0` in DISP's listing.
+- DISP listing: "`mov   qword ptr [0209CC48], 0`" (`DISP:114`). "and clear `[0209CC48]`" (`DISP:275`).
+- CTX: "the dispatch re-points `0209CC48` at the record the swap selected and rewinds `0209CC50` to its start" (`CTX:253-254`).
+  Key table: "~~cleared by both column-1 dispatchers alongside the publish~~ … re-pointed … (§3d; corrected 2026-09-30,
+  SWE2-DATA)" (`CTX:611`).
+
+**C-V17 [engine] — `0209E5D8` / `0209E5DC`: read or written by `002BCB00`.** *No favoured side.*
+- ICON2: the position offset globals are "**`0209E5D8` / `0209E5DC`**" (read, as the twin reads `0209E5A8`/`0209E5AC`)
+  (`ICON2:57`).
+- RECT: `002BCB00`'s "body stores `0209E5D8`/`0209E5DC`" (`RECT:204`).
+
+**C-V18 [engine] — what `002DD7E0` returns.** *No favoured side.*
+- BLINK: a palette getter returning `*(DAT_0215E6C8 + id*8)` or `0x80808080` (`BLINK:107-111`), whose dwords are
+  `fontcolor.bin`'s face colours (`BLINK:288`, `BLINK:4`).
+- NINEP: "`002DD7E0` fetches the `0x67`/`0x69` string then `0x68`/`0x6A`" (`NINEP:385`).
+
+**C-V19 [engine] — what `00181460` does, and its caller count.** *No favoured side.*
+- RECT: "`00181460(points, n)` turns a strip into a list - for each of the `n - 2` triangles it appends three 0x30-byte vertices"
+  (`RECT:140`).
+- NINEP: a nine-patch grid fill, "the nine-patch's 2-D `(n-2)x3` loop" (`NINEP:283-284`). It has "105 B, 9 A-measured callers"
+  (`NINEP:256`), against "`00181460` is called by `002AFDC0`, `002D9DB0`, `002DA2D0`, `002DA7C0` and 10 more" (`WTREE:301`).
+
+**C-V20 [engine] — how many callers `002AC5F0` has.** *No favoured side.*
+- "`002A8C50` is one of the seven callers of `002AC5F0`" (`DISP:285`).
+- "the one six other functions call" (`DISP:295-296`). GQ counts "the other four callers of the interpreter" (`GQ:792-793`).
+
+**C-V21 [engine] — how many callers `002ABEC0` has.** *No favoured side.*
+- 5: the caller column "| 5 |" (`DISP:138`), and "caller counts **2 / 3 / 5**" (`DISP:704`).
+- 9: "Its nine callers pass the widget's embedded text-draw block" (`DISP:228`), and "every embedded base the nine callers use"
+  (`DISP:657`).
+
+**C-V22 [engine] — how many font painter entry points there are.** *No favoured side.*
+- "**Every function in FFXII that draws text goes through eighteen entry points**" (`API:31`). The table lists 18 rows, all in
+  `0017F650`–`0017FD30` (`API:57-74`).
+- "Sixteen sit in one contiguous band, `0017F650`–`0017FD30`", and two more are "consumers rather than API entries" (`API:35-37`).
+  A nineteenth band member, "The sibling `0017F9A0` forwards to `001B5FB0`/`001B5210` the same way" (`API:304-306`), is not in the
+  table.
+
+**C-V23 [engine] — how many callers `0017FD30` has.** *No favoured side.*
+- "`0017FD30` — 63 B, 6 A-measured callers" (`CBC:294`).
+- "has eight callers" (`RT:288`), with seven named.
+
+**C-V24 [engine] — what `001FDD60` returns on a miss.** *No favoured side.*
+- "**`001FDD60` is the same algorithm byte for byte**" as a find that "returns the terminator on a miss" (`RT:305-308`).
+- "miss returns 0" (`RT:461-462`).
+
+**C-V25 [engine] — who calls the painter begin `0017FA10`.** *No favoured side.*
+- "Eleven sites in seven functions, and **three of them were on the 158 list**" (`PAINT:189-190`).
+- The page names six: `002AC5F0`, `003649A0`, `002AF960`, `002A9F00`, `002B0280`, `002D28E0` (`PAINT:190-192`).
+
+**C-V26 [engine] — which tree child pointer is left and which is right.** *No favoured side.*
+- "`001E9D79  mov   rcx, qword ptr [rcx + 8]          ; left`", "`001E9D7F  mov   rcx, qword ptr [rcx]              ; right`"
+  (`RT:95`, `RT:97`). Also "right `+0x00`, left `+0x08`" (`RT:320`).
+- "left `+0x00`/right `+0x08`" (`RT:482`).
+
+**C-V27 [engine] — the render-target push callee.** *No favoured side.*
+- "`001E865F  call  0x001FBE50                 ; NON-ZERO -> push a render target and paint`" (`PAINT:343`).
+- "pushed with `FUN_0018AFF0`" (`PAINT:532`).
+- "the mode arguments `1` and `3` to `FUN_001FBD80`" (`PAINT:544`).
+
+**C-V28 [engine] — what glyph record `+0x9C` holds.** *No favoured side.*
+- "`FUN_001E94E0(param_1, [param_2 + 0x9C] % 0x1C)`" — a palette index (`PAINT:467`; also `CBC:111`, `API:102`).
+- "`dword[rdx+0x9C]` element count read (`001E808A`), magic-divide `0x92492493` (÷7, `001E809B`)" (`PAINT:661-662`).
+
+**C-V29 [engine] — the font painter batch array: base and stride.** *No favoured side.*
+- "walked from `param_1 + 0x70`" (`PAINT:379`) against the open-batch formula "`state + 0x30 + (slot*32 + n)*0x38`" with
+  `1 ≤ n ≤ 31` (`PAINT:433-436`). The formula gives `+0x68` for slot 0, n = 1.
+- The fallback: vertices are "`0x3C` bytes … falling back to `001E7A20` when the batch is full" (`PAINT:454-456`), against
+  "`001E7A20` (610 B) | `0x38`-stride vector insert" (`PAINT:668`).
+
+**C-V30 [engine] — the address of `FieldData_GetActiveFieldRecordBit15`.** *No favoured side.*
+- `00313F60` (`CENSUS:1531`).
+- `00377C20` (`U158:1595`). REF: "calls `WorldAreaField` `00377C20`" (`REF:290`).
+
+**C-V31 [engine] — the cutscene-slot latch order.** **Favoured: `CS:537-538`.** UQ-341, answered 2026-09-14, states that §2 "is right
+about the value and too simple about the protocol" (`CS:547-548`).
+- §2: "It is set before any work and cleared on every exit path, including the early ones." (`CS:89-90`). The listing has the bounds
+  test first (`CS:85`, `CS:238-239`).
+- UQ-341: "`0020AC30`, the slot fill, stores the index unchecked (`0020AC64`), then tests `≤ 4`. It resets the latch to `−1` when the
+  name does not parse (`0020AE48`)." (`CS:537-538`). The normal-exit reset site is not given.
+
+**C-V32 [engine] — the `002DC290` command's vertex offsets collide with its transform.** *No favoured side.*
+- Vertex 0's colour is at "`+0x50 +0x54 +0x58 +0x5C`" (`CS:1408`).
+- "It writes them again into the command at `+0x20`–`+0x5F`" (the 4×4 transform; `CS:1502-1503`).
+
+**C-V33 [engine] — whether `00180120` consumes flag B.** *No favoured side.*
+- UQ-336 (2026-09-15): `00180120` "does not name flag B, so the consumer count stands." (`CS:363`).
+- `001EC5C0` "Zero-extends flag B for its 4 consumers" (`CS:197`). The four consumer sites "fall in **four** functions: `00180120`, …"
+  (`CS:387-390`).
+
+**C-V34 [engine] — the operand of `001ED180`.** *No favoured side.*
+- "`id = WorldTransition_GetTransitionFieldId();`" (`CS:862`).
+- "`ebx = 00314910()` is the current kind" (`CS:1599-1600`).
+
+**C-V35 [engine] — the batcher's `0x58` slot and the ring base.** *No favoured side.*
+- (a) `+0x2C` initial value. `001B06D0`'s template: "`qword[+0x14] = 1`, `+0x2C..` zeroed" (`NINEP:272-273`). `001B0100`'s reset:
+  "`+0x10`/`+0x14`/`+0x2C`/`+0x30` latch 1" (`RECT:307-308`).
+- (b) Ring base: "`&DAT_02EBEFC8 + DAT_02EBEFF0 * 0x18`" (`NINEP:175`) against "`02EBEFF0`'s index ×3 strides the `02EBEFC0` table
+  (0x18 records)" (`RECT:228`). An 8-byte difference, consistent only if NINEP means the `+8` field, which it does not say.
+
+**C-V36 [engine] — where `002DAF30`'s 64 bytes come from.** *No favoured side.*
+- WBG: "four `movups` lanes copy `rdx`'s 64 B into the `022D8F30..60` globals" (`WBG:265-266`).
+- WTREE: it "loads four `xmm` rows from `02EBEFC0` / `02EBEFF0` into the shared workbench" (`WTREE:258`).
+
+**C-V37 [engine] — whether the reveal stepper's state is the drawing context.** *No favoured side.*
+- MEASURE identifies the stepper state's `+0x5A` with the drawing context's brightness: "**It is the brightness**, as §5 says below and
+  as [the rectangle primitive] … read it" (`MEASURE:196-197`).
+- The same page gives `+0x90`/`+0x92` as "a **following pair**" (`MEASURE:209`) and `+0xA0` as "the step size" (`MEASURE:212`).
+  RECT reads `context[0x90..0x93]` as "RGBA" (`RECT:64`). NINEP reads the node's `+0xA0` as alpha (`NINEP:132`).
+- If the objects are the same, the fields collide. If they differ, the brightness identification fails.
+
+**C-V38 [engine] — whether `002D6990` is dead or live.** *No favoured side.* UQ-355 is answered NO, which keeps the live reading.
+- "`002D6990` (783 B) is the dead nine-patch draw body" (`DB:704`).
+- "A **different, live** 3×3 system" (`DB:293`). "— both are live and their callers are disjoint**" (`DB:479`).
+
+**C-V39 [ledger] — where the 158 lie in the address space.** *No favoured side.*
+- "The 158 are scattered over **37 distinct 64 KB pages** from `0x0018xxxx` to `0x004Fxxxx`." (`U158:103`).
+- The same page names 158-members above `0x0050xxxx`: `00573BE0` (`U158:525`), and `00565E00`, `0056F810`, `005771F0` (`U158:268`).
+  `residual-order.tsv` (139 ⊂ 158) runs to `005DF890`.
+
+**C-V40 [ledger] — how the 30 split.** *No favoured side.*
+- "The split is **30 DESCRIBED, 0 CONTESTED, 0 UNREAD**" (`U158:1149-1150`). This agrees with `residual-30-GN161.tsv` (30 `DESCRIBED`).
+- "`check_residual_depth.py` reports 29 described and **`0036A2A0` alone as contested**" (`U158:1489-1490`). "the 29 DESCRIBED bodies
+  in" `residual-30-GN161.tsv` (`U158:1567-1568`).
+
+**C-V41 [ledger] — what batch R109 classified.** *No favoured side.*
+- "The 109 singletons named here are **no longer unresolved**" (`U158:50`).
+- `residual-109-classification.tsv` includes cluster members `002A4830`, `002A4430`, `002AF960` (the 13-cluster, `U158:657-669`) and
+  `00256CA0` (`U158:585`). `U158:1130-1134` describes R109 as 109 of the 139, not as the singletons.
+
+**C-V42 [ledger] — the twin diff byte count.** *No favoured side.*
+- "~1,186" rel32 displacement bytes (`U158:361`).
+- "| 395 | 1,184 |" (`U158:426`).
+
+**C-V43 [ledger] — census counts.** *No favoured side* on any of the three.
+- (a) `00244F50`: "`00244F50`, 203 callers, read in full:" (`CENSUS:289`) against "**231 call sites** image-wide" (`CENSUS:349-350`). These
+  may be different units; the page does not say.
+- (b) The battle action handler table's slots in span: "| 339 | Battle action handler table — `01EEC460`, 359 slots |"
+  (`CENSUS:942`) against "359 slots | 340 |" (`CENSUS:1050`). §17 claims to reproduce §16 exactly (`CENSUS:1037-1045`).
+- (c) RTTI vtables: "2,286 vtables recovered and named via RTTI" (`CENSUS:361`) against "**2,335 RTTI type descriptors → 2,271
+  complete-object locators → 2,271 vtables**" (`CENSUS:1151-1152`).
+
+**C-V44 [ledger] — whether the interpreter `0025E4C0` and `00301AD0` are truncated bodies.** *No favoured side.* The member TSVs side
+with `CUT:111-114`.
+- "The interpreter, one of the truncated bodies, …" (`CUT:246`). "`AiOrder_EvaluateTargetSelector` (`00301AD0`). Another truncated
+  body" (`CUT:252-253`).
+- "**The bodies this database leans on are not among them.**", with both listed as contained in their recorded extents
+  (`CUT:111-114`, also `CUT:199`). Neither address is in either truncated-body TSV.
+
+**C-V45 [engine] — the end of `0037C3F0`.** *No favoured side* on the page. The member TSVs give `0037C6F8`.
+- "out to 0037C6C3." (`CUT:15`), and again at `CUT:47`, `CUT:85`, `CUT:196`.
+- "code reaching `0037C6F8`" (`CUT:68-69`). The table is also at `0x0037C6F8` (`CUT:67`).
+
+**C-V46 [engine] — `00148F41` and `001492FF`: data or libvpx code.** *No favoured side.*
+- CUT: `001492FF` is "switch data after `repz ret`" (`CUT:142`). `00148F41` is "unreferenced … outside the population" (`CUT:146`).
+- UNL (UC-3, narrowed 2026-09-27): "the vpx_dsp intra predictors dc 32x32 (00148F41) and h 32x32 (001492FF)" (`UNL:453`).
+
+**C-V47 [ledger] — the continuation count.** *No favoured side.* `unlisted-body-admissions.tsv` agrees with `UNL:73`.
+- The 2026-09-25 table: "| continuation | 162 | 3,418 |" (`UNL:73`), body 874 (`UNL:72`). And "**877 blocks**: 874 bodies plus 3
+  ambiguous, with the 162 continuations counted as extents" (`UNL:82`).
+- Unstruck: "adjudicated **163 of those blocks as continuations of the body before them" (`UNL:37`). "163 blocks - 3,797 bytes - are not
+  separate functions" (`UNL:224`). "| `continuation` | 163 | 3,797 |" (`UNL:596`), body 1,301 (`UNL:595`).
+
+**C-V48 [ledger] — the unlisted body count.** *No favoured side.*
+- "at least 1,471 bodies" (`UNL:425`), "code in about 1,308 blocks" (`UNL:33`), "**877 blocks**" (`UNL:82`), and "**~1,425 .. ~1,428**"
+  (`UNL:747`): four figures for one population.
+
+**C-V49 [engine] — the extent of the 4×4 matrix in the register bank.** *No favoured side.*
+- "`022D91B0`–`022D91EF` is **64 bytes of global transform.**" (`BIG:411`).
+- "| `022D91A0`–`022D91E0` | **the 4×4 matrix**" (`BIG:445`).
+
+**C-V50 [engine] — the size of the chain-A register file.** *No favoured side.*
+- "1,424 bytes" (`BIG:372`).
+- "1,432 bytes" (`BIG:731`), and "1,432-byte register file" (`BIG:1001`).
+
+**C-V51 [engine] — the binding-pool payload size.** **Favoured: 48 bytes.** `BIG:923` says it "corrects the '32-byte payload' comments in
+the two code blocks above".
+- "32-byte payload" (`BIG:892`, `BIG:906`). Unstruck and outside the correction's reach: "The 32-byte record payload remains opaque apart
+  from its index byte." (`BIG:1014`).
+- "the payload is **48 bytes**" (`BIG:923`).
+
+**C-V52 [engine] — the event-effect tag values.** *No favoured side.*
+- The BI-8 record: "0 free / 1 requested / 4 cancelled / 5 loaded" (`BIG:1181`).
+- `0036E540` sets word `+4` to 2 (`BIG:1085`, `BIG:1613`), and `0036E5E0` tests `== 3` (`BIG:1615`).
+
+**C-V53 [engine] — call counts and clamps in the binding machine.** *No favoured side.*
+- `003CD840`: "(x2)" (`BIG:336`) and "The dispatcher calls `003CD840` twice among ten" (`BIG:380`), both unstruck, against "`003CD840`
+  THREE times, §20**" (`BIG:333`).
+- `0036B130`: "(x3)" (`BIG:336`) against "is called **four** times" (`BIG:1297-1298`).
+- The clamp: "Six accessors clamp the index to `0x1F`" (`BIG:522`), while the table shows seven rows with `0x1F` (`BIG:500-506`).
+
+**C-V54 [ledger] — the GN158 census cells and the headline size.** *No favoured side.*
+- `28,009→28,137` with residual 158 → 30 (`BIG:38-39`), against "CodeDomain only 28,028 … neither 139 (the residual)" for the same GN158
+  checkpoint (`BIG:206-208`).
+- Headline size: front matter "2.67 MB" (`BIG:2`), body "2,524,402 bytes" (`BIG:34`), README "2.41 MB" (`README:150-151`).
+
+**C-V55 [engine] — `0041E000` and `01EFFAF0`.** *No favoured side.*
+- §19 decodes "`call qword ptr [r9 + r13]`" inside `0041E000` (`CENSUS:1398`), against "`0041E000` (461 B) is a call-free unowned body"
+  (`CENSUS:1490`).
+- "**A 128-record authored-command table at `01EFFAF0`**" (`CENSUS:1401-1402`), against "`01EFFAF0` vtable" (`CENSUS:1494`).
+
+**C-V56 [ledger] — the unlisted-only count.** *No favoured side.*
+- "The other 130 referenced blocks are called only from other unlisted code." (`REF:17-18`).
+- "**129 of the 135 are called only from other unlisted code.**" (`REF:47`). 143 − 14 = 129.
+
+**C-V57 [engine] — what `00261F90` is.** *No favoured side.*
+- "**Audio**" (`REF:319`).
+- "the field-runtime record step `00261F90`" (`REF:251`).
+
+**C-V58 [engine] — `002AAE40`'s callees and pen addresses.** *No favoured side.*
+- "The decompilation contains **fifteen" distinct calls (`CBC:165`), but the list names 16 (`CBC:166-168`), and edges.tsv has "**16
+  outgoing edges and 0 incoming**" (`CBC:180-181`).
+- AC-9: "`[0209CC6C]` added before each glyph (`002AA0D2`) and `[0209CC68]` after (`002AA734`)" (`CBC:230-232`). Both addresses lie below
+  `002AAE40`, inside `002A9F00`'s range. The pseudo-code shows only "`pen.x += DAT_0209CC68;`" (`CBC:79`).
+
+**C-V59 [engine] — the constant pool at `008C5F80+0x70`.** *No favoured side.*
+- "+0x70   0  0  0  0        <- referenced by nothing" (`GQ:1513`).
+- "008C5FF0 (+0x70)   22 05 93 19 … not float data; the pool has ended" (`GQ:1578-1579`).
+
+**C-V60 [engine] — dispatch-table occupancy.** *No favoured side.* The table the text describes contradicts the text.
+- "Of twelve slots, five are filled by four distinct bodies." (`DISP:370-371`).
+- The table above it (`DISP:365-368`) fills seven slots with five bodies: `002A9980` ×2, `002A8C50` ×2, `002A9F00`, `002AA800`,
+  `002AAE40`.
+
+**C-V61 [engine] — `002DA7C0`'s output word count.** *No favoured side.*
+- "twelve 16-byte words into a cursor at `param_1 + 0x10` — descriptor, then per corner a colour, a source (u, v) and a destination
+  (x, y, z)" (`WTREE:159-160`). One descriptor plus 4 × 3 is 13.
+
+**C-V62 [ledger] — `002DD4B0`'s "other" callers.** *No favoured side.*
+- "10 other callers" (`DB:183`, `DB:292`).
+- The ten raw sites DB lists include `00392A10`'s own `00392AE4` (`DB:449-451`).
+
+**C-V63 [engine] — whether `0017F8E0` fetches the singleton once or twice.** *No favoured side.*
+- "fetches the singleton **twice**" (`API:223`).
+- One fetch, then "`001E9780(ctx, ecx)`" and `001E9BD0` (`API:319-321`).
+
+**C-V64 [engine] — the reveal stepper's mode set.** *No favoured side.* The jump table at `002AC1B4` is the arbiter.
+- "labels **0, 1, 2, 3, 4, 5, 7** (seven, no `default`)" (`U158:779`). MEASURE: "**states 0 through 5 and 7**" (`MEASURE:202`).
+- "**eight-mode jump table**" (`U158:1400`). MEASURE: "**There are eight modes and six distinct bodies**" (`MEASURE:193-194`), mode 6 a
+  no-op (`MEASURE:288`).
+
+**C-V65 [ledger] — residual arithmetic on GQ.** *No favoured side.*
+- "The other 153 are not" after four of 158 were found (`GQ:85`).
+- "**The 147 residual functions this block did not read at all.**" (`GQ:1234-1236`).
+- "**139 → 30**" (`GQ:228-229`), against "R109 classified 128" (`GQ:1236-1237`).
+
+**C-V66 [ledger] — the `01DFE40C` reference count.** **Favoured: 23 functions** (corrected 2026-09-03, `CS:92-93`).
+- Unstruck: "read by 24 functions" (`CS:296-297`).
+- "This said *"**24** other functions read"* it. **23 functions reference" (`CS:92-93`). The split itself also disagrees:
+  "**16 read it, 7 write it, 2 do both**" (`CS:604`) against "read only  : 16" (`CS:1211-1213`).
+
+**C-V67 [ledger] — the size of the sidecar corpus.** *No favoured side.*
+- "hold **674** files. **620 parse**, **52 are zero bytes**" (`CS:451-452`).
+- "**337 files**" (`CS:556`), with "**26 zero-byte sidecars in all 337**" (`CS:566-567`). 674 = 2 × 337; neither section says the two
+  directory spellings are duplicates.
+
+### 3.2 Stale "open / not read" claims, corrected claims repeated unstruck, and banner disagreements
+
+| # | stale side (quoted) | answering / correcting side (quoted) |
+|---|---|---|
+| C-S1 | README lists REF, UNL and BIG as "**PARTIAL, tier 1.**" (`README:136`, `README:142`, `README:150`). It lists 4 of 22 system pages (`README:133-156`) | front matter `status: DOCUMENTED` (`REF:4`, `UNL:4`, `BIG:4`); the other 18 pages carry their own AUDITED status |
+| C-S2 | "**at least one admissible reference** \| ~~156~~ **157** \|" and "**no admissible reference of any kind** \| ~~2~~ **1** \|" (`README:52-53`) | "**The count is now 158 of 158, and the entry has no exceptions left.**" (`U158:915`); "REFUTED 2026-09-16 (FABLE)" (`DB:31`) |
+| C-S3 | "\| Direct authored strings \| **0** \|" (`README:20`) | GQ says that row "is corrected by §8 above" (`GQ:1552-1553`) |
+| C-S4 | body banners "**PARTIAL.**" (`CTX:35`, `DISP:37`) | front matter `status: AUDITED — every register row is closed` (`CTX:4`), "DOCUMENTED -> AUDITED" (`CTX:26`); `DISP:4`, `DISP:27` |
+| C-S5 | "**`PARTIAL` deliberately.** … **None of the three is identified.**" (`BIG:49-50`) | `status: DOCUMENTED` (`BIG:4`); identifications at `BIG:57`, `BIG:928`, `BIG:973`, `BIG:1383` |
+| C-S6 | DB's front matter: system "The nine-patch box renderer that is never called" (`DB:2`), `status: AUDITED`, `reopened_count: 0` (`DB:4`, `DB:26`). Body, unstruck: "**It is never invoked.**" (`DB:143`), "<- NOTHING reaches this" (`DB:176`), "**Upstream: none.**" (`DB:382`), "**Do not patch this expecting a visual change.**" (`DB:400`) | "REFUTED 2026-09-16 (FABLE)" (`DB:31`); "**`00392A10` is reachable by a static route.**" (`DB:33`); "**So the island is not dead.**" (`DB:59`) |
+| C-S7 | CS (dated 2026-09-18, after the refutation): "the renderer itself still has no caller" (`CS:1335`); "genuinely dead" (`CS:679-680`). U158: "**`00392A10` is one of the fifteen no-caller residuals**" (`U158:602`) | `DB:31-33`; "**REFUTED 2026-09-16 (FABLE) — a caller exists, and it is a conditional jump.**" (`U158:945`) |
+| C-S8 | "**The corrected figure is 144 of 158 with a direct caller, and 1 of 158 with" no admissible reference (`CS:639`); "The corrected figure is **1 of 158, not 2**" (`DB:163`) | `U158:915` (158 of 158); `DB:31-33` |
+| C-S9 | "the full re-census has not been run" (`CENSUS:1017-1019`) | "**The re-census has now been run" (`README:45`); `U158:915` |
+| C-S10 | "96 % of their incoming references are banned exception metadata" (`U158:1066-1067`, unstruck) | "**QUALIFIED 2026-09-02.**" (`README:35`) |
+| C-S11 | "Fifteen have no caller at all" (`U158:618`, also `U158:47-48`, `U158:990`) | "the number re-measures as thirteen" (`U158:266`); the first statement struck at `U158:255-256` |
+| C-S12 | "**Eight of 158 have been read**" (`U158:152`); "The first five read" (`U158:471`) | `U158:228` counts nine described; "every cluster member now has a reading" (`U158:243`) |
+| C-S13 | "**24,116 functions - 70.4 % of the executable - are classified but unexplained.**" (`CENSUS:38`) | §15: against all 38,161 functions it is "**63.2 %**" (`CENSUS:783-786`) |
+| C-S14 | "8 in _RDATA" (`CENSUS:124`; also `CENSUS:820`) | "**The `_RDATA` 8 were never real.**" (`CENSUS:915`) |
+| C-S15 | "Which strings those are is not established here." (`GQ:73-74`); "strings tagged "ex" go elsewhere" (`GQ:100`) | "question's premise was inverted: `002B0280` draws the strings that are NOT `ex`.**" (`GQ:675`) |
+| C-S16 | "`edx = movsx(00265270())` is the field id" (`CS:1605-1606`); `fieldVar = FieldData_GetVariable0();` (`CS:845`); "field variable `0x19`" (`CS:854-855`) | "**The two values in `001ED130` are story progress, not places.** … corrected in place" (`CS:1715-1723`). **Favoured: story progress.** It names the operand, not the compared constants |
+| C-S17 | "\| `{i}` \| — \| 3 bytes \| an inline icon \|" (`GQ:250`, also `GQ:61-62`) | "the three bytes have no reader in this build" (`GQ:727`) |
+| C-S18 | "`projectCallback(&packed[4], &TL);`" (`GQ:482`) | "**ANSWERED 2026-09-18 (FABLE): there is no callback." (`GQ:769`) |
+| C-S19 | key-address row: "**a pool of six ± axis vectors, not a matrix object.**" (`GQ:342`) | "~~Correction 2026-09-02 — `008C5F80` is a vector pool, not a 4×4 identity~~" (`GQ:1602`); the pool reading is itself overturned (`GQ:1503`, `GQ:1571`) |
+| C-S20 | `002AC5F0` "still residual" (`PAINT:190`, `PAINT:196`); "The largest unclassified function in the game is not called by name from anywhere." (`DISP:32`) | "classified at GN162 as `UI.Text.ControlCodeInterpreter`" (`DISP:43`, `U158:216`) |
+| C-S21 | "the suspend flag is off" (`PAINT:273-274`); "the values are seeded once at construction" (`PAINT:269-271`) | "**CORRECTED — `+0x2379` is not a suspend flag.**" (`PAINT:359`); "**An earlier version of this row concluded it was written once ever and never again**" (`PAINT:536`); the begin re-seeds them (`PAINT:180-182`) |
+| C-S22 | "The score therefore still reads 154 unresolved" (`PAINT:570-571`) | "**158 → 139**" (`PAINT:194-195`); now 30 (`U158:1129`) |
+| C-S23 | §3 rows "**not read**" (`RT:202-203`); §4.1 "**null means the whole call failed**" (`RT:211`); "the five callees … were **not read at all**" (`RT:392-393`) | UQ-359: all five read (`RT:294-296`); "**This falsifies §4.1's “null means the whole call failed”.**" (`RT:314`) |
+| C-S24 | "**The surface is now closed — all eighteen implementations have been opened.**" (`API:76`) | "**the three unread callees still carry none, and are marked unread rather than anchored.**" (`API:230`) |
+| C-S25 | the "2x scale mode" label, unstruck (`DISP:198`, `DISP:221-222`, `DISP:262`) | "**Name corrected 2026-09-21 (FABLE), same day.**" (`DISP:149-154`) |
+| C-S26 | the falsification note says §4's listing has "no null test" (`DISP:713-716`; front matter `DISP:24`) | the listing now has "`; omitted from this listing -- §10`" `test rax, rax` / `je ret` (`DISP:120-121`) |
+| C-S27 | §7 open: "What `002AC2F0` decodes." (`CBC:239`); `+0x10FC`/`+0x1102` "mode bytes"; "What `0020E600` returns." (`CBC:239-240`); why every twenty characters (`CBC:241-242`) | `+0x1102`: "**ANSWERED 2026-09-14 (FABLE): it is the line-start flag.**" (`GQ:1735`); `002AC2F0` read (`GQ:747-754`); the twenty-item flush (`CBC:312`, `GQ:841`). `0020E600` remains disputed (C-V8) |
+| C-S28 | "**Still owed: a first falsification pass, by a session that did not write this.**" (`GQ:1395`) | "Falsification pass 1 — 2026-09-03" (`GQ:1468`); front matter `falsification_passes: 1` (`GQ:26`) |
+| C-S29 | "`4` — the vertex count" (`RECT:122`; also `RECT:177`) | "**the `4` beside it is the register list - XYZF2 - not a vertex count**" (`RECT:138`, FABLE 2026-09-18). **Favoured: the register list.** A port emitting the packet bytes is unaffected |
+| C-S30 | the indirect call reading (`RECT:157-160`, `RECT:165-167`); §7 "The target of the indirect call in §5." (`RECT:183`) | "**CORRECTED 2026-09-18 (FABLE): there is no dropped indirect call.**" (`RECT:162`) |
+| C-S31 | "**exactly 60 frames**" (`BLINK:36-37`); "**`DAT_0208F570` is a frame counter" (`BLINK:50`) | "**one second at 60 Hz whatever the present interval**" (`BLINK:287`; front matter `BLINK:4`) |
+| C-S32 | "**An out-of-range colour id does not fail — it draws at flat mid-grey.**" (`BLINK:120`) | outside `ch`/`in`, "the default is the shipped behaviour there, not a fallback" (`BLINK:288`) |
+| C-S33 | falsification row: "the three references it has are all `DATA`" (`BLINK:292`) | "`002B6427  lea r8, [rip + 0x1752]      ->  002B7B80        (inside 002B6350)`" (`BLINK:176`) |
+| C-S34 | "What `002D8530`, `002DBDD0`, `00403970`, `00403BC0`, `00404120` and `00404730` do." (`BLINK:310`); what `003BC160` … enumerate (`BLINK:311`) | `002DBDD0` is RECT's subject; `00403970` at `RECT:255-262`; `002D8530`, `00403BC0`, `00404120` at `ICON2:200-224`; `003BC160` at `BLINK:382-390` |
+| C-S35 | `residual-crossref.tsv` described as 139 rows with "the ~~89~~ 84 residual functions no page cites … with an empty `pages` column" (`U158:1246-1266`) | the member file has 30 rows, all `interior_cited=yes`, none with an empty `pages` |
+| C-S36 | "What `002DD4B0` tests, and therefore which of the two paths actually runs." (`NINEP:234`; also `NINEP:98-99`) | "**`002DD4B0`** (7 B) returns the word `0215E6D0`" (`WTREE:258`); `DB:447` (UQ-352). On NINEP itself, `NINEP:126-127` is answered by UQ-351 at `NINEP:130` |
+| C-S37 | `001AED50` "**NOT CLAIMED: what it does**" (`NINEP:321-323`); `001B06D0` "bump-allocator" (`NINEP:274-275`) | "`001AED50` (534 B) is a `0x30`-stride vector erase/move helper" (`NINEP:351`); "`001B06D0` never allocates — it only rewinds" (`NINEP:307`) |
+| C-S38 | "**What it draws is not established**" (`ICON2:145`, `ICON2:162`); subsystem: "**the twin's document does not claim this either" (`ICON2:165`) | `002DD2F0` "translates a child rect by the parent object's origin" and clips; it does not draw (`ICON2:191-193`, `RECT:246-250`); "**Answered 2026-09-26 (FABLE, Claude Opus 5.5): the track map's markers.**" (`BLINK:296`) |
+| C-S39 | `002DD7B0` "some per-style boolean, and that is as far as this goes" (`WBG:230-232`); `002DAC70`/`002DAF30`/`002DD4B0` listed as unknown (`WBG:230`) | `002DD7B0` "is the `fontcolor` shadow-byte getter" (`WTREE:258`; `BLINK:288`); `002DAF30` is read on the same page (`WBG:263`) |
+| C-S40 | "\| `+0x88` \| a **countdown**; states 3 and 7 decrement it and act at zero \|" (`MEASURE:206`); "**Both constants are 30 or one less.**" (the 30-frame period, `MEASURE:261`); the 60-frame cycle (`MEASURE:219-221`) | "3 steps the target by `+0xA0` on every tick while `+0x88` is non-zero" (corrected 2026-09-30, `MEASURE:288`); "30 is the denominator of a rate, not a frame count." (`MEASURE:215`, `MEASURE:222`). **Favoured: the 2026-09-30 corrections** |
+| C-S41 | "What states `0`, `1`, `4`, `5` and `7` of §5 distinguish" (`MEASURE:283`); cluster row "unread" (`MEASURE:295`) | SD-100 answered (`MEASURE:288`); "all 13 have a reading since 2026-09-18, UQ-383" (`MEASURE:294`) |
+| C-S42 | "**The third call is gated on flag bit 12** and the first two on bit 24" (`WTREE:113-114`) | same line, 2026-09-30: all three need bit 24 = `0208F564`; messages 3/4 also need bit 28 clear (`WTREE:114`) |
+| C-S43 | CS "not read" lines: commands "none of their bodies was read." (`CS:917-918`); `FUN_00267310` unknown (`CS:1060-1062`); bit assignments "none of which was read." (`CS:1171-1173`); consumers (`CS:307-308`, `CS:766`); predicates (`CS:774-775`) | answered at `CS:408-411` and §12 (`CS:925-926`), §13 (`CS:1071-1082`), `CS:419-436`, `CS:386-392`, `CS:396-400` |
+| C-S44 | "about fifteen functions" (`CS:159`) | "**ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5): twelve functions, not about fifteen, and each has a role.**" (`CS:506`) |
+| C-S45 | "**What the prefixes denote is not established here**" (`CS:174-175`) | `sum_` = summons (`CS:327`); "**ANSWERED 2026-09-25 (FABLE, Claude Opus 5.5): `spc_` is the special-attack (`spattack`) event.**" (`CS:346`) |
+| C-S46 | "**Still open, and it is what the row now asks:** what the 64-bit value selects." (`CS:1454`) | "**ANSWERED 2026-09-18 (FABLE): it is a VIF1 UNPACK header" (`CS:1436`) |
+| C-S47 | "`0024AF50` (368 B) is a cutscene-slot body" (`CS:1635`) | its caller `0024A710` "is not cutscene code" — "**Corrected 2026-09-30 (SWE2-EC7, SWE2-CONTRACT's DD batch 6):**" (`CS:1631`) |
+| C-S48 | DB: "`0020AC30` on this page calls `FUN_0020a800`" (`DB:682`); front matter "cites record(s) 0020AC30" (`DB:13`) | `0020AC30` is CS's subject; the same paragraph is at `CS:1522` |
+| C-S49 | status line: "The population readers still read only merge verdicts" (`CUT:4`); "The 159 extensions not yet applied are prepared" (`CUT:175`) | "**Resolved 2026-09-30 (OPUS, `d20226c17`, the chained-tails apply).**" (`CUT:233`); "The 159 extensions applied (OPUS, 2026-09-29)" (`CUT:221`) |
+| C-S50 | "larger bands stay NOT YET" (`UNL:469-470`, also `UNL:872`); "no block matched to a named routine" (`UNL:488`); 2026-09-16 sections using `.pdata` as "**positive evidence for the leading reading**" (`UNL:760`, `UNL:785-786`) | "Every UC-1 size band is now adjudicated" (`UNL:935`); UC-3 byte match (`UNL:445-453`); the pass-6 ban on `.pdata` (`UNL:148-154`, re-applied `UNL:442`) |
+| C-S51 | "The denominator is NOT changed by this document." (`UNL:431`; also `UNL:749`) | applied populations 34,965 / 35,064 / 35,065 (`UNL:871`, `UNL:903`, `UNL:930`) |
+| C-S52 | "**No operation body was read.**" (`BIG:1364`, also `BIG:775`); kind 0x52: "Its meaning is not read here (`SD-123`)" (`BIG:1515-1516`) | the eight palette effects (`BIG:928`); "SD-123 answered 2026-09-30" (`BIG:226`) |
+| C-S53 | "first-writer-wins" (`REF:319`, 2026-09-16, unstruck); "`[rcx+0xB8]` is that movement body" (`REF:228`) | "**writes `cl` only if the byte is non-zero** (`cmovne`, corrected 2026-09-18)" (`REF:189`, also `REF:68`); "not “the movement body”" (`REF:229`) |
+| C-S54 | section headed "SWE2-EC7-18 update (2026-05-15)" (`GQ:1835`, `ICON2:198`) | every other dated section on both pages is 2026-09-xx; the date is out of sequence |
+| C-S55 | UQ-367 superseded with its population "is carried by 99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md" (`GQ:1239`) | that is GQ itself: the pointer is circular |
+| C-S56 | "**Corrected 2026-09-14 (OPUS): two of the four are no longer residual.**" (`GQ:226`) | "Three of the four are now classified" (`GQ:223`); `002AF960` "followed" at GN161 (`GQ:228-229`) |
+| C-S57 | two `parent_tag` values: "parent_tag: GN162" / "parent_tag: GN159" (`RT:12`, `RT:19`; likewise `CTX:11`/`CTX:18`, `DISP:12`/`DISP:19`) | one checkpoint per page is expected by the front-matter shape of every other page |
+| C-S58 | front-matter review fields older than the body: `last_reviewed` 2026-09-02/03 with `reopened_count: 0` on GQ (`GQ:21`, `GQ:31`), CBC (`CBC:19`), PAINT (`PAINT:19`), CS (`CS:20`, `CS:26`), DB (`DB:20`, `DB:26`), BIG (`BIG:18`), CENSUS (`CENSUS:21`), RECT, BLINK, NINEP, ICON2, WBG (each `:19`) | body corrections dated up to 2026-10-01 on the same pages (for example `CS:1790`, `BLINK:391`, `BIG:4`) |
+
+### 3.3 Checked and found consistent (not contradictions)
+
+- **SD-103 row arithmetic.** CTX says the three pointer slots sit at "**no** row boundary of the `+0x000` table (`174.67`, `175.67`,
+  `176.67`)" (`CTX:188-190`), and that "they are rows 174–176 of the `+0x000` table" (`CTX:349`). Both hold:
+  `174 × 24 + 0x10 = 0x1060`, `175 × 24 + 0x10 = 0x1078`, `176 × 24 + 0x10 = 0x1090`. The slots are the third qword (`+0x10`) of rows
+  174–176, the field `CTX:175` marks "not read in this pass".
+- **Dispatch base.** `00120000 + 0x7F64D0 = 009164D0`, column 2 of table `009164C0` (`DISP:323`, `U158:524`).
+- **Batcher slots.** 64 slots × `0x58` = `0x1600`, and `0x2328 + 0x1600 = 0x3928`, the slot index (`NINEP:299-302`, `RECT:140`).
+- **README's body sizes.** "289 B to 7,489 B, mean ~1,132 B, 181,146 bytes total" (`README:99`) is the 160 set:
+  180,134 (U158's 158, `U158:89-90`) + 289 + 723 (the two closed rows, `README:107-108`).
+- **`00729920`.** 189 B recorded + 131 beyond = 320 (`CUT:90`). `UNL:849-850` agrees that 189 B "stops short".
+- **Fixed-point colour.** `0x80` = 1.0 with `>> 7` agrees across RECT (`RECT:91-92`), BLINK (`BLINK:119`), ICON2 (`ICON2:110-111`),
+  WTREE (`WTREE:153`), DB (`DB:438`, `DB:459`) and CBC (`CBC:224`).
+- **GS state pairs.** `00400E80`'s pairs `{0x1001,0x47}`, `{0x44,0x42}` (`ICON2:255`) match RECT's words 2–5 (`RECT:115-118`, `RECT:138`).
+- **Atlas entry decode.** 8-byte entries, `u = entry[+4] & 0xFFF`, `v = entry[+4] >> 12 & 0xFFF` agree in BLINK (`BLINK:73-77`), WBG
+  (`WBG:65-66`) and ICON2 (`ICON2:71-80`).
+- **The 30.** README "**30**" (`README:9`), U158 `unresolved=30` (`U158:53-54`), and `residual-30-GN161.tsv` (30 rows) agree.
