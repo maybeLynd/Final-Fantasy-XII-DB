@@ -323,3 +323,62 @@ for the per-function readings they carry.
 - **01-Script-VM**: verb handlers that tail into REF's bodies (`REF:225`). Dispatch table `01EED720` (`CS:806`).
 - **04-Actor / 06-Movement / 11-Party**: actor storage record, movement context, party focus (`REF:225-251`).
 - **23-Third-Party**: libvpx (`UNL:445-453`); Lua (`CENSUS:269`).
+
+---
+
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open on the snapshot)
+
+Only items no later dated section on any page answers. Items that one page states as open and another page answers are
+listed under 3.2 as stale.
+
+| # | open item (quoted) | cite |
+|---|---|---|
+| G-1 | `ex` coverage: "*Not established:* the other eight languages' files (only `us` was read); which runtime-composed strings carry the prefix" | `GQ:703-705` |
+| G-2 | Shadow pairs: "**Not established:** whether an owner rewrites the pairs through the widget pointer after init." / "What the `1.0f` beside each pair scales is also not read." | `GQ:720-724` |
+| G-3 | Glyph metrics: "Residual: advance-width vs ink-width is not separated" | `GQ:765-766`, `GQ:418-419` |
+| G-4 | "the field-level detail of `002AAE40`'s descriptor packing, `002A8C50`'s flush modes `4`/`6`" belong to UQ-367, which was superseded rather than answered (`GQ:1239`) | `GQ:848-850` |
+| G-5 | Full-alpha count: "the authored source of the full-alpha count is suggested, not established." | `GQ:1732-1733` |
+| G-6 | Render target: "nothing here says what block 0 is drawn to"; the tree's left/parent-link tension: "**The bytes do not settle it**" | `RT:193`, `RT:319-324` |
+| G-7 | Font painter: `+0x1398` "**What the field holds is not established.**"; "**Whether anything sets `+0x2378` at all**"; "What the third float of each vertex holds"; "**What the consequence is on screen is not established**"; record bytes `+0x2A`–`+0x2B` "untouched by anything found" | `PAINT:257`, `PAINT:546-550`, `PAINT:540`, `PAINT:151` |
+| G-8 | API: `0017FD00`'s fourth register "**not established**"; glyph record `+0x10`–`+0x1B` "three dwords — **not established**", `+0x3C`/`+0x4C` "**contents not established**"; `001B1620` "**What that predicate tests is not established.**" | `API:84-86`, `API:97-99`, `API:197-198` |
+| G-9 | Shared context: §3's 24 offsets "**not re-derived**"; a receiver touching only offsets below `+0x10C8` is not covered | `CTX:731`, `CTX:599-602` |
+| G-10 | Dispatch: "**A label this correction touches, and does not settle.**" (`001EDEC0`'s reading on the shared-dialogs page) | `DISP:265` |
+| G-11 | Cutscene: "*Not established:* the player-facing name" (and which `sum_` letter is which Esper); "Which story beats those values mark is not established."; `entry[0x16]` "Whether anything outside this function reads it was not established."; world state `param_1[5]` "its meaning is not established here"; "**What the `01F82E38` / `01DFE0C0` mode is.**"; `001EC560`, `00265760`, `002E0540`, `0022A030`, `0022A080` "remain opaque"; "The rest of the 648-byte record."; "**Not claimed:** why the matrix is mirrored into the emulated register cells" | `CS:355-356`, `CS:406`, `CS:772-776`, `CS:919-921`, `CS:1175-1176`, `CS:1505-1506` |
+| G-12 | Nine-patch: "**Not read here:** which widgets animate `+0xA0` to 0 at run time."; "**which asset, and whether the mirroring is of texture or of gradient, is not established here.**"; "**NOT CLAIMED: who installs `+0x38` and `+0x48`, or where that buffer is allocated.**"; the 0x30 record "**The record's interior is unread**" (but see `DB:455-460` for the vertex format) | `DB:445`, `NINEP:150-151`, `NINEP:314-315`, `NINEP:338-339` |
+| G-13 | Rectangle: "What `00202B70` computes beyond dividing by the `w` it returns."; "`context + 0x70` holds — it becomes the third component of every vertex."; "what the mode of `00181870` and the four integers of `00181930` select is still not claimed" | `RECT:183-188` |
+| G-14 | Measure / reveal: "how often the stepper is called per frame is not traced"; "What `002B20B0` maps beyond line index to byte offset." | `MEASURE:215`, `MEASURE:281-282` |
+| G-15 | Icons: whether the overwrite from `01E0CE60` is dead or conditional "**not established.**"; what the four "bytes at `01E0CE60` are"; `01E0CE80` "**Not established.**"; which drawer is original "**Not established, and probably not a meaningful question**" | `BLINK:122-125`, `BLINK:310-311`, `ICON2:155`, `ICON2:158` |
+| G-16 | Background: "The consumer of the `v` pair is still not visible in the decompilation"; "What the style index at `node + 0xA3`" enumerates | `WBG:101-102`, `WBG:232` |
+| G-17 | Widget messages: "**This document does not claim what 3, 4 and 5 mean**" (named by place only at `WTREE:255`) | `WTREE:110-111` |
+| G-18 | Unlisted: the 129 blocks called only from unlisted code: "They form chains inside the residue and none has been read." (superseded, not answered, `REF:129`); continuation ownership "**not established**"; the readers "Whether they should read the grown extents is not assessed here."; "the 11,339 records beginning inside a listed body are not investigated here"; "Until then, the readers still count 35,064." | `REF:127-129`, `CUT:204`, `CUT:236-237`, `UNL:797-799`, `UNL:932-933` |
+| G-19 | Binding machine / effects: `022D94B0` `+0x0A .. +0x17` "still unread"; "**Not claimed:** what separates classes 5 and 9 in `0024B9B0`"; "which mesh each register holds was not traced"; parameter entries from slot 11 up "is not read here."; what each draw path does differently "is unread." | `BIG:519`, `BIG:1232`, `BIG:1463`, `BIG:1485`, `BIG:1510` |
+| G-20 | Census: "**Who writes these slots at runtime.**" (PROPOSED-repos9e-12); the `01CCAxxx` tables "None of them is characterised; their consumers were not traced."; `01F00398` "What object kind the table serves is **not established**"; "*Not done:* naming the 145 pooled classes one by one. **AR-2.**" | `CENSUS:1014-1016`, `CENSUS:1196`, `CENSUS:1450-1451`, `CENSUS:358-359` |
+| G-21 | Residual: "the XGKICK equivalence is still open."; "Whether the other 29 are player-reachable is not claimed."; `0024B580` kinds and callees "**not read here and are not claimed**"; `0036A2A0`'s header producer "**not traced**" | `U158:1258`, `U158:288`, `U158:1360-1365`, `U158:1501-1502` |
+
+### 2.2 Structural gaps (a port needs these and no page in the folder states them)
+
+| # | gap | where the page shows it |
+|---|---|---|
+| S-1 | **No frame-level order for text.** No page says when, inside a frame, the widget pass, the message-window case 4, the reveal stepper, the font painter's `0017F850`/`0017FA10` pair and the render-buffer swap run relative to each other. Each page gives only its local order | `PAINT:204-208`, `MEASURE:215`, `U158:823-852`, `WTREE:209-210` |
+| S-2 | **`TextState` total size and unnamed offsets** `+0x10`–`+0x1F`, `+0x24`, `+0x2C`, `+0x5E`–`+0x5F`. The **`~0xD0` state** of `002AAE40` names only `+0x20`, `+0xB8`, `text`, `limit`. Neither page says whether the two are one type | `GQ:357-387`, `CBC:56-78`, `CBC:161` |
+| S-3 | **The 32-byte window line record** read by `0053E0B0`: only a shadow byte, a kind and x at `[rsi − 0xA]` are named | `GQ:291-302`, `GQ:717` |
+| S-4 | **Glyph cache sizing**: node count, pool allocation and initial list state are not stated. The data structure itself is ambiguous (C-V2) | `GQ:421-434`, `GQ:1788` |
+| S-5 | **The 16-byte GS command record's byte layout** is not given (codes only). The upload callee `003A22A0` and `003A1FE0` are named, not described | `GQ:158-173`, `GQ:1790-1795` |
+| S-6 | **Font slot mask** `[022CBE00 + 0x240]`: writer and initial value not stated. The `{k}`/`{p}` tags are "bounds-checked" with no bound. `{r}` angle units not stated | `GQ:251-264`, `GQ:522-526` |
+| S-7 | **`DAT_0209CC50` render commands** written by `002AAE40`: "their bit layout is transcribed in the body and **not** decoded here". `0020E600`'s return is open on CBC and its role is disputed (C-V8) | `CBC:238-242` |
+| S-8 | **Font painter object fields** `+0x13A0` ("shared render parameters"), `+0x1390` (always `0x44`, meaning not stated), the `0x38` batch layout beyond cursor/capacity, the `0x98` flush-and-forget draw object (no constructor named), and the render-target push callee (three addresses; C-V27) | `PAINT:183`, `PAINT:214`, `PAINT:257-258`, `PAINT:379-382`, `PAINT:593` |
+| S-9 | **Shared-context field meanings**: `+0x10D0`, `+0x10E0`…`+0x10F8`, `+0x10FD`…`+0x1104` carry counts only. The three states of `+0x10FC` are not named. The `+0x000` row's third qword and the 10-bit id are answered only in an external record (SD-104) | `CTX:82-88`, `CTX:183-184`, `CTX:273-274`, `CTX:656` |
+| S-10 | **Initialiser timing**: `002B3550` runs "at startup", caller not stated. The font painter initialiser `001E71B0`'s caller is not stated. `001E9C30`'s callers (who sets the mode byte) are not listed | `CTX:32`, `PAINT:155`, `RT:220`, `RT:278` |
+| S-11 | **Dispatcher signatures**: what columns 0/1/2 receive besides `rcx`. The six context fields `002AC5F0` touches are not listed. Behaviour for an out-of-range `+0xA3` selector is "a hazard" with no bound | `DISP:143-145`, `DISP:384`, `DISP:721-732` |
+| S-12 | **Widget node layout**: position fields (`this.x`/`this.y`), total size and `definition + 0x40` rect format are not given. `+0xA6`/`+0xA7` are used both as size addend and offset base | `WTREE:121-127`, `WBG:76-77`, `WBG:219` |
+| S-13 | **`002DC290` GS words** `0x1000000000000002`, `0x2026400000008004`, `0x41`, and the batch open/close `002DD1E0`/`002DD090`, are not decoded on NINEP. RECT decodes the analogous words for `002DBDD0` only | `NINEP:234-236`, `RECT:138` |
+| S-14 | **Icon record layout**: `+0x02` kind, `+0x20` index, `+0x24`/`+0x26` w/h, `+0x28` flags (bits 15, 6 only), `+0x50` amount and `+0x60` next are named piecemeal. Its size and other flags are not stated | `BLINK:63-100`, `BLINK:299`, `BLINK:312` |
+| S-15 | **Cutscene source object** read by `0020A800` / `0020AA50` is not laid out. Where `001C5750` stores the two DoF values is not stated. The writer and meaning of per-slot flag value `5` (tested by `001ED130`) are not stated. `001C5570` (tail target of `001EC520`/`001EC540`) is not described | `CS:188-189`, `CS:147-154`, `CS:535`, `CS:847` |
+| S-16 | **The 158-byte DoF recorder** of UQ-340 has no address on the page | `CS:515-518` |
+| S-17 | **Binding machine semantics**: which opcode is which of the eight palette effects. What `003CD840`/`003D2B60` compute over the 32 cells. `[0x02B487A0]` is named once and never explained. The generation counter's initial value | `BIG:776`, `BIG:888`, `BIG:928` |
+| S-18 | **The 1,405 scattered unlisted blocks** (66,642 B) of "ordinary compiled engine code" have no per-block description (UC-4 superseded, not read). The 159 libvpx routine names live only in `uc3-blocks.tsv` outside the folder | `UNL:418-419`, `UNL:447`, `UNL:456-459` |
+| S-19 | **The residual set itself**: the 158 addresses are not enumerated on U158 (external `GM160_CURRENT160_ADDRS.txt`). The live 30 are listed only in `residual-30-GN161.tsv` | `U158:132-134`, `README:11` |
+| S-20 | **`0024B580` queue**: when it runs in a frame, what the nine kinds are, and the meaning of `002FC010`'s return | `U158:1360-1365` |
+| S-21 | **Ownership**: README lists only 4 of the 22 system pages (`README:133-156`). A port reading the index would not find the text, widget, cutscene or census pages | `README:133-156` |
