@@ -406,3 +406,206 @@ Only bit 0 of `flags` is touched anywhere in the image (`GC:231-248`).
 | state `+5B04` bit 1, cleared on restore | `SPR:1595-1596` |
 | height-mode values 1, 2, 5, 6, 12, which nothing reads | `HT:714-716` |
 | ledger `flags` bits 1–7, never written or read | `GC:245-248` |
+
+### 2.3 CONTRADICTIONS
+
+These are statements a re-implementer would have to choose between. Each item quotes both sides exactly, with `ABBR:line`.
+
+- **A** is value-changing: an offset, address, constant, formula, signedness, control flow or order that a port would hard-code.
+  Every A item is **page-text only - needs local check**: this session cannot see the executable.
+- **B** is a count or size that disagrees but does not change ported behaviour. These are also page-text only.
+- **C** is a stale "open / not read" claim that a later dated section answers, a status banner that disagrees with front matter, or a corrected name still in use.
+
+A favoured side is named **only** where a dated correction on the pages settles it. Otherwise the item says "not settled on the pages".
+
+#### A. Value-changing
+
+**A1. The dead-mask bit: 64-bit shift, or sign-extended 32-bit shift.**
+- GC §5 pseudocode: "`L->deadMask |= (1ull << lane);`" (`GC:393`).
+- C-GC §12: "`bit = (int64_t)(int32_t)(1u << (slot & 31));            /* same in BOTH writers */`" and "`L->deadMask |= bit;   /* CORRECTED, see below */`" (`C-GC:437`, `C-GC:440`). The correction box "The dead-mask bit is a 32-bit shift, sign-extended — corrected 2026-09-08" gives slot 31 → `0xFFFFFFFF80000000` and 32–63 aliasing onto `v & 31` (`C-GC:453-479`).
+- GC's own §4 agrees with the contract for the register path: "**The bit is the same sign-extended 32-bit shift the death handler uses**" (`GC:299-301`). Only the §5 pseudocode keeps `1ull << lane`.
+- **Favoured: C-GC**, by the dated correction of 2026-09-08. *Page-text only - needs local check.*
+
+**A2. The field-table element: `u16` or signed `i16`.**
+- C-GC §2: "`((~~u16~~ **i16***)*(02098E68))[index] = value` … **CORRECTED 2026-09-11 (OPUS-REQ-FABLE-OPERAND):** the element is **signed**: the consumer `AiTargetSelector_ResolveOperandValue` (`00321190`) sign-extends every kind-1 / 2 / 3 element (`movsx ecx, ax` at `003211C2` …)" (`C-GC:84`).
+- Still `u16`, unstruck:
+  - GC: "`0026ADC0(index, value)` stores `value` as a `u16`" (`GC:469`);
+  - GC: "`table[index] = (u16)value`" (`GC:677`);
+  - GC: "pointer to a 64-entry `u16` table" (`GC:692`);
+  - C-GC: "`u16` slot 3 of the table" (`C-GC:207`, `C-GC:289`);
+  - C-GC's reproduction formula: "`(*(u16**)0x02098E68)[index] = value`" (`C-GC:449`).
+- GC also says the getter `00264D20` reads it with "`movzx` of the same table at `00264D3D`" (`GC:476-477`). C-GC's correction says the consumer sign-extends at `003211C2`. These may be two different instructions in one chain (a zero-extending getter, then a sign-extending consumer); the pages do not reconcile them.
+- **Favoured for the element type: signed (C-GC:84, dated 2026-09-11).** Whether `00264D20` itself zero-extends is not settled. *Page-text only - needs local check.*
+
+**A3. The continuous-entry match predicate.**
+- FM's row for `+0x17`: "committed (bit 1) **and** range-reentry-pending **or** released (bits 0 / 2 — `test r8b, 5` skips only when *both* are clear, `00235419`–`0023541D`; this row first read it as "neither", corrected 2026-09-11)" (`FM:96`).
+- SPR L-11 agrees: "`ACTIVATION_COMMITTED` **and** `RANGE_REENTRY_PENDING` **or** `released`" (`SPR:846-847`).
+- FM §4 keeps the pre-correction "neither" reading: "**The continuous-entry match**: `history[j].flags & 2 && !(history[j].flags & 5) && history[j].b_17 == live.b_17`" (`FM:204`).
+- **Favoured: `(flags & 2) && (flags & 5)`, the dated correction of 2026-09-11 at FM:96.** *Page-text only - needs local check.*
+
+**A4. Who clears keep-flag bits 0, 2 and 7.**
+- FM §2.3, bit 7: "`0030FED0` does not clear it — nothing found does" (`FM:123`).
+- FM §2.3 also lists only `0023A410` and `00239840` as clearers of bit 0 and bit 2 (`FM:116`, `FM:118`).
+- FM §3, same page:
+  - `0023A2E0` "for every fresh entry clears bits 0 / 2 / 7" (`FM:161`);
+  - `00236860` does "the same clears for one entry" (`FM:162`);
+  - `00237080`: "flags `& 0xFFFFFF7A` (bits 0 / 2 / 7) … body re-read 2026-09-15" (`FM:163`).
+- **Partly settled:** the 2026-09-15 re-read settles that `00237080` clears bits 0, 2 and 7. Nothing dated settles `0023A2E0` or `00236860`. The §2.3 table was not updated. *Page-text only - needs local check.*
+
+**A5. Keep-entry offsets in SPR §4 against FM.**
+- SPR §4 diagram: "`+0x14.. bEnmityTableHeader + aEnmityByCombatantId[0x2E]`" (`SPR:533`).
+- SPR §8f: "The per-entry field offsets in §4 stand" (`SPR:1109-1110`).
+- Other side:
+  - FM: `+0x14` is "`bStealAvailabilityFlags`", `+0x19` is the decay timer and `+0x1A`–`+0x41` is `aEnmityByCombatantId` (`FM:93`, `FM:98-99`);
+  - SPR's own §2: "`BKEI + 0x19` is the decay timer and `BKEI + 0x1A + id` … ending at `+0x41`" (`SPR:418-419`);
+  - SPR §8e: "the struct annotation had implied `0x2E` bytes of enmity alone" (`SPR:1057-1059`).
+- **Favoured: FM.** SPR §8g (2026-09-12): "[The keep-entry field map] is the authority for offsets" (`SPR:1126`). *Page-text only - needs local check.*
+
+**A6. What `0208E6A0` is.**
+- FM: "`0208E690` … the live bank (`btlKeepCharWork1`); `0208E698` the history bank; `0208E6A0` the bank flag" (`FM:159`).
+- SPR: "`0208E6A0  i32  g_nBattleUnitSlotCount               32; BattleUnit stride 0xF50`" (`SPR:516`); "All five iterate the battle-unit slot pool (`g_nBattleUnitSlotCount`, `32`)" (`SPR:441`).
+- C-GC: "`0208E688`/`0208E6A0` (unit array and count, in `00238B70`)" (`C-GC:206`).
+- GC: "for every battle-unit slot `i < [0208E6A0]` in the array at `[0208E688]`" (`GC:580`).
+- Not settled on the pages. Three pages against one. *Page-text only - needs local check.*
+
+**A7. Which argument of `00234DA0` is the slot flag: the fifth or the sixth.**
+- C-SP P0: "`slotFlag` is `[rbp + 0x7f]`, passed on as the validator's fifth argument" (`C-SP:316`).
+- SPR gives a five-parameter signature whose last is `int include_all_party_slots` (`SPR:184-186`).
+- C-SP P4, the same pass: "Its sixth argument decides eligibility. With 0, only the slot whose actor handle equals `PartyFocus_GetCurrentPackedActorHandle` …" (`C-SP:297-298`).
+- Not settled on the pages. Both sides date from 2026-09-29. *Page-text only - needs local check.*
+
+**A8. Where the mode-2 retire threshold lives: keep `+0x04`, or a unit field at `+0x4C`.**
+- FM: "`+0x04` | f32 | `flLifecyclePointThreshold` (placement page) ✓", written by `0023A200`, and read **only** by `00308040` (`FM:87`).
+- SPR mode 2: "`unit->flLifecyclePointThreshold ^ 2)) retire; // COMISS/JBE`" (`SPR:268`).
+- SPR interior table: "mode 2's per-unit squared threshold | `0023519C` — `movss xmm6, [rsi+0x4C]`" (`SPR:1377`). Neither page says what `rsi` is.
+- FM does not list `002350C0` among the readers of `+0x04`. Not settled on the pages. *Page-text only - needs local check.*
+
+**A9. The rate of `0208D45C`: a frame counter or a 30 Hz tick.**
+- C-GC: "the raw frame counter | `0032A150` (7 B)" (`C-GC:53`).
+- GC: "The game divides its frame counter by the current frame rate" (`GC:46`); "`0x0208D45C` | the raw frame counter" (`GC:689`).
+- WHY: "`01DFE0B8 × 30.0` is ticks per second — 30 at 30 fps, 60 at 60 fps" (`WHY:62`).
+- C-GC §10: "`00235FFA  call 0x32A150                ; the 30 Hz tick counter at 0208D45C`" (`C-GC:399`), with "`ecx = 30`" (`C-GC:402`).
+- These are incompatible at 60 fps. A 30 Hz counter divided by 60 gives half-seconds. Not settled on the pages; nothing names the advance rate (G1). *Page-text only - needs local check.*
+
+**A10. Does the return window survive a save and load.**
+- SPR §8b (2026-09-02): "`g_wSpawnKeepPreviousFieldId` and `g_wSpawnKeepMostRecentFieldId`, are themselves **written into and restored from the persistence buffer** by `00233440` / `00233550`. The return window therefore survives a save/load in both directions." (`SPR:922-925`).
+- SPR §2: "neither helper serialises/restores the transition tick or window setting" (`SPR:388-389`).
+- WHY (2026-09-13): `00233550` "does not touch bank 1, the tick stamp `02089374` or the window" (`WHY:143-144`); the stamp is "**never restored**" (`WHY:93`).
+- **Favoured: tick and window not restored.** That is ASTRA's 2026-09-12 falsification (§11, `SPR:1440`) and WHY's 2026-09-13 correction. *Page-text only - needs local check.*
+
+**A11. Does native code compare the cooldown with the elapsed seconds.**
+- C-GC §6 diagram: "`-> the three record accessors                     [THE ONLY READERS]`" (`C-GC:245`).
+- C-GC §10: "**Nothing native relates the two values** … **The comparison is made in authored script or not at all**" (`C-GC:385-388`).
+- GC EE-1: "compared strictly … and by script, not native code" (`GC:739`).
+- C-GC correction (2026-09-29): "the automatic spawn selector … reads the fields **directly** … it skips while `seconds − stamp (+0x0C) < cooldown (+0x10)` … So the native gate re-admits an entry at **elapsed ≥ cooldown**, while the scripts' own checks use `>`" (`C-GC:103-109`). This agrees with SPR's pseudocode "`seconds - bkei->dwLastDeathTick >= bkei->wRespawnCooldownTicks`" (`SPR:300`, `SPR:626`) and FM's reader lists (`FM:88-91`).
+- **Favoured: native `>=` in `00235720`, plus script `>`. Dated 2026-09-29.** *Page-text only - needs local check.*
+
+**A12. Does a mode-≠1 group ever post its completion.**
+- GC box: "**So the static reading of arm B is: bit 47 is set, `0x2008` is played, and nothing observed clears bit 47 or raises the ledger flag.** Only mode-1 groups post their completion to slot 3." (`GC:509-510`).
+- GC EE-12, unstruck tail: "No static route of any enumerated form reaches them; if they are dead, mode ≠ 1 groups never post their completion." (`GC:835-836`).
+- C-GC §7 diagram: "`00307110 runs -- its sole caller 003250F0 has NO static route (section 10)`" (`C-GC:259-260`).
+- C-GC §10 (refuted 2026-09-19/22): "`003250F0` **does run** … A mode ≠ 1 completion sets unit bit 47, plays `0x2008`, and the ledger flag posts when the track-end dispatch reaches `003250F0` → `00307110`." (`C-GC:343-351`). Also C-GC §14 item 9: "**So the deferred arm can post**" (`C-GC:582`).
+- **Favoured: it posts.** EE-12 was answered 2026-09-19 and re-verified 2026-09-22. *Page-text only - needs local check.*
+
+**A13. The accessor failure sentinel.**
+- C-GC: "**`-1` is "no such lane", never a value.** All three readers share a seven-check prologue (§4) and every failure returns `-1`" (`C-GC:89-90`).
+- C-GC: "**Every accessor failure is `-1`**" (`C-GC:329`).
+- C-GC: "seven checks, identical in nine accessors" (`C-GC:164`).
+- GC (corrected 2026-09-13): "~~Every one of the nine returns **`-1`**~~ **Corrected 2026-09-13: `SpawnEntry_GetScriptSelection` (`00236140`) returns `-2`, and `-2` *is* inside its value range**" (`GC:78`; detail `GC:934-952`).
+- **Favoured: `00236140` returns −2 (GC, 2026-09-13).** C-GC:89 is scoped to the three respawn readers and stays true. C-GC:329's "Every accessor" does not. *Page-text only - needs local check.*
+
+**A14. How many ledger entries exist.**
+- C-GC §4a: "The index is `group − 1` with a `0x18` stride, so entries exist for groups 1–5 and there is no slot a 0 could address" (`C-GC:75`).
+- C-GC §3: "`0x02EC13C0 + (group - 1) * 24               BSS, 64 entries, 1,536 bytes`" (`C-GC:140`).
+- GC: "base 0x02EC13C0 · walked to 0x02EC19C0 · 1,536 bytes / 24 = exactly 64 groups" (`GC:193`); modding note "`group` 1–64" (`GC:721-722`).
+- Not settled on the pages. "1–5" is the range authored in the corpus (`C-GC:59`); the 64 comes from the reset loop's bounds (`C-GC:591`). *Page-text only - needs local check.*
+
+**A15. Does `00235AF0` copy when the transition record matches, or when it differs.**
+- SPR subtree note: "each `dword`/`word` of `qword[02EBF190]` is compared against it (`00235B19`/`00235B1E` …), `002EF4A0` copies the matched row (`00235B76`)" (`SPR:3680-3682`).
+- SPR §27: "All four equal means no preparation. **Any difference calls`002EF4A0`**, then rebuilds records." (`SPR:3350-3351`).
+- Not settled on the pages. The subtree note's 2026-09-30 correction changes only `002EF4A0`'s size (`SPR:3687`). *Page-text only - needs local check.*
+
+**A16. What the guard `00233C10` does around `00237DF0`.**
+- WHY: "`002EF640` snapshots the block (`00233C25`) and stores back `02EBF190` (`00233C33`) … then the `00237DF0` reset branches (`00233C48`/`00233C59` — the null-path first-bind)" (`WHY:241-244`).
+- WHY table: "`BattleSystem_ResetRuntimeState` `00237DF0` runs only on its null path (first bind, e.g. at boot) or when the battle-state block's stamp mismatches" (`WHY:97-98`).
+- SPR §22.4: "Its null-pointer branch calls `002EF640`, adds`0x4E68C`, and stores the result in`02EBF190`: **this local code binds into the active image; it does not directly allocate a fresh block** … calls`00237DF0` at`00233C3F` and tail-calls it again at`00233C48` if the first call returns. A nonnull stamp mismatch takes only the tail at`00233C59`." (`SPR:2651-2655`).
+- SPR §27: "a null`B` makes`00233C10` bind the active image and call then tail-call`00237DF0`" (`SPR:3407-3409`).
+- So: is `00233C59` part of the null path (WHY) or the mismatch path (SPR), and does the null path run the reset twice? Not settled on the pages. *Page-text only - needs local check.*
+
+**A17. The engine call site for handler id `0xC`.**
+- C-GC: "`call rax` on `[02CA4470]` (id 0xC) at `0041DC84`/`0041DD03`/`0041CEC6`" (`C-GC:364`; the same address at `C-GC:579`).
+- GC EE-12: "slot `02CA4470` is called by the engine when a track ends or is switched (`0041DC84`, `0041DD03`, `0041CEC0`)" (`GC:835`).
+- Not settled on the pages. *Page-text only - needs local check.*
+
+**A18. The height-mode value for a unit that is not spawn-backed.**
+- HT §2c: "`00239FA7  mov   ecx, esi   ; NOT spawn-backed -> esi (1, 2 or 3)`" (`HT:189`).
+- HT §2c prose: "whose values are 1, 2 and 3" (`HT:212-213`).
+- HT §4: "`mode = esi;   // 1, 2 or 3 - never 8`" (`HT:563`).
+- HT §7, answered 2026-09-12: "a party unit gets **1**" (`HT:712`).
+- Not settled on the pages: the 2026-09-12 answer does not say it corrects §2c. Only bit 3 is ever read (`HT:714-716`), so the difference changes no reader. *Page-text only - needs local check.*
+
+#### B. Counts and sizes that disagree
+
+**B1. The `0x250`-stride census.**
+- HT §11 (2026-09-03): "`stride    'imul reg, reg, 0x250' -> 50 sites`" (`HT:971`); "**18 of its 50 sites inside one function**, `0043F450`" (`HT:1007`).
+- HT §12 (2026-09-07): "Image-wide, `imul r, r, 0x250` appears in **18 functions across 27 sites** — a UI function once and a Presentation function ten times" (`HT:1123-1125`).
+- 50 sites against 27, and 18 sites against 10 in the Presentation function. Not settled on the pages. *Page-text only.*
+
+**B2. Function sizes.**
+- `00307140`: "`00307140` (183 B)" (`C-GC:85`; also `GC:579`, `GC:674`) against "`00307140` (~97 B)" (`C-GC:739`).
+- `00312EE0`: "`00312EE0` | 187 B" (`FM:175`) against "`00312EE0` (~208 B)" (`FM:512`).
+- Not settled on the pages. *Page-text only.*
+
+**B3. The member TSV against the ledger census.**
+- GC: "addressed by exactly six functions" (`GC:687`). Six `lea` sites are listed (`GC:233-234`), and four flag-byte sites outside the reset (`GC:239-242`).
+- `spawn-group-ledger-accesses.tsv` has 19 rows in three functions (`00306E60`, `00306F00`, `00307090`). It has no row for `00307030`, `003070E0` or `00307110`, nor for the flag set at `00306FE0`.
+- No page says the TSV is register-route only. Its `route` column reads `array 02EC13C0 reg`. *TSV and page text only.*
+
+**B4. Corpus counts from the 828-file population, still stated beside the 1,114-file recount.**
+
+| statement (828-file population) | whole-corpus figure from HT's table |
+|---|---|
+| "**167 zone scripts use it.**" (`HT:66`) | `btlAtelCanselInitialSpawnFlag`: 253 (`HT:362`) |
+| "167 zone scripts set their own active-actor cap" (`HT:79`) | 234 (`HT:363`) |
+| "146 of the 406 spawn-capable zones" (`HT:433-434`) | 210 of 515 |
+| "Every one of the 406 shipped scripts that calls it" (`HT:674-675`) | 515 (`HT:358`) |
+| "as the 167 shipped zones that care already do" (`HT:680-681`) | 253 |
+| "the 368 zones that do not override, and none of the 38 that do" (`HT:700-701`) | 70 override `btlAtelSetSpawnDistance` (`HT:365`) |
+| SPR L-10: "Across the 828 decompiled US scripts, 406 call it" (`SPR:835-836`) | 515 |
+
+- **Favoured for whole-corpus statements: the 1,114-file figures**, from the re-carve dated 2026-09-12 (`HT:352-354`). The 828-file figures remain true of that subset. *Page-text only.*
+
+**B5. How many accessors carry the unreachable `js` arm.**
+- "It appears in **all nine** accessors — one template, copied" (`GC:84-86`; `C-GC:177-178`).
+- GC's falsification pass: "that exact three-instruction shape appears in **seven**" (`GC:960-961`), with two accessors unread (`GC:965-966`).
+- Not settled on the pages.
+
+#### C. Stale "open / not read" claims, banners and names
+
+| # | stale or banner side | the side that answers or disagrees | favoured by a dated correction? |
+|---|---|---|---|
+| C1 | README: "`spawn-placement-and-retirement.md` — **PARTIAL.**" (`README:13`) | SPR front matter: "`status: DOCUMENTED — owner re-status 2026-10-01`" (`SPR:4`) | yes, SPR:4 (2026-10-01) |
+| C2 | README: field map "**DOCUMENTED, tier 1.**" (`README:21`) | FM front matter: "`status: AUDITED`" (`FM:4`) | no date settles it |
+| C3 | README lists 2 system pages (`README:11-24`) | the folder has 7 `.md` system or contract pages; WHY, HT, GC and both contracts are not indexed | — |
+| C4 | SPR body: "**Status raised from `PARTIAL` to `DOCUMENTED` on 2026-09-02.**" (`SPR:32`) | reconciled on the page: "that raise is history … the current status is the front-matter line" (`SPR:36-37`) | yes (2026-09-30), already annotated |
+| C5 | SPR §11: "`crossref_clean` is now false because this amended citation surface has not had a fresh graph audit" (`SPR:1555-1557`) | front matter `crossref_clean: true` (`SPR:23`), and "a fresh graph audit of this page reports 0 findings" (`SPR:4`, 2026-10-01) | yes, front matter (2026-10-01) |
+| C6 | front matter `last_pass_state`: "consumer propagation and remaining caller questions open (§11)" (`SPR:22`) | the status line closes L-12 and L-13 (`SPR:4`) and §7 reconciles them (`SPR:760-786`) | yes (2026-09-30 / 10-01) |
+| C7 | HT §10: "`status` is `DOCUMENTED`, `audit.passes` is `0`" (`HT:872-873`) | HT front matter: `status: AUDITED` (`HT:4`), `passes: 1` (`HT:20`) | no date on the §10 sentence; front matter later by §11/§12 |
+| C8 | SPR §2: "What supplies the vertical coordinate is recorded as **L-7**." (`SPR:175-176`) | SPR §7: "~~**L-7.**~~ **ANSWERED — nothing does, at generation** … supplied later, at activation, by a terrain probe" (`SPR:812-817`) | yes (HT, 2026-09-02) |
+| C9 | WHY: L-13 "is the open question `L-13` on the retirement page, and nothing here closes it" (`WHY:145-146`); "`L-13` keeps bank 1 and the timer" (`WHY:176`) | SPR §7: L-13 "SUPERSEDED 2026-09-27"; the static question is answered (`SPR:765`, `SPR:775-781`) | yes (2026-09-27) |
+| C10 | SPR §§11-29: closing lines saying L-12/L-13 "remains open", e.g. `SPR:1469`, `SPR:1656`, `SPR:1812`, `SPR:1876-1879`, `SPR:1987-1990`, `SPR:2091-2094`, `SPR:2171-2176`, `SPR:2321-2324`, `SPR:2434-2436`, `SPR:2533-2535`, `SPR:2683-2686`, `SPR:2801-2803`, `SPR:3166-3167`, `SPR:3315-3316`, `SPR:3445-3446`, `SPR:3488`, `SPR:3537-3540` | each annotated "*Reconciled 2026-09-30 (FABLE): L-12 and L-13 are SUPERSEDED since; §7*", and the reading note at `SPR:1562-1571`. The text is annotated, not struck | yes (2026-09-30) |
+| C11 | C-GC §8: "no decompiled script has confirmed it (`EE-11`)" (`C-GC:285-286`) | C-GC §4a: "the order and placement are **observed** rather than inferred" (`C-GC:59`); §14 item 8: "**OBSERVED, not inferred, 2026-09-13**" (`C-GC:569`) | yes (2026-09-13) |
+| C12 | evidence rows: "pop-order law only; no decompiled script \| 2 (static) \| PROBABLE" (`C-GC:610`); "no decompiled script seen \| 2 \| PROBABLE" (`GC:901`) | `C-GC:569`; GC: "**ANSWERED 2026-09-13 (FABLE), observed in the shipped scripts**" (`GC:831-834`) | yes (2026-09-13) |
+| C13 | GC box under the heading "~~inferred, not observed~~ observed 2026-09-13" still reads "No shipped script has been decompiled to confirm it" (`GC:347`, `GC:350-352`) | the next paragraph: "**`EE-11` answered 2026-09-13 (FABLE),** **observed in the shipped scripts.**" (`GC:354`) | yes (2026-09-13) |
+| C14 | GC §9: "Whether `+0x10` is seconds \| **not established** \| — \| UNKNOWN" (`GC:886`); GC §3: "whether its unit is seconds is **unverified**. `EE-1`." (`GC:126-127`, annotated but not struck) | GC §8: "**`EE-1` ANSWERED 2026-09-13 (FABLE):** **yes**" (`GC:738-739`); C-GC §14 item 3 (`C-GC:525`) | yes (2026-09-13) |
+| C15 | GC §9: "`003250F0`, `00325090`, `00325260` have no static route \| … \| PROVEN (as a negative over the listed routes)" (`GC:896`) | C-GC §15 row struck as "**REFUTED 2026-09-16**" and re-verified 2026-09-22 (`C-GC:607`); GC EE-12 answered (`GC:835`) | yes (2026-09-16/19/22) |
+| C16 | GC §9: "What the row-12 bits and slot 3's reader are \| **not established** \| UNKNOWN" (`GC:902`); GC §5: "which script or operand reads slot 3 is `EE-9`" (`GC:477`) | EE-8: "**ANSWERED 2026-09-12 (FABLE), with two bits left as residue**" (`GC:779-781`); EE-9: "**ANSWERED 2026-09-18 (FABLE): the zone script reads it, by sleeping on it**" (`GC:817`) | yes (2026-09-12 / 09-18) |
+| C17 | GC §5b: "`EE-12` is ANSWERED: see [the contract] §14, whose EE-12 handlers were verified live" (`GC:615`) | C-GC: "**REFUTED 2026-09-19/22 (`EE-12`, re-verified owner-side)**" (`C-GC:343`), a static route census (`C-GC:570-584`); GC EE-12: "The runtime request is withdrawn; a live session could add confirmation, not discovery" (`GC:835`). No page records a live verification | yes: static (2026-09-19/22) |
+| C18 | GC heading: "### The reset zeroes all three fields — added 2026-09-10" (`GC:199`) | GC box: "**The masks are zeroed. The flag byte is not.** (corrected 2026-09-13 …)" (`GC:220-229`) | yes (2026-09-13) |
+| C19 | C-GC §2: the interface table is split by the §4a block (`C-GC:57-77`); its rows resume at `C-GC:78-87` with no header row, under the note "Rows below the first nine were added 2026-09-10" (`C-GC:92-93`) | — a structural defect. Ten interface rows (`00239710` … `00238AE0`) sit outside the rendered table | — |
+| C20 | names that say ticks: "`wRespawnCooldownTicks` ✓" (`FM:91`; `HT:527`; `SPR:529`); "`SpawnEntry_GetRespawnCooldownTicks`" (`GC:94`, `GC:663`); "`dwLastDeathTick` (seconds) ✓" (`FM:90`); the VM wrapper name (`C-GC:379-381`) | the unit is "**whole seconds, compared with a strict `>`**" (`C-GC:407`); "`+0x10  u16   respawn cooldown, WHOLE SECONDS`" (`C-GC:138`) | yes, the unit is seconds (EE-1, 2026-09-13). The names are kept knowingly (`C-GC:379-381`; `GC:126-127`) |
+| C21 | `00300530` as "`BattleStats_ModifyHPAndProcessLethalState`" (`GC:132`, `GC:429`, `GC:679`; `SPR:457`, `SPR:888`) | "`BattleStats_ModifyHPAndProcessLethalTransition`" (`FM:88`, `FM:224`) | no |
+| C22 | HT: "`0043F210` (159 B) is a spawn-placement body" (`HT:1186`) | HT §11: `0043F450` "is `PrimaryOwner:Presentation` … an unrelated structure", and calls `0043F210` once (`HT:1007-1013`) | no date settles the label |
+| C23 | GC: "`003E6770` (276 B) is a group-respawn body" (`GC:1140`), unstruck; "`003C9250` (280 B) is a group-respawn body" (`GC:1131`), with no support | the correction directly above: "`003E6770` is not a group-respawn body and has no part in respawning" (`GC:1135-1138`, 2026-09-19). `003C9250` is not corrected | yes for `003E6770` (2026-09-19) |
+| C24 | `last_reviewed` older than the dated content on the page: GC `2026-09-12` (`GC:19`), with content to 2026-09-29 (`GC:617`); FM `2026-09-10` (`FM:19`), with content to 2026-09-19 (`FM:544`); C-GC `2026-09-11` (`C-GC:17`), with content to 2026-09-29 (`C-GC:103`) | HT explains its own case: the stamp records the last review, not the last edit (`HT:1097-1106`) | — |
+| C25 | HT §7 UQ-100: "*(closed — the register row is WITHDRAWN.)*" (`HT:717`) | the same row: "what that stale word holds in practice remains runtime evidence (tier 10) and stays open" (`HT:722`) | no |
