@@ -1455,3 +1455,372 @@ Pages: `ARMDIV`, `ARM-A`, `ARM-B`, `ARM-C`, `ARM-D`, `ARM-E`, `ARM-F`, `ARM-G`, 
 
 Audio (`002DEBA0`, `001DBB00`, `00210B30`/`002112D0`, 18-Audio driver page; ARM-G:205-210), Resource (`002EEEE0`; ARM-A:366), Presentation (materializers `001D5120`/`001C7360`/`001C7520`; ARM-A:364-365), 19-Save-Load-Settings Game-Settings-Config (ARM-I:186-189; ARM-D:330-343), 08-Combat-Formula Steal (`FK-3`; ARM-A:211), 16-UI Map-Screens (ARM-F:310), 22-Middleware-PhyreEngine Post-Process-Chain (ARM-A:233; ARM-D:314), 99-Unresolved-Residual cutscene slots (ARM-A:301), Economy `GameState_SetGil` `00254EE0` (ARM-F:234), combat target eligibility `0030B7F0` (ARM-A:283-285), Application-Root (`game-application.md`; ARM-C:238; ARM-G:223). All marked outside 00 except Application-Root.
 
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, live-only, or declared limits)
+
+Only gaps that no later dated line on the 00 pages answers are listed. A gap that a later line answers is a stale
+claim and is in §3.2.
+
+#### 2.1.1 Boot fixups, startup data construction and the application root
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-1 (RC-3 residue) | "*Not claimed:* why the 0.5 MiB block is allocated." (BOOT:178-179) | harmless to replicate, but sizing budget |
+| G-2 (RC-2 residue) | "*Not claimed:* why the sizing adds those bytes." (BOOT:306-307) | allocation sizes must match |
+| G-3 (pacer tick) | "what one pacer tick is in wall time is not claimed here" (BOOT:389-390) | frame timing |
+| G-4 (pool contents) | "what each pool holds is not claimed here" (BOOT:230) | memory map |
+| G-5 (boot window) | "**How long the startup window is** in which the time base is still `1` … `PROBABLE`, unmeasured" (C-BOOT:498-499) | boot order of time base |
+| G-6 (reachability) | "no execution of boot's own reachability" (C-BOOT:490-492) | evidence only |
+| G-7 (I1/I4 ruling) | "`I1` and `I4` await theirs" (C-BOOT:441) | evidence only |
+| G-8 (arena 10 limit) | "*Limit:* a call through a pointer assembled at run time would not be seen." (BOOT:189-190) | arena completeness |
+| G-9 (predicate consumers) | "**What consumes those predicates** is read out for one of them" (C-BOOT:310-312) | half-rate behaviour |
+| G-10 (0x4A top byte) | "no individual consumer of a `02EAF930` row is named here" (FLOAT:592-593) | packet use |
+| G-11 (`008631D0` bytes) | "NOT claimed: byte `+1`/`+2` are never written by this helper" (FLOAT:651-652) | header layout |
+| G-12 (pointer pair) | "what the pair is *named* (a pointer position is the shape) is not established" (APP:287) | input mapping |
+| G-13 (`0018A7D0` / `001EBA40`) | "What `0018A7D0`'s pair gates, and which subsystem `001EBA40` belongs to, the bodies do not name." (APP:700-701) | pause side-effects |
+| G-14 (`01F81240` name) | "the name stays unclaimed" (APP:673) | — (role known) |
+| G-15 (7 class names) | "none is claimed" (APP:315, 585) | naming only |
+| G-16 (`01F7F598` fields) | "**no meaning is claimed for any of the 24 rows** … The remaining 224 bytes stay declared gaps" (APP:1086-1089); array extents "explicitly not established" (APP:1080-1081) | renderer object layout |
+| G-17 (FrameMarker gap) | "`+0x2C38` \| 512 bytes, **not touched by any of the eight tied bodies**" (APP:1387) | layout |
+| G-18 (`0061D490`) | "`0061D490` is not stated here (1,211 B, several paths)" (APP:2404) | device path |
+| G-19 (quad records) | "What the four `0x30` records *are* … is upstream of this subtree" (APP:852-853) | screen setup |
+| G-20 (log sink) | "NOT claimed: which class implements the sink" (APP:903) | diagnostics |
+| G-21 (texture-resize callers) | "Callers outside these selected paths are not covered." (APP:1474) | robustness |
+
+#### 2.1.2 World tick, field frame and force-fight mode
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-22 (EX-8 residual) | "**Residual:** the identity of the pools at `02EBB6F0`, `02EBEC00` and `02B58960`, and of message kind 2." (TICK:810-811); `02EBEC00` record laid out but "**What this does NOT do is name the subsystem.**" (TICK:837) | skip-begin notifications act on these pools |
+| G-23 (EX-3 residual) | "Residual: the identities of the record tables `0215F200` and `02B59D80`." (TICK:903-904) | tail drains/pushes over them |
+| G-24 (orchestrator helpers) | "Not established: which of the 23 steps `0030CBE0`/`0030CE10` implement, and the `00D103B0` table's case↔step mapping." (TICK:527-528) | step 11 behaviour |
+| G-25 (step 11 / 16 / 23) | "`0030CBE0`, `003065D0` \| CombatAction, unread" (TICK:223); "`00304440` \| unread" (TICK:228); "`002F82F0` \| unread" (TICK:235) | per-frame field steps |
+| G-26 (tail unread) | "Then the fixed list, cited by address because most are unread" (TICK:150-151) | tail callees order known, behaviour partly |
+| G-27 (`003DF760` loop) | "`003DF760(0, n, 0, 0, 0)  for n = 1, 2, 3, 4, 5 … unread`" (TICK:100) (later answered TICK:901-903, but with contradicting addresses, see C.1) | — |
+| G-28 (0x0B/0x17/0x18 wording) | "**The on-screen wording of the three screens is not read**" (TICK:861) | UI only |
+| G-29 (`001800E0` byte) | "which command sets the byte is not matched" (TICK:926) | when mode 2 skips the tick |
+| G-30 (FZ-11) | "what the nibble means is FZ-11" (TICK:343) | bit 13 semantics |
+| G-31 (nav grid) | "Not established: whether initialisation can run twice without an unload between … and whether the 0x400 bytes are one 128-entry table" (TICK:706) | grid lifetime |
+| G-32 (reset battery) | "teardown vs re-init is not named by the bytes" (TICK:637) | `00253A30` semantics |
+| G-33 (`001EDDA0` globals) | "NOT claimed: which subsystem owns either global" (TICK:1547) | — |
+| G-34 (slots 3/4 identity) | "*Which actor managers slots 3 and 4 hold is not established here.*" (C-TICK:108) | what a menu frame advances |
+| G-35 (`00265680` meaning) | "(its meaning is not named on this page)" (C-TICK:316) | pump gate |
+| G-36 (callees not described) | "*Their addresses are deliberately not cited*" / "nothing about any callee" (C-TICK:263-265) | contract asserts order only |
+| G-37 (AN-4 residue) | "*Not read:* the identity of the `0208E6A4` handle and what `0031ADB0` does with the answer." (FORCE:198) | combo continuation |
+| G-38 (fleeing effects) | "What fleeing changes beyond the label — enemy pursuit, command availability — is the consumer census below, not that observation." (FORCE:50-51) | gameplay effect of R2 |
+| G-39 (`00248220`) | "NOT claimed: what `00248220` does for the absent case" (FORCE:365) | save path |
+| G-40 (EX-9 residue) | "What remains unobserved (the native effects of the two callbacks on a live area change)" (TICK:956) | init/unload effects |
+| G-41 (`00362E30` null path) | "whatever `eax` held when it does not - the null path leaves the register unset" (TICK:2590) | undefined return |
+
+#### 2.1.3 Per-frame update gate and system stop registry
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-42 (G-bit4) | "**`0x10` is not among them**" … "NO ADMISSIBLE SOURCE" (GATE:227-232); C-GATE:284-294 closed as "provably dead" | Harmless: the bit has no behaviour. Closed. |
+| G-43 (G-hole-write) | "**What genuinely remains is narrower than a subsystem hand-out: an INDIRECT call.**" (C-GATE:1146) | Bounded. The 23,224-byte hole needs only zero-init. |
+| G-44 (G-57E0) | "**What indexes `ManagerSub0209BE80_57E0 + 0xD0` with stride `0xD0`?**" (C-GATE:1014); "the 8,728 bytes stay unobserved" (C-GATE:1000); partly answered by `b2e83fb7a` (C-GATE:1225-1227) | `_57E0` layout for the 0x0020/0x0400 groups |
+| G-45 (G-AB38) | "**This is extent, not meaning.** … the 1,800 bytes stay unexplained" (C-GATE:564-565) | battle-menu / 0x720 widget interior |
+| G-46 (G-8FA0) | "**So the first 4,144 bytes of this child are untouched by its own owner family.**" (C-GATE:595) | `_8FA0` layout |
+| G-47 (G-callshape) | "the four call-shape groups name their callees but not what those compute" (GATE:254: 0x0008, 0x0100, 0x2000, 0x8000) | Four of the 16 groups have no behaviour described |
+| G-48 (G-node-0D40) | "`node +0x0D40   f32`" (GATE:192) with no meaning; `+0xD78/+0xD7C` unnamed (C-GATE:1594) | Node layout completeness |
+| G-49 (G-282) | "What `+0x282 = 0x100` shows on screen is not read here." (GATE:551) | Libra display |
+| G-50 (G-10FA0) | "*Nothing in the sweep reads it back; the reader must reach it another way*" (GATE:496) | intervention-menu tutorial mode |
+| G-51 (G-subobj) | "*Not covered: the three sub-object rows of the same request (`+0x24` of the `+0x7EA0` sub-object, `+0x974` of `+0xA0D0`, `+0xC8` of `+0x57E0`).*" (GATE:503-504) | mailbox completeness |
+| G-52 (G-reg-consumer) | "the registry's consumers are unread (its owner is the object `001B1580` builds…)" (GATE:318-319) | only matters if the enable word is ever made writable |
+| G-53 (G-live) | "| any runtime observation | **none exists** |" (GATE:269); "Not established, and it cannot be observed without modifying the word" (C-GATE:185) | parity |
+| G-54 (G-slot-tail) | "The remaining bytes — `+0x08` qword and `+0x15`–`+0x17` — are still unobserved." (C-STOP:243-244) | record layout (the tsv contradicts it for +0x08) |
+| G-55 (G-fade0) | "*Not read here:* whether a 0-length fade behaves differently from none for the consumer of the combined value." (C-STOP:116) | first-apply behaviour |
+| G-56 (G-cancel-dispatch) | "the id dispatch at `00225E44`–`00225E5F` is not tabulated here" (STOP:84); "the page does not tabulate the cancel's id dispatch either" (C-STOP:285-286). EXP-191 tabulates it for `00225EB0` only (C-STOP:213-214) | cancel side effects per id |
+| G-57 (G-sets67) | "`00226A50` / `00226AB0` … and `00263560` also reach sets 6 and 7's hooks … their bodies are not read here." (STOP:207-208). Later measured (STOP:743-764), but `00263560` is still unread | single-actor stop |
+| G-58 (G-ch11) | "What channel 11 carries and what the other flag bits of `+0x10` / `+0x11` mean are open." (STOP:293) | set 4 effect |
+| G-59 (G-bit24) | "*What I did not read.* `00423B10` in full …; `003E7D10` …; and the **consumers** of either field." (STOP:457). Partly superseded by the SM-2 answer (STOP:294) | set 3 effect |
+| G-60 (G-19bit4) | "`+0x19` bit `0x04` bypasses the mark-only arm; its meaning is not inferred." / "**Open.** The producer of `+0x19` bit `0x04`…" (C-GATE:422, 427) | name-binding drain |
+| G-61 (G-SS7) | "**SS-7 partial**: … the per-request reach bit was not isolated" (C-STOP:215-216) | manager breadth |
+
+#### 2.1.4 Battle runtime mode ladder, diagnostics log, duplicated names, all-ones convention
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-62 (G1-dist) | MODE:431-432 "none read here, so *what the distance is compared against is not stated*" | `00309A90`'s 3.8/2.2/24.0 is useless without the comparison it feeds |
+| G-63 (G1-resslot) | MODE:424-425 "`0032F6E0` / `0032F6C0` / `0032ED70` / `002671F0` are a resource-slot family indexed with 3, not read further here" | the special-sequence states 2/3/6 gate on them |
+| G-64 (G1-chanunit) | MODE:549-550 "The channel's unit is the countdown API's … not converted here" | ride/turbo timings in seconds |
+| G-65 (G1-asset) | MODE:568-569 "Which authored asset row 3 names is that resource's matter, not this page's." | dismount presentation |
+| G-66 (G1-rmd1) | C-MODE:418-420 "**Residual:** … which specific visible outcome each drives … is inferred from the map's role, not observed per-site." | modes 4 vs 5 behaviour in play |
+| G-67 (G1-thread) | C-MODE:472-476 "a thread-entry-point census against the 20 ladder call sites was not enumerated" | null-pointer safety on threads |
+| G-68 (G1-284) | C-MODE:502 "*Not claimed:* what `[record + 0x284]` is." | dismount hand-off gate |
+| G-69 (G1-live) | C-MODE:373-375 "**One attach answers all three, and none has been performed.**" | live confirmation of bits 1/2/3 and 180.0f |
+| G-70 (G1-consumers) | C-MODE:339-341 "the 21 consumers, and every live-only item … EXP-098 discloses the mode setters as not exercised"; C-MODE:588-589 "`INTEGRATION`, because the ladder's meaning is entirely in its consumers" | the ladder's behaviour is its consumers |
+| G-71 (G1-chan) | LOG:179-180 "*Limit, not a question:* the developers' names for the channels are not in the image." | none (no behaviour) |
+| G-72 (G1-thunks) | DUP:185-188 "**Why some functions have thunks and others do not.** … **How many of the 692 differently-named thunks are load-bearing**" | caller censuses / hook placement |
+| G-73 (G1-ptrs) | DUP:367-369 "Whether the 384 pointer references are vtable slots, jump tables or something else: the **sections** were measured, the structures were not. The 17 double-edgeless cases were sampled at six" | identifying stored-pointer dispatch |
+| G-74 (G1-gaprepro) | DUP:361-364 "a census offered as re-runnable should be re-runnable, and this one is not, from anything in the repository." | none (meta) |
+| G-75 (G1-ff) | ONES:134-135 "**Whether every `0xFF` byte store in §4's 169 is a sentinel.** Certainly not" | per-field empty values |
+| G-76 (G1-zero) | ONES:327-329 "**80 candidates is not a finding that `0` is used as an empty marker**; none has been adjudicated" | per-field empty values |
+| G-77 (G1-412) | ONES:371-372 "`+0x412`'s behaviour is read, its subject is not." | the countdown's owner record |
+
+#### 2.1.5 Encoded-id space, class registry, query record, basis helpers, ABI recovery
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-78 (OV-5 / OV-8 residue) | "**OV-8.** Actual game reachability of the deliberately abnormal counts/pointers/state layouts." (QREC:196); residue: "'Zero for the process life' is **supported, not proven**." (C-EID:294-295) | whether `0020E600` must model a nonzero / ≥4 GiB base |
+| G-79 (string lifetime) | "Their lifetime across resource unload/rebinding, and shared-record thread/reentrancy constraints, remain separate unanswered obligations." (QREC:79-81); ruled a declared limit (C-EID:248) | menu code holding returned name pointers across reloads |
+| G-80 (reentrancy) | "Concurrent/reentrant safety remains unestablished." (C-EID:113) | static record aliasing |
+| G-81 (OV-1 output meaning) | "per-slot downstream semantics … ruled a declared limit" (C-EID:247); "not assertions that every field's downstream purpose is understood" (QREC:87-88) | consumers of +0x28…+0x60 |
+| G-82 (row layouts) | "the residue of 60 unmapped bytes in 8 tables … The four class slots that are not pack entries (`02EBF150`, `02EBF120`, `02EBF0D8`, `02EBF0D0`) are named there and not measured." (CLS:291-296) | table rows feed the filler |
+| G-83 (02EBF020 groups) | "what the two ids select is open … Which script situations select each group is not read." (EID:441) | command list presets |
+| G-84 (key items order) | "a player-facing check that the Key Items tab lists maps first is not made here" (EID:275) | UI ordering |
+| G-85 (other languages) | "Only the `us` pack was decoded; other language packs are not checked here." (CLS:376); "Other language packs are not checked." (CLS:540) | — (EID:71 says identical) |
+| G-86 (census limits) | "a record pointer handed to another function is not followed … a read through a saved stack copy would be missed" (EID:221-223); C-EID:314-316 residual | absent-reader claims |
+| G-87 (BASIS purpose) | "**What this document does not claim:** what the structure is, what `A`, `B`, `C` and `T` mean, who calls either function, or what the two parameters of `0062DFB0` represent." (BASIS:112-113) | whole helper pair has no semantic contract |
+| G-88 (ABI types) | "the residue - the 511 untyped position-1 rows" / "The class-derivation residue is the 151 pointers plus the 16 undecided." (ABI:192-193); "the caller route is still the next step" (ABI:191) | argument types for 562 rows |
+| G-89 (ABI floors) | "Twenty-nine rows have at least one frame-relative read the tracker could not place … their result is itself a floor" (ABI:125); "a function whose every register position is dead is invisible to this test too" (ABI:166-167) | arity may be under-reported |
+
+#### 2.1.6 Shared transform workbench (EE/VU0 register bank, save/restore, primitives)
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-90 (UQ-36) | EEVU:226 "*OUT OF EVIDENCE BOUNDARY 2026-09-27 … answerable only from the PS2 executable `SLPM_667.50`*" | row index → vf name; not needed if the port keeps addresses |
+| G-91 (UQ-38) | EEVU:259 "Closed for the gate, unanswered in fact." | whether each member maps to a library routine or inline code |
+| G-92 (UQ-39) | EEVU:265-267 "The residue stays unanswered in fact." | identity of templates |
+| G-93 (022D9470 flags) | EEVU:252 "Which VU flags they are cannot be recovered here" | none (write-only) |
+| G-94 (target alias) | SAVE:97 "Whether any caller passes such a target is not established." | Save/Restore edge behaviour |
+| G-95 (row byte 1) | SAVE:292 "Which value the nine callers leave in byte 1 of the operand row `022D8F10` is not read here" | modulate ceiling |
+| G-96 (row meaning) | SAVE:294 "what each caller's row operand represents is named only by its position" | modulate inputs |
+| G-97 (indirect nesting) | SAVE:296 "an indirect call from one of them into another of the nine would not appear"; C-SAVE:319-320 "Requested from ASTRA; not claimed here." | depth-of-one safety |
+| G-98 (BSS interleave) | C-SAVE:359-360 "safe only while that record's `+0x28`+ tail stays unused; whether it does is unenumerated." | memory layout of save values |
+| G-99 (`02AEEA20` rows) | PRIM:342-344 "`02AEEA20`'s upper three rows have **no RIP-relative writer** in the image" | matrix source contents |
+| G-100 (projection divide) | PRIM:151-152 "the divide happens somewhere else, in code this page has not read." | render path |
+| G-101 (`0039B550` mode dword) | PRIM:650 "NOT claimed: `0039B550`'s published mode dword's semantics." | installer side effects |
+| G-102 (`005002E0`/`0039A9B0`) | WB:638-639 "NOT claimed: which semantic pass drives `005002E0`'s two range windows, or which table owns the `022D8F30` min/max pairs" | predicate semantics |
+| G-103 (record types) | PRIM:470-473 "the record types are not named … `003F3E40`'s jump table … not opened" | residual consumers |
+| G-104 (bank residence) | PRIM:686-688 "NOT claimed: the physical meaning of the `023393xx`/`03B0E7Fx`/`01EA47xx` banks" | other banks |
+| G-105 (title-screen routine) | C-PRIM:298-299 "which routine holds them *at the title screen specifically* is not runtime-confirmed" | none (live only) |
+| G-106 (runtime) | C-PRIM:329 "any runtime observation of either function EXECUTING … UNKNOWN"; C-SAVE:388; C-SAVE:205 "Not established." | validation |
+| G-107 (mutation) | C-PRIM:215 "Verdict `FAIL_INCOMPLETE`." | test adequacy |
+| G-108 (float order) | PRIM:807 "Other MXCSR settings, subnormals and NaNs are not read" | bit-exact compose |
+| G-109 (`0209AC30`+0x2C8) | PRIM:712 "NOT claimed: the `0209AC30`+0x2C8 record's owner" | — |
+| G-110 (ops summary) | EEVU:196-197 "The `ops_summary` column is register traffic in instruction order, not a VU0 disassembly — masks and the actual arithmetic are still in the bodies." | every member must be translated |
+
+#### 2.1.7 Object model (RTTI and the vtable method index)
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-111 (S37-1 slot-10 draw) | "A live capture of the slot-10 call is still the thing that would witness the draw itself, and that remains `PROPOSED-OPUS-S37-1`'s business. **This is NATIVE/STATIC evidence, not live.**" (RTTI:310-312) | text draw path order |
+| G-112 (AS-5 accessor) | "which accessor each class declares at that slot is not recovered here" (RTTI:405) | 1,349 classes' slot 1 semantics |
+| G-113 (zero-at-load fields) | "It says **nothing about the object's other fields** … the 104 writes that did not resolve to an RTTI name are unclassified here" (RTTI:994-997) | initial state of 346+104 globals |
+| G-114 (work queue) | "**304 of the 346 are objects no page has ever mentioned**" (RTTI:992) | identity of static objects |
+| G-115 (BA-1) | "Closed for the gate, unanswered in fact." (VTIDX:151); "Per-function provenance survives only in the unshipped `FF12X64.pdb`" (VTIDX:148) | 2,611 shared method bodies have no owner |
+| G-116 (BA-5) | "**The eighth is unreconciled. BA-5.**" (VTIDX:2521-2522) | class set for size census |
+| G-117 (single-route sizes) | "**Sizes for 80 of 125 game classes rest on a single route.**" (VTIDX:2531) | allocation sizes |
+| G-118 (singleton class) | "NOT claimed: the object's class … the singleton's type name is not established here" (VTIDX:3340-3341) | `02CC0410` type |
+| G-119 (CTextureUtil) | "`CTextureUtil` slots 1–4 (`00731AD0`–`0075ADF0`) remain unnamed." (VTIDX:2820) | PPFX device init |
+| G-120 (BA-3 naming) | "the shape of const/non-const overload pairs (not verified by name)" (VTIDX:176) | method identity |
+| G-121 (lua call site) | "the "call site" claim it was listed under remains unverified" (VTIDX:217-218) | — |
+| G-122 (residue) | "no figure here should be quoted as if the two instruments agreed about them" (VTIDX:2756-2757); 351 functions with "no route found" (VTIDX:2658) | unreached code |
+| G-123 (shout, narrower) | "**Still open on the narrower point:** *battle* voice specifically" (RTTI:200-201) — but see C.2 (answered 2026-09-22) | — |
+| G-124 (AS-1b) | "reopen if the character controller is ever seen in a reflection registration table" (RTTI:628-629); "strong absence of evidence, not evidence of absence" (RTTI:626) | physics movement path |
+| G-125 (crossings) | "**1 of the 12 bodies on that layer are read, the rest are counted**" (VTIDX:2854) | — |
+
+#### 2.1.8 Shared-state accessors and the ownership boundary
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-126 (U-1/UQ-30 residue) | "What writes `+0x1044` and when is the residue that U-1 covers." (HUBS:295-296), while U-1 is "closed — the register row is WITHDRAWN" (HUBS:289) | the current-area id writer and timing are unknown |
+| G-127 (hub 4 not established) | "which ids pass `BattleEncodedId_IsValidForClass(2, …)` … whether any caller stores a slot index across a pool reset." (HUBS:199-200) | 0xFF→0xFFFF path reachability |
+| G-128 (U-4 frequency) | "Hot-or-cold is a frequency question and stays ASTRA's." (HUBS:336) | performance only |
+| G-129 (`002F9860`) | "NOT claimed: which subsystem's records the 28 buckets hold" (HUBS:564-565) | record identity |
+| G-130 (`00264010`) | "NOT claimed: what `003590D0` resolves the negative value against, or which tag system `+0x18` carries." (HUBS:583-584) | semantics |
+| G-131 (`00307D10` gates) | "`00377C20` and `00253B90` gate the paths and are **not read**." (NBR:159-160) | engagement-flag paths |
+| G-132 (unread neighbours) | "**Unread, and named as such:** `00226BE0` (1,936 B, 23 pairs), `00261F90` (335 B, read only to its first branch)" (NBR:258-259) | callees of shared paths |
+| G-133 (UQ-31 residue) | "**Not read:** the group object's play body behind the wrapper, and the selector-`1` player at `+0x10`." (NBR:297-298) | sound playback body |
+| G-134 (`02064AD3` writers) | "`0022AF50` sets to **3** and `0022B000` sets to **5** (§3 and §4)" (NBR:243-244) — §3/§4 of NBR do not describe these | mode-body semantics |
+| G-135 (`00229E70` MXCSR) | "The game's MXCSR at this site is not established" (NBR:236) | NaN behaviour |
+| G-136 (`01F83530`) | "That it is the PE or module image base is the name's reading, not established here." (NBR:186) | pointer codec base |
+| G-137 (timeline residue) | "What each opcode's operands mean, and the authoring-side name of the track, are the residue" (OWN:539-540) | operand layouts of all 62 cases |
+| G-138 (`003697F0`) | "NOT claimed: which heap `00369860` serves (CRT vs arena) or the `arg2` flag's meaning" (OWN:632-633) | allocator |
+| G-139 (`002F31C0`) | "NOT claimed: the six handlers' identities … or which list pair `rdi` heads." (OWN:645-646) | teardown |
+| G-140 (BQ-15) | "Whether every other category's shared helpers were held to the same rule is untested." (OWN:344) — carried to a board task (OWN:345) | classification only |
+
+#### 2.1.9 Developer tuning console: dispatcher, tunables, second table, event slot, names
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-141 (RC-5) | "- [ ] **RC-5.** Which names and event ids the event-slot routes of §3 store" (EVSLOT:189); "**Proposed disposition, for a non-author reviewer:** ANSWERED … Not self-closed." and "the reviewer did not rule on the ANSWERED proposal." (EVSLOT:217) | domain of names/ids the slot table holds |
+| G-142 (shared ids) | "**What the 56 shared ids were** before they were retired to the do-nothing arm" (C-CON:309-310) | history only; low |
+| G-143 (code-table readers) | "*What the other 1,020 entries serve, if anything outside the console, is not read here.*" (C-CON:82-83); "*Not claimed:* that the engine reads this table to load a map" (CON2:86-87) | whether the table is load-bearing outside the console |
+| G-144 (63 arms' writes) | "The other 63 ids stop at an object the fixture did not plant, or at a trapped import. Their write scope is not measured." (C-CON:190-191) | arm side effects |
+| G-145 (runtime) | "**Empty.** … nothing here has been observed running." (C-CON:297); "**Not tested:** … **FULL SUBSYSTEM** while §13 is empty." (C-CON:337-339) | parity |
+| G-146 (shader use) | "Which pixel the shaders compute from each variable is GPU bytecode and not claimed." (CON282:250) | visual effect of each tunable |
+| G-147 (step column) | "**The `step` column is indicative, not verified per row.**" (CON282:341) | exact step per arm |
+| G-148 (DoF two-source) | "No code path was followed from either source to `fParam_FocusDistance`." (TUNES:141-142) | DoF precedence |
+| G-149 (MSAA writes) | "*Not claimed:* which values the shipped options menu writes to the framework setting." (TUNES:692) | defaults |
+| G-150 (RC-8 limit) | "*Limit:* a pointer carried through an indirect call or a bulk copy is outside the census." (TUNES:593-594) | cascade count certainty |
+| G-151 (§4 corroboration) | "it is not corroborated by any consumer, because no consumer of these addresses carries a string that names one." (TUNES:799-801) | binding confidence |
+| G-152 (retail execution) | "*Static routes do not show that every retail state executes them. That is a live question.*" (EVSLOT:31) | which states fire |
+| G-153 (path census) | "the census that produced it is not retained | not stated — unanchored" (EVSLOT:298) | path counts |
+| G-154 (RC-6 why) | "*Not claimed:* why the entries were left so." (CON2:94) | low |
+| G-155 (RC-4 assumption) | "**Assumption 2, stated:** the readers of `ext+0xA8` all lie in `00600000`-`00620000`" (CON282:284) | capture-row behaviour |
+| G-156 (crossref) | "`crossref_clean` stays `false`." (C-CON:399) | neighbours unresolved |
+
+#### 2.1.10 Developer tuning console: the arm catalogue (work division and slices A-I)
+
+| id| quote + cite | why a port needs it |
+|---|---|---|
+| G-157 (D-13) | "**Flagged 2026-09-08, unresolved.** The paragraph above says **thirteen** arms; the table below maps **twelve** arm ids" (ARM-D:128-134) | which arms touch the map-art context |
+| G-158 (D-134) | "Id 134's two follow-up calls have **15** and **2** callers image-wide respectively; neither is characterised here" (ARM-D:248-249) | side effect of changing WaterQuality |
+| G-159 (D-2F8) | "*Not established:* a reader of `+0x2F8` or `+0x2E5`." (ARM-D:333) | |
+| G-160 (E-name) | "**What the object at `02CB7FD0` is called.**" (ARM-E:346) | naming only |
+| G-161 (E-166) | "**The virtual target of id 166** and the meaning of the `0x0E` selector (§7)." (ARM-E:349) — selector answered elsewhere (property 14, ARMDIV:475), virtual target still open | soft-particle toggle behaviour |
+| G-162 (E-170) | "**Defaults for ids 170 and 171** — neither field is written by a constructor found here." (ARM-E:350) | initial values |
+| G-163 (E-171) | id 171 target "`+0x1EC` of the object returned by the accessor called at `001D2A38`" (ARM-E:117) — accessor never named | SSS Blur owner |
+| G-164 (F-bytes) | "Each arm then flips its byte; what reads those bytes was not traced." (ARM-F:315-316) | |
+| G-165 (G-flag) | "Which store applies the chosen value to the story flag was not traced here." (ARM-G:189) | id 231 effect |
+| G-166 (G-DDC) | "**What stays open.** What the 17 means." (ARM-G:199) | |
+| G-167 (G-4E8) | "`01F7F4E8` has no RIP-relative writer, so its source was not traced." (ARM-G:221) | BGM forcing |
+| G-168 (H-states) | "**What the non-negative states of ids 243–245 select.**" (ARM-H:293) | 100% steal/poach/drop semantics |
+| G-169 (H-265) | "**What ids 265 and 266 address.** The accessor's object is not named" (ARM-H:295-296) | display/adapter object |
+| G-170 (H-props) | "**Properties 11, 19, 20, 21** … reached by no arm" (ARM-H:300-301) | outside console |
+| G-171 (I-9) | "What the value `9` for mode 4 selects in the renderer was not read." (ARM-I:307) | MSAA mode |
+| G-172 (I-skip) | "Who calls `001E05F0` was not traced here." (ARM-I:315) | frame-skip order |
+| G-173 (A-json) | "What the five JSON readers skip, and what that draw mode selects downstream, were not read." (ARM-A:303) | |
+| G-174 (A-arg) | "whether they have one that receives it as an argument is not established" (ARM-A:255-257) — partly superseded by labels (ARM-A:261) | |
+| G-175 (C-106) | "Whether that was intended is not recoverable from the code" (ARM-C:161) — closed as NO ADMISSIBLE SOURCE (ARM-C:242) | none |
+| G-176 (B-frame) | "Who calls it is still untraced." (ARM-B:61) — answered at ARM-B:191-197 (C.2) | |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no 00 page states them)
+
+Each item names a function, formula, field, initial value or format that a re-implementation needs, with the line
+that shows the gap (usually a callee named and never described, or a value used and never given).
+
+#### 2.2.1 Boot fixups, startup data construction and the application root
+
+- **S-1.** Order of calls inside `0022A0B0` beyond seed/masks/frame-base/allocs: hubs `0037DF90`/`0037E0F0`, `0022CB90` (APP:1661-1663), `00266D10`, `002368D0` (BOOT:433), `0036D990` (EEVU:311), `00184960` (C-BOOT:309) — none of my pages gives their sequence; BOOT:226-227 "what any of the ~60 further boot calls do" is replaced only by the unordered subtree census (BOOT:392-407).
+- **S-2.** `0017D6E0` pump order of the 13 singletons: APP:529-531 says "its ordering relative to the others is load-bearing" but no page gives the order; also the `edx` mode values and the "zero -> return 9" meaning (APP:226, 231) are not stated.
+- **S-3.** `0017D650` (slot-4 run-once initialiser) is named (APP:224, 604) and never described.
+- **S-4.** Initial value of `01F82E38` (C-BOOT:267-268 gives defaults for three cells only) and the `.data` initial of `02064ACC` before boot are not stated.
+- **S-5.** "four `1.0f` values written to `02064AC0`–`02064AD4`" (BOOT:377): which four addresses is not stated; the range contains `02064ACC` and the frame-mode byte `02064AD3` (C.1).
+- **S-6.** Object `02AE9290` (builder `004DA3C0`, hdr+memset) — TSV extent `0x70`, gap `0x280`, no memset size; C-BOOT:799 "`00861EC0` zeroes `0x70`"; FLOAT's size tables (FLOAT:519-537, 622-628) never give its size or explain the `0x210` remainder.
+- **S-7.** Objects built by the two hub tail jumps (`004A8860` → `02AE1EF0`, C-BOOT:683; `004C3610`, C-BOOT:617 object not named) have no row in `builder-store-extents.tsv` and no size on FLOAT.
+- **S-8.** `001EDDC0` LUT battery callees `0046FBF0`, `00471100`, `00473210`, `0033E310` listed as "Shared callees outside the census" (BOOT:530-531) with no description; table formula only for walkers (BOOT:525-528).
+- **S-9.** `0018A840` (412 B, called at `0017D000`+59) given only as "`malloc` + the `001DE540` SIMD leaf + `00615CD0`/`0061D9C0`" (APP:632-633).
+- **S-10.** GameApplication destruction: "*the application is never deleted* is probably true at runtime" (APP:375) — lifetime end of the root and of all 13 singletons not stated.
+- **S-11.** Fields `+0x1130`, `+0x1138` touched by slot 2 (APP:63) have no meaning; slots 1,12,13,17-20,28-30 inherited (APP:166) — behaviour on other pages only (TUNES:652 names slot 28).
+- **S-12.** MT19937 internals `00866D60`/`00866B90` and arena allocator internals are only on pages outside 00 (BOOT:220, 154).
+
+#### 2.2.2 World tick, field frame and force-fight mode
+
+- **S-13.** **Initial value of `01E0C2B8`** (force-fight flag) at boot/new game/load: not stated on FORCE (FORCE:58, FORCE:142 give only address). FORCE:299-300 asserts "the mode persists into save payloads" but no line shows the flag being serialised or restored.
+- **S-14.** **What the `01EED060` latch's value is used for**: the tick only clears it to -1 (TICK:72; C-TICK:182 "consumed once → `cmovns`→`-1`"); no consumer of its stored value is named.
+- **S-15.** **The tick's second argument (`edx` / `edi` "the field frame's own flag")** (TICK:54): only forwarded to `002F1770(mode, edx)` (TICK:153); what the flag means and what `002F1770` does with it: not stated.
+- **S-16.** **Time-scale block formula** (TICK:155-156): `00362DB0()` plus `022C2544`, "compared against `002DEBA0()` [Audio], the smaller clamped to `1.0f`" — `002DEBA0` and `00362DB0`'s values not described (TICK:509 gives only "`00362DB0` (`022CBB28`)").
+- **S-17.** **Prologue callees without behaviour**: `003EB9A0` (only a call list TICK:2036), `003DA2F0(1.0f)`, `003DD210(1.0f)`, `0025D640`, `0037D890`, `0046AFA0` (TICK:70-77; TICK:511 "`0046AFA0` (`02CA6040`–`4C` const bank)").
+- **S-18.** **Tail callees without behaviour**: `003DE640`, `0037C1A0`, `003E7EC0`, `002F1770`, `002EF910`, `0036E1E0`, `00228480`, `00362DA0` (TICK:151-157; cluster tables TICK:505-512 give call shapes only).
+- **S-19.** **`003DB6E0(record)`** called per live record by the post-pass (TICK:141): never described.
+- **S-20.** **Unit-frame callees**: `00307C70`, `0033A240`, `003057D0`, `0030CA50`→`00322310`/`003228E0`, `00267240` (TICK:288-304) not described.
+- **S-21.** **`00234520` callees** `00313DB0`, `00319090` (TICK:257) not described; `00313CD0` only gate shape (TICK:1480).
+- **S-22.** **Initial image values** of `022C2548`, `02089340`, `0208E6A8`, `022C252C`/`022C2530`: not stated (C-TICK:17 says three tick-state globals' image bytes were read, but only `01EED060`/`01EED064` values are given, C-TICK:90-91).
+- **S-23.** **Readers of `022C252C`/`022C2530`** and callers of resetters `00314010`/`00314000`: not stated (TICK:427).
+- **S-24.** **Consumers of `0209A1F0`–`0209A20F`, `02099D70`/`02099D78`**: not stated beyond writers (TICK:85-86, TICK:434).
+- **S-25.** **`0022BC20` mode-5 body** beyond its tick call: "~80 B … `"PAD CONTROL"` tagged block" (TICK:1468-1469) — contents not described.
+
+#### 2.2.3 Per-frame update gate and system stop registry
+
+- **S-26.** **The reproduction formula omits the gate's own state writes and inner tests.** C-GATE:105 says the gate writes "`object+0x10F68` bit 1, and the three pointer fields `+0x10F20`, `+0x10F30`, `+0x10F40`". C-GATE:327 names inner tests `0028E2EE test byte ptr [rbx+0x10F68], 8` and `0028E4B3 … 0x100`. C-GATE:263 names `+0x10F78`/`+0x10F80` pointer fields. §12 (C-GATE:190-209) has none of these. No page states which callee result is stored to which pointer field, or which group each inner test gates.
+- **S-27.** **Group 0x0002 A and the 0x0004 multi-call sequence.** The table lists six calls for 0x0002 (GATE:89) and three for 0x0004 (GATE:90). The formula calls one function per group (C-GATE:194-195). The conditional call of `003F8B40` on a non-zero `001EDE80` (GATE:524) and the head pointer `[0209BE80]+0x10F00` passed to `0028C4C0` (GATE:225) are not in the formula.
+- **S-28.** **Singleton lifetime end.** The allocation is stated (C-GATE:699-701). No destructor or free of the `0x10FD0` object is stated in any of the four pages.
+- **S-29.** **Initial value of `01E0C2B0`.** C-GATE gives a writer and the value `0xF` (C-GATE:301). STOP adds `002547C0` (STOP:828). The `.data` initial value and the order of writes relative to the first pump call are not stated.
+- **S-30.** **Four call-shape groups** (0x0008, 0x0100, 0x2000, 0x8000): callees are named, but bodies such as `002C8D60`, `003F7BC0`, `003F9720`, `0035BAD0` are given only as call lists (GATE:254, C-GATE:1457, 1666).
+- **S-31.** **Registry: initial `01FD46D4`/`01FD46D0` values** are not stated (only the records' values, C-STOP:103-114).
+- **S-32.** **Set-3 / set-4 consumers' on-screen effect** is not stated; the pages give only the mechanism (STOP:293, 457).
+- **S-33.** **`00226BE0` argument list is elided**: "`00226BE0(id, actorHandle, flag, …, count, handles)`" (STOP:52). The elided arguments are not described. Other evidence shows five or six arguments (`00226BE0(0x16, 0, 0, −1, −1)`, TICK:846; `00226BE0(6, 0, 0, 0, ecx, flag)`, STOP:830).
+- **S-34.** **"the reset" naming:** C-STOP:226 attributes the slot-13 bit-41 clear to "the reset" at `0022603A`. That address falls in `00225EB0` (area-unload) per EXP-191 (C-STOP:213-214), not in the initialiser `00226B30` (STOP:50). Which function a port's reset must reproduce is not stated directly.
+
+#### 2.2.4 Battle runtime mode ladder, diagnostics log, duplicated names, all-ones convention
+
+- **S-35.** **`0035C620`** — the bit-0 setter's propagate tail: "both changed paths tail `0035C620` to propagate" (MODE:1243-1244), "a recorded boundary" (C-MODE:346); never described on my pages.
+- **S-36.** **`00313840`** (summon reset) — named as "(reset) clears" (MODE:110) and as the target of `00313650`, but its body/effects are not given on my pages (direction contradictory, C.1).
+- **S-37.** **Initial value of `+0x5B04`/`+0x5B08` at new game** — only implied by the save-image memset (C-MODE:437-438) and `0030DA10`; when `0030DA10` runs is "for `BattleSystem_ResetRuntimeState`" (MODE:584) with no trigger stated.
+- **S-38.** **`003EBD00`** and the countdown API (`003EBC50`) semantics (start/arrival) — `003EBC50` row fields given (MODE:1061) but `003EBD00` is named only (MODE:365, MODE:977-981).
+- **S-39.** **`00229EA0`** "the mode query `00229EA0` is 5 or 6" (MODE:895) — a second "mode query" never described.
+- **S-40.** **Consumers `00235EA0`, `00320230`** — listed as callers (MODE:203) with no description.
+- **S-41.** **`003C5FF0`** first gate of `0035BC50` (MODE:705) and `BattleMenu_BuildCommandEntryList` (MODE:712) — named only.
+- **S-42.** **`00313A00`** — `00313DB0` tail-calls this "289-byte function" (MODE:796-797); body not described; "a notification chain runs" (MODE:829) unspecified.
+- **S-43.** **`00306D90`** "presentation worker" (MODE:998) and `0030D720` "defaults reset" (MODE:1118) — the special-sequence end path depends on them; only shape given.
+- **S-44.** **Who calls `00304440` per frame** — MODE:315 "the frame handler" with no caller or frame position stated.
+- **S-45.** **`002EB0D0`** actor-event hand-off (MODE:327) — named only.
+- **S-46.** **`02EBF190` block size** — "≥ 23 KB" (MODE:219, MODE:461) only a lower bound.
+- **S-47.** **LOG**: none structural for a port (sink does nothing but break on channel 4).
+- **S-48.** **ONES**: the "global scale" and "a draw" of `004225A0` (ONES:251, ONES:254) are unnamed.
+
+#### 2.2.5 Encoded-id space, class registry, query record, basis helpers, ABI recovery
+
+- **S-49.** **Two state blocks, relation unstated.** Regions live in "the battle state block" (EID:114, "u32 offset of the class's **region A** in the battle state block"; class 5 A `+0x4748`, 64 words, EID:150), while list counts live at "`+0x47B8 + 4 × list`" of "the **image-backed state block** `*(020927C0)`" (EID:382-383). If one block, `+0x47B8` falls inside class 5's region A (`+0x4748`–`+0x47C7`). No page says whether the rebase base `02164280 + 0x4E68C` (C-EID:282) and `*(020927C0)` are the same object.
+- **S-50.** **Initial value / creation of the state block** not stated (only its address, C-EID:282).
+- **S-51.** **Slot-descriptor header (02EBFxxx) layout** is never given as one record: "count at `+4`" (CLS:208), row base `0020E600(dword [table directory + 0xC])` (C-EID:278), stride `word[+8]` (C-EID:358, EID:1017); `003845F0` AreaData_BindAndRebaseSectionDescriptor is named (CLS:172) but its behaviour is not described.
+- **S-52.** **Filler arms not given as formulas:** "the complete filler remains the class table, original instructions and named test evidence—not an invented uniform row-copy formula" (C-EID:222-223).
+- **S-53.** **Callees named, not described:** `0031E9A0` (C-EID entry, EID:533 "stores `0031E9A0(row)` at `+0x50`"; only "select equipment views" C-EID:151); `003241D0` (CLS:648, EID:541); `0046A630` obtain line (EID:314); `002CD650` sort (EID:384); `GameState_SetGil` (EID:339); `00318CD0` command gates (EID:367); `002EFA70`/`002EFE40` (EID:444, later named in EID:646-648 via outside-00 page).
+- **S-54.** **Text bank decode** (`02EBF170`, `shr 0xb`, `[rax+rcx*4+4]`) only sketched (EID:737); full bank format is on a page outside 00.
+- **S-55.** **Descriptor +0x14/+0x44:** "no meaning promoted here" (C-EID:68).
+- **S-56.** **BASIS:** the "two components of the previous matrix … carried into the base" are not identified (BASIS:144-145); rotation axes not named ("two about one axis, one about another", BASIS:139-140); the two helpers' parameters unnamed.
+- **S-57.** **ABI page is a measurement, not an interface:** "A derived signature is not an explanation." (ABI:36).
+
+#### 2.2.6 Shared transform workbench (EE/VU0 register bank, save/restore, primitives)
+- **S-58.** The 267 member routines (389,071 B) are a census, not a specification: EEVU:40 "188 are cited by no page"; EEVU:149-152 "Membership says **how** the member computes. It does not say **what** it computes." A port needs each body's arithmetic.
+- **S-59.** Callees named but not described: EEVU:261 lists `00430B90`, `003A8950`, `ImageAddress_ResolveRuntimePointer` among the common callees; none is described in the group. `0036E1E0` calls `0024DE70` (WB:732) — undescribed. `0039AF70` body given only as "copies whatever `rcx` points at (`0039AF70`–`0039AF94`)" (PRIM:320).
+- **S-60.** `0039B550`: "a `cvtdq2ps` conversion of an int4 row accumulated into a global float" (PRIM:634-635) — the global is not named.
+- **S-61.** `003D8E50`'s 23-bit recurrence is deferred to another page (SAVE:287); `0042FDB0`/`0044BAC0` are described "by their callees" only (SAVE:287 "the three large ones by their callees").
+- **S-62.** Initial ids of the `022D94B0` records: only the state reset is stated (C-WB:118-119); field `+6` and the rest of the 24 B are not laid out ("`…`" in WB:326).
+- **S-63.** Save arrays' initial content not stated (C-SAVE:57-58).
+- **S-64.** Frame position of most members not stated: EEVU:270 gives reachability counts only.
+- **S-65.** `022D9140`–`022D916C` slot owners per function not listed (EEVU:233-237).
+- **S-66.** `0036D9E0`'s role per frame (called by `003E00C0`, C-WB:247) vs "initializer" (WB:107-124): when and why it clears is not stated.
+
+#### 2.2.7 Object model (RTTI and the vtable method index)
+
+- **S-67.** **Behaviour of the 4,275 methods**: "This index gives identity — class and slot — not behaviour. **Nothing here has had its body read.**" (VTIDX:152-153); BA-2 was closed only by ruling ("SUPERSEDED 2026-09-26 … a population-coverage statement", VTIDX:154), not by reading. Only ~250 bodies are described in the update sections (VTIDX:2863-5219).
+- **S-68.** **Per-class object layouts/sizes not tabulated**: §10 reports counts ("92 of 125", VTIDX:2472) but no per-class size table on the page.
+- **S-69.** **Slot semantics across classes**: "or that a slot number means the same thing across classes" is explicitly not claimed (VTIDX:201-203).
+- **S-70.** **Callees named but not described on these pages**: `00597690` ("whatever the constructor computes at `00597690`", RTTI:995); `00584730` (used as free throughout, e.g. VTIDX:4409, never described); `0017D260`/`00584740`/`001A1470`/`00809950` allocators (VTIDX:4751, 5057; RTTI:272; VTIDX:2893); `00810240`/`0080FA50`/`00810F60` type registration (VTIDX:4762-4767); `0083A3A0` (RTTI:937, 1028); `00861F14`; `0020E680`/`0020E670`/`0020E630` (RTTI:1042-1047; VTIDX:4479-4481); `005CCB80(1)` "count release"/"yield" (VTIDX:4393, 4441); `00808C40` CFG guard.
+- **S-71.** **No runtime order**: "Call chain — Not applicable" (VTIDX:127).
+- **S-72.** **Reflection invocation**: physics is reached through `PMethodCallerConcrete` objects; "there is no edge to find" (RTTI:512) — the reflection dispatch tables a port would need are not described here (points to 22-Middleware).
+- **S-73.** **Zero-at-load object field initial values**: not stated (RTTI:994-996).
+
+#### 2.2.8 Shared-state accessors and the ownership boundary
+
+- **S-74.** Initial values and writers for pool globals `0208E688`/`0208E6A0` not stated (HUBS:161-162 only read them).
+- **S-75.** `Actor_GetWorldPosition` body given only as pseudocode "(from Actor/Entity, repeated …)" (HUBS:227-233); `movementState` origin not stated on these pages.
+- **S-76.** `SaveImage_GetPersistentPayloadBase` offset known, but payload layout beyond `+0x1044` not stated (HUBS:216-219).
+- **S-77.** Action context `02F97348`: allocation, size and lifetime not stated; only field reads (OWN:514-518).
+- **S-78.** Timeline opcodes: callees given by the TSV but per-opcode operand layout absent ("the rest opcode-specific", OWN:503).
+- **S-79.** `003A1180` "argument" source and `00249C60`'s caller-supplied value not stated (NBR:96).
+- **S-80.** `001DBDB0` group player body/play wrapper not read (NBR:297).
+- **S-81.** Scratch-pool class semantics (`022D89BC` class word, `022D7FD0` descriptors) not stated beyond mechanics (OWN:915-959).
+- **S-82.** Frame placement (which phase of the frame) of the hubs, audio chain, and timeline interpreter not stated.
+
+#### 2.2.9 Developer tuning console: dispatcher, tunables, second table, event slot, names
+
+- **S-83.** Per-arm behaviour is not on these pages: "Per-id arm semantics | the nine arm-catalogue slices, ids 12–293 | carried" (C-CON:325); "**The nine slice documents are the authority for behaviour**" (CMDNAMES:89). A port of the 226 arms needs the slices (outside this group).
+- **S-84.** Direction mapping: the arm increments when `bl` is zero (`test bl, bl / je … addss`, CON282:381-386) and the adapter sets `r8b = (dl == 0)` (CON282:505), but which physical press (left/right) gives which `dl` is not stated; CON282:507 says only "called with the left/right direction of the press".
+- **S-85.** Console settings singleton (0x10E8) layout and the constructor `001CCB20`'s initial values: only `+0x130`, `+0xAAC`, `+0xAB4`, `+0xC72..` and per-id `rdi+…` cells are named (CON2:116-118; CMDNAMES:112-376); no initial values.
+- **S-86.** Block defaults: "the chain writes **107 distinct block offsets**" (TUNES:395) but values are listed only for 27 named offsets (TUNES:414-442); "`+43C` `+444` | … | —" has no default (TUNES:442). The 45 `005DC580` immediates exist only in an uncited TSV.
+- **S-87.** Menu UI: the renderer's printing is stated (`"%s%s%f"`, C-CON:268) and its helpers (TUNES:1107-1117), but row selection, cursor, input handling and how the developer menu opens are not: "nothing here establishes *how* it is opened" (TUNES:522-524).
+- **S-88.** `0017DB90`'s 23 cases → 16 ids mapping not tabulated (CON282:271).
+- **S-89.** Code table contents: only sample codes (C-CON:79; CON2:57-66, 80); the full list comes from an outside TSV (CON2:78).
+- **S-90.** `001F0AD0` scalar writes: "The remaining **28 writes** land above `02CB835F`" (TUNES:958) are unnamed except `block+0x3E4`; `001EF6D0`'s "frustum maths" is elided (TUNES:246).
+- **S-91.** Event slots: initial values of the arrays not stated; the notifier "`00189120` + `0016D6A0`" (EVSLOT:129) and `0032E400` existence check (EVSLOT:141) are not described; `001EC4B0` "(three callers)" not named (EVSLOT:159).
+- **S-92.** 79 callees of the dispatcher: most are not described here (C-CON:204).
+
+#### 2.2.10 Developer tuning console: the arm catalogue (work division and slices A-I)
+
+- **S-93.** **Caller cadence of the console**: only the Config-screen route is stated (ARM-B:191-196); when `001D1660` runs in a frame is not stated on any of my pages.
+- **S-94.** **`001D4C1C` table contents**: the per-id arm column exists (all slice tables), but the decoding rule needs the image base `0x00120000` (ARMDIV:161-162) — stated; fine. The 22-row page table used by the renderer (`table[page·22 + row]`, ARM-E:315-317) is not given.
+- **S-95.** **Accessor for id 171 and ids 265/266** never named (ARM-E:117; ARM-H:91-92).
+- **S-96.** **Id 53 target**: slice row blank (ARM-B:81) while the consumers TSV binds id 53 to `02CB813C` "Debug Cubemap".
+- **S-97.** **Id 32 second target**: ARM-A:101 gives only `d+0xC2C`; the consumers TSV also binds id 32 to `02CB814C`.
+- **S-98.** **Id 28 full save list**: ARM-A:97 lists twelve `rdi` save fields; CMDNAMES:419 adds `01DFE190`–`01DFE192`, map-art `+0x2D0/+0x2D4/+0x2E4`, bytes `02CB7FD0`/`02CB7FE4`, and recomputes `02CB8080` — no slice states that mapping.
+- **S-99.** **Ids 45–57 "other" arms**: getters/setters named but `00193F70`, `00182FD0`, `0017FE10`, `001D5230`, `00184660`, `001B1620`, `001AD4D0` effects described in one line only (ARM-B:204-217).
+- **S-100.** **Ids 177/178 and 180/181 "then one call"** callee not named (ARM-F:111, ARM-F:114); ids 205–207 named; id 182 "one call with value−1" callee not named (ARM-F:115); id 263 "a string-taking function" not named (ARM-H:165).
+- **S-101.** **Destruction / lifetime** of the console object at `01F81428`: not stated.
+- **S-102.** **`+0x10C4`** owner ambiguous (C.1).
+
