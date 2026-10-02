@@ -1,0 +1,26 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/character-render-object.md",
+ "session": "session_013aUyF9Cw8dmXC6Vyt6UA4p",
+ "rows": [
+  {"fn": "001890A0",
+   "text": "loads qword `+0` and qword `+0x10` of `rcx`, calls `00628570(qword +0, 0, 1)` and `006215A0(qword +0, 1, qword +0x10, qword +0x10 + 0x40)` with stack arguments 0, 4 and 0, then tail-jumps `00628570(qword +0, 1, 1)`",
+   "anchors": [["001890BA", "call"], ["001890CD", "mov"], ["001890E0", "call"], ["001890FC", "jmp"]]},
+  {"fn": "001AD470",
+   "text": "dereferences the pointers at `rdx` and `rcx` and sets `al` to 1 when the float `+0x34` of the `rdx` object is below, equal to or unordered with the float `+0x34` of the `rcx` object, else 0",
+   "anchors": [["001AD476", "movss"], ["001AD47B", "comiss"], ["001AD480", "setbe"]]},
+  {"fn": "001BD840",
+   "text": "scans the qword vector from `+0` to `+8` of `rcx` for `rdx`; when found, calls `001F6E60(rdx)` and `001BCE30(rcx+0x20, &that result)`, allocates `0x20` bytes through slot `+0x10` of the object at `+0x10` of the returned node, writes the pair {`rdx`, 3} at the new block's `+0x10` and links the block before that node, then moves the vector's last qword into the found slot and subtracts 8 from qword `+8`; on every path tail-jumps `0016D6A0(1 when the vector's count changed else 0, \"Can't find character object when try to remove it!\" (`008F9520`))`",
+   "anchors": [["001BD872", "cmp"], ["001BD898", "call"], ["001BD8AB", "call"], ["001BD902", "add"], ["001BD92F", "jmp"]]},
+  {"fn": "001E6E70",
+   "text": "takes the floats `+0x30`, `+0x34` and `+0x38` of `rdx` (zeros when `rdx` is null) and, when any differs from (or is unordered with) the floats `+0x244`, `+0x248`, `+0x24C` of `rcx`, stores them there and byte 1 at `+0x240`; then calls `001EF060(element, rdx)` for each qword from `+0x18` up to `+0x20` of `rcx` (none when `+0x18` is above `+0x20`)",
+   "anchors": [["001E6E97", "movss"], ["001E6EBA", "ucomiss"], ["001E6EDB", "movss"], ["001E6EF3", "mov"], ["001E6F26", "call"]]},
+  {"fn": "001F4C00",
+   "text": "walks 0x18-byte elements from `rcx` up to `rdx` with a parallel 0x18-byte destination from `r8`, and for each non-null destination stores `009010B8` at its `+0`, copies the source's qword `+8` and byte `+0x10` to the same offsets, then stores `00903940` at `+0`; returns the destination pointer past the last element (`r8` unchanged when `rcx` equals `rdx`)",
+   "anchors": [["001F4C25", "mov"], ["001F4C2C", "mov"], ["001F4C34", "mov"], ["001F4C38", "mov"], ["001F4C4A", "jne"]]},
+  {"fn": "001F6E60",
+   "text": "returns qword `+0x2A0` of the object at qword `+0x488` of `rcx`",
+   "anchors": [["001F6E67", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Doubts: 001BD840 - the 16-byte pair copy at 001BD8CF-001BD8D4 is skipped when the allocated pointer plus 0x10 is zero, while the list link at 001BD8D7-001BD8EC uses the block on every found path; the row folds that guard into 'writes'. The loop index and count are 32-bit (edi, ebx, unsigned jb). 001AD470 sets only al (the rest of rax holds the pointer loaded at entry). 001F4C00's 009010B8 and 00903940 are lea-resolved .rdata addresses (stored as the element's first qword, so likely vtables), not jump tables."
+}
