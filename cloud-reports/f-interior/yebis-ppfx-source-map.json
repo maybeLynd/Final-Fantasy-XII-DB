@@ -1,0 +1,11 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "session": "session_01VEcx1tvvdhZnx7o8bCur26",
+ "rows": [
+  {"fn": "00786F42",
+   "text": "with `rbx` as it holds on entry (this body never sets it), stores `edx` in dword `+0xEC`, `rcx` in qword `+0`, `rdx` in qword `+0xF0` and 3 in dword `+0x10` of `rbx`, then adds 0x20 to `rsp`, pops `rbx` and returns the entry `rbx`",
+   "anchors": [["00786F45", "mov"], ["00786F4B", "mov"], ["00786F4E", "mov"], ["00786F55", "mov"], ["00786F5C", "add"]]}
+ ],
+ "skipped": [],
+ "notes": "00786F42 is a tail fragment: it reads rbx and unwinds a 0x20-byte frame plus a pushed rbx that it never set up, so it only works when jumped into from a body that did (the page says it is identical-code-folded with btBoxShape). The row states the accesses only and does not say which caller frame applies."
+}
