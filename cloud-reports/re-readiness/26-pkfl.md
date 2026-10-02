@@ -239,3 +239,239 @@ that package return -1." (`PK:391-397`.)
 | U-4 | `.fpk` field of ns 5 and ns 21 (215 area stems × 2) — named for the string reconciliation only; ns 21 is not otherwise described. | `PK:144-149` |
 | U-5 | The `0x288`-stride manager records at `02098E10` — named in a crossing; their relation to the per-manager directory tables is not stated. | `PK:494` |
 
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Rules used here. Both sides are quoted exactly as the snapshot has them, with `path:line`. **Value-changing**
+items (§3.1) change a count, offset, size, constant, signature or behaviour a port would implement or validate
+against; every one is **page-text only - needs local check**, because this session cannot see the executable
+or the archive. A favoured side is named only where a dated correction on the pages settles it; otherwise
+"no favoured side". §3.2 holds stale "open / not read" claims, corrected claims still repeated unstruck,
+banner / front-matter disagreements and attribution conflicts that do not change a value. §3.3 lists what was
+cross-checked and found consistent, so the reader can see what was tested.
+
+The root of most items: the **2026-09-11 correction** (`PK:426-437`) changed the directory entry from four
+bytes to `{u32 offset, u32 size}`. It was applied by striking (`PK:77-79`, `RM:48`), by banners
+(`RM:39-46`, `PK:232-251`) and by in-place notes (`PK:81-84`, `PK:165`, `PK:187-191`) — but several
+sections that rest on the four-byte reading carry **no** strike and **no** banner: `PK:43-49` (the lead
+table), `PK:95-98` (§2, *after* the correction), `PK:213-230` (§5 invariants and occupancy, which sit
+*above* the banner at `PK:232` that only covers "the survey below"), `PK:291-308` (§6), `PK:310-363` (§6b),
+`PK:399-402` (§7), and `RM:96-118` (two README sections after the banner'd one).
+
+### 3.1 Value-changing — page-text only - needs local check
+
+#### X-1. Where the directory ends (`0x48` vs `0x88`)
+
+- `PK:81-84`: "**Corrected 2026-09-11 (§8): the directory is `slotCount` pairs of `{u32 offset, u32 size}`**, eight bytes per slot, `{0, 0}` meaning the slot is absent; it ends at `8 + 8 × slotCount` — **`0x88`** for a 16-slot package, **`0x208`** for a 64-slot one"
+- `PK:242`: "`{offset, size}` pairs with `8 + 8n ≤ offset` and `offset + size ≤ file` | **10,314 / 10,314 packages**"
+- vs `PK:260-261`: "And in **2,268 files the smallest present offset is `0x40`, which is *before* the 16-slot directory ends at `0x48`.**"
+- vs `PK:269-270`: "In a 16-slot package the directory runs `+0x08 .. +0x48`, so slot 14's offset word lives at `+0x40` and slot 15's at `+0x44`."
+- vs `PK:333` (§6b, no banner): "smallest offset `0x40`, 16-slot files | 2,268 | **2,268**"
+- vs `RM:92-94`: "**the first payload is not at the directory end** — in 2,268 files the smallest offset is `0x40`, *before* the 16-slot directory ends at `0x48`."
+
+**Favoured: `0x88` / `0x208`, settled by the dated correction `PK:426-433` (2026-09-11).** Under it, no
+offset can be below the directory end (`PK:242`), so "smallest offset `0x40`" cannot be an offset. `PK:261`
+sits under the `PK:232` banner but is not struck; `PK:333` and `RM:92-94` are under no strike.
+
+#### X-2. Gap between the directory and the first payload (1,976 / 1,784 bytes)
+
+- `PK:259-260`: "**2. The first payload is never at the directory end.** The gap is 1,976 bytes in 4,356 files and 1,784 in 3,573 — the first payload usually sits at `0x800`."
+- `PK:332` (§6b, no banner): "gap to first payload | 1,976 in 4,356; 1,784 in 3,573 | **identical**"
+- vs `PK:82-83` (directory ends at `0x88` / `0x208`) and `PK:249-250`: "What survives: … the first payload at `0x800` (now the first *pair's* offset)".
+
+Arithmetic (this report's, not a page's): 1,976 = `0x800 − 0x48` and 1,784 = `0x800 − 0x108`, i.e. the gaps were
+measured from the **withdrawn** directory ends; from `0x88` / `0x208` the same `0x800` payload would sit 1,912 /
+1,528 bytes past the directory. **Favoured: the 2026-09-11 directory end (`PK:426-433`); the gap figures are
+not restated under it** — a writer padding header + directory to `0x800` needs the restated rule (G-2).
+
+#### X-3. Which slot indices are ever used (0–27 dense vs 0–15 / 0–13)
+
+- `PK:49` (lead "Corpus validation" table, no banner): "occupied slot indices | **0–27**, densely — no index in that range is ever unused"
+- `PK:224-230` (above the `PK:232` banner): "**Occupancy is dense and perfectly paired:**" … "16/17     54  18/19     54  20/21     36  22..27    18"
+- `RM:98-99` (no banner): "**36 of the 64 declared slots are never used in any of the 3,618 64-slot files.** Nothing above index 27 is ever occupied."
+- vs `PK:244`: "slots used | `.mot` and `.snd` indices 0–15; `.vpc` and `.vpcjp` indices **0–13** of 64"
+- vs `PK:415-416`: "all 10,314 packages … populate no slot from 16 to 27: the 16-slot families reach slot 15 at most and the 64-slot families slot 13."
+- vs `PK:419-420`: "Over all 3,618 64-slot packages (`.vpc` and `.vpcjp`) the highest populated slot is 13; no package uses any index above 13, so none above 27."
+
+**Favoured: 0–15 (16-slot) and 0–13 (64-slot), settled by the dated closures `PK:412-416` and `PK:417-422`
+(2026-09-18, FABLE).** The README's "36 of the 64" becomes 50 of 64 under that ceiling (this report's
+arithmetic, 64 − 14; no page states 50).
+
+#### X-4. The frozen census `.tsv` the sheet "agrees" with
+
+- `PK:51-54`: "The occupancy in this sheet was parsed here from the archive and then compared against the frozen `pkfl-container-census.tsv`: **10,314 common paths, 10,314 agree, 0 differ.**"
+- `PK:222`: "occupancy agrees with the independent frozen census | **10,314 / 10,314, zero differences**"
+- vs `PK:234-237`: "Every figure in this section was measured with a 4-byte directory entry. … everything built on them (the even/odd pairing, the aliasing at `0x40`, the shared offsets, the 74,340 "present offsets", the 0 B medians) is an artefact of that reading."
+
+A port that validates against `pkfl-container-census.tsv` would validate against the four-byte slot numbering.
+Outside the audited set, the census script in this snapshot reads four-byte words
+(`tools/analysis-kit/gfz-scripts/census_pkfl_container.py:46-52`). **No favoured side on the pages** — the
+correction does not mention the `.tsv`, and the `.tsv` is not in the snapshot.
+
+#### X-5. What the repeated `0x40` value is: an in-directory alias, or a size
+
+- `RM:73-75`: "In `alc_a0100.snd`, slots 1, 5, 7, 9, 11, 13 and 15 all carry offset `0x40` — which is slot 14's *own directory entry*. The bytes there are the pair of directory words read as data. It is a canonical **"this half is empty"** marker, cheaper than a null."
+- `PK:298` (§6, no banner): "the shared value `0x40` is independently explained: it is the byte offset of slot 14's own directory entry in a 16-slot package, and the bytes there are the slot-14/15 offset words."
+- `PK:305-308` (§6, no banner): "That predicts distinct offsets for the two halves. **It fails in 2,349 files**, where the odd halves alias one location — so the pairing is a directory-level invariant and not a content-level one."
+- `PK:330-331`, `PK:334-335` (§6b, no banner): "files with ≥2 slots aliasing | 2,349 | **2,349**"; "`alc_a0100.snd` slots at `0x40` | 1, 5, 7, 9, 11, 13, 15 | **identical**"
+- vs `PK:245`: "the "offset `0x40`" of the old reading was **14,337 sizes of `0x40` bytes**"
+- vs `PK:431-432`: "`nal_a0100.snd`'s directory reads `{0x800, 0x2300}, {0x3000, 0x40}, {0x3800, 0x40} …` — the `0x40`s are sizes."
+
+**Favoured: sizes, settled by `PK:426-433` (2026-09-11).** `RM:73-75` is under the `RM:39` "Withdrawn
+2026-09-11" banner ("the aliasing story below", `RM:43`) but is itself framed as a correction (`RM:62`
+"Corrected 2026-09-04"), so the README carries two stacked "corrections" of which the inner one is wrong.
+
+#### X-6. Whether the second word of a pair is a "descriptor"
+
+- `PK:401-402` (§7, unstruck): "The even/odd pairing is described structurally and **no reading of "even = data, odd = descriptor" is asserted**, though the aliasing evidence is consistent with it."
+- vs `PK:81`, `PK:86`: "`{u32 offset, u32 size}`"; `PK:165`: "`0032F360` its **size** (`[table + 8k + 0xC]`)".
+
+**Favoured: the second word is the slot's size, settled by `PK:426-433` (2026-09-11).** The §7 bullet
+outlived the correction (as `PK:371` says another §7 bullet did).
+
+#### X-7. How a slot's length is obtained
+
+- `PK:97-98` (§2, *after* the correction, unstruck): "a slot's length is **not** reliably the distance to the next slot's offset, because slots may share one."
+- `PK:256-257`: "Anything that computes a slot's length by walking slot indices in order is wrong in more than half the corpus; lengths must be derived after sorting by offset."
+- `RM:77-79`: "**Computing a slot's length as the distance to the next present offset gives an aliased slot a length of 0.**"
+- vs `PK:189`: "a slot's length is **stored**, not computed."; `PK:165` (`0032F360` returns the size).
+
+**Favoured: stored, settled by `PK:187-191` / `PK:426-433` (2026-09-11).**
+
+#### X-8. Whether offsets ascend in slot order
+
+- `PK:96` (§2, after the correction): "offsets are **not** ascending in slot order"
+- `PK:255`: "**1. Offsets are not ascending in slot order — only 4,833 of 10,314.**"; `PK:336` (§6b): "offsets ascending in slot order | 4,833 / 10,314 | **4,833**"; `PK:357-358` "**no reading makes the directory ordered**"
+- `RM:92-93`: "**offsets are not ascending in slot order** (unlike EBP)"
+- vs `PK:250-251`: ""Offsets are not ascending in slot order" was not re-measured and is not asserted."
+
+**Favoured: "not asserted", settled by the 2026-09-11 banner `PK:232-251`** — so the database currently
+states **nothing** about order under the pair reading (S-8). A writer cannot learn from the pages whether to
+emit payloads in slot order.
+
+#### X-9. Is any header byte read: "never validated / inert" vs "byte 0 is load-bearing"
+
+- `PK:102`: "**The magic is never validated.**"
+- `PK:107-108`: "Corrupting the first four bytes of a package is expected to change nothing — see §6 for the limit on that expectation."
+- `PK:163`: "`+0x00` magic | — | — | — | **yes — `PKFL` occurs 0 times in the whole image, so no memory-operand comparison is possible either**" (columns: Read by, Rejected if, Clamped to, Inert)
+- vs `PK:391`: "after one test only: `cmp byte ptr [buf], 0` and return -1 if zero."
+- vs `PK:393-397`: "So the magic is never validated, but its first byte is load-bearing in one way … Corrupting the magic to any non-zero first byte changes nothing; zeroing byte 0 makes every slot read of that package return -1."
+
+**Favoured: byte 0 is read (non-zero = loaded), settled by `PK:381` (2026-09-18, FABLE).** The field table
+`PK:163` still lists `+0x00` as read by nobody and inert, and `PK:107-108` still says all four bytes can be
+corrupted with no effect.
+
+#### X-10. How many slot readers there are, and what `0032F320` / `0032F360` cover
+
+- `PK:387-390`: "finds exactly six slot readers, `0032F260` / `0032F290` (field +1 offset and size), `0032F2C0` / `0032F2F0` / `0032F3A0` (field +2 offset, size, and slot `k+8`'s size at `+0x4C`) and `0032F320` / `0032F360` (the two 64-slot tables, selected by `r8d`)" — the list names **seven** addresses.
+- `PK:187-189`: "it loads the directory's bytes as a block (`0x88` / `0x208`) and indexes it by slot — `0032F320` for the offset, `0032F360` for the size"
+- `RM:43-44`: "The engine loads `0x88` / `0x208` bytes as the directory and indexes pairs by slot (`0032F320` / `0032F360`)"
+- `PK:206-207`: "`0032F320` / `0032F360` (offset / size of slot `k`)"
+
+**Scope: favoured "64-slot tables only", settled by the later dated read `PK:381` (2026-09-18) over the
+2026-09-11 text.** **Count (six vs seven): no favoured side.** `RM:43-44`, `PK:187-189` and `PK:206-207`
+still present `0032F320` / `0032F360` as the only indexers; `PK:204-209` (§4, Key addresses) does not list
+the five `.mot` / `.snd` readers at all.
+
+#### X-11. How many directory-load completions there are
+
+- `PK:382-385`: four tables, each with its own completion: "completion `003302B0`", "completion `00331760`", "completion `00331820`", "completion `003317C0`"
+- vs `PK:392-393`: "the two completions clear a pending bit in the manager's state word (`022C6E48`, bits 14 and 15) and never touch the buffer"
+- vs `PK:398`: "the walker, the allocator, the six readers and the two completions read in full."
+
+**No favoured side.** Which completion clears which bit, and whether two of the four were read, is not stated (G-13).
+
+#### X-12. Argument list of the resource request `0032E620`
+
+- `PK:165`: "the voice loader `003E9EF0` issues `0032E620(kind, packId, dest, size)` with that offset as the request's file offset" (four arguments; the file offset is not among them)
+- vs `PK:173-174`: "requests the file with `0032E620(7, 0x98 + n, buffer, result, &record)`, where the stack record carries the callback `00291C60`" (five arguments)
+
+**No favoured side.** Where the PKFL slot's file offset travels (a fifth argument, the record, or elsewhere)
+is not stated.
+
+#### X-13. The "74,340 present offsets" and the `0x10` alignment invariant
+
+- `PK:213`: "**Invariants — every one measured over all 10,314 packages and all 74,340 present offsets.**"
+- `PK:219-220`: "every present offset lies inside the file | **10,314 / 10,314**"; "every present offset is **`0x10`-aligned** | **74,340 / 74,340**"
+- `PK:326-328` (§6b): "present offsets | 74,340 | **74,340**"; "every offset `0x10`-aligned | 74,340 / 74,340 | **74,340, 0 unaligned**"
+- vs `PK:236-237`: "everything built on them (… the 74,340 "present offsets", …) is an artefact of that reading."
+- vs `PK:249-251` (the "What survives" list), which does **not** include the alignment invariant.
+
+**Favoured for the 74,340 figure: artefact, settled by the 2026-09-11 banner.** **For `0x10` alignment: no
+favoured side** — under the pair reading the 74,340 words are offsets *and* sizes, so the measurement says
+both are `0x10`-multiples, but the pages neither restate nor withdraw it.
+
+#### X-14. README counts built on the four-byte reading, in sections with no banner
+
+- `RM:113-115`: "**2,952 files do not fill their pairs contiguously from 0.** … **So a pair index is a typed slot, not a sequence number** — which is what makes 14 a population rather than a maximum."
+- `RM:117`: "Pairs per file range 0–14; 4,212 files carry exactly one pair, 2,331 carry eight"
+- vs `PK:244`: "`.mot` and `.snd` indices 0–15; `.vpc` and `.vpcjp` indices **0–13** of 64"; `PK:245`: "`.snd` | every package fills slots 0–7; slot 9 in 1,809"
+
+**Population: favoured 16 (`.mot`/`.snd`) and 14 (`.vpc`/`.vpcjp`), settled by `PK:412-422` (2026-09-18).
+The per-file counts (2,952 / 4,212 / 2,331): no favoured side** — they were not re-measured under the pair
+reading. (This report's arithmetic suggests the old 16-slot read reached only new slots 0–7 of a `.mot` /
+`.snd`, so slots 8–15 of those files were invisible to it; no page says so.)
+
+#### X-15. EBP's file population (out of this system, but stated in it)
+
+- `RM:3`: "10,314 shipped files against EBP's 10,045"
+- vs `RM:144-145`: "`census_ebp_container.py` derived occupancy from the container's own directory across 1,115 files"
+
+**No favoured side.** Neither line says whether one figure is a subset (e.g. unique stems) of the other.
+
+### 3.2 Stale "open / not read" claims, corrected claims repeated unstruck, and banner disagreements
+
+| # | side A (stale or banner) | side B | settled by a dated line? |
+|---|---|---|---|
+| B-1 | `PK:4` "status: AUDITED — the layout, the walker and the corpus read; the four residues of section 7 closed 2026-09-18" | `PK:28` "§3 loader contract NOT audited"; `PK:362-363` "**The corpus half of this sheet is now independently confirmed; the code half is not.**"; `PK:374` "while auditing why this page still reads `PARTIAL`" (2026-09-14) | no — banner vs front matter |
+| B-2 | `PK:19` "last_reviewed: 2026-09-04" | body dated 2026-09-11 (`PK:81`, `:426`), 2026-09-14 (`PK:167`, `:374`), 2026-09-18 (`PK:381`, `:403`, `:412`, `:418`, `:498`) | no — front matter |
+| B-3 | `PK:26-27` "passes: 1", "last_pass: 2026-09-05"; `PK:30` "reopened_count: 0" | `PK:426-437` (2026-09-11) withdrew the directory layout: "§2, §3 and §5 carry the correction in place; the README's headline finding is withdrawn there" (`PK:433-435`) | no — front matter |
+| B-4 | `PK:29` "crossref_clean: true" | X-1…X-14 above, all inside `PK`; the duplicated bullet B-18 | no — front matter |
+| B-5 | `PK:18` "corpus_validated: "10,314 / 10,314 shipped packages, every header and directory re-parsed from FFXII_TZA.vbf 2026-09-04"" | `PK:234` "Every figure in this section was measured with a 4-byte directory entry."; re-parse under the pair reading `PK:237-238`, `PK:433` (2026-09-11) | yes — 2026-09-11 (the front matter still cites the 2026-09-04 parse) |
+| B-6 | `PK:14` "verified: 9 cited function entries" | §3, §4 and §7 alone cite 22 distinct function addresses (`002DF980`, `002DF9A0`, `0032FCA0`, `0032F320`, `0032F360`, `003E9EF0`, `0032E620`, `0032F430`, `0032ED80`, `0032F260`, `0032F290`, `0032F2C0`, `0032F2F0`, `0032F3A0`, `003302B0`, `00331760`, `00331820`, `003317C0`, `00291C80`, `0024AB90`, `00249810`, `00291C60`; `PK:165-209`, `PK:381-398`) | no — provenance count predates the 2026-09-11 / 09-18 additions |
+| B-7 | `PK:296` "**It is still weaker than a body read**, which is why §7 keeps it open." | `PK:381` "**Closed 2026-09-18 (FABLE) by a body read of every reader of the directory.**" | yes — 2026-09-18 |
+| B-8 | `PK:360-362` "**Not audited here:** §3's loader contract. `PKFL_Bind` and the slot-consumer functions were not read, so the *"magic never validated"* row still rests on the whole-image scan the sheet itself flags as the weaker instrument in §7." | `PK:381-398` (2026-09-18 body reads) | yes — 2026-09-18 (for the magic row; the *audit* gap S-4 remains) |
+| B-9 | `PK:187` "The engine never walks the directory" | `PK:371-372` "The walker exists and is named there"; `PK:381` "The walker `0032FCA0`"; `PK:401`-adjacent §4 "Listed 2026-09-11" (`PK:205`) | wording only; both dated 2026-09-11 / 09-18 — no value differs |
+| B-10 | `RM:82-84` "*"Every occupied slot has its even/odd partner"* is **true, 10,314 / 10,314** — but it is **partly an artefact of that aliasing**"; `PK:275-280` "This qualifies the category README's headline finding rather than contradicting it." | `RM:39-46` "⚠ Withdrawn 2026-09-11 — the pairing is the directory's entry width"; `PK:434-435` "the README's headline finding is withdrawn there" | yes — 2026-09-11 |
+| B-11 | `RM:86-89` "**So the 14-pair denominator is NOT established** … until the container sheet's open questions are settled." | `PK:4` "the four residues of section 7 closed 2026-09-18"; `PK:412-422` (16 / 14 slot ceilings) — but no page then states a denominator (S-2) | partly — the open questions are closed 2026-09-18; the denominator is still unstated |
+| B-12 | `RM:128-133` "**Not measured, and required before any sheet is written:** … the full slot census … whether the 16-slot and 64-slot forms are versions … the header beyond the count, and whether a magic/version field is validated" (under the heading "superseded", `RM:120`) | `RM:21` census 2026-09-04; `RM:34` "The 16/64 question is answered"; `PK:381-397` (2026-09-18) magic / header | yes — 2026-09-04 and 2026-09-18 (the slot-meaning item, `RM:132`, is still open: S-1) |
+| B-13 | `RM:136-138` "PKFL indices 0–27 are all occupied, so **absence carries no information here**" (under "superseded") | `RM:96-109` "The directory IS sparse"; `PK:244` | yes — `RM:21` (2026-09-04) and `PK:412-422` (2026-09-18) |
+| B-14 | `RM:157-158` "**Until step 1 lands, the unit count in this README is a sample estimate and must be quoted as one.**" | `RM:21-24` "CENSUSED — 10,314 of 10,314, 2026-09-04 … **Every shipped file parsed; zero failures.**" | yes — 2026-09-04 |
+| B-15 | `RM:165-166` "`Slots/` \| one sheet per slot index, once the census fixes the population"; "`Variants/` \| the 16-slot versus 64-slot question, and any version field" | neither folder exists in the snapshot; `RM:34` "The 16/64 question is answered"; `PK:391` nothing compares `+0x04` | yes for `Variants/` — 2026-09-04 (`RM:21`, `RM:34`); `Slots/` remains planned (S-2) |
+| B-16 | `PK:494` "reaches this page at `0032ED80`, `0032FCA0`, `0032E620`, `002DF980`"; `PK:496` "calls `0032E620` on this page"; `PK:499` "page-cited `0032E620`" | `PK:500` "page-cited `0032F430`, `ActorResource_BeginManagerResourceSetLoad` (0032FCA0), `0024AB90` call Resource bodies `0032E620`, `0032E400`, `0032E870`" | no — attribution of `0032E620` (this page's, or a Resource body) |
+| B-17 | `PK:498` "a UI-side caller consults it for the (kind=2, out-result) marshalling this page's container init describes" | no section of `PK` describes a "container init"; `00249810` appears only in the `00291C80` crossing (`PK:172`) | no — dangling pointer (G-16) |
+| B-18 | `PK:501` "**Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `0050DFE0` call page-cited `0032E620`)…" | `PK:504` — the same bullet repeated verbatim | n/a — duplicate, not a disagreement |
+| B-19 | `PK:124-126` "That is the whole explanation for the strict 1,809 / 1,809 pair: **one authored map list, two namespaces, and the engine selects the namespace.**"; `PK:68` "That is why the two counts are identical at 1,809 each." | `PK:133-134` ns 8 `.vpc` "329 x 10 … 3,290" vs ns 37 `.vpcjp` "329 x  2 … 658": the namespaces differ in variant multiplier, so the namespaces alone do not give equal file counts; the files ship per locale root (nine, `PK:404-405`) — see G-7 | no — the explanation is incomplete, no value is in dispute |
+| B-20 | `RM:50-60` the even/odd-median table ("8/9 · 10/11 · 12/13 \| … \| **0 B**") and `RM:48`'s struck headline | `RM:39-46` banner: "this section's headline, its medians and the aliasing story below all read sizes as offsets … Kept as history." | yes — 2026-09-11 (table is unstruck but under the banner) |
+
+### 3.3 Checked and found consistent (not contradictions)
+
+- **Table → record field → extension.** `PK:165` lists `.snd`, `.mot`, `.vpc`, `.vpcjp` → `022C6E98`,
+  `022C6E70`, `022C6EE8`, `022C6EC0`; `PK:382-385` gives `022C6E70` = field +1 (`mot`), `022C6E98` = field +2
+  (`snd`), `022C6EE8` = field +3 of ns 8 (`vpc`), `022C6EC0` = field +3 of ns 37 (`vpcjp`); the records are
+  `{ebp, mot, snd, vpc|vpcjp}` (`PK:121-122`). Consistent.
+- **Directory read widths.** `0x88` / `0x208` agree at `RM:43-44`, `PK:83`, `PK:165`, `PK:188`, `PK:372`,
+  `PK:383-385`, `PK:429-430`; `8 + 8 × 16 = 0x88`, `8 + 8 × 64 = 0x208`.
+- **Reader displacements.** `+8 + 8k` (offset) and `+0xC + 8k` (size) agree at `PK:165`, `PK:373`, `PK:390`,
+  `PK:431`; `0032F3A0`'s "slot `k+8`'s size at `+0x4C`" (`PK:389`) equals `0xC + 8(k+8) = 0x4C + 8k`.
+- **Path-table slots.** `+0x028`, `+0x040`, `+0x128` (`PK:120-122`) = 8 × 5, 8 × 8, 8 × 37, matching
+  `0x0215F028` / `0x0215F040` / `0x0215F128` (`PK:157`, `PK:201-203`).
+- **String arithmetic.** `PK:131-135`: 7,090 + 3,290 = 10,380; 3,290 + 658 = 3,948; 709 × 10 + 215 × 2 = 7,520
+  with 709 + 215 = 924 (`PK:147-148`); 1,038 = 709 + 329 (`PK:142`).
+- **The 8-vs-10 region-variant report** (`PK:300` "`repos-1e`'s initialiser extraction found 8 arrays for
+  namespace 8, not 10") is resolved on the same row: "an extraction returning 8 arrays for namespace 8 is
+  incomplete rather than contradictory" (2026-09-04).
+- **The withdrawn "different bounds" control** (`PK:439-473`) changes no figure: "**No figure changes.** 709,
+  329, 321 and the ten/two array counts are unaffected" (`PK:469-470`).
+- **The four-byte occupancy for slots 16–27 vs the pair occupancy for 64-slot slots 8–13.** Old pairs 16/17,
+  18/19, 20/21, 22–27 = 54, 54, 36, 18 (`PK:229`, `RM:57-60`); new `.vpc` + `.vpcjp` slots 8–13 = 27 + 27, 27 +
+  27, 18 + 18, 9 + 9 (`PK:246`). Equal, as `PK:413-414` says ("The 18–54 counts were the size words of slots 8–13").
+- **Pairing invariant ↔ no lone zero.** "every occupied slot has its even/odd partner occupied | 10,314 /
+  10,314" (`PK:221`) and "pairs with exactly one of offset / size zero | **0**" (`PK:243`) are the same fact
+  under the two readings (the interpretation of it is stale: B-10).
+- **The 27 empty packages** agree everywhere: `RM:117-118`, `PK:247`, `PK:288-289`, `PK:337` (all 2,048 B,
+  9 locale copies each), `PK:403-407`.
+- **Population and sizes.** `RM:6-11` = `PK:45-48`; 4,392 + 2,304 = 6,696 and 1,809 + 1,809 = 3,618
+  (`RM:31-32`); 2,552 + 146 + 1,240 + 1,298 = 5,236 MB ≈ "5.2 GB" (`PK:36`).
+- **Struck text is handled correctly** at `PK:77-79`, `PK:181-185`, `PK:205`, `PK:367-370`, `PK:378-380`,
+  `PK:403`, `PK:412`, `PK:417-418`, `RM:48` — each struck claim is followed by its dated replacement.
+
