@@ -1,0 +1,52 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-slot-state-model.md",
+ "session": "session_01F7SYgmZJApKhfTARtFcaab",
+ "rows": [
+  {
+   "fn": "002509A0",
+   "text": "calls `0035C880(0xC, 1)` and then tail-jumps `0028E5F0(ecx, edx)` with the incoming `ecx` and `edx`",
+   "anchors": [
+    [
+     "002509AE",
+     "mov"
+    ],
+    [
+     "002509B3",
+     "lea"
+    ],
+    [
+     "002509B6",
+     "call"
+    ],
+    [
+     "002509C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050C990",
+   "text": "takes the value v returned by `003BB420()`, calls `0017D280(00D228D0, v)` and tail-jumps `0026B4E0(rcx, v)` with the incoming `rcx`",
+   "anchors": [
+    [
+     "0050C99D",
+     "call"
+    ],
+    [
+     "0050C9A4",
+     "lea"
+    ],
+    [
+     "0050C9AD",
+     "call"
+    ],
+    [
+     "0050C9C1",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0050C990: `rcx` reaches the `003BB420` call unchanged but is not set up for it, so the call is written without arguments. `00D228D0` is a `lea` target the listing does not decode. No doubts."
+}
