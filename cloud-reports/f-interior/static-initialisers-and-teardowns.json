@@ -1,0 +1,11 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md",
+ "session": "session_01VgTzWvj54SWcQeC3wEsotH",
+ "rows": [
+  {"fn": "00865550",
+   "text": "loads the vtable pointer at qword `rcx+0` and tail-jumps through its slot `+8` with all arguments unchanged",
+   "anchors": [["00865553", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00865550 is two instructions; the entry is the vtable load and the work is the tail jump at 00865553, so it is rowed rather than skipped as entry-only. Check that FABLE agrees."
+}
