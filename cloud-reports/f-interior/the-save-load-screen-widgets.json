@@ -1,0 +1,138 @@
+{
+ "page": "19-Save-Load-Settings/the-save-load-screen-widgets.md",
+ "session": "session_01CsdbXqRd5h9LCs97R3i5zB",
+ "rows": [
+  {
+   "fn": "003BB2C0",
+   "text": "stores 5 to dword `02B40E1C`, zero to dwords `02B40EC0`, `02B40FE4` and `02B40E10` and to qword `02B40E14`, and returns 0",
+   "anchors": [
+    [
+     "003BB2C2",
+     "mov"
+    ],
+    [
+     "003BB2CC",
+     "mov"
+    ],
+    [
+     "003BB2D2",
+     "mov"
+    ],
+    [
+     "003BB2D8",
+     "mov"
+    ],
+    [
+     "003BB2DF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0057E610",
+   "text": "tail-jumps `005C5230(rcx, rdx)` unless dword `[rdx]` is 1; for 1 it copies qword `[[rdx+8]]` to `rcx+0xC0` and byte `[[rdx+8]+8]` to `rcx+0xC8`, zeroes qword `+0xD0`, calls `002432B0(rcx+0x50, qword [[rdx+8]+0x10], 7, rcx)` and copies the result's words `+4` (to `+0x98` and `+0xCA`), `+6`, `+8` and `+0xA` (to `+0x9A`, `+0x9C`, `+0x9E`), calls `00247930(rcx, 0x64)` and `00244960(qword rcx+0xC0, rcx)`, zeroes qword `+0xD0` again and returns 0",
+   "anchors": [
+    [
+     "0057E616",
+     "cmp"
+    ],
+    [
+     "0057E623",
+     "jmp"
+    ],
+    [
+     "0057E65C",
+     "call"
+    ],
+    [
+     "0057E699",
+     "mov"
+    ],
+    [
+     "0057E6B0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0057E950",
+   "text": "with `rbx` set from `r8d` (zero-extended): for `ecx` 4 with `edx` zero and bit 1 of byte `rbx+0xC0` set, calls `00393630(stack buffer, 0x40)` and, only when qword `02CA99C0` is non-null, copies that NUL-terminated buffer to `+8` of a stack record whose first dword is 5 and calls `00582540(qword 02CA99C0, record)`; for `ecx` 5, or 4 when `edx` is non-zero or that bit is clear, calls `00247510(qword rbx+0xC8, 0x1D, record)` with a record of dword 0xD, byte `+0x39A` of `[02CA99C0]` (0xFF when that qword is null) at `+4` and `edx` at `+8`, then clears bit 0 of dword `rbx+0xC0`; any other `ecx` does nothing",
+   "anchors": [
+    [
+     "0057E96E",
+     "sub"
+    ],
+    [
+     "0057E9B1",
+     "call"
+    ],
+    [
+     "0057E9E9",
+     "call"
+    ],
+    [
+     "0057EA19",
+     "call"
+    ],
+    [
+     "0057EA1E",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0057EDB0",
+   "text": "switches on dword `[rdx]`: ids `0xF` and `0x12` call `00247510(qword rcx+0xC0, id, 5)` and return 0, ids other than 1 return `005C5230(rcx, rdx)`; id 1 copies qword `[[rdx+8]]` to `+0xC0`, zeroes qword `+0x100`, copies words `+4`, `+6`, `+8`, `+0xA` of `002432B0(rcx+0x50, qword [[rdx+8]+8], 2, rcx)` to `+0x98`, `+0x9A`, `+0x9C`, `+0x9E`, calls `00394700(rcx, 0)`, `00247930(rcx, 0x63)` and `00246AD0(qword +0xC0, rcx)`, stores `002F9860(0x875)`, `002F9860(0x876)`, `002F9860(0x877)` at `+0x18` and `0020E620(0)` at `+0x20` of the objects in qword `+0` of the `+0x60` array of `00394660(rcx, 1)` and qwords `+8` and `+0x18` of that of `00394660(rcx, 2)` (a null result gives a null object), zeroes `+0x100` again, calls `00247870(rcx, 0)`, then fills the seven qwords from `+0xC8` with `00244F50(0xD8, 0057E610, stack record)` whose record points at a block of `rcx`, the byte index 0 to 6 and qword `[[rdx+8]+8]`, and returns 0",
+   "anchors": [
+    [
+     "0057EDCA",
+     "sub"
+    ],
+    [
+     "0057EE0D",
+     "call"
+    ],
+    [
+     "0057EE57",
+     "call"
+    ],
+    [
+     "0057EF08",
+     "call"
+    ],
+    [
+     "0057EF96",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005812B0",
+   "text": "does nothing when qword `02CA99C8` is null; otherwise, on that object, stores qword `0xFFFF` at `+0xD4`, qword 0 at `+0xDC` and dword 0 at `+0xC8`, calls `00225580(qword +0xF0, 0)` when that qword is non-null, and stores dword 0 at `+0xFC`",
+   "anchors": [
+    [
+     "005812BD",
+     "test"
+    ],
+    [
+     "005812D0",
+     "mov"
+    ],
+    [
+     "005812E2",
+     "mov"
+    ],
+    [
+     "005812EF",
+     "call"
+    ],
+    [
+     "005812F4",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0057E950 is identical to its row in the-menu-effect-registry (same r8d/ebx doubt, see that report). 0057EDB0: the row compresses the id-1 construct arm; the null-object paths (`mov ebx, ebp` / `mov rsi, rbp` / `mov rbx, rbp`) would store through address 0x18, the listing has no guard there. The non-1, non-0xF, non-0x12 path returns rax from 005C5230 because 00808C40 (the cookie check) sits between; FABLE should confirm 00808C40 preserves rax."
+}
