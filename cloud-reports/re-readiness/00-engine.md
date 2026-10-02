@@ -201,3 +201,1257 @@ appendix rows were counted and sampled by script). The status columns are as eac
 | `members/scenewide-cbuffer-map.tsv` | 296 lines | not cited by my pages (cited by CON282:250) | not checked |
 | `map-lighting-tuning-02cb7fd0-accesses.tsv` | 59 lines | not cited by my pages | not checked |
 | CMDNAMES table (not a .tsv, generated) | 282 action rows + id 294 | arm address for all 282 ids vs the nine slice tables (scripted join) | **0 arm-address disagreements; 56 ids on `001D4BFA` in both**; field column disagrees only for id 28 (`02CB8130`, CMDNAMES:111) — see C.2 |
+
+## 1. Interface
+
+The system's interface as the 00 pages state it, per page group: **entry points** (functions with their callers),
+**inputs and outputs** (data read and written, with record layouts), **state** (globals and objects, with
+lifetime), **order** (what runs when, and what triggers it) and **dependencies** (other systems). Every row carries
+its citation; "not stated" marks a silence.
+
+### 1.1 Boot fixups, startup data construction and the application root
+
+Pages: `README`, `BOOT`, `C-BOOT`, `FLOAT`, `APP`.
+
+
+#### 1.1.1 Entry points
+
+| function (address + name) | role | callers as stated | cite |
+|---|---|---|---|
+| `007A3770` WinMain (45 B) | calls `IsDebuggerPresent` then `007980A0` (the game's `main`, 2,153 B) | MSVC WinMain slot | BOOT:209-214 |
+| `007980A0` real main | "where the boot sequence this page describes is entered"; calls platform/online init `007A0C60`, `008655E0`, `0020CD80` | `007A3770` | BOOT:211-214, 428-430 |
+| `0017D000` latch writer | allocates, calls `0017D4C0` (+31), `00210EC0` (+41), `0018A840` (+59), `00189000` (+111), writes `+0x113C`=1 (+116) | PhyreEngine run loop → GameApplication startup (BOOT:262-263); thunk `0017D150` (APP:623) | FLOAT:81-90, APP:74, 629-634 |
+| `0017D4C0` init burst (387 B) | stores five globals `01F7F4C0`…`E0`, ~35 init calls; calls `0022A0B0` | `0017D000` | APP:630-631, BOOT:237, C-BOOT:44 |
+| `0022A0B0` boot fixer (978 B) | seeds MT, sets button masks, frame-base constant, 11 allocs / 9 registrations; calls hubs `0037DF90`, `0037E0F0` | `0017D4C0` only ("its only caller") | BOOT:30, 236-237, C-BOOT:837 |
+| `0022BDF0` frame-base selector (146 B) | `ecx = (settings row 18 == 1)` → tail `001EDDC0`; `-nologo` argv scan → `00314DE0(1)` | `0022A0B0` | BOOT:110, 238; C-BOOT:201-204, 314-319 |
+| `001EDDC0` frame-rate bootstrap (165 B / "~160 B") | 60 arm writes `01DFE0B4`=2, `01DFE0B8`=2.0f, `01DFE0BC`=0.5f, `01F82E38`=1, runs LUT battery `0033F020`; 30 arm does `timeGetDevCaps`/`timeBeginPeriod`; tail `0032AE70`, `003333D0`, `00337A00` | `0022BDF0` tail | BOOT:239, 497-509; C-BOOT:256-265 |
+| `00379CF0` → `00863D30` RNG_MT19937_Seed | seed 5489 on first use (latch `02EB4234`), then caller's seed | boot site `0022A410` (C-BOOT:839) [BOOT:38 shows "002648.."]; `SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG` at `005843D3` | BOOT:41-47, 240-241; C-BOOT:63-66, 839 |
+| `0036D240` allocation shim (14 B) | tail-jumps to CRT `malloc` thunk `0085E730` | `0022A0B0` ×11; `0037B3D0` | BOOT:223, 242, 576 |
+| `00369D30` arena initializer (707 B) `(id, block, size, slotCount)` | registers arenas | `0022A0B0` (2-9, 0xB), `0037B3D0` (0xB), `003E9AA0` (0xC), `0025A990` (0xD), `0025AA30` (0xE) | BOOT:184-186, 243, 353 |
+| `0022A4F0` button-mask applier (66 B) | rewrites `01E0C2A0`/`01E0C2A4` | tail of `DecideButton` setter `0017E6E0` | BOOT:222, 244, 548 |
+| `00229F10` frame-base setter (7 B) | `mov [02064ACC], ecx; ret` | `002695A0` (area transition `002628B0`), `0026DB10` (verb `mainloopallsyncv`, handler `003464B0`) | BOOT:117, 247, 551; C-BOOT:80, 840 |
+| `0022A770` field frame (2,001 B) | sole reader of `02064ACC`; waits via `0035EC80`→`0035EB70` | frame dispatcher `0022A580` (APP:709-710) | BOOT:245, 270-271, 382-387 |
+| `0035EB70` tick pacer (258 B) | waits `max(n,1)` ticks | `0022A770` via thunk `0035EC80` | BOOT:246, 385-387, 560 |
+| `0037DF90` (344 B) / `0037E0F0` (596 B) builder hubs | `lea rcx,[obj]; call builder` pairs, 26 / 40 into band | `0022A0B0` | FLOAT:83-86, 101-110, 157 |
+| `008631D0` (15 B) header writer; `008631E0` (84 B) MPG record appender | stamp `+0/+3/+4`; append to `02EAF930` at counter `02EB37B0`, handle at `+4` | builders | FLOAT:546-559, 192-195, 645-649; C-BOOT:779-783 |
+| `0020E600` / `0020E620` handle codec | `h + [01F83530]` / `p − [01F83530]` | 4,371 sites of `0020E600` | FLOAT:581-592 |
+| `0022C970` VIF1 interpreter | dispatches `0x4A` MPG arm (`0022CA3D`–`0022CA60`) | not stated here | FLOAT:36, 613-618 |
+| GameApplication vtable `008C5760` (31 slots) | slot 0 dtor `0017CC70`; slot 2 VBF mount `0017CEB0`; slot 4 frame tick `0017CCD0`; slot 7 input `0017CE50`; slot 8 render `0017D090`; 21/22 `0017CFD0`/`0017D170`; 23/24 `0017CDF0`/`0017CE20`; slots 3,6,9,10,15,16,25 | framework dispatch through table ("no direct E8/E9 caller") | APP:105-115, 597-614 |
+| `0017D6E0` per-frame pump (404 B) | fetches/advances 13 singletons | slot 4 on all three paths | APP:225-232, 401-407, 479-497 |
+| `0022A580` frame dispatcher prologue (465 B) | pause mirror, mode-change on `02064AD3`, worker queue, jump to frame bodies | not stated | APP:706-710 |
+| `00229590` PauseMenu handler | sets/clears pause flag via `0017E720` | registered by `002282F0` at `0022832E` | APP:264-269, 678-689 |
+
+#### 1.1.2 Inputs and outputs
+
+Inputs: `GameSetting.ini` `DecideButton` (index 25, default 0 = Circle) BOOT:104; `FrameLimit` via `0017D8F0` = `mov rax,[01F82D20]; mov eax,[rax+0x48]` (settings row 18) C-BOOT:47, 202-203; argv `-nologo` C-BOOT:314-319; `../FFXII_TZA.vbf` + `../../..` APP:59-64, 359; `_time64` on load C-BOOT:64-66.
+
+Memory budget (BOOT:126-138, 345-359):
+
+| id | base | size | alloc size / site → slot | cite |
+|---|---|---|---|---|
+| 2 | `0x01DC0000` | 29.75 MiB | `0x1DC0010` @`0022A1E1` → `01FD49F8`; reg `0022A2AE` | BOOT:128, 345, 356 |
+| 3 | `0x00D20000` | 13.12 MiB | `0x0D20100` @`0022A1F2` → `01FD4A00`; reg `0022A2CB` | BOOT:129, 346 |
+| 4 | `0x00100000` | 1.00 MiB | `0x0100010` @`0022A203` → `01FD4A08`; reg `0022A2E7` | BOOT:130, 347 |
+| 5 | `0x001C0000` | 1.75 MiB | `0x01C0100` @`0022A214` → `01FD49F0`; reg `0022A304` | BOOT:131, 348 |
+| 6 | `0x06C00000` | 108.00 MiB | `0x6C00400` @`0022A225` → `01FD4A10`; reg `0022A321` | BOOT:132, 349 |
+| 7 | `0x03000000` | 48.00 MiB | `0x3000100` @`0022A236` → `01FD4A30`; reg `0022A33E` | BOOT:133, 345 |
+| 8 | `0x02000000` | 32.00 MiB | `0x2000100` @`0022A247` → `01FD4A38`; reg `0022A35B` | BOOT:134, 346 |
+| 9 | `0x01200000` | 18.00 MiB | `0x1200010` @`0022A258` → `01FD4A40`; reg `0022A377` | BOOT:135, 347 |
+| 11 | `0x00400000` | 4.00 MiB | `0x0400100` @`0022A269` → `01FD4A18`; reg `0022A394` | BOOT:136, 348 |
+| — | unregistered | 0.5 MiB | `0x0080000` @`0022A27A` → `01FD4A20` (write-only) | BOOT:161-166, 349 |
+| — | unregistered | 1 MiB | `0x0100000` @`0022A28B` → `01FD4A90` @`0022A2A3` (see C.1) | BOOT:165, 350 |
+
+Tail = handle-slot count, 16-byte handle records; header + two page bitmaps + slots×16 table at block start (BOOT:150-153, 303-306). No allocation return is tested (C-BOOT:226-241). Runtime bases, not image addresses (BOOT:140-144).
+
+Frame-base / time-base cells (C-BOOT:256-275; BOOT:251-257):
+
+| cell | off / on (30 / 60) | readers | cite |
+|---|---|---|---|
+| `01DFE0B4` dword | `1` / `2` | 120 functions, 211 sites, 21 `div` | C-BOOT:273 |
+| `01DFE0B8` f32 | `1.0f` / `2.0f` | 37 / 45 | C-BOOT:274 |
+| `01DFE0BC` f32 | `1.0f` / `0.5f` | 93 / 182 | C-BOOT:275 |
+| `01F82E38` mode flag | not stated / `1` | 13 functions | C-BOOT:263, 283 |
+| `02064ACC` | `2 / [01DFE0B4]` | one reader `0022AE8F` | BOOT:254, 383-387 |
+
+Predicates: `001EDDA0`, `001EDEC0`, `001EDE80` (sum `d[02064AD8]+d[02064AA8]`), `001EDE70` (flag verbatim); suppressor `01DFE0C0` ships 1, sole writer `001EDEF0`, via `00184960` (callers `0022A0B0`, `0022B7E0`, `00250540`, `002507C0`) C-BOOT:286-310, 458-469.
+
+Packet template header (FLOAT:184-190, 546-559):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0x00 | u16 | `dx` (header) / `1` (registered) | FLOAT:548, 554 |
+| +0x03 | u8 | kind `0x10` (plain) / `0x30` (registered) | FLOAT:549, 553 |
+| +0x04 | u32 | 0, or 32-bit handle of own `02EAF930` entry | FLOAT:550, 559, 579-580 |
+| +0x08 | u32 | `0x03000000` or `0x0300001E` | FLOAT:186 |
+| +0x0C | u32 | `0x02000000` or `0x020001F1` | FLOAT:187 |
+| +0x18 | u32 | `0x01000404` | FLOAT:188 |
+| +0x1C | u32 | `0x6CNN0000` | FLOAT:189 |
+| registry entry (16 B @ `02EAF930`+16n) | u32 + u64 | `r8d \| 0x4A000000`, program pointer; 1,000 records, no bound check | FLOAT:555-558, 269-270 |
+
+Objects: `02ADEF40`–`02AED330` in .data zero-fill tail (FLOAT:116-121); per-object sizes FLOAT:519-537, 622-628 and `members/builder-store-extents.tsv`.
+
+GameApplication object, `0x1140` B (APP:124-125, 144):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0x00 | ptr | vtable `008C5760` (base `01CB2508` during destroy) | APP:134-136 |
+| +0x08 | — | `PBase` subobject (mdisp 8) | APP:177-178 |
+| +0x48 | f64 | frame delta | APP:222 |
+| +0xD24 / +0xD28 | — | window size, 1280×720 from ctor `00792459` | APP:63, 280-281 |
+| +0xDF8 | ptr | backend | APP:282 |
+| +0x10D4 | — | console block dword (scale) | APP:262 |
+| +0x1130, +0x1138 | — | touched by slot 2 (meaning not stated) | APP:63 |
+| +0x113C | u8 | one-way startup latch (1 W @`0017D074`, 3 R) | APP:73-80 |
+| +0x113D | u8 | slot-4 run-once guard | APP:91-96 |
+
+Pump singletons (APP:483-497): 13 rows `global / Ensure / update / size` (e.g. `01F81260` SaveloadManager `0xA78`; `01F7F598` renderer `0xDD8` pumped three times; `01F82CE0` ScreenImage `0x38` with fade fields `+0x00,+0x04,+0x0C,+0x10,+0x14,+0x1C,+0x20` APP:512-522). `01F82C80` FrameMarkerSingleton layout APP:1377-1389. Manager-pointer block `01F7F4C0`–`01F82D00` APP:640.
+
+Files read: `../FFXII_TZA.vbf` (APP:46, 359); `./GameData/%s/ArtData/shaders/anisolighting.dds.phyre` (APP:667); `/GameData/D3D11/ArtData/shared/idmaps.txt` (APP:2338); `./GameData/%s/ArtData/chr/%s_%s.ah` (APP:312). Files written: `/Capture 4K/capture…tga` (APP:2382).
+
+#### 1.1.3 State
+
+| global | size / init | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|
+| `02EB4234` MT first-use latch | byte, 0 → 1 on first seed | `00863D30` | `00863D30` | process | BOOT:44-45, 256 |
+| MT state object `01CCFAC8` | 624 dwords, index `0x270` | `00866D60` | MT consumers (66) | reseeded on load from clock | BOOT:43, 77; C-BOOT:176 |
+| `01E0C2A0` / `01E0C2A4` | dword `0x2000`/`0x4000`, swapped if `DecideButton`==0 | `0022A0B0` (`0022A10C`,`0022A119`), `0022A4F0` | every other of the 90 referencing sites is a `test word ptr` read (input arbiter `00253C70`, menus, widget handlers) | rewritten per Config change | BOOT:97-106, 222, 253 |
+| `02064ACC` | dword; `.data` initial not stated; `2/[01DFE0B4]` | boot `0022A1A7`, `00229F10` | `0022AE8F` | recomputed every area change | BOOT:254, 288-289, 383 |
+| `01DFE0B4` | ships `1`, `2` on 60 branch | `001EDDC0` only | 120 functions | set once at boot | C-BOOT:205-206, 264-268 |
+| `01DFE0B8` / `01DFE0BC` | ship `1.0f`/`1.0f` | `001EDDC0` | 37 / 93 functions | boot | C-BOOT:267-275 |
+| `01F82E38` | initial not stated; `1` on 60 branch | `001EDDC0` | 13 functions | boot | C-BOOT:263, 283 |
+| `01DFE0C0` suppressor | ships `1` | `001EDEF0` (from `00184960`) | 3 predicates | — | C-BOOT:298-301 |
+| `01F82E40` / `01F82E3C` | timer period / armed byte | `001EDDC0` 30 arm | `001EDDC0` 60 arm | — | BOOT:498-508 |
+| `01FD49F0`–`01FD4A90` pool pointer slots | qword | `0022A0B0` | registrar; `0040ACF0` (1 MiB), none (0.5 MiB) | never freed (not stated) | BOOT:163-178, 257 |
+| arena descriptor byte `022D8662` | — | `0036BC60` marks on uninitialised arena | — | — | BOOT:205 |
+| `02ADD930`–`02ADD933` arena-11 regrowth bytes | `0037B390` sets 1/4/0, then 0/3 | `0037B390`, `0037B3D0` | `0037B3D0` | — | BOOT:575-576 |
+| `0208E6B0` LCG area counter | post-increment per battle-area init | `00234315` | `00234301` | process | BOOT:82-87 |
+| `02EAF930` registry / `02EB37B0` counter | 1,000 × 16 B | `008631E0` only | via handle codec | process | FLOAT:193, 265-270, 585-589 |
+| packet objects `02ADEF40`–`02AED330` | zero-fill .data then immediates | 65 builders (+2 tail-jump) | VIF1 interpreter, effect builders | built once at startup | FLOAT:121, 173-176, 41-46 |
+| `02064E30` emulated VU memory | 1,024 cells; `0x4000` clear by `0022CB90` | `0022CB90` | VU microprograms | — | FLOAT:35; APP:1670-1671 |
+| GameApplication `+0x113C` | 0 → 1 once | `0017D000` | slots 4, 7, 8 | never cleared | APP:73-82 |
+| 13 pump singletons `01F7F598`…`01F82D30` | lazy `cmp [G],0 → alloc → ctor → store` | Ensure stubs | `0017D6E0` | constructed at boot by `0017D4C0` | APP:479-481, 640, 646-648 |
+| `01F810F0` pause flag | 1 byte, zeroed | `0017E720` (via `001997E0`) | getter `0017E4E0`, mirrored to `02F974A0` | — | APP:264-277, 2414 |
+| `01F7F598` renderer | `0xDD8`, accessor `00189120` (117 callers) | `00189000` | 175 member bodies | — | APP:491, 1052-1057 |
+| `01F82C80` FrameMarkerSingleton | `0xF778` | `001D62D0` | `001D6000` per frame | — | APP:1370-1393 |
+| `02090790` handler table | 12 × `0x20` | `002486B0` | — | — | APP:2254 |
+
+#### 1.1.4 Order
+
+- Process: `WinMain 007A3770` → `007980A0` (BOOT:209-214) → PhyreEngine run loop → GameApplication startup (BOOT:262).
+- `0017D000`: +31 `0017D4C0` → +41 `00210EC0` → +59 `0018A840` → +111 `00189000` → +116 latch (FLOAT:81-90, 305-306, 431). APP:629-634 states a different order (C.1).
+- Inside `0022A0B0`: `0022BDF0` "runs first, and then" `02064ACC = 2/[01DFE0B4]` (BOOT:110-113; `0022A18B`–`0022A1A7` BOOT:369-371); 11 mallocs `0022A1E1`–`0022A28B` straight line then 9 registrations `0022A2AE`–`0022A394`, first test after at `0022A3DF` (C-BOOT:226-232); seed site `0022A410` (C-BOOT:839). Position of the hub calls, `0022CB90`, `00266D10`, `002368D0`, `0036D990` (`0022A125`, EEVU:311) not ordered on my pages (G.2).
+- `0036F4D0` call order: `0036D280`, `00465F60(0x100)`, `003A1D50`, `00467BB0`, `0026E1D0`, `00382910`, `003ECF70`, `00475310`, `003ED820`, tail `00467AD0` (BOOT:572).
+- EXP-001: engine "starts on the 30 fps base and switches later in startup" — PROBABLE (C-BOOT:218-224).
+- Per framework frame (outside my pages, TUNES:653-656): slot 7, slot 4, viewports, slot 8, run by `0079C140` from loop `00796490`.
+- Slot 4: latch gate → dt from `+0x48` → run-once `0017D650` behind `+0x113D` → `0017D6E0` on all three paths (APP:219-232). Pump order of the 13 singletons: only "`01F7F598` … once early, then twice more" and `01F82D30` "the last getter called in the tick" (APP:529-537).
+- Field frame: `0022A770` → `0035EC80` → `0035EB70` waits `[02064ACC]` ticks (BOOT:270-271); while pause flag set runs only `002506D0` and the camera section (APP:272-274).
+- `0022A580` prologue → dispatch on `02064AD3` into frame bodies (APP:706-710).
+- Load: `SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG` reseeds from clock (C-BOOT:63-66).
+- Area transition `002628B0` → `002695A0` → `00229F10` (C-BOOT:80).
+- Config change: `0017E6E0` → `0022A4F0` (BOOT:222, 548).
+
+#### 1.1.5 Dependencies
+
+- 21-RNG-And-Determinism (which-roll-is-on-which-generator, rng-streams, CONTRACT-gameplay-generators) BOOT:78-88, 220.
+- 24-Compiler-And-CRT-Runtime/Memory-And-Allocation (arena layout, `0036C1D0` selection) BOOT:154, 193, 223, 291.
+- 19-Save-Load-Settings/Game-Settings-Config (FrameLimit, DecideButton, settings row 18) BOOT:224, 512; C-BOOT:210.
+- 17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md (packet contents, interpreter) FLOAT:36, 45, 180, 243; 17-…/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md BOOT:175; 17-…/Character-Render-Records BOOT:416; 17-…/Character-Rendering/character-render-object.md APP:86.
+- 22-Middleware-PhyreEngine (Phyre application, between-two-frames) BOOT:237; APP:275, 591.
+- 09-Combat-AI-And-Gambits (Z-11 time-base word) BOOT:374-376; 10-Status-Periodic-Terminal (periodic drain `[01DFE0B4]×30/3`) C-BOOT:351-353.
+- 99-Unresolved-Residual text-element dispatch table (`001EDEC0` consumer) C-BOOT:311.
+- 02-Resource-And-Asset-Pipeline (VBF archive; `.ta` lists) APP:559, 757.
+- 15-Input binding profiles; 18-Audio boundary APP:267, 279.
+- Within 00: Diagnostics-Logging (`005CDAA0`) APP:896; Developer-Tuning-Console (`+0x10D4`, render pass list) APP:112, 262; Object-Model vtable index APP:753.
+
+### 1.2 World tick, field frame and force-fight mode
+
+Pages: `TICK`, `C-TICK`, `FORCE`.
+
+
+#### 1.2.1 Entry points
+
+| function (address + name) | role | callers as stated | cite |
+|---|---|---|---|
+| `00314020` `World_UpdateSimulationTick(mode, flag)`, 845 B | the world tick: prologue, deferred request, mode-dependent slot loops, fixed tail; returns `eax = (mode == 0)` | `0022A770` (mode 2, field frame, `ecx`=0, `edx`=`edi`), `MainLoop_UpdateAndRenderFrame` `0022B8C0` (mode 3, `ecx`=1,`edx`=1), `0022BC20` (mode 5, 1,1) | TICK:48-56, TICK:157-158, TICK:362, TICK:580-583, C-TICK:49, C-TICK:105-106, C-TICK:336 |
+| `00314960` (7 B) tick-in-progress getter `mov eax, [022C2548]; ret` | reentrancy deferral gate | "12 call sites in 12 bodies" (8 paired with `001EDDA0`, plus `00246753`, `003D912F`, `003D96C8`, `0052BB4A`) | C-TICK:50, C-TICK:220-231 |
+| `0025BFB0` (179 B) manager request queue drain | drains mask `02099ABC` before any mode test | the tick at `00314078` | TICK:81-94, C-TICK:73-74 |
+| `00234590` `BattleSystem_RunFieldFrameOrchestrator(slot)`, 752 B | 23 ordered steps, slot 0 only | the tick (`003141D4` mode 0; `00314116` mode 1, no-op) | TICK:104, TICK:114, TICK:206-235, TICK:363 |
+| `0025D9E0` `ActorManager_RunFieldRuntimePass(slot)`, 1,297 B | the actor drive loop | the tick (`003141DB`, `0031411D`) | TICK:105, TICK:115, TICK:367, TICK:717-724 |
+| `00234520(slot)`, 109 B (also "~220 B") | slot-0 post-step; one-shot `0208E6A8` | the tick (`003141E2`, `0031412B`) | TICK:106, TICK:256-260, TICK:369, TICK:1475 |
+| `003DB1F0(slot)`, 132 B | per-record post-pass (`+0x63` countdown, `+0xA0` walk, `003DB6E0`) | the tick (`00314211`, `00314124`) | TICK:110, TICK:116, TICK:138-142, TICK:368 |
+| `002623A0(slot)`, 152 B | per-slot end of tick; publishes `02099D70`/`02099D78`; `002E5180` over records | the tick `00314254`–`00314273` | TICK:147-150, TICK:370 |
+| `00233F70` `BattleUnit_UpdateLifecycleAndCombatFrame(slotField, record)`, 467 B | per-unit lifecycle callback | no direct caller; stored at record `+0x38` by `00265A20` (`00265A4F lea`, `00265AA8`); called by `0025DF00` at `0025E222` | TICK:264-274, TICK:364 |
+| `00265A20` `ActorSystem_BindBattleUnitsForEligibleRecords`, 320 B ("~200 B" at TICK:1435) | binds units for records `+0x14 ≥ 0x80`, up to 32 | not stated | TICK:265-268, TICK:365 |
+| `0025DF00` `WorldActor_UpdateRuntimeAndScriptExecutionState`, 1,228 B | calls the callback under four gates | per actor inside the drive loop | TICK:269-274, TICK:366, TICK:1010 |
+| `0032FC30` `WorldSimulation_ProcessDeferredModeRequest`, 66 B | deferred world-mode dispatch | the tick `003140BA` (`(0, request)`) | TICK:74, TICK:418, TICK:1260-1264 |
+| `003DF760` (48 B) | indexed registry-slot setter | mode 0 calls `(0, n, 0,0,0)` n=1..5 | TICK:100, TICK:901-903, TICK:1665-1669 |
+| `003DAC70(00314F30)` | movement-body separation pass | the tick tail | TICK:145-147, TICK:1360-1364 |
+| `002EEEB0` (18 B) | fixed tail end: `002EE430()` then `002EF050` | the tick tail | TICK:157, TICK:653-654 |
+| `002E09A0` (1,002 B) | router input-mailbox drain | the tick tail `0031427D` | TICK:866-875, TICK:885 |
+| `00362850` (1,036 B) | audio listener update | tick tail | TICK:154, TICK:893-897 |
+| `003E7650` | presentation-parameter push over `02B59D80` | tick tail | TICK:156, TICK:897-900, TICK:438-448 |
+| `00253B90` (12 B) | force-fight predicate `flag == 0` | 7 direct sites + 8 via thunk `0030C0D0` = 15 (incl. orchestrator step 5) | FORCE:60, FORCE:106-107, FORCE:233-241, TICK:217 |
+| `00253BA0` (27 B) | effective reader `enable ? flag : 0` | `00276650`, `00276D30` (UI) | FORCE:144, FORCE:255-266, FORCE:390-397 |
+| `00254EA0` (54 B) | setter with `003BA2E0` veto | only `003444D0` (`setforcefightmode`, id `0x0334`) | FORCE:71-83 |
+| `00252C80` (134 B) | second writer (R2 toggle apply) | not stated on FORCE (R2 page) | FORCE:148, FORCE:177-180 |
+| `003BA2E0` (27 B) | feature enable: `02B4053C && 02B4053D` | `00252C80`, `00253BA0`, `00254EA0` | FORCE:96-99, FORCE:403-409 |
+| `003444D0` (23 B) | `setforcefightmode` handler, 1 pop | script VM dispatch | FORCE:81-87 |
+
+#### 1.2.2 Inputs and outputs — record layouts
+
+**Actor-manager slot record** (`02098E10`, stride `0x288`, 5 slots):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| `+0x10` | byte | bit 0 live; bit 7 (held / start-up unsettled; `00267330` returns bit 7 when bit 0 set, else 1) | TICK:138, TICK:191, TICK:425, TICK:1683-1685 |
+| `+0x11` | byte | bit 0, bits 2/3 gates; bit 3 in request rules | TICK:720-721, TICK:955 |
+| `+0x12` | byte | pending-wake list nonempty | TICK:721-722 |
+| `+0x13` | byte | set → request-eligible | TICK:955 |
+| `+0x17` | byte | bits 4/7 suspend/active; bits 0–1 required set by `00265680` | TICK:722-723, TICK:931 |
+| `+0x20` | dword | count read by `00263C30` | TICK:1586 |
+| `+0x28` | qword | passed as `rcx` to the unit callback | TICK:272, TICK:425 |
+| `+0x48` | qword | returned by `00264610` | TICK:1122 |
+| `+0x108` | qword | unload hook, null on every shipped path | TICK:956, C-TICK:217-218 |
+| `+0x1D0`/`+0x1D8` | word arrays | `00263C50` / `00263B50` | TICK:1120-1121 |
+| `+0x1D6`, `+0x1DE` | | record range `[+0x1DE, +0x1DE + +0x1D6)` for `002E5180` | TICK:150 |
+| `+0x200` | byte | `& 2` body iterates `020AA1F0`-side table | TICK:723-724 |
+| `+0x201` | byte | sub-step opt-in bitmask (bit per skip request) | TICK:123-126, TICK:177, TICK:565 |
+
+**Actor storage record** (per-record post-pass): `+0x63` two-pass countdown; `+0x89` count of `0x14`-byte entries at `[+0xA0]`, entry `+0x11` state 1→2 (TICK:138-142, TICK:910-918).
+
+**Unit callback gates on the record**: `+0x09` bit 5 clear, `+0x14` bit 4 set, `+0x18 == 0`, `+0x13` bit 1 / `+0x09` bit 6 clear; sets `+0x0D` bit 6; callback at `+0x38` (TICK:271-274).
+
+**Battle unit flags (first qword)**: bit 1 no-op/torn down, bit 3 required, bit 4 simulated, bit 16 must be clear, bit 24 reaction pending (excluded from reset loop), bit 33 teardown on idle path (TICK:572-575, TICK:935-951). Unit `+0x698` stats record, `+0x714` id, `+0x6B4`, `+0xE68`, `+0x80` (TICK:218, TICK:287, TICK:296-297).
+
+**Skip-request entry** `022CB730 + (manager × 8 + k) × 16`: `b_00` bit in `+0x201`, `b_01` row in pending/active arrays `022CB9C0`/`022CB9D8`, `b_02` state, `dw_08` begun, `dw_0C` armed (TICK:187-190). (Contradicted at TICK:1328-1331, TICK:2171, TICK:2606 — see C.1.)
+
+**Router mailbox**: eight `0x68`-stride records at `0215F200` (state word `+8`; 6 → `002A28B0`, 7 empty; `+0x38`/`+0x3E` bit 7); cells `0215F1A0` pending, `0215F1A4`/`0215F1A8` posted args; exempt ids `0xE9000` = 12,15,17,18,19 (TICK:679, TICK:866-891).
+
+**`02EBEC00` pool record** (24 B, 36 slots): `+0x00` u32 key (0 = free), `+0x08` pointer to class-chained registry object, `+0x13` flag byte (TICK:813-835).
+
+**`003DF760` tables**: entry `n` of four eight-entry tables `02B59C40[n]`, `02B59C80[n]` (ptr), `02B59CC0[n]`, `02B59CE0[n]` (dword) (TICK:901-903) — contradicted by TICK:1666-1668.
+
+**Battle-state word `02089340`** bit table (TICK:328-349); area init writes `(w & 0xFFFFC01E) | 0x10` (TICK:324-326).
+
+**UI-request flag word `022C83E8`**: bit 0 ← `0x18`, bit 1 ← `0x0B`, bit 4 ← `0x17`; bit 8 set on game-over route (TICK:237-239, TICK:431, TICK:845).
+
+**Force-fight**: `01E0C2B8` dword flag (FORCE:58); enable bytes `02B4053C`/`02B4053D` (FORCE:98); availability rule reason `0x24` on `raw[5]==0 && ((raw[0x64]|raw[0x3C]) & 0x08000020)==0 && force_off && actionId ∉ {0x113,0x95}` (FORCE:128-131). Exempt ids = Dismiss, Dismount (FORCE:182).
+
+Files read/written: none stated (not stated). Script corpus census only (FORCE:170).
+
+#### 1.2.3 State
+
+| global | size / init | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|
+| `022C2548` tick in progress | u32; image initial value not stated | `00314047` (=1), `0031435D` (=0) | only `00314960` | 0→1→0 within each tick call | C-TICK:56, C-TICK:79-85, C-TICK:137-139, TICK:426 |
+| `01EED060` deferred request (latch) | i32, image `0xFFFFFFFF` | `00314410` (stores arg when negative, raises request 4); tick clears to -1 (`0031407D`–`00314092`) | tick | one-shot | C-TICK:57-58, C-TICK:90-91, TICK:72, TICK:1141 |
+| `01EED064` deferred mode request | i32, image `0xFFFFFFFF`; 16 accesses, 4 writers 12 readers | tick clear `003140BF`, two `WorldTransition_*` stagers, the reset | tick → `0032FC30(0, req)` | consumed once per tick | C-TICK:87-92, TICK:72-75 |
+| `02098E10` slot array | 5 × `0x288`; zero-initialised `.data` | `0026C8C0` bind (zero), `0026A5B0` (`+0x201` bits) etc. | many | static | TICK:63-67, TICK:956, C-TICK:60, C-TICK:218 |
+| `02099ABC` manager request mask | bits 0–4 | drain (clears), `00266D10` (stores 0 at `0026713B`), producer `0026A5F0` | `0025BFB0` | per tick drain | TICK:83-90, TICK:955 |
+| `0209A1F0`–`0209A20F` party roster pointers | four ptrs | zeroed by drain when bit 0 set | not stated | | TICK:85-86 |
+| `0209A2B0`–`0209A2C4` five-field block | | reset every tick by `0025D650` | group-completion lock writes `0209A2C4[2]` | per tick | TICK:77-79, TICK:433 |
+| `022C252C`, `022C2530` tick counters | dword | `++` at `00314231`/`0031423E`; reset by `00314010`/`00314000` | not stated | callers of resetters not stated | TICK:144-145, TICK:427 |
+| `022C2544` float | | `00314940` copies `01CEBBA8` (1.0f) | time-scale block | not stated | TICK:155, TICK:428, TICK:1142 |
+| `02089340` battle-state word | bits per §2.5; init mask `(w & 0xFFFFC01E) | 0x10` at area init | many (§2.5) | many | bits 0,5–13 cleared at area init; bit 4 cleared at area unload `002341E4` | TICK:312-349, TICK:430 |
+| `0208E6A8` one-shot callback / `0208E6A4` handle | qword / dword | set by `0023B020`; nulled by `00238A60` | `00234520` (calls and nulls when `(02089340 & 5)==1` and bit 1 clear) | one-shot | TICK:256-260, TICK:330, TICK:1108, TICK:432 |
+| `0208D45C` raw tick counter | dword | `0032A100` when `003EBA90(0)` changed vs `022C317C` | `GameClock_GetRawTickCounter` | | TICK:214, TICK:435 |
+| `022C83E8` UI-request flag word | | `0035C8A0`, `0035C8E0`, `0035C7B0(11,1)` bit 8 | `0035C700`, `0035C740` | | TICK:237-239, TICK:845, TICK:1160-1161 |
+| `02099D70`, `02099D78` | pointers | `002623A0` per slot | not stated | per slot | TICK:148-149, TICK:434 |
+| `022CB730` skip entries, `022CB9C0`/`022CB9D8` pending/active | 16 B entries | `00360980`, `00360710`, `00360A50` | `00267310`… | | TICK:187-199 |
+| `022CB720` skip/lane mask | dword | `003601B0` (bit set), `003601C0` (bit clear) | | | TICK:786, TICK:1630-1633, TICK:1805 |
+| `022C2578` candidate-cache generation | dword | `00325060` (+1 mod 8), `00325080` (=7) | | | TICK:708, TICK:1144 |
+| `02AEE060` nav grid params (0x60) + `02AEE0A0` grid ptr | 0x460 cleared | built only by `002342F0`; torn down by `00392710` | | area init → area unload | TICK:706 |
+| `01E0C2B8` force-fight flag | dword; initial value not stated | `00254EA0` (setter, veto), `00252C80` (second writer) — "four write sites in two functions" | `00253B90` (raw, 15 consumers), `00253BA0` (effective, 2 UI) | global, not per-unit | FORCE:58, FORCE:68, FORCE:143-149, FORCE:160, FORCE:263-266 |
+| `02B4053C` event veto enable | byte; boot 1 | `003BA300(cl)`: `00266D10` boot =1, `002628B0` every area unload =1, verb `debug_setfightstatusbyevent` (0x206B) | `003BA2E0` | never cleared in shipped game | FORCE:170 |
+| `02B4053D` companion | byte; boot 1 | `003BA310(cl)` once at boot | `003BA2E0` | never cleared | FORCE:170 |
+
+#### 1.2.4 Order
+
+- Frame dispatcher `0022A580` dispatches on `02064AD3`; modes 2/3/5 call the tick (TICK:580-583). Field frame (mode 2) calls only when `!001800E0() && (!001800C0() || !001EC560())` (TICK:58-59; C-TICK:211-212 `!A && (!B || !C)`).
+- Tick order: `[022C2548]=1` → `003EB9A0`, `003DAA20`, `003DA2F0(1.0f)`, `003DD210(1.0f)`, `0025BFB0` → `01EED060` clear → `01EED064` consume (markers + `0032FC30`) → `003DAA40`, `0046AFA0`, mode-0-only `00358C60`; `00268650`, `0025D650`, `00255810`, `0037D890`, `0025D640` → slot loops → tail (TICK:69-79, C-TICK:137-138).
+- Mode 0: `003DF760(0,n,…)` n=1..5; for step 0..15 { for slot 0..4 [gate step≠0 by `+0x201`]: orchestrator, drive pass, `00234520`; if step 0: `002E0D90`, `00268D00`; for slot 0..4 [gate]: `003DB1F0` }. Mode 1: slots 3..4 once: orchestrator (no-op), drive pass, `003DB1F0`, `00234520` (no-op); then `002E0D90`. Other: none (TICK:98-121; C-TICK:99-104).
+- Tail: counters ++, `003DAC70(00314F30)`, `002623A0(slot)` for ticked slots, then `00358EE0(mode)`, `002E09A0`, `00359800`, `003DE640`, `002E0940`, `0037C1A0`, `003E7EC0`, `00228480`→`0036FD90(0)`, `002F1770(mode, edx)`, `002EF910`, `0036E1E0`, `003DEB30`, `003DF670`, `003606E0`, `00362850`, `00362DA0`→time-scale block, `003E7650`, `0025D950`, `00263660`, `002EEEB0`; `022C2548=0`; return (TICK:144-158, TICK:598-599).
+- Orchestrator 23 steps (TICK:211-235); then per unit inside drive pass: lifecycle frame (TICK:276).
+- Step 6 reset loop runs every second field frame under steady predicate (TICK:218, TICK:569-570).
+- Force fight: set by script verb at script time; consumers read whenever they run (FORCE:78-83, FORCE:106-117). Enable bytes set at boot (`00266D10`) and area unload (FORCE:170).
+
+#### 1.2.5 Dependencies
+
+- 22-Middleware-PhyreEngine frame dispatcher (TICK:49, TICK:986-987).
+- 04-Actor-Entity field runtime pass, actor-manager record map, actor storage record map, battle-unit field map (TICK:65, TICK:270, TICK:911, TICK:931, TICK:936).
+- 99-Unresolved-Residual cutscene slots (`+0x201` writers) (TICK:64, TICK:929, TICK:998-999).
+- 06-Movement-And-Navigation movement body pool (TICK:75, TICK:147, TICK:343); FORCE locomotion divisor (FORCE:113, FORCE:220).
+- 05-Spawn-Encounter-Lifecycle (group completion, retirement) (TICK:82, TICK:229, TICK:990-993).
+- 15-Input capability policy (TICK:216, TICK:847; FORCE:112, FORCE:218), R2 toggle (FORCE:46, FORCE:174).
+- 11-Party (TICK:220); 16-UI request router (TICK:243, TICK:874); 17-Presentation (screen fade TICK:784, rig TICK:448, render records TICK:899); 18-Audio voice packs (TICK:795); 02-Resource request queue (TICK:798), battle text banks (FORCE:182); 01-Script-VM verb table/binding/dispatch (TICK:336, TICK:917, FORCE:221); 10-Status statuses / periodic tick (TICK:854, TICK:996); 03-World-Area-Field bit 15 (TICK:854); 07-Combat-Action availability (FORCE:219).
+- Inside 00: Battle-Runtime-Mode (TICK:374, TICK:994; FORCE:222), System-Stop-Registry (TICK:982; C-TICK:131), Per-Frame-Update-Gate (TICK:984; C-TICK:130), Application-Root (TICK:924; C-TICK:203), Shared-Transform-Workbench (TICK:1041).
+- C-TICK layer crossings: ActorEntity, MovementAndNavigation, Party, WorldAreaField, Audio, InputGameplay, CombatAction, Presentation (C-TICK:251-273).
+
+### 1.3 Per-frame update gate and system stop registry
+
+Pages: `GATE`, `C-GATE`, `STOP`, `C-STOP`.
+
+
+#### 1.3.1 Entry points
+
+| function | role | callers as stated | cite |
+|---|---|---|---|
+| `0028E290` (745 B) FramePump / "the fan-out" | reads `01E0C464` 16 times and calls 16 gated groups | "reached from `002507C0`, itself from `0022A770` and `0022B7E0`" (C-GATE:42); "the sole pump caller `002508AB`" (C-GATE:305); STOP calls it "the battle-HUD draw `0028E290` (named scope `display UI : battle`, `002508A4`)" (STOP:299) | C-GATE:41-43, GATE:47-56 |
+| `002507C0` | pump parent; also calls `001EDE80` at `00250896` to gate `003BBA60` | `0022A770`, `0022B7E0` | C-GATE:305-306, C-GATE:1702 |
+| group handlers (16) | see I.4 order table | `0028E290` | C-GATE:118-135 |
+| `00289970` (35 B) | group 0x0001: "runs `0028A550`, then `0028A350`, then tail-calls `0028A620`, all on the same object" | gate, `add rcx, 0x5380` at `0028E2AB` | C-GATE:1804, GATE:565 |
+| `001EDE80` (61 B) | group 0x0002 A predicate | gate; also `003E00C0`, `00477480` directly (C-GATE:50), `0025DF00` (C-GATE:378-379) | GATE:254, GATE:521-523 |
+| `003F8B40` (162 B) | group 0x0002 A: callback-node list walker on `singleton+0x80` | gate `0028E2C5`–`0028E2D4` | GATE:524-531, C-GATE:1734 |
+| `00291B90` (208 B), `003F6100`, `003F24D0` (167 B), `003F24A0` | group 0x0002 B, "gated *additionally* by `dil&1`" | gate | C-GATE:299-301, C-GATE:1356, 1726, 1821-1822 |
+| `002917E0` (930 B) | group 0x0004: target-line builder | gate | GATE:225, C-GATE:1582 |
+| `0028C4C0` (42 B) → `0028BB50` (2,387 B) | target-line list walk → per-node angular update | gate; `0028BB50` has "One caller" | GATE:140-158 |
+| `0028C4B0` (5 B) → `0028D1C0` (154 B) | `jmp` thunk → reaper / "null-gated per-frame body" | gate | GATE:424-428, GATE:225 |
+| `003F6BB0` (1,051 B) + `003F7050` (154 B) | group 0x0008 | gate | GATE:91, 254; C-GATE:1754 |
+| `003F9F40` (536 B) | group 0x0020 widget spawner on `_57E0` | gate | GATE:254, 451 |
+| `003F80D0` (14 B) | group 0x0040 on `_A0D0` | gate | GATE:254, C-GATE:1823 |
+| `00296860` (223 B) | group 0x0080 level-up blink spawner on `_7FB0` | gate | GATE:254, 454 |
+| `003F8EC0` (284 B) | group 0x0100 on `_00A0` | gate; also `0028FAF0` (C-GATE:386) | GATE:254, 450 |
+| `003F31B0` (164 B) | group 0x0200 list reaper | gate | GATE:254, C-GATE:1730 |
+| `003FA790` (143 B) | group 0x0400 on `_57E0` list `+0x2490` | gate | GATE:254, C-GATE:454 |
+| `0028C870` (197 B) | group 0x0800, tail-`jmp`, on `_7EA0` | gate `0028E56A` | GATE:98, 113-115 |
+| `00273900` → `0030C300` | group 0x1000 ("group 7") Libra / incapacitation scan | gate | GATE:254, 535-548 |
+| `00290CF0` (243 B) | group 0x2000 constructor of the `0x61F0` battle menu | gate | GATE:254, C-GATE:572-573 |
+| `00290EB0` (319 B) | group 0x4000 spawner for `+0x10F90` request | gate | GATE:254, C-GATE:1344 |
+| `002C6180` (295 B) | group 0x8000 | gate | GATE:254, C-GATE:1352 |
+| `00291750` | singleton constructor (memset 0x10FD0) | not stated | C-GATE:1075-1089 |
+| `0028F8B0` region: `0028F8CA`/`0028F8CF` | singleton allocation `0x10FD0` via `00271420`, publish at `0028F8D4` | not stated | C-GATE:699-701 |
+| `00226280` (952 B) | stop **apply** | "Most wrappers tail-jump to it" (STOP:78); "exactly 25 call/jmp edges, all synchronous wrappers — **no frame poll exists**" (C-STOP:232-233); `00313DB0`, `0026A1D0`, `00266D10`, `00263660`, `0026C3E0` (C-STOP:326-346) | STOP:170-187, C-STOP:51 |
+| `00226BE0` (1,936 B) | stop **start** `(id, actorHandle, flag, …, count, handles)` | 13 wrappers `00227370`–`00227640` + 9 direct callers in `00266D10` (×2), `00263480`, `0026A1D0`, `00263230`, `0026B980`, `00313DB0`, `002678C0`, `00254740` | STOP:52, STOP:262, STOP:358-360 |
+| `00225CD0` `(id, fade)` | stop **cancel** | wrappers `002260A0…`; `00252D90`, `002544C0` (UI close), `00263050`, etc. | STOP:80-84, STOP:237-261 |
+| `00225EB0` | area-unload cancel variant | "one caller, `002628B0`" | STOP:84, C-STOP:211-214 |
+| `00227680` | per-id record builder, 28-case switch at `00227744` | `00226BE0` | STOP:56, C-STOP:54 |
+| `00226640` | per-actor pass `(allExempt, fadeLength, 0)` | apply | STOP:178, 189-205 |
+| `002269A0` (162 B) | set-5 fold + enqueue | per-actor pass | STOP:225 |
+| `00226B30` | registry reset / initialiser | not stated | STOP:50, C-STOP:105-107 |
+| `00226B10(id)` / `00226BC0()` / `00226BA0()` / `00226BD0(id)` | record address / any-active / combined-restricts / test-bit | `00226BC0`: "the main loop `0022A770` and `00357380`" | STOP:48-50 |
+| `00226A50` (89 B) / `00226AB0` (91 B) | single-actor set-6 / set-7 fold | `0035A720`, `0035A7A0`, `0035A8D0` | STOP:207, 743-764 |
+
+#### 1.3.2 Inputs and outputs — record layouts
+
+**Enable word and pump argument**
+| item | width | meaning | cite |
+|---|---|---|---|
+| `01E0C464` | `uint32` (corrected) | 15 live bits (`0x1`…`0x8000` except `0x10`); "ships `FF FF FF FF`" | C-GATE:45, GATE:231-233 |
+| pump `ecx` = `word[01E0C2B0]` | word | bit 0 gates group 0x0002 B (`0028E3B7 test dil, 1`) | C-GATE:82-85, C-GATE:301 |
+
+**Target-line node (group 0x0004)**, `0xD80` B, no vtable (GATE:225)
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0xBB0 | sub-object | handed to `00271650` | GATE:225 |
+| +0xC70..+0xCAF | 4 vectors | copied by `00202C90` | GATE:225 |
+| +0xD00 | ptr | image asset `targetline_p` | GATE:225 |
+| +0xD14/+0xD18 | f32 | angle | GATE:225 |
+| +0xD2C | dword | actor id (compared with `+0x10F6C`) | GATE:225, 492 |
+| +0xD34 | f32 | busiest field (14 sites); sibling decay block | GATE:199, 252 |
+| +0xD40 | f32 | not stated beyond "f32" | GATE:192 |
+| +0xD44 | ? | **timer** (GATE:225) **or radian field** (GATE:252); see C.1 | GATE:225, 252 |
+| +0xD48 | dword | variant `0x6040003`/`0x6040004` | GATE:225 |
+| +0xD4C | flags | bits `0x2`/`0x40` (and `0x8` cleared by `0028C4F0`) | GATE:225, C-GATE:1571 |
+| +0xD50 | mode | `== 1` selects sub-block `0x4E0`, else `0x3C0` | GATE:190 |
+| +0xD54 | word | state: 1 live, 5 reap (also 3, 4 per `0028C4F0`) | GATE:225, C-GATE:1569-1573 |
+| +0xD68 / +0xD70 | ptr | prev / next | GATE:225 |
+| +0xD78 / +0xD7C | ? | fed to `00181930` | C-GATE:1594 |
+
+**Singleton `[0209BE80]`**: size `0x10FD0` (C-GATE:699-701). It has seven EMBED children, `_00A0` 0x52E0, `_5380` 0x460, `_57E0` 0x26C0, `_7EA0` 0x110, `_7FB0` 0xFF0, `_8FA0` **0x1110** (corrected), `_A0D0` 0x990 (C-GATE:492-502, GATE:449-457). Other regions: `+0x80` list head, `clearedBlock0080` 0x18 B (GATE:532); `+0xAA60` 196 B memset region; `+0xAB30` widget storage (0x720 widget or the 0x61F0 battle menu) (C-GATE:532-577); hole `+0xB244..+0x10CFB` (C-GATE:687); `+0x10EF0` record; `+0x10F00` target-line list head (GATE:225); `+0x10F10` node chain (TICK, outside my pages); `+0x10F20/+0x10F30/+0x10F40` pointers written by gate (C-GATE:105); mailboxes `+0x10F60..+0x10FA8` (GATE:490-499); `+0x10F68` flag word (bits 1, 3, 4, 6, 8, 10, 12, 13, 0x2000); `+0x10F78`/`+0x10F80` pointers (C-GATE:263); `+0x10FC0` → `0x8030` allocator block (C-GATE:1132-1134); header `+0x08..+0x7C` table (C-GATE:660-670).
+
+**Stop registry**
+| address / offset | width | meaning | cite |
+|---|---|---|---|
+| `01FD46D4` | u32 | active-request bitset, bit *n* = id *n* (0–27); "NOT read by the apply step" | STOP:42, C-STOP:65 |
+| `01FD4160 + id×0x18` | 0x18 | record A; first qword = permission mask | STOP:43, C-STOP:61 |
+| `01FD4400 + id×0x18` | 0x18 | record B; first qword = mask | STOP:44, C-STOP:62 |
+| record +0x08 | qword | "still unobserved" (C-STOP:243-244); the tsv shows 00227680 writing it | C-STOP:243 |
+| record B +0x10 | i32 | fade length; −1 = none; 0 at process start | C-STOP:63, 103-114 |
+| record B +0x14 | byte | "flag byte" / "flag argument (stored at record B `+0x14`)" vs "zeroed at start/reset" (see C.1) | STOP:44, 94; C-STOP:242-243 |
+| `01FD46D0` | u8 | dirty byte | STOP:45, C-STOP:66 |
+| `01FD46A0`–`01FD46C8` | — | combined masks and fade; fades at `01FD46B0`/`01FD46C8` set −1 by init | STOP:46, C-STOP:113 |
+| permission bit layout | — | A bit c → set 1, B bit c → set 4, A bit 8+c → set 2, B bit 8+c → set 5, A bit 16+c → set 6, B bit 16+c → set 7, set 3 = A bit 28 AND bit 8+c; "A *set* bit is an exemption" | STOP:57-60 |
+| A bit 31 | — | 1 manager when set, 3 when clear | STOP:61-63, C-STOP:131-134 |
+| B bit 41 | — | OR-ed on every apply; cleared on slot 13 only by `0022603A` | C-STOP:119-123, 222-229 |
+| 28 records | — | full table of A+0/B+0 per id × flag | STOP:106-138 |
+| per-actor live/pending | — | set1 BU `+0xF10` / `+0x54`/`+0x60`; set2 actor `+0x10C` / `+0x110`/`+0x114`; set3 ctrl `+0x170` / `+0x174`/`+0x178`; set4 `+0x164` / `+0x168`/`+0x16C`; set5 `+0x158` / `+0x15C`/`+0x160`; set6 BU `+0xF14` / `+0x4C`/`+0x58`; set7 BU `+0xF18` / `+0x50`/`+0x5C` | STOP:199-205 |
+| global outputs | — | B35 → distance cull; B32,33,40-44 → `002DF370`/`002DF640` audio; A/B 25-27 → `0209215E`/`02092162`; A/B 36-37 → `002547C0`/`00254840` (0x10/0x0E) = `01E0C2B0`/`01E0C2AC`; A29 → `0035B4B0(5)`/`0035B510(0xFF)`; A39 → `002E24C0`/`002E24E0`; B/A24 → `002EA8B0`/`002EA8E0`; A30 → `0025A5D0` | STOP:180-187, STOP:299 |
+
+#### 1.3.3 State
+
+| item | address / size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| enable word | `01E0C464`, 4 B | `FF FF FF FF` | none in image | `0028E290` only (16 tests) | static `.data` | GATE:231-233, 283-284; C-GATE:45 |
+| pump arg word | `01E0C2B0` | not stated (C-GATE: written `0xF` at `002539E5`) | `002539E5` (C-GATE:301); `002547C0` (STOP:828); save apply `00253970` (STOP:299) | `0028E290` bit 0 | static | C-GATE:301-302, STOP:299, 828 |
+| singleton | `[0209BE80]`, `0x10FD0` B | memset 0 by ctor `00291750`; `+0x10F90 = 0xFFFFFFFF`; `+0x10FC0` = new 0x8030 block | many | 136 slot loaders | allocated at `0028F8CF` "under the null guard at `0028F8C5`"; **destruction not stated** (teardown `00290990` handles only the target-line list and `+0x7EA0`, C-GATE:1526-1529) | C-GATE:699-701, 1075-1089 |
+| target-line node | 0xD80 B from allocator `+0x10FC0` | zeroed by `00275550` | builder `002917E0` | `0028BB50`, `0028C4F0`, `0028D1C0` | freed by `0028FA50` → `00273B40` | GATE:225 |
+| Libra bit | singleton `+0x10F68` bit 1 | 0 (ctor memset) | gate `0028E41C`–`0028E427` | `00290100` → `002BFD20` | per frame | GATE:543-548 |
+| party scan array | `022C1740`, 9 entries | not stated | `0030C300` | not stated | per frame | GATE:254, 537-538 |
+| registry slots | `01FD4160`..`01FD46A0` (56 records) | first qword −1, +0x14 0 (by `00226B30`), +0x10 = 0 ("past `.data`'s file-backed end (`01F7E400`)") | start/cancel/apply | apply | process | C-STOP:103-114 |
+| active bitset / dirty | `01FD46D4` / `01FD46D0` | not stated (presumably zero, by the same `.bss` argument: **not stated**) | start, cancel | `00226BC0` etc.; apply reads dirty only | process | STOP:42-45 |
+| live/pending stop words | per actor / BU / controller | not stated | start (pending), per-actor pass (live) | sets' consumers | actor lifetime | STOP:189-205 |
+
+#### 1.3.4 Order
+
+- Frame: `CoreRuntimeScheduling -> 0022A580 -> 0022A770 / 0022B7E0 -> 002507C0 -> 0028E290` (GATE:47-56). `002507C0` first calls `001EDE80` to gate `003BBA60` and then the pump (C-GATE:305-306, 1702).
+- Inside the pump, test order (not bit order): `0x0001, 0x0002(A), 0x0004, 0x0008, 0x0020, 0x0002(B, +dil&1), 0x1000, 0x0040, 0x0080, 0x2000, 0x4000, 0x0100, 0x0200, 0x0400, 0x8000, 0x0800(tail jmp)` (C-GATE:118-135). Between groups the singleton is re-loaded "after almost every group" (C-GATE:104). Inner tests on `+0x10F68` bits 3 (`0028E2EE`) and 8 (`0028E4B3`) exist (C-GATE:327); **which calls they gate is not stated**.
+- Stop registry: start → (wrapper usually) apply → per-actor pass → global effects; the apply "Runs only when dirty" (STOP:172). "**no frame poll exists**" (C-STOP:233), so the apply runs only synchronously from wrappers. Start-only paths leave dirty raised until the next applying wrapper (C-STOP:231-238).
+- Boot: `00266D10` raises 4 and 5 and cancels 5, 4, 7 (STOP:245). Input words are set to `0x3FF` at boot by `0024C970` (STOP:299).
+
+#### 1.3.5 Dependencies
+
+- Battle-Frame / world tick (00): frame modes and the field hold ids 4/5/7 (STOP:339-340, GATE:41-42).
+- 19-Save-Load-Settings: the `FrameLimit` time base `01DFE0B8` (GATE:180, 274), outside 00, not audited. Inside 00 this is confirmed by C-BOOT:268, 274 and BOOT:503-505.
+- 10-Status-Periodic-Terminal: status bit 30 = Libra (GATE:541-542), outside 00.
+- 02-Resource: the `targetline_p` image-name block (GATE:225), outside 00.
+- 16-UI: request router (STOP:271, 343); widget constructor `0x61F0` (STOP:309), outside 00.
+- 17-Presentation-Rendering: fade channels / bone trails / add-motion (STOP:203, 294, 457, 561-565), outside 00.
+- 04-Actor-Entity: kind byte, contexts, battle-unit map (STOP:99, 286, 345-346), outside 00.
+- 15-Input: capability policy (STOP:347-348), outside 00.
+- 11-Party: focus contract (C-STOP:149, 303), outside 00.
+- 22-Middleware: frame modes 5/6 (STOP:271), outside 00.
+- Combat/Party/Actor helpers: `00320AB0`, `00377C20`, `003588B0`, `PartyRoster_GetActorBySlot` `00263750`, `PartyFocus_GetCurrentPackedActorHandle` `003590D0` (GATE:409-415; C-STOP:336).
+
+### 1.4 Battle runtime mode ladder, diagnostics log, duplicated names, all-ones convention
+
+Pages: `MODE`, `C-MODE`, `LOG`, `DUP`, `ONES`.
+
+
+#### 1.4.1 Entry points
+
+| function (address + name) | role | callers as stated | cite |
+|---|---|---|---|
+| `0030D9A0` `BattleRuntime_GetMode0To5FromFlagsAndFieldBit15` | the ladder: returns 0..5 from `+0x5B04` bits 3,2, field bit 15, bits 1,0; 105 B; no args; no null check | C-MODE:112-115 lists `0023B040`, `00253C70`, `0023A570`, `003266C0`, `00235EA0`, `00320230`, `0035BC50`, `00313DB0` (inline), "and the two mode getters"; MODE:207 also `00309AE0`, `00311F70`; C-MODE:644 `003135C0`; MODE:429 `00309A90`; C-MODE:444 "**20 call sites, all in the `0x2FF…0x326` battle cluster**" (see C.1) | MODE:58-74, C-MODE:53-56, C-MODE:228-237, C-MODE:318-325 |
+| `00377C20` `FieldData_GetActiveFieldRecordBit15` (thunk `00313F60`, TICK:405, HUBS:484) | mode-3 predicate: table `*(02ADD100)`, count `+4`, 3-byte rows from `+8`, bit 15 of the LE u16; null/out-of-range → `0xFFF >> 15` = 0 | the ladder; items `00309FB0`/`0030FD10`, economy `00312280`, `00313A00`, `AiOrder_EvaluateAndResolveActionTarget` | C-MODE:117-119, C-MODE:239-259, C-MODE:126-128, C-MODE:606 |
+| `003148F0` `WorldTransition_GetActiveOrPendingFieldId` | the active field index for `00377C20`; negative clamped to 0 | `00377C20`, `00233780`, `003160C0` | C-MODE:117, C-MODE:334-337, C-MODE:125-129 |
+| `00303EC0` (= `getchocobomode`) | `return ladder() == 2` | 6 direct (`0023B040`, `00253C70`, `0023A570`, `00235EA0`, `00320230`, `0035BC50`) + 15 via thunk `0037C860` = 21 | MODE:194-203, MODE:301-304, MODE:633 |
+| `003135C0` (= `getsummonmode`) | `ladder() == 1`; 24 B, 7 callers | thunk `0037C8F0`; `00338490` | C-MODE:644-647, MODE:297, MODE:207 |
+| `003072C0` / `00307280` (`geteventpartymode` / `geteventparty2mode`) | `ladder() == 4` / `ladder() == 5` | script verbs `0x0510` / `0x0515` (handlers `00355FE0` / `00356370`) | C-MODE:59, MODE:139-142, MODE:531-533 |
+| `003135E0` / `00313550` | bit 0 getter / setter (summon); setter tails `0035C620` on change | setter: `00328BD0`, `0034E1F0`, `0034FE80`, `0050FFB0` (MODE:1240); verbs `summonread` `0203` / `summontopartyread` `0207` / `btlAtelSetSummonMode` `3044` | MODE:110, MODE:294-297, MODE:1238-1245, C-MODE:174-177 |
+| `00303EE0` / `00303D90` | bit 1 getter / setter (chocobo), setter side effects | verbs `ridechocobo` `037E` (thunk `0037CFF0`), `getoffchocobo` `037F` (thunk `0037CFC0`), `setchocobomode` `03EC` (thunk `0037D100`) | MODE:111, MODE:237-260, MODE:298-301, C-MODE:155-172 |
+| `003072E0` / `00307240` | bit 2 getter / setter (event party) | script VM: thunks `0037C8B0` ← `00356DF0`; `0037D120` ← `00351B40` | MODE:112, MODE:121-124 |
+| `003072A0` / `00307200` | bit 3 getter / setter (event party 2) | thunks `0037C890` ← `003573A0`; `0037D110` ← `00351E50` | MODE:113, MODE:121-124 |
+| `0030DA10` | reset: zeroes `+0x5B04` and `+0x5B08` | "for `BattleSystem_ResetRuntimeState`" | MODE:282-283, MODE:583-584, C-MODE:60 |
+| `0030D8B0(commit)` + table `01EECFC0` | mode-transition dispatcher; compares ladder with `+0x5B08`, indexes 32-byte rows; writes `+0x5B08` when `commit ≠ 0` | `00233AA0` (field runtime pass, when all four roster members idle), `00233CF0`; C-MODE:406-407 task `0037C730` → `00233AA0` → `0030D8B0(1)` | MODE:345-377 |
+| handlers `00313600`/`00313730`/`00313650` (summon), `00304180`/`00304060`/`00304400`/`00304140` (chocobo), `0016D6A0` (empty stub) | enter/leave/same-mode arms of `01EECFC0` | only `0030D8B0`'s two `call [rbx + rdx*8]` sites `0030D920`, `0030D952` | MODE:350-373 |
+| `00303F00` | chocobo turbo (`btlAtelSetChocoboTurboMode` `302F`, handler `0050F8A0`) | `0050F8A0` | MODE:302, MODE:316-320 |
+| `00304440` | ride's per-frame timer handler | not stated | MODE:315, MODE:448 |
+| `00304680` | ride's end / dismount path | `00304140` | MODE:111, MODE:322-327 |
+| `002EF3C0` / `002EF410` | `SaveTransitionMetadata_CaptureToRecord` / `…RestoreFromRecord` | restore called by `00584210` (MODE:962) | MODE:269-285, MODE:964-984, C-MODE:79-86 |
+| `00584210` `SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG` | clears bit 0 on load | not stated | MODE:586-587 |
+| `005843E0` `WorldTransitionSnapshot_RestorePersistencePairFor…` | clears bit 1 (`0058446A`) | not stated | MODE:588-589 |
+| `00306BD0` `BattleAction_InitializeGlobalSpecialSequenceMode`, `00306B10`, `00306760` `BattleAction_UpdateSpecialPresentationSequence`, `003065D0`, `0030CE10` `BattleAction_TryEnterGlobalSpecialSequence` | the `022C2160` special-sequence machine (states 0–7, kinds 1–7) | `003065D0` "on the field frame's step 11" | MODE:379-425 |
+| `0035BC50` | battle-menu selection-state builder (four gates, four `0xC0`-stride slots) | direct caller of `00303EC0`; `0035D980` (`0035BC50(0)`) | MODE:671-790, MODE:1381 |
+| `00313DB0` | target-selection cursor; drains 64-entry ring; tail `jmp 0x313a00` | not stated | MODE:792-872 |
+| `00253C70` `InputGameplay_ArbitrateDigitalInputAndModalState` | Input consumer; 22-member exclusive subtree | not stated | MODE:880-929 |
+| `00309A90` | distance threshold: 24.0 under force-fight; 3.8 in mode 1; 2.2 otherwise | "four call sites" (AI order precondition, locomotion order-goal decoder, one body twice) | MODE:427-433 |
+| `005CDAA0` (the formatted log call) | `(channel, fmt, ...)`: 16 KB stack buffer, `__stdio_common_vsnprintf_s`, lazy sink, vtable slot 1 | 136 non-EH caller functions, 245 sites | LOG:53-56, LOG:249-276, LOG:363-374 |
+| `0019C5D0` | `vsnprintf` wrapper, clamps negative to `-1` | 120 non-EH callers | LOG:96-108 |
+| `0016D670` `__local_stdio_printf_options` | returns `&02EBA3D0` | 23 call sites; writer `00809C50` | LOG:61-87 |
+| `005CDA30` / `005CD9C0` | magic-static accessors (sink object `02CB6140` / sink pointer `02CB6150`) | `005CDAA0` cold path | LOG:172, LOG:201, LOG:285-287, LOG:323-328 |
+| `005CDB90` | sink slot 1: `DebugBreak()` on channel 4 when a debugger is present | via `[02CB6150]` vtable | LOG:201, LOG:371-372 |
+| `00379CF0` → `00863D30` `RNG_MT19937_Seed` | thunk / body example | callers reference the thunk | DUP:41-45, DUP:208 |
+| `00379F20` → `0035B450` → `0035B650` | default-argument forwarder chain (`mov dl, 2`) | not stated | DUP:87-90, DUP:322-333 |
+| `0016D6A0` | 3-byte `ret`; `_guard_check_icall` and array-delete helper folded | CFG slot `008C31C0`, forwarder `0017E7D0`; 1,149 deleting destructors | DUP:229-251 |
+| `00512CD0` `RelationLook_RemovePooledRelationRecord` (+ `00512C80`, `00512D80`, `00512EF0`, `00512F30`) | pool unlink over 32 × 16-byte records at `02CA81F0` | `00512D80`, `00512F30` | ONES:41-51, ONES:299-302, ONES:397 |
+
+#### 1.4.2 Inputs and outputs — record layouts
+
+**Runtime state block `*(02EBF190)`** (MODE:458-476, C-MODE:67-77)
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| `+0x5AD0` | (u16 per outside page) | bit 1 = summon sequence active (`00313600` sets, `00313730` clears) | MODE:352, MODE:364-365 |
+| `+0x5AD4` | 1 | the Esper's party-table row; reset value `0x1B` (Belias) | MODE:296, MODE:336, MODE:341-342 |
+| `+0x5AD5` | 1 | the caster's type byte / summoner | MODE:331, MODE:335 |
+| `+0x5AD8` / `+0x5ADC` | (f32 implied) | summon timers, set from party row `+0x32` (250) | MODE:336-338 |
+| `+0x5AD0..+0x5AEF` | 32 | persisted across transitions | MODE:280, MODE:463 |
+| `+0x5AE0` | u32 (MODE) / 8 (C-MODE) | chocobo flags: bit 0 timers armed, bit 1 turbo on, bits 2-3 turbo charges (3 per ride) — see C.1 | MODE:464, MODE:317-319, C-MODE:74 |
+| `+0x5AE4` | f32 | ride time, `0x43340000` = 180.0 on mount, channel 1 | MODE:315, MODE:465 |
+| `+0x5AE8` | f32 | turbo time, 10.0 per charge, channel 2 | MODE:316, MODE:466 |
+| `+0x5AEC` | u32 | last turbo argument; zeroed on dismount | MODE:320, MODE:467 |
+| `+0x5B04` | u32 | mode flags; bits 0..3 consulted (only `cl` is tested) | MODE:468, C-MODE:72, C-MODE:318-322 |
+| `+0x5B08` | u32 | previous mode (dispatcher) | MODE:469, C-MODE:73 |
+| `+0x5A48` | 9 selectors | nine-entry selector; `+0x5AA4` leader | MODE:328, MODE:537 |
+| `+0x5A5A`/`+0x5A6C`/`+0x5A7E`/`+0x5A90` | nine u16 each | mapping-class tables 1–4 (corrected 2026-09-14) — see C.1 | C-MODE:149, C-MODE:388 |
+
+**Transition record** (written by `002EF3C0`, read by `002EF410`) — MODE:271-278 and C-MODE:80-85 (corrected 2026-09-26):
+
+| rec offset | width | source | cite |
+|---|---|---|---|
+| `+0x04` | dword | `DAT_021B28E4` | MODE:272 |
+| `+0x08` | qword | `state+0x5AE0` | MODE:273, C-MODE:81 |
+| `+0x10` | qword | `state+0x5AE8` | MODE:274 |
+| `+0x18` | qword | `state+0x5AD0` (restored only when `rec+0x18` bit 1 set) | MODE:275, C-MODE:84-85, MODE:969-970 |
+| `+0x20` | qword | `state+0x5AD8` | MODE:276 |
+| `+0x28` | dword | `state+0x5B04` | MODE:277 |
+| `+0xC`/`+0x10` floats | | restored through `00304790`/`003047C0` when `byte[rbx+8] & 1`, then `+0x5B04 |= 2` | MODE:971-973 |
+
+**Field-record table `*(02ADD100)`**: `+0x04` count, rows from `+8`, stride 3; flag = bit 15 of `(row[1] << 8) + row[0]`, i.e. bit 7 of `row[1]` (C-MODE:77, C-MODE:242-254, C-MODE:285-290).
+
+**Transition table `01EECFC0`**: rows of 32 bytes, 4 cells (8-byte pointers) per mode row; rows 0 and 4 zero; row 3 `0016D6A0` ×4 (MODE:348, MODE:357-373). Column semantics contradict — see C.1.
+
+**Special-sequence globals** (MODE:385-404): `022C2160` state 0–7; `022C215C` kind (table at `00306D08`, ids `0x94`–`0x113`); `022C2168` owner; `022C2158` flags; `022C1F50` accumulated-HP table "32 entries of 16 bytes" (internal inconsistency, C.1); one-shot `0208E6A8`.
+
+**Countdown row API `02B5EBC0`** (stride `0x14`): `[row+0]` value, `[row+4]` bound, `[row+8]` float value, `[row+0xC]` rate, `[row+0x10]` 0, `[row+0x11]` arrived flag (MODE:1061, MODE:1425); byte getter `003EBB70` reads `02B5EBD1 + idx*20` (MODE:1065-1068). Rate "`0.016675` or `0.02` per tick by `00290180()`" (MODE:549-550).
+
+**Selection state block (`0035BC50`)** (MODE:735-747): `022C8060` dword flags (bit 0 focus matched, bit 2 picker latch), `022C8064` word accepted count, `022C8066` word, `022C8068` dword, `022C806C` focus handle, `022C8070` preferred selector, `022C8074` word matched index (init -1), `022C8076` word (init -1), `022C8078` qword pointer; slots `022C8080`+`0xC0`k (k<4): `+0x00` flags byte, `+0x04` packed actor handle, `+0x60` word (MODE:723-729); `022C8388` four pointers stride 8; command list `022C83F0`/`022C83F4`/`022C83F8`.
+
+**Target cursor ring** (MODE:801-860): head `022BEDA0`, tail `022BEDA1`, 64 entries × 8 at `022BEDA4` (dword handle + 4 bytes padding); selected unit `02089350`; unit flag bits 12 (queued) / 13 (popped).
+
+**Log call I/O** (LOG:124-140 withdrawn; LOG:249-273, LOG:317-321): in `ecx` channel, `rdx` fmt, varargs; `vsnprintf_s(options=4, buf, 0x4000, _TRUNCATE(-1), fmt, locale 0, ap)`; out: virtual slot 1 `(sink, channel, buf)`; nothing returned stated. Options qword `02EBA3D0` = 4 (LOG:78-86).
+
+**Pooled relation record** (ONES:291-297): 16 bytes; `+0x4` key, `+0xC` own slot 0–31, `+0xD` prev (`0xFF` none), `+0xE` next (`0xFF` none), `+0xF` low nibble kind (0 free). List head (separate): head `+0xC`, tail `+0xD`, count `+0xE` (ONES:300-302).
+
+#### 1.4.3 State
+
+| global/object | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| `02EBF190` (pointer slot) | 8 | 0 (BSS) | `00238A92` in `00238A80` (tail of `002EF650`), `00233C33` in `00233C10`; both store `021B290C` | 131 reader functions | set at boot transition (state-0 exit), never nulled | C-MODE:425-436, C-MODE:520 |
+| `state+0x5B04` | 4 | not stated directly (save-image memset by `002EF650`, C-MODE:437-438; zeroed by `0030DA10`) | setters `00313550`/`00313840`/`00303D90`/`00307240`/`00307200`, `00306760`, `002EF410`, `00584210`, `005843E0`, `0030DA10` | ladder, getters, `00304140`, `00313650`, `002EF3C0` | persisted across transitions and saves | MODE:576-589 |
+| `state+0x5B08` | 4 | zeroed by `0030DA10` | `0030D8B0` when `commit ≠ 0` | `0030D8B0` | not stated beyond reset | MODE:375, MODE:446 |
+| `022C2160`/`022C215C`/`022C2168`/`022C2158` | dwords | 0 = idle | four writers `00306BD0`, `00306B10`, `00306760`, `003065D0` | 26 `.text` refs; 11 readers of `state−5 ≤ 1` | per special sequence | MODE:385-425 |
+| `022C1F50` table | 32 × 16 B | not stated | `00306760` | `003065D0` kinds 3/4, `0030D810` | cleared after kind 3 | MODE:391, MODE:406-414 |
+| `022BEDA0`/`022BEDA1`/`022BEDA4` ring | 2 B + 512 B | zeroed by `0030FE60` | `00304E4B`–`00304E74` | `00313DB0` | not stated | MODE:849-860 |
+| `02089350` | 8 | not stated | `00313DB0` | capability policy | not stated | MODE:828-829, MODE:840 |
+| `022C8060`..`022C8078`, `022C8080` slots | see I.2 | `022C8074`/`022C8076` = -1 per pass | `0035BC50` | `0035D980` | rebuilt per call | MODE:735-747, MODE:1381 |
+| `02CB6150` sink pointer / `02CB6158` guard / `02CB6140` object / `02CB6148` guard | 8/4/—/4 | guard per MSVC magic static | `005CDAA0` cold path (`005CDB81`), `005CDA30`, `_Init_thread_header`/`footer` | `005CDAA0` | built on first log call; `atexit` `008AADA0` | LOG:169-172, LOG:201, LOG:265-272 |
+| `02EBA3D0` options qword | 8 | zero, then `|= 4` by `00809C50` before game entry | `00809C50` only | 22 readers | fixed from C-init | LOG:78-86 |
+| `02EAED3C` `_tls_index` | 4 | loader-written (LOG) | loader (LOG:282) / `00189CE0` (APP:772) — C.1 | 709 functions | process | LOG:169, LOG:280-284 |
+| pool `02CA81F0`–`02CA83EF` | 32 × 16 | init loop `00512F10`–`00512F1F` writes `+0xC` = n, clears kind nibble | five pool users | same | not stated | ONES:279-302 |
+
+#### 1.4.4 Order
+
+- Ladder is a pure query; asked whenever a consumer asks (C-MODE:583 "`TIMING` — nothing here establishes *when* a consumer asks").
+- Transition dispatcher `0030D8B0` runs from `00233AA0` "which [the field runtime pass] §5 reaches when all four roster members are idle, and by `00233CF0`" (MODE:345-347); also from the party-read-in task `0037C730` (C-MODE:406-407).
+- Ride per-frame: "the frame handler copies the channel back each frame" (MODE:315).
+- Special sequence: state 6 set by `003065D0` "on the field frame's step 11" (MODE:403); state 3 "from the owner's frame" (MODE:400).
+- Boot: `02EBF190` filled at the tail of `002EF650`, run from `0022B6E0` inside the `0209273C == 5` block; leaving master state 0 requires that init in the same tick (C-MODE:437-456).
+- Save/load: capture on transition, restore, then normalise (`00584210`) clears bit 0; snapshot restore clears bit 1 (MODE:584-589).
+- Log: `02EBA3D0 |= 4` at C-initializer time "before the C++ walk and before game entry" (LOG:82-84); sink built on the first log call (LOG:265-272).
+- `0035BC50` raises the leader picker (request 3) "once, latched by `022C8060` bit 2" (MODE:787-790). Not stated when `0035BC50` itself runs per frame.
+
+#### 1.4.5 Dependencies
+
+- Script VM (`01-Script-VM-Native-Bridge`): verbs `0x050F`–`0x0516`, `0203`/`0207`/`3044`/`0408`/`0512`, `037E`/`037F`/`03EC`/`0407`/`0511`, `302F` (MODE:136-143, MODE:292-302).
+- World/Area/Field (`03-World-Area-Field`): field-record bit 15 (MODE:617; C-MODE:564-567); area id `003148F0`.
+- Party (`11-Party`): roster slot 3 (mount), battle-state block map (MODE:263-265, MODE:310, MODE:536).
+- Save/Load: `002EF3C0`/`002EF410`/`00584210`/`005843E0`; save image `021B290C` (C-MODE:432-436).
+- Presentation (`17-Presentation-Rendering`): render record array `022C6F28` stride `0x740`, `003E6AA0`, `RenderRecords_ProcessDirtyState` `00427DE0`, `003B3C00` (MODE:553-569).
+- UI (`16-UI`): request router, `02092730`, request ids 3, 11, 24 (MODE:774, MODE:786-787).
+- Developer console: commands 229/230 via `0017D380`/`0017D3A0` (`+0xE1D`/`+0xE1E`) (MODE:315, MODE:319).
+- Combat Action (`07-Combat-Action`): `00306760`, action rows, `Dismiss`/`Dismount` (MODE:342-343).
+- Force-fight mode (00, FORCE): `00309A90` returns 24.0 under force-fight (MODE:428-429).
+- LOG: CRT import `api-ms-win-crt-stdio-l1-1-0.dll` (LOG:113, LOG:208-209); PhyreEngine `Phyre::PTTYCallback` (LOG:201); 24-Compiler-And-CRT-Runtime lazy statics (LOG:289-292).
+- DUP: 24-Compiler-And-CRT-Runtime thunk layer (DUP:255); 22-Middleware-PhyreEngine reflection (DUP:261).
+
+### 1.5 Encoded-id space, class registry, query record, basis helpers, ABI recovery
+
+Pages: `EID`, `CLS`, `C-EID`, `QREC`, `BASIS`, `ABI`.
+
+
+#### 1.5.1 Entry points
+
+| function (address + name) | role | callers as stated | cite |
+|---|---|---|---|
+| `00309440` FUN_00309440 (30 B) | id → class: `[01EEBCF8 + (id>>12)*0x58]`, nibble > 0xE → −1 | class-1 arm of `00322C50`; `0031C5D0` | EID:91-94, EID:718-726, C-EID:48, C-EID:412 |
+| `00322C50` BattleEncodedId_IsValidForClass | class 1..32 validator, 32-entry table `00323054`, shared tail `0032302C`/`0032302E` | 71 functions, 110 sites; 84 pass a constant class; 26 are `0031C5D0` arms | CLS:76-84, CLS:232, CLS:313-316, CLS:404, C-EID:49 |
+| `0030B6A0` InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState | fills descriptor lanes +08/+20/+30, prefix +40, zeroes state+57C8 (0x200), ANDs state+59C8 (0x80) with F8 | `SaveRuntime_RebindImageBackedGameplayState` (00238A80); call sites `00233C2A`, `00238A89` | EID:108-129, C-EID:50, C-EID:282, CLS:581 |
+| `0031C5D0` query-record filler (8,136 B) | clears QWORD+18, dispatches `class−1` through `0031E598`; returns 0 / −2 / class-19 −1 | "fourteen direct callers" (EID:62); 12 own-record callers (EID:208); "17 direct callers" (CLS:321); `0035D330`, `0035D380`, `0035E070`, `00536410` | EID:171-181, C-EID:51, CLS:173 |
+| `0035D330` row/DWORD wrapper | writes tag + DWORD+4 of `022CA520`, calls filler, zeroes 0x98 on negative, returns record | 76 (edges.tsv) / 75 (census) / 159 sites | EID:176-178, EID:206, EID:675, CLS:321-322, C-EID:52 |
+| `0035D380` id/WORD wrapper | writes tag + WORD+6 of `022CA480`; same failure rule | 14 / 15 sites | EID:176, EID:207, CLS:321, C-EID:53 |
+| `0035E070` | third producer: writes `id<<16` to `022CA524`, class 1 to `022CA520`, calls filler, formats +0x18 with text `0x833` | not stated | EID:181 |
+| `00309EC0` BattleEncodedId_DispatchQueryMode0Value (102 B) | `0xFFFF`/nibble>E → −1; bound `id&0xFFF` vs +0x3C; `jmp [+0x50]` as `handler(id, 0)` | 14 callers (CLS:627); `0031C5D0`, `00315E90`, `00301AD0`, `00317930`, `00576A50` | EID:131-137, C-EID:345-351, CLS:625-633, C-EID:409-416 |
+| `0030AE30` BattleEncodedId_DispatchQueryMode1 | same, mode 1 | `0031C5D0` | EID:132, C-EID:412 |
+| `0030ADC0` BattleEncodedId_DispatchQueryMode3 | third fixed-mode twin | `0030B270` | EID:290-291, EID:798, C-EID:412 |
+| `003008A0` Inventory_ModifyEncodedItemAndUpdateDiscoveryState | the one write entry `(id, delta, absolute, channel, flags)` | 25 callers; bundle handlers `002FD530`/`002FD640`/`002FD780`; `00300BA0` shim | EID:279-286, EID:1033-1037, C-EID:413 |
+| `00300BA0` (28 B) | fixed-flags trampoline `(rcx, rdx, r8d=1, r9d=1)` into `003008A0` | `00239960`, `0023AF50`, `0032A830` | EID:1033-1037 |
+| `00309F30` Inventory_QueryEncodedItemStateByClass | read entry `(id, mode)`, mode 4 → bitset query | `003008A0`; `0030A4E0` | EID:288-290, CLS:574 |
+| `002FD150` / `002FD8D0` InventoryPackedCountClass_MutateChannels / _QueryChannel | packed-count handlers | descriptor +0x48 / +0x50 | EID:303-315 |
+| `002FD420` / `002FD970` InventoryBitsetClass_MutateState / _QueryState | bitset handlers | descriptor +0x48 / +0x50 | EID:317-324 |
+| `002FD530` / `002FD640` / `002FD780` / `002FD880` | bundle 14 / selector 15 / bazaar 18 / gil 19 mutate handlers | descriptor +0x48 | EID:337-342 |
+| `00325F40` InventoryDerivedIndex_UpdateOnPresenceTransition | 0↔non-zero → add `00252E60` / remove `002535D0` | every channel-1 change | EID:313, EID:375-386 |
+| `00253240` SaveRuntime_InitializeImageBackedPointerDescriptor | builds capacity table `02092760` | `SaveRuntime_InitializeHeaderAndImageBackedState` (via `SaveRuntime_ResetActiveImageAndRebindState` `002EF66F`); `00253480` (← `0035C584`, tail from `0030483D`) | EID:407-430 |
+| `00236C30` (1,037 B) | area-load binder of descriptor slots from `battle_pack.bin` directory | `00238850` (CLS:579) | EID:228-233, CLS:172, CLS:228 |
+| `002F9860` / `002F9920` | text/description id resolvers (`id/1000`, `id/10000` buckets) | `0029FF60`, `0029CB80`, filler +0x10 | EID:469, EID:932-942, C-EID:358, C-EID:362-366 |
+| `0062DDE0` / `0062DFB0` | basis-column helpers `C -= B*t` / `C += A*b + T*a` | "who calls either function" not claimed (BASIS:112-113); VTIDX:1409-1410 lists them as `PWorldMatrixFlyController` slots 7 and 8 | BASIS:31-47 |
+| `00189130` (642 B) | writes the basis layout; three axis-angle rotations via `00185100` | `FUN_00187950` (Presentation) | BASIS:119-145, BASIS:158, BASIS:162 |
+| `00185100` (951 B) | call-free 4×4 product `out[rdx]=[rcx]×[r8]` | `00189130` ×3 | BASIS:166 |
+| ABI subjects `0031B760` (1 pointer arg), `003299B0` (3 args, r8d parked at +0x2C) | contract corrections | `0031B760`: 25 spawn callers etc.; `003299B0`: `00313500` | ABI:62-79, ABI:183-185, ABI:323 |
+
+#### 1.5.2 Inputs and outputs
+
+**Encoded id (16 bits):** "nibble = id >> 12 ; index = id & 0xFFF … class = descriptor[+0x38] = 5 + nibble … valid = index < descriptor[+0x3C]" (EID:489-492). Id bases per class `0`..`E000` (CLS:490-492).
+
+**InventoryClassDescriptor (0x58) at `01EEBCC0`, 15 rows** (EID:112-125, EID:494-499, C-EID:61-72):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0x00 | QWORD tested, low DWORD used | region A offset in state block | EID:114, EID:495, C-EID:65 |
+| +0x08 | QWORD | region A pointer (runtime) | EID:115, C-EID:66 |
+| +0x10 | u32 | region A length in WORDs | EID:116, C-EID:67 |
+| +0x14 | 4 | "Four-byte declared interiors; no meaning promoted here" | C-EID:68 |
+| +0x18 / +0x20 | QWORD / QWORD | region B offset / pointer | EID:117-118 |
+| +0x28 / +0x30 | QWORD / QWORD | region C offset / pointer | EID:119-120 |
+| +0x38 | u32 | class 5..19 | EID:121 |
+| +0x3C | u32 | id count | EID:122 |
+| +0x40 | u32 | cumulative id base (exclusive prefix, 32-bit wrap) | EID:123, C-EID:71 |
+| +0x44 | 4 | no meaning stated | C-EID:68 |
+| +0x48 / +0x50 | fn ptr | mutate / query handler | EID:124-125 |
+
+Shipped rows (EID:501-516): 5: 0x40 A+0x4748(64w) C+0x57C0; 6: 0x1A4 A+0x47C8(420w); 7: 0x200 A+0x4B10(512w) B+0x57C8; 8: 0x51 A+0x4F10(6w); 9: 0x18 A+0x4F1C(2w); 10/12/16: 0, no handler; 11: 0x100 A+0x4F20(16w); 13: 0x200 A+0x4F40(32w); 14: 0x200, 15: 0x100, 18: 0x80, 19: 0xFFF mutate-only; 17: 0x20 A+0x4F80(2w). Sum 6892 (C-EID:76).
+
+**Packed-count word:** bits 0-9 total (cap 99), bits 10-15 reserved; mode 0 total−reserved, 1 total, 2 reserved, 3 region-B byte (EID:301-306, EID:547-552). **Bitset:** word `index>>4`, bit `index&0xF` (EID:318, EID:554-555).
+
+**EncodedIdQueryRecord (0x98)** (EID:518-520, C-EID:78-82, QREC:40-41, QREC:90-120):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0x00 | DWORD | class tag (class 1 may rewrite) | C-EID:78, QREC:92 |
+| +0x04 | DWORD | row request (classes 2..4, 19..29, 32) | C-EID:86 |
+| +0x06 | WORD | id request (classes 1, 5..11, 13..18, 30, 31); overlaps high half of +4 | C-EID:86, QREC:40-41 |
+| +0x08 | ptr | auxiliary text (classes 10, 20, 21, 24 …) | EID:520, QREC:100-113 |
+| +0x10 | ptr | description | EID:520 |
+| +0x18 | ptr | name; cleared at entry `0031C5F0` | EID:171-172, QREC:65 |
+| +0x20 / +0x24 | s32 | query channel 0 / 1 | EID:135-136, EID:520 |
+| +0x21..+0x25 | bytes | licence bytes (25/32), status +0x25 low 5 bits (26) | EID:215, QREC:114-115, QREC:164-165 |
+| +0x28, +0x2A, +0x2C, +0x30, +0x36 | various | class-specific (see QREC §4) | QREC:103-120, QREC:160-165 |
+| +0x38..+0x90 step 8 | DWORD | class 10 sentinels `FFFFFFFF` | QREC:140-146 |
+| +0x3C, +0x44, +0x48, +0x50, +0x54 bit0, +0x58/+0x5C/+0x60 | | class 6 equipment block | EID:532-534, QREC:128-138 |
+| +0x94..+0x97 | 4 | untouched by class-10 loop | QREC:145-146 |
+
+Per-class producer table: QREC:90-120 (32 rows). Failure: direct −2/name cleared; wrapper zeroes 0x98 (C-EID:182, QREC:68-72).
+
+**Bundle rows:** class 14 12 B `{u32 gil; u16 itemA; u16 countA; u16 itemB; u16 countB}`; class 15 12 B `u16 idA[3]; u16 idB[3]`; class 18 36 B (EID:562-564).
+
+**Derived-index lists:** u16 id arrays in `*(020927C0)`, counts `+0x47B8 + 4×list`, capacity table `02092760` `{u16, s16 capacity, u32 offset}`; bases/capacities table EID:415-418; category flags `+0x3244` bits 1..8 (EID:387-401).
+
+**Basis structure:** twelve floats `+0x08…+0x34`, rows A/B/C, fourth column T at `+0x14/+0x24/+0x34`; scratch `+0x38…+0x74` (BASIS:57-68, BASIS:107-110).
+
+**Files read:** `battle_pack.bin` st2e sections, `+4` row count, `+8` stride, rows at `+0x20` (EID:72, EID:233); directory offsets per class EID:239-268.
+
+#### 1.5.3 State
+
+| global/object | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| `01EEBCC0` descriptor table | 15 × 0x58 (to `01EEC1E8`) | runtime lanes/prefix zero on disk; offsets/counts/handlers authored | only `0030B6A0` stores (E11) | 28 functions / 49 refs (C-EID:268-270); "fifteen functions" (EID:291-297) | rebuilt on each rebase; "Repetition recomputes" | EID:75, C-EID:101-104, C-EID:392, C-EID:400-401 |
+| `022CA520` / `022CA480` static records | 0x98 each | not stated | wrappers, `0035E070` | callers via returned pointer | static; aliasing on next call | C-EID:110-113, QREC:74-77 |
+| state block (rebase base) | not stated | not stated | inventory handlers | | "`02164280 + 0x4E68C`, passed by both callers" | C-EID:281-282 |
+| `[02EBF190] + 4` discovery flag dword | 4 | not stated | `003008A0` | `00318CD0` | not stated | EID:285-286, EID:363-373 |
+| `01EECF98` school bits `{2,4,8,0x10,0x20}` | 5 | image data | — | `003008A0` | static | EID:365-366 |
+| `01EED1B0` nibble → list map | 11 pairs | image data | — | `00325F40` | static | EID:377-381 |
+| `02092760` capacity table | 12 × 8 | zero on disk | `00253240` | `00252F40` | rebuilt on image reset | EID:407-430, EID:1110-1120 |
+| `020927C0` image-backed block pointer | ptr | not stated | `00253970` binds it to runtime buffer `+0x8200` | list code | not stated | EID:382, EID:405-406 |
+| `01F83530` relocation base | QWORD | "**It is zero at image load**" | none by rip store; one computed route `00210570` id `0xFFFB` | `0020E600`, `0020E620` | "supported, not proven" zero for process life | C-EID:284-295 |
+| `02EBF038…02EBF150` slot descriptors | count at +4 | bound at area load | `00236C30` (+ helpers) | validator arms, filler | rebound each area load | CLS:208, CLS:228, CLS:263-265 |
+| `02EBF078` fourth key-item slot | | ships `0 × 10` | `00236EDA` | validator | | CLS:367-375, C-EID:256-258 |
+| `01E0C560` ring counter / `0209C390` 8×0x20 slots | | not stated | `0029CB80` | callers | "small rotating scratch" | C-EID:366 |
+| `02ADED98` schedule row pointer | | not stated | `0037DDD0` | `0037DEA0` | | EID:444 |
+| `022BE930` / `01EEBAF0` concurrence debug override | | not stated | | `002F8D60` | | EID:438 |
+
+#### 1.5.4 Order
+
+- Area load: "`00236C30` binds the descriptors from the blob directory (34 sections)" (EID:576); "the descriptor pointers are rebound at every area load by `00236C30`" (CLS:263-264).
+- Save load / reset: "`0030B6A0` rebases the fifteen inventory class descriptors onto the state block" (EID:577); "This is an on-disk observation, not proof of live order." (C-EID:158).
+- Image reset: capacity table rebuilt "whenever the active image is reset" (EID:430).
+- Inventory change: `003008A0` → before `00309F30` → `+0x48` handler → `00325F40` → `0046A630` → discovery bit on first acquisition (EID:578-582).
+- On demand (menus, messages): wrappers → `0031C5D0` → validator → arm (EID:569-574).
+- Per frame: `0037DDD0` from `MainLoop_UpdateAndRenderFrame` (movie fade schedule) (EID:444, EID:645-649).
+- Starting inventory: `0023AF50` after `002370C0` state reset (EID:439).
+- Basis helpers: not stated.
+
+#### 1.5.5 Dependencies
+
+- 02-Resource-And-Asset-Pipeline: battle text banks (EID:71-73, EID:692), authored-data table registry / UQ-80 (CLS:186-188, CLS:291-297).
+- 11-Party: battle state block field map (EID:694), party configuration class 23 (CLS:131).
+- 12-Items-Equipment-Shops-License: item id encoding (EID:100, EID:693), bazaar page (EID:330, EID:352), licence check (CLS:130), shop table (EID:447).
+- 19-Save-Load-Settings: save payload field map (EID:382, EID:695).
+- 07-Combat-Action: message table (EID:315, EID:697).
+- 09-Combat-AI-And-Gambits (EID:262); 13-Rewards (EID:440); 17-Presentation screen fade (EID:648); 16-UI shop screens (EID:759).
+- 05-Spawn-Encounter-Lifecycle CONTRACT-group-completion-and-respawn (ABI:81-82); 22-Middleware-PhyreEngine (ABI:102-103); 21-RNG (CLS:563).
+- Within 00: VTIDX for `0062DDE0`/`0062DFB0` (not cited by BASIS).
+
+### 1.6 Shared transform workbench (EE/VU0 register bank, save/restore, primitives)
+
+Pages: `EEVU`, `SAVE`, `WB`, `PRIM`, `C-WB`, `C-SAVE`, `C-PRIM`.
+
+
+#### 1.6.1 Entry points
+
+| function (address + name) | role | callers as stated | cite |
+|---|---|---|---|
+| `0036D990` (74 B) emulation start-up | stores vf00 = (0,0,0,1) and prints `"Sizeof 64 bit int = %d\n"` with 8 and the completion line through `0017D280` | boot routine `0022A0B0` at `0022A125` | EEVU:73-74, EEVU:277, WB:365-368 |
+| `0036D9E0` (918 B) clear | "writes **80 slots and reads none**"; qword pairs over `022D91B0`–`022D9428`, plus vf00 header | `003DFFE0` (channel-rate emit) and `CharacterRender_UpdateCombatLookAndAuxControllers` `003E00C0` | WB:109-121, WB:229-234, C-WB:55, C-WB:247 |
+| `0036DD80` (15 B) vf00 re-establish | `movaps xmm0,[008C5FD0]` → `movups [01EF93F0],xmm0` | 33 frontier callers; `0025C830`, `0035DCC0`, audio `00361DE0`/`003623C0`/`00363FD0`, `002F1D90` | WB:628-631, EEVU:70, EEVU:372-374, SAVE:287 |
+| `0036DD90` (11 B) / `0036DDA0` (8 B) | `or dword [022D9470], 0x80` / `0x40`; never read | `00361DE0`, `003623C0` | EEVU:248-251, EEVU:374 |
+| `0036D930` (89 B) Save | variadic: `ecx` = count, pointers in `rdx`,`r8`,`r9`, stack; copies 16 B per pointer; assigns depth | exactly nine: `0044BAC0`, `0026EE00`, `0042FDB0`, `003AFDD0`, `00431D30`, `00462260`, `003D8E50`, `002F1D90`, `002F1CE0` | SAVE:58-74, SAVE:122-132, C-SAVE:44, C-SAVE:119-131 |
+| `0036D8E0` (66 B) Restore | no args; writes saved values back for `i < depth`; depth = 0 | same nine; four by tail-jump `0026F413`, `003AFFAB`, `00431F0A`, `0046242E` | SAVE:76-84, SAVE:115, C-SAVE:45, C-SAVE:133-140 |
+| `00398F90` (377 B) `TransformPointByWorkbenchMatrix(in rcx, out rdx)` | row-vector × rows 1–4, w forced from `01EF93FC`; four deposits | 74 non-EH callers / 102 sites (C-PRIM: 81 fns) | PRIM:64-104, PRIM:296, PRIM:412, C-PRIM:44, C-PRIM:283 |
+| `00397910` (567 B) `ComposeTransforms(a rcx, b rdx, out r8)` | `out = b × a`, staged, 64 B | 82 non-EH callers / 129 sites (C-PRIM: 86 fns) | PRIM:106-137, PRIM:297, PRIM:412, C-PRIM:45, C-PRIM:283 |
+| `003970A0` (44 B) matrix getter | copies `022D91B0`..`+0x30` to `[rcx]` | "seven callers" (PRIM:317) / "28 frontier callers" (PRIM:692) / 29 Presentation bodies (C-WB:247) | WB:83-100, C-WB:54 |
+| `0039AF70` general installer | copies whatever `rcx` points at into rows 1–4 | 116 unique call sites (82 calling functions) | PRIM:319-331, C-PRIM:226-268 |
+| `0039B550` (195 B) `Workbench_InstallMatrix4x4` | installs `02AEECB0` at all 82 sites; also publishes `02AEE7F0` low32 | 82 sites (fade node `002F1F40`, `0039C4C0`–`0039CCB0`, `00434CD0`–`00455DB0`) | PRIM:311-316, PRIM:328, PRIM:630-635 |
+| `003977B0` (349 B) | in-place 4×4: `M[rcx] = M[rdx] · M[rcx]` (row-major) | `00434CD0`, `00435050` | PRIM:805-807, PRIM:567, PRIM:1558 |
+| `00397ED0` (342 B) | vec4-by-4x4 transform loop, in-place-safe | 34 frontier callers | WB:623-627 |
+| `0026EE00` (1,560 B) colour modulate | `out_byte[i] = min(255, (2·((row[i]·(a+b)) mod 256) + ((a·b)>>7)) mod 512)` | 104 callers; `00442600`, `004427D0`, `00442550`, `002F1F40` | SAVE:150, SAVE:187-191, SAVE:294 |
+| `003AFDD0` / `00431D30` / `00462260` | float4 / int32 → byte4 pack via row `022D8F30` | — | SAVE:287 |
+| `002F1CE0` / `002F1D90` | 3-vector length / point distance (Q, `022D8F90`) | — | SAVE:287 |
+| `003D8E50` | scaled random (RNG gate `022D9138`, state `01EF93E8`) | 43 sites | SAVE:287, C-SAVE:49 |
+| `0042FDB0` / `0044BAC0` | authored-expression colour form / type-`0x0A` element walk | `0042FDB0` from 80 sites | SAVE:287, C-SAVE:48 |
+| `0025A8E0` (164 B) | VCLIP into `022D9130` | `0025C830` | EEVU:67, WB:589 |
+| `0036DDC0`, `0036E1E0` (173 B), `0036DE70` | readers/refresh of the 32×24 B table at `022D94B0` | `0036E1E0` ← `World_UpdateSimulationTick` `00314020` | WB:318-327, WB:732 |
+| vocabulary: `00202B10` VADD, `00203080` VSUB, `00202FE0` VSCALE, `00202DE0` NCOPY, `00216660` NORM, `00202E10` XPROD, `00202C90` copy, `00203170` MLOAD, `00202F00` RBUILD, `00217880` ROTCOL, `00217060` MXV, `00202B70` MXVW, `0033CB70` AWRAP, `00335E50` PRED | executed under EXP-130/132 | many (Movement `0033xxxx`, actor, audio, UI) | PRIM:1129-1202, PRIM:1277-1284, PRIM:475-486 |
+| `0024C060` | builds `02AEECB0`/`02AEEA20` | `0024B9B0` ×4, VFX group draw `0024D370` | PRIM:336-344, PRIM:491-502 |
+
+#### 1.6.2 Inputs and outputs — record layouts
+
+**Register bank (EEVU:84-98, all BSS):**
+
+| offset/address | width | meaning | cite |
+|---|---|---|---|
+| `01EF93F0` | f32[4] | vf00 = (0,0,0,1); `01EF93FC` its w=1.0 | EEVU:87, C-PRIM:390-391 |
+| `022D8F08` | u32 | save depth | EEVU:88, C-SAVE:59 |
+| `022D8F0C` | dword | bit-offset parameter `00502280` → `00501820` | C-SAVE:192-201 |
+| `022D8F10 + 16k` | 128-bit | GPR[k], k=0 `$zero` never written | EEVU:89-90 |
+| `022D9110` / `022D9120` | 128-bit | HI / LO | EEVU:91-92 |
+| `022D9130` | u32 | CLIP flag word | EEVU:93 |
+| `022D9138` | u32 | RNG enable/mode, not workbench | EEVU:104, WB:224 |
+| `022D9140`–`022D916C` | 12 dwords | GPR↔XMM spill slots (`022D9140` unreferenced) | EEVU:231-247 |
+| `022D9198` | f32 | Q | EEVU:94 |
+| `022D91A0` | f32[4] | ACC | EEVU:95 |
+| `022D91A0 + 16n`, n=1..31 | f32[4] | vector registers (`022D91B0`..`022D9390`) | EEVU:96 |
+| `022D9470` | u32 | write-only sticky flags 0x80/0x40 | EEVU:97, EEVU:248-255 |
+| `022D94A0` | 64-bit | loop register (not assigned) | EEVU:105 |
+| `022D94B0` | 32 × 24 B | record table: `+0` u32 id; `+4` u16 state; `+6` result of `0024DE70`; `+8` s8 (manager, TICK); `+0x10` u8 flags | WB:326-327, WB:732, C-WB:114-115 |
+
+**Save arrays:** pointers `02EC0A00` (8 B/item), values `02EC0800` (16 B/item), structurally 32 items, unenforced (C-SAVE:57-59, C-SAVE:350-360).
+
+**Point-transform deposits:** `022D9300` input (vf22), `022D91A0` accumulator without translation (ACC), `022D9310` result (vf23), `022D8F90` result ($t0), `[rdx]` (PRIM:94-100, PRIM:258-260, C-PRIM:93-111, C-PRIM:273).
+
+**Audio source record (WB:334-348):** base `022CBAF0` + table word; shape `+9 & 0x7F` (0/1/2); radii `+0x38`/`+0x54`/`+0x58`; yaw `+0x50`; half-extents `+0x30`/`+0x34`; own position `+0x20..+0x28`; `+0x14` segments of 32 B from `+0x40`.
+
+**Other tables:** `02EBE5E0` 32 slots × 0x30 (key dword, `byte[+0x20]` bit 0, `+0x1C` arm) (WB:679-697); `01F004E0` sine table 0x8000 entries (PRIM:812-813, PRIM:1654).
+
+**Formulas:** point law PRIM:73; compose PRIM:115-118; `003977B0` float order PRIM:807; modulate SAVE:188-189; `00432300` PRIM:613; `00216660` gates PRIM:1139-1149; MXV alias PRIM:1283. Files read/written: none stated (all BSS).
+
+#### 1.6.3 State
+
+| global | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| bank `022D8F00`–`022D9500` | 1,536 B | zero (past raw data, `01F7E400`) | 249 functions | 251 readers | process; "Registers are volatile by definition" | WB:70-72, WB:202, EEVU:115, C-WB:69-71 |
+| vf00 `01EF93F0` | 16 B | 1.0 in file image (`00 00 80 3F` at `01EF93FC`) | `0036D990`, `0036D9E0`, `0036DD80` (C-PRIM/EEVU); "two writers" (WB) | 98 / 129 / 136 functions (see C.1 counts) | set at boot, re-established at runtime | EEVU:70, C-PRIM:374, C-PRIM:398-405 |
+| depth `022D8F08` | u32 | zero (BSS) | Save `0036D982` (assign), Restore `0036D91A` (=0) | Restore `0036D8E6`/`0036D912` | per save window | C-SAVE:382 |
+| save arrays | 32 × (8+16) B | not stated (BSS) | Save | Restore | overwritten by each Save | C-SAVE:57-58 |
+| `022D9470` | u32 | zero | `0036DD90`/`0036DDA0` | none | never cleared (not stated) | EEVU:248-251 |
+| `022D94B0` table | 768 B | zero; reset loops set "state word = idx+4 for all 32 slots" | `0036DE5A`, `0036DF6A`, `0036E2F8`, `0036E1E0` | `0036DDC0`, `0036E1E0` | not stated | C-WB:118-120, WB:732 |
+| rows 1–4 matrix | 64 B | zero | `0039AF70`, `0039B550` | `003970A0`, `00398F90` | "whatever the last routine to use them loaded" | EEVU:114, PRIM:309-318 |
+
+Threading: one user thread (EEVU:271).
+
+#### 1.6.4 Order
+- Boot: `0022A0B0` → `0036D990` at `0022A125`, then `0022CB90` clears VU1 memory `02064E30` (EEVU:73).
+- `0036D9E0` is run by the rig frame `003E00C0` and `003DFFE0` (C-WB:247) — per-frame, despite "initializer" naming (WB:107).
+- `0036E1E0` runs from `World_UpdateSimulationTick` `00314020` (WB:732).
+- Audio: `00362850` listener update → `003631B0` per source → shape helpers (WB:331-337).
+- VFX: `00259030` eight sites + `002590F0` call `0024D370` "up to ~40 draws a frame"; `0024C060` once per container (PRIM:491-502).
+- Update loop reaches 183 of 267 members, draw loop 40, 35 shared; 84 reached by neither directly (EEVU:270).
+- Save/Restore bracket: Save at entry of window, Restore at exit; four restores are tail-jumps (SAVE:115); no nesting on direct graph (SAVE:296, C-SAVE:164-181).
+- Element code: compose → install (`0039AF70`) → run points through `00398F90` (PRIM:334).
+
+#### 1.6.5 Dependencies
+- 17-Presentation-Rendering (largest client: EEVU:362; effect type dispatch PRIM:332-333; VIF1/VU1 layer EEVU:73; oscillator EEVU:183; element types SAVE:287).
+- 18-Audio (closest-point helpers WB:328-352, EEVU:374).
+- 21-RNG-And-Determinism (`022D9138`, `003D8E50`: WB:269-271, SAVE:287).
+- 02-Resource-And-Asset-Pipeline (authored randomness / expression evaluator SAVE:287; `fontcolor.bin` PRIM:643).
+- 03-World-Area-Field (MWeather PRIM:1183).
+- 00 boot (EEVU:73), world tick (WB:333, WB:732), ActorEntity/Movement/UI/Party (EEVU:372-390).
+- PS2 executable `SLPM_667.50` not shipped (EEVU:227).
+
+### 1.7 Object model (RTTI and the vtable method index)
+
+Pages: `RTTI`, `VTIDX`.
+
+
+#### 1.7.1 Entry points
+
+| function | role | callers as stated | cite |
+|---|---|---|---|
+| `001E8580` (text flush) | "the sole constructor and owner of the `DynGeoFontTextSpecial*` objects anywhere in the image" | only caller `0017F850`; `0017F850` called by interpreter `002AC5F0` at `002AD7AE`/`002AC7EC` | RTTI:255-256, 289-291, 390-393 |
+| `00213A00` / `00213960` / `002138C0` | constructors `Shadow` / `ShadowFinal` / `Final` (sizes 0x168/0x168/0x170) | `001E8580` at `001E86BB`,`001E88C4` / `001E8A7D` / `001E8F84` | RTTI:267-280 |
+| `002142A0` | "slot-10 shared draw" of the four 12-slot vtables | "reached **through the vtable**, and nothing here observes that dispatch" | RTTI:257, 307-312 |
+| `00160210` | worked-example CRT static initializer: constructs object at `02CAA0A0` via `00597690`, stamps vtable `00D249A8`, `jmp atexit` with dtor `008A8150` | the CRT initializer table `008C31D8`–`008C5678` (1,172 entries) | RTTI:956-958, 962-964 |
+| `008C31D8` table (1,172 slots) | "the **C++ dynamic initializer table**" (`__xc_a` at `008C31D0`) | walked by the CRT "from *outside* its bounds" | RTTI:695-703 |
+| `005FD050` | "the MSVC magic-static lazy-singleton getter" returning `02CC0410`; one-time `00615840` construction | "39 frontier callers at census (all in the `0060xxxx`/`0061xxxx` Phyre descriptor band)" | VTIDX:3332-3338 |
+| `006A4100` (`PPhysics::PUtilityPhysics` slot 1) | "a lazy singleton init through the stored vtable" (`byte[01F2CDF0]`, `qword[[01F2E9B8]+8]`) | not stated | VTIDX:3101-3107 |
+| slot-5 `PClassDataMemberPhyreArray<…>` adapters (e.g. `005C9760`) | "the canonical Phyre member-array element accessor" | not stated (vtable dispatch) | VTIDX:2908-2913, 3017-3025, 3052-3057 |
+| `00215320` (`CharacterOrderedObject` slot 1) → `001F5D70` | 9-byte this-adjusting thunk → "the object's render-submission pass" | not stated | VTIDX:2865-2876 |
+| `001C2670` (`MultipleDebugDisplay` slot 0) | scalar deleting destructor, object `0x4670` bytes | not stated | VTIDX:2892-2894 |
+| `0077E0B0` (`CDepthOfField` slot 3) | "per-frame context gather" | not stated | VTIDX:2794 |
+| `007D6270` (`Sd::Driver::SurroundReverb` slot 5) | "per-frame parameter ramp stepper" | not stated | VTIDX:2802 |
+| `0075C080` / `007307A0` | `InitializeDevice` (slot 0 of `CRenderTextureArray` / `CTextureUtil`) | `007307A0` calls `007273E0` = `CGPUResourceManage` slot 0 | VTIDX:2803, 2805-2810 |
+| Gi* slot 1 (e.g. `GiTrans` `00862D40`) | "slot 1 is execute-against-device" | not stated | VTIDX:2493-2496 |
+| `002778C0` `BattleMenu_UpdateCommandSelectionAndDispatch` | "the message proc installed on a widget" (address taken by `lea r8` at `00276DD3`) | address-taken | VTIDX:2626-2631 |
+| all 4,275 appendix methods | identity (class, slot) only — "This index gives identity — class and slot — not behaviour" | "Not applicable — this is an index" | VTIDX:127-128, 152 |
+
+#### 1.7.2 Inputs and outputs — record layouts
+
+**MSVC Complete Object Locator** (RTTI:60-68; VTIDX:46-58), at `vtable[-1]`:
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0x00 | DWORD | signature, "1 on x64" | RTTI:61 |
+| +0x04 | DWORD | offset — "this vftable's offset in the object" | RTTI:62 |
+| +0x08 | DWORD | cdOffset | RTTI:63 |
+| +0x0C | DWORD | pTypeDescriptor, "RVA -> TypeDescriptor" | RTTI:64 |
+| +0x10 | DWORD | pClassDescriptor, RVA | RTTI:65 |
+| +0x14 | DWORD | pSelf, "RVA of this locator" (the validation) | RTTI:66, 71-72 |
+
+TypeDescriptor `{ void *pVFTable; void *spare; char name[]; }`, name form `.?AV<name>@<ns>@@` / `.?AU…` (RTTI:68; VTIDX:75). Name is "NUL-terminated and contains `@@` internally" (RTTI:847-848); two real names are 264/265 chars (RTTI:852-854).
+
+**Phyre reflection field record:** "Phyre stores short field names inline in the reflection record — SSO-style, up to 7 characters plus a NUL" (RTTI:910-911). Offsets not stated.
+
+**Objects with stated sizes:** `DynGeoFontTextSpecialShadow/ShadowFinal` 0x168, `Final` 0x170 (RTTI:277-280); `MultipleDebugDisplay` 0x4670 (VTIDX:2893-2894); `RazorMarkerPushObj` 0x1 (VTIDX:2485). The §10 census says "92 of 125 classes now have a code-stated object size" (VTIDX:2472) but **does not tabulate the sizes on the page**.
+
+**Other layouts stated (selection):**
+- `vector<0x318>` element (CharacterOrderedObject submission list): `+0xF0`/`+0xF8` scalars, `+0x100`/`+0x108`/`+0x110` matrix destinations; source object fields `+0x4B4` visible, `+0x480` id, `+0x4A4`, `+0x4B5`, `+0x4B8`/`+0x4BC`/`+0x4C0`, matrices at `+0x584`/`+0x5C4`/`+0x604` (alt `+0x4C4`/`+0x504`) (VTIDX:2868-2884).
+- `005DC400` fixed-shape ctor: `[+0]=0x1010105`, `+4=1`, `+8`/`+0x14`=0, `+0xC=1.0f`, `+0x18=0x400` (VTIDX:4463-4464).
+- `005DC1C0` base ctor: `word[+8]=0`, `dword[+0xC]=1`, `[rcx]=rdx`, `or dword[rdx+0x18],0x100`, registers into `[rdx+0x20]` (VTIDX:4469-4473).
+- `0067FFB0` aligned-size descriptor: `+8` stack arg, `+0x10`/`+0` zero, `+0x18=(rdx+7)&~7`, `+0x1C=r8d`, `+0x20=(r9+7)&~7` (VTIDX:4385-4388).
+- `005DCBE0` ctor (vtable `02CF7A30`): `+8` word 0x300, `+0x18`=2 (VTIDX:5002-5007); `005DBF30` installs same vtable at `+0x20` (VTIDX:5019-5023).
+- 0x18-stride record (`005D87E0`): `+0` word, `+2`/`+3` bytes, `+8` tagged string, `+0x10`/`+0x14` dwords (VTIDX:5027-5038).
+- 0x38-stride `PAnimationHierarchy` record (`005A5BD0`): `+0`/`+8`/`+0x10`/`+0x18` qwords, `+0x20` dword, `+0x28` tagged string, `+0x30` dword (VTIDX:5197).
+- 0x138-stride `PAnimationHierarchy` node: `+0xFF`, `+0x100` count / `+0x108` 16-byte pair table, `+0x110`/`+0x118` vectors, `+0x130` order field (-1 = unordered) (VTIDX:5045-5113, 5185, 5193).
+- 0x58-stride records `005BEDC0`/`005B7FD0`/`005A5CC0` (`+0x28` tagged string) (VTIDX:5116-5183); 0x98 flat copy `005A5DC0` (VTIDX:5163-5167); 0xE8 records `006C0BA0` (VTIDX:4610-4618).
+- Ownership-flag conventions: bit 31 of a count dword = owned/borrowed (VTIDX:3353, 4414, 4908); bit 0 of a pointer = "intrusive-marker convention … borrowed vs owned" (VTIDX:4564-4566); inline storage when count <= 1 (VTIDX:4969-4970, 4985).
+- `006BA720` type-index → record size table `{8, 0xC, 0x10, 6, 1, 2, 3, 0x30, 0x40, 4}` (VTIDX:4633-4641).
+- `002D7FA0`: `0209E6B0` indexed record pointer, stride 48 (`(idx+idx*2)<<4`) (VTIDX:4399-4401).
+- zero-at-load census file layout `global | vtable | rtti_decorated` (file header line 23).
+
+Files read/written at runtime: not stated (the pages are static-analysis indices). Tool artifacts: `Tools/work/rtti/vtables.tsv` (25,798 rows) (RTTI:21), `classes.tsv`/`methods.tsv`/`report.md` (RTTI:323-324).
+
+#### 1.7.3 State
+
+| global/object | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| `02CAA0A0` (`PClassDescriptorConcrete<PClusterHeader>`) | not stated | zero at load; vtable `00D249A8` stamped by CRT init | `00160210` (`call 00597690`, `and dword [02CAA19C], ~2`) | not stated | created before `main`; destroyed via `atexit` dtor `008A8150` | RTTI:950-958 |
+| 346 zero-at-load globals in `.data` tail (from `01F7E400`) | not stated | vtable = link-time constant | 379 CRT initializers | not stated | static init / atexit | RTTI:962-965; tsv header |
+| `02CC0410` (descriptor-table singleton) | not stated | constructed once by `00615840` | `005FD050` (TLS index `02EAED3C`, epoch `02CE2610`) | 39 Phyre-band callers | `atexit` registration of `008ADDD0` | VTIDX:3332-3341 ("NOT claimed: the object's class") |
+| `[01F7F4C0]` heap singleton | — | — | — | `001E8580` `new` sites (`call 001A1470`) | — | RTTI:271-273 |
+| `[01F811F8]` text singleton | — | — | — | `0017F850` via `001B5FA0()` | — | RTTI:256 |
+| `byte[01F2CDF0]` / `[01F2E9B8]` | — | — | — | `006A4100` lazy init | — | VTIDX:3103-3104 |
+| `02E59BB8` list / `02E59BC0[]` table; `02E58CA0`/`02E58CB0` | — | — | dtors `006C0FE0` / `006BEC40` remove | — | "the registry removal" | VTIDX:4596-4629 |
+| `04A7C3A8` | — | — | `001FB310` (`[this+0x4C0]` →) | — | — | VTIDX:2883 |
+| PPFX manager `[01F3BA68]→01F3BA78`, counter `dword[02EA0B3C]` | — | — | thunk `006DA8A0` decrements | `CDepthOfField` slot 3 | — | VTIDX:2794 |
+| `dword [02EAD348]` driver global | — | — | — | getter `007AED00` | — | VTIDX:2795 |
+| `02E48BD0` / `02E47ED0` | — | — | stored by `0069ECE0` into `+0x28` | — | — | RTTI:1032-1036 |
+| debug gates `01F3BA80`, `02EA0B40`, `01F3BA90` | — | — | — | `007307A0` | — | VTIDX:2817 |
+| `02EA18B1` gate byte | — | — | — | `00721B10` (`CRenderTexture` slot 1) | — | VTIDX:1977 |
+
+#### 1.7.4 Order
+
+- CRT initializers run "before `main`" and register teardown with `atexit` (RTTI:955-958). Order within the 1,172-entry table: "Not sorted (51 % ascending) and ordered in owner blocks — link order" (RTTI:704).
+- Text draw: interpreter `002AC5F0` → `0017F850` ("*draw what the last frame accumulated*", scope `display : draw Font`) → `001E8580` constructs `DynGeoFontTextSpecial*` objects; slot-10 draw via vtable (RTTI:255-257, 290-293, 307-312). Frame position otherwise not stated.
+- Per-frame (no trigger/time stated): `CDepthOfField` slot 3 (VTIDX:2794), `SurroundReverb` slot 5 (VTIDX:2802).
+- `00199D50`/`001E1D90` family: deleting-dtor flag tests (VTIDX:3125-3159) — when objects are destroyed: not stated.
+- All other ordering: not stated ("Call chain — Not applicable", VTIDX:127).
+
+#### 1.7.5 Dependencies
+
+- 22-Middleware-PhyreEngine (Phyre reflection, `PMethodCallerConcrete`; descriptor initializers) — RTTI:508-514, 985-987; VTIDX:228-229.
+- 23-Third-Party-Libraries (Bullet, Yebis, mkvparser, JsonBox, eastl) — RTTI:213-217.
+- 18-Audio (`SQEX::Sd`, `.sab` banks, `ShoutAudioBank`) — RTTI:163-164, 182-192, 387.
+- 16-UI (text/DynGeo contract, character mapping) — RTTI:244-257.
+- 99-Unresolved-Residual (glyph-run rendering; unowned-code census; largest unclassified) — RTTI:255, 297, 352; VTIDX:2566, 2608.
+- 24-Compiler-And-CRT-Runtime (static-initialization order) — RTTI:677.
+- 08-Combat-Formula (step table `01EFA5C0`, interpreter sites) — RTTI:398-403, 675, 680-683.
+- 07-Combat-Action (battle action handler table `01EEC460`) — RTTI:676.
+- 06-Movement-And-Navigation (battle locomotion) — RTTI:520, 620.
+- 02-Resource-And-Asset-Pipeline (VBF shout path tables) — RTTI:195-197.
+- 17-Presentation-Rendering (`Gi*` render commands) — VTIDX:2565.
+- 00 Application-Root (GameApplication) — VTIDX:2505-2506.
+- Crossing lists (tier 2, edge-file only): Presentation, Input, CombatAI, CombatFormula, Items, RNG, Resource, Audio, ActorEntity, Gameplay, Party, Script_VM, UI, WorldAreaField — VTIDX:2837-2862; Status_Periodic_Terminal, Audio, CombatFormula, Presentation, UI — RTTI:939-947.
+
+### 1.8 Shared-state accessors and the ownership boundary
+
+Pages: `HUBS`, `NBR`, `OWN`.
+
+
+#### 1.8.1 Entry points
+
+| function (address + name) | role | callers as stated | cite |
+|---|---|---|---|
+| `00265020` `Actor_GetWorldPosition` (61 B) | actor world position; class-gated (class 1 or 3) | 79 callers / 11 subsystems; table by subsystem; 16 untagged listed | HUBS:47, 58-72, 78-80, 206, 302-309 |
+| `003148F0` `WorldTransition_GetActiveOrPendingFieldId` (27 B) | returns `max(0, payload[+0x1044])` | 49 callers / 10 subsystems; incl. `00233780`, `002F8060`, `003160C0` | HUBS:82-125, 207, 292-296 |
+| `00236820` `BattleUnit_GetBySlotIndex` (37 B) | `[0208E688] + slot × 0xF50` after bound `slot ≤ [0208E6A0] − 1`; no occupancy check | 40 caller functions / 46 call sites; 9 subsystems | HUBS:127-141, 161, 208, 342 |
+| `00236850` `BattleUnit_GetSlotCount` | returns `[0208E6A0]` | not stated as a count | HUBS:162 |
+| `00358940` `ActorManager_GetRecordByOrdinal` | `manager+8` array, entry `[arr + 8 + i × 8]`; no generation check | 75 callers | HUBS:163 |
+| `003589B0` `ActorHandle_EncodeRegistryEntry` | packs `((entry+0x16 & 0x7FF) << 20) \| ((entry+0x15 & 0xF) << 16) \| entry+0` | 63 callers | HUBS:164 |
+| `003588B0` `ActorHandle_ResolveRegistryEntryByPackedId` | class bits 16-19 `< 5`, manager `02098E10 + class × 0x288`, generation bits 20-30 must equal `entry+0x16` | not stated | HUBS:165 |
+| `0031B7E0` `BattleUnit_ResolveByFocusHandle` | only while bit 4 of `02089340`; returns `entry+0x30` | 35 callers | HUBS:166 |
+| `00320A40` `BattleStats_GetByBattleSlotIndex` | party index 0-39 → `*(02EBF190) + 8 + i × 0x1C8` | 18 | HUBS:167 |
+| `00320AB0` `BattleStats_GetByMappedBattleSlot` (49 B) | via `BattleSlotMap_ResolveMappedBattleSlot` `0031B9F0` | 25 | HUBS:168; NBR:145-147 |
+| `0031B770` `BattleUnit_FindByCombatantId` | scans pool for unit whose `+0x698` equals party element; cannot return an enemy | 10 | HUBS:169, 180-183 |
+| `0031B860` `BattleStats_FindOwningBattleUnit` (83 B) | same pool scan for any stats record | 62 | HUBS:170; NBR:140-143 |
+| `002367A0` `BattleUnit_FindByDefinitionSelector` | class-2 id; pool walk on stats `+4` (u16), 0xFF compared as 0xFFFF | 10; opcodes `0x4026`–`0x4035` of the locomotion decoder | HUBS:171, 193-197 |
+| `002EF2B0` `SaveImage_GetPersistentPayloadBase` (20 B) | `002EF640()` (static `02164280`) + 0x200 | 70 callers | HUBS:331, 606-612 |
+| `00264010` (53 B) | sign router: `ecx>=0` → `00358940`; `<0` → `003590D0` then `003588B0` | 32 frontier callers | HUBS:572-576 |
+| `00263F10` (44 B) | type-2 record forward via `003587C0` | 31 frontier callers | HUBS:577-581 |
+| `003587C0` (50 B) | class byte → manager → `[tbl + ebx*8 + 8]` | 10 | HUBS:586-593 |
+| `002F9860` | encoded-id → runtime record resolver (id/1000 bucket `< 0x1C`, id%1000 index) | 129 callers at census | HUBS:552-565 |
+| `00264790` (30 B) / `00264770` (30 B) | gated `movsx word[+0x7C]` / `[+0x7E]` of `02098E10` ptr, else -1 | 00264770: `002B7B80`, `002BA310`, `004048E0` | HUBS:671-677, 818-828 |
+| `00320A30` (16 B) | `+0x698` link read | `002F8060`, `002F8E70`, `002FA290`, `00469A50` | HUBS:785-791 |
+| `0018E470` (34 B) | two-call context gate `0065E5D0`/`001976E0` & `byte[+0xA0]` | "several hundred callers" | HUBS:846-863 |
+| `00249C60` (51 B) | play current context's sound: mute guard, `003A1180`, tail `002DF220(id, 0x40, 0x7F)` | 99 callers | NBR:78-81, 265 |
+| `003A1180` (111 B) | packed handle `02AEF3FC` → id, generation-checked, `(word[+8] << 9) + argument` | CombatFormula, Rewards, Presentation `0046CC70` | NBR:92-96, 370-371 |
+| `00267330` (39 B) | `byte[02098E10 + slot*0x288 + 0x10]`: bit0 set → bit 7, else 1 | `0050EEE0`, `00358CB0` | NBR:97-98, 371-372 |
+| `002DF220` (92 B) | play entry; `003603C0()` must be 0; masks 0x7F; clears bit 31; tail `001DBDB0` | `003112F0`, `0030C650`, `00357040` | NBR:99-101, 369 |
+| `003603C0` (8 B) | `return (signed char)[022CB726]` | not stated | NBR:100, 269 |
+| `001DBDB0` (76 B) | forwards id to audio manager singleton `01FD36A0`; group `id >> 9` | `002DF010`, `002DEF40`, `002DF220` | NBR:102, 280-298, 448 |
+| `00322C50` `BattleEncodedId_IsValidForClass` (1,025 B) | `class - 1 > 0x1F` → 0; 32-entry jump table `00323054`; `0 <= id < count` per slot | 71 callers | NBR:108-118, 329 |
+| `00307D10` `BattleUnit_UpdateEngagementStateFlag` (224 B) | engagement test `([sub+0x64] \| [sub+0x3C]) & 0x8000020`; Chocobo short-circuit | not stated | NBR:122-134, 149-151, 332 |
+| `00312280` `BattleUnit_ProcessDefeatRewardsAndLoot` (857 B) | killer `rcx`, defeated `rdx`; `+0x698` gate, `+0xE9A` bit 3 suppresses | not stated | NBR:204-215 |
+| `0020E600` `ImageAddress_ResolveRuntimePointer` (10 B) / `0020E620` `RuntimePointer_EncodeImageAddress` (9 B) | `D(u)=B+u32(u)`, `E(p)=u32(p)−u32(B)`, `B=[01F83530]` | 815 / 279 callers | NBR:164-186, 275-276 |
+| `001EDE70`, `0032A150` `GameClock_GetRawTickCounter`, `00229E40`, `00229DF0`, `00229EA0`, `001EDDA0`, `001EDEC0`, `00229E70` | global accessors / predicates | not stated | NBR:227-236 |
+| `0026C8C0` `ActorManager_BindLoadedDefinitionPayload` | first setter of slot `+0x10` bit 7 (`or 0x82`) | only caller `0032F850` | NBR:326 |
+| `003B8670` (4,578 B) action timeline interpreter | `(record, prevTime, nowTime, nowTimeF)`; fires entries with `prevTime < key ≤ nowTime` | `004FF2C0` (from `0046E990`, `0046EFD0`), `0046EFD0` (from `00333280`/`003331A0`) | OWN:496-512 |
+| `004FF2C0` (85 B) | multi-arm record interpreter on `byte[rcx+1]` | `0046E990`, `0046EFD0` | OWN:511-512, 600-609 |
+| `005004C0` (497 B) | effect-subtype switchboard; tail-jump only | not stated | OWN:194, 437-442, 987-997 |
+| `00521BB0` (1,757 B) | scratch materializer | not stated | OWN:193, 574 |
+| `00433830` (3,202 B) | "shared tessellation helper" | not stated | OWN:195, 272-273 |
+| `003697F0` (13 B) | null-safe release → `00369860` (validating deallocator, magic `0xFF12`) | 140 frontier callers | OWN:620-633 |
+| `002F31C0` (233 B) | type-tagged retire-and-requeue | 42 frontier callers | OWN:635-646 |
+| `0036C140`/`0036C1D0`/`0036C1F0`/`0036B160`/`0036BFE0`/`003697C0`/`0036C110`/`0036C1A0` | scratch-pool queue/dequeue family over `022D89xx`/`022D8Exx`/`022D7FD0` | "~75 resource consumers" / "the seven consumers" | OWN:915-961, 1003-1005 |
+
+#### 1.8.2 Inputs and outputs — record layouts
+
+Save image persistent payload (HUBS:216-219, 331, 606-612):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| base | — | `SaveImage_GetActiveRuntimeBuffer() + 0x200`; buffer static `02164280` | HUBS:331, 611 |
+| +0x1044 | i32 | "active or pending field (area) id; negative means none" | HUBS:218 |
+
+Battle unit pool (HUBS:161-162): base `[0208E688]`, count `[0208E6A0]`, stride `0xF50`. Unit `+0x698` = stats record pointer (HUBS:175-177; NBR:140-143); unit `+0xE9A` flag byte, bit 3 suppresses reward processing, `(&5)==5` separate path (NBR:210-215); unit `+0xDCC` zeroed on one path (NBR:159).
+
+Stats record (0x1C8 B, 40 records at `[02EBF190] + 8`) (HUBS:167; NBR:146-147, 332):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +4 | word (bytes +4/+5) | "whole encoded definition id"; `+5 == 0` party table `02EBF130`; row 0x1A Chocobo | NBR:332; HUBS:171 ("stats record `+4` (u16)") |
+| +5 | byte | `== 1` active-battle-unit predicate | NBR:207-214 |
+| +0x3C | dword | authored permanent-status word | NBR:332 |
+| +0x64 | dword | runtime status word (OR-ed with +0x3C before test) | NBR:136-138, 332 |
+| +0x38 | dword | immunity word that can block +0x64 | NBR:332 |
+
+Masks: `1` = KO; `0x80000003` = KO, Stone, X-Zone; `0x8000020` = Confuse, Berserk (NBR:332); `& 0x10` behind `byte[02089340] & 0x20` (NBR:134).
+
+Actor-registry entry / packed handle (HUBS:163-166): entry `+0` ordinal, `+0x15` (4 bits) class, `+0x16` (11 bits) generation, `+0x30` unit pointer; handle = gen<<20 | class<<16 | ordinal. Manager `02098E10 + class × 0x288`: `+0`, `+8` array (count at `[arr]`, entries `[arr+8+i*8]`), `+0x10` bit 0, `+0x20` bound (HUBS:165).
+
+Actor-manager slot `+0x10` byte (NBR:299-326): bit 0 slot live; bit 1 and bit 7 set together by `0026C8C0` (`or 0x82`); bit 7 = start-up unsettled; bits 3,4 cleared (`and 0xE7`); bit 5 holds start-up; `+0x11` bit 0 copy of bit 7, bit 1; `+0x17` bit 7; `+0x20` record count; `+0x28` (0 → field-entry work).
+
+Audio record array (NBR:92-96): 24-byte records at `02AEEDC0`, `+8`/`+0x0A` words = generation; handle at `02AEF3FC`.
+
+Encoded-id resolver `002F9860` (HUBS:555-561): bucket presence table `image+0x2DA3D80`, pointer table `image+0x2E773C0`, record `+0x04` count, `+0x14` encoded pointer; miss → `01C8B638`.
+
+Action timeline record (OWN:500-506): byte `+1` kind (only 2 reaches interpreter); byte `+0x10` entry count; entries 16 B from `+0x14`: byte `+0` opcode 1..128, word `+2` time key, rest opcode-specific; opcode→case byte table `003B994C`, 62-case jump table `003B9854`. Opcode table: action-timeline-opcodes.tsv.
+
+Action context singleton `[02F97348]` (OWN:514-518): `+8` acting unit, `+0x10[i]`/`+0x90[i]` per-target handle arrays, `+0xC` per-target hit mask, `+0x368`/`+0x36A`/`+0x378` flag words, `+0x372` target count, `+0x374` hits delivered. Event kinds: 3→0, 13→1, 26→3/6/7/8 by dword `+4`, 34→2, 37→4, 128→5 (OWN:522-537).
+
+Shared scratch (OWN:169-174, 205-209): `022D9198`–`022D9428` (660 B), `022D8F90`–`022D900E` (130 B), `022D8F30`–`022D8F50` (36 B), `022D9110`–`022D9138` (44 B); `022D9138` RNG enable/mode word (OWN:181-182). Object count disputed (C.1).
+
+Files read/written: none stated (save payload is in-memory image; file format not stated).
+
+#### 1.8.3 State
+
+| global/object | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| save payload `+0x1044` | i32 | not stated | not stated ("What writes `+0x1044` and when is the residue that U-1 covers") | `003148F0` (49 callers) | save state | HUBS:94-98, 295-296 |
+| `02164280` active runtime buffer static | not stated | not stated | not stated | `002EF640` | not stated | HUBS:331 |
+| `0208E688` / `0208E6A0` pool base / count | not stated | not stated | not stated | `00236820`, `00236850` | not stated | HUBS:161-162 |
+| `02089340` bit 4 | bit | cleared by reset | set by `BattleSystem_InitializeAreaState` `002342F0` at `00234339`; cleared by `002341C0` at `002341E4` | `0031B7E0` | battle-system init → reset | HUBS:188-191 |
+| `02098E10` slot array (5 × 0x288) | 0x288 each | memset 0 by slot reset `00266D10` | `0026C8C0` (+0x10), pass `0025D9E0` | `00267330`, `003588B0`, `00264790`, `00264770`, `0026AF80` | boot reset → bind on load completion | NBR:301, 326; HUBS:165 |
+| `02091098` | dword | not stated | not stated | `00249C60` (mute guard) | not stated | NBR:79 |
+| `022CB726` | byte | not stated | not stated | `003603C0` | not stated | NBR:100 |
+| `02AEF3FC` / `02AEEDC0` | handle / 24-B records | not stated | not stated | `003A1180` | not stated | NBR:92-93 |
+| `01FD36A0` audio manager singleton; `01FD36B4` play-handle counter (31-bit, skips 0) | not stated | not stated | `00212950` | `001DBDB0` | not stated | NBR:283, 290-291 |
+| `01F83530` image base B | qword | not stated | not stated | `0020E600`, `0020E620` | not stated | NBR:169-186 |
+| `01F82E38`, `0208D45C`, `01E02814`, `02064AD2`, `02064AD3` (frame-mode byte), `01DFE0C0`, `01E02820` (float rate) | — | not stated | `0022AF50` sets `02064AD3`=3, `0022B000` sets 5; `00229E70` stores 1.0 | accessors NBR:229-236 | not stated | NBR:229-236, 243-244 |
+| `022C1F48` (bits 0x06), `022C1F40` (qword) | — | not stated | `00307D10` | not stated | not stated | NBR:158-159 |
+| `0215F1AC` / `0215F1B4` capability words | dword | not stated | `002E1C40` | not stated | not stated | NBR:455-460 |
+| `0215FD98` / `021641F0` | ptr / dword | not stated | `002EACC0` (from `0032F850`, `0032FB70`) | "later readers" | not stated | NBR:469-475 |
+| `02F97348` action context | ≥ 0x3AF (not stated as size) | not stated | `0046E990` writes the pointer (OWN:575) | `003B8670` (57 refs), arms | not stated | OWN:514-518, 575 |
+| `02EBA4F0` target array, `02EC0F88` | — | not stated | `0046E990` | `003B8670`, `003B8260`, `003B99D0` | not stated | OWN:518, 557, 575 |
+| `02EBEF88` / `02EBEF90` sub-object tables (32 × 8-B rows; up to 0x140 slots) | — | not stated | `003A9070`, `003A9790` | family `003A8Cxx` | not stated | OWN:558, 1007-1015 |
+| eight `Gi*` factory cache globals `02EAF900`…`02EB3858` | 8 B … 0x90 | not stated | factory's own store only | none ("Nothing reads them") | no release | OWN:319-334 |
+| scratch pool `022D89B8`, `022D89BC`, `022D89C0`, `022D89C8`, `022D89D0`, `022D8DD0`, `022D8E10`, `022D8E18`, `022D8E1C`, `022D8E20`, `022D8E28`, `022D7FD0` (0xA8 descriptors, ≤ 0xE), `021B89C0`/`021B89D0`/`021B89A8` | — | not stated | `0036C1A0`, `0036C1F0`, `0036C5D0` | `0036C140`, `0036C110`, `0036B160`, `0036BFE0` | not stated | OWN:915-959, 1003 |
+
+#### 1.8.4 Order
+
+- `BattleSystem_InitializeAreaState` `002342F0` sets `02089340` bit 4 and calls `SpawnKeep_RotatePersistenceBanksForAreaTransition` `00233780`, `SpawnGroup_ResetLifecycleLedger`, `Loot_InitializeWorldPickupPool`, `Navigation_GetWorldBoundsXZ` (`002343B5`), `003924B0` (`0023441E`); teardown `002341C0` clears the bit and calls `Navigation_ClearDataset` (`002341C9`) (HUBS:188-191, 950, 954, 956). Its caller: `ActorSystem_InitializeManagerRuntime` `0026CE60` (HUBS:940). When in the frame: not stated.
+- Slot bit-7 lifecycle: boot slot reset `00266D10` zeroes slots → load completion `0032F850` → `0026C8C0` sets bits 1+7 → `ActorManager_RunFieldRuntimePass` `0025D9E0` clears/rewrites bit 7 each pass until no record runs; on the settling pass with `+0x28 == 0`, `WorldTransition_SetOptions` called (NBR:304-326).
+- Sound requests refused while slot start-up unsettled (NBR:317-318); sound order: `00249C60` → `003A1180` (→ `00267330`) → `002DF220` → `001DBDB0` → selector → player at manager `+0x08` (NBR:78-101, 283-294).
+- Timeline: entry fires once "on the frame the playhead passes it" (OWN:503-505); drivers `0046EFD0` (sub-resource instantiation `00333280`/`003331A0`) and `004FF2C0` (OWN:507-512). Which frame phase calls them: not stated.
+- `PartyFollow_SolveFormation` `00338490` is the one Movement site of hub 3 that is both loop-resident and reachable from the per-frame world tick (HUBS:327-329, 358-361); tick walk includes `WorldActorScriptVM_InterpretBytecode` `0025E4C0` (HUBS:372).
+- Frame-mode byte `02064AD3`: `0022AF50` → 3, `0022B000` → 5 (NBR:243-244).
+
+#### 1.8.5 Dependencies
+
+Named: Actor/Entity (`../../04-Actor-Entity/battleunit-slot-pool-and-actor-class.md`, HUBS:423; unit-definition page HUBS:177, 192; actor-manager record field map NBR:302); Spawn (`05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md`, HUBS:424); Movement (`06-Movement-And-Navigation/heading-speed-to-position-delta.md`, HUBS:425); Audio (`18-Audio/`, HUBS:426; voice-pack page NBR:86); Script VM storage classes (`01-Script-VM-Native-Bridge/...`, HUBS:331); Resource (`02-Resource-And-Asset-Pipeline/resource-section-addressing.md`, HUBS:470; authored-data-table-registry NBR:329); Status (`10-Status-Periodic-Terminal/...two-layer-effect-model.md`, HUBS:513; the-thirty-two-statuses NBR:332); Combat Action availability (`07-Combat-Action/...`, NBR:329); RNG (`21-RNG-And-Determinism/rng-streams.md`, OWN:182, 372); CRT (`24-Compiler-And-CRT-Runtime/...`, OWN:373); Shared-Transform-Workbench (OWN:161, 314). All outside 00, not audited, except Shared-Transform-Workbench (00).
+
+### 1.9 Developer tuning console: dispatcher, tunables, second table, event slot, names
+
+Pages: `C-CON`, `CON282`, `TUNES`, `CON2`, `EVSLOT`, `CMDNAMES`.
+
+
+#### 1.9.1 Entry points
+
+| function | role | callers as stated | cite |
+|---|---|---|---|
+| `001D1660` `DevConsole_DispatchCommand` (13,753 B, body `001D1660`–`001D4C19`) | the dispatcher: one indirect `jmp r9` through a 282-entry RVA table at `001D4C1C`; ids 12–293 | only `001CD040` (tail `jmp`, `001CD049`); "`001D1660` has **zero `E8` call sites in the image**" | C-CON:52-57; CON282:62-77, 145, 221-222, 262 |
+| `001CD040` (14 B) adapter | "`test dl,dl / mov r9d,r8d / sete r8b / jmp 001D1660`" | only call site `0017DD34` in `0017DB90` | CON282:146, 262, 505 |
+| `0017DB90` Config-screen row handler | 23-way case table; issues 16 literal ids | `0023B3D0` in `0023B330`, `0023B84C` in `0023B6F0` (Config screen row procs) | CON282:203-206, 214-219, 262, 271 |
+| `001CD0E0` `DebugMenu_Render` (11,276 B) | row renderer: prints `"%s%s%f"`, label from `[ctx + id*8 + 0x130]`, reads code table at `001CDBF7`, `+0xAAC`, counters `01F832B0` | called by `001D5260`/`001D0190` (CMDNAMES); `001D5520` formats with it (APP, outside group) | C-CON:52, 217-218; TUNES:102, 149; CON2:228; CMDNAMES:38-39, 430; EVSLOT:151 |
+| `001C0330` (197 B), `001B3860` (71 B), `001C0480` (181 B) | per-row display-string / value-record materialisers | run by `001CD0E0` | C-CON:341, 356, 360 |
+| `003058B0` `Debug_SetGilToMaximum` (10 B) | `mov ecx, 0x5F5E0FF` then `jmp 00254EE0` (`GameState_SetGil`) | "called **once**, from one arm" | CON282:130-139; C-CON:271 |
+| helpers `001A9930` (8 B, `*(01F81168)`), `00193D50` (66 B, lazy `0x4A8` at `01F7F5F0`), `001DF340` (10 B indexed dword store), `001DDAB0` (8 B, `*(01F82D18)`), `001C2F40` (8 B, `*(01F81270)`) | singleton getters / store used by arms | call sites 45/33/13/10/9; arms 14/16/15/2/4 | CON282:115-121; C-CON:206-209, 380 |
+| `00162410` | static initializer of the `02CB7FD0` object: `lea rcx,block / call 005DC720 / lea rcx,008AB7C0 / jmp atexit` | static init | TUNES:67-74, 540-541 |
+| `005DC720` → `005DC580(this)`, `005DC430(this+0xD0)` | block constructor and default setters | `00162410` | TUNES:386-397 |
+| `001C7940` (11,445 B), `001C3D50` (4,607 B) | scene-config loaders: `Lookup(name)` → typed read → store | `001C7940` called by `001C7290`/`001C61F0` | TUNES:275-296, 476-480; CON2:213-214, 232-233 |
+| `001F0AD0` (2,738 B) | writes 144 addresses (8 shadow matrices + scalars) | only caller `00187950`, inside `"update shadowmap"` scope | TUNES:203-236 |
+| `006084B0` (1,419 B) | copies the whole block into the 0x598 snapshot at `00604750`'s `rbp+0x270` | only caller `00604750` | TUNES:192-201; CON282:250 |
+| `00604750` | writes the GPU `SceneWideParameterConstantBuffer` field by field from the snapshot | not stated | CON282:250 |
+| `0020AC30` (572 B) name-classifying setter `(index, path)` | event-slot names + `sum_`/`spc_`/`0001` flags | via thunk `001EC660` from `0032FD64` in `ActorResource_BeginManagerResourceSetLoad` (`0032FCA0`) | EVSLOT:98-124, 141 |
+| `0020AF10` (203 B) event pusher `(index, event_id)` | queues an id into a slot | via thunk `001EC6A0` from `0026B775` (`0026B750`), `00354B6D` (`00354B20`), `00354EDA` (`00354E80`) | EVSLOT:126-142 |
+| `001EC560` (59 B) pending probe; `0020AA30`/`0020AA40` flag getters (8 B) via `001EC5C0`/`001EC5E0` (17 B) | consumers | `00180120` (at `00229A53`), `0025DF00` (`0025E0F0`/`0025E100`), `0034CF90`, `0034D790` | EVSLOT:152-157, 185-186, 247-249 |
+| `0017D490` `WorldField_GetDebugWeatherSlotOverride` | returns `[singleton + 0xAAC]` | `0025ACA0`, `002620E0`, `00265920`, `0026D910` | CON2:98-109, 230 |
+| `001D50D0` (66 B) | console settings singleton getter (`0x10E8` B, cached `01F81428`) | `0017D490`; Config path (slice B, outside group) | CON2:116, 229 |
+
+#### 1.9.2 Inputs and outputs — record layouts
+
+Dispatcher input: `r9d` = id, valid 12–293 after `add r9d, -0xC`; `cmp r9d, 0x119` / `ja` (C-CON:53-54, 106-108; CON282:65-73). Prologue: "`movzx esi, r8b ; arg 3 -> sil`", "`movzx ebx, dl ; arg 2 -> bl (the direction flag)`", "`mov rdi, rcx ; arg 1 -> rdi`" (TUNES:872-874). Signature as adopted: "`(void *ctx, u8 direction, u8, int id)`" (TUNES:888).
+
+Dispatch table (C-CON:66; CON282:75-77, 161):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| `001D4C1C + (id−12)*4` | 4 | image-base-relative RVA of the arm; 282 entries, all inside `001D1660`–`001D4C19`; 227 distinct targets, 56 ids → `001D4BFA` | C-CON:66, 102-103, 117-118 |
+
+Label table: `ctx + id*8 + 0x130`, stride 8, 293 labels for ids 1–294 (C-CON:67; CMDNAMES:38-45). Full id→label→arm→field list ids 12–294 in CMDNAMES:93-377; ids 1–11 labels in CON282:267-269.
+
+Authored-code table at `01DF6E68` (`.data`), stride 16 (C-CON:68-75; CON2:241):
+
+| offset | width | meaning | cite |
+|---|---|---|---|
+| +0x00 | 8 | `char* codePtr` to "three letters + four digits" or NULL | C-CON:72; CON2:54-67 |
+| +0x08 | 4 | `index + 1` for every entry | C-CON:73; CON2:241 |
+| +0x0C | 4 | zero in every entry read | C-CON:74 |
+| extent | — | 1,314 entries (`01DF6E68`..`01DFC088`), 601 codes | C-CON:77-78; CON2:76, 241 |
+
+Render-settings block `02CB7FD0`..`02CB8438` (1,132 B; part of a larger static object initialised out to `+0x1020`) (TUNES:59-77, 185-195):
+
+| range | meaning | cite |
+|---|---|---|
+| `+000..+18F` | console-tunable settings, 84 arm-touched addresses | TUNES:186 |
+| `+190..+38F` | 8 × 64 B shadow matrices (cascades), written by `001F0AD0` from `object+0x1C0 + n*0xD8` | TUNES:187, 213-217 |
+| `+390..+44F` | shadow scalars and counts; `block+0x3E4` = live cascade count | TUNES:188, 258-260 |
+| `+450..+470` | copied separately, two arm-touched | TUNES:189 |
+| `+0xB4` (`02CB8084`) | last-applied MSAA sample count (copy of `01DF0900`), 0 = off | TUNES:670-691 |
+| named offsets (29) | table with names and defaults | TUNES:335-365, 414-442 |
+| block → snapshot | block `+X` → snapshot `+0x110+X` (0x598 B); then `00604750` → cbuffer (0x5F0 B) | CON282:250; TUNES:197-201 |
+| per-offset cbuffer map | `members/scenewide-cbuffer-map.tsv` | CON282:250 |
+
+Second settings run `01F82ED8`–`01F82F08` (13 named globals; `01F82EE4`, `01F82F04` unnamed) and `01DFE198`/`01DFE19C` (TUNES:455-469).
+
+Event-slot table (EVSLOT:85-94):
+
+| address | width | meaning | cite |
+|---|---|---|---|
+| `01F832B0` | 5 × dword | per-slot pending-event counter | EVSLOT:87 |
+| `01F832C4` | dword | cleared by the pusher each push; incremented by `001EC690` | EVSLOT:88, 302 |
+| `01F832C8` | `std::string` 0x20 | "current" name | EVSLOT:89 |
+| `01F832E8` | byte | flag A: `sum_` and `0001` | EVSLOT:90 |
+| `01F832E9` | byte | flag B: `spc_` and not `sum_` | EVSLOT:91 |
+| `01F832F0` | 5 × 0x20 | per-slot name `std::string` | EVSLOT:92 |
+| `01F83390` | 5 × 0x20 | per-slot `std::vector<int>` | EVSLOT:93 |
+| `01DFE40C` | dword | index marker | EVSLOT:94 |
+
+Files read: `JsonData/CutScenes/<name>.json` (`Common.mDofFocusDistance`, `Common.mDofApertureFnumber`) by `001C5750` for `sum_` names (EVSLOT:37-39, 116-118). Paths validated by regex `(.*)(\\plan_master\\([a-zA-Z]+)\\event\\)(.*)` at `00905958` (EVSLOT:102-104). Scene-config key strings `008FA700`–`008FAB00`, 93 references (TUNES:300-310; CON2:242). Nothing persisted (C-CON:337).
+
+Other object fields: console settings singleton `0x10E8` B: labels `+0x130 + 8×id`, `+0xAAC` `debugWeatherSlotOverride` (s32), `+0xAB4` field id for the code table (CON2:111-118, 249); `+0xC72` id 28 toggle, `+0xC74/+0xC7C/+0xC78` saved floats (CMDNAMES:419); other `rdi+…` fields per id in CMDNAMES:112-376. `PostProcessParamContext` (0x4A8): `+0x110` enable, `+0x114` focus, `+0x118` f-number, `+0x11C`, `+0x120` (35.0) (EVSLOT:219-221); `+0x4A2` = `mUseLinearTonemap == 1` → frame `+0x9A` (CON2:126-143).
+
+#### 1.9.3 State
+
+| global/object | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| block `02CB7FD0` | 1,132 B in an object to `+0x1020` | loader-zeroed, then `005DC720` chain (107 offsets); 27 named defaults listed; 8 offsets stay 0 | constructors; console arms; loaders `001C7940`/`001C3D50`; `001F0AD0`; `001846B0`/`001846F0` (`+168`) | 24 accessors (list TUNES:704) | static ctor `00162410`, `atexit` teardown | TUNES:65-77, 395-397, 414-442, 528-563, 704 |
+| `01F7F5F0` `PostProcessParamContext` | 0x4A8 | not stated | `00193D50` lazy ctor; arms (33 call sites/16 arms); `001C7940` (`+0x4A2`); `00194250` | `0018EEE0` | "lazily constructs … on first use"; "deallocated: nothing" | C-CON:91-92, 200-202; CON2:141; EVSLOT:219-221 |
+| `01F81300` | same object as `[01F7F5F0]` (`0015CAF0`) | not stated | loaders' settings stores | — | not stated | EVSLOT:219; TUNES:172, 477-479 |
+| `01F81428` console settings singleton | 0x10E8 | not stated (ctor `001CCB20` clears labels) | `001D0390` label fill; arms | `001CD0E0`, `0017D490` | built on first use by `001CCB20` | CON2:116-118, 229 |
+| `01F81168` map-art context | 0x520 | not stated | — | `001A9930` | not stated | CON282:117, 253-255 |
+| `01F82D18` display object | 0x180 | not stated | — | `001DDAB0` | not stated | CON282:120, 258 |
+| `01F81270` `MultipleDebugDisplay` | 0x4670 | not stated | — | `001C2F40` | not stated | CON282:121, 260 |
+| `01F82D20` `GameSettingConfig` ptr | 31 u32 at `+4×index` | written once at `00798261` by `007980A0` | — | 61 functions | not stated | TUNES:601-613 |
+| `01F82EA8` shadow object | 0xB08, count `+0x13C` = 3 | ctor literal 3 | ctor `001EF389` only | `001F0AD0` | singleton, also `01F812C8` | TUNES:268, 568-600 |
+| `01DF0900` MSAA word | dword | ships as 4 | `00186CD0` | `00186410`, `00187950` | not stated | TUNES:681-697 |
+| event-slot arrays | see I.2 | not stated | `0020AC30`, `0020AF10`, `0020A760`, `001EC680`, `001EC690` | `001CD0E0`, `001D0190`, `001EC560`, flag getters | not stated | EVSLOT:85-94, 299, 302 |
+| `01DFE40C` marker | dword | not stated | setter (restores −1), pusher (left set), `001EC680` | `001EC560` | — | EVSLOT:94, 124, 133 |
+
+#### 1.9.4 Order
+
+- Dispatch: one press → `0023B330`/`0023B6F0` → `0017DB90` → `001CD040` → `001D1660` → one arm, then shared epilogue `001D4BFA` (212 of 226 arms jump there) (CON282:203-206, 479-480). Out-of-range enters the epilogue at `001D4C09` (C-CON:109-112).
+- "a press takes effect on the next frame" (C-CON:249-250); "meanwhile, every frame: … `00187950` runs the render passes … `001CD0E0` draws the menu" (TUNES:493-496).
+- `001F0AD0` "runs once per rendered frame after readiness" via `00187950` ← `0017D090` (GameApplication slot 8), slot 8 run after slot 7 (input), slot 4 (animate), viewports' render (TUNES:620-658).
+- Scene load: `001C7940`/`001C3D50` store settings (TUNES:485-487, 518; CON2:253). `+0x4A2` "re-written on every map load that reaches the key" (CON2:271).
+- Boot: block static ctor `00162410` (TUNES:67-74); loader zeroing before any constructor (TUNES:542-544).
+- Event slots: setter on manager resource-set load; pusher on event-play verbs; readers per actor driver and field-frame gate (EVSLOT:258-273).
+
+#### 1.9.5 Dependencies
+
+- 17-Presentation-Rendering: render command list contract reads `PostProcessParamContext` switches (C-CON:93-98); post-processing contract step 6/7 (CON2:136-139; EVSLOT:221-225).
+- 22-Middleware-PhyreEngine: slot 8 cadence, post-process passes (TUNES:627-658; CON282:256-257).
+- 16-UI Config screen: the only caller route (CON282:214-219).
+- 19-Save-Load-Settings: `GameSettingConfig` (TUNES:607-609).
+- 03-World-Area-Field: weather override `+0xAAC` (CON2:111-115); `map_ref.bin` pack census (CON2:77-79).
+- 99-Unresolved-Residual cutscene name slots (EVSLOT:46, 275); 18-Audio (`001DBB00`, `002DEBA0`) (C-CON:408-414); Rewards (`00254EE0`) (C-CON:418-428); Battle-Frame (field-frame gates) in 00 (EVSLOT:233).
+- Shaders: SceneWideParameterConstantBuffer in `phyrechrshader.fx`/`phyredefaultlitshader.fx` (CON282:250).
+
+### 1.10 Developer tuning console: the arm catalogue (work division and slices A-I)
+
+Pages: `ARMDIV`, `ARM-A`, `ARM-B`, `ARM-C`, `ARM-D`, `ARM-E`, `ARM-F`, `ARM-G`, `ARM-H`, `ARM-I`.
+
+
+#### 1.10.1 Entry points
+
+| function | role | callers as stated | cite |
+|---|---|---|---|
+| `001D1660` console dispatch (13,753 B; body `001D1660`–`001D4C19`) | one indirect jump through a 282-entry RVA table at `001D4C1C` to 227 targets | one way in: `001CD040` tail-jumps to it; `001CD040`'s only call site is `0017DD34` in `0017DB90`, called by the Config screen's row procs `0023B3D0`, `0023B84C`; only 16 ids issued (`0x86`, `0xA6`, `0x10A`, `0x110`–`0x119`, `0x11B`–`0x11D`) | ARMDIV:35, ARMDIV:40; ARM-B:43-63; ARM-B:191-197 |
+| `001D4C1C` dispatch table | dword RVAs, entry for id n at `001D4C1C + (n − 12) × 4`, + image base `0x00120000` | read by `001D1660` (`001D16A3`) | ARMDIV:161-162; ARM-B:54 |
+| `001D4BFA` | do-nothing target of 56 ids **and** common tail of 212 of 226 real arms | all arms | ARMDIV:41; ARMDIV:113-116 |
+| `001D4B49` (arm of id 281 "Glare") | three-entry shared epilogue: `4B59` (ids 276, 280), `4B60` (279), `4B65` (134, 166, 274, 275, 277, 278) | jumps from 9 ids in D, E, I | ARM-H:225-236; ARM-I:131-136; ARMDIV:490-493 |
+| `001CD0E0` row renderer (`DebugMenu_Render`) | prints each row `"%s%s%f"` with label `[ctx + id×8 + 0x130]`; renderer table 294 entries, base 1 (`lea eax,[r13-1]` / `cmp eax,0x125`) | `001D5260`, `001D0190` | ARM-E:130-140; ARM-E:151-153; ARM-H:274-277 |
+| `001D0390` label filler | stores label `char*` per id; 293 non-empty labels ids 1–294 + id 298 | `001CCB20` (`001CCEA4`) | ARMDIV:43; ARM-A:211 |
+| `001D50D0` console settings-object getter | returns the `0x10E8`-byte singleton cached at `01F81428` | Input bodies `00197800`/`00197160`/`00197790`; `001FA3D0`, `001BC190`, `00187950`, `001F8D10`, `001D5650` | ARM-A:211; ARM-A:369-371; ARM-F:229-230 |
+| `001CCB20` singleton builder | builds object on first use, clears labels (`001CCE6F`), calls `001D0390` (`001CCEA4`); sets defaults (`+0xC58` = 0 at `001CCC9F`, `+0xE30` = 0 at `001CCDDD`, `+0xDDC` = 0x11 at `001CCD7D`, `+0xCF9..CFB` = 1 at `001CCEE0`/`001CCEE9`) | `001D50D0` | ARM-A:211; ARM-F:292-296; ARM-G:180-182; ARM-G:193-194; ARM-G:207 |
+| `00162410` → `005DC720` (→ `005DC580`, `005DC430`) | static initializer + ctor of the `02CB7FD0` tuning object; destructor `008AB7C0` via `atexit` | static init | ARM-E:234-245; ARM-E:451-470 |
+| `001DF340` | 10-byte property setter `obj->dword[edx] = r8d` | arms of ids 134, 166, 271–281, 284, 285; `007A0C60`, `001DD170` | ARM-I:193-202; ARM-E:289-291; ARM-I:397-400 |
+| `001DF2C0` | MSAA gateway (id 277): step mod 5, skip modes whose bit is clear in `cfg+0x44C` | arm 277 | ARM-I:295-297 |
+| `001A9930` | 8-byte getter `[01F81168]` (map-art context) | 14 arms / 45 call sites | ARM-D:194; ARM-D:264-265 |
+| `00193D50` | lazy getter of the render-parameter block | 16 arms / 33 call sites | ARM-D:195; ARM-B:206-211 |
+| `00189120` | 8-byte getter `[01F7F598]` (0xDD8 render object) | id 103 (`001D2B15`), "117-caller hub" | ARM-C:145; ARM-C:236-238 |
+| `001C2F40` | 8-byte getter `[01F81270]` `MultipleDebugDisplay` (0x4670) | ids 51, 218, 219 | ARM-G:222-224; ARM-B:212 |
+| `001DBB00(category, byte)` | sound-category mute | ids 205–207 | ARM-G:203-207 |
+| `003058B0` / `00305A00` / `00305960` + `003058C0` | set gil / LP / level to max | ids 199 / 200 / 201 | ARM-F:132-134 |
+| `002DEBA0` / `002DF2A0` | get/set `0215EFD0` (3D Sound Behind Ratio) | id 217 | ARM-G:214-216 |
+| `0017E7A0` | step `01DF0010` (Extra BGM status) | id 220 | ARM-G:217 |
+| `002FBA40` / `002FBA50` | get/set `022BE950` Print Magic Info | id 183 | ARM-F:318 |
+| `001B1C00`/`001B0F90` get, `001B1FF0` set; `002B6650`…`002B66C0` | track-map placement accessors | ids 189–193 | ARM-F:301-306 |
+| `0032E010` / `0032E030` | integer get/set | id 267 | ARM-H:180-181 |
+| `00182DE0` / `00182E10` | window-mode / resolution push | ids 263, 264 | ARM-H:189-191 |
+
+#### 1.10.2 Inputs and outputs
+
+**Dispatcher arguments** (ARM-B:46-62; ARM-F:219): `rcx` → `rdi` settings object; `dl` → `bl` arg 2; `r8b` → `sil` arg 3. `001CD040` sets `r8b = (dl == 0)` (ARM-B:193). Id bound `add r9d,-0xC` / `cmp r9d,0x119` / `ja 0x1D4C09` (ARM-B:47-52).
+
+**Console settings object** (`0x10E8` B, cached `01F81428`; ARM-A:211), fields stated:
+
+| offset | width | meaning (id) | cite |
+|---|---|---|---|
+| +0x130 + 8·id | ptr | label per row | ARM-E:298 |
+| +0xA68 | b | initialised | ARM-E:299 |
+| +0xA6C | d | cursor row | ARM-E:300 |
+| +0xA80 | ptr | object id 166 calls virtually (`+0x60` slot) | ARM-E:301; ARM-E:280-284 |
+| +0xA88 | d | page index (page·22 + row) | ARM-E:302; ARM-E:315-317 |
+| +0xAA8 | d | Load ps2 savedata from slot (15), wraps mod 200 | ARM-A:84; ARM-A:265 |
+| +0xAB8 | — | Change cast shadow object (24) | ARM-A:93; ARM-A:270 |
+| +0xABC/+0xABD/+0xABE | b | Enable Map/Character/UI Display (34, 35, 37) | ARM-A:276 |
+| +0xAC0 | d | Enable VFX Display (38), mod 3 | ARM-A:107; ARM-A:277 |
+| +0xAC4 | b | Enable Shadow Display (40) | ARM-A:278 |
+| +0xAC6 | b | Show Map Hide Group (176) | ARM-F:263 |
+| +0xAC8/+0xACC/+0xAD0 | d | Particle Draw Type Range cursor/cursor/count (177, 178) | ARM-F:110-111; ARM-F:171-172 |
+| +0xAD4/+0xAD8/+0xADC | d | Map render DisplayList Id range (180, 181) | ARM-F:113-114 |
+| +0xAE0 | d | Fusion Technique Select (182), clamp [0,8] | ARM-F:115 |
+| +0xC04 / +0xC08 | d | HBAO NumSteps (43) bounds 2,0x13 / id 44 same bounds | ARM-A:112; ARM-B:72 |
+| +0xC0C | b | Camera Over Write flag (103); also listed by id 60 | ARM-C:91; ARM-B:88 |
+| +0xC10/+0xC14/+0xC18 | f32 | FOV / Aspect Ratio / Camera scale (104–106) | ARM-C:92-94 |
+| +0xC20 | d | Invincible (14), wraps 3; read by `0017D470` | ARM-A:83; ARM-A:232 |
+| +0xC28 | d | id 60 | ARM-B:88 |
+| +0xC2C | d | Display texture density (32) | ARM-A:101; ARM-A:274 |
+| +0xC34/+0xC35 | b | Huge Damage (185) / Enable mouse control camera (187) | ARM-F:118-120; ARM-F:267-268 |
+| +0xC38 | d | Camera speed (186), mod 4 | ARM-F:119 |
+| +0xC3C/+0xC3D/+0xC3E | b | key-mapping-from-file (188) / Japanese keyboard (293) / File Cache Enable (202) | ARM-F:121,135; ARM-I:179 |
+| +0xC40/+0xC44/+0xC48 | d | Load chr (20) / Variation (21) / CLUT (22) | ARM-A:267-269 |
+| +0xC58 | d | step selector for 190–193; always 0 | ARM-F:180-190; ARM-F:291-296 |
+| +0xC70 | b | 100% Spawn Rare Monster (197) | ARM-F:130 |
+| +0xC71 | b | Use normal map (29) | ARM-A:98 |
+| +0xC72 + save area +0xC74…+0xC98 | b + 12 | Use PS2 lighting (28) | ARM-A:97; ARM-A:136-142 |
+| +0xCEC/+0xCED/+0xCEE | b | set gil/LP/level toggles (199–201) | ARM-F:132-134 |
+| +0xCF0 | b | Switch diffuse texture (33) | ARM-A:102 |
+| +0xCF4 | f32 | Debug high model skeleton (26) | ARM-A:95; ARM-A:235 |
+| +0xCF9/+0xCFA/+0xCFB | b | Music / Voice / Sound Effect mutes (205–207) | ARM-G:68-70; ARM-G:202-207 |
+| +0xD07 | b | id 208 | ARM-G:71 |
+| +0xD08 | d | id 54 | ARM-B:82 |
+| +0xD78 | d | Yebis enable (175), 3 states | ARM-F:108; ARM-F:274 |
+| +0xD90 | d | Procedural texture rotation ratio (196) | ARM-F:129 |
+| +0xDA0 | d | Load sample chr (19), cap 0x12 | ARM-A:88 |
+| +0xDB4 / +0xDB8..+0xDD4 / +0xDD8 | d | id 225 value / 8 digits / cursor | ARM-G:78; ARM-G:115 |
+| +0xDDC | d | constructor sets 17; no reader | ARM-G:192-200 |
+| +0xDE0 / +0xDE4..+0xE00 / +0xE04 | d | id 226 | ARM-G:79; ARM-G:117 |
+| +0xE0C / +0xE14 (/+0xE18 per ARMDIV) | d | id 227 value / sub-field selector (/ hours modulus) | ARM-G:80; ARMDIV:533-535 |
+| +0xE1C/+0xE1D/+0xE1E | b | ids 228–230 | ARM-G:81-83 |
+| +0xE2C / +0xE30 | d / b | Set scenario flag index (231) mod 311 / coarse-fine flag (always 0) | ARM-G:84; ARM-G:180-187 |
+| +0xE34..+0xE58 | d pairs stride 8 | five counters + modifier flags (238–242) | ARM-H:247-251 |
+| +0xE5C/+0xE60/+0xE64 | d | steal/poach/drop success state (243–245) | ARM-H:252-254 |
+| +0xE68 | d | stat array stride 12 (ids 247–258) | ARM-E:304 |
+| +0x10A8 | d | selected character | ARM-E:305 |
+| +0x10B8 | f32 | Master Volume Ratio (260) | ARM-H:255 |
+| +0x10BC | d | window mode mirror (263) | ARM-H:256 |
+| +0x10C4 | d | mirror — **id 267 per ARM-H:257, id 268 per ARM-I:154** (C.1) | |
+| +0x10CC/+0x10D0/+0x10D4 | d | mirrors 269, 270; id 288 counter | ARM-I:155-156,174 |
+| +0x10D9 | b | After Water fix enable (62) | ARM-B:217 |
+| +0x10DC / +0x10E0 | d / b | ids 291 (mod 4) / 292 | ARM-I:177-178 |
+
+**`02CB7FD0` tuning object** (static C++ object; ARM-E:243): fields +0x000…+0x070 for ids 140–164 with shipped defaults (ARM-E:86-110); +0x074…+0x090 water (slice D, ARM-E:311); +0x0D0 sub-object `chrFresnelSpecular*` (ARM-E:312); +0x464 SSS enable byte = 1, +0x468 SSS Width = 7.0 (ARM-E:113-114); arrays `02CB80A0`–`02CB812C` (ids 63–98, ARM-C:115-116), `02CB8130/34/38` (ids 108–110, ARM-D:74-76), `02CB8140` (107), `02CB8144` (113), `02CB8148`/`02CB8150` (ids 30, 31), `02CB7FE8`–`02CB7FF4` (136–139), `02CB8044`–`02CB8060` (120–126, 135), `02CB806C` (119).
+
+**`01F82D20` `GameSettingConfig`** (`0x65C` B, 31 dword slots, property n = dword n; ARM-I:188; ARM-I:193-202): property → id map ARM-I:212-226; `+0x08` window mode (263/264, ARM-H:189-190); `+0x40` WaterQuality (134, ARM-D:339-344); `+0x38` property 14 (166, ARM-E:427-429). Defaults table `00900CE0` 31 × 4 presets, column 0 (ARM-D:352-356).
+
+**Map-art context `[01F81168]`** (0x520 B; ARM-D:264-266): `+0x2C0`…`+0x448` fields with keys and readers (ARM-D:277-311), `+0x2E4` EnableIBL byte, `+0x2E5`, `+0x2F8` WaterQuality copy (ARM-D:318-335).
+
+**Render object `[01F7F598]`** (0xDD8): `+0xC0C` camera-override switch, `+0xCC4/CC8/CCC` FOV/aspect/scale (ARM-C:241); `+0xDBA`, `+0xDC8`, dirty byte `+1` (ARM-I:303-305).
+
+**Other tables read:** `01DFC0D0` 311 scenario values (ARM-G:185-187); `01DFD150` 31×9 value-label table (ARM-I:210); `00900EE8` = {1,2,4,8,9} (ARM-I:304); `01DF0018` BGM labels (ARM-G:218). Files: JSON sidecar `JsonData/CutScenes/<scene>` re-parsed via id 12 (ARM-A:301).
+
+#### 1.10.3 State
+
+| global/object | size | initial value | writer(s) | reader(s) | lifetime | cite |
+|---|---|---|---|---|---|---|
+| `01F81428` → console object | 0x10E8 | built on first use | `001CCB20` | `001D50D0`, `001D1660`, `001CD0E0` | first use; destroy not stated | ARM-A:211 |
+| `02CB7FD0` tuning object | ≥ +0x1020 per ARM-E:466-467 | ctor defaults (ARM-E:86-117) | `005DC720`/`005DC580`/`005DC430`; console arms | arms, renderer | static init `00162410`, `atexit` destructor `008AB7C0` | ARM-E:234-241 |
+| `01F82D20` → GameSettingConfig | ≥ 0x65C | `00900CE0` col 0; `+0x44C` = 1, `+0x658` = 0x101 | `007980A0` (store `00798261`), `001DF340` | 156 reads | built by `007980A0`; destroy not stated | ARM-D:339-356; ARM-I:188-191 |
+| `01F81168` map-art context | 0x520 | ctor `001A2130` (`+0x2F8` = 2 then WaterQuality; `+0x2E4` word 0x101) | `001A98B0` | `001A9930` | rebuilt → WaterQuality re-copied (only then) | ARM-D:264-266; ARM-D:324-335 |
+| `01F7F598` render object | 0xDD8 | ctor `00184F20` | `00189000` | `00189120` | not stated | ARM-C:241 |
+| `01F81270` MultipleDebugDisplay | 0x4670 | not stated | not stated | `001C2F40` | not stated | ARM-G:222-224 |
+| `01DF6E48` Read Json Data | byte | 1 in image | id 12 | `001C5930`, `001C5F20`, `001C61F0`, `001C6C00` | image | ARM-A:295; ARM-A:301 |
+| `02CB8148` / `02CB8150` | byte / dword | — / 0 at load | ids 30 / 31 | `001E2AF0` | — | ARM-A:298-300 |
+| `01DFE191` Fresnel Reflection enable | byte | 1 | id 99, `001A5B30` | `001F8D10`, renderer | image | ARM-C:244-256 |
+| `01DFE192` Camera Light enable | byte | not stated | id 61 | not stated | | ARM-B:216 |
+| `01DFE1AC` SSS Diffuse a | f32 | 1.0 (image) | id 169 | none found | image | ARM-E:262-264 |
+| `01F82EE4` SSS Diffuse b | f32 | unknown | id 170 | — | zero-filled tail | ARM-E:116; ARM-E:350-352 |
+| `01F82ED0` | f32 | not stated | id 112 | — | | ARM-D:78 |
+| `01E02801` FrameSkip Enabled | byte | 1 | id 287 | `001E05F0` | image | ARM-I:308-315 |
+| `022BE950` Print Magic Info | dword | not stated | `002FBA50` | `002FC4A0`, renderer | | ARM-F:318-320 |
+| `01E0CE50..5C` track-map floats | f32 ×4 | 0.67, 0.6, 1.0, 21.0 | ids 190–193 | `002B6B50`, `002B7B80`, `002B8EE0` | image | ARM-F:302-310 |
+| `0215EFD0` 3D Sound Behind Ratio | f32 | 0.3 (`002DE360`) | id 217 | world tick `0031431A`/`00314324`, `00363109`, renderer | | ARM-G:214-216 |
+| `01DF0010` Extra BGM status | dword | 1 (image) | `0017E7A0` | `0017E490` | | ARM-G:217-221 |
+| `01F7F4E8` | byte | not stated | "no RIP-relative writer" | `0017E490` | | ARM-G:219-221 |
+
+#### 1.10.4 Order
+
+- Boot: `00162410` static init → `005DC720` writes every default of `02CB7FD0` (ARM-E:324); console object built on first `001D50D0` call (ARM-A:211). Frame placement of the console call is **not stated** beyond the Config-screen row procs (ARM-B:191-196).
+- Per press: dispatcher → table → arm → `jmp 001D4BFA` (or into `001D4B49` interiors) (ARM-A:190-195; ARM-H:225-236). Renderer draws each row independently (ARM-E:322-323).
+- Id 103 OFF edge re-seeds +0xC10..C18 from the render object (ARM-C:140-143). Id 264 acts only when window mode ≤ 1 (ARM-H:167-169). Id 28 ON edge saves/zeroes, OFF restores (ARM-A:126-134).
+- Map-art context copies WaterQuality once at construction (ARM-D:333-335). Scene load writes config keys (ARM-E:325).
+
+#### 1.10.5 Dependencies
+
+Audio (`002DEBA0`, `001DBB00`, `00210B30`/`002112D0`, 18-Audio driver page; ARM-G:205-210), Resource (`002EEEE0`; ARM-A:366), Presentation (materializers `001D5120`/`001C7360`/`001C7520`; ARM-A:364-365), 19-Save-Load-Settings Game-Settings-Config (ARM-I:186-189; ARM-D:330-343), 08-Combat-Formula Steal (`FK-3`; ARM-A:211), 16-UI Map-Screens (ARM-F:310), 22-Middleware-PhyreEngine Post-Process-Chain (ARM-A:233; ARM-D:314), 99-Unresolved-Residual cutscene slots (ARM-A:301), Economy `GameState_SetGil` `00254EE0` (ARM-F:234), combat target eligibility `0030B7F0` (ARM-A:283-285), Application-Root (`game-application.md`; ARM-C:238; ARM-G:223). All marked outside 00 except Application-Root.
+
