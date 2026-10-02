@@ -441,3 +441,448 @@ Only items that no later dated text on the 23 pages answers are listed. Items a 
 | G-16 | **Party appearance**: `002E8FD0`'s visibility-refresh gates (via `00428E10`/`00428DE0`/`00429020`); `BattleUnit_FindByDefinitionSelector` `002367A0` is named only. | The visible effect of the shadow / LOD verbs. | `LOOKS:184`, `:577-583` |
 | G-17 | **Spawn native targets** (`002366E0`, `002354F0`, `00235360`, `002391C0`, `0023A3B0`, `00239840`, `0023A2E0`) are named and pointed to the 05 spawn pages. | The spawn verbs' effects. | `CC:159-165`, `:306-308` |
 | G-18 | **`setuptreasure` order's callees** `0026A320(actor, 1)`, `002640C0()`, `0026AF80`, `0026E060`, and the bind's tail callees `0026A370`, `0026B2E0`, `00269E60`, `00426C90`, `00263A30` are named, not described. | Treasure placement and binding. | `NAMES:140-148`, `:252-262` |
+
+---
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Quotes are exact, from the snapshot. `…` marks an elision; emphasis markers (`**`, `*`) inside a quote are kept only
+where they appear on the page. "Favoured" is named **only** where a dated correction on the pages settles the point;
+otherwise the item says **no favoured side**. Every value-changing item is **page-text only - needs local check**: this
+session cannot see the executable.
+
+### 3.1 Value-changing (behaviour, offsets, addresses, constants, formulas)
+
+#### Interpreter, driver and requests
+
+**C-V1. What the default dispatch arm `0025E60A` does: nothing, or a stop request.**
+- Side A: `INT:150-152`: "**The VM treats those six exactly as it treats an opcode it does not recognise.** They are
+  not rejected loudly — `0025E60A` is `mov [rsp+0xC0], ebp ; mov edi, ebp` and continues into the common path — but
+  they carry no behaviour of their own." `INT:154`: "**Six of one hundred opcodes are inert in the shipped
+  interpreter**".
+- Side B: `RES:110`: "`0025E60A` sets a stop request; `0025E613` advances without newly setting it." `C-INT:100`:
+  "**I4 — There are distinct epilogue entries.** `0025E60A` requests a stop".
+- Status: **favoured side B.** The SECTION-11 correction dated 2026-09-23 on the interpreter page itself says "There
+  are separate stop-request and plain-advance entries; zero-length handlers do not all behave alike." (`INT:30-33`).
+  `INT:150-154` is not amended. This decides what opcodes `01 02 19 1A 31 47` and any out-of-range opcode do.
+- Page-text only - needs local check.
+
+**C-V2. Is script arithmetic float?**
+- Side A: `INT:113-115`: "The dominant operation by a wide margin is *pop an int32, coerce to float32* — so the
+  bytecode is integer-encoded and the arithmetic is float".
+- Side B: `C-INT:82-84`: "Integer arithmetic is not universally float arithmetic. Tested int addition wraps at 32
+  bits; mixed numeric addition uses float32, and float-to-int pops truncate."
+- Status: **no favoured side.** `INT:95-96` calls the "pop-an-int32-coerce-to-float32" reading "false as a statement
+  about the callees", but no dated line strikes `INT:113-115`. See G-3.
+- Page-text only - needs local check.
+
+**C-V3. Where the start path reads the wait-slot index: the actor or the entry.**
+- Side A: `REQ:182`: "the slot is `[actor+0xA8] + byte[entry+0x11]·0x28`".
+- Side B: `BIND:91`: "slot = record.+0x11 (currentWaitSlot, SIGNED); wait = *(record.+0xA8) + slot * 0x28";
+  `RES:179`: "the issuing request is `actor+0xA8 + sx(actor+0x11)·0x28`". On the entry, `+0x11` is the run state
+  (`BIND:192-200`).
+- Status: **no favoured side.** Both are falsification-pass rows (2026-09-29 and 2026-09-30); neither corrects the other.
+- Page-text only - needs local check.
+
+**C-V4. Function sizes on the binding page that do not contain their own cited addresses.**
+- `003DBDC0`: `BIND:422`: "`003DBDC0` `ActorResource_StartEntryScriptExecution` (41 B)" — against `BIND:10`:
+  "ActorResource_StartEntryScriptExecution (0x3DBDC0-0x3DBE0C) read in full" (76 B) and `BIND:199`:
+  "`ActorResource_StartEntryScriptExecution` `003DBE68`" (a store past both extents).
+- `00268850`: `BIND:438`: "`00268850` (`ScriptVM_SubmitActorRuntimeRequest`, ~250 B)" — against interior sites up to
+  `00268A48` (`BIND:188`), 0x1F8 bytes past the entry.
+- `00358A00`: `BIND:431`: "`00358A00` (21 B)" — the same row cites `00358A24`/`00358A37`, past `00358A15`.
+- Status: **no favoured side.** A port that copies these extents would cut the functions short.
+- Page-text only - needs local check.
+
+**C-V5. Which footer word the driver tests: `special[11]` (`parameter`) or `special[12]` (`mapjump`).**
+- Side A (corrected): `BIND:79`: "~~the wait resolver's "word `+0x18` when the count exceeds 11" is `special[12]`, the
+  `mapjump(12)` function~~ *Corrected 2026-09-30 (OPUS …): word `+0x18` is `special[11]`, the actor's `parameter`
+  function - the footer is 0-based".
+- Side B (unstruck): `BIND:290`: "wait resolver's `mapjump` test is §2.6".
+- Status: **favoured side A** by the 2026-09-30 correction. The RC-12 adjudication is still "pending" (`BIND:291`,
+  S-3).
+- Page-text only - needs local check.
+
+**C-V6. Width of actor-entry `+0x06`.**
+- Side A: `BIND:70`: "| `+0x06` | `u8` party code".
+- Side B: `BIND:76`: "| `+0x06`… | the `u16` ff12-script writes as `pcId`".
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V7. What `00226BE0` is.**
+- Side A: `INT:1049`: "it is `00226BE0`, the system-stop registry's request start, which builds the records, marks
+  every actor and raises the dirty flag" (pointer 2026-09-30).
+- Side B: `BIND:397-399`: "`00263230` — the mode-1 arm of `ActorResource_StartEntryScriptExecution` — calls
+  `00226BE0`, an Input-layer helper that builds a per-channel bitmask … the entry-start path consults the input
+  channel state."
+- Status: **no favoured side.** The 2026-09-30 line is a pointer on another page, not a correction of `BIND`.
+- Page-text only - needs local check.
+
+#### Native command lifecycle and dispatch tables
+
+**C-V8. What the family-table initialiser installs, and at which address.**
+- Side A: `DT:532-533`: "`VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2D0`) fills an array of **16 family
+  tables** at `0x02B57EF0`: twelve share a default at `0x01F26720`"; `DT:627-629`: "(`003DC2D0`, 89 B) writes the array:
+  a `rep stosq` of `0x01F26720` over all 16 slots, then four overrides". `C-NCL:54`, `VD:115-131` and the
+  `native-command-family-tables-accesses.tsv` row agree.
+- Side B: `DT:763-764`: "`VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2F0`) is nine instructions and
+  installs **four** bases."; `DT:774-775`: "**Families 1, 2, 4 and 6 are never installed** — which is why the accessor
+  null-checks the table pointer before touching it."; `DT:835`: "whatever writes that slot is the answer, and it is
+  not `003DC2F0`."
+- Status: **no favoured side** on the pages (both are undated 2026-09-02-era sections of `DT`). Three other pages
+  and the TSV state side A. If side B held, calls in families 1, 2, 4, 6 would return NULL instead of reaching the
+  shared table.
+- Page-text only - needs local check.
+
+**C-V9. Table extents: whether the tables abut, and where family 0 ends.**
+- Side A: `DT:643-646`: "**The four tables abut exactly** … **There is no gap, no terminator and no padding between
+  them**"; `DT:57`: "the table occupies `01EED700`..`01EF9208`".
+- Side B: `DT:860`: "So the tables are adjacent but **not contiguous** — 16, 8 and 8 bytes of slack."; `DT:769`:
+  "| **0** | `02B57EF0` | `01EED700` | **1496** | `01EED700`..`01EF9200` |".
+- Status: for family 0's end, **favoured `01EF9208`**: `DT:57` carries the 2026-09-19 (FABLE) restoration of the
+  `tbl + 8 + 0x20n` frame, under which the last record ends at base + 8 + 0x20 × 1,496. The abut/slack pair uses the
+  same two end conventions and is **not settled** by a dated line.
+- Page-text only - needs local check.
+
+**C-V10. Sizes of the begin and result accessors.**
+- Side A: `DT:752-753`: "`VMNativeCommandDispatch_GetBeginCallback` (`003DC270`) and `…GetResultCallback`
+  (`003DC2A0`) are the same 36 bytes at a different field offset."
+- Side B: `C-NCL:55-57` give `003DC270` 39 B, `003DC240` 39 B, `003DC2A0` 41 B (re-checked "461 / 89 / 39 / 39 / 41 B",
+  `C-NCL:266`); `VD:279` agrees; `DT:736` itself gives the poll accessor "39 bytes".
+- Status: **no favoured side.** The result accessor also has no displacement (`inc rax / shl rax,5`, `DT:275`), so
+  "the same … at a different field offset" does not describe it.
+- Page-text only - needs local check.
+
+**C-V11. Does an out-of-range command fail closed?**
+- Side A: `VD:170-172`: "**An out-of-range verb fails closed**; it does not read past the table."; `NCL:232-233`: "an
+  out-of-range command id fails closed with a null callback rather than reading past the table."
+- Side B: `C-VD:113-118`: "### ⚠ CORRECTED 2026-09-12 by the 40th pilot — the guard is ONE-SIDED … `cmp edx,[rcx] /
+  jge` is a **signed** compare and `movsxd rax, edx` sign-extends"; `C-NCL:115-117`: "the signed bounds check is `N <
+  count`, which permits `result(count−1)` to read at `tbl + 32*count` — one row past the counted rows."
+- Status: **favoured side B** for negative commands, by the 2026-09-12 correction; the contract also says the case is
+  unreachable from bytecode (`C-VD:126-138`). The `C-NCL` "one row past" wording is a row-model statement: it is the
+  same address as record `count−1`'s `+0x18` in the `VD` frame.
+- Page-text only - needs local check.
+
+**C-V12. What the value-stack byte at `+0x44` holds.**
+- Side A: `VD:379-380`: "`+0x044 + i` u8 source type 0..5 = the declared type of the variable it came from (uchar,
+  char, ushort, short, int, float); 6 = a literal or computed value, not from a variable".
+- Side B: `C-BR:116-118`: "source-kind byte; direct pushes store6. Existing variable-load evidence distinguishes
+  descriptor byte0 from its separate high-nibble selector. Do not equate those fields; the complete enum is
+  unresolved."; `VARS:469`: "**What the other values of that byte are is still unknown.**"
+- Status: **no favoured side.** (`NCL:378` "always 6" describes the lifecycle's own append only.)
+- Page-text only - needs local check.
+
+**C-V13. Entering the executor with phase ≥ 2: does poll run?**
+- Side A: `VD:201-208`: the pseudo-code has only `if (phase == 0) {…}` and then "/* phase 0 and 1 both fall through
+  to poll */ running = poll ? poll(b, owner, cmdState + 0x18) : 0;" — no phase ≥ 2 arm.
+- Side B: `C-VD:217`: "phase >=2 --result----------> push, phase 0 (NO begin and NO poll; EXP-085 (2))";
+  `C-VD:223-226`: "anything else falls through to `00262255`, which fetches `result` and calls it directly … an entry
+  at phase >= 2 pushes whatever `+0xC` already held".
+- Status: **favoured side B**, by §13b "EXP-085's findings, adjudicated against the bytes — 2026-09-17 (OPUS)"
+  (`C-VD:391-452`). `VD:705-718` (BQ-5, 2026-09-26) adds that no writer leaves phase 2/3 behind.
+- Page-text only - needs local check.
+
+**C-V14. How many arguments a callback receives.**
+- Side A: `VD:242`: "Every callback receives the same four things, in the Microsoft x64 convention:"; `C-VD:148`:
+  "Microsoft x64, and the same four things every time:".
+- Side B: `C-VD:158`: "**`begin` takes FIVE arguments, and the fifth is on the stack** — added 2026-09-13".
+- Status: **favoured side B** by the 2026-09-13 addition. Whether any handler reads the fifth is S-11.
+- Page-text only - needs local check.
+
+**C-V15. Width of `cmdState+0x08` (the bound actor id).**
+- Side A: `VD:358`: "+0x08  u32   bound actor id      compared against *(u16 *)b at 00262225".
+- Side B: `C-VD:176`: "`+0x08` bound actor id (u16)".
+- Also: `C-VD:416`: "`00262225 mov edx, dword [rdi+8]` — **`dword [cmdState+8]`**".
+- Status: **no favoured side**; the contract disagrees with itself.
+- Page-text only - needs local check.
+
+**C-V16. How many commands have no callback at all: 33 or 4.**
+- Side A: `VD:726`: "The **90 rows still without a measured arity**: 33 command slots with no callback at all";
+  `VD:1058`: "| slot has no callback at all | 33 |"; `VD:1242`: "33 slots with no callback".
+- Side B: `VD:606-608`: "~~**27 command slots point at the 3-byte `ret 0` stub** and 33 have no callback at all.~~
+  **34 callback slots over 33 commands point at the 3-byte `ret 0` stub** … and **4 commands have no `begin`, `poll`
+  or `result` callback at all**. Measured 2026-09-15".
+- Status: **favoured side B** by the 2026-09-15 correction. The 33 are 29 poll-only plus the 4 (the TSV's `empty`
+  shape). A port that took side A would make 29 waiting verbs inert.
+- Page-text only - needs local check.
+
+**C-V17. What `0x20D3` is.**
+- Side A: `VD:677-679`: "`0x20D3` is the **last id of family 2** and its handler is `0016D6A0`, the folded three-byte
+  `ret 0` — the terminator the dispatch falls closed onto".
+- Side B: `C-VD:503-504`: "**8 poll-driven records** (`begin` stub + `poll` `005C5230`, `result` real or NULL — family 0
+  518/521/882/883/884/1198, shared 211, family 3 32)". Shared-table command 211 is `0x20D3`; the verb table carries
+  begin `0016D6A0`, poll `005C5230`.
+- Status: **no favoured side.** `VD:170-172` also says out-of-range commands return NULL rather than land on a
+  terminator.
+- Page-text only - needs local check.
+
+**C-V18. Instantaneous commands: 1,573 all result-only, or 1,571 plus two that can block.**
+- Side A: `VD:229-230`: "That is why 1,573 of the 1,960 commands are instantaneous"; `VD:604`: "**327 verbs are
+  durative, 1,573 are instantaneous.**"
+- Side B: `VD:1271`: "| `result` only — *instantaneous* | 1,571 |"; `VD:1319-1321`: "**Two verbs are labelled
+  `instantaneous` and carry a `poll`** … **these two can block despite the label.**"
+- Status: **favoured side B** by CZ-1 "*Answered 2026-09-14 (FABLE, `CZ-1`)*" (`VD:1324-1337`). The TSV label is not
+  corrected.
+- Page-text only - needs local check.
+
+#### Bridge, calling convention and result tag
+
+**C-V19. Is the four-register signature universal?**
+- Side A: `CC:30-31`: "exposes the **calling convention every native verb in the game uses**"; `C-BR:205-207`: "this
+  contract is the calling convention every one of them obeys."
+- Side B: `C-BR:50-52`: "It is not a universal signature for begin/poll/result callbacks: Section11 executes begin
+  with a fifth manager argument, poll without a newly supplied R9 stack argument, and result with its own surface".
+- Status: **favoured side B**: it is the SECTION-11 production correction dated 2026-09-23 (`C-BR:28`), and it
+  agrees with C-V14. `C-BR:205-207` contradicts its own `:50-52`.
+- Page-text only - needs local check.
+
+**C-V20. Which values wait-slot `+0x15` takes, and where `1` is written.**
+- Side A: `C-BR:266-268`: "**No tag above 3 exists** — resolved 2026-09-14: the entry-typed `+0x15` writer population
+  is enumerated image-wide and writes only 0 (interpreter clear), 2 and 3 (§14 item 2)."; `C-BR:359`: "`+0x15` writer
+  population is exactly {clear 0, int 2, float 3} … | 1 | PROVEN |".
+- Side B: `C-BR:330-332`: "**Corrected object identity:** `0026230B` DOES write phase1 in the same selected
+  ActorWaitSlot used by the result writers. … The prior whole-image exclusion of this site was wrong."; `C-BR:199`:
+  "lifecycle `0026230B` writes1, `00262382` writes0".
+- Side C: `CC:444-448`: "Across all six, `+0x15` takes **`0`, `1`, `2`, `3`** and nothing else. **`1` is written
+  exactly once in the EXE, and not as a byte:** … `00261B97  mov word ptr [rsi + 0x14], 0x107`".
+- Status: that `1` **is** written is **favoured** by the SECTION-11 correction (2026-09-23, `C-BR:28`, §14 item 2).
+  Which site writes it (`0026230B`, `00261B97`, or both) is **not settled**.
+- Page-text only - needs local check.
+
+**C-V21. What the `+0x15` values mean.**
+- Side A: `CC:217`: "| `+0x15` | result entry | type tag; `0` none, `1` armed, **`2` = int32**, `3` = float32 |".
+- Side B: `C-BR:147`: "entry +0x15   u8          phase0 begin pending,1 poll pending;2 int/3 float typing during
+  completion".
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V22. Does a pop with an unknown tag consume the slot?**
+- Side A: `C-BR:237-239`: "`PopInt32` treats any tag other than 1 or 2 as the error path (`00267E31`, after the
+  decrement, so `depth` **is** consumed); `PopFloat32` … also after the decrement." The execution table row `C-BR:311`
+  (EXP-013, 2026-09-10): "an unknown tag (0, 3, 255) returns 0 / +0.0 and consumes the slot (depth 1 → 0)".
+- Side B: `C-BR:397-398` (falsification pass 1, 2026-09-12, about the empty-stack and unknown-tag paths in the table
+  at `:391-396`): "On every one of the four paths the depth word at `[rcx]` is left untouched, so a refusal is not a
+  pop."
+- Status: **no favoured side** by a correction; the 2026-09-10 execution row supports side A.
+- Page-text only - needs local check.
+
+#### Variables
+
+**C-V23. What an out-of-range array index reads.**
+- Side A: `VARS:254`: "Array indices are clamped, not checked: an out-of-range read returns the edge element
+  silently."
+- Side B: `VARS:83-84`: "`min(max(index, 0), dim - 1)` with the dimension read as a signed dword, so the edge element
+  is read only when the dimension is 1 or more. A dimension of 0 gives index -1, one element before the array".
+- Status: **favoured side B** by the 2026-09-28 qualifications (`VARS:80-89`).
+- Page-text only - needs local check.
+
+#### Verbs on this category's pages
+
+**C-V24. ATRAC3 verb shapes.**
+- Side A: `WAIT:95` lists `atrac3standbysync` and `atrac3playsync` among the 26 poll-only waits; `WAIT:101-102`: "both
+  poll `005C5230` — **the stub**"; `WAIT:125`: "| `atrac3cancel` | `0016D6A0` | `005C5230` | — |".
+- Side B: `WAIT:239-241` (2026-09-26): "the dispatch records register all five ATRAC3 verbs the same way, with a result
+  callback only, and exactly one of them is the folded `ret 0`. There is no two-shape split to explain."
+- Status: **no favoured side.** The dated note is later, but `scriptvm-verb-table.tsv` shows side A (`04AB`/`04AD`
+  poll-only `005C5230`; `04AE` begin `0016D6A0` + poll `005C5230`).
+- Page-text only - needs local check.
+
+**C-V25. Arity of `unkCall_5c7` (`0x05C7`).**
+- Side A: `WAIT:126`: "| `unkCall_5c7` | — | — | `0016D6A0` | — takes **2** arguments |".
+- Side B: `WAIT:338-340`: "**`arity 0`** and **`arity_status CONFLICT`**. §2's table states the 2 flatly."
+- Status: **no favoured side**; the page flags it and leaves the table unedited.
+- Page-text only - needs local check.
+
+**C-V26. What `003B7180` is.**
+- Side A: `WAIT:373`: "`003B7180` (129 B) is a wait/do-nothing verb body"; `WAIT:383`: "the four-slot readiness poll
+  `003B7180` runs for the wait verbs".
+- Side B: `WAIT:248`: "`00350F30` (`changetonormalparty`) calls `003B7D30()` and tail-jumps `003B7180`" — a result
+  that does real work (`WAIT:213-216`).
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V27. Width of the entity stamp.**
+- Side A: `NAMES:286` (2026-09-17): "a stamp that is sixteen bits wide"; `NAMES:68`: "`u16[rec + 0x24]`".
+- Side B: `NAMES:317-319` (2026-09-14): "The stamp is a full `dword`: the release compares it as one (`002E949A`)";
+  `NAMES:553-554`: "a **dword** load, not the `u16` §2's formula writes."
+- Status: **no favoured side.** The later answer does not strike the dword compare; a port must choose the
+  comparison width.
+- Page-text only - needs local check.
+
+**C-V28. Do all fourteen bind keys land?**
+- Side A: `NAMES:243-244`: "**the fourteen keyed values land in the actor's `+0xB8` steering record, the `+0xC0` render
+  link, and the render record itself**".
+- Side B: `NAMES:333`: "So thirteen of the fourteen keys have a destination, and the fourteenth is a dead read."
+- Status: **favoured side B** by the UQ-60 answer "ANSWERED 2026-09-14 (FABLE) … with two corrections" (`NAMES:321`).
+- Page-text only - needs local check.
+
+**C-V29. Which verbs are the bind family, and which call the bind.**
+- Side A: `NAMES:46`: "**`setuptreasure`, `puppetbind`, `bindp`, `bindh`, `bindc`** — the whole *bind* family".
+- Side B: `NAMES:455-456`: "**The bind verbs** are `bindp`, `bindh`, `bindc` and `puppetbind`. Their six callbacks are
+  `003409F0`, `00342640`, `00345A60`, `00344550`, `00344200` and `003463F0`." The bind's caller table (`NAMES:437-443`)
+  lists only `00355210`, `003409F0`, `00342640`, `0050D810`, `0037B4D0`.
+- Status: **no favoured side.** Whether `bindh`, `bindc` and `puppetbind` call `002E28E0` at all is not stated.
+- Page-text only - needs local check.
+
+**C-V30. Where the name-binding `requestMask` lives.**
+- Side A: `NAMES:207`: "`+0x28` requestMask / `+0x2C` readyMask (per-selector bits set by `002EB9D0`)".
+- Side B: `NAMES:600`: "`r8d<<cl` into `[r10+rax*4+0x48]` requestMask, `~bit` AND into `+0x2C`".
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V31. Size and first field of the party read-in record.**
+- Side A: `READIN:36`: "The machine's record is 12 bytes: an encoded actor pointer"; `READIN:59-60`: "party read-in
+  record 12 bytes … `+0x00` u32 actor encoded image pointer".
+- Side B: `READIN:141`: "the two static **`PartyReadMachineRecord`** instances (declared 2026-09-18, size `0x18`) …
+  `+0x00` `boundRowRef` (base-relative authored-row offset, `0020E620`/`0020E600`)".
+- Status: **no favoured side.** The two may describe the machine operand and the static instance; no line joins them.
+  The access TSVs touch `+0x0C`..`+0x10`, which fits `0x18`.
+- Page-text only - needs local check.
+
+**C-V32. What `0037CE80` writes to the state byte.**
+- Side A: `READIN:208-209`: "`0037CE80` fills `+0x00` resolved id, `+0x08` state 0, `+0x09` param, `+0x0A` counter 0,
+  `+0x0B` = `002DEBD0`".
+- Side B: `READIN:352-355` (SWE2-EC7-92, 2026-09-20): "bytes `+8`/`+9`/`+0xA`/`+0xB` come from the
+  `002DEBD0`/`002DEB90` pair under the `0016D6A0` gate, `[rdi+0x23]` is cleared, and `+8` gains `0x80`."
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V33. Where states 7, 10 and 13 store their handle.**
+- Side A: `READIN:62`: "`+0x04` u32 pending handle … written by states 1 (0037B720) and 19 (0037BEA8)".
+- Side B: `READIN:108`: state 7 "requests the new one (`0031BEC0(actor, 0)` → `002EB7A0` → `002EAE20`), stores its
+  handle" (and states 10 and 13 do "the same").
+- Status: **no favoured side**; the store location for states 7/10/13 is not stated.
+- Page-text only - needs local check.
+
+**C-V34. `VM_Spawn_ApplySelectedUnit`: `00510160` or `005101B0`.**
+- Side A: `READIN:79`: "| `VM_Spawn_ApplySelectedUnit` `005101B0` |"; `READIN:204`: "`005101B0` is
+  `VM_Spawn_ApplySelectedUnit` `0x3001`'s step".
+- Side B: `READIN:336`: "`VM_Spawn_ApplySelectedUnit` `00510160`, the middle entry of the verb triple"; `CC:163`:
+  "| `VM_Spawn_ApplySelectedUnit` `00510160` | 72 B |".
+- Status: **no favoured side.** The triple `{00510440, 00510160, 005101B0}` (`READIN:205`) and the verb table (begin
+  `00510160`, poll `005101B0`) suggest the name belongs to the begin, but no page says so.
+- Page-text only - needs local check.
+
+**C-V35. The 0x740-byte render-record table base.**
+- Side A: `LOOKS:283`: "`char *e = *(char **)0x022C6F28 + (int64_t)idx * 0x740;`" (a pointer read through).
+- Side B: `LOOKS:636`: "`sx(cx) * 0x740 + 022C6F28` resolves the record"; `READIN:160`: "the `0x740` record pool at
+  `022C6F28`" (a direct base).
+- Side C: `LOOKS:580`: "render-record array at `020FB7xx` (`imul rcx, rax, 0x740`".
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V36. Offset of the movement context written by `002E5C90`.**
+- `LOOKS:396`: "the **movement context** `[actor+0xB8]` (*corrected 2026-09-18, FABLE: the 0x230-byte context at actor
+  `+0x120` in [the context census]…*". One sentence gives `+0xB8` and `+0x120`; `READIN:103` says "the three floats at
+  actor `+0xB8`".
+- Status: **no favoured side**; the correction renames the target without saying which offset is right.
+- Page-text only - needs local check.
+
+**C-V37. `002E9C00`: a definition byte or a runtime byte.**
+- Side A: `STDM:483-487`: "`WorldActor_GetDefinitionByte12OrMinus1` … `movsx eax, byte [rax+0x12]` … the signed
+  definition byte the verb predicates on."
+- Side B: `READIN:197-199`: "note the doc's `WorldActor_GetDefinitionByte12OrMinus1` is that runtime byte, **not** a
+  definition read".
+- Status: **favoured side B** by UQ-51 "Answered 2026-09-16 (SWE2-STRUCT)" (`READIN:191-192`).
+- Page-text only - needs local check.
+
+**C-V38. Which battle-party verbs run the roster preamble.**
+- Side A: `BP:56-57`: "The two `set` verbs first walk roster slots 0-3 and call one routine on every actor present".
+- Side B: `BP:84`: "`addguestbattlemember` … the `set` verbs' preamble"; `BP:156`: "the slot-0..3 preamble in the three
+  verbs that have it".
+- Status: **favoured side B** (three verbs) by falsification pass 1, 2026-09-29 (`BP:146`, row B1 `:156`). Which
+  three is not listed.
+- Page-text only - needs local check.
+
+**C-V39. Which verbs reach the read-in installers.**
+- Side A: `READIN:71-79` lists `partyallread` 0x3EB, `partyallread2` 0x46F and `summonread` 0x203.
+- Side B: `STDM:206-208`: "the read-in verbs `partyallread` (`0x03EB`), `partyallread2` (`0x046F`), `summonread`
+  (`0x0203`) and `summontopartyread` (`0x0207`) through `0037C980` / `0037CA00` / `0037CA80`".
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V40. What `0037CA80` resets.**
+- Side A: `STDM:493-495`: "three sibling globals get field resets (`+8` = 0, `dword` = 0, `+4` = 4, `+0x1C` = 0) and two
+  flag bytes, then it tails `00233CF0`."
+- Side B: `READIN:75`: `summonread` installs "start 0, step +1, and `02EBF3FC` = 0" (the second-instance access TSV
+  shows three byte writes, `+0xC`, `+0xE`, `+0xD`).
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+#### Lifecycle timing and table lifetime
+
+**C-V41. Is a running command polled every frame?**
+- Side A: `NCL:54-55`: "the command is started, polled every frame while it runs"; `NCL:182` (call chain, 2026-09-30):
+  "once per frame per actor while the verb runs."
+- Side B: `NCL:547`: "Invocation count is not automatically live frame count."; `C-NCL:196`: "No particular
+  relationship between invocation count and live elapsed frames is established here."
+- Status: **favoured side B**: it belongs to the SECTION-11 production rewrite dated 2026-09-23 (`NCL:29-34`), which
+  says "Historical audits do not certify this rewrite". Side A is not amended.
+- Page-text only - needs local check.
+
+**C-V42. When the family-table pointers are written.**
+- Side A: `NCL:174`: "family table 02B57EF0[family] (filled once by 003DC2D0)".
+- Side B: `C-NCL:282`: "Area initialisation is where the sixteen family-table pointers at `02B57EF0` are (re)built".
+- Status: **no favoured side.**
+- Page-text only - needs local check.
+
+**C-V43. Two accessor descriptions inside the lifecycle page.**
+- Side A: `NCL:100`: "GetBeginCallback  (003DC270):  *(void **)(tbl +  8 + 32*command)"; `NCL:105`: "All three
+  bounds-check `command` against `*(int *)tbl` — the count".
+- Side B (subtree section): `NCL:783-784`: "`003DC270` (`GetBeginCallback`, record `+0`)"; `NCL:777`: "`GetPollCallback`
+  — bounds-checks `family` against `dword[02B57EF0]` (`003DC253`)".
+- Status: **no favoured side** on `NCL`; `C-NCL:105` and `C-NCL:123-124` agree with side A.
+- Page-text only - needs local check.
+
+#### Debug companion files (not loaded by the shipped game; a port of the shipped game does not need them)
+
+**C-V44. Narrowing text that a 2026-09-28 correction supersedes, still unstruck.** `ATEL:809` says "Three claims in
+the narrowings above are superseded, §2 carries the corrected text". Each pair below is **favoured side B** by the
+dated correction named.
+- `.sbn` page trailer — A: `ATEL:805`: "full pages are `{u16 lineOff[32]; u16 chunkEnd; u16 0}`"; B: `ATEL:96`: "the
+  trailer is a single **u32**, not `{u16 chunkEnd; u16 0}`" (Corrected 2026-09-28, `ATEL:94`).
+- `.dbg` header slots — A: `ATEL:804`: "The header is three `(offset, size)` pairs"; B: `ATEL:103`: "**(section
+  offset, table offset)**, not (offset, size) (corrected 2026-09-28".
+- Debug-flag index — A: `ATEL:806`: "btlctrl index `N` ↔ `global_debug_flag[N+34]`"; B: `ATEL:209-210`: "**exactly `N
+  = 0..0xFFF` ↔ `global_debug_flag[N]`**" (the front-table correction 2026-09-28, `ATEL:124-126`).
+- q0 line numbering — A: `ATEL:806`: "**`pos` is the 0-based source line number**"; B: `ATEL:281`: "**`lineNo` is a
+  1-based logical line.**" (qualified 2026-09-28, `ATEL:277`).
+- Heap landings — A: `ATEL:806`: "T3/T4/T8/q1 land mid-string at irregular depth"; B: `ATEL:391`: "the earlier "may
+  land mid-string" claim is retracted" ("Correction 2026-09-22, still standing", `ATEL:242`).
+- T1 — A: `ATEL:807`: "***T1 RESOLVED 2026-09-22 (SWE2-DATA): it is the ATEL verb-category directory.**"; B:
+  `ATEL:234-235` retracts that reading (and `ATEL:809` item 3).
+- Page-text only - needs local check.
+
+**C-V45. Debug-companion figures that disagree with no dated settlement** (all **no favoured side**):
+- `003306E0` size — `ATEL:880`: "the function is 3,882 bytes" vs `ATEL:917`: "`003306E0` (~351 B)".
+- `evctrl` scope-1 overrun — `ATEL:264`: "runs 143 bytes past its directory span" vs `ATEL:273`: "continues 144 bytes
+  past".
+- S2 shape — `ATEL:113`: "**S2 = a 64-slot directory**" vs `ATEL:387-388`: "65 entries for ctrl/evctrl/btlctrl, 301
+  for mapctrl".
+- `btlctrl` heap start — `ATEL:243`: "`0x1CA20` in `btlctrl`" vs `ATEL:393`: "`btlctrl` it runs `0x1CD7D..~0x41F4F`".
+- q1 contents — `ATEL:302-304`: "**no variable names at all**" vs `ATEL:400-401`: "each scope's q1 lists exactly its
+  `@`-labels and named variables".
+- Page-text only - needs local check.
+
+#### Counts that disagree (no engine behaviour attached, but a port's tables would differ)
+
+| id | side A | side B | status |
+|---|---|---|---|
+| C-V46 | `VD:36-38`: "**1,870 of the 1,960 rows carry a measured arity**; on the 1,210 of those that the authored catalog also names and declares, the two agree **1,209 times**"; `README:22-23` repeats it | `VD:730`: "*ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static: all 90 now have an arity"; the TSV has arity on 1,960 rows and `cat_args == arity` on 1,269 of 1,270 | **favoured side B** by BQ-9 (2026-09-27) |
+| C-V47 | `VD:592`: "`fsmenu` for the 33 fullscreen-menu verbs" | `VD:1221`: "the **unguarded** half of the family (62 of 104" (so 42 guarded); the TSV's `guard = fsmenu` is on 42 rows | no favoured side |
+| C-V48 | `VD:1160`: "on **65 of its 131 callbacks**"; `VD:1162`: "Family 7's records come in exactly four shapes" (20/22/54/5 = 101) | `VD:141`: family 7 has 104 records; the TSV adds 3 poll-only records and 64 guarded callbacks | no favoured side |
+| C-V49 | `VD:672`: "**Family 3's seven are `0x3086`–`0x308F`**" (a 10-id range) | the TSV names `0x308A`–`0x308C`; the seven are `3086`–`3089`, `308D`–`308F` | no favoured side |
+| C-V50 | `POP:159`: "The declared adapter family — 1,053 of the 1,682 frontier callbacks"; `POP:170-173`: 964 / 71 / 18; `POP:175`: "The **629 frontier callbacks that fail the rule**" | `POP:26` front matter: "members/scriptvm-verb-adapter-callbacks.tsv \| 1030"; the TSVs hold 1,030 (944 / 68 / 18) and 503 leftovers | no favoured side; the front-matter departures log does not sum from 1,053 to 1,030 |
+| C-V51 | `DT:390-391`: "The other **259 implement `begin` and `poll`**" | `DT:1023` counts 26 poll-only; the verb table shows 259 = 160 begin+poll + 73 begin-only + 26 poll-only | no favoured side |
+| C-V52 | `DT:198`: "(1,224 rows)"; `C-BR:205`: "the 1,224-row dispatch table in `Verb-Dispatch/scriptvm-dispatch.tsv`"; `README:28` "1,224 catalog rows" | the TSV header: "1,493 rows", extended 2026-09-19 and 2026-09-26 | no favoured side on the pages (the TSV's own header is dated) |
+| C-V53 | `NCL:117-118`: "1,155 of 1,496 records with a single non-null field" (family 0) | `C-NCL:133-134`: "every one of the 1,155 single-callback commands"; `NCL:493`: "1,573 of the 1,960 commands work at all" | no favoured side |
+| C-V54 | `NCL:243-247`: "The authored verb catalogue ([the verb table]…, 1,960 ids) … **2** (212 …)" | `NCL:276`: "The authored catalogue is the ff12-script decompiler's command table (`CScriptContainerInitializers.cpp`, 1,954 entries …) … 211 in family 2" | no favoured side; two different lists share one name |
+| C-V55 | `VARS:152`: "`+0x200`–`+0xCF4` of the persistent payload is the script-global variable space**, 0xAF5" bytes | `script-global-variables-by-offset.tsv` ends with a `u16` at `0xCF4` (to `0xCF5`, i.e. 0xAF6 bytes) | no favoured side |
+| C-V56 | `INT:908`: "172 functions in 84 scripts read a register before writing it" | `register-opcodes-by-script.tsv` fills `read_before_write_in_some_function` for 96 scripts | no favoured side (the column is not defined on the page) |
+| C-V57 | `CC:344-345`: "**`0x10`** for the single-int verbs" | the verb table gives `0x00` for `304A` and nothing for `304B`/`305F` | no favoured side |
+| C-V58 | `REACH:337`: "ActorEntity **162** against 142" | `REACH:358` (RC-21, 2026-09-30): "ActorEntity 135–154" across 100 seeds | no favoured side; RC-21's range excludes 162 |
+| C-V59 | `READIN:108`, `:111`, `:112`: transition sites `0037B946`, `0037BA3B`, `0037BB43` | `members/party-read-states.tsv`: state writes at `0037B94C`, `0037BA47`, `0037BB4F` | no favoured side (the page may cite the branches) |
+| C-V60 | `BP:9-12`: "eleven bodies" | the same sentence lists twelve addresses | no favoured side |
+
+All rows: page-text only - needs local check.
