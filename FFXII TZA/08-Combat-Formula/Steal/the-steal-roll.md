@@ -181,7 +181,7 @@ action 0xA9 (action_data.bin +0x08 = 49) -> recipe 01EF96C0[49] = 01EFA198, comm
      -> 02AEDFBC -> result +4 = 6 ; 02AEE04C/4D/4E -> result +0x32/+0x33/+0x34
   -> the applier 00311402 (three slots at +0x32 -> inventory, spawn record +0x14 bit cleared)
   -> BattleFormula_DispatchPostResultEvents 00469EC0: action 0xA9 & kind 6 -> event 0x33 / 0x34 (bit 23)
-     -> 0046AB10 (ring 02EBB560, table 02EBF018) -> 005369C0 (display, unread)
+     -> 0046AB10 (ring 02EBB560, table 02EBF018) -> 005369C0 (display, unread)   <- corrected 2026-10-02, OPUS: read, FK-4 answered 2026-09-11 (section 2.5, section 7)
 ```
 
 ## 6. Modding notes

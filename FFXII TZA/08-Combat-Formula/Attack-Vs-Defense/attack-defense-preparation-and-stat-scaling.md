@@ -29,10 +29,10 @@ audit:
 > The seven ways FFXII turns a stat into a damage multiplier — and the reason a dagger, a katana
 > and a pole scale off different attributes.
 
-**DOCUMENTED.** The seven preparation variants are read at instruction level, and — since
+~~**DOCUMENTED.**~~ **AUDITED** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`)*. The seven preparation variants are read at instruction level, and — since
 2026-09-02 — so is the consumer that turns their three values into a damage number. The full
-equation is in section 2. What remains open is which weapon type selects which variant, and the
-many *modifier* stages that sit between preparation and the final write.
+equation is in section 2. ~~What remains open is which weapon type selects which variant, and the~~
+~~many *modifier* stages that sit between preparation and the final write.~~ *(answered: §7 AJ-1 — the weapon row's byte `+0x19` picks the variant, §5.1 — and §11a AJ-8, the modifier chain for every weapon family; 2026-10-02, OPUS)*
 
 ## 1. What the player sees
 
@@ -121,7 +121,7 @@ quadratically in the attribute. And the damage roll is **upward-only**: attack p
 
 - **`PrepareSpeedStrengthAttackVsDefense`** does not use `1/256`. It uses a `divss` by the literal
   **218** (`00D112D0`), a divisor that appears nowhere else in the family.
-- **`PrepareVitalityStrengthAttackVsDefense`** is the only variant with **no `+1.0`** — its
+- **`PrepareVitalityStrengthAttackVsDefense`** is ~~the only variant~~ one of three variants with **no `+1.0`** *(corrected 2026-10-02, OPUS: slots 72 and 73 have none either, §5.1 and CONTRACT-preparation-step-family.md §7)* — its
   multiplier is not floored at unity.
 - **`PrepareStrengthAttackVsDefenseScaled150`** adds one `mulss` by **1.5** (`00901B3C`).
 
@@ -138,8 +138,8 @@ All seven write the same three consecutive floats:
 These are **global**, not per-unit — so **one attack resolves at a time**. `BattleFormula_ResetScratchState`
 (`003849B0`) clears all three, which is what a shared scratch record needs.
 
-Downstream use is heavy and is **not read here**: `02AEE054` alone is touched at **380 sites across
-45 functions**, every one of them `CombatFormula`-owned.
+Downstream use is heavy and is **not read here**: `02AEE054` alone is touched at ~~**380 sites across~~
+~~45 functions**~~ **127 instructions — 64 writes, 63 reads — across 45 functions** *(corrected 2026-10-02, OPUS: `retool.py refs 02AEE054`; the-formula-scratch-block.md §2.2 and its access TSV, 127 rows)*, every one of them `CombatFormula`-owned.
 
 ## 3. The stat block, cross-validated
 
@@ -190,7 +190,7 @@ is wrong in the same way as naming a field from its position.
 
 ```
 multiplier = 1 + (Level + Stat) * Stat / 256          /* 218 for the Speed variant */
-                                                      /* no +1 for the Vitality variant */
+                                                      /* no +1 for the Vitality variant */   <- corrected 2026-10-02, OPUS: and it is 2 x (L + VIT) x STR / 256 (0038A2D6-0038A31F)
                                                       /* x1.5 for the Scaled150 variant */
 attack     = ATK + (rand() % (int)(ATK * 12.5)) / 100 /* only when ATK * 0.125 >= 0.01 */
 defence    = target[0x2F]   or   target[0x30]
@@ -213,7 +213,7 @@ weapon slot -> recipe table -> one of the seven Prepare* variants
                         02AEE054 / 02AEE058 / 02AEE05C     shared scratch
                                   |
                     45 CombatFormula functions read and rewrite these
-                    (380 sites on the multiplier slot alone)  -- NOT read here
+                    (380 sites on the multiplier slot alone)  -- NOT read here   <- corrected 2026-10-02, OPUS: 127 instructions, 64 writes and 63 reads (retool.py refs 02AEE054)
 ```
 
 Two of the seven are already bound to weapon slots by
@@ -418,17 +418,17 @@ starts its multiplier at **2**, not 1. Slot 72 is the only member that consults 
       has bit 5 (`003848AD`–`003848B4`), which is what lets an action treat the undead as living.
 - [x] ~~Why the Speed variant divides by **218** rather than 256.~~ **AJ-3 CLOSED 2026-09-12 (FABLE)
       as an intent residue — the image carries no reason, only the consequence:** for the Speed
-      family (daggers, ninja swords, bows) the multiplier `1 + (L + SPD) × SPD / 218` is `256 / 218 ≈
+      family (daggers, ninja swords, bows) the multiplier ~~`1 + (L + SPD) × SPD / 218`~~ `1 + (L + SPD) × STR / 218` *(corrected 2026-10-02, OPUS: checked at `0038A116`–`0038A15B` — `movzx [rcx+0x2d]` plus the level, `imul` by `[rcx+0x2a]`, Strength, `divss` 218, `addss` 1; ranged-weapon-recipes.md §4)* is `256 / 218 ≈
       1.174` times steeper in its stat term than the six `/ 256` siblings, so a Speed-scaled weapon
       gains about **17 % more multiplier per point of stat** than a Strength-scaled one at equal
       numbers. Whether that was a deliberate compensation for daggers' low attack is not recoverable
       from the shipped data.
 - [x] ~~Why the Vitality variant has no `+1.0` floor when the other six do.~~ **AJ-4 CLOSED
       2026-09-12 (FABLE) as an intent residue, consequence stated:** for axes, hammers and hand-bombs
-      the multiplier is `(L + VIT) × VIT / 256` with no unity term, so at low level and Vitality it is
-      **below 1** — `(L + VIT) × VIT < 256`, e.g. level 5 with Vitality 20 gives `0.98`, level 1
-      with Vitality 10 gives `0.43` — and the weapon deals *less* than `attack − defence` until the
-      product passes 256; the same shape as slots 72 and 73 (§5.1), which also drop the `+1`. The
+      the multiplier is ~~`(L + VIT) × VIT / 256`~~ `2 × (L + VIT) × STR / 256` with no unity term *(corrected 2026-10-02, OPUS: checked at `0038A2D6`–`0038A31F` — `(L + [+0x2C]) × [+0x2A]`, `mulss` by 1/256, `addss xmm0, xmm0`, no `+1`; CONTRACT-preparation-step-family.md §7)*, ~~so at low level and Vitality it is~~
+      ~~**below 1** — `(L + VIT) × VIT < 256`, e.g. level 5 with Vitality 20 gives `0.98`, level 1~~
+      ~~with Vitality 10 gives `0.43` — and the weapon deals *less* than `attack − defence` until the~~
+      ~~product passes 256;~~ so it is below 1 only while `(L + VIT) × STR < 128` — level 5 with Vitality 20 and Strength 20 gives 3.9; the same shape as slots 72 and 73 (§5.1), which also drop the `+1`. The
       floor's absence is a fact of the code; the reason is not in it.
 - [x] ~~What `+0x2C` and `+0x2D` actually are. Vitality and Speed come from the GFZ function names;
       unlike the other five attributes, no second family confirms them.~~ **AJ-5 ANSWERED 2026-09-12
@@ -486,12 +486,12 @@ starts its multiplier at **2**, not 1. Slot 72 is the only member that consults 
 | Stat offsets `+0x2A`, `+0x2B`, `+0x2F`, `+0x30` | **independent** confirmation from the four `Reduce*` bodies, which name the stat and read the offset | 1 |
 | Reduction multipliers 0.7 / 0.7 / 0.9 / 0.9, and the floor of 1 | full bodies of `0038E870`, `0038E8B0`, `0038E8F0`, `0038E920`; constants decoded from `.rdata` | 1 |
 | The three scratch slots are shared globals | all seven write `02AEE054`/`58`/`5C`; `BattleFormula_ResetScratchState` clears them | 1 |
-| 380 sites / 45 functions touch the multiplier slot | RIP-relative displacement scan of `.text`, attributed to containing functions | 1 |
+| ~~380 sites~~ 127 instructions *(corrected 2026-10-02, OPUS: `retool.py refs 02AEE054`, 64 writes and 63 reads)* / 45 functions touch the multiplier slot | RIP-relative displacement scan of `.text`, attributed to containing functions | 1 |
 | Bow and Crossbow slot bindings | [`../Recipe-System/ranged-weapon-recipes.md`](../Recipe-System/ranged-weapon-recipes.md) | 2 |
 
-**Scope honesty:** this document establishes what the preparation stage *computes*. It does **not**
-establish how damage is finally derived from those three values — that is 45 unread functions away,
-and no equation of the form "damage = (attack − defence) × multiplier" is asserted here.
+**Scope honesty:** this document establishes what the preparation stage *computes*. ~~It does **not**~~
+~~establish how damage is finally derived from those three values — that is 45 unread functions away,~~
+~~and no equation of the form "damage = (attack − defence) × multiplier" is asserted here.~~ *(answered: see §10, AJ-2 — `damage = raw ≤ 0 ? 0 : trunc(raw × multiplier)` with `raw = ATK + variance − DEF`; 2026-10-02, OPUS)*
 
 ## 9. Related
 
@@ -557,8 +557,8 @@ The finalizer reads two more globals below the prepared triple and writes two re
 | `02AEE054`–`5C` | the prepared triple (section 2) |
 
 `-1` is used as a **not-set sentinel**: the tail does `cmp eax, -1` and tail-jumps to `00387B00`
-only when the value is *not* the sentinel. Which of A and B is HP versus something else is **not**
-established — both are written by the same truncated integer, and only a flag distinguishes them.
+only when the value is *not* the sentinel. ~~Which of A and B is HP versus something else is **not**~~
+~~established~~ *(answered: see §7, AJ-9 — `02AEE004` is the HP loss and `02AEE008` the HP gain; 2026-10-02, OPUS)* — both are written by the same truncated integer, and only a flag distinguishes them.
 
 The tail-jump target `00387B00` (`BattleRuntime_MarkTargetHistoryBit`, 165 B) is now read: it
 marks the **target's id bit in the attacker's 0x40-byte history record** — record base
@@ -596,7 +596,7 @@ against the step table, and marking what has actually been read:
 
 | Slot | Step | Read? |
 |---:|---|---|
-| 29 | `RollPrimaryFormulaResourceReactionMode2Chance` | name only |
+| 29 | `RollPrimaryFormulaResourceReactionMode2Chance` | ~~name only~~ **read**: the ranged critical *(corrected 2026-10-02, OPUS: `00389140` sets result `+0x18` bit 0 when the weapon row's `+0x1C` exceeds `mt() % 100` (`003891B7`–`003891D9`), and slot 98 `0038BE00` doubles `02AEE054` on that bit: the ranged critical, rolled only by recipes 25–27; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")* |
 | 66 | `PrepareSpeedStrengthAttackVsDefense` | **read** (section 2) |
 | 96 | `FUN_0038B950` — scales the **multiplier** | constants only |
 | 97 | `FUN_0038BC00` — scales the **multiplier** | constants only |
@@ -621,7 +621,7 @@ if (rec[0x18] & 1)
     scratch[0] *= 2.0f;        /* the multiplier, before the finalizer */
 ```
 
-The constant is a literal `2.0` in `.rdata`. One flag bit doubles the damage multiplier.
+The constant is a literal `2.0` in `.rdata`. One flag bit — result `+0x18` bit 0, set by slot 29's reaction roll `00389140` at `003891D9`, the slot the bows' second lists open with — doubles the damage multiplier *(corrected 2026-10-02, OPUS: checked at `0038BE00`–`0038BE08` and `003891D9`; the-formula-scratch-block.md §2.4)*.
 
 ### Read exactly: slot 165 — 1.2× and 2× on the finished damage
 
@@ -653,9 +653,9 @@ slot 97   2, 1.7, 1.5, 1.4, 0.5, 3, 0.125
 ```
 
 `2`, `0.5` and `0.125` are the shape of elemental affinity — weak, resistant, strongly resistant —
-and slots 95 and 99 either side of them are the two named `ApplyElementAffinity` functions. **That
-is a lead, not a finding**: only the constants were extracted, not the conditions that select them,
-and this document does not claim which value applies when. **AJ-10.**
+and slots 95 and 99 either side of them are the two named `ApplyElementAffinity` functions. ~~**That~~
+~~is a lead, not a finding**: only the constants were extracted, not the conditions that select them,~~
+~~and this document does not claim which value applies when.~~ *(answered: see §12 — AJ-10 and AJ-12; the lead was wrong: step 97's constants are pairs chosen by unit category and its gates are HP-conditioned augments, none elemental; 2026-10-02, OPUS)* **AJ-10.**
 
 ### A useful negative: slot 171 is not a damage modifier
 
@@ -682,16 +682,16 @@ weapons) carry recipes **20–29, 64 and 104**, the bow-family categories 7 / 8 
 ```
 recipe   preparation                                   before finalizer   finalizer  after
 20–24    65 / 66 / 67 / 68 / 69                        96 97 98 99        125 (23: 126)  165 171 176 182
-25 / 26 / 27 (bows)  66 / 65 / 70                      96 97 98 99        125            165 171 176 182
+25 / 26 / 27 (bows)  66 / 65 / 70                      96 97 98 99        125            165 171 176 182   <- corrected 2026-10-02, OPUS: the bows open their second list with 29, not 28 (01EF9C80-01EF9FB0)
 28       71                                            96 97 98 99        125            165 171 176 182
 29       72                                            96 97 98            125            165
 64       76                                            96 97 98 99        125            165 166 171 176 182
 104      79                                            96 97 98 99        125            165 171 176 182
 ```
 
-Every list opens with slot 28 (a no-op, AK-5). So **the modifier chain between preparation and the
+~~Every list opens with slot 28 (a no-op, AK-5).~~ The melee lists open with slot 28 (a no-op, AK-5); the bows' lists, recipes 25–27, open with slot **29**, the reaction roll that sets the flag slot 98 doubles on *(corrected 2026-10-02, OPUS: decoded at `01EF9C80`–`01EF9FB0`; CONTRACT-weapon-recipes.md RW-2 decodes recipe 25 as `… | -1 | 29 66 96 …`)*. So **the modifier chain between preparation and the
 finalizer is exactly four stages, in this order: 96, 97, 98, 99** — 96 / 97 the paired constant
-scalers of §12, 98 the conditional `×2` of §11, and 99 read now — and after the finalizer **165
+scalers of §12, 98 ~~the conditional `×2` of §11~~ the `×2` of §11, which can double only on recipes 25–27 and passes every other list's multiplier through unchanged *(corrected 2026-10-02, OPUS: result `+0x18` bit 0 has one writer, slot 29 `00389140` at `003891D9` (a scan of `00380000`–`00395000` for `or dword [reg+0x18], 1` finds no other), and slot 29 runs only in recipes 25–27, so on recipes 20–24, 28, 29, 64, 103 and 104 slot 98 is reached with the bit always clear; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")*, and 99 read now — and after the finalizer **165
 (the HP post-multipliers), 171 (the on-hit gate load), 176 and 182**, with 166 inserted after 165 on
 recipe 64 alone and recipe 29 stopping at 165.
 
@@ -720,7 +720,7 @@ adds `value × row +0x15 / 100` to a scratch value keyed by the parked action ro
 bonus applied only to that family.
 
 **The preview list is the hit roll, and it is now readable too.** `[5, 6, 7, 8, 9, 10, 22, 33, 34, 41]`
-(bows: `[5, 6, 22, 33, 34, 35 / 36 / 44, 42 / 43]`): knockback chance and roll (5, 6), parry chance
+(bows: ~~`[5, 6, 22, 33, 34, 35 / 36 / 44, 42 / 43]`~~ `[5, 6, 22, 33, 34, 35, 42]`, `[5, 6, 22, 33, 34, 36, 43]` and `[5, 6, 22, 33, 34, 44]` for recipes 25, 26 and 27 *(corrected 2026-10-02, OPUS: decoded at `01EF9C80`–`01EF9FB0`; 44 is recipe 27's resolver, not a weather scale — ranged-weapon-recipes.md E-4)*): knockback chance and roll (5, 6), parry chance
 from Speed and the guard / parry mode roll (7, 8), combo chance and count (9, 10), then **22** loads
 the target's evade bytes `+0x33` (block), `+0x32` (parry), `+0x31` (innate evade) into the roller's
 three bands and sets the hit base to 100 (`00388FB0`), **33** adjusts them by the action row's flags

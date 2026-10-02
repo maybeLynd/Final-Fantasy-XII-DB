@@ -76,8 +76,8 @@ this category rests on are both bounded by their data rather than by a claim.*
 
 **RW-2 — One blob, TWO lists, and the committed resolver SKIPS the first.** Each recipe is a run of
 signed `i32` slot numbers terminated by `-1`, then a second run terminated by `-1`. Recipe 25
-decodes as `5 6 22 33 34 35 42 | -1 | 29 66 96 97 98 99 125 165 171 176 182 | -1`. **The first list
-is preview-side and the second is the committed result**, and the committed path runs only the
+decodes as `5 6 22 33 34 35 42 | -1 | 29 66 96 97 98 99 125 165 171 176 182 | -1`. ~~**The first list~~
+~~is preview-side and the second is the committed result**~~ **The first list is the outcome decision, run when the action executes and memoised into the result, and the second is the committed result** *(corrected 2026-10-02, OPUS: §14's correction; ranged-weapon-recipes.md §2)*, and the committed path runs only the
 second.
 
 > ***The sentinel is the semantics.*** *A reimplementation that reads one list, or that concatenates
@@ -182,7 +182,7 @@ execution.*
 ## 14. Unresolved
 
 - ~~**Who consumes the preview list.**~~ — **resolved 2026-09-23 (SWE2-CONTRACT): the preview-side
-  consumer is `0x3858E7`, a second recipe walker — and it is statically orphaned.** The recipe
+  consumer is `0x3858E7`, a second recipe walker~~ — and it is statically orphaned~~.** *(corrected 2026-10-02, OPUS: `0x3858E7` lies inside `00385680`, reached by `jne` / `je` at `00385893` / `003858A0`, and `00385680` has two callers; see below)* The recipe
   pointer table `0x01EF96C0` has **exactly two** code references in the whole image, and both use a
   route form a rip-census cannot see: `lea reg, [rip→0x120000]` materialises the *image base as a
   value*, and the table is indexed as `[reg + id*8 + 0x1DD96C0]` — a disp32 holding the table's
@@ -193,11 +193,11 @@ execution.*
   (`call [reg + rax*8 + 0x1DDA5C0]` = `0x01EFA5C0`), writing outcome flags into a different result
   record (`[rbx+4]`/`[rbx+8]` bitmasks, `[rbx+0x12]` flag bits). So the preview number is not a
   cheaper or partial evaluation — it is a complete second program run over the same catalogue.
-  **The residual:** `0x3858E7` itself is statically orphaned — zero `call`/`jmp` edges, zero
+  **The residual:** `0x3858E7` ~~itself is statically orphaned~~ is an interior label of `BattleFormula_EvaluateTargetPreview` `00385680`, reached by `jne` / `je` at `00385893` / `003858A0`, which is why it has *(corrected 2026-10-02, OPUS: checked at those addresses)* — zero `call`/`jmp` edges, zero
   `lea`/immediate materialisations, zero data qword/dword slots (its only image bytes are its own
   `.pdata` record), while `00385F60` is registered in `.rdata` `{rva32,…}` records
-  (`0x01D7CD2C`/`3C`/`54`). Who *invokes* the preview walker is a runtime-registration question,
-  not answerable from the image. **Route-form note:** this idiom — image-base-in-a-register plus an
+  (`0x01D7CD2C`/`3C`/`54`). ~~Who *invokes* the preview walker is a runtime-registration question,~~
+  ~~not answerable from the image.~~ The image answers who invokes it: `00385680` is called by `BattleAction_EvaluateTargetPreviews` `00303830` (`00303910`) and by `00303A00` (`00303AD7`), and `00303830` by `BattleUnit_AdvanceStandardActionState` `00304850` (`00304F1D`) and by `00313120` (`003132A6`) — the first list runs when the action executes, as its hit / evade / knockback / combo decision *(corrected 2026-10-02, OPUS: checked by `retool.py callers`; ranged-weapon-recipes.md §2, corrected 2026-09-30)*. **Route-form note:** this idiom — image-base-in-a-register plus an
   RVA disp32 — is a fifth access form outside rip-target/immediate/data-qword/`lea` censuses; it is
   caught only by a raw disp32 byte scan over all of `.text`.
 - What the other 107 recipes name. Two are decoded; the rest are authored data this contract does

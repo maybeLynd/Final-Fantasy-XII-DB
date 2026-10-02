@@ -49,7 +49,7 @@ separate resistance/weakness/absorb affinity stage (`0038B6A0`), and both read t
 action element mask at `ActionDefinition+0x13`. It operates on the canonical formula scratch
 scale `g_fFormulaScratchScale` at `02AEE054`.
 
-Three independent inputs, applied in sequence and multiplied together:
+Three ~~independent~~ inputs, applied in sequence ~~and multiplied together~~ — but not as independent factors: Lightning, Ice, Earth and Water each take one ×1.2 when the environment class **or** the terrain class matches, so Lightning in rain on water terrain is ×1.2, not ×1.44; only rules on different elements, or a ×0.5 against a ×1.2, compose *(corrected 2026-10-02, OPUS: checked at `0038B3E1`–`0038B424`, one `mulss` for either test, and the same shape at `0038B46D`, `0038B4F3` and `0038B579`; CONTRACT-environmental-element-scaling.md, the 2026-09-25 rule table)*:
 
 **Global environment class** — `02099DA8`, getter `00263E10`, derived by `0026D910` from
 authored field/environment data.
@@ -66,8 +66,8 @@ target-local authored environment index, and resolves it through the field envir
 The whole stage is skipped when **bit index 16** is present on either combatant:
 
 ```
-0038B220  TEST byte ptr [RDX+6A],01   ; target BKBI +0x68 layer, bit 16
-0038B222  JNE  skip
+0038B220  TEST byte ptr [RDX+6A],01   ; target BKBI +0x68 layer, bit 16   <- corrected 2026-10-02, OPUS: the TEST is at 0038B226 (0038B220 is push rdi, 0038B222 sub rsp, 0x30)
+0038B222  JNE  skip   <- corrected 2026-10-02, OPUS: the JNE is at 0038B22D; the next two tests are 0038B233 and 0038B23D
           TEST byte ptr [RDX+7A],01   ; target BKBI +0x78 layer, bit 16
           JNE  skip
           TEST byte ptr [R8+1C],01    ; caster merged context +0x1A, bit 16
@@ -97,7 +97,7 @@ Action element mask   ActionDefinition +0x13
   0x01 Fire   0x02 Lightning   0x04 Ice   0x08 Earth   0x10 Water   0x20 Wind
 
 Globals
-  02099DA8  global environment class   0..3
+  02099DA8  global environment class   0..3   <- corrected 2026-10-02, OPUS: the domain is 0..4; the stage has arms for 0..3 only and class 4 matches none (0038B2A8, 0038B3F4, 0038B4FE, 0038B478, 0038B584; the OPUS 2026-09-21 section below)
   02099DAC  MWeather gameplay class    0..2
   02AEE054  g_fFormulaScratchScale
 ```
@@ -167,8 +167,8 @@ a different stage with different inputs.
 
 ## 6. Modding notes
 
-- **To change weather combat effects:** the multipliers are literal float constants inside
-  `0038B220`. The *classes* come from authored data — MWeather and the field environment
+- **To change weather combat effects:** the multipliers are ~~literal float constants inside~~
+  ~~`0038B220`~~ float constants in `.rdata` that `0038B220` loads — ×0.5 from `01CEBB70` (`0038B299`) and ×1.2 from `008FCC90` (`0038B3E5`) *(corrected 2026-10-02, OPUS: checked at those addresses; CONTRACT-environmental-element-scaling.md, the rule table)*. The *classes* come from authored data — MWeather and the field environment
   table — so changing which weather maps to which class is a data edit, not a code edit.
 - **Regenerates itself:** `02099DA8` / `02099DAC` are derived by the weather apply. Do not
   write them directly; apply the Weather Slot and let them fall out.

@@ -48,7 +48,7 @@ stepTable = (void(**)()) 0x01EFA5C0     .data, 8-byte stride, 202 slots, ids 0..
 step(id)  = stepTable[id]
 ```
 
-The interpreter that walks a recipe is **not read here**; this contract is about the table it
+~~The interpreter that walks a recipe is **not read here**;~~ *(answered: see CONTRACT-weapon-recipes.md §2 and §4 — the two `-1`-terminated lists and the stop flag — and combat-formula-step-table.md §11, "The interpreter, read"; 2026-10-02, OPUS)* this contract is about the table it
 indexes and the discipline the steps share.
 
 ## 3. Types
@@ -56,7 +56,7 @@ indexes and the discipline the steps share.
 ```
 02AEE054  u32  \
 02AEE058  u32   |  the shared scratch record — the ONLY channel between steps (ST-4)
-02AEE05C  u32  /
+02AEE05C  u32  /   <- corrected 2026-10-02, OPUS: all three words are f32, not u32 (0038A15B-0038A163 addss / movss [02AEE054]; 0038BE0A-0038BE1A mulss)
 ```
 
 ## 4. Preconditions · postconditions · invariants
@@ -170,8 +170,8 @@ execution.*
 
 ## 14. Unresolved
 
-- **The interpreter that walks a recipe is not read**, so how a list is terminated, whether ids may
-  repeat, and what a second finalize does are all open (`ST-5`).
+- ~~**The interpreter that walks a recipe is not read**, so how a list is terminated,~~ *(answered: see CONTRACT-weapon-recipes.md §2 and §4 — each list is `-1`-terminated and the walk stops when `02AEDFB8` is 1 — and combat-formula-step-table.md §11; 2026-10-02, OPUS)* whether ids may
+  repeat, and what a second finalize does are ~~all~~ open (`ST-5`).
 - What 125 of the 152 targets do. The page records 35 with recovered `BattleFormula_*` names and the
   rest still `FUN_*`.
 
@@ -190,7 +190,7 @@ execution.*
 L3 is out of scope. A reimplementation is judged on `ST-1` through `ST-7`. **`ST-4` is the one that
 decides whether the port is even structurally right**: giving steps arguments and return values is
 the natural design and it removes the property the recipes rely on. **`ST-2` is the one that bites a
-data-driven port** — treating an id as a behaviour makes six ids alias wrongly. **`ST-3` is the one
+data-driven port** — treating an id as a behaviour makes ~~six ids~~ the ids of seven targets alias wrongly *(corrected 2026-10-02, OPUS: ST-2 above lists seven)*. **`ST-3` is the one
 that looks like corrupt data and is not.**
 
 ## 16a. Crossings into other layers (FABLE, 2026-09-22)

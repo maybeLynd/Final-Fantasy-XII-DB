@@ -159,16 +159,16 @@ if (result_flags & 2) { 02AEDFC4 = 0; 02AEDFC8 = 0; }
   setup sets it and its partner clears it
   ([how a battle unit is built](../04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md) §2.9;
   [the battle-unit field map](../04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md), flag bit 23). **So only an
-  engaged target can parry.** In the code block above, `target_flags` means the target unit's flag word, not its
+  engaged target can ~~parry~~ counter.** *(corrected 2026-10-02, OPUS: `00388490` builds `02AEDFDC` only from the target's raw layer ids 6 and 7, augment 6 "When attacked, automatically counter with weapon in hand." and augment 7 "Improves chance to counter.": Speed `+0x2D` / 2 with id 6, Speed × 2 with ids 6 and 7, else 0 (`0038849A`–`003884D8`), and `003884F0` rolls `02AEDFC4` against it; the shield and weapon parry are evade bands A and B, not this flag; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")* In the code block above, `target_flags` means the target unit's flag word, not its
   status layers.
 - **`02AEDFE4`, the combo gate's threshold, is the combo chance.** `BattleFormula_ComputeComboChance` writes it
   (`00388550`, at `00388648`), and `BattleFormula_ResetScratchState` zeroes it (`003849B0`, at `003849F8`)
-  ([the scratch block](Scratch-Block/the-formula-scratch-block.md) §2.2). `02AEDFDC`, the parry threshold, is written by
+  ([the scratch block](Scratch-Block/the-formula-scratch-block.md) §2.2). `02AEDFDC`, the ~~parry~~ counter threshold *(corrected 2026-10-02, OPUS: `02AEDFC4` is the counter flag, rolled by `003884F0` against `00388490`'s counter chance, which only augment ids 6 "automatically counter" and 7 "Improves chance to counter" make nonzero; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")*, is written by
   `BattleFormula_ComputeParryChanceFromSpeed` (`00388490`; the 2026-09-11 note under Limits).
 - **The byte that holds the count is fully mapped.** Record `+0x12` bit 0 is "a preview is stored", bits 1–3 are the
   previewed result's flag word B bits 1–3, and bits 4–7 are this count
-  ([the scratch block](Scratch-Block/the-formula-scratch-block.md) §2.5). The rest of the 64-byte record is only partly
-  mapped (`GR-8`, Limits).
+  ([the scratch block](Scratch-Block/the-formula-scratch-block.md) §2.5). ~~The rest of the 64-byte record is only partly~~
+  ~~mapped (`GR-8`, Limits).~~ *(answered: `GR-8` ANSWERED 2026-09-30 — the second half `+0x20`..`+0x3F` is never accessed and every field of the first half has a reader; see Limits; 2026-10-02, OPUS)*
 
 ## Evidence (FABLE, 2026-09-30)
 
@@ -200,15 +200,15 @@ if (result_flags & 2) { 02AEDFC4 = 0; 02AEDFC8 = 0; }
 
 ## Limits (FABLE, 2026-09-30)
 
-**What this document does not claim:** what `02AEDFDC` and `02AEDFE4` hold or who sets them, what
-status bit 23 on the target means, what the other bits of the 64-byte slot hold, what `02AEDFC8` is, or
-what consumes the guard/parry flag downstream.
+**What this document does not claim:** ~~what `02AEDFDC` and `02AEDFE4` hold or who sets them, what~~
+~~status bit 23 on the target means, what the other bits of the 64-byte slot hold, what `02AEDFC8` is, or~~
+~~what consumes the guard/parry flag downstream.~~ *(answered: every item, in the two notes directly below — 2026-09-11 and 2026-09-30, with `GR-8` answered 2026-09-30; what this page still does not claim is the last bullet's; 2026-10-02, OPUS)*
 
 *(2026-09-11: three of those are now read — `02AEDFC8` is the knockback roll's outcome
-(`BattleFormula_RollKnockback` `00388440`), `02AEDFDC` the parry chance from speed
-(`BattleFormula_ComputeParryChanceFromSpeed` `00388490`), and the guard/parry flag is consumed by the
+(`BattleFormula_RollKnockback` `00388440`), `02AEDFDC` the ~~parry~~ counter chance from speed
+(`BattleFormula_ComputeParryChanceFromSpeed` `00388490`), and the ~~guard/parry~~ counter flag is consumed by the
 outcome roller (`0038970A`, `00389779`: kinds 4 / 2 instead of 3 / 1) and by the preview into the
-result's flag word B bit 2 — [the scratch block](Scratch-Block/the-formula-scratch-block.md) §2.2–2.4.)*
+result's flag word B bit 2 — [the scratch block](Scratch-Block/the-formula-scratch-block.md) §2.2–2.4.)* *(corrected 2026-10-02, OPUS: `00388490` builds `02AEDFDC` only from the target's raw layer ids 6 and 7, augment 6 "When attacked, automatically counter with weapon in hand." and augment 7 "Improves chance to counter.": Speed `+0x2D` / 2 with id 6, Speed × 2 with ids 6 and 7, else 0 (`0038849A`–`003884D8`), and `003884F0` rolls `02AEDFC4` against it; the shield and weapon parry are evade bands A and B, not this flag; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")*
 
 *(2026-09-30, FABLE: the rest, dispositioned.)*
 - **Who sets `02AEDFE4`:** `BattleFormula_ComputeComboChance`. Answered (Findings, "What the bit-23 test reads").

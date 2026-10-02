@@ -55,9 +55,9 @@ were run.
 
 | | count |
 |---|---|
-| access rows | 1280 (807 at a seed, 473 through propagation) |
-| functions reached | 284 |
-| offsets touched | 85 |
+| access rows | ~~1280 (807 at a seed, 473 through propagation)~~ 1,286 in the published TSV *(corrected 2026-10-02, OPUS: counted in battle-stats-record-accesses.tsv)* |
+| functions reached | ~~284~~ 285 *(corrected 2026-10-02, OPUS: distinct functions in the published TSV)* |
+| offsets touched | ~~85~~ 87 *(corrected 2026-10-02, OPUS: distinct displacements in the published TSV)* |
 | control | `BattleStats_ModifyHPAndProcessLethalState` (`00300530`) reads `+0x48` — reached through `arg0`, found |
 | excluded | `001CA600` (8,186 B), whose own `+0x698` is a different type |
 
@@ -96,7 +96,7 @@ Width is the most common operand size at that offset; "w / r" counts distinct fu
 | `+0x006` | 2 | s16 | **the secondary resource `00300BC0` moves; cap `+0x28 × (+0x37 or 1)`** ([page](../../10-Status-Periodic-Terminal/where-mp-comes-from.md)) | 2 / 8 | `BattleStats_RecomputeDerivedStateAndAutoStatuses` `0030FED0` (`00310594`); `BattleStats_ModifySecondaryResource` `00300BC0` (`00300C6A`) | `0030D550` (`0030D5E3`); `0030D810` (`0030D87A`); +6 more |
 | `+0x008` | 4 | u32 | **base HP stat, from party row `w_16`; grown per level** ([page](../../13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md)) — the party arm of a union by `+0x05`: spawn-backed → **i16 Strength modifier** at `+0x08`, added to `.ard` column `+0x26` (`002FF245`), with the Magick Power modifier at `+0x0A` ([where a stat number comes from](../where-a-stat-number-comes-from.md), `CB-5`) | 4 / 4 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE156`); `0030C470` (`0030C500`); `BattleFormula_ApplyTargetResult` `003112F0` (`003118BB`); +1 more | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE132`); `BattleAction_UpdateSpecialPresentationSequence` `00306760` (`00306A65`); +2 more |
 | `+0x00A` | 2 | i16 · u32 high half | spawn-backed → **i16 Magick Power modifier** (`002FF265`, [where a stat number comes from](../where-a-stat-number-comes-from.md) `CB-5`); party → the high half of the u32 at `+0x08` | 2 / 2 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE1CE`); `BattleFormula_ApplyTargetResult` `003112F0` (`003118D9`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE1AA`); `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF265`) |
-| `+0x00C` | 2 | u16 | **base MP stat, from row `w_1A`; grown per level** ([page](../../13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md)); spawn-backed → **i16 Vitality modifier** (`002FF27C`, `CB-5`) | 3 / 3 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE222`); `0030C470` (`0030C507`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C753`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE1FE`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C735`); +1 more |
+| `+0x00C` | 2 | ~~u16~~ s16 *(corrected 2026-10-02, OPUS: the rebuild sign-extends it, `002FF084` `movsx ecx, word ptr [rdi + 0xc]`)* | **base MP stat, from row `w_1A`; grown per level** ([page](../../13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md)); spawn-backed → **i16 Vitality modifier** (`002FF27C`, `CB-5`) | 3 / 3 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE222`); `0030C470` (`0030C507`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C753`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE1FE`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C735`); +1 more |
 | `+0x00E` | 2 | i16 | spawn-backed → **i16 Speed modifier** (`002FF293`, [where a stat number comes from](../where-a-stat-number-comes-from.md) `CB-5`); party → not read by the rebuild | 1 / 2 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE276`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE252`); `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF293`) |
 | `+0x010` | 4 / 2 | f32 · i16 | **union, by the kind byte `+0x05` alone** (`002FEFFB`, `test ecx, ecx` at `002FF026`; the type range `0x1B`–`0x27` tested beside it at `002FF007`–`002FF00F` is a separate flag — see `+0x24`): party → ~~float stat 1~~ **f32 stat 1 - the base Strength** (stored to `+0x2A` by the stat rebuild, capped at 99; `_index/candidates/exp-level-stats-fable/`, 2026-09-29 FABLE) from row `b_1E`, grown by `002F9BD0` with row `b_1F` ([page](../../13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md)), read `cvttss2si` at `002FF0C2`; spawn-backed → **i16 Attack modifier** read `movsx` at `002FF2E6` — CORRECTED 2026-09-11 (OPUS-CONTRA-STATUNION) | 3 / 3 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE3CB`); `0030C470` (`0030C516`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C760`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE3A6`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C74B`); +1 more |
 | `+0x012` | 2 | i16 · f32 high half | spawn-backed → **i16 Defence modifier** (`002FF2C1`; `BattleFormula_ApplyTargetResult` adds the result's `+0x122` delta here, `003118F7`); party → the high half of the f32 at `+0x10` | 2 / 2 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE31F`); `BattleFormula_ApplyTargetResult` `003112F0` (`003118F7`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE2FA`); `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF2C1`) |
@@ -107,7 +107,7 @@ Width is the most common operand size at that offset; "w / r" counts distinct fu
 | `+0x01C` | 4 / 2 | f32 · i16 | union: party → **f32 stat 4 - the base Speed** (stored to `+0x2D` by the stat rebuild, capped at 99; `_index/candidates/exp-level-stats-fable/`, 2026-09-29 FABLE) from row `b_27`, growth `b_28` ([page](../../13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md)), `cvttss2si` `002FF0B7`; spawn-backed → **i16 magick evade modifier** `movsx` `002FF23D` | 3 / 3 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE4C8`); `0030C470` (`0030C546`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C7A2`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE4A4`); `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` `0030C650` (`0030C798`); +1 more |
 | `+0x01E` | 2 | i16 · f32 high half | spawn-backed → **i16 total-evade modifier** (`002FF2D6`, feeds `+0x35`); party → the high half of the f32 at `+0x1C`; `BattleFormula_DispatchPostResultEvents` compares the byte at `+0x1E` with 2 (`0046A444`) on the action row, not here | 1 / 3 | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE2CA`) | `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (`002FE2A6`); `BattleFormula_DispatchPostResultEvents` `00469EC0` (`0046A444` +2); +1 more |
 | `+0x020` | 1 | u8 | **`max(row.b_46, licence-derived rank)`** ([page](../../04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md)) — party arm; spawn-backed → **i16 total-magick-evade modifier** over `+0x20`–`+0x21` (`002FF2F1`, feeds `+0x36`; `CB-5`) | 1 / 1 | `0030C470` (`0030C54F` +1) | `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF0AA` +1) |
-| `+0x024` | 4 | s32 | **max HP (the rebuild's output block starts here)** — `clamp(sum, 1, cap)`: cap **9,999** for party records, **999,999,999** for the rest (`002FF7B1`–`002FF7E2`), and **32,767 for party rows `0x1B`–`0x27`** (the flag from `002FF007`–`002FF00F`, re-clamped at `002FF7E5`–`002FF805`) — the thirteen rows above the guest range 7–25 ([party page](../../11-Party/active-party-reserve-and-the-moment-the-leader-changes.md) §3): by count, the Espers ([page](../Current-HP/the-hp-write-and-the-lethal-transition.md)) | 1 / 18 | `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FEFB9` +2) | `002FE950` (`002FE988`); `AiOrder_EvaluateTargetSelector` `00301AD0` (`00302246` +1); +16 more |
+| `+0x024` | 4 | s32 | **max HP (the rebuild's output block starts here)** — `clamp(sum, 1, cap)`: cap **9,999** for party records, ~~**999,999,999**~~ **1,000,000,000** for the rest *(corrected 2026-10-02, OPUS: checked at `002FF7BB`–`002FF7C8`, `mov eax, 0x3b9aca00` / `cmove eax, r8d`; CONTRACT-stat-derivation.md D-3)* (`002FF7B1`–`002FF7E2`), and **32,767 for party rows `0x1B`–`0x27`** (the flag from `002FF007`–`002FF00F`, re-clamped at `002FF7E5`–`002FF805`) — the thirteen rows above the guest range 7–25 ([party page](../../11-Party/active-party-reserve-and-the-moment-the-leader-changes.md) §3): by count, the Espers ([page](../Current-HP/the-hp-write-and-the-lethal-transition.md)) | 1 / 18 | `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FEFB9` +2) | `002FE950` (`002FE988`); `AiOrder_EvaluateTargetSelector` `00301AD0` (`00302246` +1); +16 more |
 | `+0x028` | 2 | s16 | **MP capacity (max MP)** ([page](../../10-Status-Periodic-Terminal/where-mp-comes-from.md)) | 1 / 20 | `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF824`) | `AiOrder_EvaluateTargetSelector` `00301AD0` (`0030200E` +2); `BattleAction_ConsumeExecutionResources` `00305640` (`00305704`); +18 more |
 | `+0x02A` | 1 | u8 | **Strength** ([page](../Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md)) | 1 / 2 | `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF840`) | `AiOrder_EvaluateTargetSelector` `00301AD0` (`00302020`); `BattleFormula_ApplyTargetResult` `003112F0` (`003118AE`) |
 | `+0x02B` | 1 | u8 | **Magick Power** ([page](../Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md)) | 1 / 2 | `BattleStats_RebuildEffectiveStatsAndAffinityState` `002FEF30` (`002FF85A`) | `AiOrder_EvaluateTargetSelector` `00301AD0` (`00302048`); `BattleFormula_ApplyTargetResult` `003112F0` (`003118CC`) |
@@ -209,7 +209,7 @@ Width is the most common operand size at that offset; "w / r" counts distinct fu
 > `BattleUnit_ExecuteDirectStateCommandOrder` (`002FDDA0`) reads and writes the span as words. The
 > rows above now carry both shapes; a reconstruction must switch on the kind before touching them.
 > One consumer to audit: `BattleFormula_ApplyTargetResult` adds i16 deltas at `+0x0A` / `+0x12` /
-> `+0x14` (`003118D9`, `003118F7`, `00311915`) with no kind test in sight (`FE-6`). The
+> `+0x14` (`003118D9`, `003118F7`, `00311915`) ~~with no kind test in sight (`FE-6`)~~ behind the kind test `0031189B` (`cmp byte ptr [rdi + 5], 1` / `jne`), so on foe records only *(corrected 2026-10-02, OPUS: checked at `0031189B`–`0031189F`; the `FE-6` correction above)*. The
 > accesses TSV was right throughout — the instruction forms are the evidence. The type-range test
 > beside the kind byte (`+0x04 − 0x1B ≤ 0xC`, `002FF007`–`002FF00F`) is **not** part of the
 > discriminator: both of its outcomes fall into the same `test ecx, ecx`. It sets a stack flag
@@ -384,19 +384,19 @@ that the PC build allocates and no followed route touches (`_types/fields.tsv` `
 The field map's own frontmatter says *"a field map from every reached accessor"*, and that is still
 true — but **41 functions that address this record directly were never reached**, so "every reached
 accessor" is a much smaller set than a reader would assume. The rows in the table are not wrong; the
-**absences** were, and every absence on this page inherits that limit. `UQ-119` stays unticked.
+**absences** were, and every absence on this page inherits that limit. ~~`UQ-119` stays unticked.~~ *(answered: see §7 — `UQ-119` / `FE-4` ANSWERED 2026-09-27, the seed repaired and the stored pointer followed; 2026-10-02, OPUS)*
 
 ### 2.4 What the map says that no single page did
 
 - **The seven stat bytes `+0x2A`–`+0x30` and the six after them (`+0x31`–`+0x36`) have exactly one
   writer** on every route — `BattleStats_RebuildEffectiveStatsAndAffinityState` (`002FEF30`) — and
-  `+0x31`–`+0x36` have **no reader** the enumeration reaches: six output bytes the rebuild computes
-  that nothing on a battle unit consumes.
+  ~~`+0x31`–`+0x36` have **no reader** the enumeration reaches: six output bytes the rebuild computes~~
+  ~~that nothing on a battle unit consumes.~~ `+0x31`–`+0x33` are read by every outcome roll: the threshold loaders `00388FB0` and `00389040` load target `+0x33`, `+0x32` and `+0x31` into the bands `02AEDFF0`, `02AEDFF4` and `02AEDFEC` *(corrected 2026-10-02, OPUS: checked at `00388FB0`–`00388FC8` and `00389093`–`003890AB`; this page's own rows for `+0x31`–`+0x33` and the-formula-scratch-block.md §2.2)*.
 - **`BattleUnit_ExecuteDirectStateCommandOrder` (`002FDDA0`) reads and writes every base stat
   `+0x08`–`+0x1E`** — a script-facing writer of the *base* numbers beside the level grower and the
   level-up, which is what makes a "set stat" order possible without a level.
-- **`BattleFormula_ApplyTargetResult` (`003112F0`) writes `+0x08`, `+0x0A`, `+0x12`, `+0x14`** — a
-  result can raise base HP, base MP and two stat words directly (the applier page's decode names
+- **`BattleFormula_ApplyTargetResult` (`003112F0`) writes `+0x08`, `+0x0A`, `+0x12`, `+0x14`** — ~~a~~
+  ~~result can raise base HP, base MP and two stat words directly~~ on foe records only: `0031189B` `cmp byte ptr [rdi + 5], 1` / `jne` skips all four adds unless the kind is 1, so a result cannot change a party record's base stats *(corrected 2026-10-02, OPUS: checked at `0031189B`–`0031189F`; §2.2, the `FE-6` correction of 2026-09-26)* (the applier page's decode names
   the record bytes).
 - **The status words have three writers in total** — the status write for `+0x38` / `+0x3C` /
   `+0x64`, and the rebuild for `+0x38` and `+0x3C` — against **126 readers of `+0x3C`** and **124
@@ -428,9 +428,9 @@ accessor" is a much smaller set than a reader would assume. The rows in the tabl
 ```
 BattleStatsRecord (BKBI), 0x1C8
   +0x00 u32  ?            +0x04 u8 row index   +0x05 u8 kind      +0x06 s16 secondary resource
-  +0x08 u32  base HP      +0x0C u16 base MP    +0x10..+0x1F  UNION by kind +0x05: party (kind 0) f32[4]; else i16[8]   (+0x0A/0E words: rebuild inputs)
+  +0x08 u32  base HP      +0x0C u16 base MP    +0x10..+0x1F  UNION by kind +0x05: party (kind 0) f32[4]; else i16[8]   (+0x0A/0E words: rebuild inputs)   <- corrected 2026-10-02, OPUS: +0x0C is s16 (002FF084 movsx)
   +0x20 u8   rank         +0x24 s32 max HP     +0x28 s16 MP capacity
-  +0x2A..+0x30 u8  Str Mag Vit Spd Atk Def MRes      +0x31..+0x36 rebuild outputs (unread)   +0x37 u8 MP bars
+  +0x2A..+0x30 u8  Str Mag Vit Spd Atk Def MRes      +0x31..+0x36 rebuild outputs (unread)   +0x37 u8 MP bars   <- corrected 2026-10-02, OPUS: +0x31..+0x33 are read as the outcome bands (00388FB0-00388FC8, 00389093-003890AB)
   +0x38 +0x3C +0x64 u32 status words      +0x40..+0x44 u8 affinity     +0x48 s32 HP   +0x4C s16 MP   +0x4E u8 charges
   +0x50 u16[5] equipment   +0x5C u8[8] untouched (FE-4)   +0x68 u8[16] mutable layer   +0x78 u8[16] derived layer
   +0x88 u8 grower arg      +0xBC u32[32] status param   +0x13C u16[32] status timer word
@@ -450,8 +450,8 @@ the applier → [applying a result](../../07-Combat-Action/applying-a-result-to-
 - **To change what a combatant *is*, write the base stats `+0x08`–`+0x1E` and recompute** — the
   seven effective bytes are rebuilt from them and overwritten by `002FEF30` on every recompute;
   writing `+0x2A` directly is undone by the next status change.
-- **`+0x31`–`+0x36` are free to repurpose on the unit side** — nothing enumerated reads them — but
-  the rebuild rewrites them, so a mod must write after it or hook it.
+- ~~**`+0x31`–`+0x36` are free to repurpose on the unit side** — nothing enumerated reads them — but~~
+  ~~the rebuild rewrites them, so a mod must write after it or hook it.~~ **`+0x31`–`+0x33` are not free to repurpose**: every outcome roll reads them as its evade bands, so a port that reuses them breaks every hit roll; the rebuild rewrites all six, so a mod must write after it or hook it *(corrected 2026-10-02, OPUS: checked at `00388FB0`–`00388FC8` and `00389093`–`003890AB`)*.
 - **The status words are read from 126 places**; a mod that flips a status must go through the
   status write or every one of them sees an inconsistent presence.
 
@@ -517,8 +517,8 @@ the applier → [applying a result](../../07-Combat-Action/applying-a-result-to-
   the rebuild's six unread outputs and its six word inputs beside the four float stats.~~
   **FE-2 ANSWERED 2026-09-14 (FABLE).**
   - *The outputs.* The rows for `+0x31`–`+0x36` in §2.2 name them by what they are built from: innate, weapon
-    and shield evade (the roller's three bands), magick evade, total evade and total magick evade. That nothing
-    enumerated reads them is a separate fact, and it stands.
+    and shield evade (the roller's three bands), magick evade, total evade and total magick evade. ~~That nothing~~
+    ~~enumerated reads them is a separate fact, and it stands.~~ The three bands are read: `00388FB0` and `00389040` load `+0x33` / `+0x32` / `+0x31` into `02AEDFF0` / `02AEDFF4` / `02AEDFEC` *(corrected 2026-10-02, OPUS: checked at `00388FB0`–`00388FC8` and `00389093`–`003890AB`)*.
   - *The words, spawn-backed arm.* Each word is the record term of one `.ard` column's
     `growth·K + base + word` sum ([where a stat number comes from](../where-a-stat-number-comes-from.md), `CB-5`): `+0x0A` Magick Power, `+0x0E` Speed, `+0x12`
     Defence, `+0x16` innate evade and `+0x1A` block. `+0x1E` joins no column; it is a term of total evade.
@@ -560,7 +560,7 @@ the applier → [applying a result](../../07-Combat-Action/applying-a-result-to-
 | Every row of the table | `battle-stats-record-accesses.tsv` beside this page; `hop_scan.py --hop 0x698 --array 0x02EBF190:0x1C8:8 --size 0x1C8 --depth 3`, control `00300530:0x48` found | 1 | PROVEN |
 | The names in the name column | the linked pages, each reading the writer from the bytes | 1 | PROVEN (by reference) |
 | The untouched ranges | ~~absence on every enumerated route with a passing control~~ **corrected §2.3a and §2.3b**: computed by exact displacement over a scan that never entered 41 of the 46 functions forming this record's address. Four of the six fall; 67 claimed bytes are 10 | 1 | PROVEN only for the 10 bytes, and only on the enumerated routes |
-| What the untouched bytes and the unnamed fields are | **not established** | — | UNKNOWN |
+| What the untouched bytes and the unnamed fields are | ~~**not established**~~ *(answered for the bytes: see §7, `FE-4` ANSWERED 2026-09-27 — four paddings and the unused region `+0x5C`–`+0x63`; 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 9. Related
 
@@ -708,7 +708,7 @@ from the shipping image at the authority hash `73461D08…9721F8`.
 | `0030BCE9` | `FUN_0030BCD0` | the same three instructions — **read bit 2** |
 
 **Five instructions, four functions, two bits.** Bit 0 has one writer pair and one reader; bit 2 has
-two readers and no writer. No other bit is touched at all — not read, not written.
+two readers ~~and no writer~~ in this census; its writers store through a register at displacement 0 (`0023AF28`, `00239D89` / `00239D94`) *(answered: see §7, `UQ-123`, 2026-09-14; whether this sweep should see them is the open `FE-1` reconcile below; 2026-10-02, OPUS)*. No other bit is touched at all — not read, not written.
 
 **What that census is a census OF, stated before anyone has to ask.** It is the `+0x698` access
 path, which §2.1 calls *“the access path 82 readers use”* — every instruction reaching the word

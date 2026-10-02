@@ -90,7 +90,7 @@ them; the merge does not distinguish the status from the augment of the same id.
 | 8 | **Poison** (status; augment 8 "Raises magick power when HP Critical") | `00389290` (`00389290`), `0038AF90` (`0038AF90`), `0038B150` (`0038B15A`) |
 | 9 | **Silence** (status; augment 9 "Increases physical damage dealt while empty-handed") | `0038A680` (`0038A6B1`) |
 | 10, 11 | **Sap**, **Oil** (statuses; augments 10 / 11 "Raises strength when HP Critical" / "… when character has full HP") | `0038BC00` (`0038BC0F`, `0038BC54`) |
-| 13 | **Disable** (status; augment 13 "Improves chance of scoring multiple hits") | `BattleFormula_ComputeComboChance` `00388550` (`0038855F`) |
+| 13 | ~~**Disable** (status;~~ **the combo augment** (augment 13 "Improves chance of scoring multiple hits", Genji Gloves `0x1164`) *(corrected 2026-10-02, OPUS: `00388550` tests context `+0x1B` bit 5, merged id 13, to scale the combo rate by 1.8f instead of 0.7f (`0038855F`); augment 13 is "Improves chance of scoring multiple hits.", carried by Genji Gloves `0x1164`, and the 32 statuses are in neither layer (the-thirty-two-statuses.md, `BattleFormula_BuildEvaluationContext`), so the status reading is unsupported; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")* | `BattleFormula_ComputeComboChance` `00388550` (`0038855F`) |
 | 14 | **Immobilize** (status; augment 14 "Improves potency of restorative items") | `00389650` (`00389650`), `0038C920` (`0038C920`), `0038E2D0` (`0038E40C`) |
 | 15 | **Slow** (status; augment 15 "Reverses effects of restorative items") | sign tests on the byte: `00387CB0` (`00387D0D`), `003889F0` (`00388A22`), `0038DD20`, `0038DF00`, `00390190` (`003901BE`), `00390240` (`0039024F`) |
 | 16 | Disease / **Weatherproof** (Agate Ring) | `0038B220` (`0038B23D`) |
@@ -149,7 +149,7 @@ BattleFormula_ResolveTargetResult 00385F60 -> BattleFormula_BuildEvaluationConte
   source's `+0x78` layer bit; the formulas cannot tell.
 - **Status and augment collide by id**: the Lure status and the Thievery augment are both id 17 —
   a Lured character steals like one wearing Thief's Cuffs, by construction of the merge.
-- **The context is per resolution and lives on the stack**: nothing persists it.
+- **The context is per resolution and lives on the stack**: ~~nothing persists it~~ the context itself is not persisted, but its builder caches the target unit in `02EBF188` (`00384870`) *(corrected 2026-10-02, OPUS: §9, "The builder is not side-effect-free")*.
 
 ## 7. What is not known
 

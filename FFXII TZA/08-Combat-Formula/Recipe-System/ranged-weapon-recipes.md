@@ -198,6 +198,8 @@ Battle_ProcessActionTarget (call sites 00307419 and 00307436)
   -> BattleFormula_ApplyTargetResult (call at 00307436)
 ```
 
+*(corrected 2026-10-02, OPUS: slot 29 `00389140` in the block above is the ranged critical roll, not a resource-reaction roll; `00389140` sets result `+0x18` bit 0 when the weapon row's `+0x1C` exceeds `mt() % 100` (`003891B7`–`003891D9`), and slot 98 `0038BE00` doubles `02AEE054` on that bit: the ranged critical, rolled only by recipes 25–27; combat-formula-step-table.md, the section "The hit pipeline's odds: knockback, counter, combo, the ranged critical and the post-modifiers")*
+
 **Upstream:** ~~the ActionDefinition selected by the command/action pipeline.~~ the standard-action state machine's
 execution stage for the first list (`00304F1D`). Four callers of `00385F60` start the second:
 `Battle_ProcessActionTarget`, the special-sequence target resolver, the actor-timeline handler and the periodic

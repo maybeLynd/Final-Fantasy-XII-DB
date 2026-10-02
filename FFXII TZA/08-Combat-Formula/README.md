@@ -11,61 +11,75 @@
 ## Systems in this category
 
 - [`Recipe-System/ranged-weapon-recipes.md`](Recipe-System/ranged-weapon-recipes.md) -
-  the 109-recipe machinery, with Bow (25) and Crossbow (26) closed - **PARTIAL**
+  the 109-recipe machinery, with Bow (25) and Crossbow (26) closed - ~~**PARTIAL**~~ **DOCUMENTED** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`)*
 - [`Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md`](Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md) -
-  how weather and ground change elemental damage - **DOCUMENTED**
+  how weather and ground change elemental damage - ~~**DOCUMENTED**~~ **AUDITED** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*
 
 - [`Current-HP/the-hp-write-and-the-lethal-transition.md`](Current-HP/the-hp-write-and-the-lethal-transition.md) -
-  **DOCUMENTED, tier 1.** The one function every damage and heal ends in: its eight flag bits and
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The one function every damage and heal ends in: its eight flag bits and
   where each caller gets them, the two eligibility gates, the refusal of damage to KO/Stone/Vanished
   targets, the floor (`unit + 0x48`) and the cap (max, doubled by status bit 28, frozen by bit 16 =
   Disease), revive-from-zero, and the lethal transition down to the killer id, the death statistics
   and the group ledger.
 
 - [`the-auto-status-rebuild.md`](the-auto-status-rebuild.md) -
-  **DOCUMENTED, tier 1.** The recompute every stats write ends in (`0030FED0`, 25 call sites): the
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The recompute every stats write ends in (`0030FED0`, 25 call sites): the
   desired permanent-status set from the party row, the foe's innate mask, equipment and licences;
   the diff against the derived layer; the foe's second mask added as statuses; the affinity
   handshake with the spawn record; the three downward clamps; the charge count.
 
 - [`Battle-Stats-Record/the-battle-stats-record-field-map.md`](Battle-Stats-Record/the-battle-stats-record-field-map.md) —
-  **DOCUMENTED, tier 1.** The `0x1C8` stats record, offset by offset, from a typed field scan that
-  reaches 283 functions: every writer and reader per byte, the name the owning page established,
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The `0x1C8` stats record, offset by offset, from a typed field scan that
+  reaches ~~283~~ 285 functions *(corrected 2026-10-02, OPUS: distinct functions in the published battle-stats-record-accesses.tsv)*: every writer and reader per byte, the name the owning page established,
   the six ranges nothing enumerated touches, and the scan's stated limits. The access table is
   published beside it.
 
-- [`Steal/the-steal-roll.md`](Steal/the-steal-roll.md) — **DOCUMENTED, tier 1.** Calculator
+- [`Steal/the-steal-roll.md`](Steal/the-steal-roll.md) — ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. Calculator
   slot 195: the availability test on the enemy row's three item words and the spawn record's three
   bits, the two branches (three independent rolls at 6 / 30 / 80 %, one first-hit roll at
   3 / 10 / 55 %), console arm 243's override, the five scratch globals that carry the answer, and
   their consumers — the resolver's copy into the result record, and the two battle messages.
 
 - [`Evaluation-Context/the-evaluation-context-field-map.md`](Evaluation-Context/the-evaluation-context-field-map.md) —
-  **DOCUMENTED, tier 1.** The 0x2A-byte record every calculator slot is handed: the action id, the
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The ~~0x2A-byte~~ `0x30`-byte *(corrected 2026-10-02, OPUS: the builder's last store is `mov qword ptr [rcx + 0x28], rax` at `003847F3`; the page's §9 falsification pass)* record every calculator slot is handed: the action id, the
   two merged flag words, the result pointer, one unit byte, and the source's status / augment layers
   merged into 128 bits — with a table of which slot tests which id (the Thief's Cuffs, the Cameo
   Belt and the Agate Ring are three of twenty-two). The access table is published beside it.
 
 - [`Scratch-Block/the-formula-scratch-block.md`](Scratch-Block/the-formula-scratch-block.md) —
-  **DOCUMENTED, tier 1.** The 44 globals at `02AEDFB8`–`02AEE05F` every calculator slot writes and
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The 44 globals at `02AEDFB8`–`02AEE05F` every calculator slot writes and
   the resolver reads back: the reset, every word named or bounded, the outcome roller's three
   evade bands and hit roll decoded (stats `+0x31`–`+0x33` are the band chances), flag word B's
   bits named (combo continues / parry / knockback), the per-unit 64-byte memo that carries the
   preview's rolls to the real resolution, and the kind → entry code → reaction event maps.
 
 - [`Recipe-System/the-count-clock-and-bank-recipes.md`](Recipe-System/the-count-clock-and-bank-recipes.md) —
-  **DOCUMENTED, tier 1.** Four recipes whose damage is not a stat: a streak that doubles while it
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. Four recipes whose damage is not a stat: a streak that doubles while it
   keeps landing (`2 ^ count`, the chance to extend falling by `count² / 4`), a walk that pays the
   distance the leader has walked since the last use times 10 / 3 / 2 / 1, and a bank that keeps a
   third of every HP-fraction hit for a later payout. The battle-state block's three echoes and its
   walked-distance accumulator, explained.
 
+- [`elemental-affinity-and-the-five-bytes.md`](elemental-affinity-and-the-five-bytes.md) — element affinity, the five bytes `+0x40`–`+0x44` — **AUDITED**
+- [`combos-and-the-guard-parry-flag.md`](combos-and-the-guard-parry-flag.md) — the combo count and the guard / parry flag — **DOCUMENTED**
+- [`Step-Table/combat-formula-step-table.md`](Step-Table/combat-formula-step-table.md) — the 202-slot step table at `01EFA5C0` — **AUDITED**
+- [`Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md`](Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md) — the preparation variants, the finaliser and the modifier chain — **AUDITED**
+- [`where-a-stat-number-comes-from.md`](where-a-stat-number-comes-from.md) — the stat rebuild `002FEF30` — **DOCUMENTED**
+- [`Status-And-Augment-Namespaces/README.md`](Status-And-Augment-Namespaces/README.md) — the status and augment ids that share one merged bitmap — no front-matter status
+- [`CONTRACT-formula-step-table.md`](CONTRACT-formula-step-table.md) — **CONTRACT READY**
+- [`CONTRACT-environmental-element-scaling.md`](CONTRACT-environmental-element-scaling.md) — **CONTRACT READY**
+- [`CONTRACT-weapon-recipes.md`](CONTRACT-weapon-recipes.md) — **CONTRACT READY**
+- [`CONTRACT-stat-derivation.md`](CONTRACT-stat-derivation.md) — **CONTRACT READY**
+- [`CONTRACT-preparation-step-family.md`](CONTRACT-preparation-step-family.md) — **BEHAVIORALLY UNDERSTOOD**
+- [`CONTRACT-hp-write-and-lethal-transition.md`](CONTRACT-hp-write-and-lethal-transition.md) — **BEHAVIORALLY UNDERSTOOD**
+- *(twelve pages added to this list 2026-10-02, OPUS, each with the status its own front matter states)*
+
 ## Not yet documented
 
-- `0038B6A0` `BattleFormula_ApplyActionElementAffinity` - resistance/weakness/absorb
-- `003896B0` `BattleFormula_RollAvoidGuardParryOutcome` - the standard outcome resolver
-- `00389040` `BattleFormula_LoadHitAvoidGuardThresholds`
-- The remaining 107 recipes and the full calculator-slot table at `0x01EFA5C0`
+- ~~`0038B6A0` `BattleFormula_ApplyActionElementAffinity` - resistance/weakness/absorb~~ *(answered: see elemental-affinity-and-the-five-bytes.md; 2026-10-02, OPUS)*
+- ~~`003896B0` `BattleFormula_RollAvoidGuardParryOutcome` - the standard outcome resolver~~ *(answered: see Scratch-Block/the-formula-scratch-block.md §2.3; 2026-10-02, OPUS)*
+- ~~`00389040` `BattleFormula_LoadHitAvoidGuardThresholds`~~ *(answered: see Recipe-System/ranged-weapon-recipes.md §3 and Scratch-Block/the-formula-scratch-block.md §2.2; 2026-10-02, OPUS)*
+- ~~The remaining 107 recipes and the full calculator-slot table at `0x01EFA5C0`~~ *(answered: see Recipe-System/ranged-weapon-recipes.md §7, E-3, and Step-Table/combat-formula-step-table.md; 2026-10-02, OPUS)*
 - Magick / Technick / item formula families
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)

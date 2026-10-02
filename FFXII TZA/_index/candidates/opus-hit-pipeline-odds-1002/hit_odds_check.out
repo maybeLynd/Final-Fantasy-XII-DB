@@ -1,0 +1,19 @@
+ok   0038836C cmp byte ptr [rcx + 0x1c2], bpl
+ok   00388379 call 0x379cd0
+ok   00388387 div ecx
+ok   00388398 call 0x379cd0
+ok   00388409 movzx eax, byte ptr [rcx + 0x1b]
+ok   00388490 test dword ptr [r8 + 8], 0x2018
+ok   003884C5 movzx eax, byte ptr [rdx + 0x2d]
+ok   003884C9 shr eax, 1
+ok   003884D6 add eax, eax
+ok   003891B3 movzx ebx, byte ptr [rbx + 0x1c]
+ok   003891B7 call 0x379cd0
+ok   003891D0 cmp ebx, r8d
+ok   003891D9 or dword ptr [rax + 0x18], 1
+ok   00390F2F test byte ptr [rdx + 0x6f], 4
+ok   00390F7B mov eax, 0x270f
+ok   00390F9C cmp dword ptr [rip + 0x275d02e], 0xb3
+ok   00908E1C = 1.7999999523162842
+ok   008F3104 = 0.699999988079071
+FAILS 0

@@ -1,0 +1,11 @@
+ok   002FF7C3 mov eax, 0x3b9aca00
+ok   0038BE12 mulss xmm0, dword ptr [rip + 0x195fdee]
+ok   0038A2D6 movzx eax, byte ptr [rcx + 0x2c]
+ok   0038A2ED movzx eax, byte ptr [rcx + 0x2a]
+ok   0038A116 movzx eax, byte ptr [rcx + 0x2d]
+ok   0038A12D movzx eax, byte ptr [rcx + 0x2a]
+ok   00384A59 mov dword ptr [rip + 0x2769595], 0xffffffff
+ok   00384A63 mov dword ptr [rip + 0x276958f], 0xffffffff
+ok   003847F3 mov qword ptr [rcx + 0x28], rax
+ok   01CEBC08 = 2.0
+FAILS 0

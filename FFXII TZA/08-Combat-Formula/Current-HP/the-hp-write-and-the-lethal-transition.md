@@ -387,12 +387,12 @@ writer, both publishers enabled. Mode 1 of the same function is the MP side (`se
   of `listhelp_status.bin` reads *doubling max HP* ([the statuses sheet](../../10-Status-Periodic-Terminal/the-thirty-two-statuses.md)). `EY-1`.
 - [x] ~~**Who writes the unit's HP floor at `+0x48`**, and whether any shipped script or definition
   sets it above zero.~~ **ANSWERED 2026-09-11** — the installer zeroes it; the verb `3061` sets it;
-  two shipped scripts set it above zero (§2.3). `EY-2`.
+  ~~two shipped scripts set it above zero (§2.3).~~ the HP page's own census (§2.3) counts 23 calls in 14 scripts *(corrected 2026-10-02, OPUS: §2.3's correction of 2026-09-13)*. `EY-2`.
 - [x] ~~**What `00469BB0` / `0046AB10(sourceRecord, 0x10, …)` do on the lethal path.**~~ **`EY-3` ANSWERED 2026-09-13
   (FABLE):** `00469BB0(source, target)` (77 B) builds a zeroed context with `+0x08 = target` (`00469BB6`–`00469BD7`) and posts event **`0x10`** — the row "… has fallen." — through the battle event poster `0046AB10(source, 0x10, &ctx)` (`00469BF2`), **only when `002FA390(target)` is non-zero**, i.e. when the unit classifier `002F8E90(target)` returns 1, 2 or 4 (`test al, 7`, `002FA399`): a party-table unit, an Esper (party-table type ids `0x1B`–`0x27`), or an enemy-table unit whose free-target type is 3 ([the battle record kind byte](../../04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md)). Enemy-table units of free-target types 1, 2 and 7 (class 8) and anything else (class `0x10`) fall without the line. `BattleStats_ModifyHPAndProcessLethalState` reaches it at `003007A8` only when its flag bit 1 is clear. The poster's own work — the ten-entry ring, the `0x1C2`-frame window, the row filter and the realiser — is on [the post-result events page](../../07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md). Which of the context's records the realised line names follows the row's slot kinds and is not re-derived here.
   **Half of this is answered (2026-09-12):** the pointer is not something a caller hands through —
   it is **the source's stats record**, this function's own third argument, spilled to `[rsp+0xC0]`
-  and reloaded there (see §2.1). What the two callees do with it is still open.
+  and reloaded there (see §2.1). ~~What the two callees do with it is still open.~~ *(answered: see `EY-3` directly above, ANSWERED 2026-09-13; 2026-10-02, OPUS)*
 - [x] ~~**What bit 8 of the source's target-buffer entry means**~~ — **`EY-4` ANSWERED 2026-09-11:
   knockback rolled.** `Battle_ProcessActionTarget` copies the result's flag word B bit 3 into it
   (`003075CB`), and that bit is `[02AEDFC8]`, `BattleFormula_RollKnockback`'s outcome, copied by the
@@ -484,8 +484,8 @@ leader's position goes into fixed globals `01EEBB00`/`04`/`08`, not a stack loca
 goes on the stack. So this predicate writes to shared memory while it runs.
 
 **Not claimed:** nothing here was executed or observed live. The corpus claim in §2.3 — that
-`btlAtelSetHpLowLimit` is called by **505** shipped scripts, above zero only in `dst_a01.ebp` (67)
-and `naf_a02.ebp` (1000) — was **not** re-run; it needs the script decompiler, not a byte census, and
+`btlAtelSetHpLowLimit` is called by **505** shipped scripts, ~~above zero only in `dst_a01.ebp` (67)~~
+~~and `naf_a02.ebp` (1000)~~ *(corrected 2026-10-02, OPUS: the HP page's own census (§2.3) counts 23 calls in 14 scripts)* — was **not** re-run; it needs the script decompiler, not a byte census, and
 is left standing as `EY-2` records it. The publishers' downstream (`003BBD00`, `003F8980`) and the
 lethal path beyond `00469BB0` were not re-read.
 

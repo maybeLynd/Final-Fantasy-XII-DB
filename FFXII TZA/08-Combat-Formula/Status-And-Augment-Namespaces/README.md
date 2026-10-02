@@ -19,7 +19,7 @@ referenced from several documents here.
 |---:|---|---|---|
 | 2 | Petrify | **AccuracyBoost** (Cameo Belt) | ranged severe-weather accuracy bypass — [`../Recipe-System/ranged-weapon-recipes.md`](../Recipe-System/ranged-weapon-recipes.md) |
 | 16 | Disease | **Weatherproof** (Agate Ring) | weather/terrain element-scaling bypass — [`../Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md`](../Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md) |
-| 17 | Lure | Thievery | no formula role established |
+| 17 | Lure | Thievery | ~~no formula role established~~ the steal's three-roll branch: the merge carries the status layer, so a Lured source steals like one wearing Thief's Cuffs *(corrected 2026-10-02, OPUS: checked at `00384827`, the merge tests `[stats + 0x68 + (id>>3)]`, and `003904A5` `test byte ptr [rsi + 0x1c], 2`; the-evaluation-context-field-map.md §2.3)* |
 
 Target-side tests in `0038B220` read the two BKBI layers **directly** rather than the merged
 context — so a target's status and augment bits are still distinguishable there, while the
@@ -40,7 +40,7 @@ caster's are not.
   (16) does not stop acting either, so a diseased caster's merged bit 16 reads as **Weatherproof**
   and turns the weather / terrain element-scaling stage off at its caster test (`0038B220`,
   `TEST byte ptr [R8+1C], 01`), while the same stage's *target* tests read both layers directly and
-  so alias the target's Disease with its Weatherproof as well. **Lure** (17) has no formula reader
-  and its alias is inert. Live discriminating checks, queued: a petrifying bow user in severe
+  so alias the target's Disease with its Weatherproof as well. ~~**Lure** (17) has no formula reader~~
+  ~~and its alias is inert.~~ **Lure** (17) is read by the steal's three-roll branch (`003904A5`), so a Lured source steals with three independent rolls *(corrected 2026-10-02, OPUS: checked at `00384827` and `003904A5`)*. Live discriminating checks, queued: a petrifying bow user in severe
   weather should keep full accuracy; a diseased caster's elemental damage should ignore weather
   and terrain. Whether the designers meant that is not recoverable from the shipped data.

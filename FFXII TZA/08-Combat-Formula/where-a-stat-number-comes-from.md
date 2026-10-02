@@ -56,7 +56,7 @@ rebuild one level up: *there is no un-apply step because nothing is ever applied
 | four values (`+0x0D`, `+0x0E`, `+0x0F`, `+0x10`) | **100** each |
 | one byte (`+0x13`) | **3** |
 
-> **The famous 9,999 is a `cmp` in this function**, and it applies **only to the party side** — foes
+> **The famous 9,999 is ~~a `cmp`~~ a `mov r8d, 0x270f` that a `cmove` selects in this function** *(corrected 2026-10-02, OPUS: checked at `002FF7BD`–`002FF7C8`; CONTRACT-stat-derivation.md D-3)*, and it applies **only to the party side** — foes
 > are clamped a hundred thousand times higher. *(Qualified 2026-09-30, FABLE: 32,767 is not a third alternative.
 > It is a second store over the first. It is taken only for party rows `0x1B`–`0x27`, the Espers (`002FF7E5`–`002FF805`),
 > as the [contract](CONTRACT-stat-derivation.md)'s D-4 corrective says. The foe cap is the literal `0x3B9ACA00`,
@@ -175,10 +175,10 @@ flag fields OR-ed into the output.**
 > everything else.**
 
 The three branches, read 2026-09-11 (`0031E9A0` classifies the item row; `002FF451`–`002FF4A4`):
-**kind 1 (weapons)** adds row `+0x1A` to attack and row `+0x1D` to **weapon evade** (stats `+0x32`)
+**kind 1 (weapons)** — runtime categories 1–5, so ammunition too *(corrected 2026-10-02, OPUS: `0031E9A0` maps runtime 1–5 to 1, 6 to 2 and 7–9 to 3, checked at `0031E9AD`–`0031E9C4`; runtime 5 is arrows, bolts, shot and incendiaries, the-auto-status-rebuild.md)* — adds row `+0x1A` to attack and row `+0x1D` to **weapon evade** (stats `+0x32`)
 unless the definition's `+0x15` bit 0 substitutes the `.ard` column; **kind 2 (shields)** adds row
 `+0x18` to **shield evade** (stats `+0x33`) and `+0x19` to **magick evade** (`+0x34`) unless bit 1;
-**kind 3 (armour)** adds row `+0x18` to defence and `+0x19` to magick resist. The four rate columns
+**kind 3 (armour)** — runtime categories 7–9: helms, chest armour and accessories *(corrected 2026-10-02, OPUS: `0031E9B7`–`0031E9BF`; runtime 9 is the accessories)* — adds row `+0x18` to defence and `+0x19` to magick resist. The four rate columns
 of the `.ard` map below are these same four evasions — [the scratch block](Scratch-Block/the-formula-scratch-block.md)
 §2.3 is where the roller spends them.
 
@@ -201,7 +201,7 @@ raises.**
 ## The tail: a stat change can cancel the action in flight
 
 When the party side is being rebuilt and two specific flag bits changed (`^ … & 0x8000020`), the engine
-**cancels the unit's in-flight action** — with three exceptions guarding action ids `0x113` and `0x95`
+**cancels the unit's in-flight action** — with three exceptions ~~guarding action ids `0x113` and `0x95`~~ (unit bit 24, `+0x714 ≤ 0x21E` with `+0x6B4 ≥ 9`, and action id `0x113`; `0x95` belongs to the later bit-14 clear) *(corrected 2026-10-02, OPUS: the list below, `002FF99C`–`002FF9BF` and `002FF9E1`–`002FFA11`)*
 — then clears a batch of runtime fields and calls `00307D10`.
 
 *Anchored 2026-09-30 (FABLE):*
@@ -293,7 +293,7 @@ derived combat values, 100 for the rate fields, 999 for MP):
 
 | `.ard` column | width | feeds | clamp |
 |---|---|---|---:|
-| `+0x20` | `int` | **HP** | `0x7FFF` |
+| `+0x20` | `int` | **HP** | ~~`0x7FFF`~~ 1,000,000,000 *(corrected 2026-10-02, OPUS: the `0x7FFF` re-store `002FF7E5`–`002FF805` is gated on `[rsp+0x5C]`, set at `002FF003`–`002FF021` only when `+0x05 == 0` and the type is `0x1B`–`0x27`, the thirteen party Esper rows; a foe's HP takes the 1,000,000,000 cap; CONTRACT-stat-derivation.md §14)* |
 | `+0x24` | `s16` | **MP** | 999 |
 | `+0x26` | byte | **Strength** | 99 |
 | `+0x27` | byte | **Magick Power** | 99 |
@@ -477,7 +477,7 @@ the unit's action and refresh its engagement flag.
   modifier.
 - **Party stats** are the party row's scale bytes and float bases, plus equipment and the three status-bonus lists.
 - **Moving an id between the three lists** changes which stat it raises without touching code.
-- **Caps are code:** 9,999 / 999 / 99 / 255 / 100 are `cmp` literals in this body. Raising one is a code patch.
+- **Caps are code:** 9,999 / 999 / 99 / 255 / 100 are ~~`cmp` literals~~ literals in this body — the main value's 9,999 is a `mov r8d, 0x270f` that a `cmove` picks, not a `cmp` *(corrected 2026-10-02, OPUS: `002FF7BD`–`002FF7C8`; CONTRACT-stat-derivation.md D-3)*. Raising one is a code patch.
 - **XIIOnline:** the output is derived state. Two clients agree on it when they agree on the record, the equipment and
   both effect layers, so replicate those inputs, not the block.
 

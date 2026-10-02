@@ -74,7 +74,7 @@ resistance/weakness/absorb stage, and **both read the same element mask at `Acti
 (`0038B295` here). *Two stages reading one authored byte for different purposes, in a fixed order —
 an implementation that merges them changes which multiplications compose.*
 
-**WE-2 — Three independent inputs, multiplied in sequence.** Global environment class, MWeather
+**WE-2 — Three ~~independent~~ inputs, ~~multiplied in sequence~~ tested in sequence** *(corrected 2026-10-02, OPUS: an environment rule and a terrain rule for the same element share one multiply, `0038B3E1`–`0038B424`; the rule table below)*. Global environment class, MWeather
 gameplay class and target-local terrain class. *The first two are global; only the third is per
 target, so two targets of one action scale differently only through terrain.*
 

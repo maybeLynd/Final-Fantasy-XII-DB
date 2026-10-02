@@ -90,7 +90,7 @@ table entry `01EFA808` has zero referencing instructions image-wide. It is a rea
 sitting in the dispatch table that nothing can select. A reimplementation should keep it and keep it
 unreachable; wiring it to anything would add behaviour the original does not have.
 
-It is not alone in the table: of the 202 slots, 38 hold the `ret 0`, 160 are named by at least one
+It is not alone in the table: of the 202 slots, ~~38 hold the `ret 0`~~ 42 hold the `ret 0` (38 of them named by no recipe; the four no-op ids 28, 193, 198 and 199 are among the 160 named) *(corrected 2026-10-02, OPUS: counted in the table at `01EFA5C0` and the 109 lists at `01EF96C0`; CONTRACT-formula-step-table.md §4)*, 160 are named by at least one
 recipe, two (37 and 118) are reached only by direct `call qword ptr [rip]` sites, and **two — 73 and
 131 — are reachable by nothing at all**.
 
@@ -134,8 +134,8 @@ which is the same value a fresh frame would hold and a different fact about the 
   mechanism is [the recipe system's](Recipe-System/ranged-weapon-recipes.md) and is cited, not
   re-derived. **Preparation slots appear in the second list**, which is why they are invisible to a
   reading of the first.
-- **Recipes 20–29 differ only in this slot** — identical preview lists, and resolution lists identical
-  but for the preparation entry: 20→65, 21→66, 22→67, 23→68, 24→69, 25→66, 26→65, 27→70, 28→71,
+- ~~**Recipes 20–29 differ only in this slot** — identical preview lists, and resolution lists identical~~
+  ~~but for the preparation entry:~~ **Recipes 20–29 each name one slot of this family, but differ in more than it** *(corrected 2026-10-02, OPUS: decoded at `01EF9C80`–`01EF9FB0` — 20–24 and 28 share the first list `[5, 6, 7, 8, 9, 10, 22, 33, 34, 41]` and open the second with 28, but 23 finalises with 126; the bows 25 / 26 / 27 have their own first lists and open the second with 29; recipe 29 stops at 165; CONTRACT-weapon-recipes.md RW-4, ranged-weapon-recipes.md E-4)*. The entries are 20→65, 21→66, 22→67, 23→68, 24→69, 25→66, 26→65, 27→70, 28→71,
   29→72. That is the shape of "which weapon type selects which variant" as the data expresses it.
 - **`BattleFormula_ResetScratchState` `003849B0` zeroes all three** (`00384A29`/`2F`/`35`) and has
   exactly two callers — the same two dispatchers, at `0038585E` and `00386001`, both **before** their
@@ -431,8 +431,8 @@ further through the registry; those calls are named, not followed.
 
 **Claim table added 2026-09-12 (`OPUS-S15-CLAIM-TABLES-SIX`).** The prose and the read-set table
 above state the method and its two corrections and are kept; this enumerates the claims so a pilot's
-`CONTRACT_MAP` can be derived from them. **Nothing in this family has been executed** (§13), so no
-row claims more than static evidence.
+`CONTRACT_MAP` can be derived from them. ~~**Nothing in this family has been executed** (§13), so no~~
+~~row claims more than static evidence.~~ *(answered: see §13 — executed 2026-09-12 as the twenty-eighth differential pilot, 598 compared lines with 0 mismatches, and a 67-mutant campaign; 2026-10-02, OPUS)*
 
 | claim | evidence | tier | confidence |
 |---|---|---|---|
@@ -445,7 +445,7 @@ row claims more than static evidence.
 | the reset zeroes all three and runs before each walk | `003849B0` at `00384A29`/`2F`/`35`, with exactly two callers — the same two dispatchers, at `0038585E` and `00386001` | 1 (static) | PROVEN |
 | the walk stops as soon as 02AEDFB8 is 1 | `003859AC` and `003863D7` | 1 (static) | PROVEN |
 | the slot comes from a recipe's second list, not from a weapon | the recipe pointer table at `01EF96C0` and its two `-1`-terminated lists; cited from the recipe system rather than re-derived here | 1 (static) | HIGH |
-| recipes 20-29 differ only in this slot | identical preview lists and resolution lists differing only in the preparation entry, 20→65 … 29→72 | 1 (static) | PROVEN |
+| ~~recipes 20-29 differ only in this slot~~ recipes 20-29 each name one slot of this family *(corrected 2026-10-02, OPUS: they differ elsewhere too, decoded at `01EF9C80`–`01EF9FB0`; §6)* | ~~identical preview lists and resolution lists differing only in the preparation entry,~~ 20→65 … 29→72 | 1 (static) | PROVEN |
 | the defender's +0x30 is read by two slots, not one | `00389DD0` binds `mov rsi, rdx` at `00389DE3` and reads `[rsi + 0x30]` at `00389F50`, alongside slot 69 | 1 (static) | PROVEN |
 | slot 70 makes no defender read at all | `mov rbx, rcx` at `0038A47A` makes all three `+0x2E` reads the attacker's; the slot stores an immediate `0` at `0038A573` | 1 (static) | PROVEN |
 | slot 72 is one-sided | `rsi = rdx` at `0038A694`, `rbx = rcx` at `0038A69E`; its only defender read is `[rsi + 0x2F]` at `0038A7F6` | 1 (static) | PROVEN |

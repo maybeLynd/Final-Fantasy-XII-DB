@@ -283,7 +283,7 @@ accumulator's feeder, the three echoes' writers and readers, and the threshold a
 - **Resource — SERVICE, not read.** A cited recipe body calls two small Resource helpers (60 and 75 bytes).
 - **Status_Periodic_Terminal — CLIENT.** `BattleUnit_RunPeriodicCombatMaintenance` calls a cited function.
 
-**Script VM — CLIENT.** `0034C170` on the script bridge calls `002FAE40`, the bank-recipe row read — the recipe table is script-driven.
+**Script VM — CLIENT.** `0034C170` on the script bridge calls `002FAE40`, ~~the bank-recipe row read — the recipe table is script-driven~~ the shop-table row read, for the script verb `setshopname` *(corrected 2026-10-02, OPUS: `002FAE4A` reads `02EBF158`, the shop table; 12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md §2.3)*.
 
 *Added 2026-09-29 (FABLE, pass-22 debt): one paragraph per layer the audit still reported for this page. Apart from the walk feeder and the two rolls, these edges come from bodies the appended interior notes cite — the recipe-page widget code, the fade-schedule body `0035CA70` and the probes they share — and belong to those notes, not to the recipe mechanics of section 2.*
 
@@ -459,7 +459,7 @@ Interior anchor `00564337` (function `00564300`).
 
 Interior anchor `00563EF0` (function `00563EC0`).
 
-`002FAE40` (114 B) is the bank-recipe row read: `edi` bounds-checks `word[02EBF158 + 6]`, the row address is `word[+4] * edi` atop the `0020E600(+8)`-resolved base, and the body returns `word[row]` (0 on any out-of-range or empty descriptor) - the element getter the flag-bank and recipe callers share.
+`002FAE40` (114 B) is ~~the bank-recipe row read~~ the shop-table row read *(corrected 2026-10-02, OPUS: checked at `002FAE4A`, `mov rax, [02EBF158]`, the shop table; 12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md §2.3, `002FAE40(shopIndex)`)*: `edi` bounds-checks `word[02EBF158 + 6]`, the row address is `word[+4] * edi` atop the `0020E600(+8)`-resolved base, and the body returns `word[row]` (0 on any out-of-range or empty descriptor) - the element getter the flag-bank and recipe callers share.
 
 Interior anchor `002FAE9F` (function `002FAE40`).
 

@@ -129,9 +129,9 @@ Every test re-derives the element record with the same six-instruction sequence 
 | Are the multipliers immediates? | **No** — `mulss xmm0, dword ptr [0x01CEBC08]`. Loaded from a shared constant pool. |
 | Does absorb multiply by `-1` here? | **It does not multiply at all.** It sets `02AEDFD0 = 1` and nothing else; the inversion, if any, is downstream and is **not** established by this function. |
 
-**What this document does not claim:** which bit is which element, what `00384B10` does, where the
-absorb and nullify globals are consumed, or what the running multiplier at `02AEE054` is initialised
-to and by whom.
+**What this document does not claim:** ~~which bit is which element,~~ what `00384B10` does~~, where the~~
+~~absorb and nullify globals are consumed, or what the running multiplier at `02AEE054` is initialised~~
+~~to and by whom~~. *(answered: the element bits are CONTRACT-environmental-element-scaling.md §3's mask; the absorb and nullify globals are consumed by the finaliser `0038D280`, and `02AEE054` is reset to 0 by `003849B0` at `00384A29` — Scratch-Block/the-formula-scratch-block.md §2.2; 2026-10-02, OPUS)*
 
 ## SWE2-EC7-24 update (2026-09-18) — `00384B10` mask-popcount divisor
 

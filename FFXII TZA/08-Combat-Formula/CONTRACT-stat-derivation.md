@@ -58,7 +58,7 @@ Sources, by path (selected per D-1):
 | | party path | area / enemy path |
 |---|---|---|
 | base | growth definitions at registry slot `02EBF130`, indexed by the type byte `+0x04` | four `.ard` records resolved by type byte, then by `+0x22` / `+0x24` out of the first, then one by its `[+0x00]` |
-| shape | `float` fields converted to `int`, plus the level at `+0x08` | `growth[col] × (rec[+0x1C2] − rec[+0x88]) + base[col] + own[col]` |
+| shape | `float` fields converted to `int`, plus ~~the level at `+0x08`~~ the base HP at `+0x08`, scaled by the party row: `(row[+0x18] + 1) × stats[+0x08] × row[+0x19] / 100` *(corrected 2026-10-02, OPUS: checked at `002FF078`–`002FF07B` `mov ecx, [rdi+8]` / `call 002F8E50` and `002F8E50`–`002F8E6D`; where-a-stat-number-comes-from.md, corrected 2026-09-30)* | `growth[col] × (rec[+0x1C2] − rec[+0x88]) + base[col] + own[col]` |
 
 Contributors common to both paths: five equipment slots, each validated by
 `BattleEncodedId_IsValidForClass(6, id)` (`00322C50`) and classified by `0031E9A0`; and the statuses
@@ -186,7 +186,7 @@ returns nothing, and its eight distinct callees are `0031B860`, `0020E600`, `002
 ## 11. Observable behaviour
 
 A character's Strength and a Marlboro's are edited in different files because they are computed from
-different tables. A character's damage stops rising at 9,999 where an enemy's does not. And a
+different tables. A character's ~~damage~~ maximum HP stops rising at 9,999 where an enemy's does not *(corrected 2026-10-02, OPUS: the cap's store `002FF7E2` writes output `+0`, stats `+0x24`, max HP; D-3)*. And a
 character who is diseased gains whatever a Weatherproof-bearing character gains, because both are bit
 16 in a merged bitmap this function tests.
 
@@ -216,7 +216,7 @@ S-24's runtime cell is not addressed by this contract.
   then 32,767, while `0x00` and `0x1A` store once. *That the band is the Espers is the partition page's reading,
   and what the main value means on screen is not claimed here.*
 - [x] ~~Which two flag bits trigger D-7's action cancel; the stat page records the mask, not the meaning.~~
-  **The bits are answered; their meaning is not** *(2026-09-25, FABLE, Claude Opus 5.5, on [OPUS block 342](../_index/candidates/s24-opus-replay-stat-derivation/README.md), which executed it 7/7; `002FEF6E`–`002FF026`, `002FF5A7`, `002FF796`–`002FF7E9` and `002FF982`–`002FF98E` re-read.)*. The test is on bits **5 and 27** of `+0x3C` (mask
+  **The bits are answered; ~~their meaning is not~~** *(answered: they are Confuse (5) and Berserk (27) — where-a-stat-number-comes-from.md, "The tail"; 2026-10-02, OPUS)* *(2026-09-25, FABLE, Claude Opus 5.5, on [OPUS block 342](../_index/candidates/s24-opus-replay-stat-derivation/README.md), which executed it 7/7; `002FEF6E`–`002FF026`, `002FF5A7`, `002FF796`–`002FF7E9` and `002FF982`–`002FF98E` re-read.)*. The test is on bits **5 and 27** of `+0x3C` (mask
   `0x8000020`, `002FF989`), taken as the XOR of the value before and after the rebuild. D-7's gate `[rsp+0x64]` is 1
   exactly when the output argument is null and the record's owning-unit lookup finds a unit (`002FEF6E`–`002FEF89`).
 - [x] ~~The floor register's value is taken from the stat page's reading rather than re-measured here.~~

@@ -184,8 +184,8 @@ it by any delta, and a reimplementation that clamps to 0 will hold HP at the wro
 > non-zero-floor unit alive at its floor forever, which is the bug this gloss would have caused.
 >
 > What the floor is *for* in the shipped game — a scripted end to a fight at a chosen HP value
-> rather than at zero — is a semantic reading and is **routed to FABLE**
-> (`OPUS-REQ-FABLE-HPFLOOR-MEANING`), not asserted here.
+> rather than at zero — ~~is a semantic reading and is **routed to FABLE**~~
+> ~~(`OPUS-REQ-FABLE-HPFLOOR-MEANING`), not asserted here.~~ *(answered: FABLE answered `OPUS-REQ-FABLE-HPFLOOR-MEANING` on 2026-09-13 — every non-zero floor sits in a boss's or mark's spawn preamble with event-flag mode 1, an authored end or phase change; Current-HP/the-hp-write-and-the-lethal-transition.md §2.3; 2026-10-02, OPUS)*
 
 ## 7. Ordering, which is most of the contract
 
@@ -480,7 +480,7 @@ record, spilled by the function itself** (§2).
 scripted — sixty-four bodies ran as shipped bytes.** What is still owed is narrower and still
 live-only: the run is **NATIVE-REPLAY on hand-built fixtures**, so the object layouts are fixture
 layouts consistent with the bodies' own offset arithmetic rather than layouts observed in a running
-game, and nothing shows the `+0x48` floor being written by anything (§14).
+game~~, and nothing shows the `+0x48` floor being written by anything~~ *(answered: §14 item 1 names its two writers, the definition apply `0023ABDB` and the script verb's `00239832`; 2026-10-02, OPUS)* (§14).
 
 **Experiment records that name this contract** — found by `OPUS-CONTRACT-RUNTIME-AUDIT`, 2026-09-13. Each names this
 contract in its own `contract:` frontmatter while this section did not cite it back.
@@ -530,7 +530,7 @@ that execution produced. "Executed" below means the shipped bytes ran against th
 | the dead event pair is inverted relative to the alive pair | `00300854 neg r13d` / `sbb edx, edx` / `add edx, 0x2008` against `0030087A lea edx, [r13 + 0x2005]`. Executed at both variants on both paths; the control that read the dead pair in the alive order FAILED | 1 (isolated original-code) | PROVEN |
 | both records are mapped to units and may be null | `00300553`, `0030055E`, with re-checks at `003006A7`, `003007D4`. Executed with each of the two units present and absent | 1 (isolated original-code) | PROVEN |
 | gate 3 skips only the store, and is asked only for a non-positive delta with bit 0 clear | `00300740 call 0030B8E0` / `00300745 test eax, eax` / `00300747 jne 0030074D`, landing after `00300749`, reached only past `0030072F` and `00300735`. Executed refusing, at both signs of delta and with bit 0 set: the publishers appear in the trace and the store does not happen | 1 (isolated original-code) | PROVEN |
-| the store is the only HP write | `00300749 mov dword ptr [rsi + 0x48], r14d`. Executed: the record's HP is compared after every command in the suite | 1 (isolated original-code) | PROVEN |
+| ~~the store is the only HP write~~ the store is `00300530`'s only HP write *(corrected 2026-10-02, OPUS: the status transition it calls stores HP again — §4, CORRECTED 2026-09-25; EXP-148)* | `00300749 mov dword ptr [rsi + 0x48], r14d`. Executed: the record's HP is compared after every command in the suite | 1 (isolated original-code) | PROVEN |
 | the floor is a unit field | `0030063B`/`00300641`/`0030064C` against `[rsp+0xB0]`, filled at `0030056D`–`00300579`. Executed at a non-zero floor, a negative floor, and with no unit at all (floor 0) | 1 (isolated original-code) | PROVEN |
 | damage landing exactly on the floor is death | `0030078B cmp [rsi+0x48], eax` / `0030078E jg` — strictly greater survives. Executed at the floor and one point above it | 1 (isolated original-code) | PROVEN |
 | status bit 16 freezes at max(old,1) | `00300665 and r8d, 0x10000` / `0030066E cmp edx, 1` / `00300673 cmovl`. Executed at old 0 and old 150 | 1 (isolated original-code) | PROVEN |

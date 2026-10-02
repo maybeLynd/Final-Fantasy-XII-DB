@@ -106,8 +106,8 @@ actor's `+0x6A0` block — and this function reconciles them **in a direction ch
 - **Status bit 16 switches which field is the cap**, and **status bit 28 doubles it** — the same bit
   that a separate document found selecting a unit-stat amount and doubling it in the periodic tick.
   **Third sighting, same role: bit 28 means double.**
-- Two further caps (`+0x4C` and `+0x06`) are applied **only when both status layers have bit 7 clear**
-  (`+0x6C` and `+0x7C` non-negative) — **a single status that suspends two independent clamps.**
+- Two further caps (`+0x4C` and `+0x06`) ~~are applied **only when both status layers have bit 7 clear**~~
+  ~~(`+0x6C` and `+0x7C` non-negative) — **a single status that suspends two independent clamps.**~~ take their normal cap only when both status layers have bit 7 clear (`+0x6C` and `+0x7C` non-negative); with bit 7 (id 39) set on either, the cap is **0**, so MP and the secondary pool are clamped to 0, not left unclamped *(corrected 2026-10-02, OPUS: checked at `0031050B`–`00310566`, `js` / `jl` selecting `r14d`, zeroed at `0030FF07`; the formula below, `cap = (+0x6C ≥ 0 && +0x7C ≥ 0) ? +0x28 : 0`)*.
 - The `+0x06` cap is `+0x28 × +0x37` when the byte multiplier is non-zero, and `+0x28` alone when it
   is — **zero means one, not zero.**
 
@@ -132,7 +132,7 @@ already run.~~
 ([where MP comes from](../10-Status-Periodic-Terminal/where-mp-comes-from.md)); the foe path's `+0xE90` mask
 is applied through the status write in mode 5 — **as immunities**: mode 5 sets the bit in `+0x38`, which makes an
 ordinary add refuse it (corrected 2026-09-15, § below); `0030E360` is [the status write](../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md).
-Still not claimed: what any status id means, and the body of `002FEF30`
+Still not claimed: what any status id means~~, and the body of `002FEF30`~~ *(answered for the body: where-a-stat-number-comes-from.md and CONTRACT-stat-derivation.md read `002FEF30` whole; 2026-10-02, OPUS)*
 ([the single stat rebuild](../12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md) §7).
 ## Execution order, cited — 2026-09-10 (FABLE)
 
