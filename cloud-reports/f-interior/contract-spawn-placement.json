@@ -1,0 +1,11 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/CONTRACT-spawn-placement.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "0023A1F0",
+   "text": "converts the float in `xmm0` to a 32-bit integer with truncation at the entry and stores it to dword `02089358`, returning that integer in `eax`",
+   "anchors": [["0023A1F4", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "One function. Its store is the second of its two working instructions, so it was rowed rather than skipped as entry-only."
+}
