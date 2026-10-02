@@ -1,0 +1,14 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "00267560",
+   "text": "when the dword at `rcx` is below 2 (signed) calls `008620C0(1)` and returns 0; otherwise compares the bytes at `rcx + 4 + (n - 1)` and `rcx + 4 + (n - 2)`, with n that dword, and returns 1 when they are equal and both are 1, else 0",
+   "anchors": [["0026756E", "cmp"], ["00267577", "call"], ["0026758F", "movzx"], ["0026759D", "cmp"], ["002675AA", "cmove"]]},
+  {"fn": "004745B0",
+   "text": "stores the dwords 1 at `+0x0`, `0x12` at `+0x4` and 0 at `+0xC` of `rcx`, leaving `+0x8` untouched",
+   "anchors": [["004745B6", "mov"], ["004745BD", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "004745B0: the +0x0 store is the entry instruction, so the anchors cover only the +0x4 and +0xC stores."
+}
