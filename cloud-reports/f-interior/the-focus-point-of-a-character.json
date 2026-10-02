@@ -1,0 +1,17 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-focus-point-of-a-character.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "0040A210",
+   "text": "stores `003AB7F0(qword +0x30 of rcx)` at qword `+0x38` of `rcx`",
+   "anchors": [["0040A219", "mov"], ["0040A21D", "call"], ["0040A222", "mov"]]},
+  {"fn": "00423510",
+   "text": "returns 0 when `003AB7F0(rdx)` is null, when `00408F90(that pointer, 0x4D524640, 0)` returns -1, when the sign-extended `00408F80(that pointer, that index)` plus `0x30` is zero, or when dword `+0xC` at that sum is zero; otherwise returns that dword plus the low 32 bits of the sum",
+   "anchors": [["00423519", "call"], ["00423531", "call"], ["00423540", "call"], ["0042354E", "mov"], ["00423555", "add"]]},
+  {"fn": "004288E0",
+   "text": "starting from the index in dword `+0x48800` of qword `022C6F28` and stopping at -1, walks `0x740`-byte records at that base, calling `003E43D0(record)` (and re-reading qword `022C6F28`) for each record whose byte `+0x290` has bit `0x2` clear, and takes the next index from the record's sign-extended word `+0x4`",
+   "anchors": [["004288EB", "mov"], ["00428903", "imul"], ["0042890E", "test"], ["00428917", "call"], ["00428923", "movsx"]]}
+ ],
+ "skipped": [],
+ "notes": "00423510: 0x4D524640 is the constant the listing passes as edx; the listing does not decode it, so the row does not name it as text. The final add is 32-bit (add eax, ecx). 004288E0: the next index is read after the optional call, from the reloaded base."
+}
