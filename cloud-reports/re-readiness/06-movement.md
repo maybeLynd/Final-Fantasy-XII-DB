@@ -10,7 +10,15 @@
 
 ## Counts
 
-*(filled in when the report is complete)*
+| | |
+|---|---|
+| pages read | **19** `.md` (the README, 7 contracts, 11 mechanism pages) + **13** member `.tsv` files (layouts and counts only) |
+| entry points tabulated (§1.1) | **58** rows |
+| page-listed open items (§2.1) | **25** (`O-01`–`O-25`) |
+| structural gaps (§2.2) | **19** (`G-01`–`G-19`) |
+| contradictions, value-changing (§2.3 A) | **43** (`C-V01`–`C-V43`), all *page-text only - needs local check*; **13** have a favoured side settled by a dated correction on the pages |
+| contradictions, stale / banner / name / count (§2.3 B) | **30** (`C-S01`–`C-S30`) |
+| rating | **NOT YET** (structural gaps `G-01`, `G-03`, `G-05`, `G-06`); seven of eleven parts rate MOSTLY (§3) |
 
 ## How to read the citations
 
@@ -407,7 +415,7 @@ The system has seven parts. The pages give them in this order:
 | G-01 | **The weather-indexed field-resource banks.** The README names the category as covering them, with the anchors `0026E8D0` resource reconfiguration, `0026E290` dirty observation, `00379290` the WorldAreaField→Movement bridge and `00379630` the alternate rebuild. **No page in the folder documents any of the four.** | `README:3`, `:39-42`, `:56-59` |
 | G-02 | **Frame order inside `0025DF00`.** It is not stated whether `002E5030` runs before or after `002E5750`, or where the speed re-issue sits relative to both. Within the world tick, the relative order of `0046AFA0`, the obstacle builder (step 21), the per-slot `002623A0` / `002E5180` consumer and the separation tail is not given as one sequence. Nor is where the frame steps fall relative to the tick. | `HSD:393-395`; `MODE:187-189`; `TURN:236-240`; `POOL:137-141`, `:179`, `:301`; `NAV:249` |
 | G-03 | **The field-cell solver.** When `00267260` holds, every walking step goes `002E54A0` → `003DB140` → `00380C40` → `002327D0` / `0022F9B0`. The pages state only that the solver adds sub-steps into the placement displacement and sets bit 4. Its per-cell bodies (`0022D7E0`, `003810B0`, `0022E7D0`, `00381450`, `00380EB0`, `00380E00`) have census-level one-liners only. **No collision-against-terrain formula is stated.** | `HSD:516-524`, `:1494-1544`; `SHAPE:205-216` |
-| G-04 | **The field cell lookup and ground height.** `00233050` / `00233110` (cell resolution), `00232090` (blocked mask), `00231890` (second height) and `00231F80` are named with roles but not formulas. The step-toward-radius tail of `003808A0` (bounded increments) gives no increment value. The `026E530` solve of the derived position `+0x50` is census-level. | `POOL:96-115`, `:508-512`, `:533-547` |
+| G-04 | **The field cell lookup and ground height.** `00233050` / `00233110` (cell resolution), `00232090` (blocked mask), `00231890` (second height) and `00231F80` are named with roles but not formulas. The step-toward-radius tail of `003808A0` (bounded increments) gives no increment value. The `0026E530` solve of the derived position `+0x50` is census-level. | `POOL:96-115`, `:508-512`, `:533-547` |
 | G-05 | **Battle steering modes 1/4, 2 and 6.** The pages carry only the SD-183 summary: "turn toward the goal, move inside a cone"; "turns or gives way to the turning circle"; "orbits a point". The record's "What changes on the page" amendments have not been applied to §6. **No formula.** | `LOCO:270-274` |
 | G-06 | **Avoidance and recovery bodies.** The pages give no formula for: `QueryDynamicActorObstruction` `003357B0` geometry (the contract gives only its return codes), `TryStartRandomizedAvoidanceManeuver` `003343D0`, `TryChooseReachableRandomDetour` `00334E00` (beyond one constant `+5`), `ResetAvoidanceStateRandomized` `0033E1F0`, `CheckActorPairClearance` `0033D660` (only `×0.5`, `÷3`), `ResolveDefaultHeadingConstraint` `0033A570`, the stall walker `0033C310` (1,362 B), `SamplePointAlongCurrentPath` `003347C0`, `TryRecoverFromStalledPath` `0033BD70`, the rest of `FinalizeHeadingState` `0033BFB0`, and the publish tail `00469A50`. | `LOCO:112-136`, `:187-191`; `C-CQ:97-101`; `HSD:532` |
 | G-07 | **What the stall counter does at 60.** AM-4 says the counter is "capped at 60". Nothing states what reaching 60 triggers. | `LOCO:346-351`, `:119-123` |
@@ -690,3 +698,45 @@ A **favoured side** is named only where a dated correction on these pages settle
 | C-S29 | `LOCO:269` "*Not read:* modes 1 / 4, 2 and 6's bodies, and what authors the mode bits"; `LOCO:270-273` "no writer … is traced" | `LOCO:274` (SD-183 answered 2026-09-30) | the answer's amendments are not applied (`G-05`) |
 | C-S30 | `3DF:134-136` "it reads as a guard against running the flat path during bootstrap or after a teardown"; `3DF:229-231` "actor system bootstrap … [the gate opens]" | `3DF:116-120` banner "**OVERTURNED in section 10.**"; `3DF:552-597` | flagged by a banner, the text unstruck |
 
+### 2.4 What the `.tsv` members confirm (layouts and counts only)
+
+| file | rows | what it confirms or contradicts |
+|---|---:|---|
+| `movement-body-accesses.tsv` | 8 | `ARRAY 0x02B4E4C0 stride=0x130 count=128`, matching `POOL:50`. Links at `+0x0/+0x2/+0x4`, cell bits at `+0x120` |
+| `separation-cell-masks-accesses.tsv` | 19 | the base `0x02B57CE0` for `003DAA40`, `003DAAB0`, `003DAE30`; no `003DB020` row (`C-V27`) |
+| `separation-candidate-scratch-accesses.tsv` | 1 | `0x02B57EE0` read by `003DAB50` (`C-SEP:51`) |
+| `Facing-And-Steering/steering-record-fields-observed.tsv` | 32 | the 32-field census of `SLOTS:166`; lacks `+0x04C` and `+0x054`, and is not the 40-row `_types/` census of `C-FS:118` (`C-S18`) |
+| `Steering-Record/steering-record-accesses.tsv` | 186 | 57 functions (`SLOTS:215`); has `+0x4c` and `+0x54` rows (`C-S18`) |
+| `nav-portal-record-accesses.tsv` | 9 | `+4` compared to `0xFF`, `+5` loaded, `+6` tested against the class bit (`C-V31`) |
+| `nav-run-state-block-accesses.tsv` | 65 | `+0xA` read by the search, the cost function and the re-aim; `+0x6` only by `00383A30`; `+0x1C` the adjacency (`C-V30`) |
+| `nav-region-record-accesses.tsv` | 3 | region `+0x2` and `+0x14` (`NAV:53`) |
+| `nav-mesh-triangle-accesses.tsv`, `nav-mesh-vertex-accesses.tsv` | 8 / 26 | 8-byte triangle and vertex strides (`NAV:50-51`) |
+| `nav-broad-phase-header-accesses.tsv` | 22 | grid header bytes `+0..+4`, `+6`, `+8`, `+0xC` (`NAV:55`) |
+| `nav-slot-pointer-array-accesses.tsv` | 6 | `0x02AEE0C0` stride 8, count `02AEE0BC`, mask `02AEE0B0` (`NAV:249-251`) |
+| `Battle-Locomotion/locomotion-angle-accesses.tsv` | 484 | the `ctx+0x108` / `st` traffic the typed census describes (`LOCO:839-935`) |
+
+---
+
+## 3. Rating
+
+**NOT YET** for the system as a whole. Parts of it are close to ready. The table rates each part:
+
+| part | rating | why |
+|---|---|---|
+| Field step: heading/speed → delta, the class gates, the integrator's no-context path | **MOSTLY** | Formula, gates, refusal values and the override are stated and falsified (`HSD`, `C-HSD`). The wrap's endpoint is disputed (`C-V01`), the time base too (`C-V34`), the latch counter's writer is missing (`G-12`) and the `+0xF8` initial value is missing (`G-10`) |
+| Field collision: the world-context path through the field-cell solver | **NOT YET** | No formula for the cell solver or the cell lookup (`G-03`, `G-04`). This is the path every actor on the map takes |
+| Facing, steering modes, slots, facing integrator | **MOSTLY** | The richest coverage in the folder. But a port must choose between pages on these points: the bias sign (`C-V04`), the commit lanes and condition (`C-V05`–`C-V07`), which arm writes the rate (`C-V09`), mode 1's path (`C-V10`), the pop op (`C-V13`), the pitch formula (`C-V15`), and `+0xAC`'s meaning (`C-V08`) |
+| 3-D / flat selection | **MOSTLY** | The predicates are exact. The gate writers' breakdown (`C-V35`) and the veto list (`C-V36`) disagree, and `usemapid(0)` actors are unclear (`C-V43`) |
+| Battle locomotion | **NOT YET** | The turn limiter and the step curve are given in full, though the latch path (`C-V21`) and the clamp (`C-V20`) disagree. Missing: steering modes 1/4/2/6 (`G-05`), the avoidance, obstruction and recovery bodies (`G-06`), the stall trigger (`G-07`) and the rate and speed sources (`G-08`) |
+| Navigation search, follow and portal rule | **MOSTLY** | The dataset is census-tested; the search, caches, costs, clearance and return codes are stated. The header field (`C-V30`), the portal bytes (`C-V31`) and the invalidating verb set (`C-V33`) disagree between pages; the tsv layout favours one side of the first two |
+| Corridor query family | **MOSTLY** | Signatures, verdicts and edge cases are stated. The leaves `QWALK` / `PRED` / `AGENTQ` are undescribed (`G-15`), so `PATHW`'s polarity is HIGH, not PROVEN |
+| Body pool and separation pass | **MOSTLY** | Pool, order dependence, refusals and the weight rule are stated and replayed. Contested: the shape-sizing kinds, defaults and divisor (`C-V23`, `C-V24`); a zero weight (`C-V25`); the cell-mask address (`C-V27`); the query output (`C-V28`). The extent formula is census-level only (`G-17`) |
+| Animation move and turn | **MOSTLY** | Request, pool, profile format and step are stated. The frame-rate scaling of the windows (`C-V37`) and several inputs (`O-15`) are open |
+| Clamps and shape primitives | **MOSTLY** | Formulas are stated; the planted siblings are unexecuted (`O-22`) and the `D5A0` out-vector disagrees (`C-V32`) |
+| Weather-indexed field-resource banks | **NOT YET** | Named by the README; no page documents them (`G-01`) |
+
+**What would move the whole system to MOSTLY:**
+1. A page for the field-cell solver and the cell lookup (`G-03`, `G-04`).
+2. The SD-183 amendments applied to `LOCO` §6, with the avoidance and recovery bodies read (`G-05`–`G-08`).
+3. A page for the resource banks, or a README change that moves them out of this category (`G-01`).
+4. A local check of the 43 value-changing contradictions in §2.3 A. The 13 with a favoured side should be quick to confirm; the other 30 need a reading of the bytes.
