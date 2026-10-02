@@ -266,3 +266,143 @@ Only bit 0 of `flags` is touched anywhere in the image (`GC:231-248`).
 | Input / capability (15) | row 12 inhibitions; `0209A2C4[2]` | `GC:779-807` |
 | Save / Load (19) and UI (16) | capture and restore paths; load-controller messages | `SPR:1560-3540` |
 | Core clock | `0032A150` reads `0208D45C`; scale `01DFE0B8` (1.0 or 2.0) × `30.0f` (`008F8D80`) | `GC:98-114` |
+
+---
+
+## 2. Gaps
+
+### 2.1 Open or partly open items the pages themselves list
+
+1. **L-12, the area-path acceptance word.**
+   - Area mode never writes `out_observed`, yet the caller reads it, so one stack word decides the whole call (`SPR:1502-1510`).
+   - "What that word actually holds in ordinary play — still live-only" (`SPR:1513-1514`); the register row is SUPERSEDED, not answered (`SPR:760`).
+   - The contract restates it as "*Not established:* which values the slot holds in ordinary play. That is `L-12`'s live question" (`C-SP:104`, `C-SP:211-213`).
+2. **L-13, live residue.**
+   - "a slot-0 field-transition autosave load with non-zero keep banks, and whether the requeued area init's rotation then brings the same enemies back" (`SPR:781-783`).
+   - "still without a carrier" (`SPR:786`). WHY keeps it too: "what the session values are in practice … are live questions" (`WHY:110-112`).
+3. **The area-mode Y in practice.**
+   - For 895 of 954 definitions the probe bit is clear, so the placed Y is "whatever `[rsp+0x54]` held … stays open" (`HT:722`).
+   - The contract's parity plan says not to assert it (`C-SP:229-231`).
+4. **The modded attempt skip.** "Whether the modded skip is reachable unmodified" (`C-SP:214`). There is no live evidence for placement at all: EXP-145 ran on planted fixtures (`C-SP:215-216`).
+5. **No live capture of completion.**
+   - "Live capture of the completion transition: still absent" (`C-GC:483-485`); EXP-019 stopped before a kill (`C-GC:497-498`).
+   - `INTEGRATION` and `PRESENTATION` need the running game (`C-GC:673-675`).
+6. **`waitv` width selector.** Widths above 5 return "stop waiting" at once; "which widths the group-number import actually uses … is recorded, not attributed" (`C-GC:314-317`).
+7. **EE-8 residue.**
+   - Row 12 bits 7, 11, 12 and 20 reach no direct test (`GC:788-790`).
+   - `02089340` bit `0x2` "has no direct test on any enumerated route … residue" (`GC:805-807`).
+8. **Body release.**
+   - "which tracks carry these entries … and whether any other code sets bit 34" (`GC:639-640`).
+   - "Which presentation that handle names, and what the states mean, is not claimed" (`GC:648-649`).
+9. **The window's purpose and the clock.** "what the 64 `u16` entries mean beyond being reset to `1`, what `0032A150` returns as a clock, or **why the window exists**" (`WHY:180-183`).
+10. **Threading.** "the ledger is a bare global array with no lock … **single-threaded use is assumed, not proven**" (`C-GC:323-325`).
+11. **Bits 45/49 and bulk zeroing.** "**Not closed for bulk zeroing** — 387 sixteen-byte zero stores at displacement 0 exist and cannot be attributed to a BattleUnit statically" (`HT:882`).
+12. **Unread accessors and unexplained bytes.**
+   - "`00236030` and `00236670` — were not read here" for the prologue shape (`GC:965-966`).
+   - "What the untouched bytes and `+0x74` are for | **not established**" (`FM:328`).
+13. **Unaudited parts of HT.**
+   - §11 did not attack §2a/§2b, the §2e census, §4's formulas or `002D81D0` (`HT:1032-1041`).
+   - §12 lists §2a-§2c, §2f, §3-§5 and "the `167 zone scripts` count in §1" as not examined (`HT:1128-1132`).
+14. **Guard and metadata side effects.**
+   - "Which of the guard's callees run on every call, and which only on the null path, is not read here" (`WHY:224-225`).
+   - The metadata wrappers' "downstream effects are not established here" (`SPR:1607-1609`); their consumer is left to another page (`SPR:1609-1612`).
+
+### 2.2 Structural gaps: what a port needs and no page states
+
+**G1. The clock's source and rate.**
+- Every respawn and return-window computation divides `*(u32*)0208D45C` by `(int)(scale × 30.0f)` (`GC:107-110`; `SPR:356-359`).
+- The only statement about who advances it is "advanced by `0032A100`" (`WHY:94`).
+- HT says "What advances the counter is not restated here" (`HT:1138-1139`); WHY lists "what `0032A150` returns as a clock" as unclaimed (`WHY:181`).
+- **The per-frame-or-per-tick rate is not stated, and the pages disagree on it (A9).** A port cannot reproduce the seconds conversion without it.
+
+**G2. Field-data record formats for placement and mode-2 retirement.**
+- The format-class-0 candidate record is given only as "byte `+0x00` selects the mode, `+0x10` carries the authored position" (`C-SP:55-56`).
+- Not stated:
+  - the record's size, and what `003209C0` copies (`SPR:491`, "field-record copy wrapper, class 0");
+  - the region shapes beyond "`1` box, `2` ellipsoid" (`C-SP:190`);
+  - the containment formula of `FieldRegion_ContainsWorldPosition` `002374E0`. The page states only that it is XZ-only and calls `00325EA0` (`HT:115-120`, `HT:1180-1182`);
+  - the record read by `FieldData_GetFormat0RecordVectorByIndex` `00320940` for mode 2 (`SPR:266`, `SPR:490`).
+- Area mode cannot be written without the region test.
+
+**G3. Where the candidate index comes from, and which lane wins.**
+- The selector is written as "for each lane 1 .. laneCount-1 … for each candidate in the lane … `Spawn_TrySelectCandidatePosition(candId, …)` … `remember this lane and position`" (`SPR:294-309`).
+- Not stated:
+  - how `candId` is derived from a lane, and how many candidates a lane has;
+  - why the loop starts at 1, when the accessor prologue accepts lane 0 (`GC:68-70`);
+  - which lane is returned when several qualify (first, last, or another rule).
+
+**G4. The unit-side retirement fields.**
+- `bLifecycleMode` (0 off, 1 range, 2 authored point), `bLifecyclePointId` and `flLifecyclePointThreshold` are named with no offsets (`SPR:530-535`); the interior cite reads the threshold at `[rsi+0x4C]` (`SPR:1377`).
+- Their writers are not stated.
+- The per-actor opt-in bit `actorWork +0x0D` bit 6 is read through `FUN_002672F0` (`SPR:543`, `SPR:641`); its writer is not stated.
+- See also A8.
+
+**G5. Two of the four selectors are not described.**
+- `Spawn_SelectPreviousMapEntry` `002354F0` (166 B) and `Spawn_PrepareRandomCandidateForCurrentEntry` `002355A0` (376 B) are listed with sizes and a few field sites (`FM:101-102`, `FM:117`, `FM:173`; `HT:473-474`).
+- Their logic, callers (other than the pass-22 edge `00510230`, `FM:406`) and return values are not stated.
+- The zone scripts call the previous-map verb on every restorable branch (`HT:268-272`).
+
+**G6. Creating the actor for a chosen entry.**
+- "automatic selection does not create the actor — it writes the keep entry's position … and activation places the unit later" (`SPR:701-705`).
+- The native effect of the verbs that bind and create the unit is not described in this folder: `btlAtelSetUnit`, `btlAtelSetKeepWorkGroup`, `setentrygroup`, `requestreentry` (`HT:270-272`; `GC:354`).
+- The installer `BattleUnit_ApplyUnitDefinition` is deferred to 04-Actor-Entity (`FM:51`, `FM:221`).
+
+**G7. Teardown.**
+- `BattleUnit_TeardownAndDespawn` `00300E40` is called by the retire action with argument 1 (`SPR:275`). Its body is not described.
+- Stated pieces:
+  - mode bit 1 of `+0xE99` skips `0025AB30` and `002697E0` (`GC:342-345`, `GC:818-830`);
+  - mode 0 calls `00237080`, "per `X55_NATIVE_REPLAY_CONTRACT.md`", a research import (`FM:163`).
+
+**G8. Enmity decay.** The table lives at keep `+0x19..+0x41` (`SPR:412-423`). The decay rule of `BattleEnmity_UpdatePeriodicDecay` is deferred to 09 (`SPR:423`) and is not stated here.
+
+**G9. The spawn-history counters.**
+- `0208D354 + parity × 0x80` (u16[64]) is filled with 1 on a wipe (`WHY:76-78`).
+- Keep `+0x12` holds "the pre-increment counter of the row's byte `+2` at a fresh spawn" (`FM:92`).
+- The reader of the `0208D354` arrays, and how they tie to `+0x12`, are not stated: "a correspondence this page has not traced" (`WHY:77-78`).
+
+**G10. The RNG's exact step.**
+- Stated: the multiplier `0x41C64E6D`, three steps per call, at most 31 bits, "(11+10+10 selected bits)" (`C-SP:324-326`; `SPR:1518-1519`).
+- Not stated in this folder: the increment, and which bits are selected.
+- Area placement and the `002395A0` rolls both draw from it, so draw-exact parity needs those details.
+
+**G11. Angle and heading helpers.**
+- `00316DA0` "wraps an angle" (`C-SP:132`; `SPR:154`); its formula is not stated. `0031A930` is (`HT:1161-1166`).
+- `FUN_00265200`'s "class-dependent heading read" is deferred to 06 (`SPR:141`, `SPR:1136`).
+
+**G12. Order within a frame and within area init.**
+- Not stated: the order of the unit pass `00233F70` (retire check, `003070E0`) and the field pass `00234590` (`00307030`) in one frame.
+- Not stated: the order of the ledger reset `00307090` and the rotation `00233780`, both inside `002342F0` (`GC:215-216`; `SPR:1650-1653`).
+
+**G13. Group ids above the ledger.**
+- `+0xE98` is a u8 stored raw (`C-GC:561-562`), and the ledger index is `(group − 1) × 24` over 64 entries (`C-GC:140`).
+- No bounds check is stated for groups 65–255.
+- The group-mask operations use `1 << (groupId & 31)` (`SPR:452`), so groups 32 and up alias. The pages do not reconcile 64 ledger groups with a 32-bit mask.
+
+**G14. The ground probe's dataset.**
+- `0026E3C0` is described as a walk: cell → height → kind-6 escape → segment (`HT:723-736`). The callees `00231900`, `00231890`, `00232490`, `0022F830` and `00230B60`, and the cell dataset format, are not described here.
+- Only `00233050`'s cell linearisation is given (`HT:1167-1178`).
+
+**G15. Timing of the deferred completion arm.**
+- `003250F0` runs "whenever a track ends on a unit whose guard passes (`[rcx+0x0D]&1` clear, `[rcx+0x30]` non-null)" (`C-GC:582-583`).
+- Not stated: when the death track ends, and what happens to bit 47 and the group when the guard fails.
+
+**G16. The rest of the spawn verb surface.**
+- Native effects are not stated for verbs that appear only as script text:
+  - `btlAtelSetCallGroup`, `btlAtelSetUnitType`, `btlAtelSetBelong`, `btlAtelSetHpLowLimit`, `btlAtelSetDefaultLogic`, `btlAtelSetDirection` (`GC:354`);
+  - `btlAtelGetRespawnCause` (`GC:739`);
+  - `btlAtelGetDeadCountNow` (`C-GC:394-395`). This one is presumably `00235F50`, but no page names it as such.
+- FM's verb list (`FM:210-220`) and HT's table of ten (`HT:327-338`) are the only native mappings.
+
+**Fields written by documented functions but left unexplained.**
+
+| field | cite |
+|---|---|
+| keep `+0x74` (written at release, never read) | `FM:104`, `FM:296-311` |
+| `0208935C` = 5.0, never read | `SPR:106-107` |
+| unit flag bit 40 (set by `0023A200`) | `FM:168` |
+| unit lane byte `+0x57` | `FM:164` |
+| unit `+0x58` category mode and its table `01E09EE8` | `FM:167` |
+| `02089344` bit 0 (`00238A30`, also script thunk `0050F5A0`) | `SPR:3567` |
+| state `+5B04` bit 1, cleared on restore | `SPR:1595-1596` |
+| height-mode values 1, 2, 5, 6, 12, which nothing reads | `HT:714-716` |
+| ledger `flags` bits 1–7, never written or read | `GC:245-248` |
