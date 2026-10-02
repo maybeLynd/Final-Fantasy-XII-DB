@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`34861cfd`); no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. Several pages in this folder are being edited by other lanes; every quotation is of the snapshot text. |
 
-**Counts:** COUNTS-PLACEHOLDER
+**Counts:** 15 pages read in full (11,277 lines; 14 system pages + the category README), member `.tsv` files opened for layout and counts only · interface mapped for **11 sub-systems** (§1.1-§1.11) · **33** self-stated open gaps + **32** structural gaps + **12** unexplained-field items (§2) · **155 contradictions**: **104 value-changing**, all "page-text only - needs local check" (**31** with a favoured side settled by a dated correction on the pages, **73** with no favoured side), and **51 stale / banner** (40 stale "open / not read" claims, 27 of them settled by a dated line; 11 status-banner / front-matter disagreements) · **Rating: NOT YET** overall (MOSTLY: start-up, lazy statics, teardown, object deletion, containers, generated adapters, thunks and service surface, hardening; NOT YET: exception tables, engine memory arena, maths library).
 
 Citation form: `ABBREV:line`, where the abbreviation stands for a page path relative to
 `FFXII TZA/24-Compiler-And-CRT-Runtime/`. Line numbers are those of the snapshot file.
@@ -1664,3 +1664,31 @@ The value-changing items a port is most likely to trip on are:
 - **Side A:** "## Systems in this category" (`README:11`)
 - **Favoured side:** none. No dated correction on the pages settles it.
 - Note: `ST`, `OC`, `MS`, `GEN`, `RV`, `MEM`, `TH`, `RS` and `MATH` exist in the folder but are not listed (`README:13-47`).
+## 4. Rating
+
+The scale is the brief's: **READY** means it could be written from the database alone; **MOSTLY** means named gaps;
+**NOT YET** means structural gaps.
+
+There is one framing point. Much of this category is code a port would normally *not* reproduce: funclets, thunks,
+CFG stubs and the CRT itself come from whatever toolchain the port uses. The rating below asks whether the
+**observable contract** the game relies on is written down well enough to reproduce or replace faithfully. It does
+not ask whether the bytes could be regenerated.
+
+| § | sub-system | rating | why |
+|---|---|---|---|
+| 1.1 | entry, CRT start-up, eager initialisers | **MOSTLY** | Entry chain, table runner, C/C++ split, TLS and the start-up state machine are all stated (`SI:489-505`, `:658-689`). Named gaps: the `__xc` start address (X-1), what each of the 1,172 entries builds (SG-4), and the prototype source (X-14). |
+| 1.2 | lazy statics and the init lock | **MOSTLY** | The protocol, lock, CV, timeout and census are complete (`LZ:140-300`). But the pages disagree on the guard's numeric model, the gate direction and the gate's comparand (X-2, X-3, X-4; SG-1). Which statics a boot builds is live-only (G-1). |
+| 1.3 | static teardown and exit | **MOSTLY** | Node layout, unlink, flag bit and normal-quit path are stated (`ST:67-91`, `:150-156`). Several pages still say teardown runs at exit (X-10); the `_onexit` storage is not given (SG-5). |
+| 1.4 | exception handling and funclets | **NOT YET** | Record layouts down to `FuncInfo`, and the funclet ABI, are stated (`EH:482-495`, `:91`). The IP-to-state map and any per-funclet parent/state/destructor table are absent (SG-2, SG-3), and the parent census is in dispute (X-27). |
+| 1.5 | object deletion | **MOSTLY** | The deleting-destructor contract, both spellings, the deallocators and the third-party allocators are stated (`OBJ:95-183`, `:417`). Whether the bit-2 path is ever taken (leak or not) is undecidable statically (SG-32, G-12). The roles of `00584730` / `0016D6A0` conflict (X-5, X-6). |
+| 1.6 | engine memory arena | **NOT YET** | The allocator, boot sizes, headers, slots, handles, selection stack and free gates are described at length (`MEM:107-336`, `:1009-1094`, `:1643-1736`). But there is no consolidated record layout (SG-6), header fields are "NOT UNDERSTOOD" (SG-7), sizes for three arenas are missing (SG-8), the link-encoding base is unsettled (SG-9), and eight callees are undescribed (SG-10). Twenty value-changing contradictions sit on this page (X-62 to X-81). |
+| 1.7 | ordered containers | **MOSTLY** | Both node layouts, the head layout, insert arguments and allocation are stated (`OC:57-121`, `MS:57-108`). Missing: erase / iterator calling conventions, empty-head state, head offset in the container, node deallocation, and SD-82's content (SG-12 to SG-16). |
+| 1.8 | generated families and adapters | **MOSTLY** | The adapter's bytes and ABI are complete (`RV:28`, `:71-93`). Its caller and the meaning of argument 1 are not (SG-17). `GEN` is explicitly "not a claim about behaviour" (`GEN:226`). |
+| 1.9 | thunks and the service surface | **MOSTLY** | Thunk encodings and populations are stated (`TH:58-157`); the crash filter, dump path, debug channel and licence check are stated (`RS:113-318`). The full import list is not on the page (SG-26), several IAT slots are unnamed (SG-27), and the dump file name is missing (SG-28). |
+| 1.10 | image hardening | **MOSTLY** | PE flags, load config, the CFG slots and the cookie are stated (`HARD:55-135`, `:619-685`). The cookie pseudocode is incomplete (SG-23), and §2's section table is stale beside the corrected one (X-94). |
+| 1.11 | maths library | **NOT YET** | The SIMD idioms, angle wrap, turn easing, XZ distance and constants are stated exactly (`MATH:173-497`). Scalar CRT maths, which is most of the 566 + 174 + 133 + … call sites, is OS-supplied with no reference version (SG-18). No page states the FP environment (SG-19). 16 imports are unnamed (SG-20), and `VectorPowf4` is opaque (SG-21). |
+
+**Overall: NOT YET.** Three sub-systems have structural gaps: exception tables, the engine arena and bit-exact
+maths. The arena and the maths sit under gameplay, so a port that wants identical results needs them. The other
+eight sub-systems are MOSTLY, with named gaps. On top of that, 104 value-changing contradictions need a local check
+before any of the pages can be used as a single source of truth. 73 of them have no favoured side on the pages.
