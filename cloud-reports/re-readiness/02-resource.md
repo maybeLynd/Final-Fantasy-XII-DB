@@ -651,7 +651,7 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `RQ:145`: kind `0xFF` → `002DF6C0`; other kinds → `0046E030` → `002DF780`.
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V109 — does the builder write the caller's descriptor?**
+**C-V108 — does the builder write the caller's descriptor?**
 - `RQ:438`: "`+0x04 i32 (set to 0x80000 by the builder)`", in the caller's `RequestDescriptor`.
 - `RQC:90-91`: "The gated builder writes its local `+4=0x80000` ... The input descriptor remains unchanged in the
   controls."
@@ -754,12 +754,12 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `OWNC:104`: "source size+40 is taken from header+8"; `OWN:51`: "The source header+8 supplies size+40."
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V110 — rounding of the EFX copy length.**
+**C-V109 — rounding of the EFX copy length.**
 - `OWN:83`: "a signed32 rounded-down copy".
 - `OWNC:134`: "copy length is its signed-32 truncation toward zero to a multiple of16".
 - The two differ for negative values. Favoured: none. *page-text only - needs local check.*
 
-**C-V111 — role of `0036C660`.**
+**C-V110 — role of `0036C660`.**
 - `EV:71-73` and `EV:177-220`: a prefix tagger that "neither allocates nor calls a deallocator".
 - `ROW:1359`: "the row fetch `0036A190` and the rebase `0036C660`".
 - Favoured: none. *page-text only - needs local check.*
@@ -823,8 +823,7 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `ROW:343-344`: "A sweep of every `call 003845F0` in the image reports 36 registrations"; `ROW:904`: "36 `003845F0` +
   5 `003846F0` sites".
 - `REG:541`: "all 42 calls of `003845F0` are handed one slot's own address".
-- Favoured: none (the `REG:538` correction of 2026-09-30 is about slot 50, not ROW's census). *page-text only - needs
-  local check.*
+- Favoured: none (the `REG:538` correction of 2026-09-30 is about slot 50, not ROW's census). *page-text only - needs local check.*
 
 **C-V29 — the STATIC delivery callback.**
 - `ROW:870`: "`00236C30` is not called by anyone: it is the **delivery** callback"; `REG:533`; `REG:853`.
@@ -910,29 +909,29 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `REG:2258`: "state `3` exits".
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V112 — number of `.ard` categories.**
+**C-V111 — number of `.ard` categories.**
 - `REG:955`: "**Four `.ard` section categories** (`0`, `1`, `2`, `3`)".
 - `REG:231`: "**The caution names four slots; there are five.**" (audit 2026-09-06); `REG:1820-1821`.
 - Favoured: five. *page-text only - needs local check.*
 
-**C-V113 — slots `00236C30` fills without `003845F0`.**
+**C-V112 — slots `00236C30` fills without `003845F0`.**
 - `REG:1954-1956`: `02EBF180` is "the only slot it fills without `AreaData_BindAndRebaseSectionDescriptor`".
 - `REG:468`: "two stored directly: `+4` into `0x02EBF180` and `+0x11C` into `0x02EBF200`", plus two via `003846F0`
   (`ROW:847-848`).
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V114 — number of inner binders.**
+**C-V113 — number of inner binders.**
 - `ROW:850-853` and `ROW:904`: four (`00237FC0`, `00238160`, `00238880`, `00238660`).
 - `ROW:1124-1125`: five member calls, adding `+0x40` → `003847B0`; `REG:467`: "five through the bespoke binders".
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V115 — writers in the band `02EBF000`–`02EBF178`.**
+**C-V114 — writers in the band `02EBF000`–`02EBF178`.**
 - `ROW:865-867`: "has **no rip-relative writer in the image**".
 - `REG:509`: "`0x02EBF178` | **2** | both **stores**, `00324558` and `0032469A`". `REG:885`: "**Eighteen slots are
   DIRECTLY written, which narrows J-B**".
 - Favoured: REG (2026-09-22 narrowing). *page-text only - needs local check.*
 
-**C-V122 — label of `0x02EBF040`.**
+**C-V121 — label of `0x02EBF040`.**
 - `REG:1782` / `REG:1867`: "status auxiliary / timer parameters".
 - `REG:1195`: "`02EBF040` | 29 | `+0xEC` | `ability_data` (augments) | 129 × 8".
 - `REG:491-493` leaves it "as a lead". Favoured: none. *page-text only - needs local check.*
@@ -960,32 +959,32 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
   entries as `word.bin` block 3".
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V116 — the §7 heap struct after the 2026-10-01 header correction.**
+**C-V115 — the §7 heap struct after the 2026-10-01 header correction.**
 - `VBF:595`: "`u32  headerSize; /* 32 */`"; `VBF:587`: heap "`== headerSize + count*recordSize`".
 - `VBF:93`: "`headerSize; /* ~~32~~ 32 in 393 of 407; 0 in 14 (no record array) */`"; `VBF:1253-1255`: heap `0x20` in
   the two `mons_act` files.
 - Favoured: the corrected §2 (2026-10-01). *page-text only - needs local check.*
 
-**C-V117 — `001F4720` role and digest-tree node layout.**
+**C-V116 — `001F4720` role and digest-tree node layout.**
 - `BIG:264`: "`001F4720` / `001F3FD0` | digest-tree insert: node `{links, key +0x18/+0x20, record +0x28}`".
 - `BIG:460`: "`001F4720` (176 B) | index-record accessor — `rbx = [rcx+0x30]`, `edx = dword[rcx+0x4C]`". `BIG:459`:
   `001F3FD0` "parent walk `[rdx+0x18]`" (the key offset in `BIG:135`).
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V118 — frame of the stream-object offsets.**
+**C-V117 — frame of the stream-object offsets.**
 - `PATH:72`: IsOpen tests object `+0x28`/`+0x30`/`+0x40`; `PATH:85`: path at `+0x10`; `PATH:250`: "the selector byte
   `+0x18`".
 - `PATH:239`: "The resolver stores a source in only `+0x20` (route 1) and `+0x10` (route 2)". It is unstated whether
   §8's offsets are relative to `this+0x20`, the base the locale page uses for `0059EE90(this+0x20, …)`.
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V119 — normalisation of the route-2 MD5 key.**
+**C-V118 — normalisation of the route-2 MD5 key.**
 - `PATH:186-187`: skip `.`,`/`,`\`; `\`→`/`; lowercase, then MD5.
 - `PATH:287`: "The MD5 key is built afresh from the caller's original path. So the first normalized copy (backslashes,
   lowercase) and its UTF-16 widening are computed and dropped".
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V121 — help-action ids below 543.**
+**C-V120 — help-action ids below 543.**
 - `VBF:658`: "only 82 of 322 fall below 543".
 - The table at `VBF:663-667` sums to 81.
 - Favoured: none. *page-text only - needs local check.*
@@ -1066,20 +1065,20 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `BTB:167`: "`0x5000 + row`" (gives `0x5074`–`0x507F`).
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V107 — the `.nmb` assembler table.**
+**C-V106 — the `.nmb` assembler table.**
 - `REG:1995`: `{i32 id, i32 size}` pairs.
 - `NMB:314`: `{u32 size, u32 requestId}`.
 - `NMB:296` "`0032E620(0x1a, i, cursor, id)`" against `NMB:315` "`0032E620(0x1A, i, cursor, size, &desc)`".
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V123 — motion-index lookup `003DCA30`.**
+**C-V122 — motion-index lookup `003DCA30`.**
 - `LDR:677`: "`003DCA30(modelKey, groupId, class, &primary, &secondary)` sets `primary = 0x1E`".
 - `REG:1977-1978`: "`003DCA30(model, motion, class, &kind, &index)` — **kind `0x1E` = 30**".
 - `ARDC:188`: the rows are "`{u32 model, u16 class, u16 motion, u16 index}`", citing "`02EBF178` neighbourhood" for
   `02B58178`.
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V124 — row 103 against 64 help ids.**
+**C-V123 — row 103 against 64 help ids.**
 - `BTB:169-172`: "`listhelp_ability.bin` (64 ids, `130000`–`130063`) … row 103 → 'Increases magick power when HP is
   full.'". With `n = row` that id cannot exist.
 - Favoured: none. *page-text only - needs local check.*
@@ -1122,7 +1121,7 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `members/atlas-name-census.tsv` distinct-name section: 49 rows, 28 `yes`, 21 `no`.
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V120 — is the typed list's table B empty everywhere?**
+**C-V119 — is the typed list's table B empty everywhere?**
 - `TL:363`, `TL:406`, `TL:451-452`: "authored-empty in every shipped unit".
 - `MRP:113-116` ("*Refined since (pointer 2026-09-30, SWE2-CONTRACT)*"): a populated table B ships in
   `rwg0201`/`rwg0202`.
@@ -1166,7 +1165,7 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `AH:331`: "`+0x120` self-links".
 - Favoured: none. *page-text only - needs local check.*
 
-**C-V108 — number of FST files.**
+**C-V107 — number of FST files.**
 - `AMAP:39`: "in all nine `FileSizeTable_*.fst`".
 - `FST:41`: "**12 of 12**".
 - Favoured: none. *page-text only - needs local check.*
@@ -1187,8 +1186,7 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 **C-V77 — clutpack slots.**
 - `LBB:75` / `LBB:107`: four slots `+0x390/+0x398/+0x3A0/+0x3A8`.
 - `LBB:586`: "`+0x390`/`+0x398`/`+0x3A0` populated".
-- Favoured: none (pass B4 `LBB:387` "survives … `+0x390..+0x3A8`" does not strike `LBB:586`). *page-text only - needs
-  local check.*
+- Favoured: none (pass B4 `LBB:387` "survives … `+0x390..+0x3A8`" does not strike `LBB:586`). *page-text only - needs local check.*
 
 **C-V78 — the tex2pack slot walk.**
 - `LBB:94`: "walks slots `+0x338..+0x388` in step-8 lockstep".
@@ -1257,8 +1255,7 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `FIVE:408-409`: "`+0x04 … 668 B packed parameter bytes`" / "`tail 8 B zero pad`" (680 ≠ 672).
 - `FIVE:412`: "*Superseded 2026-09-29 … the 668 bytes are 64 ten-byte records and a 32-byte tail.*" (that is 672).
   `FIVE:465`: "`64·10 + 4·4 + 2·4 + 8 = 672`".
-- Favoured: `FIVE:465` layout (2026-09-29). The superseding sentence's "668" is itself 4 short. *page-text only -
-  needs local check.*
+- Favoured: `FIVE:465` layout (2026-09-29). The superseding sentence's "668" is itself 4 short. *page-text only - needs local check.*
 
 **C-V90 — the map-menu loader's request API.**
 - `WMAP:134-135`: "**kind-7 resource id `0xA2`** via the shared request queue (`0032E620`) in `003BC2D0`".
@@ -1362,3 +1359,403 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - `members/hb-index-census.tsv` column `tag` (the u32 at hctg `+4`, per its generator) is `102` in all 54 rows.
   `HCHK:83-84` gives the same per-family numbers (`0x1900`…) as "the high 12 bits" of `+0x08`, which cannot hold them.
 - Favoured: none. *page-text only - needs local check.*
+
+### 3.2 Stale "open / not read" claims, corrected claims repeated unstruck, and banner disagreements
+
+None of these changes a value a port would compute. Each still has to be resolved before the page can be relied on
+as written. The "settled by" side is quoted when a dated text exists.
+
+#### README and banners
+
+**C-S1 — README: the file behind slot `0x02EBF138`.**
+- Stale: `README:28-29`, "**`action_data.bin` is the file behind registry slot `0x02EBF138`**".
+- Settled by `VBF:44`: "*Corrected 2026-10-01 (SWE2-STRUCT for OPUS):* the action definition table is [bound from
+  `battle_pack.bin`'s directory entry `+0x3C`]", and by `VBF:910` (§12, 2026-09-12).
+- Also stale: `BTB:47`, `BTB:131` "`action_data.bin` rows" (corrected inline at `BTB:86`); `VBF:490-492` "**Downgraded:**
+  … a **strongly supported lead** … **AY-6.**"
+
+**C-S2 — README entry for REG.**
+- Stale: `README:13-15`, "**PARTIAL, tier 1.** **Every authored number in FFXII is reached through one 63-slot
+  pointer array**".
+- Against: `REG:4` (`status: DOCUMENTED`, 2026-10-01); `REG:57-60` "**Corrected 2026-09-02** … The original line said
+  *"every authored number"*"; `REG:84` (64 slots).
+
+**C-S3 — REG body banner.**
+- Stale: `REG:62`, "**PARTIAL.** … five slots are identified. Most are known only by their principal consumer, three
+  are unreferenced".
+- Against: `REG:4`; `REG:458` "every one of the 64 slots has an identity" (2026-09-26); `REG:1000-1009` "**Result:
+  OVERTURNED on two of the three.**"
+- Also stale: `REG:578`, `REG:580`, `REG:593-594` (the superseded load scan), and `REG:1036-1038` "*~46 pointers*".
+
+**C-S4 — BigFile body banner.**
+- `BIG:36`: "**PARTIAL.** The container header, the load sequence and the integrity check are read at tier 1." Unstruck.
+- Against: `BIG:4` `status: DOCUMENTED … (owner re-status 2026-09-30, OPUS)`.
+
+**C-S5 — CHSE banner and "no reader".**
+- Stale: `CHSE:127` "**Status is `PARTIAL` for that reason**"; `CHSE:27` "filed as a candidate for SB-2, not closed";
+  `CHSE:321` "What that helper does is not read here."
+- Against: `CHSE:4` (DOCUMENTED 2026-09-30); `CHSE:346` "## The reader, traced — SB-2 answered (… 2026-09-25)";
+  `CHSE:322`.
+- `CHSE:293` and `CHSE:308-309` are settled in place by `CHSE:313-315`.
+
+**C-S38 — README status of Standard-Formats.**
+- `README:32`: "**DOCUMENTED, tier 1.**"
+- `SF:4`: `status: AUDITED`.
+
+**C-S14 — acceptance banners.**
+- `MOV:4`: "OV-49 discharged by the non-author review FRONTIER-REVIEW-AUDITSPEC-OV-ACCEPTANCE-0929"; `MOV:13`:
+  "locally validated; formal independent acceptance pending". `MOV:178` names a different board task.
+- `RSA:150-155`: "The front matter's "formal independent acceptance pending" is superseded by this". The same SECTION-10
+  front matter still says "pending" at `CSA:30` and `EFX:28`, and `EFX:892` says "Formal independent acceptance is
+  pending".
+
+**C-S53 — EXP-079.**
+- `ROW:550`: "Arena placement **observed live**: [`EXP-079`] (ASTRA, `method: C`, `live_game: true`)".
+- `ROW:728-730`: "`EXP-079` — **method -**, no declared method … **None of these is a live run**".
+
+**C-S55 — status against front-matter details.**
+- `HCHK:4` `status: AUDITED` with `HCHK:17` "`hdat | mostly-explained | … record interiors only partially field-bound`".
+- `BINM:4` and `HIMG:4` are AUDITED with `crossref_clean: false` (`BINM:22`, `HIMG:21`).
+- The DOCUMENTED pages CMAP and WMAP say "nothing … carried as open" yet list "declared limits" (`CMAP:145`,
+  `WMAP:203`).
+- `MRP:4` says every row is closed, yet `MRP:219-222` names eight unrequested files of which RC-29 explains four
+  (`MRP:226`).
+
+**C-S51 — `last_reviewed` older than the page's own dated edits.**
+- Queue and arena pages: `RQ:18` (2026-09-22), `OWN:10`, `EXT:10` (09-23), `ISR:10`, `PRF:10` (09-29; body to
+  2026-10-02), `TREE:17` (09-13), `EFX:17` (09-23).
+- Registry and expression pages: `REG:18` (09-11; body to 10-01), `ROW:17` (09-11; body to 10-02), `EV:15` (09-12),
+  `RND:17` (09-08).
+- VBF folder: `VBF:21` (09-12; last pass 10-01), `BIG:19` (09-03), `BKT:14`, `LDR:19`, `NMB:19` (09-04; re-status
+  09-30), `BTB:19`.
+- Prefetch, FST and standard formats: `AH:19`, `PFM:19`, `FST:19`, `SF:16`, `TA:20`.
+- PS2 pages: `TIM2:19`, `UBF:23`, `FIVE:11`, `CMAP:16`, `WMAP:16`, `BINM:17`, `HIMG:16`.
+
+#### Request queue and ownership
+
+**C-S6 — "once per frame".**
+- `RQ:119` "Called once per frame by `0032E040`"; also `RQ:340` and `RQ:452`.
+- `RQC:65`: "This wrapper itself supplies no once-per-frame guarantee."
+
+**C-S7 — "loose file" read issue.**
+- Stale: `RQ:343` "issue a read (loose file first, then the archive)"; `RQ:355`; `RQ:449`; `RQ:710`; `FST:75`;
+  `FST:51-52`; `LFR:13-15`.
+- Settled by `RQ:839`: "The ~~loose-file~~ open `001D6F20` *(corrected 2026-09-27 … never a loose file …)*"; also
+  `FST:309` and `PATH:239`.
+
+**C-S8 — Windows `memcpy` overlap still open.**
+- Stale: `EXT:196` "The deployed Windows copy-overlap dependency from SECTION-07 is still unresolved"; `ISR:240`.
+- Settled by `MOV:175` (OV-46 "*ANSWERED 2026-09-29* … overlap-safe in all 31,784 overlapping cases"), `PRF:106`
+  (OV-43) and `OWNC:353-356` (2026-09-26).
+
+**C-S9 — held state-1 submission and single delivery still open.**
+- Stale: `EXT:190` (OV-19 unchecked); `OWNC:219`; `OWNC:394-396`; `ISR:162-163`; `ISR:229`; `RQC:343`.
+- Settled by `ISR:234-236` (OV-34/35/36 "ANSWERED 2026-09-29"), `PRF:105` and `RQ:627`.
+
+**C-S10 — other owner families still open.**
+- Stale: `OWN:212-214`.
+- Settled by `OWN:175` ("*ANSWERED 2026-09-29 …: there are exactly four owner families*") and `EXT:191` (OV-20).
+
+**C-S11 — OV-42 is both ticked and open.**
+- `PRF:105` "- [x] ~~**OV-42.** …~~ *ANSWERED 2026-09-29*", followed by "*Narrowed 2026-10-02 … Still OPEN.*"
+- `ISR:140`: "OV-42's natural rejection and OV-21 stay OPEN".
+
+**C-S12 — OV-39's lead clause outlives its correction.**
+- `PRF:102`: "the two `@FEF`-specific inputs have no shipped producer - ~~the configuration table `02B64380` is never
+  populated~~ **(`CON-195` …: it is seeded at start-up …)**".
+
+**C-S13 — README summary of the builder.**
+- Stale: `README:21-23`, "the builder that sizes a request from the file-size table and stalls when no slot is free, …
+  512 KB parts".
+- Against: `RQ:99-100` "The bytes come from the caller"; `RQ:39-40` "Splitting is gate-dependent"; the stall is in
+  `0032E870` (`RQ:102`).
+
+**C-S54 — README priority target.**
+- `README:37`: "VBF/EBP container layout (use `ff12-vbf.exe` and `ff12-script.exe`)".
+- The VBF layout is read in `BIG` §3a (`BIG:4`, `BIG:108-131`).
+
+#### Arena, tree, section addressing, expressions
+
+**C-S15 — EFX "No harness exists".**
+- `EFX:604`; also "What would move this" at `EFX:547-552`.
+- Against `EFX:510-512`: "**Consumed 2026-09-16 (OPUS) from [`EXP-084`]** … **52 / 52 cases**".
+
+**C-S16 — "4 GiB wrap" wording survives.**
+- `TREE:371`: "the 4 GiB wrap is a fixture-only hazard".
+- Against `TREE:267`: "*corrected 2026-09-15 from "4 GiB wrap", which described the wrong failure.*"
+
+**C-S17 — `0036C790` rebalancing "not re-derived".**
+- `TREE:168-169` and `TREE:222-223`.
+- Against `TREE:175-177`: "**Re-derived 2026-09-18 — … the detail is now byte-proven.**"
+
+**C-S18 — the `+0x18` key "not established".**
+- `TREE:357` "**what the `+0x18` key measures** | **not established**"; also `TREE:249-250` and `TREE:429`.
+- Against `TREE:194-197`: "**`+0x18` is the allocated payload-byte extent used by the mover (SECTION-07).**"; also
+  `TREE:326-328`.
+
+**C-S19 — RSA residue.**
+- `RSA:540-541` "the nine functions that call `004096C0`": settled by `RSA:555` "**There are 17 call sites in 11
+  functions, not nine.**"
+- `RSA:389` "and the fail-closed default": settled by `RSA:391-394` (2026-09-30).
+- `RSA:642-645` "**The extent is authored data.**": settled by `RSA:660-663` "is **falsified by the writer**"
+  (2026-09-16).
+- `RSA:99-100` and `CSA:114-115` say the find-by-name path returns `-1`. Narrowed by `CSA:254` (2026-09-29): "`-1` is
+  the offset output of `00409780` …; the pointer finder `00409660` turns it into NULL".
+- `RSA:638-639` "It is never a heap object": narrowed by `RSA:701-702`, "The bank blob itself is heap-allocated by
+  `0051F9F0`".
+
+**C-S20 — expression pages.**
+- `RND:288-290` "**whatever seeds these at runtime, which is not established**": settled by `RND:398` ("Read
+  2026-09-11").
+- `RND:443-444` "depends on `00431080`, which is unread": settled by `RND:96` / `RND:393` ("read 2026-09-18").
+- `AEC:218` and `RND:410` "**The other eleven bits of `+0x0E`**": against `RND:96`, where bits 0–3 select the curve.
+- `RND:437` "the zero-bound path keeps only ops 4 and 5": against `RND:161` "**Only operator 5 survives it.**" and
+  `AEC:286-294` (2026-09-29).
+- `RND:408-409`: an unclosed strike leaves "takes a *context* argument this page passes through without inspecting"
+  rendered as live text.
+
+**C-S21 — "no in-image code can obtain a pointer to `01F83530`".**
+- Stale: `EV:1341`; `ROW:716` "no instruction in the image writes it".
+- Settled by `EV:287` (scope corrected 2026-09-25): "one in-image store route can. The texture-id table writer
+  `00210570` … id `0xFFFB`"; also `ROW:441`, `ROW:464-465`.
+
+**C-S22 — "do not assume the identity map".**
+- `EV:664-665` and `EV:1050-1051`.
+- Against `EV:1406-1410` (Limits 4, 2026-09-30): "**Answered.** … a logical source *n* selects arena *n* in every
+  state".
+
+**C-S56 — B10, OV-28 status.**
+- `EV:4`: "OV-27 and OV-28 NOT A QUESTION".
+- `EV:1395-1396`: "accepted OV-28 for the parent as SECTION-10"; `RSA:153`: "It covers OV-28 and OV-44".
+
+#### Archive, st2e, carriers
+
+**C-S23 — VBF residue.**
+- `VBF:1042-1043` "those twelve bytes are an unread header": settled by `VBF:370-375` ("**Answered 2026-09-14**").
+- `VBF:620-621` "`?` is an unmapped byte … **AY-8**": settled by `VBF:198` / `VBF:612` ("the character is `&`").
+- `VBF:703` "`battle_pack.bin` … is the obvious unopened candidate. **AY-9.**": settled by `VBF:695-702` and §9/§12.
+- `VBF:314`: a 2026-09-17 narrowing filed under UQ-72, superseded by `VBF:216` ("**ANSWERED 2026-09-26**").
+- `VBF:1062-1063` vs `VBF:1293`: they disagree on which sections pass 7 attacked.
+
+**C-S24 — BIG residue.**
+- `BIG:441-442` "Which of the two `CreateFileA` sites opens what": settled by `BIG:256` ("**ANSWERED 2026-09-27 …:
+  minidump files.**").
+- `BIG:218-219` "per asset: -> FUN_0059F4A0 ReadFile leaf": against `BIG:270` ("blocks arrive through CRT `fread`") and
+  `BIG:248-251` (15 pooled handles, 2026-09-30).
+
+**C-S25 — "six token families unmentioned".**
+- `BKT:80` and `BKT:148-150`.
+- Settled by `BKT:111` ("*all six bound 2026-09-29*") and `BKT:123`.
+
+**C-S26 — St2e-Carriers README.**
+- `S2R:95` "a **lead, not a reading**: no loader has been consulted"; `S2R:45-48` "**Neither is explained**". Both are
+  answered on LDR (`LDR:78`, `LDR:95`).
+- `S2R:213-214` asks a question that `S2R:180-184` already answers ("**It does not.**").
+- `S2R:110` / `S2R:125` "fpkPath ... USUALLY NULL": against `LDR:190` / `ARDC:98` ("215 `.ard` at even indices and 215
+  `.fpk` at odd").
+
+**C-S27 — `.ard` trailer "read by nothing".**
+- `LDR:130-131` "**nothing reads it**"; `LDR:487-489`; `LDR:712-714`.
+- Settled by `LDR:109` (CC-8, 2026-09-12), `LDR:463-464` and `LDR:515-516` ("the trailer is read", 2026-09-26).
+
+**C-S28 — `.ard` / `.nmb` locale and table residue.**
+- `LDR:523-525` "*why those two trees* remains open": settled by `LDR:593-605` (CC-9, 2026-09-12).
+- `NMB:372-374` "exactly one region reaches `ch\...`": against `NMB:779-781` (2026-09-30).
+- `NMB:684` "`.ard` in a separate 16-byte record array": against `ARDC:90-93` ("a flat `char*[]` at 8-byte stride").
+- `NMB:785-786` "**The three 2000-entry arrays … are lower bounds**": against `NMB:395-396` ("The `entries` column is
+  therefore **withdrawn**").
+
+**C-S29 — the binder contract's §12 count.**
+- `ARDC:173-174`: "assert five and ten (AB-7)".
+- Against `ARDC:120` ("It makes **15** calls, in **three groups of five**", CORRECTED 2026-09-25, `ARDC:116`) and
+  `ARDC:242`.
+
+**C-S30 — LDR registry-slot ownership.**
+- The front matter `LDR:27-30` lists three slots. `LDR:43` / `LDR:348` / `LDR:662` say "Four".
+- `LDR:366-371`: "**`0x02EBF168` is deliberately left undeclared.**" Against `LDR:762-763`, where another page "owns
+  `0x02EBF168`", and `LDR:760-761`, where another page owns `0x02EBF120` / `0x02EBF150`.
+
+**C-S31 — text-bank residue.**
+- `BTB:174-175` "How the engine composes `13000 + n` into `130000 + n` is not read": settled by `BTB:218-224` and
+  `BTB:245` (2026-09-18).
+- `BTB:374` "call the input helpers `001E0B90` and `0017DE60`": settled by `BTB:461-468` (2026-09-19, "the page's 'input
+  helper' label is wrong").
+- `LDR:362-363` / `LDR:434-437`, "which … is 'status' versus 'attributes'": partly superseded by CC-7 (`LDR:932-948`,
+  2026-09-26).
+
+#### Prefetch, `.ah`, `.ta`, FST, standard formats
+
+**C-S32 — Prefetch README.**
+- `PJR:34-36` (budget read?): answered by `PFM:102-105`.
+- `PJR:47-48` (eventlist "unexamined"): answered by `PFM:142-144`.
+- `PJR:13-15` and `PFM:32-33` ("pulled into memory"): against `PFM:131-132` ("**CORRECTED 2026-09-21** … **never
+  read**").
+- `PFM:18`, `PFM:45`, `PFM:169` and `PFM:254` say "no file opened", while `PJR:29-37` quotes file contents.
+
+**C-S33 — PFM entry-only and open rows.**
+- `PFM:159` / `AH:153` `0018A330` "❌ entry only": against `AH:315-317` ("now read", 2026-09-18).
+- `PFM:164` `00597970` "the file-cache request": against `PATH:25-28` (stream-reader constructor) and `SF:69-71`.
+- `PFM:150-151` / `PFM:245-246` case-insensitive lookup "not established": against `PATH:213-215`.
+- `PFM:243` selector 5 "unestablished": against `PATH:136-138` / `PATH:249-250` (answered 2026-09-30).
+
+**C-S34 — `.ah` residue.**
+- `AH:18`, `AH:157`, `AH:159`, `AH:242` "No file was opened": against `AH:44` ("all 2,564, 2026-09-13").
+- `AH:241` "one npc": against `AH:170-171` ("~~one npc~~ *two*", 2026-09-13).
+- `AH:151` / `AH:183` builders "not read in full": against `AH:137-139` and `AH:334-336`.
+
+**C-S35 — `.ta` residue.**
+- `TA:188-190` "Not yet run": against `TA:245` (falsification pass 1, 2026-09-13).
+- `TA:146` "✗ `TA-1`": against `TA:196` / `TA:204` (answered 2026-09-25).
+- `TA:123-126` (TA-2 route): against `TA:280-282` and `TA:232` (answered 2026-09-26).
+
+**C-S36 — Standard-Formats residue.**
+- `SF:190` and `SF:200-201` FR-2 "is not read": against `SF:203` ("**ANSWERED 2026-09-26 … there is no such
+  routine.**").
+- `SF:161` "Key addresses: None" and `SF:175` "Not applicable": against the addresses in the body (`SF:59-79`,
+  `SF:147-153`).
+- `SF:12` / `SF:15` "one file of each extension was extracted": against `SF:146` (webm "not re-derived here").
+
+**C-S37 — FST residue.**
+- `FST:96-98` / `FST:184-185` "FZ-12" (queue unread): answered by RQ (`RQ:117`, `RQ:425-439`).
+- `FST:325` "alloc/enqueue triple": against `FST:382` ("*Corrected 2026-09-30* … it does not queue it").
+- `FST:237` "**Open:** none of the eight has a loader sheet": against `FST:240` and `FST:4` (2026-09-18).
+- `FST:229` lists `'CCdd'` as a `.bin` signature: against `PR:59-64` ("`CCdd` was never a magic", 2026-09-19).
+- `FST:25` `crossref_clean: true` despite C-V1, C-V2, C-V3 and this item.
+
+#### PS2-era formats
+
+**C-S39 — PS2 README residue.**
+- `PR:11` "`tm2` | 447 | **likely TIM2** … candidate `standard`": against `TIM2:227` ("magic `TIM2` | … **456 / 456**",
+  2026-09-13).
+- `PR:130` lists `summoneffectdata` among "the kind-9 named objects", and `LBB:173` says "Kind 9 files arrive as **named
+  resource objects**". Against `LBB:174-175` / `LBB:181` and `FIVE:424` ("*Corrected 2026-09-29: not a named
+  object …*").
+
+**C-S40 — TIM2 residue.**
+- `TIM2:142-143`, `TIM2:155`, `TIM2:299` say `0039BF50` is unread: against `TIM2:340-349` ("SWE2-EC7-91 update
+  (2026-09-20)").
+- `TIM2:145`, `TIM2:156`, `TIM2:263-264`, `TIM2:296` "the four callers are still unread": against `HIMG:137-138`
+  (`00575710` read) and `GMAP:82` (`003BC4E0`).
+- `TIM2:160`, `TIM2:184`, `TIM2:188`, `TIM2:200` "**No file was opened**": against `TIM2:44` / `TIM2:220` ("All 456
+  files were opened", §8, 2026-09-13).
+
+**C-S41 — AS7 residue.**
+- `AS7:65`, `AS7:118-121`, `AS7:129-130` ("the walker of `offsets[]` is still not isolated"): against `AS7:141`
+  ("**ANSWERED** … `0024AA00`") and `AS7:148` (superseded readings, 2026-09-30).
+- `AS7:4` "no registered residue left": against `AS7:146` "Review pending: `ORACLE-REQ-AUDITSPEC-RC4-5-25-30-0930`".
+
+**C-S42 — BTM residue.**
+- `BTM:121-125` (bit depth, owner, coverage "not established"): against `BTM:140` (RC-26), `BTM:143` (RC-27) and
+  `BTM:154`.
+- `BTM:4` / `BTM:133` "no reader" for the glyph's unknown byte: against `BTM:133-134` (UQ-364 reads `+0x04` as the
+  advance width).
+
+**C-S43 — CL2 "no traced request route".**
+- `CL2:180` and `CL2:162-165`.
+- Against `CL2:178` ("*Round 3 (records) RC-30:* **ANSWERED 2026-09-30** … `003C1F00` … The reader is `003C26C0`") and
+  `CL2:105-116`.
+
+**C-S44 — MRP: "four unrequested".**
+- `MRP:4`: "four unrequested .mrp files come through .rdata id lists".
+- `MRP:219-222` lists eight without constant requests.
+
+**C-S45 — unnamed `.bin` residue.**
+- `UBF:137` `filelistlocalin.bin` "stay open": against `UBF:138` / `UBF:141` ("Narrowed 2026-09-27").
+- `UBF:135-136`, `UBF:149-152`, `UBF:229-230` say records not decoded: against `UBF:145-147` / `UBF:153-155`
+  (2026-09-27).
+- `UBF:13` "The document cites one address", `UBF:112` "Key addresses: None", `UBF:238` / `UBF:255` "no crossing
+  section": against `UBF:238` (five addresses) and `UBF:277-279` (crossing section present).
+
+**C-S46 — five small tables residue.**
+- `FIVE:40` "the scope is seven formats"; `FIVE:46` / `FIVE:213` "In all five cases"; `FIVE:185-186` "**No reader has
+  been located for any of the five files**".
+- Against: §13–§14 add QST1 and `dP<d`, and readers are found at `FIVE:194-206`.
+- `FIVE:140` (bwin "**Not claimed:**"): against `FIVE:201-202` (2026-09-18 / 2026-09-27).
+
+**C-S47 — `himg` residue.**
+- `HIMG:211-212` "which index table authors it is not yet traced": against `HCHK:151-152` / `HCHK:212-214` (`00575D10`
+  fills `sel = word[rec+0x06]`).
+- `HIMG:227` "NOT claimed: what the two completion callbacks … deliver": against `HIMG:233` ("Added 2026-09-30").
+
+**C-S48 — `cmap` sec3 "pad".**
+- `CMAP:98`: "`u16  pad;    /* +4 = 0 in all 77 */`".
+- `GMAP:69`: "requests kind 7 with **id `0x496` + the record's byte `+4`**".
+
+**C-S49 — `lst` residue.**
+- `LST:137-140`: the field-level reader "is not isolated"; `+0x04 = 100` "unconfirmed".
+- Against `LST:153`: "**ANSWERED 2026-09-30 … the readers are `0037EFC0` and `0037E5B0`**"; and `LST:155`.
+
+**C-S50 — `lmap` residue.**
+- `LMAP:302-303` "Left: the 8-byte block (RC-35) and array B's `+0xC` (RC-36)": against `LMAP:314-317` and
+  `LMAP:559-561` (answered same day).
+- `LMAP:590-591` "*"What each does is not read"* above is unchanged and still true": against `LMAP:600` ("superseded by
+  that reading").
+- `LMAP:322-325` "this sheet does not adopt it": against `LMAP:4` and `LMAP:565-566` ("a zone route is a map-jump
+  link").
+- `LMAP:451-454` "**Not claimed.**": against §10 (`LMAP:456` onward, 2026-09-13 / 2026-09-16).
+
+**C-S52 — broken cross-references.**
+- `WMAP:30-31` / `WMAP:38` cite §5/§6/§7 for content at §4/§5/§6.
+- `LMAP:694` points to "wmap … §6" for the join (it is §5).
+- `CHSE:125-126` and `LMAP:200-201` cite "[`sloc`] §3" for the `002DF9A0` path-table wall; SLOC §3 (`SLOC:118-172`) does
+  not mention it.
+- `ROW:873` cites "§M-7"; REG has no such heading.
+- `FIVE:478-479` cites "§181 and §185" (line numbers, not sections).
+- `RSA:712` cites a member file that does not exist (G-T11).
+- `LBB:36` cites a member file that does not exist (G-T36).
+
+### 3.3 Checked and found consistent (not contradictions)
+
+**Archive and path**
+- Entry count 89,414 appears at `VBF:61`, `README:26` and `BIG:121`.
+- The bucket sum 39,653 + 39,578 + 9,351 + 832 = 89,414 (`VBF:69`, `VBF:1005`).
+- `indexSize` 11,995,716 = `0x00B70A44` (`BIG:120`, `BIG:342`, `BIG:348`).
+- The route-1 hash (`0x1505`, ×`0x21`, `btr 0x1F`) agrees at `PATH:176`, `PATH:352` and `TA:373-376`.
+- The selector census 5 + 13 + 1 + 1 = 20 agrees at `PATH:99-107` and `PFM:134-138`.
+
+**FST and request queue**
+- `820,000` B, `0x39` = 57, `kind*5000` and `02EC3EE0` agree at `LFR:9`, `FST:42-43`, `FST:57` and `ISR:116`.
+- The `+0x28` bytes and `+0x2C` offset truncated to `0x800` agree at `FST:89-94` and `RQ:105-107` / `RQ:432`.
+- The request pool `022C31C0 + 64×0x80 = 022C51C0` (pending head) agrees at `RQ:766` and `RQC:139-140`.
+- The owner table `02B581A0 + 80×0x1C = 02B58A60` (mask base) agrees at `ISR:38-39`.
+
+**Arena and EFX**
+- The arena record `022D7FD0 + id·0xA8`, 15 records, agrees at `TREE:298`, `RSA:831-832`, `RQ:587` and `EV:231`.
+- The block header `0xFF12` / `+0x14` bit 0 agrees at `EFX:370-372` and `EV:191`.
+- `0036B130` is 41 B with a `0x100000` floor (`EFX:80-83`, `RSA:201`, `EV:1280`).
+- The tree generation check `word[slot+6]` vs `word[obj+0x1C]` agrees at `TREE:217` and `EFX:120`.
+- `0036C790` is 359 B, and its relink agrees at `TREE:176-185` and `TREE:393-406`.
+- The `00409EC0` → `00409EC8` → `00409ED3` disposal order agrees at `OWNC:155-156`, `OWNC:481` and `OWN:240`.
+- The lookup buffers `0x400` / `0xA00` / `0x1800` and the 319/767 bounds agree at `OWNC:98`, `OWNC:143`, `EFX:259-262`
+  and `EV:730-733`.
+- The descriptor census `02B62E40+0x140 = 02B62F80`, `02CA61B0+0xA0 = 02CA6250` and `02CA74A0+0xA0 = 02CA7540` checks out
+  (`RSA:695-697`).
+
+**Authored data**
+- The 18 pack offsets of `REG:1176-1195` match `ROW:257-291`.
+- `0x21E` / 543 agrees at `REG:624-628`, `REG:1053-1056` and `VBF:156-159`.
+- The `.ard` five-slot map agrees at `REG:219-223`, `LDR:323-329` and `LDR:612`. The row sizes 84/88/56/56 agree at
+  `REG:1604` and `LDR:356-360`.
+- `0x00320A59 + 0x2B9E737 = 0x02EBF190` (`REG:1361`); `0x0020E609 + 0x1D74F27 = 0x01F83530` (`REG:1414`).
+- The texture-id route `0x01F83580 − 5·16 = 0x01F83530` (`ROW:434-459`).
+- The `.ard` header reads (nine) agree with the binder's nine resolves (`LDR:611`, `ARDC:111`, `ARDC:241`).
+- The 1,146 unit rows of slot 2 equal the 1,146 `.nmb` entries (`LDR:404`, `NMB:44`).
+- The text-bank counts agree at `BTB:46`, `BTB:197` and `BTB:317`. The `0xA0` `&` / `0xAA` `:` charset agrees at
+  `BTB:97` and `VBF:612`.
+
+**Typed list**
+- The combined census (344 blobs, 7,665 records, 30,546 items) agrees with `TL:343-344` and `TL:640`.
+- The 20,459 atlas references = 20,181 + 278 (`TL:348`).
+
+**PS2-era formats**
+- `wmap` closes at 2,040 B (`WMAP:56-60`, `WMAP:99`); `cmap` closes at 1,760 B (`CMAP:28`, `CMAP:39`).
+- The `lmap` totals A 384 / B 111 / C 545 / D 97 match the `lmap-native` output (`LMAP:256`); the size equation =
+  23,852 (`LMAP:362`).
+- The kind-7 ids `0xA2`/`0xA3`/`0xA4` → `+0xD8`/`+0xE0`/`+0xE8` agree at `LMAP:469-473`, `WMAP:140-142`,
+  `CMAP:116-117` and `VBF:1182`.
+- The handbook census totals 69/74/57/100/16/384 = 6,300 and `f16` {17,12,21,12,1,192} agree with `HCHK:45-99`.
+- The `himg` file and page totals agree (2,721 files; 6,693 pages) (`HIMG:13`, `HIMG:57-85`).
+- `summoneffectdata` `(9, 0x2A)` → `02AD9B60` agrees at `FIVE:439-441` and `LBB:181`. The `.btm` id table `00D10C98`
+  agrees at `BTM:74` and `FIVE:198`.
+- The checks named in the brief's launch notes: "Eight extensions" (`README:32`, `SF:37`, `SF:281`); the `.ico`
+  overturn (`README:34-35`, `SF:24`, `SF:139-142`).
