@@ -1,0 +1,20 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "001DAAC0",
+   "text": "calls `005CC8C0(&stack record, 001DADB0)`, then sets the record's dword `+0x18` to 3, qword `+0x20` to the string \"FileCachePrefetchManager\" (`009005E8`), dword `+0x2C` to 0xFFFFFFFE and dword `+0x8` to 0xF000 and calls `0016D6A0(&record, 0x7C)`; stores `rcx` at record `+0x10`, stores dword 1 at `+0x20` of `rcx`, calls `005CD1E0(rcx, &record)` and finally stores byte 1 at `+0x18` of `rcx`",
+   "anchors": [["001DAAD5", "call"], ["001DAADA", "lea"], ["001DAB08", "call"], ["001DAB21", "call"], ["001DAB26", "mov"]]},
+  {"fn": "0089BEF0",
+   "text": "copies `rdx` into `rbp` inside a 0x40-byte frame and returns 0xFFFFFFFF",
+   "anchors": [["0089BEF6", "mov"], ["0089BEF9", "or"]]},
+  {"fn": "008A5B7C",
+   "text": "loads the qword at `rcx` and returns 1 when the dword it points to equals 0xC0000005, else 0",
+   "anchors": [["008A5B81", "mov"], ["008A5B86", "cmp"], ["008A5B8C", "sete"]]},
+  {"fn": "008A5C0A",
+   "text": "with `rbp` set to `rdx`, stores `rcx` at `rbp+0x40` and `rbp+0x30` and the qword at `rcx` at `rbp+0x38`; when the dword that qword points to equals 0xE06D7363 calls `00862052()` and returns with its `eax`, otherwise stores dword 0 at `rbp+0x20` and returns 0",
+   "anchors": [["008A5C13", "mov"], ["008A5C22", "mov"], ["008A5C2A", "cmp"], ["008A5C32", "mov"], ["008A5C3E", "call"]]}
+ ],
+ "skipped": [{"fn": "00896270", "why": "its whole work is the entry instruction (`jmp rax`, 2 bytes)"}],
+ "notes": "008A5C0A: after the 00862052 call the body falls through a nop to the epilogue without setting eax, so the returned value on that path is whatever 00862052 left; the row says so rather than asserting a value."
+}
