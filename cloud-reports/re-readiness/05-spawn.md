@@ -17,12 +17,12 @@
 | entry-point rows listed (§1.1) | 47 |
 | open items the pages list themselves (§2.1) | 14 |
 | structural gaps: a function, formula or format a port needs that no page states (§2.2) | 16 |
-| **contradictions, total (§2.3)** | **52** |
+| **contradictions, total (§2.3)** | **48** |
 | — A. value-changing (each marked "page-text only - needs local check") | 18 |
-| — B. counts and sizes that disagree but change no ported behaviour | 6 |
-| — C. stale "open / not read" claims, banners and names | 28 |
-| — of all 52, items where a dated correction on the pages names a favoured side | 16 |
-| **Rating (§3)** | **NOT YET** overall. Group ledger and keep-entry map: MOSTLY. |
+| — B. counts and sizes that disagree but change no ported behaviour | 5 |
+| — C. stale "open / not read" claims, banners and names | 25 |
+| — of all 48, items where a dated correction on the pages names a favoured side (A 9, B 1, C 17) | 27 |
+| **Rating (§3)** | **NOT YET** overall. Group ledger and keep entry with bank rotation: MOSTLY. Placement and retirement: NOT YET. |
 
 ## Citation form
 
@@ -609,3 +609,57 @@ A favoured side is named **only** where a dated correction on the pages settles 
 | C23 | GC: "`003E6770` (276 B) is a group-respawn body" (`GC:1140`), unstruck; "`003C9250` (280 B) is a group-respawn body" (`GC:1131`), with no support | the correction directly above: "`003E6770` is not a group-respawn body and has no part in respawning" (`GC:1135-1138`, 2026-09-19). `003C9250` is not corrected | yes for `003E6770` (2026-09-19) |
 | C24 | `last_reviewed` older than the dated content on the page: GC `2026-09-12` (`GC:19`), with content to 2026-09-29 (`GC:617`); FM `2026-09-10` (`FM:19`), with content to 2026-09-19 (`FM:544`); C-GC `2026-09-11` (`C-GC:17`), with content to 2026-09-29 (`C-GC:103`) | HT explains its own case: the stamp records the last review, not the last edit (`HT:1097-1106`) | — |
 | C25 | HT §7 UQ-100: "*(closed — the register row is WITHDRAWN.)*" (`HT:717`) | the same row: "what that stale word holds in practice remains runtime evidence (tier 10) and stays open" (`HT:722`) | no |
+
+---
+
+## 3. Rating
+
+**NOT YET** for `05-Spawn-Encounter-Lifecycle` as a whole. Two parts are **MOSTLY** on their own:
+- the group-completion ledger, with the death and respawn clock;
+- the keep entry, with bank rotation.
+
+### The group-completion ledger is MOSTLY
+
+- C-GC is an L2 contract at `CONTRACT READY` with one falsification pass (`C-GC:6`, `C-GC:615-646`). It gives a full reproduction formula (`C-GC:433-450`), the corrected bit arithmetic (`C-GC:453-479`) and the reset postcondition (`C-GC:192-197`).
+- The writers, readers and verb are enumerated with controls (`GC:254-345`). The script rendezvous `waitv` on `scratch1 @0x06` is stated (`GC:591-612`; `C-GC:294-312`).
+- What keeps it below READY:
+  - **contradictions that change values:** A1 (shift width), A2 (signedness), A12 (whether arm B posts), A14 (ledger size), A17 (dispatch address). A1, A2 and A12 have favoured sides on the pages;
+  - **gaps:** the clock rate (G1, A9), group ids above 64 (G13) and the deferred arm's timing (G15);
+  - **no live capture of a completion** (§2.1 item 5).
+
+### The keep entry and bank rotation are MOSTLY
+
+- FM gives every touched offset with writers and readers, two enumerations with controls, and a depth-6 negative for the untouched ranges (`FM:84-108`, `FM:296-311`). The member TSV agrees with it (106 rows, no untouched offset).
+- The rotation rule, the unsigned window compare, and the serializer/restore asymmetry are stated with sites (`WHY:50-67`, `WHY:135-149`; `SPR:349-389`).
+- What keeps it below READY:
+  - **contradictions:** A3 (match predicate), A4 (flag clearers), A5 (SPR §4 offsets), A6 (`0208E6A0`), A10 (window across a load), A16 (guard path);
+  - **gaps:** the history counters (G9), enmity decay (G8), and L-13's live residue (§2.1 item 2).
+
+### Placement and retirement are NOT YET: their gaps are structural
+
+1. **Field-data formats (G2).**
+   - The candidate record is two fields deep (`C-SP:55-56`), and the region containment formula is not stated.
+   - Area mode's only filter is that test, and mode-2 retirement reads another unstated record. So neither placement mode can be written from this folder.
+2. **The selector's outer loop (G3).**
+   - Where `candId` comes from, how many candidates a lane has, and which qualifying lane is returned are not stated.
+   - `00235720` is the system's main entry point (`SPR:288-317`).
+3. **Half the selector family is undescribed (G5).**
+   - `002354F0` and `002355A0` are listed by size only. Zone scripts call the previous-map selector on every restorable branch (`HT:268-276`).
+4. **Actor creation and teardown are outside the folder (G6, G7).**
+   - Activation and `btlAtelSetUnitFinish` are described (`HT:130-216`). The verbs that bind an entry to a new unit, and `BattleUnit_TeardownAndDespawn`'s body, are not.
+5. **The retirement fields have no offsets (G4).** `bLifecycleMode`, `bLifecyclePointId` and the threshold are not located; A8 puts the threshold in two places.
+6. **The clock rate is not stated (G1, A9).** The window and every respawn depend on it.
+
+### What would move the rating
+
+**To MOSTLY overall:**
+- a format page for the format-class-0 candidate and region records, with `002374E0`'s test and `00320940`'s record;
+- `00235720`'s lane and candidate loop written out in full;
+- bodies for `002354F0`, `002355A0` and `00300E40`;
+- the unit-side lifecycle offsets;
+- the advance rate of `0208D45C`;
+- the A-list contradictions settled on the pages.
+
+**To READY:**
+- the live checks the pages already name: L-12's single stack word (`SPR:1508-1510`), L-13's autosave load with non-zero banks (`SPR:781-783`), and the ledger across a kill (`C-GC:502-509`);
+- the C-list stale lines struck in place, so that a reader of any one page meets the current answer.
