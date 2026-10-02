@@ -407,3 +407,89 @@ helper `00678B50`: "`m33 == 0` → `f/(n−f)`, `n·f/(n−f)`; else `1/(n−f)`
 
 ---
 
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, or live-only)
+
+| # | gap, as the page states it | cite | note |
+|---|---|---|---|
+| G-1 | **Where the frame's GS command buffers are consumed**: "nothing in this executable reads a finished batch" | `FRM:870-874` | answered *negatively*: the port cannot copy a consumer, it must supply one (a PS2-GS-stream → D3D11 translation is not described anywhere) |
+| G-2 | `UQ-299` residue: "Which of its states the PC build reaches in play, and whether the entry gate's pad bit is Start, are not established; both are live questions." | `FRM:942-944` | live-only |
+| G-3 | `UQ-300` "OUT OF EVIDENCE BOUNDARY" | `FRM:945` | |
+| G-4 | `UQ-301` residue: whether anything is emitted inside the halved 256-record window | `FRM:956-957` | |
+| G-5 | `BA-1` (linker-folded bodies) open on both frame and animation pages | `FRM:168`, `FRM:1112`; `ANI:627`; `README:70` | |
+| G-6 | Lua: whether any `lua_State` is ever created (`DA-1`) | `LUA:924-925`, `LUA:1156-1157` | the script bridge may be dead code in this build; a port cannot tell what to keep |
+| G-7 | Lua: "*which* scripts these execute, from where and when, is still unknown and stays open" | `LUA:515-516` | |
+| G-8 | Lua: "Not established: whether a game-side binder registers the Phyre object functions into `_G` without the base library." | `LUA:381-382` | |
+| G-9 | Accessors: "what field any accessor reaches is untouched" | `ACC:880` | a port that re-generates accessors needs the per-type member set |
+| G-10 | Reflection: descriptor `+0xB0` unnamed (`BL-8`); "The live read of real heads that `BL-8` names is still the closing step." | `C-CD:472-474`; `CDMS:355-357` | |
+| G-11 | Reflection: `+0xFC` bits 4 and 5, "meaning is NOT CLAIMED" | `CDMS:769`, `CDMS:777` | |
+| G-12 | Reflection: attribute bits 3-4 (`BL-1`) "remain unexplained" | `MR:817`, `MR:1460` | |
+| G-13 | Reflection: "Not established: which of the two list orders serves which direction (load or save)" | `CDMS:449` | changes byte-swap/serialise order |
+| G-14 | Reflection: default-instance bytes (`OPUS-REQ-ASTRA-PHYRE-DEFAULT-INSTANCE-BYTES`); load-copy "has **not** been traced instruction by instruction" | `MR:1597`, `MR:1661-1665` | initial values of every reflected object are not in the database |
+| G-15 | Reflection: 211 member registrations never harvested (165 array, 25 fixed-size, 21 enum) | `MR:1883`, `MR:797` | the field schema is incomplete for array/enum members |
+| G-16 | Asset container: CU-3 "**Not decoded:** what each entry's fields mean (which offset is patched with what), and the texture clusters' trailing bytes." | `HDR:370-371` | fixup semantics are needed to load any `.phyre` |
+| G-17 | Asset container: UQ-287 residue — "What each type's `+0x48` resolver does internally. / When the `PAssetReferenceImport` bytes are consumed … / The fixup types in the corpus beyond the 42-file sample" | `HDR:746-749` | |
+| G-18 | Asset container: "What the `+0x1C` block holds, and where in the layout it sits, is still open." | `NS:419-420`, `NS:463-466` | zero in every shipped file, so low impact |
+| G-19 | Asset container: what `00599500` does with the oversized-header bytes is not claimed | `C-HDR:593-595` | |
+| G-20 | Asset container: "The 36-byte instance-list header is NOT covered." by the contract | `C-HDR:701` | |
+| G-21 | Post-process: what `0018FE00` is ("Not claimed") | `PPF:553` | |
+| G-22 | Post-process: "What the `0xA0`-byte object at `01F81170` is has not been read." | `PPF:574` | |
+| G-23 | Post-process: "the node carries **no function pointer** … where each named pass's body enters the frame is a separate question" | `PPF:337-340` | the 60-name registry does not give a dispatch table |
+| G-24 | Post-effects: `GF-3` "*Not claimed:* what the 43 slots hold … what writes them" | `PFX:822-825` | |
+| G-25 | Post-effects: `GF-4` live question "routed to `ASTRA`" | `PFX:448`, `PFX:648-649` | |
+| G-26 | Shader variants: "**which file member feeds `00606A20`'s `[rdi+0x48]`/`[rdi+0x50]` pair is not established here.**" | `CTX:514-518`, `CTX:755-756` | file → runtime effect mapping missing |
+| G-27 | Shader variants: slot-1 domain bodies `006B9CF0` (NUM_LIGHTS) and `006BA3A0` (SHADER_LOD) "**neither body was read here**" | `CTX:534-537` | |
+| G-28 | Shader variants: `GD-2` rests on an assumption, "that the object at `*(arg7)` is a `PCamera`. … This is not proven here" | `CTX:447-451` | |
+| G-29 | Animation: `ChannelValue` `+0x20..0x27` "padding or an unread field; which of the two is intent, and it is not claimed" | `ANI:526` | |
+| G-30 | Animation: "A binding constructed natively at run time … would not appear here." | `ANI:134-135`, `ANI:676-680` | |
+| G-31 | Application: "Not claimed: a call through a copy of the application pointer held by another object."; "Which condition takes that tail is not read." | `APP:404`, `APP:515` | |
+| G-32 | Module registry: "**What the key would mean if something set it lower is still unknown.**" | `MOD:406-407` | ordering key `0xFF` is never varied in this build |
+| G-33 | Camera: "`GiBeginEff` suggests the command opens an effect pass; this page does not verify that" | `CAM:110-111` | |
+| G-34 | Subsystem map: `AQ-2` residue — "which class each of the 1,063 folded bodies serves …, what the 2,254 are beyond their sub-tags" | `MAP:188` | |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no page states them)
+
+| # | missing piece | where the page shows the gap | why a port needs it |
+|---|---|---|---|
+| S-1 | **The per-module init (`+0x08`) and shutdown (`+0x10`) bodies of all fifteen modules** | `MOD:219-223` gives the contract only; no body for any module | start-up order and what each module allocates |
+| S-2 | **End-to-end `.phyre` file layout after the namespace** (instance-list headers, header-class tables, fixup tables, user-fixup blob, object data, in one sequence with offsets) | `HDR:263` vs `HDR:323-325`, `HDR:357`; `CTX:690-691` gives only "header \| namespace \| N × 36-byte PInstanceListHeader \| data" | the loader cannot be written without it |
+| S-3 | **Fixup-table entry field meanings** (which offset is patched with what) | `HDR:370-371` (G-16) | pointer relocation of every loaded object |
+| S-4 | **The `+0x48` per-type user-fixup resolvers** | `HDR:746` | asset references across clusters |
+| S-5 | **PEffect file → runtime mapping** (runtime `+0x48/+0x50/+0x58/+0x60` feeders) | `CTX:514-518`, `CTX:756` | shader-variant selection cannot run on loaded effects |
+| S-6 | **The 64-byte compiled-variant table entry** reached by `index << 6` | `CTX:413` (named, not described) | what the key selects |
+| S-7 | **Bit order inside the NUM_LIGHTS key words** (LSB/MSB first, where the 4-bit count sits) and the binary-search comparison signedness | `CTX:133-134`, `CTX:410` | keys must match the shipped variant tables bit for bit |
+| S-8 | **The PS2 GS command stream's meaning on PC** — what the D3D11 side does with each GIF register write | `FRM:870-874`, `FRM:885` ("What each command meant to that backend is not decidable from this executable") | the frame draws by writing GS registers that nothing reads (G-1) |
+| S-9 | **Mode 3 and mode 5 body order** (only label lists) | `FRM:125`, `FRM:127` | the menu and capture frames |
+| S-10 | **Boot predicates `0032E520`, `0037C2E0`, `0209273C==5`** named, not described | `FRM:135-136` | mode 0→1→2 transitions |
+| S-11 | **Arguments of `0036D400`** (bits 5/7 pass "first/second argument") while the formulas use none | `FRM:619-636`, `FRM:671`, `FRM:673` | the GS register batch |
+| S-12 | **Meanings of `022D8EA8`, `022D8EB4`, `022D8EB8`** in the GS register formulas | `FRM:619-627` | |
+| S-13 | **Post-process pass constants other than SMAA and AO**: `g_brightPara`, `colorR/G/B`, `percent`, `gamma`, `dofShift`, `materialColor`, `sssBlur`, `blendAmount`, `FontBorderSetting/Color`, `MaskDepth`, `g_HBAOResolution`, `g_FocalLen`, `widthAO/heightAO` (names only, no source or value) | `PPF:59-66`, `PPF:228-259` | |
+| S-14 | **Post-effect worker bodies** (draw content and constants) — only `00652940` and `00659A90` read | `PFX:354-401`, `PFX:387` | PFXAA is the one constructed (`PFX:138`); its constants are not named |
+| S-15 | **`ctx` / `flag2` arguments of `00632960` and the context object behind `ctx->vslot08()`** | `MR:397-398`, `MR:614-615` | pointer width in the corrected width formula comes from it (`MR:406-410`) |
+| S-16 | **`006372A0` / `006373D0`**, which compute descriptor ctor arguments 2 and 6 | `IS:136` | registry and parent pointers |
+| S-17 | **`00639C80` (1,160 B)**: "What it validates is not claimed here." | `CDMS:897` | default-buffer masks |
+| S-18 | **`lua_pcall`, `luaL_loadbufferx`, `lua_newstate` addresses** — named only | `LUA:289`, `LUA:380`, `LUA:1061` | |
+| S-19 | **`00812960` (accessor "report") and `0063BC00` reference-variant path** | `ACC:104`, `ACC:854` | how a type-check failure is reported |
+| S-20 | **Per-accessor field offsets and type-descriptor addresses** ("the constant **is** the payload") | `ACC:871`; appendix `ACC:412-787` gives address and type only | |
+| S-21 | **Animation group-boundary detection and `ChannelValue` component → x/y/z/w mapping** | `ANI:109`, `ANI:209-216`, `ANI:343` | composition order inside a group |
+| S-22 | **`005A7E90`'s callee protocol** (handler slot `+0x10`, va_list layout) and the kind-2/3 binders' semantics | `ANI:402-421`, `ANI:575-581` | |
+| S-23 | **`GameApplication` slot bodies not given**: `FUN_0017d670`, `0079BF70`, `FirstFrameInit` `0017D650`, slot 21 `0017CFD0` | `APP:88`, `APP:219`, `APP:278`, `APP:217` | |
+| S-24 | **`GiBeginEff` execute slot address and factory address** | `CAM:116`, `CAM:121-125` | |
+| S-25 | **Instance-list (36-byte) records → object construction**: no page joins `m_classID` / `m_objectsSize` / `m_arraysSize` to the descriptor factory call sequence | `HDR:102-115`; `C-HDR:701` | |
+
+### 2.3 Fields written by documented functions whose meaning is not given
+
+- Descriptor `+0xD8`, `+0xE0`: "No setter found" (`C-CD:94`, `C-CD:720`); `+0xE8`/`+0xEC` counters touched in
+  passing (`MR:1074`).
+- `PAnnotation` `+0x28` written as 0, meaning not given (`AR:180`).
+- Post-effect base: the third cached pointer `+0x28` (`PFX:684-685`).
+- Frame pass-enable table bytes `+8` and `+0xA` (`FRM:690`, `FRM:692`); upper `u16` bits stated only for bit 2
+  (`FRM:505`).
+- `00686D10` writes header `+0x48/+0x4C/+0x50` into `rcx`'s `+0x20/+0x1C/+0x24`; destination record not identified
+  (`C-HDR:940-943`).
+- Camera: the asm at `CAM:47-50` reads source `[rdx+0x50]`, `[rdx+0x60]`, `[rdx+0x80]`, `[rdx+0xb0]`, not reconciled
+  with the stated source range `+0x30..+0x6F` (`CAM:134`).
+
+---
+
