@@ -1,0 +1,112 @@
+{
+ "page": "04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md",
+ "session": "session_01CsdbXqRd5h9LCs97R3i5zB",
+ "rows": [
+  {
+   "fn": "001DA220",
+   "text": "does nothing unless `001D6B20(rcx)` returns non-zero, `001D6B90()` returns zero and `00265270()` returns zero in `ax`; then stores word 0 at `rcx+0xE8` and calls `005CD4F0(rcx+0xF0)`, `001D9930(rcx)`, `005CD820(rcx+0xF0)` and `001D9EC0(rcx)`",
+   "anchors": [
+    [
+     "001DA229",
+     "call"
+    ],
+    [
+     "001DA232",
+     "call"
+    ],
+    [
+     "001DA23B",
+     "call"
+    ],
+    [
+     "001DA253",
+     "mov"
+    ],
+    [
+     "001DA276",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001DA970",
+   "text": "does nothing unless `001D6B20(rcx)` returns non-zero and `00265270()` returns an `ax` that is above zero (signed) and differs from word `rcx+0xE8`; then stores that `ax` at `rcx+0xE8` and calls `005CD4F0(rcx+0xF0)`, `001D9930(rcx)`, `005CD820(rcx+0xF0)` and `001D9EC0(rcx)`",
+   "anchors": [
+    [
+     "001DA982",
+     "call"
+    ],
+    [
+     "001DA98A",
+     "jle"
+    ],
+    [
+     "001DA98C",
+     "cmp"
+    ],
+    [
+     "001DA9A1",
+     "mov"
+    ],
+    [
+     "001DA9C4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00275F10",
+   "text": "switches on dword `[rdx]`: id 1 copies qword `[[rdx+8]]` to `rcx+0xC0` and dwords `[[rdx+8]+8]` and `[[rdx+8]+0xC]` to `+0xC8` and `+0xCC`; id `0x10` calls `00244F00(rcx)` when qword `[rdx+8]` equals the sign-extended dword `+0xCC`; id `0x12` calls the function pointer at qword `[[rcx+0xC0]]`, when both qwords are non-null, with `rcx` = qword `+0xC0` and a stack record of dword `+0xC8` followed by 16 zero bytes; these three return 0, and any other id returns `005C5230(rcx, rdx)`",
+   "anchors": [
+    [
+     "00275F31",
+     "sub"
+    ],
+    [
+     "00275F3E",
+     "call"
+    ],
+    [
+     "00275F82",
+     "call"
+    ],
+    [
+     "00275FA8",
+     "call"
+    ],
+    [
+     "00275FC8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00521290",
+   "text": "scans the `0x100` entries of `0x30` bytes starting at the pointer in qword `02CA8450`, skipping entries whose first word is `0xFFFF`, and returns the address of the first entry whose dword `+4` equals `ecx`, or 0 when none does",
+   "anchors": [
+    [
+     "005212A6",
+     "cmp"
+    ],
+    [
+     "005212AC",
+     "cmp"
+    ],
+    [
+     "005212B7",
+     "add"
+    ],
+    [
+     "005212C4",
+     "xor"
+    ],
+    [
+     "005212CE",
+     "shl"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001DA220/001DA970: 001D6B90 and 00265270 are called after 001D6B20 without reloading rcx, so their rcx is whatever 001D6B20 left; the rows write them with no arguments."
+}
