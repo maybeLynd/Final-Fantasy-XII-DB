@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-status-shows-on-a-character.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "001EF280",
+   "text": "calls `00184E60(rcx + 8)`, stores the address `00902ED8` at qword `+0x0` of `rcx` and the dword `0x3F800000` at `+0xC8` and `+0xD0`, calls `001F0A00(rcx)` and returns `rcx`",
+   "anchors": [["001EF28D", "call"], ["001EF299", "mov"], ["001EF2A6", "mov"], ["001EF2A9", "mov"], ["001EF2B3", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "001EF280: 0x3F800000 is stored as an integer immediate; the listing does not decode it, so the row keeps the hex value (it is the bit pattern of 1.0f)."
+}
