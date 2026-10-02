@@ -8,7 +8,13 @@
 | Snapshot | this repo's text snapshot at `34861cfd` only; no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item quotes or paraphrases a page and gives its location. Text is quoted as the snapshot has it; several of these pages are being edited by other lanes. |
 
-**Counts:** _(filled in with the rating section)_
+**Counts:** 4 pages read in full (`README.md` + 3 system pages, 1,548 lines), 7 `.tsv` files checked for layout and
+counts only, 2 `.py` member headers read · **45 entry-point rows** mapped (21 Steam lifecycle, 4 award path, 20 counter
+family) · **14** self-stated open gaps + **24** structural gaps · **38 contradictions**: **15 value-changing** (9 with a
+favoured side settled by a dated correction: C-V3, C-V4, C-V5, C-V6, C-V7, C-V9, C-V10, C-V14, C-V15; 6 with no
+favoured side: C-V1, C-V2, C-V8, C-V11, C-V12, C-V13; all 15 "page-text only - needs local check") and **23 stale /
+banner** · 9 cross-checks found consistent · **Rating: MOSTLY** overall (counter update/store READY statically;
+Steam path MOSTLY; evaluator modes 4–7 NOT YET because of C-V1).
 
 Citation form: `page:line`, where `page` is the file name inside `FFXII TZA/20-Platform-Online-Achievements/`. The
 pages, with the short names used below:
@@ -517,3 +523,19 @@ SWE2-DATA, `SD-162`").
   member TSV).
 - Script census totals 900 / 900 / 9 (`STM:190`, `CAT:749-751`, member TSV).
 - Mode-3 evaluator default 16 / override 8 for id 13 (`CTR:359`, `CAT:662`, `CAT:696-697`).
+
+---
+
+## 4. Rating
+
+**MOSTLY** overall — named gaps, with one structural hole in the evaluator.
+
+| part | rating | why |
+|---|---|---|
+| Counter update / read / store (`00316A50` accumulate path, `003166F0`, `00316BF0`), descriptor and award-id tables, save block layout | **READY** (statically) | the tables are fully dumped (`CAT:606-622`, `CTR:436-454`); widths, saturation, mode-3 bitset, the two bounds and the evaluate-before-store order are stated and were run under Unicorn with "0 mismatches" (`CTR:261`). Use the favoured sides of C-V3, C-V4, C-V6 rather than the CTR §12 formula as written. New-game contents (G-10) and the load normaliser (G-9) are missing. |
+| Updater trigger path (kind 0: ids 5, 8, 18, 19, …) | **MOSTLY** | C-V2 (unconditional vs compare) and G-2 (operator, fire body), G-5 (ids 5 and 8), G-18 (53375) |
+| Evaluator `00315E90` modes 0–3, handbook overrides and monster list | **MOSTLY** | arms 0/2/3 agree across pages and the `menuhandbook.bin` values are decoded (`CAT:669-690`, `CAT:299-308`); G-8 (mode-2 pair order) |
+| Evaluator modes 4–7 and the sweep | **NOT YET** | the two pages disagree on which arm each mode reaches (C-V1), which decides whether Cartographer, Scrivener and the ten `MONSTER` marks can fire; the sweep's scheduler is not stated (G-3); predicate record formats are summaries only (G-6, G-7) |
+| Steam lifecycle, pump, award path, receipt handlers | **MOSTLY** | STM states the order, the null-manager rule and invariants I-1…I-6 with falsification (`STM:114-148`, `STM:205-221`); open: `0020CCC0` (O-3), `[02EA5368]+0x69` (O-4), by-id keys and the `startscene` mapping (O-2, G-16), the row-6 walk end (C-V11), the 1101 details (C-V12, G-13), listener/shutdown wiring (G-15) |
+| Script award verbs | **MOSTLY** | indices and live sites are stated (`CAT:745-761`); the `startscene` → by-id mapping is not (G-16) |
+| Networking / matchmaking | **READY** (as a negative) | "fetched once … never called in the shipped executable" (`CAT:281`); nothing to port beyond the fetch |
