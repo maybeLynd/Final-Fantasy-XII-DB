@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md",
+ "session": "session_01VEcx1tvvdhZnx7o8bCur26",
+ "rows": [
+  {"fn": "00181AB0",
+   "text": "keeps qword `+0x270` of `001EBA40()`; returns without further work when `00189120()` is null; otherwise takes `r = 00186910(00189120(), 0)` and calls `0018B8B0(0018CA40(), qword [r] when byte r+8 is 0 else 0, the kept qword, 4)` with a zero byte fifth (stack) argument",
+   "anchors": [["00181ABB", "mov"], ["00181AC7", "test"], ["00181ADB", "call"], ["00181AE0", "cmp"], ["00181B06", "call"]]},
+  {"fn": "001C5040",
+   "text": "when qword `01F812A8` differs from qword `01F812B0`, stores byte 0 at the address in `01F812A8` and copies `01F812A8` into `01F812B0`; then, with `i` the sign-extended dword `01F813F8`, calls `00202880(01F813A8 + i*0x10)` and `00202880(01F813D8 + i*0x10)` and stores 0xFFFFFFFF in the dwords at `01F81400 + i*4` and `01F81400 + i*4 + 8`",
+   "anchors": [["001C504B", "cmp"], ["001C5054", "mov"], ["001C507A", "call"], ["001C5094", "call"], ["001C50AE", "mov"]]},
+  {"fn": "001CC920",
+   "text": "branches to `001CC995` (past the listed extent) when `edx` is non-zero, when dword `01DFE40C` is above 4 (unsigned) or when the dword at `01F832B0` indexed by it is not positive (signed); otherwise calls `001FF6B0(01F813A8 + (dword 01F813F8)*0x10, 01F81358)`, then `001FF740(that result, \"EnableDof\" 008FA460)`, and tail-jumps to `00202820(that result, cl != 0)`",
+   "anchors": [["001CC926", "jne"], ["001CC932", "ja"], ["001CC93F", "jle"], ["001CC978", "call"], ["001CC98B", "jmp"]]},
+  {"fn": "001EC5A0",
+   "text": "returns 1 when `001B7D20(001B7F20())` returns a non-zero `al`, else 0",
+   "anchors": [["001EC5A4", "call"], ["001EC5AC", "call"], ["001EC5B5", "setne"]]},
+  {"fn": "0036D7E0",
+   "text": "stores 0 in dword `02EBA3F8` and stores in qword `022D8EA0` the address `022D8E50` plus 0x28 times the sign-extended dword `022D8EA8`",
+   "anchors": [["0036D7E7", "mov"], ["0036D7F1", "lea"], ["0036D7FC", "lea"], ["0036D800", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001CC920 (doubt): its three guard branches go to 001CC995, which is the end of the listed extent; the listing does not show what is there (by the frame it is presumably the add rsp / ret epilogue, and 001CC990 is an unreachable restore of rbx after the tail jump). The row names the branch target and does not claim a return value. 01DFE40C decodes to 0xFFFFFFFF in the file image, which the unsigned 'ja 4' guard rejects; the row describes only the compare. 00181AB0: 001EBA40, 00189120 and 0018CA40 are called with whatever rcx holds; the listing shows no arguments set for them. The f32 / string decodes used: 008FA460 = \"EnableDof\"."
+}
