@@ -1,0 +1,1249 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+ "session": "session_01Tuxsu5PvhCRfeUeyC5pKSu",
+ "rows": [
+  {
+   "fn": "001DB340",
+   "text": "divides dword `rcx+0x1C` by dword `rcx+0x18` (unsigned) and writes 0 to address 0 when the quotient is 0x40 or more; when qword `rcx+0x20` + quotient*8 is null, fills it with `001A1470(qword 01F7F4C0, dword rcx+0x18 << 4)` and calls `0016D6A0(qword 01F7F4C0, that block)`; then stores the 16-byte pair (qword `rdx`, dword `r8d`) at 16-byte entry (dword `rcx+0x1C` modulo dword `rcx+0x18`) of that block and increments dword `rcx+0x1C`",
+   "anchors": [
+    [
+     "001DB35F",
+     "cmp"
+    ],
+    [
+     "001DB364",
+     "mov"
+    ],
+    [
+     "001DB387",
+     "call"
+    ],
+    [
+     "001DB3B4",
+     "movups"
+    ],
+    [
+     "001DB3B8",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0020E610",
+   "text": "returns 1 when `ecx` is zero, else 0",
+   "anchors": [
+    [
+     "0020E612",
+     "test"
+    ],
+    [
+     "0020E614",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00231820",
+   "text": "with `R` = qword `rcx+0x10` + `r8w`*0x20 and `V` = qword `rcx+8` + signed word `R+0x10`*0x10: when `r8w` is non-negative and float `R+4` is above 0.001 (`008C5B2C`), stores to float `rdx+4` the value float `V+4` + ((float `V+8` - float `rdx+8`) * float `R+8` + (float `V` - float `rdx`) * float `R`) / float `R+4`; otherwise stores float `rdx+4` back unchanged",
+   "anchors": [
+    [
+     "00231829",
+     "js"
+    ],
+    [
+     "00231849",
+     "comiss"
+    ],
+    [
+     "00231873",
+     "divss"
+    ],
+    [
+     "0023187D",
+     "movss"
+    ],
+    [
+     "00231883",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0024B1C0",
+   "text": "when word `02092168` is below 0x100 (unsigned), stores `rcx` to qword `02091150` + word*8 and increments word `02092168`; otherwise tail-jumps to `003697F0(rcx)`",
+   "anchors": [
+    [
+     "0024B1CC",
+     "cmp"
+    ],
+    [
+     "0024B1CF",
+     "jae"
+    ],
+    [
+     "0024B1DF",
+     "mov"
+    ],
+    [
+     "0024B1E3",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "002F3890",
+   "text": "copies dword `rcx+0x1F0` to `+0x1F4`; moves the 16 bytes at `+0x70` to `+0x80` and stores into `+0x70` the 16 bytes at `+0x60` when qword `+0x10` is null, otherwise a stack copy of `+0x60` after `0039AF70(qword +0x10)` and `00398F90(copy, copy)`",
+   "anchors": [
+    [
+     "002F38AE",
+     "mov"
+    ],
+    [
+     "002F38BB",
+     "je"
+    ],
+    [
+     "002F38D6",
+     "call"
+    ],
+    [
+     "002F38EA",
+     "movdqa"
+    ],
+    [
+     "002F38F2",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00333C00",
+   "text": "for each of the 0x1D dwords at `rcx+0x2C` (stride 4): when `0020E600(dword)` is non-null, calls `0046F370` and then `003697F0` on `0020E600(dword)` and stores `0020E620(0)` back into the dword",
+   "anchors": [
+    [
+     "00333C22",
+     "call"
+    ],
+    [
+     "00333C36",
+     "call"
+    ],
+    [
+     "00333C45",
+     "call"
+    ],
+    [
+     "00333C51",
+     "mov"
+    ],
+    [
+     "00333C5F",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00350DD0",
+   "text": "computes `r` = `00267DB0(r9)`, `S` = `00358940(002640C0(), 00267E10(r9))` and `P` = `003588B0(003590D0())`; when `P` and `S` are both non-null, reads three floats through `00265020(S, ...)` and tail-jumps to `0026B4E0(rcx, 1)` when `r*r` is above their squared distance to the three floats at qword `P+0xB8`, otherwise (also when `P` or `S` is null) to `0026B4E0(rcx, 0)`",
+   "anchors": [
+    [
+     "00350E10",
+     "call"
+    ],
+    [
+     "00350E1F",
+     "call"
+    ],
+    [
+     "00350E47",
+     "call"
+    ],
+    [
+     "00350E98",
+     "cmova"
+    ],
+    [
+     "00350EB9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00377010",
+   "text": "selects the 0x90-byte row `02ADBB40` + (low byte of `ecx`)*0x90 and, when `ecx` is non-zero and equals the row's dword `+0`, copies bit 0 of word `[rdx]` into bit 0 and bit 0 of word `rdx+4` into bit 1 of word `+0x54`, dwords `rdx+0x14` to `rdx+0x20` into `+0x40` to `+0x4C` and dwords `rdx+8` to `rdx+0x10` into `+0x34` to `+0x3C`; otherwise returns without writing",
+   "anchors": [
+    [
+     "00377028",
+     "je"
+    ],
+    [
+     "0037702D",
+     "jne"
+    ],
+    [
+     "0037703B",
+     "xor"
+    ],
+    [
+     "00377050",
+     "xor"
+    ],
+    [
+     "00377058",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0039D430",
+   "text": "copies the 64 bytes at `rcx` to `02AEE9E0`, `02AEE9F0`, `02AEEA00` and `02AEEA10`, calls `0039AFA0()` and tail-jumps to `003970A0(02AEECB0)`",
+   "anchors": [
+    [
+     "0039D437",
+     "movups"
+    ],
+    [
+     "0039D458",
+     "movups"
+    ],
+    [
+     "0039D45F",
+     "call"
+    ],
+    [
+     "0039D46F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003A5640",
+   "text": "with `i` = `ecx` (0 when `ecx` is -1) and `G` = qword `02F97348`: when word `G+0x378` has bit 0x200, returns -1 if `i` is not below dword `02096B24` (signed) and otherwise `002E9B80(dword 02096A24 + i*4)`; else when byte `[G]` is 3 returns dword `G+0x10+i*4`; else returns `002E9B80` of dword `G+0x90+i*4`, or of dword `G+0x10+i*4` when that is zero",
+   "anchors": [
+    [
+     "003A5652",
+     "test"
+    ],
+    [
+     "003A565C",
+     "cmp"
+    ],
+    [
+     "003A566B",
+     "mov"
+    ],
+    [
+     "003A5686",
+     "test"
+    ],
+    [
+     "003A56AC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003A7CB0",
+   "text": "walks the qword slots at offsets 0 to 0x3F8 (stride 8, loop bound 0x400) of the table at qword `02EBEFA0` and, for each non-null slot, calls `003697F0(slot)` and zeroes the slot",
+   "anchors": [
+    [
+     "003A7CCA",
+     "mov"
+    ],
+    [
+     "003A7CD3",
+     "call"
+    ],
+    [
+     "003A7CE2",
+     "mov"
+    ],
+    [
+     "003A7CEA",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003A9510",
+   "text": "walks the qword slots at offsets 8 to 0x9F8 (stride 8, loop bound 0xA00) of the table at qword `02EBEF90` and, for each non-null slot, calls `003697F0(slot)` and zeroes the slot",
+   "anchors": [
+    [
+     "003A952B",
+     "mov"
+    ],
+    [
+     "003A9534",
+     "call"
+    ],
+    [
+     "003A9543",
+     "mov"
+    ],
+    [
+     "003A954B",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003A98D0",
+   "text": "walks the qword slots at offsets 8 to 0x17F8 (stride 8, loop bound 0x1800) of the table at qword `02EBEF78` and, for each non-null slot, calls `003697F0(slot)` and zeroes the slot",
+   "anchors": [
+    [
+     "003A98EB",
+     "mov"
+    ],
+    [
+     "003A98F4",
+     "call"
+    ],
+    [
+     "003A9903",
+     "mov"
+    ],
+    [
+     "003A990B",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003A99F0",
+   "text": "calls `003A9AD0(word [rcx], sign-extended byte rcx+2, edx)`; when that returns null, returns null; otherwise calls `00861EBA(result, rcx+4, edx)` and `005004C0(result, dword 02EBB738 + low dword of result)` and returns `rcx+4+edx`",
+   "anchors": [
+    [
+     "003A9A12",
+     "call"
+    ],
+    [
+     "003A9A1D",
+     "jne"
+    ],
+    [
+     "003A9A39",
+     "call"
+    ],
+    [
+     "003A9A49",
+     "call"
+    ],
+    [
+     "003A9A57",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "003CC0F0",
+   "text": "zeroes dword `rcx+0xC0`, calls `00202C70(rcx+0x20, rdx)` and tail-jumps to `00202D50(rcx+0x60, rdx)`",
+   "anchors": [
+    [
+     "003CC0FD",
+     "mov"
+    ],
+    [
+     "003CC10E",
+     "call"
+    ],
+    [
+     "003CC124",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003D8E20",
+   "text": "selects the 0x60-byte row `02B4D7D0` + (low byte of `ecx`)*0x60 and, when its dword `+4` equals `ecx`, stores `xmm1` to its float `+0x30`; otherwise writes nothing",
+   "anchors": [
+    [
+     "003D8E37",
+     "cmp"
+    ],
+    [
+     "003D8E3A",
+     "cmovne"
+    ],
+    [
+     "003D8E43",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003D9040",
+   "text": "zeroes qword `rcx+0x330` and dword `+0x338`; returns 0 when `002F2D60(rcx)` is zero; otherwise calls `003A3E20(rcx+0x2D0, 0)` and `003D92C0(rcx)`, and when byte `[qword 02F97348]` is 1 increments byte `+0x37A` of that block and calls `002EA8B0(3, 1)` when the result is 1; returns 1",
+   "anchors": [
+    [
+     "003D905F",
+     "jne"
+    ],
+    [
+     "003D9070",
+     "call"
+    ],
+    [
+     "003D9078",
+     "call"
+    ],
+    [
+     "003D9089",
+     "inc"
+    ],
+    [
+     "003D90A7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003E7140",
+   "text": "when dword `rcx+0x448` is non-zero calls `003D8300` on it; copies dword `+0x44C` to `+0x448`; builds a stack record with floats `xmm1`, `xmm2`, `xmm3` at `+0`, `+4`, `+8`, byte `+0xC` with bits 0-5 cleared and bit 6 set, byte `+0xD` ANDed with 0x80, byte `+0xE` = 2 and dword `+0x10` = the sixth (stack) argument when it is below 4 (signed), else 0; and stores `003D7FF0(record)` to dword `+0x44C`",
+   "anchors": [
+    [
+     "003E717F",
+     "call"
+    ],
+    [
+     "003E7191",
+     "mov"
+    ],
+    [
+     "003E71BB",
+     "cmovl"
+    ],
+    [
+     "003E71D5",
+     "call"
+    ],
+    [
+     "003E71DA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00431040",
+   "text": "calls `00430A60(rcx, xmm1)` and `00430A60(rcx+0x10, xmm1)` and tail-jumps to `00430A60(rcx+0x20, xmm1)`",
+   "anchors": [
+    [
+     "00431051",
+     "call"
+    ],
+    [
+     "0043105D",
+     "call"
+    ],
+    [
+     "00431073",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0043E9C0",
+   "text": "when byte `[rcx]` minus 0x42 is at most 0x61 (unsigned, types 0x42 to 0xA3), reads a byte map and then an offset table indexed by it and jumps to the selected arm, each arm a tail jump with the incoming arguments unchanged to one of `00524A10`, `00526040`, `0016D6A0`, `0047BF70`, `005294B0`, `0052A340`, `0052B060`, `0052D8E0` or `0052EA50`; for any other type it returns (which type takes which arm is in the tables, not the listing)",
+   "anchors": [
+    [
+     "0043E9C6",
+     "cmp"
+    ],
+    [
+     "0043E9D4",
+     "movzx"
+    ],
+    [
+     "0043E9E8",
+     "jmp"
+    ],
+    [
+     "0043E9EB",
+     "jmp"
+    ],
+    [
+     "0043EA18",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "00448D70",
+   "text": "calls `002F2530` with the incoming arguments and returns 0 when it returns 0; otherwise, when word `+0x180` of qword `rcx+0x20` has bit 0x800, adds the truncated `xmm2` to byte `rcx+0x2A1`, then calls `00449560(rcx)` and returns the `002F2530` result",
+   "anchors": [
+    [
+     "00448D85",
+     "call"
+    ],
+    [
+     "00448D8E",
+     "jne"
+    ],
+    [
+     "00448DA9",
+     "test"
+    ],
+    [
+     "00448DB7",
+     "add"
+    ],
+    [
+     "00448DC0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00455560",
+   "text": "with `D` = qword `rcx+0x20`, runs `00398030` on a stack copy `M` of the 64 bytes at `rcx+0x250` with `02AEEC30`, `02AEEC70` or `02AEEA60` when bits 2-4 of byte `D+0x4A` are 1, 2, or 4/5 (after `00434900(M)`/`00434A70(M)`); calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)`, `00397910(stack, M, 02AE0310)`; returns unless byte `D+0x240` is 2 or 4 and `00431830(D+0x1A0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE0370`, `02AE0360`, `02AE02B0`, `02AE02B4` and `02AE02A0` to `02AE02AC`; when `E` = `0020E600(dword D+0x2A0 + dword rcx+0x298 * 4)` is non-null, calls `0039B550(02AEECB0)` and, by bits 1-2 of byte `D+0x294` (0: nothing; 1: dword `02AE0280` = 0; 2: = 2; 3: twice, with 2 then 0), `003A2F70(dword 02AE0268, dword 02AE026C, 00499A20, 02AE0278, 0x118, 0020E600(dword E+0x10), dword E+0x14)` when byte `D+0x24A` AND 7 is zero, else `003A33B0(s, ...)` with those arguments, `s` from `0039A9B0(rcx+0x230)` (byte `D+0x4B` bit 0) or `00399600(rcx+0x230, buffer)` (returning when non-zero)",
+   "anchors": [
+    [
+     "0045560E",
+     "call"
+    ],
+    [
+     "00455652",
+     "jne"
+    ],
+    [
+     "004556A7",
+     "mov"
+    ],
+    [
+     "00455923",
+     "call"
+    ],
+    [
+     "0045598A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "004559C0",
+   "text": "with `D` = qword `rcx+0x20`, runs `00398030` on a stack copy `M` of the 64 bytes at `rcx+0x250` with `02AEEC30`, `02AEEC70` or `02AEEA60` when bits 2-4 of byte `D+0x4A` are 1, 2, or 4/5 (after `00434900(M)`/`00434A70(M)`); calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)`, `00397910(stack, M, 02AE01E0)`; returns unless byte `D+0x240` is 2 or 4 and `00431830(D+0x1A0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE0240`, `02AE0230`, `02AE0180`, `02AE0184` and `02AE0170` to `02AE017C`; when `E` = `0020E600(dword D+0x2A0 + dword rcx+0x298 * 4)` is non-null, calls between `003A3D00(byte D+0x74)` and `003A3D00(0)` `003A2F70(dword 02AE0138, dword 02AE013C, 00497AC0, 02AE0148, 0x118, 0020E600(dword E+0x10), dword E+0x14)` when byte `D+0x24A` AND 7 is zero, else `003A33B0(s, ...)` with those arguments, `s` from `0039A9B0(rcx+0x230)` (byte `D+0x4B` bit 0) or `00399600(rcx+0x230, buffer)` (returning when non-zero), with `0039B550(02AEECB0)` first on that path",
+   "anchors": [
+    [
+     "00455A67",
+     "call"
+    ],
+    [
+     "00455AAB",
+     "jne"
+    ],
+    [
+     "00455C15",
+     "call"
+    ],
+    [
+     "00455C50",
+     "call"
+    ],
+    [
+     "00455CF3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045A220",
+   "text": "returns at once when byte `[rcx]` is 0; otherwise, with `D` = qword `rcx+0x20`, runs `00398030` on a stack copy `M` of the 64 bytes at `rcx+0x250` with `02AEEC30`, `02AEEC70` or `02AEEA60` when bits 2-4 of byte `D+0x4A` are 1, 2, or 4/5 (after `00434900(M)`/`00434A70(M)`); calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)`, `00397910(stack, M, 02AE3020)`; returns unless byte `D+0x250` is 2 or 4 and `00431830(D+0x1B0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE3080`, `02AE3070`, `02AE2FC0`, `02AE2FC4`, `02AE2FCC` and `02AE2FB0` to `02AE2FBC`; when `E` = `0020E600(dword D+0x2B0 + dword rcx+0x298 * 4)` is non-null, calls `0039B550(02AEECB0)` and, by bits 1-2 of byte `D+0x2A4` (0/1: dword `02AE2F90` = 0; 2: = 2; 3: twice, with 2 then 0), `003A2F70(dword 02AE2F78, dword 02AE2F7C, 004AAFC0, 02AE2F88, 0x118, 0020E600(dword E+0x10), dword E+0x14)` when byte `D+0x25A` AND 7 is zero, else `003A33B0(s, ...)` with those arguments, `s` from `0039A9B0(rcx+0x230)` (byte `D+0x4B` bit 0) or `00399600(rcx+0x230, buffer)` (returning when non-zero)",
+   "anchors": [
+    [
+     "0045A246",
+     "je"
+    ],
+    [
+     "0045A31E",
+     "jne"
+    ],
+    [
+     "0045A462",
+     "movss"
+    ],
+    [
+     "0045A607",
+     "call"
+    ],
+    [
+     "0045A66E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045A6A0",
+   "text": "returns at once when byte `[rcx]` is 0; otherwise, with `D` = qword `rcx+0x20`, runs `00398030` on a stack copy `M` of the 64 bytes at `rcx+0x250` with `02AEEC30`, `02AEEC70` or `02AEEA60` when bits 2-4 of byte `D+0x4A` are 1, 2, or 4/5 (after `00434900(M)`/`00434A70(M)`); calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)`, `00397910(stack, M, 02AE2130)`; returns unless byte `D+0x250` is 2 or 4 and `00431830(D+0x1B0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE2190`, `02AE2180`, `02AE20D0`, `02AE20D4`, `02AE20DC` and `02AE20C0` to `02AE20CC`; takes `E` = `0020E600` of the dword at `D+0x2B0` indexed by dword `rcx+0x298` when byte `D+0x2A4` has bit 0, else by `n` = truncated float `02AE20DC` (returning when `n` is above 3, unsigned, else subtracting `n` from that float); when `E` is non-null calls `003A2F70(dword 02AE2088, dword 02AE208C, 004A8B00, 02AE2098, 0x118, 0020E600(dword E+0x10), dword E+0x14)` when byte `D+0x25A` AND 7 is zero, else `003A33B0(s, ...)` with those arguments, `s` from `0039A9B0(rcx+0x230)` (byte `D+0x4B` bit 0) or `00399600(rcx+0x230, buffer)` (returning when non-zero), with `0039B550(02AEECB0)` first on that path",
+   "anchors": [
+    [
+     "0045A6C3",
+     "je"
+    ],
+    [
+     "0045A903",
+     "test"
+    ],
+    [
+     "0045A928",
+     "ja"
+    ],
+    [
+     "0045A9A3",
+     "call"
+    ],
+    [
+     "0045AA16",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045AEF0",
+   "text": "with `D` = qword `rcx+0x20`, runs `00398030` on a stack copy `M` of the 64 bytes at `rcx+0x250` with `02AEEC30`, `02AEEC70` or `02AEEA60` when bits 2-4 of byte `D+0x4A` are 1, 2, or 4/5 (after `00434900(M)`/`00434A70(M)`); calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)`, `00397910(stack, M, 02AE32A0)`, `00397910(02AEEA20, M, M)`, `00397910(02AEDDF0, M, 02AE3250)`; returns unless byte `D+0x240` is 2 or 4 and `00431830(D+0x1A0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE3300`, `02AE32F0`, `02AE3240`, `02AE3244` and `02AE3230` to `02AE323C`; when `E` = `0020E600(dword D+0x2A0 + dword rcx+0x298 * 4)` is non-null, calls `003A2F70(dword 02AE31F8, dword 02AE31FC, 004ADD10, 02AE3208, 0x128, 0020E600(dword E+0x10), dword E+0x14)` when byte `D+0x24A` AND 7 is zero, else `003A33B0(s, ...)` with those arguments, `s` from `0039A9B0(rcx+0x230)` (byte `D+0x4B` bit 0) or `00399600(rcx+0x230, buffer)` (returning when non-zero), with `0039B550(02AEECB0)` first on that path",
+   "anchors": [
+    [
+     "0045AFDF",
+     "call"
+    ],
+    [
+     "0045AFF6",
+     "call"
+    ],
+    [
+     "0045B006",
+     "jne"
+    ],
+    [
+     "0045B19E",
+     "call"
+    ],
+    [
+     "0045B227",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045B2B0",
+   "text": "with `D` = qword `rcx+0x20`, runs `00398030` on a stack copy `M` of the 64 bytes at `rcx+0x250` with `02AEEC30`, `02AEEC70` or `02AEEA60` when bits 2-4 of byte `D+0x4A` are 1, 2, or 4/5 (after `00434900(M)`/`00434A70(M)`); copies the three 16-byte rows of `00397910(02AEEBF0, M, T)`, each passed through `0039B960`, to `02AE33A0`, `02AE33B0`, `02AE33C0`; calls `0039B620(dword rcx+0x290)`, `0039B550(02AEECB0)`, `00397910(stack, M, 02AE33E0)`; returns unless byte `D+0x240` is 2 or 4 and `00431830(D+0x1A0, out, 0, dword rcx+0x44)` is non-null; fills globals `02AEE908`, `02AEE900`, `02AE3440`, `02AE3430`, `02AE338C` and `02AE3370` to `02AE337C`; when `E` = `0020E600(dword D+0x2A0 + dword rcx+0x298 * 4)` is non-null, calls `003A2F70(dword 02AE3338, dword 02AE333C, 004B0230, 02AE3348, 0x118, 0020E600(dword E+0x10), dword E+0x14)` when byte `D+0x24A` AND 7 is zero, else `003A33B0(s, ...)` with those arguments, `s` from `0039A9B0(rcx+0x230)` (byte `D+0x4B` bit 0) or `00399600(rcx+0x230, buffer)` (returning when non-zero), with `0039B550(02AEECB0)` first on that path",
+   "anchors": [
+    [
+     "0045B371",
+     "call"
+    ],
+    [
+     "0045B3A5",
+     "movups"
+    ],
+    [
+     "0045B492",
+     "mulss"
+    ],
+    [
+     "0045B581",
+     "call"
+    ],
+    [
+     "0045B60A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00463FF0",
+   "text": "returns 0 when `002F2D60(rcx)` is zero; otherwise clears bit 0 of byte `rcx+0x248`, zeroes dword `+0x244`, calls `004649A0(rcx)`, sets bit 1 of byte `+0x248`, stores `00377190(rcx)` to dword `+0x24C` and returns 1",
+   "anchors": [
+    [
+     "00464000",
+     "jne"
+    ],
+    [
+     "00464008",
+     "and"
+    ],
+    [
+     "0046401C",
+     "call"
+    ],
+    [
+     "00464029",
+     "or"
+    ],
+    [
+     "00464030",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00464B30",
+   "text": "returns 0 when `002F2D60(rcx)` is zero; otherwise zeroes dword `rcx+0x234`, stores `00377190(rcx)` to dword `+0x238`, sets bit 0 of byte `+0x23C` and returns 1",
+   "anchors": [
+    [
+     "00464B40",
+     "jne"
+    ],
+    [
+     "00464B4B",
+     "mov"
+    ],
+    [
+     "00464B55",
+     "call"
+    ],
+    [
+     "00464B5A",
+     "or"
+    ],
+    [
+     "00464B61",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00465680",
+   "text": "sets bit 0x80 of word `rcx+0x232` (ORs it with 0x80 loaded at the entry)",
+   "anchors": [
+    [
+     "00465685",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "004FF270",
+   "text": "dispatches on byte `rcx+0xC2`: tail-jumps to `00537C80` for 0, `00537FA0` for 1, `00538350` for 2 and `005387B0` for 3, with the incoming arguments, and returns `rcx` for any other value",
+   "anchors": [
+    [
+     "004FF278",
+     "test"
+    ],
+    [
+     "004FF289",
+     "cmp"
+    ],
+    [
+     "004FF28F",
+     "mov"
+    ],
+    [
+     "004FF293",
+     "jmp"
+    ],
+    [
+     "004FF2A2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00501440",
+   "text": "calls `003697F0` on qword `rcx+0x20` and on qword `rcx+0x18` when each is non-null; when qword `+0xB8` is non-null calls `00183720` on it and on qword `+0xB0` and zeroes qword `+0xB8`; then zeroes dwords `+0x10` and `+0xA8` and qword `+0x20`",
+   "anchors": [
+    [
+     "00501452",
+     "call"
+    ],
+    [
+     "00501460",
+     "call"
+    ],
+    [
+     "00501471",
+     "call"
+    ],
+    [
+     "0050147D",
+     "call"
+    ],
+    [
+     "00501494",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005014B0",
+   "text": "stores `0020E620(0)` to dwords `rcx+0` and `rcx+4`, zeroes dword `+8` and copies word `[rdx]` to word `+0xC` and bytes `rdx+2` and `rdx+3` to bytes `+0xE` and `+0xF`; zeroes qwords `+0x20`, `+0x18` and `+0xB8` and tail-jumps to `00501440(rcx)`",
+   "anchors": [
+    [
+     "005014C9",
+     "mov"
+    ],
+    [
+     "005014D0",
+     "mov"
+    ],
+    [
+     "005014DB",
+     "mov"
+    ],
+    [
+     "005014F5",
+     "mov"
+    ],
+    [
+     "00501509",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005019D0",
+   "text": "stores `0020E620(0)` to dwords `rcx+0` and `rcx+4`, zeroes dword `+8` and copies word `[rdx]` to word `+0xC` and bytes `rdx+2` and `rdx+3` to bytes `+0xE` and `+0xF`; clears bit 0 of word `+0x40`, zeroes qwords `+0x10`, `+0x18`, `+0x20`, `+0x28` and `+0x30` and tail-jumps to `00501950(rcx)`",
+   "anchors": [
+    [
+     "005019E9",
+     "mov"
+    ],
+    [
+     "005019FB",
+     "mov"
+    ],
+    [
+     "00501A0D",
+     "and"
+    ],
+    [
+     "00501A22",
+     "mov"
+    ],
+    [
+     "00501A33",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00503830",
+   "text": "when bit 0 of byte `rcx+0x16` is clear and `0020E600(dword rcx+0x18)` is non-null, calls `003697F0` on that result; then stores `0020E620(0)` to dword `+0x18`, zeroes dword `+0x10` and word `+0x14` and clears bit 0 of word `+0x16`",
+   "anchors": [
+    [
+     "0050383D",
+     "jne"
+    ],
+    [
+     "00503857",
+     "call"
+    ],
+    [
+     "00503863",
+     "mov"
+    ],
+    [
+     "0050386B",
+     "mov"
+    ],
+    [
+     "00503874",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00503C50",
+   "text": "stores `0020E620(0)` to dwords `rcx+0` and `rcx+4`, zeroes dword `+8` and copies word `[rdx]` to word `+0xC` and bytes `rdx+2` and `rdx+3` to bytes `+0xE` and `+0xF`; then zeroes qword `+0x18` and dword `+0x10`",
+   "anchors": [
+    [
+     "00503C69",
+     "mov"
+    ],
+    [
+     "00503C70",
+     "mov"
+    ],
+    [
+     "00503C7B",
+     "mov"
+    ],
+    [
+     "00503C92",
+     "mov"
+    ],
+    [
+     "00503C96",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00503DE0",
+   "text": "when bit 0 of byte `rcx+0x18` is clear and `0020E600(dword rcx+0x10)` is non-null, calls `003697F0` on that result; then clears bit 0 of byte `+0x18`, stores `0020E620(0)` to dword `+0x10` and zeroes dword `+0x14`",
+   "anchors": [
+    [
+     "00503DED",
+     "jne"
+    ],
+    [
+     "00503E07",
+     "call"
+    ],
+    [
+     "00503E13",
+     "and"
+    ],
+    [
+     "00503E17",
+     "mov"
+    ],
+    [
+     "00503E1A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00504000",
+   "text": "calls `003697F0(0020E600(dword rcx+0x28))` when that lookup is non-null and stores `0020E620(0)` to dword `+0x28`; when dword `+0x14` is non-zero and byte `+0x18` is 1 or 3, calls `003D7F30(byte +0x18, dword +0x14)`; then zeroes qword `+0x10`",
+   "anchors": [
+    [
+     "00504021",
+     "call"
+    ],
+    [
+     "00504030",
+     "mov"
+    ],
+    [
+     "00504044",
+     "cmp"
+    ],
+    [
+     "0050404C",
+     "call"
+    ],
+    [
+     "00504053",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005041F0",
+   "text": "calls `003697F0(0020E600(dword rcx+0x18))` when that lookup is non-null, then zeroes qword `rcx+0x10`",
+   "anchors": [
+    [
+     "00504204",
+     "je"
+    ],
+    [
+     "00504211",
+     "call"
+    ],
+    [
+     "00504218",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005042C0",
+   "text": "stores `0020E620(0)` to dwords `rcx+0` and `rcx+4`, zeroes dword `+8` and copies word `[rdx]` to word `+0xC` and bytes `rdx+2` and `rdx+3` to bytes `+0xE` and `+0xF`; then zeroes qword `+0x28`, byte `+0x14` and dword `+0x10`",
+   "anchors": [
+    [
+     "005042D9",
+     "mov"
+    ],
+    [
+     "005042E0",
+     "mov"
+    ],
+    [
+     "005042EB",
+     "mov"
+    ],
+    [
+     "00504302",
+     "mov"
+    ],
+    [
+     "00504309",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00532E80",
+   "text": "with `n` = word `rcx+0xB0`, computes (dword `[rdx]` + 1 + `n`*0x20) * 0x10, adds (`n` + 6) * 0x50 once for each non-zero dword among `r8+0x88`, `r8+0x8C` and `r8+0x90`, and returns the 32-bit sum shifted right by 4",
+   "anchors": [
+    [
+     "00532E94",
+     "add"
+    ],
+    [
+     "00532E9B",
+     "cmp"
+    ],
+    [
+     "00532EB2",
+     "cmp"
+    ],
+    [
+     "00532EC9",
+     "cmp"
+    ],
+    [
+     "00532EE0",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "00538A60",
+   "text": "calls `00500470` with the incoming `rcx` and `edx`, then `0042FCF0(rcx+0x80, edx)` and `004304F0(rcx+0xD0, edx)`, and returns `rcx+0xF0`",
+   "anchors": [
+    [
+     "00538A6F",
+     "call"
+    ],
+    [
+     "00538A7D",
+     "call"
+    ],
+    [
+     "00538A8B",
+     "call"
+    ],
+    [
+     "00538A95",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00540C20",
+   "text": "takes entry word `02F8F2C6` of the 0x28-byte array at qword `02F8F2F8` and increments the word; stores `rcx` to its qword `+0`, `r9d` AND 0xFFFFFF to dword `+8`, ORs byte `02AEE910` shifted left 4 into byte `+0xB`, stores `edx` to dword `+0xC` and zeroes qword `+0x10`",
+   "anchors": [
+    [
+     "00540C42",
+     "mov"
+    ],
+    [
+     "00540C4A",
+     "mov"
+    ],
+    [
+     "00540C4D",
+     "mov"
+    ],
+    [
+     "00540C5B",
+     "or"
+    ],
+    [
+     "00540C5F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00543940",
+   "text": "computes (dword `[rdx]` + 0x78) * 0x10, adds 0x190 for each non-zero dword among `rcx+0x740`, `+0x790`, `+0x7E0` and `+0x830`, and returns the 32-bit sum shifted right by 4",
+   "anchors": [
+    [
+     "0054394E",
+     "cmp"
+    ],
+    [
+     "0054395C",
+     "cmove"
+    ],
+    [
+     "00543982",
+     "cmp"
+    ],
+    [
+     "00543990",
+     "cmove"
+    ],
+    [
+     "00543993",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "005439A0",
+   "text": "zeroes dwords `rcx+0x14` and `rcx+4` and stores 1.0 (`01CEBBA8`) divided by (dword `[rcx]` + 1, converted to float) to float `+0x18`",
+   "anchors": [
+    [
+     "005439AD",
+     "inc"
+    ],
+    [
+     "005439B6",
+     "mov"
+    ],
+    [
+     "005439B9",
+     "mov"
+    ],
+    [
+     "005439BC",
+     "divss"
+    ],
+    [
+     "005439C0",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00544590",
+   "text": "calls `0020E600(dword rcx+0x64)` without using its result and returns 0x13 when dword `[rcx]` is 0, else 0x13 + (dword - 1) / 20 (unsigned) + 1",
+   "anchors": [
+    [
+     "005445A2",
+     "call"
+    ],
+    [
+     "005445AB",
+     "je"
+    ],
+    [
+     "005445B4",
+     "mul"
+    ],
+    [
+     "005445B8",
+     "shr"
+    ],
+    [
+     "005445CB",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "005479B0",
+   "text": "walks the four words at `rcx+2`, `+0x92`, `+0x122` and `+0x1B2` (stride 0x90) and returns 0 when all are zero, else (0x40 + 0xF0 for the first non-zero word + 0x100 for each further one) shifted right by 4",
+   "anchors": [
+    [
+     "005479C7",
+     "cmp"
+    ],
+    [
+     "005479DA",
+     "cmove"
+    ],
+    [
+     "005479E8",
+     "sub"
+    ],
+    [
+     "005479F1",
+     "cmovne"
+    ],
+    [
+     "005479F5",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "00547D80",
+   "text": "with `n` = dword `rcx+0x140`, computes (dword `[rdx]` + 0x18 + `n`*0x27) * 0x10, adds `n`*0xC0 for each non-zero byte among `rcx+0x78`, `+0x79` and `+0x7A`, and returns the 32-bit sum shifted right by 4",
+   "anchors": [
+    [
+     "00547D8F",
+     "imul"
+    ],
+    [
+     "00547D96",
+     "shl"
+    ],
+    [
+     "00547D99",
+     "cmp"
+    ],
+    [
+     "00547DB7",
+     "cmp"
+    ],
+    [
+     "00547DC7",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "0054A980",
+   "text": "computes (dword `[rdx]` + 0x3F) * 0x10, adds 0xC0 for each non-zero byte among `rcx+0x156`, `+0x157` and `+0x158`, and returns the 32-bit sum shifted right by 4",
+   "anchors": [
+    [
+     "0054A988",
+     "cmp"
+    ],
+    [
+     "0054A995",
+     "cmove"
+    ],
+    [
+     "0054A9AA",
+     "cmp"
+    ],
+    [
+     "0054A9B8",
+     "cmove"
+    ],
+    [
+     "0054A9BC",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "005F01B0",
+   "text": "returns at once when `rcx` is null; otherwise, for each of `edx` (unsigned) 0x50-byte entries from `rcx`, calls `0062B7B0(entry)` when `00625EC0(entry)` returns a non-zero byte and then `00616420(entry)`; finally calls `00584730(rcx)`",
+   "anchors": [
+    [
+     "005F01B3",
+     "je"
+    ],
+    [
+     "005F01E3",
+     "call"
+    ],
+    [
+     "005F01EF",
+     "call"
+    ],
+    [
+     "005F01F7",
+     "call"
+    ],
+    [
+     "005F020A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "004D7BF0",
+   "why": "10177-byte body of long straight-line float and integer work over the 16-byte slots at 02064E30 and the globals from 02064B00 up, with many branches and helper calls; one sentence cannot state its reads and writes accurately, so it is left for a reading against the executable"
+  },
+  {
+   "fn": "004DB350",
+   "why": "4953-byte body of long straight-line float and integer work over the 16-byte slots at 02064E30 and the globals from 02064B00 up, with many branches and helper calls; one sentence cannot state its reads and writes accurately, so it is left for a reading against the executable"
+  },
+  {
+   "fn": "004DDDF0",
+   "why": "5479-byte body of long straight-line float and integer work over the 16-byte slots at 02064E30 and the globals from 02064B00 up, with many branches and helper calls; one sentence cannot state its reads and writes accurately, so it is left for a reading against the executable"
+  },
+  {
+   "fn": "004DF440",
+   "why": "6957-byte body of long straight-line float and integer work over the 16-byte slots at 02064E30 and the globals from 02064B00 up, with many branches and helper calls; one sentence cannot state its reads and writes accurately, so it is left for a reading against the executable"
+  },
+  {
+   "fn": "004E0F70",
+   "why": "6587-byte body of long straight-line float and integer work over the 16-byte slots at 02064E30 and the globals from 02064B00 up, with many branches and helper calls; one sentence cannot state its reads and writes accurately, so it is left for a reading against the executable"
+  },
+  {
+   "fn": "004ECC50",
+   "why": "3334-byte body of long straight-line float and integer work over the 16-byte slots at 02064E30 and the globals from 02064B00 up, with many branches and helper calls; one sentence cannot state its reads and writes accurately, so it is left for a reading against the executable"
+  }
+ ],
+ "notes": "Global fills in the six type-arm rows (00455560, 004559C0, 0045A220, 0045A6A0, 0045AEF0, 0045B2B0), in listing order: qword 02AEE908 = sign-extended 004314E0(D+0x30, dword rcx+0x44); dword 02AEE900 = word D+0x24A AND 7 (D+0x25A in 0045A220 and 0045A6A0); the next two named qwords get the first and second qwords of out (in 0045A220 and 0045A6A0 the higher-addressed global gets the first); the next two floats get 004309C0(D+0x1A0) + float rcx+0x29C and 004309C0(D+0x1B0) + float rcx+0x2A0 (D+0x1B0/D+0x1C0 in 0045A220 and 0045A6A0); in 0045B2B0 float 02AE338C instead gets 004309C0(D+0x230, dword rcx+0x44) * 0017FFD0() (0017FFD0 called with no argument set); the four-dword run gets the four bytes of 0042FDB0(D+0x1E0, dword rcx+0x44) (D+0x1F0 in 0045A220 and 0045A6A0) after 0026EE00 combines it with the stack colour built by 002F1F40(rcx, rcx+0x230, colour) and 0026EE00(colour, rcx+0x240, colour); in 0045A220 and 0045A6A0 the last named float (02AE2FCC, 02AE20DC) gets 004309C0(D+0x190, dword rcx+0x44). In each arm 003970A0 first initialises the stack block passed as the first argument of 00397910; 00399600's result s is dword buffer+4. In 0045B2B0, 0039B960 runs in place on each 16-byte row of T before the copy. In 004559C0 a non-zero 00399600 return exits before either 003A3D00 call. Doubt: these six rows are structural summaries of 870-1152-byte bodies; each clause was re-read against the listing, but OPUS/FABLE may prefer to cut them down. Doubt: 0043E9C0 (the type-to-arm assignment lives in the byte map and offset table, which the listing does not decode, so the row names the arms but not which types reach each; whether the map also routes some in-range types to the final ret is not visible). Clarifications (no doubt on the row): 001DB340: the 16-byte store also writes the 4 uninitialised stack bytes after r8d. 002F3890: 0039AF70 receives the incoming rdx unchanged as its second argument (the listing does not set rdx). 00350DD0: 003590D0 is called with whatever rcx holds after 00358940 (the listing sets none); the row writes it as 003590D0(). 003E7140: the record dword +0x10 comes from [rsp+0xB8] after push rbx and sub 0x80, which is the sixth argument slot (the fifth, [rsp+0xB0], is not read). Skipped: the six large bodies the page lists as VU1 program installs, 004D7BF0, 004DB350, 004DDDF0, 004DF440, 004E0F70, 004ECC50 (3.3-10 KB each)."
+}
