@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "003EA6B0",
+   "text": "stores -1 at dword `02B5E0B8` and zeroes the 16 bytes at `02B5E0C0`, calls `003DCF00(0)` and tail-jumps `003DCF10(0)`",
+   "anchors": [["003EA6B7", "mov"], ["003EA6C3", "movdqu"], ["003EA6CB", "call"], ["003EA6D6", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
