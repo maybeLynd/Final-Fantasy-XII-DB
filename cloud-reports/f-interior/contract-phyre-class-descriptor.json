@@ -1,0 +1,82 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "rows": [
+  {
+   "fn": "00164180",
+   "text": "calls `006318A0(02CF8270)`, then stores the address `00D582D0` as qword `02CF8270` and dword 0 at `02CF82A8`, and tail-jumps `00808B90(008AF190)`",
+   "anchors": [
+    [
+     "0016418B",
+     "call"
+    ],
+    [
+     "00164197",
+     "mov"
+    ],
+    [
+     "001641A8",
+     "mov"
+    ],
+    [
+     "001641B3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7B50",
+   "text": "returns 0 when `rdx` or `rcx` is null; otherwise, for `rcx` and then each object reached through qword `+0x78` until null, walks the circular list headed at `+0x90` (next through qword `+0`, stopping at the head) and byte-compares the NUL-terminated string at each node's non-null qword `+0x18` with the string at `rdx`; returns the first node whose string matches, or 0 when none does",
+   "anchors": [
+    [
+     "005A7B70",
+     "lea"
+    ],
+    [
+     "005A7BA8",
+     "sub"
+    ],
+    [
+     "005A7BB5",
+     "je"
+    ],
+    [
+     "005A7BC9",
+     "mov"
+    ],
+    [
+     "005A7BE4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00633240",
+   "text": "stores the address `00D580B0` at qword `+0` of `rcx`; when qword `+8` is not `rcx+8` itself, calls the qword at `+0x48` of the table that the object at qword `+0x18` points at, with `rdx` = `rcx`; calls `006B6700(rcx+0x38)`; then, when bit 0 of byte `+0x28` is set, calls `00584730(qword +0x20)`",
+   "anchors": [
+    [
+     "0063325E",
+     "mov"
+    ],
+    [
+     "00633265",
+     "cmp"
+    ],
+    [
+     "00633274",
+     "call"
+    ],
+    [
+     "0063327C",
+     "call"
+    ],
+    [
+     "0063328C",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00633240: +0x28 and +0x20 are rdi+0x20 and rdi+0x18 with rdi = rcx+8."
+}

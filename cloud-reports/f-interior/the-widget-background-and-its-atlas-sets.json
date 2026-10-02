@@ -1,0 +1,34 @@
+{
+ "page": "99-Unresolved-Residual/the-widget-background-and-its-atlas-sets.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {
+   "fn": "002986E0",
+   "text": "with `S` = qword `rcx+0xC0`: steps word `S+0x14` up by 0x10 to at most 0x80 when words `rdx+0x5E` and `rdx+0x5C` are both below 0x4000 and dword `[rdx]` has bit 0x100, else down by 0x10 to at least 0, and stores 0x80808080 with that low byte as its top byte to dwords `+0x28` to `+0x34` of qword `+0x18` of qword `rcx+0x60`; fills stack colour slots from eleven `002DD7E0` calls (ids 0x81, 0x82, 0x83, 0x81, 0x7A to 0x7D, 0x7E to 0x80); multiplies the three low bytes of an `00271E50` result by the truncated `00861F0E(dword 0208F570 * 3.141593 / 15) * (byte S+7 / 2) + 128.0` (`01CEBC50`, `00916314`, `008F3A2C`), shifting right 7 and clamping to 0xFF, sets its top byte to byte `S+6` and stores it to dword `+0x24` of qword `+8` of qword `rcx+0x60`; dispatches on byte `S+0xA`, where 0, 1 and 2 each call `002752E0` twice and `0029F480` twice; and finally steps byte `S+0x12` up by 0x10 to at most 0x80 when dword `[rdx]` has bit 0x1000, else down to at least 0, storing it the same way to dwords `+0x28` to `+0x34` of qword `+0x20` of qword `rcx+0x60`",
+   "anchors": [
+    [
+     "002987B9",
+     "mov"
+    ],
+    [
+     "002987F4",
+     "call"
+    ],
+    [
+     "00298B21",
+     "call"
+    ],
+    [
+     "00298C34",
+     "je"
+    ],
+    [
+     "0029905A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002986E0 (doubt: 2468-byte body; the row is a structural summary of its main reads and writes, not every path, and OPUS may prefer to skip it). Not covered by the row: the conditional refresh of word S+4 from word rdx+0x5C through 0035D330(0x14, ...), 002B58B0, 0020E620(0) and 0029FB50 (002986E0+0x225 to +0x26D); the steps of bytes S+6 and S+7 and of bits 4 and 8 of word S+2 and word S+8 under flags 0x1000, 0x2000 and 0x8000 of dword [rdx] (002986E0+0x271 to +0x3CB); the optional 00274870 call when 0036D830() is zero (002986E0+0x3CE to +0x3FE); the per-state details: state 0 may set byte S+0xA to 1, stamp dword S+0xC from dword 0208F570, set bit 0x4000000 of the dword at +0x20 of qword [qword rcx+0x60] and call 00225580; state 1 counts byte S+0xB down and may switch to state 2; state 2 raises word S+0x10 by 0x10 to 0x100 and may return to state 0 (002986E0+0x554 to +0x93D). Byte S+0x13 is a percentage computed as dword rdx+0x3C * 100 / dword rdx+0x40 (0x64 when the divisor is zero) on most paths (002986E0+0x4F0 to +0x4F8). The 'half of byte S+7' factor is (byte << 6) >> 7. The +0x24 store target qword is null when rcx is null, but rcx+0xC0 is read unconditionally, so a null rcx is not a usable path. The body is framed by a stack-cookie check (01F44830, 00808C40)."
+}

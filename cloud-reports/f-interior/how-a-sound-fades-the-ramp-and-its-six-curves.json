@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-fades-the-ramp-and-its-six-curves.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "00222B70",
+   "text": "calls `007A7010(rcx+0x38)` and, only when that returns non-zero, calls `007A81F0(rcx+0x38, ...)` with `xmm1` = `r9d` converted to float and divided by 127.0 (`00906A44`), `xmm2` = `r8d` converted to float and divided by 60.0 (`008F6D54`) and `r9d` = -1; when `007A7010` returns zero it returns without the second call",
+   "anchors": [["00222B8C", "call"], ["00222B93", "je"], ["00222BAA", "divss"], ["00222BB2", "divss"], ["00222BBA", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "rdx is not written before the 007A81F0 call, so whatever the caller passed in rdx reaches it unchanged; the row does not claim it as an argument."
+}

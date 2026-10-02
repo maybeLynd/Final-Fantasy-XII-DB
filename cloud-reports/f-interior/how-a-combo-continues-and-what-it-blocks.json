@@ -1,0 +1,14 @@
+{
+ "page": "07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "0031B4B0",
+   "text": "replaces `rcx` with `00263E30(rcx)` when `rcx` is non-null and with 0 when it is null, then tail-jumps to `0031ADB0` with that value, `edx` and `r8` as passed in",
+   "anchors": [["0031B4BF", "test"], ["0031B4C4", "xor"], ["0031B4C8", "call"], ["0031B4D2", "mov"], ["0031B4DF", "jmp"]]},
+  {"fn": "003592C0",
+   "text": "sets (when `edx` is non-zero) or clears (when `edx` is zero) bit `ecx` of byte `022C8005`; then, when bit 0 of the OR of bytes `022C8004`, `022C8006`, `022C8007` and the new `022C8005` is set and `003588B0(dword 022C7FE0)` returns non-null, tail-jumps to `0026D6D0(that result)`, otherwise returns",
+   "anchors": [["003592CF", "bts"], ["003592E1", "btr"], ["00359302", "test"], ["0035930C", "call"], ["0035931D", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003592C0: the bit index comes from ecx through a register bts/btr on a 32-bit copy of the byte, so only indices 0-7 change the stored byte; the row states 'bit ecx' as the listing does."
+}

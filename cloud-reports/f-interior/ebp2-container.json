@@ -1,0 +1,14 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "0026B870",
+   "text": "fills 0x10 dwords at `02098E10 + 0x204 + ecx * 0x288` (`ecx` sign-extended) with 0xFFFFFFFF when `edx` is non-zero and with 0 when `edx` is zero, using `rep stosd`",
+   "anchors": [["0026B878", "mov"], ["0026B87D", "imul"], ["0026B884", "lea"], ["0026B896", "sbb"], ["0026B898", "rep"]]},
+  {"fn": "00297640",
+   "text": "returns 0 for `edx` above 7 (unsigned); otherwise jumps through an 8-entry case table whose case-to-arm mapping the listing does not decode, to arms that: test bit 1 of byte `+0x318` of the `0x160`-byte record `r9d` at `rcx` and return 0 after `00249C60(5)` when it is set, else 1 after `00249C60(0x15)`; call `0029B440(0035BB00(r8d))` and `00249C60(1)` and return 1; or return 0 after `00249C60(5)` when `00299B90(signed word +0x14 of 0035D320())` is zero, else call `0035BC30()` and `00249C60(3)` and return 1",
+   "anchors": [["00297644", "cmp"], ["0029765E", "jmp"], ["0029766A", "test"], ["002976A3", "call"], ["002976C5", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "00297640: the case table's contents are not decoded in the pack, so the row names no case numbers; some cases may target the plain 'return 0' tail directly. OPUS should confirm the case mapping at the bytes if the page needs it. 0026B870: the listing prints the anchor mnemonic as 'rep' (rep stosd)."
+}

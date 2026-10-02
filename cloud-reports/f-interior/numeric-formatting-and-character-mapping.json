@@ -1,0 +1,187 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "rows": [
+  {
+   "fn": "001E0C30",
+   "text": "tail-jumps `00225680` with `rcx` = qword `+0xDF8` of the pointer `00796E20()` returns",
+   "anchors": [
+    [
+     "001E0C34",
+     "call"
+    ],
+    [
+     "001E0C39",
+     "mov"
+    ],
+    [
+     "001E0C44",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001E9780",
+   "text": "returns 0 when qword `+0` or qword `+0x28` of `rcx` is null; otherwise tail-jumps `001FDDD0(qword +0, dword +0x20 of the +0x28 object, edx)`",
+   "anchors": [
+    [
+     "001E9783",
+     "test"
+    ],
+    [
+     "001E978C",
+     "test"
+    ],
+    [
+     "001E9797",
+     "mov"
+    ],
+    [
+     "001E979A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001E9BD0",
+   "text": "calls `001B1620` with `rcx` and `edx` unchanged; when it returns a non-zero byte or qword `+0` of `rcx` is null, returns `edx` converted to float; otherwise tail-jumps `00861F4A` with `xmm0` = `edx` converted to float divided by the float result of `001FDDB0(qword +0)`",
+   "anchors": [
+    [
+     "001E9BDF",
+     "call"
+    ],
+    [
+     "001E9BE6",
+     "jne"
+    ],
+    [
+     "001E9BFC",
+     "call"
+    ],
+    [
+     "001E9C01",
+     "divss"
+    ],
+    [
+     "001E9C25",
+     "cvtdq2ps"
+    ]
+   ]
+  },
+  {
+   "fn": "001E9C40",
+   "text": "stores into `rcx` four products of the float arguments: `xmm2` times `xmm3` at `+0x137C`, `xmm1` times `xmm3` at `+0x1380`, `xmm2` times the fifth (stack) argument at `+0x1384` and `xmm1` times the fifth argument at `+0x1388`",
+   "anchors": [
+    [
+     "001E9C46",
+     "mulss"
+    ],
+    [
+     "001E9C5A",
+     "movss"
+    ],
+    [
+     "001E9C62",
+     "movss"
+    ],
+    [
+     "001E9C6A",
+     "movss"
+    ],
+    [
+     "001E9C72",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00272CB0",
+   "text": "returns the address `01CEB638` when `ecx` is zero or `003588B0(ecx)` is null; otherwise tail-jumps `00263990` with that result",
+   "anchors": [
+    [
+     "00272CB6",
+     "jne"
+    ],
+    [
+     "00272CB8",
+     "lea"
+    ],
+    [
+     "00272CC4",
+     "call"
+    ],
+    [
+     "00272CD5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002B2D60",
+   "text": "returns 0 when byte `+0xB0` of `rcx` is zero; otherwise copies dwords `+0x10`, `+0x14`, `+0x18` and `+0x1C` of `rcx` to `+0`, `+4`, `+8` and `+0xC` of `rdx` and returns 1",
+   "anchors": [
+    [
+     "002B2D67",
+     "jne"
+    ],
+    [
+     "002B2D69",
+     "xor"
+    ],
+    [
+     "002B2D6F",
+     "mov"
+    ],
+    [
+     "002B2D80",
+     "mov"
+    ],
+    [
+     "002B2D83",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E20D0",
+   "text": "returns without work when `ecx` is 8 or more (signed), clamping a negative `ecx` to 0; with the record at `0215F200` plus `ecx` times `0x68` and the mask 1 shifted left by `r8b`, ORs the mask into dword `+0x18` when `edx` is non-zero, otherwise ANDs its complement into it",
+   "anchors": [
+    [
+     "002E20D6",
+     "jge"
+    ],
+    [
+     "002E20F0",
+     "imul"
+    ],
+    [
+     "002E2103",
+     "shl"
+    ],
+    [
+     "002E210A",
+     "or"
+    ],
+    [
+     "002E2110",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "002B5390",
+   "why": "body of 747 bytes with a three-way fit/overflow split, a token loop over 002B1FB0 and 002B2150 and several stores to +0x8..+0x28 that one accurate row cannot state path by path"
+  },
+  {
+   "fn": "003F4330",
+   "why": "body of 819 bytes with a five-way switch on dword +0 of rdx and a long setup arm (record copy, up-to-three-entry loop, layout arithmetic) that one accurate row cannot state path by path"
+  },
+  {
+   "fn": "00573BE0",
+   "why": "body of 850 bytes with a byte-5 mode arm, a 00254A10-gated word remap and a per-line loop over 002B5390 that fills 0x10-byte entries that one accurate row cannot state path by path"
+  }
+ ],
+ "notes": "001E0C30 is also in the contract-auto-status-rebuild pack; the row is the same. 001E9BD0: rcx at the 00861F4A tail jump is not set by the body, so only xmm0 is stated. 002E20D0: the shift count is cl from r8d, so the mask uses r8 modulo 32."
+}

@@ -1,0 +1,17 @@
+{
+ "page": "99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "0029B7D0",
+   "text": "returns 0 unless `edx` is 1; for 1 calls `002973E0(rcx, dword at r8, dword +0x24 of the object at qword +0x48 of rcx, dword at r8+4)` and returns -1 when that returns 0, else 0",
+   "anchors": [["0029B7DB", "cmp"], ["0029B7E4", "mov"], ["0029B7EA", "call"], ["0029B7F3", "or"], ["0029B7FB", "xor"]]},
+  {"fn": "0029B810",
+   "text": "with the object at qword `+0x48` of `rcx`: when `edx` is 2 stores its dword `+0x2C` shifted left by 4 at `+0x4` of `rcx` and returns 0; when `edx` is 1 calls `002973E0(rcx, dword at r8, its dword +0x30 multiplied by its byte +0x87 when that byte is non-zero, dword at r8+4)` and returns -1 when that returns 0, else 0; any other `edx` returns 0",
+   "anchors": [["0029B81E", "je"], ["0029B829", "shl"], ["0029B82C", "mov"], ["0029B846", "imul"], ["0029B851", "call"]]},
+  {"fn": "002C0B40",
+   "text": "switches on the dword at `rdx`: 1 stores the qword pointed to by qword `+0x8` of `rdx` at `+0xC0` of `rcx`, clears bit 7 of dword `+0x40`, calls `00247570(rcx, 002735E0(1))`, stores dword 0x800080 at `+0xD8` and returns 0; 3 scales, on the object at qword `+0x38`, word `+0x5A` by word `+0xD8` and word `+0x58` by word `+0xDA` of `rcx` (signed product shifted right by 7) and returns 0; other values tail-jump `005C5230(rcx)`",
+   "anchors": [["002C0B5D", "jmp"], ["002C0B7B", "mov"], ["002C0B8C", "mov"], ["002C0BBD", "call"], ["002C0BC4", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}

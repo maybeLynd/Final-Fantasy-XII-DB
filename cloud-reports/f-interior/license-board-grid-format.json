@@ -1,0 +1,56 @@
+{
+ "page": "12-Items-Equipment-Shops-License/license-board-grid-format.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {
+   "fn": "003FDAD0",
+   "text": "calls `002D45C0(qword +0xD8, 1)`, sets bit 27 of dword `+0xE0` of the `+0xD8` object to (qword `+0xE0` non-null) and calls `002445C0()`; when `002C1A80(00282DF0(word +0xDE0 of the object at 0209AC30), word 02F9736A, 0, word 02F97368, word 02F9736C)` is non-zero, calls `002D45C0(the +0xD8 object, 0)`, clears that bit 27, calls `002445C0()` and returns 0; otherwise, with A and B the signed 5-bit fields at bits 16-20 and 21-25 of dword `+0x180`, when A is above 1 and `02F97368 AND 0xCA0` is 0x400 or 0x80 with that bit set in `02F9736C` calls `00563EC0(rcx)` (only when B is positive or `02F9736A AND 0x480` is non-zero), or when it is 0x800 or 0x20 with that bit set calls `00564300(rcx)` (only when B is below A - 1 or `02F9736A AND 0x820` is non-zero); when B then differs it fills three words of the slot `rcx + 0xF0 + old B*8` from the `+0xD8` object's grid fields (the first via the 32-byte table at qword `+0xE0`, 0xFFFF when null), calls `002527B0(8, slot byte +7 + 0x20, slot word +0)`, `005655F0(rcx, new slot, 0)`, `005674B0(qword +0xC8, new slot)`, refreshes bit 27, calls `002445C0()` and `00249C60(10)` and returns 1; every other path calls `002D3900(qword +0xD8)` and returns 0",
+   "anchors": [
+    [
+     "003FDB63",
+     "call"
+    ],
+    [
+     "003FDBA4",
+     "sar"
+    ],
+    [
+     "003FDC20",
+     "call"
+    ],
+    [
+     "003FDC57",
+     "call"
+    ],
+    [
+     "003FDD50",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00511F50",
+   "text": "calls `00280120` with the incoming registers and returns its result when it is non-zero; otherwise pops two values with `00267E10(r9)` and returns `00560070(second value, first value)`",
+   "anchors": [
+    [
+     "00511F59",
+     "call"
+    ],
+    [
+     "00511F60",
+     "jne"
+    ],
+    [
+     "00511F6A",
+     "call"
+    ],
+    [
+     "00511F7D",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003FDAD0 is long; the slot words are: word +0 = word +8 of the 32-byte entry at index (word F2 + word F4) * byte EC + sbyte EE + sbyte ED (0xFFFF when qword +0xE0 is null), word +2 = byte EC * word F2 + sbyte EE + sbyte ED, word +4 = (word F2 + word F4) * byte EC + sbyte EE + sbyte ED (16-bit sums). The slot written is chosen with the old B while 005655F0/005674B0 get the slot for the re-read B. 'Every other path' includes A <= 1, a masked word other than 0x400/0x80/0x800/0x20, the matching bit clear in 02F9736C, and B unchanged after the call."
+}

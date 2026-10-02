@@ -1,0 +1,17 @@
+{
+ "page": "04-Actor-Entity/CONTRACT-actor-record-pool-and-region-map.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "0026ADF0",
+   "text": "when byte `rcx+3` AND 0xE0 equals 0x60, takes the qword at `+0xF0` of the qword at `rcx+0xB8` and stores `edx` to its dword `+0`, `r8d` to its dword `+4` and 1 to its byte `+0x2A`; otherwise returns without writing",
+   "anchors": [["0026ADF4", "and"], ["0026ADF6", "cmp"], ["0026AE08", "mov"], ["0026AE11", "mov"], ["0026AE1C", "mov"]]},
+  {"fn": "0030BFB0",
+   "text": "calls `0031B760` and returns 0 when the result is null or bit 0x10 of its first byte is clear; otherwise, with `d` = its qword `+0x698`, returns bit 23 of the result's first dword when (`d` dword `+0x64` OR dword `+0x3C`) AND 0x8000201B is non-zero, else tail-jumps to `00308130` (`rcx` = the result, `rdx` = `d`) when `d` is non-null and its byte `+5` is 0, and to `00308040(result, 0)` otherwise",
+   "anchors": [["0030BFB4", "call"], ["0030BFC1", "test"], ["0030BFD3", "test"], ["0030BFF9", "jmp"], ["0030C004", "jmp"]]},
+  {"fn": "003DC0D0",
+   "text": "calls `003587C0(dword rdx+8, word rdx+6)` and, when that returns non-null, builds a stack record (word `0x402`, then byte `rdx+3`, dword 0x80000000, byte 1, dword `rdx+8`, dword `rdx+0xC`) and calls `003DBCF0(result, &record, 1)`; a null result returns without the call",
+   "anchors": [["003DC0E0", "call"], ["003DC0E8", "je"], ["003DC10E", "mov"], ["003DC115", "mov"], ["003DC122", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "0030BFB0 reads dwords +0x64 and +0x3C of the +0x698 qword before its null test (the null test only guards the later byte +5 read). 003DC0D0 record layout at rsp+0x20: word +0 = 0x402, byte +2 = byte rdx+3, dword +4 = 0x80000000, byte +8 = 1, dword +0xC = dword rdx+8, dword +0x10 = dword rdx+0xC."
+}

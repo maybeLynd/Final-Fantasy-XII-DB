@@ -1,0 +1,29 @@
+{
+ "page": "08-Combat-Formula/the-auto-status-rebuild.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "0030BEB0",
+   "text": "calls `0031B760()` and returns 0 when the result is null, when bit 3 of its dword `+0` is clear, when its qword `+0x698` is null or when byte `+5` of that object is non-zero; otherwise returns the inverse of bit 23 of the dword `+0`",
+   "anchors": [["0030BEB4", "call"], ["0030BEC3", "test"], ["0030BEC7", "mov"], ["0030BED3", "movzx"], ["0030BEDE", "not"]]},
+  {"fn": "003241D0",
+   "text": "returns 0 when `ecx - 1` is above 0x1D (unsigned); otherwise indexes a byte table after the body by `ecx - 1` and dispatches through a jump table to an arm that returns one of 0x15 to 0x1E, or 0; the byte table's contents are not decoded in the listing",
+   "anchors": [["003241D2", "cmp"], ["003241D5", "ja"], ["003241E1", "movzx"], ["003241F3", "jmp"], ["00324231", "xor"]]},
+  {"fn": "0033F100",
+   "text": "calls `002640C0` with the incoming registers, pops a value with `00267E10(r9)`, resolves `002650B0(002640C0 result, rdx, value)` and tail-jumps `003E92F0(002640C0 result, resolved pointer)`",
+   "anchors": [["0033F115", "call"], ["0033F120", "call"], ["0033F12E", "call"], ["0033F148", "jmp"]]},
+  {"fn": "00505560",
+   "text": "tail-jumps through the eight-byte entry, indexed by the sign-extended byte `+0x3C` of `rcx`, of the code-pointer table that the `lea` at `00505560+0x5` loads, with the incoming registers",
+   "anchors": [["00505565", "lea"], ["0050556C", "jmp"]]},
+  {"fn": "0050E060",
+   "text": "calls `002640C0` with the incoming registers and zeroes three stack floats; when `003590D0()` is non-zero calls `00265020(003588B0(that value), &float0, &float1, &float2)`; then resolves three pointers with `002650B0(002640C0 result, rcx, 00267E10(r9))` in turn and stores float0 through the third, float1 through the second and float2 through the first",
+   "anchors": [["0050E0A0", "call"], ["0050E0C2", "call"], ["0050E0D8", "call"], ["0050E11F", "movss"], ["0050E138", "movss"]]},
+  {"fn": "005105A0",
+   "text": "pops a value with `00267E10(r9)`, resolves `002650B0(002640C0(), rdx, value)` and tail-jumps `002393E0(rdx, resolved pointer)`",
+   "anchors": [["005105B0", "call"], ["005105B7", "call"], ["005105C5", "call"], ["005105DA", "jmp"]]},
+  {"fn": "005106D0",
+   "text": "pops a value with `00267E10(r9)`, resolves `002650B0(002640C0(), rdx, value)` and tail-jumps `002395A0(resolved pointer)`",
+   "anchors": [["005106E0", "call"], ["005106E7", "call"], ["005106F5", "call"], ["00510707", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0030BEB0 is the same row as in derived-call-signatures. 003241D0: the case-to-return mapping depends on the byte table after the body, which the listing does not decode, so the row states only the range of returned values; the jump table and byte table are deliberately not named. 00505560: the pointer table it jumps through is not named, per the rule against naming jump tables; the page itself calls it the type table. In 005105A0/005106D0 the 002640C0 call follows 00267E10, so its rcx is whatever 00267E10 left; written as 002640C0()."
+}

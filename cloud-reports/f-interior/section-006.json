@@ -1,0 +1,20 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-006.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "001B1C10",
+   "text": "returns at once when qword `01F811E8` is null; otherwise zeroes two 0x100-byte stack buffers, calls `0019C5D0(first buffer, size)` with the string at qword `+0` of `rcx` in `r8` (size 1 when its first byte is zero, else 0x100), copies the buffer into a string allocated through \"EASTL basic_string\" (`008F6600`), passes each byte through the import called via `008C3020` and fills the second buffer with `001A1E40`; then, when the first buffer is non-empty and the key `00674A00(second buffer)` is absent from the tree rooted at qword `+0x18` of (`01F811E8` + 0x20) (dword key at node `+0x20`), takes `0019CA80(0019CE20(), first buffer)`, walks its list at `+0x38` for the first node whose `+0x50` chain (linked through `+0x78`) contains `02CBB900` and whose dword `+0x74` is non-zero, inserts the key with `001AE9B0` and stores at `+0x28` of the key's node a pointer formed from that node's qword `+0x60` and the `+0x50` object's dwords `+0x38` and `+0xF8`; finally frees the string through its allocator's slot `+0x18` when it was allocated",
+   "anchors": [["001B1C59", "je"], ["001B1CA9", "call"], ["001B1DBA", "call"], ["001B1E40", "cmp"], ["001B1F06", "mov"]]},
+  {"fn": "00249350",
+   "text": "calls `00249210` with the incoming register arguments and a fifth (stack) argument 0, stores `00249660` at `+0x10` of the returned object and returns that object's qword `+0x8`",
+   "anchors": [["00249354", "mov"], ["0024935C", "call"], ["00249368", "mov"], ["0024936C", "mov"]]},
+  {"fn": "00249380",
+   "text": "calls `00249210(rcx, rdx, r8, 3)` with a fifth (stack) argument 1, then `0024A4E0(r9, the fifth (stack) argument)`; stores that result at `+0x18` and `00249670` at `+0x10` of the object `00249210` returned, and returns the `0024A4E0` result",
+   "anchors": [["00249395", "mov"], ["0024939B", "call"], ["002493AA", "call"], ["002493B6", "mov"], ["002493BA", "mov"]]},
+  {"fn": "0035C160",
+   "text": "switches on the dword at `rdx`: other values return `005C5230(rcx)`; 18 returns 0; 12 zeroes qword `+0xF0` of `rcx` and returns 0; 1 stores dword 0 at `+0x98` and the values of dwords `01E0C1D8` and `01E0C1DC` as words at `+0x9C` and `+0x9E` (only when `rcx` is non-null), zeroes byte `+0xC8`, dword `+0xEC`, word `+0xC0` and dword `+0xC4`, calls `00247930(rcx, 0xDC)` and `00247950(rcx, 1)` and returns 0; 4 acts only when the word `+0xC0` is 2 to 5: it stores `00861F0E(dword 0208F570 * 3.141593 / 30) * 32 + 96` as bytes `+0x91` and `+0x92` and also `+0x90` (0x80 instead when the word is 3) of the object at qword `+0x38`, and, when `002EA230(dword +0xEC)` is zero, gets a position with `002E9A90` and `00249110(.., 02AEDDB0, .., 1)`, returns 0 when its third dword is at least 0x1000000, clamps that dword to 0x100000 to 0x400000, forms the scale `(value - 0x100000) * 0.5 / 3145728 + 0.5`, calls `002B3400(&record, rcx+0xC8, 0)` and draws with `002D8650(object at +0x38, x - scaled word +0xE8 / 2, y - scaled word +0xEA, &record)`; all these paths return 0",
+   "anchors": [["0035C1A5", "call"], ["0035C221", "mov"], ["0035C2BA", "cmovg"], ["0035C34D", "call"], ["0035C3B8", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "001B1C10: the length loop that sizes the 0019C5D0 call never reloads the byte (it tests the first byte only), so the size is 1 or 0x100 exactly as stated; 008C2A40 (copy) and 008C3020 (per-byte transform) are import slots, not decoded further. The stored pointer is qword +0x60, advanced by dword +0x38 of the +0x50 object while it equals a pointer walked from qword +0x10, plus dword +0xF8; the row abbreviates this. The final 00249110 call writes three dwords x, y, z into a stack record; z is the clamped one. 0035C160: the case-12 store is not anchored (five-anchor limit); it is the mov at 0035C160+0x51. The scale is also stored into the 002B3400 record at +0x34 before the 002D8650 call."
+}

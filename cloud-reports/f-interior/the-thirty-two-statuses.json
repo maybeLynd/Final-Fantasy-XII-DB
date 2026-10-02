@@ -1,0 +1,52 @@
+{
+ "page": "10-Status-Periodic-Terminal/the-thirty-two-statuses.md",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "rows": [
+  {
+   "fn": "00238640",
+   "text": "tail-jumps `003845F0` with `rcx` set to `02F973C0` plus the sign-extended `ecx` times 8",
+   "anchors": [
+    [
+     "00238643",
+     "lea"
+    ],
+    [
+     "0023864A",
+     "lea"
+    ],
+    [
+     "0023864E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0030AE30",
+   "text": "returns -1 when the word `cx` is `0xFFFF` or its top nibble field (`AND 0xF000`) is above `0xE000` unsigned; otherwise takes the record at `01EEBCC0` plus (word >> 12) times `0x58`, returns 0 when the low 12 bits exceed (signed) the record's dword `+0x3C` minus 1 or when its qword `+0x50` is null, and else tail-jumps that qword with `ecx` = the word and `edx` = 1",
+   "anchors": [
+    [
+     "0030AE39",
+     "cmp"
+    ],
+    [
+     "0030AE53",
+     "cmp"
+    ],
+    [
+     "0030AE60",
+     "imul"
+    ],
+    [
+     "0030AE7D",
+     "cmp"
+    ],
+    [
+     "0030AE93",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}

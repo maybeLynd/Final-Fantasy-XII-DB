@@ -1,0 +1,106 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "rows": [
+  {
+   "fn": "0029DCD0",
+   "text": "stores qword `+8` of `rcx` in qword `0209C4A0`",
+   "anchors": [
+    [
+     "0029DCD4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035B3E0",
+   "text": "for each index below dword `+4` of `rcx` (unsigned), replaces the dword at `rcx+8` plus 4 times the index with `0020E620(0020E600(that dword) + the low 32 bits of rcx zero-extended)`; then, also when the count is zero, stores `rcx` in qword `02EC0B68`",
+   "anchors": [
+    [
+     "0035B40B",
+     "call"
+    ],
+    [
+     "0035B410",
+     "lea"
+    ],
+    [
+     "0035B419",
+     "mov"
+    ],
+    [
+     "0035B421",
+     "cmp"
+    ],
+    [
+     "0035B430",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035FED0",
+   "text": "clamps `edx` to 0 when negative and to 1 when above 1; returns without work when `ecx` is 2 or more (signed); otherwise, with the record at `022CAE90` plus `ecx` times `0x294`, stores `r8b` at byte `+6` plus `edx` of the record, calls `0035E810` and stores its dword result at `+0x1C` plus `edx` times 4",
+   "anchors": [
+    [
+     "0035FEE3",
+     "cmovg"
+    ],
+    [
+     "0035FEE9",
+     "jge"
+    ],
+    [
+     "0035FEF8",
+     "imul"
+    ],
+    [
+     "0035FF0C",
+     "mov"
+    ],
+    [
+     "0035FF16",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00379F30",
+   "text": "zero-extends `ecx` into `rcx` and tail-jumps `0035B3E0`",
+   "anchors": [
+    [
+     "00379F32",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003C9950",
+   "text": "calls `00249580` with `rcx` unchanged (result r); when qword `+0xD0` of `rcx` is non-null calls `003697F0` on it; calls `00249210(r, 7, byte +0xC1 plus 0xE, 3)` with fifth (stack) argument 0 and then `00249410(r)`; ORs 8 into dword `+0xC4` and stores qword `+8` of the `00249210` result in qword `+0xD0`",
+   "anchors": [
+    [
+     "003C9976",
+     "call"
+    ],
+    [
+     "003C999B",
+     "call"
+    ],
+    [
+     "003C99A6",
+     "call"
+    ],
+    [
+     "003C99AF",
+     "or"
+    ],
+    [
+     "003C99C0",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0035B3E0: the added base is ebx moved to ebp (32-bit), so only the low half of rcx is added; OPUS may want to confirm against the bytes. 0035FED0: 0035E810 gets no explicit argument set-up, so none is stated. 00379F30: the entry is the zero-extension; the row is anchored on the tail jump."
+}

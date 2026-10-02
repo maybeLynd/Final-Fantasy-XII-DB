@@ -1,0 +1,78 @@
+{
+ "page": "11-Party/CONTRACT-party-slot-assignment.md",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "rows": [
+  {
+   "fn": "003415D0",
+   "text": "for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = 00263750(index)`",
+   "anchors": [
+    [
+     "003415DA",
+     "call"
+    ],
+    [
+     "003415DF",
+     "test"
+    ],
+    [
+     "003415E9",
+     "call"
+    ],
+    [
+     "003415F0",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00341CB0",
+   "text": "takes `q = 003588B0(003590D0())`, then for indices 0 to 3 calls `0026DC40(p, 0)` on each `p = 00263750(index)` that is non-null and not equal to `q`",
+   "anchors": [
+    [
+     "00341CBA",
+     "call"
+    ],
+    [
+     "00341CC1",
+     "call"
+    ],
+    [
+     "00341CD2",
+     "call"
+    ],
+    [
+     "00341CDC",
+     "cmp"
+    ],
+    [
+     "00341CE6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00342250",
+   "text": "for indices 0 to 3 calls `0026DC40(p, 1)` on each non-null `p = 00263750(index)`",
+   "anchors": [
+    [
+     "0034225A",
+     "call"
+    ],
+    [
+     "00342264",
+     "mov"
+    ],
+    [
+     "0034226C",
+     "call"
+    ],
+    [
+     "00342273",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}

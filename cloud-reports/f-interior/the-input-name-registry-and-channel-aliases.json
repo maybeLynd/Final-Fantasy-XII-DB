@@ -1,0 +1,11 @@
+{
+ "page": "15-Input/Input-Name-Registry/the-input-name-registry-and-channel-aliases.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "001E0E00",
+   "text": "calls `00796E20()` and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax`",
+   "anchors": [["001E0E08", "call"], ["001E0E0D", "lea"], ["001E0E10", "mov"], ["001E0E17", "call"], ["001E0E1C", "movzx"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}

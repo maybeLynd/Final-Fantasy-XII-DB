@@ -1,0 +1,23 @@
+{
+ "page": "01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "rows": [
+  {"fn": "00237D60",
+   "text": "calls `0035C700()` and, only when it returns zero, calls `0035C7A0(0xB)`; returns 1 on both paths",
+   "anchors": [["00237D64", "call"], ["00237D6B", "jne"], ["00237D6D", "lea"], ["00237D70", "call"], ["00237D75", "mov"]]},
+  {"fn": "00264E10",
+   "text": "returns 0 unless byte `rcx+3` AND 0xE0 equals 0x60; then returns the byte at `+0x29` of the qword at `+0xF0` of the qword at `rcx+0xB8`, zero-extended",
+   "anchors": [["00264E14", "and"], ["00264E16", "cmp"], ["00264E1A", "xor"], ["00264E24", "mov"], ["00264E2B", "movzx"]]},
+  {"fn": "0034A940",
+   "text": "calls `00267DB0(r9)` four times for floats f1 to f4, then `00263750(00267E10(r9))`; when that is non-null it calls `0026AF80(result)` with `xmm1` = f4, `xmm2` = f3, `xmm3` = f2, then `0026B620(result)` and `0026A0D0(result)` each with `xmm1` = f1; a null result returns without these calls",
+   "anchors": [["0034A962", "call"], ["0034A990", "call"], ["0034A997", "call"], ["0034A9B2", "call"], ["0034A9C8", "call"]]},
+  {"fn": "0034E3E0",
+   "text": "returns 0 when `0037CB50()` returns non-zero; otherwise calls `00314D40(1)` and returns 1",
+   "anchors": [["0034E3E4", "call"], ["0034E3EB", "je"], ["0034E3ED", "xor"], ["0034E3F9", "call"], ["0034E3FE", "mov"]]},
+  {"fn": "003B7D30",
+   "text": "for each index from 0 while it is below the signed dword `02EBCAA0`, calls `0026B500(qword at 02EBCA80 + index * 8, 1)`",
+   "anchors": [["003B7D38", "cmp"], ["003B7D45", "lea"], ["003B7D53", "mov"], ["003B7D58", "call"], ["003B7D63", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0034A940: f1 to f4 are the xmm0 returns of the four 00267DB0 calls in call order (kept in xmm6, xmm7, xmm8, xmm9)."
+}

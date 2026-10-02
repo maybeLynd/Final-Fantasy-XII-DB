@@ -1,0 +1,56 @@
+{
+ "page": "22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "rows": [
+  {
+   "fn": "0063BB60",
+   "text": "when qword `+0x10` of `rcx` is non-null calls it with `rdx - 8` plus the sign-extended dword `+0x18`, or with that dword alone when `rdx` is null, and returns a non-zero result; when the qword is null or the call returns 0 it returns qword `+0x30` of the object at qword `+8`",
+   "anchors": [
+    [
+     "0063BB6D",
+     "test"
+    ],
+    [
+     "0063BB76",
+     "lea"
+    ],
+    [
+     "0063BB80",
+     "cmove"
+    ],
+    [
+     "0063BB84",
+     "call"
+    ],
+    [
+     "0063BB90",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00677A80",
+   "text": "when qword `+0x10` of `rcx` is non-null calls it with `rdx` plus the sign-extended dword `+0x18` and returns a non-zero result; when the qword is null or the call returns 0 it returns qword `+0x30` of the object at qword `+8`",
+   "anchors": [
+    [
+     "00677A8D",
+     "test"
+    ],
+    [
+     "00677A96",
+     "add"
+    ],
+    [
+     "00677A99",
+     "call"
+    ],
+    [
+     "00677AA4",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}

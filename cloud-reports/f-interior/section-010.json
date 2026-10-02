@@ -1,0 +1,34 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-010.md",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "rows": [
+  {
+   "fn": "00269530",
+   "text": "for each of the four qwords at `0209A1F0` whose object has byte `+0x18` equal to 1, takes `q = 003587C0(byte +0x19 sign-extended, word +0x1A)` and calls `002693D0(q, 1)` when `q` is non-null and differs from that object",
+   "anchors": [
+    [
+     "0026954E",
+     "mov"
+    ],
+    [
+     "00269556",
+     "cmp"
+    ],
+    [
+     "00269564",
+     "call"
+    ],
+    [
+     "0026956E",
+     "cmp"
+    ],
+    [
+     "0026957B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00269530: the index is bounded by 'cmp rbx, 3 / ja' with a null fallback, which the 0..3 loop never reaches; the row omits it."
+}
