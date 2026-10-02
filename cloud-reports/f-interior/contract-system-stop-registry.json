@@ -7,5 +7,5 @@
    "anchors": [["002EBC07", "and"], ["002EBC0C", "or"], ["002EBC0F", "mov"], ["002EBC20", "or"], ["002EBC28", "and"]]}
  ],
  "skipped": [],
- "notes": "002EBBF0: the shift is 32-bit (shl r8d, cl) but only its low byte (r8b) is used, so a cl of 8 or more gives a zero mask (set leaves the byte as is; clear leaves it as is too, since NOT 0 is 0xFF). The shl at 002EBBFD is not anchored to keep five anchors."
+ "notes": "002EBBF0: the shift is 32-bit (shl r8d, cl) but only its low byte (r8b) is used, so a cl of 8 or more gives a zero mask (set leaves the byte as is; clear leaves it as is too, since NOT 0 is 0xFF). The shl at `002EBBF0+0xD` is not anchored to keep five anchors."
 }

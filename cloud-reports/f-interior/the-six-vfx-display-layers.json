@@ -19,5 +19,5 @@
    "anchors": [["003A3994", "mov"], ["003A39C9", "call"], ["003A39D0", "cmp"], ["003A39E2", "mov"]]}
  ],
  "skipped": [],
- "notes": "All five listings read cleanly. 003A3990: the loop counter starts at 0 and the first test of dword 02AEF414 at 003A3994 guards both the loop and the final zeroing store."
+ "notes": "All five listings read cleanly. 003A3990: the loop counter starts at 0 and the first test of dword 02AEF414 (`003A3990+0x4`) guards both the loop and the final zeroing store."
 }
