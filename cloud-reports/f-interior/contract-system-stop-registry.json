@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "002EBBF0",
+   "text": "with the mask byte `1 << cl`, clears that bit in byte `0215FD56` when `edx` is non-zero and sets it when `edx` is zero, storing the byte back; then sets bit 0 of dword `+0x48818` of qword `022C6F28` when the new byte is zero, and clears that bit otherwise",
+   "anchors": [["002EBC07", "and"], ["002EBC0C", "or"], ["002EBC0F", "mov"], ["002EBC20", "or"], ["002EBC28", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "002EBBF0: the shift is 32-bit (shl r8d, cl) but only its low byte (r8b) is used, so a cl of 8 or more gives a zero mask (set leaves the byte as is; clear leaves it as is too, since NOT 0 is 0xFF). The shl at 002EBBFD is not anchored to keep five anchors."
+}
