@@ -56,8 +56,8 @@ The category `README` indexes only 5 of the 14 system pages (`README:13-47`): `H
 | `GEN` | `status: DOCUMENTED — the fifty-five families are catalogued and every register row is closed …` (`GEN:4`); `last_reviewed: 2026-09-29` (`:11`); `last_pass: 2026-09-13` (`:14`); `crossref_clean: false` (`:20`) | rows edited 2026-09-30 / 2026-10-01 (e.g. `GEN:24`, `:31`) |
 | `RV` | `status: AUDITED` (`RV:4`); `last_reviewed: 2026-09-08` (`:19`); `last_pass: 2026-09-13` (`:22`) | no `promoted:` line, unlike `OC:20`/`MS:28`; body dated to 2026-10-02 (`RV:212`) |
 | `MEM` | `status: REOPENED` (`MEM:4`); `last_reviewed: 2026-09-12` (`:18`); `passes: 1`, `reopened_count: 0` (`:20`, `:24`); `crossref_clean: false` (`:23`); `external_production: … date: 2026-09-23 … status: "locally validated; formal independent acceptance pending"` (`:25-29`) | "Historical audit receipts above do not certify this new production." (`MEM:1901`); body dated to 2026-10-02 (`MEM:1509`) |
-| `TH` | `status: AUDITED — BU-1 closed 2026-09-18 as NO ADMISSIBLE SOURCE …` (`TH:4`); `last_reviewed: 2026-09-13` (`:19`); `passes: 3`, `last_pass: 2026-09-03` (`:21-22`) | TH-ROW-PLACEHOLDER |
-| `RS` | `status: AUDITED` (`RS:4`); `last_reviewed: 2026-09-07` (`:19`); `passes: 1`, `last_pass: 2026-09-07`, `last_pass_kind: attack` (`:21-24`) | RS-ROW-PLACEHOLDER |
+| `TH` | `status: AUDITED — BU-1 closed 2026-09-18 as NO ADMISSIBLE SOURCE …` (`TH:4`); `last_reviewed: 2026-09-13` (`:19`); `passes: 3`, `last_pass: 2026-09-03` (`:21-22`) | "## 12. Audit pass 3 - 2026-09-13 (OPUS)" (`TH:550`) vs `last_pass: 2026-09-03`; "Superseded readings:** none — this is the document's first version." (`TH:380`) beside "OVERTURNED in section 10" (`TH:79`); body dated to 2026-09-29 (`TH:814`); not indexed in `README` |
+| `RS` | `status: AUDITED` (`RS:4`); `last_reviewed: 2026-09-07` (`:19`); `passes: 1`, `last_pass: 2026-09-07`, `last_pass_kind: attack` (`:21-24`) | body sections dated 2026-09-12 to 2026-09-29 (`RS:218`, `:250`, `:387`, `:393`, `:259`, `:573`); not indexed in `README` |
 | `HARD` | `status: AUDITED` (`HARD:4`); `last_reviewed: 2026-09-07` (`:19`); `passes: 2`, `reopened_count: 1` (`:21`, `:25`); `last_pass_state: b57264ba…` (`:23`), which is `MATH`'s snapshot hash (`MATH:16`), not `HARD`'s own `46f02e26…` (`HARD:9`) | `README:14` "**DOCUMENTED, tier 1.**"; body dated to 2026-09-29 (`HARD:870`); family row edited 2026-09-30 (`HARD:27`) |
 | `MATH` | `status: AUDITED` (`MATH:4`); `last_reviewed: 2026-09-12` (`:18`); `last_pass: 2026-09-07` (`:21`) | "`status` unchanged at **DOCUMENTED**" (`MATH:778`); body dated to 2026-09-29 (`MATH:862`) |
 | `README` | "Functions \| ~5,150" (`README:8`) | indexes 5 of 14 pages (`README:13-47`) |
@@ -317,7 +317,32 @@ finding" (`LZ:455`).
 
 ### 1.9 The thunk layer and the Windows service surface
 
-THUNK-RS-PLACEHOLDER
+#### Thunks (`TH`)
+
+| item | statement | cite |
+|---|---|---|
+| population | 689 `Thunk.*` functions, sizes 568 / 108 / 12 / 1 at 5 / 6 / 7 / 19 bytes; tags `InternalForwarder` 560, `ExternalImport` 117, `DirectTailForwarder` 12 | `TH:58-65`, `:448` |
+| encodings | forwarders `E9 rel32` (5 B); import stubs `FF 25 disp32` or `48 FF 25 disp32` through the IAT (`008C2000`..`008C31C0`), "filled once by the loader" | `TH:150-157`, `:213`, `:562`, `:588` |
+| image-wide forwarders | "**749 functions have a complete body of exactly five bytes, `E9 rel32`**", 749 distinct targets (but see §3, X-T1) | `TH:493-494`, `:510` |
+| import stubs | 117, each resolved to DLL and export; 18 DLLs (math 34, MSVCP140 20, runtime 14, VCRUNTIME140 12, heap 9, string 7, kernel32 5, …) | `TH:561-572` |
+| receiver binder `0028FB40` (19 B) | `MOV RCX,[0209BE80]; ADD RCX,0xA0; JMP 003F8D20`; "It **binds a receiver**"; four siblings `0028E220`, `0028E860`, `0028E8B0`, `0028FB60` | `TH:86-92`, `:397-404` |
+| HUD element behind it | `003F8D20` load (on message `+8 == 0xF` from `00253780`), `003F8EC0` per frame, `003F8EA0` clear, `003F8C70` walk; fields `+0x52C6`, `+0x52B8`, `+0x52A0`, `+0x4020` (0x1280 B), `+0x52C0` count of 0x100-byte records; position eased by 0.5 | `TH:271-281` |
+| CFG dispatcher thunk | `00809958` = `jmp [__guard_check_icall_fptr]` (`008C31C0`) | `TH:587-600` |
+| address-taken thunks | 296 of 689 (268 qword, 25 `lea`, 3 both) | `TH:291-305` |
+| Ghidra flag | "**835 forwarders, 819 flagged, 16 unflagged**"; why 16 are unflagged is "NO ADMISSIBLE SOURCE" (Ghidra project state) | `TH:4`, `:229`, `:326` |
+
+#### Runtime service surface (`RS`)
+
+| item | statement | cite |
+|---|---|---|
+| import surface | "**30 DLLs, 538 imported symbols.**"; 417 slots called through `FF 15`, 3,543 indirect sites; the other 121 reached through 104 stubs, 9 in-body tail jumps and 8 as loaded values | `RS:60-61`, `:286`, `:299-303` |
+| busiest imports | `_invalid_parameter` 434 sites / 80 functions; Leave/EnterCriticalSection 310/126 and 286/134; `memmove` 244; `OutputDebugStringA` 150/93; `rand` 48/30 | `RS:82-93` |
+| debug log `006DF480` (137 B) | Yebis printf-style wrapper; 0x800-byte buffer at `02EA0BA0`; `__stdio_common_vsprintf` (options `\| 1`) then `OutputDebugStringA`; 801 call sites from 160 functions; hook slot `02EA0B88` starts at 0 and "stays 0 in the shipped build" | `RS:113-123`, `:219-245` |
+| crash filter `0079AD50` | installed by `007980A0` (`SetUnhandledExceptionFilter` at `007980F7`) "on every boot"; gate `01F40128` = 1; `MiniDumpWriteDump(GetCurrentProcess(), GetProcessId(…), file, 0x1826, &exceptionInfo, 0, 0)`; then string `0x7837` "Fatal error encountered.", `MessageBoxW(NULL, text, L"error", MB_ICONERROR)`; returns 1 | `RS:252-275` |
+| second dump path | `008A5AD0` → `005CCBF0` → `005CCD00` (symbolised stack walk, 926 B) → `CreateThread(005CCAB0)`, dump type `0x1B27` | `RS:156-158`, `:280-285`, `:441` |
+| SEH users | nine `__C_specific_handler` users (WinMain, thread trampoline `005CCBA0`, thread-name guards `005CD1E0` / `00863430` with `0x406D1388`, four CRT bodies) | `RS:389-435` |
+| licence check | `GetAdaptersInfo` at `00781F80`/`00781FD7`; `strncmp(licence MacAddress, "00-00-00-00-00-00", 17)`; shipped licence `FeatureId = YEBIS_D3D11 … MacAddress = 00-00-00-00-00-00` | `RS:310-318` |
+| service / registry layer | 18 bodies `00159420`…`0015B5F0`: dynamic loads of Setupapi / Advapi32 / Shell32; HKLM `SOFTWARE\Microsoft\Windows NT\CurrentVersion` `CurrentBuildNumber` (cache `02EAECE0`); `SYSTEM\CurrentControlSet\Control\Class\`; HRESULTs `0x80070057` / `0x8007007A` | `RS:495-577` |
 
 ### 1.10 Image hardening: ASLR, CFG, DEP, `/GS`
 
