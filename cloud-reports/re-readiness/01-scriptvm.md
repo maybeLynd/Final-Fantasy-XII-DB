@@ -142,7 +142,7 @@ and write a typed result back into the wait slot. Requests between actors (`REQ*
 | entry | callers | what it does | cite |
 |---|---|---|---|
 | `VMNativeCommand_ExecuteLifecycle` `002621D0` (461 B) | interpreter, 3 sites `002619B6` / `00261A19` / `00261AD4` | splits the id (`sar r12d,0xc` at `00262205`, `and r15d,0xfff` at `0026220C`), runs the phase machine, pushes one result | `C-VD:474-482`; `VD:280`, `:543-548`; `DT:651-657`; `C-NCL:53` |
-| `VMNativeCommandDispatch_InitializeFamilyTables` `003DC2D0` (89 B) | area initialiser `00266D10` (World); "built at startup" (`C-VD:180`) | fills the 16-entry family array; see C-V16 for a disagreement on what it installs | `C-NCL:54`, `:282`; `VD:278`, `:1392`; `DT:532`, `:627-629` |
+| `VMNativeCommandDispatch_InitializeFamilyTables` `003DC2D0` (89 B) | area initialiser `00266D10` (World); "built at startup" (`C-VD:180`) | fills the 16-entry family array; see C-V8 for a disagreement on what it installs | `C-NCL:54`, `:282`; `VD:278`, `:1392`; `DT:532`, `:627-629` |
 | `GetBeginCallback` `003DC270` · `GetPollCallback` `003DC240` · `GetResultCallback` `003DC2A0` | `002621D0` only (`002622BA`, `00262220`, `0026225D`) | `(family, command)` → callback or NULL | `C-NCL:55-57`; `C-VD:479-480`; `VD:279` |
 | `ActorManager_GetRecordByOrdinal` `00358940` (30 B) | `002621D0` at `0026223B` | rebinds the command's owner actor | `C-VD:413-416`; `C-NCL:280` |
 
@@ -227,11 +227,11 @@ popped top first, so the first value popped is the catalog's `paramType[0]` and 
 | offset | meaning | cite |
 |---|---|---|
 | `+0x00` | QWORD PC (also the wait key) | `C-INT:77-80`; `C-BR:142` |
-| `+0x08` | bound actor id / saved native-command target ordinal (width disputed, C-V30) | `VD:358`; `C-VD:176`; `C-BR:143` |
+| `+0x08` | bound actor id / saved native-command target ordinal (width disputed, C-V15) | `VD:358`; `C-VD:176`; `C-BR:143` |
 | `+0x0C` | result value (int or float) | `VD:359`; `CC:96-109` |
 | `+0x10` | A register (`PUSHA`/`POPA`, `CALL*POPA`) | `C-BR:145`; `INT:649`, `:657` |
 | `+0x14` | wait kind 0..7 | `REQ:92-100`; `C-BR:362` |
-| `+0x15` | phase / result tag (values and meaning disputed, C-V38, C-V39) | `VD:360-361`; `CC:217`; `C-BR:147` |
+| `+0x15` | phase / result tag (values and meaning disputed, C-V20, C-V21) | `VD:360-361`; `CC:217`; `C-BR:147` |
 | `+0x16` | serviced / visit marker | `C-BR:148`, `:363` |
 | `+0x18` | 16 bytes of command scratch (wait countdown; encoded target for kinds 3/6) | `VD:362`; `C-BR:149`; `REQ:92-107` |
 | `+0x1C`, `+0x20`, `+0x22`, `+0x26`, `+0x27` | list-wait encoding, entry id, cursor, channel, completion flag | `REQ:92-107` |
@@ -288,7 +288,7 @@ Bounds: a null table or signed `command >= count` returns NULL (`VD:170-172`; `C
 #### Actor entry, request descriptor and entry list
 
 - Actor entry (image `+0x18` table, `u32` count then 0x30-byte entries; 0x20 when the header word < 8): `+0x00`
-  name-pool offset, `+0x04` type 0–7, `+0x06` party code (width disputed, C-V9), `+0x08` bytecode base, `+0x0C`
+  name-pool offset, `+0x04` type 0–7, `+0x06` party code (width disputed, C-V6), `+0x08` bytecode base, `+0x0C`
   instruction count, `+0x10` function-offset table, `+0x14` jump list, `+0x18` special-function footer `{u16 count =
   0x12; u16 special[18]}`, `+0x1C` local-area offset, `+0x20` duplicate id, `+0x22` pos (`BIND:48-81`).
 - Request descriptor → entry (`BIND:153-163`): kind, mode → `+0x10`, channel → `+0x02`, requester wait slot → `+0x03`,
@@ -309,7 +309,7 @@ Bounds: a null table or signed `command >= count` returns NULL (`VD:170-172`; `C
   `0x02161DA0` × 32 (`NAMES:212-237`).
 - Treasure placement: `x = (s16)spot[+4] / 10.0`, `z = (s16)spot[+6] / 10.0`, `heading = -(spot[+8] & 0x3F) / 60.0 *
   2π` (`NAMES:90-114`).
-- Party read-in machine: 24 states (`READIN:99-120`); record layout `READIN:58-67` vs `:141` (C-V44); voice-pack
+- Party read-in machine: 24 states (`READIN:99-120`); record layout `READIN:58-67` vs `:141` (C-V31); voice-pack
   pools `022D9AB0` (2 slots) and `022D9AE0` (4 slots), stride 0x18 (`READIN:181-185`).
 - Party appearance: slot map 1 `[02EBF190] + 0x5A5A + 2*slot`, four slots, class `0x17` check, 7..25 range split
   (`LOOKS:172-207`); projection-shadow bits on the 0x740-byte render record (`LOOKS:278-292`).
@@ -331,7 +331,7 @@ Bounds: a null table or signed `command >= count` returns NULL (`VD:170-172`; `C
 | Instruction budget | `0x10000` per invocation (`0025E4FA`), one per instruction | `INT:1037`; `RES:173` |
 | Register file I0–I3 `+0x64..+0x70`, F0–F3 `+0x74..+0x80` | zeroed once at pool allocation; persists for the life of the pool; not saved | `INT:839-841`, `:887-891`, `:931`, `:967-972` |
 | Wait slot `+0x00..+0x16` | reset by `0025D460`; `+0x18..+0x27` survives | `REQ:63-64`; `BIND:520-521` |
-| Family array `0x02B57EF0` | written by `003DC2D0` — "filled once" (`NCL:174`) or "(re)built" at area init (`C-NCL:282`); see C-V58 | |
+| Family array `0x02B57EF0` | written by `003DC2D0` — "filled once" (`NCL:174`) or "(re)built" at area init (`C-NCL:282`); see C-V42 | |
 | Command tables | static `.data`, no writer | `C-VD:463-465` |
 | Skip mask, manager slot `+0x201` | set by `skipexec` / `00360710`, cleared by `00360A50`, written 0 by the bind | `NCL:634-638`; `RES:91-94` |
 | `global` variables (save payload `+0x200`–`+0xCF4`) | saved and loaded verbatim | `VARS:124`, `:152`, `:248-250` |
@@ -354,7 +354,7 @@ Bounds: a null table or signed `command >= count` returns NULL (`VD:170-172`; `C
    1 and return 1 (the interpreter rewinds its PC and yields); otherwise result, push by phase, phase 0, return 0
    (`VD:195-223`; `C-VD:274-302`).
 5. A busy call resumes on a later driver invocation at the same PC with phase 1, and polls without begin
-   (`RES:24-28`; `C-INT:92-94`). Whether that is "every frame" is disputed (C-V59).
+   (`RES:24-28`; `C-INT:92-94`). Whether that is "every frame" is disputed (C-V41).
 6. `REQ*`: the submit builds a descriptor; same-actor immediate submission skips reselection (`BIND:503-504`). The
    channel walk takes the highest channel first, FIFO within a channel, skips state 1, starts state 2
    (`BIND:107-123`). `REQSW` notifies at start, `REQEW` at removal (`REQ:68-76`).
@@ -565,7 +565,7 @@ session cannot see the executable.
 - Page-text only - needs local check.
 
 **C-V12. What the value-stack byte at `+0x44` holds.**
-- Side A: `VD:379-380`: "`+0x044 + i` u8 source type 0..5 = the declared type of the variable it came from (uchar,
+- Side A: `VD:379-380`: "+0x044 + i u8 source type 0..5 = the declared type of the variable it came from (uchar,
   char, ushort, short, int, float); 6 = a literal or computed value, not from a variable".
 - Side B: `C-BR:116-118`: "source-kind byte; direct pushes store6. Existing variable-load evidence distinguishes
   descriptor byte0 from its separate high-nibble selector. Do not equate those fields; the complete enum is
@@ -886,3 +886,101 @@ dated correction named.
 | C-V60 | `BP:9-12`: "eleven bodies" | the same sentence lists twelve addresses | no favoured side |
 
 All rows: page-text only - needs local check.
+
+### 3.2 Stale "not read / open" claims, struck-but-repeated text, and banner disagreements
+
+These do not change a value; a re-implementer would only be misled about what is known. "Answered by" names the
+dated line that settles it where there is one.
+
+#### Status banners and front matter
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S1 | `README:19`: `VD` "**DOCUMENTED, tier 1.**"; `VD:1249`: "`DOCUMENTED`, three falsification passes survived" | `VD:4`: "status: AUDITED". Also `VD:20` `audit.passes: 4` against "three falsification passes" (`VD:1249`). Not settled. |
+| C-S2 | `README:28`: `DT` "**DOCUMENTED, tier 2.**"; `DT:40`: "**DOCUMENTED.**" | `DT:4`: "status: AUDITED"; `DT:420`: "**Why this is PARTIAL rather than DOCUMENTED.**" Not settled. |
+| C-S3 | `INT:35`: "This page is REOPENED, preserving its older audit receipts." | `INT:4`: "DOCUMENTED — the SECTION-11 reopening is resolved (accepted non-author 2026-09-29 …) … (owner re-status 2026-10-01, OPUS)"; `README:15` agrees with `INT:4`. |
+| C-S4 | `NCL:43`: "**Historical DOCUMENTED assessment; current corrections require review.**" | `NCL:4` (re-status 2026-10-01) and `NCL:46-48`: "*(Reconciled 2026-09-30, SWE2-CONTRACT: the review is done — …)*". |
+| C-S5 | `REACH:57-58`: "`status: PARTIAL` is the honest state."; `REACH:245`: "its status `PARTIAL`" | `REACH:4`: "status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS)". |
+| C-S6 | `BIND:4`: "REOPENED — …"; `BIND:525`: "this correction reopens the mechanism pending review" | `BIND:527`: "*Reconciled 2026-09-30 (SWE2-CONTRACT, cited).* **The review is done:**" |
+| C-S7 | `C-INT:28`, `C-NCL:28`, `C-BR:25`: "formal independent acceptance pending"; `RES:11`: "independent acceptance pending"; `REQ:32`: "It is not … independent acceptance." | `INT:27` and `NCL:26`: "accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18)"; `RES:142` OV-18 "NOT A QUESTION 2026-09-29"; `BIND:527-531` "returning `verdict:ACCEPT`". |
+| C-S8 | `readiness: CONTRACT READY`, `confidence: PROVEN` on all four contracts (`C-INT:6-7`, `C-NCL:6-7`, `C-BR:6-7`, `C-VD:6-7`) | `C-INT:39-40`: "not complete execution or semantic acceptance"; `C-VD:361-362`: "Status `FAIL`, reported as it came back."; `C-BR:38`: "not `RECONSTRUCTION READY`". `C-VD:22`: "crossref_clean: false        # audit_crossrefs.py reports nothing for this document" (the value and its comment disagree). |
+| C-S9 | `last_reviewed` older than the page's own dated edits: `INT:18` 2026-09-02; `VD:18` 2026-09-02; `DT:18` 2026-09-07; `NCL:18` 2026-09-07; `CC:15` and `POP:17` 2026-09-08; `BIND:13` and `VARS:14` 2026-09-11; `C-BR:17` 2026-09-11; `ATEL:20` and `C-VD:17` 2026-09-12; `WAIT:18` and `NAMES:17` 2026-09-13; `READIN:12` 2026-09-14 | latest dated edits: `INT:931` (2026-10-01); `VD:730` (09-27), `:1423` (09-30); `DT:1131` (09-26); `NCL:194` (10-01); `CC:657` (09-25); `POP:26` (10-01); `BIND:79` (09-30); `VARS:439` (09-29); `C-BR:24` (09-23); `ATEL:807`, `:810` (09-30, 09-29); `C-VD:456` (09-22); `WAIT:232` (09-30); `NAMES:286` (09-17); `READIN:214` (09-25), `:330` (09-29) |
+| C-S10 | `ATEL:795-797`: "## 6. Falsification pass / Not yet run." | `ATEL:816`: "## 9. Falsification pass 1 — 2026-09-13 (OPUS)"; `ATEL:26-27`. |
+| C-S11 | `STDM:21-22`: "last_pass: 2026-09-13 … EVERY figure reproduces and there is no correction" | `STDM:328`: "KILLER TESTS RUN — 2026-09-14 (FABLE). Three hold. One is refuted". |
+| C-S12 | `BP:20-23` (front matter): "the three add verbs' begins and the flag pair keyed 0x13 are not read … pending first review" | `BP:79-87`: "The add side, read whole 2026-09-19"; `BP:146` falsification pass 1, 2026-09-29; `BP:156`. |
+| C-S13 | `LOOKS:426-427`: "This is why the document is `L1` and not `L2`: … the presentation consequence is not." | `002E8CE0` and `002E5C90` "read 2026-09-18" (`LOOKS:4`, `:396`, `:425`). Not settled. |
+| C-S14 | Duplicate section numbers: `DT` has two "## 14." (`DT:605`, `:729`) and no §11; `VARS` has two "## 9." (`VARS:329`, `:336`) | structural; links to "§9" on `VARS` mean the falsification section. |
+
+#### Interpreter, scheduling and contracts
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S15 | `INT:257-258`: "**no handler has been read for semantics**"; `INT:312`: "**BF-1 holds the whole semantic layer open.**"; `INT:427`: "**BF-1 stays open:**"; `RES:160-161`: "remaining opcode/service semantics are still separate obligations"; `C-INT:237`: "Remaining opcode semantics" | `INT:260`: "*ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static: all 100 handlers are read"; `RES:137`. `INT:312-314` and `:429` carry stale pointers; `RES` and `C-INT` do not. |
+| C-S16 | `C-INT` §14 (`C-INT:237-241`): "other wait kinds"; "register reuse"; "Authored operand/index bounds and resource lifetime"; "Meaning/producer scope of the actor-indexed control byte"; `C-INT:133`: "Full resource lifetime not established."; `C-INT:195`: "The existing ASTRA live register-reuse task remains separate." | `REQ:92-100`, `RES:138` (OV-14, 2026-09-29); `INT:931` (register file persists for the life of a pool); `RES:141` (OV-17, 2026-09-29); `RES:94`, `:139` (OV-15: the skip mask, 2026-09-29); `INT:935` ("no live observation is needed"). |
+| C-S17 | `INT:1001`: "`+0x201` … a byte fed into every handler in `edx`" | `RES:94` (OV-15, 2026-09-29): "the indexed control is the target manager's skip mask (manager record `+0x201`…)". |
+| C-S18 | `INT:238-239` (unstruck): "**`0x00261DF8` is the single point of control over the whole scripting language.**" | `INT:247-249`: "~~**`0x00261DF8` is the single point of control …**~~ **FALSE — there are two coupled tables.**" (§10, 2026-09-02). |
+| C-S19 | `INT:981-982`: the interpreter's third argument is "the actor's request entry in `r8`" | `C-INT:58`: "R8 its selected `ActorWaitSlot`"; `BIND:100-101`. "Entry" elsewhere is the 0x14-byte `ActorResourceEntry` (`BIND:112`). |
+| C-S20 | `INT:326`: "The interpreter has one entry, `0025DF00`, ticked per frame" | `C-INT:9`: `entries: ["0025E4C0"]`; `INT:1138-1141`: `0025DF00` is the one call site. |
+| C-S21 | `BIND:205-207`: "Who else promotes a state-1 entry to 2 was not found in the functions read" | `BIND:301` (RC-14): "**ANSWERED 2026-09-30 …:** image-wide, exactly three stores reach an entry's `+0x11` … plus the insert". |
+| C-S22 | `BIND:381`: "**Not claimed:** the other seven kinds remain unnamed" | `BIND:283-287`: "*Answered (pointer 2026-09-30, SWE2-CONTRACT):* the wait kinds 0–7 … are enumerated"; `REQ:92-100`. |
+| C-S23 | `BIND:228-229`, `:280`: which special slot each footer reader asks for "is not read here" | `BIND:291` (RC-12, 2026-09-30), pending adjudication (S-3). |
+| C-S24 | `BIND:156`: "`+0x10` (the store's `state` row …)" | `BIND:192`: "It is now declared separately from **`+0x10` request mode**; the older no-store-row statement is superseded." |
+| C-S25 | `BIND:261-262`: "`StartEntryScriptExecution` → `WorldActorScriptVM_InterpretBytecode`." | `INT:1138-1139`: one direct call site, from `0025DF00`; `BIND:94` shows `003DBDC0` only sets PC and kind. |
+
+#### Native command lifecycle, dispatch tables and verb dispatch
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S26 | `C-NCL:97-98`: "*Whether that is deliberate aliasing or a fallback for unimplemented families is `AO-1` and is not settled here.*"; `C-NCL:220`: "complete catalog reconciliation"; `NCL:87-89` | `NCL:242-243`: "**AO-1 ANSWERED 2026-09-12 (FABLE): the shared table is family 2's, and the other eleven are verb-less fallbacks.**"; `NCL:276` (AO-5, 2026-09-18). |
+| C-S27 | `NCL:262-263`, `:322`: "Family **3** is **spawn**"; `NCL:317-318`: "Why a family was spent on it is open" | `NCL:268` (AO-4, 2026-09-27): "Family 3 is the battle-actor set, not only spawn."; `NCL:270-274` (AO-6 closed 2026-09-12). |
+| C-S28 | `NCL:346-347`: "**`_guard_check_icall`** as their `result` callback — the bare `ret 0` at `0016D6A0`"; `NCL:351` "the disabled CFG stub" | `VARS:57`: "~~that callee is the CFG stub~~ — it is the **folded no-op** … Corrected 2026-09-13". |
+| C-S29 | `NCL:597`: `FUN_00267310(actorState[0x15])` | `NCL:621-626`: the CE-5 correction (SECTION-11, 2026-09-23) — `00267310(idx)` reads `02099011 + sign_extend(idx)*0x288`. |
+| C-S30 | `NCL:129`: the executor "branches three ways" | `NCL:133-138` and §12 (`NCL:452-510`): fall-through; the §11 block is labelled "REFINED in section 12" (`NCL:399-402`). |
+| C-S31 | `DT:199-200`: "**Rows are a lead, not fact** — the index mapping is known wrong in at least one region."; `DT:345-346`; `DT:418`; `DT:420-424` | `DT:61-64`: "CORRECTED 2026-09-07 … the call ID, exactly". |
+| C-S32 | `DT:249-253`: "Record layout (interpretation UNPROVEN beyond field +0)"; `DT:104-106` | `DT:57` (restored 2026-09-19) and `DT:267-301` (superseded 2026-09-16). |
+| C-S33 | `DT:784-786`: "header occupies record 0's `+0` field … so record 0's `+0` slot holds the count and its begin/poll fields are live" | `DT:191`: "*Restored 2026-09-19 (FABLE): these 32 bytes are not a header*". |
+| C-S34 | `DT:217-223`: "**`scriptvm-dispatch.tsv` has the two callbacks one call id early.** … **259 of the 304 asynchronous verbs have no row in that file at all**" | the TSV header: begin/poll columns "RE-FRAMED 2026-09-19 (OPUS)" and 259 rows added; the page is not updated. |
+| C-S35 | `DT:1030-1031`: "**Left open:** the **26 records with a `poll` callback and nothing else**" | `WAIT:87-89`: "**This closes `CE-1`**". |
+| C-S36 | `VD:945-946`: "69 writes in the interpreter, 0 reads … Left open rather than explained away." | `VD:638`: "**BQ-1 ANSWERED 2026-09-13 (FABLE):** … **78 stores**". |
+| C-S37 | `VD:1062`: "**BQ-7** stays open on those four categories."; `VD:1236`, `:1242-1245` (BQ-9 "Ninety rows") | `VD:721-725` (BQ-7 CLOSED 2026-09-02); `VD:730-740` (BQ-9, 2026-09-27). |
+| C-S38 | `VD:56-59`: verbs that take time "hold the script until they are done" | `VD:1266-1267` (CY-4, 2026-09-08): "**for 77 verbs that gloss is wrong.**" |
+| C-S39 | `VD:1321-1322`: "Neither handler is read. `CZ-1`." | `VD:1324`: "*Answered 2026-09-14 (FABLE, `CZ-1`)*". |
+| C-S40 | `C-VD:557-558`: "`VA-1` — what that slot was for — stays open"; `C-VD:584-585` "§13 and `VA-1` are unchanged" | `C-VD:456-457`: "~~**`VA-1`** — what the unused `+0x10` slot was for.~~ — **resolved 2026-09-22 (SWE2-CONTRACT) as far as the image can resolve it: dead space in the 32-byte stride.**" |
+| C-S41 | `C-VD:584`: "**Not claimed:** the lifecycle half is still unexecuted" | `C-VD:315`: "**CORRECTED 2026-09-16 (OPUS).** THE LIFECYCLE HALF WAS EXECUTED THREE DAYS AGO". |
+| C-S42 | `C-VD:594-596`: "`STATE-TRANSITION` … Still constructible offline and still not built" | `C-VD:317-319`: EXP-085, "35/35 cases pass". Not reconciled (an experiment, not a parity fixture). |
+| C-S43 | `C-VD:493-494`: "The source page counts populated callbacks per family; it does not separate the stub." | `VD:292`, `:606-611` (corrected 2026-09-15) separate it. |
+
+#### Verb population, reach and calling convention
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S44 | `POP:271-272`: "Only the *begin* handler is classified in §3. **The 261 poll and result handlers are recorded and unclassified**"; `POP:333-335`, `:458`, `:461` (old slot labels) | `POP:286-288` ("Slot names corrected 2026-09-22 (FABLE)": "is a census of **result** handlers … is **begin and poll**"); `POP:268-269`. |
+| C-S45 | `POP:154-155`: "240 of 583 single-call verb handlers"; `POP:433-438`: "the eight verb handlers above" | `POP:110`, `:119-126` (regenerated 2026-09-13: 238 of 584); `POP:398`: "**Ten handlers, not the eight this section first named.**" |
+| C-S46 | `POP:466-468`: "**`scriptvm-verb-shapes.tsv` is unchanged.** The four rows still carry the old family" | `POP:56-57` (regenerated 2026-09-13); the TSV carries the corrected rows. |
+| C-S47 | `REACH:25`: "so the map is stale against the older GN160 snapshot"; `REACH:50-51`, `:269`, `:346-347`: five rows "drift at the current snapshot" | `REACH:358` (RC-21, 2026-09-30): "the five rows do not drift with the snapshot." |
+| C-S48 | `REACH:259`: "`Save_Load_Settings` appears only at depth ≥ 2" | `REACH:122`: "~~from nothing~~ **from 1 at depth 1**"; `REACH:331`. |
+| C-S49 | `CC:230-231`: "five of the seven tail-call their native target" | `CC:413-418`: "**Three, three and one.**" (2026-09-13). |
+| C-S50 | `CC:301-302`: "What any other result tag means … UNKNOWN"; "Which script opcode reaches these verbs … UNKNOWN"; `CC:205`: "`002640C0`, `002650B0` … **not read**" | `CC:238` (EF-1, 2026-09-13); `CC:267-285` (UQ-55/EF-5); `CC:247-257` (EF-3, 2026-09-11). |
+| C-S51 | `CC:238`, `:444`, `:646`: "all **six**" sites | `CC:430-432`: "~~exactly six~~ **Corrected 2026-09-14 (OPUS) … the census is SEVEN**". |
+| C-S52 | `CC:526`: "`EF-2` (a negative slot index) is untouched"; `CC:654-655`: "`EF-2` stays open on the producer side" | `CC:239-246`, `:657-739` (UQ-54 answered 2026-09-25); residue S-22. |
+| C-S53 | `CC:526-528`: the meaning of slot `+0x10`, `+0x16`, `+0x18`, `+0x1C`–`+0x27` "is **not** established" | `C-BR:141-151` names them; see C-V21 for `+0x15`. |
+| C-S54 | `C-BR:36`, `:264`: EF-1 answered "in part"; `C-BR:404`: "whether tags above 3 exist is still `UNKNOWN`" | `C-BR:266-268` (2026-09-14), itself disputed by C-V20. |
+
+#### Verbs on this category's pages
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S55 | `WAIT:204`: "`0034E3E0` | poll shared by `summonreadsync` and `summontopartyreadsync`" | `WAIT:98-100`, `:313-315`: four verbs (§7, 2026-09-13). |
+| C-S56 | `WAIT:342`: "**Not claimed.** `CR-2` and `CR-3` stand."; `WAIT:342-343`: the result bodies' callees "were not" read | `WAIT:239` (CR-3 dissolved 2026-09-26); `WAIT:232` (UQ-65 closed 2026-09-30); `WAIT:363` (`00237D60` read 2026-09-14); `WAIT:373`, `:383`. |
+| C-S57 | `WAIT:30-31`: "Nine are PlayStation-era leftovers" | `WAIT:217-218` names five; four rows of the stub table say "—" (`WAIT:118-126`); the attribution is tier 8 (`WAIT:261`). |
+| C-S58 | `NAMES:484`: "eleven users, five of them named verbs" | `NAMES:532-549`: seven named verbs, ten callbacks. |
+| C-S59 | `NAMES:492-493`: "what a record holds with a map loaded | **not established** | — | UNKNOWN"; "any runtime observation | **none exists**" | `NAMES:286` (UQ-58, 2026-09-17); `NAMES:471-474` (UQ-63 superseded 2026-09-14). |
+| C-S60 | `NAMES:564-566`: "`ER-1` and the "does the stamp ever change" question stay open. `002E28E0`, `002EC5B0`, `002650B0`, `0026DAC0` remain unread."; `NAMES:354-357`: "**NOT read: what it does with the fourteen values.**"; `NAMES:193-195`: "that the stamp ever changes is not observed" | `NAMES:286`, `:302` (UQ-59, 2026-09-14), `:320-333` (UQ-60), `:358-383`, `:384-421`, `:422-426`. |
+| C-S61 | `NAMES:186`: "`+0x1E` | `0xFFFF` in all 128 | unknown, uniform"; `NAMES:352-353`: "uses the `.rdata` constant `30.0f` at `008F8D80`" | `NAMES:205-206` (subTableIndex, 2026-09-18); `NAMES:249-250` ("corrected 2026-09-14, FABLE": 50.0f). |
+| C-S62 | `READIN:39`: "in four part slots"; `READIN:59`: "three statics are known" | `READIN:157`, `:163` (UQ-49, 2026-09-16: six elements, "one enum, not 'four slots'"); `READIN:141`: "the two static … instances". |
+| C-S63 | `STDM:166`: "the discarded extra argument of `0540`/`0541`"; `STDM:72`, `:162-163`, `:178`, `:316` ("discard") | `STDM:66`: "**Refuted 2026-09-14 (FABLE): the extra argument is the float.**" |
+| C-S64 | `STDM:311-313`: "It **is not a push** — it is `edx`" | `STDM:338-340`: "**OPUS's refinement above … does not stand**" (2026-09-14). |
+| C-S65 | `STDM:142`: "What the `-1.0f` means to the pop that consumes it is still open."; `STDM:386`: "`00233F50` and `002ED020` remain unread" | `STDM:143` (answered 2026-09-30); `STDM:142` ("Both read 2026-09-18 (FABLE)"). |
+| C-S66 | `STDM:107`: "then three gates and a 7..25 range split" | `LOOKS:325`: "four slots, two gates, one range test"; `LOOKS:352`. Not settled. |
+| C-S67 | `LOOKS:410-411`: "The second half … remains open."; `LOOKS:532`: "What the four setters do — **none of their bodies was read here**"; `LOOKS:636`: "the scripted colour/alpha triple" | `LOOKS:421` (RC-18, 2026-09-30); `LOOKS:384`; the superseding note on `LOOKS:636` itself (2026-09-30: "a position, not a colour"). |
+| C-S68 | `BP:56`: "the setter itself was not read here"; `BP:128`: "Not read: … the flag setter and clearer keyed `0x13`"; `BP:55`: "Each pops its arguments from the script stack, then **raises flag `0x13`**" | `BP:156`: "`003601B0` / `003601C0` set and clear bit `cl` of `022CB720`"; `BP:162`: "`setbattlemember` runs its preamble and raises the flag (`0034D542`) before its first pop" (2026-09-29). |
