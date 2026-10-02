@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`f26c5667`); no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. Several pages in this folder are being edited by other lanes; every quotation is of the snapshot text. |
 
-**Counts:** COUNTS-PLACEHOLDER
+**Counts:** 8 pages read in full (4,704 lines: 7 system pages + the category README), 20 member `.tsv` files opened for layout and row counts only · interface mapped for **7 sub-systems** (§1.2-§1.8), plus a **16-row link map** (§1.1) and order / dependencies (§1.9) · **27** self-stated open gaps + **18** structural gaps + **12** unexplained-field items (§2) · **73 contradictions**: **35 value-changing**, all "page-text only - needs local check" (**12** with a favoured side settled by a dated correction on the pages, **23** with no favoured side), and **38 stale / banner** (29 stale "open / not read" claims, 28 of them settled by a dated line; 9 status-banner / front-matter disagreements, 1 settled) · **Rating: NOT YET** overall (READY: zlib, JsonBox, Dear ImGui; MOSTLY: libvpx + libwebm, the Xiph audio codecs, MS ADPCM, Lua and its loader, Bullet and the Phyre seam, EASTL; NOT YET: Yebis/PPFX post-effects, CRI HCA decoder).
 
 Citation form: `ABBREV:line`, where the abbreviation stands for a page path relative to
 `FFXII TZA/23-Third-Party-Libraries/`. Line numbers are those of the snapshot file.
@@ -43,7 +43,7 @@ row counts:
 | `members/libvorbis.tsv` | 115 | `INV:30` (115) |
 | `members/libvpx-vp8-decoder.tsv` | 116 | `INV:35` (116) |
 | `members/libvpx-vp8-decoder-uc1.tsv` | 4 (with a column header) | `INV:36` (4) |
-| `members/libvpx-vp8-dsp-kernels.tsv` | 63: 30 below `00129800`, 1 at `00133B40`, 30 in `0014xxxx`, 2 at `00158Bxx` | `INV:37` (63; the row's own per-range figures differ, §3 X-17) |
+| `members/libvpx-vp8-dsp-kernels.tsv` | 63: 30 below `00129800`, 1 at `00133B40`, 30 in `0014xxxx`, 2 at `00158Bxx` | `INV:37` (63; the row's own per-range figures differ, §3 X-16) |
 | `members/libwebm-mkvparser.tsv` | 104 | `INV:38` (104) |
 | `members/lua.tsv` | 600 | `INV:33` (600) |
 | `members/msvc-runtime-tail.tsv` | 52 | `INV:39` (52) |
@@ -70,7 +70,7 @@ The category `README` indexes **3 of the 7 system pages** (`README:13-30`): `VPX
 | `LUAC` | `readiness: CONTRACT READY`, `confidence: PROVEN` (`LUAC:6-7`); `last_reviewed: 2026-09-08` (`:17`); `passes: 1`, `last_pass: 2026-09-12` (`:20-21`); `crossref_clean: false` (`:23`) | not indexed in `README`; corrections dated 2026-09-25 (`LUAC:54`, `:109`) and a bound dated 2026-09-26 (`LUAC:369`) |
 | `LUA` | `status: AUDITED` (`LUA:4`); `evidence_tier: 1`; `last_reviewed: 2026-09-13` (`:13`); `passes: 1`, `last_pass: 2026-09-13` (`:15-16`) | not indexed in `README`; answers dated to 2026-09-26 (`LUA:401`) |
 | `PPFX` | `status: AUDITED` (`PPFX:5`); `evidence_tier: 2`; `last_reviewed: 2026-09-02` (`:19`); `passes: 1`, `last_pass: 2026-09-02` (`:21-22`); no `promoted:` line | `README:20` "**DOCUMENTED, tier 2, one falsification pass.**"; body dated to 2026-09-26 (`PPFX:428`); section order §9, §11, BQ-32, §10 (`PPFX:323`, `:331`, `:430`, `:474`) |
-| `README` | "Functions \| ~1,000" (`README:8`) | `INV:139` gives 827 tagged; the declared families alone exceed 3,000 (§1.1) |
+| `README` | "Functions \| ~1,000" (`README:8`) | `INV:139` gives 827 tagged; the front-matter families hold 4,208 bodies (B-9) |
 
 ## 1. Interface
 
@@ -107,7 +107,7 @@ front-matter count; the body figure dated 2026-09-13 is given where it differs.
 
 | library | link extent (census entries) | members now (body figure) | version | inbound client | cite |
 |---|---|---:|---|---|---|
-| CRI HCA decoder | `00121000` up to `00125740`, less `001243B0` | 53 | decoder banner `Ver.2.05.00` (`INV:810`); see X-32 | SEAD: `Voice::Initialize` `007EBAD0` and voice functions | `INV:29`, `:297-302` |
+| CRI HCA decoder | `00121000` up to `00125740`, less `001243B0` | 53 | decoder banner `Ver.2.05.00` (`INV:810`); see X-23 | SEAD: `Voice::Initialize` `007EBAD0` and voice functions | `INV:29`, `:297-302` |
 | libvpx VP8 DSP kernels | `00125740`–`001297DE`, `00133B40`, `001481D0`–`0014C221`, `00158B40` / `00158C09` | 63 (66) | 1.6.0 | the decoder object only; dispatch set-up `0016F080` | `INV:37`, `:455` |
 | libvpx VP8 decoder | `0016DDD0` up to `0017C890` | 116 + 4 UC-1 (122) | 1.6.0 (`INV:993`) | video client at `0067xxxx` only | `INV:35-36`, `:436-450` |
 | libogg `bitwise.c` | `0017C890` up to `0017CC70` | 4 | 1.3 line (by `framing.c`) | libvorbis, Tremor | `INV:31`, `:339-344` |
@@ -284,7 +284,7 @@ pages stand, the loader is reachable only if a state built outside the image is 
 
 **Order within a frame.** The only ordering statements are:
 - "startup -> EnableYebis -> licence/feature check" (`INV:656-660`);
-- "render frame -> Phyre.PostProcessing (72) … -> PPFX (348) … -> YEBIS (3+)" (`INV:662-665`), which X-7 contradicts;
+- "render frame -> Phyre.PostProcessing (72) … -> PPFX (348) … -> YEBIS (3+)" (`INV:662-665`), which X-28 contradicts;
 - "the remaster runs the whole image through it every frame" (`PPFX:52`);
 - static EASTL strings and the ImGui context are built before `main` (`EASTL:153-157`, `INV:725-729`).
 
@@ -336,7 +336,7 @@ sentence remains; those are in §3.2.
 | G-23 | EASTL container set: "The absence of `hash_map`, `deque`, `fixed_*` and the others is therefore not proven." | `EASTL:338-340` |
 | G-24 | EASTL statics: "NOT dispositioned: 001EDF00 (documented here), the per-object destructors, the literals, and which game string each object holds" | `EASTL:27` |
 | G-25 | Selectors that do not reproduce their own file at HEAD: `select_jsonbox.py` "does not re-run at HEAD"; `select_imgui.py` "does not re-run at HEAD" | `INV:40`, `:41` |
-| G-26 | Inventory scope: "Bodies of every third-party function — this is an inventory, not an analysis." (X-1, superseded as a population statement) | `INV:703-704` |
+| G-26 | Inventory scope: "Bodies of every third-party function — this is an inventory, not an analysis." (the page's own X-1, superseded as a population statement) | `INV:703-704` |
 | G-27 | Inventory evidence ceiling: libogg, Tremor and libvorbis carry no upstream text; "YEBIS is a third case: Silicon Studio's middleware is not open source, so there is no upstream text in existence to match against." | `INV:1130-1135` |
 
 ### 2.2 Structural gaps (a port needs these and no page states them)
@@ -344,7 +344,7 @@ sentence remains; those are in §3.2.
 | # | missing | where the gap shows |
 |---|---|---|
 | SG-1 | **Yebis / PPFX behaviour.** No page gives any post-effect algorithm (depth of field, glare, luminance, the post-effect chain), its parameters, its shaders, or the order of passes. The library is closed (`INV:1133-1134`), so a port has no upstream to link. The pages give file identity only ("This document establishes **where they came from**, not what they compute.") | `PPFX:252-253`, `:192-205` |
-| SG-2 | **Where the post-effects sit in a frame**, and their inputs and outputs (which render targets, which formats). §5's chain names only "**Upstream:** the renderer. **Downstream:** the frame buffer." | `PPFX:205`; `INV:662-665` (contradicted, X-7) |
+| SG-2 | **Where the post-effects sit in a frame**, and their inputs and outputs (which render targets, which formats). §5's chain names only "**Upstream:** the renderer. **Downstream:** the frame buffer." | `PPFX:205`; `INV:662-665` (contradicted, X-28) |
 | SG-3 | **The YEBIS licence decode and signature check.** `0071C550` (decode) and step 1 (signature and field match) are named, not described. A port that keeps the check needs both; one that drops it needs to know the success path is the only one taken. | `INV:708-713`, `:720-721` |
 | SG-4 | **The PPFX integration client** (`006C9B20` onward, 23 functions) is excluded from every family and documented nowhere in this folder; it is the code that feeds Yebis its parameters. | `PPFX:28`, `:409-410` |
 | SG-5 | **CRI HCA decoder behaviour.** Extent, version and callers only; no API, no bitstream, no tables. The decoder is proprietary (no upstream). | `INV:29`, `:297-302`, `:810` |
@@ -394,16 +394,16 @@ use: they are "open / not read" claims that another part of the pages answers, o
 
 | group | items | with a favoured side | no favoured side |
 |---|---:|---:|---:|
-| §3.1 value-changing | X-COUNT | X-FAV | X-NONE |
-| §3.2 stale "open / not read" | S-COUNT | S-FAV | S-NONE |
-| §3.2 status banner / front matter | B-COUNT | B-FAV | B-NONE |
-| **total** | **T-COUNT** | **T-FAV** | **T-NONE** |
+| §3.1 value-changing | 35 | 12 | 23 |
+| §3.2 stale "open / not read" | 29 | 28 | 1 |
+| §3.2 status banner / front matter | 9 | 1 | 8 |
+| **total** | **73** | **41** | **32** |
 
 The value-changing items a port is most likely to trip on:
 - the Phyre body's `+0x28..+0x30` (X-1) and Bullet's `+0x160` (X-2);
 - the Lua header check, read 17 / compare 18 (X-3), and the chunk-name field (X-4, X-5);
 - EASTL's static-string object size and empty-string state (X-6, X-7, X-8);
-- which audio decoder serves which path (X-18, X-19);
+- which audio decoder serves which path (X-17, X-18);
 - the post-processing layering and the YEBIS licence gate (X-28, X-29).
 
 ### 3.1 Value-changing — page-text only - needs local check
@@ -599,3 +599,219 @@ The value-changing items a port is most likely to trip on:
 - §3: “00D94ED0, 00D94F50 | d:\bamboo\build\yeblic-ppfxlic-bl2015\src\gpu\GPUClassUtil.h — the referenced copies” (`PPFX:164`).
 - BQ-32: “All 12 occurrences are byte-identical” (`PPFX:454`) and “20 code sites reference the twelve copies, and 73 is a nearby immediate at 19 of them” (`PPFX:458`); §10: “six identical copies of GPUClassUtil.h, all at line 73” (`PPFX:481-482`), explained there as a display artefact.
 - Two referenced copies against references to all twelve. Favoured side: none. **page-text only - needs local check.**
+
+### 3.2 Stale "not read / open" claims and banner disagreements
+
+These do not change a value a port would use, but a re-implementer reading one page in isolation would take an
+answered question for an open one, or the reverse.
+
+#### Stale claims
+
+#### S-1. Inventory "REOPENED" banner
+- “REOPENED 2026-09-02 — this document's census had a scope defect.” (`INV:51`), unstruck.
+- “status: DOCUMENTED - was REOPENED; both triggers … are resolved” (`INV:4`); “reopened_count: 2 matches the page's two reopenings, and both are resolved.” (`INV:1277`).
+- Favoured side: **resolved** (2026-10-01).
+
+#### S-2. YEBIS all-zero dates "not proven"
+- “That reading is not proven; see X-2.” (`INV:190`); “One inference explicitly withheld.” (`INV:834`).
+- “Answered 2026-09-14 (FABLE), X-2: no expiry, and by an explicit branch rather than by the convention.” (`INV:192-193`); pointer at `INV:838-839`.
+- Favoured side: **answered** (2026-09-14; the page keeps the old sentence on purpose, `INV:197`).
+
+#### S-3. YEBIS record "EndDay presumably follows"
+- “(EndDay presumably follows; the string is truncated in the extraction)” (`INV:640`).
+- “So EndDay is the sixth field.” (`INV:648-649`), pointer dated 2026-10-01 (`INV:647`).
+- Favoured side: **six fields** (2026-10-01).
+
+#### S-4. `00684D10` / `00686280` "lua_pcall call sites … not read"
+- Key-address row: “lua_pcall call sites | not read” (`INV:619`).
+- “00684D10 and 00686280 are function entries, not call sites.” (`INV:624-625`), pointer dated 2026-10-01; both are read on `LUA:421-424`.
+- Favoured side: **function entries, read** (2026-10-01).
+
+#### S-5. `X-3` (`EnableYebis`) ticked with no answer
+- “so it is plausibly a config key. Not proven; X-3.” (`INV:688`).
+- The §7 box is ticked: “[x] Whether EnableYebis is a JSON config key or a compile-time switch. X-3.” (`INV:722`), with no answer text on the page.
+- Favoured side: none.
+
+#### S-6. zlib "a candidate but unproven" for the save
+- Related list: “where zlib is a candidate but unproven” (`INV:845`).
+- “(2026-09-13: it is the codec — the stream is RC4-encrypted after compress2 level 9, 0087AF40; decrypting first exposes it. V-9 answered.)” (`INV:690-691`).
+- Favoured side: **answered** (2026-09-13).
+
+#### S-7. "which one runs is still open" (Vorbis decoders)
+- “Both decoders ship, and which one runs is still open” (`INV:1022-1023`).
+- Pointer: “answered since. Tremor runs the sound driver's streams (CF-2, §7), and libvorbis is the movie player's audio path” (`INV:1026-1027`).
+- Favoured side: **answered** (2026-10-01).
+
+#### S-8. "X-8 stays open for those four"
+- “X-8 stays open for those four, and it may not be answerable from this binary at all.” (`INV:1000-1001`).
+- “CLOSED 2026-09-27: five versions answered” (`INV:808`).
+- Favoured side: **closed** (2026-09-27).
+
+#### S-9. libxml2 "Reopened as CF-1 … not confirmed"
+- “Reopened as CF-1. The honest position is that four functions were labelled libxml2 and the evidence for the label has not been located.” (`INV:1062-1063`).
+- “CF-1 answered 2026-09-12 (FABLE): not libxml2 — nothing XML is in the image.” (`INV:1049`); “CF-1 was answered on 2026-09-12” (`INV:1282`).
+- Favoured side: **answered, not libxml2** (2026-09-12).
+
+#### S-10. Evidence table: "EASTL 72"
+- “Bare-name families: EASTL 72, Lua +21, Bullet +18” (`INV:825`), unstruck.
+- §2: “EASTL | ~~72~~ 97” corrected 2026-10-01 (`INV:119`).
+- Favoured side: **97** (2026-10-01).
+
+#### S-11. MSVC tail row cites a body that has left it
+- The row's evidence: “the vdecl math kernels 0080A270/0080A720/0080AFE0 are reached only through the declared thunk block” (`INV:39`).
+- Same row: “Two members left the family on the 2026-09-17 re-sweep, since measured as A: 0080A270 and 0080B8A0.” (`INV:39`).
+- Favoured side: **not a member** (2026-09-17).
+
+#### S-12. Bullet page: the inventory is "REOPENED"
+- “the library census this sits inside; REOPENED 2026-09-02 by a count defect this block found” (`BUL:577`).
+- `INV:4`: DOCUMENTED, both triggers resolved (2026-10-01).
+- Favoured side: **DOCUMENTED** (2026-10-01).
+
+#### S-13. Bullet version "not pinned"
+- “but no version string has been found in the image to pin it the way zlib, libvpx and Lua are pinned.” (`BUL:384-385`).
+- “ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5) (as BN-1): the linked Bullet is the 2.77 line.” (`BUL:387`).
+- Favoured side: **2.77** (2026-09-26).
+
+#### S-14. "whatever installs 006883A0, which no page has read"
+- “so which Phyre objects reach the seam is decided by whatever installs 006883A0, which no page has read.” (`BUL:415`).
+- BN-4 (2026-09-22): “The answer is none, because no shipped Phyre object carries a physics component to install.” (`BUL:444-445`).
+- Favoured side: **none installed from Phyre data** (2026-09-22).
+
+#### S-15. EASTL scope "72 functions"
+- “This document covers the 72 functions in the bare-name EASTL.* tag family” (`EASTL:420`).
+- `INV:119`: 97 at GN162, 25 of them `OrderedContainerRuntime` re-tags (2026-10-01).
+- Favoured side: **97** (2026-10-01); the 25 rbtree bodies are not covered by `EASTL`.
+
+#### S-16. EASTL "Superseded readings: none"
+- “Superseded readings: none — this is the document's first version.” (`EASTL:427`).
+- Corrections on the page: “Corrected 2026-09-30, OPUS: it retains the class, not the capability.” (`EASTL:123`); BS-4: “the conclusion above stands; the mechanism it stated did not.” (`EASTL:359`); §10 “Name corrected 2026-09-03” (`EASTL:516`).
+- Favoured side: **readings were superseded** (2026-09-03 to 2026-09-30).
+
+#### S-17. EASTL related link: "801 functions"
+- “corrected to twelve libraries, 801 functions” (`EASTL:431`).
+- `INV:46-48`: 827 (corrected 2026-10-01).
+- Favoured side: **827**.
+
+#### S-18. Four VP8 handlers "NO" in the census
+- Control-map rows mark `0016EE40`, `0016EE80`, `0016EFF0`, `0016F030` “NO” (`VPX:65-73`); “four of the eleven control handlers it reaches are not in the function census at all” (`VPX:28-29`).
+- “4 UC-1 bodies admitted to frontier 2026-09-28, dispositioned by span 2026-09-29” (`INV:36`); the four addresses are the rows of `members/libvpx-vp8-decoder-uc1.tsv`.
+- Favoured side: **now census entries, declared** (2026-09-28/29).
+
+#### S-19. VP8 control names "inference … not something this image states"
+- “That mapping is inference from the upstream library, not something this image states, and the header is not in this repository.” (`VPX:92-93`).
+- UQ-307: “ANSWERED 2026-09-26 (OPUS): the map is libvpx 1.6.0's vp8_ctf_maps, eleven entries in its order.”; “Each body matches instruction for instruction.” (`VPX:128`, `:135`).
+- Favoured side: **matched** (2026-09-26). The names still come from headers (`VPX:136`).
+
+#### S-20. libvpx population "188 members" / "73 listed functions"
+- “188 members, 85,842 B, no size cap” (`VPX:162`); “where libvpx VP8 1.6.0 is pinned, at 73 listed functions” (`VPX:241`).
+- Current rows: decoder 116 + 4 UC-1, kernels 63 (`INV:35-37`), after dated removals.
+- Favoured side: **the front-matter counts** (dated removals 2026-09-16 to 2026-09-29).
+
+#### S-21. Contract box "Not yet executed"
+- “Not yet executed. This box is static reading; §13 is unchanged and still says so.” (`LUAC:496`).
+- §13: “Result: 70 commands, 23 compared lines, 0 mismatches.” (`LUAC:306`), dated 2026-09-12 (`LUAC:286`).
+- Favoured side: **executed in isolation** (2026-09-12).
+
+#### S-22. Contract: the three callers "UNREAD"
+- “00684D10 / 00684F60 / 00686280 Phyre script execution (three callers, UNREAD)” (`LUAC:139`).
+- “the callers have since run, the loader has not” (`LUAC:293-294`, 2026-09-25); `EB-1` answered 2026-09-26 (`LUAC:370`).
+- Favoured side: **read and executed** (2026-09-25/26).
+
+#### S-23. "Whether any caller reports a compile failure is unread"
+- “Whether any of the three callers reports it is unread (EB-4)” (`LUAC:197-198`); §14 lists `EB-4` as unresolved (`LUAC:373`); `LUA`: “whatever reporting exists is in the three callers, which are not read here” (`LUA:201`), and “whether any caller reports it is unread” (`LUA:286`).
+- “EB-4 ANSWERED 2026-09-12 (FABLE): no.” … “a failed compile is invisible.” (`LUA:456`, `:463-464`).
+- Favoured side: **no caller reports it** (2026-09-12).
+
+#### S-24. Contract §14 lists EB-2, EB-3 and EB-5 as unresolved
+- §14 rows: “whether luaL_loadfilex (00812FA0) is reachable” (`LUAC:371`); “00814B30 (287 B), a third lua_load caller with zero callers, unidentified” (`LUAC:372`); “the parser's own seven functions” (`LUAC:374`).
+- “EB-2 ANSWERED 2026-09-12 (FABLE): no” (`LUA:440-441`); “EB-3 ANSWERED 2026-09-12 (FABLE): it is load” (`LUA:445-446`); EB-5 “Answered on the page 2026-09-14” (`LUA:468`).
+- Favoured side: **answered** (2026-09-12 / 2026-09-14).
+
+#### S-25. `00811530` / `00811130` "named from their argument shapes, not proven"
+- “The two inner functions are named from their argument shapes, not proven” (`LUAC:204`); “The two inner names are inferred from their argument shapes, not proven.” (`LUA:193`).
+- `00811130` is run as “SETTOP” in EXP-110 (`LUAC:297`, 2026-09-25) and read as `lua_settop` (`INV:33`, `:393`).
+- Favoured side: **`00811130` = `lua_settop`** (2026-09-25); `00811530` stays shape-named (G-6).
+
+#### S-26. "a breakpoint on 00684D10 remains the way to settle it"
+- “DA-1 remains a runtime question and a breakpoint on 00684D10 remains the way to settle it.” (`LUA:241-242`), repeated at `LUA:365-366`.
+- “the image contains no code that can create a lua_State” … “So 00683C30 can run with a live state only if one built outside this image is handed in.” (`LUAC:369`, 2026-09-26).
+- Favoured side: **the static bound** (2026-09-26); a breakpoint can only confirm it.
+
+#### S-27. `00684F60` "not read here"
+- “00684F60 is a third call site not named by DA-1's four-executor set, and is not read here.” (`LUA:247`).
+- “00684F60 is reached from PScheduler slots 0, 1 and 4” … “It takes [task + 8] as the buffer (00684F76)” (`LUA:425-426`, narrowed 2026-09-14).
+- Favoured side: **read** (2026-09-14).
+
+#### S-28. Loader evidence table: three "not" rows
+- “not established — and this document does not narrow it”, “not read”, “not traced” (`LUA:507-509`).
+- UQ-312 narrowed and bounded (`LUA:298`, `:344`, `:370`); `EB-1` answered 2026-09-26 (`LUA:401`); `EB-2` answered 2026-09-12 (`LUA:440-441`).
+- Favoured side: **answered or narrowed** (2026-09-12 to 2026-09-26).
+
+#### S-29. Header compare step "not described … not read"
+- “That second step is not described anywhere on the page, and it is not read here either” (`LUA:564-565`), dated 2026-09-13.
+- The contract reads and executes it: “All eighteen compared, in three groups” (`LUAC:430`), and the qword compares at `0082E4F9`–`0082E519` (`LUAC:394`), dated 2026-09-12.
+- Favoured side: **read** (the contract, 2026-09-12).
+
+#### Status banners and front matter
+
+#### B-1. `INV` status vs `README`; review dates
+- `README:27-28`: “DOCUMENTED, tier 2. Eleven libraries, 690 functions.”
+- `INV:4` re-statused 2026-10-01 with 827 functions; `last_reviewed: 2026-09-02` (`INV:18`) against `last_pass: 2026-10-01` (`INV:21`).
+- Favoured side: **`INV`'s 2026-10-01 re-status** for the count.
+
+#### B-2. `INV` §2 heading: two systems or three
+- “Where the two "post-processing" systems sit” (`INV:602`) over “The binary contains three distinct post-processing layers” (`INV:604`). See also X-28.
+- Favoured side: none.
+
+#### B-3. `BUL`: promotion, review date, and two register states
+- `promoted: 2026-10-01 DOCUMENTED -> AUDITED` (`BUL:29`) with `last_reviewed: 2026-09-02` and `passes: 1` (`BUL:18-20`).
+- Status: UQ-304 “SUPERSEDED as a duplicate of BN-4, answered 2026-09-27 (none in shipped content)” (`BUL:4`); the BN-4 section is dated 2026-09-22 (`BUL:412`, `:416`); the boxes say “(closed — the register row is WITHDRAWN.)” for UQ-304 and UQ-305 (`BUL:410`, `:465`) where the status line says SUPERSEDED.
+- Favoured side: none.
+
+#### B-4. `README` indexes 3 of 7 pages
+- `README:13-30` links `VPX`, `PPFX`, `INV` only; `BUL`, `EASTL`, `LUAC`, `LUA` are reachable only from other pages.
+- Favoured side: none.
+
+#### B-5. `VPX`: review date and cross-reference flag
+- `last_reviewed: 2026-09-13`, `passes: 1`, `crossref_clean: false` (`VPX:12-20`), while UQ-307 / UQ-308 / UQ-310 are answered 2026-09-26 (`VPX:128`, `:139`, `:196`).
+- Favoured side: none.
+
+#### B-6. `LUAC`: review date, readiness, cross-reference flag
+- `last_reviewed: 2026-09-08` (`LUAC:17`) before its own pass (2026-09-12, `LUAC:21`) and corrections (2026-09-25, `LUAC:54`); `crossref_clean: false` (`LUAC:23`).
+- `readiness: CONTRACT READY` (`LUAC:6`) while “Nothing here has been observed in a live process” and DA-1 is only bounded (`LUAC:36-37`, `:369`).
+- Favoured side: none.
+
+#### B-7. `LUA`: UQ-312 "WITHDRAWN" but kept open
+- “UQ-312. Whether the shipped game ever supplies a chunk. … (closed — the register row is WITHDRAWN.)” (`LUA:296`).
+- “It does not close the box” (`LUA:363`); “Whether code builds one through the descriptor at run time is UQ-312's question, which stays open.” (`LUA:413-414`); the contract: DA-1 “not closed” (`LUAC:369`).
+- Favoured side: none.
+
+#### B-8. `PPFX`: AUDITED vs README; dates; section order
+- `status: AUDITED` (`PPFX:5`), no `promoted:` line; `README:20` “DOCUMENTED, tier 2, one falsification pass.”
+- `last_reviewed: 2026-09-02`, `last_pass: 2026-09-02` (`PPFX:19-22`) while the body is dated to 2026-09-26 (`PPFX:428`); sections run §9, §11, BQ-32, §10 (`PPFX:323`, `:331`, `:430`, `:474`).
+- Favoured side: none.
+
+#### B-9. `README` function count
+- “Functions | ~1,000” (`README:8`).
+- `INV:139` gives 827 tagged functions; the front-matter families on these pages hold 4,208 bodies (1,816 in `INV`, 2,330 in `PPFX`, 62 in `EASTL`).
+- Favoured side: none (different measures; neither line corrects the other).
+
+## 4. Rating
+
+**Overall: NOT YET.** Two libraries the player sees or hears have no behavioural description and no upstream to
+fall back on. Everything else is MOSTLY or READY, because the pages pin an upstream release and document the seam.
+
+| sub-system | rating | why | blocking items |
+|---|---|---|---|
+| zlib (save codec) | **READY** | stock 1.2.11, `inflate` read as unmodified; client edges named | the RC4 key is a category-19 matter (SG-18) |
+| libvpx VP8 decoder + libwebm `mkvparser` | **MOSTLY** | 1.6.0 pinned; interface, controls, context and set-up config read | SG-14, SG-15; X-14, X-15, X-16 |
+| libogg / Tremor / libvorbis | **MOSTLY** | upstream identities and which path each serves | SG-14, SG-17; X-17-X-22 (counts and reachability) |
+| MS ADPCM decoder | **MOSTLY** | tables and block formula given; owner unknown | SG-16, G-19 |
+| CRI HCA decoder | **NOT YET** | proprietary; extent, version and callers only | SG-5; X-23, X-24 |
+| Lua 5.2.1 and the chunk loader | **MOSTLY** | contract-grade header check, chunk entry, `float` numbers, four libraries; but no `lua_State` can be created in the image, so the path may be dead | SG-9, SG-10, SG-11; X-3, X-4, X-5; G-1 |
+| Bullet 2.77 and the Phyre seam | **MOSTLY** | materialisation is fully read and stock otherwise; no shipped Phyre data reaches it | SG-6, SG-7, SG-8; X-1, X-2; G-7, G-9 |
+| EASTL | **MOSTLY** | string, vector, allocator and growth rules read; containers named | SG-12, SG-13; X-6-X-11 |
+| JsonBox | **READY** | upstream 0.6.2, EASTL port; parser and writer identified | X-25 (version wording only) |
+| Dear ImGui | **READY** (nothing to port) | dormant context, never pumped | X-27, X-30 (low impact) |
+| Yebis / PPFX post-effects | **NOT YET** | closed library; file map only; no algorithms, parameters, shaders or frame position | SG-1, SG-2, SG-3, SG-4; X-28, X-29, X-31-X-35 |
+| MSVC runtime tail | not rated here | start-up and runtime are category 24 | — |
