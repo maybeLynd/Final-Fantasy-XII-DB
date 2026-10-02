@@ -130,7 +130,7 @@ already declares, plus one BSS parameter block (now covered by `NavGridParams`).
 
 | what | where | status |
 |---|---|---|
-| the agent's nav sub-record | `*(agent + 0x108)`, fields `+0x10C` (f32 scale), `+0x110` (f32 radius), `+0x174` (u8 mode) | ~~UNRESOLVED as a type~~ **RESOLVED 2026-09-25 (OPUS): it is `BattleUnit + 0x80`, an interior pointer.** The agent initialiser `00336710` stores its source there (`003367B4`), and every path passes `BattleUnit + 0x80` (`lea … + 0x80` at `0023406F`, `00308673`, `00317E9D`, `00325BC4`, `002FDC42`, `003048EF`, `003105F9`). The three fields are declared `BattleUnit` rows: `+0x18C collisionExtentA`, `+0x190 collisionExtentB`, `+0x1F4 placementMode` |
+| the agent's nav sub-record | `*(agent + 0x108)`, fields `+0x10C` (f32 scale), `+0x110` (f32 radius), `+0x174` (u8 mode) | ~~UNRESOLVED as a type~~ **RESOLVED 2026-09-25 (OPUS): it is `BattleUnit + 0x80`, an interior pointer.** The agent initialiser `00336710` stores its source there (`003367B4`), and ~~every path passes~~ every path but one passes `BattleUnit + 0x80` (`lea … + 0x80` at `0023406F`, `00308673`, `00317E9D`, `00325BC4`, `002FDC42`, `003048EF`, `003105F9`); `AiOrder_CheckActionPreconditions` `00301830` passes a stack copy of `unit+0x80..+0x68F` instead *(corrected 2026-10-02, OPUS: `003019BF` `lea rcx, [rsp+0x30]` → `0033A120`, whose `0033A144` `mov rdx, rcx` hands it to `00336710`; the copy is made at `00301857`–`003018DA`; §14)*. The three fields are declared `BattleUnit` rows: `+0x18C collisionExtentA`, `+0x190 collisionExtentB`, `+0x1F4 placementMode` |
 | the agent itself | `rcx` of every entry | **declared 2026-09-25 (OPUS): `CorridorNavAgent`, 0x110** — a stack local built by `00336710` below the cookie at `rsp+0x130` (`00336CE0`, `0033A120`); its first four rows copy `BattleUnit` +0xE0/+0xF0/+0x100/+0x110 with w = 1.0 |
 | `ActorManagerSlot` | `ARRAY 0x02098E10 stride=0x288 count=5`, reached by `N63FF0 00263FF0` | declared |
 | `ActorStorageRecord` | via the packed actor handle — see below | declared |
@@ -234,7 +234,7 @@ loaded by the field/area layer before they run; `ctx+0xEA9` is planted by whoeve
 - **Timing / ordering.** Callers run inside the movement update; the nav root and pools must already
   be populated. Nothing here depends on a frame counter.
 - **Threading.** Single-threaded in the observed callers. `RDEC`'s scratch at `0x22D91B0` is a
-  **shared global buffer**, so two concurrent `RDEC` calls would race — nothing in this family
+  **shared global buffer**, so two concurrent `RDEC` calls would race *(answered: see §14 item 5 — no caller can run concurrently, the bank has one user thread; 2026-10-02, OPUS)* — nothing in this family
   protects it. *(2026-09-29, pass 1: the buffer is the shared transform workbench's `vf1`. 53 functions write it and 48
   read it, so the race is with every workbench user, not only another `RDEC`.)* Not a live-observed hazard; recorded as a structural one.
 

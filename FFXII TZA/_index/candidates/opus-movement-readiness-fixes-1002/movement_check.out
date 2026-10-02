@@ -1,0 +1,39 @@
+ok   003A1C65 addss xmm0, xmm2
+ok   003A1C83 addss xmm0, xmm2
+ok   0033CB73 comiss xmm2, dword ptr [rip + 0x9d3f92]
+ok   0033CBE8 subss xmm2, xmm0
+ok   0026B5B7 jb 0x26b5c3
+ok   0026A916 cvttss2si eax, xmm0
+ok   003EC340 movss dword ptr [rbx + 0x250], xmm1
+ok   003EC362 cmp dword ptr [rsp + 0x50], ecx
+ok   003EC39E call 0x4288b0
+ok   003EC3BC jmp 0x3b3ca0
+ok   003EC2C1 cmp word ptr [rbx + 6], -1
+ok   0026C16A jle 0x26c1e6
+ok   0026C224 mov dword ptr [rax + 0x58], 0x3e20d97c
+ok   0026C161 jle 0x26c272
+ok   0026C26D call 0x2e6300
+ok   00312780 cmp ebx, 0x4035
+ok   0031279E cmp ecx, 0x24
+ok   003127F1 mov rcx, qword ptr [rdi + 0x6a0]
+ok   00312A57 mov r8d, 0x14
+ok   0033C2B7 subss xmm1, dword ptr [rip + 0x5b6e25]
+ok   0033C2E7 cmp al, 0x3c
+ok   00339DBB ja 0x339dc4
+ok   0033659D movzx ecx, byte ptr [rdx + 0x21]
+ok   00315377 movss dword ptr [r15], xmm4
+ok   00314E27 divss xmm0, xmm1
+ok   003DAF68 movss xmm2, dword ptr [rip + 0x5181c0]
+ok   001EDDF2 mov dword ptr [rip + 0x1c102b8], 2
+ok   003B7306 xor ebx, ebx
+ok   00383883 movzx r10d, word ptr [r11 + 0xa]
+ok   003838C4 test byte ptr [rax + rdi*8 + 6], r8b
+ok   003DA663 movss dword ptr [r14 + 0xc], xmm0
+ok   003A1A24 call 0x861f14
+ok   0033A06E call 0x33ce60
+ok   00426493 mov dword ptr [rcx + 0x48830], eax
+ok   002E596B call 0x2654e0
+ok   002E274A test byte ptr [rax + 0x14f], 1
+ok   00269345 divss xmm0, dword ptr [rcx + 0x58]
+ok   003019BF lea rcx, [rsp + 0x30]
+FAILS 0

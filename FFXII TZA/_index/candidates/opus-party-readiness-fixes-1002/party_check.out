@@ -1,0 +1,16 @@
+ok   00269CDD test ebx, ebx
+ok   00269CE1 mov qword ptr [rsi + rbx*8], rdi
+ok   00269CD9 mov byte ptr [rcx + 0xf], 3
+ok   0026673E jns 0x266795
+ok   003266D4 add rdi, 0x5a48
+ok   00329CE1 lea r14, [rip + 0x1bc3578]
+ok   0032113D je 0x321158
+ok   0031711A mov ebx, 3
+ok   0023B1E3 not ebx
+ok   0023B1E5 and ebx, 1
+ok   00239C4F cmp word ptr [rbp + 0x20], r13w
+ok   00239C54 jne 0x239ce1
+ok   0016D6A0 ret 0
+ok   00327C63 movsxd rcx, dword ptr [rdx + rax*4 + 0x7370]
+ok   002370CD mov r8d, 0x7410
+FAILS 0

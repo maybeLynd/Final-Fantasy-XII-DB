@@ -29,10 +29,10 @@ audit:
 # Active party, reserve, and the moment the leader changes
 
 > **There is no leader.** There is a 32-bit handle, and whoever it points at is the leader — derived
-> fresh on every one of twenty-five call sites, never stored, never announced. Changing leader is a
+> fresh on every one of ~~twenty-five call sites~~ twenty-eight call sites in twenty-five functions *(corrected 2026-10-02, OPUS: `retool.py callers 003272A0`; CONTRACT-party-focus-and-control-suppression.md PF-2)*, never stored, never announced. Changing leader is a
 > *request* that some later commit point applies.
 
-**Answers `O-5`** ("whether reserve/inactive party members live in a separate structure") — they do,
+**Answers `O-5`** ("whether reserve/inactive party members live in a separate structure") — ~~they do,~~ they do not *(corrected 2026-10-02, OPUS: O-5's register verdict is no; party-roster-and-control-suppression.md §7)*: they live
 in the same array, at indices `4..8`.
 
 ## 1. What the player sees
@@ -89,22 +89,22 @@ strongest evidence yet that `00322C50` is a per-class id validator rather than a
 > **Nothing pointed from here to the other four**, which is why the reading looked complete: five
 > functions touch this structure and no document cited two of them.
 
-## 2b. Which of the five maps is which — three named, two unreached
+## 2b. Which of the five maps is which — ~~three named, two unreached~~ four named, one unreached (corrected 2026-10-02, OPUS)
 
 Added 2026-09-03, after the correction above. `BattleSlotMap_ResolveMappedBattleSlot` takes the class
 as its second argument, so **censusing that argument names the maps by what asks for them.** The
 resolver has only four direct callers, three of which are thin wrappers that pass the class through;
-scanning the wrappers' own call sites gives **31 sites, 23 of them passing a constant**:
+scanning the wrappers' own call sites gives ~~**31 sites, 23 of them passing a constant**~~ **32 sites, 31 of them passing a constant** *(corrected 2026-10-02, OPUS: `retool.py callers` on `0031B9F0`, `0031FE70`, `00320040` and `00320AB0` gives 1 + 1 + 5 + 25 sites; only `0030A804` passes a computed class)*:
 
 | class | base | passed by | reading |
 |---:|---|---|---|
-| **0** | `0x5A48` | `Equipment_UnequipEncodedItemFromActiveRoster` (`0030FD10`) | **the active roster** — and the only map the initialiser fills, the source the other four are copied from |
+| **0** | `0x5A48` | `Equipment_UnequipEncodedItemFromActiveRoster` (`0030FD10`) and `00273880` (`002738B8`, through `0031FE70`) *(corrected 2026-10-02, OPUS: `002738B6 xor ecx, ecx` is the class argument of the swapping wrapper)* | **the active roster** — and the only map the initialiser fills, the source the other four are copied from |
 | **1** | `0x5A5A` | `Reward_ComputeExperienceForRecipient` (`002F8BB0`), `BattleUnit_RunPeriodicCombatMaintenance` (`00310DB0`), two more | **the combat-processing set** — who earns and who is serviced each tick |
-| **3** | `0x5A7E` | **fourteen sites**: equipment evaluation and snapshots, `Battle_BuildActionTargetSet` (`0030D160`), `BattleUnit_ProcessDefeatRewardsAndLoot` (`00312280`), a `Party` function, the script-VM bridge | **the general gameplay map** — the one §2 reads |
+| **3** | `0x5A7E` | ~~**fourteen sites**~~ **24 sites** *(corrected 2026-10-02, OPUS: 20 through `00320AB0`, one of them after `0050FF39 mov ebx, 3`, and 4 through `00320040`)*: equipment evaluation and snapshots, `Battle_BuildActionTargetSet` (`0030D160`), `BattleUnit_ProcessDefeatRewardsAndLoot` (`00312280`), a `Party` function, the script-VM bridge | **the general gameplay map** — the one §2 reads |
 | 2 | `0x5A6C` | the battle-menu member walk `0035BC50` (`0035BDB9` `mov ecx, 2`), through the wrapper `00320040`, which takes the class FIRST (`0032004F` / `00320051` swap it into the resolver's second argument) | ~~**no constant-passing site found**~~ **the battle command menu's member map** *(corrected 2026-09-30, FABLE, [record](../_index/candidates/sd124-125-menu-fable-0930/README.md), `class2_census.py`: the wrapper's swapped argument order hid the only constant-class-2 site; its other four callers pass class 3)* |
 | 4 | `0x5A90` | — | **no constant-passing site found** |
 
-**Class 0 naming itself is the strongest of the three**: its single caller is
+**Class 0 naming itself is the strongest of the three**: ~~its single caller is~~ one of its two callers *(corrected 2026-10-02, OPUS: the other is `00273880` at `002738B8`)* is
 `Equipment_UnequipEncodedItemFrom*ActiveRoster*`, and class 0's base is exactly the map the
 initialiser populates before copying it into the other four.
 
@@ -114,8 +114,8 @@ initialiser populates before copying it into the other four.
 **CORRECTED 2026-09-03.** This paragraph first called maps 1–4 *"four views allowed to drift"*. A
 displacement census over the five 18-byte ranges found **66 sites, 60 reads and 6 writes** — and
 **only map 0 has a writer besides the initialiser** (`00329080`), which fits class 0 being the map the
-initialiser fills before duplicating. **Nothing was found that writes maps 1–4 after the copy**, so
-"allowed to drift" asserted a freedom the evidence does not show.
+initialiser fills before duplicating. ~~**Nothing was found that writes maps 1–4 after the copy**, so~~
+~~"allowed to drift" asserted a freedom the evidence does not show.~~ *(corrected 2026-10-02, OPUS: the refresher `003266C0` writes maps 1–4 through `rdi = block + 0x5A48` (`003266D4`), `00326717`–`0032674B` and its mode arms, so the maps do drift — the five parallel slot maps' 2026-09-14 correction)*
 
 **That census is displacement-addressed**, so a pointer taken into a map and stored through would not
 appear in it. Two further scans were run to close the gap, each asking a **different question**:
@@ -124,13 +124,13 @@ appear in it. Two further scans were run to close the gap, each asking a **diffe
 |---|---|---|
 | displacement census | what writes offset N? | maps 1–4: initialiser only |
 | base-keyed scan incl. `lea` | does a pointer into the range escape? | **0 `lea` into any of the five ranges** |
-| register-held-offset scan | is a base loaded as a bare immediate and indexed? | **6 reads of map 1, 2 of map 3, 0 writes to maps 1–4**; map 0's only two writes are both `0xFFFF` fill loops in initialisers |
+| register-held-offset scan | is a base loaded as a bare immediate and indexed? | **6 reads of map 1, ~~2 of map 3, 0 writes to maps 1–4~~** 3 of map 3 (`0031B534`, `00320824`, `00328820`); ~~map 0's only two writes are both `0xFFFF` fill loops in initialisers~~ the writes it could not see are `003266C0`'s into maps 1–4 through `003266D4 add rdi, 0x5a48`, and map 0 is also written by `00329080` (`00329122`, `00329176`) *(corrected 2026-10-02, OPUS: immediate scan of the five bases; the five parallel slot maps' 2026-09-14 correction)* |
 
 The third was necessary: the bases *are* used as bare immediates (`mov esi, 0x5A5A` then
 `movzx eax, byte [rsi + base]`), a form **neither of the first two can see**.
 
-> **Three instruments, three different questions, one answer: nothing writes maps 1–4 after the
-> copy.** That is worth more than three runs of one instrument — a negative is only as strong as the
+> **~~Three instruments, three different questions, one answer: nothing writes maps 1–4 after the~~
+> ~~copy.~~** *(corrected 2026-10-02, OPUS: `003266C0` writes them — `003266D4 add rdi, 0x5a48`, then `00326717`–`0032674B` and the mode arms; a register holding map 0's base was a fourth encoding none of the three asked about)* That is worth more than three runs of one instrument — a negative is only as strong as the
 > variety of questions that failed to overturn it.
 
 **A note on the third instrument, because it cut both ways.** Run block-aware it returned **zero
@@ -142,9 +142,9 @@ accesses, and **every hit was read before being counted**.
 > miss, and read everything it returns.** The conservative version omits as badly as the linear one
 > invents, and choosing between them without saying which is in use is how a zero becomes a claim.
 
-**Classes 2 and 4 are unreached, not absent.** Eight of the 31 sites pass the class through from their
-own caller, so a constant for either could exist one level further up; the census establishes that
-**no site passes 2 or 4 directly**, which is weaker than "nothing uses them" and is stated as such.
+~~**Classes 2 and 4 are unreached, not absent.** Eight of the 31 sites pass the class through from their~~ **Class 4 is unreached, not absent; class 2 is passed at `0035BDBE`.** One of the 32 sites, `0030A804`, passes the class through from its
+own caller, so a constant for ~~either~~ class 4 could exist one level further up; the census establishes that
+**no site passes ~~2 or~~ 4 directly** *(corrected 2026-10-02, OPUS: the class census above, re-run on all four entries; class 2 is the battle menu's member map, §2b's row)*, which is weaker than "nothing uses them" and is stated as such.
 
 ## 3. Members and guests are two selector ranges, and they enter at different ends
 
@@ -264,8 +264,8 @@ Four things worth stating plainly:
 ### Who can set request kind 2 — and a census that could not see it
 
 The five sites my function-bounded sweep found never write `2`: `RequestPackedActorHandle` writes
-`1`, `ResetState` zeroes everything, `Commit` clears to `0`. **An unbounded `.text` scan found a
-tenth site my census had no way to reach** — a 27-byte function at **`003594C0` that is absent from
+`1`, `ResetState` zeroes everything, `Commit` clears to `0`. **An unbounded `.text` scan found ~~a~~
+~~tenth site~~ two more sites, seven in all, my census had no way to reach** *(corrected 2026-10-02, OPUS: `003594C0` reads and `003594D3` writes `022C7FF8`; the other five are `00358BC4`, `00358C05`, `00358C35`, `00359109` and `003594B6` — CONTRACT-party-focus-and-control-suppression.md PF-1)* — a 27-byte function at **`003594C0` that is absent from
 the function list**:
 
 ```asm
@@ -318,7 +318,7 @@ against the raw call index today: one `jmp` site, no call). Shipped scripts call
                         (maps 1, 2 and 4 at +0x5A5A, +0x5A6C, +0x5A90: section 2b)
 
 selector 0..6    a recruitable member  -> placed at an index in 4..8
-selector 7..25   a guest               -> placed at a "primary" index
+selector 7..25   a guest               -> placed at a "primary" index   <- corrected 2026-10-02, OPUS - the first free roster index of 3, 2, 1, never 0 (003170E0: 0031711A mov ebx, 3; 0031714F-00317157), section 9
 
 022C7FE0  current focus handle = THE LEADER
 022C7FE4  pending focus handle
@@ -495,7 +495,7 @@ record from the getter each time it runs (the Presentation crossing at the end o
 leader rather than being told.*
 
 The count of handle writers is stated twice on purpose — **three within the function-list census,
-four in reality** — because the difference is the finding in §4, not a correction to be tidied away.
+~~four in reality~~ and three in reality** *(corrected 2026-10-02, OPUS: an unbounded `.text` scan finds only `00358B6B`, `00358C2F` and `003590FD`; the write the function list misses is to the kind byte `022C7FF8`, at `003594D3` — CONTRACT-party-focus-and-control-suppression.md PF-1)* — ~~because the difference is the finding in §4, not a correction to be tidied away~~.
 
 `check_already_answered.py` was run before this document was started and returned *"no existing
 coverage found — the block is new"* for the `PartyConfiguration` addresses.
@@ -633,7 +633,7 @@ it, which is the direction worth stating: the page is consulted by nobody in tha
 
 **UI — CLIENT.** `BattleMenu_BuildCommandEntryList`, owned by that layer, calls `00322C50` on this page. That caller is the command-list build, and the ceiling is in the first instruction: the menu kind is bounded at **`0x22`** into a jump table, after which `dword[+0x40]` is zeroed and `dword[+0x44]` set to `-1` before any entry is written; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
 
-**CombatFormula — SERVICE (SWE2-CONTRACT 2026-09-15, 12 edges).** The leader-change path drives the stats layer:
+**CombatFormula — SERVICE (SWE2-CONTRACT 2026-09-15, 12 edges).** ~~The leader-change path drives the stats layer:~~ The party's bodies drive the stats layer *(corrected 2026-10-02, OPUS: `00310DB0` is `BattleUnit_RunPeriodicCombatMaintenance` (§2b), whose only caller is `00233F70` at `00234001`, not the leader change)*:
 `00310DB0` calls `BattleFormula_ResolveTargetResult`, `BattleFormula_ApplyTargetResult`,
 `BattleStats_ModifyPrimaryResource` and `BattleStats_GetOwningActorHandle`; `002F8BB0` calls
 `BattleStats_FindOwningBattleUnit`; `BattleStats_GetByMappedBattleSlot` `00320AB0` trades calls
@@ -641,7 +641,7 @@ with six of the page's bodies; `00322C50` is shared with `BattleStats_RebuildEff
 A real consumption crossing — the roster change reseats battle stats through these calls.
 
 **CombatAI — CLIENT and MECHANICAL (SWE2-CONTRACT 2026-09-15, 12 edges).** `00310DB0` calls
-`BattleEnmity_UpdatePeriodicDecay` (leader change decays enmity); the other 11 edges are the
+`BattleEnmity_UpdatePeriodicDecay` ~~(leader change decays enmity)~~ (the periodic maintenance decays enmity *(corrected 2026-10-02, OPUS: `00310DB0`'s only caller is `00233F70`)*); the other 11 edges are the
 `BattleEnmity_*` family and `AiOrder_EvaluateTargetSelector`/`GambitConfig_*` sharing `00322C50`/
 `003272A0`. One real call plus fan-in.
 

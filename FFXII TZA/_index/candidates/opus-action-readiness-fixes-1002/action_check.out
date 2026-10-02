@@ -1,0 +1,23 @@
+ok   0030F7A5 ja 0x30f7d9
+ok   0030F849 cmp ecx, 1
+ok   0030F8B6 ja 0x30f97a
+ok   0030F975 call 0x313b30
+ok   0030F97A mov eax, 1
+ok   0038869F movzx eax, byte ptr [rsi + 5]
+ok   003886A7 movzx edi, byte ptr [rsi + 4]
+ok   00308813 movzx edx, byte ptr [rsi + 1]
+ok   00313CF7 mov edi, 8
+ok   00313D18 and cl, 0x3f
+ok   00384925 lea edx, [r8 + 0x21]
+ok   0031148D cmp dword ptr [rbx + 0x38], -1
+ok   00311493 movzx ecx, word ptr [rbx + 0x38]
+ok   0031137A call 0x385ba0
+ok   00337B75 imul ecx, dword ptr [rip + 0x1ac6538], 0x1e
+ok   003075CB or dword ptr [r14 + 8], 0x100
+ok   003495B2 call 0x313120
+ok   0031325F call 0x316cf0
+ok   0031328C call 0x316cd0
+ok   00311DA5 mov byte ptr [rax + rcx*4], bpl
+ok   00385756 movzx ecx, byte ptr [rax + 0x6b9]
+ok   00469894 mov edx, 6
+FAILS 0

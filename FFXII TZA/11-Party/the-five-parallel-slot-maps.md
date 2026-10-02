@@ -100,12 +100,14 @@ subsystem reads *its own* copy, and nothing in any single function reveals that 
 
 ## What the classes are is not established here
 
+*(answered elsewhere: classes 0 to 3 are named by their callers — active-party-reserve-and-the-moment-the-leader-changes.md §2b — and SM-6 of CONTRACT-the-five-parallel-slot-maps.md makes map 0 the live configuration and maps 1–4 derived from it; 2026-10-02, OPUS)*
+
 **The resolver takes the class as a parameter and does nothing with it but choose a base.** Nothing in
 either function names the five, and **no caller was read.** The document that cites each toucher may
 know what its own class means; **this document establishes only that there are five and that they are
 born equal.**
 
-**A dword at `+0x5AA4` takes the source table's first byte** and is not part of any map.
+**A dword at `+0x5AA4` takes the source table's first byte** and is not part of any map *(answered: it is the preferred definition selector, the party leader — the battle-state block field map's `+0x5AA4` row; 2026-10-02, OPUS)*.
 
 ## Do the four copies ever diverge? A measured answer with a hole in it
 
@@ -117,7 +119,7 @@ reads, 6 writes.**
 | **map 0** (`+0x5A48`) | the initialiser, **and one other function — `00329080`** |
 | maps 1–4 | ~~**the initialiser only**, and only at each copy's trailing two bytes~~ **the initialiser and `BattleGroup_RefreshFourActorDefinitions` `003266C0`**, which addresses them through `rdi = block + 0x5A48` (`003266D4`) and so is invisible to this census — see the correction below |
 
-> **Within this instrument's reach, nothing writes maps 1–4 after the copy.** Only map 0 has a second
+> **~~Within this instrument's reach, nothing writes maps 1–4 after the copy.~~** *(corrected 2026-10-02, OPUS: the refresher `003266C0` writes all four through `rdi = block + 0x5A48` — `00326717`, `00326720`, `0032673E`, `00326747` and its mode arms; the 2026-09-14 correction below)* Only map 0 has a second
 > writer, which fits map 0 being the one the initialiser fills before duplicating.
 
 ~~**So "four views allowed to drift" is not supported by this measurement** — as far as a
@@ -166,21 +168,21 @@ result.
 |---|---|---|
 | displacement census | what writes offset N? | maps 1–4: **initialiser only** |
 | base-keyed scan **including `lea`** | does a pointer into a range escape? | **0** |
-| register-held-offset scan | is a base loaded as an **immediate** and indexed? | **8 reads, 0 writes** |
+| register-held-offset scan | is a base loaded as an **immediate** and indexed? | **~~8 reads, 0 writes~~** 9 reads, 6 of map 1 and 3 of map 3, and no write through a map 1–4 base; the writes it could not see go through the map-0 base `003266D4 add rdi, 0x5a48` *(corrected 2026-10-02, OPUS: immediate scan of `0x5A5A`, `0x5A6C`, `0x5A7E` and `0x5A90`; the 2026-09-14 correction above)* |
 
 **The second gap was not `lea` at all.** The five bases are also used **as bare immediates** —
 `mov esi, 0x5A5A` then `movzx eax, byte [rsi + ptr]` — **a form neither a displacement census nor a
-`lea` scan can see.** Seven such sites exist for map 1 alone, in `Party`, `Movement` and `ActorEntity`
+`lea` scan can see.** ~~Seven~~ Six *(corrected 2026-10-02, OPUS: `0031AC11`, `0031B5CD`, `00326573`, `00326B2F`, `00326BEE`, `00328E0D`)* such sites exist for map 1 alone, in `Party`, `Movement` and `ActorEntity`
 code, **and every one was read before being counted: all reads.**
 
 > **Three instruments, three different questions, one answer.** **A negative is only as strong as the
 > variety of questions that failed to overturn it**, and this is the first in the run to survive three.
 
-**So the claim is not "no displacement-addressed write" but "no write, by any of three encodings"** —
+**~~So the claim is not "no displacement-addressed write" but "no write, by any of three encodings"~~** *(corrected 2026-10-02, OPUS: there is a write — `003266C0` holds `block + 0x5A48` in `rdi` (`003266D4 add rdi, 0x5a48`) and stores into maps 1–4 at `00326717`–`0032674B` and in its mode arms; none of the three instruments keyed on a map-0 base held in a register)* —
 and *"four views allowed to drift"* is withdrawn on both sides, **because it asserted a freedom nothing
 supports.**
 
-**Map 0's only two writes are `0xFFFF` fill loops in two initialisers**, read to confirm rather than
+**~~Map 0's only two writes are `0xFFFF` fill loops in two initialisers~~** Map 0 is written by the reset's `0xFFFF` loop (`00237107`), the initialiser `00329CC0` and `00329080` (`00329122`, `00329176`) *(corrected 2026-10-02, OPUS: displacement scan of `+0x5A48`–`+0x5A59` and the immediate `0x5A48`; this page's own map-0 row names `00329080`)*, read to confirm rather than
 counted.
 
 ## Falsification pass — 2026-09-03
@@ -236,8 +238,8 @@ named by the constant their accessor adds:
 | `+0x08200` | `FUN_00253970` | — |
 | `+0x4E68C` | `00233C10` / `00238A80` | **`BattleSystemState`** |
 
-**Size: bounded, not measured.** `0x4E68C + 0x8004 = 0x56690`, the buffer's end, so `0x8004` is the
-**maximum extent**. The highest field anyone has read is `+0x5B04`, giving a floor of `0x5B08`. The
+**~~Size: bounded, not measured.~~** **Size: `0x7410`, measured** *(corrected 2026-10-02, OPUS: the reset `002370C0` clears `mov r8d, 0x7410` bytes at `002370CD`, and the last field is the selection array `+0x7370`–`+0x740F` — the battle-state block field map §2.1)*. `0x4E68C + 0x8004 = 0x56690`, the buffer's end, so `0x8004` is the
+**maximum extent**. ~~The highest field anyone has read is `+0x5B04`, giving a floor of `0x5B08`.~~ The
 type row carries the maximum and says so; the 9,468-byte tail is reported as a gap rather than
 claimed.
 
@@ -253,7 +255,7 @@ bodies, positive control `0x1C8` returning 366 occurrences:
 
 | base | occurrences | resolver arm |
 |---|---:|---|
-| `+0x5A48` | 31 | `0031B9F0` |
+| `+0x5A48` | 31 | ~~`0031B9F0`~~ `0031BAAA` *(corrected 2026-10-02, OPUS: the class-0 arm's load `movzx eax, byte ptr [rax + rdi*2 + 0x5a48]`; `0031B9F0` is the entry)* |
 | `+0x5A5A` | 16 | `0031BA8B` |
 | `+0x5A6C` | 2 | `0031BA71` |
 | `+0x5A7E` | 8 | `0031BA57` |
@@ -282,15 +284,15 @@ authored kind byte, so both readings have real evidence behind them. **Recorded 
 
 ### Limits
 
-- **`0x8004` is an upper bound**, and the 9,468 bytes above `+0x5B08` are undeclared, as are 3,520
-  between the `0x1C8` array and the slot maps.
+- **`0x8004` is an upper bound**~~, and the 9,468 bytes above `+0x5B08` are undeclared, as are 3,520~~
+  ~~between the `0x1C8` array and the slot maps.~~ *(corrected 2026-10-02, OPUS: the block is `0x7410` bytes, `002370CD`, and the battle-state block field map places every byte above the records, FO-5)*.
 - The `0x1C8` element's own layout is **not** recovered; only its stride, count and one consumer.
 - `+0x5AD0` is declared as sixteen bytes because that is what the `movups` pair moves. Only two bits
   of its first word have known consumers; calling the rest flags would be a guess.
 - The other three save-image regions are named by their accessors only. Their extents in the table
   above are **the distance to the next region**, which is an upper bound on each, not a measurement.
-- This is what the block *is* and where it lives. **What the five classes mean is still not
-  established** — §"What the classes are is not established here" stands unchanged.
+- This is what the block *is* and where it lives. ~~**What the five classes mean is still not~~
+  ~~established** — §"What the classes are is not established here" stands unchanged.~~ *(answered: see active-party-reserve-and-the-moment-the-leader-changes.md §2b; 2026-10-02, OPUS)*
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 

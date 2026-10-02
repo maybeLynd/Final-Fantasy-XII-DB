@@ -1,0 +1,26 @@
+{
+  "status": "INVALID_PRODUCER_INVOCATION",
+  "cause": "Local inspect.py shadows Python stdlib inspect when Capstone imports it, recursively executing the driver and writing an output before the outer import fails. Exit1 invalidates the apparent output.",
+  "driver_sha256": "5d8353af1dee0eea848fa708003faf37640168507f988ae82ecf03f494a946f4",
+  "raw_members": [
+    {
+      "path": "inspect-01.status.json",
+      "sha256": "5ebbf2b8aeb3324431041b423e809dd2803de53f8fd82bcbc81d3a17115f16f4"
+    },
+    {
+      "path": "inspect-01.stdout",
+      "sha256": "04fa34dde4c0657b51fa24de71134dcfef1b1a90e2cdff28bb7d22cbe562d459"
+    },
+    {
+      "path": "inspect-01.stderr",
+      "sha256": "a5b82b939606b6de8915ef638618f95858084aa426fe6e3789f22ab4e34836d3"
+    },
+    {
+      "path": "inspection-01.json",
+      "sha256": "64974b4ac3798ac434d4c538b425a0b0feb477cd2a500ce9d58b1da30a662d28"
+    }
+  ],
+  "dependent_claims": "No semantic proof or canonical consumer/publication exists; inspection1 is invalid feasibility evidence, not accepted original behavior.",
+  "repair": "Archive original under inspect-01-driver.py; use inspect-slot-source.py with an actual-path local shadow guard, fresh02 result and concrete CLI regression.",
+  "limits": "Source capture01 remains valid; no game/native process or reference changes."
+}

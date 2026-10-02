@@ -103,7 +103,7 @@ if (actor->_18 == 1) return;
 if ((actor->packed_03 & 0xE0) != 0x60) return;          /* steerable kinds only */
 ctx = actor->context_B8;
 if (ctx->slot_DC != 0) return;                          /* ALREADY PUSHED -- refuse */
-FUN_002627C0(ctx);                                      /* unread */
+FUN_002627C0(ctx);                                      /* unread */   /* <- corrected 2026-10-02, OPUS - read: it copies the 0x80 steering record from slot [+0xDC] to [+0xDC+1] (CONTRACT-facing-and-steering.md section 14 item 2) */
 ctx->slot_DC += 1;                                      /* -> slot 1 */
 Movement_SelectSteeringSlot(ctx);
 Movement_SetSteeringMode(actor, 0);                     /* 0026AE90 */
@@ -137,7 +137,7 @@ FUN_002E8EE0(actor);
 > **The saved walk is three dwords and a shape code.** `flags & 7` chooses whether the resume
 > parameters go to `002EC2C0` **by address** or to `002EBFA0` **by value**, and any other value
 > resumes nothing at all. **Only 0 and 1 were observed**; what the remaining six encode is not
-> established, and no caller was traced that sets them. `DW-1`.
+> established, and no caller was traced that sets them *(answered: see DW-1 in §8 — 4–7 are never written, FABLE 2026-09-15; 2026-10-02, OPUS)*. `DW-1`.
 
 **Both guards are symmetric and both fail closed**: push refuses when the selector is already 1, pop
 refuses when it is already 0. So **the stack is depth one** — the engine cannot nest two
@@ -212,7 +212,7 @@ bit 6      the turn direction, 1 = turn negative      0026C19D  and byte [rax+0x
                                                       0026C1A3  or  byte [rax+0x62], 0x40
 ```
 
-**Bits 3–5 and 7 are untouched by any site in the census.** That is an observation about the 57
+**Bits 3–5 and 7 are untouched by any site in the census** *(answered: see DW-1's 2026-09-15 census in §8 — bits 3–5 are written by `002EC380` / `002EBE50`, bit 7 by `0026A1A0` / `00263230`; 2026-10-02, OPUS)*. That is an observation about the 57
 censused functions, not a claim that nothing uses them.
 
 ### 21 of 128 bytes are undeclared — and two declared fields have no per-offset accessor
@@ -240,10 +240,10 @@ reads or writes a field of `[[unit+0xB8]+0xF0]`, the steering slot this page map
 
 | cluster | members | role | interior |
 |---|---|---|---|
-| integrator | `002E5750` (935 B) | the facing integrator — `edx≠0` applies a caller delta directly; `edx==0` dispatches on the steering mode (`00265600`): mode 1 wraps `+spin_rate`, mode 2 eases via `00263CC0`, mode 3 walks the `+0x64`/`+0x66`/`+0x68`/`+0x78` progress fields, mode 4 divides by `turn_frames`, the rest test `002EA780` | `002E57D9` (`call 00265600` — fetch the mode) |
+| integrator | `002E5750` (935 B) | the facing integrator — `edx≠0` applies a caller delta directly; `edx==0` dispatches on the ~~steering~~ movement mode (`00265600`) *(corrected 2026-10-02, OPUS: `0026561B`–`0026561F` return `+0x28 & 0x7F`, the movement mode; `+0x29` is the steering mode, §4)*: mode 1 wraps `+spin_rate`, mode 2 eases via `00263CC0`, mode 3 walks the `+0x64`/`+0x66`/`+0x68`/`+0x78` progress fields, mode 4 divides by `turn_frames`, the rest test `002EA780` | `002E57D9` (`call 00265600` — fetch the mode) |
 | record probe | `00264750` (19 B), `00265810` (19 B), `002E4BF0` (39 B) | kind-3 fronts tail-jumping the null-guarded getters — `00264750`→`002E4BC0` reads `+0x58` (`turn_step`), `00265810`→`002E4BF0` reads `+0x3C` (`spin_rate`) | `00264754` / `00265814` (`and al,0xE0` gates) / `002E4C0D` (`movss` of `+0x3C`) |
 | turn-state reads | `002654E0` (40 B), `002655D0` (38 B) | `+0x28` movement_mode byte < 0 → the in-progress bit §5 describes; `+0x62` bit 6 → the turn direction | `00265501` (`cmovl` on `+0x28`) / `002655EC` (`shr eax,6`) |
-| turn-profile reads | `002651C0` (50 B), `002652A0` (34 B), `00265530` (32 B), `00265660` (32 B) | `+0xB8`-record floats `+0x54`/`+0xAC` selected by kind 1/2; slot `+0x38` float; slot `+0x66` u16; slot `+0x68` (`turn_frames`) i16 | `002651E5` / `002652BC` / `0026554B` / `0026567B` |
+| turn-profile reads | `002651C0` (50 B), `002652A0` (34 B), `00265530` (32 B), `00265660` (32 B) | `+0xB8`-record floats `+0x54`/`+0xAC` selected by kind ~~1/2~~ 1/3 *(corrected 2026-10-02, OPUS: `002651C7` `sub edx, 1` / `je` class 1, `002651CC` `cmp edx, 2` / `je` class 3)*; slot `+0x38` float; slot `+0x66` u16; slot `+0x68` (`turn_frames`) i16 | `002651E5` / `002652BC` / `0026554B` / `0026567B` |
 | frame-counter pair | `00265510` (32 B), `0026C070` (28 B), `00265630` (33 B), `0026C300` (37 B) | `+0x64` byte read / `+0x64` byte write; `+0x78` (`turn_frame_index`) read-as-int / write-from-int | `00265528` / `0026C088` / `0026564B` / `0026C31F` |
 
 The integrator's own account of modes 2–4 is in
@@ -300,7 +300,7 @@ as not invalidating, which is the less wrong approximation for a linear pass ove
   (`002633C6`), folds the global flags at `02098E20` / `020990A8` / `02099330` into `02099DB4`, and
   pushes the steering state of the record it was given (`002633FF`–`00263408`). **Pop** (`002EAAA0`)
   is called twice, both in `00263050`, the per-record op handler that `ActorResource_RemoveActiveEntry`
-  (`003DB2A0` → `003DB392`) drives: **op 2** pops when the record's "pushed" bit (`+0xB` bit 4) is set
+  (`003DB2A0` → `003DB392`) drives: **~~op 2~~ op 4** pops *(corrected 2026-10-02, OPUS: `00263059` `sub edx, 1` (op 1), `0026305E` `sub edx, 2` (op 3), `00263063` `cmp edx, 1` / `jne 0026321C` leaves op 2 without a pop; op 4 tests `+0xB` bit 4 at `0026306C`)* when the record's "pushed" bit (`+0xB` bit 4) is set
   and clears it (`0026306C`–`0026307B`); **op 1** decrements `+0x1E0` (`002630B7`) and, when the
   record's slot word `[rcx + rbx + 0x24]` is negative, pops (`0026320A`–`0026320D`), otherwise sets
   the pushed bit (`002631F6`); op 3 tail-jumps to `0025B500`. So the interruption is **an event
@@ -309,7 +309,7 @@ as not invalidating, which is the less wrong approximation for a linear pass ove
   the shape §1 named, now with the mechanism's two ends observed. Which script kinds run through
   `ActorResource_StartEntryScriptExecution` mode 1 is the residue.
 - **What `FUN_002627C0`, `FUN_002EC2C0`, `FUN_002EBFA0`, `FUN_002EC3F0` or `FUN_002E8EE0` do.**
-  Named as the push/pop chain, unread.
+  Named as the push/pop chain, ~~unread~~ *(answered: see [the facing-and-steering contract](../CONTRACT-facing-and-steering.md) §14 item 2 and §18 — all five read 2026-09-18; 2026-10-02, OPUS)*.
   *One of the five read, 2026-09-19 (FABLE):* `002EC3F0` is where this record's shape reaches the **head**. It takes the
   shape from bits 0-2 of `+0x62` and a selector from bits 3-5 and stages one of six head-look requests with the frame
   count at `+0x60` and, for shapes 2 and 3, the pair at `+0x10` / `+0x14`. So the statement below that an interrupted

@@ -11,21 +11,29 @@
 ## Systems in this category
 
 - [`the-setsavedata-presets-test-battle-scenarios.md`](the-setsavedata-presets-test-battle-scenarios.md) —
-  **PARTIAL, tier 1.** The script verb `btlAtelSetNextSetSaveData(n)` stores one byte; the next area
+  ~~**PARTIAL, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The script verb `btlAtelSetNextSetSaveData(n)` stores one byte; the next area
   initialisation rebuilds the party from scenario row `n` (formation, gil, 64 items) and its 226
   party presets (level, five equipment ids, gambit preset, LP or licence mask, MP %). Reks alone is 0.
 - [`party-roster-and-control-suppression.md`](party-roster-and-control-suppression.md) —
-  **DOCUMENTED, tier 1.** The four-slot roster at `0209A1F0`, the negative-index "current
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The four-slot roster at `0209A1F0`, the negative-index "current
   focus" convention, and why you lose control when your leader is disabled — the **third**
   subsystem found using one shared functional predicate.
 
 Known anchors: `PartyFocus_GetPreferredDefinitionSelector`, `PartyFocus_GetCurrentPackedActorHandle`, `0035BAA0` (one-shot native party-leader setter - do not repeatedly pin it), `0031B9F0` `BattleSlotMap_ResolveMappedBattleSlot`.
 
 - [`Battle-State-Block/the-battle-state-block-field-map.md`](Battle-State-Block/the-battle-state-block-field-map.md) —
-  **DOCUMENTED, tier 1.** The 0x7410-byte image-backed record behind `02EBF190`, field by field above
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. The 0x7410-byte image-backed record behind `02EBF190`, field by field above
   the forty stats records: the nine party selectors, the four-entry battle slot map, the leader byte,
   the special-presentation sequence, the mode ladder's words, three combat-formula echoes, the
   inventory snapshot and forty members' gambit banks. The access table is published beside it.
+
+- [`active-party-reserve-and-the-moment-the-leader-changes.md`](active-party-reserve-and-the-moment-the-leader-changes.md) — the nine-entry configuration, the guest ranges and the deferred leader change — **AUDITED**
+- [`the-five-parallel-slot-maps.md`](the-five-parallel-slot-maps.md) — the five nine-entry maps the resolver `0031B9F0` selects by class — **AUDITED**
+- [`CONTRACT-party-slot-assignment.md`](CONTRACT-party-slot-assignment.md) — **BEHAVIORALLY UNDERSTOOD**
+- [`CONTRACT-party-focus-and-control-suppression.md`](CONTRACT-party-focus-and-control-suppression.md) — **CONTRACT READY**
+- [`CONTRACT-the-five-parallel-slot-maps.md`](CONTRACT-the-five-parallel-slot-maps.md) — **CONTRACT READY**
+- [`Battle-State-Block/CONTRACT-battle-state-block.md`](Battle-State-Block/CONTRACT-battle-state-block.md) — **CONTRACT READY**
+- *(corrected 2026-10-02, OPUS: six pages this list omitted, added with the status or readiness each page's own front matter states)*
 
 ## How to add a system here
 

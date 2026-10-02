@@ -30,7 +30,7 @@ audit:
 > Why units in battle stop and pivot instead of turning while they walk, why they shuffle around
 > each other instead of overlapping, and what happens when one gets stuck.
 
-**PARTIAL.** The family's 26 functions, their call structure, the two recovery layers' constants and
+~~**PARTIAL.**~~ **AUDITED.** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`, every box closed 2026-09-30)* The family's 26 functions, their call structure, the two recovery layers' constants and
 the **complete turn limiter** are read. ~~Most other individual bodies are not.~~ *(Corrected 2026-09-30, SWE2-DATA:
 since this line was written, the arrival curve (§10), the avoidance RNG and the order-goal decoder (AM-5, AM-6,
 DE-1..DE-4) and two of the six steering modes (§6) have been read, and the exclusive subtrees are bound. What
@@ -102,8 +102,8 @@ which supersedes this paragraph.
 
 *(An earlier revision of this section said the bands were unestablished — true when written — and
 also attributed the stop-and-pivot to `ApplyStopAndTurn` / `ApplySimpleHeadingLimit`. **That
-attribution was wrong**: neither is called from anywhere inside this family. The behaviour comes from
-the limiter's own 45° deadband. See section 9.)*
+attribution was ~~wrong~~ not wrong for `ApplyStopAndTurn`**: ~~neither is called from anywhere inside this family. The behaviour comes from~~ both are modes 3 and 5 of the family's own steering dispatcher, and the stop-and-pivot also comes from
+the limiter's own 45° deadband. See section 9.)* *(corrected 2026-10-02, OPUS: `0033BED0` calls `00339F00` at `0033BF8D`, which calls `ApplyStopAndTurn` `0033CE60` at `0033A06E`; `0033CE7B` zeroes the speed `+0xB0`; section 6, AM-7)*
 
 ### Two independent recovery layers
 
@@ -115,7 +115,7 @@ did not pick last time. Its one recovered constant is an `addss` of **5** (`0033
 
 **Stall recovery** — `UpdateStallRecoveryState` → `ComputeRemainingPathDistance` /
 `TryRecoverFromStalledPath` → `SamplePointAlongCurrentPath`. This one is **measured, not random**: it
-compares remaining path distance, decrements by **0.01**, adds **1.5**, and tests a counter against
+compares remaining path distance ~~, decrements by **0.01**, adds **1.5**,~~ with the stored one — a drop of more than **0.01** re-stores it and zeroes the counter, a rise past it **+ 1.5** re-stores it, anything else counts up *(corrected 2026-10-02, OPUS: `0033C2B7`–`0033C2C9`, `0033C2CF`–`0033C2DC`, `0033C2E3`–`0033C2ED`; AM-4)* — and tests a counter against
 **60**.
 
 **60 is one second at 60 fps.** A unit that has not made progress for about a second is treated as
@@ -223,7 +223,7 @@ turn thresholds (radians)      pi/4 = 0.785398   45 deg
                                pi/9 = 0.349066   20 deg
 
 stall recovery                 counter tested against 60      (= 1.0 s at 60 fps)
-                               distance stepped by -0.01, +1.5
+                               distance stepped by -0.01, +1.5   <- corrected 2026-10-02, OPUS - thresholds, not steps: a drop below old - 0.01 or a rise above old + 1.5 re-stores the distance (0033C2B7-0033C2DC)
 detour recovery                +5
 pair clearance                 x0.5, /3
 step distance                  +0.5, /7, x0.25, /5, /1.5, /3, x0.99
@@ -266,7 +266,7 @@ step distance                  +0.5, /7, x0.25, /5, /1.5, /3, x0.99
       (`0033CEC7`–`0033CED2`) — a stop-in-place pivot. **`ApplySimpleHeadingLimit` (`0033CDE0`)** keeps
       the speed and turns at `st+0xE4` while `+0xB0` is positive and above `st+0x104`, else at
       `st+0xE8`, storing the same two headings (`0033CDE6`–`0033CE4E`) — a turn-while-moving limiter.
-      *Not read:* modes 1 / 4, 2 and 6's bodies, and what authors the mode bits. **AM-7.**
+      *Not read:* modes 1 / 4, 2 and 6's bodies, and what authors the mode bits *(answered: see the SD-183 answer in the next box — the flag word, the three bodies and the mode writers; 2026-10-02, OPUS)*. **AM-7.**
 - [x] **What the other steering modes do, and who sets the mode.** The dispatcher sends modes 1 and 4 to `0033CEF0`,
       2 to `0033D200` and 6 to `0033BAA0` (`0033A039`–`0033A0A6`, `_index/candidates/dd-data-5-0930/mv_loco_checks.py` L3). The bodies have only
       census-level descriptions on the field-map and transform-primitive pages, and no writer of the low five bits
@@ -362,7 +362,7 @@ step distance                  +0.5, /7, x0.25, /5, /1.5, /3, x0.99
       > | opcode | goal | stop distance |
       > |---|---|---|
       > | `0x4124` | the unit's **own** `+0x120` vector (aux `+0x130`), allowed only when the handle at unit `+0x24` resolves (`BattleUnit_ResolveByFocusHandle`) to **another** unit (`00312A91`–`00312ACB`) | own `+0x154` |
-      > | `0x4125` | the 32-family sampler `00312DF0(unit + 0xD0, −1, 20, unit, aux)` — reference position **20** (`00312A50`–`00312A8F`) | `xmm6` |
+      > | `0x4125` | the 32-family sampler `00312DF0(unit + 0xD0, −1, 20, unit, aux)` — ~~reference position **20**~~ around the unit's own `+0xD0` within **±20**, the parameter *(corrected 2026-10-02, OPUS: `00312A50` `lea rcx, [rdi+0xD0]` is the reference, `00312A57` `mov r8d, 0x14` the third argument)* (`00312A50`–`00312A8F`) | `xmm6` |
       > | `0x414A` | the unit the `+0x24` handle names, through the **`0x4023` body** (`00312A43` → `00312918`): its `+0xD0` position, not self | `BattleUnit_GetNavigationClearanceRadius(target)` + `xmm6` + parameter |
       > | `0x414E` | the `+0x710` focus target's `Actor_GetPresentationAdjustedPosition` (`003129F3`–`00312A3E`) | 0 |
       > | `0x4165` | **`Loot_FindNearestActivePickupPosition(unit, out)`** (`00319850`, `003129A9`–`003129EE`) — the nearest world pickup, [the loot page](../../13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md); the periodic maintenance runs the pickup overlap for a unit whose current order is `0x4165` (`003110E8`–`003110F4`) | `xmm6` + one constant − another |
@@ -387,7 +387,7 @@ step distance                  +0.5, /7, x0.25, /5, /1.5, /3, x0.99
       > with no goal, so its "hole" in this decoder is by design. `0x4025` never occurs in the shipped sets and
       > has no handler slot: the one true hole. (The sibling static record at `01EEC2B0` is `{150 Attack, 0,
       > 0x2000}`, the engage auto-attack `BattleUnit_TryCommitEngageAutoAttack` commits at `003130CB`.)
-      **ANSWERED 2026-09-18 (FABLE) — the last unread case is read, and every opcode now has one.** The low-band dispatch is two image-relative tables (index bytes at `00312B10`, case RVAs at `00312AF8`, `003127AA`–`003127C5`) and they send `0x4020` alone to `003127D7`: the arm requires the battle-state record at unit `+0x698` to carry kind byte **1** at `+5` (`003127E7`; the page's `0x4022` reading tests the same byte for 0, the party kind), takes the **SpawnRecord** at unit `+0x6A0` and points at its `+0x50` — the *live persisted world position* on [the spawn page](../../05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md) — keeps the `s16` parameter in `r8d`, and jumps to the shared sampler tail `00312A5D`, which calls `00312DF0(reference, −1, parameter, unit, out)` and, on success, copies the sampled point into the goal and stores the radius (`00312A5D`–`00312A8F`). So **`0x4020` is “wander within ±N of your own spawn position”**, the non-party sibling of the `0x4000`–`0x401F` family (which samples around a POSENT reference by index) and of `0x4125` (which samples around reference 20). With that, every opcode's case is read: `0x4000`–`0x401F` and `0x4026`–`0x4035` under `DE-1`, the index under `DE-4`, `0x4021` under `DE-2` (the engine's default order), `0x4022` / `0x4023` / `0x4024` and the `0x4124`+ band under `DE-3` above, `0x4025` the one true hole, and `0x4020` here. Static: the two tables and the arm.
+      **ANSWERED 2026-09-18 (FABLE) — the last unread case is read, and every opcode now has one.** The low-band dispatch is two image-relative tables (index bytes at `00312B10`, case RVAs at `00312AF8`, `003127AA`–`003127C5`) and they send `0x4020` alone to `003127D7`: the arm requires the battle-state record at unit `+0x698` to carry kind byte **1** at `+5` (`003127E7`; the page's `0x4022` reading tests the same byte for 0, the party kind), takes the **SpawnRecord** at unit `+0x6A0` and points at its `+0x50` — the *live persisted world position* on [the spawn page](../../05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md) — keeps the `s16` parameter in `r8d`, and jumps to the shared sampler tail `00312A5D`, which calls `00312DF0(reference, −1, parameter, unit, out)` and, on success, copies the sampled point into the goal and stores the radius (`00312A5D`–`00312A8F`). So **`0x4020` is “wander within ±N of your own spawn position”**, the non-party sibling of the `0x4000`–`0x401F` family (which samples around a POSENT reference by index) and of `0x4125` (which samples around ~~reference 20~~ the unit's own `+0xD0` within ±20 *(corrected 2026-10-02, OPUS: `00312A50`–`00312A57`)*). With that, every opcode's case is read: `0x4000`–`0x401F` and `0x4026`–`0x4035` under `DE-1`, the index under `DE-4`, `0x4021` under `DE-2` (the engine's default order), `0x4022` / `0x4023` / `0x4024` and the `0x4124`+ band under `DE-3` above, `0x4025` the one true hole, and `0x4020` here. Static: the two tables and the arm.
 - [x] ~~Which RNG stream the randomised recovery draws from.~~ **AM-6 ANSWERED 2026-09-08 — the
       process-global CRT `rand`.** All three randomised functions call IAT slot `008C3098`, which
       the import table resolves to `api-ms-win-crt-utility-l1-1-0.dll!rand`; `ResetAvoidanceStateRandomized`
@@ -466,7 +466,7 @@ float ApplyHeadingTurnLimiter(ctx, float desired)
         rate = st->[0xEC];                                     /* always the SLOW rate */
     }
 
-    d = Angle_NormalizeRadiansPi(desired - cur);
+    d = Angle_NormalizeRadiansPi(desired - cur);   /* <- corrected 2026-10-02, OPUS - not on the latched path: above 120 deg with fl[0x21] & 6 set, 0033659D-0033661D step cur +/- rate with no wrap and no snap */
     new = (fabs(d) <= rate) ? desired                          /* close enough: snap */
                             : Angle_NormalizeRadiansPi(cur ± rate);
 
@@ -509,13 +509,13 @@ question.
 
 One thing section 2 implied and should not have: it grouped `ApplyStopAndTurn` and
 `ApplySimpleHeadingLimit` with the limiter as "the mechanism behind the stop-and-pivot". **Neither is
-called by `ApplyHeadingTurnLimiter`, and neither is called from anywhere inside this family** — their
-only callers are outside it (`00339F00`). The stop-and-pivot behaviour described above comes from
-the limiter's own deadband, not from those two functions. Their role is unread. **AM-7.**
+called by `ApplyHeadingTurnLimiter`~~, and neither is called from anywhere inside this family~~** — their
+~~only callers are outside it~~ caller is the family's own steering dispatcher (`00339F00`) *(corrected 2026-10-02, OPUS: `0033BED0` → `00339F00` at `0033BF8D` → `0033CE60` at `0033A06E`; section 6, AM-7)*. The stop-and-pivot behaviour described above comes from
+the limiter's own deadband, not from those two functions. ~~Their role is unread.~~ *(answered: see section 6, AM-7 — modes 3 and 5 of the dispatcher, `ApplyStopAndTurn` zeroing the speed; 2026-10-02, OPUS)* **AM-7.**
 
 ### A shared utility identified
 
-`Angle_NormalizeRadiansPi` (`0033CB70`, 128 B) normalises an angle into (−π, π] by repeated addition
+`Angle_NormalizeRadiansPi` (`0033CB70`, 128 B) normalises an angle into ~~(−π, π] by repeated addition~~ [−π, π] by repeated addition of ±2π when it lies within ±4π, and beyond that by one truncating division with no loop, which can leave a result in (−2π, 2π) *(corrected 2026-10-02, OPUS: `0033CB73` / `0033CB84` against `[00D10B0C]` / `[00D10B20]` (±4π), loops `0033CBA0` / `0033CBC0`, division `0033CBCD`–`0033CBEF`)*
 — and it has **25 call edges** across the image, so it is an engine-wide helper rather than a
 locomotion detail.
 
@@ -557,7 +557,7 @@ float ComputeStepDistance(ctx)
     else                             rem /= thunk_00253B90() ? 1.5 : 3;
 
     v     = rem * rem * st->[0xFC];                        /* QUADRATIC in remaining distance */
-    speed = (st->[0xF8] > v) ? v : min(st->[0xFC], v);
+    speed = (st->[0xF8] > v) ? v : min(st->[0xFC], v);   /* <- corrected 2026-10-02, OPUS - (st->[0xF8] > v) ? st->[0xF8] : min(st->[0xFC], v): 00339DA8 loads A, 00339DBB ja keeps it, 00339DBD-00339DC0 min(B, v) */
 
     if (speed > dist)  speed = dist * 0.99;                /* never overshoot */
     return speed;
@@ -619,7 +619,7 @@ arrival curve at all. **AM-9.**
 `00312730` `BattleLocomotion_DecodeOrderGoal` (965 B, owner Movement) sits upstream of the steering
 described here. It takes an id from the **extended order space** — one of **two disjoint spaces that
 share `BattleUnit+0x714`**, the other being ordinary target-carrying actions at `<= 0x21E` — bounds it
-at **`0x4000`-`0x4024`** (37 ids), and switches to **six** goal-resolution bodies, 32 ids sharing the
+at ~~**`0x4000`-`0x4024`** (37 ids), and switches to~~ `0x4035` with five higher ids beside it, and switches its low band **`0x4000`-`0x4024`** (37 ids) to **six** goal-resolution bodies *(corrected 2026-10-02, OPUS: `00312780` `cmp ebx, 0x4035` / `ja` the ids `0x4124`, `0x4125`, `0x414A`, `0x414E`, `0x4165`; `0031278C` `cmp ebx, 0x4026` / `jae` the band `0x4026`–`0x4035`; `00312798`–`003127A1` the switch, `0x4025` rejected)*, 32 ids sharing the
 first and `0x4021` deliberately resolving to none.
 
 **These are orders, not player commands.** The distinction is made in `BattleUnit_CommitAction`
@@ -633,7 +633,7 @@ from this subsystem.
 
 The id space and its dispatch table are documented in
 [the battle action handler table](../../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md)
-section 8. The two derivations meet exactly: Movement bounds at `0x4024`, and the action table's
+section 8. The two derivations meet exactly: Movement ~~bounds at `0x4024`~~ bounds its switch at `0x4024`, the decoder also taking `0x4026`–`0x4035` and five higher ids *(corrected 2026-10-02, OPUS: `0031279E` `cmp ecx, 0x24`; `00312780`, `0031278C`)*, and the action table's
 first empty slot is `0x4025`.
 
 ## `AM-6` and `AM-5` — 2026-09-08
@@ -702,7 +702,7 @@ table — byte indices at `00312B10`, image-relative targets at `00312AF8`:
 > `record[5] == 0` and a literal `0x4022`; that literal is an **order opcode with its own decode
 > case**, not a magic number.
 
-**What is not read:** what any of the six cases *does*. The format and the dispatch are established;
+**What is not read:** *(answered: see DE-1 to DE-4 below and the ANSWERED 2026-09-18 box — every case is read; 2026-10-02, OPUS)* what any of the six cases *does*. The format and the dispatch are established;
 **the semantics of the 32-family, the 16-family and the four specials are not**, and neither is the
 `0x4124`+ band. `AM-5` is advanced, not closed. `DE-1`.
 
@@ -712,7 +712,7 @@ Two handler reads, as the question predicted.
 
 #### The sixteen — `0x4026`–`0x4035` name a unit
 
-The shared handler is `002367A0`, **`BattleUnit_FindByDefinitionSelector`** (126 B), already named in
+The shared ~~handler is~~ path first calls `002367A0` and then goes to `00312918` *(corrected 2026-10-02, OPUS: `00312970`–`0031297B`; the 2026-09-13 correction)*, **`BattleUnit_FindByDefinitionSelector`** (126 B), already named in
 the ledger, called with `opcode − 0x4026` (0…15).
 
 > **Sixteen opcodes are sixteen ways of saying "that unit".** The order does not carry a unit handle;
@@ -778,7 +778,7 @@ opcodes' cases, are not. `DE-4`.~~
 > record's `+0x10` / `+0x14` / `+0x18` floats — format class 0 is section 016, the `FF12POS3` position
 > table ([the POSENT table](../../25-EBP-Script-Container/Sections/section-016.md)), the same records [spawn placement](../../05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md) resolves a unit's lifecycle anchor
 > point from. So order `0x4000 + k` means **"wander within ±param of POSENT entry k + 1"**. When
-> `ref` is given the index is ignored: `0x4020` samples around the actor record's `+0x50` (an
+> `ref` is given the index is ignored: `0x4020` samples around the ~~actor record's~~ SpawnRecord's (`[unit+0x6A0]`) `+0x50` *(corrected 2026-10-02, OPUS: `003127F1` `mov rcx, [rdi+0x6A0]` / `003127FB` `add rcx, 0x50`)* (an
 > enemy-kind unit only, `003127D7`–`003127FF`) and `0x4125` around the unit's own `+0xD0`, its last
 > navigable position ([the battle-unit field map](../../04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md)). Each try (nine at most, `00312E44`) offsets x and z by
 > `LCG % (2·param + 1) − param`, writes `out` and asks `00317DE0(unit, &pos, param != 0)` — a

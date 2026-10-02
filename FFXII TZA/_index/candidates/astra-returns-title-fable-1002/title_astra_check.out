@@ -1,0 +1,33 @@
+I0 image sha256                                            PASS
+T1 00189120 global getter (no argument read)               PASS
+T1b getter is exactly two instructions                     PASS
+T2 00183720 null return, two reads, first tested, enqueue  PASS
+T2b only one test of a getter result                       PASS
+T3 00185A90 queue address, unsigned end test, store order  PASS
+T3b fast arm 00185ABD..00185AD6 makes no call              PASS
+T3c whole body has exactly one call (00185ADC)             PASS
+T4 001858A0 calls only allocator slots +0x10 / +0x18       PASS
+T5 001FB660 queues value+0 and node+0x28, clears after     PASS
+T5b 001FB660 makes exactly five calls                      PASS
+T6 0017ECC0 keeps data for 005DE250 then tails 0019C590    PASS
+T7 0024A680 calls 00181610                                 PASS
+T7b it is the first call in 0024A680                       PASS
+T8 00181610 manager getter then tail 001B1960              PASS
+T9 001B1960 found node: 001FB660(node+0x28), else skip     PASS
+T10 00186230 bank advance, snapshot loop, reread + reset   PASS
+T10b 00186230 has one call (the pair function)             PASS
+T11 00185C20 is a jump to 00186230                         PASS
+T12 0017D6E0 zero gate, getter, flush, repeat edge         PASS
+T12b 0017D6E0 has one flush call                           PASS
+T13 005DE250 guard 00625F00, conditional 0062BCB0, tail 00616C60 PASS
+T14 00625F00 tests DWORD +0xBC                             PASS
+T15 0019C590 jumps through IAT slot 008C2B48               PASS
+T15b IAT slot 008C2B48 binds api-ms-win-crt-heap free      PASS
+T16 00616C60 unconditional 0062B100 + 0062BCB0, guarded 00584730 PASS
+T16b no +0xBC test in 00616C60 before 00616C7B             PASS
+T17 0062BCB0 delegate, clear +0xBC, conditional 0062B870   PASS
+T18 0062B100 bound max(1,n), select, read, service loop    PASS
+T19 00623DF0 returns base + 0x58*k + 0x38                  PASS
+T19b 00623DF0 writes no memory                             PASS
+K1 control: 0062BCBE present and 'call 0x62ec70' refused   PASS
+FAILS 0

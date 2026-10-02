@@ -174,7 +174,7 @@ Both `+0x750` and `+0x754` are otherwise cleared to 0 when the actor's handle di
 5. write the commitment block and take its copy
 6. consult `+0x770`, the stats record's kind byte, and `+0x744` the last cancelled action id
 7. **band one only:** the propagation walk (§6, added 2026-09-12)
-8. update the target's attacker mask, if it is not already set, and return 1
+8. **band one, with a resolved target, only:** update the target's attacker mask, if it is not already set; ~~and return 1~~ every accepted commit returns 1 at `0030F97A` *(corrected 2026-10-02, OPUS: `0030F8A9 je 0030F97A` (no target unit) and `0030F8B6 ja 0030F97A` (band two) jump past the mask block `0030F937`–`0030F975`)*
 
 **Corrected 2026-09-12 (`OPUS-COMMITACTION-ISOLATED`): step 4 does not happen on every commit.**
 This section said "every commit clears the buffer before the action's targets are appended". It does
@@ -182,14 +182,14 @@ not: `0030F7A5 ja 0030F7D9` sends every id above `0x21E` to the band-two test, a
 band-two test falls through at `0030F7EC` to `0030F7F2` — **past** the reset at `0030F7B3` and
 **past** the append at `0030F7CD`. A band-two action commits with the previous action's target
 buffer still in place. The same `ja` at `0030F8B2` skips the entire propagation walk for band two,
-so a band-two commit writes the block, settles `+0x770`, and goes straight to the mask.
+so a band-two commit writes the block, settles `+0x770`, ~~and goes straight to the mask.~~ re-picks the `+0x6B0` bit-1 slot and returns 1 **without** the mask *(corrected 2026-10-02, OPUS: `0030F8B6 ja 0030F97A` also jumps past the mask block `0030F937`–`0030F975`, and `0030F97A` is `mov eax, 1`)*.
 
 Executed: 51 buffer resets across 62 commits in the pilot's own trace (§13).
 
 ## 8. Script · resource · event interactions
 
 **None directly.** The commit takes an order record that a gambit or a menu has already produced; it
-does not read a script, touch a resource, or raise an event of its own. What it does emit is a
+does not read a script~~, touch a resource, or raise an event of its own~~ or touch a resource; it does notify *(corrected 2026-10-02, OPUS: on a mask change `0030F975 call 00313B30`, which hands a record per unit to `002ED2A0`, §13a)*. What it does emit is a
 target-buffer reset (§7 step 4), which `CONTRACT-battle-target-buffer.md` owns.
 
 **Added 2026-09-12 (`OPUS-CONTRA-SECTION-NUMBERS`)** — see the note in §12.
@@ -219,10 +219,10 @@ commit(actor rcx, order rdx, actionId r8w, param r9d, cancelFirst [rsp+0x70]) ->
     if cancelFirst != 0:  cancelCurrentAction(actor)          /* 003105D0 */
     unit = resolveParam(param)                                /* 0031B7E0 */
     if not twoBandIdTest(actionId): return 0                  /* §3 - refuse, nothing written */
-    resetTargetBuffer(actor)                                  /* 00316CF0 */
+    resetTargetBuffer(actor)                                  /* 00316CF0 */   # <- corrected 2026-10-02, OPUS - band one only (id <= 0x21E); 0030F7A5 ja 0030F7D9 takes band two to 0030F7F2, past this reset and the append at 0030F7CD
     writeCommitmentBlock(actor, order, actionId) and take its copy   /* §5 */
-    consult actor+0x770 (stats kind byte) and actor+0x744 (last cancelled id)
-    updateAttackerMask(target)                                /* §6 */
+    consult actor+0x770 (stats kind byte) and actor+0x744 (last cancelled id)   # <- corrected 2026-10-02, OPUS - +0x770 is the re-commit latch, not the stats kind byte; the kind byte is [+0x698]+5 (0030F83A-0030F841) and the latch also compares +0x740 (0030F857). Missing here - the +0x6B0 bit-1 copy of 022C1DB8[slot*12] to +0x6B9 with +0x6B6 = 1 (0030F865-0030F894), the +0x750 clear (0030F89B-0030F8A3) and the band-one propagation walk (0030F8BC-0030F931)
+    updateAttackerMask(target)                                /* §6 */   # <- corrected 2026-10-02, OPUS - band one with a resolved target only; 0030F8A9 je 0030F97A and 0030F8B6 ja 0030F97A skip the mask block 0030F937-0030F975
     return 1
 ```
 
@@ -292,8 +292,8 @@ survive. *A write of zero into a field that is already zero tests nothing.*
   parameter it last cancelled, and a kind-1 unit committing anything. Every other combination
   clears it, and when it is already zero the stats record is never read at all — driven with a NULL
   stats pointer, which would fault otherwise.
-- **The posture byte is re-picked only when bit 1 of `+0x6B0` is set, and that bit is consumed**;
-  the byte comes from `022C1DB8 + slot * 12`, driven at slots 0, 1, 3 and 255.
+- **The ~~posture byte~~ parked slot byte `+0x6B9` is re-picked only when bit 1 of `+0x6B0` is set, and that bit is consumed**;
+  the byte comes from `022C1DB8 + slot * 12`, driven at slots 0, 1, 3 and 255 *(corrected 2026-10-02, OPUS: not a posture - `BattleUnit_IssueCommand` parks a slot byte there when its target handle is 0 (`00311D8C`–`00311DA5`), the commit copies it to `+0x6B9` and sets the count `+0x6B6` = 1 (`0030F88E`, `0030F894`), and `00385756`–`0038575D` hands it to `00320A40`, a battle-stats record index of at most `0x27`)*.
 - **The mask bit's shift is masked to five bits**, driven at slots 31, 32 and 33, where 32 and 33
   alias slots 0 and 1.
 
@@ -350,7 +350,7 @@ for the callees; it still holds for the **caller**, which nothing has executed.
 
 | body | what it does | re-derivation |
 |---|---|---|
-| `00308270` postf | runs its body **only when bit 22 is set** — `bt rax, 0x16` / `jae` skips to the tail (`0030827B`–`00308280`); then `+0x28 = 0`, `unlink(+0x695)`, `+0x695 = 0xFF`, posture row `0x22C1DB0 + ea9*12` | table base and the `*12` index confirmed: `lea rcx,[rip→ 0x22C1DB0]` (`0030829C`), `lea rdx,[rax+rax*2]` then `word [rcx+rdx*4]` |
+| `00308270` postf | runs its body **only when bit 22 is set** — `bt rax, 0x16` / `jae` skips to the tail (`0030827B`–`00308280`); then `+0x28 = 0`, `unlink(+0x695)`, `+0x695 = 0xFF`, ~~posture row~~ the per-slot save row `0x22C1DB0 + ea9*12`, restoring `+0xDC8` from its word `+0` and `+0xE58` from its dword `+4` (`003082AE`–`003082C0`; `00312FA0` saved them at `003130AB`–`003130C7`) *(corrected 2026-10-02, OPUS: no posture is read)* | table base and the `*12` index confirmed: `lea rcx,[rip→ 0x22C1DB0]` (`0030829C`), `lea rdx,[rax+rax*2]` then `word [rcx+rdx*4]` |
 | `0030EDA0` `BattleUnit_RestoreSuspendedActionState` | copies **`0x4F0` bytes** from `[unit+0xB88]` to ~~**`unit+0x730`**~~ **`unit+0x6B0` .. `unit+0xBA0` (exclusive)** *(corrected 2026-10-01, OPUS)*, then scans the eight slots at `0x22BEFC0` for an entry address equal to the source and clears bit `i&7` of `0x22BEFB0[i>>3]` | ~~destination is `unit + 0x6B0 + 0x80` (`0030EDA7`/`0030EDB6`)~~ *Corrected 2026-10-01 (OPUS, on ASTRA's `suspend-restore-copy-origin/`, ACCEPT by SWE2-AUDIT-SPEC, `_index/candidates/auditspec-review-astra-suspend-restore-copy-origin-1001/`; re-read by OPUS): `rcx = unit + 0x6B0` (`0030EDA7`), and the loop's `lea rcx, [rcx + 0x80]` (`0030EDB6`) runs before its stores at `rcx - 0x80` (`0030EDC7`), so the first store is at `unit + 0x6B0`; nine `0x80` rounds end at `+0xB30` and the `0x70` tail (`0030EE13`-`0030EE44`) ends at `+0xBA0`. The snapshot `0030EFF0` copies the same `[0x6B0, 0xBA0)` out to its pool slot (`0030F04A`), clears it with `memset` `00861EC0` (base `0030F0E5`, length `0x4F0` at `0030F0AC`) and then stores the slot pointer to `+0xB88` (`0030F0F1`). The range holds `+0xB88` itself: the source pointer is loaded into `r8` at `0030EDA0`, before the copy overwrites the slot, and the scan compares that saved `r8` (`0030EE5D`).* 9 × `0x80` plus a `0x70` tail = `0x4F0`; a null `+0xB88` faults at **`0x30EDBD`**, the first `movups`, which is a real precondition rather than a guard |
 | `0030C970` unlink | **two** `cmp cl, 0x1F` gates — `0x30C983` selects the entry for the tail (out of bounds → none) and `0x30C9A1` gates the unlink itself, so `cl == 0xFF` skips the unlink but **still runs the tail** | as cited |
 
@@ -415,7 +415,7 @@ for the pilot and one - the propagation - from a stretch this contract had never
 | the walk re-reads the unit count on every pass | `0030F928`, not hoisted. Executed at counts 0, 1, 2 and 3 | 1 (isolated original-code) | PROVEN |
 | +0x770 survives exactly two ways | a kind-0 unit re-committing the same id AND parameter it last cancelled (`0030F84E`, `0030F857`), or a kind-1 unit (`0030F849`); everything else clears it at `0030F85F`. Executed across kinds 0, 1 and 2 with the pair matching and not | 1 (isolated original-code) | PROVEN |
 | when +0x770 is already zero the stats record is never read | `0030F838 je 0030F85F` jumps over the load. Executed with a NULL stats pointer, which would fault otherwise | 1 (isolated original-code) | PROVEN |
-| the posture byte is re-picked only when bit 1 of +0x6B0 is set, and that bit is consumed | `0030F86B`–`0030F894`, reading `022C1DB8 + slot * 12`. Executed at slots 0, 1, 3 and 255 and with the bit clear | 1 (isolated original-code) | PROVEN |
+| the ~~posture byte~~ parked slot byte +0x6B9 is re-picked only when bit 1 of +0x6B0 is set, and that bit is consumed *(corrected 2026-10-02, OPUS: a battle-stats record index, not a posture; `00311DA5` parks it, `00385756`–`0038575D` reads it)* | `0030F86B`–`0030F894`, reading `022C1DB8 + slot * 12`. Executed at slots 0, 1, 3 and 255 and with the bit clear | 1 (isolated original-code) | PROVEN |
 | `0x21E` is not a distinguished constant | 40 **immediate** sites in 37 functions against 51 for `0x220`. **Reproduced exactly 2026-09-12 by an independently written census** — and the word *immediate* is load-bearing: counting displacements too gives 171 and 630, because `0x220` appears as a struct offset at **389** further sites | 1 (static) | PROVEN |
 | **the unit count is re-read by a CALL on every pass, not merely re-loaded** | `0030F926 inc esi` / `0030F928 call 0x236850` / `0030F92D cmp esi, eax` / `0030F92F jl 0x30F8E6` — the bound is a function result fetched each iteration, so a unit appearing mid-walk is seen | 1 | PROVEN |
 | nothing observed live | — see §13 | none | UNKNOWN |

@@ -30,7 +30,7 @@ audit:
 > the magic `0x05071901`, holds the **forty party `BattleStatsRecord`s** from `+8`, and then, above
 > `+0x2D48`, the things this page names — the party configuration's nine selectors, the four-entry
 > battle slot map, the party leader, a special-presentation sequence, the mode ladder's words, three
-> small echoes the combat formulas leave for each other, the inventory's temporary snapshot, and
+> small echoes the combat formulas leave for each other, ~~the inventory's temporary snapshot~~ the item and equipment count arrays *(answered: §2.3's rows and §2.8; 2026-10-02, OPUS)*, and
 > forty members' worth of gambit banks. Everything here is saved in place.
 
 ## 1. What the player sees
@@ -51,7 +51,7 @@ reset `002370C0` clears exactly that many bytes (`002370CD`, `memset` via `00861
 magic, fills the nine selectors at `+0x5A48` with `0xFFFF` (`00237100`–`00237116`) and zeroes the
 accumulator at `+0x5AC8` / `+0x5ACC`. So the block runs from payload `+0x4E48C` to `+0x5589B` —
 which places [the save map](../../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md)'s
-inventory descriptors (`+0x53C54` = block `+0x57C8`) and the gambit banks **inside** it; that page's
+~~inventory descriptors~~ the inventory region it calls the descriptors (`+0x53C54` = block `+0x57C8`, class 7's second region, the descriptors themselves being static at `01EEBCC0` *(corrected 2026-10-02, OPUS: descriptor row 2 names `+0x57C8` at its `+0x18`, and `0030B702`–`0030B737` zero `0x200` bytes there; FO-5)*) and the gambit banks **inside** it; that page's
 23,312-byte extent was the scan's reach at the time and is corrected with this page.
 
 > **What a census like this cannot see (2026-09-11, OPUS-NOTICE-CENSUSWRITES).** Seeds: the qword at `02EBF190`; the block's allocator (`002370C0`'s `memset`) is reached through that pointer, code that receives an interior pointer as an argument is not unless propagated.
@@ -65,8 +65,8 @@ inventory descriptors (`+0x53C54` = block `+0x57C8`) and the gambit banks **insi
 
 `+8 + i × 0x1C8`, `i = 0..39`: the party `BattleStatsRecord`s, every offset of
 [the stats map](../../08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md)
-applying at `+8 + d` for record 0. The scan attributes 835 accesses in 130 functions to that range
-(111 offsets) — record-0 fields reached through the block base; record `i` accesses are reported at
+applying at `+8 + d` for record 0. The scan attributes ~~835 accesses in 130 functions~~ 683 accesses in 100 functions to that range
+(~~111 offsets~~ 105 offsets *(corrected 2026-10-02, OPUS: counted in the published `battle-state-block-accesses.tsv`, displacements `0x8`–`0x4747`)*) — record-0 fields reached through the block base; record `i` accesses are reported at
 the base, per the scanner's stated limit. `+4` is the flag dword (`00233C6E` sets bit 12 on the
 restart path and `00233CA6` clears it otherwise; the full writer census is §2.10; `Inventory_ModifyEncodedItemAndUpdateDiscoveryState` `003008A0` ORs the **discovery bits** into it on a first acquisition — bit 0 and one of `2 / 4 / 8 / 0x10 / 0x20` for a magick by school, `0x40` for a technick, `0x80` / `0x100` for a quickening, `003009C1`–`00300B5A`; read by `00318CD0` under `BattleMenu_BuildCommandEntryList` as the Magicks / Technicks / Mist command gates, the school bits by nothing — [the encoded-id space page](../../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.9; the dword's other bits: 11 set by `BattleUnit_IssueCommandByFocusHandlesWithOptionalPartyFanout` (`00311BD7`) and tested by `BattleMenu_BuildCommandEntryList` (`0031EBDA`), 12 / 13 / 14 set and cleared by `00239960` under `InitializeAreaState` (`002399F5`–`00239A77`) and by the script verbs `0050F3C0` → `0023A2C0` (bit 13) and `0050F500` → `0023A390` (bit 12, also from `SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG`)). They are not repeated here.
 
@@ -107,7 +107,7 @@ restart path and `00233CA6` clears it otherwise; the full writer census is §2.1
 | `+0x5AA4` | 4 | **the preferred definition selector — the party leader** (~~1 byte~~ **a dword whose six writers each store a zero-extended byte or `0xFF`** — `movzx` before every `mov dword` at `00322173`, `003266A3`, `00327836`, `0032785A`, `003278A4`, `00329DC2` — so the upper three bytes are always 0 and the twelve byte readers are exact; corrected 2026-09-11, OPUS-CONTRA-FOCUSBYTE, EXP-049): `PartyFocus_SetPreferredDefinitionSelectorAndRefresh` `00327850` writes it, `PartyFocus_GetPreferredDefinitionSelector` `003271D0` reads it, `PartyFocus_SelectAndRequestDefaultActor` `00326500` and `PartyConfiguration_ReconcileRosterFromCurrentSelectors` `003261D0` consult it; the status view's bit 11 tests a member's index against its position in the list | 6 / 10 | `003220E0` (`00322173`); `00326620` (`003266A3`); `00327810` (`00327836` +1); +3 more | `PartyConfiguration_ReconcileRosterFromCurrentSelectors` `003261D0` (`0032620A`); `PartyFocus_SelectAndRequestDefaultActor` `00326500` (`00326542` +1); +8 more |
 | `+0x5AC8` | 4 | **the focus actor's walked distance** (float part; named 2026-09-11, [the walk recipe](../../08-Combat-Formula/Recipe-System/the-count-clock-and-bank-recipes.md) §2.3): `PartyFocus_ProcessActorControlPresentationState` `00358F90` measures the kind-3 focus actor's movement-context position against its previous position (`003A1920`, `00358FFF`–`00359010`) and adds a positive length through `00317230` (`0035904F`–`00359052`); an accumulator fed a per-frame delta by `00317230` (carry into `+0x5ACC` when ≥ the constant at `008F8180`; whole capped at 99,999,999 = `0x5F5E0FF`); read as `int(+0x5AC8) + +0x5ACC` by `00320D50`; `00329E40(n)` sets the integer part, `00322200` and the block reset zero both | 4 / 2 | `002370C0` (`0023712E`); `00317230` (`0031726B` +2); `00322200` (`00322216`); +1 more | `00317230` (`00317243` +1); `00320D50` (`00320D57`) |
 | `+0x5ACC` | 4 | integer part of that accumulator — saved inside the image (payload `+0x53F58`); `00329E40` re-seats it from the header stash `+0x7C` on the load normaliser's restore path and `00322200` zeroes it on the stash path (FU-2) | 4 / 2 | `002370C0` (`00237121`); `00317230` (`0031727C` +1); `00322200` (`00322209`); +1 more | `00317230` (`0031724F` +1); `00320D50` (`00320D5F`) |
-| `+0x5AD0` | 2 | **the special-presentation flag word** (u16): bit 1 = a sequence is active (`00313600` sets it with a timer floor, `00313730` / `00313840` clear it, `003139A0(n)` toggles it), bit 2 cleared by `00313840`; captured to the transition record by `SaveTransitionMetadata_CaptureToRecord` `002EF3C0` ([the mode ladder](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md) §"It survives area transitions and saves") | 7 / 6 | `SaveTransitionMetadata_RestoreFromRecord` `002EF410` (`002EF44C`); `BattleUnit_IssueCommand` `00311CF0` (`00311D5E`); `00313600` (`00313638`); +4 more | `SaveTransitionMetadata_CaptureToRecord` `002EF3C0` (`002EF3E5`); `SaveTransitionMetadata_RefreshSubsetToRecord` `002EF510` (`002EF517`); +4 more |
+| `+0x5AD0` | 2 | **the special-presentation flag word** (u16): bit 1 = a sequence is active (`00313600` sets it with a timer floor, `00313730` / `00313840` clear it, `003139A0(n)` toggles it), ~~bit 2 cleared by `00313840`~~ bit 0 cleared by `00313840` with bit 1 *(corrected 2026-10-02, OPUS: `0031388B and word ptr [rax + 0x5ad0], cx` with `cx = 0xFFFE`, `0031389E` with `0xFFFD`)*; captured to the transition record by `SaveTransitionMetadata_CaptureToRecord` `002EF3C0` ([the mode ladder](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md) §"It survives area transitions and saves") | 7 / 6 | `SaveTransitionMetadata_RestoreFromRecord` `002EF410` (`002EF44C`); `BattleUnit_IssueCommand` `00311CF0` (`00311D5E`); `00313600` (`00313638`); +4 more | `SaveTransitionMetadata_CaptureToRecord` `002EF3C0` (`002EF3E5`); `SaveTransitionMetadata_RefreshSubsetToRecord` `002EF510` (`002EF517`); +4 more |
 | `+0x5AD4` | 1 | the sequence's mode byte (`003139C0(n)` sets it, `00313840` resets it to `0x1B`; `003137E0` reads it) | 3 / 2 | `BattleAction_UpdateSpecialPresentationSequence` `00306760` (`0030697F`); `00313840` (`0031387D`); `003139C0` (`003139C7`) | `BattleAction_UpdateSpecialPresentationSequence` `00306760` (`003067EC` +1); `003137E0` (`003137E7`) |
 | `+0x5AD5` | 1 | **the sequence's acting member** — a definition selector: `BattleAction_UpdateSpecialPresentationSequence` `00306760` (`00306966`) and `00313840` (`0031386A`, clears) write it; `003137F0` reads it; `00313730` hands it to `PartyFocus_SetPreferredDefinitionSelectorAndRefresh` when the sequence ends; the status view's bit 10 tests a member against `00320890(+0x5AD5)` | 2 / 7 | `BattleAction_UpdateSpecialPresentationSequence` `00306760` (`00306966`); `00313840` (`0031386A`) | `00300FC0` (`0030110B`); `0030A970` (`0030A9D7`); +5 more |
 | `+0x5AD8` | 4 | the sequence's timer A (float): `00313600` floors it, `00313760` / `00313840` write it, `00313820` reads it; `AiOrder_EvaluateTargetSelector` `00301AD0` reads it (`00303543`) | 3 / 3 | `BattleAction_UpdateSpecialPresentationSequence` `00306760` (`003069A8`); `00313760` (`0031378A` +1); `00313840` (`003138AE`) | `AiOrder_EvaluateTargetSelector` `00301AD0` (`00303543`); `00313600` (`00313616`); +1 more |
@@ -137,12 +137,12 @@ restart path and `00233CA6` clears it otherwise; the full writer census is §2.1
 | `+0x5BA8` | 4 | bank 2 `+0x30` | 1 / 0 | `GambitConfig_InitializeThreeBanksFromBasePairs` `00326030` (`00326109`) |  |
 | `+0x7370` | 4 | **the selected-bank index per member**, `int[40]` to `+0x740F` — the block's last field: `GambitConfig_CopySelectedBankForStatsIndex` `00327C40` reads `bank = +0x5B10 + (3 × i + sel[i]) × 0x34` (`00327C63`–`00327C7C`), so the banks are `[40][3] × 0x34` from `+0x5B10` to `+0x736F`; written by the initialiser (`00326039`), read by sixteen gambit functions | 1 / 16 | `GambitConfig_InitializeThreeBanksFromBasePairs` `00326030` (`00326039`) | `GambitConfig_CopySelectedBankForStatsIndex` `00327C40` (`00327C63`); `GambitRuntime_RebuildOrderSetForStatsRecord` `00327DE0` (`00327E27` +1); +14 more |
 
-**What the region is.** Reading the table top down: the inventory's temporary snapshot and backup
+**What the region is.** Reading the table top down: ~~the inventory's temporary snapshot~~ the item and equipment count arrays *(answered: §2.8; 2026-10-02, OPUS)* and backup
 (`+0x4748`–`+0x5005`, Items), a BattleIdClassD flag (`+0x59C8`), then the party's own state — the
 nine selectors (`+0x5A48`), the four mapping-class tables derived from them (`+0x5A5A`–`+0x5AA1`), the leader (`+0x5AA4`), a play accumulator
 (`+0x5AC8`), the special-presentation sequence (`+0x5AD0`–`+0x5ADF`), the mode ladder's words
 (`+0x5AE0`–`+0x5AEF`, `+0x5B04`, `+0x5B08`), three combat-formula echoes (`+0x5B00`, `+0x5B0C`,
-`+0x5B0E`) and the gambit banks (`+0x5B10`–`+0x7373`).
+`+0x5B0E`) and the gambit banks (`+0x5B10`–~~`+0x7373`~~`+0x736F` *(corrected 2026-10-02, OPUS: `0x5B10 + 120 × 0x34 = 0x7370`, the selection array's start; `00327C63`–`00327C7C`)*).
 
 ### 2.4 The two designations the status view keys on (`FJ-2`)
 
@@ -160,7 +160,7 @@ the sequence actor's index (`0030A994`–`0030A9E4`).
 `BattleAction_UpdateSpecialPresentationSequence` (`00306760`, 911 B) drives `+0x5AD0`–`+0x5ADF`:
 `00313600` starts it (`+0x5AD0 |= 2` after flooring timer A and asking `003EBC50` / `003EBD00`),
 `00313840` (UI) ends it (`+0x5B04` bit 0 cleared with `0035C620`, `+0x5AD5 = 0`, `+0x5AD4 = 0x1B`,
-`+0x5AD0` bits 1–2 cleared, both timers zeroed), `00313730` ends it and makes the actor the
+`+0x5AD0` ~~bits 1–2~~ bits 0 and 1 *(corrected 2026-10-02, OPUS: `0031388B`, `0031389E`)* cleared, both timers zeroed), `00313730` ends it and makes the actor the
 preferred selector. The field frame's steps 15 and 20 read `+0x5AD0` bit 1 as a timer-copy gate and `+0x5AD5`
 through `003137F0` ([the world tick](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)
 §2.3). **The sequence is the Esper summon** (FO-1 answered 2026-09-12 on [the mode ladder](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md) §2c): `+0x5AD4` is the Esper's party-table row (`0x1B` = Belias), `+0x5AD5` the summoner's selector, the two timers the Esper row's `+0x32` (250 on all thirteen), and the same function's mode-2 block is the chocobo mount. `003EBC50` / `003EBD00` start a countdown channel.
@@ -347,8 +347,8 @@ block (0x7410 B, at payload +0x4E48C)
   +0x0000  u32   magic 0x05071901              +0x5AA4  u32   preferred selector (leader; low byte, upper bytes always 0)
   +0x0004  u32   flags (bits 0-8/11-14, §2.10) +0x5AC8  f32 + +0x5ACC i32  accumulator, cap 99,999,999
   +0x0008  BattleStatsRecord[40] (0x1C8)       +0x5AD0  u16   sequence flags; +0x5AD4 u8 mode; +0x5AD5 u8 actor
-  +0x4748  inventory temporary snapshot        +0x5AD8  f32 timer A; +0x5ADC f32 timer B
-  +0x57C8  inventory class descriptors         +0x5AE0..+0x5AEF  mode-ladder words
+  +0x4748  inventory temporary snapshot        +0x5AD8  f32 timer A; +0x5ADC f32 timer B   <- corrected 2026-10-02, OPUS - the item (+0x4748) and equipment (+0x47C8) count arrays, section 2.8
+  +0x57C8  inventory class descriptors         +0x5AE0..+0x5AEF  mode-ladder words   <- corrected 2026-10-02, OPUS - +0x57C8 is class 7's second region, not the descriptors, which are static at 01EEBCC0; 0030B702-0030B737 zero it
   +0x5A48  u16[9] party selectors (0xFFFF)     +0x5B00  i32 echo A; +0x5B04 u32 mode flags; +0x5B08 i32 previous mode
   +0x5A5A  u16[9] x 4 mapping classes 1-4      +0x5B0C  u16 echo C; +0x5B0E u8 echo B
                                                +0x5B10  gambit banks [40][3] x 0x34 B; +0x7370 i32[40] selected bank

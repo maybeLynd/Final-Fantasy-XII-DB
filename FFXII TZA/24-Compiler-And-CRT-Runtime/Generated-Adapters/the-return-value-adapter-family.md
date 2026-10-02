@@ -207,9 +207,9 @@ unresolved.** Spread across animation, rendering, scene and shader types (`PAnim
   - **`00248030` (`HierarchyGenerationBitTraversalAndCallbackReconciliation`)** — the generation reconcile. For each node
     whose bit 17 differs from `0208ED5C` (and whose bit 10 is clear) it sets bit 2 and, unless bit 18, sends `{2}`.
     Then it re-stamps bit 17 and walks on.
-  - **`00186230` (`FourSlotDeferredInvocationDrain`)** — a four-slot deferred-call ring, run by the per-frame pump. It
-    advances the slot index at `+0xCB8` modulo 4, calls every 16-byte `{fn, arg}` entry queued in that slot's vector
-    (`+0xC38 + 32k`), and empties it.
+  - **`00186230` (`FourSlotDeferredInvocationDrain`)** — a four-slot deferred-call ring, ~~run by the per-frame pump~~ flushed at most once per call of the title queue pump (see the title-asset page), and only while the dword `01FD4A68` is zero (pump calls are not shown to be frames). It
+    advances the slot index at `+0xCB8` modulo 4, calls ~~every~~ the 16-byte `{fn, arg}` entries queued in that slot's vector
+    (`+0xC38 + 32k`) up to a snapshot of its write cursor, ~~and empties it~~ then resets the write cursor of the bank the index then names; it frees nothing *(Corrected 2026-10-02, FABLE, on ASTRA's title-queue-pump and title-queue-consumption packets, SWE2-AUDIT-SPEC ACCEPT; [record](../../_index/candidates/astra-returns-title-fable-1002/README.md) F1)*.
   - **`006CC860` (`DoubleBufferedPointerDrainAndFlip`)** — reached only through the member tail-call `0067AB40`
     (`this + 0xA8`), from an application record's per-frame body. It hands each pointer in the current buffer (`[+0xA0]` selects `+0x60` or
     `+0x80`) to the member callback at `+0x58`, empties that buffer and flips `+0xA0`.

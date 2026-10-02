@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-slot-identity-publication\inspect.py", line 16, in <module>
+    V=load('roles','validate-title-source-annotations.py');G=load('graph','prove_owner_reload_order.py');roles=V.validate(x)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-slot-identity-publication\inspect.py", line 9, in load
+    s=importlib.util.spec_from_file_location(n,P/f);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-slot-identity-publication\validate-title-source-annotations.py", line 8, in <module>
+    import capstone
+  File "C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Lib\site-packages\capstone\__init__.py", line 354, in <module>
+    import inspect
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-slot-identity-publication\inspect.py", line 16, in <module>
+    V=load('roles','validate-title-source-annotations.py');G=load('graph','prove_owner_reload_order.py');roles=V.validate(x)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-slot-identity-publication\validate-title-source-annotations.py", line 31, in validate
+    spec.loader.exec_module(roles)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\analysis-kit\gfz-scripts\reg_tracking.py", line 46, in <module>
+    from capstone.x86 import X86_OP_REG
+  File "C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Lib\site-packages\capstone\x86.py", line 4, in <module>
+    from . import copy_ctypes_list
+ImportError: cannot import name 'copy_ctypes_list' from partially initialized module 'capstone' (most likely due to a circular import) (C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Lib\site-packages\capstone\__init__.py)

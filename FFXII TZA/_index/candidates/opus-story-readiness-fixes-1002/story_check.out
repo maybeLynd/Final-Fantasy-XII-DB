@@ -1,0 +1,27 @@
+ok   0032AAAB test byte ptr [rax + rdi + 0x14b4], dl
+ok   0032AAE7 lea eax, [rcx + 0x100]
+ok   0032AB1F test byte ptr [rax + rdi + 0x14b4], dl
+ok   0032ADB6 or byte ptr [rax + rcx + 0x14b4], bl
+ok   0032AE04 lea eax, [rcx + 0x100]
+ok   0032AE3A or byte ptr [rax + rcx + 0x14b4], bl
+ok   0032A900 test byte ptr [rax + rbx + 0x14f4], dl
+ok   0032A919 ret 
+ok   0032A920 jmp 0x32a8a0
+ok   0032AB64 lea eax, [rcx - 2]
+ok   0032AB6A cmp eax, 0x1fd
+ok   0032AC77 cmp ecx, 0x40
+ok   0032AC7A jge 0x32acdf
+ok   0032AC9A sar edi, 3
+ok   0032AC9F shl bl, cl
+ok   002FAFFD call 0x32ad70
+ok   002FB01D call 0x379cd0
+ok   002FB0ED cmp esi, 0x5f
+ok   002FB0FE cmp esi, 0x32
+ok   002F8218 call 0x379cd0
+ok   002F8231 cmp r8d, 0x4b
+ok   002F8253 call 0x32ad70
+ok   002FA7E8 movzx eax, byte ptr [rdi + 4]
+ok   002FA81E movsx eax, word ptr [rdi + 2]
+ok   0026292A xor ebp, ebp
+ok   00262A76 mov byte ptr [rax + 0x1534], bpl
+FAILS 0

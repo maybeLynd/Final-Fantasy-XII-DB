@@ -46,14 +46,14 @@ audit:
 | tables | `battle_pack.bin` directory `+0xF4` → registry slot `02EBF030`, `st2e` **50 × 208 B** (section at `0x292E0`, **rows at `0x29300`** — the `st2e` header is `0x20` bytes and declares the count and stride itself, §10); directory `+0xF0` → slot `02EBF028`, **226 × 44 B** (section `0x26BE0`, rows `0x26C00`) |
 | resolved | every formation byte through the party table (bank 8), every item and equipment id through the class tables of [the encoded-id space page](../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.5, every gambit preset id as a class-10 id (`0x5000` + row) |
 | positive controls | scenario 0 = *Reks* alone (the prologue's party); 1 = *Vaan* alone with 150 gil; 2 = Vaan, then Ashe, Fran, Balthier, Basch, Penelo in slots 4–8, 500 gil, Megalixir × 30, Hi-Potion × 10 …; preset row 0 = scenario 2, slot 0 (Vaan), level 47, Artemis Bow / Parallel Arrows / Genji Helm / Genji Armor / Bangle, gambit preset `0x500B` |
-| censuses | preset rows exist for scenarios 2–49 (none for 0 and 1); 217 of 226 presets carry LP `0xFFFF` (the licence-mask path), 9 carry a number — **`1000` in eight rows and `5000` in one**; ~~every row's MP percentage is 100~~ **220 of 226 are 100, four are 80 and two are 70** (corrected §10) |
+| censuses | preset rows exist for scenarios 2–49 (none for 0 and 1); 217 of 226 presets carry LP `0xFFFF` ~~(the licence-mask path)~~ (no licence grant), 9 carry a number *(corrected 2026-10-02, OPUS: `00239C4F cmp word ptr [rbp + 0x20], r13w` with `r13w = 0xFFFF` (`00239A8C`, `00239B64`), then `00239C54 jne 0x239ce1`, the board loop — it runs when LP is NOT `0xFFFF`; an LP of `0xFFFF` takes `0016D6A0`, a bare `ret 0`)* — **`1000` in eight rows and `5000` in one**; ~~every row's MP percentage is 100~~ **220 of 226 are 100, four are 80 and two are 70** (corrected §10) |
 
 ---
 
 ## 1. What the player sees
 
-Nothing, in the shipped game, unless a script calls the verb: these are developer test sets, and
-no shipped event needs to. What they *are* is a complete recipe for putting a party into a known
+Nothing, in the shipped game, unless a script calls the verb: these are developer test sets~~, and~~
+~~no shipped event needs to~~ *(answered: two shipped scripts call it — `naf_b04` selects set 1 and `evt_t0505` cycles sets 0–3, §7 FZ-5; 2026-10-02, OPUS)*. What they *are* is a complete recipe for putting a party into a known
 state — which is exactly what a modder, a test harness or a reconstruction wants, and the engine
 executes it on the next area initialisation.
 
@@ -119,8 +119,8 @@ and a magick list (Curaga / Curaja, Expose, …).
 **Party preset row** (`02EBF028`, 44 B): `+0 u8 scenario`, `+1 u8 battleSlot`, `+2 u8 level`,
 `+3 u8` (→ record `+0x20`), `+4 u16 equipment[5]` (weapon, off-hand, head, body, accessory),
 `+0xE u16 gambitPreset` (`0x5000` + row), `+0x10 … +0x1F` zero in every row, `+0x20 u16 lp`
-(`0xFFFF` = grant the board's per-slot mask instead), `+0x22 … +0x27` zero, `+0x28 u8 mpPercent`
-(100 in every row). Shipped: 226 rows for scenarios 2–49, two to seven rows each — scenario 2 gives
+(~~`0xFFFF` = grant the board's per-slot mask instead~~ any value but `0xFFFF` grants the board's per-slot mask, for battle slots ≤ 6 *(corrected 2026-10-02, OPUS: `00239C49`–`00239C54`)*), `+0x22 … +0x27` zero, `+0x28 u8 mpPercent`
+~~(100 in every row)~~ (100 in 220 rows, 80 in four and 70 in two *(corrected 2026-10-02, OPUS: re-read from the shipped `battle_pack.bin` directory `+0xF0`, bound to `02EBF028` at `00236FBC`–`00236FCA`; §10)*). Shipped: 226 rows for scenarios 2–49, two to seven rows each — scenario 2 gives
 Vaan level 47 with Artemis Bow, Parallel Arrows, Genji Helm, Genji Armor and a Bangle and Ashe,
 Fran and Balthier level 51 with Onion Arrows and a Battle Harness; scenario 3 is a level-99 set with
 Genji Gloves; scenario 4 a level-20 Vaan with a Longsword; scenario 38 a level-12 Fran with an Aevis
@@ -156,9 +156,9 @@ byte 0208D455: -1 none ; n >= 0 apply scenario n once at the next area initialis
 
 ScenarioRow (208 B):   u8 slot[9] ; u8 ; u8 selector ; u8 ; u16 ; u16 gil ; u16 item[64] ; u8 count[64]
 PartyPresetRow (44 B): u8 scenario ; u8 battleSlot ; u8 level ; u8 field20 ; u16 equip[5] ; u16 gambitPreset ;
-                       u8 zero[16] ; u16 lp (0xFFFF = board mask) ; u8 zero[6] ; u8 mpPercent ; u8 zero[3]
+                       u8 zero[16] ; u16 lp (0xFFFF = board mask) ; u8 zero[6] ; u8 mpPercent ; u8 zero[3]   <- corrected 2026-10-02, OPUS - the board mask is granted when lp != 0xFFFF and the slot is <= 6 (00239C49-00239C54)
 MP after apply = maxMP (+0x28) * mpPercent / 100            (record +0x6C, +0x7C >= 0)
-licence grant   = every 02EBF038 row with (row[+7] >> battleSlot) & 1, when lp == 0xFFFF
+licence grant   = every 02EBF038 row with (row[+7] >> battleSlot) & 1, when lp == 0xFFFF   <- corrected 2026-10-02, OPUS - when lp != 0xFFFF and battleSlot <= 6 (00239C49 cmp r14d, 6 / jg; 00239C4F / 00239C54 jne 00239CE1)
 ```
 
 ## 5. Call chain
@@ -182,11 +182,11 @@ area load: BattleSystem_InitializeAreaState -> 00239960
   12–14.
 - **Presets are keyed by scenario byte, not by row order**; adding a character to scenario `n`
   is a new 44-byte row with byte 0 = `n`.
-- The MP percentage is the only per-preset number every shipped row leaves at 100.
+- ~~The MP percentage is the only per-preset number every shipped row leaves at 100.~~ The MP percentage is 100 in 220 of the 226 shipped rows; four are 80 and two are 70 *(corrected 2026-10-02, OPUS: §10, re-read from the shipped `battle_pack.bin`)*.
 
 ## 7. What is not known
 
-- [x] ~~**Who reaches `00394130`**, the second setter of the byte~~ *(box left for the ledger mirror (FZ-5), 2026-09-14 FABLE: the row's own text is answered, its verdict cell still OPEN)* **— answered 2026-09-11:** the
+- [x] ~~**Who reaches `00394130`**, the second setter of the byte~~ *(box left for the ledger mirror (FZ-5), 2026-09-14 FABLE: the row's own text is answered, ~~its verdict cell still OPEN~~)* *(answered: the register row's verdict cell reads ANSWERED, verdict set 2026-09-14; 2026-10-02, OPUS)* **— answered 2026-09-11:** the
       script verb `fsttl_newgamestart` (`705D`, thunk `00512130` → `00394640`), which, when no such task
       exists (`02AEE4D0 == 0`, `00394640`–`00394648`), registers `00394130` as the proc of a kind-`0xF0`
       task through the widget factory `00244F50` (`0039464A`–`00394659`); the proc validates the

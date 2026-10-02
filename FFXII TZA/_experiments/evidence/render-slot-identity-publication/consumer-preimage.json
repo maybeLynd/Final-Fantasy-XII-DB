@@ -1,0 +1,17 @@
+{
+  "path": "Database\\FFXII TZA\\17-Presentation-Rendering\\Character-Render-Records\\the-character-render-record-array.md",
+  "sha256": "d562b342f7c9ccb414c0263802fc2c9fa2bcef088099fe4b9bf2e32ab2e23807",
+  "selected": [
+    {
+      "line_first": 87,
+      "line_last": 102,
+      "prose": "\nRecords are not swept. The tail holds the head of a **linked list threaded through the records\nthemselves**, and `FUN_00426420` walks it:\n\n```c\nif (tail[0x42] == 1 && tail[0x43] == 0)                  /* the system gate */\n    for (i = *(int *)(base + 0x48800); i != -1;\n         i = *(short *)(base + i * 0x740 + 4))            /* next index, in the record */\n        Reconcile(base + i * 0x740);\n```\n\nThe list head is a 32-bit index at the very start of the tail; each record's **`+0x04` is a 16-bit\nindex of the next live record**; `-1` terminates. A record's `+0x00` is a 16-bit id which is `-1`\nwhen the slot is not in use, and every consumer tests that first.\n\nThat is why the whole system costs nothing when the world is empty: an empty list is one comparison,"
+    },
+    {
+      "line_first": 180,
+      "line_last": 209,
+      "prose": "```\nbase + 0x00000 .. 0x487FF   160 records, stride 0x740 (1,856 bytes)\nbase + 0x48800 .. 0x4892F   system-state tail, 0x130 bytes\n  tail +0x00   i32   headActiveIndex     -1 = no live records\n  tail +0x04   i32   tailActiveIndex     -1 when empty (section 11, 2026-09-11)\n  tail +0x08   i32   nextFreeIndex       the allocator's scan cursor\n  tail +0x0C   i32   liveCount           the allocator refuses at 160\n  tail +0x10   i32   headPendingIndex    records allocated but not yet promoted\n  tail +0x14   i32   tailPendingIndex\n  tail +0x30   u32   encodedRootPointer  written by 00426480\n  tail +0x42   u8    gateEnabled         reconcile requires == 1\n  tail +0x43   u8    gateInhibit         reconcile requires == 0\n```\n\n### The record \u2014 fields proven by the functions read here\n\n**These are BYTE offsets.** The decompiler renders the record through a `short *`, so its subscripts\nare 2-byte indices; every offset below is the subscript doubled. Transcribing the subscripts directly\nwould be the index-as-offset defect that `check_layout_units.py` exists to catch.\n\n```\nCharacterRenderRecord -- 0x740 bytes\n  +0x000  i16   id                 -1 when the slot is free; every consumer tests this first\n  +0x002  i16   prevActiveIndex    intrusive list link back, -1 at the head (section 11)\n  +0x004  i16   nextActiveIndex    intrusive list link, -1 terminates\n  +0x006  i16   (tested == -1 as a latch precondition)\n  +0x010  ptr   encodedContextPtr   8-byte pointer, stored whole (was listed u32 - corrected 2026-09-27, see below)\n  +0x0C4  i32   presentationEntryId -1 when absent\n  +0x0CC  u16   subtype             used as (subtype & 0xFFF)\n  +0x284  u32   objectFlags         bit 0x08000000 gates the latch"
+    }
+  ],
+  "limits": "Read-only at-read canonical preimage; do not overwrite peer pages or repeat accepted pool-count census."
+}

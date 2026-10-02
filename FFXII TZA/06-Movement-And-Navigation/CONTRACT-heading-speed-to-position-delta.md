@@ -354,7 +354,7 @@ whose records name no contract, which is a different half of S-18 and is not cla
       - **Still OPEN:** ~~those four commit-dispatch tails,~~ ~~the tails' flag readers,~~ ~~the structural list the flag
         walk and the update share~~, the live identity of the instance and node across the context switch, the flags' confirmed meaning
         and lifetime, the other steering and native paths, and the initialisation and aliasing conditions. Class
-        stability and the refusal's reachability stay OPEN.
+        stability ~~and the refusal's reachability stay OPEN~~ stays OPEN *(answered for the refusal's reachability: see the ANSWERED 2026-09-30 item below — the refusal does not run there; 2026-10-02, OPUS)*.
       - **ANSWERED 2026-09-30 (OPUS, static; [`k14-closure-stores-0930/`](../_index/candidates/k14-closure-stores-0930/README.md),
         the actor-flow pass `k14_actorflow.py`): nothing `002E45E0` runs writes actor byte `+3` through the actor pointer, so
         the class `002E5077` checked is the class `002E4380` reads at its one call site `002E50CB`. The refusal does not

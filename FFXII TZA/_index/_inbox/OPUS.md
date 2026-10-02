@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45969 epoch=3 queue_sha=d5505e854af00a8f -->
-> generated 2026-10-02T00:53:34+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=46383 epoch=3 queue_sha=8be7818b4426ee06 -->
+> generated 2026-10-02T07:34:28+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-0005-1002
-> READY addressed to you: P1 ASTRA-REQ-OPUS-ACCOUNTING-DISPATCH-INDEX-1001
+> ACTIVE: OPUS-CLOUD-R-READINESS-01-1002, OPUS-CLOUD-R-READINESS-16-1002, OPUS-CLOUD-R-READINESS-22-1002, OPUS-CLOUD-R-READINESS-25-1002, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-0720-1002, OPUS-RE-READINESS-03-VALUES-1002, OPUS-RE-READINESS-04-VALUES-1002, OPUS-RE-READINESS-06-VALUES-1002, OPUS-RE-READINESS-11-VALUES-1002, OPUS-RE-READINESS-14-VALUES-1002
+> READY addressed to you: P2 ASTRA-RETURN-OPUS-MODE-SUMMON-TAIL-1001, P2 ASTRA-RETURN-OPUS-PRESENTATION-INDEX-DOMAIN-1001, P2 ASTRA-RETURN-OPUS-S33-VISUAL-RETIREMENT-CLOCK-1001, P2 ASTRA-RETURN-OPUS-SD194-STALE-NAME-SLICE-1001, P2 FABLE-REQ-OPUS-TITLE-PACKET-CONTRACTS-1002, P3 FABLE-NOTICE-OPUS-OV42-ACTION-ROW-QUEUE-CELL-1002, P3 FABLE-NOTICE-OPUS-SOFTEDGES-PRECISION-1002
 > READY pool: 0 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
 
@@ -17,36 +17,29 @@
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
 
-## Resume state - 2026-10-02 00:05 UTC (OPUS)
+## Resume state - 2026-10-02 07:20 UTC (OPUS)
 
 - **STANDING (user, 2026-10-01): GitHub repos + cloud program are OPUS's job** - see "Standing responsibility: the
-  GitHub repos and the cloud program" below the RESUME PROTOCOL; do its resume steps every time.
-- **Gate (latest generation):** Q 13 -> GI rows all answered, so expect 12; DD 19 (18 after the spawn re-status);
-  F 3,680.
-  - Every remaining Q / DD blocker is a runtime row: OV-5, 8, 10, 16, 19, 21, 29, 33, 42, GR-18's high base.
-  - The other blockers are other lanes' rows: RC-5 (CONTRACT) and SD-194 (DATA).
-- **Published since 23:30:**
-  - ce70d7fe1 GI-19.
-  - a73cdc0cf OV-21 page list / count phase + `+0x094` producer.
-  - b83439b6c C1 + `+0x2FC` workspace.
-  - The spawn page re-status (queued 9v).
-  - ASTRA requests closed: OV21 x2, SKELETONREF, C1-NIBBLE, WORKSPACE-FACTORY.
-- **Open for OPUS:**
-  - ASTRA-REQ-OPUS-ACCOUNTING-DISPATCH-INDEX-1001: the C1 row is done in b83439b6c. The allocator page's
-    OPUS-CONTRA-ARENA-ACCOUNTING-ARRAY range argument still needs qualifying, but
-    `24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md` carries another lane's
-    uncommitted edits. Wait until it is clean.
-  - ASTRA returns waiting on SPEC: SD194, S33-visual, presentation-index, mode-summon.
-  - OPUS-CLOUD-F-INTERIOR-W1-1001 BLOCKED on SPEC's interior-method verdicts (ten OPUS-REQ-AUDITSPEC-*-INTERIOR-1001
-    READY).
-  - OPUS-DD-UNCLAIMED-15-99-0930 ACTIVE.
-- **Reviews requested from SWE2-AUDIT-SEM:** GI16-GI17-GI18, GI15, GI14, GI19.
-- **Repos:** RE maps record the settled items (a88bf5c, ac6c80b). DB snapshot c7499287 (source 5d0553380). Re-sync
-  after 9v.
-- **Cloud wave 2:** proposed, not launched. It needs the user's Settings -> Usage reading.
-- **Lessons (memory):** claim loops on own ACTIVE tasks; gate mutations leak into the next publish; an Affected line
-  naming a `.tsv` can never pass the correction gate (touched = `.md` only); a re-status turns interior citations into
-  A-drift, so narrow them to function entries first.
+  GitHub repos and the cloud program" below the RESUME PROTOCOL. User 2026-10-02: spending all the cloud credit is
+  fine. FABLE is working again: apply only OPUS-led / unprefixed pages AND OPUS-written lines (git blame each edited
+  line); route the rest with `apply_by_owner.py` (OWNERS by page, LINE_OWNERS by line, overlay carriers to
+  SWE2-FRONTIER).
+- **Gate:** Q 13 (OPEN 6 / PARTIAL 7), DD 18, F 3,680. Remaining Q / DD blockers are runtime rows (OV-5, 8, 10, 16,
+  19, 21, 29, 33, 42, GR-18's high base) or other lanes' rows (RC-5, SD-194). F waits on SPEC's interior-method
+  verdicts (ten OPUS-REQ-AUDITSPEC-*-INTERIOR-1001 READY; OPUS-CLOUD-F-INTERIOR-W1-1001 BLOCKED).
+- **Readiness stream R loop:** cloud or local map -> every value item decided at the bytes (page-text sides and even
+  dated corrections are claims) -> applier + owner split -> gate emulation -> drift 0 -> control `*_check.py` -> record
+  -> publish -> RE repo map via `Tools/work/OPUS/cloud/file_readiness_map.py`.
+  - Filed + published today: 19-Save (73f9f21fd), 21-RNG (ad7eadd20), 09-AI (871706705), 05-Spawn (186b1d04f),
+    07-Action (3e0fc5be9); rig packages AGREE + consumed (3c1948afc). RE maps 465b4f6, 03b3315, 72e6abc, 4e8a5ad.
+  - In flight: 06-Movement verifier/drafter (OPUS settled 31 of 43 in scratch `mv06/verdicts-06.md`); 11-Party
+    verifier/drafter; 14-Story: OPUS settled 13 of 18 (scratch `st14/verdicts-14.md`), drafting next; 03-World and
+    04-Actor not started (board rows OPUS-RE-READINESS-{03,04,11,14}-VALUES-1002 ACTIVE).
+  - Cloud wave 4 running (01, 16, 22, 25; snapshot 86b70c69; cloud log fad9e61b). Waves 2/3 archived (899678f8,
+    68343d98).
+- **Requests out (READY, owners' turn):** FABLE / EC7 / FRONTIER / CONTRACT shares of 19, 21, 09, 05, 07.
+- **Lessons (memory):** blame lines before applying on an OPUS page; readiness page-text value items are checked at
+  the bytes; never upgrade a confidence label beyond the page's own word; overlay carriers go to FRONTIER.
 
 ## RESUME PROTOCOL - read this first (OPUS, 2026-09-26)
 

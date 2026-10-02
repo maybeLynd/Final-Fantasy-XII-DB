@@ -124,7 +124,7 @@ branches on it:
 ```
 
 **So the stored nibble is the memoised result of the first hit's roll, and the counter is progress
-against it.** The two are different objects: `rdi` is the 64-byte record (`0208D480 + kind * 0x40`),
+against it.** The two are different objects: `rdi` is the 64-byte record (~~`0208D480 + kind * 0x40`~~ `0208D480 + stats[+4] × 0x40` when the stats kind byte `+5` is 0, else `0208DE80 + unit[+0xEA9] × 0x40` *(corrected 2026-10-02, OPUS: `0038869F`–`003886B6` and `003886CF`–`003886E1`)*),
 `rax` is the BattleUnit. That distinction is the whole of section 6.
 
 ### 2.4 The base pointer is a BattleUnit in all six, and two of them prove it
@@ -212,7 +212,7 @@ doing.** Test 3 keeps it from growing into a combo.
 | Address | What | Anchor |
 |---|---|---|
 | `02EBF188` | global holding the last unit resolved by `BattleStats_FindOwningBattleUnit` | `003857BA`, `0038867E`, `003886C3` |
-| `0208D480` | 64-byte per-kind record table | `003886AB` |
+| `0208D480` | 64-byte ~~per-kind~~ record table for a stats kind-0 (party) record, indexed by the stats record's byte `+4` *(corrected 2026-10-02, OPUS: `003886A7 movzx edi, byte ptr [rsi + 4]`, taken only when `[rsi+5]` is 0 at `0038869F`–`003886A5`)* | `003886AB` |
 | `0208DE80` | the second 64-byte record table, indexed by `byte [unit + 0xEA9]` | `003886D6` |
 | `02AEDFE4` | threshold the first combo roll compares against | `00388716` |
 | `02AEDFC4`, `02AEDFC8` | zeroed together when a combo is accepted | `003888A1`, `003888AB` |
@@ -311,7 +311,7 @@ record is `rdi` and the unit is `rax`, and they are established separately:
 
 ```asm
 0038868A  movzx ebx, byte ptr [rax + 0x6b7]   ; rax = owning BattleUnit
-003886A7  movzx edi, byte ptr [rsi + 4]       ; \  rdi = 0208D480 + kind*0x40
+003886A7  movzx edi, byte ptr [rsi + 4]       ; \  rdi = 0208D480 + kind*0x40   # <- corrected 2026-10-02, OPUS - the index is the stats record's byte +4, not its kind; this arm runs only when stats[+5] == 0 (0038869F-003886A5), otherwise rdi = 0208DE80 + unit[+0xEA9]*0x40 (003886CF-003886E1)
 003886B2  shl   rdi, 6                        ;  |  the RECORD
 003886B6  add   rdi, rax                      ; /
 0038886B  movzx eax, byte ptr [rdi + 0x12]    ; the stored nibble IS on the record
@@ -334,7 +334,7 @@ correctable rather than load-bearing. **It marked its own uncertainty in the rig
 - **`unit + 0x6B7` is combo progress, `+0x6B8` is cleared with it, and `+0x6B4` becomes 5 while a
   combo runs.** Forcing `+0x6B7` non-zero pins a unit into "mid-combo": it cannot advance combat
   navigation and its party-control suppression is overridden.
-- **The combo length lives in the high nibble of `0208D480 + kind * 0x40 + 0x12`** and is rewritten
+- **The combo length lives in the high nibble of ~~`0208D480 + kind * 0x40 + 0x12`~~ `+0x12` of the 64-byte record** — `0208D480 + stats[+4] × 0x40` for a kind-0 (party) stats record, `0208DE80 + unit[+0xEA9] × 0x40` otherwise *(corrected 2026-10-02, OPUS: `0038869F`–`003886E1`)* — and is rewritten
   on the first hit of every combo, so patching it statically is overwritten by the next roll.
 - **The clear is a single `word` store at `+0x6B7`.** A hook that resets only `+0x6B7` leaves
   `+0x6B8` stale.
@@ -457,7 +457,7 @@ it decodes `[reg + disp]` forms only, so an access that computes its address ari
 appear. No such form was seen in any of the six bodies read here, but that is six bodies, not the
 image.
 
-**Scope limit.** `+0x6B8` has 65 sites image-wide, most of them in the `0053xxxx` and `007Cxxxx`
+**Scope limit.** `+0x6B8` has ~~65~~ 64 sites image-wide *(corrected 2026-10-02, OPUS: `retool.py grep "+ 0x6b8]"` lists 64, three of them `lea`; CONTRACT-combo-continuation.md CB-1 and its falsification C1 say the same)*, most of them in the `0053xxxx` and `007Cxxxx`
 regions and **not this structure**. Nothing above counts a census hit as a battle-unit hit: the
 `+0x6B8` claims rest only on `0030FA00` and `003105D0`, both proven to hold a unit pointer.
 

@@ -177,7 +177,7 @@ correction at the end of this section.
 
 What the native side actually provides is generic:
 
-- **six persistent flag banks**, each with an identical script-VM surface of one query and two setter
+- **~~six~~ five persistent flag banks** (six accessor families) *(corrected 2026-10-02, OPUS: `Bank512`'s Low and High pairs address one `+0x14B4` region - queries `0032AA60` / `0032AAD0`, setters `0032AD70` / `0032ADF0`, the High pair adding `0x100` at `0032AAE7` / `0032AE04`; persistent-flag-banks.md AA-4)*, each with an identical script-VM surface of one query and two setter
   opcodes ([`persistent-flag-banks.md`](persistent-flag-banks.md) §8b);
 - **two event-memory lookups** at actor bind (§2);
 - **a statistics counter** (`00316A50`) with about twenty kinds, incremented by defeat processing and
@@ -285,7 +285,7 @@ would have reported "hunt: 1" and been misleading in the opposite direction.**
 
 ## 7. Related
 
-- [`persistent-flag-banks.md`](persistent-flag-banks.md) — the six banks, their payload offsets, and the uniform script-VM query/setter surface; this document answers its `AA-6` and `AA-7`.
+- [`persistent-flag-banks.md`](persistent-flag-banks.md) — the ~~six~~ five banks *(corrected 2026-10-02, OPUS: five storage regions, six accessor families; AA-4)*, their payload offsets, and the uniform script-VM query/setter surface; this document answers its `AA-6` and `AA-7`.
 - [`gil-storage-clamp-and-every-path-that-moves-it.md`](../13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md) — the same statistics counter, reached from the gil setter.
 - [`loot-drops-and-enemy-chain.md`](../13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md) — the defeat path whose retire chain increments that counter.
 

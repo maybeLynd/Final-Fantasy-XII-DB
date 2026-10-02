@@ -50,8 +50,8 @@ action target buffer at `+0x778` and the perception candidate cache at `+0xBC0`.
 
 ## 3. Types
 
-`BattleTargetBuffer`, total size **0x208**, never independently allocated — it exists only inline,
-twice, inside `BattleUnit`. Layout complete: every byte is either a named field or one of the 32
+`BattleTargetBuffer`, total size **0x208**, ~~never independently allocated — it exists only inline,~~
+~~twice, inside `BattleUnit`.~~ inline twice inside `BattleUnit` (`+0x778`, `+0xBC0`) and also as stack locals *(corrected 2026-10-02, OPUS: `AiOrder_EvaluateAndResolveActionTarget` resets a candidate buffer at `[rsp+0x460]` (`00301674`–`0030167C call 00316CF0`) and hands `003087E0` an out buffer at `[rsp+0x40]` (`003017AF`–`003017BF`), which it resets at `0030880E`)*. Layout complete: every byte is either a named field or one of the 32
 entries.
 
 | offset | size | field | type | meaning | evidence |
@@ -139,8 +139,8 @@ is the one caller that uses the empty state as its result rather than as a start
 
 ## 8. Script · resource · event interactions
 
-None directly. The buffer is populated from actor queries and consumed by action dispatch; no opcode,
-verb or authored table reaches it.
+None directly. The buffer is populated from actor queries and consumed by action dispatch; ~~no opcode,~~
+~~verb or authored table reaches it.~~ a script verb body reaches it *(corrected 2026-10-02, OPUS: `003495A0` calls `00313120` (`003495B2`), which resets the buffer and appends to it at `0031325F` / `0031328C`; the-moment-an-action-is-committed.md, the Script_VM crossing)*.
 
 ## 9. Determinism
 
@@ -278,12 +278,12 @@ reconstruction is packed and asserts `sizeof == 0x208` at compile time.
    family's closure, not a check. A watchpoint on one unit's `+0x77C` across a battle would show
    whether anything outside the three functions writes it.
 2. **`entryFlags` bit 8, and the `+0x0C` span.** Bit 8 is read by the HP write to select the event
-   variant; nothing in this family writes it, so **something else fills it** and this contract does
-   not say what. `+0x0C` has no access anywhere at all.
-3. **`+0x01` has no reader anywhere in the image, and that is now measured, not assumed**
+   variant; nothing in this family writes it, so **something else fills it** ~~and this contract does~~
+   ~~not say what.~~ *(answered: `Battle_ProcessActionTarget` ORs `0x100` into the entry's `+8` at `003075CB` when the result's flag word B bit 3, knockback, is set - see THE WRITER IS KNOWN below; 2026-10-02, OPUS)* `+0x0C` has no access anywhere at all.
+3. ~~**`+0x01` has no reader anywhere in the image, and that is now measured, not assumed**~~ **`+0x01` has a reader, on a stack instance** *(corrected 2026-10-02, OPUS: `00308813 movzx edx, byte ptr [rsi + 1]` in `003087E0`, where `rsi` is `003014C0`'s stack candidate buffer `[rsp+0x460]`; item 3 of the list verified owner-side 2026-09-22 below)*
    (OPUS 2026-09-16). §5 lists the word as written and never read; the open question was
-   whether something *outside* this family reads it. It does not. The buffer is never
-   independently allocated, so any outside reader must reach the word through an inline base
+   whether something *outside* this family reads it. ~~It does not. The buffer is never~~
+   ~~independently allocated, so any outside reader must reach the word through an inline base~~ *(corrected 2026-10-02, OPUS: stack instances exist, `[rsp+0x460]` and `[rsp+0x40]` in `003014C0`, so this scan's inline bases could not see the reader at `00308813`)*
    — `unit+0x779` or `unit+0xBC1`. Decoding every one of the **38,161** function bodies for
    any access whose byte range overlaps that word, at either base and **at any size**, gives
    **zero** 2-byte accesses at `+0x779`/`+0xBC1` and 32 wider overlaps at
@@ -292,7 +292,7 @@ reconstruction is packed and asserts `sizeof == 0x208` at compile time.
    buffer address — the scan's positive control, 20 `lea` sites including
    `BattleUnit_CommitAction` (`0030F7A7`) and `AiOrder_BuildCandidateTargetBuffer`
    (`0030F163`) — and they `movss`/`movups`/`movq` the same displacement in unrelated
-   structures. **The field stays UNRESOLVED on purpose.** A field with no reader has no role
+   structures. ~~**The field stays UNRESOLVED on purpose.**~~ *(answered: resolved, the candidate buffer's selection recipe - see item 3 of the list verified owner-side 2026-09-22 below; 2026-10-02, OPUS)* A field with no reader has no role
    to name, and a gap is a question, never a label. What would resolve it is a reader.
 
 4. **Which of the two instances is which, in a running unit.** §6 says the action buffer serves the

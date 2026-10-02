@@ -1,0 +1,27 @@
+{
+  "path": "Database\\FFXII TZA\\17-Presentation-Rendering\\Character-Render-Records\\character-render-record-accesses.tsv",
+  "sha256": "68fcc41da6eeebb2c784530994505cd8b8a241c3a26ed1e445290c4b63d70f5c",
+  "selected_rows": [
+    {
+      "function": "004279B0",
+      "name": "FUN_004279b0",
+      "site": "00427A4D",
+      "disp": "0x0",
+      "kind": "w",
+      "instruction": "mov word ptr [rdi], si",
+      "route": "seed",
+      "note": ""
+    },
+    {
+      "function": "0041F730",
+      "name": "CharacterRenderRecord_ResetDefaults",
+      "site": "0041F795",
+      "disp": "0x0",
+      "kind": "w",
+      "instruction": "mov word ptr [rbx], bp",
+      "route": "arg0+0x0<004279B0@00427A13",
+      "note": ""
+    }
+  ],
+  "limits": "Existing attributed census only, preparation for exact byte checks; no all-writer/alias or canonical index regression claim."
+}

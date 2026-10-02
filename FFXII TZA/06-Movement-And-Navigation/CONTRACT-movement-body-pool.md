@@ -123,8 +123,8 @@ The pool array, the free head, and one pointer per secondary context. Nothing el
   reachability from the per-type presentation release and
   `ActorSystem_ReleaseManagerRecords`; a body lives exactly as long as its actor's presentation, and
   that account is cited rather than re-derived.
-- **`00268380` sizes the shape only for kind 3** — `(record[+3] & 0xE0) == 0x60` at
-  `00268386`–`00268391`, and `0x60 >> 5` is 3. Note this reads the **kind** nibble of
+- **`00268380` ~~sizes the shape only for kind 3~~ reads the radius pair only for kind 3** — `(record[+3] & 0xE0) == 0x60` at
+  `00268386`–`00268391`, and `0x60 >> 5` is 3 *(corrected 2026-10-02, OPUS: that gate guards only the `003DA710` call; every kind with a body is sized — kind 1 from `+0x68` / `+0x38`, kind 3 from `+0xC0 × +0x24` / `+0xA8`, others 0 — and `003DAF20` runs for all of them, with 37 / 50 / 37 unless kind 3, `002683AD`–`002684FD`; EXP-087)*. Note this reads the **kind** nibble of
   `packedKindAndSequence` while the region map reads the **sequence** nibble of the same byte; they
   are different fields and a reconstruction must not conflate them.
 
@@ -170,7 +170,7 @@ exhausted path is `mov rax, rsi` (`003DA9DF`). There is no diagnostic, no counte
 **The creator stores that NULL without testing it** (`002E3546`).
 
 **And then nothing crashes, because every consumer guards.** This was checked rather than assumed —
-all four functions the creation sequence calls re-load the chain and test each hop:
+all ~~four~~ five functions the creation sequence calls *(corrected 2026-10-02, OPUS: `00269EC0`, `002681D0`, `002682D0`, `002685F0` at `002E3550`–`002E3568` and `00268380` by the tail-jump at `002E3575`; pass 1's FIVE)* re-load the chain and test each hop:
 
 | | |
 |---|---|
@@ -364,7 +364,7 @@ Requested from ASTRA; not claimed by me — and it belongs in **class B** of
 
 ## 15. Evidence
 
-Static, from the shipping image (`73461D08…`). The allocator, the creator and all four consumers were
+Static, from the shipping image (`73461D08…`). The allocator, the creator and ~~all four~~ four of the five consumers *(corrected 2026-10-02, OPUS: the fifth, `002681D0` at `002E3558`, was added by pass 1)* were
 disassembled and read; the pool's 128-entry extent was **computed** from the stride and the free
 head's address rather than taken from the page, and it agrees with it. The lifetime account and the
 shape-sizing detail are cited from the referenced page.
@@ -386,7 +386,7 @@ this enumerates the claims so `diff_body_pool.py` can map to them.
 ## 16. Parity plan
 
 Reproduce: the LIFO free list (§9), the NULL-on-exhaustion with no diagnostic, the store of NULL into
-`+0x138`, and — most easily lost — the guards in all four consumers, which are what turn exhaustion
+`+0x138`, and — most easily lost — the guards in all ~~four~~ five consumers *(corrected 2026-10-02, OPUS: `002E3550`–`002E3575`, pass 1)*, which are what turn exhaustion
 into a quiet loss of collision rather than a crash.
 
 ## 17. Related

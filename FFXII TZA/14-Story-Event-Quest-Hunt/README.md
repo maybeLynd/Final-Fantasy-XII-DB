@@ -11,7 +11,7 @@
 ## Systems in this category
 
 - [`persistent-flag-banks.md`](persistent-flag-banks.md) -
-  **DOCUMENTED, tier 1.** Story progress is **bits** in six banks at mapped save-payload
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. Story progress is **bits** in ~~six banks~~ five banks, six accessor families *(corrected 2026-10-02, OPUS: `Bank512`'s Low and High pairs address one `+0x14B4` region - queries `0032AA60` / `0032AAD0`, setters `0032AD70` / `0032ADF0`, the High pair adding `0x100` at `0032AAE7` / `0032AE04`; persistent-flag-banks.md AA-4)*, at mapped save-payload
   offsets (`+0x1384`, `+0x13B4`, `+0x14B4`, `+0x14F4`), verified contiguous. Flag 0 = always,
   flag 1 = never; bit 14 of an authored id switches to the threshold schedule.
 
@@ -30,6 +30,6 @@
 ## Systems in this category
 
 - [`persistent-flag-banks.md`](persistent-flag-banks.md) -
-  **DOCUMENTED, tier 1.** Story progress is **bits** in six banks at mapped save-payload offsets
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. Story progress is **bits** in ~~six banks~~ five banks, six accessor families *(corrected 2026-10-02, OPUS: `Bank512`'s Low and High pairs address one `+0x14B4` region - queries `0032AA60` / `0032AAD0`, setters `0032AD70` / `0032ADF0`, the High pair adding `0x100` at `0032AAE7` / `0032AE04`; persistent-flag-banks.md AA-4)*, at mapped save-payload offsets
   (`+0x1384`, `+0x13B4`, `+0x14B4`, `+0x14F4`), verified contiguous. Flag 0 = always, flag 1 =
   never; bit 14 of an authored id switches to the threshold schedule.

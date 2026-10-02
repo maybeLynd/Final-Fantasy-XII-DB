@@ -1,0 +1,110 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "432317c2b47a2d73262dd525f7b340c1cc50ef7b267868129bdd61395cda4bf5",
+  "positive_producer_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+  "source_order_control": {
+    "driver_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+    "gate_lines": [
+      14,
+      16,
+      38
+    ],
+    "output_line": 138,
+    "gate_before_output": true,
+    "method": "Static AST actual producer path, not helper existence"
+  },
+  "cases": [
+    {
+      "name": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-slot-identity-publication\\controls-01\\failed-capture\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+      "diagnostic": "required capture failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "38050edee442b401c6d125e6968a6d01b0b726b18915b5b47fafeff445edf1c1"
+    },
+    {
+      "name": "failed-inspection-with-output",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-slot-identity-publication\\controls-01\\failed-inspection-with-output\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+      "diagnostic": "required actual inspection failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8e4d21c78c93da228403c4851ce9242169a7932e53e02b3a2f0e392b6d9f7776"
+    },
+    {
+      "name": "incomplete-capture-wrapper",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-slot-identity-publication\\controls-01\\incomplete-capture-wrapper\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+      "diagnostic": "actual capture incomplete",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6c5b472156edec9c088292aa4545e787c46589d78bf11bc6645a78949737be88"
+    },
+    {
+      "name": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-slot-identity-publication\\controls-01\\missing-source\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9d80a3ef6e279f94c58f63804b70c684b20aa8aea7ec4ad8ae47013e2df38c62"
+    },
+    {
+      "name": "coherent-self-index-store-mutation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-slot-identity-publication\\controls-01\\coherent-self-index-store-mutation\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "01c8d77b5490069ccf296e7bb93092c31ecdf34ab3a467ee13fea575ebe570cc",
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "deb477a2483a4e420123fb1215aaab165ceff560e9a93af56f3adeb306633623"
+    }
+  ],
+  "count": 5,
+  "limits": "Five actual disposable producer CLI refusals plus checked positive. Not original-code/native/live execution, fault sampling or independent project acceptance."
+}

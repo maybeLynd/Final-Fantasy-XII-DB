@@ -42,7 +42,7 @@ while leaving a reconstruction in no doubt about the one operation that updates 
 | operation | entry | parameters | returns |
 |---|---|---|---|
 | assign to slot | `00269C70` `PartyRoster_AssignActorToSlot` | `rcx` = actor record or NULL, `edx` = slot (signed) | none |
-| assign during record init | `00266530` `ActorStorage_InitializeRecord`, block `00266740`–`00266792` | `al` = slot byte, `0xFF` to skip | — |
+| assign during record init | `00266530` `ActorStorage_InitializeRecord`, block `00266740`–`00266792` | `al` = slot byte, ~~`0xFF` to skip~~ only `0x80`–`0xFE` assign *(corrected 2026-10-02, OPUS: `0026673E jns` skips a byte without bit 7 before the `0xFF` test at `00266740`; §7)* | — |
 | clear the whole roster | `002695A0`, `0026DB30` | none | none |
 | **consume the pending area-request mask** | **`0025BFB0`** | none - reads `[02099ABC]` | none. **Clears the roster only on the bit-0 arm**; see §7 |
 | read a slot | `00263750` `PartyRoster_GetActorBySlot` | slot | the record or NULL |
@@ -130,7 +130,7 @@ Nothing else in the record is touched by either assignment path.
    at `roster[7]`, which is `0209A228` *(2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 338, which executed it (`check_roster.py`); `00269C70` and `00266738`–`00266792` re-read.)*.
 6. `actor->+0x12 = bl`; `actor->+0x0F = (bl > 3 unsigned) ? 3 : 2` (`seta al` / `add al, 2` at
    `00269CEE`–`00269CF3`).
-7. Continue at `00269CF6` with a further pass over `roster[rbx]` — outside this contract.
+7. Continue at `00269CF6` with a further pass over `roster[rbx]` ~~— outside this contract~~ *(answered: the new occupant's notice and the focus request, read 2026-09-12 — party-roster-and-control-suppression.md §2, the tail paragraph; 2026-10-02, OPUS)*.
 
 **Assign during record init — `00266530`, `00266740`–`00266792`.** The same protocol with two
 differences. The requested slot arrives as a byte and `0xFF` means *leave the party state alone*
@@ -154,7 +154,7 @@ beforehand.
 > **`0025BFB0` was in this list and does not belong in it.** Corrected 2026-09-13 on
 > `ASTRA-CONTRA-OPUS-MANAGER-QUEUE`; the sentence "no record is touched" was **never separately
 > established for `002695A0` and `0026DB30` either** — it was one claim over three functions and only
-> one of them has now been read closely. Treat the remaining two as **inherited and unverified**.
+> one of them has now been read closely. ~~Treat the remaining two as **inherited and unverified**.~~ *(answered: all three were disassembled 2026-09-25 and none touches a record's `+0x12` or `+0x0F` — §4; `002695A0` re-read 2026-10-02: after the two stores `002695AF`/`002695B7` it only calls and fills the 16-qword array at `0209A210`; 2026-10-02, OPUS)*
 
 ### ✖ `0025BFB0` is a gated request consumer, not an unconditional clear
 
@@ -203,9 +203,9 @@ no fallback.
 
 ## 10. Failure paths and edge conditions
 
-- **Out-of-range slot at `00269C70`:** steps 2 and 5 are skipped but **step 6 still runs**, so the
+- **Out-of-range slot at `00269C70`:** ~~steps 2 and 5 are skipped but~~ step 2 is skipped, step 5 still stores past the array *(corrected 2026-10-02, OPUS: `00269CDD`, `00269CE1`; below)*, and **step 6 still runs**, so the
   record's `+0x12` is set to the out-of-range value and `+0x0F` to `3`. The record ends up believing
-  it holds a slot that does not exist, and no array entry points at it. Nothing reports this.
+  it holds a slot that does not exist, ~~and no array entry points at it~~ while `roster[slot]`, past the four entries, points at it *(corrected 2026-10-02, OPUS: `00269CDD test ebx, ebx` / `js` is the only guard before the store `00269CE1`; the `cmp ebx, 3` / `ja` at `00269C8C`, `00269CF6` and `00269D1C` guard only the two notices and the focus request — §7 step 5)*. Nothing reports this.
 - **Negative slot:** `test ebx, ebx` / `js` at `00269CDD` skips the install. This guard **is
   reachable** here, because `edx` is sign-extended at `00269C7F`.
 - **⚠ Slot `-1` is the exception to the paragraph above, added 2026-09-12 by falsification pass 1.**
@@ -248,12 +248,12 @@ void PartyRoster_AssignActorToSlot(ActorStorageRecord *actor, int32_t slot)
     if ((uint32_t)old <= 3) {                               /* UNSIGNED: 0xFF -> -1 fails */
         ActorStorageRecord *prev = roster[old];
         roster[old] = 0;                                    /* 00269CC8 */
-        if (prev) prev->partySlot = (int8_t)0xFF;           /* 00269CD5 */
+        if (prev) prev->partySlot = (int8_t)0xFF;           /* 00269CD5 */   /* <- corrected 2026-10-02, OPUS - 00269CD9 also stores prev->+0x0F = 3 */
     }
     if (slot >= 0) roster[slot] = actor;                    /* 00269CE1 */
 
     actor->partySlot = (int8_t)slot;                        /* 00269CEB */
-    actor->f0F = (uint32_t)slot > 3 ? 3 : 2;                /* 00269CEE-00269CF3 */
+    actor->f0F = (uint32_t)slot > 3 ? 3 : 2;                /* 00269CEE-00269CF3 */   /* <- corrected 2026-10-02, OPUS - the body continues: for a slot <= 3 the new occupant's +0x152 = 0 and 002681E0 (00269CF6-00269D17), then 003594B0(003589B0(actor)) when 003590D0() == 0 (00269D1C-00269D41) */
 }
 ```
 
@@ -351,7 +351,7 @@ Requested from ASTRA; not claimed by me.
 ## 14. Unresolved
 
 - What `+0x0F`'s two values select. Two writers, no reader observed.
-- What `[secondaryContext + 0x152] = 1` means, and what `002681E0` does with it.
+- ~~What `[secondaryContext + 0x152] = 1` means, and what `002681E0` does with it.~~ *(answered: the roster-role byte, which `002681E0` turns into the movement body's cell class — O-1, party-roster-and-control-suppression.md §7; 2026-10-02, OPUS)*
 - The identity of `002695A0`. **`0025BFB0` is no longer "a bulk clear"** - it is the pending-request consumer described in §7 - but what its five request bits *mean*, and what `0026CE60` and `002628B0` do natively, are open.
 - Whether `00263770` writes the roster in a callee — see §15.
 
@@ -364,7 +364,7 @@ is kept; this enumerates the claims so `diff_party_slots.py` can map to them.
 
 | claim | evidence | tier | confidence |
 |---|---|---|---|
-| the roster is four qword slots at 0209A1F0 | the rip-relative base in all three bodies. Executed — all four read back after every operation, and a slot past the fourth shows the roster is not written there | 1 (isolated original-code) | PROVEN |
+| the roster is four qword slots at 0209A1F0 | the rip-relative base in all three bodies. Executed — all four read back after every operation, ~~and a slot past the fourth shows the roster is not written there~~ while a slot past the fourth is stored past the array *(corrected 2026-10-02, OPUS: `00269CDD` `js` is the only guard before `00269CE1`; §7 step 5)* | 1 (isolated original-code) | PROVEN |
 | an actor carries its occupied slot at +0x12, with 0xFF meaning none | `00269CB7 movsx ecx, byte [rdi+0x12]` then an UNSIGNED bound. Executed at 0xFF, at a real slot, and at an out-of-range value that is not 0xFF | 1 (isolated original-code) | PROVEN |
 | assigning an actor already in the party vacates its old slot first | `00269CC8` clears the old slot before `00269CE1` fills the new one. Executed across pairs of slots | 1 (isolated original-code) | PROVEN |
 | the state byte at +0x0F is (slot > 3) + 2 | `00269CE5 movsx` / `00269CE8 cmp` / `00269CEE seta` — **sign-extended then compared UNSIGNED**, so a negative slot gives 3. Executed at 0, 3, 4, 100 and −1 | 1 (isolated original-code) | PROVEN |

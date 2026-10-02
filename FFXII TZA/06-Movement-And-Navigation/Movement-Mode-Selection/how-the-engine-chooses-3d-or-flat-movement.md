@@ -131,9 +131,9 @@ have real writers, and the one that sets **both** is `FUN_003B6ED0`, an **actor-
 and reset** that zeroes a block of actor list/handle state at `02EBCAxx`–`02EBCCxx` and sets both
 flags to `1` on the way through.
 
-So this is not a tuning switch. It is *"the actor system has been brought up"*, and it reads as a
-guard against running the flat path during bootstrap or after a teardown, when the controller state
-it depends on is not valid.
+So this is not a tuning switch. ~~It is *"the actor system has been brought up"*, and it reads as a~~
+~~guard against running the flat path during bootstrap or after a teardown, when the controller state~~
+~~it depends on is not valid.~~ *(corrected 2026-10-02, OPUS: overturned in §10 — `02B40530` is set by `003B7E10` from six sites and `02B40534` by eight stores, the party-swap verbs among them, during normal runtime)*
 
 ## 3. Key addresses
 
@@ -226,7 +226,7 @@ Both are zero at image load. `003B6ED0` sets both to `1`.
 ## 5. Call chain
 
 ```
-actor system bootstrap
+actor system bootstrap   <- corrected 2026-10-02, OPUS - not only at bootstrap: both flags are also written at runtime (section 10; 003B7E10, the party-swap verbs)
   -> ActorModule_InitialiseAndReset  003B6ED0
      -> DAT_02B40530 = 1, DAT_02B40534 = 1     [the gate opens]
 
@@ -325,8 +325,8 @@ predicates are what select between its two branches.
         position and facing from its movement state (`002E6B4B`–`002E6B82`). The render side resolves
         the pair in `RenderRecords_ProcessDirtyState` (`0042F880` / `0042F6C0`, the only readers of
         `+0x3CC` / `+0x3CE`). So the flat path is refused while attached because an attached actor's
-        transform comes from its parent's bone, not from its own movement body: ~~every reader of bit 0
-        is a movement veto~~ **six of its eight readers are movement vetoes** — the two field-pass
+        transform comes from its parent's bone, not from its own movement body: ~~every reader of bit 0~~
+        ~~is a movement veto~~ ~~**six of its eight readers are movement vetoes**~~ **eight of its eleven readers refuse** — `00267260` (`00267286`) and the seven named next, while the attach guard `002E26F0` (`002E274A`, which detaches through `002E6B10`) and the two presentation readers below do not *(corrected 2026-10-02, OPUS: every `+0x14F` bit-0 test in the image — `0025B637`, `0025B76F`, `00267286`, `002E506A`, `002E5776`, `002E602C`, `002E634B`, `002EA816` jump past their work; `002E274A`, `003B7812`, `003B7934` do not)* — the two field-pass
         selectors, `Movement_UpdateActorFrame` (`002E506A`), `002E5750` (`002E5776`), `002E6000`
         (`002E602C`), `002E6330` (`002E634B`) and `002EA7F0` (`002EA816`). ~~and `003B7770` /
         `003B7880`, which fold it with actor `+0x09` bit 2 into one "not free-standing" flag
@@ -391,7 +391,7 @@ predicates are what select between its two branches.
         (`002E3009`), and `002E5180` measures the frame's displacement with `003A1920` instead of
         `Vector3_ComputeXZDistance` while it is set (`002E5290`). So the flat integrator runs only for
         actors a script (or the party verb) has put *on the map*; an actor with `usemapid(0)` is
-        neither flat nor 3-D by these selectors.
+        ~~neither flat nor 3-D by these selectors.~~ not flat, and every consumer takes its 3-D side: `002E4380` the spherical delta, and `002E45E0` / `002E5610` the 3-D distance, because `usemapid(0)` sets `+0x08` bit 2 *(corrected 2026-10-02, OPUS: `002E4528`–`002E452F` jump to the spherical path when `00267260` is 0; `002E475E`–`002E4773`, `002E4802`–`002E4817`, `002E56BC`–`002E56CC` OR `+0x08` bit 2 into the 3-D test; `0026AD60` sets bit 2 for `off`)*.
       - **`+0x09` bit 0** is set unconditionally by `00265FF0` (`00266010`–`00266018`, `(old & 0xE9) | 1`),
         the per-class initialiser that only `ActorStorage_InitializeRecord` calls (`0026681B`). It is
         cleared in two places: per party member by `003B72F0` (`003B736E`), the body of verb `0232`
@@ -483,7 +483,7 @@ predicates are what select between its two branches.
 | Claim | Evidence | Tier |
 |---|---|---|
 | Class is `actor[3] >> 5`; class 1 → `+0x38`, class 3 → `+0xA8`, else 0 | complete exact-current body of `00265200` (55 B) | 1 |
-| It has 33 distinct callers at 33 sites | edge census over a freshly regenerated graph at the GN checkpoint | 1 |
+| It has 33 distinct callers at ~~33~~ 37 sites *(corrected 2026-10-02, OPUS: `retool.py callers 00265200`, 37 call sites in 33 functions; §10's re-count)* | edge census over a freshly regenerated graph at the GN checkpoint | 1 |
 | The 3-D test is `(bit0 \| bit1)` of controller `+0x151` | complete exact-current body of `00264460` (37 B) | 1 |
 | Called from exactly three functions at four sites | xref census against the current program | 1 |
 | The flat test's four conditions | complete exact-current body of `00267260` (78 B) | 1 |
@@ -558,7 +558,7 @@ up', and it reads as a guard against running the flat path during bootstrap or a
 | global | writers | detail |
 |---|---:|---|
 | `02B40530` | **2** | `003B6ED0` stores `1`; **`003B7E10` is a 7-byte setter** — `mov [02B40530], ecx; ret` |
-| `02B40534` | **8** | `003B6ED0` and three others store `1`; **three store `0`**; two store a register |
+| `02B40534` | **8** | ~~`003B6ED0` and three others store `1`; **three store `0`**; two store a register~~ `003B6ED0`, `003B7BB0` and `003B7C60` store `1`; four store `0`, two of them through a zeroed register (`003B72F0`, `003B7E20`); `003B7E00` stores its argument *(corrected 2026-10-02, OPUS: stores at `003B6ED7`, `003B6F37`, `003B7089`, `003B7308`, `003B7BCB`, `003B7CBE`, `003B7E00`, `003B7E4C`; BV-5)* |
 
 **`003B7E10` is a public setter and its callers pass constants both ways**, at six sites in five
 functions:
