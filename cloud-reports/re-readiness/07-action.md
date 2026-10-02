@@ -7,7 +7,20 @@
 
 ## Counts
 
-*(Filled in when the report is complete; see the end of this section.)*
+| item | count |
+|---|---:|
+| pages read (1 README, 11 mechanism pages, 7 contracts) | **19** |
+| member `.tsv` files consulted | 5 |
+| entry-point rows in §1.1 | 31 |
+| open items the pages themselves list (§2.1) | 20 |
+| structural gaps (§2.2) | **10** |
+| unexplained written fields (§2.3) | 11 |
+| contradictions, total (§2.4) | **53** |
+| — A. value-changing (page-text only - needs local check) | **17** (favoured side named by a dated correction: 14; undecided: A2, A9, A13) |
+| — B. counts, sizes and caller sets (page-text only - needs local check) | 9 |
+| — C. stale "not read / open" claims and corrected claims repeated | 22 |
+| — D. status banners against front matter | 5 (D5 is a list of review flags, not a disagreement) |
+| **rating** | **NOT YET** for the whole system; the core is **MOSTLY** (§3) |
 
 ## How to read the citations
 
@@ -805,7 +818,7 @@ has 60 reads, not 23" (`:198`, correction of 2026-09-27).
   the reads at `0030F84E`–`0030F857`, `:137-139`).
 - **C9. Does the commit raise an event?** "it does not read a script, touch a resource, or raise an event of its own"
   (`CONTRACT-commit-action.md:191-193`) against "**`00313B30` is notify** … handed to `002ED2A0(uid, &rec)` per unit"
-  (`:342-347`). The README's crossing paragraph calls it a broadcast to the character renderer
+  (`:342-347`). The commit page's Presentation paragraph also calls it a broadcast to the character renderer
   (`the-moment-an-action-is-committed.md:380`).
 - **C10. The commit page's "not claimed" list.**
   - "Is the `0x718` block a second live copy rather than a shadow? | **Not established either way, and left that way.**"
@@ -931,3 +944,94 @@ has 60 reads, not 23" (`:198`, correction of 2026-09-27).
     `CONTRACT-battle-target-buffer.md:22`, `how-a-combo-continues-and-what-it-blocks.md:25`.
   - Peer review pending on the applier pair: `applying-a-result-to-a-target.md:26` and
     `CONTRACT-apply-result-to-target.md:14`.
+
+---
+
+## 3. Rating
+
+**NOT YET** for `07-Combat-Action` as a whole. The core of it (intent, commit, dispatch, availability, the action row,
+geometry, combos, the target buffer, the result record and the messages) is **MOSTLY** taken on its own.
+
+### Why the core is MOSTLY
+
+The folder documents these parts at tier 1, mostly at the instruction level, with seven contracts. Each contract has
+one falsification pass, and several have isolated or native-replay execution. From the database alone, a
+re-implementer could write the following with named gaps only:
+
+- **Intent and commit.**
+  - the intent seam (CS-1) and its records `+0xBA0` / `+0xBB8`;
+  - the commit's two id bands, command block, shadow, cancel record, group propagation, attacker mask and latch;
+  - the cancel's gates and order of work.
+
+  Sources: `CONTRACT-commit-action.md`, `CONTRACT-the-moment-an-action-is-committed.md`, `the-moment-an-action-is-committed.md`.
+- **The two rings and their different drains** (`CONTRACT-native-command-seam.md:91-106`).
+- **The standard machine and the order table.**
+  - the 13-phase machine at arm level, with its re-entry points (`Command-And-Action-Seam/native-command-seam.md:189-217`;
+    `how-a-combo-continues-and-what-it-blocks.md:403-421`);
+  - the order handler table's shape, bound and two-consumer invariant (`CONTRACT-battle-action-handler-table.md`).
+- **Availability.**
+  - the reason cascade in its fixed order, with nineteen codes and the status mapper;
+  - the command-menu builder's kinds and its `0x1B` redirect
+    (`Action-Availability/battle-command-availability-and-reason-codes.md`).
+- **Action data and geometry.**
+  - every byte of the 60-byte action row, with a reader or a statement that there is none
+    (`Action-Definition-Row/the-action-definition-row.md:55-90`);
+  - target gathering: radius, cone, line and side rule (`how-an-action-gathers-its-targets.md`);
+  - the three range bands and the spacing and pacing rules (`how-close-a-unit-must-stand-to-act.md`).
+- **Combos.** The roll-once / memoise / re-commit loop (`CONTRACT-combo-continuation.md`).
+- **Results and messages.**
+  - the target buffer's three operations and their edge cases (`CONTRACT-battle-target-buffer.md:207-226`);
+  - the 0x148-byte result record and the applier's 20 steps with their flag translations
+    (`Result-Record/the-result-record-field-map.md`, `applying-a-result-to-a-target.md`,
+    `CONTRACT-apply-result-to-target.md`);
+  - the post-result dispatcher, the poster's ring and rate limit, the visibility filter, the message row format and the
+    log line's life (`Post-Result-Events/the-post-result-events-and-the-battle-message-table.md`).
+
+**What keeps the core below READY.**
+
+1. **Seventeen value-changing contradictions** (§2.4 A), of which a port would hard-code at least these:
+   - whether a band-two commit touches the attacker mask (A2, undecided);
+   - the `+0x770` rule (A3);
+   - where a foe's combo count lives (A4);
+   - how far the first combo hit advances the shared MT stream (A5);
+   - the `+0x01` selection recipe (A8);
+   - the steal-availability rule (A14);
+   - the meaning of the `022C1DB8` byte (A17).
+
+   A dated correction on the pages favours one side in fourteen of the seventeen. A2, A9 and A13 stay open.
+2. **Twenty-two stale "open" statements** (§2.4 C), mostly inside contracts written before the pages they cite were
+   answered.
+3. **No live evidence for any part** (§2.1 items 1-3).
+
+### Why the system as a whole is NOT YET
+
+The remaining gaps are structural (§2.2), not field-level:
+
+1. **The step that lands a hit is not documented.**
+   - `Battle_ProcessActionTarget` (`00307300`) and the two timeline-event handlers that call it have no page
+     (§2.2 item 1).
+   - The folder documents what is committed and what a result record holds. It does not document which event, in which
+     phase, turns a committed action into per-target results, or how many targets one event processes.
+2. **Frame order is not stated** (§2.2 item 2). The folder names three per-frame drivers but does not say how they are
+   ordered relative to each other, or the call order inside the per-unit combat frame.
+3. **Most of the order vocabulary is outside the folder** (§2.2 items 3-4).
+   - Five of the eight handlers are undecoded here, among them the 249-id direct-state handler, whose arm map is on a
+     09 page.
+   - The order record's format beyond its first two words is not stated.
+4. **The presentation side is described by its state writes only** (§2.2 items 5 and 7).
+   - The slot tracks' resources, the special-sequence machine and the consumers of the posted events are not
+     described.
+   - The text engines' escape grammar is not read, so a battle-log line cannot be rendered from this folder.
+
+### What would move the rating
+
+- **To MOSTLY overall:**
+  - a page for `Battle_ProcessActionTarget` and the timeline-event handlers, giving the event, the phase and the
+    per-entry loop;
+  - one paragraph of frame order for `00234520`, `00234590` and `00308610`;
+  - a page (or a cross-reference from this folder) for the remaining order handlers and the order record;
+  - the Group A contradictions resolved on the pages, starting with A2.
+- **To READY:**
+  - the live checks the contracts already list (`CONTRACT-commit-action.md:300-305`;
+    `CONTRACT-battle-target-buffer.md:275-302`; `Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:314-317`);
+  - the presentation and text-engine residue (§2.2 items 5 and 7).
