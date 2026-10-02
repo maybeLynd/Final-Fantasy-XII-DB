@@ -1,0 +1,23 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md",
+ "session": "session_01Gc8PZstMPLLqppwXDU6yKq",
+ "rows": [
+  {"fn": "0034E5C0",
+   "text": "reads dword `+0x28` of the pointer `002640C0()` returns, calls `00267E10(r9)` three times, and returns `00269A90(that dword, second result, third result, first result, 0)` with 0 as the fifth (stack) argument",
+   "anchors": [["0034E5DF", "mov"], ["0034E5E2", "call"], ["0034E5F6", "call"], ["0034E5FE", "mov"], ["0034E60D", "call"]]},
+  {"fn": "0034EC80",
+   "text": "reads dword `+0x28` of the pointer `002640C0()` returns, calls `00267E10(r9)` three times, and returns `00269A90(that dword, second result, third result, first result, 1)` with 1 as the fifth (stack) argument",
+   "anchors": [["0034EC9F", "mov"], ["0034ECA2", "call"], ["0034ECB6", "call"], ["0034ECBE", "mov"], ["0034ECCD", "call"]]},
+  {"fn": "0034F380",
+   "text": "calls `00267E10(r9)` twice, then `002640C0()`, and tail-jumps `00269AD0(dword +0x28 of that pointer, second `00267E10` result, first `00267E10` result)`",
+   "anchors": [["0034F390", "call"], ["0034F39A", "call"], ["0034F3A1", "call"], ["0034F3AB", "mov"], ["0034F3B8", "jmp"]]},
+  {"fn": "00394600",
+   "text": "returns at once when byte `01EFAC10` equals 2; otherwise tail-jumps `00244F50(0x108, 00393EA0, 0)` with the address `00393EA0` as `rdx`",
+   "anchors": [["00394607", "je"], ["0039460C", "lea"], ["00394613", "mov"], ["00394618", "jmp"]]},
+  {"fn": "003DB790",
+   "text": "tail-jumps `003DBCF0` with `r8d` = 1, passing `rcx` and `edx` through unchanged",
+   "anchors": [["003DB796", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0034E5C0/0034EC80: the three 00267E10 results land as r9d (first), edx (second), r8d (third); both functions return 00269A90's eax unchanged. 00394600: the listing decodes 01EFAC10 as [u8 0x03] in the image, which is only the static initial value, so the row states the compare against 2 rather than a taken path. 003DB790: the r8d = 1 store is the entry instruction; the row's anchor is the tail jump."
+}
