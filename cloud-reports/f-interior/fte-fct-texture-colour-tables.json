@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "rows": [
+  {"fn": "00537AA0",
+   "text": "with low = dword `02EBA460 + ecx*4` and high = the dword 8 bytes later, returns 0 when `high - low` is at most `edx` (unsigned); otherwise, when `r8d` is 0 stores `low + edx` as the new low and returns the old low, when `r8d` is 1 stores `high - edx` as the new high and returns it, and for any other `r8d` returns 0",
+   "anchors": [["00537AAA", "mov"], ["00537ABF", "cmp"], ["00537AD0", "mov"], ["00537ADE", "mov"], ["00537AE2", "xor"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
