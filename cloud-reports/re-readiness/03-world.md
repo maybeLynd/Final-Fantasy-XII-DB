@@ -8,7 +8,17 @@
 | Snapshot | this repo's text snapshot only (`df2c9f47`); no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. |
 
-**Counts:** _filled in when the report is complete (see the end of this header in the final commit)._
+**Counts:**
+- **Coverage:** 15 of 15 `.md` pages read in full (4 contracts, 10 system pages, `README.md`); 16 `.tsv` files checked for layout and counts only.
+- **Interface:** **41 entry-point rows** mapped (4 trigger, 9 field record, 12 weather, 5 field-init fan-out, 11 map pack).
+- **Gaps:** **19** self-stated + **17** structural.
+- **Contradictions:** **74** in all.
+  - **28 value-changing**, all "page-text only - needs local check": 12 have a favoured side settled by a dated correction (C-V1–C-V4, C-V9–C-V12, C-V17, C-V18, C-V21, C-V25); 16 have no favoured side.
+  - **46 stale / banner.**
+- **Rating: NOT YET** overall.
+  - READY: the field record table and accessors.
+  - MOSTLY: weather decide/commit, `map_ref.bin`, the pack loader, `ACTL` / `LGT2` / `SP1`, the LegacyPS2GS rebuild.
+  - NOT YET: weather materialisation and presentation, trigger points as a drivable system, `YM00` per-chunk semantics.
 
 Citation form: `path:line`, where `path` is relative to `FFXII TZA/03-World-Area-Field/`. Example:
 `Weather/weather-slot-state-model.md:138` is line 138 of
@@ -793,3 +803,35 @@ These do not change a value; a re-implementer would only be misled about what is
 | C-S44 | `Map-Pack/the-map-ctrl-pack.md:570-571`: "`+0x20C`'s writer is outside `002F6AB0` (residue)." | the same page `:783-795`: "`ctx+0x20C` is now **closed — it was never a standalone field**" |
 | C-S45 | `Map-Pack/the-map-ctrl-pack.md:477`: "`00466E70` (1453 B handler, unread)" | the same page `:1180` (it builds the `02EBB6E0` slot family) and `:1216`: "interior verified 2026-09-17, SWE2-FRONTIER" |
 | C-S46 | `Map-Pack/the-map-ctrl-pack.md:20`: `last_reviewed: 2026-09-12`; `README.md:30`: "**documented 2026-09-12**" | dated edits on the page to 2026-10-01 (`:402`, `:1809`) |
+
+---
+
+## 4. Rating
+
+**Overall: NOT YET.** The parts are uneven:
+
+| part | rating | why |
+|---|---|---|
+| Field record table and its seven accessors | **READY** apart from G-5 | Contracted and executed against the shipped bodies: 426 cases, 0 mismatches (`CONTRACT-field-record-accessors.md:366-368`). The reproduction formula, failure constants and save gates are all stated (`:239-246`, `:321-347`). The two value disagreements, C-V4 and C-V5, go the contract's way on the page text. Open: when the table is loaded (C-V6 / G-5), which decides whether the permissive null window ever opens. |
+| Weather: decide and commit (roll, resolver, probability, apply, MWeather read) | **MOSTLY** | `CONTRACT-weather.md:433-486` is a complete reproduction formula with real constants, draw counts and the multiply-high scaling. C-V9 to C-V12 are each settled by a dated correction, but the stale side is still printed on the roll and apply pages. Still open: the `+0x1061` gate's behaviour across two applies (C-V13), the caller set (C-V14), the MWeather slot domain (C-V23), the `+0x1060` signedness (C-V24), and the guards and published cells a port cannot name (G-12, G-13). |
+| Weather: materialisation and presentation (`00180620` bank, `002E3D40` → `0040AAD0`, EFB posts, field-init fan-out) | **NOT YET** | **Structural gaps.** No page says how the slot selects the environment bank (G-8). The eight presets and the render PRNG are not described (G-9). The EFB binding operation is disputed (C-V19, G-11). Half the field-init core's callees are names only (G-10). The shader binding is unread (S-9). |
+| Authored trigger points | **NOT YET** as a system; the per-call algorithm is READY | TP-1 to TP-7 with the 2026-09-25 corrections fully specify one call (`CONTRACT-authored-trigger-points.md:69-126`). But no page says where the point records come from or who calls the test (G-1). Two more readers of the live set are undescribed (G-2), and the hit's effect is unread (G-3, S-1). C-V1 to C-V3 are settled by dated corrections, but the walking page still states the overturned versions. |
+| `map_ref.bin` | **MOSTLY** | Header, row and block offsets are known and censused (`CONTRACT-weather.md:87-117`, `:335-347`), but the three pages type the same bytes three ways (C-V20, G-6). |
+| Map-control pack: request, split, dispatch, bind | **MOSTLY** | Loader arithmetic and slot routing are read in full (`Map-Pack/the-map-ctrl-pack.md:1070-1154`), but the order against the field-runtime pass is not stated (G-7). |
+| Map-control pack sections | `ACTL`, `LGT2`, `SP1` **MOSTLY**; `YM00` **NOT YET**; `WD` / `MRP` dead data (nothing to port) | `ACTL`, `LGT2` and `SP1` are decoded to the record and state-machine level (§2.1, §2.3). `YM00`'s container is decoded, but tag 23, tag 12 / 32, tags 9 / 25, the `0x68` sub-records and the slot family are callee lists only (G-14). The tag-30 flag bit 30 and the `0209A6E8` mask are disputed (C-V26, C-V15). |
+| LegacyPS2GS rebuild (`002F7380`) | **MOSTLY** | The mechanism and budget formula are stated (`Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:184-241`, `:297-320`), and the output table is "read by nothing". The type filter and the mask-index meaning are disputed (C-V16, C-V15), and the 1-vs-4 factor is open (S-13). |
+
+**To reach MOSTLY overall**, the database would need:
+- a local check of the 16 value items with no favoured side, above all:
+  - C-V13 (the `+0x1061` gate);
+  - C-V14 (the callers of `0026D910`);
+  - C-V15 (`0209A6E8`);
+  - C-V19 (`0026FAD0`);
+  - C-V20 (the `map_ref` row);
+  - C-V23 (the MWeather slot domain);
+  - C-V26 (tag-30 bit 30);
+- striking the stale sides of the 12 settled items where they are still printed;
+- the trigger points' data source and caller (G-1);
+- the field-transition order across pack load, binding and the weather roll (G-7);
+- the slot → environment-bank mapping (G-8);
+- one joined `map_ref.bin` layout (G-6).
