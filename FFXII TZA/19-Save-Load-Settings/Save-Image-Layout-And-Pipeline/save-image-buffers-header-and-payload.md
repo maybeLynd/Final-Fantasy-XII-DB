@@ -994,7 +994,14 @@ takes its second argument as a `word`; `00300280` requires the unit's `[+0x698]`
 
 The crossing is that the action layer spends and refunds through this page's accessors. This page
 owns the field; it owns none of the lifecycle. Read from the shipping bytes 2026-09-14 (OPUS).
-
+- **ActorEntity - CLIENT (6 edges).** `002EF2B0`, `0024CFF0`, `002EFA70` are also called by bodies filed to actor entity: `0025D9E0`, `0025B070`, `002628B0` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+- **Audio - CLIENT and SERVICE (6 edges).** `002EF2B0`, `007B9F80` are also called by bodies filed to audio: `00261F90`, `007BA7E0`; `00228C70` reaches bodies filed to audio: `00249CA0`, `002DEE70`, `00360D70` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+- **CombatAI - SERVICE (1 edge).** `00233C10` reaches bodies filed to combat AI: `00327F80` - shared machinery across the layer boundary, no shared ownership.
+- **CoreRuntimeScheduling - CLIENT and SERVICE (15 edges).** `0017D6E0`, `001C1910`, `001C2F50` are also called by bodies filed to core runtime scheduling: `0017D6E0`, `0017CCD0`, `0022A0B0`; `0017D6E0`, `00228C70`, `00233C10` reach bodies filed to core runtime scheduling: `001A1460`, `001DB600`, `001E0550` (+8 more) - shared machinery across the layer boundary, no shared ownership.
+- **PlatformOnlineAchievements - CLIENT and SERVICE (5 edges).** `00254E80` is also called by bodies filed to platform/online achievements: `003162E0`, `00316760`; `00583D60`, `00254EE0` reach bodies filed to platform/online achievements: `00316A50`, `00315390`, `003166F0` - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT (22 edges).** `002EFA70`, `003BB420`, `00254C90` are also called by bodies filed to script VM / native bridge: `00342A80`, `003433A0`, `00348970` (+19 more) - shared machinery across the layer boundary, no shared ownership.
+- **Story_Event_Quest_Hunt - CLIENT and SERVICE (13 edges).** `002EF2B0` is also called by bodies filed to story/event/quest: `0032A8A0`, `0032A930`, `0032A9A0` (+9 more); `00583D60` reaches bodies filed to story/event/quest: `0032A8A0` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT and SERVICE (119 edges).** `00244960`, `00245020`, `00282DF0` are also called by bodies filed to UI: `00252030`, `00279E20`, `005528C0` (+88 more); `00253970`, `0027EFA0`, `00228C70` reach bodies filed to UI: `0029DBE0`, `00247AE0`, `0035C560` (+3 more) - shared machinery across the layer boundary, no shared ownership.
 ## The `00581DA0` exclusive subtree — all 4 members bound (SWE2-FRONTIER, followup queue)
 
 *Pointer and two corrections (2026-09-19, FABLE).* What these states do - which file, which operation, in which

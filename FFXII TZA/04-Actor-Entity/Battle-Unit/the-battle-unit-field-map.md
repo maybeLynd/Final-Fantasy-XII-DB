@@ -34,8 +34,8 @@ audit:
 
 > The 3,920-byte battle unit is the object every combat function starts from. Nine of its fields are
 > in the type store; a dozen pages name a few more. This page lists every offset any reached function
-> touches — 163 of them, from 328 functions — with writers and readers, the name a page
-> established, and the 3206 bytes on 41 ranges that nothing enumerated reaches.
+> touches — ~~163 of them, from 328 functions~~ 168, from 345 functions in the census on disk — with writers and readers, the name a page
+> established, and the ~~3206 bytes on 41 ranges~~ 3,174 bytes on 35 ranges that nothing enumerated reaches *(answered: see §2.1 and §2.3, re-counted 2026-09-11; measured on `battle-unit-accesses.tsv`; 2026-10-02, OPUS)*.
 
 ## 1. What the player sees
 
@@ -331,7 +331,7 @@ ones the pages have read are added below it.
 | 18 | `0x40000` | `BattleUnit_SnapshotWorldActorRuntimeState` `00236300` (`00236382`); `BattleUnit_SnapshotWorldActorRuntimeState` `00236300` (`002363AA`) | `BattleUnit_SnapshotWorldActorRuntimeState` `00236300` (`00236352`); `BattleUnit_UpdateCombatNavigationStep` `00325BB0` (`00325BE6`) |  |
 | 19 | `0x80000` | `BattleUnit_HandleActionTimelineEvent` `00325260` (`003256FB`) |  |  |
 | 20 | `0x100000` | `003057D0` (`00305896`) |  |  |
-| 21 | `0x200000` | `SpawnUnit_BindEntryAndMarkCapTracked` `00239840` (`002398D1`) |  | `Spawn_CountActiveCapTrackedActors` `00308D90` (`00308DB3`) |
+| 21 | `0x200000` | `SpawnUnit_BindEntryAndMarkCapTracked` `00239840` (`002398D1`) | `00234480` (`00234503`) *(corrected 2026-10-02, OPUS: the slot allocator's `and dword ptr [rbx], 0xFFDFFFFF` at bind)* | `Spawn_CountActiveCapTrackedActors` `00308D90` (`00308DB3`) |
 | 22 | `0x400000` | `BattleUnit_TryCommitEngageAutoAttack` `00312FA0` (`003130D2`) |  |  |
 | 23 | `0x800000` |  | `0030F2D0` (`0030F2F2`); `BattleUnit_RecoverFromTerminalStatusSetIfClear` `00301140` (`0030122B`) | `Battle_EmitReactionPresentationForSlot` `003176E0` (`0031776C`); `BattleUnit_TryCommitEngageAutoAttack` `00312FA0` (`00313059`); `BattleUnit_SeedPartyCombatStanceRecheckTimer` `003081E0` (`003081E6`) |
 | 24 | `0x1000000` | `BattleUnit_RecoverFromTerminalStatusSetIfClear` `00301140` (`003012A1`); `00313500` (`00313537`) | `BattleUnit_HandleReactionAnimationEvent` `003250F0` (`0032517C`); `003083A0` (`003083A6`) | *(2026-09-30, SWE2-DATA, [SD-4 record](../../_index/candidates/sd4-unit-flag-bit24-0930/README.md) (SD-4, a transition in progress): the setters are five - also `BattleUnit_EnterPartyCombatStance` `00313400` (`00313469`), `BattleUnit_ExitPartyCombatStance` `00313480` (`003134EB`) and `Battle_ProcessActionTarget` `00307300` (`00307A97`); the clearers also `00307C70` (`00307CA2` / `00307CD7`) and `BattleUnit_CancelAndResetCurrentAction` `003105D0` (`0031066F`), and the slot memsets `002342CE` / `002344D2` zero the word; the capability recompute `0023B040` tests it. Scope, SWE2-AUDIT-SPEC [review](../../_index/candidates/auditspec-review-sd4-0930/REVIEW.md): dword / qword memory-destination `or` / `and` / `bts` / `btr` forms; `00227680` also sets bit 24 with bit 27 through a register (`00227BC8`, `00227BD7`), and byte-width writers at `+3` in `003DE710`, `003EDAD0`, `00517650` and `00346C00` are on unidentified objects.)* |
@@ -396,7 +396,7 @@ snapshot** — the rows below — and the type store must not inherit the other 
 | `+0x04C` | 4 | `nativeLifecycleRange` | **f32**, world units: `VM_Spawn_SetNativeLifecycleMode` `0050F4A0` → `00238FC0` stores `r8d ? r8d / 10.0 : 6.0` (`00238FE9`–`00239006`, `008F8180`, `01CEBC74`) when the mode is 2; `SpawnLifecycle_CheckAndRetireByNativeRange` `002350C0` squares it and compares with the squared XZ distance from the anchor vector to the party leader (`0023519C`–`002351B9`). | as cited | PROVEN |
 | `+0x050` | 1 | `nativeLifecycleMode` | the verb's fourth argument (`00238FE1`); 0 = none (the checker returns at `00235104`), 1 and 2 are its two branches (`00235162`–`0023517B`), 2 the ranged retire. | as cited | PROVEN |
 | `+0x051` | 1 | `nativeLifecycleAnchorIndex` | the verb's second argument (`0023900B`), used as the index into `FieldData_GetFormat0RecordVectorByIndex` `00320940` for the anchor point (`0023518A`–`00235193`). | as cited | PROVEN |
-| `+0x052` | 2 | `definitionWord80` | a u16 the installer copies from its stack slot `+0x80` (`0023AC14`), 0 at reset; read once by the AI target selector (`003021F3`). Which definition field feeds the stack slot is not traced. | as cited | PARTIAL |
+| `+0x052` | 2 | `definitionWord80` | a u16 the installer copies from its stack slot `+0x80` (`0023AC14`), 0 at reset; read once by the AI target selector (`003021F3`). ~~Which definition field feeds the stack slot is not traced.~~ *(answered: the class row's word `+6` on the enemy path, `0023A910` → `0023A936`, and `-1` on the party path, `0023AB73` → `0023AB98`; 2026-10-02, OPUS)* | as cited | PARTIAL |
 | `+0x054` | 1 | `teamId` | verb `00510280` → `00239170(actor, isLeader, team)`: `+0x54 = team` (`00239189`) and flag bit 15 = leader (`00239190` / `002391A2`). Relation modes compare two units' bytes for equality or difference (`0030BDCB`–`0030BE11`); `0xFF` at install (`0023AC18`) and reset. | as cited | PROVEN |
 | `+0x055` | 1 | `definitionTypeByte` | the definition row's `+4` (`0023ABF0`), already named by [the evaluation context](../../08-Combat-Formula/Evaluation-Context/the-evaluation-context-field-map.md); compared with `0xD` at `0038D4D9`. | by reference | PROVEN |
 | `+0x056` | 1 | `definitionCategoryByte` | the installer's `bl` (`0023AC11`); the HP-stage pulse runs only for category `0xF` enemies (`002FE97E`); read by chain-on-defeat (`00317F21`, `003180CC`) and the selector (`003021EC`, `003025FC`). The category values are not decoded. | as cited | PARTIAL |
@@ -506,7 +506,7 @@ action-scoped.
 #### 2.6.6 What is genuinely not determinable from this census
 
 ~~Fourteen~~ ~~Nine~~ **Six** rows (2026-09-12) have a write or a reset and nothing else on any enumerated route: `+0x06C`,
-`+0x158`, `+0x6C0`, `+0x74C`, `+0x758`, `+0xB90` — `+0x75C`, `+0x760`, `+0x768` / `+0x76C` and `+0xDD4` gained readers or setters from the
+`+0x158`, `+0x6C0`, `+0x74C`, `+0x758`, ~~`+0xB90`~~ *(answered: `+0xB90` has a reader — operand-store kind 10, corrected 2026-09-30 above; 2026-10-02, OPUS)* — `+0x75C`, `+0x760`, `+0x768` / `+0x76C` and `+0xDD4` gained readers or setters from the
 image-wide sweeps (their rows), and **the sub-object-base scan FW-2 asked for (2026-09-12, FABLE)** settled
 three more: the action block `unit + 0x6B0` is taken as a base at exactly five sites image-wide
 (`0030487F`, `0030F04A` / `0030F0E5`, `0031081E`, and `003CA988` — the last on a different object) and
@@ -522,13 +522,13 @@ them because they write through the *target* unit resolved from a focus handle, 
 entry): see the rows. The class of evidence that answers
 them is static, not live: a write scan seeded on the *action-state block* (`unit + 0x6B0`) and on
 the locomotion state (`unit + 0x80`) as sub-object bases — the census's declared blind spot
-(§2.3) — and, for the twelve tunables, the FCP property catalogue (FW-1). Only the *values'*
+(§2.3) — and, for the twelve tunables, the FCP property catalogue (FW-1, *answered by consumer 2026-09-26 — see the tunables row* *(answered: see the `+0x164` row; 2026-10-02, OPUS)*). Only the *values'*
 distributions would need the game.
 ## 3. Key addresses
 
 | address | what |
 |---|---|
-| `0208E688` | the unit pool base; `0208E6A0` the slot count factor (`0xEA7900` per bank) |
+| `0208E688` | the unit pool base; `0208E6A0` ~~the slot count factor (`0xEA7900` per bank)~~ the slot count, `0x20` (`002368EB`–`002368FE`), which the release check multiplies by `0xEA7900` = `0xF50` × `0xF50` *(corrected 2026-10-02, OPUS: `002342AD`–`002342B4`; no bank is involved)* |
 | `0031B760`, `00263E30`, `0031B860` | the three unit-returning accessors used as seeds |
 | `0023A570` | `BattleUnit_ApplyUnitDefinition` — the installer of `+0x18`, `+0x48`, `+0x698`, `+0x6A0`, `+0xE60`, `+0xE68` |
 | `00236A60` | `BattleUnit_ResetStateForReuse` — the reset that precedes every apply |
@@ -600,7 +600,7 @@ argument; the TSV's `route` column records which, per access.
 - [x] **FF-2.** **What the embedded sub-objects are** — the long untouched ranges (`+0x298`–`+0x68F`,
   `+0x990`–`+0xB8F`, `+0xBD0`–`+0xDC7`, `+0xDD5`–`+0xE53`) and the `addr` rows that take their
   addresses. **FF-2.** Narrowed 2026-09-11: `+0x778`–`+0x97F` is the target buffer (§2.4);
-  narrowed again 2026-09-11 (§2.6): `+0x80`–`+0x1FF` the locomotion state, `+0x200`–`+0x297` the
+  narrowed again 2026-09-11 (§2.6): `+0x80`–`+0x1FF` the locomotion state, ~~`+0x200`–`+0x297`~~ `+0x200`–`+0x68F` *(answered: see the 2026-09-26 answer below; 2026-10-02, OPUS)* the
   navigation path state, `+0x6B0`–`+0xB9F` the suspended action-state block, `+0x988`–`+0xB87` the
   per-target result pointers, `+0xBC0`–`+0xDC7` the perception candidate buffer, `+0xDD4`–`+0xE53`
   a 32-dword per-slot array. Left: `+0x298`–`+0x68F` — and an image-wide sweep for any
@@ -633,7 +633,7 @@ argument; the TSV's `route` column records which, per access.
 - [x] **UQ-96.** **The names of the 128 offsets no page names** — each has cited writers and readers *(closed — the register row is WITHDRAWN.)*
   in §2.2 to start from. **FF-4.** Narrowed 2026-09-11: §2.6 names or classifies every one of
   the 115 store rows OPUS listed; what is left is the meaning behind the PARTIAL rows, the
-  twelve tunables' properties (**FW-1**) and the unreached writers (**FW-2**).
+  twelve tunables' properties (**FW-1**, *(answered: by consumer, 2026-09-26, the `+0x164` row; 2026-10-02, OPUS)*) and the unreached writers (**FW-2**).
 - [x] ~~**FF-6.** **What clears unit bit 46 after an action whose definition `+0x0C` has bit 30** *(2026-09-30, FABLE, Claude Opus 5.5)*. Phase 9 sets the bit for every action (`00304EF3`–`00304EFD`). The only clear the image holds is phase 10's, on the other arm (`00304F9F`–`00304FA9`), and the bit-30 arm advances past it (`00304F62`–`00304F8C`). Excluded: any other immediate-mask, bit-test or register-index clear, and the two whole-word writers, which keep the bit ([`bit46_writers.py`](../../_index/candidates/bit46-fable-0930/bit46_writers.py), [`bit46_regindex.py`](../../_index/candidates/bit46-fable-0930/bit46_regindex.py), both FAILS 0). Not excluded: a whole-qword store of a saved or computed value, or a mask loaded from memory. So the only clear found for a unit whose last action had bit 30 is the phase 10 of its next action without it.~~ **FF-6 ANSWERED 2026-09-30** *(corrected 2026-09-30, FABLE, on SWE2-AUDIT-SEM's REJECT, [review](../../_index/candidates/auditsem-review-bit46-0930/REVIEW.md) §5)*: the unit's next standard action clears it in phase 0 and phase 6, and so do a cancel, `00308270` and the slot release / allocation memsets: `00304850` phases 0 and 6 (`00304967`–`00304975`, `00304DDD`–`00304DEB`, mask `0xFFFFBFF75FFFCFFF`), a cancel (`BattleUnit_CancelAndResetCurrentAction` `003105D0`, `0031063F`–`0031064B`, same mask), `00308270` (`003082CB`–`003082DF`, mask `0xFFFFBFFFFFBFFFFF`), and the slot release / allocation memsets (`002342CE`, `002344D2`). So a party leader whose last action had bit 30 keeps the capability recompute's all-suppressed mask (`0023B0E6`–`0023B0E9`) only until one of these runs. A bulk copy of a saved unit image (a snapshot restore) is not excluded; that is a narrower question than FF-6 asked.
 
 ## 8. Evidence
@@ -643,7 +643,7 @@ argument; the TSV's `route` column records which, per access.
 | Every row of the table | `battle-unit-accesses.tsv`; `hop_scan.py --array 0x0208E688:0xF50 --gptr 0208E688 --retseed 0031B760,00263E30,0031B860,0031B7E0,0031B810,00236820 --argseed 00236A60:0,002F9820:0,002FDC30:0,002FDDA0:0,002FED60:0,00305080:0,0030BB30:0,0030C210:0,00311CF0:0,00313400:0,00313480:0,002FA540:0,00307CE0:0,003126E0:0 --size 0xF50 --depth 3`, control `0030FED0:0xE90` found (generation-3 scanner; WIDENED 2026-09-16, OPUS-REQ-STRUCT-WIDEN-FOUR-CENSUS-SEED-LISTS — `--gptr` admits self-discovering pool walkers, the three added retseeds are the handle resolvers, the added argseeds are the type-named functions proven to take the record in arg0; 2,639 rows in 410 functions (2,635 scanner + 4 hand-verified sweep rows) vs the committed 2,207 in 344 — the delta is widened seeds plus scanner-generation drift, not field movement; nine stale `nop`-operand rows dropped by the TWOREG fix; ten type-named functions still absent because their own bodies touch no `[record+disp]` field — adjudication in `Tools/work/STRUCT/widen_four_census_dispositions.tsv`) | 1 | PROVEN |
 | The names in the name column | the store rows and the linked pages | 1 | PROVEN (by reference) |
 | The untouched ranges | absence on every enumerated route with a passing control | 1 | PROVEN (for those routes) |
-| What the untouched ranges and the unnamed fields are | **not established** | — | UNKNOWN |
+| What the untouched ranges and the unnamed fields are | ~~**not established**~~ *(answered in part: `+0x298`–`+0x68F` is the navigation path record's waypoint table, FF-2, 2026-09-26; 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 9. Related
 
@@ -682,7 +682,7 @@ non-zero immediate — `dst_a01.ebp` at `0x4926` pushes 67 and `naf_a02.ebp` at 
 > *Qualified 2026-09-27 (OPUS, on FABLE-REQ-OPUS-FIELDMAP-HP-FLOOR-ORDERED-BOUNDS):* with a floor above the effective cap the clamp can store the cap, below the floor - `00300651` / `00300654` jump past every cap test only when the candidate is below the floor, and the cap branch has no floor recheck before `00300749`. The lethal test (`jg` on floor > hp) then fires for that value too. Whether any shipped floor exceeds its unit's cap is not claimed. See the contract's §4 qualification (`63df3d49b`).
 
 **The census behind the `N / N` column has a blind spot at `0023A570`.** `battle-unit-accesses.tsv`
-holds two rows for it (displacements `0x0` and `0x698`) while the function touches twenty distinct
+~~holds two rows for it (displacements `0x0` and `0x698`)~~ held two rows for it before the generation-3 re-run *(answered: see §10.1, FZ-16; the file now holds 32 `0023A570` rows, measured; 2026-10-02, OPUS)* while the function touches twenty distinct
 unit displacements across thirty instructions: the hop scan follows the argument register and loses
 the pointer at `mov rdi, rcx` (OPUS). This page compensated by hand for `+0x64` and `+0x6C`
 (`0023ABD1`, `0023ABD6`) and missed `+0x48`. **Any "no writer found" or "N of N accesses" that
@@ -726,7 +726,7 @@ The installer's accesses, read from `0023A570` after `mov rdi, rcx` (`0023A588`)
 | `+0x52`, `+0x54` | write | `0023AC14`, `0023AC18` | count only |
 
 Twenty distinct displacements, thirty accesses (OPUS's measurement, reproduced by reading and, since
-2026-09-11, by the census itself — `battle-unit-accesses.tsv` carries thirty `0023A570` rows). Six
+2026-09-11, by the census itself — `battle-unit-accesses.tsv` carries ~~thirty~~ thirty-two `0023A570` rows *(answered: measured on the file; 2026-10-02, OPUS)*). Six
 rows changed a conclusion, marked above; the rest changed a count, and the counts are now the
 census's own.
 

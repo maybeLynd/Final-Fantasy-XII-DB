@@ -571,3 +571,15 @@ the five tables.
 
 *These four entries: tier 2 - ledger names, sizes and `edges.tsv`, roles as this page and the cited pages read
 them; no new body read (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-five-small-bin-tables-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0029DCD0` | 12 B | stores qword `+8` of `rcx` in qword `0209C4A0` | `0029DCD4` |
+| `0035B3E0` | 98 B | for each index below dword `+4` of `rcx` (unsigned), replaces the dword at `rcx+8` plus 4 times the index with `0020E620(0020E600(that dword) + the low 32 bits of rcx zero-extended)`; then, also when the count is zero, stores `rcx` in qword `02EC0B68` | `0035B40B`, `0035B410`, `0035B419`, `0035B421`, `0035B430` |
+| `0035FED0` | 89 B | clamps `edx` to 0 when negative and to 1 when above 1; returns without work when `ecx` is 2 or more (signed); otherwise, with the record at `022CAE90` plus `ecx` times `0x294`, stores `r8b` at byte `+6` plus `edx` of the record, calls `0035E810` and stores its dword result at `+0x1C` plus `edx` times 4 | `0035FEE3`, `0035FEE9`, `0035FEF8`, `0035FF0C`, `0035FF16` |
+| `00379F30` | 7 B | zero-extends `ecx` into `rcx` and tail-jumps `0035B3E0` | `00379F32` |
+| `003C9950` | 125 B | calls `00249580` with `rcx` unchanged (result r); when qword `+0xD0` of `rcx` is non-null calls `003697F0` on it; calls `00249210(r, 7, byte +0xC1 plus 0xE, 3)` with fifth (stack) argument 0 and then `00249410(r)`; ORs 8 into dword `+0xC4` and stores qword `+8` of the `00249210` result in qword `+0xD0` | `003C9976`, `003C999B`, `003C99A6`, `003C99AF`, `003C99C0` |

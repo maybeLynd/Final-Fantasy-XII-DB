@@ -1,0 +1,46 @@
+PASS  S1 image 73461D08..21F8
+PASS  P1 positive control: 00432300 native == min(255, e*c >> 7) on 972 bytes via this harness (SD-140 E1); the >> 8 rival misses 960
+PASS  P2 positive control: SD-140 A7's 004392AE clip call and BI-3b's 00435AF6 +0x174 resolve before 00396F20 read back
+      raw 0043E7B0 swap          00435C79:call 00437746:call 00438F24:call 00443C41:call 00444B05:call
+      raw 00434630 scaleoff      00435C5D:call 00437727:call 00438F07:call 00443C17:call 00444AED:call
+      raw 00434760 scaleoff_swap 00435C32:call 004376FE:call 00438EE0:call 00443BF1:call 00444AC7:call
+      raw 00396F20 gather        00435B15:call 00435BF4:call 004375E0:call 004376C7:call 00438DBA:call 00438EA2:call
+      raw 00394B70 screen_add    00435B37:call 00437600:call 00438DDD:call
+      raw 0043E840 centre_scale  00435CAE:call 00435CC0:call 00435D0C:call 00435D1E:call 00437785:call 00437797:call 004377DB:call 004377ED:call 00438F59:call 00438F77:call 00438FB6:call 00438FC7:call
+      raw 00521450 clipper       004392AE:call 0043965B:call 004398C6:call 00439C1E:call 00439FCB:call 0043A236:call 0043A6E3:call 0043AC57:call 0043AF5E:call 0043B453:call 0043B9C7:call 0043BCCE:call 0043C1C3:call 0043C702:call 0043C9ED:call 0043CEA3:call 0043D3E2:call 0043D6CD:call 00501E91:call 00501FA8:call 00502985:call 00502AE0:call
+      raw 00521BB0 clip_edge     00521B26:call
+PASS  A0 raw rel32 index == the listed call sites, no jmp / jcc entries: the six operators are reached only from 004355D0 / 00437130 / 00438860 (+ 004434D0 / 00444340 for the first three); the clipper from 00438860 (18 sites) and 00501A50 / 00502280; 00521BB0 only from 00521450
+PASS  A1 004355D0: [rsp+0x78] = prepared UV, [rsp+0x50] = per-pass UV', [rsp+0x58] = L, r14 = screen vertices
+PASS  A2 +0x1B0+p in 1..4: L refilled (1, 3 over 02AEEA20; 2, 4 over 02AEEBF0), UV'[k] = L[+0x174[k]].xy by 00396F20; =2 adds 00394B70(screen, +0x170, UV', +0x1A)
+PASS  A3 +0x1AC+p: 1 swap (0043E7B0), 2 scale+offset (00434630), 3 scale+offset+swap (00434760) by param+0x150+16p -> UV'
+PASS  A4 +0x1F2 bit0: 0043E840 by the pass pair, pair := 0.5; bit1: 0043E840 by (w,w) w=+0x1EC, pair += 0.5; mode 4: /1.15 x1.15
+PASS  A4b xmm6 = [00D1247C], xmm7 = [01CEBB70]; 0053DD10 is `mov eax, 1; ret` (the mode-4 aspect rewrite is unconditional)
+PASS  A5 00437130 / 00438860 run the same +0x1B0 / +0x1AC / +0x1F2 ladder with +0.5 from 01CEBB70; no 1.15 rewrite there
+PASS  A6 00438860: clipper(matrix, 3 corners); 0 -> drop; n -> re-project the clipped +0 positions, colour + UV per vertex, n-gon
+PASS  A7 clip matrix (rbp+0x30) = 00397910 over 02AEDDF0 and (00397910 over 02AEEA20 and the parameter block)
+PASS  A8 00521450: outcode per vertex vs +-|w| on x, y, z; per plane keep / keep+split / split / drop by the edge's code pair
+PASS  A9 plane table 01F2C760: z < -|w|, z > |w|, y < -|w|, y > |w|, x < -|w|, x > |w| (sign, both-vertex mask, axis)
+PASS  K1 00394B70 constants: 1/16 (12.4 fixed point), 1/512, 3.5 (u), 3.5625 (v)
+PASS  K2 1.15 (00D1247C), 0.5 (01CEBB70), 1.0 (01EF93FC, the operators' unit multiplier); 0043E840's -0.5 is an immediate
+PASS  K3 00521450: 10000.0 and 0.0001 - the colour lanes are scaled x1e4 before interpolation and x1e-4 after (00521BB0)
+PASS  E1 0043E7B0 native == (u, v) -> (v, u) per pair over 40 trials (no stubs); count 0 still swaps one pair
+PASS  E2 00434630 native == (b0 + u*b2, b1 + v*b3) with blk = param+0x150+16p, 388 pairs (no stubs)
+PASS  E3 00434760 native == (b1 + v*b3, b0 + u*b2) - 00434630 then swapped, 406 pairs (no stubs)
+PASS  E4 00396F20 native == dst[k] = table[list[k]].xy (16-B stride, first 8 B), 685 corners (no stubs); its loop ends on the image's zero cell 022D8F10 (= 0 here)
+PASS  E5 00394B70 native == UV += ((X/16)/512 - 3.5, (Y/16)/512 - 3.5625) from the corner's screen vertex, 375 corners, n = 1..14 (unrolled + tail), n = 0 no write (no stubs)
+PASS  E6 0043E840 native == ((u - 0.5)*a, (v - 0.5)*b) with (a, b) = [r8], 578 pairs, half in place (no stubs)
+      E7 output vertex-count histogram (model): {0: 115, 3: 70, 4: 116, 5: 71, 6: 19, 7: 9}
+PASS  E7 00521450 native == Sutherland-Hodgman against |x|,|y|,|z| <= |w| (6 table planes), bit-exact on count and all four 64-B vertex fields over 400 seeded triangles, plane table restored (no stubs)
+PASS  E8 when all three corners have clip w > 0 every output vertex satisfies |x|,|y|,|z| <= w (+0x30) within float error; in the 206 trials with a corner at w <= 0 the |w| outcodes and the signed-w split leave 101 output vertices outside the box - the clipper has no w > 0 plane
+      E7 sensitivity: a model WITHOUT the x1e4 / x1e-4 colour scaling differs bit-wise in 273 of 400 trials (the scaling is a float-rounding detail; the colour is still a linear interpolation)
+PASS  N1 wrong expectation '0043E7B0 is a plain counted copy' rejected (40 of 40 trials differ)
+PASS  N2 wrong expectation '00434630 = u*b0 + b2 (offset and scale roles exchanged)' rejected (388 misses)
+PASS  N3 wrong expectation '00434760 = 00434630 without the swap' rejected (406 misses)
+PASS  N4 wrong expectation '00396F20 copies the entry's second qword (z, w)' rejected (685 misses)
+PASS  N5 wrong expectations '00394B70 overwrites' and 'X feeds v' rejected (375 / 375 misses)
+PASS  N6 wrong expectations '0043E840 = u*a' and '0043E840 re-centres (+0.5)' rejected (578 / 578 misses)
+PASS  N7 wrong clipper expectations rejected: always-3 / flag-only 330, t = d1/(d0+d1) 296, guard band 2|w| 241, signed-w outcodes 63 trials differ
+PASS  X1 the operators address 022D8F90 / 022D92F0 / 022D94A0, not the 02EB87xx-02EB94xx cells that page cites
+PASS  X2 00521450 is not call-free: 00521B26 calls 00521BB0 (the edge split)
+RESULT pass byte +0x1B0 can regenerate the per-pass UV from L[normal].xy (00396F20) plus, for value 2, a screen-position term (00394B70); byte +0x1AC then swaps (0043E7B0) or scales+offsets (00434630, 00434760 = +swap) by param+0x150+16p; param+0x1F2 scales about the 0.5 centre (0043E840) by the pass pair or by +0x1EC; 00521450 clips each triangle in homogeneous space against |x|,|y|,|z| <= |w|, interpolating position, colour, UV and clip position, and returns the polygon's vertex count (0 = culled)
+CHECKS 34  FAILS 0

@@ -1,0 +1,38 @@
+{
+ "page": "03-World-Area-Field/Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "field-init-weather-to-legacyps2gs-rebuild.json",
+ "rows": [
+  {
+   "fn": "00180650",
+   "text": "stores `r9b` at byte `+0xC0` of `r8`; when `ecx` is non-zero calls `001A94C0(001A9930(), edx, r8)`, otherwise calls the function at slot `+8` of `r8`'s vtable as `(r8, 0)`; then, when `001E3E80(r8)` returns a non-zero byte and `001E3FF0(r8)` returns 0, calls `001A4FE0(001A9930(), r8)`",
+   "anchors": [
+    [
+     "0018065A",
+     "mov"
+    ],
+    [
+     "00180677",
+     "call"
+    ],
+    [
+     "00180686",
+     "call"
+    ],
+    [
+     "00180698",
+     "call"
+    ],
+    [
+     "001806AC",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

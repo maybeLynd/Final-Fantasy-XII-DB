@@ -143,7 +143,7 @@ the `btlKeepCharWork1`/`2` tags are in
   `005843E0`) copies **only** buffer `+0x10` into bank 2 (`[0208E698]`) and then the field-id pair
   `02089372` / `02089370`. It does not touch bank 1, the tick stamp `02089374` or the window. So the
   two-slot memory described above is the in-play area change; what a load restores into bank 1 and the
-  timer is the open question `L-13` on the retirement page, and nothing here closes it. *Narrowed 2026-09-13
+  timer ~~is the open question `L-13` on the retirement page, and nothing here closes it~~ is nothing: bank 1 is never read back and the stamp is not restored *(answered: see the retirement page §7, `L-13` SUPERSEDED 2026-09-27 on this static answer, only its live residue open; `00233550` restores the field-id pair at `002335B9`–`002335C7` and nothing else; 2026-10-02, OPUS)*. *Narrowed 2026-09-13
   (FABLE):* `005843E0` runs only when the loaded slot is **0, the field-transition autosave** — the one save that
   captured the pair — so loading the autosave restores bank 2 and the field-id pair from the transition, while
   loading a manual slot restores neither ([request router §2](../16-UI/Request-Router/ui-request-router.md)).
@@ -173,7 +173,7 @@ the `btlKeepCharWork1`/`2` tags are in
   >
   > **What this does not establish.** No writer instruction, no slot-0 autosave comparison (that path was not
   > exercised), nothing about the tick stamp `02089374` or the window, and no enemy death, respawn consequence
-  > or callback ordering — the run states that it did not test them. `L-13` keeps bank 1 and the timer.
+  > or callback ordering — the run states that it did not test them. ~~`L-13` keeps bank 1 and the timer.~~ *(answered: see the retirement page §7 - `L-13` is SUPERSEDED 2026-09-27 on its static answer; only the live residue stays open; 2026-10-02, OPUS)*
 
 Other restoration paths into the banks are not excluded by this page.
 
@@ -239,13 +239,13 @@ not read here.** The page's claim about bank 1 is unaffected, because `00237DF0`
 
 The battle-state guard `00233C10` (214 B) is a transition-metadata capture
 battery on the `[02EBF190]` block: `00235AF0` opens (`00233C14`), `002EF640`
-snapshots the block (`00233C25`) and stores back `02EBF190` (`00233C33`),
+~~snapshots the block~~ returns the active image, to which `0x4E68C` is added *(corrected 2026-10-02, OPUS: `002EF640` is `lea rax, [02164280]; ret`; `00233C2A` `add rax, 0x4e68c`)* (`00233C25`) and stores back `02EBF190` (`00233C33`),
 `0030B6A0` (`00233C3A`), then the `00237DF0` reset branches
-(`00233C48`/`00233C59` — the null-path first-bind). After the prelude the
+(~~`00233C48`/`00233C59` — the null-path first-bind~~ the call at `00233C3F` and the tail at `00233C48` on the null path, so the reset runs twice there; `00233C59` is the tail for a non-null block whose stamp is not `0x05071901` (`00233C4D`) *(corrected 2026-10-02, OPUS: `00233C23` `jne 0x233c4d` splits the two paths)*). After the prelude the
 battery runs `00327F80`, `003139A0`, `00304770` (`00233CAD`–`00233CBB`),
-`002FA230`, `002FA260`, `0016D6A0`, `003266C0`, `00311E10`, `00226BD0` ×2
-(`00233D35`/`00233D59`), `0031B760` (`00233D74`), `00313F60`, `00320A00`
-(`00233DC4`).
+`002FA230`, `002FA260`, `0016D6A0`, ~~`003266C0`, `00311E10`, `00226BD0` ×2~~
+~~(`00233D35`/`00233D59`), `0031B760` (`00233D74`), `00313F60`, `00320A00`~~
+~~(`00233DC4`)~~ and `00229ED0` (`00233CD1`), then zeroes `0208E6B4` (`00233CD6`) and returns at `00233CE5` *(corrected 2026-10-02, OPUS: the body is 214 B, `00233C10`–`00233CE5`; the struck calls and sites lie past its `ret`, from `00233D20` on)*.
 
 | member | role | interior |
 | --- | --- | --- |

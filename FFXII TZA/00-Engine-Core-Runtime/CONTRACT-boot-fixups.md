@@ -518,7 +518,7 @@ cases passes the first and fails the second; one that seeds from save data passe
 the third. Test I3 at both frame limits and assert the triple is
 written **only** at 60. Compare all nine registrations and both unregistered allocation sizes (I4).
 
-`0037E0F0` (596 B) is the register battery `0022A0B0` runs inside the boot subtree: 46 straight `lea rcx, 02AE9xxx`/`02AEAxxx`/`02AEBxxx`/`02AECxxx` globals each handed to a `004C2040`/`004Dxxxx`/`004Exxxx`/`004Fxxxx` initializer, with a lone `jmp 004C3610` - the subtree's static-registration arm, whose targets are Presentation-side module initializers (named at subsystem level, not by address).
+`0037E0F0` (596 B) is the register battery `0022A0B0` runs inside the boot subtree: ~~46 straight `lea rcx, 02AE9xxx`/`02AEAxxx`/`02AEBxxx`/`02AECxxx` globals each handed to a `004C2040`/`004Dxxxx`/`004Exxxx`/`004Fxxxx` initializer~~ 49 `lea rcx` globals from `02AE8620` to `02AED330`, 48 of them handed by `call` to an initializer (47 distinct, `004E3110` twice; `002EFF50`, `002F0110` and six `0047xxxx` bodies among them) *(corrected 2026-10-02, OPUS: counted over all 596 bytes of `0037E0F0`)*, the last with a lone `jmp 004C3610` - the subtree's static-registration arm, whose targets are Presentation-side module initializers (named at subsystem level, not by address).
 
 Interior anchor `0037E15B` (function `0037E0F0`).
 
@@ -634,7 +634,7 @@ Interior anchor `0047945E` (function `00479450`).
 
 Interior anchor `002F011E` (function `002F0110`).
 
-`0037DF90` (344 B) is a registration battery `0022A0B0` calls: thirty `lea rcx, 02ADExxx/02AExxxx` + `call` pairs run `00499850`/`0049B850`/`0049FE90`/`004A1C10`/`004B0B70`/`004978F0`/`0048CE70`/`004B0000`/`004802F0`... over the static object range - the boot table's widest block.
+`0037DF90` (344 B) is a registration battery `0022A0B0` calls: ~~thirty~~ 28 `lea rcx, 02ADExxx/02AExxxx` + `call` pairs — 27 calls to distinct bodies and the tail `jmp 004A8860` at `0037DF90+0x153` *(corrected 2026-10-02, OPUS: counted over all 344 bytes of `0037DF90`)* — run `00499850`/`0049B850`/`0049FE90`/`004A1C10`/`004B0B70`/`004978F0`/`0048CE70`/`004B0000`/`004802F0`... over the static object range - the boot table's widest block.
 
 Interior anchor `0037DF9B` (function `0037DF90`).
 

@@ -346,3 +346,11 @@ callee fan-in, not a UI relationship the preset layer owns.
 `002CFD10` (28 B) calls `002527B0(6, 4, 0)` then tail-jumps `0028E880`
 — the fixed-selector compose the preset scenarios issue as
 `002CFD10(-1)`. Interior anchor `002CFD1E` (the `002527B0` call).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-setsavedata-presets-test-battle-scen-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00238640` | 19 B | sign-extends `ecx`, forms the pointer `02F973C0 + ecx*8` in `rcx` and tail-jumps `003845F0` with it, leaving the other argument registers unchanged | `00238643`, `0023864A`, `0023864E` |

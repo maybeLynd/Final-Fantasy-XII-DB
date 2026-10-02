@@ -25,7 +25,7 @@ audit:
   crossref_clean: false
   reopened_count: 0
 local_production_date: 2026-09-23
-local_production_status: "SECTION-11 locally validated; formal independent acceptance pending"
+local_production_status: "SECTION-11 locally validated; formal independent acceptance pending"  # <- corrected 2026-10-02, OPUS - accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18), as the lifecycle page records
 ---
 
 > **Current production correction — SECTION-11, 2026-09-23.** Original interpreter, actual command callbacks, and selected request-driver paths execute together against synthetic state. Historical audit counters remain history, not acceptance of these changes. No new live game session or whole S-07/L2 acceptance is claimed. See [the section review](../_experiments/evidence/continuation-section11-script-resume/REVIEW.md).
@@ -95,7 +95,7 @@ slots because four bits admit sixteen, not because sixteen were wanted.
 `003DC2D0` `rep stosq`s all sixteen slots with the default `01F26720` and then overwrites exactly
 four — index 0, 3, 5 and 7 (`02B57EF0`, `+0x18`, `+0x28`, `+0x38`). **`0x2005` and `0x4005` resolve
 to the same command.** *Whether that is deliberate aliasing or a fallback for unimplemented families
-is `AO-1` and is not settled here.*
+is `AO-1` and is not settled here.* *(answered: AO-1, 2026-09-12 — the shared table is family 2's and the other eleven are verb-less fallbacks, native-command-lifecycle.md section 7; 2026-10-02, OPUS)*
 
 **N-3 — The record is SHIFTED: `result(N)` lives in row N+1, so adjacent commands interleave.** The
 three accessors compute, all with the same `shl rax, 5`:
@@ -131,7 +131,7 @@ but phase `0` runs `begin` and **falls through to `poll`**, and if `poll` report
 `result` — therefore completes on its very first invocation**, because the absent `poll` yields
 "not running" from a zeroed local. *Only a command that polls busy ever leaves phase 1 behind for
 the next invocation.* An implementation that visits the three phases on three successive frames would make
-every one of the 1,155 single-callback commands take three frames instead of none.
+every one of the ~~1,155~~ single-callback commands take three frames instead of none *(corrected 2026-10-02, OPUS: family 0 has 1,288 single-callback records (1,189 `result` only, 73 `begin` only, 26 `poll` only), and all five tables 1,571 commands with a real `result` alone; the five command tables read under the accessor frame - begin `tbl + 8 + 0x20n` (`003DC28E`), poll `+ 0x10` (`003DC25E`), result `tbl + 0x20(n + 1)` (`003DC2BA`))*.
 
 **N-7 — The fourth slot is NULL in all 1,960 records.** `tbl + 32N + 0x18` is never used. *This was
 once recorded as "unused in every record but one"; the exception was a read past the end of family 0
@@ -237,7 +237,7 @@ are substituted. No fresh live session or complete verb population is claimed.
 ## 16. Parity plan
 
 L3 is out of scope. A reimplementation is judged on N-1 through N-7. **N-6 is the one to test first**
-— three-visit phasing is the natural design and it would make 1,155 instantaneous commands take
+— three-visit phasing is the natural design and it would make ~~1,155~~ 1,571 *(corrected 2026-10-02, OPUS: the `result`-only commands of all five tables, the five command tables read under the accessor frame - begin `tbl + 8 + 0x20n` (`003DC28E`), poll `+ 0x10` (`003DC25E`), result `tbl + 0x20(n + 1)` (`003DC2BA`))* instantaneous commands take
 three frames each. **N-3 is the one to get right in the data layout**, because being one row out on
 every result is silent.
 
@@ -279,4 +279,4 @@ No correction.
 
 **ActorEntity — SERVICE (1 edge).** The executor `VMNativeCommand_ExecuteLifecycle` (`002621D0`) calls `ActorManager_GetRecordByOrdinal` (`00358940`), a 30-byte bounds-checked read of the manager's record array that returns 0 for a negative or out-of-range ordinal. The executor looks up a manager record by ordinal through the actor layer's accessor; the wait slot and the value stack it drives stay this contract's.
 
-**World — CLIENT (1 edge).** The area initialiser `00266D10` calls `VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2D0`). Area initialisation is where the sixteen family-table pointers at `02B57EF0` are (re)built, so the world layer owns when the dispatch tables are set up and this contract owns what they hold.
+**World — CLIENT (1 edge).** The area initialiser `00266D10` calls `VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2D0`). Area initialisation is where the sixteen family-table pointers at `02B57EF0` are ~~(re)built~~ built, once *(corrected 2026-10-02, OPUS: `003DC2D0` is their only writer and is reached only through `00266D10` ← the boot routine ← the frame dispatcher's start-up step ← the start-up job (chain addresses in FABLE's record readiness-apply-fable-1002b); static)*, so the world layer owns when the dispatch tables are set up and this contract owns what they hold.

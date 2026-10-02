@@ -1,5 +1,15 @@
 PASS  C1 startscene sites 34125 (RC-5: 34,125)
 PASS  C2 every PUSHV operand's descriptor decodes to a legal class and width (bad: 0)
+NOTE  C3 class-7 POPV producer resolution (unresolved: 9 {'unresolved:underrun': 9}; header ndim census {1: 3005859, 2: 35424})
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
+       unresolved: mfr_a04.ebp+55B5 ndim=1 unresolved:underrun
    3141 of the non-constant operands are variables whose only non-constant stores are the increment x = x + k; their values lie in [min constant, max constant + the file's total increments]: overall [0, 102]; widest single-variable span 95
 
 startscene: 34125 sites; non-constant operands 3429; bounded exactly by constant stores 0; not exactly bounded 3429
@@ -13,12 +23,11 @@ startscene: 34125 sites; non-constant operands 3429; bounded exactly by constant
 
 startscene_4b3: 1260 sites; non-constant operands 45; bounded exactly by constant stores 0; not exactly bounded 45
       45  variable: constant stores plus x = x + k increments (interval above)
-   4 of the non-constant operands are variables whose only non-constant stores are the increment x = x + k; their values lie in [min constant, max constant + the file's total increments]: overall [0, 3]; widest single-variable span 3
 
-eventread_e8: 5482 sites; non-constant operands 66; bounded exactly by constant stores 0; not exactly bounded 66
+eventread_e8: 5482 sites; non-constant operands 40; bounded exactly by constant stores 4; not exactly bounded 36
+   constants reachable through the variables: 1 distinct, [0]
       32  variable never stored by a POPV in scope (initial value only)
-      28  operand is an expression (OPSUB)
-       4  variable: constant stores plus x = x + k increments (interval above)
+       2  operand is an expression (OPSUB)
        2  variable has a non-constant store: call:aask
 
 summoneventread: 4 sites; non-constant operands 4; bounded exactly by constant stores 0; not exactly bounded 4
@@ -49,3 +58,42 @@ debug_eventload operand tuples (push order: manager, set id): 274 sites in ['btl
       2  (('const', 1), ('const', 4))
       2  (('const', 1), ('const', 16))
       2  (('const', 1), ('const', 505))
+
+class-7 array stores in the controllers (value producer | index producer); 19214 keyed arrays total
+ btlctrl.ebp class7+0x1850  (stores identical in 2 of 2 locale copies)
+    btlctrl.ebp+36E3  value=PUSHII(255)                  index=PUSHI0
+    btlctrl.ebp+370E  value=PUSHII(0)                    index=PUSHI0
+ evctrl.ebp class7+0x1c50  (stores identical in 2 of 2 locale copies)
+    evctrl.ebp+3666  value=PUSHII(0)                    index=PUSHII(0)
+    evctrl.ebp+366F  value=PUSHII(0)                    index=PUSHII(1)
+    evctrl.ebp+4061  value=PUSHV class1+0x8dc           index=PUSHV class1+0x904
+    evctrl.ebp+4F87  value=PUSHV class1+0x8dc           index=PUSHV class1+0x904
+ mapctrl.ebp class7+0x19a0  (stores identical in 2 of 2 locale copies)
+    mapctrl.ebp+4317  value=PUSHI(32832)                 index=PUSHI0
+    mapctrl.ebp+4391  value=PUSHI(32834)                 index=PUSHI0
+    mapctrl.ebp+440B  value=PUSHI(32835)                 index=PUSHI0
+    mapctrl.ebp+4485  value=PUSHI(32836)                 index=PUSHI0
+    mapctrl.ebp+44FF  value=PUSHI(32837)                 index=PUSHI0
+    mapctrl.ebp+4579  value=PUSHI(32839)                 index=PUSHI0
+    mapctrl.ebp+45F3  value=PUSHI(32840)                 index=PUSHI0
+    mapctrl.ebp+466D  value=PUSHI(32841)                 index=PUSHI0
+    mapctrl.ebp+46E7  value=PUSHI(32842)                 index=PUSHI0
+    mapctrl.ebp+4761  value=PUSHI(32843)                 index=PUSHI0
+    mapctrl.ebp+47DB  value=PUSHI(32844)                 index=PUSHI0
+    mapctrl.ebp+4855  value=PUSHI(32846)                 index=PUSHI0
+    mapctrl.ebp+48CF  value=PUSHI(32848)                 index=PUSHI0
+    mapctrl.ebp+4949  value=PUSHI(32849)                 index=PUSHI0
+    mapctrl.ebp+49C3  value=PUSHI(32850)                 index=PUSHI0
+    mapctrl.ebp+4A3D  value=PUSHI(32851)                 index=PUSHI0
+    mapctrl.ebp+4AB7  value=PUSHI(32852)                 index=PUSHI0
+    mapctrl.ebp+4B31  value=PUSHI(32853)                 index=PUSHI0
+    mapctrl.ebp+4BAB  value=PUSHI(32854)                 index=PUSHI0
+    mapctrl.ebp+4C25  value=PUSHI(32855)                 index=PUSHI0
+    mapctrl.ebp+4C9F  value=PUSHI(32856)                 index=PUSHI0
+    mapctrl.ebp+4D19  value=PUSHI(32857)                 index=PUSHI0
+    mapctrl.ebp+4D93  value=PUSHI(32858)                 index=PUSHI0
+    mapctrl.ebp+4E0D  value=PUSHI(32859)                 index=PUSHI0
+    mapctrl.ebp+4E87  value=PUSHI(32860)                 index=PUSHI0
+ mapctrl.ebp class7+0x19b0  (stores identical in 2 of 2 locale copies)
+    mapctrl.ebp+5A61  value=PUSHII(255)                  index=PUSHI0
+    mapctrl.ebp+5A86  value=PUSHII(0)                    index=PUSHI0

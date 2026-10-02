@@ -29,7 +29,7 @@ audit:
 > Why a battle command is greyed out — and the numbered reason the engine computes before the
 > menu is ever drawn.
 
-**PARTIAL.** The top-level cascade is read at instruction level. Several of its steps call
+~~**PARTIAL.**~~ **AUDITED.** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`, every box ticked; the codes never reach a screen, AI-1 answered 2026-09-02 in §7 and §11, so the unmapped-message clause below is stale)* The top-level cascade is read at instruction level. Several of its steps call
 functions whose bodies have not been read, and the numeric reason codes are recovered but **not
 mapped to the on-screen messages**.
 
@@ -394,8 +394,8 @@ predicates in the rebuild are read only as calls.
 | `0031EB20` has 16 UI callers and is recursive | caller census over `edges.tsv` | 1 |
 
 **Scope honesty:** three of the cascade's legs return codes this document passes through without
-reading. The enumerated table is therefore **not** the complete reason-code set — it is the set
-raised by the two functions that were read.
+reading. ~~The enumerated table is therefore **not** the complete reason-code set — it is the set~~
+~~raised by the two functions that were read.~~ *(answered: the table was completed the same day - nineteen codes from every leg, section 10, AI-4; 2026-10-02, OPUS)*
 
 ## 9. Related
 
@@ -499,10 +499,10 @@ return 0;
 ```
 
 Three separate pools with three different widths: a **signed 16-bit** value, an **unsigned byte**,
-and a **global** amount with a per-unit fallback. The third is gated on `raw[5] == 0`, the same class
+and a **global** amount ~~with a per-unit fallback~~ checked together with the gil cost already reserved for the action in progress at `unit[0xE58]` *(corrected 2026-10-02, OPUS: `+0xE58` is not a purse - `0030EFC0 mov dword ptr [rbx + 0xe58], eax` stores `00309060`'s result there, the refund `00300280` adds it back and `00305640` clears it; row `0x15` of the reason-code table)*. The third is gated on `raw[5] == 0`, the same class
 selector the cascade uses.
 
-**An inference, flagged as one:** a party-wide pool checked before a per-unit one, in a system whose
+**An inference, flagged as one:** a party-wide pool checked before ~~a per-unit one~~ the cost already reserved at `unit[0xE58]` *(corrected 2026-10-02, OPUS: `+0xE58` is a reserved cost, not a per-unit pool, `0030EFC0`; row `0x15`)*, in a system whose
 menu builder also calls `BattleUnit_UsesGilActionCostChannel`, reads naturally as **gil**. Nothing
 here names it, and the 16-bit and byte pools are not named either. **AI-8.**
 *Closed 2026-09-12 (FABLE):* gil was confirmed from the consumer side on 2026-09-03; the 16-bit pool
@@ -518,7 +518,7 @@ family. The convention is now attested at three offset pairs across status, rewa
 `FUN_003037A0`, `FUN_00309110`, `FUN_00308FF0`, ~~`FUN_00309060`~~ and `FUN_00253690` are unread *(answered for `00309060`: see using-an-item-is-an-action-that-costs-an-item.md, the section "The action gil cost: 00309060" - the gil cost reason `0x15` compares; 2026-10-02, OPUS)*, so the
 *cost* side of the resource check is still opaque — only the comparison shape is known. **AI-4 is
 closed** (the codes are enumerated); **AI-3 is largely answered** (the mapper is read and the opt-in
-bit identified); **AI-1 remains fully open** — nothing here maps a code to on-screen text.
+bit identified); ~~**AI-1 remains fully open** — nothing here maps a code to on-screen text.~~ *(answered: AI-1, 2026-09-02 - the codes never reach a screen, §7 and §11; 2026-10-02, OPUS)*
 
 ## 11. Falsification pass 2026-09-02 (second) — who actually consumes this
 
@@ -636,7 +636,7 @@ from the bodies and this pass did not touch them. What changed is **who the syst
 
 **WorldAreaField — SERVICE and CLIENT (10 edges).** `002FFCF0`, `003014C0`, `00305AB0`, `00307300` and the mode getter `0030D9A0` call `FieldData_GetActiveFieldRecordBit15` `00377C20`, and the menu builder `0031EB20` and the target-status evaluation `00322A80` call its five-byte thunk `00313F60`; `00377C20` calls `WorldTransition_GetActiveOrPendingFieldId` `003148F0` and is called by `BattleSystem_InitializeAreaState` `002342F0`; the conditional battle-id resolution `00576A50` calls `00309EC0`. The area's action-permission bit is an input to availability (`002FFCF0` refuses a unit whose status words carry any of the three bits it tests unless the bit is set, and `0030D9A0` folds the bit into the battle mode); area setup reads it too.
 
-## SWE2-EC7-19 update (2026-05-15) — `00322490` angle-wrap + vector submit fragment
+## SWE2-EC7-19 update (~~2026-05-15~~ 2026-09-18 *(corrected 2026-10-02, OPUS: committed in `add029c9c`)*) — `00322490` angle-wrap + vector submit fragment
 
 `00322490` (203 B) is one of the manager predicates this page names (`002E9FE0`/`002EA6A0`/`00322490`/`00317D80`): `003590D0` (`003224AC`) yields the index, `test [02089340],0x10` (`003224B1`) gates the whole body — clear returns 0 (`00322541`); set, `003588B0` resolves the index to `rdi` and a null exits (`003224C0`..`003224CB`). When `rcx`'s record is non-null, `00263E30(rcx)` (`003224D5`) must return a record with `byte[+0]&0x10` and `002FFED0(rdx=0, r8d=3)` must succeed (`003224DF`..`003224F4`) or it returns 0. The compare half then reads two three-dword fields — `00265020(rdi, rsp+0x30, rsp+0x34, rsp+0x38)` and `00265020(rcx, rsp+0x20, rsp+0x24, rsp+0x28)` (`003224F6`..`0032251F`) — and returns `003A1960(&rsp+0x30, &rsp+0x20) <= [00D1081C]` via `comiss`/`setbe` (`0032252E`..`0032253C`): the bounded-distance availability test the manager's callers consume.
 

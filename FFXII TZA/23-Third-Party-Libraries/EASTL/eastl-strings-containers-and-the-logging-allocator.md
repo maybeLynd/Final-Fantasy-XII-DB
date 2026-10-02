@@ -184,7 +184,7 @@ Addresses are Ghidra image base `0x00120000`. Every row above is a function.
 ## 4. Data structures and formulas
 
 ```
-eastl::basic_string  -- 24 bytes, three pointers, NO inline buffer
+eastl::basic_string  -- 24 bytes, three pointers, NO inline buffer   <- corrected 2026-10-02, OPUS - 0x20 bytes: the three pointers and the allocator object at +0x18 (001600D0+0x1E..+0x3B: 01FD40D8 / 01FD40E0 / 01FD40E8, allocator 01FD40F0; 001FF740's stack temporary has the same shape)
   +0x00  ptr  begin
   +0x08  ptr  end            length == end - begin
   +0x10  ptr  capacity_end   capacity == capacity_end - begin
@@ -243,7 +243,7 @@ a vector of 16-byte elements.
 ```c
 allocator = eastl_allocator_memory_log_ctor("EASTL basic_string");
 begin = end = capacity_end = NULL;
-p = allocator->allocate(payloadLen + 1, 0);
+p = allocator->allocate(payloadLen + 1, 0);   /* <- corrected 2026-10-02, OPUS - only when payloadLen + 1 > 1 (001600D0+0x52 cmp eax, 1 / +0x55 jbe); an empty literal takes the shared sentinel 02EBA2E0 / 02EBA2E1 and allocates nothing */
 capacity_end = p + payloadLen + 1;
 begin = end = p;
 memmove(p, literal, payloadLen);
@@ -379,7 +379,7 @@ appear in the caller sets of Audio, Resource, Phyre and Script/VM documents alik
       BOUNDARY; `UQ-306` is SUPERSEDED as its duplicate. The version is stated only in EA's internal EASTL branch or the
       game's build configuration, neither of which ships. So this page names the line (the branch that carries
       `allocator_memory_log`) and not the number; the version is unanswered in fact. Pointer added 2026-09-30, OPUS.)*
-      ***NARROWED 2026-09-17 (FABLE): the image holds no version, and what it does hold bounds the line, not the number.** A scan of every printable run in the executable for `eastl` or `EASTL` finds exactly eight: the six allocator names `EASTL vector` (`007A4D58`), `EASTL set` (`007D2AB0`), `EASTL list` (`007D2AC0`), `EASTL map` (`007D2F20`), `EASTL basic_string` (`007D5400`) and `EASTL` (`01BB9C78`), and the two RTTI descriptors `.?AVallocator_memory_log@eastl@@` (`01E266F8`) and `.?AVallocator@eastl@@` (`01E5C900`). The six names are the headers' default allocator names, the `EASTL_*_DEFAULT_NAME` strings built from `EASTL_DEFAULT_NAME_PREFIX`, which the library has carried across its releases, so they do not pin a version. The class `eastl::allocator_memory_log` does not appear in the public EASTL releases (the 3.x line published from 2016), so the build's EASTL is an EA-internal branch rather than a public release, which is a reading of the public tree, not a claim the image makes. No assert message, macro string or `EASTL_VERSION` value is present, so the exact number is not in the image. *(The register's live id for this box is `BS-5`; `UQ-306` is its registered duplicate.)** ~~*(NO ADMISSIBLE SOURCE (lost build), reviewed and signed 2026-09-26 by OPUS; see the register row BS-5 (UQ-306 is its duplicate).)*~~ *OUT OF EVIDENCE BOUNDARY, 2026-09-27 (FABLE, Claude Opus 5.5): FRONTIER ruled that NO ADMISSIBLE SOURCE does not extend to a lost build artefact (batch-K Extension 2026-09-27b); OPUS's signature carries, on the same four conditions. See the register row BS-5.*
+      ***NARROWED 2026-09-17 (FABLE): the image holds no version, and what it does hold bounds the line, not the number.** A scan of every printable run in the executable for `eastl` or `EASTL` finds exactly eight: the six allocator names `EASTL vector` (~~`007A4D58`~~ `008C5F58`), `EASTL set` (~~`007D2AB0`~~ `008F3CB0`), `EASTL list` (~~`007D2AC0`~~ `008F3CC0`), `EASTL map` (~~`007D2F20`~~ `008F4120`), `EASTL basic_string` (~~`007D5400`~~ `008F6600`) and `EASTL` (~~`01BB9C78`~~ `01CDAE78`), and the two RTTI descriptors `.?AVallocator_memory_log@eastl@@` (~~`01E266F8`~~ `01F480F8`) and `.?AVallocator@eastl@@` (~~`01E5C900`~~ `01F7E300`) *(corrected 2026-10-02, OPUS: the struck values are file offsets - an `.rdata` image address is the file offset + `0x121200`, a `.data` one + `0x121A00`; each string read at its image address, as §10 and BS-2 cite them)*. The six names are the headers' default allocator names, the `EASTL_*_DEFAULT_NAME` strings built from `EASTL_DEFAULT_NAME_PREFIX`, which the library has carried across its releases, so they do not pin a version. The class `eastl::allocator_memory_log` does not appear in the public EASTL releases (the 3.x line published from 2016), so the build's EASTL is an EA-internal branch rather than a public release, which is a reading of the public tree, not a claim the image makes. No assert message, macro string or `EASTL_VERSION` value is present, so the exact number is not in the image. *(The register's live id for this box is `BS-5`; `UQ-306` is its registered duplicate.)** ~~*(NO ADMISSIBLE SOURCE (lost build), reviewed and signed 2026-09-26 by OPUS; see the register row BS-5 (UQ-306 is its duplicate).)*~~ *OUT OF EVIDENCE BOUNDARY, 2026-09-27 (FABLE, Claude Opus 5.5): FRONTIER ruled that NO ADMISSIBLE SOURCE does not extend to a lost build artefact (batch-K Extension 2026-09-27b); OPUS's signature carries, on the same four conditions. See the register row BS-5.*
 - [x] Whether `allocator_memory_log` actually logs anywhere, or whether the name is retained and the
       logging compiled out.
       *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (BS-6):* **it does not log; the logging is
@@ -417,18 +417,18 @@ initializers as *"all exactly 240 bytes"*, which was taken from the head of a si
 than from the distribution. The census gives **52 at 240 and 6 at 228**. Same defect shape as pass
 133's three overturns — a number correct for the rows actually looked at, generalised to the set.
 
-**Scope note.** This document covers the **72 functions in the bare-name `EASTL.*` tag family** — the
+**Scope note.** This document covers ~~the **72 functions in the bare-name `EASTL.*` tag family**~~ **72 of the bare-name `EASTL.*` tag family's 97 functions** *(answered: the inventory's §2, GN162 - the other 25 are `OrderedContainerRuntime` re-tags this page does not cover; 2026-10-02, OPUS)* — the
 ones that a `ThirdParty.*` census could not see, which is why the library was missing from
 [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) entirely until
 falsification pass 3. `001EDF00` is *not* in that family (it is tagged
 `Runtime.ContainerStringSupport`) and is documented here anyway, because it is the function that
 proves the library's identity.
 
-**Superseded readings:** none — this is the document's first version.
+**Superseded readings:** ~~none — this is the document's first version.~~ *(answered: three - §10's name correction of 2026-09-03, BS-4's mechanism and the 2026-09-30 capability correction; 2026-10-02, OPUS)*
 
 ## 9. Related
 
-- [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) — the census that missed this library; corrected to twelve libraries, 801 functions
+- [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) — the census that missed this library; corrected to twelve libraries, ~~801~~ 827 functions *(answered: the inventory's 2026-10-01 correction; 2026-10-02, OPUS)*
 - [`../Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md`](../Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md) — the other third-party mechanism document
 - [`../../22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md`](../../22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md) — uses **MSVC's** short-string idiom, deliberately contrasted in §6
 - [`../../24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md`](../../24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md) — the 58 initializers are contributors to that table

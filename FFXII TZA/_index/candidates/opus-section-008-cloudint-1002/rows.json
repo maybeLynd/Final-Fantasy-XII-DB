@@ -1,0 +1,64 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-008.md",
+ "date": "2026-10-02",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "report": "section-008.json",
+ "rows": [
+  {
+   "fn": "0034E9B0",
+   "text": "calls `00267E10(r9)` twice (results a, then b), calls `003DA330(002640C0(), b AND 0xFFFFFF, a)` and tail-jumps `0026B4E0(rcx, that result)`",
+   "anchors": [
+    [
+     "0034E9C8",
+     "call"
+    ],
+    [
+     "0034E9D2",
+     "call"
+    ],
+    [
+     "0034E9DE",
+     "and"
+    ],
+    [
+     "0034E9EC",
+     "call"
+    ],
+    [
+     "0034EA05",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034EDB0",
+   "text": "calls `00267F90(r9, -1)`, then `00267E10(r9)` twice (results a, then b), calls `003DA330(002640C0(), b AND 0xFFFFFF, a)` and tail-jumps `0026B4E0(rcx, that result)`",
+   "anchors": [
+    [
+     "0034EDCB",
+     "call"
+    ],
+    [
+     "0034EDD3",
+     "call"
+    ],
+    [
+     "0034EDE9",
+     "and"
+    ],
+    [
+     "0034EDF7",
+     "call"
+    ],
+    [
+     "0034EE10",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

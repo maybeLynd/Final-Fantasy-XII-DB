@@ -1,0 +1,85 @@
+files 10036 (all language copies); request-family operations by form: {'REQEW': 101398, 'REQSW': 27704, 'REQ': 197102, 'REQALL': 312870, 'REQWAITALL': 53310, 'REQIALL': 17253, 'REQCHG': 16956, 'sysreq': 675}
+sysreq-family verbs by footer slot operand (slot 1 = main): sysreq slot 11: 225, sysreq slot 14: 162, sysreq slot 2: 180, sysreq slot 7: 108
+resolution kinds: REQ/resolved 196634, REQ/self(getmyid)/resolved 234, REQ/unresolved 234, REQALL/resolved 312870, REQCHG/resolved 16956, REQEW/resolved 101380, REQEW/unresolved 18, REQIALL/resolved 17253, REQSW/resolved 27686, REQSW/unresolved 18, REQWAITALL/resolved 53310, sysreq/slot 675
+PASS R1 RC-12 Part B reproduces over the us copy: images 1,114, actors 26,390, footer k=1 -> main 6,765 | {'images': 1114, 'actors': 26390, 'main_k1': 6765}
+PASS R2 RC-13 REQCHG census reproduces over the us copy (1,884; slot 2:1804 3:14 4:8 5:8 16:24 17:26) | 1884 calls {16: 24, 17: 26, 2: 1804, 3: 14, 4: 8, 5: 8}
+PASS R3 the raw resolver's ACTOR::function agrees with the decompiler for constant REQ/REQSW/REQEW/REQCHG pairs (us copy, >= 99%) | 847 files; 38000 raw pairs, 38002 decompiled, 37928 agree (99.81%)
+PASS R4 the census finds commonly requested named functions (REQCHG -> talk*, logic_main, repos_main) | talk* via REQCHG 16047, logic_main 3555, repos_main 2232, any name containing 'main' other than main 5976 (all copies)
+PASS R5 synthetic REQ(1, director ordinal 0, function 1) in str_z0000 resolves to main | ('resolved', '監督', 'main', True, True)
+
+RESULT (b): requests whose target function is `main` (by name, or by the target's footer word k=1), all copies:
+  total 0 {}
+  unresolved single requests (REQ family, REQCHG), by what is not constant: REQ/function id constant/target not constant 234, REQEW/function id constant/target not constant 18, REQSW/function id not constant/target not constant 18
+  of these, a constant function id that is the index of some `main` in the same file (could be main): {'REQ': 18, 'REQEW': 9}
+  every unresolved single request in the us copy (file | issuer | site | form | function id | the six instructions before it | target = constant base + variable? | actors at ordinals >= base whose function at that id is `main`):
+    evt_t0081.ebp | Map_Debug_menu_mtanaka | 8232 | REQSW fid None | POPV:C PUSHII:0 CALLPOPA:23D PUSHII:1 PUSHACT:0 PUSHTAG:0 REQSW | no base | -
+    evt_t0081.ebp | Map_Debug_menu_mtanaka | 8335 | REQSW fid None | POPV:C PUSHII:1 CALLPOPA:23D PUSHII:1 PUSHACT:0 PUSHTAG:1 REQSW | no base | -
+    fon_b01.ebp | 監視くん | A320 | REQ fid 1 | UNK5C:4 PUSHII:3 PUSHII:1B PUSHV:66 OPADD PUSHII:1 REQ | base 27 | [(79, 'ヴァン')]
+    fon_b01.ebp | 監視くん | A347 | REQ fid 2 | UNK5C:7 PUSHII:4 PUSHII:1B PUSHV:66 OPADD PUSHII:2 REQ | base 27 | []
+    glf_a02.ebp | 監視くん | 6C70 | REQ fid 1 | UNK5C:4 PUSHII:3 PUSHII:D PUSHV:24 OPADD PUSHII:1 REQ | base 13 | []
+    glf_a02.ebp | 監視くん | 6C97 | REQ fid 2 | UNK5C:7 PUSHII:4 PUSHII:D PUSHV:24 OPADD PUSHII:2 REQ | base 13 | []
+    rbn_a01.ebp | 監視監督 | 14E78 | REQ fid 12 | UNK5C:65 PUSHII:3 PUSHII:1A PUSHV:38 OPADD PUSHII:C REQ | base 26 | []
+    rbn_a01.ebp | 監視監督 | 14E9A | REQ fid 13 | UNK5C:68 PUSHII:4 PUSHII:1A PUSHV:38 OPADD PUSHII:D REQ | base 26 | []
+    rbn_a01.ebp | 監視監督 | 15014 | REQ fid 12 | UNK5C:8C PUSHII:3 PUSHII:1A PUSHV:38 OPADD PUSHII:C REQ | base 26 | []
+    rbn_a01.ebp | 監視監督 | 15036 | REQ fid 13 | UNK5C:8F PUSHII:4 PUSHII:1A PUSHV:38 OPADD PUSHII:D REQ | base 26 | []
+    rbn_a02.ebp | 監視監督 | 19EAF | REQ fid 11 | UNK5C:7A PUSHII:4 PUSHV:30 PUSHI0 OPADD PUSHII:B REQ | no base | -
+    rbn_a02.ebp | 監視監督 | 19EC9 | REQ fid 10 | UNK5C:7D PUSHII:3 PUSHV:30 PUSHI0 OPADD PUSHII:A REQ | no base | -
+    rbn_a02.ebp | 監視監督 | 19F3B | REQ fid 11 | UNK5C:87 PUSHII:4 PUSHV:30 PUSHI0 OPADD PUSHII:B REQ | no base | -
+    rbn_a02.ebp | 監視監督 | 19F55 | REQ fid 10 | UNK5C:8A PUSHII:3 PUSHV:30 PUSHI0 OPADD PUSHII:A REQ | no base | -
+    rbn_a03.ebp | 監視監督 | 1CAA8 | REQ fid 10 | UNK5C:70 PUSHII:4 PUSHV:3A PUSHI0 OPADD PUSHII:A REQ | no base | -
+    rbn_a03.ebp | 監視監督 | 1CAC2 | REQ fid 9 | UNK5C:73 PUSHII:3 PUSHV:3A PUSHI0 OPADD PUSHII:9 REQ | no base | -
+    rbn_a04.ebp | 監視監督 | 1AEBF | REQ fid 16 | PUSHII:3 PUSHII:3A PUSHI0 OPADD PUSHII:10 INCINITTAG:0 REQ | no base | -
+    rbn_a04.ebp | 監視監督 | 1AED5 | REQ fid 16 | PUSHI0 PUSHII:1 OPSUB OPADD PUSHII:10 INCINITTAG:0 REQ | no base | -
+    rbn_a04.ebp | 監視監督 | 1AEF7 | REQ fid 15 | UNK5C:3B PUSHII:2 PUSHII:3A PUSHI0 OPADD PUSHII:F REQ | no base | -
+    rbn_a04.ebp | 監視監督 | 1AF0A | REQ fid 15 | PUSHII:19 PUSHI0 PUSHII:1 OPSUB OPADD PUSHII:F REQ | no base | -
+    rbn_b01.ebp | 監視監督 | 17F78 | REQEW fid 2 | UNK5C:A PUSHII:3 PUSHII:10 PUSHV:22 OPADD PUSHII:2 REQEW | base 16 | [(47, 'DeathGazeFamily_Papa'), (48, 'DeathGazeFamily_Mama'), (49, 'DeathGazeFamily_Boya')]
+    rbn_b01.ebp | 監視監督 | 17F9A | REQEW fid 3 | UNK5C:D PUSHII:4 PUSHII:10 PUSHV:22 OPADD PUSHII:3 REQEW | base 16 | []
+    slm_a01.ebp | 配置監視監督 | 1915F | REQ fid 2 | UNK5C:3B7 PUSHII:3 PUSHII:21 PUSHV:35 OPADD PUSHII:2 REQ | base 33 | []
+    slm_a01.ebp | 配置監視監督 | 19181 | REQ fid 3 | UNK5C:3BA PUSHII:4 PUSHII:21 PUSHV:35 OPADD PUSHII:3 REQ | base 33 | []
+    slm_a02.ebp | 配置監視監督 | 1BB84 | REQ fid 14 | UNK5C:EC PUSHII:3 PUSHII:1A PUSHV:56 OPADD PUSHII:E REQ | base 26 | []
+    slm_a02.ebp | 配置監視監督 | 1BBA6 | REQ fid 15 | UNK5C:EF PUSHII:4 PUSHII:1A PUSHV:56 OPADD PUSHII:F REQ | base 26 | []
+    slm_a02.ebp | 配置監視監督 | 1BC47 | REQ fid 2 | UNK5C:FC PUSHII:3 PUSHII:26 PUSHV:56 OPADD PUSHII:2 REQ | base 38 | []
+    slm_a02.ebp | 配置監視監督 | 1BC69 | REQ fid 3 | UNK5C:FF PUSHII:4 PUSHII:26 PUSHV:56 OPADD PUSHII:3 REQ | base 38 | []
+    slm_a02.ebp | 配置監視監督 | 1BD00 | REQ fid 2 | UNK5C:10E PUSHII:3 PUSHII:2C PUSHV:56 OPADD PUSHII:2 REQ | base 44 | []
+    slm_a02.ebp | 配置監視監督 | 1BD22 | REQ fid 3 | UNK5C:111 PUSHII:4 PUSHII:2C PUSHV:56 OPADD PUSHII:3 REQ | base 44 | []
+  requests issued inside the six files, by form and resolution (all copies):
+    enw_a0580.ebp    REQEW      resolved               36
+    enw_a0580.ebp    REQIALL    resolved               225
+    enw_a0580.ebp    REQSW      resolved               72
+    enw_a0580.ebp    REQWAITALL resolved               225
+    mnt_c0100.ebp    REQ        resolved               360
+    mnt_c0100.ebp    REQALL     resolved               324
+    mnt_c0100.ebp    REQEW      resolved               9
+    rwf_d0100.ebp    REQ        resolved               234
+    rwf_d0100.ebp    REQALL     resolved               72
+    rwf_d0101.ebp    REQ        resolved               198
+    rwf_d0101.ebp    REQALL     resolved               144
+    rwg_a0181.ebp    REQ        resolved               18
+    rwg_a0181.ebp    REQALL     resolved               90
+    str_z0000.ebp    REQ        resolved               225
+    str_z0000.ebp    REQEW      resolved               36
+  requests inside the six files that TARGET the counter's actor, by function (all copies):
+  unresolved or other-manager requests inside the six files: 0
+
+PART (d): function ids the engine files from the image itself (all copies)
+  spawn-table items read (lists entry, spawn, talk, touch, respawn): {0: 72612, 1: 72612, 2: 522, 3: 0, 4: 72612}; setup spawn-order lists 5591 with 44728 ids
+  footer words k != 1, spawn-table items and setup spawn-order ids that name `main`: 0
+  enw_a0580  読込監督   functions ['init', 'main']; footer {1: 'main'}; spawn table [[], [], [], [], []]
+  mnt_c0100  監督     functions ['init', 'main']; footer {1: 'main'}; spawn table [[], [], [], [], []]
+  rwf_d0100  監督     functions ['init', 'main']; footer {1: 'main'}; spawn table [[], [], [], [], []]
+  rwf_d0101  監督     functions ['init', 'main']; footer {1: 'main'}; spawn table [[], [], [], [], []]
+  rwg_a0181  監督     functions ['init', 'main']; footer {1: 'main'}; spawn table [[], [], [], [], []]
+  str_z0000  監督     functions ['init', 'main']; footer {1: 'main'}; spawn table [[], [], [], [], []]
+PASS D1 for the six actors, function 0 (filed by index at record start, 00266957) is not `main` in any copy | []
+PASS D2 the spawn-table walk is aligned: in the us copy the commonest item of lists 0 / 1 / 2 / 4 is entry* / spawn* / btalk* / respawn* (00263D40's selectors entry, spawn, talk, touch, respawn) | {0: 'entry00', 1: 'spawn00', 2: 'btalk00', 3: None, 4: 'respawn00'}
+
+PART (c): function entries of each counter actor from which an increment of the counter is reachable (whole-actor CFG, all copies)
+  enw_a0580  読込監督   class1+0xe98   increments 13; functions 2; entries reaching an increment: ['main']
+  mnt_c0100  監督     class1+0x13    increments 8; functions 2; entries reaching an increment: ['main']
+  rwf_d0100  監督     class1+0x13    increments 5; functions 2; entries reaching an increment: ['main']
+  rwf_d0101  監督     class1+0x13    increments 3; functions 2; entries reaching an increment: ['main']
+  rwg_a0181  監督     class1+0x20    increments 1; functions 2; entries reaching an increment: ['main']
+  str_z0000  監督     class1+0x2a    increments 1; functions 2; entries reaching an increment: ['main']
+PASS C-entry in all 54 copies only `main`'s entry reaches the counter's increments | 54 actor copies
+
+FAILS 0 []

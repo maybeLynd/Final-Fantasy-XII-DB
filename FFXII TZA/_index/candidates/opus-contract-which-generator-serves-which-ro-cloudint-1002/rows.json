@@ -1,0 +1,38 @@
+{
+ "page": "21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md",
+ "date": "2026-10-02",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "report": "contract-which-generator-serves-which-roll.json",
+ "rows": [
+  {
+   "fn": "004005E0",
+   "text": "when dword `022D9138` is zero takes 1.0 (`01CEBBA8`); otherwise replaces dword `01EF93E8` (x) with ((x AND `0x3FFFFF`) OR `0x1FC00000`) shifted left by one, ORed with bit 4 of (x XOR (x >> 18)), and takes the new dword as a float; stores the taken float at `022D92E0`, copies the 16 bytes at `022D92E0` to `022D8F90`, and returns the float minus 1.0",
+   "anchors": [
+    [
+     "004005EF",
+     "jne"
+    ],
+    [
+     "00400603",
+     "and"
+    ],
+    [
+     "00400617",
+     "mov"
+    ],
+    [
+     "00400634",
+     "movups"
+    ],
+    [
+     "00400647",
+     "subss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -1,7 +1,7 @@
 ---
 system: Actor script requests from arming through start and return notification
 category: 01-Script-VM-Native-Bridge
-status: PARTIAL
+status: PARTIAL — OV-10 stays open (the remaining reachability observation is runtime, carried by FABLE-REQ-ASTRA-RT-REMAINDERS-0929; the authored bounds and recovery policy are answered at ov10-request-bounds-fable) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 owner_layer: Actor request scheduling and ScriptVM execution
 evidence_tier: 1
 verified_against:
@@ -179,7 +179,7 @@ The behavioural results are SECTION-12's executed controls and are not re-run.
 | # | Clause attacked | Result |
 |---|---|---|
 | A0 | §1 the gate reads the ISSUER's +02 and +10 | **survives**: `r15` is `rdx`, the issuer argument (`00268883`). `002689F0`/`002689F7` test its `+02 == 1` and `+10 == 0`, not the target in `rbx`, and a pass inserts the target through `003DB790` |
-| A1 | §2 start selection | **survives**: the slot is `[actor+0xA8] + byte[entry+0x11]·0x28`; `0025D460` resets it; PC = `[actor+0x58]` + `00358A00`'s offset |
+| A1 | §2 start selection | **survives**: the slot is `[actor+0xA8] + ~~byte[entry+0x11]~~ sx(byte[actor+0x11])·0x28` *(corrected 2026-10-02, OPUS: `003DBDD4 movsx rax, byte ptr [rcx + 0x11]` with `rcx` the actor (`003DBDE7 mov rax, [rcx + 0xa8]`); the entry is `rsi`, whose `+0x11` is the run state written 3 at `003DBE68`)*; `0025D460` resets it; PC = `[actor+0x58]` + `00358A00`'s offset |
 | A2 | §2 "the reset covers +00..16 only" | **survives**: `0025D460` stores a qword, a qword, a dword, a word and a byte (`+0x00`..`+0x16`) and nothing else |
 | A3 | §4 the notification key | **survives, made exact**: `003DC050` walks the detached list from byte `[actor+0x61]` over `0x14`-byte entries at `[actor+0xA0]`, and matches dword `[entry+0xC]` and sbyte `[entry+2]`. No generation token is involved. The walk is **also bounded by byte `[actor+0x89]`**, which §4 did not state. Its counter is compared before it is incremented, so at most `byte[actor+0x89] + 2` entries are examined before it reports "not found" (`0xFF`) |
 | A4 | §7 the list-wait producers | **survives**: kind 7 through `mov word ptr [rsi+0x14], 0x107` at `00261B97`; kind 5 at `00261D24` after `002674B0` |

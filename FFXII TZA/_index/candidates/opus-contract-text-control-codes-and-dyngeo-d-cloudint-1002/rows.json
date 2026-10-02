@@ -1,0 +1,56 @@
+{
+ "page": "16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "contract-text-control-codes-and-dyngeo-draw.json",
+ "rows": [
+  {
+   "fn": "001E0C30",
+   "text": "calls `00796E20()` and tail-jumps to `00225680` with `rcx` replaced by qword `+0xDF8` of that result, leaving `rdx`, `r8` and `r9` as passed in",
+   "anchors": [
+    [
+     "001E0C34",
+     "call"
+    ],
+    [
+     "001E0C39",
+     "mov"
+    ],
+    [
+     "001E0C44",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00214890",
+   "text": "tail-jumps through `rdx`'s vtable slot `+0x118` with `rcx` = `rdx`, both `edx` and `r9d` set to the zero-extended low byte of `r8`, and `r8d` = 0",
+   "anchors": [
+    [
+     "00214893",
+     "movzx"
+    ],
+    [
+     "00214897",
+     "mov"
+    ],
+    [
+     "0021489A",
+     "xor"
+    ],
+    [
+     "0021489D",
+     "movzx"
+    ],
+    [
+     "002148A1",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

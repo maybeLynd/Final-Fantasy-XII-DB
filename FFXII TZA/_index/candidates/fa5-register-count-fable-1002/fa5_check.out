@@ -1,0 +1,9 @@
+PASS  C0 control: memset size 0x140  | 003848EF  41b840010000                   mov r8d, 0x140
+PASS  L1 r8 = -1  | 003848FA  4983c8ff                       or r8, 0xffffffffffffffff
+PASS  L2 counter = r8 + 0x21 (= 32)  | 00384925  418d5021                       lea edx, [r8 + 0x21]
+PASS  L3 dword array from +0x5C  | 003848FE  488d4b5c                       lea rcx, [rbx + 0x5c]
+PASS  L4 word array from +0xDC  | 00384916  488d83dc000000                 lea rax, [rbx + 0xdc]
+PASS  L5 one decrement per iteration  | 0038495F  4883ea01                       sub rdx, 1
+PASS  L6 loop back while nonzero  | 00384963  75eb                           jne 0x384950
+count = -1 + 0x21 = 32
+FAILS 0

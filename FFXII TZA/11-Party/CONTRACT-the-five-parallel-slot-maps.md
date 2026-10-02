@@ -57,7 +57,7 @@ returning a byte. The five maps live in the battle-state block reached through t
   +0x5A6C  u16[9]   map 2    |  an empty selector is 0xFFFF
   +0x5A7E  u16[9]   map 3    |
   +0x5A90  u16[9]   map 4   /
-  +0x5AA4  u32      the source table's first byte — NOT part of any map (SM-8)
+  +0x5AA4  u32      the source table's first byte — NOT part of any map (SM-8)   <- corrected 2026-10-02, OPUS - answered: the preferred definition selector, the party leader (the field map's +0x5AA4 row)
 ```
 
 ## 4. Preconditions · postconditions · invariants
@@ -220,7 +220,7 @@ a map with a high byte set and assert the resolver returns only the low byte (`S
 
 ## 13. Runtime validation
 
-**None.** No experiment executes this body. S-28's runtime cell is not addressed by this contract.
+~~**None.** No experiment executes this body.~~ *(answered: the resolver is not executed, but the initialiser and both removers were — OPUS blocks 338 and 340, SM-4 and SM-7; 2026-10-02, OPUS)* S-28's runtime cell is not addressed by this contract.
 *Stated rather than left blank so a CONTRACT READY header is not read as evidence of execution.*
 
 ## 14. Unresolved
@@ -237,19 +237,19 @@ a map with a high byte set and assert the resolver returns only the low byte (`S
 - ~~**What the five classes MEAN.**~~ — **resolved 2026-09-23 (SWE2-CONTRACT) at the mechanism level:
   class 0 is the live map and classes 1–4 are four frozen snapshots of it.** The writer census
   proves the asymmetry: `00329CC0` rebuilds **map 0** slot-by-slot from the authored selector
-  table at `0x01EC9260` (nine slots, each gated through `00322C50` kinds `0x17`/`2`, resolving
+  table at ~~`0x01EC9260`~~ `01EED260` *(corrected 2026-10-02, OPUS: `00329CE1`, `00329DBB`; nothing references `01EC9260` — the item above)* (nine slots, each gated through `00322C50` kinds `0x17`/`2`, resolving
   `block[0x5A48 + i*2]` selectors into `id*0x1C8` unit records), then writes `block+0x5AA4` and
   copies map 0 **verbatim into maps 1, 2, 3 and 4** (`movups` + word-tail sweep at
-  `00329DF6`–`00329E27`). The only other map write is `003290BD`, which mutates **map 0 only**
+  `00329DF6`–`00329E27`). The only other map write is ~~`003290BD`~~ `00329080` *(corrected 2026-10-02, OPUS: `003290BD` is an instruction inside `00329080`; its stores are `00329122` and `00329176`)*, which mutates **map 0 only**
   (indexed `[block + i*2 + 0x5A48]` selector stores at `00329122`/`00329176`). So through every
-  displacement-addressed route maps 1–4 receive bytes nowhere else — they are the same snapshot
-  taken at the last refresh, permanently identical to each other, diverging from map 0 only when
-  `003290BD` runs (the `003266DB` caveat is item 2's). Call-site census: literal classes
+  displacement-addressed route maps 1–4 ~~receive bytes nowhere else — they are the same snapshot~~
+  ~~taken at the last refresh, permanently identical to each other, diverging from map 0 only when~~
+  ~~`003290BD` runs (the `003266DB` caveat is item 2's).~~ *(corrected 2026-10-02, OPUS: the refresher `003266C0` writes maps 1–4 through `rdi` and its mode arms make them differ — SM-5, CON-169, CON-170)* Call-site census: literal classes
   used are **0** (`0030FD44`'s `xor`, `002738B8`'s), **1** (direct `0030A707`, plus
-  `002F8C4E`/`0030C337`/`00311A17`), **2** (one site, `0035BDBE`), and **3** (the dominant class —
-  ~19 sites through wrappers `00320AB0`/`00320040`, which forward `edx`/`ecx` respectively);
-  **class 4 has no literal call site** — reachable only through computed `edx` at `0030A804` and
-  the `0050FD1A` family. What the class byte *is* semantically (which roster generation a caller
+  `002F8C4E`/`0030C337`/~~`00311A17`~~ the status function's call *(corrected 2026-10-02, OPUS; address in FABLE's record readiness-apply-fable-1002)*), **2** (one site, `0035BDBE`), and **3** (the dominant class —
+  ~19 sites *(corrected 2026-10-02, OPUS: 24 — 20 through `00320AB0`, one of them after `0050FF39 mov ebx, 3`, and 4 through `00320040`)* through wrappers `00320AB0`/`00320040`, which forward `edx`/`ecx` respectively);
+  **class 4 has no literal call site** — reachable only through computed `edx` at `0030A804` ~~and~~
+  ~~the `0050FD1A` family~~ *(corrected 2026-10-02, OPUS: `0050FD15 mov edx, 3` and its siblings pass class 3)*. What the class byte *is* semantically (which roster generation a caller
   intends) stays open — but structurally classes 1–4 read the same frozen bytes.
 - ~~Whether any write reaches maps 1–4 through a computed pointer.~~ — **answered (2026-09-29, OPUS falsification pass 1, `CON-170`):
   yes, and it is the refresher itself. `003266DB` is not a separate handler.**
@@ -265,14 +265,14 @@ a map with a high byte set and assert the resolver returns only the low byte (`S
   (SWE2-CONTRACT): the route exists in exactly one body, and whether it ever targets the block
   is the residual.**~~ A whole-`.pdata` census of displacement-addressed writes in `[0x5A48,
   0x5AA4)` finds exactly **two** writers: `00329CC0`'s unindexed `movups` sweep into all of maps
-  1–4, and `003290BD`'s indexed writes into map 0 only. But one registered handler escapes that
-  census: `003266DB` (dispatched via `.rdata` records — two identical `{rva32, aux}` slots — no
-  direct caller) shuffles a **caller-supplied five-map record** with the identical `0x12` stride
-  layout (`[rdi]`→`[rdi+0x12]`, `[rdi]`→`[rdi+0x36]`, `[rdi+0x12]`→`[rdi+0x24]`/`+0x48`) while
-  reading the *block's* map-0/`+0x5AA4` through `*(02EBF190)`. If the dispatch machinery ever
-  hands it `block+0x5A48`, its writes land in the block's maps 1–4 — the computed-pointer write
-  the item asks about. What record the dispatch hands it is a runtime-identity question the image
-  does not answer. Everything else is closed: all indexed `[reg + i*2 + 0x5A4x]` writes land in
+  1–4, and ~~`003290BD`'s~~ `00329080`'s indexed writes into map 0 only. ~~But one registered handler escapes that~~
+  ~~census: `003266DB` (dispatched via `.rdata` records — two identical `{rva32, aux}` slots — no~~
+  ~~direct caller) shuffles a **caller-supplied five-map record** with the identical `0x12` stride~~
+  ~~layout (`[rdi]`→`[rdi+0x12]`, `[rdi]`→`[rdi+0x36]`, `[rdi+0x12]`→`[rdi+0x24]`/`+0x48`) while~~
+  ~~reading the *block's* map-0/`+0x5AA4` through `*(02EBF190)`. If the dispatch machinery ever~~
+  ~~hands it `block+0x5A48`, its writes land in the block's maps 1–4 — the computed-pointer write~~
+  ~~the item asks about. What record the dispatch hands it is a runtime-identity question the image~~
+  ~~does not answer.~~ *(corrected 2026-10-02, OPUS: `003266DB` is `mov qword ptr [rsp + 0x68], r12` inside `003266C0`, the `.rdata` records are its unwind data, and `003290BD` is an instruction inside `00329080` — the answer above, CON-170)* Everything else is closed: all indexed `[reg + i*2 + 0x5A4x]` writes land in
   map 0, and all map-1–4 reads are `movzx`/`cmp`.
 
 ## 15. Evidence
@@ -284,8 +284,8 @@ a map with a high byte set and assert the resolver returns only the low byte (`S
 | `SM-3` — class 23, and the arm is live | `0031BA04` read at its `lea`; the liveness from this session's measurement that the binder installs class 23's slot and installs nothing into `02EBF0D0` | 1 |
 | `SM-5` — the copy order | `00326714`–`0032674B` read in sequence, with the clear at `00326728` shown to fall **between** the map-3 copy and the map-2/4 copies | 1 |
 | `SM-4`, `SM-6`, `SM-7`, `SM-8` | [the slot-maps page](the-five-parallel-slot-maps.md), falsified 2026-09-03 and corrected 2026-09-14 | 1 |
-| ~~maps 1–4 are verbatim snapshots of map 0, refreshed by `00329CC0` and otherwise unwritten~~ **corrected: `00329CC0` copies map 0 into maps 1–4, and the refresher `003266C0` then rewrites them (`CON-170`; `falsify_slot_maps.py` K1, K2)** | writer census over all `.pdata` bodies 2026-09-23: `00329CC0` copies map 0 into maps 1–4 at `00329DF6`–`00329E27` after rebuilding map 0 from the selector table `0x01EC9260`; `003290BD` writes map 0 only; `003266DB` (dispatch-registered, no direct caller) writes a same-layout record through caller-supplied `rdi` | 1 |
-| literal resolver classes are {0,1,2,3}; class 4 has no literal call site | call-graph census of `0031B9F0` and its three wrappers (`0031FE70`/`00320040` swap ecx↔edx; `00320AB0` forwards unchanged): class 3 dominant (~19 sites), class 1 ×4, class 0 ×2, class 2 ×1 (`0035BDBE`); class 4 only via computed `edx` | 1 |
+| ~~maps 1–4 are verbatim snapshots of map 0, refreshed by `00329CC0` and otherwise unwritten~~ **corrected: `00329CC0` copies map 0 into maps 1–4, and the refresher `003266C0` then rewrites them (`CON-170`; `falsify_slot_maps.py` K1, K2)** | writer census over all `.pdata` bodies 2026-09-23: `00329CC0` copies map 0 into maps 1–4 at `00329DF6`–`00329E27` after rebuilding map 0 from the selector table ~~`0x01EC9260`~~ `01EED260`; ~~`003290BD`~~ `00329080` writes map 0 only; ~~`003266DB` (dispatch-registered, no direct caller) writes a same-layout record through caller-supplied `rdi`~~ *(corrected 2026-10-02, OPUS: `00329CE1`/`00329DBB` address `01EED260`; `003290BD` and `003266DB` are instructions inside `00329080` and `003266C0` — CON-170)* | 1 |
+| literal resolver classes are {0,1,2,3}; class 4 has no literal call site | call-graph census of `0031B9F0` and its three wrappers (`0031FE70`/`00320040` swap ecx↔edx; `00320AB0` forwards unchanged): class 3 dominant (~19 sites *(corrected 2026-10-02, OPUS: 24 constant sites, and class 4's one computed site is `0030A804`, of 32)*), class 1 ×4, class 0 ×2, class 2 ×1 (`0035BDBE`); class 4 only via computed `edx` | 1 |
 
 ## 16. Parity plan
 

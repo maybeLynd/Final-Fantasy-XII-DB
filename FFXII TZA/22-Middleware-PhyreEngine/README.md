@@ -5,13 +5,13 @@
 | | |
 |---|---|
 | Classification source | CodeDomain: Phyre.* |
-| Functions | 6,768 |
+| Functions | ~~6,768~~ 6,769 *(corrected 2026-10-02, OPUS: the per-function class map `Subsystem-Map/members/phyre-function-class-map.tsv` has 6,769 rows; 6,768 is the GN161 snapshot, before `00180A70` was classified; the ledger `Tools/work/graph/functions.tsv` tags 6,771 today, `005A7BF0` and `0067F9D0` added after the map)* |
 | Status | see [`../_index/COVERAGE.md`](../_index/COVERAGE.md) |
 
 ## Systems in this category
 
 - [`The-Frame/what-happens-between-two-frames.md`](The-Frame/what-happens-between-two-frames.md) —
-  **DOCUMENTED, tier 1, crossref-clean.** The category's second framing correction, and a larger one:
+  ~~**DOCUMENTED, tier 1, crossref-clean.**~~ **AUDITED, tier 1, crossref-clean.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The category's second framing correction, and a larger one:
   the frame runs from Phyre's slot 4 into a **seven-mode dispatch** on one byte, and what it draws with
   is **a PlayStation 2 Graphics Synthesizer GIF command stream** — verified GIFtag, GS register numbers
   and field layouts — handed to a separate graphics thread. **Phyre owns the shell, not the pixels.**
@@ -19,10 +19,10 @@
   from markers the linker disguised as CFG checks, and the nine-bit render-pass enable mask.
 
 - [`Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md`](Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md) —
-  **DOCUMENTED, tier 1.** 4,557 functions (1 in 8 in the whole binary) that describe the game's
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* 4,557 functions (1 in 8 in the whole binary) that describe the game's
   own C++ classes to itself. Includes a proof that **a body-bytes SHA-256 cannot detect clones**.
 - [`Application-Framework-Boundary/the-game-is-a-phyre-application.md`](Application-Framework-Boundary/the-game-is-a-phyre-application.md) —
-  **DOCUMENTED, tier 1, one falsification pass.** The category's framing correction: FFXII does not
+  ~~**DOCUMENTED, tier 1, one falsification pass.**~~ **AUDITED, tier 1, one falsification pass.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The category's framing correction: FFXII does not
   *use* PhyreEngine, it **is** a PhyreEngine application. `GameApplication` derives from
   `Phyre::PFramework::PApplication` — 31 slots, **18 overridden, 13 inherited** — so the frame
   tick, the `FFXII_TZA.vbf` mount and the input pump are game code filling middleware slots.
@@ -30,7 +30,7 @@
   the other way.**
 
 - [`Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md`](Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md) —
-  **DOCUMENTED, tier 1, one falsification pass.** The engine's own field list, read back out:
+  ~~**DOCUMENTED, tier 1, one falsification pass.**~~ **AUDITED, tier 1, one falsification pass.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The engine's own field list, read back out:
   **680 fully-resolved field records over 246 named classes**, each with a **real byte offset** —
   `VPLight`, `VPMeshInstance`, `VPNode` and `VPPhysicsRigidBodyBase` recovered in full. Answers
   **BJ-4**, whose premise was wrong: there is no type-id constant. **680 of the 682 registrations
@@ -43,7 +43,7 @@
   and a retracted false negative.
 
 - [`Script-Object-Accessors/phyre-script-object-accessors.md`](Script-Object-Accessors/phyre-script-object-accessors.md) —
-  **DOCUMENTED, tier 2.** **747 functions named in one pass** — generated
+  ~~**DOCUMENTED, tier 2.**~~ **AUDITED, tier 2.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* **747 functions named in one pass** — generated
   `PObjectAccessor<T>::Get` instantiations, all from one header, that type-check objects handed
   over by Lua before the engine touches them. Carries a **GFZ audit: precision 100 %, recall 79 %**.
 
@@ -62,12 +62,27 @@
   are compiled in and inert — the game renders its own. Names the eleven `0065xxxx` bodies that are
   the largest block of `UQ-289`, and joins the post-effect classes to the shader-variant key.
 
+- [`Subsystem-Map/phyre-subsystem-map.md`](Subsystem-Map/phyre-subsystem-map.md) — **DOCUMENTED**
+- [`Subsystem-Map/the-fifteen-modules-registered-before-main.md`](Subsystem-Map/the-fifteen-modules-registered-before-main.md) — **AUDITED**
+- [`the-camera-state-snapshot.md`](the-camera-state-snapshot.md) — **DOCUMENTED**
+- [`Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md`](Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md) — **AUDITED**
+- [`Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md`](Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md) — **CONTRACT READY**
+- [`Phyre-Asset-Container/the-packed-namespace-and-the-file-side-schema.md`](Phyre-Asset-Container/the-packed-namespace-and-the-file-side-schema.md) — **AUDITED**
+- [`Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md`](Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md) — **CONTRACT READY**
+- [`Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md`](Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md) — **CONTRACT READY**
+- [`Reflection-And-Class-Metadata/how-a-class-registers-its-array-members-and-annotations.md`](Reflection-And-Class-Metadata/how-a-class-registers-its-array-members-and-annotations.md) — **AUDITED**
+- [`Reflection-And-Class-Metadata/phyre-class-instance-sizes-and-alignments.md`](Reflection-And-Class-Metadata/phyre-class-instance-sizes-and-alignments.md) — **DOCUMENTED**
+- [`Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md`](Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md) — **AUDITED**
+- [`Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md`](Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md) — **AUDITED**
+- [`Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md`](Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md) — **DOCUMENTED**
+- *(corrected 2026-10-02, OPUS: fourteen pages this list omitted, added with the status each page's own front matter states)*
+
 **Composition of this category** (by CodeDomain tag): Reflection 4,557 · ScriptVM 1,219 ·
-Middleware 347 · Rendering 287 · PostProcessing 72 · Physics 70 · Animation 69 · SceneCamera 22 ·
+Middleware 347 · Rendering ~~287~~ 288 *(corrected 2026-10-02, OPUS: the ledger tags 288 `CodeDomain.Phyre.Rendering` functions, `00180A70` included; 287 is the GN161 count)* · PostProcessing 72 · Physics 70 · Animation 69 · SceneCamera 22 ·
 Framework 19 · Serialization 18 · Geometry 14 · Threading 13 · remaining 61.
 
 **Highest-leverage task in the whole database:** the EXE ships roughly 2,350 RTTI `type_info` class markers (`.?AV` x2297, `.?AU` x53) mangled with `...@Phyre@@`. Recovering `address -> class -> method` would name most of this category mechanically. Use `DumpMsvcVtableRtti.java`, or a scripted COL walk on LIEF. Tracked as open question **B-3**.
-*Status 2026-09-26 (FABLE, Claude Opus 5.5): done. **B-3** is ANSWERED: the recovered class set was applied on 2026-09-02 as the vtable method index. What remains is per-function placement, **AQ-2** (PARTIAL: 4,515 of the 6,769 `CodeDomain:Phyre` functions placed on a class by vtable evidence), and the linker-folded bodies that carry no single class, **BA-1**.*
+*Status 2026-09-26 (FABLE, Claude Opus 5.5): done. **B-3** is ANSWERED: the recovered class set was applied on 2026-09-02 as the vtable method index. What remains is per-function placement, **AQ-2** (~~PARTIAL~~ SUPERSEDED as a population statement *(answered: see Subsystem-Map/phyre-subsystem-map.md, the AQ-2 box, 2026-09-29; 2026-10-02, OPUS)*: 4,515 of the 6,769 `CodeDomain:Phyre` functions placed on a class by vtable evidence), and the linker-folded bodies that carry no single class, **BA-1**.*
 
 ## How to add a system here
 

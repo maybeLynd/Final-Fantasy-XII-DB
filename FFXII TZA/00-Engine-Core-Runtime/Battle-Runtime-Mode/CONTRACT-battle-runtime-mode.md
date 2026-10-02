@@ -71,7 +71,7 @@ wrapper loses the site that does not use it.
 | `*(void **)0x02EBF190` | 8 | the `BattleSystemState` block — a **runtime state block, not an authored table**, and the single registry slot that broke the authored-table document's *"every authored number"* claim |
 | `state + 0x5B04` | 4 | **the mode flags word.** Only bits 0–3 are consulted |
 | `state + 0x5B08` | 4 | cleared with it by the reset; not read by the ladder |
-| `state + 0x5AE0` | 8 | the special-sequence word; bit 1 and bits 2–3 are touched by the bit-1 setter |
+| `state + 0x5AE0` | ~~8~~ 4 *(corrected 2026-10-02, OPUS: every access is a dword or a byte, e.g. `00304060+0xD1` `or dword [rax+0x5AE0], 1`, `00304440+0xB` `test byte [rax+0x5AE0], 1`; never a qword)* | the special-sequence word; bit 1 and bits 2–3 are touched by the bit-1 setter |
 | `state + 0x5AE4` | 4 | float, written `0x43340000` = **180.0f** when the chocobo bit is set — the ride time |
 | `state + 0x5AEC` | 4 | zeroed when the chocobo bit is cleared |
 | `*(void **)0x02ADD100` | 8 | the field-record table the bit-15 predicate reads; `+0x04` is its count |
@@ -109,10 +109,10 @@ a documented side-effect set (§7).
 
 ## 5. Relationships
 
-**Callers of the ladder:** `PartyControl_RecomputeSuppressionFromLeaderBattleState` (`0023B040`),
-`InputGameplay_ArbitrateDigitalInputAndModalState` (`00253C70`), `BattleUnit_ApplyUnitDefinition`
-(`0023A570`), `BattleGroup_RefreshFourActorDefinitions` (`003266C0`), `00235EA0`, `00320230`,
-`0035BC50`, `00313DB0` (inline), and the two mode getters.
+**Callers of the ladder:** ~~`PartyControl_RecomputeSuppressionFromLeaderBattleState` (`0023B040`),~~
+~~`InputGameplay_ArbitrateDigitalInputAndModalState` (`00253C70`), `BattleUnit_ApplyUnitDefinition`~~
+~~(`0023A570`),~~ `BattleGroup_RefreshFourActorDefinitions` (`003266C0`), ~~`00235EA0`, `00320230`,~~
+~~`0035BC50`,~~ `00313DB0` (inline), and the two mode getters. *(corrected 2026-10-02, OPUS: `0023B040`, `00253C70`, `0023A570`, `00235EA0`, `00320230` and `0035BC50` call the wrapper `00303EC0`, which calls the ladder at `00303EC0+0x4` and answers `mode == 2`; the ladder's own 22 direct call sites are in 21 functions from `002FFCF0` to `003266C0`)*
 
 **Callee:** `FieldData_GetActiveFieldRecordBit15` (`00377C20`), which itself calls `003148F0` —
 whose result is used as the row index and whose body is **not read here** — and reads the table
@@ -441,7 +441,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/battle_mode` and `battle_mode2` (i
      `003942F2` sites sit in a fully orphaned body. The lazy `00233C10` has four callers —
      `00280140` (`002803B8`, *after* its own `002EF650`), `00285E60`, `0036FCC0`, `00394130`
      — and is **not** among `0022B6E0`'s pre-init calls.
-   - The ladder `0030D9A0` has **20 call sites, all in the `0x2FF…0x326` battle cluster** —
+   - The ladder `0030D9A0` has **~~20~~ 22 call sites, all in the `0x2FF…0x326` battle cluster** *(corrected 2026-10-02, OPUS: 22 direct `call` sites in 21 functions, `00326500` twice)* —
      none inside the mode-0 frame's fixed call list. For a null fault, a consumer would have
      to run before the boot transition completes.
    - **CLOSED 2026-09-22 (SWE2-CONTRACT) — no consumer can call the ladder while the pointer
@@ -466,8 +466,8 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/battle_mode` and `battle_mode2` (i
        (e.g. `002801C4→…→00303EC0→0030D9A0`) — a genuine static pre-init path. It is
        temporally excluded: `00280140` is a message-`0xD8` handler registered by
        `00244F50` from `00280A00` (`lea` at `00280A85`), reached only via
-       `00254B50 ← 00253C50/00254B40/002E09A0 ← 00314020 ←` state arms `0022B8C0` (2),
-       `0022BC20` (3), `0022A770` (>6) — **all post-state-0**, so the handler cannot even
+       `00254B50 ← 00253C50/00254B40/002E09A0 ← 00314020 ←` state arms `0022B8C0` (~~2~~ 3),
+       `0022BC20` (~~3~~ 5), `0022A770` (2 and >6) *(corrected 2026-10-02, OPUS: the seven-entry table `0022A580+0x119` reads sends 2 and anything above 6 to `0022A770`, 3 to `0022B8C0` and 5 to `0022BC20`)* — **all post-state-0**, so the handler cannot even
        be registered while `02064AD3==0`, and registration precedes dispatch.
      - **Residual (honest boundary):** the proof covers the single-threaded frame
        sequence. Worker threads exist (the boot frame itself spin-waits on `02EBA3F8`

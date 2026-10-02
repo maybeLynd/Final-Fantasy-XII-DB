@@ -85,7 +85,7 @@ so `size` is `UNRESOLVED` and only the header below is declared. 15 fields.
 | offset | value at construction | anchor |
 |---|---|---|
 | `+0x00` | the handler, or `005C5230` | `00246641` |
-| `+0x40` | flags: `or 0x80A`, bit `0x20000` from the global `0208ED5C`, bit `0x4000` cleared **and then re-set from the 5th argument** — `(pooled & 1) << 14`, i.e. **bit 14 means "this object came out of the fixed pool"** | `00246653`, `002466D1`, `002466F2` |
+| `+0x40` | flags: `or 0x80A`, bit `0x20000` from the global `0208ED5C`, bit `0x4000` cleared **and then re-set from the 5th argument** — `(pooled & 1) << 14`, i.e. ~~**bit 14 means "this object came out of the fixed pool"**~~ **bit 14 means "storage this object does not own"** — the fixed pool's slots and the in-place construct alike *(corrected 2026-10-02, OPUS: `00245000+0x9` passes 1 as the fifth argument too, and the release `002482E0+0x105`–`002482E0+0x109` then only clears bit 14 and zeroes `+0xA2` instead of freeing)* | `00246653`, `002466D1`, `002466F2` |
 | `+0x44` | low word `0x64` = **100**; bits `0x70000` cleared | `002466FA`, `00246670` |
 | `+0x48` | `00915198` — the **default** transition descriptor. This table's frame is *value at construction*, and that value is right; but it is a default, not a constant, and the row is **not** evidence that a widget still holds it later. The setter `00247570` is `test rcx,rcx / test rdx,rdx / lea rax,[00915198] / cmovne rax,rdx / mov [rcx+0x48],rax` — `00915198` is the **default arm of a `cmov`**, taken only when the caller passes a null descriptor. Measured 2026-09-20 (OPUS) over the graph's **127 callers**: decoding each body gives **137 call sites**, of which **97 pass a different descriptor** covering **64 distinct `.rdata` addresses**, **2** pass null and take the default, and **38** are unresolved by the method and scored neither way. `BattleMenuChildWidget1620`'s handler passes `00915A80` at `0027AEE3`. What the record *contains* is UQ-187's answer and is unaffected | `00246687`, setter `00247570` |
 | `+0x98` | `0` | `00246711` |
@@ -156,7 +156,7 @@ the walk.
 `002497B0(size)`. At or below it, the allocator scans a **fixed pool of 112 slots** at
 `*(char **)0x0208EA58`, stride `0x120`, linearly from slot 0, and takes the first where **both**
 `+0x40 & 0x4000` is clear and the byte at `+0xA2` is zero. It then writes the slot's **1-based
-index** into `+0xA2` and passes `pooled = 1` as the constructor's fifth argument; the heap path
+index** into `+0xA2` *(corrected 2026-10-02, OPUS: a dead store — the constructor's memset at `002465F0+0x36` and its word `0xFF80` at `+0xA1`, `002465F0+0xF6`, leave `+0xA2 = 0xFF`; the ✖ correction below)* and passes `pooled = 1` as the constructor's fifth argument; the heap path
 passes 0.
 
 > **That fifth argument is the same bit 14 this contract's §7 already describes**, and the loop
@@ -230,7 +230,7 @@ qwords are copied from the caller's record (`00246726` reads `[rsi+8]`, `0024672
 |---|---|
 | **read** | `0208ED5C` (generation parity), `00915198` (header table), `0208EA58` (the pool), `0208EA28` (**one of three UI roots** - see below), `0208EAC0`/`0208EBC0`/`0208EBC8` (the focus stack) |
 | **written** | the object; the pool slot's `+0xA2`; the focus stack on detach |
-| **allocated** | `00244F50`: a **fixed pool of 112 records at stride `0x120`** for `size <= 0x120`, else `002497B0` (heap). A slot is free when `!(flags[+0x40] & 0x4000)` **and** `[+0xA2] == 0`; taking it sets `[+0xA2] = 1` |
+| **allocated** | `00244F50`: a **fixed pool of 112 records at stride `0x120`** for `size <= 0x120`, else `002497B0` (heap). A slot is free when `!(flags[+0x40] & 0x4000)` **and** `[+0xA2] == 0`; ~~taking it sets `[+0xA2] = 1`~~ taking it stores `slot + 1` at `00244F50+0xA4`, which the constructor overwrites: its memset (`002465F0+0x36`) and the word `0xFF80` at `+0xA1` (`002465F0+0xF6`) leave `+0xA2 = 0xFF` *(corrected 2026-10-02, OPUS: the ✖ correction of §3, re-read at the bytes)* |
 | **deallocated** | `00245020` → `002482E0` on the ordinary path |
 
 ### ✖ WITHDRAWN 2026-09-13: `0208EA28` is written, and a reimplementation must NOT pass NULL
@@ -549,9 +549,9 @@ exists to prevent.
   closed.** `00244DD0` is a **deferred-completion scheduler**, not a teardown: it computes the
   widget's timescale `+0xB8` (`1.0f`, or `1.0f/[01E02820]` when `byte[02064AD2]!=0` and
   `sbyte[02064AD3]==2` — the global resets itself to `1.0f` when ≤0), then dispatches on `+0x7C`'s
-  low nibble. Modes **0 and 3** schedule: `+0x40 |= bit9` (the deferred-destroy arm the
-  `and 0xFFFFFBFF` clear at release names), `+0x68` = the named record `009151AC`
-  (`"map\rbl_a\rbl_a02\global"`) when `+0x40` bit 16 is set, else `[+0x48]+0x14`; `+0x74` = the
+  low nibble. Modes **0 and 3** schedule: `+0x40 |= bit9` ~~(the deferred-destroy arm the~~
+  ~~`and 0xFFFFFBFF` clear at release names)~~ *(corrected 2026-10-02, OPUS: bit 9 is not the bit the release clears — `and 0xFFFFFBFF` at `002482E0+0xD4` clears bit 10, which the teardown's keep path sets at `00245020+0x77` `bts eax, 0xa`; this arm's `bts edx, 9` is `00244DD0+0x77`)*, `+0x68` = ~~the named record `009151AC`~~
+  ~~(`"map\rbl_a\rbl_a02\global"`)~~ `009151AC`, the default descriptor's backward half `00915198 + 0x14` *(corrected 2026-10-02, OPUS: `00244DD0+0x89` `lea rcx, [009151AC]`; the bytes there are a 20-byte descriptor half, `00 00 00 00 01 00 …`, not a string)* when `+0x40` bit 16 is set, else `[+0x48]+0x14`; `+0x74` = the
   global tick `[0208F570]`; `+0x78` = `1.0f`; `+0x70` = the record's `u16[+2]` **× 60/1000** —
   a milliseconds-to-ticks conversion (`edi*0x3C * 0x10624DD3 >> 38`, the `⌈2³⁸/1000⌉` magic),
   forced to 0 when `[001EBA40()+0x280]==1`, or taken from `+0x7C`'s top 10 bits when its bit
@@ -580,7 +580,7 @@ exists to prevent.
   `00314960` reads `022C2548`, the inside-`World_UpdateSimulationTick` flag. What remains open is
   narrower: **which arm of which handlers actually consults `001EDEC0(self->fieldB4)`** — 33
   direct sites found, 2 resolved to the id-2 arm, 31 unresolved, callees unsearched.
-- **The 112-slot pool's eviction policy**, if any: nothing read shows a slot being released.
+- **The 112-slot pool's eviction policy**, if any: ~~nothing read shows a slot being released.~~ *(answered: the release frees it — `002482E0+0x105`–`002482E0+0x109` clear bit 14 and zero `+0xA2`, the byte the factory's free test reads; 2026-10-02, OPUS)*
 - **Everything past `+0xC0`.** The differential test compares 192 bytes because that is where the
   constructor's writes stop; objects run to `0xBC08` and the rest is written by their own procs.
 
@@ -593,7 +593,7 @@ exists to prevent.
 | `+0x18` child / `+0x20` sibling | the recursion in `002473B0` | 1 |
 | destroy is two-phase, 15 then 18 | `00244F34` then `00244F39` → `00245020` | 1 |
 | the deferred destroy path `00244DD0` also sends `{15}` — to self via `[rbx]` — but schedules the rest instead of running `{18}`/`00245020` inline, so 15-before-18 holds on both destroy paths | `00244F0A` `+0x40 \|= 0x40`; `00244F14`–`00244F19` `(+0x40 & 0x21)==0x21` → tail-jmp `00244DD0`; `00244EF2` `call [rbx]` with record `01E0C0F8` `{0xF,…}`; no `{18}`/`00245020` site exists in the body | 1 (static) |
-| `00244DD0` schedules the deferred completion: `+0x68` message/record pointer, `+0x74` start tick `[0208F570]`, `+0x70` delay = `u16[+2] * 60/1000` (ms→60 Hz ticks), `+0x78`/`+0xB8` timescales | `00244E88` store `+0x68` (`009151AC` `"map\rbl_a\rbl_a02\global"` when `+0x40` bit 16, else `[+0x48]+0x14`); `00244E8C` `mov eax,[0208F570]` → `+0x74`; `00244EC2`–`00244ED4` `edi*0x3C * 0x10624DD3 >> 38` → `+0x70`; `+0x7C` nibble → 4, bits 4–5 at `00244ED7`–`00244EDF` | 1 (static) |
+| `00244DD0` schedules the deferred completion: `+0x68` message/record pointer, `+0x74` start tick `[0208F570]`, `+0x70` delay = `u16[+2] * 60/1000` (ms→60 Hz ticks), `+0x78`/`+0xB8` timescales | `00244E88` store `+0x68` (`009151AC` ~~`"map\rbl_a\rbl_a02\global"`~~ — the default descriptor's backward half `00915198 + 0x14`, not a string *(corrected 2026-10-02, OPUS: `00244DD0+0x89` `lea rcx, [009151AC]`)* — when `+0x40` bit 16, else `[+0x48]+0x14`); `00244E8C` `mov eax,[0208F570]` → `+0x74`; `00244EC2`–`00244ED4` `edi*0x3C * 0x10624DD3 >> 38` → `+0x70`; `+0x7C` nibble → 4, bits 4–5 at `00244ED7`–`00244EDF` | 1 (static) |
 | `00244DD0`'s `+0x7C` low-nibble is a mode field: 0/3 schedule, 2 recomputes the deadline, 1 bails before the tail | `00244E2F`–`00244E41` `sar([+0x7C]<<0x1C,0x1C)` then `je`/`sub 2`/`cmp 1` chain; mode-2 arm `00244E6D` `2*[0208F570] - [+0x70] - [+0x74]`; mode-1 falls to `00244EF7` | 1 (static) |
 | 297 sites / 267 handlers / 32 ids | `widget_messages.py`, three passes with denominators; 297 = 280 `call` + 17 tail-jump `jmp` transfer sites | 1  **§15a: all three reproduced 2026-09-12; §15b: the handler census rebuilt on the proc-slot rule 2026-09-13** |
 | the pool is 112 × `0x120` | `00244FAB` bound, `00244FA4` stride | 1 |
@@ -1217,7 +1217,7 @@ Interior anchor `002981B0` (function `00298130`).
 
 ## Cross-subsystem neighbours — SWE2-EC7-171
 
-**CoreRuntimeScheduling — CLIENT (SWE2-EC7-171, 1 edge).** `0029A0A0` — the message-30 handler whose `00298130` alpha ramp this page gains — calls `001EDEC0`, the shared resolver `002D2DB0`/`00241D40`/`0057FE80` also reach. A measured call, not shared ownership: the handler borrows the layer's name table for one lookup per dispatch.
+**CoreRuntimeScheduling — CLIENT (SWE2-EC7-171, 1 edge).** `0029A0A0` — the message-30 handler whose `00298130` alpha ramp this page gains — calls `001EDEC0`, ~~the shared resolver~~ the half-rate phase predicate *(corrected 2026-10-02, OPUS: `001EDEC0` returns 1 unless `01F82E38` is set and `01DFE0C0` clear, else `(~x) & 1` at `001EDEC0+0x1A`; it resolves nothing)* `002D2DB0`/`00241D40`/`0057FE80` also reach. A measured call, not shared ownership: the handler borrows the layer's name table for one lookup per dispatch.
 
 `00241A70` (207 B) is the mode-dispatched notify `00241D40` runs: `[+0x3BE] == 1`/`2` sends the 16-byte constant block `0xC | 0x8101`/`0x8102` through `[+0xD0]`'s first vtable slot when the callback is bound; `[+0x3BE] == 0` instead checks `+0x3C4 & 0x800` to `00247510`s `0x8104` on `[+0xD0]`, then always `002D4650`s `[+0xC8]` with `[+0xC0]` - returns 1 only on the vtable path
 

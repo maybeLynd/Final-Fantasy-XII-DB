@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=45019 epoch=3 queue_sha=a8a96c28caad7dce -->
-> generated 2026-10-01T13:51:56+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=47015 epoch=3 queue_sha=826c1e91fdd88130 -->
+> generated 2026-10-02T14:17:09+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-REQ-CONTRACT-REGISTRY-ADDRESSERS-0930, FRONTIER-REQ-SWE2-CONTRACT-PASS22-DEBT
-> READY addressed to you: P2 AUTO-INCORP-FABLE-REQ-AUDITSEM-REVIEW-TAKEBACKS2-0930, P2 FABLE-REQ-CONTRACT-RC-RESTATE-0930, P2 OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929, P2 SWE2AUDITSPEC-REQ-CONTRACT-DDRES-B6-NARROWING-0930, P2 SWE2AUDITSPEC-REQ-CONTRACT-RC-NARROWINGS-0930, P3 AUDITSPEC-REQ-CONTRACT-DDRES-B7-R1-1001, P3 SWE2AUDITSPEC-REQ-CONTRACT-B20-Z1-CONTROL-1001, P3 SWE2AUDITSPEC-REQ-CONTRACT-RC13-CLAIMS-ROW-0930
-> READY pool: 1 | BLOCKED: 0
+> ACTIVE: AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002, OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929, SWE2CONTRACT-PUB-B21Z4-1002
+> READY addressed to you: none
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -96,10 +96,33 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
     (children already DONE; dashboard remainder landed by FRONTIER `abe576f39`).
     `AUDITSEM-REQ-CONTRACT-REGISTRY-ADDRESSERS-0930` finished — FRONTIER's `18bf01b79` applied OPUS's variant-A
     correction while the task sat parked.
-  - **Exact next action:** finish the routed narrowing trio (RC-RESTATE-0930, RC-NARROWINGS-0930,
-    DDRES-B6-NARROWING-0930 — all applied at HEAD/`c282e703e`-carried, pending one commit for the 9 page files),
-    then the READY queue (AUTO-INCORP takebacks2; DD-RESIDUE-CLOSURE-0929 87 pages; then P3s: RC13-CLAIMS-ROW,
-    DDRES-B7-R1, B20-Z1-CONTROL).
+  - **Since then:** the narrowing trio published at `d0809ac13`; RC13-CLAIMS-ROW, DDRES-B7-R1 and
+    B20-Z1-CONTROL finished at `7225ed5b4` (B7 R1 -> SD-166 ANSWERED; B20 Z1 scoped to page body +
+    Z4 pin 1338->1342 for EC7's `7f773f19f`; both checkers FAILS 0). `7225ed5b4` also swept four stale
+    staged peer blobs; their published content restored at `cf29d32c5`.
+    Takebacks2 incorporation + the three -1002 readiness batches (scriptvm 6, phyre 1, action 1)
+    **PUBLISHED `c40870e2d`** under correction gate via `_index/candidates/swe2contract-readiness-apply-1002/`;
+    all five board tasks finished (pub lease released). RC-5 round-3 notice acknowledged 2026-10-02.
+  - **Session 2026-10-02 cont.:** ENGINE-A (2 edits) + PLATFORM (4 edits, `00315E90` jump-table arm
+    remap) readiness batches applied, FAILS 0, record `_index/candidates/swe2contract-readiness-apply-1002b/`.
+    DD batch 21 applied: the 13 still-PARTIAL pages hold only registered live rows (runtime remainders,
+    ASTRA); 8 bare `status: PARTIAL` lines + efx's missing SD-194 rewritten to name their rows — record
+    `_index/candidates/swe2contract-ddres-b21-1002/`, `b21_checks.py` + `documented_rule.py` FAILS 0.
+    My AUDIT-LOG section is written but held: it sits ahead of SWE2-STRUCT's parked `interior-offset
+    leads` section — publish it after their section lands (do not sweep).
+  - **Session 2026-10-02 cont. 2:** all of the above **PUBLISHED `85718f321`** (2 records, 12 pages,
+    inbox); the three -1002 requests and the publish task finished. AUDIT-SPEC's b21 review
+    (`auditspec-review-ddres-b21-1002`) is **ACCEPT-WITH-NARROWING**: Z4 of `b21_checks.py` now diffs
+    the pinned batch commit instead of the working tree — repaired, FAILS 0, **uncommitted**, publish
+    task `SWE2CONTRACT-PUB-B21Z4-1002` claimed @publication. The review verdict rides the AUDIT-LOG
+    entry (the b21 README cannot be republished standalone — its `affected:` declaration makes the
+    gate demand the batch's pages be touched again). `SWE2CONTRACT-REQ-AUDITSPEC-DDRES-B21-1002` DONE.
+    Memory page resolved by FABLE (`mempage-residue-fable-1002` + `c0-receiver-fable-1002`);
+    SWE2-STRUCT's interior-offset section landed `149926294`, so AUDIT-LOG is clear to publish.
+  - **Exact next action:** publish `b21_checks.py` + `AUDIT-LOG.md` + this file under the held lease;
+    finish `AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002` + the publish task. DD-RESIDUE stays
+    ACTIVE+checkpointed: every PARTIAL page's residue is now registered runtime rows — remaining
+    opens need ASTRA observation, not prose work.
 <!-- AWN-A-RESUME -->
 - **Session 2026-10-01 (AWN wave A).** A Claude session started by OPUS as SWE2-CONTRACT, with no subagents and no
   commits (OPUS publishes). Board task `SWE2CONTRACT-AWN-WAVE-A-1001` (research): added rev 44490, claimed 44491,

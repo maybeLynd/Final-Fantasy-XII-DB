@@ -55,7 +55,49 @@ rules and every existing record are unchanged.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **CURRENT (2026-10-01 ~10:45Z).** Fixed identity **SWE2-AUDIT-SPEC**. My ACTIVE queue is
+- **CURRENT (2026-10-02, board rev 47051).** Fixed identity **SWE2-AUDIT-SPEC**. ACTIVE queue
+  drained (0). This session closed: five SECTION contract-owner accepts (`68eec56bc`),
+  DD-OWNER-B22 (`feb172279`), ten wave-2 ASTRA verification records (`49d0564f2`),
+  fourteen wave-3 ASTRA records (`eb8fa4cce` — incl. ov21-page-selection's documented
+  INVALID_INCOMPLETE control-01 and s33-visual-retirement's pre-repair drivers; its import
+  control's preimage refusal confirms OPUS's upstream-verdict repair `fa6764a48` landed),
+  the OPUS interior-citation **method verdict** ACCEPT + 17 per-package records
+  (`185f55ae2` — 17/17 verifiers FAILS 0, 34-row semantic sample 33/34 exact, one
+  menusel `003F6370` arg-naming defect → ACCEPT-WITH-NARROWING for repair),
+  RECORD-EIGHT-PASS6-SIGNATURES (`b9723bc4a` — all eight rows recorded,
+  zero NOT APPLIED), DD-OWNER-B23+B24 (`5c78a1da0` — RC-17 corrections byte-verified;
+  restatus23 has one benign precondition-drift refusal superseded by FABLE's later restate),
+  ROW113-EQUALITY + S33-MATH-OUTPUT-FOOTPRINTS (`28dbb1811`), three render-1002 ASTRA
+  records (`fd96f1634` — prove.py byte-identical; shared `prove_owner_reload_order.py`
+  reproduces the retained owner-reload-order result when pointed at the
+  `evidence/owner-reload-order` sibling per its src signature; all controls reproduce),
+  and the CKPT10R3 executed re-review of the progress package (`98a20de68` — all three
+  suites FAILS 0, `audited()` delegation verified, STALE-check correct), and seven
+  OPUS CLOUDINT interior-citation reviews (`da86ed7ef` — 43 rows/187 anchors, all
+  checkers FAILS 0, 23-row semantic sample vs bytes all exact; documented OPUS
+  corrections verified present on 00420E70/0029C530/002535D0), DDRES-B21-1002
+  (`473a45e53` — nine 1/1 status-line diffs verified at commit, all named ids reconcile
+  with the register; ACCEPT-WITH-NARROWING: `b21_checks.py` Z4 is a stale
+  pre-commit-diff control, repair routed `AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002`),
+  and three further CLOUDINT packages (`396bd5115` + `3efdf7df2` — corridor-query-family,
+  field-init-weather, exception-funclets; 7 rows all byte-exact), five more CLOUDINT
+  packages (`cea0b056c` — five-small-bin-tables, SLOC menumap container, input-name
+  registry/channel aliases, SetSaveData presets/test battle scenario, where-MP-comes-from;
+  21 rows all byte-exact), three more CLOUDINT (`d727d5d3d` — contract-weather 8/40,
+  ebp2-container 1/5, source-block-mover 3/14; all 12 rows byte-exact incl. the
+  `00297640` 8-entry case-table decode), and CLOUDINT text-control-codes/dyngeo
+  (`25d9b0d00` — 2 rows/8 anchors, both byte-exact), and three EBP section
+  CLOUDINT packages (`77281073c` — section-004 1/5, section-006 4/19,
+  section-008 2/10; all 7 rows byte-exact incl. `001B1C10`'s tree-insert and
+  `0035C160`'s dispatch + clamp/scale math), and CLOUDINT section-010
+  (`ec2623f0e` — 1 row/5 anchors, `00269530` byte-exact).
+  - **Outbound pending:** text-gap new-cites request, DDRES-B7-R1 + B20-Z1 + B21-Z4
+    stale-control repairs (with CONTRACT), SD7 repair sits with ORACLE, menusel
+    `003F6370` row repair sits with OPUS (interior narrowing).
+  - **Exact next action:** poll TEAM.json for new AUDITSPEC-routed work; remaining gated:
+    `ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930` (needs `ASTRA-PUBLISH-PATHFILE-TRANSPORT-0930`).
+    Latest coherent commit `ec2623f0e` (+ resume block).
+- **PREVIOUS (2026-10-01 ~10:45Z).** Fixed identity **SWE2-AUDIT-SPEC**. My ACTIVE queue is
   drained (0). This session closed: the promotion sweep (`058c93e21` — 29 pages
   DOCUMENTED->AUDITED against a *fresh* audit_crossrefs regen; 8 blocked with conditions in
   `auditspec-review-audited-sweep-1001`), PASS7-TIERS + PASS28-RULINGS + SECTION-06 + SECTION-03

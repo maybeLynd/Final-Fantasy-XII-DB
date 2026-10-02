@@ -9,23 +9,23 @@ function	name	site	disp	kind	instruction	route	note
 00263750	PartyRoster_GetActorBySlot	0026375F	0x0	r	mov rax, qword ptr [rcx + rax*8]	array 0209A1F0 reg	
 00263770	PartyRoster_GetActorBySlotOrCurrentFocus	00263787	0x0	r	mov rax, qword ptr [rcx + rax*8]	array 0209A1F0 reg	
 002637B0	FUN_002637b0	002637BF	0x0	r	mov rcx, qword ptr [rcx + rax*8]	array 0209A1F0 reg	
-00266D10	FUN_00266d10	00266E1B	0x0	w	mov qword ptr [r8 + rax*8], rsi	array 0209A1F0 reg	
+00266D10	FUN_00266d10	00266E1B	0x0	w	mov qword ptr [r8 + rax*8], rsi	array 0209A1F0 reg	not a roster write - corrected 2026-10-02, OPUS: the store goes through lea [0209A210] with the index clamped to 0..15, the 16-qword array after the 32-byte roster at 0209A1F0 (lea at 00266E01)
 00268530	FUN_00268530	0026855B	0x0	r	mov rbx, qword ptr [r14 + rdi*8]	array 0209A1F0 reg	
 00268690	FUN_00268690	002686D6	0x0	r	mov rdi, qword ptr [r12 + rbx*8]	array 0209A1F0 reg	
 00269530	FUN_00269530	0026954E	0x0	r	mov rdi, qword ptr [rsi + rbx*8]	array 0209A1F0 reg	
 002695A0	FUN_002695a0	002695AF	0x0	w	movdqu xmmword ptr [rip + 0x1e30c39], xmm0	array 0209A1F0 rip	
-002695A0	FUN_002695a0	00269628	0x0	w	mov qword ptr [r9 + rcx*8], rdx	array 0209A1F0 reg	
+002695A0	FUN_002695a0	00269628	0x0	w	mov qword ptr [r9 + rcx*8], rdx	array 0209A1F0 reg	not a roster write - corrected 2026-10-02, OPUS: the store goes through lea [0209A210] with the index clamped to 0..15, the 16-qword array after the 32-byte roster at 0209A1F0 (lea at 00269605)
 00269C70	PartyRoster_AssignActorToSlot	00269C91	0x0	r	mov rcx, qword ptr [rsi + rbx*8]	array 0209A1F0 reg	
 00269C70	PartyRoster_AssignActorToSlot	00269CC4	0x0	r	mov rcx, qword ptr [rsi + rax*8]	array 0209A1F0 reg	
 00269C70	PartyRoster_AssignActorToSlot	00269CC8	0x0	w	mov qword ptr [rsi + rax*8], 0	array 0209A1F0 reg	
 00269C70	PartyRoster_AssignActorToSlot	00269CE1	0x0	w	mov qword ptr [rsi + rbx*8], rdi	array 0209A1F0 reg	
 00269C70	PartyRoster_AssignActorToSlot	00269CFB	0x0	r	mov rcx, qword ptr [rsi + rbx*8]	array 0209A1F0 reg	
-0026AD90	FUN_0026ad90	0026ADA0	0x0	w	mov qword ptr [rcx + rax*8], rdx	array 0209A1F0 reg	
-0026AD90	FUN_0026ad90	0026ADB9	0x0	w	mov qword ptr [rcx + rax*8], rdx	array 0209A1F0 reg	
+0026AD90	FUN_0026ad90	0026ADA0	0x0	w	mov qword ptr [rcx + rax*8], rdx	array 0209A1F0 reg	not a roster write - corrected 2026-10-02, OPUS: the store goes through lea [0209A210] with the index clamped to 0..15, the 16-qword array after the 32-byte roster at 0209A1F0 (lea at 0026AD99)
+0026AD90	FUN_0026ad90	0026ADB9	0x0	w	mov qword ptr [rcx + rax*8], rdx	array 0209A1F0 reg	not a roster write - corrected 2026-10-02, OPUS: the store goes through lea [0209A210] with the index clamped to 0..15, the 16-qword array after the 32-byte roster at 0209A1F0 (lea at 0026ADB2)
 0026C3E0	FUN_0026c3e0	0026C43C	0x0	r	mov rbx, qword ptr [r15 + rdi*8]	array 0209A1F0 reg	
 0026C5D0	FUN_0026c5d0	0026C61A	0x0	r	mov rbx, qword ptr [r14 + rsi*8]	array 0209A1F0 reg	
 0026C5D0	FUN_0026c5d0	0026C766	0x0	r	mov rbx, qword ptr [r14 + rdi*8]	array 0209A1F0 reg	
-0026CE60	ActorSystem_InitializeManagerRuntime	0026CF13	0x0	w	mov qword ptr [r8 + rax*8], rbp	array 0209A1F0 reg	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CF13	0x0	w	mov qword ptr [r8 + rax*8], rbp	array 0209A1F0 reg	not a roster write - corrected 2026-10-02, OPUS: the store goes through lea [0209A210] with the index clamped to 0..15, the 16-qword array after the 32-byte roster at 0209A1F0 (lea at 0026CEF2)
 0026DB30	WorldPersistence_ResetBanksForFieldTransition	0026DB52	0x0	w	movdqu xmmword ptr [rip + 0x1e2c696], xmm0	array 0209A1F0 rip	
 0025BFB0	FUN_0025bfb0	0025C01F	0x10	w	movdqu xmmword ptr [rip + 0x1e3e1d9], xmm1	array 0209A1F0 rip	
 002695A0	FUN_002695a0	002695B7	0x10	w	movdqu xmmword ptr [rip + 0x1e30c41], xmm1	array 0209A1F0 rip	

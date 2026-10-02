@@ -1,0 +1,16 @@
+ok   00264D7D shr rax, 2
+ok   00358A0F mov eax, dword ptr [r8 + rax*8 + 8]
+ok   0032ED73 lea rcx, [rip + 0x1f980ce]
+ok   0032ED7A or qword ptr [rcx + rax*8], 1
+ok   00331715 btr rbx, 0xa
+ok   0025ACCC call 0x2658b0
+ok   005C5230 xor eax, eax
+ok   005C5232 ret 
+ok   003DA204 mov word ptr [rcx + 0x18], ax
+ok   003DA20B mov word ptr [rcx + 0x1a], ax
+ok   0037DAC4 cmp word ptr [rcx + 4], 0
+ok   0037DADD movzx ebx, word ptr [rdi + 6]
+ok   0033051F mov eax, dword ptr [rdi + 0x18]
+ok   00330656 mov eax, dword ptr [rdi + 0x5c]
+ok   00257341 mov edx, dword ptr [rdi + 0x20]
+FAILS 0

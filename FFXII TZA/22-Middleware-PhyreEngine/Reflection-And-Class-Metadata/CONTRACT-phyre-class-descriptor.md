@@ -49,7 +49,7 @@ was derived from the other**, which is what makes the file schema trustworthy.
 
 | | |
 |---|---|
-| size | **at least `0x140`** — `0063D550` writes `+0x138` and `+0x104`; the exact end is not established (§14) |
+| size | ~~**at least `0x140`**~~ **`0x100`**, and `0x140` for `PClassDescriptorDynamic` *(corrected 2026-10-02, OPUS: PCD-3, answered 2026-09-25; 90 pairs of the schema's static descriptors sit exactly `0x100` apart in `.data`)* — `0063D550` writes `+0x138` and `+0x104`, fields of the Dynamic form ~~; the exact end is not established (§14)~~ |
 | allocation | **`_aligned_malloc`**, not `operator new`; released through `_aligned_free` (`00584730`) |
 | destructor | `00633390`, 500 bytes — the base `PClassDescriptor` destructor |
 | per-class deleting destructor | one generated function per reflected class, e.g. `005847E0`, 92 bytes; **1,149 of them** |
@@ -77,7 +77,7 @@ object type; it is a family the compiler stamps out per class.
 
 | offset | width | meaning |
 |---|---|---|
-| `+0x00` | 8 | vftable. The destructor overwrites it with `PType`'s before releasing anything |
+| `+0x00` | 8 | vftable. The destructor overwrites it with ~~`PType`'s before releasing anything~~ `PClassDescriptor`'s on entry and `PType`'s on exit *(corrected 2026-10-02, OPUS: `006333BC` stores `00D581C0`, `.?AVPClassDescriptor@Phyre@@`; `00633568` stores `00D31168`, `.?AVPType@Phyre@@`)* |
 | `+0x30` | 8 | **the type name, a plain `char *`.** `006388C0` loads it, returns 0 if null, and hashes the bytes it points at |
 | `+0x38`, `+0x3C` | 4, 4 | copied from the **parent** descriptor's `+0x38` / `+0x3C` during a rebind |
 | `+0x50` | 16 | **intrusive list 1** — head at `+0x50`, tail at `+0x58`. **This one is a MEMBERSHIP node, not a list the descriptor owns**: `0063D640` unlinks it from whatever list it is in and self-links the head (§13a) |
@@ -89,8 +89,8 @@ object type; it is a family the compiler stamps out per class.
 | `+0xA0` | 16 | **intrusive list 5** |
 | `+0xB0` | 16 | **intrusive list 6** |
 | `+0xC0` | 8 | **the default instance** — the object every new instance is `memcpy`'d from. Set by the one-instruction setter `0063DC80` (`mov [rcx+0xC0], rdx`); consumed by `0063C910`, which does `rdx = [descriptor+0xC0]; if (rdx) memcpy(instance, rdx, [descriptor+0x38])` |
-| `+0xC8` | 8 | **a second full-size instance**, set by `0063DF90` (`mov [rcx+0xC8], rdx`). ADDED 2026-09-19 (OPUS) |
-| `+0xD0` | 8 | **a third full-size instance**, set by `0063DFA0` (`mov [rcx+0xD0], rdx`). ADDED 2026-09-19 (OPUS) |
+| `+0xC8` | 8 | ~~**a second full-size instance**~~ **an instance-size byte mask** *(corrected 2026-10-02, OPUS: `00639C80` fills it with `0xFF` over the instance size, `00639CBE`-`00639CD3`; purpose read below)*, set by `0063DF90` (`mov [rcx+0xC8], rdx`). ADDED 2026-09-19 (OPUS) |
+| `+0xD0` | 8 | ~~**a third full-size instance**~~ **an instance-size byte mask** *(corrected 2026-10-02, OPUS: `00639C80` zero-fills it, `00639CD8`-`00639CE4`)*, set by `0063DFA0` (`mov [rcx+0xD0], rdx`). ADDED 2026-09-19 (OPUS) |
 | `+0xD8`, `+0xE0` | 8, 8 | two further pointer slots the constructor zeroes at `00632E24` and `00632E2B` alongside `+0xC0`/`+0xC8`/`+0xD0`. **No setter found**, so they are declared as part of the same family and nothing more |
 | `+0xE8` | 4 | a **registration counter** (§7) |
 | `+0xF0` | 4 | the parent's `+0x38`, **negated** |
@@ -441,7 +441,7 @@ is exactly as open as it was. *(Superseded 2026-09-25/26 by `PCD-1`, FABLE: five
 
    | head | holds | how it is known |
    |---|---|---|
-   | `+0x50` | not a list the descriptor owns: **its own node** in the registry's class ring | RTTI puts the `PSimpleDoubleListElement<PClassDescriptor>` base at `+0x50`. `00639160` splices the node in right after the parent's when the parent's `+0x70` is the same registry, and appends it otherwise |
+   | `+0x50` | not a list the descriptor owns: **its own node** in the registry's class ring | RTTI puts the `PSimpleDoubleListElement<PClassDescriptor>` base at `+0x50`. `00639160` splices the node in right after the parent's when the parent's `+0x70` is the same registry, and ~~appends it otherwise~~ links it at the head otherwise *(corrected 2026-10-02, OPUS: `0063922E`-`00639244` sets the sentinel `rbx+0x10`'s first pointer to the node)* |
    | `+0x60` | **the annotation list** | RTTI puts the `PAnnotatable` base at `+0x60` here and at `+0x38` in `PClassDataMember` (`00D580B0`). `006B6700` — the §3 hand-off — is the drain the data-member destructors `00633240`/`00633900` run on their own `+0x38` |
    | `+0x80` | the data members, linked through their node at member `+8` | `0062EFD0` |
    | `+0x90` | **instance methods** | records that point at a `PMethodCallerConcrete<Class, Return, Args…>`, e.g. `"setSpeed"`, `<PAnimatableComponent, void, float>`, vtable `00D34968`; name-checked by `005A7A40` |
@@ -468,8 +468,14 @@ is exactly as open as it was. *(Superseded 2026-09-25/26 by `PCD-1`, FABLE: five
    - **`+0x60`/`+0xB0` by inline code:** none of the register-formed, RIP-relative-head or direct-tail-store shapes
      inserts into either on a descriptor. The last two were run over the 410 statics that receive a descriptor-class
      vtable. *Controls:* the same shapes return `0062EFD0` for `+0x80`, the counts above, and `00635980`'s store.
-   - *Not swept:* other head-insert helpers, and heap descriptors whose head is held in memory. The live read of real
-     heads that `BL-8` names is still the closing step.
+   - *Head-insert helpers swept 2026-09-29 (FABLE, accepted by SWE2-AUDIT-SEM's
+    `auditsem-review-takebacks2-0930`):* the inverted census
+    [`t4_descriptor_inserters.md`](../../_index/candidates/fable-astra-live-facts-0930/t4_descriptor_inserters.md)
+    searches by what an insert must store rather than where it writes — 15 helpers found, all 70 `006B67D0` call
+    sites resolve to data-member `+0x38` heads, and none of the other helpers' resolved heads is `+0x60` or `+0xB0`
+    of a descriptor. Its limits: 21 unresolved call sites of 14 helpers outside the reflection band, a head held
+    in memory across a long window, and code outside the function list. Heap descriptors whose head is held in
+    memory stay unswept; the live read of real heads that `BL-8` names is still the closing step.
    - *Not established:* what `+0xB0` was meant to hold.
      ***Narrowed 2026-09-27 (FABLE, Claude Opus 5.5): nothing reads `+0xB0` either.** An image-wide census of the sentinel-walk idiom (`lea` of the head, load, compare with the head) finds the destructor `00633390` as the only function that walks `+0xB0`, and it only unlinks; the same census finds the name lookups `005A7A40` / `005A7B50` / `00682E30` on `+0x90` and `005A0470` / `005A7AB0` on `+0xA0`, and 22 walkers of `+0x80`. Every other touch is a self-link (the base constructors, the ten per-class constructors in `006316C0`-`00632780`, the reset `0063D550`). So the shipped build constructs, resets and tears the list down but never fills or consults it; what it was meant to hold leaves no trace in the build. [Record](../../_index/candidates/bl8-b0-walkers/README.md).*
 2. ~~**`PCD-2`** — what bit 0 of the tagged pointer at `+0x138` marks.~~ **ANSWERED 2026-09-25 (FABLE, Claude Opus
@@ -525,7 +531,7 @@ is exactly as open as it was. *(Superseded 2026-09-25/26 by `PCD-1`, FABLE: five
      sums of that value down the class chain.
    - Differences between the two: `+0xF4` excludes the root and admits negative terms, while `+0xF8` builds on the
      parent's cached total and never adds a negative.
-   - **Not established:** what `+0x38` measures, and so what the two totals mean.
+   - **Not established:** what `+0x38` measures, and so what the two totals mean. *(answered: see the 2026-09-20 reading - `+0x38` is this contract's own size field, the one `0063C910` passes to `memcpy`; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -548,7 +554,7 @@ is exactly as open as it was. *(Superseded 2026-09-25/26 by `PCD-1`, FABLE: five
 | descriptors are `_aligned_malloc` storage freed by `_aligned_free` | `005847E0`'s `00584730` call, and `00584730` → IAT `008C2B70` → `_aligned_free`, resolved in [the cluster header contract](../Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md) §5 | 1 | PROVEN |
 | the deleting-destructor flag convention: bit 0 frees, bit 2 takes the CFG path | the source page's `005847E0` | 1 | PROVEN |
 | 4,557 generated reflection functions in 42 families, 1,149 deleting destructors | the source page's census, **corrected by its own falsification pass**; the total survived exactly and the family split was revised | 1 | PROVEN |
-| any execution of any of this | **none**; §13 | none | UNKNOWN |
+| any execution of any of this | ~~**none**; §13~~ *(answered: see the EXP-097 execution and the PCD-3 answer; 2026-10-02, OPUS)* | none | UNKNOWN |
 | what the six lists hold, what bit 0 tags, the descriptor's size, the `+0x100` guard, `0063E410` | first four **not established** (`PCD-1`…`PCD-4`) *(2026-09-25, FABLE: `PCD-1` PARTIAL — five of six lists named;
 `PCD-2` ANSWERED — borrowed-name tag; `PCD-4` answered in the register; see §14)* *(2026-09-26, FABLE, Claude Opus 5.5: `PCD-3` is ANSWERED too — the base descriptor is `0x100` bytes and the dynamic one `0x140`, §3 — and `PCD-1` is SUPERSEDED, its last list carried by `BL-8`)*; `0063E410` **read 2026-09-14** — `PCD-5` answered (open item 5: recomputes `+0xF4`/`+0xF8` over the parent chain) | none | UNKNOWN |
 

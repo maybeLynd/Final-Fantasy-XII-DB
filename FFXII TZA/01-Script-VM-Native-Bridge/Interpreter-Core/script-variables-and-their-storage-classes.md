@@ -149,7 +149,7 @@ keywords are the same thing.
 offset a shipped script declares as a `global`, with how many scripts declare it and at what widths.
 The save payload field map has **one** row between `+0x200` and `+0xD00` (`+0xA00`), because its
 census follows the buffer getters and this region is reached only through the slot's `+0x48` by the
-resolver: **`+0x200`–`+0xCF4` of the persistent payload is the script-global variable space**, 0xAF5
+resolver: **`+0x200`–`+0xCF4` of the persistent payload is the script-global variable space**, ~~0xAF5~~ 0xAF6 *(corrected 2026-10-02, OPUS: the last declared global is a `u16` at `+0xCF4` in 101 shipped scripts, [`script-global-variables-by-offset.tsv`](script-global-variables-by-offset.tsv), so the space runs to `+0xCF5`)*
 bytes that scripts own and the engine never interprets. The offsets are a shared authored table, not
 per-script choices: **no offset is declared at two different widths anywhere in the corpus**, one
 offset is declared by 575 scripts, and 110 by a single script. Which script owns which byte, and where the
@@ -251,7 +251,7 @@ callback `00264E30`) → the value stack push (`00267F90` / `00267F60`) or the s
 - `scratch2` survives saves and area changes *within a group*; `scratch1` does not survive an area
   change; `file` and `local` do not survive the script image. Choosing the keyword chooses the
   lifetime.
-- Array indices are clamped, not checked: an out-of-range read returns the edge element silently.
+- Array indices are clamped, not checked: an out-of-range read returns the edge element silently ~~.~~ when the dimension is 1 or more; a dimension of 0 reads one element before the array *(corrected 2026-10-02, OPUS: `0026250A`–`00262518` clamp with a signed `cmovl`, §2)*.
 
 ## 7. What is not known
 
@@ -466,7 +466,7 @@ callers read it by offset, so it is a contract:
 > written `6` by both generic pushes; `PUSHV` writes it from **this field**
 > (`00268090 movzx eax, byte ptr [rbp - 0x30]` → `[rcx + rbx + 0x44]`). So the `6` is not a magic
 > constant in the push helpers — it is this record's `+0x00`, and the array records where a stack
-> value came from. **What the other values of that byte are is still unknown.**
+> value came from. **~~What the other values of that byte are is still unknown.~~** *(corrected 2026-10-02, OPUS: `PUSHV`'s value is always 6 — the resolver writes `+0x00 = 6` at `00262667` on its only exit — and the one other value source is `PUSHP`, which stores the descriptor's width nibble 0..5 there (`00268118`–`00268150`, `00268185`); one reader, `00263450`, called from `00353D10`)*
 
 ### Two smaller notes
 

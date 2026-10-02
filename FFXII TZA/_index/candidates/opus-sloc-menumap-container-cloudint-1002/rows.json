@@ -1,0 +1,38 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md",
+ "date": "2026-10-02",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "report": "sloc-menumap-container.json",
+ "rows": [
+  {
+   "fn": "00377400",
+   "text": "returns without work unless `ecx` is 0 to 3 (unsigned compare); otherwise stores its low byte at `02ADD0E8`, calls `003C63A0` with the qword at `02ADD010 + ecx*8` and tail-jumps `00379870(ecx)`",
+   "anchors": [
+    [
+     "0037740C",
+     "ja"
+    ],
+    [
+     "00377415",
+     "mov"
+    ],
+    [
+     "0037741B",
+     "mov"
+    ],
+    [
+     "0037741F",
+     "call"
+    ],
+    [
+     "0037742B",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

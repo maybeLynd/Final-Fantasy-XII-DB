@@ -1,7 +1,7 @@
 ---
 system: Indexed external-source owners and borrowed resource views
 category: 02-Resource-And-Asset-Pipeline
-status: PARTIAL
+status: PARTIAL — OV-19 and OV-21 stay open (OV-19's deferred-free ordering against an in-flight read, and OV-21's loaded-state reachability of the synthetic rejection/bank-exhaustion/competing-owner cases; both are runtime remainders) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: HIGH
 verified_against:

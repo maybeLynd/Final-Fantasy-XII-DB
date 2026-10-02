@@ -408,7 +408,7 @@ position state.
   > the Chocobo nor an Esper** — and the verbs' two collections are "the player's characters" and
   > "the guests". The same range test is the AI selector's opcode 34 operand 3 ([the gambit page](../../09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md) Z-1),
   > and its neighbour operand 4 is the Esper band 27–39. The second half — whether map 1 is the
-  > membership the player sees following them — remains open.
+  > membership the player sees following them — ~~remains open~~ *(answered: RC-18, 2026-09-30, below — map 1 is the engine's own follower source; 2026-10-02, OPUS)*.
 - **Whether these verbs act on the same characters the player sees following them.** Map 1 is the
   combat-processing set; whether that is the same membership as the field followers, in every state,
   was not established here. *(Answered as RC-18, the next box: map 1 is the engine's own follower source. Pointer
@@ -529,7 +529,7 @@ holds **63** such verbs (63 distinct names, 72 distinct handler addresses); **16
 there are **48** functions of exactly 187 bytes, which is why the "party verbs first" restriction is
 what makes the test sharp rather than the size alone.
 
-**Not claimed.** What the four setters do — **none of their bodies was read here**, only their
+**Not claimed.** What the four setters do — **none of their bodies was read here** *(answered: read since, the setter rows above; 2026-10-02, OPUS)*, only their
 identity and arity as call targets. The collector `0031B5A0` (202 B) was read only for the two
 adapters' selectors; §3's walk of it stands as written. Nothing was executed.
 
@@ -633,6 +633,6 @@ otherwise `xmm2` is stored to `[rcx + edx*4 + 0xA0]` and
 returned - an 8-slot float array at `+0xA0` behind a guard.
 Interior anchor `003E5E8C` (the `movss` store).
 
-`003EC3D0` (314 B) is the `022C6F28` record write `002E6000`/`003EB8E0` call: `cx == -1` exits; `sx(cx) * 0x740 + 022C6F28` resolves the record (live check `dword[+0x284]` nonzero else null), `+0x290 & 0x100000` skips the compare, `+0x284 & 0x8000000` requires `word[+6]==-1`, else `word[+6]==-1` alone clears `+0x140`/`+0x148`/`+0x14C=1.0f`; otherwise ucomiss-compares xmm1-3 against `+0x140`/`+0x144`/`+0x148` and on change clears `+0x284` bit `0x200` and stores the triple with `+0x14C`=1.0f - the scripted colour/alpha triple a party-dress verb writes. *(That last reading is superseded, 2026-09-30, SWE2-CONTRACT: §6 reads the caller `002E6000` passing the re-placed point `(x, y + 00263910(), z)`, and `_types/fields.tsv` declares render record `+0x140` as `modelTransformTranslationSource`, the vec3 the model transform's translation row is copied from — so the triple is a position, not a colour.)*
+`003EC3D0` (314 B) is the `022C6F28` record write `002E6000`/`003EB8E0` call: `cx == -1` exits; `sx(cx) * 0x740 + ~~022C6F28~~ [022C6F28]` *(corrected 2026-10-02, OPUS: `003EC3F0 add rbx, qword ptr [022C6F28]`, a pointer read through)* resolves the record (live check `dword[+0x284]` nonzero else null), `+0x290 & 0x100000` skips the compare, `+0x284 & 0x8000000` requires `word[+6]==-1`, else `word[+6]==-1` alone clears `+0x140`/`+0x148`/`+0x14C=1.0f`; otherwise ucomiss-compares xmm1-3 against `+0x140`/`+0x144`/`+0x148` and on change clears `+0x284` bit `0x200` and stores the triple with `+0x14C`=1.0f - the scripted colour/alpha triple a party-dress verb writes. *(That last reading is superseded, 2026-09-30, SWE2-CONTRACT: §6 reads the caller `002E6000` passing the re-placed point `(x, y + 00263910(), z)`, and `_types/fields.tsv` declares render record `+0x140` as `modelTransformTranslationSource`, the vec3 the model transform's translation row is copied from — so the triple is a position, not a colour.)*
 
 Interior anchor `003EC456` (function `003EC3D0`).

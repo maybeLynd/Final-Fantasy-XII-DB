@@ -72,8 +72,8 @@ decided receiver.*
 - **What it records.** It stores the command at `+0xBA0` (`00311D7A`) and the target at `+0xBB8` (`00311DB0`). It
   marks them pending with `+0xBA4` bit 15 and unit bit 14 (`00311DB6`–`00311DC2`).
 - **What it does not write.** It never writes `+0x708` / `+0x710` / `+0x714`. A dispatch after the seam alone reads
-  `+0x714` = 0 and returns −1. Intent and commit are therefore separated in time, and what carries `+0xBA0` into
-  the funnel is not read here.
+  `+0x714` = 0 and returns −1. Intent and commit are therefore separated in time, ~~and what carries `+0xBA0` into~~
+  ~~the funnel is not read here.~~ *(answered: `BattleUnit_SelectAndCommitNextAction` commits the issued command, `+0xBA0` id and `+0xBB8` handle, at `00305AE4`–`00305B2F`; see Command-And-Action-Seam/native-command-seam.md, E-5 settled 2026-09-12; 2026-10-02, OPUS)*
 - **Its return cannot separate refusal from success.** A status in `0x8800203B` jumps from `00311D72` to
   `00311DED`, which returns **0** with nothing recorded, the same value as the success path. Only a null stats
   record, or the `0x80000003` status gate with the field bit clear, returns −2.
@@ -120,10 +120,10 @@ passes the id as a parameter must also decide who is allowed to write `+0x714`, 
 otherwise never be asked.*
 
 **CS-6 — The census that establishes `CS-2` cannot be stated as a bare displacement count, and the
-figure is the reason.** A whole-image sweep for writes at `+0x714` returns **eight bodies**, of which
-only three are battle-unit bodies; the other five sit in the `005…`/`007…` bands and are unrelated
+figure is the reason.** A whole-image sweep for writes at `+0x714` returns ~~**eight bodies**~~ **at least eleven bodies** *(corrected 2026-10-02, OPUS: `retool.py grep "+ 0x714],"` finds the three battle-unit writers `00236B55`, `0030F806`, `0031071B` and nine stores in eight other bodies - `00542740`, `006FEF20`, `00708470`, `007084E0`, `00708540`, `007085A0`, `00708600`, `007D2150`)*, of which
+only three are battle-unit bodies; the other ~~five~~ eight sit in the `005…`/`007…` bands and are unrelated
 structures that happen to carry a field at that offset. *So "three writers" is a claim about a
-population, not about a displacement, and quoting the raw eight would contradict the page while
+population, not about a displacement, and quoting the raw ~~eight~~ eleven *(corrected 2026-10-02, OPUS: the sweep figure above)* would contradict the page while
 measuring the same thing.*
 
 ## 5. State

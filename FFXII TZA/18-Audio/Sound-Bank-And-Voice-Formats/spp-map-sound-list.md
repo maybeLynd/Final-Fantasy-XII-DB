@@ -296,7 +296,15 @@ written**, and nothing was executed.
 **Party — SERVICE.** `00362850` on this page calls `PartyFocus_GetCurrentPackedActorHandle`, owned by that layer. What it reaches is a seven-byte getter returning the packed handle at `022C7FE0`; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **Save_Load_Settings — SERVICE.** `002620E0` on this page calls `SaveImage_GetPersistentPayloadBase`, owned by that layer. What it reaches is a 20-byte accessor returning `002EF640() + 0x200` - **the base the persistent flag banks are indexed off**, so those banks live inside the save payload; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
-
+- **Actor - SERVICE (1 edge).** `003775D0` reaches bodies filed to actor: `0037AA90` - shared machinery across the layer boundary, no shared ownership.
+- **ActorEntity - CLIENT and SERVICE (22 edges).** `0032E400`, `0032E620`, `003DE920` are also called by bodies filed to actor entity: `002628B0`, `0032FCA0`, `00330310` (+3 more); `00330310`, `00362850`, `003DD4C0` reach bodies filed to actor entity: `003DE920`, `00263FF0`, `003304A0` (+5 more) - shared machinery across the layer boundary, no shared ownership.
+- **CoreRuntimeScheduling - CLIENT and SERVICE (8 edges).** `002E65A0` is also called by bodies filed to core runtime scheduling: `0022A770`, `0022AF50`, `0022B000` (+4 more); `003638B0` reaches bodies filed to core runtime scheduling: `00229EA0` - shared machinery across the layer boundary, no shared ownership.
+- **Platform - SERVICE (1 edge).** `00223190` reaches bodies filed to platform: `005CC930` - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (50 edges).** `0032E620`, `0032E400`, `00249210` are also called by bodies filed to resource: `00249210`, `0024AC30`, `00259DF0` (+18 more); `0032E870`, `00330310`, `00249210` reach bodies filed to resource: `0032E620`, `0032E400`, `002121C0` (+5 more) - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT and SERVICE (71 edges).** `00267310`, `00265920`, `002DF010` are also called by bodies filed to script VM / native bridge: `00346260`, `00346990`, `00354D00` (+61 more); `00346260`, `00346990` reach bodies filed to script VM / native bridge: `00267E10`, `0026B4E0` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT (6 edges).** `00249210`, `00229EA0`, `00377B60` are also called by bodies filed to UI: `002468A0`, `00246C20`, `003C9950` (+3 more) - shared machinery across the layer boundary, no shared ownership.
+- **World - CLIENT (4 edges).** `0032E400`, `0032E620`, `00362F70` are also called by bodies filed to world: `00378540`, `00266D10` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (29 edges).** `0032E400`, `002EF640`, `0032E620` are also called by bodies filed to world area: `003EA820`, `00314020`, `00268750` (+16 more); `002620E0`, `003775D0`, `00378030` reach bodies filed to world area: `0025ACA0`, `00379290`, `00378120` (+1 more) - shared machinery across the layer boundary, no shared ownership.
 ## SWE2-EC7-98 update (2026-09-20) - `002DF190` measured
 
 `002DF190` (16 B) is the argument-shuffle `00363410`,

@@ -181,7 +181,7 @@ handler actually follows.
 
 > **What this does not establish.** That `section_019` and a standalone `.ard` are the *same format*
 > still needs their bytes compared, and they have not been. The agreement is structural — same
-> directory, same size, same absent slots — and structural agreement between two populations is
+> directory, same size~~, same absent slots~~ *(corrected 2026-10-02, OPUS: the absent slots are not the same — the 2026-09-05 audit correction above)* — and structural agreement between two populations is
 > strong evidence about the shape and no evidence at all about the contents.
 
 ### Audit pass — 2026-09-05, `repos-4b` (independent)
@@ -218,8 +218,8 @@ reserved or unused — a large fraction, and the kind of thing worth knowing bef
 is meaningful.
 
 `+0x02` is the striking one: **three values in 2,116 records.** A field with that distribution is a
-kind or a version, not a quantity. `+0x08`, at the other end, is nearly unique per record and reads
-like an identifier.
+kind or a version, not a quantity. `+0x08`, at the other end, is nearly unique per record and ~~reads~~
+~~like an identifier~~ is the value the reader returns, the per-model motion index, not a key *(corrected 2026-10-02, OPUS: `003DCA30` matches the `u32` at `+0x00` (`003DCA70`), the `u16` at `+0x06` (`003DCA75`) and at `+0x04` (`003DCADD`) and returns the `u16` at `+0x08` (`003DCA8C`, `003DCAF2`); §7, CC-10)*.
 
 ### Table B
 
@@ -324,7 +324,7 @@ build.
 > established here** — if something does, the resolved offset shifts and the reading above changes.
 > That is the killer observation for this claim and it is named rather than assumed away.
 
-**So four of the eight constant header fields are now proven inert and one is proven live.** The
+**So four of the eight constant header fields are now proven inert and ~~one is proven live~~ two are read — `+0x2C` here and `+0x0C` by the trailer reader.** *(corrected 2026-10-02, OPUS: `003EA650(1)` loads `02B5E0C8` and reads `[base + 0x0C]` at `003EA671`, besides `003EAA32` `mov ecx, dword ptr [rbx + 0x2c]`; BZ-2)* The
 2026-09-03 sheet said a corpus reading could not distinguish "constant field" from "field nothing
 reads"; it was right that it could not, and the handler does.
 
@@ -392,8 +392,8 @@ alongside 332 `.nmb` — the same count, so they are a per-group pair. The `.ebp
 population is 271, per map *instance* (`gol_a03`), while `.ard` is per map *group* (`gol_a`). Two
 different granularities of the same named thing.
 
-**Whether the standalone `.ard` and `section_019` are byte-compatible is not tested here** — the
-`.ard` files were not extracted from the archive for this block, and a claim that two formats are
+**Whether the standalone `.ard` and `section_019` are byte-compatible is not tested here** — ~~the~~
+~~`.ard` files were not extracted from the archive for this block, and~~ *(answered: the 166 `.ard` files were since parsed for the 2026-09-05 audit, §2, though not compared byte for byte; 2026-10-02, OPUS)* a claim that two formats are
 the same needs the bytes, not the name. It is the cheapest remaining experiment on this sheet and it
 is written up as `PROPOSED-c9-5`.
 
@@ -410,7 +410,7 @@ is written up as `PROPOSED-c9-5`.
 | `00331B69` | the extension swap to `ard` | ✅ |
 | `00331CA3` | `FUN_0032e400(0xFF, buf)` — the size probe that fails | ✅ |
 | `00331D2B` | `LEA RDX,[00D10970]` — the sole reference to `"MAPARD"` | ✅ |
-| `003320D0` | the `.ard` stream-completion callback, installed at `00331D89`+ | ❌ not read |
+| `003320D0` | the `.ard` stream-completion callback, installed at `00331D89`+ | ~~❌ not read~~ read in full in §3 — 13 bytes, `and rcx, 0xFFFFFFF0` then `jmp FUN_003EAA00` *(answered: §3; 2026-10-02, OPUS)* |
 | `0032E7C0` | the streamed-read enqueue | ❌ not read |
 
 ## 5. Corpus survey
@@ -457,9 +457,9 @@ directory does not, which is a more informative failure than a total mismatch wo
 
 ## 7. What this document does not claim
 
-- **No loader contract.** No `Read by` cell in section 3 holds a real instruction address, which is
-  why the status is `PARTIAL`. **No field is marked `Inert`**, because a field cannot be shown inert
-  by a search that never found the reader.
+- ~~**No loader contract.** No `Read by` cell in section 3 holds a real instruction address, which is~~
+  ~~why the status is `PARTIAL`. **No field is marked `Inert`**, because a field cannot be shown inert~~
+  ~~by a search that never found the reader.~~ *(answered: §3, established 2026-09-04, is the loader contract — `003EAA32` reads `+0x2C`, and the field table marks the never-read fields; the front matter says `status: AUDITED`; 2026-10-02, OPUS)*
 - ~~**No record field is decoded.** Section 2 gives measured ranges and distributions for `+0x00`
   through `+0x08`; it assigns none of them a meaning. `+0x02` with three values and `+0x08` with
   1,161 are described as *shaped like* a kind and an identifier, and that is a description of a
@@ -471,10 +471,10 @@ directory does not, which is a more informative failure than a total mismatch wo
   `.ard`'s slot 7 is the same table bound to `02B58178` and searched first, but it is 0 in every
   shipped `in` file ([the .ard loader page](../../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md)).
 - **Table B is not decoded at all** — only located, sized, and shown to be non-empty.
-- **The eight constant `u32` in the header are not explained**, and `0x30` being the offset of
-  `countA` is noted as suggestive and nothing more.
+- ~~**The eight constant `u32` in the header are not explained**, and `0x30` being the offset of~~
+  ~~`countA` is noted as suggestive and nothing more.~~ *(answered: they are the eight directory slots, and `+0x2C = 0x30` is the slot-7 offset the handler follows to `countA` — BZ-2, §2 and §3; 2026-10-02, OPUS)*
 - **`section_019` is not claimed to be the same format as a standalone `.ard`.** The two share a
-  name and a granularity mismatch (271 map instances against 332 map groups); their bytes have not
+  name and a granularity mismatch (271 map instances against ~~332 map groups~~ 166 map groups per tree *(corrected 2026-10-02, OPUS: the 332 `.ard` files are 166 in `in` and 166 in `ch`, counted in `vbf_load_index`'s names)*); their bytes have not
   been compared.
 - **Searches that came back empty, with the method:** literal search of the entire 32,864,752-byte
   image for `FF12AR03` and `AR03` — 0 hits each. This cannot rule out a magic built by arithmetic or

@@ -93,7 +93,7 @@ void FUN_0015bd30(void)
 }
 ```
 
-Source `0x01DF09C0` sits at the very start of `.data`; the destination `0x01F80130` is the live
+Source `0x01DF09C0` sits ~~at the very start of `.data`~~ `0x9C0` bytes into `.data`, which starts at `0x01DF0000` *(corrected 2026-10-02, OPUS: section table; `01DF0900`–`01DF09B0` are read by other code, among them the sibling prototype copies `0015BF20` and `0015C0D0`)*; the destination `0x01F80130` is the live
 object. **The initial value of these globals is authored data compiled into the image**, not
 something computed at runtime — which means it can be found and edited statically.
 
@@ -123,7 +123,7 @@ undefined * FUN_005c3b10(void)
 ```
 
 The read is `_Init_thread_epoch`, a **TLS variable at offset `+4`** in this module's TLS block,
-compared against a global initialization epoch. If this thread has not yet observed the
+compared against ~~a global initialization epoch~~ the static's own guard dword, which holds the epoch at which that static completed *(corrected 2026-10-02, OPUS: at the gate in `00189CE0`, `00189CE0+0x5D` is `cmp dword ptr [01F7F5C8], eax` with `eax` this thread's `[tls+4]`, and `00189CE0+0x63` `jle` skips `_Init_thread_header`; the global `01F44850` is read only inside the header and the footer; the T-5 answer of 2026-09-14)*. If this thread has not yet observed the
 initialization, the guarded construction runs (through `_Init_thread_header` /
 `_Init_thread_footer`); otherwise the accessor returns the address immediately.
 
@@ -209,7 +209,7 @@ TLS block (per thread)
 
 ```
 tlsBlock = ThreadLocalStoragePointer[_tls_index]
-if (tlsBlock[+4] < epoch):            // _Init_thread_epoch
+if (tlsBlock[+4] < epoch):            // _Init_thread_epoch   <- corrected 2026-10-02, OPUS - the comparand is the static's own guard dword, not a global epoch: 00189CE0+0x5D cmp [guard], eax (thread epoch); 00189CE0+0x63 jle skips the header
     guarded one-time construction     // _Init_thread_header / _Init_thread_footer
 return &theStatic
 ```
@@ -373,7 +373,7 @@ its ends. It was not read off a symbol or assumed from a section name.
 **The stated limit of that method.** The walk stops where the pointers stop looking like `.text`
 addresses, which cannot distinguish `__xi` from `__xc` if the linker placed them adjacently with
 no null between. 1,172 is therefore "contiguous initializer entries containing the known
-initializers", which may span both C and C++ tables. Recorded as **T-1** rather than reported as
+initializers", ~~which may span both C and C++ tables~~ *(answered: see §10 - the entire 1,172-entry run is C++, and `__xi` is the separate table at `008C5680`; 2026-10-02, OPUS)*. Recorded as **T-1** rather than reported as
 a clean `__xc` count.
 
 ### Two open questions closed this pass
@@ -396,7 +396,7 @@ image**, so none of them can be a function RVA. The section contains no usable g
 independently corroborates `GuardCFFunctionTable = 0` from the load config by a completely
 separate route.
 
-What those 12 dwords *are* is a new question, recorded as **T-9**, and it is deliberately left
+What those 12 dwords *are* is a new question, recorded as **T-9**, and it ~~is deliberately left~~ was left *(answered: see T-9 on the hardening page, answered 2026-09-27 - the statically linked runtime's own `.gfids$y` data; 2026-10-02, OPUS)*
 open rather than guessed. The claim proven here is the negative one, and it is the one the
 hardening document needed.
 
@@ -574,7 +574,7 @@ it. No address or count already in this document was re-derived for it.
 
 **Attack chosen.** Everything load-bearing here is a **PE structure or a pointer table**, so all of
 it can be read directly from the authorized binary. The headline claims **1,172** eager initializers
-and **117** lazy statics, and §2 makes four specific TLS assertions.
+and ~~**117** lazy statics~~ **1,681** lazy statics *(answered: see §12, corrected 2026-09-02 - 117 was a tag population; 1,681 distinct guards at 1,732 sites in 707 functions, recounted at the image; 2026-10-02, OPUS)*, and §2 makes four specific TLS assertions.
 
 ### SURVIVED, and more strongly than claimed: the CRT initializer table
 
@@ -637,7 +637,7 @@ structure — which is what this pass did by hand.**
 
 ### Not re-derived
 
-The **117** lazy function-local statics and the family counts in §2 were not recounted this pass.
+The ~~**117**~~ lazy function-local statics *(answered: see §12 - 1,681 statics at 1,732 sites; 2026-10-02, OPUS)* and the family counts in §2 were not recounted this pass.
 They rest on the GFZ tag census and are unaffected by the TLS correction.
 
 ## 10. Falsification pass 2026-09-02 (second) — T-1's premise was wrong; T-1 and T-2 answered
@@ -800,7 +800,7 @@ editable to change what the controller does out of the box.
 > section 11.
 
 The two `Audio` clusters are larger and far more heavily used — 795 references across 202 functions —
-and are unidentified. **T-8.**
+and are ~~unidentified~~ SQEX Sead's static pools *(answered: see T-8, answered on the page 2026-09-14; 2026-10-02, OPUS)*. **T-8.**
 
 ---
 
@@ -930,11 +930,11 @@ Interior anchor `005FD0F5` (the `gs:[0x58]` TLS read).
 `007AB5C0`-`007BC4F0`. Those bodies call the rest of SEAD's driver (`007AA3E0`-`007AA550`, `007A46E0`, `007A7A20`,
 `007BB610`, `007DF8D0`, `007EFB20` and more) and are called from `007A5400` / `007A5E50` / `007BD120`-`007BED30`.
 - The CRI HCA entry `00121000` sits in the same neighbourhood.
-- The CRT formatter-option initializer `0016D670` is reached from `007A5570`.
+- The CRT formatter-option ~~initializer~~ accessor `0016D670` is reached from `007A5570` *(corrected 2026-10-02, OPUS: `0016D670` is `lea rax, [02EBA3D0]; ret`, the printf-options accessor, with 23 call sites; the initializer is `00809C50`, which ORs `4` into what it returns)*.
 
 Which pools the sound engine initialises is the 18 pages' subject.
 
-**Resource, 6; Platform, 1; Audio's `0021xxxx` bodies — SERVICE.** The memory-status reader `005CC8A0` is called by
+**Resource, 6; Platform, 1; Audio's `0021xxxx` bodies — SERVICE.** The ~~memory-status reader~~ record zero-initializer `005CC8A0` *(corrected 2026-10-02, OPUS: its 25-byte body zeroes `+0`, `+8`, `+0x10`, `+0x18`, `+0x20` and `+0x24` of `rcx` and returns `rcx`; it reads no memory status)* is called by
 `00165F80`, `0019F490`, `0019F620`, `001D9400`, `0061F200` and `002116B0`-`0021A9F0`.
 
 **Input — CLIENT, four edges.**

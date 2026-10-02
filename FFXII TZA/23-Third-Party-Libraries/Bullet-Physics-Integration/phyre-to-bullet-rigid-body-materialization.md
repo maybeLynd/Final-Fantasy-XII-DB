@@ -117,7 +117,7 @@ Then the child's transform is written into the compound by `00833390`
 the translation:
 
 ```c
-origin += ( -body[0x30], -body[0x2C], -body[0x28] );
+origin += ( -body[0x30], -body[0x2C], -body[0x28] );   /* <- corrected 2026-10-02, OPUS - reversed: x takes -body[0x28], y -body[0x2C], z -body[0x30] (negated at 0069FB10+0x1AD..+0x1E1, added at 0069FB10+0x307 / +0x2FA / +0x2E9 into the origin stored at +0x30C / +0x312 / +0x318) */
 ```
 
 That negation is the whole reason a physics body rotates about its balance point rather than its
@@ -201,9 +201,9 @@ them as functions that have gone missing.
 
 ```
 PPhysicsRigidBody (param_1)
-  +0x28  f32   centreOfMass.z    negated into every child transform
+  +0x28  f32   centreOfMass.z    negated into every child transform   <- corrected 2026-10-02, OPUS - .x, not .z: 0069FB10+0x307 adds -[+0x28] to the child origin's x, and 006A4A60 multiplies it by the basis column 0
   +0x2C  f32   centreOfMass.y
-  +0x30  f32   centreOfMass.x
+  +0x30  f32   centreOfMass.x   <- corrected 2026-10-02, OPUS - .z, not .x: 0069FB10+0x2E9 adds -[+0x30] to the child origin's z
   +0x58  f32   localInertia.x    authored; (0,0,0) means "compute it"
   +0x5C  f32   localInertia.y
   +0x60  f32   localInertia.z
@@ -246,9 +246,9 @@ child_i = *(void **)(base + i * 8);
 ```c
 scaled     = (child[0x50] * body[0x88], child[0x54] * body[0x8C], child[0x58] * body[0x90]);
 childShape->setLocalScaling(&scaled);                      /* virtual +0x28 */
-origin.x  += -body[0x30];
+origin.x  += -body[0x30];   /* <- corrected 2026-10-02, OPUS - x takes -body[0x28] (0069FB10+0x307) */
 origin.y  += -body[0x2C];
-origin.z  += -body[0x28];
+origin.z  += -body[0x28];   /* <- corrected 2026-10-02, OPUS - z takes -body[0x30] (0069FB10+0x2E9) */
 btCompoundShape::updateChildTransform(compound, i, &transform);
 ```
 
@@ -383,7 +383,7 @@ the `+0x108` back-pointer.
 - [x] **UQ-302.** The exact Bullet version. The construction-info layout has **no `m_rollingFriction` field**,
       which is consistent with a pre-2.82 Bullet, but no version string has been found in the image
       to pin it the way zlib, libvpx and Lua are pinned.
-      ***NARROWED 2026-09-17 (FABLE): the serializer's type-name set bounds the version without pinning it.** The image has no constant-return `btGetVersion` (no function in the list is a bare `mov eax, imm; ret` with a value in 270..300), no `BulletDNA`/`SDNA` blob and no version string. It does carry the twenty struct names the linked `serialize` methods return, at file offsets `0x1BAC800`..`0x1BAE300`: `btRigidBodyFloatData`, `btCollisionObjectFloatData`, `btCollisionShapeData`, `btCompoundShapeData`/`ChildData`, `btConvexHullShapeData`, `btCylinderShapeData`, `btCapsuleShapeData`, `btStaticPlaneShapeData`, `btTriangleMeshShapeData`, `btStridingMeshInterfaceData`, `btMeshPartData`, `btIntIndexData`, `btShortIntIndexTripletData`, `btQuantizedBvhFloatData`, `btQuantizedBvhNodeData`, `btOptimizedBvhNodeData`, `btBvhSubtreeInfoData`, `btVector3FloatData`, `btVector3DoubleData`. No `m_rollingFriction` name and no multibody struct appear, which keeps the build below 2.82 as the construction-info layout already said; the set is otherwise the collision and rigid-body serialization of the 2.7x..2.81 line, ~~and nothing in it separates those releases. The exact number is not in the image.~~* *(Corrected 2026-09-26 (FABLE, Claude Opus 5.5): one name does separate them; see the answer below.)*
+      ***NARROWED 2026-09-17 (FABLE): the serializer's type-name set bounds the version without pinning it.** The image has no constant-return `btGetVersion` (no function in the list is a bare `mov eax, imm; ret` with a value in 270..300), no `BulletDNA`/`SDNA` blob and no version string. It does carry the twenty struct names the linked `serialize` methods return, at ~~file offsets `0x1BAC800`..`0x1BAE300`~~ `01CCD380` (`btCollisionShapeData`) to `01CCF378` (`btRigidBodyFloatData`), file offsets `0x1BAC180`..`0x1BAE178` *(corrected 2026-10-02, OPUS: each of the twenty names located in the image)*: `btRigidBodyFloatData`, `btCollisionObjectFloatData`, `btCollisionShapeData`, `btCompoundShapeData`/`ChildData`, `btConvexHullShapeData`, `btCylinderShapeData`, `btCapsuleShapeData`, `btStaticPlaneShapeData`, `btTriangleMeshShapeData`, `btStridingMeshInterfaceData`, `btMeshPartData`, `btIntIndexData`, `btShortIntIndexTripletData`, `btQuantizedBvhFloatData`, `btQuantizedBvhNodeData`, `btOptimizedBvhNodeData`, `btBvhSubtreeInfoData`, `btVector3FloatData`, `btVector3DoubleData`. No `m_rollingFriction` name and no multibody struct appear, which keeps the build below 2.82 as the construction-info layout already said; the set is otherwise the collision and rigid-body serialization of the 2.7x..2.81 line, ~~and nothing in it separates those releases. The exact number is not in the image.~~* *(Corrected 2026-09-26 (FABLE, Claude Opus 5.5): one name does separate them; see the answer below.)*
       **ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5) (as `BN-1`): the linked Bullet is the 2.77 line.** Control: [`bn1_bullet_version.py`](../../_index/candidates/bn1-bullet-version/bn1_bullet_version.py) (3 checks,
       FAILS 0). Found by a delegated read-only pass by comparing the image with upstream Bullet source at dated commits.
       The image side is re-checked here and the upstream side re-read from the fetched copies.
@@ -412,7 +412,7 @@ the `+0x108` back-pointer.
       **NARROWED FURTHER 2026-09-22 (FABLE): the Phyre-side population is EMPTY.** Over all 35,984
       shipped clusters, `Physics` — the widest needle — occurs in **0**, against controls of 2,184
       each for `PEffect` and `PContextSwitch`. See the section above.
-      **Narrowed 2026-09-18 (FABLE): the static route into the seam is one chain, and it starts at a body nothing calls.* `edges.tsv` gives `PPhysicsRigidBody_MaterializeBulletBody` one caller, `0069F070`, whose one caller is `0069EF20`, whose one caller is `00698C80`, whose one caller is `006883A0` — and `006883A0` has **no listed caller**: it is reached by pointer (a component virtual or a callback), so which Phyre objects reach the seam is decided by whatever installs `006883A0`, which no page has read. How many bodies exist at once is a question of the shipped maps' physics components, not of the code.*
+      **Narrowed 2026-09-18 (FABLE): the static route into the seam is one chain, and it starts at a body nothing calls.* `edges.tsv` gives `PPhysicsRigidBody_MaterializeBulletBody` one caller, `0069F070`, whose one caller is `0069EF20`, whose one caller is `00698C80`, whose one caller is `006883A0` — and `006883A0` has **no listed caller**: it is reached by pointer (a component virtual or a callback), so which Phyre objects reach the seam is decided by whatever installs `006883A0`~~, which no page has read~~ *(answered: see `BN-4` below - no shipped Phyre object carries a physics component, 2026-09-22; 2026-10-02, OPUS)*. How many bodies exist at once is a question of the shipped maps' physics components, not of the code.*
 ## `BN-4` — the shipped Phyre corpus contains no physics at all (FABLE, 2026-09-22)
 
 The 2026-09-18 narrowing ended by saying *“how many bodies exist at once is a question of the
@@ -574,7 +574,7 @@ shape's constructor initialises `m_localAabbMin` to `+BT_LARGE_FLOAT` and `m_loc
 
 ## 9. Related
 
-- [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) — the library census this sits inside; **REOPENED 2026-09-02** by a count defect this block found
+- [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) — the library census this sits inside; ~~**REOPENED 2026-09-02**~~ reopened 2026-09-02 by a count defect this block found, since resolved *(answered: the inventory's front matter, `status: DOCUMENTED`, 2026-10-01; 2026-10-02, OPUS)*
 - [`../../22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md`](../../22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md) — `PPhysics` is 153 of its classes; this is the seam out of them
 - [`../../06-Movement-And-Navigation/heading-speed-to-position-delta.md`](../../06-Movement-And-Navigation/heading-speed-to-position-delta.md) — how characters move; **not** this. Character motion is scripted, not simulated.
 - [`../../00-Engine-Core-Runtime/Object-Model/vtable-method-index.md`](../../00-Engine-Core-Runtime/Object-Model/vtable-method-index.md) — the class/slot index
@@ -602,8 +602,8 @@ Floats at `self+0x68/0x6C/0x70` and `self+0x78/0x7C/0x80` are assembled with a *
 
 ### 3. The transform is composed, not copied
 
-`movups xmm0, [self+0x48]` — 16 bytes — into `006A57C0`, whose 4×4 output is then multiplied
-componentwise by the scale at `self+0x28/0x2C/0x30` and offset by the translation at
+`movups xmm0, [self+0x48]` — 16 bytes — into `006A57C0`, whose 4×4 output is then ~~multiplied~~
+~~componentwise by the scale at `self+0x28/0x2C/0x30`~~ applied to the centre-of-mass vector at `self+0x28/0x2C/0x30` as a matrix-vector product, not a componentwise scale *(corrected 2026-10-02, OPUS: `006A4A60+0x12A`..`+0x1D6` sum, per row, the three basis entries times `[+0x28]`, `[+0x2C]` and `[+0x30]`; the same vector `0069FB10` negates into every child origin)*, and offset by the translation at
 `self+0x38/0x3C/0x40` (held in `xmm6`, `xmm8`, `xmm9` across the call), and the result goes to
 `00853FE0`. **So the stored transform is built from four separate fields of `self`, not taken from
 one.**

@@ -53,7 +53,7 @@ roster* is the first four of the nine party slots.
 ## 2. What the four begins have in common
 
 Each pops its arguments from the script stack, then **raises flag `0x13`** through the engine's flag setter (the one the
-world-tick page reads with `0xF`; the setter itself was not read here) before it touches the party. The two `set` verbs
+world-tick page reads with `0xF`; the setter itself was not read here *(answered: `003601B0` / `003601C0` set and clear bit `cl` of `022CB720`, falsification pass 1 row B1; 2026-10-02, OPUS)*) before it touches the party *(corrected 2026-10-02, OPUS: `setbattlemember` raises it before its first pop, `0034D542` then `0034D558`)*. ~~The two `set` verbs~~ `setbattlemember`, `setbattlememberone` and `addguestbattlemember` *(corrected 2026-10-02, OPUS: slot loops `0034D520`–`0034D53B`, `00350CF5`–`00350D10`, `003521A6`–`003521C1`; `setbattlememberlock` has none)*
 first walk roster slots 0-3 and call one routine on every actor present with a zero argument *(what it clears was not
 read)*.
 
@@ -125,8 +125,8 @@ add raises the flag before it changes the party, the remove changes the party be
 - Guests and main characters have separate removal verbs, and each silently ignores the other kind.
 
 **Not read:** the roster mutators the begins end in (reconcile, demote, move-out, the two removers); the lock routine
-`setbattlememberlock` ends in; the flag setter and clearer keyed `0x13`; the
-per-actor routine the two `set` verbs call first.
+`setbattlememberlock` ends in; the flag setter and clearer keyed `0x13` *(answered: falsification pass 1 row B1; 2026-10-02, OPUS)*; the
+per-actor routine ~~the two `set` verbs~~ the three preamble verbs *(corrected 2026-10-02, OPUS: as §2)* call first.
 
 | body | anchors |
 |---|---|

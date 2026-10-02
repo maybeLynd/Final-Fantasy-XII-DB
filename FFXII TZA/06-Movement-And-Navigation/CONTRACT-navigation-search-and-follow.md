@@ -151,8 +151,8 @@ the region back.* The dead-end memory transitions only by being pushed onto, or 
 
 ## 8. Script · resource · event interactions
 
-The mesh, the portals, their class masks and their map ids are authored. **`setmapidfloor` is the
-only script verb that reaches this subsystem**, and it reaches it by invalidation rather than by
+The mesh, the portals, their class masks and their map ids are authored. ~~**`setmapidfloor` is the~~
+~~only script verb that reaches this subsystem**~~ **Every verb of the map-id override family `00F6`–`0103` and `0107`–`010B` reaches this subsystem** — floor, wall and mj alike *(corrected 2026-10-02, OPUS: `003278D0` is called by the setters `0026E130`, `0026E150`, `0026E850`, `0026E880` (and by `0026E960` at area start), whose callers are the tails of those nineteen verbs (FABLE's record readiness-apply-fable-1002))*, and it reaches it by invalidation rather than by
 parameter (NV-2).
 
 ## 9. Determinism
@@ -195,7 +195,7 @@ read as evidence of execution.*
 - What class 3's probe-gate bit means for the creature that has it, and what kinds `0`, `7` and `9`
   of the verb gate — [the page](how-a-unit-finds-its-way-across-the-navigation-mesh.md)'s own open
   items, not re-opened here.
-- The locomotion solver that consumes the waypoint.
+- ~~The locomotion solver that consumes the waypoint.~~ *(answered: see [battle locomotion](Battle-Locomotion/battle-locomotion-steering-and-recovery.md), the solver read; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -224,8 +224,8 @@ is not what the engine does.
   contract asserts the walk and the `maxss`, **not the pool's own behaviour or the radii's origin**.
 - **CombatAction — MECHANICAL.** The navigation step that applies NV-5's factor and abandons on a
   non-zero return belongs to that layer; NV-5 cites its two `mulss` sites and nothing else about it.
-- **Script_VM_Native_Bridge — SERVICE, and NV-2 and NV-6 are the statement.** `setmapidfloor` is the
-  only verb that reaches this subsystem. *Its tail and jump table are on the page and are not
+- **Script_VM_Native_Bridge — SERVICE, and NV-2 and NV-6 are the statement.** ~~`setmapidfloor` is the~~
+  ~~only verb that reaches this subsystem.~~ Every override verb `00F6`–`0103`, `0107`–`010B` reaches it through `003278D0` *(corrected 2026-10-02, OPUS: the callers of `003278D0` and of its setters, §8)*. *Its tail and jump table are on the page and are not
   re-derived here.*
 - **Presentation — SERVICE, and it owns a leaf this contract leans on.** The point-to-segment
   routine `00382EA0` that NV-4 counts carries that layer's ownership, not this one's, although both

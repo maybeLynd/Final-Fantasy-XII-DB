@@ -231,7 +231,7 @@ centimetre of twice the mover's radius** - which is exactly where section 4's cl
   authored mask when none does.
 - Return codes: 0 route, -1 none, -2 start off the mesh, -3 goal off the mesh.
 
-**Not read:** the locomotion solver that consumes the waypoint; the direct-route check that applies the same portal test
+**Not read:** ~~the locomotion solver that consumes the waypoint;~~ *(answered for the solver: see [battle locomotion](Battle-Locomotion/battle-locomotion-steering-and-recovery.md), whose turn limiter and step distance are read in full; 2026-10-02, OPUS)* the direct-route check that applies the same portal test
 while walking a straight line across regions ([the world tick](../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)
 has a peer's note on it); the six other callers of the region lookup; what class 3's "probe gate bit 3" means for the
 creature that has it; what kinds 0, 7 and 9 of the verb gate (class 0 and class 5 have no unit that was seen to use them).
@@ -341,9 +341,9 @@ Five of these are things a reimplementation gets wrong silently.
 
 | thing | shape |
 |---|---|
-| adjacency matrix entry | **2 bytes**, at `m[cur*deg + slot]`, with `deg = w[root+0xA]` — the triangle count |
+| adjacency matrix entry | **2 bytes**, at `m[cur*deg + slot]`, with `deg = w[root+0xA]` — ~~the triangle count~~ the region count, §1's `regionCount` *(corrected 2026-10-02, OPUS: `00383883` `movzx r10d, word [r11+0xA]` / `00383888` `imul r10d, ebx` make it the row stride of the region-by-region adjacency)* |
 | adjacency entry value | a **1-BASED** edge-record index; **`0` means no edge** |
-| edge record | stride **8** — `{w va, w vb, b +4, b class@+5, b flag@+6}`, at `BASE(edgeId*8)` |
+| edge record | stride **8** — ~~`{w va, w vb, b +4, b class@+5, b flag@+6}`~~ `{w va, w vb, b gated@+4, b mapId@+5, b classMask@+6}` *(corrected 2026-10-02, OPUS: `003838C4` `test byte [rec+6], r8b` with `r8b = 1 << class`; `003838CC` `cmp byte [rec+4], 0xFF`; `003838D3` `movzx ecx, byte [rec+5]` → `0032A780`)*, at `BASE(edgeId*8)` |
 | grid candidate record | stride **0x22**, triangle selector at **`+0x14`** |
 | cell list | a byte list of record indices, **`0xFF`-terminated** |
 | walk budget | `r13d == 0x80` → return `0` |

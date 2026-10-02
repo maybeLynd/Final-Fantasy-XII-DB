@@ -1,0 +1,56 @@
+{
+ "page": "13-Rewards-Progression-Economy/CONTRACT-gil-storage-and-movement.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "contract-gil-storage-and-movement.json",
+ "rows": [
+  {
+   "fn": "0030BAF0",
+   "text": "returns 1 when `cx` AND `0xF000` equals `0x8000` (16-bit compare), else 0",
+   "anchors": [
+    [
+     "0030BAFA",
+     "and"
+    ],
+    [
+     "0030BAFF",
+     "cmp"
+    ],
+    [
+     "0030BB02",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00473C90",
+   "text": "when dword `+0x4` of the pointer in qword `02CA6C60` is greater (signed) than `ecx`, returns bits 13-25 of the dword at that pointer `+ 0x8 + 4*ecx` (shift right 13, AND `0x1FFF`) plus `0xA000`; otherwise returns -1",
+   "anchors": [
+    [
+     "00473C97",
+     "cmp"
+    ],
+    [
+     "00473C9F",
+     "mov"
+    ],
+    [
+     "00473CA3",
+     "shr"
+    ],
+    [
+     "00473CAB",
+     "add"
+    ],
+    [
+     "00473CB1",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

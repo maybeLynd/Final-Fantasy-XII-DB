@@ -1,0 +1,63 @@
+== packet integrity
+PASS  manifest.json sha256 = fc26ae31f8ddb389...  | fc26ae31f8ddb389fff58deeb7616680334f0e93723e35f4556159e32b47bc5c
+PASS  all 53 manifest members hash as listed  | []
+== shipping-image re-derivation
+PASS  body 00429140..004292A6 decodes exactly and .pdata tiles it (3 record(s))
+PASS  body 00427C90..00427DD8 decodes exactly and .pdata tiles it (3 record(s))
+PASS  body 004200A0..004201EB decodes exactly and .pdata tiles it (1 record(s))
+PASS  bytes total 1017 (358 + 328 + 331)  | 1017
+PASS  00429140 local CFG closed (no tail/out branch, last insn ret)  | tails=[] outs=[]
+PASS  00427C90 local CFG closed (no tail/out branch, last insn ret)  | tails=[] outs=[]
+PASS  4200A0 has no ret; its only exit is the last insn `jmp 0x41f730`  | rets=[] tails=[(4325862, 4323120)]
+PASS  4200A0 rcx = rbx at 4201D2 and no rcx write between it and the tail jmp
+PASS  every 4200A0 call precedes its tail
+NOTE  4200A0 calls: 46C240 41E860 3AEF30 3E69A0 512C80 24CFF0 17F100 19C570 19C570 19C570 19C570 19C570 19C570 19C570 19C570
+PASS  429146 rdx and 427C9A rdi load the same pool global 022C6F28  | 36466472 36466472
+PASS  429150/429153: `test rcx, rcx` then `jne 0x42915d`
+PASS  NULL arm: no call, no nonstack write, no record dereference  | []
+NOTE  429140 rets: {'42915C': 'eax=0 def 429155 joins []', '429203': 'eax=1 def 4291F9 joins []', '4292A5': 'eax=1 def 429296 joins []'}
+PASS  three rets: 42915C eax=0; 429203 and 4292A5 eax=1; no join between def and ret
+PASS  NULL ret 42915C is reachable only through the jne fallthrough (no branch targets 429155..42915C)
+PASS  non-NULL dispatch: 42915D `test byte ptr [rcx + 0x284], 4`; 429169 `je 0x429204`
+PASS  mark arm record writes = OR 290h dword, OR 2AEh byte, 108h qword, 110h dword, 284h dword  | [(4362607, 656, 4, 'or'), (4362616, 686, 1, 'or'), (4362623, 264, 8, 'mov'), (4362630, 272, 4, 'mov'), (4362649, 644, 4, 'mov')]
+PASS  mark arm immediates: 290h |= 2, 2AEh |= 1, 108h/110h <- 0 (xor eax at 429176)
+PASS  mark arm 284h = (old & ~4) | bit 30 (42918C..429199)
+PASS  all mark-arm record writes precede its first call
+PASS  mark arm: no 41F730/4200A0 call and no write to the pool count/cursor  | [(4362655, 4336976), (4362684, 2156032), (4362707, 3069296), (4362729, 2156064)]
+NOTE  mark-arm calls: 422D50 20E600 2ED570 20E620
+NOTE  mark-arm writes on helper-returned objects (not the record): [(4362665, 'and dword ptr [rax + 0xc], 0xfffffffd'), (4362724, 'and dword ptr [rax], 0xfffffffb'), (4362739, 'mov dword ptr [rbx + 0xa0], eax')]
+PASS  4291D8 `mov rbx, rax` follows call 2ED570 and dominates 4291F3 (so +A0h is written on that callee's object)
+PASS  no-op dispatch: 429204 `test byte ptr [rcx + 0x290], 1`; 42920B `je 0x429296`
+PASS  no-op path 429204 -> 429296 -> ret: no call, no nonstack write
+PASS  stated no-op input (284h = 2010F9h, 290h = 0) selects the no-op path
+PASS  unlink arm: one call, to 41F730 at 429291; no 4200A0  | [(4362897, 4323120)]
+PASS  unlink arm: one `dec dword [rdx+4880Ch]` (42924D), dominating the 41F730 call
+PASS  no read of the count on any path 429204 -> 42924D (no positive-count guard)  | []
+PASS  rdx (pool) is not rewritten on the unlink path 429146..429169, 429204..42924D (no call on it)
+NOTE  unlink-arm writes: [('42922A', 'rcx', 'rdx', '4', 2), ('429248', 'rcx', 'rdx', '2', 2), ('42924D', 'rdx', None, '4880C', 4), ('429262', 'rdx', None, '48810', 4), ('429277', 'rdx', None, '48814', 4), ('429288', 'rdx', None, '48808', 4)]
+PASS  unlink writes: neighbour rows +4/+2 (indexed), head 48810h, tail 48814h, count, cursor 48808h
+PASS  cursor reset 429288 follows `cmp [rdx+4880Ch], 0` (42927D) and is dominated by the dec
+PASS  427CA1 esi = [rdi+48800h] (active head)
+PASS  loop row: rbx = rdi + sext(esi)*740h (427CC0..427CCA)
+PASS  427CCD tests 290h mask 02; next WORD +4 sign-extended into esi (427CD4/427CD8) before the je
+PASS  esi written only at 427CA1 (head) and 427CD8 (cached next) plus the epilogue restore  | ['0x427ca1', '0x427cd8', '0x427dcd']
+PASS  loop continues on cached esi: 427DBA `cmp esi, -1`; 427DBD `jne 0x427cc0`
+PASS  one count dec (427D18), dominating every call in the sweep  | [(4357465, 4388032), (4357502, 4353728), (4357527, 3891200), (4357542, 3865568), (4357550, 4325536)]
+NOTE  sweep calls in order: 42F4C0@427D59 426EC0@427D7E 3B6000@427D97 3AFBE0@427DA6 4200A0@427DAE
+PASS  no read of WORD +0 (ID) on any loop path before the dec  | []
+PASS  no read of the count on any loop path before the dec (no positive-count guard)  | []
+PASS  cursor reset: 427D48 `cmp [rdi+4880Ch], ebp`; 427D50 writes ebp to 48808h; ebp = 0 at 427CBA only  | ['0x427cba', '0x427dc3']
+PASS  4200A0 call at 427DAE with rcx = rbx (427DAB), after 42F4C0 (427D59)
+NOTE  after 4200A0 returns: or dword ptr [rdi + 0x48818], 0x20
+PASS  active unlink uses 48800h/48804h ends; pending unlink in 429140 uses 48810h/48814h
+== controls (each patched private image must FAIL at least one check above)
+PASS  control: 429296 `mov eax, 1` -> `mov eax, 2`  | 1 failed, e.g. three rets: 42915C eax=0; 429203 and 4292A5 eax=1; no join between def and ret
+PASS  control: 429204 test moved onto the count: `test byte [rdx+4880Ch], 1`  | 2 failed, e.g. no-op dispatch: 429204 `test byte ptr [rcx + 0x290], 1`; 42920B `je 0x429296`; no read of the count on any path 429204 -> 42924D (no positive-count guard)
+PASS  control: 429291 call retargeted to 4200A0  | 1 failed, e.g. unlink arm: one call, to 41F730 at 429291; no 4200A0
+PASS  control: 427D18 count dec NOPed  | 1 failed, e.g. one count dec (427D18), dominating every call in the sweep
+PASS  control: 427CD4 next load reads WORD +0 instead of +4  | 2 failed, e.g. 427CCD tests 290h mask 02; next WORD +4 sign-extended into esi (427CD4/427CD8) before the je; no read of WORD +0 (ID) on any loop path before the dec
+PASS  control: 427CD8 `mov esi, edx` NOPed  | 2 failed, e.g. 427CCD tests 290h mask 02; next WORD +4 sign-extended into esi (427CD4/427CD8) before the je; esi written only at 427CA1 (head) and 427CD8 (cached next) plus the epilogue restore
+PASS  control: 42915D mask 04 -> 08  | 1 failed, e.g. non-NULL dispatch: 42915D `test byte ptr [rcx + 0x284], 4`; 429169 `je 0x429204`
+PASS  control: 42916F mark-arm OR replaced by `dec dword [rdx+4880Ch]` + nop  | 3 failed, e.g. mark arm record writes = OR 290h dword, OR 2AEh byte, 108h qword, 110h dword, 284h dword; mark arm immediates: 290h |= 2, 2AEh |= 1, 108h/110h <- 0 (xor eax at 429176); mark arm: no 41F730/4200A0 call and no write to the pool count/cursor
+PASS  control: 4201E6 tail jmp retargeted to 41F740  | 1 failed, e.g. 4200A0 has no ret; its only exit is the last insn `jmp 0x41f730`
+TOTAL: 52 checks, 52 PASS, 0 FAIL

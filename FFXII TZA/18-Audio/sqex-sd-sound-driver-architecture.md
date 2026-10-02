@@ -644,3 +644,11 @@ before it was widened earlier the same day.)*
 
 **Input — SERVICE, not read.** `002DDA30` calls three small Input-filed helpers (41–46 B), and `002DDE60` calls two
 (46 B). What they read is not traced here.
+- **ActorEntity - CLIENT and SERVICE (4 edges).** `00202C70`, `003601B0`, `0036DD80` are also called by bodies filed to actor entity: `003F1E90`, `002628B0`, `0025C830`; `002E9B80` reaches bodies filed to actor entity: `003588B0` - shared machinery across the layer boundary, no shared ownership.
+- **CoreRuntimeScheduling - SERVICE (1 edge).** `002DDE60` reaches bodies filed to core runtime scheduling: `00229E40` - shared machinery across the layer boundary, no shared ownership.
+- **Presentation - CLIENT and SERVICE (90 edges).** `0036DD80`, `00202C70`, `002E9B80` are also called by bodies filed to presentation/rendering: `003F7930`, `00505570`, `00505E00` (+80 more); `001D1660`, `001D0390` reach bodies filed to presentation/rendering: `001CD0E0`, `001C7360`, `001C7520` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+- **Resource - SERVICE (1 edge).** `001D1660` reaches bodies filed to resource: `002EEEE0` - shared machinery across the layer boundary, no shared ownership.
+- **Save_Load_Settings - CLIENT and SERVICE (2 edges).** `002DDE60` is also called by bodies filed to save/load/settings: `00253A80`; `002DDA30` reaches bodies filed to save/load/settings: `002EF370` - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT (7 edges).** `003601B0` is also called by bodies filed to script VM / native bridge: `00342C90`, `00344C60`, `003456E0` (+4 more) - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT (16 edges).** `00203080`, `00202C70`, `0036DD80` are also called by bodies filed to UI: `002AF960`, `002D2600`, `002D28E0` (+13 more) - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT (1 edge).** `003601B0` is also called by bodies filed to world area: `003145E0` - shared machinery across the layer boundary, no shared ownership.

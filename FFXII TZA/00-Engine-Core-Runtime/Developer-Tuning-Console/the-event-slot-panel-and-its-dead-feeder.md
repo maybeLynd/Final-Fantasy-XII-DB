@@ -186,7 +186,7 @@ The flags are read both by console arms and by the script driver's wait-park gat
   `0034D790`, all read (UQ-336, ANSWERED 2026-09-15). Tier 1.
 - Which retail states execute the static routes of §3, and with which names. ~~That is live.~~ *Not declared
   live (2026-09-30, SWE2-CONTRACT): the names and ids are first a static question, RC-5.*
-- [ ] **RC-5.** Which names and event ids the event-slot routes of §3 store: which `(kind, id)` path the manager
+- [x] **RC-5.** *(ticked 2026-10-02, FABLE: the register row was ruled ANSWERED at `67f9e40e1`, OPUS's non-author ruling - every stored value is an authored constant or a per-session player input with a static domain)* Which names and event ids the event-slot routes of §3 store: which `(kind, id)` path the manager
   resource-set load hands the setter through `0032FD64` in `ActorResource_BeginManagerResourceSetLoad`, and which
   event ids the pusher sites `0026B775`, `00354B6D` and `00354EDA` pass. Static first: the path comes from
   `002DF980(kind, id)` with the manager's own kind and index, and the pushes from event-play verbs and their
@@ -244,7 +244,7 @@ The flags are read both by console arms and by the script driver's wait-park gat
 | `0020A760` | slot eviction | 146 B | clears a slot's name, vector and counter |
 | `001EC660` / `001EC6A0` | the two thunks | 5 B each | `jmp 0020AC30` / `jmp 0020AF10` |
 | `001EC680` | marker setter | 16 B | slot, or −1 above 4, into `01DFE40C` |
-| `001EC560` | pending probe | 59 B | `01F832B0[marker] != 0` and `00265680()` |
+| `001EC560` | pending probe | 59 B | `01F832B0[marker] != 0` and ~~`00265680()`~~ `00265680() == 0` *(corrected 2026-10-02, OPUS: `001EC560+0x25`–`+0x2A`, `test eax, eax` then `je` to the 1 result)* |
 | `0020AA30` / `0020AA40` | flag getters | 8 B each | flag B `01F832E9` / flag A `01F832E8` |
 | `001EC5C0` / `001EC5E0` | flag wrappers | 17 B each | the getters' only callers |
 | `001C5750` | cutscene JSON reader | 467 B | applies `mDofFocusDistance` / `mDofApertureFnumber` |

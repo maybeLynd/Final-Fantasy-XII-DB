@@ -11,27 +11,27 @@
 ## Systems in this category
 
 - [`heading-speed-to-position-delta.md`](heading-speed-to-position-delta.md) —
-  **DOCUMENTED, tier 1.** How heading and speed become a per-frame step:
-  `x = sin(heading)*speed`, `z = cos(heading)*speed`, plus a separate vertical term. Includes
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* How heading and speed become a per-frame step:
+  ~~`x = sin(heading)*speed`, `z = cos(heading)*speed`, plus a separate vertical term.~~ `x = sin(yaw)*cos(pitch)*speed`, `y = sin(pitch)*speed`, `z = cos(yaw)*cos(pitch)*speed`, the pitch terms dropping out on the flat path *(corrected 2026-10-02, OPUS: `002E454C`–`002E459C`, IAT `008C2BB0` sinf / `008C2BA8` cosf; the page's 2026-09-02 correction)*. Includes
   the actor-class gate `(flags & 0xE0) == 0x60` that silently refuses movement, and the
   verbatim override path.
 
 - [`how-an-animation-moves-and-turns-a-character-toward-its-target.md`](how-an-animation-moves-and-turns-a-character-toward-its-target.md) —
-  **DOCUMENTED, tier 1.** The attack step-in and the turn to face: authored command `0x1A`, a 128-entry request
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The attack step-in and the turn to face: authored command `0x1A`, a 128-entry request
   pool, and per-frame speed and turn curves stored in the animation container's `@FRM` entry.
 - [`how-a-unit-finds-its-way-across-the-navigation-mesh.md`](how-a-unit-finds-its-way-across-the-navigation-mesh.md) —
-  **DOCUMENTED, tier 1.** The battle pathfinder: the navigation dataset (slot 4 of the map pack, layout
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The battle pathfinder: the navigation dataset (slot 4 of the map pack, layout
   tested on 461 of 461 files), the grid region lookup, the Dijkstra search over at most 128 regions, the
   waypoints laid on portals, the per-step re-aim - and the per-mover-class portal test that the script verb
   `setmapidfloor` opens and closes.
 
 - [`the-unit-shape-distance-primitives.md`](the-unit-shape-distance-primitives.md) —
-  **PARTIAL, tier 1.** The shared geometry toolbox the navigation queries reach into: the
+  ~~**PARTIAL, tier 1.**~~ **DOCUMENTED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`)* The shared geometry toolbox the navigation queries reach into: the
   unit-shape distance dispatch and its sphere/cylinder/box primitives, the point-in-shape
   test, the edge/triangle predicates, and the nav-grid edge-range scan that drives them.
 
 - [`the-movement-body-pool-and-the-separation-pass.md`](the-movement-body-pool-and-the-separation-pass.md) —
-  **PARTIAL, tier 1.** The 128-entry movement-body pool behind the movement context's `+0x138`:
+  ~~**PARTIAL, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The 128-entry movement-body pool behind the ~~movement~~ secondary context's `+0x138` (actor `+0xC0`) *(corrected 2026-10-02, OPUS: `002E353D` loads `[actor+0xC0]` and `002E3546` stores the body at its `+0x138`; the pool page's 2026-09-18 context correction)*:
   the placement record (position, cell, ground height), the collision ellipse from the character
   parameter block, the per-frame cell registration, and the world-tick separation pass that
   pushes overlapping bodies apart by weight and feeds the push into the next candidate position.

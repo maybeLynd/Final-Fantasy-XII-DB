@@ -209,7 +209,7 @@ named referrer is weaker than a row with fifty, which is why the count is shown.
 
 **The registry's code sits inside the Gameplay layer, and the layer uses it both ways**
 (16 edges): `00322C50` itself is Gameplay-owned — called by `0031B9F0`/`0031C5D0` and called
-*from* `00301AD0`, `00309440`, `00323910`, `00327CB0`; `00301AD0` additionally calls
+*from* `00301AD0`, ~~`00309440`,~~ `00323910`, `00327CB0` *(corrected 2026-10-02, OPUS: `00309440` runs the other way: `00322C50+0x31` calls it, and its 30 bytes call nothing)*; `00301AD0` additionally calls
 `00309EC0`, `0031EA90`, `00316CF0`, `00321320`; `0030E360` calls `003299B0`/`00307D10`; and
 `0023A570`/`002FEF30` call `00322C50`/`00307D10`. The class registry is not a runtime-isolated
 table — it is queried by, and its validator itself belongs to, gameplay code.
@@ -249,8 +249,8 @@ caller, and class 1 means "derive it from the id".
 are leaf code, EXP-143). The consequence is the caller's: an id that fails is not used.
 
 **Do not confuse with:** the query filler `0031C5D0`, which can refuse an id the validator accepts (class 12, the
-SECTION-05 note above), and the mode dispatcher `00309EC0`, which routes by nibble to a record's mutate or query
-handler rather than validating against a class.
+SECTION-05 note above), and the mode dispatcher `00309EC0`, which routes by nibble to a record's ~~mutate or query~~ query
+handler *(corrected 2026-10-02, OPUS: it always tail-jumps the row's `+0x50` handler with `edx = 0`, `00309EC0+0x51`–`+0x60`; no mutate path)* rather than validating against a class.
 
 ## Modding notes (SWE2-CONTRACT, 2026-09-30)
 

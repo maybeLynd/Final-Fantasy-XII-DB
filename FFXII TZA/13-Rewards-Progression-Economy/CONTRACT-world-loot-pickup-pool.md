@@ -138,6 +138,16 @@ three symbols and gives the address of none.
 > passing `dword[payload]` where ops 4 and 5 pass zero. §12's "reimplement it once" is stronger than
 > it claimed: three of the four retire sites collapse to one call with one varying operand.
 >
+> **WHAT THAT CALL DOES TO THE VISUAL, AND WHAT IT DOES NOT** *(added 2026-10-02, OPUS, from ASTRA's
+> [s33 visual retirement clock](../_experiments/evidence/s33-visual-retirement-clock/README.md), SWE2-AUDIT-SPEC ACCEPT,
+> consumed by FABLE in [`astra-returns-s33-fable-1002`](../_index/candidates/astra-returns-s33-fable-1002/README.md))*.
+> With a zero second argument (ops 4 and 5), on a visual that is occupied (bit 0), not yet retired (bit 1) and without
+> bit 3, `003FA820` sets bit 1, zeroes `+0x290` and `+0x294`, and returns. **It does not free the visual's slot.** The
+> visual's own per-call update later runs its phases down to 0. Only a later call of the visual manager clears the
+> flags word and unlinks the record, in the recycle pass that runs before that call's update pass (the bodies are
+> named by role here; FABLE's record lists them). How long that takes depends on the fade and the frame step. No fixed window is established, and with a
+> zero frame step the fade never falls. Op 3's non-zero argument takes another path, which this note does not cover.
+>
 > **A RETURN VALUE OF `0` IS AMBIGUOUS AND CANNOT BE TESTED.** Ops 4, 5 and 6 return `0` on success;
 > so does an out-of-range opcode, and so does a null manager. **A caller cannot distinguish success
 > from either failure by the result**, which is a constraint on any reimplementation that wants to

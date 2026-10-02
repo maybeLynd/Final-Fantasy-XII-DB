@@ -112,7 +112,7 @@ Runs only while the solver's output flag `0x100` is up and a predicate holds for
 target is focused on. It aims at **`middle + 0.7 x (reach - middle)`** - inside the reach, outside the settle distance -
 and compares two times: the charge time the action still needs (`+0x76C - +0x768`, in charge steps) and the time to walk
 the remaining distance. If even the fast speed B cannot get there before the charge completes, pacing is abandoned (the
-flag is cleared) and the unit just goes. Otherwise it **stands still** for the first 30 steps of the charge and for as
+flag is cleared) and the unit just goes. Otherwise it **stands still** for the first ~~30 steps~~ `30 × [01DFE0B4]` steps of the charge, 30 at the 30 fps setting and 60 at the 60 fps one *(corrected 2026-10-02, OPUS: `00337B75 imul ecx, dword ptr [01DFE0B4], 0x1e`; `01DFE0B4` ships as 1 and the 60 fps setter stores 2 at `001EDDF2`; falsification B9)* and for as
 long as it could still arrive on time at speed A, **then walks at speed A** - so a caster ambles into range just as the
 spell is ready instead of sprinting there and waiting.
 

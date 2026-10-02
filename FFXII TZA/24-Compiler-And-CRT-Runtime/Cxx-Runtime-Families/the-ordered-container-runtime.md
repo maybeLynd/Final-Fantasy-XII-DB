@@ -301,7 +301,7 @@ the same relationship every one of the 72 substrate callers has.
 ## 6. Modding notes
 
 **Do not detour any of these six.** A detour on one of them is a detour on every sorted collection
-in the game at once - 99 call sites across audio, text, effects and resource loading. `0016D6D0`
+in the game at once - ~~99 call sites~~ 99 calling functions and 213 call sites *(corrected 2026-10-02, OPUS: direct edges into the six bodies; §5's census)* across audio, text, effects and resource loading. `0016D6D0`
 alone is reached from 58 places. There is no way to scope a hook here to one subsystem, because
 nothing in the family knows which subsystem called it.
 
@@ -377,7 +377,7 @@ does.
 needs both directions.
 
 **The negative that refutes the memory reading.** `0016D6D0` and `0016D720` contain **no store
-instruction at all**, and four of the six members — both iterator steps, the insert and both
+instruction at all**, and ~~four~~ five *(corrected 2026-10-02, OPUS: the five listed hold no `call`; the erase `0016DA60` holds four, to the two rotations)* of the six members — both iterator steps, the insert and both
 rotations — have **zero callees**. The only calls anywhere in the family are the erase's two, and
 they go to the rotations. An allocator must call something; a routine that unlinks must store
 something; and nothing here reaches a heap function at any depth.
@@ -427,7 +427,7 @@ looked at. **Nine claims survived, two did not, and one attack failed in a way w
 | layout closure — only `+0x00`, `+0x08`, `+0x10`, `+0x18` are touched, nothing at or beyond `+0x20` | **confirmed**: 76 / 70 / 94 / 45 operands on those four and no other non-stack displacement anywhere in the six |
 | 170 call edges, 99 distinct callers, 71 of them calling two or more members | **170 / 99 / 71** — three independent counts, all exact |
 | `0016D6D0` and `0016D720` contain no store instruction at all | **confirmed** — see the note below, because my first instrument said otherwise and it was wrong |
-| four of the six have zero callees; the erase calls only the two rotations | **confirmed** — the erase's only external targets are `0016D780` and `0016D7E0`, at four call sites |
+| ~~four~~ five of the six have zero callees *(corrected 2026-10-02, OPUS: both iterator steps, both rotations and the insert)*; the erase calls only the two rotations | **confirmed** — the erase's only external targets are `0016D780` and `0016D7E0`, at four call sites |
 | the rotations have exactly one caller each and it is `0016DA60` | **confirmed, and strengthened** |
 | `+0x18` written 9 times by the insert, 18 times by the erase, **never** by either rotation | **9 / 18 / 0 / 0** — exact |
 | the erase makes 37 pointer stores | **37** qword stores — exact |
@@ -474,7 +474,7 @@ offset eight times and are not rotations. **The rest are three mirror pairs:**
 |---|---|---|---|
 | `0016D780` / `0016D7E0` | 92 / 88 B | 1 caller each | `0016DA60` — **this page's** |
 | `00714B00` / `0071F240` | 89 / 85 B | 2 callers each | `00714DC0` (840 B) **and** `0071F590` (978 B) — **MSVC** |
-| `00799BD0` / `00799C30` | 89 / 85 B | 1 caller each | `0079BA10` (978 B) — **MSVC** |
+| `00799BD0` / `00799C30` | ~~89 / 85 B~~ 85 / 89 B *(corrected 2026-10-02, OPUS: `00799BD0` ends 85 bytes in and `00799C30` 89; the MSVC page's rows agree)* | 1 caller each | `0079BA10` (978 B) — **MSVC** |
 
 The pairing is not asserted from size. Each pair is a mirror in its store profile the same way the
 documented pair is — `00714B00` writes `+0x00`×2, `+0x08`×6, `+0x10`×4 and `0071F240` writes
@@ -564,7 +564,7 @@ above the family; and whether `0016D840` genuinely inlines its rotations, per th
   every one of them through that one stub and none of them through a member of this family.
 - [`font-data-kerning-and-expansion.md`](../../16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md) -
   the consumer whose insert cluster is built on these six, and which supplies the `node+0x20` key
-  position this page does not measure.
+  position ~~this page does not measure~~ *(answered: see §2 - this page measures it at `+0x20`, 80 of 80; 2026-10-02, OPUS)*.
 - [`_types/types.tsv`](../../_types/README.md) - **the node this page describes is now a declared
   type, `EastlRbTreeNodeBase`** (2026-09-20, OPUS): `0x20`, the four offsets §2 reads, and the
   extent taken from the other side - `FUN_00199db0` asks its allocator for `0x28` at `00199E70`,

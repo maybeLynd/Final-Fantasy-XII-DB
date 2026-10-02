@@ -222,7 +222,7 @@ register them, as array members; the census counted one registrar. See the answe
 | address | what | size |
 |---|---|---:|
 | `0059A6F0` | the packed-namespace reader — one bulk read | 116 B |
-| `0059C180` | the namespace byte-swap fixup — **not read** | — |
+| `0059C180` | the namespace byte-swap fixup — ~~**not read**~~ *(answered: see section 8, read 2026-09-07; 2026-10-02, OPUS)* | — |
 | `0059A3B0` | the header validation that precedes it | 589 B |
 | `005983E0` | registers the 18 `PClusterHeaderBase` fields the namespace also names | — |
 
@@ -273,8 +273,8 @@ register them, as array members; the census counted one registrar. See the answe
   `D3D11_RENDER_TARGET_BLEND_DESC`, `PMatrix4`, `PMatrix4x3`, `Vector3`, `Matrix4`). The earlier
   "in range for only 6,199 of 9,203" was the type table's range, not the class table's. `w7` (0, 2, 8,
   12, 20, 32, 34, 40 — 20 added 2026-09-30, found in 5 records) is the one partly-identified class word:
-  **bit 0 is the loader's dynamic-class flag, set on 0 shipped records** (`SD-65`); bits 1–5 stay
-  unexplained.
+  **bit 0 is the loader's dynamic-class flag, set on 0 shipped records** (`SD-65`); bits 1–5 ~~stay~~
+  ~~unexplained~~ *(answered: see CONTRACT-phyre-packed-namespace.md NS-1, 2026-09-26 - `0x02` abstract, `0x04` header, `0x08` no default constructor; 2026-10-02, OPUS)*.
 - [x] ~~`PInstanceListHeader` is registered with ten fields and declared with nine.~~ **REFUTED the
   same day — the "tenth field" was my own grep artifact. Both sides say nine.** See the section above.
 - [x] ~~**Member word 1**, the type reference. It indexes the type table correctly for primitives
@@ -357,7 +357,7 @@ register them, as array members; the census counted one registrar. See the answe
 | **The file's own schema names the 18 header fields** | the namespace string pool, against the registration bodies at `005983E0` — **two independent sources** | 1 |
 | 68/107 and 189/236 registered | set join against the recovered member-registration dataset | 1 |
 | The 22 and 47 cluster in shader/mesh/D3D11 | enumerated in full above | 1 |
-| **Why they cluster there** | **not established — a reading, no constructor read** | 8 |
+| **Why they cluster there** | ~~**not established — a reading, no constructor read**~~ *(answered: see CW-3, 2026-09-26; 2026-10-02, OPUS)* | 8 |
 | Corpus is 0.47 % of shipped | the archive census's 35,984 `.phyre` entries | 3 |
 
 ## 7. Related
@@ -485,7 +485,7 @@ every record of every file. One counter-example disqualifies a column.
 | **w3** | **member count** | ~~element size in bytes (4 for a `u32`, 1 for a byte)~~ **the member's width in that layout**: 1 for an object pointer and 5 for a `PArray` in a packed class, 8 and 16 in the 6 native ones (corrected 2026-09-26, FABLE) |
 | **w4** | always 0 | attribute word — ~~**bit 31 marks a pointer** (2,239 records set it)~~ **the reflection attribute word: bit 1 marks an object pointer, and bit 31 (2,239 records) marks the three counted-buffer members** *(corrected 2026-09-26, below)* |
 | **w5** | always 0 | 0 in all but 342 records |
-| w6, w7, w8 | w6 and w8 always 0; ~~w7 not established~~ **w7 bit 0 is the loader's dynamic-class flag** — set on 0 of 684,244 shipped class records (corrected 2026-09-30, `SD-65`); bits 1–5 not established (values 0, 2, 8, 12, 20, 32, 34, 40 corpus-wide — 20 found in 5 records, earlier list missed it) | — |
+| w6, w7, w8 | w6 and w8 always 0; ~~w7 not established~~ **w7 bit 0 is the loader's dynamic-class flag** — set on 0 of 684,244 shipped class records (corrected 2026-09-30, `SD-65`); bits 1–5 ~~not established~~ *(answered: see CONTRACT-phyre-packed-namespace.md NS-1 - `0x02` abstract, `0x04` header, `0x08` no default constructor; 2026-10-02, OPUS)* (values 0, 2, 8, 12, 20, 32, 34, 40 corpus-wide — 20 found in 5 records, earlier list missed it) | — |
 
 > **`sum(class[w3]) == nMembers` in 169 / 169 files.** Members are stored **contiguously in class
 > order**, so class *i* owns the next `class[i].w3` member records. **That is the whole mapping**: the
@@ -583,15 +583,15 @@ PClusterHeader        0
 PClusterHeaderD3D11   3   m_indexBufferSize +72  m_vertexBufferSize +76  m_maxTextureBufferSize +80
 PClusterHeaderBase   18   m_phyreMarker +0 ... m_physicsEngineID +68
 PInstanceListHeader   9   m_classID +0 ... m_pointerArrayFixupCount +32
-PString               1   m_buffer +0        (attribute 0x80000010 - the pointer bit)
+PString               1   m_buffer +0        (attribute 0x80000010 - the pointer bit)   <- corrected 2026-10-02, OPUS - bit 31 is not the pointer bit; 0063C0C0 tests bit 1 (0063C12A-0063C135), see the correction above
 PTexture2DD3D11       0
 PTexture2D            0
 PTexture2DBase        2   m_width +14  m_height +18
 PTextureCommonBase    5   m_format +0  m_memoryType +1  m_mipmapCount +2  m_maxMipLevel +6  m_textureFlags +10
 ```
 
-**`m_buffer` is the only field in the file with attribute bit 31 set, and it is the one field that is
-a pointer** — `PString`'s character buffer.
+**`m_buffer` is the only field in the file with attribute bit 31 set, ~~and it is the one field that is~~
+~~a pointer~~** *(corrected 2026-10-02, OPUS: object pointers carry bit 1, which `0063C0C0` tests at `0063C12A`-`0063C135`; `m_effectVariant`, `m_mesh` and `m_asset` are pointers too)* — `PString`'s character buffer.
 
 ### Modding consequence
 

@@ -68,7 +68,7 @@ descent, compares a key at `node+0x20` and returns `[node + 0x28]`. Key `+0x20`,
 `+0x28`, header `0x20` — `0x30`, which is what `00712F60`'s `max_size` guard says independently.
 See `MT-3`.
 
-**`+0x19` is the identification.** Every body in this family tests it, as
+**`+0x19` is the identification.** Every body in this family ~~tests it~~ but the payload destructor `0071EE70` tests it *(corrected 2026-10-02, OPUS: `0071EE70` frees two string buffers through `001DFA10` and never reads `+0x19`; MT-3's answer)*, as
 `cmp byte ptr [reg + 0x19], 0`. **The six EASTL bodies do not touch `+0x19` at all** — not that
 one instruction shape, but **any memory operand at that displacement, any mnemonic, any width:
 zero, across all six bodies and 521 instructions** (§9 widened the control from the test to the
@@ -350,7 +350,7 @@ The **node-size inference**, which is still one instrument: `max_size()` divides
 and `0x60`, and no allocation site corroborates it — §2 already says so and the pass did not improve
 it. *(Corroborated since, 2026-09-30: the node allocators ask for `0x30` and `0x60`; see §2's correction and
 §10.)* The **instantiation grouping's meaning**: the wiring is measured, but *which container* each of
-A, B and C is remains `MT-1`, and the three-tidies-on-one-erase reading remains a reading. And
+A, B and C is ~~remains `MT-1`~~ was `MT-1` *(answered: see MT-1, ANSWERED 2026-09-26; 2026-10-02, OPUS)*, and the three-tidies-on-one-erase reading remains a reading. And
 **`MT-4`, inlining**, which no census on this page can reach, for the reason the EASTL page's own
 pass records.
 

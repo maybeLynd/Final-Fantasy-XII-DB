@@ -1,0 +1,127 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/how-a-character-is-lit.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "how-a-character-is-lit.json",
+ "rows": [
+  {
+   "fn": "003477E0",
+   "text": "tail-jumps a 38-byte helper with `ecx` = dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns and `edx` = 1",
+   "anchors": [
+    [
+     "003477E4",
+     "call"
+    ],
+    [
+     "003477E9",
+     "mov"
+    ],
+    [
+     "003477EE",
+     "mov"
+    ],
+    [
+     "003477F5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00347D60",
+   "text": "tail-jumps a 38-byte helper with `ecx` = dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns and `edx` = 0",
+   "anchors": [
+    [
+     "00347D64",
+     "call"
+    ],
+    [
+     "00347D69",
+     "xor"
+    ],
+    [
+     "00347D6B",
+     "mov"
+    ],
+    [
+     "00347D72",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003AED20",
+   "text": "returns 0 when the word `cx` is -1; otherwise forms the record address qword `022C6F28` plus the sign-extended `cx` times `0x740` and returns 0 when that sum is zero or the record's dword `+0x284` is zero, else the record's dword `+0x28C`",
+   "anchors": [
+    [
+     "003AED24",
+     "jne"
+    ],
+    [
+     "003AED2D",
+     "imul"
+    ],
+    [
+     "003AED34",
+     "add"
+    ],
+    [
+     "003AED3D",
+     "cmp"
+    ],
+    [
+     "003AED46",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003DD6C0",
+   "text": "calls a 21-byte record-address helper with i for i 0 to 4 and sets a flag when any returned record has bit 0 of byte `+0x10` and bit `0x40` of byte `+0x17` both set; with the flag clear it calls a 7-byte helper with 0 and returns, with it set it calls a 22-byte helper and returns when the result AND `0xFFFFFFFD` is non-zero, else tail-jumps a 31-byte helper with 2",
+   "anchors": [
+    [
+     "003DD6D8",
+     "call"
+    ],
+    [
+     "003DD6E3",
+     "test"
+    ],
+    [
+     "003DD6E7",
+     "cmovne"
+    ],
+    [
+     "003DD6FA",
+     "test"
+    ],
+    [
+     "003DD715",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003477E0",
+   "was": "tail-jumps `003DDC20(dword +0x28 of the pointer 002640C0() returns, 1)`",
+   "now": "tail-jumps a 38-byte helper with `ecx` = dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns and `edx` = 1",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned and ActorEntity callees at 003477E0+0x4, 003477E0+0x15)"
+  },
+  {
+   "fn": "00347D60",
+   "was": "tail-jumps `003DDC20(dword +0x28 of the pointer 002640C0() returns, 0)`",
+   "now": "tail-jumps a 38-byte helper with `ecx` = dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns and `edx` = 0",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned and ActorEntity callees at 00347D60+0x4, 00347D60+0x12)"
+  },
+  {
+   "fn": "003DD6C0",
+   "was": "calls `00263FF0(i)` for i 0 to 4 and sets a flag when any returned record has bit 0 of byte `+0x10` and bit `0x40` of byte `+0x17` both set; with the flag clear it calls `0037B490(0)` and returns, with it set it calls `0037B330()` and returns when the result AND `0xFFFFFFFD` is non-zero, else tail-jumps `0037B450(2)`",
+   "now": "calls a 21-byte record-address helper with i for i 0 to 4 and sets a flag when any returned record has bit 0 of byte `+0x10` and bit `0x40` of byte `+0x17` both set; with the flag clear it calls a 7-byte helper with 0 and returns, with it set it calls a 22-byte helper and returns when the result AND `0xFFFFFFFD` is non-zero, else tail-jumps a 31-byte helper with 2",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (ActorEntity and unowned callees at 003DD6C0+0x18, 003DD6C0+0x5C, 003DD6C0+0x35, 003DD6C0+0x55)"
+  }
+ ]
+}

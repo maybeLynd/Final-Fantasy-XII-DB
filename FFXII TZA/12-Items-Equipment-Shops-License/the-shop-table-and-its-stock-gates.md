@@ -1006,3 +1006,12 @@ is changed; only this title is, and I noticed because the duplication made it un
 | `00316480` | `qword[022C2550]` non-null walk (`00316490`/`00316497`) | [`00316490`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `002536A0`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-shop-table-and-its-stock-gates-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003FD360` | 842 B | stores `dl` at byte `+0x17E`, `dl+0x40` at `+0x17F`, the qword at `01F2CC98` indexed by `dl` at `+0xE8` and word `+0xD48` of row `dl` (stride 32) under qword `0209AC30` at `+0x17C` (`0x1000` becomes `0xFFFF`), clears bit 26, sets bit 27 and puts `r8b` in the low byte of dword `+0x180`; zeroes its count (bits 16-20) and accepts each 8-byte entry of the `+0xE8` table (count at dword `+0`) when `00252D10(word +4 + 9)` or `0057D610(byte +0x17F, word +6)` is non-zero, but skips word `+4` 5 when `r9d` is non-zero and needs `002CCA10(byte +0xD4B of the object qword 0209AC30 points to)` non-zero for `0xA` and `0x1B`-`0x1E`, of which only `0x1B`, `0x1C`, `0x1D` or `0x1E` passes when that byte is 7, 8, 9 or 17; per accepted entry calls `00252D40(word +4 + 9, 1)` and fills the next 8-byte slot (`+0xF7` low byte of word `+4`, `+0xF6` index, `+0xF2`/`+0xF4` `0xFFFF`, `+0xF0` `002526F0(8, byte + 0x20, 1)`, 0 replaced by `0xFFFF`); then sets the next slot's `+0xF6` to `0xFF` and puts in bits 21-25 the first slot whose `+0xF7` equals `002526F0(8, byte +0x17E + 0x48, 1)` or, when byte `+0x17E` is 1 and `002CCA10` passes, `0x1B`-`0x1E` for 7, 8, 9, 17 and `0xA` otherwise (0 when none) | `003FD3B3`, `003FD439`, `003FD493`, `003FD57F`, `003FD69C` |
+| `0057CDD0` | 57 B | calls `002497E0(2, ecx*32)`, zero-fills `ecx*32` bytes of the returned block with `00861EC0(block, 0, ecx*32)` and returns the block | `0057CDE1`, `0057CDE6`, `0057CDF6`, `0057CDFB` |

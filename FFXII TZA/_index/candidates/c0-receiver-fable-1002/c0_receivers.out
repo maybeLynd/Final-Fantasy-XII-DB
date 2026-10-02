@@ -1,0 +1,116 @@
+# c0_receivers.py - the object behind the +0xC0 pointer in item 3's twelve bodies (FABLE). run at fd96f1634
+
+## R1 the stores item 3 left open (item3_c1_writers_and_domain.out, B2 rows marked POSSIBLE)
+  stores: 17 in 12 bodies: 00292390, 002986E0, 00299090, 0029A0A0, 002CBA50, 00408780, 0053E640, 00558FB0, 00561390, 00564E10, 007DACF0, 007E01F0
+
+## R2 reaching-definition chains, store base back to its root (own CFG; jump tables decoded)
+  hand-read loop steps treated as induction: 007B0311 list walk: next node through +0x10
+  00292793 in 00292390  w8 [rbp +0x10]  [+0xc0] @002926F2 <- [+0x300] @002926BB <- cell 0209AC30 @002926B1
+  00298C4C in 002986E0  w2 [rdx +0x10]  [+0xc0] @00298C20 <- copy rcx @0029871D <- arg0 of 002986E0
+  00298C63 in 002986E0  w2 [rax +0x10]  [+0xc0] @00298C56 <- copy rcx @0029871D <- arg0 of 002986E0
+  00298DAC in 002986E0  w2 [rax +0x10]  [+0xc0] @00298DA5 <- copy rcx @0029871D <- arg0 of 002986E0
+  00298EFE in 002986E0  w2 [rax +0x10]  [+0xc0] @00298EF7 <- copy rcx @0029871D <- arg0 of 002986E0
+  002991AD in 00299090  w8 [rcx +0x10]  [+0xc0] @0029918F <- copy rcx @002990A9 <- arg0 of 00299090
+  0029926B in 00299090  w8 [rsi +0x10]  [+0xc0] @00299227 <- copy rcx @002990A9 <- arg0 of 00299090
+  00299305 in 00299090  w8 [rcx +0x10]  [+0xc0] @002992DE <- copy rcx @002990A9 <- arg0 of 00299090
+  0029A29C in 0029A0A0  w1 [rcx +0xa0]  [+0xc0] @0029A28C <- copy rcx @0029A0C9 <- arg0 of 0029A0A0
+  002CBBD3 in 002CBA50  w4 [rax +0xd0]  [+0xc0] @002CBB7E <- [+0x2e0] @002CBA5D <- cell 0209AC30 @002CBA56
+  004087C2 in 00408780  w4 [rax +0x100]  [+0xc0] @0040879A <- cell 02B62D80 @00408780
+  0053E814 in 0053E640  w4 [rdx +0x0]  induction 0053E818 <- lea +0x10 @0053E7ED <- [+0xc0] @0053E7C3 <- copy rcx @0053E64F <- arg0 of 0053E640
+  00559306 in 00558FB0  w8 [rbp +0x100]  [+0xc0] @00559208 <- copy rcx @00558FCC <- arg0 of 00558FB0
+  005616A8 in 00561390  w8 [rsi +0x100]  [+0xc0] @00561601 <- copy rcx @005613A9 <- arg0 of 00561390
+  005650DD in 00564E10  w8 [rcx +0xd0]  [+0xc0] @005650B3 <- [+0xc0] @005650A4 <- copy rcx @00564E39 <- arg0 of 00564E10
+  007DAD95 in 007DACF0  w4 [rdi -0x4]  induction 007DAE22 <- lea +0x44 @007DAD5B <- stack argument 4 (0-based, the fifth) @007DAD10
+  007E0504 in 007E01F0  w16 [rcx +0x10]  [+0xc0] @007E04DE <- copy rcx @007E021B <- arg0 of 007E01F0
+
+## R4 writers of Manager0209AC60 +0x2E0 and +0x300 (registers loaded from cell 0209AC30, or rip operands)
+  +0x300: 2 writers: 00291DD2 in 00291D90 `mov qword ptr [rax + 0x300], rbx`; 00291F96 in 00291D90 `mov qword ptr [rax + 0x300], rdi`
+  +0x2E0: 4 writers: 002CBE11 in 002CBDA0 `mov qword ptr [rcx + 0x2e0], rax`; 002CBE96 in 002CBE40 `mov qword ptr [rcx + 0x2e0], rax`; 002CBF48 in 002CBED0 `mov qword ptr [rcx + 0x2e0], rax`; 002CBFBD in 002CBF80 `mov qword ptr [rax + 0x2e0], r15`
+
+## R3 receiver typing, per body
+- 00292390 (store 00292793)
+    handler 00291D90 referenced by rip operands at: 002920D4
+    00291D90's own +0xC0 stores: 00291E71 `mov qword ptr [rdi + 0xc0], rbx` value: zero 0 @00291E30, 00291F32 `mov qword ptr [rdi + 0xc0], rax` value: ret of 0024A440 @00291F2D
+- 002986E0 (00298C4C, 00298C63, 00298DAC, 00298EFE) and 00299090 (002991AD, 0029926B, 00299305)
+    raw sites of 002986E0: 00299406 call in 00299090; absolute qwords 0
+    rcx at 00299406: copy rdi @00299403 <- copy rcx @002990A9 <- arg0 of 00299090
+    handler 00299090 referenced by rip operands at: 0029C34D
+    002990FC value: ret of 0028F830 @002990F7
+- 0029A0A0 (0029A29C)
+    handler 0029A0A0 referenced by rip operands at: 0029BBD3
+    raw sites of 00297710: 0029A4EB call in 0029A0A0; absolute qwords 0
+    002977B9 `mov qword ptr [rbx + 0xc0], rax` value: [+0x18] @002977B5 <- [+0xb0] @002977AE <- [+0x60] @002977AA <- copy rcx @0029771A <- arg0 of 00297710
+    00297810 `mov qword ptr [rbx + 0xc0], rax` value: [+0x18] @0029780C <- [+0xa8] @00297805 <- [+0x60] @00297801 <- copy rcx @0029771A <- arg0 of 00297710
+    0029786C `mov qword ptr [rbx + 0xc0], rcx` value: [+0x18] @00297868 <- [+0xa0] @00297861 <- [+0x60] @00297858 <- copy rcx @0029771A <- arg0 of 00297710
+    Widget +0xA0 (types fields): 1 - the node's own opacity - an alpha-scale byte, 0x80 = 1.0 (constructor default 0x80 at 0024
+- 002CBA50 (002CBBD3)
+    handler 002CBF80 referenced by rip operands at: 002CBDF1, 002CBE80, 002CBF25
+    handler 002CBF80 referenced by rip operands at: 002CBDF1, 002CBE80, 002CBF25
+    handler 002CBF80 referenced by rip operands at: 002CBDF1, 002CBE80, 002CBF25
+    002CC20E value: ret of 00244F50 @002CC206
+    handler 002CABF0 referenced by rip operands at: 002CC1D2
+- 00408780 (004087C2)
+    00406FB8 `mov qword ptr [rbx + 0xc0], rdi` value: zero 0 @00406F74
+    00407107 `mov qword ptr [rbx + 0xc0], rax` value: ret of 00244F50 @00407102
+- 0053E640 (0053E814)
+    raw sites of 0053E640: 0053E48F call in 0053E380; absolute qwords 0
+    handler 0053E380 referenced by rip operands at: 0053ED3F
+    0053E3DA `mov qword ptr [rbx + 0xc0], rdi` value: zero 0 @0053E3CE
+    0053E50D `mov qword ptr [rbx + 0xc0], rax` value: ret of 00249810 @0053E506
+- 00558FB0 (00559306) and 00561390 (005616A8)
+    handler 00558FB0 referenced by rip operands at: 00558F72
+    handler 00561390 referenced by rip operands at: 00561358
+    raw sites of 00558F20: 00560C89 call in 00560910, 005614A1 call in 00561390; absolute qwords 0
+      rcx at 00560C89: copy rbx @00560C86 <- copy rcx @00560935 <- arg0 of 00560910
+      rcx at 005614A1: [+0xc0] @00561494 <- copy rcx @005613A9 <- arg0 of 00561390
+    raw sites of 00561300: 005590E3 call in 00558FB0, 00560C98 call in 00560910; absolute qwords 1
+      rcx at 005590E3: [+0xc0] @005590DC <- copy rcx @00558FCC <- arg0 of 00558FB0
+      rcx at 00560C98: copy rbx @00560C95 <- copy rcx @00560935 <- arg0 of 00560910
+    handler 00560910 referenced by rip operands at: 005601EC
+- 00564E10 (005650DD)
+    raw sites of 00564E10: 00564CAC call in 00564C80, 005651D7 jmp in 00565190; absolute qwords 0
+      rcx at 00564CAC: arg0 of 00564C80
+      rcx at 005651D7: indexed +0x170 + r9*8 @005651C5 <- cell 0209AC30 @005651BE
+    raw sites of 00564C80: 00565218 call in 005651E0; absolute qwords 0
+    raw sites of 005651E0: 00563721 jmp in 005636F0, 00563953 jmp in 00563930, 00563B41 jmp in 00563B10, 00563D43 jmp in 00563D20; absolute qwords 0
+      rcx at 00563721 (jmp in 005636F0): arg0 of 005636F0
+      rcx at 00563953 (jmp in 00563930): arg0 of 00563930
+      rcx at 00563B41 (jmp in 00563B10): arg0 of 00563B10
+      rcx at 00563D43 (jmp in 00563D20): arg0 of 00563D20
+- 007DACF0 (007DAD95)
+    raw sites of 007DACF0: 007DACDE call in 007DACC0; absolute qwords 0
+    vtable 01CB7970 (slot 3 = 007DACC0): .?AVHilbertFilter@Driver@Sd@SQEX@@, COL offset 8
+- 007E01F0 (007E0504)
+    raw sites of 007E01F0: 007B0306 call in 007B0000; absolute qwords 0
+      rcx at 007B0306: [+0x20] @007B0302 <- induction 007B0311 <- cell 02EAD2F0 @007B02F1
+    vtable 01CB82D0: .?AVCoreSubmixVoice@Core@Driver@Sd@SQEX@@, COL offset 0
+
+## Controls
+  P1 002E29E9: plus-cell 022C6F28 @002E29D7 <- *0x740 @002E29D0 <- copy cx @002E29CC <- [+0x0] @002E29C3 <- [+0xc0] @002E29AF <- copy rcx @002E28F1 <- arg0 of 002E28E0 -> CharacterRenderRecord
+  P1 002E33B3: plus-cell 022C6F28 @002E33A1 <- *0x740 @002E339A <- copy ax @002E3396 <- [+0x0] @002E338D <- [+0xc0] @002E3379 <- copy rcx @002E3134 <- arg0 of 002E3110 -> CharacterRenderRecord
+  P1 rule on the 17 stores: fires on 0
+  P2 00225D86 `mov rcx, qword ptr [rbx + 0xc0]`: rbx = copy rax @00225D5E <- ret of 00358940 @00225D56
+      rcx at 00225D56: copy r15 @00225D53 <- copy rax @00225D29 <- ret of 00263FF0 @00225D24
+  N1 00406C45 `mov rdx, qword ptr [rbx + 0xc0]`: rbx = copy rcx @00406A78 <- arg0 of 00406A60
+    handler 00406A60 referenced by rip operands at: 004051BD
+  N1 -> Widget 0xF0, handler 00406A60, slot 02B62D88 = type store WidgetSingleton02B62D88 (not ActorStorageRecord)
+
+## Result table
+| body | stores | receiver of the +0xC0 load | what +0xC0 holds (the stored-to object) | stores land in | verdict |
+|---|---|---|---|---|---|
+| 00292390 | 00292793 | Widget, 0x170 bytes, handler 00291D90 (Manager0209AC60 +0x300) | an entry of the 64-slot, 0x48-byte static table at 0208F580 from 0024A440 / 0024A4E0 (or null) | stores +0x10/+0x28/+0x38 into that 0x48-byte entry | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 002986E0 | 00298C4C, 00298C63, 00298DAC, 00298EFE | Widget, 0xD8 bytes, handler 00299090, built in place in PaneListWidget0B68 +0x7C0 | a 32-byte slot at ManagerSingleton0209BE80 + index*0x20 (0028F830) | word/qword stores inside that 32-byte slot | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 00299090 | 002991AD, 0029926B, 00299305 | Widget, 0xD8 bytes, handler 00299090, built in place in PaneListWidget0B68 +0x7C0 | a 32-byte slot at ManagerSingleton0209BE80 + index*0x20 (0028F830) | word/qword stores inside that 32-byte slot | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 0029A0A0 | 0029A29C | PaneSlotWidget0160 (Widget, 0x160 bytes, handler 0029A0A0) | a child Widget from the element block (00297710: [[+0x60]+0xA0/0xA8/0xB0]+0x18) | byte +0xA0 = the child widget's own opacity byte | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 002CBA50 | 002CBBD3 | Widget, 0x170 bytes, handler 002CBF80 (Manager0209AC60 +0x2E0) | its child Widget, 0xF8 bytes, handler 002CABF0 (002CC20E) | dword/word stores at +0xC0..+0xEC inside the 0xF8-byte child | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 00408780 | 004087C2 | WidgetSingleton02B62D80 (Widget, 0xE8 bytes, handler 00406E80) | a child Widget built by 00244F50 at 00407102 (null before), released by 00245020 (00408226) | dword stores at +0xF8..+0x104 of that child | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 0053E640 | 0053E814 | Widget, 0x1498 bytes, handler 0053E380 (slot 02CA8A80) | a 64 KiB zeroed buffer from 00249810 (0053E50D), freed by 003697F0 | dword stores at +0x10 of 0x20-byte records in that buffer | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 00558FB0 | 00559306 | Widget, 0xE8 bytes, handler 00558FB0 | the owning Widget, 0x190 bytes, handler 00560910 (creation parameter; the two creators pass either 00560910's receiver or their own +0xC0) | qword store at +0x100 of the 0x190-byte owner | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 00561390 | 005616A8 | Widget, 0x110 bytes, handler 00561390 | the owning Widget, 0x190 bytes, handler 00560910 (creation parameter; the two creators pass either 00560910's receiver or their own +0xC0) | qword store at +0x100 of the 0x190-byte owner | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 00564E10 | 005650DD | a Widget held at +0xC0 of a 0x188-byte widget (handlers 005636F0 / 00563930 / 00563B10 / 00563D20 over 005651E0; Manager0209AC60 +0x170 + i*8) | a peer Widget: cross-linked through +0xD8 and walked by 002D45C0 as a widget (+0x10 parent, +0x40 flags, +0x7C) | qword store at +0xD0 of the peer widget | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 007DACF0 | 007DAD95 | no +0xC0 field load: `[rsp + 0xc0]` is the fifth (stack) argument | 007DACC0's receiver + 0x40, a SQEX::Sd::Driver::HilbertFilter method (vtable slot) | float stores into the filter's own state | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+| 007E01F0 | 007E0504 | SQEX::Sd::Driver::Core::CoreSubmixVoice (RTTI), payload of the list 02EAD2D0 | a per-channel buffer from 007AD460 (007E0130, second of two slots +0xB8/+0xC0) | xmm store at +0x10 of that buffer | not an ActorStorageRecord: cannot reach CRR +0x0C1 |
+
+bodies decided: 12 of 12; ActorStorageRecord receivers: 0
+
+FAILS 0 []

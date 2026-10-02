@@ -157,7 +157,7 @@ they are equal (`CM-5`). Cancel a unit whose `+0x698` is null and assert nothing
 **None by this contract.** [`EXP-043`](../_experiments/EXP-043-target-buffer-boundary.md) and
 [`EXP-046`](../_experiments/EXP-046-target-buffer-reset.md) executed the buffer helpers and corrected
 this page's earlier reading of them; **they are cited here as the source of `CM-3`'s reset/append
-naming**, not as execution of the commit itself, which is unexecuted.
+naming**, not as execution of the commit itself~~, which is unexecuted~~ *(answered: the commit is executed as shipped bytes under Unicorn, 1309 commands, 704 compared lines, 0 mismatches, and its nine callees by EXP-091 - CONTRACT-commit-action.md §13 and §13a; 2026-10-02, OPUS)*.
 
 ## 14. Unresolved
 
@@ -176,7 +176,7 @@ naming**, not as execution of the commit itself, which is unexecuted.
   (`003714A0`, `006FCB53`, the `007C*`/`007D*` families) and two stack slots — all decoded and
   rejected. **New finding:** `00236A60` stamps the live block into `+0x718` *and* `+0x730`
   (`+0x710` into `+0x728` *and* `+0x740`), so a second verbatim shadow exists at
-  `+0x730`–`+0x747`; its readers were not in this census's band and stay unenumerated.
+  `+0x730`–`+0x747`; ~~its readers were not in this census's band and stay unenumerated.~~ its reader is the next commit, `0030F84E cmp di, word ptr [rbx + 0x744]` and `0030F857 cmp ebp, dword ptr [rbx + 0x740]` *(corrected 2026-10-02, OPUS: the cancel `003105D0` writes the cancelled record there and `BattleUnit_CommitAction` reads it; the-moment-an-action-is-committed.md, the cancellation section)*.
 - ~~Whether any caller relies on the null-append of `CM-4` rather than merely tolerating it.~~
   **Resolved 2026-09-22 (SWE2-CONTRACT): exactly one relies — `002FFB60`'s count gate.** The
   `+0x77C` count / `+0x780` entry consumers on unit-typed bases: `002FFB60` tests `count > 0`

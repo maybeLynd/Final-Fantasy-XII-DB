@@ -145,7 +145,7 @@ someone else's userdata". This is the textbook `luaL_testudata` pattern.
 thing that varies between siblings is a per-type descriptor pointer:
 
 ```c
-void FUN_005a0e80(L, obj, ctx) { thunk_FUN_00682d20(obj, ctx, &DAT_02cad640); return; }
+void FUN_005a0e80(L, obj, ctx) { thunk_FUN_00682d20(obj, ctx, &DAT_02cad640); return; }   // <- corrected 2026-10-02, OPUS - the adapter takes (this, L in rdx, obj in r8) and calls 00682D20(L, obj, descriptor): 005A0E80-005A0E90
 void FUN_005a1420(L, obj, ctx) { thunk_FUN_00682d20(obj, ctx, &DAT_02cad040); return; }
 
 void FUN_005a10f0(L, obj, ctx)                  // base-class adjustment variant
@@ -208,7 +208,7 @@ default search path
 
 where `!` is the executable's directory on Windows. Whether the standard libraries are actually
 opened at runtime is **not** established from strings alone — see **R-4**, which is the single
-highest-value open question in this document.
+highest-value open question in this document *(answered: see R-4, ANSWERED 2026-09-12 - no standard library is ever opened; 2026-10-02, OPUS)*.
 
 ## 3. Key addresses
 
@@ -226,7 +226,7 @@ highest-value open question in this document.
 | `005A0E80` / `005A10F0` / `005A1420` | `ObjectPushAdapter` samples | ✅ read |
 | `005A2BA0` / `005A2F20` / `005A3360` | `NullableObjectPushAdapter` samples | ✅ read from the disassembly 2026-09-14 (R-3) |
 | `00599B70` / `00599CA0` / `00599DD0` | `ObjectPointerAccessor` samples | ✅ read |
-| `00684D10` / `00686280` | Lua execution sites (`lua_pcall`) | not read |
+| `00684D10` / `00686280` | Lua execution sites (`lua_pcall`) | ~~not read~~ *(answered: see §12, the two callers executed, 2026-09-19; 2026-10-02, OPUS)* |
 | `01CCB510` | `luaO_nilobject` | — |
 | `00D6FDE0` | the string `"PhyreObject"` | — |
 
@@ -304,7 +304,7 @@ engine hands an object to a script
         -> descriptor comes from Phyre reflection
 ```
 
-**Upstream:** whatever schedules script execution — not yet identified (**R-5**).
+**Upstream:** whatever schedules script execution — not yet identified (**R-5**) *(answered: see R-5, ANSWERED 2026-09-22; 2026-10-02, OPUS)*.
 **Downstream:** the reflection descriptors, which supply the type identity each push needs.
 
 **Do not confuse with:** the `.lua` files shipped in `x64\scripts\` of a modded install. Those
@@ -322,7 +322,7 @@ scripting. That is the one that actually runs the game. Lua is engine-level midd
 - **Write for 5.2 specifically.** `bit32` exists; `goto` exists; the 5.1 `setfenv`/`getfenv`
   pair does not; `_ENV` replaces them. Code written for 5.1 or 5.3+ will not run unchanged.
 - **`"PhyreObject"` in the Lua registry is the gate.** A userdata without that exact metatable
-  is rejected by every accessor. Anything constructing engine objects for Lua must set it.
+  is rejected by ~~every accessor~~ the object accessors *(corrected 2026-10-02, OPUS: not the only gate: the vector getter `00682A10` compares against the registry's `"Vector"` metatable, `00682A3F`-`00682A5F`; phyre-script-object-accessors.md)*. Anything constructing engine objects for Lua must set it.
 - **`package` search paths are compiled in**, including `!\lua\?.lua` — the `lua\` folder beside
   the executable. No such folder ships with the game, and whether the loader is actually
   registered is unproven (**R-4**).
@@ -372,8 +372,8 @@ scripting. That is the one that actually runs the game. Lua is engine-level midd
       in no table). Nothing references the table: no `lea` in any listed function, no rip-relative
       reference in the code outside the function list (gap index), no 8-byte pointer to it and no
       4-byte immediate of it anywhere in the file — so `luaL_openlibs`, whose only job is to walk
-      that table, was dead-stripped or never linked. Each open function's **only** reference in
-      the image is its table entry (one 8-byte hit each; `luaopen_string` two), and none has an
+      that table, was dead-stripped or never linked. Each open function's ~~**only**~~ reference in
+      the image is its table entry *(corrected 2026-10-02, OPUS: and four of them, `luaopen_math`, `luaopen_bit32`, `luaopen_string`, `luaopen_coroutine`, also have a `lea` in `00685AC0`, `00685ADD`, `00685AF0`, `00685B03`, `00685B16`; UQ-284 below)* (one 8-byte hit each; `luaopen_string` two), and none has an
       `E8` / `E9` caller, so no library is opened individually either. Consequences: `require`,
       `package.path` / `cpath` and the searchers are never installed (the strings survive in
       `.rdata` because the code is linked, not because it runs), and the engine's only way to run
@@ -680,7 +680,7 @@ the same version, because `bit32` exists as a library **only** in 5.2.
 | `01CCC0B0` | 11 | **io** |
 | `01CCC2E0` | 11 | **os** |
 | `01CCC170` | 9 | **io file methods** |
-| `01CCB3E0` | 8 | **loadedlibs — opened at startup** |
+| `01CCB3E0` | 8 | **loadedlibs — ~~opened at startup~~ never opened** *(answered: see R-4, 2026-09-12; 2026-10-02, OPUS)* |
 | `01CCA950` | 6 | **coroutine** |
 | `01CCAA90` | 6 | **table** |
 | `01CCB470` | 3 | **preloadedlibs — available via require** |
@@ -835,7 +835,7 @@ Every row is `lua_CFunction` address to the exact name Lua exposes it under.
 
 - **It names 143 functions exactly**, replacing generic shape tags with the identity the language
   itself uses. `FUN_00818a80` is `math.abs`.
-- **It bounds the standard library**: the named functions span `00814xxx`–`0081Cxxx`, which is where
+- **It bounds the standard library**: the named functions span ~~`00814xxx`–`0081Cxxx`~~ `008140A0`–`00828D30` *(corrected 2026-10-02, OPUS: the 148 registration records point as far as `luaopen_package` `00828D30`, with `io` at `00825xxx`-`00826500`, `os` `00827430` and `debug` `00828540`; the link range of the 2026-09-13 note above)*, which is where
   the Lua C API lives, and gives R-6 a concrete answer rather than an estimate.
 - **It does not name the interpreter core.** `lua_*` API functions and the VM itself carry no
   `luaL_Reg` entry, so they are untouched by this method.
@@ -926,7 +926,7 @@ UQ-284.)*
 - [x] **UQ-283.** The five calls `FUN_00685AC0` makes before the four registrations (`006822E0` — **now read 2026-09-17, SWE2-FRONTIER:** 1,237 B carrying `m_defaultEntryPoint`/`m_executionInterval`/`m_functionNames` field names + `006388C0` registration at [`00682300`](../../_index/ADDRESS-INDEX.md), `008092FC`/`0080929C`/`00808B90` driver thunks ×9 — a script-binding descriptor body, not a global installer —, `00681F30`,
       `006827C0`, `00681C50`, `00681D80`) were **not read**. If any of them installs globals, the
       picture above is a floor rather than the whole environment.
-      **ANSWERED 2026-09-18 (FABLE) — the five bodies are the five scripting classes' reflection registrations, and none of them touches Lua.** `00685AC0` (`00685AC4`–`00685AD8`) calls the five bodies directly, and every one opens the same way: `lea rcx, <descriptor>` then `call 006388C0`, the by-name registration the [class-descriptor contract](../Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md) reads (it hashes the `char *` at `+0x30`). The five descriptors are the `PScripting` module's `PClassDescriptor` statics at a `0x100` stride: `006822E0` → `02E41470` (`PScript`, `006822F9`), `00681F30` → `02E41370` (`PScheduler`, vtable `00D6F3C8` installed by `00166140`), `006827C0` → `02E41170` (`PClassDescriptorConcrete<PScriptCallbackHandler>`), `00681C50` → `02E41270` (`PAsyncProcessHeader`), `00681D80` → `02E41070` (`PClassDescriptorWithoutDefaultConstructor<PClassCallableMethodScript>`, vtable `00D6EBF8` installed by `00166100`). After the registration each body builds that class's reflected members under `_Init_thread_header` / `_Init_thread_footer` guards with `atexit` teardown: `00681F30` (939 B) constructs four `PFunctionCallerConcrete<PScheduler *>` statics at `02E424A0`, `02E42500`, `02E42560` … named `GetCurrentScheduler`, `GetCurrentScript`, `addScript`, `removeScript` (`00D70040`–`00D70080`), through the caller constructor `00632FB0` and `005A7A40` / `005A0470`; `00681C50` (289 B) constructs one `PMethodCallerConcrete<PAsyncProcessHeader>` at `02E42440` (vtable `00D70200`) for `getAsyncResult`, whose method body is `008B2480`; `006827C0` (299 B) registers `PScriptCallbackHandler`'s `m_entryPoint` (`+0x0`) and `m_handler` (`+0x8`) through the member constructor `00632960`; `00681D80` (417 B) registers `PClassCallableMethodScript`'s `m_script` (`+0x50`), `m_nameAsString` (`+0x58`) and `m_entryPoint` (`+0x60`); `006822E0` registers `PScript`'s `m_defaultEntryPoint` / `m_executionInterval` / `m_functionNames` (SWE2's reading). The rows already sit in [`phyre-field-schema.tsv`](../Reflection-And-Class-Metadata/phyre-field-schema.tsv) and [`members/phyre-pscripting.tsv`](../members/phyre-pscripting.tsv). **The callee sets settle the question the box asked:** across the five bodies the external callees are `006388C0`, `00639450`, `00632960`, `00632A10`, `00632FB0`, `005A7A40`, `005A0470`, `005EF7E0`, `00618970`, `0062FFC0`, `00630180`, `00630490` and the three CRT guards — no `lua_*` or `luaL_*` body and no Lua state — so no global is installed before the four `luaopen_*` registrations, and the environment picture above is the whole of what `00685AC0` builds. The 2026-09-16 register reading (one shape over five `0x100`-stride objects with per-object once-guards) and this page's text (five distinct bodies) were both right: the shape is the registration, the bodies are the per-class member batteries. The sixth `0x100` slot `02E41570` belongs to a class none of the five registers and is outside this question. Static: the six bodies and the RTTI of the vtables they install.
+      **ANSWERED 2026-09-18 (FABLE) — the five bodies are the five scripting classes' reflection registrations, and none of them touches Lua.** `00685AC0` (`00685AC4`–`00685AD8`) calls the five bodies directly, and every one opens the same way: `lea rcx, <descriptor>` then `call 006388C0`, the by-name registration the [class-descriptor contract](../Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md) reads (it hashes the `char *` at `+0x30`). The five descriptors are the `PScripting` module's `PClassDescriptor` statics at a `0x100` stride: `006822E0` → `02E41470` (`PScript`, `006822F9`), `00681F30` → `02E41370` (`PScheduler`, vtable `00D6F3C8` installed by `00166140`), `006827C0` → `02E41170` (`PClassDescriptorConcrete<PScriptCallbackHandler>`), `00681C50` → `02E41270` (`PAsyncProcessHeader`), `00681D80` → `02E41070` (`PClassDescriptorWithoutDefaultConstructor<PClassCallableMethodScript>`, vtable `00D6EBF8` installed by `00166100`). After the registration each body builds that class's reflected members under `_Init_thread_header` / `_Init_thread_footer` guards with `atexit` teardown: `00681F30` (939 B) constructs four `PFunctionCallerConcrete<PScheduler *>` statics at `02E424A0`, `02E42500`, `02E42560` … named `GetCurrentScheduler`, `GetCurrentScript`, `addScript`, `removeScript` (`00D70040`–`00D70080`), through the caller constructor `00632FB0` and `005A7A40` / `005A0470`; `00681C50` (289 B) constructs one `PMethodCallerConcrete<PAsyncProcessHeader>` at `02E42440` (vtable `00D70200`) for `getAsyncResult`, whose method body is `008B2480`; `006827C0` (299 B) registers `PScriptCallbackHandler`'s `m_entryPoint` (`+0x0`) and `m_handler` (`+0x8`) through the member constructor `00632960`; `00681D80` (417 B) registers `PClassCallableMethodScript`'s `m_script` (`+0x50`), `m_nameAsString` (`+0x58`) and `m_entryPoint` (`+0x60`); `006822E0` registers `PScript`'s `m_defaultEntryPoint` / `m_executionInterval` / `m_functionNames` (SWE2's reading). The rows already sit in [`phyre-field-schema.tsv`](../Reflection-And-Class-Metadata/phyre-field-schema.tsv) and [`members/phyre-pscripting.tsv`](../members/phyre-pscripting.tsv). **The callee sets settle the question the box asked:** across the five bodies the external callees are `006388C0`, `00639450`, `00632960`, `00632A10`, `00632FB0`, `005A7A40`, `005A0470`, `005EF7E0`, `00618970`, `0062FFC0`, `00630180`, `00630490` and the three CRT guards — no `lua_*` or `luaL_*` body and no Lua state — so no global is installed before the four `luaopen_*` registrations, and the environment picture above is the whole of what `00685AC0` builds. The 2026-09-16 register reading (one shape over five `0x100`-stride objects with per-object once-guards) and this page's text (five distinct bodies) were both right: the shape is the registration, the bodies are the per-class member batteries. The sixth `0x100` slot `02E41570` ~~belongs to a class none of the five registers and is outside this question~~ is no class slot *(corrected 2026-10-02, OPUS: it is the count of the `(name, luaopen_*)` list, read and written with its buffer `02E41578` by `006844C0` at `006844CB` and `0068458A`; UQ-284 below)*. Static: the six bodies and the RTTI of the vtables they install.
 - [x] ~~**UQ-284.** Whether the registered four are opened immediately or deferred until `require`.
       `FUN_006844C0` stores the pair rather than calling it, so **deferral is the reading the body
       supports**, but the consumer of that list was not traced.~~ **ANSWERED 2026-09-25 (FABLE, Claude Opus
@@ -1091,8 +1091,8 @@ The four Phyre scripting vtables each have a constructor that installs them:
 
 | class | vtable | constructor |
 |---|---|---|
-| `PScripting::PAsyncProcessBuffer` | `00D6FD50` | `00681560`, `00681720` |
-| `PScripting::PScheduler` | `00D6FD68` | `00681560`, `00681880` |
+| `PScripting::PAsyncProcessBuffer` | `00D6FD50` | `00681560` *(corrected 2026-10-02, OPUS: `00681720` re-stamps `00D6FD50` at `00681727` and unlinks, call-free - the teardown, not a constructor)* |
+| `PScripting::PScheduler` | `00D6FD68` | `00681560` *(corrected 2026-10-02, OPUS: `00681880`, which re-stamps `00D6FD68` at `00681897`, is the destructor, as the 2026-09-22 section says)* |
 | **`PScripting::PUtilityScripting`** | `00D6FD98` | **`00166210`** |
 | `PClassCallableMethodScript::PCallerScript` | `00D6FDB8` | `00682E30` |
 
@@ -1257,3 +1257,11 @@ Interior anchor `006828B7`
 ## Cross-subsystem neighbours — SWE2-STRUCT (pass-22 dispositions)
 
 - **Resource - CLIENT (231 edges).** `0062FF50`, `0062FFC0`, `00630030`, `006300A0` (+7 more) are called by bodies filed to Resource: `001F4720`, `005850F0`, `00585270`, `005853F0` (+137 more) - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-embedded-lua-and-phyre-object-bindings-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00685FB0` | 83 B | calls through qword `+0x8` of `rcx` with the incoming arguments; then, when `r9` is non-null and `r8` equals the address `02E41370` OR 1, stores qword 0 at `r9+0x0` and that call's result at `r9+0x8` and returns 1, otherwise returns 0 | `00685FC0`, `00685FC6`, `00685FD6`, `00685FDB`, `00685FE7` |

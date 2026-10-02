@@ -734,3 +734,11 @@ on it.)*
 
 - **CoreRuntimeScheduling - CLIENT (1 edge).** `001D62D0` is called by bodies filed to CoreRuntimeScheduling: `0017D4C0` - shared machinery across the layer boundary, no shared ownership.
 - **Platform - SERVICE (2 edges).** `001D6040`, `001D6170` reach bodies filed to Platform: `005CC930` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-ppfx-function-identification-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007911E0` | 72 B | when bit 31 of dword `+8` of `rdx` is clear, the dword is above 1 (unsigned) and qword `+0x10` is non-null, calls `00584730(qword +0x10)`; on every path then zeroes qword `+0x10` and dword `+8` of `rdx` and returns 1 in `al` | `007911F7`, `00791204`, `00791212`, `00791219`, `0079121D` |

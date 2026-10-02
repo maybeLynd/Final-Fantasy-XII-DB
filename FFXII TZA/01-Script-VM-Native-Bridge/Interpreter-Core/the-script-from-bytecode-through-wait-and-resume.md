@@ -1,14 +1,14 @@
 ---
 system: Bytecode to original native command and resumed request
 category: 01-Script-VM-Native-Bridge
-status: PARTIAL
+status: PARTIAL — OV-16 stays open (live scheduling/synchronization/reentrancy/allocation-identity where needed — runtime, carried by FABLE-REQ-ASTRA-RT-REMAINDERS-0929; the universal reentrancy part is superseded under OV-2's limit) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 owner_layer: PrimaryOwner:Script_VM_Native_Bridge
 evidence_tier: 2
 verified_against:
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
   method: "SECTION-11 isolated original-instruction execution; static table and range verification"
 last_reviewed: 2026-09-30
-local_production_status: "Locally validated; independent acceptance pending"
+local_production_status: "Locally validated; independent acceptance pending"  # <- corrected 2026-10-02, OPUS - OV-18 closed NOT A QUESTION 2026-09-29 (section 8); the SECTION-11 package was accepted non-author 2026-09-29 (SWE2-AUDIT-SEM)
 audit:
   passes: 1
   last_pass: 2026-09-30
@@ -158,7 +158,7 @@ connects original bytecode submission to start/end notifications and same-call c
 It adds ordered list waits and notification exhaustion without rerunning this section's completed
 countdown campaign. The earlier lack of non-kind-1 coverage is this section's historical boundary,
 not a claim that the follow-on evidence is absent. Whole-frame timing, actor allocation reuse and
-remaining opcode/service semantics are still separate obligations.
+remaining ~~opcode/service~~ service semantics are still separate obligations *(answered for the opcodes: BF-1 read all 100 handlers, OV-13 in section 8; 2026-10-02, OPUS)*.
 
 ## Falsification pass 1 — 2026-09-30 (OPUS): every static fact under the executions survives
 

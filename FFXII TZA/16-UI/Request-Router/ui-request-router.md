@@ -30,7 +30,7 @@ audit:
 > One numeric mailbox for "open this screen / start this UI operation", with a gameplay
 > policy refusal gate in front of it.
 
-**Status is PARTIAL:** the mechanism is fully documented; several request IDs have no
+~~**Status is PARTIAL:**~~ **Status is DOCUMENTED** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, owner re-status 2026-10-01)*: the mechanism is fully documented; several request IDs have no
 recovered player-facing name and are deliberately left numeric.
 *Note 2026-09-30 (SWE2-CONTRACT for OPUS, DD batch 13): every id now has an identity or a ruling (UQ-162, answered
 2026-09-25). 7, 8, 9, 13, 14, 16, 20 and 21 are unused request numbers. What is still not read is the game-over
@@ -81,7 +81,7 @@ bit 0, set the pending flag, store ID and parameter.
 | 7, 8, 9, 13, 16, 20 | **no screen in the image.** No producer except the developer hook `0050DAB0` (verb `0x2037`), and the generic widgets give them only shared arms. 16 alone first zeroes the word `0209E5E8` and the UI root's byte `+0xDE6` (`0027FCEB`–`0027FCFE`). | census 2026-09-25 (FABLE, Claude Opus 5.5); UQ-162 |
 | 10 | **shop menu**; the parameter is the shop inventory id | authored usage (C-3) |
 | 11 | **game over** — raised by the field frame when no living playable-type unit (kind 0, type `≤ 6`) exists in the party or the nine reserve entries ([the world-tick page](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md) stage 3, `002371B0`) | mechanism proven 2026-09-12 (FABLE); ~~on-screen wording unread~~ wording read 2026-09-30 (§7c P1): the image `gameover_c.tm2`, which reads *GAME OVER* *(Corrected 2026-09-30 (SWE2-CONTRACT for OPUS, DD batch 15))* *(2026-09-30, DD batch 13: its widget family asks for no text id, so the wording is in the screen's own resources; proposed row P1, §7b)* |
-| 12 | **the `spattack` window.** It is opened only by ScriptVM verb `0x2A8` (catalogued `openspattackwindow`) through `002E1AE0`, and polled by verb `0x2A9` (`spattackwindowsync`) through `0028F7C0`. The router's own arm `0028E970` releases and rebuilds a `0x760`-byte widget at `0209BE80 + 0x10FB0` | mechanism proven 2026-09-25 (FABLE, Claude Opus 5.5); the name rests on the verb catalogue's labels, not on a string |
+| 12 | **the `spattack` window.** It is opened only by ScriptVM verb `0x2A8` (catalogued `openspattackwindow`) through `002E1AE0`, and polled by verb `0x2A9` (`spattackwindowsync`) through `0028F7C0`. The router's own arm `0028E970` releases and rebuilds a `0x760`-byte widget ~~at `0209BE80 + 0x10FB0`~~ whose pointer it keeps at `[0209BE80] + 0x10FB0` *(corrected 2026-10-02, OPUS: `0028E970+0xF` reads the qword there, `0028E970+0x1B` tears the old widget down, and `0028E970+0x60` stores the new one, which `002D5030` builds through `00244F50` with `ecx = 0x760`)* | mechanism proven 2026-09-25 (FABLE, Claude Opus 5.5); the name rests on the verb catalogue's labels, not on a string |
 | 14 | valid fullscreen mode/request slot | structurally proven, **name open** *(answered 2026-09-12 as C-1: an unused request number, §7)* |
 | 15 | **airship-route map**: the world map in kind 3, titled "Airship Route"; the parameter is a directed route, 1–14 | proven 2026-09-25 (FABLE, Claude Opus 5.5), static plus shipped data; UQ-162 |
 | 17 | **Strahl destination picker**: the world map in kind 2, titled "Choose your destination." | proven 2026-09-18 and 2026-09-25 (FABLE, Claude Opus 5.5) |
@@ -455,7 +455,7 @@ routing
 - [x] ~~Meaning of request-2 parameters `0x21`, `0x40`, `0x41`, `0x42` (open question **C-4**).~~
       **C-4 ANSWERED 2026-09-12 (FABLE).** `0x40`–`0x42` are `002E1A60`'s remap of selector 6's
       parameter 0 / 1 / 2 (`002E1A81`–`002E1AA1`), i.e. request 22's sub-modes. **`0x21` is the
-      Triangle path's default parameter**, produced twice inside
+      ~~Triangle path's default parameter~~ default parameter of the pad-mask `1` and `2` paths**, produced twice inside *(corrected 2026-10-02, OPUS: Triangle, mask `0x1000`, posts request 2 with parameter 0 — `00253C70+0xF1` `cmp ebp, 0x1000` to `00253C70+0x108`; both `0x21` posts follow `cmp ebp, ebx` with `ebx = 1` from `00253C70+0xA4`, at `00253C70+0x17C` and `00253C70+0x291`)*
       `InputGameplay_ArbitrateDigitalInputAndModalState` (`00253C70`, request id `esi = 2` from
       `00253D88`): once unconditionally after `00236760()` returns 0 (`00253EE1 lea edx, [rax+0x21]`
       → `002E1B10(2, 0x21)` at `00253EE6`), and once at `00253F4E` → `00253F53` when
@@ -480,7 +480,7 @@ routing
       two `0xD8` widgets (`00280A00` builds procedures `0027FB70` and `00280140`) dispatch on `(request & 0x7FFF) − 2`
       twice: the **open** table (`0027FE14`, 21 arms, table at `00280090`) sends **2, 6, 15, 17, 18, 19 and
       22** — exactly the stop registry's full-screen-menu group — to one tail that starts a timed transition
-      (`002CC9C0` → `002EFA70`, duration scaled from the request parameter) and builds the `0x140`-byte transition
+      (`002CC9C0` → `002EFA70`, duration ~~scaled from the request parameter~~ of 200 ms, or 1 ms when bit 15 of the request record's first dword is set *(corrected 2026-10-02, OPUS: `0027FB70+0x213` `mov ebp, 0xc8`, `0027FB70+0x224` `bt r15d, 0xf`, `0027FB70+0x229` `cmovb ebp, edi` with `edi = 1`; ×60/1000 to frames at `0027FB70+0x2E4`)*) and builds the `0x140`-byte transition
       widget `00251D90` (procedure `002509D0`); **10** takes its own tail (`00251D90` then `00251F20`), **11** goes to
       `003EF750`, **16** to `0027FFCA`, and the rest (3–5, 7–9, 12–14, 20, 21) only to the common end, which may release
       presentation slots (`00300060`) and ~~closes~~ **attaches itself under the shared root** (`00247950(self, 0)` at `00280033`; corrected 2026-09-13 on `ASTRA-CONTRA-FABLE-WIDGET-ROOTS` — `00247950` loads `*(0208EA28)` and calls `00248220` for a parentless widget, and never reaches teardown; this widget's teardown is the separate `00245020` call at `0027FD62`). The **close** table (`0027FC7E`, 18 arms, table at `00280048`) groups 6, 15, 17,
@@ -503,8 +503,8 @@ request number. Marked 2026-09-30, SWE2-CONTRACT for OPUS, DD batch 13.)* *(Prov
       and 20 have no screen in the image.** The identified-requests table above carries every id.
       - **12.** Its only producer is `002E1AE0`, which stores 12 straight into the mailbox. It is ScriptVM verb `0x2A8`
         (catalogued `openspattackwindow`, through the tail-jump `0034DA80`). The router gives 12 its own arm,
-        `0028E970`, outside the generic route. That arm releases the widget at `0209BE80 + 0x10FB0` and builds a new
-        `0x760`-byte one there. Verb `0x2A9` (`spattackwindowsync`) polls it: `0028F7C0` returns 3 when the widget is
+        `0028E970`, outside the generic route. That arm releases the widget ~~at `0209BE80 + 0x10FB0`~~ whose pointer sits at `[0209BE80] + 0x10FB0` and builds a new
+        `0x760`-byte one ~~there~~ on the heap, storing its pointer back *(corrected 2026-10-02, OPUS: `0028E970+0x60`; `+0x10FB0` is a pointer slot of the `0x10FD0`-byte block)*. Verb `0x2A9` (`spattackwindowsync`) polls it: `0028F7C0` returns 3 when the widget is
         gone, when its word `+0x752` is 1, or when bit 0 of `+0x749` is set, and 1 otherwise (`0028F7CE`–`0028F7EB`). The name
         rests on the catalogue's `spattack` family (`isfusion_spattack`, `openskillnamewindow_spattack`,
         `spattack_whiteout_menu_callback`), not on a string.
@@ -529,7 +529,7 @@ request number. Marked 2026-09-30, SWE2-CONTRACT for OPUS, DD batch 13.)* *(Prov
         caller, the router.
       - **The domain of that absence.** It covers the raw E8 / E9 call index and a conditional-jump sweep, both empty
         for all five entry points, plus an address-taken scan. That scan's only hits are `.pdata`, the hook's verb
-        slot, and two unaligned `.rdata` byte matches. In the generic widgets these ids reach only shared arms; 16
+        slot, and two unaligned `.rdata` byte matches. In the generic widgets ~~these ids reach only shared arms~~ 7–9, 13 and 20 reach only the default of the open table at `0027FB70+0x520` (`0027FB70+0x49E`), and 16 its own arm (`0027FB70+0x45A` `mov dword ptr [rbx+0xcc], 2`, then the same default) *(corrected 2026-10-02, OPUS: the 21-entry table read from the image)*; 16
         alone first zeroes `0209E5E8` and the UI root's `+0xDE6`. **Like 14 and 21 (C-1 / C-2), they are unused
         request numbers that the debug verb can exercise.**
 

@@ -134,19 +134,19 @@ its `+0x152` sites are a per-glyph-record byte flag — read at `0018F0FF`/`0018
 `0018F11D`, cleared at `0018F20D`/`0018F2B5`).
 
 Each actor carries **its own slot number at `+0x12`**, with **`0xFF` meaning unassigned**. So
-membership is stored twice — in the roster array and on the actor — and assignment keeps both
-consistent, clearing the actor's previous slot before taking the new one.
+membership is stored twice — in the roster array and on the actor — and assignment ~~keeps both~~
+~~consistent,~~ keeps them consistent for the actor it moves, clearing the actor's previous slot before taking the new one; the occupant it displaces keeps its `+0x12` and `+0x0F` while `roster[slot]` names the newcomer *(corrected 2026-10-02, OPUS: `00269C91`–`00269CAD` only notify that occupant; the reset at `00269CD5`/`00269CD9` hits the record in the actor's old slot — CONTRACT-party-slot-assignment.md §4)*.
 
 ### A third writer, from the actor side — added 2026-09-11 (OPUS-REQ-FABLE-ROSTER)
 
 `ActorStorage_InitializeRecord` (`00266530`) enforces the same discipline when a record is
-(re)initialised with a slot byte `al` other than `0xFF` (`00266740`–`00266792`): it reads the
+(re)initialised with a slot byte `al` ~~other than `0xFF`~~ in `0x80`–`0xFE` *(corrected 2026-10-02, OPUS: `0026673E jns` skips the block for a byte without bit 7, before the `0xFF` test at `00266740`)* (`00266740`–`00266792`): it reads the
 record's **own** stored slot `+0x12` (`00266744`); if that is `0..3` (the compare is unsigned, so
 negatives fall out) it clears `0209A1F0[old]` and, if that entry held a record, marks it
 `+0x12 = 0xFF`, `+0x0F = 3` (`00266758`–`00266771`); then, if the new index (`al` with bit 7
 cleared) is non-negative, installs this record at `0209A1F0[new]` (`0026677C`), stores the index at
 `+0x12` and sets `+0x0F` to `2` for slots `0..3` and `3` above (`00266784`–`00266792`). So the
-census below is image-wide for the roster's writers: the party verb path, this initialiser, and
+census below is image-wide for the roster's writers: the party verb path, this initialiser, ~~and~~ the clears `002695A0` and `0025BFB0` (bit-0 arm) *(corrected 2026-10-02, OPUS: five writers, CONTRACT-party-slot-assignment.md §15 — `002695AF`/`002695B7` and `0025C017`/`0025C01F` are the other two 32-byte clears)*, and
 `WorldPersistence_ResetBanksForFieldTransition` (`0026DB30`), which zeroes exactly the 32 bytes
 `0209A1F0`–`0209A20F` with two `movdqu` stores at `0026DB52` / `0026DB5A` — a second, independent
 instrument for `void*[4]`. Whether `+0x0F = 2 / 3` is the "in party / not" kind the page's
@@ -163,7 +163,7 @@ void PartyControl_RecomputeSuppressionFromLeaderBattleState(void)
         && FieldData_GetActiveFieldRecordBit15() == 0
         && (leader = BattleUnit_GetPartyLeader()) != NULL)
     {
-        if (leader->pBkbi == NULL
+        if (leader->pBkbi == NULL   // <- corrected 2026-10-02, OPUS - not an all-suppressed arm: 0023B152 reloads +0x698 and 0023B15E reads [rax + 0x64] with no null test, so this path faults before publishing (the correction block below)
             || ( ((leader->pBkbi->dwStatusMaskMode0_3 | leader->pBkbi->dwStatusMaskMode1_4)
                   & 0x80000003) != 0
                  && FieldData_GetActiveFieldRecordBit15() == 0 ))
@@ -212,17 +212,17 @@ cannot act, cannot earn, cannot be controlled — unless the current field waive
 | `002647C0` | `PartyRoster_IsFourSlotIndex` | ✅ read |
 | `00263750` | `PartyRoster_GetActorBySlot` | ✅ read |
 | `00263770` | `PartyRoster_GetActorBySlotOrCurrentFocus` | ✅ read |
-| `00269C70` | `PartyRoster_AssignActorToSlot` | ✅ read (partial body) |
+| `00269C70` | `PartyRoster_AssignActorToSlot` | ✅ read ~~(partial body)~~ whole *(answered: O-6, the tail read 2026-09-12 — §2's tail paragraph; 2026-10-02, OPUS)* |
 | `0023B040` | `PartyControl_RecomputeSuppressionFromLeaderBattleState` | ✅ read (gate) |
 | `002681C0` | `PartyRoster_ReapplyActorStoredSlot` | not read |
 | `002681E0` | the roster-role notice: `+0x152` → the movement body's cell class (`+0x80`, mirror `+0x153`) | ✅ read 2026-09-12 |
 | `0209A1F0` | the four-slot roster array | — |
 | `02089340` | the battle-state word; bit `0x40` (bit 6) seeds suppression — **"a treasure is being opened"**: set by the begin of the durative verb `btlAtelOpenTreasureStart` (`0032A217`), cleared by its end (`0032A1E3`), read only here and by `00313A40` ([the world-tick page](../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md) §2.5) | ✅ named 2026-09-12 |
-| — | `BattleUnit_GetPartyLeader` | not read |
-| — | `PartyFocus_GetCurrentPackedActorHandle` | not read |
+| — | `BattleUnit_GetPartyLeader` (`003272A0`) | ~~not read~~ read *(answered: see active-party-reserve-and-the-moment-the-leader-changes.md §4; 2026-10-02, OPUS)* |
+| — | `PartyFocus_GetCurrentPackedActorHandle` (`003590D0`) | ~~not read~~ read *(answered: `mov eax, [022C7FE0]` / `ret` — active-party-reserve-and-the-moment-the-leader-changes.md, falsification pass 1; 2026-10-02, OPUS)* |
 | `00303EC0` | **`BattleRuntime_GetMode0To5FromFlagsAndFieldBit15() == 2`** — shared mode predicate, 6 callers; **mode 2 is the chocobo ride** (state-block `+0x5B04` bit 1, `ridechocobo` / `getoffchocobo` / `setchocobomode`, [the mode ladder](../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md) §2c) | ✅ read; named 2026-09-12 |
-| `0030D9A0` | `BattleRuntime_GetMode0To5FromFlagsAndFieldBit15` | not read |
-| `002E8100` / `002681E0` | *(suppression/eviction helpers)* | not read |
+| `0030D9A0` | `BattleRuntime_GetMode0To5FromFlagsAndFieldBit15` | ~~not read~~ read *(answered: "The ladder is now fully read", §9 — the battle runtime mode ladder page; 2026-10-02, OPUS)* |
+| `002E8100` / `002681E0` | *(suppression/eviction helpers)* | ~~not read~~ `002681E0` read, `002E8100` not read *(answered for `002681E0`: see its own row above, read 2026-09-12; 2026-10-02, OPUS)* |
 | `00266530` | `ActorStorage_InitializeRecord` — the actor-side roster writer (`00266740`–`00266792`) | ✅ read (that range) |
 | `0026DB30` | `WorldPersistence_ResetBanksForFieldTransition` — zeroes the four slots (`0026DB52`, `0026DB5A`) | ✅ read (that site) |
 
@@ -281,7 +281,7 @@ leader battle state changes
 party composition changes
   -> PartyRoster_AssignActorToSlot
      -> evict current occupant (mark +0x152, f_002681E0)
-     -> clear the incoming actor's previous slot, set old occupant +0x12 = 0xFF
+     -> clear the incoming actor's previous slot, set old occupant +0x12 = 0xFF   <- corrected 2026-10-02, OPUS - the record reset (+0x12 = 0xFF, +0x0F = 3 at 00269CD5/00269CD9) is the one in the incoming actor's OLD slot; the occupant displaced from the new slot keeps both bytes
      -> install into roster[slot]
 ```
 
@@ -379,8 +379,8 @@ void *PartyRoster_GetActorBySlotOrCurrentFocus(int i)
 ```
 
 `< 4` appears in all three, the array base is `0209A1F0`, and the negative-index behaviour is
-exactly as documented. **Four is not a mistake for three** — the active party is three, and the
-fourth slot is what a guest occupies.
+exactly as documented. **Four is not a mistake for three** — ~~the active party is three, and the~~
+~~fourth slot is what a guest occupies.~~ the active party is four, and a guest takes the first free of indices 3, 2 and 1 *(corrected 2026-10-02, OPUS: `003170E0` walks map 3 from index 3 down while the index is above 0, `0031711A`–`00317157`; §1 of this page says four slots)*.
 
 ### O-2 ANSWERED: the gate is a shared "mode == 2" predicate
 
@@ -418,8 +418,8 @@ so setting an area's bit forces mode 3 and every `== 2` test stops matching. The
 **priority pre-emption inside the ladder**, not a parallel exemption check.
 
 **Mode 2 is therefore a distinguished engine state**, tested by party control, input arbitration,
-unit definition and presentation alike. What mode 2 *is*, and the full `0..5` enumeration, is **not
-established** — registered as **O-4**. Naming it "in battle" is the obvious reading and is
+unit definition and presentation alike. ~~What mode 2 *is*, and the full `0..5` enumeration, is **not~~
+~~established** — registered as **O-4**.~~ *(answered: mode 2 is the chocobo ride and the ladder is read in full — O-4, the mode ladder page §2c and this page's `00303EC0` row in §3; 2026-10-02, OPUS)* Naming it "in battle" is the obvious reading and is
 deliberately not asserted.
 
 ### The connection to field-record bit 15

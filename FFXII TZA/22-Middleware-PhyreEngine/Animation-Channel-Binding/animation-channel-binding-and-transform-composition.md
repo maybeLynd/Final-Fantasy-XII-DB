@@ -212,7 +212,7 @@ ChannelValue
   +0x08  f32  c2
   +0x0C  f32  c3
   +0x10  ptr  semantic       -> ChannelSemantic, or 0 for an inactive channel
-  +0x18  ...  (remaining 16 B not read by 005C72A0)
+  +0x18  ...  (remaining 16 B not read by 005C72A0)   <- corrected 2026-10-02, OPUS - answered 2026-09-26: +0x18 u16 and +0x1C dword from the bind-time writer 005BF290, +0x20..+0x27 an uninterpreted tail
 ```
 
 ### Target record — 48 B (`0x30`), indexed by target index
@@ -300,7 +300,7 @@ when the member type's `+0x5C` kind field read **zero**; the code then re-issues
 call on the *same* object and compares `+0x5C` against **2**. Unless that virtual returns a
 different object on its second call within one iteration, `isRef` is always false here and the
 override reduces to **`size = 8` when member-flag bit 1 is set**. The compiler declined to reuse the
-first result, so it did not treat the call as pure; nothing in these bodies says whether it is.
+first result, so it did not treat the call as pure; nothing in these bodies says whether it is *(answered: see UQ-280, 2026-09-14 - it is pure; 2026-10-02, OPUS)*.
 
 ### Member type kinds - `+0x5C`, and the refusal above 4
 
@@ -469,7 +469,7 @@ they are addresses. Everything downstream of the bind is Phyre middleware with n
 
 **Downstream (what this causes):** bone matrices consumed by skinning and by
 [`../../17-Presentation-Rendering/Character-Rendering/character-render-object.md`](../../17-Presentation-Rendering/Character-Rendering/character-render-object.md);
-and, through kinds 2/3, arbitrary reflected properties including shader parameters.
+and, through kinds 2/3, arbitrary reflected properties ~~including shader parameters~~; shader parameters go through kind 1 *(corrected 2026-10-02, OPUS: `PAnimationChannelTargetBindShaderParameter`'s binder `005C1160` writes kind 1 at `005C1274` and the destination at `005C127A`)*.
 
 **Do not confuse with:**
 
@@ -585,7 +585,7 @@ and, through kinds 2/3, arbitrary reflected properties including shader paramete
 - [x] ~~**UQ-279.** The member-flag word at `member + 0x28`. Bit 1 forces the bound size to 8 (section 4); bit 6~~
       participates in a conjunct that is unreachable on the path it sits on. Neither bit's meaning
       has been read from the class-descriptor side.
-      ***ANSWERED 2026-09-17 (FABLE): bit 1 marks a member whose storage is a pointer to the value, and bit 6 is set by nothing in this build.** The flags word is the fourth argument of the member constructor `PClassDataMember` `00632960`, stored at `member + 0x28` by its name-initialiser `00632FB0` (`00632FCF`); bit 0 makes that initialiser copy the name (length loop `00632FF0`, allocation `0017D260`, copy `00861EBA`, pointer to `+0x18`). Bit 1 is read by three descriptor walkers: `0063AD90` (`0063ADC4`) and `0063C910` (`0063CA2E`) descend into the member as an embedded instance of its type only when bit 1 is clear, and `0063C4A0` (`0063C4B9`) sends the same member address to the type descriptor's slot `0x28` when bit 1 is set and to slot `0x18` when it is not. The constructor itself raises bit 1 for the duration of the descriptor's registration call (slot `0x40`, `006329CB`..`006329F1`) when the array kind it is passed is 2, the dynamic array whose storage is a pointer. The census agrees: of the 682 construction sites in the descriptor builders, 484 pass an immediate flags word, and the values are `0x10` (207), `0x12` (79), `0x8` (123), `0xA` (39) and `0x2` (36); every bit-1 site names a pointer or reference member (`m_texture`, `m_dataBlock`, `m_parent`, `m_next`, `m_prev`, `m_animationSet`, `m_material`, `m_localToWorldMatrix`, `m_targetNode`, `m_unusedPointer`), every bit-1-clear site a value member (`m_elementCount`, `m_width`, `m_height`, `m_mass`, `m_radius`, `m_offset`, `m_flags`). So the binder's override reads: a pointer member binds as its 8-byte pointer, not as the pointee's size. The `0x8` and `0x10` families never mix inside one builder (32 builders use `0x8`, 95 use `0x10`), so that pair is a per-class property, not read further here. No site passes bit 6, and the four static member instances in `.data` (file offsets `0x1E0C550`, `0x1E0C600`, `0x1E0C660`, `0x1E0C6E0`, flags 0 or 2) do not carry it either, so the conjunct that tests it is dead on both counts. Static, constructor and reader bodies read, immediate census over every construction site.*
+      ***ANSWERED 2026-09-17 (FABLE): bit 1 marks a member whose storage is a pointer to the value, and bit 6 is set by nothing in this build.** The flags word is the fourth argument of the member constructor `PClassDataMember` `00632960`, stored at `member + 0x28` by its name-initialiser `00632FB0` (`00632FCF`); bit 0 makes that initialiser copy the name (length loop `00632FF0`, allocation `0017D260`, copy `00861EBA`, pointer to `+0x18` of the node at member `+0x08`, so member `+0x20` *(corrected 2026-10-02, OPUS: `00632998` passes `rcx = member+8`; member `+0x18` is the owning class, `005C0999`)*). Bit 1 is read by three descriptor walkers: `0063AD90` (`0063ADC4`) and `0063C910` (`0063CA2E`) descend into the member as an embedded instance of its type only when bit 1 is clear, and `0063C4A0` (`0063C4B9`) sends the same member address to the type descriptor's slot `0x28` when bit 1 is set and to slot `0x18` when it is not. The constructor itself raises bit 1 for the duration of the descriptor's registration call (slot `0x40`, `006329CB`..`006329F1`) when the array kind it is passed is 2, the dynamic array whose storage is a pointer. The census agrees: of the 682 construction sites in the descriptor builders, 484 pass an immediate flags word, and the values are `0x10` (207), `0x12` (79), `0x8` (123), `0xA` (39) and `0x2` (36); every bit-1 site names a pointer or reference member (`m_texture`, `m_dataBlock`, `m_parent`, `m_next`, `m_prev`, `m_animationSet`, `m_material`, `m_localToWorldMatrix`, `m_targetNode`, `m_unusedPointer`), every bit-1-clear site a value member (`m_elementCount`, `m_width`, `m_height`, `m_mass`, `m_radius`, `m_offset`, `m_flags`). So the binder's override reads: a pointer member binds as its 8-byte pointer, not as the pointee's size. The `0x8` and `0x10` families never mix inside one builder (32 builders use `0x8`, 95 use `0x10`), so that pair is a per-class property, not read further here. No site passes bit 6, and the four static member instances in `.data` (file offsets `0x1E0C550`, `0x1E0C600`, `0x1E0C660`, `0x1E0C6E0`, flags 0 or 2) do not carry it either, so the conjunct that tests it is dead on both counts. Static, constructor and reader bodies read, immediate census over every construction site.*
 - [x] ~~**UQ-280.** Whether the virtual at the member's vtable slot 1 is pure. The size override's second
       disjunct is dead if it is, live if it is not, and `005C0820` calls it twice per iteration
       rather than reusing the result.~~ **Answered 2026-09-14 (FABLE): it is pure, and the second disjunct is dead.**
@@ -842,7 +842,7 @@ Section 8 claimed the target-record layout rests on *"complete exact-current bod
 **The producer writes three of those six.** It stores `+0x00` (the literal `1`), `+0x08` and
 `+0x10`, and nothing else; `+0x18`, `+0x20` and `+0x28` are read off the consumer alone.
 
-That is not a small bookkeeping fix. It means **no code in this document produces a kind-2 or
+That is not a small bookkeeping fix. It means *(answered: see BM-6, 2026-09-14 - the binder is a virtual family; 2026-10-02, OPUS)* **no code in this document produces a kind-2 or
 kind-3 record**, so the consumer's setter arms - and `005A7E90` with them - are reached by a
 producer nobody has found. Section 7 already asked the question; it was filed as a caution and is
 now a measurement. Both section 4 and section 8 now mark which offsets are producer-confirmed and
@@ -862,7 +862,7 @@ which are consumer-only.
 early-out) is recorded here and nowhere else; section 4's **quaternion normalize, quaternion-to-matrix,
 scale and translation formulas are ~~still unverified~~** *(verified since by audit pass 2, §12: every formula in section 4 is exact; SWE2-DATA 2026-09-30)* - this pass read the binder and the blenders,
 not the composer's arithmetic, and section 10 did not read them either, so the formulas remain the
-largest untested block on the page. The `ChannelValue` bytes `+0x18`..`+0x27` stay unread. Nothing
+largest untested block on the page. The `ChannelValue` bytes `+0x18`..`+0x27` stay unread *(answered: see BM-3, ANSWERED 2026-09-26; 2026-10-02, OPUS)*. Nothing
 was executed.
 
 **Snapshot note.** This page's `verified_against` names the **GN158** checkpoint
@@ -930,7 +930,7 @@ Section 3's data table calls it *"the reciprocal numerator in the quaternion nor
 
 ```
 kind 1 -> memcpy(target->dest, &value, target->size)        005C7545, call 00861EBA
-kind 2 -> 005A7E90(obj @ +0x28 ... ctx @ +0x18)             005C7531
+kind 2 -> 005A7E90(obj @ +0x28 ... ctx @ +0x18)             005C7531   <- corrected 2026-10-02, OPUS - kind 2's object is +0x20 (005C753A mov rcx, [rbx+0x20]); +0x28 is kind 3's (005C751F)
 kind 3 -> 005A7E90(obj @ +0x28, 0)                          005C751F
 ```
 
@@ -959,7 +959,7 @@ thunk that a disassembly-level filter will never match.
 > **A census of one instruction is a claim about that instruction, not about the operation it
 > implements.**
 
-**Not claimed.** The `ChannelValue` bytes `+0x18`..`+0x27` stay unread. The `== 1` arm was verified
+**Not claimed.** The `ChannelValue` bytes `+0x18`..`+0x27` stay unread *(answered: see BM-3, ANSWERED 2026-09-26; 2026-10-02, OPUS)*. The `== 1` arm was verified
 structurally and on its `m[0]` term rather than all nine, since it is the `== 3` arm with the scale
 multiplies removed. Nothing was executed.
 
@@ -1120,3 +1120,11 @@ had, and it is named for the same reason.
 *(Read by OPUS 2026-09-14. `BM-2` is answered: ~~yes, in three other places, and the three are named~~
 ~~above.~~ the answer is no, per the `UQ-277` correction above; SWE2-DATA 2026-09-30.)*
 
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-animation-channel-binding-and-transform--cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0063BB60` | 58 B | when qword `+0x10` of `rcx` is non-null calls it with `rdx - 8` plus the sign-extended dword `+0x18`, or with that dword alone when `rdx` is null, and returns a non-zero result; when the qword is null or the call returns 0 it returns qword `+0x30` of the object at qword `+8` | `0063BB6D`, `0063BB76`, `0063BB80`, `0063BB84`, `0063BB90` |
+| `00677A80` | 46 B | when qword `+0x10` of `rcx` is non-null calls it with `rdx` plus the sign-extended dword `+0x18` and returns a non-zero result; when the qword is null or the call returns 0 it returns qword `+0x30` of the object at qword `+8` | `00677A8D`, `00677A96`, `00677A99`, `00677AA4` |

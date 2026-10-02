@@ -123,7 +123,7 @@ frame. **That is the difference between a removed feature and a hung script.**
 | `moveblurfadesync` | `0016D6A0` | `00345100` | `0016D6A0` | — |
 | `atrac3play` | — | — | `0016D6A0` | Sony ATRAC3 audio |
 | `atrac3cancel` | `0016D6A0` | `005C5230` | — | Sony ATRAC3 audio |
-| `unkCall_5c7` | — | — | `0016D6A0` | — takes **2** arguments |
+| `unkCall_5c7` | — | — | `0016D6A0` | — ~~takes **2** arguments~~ the catalogue declares 2 arguments; the handler (`ret 0`) consumes none *(corrected 2026-10-02, OPUS: `0x05C7` has only the result `0016D6A0`; the CONFLICT note in §7)* |
 
 **`hddinstall` and `networkhddinstall` share a result body**, so whatever remains of them is one
 function serving both.
@@ -201,7 +201,7 @@ was run on them.*
 | `005C5230` | `xor eax, eax; ret` — the stub `poll`, reports "done" immediately |
 | `00356A90` | `movesync` poll — a real wait predicate |
 | `0034D4C0` | `gillwinsync` poll — the seven-instruction wait idiom |
-| `0034E3E0` | poll shared by `summonreadsync` and `summontopartyreadsync` |
+| `0034E3E0` | poll shared by `summonreadsync` and `summontopartyreadsync` *(corrected 2026-10-02, OPUS: and by `partyallread` `0x3EB` and `partyallread2` `0x46F` — four records under the five command tables read under the accessor frame - begin `tbl + 8 + 0x20n` (`003DC28E`), poll `+ 0x10` (`003DC25E`), result `tbl + 0x20(n + 1)` (`003DC2BA`))* |
 | `003447F0` | result shared by `hddinstall` and `networkhddinstall` |
 
 ## 4. Modding notes
@@ -237,8 +237,8 @@ was run on them.*
 - [x] **CR-3.** **Why `atrac3standbysync` and `atrac3playsync` are polls-only pointing at the stub** while
   `atrac3play` and `atrac3cancel` are stubs in the other population — the family is split across two
   shapes. `CR-3`. *(DISSOLVED in the register 2026-09-26, FABLE, Claude Opus 5.5: the dispatch records register all
-  five ATRAC3 verbs the same way, with a result callback only, and exactly one of them is the folded `ret 0`. There
-  is no two-shape split to explain. Why that one verb is stubbed is intent, which no shipped artefact carries.)*
+  ~~five ATRAC3 verbs the same way, with a result callback only, and exactly one of them is the folded `ret 0`. There~~
+  ~~is no two-shape split to explain. Why that one verb is stubbed is intent, which no shipped artefact carries.~~)* *(corrected 2026-10-02, OPUS: the two-shape split is in the bytes: `0x04AB` and `0x04AD` carry only the poll `005C5230`, `0x04AE` begin `0016D6A0` + poll `005C5230`, `0x04AA` and `0x04AC` a result only, under the five command tables read under the accessor frame - begin `tbl + 8 + 0x20n` (`003DC28E`), poll `+ 0x10` (`003DC25E`), result `tbl + 0x20(n + 1)` (`003DC2BA`))*
 - [x] ~~No `result` body of any stubbed verb has been read; only that its `begin`/`poll` are
   no-ops.~~ **Read 2026-09-13 (OPUS): all four, and none is a no-op.** `003447F0`
   (`hddinstall`, `networkhddinstall`) is `mov ecx, 1; jmp 00408EC0` — it sets the `FF12CONFIG`
@@ -339,7 +339,7 @@ The row reads `cat_args 2` and `param_types 0x10,0x10` — but also **`arity 0`*
 **`arity_status CONFLICT`**. §2's table states the 2 flatly. The catalogue says two, the derived arity
 says none, and the table itself flags the disagreement.
 
-**Not claimed.** `CR-2` and `CR-3` stand. What `00314D40`, `003B6F60`, `003B7D30`, `003B7180` and
+**Not claimed.** `CR-2` and `CR-3` stand *(answered: CR-3 dissolved 2026-09-26, UQ-65 / CR-2 closed 2026-09-30, §5; `003B7180` read, below; 2026-10-02, OPUS)*. What `00314D40`, `003B6F60`, `003B7D30`, `003B7180` and
 `00237D60` do — **the result bodies were read, their callees were not.** Whether the three empty verbs
 or any stub verb is called by a shipped script outside the four HDD ids — not walked here. The PS2/PS3
 attribution remains a reading of names, as §6 says. Nothing was executed.

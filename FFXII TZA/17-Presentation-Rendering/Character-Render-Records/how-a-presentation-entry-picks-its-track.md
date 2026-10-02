@@ -204,3 +204,11 @@ Script: `Tools/analysis-kit/gfz-scripts/falsify_presentation_track.py`, output `
 | T9 | the EC7-60 note | **survives**: one call, `002ED570` at `00417DC6`, and the `01CEBBA8` constant |
 
 No correction.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-how-a-presentation-entry-picks-its-track-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0051B970` | 96 B | calls `0051F580(rcx, 0051BBE0, rcx)`, then sets dword `02CA83F4` to 1 and calls `0051F580(rcx, 0051BBF0, rcx)`, then sets it to 2 and calls `0051F580(rcx, 0051BBF0, rcx)` again, and finally sets dword `02CA83F4` to 0 | `0051B983`, `0051B98B`, `0051B9A7`, `0051B9BB`, `0051B9C0` |

@@ -1,0 +1,134 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "contract-resource-entry-tree.json",
+ "rows": [
+  {
+   "fn": "00369C60",
+   "text": "returns 0 when bit `ecx` of dword `022D89B8` is clear; otherwise takes the `0xA8`-stride entry at `022D7FD0` for `ecx` up to `0xE` (null above), returns 0 when its qword `+0x50` is 0, and else counts `0036AAD0(entry)` plus one for each non-zero `0036ABE0(entry)`, calling the latter once when `edx` is 0 and until it returns 0 when `edx` is non-zero; a non-zero count stores byte 1 at entry `+2` and `+0x62`; returns the count",
+   "anchors": [
+    [
+     "00369C6E",
+     "bt"
+    ],
+    [
+     "00369C8F",
+     "imul"
+    ],
+    [
+     "00369CAE",
+     "call"
+    ],
+    [
+     "00369CB8",
+     "call"
+    ],
+    [
+     "00369CCF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0036B490",
+   "text": "when `rdx` is non-null stores `0020E620(rcx)` in dword `+0x2C` of `rdx` and zeroes its word `+0x3E`; then, on both paths, stores `0020E620(rdx)` in dword `+0x24` of `rcx` and zeroes word `+0x3E` of `rcx`",
+   "anchors": [
+    [
+     "0036B4AC",
+     "call"
+    ],
+    [
+     "0036B4B1",
+     "mov"
+    ],
+    [
+     "0036B4BB",
+     "call"
+    ],
+    [
+     "0036B4C5",
+     "mov"
+    ],
+    [
+     "0036B4CE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0036B5A0",
+   "text": "when `rdx` is non-null stores `0020E620(rcx)` in dword `+0x2C` of `rdx` and zeroes its word `+0x3E`; then, on both paths, stores `0020E620(rdx)` in dword `+0x28` of `rcx` and zeroes word `+0x3E` of `rcx`",
+   "anchors": [
+    [
+     "0036B5BC",
+     "call"
+    ],
+    [
+     "0036B5C1",
+     "mov"
+    ],
+    [
+     "0036B5CB",
+     "call"
+    ],
+    [
+     "0036B5D5",
+     "mov"
+    ],
+    [
+     "0036B5DE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003AB940",
+   "text": "returns without work when `rcx` is null or its low two bits are both clear; otherwise tail-jumps `0036D170(rcx, 1)`",
+   "anchors": [
+    [
+     "003AB945",
+     "test"
+    ],
+    [
+     "003AB94D",
+     "setne"
+    ],
+    [
+     "003AB957",
+     "je"
+    ]
+   ]
+  },
+  {
+   "fn": "00409730",
+   "text": "calls `00427B00(qword +0x30)` and `0051EE80(rcx+0x10)`, stores `0xFFFF` in word `+0`, -1 in dword `+0x44`, 0 in dwords `+4` and `+0x40` and in qword `+0x30`, then tail-jumps `0051EE10(rcx+0x10)`",
+   "anchors": [
+    [
+     "00409741",
+     "call"
+    ],
+    [
+     "0040974A",
+     "call"
+    ],
+    [
+     "00409754",
+     "mov"
+    ],
+    [
+     "00409761",
+     "mov"
+    ],
+    [
+     "00409772",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

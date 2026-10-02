@@ -76,7 +76,7 @@ rendering invites.
 
 ```
 selector  = clamp(count - 1, 0, 2)                 ; 0, 1 or 2
-if [ctx + 0x1061] == 0:  [ctx + 0x1060] = selector ; a latch: first writer wins
+if [ctx + 0x1061] == 0:  [ctx + 0x1060] = selector ; a latch: first writer wins   <- corrected 2026-10-02, OPUS: not first-writer-wins - this body only clears +0x1061 (0026DA92); its setters are 0026D8F9 and 0026836C, so of two calls in one pass the second writes its own selector
 fieldId   = WorldTransition_GetActiveOrPendingFieldId()   ; 003148F0
 ```
 
@@ -132,7 +132,7 @@ They are two different layouts, and neither is read.
 - ~~**What the five globals feed.** They are published here; their consumers are not in this function.~~
   *(Answered by reconciliation 2026-09-30, SWE2-DATA: [the weather contract](CONTRACT-weather.md) §5 censuses the readers. `02099DA8` and `02099DAC` are read through getter thunks by the combat stage, `02099DBC` through a third getter, and `02099DB0` by nothing (GB-3, answered; `pf_env_checks.py` E8).)*
 - **What `00377850` computes** from `(rowU16, selector+1)`. Only how its result is banded.
-  *Read 2026-09-18 (FABLE), by cross-reference:* it is the **3-bit weather preset**. `00377850` tail-calls the packed-bit reader `003777C0` with `(bit 0, width 3)`, whose bit base is `9 × (3 × selector + slot)` ([the MWeather page](Weather/mweather-resource-format.md)), so the band above is preset 0 / presets 1–3 / presets 4–7, the last the strong-wind class that page names.
+  *Read 2026-09-18 (FABLE), by cross-reference:* it is the **3-bit weather preset**. `00377850` tail-calls the packed-bit reader `003777C0` with `(bit 0, width 3)`, whose bit base is ~~`9 × (3 × selector + slot)`~~ `9 × (3 × selector + slot − 1)` for this call's `1..3` slot *(corrected 2026-10-02, OPUS: `003777F9 lea r10d, [r9-9]` takes one entry back off; CONTRACT-weather.md I-4)* ([the MWeather page](Weather/mweather-resource-format.md)), so the band above is preset 0 / presets 1–3 / presets 4–7, the last the strong-wind class that page names.
 - ~~**What the variant selector means to a player** — three states exist and are chosen from a count,~~
   ~~but nothing here names them.~~ *(Answered by reconciliation 2026-09-30, SWE2-DATA: the selector is the field's weather slot. Each area has three authored weather configurations, a retention roll picks one on entry, the choice survives save and load, and `setweatherslot` can force it ([the weather contract](CONTRACT-weather.md) §1). The page's "What the player sees" section states it.)*
 - **Whether the two-slot divergence is a defect or a design.** This function takes the combat class from the requested slot and the presentation from the committed one. GB-1 records that the question is **NO ADMISSIBLE SOURCE**: the code is read end to end, and no evidence in the image or data can say which was intended.

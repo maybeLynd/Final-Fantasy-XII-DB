@@ -703,7 +703,7 @@ doc	subsystem	edges	detail
 09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md	UI	3	00313F60 caller 0031EB20; 00313F60 caller 00322A80; 0031B7E0 caller 0031EB20
 10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	Application	1	005CC930 caller 00799980
 10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	RNG_Random_Selection	3	002342F0 callee 00328D80; 00234AF0 callee 00328370; 002398F0 callee 00328370
-10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	Audio	4	0030C650 callee 002DF220; 0030C650 callee 003A1180; 003112F0 callee 002DF220; 003112F0 callee 003A1180
+10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	Audio	2	0030C650 callee 002DF220; 0030C650 callee 003A1180
 10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	CoreRuntimeScheduling	1	00300530 callee 0032A150
 10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	Input	1	00377C20 caller 00253C70
 10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	InputGameplay	1	00377C20 caller 00313A00
@@ -875,20 +875,22 @@ doc	subsystem	edges	detail
 14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	CoreRuntimeScheduling	5	00253C70 callee 001EDE70; 00265270 caller 001EC760; 00266D10 caller 0022A0B0; 00300530 callee 0032A150
 14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	RNG_Random_Selection	2	003014C0 callee 00308EC0; 003014C0 callee 00328370
 14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	Spawn_Encounter_Lifecycle	1	00300530 callee 00306F00
-15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md	Save_Load_Settings	3	0017D4C0 callee 001C1710; 0017D4C0 callee 001C18A0; 0017D4C0 callee 001C18E0
-15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	ActorEntity	5	003C8B70 callee 0025B4C0; 003C8B70 callee 00263C20; 003C8B70 callee 002647E0; 003C8B70 callee 002739B0
-15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Application	1	005CC930 caller 00799980
-15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Audio	4	001D1660 callee 001DBB00; 001D1660 callee 002DEBA0; 005CC930 caller 00223190; 005CC930 caller 00224570
-15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	CoreRuntimeScheduling	1	005CC930 caller 001E03F0
-15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	RNG_Random_Selection	1	001946E0 callee 0018EE20
-15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Resource	8	001D1660 callee 002EEEE0; 005CC930 caller 001D9F90; 005CC930 caller 001DADC0; 0061DBE0 caller 00686DE0
-15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Save_Load_Settings	1	00798FF0 callee 001DFD40
-15-Input/Modal-Toggles/r2-force-fight-toggle.md	CoreRuntimeScheduling	1	00265270 caller 001EC760
-15-Input/Modal-Toggles/r2-force-fight-toggle.md	PlatformOnlineAchievements	2	00265270 caller 003154B0; 00265270 caller 003161A0
-15-Input/Modal-Toggles/r2-force-fight-toggle.md	Presentation	1	00265270 caller 001CD0E0
-15-Input/Modal-Toggles/r2-force-fight-toggle.md	Resource	2	00265270 caller 001DA220; 00265270 caller 001DA970
-15-Input/Modal-Toggles/r2-force-fight-toggle.md	StoryEvent	1	00265270 caller 001ED240
-15-Input/Modal-Toggles/r2-force-fight-toggle.md	Story_Event_Quest_Hunt	1	00265270 caller 00377970
+15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	ActorEntity	5	00314020 callee 0025BFB0; 00314020 callee 0025D9E0; 00314020 callee 00263660; 00314020 callee 00268650
+15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	Movement	5	00314020 callee 00234520; 00314020 callee 003DAA20; 00314020 callee 003DAA40; 00314020 callee 003DAC70
+15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	Party	2	00314020 callee 00358C60; 00314020 callee 00358EE0
+15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md	ActorEntity	10	00314020 callee 0025BFB0; 00314020 callee 0025D9E0; 00314020 callee 00263660; 00314020 callee 00268650
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	CombatAI	4	0031B7E0 caller 00301AD0; 00377C20 caller 003014C0; 00377C20 caller 00301AD0; 00377C20 caller 00305AB0
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	CombatFormula	2	00237DF0 callee 0023AC80; 00377C20 caller 00300530
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	Items_Equipment_Shops_License	3	00237DF0 callee 0023AF50; 00377C20 caller 00309FB0; 00377C20 caller 0030FD10
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	Rewards_Progression_Economy	1	00377C20 caller 00312280
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	Status_Periodic_Terminal	3	00377C20 caller 0030E360; 00377C20 caller 0030F690; 00377C20 caller 00310DB0
+15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	Developer	1	0017D6E0 callee 001C2F50
+15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	RNG_Random_Selection	3	00234AF0 callee 00328370; 003014C0 callee 00308EC0; 003014C0 callee 00328370
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Rewards_Progression_Economy	1	002342F0 callee 00319B10
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Spawn_Encounter_Lifecycle	2	002342F0 callee 00233780; 002342F0 callee 00307090
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Status_Periodic_Terminal	1	002342F0 callee 0030E990
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	Story_Event_Quest_Hunt	1	002EF2D0 callee 00379160
+15-Input/Modal-Toggles/r2-force-fight-toggle.md	RNG_Random_Selection	1	0022A0B0 callee 00379CF0
 16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	Application	1	00186CD0 callee 001A98B0
 16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	Movement	1	001EDDA0 caller 0025DF00
 16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	Rewards_Progression_Economy	1	00229E40 caller 00317ED0
@@ -1034,14 +1036,11 @@ doc	subsystem	edges	detail
 17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md	Story_Event_Quest_Hunt	1	00253C70 callee 0032A8A0
 17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	Party	5	00344740 callee 00263750; 00352FA0 callee 00263750; 00352FA0 callee 002647C0; 003537D0 callee 00263750
 17-Presentation-Rendering/Model-And-Motion-Formats/fdm-and-for-entries.md	Input	1	001EDE70 caller 00253C70
-17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	Gameplay	1	003590D0 caller 0031ADB0
 17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	PlatformOnlineAchievements	2	00265270 caller 003154B0; 00265270 caller 003161A0
-17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	Spawn_Encounter_Lifecycle	1	00238BF0 caller 0023A410
-17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	Status_Periodic_Terminal	1	00238BF0 caller 00301140
 17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	StoryEvent	1	00265270 caller 001ED240
 17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	Story_Event_Quest_Hunt	1	00265270 caller 00377970
-17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	UI	3	002DEE80 caller 00366990; 003590D0 caller 00299BD0; 003590D0 caller 002C7660
 17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md	Input	1	001EDE70 caller 00253C70
+17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md	WorldAreaField	2	001ED240 callee 00265270; 001ED240 callee 00314910
 17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md	WorldAreaField	1	003714A0 callee 00377C20
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	ActorEntity	14	00226BE0 callee 00263FF0; 00226BE0 callee 003588B0; 00226BE0 callee 00358940; 00226BE0 callee 00359B80
 17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	CombatAI	6	00234590 callee 00325060; 00234590 callee 0032A650; 0031B7E0 caller 00301AD0; 00377C20 caller 003014C0
@@ -1078,12 +1077,17 @@ doc	subsystem	edges	detail
 17-Presentation-Rendering/Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md	Party	1	00308610 callee 00307DF0
 17-Presentation-Rendering/Scripted-Camera/how-a-camera-reaches-the-renderer.md	CombatAction	2	00226BE0 caller 00313DB0; 00339630 caller 00304850
 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	StoryEvent	1	0020AC30 callee 0020A800
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md	Save_Load_Settings	1	001A0A90 caller 001C1810
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md	UI	1	001A1470 caller 0018EEE0
 18-Audio/Audio-Boundary/CONTRACT-sound-request.md	Application	1	005CC930 caller 00799980
-18-Audio/Audio-Boundary/CONTRACT-sound-request.md	Presentation	4	005CC930 caller 001CCB20; 005CC930 caller 001D6040; 005CC930 caller 001D6170; 005CC930 caller 001D8700
-18-Audio/Audio-Boundary/CONTRACT-sound-request.md	Resource	2	005CC930 caller 001D9F90; 005CC930 caller 001DADC0
+18-Audio/Audio-Boundary/CONTRACT-sound-request.md	CombatAI	2	0030E130 callee 003279B0; 00322360 caller 00301AD0
+18-Audio/Audio-Boundary/CONTRACT-sound-request.md	RNG_Random_Selection	3	00234AF0 callee 00328370; 002F9A60 callee 00379CD0; 002F9B20 callee 00379CD0
+18-Audio/Audio-Boundary/CONTRACT-sound-request.md	Story_Event_Quest_Hunt	1	002EF2D0 callee 00379160
 18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	Application	1	00186CD0 callee 001A98B0
-18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	CoreRuntimeScheduling	3	00187950 callee 001A1470; 001EC560 caller 001EC760; 001EC560 caller 0022A770
-18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	StoryEvent	1	001EC560 caller 001ED240
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	Spawn_Encounter_Lifecycle	4	00300520 caller 002352E0; 00300520 caller 0023A410; 00300530 callee 00306F00; 0030C470 caller 002398F0
+18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	Application	1	005CC930 caller 00799980
+18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	Items_Equipment_Shops_License	1	003112F0 callee 003008A0
+18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	Status_Periodic_Terminal	7	0030C650 callee 0030FED0; 003112F0 callee 0030E130; 003112F0 callee 0030E360; 003112F0 callee 0030FED0
 18-Audio/CONTRACT-music-control-file-and-bgm-stream.md	CombatAction	1	002368D0 callee 0030CF40
 18-Audio/CONTRACT-music-control-file-and-bgm-stream.md	Movement	4	002368D0 callee 00383A20; 00266D10 callee 00263560; 00266D10 callee 002EBE40; 00266D10 callee 003DAE30
 18-Audio/CONTRACT-music-control-file-and-bgm-stream.md	Script_VM_Native_Bridge	3	00266D10 callee 003DC2D0; 0032E400 caller 0050DF70; 0032E620 caller 0050DFE0
@@ -1091,29 +1095,36 @@ doc	subsystem	edges	detail
 18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md	CombatAction	2	003112F0 callee 0030B9B0; 003112F0 caller 00307300
 18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md	Items_Equipment_Shops_License	1	003112F0 callee 003008A0
 18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md	Status_Periodic_Terminal	7	0030C650 callee 0030FED0; 003112F0 callee 0030E130; 003112F0 callee 0030E360; 003112F0 callee 0030FED0
+18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	Application	1	005CC930 caller 00799980
+18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	RNG_Random_Selection	1	0025ACA0 callee 00379CD0
 18-Audio/Sound-Selection/sound-trigger.md	Application	1	005CC930 caller 00799980
 18-Audio/Sound-Selection/sound-trigger.md	CoreRuntimeScheduling	1	005CC930 caller 001E03F0
 18-Audio/Sound-Selection/sound-trigger.md	Input	2	005CC930 caller 00196480; 005CC930 caller 0079D920
 18-Audio/Sound-Selection/sound-trigger.md	Presentation	4	005CC930 caller 001CCB20; 005CC930 caller 001D6040; 005CC930 caller 001D6170; 005CC930 caller 001D8700
 18-Audio/Sound-Selection/sound-trigger.md	Resource	2	005CC930 caller 001D9F90; 005CC930 caller 001DADC0
-18-Audio/how-the-music-changes-when-you-change-area.md	Resource	10	0032E070 callee 002DF6C0; 0032E070 callee 0032E330; 0032E070 callee 0032E370; 0032E070 callee 0032E3B0
-18-Audio/the-music-control-file-and-the-bgm-stream.md	Resource	3	002FC3C0 callee 0032E4D0; 002FC3C0 callee 0032E520; 002FC3C0 callee 0032E590
+18-Audio/Sound-Selection/sound-variant-selection.md	ActorEntity	2	003343D0 callee 003588B0; 00336E40 callee 00265090
+18-Audio/Sound-Selection/sound-variant-selection.md	Items_Equipment_Shops_License	3	002F88B0 callee 00324020; 0030B0E0 caller 00323D10; 0055B3F0 callee 003236B0
+18-Audio/Sound-Selection/sound-variant-selection.md	Party	1	00336E40 callee 003272A0
+18-Audio/Sound-Selection/sound-variant-selection.md	Resource	2	0029F130 callee 0024A5F0; 0029F130 callee 0024A610
+18-Audio/how-the-music-changes-when-you-change-area.md	Spawn_Encounter_Lifecycle	3	002342F0 callee 00233780; 002342F0 callee 00307090; 003148F0 caller 00233780
+18-Audio/sead-engine-identity-and-diagnostics.md	Presentation	9	001D6E80 caller 001BDD20; 001D6E80 caller 0036FFF0; 001D6E80 caller 0037CCC0; 001D6EE0 caller 001BDD20
+18-Audio/sead-function-identification.md	CoreRuntimeScheduling	2	001A11B0 caller 0017D4C0; 005CC930 caller 001E03F0
+18-Audio/sqex-sd-sound-driver-architecture.md	PlatformOnlineAchievements	1	001CD0E0 callee 003166F0
+18-Audio/sqex-sd-sound-driver-architecture.md	Rewards_Progression_Economy	1	00229E40 caller 00317ED0
+18-Audio/the-music-control-file-and-the-bgm-stream.md	Movement	10	002368D0 callee 00383A20; 002628B0 callee 00263560; 002628B0 callee 0026A1D0; 002628B0 callee 00379070
+18-Audio/the-music-control-file-and-the-bgm-stream.md	Party	2	002628B0 callee 00358B40; 002628B0 callee 00359200
+18-Audio/the-music-control-file-and-the-bgm-stream.md	StoryEvent	1	00265270 caller 001ED240
+18-Audio/the-music-control-file-and-the-bgm-stream.md	Story_Event_Quest_Hunt	1	00265270 caller 00377970
 18-Audio/the-spatial-audio-object-model.md	Application	1	005CC930 caller 00799980
-18-Audio/the-spatial-audio-object-model.md	CombatAction	4	003112F0 callee 0030B9B0; 003112F0 caller 00307300; 003590D0 caller 00317E60; 003590D0 caller 00319090
-18-Audio/the-spatial-audio-object-model.md	CoreRuntimeScheduling	1	005CC930 caller 001E03F0
-18-Audio/the-spatial-audio-object-model.md	Gameplay	1	003590D0 caller 0031ADB0
-18-Audio/the-spatial-audio-object-model.md	Input	3	003590D0 caller 00226BE0; 005CC930 caller 00196480; 005CC930 caller 0079D920
+18-Audio/the-spatial-audio-object-model.md	CombatAction	5	003112F0 callee 0030B9B0; 003112F0 caller 00307300; 00339630 caller 00304850; 003590D0 caller 00317E60
+18-Audio/the-spatial-audio-object-model.md	Developer	1	0017D6E0 callee 001C2F50
+18-Audio/the-spatial-audio-object-model.md	Input	13	0022A770 callee 0017DE60; 0022A770 callee 002498B0; 0022A770 callee 00250180; 0022A770 callee 0035AE30
 18-Audio/the-spatial-audio-object-model.md	Items_Equipment_Shops_License	1	003112F0 callee 003008A0
-18-Audio/the-spatial-audio-object-model.md	Movement	11	003590D0 caller 0026C3E0; 003590D0 caller 0026D6F0; 003590D0 caller 0026D810; 003590D0 caller 002E45E0
-18-Audio/the-spatial-audio-object-model.md	Presentation	17	00237420 caller 0046CC70; 003590D0 caller 003A4290; 003590D0 caller 003A56F0; 003590D0 caller 003F1A60
-18-Audio/the-spatial-audio-object-model.md	Resource	2	005CC930 caller 001D9F90; 005CC930 caller 001DADC0
-18-Audio/the-spatial-audio-object-model.md	Script_VM_Native_Bridge	14	003590D0 caller 00341CB0; 003590D0 caller 00345800; 003590D0 caller 00346FA0; 003590D0 caller 0034F800
 18-Audio/the-spatial-audio-object-model.md	Status_Periodic_Terminal	7	0030C650 callee 0030FED0; 003112F0 callee 0030E130; 003112F0 callee 0030E360; 003112F0 callee 0030FED0
-18-Audio/the-spatial-audio-object-model.md	UI	2	003590D0 caller 00299BD0; 003590D0 caller 002C7660
 18-Audio/the-spatial-audio-object-model.md	World	2	003590D0 caller 0025E400; 003590D0 caller 002623A0
-18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	Resource	8	0032E400 caller 00249210; 0032E400 caller 0024AC30; 0032E400 caller 00259DF0; 0032E400 caller 00379E90
-18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	World	1	0032E400 caller 00378540
-18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	WorldAreaField	5	0032E400 caller 00268750; 0032E400 caller 003319D0; 0032E400 caller 00378030; 0032E400 caller 00379A10
+18-Audio/the-spatial-audio-object-model.md	WorldAreaField	1	0022A770 callee 00314020
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	RNG_Random_Selection	3	0022A0B0 callee 00379CF0; 0022B6E0 callee 00379CD0; 0022B7E0 callee 00379CD0
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	Story_Event_Quest_Hunt	12	002EF2B0 caller 0032A8A0; 002EF2B0 caller 0032A930; 002EF2B0 caller 0032A9A0; 002EF2B0 caller 0032AA00
 19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	CombatFormula	54	00237DF0 callee 0023AC80; 00379CD0 caller 003851F0; 00379CD0 caller 00387130; 00379CD0 caller 00387FD0
 19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	Movement	11	0025D9E0 callee 0025DF00; 00263FF0 caller 002E28E0; 00263FF0 caller 00392740; 00266D10 callee 00263560
 19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	Party	4	0025D9E0 callee 003590D0; 00314020 callee 00358C60; 00314020 callee 00358EE0; 00362850 callee 003590D0
@@ -1121,40 +1132,38 @@ doc	subsystem	edges	detail
 19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	Spawn_Encounter_Lifecycle	8	00229B40 callee 00233440; 00300E40 callee 00237080; 00300E40 caller 00234880; 00300E40 caller 00234990
 19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	Status_Periodic_Terminal	1	00379CD0 caller 00386C70
 19-Save-Load-Settings/CONTRACT-storage-read-completion.md	CombatAction	1	00313A00 caller 00313DB0
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	ActorEntity	2	0023AC80 caller 0023A570; 00254A90 caller 0025D9E0
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	CombatAI	3	0023AC80 callee 00326030; 0023AC80 callee 00327CB0; 0023AC80 callee 00327DE0
+19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	Party	2	00314020 callee 00358C60; 00314020 callee 00358EE0
+19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	CombatAI	4	0023AC80 callee 00326030; 0023AC80 callee 00327CB0; 0023AC80 callee 00327DE0; 00310DB0 callee 00321530
 19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	Items_Equipment_Shops_License	3	0023AC80 callee 0031A630; 0023AC80 callee 00323910; 0030C470 callee 00324100
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	Platform	7	00158F60 callee 00158EC0; 00158F60 caller 00158FE0; 00158F60 caller 001590B0; 00158F60 caller 00159180
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	PlatformOnlineAchievements	2	00265270 caller 003154B0; 00265270 caller 003161A0
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	Status_Periodic_Terminal	2	0030C470 callee 0030F690; 0030C470 callee 0030FED0
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	StoryEvent	1	00265270 caller 001ED240
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	Story_Event_Quest_Hunt	1	00265270 caller 00377970
-19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	UI	2	00254A90 callee 00251F40; 00254A90 callee 0035C620
 19-Save-Load-Settings/Game-Settings-Config/the-settings-command-table.md	CombatFormula	3	00237DF0 callee 0023AC80; 00304850 callee 00387090; 00304850 callee 00387A50
 19-Save-Load-Settings/Game-Settings-Config/the-settings-command-table.md	Items_Equipment_Shops_License	1	00237DF0 callee 0023AF50
 19-Save-Load-Settings/Game-Settings-Config/the-settings-command-table.md	RNG_Random_Selection	1	0022A0B0 callee 00379CF0
 19-Save-Load-Settings/Game-Settings-Config/the-settings-command-table.md	Status_Periodic_Terminal	1	00304850 callee 0030E360
-19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	CoreRuntimeScheduling	1	0033FED0 callee 00229E40
-19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	Input	1	00313F60 caller 00253C70
+19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	Developer	1	0017D6E0 callee 001C2F50
 19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	Items_Equipment_Shops_License	15	00309EC0 caller 00317930; 0030B0E0 caller 00323D10; 00322C50 caller 003096F0; 00322C50 caller 0030B180
-19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	PlatformOnlineAchievements	1	00309EC0 caller 00315E90
 19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	Spawn_Encounter_Lifecycle	2	00313F60 caller 00234DA0; 00313F60 caller 002350C0
 19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	Status_Periodic_Terminal	5	00313F60 caller 00320450; 00313F60 caller 00329A20; 00322C50 caller 0030E130; 00322C50 caller 0030FED0
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	Platform	1	001CCB20 callee 005CC930
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	PlatformOnlineAchievements	1	001CD0E0 callee 003166F0
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	WorldAreaField	2	001CD0E0 callee 00265270; 001CD0E0 callee 00314910
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	ActorEntity	6	00237DF0 callee 00329CC0; 00322C50 caller 002367A0; 00322C50 caller 0023A570; 00322C50 caller 0031B810
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	CombatAI	10	00322C50 caller 00301AD0; 00322C50 caller 003215C0; 00322C50 caller 00321630; 00322C50 caller 00321770
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	CoreRuntimeScheduling	6	001C2F40 caller 0017D6E0; 001E05E0 caller 0017D6E0; 001E05E0 caller 0022A580; 0022FFE0 caller 0017D6E0
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	Movement	4	0022FFE0 callee 002324F0; 0022FFE0 callee 0026E500; 00322C50 caller 0031BAC0; 00322C50 caller 00326BB0
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	Spawn_Encounter_Lifecycle	2	00229B40 callee 00233440; 005843E0 callee 00233550
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	Movement	12	0022FFE0 callee 002324F0; 0022FFE0 callee 0026E500; 0025B070 callee 002E3D00; 0025D9E0 callee 0025DF00
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	RNG_Random_Selection	1	0022A0B0 callee 00379CF0
 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	Status_Periodic_Terminal	3	00322C50 caller 0030E130; 00322C50 caller 0030FED0; 00322C50 caller 00310DB0
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	UI	2	00237DF0 callee 00313840; 00322C50 caller 0031EB20
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md	Spawn_Encounter_Lifecycle	5	00300E40 callee 00237080; 00300E40 caller 00234880; 00300E40 caller 00234990; 00300E40 caller 002350C0
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	ActorEntity	1	0023AC80 caller 0023A570
 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	Audio	1	002814E0 callee 002DEE50
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	CombatAI	3	0023AC80 callee 00326030; 0023AC80 callee 00327CB0; 0023AC80 callee 00327DE0
 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	Movement	1	00281AE0 callee 00326BB0
-19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	Resource	3	002814E0 callee 0024A5A0; 00281AE0 callee 00249580; 00281AE0 callee 0024A5A0
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	Presentation	1	00300E40 callee 003125E0
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	Resource	4	002814E0 callee 0024A5A0; 00281AE0 callee 00249580; 00281AE0 callee 0024A5A0; 003145E0 callee 0032E520
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	Spawn_Encounter_Lifecycle	7	00300E40 callee 00237080; 00300E40 caller 00234880; 00300E40 caller 00234990; 00300E40 caller 002350C0
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	ActorEntity	14	00301AD0 callee 002367A0; 00301AD0 callee 00236820; 00301AD0 callee 00236850; 00301AD0 callee 0031B760
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Audio	1	003148F0 caller 00261F90
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	CombatFormula	2	00254EE0 caller 003112F0; 00312280 callee 00320AB0
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	CoreRuntimeScheduling	1	00265270 caller 001EC760
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Input	1	00265270 caller 00253C70
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Movement	4	00312280 callee 00319490; 003148F0 caller 0033A720; 003148F0 caller 003ED190; 003148F0 caller 003ED3F0
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Party	5	00301AD0 callee 0031B7E0; 00301AD0 callee 003272A0; 00301AD0 callee 003273B0; 0031EB20 callee 0031B7E0
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Resource	2	00265270 caller 001DA220; 00265270 caller 001DA970
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Spawn_Encounter_Lifecycle	1	003148F0 caller 00233780
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Status_Periodic_Terminal	1	00312280 caller 0030E360
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	StoryEvent	1	00265270 caller 001ED240
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	Story_Event_Quest_Hunt	2	00265270 caller 00377970; 00583D60 callee 0032A8A0
 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	CombatAI	1	00309EC0 caller 00301AD0
 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	CombatFormula	4	00254EE0 caller 003112F0; 00305640 callee 00300BC0; 00305640 callee 00300CE0; 00312280 callee 00320AB0
 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	Items_Equipment_Shops_License	5	00254EE0 caller 002FD530; 00254EE0 caller 002FD880; 00254EE0 caller 002FEEB0; 00254EE0 caller 00310870
@@ -1162,18 +1171,14 @@ doc	subsystem	edges	detail
 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	Presentation	2	00312280 callee 0028FB80; 0032F240 caller 003DD4C0
 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	UI	1	00309EC0 caller 0031EB20
 20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	WorldAreaField	2	00309EC0 caller 00576A50; 00312280 callee 00377C20
-20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	CombatAction	4	00301AD0 callee 003093D0; 00301AD0 callee 0030AB40; 00301AD0 callee 0030B9B0; 00301AD0 callee 0031C500
-20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	Gameplay	5	00301AD0 callee 00309EC0; 00301AD0 callee 00316CF0; 00301AD0 callee 0031EA90; 00301AD0 callee 00321320
-20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	Input	1	0022A0B0 callee 0035B270
-20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	Party	4	002C7660 callee 003590D0; 00301AD0 callee 0031B7E0; 00301AD0 callee 003272A0; 00301AD0 callee 003273B0
-20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	World	1	0022A0B0 callee 00266D10
-20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	WorldAreaField	2	00301AD0 callee 00320940; 00301AD0 callee 00377C20
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	StoryEvent	1	00265270 caller 001ED240
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	Story_Event_Quest_Hunt	1	00265270 caller 00377970
 21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	Audio	1	00266D10 callee 00362F70
-21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	Input	3	0022A0B0 callee 0035B270; 00266D10 callee 00226BE0; 00377C20 caller 00253C70
+21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	Input	2	00266D10 callee 00226BE0; 00377C20 caller 00253C70
 21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	InputGameplay	1	00377C20 caller 00313A00
 21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	Items_Equipment_Shops_License	2	00377C20 caller 00309FB0; 00377C20 caller 0030FD10
 21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	PlatformOnlineAchievements	1	00584210 callee 00316810
-21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	Resource	6	0022A0B0 callee 00259DF0; 0022A0B0 callee 002DF9A0; 0022A0B0 callee 0032EAE0; 0022A0B0 callee 00379D20
+21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	Resource	1	0061E200 caller 00686DE0
 21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	UI	1	0026CE60 callee 00253A30
 21-RNG-And-Determinism/rng-streams.md	Items_Equipment_Shops_License	1	0030B0E0 caller 00323D10
 21-RNG-And-Determinism/rng-streams.md	PlatformOnlineAchievements	1	00312280 callee 00316A50
@@ -1221,12 +1226,8 @@ doc	subsystem	edges	detail
 24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	CoreRuntimeScheduling	1	0051C3C0 callee 001EDDA0
 24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	Resource	1	003F3710 callee 0024A5A0
 24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	CoreRuntimeScheduling	1	0053AB50 callee 001EDE70
-25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	CombatFormula	53	00379CD0 caller 003851F0; 00379CD0 caller 00387130; 00379CD0 caller 00387FD0; 00379CD0 caller 00388350
-25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	CoreRuntimeScheduling	2	00379CD0 caller 0022B6E0; 00379CD0 caller 0022B7E0
 25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Gameplay	1	003590D0 caller 0031ADB0
 25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Resource	2	00268750 callee 0032E400; 00268750 callee 0032E620
-25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Rewards_Progression_Economy	2	00379CD0 caller 002F9A60; 00379CD0 caller 002F9B20
-25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	Status_Periodic_Terminal	1	00379CD0 caller 00386C70
 25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	UI	2	003590D0 caller 00299BD0; 003590D0 caller 002C7660
 25-EBP-Script-Container/Container/ebp2-container.md	Rewards_Progression_Economy	1	002342F0 callee 00319B10
 25-EBP-Script-Container/Container/ebp2-container.md	Spawn_Encounter_Lifecycle	2	002342F0 callee 00233780; 002342F0 callee 00307090
@@ -1247,7 +1248,6 @@ doc	subsystem	edges	detail
 25-EBP-Script-Container/Sections/section-008.md	Input	2	00263FF0 caller 00226BE0; 00263FF0 caller 002E09A0
 25-EBP-Script-Container/Sections/section-008.md	Movement	2	00263FF0 caller 002E28E0; 00263FF0 caller 00392740
 25-EBP-Script-Container/Sections/section-009.md	Input	2	00263FF0 caller 00226BE0; 00263FF0 caller 002E09A0
-25-EBP-Script-Container/Sections/section-012.md	WorldAreaField	1	0037AA90 caller 003775D0
 25-EBP-Script-Container/Sections/section-014.md	Input	3	00263FF0 caller 00226BE0; 00263FF0 caller 002E09A0; 0032E620 caller 00291C80
 25-EBP-Script-Container/Sections/section-014.md	Movement	4	00263FF0 caller 002E28E0; 00263FF0 caller 00392740; 003DE920 caller 00379080; 003DE920 caller 00379110
 25-EBP-Script-Container/Sections/section-014.md	Save_Load_Settings	1	0032E620 caller 002EF300

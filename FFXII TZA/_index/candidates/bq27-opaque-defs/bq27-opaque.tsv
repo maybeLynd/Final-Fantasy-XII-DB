@@ -1,0 +1,40 @@
+function	site	slot	prev	cls	detail	insn	verdict
+00199320	00199359	7	no-direct-caller	no-def	-		forwards:arg2-edx
+0019C490	0019C4C8	7	no-direct-caller	no-def	-		forwards:arg2-edx
+0020D720	0020D748	7	callers:passthrough	no-def	-		forwards:arg2-edx
+0020DA50	0020DA6A	0	callers:open	no-def	-		forwards:arg2-edx
+00212BD0	00212BF9	0	callers:other-argument	reg-copy	esi	mov edx, esi	open
+002133D0	00213421	0	open	cmov-cond	esi	mov edx, esi | cmovg esi, r12d	computed:cmov-cond
+002142A0	00214351	0	open	cmov-cond	ebx	mov edx, ebx | cmovg ebx, r12d	computed:cmov-cond
+00215440	002156E2	0	open	cmov-cond	edi	mov edx, edi | cmovg edi, r13d	computed:cmov-cond
+00218920	00218930	7	no-direct-caller	no-def	-		forwards:arg2-edx
+0021C3D0	0021C3E0	7	no-direct-caller	no-def	-		forwards:arg2-edx
+0022F830	0022F894	0	open	arith	-	sub dx, r8w	open
+006242C0	00624317	7	open	field-load	0x1894	mov edx, dword ptr [rdi + 0x1894]	field:0x1894 writers=1
+006242C0	00624367	7	open	lit	0	mov edx, dword ptr [r9] | test edx, edx | jne 0x6243da	settled
+006242C0	006243EC	7	open	arith	-	dec edx	open
+00629690	006296FF	7	open	field-load	0x1894	mov edx, dword ptr [rdi + 0x1894]	field:0x1894 writers=1
+0068EB70	0068EB77	0	no-direct-caller	no-def	-		forwards:arg2-edx
+00691AB0	00691B06	0	open	lit	1	lea edx, [rdi + 1]  [rdi=0]	settled
+006A0540	006A0565	0	no-direct-caller	no-def	-		forwards:arg2-edx
+006A0600	006A0622	0	no-direct-caller	no-def	-		forwards:arg2-edx
+006A0680	006A08EB	0	no-direct-caller	no-def	-		forwards:arg2-edx
+006A0980	006A09A5	0	no-direct-caller	no-def	-		forwards:arg2-edx
+006DA470	006DA4C7	0	callers:passthrough	no-def	-		forwards:arg2-edx
+006DA5A0	006DA5FB	0	callers:passthrough	no-def	-		forwards:arg2-edx
+00720320	00720ADF	0	open	field-load	glob:02EA1924	mov edx, dword ptr [rip + 0x2780e7b] ; =>02EA1924	field:glob:02EA1924 writers=0
+007215C0	0072192E	0	open	reg-copy	ebx	mov edx, ebx	open
+00724A60	00724A8D	0	no-direct-caller	no-def	-		forwards:arg2-edx
+00724AB0	00724AD5	0	no-direct-caller	no-def	-		forwards:arg2-edx
+00724AF0	00724B0D	0	no-direct-caller	no-def	-		forwards:arg2-edx
+00724B20	00724B45	0	no-direct-caller	no-def	-		forwards:arg2-edx
+00724BC0	00724BED	0	no-direct-caller	no-def	-		forwards:arg2-edx
+007871F0	0078721C	0	no-direct-caller	no-def	-		forwards:arg2-edx
+00789320	0078932C	7	no-direct-caller	no-def	-		forwards:arg2-edx
+00797F60	00797FB5	7	no-direct-caller	no-def	-		forwards:arg2-edx
+007DD9F0	007DDA3A	0	open	lit	1	lea edx, [r14 + 1]  [r14=0]	settled
+00823670	008236A5	0	callers:open,passthrough,settled	no-def	-		forwards:arg2-edx
+00840B10	00840B26	7	no-direct-caller	no-def	-		forwards:arg2-edx
+00858370	00858386	7	no-direct-caller	no-def	-		forwards:arg2-edx
+0085C3E0	0085C44D	7	no-direct-caller	no-def	-		forwards:arg2-edx
+00863D80	00863DD1	0	open	field-load	0x60	mov edx, dword ptr [r14 + 0x60]	field:0x60 writers=1006

@@ -1,0 +1,227 @@
+{
+ "page": "03-World-Area-Field/CONTRACT-weather.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "contract-weather.json",
+ "rows": [
+  {
+   "fn": "0029C530",
+   "text": "dispatches on dword `[rdx]`: 2 and 3 return 0, 14 ORs word `rcx+0xE6` with 8 and 15 ORs it with 4 (both return 0), values other than 1 to 3, 14 and 15 tail-jump to `005C5230` with `rcx` and `rdx` as passed in, and 1 runs a setup and returns 0; the setup copies words `+4` to `+0xA` of `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x14, rcx)` to `rcx+0x98` to `+0x9E` (skipped when `rcx` is null; the later `rcx`-null tests only substitute a null `A`, `B` or `C`), and with `f` = `003148F0()` and `A`, `B`, `C` = qwords `+0x18`, `+0x20`, `+0x28` of qword `rcx+0x60` stores `003778B0(00314910())` (when `0032A8A0(0x5E)` is non-zero) or `003778B0(f)` to qword `A+0x18`, `00377B60(f)` to qword `B+0x18`, `0020E620(0)` to dwords `A+0x20` and `B+0x20` and `002543D0(00254380(00264F90(f)))` to word `C+0xA`; it copies dword `+0x24` and words `+0xC` to `+0x12` of `A` to `rcx+0xC0` and `+0xC4` to `+0xCA` and of `B` to `rcx+0xD0` and `+0xD4` to `+0xDA`, then calls `00247930(rcx, 0xA0)` and `00247570(rcx, 002735E0(3))` and zeroes word `rcx+0xE0`",
+   "anchors": [
+    [
+     "0029C564",
+     "jmp"
+    ],
+    [
+     "0029C569",
+     "or"
+    ],
+    [
+     "0029C5B5",
+     "call"
+    ],
+    [
+     "0029C64A",
+     "mov"
+    ],
+    [
+     "0029C750",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034B7C0",
+   "text": "takes `a`, `b`, `c`, `d` from four `00267E10(r9)` calls, sets `r` = `002E9D90(rdx, 1, d, c)` and, when `00267310(byte rdx+0x15)` returns zero, calls `003A0E20(r, b, a)`",
+   "anchors": [
+    [
+     "0034B7E3",
+     "call"
+    ],
+    [
+     "0034B80D",
+     "mov"
+    ],
+    [
+     "0034B815",
+     "call"
+    ],
+    [
+     "0034B820",
+     "call"
+    ],
+    [
+     "0034B831",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034C210",
+   "text": "takes `a`, `b`, `c` from three `00267E10(r9)` calls, sets `r` = `002E9D90(rdx, 2, c, 0)` and, when `00267310(byte rdx+0x15)` returns zero, calls `003A0E20(r, b, a)`",
+   "anchors": [
+    [
+     "0034C22D",
+     "call"
+    ],
+    [
+     "0034C24F",
+     "lea"
+    ],
+    [
+     "0034C253",
+     "call"
+    ],
+    [
+     "0034C25E",
+     "call"
+    ],
+    [
+     "0034C26E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034CA40",
+   "text": "takes `a`, `b`, `c`, `d` from four `00267E10(r9)` calls (discarding `c`), sets `r` = `002E9D90(rdx, 0, d, 0)` and, when `00267310(byte rdx+0x15)` returns zero, calls `003A0E20(r, b, a)`",
+   "anchors": [
+    [
+     "0034CA5D",
+     "call"
+    ],
+    [
+     "0034CA84",
+     "xor"
+    ],
+    [
+     "0034CA89",
+     "call"
+    ],
+    [
+     "0034CA94",
+     "call"
+    ],
+    [
+     "0034CAA4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00363840",
+   "text": "when signed dword `022CBA7C` is above 0, copies dword `022CBA70` to `022CBA74`, stores 0xB4 to `022CBA78`, stores `002DEF40(dword 022CBA7C, 0x40, byte 022CBA92)` to `022CBA70` and copies byte `022CBA92` to `022CBA93`; otherwise tail-jumps to `00363E40(0xB4)` when dword `022CBA70` is non-zero and returns when it is zero",
+   "anchors": [
+    [
+     "0036384C",
+     "jle"
+    ],
+    [
+     "00363861",
+     "mov"
+    ],
+    [
+     "00363871",
+     "call"
+    ],
+    [
+     "0036388E",
+     "cmp"
+    ],
+    [
+     "003638A0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00379080",
+   "text": "stores the floats `xmm0`, `xmm1`, `xmm2`, `xmm3` to `0209A390`, `0209A394`, `0209A398`, `0209A39C`, calls `002ECE40(i)` with `xmm1`, `xmm2`, `xmm3` = the incoming `xmm0`, `xmm1`, `xmm2` for `i` = 0 to 4, and then, when byte `02ADD0E9` is 0, calls `003DE920(0, 003DE700(0), 0)`",
+   "anchors": [
+    [
+     "003790AA",
+     "movss"
+    ],
+    [
+     "003790CF",
+     "call"
+    ],
+    [
+     "003790D6",
+     "cmp"
+    ],
+    [
+     "003790DB",
+     "cmp"
+    ],
+    [
+     "003790F2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00379110",
+   "text": "stores the floats `xmm0`, `xmm1`, `xmm2`, `xmm3` to `0209A390`, `0209A394`, `0209A398`, `0209A39C`; when byte `02ADD0E9` is 0 it tail-jumps to `003DE920(0, 003DE700(0), 0)`, otherwise it returns",
+   "anchors": [
+    [
+     "00379114",
+     "cmp"
+    ],
+    [
+     "0037911B",
+     "movss"
+    ],
+    [
+     "00379133",
+     "movss"
+    ],
+    [
+     "0037913F",
+     "call"
+    ],
+    [
+     "0037914F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0040B3B0",
+   "text": "stores `cl` to byte `02CA4390` and, when `ecx` is non-zero, copies the 32-byte row `ecx - 1` of the table at `01EFFA30`: floats `+0`, `+4`, `+8`, `+0xC`, `+0x10`, `+0x14` to `02CA4388`, `02CA4380`, `02CA4384`, `02CA4398`, `02CA439C`, `02CA438C` and dword `+0x18` to `02CA4394`; `ecx` = 0 returns after the byte store",
+   "anchors": [
+    [
+     "0040B3B6",
+     "test"
+    ],
+    [
+     "0040B3C4",
+     "shl"
+    ],
+    [
+     "0040B3CD",
+     "movss"
+    ],
+    [
+     "0040B413",
+     "mov"
+    ],
+    [
+     "0040B41F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0029C530",
+   "was": "dispatches on dword `[rdx]`: 2 and 3 return 0, 14 ORs word `rcx+0xE6` with 8 and 15 ORs it with 4 (both return 0), values other than 1 to 3, 14 and 15 tail-jump to `005C5230(rcx)`, and 1 runs a setup and returns 0; the setup copies words `+4` to `+0xA` of `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x14, rcx)` to `rcx+0x98` to `+0x9E`, and with `f` = `003148F0()` and `A`, `B`, `C` = qwords `+0x18`, `+0x20`, `+0x28` of qword `rcx+0x60` stores `003778B0(00314910())` (when `0032A8A0(0x5E)` is non-zero) or `003778B0(f)` to qword `A+0x18`, `00377B60(f)` to qword `B+0x18`, `0020E620(0)` to dwords `A+0x20` and `B+0x20` and `002543D0(00254380(00264F90(f)))` to word `C+0xA`; it copies dword `+0x24` and words `+0xC` to `+0x12` of `A` to `rcx+0xC0` and `+0xC4` to `+0xCA` and of `B` to `rcx+0xD0` and `+0xD4` to `+0xDA`, then calls `00247930(rcx)` and `00247570(rcx, 002735E0(3))` and zeroes word `rcx+0xE0`",
+   "now": "dispatches on dword `[rdx]`: 2 and 3 return 0, 14 ORs word `rcx+0xE6` with 8 and 15 ORs it with 4 (both return 0), values other than 1 to 3, 14 and 15 tail-jump to `005C5230` with `rcx` and `rdx` as passed in, and 1 runs a setup and returns 0; the setup copies words `+4` to `+0xA` of `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x14, rcx)` to `rcx+0x98` to `+0x9E` (skipped when `rcx` is null; the later `rcx`-null tests only substitute a null `A`, `B` or `C`), and with `f` = `003148F0()` and `A`, `B`, `C` = qwords `+0x18`, `+0x20`, `+0x28` of qword `rcx+0x60` stores `003778B0(00314910())` (when `0032A8A0(0x5E)` is non-zero) or `003778B0(f)` to qword `A+0x18`, `00377B60(f)` to qword `B+0x18`, `0020E620(0)` to dwords `A+0x20` and `B+0x20` and `002543D0(00254380(00264F90(f)))` to word `C+0xA`; it copies dword `+0x24` and words `+0xC` to `+0x12` of `A` to `rcx+0xC0` and `+0xC4` to `+0xCA` and of `B` to `rcx+0xD0` and `+0xD4` to `+0xDA`, then calls `00247930(rcx, 0xA0)` and `00247570(rcx, 002735E0(3))` and zeroes word `rcx+0xE0`",
+   "why": "omitted argument: 00247930 receives edx = 0xA0 (set at 0029C530+0x194); the default arm also passes rdx; rcx-null guards unstated"
+  }
+ ]
+}

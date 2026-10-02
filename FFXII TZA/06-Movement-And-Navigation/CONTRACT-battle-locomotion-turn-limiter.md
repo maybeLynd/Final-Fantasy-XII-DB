@@ -93,7 +93,7 @@ this**, because the band that decides is not the band being executed.
 clears its opposite, so the pair can never both be set — a reimplementation using two independent
 booleans admits a state the original cannot reach.*
 
-**BL-6 — Arrival SNAPS, and the snap is what clears the loop.** When the remaining delta is within
+**BL-6 — Arrival SNAPS, and the snap is what clears the loop.** When ~~the remaining delta is within~~ the step is not a latched one (a latched direction is read only above 120°) and the remaining delta is within *(corrected 2026-10-02, OPUS: `0033654E` / `0033655F` split at 120°; above it `0033659D` reads `fl[0x21] & 6` and `003365FF`–`0033661D` step `cur ± rate` with no wrap and no snap, the 2026-09-23 closure below)*
 the rate the result is exactly `desired` rather than an overshoot, and reaching `desired` clears
 both `fl[0x38]` bit 3 and `fl[0x3C]` bit 0. *So the loop is self-terminating and cannot oscillate
 around the target — and a port that steps by the rate unconditionally will orbit it.*

@@ -145,14 +145,14 @@ question is not how that effect is reached. What does reach it is `GF-4`.
 > construction by code is the one `PFXAA`. *The other 35
 > classes are reached only as this section says.* `falsify_posteffect_family.py` P7, P8.
 
-Each class's vtable is installed by exactly one body, in the `0064xxxx` band, and **not one of those
+Each class's vtable is installed by ~~exactly one body~~ one or more bodies *(corrected 2026-10-02, OPUS: 66 distinct bodies reference the 36 family vtables, 27 of them `PPostEffectBase`'s; P7 below)*, in the `0064xxxx` band, and **not one of those
 bodies has a call site anywhere in `.text`.** Measured over all 36 concrete descriptors with a raw
 `E8`/`E9` index: **zero** call sites, against a control body in the same index that returns nine.
 
 They are reached from data instead, and from one place: **slot 10 — offset `0x50` — of the class's
 own `PClassDescriptorConcrete<T>` vtable**, Phyre's construct-in-place factory. Checked for every one
 of the 36: slot 10 reaches the class's vtable in **24** cases directly and in **11** through a single
-call to a wrapper that does it, and in **zero** cases not at all. *The split is a code-shape
+call to a wrapper that does it, and in ~~**zero** cases not at all~~ one case not at all *(corrected 2026-10-02, OPUS: the 36th, `PDepthOfFieldLayered`, has no `PClassDescriptor` type in the image's RTTI, so no slot 10 reaches it)*. *The split is a code-shape
 accident, not two mechanisms*: `PGlow`'s slot 10, for example, is a 44-byte null-check that tail
 calls the body which installs the vtable.
 
@@ -752,7 +752,7 @@ NUL-terminated ASCII. Scanning all **35,984** clusters:
 > the thirty-six are. `PFXAA` is built into the game's post-process context, and its worker runs on the arm of `00191DA0`
 > that is not SMAA; the code-construction clause below is corrected for it, and the asset census is untouched.** Thirty-seven classes, nine with a
 > real implementation, a documented render entry, eleven workers, 24 submissions and a shader-variant
-> path behind them — and **no code constructs one and no shipped asset names one**. The family ships
+> path behind them — and **~~no code constructs one and~~ no shipped asset names one** *(corrected 2026-10-02, OPUS: code constructs one, the `PFXAA` at context `+0x378`: `0018CFD5` calls `00645DB0`, which stamps `00D625D0` at `00645DD7`; CON-198 above)*. The family ships
 > as middleware the game does not use. The game's own post-processing is the twelve passes on
 > [the post-process page](the-post-process-passes-and-their-shader-constants.md), which are not
 > `PPostEffect`s at all.
@@ -793,16 +793,16 @@ through `this` after chaining to its base — controls: `PMLAAD3D11` must add **
 | stamping body | class | fields added |
 |---|---|---:|
 | `00645BC0` | `PDeferredLightingD3D11` | **43**, `+0x41D8`…`+0x4328`, every one 8 bytes |
-| `00646A30` | `PMotionBlurD3D11` (second body) | 3 |
+| `00646A30` | `PMotionBlurD3D11` (second body) | ~~3~~ 1 *(corrected 2026-10-02, OPUS: this is the destructor: it releases `+0xD68` through `006505A0`, a release pair in it (FABLE's record readiness-apply-fable-1002b), then re-stamps `00D61E50` and frees the base's `+0x30`/`+0x38`)* |
 | `00643C10`, `00647380`, `00647470` | `PDepthOfFieldD3D11` | 0 |
-| `0063F580` | `PMotionBlurD3D11` | 0 |
+| `0063F580` | `PMotionBlurD3D11` | ~~0~~ 1 *(corrected 2026-10-02, OPUS: one store in it zeroes `+0xD68` after the base constructor `00646000`, which writes no further than `+0xD60`)* |
 | `00641D40` | `PScreenSpaceAmbientOcclusionD3D11` | 0 |
 | `00640340` | `PMLAAD3D11` | 0 |
 | `00641590` | `PGlowD3D11` | 0 |
 | `006435D0` | `PFXAAD3D11` | 0 |
 
-`PMLAAD3D11`'s whole constructor is *chain to the base, stamp the vtable, return* — 58 bytes. Six of
-the seven are that.
+`PMLAAD3D11`'s whole constructor is *chain to the base, stamp the vtable, return* — 58 bytes. ~~Six~~ Five of
+the seven are that *(corrected 2026-10-02, OPUS: `PMotionBlurD3D11` adds `+0xD68`, above)*.
 
 ### And the one that carries state has a reader (FABLE)
 

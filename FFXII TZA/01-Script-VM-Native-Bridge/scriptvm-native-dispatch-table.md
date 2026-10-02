@@ -37,7 +37,7 @@ audit:
 > [`../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md`](../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md)
 > §2b. The table is usable exactly as this document prescribes: as a lead, confirmed by arity.
 
-**DOCUMENTED.** The table is the **`result` callback column** of a three-callback native command
+~~**DOCUMENTED.**~~ **AUDITED.** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`)* The table is the **`result` callback column** of a three-callback native command
 table (**begin / poll / result**, 32-byte records) whose base is `0x01EED700` — see section 12, which
 resolves every contradiction this document previously carried. Base, stride, extent and all aggregate
 figures were re-derived in pass 33 and are unchanged; the frame of reference is what moved.
@@ -195,9 +195,9 @@ counterexample outranked it.
 | `003462D0` | `openfullscreenmenu_48d` — **proven** by body: pops two operands, drives `002E1A60` |
 | `00346DA0` | a zero-argument getter, consistent with `getmapgroundtype_48c` |
 
-Full mapping: [`Verb-Dispatch/scriptvm-dispatch.tsv`](Verb-Dispatch/scriptvm-dispatch.tsv) (1,224 rows). **Moved into the database 2026-09-08** — it had lived only in
+Full mapping: [`Verb-Dispatch/scriptvm-dispatch.tsv`](Verb-Dispatch/scriptvm-dispatch.tsv) (~~1,224~~ 1,493 rows *(corrected 2026-10-02, OPUS: the file's own header and its data rows, extended 2026-09-19 and 2026-09-26)*). **Moved into the database 2026-09-08** — it had lived only in
 `Tools/work/rtti/`, which is **gitignored**, so the script↔engine bridge was one `rm -rf work/` from gone and invisible to every query. **The `handler` column was re-derived from the binary before the move: 1,224 of 1,224 agree with `table[+0x00]` at `01EED720 + 0x20*id`, 0 outside `.text`, 0 off a function entry** (`scriptvm_dispatch_verify.py`). `verb` and `args` still come from the authored external catalog and are **not** verifiable against the image; the file carries that split per column. **Rows are a lead, not
-fact** — the index mapping is known wrong in at least one region. Verify a handler's argument
+fact** — the index mapping ~~is known wrong in at least one region~~ is the call id exactly *(answered: CORRECTED 2026-09-07, §2 — the `0x048C`/`0x048D` step was a column confusion, I-6 closed; 2026-10-02, OPUS)*. Verify a handler's argument
 count against the catalog before relying on it.
 
 ## Which verbs are asynchronous - by the accessors, and by their authored names (2026-09-19, FABLE)
@@ -214,7 +214,7 @@ frame one record later the asynchronous verbs would include `getpos` and `setang
 authored source, so a name is a lead and not proof; what it adds here is that it was written without reference to this
 table's layout, and it picks the same frame the accessor bodies do.*
 
-**`scriptvm-dispatch.tsv` has the two callbacks one call id early.** Over its 1,224 rows the `handler` column equals
+*(answered: the TSV's begin / poll columns were re-framed 2026-09-19 (OPUS) and the 259 asynchronous ids added the same day — see its header; 2026-10-02, OPUS)* ~~**`scriptvm-dispatch.tsv` has the two callbacks one call id early.**~~ Over its 1,224 rows the `handler` column equals
 `result(n)` on all 1,224. Its trailing begin / poll pair - 146 rows carry one - equals the accessors' `(begin, poll)(n)`
 on **2** rows and `(begin, poll)(n + 1)` on **146**. Example: `movesync` is call id `0x3D` and its poll is `00356A90`
 ([the verbs that only wait](verbs-that-only-wait-and-verbs-that-do-nothing.md) has it right); the TSV attaches
@@ -246,7 +246,7 @@ ScriptVM native dispatch table
   record N serves call ID N          <- HOLDS for all 1,496 records (§15); the 0x048C/0x048D
                                         "failure" was a column confusion (§12) — I-6 closed
 
-Record layout (interpretation UNPROVEN beyond field +0)
+Record layout (interpretation UNPROVEN beyond field +0)   <- corrected 2026-10-02, OPUS: settled by §2 (restored 2026-09-19): begin +0, poll +8, unused +0x10, result +0x18 from tbl + 8 + 0x20n (003DC28E, 003DC25E, 003DC2BA)
   +0x00  ptr   primary handler        1,234 records non-null
   +0x08  ptr   secondary                277 records non-null
   +0x10  ptr   tertiary                 230 records non-null
@@ -387,7 +387,7 @@ not the verb.
       section 13 identified. Section 15. **I-4.**
 - [x] ~~Why 262 in-range verbs have no handler.~~ **ANSWERED 2026-09-07 — the premise was wrong.**
       262 records lack a **result** callback; only **3** lack a callback of any kind, and none of
-      those 3 is a named catalog verb. The other **259 implement `begin` and `poll`**: they are
+      those 3 is a named catalog verb. The other ~~**259 implement `begin` and `poll`**~~ **259** lack a `result`: 160 have `begin` and `poll`, 73 `begin` only and 26 `poll` only *(corrected 2026-10-02, OPUS: family 0 under the five command tables read under the accessor frame - begin `tbl + 8 + 0x20n` (`003DC28E`), poll `+ 0x10` (`003DC25E`), result `tbl + 0x20(n + 1)` (`003DC2BA`))*: they are
       durative commands, and a durative command has nothing to return. Section 15. **I-5.**
 - [x] **UQ-64.** ~~No handler body has been read except the three already covered by prior work.~~
       **STALE BY SEVENTY-THREE, measured 2026-09-16 (FABLE)** — and the measurement gives the question
@@ -417,7 +417,7 @@ not the verb.
 | `setweatherslot` / `getweatherslot` rows | reproduce the independently decompiled handlers exactly | 1 + 2 |
 | The index mapping is **not** uniformly `record N = verb N` | `003462D0` pops two VM operands and drives the fullscreen request path (= `openfullscreenmenu_48d`, 2 args); `00346DA0` takes none and returns an int (= `getmapgroundtype_48c`, 0 args). The table places them one slot later than the catalog | 1 |
 
-**Why this is PARTIAL rather than DOCUMENTED.** Every aggregate check passed cleanly, and the
+**Why this is PARTIAL rather than DOCUMENTED.** *(answered: the off-by-one was a column confusion, I-6 closed 2026-09-07, and the front matter says `status: AUDITED`; 2026-10-02, OPUS)* Every aggregate check passed cleanly, and the
 temptation was to call 1,224 rows proven and treat the outlier as noise. Doing so would have
 published a systematically off-by-one mapping in at least part of its range — and because an
 off-by-one still lands on a valid, correctly-owned neighbouring function, **no aggregate check
@@ -640,7 +640,7 @@ VMNativeCommandDispatch_GetResultCallback (003DC2A0)
 **1,960 matches the total this document already stated**, reached here from the five counts
 independently rather than from the same source.
 
-**The four tables abut exactly**, which is why a contents walk cannot find their edges: the default's
+~~**The four tables abut exactly**~~ **Three of the four joins abut exactly; the default's end leaves eight zero bytes before family 3** *(corrected 2026-10-02, OPUS: records run to `base + 8 + 0x20×count`: `01F281A8`..`01F281B0` is zero, family 3 ends at `01F29418` and family 5 at `01F29440`)*, which is why a contents walk cannot find their edges: the default's
 records end at `01F281A8` and family 3's base is `01F281B0`; family 3's records end at `01F29418`,
 which **is** family 5's base; family 5's end at `01F29440`, which **is** family 7's base. **There is
 no gap, no terminator and no padding between them** — only the record counts separate them, and a
@@ -750,7 +750,7 @@ fail:     xor eax, eax ; ret
 ```
 
 `VMNativeCommandDispatch_GetBeginCallback` (`003DC270`) and `…GetResultCallback` (`003DC2A0`) are
-the same 36 bytes at a different field offset. So:
+~~the same 36 bytes at a different field offset~~ 39 and 41 bytes *(corrected 2026-10-02, OPUS: `003DC270` (0x27 bytes) and `003DC2A0` (0x29 bytes); the result accessor has no field displacement, `003DC2BA inc rax / shl rax, 5`)*. So:
 
 ```c
 callback(family, id) = (id < *(int32 *)familyArray[family])
@@ -760,18 +760,18 @@ callback(family, id) = (id < *(int32 *)familyArray[family])
 
 ### The families are sparse, and there are four installed
 
-`VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2F0`) is nine instructions and installs
+~~`VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2F0`) is nine instructions and installs~~ `VMNativeCommandDispatch_InitializeFamilyTables` starts at `003DC2D0` (89 B): a `rep stosq` puts the default `01F26720` into all sixteen slots, then nine instructions from `003DC2F0` install *(corrected 2026-10-02, OPUS: `003DC2D5`–`003DC2E8`; `003DC2F0` is an interior address)*
 **four** bases. Because the array is indexed `[array + family*8]`, the four destination globals give
 the family numbers directly:
 
 | family | destination | base | declared count | extent = base + `0x20`×count |
 |---:|---|---|---:|---|
-| **0** | `02B57EF0` | `01EED700` | **1496** | `01EED700`..`01EF9200` |
-| **3** | `02B57F08` | `01F281B0` | **147** | `01F281B0`..`01F29410` |
-| **5** | `02B57F18` | `01F29418` | **1** | `01F29418`..`01F29438` |
-| **7** | `02B57F28` | `01F29440` | **104** | `01F29440`..`01F2A140` |
+| **0** | `02B57EF0` | `01EED700` | **1496** | ~~`01EED700`..`01EF9200`~~ `01EED700`..`01EF9208` *(corrected 2026-10-02, OPUS: records start at `tbl + 8`, `003DC28E`)* |
+| **3** | `02B57F08` | `01F281B0` | **147** | ~~`01F281B0`..`01F29410`~~ `01F281B0`..`01F29418` *(corrected 2026-10-02, OPUS: as row 0)* |
+| **5** | `02B57F18` | `01F29418` | **1** | ~~`01F29418`..`01F29438`~~ `01F29418`..`01F29440` *(corrected 2026-10-02, OPUS: as row 0)* |
+| **7** | `02B57F28` | `01F29440` | **104** | ~~`01F29440`..`01F2A140`~~ `01F29440`..`01F2A148` *(corrected 2026-10-02, OPUS: as row 0)* |
 
-**Families 1, 2, 4 and 6 are never installed** — which is why the accessor null-checks the table
+~~**Families 1, 2, 4 and 6 are never installed** — which is why~~ **Families 1, 2, 4, 6 and 8–15 all get the default `01F26720`** *(corrected 2026-10-02, OPUS: the `rep stosq` at `003DC2E8`)*; the accessor still null-checks the table
 pointer before touching it. The four extents do not overlap.
 
 **Family 0's declared count is `0x5D8` = 1496**, read from `*(int32 *)01EED700`. That is §1's
@@ -782,7 +782,7 @@ it is the figure §13's 1,960-record sweep overran.
 
 The record base this document has used throughout is **one record above the table base**. The table
 header occupies record 0's `+0` field: at `01EED700` the four qwords are
-`0x5D8` (the count) · `0034CF90` · `0034DCC0` · `0` — so record 0's `+0` slot holds the count and its
+`0x5D8` (the count) · `0034CF90` · `0034DCC0` · `0` — ~~so record 0's `+0` slot holds the count and its~~ so the count is a header and the next two qwords are command 0's `begin` and `poll`; record 0 starts at `tbl + 8` *(corrected 2026-10-02, OPUS: `003DC28E` reads begin at `[tbl + 0x20n + 8]`)*; its
 begin/poll fields are live. Recorded as a measurement; **this section does not claim it resolves the
 `0x048C`/`0x048D` off-by-one in §6**, which involves the id→record mapping rather than the base.
 
@@ -828,11 +828,11 @@ independently-declared extents rather than one guessed one.
 all of them between `01F26728` and `01F28180`. The dword at `01F26720` is **212**, and
 `01F26720 + 0x20 × 212 = 01F281A0` — landing `0x10` below family 3's base.
 
-That is the shape of a fifth table of the same format, **not installed by `003DC2F0`**, which
+That is the shape of a fifth table of the same format, ~~**not installed by `003DC2F0`**~~ installed in every slot first by `003DC2D0`'s `rep stosq` *(corrected 2026-10-02, OPUS: `003DC2D5`–`003DC2E8`)*, which
 matches §13's own reference to *"all five command tables"* while this initializer installs four. Its
 base, count and extent are **consistent with** `01F26720` / 212 / `01F281A0`; that is a fit to the
 header convention, not a traced installation. **BI-x: find what installs it** — the accessor's
-`familyArray` is BSS, so whatever writes that slot is the answer, and it is not `003DC2F0`.
+`familyArray` is BSS, so whatever writes that slot is the answer, ~~and it is not `003DC2F0`~~ and it is `003DC2D0` itself *(corrected 2026-10-02, OPUS: `003DC2E1 lea rdi, 02B57EF0` / `003DC2E8 rep stosq`, sixteen qwords)*.
 
 One further slot sits at exactly `01EF9200`, family 0's first address past its declared count.
 
@@ -853,11 +853,11 @@ Laying the five extents end to end:
 
 | table | base | end (`base + 0x20`×count) | next base | gap |
 |---|---|---|---|---:|
-| default | `01F26720` | `01F281A0` | `01F281B0` (family 3) | **16 B** |
-| family 3 | `01F281B0` | `01F29410` | `01F29418` (family 5) | **8 B** |
-| family 5 | `01F29418` | `01F29438` | `01F29440` (family 7) | **8 B** |
+| default | `01F26720` | ~~`01F281A0`~~ `01F281A8` | `01F281B0` (family 3) | ~~**16 B**~~ **8 B** *(corrected 2026-10-02, OPUS: records start at `tbl + 8`)* |
+| family 3 | `01F281B0` | ~~`01F29410`~~ `01F29418` | `01F29418` (family 5) | ~~**8 B**~~ **0 B** *(corrected 2026-10-02, OPUS: as above)* |
+| family 5 | `01F29418` | ~~`01F29438`~~ `01F29440` | `01F29440` (family 7) | ~~**8 B**~~ **0 B** *(corrected 2026-10-02, OPUS: as above)* |
 
-So the tables are adjacent but **not contiguous** — 16, 8 and 8 bytes of slack. They are still
+So the tables are adjacent but **not contiguous** — ~~16, 8 and 8 bytes of slack~~ 8, 0 and 0 bytes of slack *(corrected 2026-10-02, OPUS: the extents end at `base + 8 + 0x20×count`)*. They are still
 invisible to a contents walk, because the gaps are too small and too irregular to read as
 terminators; the boundary is the count each table declares, not anything present at its edge.
 
@@ -1027,7 +1027,7 @@ agree:
 **Two exceptions in 1,487 classified records.** A shifted mapping would break this agreement as
 thoroughly as it breaks the arity one, and it is not built from arity at all.
 
-**Left open:** the **26 records with a `poll` callback and nothing else**, which the catalog calls
+**Left open:** *(answered: CE-1 is closed — a poll-only record waits for work an earlier verb started, verbs-that-only-wait-and-verbs-that-do-nothing.md; 2026-10-02, OPUS)* the **26 records with a `poll` callback and nothing else**, which the catalog calls
 `empty`. A command that can only be polled, never begun and never producing a result, is not
 explained. Raised as `CE-1`.
 

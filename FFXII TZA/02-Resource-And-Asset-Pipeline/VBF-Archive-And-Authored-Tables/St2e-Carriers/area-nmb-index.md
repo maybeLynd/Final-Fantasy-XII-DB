@@ -140,7 +140,18 @@ ResourcePath_Get(int kind, int index):
 `-1` when the resolved pointer is NULL (`0x002DF89E`), otherwise copies bytes until a NUL or until
 `maxLen` is reached (`0x002DF8C4`), then writes a terminator at `dst[copied]` (`0x002DF8D1`).
 **The terminator is written after the length check, so the destination needs `maxLen + 1` bytes**,
-not `maxLen`. `0x002DF780` is a third caller of the same table, reached from `0x0046E030`.
+not `maxLen`. *Narrowed 2026-10-02 (SWE2-DATA) on ASTRA's SPEC-scoped record
+[`namespace-name-copy-limit`](../../_experiments/evidence/namespace-name-copy-limit/README.md) — the
+29-instruction body `0x002DF880`–`0x002DF8D9` pinned:* the limit is read through the **signed low 32
+bits of R9**; a non-NULL resolved source supplies the **first copied byte before any length or NUL
+test**, so a limit `c ≤ 1` — zero or negative included — still writes `dst[0]` and `dst[1]=0` and
+needs two destination bytes; and the NUL test reads the **next** byte, so an empty source does not
+stop the first store. With `c = sign_extend_i32(R9)` and `M = max(1, c)`, the copied count is
+`min(q, M)` where `q ≥ 1` is the first NUL after `source[0]` (`M` when none precedes the limit), so
+the worst-case destination storage is `M + 1`; an ordinary nonempty source with positive `c` keeps
+the `min(len, c)` contract. (Method A, instruction-level; valid lookup plus accessible disjoint
+memory are premises — no caller supplying a nonpositive limit or empty name is shown.)
+`0x002DF780` is a third caller of the same table, reached from `0x0046E030`.
 
 **No caller requests kind 26 with a literal, and the search that failed has a positive control.**
 *Added 2026-09-04 by `repos-4b`.*

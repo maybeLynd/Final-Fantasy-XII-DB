@@ -127,13 +127,13 @@ char buf[0x4000];                               /* __chkstk for a 0x4050 frame a
 va_list ap = &stack_args;                       /* rsi = rsp + 0x4080 */
 
 __stdio_common_vsprintf(*__local_stdio_printf_options(),
-                        buf, /* size */ 0x4000, fmt, /* locale */ (void *)-1, ap);  /* 008C2DE0 */
+                        buf, /* size */ 0x4000, fmt, /* locale */ (void *)-1, ap);  /* 008C2DE0 */   // <- corrected 2026-10-02, OPUS - the import is __stdio_common_vsnprintf_s; r9 = -1 is the count (_TRUNCATE) and the locale is 0 (005CDAA0+0x4D to +0x68)
 
 /* the gate, and it is per-thread */
 void *slot  = ((void **)__readgsqword(0x58))[*(uint32_t *)0x02EAED3C];
 int32_t lvl = *(int32_t *)((char *)slot + 4);
 if (*(int32_t *)0x02CB6158 > lvl)               /* cmp / jg at 005CDB29 */
-    return;                                     /* dropped */
+    return;                                     /* dropped */   // <- corrected 2026-10-02, OPUS - never taken: the jg at 005CDAA0+0x8F enters the magic-static init, which rejoins the emit at 005CDAA0+0x91
 
 Sink *s = *(Sink **)0x02CB6150;
 (*(void (**)(Sink *, int, char *))((*(void ***)s) + 1))(s, channel, buf);   /* vtable slot 1 */
@@ -196,7 +196,10 @@ Four things a reimplementation must not get wrong:
   literals contained, six sites read by hand. *Correction to this page's literal count:* the literal site `00685115`
   (in `00684F60`) is also entered with `ecx` = 3 through `jmp 0x685115` at `00685078`, so it passes 2 or 3; the 202
   literal sites stand, one of them also reached with 3. So in the shipped image **no log call breaks into a debugger**,
-  and no call does anything but format. Tier 1.
+  and no call does anything but format. Tier 1. *Reviewed and accepted 2026-09-30 (SWE2-AUDIT-SEM,
+  [`auditsem-review-takebacks2-0930`](../../_index/candidates/auditsem-review-takebacks2-0930/REVIEW.md) §2): the
+  reviewer re-read all 13 manual spans against `rc9_manual_dump.py` and they hold — the raw scan's four marked
+  jump-ins are mis-aligned decodes, a loop back-edge or past-site targets.*
 - **Which class the sink is**, or what slot 1 does with the text.
   **Answered 2026-09-18 (FABLE): the sink is a `Phyre::PTTYCallback`, and slot 1 never touches the text.** `005CDA30` is the magic-static constructor of the object at `02CB6140` (guard `02CB6148`): it stores the vtable `00D360A0`, whose RTTI locator names `.?AVPTTYCallback@Phyre@@`, and registers `008AADA0` with `atexit` (`005CDA78`–`005CDA8D`); the second magic static `005CD9C0` publishes that object's address as the sink pointer `02CB6150`. The vtable has two slots: slot 0 `005CD8F0`, the deleting destructor (which re-seats the sink pointer to a fresh singleton if it pointed at the object being destroyed, `005CD91E`–`005CD932`), and slot 1 `005CDB90` (35 B), which compares the channel with 4 and, when `IsDebuggerPresent()` returns non-zero, tail-calls `DebugBreak()` (`005CDB94`–`005CDBA7`) — it ignores the text. So in this build the formatted text goes nowhere; channel 4 is the break channel, and what the other channel ids mean stays open. Static: the two constructors, the vtable and its RTTI, both virtuals.
 - [x] ~~**What writes `02CB6158` or the per-thread level**, so the gate's *policy* is unknown — only
@@ -233,7 +236,7 @@ Four things a reimplementation must not get wrong:
 > - `0016D670` is `lea rax, [02EBA3D0] ; ret` (8 bytes). It has **23 direct call sites, not two**, among them `005CDADE`
 >   and `0019C5F0`, and both of those dereference `[rax]` as the options argument of a `__stdio_common_*` import.
 > - The format runs before the gate. `005CDAA0` calls `__stdio_common_vsnprintf_s` (IAT `008C2DE0`) at `005CDB08`,
->   and the level `cmp` is at `005CDB29`.
+>   and the ~~level `cmp` is at `005CDB29`~~ `_Init_thread_epoch` compare against the guard `02CB6158` is at `005CDAA0+0x89` *(corrected 2026-10-02, OPUS: it gates the magic-static init, not a level; §9)*.
 > - The buffer is 16 KB: `mov r8d, 0x4000` at `005CDAFA`, buffer `rsp+0x40`, in a frame of `0x4050` bytes probed by
 >   `00808F10`.
 > - `0019C5D0` calls `__stdio_common_vsprintf_s` (IAT `008C2E10`), then `or ecx, -1 / test eax, eax / cmovs eax, ecx`

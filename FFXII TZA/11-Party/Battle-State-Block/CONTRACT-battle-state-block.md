@@ -70,7 +70,7 @@ cannot.
 **BS-1 — The block is PART OF THE SAVE PAYLOAD, not a heap allocation.** The binder takes the active
 runtime buffer and adds `0x4E68C` (`00233C25`–`00233C2A`). *So its lifetime is the save image's, its
 contents are serialised, and anything inside it — the forty stats records, the five slot maps, the
-inventory descriptors — is save state rather than session state.*
+~~inventory descriptors~~ inventory count arrays — is save state rather than session state.* *(corrected 2026-10-02, OPUS: the class descriptors are static at `01EEBCC0`; the rebaser `0030B6A0` writes block-relative pointers into them — the field map §2.8)*
 
 **BS-2 — The binder has THREE arms and they do not reset the same number of times.** Read at the
 instructions:
@@ -120,8 +120,8 @@ at map 1's base**. Maps 1, 2, 3 and 4 keep the zero the `memset` left.
 > **So immediately after ~~a reset~~ `002370C0` the five maps do not agree, and they disagree in the one way that
 > matters: `0xFFFF` is the empty marker and `0` is not.** *A class-0 lookup returns `0xFF`; a
 > class-1-to-4 lookup returns `0` — a low byte that reads as slot zero rather than as a refusal.*
-> **This is the state [the slot-maps contract](../CONTRACT-the-five-parallel-slot-maps.md)'s `SM-7`
-> describes from the other side** — the derived maps are stale until the refresher runs — and it
+> ~~**This is the state [the slot-maps contract](../CONTRACT-the-five-parallel-slot-maps.md)'s `SM-7`~~
+> ~~describes from the other side** — the derived maps are stale until the refresher runs —~~ *(answered: SM-7 was corrected 2026-09-25 — a removal rebuilds all five maps in the same call unless the 32-entry pool is full, so this zero state is not SM-7's; 2026-10-02, OPUS)* and it
 > shows the stale value is not merely old, it is a *different kind* of value. *It is also not the
 > state `SM-4` describes: that is the OTHER initialisation path, which fills map 0 from an authored
 > table and copies it into all four. The two paths leave the block differently, and only one of them
@@ -149,7 +149,7 @@ memsets it also rewrites the magic (`BS-3`).
 
 ## 8. Script · resource · event interactions
 
-The block is serialised with the save image (`BS-1`). The inventory descriptors inside it are rebased
+The block is serialised with the save image (`BS-1`). The inventory descriptors ~~inside it~~ that point into it *(corrected 2026-10-02, OPUS: they are static at `01EEBCC0`, `0030B6A8`)* are rebased
 on every bind.
 
 ## 9. Determinism
@@ -224,8 +224,8 @@ where the reset is not idempotent.
   that layer's; **`BS-2` asserts only that it happens on the unbound arm and before the resets**, not
   what rebasing does.
 - **Gameplay — SERVICE, and it is the body `BS-2` COUNTS.** `BattleSystem_ResetRuntimeState` belongs to that layer,
-  and is **named rather than cited by address**, because this contract counts its invocations and
-  never reads it. **This contract asserts only HOW MANY TIMES each binder arm
+  and is **named rather than cited by address**, because this contract counts its invocations ~~and~~
+  ~~never reads it~~ *(answered: §2 cites it as `00237DF0` and K1 read it, 2026-09-29; 2026-10-02, OPUS)*. **This contract asserts only HOW MANY TIMES each binder arm
   invokes it — twice on the unbound arm, once on a magic mismatch, never on a match — which is a
   property of the binder's control flow and is read there.** What resetting runtime state does is
   that layer's and is not read here, which is also why §14 records the second invocation's purpose
@@ -267,7 +267,7 @@ where the reset is not idempotent.
 
 **CombatFormula — SERVICE (3 edges).** `00237DF0` calls `BattleStats_InitializeDefinitionRecord` `0023AC80`, and the scenario arm `00239960` calls `0023AC80` and `BattleStats_GetByBattleSlotIndex` `00320A40`. Both resets re-initialise stats records through the formula layer's initialiser (the forty records of §2) and look records up by battle slot; the record layout is that layer's.
 
-**Movement — SERVICE (1 edge).** `003266C0` calls `00311E20`, a 93-byte body that, when the dword `022BE974` is zero, takes the actor in the roster slot a party helper returns, reads its world position and then tail-jumps into a Movement routine. It is the refresh's first call (`003266EF`); what locomotion does with that position is that layer's business.
+**Movement — SERVICE (1 edge).** `003266C0` calls `00311E20`, a 93-byte body that, when the dword `022BE974` is zero, takes the actor in the roster slot a party helper returns, ~~reads its world position and then tail-jumps into a Movement routine~~ calls a position read whose locals the frame discards and tail-jumps into `0033CA00` *(answered: FO-6, the field map §7 — `00311E65` writes stack locals and `00311E6F` pops the frame before `00311E73 jmp 0x33ca00`; 2026-10-02, OPUS)*. It is the refresh's first call (`003266EF`); what locomotion does with that position is that layer's business.
 
 **Rewards_Progression_Economy — SERVICE (2 edges).** `00239960` calls `GameState_SetGilClampedNonnegative` `00300500` and the level setter `0030C470`. The scenario arm sets gil from a word of its scenario row (`+0xE`) and a unit's level from a row byte (`+2`); the gil and level writers are the rewards layer's, and the BS-5 note is what this contract says about that arm.
 

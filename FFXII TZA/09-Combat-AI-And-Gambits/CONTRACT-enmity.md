@@ -156,9 +156,9 @@ roster, and each action's three authored parameters.
 
 ## 7. State transitions
 
-An entry goes `0 → positive` only through a party-class action naming that combatant, `positive →
-lower` through another action's redistribution or through decay, and `positive → 0` only by decay
-reaching it. Propagation can move an entry that is already non-zero and can never create one.
+An entry goes `0 → positive` ~~only through a party-class action naming that combatant~~ through a party-class action naming that combatant, and every other zero entry valid for class 2 becomes `1` in that same write (E-6a), `positive →
+lower` through another action's redistribution or through decay, and ~~`positive → 0` only by decay~~
+~~reaching it.~~ never to 0 by any write, since every writer floors a positive entry at `1`; only the keep bank's `memset` on a non-return area entry zeroes it *(corrected 2026-10-02, OPUS: seed `0032194B`–`003219A5`, floor `0032191D`–`00321923` and `00321C4C`–`00321C52`; the `memset` is the gambit page's section 8k)*. Propagation can move an entry that is already non-zero and can never create one.
 
 ## 8. Script · resource · event interactions
 
@@ -180,14 +180,14 @@ Fully deterministic. No generator is drawn in any of the six bodies.
 ## 11. Observable behaviour
 
 Heal the tank and the Marlboro turns toward the healer; keep hitting it and it stays angry;
-disengage and walk away and it loses interest at ten a second. Attacking one foe can make its
+disengage and walk away and ~~it loses interest at ten a second~~ its interest drains ten a second down to a floor of 1, never to none *(corrected 2026-10-02, OPUS: `0032191D`–`00321923`; E-6)*. Attacking one foe can make its
 neighbours angrier — but only the ones that already had a reason.
 
 ## 12. Reproduction formula
 
 Write a direct parameter and assert the target's entry rose and every other relevant combatant's
 fell by the redistribution parameter. Set one foe's entry to zero and another's non-zero, propagate,
-and assert only the second moved. Hold engagement evidence and assert no decay for any number of
+and assert only the second moved — provided, when there is a direct target, that the second foe's `+0xBC8` list holds it; unlisted, neither moves *(corrected 2026-10-02, OPUS: `00321A7D`–`00321AB8`, E-5)*. Hold engagement evidence and assert no decay for any number of
 intervals.
 
 ## 13. Runtime validation
@@ -199,9 +199,9 @@ replay, not live.
 
 ## 14. Unresolved
 
-- The vector's exact length; the page records 40 bytes and this contract does not re-derive it.
-- Whether an entry saturates, and at what value.
-- What `00321B00` counts as an "other relevant combatant" — its 551 bytes are not read here.
+- ~~The vector's exact length; the page records 40 bytes and this contract does not re-derive it.~~ *(answered: 40 entries, the loop bound `cmp ebx, 0x28` the gambit page reads in section 8k; 2026-10-02, OPUS)*
+- ~~Whether an entry saturates, and at what value.~~ *(answered: at 255 — the store `00321E40` clamps to 0–255, the gambit page's `00321850` row; 2026-10-02, OPUS)*
+- ~~What `00321B00` counts as an "other relevant combatant" — its 551 bytes are not read here.~~ *(answered: the four party slots other than the source unit, by `00321850`'s per-entry rule — the gambit page's `00321B00` row, read 2026-09-30; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 

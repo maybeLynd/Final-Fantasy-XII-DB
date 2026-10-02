@@ -92,4 +92,5 @@ states and no document had.**
 the argument into a global immediately (`0020A760`) and then **bounds it at 4**
 (`0020A768 cmp ecx, 4` / `ja`), which is the five-slot range this page is about. **The resource
 layer selects a slot; it owns nothing here.**
-
+- **Presentation - SERVICE (1 edge).** `0020AC30` reaches bodies filed to presentation/rendering: `001C5750` - shared machinery across the layer boundary, no shared ownership.
+- **StoryEvent - SERVICE (1 edge).** `0020AC30` reaches bodies filed to story event: `0020A800` - shared machinery across the layer boundary, no shared ownership.

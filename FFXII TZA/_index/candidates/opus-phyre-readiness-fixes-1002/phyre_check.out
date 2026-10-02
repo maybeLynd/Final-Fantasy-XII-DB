@@ -1,0 +1,11 @@
+ok   0079C26B call qword ptr [rax + 0x38]
+ok   003A20B0 and dword ptr [rax], 0x8000
+ok   001E3619 cmp r9w, 4
+ok   0063E43B add dword ptr [rdx + 0xf4], ecx
+ok   0018CFD5 call 0x645db0
+ok   0079C2D6 call qword ptr [rax + 0x20]
+ok   006389A1 sete al
+ok   0017CDB2 mov eax, 9
+ok   006333BC mov qword ptr [rcx], rax
+ok   00633568 mov qword ptr [r15], rax
+FAILS 0

@@ -1,72 +1,46 @@
 file	pc	verb	operand	kind	variable	domain_constants	non_constant_stores
-ps2data/image/ff12/ch/bin/ctrl.ebp	13DB	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/ctrl.ebp	13DB	eventread_e8	1	var	class7+0x9e0 w0		
 ps2data/image/ff12/ch/bin/ctrl.ebp	143D	eventread_e8	1	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	26CA	eventread_e8	1	var	class1+0x8dc w4		
-ps2data/image/ff12/ch/bin/evctrl.ebp	27A6	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	27A6	eventread_e8	1	var	class7+0x1b40 w0		
 ps2data/image/ff12/ch/bin/evctrl.ebp	2DE4	summoneventread	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	2E40	summoneventread	0	expr	OPSUB		
-ps2data/image/ff12/ch/bin/evctrl.ebp	2F0D	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	2F0D	eventread_e8	1	var	class7+0x1b90 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	36BF	eventread_e8	1	var	class7+0x1c50 w0	0,1	INC+1;INC+1
-ps2data/image/ff12/ch/bin/evctrl.ebp	36D1	eventread_e8	1	var	class7+0x1c50 w0	0,1	INC+1;INC+1
+ps2data/image/ff12/ch/bin/evctrl.ebp	36BF	eventread_e8	1	var	class7+0x1c50 w0	0	
+ps2data/image/ff12/ch/bin/evctrl.ebp	36D1	eventread_e8	1	var	class7+0x1c50 w0	0	
 ps2data/image/ff12/ch/bin/evctrl.ebp	38F8	eventread_e8	1	var	class1+0x8ec w4	0	call:aask@evctrl.ebp+38BB;call:aask@evctrl.ebp+3956;?unresolved:ret-boundary@evctrl.ebp+3B18
 ps2data/image/ff12/ch/bin/evctrl.ebp	403A	eventread_e8	1	var	class1+0x8dc w4		
-ps2data/image/ff12/ch/bin/evctrl.ebp	440D	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	440D	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	44B4	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	44B4	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	455B	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	455B	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	4602	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	4602	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	46A9	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	46A9	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	4750	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	4750	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	47F7	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	47F7	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	489E	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	489E	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	4945	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	4945	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/ch/bin/evctrl.ebp	49EC	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/ch/bin/evctrl.ebp	49EC	eventread_e8	1	var	class7+0x1c40 w0		
 ps2data/image/ff12/ch/bin/evctrl.ebp	4F60	eventread_e8	1	var	class1+0x8dc w4		
-ps2data/image/ff12/in/bin/ctrl.ebp	13DB	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/ctrl.ebp	13DB	eventread_e8	1	var	class7+0x9e0 w0		
 ps2data/image/ff12/in/bin/ctrl.ebp	143D	eventread_e8	1	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	26CA	eventread_e8	1	var	class1+0x8dc w4		
-ps2data/image/ff12/in/bin/evctrl.ebp	27A6	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	27A6	eventread_e8	1	var	class7+0x1b40 w0		
 ps2data/image/ff12/in/bin/evctrl.ebp	2DE4	summoneventread	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	2E40	summoneventread	0	expr	OPSUB		
-ps2data/image/ff12/in/bin/evctrl.ebp	2F0D	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	2F0D	eventread_e8	1	var	class7+0x1b90 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	36BF	eventread_e8	1	var	class7+0x1c50 w0	0,1	INC+1;INC+1
-ps2data/image/ff12/in/bin/evctrl.ebp	36D1	eventread_e8	1	var	class7+0x1c50 w0	0,1	INC+1;INC+1
+ps2data/image/ff12/in/bin/evctrl.ebp	36BF	eventread_e8	1	var	class7+0x1c50 w0	0	
+ps2data/image/ff12/in/bin/evctrl.ebp	36D1	eventread_e8	1	var	class7+0x1c50 w0	0	
 ps2data/image/ff12/in/bin/evctrl.ebp	38F8	eventread_e8	1	var	class1+0x8ec w4	0	call:aask@evctrl.ebp+38BB;call:aask@evctrl.ebp+3956;?unresolved:ret-boundary@evctrl.ebp+3B18
 ps2data/image/ff12/in/bin/evctrl.ebp	403A	eventread_e8	1	var	class1+0x8dc w4		
-ps2data/image/ff12/in/bin/evctrl.ebp	440D	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	440D	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	44B4	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	44B4	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	455B	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	455B	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	4602	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	4602	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	46A9	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	46A9	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	4750	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	4750	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	47F7	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	47F7	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	489E	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	489E	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	4945	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	4945	eventread_e8	1	var	class7+0x1c40 w0		
-ps2data/image/ff12/in/bin/evctrl.ebp	49EC	eventread_e8	0	expr	OPSUB		
 ps2data/image/ff12/in/bin/evctrl.ebp	49EC	eventread_e8	1	var	class7+0x1c40 w0		
 ps2data/image/ff12/in/bin/evctrl.ebp	4F60	eventread_e8	1	var	class1+0x8dc w4		
 ps2data/plan_master/ch/event/bhm_c/bhm_c0102/bhm_c0102.ebp	185F2	startscene	0	var	class1+0x36 w3	1,2,3,9,10,11,13,14,20,21,31,32	INC+1;INC+1;INC+1;INC+1;INC+1;INC+1

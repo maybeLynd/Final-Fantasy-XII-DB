@@ -69,13 +69,13 @@ A `{u64 id, pointer}` pair array, walked here to its terminator at `01CDB3D0` (`
 | `7` | `0016EE70` | yes | " |
 | **`0x100`** | **`0016EE80`** | **NO** | requires `[ctx+0x1A8] == 0`, then from `[ctx+0x1B0]` packs three dwords at `+0x2BEC`, `+0x2BF0`, `+0x2BF4` as **`a + 2*(b + 2*c)`** - three flags into bits 0, 1, 2 - and stores the result through the out-pointer |
 | **`0x101`** | **`0016EFF0`** | **NO** | ~~walks a `0x4C`-stride array twice over, comparing `[entry+2]`, and ORs three values into one dword through the out-pointer~~ **a 56-byte getter** (corrected 2026-09-15, `OPUS-CONTRA-VP8-HANDLER-0X101-MISATTRIBUTED`): returns 8 when the out-pointer or `[ctx+0x1B0]` is null, 1 when `[+0x1A38]` is null, else copies dword `+0x88` of that object through the out-pointer and returns 0 (`0016EFF0`–`0016F027`). `0016EFF0` is not in the function list, so a containing-function lookup had returned `0016EEC0` and its body was described here |
-| `0x102` | `0016EEC0` | yes | the `0x4C`-stride nested loops formerly described under `0x101` (294 B, two nested loop pairs over a `0x4C` stride) |
+| `0x102` | `0016EEC0` | yes | the `0x4C`-stride nested loops formerly described under `0x101` (294 B, ~~two~~ three nested loop pairs over a `0x4C` stride *(corrected 2026-10-02, OPUS: passes for `3`, `2` and `1` at `0016EEC0+0x60`, `+0xA0` and `+0xD6`; UQ-310's answer)*) |
 | **`0x103`** | **`0016F030`** | **NO** | stores **two qwords** from `[arg]` into `[ctx+0x108]` and `[ctx+0x110]`, or **zeroes both** when the argument is null - a callback pointer and its state |
 | `0xFFFFFFFF` | - | - | terminator |
 
 ## 3. The error convention, derived from the handlers themselves
 
-Three distinct return values appear, and each is reached by a distinguishable path:
+~~Three~~ Four distinct return values appear *(corrected 2026-10-02, OPUS: `0016EFF0+0x20` `mov eax, 1` when `[+0x1A38]` is null, row `0x101` above; the table below lists the other three)*, and each is reached by a distinguishable path:
 
 | value | reached when |
 |---:|---|
@@ -89,8 +89,8 @@ from the binary.
 
 > In libvpx's public error enum these are `VPX_CODEC_OK`, `VPX_CODEC_INCAPABLE` and
 > `VPX_CODEC_INVALID_PARAM`, and the ids `1`-`7` and `0x100`-`0x103` are its VP8 encoder-side and
-> decoder-side control ranges. **That mapping is inference from the upstream library, not something
-> this image states**, and the header is not in this repository. The numbers and the behaviour above
+> decoder-side control ranges. ~~**That mapping is inference from the upstream library, not something~~
+> ~~this image states**~~ *(answered: `UQ-307` - the map is libvpx 1.6.0's `vp8_ctf_maps` and each body matches instruction for instruction; the names still come from the headers; 2026-10-02, OPUS)*, and the header is not in this repository. The numbers and the behaviour above
 > are read from the image; the upstream *names* are not.
 
 ## 4. Why four handlers are missing from the census
@@ -118,7 +118,7 @@ reaches, the attribution is no longer a string match near some code: it is the l
 dispatch table with the library's own entry points in it.
 
 > **This does not raise the attribution of the 66 SIMD blocks at the head of `.text`.** Those are a
-> separate population, reached by nothing at all, and they stay at tier 2 on the evidence recorded
+> separate population, ~~reached by nothing at all~~ referenced only by the decoder object and by each other - each of the 63 members of `libvpx-vp8-dsp-kernels.tsv` has a direct caller or a `lea`, and `0016F080` `lea`s four *(corrected 2026-10-02, OPUS: `0016F080+0xC4`..`+0xE7`; the inventory's kernel row)*, and they stay at tier 2 on the evidence recorded
 > there. **One structure being proven does not prove its neighbourhood.**
 
 ## 6. What is not known
@@ -188,7 +188,7 @@ dispatch table with the library's own entry points in it.
         one entry per row.
       - **The discriminant is a byte at `+0x02`, and two values are searched.** The first pass looks
         for **`3`** (`0016EF20`) and the second, over the same grid from the same base, for **`2`**
-        (`0016EF60`) — two full passes, not one.
+        (`0016EF60`) — ~~two full passes, not one~~ three full passes, the third for `1` *(corrected 2026-10-02, OPUS: `0016EEC0+0xD6` compares the byte with `dil` = 1; the answer below)*.
       - **The whole walk is gated on `[rcx+0x1A8] == 0`** (`0016EECE`) and on the out-pointer being
         non-null; otherwise it returns without touching the grid.
       - ~~**Still open:** what the other `0x4A` bytes of each entry hold, and what kinds `2` and `3`
@@ -238,7 +238,7 @@ dispatch table with the library's own entry points in it.
 
 ## 8. Related
 
-- [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) - where libvpx VP8 1.6.0 is pinned, at 73 listed functions
+- [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md) - where libvpx VP8 1.6.0 is pinned, at ~~73 listed functions~~ 183 declared functions - decoder 116, its UC-1 row 4, kernels 63 *(answered: the inventory's front matter; 2026-10-02, OPUS)*
 - [`../../99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md`](../../99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md) - the census defect these four fall through
 - [`../../99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md`](../../99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md) - the referenced population, of which these are the pointer-reached six
 - [`../../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md`](../../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md) - `002FE7D0`, the same defect in the engine's own code

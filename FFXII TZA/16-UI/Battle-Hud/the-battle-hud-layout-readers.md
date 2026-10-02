@@ -39,7 +39,7 @@ addresses:
 
 # The battle-HUD layout-key readers
 
-**Status:** PARTIAL — this page documents where each `uisize.json` key of the battle-HUD families
+**Status:** ~~PARTIAL~~ DOCUMENTED *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, owner re-status 2026-10-01)* — this page documents where each `uisize.json` key of the battle-HUD families
 lands at its native use site (the LAYOUT-KEY-READERS package). The widget procedures themselves
 (`00276D30`/`002778C0` battle command menu, `00405310` boss gauge, `003FDFE0`/`003FF360` status
 window) are atlas-labelled but their dispatch arms are not decoded here. *(2026-09-30, SWE2-DATA: `00276D30`'s are decoded on [the selection page](../the-selection-the-menu-publishes.md), a 53-id procedure with ten handled ids; the rest are `SD-126`.)*
@@ -90,7 +90,7 @@ Each key below places or tints one element of the battle screen: the command men
 | `002C64C0` (←`002900C0`, the N/A overhead proc) | `NAOverHeadTextOffsetY` | `ecx` = key — the "N/A" overhead text's Y (`002C67EE`) |
 | `0028B140` (←`00289A10`←`0028EE10`, the EXP/LP effect path) | `ExpLpPositionOffsetX/Y`, `EXPLPNumOffsetX/Y`, `ExpNumOffsetX`, `LpNumOffsetX`, `NumEffectLPOffsetY`, `mExpEffectOffsetY` | the position pair word-`add`ed into the effect origin (`0028B38E`, `0028B39A`); the `*NumOffset*`/`mExpEffectOffsetY` values loaded to `eax` and stored into the `0209BA60`–`0209BA78` effect globals; `NumEffectLPOffsetY` `add`ed on top (`0028B214`, `0028B60B`) — the EXP/LP number-effect's complete placement block. Caveat (Y-1, 2026-09-27): `0028B24A` overwrites `EXPLPNumOffsetX`'s global with `ExpNumOffsetX` or `LpNumOffsetX` before the read at `0028B5F1`, so the authored key never reaches the digits |
 | `00299D10` P (level-up blink) | `LevelupBlinkSpeed` | `r8d` = key beside `xorps xmm0` — the blink timer's speed arg (`00299E7D`) |
-| `0029E110` P (the NG signal — tail-jump installed per the protocol page's DL-2 list) | `NgSignalOffsetBaseX`, `NgSignalOffsetBaseY` | `BaseX` `movzx` word → the `+0x160` record (`0029E251`); `ax − BaseY` (`0029E271`) — the "NG" signal sprite's base position |
+| `0029E110` P (the NG signal — tail-jump installed per the protocol page's DL-2 list) | `NgSignalOffsetBaseX`, `NgSignalOffsetBaseY` | `BaseX` `movzx` word → ~~the `+0x160` record~~ `+0xC0` *(corrected 2026-10-02, OPUS: `0029E110+0x151` `mov word ptr [rbx+0xc0], ax`; the `lea rcx, [rbx+0x160]` between them only forms an argument)* (`0029E251`); `ax − BaseY` (`0029E271`) — the "NG" signal sprite's base position |
 | `002CF440` P (silhouette) | `SilhouettePosX`, `SilhouettePosY`, `SilhouetteWidth` | `PosX` word → `[rsp+0x40]`, `PosY` `add`ed → `[rsp+0x42]` — the silhouette window's rect origin (`002CF4FA`, `002CF50D`); `Width` → `eax`/`xmm1` (`002CF660`) |
 
 ## Call chain (SWE2-DATA, 2026-09-30)
@@ -143,7 +143,7 @@ all?**
 | `00298549` | `CPCWindowHeight` → `r9d` + `cmovg` | `mov r9d, [01E0C554]`, `cmovg ecx, eax` at `00298550` |
 | `0027AE79` | `eax` → `[rsp+0x4C]` | `mov eax, [01E0C348]`, `mov [rsp+0x4c], eax` |
 | `00276D19` | `OffsetX` `add`ed into `edx` → `00242600` | `add edx, [01E0C36C]`, `call 00242600` |
-| `002C6048` / `002C5FBC` | a colour lerp, `Max − Min` then `cvtdq2ps` | `mov eax, [01E0CEF4]`; `sub eax, [01E0CF24]`, `cvtdq2ps xmm1, xmm1` |
+| `002C6048` / `002C5FBC` | a colour lerp, `Max − Min` then `cvtdq2ps` | ~~`mov eax, [01E0CEF4]`; `sub eax, [01E0CF24]`~~ two lerps, one per gauge: `002C5F90+0xB8`/`002C5F90+0xBE` `mov eax, [01E0CEF4]` / `sub eax, [01E0CEE4]` (enemy Max − Min) and `002C5F90+0x26`/`002C5F90+0x2C` `mov eax, [01E0CF34]` / `sub eax, [01E0CF24]` (other Max − Min) *(corrected 2026-10-02, OPUS: the row joined one gauge's Max with the other's Min)*, `cvtdq2ps xmm1, xmm1` |
 | `0029EA58` | four `movzx` byte loads | `movzx edx, byte [01E0C5B4]` |
 | `002CF4FA` | `PosX` word → `[rsp+0x40]` | `movzx eax, word [0209E628]` |
 

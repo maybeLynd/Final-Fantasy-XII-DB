@@ -350,6 +350,34 @@ def coverage_documented(text):
     return _readiness_bearing(head)
 
 
+def audit_pass_recorded(text):
+    """The audit_coverage rule for ONE document's text, factored out so every
+    reader (this scorer's audit_coverage component and the dashboard's DA
+    family in requirements.py) shares one implementation (DATA's
+    MY-PROGRESS-METRICS review, 2026-10-01).
+
+    A pass counts only when the `audit:` frontmatter block says what it ran
+    against - `passes: N>0` WITH a non-null `last_pass_state:` (an amendment
+    bump produces no state, and a real pass cannot omit it) - or when the
+    document carries `falsification_passes: N>0` AND a written
+    falsification-pass section in the body. A bare counter is a claim, not
+    evidence. A document with no closing frontmatter fence has no `audit:`
+    block at all."""
+    end = text.find("\n---", 3)
+    fm = text[:end] if end > 0 else ""
+    m = re.search(r"^audit:\s*$", fm, re.M)
+    if not m:
+        return False
+    blk = fm[m.end():]
+    pm = re.search(r"^\s+passes:\s*(\d+)", blk, re.M)
+    sm = re.search(r"^\s+last_pass_state:\s*(\S+)", blk, re.M)
+    if pm and int(pm.group(1)) > 0 and sm and sm.group(1) != "null":
+        return True
+    fm_ = re.search(r"^\s+falsification_passes:\s*(\d+)", blk, re.M)
+    return bool(fm_ and int(fm_.group(1)) > 0
+                and re.search(r"^#{2,3} .*[Ff]alsification pass", text, re.M))
+
+
 def merge_questions(db, reg_text):
     """One question counted once. -> (closed, total, shared, disagreed).
 
@@ -643,36 +671,16 @@ def main(argv=None):
         t = io.open(p, encoding="utf-8", errors="replace").read()
         _doc_paths.append(p)
         total_docs += 1
-        m = re.search(r"^audit:\s*$", t[:t.find("\n---", 3)], re.M)
-        if m:
-            blk = t[:t.find("\n---", 3)][m.end():]
-            # `passes > 0` is NOT sufficient evidence of a falsification pass.  COVERAGE.md records
-            # that this counter counts AMENDMENTS -- "a document can read `passes: 8` and have never
-            # been attacked once" -- and on 2026-09-02 five documents were found claiming a pass
-            # while the audit-debt table listed them as never attacked, with no state fields to
-            # decide between the two.  So require the pass to say WHAT PROGRAM STATE it ran against:
-            # an amendment bump does not produce `last_pass_state`, and a real pass cannot omit it.
-            # This lowers the reported figure.  The figure was wrong, not the documents.
-            pm = re.search(r"^\s+passes:\s*(\d+)", blk, re.M)
-            sm = re.search(r"^\s+last_pass_state:\s*(\S+)", blk, re.M)
-            stamped = (pm and int(pm.group(1)) > 0 and sm and sm.group(1) != "null")
-            # A SECOND field name appeared in the corpus and this scorer did not read it.  Eleven
-            # documents carry `falsification_passes`, nine of them alongside a stamped `passes`;
-            # two use it ALONE, with `passes: 0` and no state -- and this counted both as never
-            # attacked while each carries a written falsification-pass section.
-            #
-            # `falsification_passes` is arguably the better name, since `passes` was established
-            # tonight to count AMENDMENTS.  Rather than legislate the name, accept either -- but
-            # the new one only WITH A SECTION IN THE BODY, never on the counter alone.  Accepting a
-            # bare counter is the original defect: **the whole point is that a number in the
-            # frontmatter is a claim, and only the section is evidence.**
-            #
-            # Third correction to this metric tonight, and the first in the UNDER-counting
-            # direction. **A metric drifts both ways, and only one of those feels like a problem.**
-            fm = re.search(r"^\s+falsification_passes:\s*(\d+)", blk, re.M)
-            has_section = re.search(r"^#{2,3} .*[Ff]alsification pass", t, re.M) is not None
-            if stamped or (fm and int(fm.group(1)) > 0 and has_section):
-                audited += 1
+        # `passes > 0` is NOT sufficient evidence of a falsification pass.  COVERAGE.md records
+        # that this counter counts AMENDMENTS -- "a document can read `passes: 8` and have never
+        # been attacked once" -- and on 2026-09-02 five documents were found claiming a pass
+        # while the audit-debt table listed them as never attacked, with no state fields to
+        # decide between the two.  So the rule (now shared as audit_pass_recorded) requires the
+        # pass to say WHAT PROGRAM STATE it ran against, or a `falsification_passes` counter with
+        # a written section - a bare number in the frontmatter is a claim, and only the section
+        # is evidence.  The rule's history lives on audit_pass_recorded.
+        if audit_pass_recorded(t):
+            audited += 1
         open_q += len(re.findall(r"^\s*-\s*\[ \]", t, re.M))
         closed_q += len(re.findall(r"^\s*-\s*\[x\]", t, re.M))
         # `0x`-PREFIXED ADDRESSES WERE INVISIBLE. Found by repos-c9, 2026-09-04, in the citation

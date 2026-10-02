@@ -1,0 +1,315 @@
+# item 4 - 00210EC0's callers and the second argument (static). run: item4_malloc_forwarder.py at 8c1f67c0d
+
+## F1 body of 00210EC0 (11 bytes): or r8d, 0xffffffff | xor edx, edx | jmp 0x85e730
+  thunk 0085E730: jmp qword ptr [rip + 0x64409] -> IAT slot 008C2B40 (item1's import walk resolves it to malloc)
+  rip-relative operand on 00210EC0: 0021082A in 00210760 FUN_00210760: lea rax, [rip + 0x68f]
+  pointer routes: absolute qwords 0, RVA dwords 0, rip-relative operands 1
+
+## F2-F4 census of 00210EC0
+  aligned sites: 258 (call 257, tail/other jump 1) in 181 functions
+  sites whose block prepares rdx before the transfer: 11; r8: 0; sites that read rdx/r8 after the call before rewriting: 0
+  call  0017D029 in 0017D000 FUN_0017d000                             rdx<- - | r8<- -
+  call  0017D4E3 in 0017D4C0 FUN_0017d4c0                             rdx<- - | r8<- -
+  call  0017D508 in 0017D4C0 FUN_0017d4c0                             rdx<- - | r8<- -
+  call  0017D52B in 0017D4C0 FUN_0017d4c0                             rdx<- - | r8<- -
+  call  0017D54E in 0017D4C0 FUN_0017d4c0                             rdx<- - | r8<- -
+  call  0017D5F2 in 0017D4C0 FUN_0017d4c0                             rdx<- - | r8<- -
+  call  00186071 in 00186010 FUN_00186010                             rdx<- - | r8<- -
+  call  001870F3 in 00186CD0 FUN_00186cd0                             rdx<- - | r8<- -
+  call  00189039 in 00189000 FUN_00189000                             rdx<- - | r8<- -
+  call  0018A63E in 0018A620 FUN_0018a620                             rdx<- - | r8<- -
+  call  0018A7E3 in 0018A7D0 FUN_0018a7d0                             rdx<- - | r8<- -
+  call  0018B4AE in 0018B480 FUN_0018b480                             rdx<- - | r8<- -
+  call  0018C9FE in 0018C9E0 FUN_0018c9e0                             rdx<- - | r8<- -
+  call  0018D420 in 0018D3F0 FUN_0018d3f0                             rdx<- - | r8<- -
+  call  0018EFCD in 0018EEE0 FUN_0018eee0                             rdx<- - | r8<- -
+  call  00193D6E in 00193D50 FUN_00193d50                             rdx<- - | r8<- -
+  call  00194AD4 in 00194AB0 FUN_00194ab0                             rdx<- - | r8<- -
+  call  00195706 in 00195670 FUN_00195670                             rdx<- - | r8<- -
+  call  00195725 in 00195670 FUN_00195670                             rdx<- - | r8<- -
+  call  00195CB6 in 00195C70 FUN_00195c70                             rdx<- - | r8<- -
+  call  00195CDB in 00195C70 FUN_00195c70                             rdx<- - | r8<- -
+  call  0019876C in 00198750 InputManager_CreateSingleton             rdx<- - | r8<- -
+  call  001997A3 in 00199790 FUN_00199790                             rdx<- - | r8<- -
+  call  0019A2C7 in 0019A2A0 FUN_0019a2a0                             rdx<- - | r8<- -
+  call  0019A2DE in 0019A2A0 FUN_0019a2a0                             rdx<- - | r8<- -
+  call  0019A2F8 in 0019A2A0 FUN_0019a2a0                             rdx<- - | r8<- -
+  call  0019A30F in 0019A2A0 FUN_0019a2a0                             rdx<- - | r8<- -
+  call  0019A329 in 0019A2A0 FUN_0019a2a0                             rdx<- - | r8<- -
+  call  0019A340 in 0019A2A0 FUN_0019a2a0                             rdx<- - | r8<- -
+  call  0019B0B4 in 0019B070 FUN_0019b070                             rdx<- - | r8<- -
+  call  0019B1AE in 0019B190 FUN_0019b190                             rdx<- - | r8<- -
+  call  0019B27A in 0019B200 FUN_0019b200                             rdx<- SIDE-EFFECT 0019B261 mul rsi | r8<- -
+  call  0019CDFC in 0019CDE0 FUN_0019cde0                             rdx<- - | r8<- -
+  call  0019EF5C in 0019EF40 FUN_0019ef40                             rdx<- - | r8<- -
+  call  001A6057 in 001A5B30 FUN_001a5b30                             rdx<- SIDE-EFFECT 001A604D mul rbx | r8<- -
+  call  001A6548 in 001A5B30 FUN_001a5b30                             rdx<- - | r8<- -
+  call  001A90C4 in 001A9050 FUN_001a9050                             rdx<- - | r8<- -
+  call  001A9908 in 001A98B0 FUN_001a98b0                             rdx<- - | r8<- -
+  call  001AC885 in 001AC810 FUN_001ac810                             rdx<- - | r8<- -
+  call  001AD178 in 001AD130 FUN_001ad130                             rdx<- - | r8<- -
+  call  001AD410 in 001AD3E0 FUN_001ad3e0                             rdx<- - | r8<- -
+  call  001B1533 in 001B14E0 FUN_001b14e0                             rdx<- - | r8<- -
+  call  001B1BD0 in 001B1BA0 FUN_001b1ba0                             rdx<- - | r8<- -
+  call  001B2A0C in 001B29F0 FUN_001b29f0                             rdx<- - | r8<- -
+  call  001B4E78 in 001B4D70 FUN_001b4d70                             rdx<- - | r8<- -
+  call  001B5F40 in 001B5F10 FUN_001b5f10                             rdx<- - | r8<- -
+  call  001B5F72 in 001B5F10 FUN_001b5f10                             rdx<- - | r8<- -
+  call  001B676F in 001B66F0 FUN_001b66f0                             rdx<- - | r8<- -
+  call  001B6BDE in 001B6BC0 FUN_001b6bc0                             rdx<- - | r8<- -
+  call  001B7EFC in 001B7EE0 FUN_001b7ee0                             rdx<- - | r8<- -
+  call  001BBFDC in 001BBFC0 FUN_001bbfc0                             rdx<- - | r8<- -
+  call  001BD52C in 001BD4A0 FUN_001bd4a0                             rdx<- - | r8<- -
+  call  001BDA80 in 001BDA50 FUN_001bda50                             rdx<- - | r8<- -
+  call  001BE1B4 in 001BE1A0 AddMotion_ParseFile                      rdx<- - | r8<- -
+  call  001BE21A in 001BE1A0 AddMotion_ParseFile                      rdx<- SIDE-EFFECT 001BE210 mul rcx | r8<- -
+  call  001BE2A3 in 001BE1A0 AddMotion_ParseFile                      rdx<- SIDE-EFFECT 001BE299 mul rcx | r8<- -
+  call  001BE323 in 001BE1A0 AddMotion_ParseFile                      rdx<- SIDE-EFFECT 001BE319 mul rcx | r8<- -
+  call  001BE3FC in 001BE3E0 FUN_001be3e0                             rdx<- - | r8<- -
+  call  001C0AD8 in 001C0A90 FUN_001c0a90                             rdx<- - | r8<- -
+  call  001C0D63 in 001C0D40 FUN_001c0d40                             rdx<- - | r8<- -
+  call  001C18BC in 001C18A0 SaveloadManager_EnsureSingleton          rdx<- - | r8<- -
+  call  001C195E in 001C1940 FUN_001c1940                             rdx<- - | r8<- -
+  call  001C2F1C in 001C2F00 FUN_001c2f00                             rdx<- - | r8<- -
+  call  001D50AC in 001D5090 FUN_001d5090                             rdx<- - | r8<- -
+  call  001D50EE in 001D50D0 FUN_001d50d0                             rdx<- - | r8<- -
+  call  001D62F7 in 001D62D0 FUN_001d62d0                             rdx<- - | r8<- -
+  call  001D69B4 in 001D6990 FUN_001d6990                             rdx<- - | r8<- -
+  call  001D6F34 in 001D6F20 FUN_001d6f20                             rdx<- - | r8<- -
+  call  001D817B in 001D8150 FUN_001d8150                             rdx<- - | r8<- -
+  call  001D89F5 in 001D89D0 FUN_001d89d0                             rdx<- - | r8<- -
+  call  001D8CE3 in 001D8CD0 FUN_001d8cd0                             rdx<- - | r8<- -
+  call  001D8E49 in 001D8D60 FUN_001d8d60                             rdx<- - | r8<- -
+  call  001D9BFE in 001D9A40 FUN_001d9a40                             rdx<- - | r8<- -
+  call  001D9C93 in 001D9A40 FUN_001d9a40                             rdx<- - | r8<- -
+  call  001DA12E in 001DA0F0 FUN_001da0f0                             rdx<- - | r8<- -
+  call  001DB1F3 in 001DB1E0 FUN_001db1e0                             rdx<- - | r8<- -
+  call  001DB51C in 001DB500 FUN_001db500                             rdx<- - | r8<- -
+  call  001DC53A in 001DC510 FUN_001dc510                             rdx<- - | r8<- -
+  call  001DD201 in 001DD170 FUN_001dd170                             rdx<- SIDE-EFFECT 001DD1F0 mul rcx | r8<- -
+  call  001DD30C in 001DD170 FUN_001dd170                             rdx<- SIDE-EFFECT 001DD302 mul rcx | r8<- -
+  call  001DD759 in 001DD420 FUN_001dd420                             rdx<- - | r8<- -
+  call  001DD7A9 in 001DD420 FUN_001dd420                             rdx<- SIDE-EFFECT 001DD798 mul rdi | r8<- -
+  call  001DD924 in 001DD8E0 FUN_001dd8e0                             rdx<- SIDE-EFFECT 001DD913 mul rcx | r8<- -
+  call  001DDA8C in 001DDA70 FUN_001dda70                             rdx<- - | r8<- -
+  call  001DF9B9 in 001DF990 FUN_001df990                             rdx<- - | r8<- -
+  call  001DF9E1 in 001DF990 FUN_001df990                             rdx<- - | r8<- -
+  call  001EBA5E in 001EBA40 FUN_001eba40                             rdx<- - | r8<- -
+  call  001F082C in 001F0810 FUN_001f0810                             rdx<- - | r8<- -
+  call  001F086E in 001F0850 FUN_001f0850                             rdx<- - | r8<- -
+  call  001F15C5 in 001F1590 FUN_001f1590                             rdx<- - | r8<- -
+  call  001F163E in 001F1600 FUN_001f1600                             rdx<- - | r8<- -
+  call  001F1C6B in 001F1C30 FUN_001f1c30                             rdx<- - | r8<- -
+  call  001F4377 in 001F4340 FUN_001f4340                             rdx<- - | r8<- -
+  call  001F4443 in 001F4340 FUN_001f4340                             rdx<- - | r8<- -
+  call  001F45A4 in 001F4340 FUN_001f4340                             rdx<- - | r8<- -
+  call  001F468C in 001F4340 FUN_001f4340                             rdx<- - | r8<- -
+  call  001FE1CD in 001FE150 FUN_001fe150                             rdx<- - | r8<- -
+  call  001FE21C in 001FE150 FUN_001fe150                             rdx<- - | r8<- -
+  call  001FE240 in 001FE150 FUN_001fe150                             rdx<- - | r8<- -
+  call  001FE25A in 001FE150 FUN_001fe150                             rdx<- - | r8<- -
+  call  001FE287 in 001FE150 FUN_001fe150                             rdx<- - | r8<- -
+  call  001FE2B4 in 001FE150 FUN_001fe150                             rdx<- - | r8<- -
+  call  001FE395 in 001FE320 FUN_001fe320                             rdx<- - | r8<- -
+  call  001FE3C2 in 001FE320 FUN_001fe320                             rdx<- - | r8<- -
+  call  001FE3E6 in 001FE320 FUN_001fe320                             rdx<- - | r8<- -
+  call  001FE400 in 001FE320 FUN_001fe320                             rdx<- - | r8<- -
+  call  001FE42D in 001FE320 FUN_001fe320                             rdx<- - | r8<- -
+  call  001FE457 in 001FE320 FUN_001fe320                             rdx<- - | r8<- -
+  call  001FE702 in 001FE6B0 FUN_001fe6b0                             rdx<- - | r8<- -
+  call  001FE72E in 001FE6B0 FUN_001fe6b0                             rdx<- - | r8<- -
+  call  001FE753 in 001FE6B0 FUN_001fe6b0                             rdx<- - | r8<- -
+  call  001FE76E in 001FE6B0 FUN_001fe6b0                             rdx<- - | r8<- -
+  call  001FE79C in 001FE6B0 FUN_001fe6b0                             rdx<- - | r8<- -
+  call  001FE7C5 in 001FE6B0 FUN_001fe6b0                             rdx<- - | r8<- -
+  call  001FE84B in 001FE820 FUN_001fe820                             rdx<- - | r8<- -
+  call  001FEC83 in 001FEC30 FUN_001fec30                             rdx<- - | r8<- -
+  call  001FECAF in 001FEC30 FUN_001fec30                             rdx<- - | r8<- -
+  call  001FECD2 in 001FEC30 FUN_001fec30                             rdx<- - | r8<- -
+  call  001FECF4 in 001FEC30 FUN_001fec30                             rdx<- - | r8<- -
+  call  001FED1D in 001FEC30 FUN_001fec30                             rdx<- - | r8<- -
+  call  001FED46 in 001FEC30 FUN_001fec30                             rdx<- - | r8<- -
+  call  001FEDD8 in 001FEDA0 FUN_001feda0                             rdx<- - | r8<- -
+  call  001FEE4C in 001FEE10 FUN_001fee10                             rdx<- - | r8<- -
+  call  001FF45E in 001FF210 FUN_001ff210                             rdx<- - | r8<- -
+  call  001FF6E4 in 001FF6B0 FUN_001ff6b0                             rdx<- - | r8<- -
+  call  002003D4 in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  0020044F in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  002004CC in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  00200549 in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  002005C6 in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  00200641 in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  002006BD in 002002E0 FUN_002002e0                             rdx<- - | r8<- -
+  call  00200C60 in 00200BF0 FUN_00200bf0                             rdx<- - | r8<- -
+  call  002013C6 in 00200E60 FUN_00200e60                             rdx<- - | r8<- -
+  call  00201BEA in 00201890 FUN_00201890                             rdx<- - | r8<- -
+  call  0020236E in 00201EB0 FUN_00201eb0                             rdx<- - | r8<- -
+  call  00202494 in 00201EB0 FUN_00201eb0                             rdx<- - | r8<- -
+  call  0020270A in 002026D0 FUN_002026d0                             rdx<- - | r8<- -
+  call  00202776 in 00202740 FUN_00202740                             rdx<- - | r8<- -
+  call  002027E9 in 002027B0 FUN_002027b0                             rdx<- - | r8<- -
+  call  00202855 in 00202820 FUN_00202820                             rdx<- - | r8<- -
+  call  002028EF in 002028B0 FUN_002028b0                             rdx<- - | r8<- -
+  call  00203F8D in 00203F70 FUN_00203f70                             rdx<- - | r8<- -
+  call  00204D24 in 00204D10 FUN_00204d10                             rdx<- - | r8<- -
+  call  00204E8A in 00204E50 FUN_00204e50                             rdx<- - | r8<- -
+  call  00204F3A in 00204F00 FUN_00204f00                             rdx<- - | r8<- -
+  call  00204F9E in 00204F90 FUN_00204f90                             rdx<- - | r8<- -
+  call  002050B2 in 00205030 FUN_00205030                             rdx<- - | r8<- -
+  call  00205242 in 00205120 FUN_00205120                             rdx<- - | r8<- -
+  call  002053A0 in 00205330 FUN_00205330                             rdx<- - | r8<- -
+  call  00205425 in 00205330 FUN_00205330                             rdx<- - | r8<- -
+  call  00205547 in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  0020557F in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  002055BD in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  002055F4 in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  0020562A in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  002056F9 in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  00205735 in 002054D0 FUN_002054d0                             rdx<- - | r8<- -
+  call  0020580E in 00205800 FUN_00205800                             rdx<- - | r8<- -
+  call  00205C93 in 00205C70 FUN_00205c70                             rdx<- - | r8<- -
+  call  00205CDD in 00205C70 FUN_00205c70                             rdx<- - | r8<- -
+  call  00205D74 in 00205D60 FUN_00205d60                             rdx<- - | r8<- -
+  call  00205E0F in 00205DF0 FUN_00205df0                             rdx<- - | r8<- -
+  call  00205E78 in 00205DF0 FUN_00205df0                             rdx<- - | r8<- -
+  call  002061F3 in 002061A0 FUN_002061a0                             rdx<- - | r8<- -
+  call  00206DFA in 00206D30 FUN_00206d30                             rdx<- - | r8<- -
+  call  00207E32 in 00207DE0 FUN_00207de0                             rdx<- - | r8<- -
+  call  00207ECF in 00207E90 FUN_00207e90                             rdx<- - | r8<- -
+  call  00207FFF in 00207FB0 FUN_00207fb0                             rdx<- - | r8<- -
+  call  00208C74 in 00208C60 FUN_00208c60                             rdx<- - | r8<- -
+  call  0020999A in 00209950 FUN_00209950                             rdx<- - | r8<- -
+  call  002099BF in 00209950 FUN_00209950                             rdx<- - | r8<- -
+  call  00209A13 in 002099D0 FUN_002099d0                             rdx<- - | r8<- -
+  call  00209A3B in 002099D0 FUN_002099d0                             rdx<- - | r8<- -
+  call  00209A9A in 00209A50 FUN_00209a50                             rdx<- - | r8<- -
+  call  00209ABF in 00209A50 FUN_00209a50                             rdx<- - | r8<- -
+  call  0020B7F2 in 0020B680 FUN_0020b680                             rdx<- - | r8<- -
+  call  0020C400 in 0020C300 FUN_0020c300                             rdx<- - | r8<- -
+  call  0020C6CC in 0020C6B0 FUN_0020c6b0                             rdx<- - | r8<- -
+  call  0020CD4C in 0020CD30 FUN_0020cd30                             rdx<- - | r8<- -
+  call  0020D9BA in 0020D970 FUN_0020d970                             rdx<- - | r8<- -
+  call  0020D9DF in 0020D970 FUN_0020d970                             rdx<- - | r8<- -
+  call  00210610 in 002105E0 FUN_002105e0                             rdx<- - | r8<- -
+  call  00210630 in 002105E0 FUN_002105e0                             rdx<- - | r8<- -
+  call  00210651 in 002105E0 FUN_002105e0                             rdx<- - | r8<- -
+  call  00210672 in 002105E0 FUN_002105e0                             rdx<- - | r8<- -
+  call  00210693 in 002105E0 FUN_002105e0                             rdx<- - | r8<- -
+  call  002107F2 in 00210760 FUN_00210760                             rdx<- - | r8<- -
+  call  00210B0C in 00210AF0 FUN_00210af0                             rdx<- - | r8<- -
+  call  00214FF0 in 00214FC0 FUN_00214fc0                             rdx<- - | r8<- -
+  call  00215007 in 00214FC0 FUN_00214fc0                             rdx<- - | r8<- -
+  call  002216D7 in 002216B0 FUN_002216b0                             rdx<- - | r8<- -
+  jmp   00221773 in 00221770 FUN_00221770                             rdx<- - | r8<- -
+  call  00225861 in 00225830 FUN_00225830                             rdx<- - | r8<- -
+  call  002258B2 in 00225880 FUN_00225880                             rdx<- - | r8<- -
+  call  005A0901 in 005A08E0 FUN_005a08e0                             rdx<- - | r8<- -
+  call  005FECBA in 005FEC70 FUN_005fec70                             rdx<- - | r8<- -
+  call  005FECDF in 005FEC70 FUN_005fec70                             rdx<- - | r8<- -
+  call  0065E553 in 0065E530 FUN_0065e530                             rdx<- - | r8<- -
+  call  0065E5EC in 0065E5D0 FUN_0065e5d0                             rdx<- - | r8<- -
+  call  006770AC in 00677030 FUN_00677030                             rdx<- - | r8<- -
+  call  00677145 in 00677030 FUN_00677030                             rdx<- - | r8<- -
+  call  006A0413 in 006A0310 FUN_006a0310                             rdx<- - | r8<- -
+  call  006BABAE in 006BAB40 FUN_006bab40                             rdx<- SIDE-EFFECT 006BAB9C mul rsi | r8<- -
+  call  006CBE43 in 006CBD20 FUN_006cbd20                             rdx<- - | r8<- -
+  call  006CCB35 in 006CCB00 FUN_006ccb00                             rdx<- - | r8<- -
+  call  00714757 in 00714740 FUN_00714740                             rdx<- - | r8<- -
+  call  007147B7 in 007147A0 FUN_007147a0                             rdx<- - | r8<- -
+  call  00714817 in 00714800 FUN_00714800                             rdx<- - | r8<- -
+  call  00714877 in 00714860 FUN_00714860                             rdx<- - | r8<- -
+  call  007148D7 in 007148C0 FUN_007148c0                             rdx<- - | r8<- -
+  call  00714937 in 00714920 FUN_00714920                             rdx<- - | r8<- -
+  call  0071F137 in 0071F120 FUN_0071f120                             rdx<- - | r8<- -
+  call  0071F197 in 0071F180 FUN_0071f180                             rdx<- - | r8<- -
+  call  0075EE23 in 0075EE00 FUN_0075ee00                             rdx<- - | r8<- -
+  call  00783E53 in 00783E10 FUN_00783e10                             rdx<- - | r8<- -
+  call  00783E7B in 00783E10 FUN_00783e10                             rdx<- - | r8<- -
+  call  007869A3 in 00786980 FUN_00786980                             rdx<- - | r8<- -
+  call  0079110A in 007910C0 FUN_007910c0                             rdx<- - | r8<- -
+  call  0079112F in 007910C0 FUN_007910c0                             rdx<- - | r8<- -
+  call  0079823E in 007980A0 FUN_007980a0                             rdx<- - | r8<- -
+  call  0079844C in 007980A0 FUN_007980a0                             rdx<- SIDE-EFFECT 0079843B mul rcx | r8<- -
+  call  007984D9 in 007980A0 FUN_007980a0                             rdx<- - | r8<- -
+  call  00799B37 in 00799B20 FUN_00799b20                             rdx<- - | r8<- -
+  call  0079F1F9 in 0079F150 FUN_0079f150                             rdx<- - | r8<- -
+  call  0079F360 in 0079F150 FUN_0079f150                             rdx<- - | r8<- -
+  call  007AA080 in 007AA010 FUN_007aa010                             rdx<- - | r8<- -
+  call  007AA173 in 007AA110 FUN_007aa110                             rdx<- - | r8<- -
+  call  007AA23D in 007AA110 FUN_007aa110                             rdx<- - | r8<- -
+  call  007AB2BA in 007AB240 FUN_007ab240                             rdx<- - | r8<- -
+  call  007AED80 in 007AED10 FUN_007aed10                             rdx<- - | r8<- -
+  call  007AEE90 in 007AEE20 FUN_007aee20                             rdx<- - | r8<- -
+  call  007B2570 in 007B2500 FUN_007b2500                             rdx<- - | r8<- -
+  call  007B2670 in 007B2600 FUN_007b2600                             rdx<- - | r8<- -
+  call  007B2760 in 007B2700 FUN_007b2700                             rdx<- - | r8<- -
+  call  007B46E0 in 007B4670 FUN_007b4670                             rdx<- - | r8<- -
+  call  007B5160 in 007B50F0 FUN_007b50f0                             rdx<- - | r8<- -
+  call  007B5970 in 007B5900 FUN_007b5900                             rdx<- - | r8<- -
+  call  007B5F00 in 007B5E90 FUN_007b5e90                             rdx<- - | r8<- -
+  call  007B6750 in 007B66E0 FUN_007b66e0                             rdx<- - | r8<- -
+  call  007B7B70 in 007B7B00 FUN_007b7b00                             rdx<- - | r8<- -
+  call  007B80D0 in 007B8060 FUN_007b8060                             rdx<- - | r8<- -
+  call  007BABAA in 007BAB30 FUN_007bab30                             rdx<- - | r8<- -
+  call  007BBCA0 in 007BBC30 FUN_007bbc30                             rdx<- - | r8<- -
+  call  007BC360 in 007BC2F0 FUN_007bc2f0                             rdx<- - | r8<- -
+  call  007C6F10 in 007C6EA0 FUN_007c6ea0                             rdx<- - | r8<- -
+  call  007DCCD0 in 007DCC60 FUN_007dcc60                             rdx<- - | r8<- -
+  call  0080423A in 008041F0 FUN_008041f0                             rdx<- - | r8<- -
+  call  008048BC in 00804860 FUN_00804860                             rdx<- - | r8<- -
+  call  00804C34 in 00804BE0 FUN_00804be0                             rdx<- - | r8<- -
+  call  00804D3C in 00804CF0 FUN_00804cf0                             rdx<- - | r8<- -
+  call  0080885E in 00808850 _Facet_Register                          rdx<- - | r8<- -
+  call  008098E1 in 008098D4 FUN_008098d4                             rdx<- - | r8<- -
+  call  00863301 in 008632E0 FUN_008632e0                             rdx<- - | r8<- -
+  call  00863552 in 00863540 FUN_00863540                             rdx<- - | r8<- -
+  call  00863703 in 008636E0 FUN_008636e0                             rdx<- - | r8<- -
+  call  00863715 in 008636E0 FUN_008636e0                             rdx<- - | r8<- -
+  call  008655F8 in 008655E0 FUN_008655e0                             rdx<- - | r8<- -
+
+## F5 the address-taken route: 00210760 hands {00210EC0, free forwarder 00210EB0} to a library init
+  0021082A lea rax, [rip + 0x68f]
+  00210831 mov qword ptr [rsp + 0x74], 0x20
+  0021083A mov qword ptr [rsp + 0x50], rax
+  0021083F xor ebx, ebx
+  00210841 lea rax, [rip + 0x668]
+  00210848 mov dword ptr [rsp + 0x7c], 0x40
+  00210850 mov qword ptr [rsp + 0x58], rax
+  00210855 mov dword ptr [rbp - 0x80], 0x400
+  0021085C mov byte ptr [rbp - 0x60], bl
+  0021085F mov dword ptr [rsp + 0x70], 0x60
+  00210867 mov qword ptr [rbp - 0x70], 0xf
+  0021086F mov qword ptr [rbp - 0x78], rdi
+  00210873 mov dword ptr [rsp + 0x68], 0x400
+  0021087B mov dword ptr [rbp - 0x68], 0x7c
+  00210882 mov dword ptr [rbp - 0x64], 0x7c
+  00210889 call 0x7a4d50
+  raw sites of 007A4D50: call 00210889 in 00210760
+  raw sites of 007AD620: call 007A4E39 in 007A4D50
+  007A4E20 mov rcx, qword ptr [rbx]
+  007A4E23 test rcx, rcx
+  007A4E26 je 0x7a52a0
+  007A4E2C mov rdx, qword ptr [rbx + 8]
+  007A4E30 test rdx, rdx
+  007A4E33 je 0x7a52a0
+  007A4E39 call 0x7ad620
+  007AD620 mov qword ptr [rip + 0x26ffa89], rcx | 007AD627 mov qword ptr [rip + 0x26ffa8a], rdx | 007AD62E ret 
+  cell 02EAD0B0 read at 007AD47F in 007AD460: call qword ptr [rip + 0x26ffc2b]
+      window: mov rbx, rcx | add rdi, rcx | mov esi, r8d | mov rcx, rdi | call qword ptr [rip + 0x26ffc2b] | mov rdx, rax | test rax, rax
+      rdx/r8 read after the call before rewrite: -
+  cell 02EAD0B0 read at 007AD4F0 in 007AD4D0: call qword ptr [rip + 0x26ffbba]
+      window: mov esi, r8d | imul rdi, rdx | add rdi, 0x10 | mov rcx, rdi | call qword ptr [rip + 0x26ffbba] | mov rbx, rax | test rax, rax
+      rdx/r8 read after the call before rewrite: -
+  cell 02EAD0B0 read at 007AD563 in 007AD550: call qword ptr [rip + 0x26ffb47]
+      window: sub rsp, 0x20 | lea rbx, [rcx + 0x10] | mov edi, edx | mov rcx, rbx | call qword ptr [rip + 0x26ffb47] | test rax, rax | jne 0x7ad579
+      rdx/r8 read after the call before rewrite: -
+  cell 02EAD0B0 read at 007AD5C4 in 007AD5A0: call qword ptr [rip + 0x26ffae6]
+      window: mov rbx, rcx | mov rcx, rdi | mov ebp, r8d | mov rsi, rdx | call qword ptr [rip + 0x26ffae6] | test rax, rax | je 0x7ad608
+      rdx/r8 read after the call before rewrite: -
+  cell 02EAD0B0 WRITE at 007AD620 in 007AD620: mov qword ptr [rip + 0x26ffa89], rcx
+
+## C2 sensitivity: the same census on the two-argument sibling 0017D260
+  body: or r9d, 0xffffffff | xor r8d, r8d | jmp 0x19c580
+  aligned sites: 283; sites whose block prepares rdx: 283
+
+FAILS 0 []

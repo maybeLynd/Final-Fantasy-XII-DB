@@ -61,12 +61,12 @@ shake number 0" — the ordinary reason authoring tools keep a name table. When 
 the camera trembles, this is the table that says which tremble was meant.
 
 **CORRECTED 2026-09-05 — this paragraph previously said the shipped game appears never to consult
-the table.** It does. At load the engine walks every entry, looks each **name** up in
-`section_011`, and **writes the answer over the authored number**.
+the table.** It does. At load the engine walks every entry~~, looks each **name** up in~~
+~~`section_011`, and **writes the answer over the authored number**~~ and zeroes its two scratch words; the name lookup and its store over the authored number never run in the shipped build *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; §3 correction)*.
 
 So the operative fact for a modder is the opposite of what this sheet first said, and sharper:
-**renumbering `index` does nothing, because the engine recomputes it — but renaming a shake in
-`section_011` breaks the link.** The names are load-bearing; the numbers are not.
+**~~renumbering `index` does nothing, because the engine recomputes it — but renaming a shake in~~
+~~`section_011` breaks the link.~~** ~~The names are load-bearing; the numbers are not.~~ **Renumbering `index` changes which shake plays; renaming a shake in `section_011` changes nothing** *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; §3 correction)*.
 
 ## 2. The layout
 
@@ -149,7 +149,7 @@ section the answer is very nearly "nothing", which needs to be stated precisely.
 |---|---|---|---|---|
 | `+0x00` magic | — | **never — the magic is not validated** | — | **yes.** `CML1` occurs **0 times in the whole 32,864,752-byte image**: 0 as the ASCII bytes, 0 as the dword `0x314C4D43`. Contrast `SHK1` in the sibling section, which occurs exactly once, as a `cmp` immediate |
 | `+0x04` count | `SHKCTL_ResolveNames` `0x003DD183` | — | — | — |
-| `+0x08`, `+0x0C` (chunk) | — | — | — | **no reader found by the searches in §3b** |
+| `+0x08`, `+0x0C` (chunk) | — | — | — | **no reader found by the searches in ~~§3b~~ §3, "How far 'no reader found' goes"** *(corrected 2026-10-02, OPUS: the page has no §3b)* |
 | entry `+0x00` nameOffset | `0x003DD1A0` / `0x003DD1A8`, as a **signed** offset from the chunk base | — | — | — |
 | entry `+0x04` index | **read — the binding.** `0x003DD230`, the shake start behind `camerashakestart_1a2` (`0x003492F0`) and `camerashakestart_1a3` (`0x00349730`), loads it at `0x003DD29F`. The store at `0x003DD1BF` is behind `0x0032F3D0`, which returns 0 in the shipped build | — | — | **no — the authored value selects the `section_011` record.** *Corrected 2026-09-12; this row read "not read — WRITTEN … the authored value is inert: it is overwritten before anything can use it".* |
 | entry `+0x08`, `+0x0C` | — | — | — | **zeroed at load** (`0x003DD1C2`, `0x003DD1C6`) — authored contents cannot survive |
@@ -175,10 +175,10 @@ substance:
 **CORRECTED.** This paragraph previously read *"No field of the chunk is read. Not the magic, not
 the count, not one entry."* **That is false.** Step 4 above lists `0x00331643`; the very next call
 in the same function, at **`0x00331652`**, is `call 0x3dd120` — `SHKCTL_ResolveNames`, which reads
-the count, walks every entry and overwrites each `index`. **I disassembled that call site and
+the count, walks every entry ~~and overwrites each `index`~~ and would overwrite each `index` behind a gate that returns 0 in the shipped build *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run)*. **I disassembled that call site and
 reasoned past it.** See §6a.
 
-Teardown is `FUN_0032ED70`: `0x0032F06F` loads the pointer back, `0x0032F0A1` frees it, `0x0032F0A8`
+Teardown is ~~`FUN_0032ED70`~~ `FUN_0032ED80` (`ActorResource_ResetManagerLoadState`) *(corrected 2026-10-02, OPUS: `0x0032ED70` is four instructions that set bit 0 of the pending mask, `or qword ptr [rcx + rax*8], 1` on `022C6E48` at `0x0032ED70+0xA`; the addresses here lie in `0x0032ED80`'s body)*: `0x0032F06F` loads the pointer back, `0x0032F0A1` frees it, `0x0032F0A8`
 nulls the slot. Initialisation nulls it at `0x0032F4C2`.
 
 ### How far "no reader found" goes, and exactly where it stops
@@ -210,7 +210,7 @@ in the wild.
 
 **So the honest statement is:** the magic is not directly compared anywhere; the load path parses
 nothing; the two searches above found no reader; and one route out — through the copy at
-`0x02098F00` — is not closed. That residue is open question **PROPOSED-repos-c7-1**.
+`0x02098F00` — ~~is not closed. That residue is open question **PROPOSED-repos-c7-1**.~~ is closed *(answered: PROPOSED-repos-c7-1 is closed by `repos-4b`'s pass, §7, and `0x003DD230` reads entry `+0x04` at `0x003DD29F`, §3; 2026-10-02, OPUS)*.
 
 ### The one field with proven runtime meaning
 
@@ -230,15 +230,15 @@ extension at `0x00D109B8` belongs to the offline toolchain.
 >
 > *Added by `repos-4b`, auditing this sheet as the author of the twin `section_008`.* This sheet
 > describes `index` as *"0-based slot in `section_011`'s record array"*, which is what the authored
-> value **is** — but the engine does not read it. **It recomputes it by name and stores the result
-> over the top**, exactly as its camera twin does.
+> value **is** — ~~but the engine does not read it.~~ **~~It recomputes it by name and stores the result~~
+> ~~over the top~~**~~, exactly as its camera twin does.~~ and the engine uses it as authored: the recompute below sits behind a gate that returns 0 *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; the correction after this box)*.
 >
 > `SHKCTL_ResolveNames` — **`0x003DD120`** — is structurally identical to `CML1_ResolveNames`
 > (`0x003DA1F0`), documented for [`section_008`](section-008.md#3-the-loader-contract):
 >
 > ```
 > blob = manager[+0xF0]                                   0x003DD12A
-> reset five (u16,u16) pairs to (0, 0xFFFF)               0x003DD134 .. 0x003DD177
+> reset five (u16,u16) pairs to (0, 0xFFFF)               0x003DD134 .. 0x003DD177   <- corrected 2026-10-02, OPUS - the first pair, +0x1C / +0x1E, is set to (0xFFFF, 0xFFFF) at 0x003DD134 / 0x003DD13B; the other four to (0, 0xFFFF)
 > if (blob == NULL) return                                0x003DD17E
 > count = blob[+0x04]                                     0x003DD183
 > e     = blob + 0x10                                     0x003DD18C
@@ -258,8 +258,8 @@ extension at `0x00D109B8` belongs to the offline toolchain.
 > `0x0037DBB8`. The handler reaching it is `SHKCTL_OnLoaded` (**`0x00331610`**) — blob stored at
 > `0x0033163B`, resolver called at `0x00331652`, pending bit 11 cleared at `0x00331662`.
 >
-> **For a modder this is the operative fact: renumbering `index` in `section_010` does nothing,
-> because the engine overwrites it; renaming a shake in `section_011` breaks the link.** The
+> **For a modder this is the operative fact: ~~renumbering `index` in `section_010` does nothing,~~
+> ~~because the engine overwrites it; renaming a shake in `section_011` breaks the link.~~** renumbering `index` changes which shake plays and renaming a shake changes nothing *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; the correction after this box)*. The
 > corpus agreeing with the engine's answer — 299 of 300 indices in range, one `0xFFFFFFFF` — is what
 > an offline tool running the same lookup would produce, and is **not** evidence that the field is
 > read.
@@ -353,7 +353,7 @@ median 128.
 | Does the name→record join hold, or do only the counts match? | **The join was checked directly, name by name: 300/300 entries.** The README warns that *a count match is suggestive, not deciding*, and a count match is all that was available before this test. It is not what this sheet rests on. |
 | Is `0xFFFFFFFF` corruption or a sentinel? | **A sentinel.** `FUN_0037d1f0` tests the shake index against `-1` before use. The corpus alone could not have decided this; the instruction does. |
 | Is the magic really unvalidated, or did the search miss it? | **Neither claim is made beyond what the search supports.** 0 occurrences of the constant is a fact; "no check exists in any form" is not, and §3 names the arithmetic-constant blind spot rather than papering over it. |
-| Is the section really never parsed? | **Not established, and deliberately not claimed.** Two searches found no reader; one route — the pointer copy at `0x02098F00` into a `0x288`-stride structure — is open, and address-based scanning is structurally blind to it. Recorded as PROPOSED-repos-c7-1 rather than written up as an inert section. |
+| Is the section really never parsed? | ~~**Not established, and deliberately not claimed.**~~ *(answered: it is read — `SHKCTL_ResolveNames` walks it at load and `0x003DD230` reads entry `+0x04` at `0x003DD29F`, §3 and §6a; 2026-10-02, OPUS)* Two searches found no reader; one route — the pointer copy at `0x02098F00` into a `0x288`-stride structure — is open, and address-based scanning is structurally blind to it. Recorded as PROPOSED-repos-c7-1 rather than written up as an inert section. |
 | Could the decompiler have invented a value? | Ghidra renders `FUN_00331610` with **empty `if` bodies**, which would have hidden a parse if one existed. Every address cited here was taken from the **disassembly** instead. |
 | Did an external tool supply any of this? | **No.** `ff12-script` was not consulted for this section, before or after. |
 | Was the peer session's independent reading used as evidence? | `repos-c9` independently reported the `CML1` magic and its 0 occurrences in the image, matching this sheet. **Corroboration only** — both facts were re-derived here from the census and the binary. |
@@ -441,7 +441,7 @@ checked by reading the callee. **One `sed` of forty bytes at `0x003DD120` would 
 **What this does not change.** The corpus reading in §2 stands entirely, and `repos-4b` re-derived
 it independently over 1,114 containers. The magic still is not validated — 0 occurrences remains
 correct. The bijection still holds. **What changed is the direction of the arrow: the table is not a
-leftover the engine ignores, it is an input the engine consumes and then overwrites.**
+leftover the engine ignores, it is an input the engine ~~consumes and then overwrites~~ consumes as authored — the overwrite never runs in the shipped build.** *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run)*
 
 ## 7. What this document does not claim
 
@@ -454,16 +454,16 @@ leftover the engine ignores, it is an input the engine consumes and then overwri
 > (`0x003DD120`) and **`0x003DD230`**, the shake start, which reads entry `+0x04` at `0x003DD29F`. "Not inert" survives
 > on that evidence; the evidence below does not.
 
-> **CA-1 answered 2026-09-12 (FABLE): the `CML1` chunk is read — through the per-record copy, for
-> kind-3 actors.** The second pointer copy at `02098F00` (stride `0x288`) is actor storage record
+> **CA-1 answered 2026-09-12 (FABLE): ~~the `CML1` chunk is read — through the per-record copy, for~~
+> ~~kind-3 actors.~~** *(corrected 2026-10-02, OPUS: retracted above, and the bytes agree — `rbx` in `00263230` is an actor from `003588B0` (the manager slot's actor array `[slot + 8]`), and `00266B18`–`00266B2D` set actor `+0xB8` = actor `+0x120`, so `[[actor + 0xB8] + 0xF0]` at `0026338F`–`0026339D` and `00269441`–`00269453` is not this chunk)* The second pointer copy at `02098F00` (stride `0x288`) is actor storage record
 > **`+0xF0`** (`02098E10 + 0xF0`), and two functions read it through the record: `00263230`, the
 > mode-1 path of `ActorResource_StartEntryScriptExecution`, which for an actor whose kind byte masks
 > to `0x60` loads `[[actor + 0xB8] + 0xF0]` and **sets bit 7 of chunk `+0x62`** (`0026338F`–`0026339D`)
 > as the script starts; and `002693D0` (called from `ActorSystem_ReleaseManagerReco…`, `00269530`
 > and `0026C5D0`), which for the same kind reads and **clears chunk `+0x28`** (`00269448`–`00269453`)
 > and tests chunk `+0x65` to decide a `002EBE50` / `002E8EE0` teardown (`0026945B`–`00269478`). So the
-> shake directory is live per-actor state for kind-3 actors — a script-start flag and a release-time
-> counter live inside it — and the section is not `Inert`; the constant and the global's four direct
+> ~~shake directory is live per-actor state for kind-3 actors — a script-start flag and a release-time~~
+> ~~counter live inside it —~~ *(corrected 2026-10-02, OPUS: not this chunk — the retraction above)* and the section is not `Inert`; the constant and the global's four direct
 > references were the wrong instruments because the readers go through a structure field, as the
 > row anticipated. What the fields at `+0x28`, `+0x62` and `+0x65` mean in shake terms is the residue.
 
@@ -523,3 +523,11 @@ leftover the engine ignores, it is an input the engine consumes and then overwri
 ## SWE2-EC7-35 update (2026-09-19) - `0037D1F0`
 
 `0037D1F0` (712 B) is an EBP script-section body - `02ADD990`/`02ADD980`/`01DFE0BC`/`01CEBB70`, nine `00379CE0` plus eight `00861F0E`, `0037D130`/`001EDDA0`. Interior anchor `0037D27C` (an `00379CE0` call).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-section-010-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00269530` | 105 B | for each of the four qwords at `0209A1F0` whose object has byte `+0x18` equal to 1, takes `q = 003587C0(byte +0x19 sign-extended, word +0x1A)` and calls `002693D0(q, 1)` when `q` is non-null and differs from that object | `0026954E`, `00269556`, `00269564`, `0026956E`, `0026957B` |

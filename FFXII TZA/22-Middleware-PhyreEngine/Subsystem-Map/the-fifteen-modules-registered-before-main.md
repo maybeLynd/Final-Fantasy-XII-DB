@@ -121,8 +121,8 @@ base `PUtility` vtable at `00D26BC0`. Fifteen modules, thirty functions, plus th
 > insertion**, after which the derived constructor overwrites the vtable with its own.
 >
 > **What is established: fifteen functions install the derived vtable and fifteen install the base
-> vtable into the same objects.** Which is ctor-versus-base-ctor and which is ctor-versus-dtor is
-> **not** established, and the column is headed accordingly.
+> vtable into the same objects.** ~~Which is ctor-versus-base-ctor and which is ctor-versus-dtor is~~
+> ~~**not** established, and the column is headed accordingly.~~ The base-vtable column is the destructor column *(corrected 2026-10-02, OPUS: the registrar `00167810` passes `008B6A40` to `atexit` (`00167810+0x43`, `00167810+0x51`), and `008B6A40` re-stamps the base vtable `00D26BC0` into `01F2EE60` (`008B6A40+0x8`, `008B6A40+0xF`) before unlinking; the answer block below)*.
 
 | static object | class | installs derived vtable | installs base vtable |
 |---|---|---|---|
@@ -162,7 +162,7 @@ guess.
 |---|---:|---|
 | `005A08E0` | 507 B | **engine init** — walks the chain calling each module's slot `+0x08` |
 | `005A0840` | 145 B | **engine shutdown** — walks the chain calling each module's slot `+0x10` |
-| `005A0CB0` | 100 B | slot `+0x00` of every module vtable — **body unread** |
+| `005A0CB0` | 100 B | slot `+0x00` of every module vtable — ~~**body unread**~~ *(answered: see the 2026-09-14 answer block - the modules' shared scalar deleting destructor; 2026-10-02, OPUS)* |
 
 > **Crossings into Resource and Platform — FINAL-AUDIT pass 22 (FABLE, 2026-09-14).** The walkers bracket the module
 > list with three platform-layer calls.
@@ -210,15 +210,15 @@ callers because it is a virtual slot** — the function at offset 0 of `PUtility
 > to stop is not.
 
 **Both are guarded by one flag at `0x02CACCA0`**, so both are idempotent: init returns immediately if
-the flag is set, shutdown if it is clear. **Init allocates a `0xE0`-byte object at `01F3F5B8`** and
+the flag is set, shutdown if it is clear. **Init allocates a `0xE0`-byte object at ~~`01F3F5B8`~~ `01F7F5B8`** *(corrected 2026-10-02, OPUS: `005A08FC mov ecx, 0xE0`, `005A0919` stores the result to `01F7F5B8`; nothing references `01F3F5B8`)* and
 **registers `005A0840` with `atexit`** (`lea rcx, [rip-0x287]` at `005A0AC0`, then
-`call 00808B90`) — so the shutdown walk runs at process exit, not from game code.
+`call 00808B90`) — ~~so the shutdown walk runs at process exit, not from game code.~~ and the start-up function also calls it directly *(corrected 2026-10-02, OPUS: `007980A0` calls `005A0840` at `007986D5` and `00798886`; the guard byte `02CACCA0`, tested at `005A0844` and cleared at `005A08C5`, makes the first call do the walk and the `atexit` one a no-op - as the-game-is-a-phyre-application.md's shutdown sequence says)*.
 
 **So each module's vtable has a known lifecycle contract:**
 
 | slot | role |
 |---|---|
-| `+0x00` | shared `005A0CB0` — **unread** |
+| `+0x00` | shared `005A0CB0` — ~~**unread**~~ the shared scalar deleting destructor *(answered: see the 2026-09-14 answer block; 2026-10-02, OPUS)* |
 | `+0x08` | **init**, returns 0 for success; non-zero aborts startup |
 | `+0x10` | **shutdown**, return ignored |
 
@@ -235,7 +235,7 @@ adopt it.*
 | `00166210` | the registration shape, read in full |
 | `00808B90` | `atexit` — every registrar tail-calls it |
 | `005A08E0`, `005A0840` | the two list walkers |
-| `005A0CB0` | vtable slot 0, shared by all fifteen — body unread |
+| `005A0CB0` | vtable slot 0, shared by all fifteen — ~~body unread~~ *(answered: see the 2026-09-14 answer block; 2026-10-02, OPUS)* |
 | `0x008C31D8` | the CRT initializer table these fifteen are reached from |
 
 ### The `005A08E0` exclusive subtree — all 11 members bound (SWE2-FRONTIER, followup queue)
@@ -259,7 +259,7 @@ instruction inside each declared extent (`interior_cite.py scan`; no boundary cr
 
 `006388C0` — the shared registrar all these arms feed — reads the name string at `[node+0x30]`,
 hashes it (`edx = 0x7B5`, `×0x21 + (c & 0x1F)`), and splices `node+0x08` into the `00637440` map
-(`0067F700`), returning `0x12` on a duplicate insert.
+(`0067F700`), ~~returning `0x12` on a duplicate insert.~~ returning a bool *(corrected 2026-10-02, OPUS: `0x12` is only an internal code, `0063898A`; the result is `sete al` at `006389A1`, so a duplicate insert or an already-present name (`0063894A`) returns false and a fresh insert true)*.
 
 So the init walk's exclusive reach is mostly *registration*, not gameplay: reflected-type
 lists, a name-keyed map, a sync object, and timer calibration — the modules' own
@@ -457,7 +457,7 @@ rather than a gap in coverage.
 | Ordered insertion on `node[+0x18] < 0xFF` | the walk loop at `00166221`–`00166236` | 1 |
 | The fifteen class names | each vtable's RTTI complete-object-locator, type-descriptor name | 1 |
 | Fifteen functions install the base `PUtility` vtable | all fifteen install the same `00D26BC0` into the fifteen objects | 1 |
-| **Those fifteen are constructors, not destructors** | **not established** — the image's initial vtable is already `00D26BC0`, which is consistent with a base constructor but does not prove it | 8 |
+| **Those fifteen are constructors, not destructors** | ~~**not established**~~ **refuted: they are the exit-time destructors** *(corrected 2026-10-02, OPUS: `00167810+0x43`/`00167810+0x51` hand `008B6A40` to `atexit`; `008B6A40+0x8`/`008B6A40+0xF` re-stamp `00D26BC0`)* — the image's initial vtable is already `00D26BC0`, which is consistent with a base constructor but does not prove it | 8 |
 | The ordering key is `0xFF` in every readable module object | read from `.data` at object `+0x18`, 14 of 15 (`PUtilityText` is in BSS) | 1 |
 | Every registrar tail-calls `atexit` | `jmp 0x808b90`, and `00808B90` is named `atexit` in the ledger | 2 |
 | `005A0CB0` is vtable slot 0 | it is the first entry after the RTTI pointer at `00D6FD98` | 1 |
@@ -465,7 +465,7 @@ rather than a gap in coverage.
 | Shutdown walks calling slot `+0x10`, return ignored | `005A0860`–`005A0870`, disassembled | 1 |
 | One guard flag at `02CACCA0` makes both idempotent | the `cmp`/`mov` pair at `005A08EF` / `005A0ACC` and `005A0844` / `005A08C5` | 1 |
 | Init registers shutdown with `atexit` | `lea rcx,[rip-0x287]` → `005A0840`, then `call 00808B90` | 1 |
-| **Slot `+0x00`'s role** | **not established — `005A0CB0` unread** | — |
+| **Slot `+0x00`'s role** | ~~**not established — `005A0CB0` unread**~~ *(answered: see the 2026-09-14 answer block - destroy and unlink; 2026-10-02, OPUS)* | — |
 
 ## 7. Related
 

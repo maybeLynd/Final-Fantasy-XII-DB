@@ -461,3 +461,13 @@ easily missed — the fact that clearing the roster does **not** clear the recor
 **Presentation — CLIENT (4 edges, one fan-in).** All 4 edges are Presentation bodies reaching `002628B0` on this page. `FUN_002e8cc0` is the worked example - it is **32 bytes** that set or clear **bit 0 of `dword[[022C6F28] + 0x48818]`** according to one global byte at `0215FD56` - a mirror, not a decision. The crossing is **one shared subject with 4 callers on that layer**, not 4 separate relationships. Edge count from `edges.tsv`. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **UI — SERVICE.** `0026CE60` on this page calls `FUN_00253a30`, owned by that layer. What it reaches is a 67-byte teardown: eight calls in fixed order, `[020927C8]` and `[020927CC]` zeroed, and a tail-jump to a ninth; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-party-slot-assignment-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003415D0` | 43 B | for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = 00263750(index)` | `003415DA`, `003415DF`, `003415E9`, `003415F0` |
+| `00341CB0` | 77 B | takes `q = 003588B0(003590D0())`, then for indices 0 to 3 calls `0026DC40(p, 0)` on each `p = 00263750(index)` that is non-null and not equal to `q` | `00341CBA`, `00341CC1`, `00341CD2`, `00341CDC`, `00341CE6` |
+| `00342250` | 46 B | for indices 0 to 3 calls `0026DC40(p, 1)` on each non-null `p = 00263750(index)` | `0034225A`, `00342264`, `0034226C`, `00342273` |

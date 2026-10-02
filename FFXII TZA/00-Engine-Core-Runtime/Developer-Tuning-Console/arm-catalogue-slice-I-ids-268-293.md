@@ -415,3 +415,13 @@ page already lists — and returns the entry. Interior anchor
 - **Audio — CLIENT and SERVICE (5 edges).** 1 inbound (Audio bodies `00362F70` call page-cited `002DEBA0`); 4 outbound (page-cited `001D1660`, `001DBB00` call Audio bodies `001DBB00`, `002DEBA0`, `002112D0`). Substantive edges include `001D1660` calls `001DBB00`; `001D1660` calls `002DEBA0`; `001DBB00` calls `002112D0`; `002DEBA0` is called by `00362F70`; the remaining edges run through shared helpers the page cites.
 - **Resource — SERVICE (3 edges).** 3 outbound (page-cited `002EEEE0`, `001D1660` call Resource bodies `002EEEE0`, `002DF8E0`, `002DF980`). Substantive edges include `001D1660` calls `002EEEE0`; `002EEEE0` calls `002DF8E0`; `002EEEE0` calls `002DF980`.
 - **WorldAreaField — CLIENT (1 edge).** 1 inbound (WorldAreaField bodies `World_UpdateSimulationTick` (00314020) call page-cited `002DEBA0`). Substantive edges include `002DEBA0` is called by `World_UpdateSimulationTick` (00314020).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-arm-catalogue-slice-i-ids-268-293-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0017D9C0` | 14 B | tail-jumps `001DF2B0(qword 01F82D20, ecx)` | `0017D9C2`, `0017D9C9` |
+| `001DF2B0` | 16 B | sets bit `edx` (modulo 32, via `bts`) of dword `+0x44C` of `rcx` and stores the dword back | `001DF2B6`, `001DF2B9` |
+| `001E04F0` | 83 B | calls `0017FE30()` and picks the double 0.01666666667 (`009010A0`) when the unsigned result is a multiple of 10, otherwise 0.01668333333 (`00900378`); returns the signed dword result of `00184950()` converted to double and multiplied by the picked value | `001E04F9`, `001E0511`, `001E0520`, `001E0528`, `001E0535` |

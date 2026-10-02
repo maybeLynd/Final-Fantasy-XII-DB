@@ -28,7 +28,7 @@ audit:
 > helpers they share. See [`../../_index/RESEARCH-IMPORT-BACKLOG.md`](../../_index/RESEARCH-IMPORT-BACKLOG.md).
 >
 > **The verbs are the smaller half of the finding.** Reading seven of them together exposes the
-> **calling convention every native verb in the game uses** — how a script's arguments arrive, in
+> ~~**calling convention every native verb in the game uses**~~ calling convention of the native `result` callbacks *(corrected 2026-10-02, OPUS: `begin` also receives the manager as a fifth argument, `002622C4`–`002622CD`, and `poll` only three registers, `002622EE`–`002622F8`)* — how a script's arguments arrive, in
 > what order, and how a value gets back.
 
 ## 1. What the player sees
@@ -202,7 +202,7 @@ a script boundary and is worth stating because the native function's own signatu
 | `005101F0`, `00510230`, `00510260`, `00510370`, `00510160`, `005103F0`, `00510620` | 32–72 B | the seven verbs |
 | `00237650` | 32 B | `ActorWork_HasAppliedUnitDefinition` |
 | `0037CF50` | 102 B | `VMEventContext_InitializeActorOperation` |
-| `002640C0`, `002650B0` | — | the handle resolution in `00510620` — **not read** |
+| `002640C0`, `002650B0` | — | the handle resolution in `00510620` — **not read** *(answered: EF-3, 2026-09-11, §6; 2026-10-02, OPUS)* |
 | `00354740`, `00511F20`, `005120B0`, `00512130` | 5 B each | thunks in the same backlog cluster — **disposition C**, forwarders only |
 
 ### Fields
@@ -214,7 +214,7 @@ a script boundary and is worth stating because the native function's own signatu
 | `+0x11` | result context | **signed** result-slot index |
 | `+0xA8` | result context | pointer to the result array, **40-byte entries** |
 | `+0x0C` | result entry | `int32` payload |
-| `+0x15` | result entry | type tag; `0` none, `1` armed, **`2` = int32**, `3` = float32 |
+| `+0x15` | result entry | ~~type tag; `0` none, `1` armed,~~ phase and result type: `0` begin pending, `1` poll pending, **`2` = int32**, `3` = float32 *(corrected 2026-10-02, OPUS: `00262248`–`0026224F` branch on 0 / 1, `0026230B` writes 1 on a busy poll, the result writers 2 / 3, `00262382` resets 0)* |
 | `+0x44 + i` | value stack | a second byte array; both pushes store **`6`** — meaning unknown |
 | `+0x84 + i*4` | value stack | a third array; both pushes store **`0`** — meaning unknown |
 | `+0x184 + i*4` | value stack | **the payload**, 4 bytes per slot (`00267E51`, `00267F8x`) |
@@ -227,7 +227,7 @@ a script boundary and is worth stating because the native function's own signatu
   value pushed becomes the *first* native argument after the context.
 - **`VM_Spawn_ApplySelectedUnit` gives no feedback.** If the unit definition does not apply, the
   actor operation is skipped and the script continues as though it succeeded.
-- **Hook the verb, not the native function**, if the intent is to change what scripts can do — five of
+- **Hook the verb, not the native function**, if the intent is to change what scripts can do — ~~five~~ three *(corrected 2026-10-02, OPUS: `00510370+0x1B`, `0051042E`, `0051065A`; three others tail-jump `0026B4E0` and `00510160` ends in `ret` — "Three, three and one" below)* of
   the seven tail-call their native target, so a hook on the native also catches every non-script
   caller.
 - **The result tag `2` is int32.** Writing a different tag into `+0x15` is how a verb would return
@@ -298,8 +298,8 @@ a script boundary and is worth stating because the native function's own signatu
 | The tail target encodes the return type | **three** tail-jump `VMResult_WriteInt32`, **three** tail-jump their native target, and **one** (`00510160`) plain `ret`s | 1 | PROVEN |
 | `00510160` gates the actor operation on a post-check | `call 00237650` / `test eax,eax` / `je` | 1 | PROVEN |
 | `00510620`'s argument is an id, not a pointer | the `002640C0`/`002650B0` pair between the pop and the native call | 1 | PROVEN |
-| What any other result tag means | **not established** | — | UNKNOWN |
-| Which script opcode reaches these verbs | **not traced** | — | UNKNOWN |
+| What any other result tag means | **not established** *(answered: EF-1 — `3` is float32, `0026B4C0`; 2026-10-02, OPUS)* | — | UNKNOWN |
+| Which script opcode reaches these verbs | **not traced** *(answered: UQ-55 / EF-5, §6; 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 8. Related
 
@@ -441,16 +441,16 @@ The six as first published:
 | `0026B4E0` `VMResult_WriteInt32` | tag `2` |
 | `003DBDC0` `ActorResource_StartEntryScriptExecution` | sets the pc and `+0x14 = 1` |
 
-Across all six, `+0x15` takes **`0`, `1`, `2`, `3`** and nothing else. **`1` is written exactly once
-in the EXE, and not as a byte:**
+Across all six, `+0x15` takes **`0`, `1`, `2`, `3`** and nothing else. ~~**`1` is written exactly once~~ *(corrected 2026-10-02, OPUS: `1` is also written as a byte, by the lifecycle: `0026230B mov byte ptr [rdi + 0x15], 1`)*
+~~in the EXE, and not as a byte:**~~ **The interpreter's own write is a word:**
 
 ```asm
 00261B97  mov word ptr [rsi + 0x14], 0x107     ; +0x14 = 7  AND  +0x15 = 1, one store
 ```
 
-So the legend "`1` armed" is right, but it is reachable only through a **fused 16-bit store that
-pairs it with wait kind 7** — a byte-level search for `mov byte ptr […+0x15], 1` finds nothing and
-would conclude the value is unused. The interpreter also writes `+0x14` = `3` (`00261596`) and `5`
+So the legend "`1` armed" is right, but it is reachable ~~only~~ through a **fused 16-bit store that
+pairs it with wait kind 7** — ~~a byte-level search for `mov byte ptr […+0x15], 1` finds nothing and~~ *(corrected 2026-10-02, OPUS: and through `0026230B`'s byte store)*
+~~would conclude the value is unused.~~ The interpreter also writes `+0x14` = `3` (`00261596`) and `5`
 (`00261D24`), which with `1` and `7` puts four of the eight kinds in use.
 
 ### The 40-byte entry, mapped from all six users
@@ -523,8 +523,8 @@ wrote the same access as `record.+0xA8 + slot * 0x28`, which would put the array
 `0026B4E9 mov rax, qword ptr [rcx + 0xa8]` is a load. **This page was right**; the other was corrected
 earlier the same day.
 
-**Not claimed:** `EF-2` (a negative slot index) is untouched — nothing bounds-checks it and nothing
-here shows what one would do. The meaning of `+0x44` and `+0x84` on the stack, and of slot `+0x10`,
+**Not claimed:** `EF-2` (a negative slot index) is untouched *(answered: UQ-54, 2026-09-25 — no producer emits a negative channel, §6; 2026-10-02, OPUS)* — nothing bounds-checks it and nothing
+here shows what one would do. The meaning of `+0x44` and `+0x84` on the stack, and of slot `+0x10`, *(answered: the bridge contract's slot layout names the slot fields; `+0x44` is 6 or `PUSHP`'s width nibble, `00268185`; 2026-10-02, OPUS)*
 `+0x16`, `+0x18`, `+0x1C`–`+0x27`, is **not** established — only that they are written and how wide.
 The other four wait kinds remain unnamed. Nothing here was executed or observed live; every statement
 is static.
@@ -651,7 +651,7 @@ Whether a negative value ever reaches `+0x11` - FABLE's narrowing found one prod
 produce one. This section adds that **if one ever did, three functions would act on it**, and that
 the signedness is deliberate typing rather than a slip. What occupies `base - 0x1C` is not read here.
 
-*(Read by OPUS 2026-09-14. `EF-2` stays open on the producer side and is narrowed on the reader
+*(Read by OPUS 2026-09-14. `EF-2` stays open on the producer side *(answered: UQ-54, 2026-09-25, §6; 2026-10-02, OPUS)* and is narrowed on the reader
 side.)*
 
 ## UQ-54 answered — every producer of a request channel enumerated (FABLE, Claude Opus 5.5, 2026-09-25)

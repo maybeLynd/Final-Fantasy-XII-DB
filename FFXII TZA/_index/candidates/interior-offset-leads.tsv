@@ -2,27 +2,15 @@ status	type	offset	size	name	ctype	shape	interior	widths	sites
 adjudicated	ActorStorageRecord	0x1C		flags1C		INTERIOR-OFFSET LEAD RULED FALSE			
 adjudicated	BattleSystemState	0x4		stateFlags		INTERIOR-OFFSET LEAD RULED FALSE			
 adjudicated	BattleUnit	0x0		unitFlags		INTERIOR-OFFSET LEAD RULED FALSE			
+adjudicated	EncodedIdQueryRecord	0x4		rowIndex		PER-PATH UNION			
+adjudicated	EncodedIdQueryRecord	0x20		queryChannel0		PER-PATH UNION			
+adjudicated	EncodedIdQueryRecord	0x24		queryChannel1		PER-PATH UNION			
+adjudicated	EncodedIdQueryRecord	0x28		classSlot0028		PER-PATH UNION			
+adjudicated	EncodedIdQueryRecord	0x2C		classSlot002C		PER-PATH UNION			
+adjudicated	EncodedIdQueryRecord	0x30		classSlot0030		PER-PATH UNION			
+adjudicated	EncodedIdQueryRecord	0x38		classSlot0038		PER-PATH UNION			
+adjudicated	MapRefWeatherBlock	0x0		laneUnreachable		INTERIOR-OFFSET LEAD RULED FALSE			
 adjudicated	TextDrawState	0x30		textColor		INTERIOR-OFFSET LEAD RULED FALSE			
 adjudicated	TextDrawState	0x34		drawScaleX		PER-PATH UNION			
 adjudicated	TextDrawState	0x60		target		PER-PATH UNION			
-open	EncodedIdQueryRecord	0x4	4	rowIndex	uint32	val v73	0x6	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2	0031C61F 0031C70D 0031C756 0031C7AE 0031C7EC 0031C810 0031C82D 0031C853 0031C89C 0031C8FA 0031C942 0031C974 0031C998 0031CABB 0031CB04 0031CB62 0031CBAA 0031CBF0 0031CC0D 0031CC25 0031CC6E 0031CCCC 0031CD14 0031CD46 0031CD71 0031CDCF 0031CE1E 0031CE7D 0031CEBE 0031CEE5 0031CF10 0031CF28 0031CF76 0031CFBF 0031D01D 0031D065 0031D097 0031D0A6 0031D0EF 0031D105 0031D15F 0031D1A3 0031D201 0031D254 0031D2A2 0031D309 0031D351 0031D3B3 0031D40A 0031D45C 0031D4CC 0031D514 0031D576 0031D5CD 0031D617 0031D638 0031D64A 0031D662 0031D6B2 0031D6F1 0031D741 0031D796 0031D7DF 0031D7FE 0031D85C 0031D89F 0031D8C3 0031D8D2 0031D8F1 0031D937 0031D957 0031D9A8 0031D9EF
-open	EncodedIdQueryRecord	0x20	4	queryChannel0	uint32	val v9	0x21,0x22,0x23	1,1,1,1,1,1,1,1,1	0031DF06 0031E09E 0031E237 0031DF0D 0031E0A5 0031E23E 0031DFF6 0031E0E6 0031E245
-open	EncodedIdQueryRecord	0x24	4	queryChannel1	uint32	mix v6/b4	0x25,0x26	1,1,1,1,1,1,1,1,2,2	0031E29D 0031E2A2 0031E2AB 0031E2B1 0031E2B4 0031E2C3 0031E2D3 0031E2E2 0031DFFD 0031E0F4
-open	EncodedIdQueryRecord	0x28	4	classSlot0028	uint32	val v2	0x2A	2,2	0031E00D 0031E104
-open	EncodedIdQueryRecord	0x2C	4	classSlot002C	uint32	val v2	0x2E	2,2	0031E01D 0031E114
-open	EncodedIdQueryRecord	0x30	4	classSlot0030	uint32	val v2	0x32	2,2	0031E02D 0031E124
-open	EncodedIdQueryRecord	0x38	4	classSlot0038	uint32	val v3	0x3A	2,2,2	0031D764 0031D783 0031DA4D
-open	Manager0209AC60	0x3E0	4	dword03E0	uint32	val v2	0x3E2	2,2	0028E6C4 0028E72F
-open	ManagerSub0209AC60_02F8	0xC8	2	word00C8	uint16	mix v4/b3	0xC9	1,1,1,1,1,1,1	002925BD 00292634 002927F0 00292871 0029290B 002929A1 00292A28
-open	MapRefWeatherBlock	0x0	4	laneUnreachable	MapRefWeatherLane	val v1	0x2	1	0026DA54
-open	MapScreenContainer	0xA1	2	word00A1	uint16	val v1	0xA2	1	002483E9
-open	PApplication	0xD38	8	modeQword38	u64	val v1	0xD3C	4	0079856F
-open	PhyreClassDescriptor	0xF4	8	ctorZeroedQwordF4	u64	val v3	0xF8	8,4,4	006319D2 0063E46A 0063E47F
-open	PpfxInitDescriptor	0x0	8	qword000	u64	val v1	0x4	4	007003ED
-open	PpfxInitDescriptor	0x8	8	qword008	u64	val v1	0xC	4	00700402
-open	PpfxInitDescriptor	0x10	8	qword010	u64	val v1	0x14	4	00700361
-open	PpfxInitDescriptor	0x18	8	qword018	u64	val v1	0x1C	4	0070037E
-open	PpfxInitDescriptor	0x58	8	qword058	u64	val v1	0x5C	4	00700414
-open	PpfxInitDescriptor	0x100	8	qword100	u64	val v1	0x104	4	00700429
-open	WidgetSingleton02AED490	0xE6	4	dword00E6	uint32	val v9	0xE7,0xE8	1,1,1,1,1,1,2,2,4	0037E960 0037E9D9 0037F2F8 0037FCFE 0037FDE9 0037FE6D 0037E8F4 0037FDF7 0037FE74
-open	WidgetSingleton02CA99C0	0xD0	8	qword00D0	void*	val v1	0xD4	4	00582A6A
+adjudicated	WidgetSingleton02CA99C0	0xD0		qword00D0		PER-PATH UNION			

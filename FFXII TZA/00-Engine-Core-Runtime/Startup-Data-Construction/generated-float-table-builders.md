@@ -525,7 +525,7 @@ objects with no padding look like.
 | `02AE3330` | `004B0B70` | `0x130` | `0x2F0` | |
 | `02AE4160` | `0048CE70` | ~~`0x1F0`~~ | `0xDC0` | **sub-buffer at `+0xBC0`, corrected 2026-09-17 (FABLE); the object's written extent is `0xDC0`, exact** |
 | `02AE8620` | `004D3E20` | `0x80` | `0x190` | the ctor installs `004D40E0` as the object's member body (`lea rdx` → `008631E0` at [`004D3E2D`](../../_index/ADDRESS-INDEX.md)); `004D40E0` itself is 14,891 B — read 2026-09-17 (SWE2-FRONTIER): a `0022CC20`/`0022CC40`/`0022CC30` processor battery (×13/×5/×5) over `004DF360`/`005376D0` with `sqrtf` ×4 — first `0022CC20` call at [`004D4238`](../../_index/ADDRESS-INDEX.md), first `sqrtf` at `004D431F`; the same processor-trio profile as the `00478280` frame callback |
-| `02AE8900` | `004F4F80` | `0x2E0` | `0x530` | |
+| `02AE8900` | `004F4F80` | `0x2E0` | ~~`0x530`~~ `0x2E0` | **exact** against `02AE8BE0`, the next data pointer, which `0037E0F0+0x124` hands to `0047A800` below the band; `0x530` is the gap to the next in-band pointer `02AE8E30` *(corrected 2026-10-02, OPUS: not counted in the nine above)* |
 | `02AE8E30` | `004FD060` | `0x300` | `0x300` | **exact** |
 | `02AE9140` | `004DA460` | `0x150` | `0x150` | **exact** |
 | `02AEA270` | `004DC6B0` | `0x130` | `0x130` | **exact** |

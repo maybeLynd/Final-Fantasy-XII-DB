@@ -525,3 +525,12 @@ every listed body in `.text`, so the closure, caller counts and reference census
 
 Consumer record: [`_index/candidates/corridor-query-falsification-pass-1-0929/`](../_index/candidates/corridor-query-falsification-pass-1-0929/README.md).
 Contradiction: `CON-161`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-corridor-query-family-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0030BEB0` | 63 B | calls `0031B760` with the incoming arguments and returns 0 when the result is null, the `0x8` bit (bit 3) of its dword `+0` is clear, its qword `+0x698` is null or that object's byte `+5` is non-zero; otherwise returns 1 when bit 23 of the dword `+0` is clear and 0 when it is set | `0030BEB4`, `0030BEC3`, `0030BEC7`, `0030BED3`, `0030BEDB` |
+| `0033F7F0` | 58 B | tail-jumps `0026B4E0(rcx, 00264CE0(00263FF0(0), 003148B0()))` | `0033F7FF`, `0033F807`, `0033F811`, `0033F825` |

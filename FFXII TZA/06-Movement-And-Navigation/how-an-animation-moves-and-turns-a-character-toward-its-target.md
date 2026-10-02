@@ -92,11 +92,11 @@ calls `003AF220`; that runs `003AEF90` over the list and then **clamps the summe
 ([the heading page](heading-speed-to-position-delta.md) has the consumer: the step goes to the position, the pair to
 the facing and pitch). For each entry:
 
-- the frame counter `+4` goes up; past `duration` the entry is unlinked and freed (`003AF05A`..`003AF088`);
-- **while the counter is below `moveFrames`** and the move byte is set: `move += direction x speed[frame] x distance x
+- the frame counter `+4` goes up; past ~~`duration`~~ `duration × [01DFE0B4]` *(corrected 2026-10-02, OPUS: `003AF05A`–`003AF072` multiply by the frame-rate word before the compare; pass 1's A4)* the entry is unlinked and freed (`003AF05A`..`003AF088`);
+- **while the counter is below ~~`moveFrames`~~ `moveFrames × [01DFE0B4]`** and the move byte is set *(corrected 2026-10-02, OPUS: `003AF08A`–`003AF096`; `frame` below is counter / `[01DFE0B4]`, `003AF09E`–`003AF0A6`)*: `move += direction x speed[frame] x distance x
   scale x timebase` (`003AF08A`..`003AF0FB`) - so the curve is a *share of the distance to the target* per frame, and a
   lunge covers the same fraction of the gap whatever the gap is;
-- **while it is below `turnFrames`** and the turn byte is set: each of the two heading accumulators advances toward the
+- **while it is below ~~`turnFrames`~~ `turnFrames × [01DFE0B4]`** and the turn byte is set *(corrected 2026-10-02, OPUS: `003AF10F`–`003AF11D`; `frame` is counter / `[01DFE0B4]`, `003AF12D`–`003AF12F`; the first accumulator's per-frame cap is `turnRate[frame] x scale` without the timebase, `003AF170`–`003AF17A`, the second's has it, `003AF1C0`–`003AF1CA`)*: each of the two heading accumulators advances toward the
   request's absolute heading by at most `turnRate[frame] x scale x timebase`, signed by the request, and the increment
   is written to `turn` (`003AF10F`..`003AF1DA`) - the character closes the angle along the curve and stops when it is
   closed;
@@ -121,7 +121,7 @@ command sits in `attack`, `avoid`, `magic`, `ev_treasure` and `ability` blocks.
 - The target is whatever the **battle unit** reports when the command fires; a command with no target still turns
   nothing and moves nothing.
 - 128 requests exist for the whole scene; a 129th is dropped silently.
-- Two global switches and a per-list enable can stop all of it; they were not traced to their setters.
+- Two global switches and a per-list enable ~~can stop all of it~~ gate different stages — the first switch and the list refuse new requests, the second stops the step while requests still queue *(answered: see §2, corrected 2026-09-29, `CON-186`; 2026-10-02, OPUS)*; they were not traced to their setters.
 - Position changes here are part of combat spacing - two clients that play different animations diverge in position.
 
 ## Evidence

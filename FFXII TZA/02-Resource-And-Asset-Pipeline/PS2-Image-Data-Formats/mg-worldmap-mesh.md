@@ -172,3 +172,11 @@ SaveLoad.**
 *Added 2026-09-30 (SWE2-FRONTIER, executing SWE2-DATA's pass-22 debt). These are the layers pass 22 still reported for this page at HEAD `4dfe4a006`. Every edge was listed in full, and each cited helper was read at its instructions.*
 
 **UI — SERVICE and CLIENT (15 edges).** The mesh's requesters are UI bodies. `00561300` installs the license-board widget `00561390` (it passes `00561390` to `00244F50`), and `00558FB0` / `00560910` call it. `00561390` calls the list helpers `00291D70` / `00291D80` and the widgets `00558F20`, `0055A810` and `0055C690`. The world-map loader `00562F90` is called by `00550540`, and `00563110` by `00552250`. `003C9950`, `00561390` and `00562F90` claim slots through `00249210`, and `00558FB0`, `00561390` and `00562F90` request through `002493D0`, which calls `00249210` and the label create `0024A4E0`. The UI owns the screens; the mesh is the data they load.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-mg-worldmap-mesh-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003C9950` | 125 B | takes `s` from the resource-pool getter, calls `003697F0(qword +0xD0)` when that qword of `rcx` is non-null, calls `00249210(s, 7, byte +0xC1 + 0xE, 3, 0)` and the pool release on `s`, ORs 8 into dword `+0xC4` and stores qword `+8` of the `00249210` result at `+0xD0` | `003C9976`, `003C999B`, `003C99A6`, `003C99AF`, `003C99C0` |

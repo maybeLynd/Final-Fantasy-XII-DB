@@ -16,7 +16,7 @@ verified_against:
     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
   previous_parent: 381d2aea82b96d7af781844e191d9b92a37e93bd2d4ff276a33ba56e7307461b
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
-last_reviewed: 2026-09-02
+last_reviewed: 2026-09-02   # <- corrected 2026-10-02, OPUS: the last whole-page review, not the last change - the body carries dated edits through 2026-09-28
 audit:
   passes: 2
   last_pass: 2026-09-07
@@ -29,10 +29,10 @@ audit:
 
 # RNG streams
 
-> FFXII has **at least seven** distinct random sources. Conflating them is how you end up
+> FFXII has **at least ~~seven~~ eight** distinct random sources *(corrected 2026-10-02, OPUS: the eighth is the PPFX xorshift128 `0074BDE0`, checked at `0074BFE0`–`0074C0C4`, distinct from every other generator; §10, `CQ-6`)*. Conflating them is how you end up
 > networking render state or desyncing combat.
 >
-> **Corrected 2026-09-02 (section 8).** This line originally said "two". Six families are recorded
+> **Corrected 2026-09-02 (section ~~8~~ 8a *(corrected 2026-10-02, OPUS: renumbered, this document had two §8s)*).** This line originally said "two". Six families are recorded
 > in the GFZ and a seventh - the presentation recurrence below - is proven separately here.
 
 ## 1. What the player sees
@@ -42,10 +42,10 @@ slight per-client variation in environment orientation - comes from a completely
 Two players standing in the same weather can legitimately see slightly different visual variation
 while agreeing exactly on the gameplay outcome.
 
-> **Corrected 2026-09-02 (see section 8).** This paragraph originally included *"and AI choices"*
+> **Corrected 2026-09-02 (see section ~~8~~ 8a *(corrected 2026-10-02, OPUS: renumbered, this document had two §8s)*).** This paragraph originally included *"and AI choices"*
 > in the first stream. **That was wrong.** Enemy and gambit action selection is rolled from a
-> *third* stream - a separate LCG - not from the Mersenne Twister. And there are **six** RNG
-> families in the binary, not two.
+> *third* stream - a separate LCG - not from the Mersenne Twister. ~~And there are **six** RNG~~
+> ~~families in the binary, not two.~~ And there are at least eight generators in the binary, not two *(corrected 2026-10-02, OPUS: the GFZ's six families, the presentation PRNG of section 2 and the PPFX xorshift128 `0074BDE0`, checked at `0074BFE0`–`0074C0C4`, §10)*.
 
 ## 2. Native mechanism
 
@@ -55,7 +55,7 @@ The real Mersenne Twister. Used by weather transition rolls (`0025ACA0` scales a
 `0..99`), alternate-slot selection, and combat attack variance (`Random(1..1.125)`).
 
 **It is *an* authoritative gameplay stream, not *the* one.** The original wording here claimed
-exclusivity; section 8 documents a second gameplay-affecting stream (the shared LCG) that drives
+exclusivity; section ~~8~~ 8a *(corrected 2026-10-02, OPUS: renumbered, this document had two §8s)* documents a second gameplay-affecting stream (the shared LCG) that drives
 action selection.
 
 ### Gameplay: the shared LCG - `RNG_SharedGameplayLCG_NextU32` (`00328370`)
@@ -163,7 +163,7 @@ observable state-machine difference regardless of the starting state.
 > **The remaining eleven are left unanchored on purpose.** `BattleLocomotion_*`,
 > `BulletSequentialImpulseSolver_ResetRandomSeed`, `LuaMath_Random*`,
 > `RNG_D_Phyre_GenerateRandomFloat01`, `Renderer_CreateRandomNoiseTextureFromGraphicsMT19937` and the
-> rest were **not read by the session that added these anchors**, and an address supplied from a name
+> rest were ~~**not read by the session that added these anchors**~~ not read by that session, and three of the four families behind them have been read since *(answered: family 3's `rand` census, with `LuaMath_Random*` and `BattleLocomotion_*`, in §8g; family 4's builder `001946E0` in §8a's note of 2026-09-14; family 5's `RNG_D_Phyre_GenerateRandomFloat01`, `006B05E0`, in §12 (2026-09-19); only family 6, `BulletSequentialImpulseSolver_ResetRandomSeed`, stays unread; 2026-10-02, OPUS)*, and an address supplied from a name
 > lookup is a transcription, not a citation.
 >
 > **A bulk anchor would have cleared the checker and asserted eleven readings nobody had made.** The
@@ -269,7 +269,7 @@ presentation
 weather interpolation/history is **rejected** - a complete data-reference audit found only one
 downstream reader of the normalized vector, and no paired previous/current storage.
 
-## 8. Reopened 2026-09-02 - six families, and a correction
+## 8a. Reopened 2026-09-02 - six families, and a correction *(renumbered 2026-10-02, OPUS: this document had two §8s; §8 is the evidence table)*
 
 ### The correction
 
@@ -283,7 +283,7 @@ stream"*, and section 2 called MT19937 *"the authoritative gameplay stream"*.
 So AI action choice does **not** come from the Mersenne Twister, and MT19937 is not the sole
 gameplay authority. Both statements are struck in place above rather than deleted.
 
-### Six RNG families, not two
+### ~~Six RNG families, not two~~ Six families in the GFZ, at least eight generators in the image *(corrected 2026-10-02, OPUS: plus the presentation PRNG of section 2 and the xorshift128 `0074BDE0` of §10)*
 
 The GFZ records a proven partition, and this block confirms family 1 at tier 1 by reading it:
 
@@ -296,11 +296,11 @@ The GFZ records a proven partition, and this block confirms family 1 at tier 1 b
 | 5 | Phyre `PRandomGenerator` | counter/hash state @ `0x02E50260` | `RNG_D_Phyre_GenerateRandomFloat01` |
 | 6 | Bullet solver LCG | per-solver seed at `+0xC8`, reset to zero | `BulletSequentialImpulseSolver_ResetRandomSeed` |
 
-Families 3-6 are recorded from GFZ annotation and function naming (tier 3); families 1 and 2 are
+~~Families 3-6 are recorded from GFZ annotation and function naming (tier 3);~~ Family 6 alone is still recorded from GFZ annotation and function naming (tier 3) *(answered: families 3, 4 and 5 were read since — the `rand` census in §8g, the family-4 note below (2026-09-14) and §12 (2026-09-19); 2026-10-02, OPUS)*; families 1 and 2 are
 tier 1.
 
 > *Family 4 read 2026-09-14 (FABLE, `AD-3`): **it cannot reach gameplay state except as texels.*** Its 624-word state is the
-> block `01F7F600`, with index words `01F7FFC0` / `01F7FFC8`. A RIP-relative census of that block finds exactly two
+> block `01F7F600`, with ~~index words~~ a `u32*` cursor and a `u32` refill count *(corrected 2026-10-02, OPUS: `01F7FFC0` is walked as an 8-byte pointer at `00194855`–`00194862`, and the twist writes both cells at `0018EECD` / `0018EED8`)* `01F7FFC0` / `01F7FFC8`. A RIP-relative census of that block finds exactly two
 > functions. The seeder `GraphicsNoiseMT19937_SeedFromTimeAndClock` (`0015BCF0`) mixes two time/clock imports, seeds, and
 > twists; it has no direct caller and one pointer, in the CRT dynamic-initialiser table at `008C3200`, so it runs once at
 > static initialisation. The consumer is `Renderer_CreateRandomNoiseTextureFromGraphicsMT19937` (`001946E0`), whose draws
@@ -495,7 +495,7 @@ state - is flagged as **AD-6**.
 
 ## 8g. A third random source — and it is not peripheral (2026-09-02)
 
-This document describes **two** RNG streams. There is a **third**: the **CRT `rand()`**, imported
+~~This document describes **two** RNG streams. There is a **third**:~~ Beside the two gameplay streams there is the **CRT `rand()`** *(corrected 2026-10-02, OPUS: this document describes at least eight generators — the opening line; the CRT `rand()` is §8a's family 3)*, imported
 from `api-ms-win-crt-utility-l1-1-0.dll` through IAT slot `0x008C3098`.
 
 > **This section was first written the same day claiming `rand()` was used only by the sound
@@ -529,7 +529,7 @@ Counted by scanning `.text` for `FF 15` indirect calls resolving to the `rand` i
 | | Address | Callers |
 |---|---|---|
 | **imported** `rand` | IAT `0x008C3098` → `api-ms-win-crt-utility-l1-1-0.dll` | **48 sites / 30 functions** |
-| **statically linked** `rand` | `0x00861F38` | 1 site, from `00149610` |
+| ~~**statically linked** `rand`~~ an import thunk, `jmp qword ptr [008C3098]` — the same imported `rand` and per-thread state *(corrected 2026-10-02, OPUS: checked at `00861F38`)* | `0x00861F38` | 1 site, from `00149610` |
 
 A census that counts only direct `E8` calls to `0x00861F38` finds **one** caller and misses all 48.
 That is how this was nearly missed twice.
@@ -537,7 +537,7 @@ That is how this was nearly missed twice.
 ### What it means for determinism
 
 `rand()` carries **no seed in the save image** and is not part of the transition record, so unlike
-the counter-seeded shared LCG it is **not reproducible across runs** from saved state. In the UCRT
+the counter-seeded shared LCG it is **~~not reproducible across runs~~** irreproducible from saved state on the one thread that seeds it, or after a script `math.randomseed` *(corrected 2026-10-02, OPUS: `srand` (IAT `008C30A0`) has two callers — `007A540B`, at the entry of the thread function `007A5400` (installed at `02EACF78` beside `_beginthreadex` at `007A5232`), seeding from QueryPerformanceCounter microseconds through `007AD680`, and Lua's `math.randomseed` `008193E0`; any other thread's `rand` is never `srand`-ed outside Lua)*. In the UCRT
 its state is **per-thread**; whether the audio, movement and combat consumers here share a thread is
 **not established**, so no claim is made about whether a sound draw perturbs a locomotion draw.
 
@@ -546,7 +546,7 @@ reaction enqueue, and all script `math.random` — will **diverge between client
 synchronised by sharing a gameplay seed. That is a materially different exposure from the LCG and
 MT19937 paths.
 
-## 9. Related
+## 8h. Related *(renumbered 2026-10-02, OPUS: this document had two §9s; §9 is the falsification pass of 2026-09-07)*
 
 - [`../03-World-Area-Field/Weather/weather-probability-and-transition-roll.md`](../03-World-Area-Field/Weather/weather-probability-and-transition-roll.md)
 
@@ -653,8 +653,8 @@ result was believed.
 | MT19937 twist | `0x9908B0DF` | **2** | 6 | **no** |
 | MT19937 seed | `0x6C078965` | 3 | 6 | no |
 
-> **MT19937 is not inlined and the shared LCG is.** So `RNG_MT19937_NextU32` *is* a real intercept
-> point — hooking it catches every gameplay Mersenne draw — while hooking
+> **MT19937 is not inlined and the shared LCG is.** So `RNG_MT19937_NextU32` *is* ~~a real intercept~~
+> ~~point — hooking it catches every gameplay Mersenne draw~~ an intercept point for the integer draws only — the float draw `00863C80` repeats its body on the same cursor and never calls it, so hooking it misses camera shake *(corrected 2026-10-02, OPUS: checked at `00863C80`–`00863D2C`, which reads and writes `02EB4230` itself and calls `00866B90` / `00866D60` directly; CONTRACT-gameplay-generators.md §2)* — while hooking
 > `RNG_SharedGameplayLCG_NextU32` catches one draw in eight. **Two streams in one engine with
 > opposite hookability, and nothing in either name tells you which.**
 
@@ -716,8 +716,8 @@ inputs — zero mismatches**, plus the edge cases `0`, `1`, `0xFFFFFFFF`, `0x800
 
 The presentation bit-feedback PRNG. Its recurrence masks `0x1FC00000` and `0x003FFFFF` are **not
 discriminating** — they return **39 functions and 1,076 sites**, which is a common bit pattern rather
-than a signature. **That census is reported as an instrument failure, not a result**; the question of
-whether the presentation stream is inlined remains open as `CQ-5`.
+than a signature. **That census is reported as an instrument failure, not a result**; ~~the question of~~
+~~whether the presentation stream is inlined remains open as `CQ-5`.~~ *(answered: it is — seven more functions step the same recurrence inline, §4's census `UQ-276` (2026-09-26) and `procedural-stream-consumers.tsv`, ten functions touching `01EF93E8`, the count `refs 01EF93E8` also gives; 2026-10-02, OPUS)*
 
 ### ✅ The third seed site is not a Mersenne Twister (`CQ-6`, answered 2026-09-13, FABLE)
 
@@ -809,10 +809,10 @@ agrees with the original.
 
 **Two instances, separate state.** The gameplay stream's vector is static at `02EB3870`; the
 graphics-noise stream's is **caller-supplied** — `0018D740` takes it in `rcx` and runs the identical
-loop, with `0018D761 lea rdx,[rcx+0x9BC]` reaching `mt[623]`. Same type, two storage classes. A
+loop, with `0018D761 lea rdx,[rcx+0x9BC]` reaching `mt[623]`. ~~Same type, two storage classes.~~ The same 624-word array but not the same type: the graphics instance keeps a `u32*` cursor at `+0x9C0` and a `u32` refill count at `+0x9C8`, where `Mt19937State` (`0x9C4`) keeps a `u32` index *(corrected 2026-10-02, OPUS: the twist sets both cells at `0018EECD` and `0018EED8`, the walk is `00194831`–`00194862`; CONTRACT-which-generator-serves-which-roll.md I5)*. A
 noise texture and a damage roll cannot influence each other.
 
-**The SIMD branch is not a behavioural one.** Both twist functions test the dword at `01F44858`
+**The SIMD branch is not a behavioural one.** ~~Both twist functions test~~ The gameplay twist `00866B90` and the graphics seed `0018D740` test *(corrected 2026-10-02, OPUS: the tests are at `00866B96` and `0018D746`; the graphics twist `0018EE20`–`0018EEDF` has no rip-relative operand and no `01F44858` test)* the dword at `01F44858`
 against 2 and take a vectorised path when it is at least that, a scalar path otherwise. Both compute
 the same recurrence, so it is a CPU-feature switch — but a reimplementation that reproduces only one
 path still has to match the *other* path's results, not merely its own.
@@ -847,9 +847,9 @@ reading it — that is the reset.
 | | shared LCG | gameplay MT19937 |
 |---|---|---|
 | state | one word at `022C256C` | `0x9C4` at `02EB3870` |
-| inlined? | **yes**, 8 functions / 24 sites | **no** |
-| single point to reimplement? | **no** — every consumer carries its own copy of the three-step draw | **yes** |
-| single point to hook? | no — hooking the one out-of-line copy catches one draw in eight | yes |
+| inlined? | **yes**, 8 functions / 24 sites | ~~**no**~~ once — `00863C80` duplicates the draw on the same cursor *(corrected 2026-10-02, OPUS: checked at `00863C80`–`00863D2C`)* |
+| single point to reimplement? | ~~**no** — every consumer carries its own copy of the three-step draw~~ **yes, behaviourally** — every inline copy is `00328370`'s three steps and assembly followed by `% 100` *(corrected 2026-10-02, OPUS: `00317ED0`, `003185D0` and `00319530` decoded identical to `00328370` plus `% 100`; the copies still have to be hooked one by one)* | ~~**yes**~~ **no** — two draw entries on one cursor, `00863BF0` and `00863C80` *(corrected 2026-10-02, OPUS: checked at `00863C80`–`00863D2C`)* |
+| single point to hook? | no — hooking the one out-of-line copy catches one draw in eight | ~~yes~~ no — `00863BF0` misses the float draw `00863C80`, camera shake *(corrected 2026-10-02, OPUS: checked at `00863C80`–`00863D2C`)* |
 
 **Nothing in either stream's name tells you which it is**, and the difference decides whether a
 reimplementation can swap one function or must touch every consumer.
@@ -859,7 +859,7 @@ reimplementation can swap one function or must touch every consumer.
 - **Static only.** No runtime observation confirms a live state vector or a draw sequence, and none
   of the per-consumer bit extractions has been compared against the original's output.
 - **`Mt19937State.index` is proven for the gameplay instance.** The graphics-noise seed returns
-  without writing a cursor, so who initialises that instance's index is **not** established.
+  without writing a cursor, ~~so who initialises that instance's index is **not** established~~ and its caller then tail-jumps into the twist, which writes both index cells *(answered: `0018EE20` sets `+0x9C8` = 624 at `0018EECD` and `+0x9C0` = the array at `0018EED8`, and the seeder `0015BCF0` jumps there at `0015BD2B`; CONTRACT-which-generator-serves-which-roll.md I5; 2026-10-02, OPUS)*.
 - Which stream each *individual* roll uses is §9 and §10's census, not re-derived here.
 - The three-step count is proven for the eight sites named above. It is not a claim about every
   consumer of the stream.
@@ -873,21 +873,21 @@ c = ++[02E50260]
 x = (c ^ 0x00BC602F) * 0x9E3779B9
 y = ((x << 6) ^ (x >> 26) ^ x) * 0x9E3779B9
 r = ((y << 5) ^ (y >> 12)) + y
-result = (float) r * 2^-32            in [0, 1)
+result = (float) r * 2^-32            in [0, 1)   <- corrected 2026-10-02, OPUS: in [0, 1] - cvtsi2ss of the zero-extended u32 rounds any r >= 0xFFFFFF80 to 2^32, so the mulss by 0x2F800000 (2^-32) returns exactly 1.0 (006B061E-006B0623)
 ```
 
 A rip-relative sweep of `02E50260` finds this body as the state's **only reader and only writer**, and the state is
 zero-initialised. **So nothing seeds it: the k-th call returns the same float in every run of the game.** Any
 divergence between two machines in this stream is a difference in *how many times* it was called, never in a seed.
-The body has no call or jump site in `.text`; it is reached through a pointer, and who holds that pointer was not
-established.
+The body has no call or jump site in `.text`; it is reached through a pointer, ~~and who holds that pointer was not~~
+~~established~~ *(answered: `006B04B0` stores `006B05E0` at `02E502A8` (two stores in its body), in a static object at `02E502A0` with `00D34C08` at `+0` and `02E50298` → `02E502A0`; `006B04B0` is reached from `006B0300` (`jmp`) and `005A08E0`; 2026-10-02, OPUS)*.
 
 **Stream 4's seed mixer - `0018D680` (179 B).** It folds the eight bytes of its first argument and the four bytes
 of its second with fixed multipliers - chains of `x 0x101` and the constants `0x23150701`, `0x140F0601`, `0x0A0A0501`,
 `0x04060401` - then adds a **call counter** kept at `01F7FFD0` to the first fold, xors in the second, and increments
 the counter: two seedings inside the same clock tick still produce different seeds. Its one caller is the
-time-and-clock seeder of the graphics-noise twister. *Which bytes of the two arguments are the time and which the
-clock was not traced.*
+time-and-clock seeder of the graphics-noise twister. *~~Which bytes of the two arguments are the time and which the~~
+~~clock was not traced.~~* *(answered: the first argument is the time and the second the clock — `0015BCF6`–`0015BD0C` pass `rcx = _time64(NULL)` (IAT `008C3060`) and `edx = clock()` (IAT `008C3068`); 2026-10-02, OPUS)*
 
 | body | anchors |
 |---|---|
@@ -923,7 +923,7 @@ small call beside the discarded Mersenne draw, not a shared responsibility.
 
 ## SWE2-EC7-36 update (2026-09-19) - `0062BCB0`
 
-`0062BCB0` (647 B) is an RNG stream body - `01F7F590`/`01F7F5B8` state, `0062EC70`/`0062B870`/`0062B100`/`00584730`. Interior anchor `0062BCBE` (an `0062EC70` call).
+`0062BCB0` (647 B) is ~~an RNG stream body - `01F7F590`/`01F7F5B8` state~~ a renderer helper, not a generator: it walks a `0x58`-stride element array off `[rbx+0x38]` and calls `0062EC70`, with no generator constant or recurrence; `01F7F590` is a `u32` read by nine functions and `01F7F5B8` a pointer set by `005A08E0` *(corrected 2026-10-02, OPUS: checked at `0062BCB0`, 34 call sites in 22 functions; §8a's family-4 note lists it among the renderer's receivers)* - `0062EC70`/`0062B870`/`0062B100`/`00584730`. Interior anchor `0062BCBE` (an `0062EC70` call).
 
 ## SWE2-EC7-44 update (2026-09-19) - `0018D740`
 
@@ -931,5 +931,5 @@ small call beside the discarded Mersenne draw, not a shared responsibility.
 
 ## SWE2-EC7-56 update (2026-09-19) - `0062EC70`
 
-`0062EC70` (204 B) is an RNG stream body - `0016D6D0`/`0016DA60` plus one vcall. Interior anchor `0062ED08` (a `0016D6D0` call).
+`0062EC70` (204 B) is ~~an RNG stream body~~ an ordered-tree lookup, not a generator — `0x38`-stride buckets, `cmp [rax+0x20], rdx`, left/right descent *(corrected 2026-10-02, OPUS: checked at `0062EC70`; no generator constant or recurrence)* - `0016D6D0`/`0016DA60` plus one vcall. Interior anchor `0062ED08` (a `0016D6D0` call).
 

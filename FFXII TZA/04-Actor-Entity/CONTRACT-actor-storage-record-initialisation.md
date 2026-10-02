@@ -87,9 +87,9 @@ separately allocated — and ~~the first field written is~~ the routine writes `
 where it lives without the table, which is what lets it be passed around alone.*
 
 **AR-5 — `+0x11C` is a LOWER BOUND, and six spans inside it are unrecovered rather than absent.**
-The extent is where the highest field this routine touches ends; **no allocation site was read**.
-Six spans — including 88 bytes at `+0x60`–`+0xB8` and 44 at `+0xC0`–`+0xEC` — are ~~simply not
-touched by the initialiser~~ **not touched by `00266530`'s own stores**. *Corrected 2026-09-25 (FABLE, Claude Opus 5.5), on
+The extent is where the highest field this routine touches ends; ~~**no allocation site was read**~~ *(answered: see the record's true size, CLOSED 2026-09-23, §14; 2026-10-02, OPUS)*.
+Six spans — including 88 bytes at `+0x60`–`+0xB8` and 44 at `+0xC0`–`+0xEC` — are ~~simply not~~
+~~touched by the initialiser~~ ~~**not touched by `00266530`'s own stores**~~ not touched by `00266530`'s own stores, except `+0xC8`–`+0xEB`, which it fills with `0xFFFF` *(corrected 2026-10-02, OPUS: `0026689A`–`002668B0` `rep stosw` with `rdi = rbx + 0xC8`, `ecx = 0x12`)*. *Corrected 2026-09-25 (FABLE, Claude Opus 5.5), on
 OPUS block 296:* its callees write into them.
 - **`003DB580`**, called with the record at `002667D7`, writes byte `+0x88` (`003DB594`), dword `+0x24` (`003DB59B`),
   byte `+0x89` (`003DB59E`) and word `+0x60` = `0xFF00` (`003DB62F`). EXP-112 executed that callee and observed
@@ -161,7 +161,7 @@ so a CONTRACT READY header is not read as evidence of execution.*
 - [x] ~~The record's true size~~ — **CLOSED 2026-09-23 (SWE2-CONTRACT): per-class authored
       strides — matching the page's EH-2 answer (720–1,760 bytes by kind) and adding the
       descriptor address.** The sole caller `002679F0` walks a static descriptor table at
-      `0x1E0C328` — 4-byte entries `{u8 classByte, u8 pad, u16 stride}` — and carves each
+      `0x1E0C328` — 4-byte entries `{u8 classByte, ~~u8 pad~~ u8 subFlag, u16 stride}` *(corrected 2026-10-02, OPUS: `00266B83` reads `+1`: 1 selects the `0xA0` resource step, set on rows 2, 4 and 7)* — and carves each
       group's records at `align16(stride)` in one zeroed pool. Decoded table (raw stride →
       aligned):
 
@@ -207,7 +207,7 @@ port closes prematurely** — treating `0x11C` as the size.
   `LD-2` is cited **by contract and not by address** for what it measured about
   `Actor_GetWorldPosition`'s own two reads — that body is a 79-caller hub and citing it here would
   import its whole client set for a fact this document only borrows. **This contract does not claim
-  the two types are one**, which is precisely §14's point.
+  the two types are one**, which is precisely §14's point *(answered: §14's `EH-1` item is CLOSED 2026-09-23 — the owning page resolved it PROVEN; 2026-10-02, OPUS)*.
 - **Every other layer reached is MECHANICAL**, through this body's own callees. *Only the
   initialiser is cited by address. Note the page's own warning: this function holds the image base in
   a register and addresses globals through it, a form RIP-relative datasets cannot see — so any
@@ -238,7 +238,7 @@ port closes prematurely** — treating `0x11C` as the size.
 | S1 | AR-1 | **survives**: `002679F0` calls `memset` before its first call to `00266530` |
 | S2 | AR-3 | **survives**: `+0x03` is read three times through `rbx` and never written |
 | S3 | AR-4 "the first field written is `+0x00`" | **REFUTED**: the index store is at `002665EB`, after six record stores (`+0x14` first) and two calls. `CON-168` |
-| S4 | AR-5 | **survives**: the body's own stores end at `0x11C` and touch neither `+0x60`-`+0xB7` nor `+0xC0`-`+0xEB`; `003DB580` writes `+0x24`, `+0x60`, `+0x88` and `+0x89` |
+| S4 | AR-5 | ~~**survives**~~ **refuted in part**: the body's own stores end at `0x11C` and touch ~~neither `+0x60`-`+0xB7` nor `+0xC0`-`+0xEB`~~ no byte of `+0x60`-`+0xB7`, but do fill `+0xC8`-`+0xEB` *(corrected 2026-10-02, OPUS: `002668B0` `rep stosw`, eighteen words of `0xFFFF`)*; `003DB580` writes `+0x24`, `+0x60`, `+0x88` and `+0x89` |
 
 Consumer record: [`_index/candidates/actor-storage-init-falsification-pass-1-0929/`](../_index/candidates/actor-storage-init-falsification-pass-1-0929/README.md).
 

@@ -41,7 +41,7 @@ extensions the package belongs to.
 > A directory entry is **`{u32 offset, u32 size}`**, eight bytes, so the "odd slot" of every pair
 > is the size of the even one, and this section's headline, its medians and the aliasing story
 > below all read sizes as offsets. The engine loads `0x88` / `0x208` bytes as the directory and
-> indexes pairs by slot (`0032F320` / `0032F360`);
+> indexes pairs by slot (~~`0032F320` / `0032F360`~~ seven readers *(corrected 2026-10-02, OPUS: two readers read the `.mot` table and `0032F2C0` / `0032F2F0` / `0032F3A0` the `.snd` one; `0032F320` / `0032F360` read only the two 64-slot tables, picked by `r8d`)*);
 > [the container sheet](Container/pkfl-package-container.md) §2, §5 and §8 carry the correction and
 > the re-measured invariants. Kept as history.
 
@@ -89,14 +89,14 @@ open questions are settled. **The denominator was inferred from medians that wer
 artefacts** — the census's one job was to fix a population *before* anyone wrote against it, and it
 came within one careful re-parse of fixing the wrong one.
 
-Two further corrections from the same re-parse: **offsets are not ascending in slot order** (unlike
-EBP), and **the first payload is not at the directory end** — in 2,268 files the smallest offset is
-`0x40`, *before* the 16-slot directory ends at `0x48`.
+Two further corrections from the same re-parse: ~~**offsets are not ascending in slot order** (unlike~~
+~~EBP),~~ and **the first payload is not at the directory end** ~~— in 2,268 files the smallest offset is~~
+~~`0x40`, *before* the 16-slot directory ends at `0x48`.~~ *(corrected 2026-10-02, OPUS: under the pair reading offsets ascend in slot order in all 10,287 non-empty packages and the first payload is at `0x800` in every one, 1,912 or 1,528 bytes past the directory; re-parsed from `FFXII_TZA.vbf`)*
 
 ### The directory IS sparse — correcting this script's first answer
 
-**36 of the 64 declared slots are never used in any of the 3,618 64-slot files.** Nothing above
-index 27 is ever occupied.
+**~~36~~ 50 of the 64 declared slots are never used in any of the 3,618 64-slot files.** Nothing above
+index ~~27~~ 13 is ever occupied *(corrected 2026-10-02, OPUS: under the pair reading the 64-slot packages use slots 0-13; the container sheet's 2026-09-18 closure)*.
 
 > **The census script's first run announced the opposite** — *"0 never present, a DENSE directory,
 > absence carries no information."* That conclusion was **produced by construction**: it ranged only
@@ -110,11 +110,11 @@ So PKFL is bounded the same way EBP is: **the always-zero slots are how the popu
 
 ### Pair index carries meaning — it is not a list position
 
-**2,952 files do not fill their pairs contiguously from 0.** If the directory were a simple list of
+**~~2,952~~ 4,761 files do not fill their pairs contiguously from 0.** *(corrected 2026-10-02, OPUS: 2,952 is the four-byte reading's count; re-parsed under the `{offset, size}` reading from `FFXII_TZA.vbf`, all 10,314 packages)* If the directory were a simple list of
 N tracks, every file would occupy pairs 0..k-1. Nearly a third skip. **So a pair index is a typed
 slot, not a sequence number** — which is what makes 14 a population rather than a maximum.
 
-Pairs per file range 0–14; 4,212 files carry exactly one pair, 2,331 carry eight, and **27 files
+Pairs per file range ~~0–14~~ 0–15; 4,212 files carry exactly one pair, ~~2,331~~ 558 carry eight *(corrected 2026-10-02, OPUS: re-parsed under the `{offset, size}` reading from `FFXII_TZA.vbf`, all 10,314 packages; 0-14 and 2,331 are the four-byte reading's)*, and **27 files
 carry none at all** — a PKFL container with an empty directory.
 
 ## What the sample said before the census (superseded)

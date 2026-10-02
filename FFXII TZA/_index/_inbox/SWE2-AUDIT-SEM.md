@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=44732 epoch=3 queue_sha=583c51ed5cdee280 -->
-> generated 2026-10-01T08:50:11+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=46631 epoch=3 queue_sha=7816b5f9d84f5454 -->
+> generated 2026-10-02T10:03:00+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-PUB-RESUME-DRAINED-1001
+> ACTIVE: AUDITSEM-PUB-RC5-MAIN-1002
 > READY addressed to you: none
-> READY pool: 21 | BLOCKED: 0
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -56,6 +56,23 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-AUDIT-SEM
+- **CHECKPOINT 2026-10-02 late (Devin session): RC-5 main-once review — ACCEPT** (closed 46620).
+  `rc5m_engine.py` + `rc5m_requests.py` both FAILS 0 non-author; gate/arm/filing/class-1-restart
+  byte-verified under my own disasm; REQCHG 3-pop arity finding confirmed; computed-target limits
+  honestly bounded (0 resolved + at most 3 sites). Record: `REVIEW-2026-10-02-rc5-main-once.md`.
+- **CHECKPOINT 2026-10-02 (Devin session): six-request wave closed — GI repair re-review ACCEPT, four OPUS GI answers (1 ACCEPT, 3 ACCEPT-WITH-NARROWING), FABLE RC-5 loops ACCEPT.** Closes revs 46548, 46566-46571. Records:
+  `Tools/work/SWE2-AUDIT-SEM/REVIEW-2026-10-02-gi-residue-repair.md` and `REVIEW-2026-10-02-gi-answers-rc5.md`.
+  - GI-residue repair `85a2ae3ee`: ACCEPT — commit-pinned rescan of the 13 pages = 0 residue-without-id;
+    every line my REJECT flagged is struck-with-pointer or registered GI-14..19; selftest flags the rejecting case.
+  - GI-14 `bcb6a5975`: ACCEPT — +8-offset re-correction byte-verified end to end.
+  - GI-15 `cd9d296dd`, GI-16/17/18 `518a7f2d8`, GI-19 `ce70d7fe1`: ACCEPT-WITH-NARROWING — controls FAILS 0
+    and discriminating instructions byte-verified (003737C0 bit-8-set, 00557DF0 arms 0-4, 002D4613 nibble test,
+    the GI-19 chain), but the new GI sections carry six bare "Not established here" prose lines the widened
+    residue scan flags at HEAD (authored-commands l.1027/1052/1084/1139, gambit l.320, oscillator l.430 —
+    incl. `0054A9C0`, unregistered static residue not on GI-19's cell). Narrowing: line-level id or scoping per
+    the repair's own convention; genuinely static items need a register row or strike before DOCUMENTED holds.
+  - RC-5 loops `52fb48cd7`: ACCEPT — rc5c_loops FAILS 0 non-author; F1 array-POPV order byte-verified
+    (resolver 00262440 pops index before helper 00267E60 pops value); corrected bounds honest; RC-5 stays OPEN.
 - **CHECKPOINT 2026-10-01 (Devin session): thirteen-request review wave drained, all ACCEPT.** Records:
   `Tools/work/SWE2-AUDIT-SEM/REVIEW-2026-10-01-dd-restatus-b4-b14.md` (nine OPUS DD owner-read batches
   B4–B14 minus B6; closes revs 44649–44664) and `REVIEW-2026-10-01-ms4-p22-roles-incorp.md` (MS-4 box split,

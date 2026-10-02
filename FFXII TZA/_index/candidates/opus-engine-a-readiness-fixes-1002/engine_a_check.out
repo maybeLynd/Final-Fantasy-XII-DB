@@ -1,0 +1,5 @@
+ok   0016D6A0 ret 0
+ok   0022A2A3 mov qword ptr [rip + 0x1daa7e6], rax
+ok   00313853 je 0x31386a
+ok   00322EE5 mov rax, qword ptr [rip + 0x2b9c174]
+FAILS 0

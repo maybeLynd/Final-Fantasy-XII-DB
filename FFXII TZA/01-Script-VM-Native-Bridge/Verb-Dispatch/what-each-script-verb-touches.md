@@ -47,15 +47,15 @@ ownership to nothing and does not read handler bodies; what a verb *does* is lef
   (§2; 1,857 of 1,888 at the page's snapshot, 1,890 of 1,922 at the current one).
 - Filtering callees by in-degree lifts agreement with the control from 65 % to 71 % (§2).
 - `shape` means "has a `begin`", so 77 verbs labelled durative finish in one call (CY-4).
-- The depth-1 table is reproducible in method and stale in detail: five of its fourteen rows drift at the current
+- The depth-1 table is reproducible in method and stale in detail: five of its fourteen rows drift at the current *(answered: RC-21, 2026-09-30 — the rows do not drift with the snapshot; the generator breaks ties in hash-seed order; 2026-10-02, OPUS)*
   snapshot (§8) — RC-21.
 
 > A zone script calls verbs by name — `setpos`, `bgmstreamplay`, `movesync`. **This is the map from
 > those names to the part of the engine each one actually drives**, built from the call graph rather
 > than from the name.
 >
-> **It covers 616 of the 1,960 verbs, and it is a lead, not a verdict.** `status: PARTIAL` is the
-> honest state.
+> **It covers 616 of the 1,960 verbs, and it is a lead, not a verdict.** ~~`status: PARTIAL` is the~~ *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, every register row closed 2026-09-30)*
+> ~~honest state.~~
 
 ## 1. What the player sees
 
@@ -242,7 +242,7 @@ four ways** — see the refinement in
 - [x] **UQ-56.** **Whether a depth-2 hop through a *low* in-degree callee is trustworthy**, which would extend *(closed — the register row is WITHDRAWN.)* *(Register wording since: SUPERSEDED as a duplicate; pointer 2026-09-30, SWE2-CONTRACT.)*
   the map without importing the shared-helper noise that plain depth 2 does. `CY-2`.
 - [x] **UQ-57.** The handler bodies themselves. **Not one is read here** — this document is built entirely from *(closed — the register row is WITHDRAWN.)* *(Register wording since: SUPERSEDED as a duplicate; pointer 2026-09-30, SWE2-CONTRACT.)*
-  the call graph and owner tags, which is why its tier is 3 and its status `PARTIAL`. `CY-3`.
+  the call graph and owner tags, which is why its tier is 3 ~~and its status `PARTIAL`~~ *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`)*. `CY-3`.
 - [x] ~~Whether any verb's reach contradicts the arity or shape already recorded in
   `scriptvm-verb-table.tsv`.~~ **`CY-4` ANSWERED 2026-09-08 — no contradiction, and the join found
   something better:** `shape` means *"has a `begin`"*, so **77 verbs labelled `durative` have no
@@ -256,7 +256,7 @@ four ways** — see the refinement in
 | Handler owner tags are uninformative | 1,857 of 1,888 rows read `Script_VM_Native_Bridge` | 1 |
 | 616 verbs reach a named subsystem at depth 1 | census over the pack-time call graph and owner tags | 3 |
 | The depth-1 distribution | same census | 3 |
-| `Save_Load_Settings` appears only at depth ≥ 2 | the three-depth comparison | 3 |
+| `Save_Load_Settings` appears ~~only at depth ≥ 2~~ at depth 1 once and rises from depth 2 *(corrected 2026-10-02, OPUS: §2's corrected depth table: from 1 at depth 1)* | the three-depth comparison | 3 |
 | In-degree filtering lifts agreement 65 % → 71 % | the control re-run at five caps | 3 |
 | `fadein` is mislabelled via a 21-byte accessor | its callee list, and `001D6C20`'s size and tag | 1 |
 | **Any individual row** | **a lead from the call graph — no handler body was read** | 3 |
@@ -266,7 +266,7 @@ four ways** — see the refinement in
 | claim | evidence | tier |
 |---|---|---|
 | The method reproduces exactly (1,960 rows; 616 / 851 / 944 at depths 1–3) | falsification pass 1's independent implementation | 3 |
-| Five of fourteen depth-1 rows drift at the current snapshot | falsification pass 1, the owner-tag control drifting the same way | 3 |
+| Five of fourteen depth-1 rows drift at the current snapshot *(answered: RC-21 — they do not; a hash-seed draw of the same census; 2026-10-02, OPUS)* | falsification pass 1, the owner-tag control drifting the same way | 3 |
 | `fadein` reaches resource loading (§1's example) | its row in [`scriptvm-verb-reach.tsv`](scriptvm-verb-reach.tsv) (`Resource:1`); through the 21-byte `001D6C20` (§2's worked case) | 1 |
 | §1's other two examples, `musicfadeout` (audio) and `getpos` (reads only the actor) | **not anchored by this census:** both rows are blank at depth 1 in the TSV (checked 2026-09-30; `getpos_12a` reaches `ActorEntity:1`). They rest on the handler names and are not re-derived here | 3 (names only) |
 

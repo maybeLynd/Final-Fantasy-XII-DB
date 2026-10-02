@@ -28,7 +28,7 @@ audit:
 # Contract — combo continuation
 
 > **Authored 2026-09-22 by FABLE.** S-20's binding gap is *"2 contracts over 4 pages"*. This takes
-> **combos**; the native command seam and the handler table remain uncontracted and this document
+> **combos**; the native command seam and the handler table ~~remain uncontracted~~ *(answered: contracted since, CONTRACT-native-command-seam.md and CONTRACT-battle-action-handler-table.md; 2026-10-02, OPUS)* and this document
 > does not claim them.
 >
 > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
@@ -58,7 +58,7 @@ BattleUnit
   +0x710  u32   the target focus         > re-used verbatim by the continue path
   +0x714  u16   the action id           /
 
-per-kind record   0208D480 + kind * 0x40
+per-kind record   0208D480 + kind * 0x40   # <- corrected 2026-10-02, OPUS - the index is the stats record's byte +4 (003886A7), and only for a kind-0 stats record (0038869F-003886A5); otherwise 0208DE80 + unit[+0xEA9]*0x40 (003886CF-003886E1)
   +0x12  u8   high nibble = the memoised combo count (CB-3)
 ```
 
@@ -96,7 +96,7 @@ on `OPUS-NOTE-FABLE-S20-CB2-FAILED-RECOMMIT`; bytes re-read)*:
 *A combo is not a special action — it is the same action committed again.*
 
 **CB-3 — The roll happens ONCE PER COMBO, on the first hit, and the first hit draws the generator
-TWICE.** `00388660` reads the counter off the owning unit (`0038868A`) and branches on it at
+~~TWICE.~~ once or twelve times.** *(corrected 2026-10-02, OPUS: one draw at `003886FD`; a failed gate `0038871D jbe 0038887E` stops there, a passed one runs the 11-pass loop `003887DA`–`00388807` around `003887E3`)* `00388660` reads the counter off the owning unit (`0038868A`) and branches on it at
 `003886F5`/`003886F7`: **non-zero jumps straight past every draw**. On the zero path it calls the
 MT19937 thunk at `003886FD` **and again at `003887E3`** — ~~two draws~~ two call **sites** — and stores the result in the
 **high nibble of `record + 0x12`** (`0038885D and …, 0xf` then `00388865 or …, r14b`).
@@ -119,7 +119,7 @@ another hit is requested. *So the number of hits is fixed at the first swing and
 mid-combo, however the unit's stats move.*
 
 **CB-5 — Two objects, one offset apart in the reader's mind.** In `00388660`, `rdi` is the **64-byte
-per-kind record** at `0208D480 + kind * 0x40` *(for a party record only; a foe's record is
+per-kind record** at ~~`0208D480 + kind * 0x40`~~ `0208D480 + stats[+4] × 0x40` *(corrected 2026-10-02, OPUS: the index is `003886A7 movzx edi, byte ptr [rsi + 4]`, not the kind byte `+5`, which only selects the table at `0038869F`–`003886A5`)* *(for a party record only; a foe's record is
 `0208DE80 + unit[+0xEA9] × 0x40`, `003886CF`–`003886E1`, a second table — *(2026-09-25, FABLE, Claude Opus 5.5, on [OPUS block 346](../_index/candidates/s20-opus-replay-combo-roll/README.md), which executed it against an independent model, 4/4; `003886C3`–`00388869` re-read.)*)* and `rax` is the **BattleUnit** returned by
 `BattleStats_FindOwningBattleUnit`. *The memoised nibble lives on the record and the progress counter
 on the unit* — they are different objects with different lifetimes, and reading `+0x12` and `+0x6B7`
@@ -140,22 +140,22 @@ record's `+0x12` nibble. **Read and re-used verbatim:** the committed context, f
 |---|---|
 | **Sibling** | [`CONTRACT-commit-action.md`](CONTRACT-commit-action.md) — the commit CB-2 calls again |
 | **Sibling** | [`CONTRACT-battle-target-buffer.md`](CONTRACT-battle-target-buffer.md) |
-| **Uncontracted** | the native command seam and the handler table — S-20's other two pages, not claimed here |
+| **~~Uncontracted~~ Sibling** | the native command seam and the handler table — S-20's other two pages, not claimed here *(answered: see CONTRACT-native-command-seam.md and CONTRACT-battle-action-handler-table.md; 2026-10-02, OPUS)* |
 | **Shares the generator** | [the periodic tick](../10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md) and [the trigger points](../03-World-Area-Field/CONTRACT-authored-trigger-points.md), which draw the same `00379CD0` |
 
 ## 7. State transitions
 
-*first hit → roll twice → memoise the count → counter 0.* Then per continuation: *check progress
+*first hit → roll ~~twice~~ once, or twelve times when the percent gate passes → memoise the count → counter 0.* *(corrected 2026-10-02, OPUS: `003886FD`, `0038871D`, `003887DA`–`00388807`)* Then per continuation: *check progress
 against the nibble → re-commit the same action → on success, counter + 1.* The reset clears both
 bytes together (CB-1).
 
 ## 8. Script · resource · event interactions
 
-The per-kind record at `0208D480` is authored data; the roll's distribution is not read here.
+The per-kind record at `0208D480` is ~~authored data~~ runtime state the roll writes *(corrected 2026-10-02, OPUS: `0038885D and byte ptr [rdi + 0x12], 0xf` and `00388865 or byte ptr [rdi + 0x12], r14b` rewrite it on every first hit that passes the gate)*; the roll's distribution is ~~not read here~~ read in CB-3 *(answered: see CB-3 items 1-4; 2026-10-02, OPUS)*.
 
 ## 9. Determinism
 
-**Not deterministic on the first hit** — two generator draws decide the count — and **fully
+**Not deterministic on the first hit** — ~~two generator draws decide~~ one draw, or twelve when the gate passes, decides the count *(corrected 2026-10-02, OPUS: `003886FD`, `0038871D jbe 0038887E`, the loop `003887E3`–`00388807`)* — and **fully
 deterministic afterwards**, because CB-3's branch skips the draws entirely once the counter is
 non-zero. *A replay that reproduces the first hit reproduces the whole combo.*
 
@@ -175,7 +175,7 @@ during the combo can lengthen or shorten it.
 
 ## 12. Reproduction formula
 
-Set the counter to 0 and assert `00388660` draws the generator **twice** and writes the high nibble
+Set the counter to 0 and assert `00388660` draws the generator ~~**twice**~~ **once** when the percent gate fails and **twelve** times when it passes *(corrected 2026-10-02, OPUS: `0038871D jbe 0038887E`, the loop `003887DA`–`00388807`)* and writes the high nibble
 of `record + 0x12` (CB-3). Set it non-zero and assert **no draw at all**. Fail the inner commit and
 assert the counter did not move (CB-2) ~~.~~ *when the refusal comes from the eligibility gate; when it comes from
 the commit after its cancel, assert `+0x6B7` and `+0x6B8` both read 0 (narrowed 2026-09-26).* Sweep `+0x6B8` image-wide and assert **four** byte-wide
@@ -190,9 +190,9 @@ execution.*
 
 ## 14. Unresolved
 
-- What the second draw at `003887E3` contributes that the first does not.
-- What `+0x6B8` is, beyond being preserved (CB-6).
-- The native command seam and the handler table — S-20's other two pages.
+- ~~What the second draw at `003887E3` contributes that the first does not.~~ *(answered: see CB-3 items 1-3 - the first draw is the percent gate, `003887E3` the 11-pass HP-band loop that sets the count; 2026-10-02, OPUS)*
+- ~~What `+0x6B8` is, beyond being preserved (CB-6).~~ *(answered: the combo's running hit tally, UQ-115 in how-a-combo-continues-and-what-it-blocks.md; 2026-10-02, OPUS)*
+- ~~The native command seam and the handler table — S-20's other two pages.~~ *(answered: see CONTRACT-native-command-seam.md and CONTRACT-battle-action-handler-table.md, both authored 2026-09-22; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 
@@ -266,7 +266,7 @@ No correction.
 
 **Movement — SERVICE (2 edges).** The reset `003105D0` calls `BattleLocomotion_ResetPathAndSetTargets` `003291B0` and `0033C9B0`. Cancelling an action releases the unit's locomotion path; the combo's own state is not in those bodies.
 
-**RNG_Random_Selection — SERVICE (1 edge).** The count roll `00388660` calls `RNG_MT19937_NextU32_Thunk` `00379CD0` twice on a unit whose counter is zero (CB-3). This is the combo's only source of randomness, and it is the shared Mersenne Twister, not a private generator.
+**RNG_Random_Selection — SERVICE (1 edge).** The count roll `00388660` calls `RNG_MT19937_NextU32_Thunk` `00379CD0` ~~twice~~ from two call sites, once or twelve times, on a unit whose counter is zero (CB-3) *(corrected 2026-10-02, OPUS: `003886FD`, and `003887E3` inside the 11-pass loop `003887DA`–`00388807`)*. This is the combo's only source of randomness, and it is the shared Mersenne Twister, not a private generator.
 
 **Rewards_Progression_Economy — CLIENT (2 edges).** The per-level stat folds `002F9A60` and `002F9B20` call the generator `00379CD0`. Level-up growth draws from the same stream, so a level-up between two combo hits changes where the next zero-counter roll lands in it.
 

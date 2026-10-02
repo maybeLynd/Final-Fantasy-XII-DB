@@ -1,0 +1,38 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-presentation-entry-picks-its-track.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "how-a-presentation-entry-picks-its-track.json",
+ "rows": [
+  {
+   "fn": "0051B970",
+   "text": "calls `0051F580(rcx, 0051BBE0, rcx)`, then sets dword `02CA83F4` to 1 and calls `0051F580(rcx, 0051BBF0, rcx)`, then sets it to 2 and calls `0051F580(rcx, 0051BBF0, rcx)` again, and finally sets dword `02CA83F4` to 0",
+   "anchors": [
+    [
+     "0051B983",
+     "call"
+    ],
+    [
+     "0051B98B",
+     "mov"
+    ],
+    [
+     "0051B9A7",
+     "mov"
+    ],
+    [
+     "0051B9BB",
+     "call"
+    ],
+    [
+     "0051B9C0",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

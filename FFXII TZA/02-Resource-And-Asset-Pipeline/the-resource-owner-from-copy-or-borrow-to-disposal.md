@@ -1,7 +1,7 @@
 ---
 system: Resource ownership from copied or borrowed input through refresh and disposal
 category: 02-Resource-And-Asset-Pipeline
-status: PARTIAL
+status: PARTIAL — OV-42 stays open (its remaining producers and natural rejection are runtime; the owner-protocol scope is answered) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: HIGH
 verified_against:

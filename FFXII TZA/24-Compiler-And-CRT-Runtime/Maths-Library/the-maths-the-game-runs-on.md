@@ -27,7 +27,7 @@ audit:
 # The maths the game runs on
 
 > Every square root, sine and arctangent in FFXII is a call into a Windows DLL the game does not
-> ship — 566 square roots' worth of call sites, and only **four** SSE `sqrt` instructions in the
+> ship — 566 square roots' worth of call sites, and only **four** ~~SSE `sqrt` instructions~~ scalar `sqrtss` instructions, beside 14 packed `sqrtps` and 10 `rsqrtps` in the audio cluster, *(corrected 2026-10-02, OPUS: an instruction grep of every body; the corrected count in §3)* in the
 > whole 7.5 MB of code. Battle numbers, meanwhile, use no such maths at all: exactly **one**
 > function in the entire Combat-Formula category calls the maths library, and what it computes is
 > a power of two.
@@ -322,7 +322,7 @@ and a magnitude for a knockback — geometry, not damage — and the single Comb
 | Address | Working name | Body | Role |
 |---|---|---:|---|
 | `0033CB70` | `Angle_NormalizeRadiansPi` | 128 B | wrap to ±π; **fast path fails above 4π**, §2 |
-| `0033CEF0` | movement turn-rate solver | 772 B | the `cosf` easing in §4; the only non-third-party user of the 1°-in-radians constant |
+| `0033CEF0` | movement turn-rate solver | 772 B | the `cosf` easing in §4; ~~the only non-third-party user of the 1°-in-radians constant~~ a user of the 1°-in-radians constant, not the only one *(corrected 2026-10-02, OPUS: `008C5F68` is read by `0028BB50`, `0033CEF0`, `00538B80` and `0085EA40`)* |
 | `004686D0` | `Vector3_ComputeXZDistance` | 35 B | ground-plane distance; **tail-jumps to `sqrtf`** |
 | `003A1960` | `Vector3_ComputeSquaredXZDistance` | 31 B | the same body without the square root |
 | `0031E620` | `Vector3_ComputeSquaredXZDistance` | 5 B | forwarder to `003A1960` |
@@ -368,7 +368,7 @@ and a magnitude for a knockback — geometry, not damage — and the single Comb
 | `01CEBD80` | fabs mask | `u64` | `0x7FFFFFFFFFFFFFFF` |
 | `01CEBC10` | two | `f64` | `2.0` — the base in the Combat-Formula `pow` |
 | `02AEE004` | `pow` result | `s32` global | destination of `(int)pow(2.0, byte)` |
-| `02EBF190` | settings object pointer | `void*` global | the `pow` input is its byte at `+0x5B0E` |
+| `02EBF190` | ~~settings object pointer~~ pointer to an object whose byte `+0x5B0E` three code sites write *(corrected 2026-10-02, OPUS: `00385BA0+0x31` copies a record's byte `+0x138` into it, `002FA210+0x17` and `00233C10+0x81` zero it; UQ-320's answer)* | `void*` global | the `pow` input is its byte at `+0x5B0E` |
 | `02EADEF0` | runtime-computed tunable | `f32` global | receives `0.225` from `0016A270` |
 
 ## 4. Data structures and formulas
@@ -462,8 +462,8 @@ u8  n      = *(u8*)(*(void**)0x02EBF190 + 0x5B0E);
 `pow` here is the **double** routine, not `powf`, and both arguments are converted to double for
 it. The result is truncated back to a 32-bit int by `cvttsd2si`. For `n ≤ 30` this is exactly
 `1 << n`; at `n = 31` the double `2147483648.0` does not fit a signed 32-bit int and `cvttsd2si`
-yields the integer indefinite value `0x80000000`. Whether `n` can reach 31 depends on the settings
-byte at `+0x5B0E`, which is not established here.
+yields the integer indefinite value `0x80000000`. Whether `n` can reach 31 depends on the ~~settings~~
+byte at `+0x5B0E`, which ~~is not established here~~ never exceeds 17 *(answered: see UQ-320, answered 2026-09-14 - it is not a setting; 2026-10-02, OPUS)*.
 
 ### The angle wrap, with its exact constants
 
@@ -580,7 +580,7 @@ Also do not confuse `Vector3_ComputeSquaredXZDistance` at `0031E620` (5 bytes) w
       here was disassembled in full and classified by instruction mix, constant references and
       call targets — that is what separates the exact-length group from the approximate one and
       identifies `007EF630`/`007EF790` as compositions. What was **not** established is what any of
-      them means to the game: their callers were not traced and no geometric identity is claimed
+      them means to the game: ~~their callers were not traced and~~ no geometric identity is claimed *(answered: see the UQ-322 answer just below, 2026-09-27 - every body is placed; 2026-10-02, OPUS)*
       beyond "cross product", "length" and "normalise". They are a Phyre-adjacent population and the
       survey belongs to another category.
       *ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static: every residue body is placed - 13 in the sound driver and 1 in
@@ -627,7 +627,7 @@ Also do not confuse `Vector3_ComputeSquaredXZDistance` at `0031E620` (5 bytes) w
 | Every SIMD square-root site is `Audio`-owned | the same exhaustive pass, grouped by `GFZ.V120.PrimaryOwner.*`: `sqrtps` 14/14, `rsqrtps` 10/10, `sqrtss` 3/4 (the fourth is `0016A270`, the boot-time constant) | 1 + 11 |
 | The build is `/fp:precise` | inference from the 4-instruction / 566-call-site ratio plus `0016A270` failing to constant-fold `0.9/sqrt(16)` | 1 + 6 |
 | Newton–Raphson normalise and its constants | complete body of `007EF1E0`; constants read from `00D22600`, `00D560A0`, `00D11570` | 1 |
-| The `rsqrtps` and `sqrtps` groups are distinct implementations | all eleven cluster functions disassembled in full; per-function census of `rsqrtps`/`sqrtps`/`haddps`/`shufps` counts, RIP-referenced constants and direct call targets. The refinement constants appear in every `rsqrtps` function and in none of the `sqrtps` ones — a clean split with no overlap | 1 |
+| The `rsqrtps` and `sqrtps` groups are distinct implementations | ~~all eleven cluster functions~~ eleven of the twelve cluster functions disassembled in full, `007F1670` missed *(corrected 2026-10-02, OPUS: a `sqrtps` / `rsqrtps` grep of every body finds twelve functions; §3 adds `007F1670`)*; per-function census of `rsqrtps`/`sqrtps`/`haddps`/`shufps` counts, RIP-referenced constants and direct call targets. The refinement constants appear in every `rsqrtps` function and in none of the `sqrtps` ones — a clean split with no overlap | 1 |
 | Angles are radians, no fixed-point unit | float-constant census over `.rdata`/`.data` with a positive control (π, 2π, π/2 all found in quantity; all four fixed-point constants and rad→deg absent) | 1 |
 | `Angle_NormalizeRadiansPi` fast path returns outside ±π; its (−2π, 2π) bound needs `−2³¹ ≤ a / 2π < 2³¹`; past that it returns `f32(a + T)`, unchanged only for `|a| ≥ 2⁵⁸`, `±inf` and NaN | complete 128-byte body, both paths read and disassembled; the `cvttss2si` / `COMISS` semantics; ASTRA's EXP-073 (`±1e20`, inf, NaN) and EXP-074 (ten inputs at the signed limits), isolated original-code execution; the ten reproduced by emulated binary32 arithmetic (FABLE 2026-09-12). ~~"larger inputs return unchanged"~~ corrected 2026-09-12 | 1 |
 | Turn-rate easing formula and constants | complete body of `0033CEF0`; every `DAT_` operand dereferenced and printed as f32 | 1 |
@@ -775,7 +775,7 @@ number moved in the direction the author already expected.
 
 ### Verdict
 
-`status` unchanged at **DOCUMENTED** — the central claims survive and the corrections are to two
+`status` unchanged at **DOCUMENTED** *(answered: see the front matter - since promoted to `status: AUDITED`; 2026-10-02, OPUS)* — the central claims survive and the corrections are to two
 counts in one table, not to the document's argument. `audit.passes: 0 -> 1`. Two figures corrected in
 §2 above the fold, and the Audio attribution of the `sqrtps` cluster added, because it was absent and
 is load-bearing for a reader who assumes 4-wide square roots mean geometry.

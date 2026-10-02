@@ -1,0 +1,141 @@
+PASS E0 RC-12 Part C reproduces: 43 actor-entry footer resolves in 19 functions | 43 sites, 19 functions
+
+PASS E1 the RC-13 site 002669F5 lies in 00266530 (ActorStorage_InitializeRecord) | 00266530
+PASS E1 record override slot 1 read first (0xC8 + 2*1): 002669AE movzx eax, word ptr [rbx + 0xca]
+PASS E1 footer resolve [entry+0x18]: 002669C5 call 0x20e600
+PASS E1 footer word +4 = k 1 (main): 002669D7 movsx r8d, word ptr [rcx + rdi + 4]
+PASS E1 channel 0: 002669F0 xor edx, edx
+PASS E1 native submit: 002669F5 call 0x3dbb60
+
+  00266530 <- 00267B79 call                               in 002679F0
+PASS E2 every code reference to 00266530 is ['00267B79'] (unwind chain copies excluded) | ['00267B79']
+  002679F0 <- 0026CEB0 call                               in 0026CE60
+PASS E2 every code reference to 002679F0 is ['0026CEB0'] (unwind chain copies excluded) | ['0026CEB0']
+  0026CE60 <- 0025BFF6 call                               in 0025BFB0
+  0026CE60 <- 0032F227 call                               in 0032F1B0
+  0026CE60 <- 01D6AFDC rva32 .rdata (unwind chain copy)   
+  0026CE60 <- 01D6B03C rva32 .rdata (unwind chain copy)   
+PASS E2 every code reference to 0026CE60 is ['0025BFF6', '0032F227'] (unwind chain copies excluded) | ['0025BFF6', '0032F227']
+PASS E2 002679F0 loop: record index ebp: 00267B70 mov r8d, ebp
+PASS E2 002679F0 loop: next record: 00267B7E inc ebp
+PASS E2 002679F0 loop: bound: 00267B80 cmp ebp, ebx
+
+PASS E3 gate 1: manager +0x10 bit 0 (initialised): 0026CE94 test byte ptr [rbx + 0x10], 1
+PASS E3 gate 1 set -> leave: 0026CE98 jne 0x26d383
+PASS E3 gate 2: manager +0x13 (armed): 0026CE9E cmp byte ptr [rbx + 0x13], 0
+PASS E3 gate 2 clear -> leave: 0026CEA2 je 0x26d383
+PASS E3 then the record pool is built (one 00266530 per record): 0026CEB0 call 0x2679f0
+PASS E3 ebp = 0: 0026CED3 xor ebp, ebp
+PASS E3 the arm is consumed (+0x13 = 0): 0026D2E3 mov byte ptr [rbx + 0x13], bpl
+PASS E3 bit 0 is set: 0026D305 or byte ptr [rbx + 0x10], 1
+PASS E3 exit restores the current-manager cell: 0026D383 mov qword ptr [rip + 0x1e2c9e6], r13
+PASS E4 binder 0026C8C0 clears bit 0 in its copy of +0x10: 0026CB1B and r9b, 0xfe
+PASS E4 binder stores +0x10: 0026CB67 mov byte ptr [rdi + 0x10], r9b
+PASS E4 binder stores +0x10 again: 0026CC45 mov byte ptr [rdi + 0x10], r9b
+PASS E4 binder arms +0x13 = 1: 0026CC6C mov word ptr [rdi + 0x13], 0x101
+PASS E4 unload 002628B0 clears bit 0: 00262DA8 and byte ptr [rbx + 0x10], 0xfe
+PASS E4 unload 002628B0 clears +0x13: 00262DB3 mov byte ptr [rbx + 0x13], bpl
+
+E5 streams swept: 42487
+  00226C4B mov    dword ptr [r12 + 0x10], eax              base r12 (00226C2E lea r12, [r12 + r10*8]) -> not a slot: r12 = r12 + r10*8 at 00226C2E: an 8-byte-stride table, not a 0x288-stride slot
+  00259752 movups xmmword ptr [rdi + 8], xmm0              base rdi (?) -> not a slot: 00259620 walks the foreign 0x860-stride array at 02098428 (bound 020994E8, manager field map +0x1C8 row)
+  00262DB3 mov    byte ptr [rbx + 0x13], bpl               base rbx (?) -> MANAGER SLOT +0x13: unload: arm cleared
+  0026C987 mov    qword ptr [rax + 0x10], rbx              base rax (0026C96A lea rax, [rip + 0x1e2c6a3]) -> not a slot: rax = 02099014 = slot 0 +0x204 (0026C96A); the store lands at +0x214
+  0026CC6C mov    word ptr [rdi + 0x13], 0x101             base rdi (?) -> MANAGER SLOT +0x13: binder: arm = 1
+  0026D2E3 mov    byte ptr [rbx + 0x13], bpl               base rbx (?) -> MANAGER SLOT +0x13: manager init: arm consumed
+  003A43A5 movaps xmmword ptr [rdi + 0x10], xmm1           base rdi (?) -> not a slot: float4 store through rdi = r8 (argument) of the vector routine 003A4290, reached only by tail jumps
+  003A43C3 movaps xmmword ptr [rsi + 0x10], xmm1           base rsi (?) -> not a slot: float4 store through rsi = r9 (argument) of 003A4290
+  003A447B movaps xmmword ptr [rdi + 0x10], xmm1           base rdi (?) -> not a slot: float4 store through rdi = r8 of 003A4290
+  003A4F93 movaps xmmword ptr [rdi + 0x10], xmm1           base rdi (?) -> not a slot: float4 store through rdi = r8 of 003A4290
+  003A5372 movups xmmword ptr [rsi + 0x10], xmm1           base rsi (?) -> not a slot: float4 store through rsi = r9 of 003A4290
+  003A53F4 mov    qword ptr [rdi + 0x10], rax              base rdi (?) -> not a slot: qword store through rdi = r8 of 003A4290
+  003A5413 mov    qword ptr [rsi + 0x10], rax              base rsi (?) -> not a slot: qword store through rsi = r9 of 003A4290
+  003A543E movaps xmmword ptr [rsi + 0x10], xmm1           base rsi (?) -> not a slot: float4 store through rsi = r9 of 003A4290
+  003A5836 movups xmmword ptr [r14 + 0x10], xmm1           base r14 (?) -> not a slot: float4 store through r14 = r9 (003A574E) of 003A56F0
+  003A58D7 movups xmmword ptr [r14 + 0x10], xmm1           base r14 (?) -> not a slot: float4 store through r14 = r9 of 003A56F0
+  003A62C3 movaps xmmword ptr [rbp + 0x10], xmm1           base rbp (?) -> not a slot: rbp = rsp - 0xE8 (003A56FD): stack frame
+  003A640C movss  dword ptr [rbp + 0x10], xmm2             base rbp (?) -> not a slot: rbp = rsp - 0xE8: stack frame
+  003A6602 movdqa xmmword ptr [rbp + 0x10], xmm1           base rbp (?) -> not a slot: rbp = rsp - 0xE8: stack frame
+  003A66DB movups xmmword ptr [r14 + 0x10], xmm1           base r14 (?) -> not a slot: float4 store through r14 = r9 of 003A56F0
+  003A6818 mov    qword ptr [r14 + 0x10], rax              base r14 (?) -> not a slot: qword store through r14 = r9 of 003A56F0
+  003DD61D mov    word ptr [rbx + 0x12], ax                base rbx (?) -> not a slot: rbx = rdx + index*0x1C (003DD51E-003DD52C): a 0x1C-stride table
+  (56 stack-frame hits not listed)
+PASS E5 the only writes of a manager slot's +0x13 are the binder's arm and the two clears | on slot ['00262DB3', '0026CC6C', '0026D2E3']; unexplained []
+  folded base: 00262F90 00262FBD lea rax, [rip + 0x1e35e5c]
+  folded base: 00266D10 00266EE0 lea rbx, [rip + 0x1e31f39]
+  folded base: GAP00264190 0026419A lea rax, [rip + 0x1e34c7f]
+  folded base: GAP002671F0 002671FA lea rax, [rip + 0x1e31c1f]
+  folded base: GAP002673F0 002673FA lea rax, [rip + 0x1e31a22]
+PASS E5 folded base 00262FBD is only tested: 00262FC4 test byte ptr [rcx + rax], 1
+PASS E5 folded base 00266EE0: each slot memset to zero (area init 00266D10): 00266EFC call 0x861ec0
+PASS E5 folded base 0026419A (leaf getter 00264190, +0x10 bit 1) only reads: 002641A1 movzx eax, byte ptr [rcx + rax]
+PASS E5 folded base 002671FA (leaf getter 002671F0, +0x10 bit 0) only reads: 00267201 movzx eax, byte ptr [rcx + rax]
+PASS E5 folded base 002673FA (leaf getter 002673F0, +0x13) only reads: 00267401 movzx eax, byte ptr [rcx + rax]
+PASS E5 exactly the five folded bases above | ['00262FBD', '00266EE0', '0026419A', '002671FA', '002673FA']
+
+PASS E6 code references to 0026C8C0 = ['0032F966'] | ['0032F966']
+PASS E6 code references to 0032F850 = ['00330514', '00330FAD'] | ['00330514', '00330FAD']
+PASS E6 code references to 003304A0 = ['0033040E', '0033041B'] | ['0033040E', '0033041B']
+PASS E6 0032F850 binds the payload it was handed: 0032F961 mov rdx, rdi
+PASS E6 00330310 allocates a new payload buffer: 003303AD call 0x36c660
+PASS E6 ... and records it: 003303C5 mov qword ptr [rax + r13 + 0x21a6c00], r15
+PASS E6 ... then copies the resident image into it (pack 0xD4) and dispatches: 00330407 call 0x861eba
+PASS E6 ... or files a read with 003304A0 as its completion: 0033041B lea rax, [rip + 0x7e]
+PASS E6 ... the read: 00330444 call 0x32e620
+PASS E6 003306E0 allocates a new buffer before naming 0032F850 as completion: 00330FA6 call 0x36c660
+PASS E6 the resident copy 022C6F10 is written only by its loader 0032F430 (0 at 0032F607, a fresh allocation at 0032F651, then a read) | ['0032F607', '0032F651']
+
+E7 forward reachability is NOT a separating instrument here: following direct calls, tail jumps and jcc
+   forwarders, each route below reaches the world machinery and through it a loader, so the chain is reachable.
+   What separates is the gate (E3): every path enters 0026CE60 through 0025BFB0 or 0032F1B0 (E2), and the body
+   runs only on an armed slot, which only the binder arms (E5). Shortest path per route, for the record:
+  0026B4A0 (reqenable tail (re-runs 00268EA0)): 31 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 0026B4A0 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  00267CC0 (re-runner): 31 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 00267CC0 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  00269FE0 (re-runner): 31 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 00269FE0 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  00238BF0 (unit refresh BattleUnit_RefreshActorRuntimeFromDefinition): 32 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 00238BF0 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  00268EA0 (talkhold/talkterm filer): 30 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 00268EA0 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  00269860 (spawn / respawn filer): closure of 17 functions does not reach 0026CE60
+  00269640 (entry / parameter filer): closure of 16 functions does not reach 0026CE60
+  0025AD10 (spawn-table override): 31 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 0025AD10 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  0025AE00 (spawn-table override): 31 hops, last hop 0032F1B0; 0026CE60 <- 0032F1B0 <- 00332130 <- 00306760 <- 00304850 <- 00307BE0 ...
+PASS E7 0025AE00 reaches 0026CE60 only through 0025BFB0 / 0032F1B0
+  0025D5E0 (reqdisable tail): closure of 239 functions does not reach 0026CE60
+
+PASS E8 Part C: the only fixed read of footer word k 1 is 00266530 at 002669C5 | [('00266530', '002669C5')]
+PASS E8 Part C: the variable-slot readers are 002652D0 and 00269860 | ['002652D0', '00269860']
+PASS E8 00269860 variable slot: 14 (respawn): 00269932 mov ebx, 0xe
+PASS E8 ... or 7 (spawn) when the header word is below 6: 0026994D cmovb ebx, r8d
+PASS E8 ... r8d = 7: 0026993F mov r8d, 7
+PASS E8 code references to 002652D0 = the five slot-argument sites | ['00265389', '00268D94', '00269B48', '00269BE3', '002E2E68']
+PASS E8 slot argument at 00268D94: r8d = [0209A2BC]: 00268D87 mov r8d, dword ptr [rip + 0x1e3152e]
+PASS E8 slot argument at 00269B48: r8d = esi = the class popped by sysreqall 0x0AB: 00269B3F mov r8d, esi
+PASS E8 slot argument at 00269BE3: r8d = edi = the class popped by sysreq / sysreqf: 00269BDA mov r8d, edi
+PASS E8 slot argument at 002E2E68: r8d = 2 (talk): 002E2E5C mov r8d, 2
+PASS E8 slot argument at 00265389: tail jump from the leaf 00265380 (callers below): 00265389 jmp 0x2652d0
+PASS E8 code references to the leaf 00265380 = 0034B388, 0034C67F | ['0034B388', '0034C67F']
+PASS E8 0034B388 (entrysync 0x15D) asks for slot 0: 0034B37F xor r8d, r8d
+PASS E8 0034C67F is in sysreqwait 0x38C's begin 0034C630, which stores the id and submits nothing | mov dword ptr [rdi + 8], eax
+  writers of 0209A2BC: 0025AB06 <- 2, 0025BDE6 <- r12d, 00267102 <- 2, 0025D67B <- 2
+PASS E8 0209A2BC holds 2 or 10: three stores of 2 and 0025BDE6 storing r12d = 0025BAD0's r9d | 0025AB06 2, 0025BDE6 r12d, 0025D67B 2, 00267102 2
+PASS E8 r12d = r9d: 0025BB1F mov r12d, r9d
+PASS E8 0025B990 passes ebx: 0025B984 mov r9d, ebx
+PASS E8 ... ebx = 10: 0025B8C7 mov ebx, 0xa
+PASS E8 0025B9E5 passes edx: 0025B9D9 mov r9d, edx
+PASS E8 ... edx = 2 (and 0025B9BB on the footer path): 0025B9D0 mov edx, 2
+PASS E8 ... edx = 2: 0025B9BB mov edx, 2
+PASS E8 0025BAD0's only callers are 0025B990 and 0025B9E5 | ['0025B990', '0025B9E5']
+
+PASS E9 binder zeroes the class-1 base (manager +0x40): 0026CAF4 mov qword ptr [rdi + 0x40], rbx
+PASS E9 armed init: class-1 base still NULL?: 0026D2E7 cmp qword ptr [rbx + 0x40], rbp
+PASS E9 ... payload header +0x38: 0026D2F0 mov ecx, dword ptr [rax + 0x38]
+PASS E9 ... class-1 base = payload + [payload + 0x38]: 0026D2F6 mov qword ptr [rbx + 0x40], rcx
+PASS E9 the binder's payload r15 is its rdx (0032F850's rdi): 0026C8F7 mov r15, rdx
+PASS E9 ... stored as manager +0x00, the base 0026D2ED reads: 0026C95A mov qword ptr [rdi], rdx
+
+FAILS 0 []

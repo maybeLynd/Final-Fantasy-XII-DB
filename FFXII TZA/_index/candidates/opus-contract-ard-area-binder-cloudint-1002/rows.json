@@ -1,0 +1,41 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "contract-ard-area-binder.json",
+ "rows": [
+  {
+   "fn": "003EA6B0",
+   "text": "stores -1 at dword `02B5E0B8` and zeroes the 16 bytes at `02B5E0C0`, calls the 8-byte setter of qword `02B58178` with 0 and tail-jumps the 8-byte setter of qword `02B58180` with 0",
+   "anchors": [
+    [
+     "003EA6B7",
+     "mov"
+    ],
+    [
+     "003EA6C3",
+     "movdqu"
+    ],
+    [
+     "003EA6CB",
+     "call"
+    ],
+    [
+     "003EA6D6",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003EA6B0",
+   "was": "stores -1 at dword `02B5E0B8` and zeroes the 16 bytes at `02B5E0C0`, calls `003DCF00(0)` and tail-jumps `003DCF10(0)`",
+   "now": "stores -1 at dword `02B5E0B8` and zeroes the 16 bytes at `02B5E0C0`, calls the 8-byte setter of qword `02B58178` with 0 and tail-jumps the 8-byte setter of qword `02B58180` with 0",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 003EA6B0+0x1B and the jmp at 003EA6B0+0x26 reach WorldAreaField-owned 8-byte bodies, each storing rcx at that qword"
+  }
+ ]
+}

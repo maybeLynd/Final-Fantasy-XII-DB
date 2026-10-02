@@ -264,3 +264,18 @@ taken as runs of `.text` pointers; AC-6 and AC-7 are as corrected on 2026-09-26.
 | A6 | AC-7 as corrected | **survives**: Sep's slots 3, 4 and 5 test `0x249F0` ± `0x3E8` (below with `jb`, inside with `jae`); six Seb bodies carry the `/1000 == 150` test |
 
 No correction.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-contract-audio-bank-and-controller-famil-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002182E0` | 103 B | stores `00907970` at qword `[rcx]`, calls `00218070(rcx+0x78)`, `00218070(rcx+0x40)`, `00218100(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx` | `002182F9`, `00218302`, `00218314`, `0021831C`, `0021832F` |
+| `0021BF60` | 103 B | stores `00907FF0` at qword `[rcx]`, calls `0021BDF0(rcx+0x78)`, `0021BDF0(rcx+0x40)`, `0021BE80(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx` | `0021BF79`, `0021BF82`, `0021BF94`, `0021BF9C`, `0021BFAF` |
+| `0021CDC0` | 103 B | stores `00908200` at qword `[rcx]`, calls `0021CC50(rcx+0x78)`, `0021CC50(rcx+0x40)`, `0021CCE0(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx` | `0021CDD9`, `0021CDE2`, `0021CDF4`, `0021CDFC`, `0021CE0F` |
+| `00222C70` | 62 B | when `00210930(00210B30())` is non-zero and bit 0 of byte `+0x3C` of a second `00210B30()` result is set, tail-jumps `rcx`'s vtable slot 0 with `rcx` and `edx` = 1; otherwise returns | `00222C81`, `00222C8F`, `00222C98`, `00222CA5` |
+| `002230D0` | 35 B | returns when dword `rcx+0x38` minus `0x249F0` is below `0x3E8` (unsigned), when qword `rcx+0x50` is zero, or when byte `rcx+0x49` has any of the bits `0x69`; otherwise tail-jumps `rcx`'s vtable slot 0 with the arguments unchanged | `002230D3`, `002230DD`, `002230DF`, `002230E6`, `002230EF` |
+| `00223100` | 41 B | returns when dword `rcx+0x38` minus `0x249F0` is below `0x3E8` (unsigned), when qword `rcx+0x50` is zero, when byte `rcx+0x49` has any of the bits `0x68` or when its bit 0 is clear; otherwise tail-jumps `rcx`'s vtable slot 0 with the arguments unchanged | `00223103`, `0022310D`, `0022311A`, `0022311E`, `00223125` |
+| `00223130` | 35 B | returns when dword `rcx+0x38` minus `0x249F0` is `0x3E8` or more (unsigned), when qword `rcx+0x50` is zero, or when bit 0 of byte `rcx+0x49` is set; otherwise tail-jumps `rcx`'s vtable slot 0 with the arguments unchanged | `00223133`, `0022313D`, `0022313F`, `00223146`, `0022314F` |
+| `00225440` | 73 B | when `00210930(00210B30())` is non-zero and bit 2 (`& 4`) of byte `+0x3C` of a second `00210B30()` result is set, calls `rcx`'s vtable slot `+0x48` with `(rcx, rdx, 1)`; otherwise returns without that call | `00225458`, `00225466`, `0022546F`, `0022547B` |

@@ -349,7 +349,7 @@ by `00233AA0`, which [the field runtime pass](../../04-Actor-Entity/the-field-ru
 
 | mode | same-mode (`commit = 0` / `≠ 0`) | leave (`commit = 0` / `≠ 0`) |
 |---:|---|---|
-| 1 summon | the empty stub `0016D6A0` / `00313600` — starts channel 2 from `+0x5AD8` and sets `+0x5AD0` bit 1 | `00313730` — ends the sequence, makes the summoner the preferred selector / `00313650` — resets through `00313840` if bit 0 is still on |
+| 1 summon | the empty stub `0016D6A0` / `00313600` — starts channel 2 from `+0x5AD8` and sets `+0x5AD0` bit 1 | `00313730` — ends the sequence, makes the summoner the preferred selector / `00313650` — resets through `00313840` ~~if bit 0 is still on~~ only when bit 0 is clear *(corrected 2026-10-02, OPUS: `00313650+0x7` `test byte [rax+0x5B04], 1`, `+0xE` `je 00313840`)* |
 | 2 chocobo | `00304180` (Party, 639 B: collects the main members, types 0–6, into `022C1740`) / `00304060` — the mount | `00304400` — disarms and detaches the rider (`002E28D0`) / `00304140` — dismounts through `00304680` when bit 1 is already clear |
 | 3 area bit 15 | the empty stub, all four | |
 | 0, 4 | none | |
@@ -373,8 +373,8 @@ interior cites:*
 and the table's own margins.)*
 
 With `commit ≠ 0` the dispatcher also writes the new mode into `+0x5B08`. The persisted footprint
-§"It survives area transitions" describes is therefore the chocobo's block plus the two mode
-words — a ride survives a zone change and a save.
+§"It survives area transitions" describes is therefore the chocobo's block plus ~~the two mode~~ the one mode
+~~words~~ word `+0x5B04` *(corrected 2026-10-02, OPUS: the capture `002EF3C0` copies `+0x5AE0`, `+0x5AD0` and `+0x5B04` only, `002EF3C0+0x13`–`+0x3D`, and the restore `002EF410` writes back the same; `+0x5B08` is not captured)* — a ride survives a zone change and a save.
 
 ### 2d. The special-sequence state word `022C2160` — the machine behind summons, quickenings, Esper ultimates and the chocobo mount (2026-09-12, FABLE-SPECIAL-SEQUENCE-WORD)
 
@@ -388,7 +388,7 @@ owner and flag words, read from every `.text` reference to `022C2160` (26 sites,
 | `022C215C` | **the kind** — from the action id through a 128-byte table at `00306D08` over ids `0x94`–`0x113` (`00306C71`–`00306CDB`): **1** the thirteen summons (`0x106`–`0x112`, Belias … Zodiark), **2** Dismiss (`0x113`), **3** the 26 Esper ultimates (`0xB6`–`0xCF`, Painflare … Final Eclipse), **4** the eighteen quickenings (`0xD0`–`0xE1`, Red Spiral … Resplendence), **5** Mount (`0x94`), **6** Dismount (`0x95`), **7** every other id in the range (and any id above `0x113`) |
 | `022C2168` | the owning unit (`00306C1B`; compared at `00306BFC`, `00306B16`) |
 | `022C2158` | flags: bit 0 the one-shot has fired (set through the callback `00306560` that `0023B020` arms, cleared at `00306B4A`); bits 0–1 cleared at the end (`00306708`) |
-| `022C1F50` | the accumulated-HP table: 32 entries of 16 bytes (`+8` the target unit, `+0x10` the HP delta), the source at `+0`, filled from the unit's `+0x780` list (`+0x77C` entries) by the presentation sequence (`003068F7`–`0030692A`) |
+| `022C1F50` | the accumulated-HP table: ~~32 entries of 16 bytes (`+8` the target unit, `+0x10` the HP delta), the source at `+0`,~~ the source qword at `+0`, then 32 entries of 16 bytes from `+8`, each the target unit at its `+0` and the HP delta at its `+8` *(corrected 2026-10-02, OPUS: `0030EB10+0x30`–`+0xB7` reads `[base + 8 + 16i]` and `[base + 0x10 + 16i]` for `i` below 32, and `+0xBF`–`+0xC8` clears `0x208` bytes)*, filled from the unit's `+0x780` list (`+0x77C` entries) by the presentation sequence (`003068F7`–`0030692A`) |
 
 **The states**, from the four writers:
 
@@ -533,7 +533,7 @@ state[0x5B04] bits 0..3 -----------------------------------------+--> 0030D9A0 m
       the bit variant does not give; `geteventparty2mode` and its bit variant can never differ.
       *The modes:* among the ladder's 21 callers only `BattleGroup_RefreshFourActorDefinitions`
       (`003266C0`, `00326756`–`0032677D`) has separate arms for 4 and 5. Both arms rewrite the
-      **battle slot map** ([the battle-state-block field map](../../11-Party/Battle-State-Block/the-battle-state-block-field-map.md) `+0x5A58`, four 18-byte entries) to the **leader alone**:
+      **battle slot map** ([the battle-state-block field map](../../11-Party/Battle-State-Block/the-battle-state-block-field-map.md) ~~`+0x5A58`, four 18-byte entries~~ the class tables at `+0x5A5A`, `+0x5A6C`, `+0x5A7E`, `+0x5A90`, 18 bytes each *(corrected 2026-10-02, OPUS: `00329CC0+0x123`–`+0x167` copies the 18-byte table at `+0x5A48` into the four; `+0x5A58` is the last word of `+0x5A48`'s table)*) to the **leader alone**:
       the leader `+0x5AA4`'s position among the nine selectors (or the focus slot `003272F0`
       when the field's bit 15 is on, its id then `00377C70()`) keeps its selector, the other
       three slots become `0xFFFF`. **Event party (mode 4, `0032683F`–`003268EE`) writes entries
@@ -577,7 +577,7 @@ state[0x5B04] bits 0..3 -----------------------------------------+--> 0030D9A0 m
       `0030D9A0` reads bits 0–3; the getters `003135E0` (bit 0), `00303EE0` (bit 1), `003072E0`
       (bit 2), `003072A0` (bit 3) read one bit each; the setters `00313550` and `00313840` (bit 0),
       `00303D90` (bit 1), `00307240` (bit 2), `00307200` (bit 3) each rewrite the word;
-      `00313650` sets bit 0 through `00313840` when it is clear (the summon reset, §2c);
+      `00313650` ~~sets bit 0 through `00313840` when it is clear~~ tail-jumps to `00313840` when bit 0 is clear, and `00313840` clears bit 0 only when it is set *(corrected 2026-10-02, OPUS: `00313840+0x13`–`+0x18`)* (the summon reset, §2c);
       `00304140` tests bit 1 and dismounts through `00304680` when it is clear (§2c);
       `BattleAction_UpdateSpecialPresentationSequence` sets and clears bits 0 / 1 around the
       summon and mount blocks; `FUN_0030DA10` zeroes the word and `+0x5B08` for
@@ -1437,3 +1437,33 @@ Interior anchor `002739D9` (function `002739D0`).
 `00320CA0` (80 B) is the availability gate `002739D0`'s predicate wraps: when `byte[02089340] & 0x10` it runs `003588B0` for the mode object, `00263E30` for its `+0x698` child, and writes `dword[+0x64] | dword[+0x3c]` of that child into the caller's out-dword with a 1 return; any missing link or the flag clear falls to the 0 arm - the ladder's `mode is up and its flags are these` contract.
 
 Interior anchor `00320CC9` (function `00320CA0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-01, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-battle-runtime-mode-ladder-cloudint-1001/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0025D540` | 64 B | returns without work when byte `+0x18` of `rcx` equals 1; otherwise loads qword `+0xC0`, and when it and that object's qword `+0x138` are both non-null calls `003DA9F0(qword +0x138)` and stores byte 0 at that object's `+0xEF` | `0025D544`, `0025D54F`, `0025D55B`, `0025D56A`, `0025D56F` |
+| `0028E970` | 122 B | loads the pointer at `0209BE80`; when its qword `+0x10FB0` is non-null calls `00245020(that qword)`, zeroes the field and calls `00252D90()`; then, when the field is zero, calls `00252B40(ecx, 0)` and stores `002D5030()`'s result in it; returns the field's low dword | `0028E98B`, `0028E997`, `0028E9BC`, `0028E9D0`, `0028E9DE` |
+| `00296A70` | 44 B | calls `002544B0()` and, when it returns 1 and `rcx` is non-null, ORs `0x10000` into dword `+0x40` of `rcx`; then tail-jumps `00244F00(rcx)` | `00296A79`, `00296A7E`, `00296A88`, `00296A97` |
+| `00296AA0` | 68 B | calls `00244F50(0xC0, 0029BC80, 0)`; when `002544B0()` returns 1 and that result is non-null ORs `0x8000` into its dword `+0x40`; calls `00246AC0(result)` and returns the result | `00296AB5`, `00296ABD`, `00296ACC`, `00296AD6` |
+| `00296BE0` | 544 B | returns 0 when `rcx` is null; with `edx` zero and byte `+0xB49` equal to 1 it calls `00246AC0(qword +0xB38)`, clears bit `0x80` of word `+0xB4A`, calls `00290630()`, zeroes `+0xB49`, calls `002470C0(rcx)` and, when `00273A20(rcx+0xC0)` is non-zero, `00244F00(rcx+0xC0)`, clears bit 0 of `+0xB4A`, ANDs `0xFF78` into the word at `+0x318` of each of byte `+0xB42` records of stride `0x160` and zeroes qword `+0xB20`; with `edx` non-zero, byte `+0xB49` of 2 returns 0, and any value other than 1 is set to 1, stores the byte `0035BAE0` returns at `+0xB48`, `rcx` at qword `+0xB30` and `00297640` at qword `+0xB20`, clears bit 1 of `+0xB4A`, calls `00299BD0(rcx)`, `00244DD0(qword +0xB38)` and `0035BB00(byte +0xB48)`, ORs 4 into the `+0x318` word of record `+0xB48` when its bit 0 is set, else scans forward (wrapping) for a record with bit 0 set, stores its index (or the old one if none) at `+0xB48`, ORs 4 into its word and calls `0035BB00` again; it then clears bit 0 of `+0xB4A`, sets it when `0029C9D0(rcx)` returns 0, calls `003678F0()` and `002470D0(rcx)` and sets bit `0x80`; every other path returns 1 | `00296C17`, `00296C80`, `00296CF4`, `00296D74`, `00296DEE` |
+| `00297100` | 97 B | loads the pointer at `0209C300`; when null calls `00244F50(0xF0, 0029C530, 0)` and stores the result there, otherwise ANDs `0xFFFC` into its word `+0xE6`; when `002544B0()` returns 1 and the pointer is non-null ORs `0x8000` into its dword `+0x40`; tail-jumps `00246AC0(pointer)` | `00297121`, `00297129`, `00297137`, `0029714D`, `0029715C` |
+| `00299B90` | 59 B | calls `0035BB20()` and returns 0 when it is null, when its dword `+4` is zero, or when its dword `+0` has bit 0 or bit `0x40` set; otherwise returns 1 when `002739D0(dword +4, dword +0)` is non-zero, else 0 | `00299B94`, `00299BA8`, `00299BB3`, `00299BB8`, `00299BC1` |
+| `002C6450` | 103 B | calls `003590D0()` and walks the list at qword `+0x1D70` of `rcx` (next at `+0x18`) for a node whose dword `+0x10` equals the result; with no match returns 1 when signed word `+0x1D78` is at least `0x80`, else 0; with a match returns 1 when (signed word `+0x1D78` times the node's byte `+0x14`) AND `0xFFFFFF80` is, signed, at least `0x4000`, else 0 | `002C6459`, `002C6470`, `002C6475`, `002C648C`, `002C64A8` |
+| `002EA030` | 14 B | returns the dword at `01EEBAA0` indexed by sign-extended `ecx` times 4 | `002EA033`, `002EA03A` |
+| `00309FB0` | 318 B | computes `ebx` from word `cx`: -1 for `0xFFFF` or when `cx` AND `0xF000` exceeds `0xE000` (unsigned); otherwise, in the `0x58`-byte row of `01EEBCC0` selected by `cx >> 12`, when `cx` AND `0xFFF` is at most (signed) dword `+0x3C` minus 1 and qword `+0x50` is non-null, the result of calling it with (`cx`, 0), else 0; then for i 0 to 3 calls `0031B810(i)` and keeps (up to 4, in `022C1788`) each non-null result whose qword `+0x698` is non-null and either has dwords `+0x64` OR `+0x3C` free of `0x80000003` or passes `00377C20(qword +0x698)` non-zero; adds 1 to `ebx` for each kept entry whose word `+0xDC8` equals `cx`, and returns `ebx` | `0030A00D`, `0030A039`, `0030A054`, `0030A089`, `0030A0D6` |
+| `00321380` | 127 B | stores -1 at dword `[rdx]`; returns -1 when byte `02089340` lacks bit `0x10`, when `003588B0()` is null or when `00263E30(that)` is null; otherwise re-stores -1, returns -2 when the object's qword `+0x698` is null, else (with -3 for a null `+0x698` plus `0x50`) calls `00321400(word at +0x698 +0x50, rdx)` and returns 0 | `00321386`, `0032138F`, `003213B5`, `003213C1`, `003213DE` |
+| `00327240` | 39 B | loads the pointer at `02EBF190` and its byte `+0x5AA4`; returns 0 when the byte exceeds `0x27` (unsigned), otherwise returns the pointer plus 8 plus the byte times `0x1C8` | `00327247`, `0032724E`, `00327258`, `00327263` |
+| `0034A640` | 91 B | calls `00267E10(r9)` twice, then `00358940(002640C0(), second result)`; when that is non-null calls `002E26F0(it, rdx, first result)` and returns its value, otherwise returns 0 | `0034A658`, `0034A662`, `0034A673`, `0034A686` |
+| `0034FE80` | 30 B | calls `00313550(0)` and `00314D40(1)`, then tail-jumps `0037CA00` | `0034FE86`, `0034FE90`, `0034FE99` |
+| `0035D660` | 75 B | returns 0 when `002E0FA0()` has bit 10 set or `003669D0()` is non-zero, or when `ecx` is 1 with bit 0 of byte `022C8060` clear and dword `022C806C` zero; otherwise calls `0028FD50(ecx)` and returns 1 | `0035D66D`, `0035D67B`, `0035D689`, `0035D691`, `0035D69B` |
+| `0035D8D0` | 171 B | returns without work when `002904B0()` returns 0; otherwise calls `00290450(1)`, zeroes dword `022C8380`, calls `00290500(0)`, clears bit 2 of dword `022C8060`, calls `00252D90()` and `00254980(0)`, then tests dword `022C83E8` (re-read after each call): bit 4 set calls `002548F0(1)`; bit 0 set calls `00254940(1)` and clears bit 4; bit 1 set calls `00254850(1)` and clears bits 0 and 4 | `0035D8DB`, `0035D8FC`, `0035D927`, `0035D944`, `0035D96F` |
+| `00363560` | 96 B | calls `002DF0F0(0, dword 022CBA7C)` when dword `022CBA70` or dword `022CBA7C` is non-zero; then zeroes dword `022CBA70` and bytes `022CBB2D` and `022CBB2E`, calls `00362850()`, `003636A0()`, `00363750()`, `00362850()` and `002DF690(-1)`, and tail-jumps `002DF0F0(0, -1)` | `00363579`, `0036357E`, `00363596`, `003635AD`, `003635BB` |
+| `003AA430` | 56 B | walks a chain starting at the qword the pointer at `02EBEF70` points to: for each non-null node calls `005043F0(node)` when its byte `+0xE` is `0x59`, then moves to `0020E600(dword [node])` | `003AA43D`, `003AA445`, `003AA44E`, `003AA455`, `003AA460` |
+| `003B54C0` | 82 B | stores byte 2 at `+2` of `rcx`; before that, when word `+4` is not -1, takes the `0x740`-byte record it indexes (sign-extended) from the pointer at `022C6F28` and, when that record's dword `+0x284` is non-zero, calls `003E6AA0(record, 2)` | `003B54CD`, `003B54E0`, `003B54ED`, `003B54F9`, `003B54FE` |
+| `003CA1E0` | 27 B | when the pointer at `02B47758` is non-null, clears bit 1 and sets bit 0 of its dword `+0xA90` | `003CA1E7`, `003CA1EC`, `003CA1F3` |
+| `00420E70` | 41 B | clears bit 1 of byte `+0x2AE` of `rcx` and sets it again when `edx` is non-zero; tail-jumps `00421280` with `rcx`, `edx` = 1 when the incoming `edx` is zero else 0, `r8b` = 2 when the incoming `edx` is non-zero else 0, and `r9d` = the incoming `edx` | `00420E7E`, `00420E87`, `00420E91`, `00420E94` |
+| `00422E50` | 96 B | when dword `+0xC8` of `rcx` is not -1, calls `0051B9E0(qword +0xDA8 of 0020E600(dword +0x10), dword +0xC8)` and, when that is non-null, ORs 2 into its dword `+0xC` and calls `0041D790(it)`; then tail-jumps `00424A40` with `rcx`, the incoming `xmm1` and `r8d` = 1 | `00422E56`, `00422E6D`, `00422E7F`, `00422E89`, `00422EAB` |
+| `0050FFB0` | 59 B | calls `00267E10(r9)` twice, calls `003139C0` with the low byte of the first result, and tail-jumps `00313550` with the second | `0050FFC0`, `0050FFCA`, `0050FFD5`, `0050FFE6` |

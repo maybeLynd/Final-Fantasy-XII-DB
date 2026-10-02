@@ -319,3 +319,11 @@ Corrected in place: the table-A/B bullet. The consumer record is
 
 - **CoreRuntimeScheduling - SERVICE (1 edge).** `0053AB50` reaches bodies filed to CoreRuntimeScheduling: `001EDE70` - shared machinery across the layer boundary, no shared ownership.
 - **Resource - SERVICE (10 edges).** CharacterRenderRecord_SelectLODForViewDepth (`004201F0`), `005048A0`, `00504C40`, `00504F00` (+2 more) reach bodies filed to Resource: ResourceTable_ResolveEntryByIndex (`002ED570`), ResourceEntry_FindSectionOffsetByTagAndName (`00409A30`), `00409CA0`, `00409F50` (+3 more) - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-fte-fct-texture-colour-tables-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00537AA0` | 69 B | with low = dword `02EBA460 + ecx*4` and high = the dword 8 bytes later, returns 0 when `high - low` is at most `edx` (unsigned); otherwise, when `r8d` is 0 stores `low + edx` as the new low and returns the old low, when `r8d` is 1 stores `high - edx` as the new high and returns it, and for any other `r8d` returns 0 | `00537AAA`, `00537ABF`, `00537AD0`, `00537ADE`, `00537AE2` |

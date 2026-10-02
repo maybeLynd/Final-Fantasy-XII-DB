@@ -82,7 +82,7 @@ GuardCFFunctionCount           = 0              <- empty
 GuardFlags                     = 0x00000100     = CF_INSTRUMENTED
 ```
 
-`CF_INSTRUMENTED` means the code **was compiled** with `/guard:cf`. But the valid-target table
+`CF_INSTRUMENTED` means ~~the code **was compiled**~~ some linked objects were compiled with `/guard:cf` — here only the statically linked CRT *(corrected 2026-10-02, OPUS: the check thunk `00809958` has 11 call sites, all in CRT start-up bodies `008087C4`–`00809CD4`, and the dispatch slot `008C31C8` is never referenced; the 2026-09-19 section)*. But the valid-target table
 is empty and `GUARD_CF` is absent from `DllCharacteristics`, so the loader never activates it.
 
 There is even a `.gfids` section — ~~512 bytes, room for 128 RVAs~~ **48 bytes of declared content,
@@ -138,7 +138,7 @@ __guard_dispatch_icall_fptr @ 0x8C31C8 [.rdata]  ->  0x00896270
 
 `ret 0` is `_guard_check_icall_nop`. `jmp rax` is a bare indirect branch with no target check.
 
-### The 145 guard adapters are dead code
+### ~~The 145 guard adapters are dead code~~ The 145 empty-destructor teardowns (corrected 2026-10-02, OPUS: each is registered with `atexit`, so not dead; the S-3 correction below)
 
 145 functions carry `CompilerGeneratedCFG.StaticGuardAdapter`. Every one is 12 bytes:
 
@@ -158,7 +158,7 @@ immediately. **All 145 of them — 1,740 bytes — are no-ops at runtime.** This
 > **static teardowns**: `lea rcx, [object] ; jmp destructor`, where the destructor is empty and the linker folded it
 > onto the one-instruction `ret` at `0016D6A0`. That body also serves as `_guard_check_icall`, which is the only
 > reason the family carries a CFG name. Every one of the 145 is referenced exactly once in `.text`, as the argument
-> to `atexit` (`00808B90`), so each **runs once at process exit** and does nothing. Member-by-member join:
+> to `atexit` (`00808B90`), so each ~~**runs once at process exit**~~ **runs at most once, on a CRT `exit` path, and not at all on a normal quit**, and does nothing *(corrected 2026-10-02, OPUS: a site in the game's exit routine calls `ExitProcess` (address in FABLE's record readiness-apply-fable-1002c) through `008C2260`; the teardown page's UQ-331 answer)*. Member-by-member join:
 > [`members/guard-adapter-registrars.tsv`](members/guard-adapter-registrars.tsv), by
 > [`members/guard_adapter_registrars.py`](members/guard_adapter_registrars.py).
 >
@@ -206,7 +206,7 @@ unaffected by the CFG situation.
 
 ### Section layout
 
-| Section | RVA | Virtual size | Note |
+| Section | RVA | ~~Virtual size~~ Raw size, except `.data` and `.gfids` *(corrected 2026-10-02, OPUS: the column holds `SizeOfRawData`; the virtual sizes are in the corrected table below)* | Note |
 |---|---|---|---|
 | `.text` | `0x00001000` | `0x7A0800` | executable code |
 | `.rdata` | `0x007A2000` | `0x152D800` | includes IAT and the guard pointers |
@@ -471,8 +471,8 @@ figures above before reporting anything.
   are the CRT's.*
 - whether a `/guard:cf` link with `/DYNAMICBASE:NO` leaves the `.gfids$y` input unconverted.
 
-The build's command line would answer both. The RSDS record shows it lived on a Jenkins build machine. `S-2` and
-`T-9` stay open. **Static, headers read.**
+The build's command line would answer both. The RSDS record shows it lived on a Jenkins build machine. `S-2` ~~and~~
+~~`T-9` stay~~ stays open *(answered: see `T-9` above, answered 2026-09-27; 2026-10-02, OPUS)*. **Static, headers read.**
 
 ## `S-2` by reconstruction — the signature is a link without `/guard:cf` (FABLE, Claude Opus 5.5, 2026-09-26)
 
@@ -511,7 +511,7 @@ compete with it. `T-9`'s twelve dwords are that pass-through.
 | `ImageBase = 0x00120000` | `IMAGE_OPTIONAL_HEADER64 +0x18`, parsed from the authorized EXE | 1 |
 | ASLR is off | `DllCharacteristics = 0x8120`; `DYNAMIC_BASE (0x0040)` clear | 1 |
 | CFG is not enforced | `GUARD_CF (0x4000)` clear; `GuardCFFunctionTable = 0`; `GuardCFFunctionCount = 0` | 1 |
-| CFG *was* compiled in | `GuardFlags = 0x100` = `CF_INSTRUMENTED`; `.gfids` section allocated | 1 |
+| ~~CFG *was* compiled in~~ CFG was compiled into the statically linked CRT only *(corrected 2026-10-02, OPUS: the check thunk `00809958` has 11 call sites, all in CRT start-up bodies `008087C4`–`00809CD4`, and the dispatch slot `008C31C8` is never referenced)* | `GuardFlags = 0x100` = `CF_INSTRUMENTED`; `.gfids` section allocated | 1 |
 | The check is a no-op | `0x0016D6A0` disassembles to `ret 0` | 1 |
 | The dispatch is unvalidated | `0x00896270` disassembles to `jmp rax` | 1 |
 | The 145 guard adapters do nothing | all 12 bytes: `lea rcx,[rip+d]` + `jmp 0x16D6A0`; three read, family size from the GFZ tag census | 1 / 3 |
@@ -795,7 +795,7 @@ addresses for this binary are canonical virtual addresses — image base `0x0012
 included. Do not add it again."* The section table added it never.
 
 **Why this one matters more than most.** A modder attaching a debugger and going to `0x02F3C000`
-lands 1.1 MB short of `.reloc`, inside `.pdata`. On the page that presents itself as the reference
+lands 1.1 MB short of `.reloc`, inside ~~`.pdata`~~ `.data` *(corrected 2026-10-02, OPUS: by the corrected table below, `.data` spans `0x01DF0000`–`0x02F97530` and `.pdata` starts at `0x02F98000`)*. On the page that presents itself as the reference
 for hooking, an address off by the image base is the worst kind of error to ship.
 
 The size also needed a note: `.reloc` is **`0x39360`** virtual, which the document rounded to

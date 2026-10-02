@@ -122,6 +122,27 @@ def run(cmd, cwd):
     return r.stdout + r.stderr
 
 
+def new_contradictions(page):
+    """check_self_contradiction hits on the working page minus those already on its HEAD version (2026-10-02: a
+    heuristic hit already committed on CONTRACT-auto-status-rebuild.md held an unrelated interior append)."""
+    import tempfile
+    rel = page.replace("\\", "/")
+    counts = []
+    with tempfile.TemporaryDirectory() as td:
+        for tag in ("h", "w"):
+            dst = os.path.join(td, tag, *rel.split("/"))
+            os.makedirs(os.path.dirname(dst))
+            if tag == "h":
+                blob = subprocess.run(["git", "show", "HEAD:Database/FFXII TZA/" + rel], cwd=cl.DBROOT,
+                                      capture_output=True).stdout
+                open(dst, "wb").write(blob)
+            else:
+                shutil.copyfile(os.path.join(cl.DB, *rel.split("/")), dst)
+            o = run([sys.executable, "-B", "check_self_contradiction.py", "--db", os.path.join(td, tag)], cl.KIT)
+            counts.append(sum(1 for l in o.splitlines() if re.match(r"\s+line \d+ says", l)))
+    return max(0, counts[1] - counts[0])
+
+
 def apply(rec, allow):
     rdir = os.path.join(cl.DB, "_index", "candidates", rec)
     cfg = json.load(io.open(os.path.join(rdir, "rows.json"), encoding="utf-8"))
@@ -132,9 +153,12 @@ def apply(rec, allow):
     page = cfg["page"]
     g = json.loads(subprocess.run([sys.executable, "-B", os.path.join(cl.HERE, "scope_guard.py"), page, "--json"],
                                   capture_output=True, text=True).stdout)[0]
-    if g["verdict"] == "BLOCK":
-        print("REFUSED: scope guard BLOCKs %s now: %s" % (page, "; ".join(g["reasons"]))); return 1
     py = [sys.executable, "-B", "interior_applier.py"]
+    # A re-run after a gate fix: the page is dirty only because this record's own edit is in place (2026-10-02).
+    own_dirt = g["verdict"] == "BLOCK" and g["reasons"] == ["dirty in the working tree"] \
+        and "ALREADY" in run(py, rdir) and "FAILS 0" in run(py, rdir)
+    if g["verdict"] == "BLOCK" and not own_dirt:
+        print("REFUSED: scope guard BLOCKs %s now: %s" % (page, "; ".join(g["reasons"]))); return 1
     o = run(py + ["--apply"], rdir)
     print(o.strip())
     if "FAILS 0" not in o:
@@ -142,23 +166,32 @@ def apply(rec, allow):
     io.open(os.path.join(rdir, "interior_applier.out"), "w", encoding="utf-8", newline="\n").write(run(py, rdir))
     stem = os.path.splitext(os.path.basename(page))[0]
     gates = {
-        "check_links": sum(1 for l in run([sys.executable, "-B", "check_links.py"], cl.KIT).splitlines() if stem in l or rec in l),
-        "self_contradiction": sum(1 for l in run([sys.executable, "-B", "check_self_contradiction.py", "--db", cl.DB], cl.KIT).splitlines() if stem in l),
+        # Source side only: another file's broken link that names this page is not this page's (2026-10-02).
+        "check_links": sum(1 for l in run([sys.executable, "-B", "check_links.py"], cl.KIT).splitlines()
+                           if stem in l.split("->")[0] or rec in l.split("->")[0]),
+        "self_contradiction": new_contradictions(page),
         "consistency": run([sys.executable, "-B", "check_consistency.py"], cl.KIT).count("disagreement(s) to resolve") and
         re.search(r"(\d+) disagreement\(s\) to resolve", run([sys.executable, "-B", "check_consistency.py"], cl.KIT)).group(1),
-        "verify_doc_addresses": re.search(r"(\d+) document\(s\)", run([sys.executable, "-B", "verify_doc_addresses.py", "--all"], cl.KIT)).group(1),
+        # The review line, not the first "N document(s)" total (2026-10-02 fix: the total, 491, was read as a failure).
+        "verify_doc_addresses": (lambda m: m.group(1) if m else "0")(re.search(
+            r"(\d+) document\(s\) with \.text non-function", run([sys.executable, "-B", "verify_doc_addresses.py", "--all"], cl.KIT))),
+        # Pass-22 neighbours preview (FABLE's condition 3, 2026-10-02): new UNACCOUNTED NEIGHBOUR hits this page gains
+        # against HEAD. The full check_publish_neighbours.py still runs once per batch before publishing.
+        "neighbours_new": sum(1 for l in run([sys.executable, "-B", os.path.join(cl.HERE, "..", "nb_page.py"), page],
+                                             cl.KIT).splitlines() if l.startswith("      + ")),
     }
     import f_pack
     still = f_pack.entry_only_pages().get(page, set())
     left = sorted("%08X" % int(r["fn"], 16) for r in cfg["rows"] if int(r["fn"], 16) in still)
     clean = gates["check_links"] == 0 and gates["self_contradiction"] == 0 and str(gates["consistency"]) == "4" \
-        and gates["verify_doc_addresses"] == "0" and not left
+        and gates["verify_doc_addresses"] == "0" and gates["neighbours_new"] == 0 and not left
     print("GATES", gates, "still entry-only:", left or "none")
     if not clean:
         print("NOT QUEUED: a gate is not clean; fix and re-run apply (the page edit is in place).")
         return 1
     n, na = len(cfg["rows"]), sum(len(r["anchors"]) for r in cfg["rows"])
-    corr = cfg.get("corrections") or ["none needed"]
+    corr = [("`%s`: %s" % (c.get("fn", "?"), c.get("why", ""))).replace("|", "/")
+            if isinstance(c, dict) else str(c) for c in (cfg.get("corrections") or [])] or ["none needed"]
     readme = ["# Interior citations, cloud-drafted: %s's entry-cited functions (OPUS, %s)" % (os.path.basename(page), cfg["date"]), "",
               "The page named %d F-frontier functions only at their entry. A Claude Code cloud session (%s) drafted one sentence "
               "and 1-5 interior anchors per function from OPUS's annotated disassembly pack (`cloud-input/f-interior/` in the "
@@ -182,7 +215,10 @@ def apply(rec, allow):
     tag = re.sub(r"[^A-Z0-9]+", "-", rec.upper())[:48].strip("-")
     title = "OPUS: interior citations (cloud-drafted, OPUS-verified) for %s - %d functions, %d anchors verified; all %d now A" % (
         os.path.basename(page), n, na, n)
-    name = "99zzzzzzzzzzzx_%s" % rec[-24:].replace("-", "")
+    # A short digest keeps two slugs with the same tail apart (2026-10-02: contract-auto-status-rebuild overwrote
+    # the-auto-status-rebuild's queued spec and message).
+    import hashlib
+    name = "99zzzzzzzzzzzx_%s%s" % (rec[-24:].replace("-", ""), hashlib.sha1(rec.encode()).hexdigest()[:4])
     msgf = "msg_%s.txt" % name
     io.open(os.path.join(cl.HERE, "..", msgf), "w", encoding="utf-8", newline="\n").write(
         title + "\n\nRecord: _index/candidates/%s/ (rows drafted by a cloud session, checked by interior_ingest.py, every "

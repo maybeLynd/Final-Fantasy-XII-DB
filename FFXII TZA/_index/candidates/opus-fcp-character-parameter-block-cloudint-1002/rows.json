@@ -1,0 +1,549 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "fcp-character-parameter-block.json",
+ "rows": [
+  {
+   "fn": "00265240",
+   "text": "returns 0 unless byte `+3` of `rcx` ANDed with `0xE0` equals `0x60`; on that path loads qword `+0xB8`, copies its dwords `+0x20`, `+0x24` and `+0x28` to `[rdx]`, `[r8]` and `[r9]`, and returns 1",
+   "anchors": [
+    [
+     "00265246",
+     "cmp"
+    ],
+    [
+     "0026524A",
+     "mov"
+    ],
+    [
+     "00265254",
+     "mov"
+    ],
+    [
+     "0026525F",
+     "mov"
+    ],
+    [
+     "00265262",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0026B2D0",
+   "text": "copies the second float argument `xmm1` into `xmm2` and tail-jumps `0026B2E0`, so the callee receives the same value as its second and third arguments",
+   "anchors": [
+    [
+     "0026B2D3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E7DD0",
+   "text": "returns 0.0 when `rcx` is null, its qword `+0xC0` is null or the dword at that pointer is -1; otherwise clamps `edx` to 0 when negative and tail-jumps `003E6150(that dword, 0x9000707)` when the clamped value is 0, else `003E6150(that dword, 0x9000101)`",
+   "anchors": [
+    [
+     "002E7DD5",
+     "mov"
+    ],
+    [
+     "002E7DE3",
+     "cmp"
+    ],
+    [
+     "002E7DEC",
+     "cmovns"
+    ],
+    [
+     "002E7DF8",
+     "jmp"
+    ],
+    [
+     "002E7E02",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E7E10",
+   "text": "returns 0.0 when `rcx` is null, its qword `+0xC0` is null or the dword at that pointer is -1; otherwise clamps `edx` to 0 when negative and tail-jumps `003E6150(that dword, 0x9000808)` when the clamped value is 0, else `003E6150(that dword, 0x9000202)`",
+   "anchors": [
+    [
+     "002E7E15",
+     "mov"
+    ],
+    [
+     "002E7E23",
+     "cmp"
+    ],
+    [
+     "002E7E2C",
+     "cmovns"
+    ],
+    [
+     "002E7E38",
+     "jmp"
+    ],
+    [
+     "002E7E42",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E9630",
+   "text": "returns 0.0 when `rcx` is null, its qword `+0xC0` is null or the dword at that pointer is -1; otherwise tail-jumps `003E6150(low word of that dword, 0x9001D1E)`",
+   "anchors": [
+    [
+     "002E9635",
+     "mov"
+    ],
+    [
+     "002E9641",
+     "cmp"
+    ],
+    [
+     "002E9646",
+     "movzx"
+    ],
+    [
+     "002E964E",
+     "jmp"
+    ],
+    [
+     "002E9653",
+     "xorps"
+    ]
+   ]
+  },
+  {
+   "fn": "00342640",
+   "text": "when byte `+8` of `r8` is non-zero, word `+0xA` of `r8` selects: 1 calls `002EBC90(rdx, 0, 1)` and `002E28E0(rdx, 002E97C0(dword r8+4))`, 3 calls `002EBC90(rdx, 3, 1)` and `002E3110(rdx, 4, 0, 002E97C0(dword r8+4), 0)`, each followed by `002EAC90(rdx)`, and any other value does neither; every path then tail-jumps `0025B470(rdx, 00265950(rdx))`",
+   "anchors": [
+    [
+     "0034264A",
+     "cmp"
+    ],
+    [
+     "0034265C",
+     "cmp"
+    ],
+    [
+     "0034267E",
+     "call"
+    ],
+    [
+     "003426B9",
+     "call"
+    ],
+    [
+     "003426DE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034EFE0",
+   "text": "calls `0026A1A0(rdx, 0)` and `0034BE50(rcx, rdx, r8, r9)`, passes `002E9B10(rdx)` as the float to `0026AC70(rdx, value)`, calls `002EC510(1, rdx, qword [r8])` and tail-jumps `002690D0(rdx)`",
+   "anchors": [
+    [
+     "0034F005",
+     "call"
+    ],
+    [
+     "0034F016",
+     "call"
+    ],
+    [
+     "0034F029",
+     "call"
+    ],
+    [
+     "0034F039",
+     "call"
+    ],
+    [
+     "0034F055",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034F4F0",
+   "text": "calls `0026A1A0(rdx, 1)` and `0034BE50(rcx, rdx, r8, r9)`, passes `002E9B10(rdx)` as the float to `0026AC70(rdx, value)`, calls `002EC510(1, rdx, qword [r8])` and tail-jumps `002690D0(rdx)`",
+   "anchors": [
+    [
+     "0034F518",
+     "call"
+    ],
+    [
+     "0034F529",
+     "call"
+    ],
+    [
+     "0034F53C",
+     "call"
+    ],
+    [
+     "0034F54C",
+     "call"
+    ],
+    [
+     "0034F568",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003E4700",
+   "text": "loads qword `+0x400` of `rcx` and returns the float at `+0x144` of the address formed by adding its word `+2` to the pointer's low 32 bits and sign-extending the sum; returns 1.0 (`01CEBBA8`) when the qword is null or that 32-bit sum is zero",
+   "anchors": [
+    [
+     "003E4707",
+     "test"
+    ],
+    [
+     "003E470C",
+     "movzx"
+    ],
+    [
+     "003E4710",
+     "add"
+    ],
+    [
+     "003E4717",
+     "movss"
+    ],
+    [
+     "003E4720",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003E4B40",
+   "text": "returns the zero-extended word `+4` of the block that qword `+0x400` of `rcx` points to, with no null check",
+   "anchors": [
+    [
+     "003E4B47",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "003E56E0",
+   "text": "returns 0 when qword `+0x400` of `rcx` is null; otherwise tail-jumps `004FE2F0(that qword, 0x62060A2D)`",
+   "anchors": [
+    [
+     "003E56E7",
+     "test"
+    ],
+    [
+     "003E56EC",
+     "mov"
+    ],
+    [
+     "003E56F1",
+     "jmp"
+    ],
+    [
+     "003E56F6",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "003E5C90",
+   "text": "loads qword `+0x400` of `rcx` and, when it is non-null and its word `+0x12` is non-zero, returns the float at `+0xA8` of the pointer's low 32 bits plus that word, sign-extended; returns 0.10472 (`00D117BC`) when the qword is null, the word is zero or the 32-bit sum is zero",
+   "anchors": [
+    [
+     "003E5C97",
+     "test"
+    ],
+    [
+     "003E5C9C",
+     "movzx"
+    ],
+    [
+     "003E5CA3",
+     "je"
+    ],
+    [
+     "003E5CAF",
+     "movss"
+    ],
+    [
+     "003E5CB8",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003E5EA0",
+   "text": "loads qword `+0x400` of `rcx` and, when it is non-null and its word `+0x12` is non-zero, returns the dword at `+0xA4` of the pointer's low 32 bits plus that word, sign-extended; returns 0 when the qword is null, the word is zero or the 32-bit sum is zero",
+   "anchors": [
+    [
+     "003E5EA7",
+     "test"
+    ],
+    [
+     "003E5EAC",
+     "movzx"
+    ],
+    [
+     "003E5EB3",
+     "je"
+    ],
+    [
+     "003E5EBF",
+     "mov"
+    ],
+    [
+     "003E5EC6",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "003E66D0",
+   "text": "returns at once when dword `+0x300` of `rcx` is 0; otherwise adds that dword to `003AB7F0(0020E600(dword +0x2FC))` and, when the 32-bit sum is non-zero, tail-jumps `0051D310(sum)`, else returns",
+   "anchors": [
+    [
+     "003E66D6",
+     "cmp"
+    ],
+    [
+     "003E66E8",
+     "call"
+    ],
+    [
+     "003E66F0",
+     "call"
+    ],
+    [
+     "003E66F5",
+     "add"
+    ],
+    [
+     "003E6704",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003E6710",
+   "text": "returns at once when dword `+0x300` of `rcx` is 0; otherwise adds that dword to `003AB7F0(0020E600(dword +0x2FC))` and, when the 32-bit sum is non-zero, tail-jumps `0051DB60(sum)` if `edx` is non-zero or calls `00519720(sum)` if `edx` is zero; a zero sum returns without either call",
+   "anchors": [
+    [
+     "003E671A",
+     "cmp"
+    ],
+    [
+     "003E6736",
+     "call"
+    ],
+    [
+     "003E673B",
+     "add"
+    ],
+    [
+     "003E6753",
+     "jmp"
+    ],
+    [
+     "003E6758",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003E6D10",
+   "text": "loads qword `+0x400` of `rcx` and, when it is non-null and its word `+0x10` is non-zero, reads the word at the pointer's low 32 bits plus that word (sign-extended) and returns it times `0x1D0` plus `0x10`; returns 0 when the qword is null or the word is zero",
+   "anchors": [
+    [
+     "003E6D17",
+     "test"
+    ],
+    [
+     "003E6D1C",
+     "movzx"
+    ],
+    [
+     "003E6D2C",
+     "movzx"
+    ],
+    [
+     "003E6D2F",
+     "imul"
+    ],
+    [
+     "003E6D35",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00409240",
+   "text": "returns zero-extended word `+0x30` of `rcx` when its dword `+4` equals 2, else dword `+0xC`",
+   "anchors": [
+    [
+     "00409244",
+     "je"
+    ],
+    [
+     "00409246",
+     "mov"
+    ],
+    [
+     "0040924A",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "00425E10",
+   "text": "walks the `0x740`-stride records under qword `022C6F28` starting at the index in dword `+0x48800` of that base and following each record's signed word `+4` until -1, calling `003E66D0(record)` (and reloading the base) for each record whose byte `+0x290` has its `0x2` bit (bit 1) clear; returns at once when the start index is -1",
+   "anchors": [
+    [
+     "00425E1B",
+     "mov"
+    ],
+    [
+     "00425E33",
+     "imul"
+    ],
+    [
+     "00425E3E",
+     "test"
+    ],
+    [
+     "00425E47",
+     "call"
+    ],
+    [
+     "00425E53",
+     "movsx"
+    ]
+   ]
+  },
+  {
+   "fn": "0050D810",
+   "text": "calls `002EBC90(rdx, 0, 1)`, `002E28E0(rdx, qword [r8+8])` and `002EAC90(rdx)`, then tail-jumps `002EB330(rdx, 0x1001)`",
+   "anchors": [
+    [
+     "0050D829",
+     "call"
+    ],
+    [
+     "0050D82E",
+     "mov"
+    ],
+    [
+     "0050D835",
+     "call"
+    ],
+    [
+     "0050D83D",
+     "call"
+    ],
+    [
+     "0050D854",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0051CDE0",
+   "text": "calls `001FBD80(2)` and `0039D3F0()`; resolves word `+8` of `rcx` (unless `0xFFFF`) to the `0x740`-stride record under qword `022C6F28`, nulled when its dword `+0x284` is 0; returns without further work when byte `+6` is 0 or the `0x2` bit (bit 1) of (byte `+7` OR dword `02CA8428`) is set; otherwise copies `0x150` bytes of `02AEC180` to the stack, patches in a qword built from the bytes `01F2B349`-`01F2B34D` ORed with `0x2005C00400002A00`, vectors from `02AEDD30`-`02AEDEA0` and lane 2 of `02AEDD60` plus 30000.0 (`009146FC`), and submits `00540C70(packet, 0x15, 0)`; then copies `0x1E0` bytes of `02AEC2D0` once into a second stack packet and, for each of word `+0` records of stride `0x1D0` from `rcx` plus word `+2`, splices the record's first `0x1A0` bytes at packet `+0x10`, multiplies packet floats `+0x3C` and `+0x5C` by `003E5770(resolved record)`, `+0x20` by record float `+0x1C0` and `+0x24` by header float `+0xC` widened to double (passed through the import thunk `00861F5C` first when `001EDDA0()` returns 0), and submits `00540C70(packet, 0x1E, 0)`; finally calls `001FBE50()`",
+   "anchors": [
+    [
+     "0051CE5F",
+     "cmp"
+    ],
+    [
+     "0051CE73",
+     "test"
+    ],
+    [
+     "0051CFD4",
+     "call"
+    ],
+    [
+     "0051D0F4",
+     "call"
+    ],
+    [
+     "0051D17D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0051D1D0",
+   "text": "calls `00861EC0(02064E30, 0, 0x4000)` and `00258EE0(3)`, then `002D7E00(0x2A00, qword 02CA8430, 0)` and a tail-jump to `002D7E00(0x2E00, qword 02CA8438, 0)`",
+   "anchors": [
+    [
+     "0051D1E3",
+     "call"
+    ],
+    [
+     "0051D1ED",
+     "call"
+    ],
+    [
+     "0051D201",
+     "call"
+    ],
+    [
+     "0051D219",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0051DB60",
+   "text": "stores word 1 at `+6` of `rcx`, then for each of word `+0` records of stride `0x1D0` starting at the 32-bit sum of `rcx` and word `+2` stores 1.0 (`0x3F800000`) at `+0x14`, 0 at `+0` and `+0x10`, 1 at `+0x1C4`, and calls `00861EC0(record+0xA0, 0, 0x100)`",
+   "anchors": [
+    [
+     "0051DB7C",
+     "mov"
+    ],
+    [
+     "0051DB97",
+     "mov"
+    ],
+    [
+     "0051DBA8",
+     "mov"
+    ],
+    [
+     "0051DBB5",
+     "call"
+    ],
+    [
+     "0051DBBD",
+     "lea"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0051CDE0",
+   "was": "calls `001FBD80(2)` and `0039D3F0()`; resolves word `+8` of `rcx` (unless `0xFFFF`) to the `0x740`-stride record under qword `022C6F28`, nulled when its dword `+0x284` is 0; returns without further work when byte `+6` is 0 or bit `0x2` of byte `+7` OR dword `02CA8428` is set; otherwise copies `0x150` bytes of `02AEC180` to the stack, patches in a qword built from the bytes `01F2B349`-`01F2B34D` ORed with `0x2005C00400002A00`, vectors from `02AEDD30`-`02AEDEA0` and lane 2 of `02AEDD60` plus 30000.0 (`009146FC`), and submits `00540C70(packet, 0x15, 0)`; then for each of word `+0` records of stride `0x1D0` from `rcx` plus word `+2` it copies `0x1E0` bytes of `02AEC2D0`, splices the record's first `0x1A0` bytes at packet `+0x10`, multiplies packet floats `+0x3C` and `+0x5C` by `003E5770(resolved record)`, `+0x20` by record float `+0x1C0` and `+0x24` by header float `+0xC` widened to double, and submits `00540C70(packet, 0x1E, 0)`; finally calls `001FBE50()`",
+   "now": "calls `001FBD80(2)` and `0039D3F0()`; resolves word `+8` of `rcx` (unless `0xFFFF`) to the `0x740`-stride record under qword `022C6F28`, nulled when its dword `+0x284` is 0; returns without further work when byte `+6` is 0 or the `0x2` bit (bit 1) of (byte `+7` OR dword `02CA8428`) is set; otherwise copies `0x150` bytes of `02AEC180` to the stack, patches in a qword built from the bytes `01F2B349`-`01F2B34D` ORed with `0x2005C00400002A00`, vectors from `02AEDD30`-`02AEDEA0` and lane 2 of `02AEDD60` plus 30000.0 (`009146FC`), and submits `00540C70(packet, 0x15, 0)`; then copies `0x1E0` bytes of `02AEC2D0` once into a second stack packet and, for each of word `+0` records of stride `0x1D0` from `rcx` plus word `+2`, splices the record's first `0x1A0` bytes at packet `+0x10`, multiplies packet floats `+0x3C` and `+0x5C` by `003E5770(resolved record)`, `+0x20` by record float `+0x1C0` and `+0x24` by header float `+0xC` widened to double (passed through the import thunk `00861F5C` first when `001EDDA0()` returns 0), and submits `00540C70(packet, 0x1E, 0)`; finally calls `001FBE50()`",
+   "why": "wrong loop scope: the 02AEC2D0 template is copied once before the record loop, not per record; an unstated branch (001EDDA0 gate on 00861F5C); ambiguous bit naming"
+  },
+  {
+   "fn": "00425E10",
+   "was": "walks the `0x740`-stride records under qword `022C6F28` starting at the index in dword `+0x48800` of that base and following each record's signed word `+4` until -1, calling `003E66D0(record)` (and reloading the base) for each record whose byte `+0x290` has bit `0x2` clear; returns at once when the start index is -1",
+   "now": "walks the `0x740`-stride records under qword `022C6F28` starting at the index in dword `+0x48800` of that base and following each record's signed word `+4` until -1, calling `003E66D0(record)` (and reloading the base) for each record whose byte `+0x290` has its `0x2` bit (bit 1) clear; returns at once when the start index is -1",
+   "why": "ambiguous bit naming: `bit 0x2` reads as bit 2; the test is mask 0x2 = bit 1"
+  }
+ ]
+}

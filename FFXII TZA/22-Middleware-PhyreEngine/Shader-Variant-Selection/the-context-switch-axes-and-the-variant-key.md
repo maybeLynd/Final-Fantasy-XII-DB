@@ -354,7 +354,7 @@ first parameter's tail offsets go**:
 | `+0x20` | `param2` — the same object passed as the evaluators' arg3 | `0060BAE5` |
 | `+0x28` | a pointer set earlier in the body; **which of two `lea`s is live needs flow analysis and is not established** | `0060BAEC` |
 | `+0x30` | `param4` | `0060BB1E` |
-| `+0x38`, `+0x40`, `+0x48` | `0` | `0060BAF3`, `0060BAFE`, `0060BB08` |
+| `+0x38`, `+0x40`, `+0x48` | `0`, then `+0x38` = a `0xC0`-stride geometry entry and `+0x40` = `esi` *(corrected 2026-10-02, OPUS: `0060BC46` and `0060BC4D` overwrite the zeros before the key call at `0060BDEF`)* | `0060BAF3`, `0060BAFE`, `0060BB08` |
 
 **That explains the reads `§4a` could not place.** `0060B980` touches its first parameter at
 `+0x00`, `+0x20`, `+0x28`, `+0x30`, `+0x38`, `+0xA8`, `+0xB0` and `+0xF0`; the last three are not
@@ -823,11 +823,11 @@ for callers, callees and data references, and the six groups partition the 48 ex
 | group | count | bytes | what they are |
 |---|---:|---:|---|
 | **this page's switch family** | 18 | 1,222 | read here in full |
-| the `0065xxxx` material-selector bodies | 11 | 13,651 | the largest single block of the 48. Each is called from exactly one `0065Bxxxx` body and each calls the render-item body `0060B980`; the class map names three of them `PRendering::PMaterialSelectorMaterialSet` / `PMaterialSelectorBase`, and the nine `0065Bxxxx` callers have no call sites of their own — they are vtable slots, one of them `PPostProcessing::PScreenSpaceReflection` slot 1. A class family with a vtable, sitting directly upstream of this page: a selector picks the effect whose switches then build the key |
+| the `0065xxxx` material-selector bodies | 11 | 13,651 | the largest single block of the 48. Each is called from exactly one `0065Bxxxx` body and each calls the render-item body `0060B980`; the class map names three of them `PRendering::PMaterialSelectorMaterialSet` / `PMaterialSelectorBase`, and the nine `0065Bxxxx` callers have no call sites of their own — they are vtable slots, one of them `PPostProcessing::PScreenSpaceReflection` slot ~~1~~ 6 *(corrected 2026-10-02, OPUS: `0065B920` sits at `00D626F0`, slot 6 of `00D626C0`; the post-effect page's slot-6 render overrides, so these are post-effect workers)*. A class family with a vtable, sitting directly upstream of this page: a selector picks the effect whose switches then build the key |
 | no caller, no data reference | 2 | 4,948 | `001B76E0` and `001E2AF0`, both also callers of `0060B980` |
 | single-caller leaf helpers | 9 | 1,349 | `005DBF60`, `005DC0B0`, `005DC2F0`, `0060E9C0`, `00613770`, `0061C250`, `0061CFA0`, `006BEC40`, `006C0FE0` |
 | a shared helper | 1 | 139 | `006160B0`, called from 20 sites in 13 different bodies — the only one of the 48 with more than one caller |
-| vtable-slot members (reached only through a data qword) | 7 | 458 | `0018D0E0`, `0018D100`, `0018D130`, `005CE850`, `005D6E00`, `005E2AA0`, `005E2AF0` |
+| vtable-slot members (reached ~~only~~ through a data qword; `0018D0E0` also has 52 direct call sites *(corrected 2026-10-02, OPUS: the other six have none, CON-200)*) | 7 | 458 | `0018D0E0`, `0018D100`, `0018D130`, `005CE850`, `005D6E00`, `005E2AA0`, `005E2AF0` |
 
 `UQ-289` stays open on those 30.
 

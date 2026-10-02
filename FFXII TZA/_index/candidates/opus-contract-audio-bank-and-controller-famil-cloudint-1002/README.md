@@ -1,0 +1,22 @@
+# Interior citations, cloud-drafted: CONTRACT-audio-bank-and-controller-family.md's entry-cited functions (OPUS, 2026-10-02)
+
+The page named 8 F-frontier functions only at their entry. A Claude Code cloud session (https://claude.ai/code/session_019LqHiXRaWmgLrNYjxULfMf) drafted one sentence and 1-5 interior anchors per function from OPUS's annotated disassembly pack (`cloud-input/f-interior/` in the private snapshot repo). OPUS checked every row mechanically with `interior_ingest.py` and re-read every sentence against the bytes before applying.
+
+**Rows.** 8 applied with 38 anchors. Rejected by the mechanical check: 0. Skipped by the session: 0. Missing: 0.
+
+**OPUS corrections on re-read.**
+
+- `002182E0`: pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 002182E0+0x4F reaches the Thunk-domain `free`
+- `0021BF60`: pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 0021BF60+0x4F reaches the Thunk-domain `free`
+- `0021CDC0`: pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 0021CDC0+0x4F reaches the Thunk-domain `free`
+- `00225440`: 'otherwise calls nothing' overreaches: the failing test at 00225440+0x2A comes after the second getter call at 00225440+0x21; only the vtable call at 00225440+0x3B is skipped
+
+**Verification.** [`interior_applier.py`](interior_applier.py) reads [`rows.json`](rows.json) and re-decodes every function first. Every anchor is an instruction boundary inside its extent with the recorded mnemonic ([`.out`](interior_applier.out): FAILS 0; idempotent).
+
+**Effect and gates.** All 8 rowed functions now measure A. On the page: `check_links` 0, `check_self_contradiction --db` 0, `check_consistency` 4 (the pre-existing four), `verify_doc_addresses --all` 0 documents to confirm.
+
+**Limits.** Body statements, not meanings. A cloud draft is a pointer, not evidence: what stands here is OPUS's re-read. The session's agreement with OPUS is not independent review.
+
+## Review (OPUS)
+
+A non-author spot-check goes to SWE2-AUDIT-SPEC: at least 15 rows read against the bytes.

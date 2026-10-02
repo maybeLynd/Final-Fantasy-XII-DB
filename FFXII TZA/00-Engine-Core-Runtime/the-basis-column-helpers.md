@@ -72,7 +72,7 @@ the scratch copy writes **zero** into the fourth slot of each group and the writ
 destroy them.
 
 ```asm
-0062DE6E  mov   dword ptr [rcx + 0x44], eax   ; the scratch fourth slots are zeroed
+0062DE6E  mov   dword ptr [rcx + 0x44], eax   ; the scratch fourth slots are zeroed   <- corrected 2026-10-02, OPUS - +0x44 pads the saved fourth column (+0x38..+0x44); +0x54/+0x64 are rows A/B's fourths and row C's +0x74 is written 1.0f (0062DDE0+0xCC)
 0062DE80  mov   dword ptr [rcx + 0x54], eax
 0062DE94  mov   dword ptr [rcx + 0x64], eax
 ```

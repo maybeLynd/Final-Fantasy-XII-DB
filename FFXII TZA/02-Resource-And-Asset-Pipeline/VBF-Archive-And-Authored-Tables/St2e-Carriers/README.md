@@ -175,12 +175,12 @@ holds 769 map directories against 332 `.ard` files.
 
 `ps2data/image/ff12/test_battle/<lang>/binaryfile/battle_pack.bin`, ~281 KB for `us`.
 
-**A 71-entry offset table**, ascending, table ending `0x120` and first payload at `0x128`.
+**A 71-entry offset table**, ascending, table ending ~~`0x120`~~ `0x124` (the count and 72 four-byte offsets) and first payload at `0x128` *(corrected 2026-10-02, OPUS: the binder's `+0x56` `lea rbx, [r9 + 4]` and `+0x97` `add rbx, 4`, over count + 1 entries to its `+0x9B` `cmp rdi, rax` and the `jle` at its `+0x9E`)*.
 
 > **⚠ Corrected 2026-09-04 by `repos-c7`'s `.bin` census.** This README originally said the table
 > was *"structurally the same shape as the EBP2 and PKFL directories"* and that the engine reuses
 > one container idea in three places. **It does not.** `battle_pack`'s directory is **packed, with
-> 8-byte entries, and 29 of its 71 slots aliased** — none of which is true of the EBP2 or `FF12AR03`
+> ~~8-byte entries~~ 4-byte entries, and 29 of its 71 slots aliased** *(corrected 2026-10-02, OPUS: the binder steps 4 bytes, its `+0x97` `add rbx, 4`)* — none of which is true of the EBP2 or `FF12AR03`
 > directories, which are index-addressed with 4-byte entries and `0 = absent`.
 >
 > **A leading count followed by ascending offsets is a shape, not an identity.** The same section

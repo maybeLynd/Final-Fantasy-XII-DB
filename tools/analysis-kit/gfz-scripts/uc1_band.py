@@ -184,10 +184,22 @@ def errata_extends(path=None):
     return out
 
 
-def apply_extents(sizes, path=None):
+def apply_extents(sizes, path=None, band=None):
     """Grow {entry: size} to the v3 extents. Returns (new_sizes, info) with the rows used and the bytes added, so a
-    reader prints the denominator change beside its ratios instead of absorbing it silently."""
+    reader prints the denominator change beside its ratios instead of absorbing it silently.
+
+    Fails LOUD when an underrun errata row contradicts a band `extend-listed` row: an entry the band
+    already extends to `en` whose adjudicated `corrected_end` is BELOW `en` is a conflict between the
+    two rulings, not a variant (a corrected_end above the band end is a consistent further extension -
+    e.g. 007C23C0, whose band row lists the instruction extent while the errata carries the native
+    extent to 007C2A58)."""
+    band = band or load()
     ext = errata_extends(path)
+    for e, ce in ext.items():
+        be = band["extend"].get(e)
+        if be is not None and ce < be:
+            raise ValueError("UC-1 extent errata %08X corrects to %08X, below the band-adjudicated "
+                             "extend end %08X" % (e, ce, be))
     sizes = dict(sizes)
     grown, added = 0, 0
     for e, ce in ext.items():

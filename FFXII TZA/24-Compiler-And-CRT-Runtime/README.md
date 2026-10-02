@@ -11,18 +11,18 @@
 ## Systems in this category
 
 - [`Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md`](Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md) —
-  **DOCUMENTED, tier 1.** The most actionable page in the database for hooking FFXII: fixed
-  `ImageBase 0x00120000`, **ASLR off**, **CFG compiled in but shipped disabled** (the check is
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The most actionable page in the database for hooking FFXII: fixed
+  `ImageBase 0x00120000`, **ASLR off**, ~~**CFG compiled in but shipped disabled**~~ **CFG metadata shipped, only the statically linked CRT instrumented, nothing enforced** *(corrected 2026-10-02, OPUS: the check thunk `00809958` has 11 call sites, all in CRT start-up bodies `008087C4`–`00809CD4`, and the dispatch slot `008C31C8` is never referenced; the page's 2026-09-19 section)* (the check is
   `ret 0`, the dispatch is `jmp rax`), DEP and `/GS` cookies genuinely enforced.
 
 - [`Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md`](Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md) —
-  **DOCUMENTED, tier 1.** 1,172 initializers run before `main`; **zero TLS callbacks.** Answers
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* 1,172 initializers run before `main`; **zero TLS callbacks.** Answers
   "when is it safe to touch engine state?" — and closes S-1 and S-4. **Reopened and corrected
   2026-09-02 (section 12):** its "117 lazy magic statics" was a tag-population count, not a
   census. The mechanism count is **1,681 statics at 1,732 guarded sites across 707 functions**.
 
 - [`Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md`](Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md) —
-  **DOCUMENTED, tier 1, one falsification pass.** The **1,681 objects FFXII builds on first use**,
+  ~~**DOCUMENTED, tier 1, one falsification pass.**~~ **AUDITED, tier 1, one falsification pass.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* The **1,681 objects FFXII builds on first use**,
   three quarters of them PhyreEngine's own type metadata, all behind **one** `CRITICAL_SECTION`.
   Contains the hazard that matters most to this project: a detour that leaves a guarded region
   without reaching `_Init_thread_footer` strands the guard at `-1`, and every later thread waits
@@ -31,20 +31,31 @@
   free startup trace.
 
 - [`Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md`](Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md) —
-  **DOCUMENTED, tier 1, one falsification pass.** The category's four remaining families —
+  ~~**DOCUMENTED, tier 1, one falsification pass.**~~ **AUDITED, tier 1, two falsification passes.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED` and `passes: 2`)* The category's four remaining families —
   `CompilerGeneratedCpp` 417, `CxxObjectLifecycle` 226, `CxxStandardLibrary` 167, `Microsoft` 106,
   **916 functions** *(GN161; R109 added one `CxxObjectLifecycle` member)*. Seven mechanisms re-derived from the image, **all scoring 100 %**: the
   **deleting-destructor idiom** in both its spellings (226/226), the **1,172-entry CRT registration
   table** (90/90 and 11/11), the **lazy-static guard** (117/117 and 23/23) and **vtable install**
   (60/60, 25/25). A deleting destructor also gives you `sizeof` for its class. One label,
-  `CxxStandardLibrary.NativeQualified`, is called out as unsupported by its own name.
+  `CxxStandardLibrary.NativeQualified`, is called out as ~~unsupported by its own name~~ wrong for at least two members *(answered: see BQ-22 on the object-lifecycle page, ANSWERED 2026-09-22; 2026-10-02, OPUS)*.
 
 - [`Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md`](Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md) —
-  **DOCUMENTED, tier 1, one falsification pass.** Answers open question **B-2**: of the 3,895
+  ~~**DOCUMENTED, tier 1, one falsification pass.**~~ **AUDITED, tier 1, one falsification pass.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* Answers open question **B-2**: of the 3,895
   functions tagged `CompilerGeneratedEH`, **3,893 are genuine funclets, 2 are not, and 6 genuine
   ones are missing from the tag.** Also the complete EH configuration (`__CxxFrameHandler3`
   4,377 · `__GSHandlerCheck` 5,372 · `__C_specific_handler` 9), and the **1,545 unwind funclets**
   that release a lazy-static guard when a constructor throws.
+
+- [`Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md`](Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md) — the static initialiser and teardown families — **DOCUMENTED**
+- [`Cxx-Runtime-Families/the-ordered-container-runtime.md`](Cxx-Runtime-Families/the-ordered-container-runtime.md) — the EASTL red-black tree runtime — **AUDITED**
+- [`Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md`](Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md) — MSVC's `std::_Tree` — **AUDITED**
+- [`Generated-Families/generated-function-families.md`](Generated-Families/generated-function-families.md) — the generated-function family catalogue — **DOCUMENTED**
+- [`Generated-Adapters/the-return-value-adapter-family.md`](Generated-Adapters/the-return-value-adapter-family.md) — the 403 return-value adapters — **AUDITED**
+- [`Memory-And-Allocation/where-the-games-memory-comes-from.md`](Memory-And-Allocation/where-the-games-memory-comes-from.md) — the CRT heap routes and the engine arena — **PARTIAL**
+- [`Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md`](Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md) — the thunk layer — **AUDITED**
+- [`Runtime-Service-Surface/what-the-game-asks-windows-for.md`](Runtime-Service-Surface/what-the-game-asks-windows-for.md) — the Windows service surface — **AUDITED**
+- [`Maths-Library/the-maths-the-game-runs-on.md`](Maths-Library/the-maths-the-game-runs-on.md) — the maths library — **AUDITED**
+- *(corrected 2026-10-02, OPUS: nine pages this list omitted, added with the status each page's own front matter states)*
 
 **Composition of this category** (by CodeDomain tag): EH unwind funclets 3,813 · Runtime.Callback
 402 · StaticIntrusiveListTeardown 224 · ContainerAllocator 168 · StaticLifetimeInfrastructure 145 ·

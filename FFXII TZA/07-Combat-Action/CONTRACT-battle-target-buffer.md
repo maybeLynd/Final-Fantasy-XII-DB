@@ -412,8 +412,8 @@ this contract should not have to find them from the experiment side only.
    > [r14 + 8], al`), then the flag bits 8–11 above it (`003075CB`–`003075F9`). So `+0x08` is the
    > **outcome word**: byte 0 the *target-entry code* (result kind 0 → 0, 5 → 1, 1 → 2, 3 → 3,
    > 2 → 4, 4 → 5, 6 → 6, 7 → 7, 8 → 8, `0xB` → 10, `0xA` → 9, 9 → 11; `0030DAE0`), bits 8 / 9 / 10
-   > knockback / parry / combo-continues and bit 11 the result's flag word B bit 0 — the
-   > mode-2 resource-reaction chance rolled (`test r12b, al` at `003075F4`, `r12d` pinned
+   > knockback / ~~parry~~ counter / combo-continues and bit 11 the result's flag word B bit 0 — the
+   > ~~mode-2 resource-reaction chance rolled~~ ranged critical rolled *(corrected 2026-10-02, OPUS: bit 9 is `0x200` from flag B bit 2 at `003075E8`–`003075EC`, the counter flag; bit 11 is flag B bit 0, which `00389140` sets on the ranged critical, `003891B7`–`003891D9`; Result-Record/the-result-record-field-map.md row `+0x018`)* (`test r12b, al` at `003075F4`, `r12d` pinned
    > to 1 at `0030746E`, ORs `0x800` at `003075F9`; FT-4) — as [the battle-unit field map](../04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md) (`+0x788`,
    > *entries[0].outcome*) and [the formula scratch block](../08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md) §2.6 already record. A second census today of every
    > store width and mnemonic to `+0x788` / `+0x790` displacements, every unscaled `[base + idx +

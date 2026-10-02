@@ -360,7 +360,9 @@ that naming the caller obliges the sentence.*
 helper exchange, not a save-layout responsibility.
 
 **Resource — SERVICE.** `001C26B0`/`001C19A0`/`001C2720`, the record-convert and base helpers this page's `001EA6C0` entry names, are also invoked from the resource layer (`00597970`/`00597A70`/`0059ED70`/`0059EE10` and siblings) - a shared-helper crossing the save-image page borrows; it owns no resource-table state.
-
+- **PlatformOnlineAchievements - SERVICE (2 edges).** `00408C30`, `00862A20` reach bodies filed to platform/online achievements: `00862A20`, `00862A40` - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT and SERVICE (2 edges).** `002EF300` is also called by bodies filed to script VM / native bridge: `0050D9A0`; `0050D9A0` reaches bodies filed to script VM / native bridge: `00267E10` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT (3 edges).** `002EF640` is also called by bodies filed to world area: `00229B40`, `003145E0`, `005843E0` - shared machinery across the layer boundary, no shared ownership.
 ## The `00253A80` exclusive subtree — all 4 members bound (SWE2-FRONTIER, followup queue)
 
 `SaveRuntime_InitializeHeaderAndImageBackedState` (`00253A80`, 265 B) is the

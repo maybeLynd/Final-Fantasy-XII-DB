@@ -487,3 +487,11 @@ amendment.
 **Not claimed:** §5's differential test, the `1–3` mouse-button answer and the injected-node harness
 (154 cases = 143 real + 11 injected) were **not** re-run — this pass read the shipped nodes, not the
 harness. Nothing was executed or observed live.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-input-name-registry-and-channel-alia-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001E0E00` | 37 B | calls `00796E20()` and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax` | `001E0E08`, `001E0E0D`, `001E0E10`, `001E0E17`, `001E0E1C` |

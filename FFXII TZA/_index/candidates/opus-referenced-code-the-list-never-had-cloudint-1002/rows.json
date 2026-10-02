@@ -1,0 +1,76 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "referenced-code-the-list-never-had.json",
+ "rows": [
+  {
+   "fn": "00263A30",
+   "text": "returns the string \"NOACTOR\" (`00915708`) unless `ecx` is at most 4 (unsigned), bit 0 of byte `+0x10` of the `0x288`-byte record `ecx` at `02098E10` is set, that record's qword `+0` is non-null, `edx` is below its dword `+0x20` (signed), and `00358940(record, edx)` returns non-null with a non-null qword `+0x40`; then it returns that qword `+0` plus its dword `+0x4C` plus the sign-extended dword the `+0x40` qword points at",
+   "anchors": [
+    [
+     "00263A3D",
+     "cmp"
+    ],
+    [
+     "00263A58",
+     "test"
+    ],
+    [
+     "00263A6B",
+     "cmp"
+    ],
+    [
+     "00263A70",
+     "call"
+    ],
+    [
+     "00263A8C",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0034ED80",
+   "text": "tail-jumps to `002EC3C0` with `rcx` = the incoming `rdx` and `edx` = 1",
+   "anchors": [
+    [
+     "0034ED83",
+     "mov"
+    ],
+    [
+     "0034ED88",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00350320",
+   "text": "tail-jumps to `0026DC50` with `rcx` = the incoming `rdx` and `edx` = 0",
+   "anchors": [
+    [
+     "00350323",
+     "xor"
+    ],
+    [
+     "00350325",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00354950",
+   "text": "sets `ecx` to 1 at the entry and tail-jumps to `003DE3E0`",
+   "anchors": [
+    [
+     "00354955",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

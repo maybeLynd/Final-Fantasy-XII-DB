@@ -1,7 +1,7 @@
 ---
 system: Where the game's memory comes from
 category: 24-Compiler-And-CRT-Runtime
-status: REOPENED
+status: PARTIAL — owner re-status 2026-10-02 (FABLE) from REOPENED: the reopening cause is resolved (SECTION-07 ACCEPTed, auditspec-review-section07-10-1001) and four residues are answered statically (_index/candidates/mempage-residue-fable-1002); the +0xC0 receiver type answered 2026-10-02 (_index/candidates/c0-receiver-fable-1002); open: the run-time placement of the arena blocks (GR-18's fourth case)
 owner_layer: CodeDomain:Runtime.Memory + Runtime.ContainerAllocator + Microsoft.MSVCCRT_STL_Runtime
 evidence_tier: 1
 verified_against:
@@ -32,11 +32,11 @@ external_production:
 # Where the game's memory comes from
 
 > Every byte FFXII allocates while it runs comes from **one** heap — the C runtime's, inside a
-> Windows DLL the game does not ship — through exactly **six** doors. ~~The game never creates a
+> Windows DLL the game does not ship — through exactly ~~**six**~~ **eight** doors *(corrected 2026-10-02, OPUS: all eight heap imports `008C2B40`–`008C2B78` are reached: `_aligned_malloc` by tail jumps in `0019C580`, `001EDF10+0x5D` and `001EDF80+0x53`, `_set_new_mode` through `00862046`; §1's table)*. ~~The game never creates a
 > heap of its own, never reserves a pool up front, and never checks whether the memory it just
 > asked for actually arrived.~~ *(corrected 2026-09-28, FABLE, Claude Opus 5.5, on ASTRA's allocator-retry
 > return; re-derived in [`_index/candidates/fable-returns-0928g/`](../../_index/candidates/fable-returns-0928g/alloc_nav_check.py))* Above those doors the game runs
-> its own fifteen-heap arena (§2), whose backing is not established. Its wrappers do check arrival:
+> its own fifteen-heap arena (§2), ~~whose backing is not established~~ whose backing comes from the C runtime heap or from another arena *(answered 2026-10-02, FABLE, static; addresses and controls in [`mempage-residue-fable-1002`](../../_index/candidates/mempage-residue-fable-1002/README.md) item 1)*. Its wrappers do check arrival:
 > `0036A1A0` tests both allocators' results and skips its header stamps on null, and the retry allocator
 > `0036BFE0` asks the heap's callback and a reclaim pass before it returns null. Callers differ: some test
 > the result and some write through it unchecked (§1).
@@ -46,8 +46,8 @@ external_production:
 Watch FFXII in Task Manager while you play. The memory figure is not flat. It climbs as you walk
 into Rabanastre, climbs again when the Bazaar crowd streams in, drops back when you leave for the
 Estersand, climbs hard on a summon cinematic. The game is asking Windows for memory and giving it
-back, continuously, all the way through a session — it does not grab one big block at startup and
-live inside it the way a console game does.
+back, continuously, all the way through a session — ~~it does not grab one big block at startup and~~
+~~live inside it the way a console game does.~~ It also takes nine large blocks at startup, about 256 MiB, and its arenas live inside them *(corrected 2026-10-02, OPUS: `0022A0B0+0x131` through `0022A0B0+0x1B9` call `0036D240`, which reaches `malloc` through `0085E730`, for arenas 2–9 and 11; §2)*.
 
 That has two consequences a player can actually feel.
 
@@ -80,7 +80,7 @@ not on another, with identical game files, is behaving exactly as designed.
 
 `FFXII_TZA.exe` imports **538 symbols across 30 DLLs**. Of those, exactly **eight** are heap
 functions, and all eight come from `api-ms-win-crt-heap-l1-1-0.dll` — the API-set stub that
-forwards to `ucrtbase.dll`, the Universal C Runtime that ships with Windows. Six of the eight are
+forwards to `ucrtbase.dll`, the Universal C Runtime that ships with Windows. ~~Six of the eight are~~ All eight are *(corrected 2026-10-02, OPUS: the table's own `_set_new_mode` row is corrected to 1, and `_aligned_malloc` is reached through `0019C580`)*
 actually called:
 
 | door | call sites | distinct calling functions |
@@ -112,9 +112,11 @@ reserve address space in advance.
 > same `base + (u32)x` pair the authored tables use — so the arena's own bookkeeping only works if every
 > block lies within 4 GiB above the base `01F83530`. `0036A100` / `0036A190` / `0036A1A0` are its entry
 > wrappers (`0036BFE0` retries and reclaims). Resource payloads (`.ebp` files, authored tables, the BGM stream
-> buffer) come from it, and `0036C660` tags a block's header with a 7-character name. Where the
+> buffer) come from it, and `0036C660` tags a block's header with a 7-character name. ~~Where the
 > arena's backing is obtained — through the CRT imports listed here or otherwise — is not established
-> on this page (ASTRA's EXP-077 / EXP-078). "There is no pool to size" is withdrawn for the resource
+> on this page (ASTRA's EXP-077 / EXP-078).~~ Every arena's backing is obtained at run time from the C runtime heap or from another arena. Arenas 2 to 9 and 11
+> get it from `malloc`, through a shim, during boot, and arena 11 again whenever it is reallocated at a new size. Arenas 13 and 14 are carved from arena 5,
+> and arena 12 from the arena the script verb `setexpandvoicememory` names, which is arena 6 for the only argument shipped scripts pass (-1). Arenas 0, 1 and 10 are never set up: the initializer is the only code that sets an arena's enable bit *(answered 2026-10-02, FABLE, static; addresses and controls in [`mempage-residue-fable-1002`](../../_index/candidates/mempage-residue-fable-1002/README.md) item 1)*. Where the running process places those blocks stays a run-time fact (ASTRA's EXP-077 / EXP-078); it is registered as `GR-18`'s fourth case, whether the `.ard` buffer can sit at or above 4 GiB *(linked 2026-10-02, FABLE)*. "There is no pool to size" is withdrawn for the resource
 > path.
 >
 > **Where the backing comes from (2026-09-12, ASTRA's supplement re-read by FABLE).** At boot,
@@ -494,7 +496,7 @@ It has no header, it cannot be freed individually, and its address is `poolBase`
 the aligned record sizes ahead of it.** Writing past the end of one record writes into the next
 actor.
 
-### Failure is not handled
+### Failure is not handled *(answered: see the overview's 2026-09-28 and 2026-09-30 corrections - the arena retries, and some callers test for null; 2026-10-02, OPUS)*
 
 ~~`_set_new_mode` is imported and **never called**, so the CRT's new-handler mode stays at its~~
 ~~default of 0~~ *(Corrected 2026-09-30, SWE2-DATA: it is called once, as `_set_new_mode(0)`, by the first C++ initializer `00808D5C` through the import thunk `00862046`; the argument comes from the folded `return 0` stub (`pf_mem_checks.py` M1d). The shape is MSVC's stock `pre_cpp_initialization` — set the unhandled-exception filter, then `_set_new_mode(_get_startup_new_mode())` with the default stub returning 0 — toolchain startup, not a game decision (SWE2-AUDIT-SEM batch-4 review §2). So the new-handler mode is 0 by an explicit call)*: `malloc` returns `NULL` on failure rather than invoking a handler. The EXE imports
@@ -676,8 +678,8 @@ up to three hops.
 
 ### The folded empty function, and why it cannot be named from a vtable
 
-`0016D6A0` is three bytes — `C2 00 00`, `ret 0` — followed by `int3` padding. It has **2,479
-incoming calls**, more than any other function in the binary, and it turns up under several
+`0016D6A0` is three bytes — `C2 00 00`, `ret 0` — followed by `int3` padding. It has ~~**2,479~~
+~~incoming calls**~~ **2,528 incoming `call` sites and 340 `jmp` sites, from 2,480 functions** *(corrected 2026-10-02, OPUS: direct edges over the current function extents; 2,479 is close to the function count, not the call count)*, more than any other function in the binary, and it turns up under several
 different names. All of them are describing the same three bytes.
 
 It has one identity that is genuinely established, and it comes from the PE itself rather than
@@ -748,7 +750,7 @@ appear in small numbers. Zone load and teardown is what drives the volume.
 **Downstream (what this causes):** `ucrtbase.dll`'s heap, which sits on the Windows process heap.
 Nothing inside `FFXII_TZA.exe` is downstream of the allocator; it is a leaf.
 
-**The gameplay chain is a different chain and does not join this one:**
+**The gameplay chain is a different chain and ~~does not join this one~~ joins this one only at boot, where its arenas take their backing from `malloc`:** *(corrected 2026-10-02, OPUS: `0036D240` is `jmp 0085E730`, the `malloc` stub, called nine times by `0022A0B0`)*
 
 ```
 ActorSystem_InitializeManagerRuntime (0026CE60)
@@ -866,8 +868,8 @@ with three different functions. They are one operation, and all three carry the 
 
       ***And the caller names itself in arithmetic, not in a tag.*** Eleven bytes after that first
       call, `00679B98` does `imul ebx, ebx, 0xBB80` and `shl rbx, 2`, then calls the **allocate hook
-      directly**. `0xBB80` is **48,000**, so the block is `seconds × 48 kHz × 4 bytes` — 16-bit
-      stereo. *That is what identifies the consumer as audio streaming*; the ledger tags on those two
+      directly**. `0xBB80` is **48,000**, so the block is ~~`seconds × 48 kHz × 4 bytes` — 16-bit~~
+      ~~stereo~~ `channels × 48,000 × 4 bytes`, one second of 4-byte samples per channel *(corrected 2026-10-02, OPUS: `ebx` is `[rsi+0x324]`, loaded at `00679A50+0x10D`; `+0x320` is a libvorbis `vorbis_info` set up by `00880AF0` and read by `008800C0`, whose `008800C0+0x74` compares the `vorbis` header tag, so `+0x324` is `channels`; §1's table row says the same)*. *That is what identifies the consumer as audio streaming*; the ledger tags on those two
       bodies agree, but they are not what the claim rests on.
 
       **The pair is the CRT aligned heap, not the engine arena this page is otherwise about.**
@@ -1025,11 +1027,13 @@ reading survived: a node that was the head re-heads `+0x90`, a node that was the
 **A second link pair does exist**, and the coalescer is where it is used — `0036B210` decodes
 `[rdx+4]`, `[rbx+4]`, `[rbx+8]` **and `[rdi+0xC]`** through `0020E600` in one body. So `+0x0C` and
 `+0x10` are real links, and `EXP-123`'s reading of them as physical adjacency fits a coalescer's
-need to reach a block's memory neighbours without searching. **What is NOT established is where
+need to reach a block's memory neighbours without searching. ~~**What is NOT established is where
 that second list is rooted** — not at `+0x90`/`+0x98`, which are spoken for. Recorded as open
-below rather than assigned a root.
+below rather than assigned a root.~~ The second pair is a physical-order chain rooted at the descriptor's `+0x10`, the first block header. Only the
+arena initializer writes that field, the chain's two ends are encoded nulls, and its links are written only by the
+arena's header fill, its insert-after / insert-before pair and its unlinker; the dump walker starts at `+0x10` *(answered 2026-10-02, FABLE, static; addresses and controls in [`mempage-residue-fable-1002`](../../_index/candidates/mempage-residue-fable-1002/README.md) item 2)*.
 
-> **Every link is `BASE`-encoded** — `d[link] = ptr − arena`, decoded through
+> **Every link is `BASE`-encoded** — ~~`d[link] = ptr − arena`~~ `d[link] = (u32)ptr − (u32)base`, `base` the qword at `01F83530`, not the arena *(corrected 2026-10-02, OPUS: `0020E620` is `sub ecx, [01F83530]` and `0020E600+0x2` adds the qword back; no other instruction references `01F83530`, which lies in zero-filled `.data`)*, decoded through
 > `ImageAddress_ResolveRuntimePointer` (`0020E600`) on every single hop above, and encoded by its
 > inverse `RuntimePointer_EncodeImageAddress` (`0020E620`). **The roots are raw qword pointers and
 > the links are 32-bit offsets**, and that asymmetry is real: `0036BDE4` compares `+0x90` against a
@@ -1046,7 +1050,7 @@ below rather than assigned a root.
 | `+0x15` | 1 | flags — `or` at `0036BE67` |
 | `+0x16` | 1 | **tag**, written at `0036BE8D`, read at `0036BD57` |
 | `+0x18` | 4 | **size key**; the block's extent is `key + 0x40` (`0036BD03`, `0036BD31`, `0036BDA9`) |
-| `+0x3E` | 2 | **mark word**, written at `0036BE91`, `0036BEA5`, `0036BF74` |
+| `+0x3E` | 2 | ~~**mark word**~~ guard word, written as zero at `0036BE91`, `0036BEA5`, `0036BF74` *(corrected 2026-10-02, OPUS: the stored `r13w` is zeroed at `0036BC60+0x222`; the mark byte is header `+0x02`)* |
 
 **The magics are real and they are a pair:** `0xFF12` for a live block and `0xFF99` for an unlinked
 one. `0xFF12` appears at five sites across the family — `003698BC`, `0036A4A8`, `0036C675`,
@@ -1054,7 +1058,7 @@ one. `0xFF12` appears at five sites across the family — `003698BC`, `0036A4A8`
 "unlinked" against five checkers of "live"** is worth knowing before anyone calls a validation site
 redundant.
 
-> **The header is NOT being added to `_types/` yet, and that is deliberate.** Nine of its
+> ~~**The header is NOT being added to `_types/` yet, and that is deliberate.**~~ *(answered: see "What this settled in `_types`" below - `ImageAddressArenaBlockHeader`, 2026-09-20; 2026-10-02, OPUS)* Nine of its
 > sixty-four bytes are accounted for above. Writing a type row set now would mean inventing
 > `unobservedSpan` rows over `+0x00`–`+0x02`, `+0x19`–`+0x3D` and `+0x3F` — **fifty-odd bytes of
 > gap consumed to make the layout look complete**, which is the one thing the store's rules forbid.
@@ -1090,7 +1094,7 @@ every split**, through the shared tail at `0036BF1C`. There is no deferred-merge
   incremented per operation.
 - **Where the `+0x0C`/`+0x10` link pair is rooted.** The pair exists and the coalescer uses it; `+0x90`/`+0x98` are the free list's ends and cannot also be its roots. ~~**Open.**~~ *(Answered by reconciliation 2026-09-30, SWE2-DATA: the release path below uses them as the physical neighbour links, phys-prev `+0x0C` and phys-next `+0x10`. They chain blocks by address and have no root.)*
 - **The corruption path is a hard stop.** A non-zero `w[+0x3E]` where zero is required routes to
-  `0036A570`, calls through the hook cell `q[008C2D80]`, and executes `int3`. **It does not return
+  `0036A570`, calls ~~through the hook cell `q[008C2D80]`~~ the CRT's `exit(1)` through its import slot `008C2D80`, and executes `int3` *(corrected 2026-10-02, OPUS: `008C2D80` is the `api-ms-win-crt-runtime` import `exit`; `00369860+0x214` sets `ecx = 1` and `00369860+0x219` calls it)*. **It does not return
   an error** — a reconstruction that returns `NULL` there is not reproducing this allocator.
 
 *(OPUS 2026-09-19, on `REQ-OPUS-ALLOC-CORE-FINDINGS` from SWE2-ORACLE. Header offsets, both magics, the
@@ -1115,7 +1119,7 @@ value is how a reconstruction ends up with two fields:
 **The fifteen `0xA8` records at `022D7FD0` are per-kind arenas.** The same record carries the
 allocator state this page documents (`+0x20` bitmap, `+0x28` page table, `+0x60` sequence,
 `+0x68` tag counters, `+0x90`/`+0x98` free-list ends) **and** the creation fields `EXP-122` found:
-`+0x50` pool pointer, `+0xA0` per-kind constructor, live marks at `+0x02`/`+0x62`. One record, two
+~~`+0x50` pool pointer~~ `+0x50` the root of the block-header tree, `+0xA0` per-kind constructor, live marks at `+0x02`/`+0x62` *(corrected 2026-10-02, OPUS: `0036B410+0x47` stores the first node at `+0x50` when the tree is empty and `0036AAD0+0x40` starts a size-keyed descent there, children at `+0x24` and `+0x28`)*. One record, two
 jobs — selecting a heap and selecting a constructor are the same choice.
 
 ### An out-of-range kind is a null-page dereference, not an error
@@ -1155,7 +1159,7 @@ called and never reloaded. And `d[obj-0x10]` is `BASE`-encoded *zero*, which is 
 a link field pre-set to "points at the arena origin" rather than to null.
 
 > *`EXP-122` describes the mark byte as coming from the staged tag. It comes from a different
-> global, `022D8E18` — a neighbour of the `022D8E1C` failure code that `0036BC60` returns
+> global, `022D8E18` — a neighbour of the `022D8E1C` ~~failure code that `0036BC60` returns~~ byte that `0036BC60` stores as the block's counter index when no free-list record supplies `+0x16` *(corrected 2026-10-02, OPUS: the four reads below load it into the local that `0036BC60+0xF7` otherwise fills from `byte [r8+0x16]`; nothing returns it)*
 > (`0036BD19`, `0036BD21`, `0036BD44`, `0036BD4F`). Named by address here rather than by relation.*
 
 ### The retry is livelock-shaped
@@ -1193,8 +1197,8 @@ ends, and **the pop is what produces the staged dword the allocator reads.**
 ```
 
 **`022D89BC` — the dword the front-door section above shows being read as both the arena id and the
-allocation kind — is written here, by the pop.** So the full path is: a caller pushes a selection
-onto a lane, the pop stages it into `022D89BC`, and `0036A100`/`0036BC60`/`0036BFE0` read it as the
+allocation kind — is written here, by the ~~pop~~ push, and restored by the pop.** *(corrected 2026-10-02, OPUS: `0036C1F0+0x8F` and `0036C140+0x2B`, below)* So the full path is: a caller pushes a selection
+onto a lane, ~~the pop stages it into `022D89BC`~~ the push installs `map[id]` into `022D89BC` *(corrected 2026-10-02, OPUS: `0036C1F0+0x8F` stores the mapped id into `022D89BC`; the pop `0036C140+0x2B` writes back the saved previous one)*, and `0036A100`/`0036BC60`/`0036BFE0` read it as the
 arena to allocate from and the kind to construct. The three sections on this page are one
 mechanism.
 
@@ -1356,7 +1360,7 @@ objects with disjoint writers, disjoint entry points and disjoint lifetimes.**
 
 **Region 1 needs no new work and the request's description of it is the superseded model.** The
 request calls `+0x00`..`+0x20` *"a `0xFF` constant and a pointer"*; the subsection above this one
-establishes it is an **8-element dword array at stride 4, indexed by `[rec+0x17]` and amounted by
+establishes it is an **~~8-element~~ dword array at stride 4 *(corrected 2026-10-02, OPUS: `00369D30+0x7D` writes `0xFF` into `022D8E18`, a different field, so the array cannot run to eight; the closure below finds two elements on every identified path)*, indexed by `[rec+0x17]` and amounted by
 `[rec+0x18]`** — OPUS's own finding of 2026-09-14, on three independent sites, and its closing
 sentence is that this page *"models `022D8E10`–`022D8E2F` as separate named scalars and does not
 mention an array anywhere"*. **That is exactly the shape a fresh displacement sweep re-discovers as
@@ -1525,8 +1529,9 @@ upper nibble (`shr edx, 4`), so on those paths the index is 0..15. It is 0 or 1 
 
 **So the closure holds for the literal call sites, and is open for this one path.** If a source byte at or above
 `0x20` reaches the factory, the credit lands at `022D8E18` or beyond, on the struct fields the initializer writes.
-Whether the shipped game ever supplies such a byte, and whether other writers of `+0x0C1` exist, is not established
-statically. The stored fields' own record is the type store's CharacterRenderRecord `+0x0C1` row (`b83439b6c`).
+~~Whether the shipped game ever supplies such a byte, and whether other writers of `+0x0C1` exist, is not established
+statically.~~ No other writer of `+0x0C1` with a proven render-record receiver exists: an image-wide sweep of stores of every width
+that cover the byte finds only the two known writers, and the defaults reset zeroes it. The source byte's upper nibble has one setter, and all 27 of its call sites pass 0 or 1, so the index is 0 or 1 on every identified path *(answered 2026-10-02, FABLE, static; addresses and controls in [`mempage-residue-fable-1002`](../../_index/candidates/mempage-residue-fable-1002/README.md) item 3)*. ~~Still open, static: the object type behind the `+0xC0` pointer in twelve bodies whose wider stores land on these offsets (no receiver is proven).~~ None of those twelve bodies reaches an actor record: in ten the `+0xC0` belongs to a UI widget (a child or owner widget, a manager slot, an image-registration entry or a private buffer), in one to an audio submix voice (a per-channel buffer), and in one the "pointer" is a stack argument of an audio filter method, so none can change the source byte and the index stays 0 or 1 *(answered 2026-10-02, FABLE, static; [record](../../_index/candidates/c0-receiver-fable-1002/README.md))*. The stored fields' own record is the type store's CharacterRenderRecord `+0x0C1` row (`b83439b6c`).
 
 ## The `0036CB00` exclusive subtree — all 3 members bound (SWE2-FRONTIER, followup queue)
 
@@ -1567,8 +1572,8 @@ free-block address reaching realloc — the heap's own guard, kept verbatim
   verified: [`001EDF07`](../../_index/ADDRESS-INDEX.md) is `mov qword ptr [rcx], rax` — the vtable
   `00902720` store; the full 14 B is install-vtable, `mov rax, rcx`, `ret`. 104 frontier callers.
 
-NOT claimed: `00210EC0`'s caller-visible contract beyond `malloc(n)` — whether a caller relies on
-the dead-arg form is not established.
+~~NOT claimed: `00210EC0`'s caller-visible contract beyond `malloc(n)` — whether a caller relies on
+the dead-arg form is not established.~~ `00210EC0`'s contract is `malloc(n)`: none of its 258 raw sites in 181 functions, nor its one table install, prepares or reads the second argument *(answered 2026-10-02, FABLE, static; addresses and controls in [`mempage-residue-fable-1002`](../../_index/candidates/mempage-residue-fable-1002/README.md) item 4)*.
 
 ## Interior citation — frontier hub `0036C750` (2026-09-18, SWE2-EC7)
 
@@ -1733,7 +1738,7 @@ release path supplied the header side directly:
   `ImageAddressArenaRecord`'s own `count=15`), `+0x1E word1E`,
   `+0x30 encodedRef30` (a fifth encoded reference, proven by the
   `0020E620` **encoder** call at `00369B44`, not by its width),
-  `+0x34 byte34`. Nine bytes at `+0x35` stay unobserved.
+  `+0x34 byte34`. ~~Nine bytes at `+0x35` stay unobserved.~~ `+0x34`–`+0x3A` hold a 7-character name and `+0x3B` its NUL; `+0x3C`–`+0x3D` stay unobserved *(corrected 2026-10-02, OPUS: `0036C660+0x30` calls `strncpy` through `008C2F70` for 7 bytes at header `+0x34`, and `0036C660+0x36` stores the NUL at `+0x3B`)*.
 - `ImageAddressArenaRecord` — twelve rows out of four spans, and
   `tailQword00A0`'s citation corrected: it had cited `0036C5C1`, which
   is `0036C5A0`'s out-of-bounds null-write trap and not an access to

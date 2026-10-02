@@ -831,3 +831,13 @@ Interior anchor `002686D0` (function `00268690`).
 `00268530` (187 B) is the roster apply-pass `0025C830` runs on the same four `0209A1F0` slots: when a record's `+0x18` byte is 2 the record may be substituted by `003587C0([rbx+0x1A], [rbx+0x19])`, then `0030BFB0` reduces it to `sil`, `002ECF10(rbx, sil, ebp)` applies the pass parameter, and a live `[rbx+0xC0]` record has its `+0x154` byte rewritten as `(byte | 2) & ~1 | sil` - bit1 armed unconditionally, bit0 carrying the test result
 
 Interior anchor `00268564` (function `00268530`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-actor-record-pool-and-region-ma-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0026ADF0` | 49 B | when byte `rcx+3` AND 0xE0 equals 0x60, takes the qword at `+0xF0` of the qword at `rcx+0xB8` and stores `edx` to its dword `+0`, `r8d` to its dword `+4` and 1 to its byte `+0x2A`; otherwise returns without writing | `0026ADF4`, `0026ADF6`, `0026AE08`, `0026AE11`, `0026AE1C` |
+| `0030BFB0` | 96 B | calls `ActorWork_GetBattleUnit` and returns 0 when the result is null or the `0x10` bit (bit 4) of its first byte is clear; otherwise, with `d` = its qword `+0x698`, returns bit 23 of the result's first dword when (`d` dword `+0x64` OR dword `+0x3C`) AND 0x8000201B is non-zero, else tail-jumps to `BattleUnit_ComputePartyBattleStance` (`rcx` = the result, `rdx` = `d`) when `d` is non-null and its byte `+5` is 0, and to `BattleUnit_HasNonPartyEngagementEvidence(result, 0)` otherwise | `0030BFB4`, `0030BFC1`, `0030BFD3`, `0030BFF9`, `0030C004` |
+| `003DC0D0` | 93 B | calls `003587C0(dword rdx+8, word rdx+6)` and, when that returns non-null, builds a stack record (word `0x402`, then byte `rdx+3`, dword 0x80000000, byte 1, dword `rdx+8`, dword `rdx+0xC`) and calls `003DBCF0(result, &record, 1)`; a null result returns without the call | `003DC0E0`, `003DC0E8`, `003DC10E`, `003DC115`, `003DC122` |

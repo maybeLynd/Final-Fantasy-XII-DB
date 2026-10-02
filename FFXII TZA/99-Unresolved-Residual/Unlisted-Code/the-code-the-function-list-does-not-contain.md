@@ -962,4 +962,17 @@ getters `00229DF0` / `00229E70`, and `0057FE80` asks `001EDEC0`.
   `001DD170` and the online init `007A0C60`.
 - `004232D0` is called by `00426560`.
 
+**Script/VM native bridge — CLIENT, two edges** *(added 2026-10-02, OPUS, for the interior row of `0026A420` below)*. Two script verb bodies call the movement body `0026A420`: `00349E40` (138 B) pops three operands through `00267DB0`, resolves the actor through `0026AD40` and calls it at `00349E40+0x6A`; `0034ACE0` (114 B) resolves through `0026AD40` and calls it at `0034ACE0+0x50`. Both bodies read.
+
 *Tier 2: ledger names, sizes and `edges.tsv`; no new body read (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-code-the-function-list-does-not-cont-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001274D0` | 193 B | copies 32-byte rows from `rcx` (stride `rdx`, unaligned loads) to `r8` (stride `r9`, aligned stores), with the row count in the fifth (stack) argument: it copies four rows per pass and subtracts 4, repeating while the count is at least 4 (signed; the first pass runs unconditionally), then copies single rows until the count reaches 0; `xmm6` and `xmm7` are saved and restored | `001274E3`, `00127517`, `0012754B`, `00127550`, `0012756B` |
+| `00129870` | 885 B | for 16 rows sums `psadbw` absolute byte differences between the 16 aligned bytes of each `rcx` row (stride `rdx`) and the 16 bytes at offsets 0, 1 and 2 of the matching `r8` row (stride `r9`) into three word accumulators, adds each accumulator's two 64-bit halves and stores the three sums as dwords at `+0`, `+4` and `+8` of the fifth (stack) argument | `00129894`, `001298CD`, `00129B9B`, `00129BAD`, `00129BD0` |
+| `0012A290` | 636 B | reads eight 16-byte rows of words from `rcx` at a stride of twice `rdx` bytes, applies three stages of `paddw`/`psubw` butterflies, transposes the 8-by-8 word block with word, dword and qword unpacks, applies three more butterfly stages and stores the eight result rows to `r8` `+0` through `+0x70`; `xmm6` to `xmm9` are saved and restored | `0012A2BA`, `0012A2EF`, `0012A38C`, `0012A42A`, `0012A4C2` |
+| `0026A420` | 111 B | tail-jumps `002E5B00(rcx)` when byte `+3` of `rcx` ANDed with `0xE0` equals `0x60`, otherwise returns | `0026A424`, `0026A426`, `0026A428` |

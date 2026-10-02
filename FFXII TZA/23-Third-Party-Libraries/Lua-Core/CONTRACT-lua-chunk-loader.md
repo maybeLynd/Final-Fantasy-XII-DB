@@ -136,7 +136,7 @@ restored: the error message is converted and popped (§10).
 ## 6. Relationships
 
 ```
-00684D10 / 00684F60 / 00686280      Phyre script execution (three callers, UNREAD)
+00684D10 / 00684F60 / 00686280      Phyre script execution (three callers, UNREAD)   <- corrected 2026-10-02, OPUS - answered, read since: EXP-110 ran the callers (2026-09-25, §13) and EB-1 was answered 2026-09-26
         |
 00683C30  PhyreScript_LoadBuffer    <-- mode = NULL is set HERE
         |
@@ -191,17 +191,17 @@ path. The same bytes produce the same `Proto` every time.
 |---|---|
 | `data == NULL` | returns `false` at `00683C87` **without touching Lua at all** |
 | compile error | **swallowed** — `FUN_00811530(L, -1, NULL)` then `FUN_00811130(L, -2)`, the `lua_tolstring` / `lua_settop` idiom, then `false` |
-| bytecode with a wrong header | rejected by the 17-byte compare |
+| bytecode with a wrong header | rejected by the ~~17-byte~~ 18-byte compare, 17 bytes read *(corrected 2026-10-02, OPUS: `0082E490+0x3C` `mov r8d, 0x11` is the read length; `0082E490+0x69`..`+0x89` compare qword, qword and word, bytes 0-17, byte 0 being the `0x1B` the checker plants at `0082E490+0x5A`)* |
 | `mode == "b"` and text supplied | would be refused — **but Phyre passes NULL**, so it cannot happen on this path |
 
 > **A syntactically invalid script fails silently here.** The message is produced, converted, popped
-> and discarded. **Whether any of the three callers reports it is unread** (`EB-4`), so a modder
+> and discarded. ~~**Whether any of the three callers reports it is unread**~~ **No caller reports it** *(answered: `EB-4`, answered 2026-09-12 on the loader page; 2026-10-02, OPUS)* (`EB-4`), so a modder
 > should not expect a syntax error to announce itself.
 >
 > **A null data pointer is indistinguishable from a failed compile** at this level: both return
 > `false`.
 
-**The two inner functions are named from their argument shapes, not proven** — `(L, -1, NULL)` and
+**The two inner functions are named from their argument shapes~~, not proven~~** *(answered: `00811130` is `lua_settop` - a negative index moves `top` by `idx + 1` slots, a non-negative one sets `top = base + idx + 1` and nils the gap, its whole 72-byte body; run as SETTOP in EXP-110; `00811530` stays shape-named; 2026-10-02, OPUS)* — `(L, -1, NULL)` and
 `(L, -2)` — and are written `FUN_` for that reason.
 
 ## 11. Observable behaviour
@@ -368,10 +368,10 @@ that may never be handed anything.
 |---|---|
 | `DA-1` | **whether the shipped game ever supplies a chunk.** The whole subsystem hangs on it. **Bounded statically 2026-09-26 (OPUS), not closed:** the image contains **no code that can create a `lua_State`**. `f_luaopen`'s markers are all absent: no `MEMERRMSG` literal, no `luaL_newstate` panic message, no reader of the tag-method name table `01CCBA90`, and `luaX_tokens` `01CCBBE0` is read only by `luaX_token2str` `00824340`. The controls are present: `ldo.c`, `llex.c` (`luaX_setinput` `008242A0`) and `lauxlib.c` are linked. See [`candidates/s50-opus-lua-state-constructor-census`](../../_index/candidates/s50-opus-lua-state-constructor-census/README.md), 8/8. So `00683C30` can run with a live state only if one built **outside this image** is handed in. What remains open: whether any module does that, and `EB-1` |
 | `EB-1` | what the three callers of `00683C30` pass, and where the buffer comes from *(answered 2026-09-26, (FABLE, Claude Opus 5.5): a `PScript` object, whose instances no shipped asset declares; see [the loader page](the-lua-loader-and-what-it-accepts.md) `UQ-313`)* |
-| `EB-2` | whether `luaL_loadfilex` (`00812FA0`) is reachable — if it is, the engine can load a `.lua` from disk |
-| `EB-3` | `00814B30` (287 B), a third `lua_load` caller with **zero callers**, unidentified |
-| `EB-4` | whether any caller reports a compile failure |
-| `EB-5` | the parser's own seven functions; only `0082BE30` is placed in the chain |
+| `EB-2` | whether `luaL_loadfilex` (`00812FA0`) is reachable — if it is, the engine can load a `.lua` from disk *(answered: no - the loader page's `EB-2`, 2026-09-12; 2026-10-02, OPUS)* |
+| `EB-3` | `00814B30` (287 B), a third `lua_load` caller with **zero callers**, ~~unidentified~~ *(answered: it is `load` - the loader page's `EB-3`, 2026-09-12; 2026-10-02, OPUS)* |
+| `EB-4` | whether any caller reports a compile failure *(answered: no - the loader page's `EB-4`, 2026-09-12; 2026-10-02, OPUS)* |
+| `EB-5` | the parser's own seven functions; only `0082BE30` is placed in the chain *(answered: on the loader page 2026-09-14; 2026-10-02, OPUS)* |
 | ~~new~~ answered | ~~whether `name` is a pointer or an index, given it is passed as 32 bits~~ **a 64-bit pointer**, and the 32-bit value is the length *(corrected 2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 322, to match the boxed correction; `00683C36`–`00683C57` re-read)* |
 
 ## 15. Evidence
@@ -451,7 +451,7 @@ same eighteen bytes, as §15 describes.
 ## 16. Parity plan
 
 **First pilot operation: the header check.** It is pure, takes 18 bytes and returns accept/reject,
-and its boundary is exact — **17 compared bytes, not 18**. A differential harness can plant headers
+and its boundary is exact — ~~**17 compared bytes, not 18**~~ **18 compared bytes, 17 read** *(corrected 2026-10-02, OPUS: `0082E490+0x3C` `mov r8d, 0x11` is the read length; `0082E490+0x69`..`+0x89` compare qword, qword and word, bytes 0-17, byte 0 being the `0x1B` the checker plants at `0082E490+0x5A`; the box below)*. A differential harness can plant headers
 directly.
 
 > ### ⚠ "compares 17" is wrong, and so is the boundary case built on it
@@ -493,12 +493,12 @@ directly.
 > | bytes 0–7 match and 8–11 match, but 12–17 differ | `corrupted` |
 > | bytes 8–11 differ (the four `sizeof` fields) | `incompatible` |
 >
-> **Not yet executed.** This box is static reading; §13 is unchanged and still says so.
+> ~~**Not yet executed.** This box is static reading; §13 is unchanged and still says so.~~ *(answered: executed in isolation - §13, 70 commands, 0 mismatches, 2026-09-12; 2026-10-02, OPUS)*
 
 **Boundary cases that must actually distinguish something:**
 
-- a header differing **only in byte 0** — must still be *accepted* by the 17-byte compare, because
-  byte 0 is not in the compared range. A test using a wholly wrong header would never notice if a
+- a header differing **only in byte 0** — must still be *accepted* ~~by the 17-byte compare, because~~
+  ~~byte 0 is not in the compared range~~, because byte 0 never comes from the file *(corrected 2026-10-02, OPUS: `0082E490+0x5A` plants `0x1B` and the 18-byte compare covers it; the box above)*. A test using a wholly wrong header would never notice if a
   reimplementation compared all 18.
 - `sizeof(lua_Number)` = 8 instead of 4 — the case a stock x64 `luac` produces, and the one a modder
   will actually hit.

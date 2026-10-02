@@ -1,0 +1,64 @@
+{
+ "page": "17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md",
+ "date": "2026-10-02",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "report": "mh-movie-seek-index.json",
+ "rows": [
+  {
+   "fn": "001D9F90",
+   "text": "returns at once when `edx` is above 1 (unsigned); otherwise atomically decrements dword `+0x24 + edx*4` of `rcx` and stores, as a float at `+0x8C`, the QPC time getter's value minus the double at `02CB60E8`, plus 2.0 (`01DFCFE0`)",
+   "anchors": [
+    [
+     "001D9F93",
+     "ja"
+    ],
+    [
+     "001D9FA3",
+     "lock xadd"
+    ],
+    [
+     "001D9FA9",
+     "call"
+    ],
+    [
+     "001D9FAE",
+     "subsd"
+    ],
+    [
+     "001D9FC2",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0035CF50",
+   "text": "when qword `022CA468` is zero or dword `022CA45C` is non-zero, calls `002E1CA0(8, 0)`, `002E1CA0(8, 0xB)` and `00252D90()` and zeroes dword `022CA45C`; otherwise returns without work",
+   "anchors": [
+    [
+     "0035CF5E",
+     "cmp"
+    ],
+    [
+     "0035CF6C",
+     "call"
+    ],
+    [
+     "0035CF79",
+     "call"
+    ],
+    [
+     "0035CF7E",
+     "call"
+    ],
+    [
+     "0035CF83",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -68,7 +68,7 @@ that changes the layout is accounted for before anything is drawn.
 **`002AC5F0(ctx, char **cursor, float *out, int *out2)`** — the cursor is passed **by reference**
 because the function advances it past whatever it consumes.
 
-**The return value is "call me again".** All seven call sites use the identical shape:
+**The return value is "call me again".** ~~All seven call sites use the identical shape:~~ Five of the seven call sites use this shape; `002B1FB0` and `002B5730` call once and read only the advanced cursor *(corrected 2026-10-02, OPUS: `002B1FB0+0xCE`, `002B5730+0xF3`; no `test eax` follows)*:
 
 ```asm
 call  0x2ac5f0
@@ -119,7 +119,7 @@ dwords at `002AE334`.
 002AD020  movzx ebx, byte ptr [rcx]
 002AD023  lea   eax, [rbx - 0x20]
 002AD026  cmp   eax, 0x50
-002AD029  ja    0x2acfc2                  ; outside 0x20..0x70 -> consume and continue
+002AD029  ja    0x2acfc2                  ; outside 0x20..0x70 -> consume and continue   <- corrected 2026-10-02, OPUS - not consumed: the cursor already points at the selector byte (002AC5F0+0xA2A), so the caller prints it
 002AD02D  movzx eax, byte ptr [rsi + rax + 0x18e3fc]   ; case index, 0x51 bytes at 002AE3FC
 002AD035  mov   edx, dword ptr [rsi + rax*4 + 0x18e370] ; 35 targets at 002AE370
 002AD03F  jmp   rdx
@@ -160,7 +160,7 @@ number — `002AD062 movsx eax, al`, `002AD069 cvtdq2ps`, `002AD06C divss` again
 
 ### 2.5 The escape catalogue
 
-**Thirty-four** distinct arms — the table below lists thirty-four, and the count here said thirty-two (corrected §9). **Their addresses are read; what all but four of them do is not.**
+**Thirty-four** distinct arms — the table below lists thirty-four, and the count here said thirty-two (corrected §9). **Their addresses are read; ~~what all but four of them do is not.~~** *(answered: see the arm table and the 2026-09-14 and 2026-09-18 notes on this page; 2026-10-02, OPUS)*
 
 | selector | arm | | selector | arm |
 |---|---|---|---|---|
@@ -180,7 +180,7 @@ number — `002AD062 movsx eax, al`, `002AD069 cvtdq2ps`, `002AD06C divss` again
 | `m` | `002ADC0C` | | `?` | `002AE03E` |
 | `n` | `002ADC20` | | `V` | `002AE2F0` |
 | `o` | `002ADCDD` | | `,` `/` `;` `p` | `002AE308` |
-| `0` `_` | `002ACFC2` | **consume and continue, no action** | | |
+| `0` `_` | `002ACFC2` | ~~**consume and continue, no action**~~ **printed**: return 1 with the cursor on the selector byte *(corrected 2026-10-02, OPUS: `002AC5F0+0xA2A` stores the cursor at the selector before the dispatch, and both selectors map to the exit `002AC5F0+0x9D2`)* | | |
 | 42 others | `002AE1F1` | `@`–`U`, `W`–`^`, `` ` ``, `a`–`k` | | |
 
 **`V` is cut out of that 42-character block and given its own arm.** ~~It is the only selector that also writes
@@ -321,7 +321,7 @@ budget established across three functions in the glyph-run document — lives in
       *Narrowed 2026-09-14 (FABLE), §2.6:* `0x08` / `0x09` skip; `0x0B`–`0x0D` are text; `0x0E` is the selection
       list; `0x01`/`0x04`/`0x06`/`0x07` and `0x05`/`0x0A` are one-character units that write the pen advance and
       count 1. What those units draw is not read.
-      ***ANSWERED 2026-09-17 (FABLE): the six units draw nothing; four are blanks of different widths and two are column-alignment markers.** The emitter confirms it: after the dispatcher returns for a unit it only spends the count and adds the advance `0209CC68` to the pen (`002AA6B5`..`002AA74C`), drawing no glyph. The four-code arm `002ACB96` reads the token byte and picks a width: `0x01` the font metric `0017F920(0)`, `0x04` the metric `0017F920(1)`, the space the charset names; `0x06` the fixed width `[008F8180]`; `0x07` 26 units when the option `00254A10` is clear and the frame mode `00229E40` is 7, otherwise `0024ABA0()` times `[008F8180]` (`002ACBA8`..`002ACC0F`). With the option clear, token `0x04` under `+0x44` bit 11 gains `[01CEBBA8]`, and otherwise the current painter descriptor `[0209E598]` adds a kerning term, from the metric object's `0017F9C0(+0x10)` pair less `[008F311C]` when one is bound, or from the descriptor's own bit fields `(desc >> 20) & 0x1F` less `(desc >> 32) & 0x1F` less 3 when not (`002ACC1B`..`002ACC93`). Every width then adds `+0x4C` and scales by `+0x34` and `+0x38`, the vertical advance `0209CC64` comes from `0017F880()` times `+0x34` and `+0x3C`, and the arm counts 1 (`002ACC97`..`002ACCE3`). `0x05` and `0x0A` (`002ACCF3`, `002ACE25`) set painter `+0x1100` when `+0x1101` is clear, take the same blank advance, and measure the following line through `002B2150`: `0x05` records the width at `+0x10EC` and `+0x10F4`, `0x0A` keeps the maximum at `+0x10F0` and the remainder at `+0x10F8` (`002ACF57`..`002ACF7A`). The line layout `002B24B0` zeroes those four at entry (`002B25A8`..`002B25B5`), accumulates `+0x10F4` (`002B26F6`) and returns `+0x10EC` and `+0x10F0` through its out-parameters (`002B2721`..`002B274E`): the two tokens mark the first and second column of an aligned pair of lines. Static, dispatcher, emitter and layout read.*
+      ***ANSWERED 2026-09-17 (FABLE): the six units draw nothing; four are blanks of different widths and two are column-alignment markers.** The emitter confirms it: after the dispatcher returns for a unit it only spends the count and adds the advance `0209CC68` to the pen (`002AA6B5`..`002AA74C`), drawing no glyph. The four-code arm `002ACB96` reads the token byte and picks a width: `0x01` the font metric `0017F920(0)`, `0x04` the metric `0017F920(1)`, the space the charset names; `0x06` the fixed width `[008F8180]`; `0x07` 26 units when the option `00254A10` is clear and ~~the frame mode~~ the cached locale value `00229E40` (`01E02814`) is 7 — a branch that never runs, since `00254A10` returns 1 for 7 (`00254A10+0xE` mask `0xD81`) *(corrected 2026-10-02, OPUS: `002AC5F0+0x5DA`–`002AC5F0+0x5ED`)* — otherwise `0024ABA0()` times `[008F8180]` (`002ACBA8`..`002ACC0F`). With the option clear, token `0x04` under `+0x44` bit 11 gains `[01CEBBA8]`, and otherwise the current painter descriptor `[0209E598]` adds a kerning term, from the metric object's `0017F9C0(+0x10)` pair less `[008F311C]` when one is bound, or from the descriptor's own bit fields `(desc >> 20) & 0x1F` less `(desc >> 32) & 0x1F` less 3 when not (`002ACC1B`..`002ACC93`). Every width then adds `+0x4C` and scales by `+0x34` and `+0x38`, the vertical advance `0209CC64` comes from `0017F880()` times `+0x34` and `+0x3C`, and the arm counts 1 (`002ACC97`..`002ACCE3`). `0x05` and `0x0A` (`002ACCF3`, `002ACE25`) set painter `+0x1100` when `+0x1101` is clear, take the same blank advance, and measure the following line through `002B2150`: `0x05` records the width at `+0x10EC` and `+0x10F4`, `0x0A` keeps the maximum at `+0x10F0` and the remainder at `+0x10F8` (`002ACF57`..`002ACF7A`). The line layout `002B24B0` zeroes those four at entry (`002B25A8`..`002B25B5`), accumulates `+0x10F4` (`002B26F6`) and returns `+0x10EC` and `+0x10F0` through its out-parameters (`002B2721`..`002B274E`): the two tokens mark the first and second column of an aligned pair of lines. Static, dispatcher, emitter and layout read.*
 - [x] ~~What `003FFAB0` (78 B) parses, and how the eleven parsers differ. **The claim here is only that
       its return value becomes the cursor advance**, which is read at every one of the 19 sites.~~
       **ANSWERED 2026-09-13 (OPUS): `003FFAB0` parses a THREE-BYTE code into one output byte, and
@@ -370,7 +370,7 @@ budget established across three functions in the glyph-run document — lives in
 | Claim | Evidence | Tier |
 |---|---|---|
 | Cursor is by reference and advanced in place | `002AC642`, and `add qword ptr [rdi], rax` at every parser arm | 1 |
-| Return 1 = consumed, 0 = stop | `002ACFC2`, `002AC6CA`, `002AE32A`, and the identical `test/je` at all seven call sites | 1 |
+| Return 1 = consumed, 0 = stop | `002ACFC2`, `002AC6CA`, `002AE32A`, and the ~~identical `test/je` at all seven call sites~~ `test/je` at five of the seven call sites *(corrected 2026-10-02, OPUS: `002B1FB0+0xCE` and `002B5730+0xF3` call once)* | 1 |
 | Bytes `>= 0x10` are ordinary text | `002AC694`-`002AC697` | 1 |
 | Fifteen token arms, table at `002AE334` | `002AC69B`-`002AC6AC`, image base resolved from the `lea` | 1 |
 | `0x0F` reads a second byte in `0x20`-`0x70` | `002AD01A`-`002AD03F` | 1 |

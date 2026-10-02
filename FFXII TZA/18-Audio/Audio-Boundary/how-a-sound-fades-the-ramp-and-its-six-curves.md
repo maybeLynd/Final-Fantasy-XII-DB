@@ -281,3 +281,11 @@ as a multiplier greater than 1, with no exponent to soften it. `DQ-1` stands —
 mixer field here either. What the 28 unread bytes hold. What `007A9D30` does after the product.
 Whether any shipped data selects curve 0 — **the arm is decoded, no authored table was searched**.
 Nothing was executed and no sound was heard.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-how-a-sound-fades-the-ramp-and-its-six-c-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00222B70` | 95 B | calls `007A7010(rcx+0x38)` and, only when that returns non-zero, calls `007A81F0(rcx+0x38, ...)` with `xmm1` = `r9d` converted to float and divided by 127.0 (`00906A44`), `xmm2` = `r8d` converted to float and divided by 60.0 (`008F6D54`) and `r9d` = -1; when `007A7010` returns zero it returns without the second call | `00222B8C`, `00222B93`, `00222BAA`, `00222BB2`, `00222BBA` |

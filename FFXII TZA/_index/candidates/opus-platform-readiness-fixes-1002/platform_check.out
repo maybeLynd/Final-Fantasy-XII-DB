@@ -1,0 +1,7 @@
+ok   00316B09 cmp edi, eax
+ok   00316BA1 xor ebx, ebx
+ok   00316A50 cmp cl, 0x1e
+ok   00312484 mov edx, esi
+ok   0020CC80 cmp rbx, 0x3c90
+ok   00315EFA movzx eax, byte ptr [r15 + r14*8 + 0xbf0462]
+FAILS 0

@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=44415 epoch=3 queue_sha=c19838279020dcd0 -->
-> generated 2026-10-01T06:19:00+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=47203 epoch=3 queue_sha=315663dca6300875 -->
+> generated 2026-10-02T15:11:57+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: none
-> READY addressed to you: P1 FRONTIER-RT-RUNTIME-SURROGATE, P2 AUTO-REPAIR-ORACLE-REQ-AUDITSPEC-SD7-0930, P2 OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R, P2 SWE2AUDITSPEC-REQ-ORACLE-0930-WAVE-NARROWINGS, P2 SWE2AUDITSPEC-REQ-ORACLE-RC11-WINDOWS-0930
-> READY pool: 14 | BLOCKED: 0
+> ACTIVE: SWE2ORACLE-PUB-SD7-RESUME-1002
+> READY addressed to you: P2 OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R, P2 SWE2AUDITSPEC-REQ-ORACLE-0930-WAVE-NARROWINGS, P2 SWE2AUDITSPEC-REQ-ORACLE-RC11-WINDOWS-0930
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -370,7 +370,82 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
   candidate follow-on work, not started.
 
 - **Identity:** SWE2-ORACLE
-- **Current package/claim:** `ASTRA-REQ-ORACLE-QUEUE-BYTE-POLICY-0930`
+- **Current package/claim:** `AUTO-REPAIR-ORACLE-REQ-AUDITSPEC-SD7-0930`
+  DONE (P2, claimed board rev `47022`, finish rev `47197`, pub task
+  `SWE2ORACLE-PUB-SD7-REPAIR-1002` rev `47198`; re-review requested as
+  `ORACLE-REQ-AUDITSPEC-SD7-REVIEW-1002` rev `47196`). Commit
+  `f6f51fba5`. The rejected SD-7 package now treats a
+  frame-pointer `rbp` base as a stack slot: `stack_base()` walks the
+  function body linearly and asks whether the last write of the load
+  base is rsp-derived (`mov B,rsp` / `lea B,[rsp±k]` / `lea B,[X±k]`
+  with X rsp-derived — the `mov rax,rsp; lea rbp,[rax-k]` idiom),
+  while `mov rbp,[rsp+…]` stays a loaded pointer. All 192 rows
+  re-partition: **E1 125, E2 13, E3 2, E4 10, residue 42** (was
+  133/13/2/10/34); the eight flagged sites (`00739C9D`, `0073A753`,
+  `0073A894`, `0073C4FF`, `0073C56A`, `0073E63A`, `0073E8DC`,
+  `0073E9BE`) all land in RESIDUE, and the loaded-pointer negatives
+  `0074C8EC`/`0074CA3D`/`00771C06` stay E1 (K6). S1 now gates the
+  exact partition, not the sum. `sd7_app_pointer_sites.py`,
+  `README.md`, `sd7_app_pointer_sites.out` touched; FAILS 0; gates
+  clean (verify_doc_addresses ok, questions consistent, consistency
+  shows the 4 pre-existing peer disagreements, links broken only in
+  peer `_ov_section.md`). Static only — no live claim.
+- **Prior (RC-5):** `FABLE-REQ-ORACLE-RC5-ARRAY-POPV-ORDER-1002`
+  DONE (P1 request, board finish rev `46769`, pub task
+  `SWE2-ORACLE-PUB-RC5POPV-1002` rev `46770`). F1 confirmed at the
+  bytes: `00267E60` calls `00262440` (`00267E7F`), which pops one
+  index **per dimension** (`w[hdr+4]`, bounds `d[hdr+8+4k]`,
+  decrement at `002624D2-E1`) before the value pop at
+  `00267E9C-7EA7`; every index clamped to `[0,dim-1]` at
+  `0026250C-1B` (cmovns/cmovl — the old doc "clamp" claim is now
+  byte-verified). `resolve_args7` models P=ndim/P=ndim+1; stores
+  carry value+index producers side by side; class-7 store dump
+  added (controller files, locale-grouped). Re-run: C1/C2 PASS, C3
+  NOTE — 9 unresolved = one site `mfr_a04.ebp+55B5` ×9 locales
+  (RET-headed stub block, resolver doesn't cross block boundaries);
+  ndim census {1:3,005,859; 2:35,424}. `eventread_e8` corrected:
+  40 operand instances (20 sites × ch/in); the 4 "counters" are
+  element reads of `class7+0x1c50` (`s1_12[2]`) with domain {0}
+  exactly — [0,3] was index `+0x904` (`s1_4`)'s range; 13 reads of
+  never-stored arrays return declared initialisers (header element
+  counts 24/10/4/2 ↔ `s7_1`/`s1_5`/`s1_7`/`s1_12` verified);
+  `+0x8dc`=`s1_2` declared-0; `+0x8ec`=`s1_9` aask open value stands.
+  FABLE's F1 reproduced field-for-field. Commit `9dc01b7b1`
+  (private index, 4 named files).
+- **Prior (copy regression):** `ASTRA-REQ-ORACLE-SUSPEND-COPY-REGRESSION-1001`
+  DONE (P1 request, board finish rev `46650`). ACCEPT +
+  incorporated: `0030EDA0` copies `0x4F0` bytes to
+  `unit[0x6B0,0xBA0)`, not `[0x730,0xC20)` — the `+0x80` at
+  `0030EDB6` is cursor advance cancelled by `[rcx-0x80]` stores.
+  New additive sealed cases `cpys-dest-6b0`/`cpys-nohit` in
+  `commit-callees-exec/check.py`: patterned disjoint source with
+  embedded slot-5 ptr at src `+0x4D8` (lands on `unit+0xB88`),
+  `0xDD`-poisoned dest, `0xCC` canaries `+0x6A8..6AF`/`+0xBA0..BA7`;
+  asserts all `0x4F0` dest bytes, canaries intact, `+B88`
+  post-copy = slot-5 base while bitmap clears bit **2** —
+  release uses incoming `r8`, not the overwritten field. Suite
+  **87/87 + 10/10 mutants**, stable ×2 md5 `75865ef9`.
+  check.py:49 comment + EXP-091 record corrected; contract was
+  already corrected by OPUS. Commit `f7bbac4ef`.
+- **Prior (surrogate):** `FRONTIER-RT-RUNTIME-SURROGATE`
+  DONE (P1 request, board finish rev `46565`). All 7 rows
+  processed: BG-6 ANSWERED + NATIVE-REPLAY confirmation
+  (`bg6-slot0-replay/`, md5 `3198c99c` — nonzero index honored,
+  so "always dev+0x10880" is a population fact, not a constant);
+  BJ-1 ANSWERED w/ live residue carrier
+  `OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT`; UC-2, UQ-332 ANSWERED
+  statically; BL-8 PARTIAL (surrogate cannot fabricate
+  initialized heap descriptors — live carrier stands); GG-1 OPEN
+  (temporal frame-ordering, not surrogate-able; STATIC-LARGE
+  pass or live capture required); BQ-27 pass O settles 3 more
+  sites → **570/607** (`00624367`=0 path-cond, `00691B06`=1,
+  `007DDA3A`=1); 37-site residue classified per-site
+  (`bq27-opaque-defs/`, FAILS 0 — 25 arg2-forwards, 3 cmov-min,
+  3 `+0x1894` counter-field, 1 global `02EA1924`, 1 `+0x60`,
+  4 misc); no site provably passes flag 5; live BP at
+  `0016D6A0` (rcx≠0) remains decisive. Record:
+  `register-triage/frontier-surrogate-2026-10-02.md`.
+- **Prior (ASTRA byte policy):** `ASTRA-REQ-ORACLE-QUEUE-BYTE-POLICY-0930`
   ANSWERED (P1 request, board finish rev `44412`). The supported
   byte-preserving delivery is the `1225845ca` precedent: leaf
   `.gitattributes` `* -text` written before staging; applied to
@@ -390,18 +465,24 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
   `publish_paths.sh`. Production fix named: freeze must emit
   `* -text` before payloads and snapshot mutable members into the
   leaf.
-- **Pending requests addressed to ORACLE (READY):** P1
-  `FRONTIER-RT-RUNTIME-SURROGATE` (7 register-triage rows: BG-6,
-  BJ-1, BL-8, UC-2, UQ-332, GG-1, BQ-27 — replay-surrogate answers
-  per row, live window closed), P2
+- **Pending requests addressed to ORACLE (READY):** P2
   `OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R`, P2
-  `SWE2AUDITSPEC-REQ-ORACLE-RC11-WINDOWS-0930`.
-- **Next action:** `FRONTIER-RT-RUNTIME-SURROGATE` — read each
-  row's next_step in
-  `_index/candidates/register-triage/register_triage.tsv`, attempt
-  surrogate replay per row; otherwise EXP-264 (`51BA80` happy
-  insert path needs `PRF@`/`MRF@` section dirs + `409C30` rows).
-- **Latest coherent commit:** `384f4309b` (this answer) +
+  `SWE2AUDITSPEC-REQ-ORACLE-0930-WAVE-NARROWINGS`, P2
+  `SWE2AUDITSPEC-REQ-ORACLE-RC11-WINDOWS-0930`. (Re-check
+  `team.py current` — the board moves between rounds.)
+- **Next action:** the next READY request in `team.py current` order
+  (P2 `OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R`, P2
+  `SWE2AUDITSPEC-REQ-ORACLE-0930-WAVE-NARROWINGS`, P2
+  `SWE2AUDITSPEC-REQ-ORACLE-RC11-WINDOWS-0930`), or EXP-264 (`51BA80`
+  happy insert path — needs `PRF@`/`MRF@` section dirs + `409C30`
+  rows).
+- **Latest coherent commit:** `f6f51fba5` (SD-7 frame-pointer repair,
+  private index, 3 named files, claim rev 47194) + `9dc01b7b1` (RC-5 array POPV order,
+  private index under SWE2-ORACLE-PUB-RC5POPV-1002, claim rev
+  46768) + resume pending this block's own publish +
+  `f7bbac4ef` (copy-origin regression, claim rev 46648) +
+  `a64cf4a7f` (surrogate package, claim rev 46586) +
+  `384f4309b` + `9411f3f81` (byte policy) +
   EXP-263 `1a00debc7` + `1cdc09347` (pre-amend `3c0ee0e25`).
 - **Prior (EXP-263):** `51BA80` insert front — cap gate +
   populate-fail arms; `d51ba80-*` ×3; `iat_ret` synthetic import

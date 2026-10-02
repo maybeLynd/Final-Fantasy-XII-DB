@@ -434,3 +434,9 @@ also called from that layer (`003162E0`, `00316760`). This page relies only on t
 - The runtime reset `00237DF0`, which `00233C10` calls, reaches `00313840`.
 
 This page uses those bodies only for the bit-0 path, and it disposes of none of those UI calls.
+- **ActorEntity - CLIENT and SERVICE (2 edges).** `00236760` is also called by bodies filed to actor entity: `00300E40`; `00237DF0` reaches bodies filed to actor entity: `00329CC0` - shared machinery across the layer boundary, no shared ownership.
+- **CombatAI - SERVICE (2 edges).** `00233C10`, `00239960` reach bodies filed to combat AI: `00327F80`, `00327CB0` - shared machinery across the layer boundary, no shared ownership.
+- **Party - SERVICE (2 edges).** `00239960`, `00583D60` reach bodies filed to party: `00329080`, `003271D0` - shared machinery across the layer boundary, no shared ownership.
+- **RNG_Random_Selection - SERVICE (1 edge).** `00584210` reaches bodies filed to random selection: `00379CF0` - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT and SERVICE (8 edges).** `0036FCC0`, `00236760`, `0023A390` are also called by bodies filed to script VM / native bridge: `0050F540`, `0050F500`, `0034A770` (+3 more); `0050F500`, `00510970` reach bodies filed to script VM / native bridge: `00267E10` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (21 edges).** `00236760`, `002EF640`, `00239960` are also called by bodies filed to world area: `005843E0`, `003145E0`, `00584580` (+2 more); `00394130`, `0036FCC0`, `00583D60` reach bodies filed to world area: `00267C90`, `00268320`, `00314DC0` (+5 more) - shared machinery across the layer boundary, no shared ownership.

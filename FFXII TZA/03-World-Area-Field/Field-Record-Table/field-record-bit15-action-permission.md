@@ -78,7 +78,7 @@ if (((bkbi->statusLayer0 | bkbi->statusLayer1) & 0x80000003) != 0 &&
         -> refuse: unit cannot act
 ```
 
-Both effect layers are OR'd (see the
+~~Both effect layers are OR'd~~ Two of the three 32-bit status masks, `+0x3C` and `+0x64`, are OR'd *(answered: see the correction to §2 and §4 below; 2026-10-02, OPUS)* (see the
 [two-layer effect model](../../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md)),
 masked with `0x80000003` — **bits 0, 1 and 31** — and the restriction applies **only when
 bit 15 is clear**. A set bit 15 waives it.
@@ -146,7 +146,7 @@ Status mask tested by callers: 0x80000003  -> bits 0, 1, 31
 ## 5. Call chain
 
 ```
-area load / transition
+area load / transition   <- corrected 2026-10-02, OPUS: boot, once - the binder 00377CC0 has one caller, 00266D10 (00267146), run once by the boot routine
   -> field record table bound (DAT_02add100)
 
 action eligibility / selection / command validation
@@ -159,7 +159,7 @@ action eligibility / selection / command validation
               -> 1 : allow it despite the status
 ```
 
-**Upstream:** the active-or-pending field id, and the field record table bound at area load.
+**Upstream:** the active-or-pending field id, and the field record table bound ~~at area load~~ once at boot *(corrected 2026-10-02, OPUS: `00377CC0` ← `00266D10` at `00267146` ← the boot routine, one caller each)*.
 **Downstream:** action eligibility across CombatAction, CombatAI and Status.
 
 **Do not confuse with:** the gameplay capability/inhibition policy
@@ -186,7 +186,7 @@ mechanisms — this one is per-field map data, that one is a runtime bitmask.
 ## 7. What is not known
 
 - [x] ~~Player-facing identity of status bits **0, 1 and 31** in mask `0x80000003`.~~
-      **C-9 answered 2026-09-02:** status ids **0 = KO**, **1 = Stone**, **31 = Vanished**
+      **C-9 answered 2026-09-02:** status ids **0 = KO**, **1 = Stone**, **31 = ~~Vanished~~ X-Zone** *(corrected 2026-10-02, OPUS: status 31's name in bank 5 — field-record-table-navimapdata.md, 2026-09-26)*
       (*"has vanished without a trace… cannot be reversed"*). The three states from which a unit
       never returns; all three run defeat cleanup and rewards and share one recovery gate. See
       [field-record-table-navimapdata.md](field-record-table-navimapdata.md) §2d.
@@ -202,7 +202,7 @@ mechanisms — this one is per-field map data, that one is a runtime bitmask.
       [field-record-table-navimapdata.md](field-record-table-navimapdata.md) §4.
 - [x] The `DAT_01e0c2b4` / `DAT_020927e0` consumer at a different call site. *(Marker normalised 2026-09-30 (FABLE, [record](../../_index/candidates/qid-marker-truth-fable-0930/README.md)): C-12 is ANSWERED; the toggle's meaning is answered on the R2 force-fight toggle page.)* **C-12 substantially
       closed 2026-09-02** — it is one input-arbitration function's private modal state, and the
-      predicate forces its toggle off; what the toggle *is* remains open and belongs to 15-Input.
+      predicate forces its toggle off; ~~what the toggle *is* remains open and belongs to 15-Input~~ *(answered: the R2 force-fight toggle, as this bullet's 2026-09-30 marker says; 2026-10-02, OPUS)*.
       See [field-record-table-navimapdata.md](field-record-table-navimapdata.md) §11.
 - [x] ~~**UQ-82.** Designer name for this flag.~~ **NO ADMISSIBLE SOURCE** (2026-09-14, FABLE; EVIDENCE-STANDARD
   addendum 2026-09-15bk): the behaviour is established above, and the designer's name was never shipped.

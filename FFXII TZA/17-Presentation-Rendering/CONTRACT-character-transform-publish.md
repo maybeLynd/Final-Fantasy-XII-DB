@@ -570,3 +570,12 @@ selection using the shared generator, owned by the gambit and RNG pages.
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page and the cited pages read them; no new body read
 (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-character-transform-publish-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034A3F0` | 37 B | calls `0026AD40(rdx, 1)` and then tail-jumps `002E49B0(rdx, 0)` | `0034A3F9`, `0034A401`, `0034A406`, `0034A410` |
+| `0034A860` | 137 B | calls `00267DB0(r9)` three times and builds a stack array of four floats holding the third result, the second result, the first result and 1.0 (`01CEBBA8`) in that order; calls `0026AD40(rdx, 1)` and then `002E49B0(rdx, &array)`, under the stack-cookie check of `01F44830` and `00808C40` | `0034A884`, `0034A890`, `0034A8B6`, `0034A8BF`, `0034A8CC` |

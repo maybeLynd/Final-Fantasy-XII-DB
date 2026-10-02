@@ -36,7 +36,7 @@ audit:
 
 # The handbook screen
 
-**Status:** PARTIAL — both dispatch tables, the install chain, and every listed screen-region member are cited below with interior citations (2026-09-15); the 93 shared listed subtree members are cited as engine-helper families. The `menuhandbook_order.bin` record layout is read only through `00572460`'s page descriptor walk.
+**Status:** ~~PARTIAL~~ DOCUMENTED *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, GI-2 answered 2026-09-29)* — both dispatch tables, the install chain, and every listed screen-region member are cited below with interior citations (2026-09-15); the 93 shared listed subtree members are cited as engine-helper families. The `menuhandbook_order.bin` record layout is read only through `00572460`'s page descriptor walk.
 
 ## The tree
 
@@ -125,7 +125,7 @@ on the `02EBEFxx` tables and the EFX loader (`003A76F0`/`003A79C0`/`003A7B50`/`0
 text-emit and leaf layer (`0017FA50`/`001816F0`/`001B1F80`/`0036DD90`/`0036DDA0`/`00374930`),
 `002F9860`/`002F8040`/`002F83E0`/`002FBEF0`/`002EFD20` string fetch and resource-slot test, and
 `0024A4E0` the `Resource`-owned text-label create (`0024A536`/`0024A569`),
-`002527B0`/`002CD7D0`/`002CD800`/`002CD880` resource release, `003BD6F0` the pane record
+~~`002527B0`/~~`002CD7D0`/`002CD800`/`002CD880` resource release *(corrected 2026-10-02, OPUS: `002527B0` is no release — it stores a value into one of three banks at `[020927C0]`, `002527B0+0x7`–`002527B0+0x69`)*, `003BD6F0` the pane record
 rebuild, and `00808C40`/`00861EC0`/`00235DC0` CRT helpers. **25 call-targets carry no census
 entry** — arm bodies inside listed owners.
 
@@ -150,7 +150,7 @@ entry** — arm bodies inside listed owners.
 | `00572890` | directional helper — `00247510` + `002CCCA0`/`002CD150` | `00572896` `mov rax,[rip+0x2736e7b]` |
 | `00572920` | ~~page-select~~ Den statue build: a group per awarded achievement, `0xFF` records anchored through `003165B0` (corrected 2026-09-29, FABLE, GI-2) — `003165B0` + `003B2AA0`/`003B2D80`/`003B2F50` + `00576E10` | `0057294B` `call 00576E10` |
 | `00572BD0` | `003BD6F0` + `00202C90` + `00808C40` — ~~record refresh~~ picks the nearest other statue in the pressed direction from the records' `+2`/`+4` positions (corrected 2026-09-29, FABLE, GI-2) | `00572BDE` `mov rax,[rip+0x19d1c4b]` |
-| `00572D80` | post-build cleanup — `00249580` | `00572D8D` `call 00249580` |
+| `00572D80` | ~~post-build cleanup — `00249580`~~ a resource requester: opens a batch (`00249580`), requests through `002491B0`/`00249210` (`00572D80+0x45`, `00572D80+0x6B`) and tail-jumps to the seal `00249410` (`00572D80+0x88`) *(corrected 2026-10-02, OPUS)* | `00572D8D` `call 00249580` |
 | `00572E10` | ~~the content viewer~~ the Sky Pirate's Den screen (corrected 2026-09-29, FABLE, GI-2) (1,422 B) — §above | `00572E1F` `mov rax,[rip+0x19d1a0a]` |
 | `005733F0` | viewer helper — `00368360`/`00368A60` + `00808C40` | `005733F4` `mov rax,[rip+0x19d1435]` |
 | `005734C0` | ~~menu-effect reset~~ selection change: redraws the old statue with its `+0x16` effect and the new one with `+0x17` (corrected 2026-09-29, FABLE, GI-2) — `003B2AA0`/`003B2D80`/`003B2F50` | `00573510` `call 003B2AA0` |

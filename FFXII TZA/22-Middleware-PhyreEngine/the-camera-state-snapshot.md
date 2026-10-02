@@ -34,11 +34,11 @@ ranking at **63 % SSE moves with zero loops.** *(Corrected 2026-09-30, SWE2-DATA
 
 ## What it does
 
-**It fills a 140-byte record from two sources and nothing else.**
+**It fills a ~~140-byte~~ 144-byte (`0x90`) record from two sources and nothing else.** *(corrected 2026-10-02, OPUS: the last store is the dword at `+0x8C`, `0086510D`; the layout section below)*
 
 - **`+0x08 … +0x44`** — 64 bytes taken from a **globally resolved object**, copied as four 16-byte
   moves and then eight dwords. *No arithmetic is applied to any of it.*
-- **`+0x48 … +0x84`** — 60 bytes taken from a **second object, resolved through two calls**, and then
+- **~~`+0x48 … +0x84`~~ `+0x48 … +0x87`** — ~~60 bytes~~ 64 bytes, a 4x4 float matrix *(corrected 2026-10-02, OPUS: `00865055 lea rcx, [rbx+0x48]`, last store `008650EB movss [rcx+0x3c]`)*, taken from a **second object, resolved through two calls**, and then
   handed with two further fields of that object to one helper. **The helper is the only computation in
   the function.**
 - **`+0x88`, `+0x8C`** — two dwords from two more no-argument globals.
@@ -101,7 +101,7 @@ itself, and the first about a null path.**
 **What this document does not claim:** ~~what the record is for, who calls it, what the two resolvers~~
 ~~return, what the helper computes, or what the two trailing dwords hold. **Nothing in the database cites~~
 ~~this address**, so there is no caller context — this is the shape of a function and the extent of a~~
-~~record, and no more.~~ *(Corrected 2026-09-30, SWE2-DATA: the record, the caller, the resolvers, the helper and the trailing dwords are now read, in the section below. What is still not claimed is what the two matrices and the two floats mean, `SD-60`.)*
+~~record, and no more.~~ *(Corrected 2026-09-30, SWE2-DATA: the record, the caller, the resolvers, the helper and the trailing dwords are now read, in the section below. What is still not claimed is what the two matrices and the two floats mean, `SD-60`.)* *(answered: see the SD-60 answer block below, 2026-09-30; 2026-10-02, OPUS)*
 
 *Corrected 2026-09-18 (FABLE): the address is cited by the call graph.* `edges.tsv` holds **nine callers of `0018A120`** — `00185C30`, `00186670`, `00187950` (the render pass list builder on [the application root](../00-Engine-Core-Runtime/Application-Root/game-application.md)), `001897C0`, `00189CE0`, `0018A680`, `001B7850`, `001EBDD0` and `001EF6D0` — ~~so the snapshot is taken by the Phyre render-side builders, and the caller context this page said did not exist does. What those callers do with the record is not read here; the three reservations in the status line stand.~~ *(Corrected 2026-09-30, SWE2-DATA: those nine call `0018A120`, the sibling, not `00864F30`. A raw sweep of every rel32 call and jump, every rip operand and every pointer slot in the image finds no direct call to `00864F30` and one pointer slot, `01CCFB78`, slot 0 of the `GiBeginEff` vtable. The same sweep on `0018A120` finds all nine, the control. `_index/candidates/dd-data-2-0930/camera_callers.py` C1, K1, K2, K3.)*
 

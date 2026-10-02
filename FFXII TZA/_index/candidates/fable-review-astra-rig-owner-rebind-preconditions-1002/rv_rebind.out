@@ -1,0 +1,124 @@
+# rv_rebind.py at HEAD 1f193fec9, 2026-10-02T09:59:44Z
+== image sha256 verified, base 120000
+PASS  manifest.json sha256 = ffe2b7cc1ce24207...  | ffe2b7cc1ce242076b3106930ddfa1c2988d9abd20d591876b55ae103008288e
+PASS  all 68 manifest members hash as listed  | []
+PASS  body 00372350..003723A4 decodes exactly (84 B)
+PASS  body 00372350 .pdata tiles it (1 record(s))  | 00372350..003723A4
+PASS  body 00372350: no jcc leaves; rets=['003723A3'] tails=[]
+PASS  body 003E3CA0..003E3D64 decodes exactly (196 B)
+PASS  body 003E3CA0 .pdata tiles it (3 record(s))  | 003E3CA0..003E3CB5 003E3CB5..003E3D63~chain 003E3D63..003E3D64~chain
+PASS  body 003E3CA0: no jcc leaves; rets=['003E3D63'] tails=[]
+PASS  body 003E3D70..003E4131 decodes exactly (961 B)
+PASS  body 003E3D70 .pdata tiles it (3 record(s))  | 003E3D70..003E3D85 003E3D85..003E4066~chain 003E4066..003E4131~chain
+PASS  body 003E3D70: no jcc leaves; rets=['003E4130'] tails=[]
+PASS  body 004215A0..00421892 decodes exactly (754 B)
+PASS  body 004215A0 .pdata tiles it (3 record(s))  | 004215A0..004215BB 004215BB..00421640~chain 00421640..00421892~chain
+PASS  body 004215A0: no jcc leaves; rets=['00421891'] tails=[]
+PASS  new source total 1,995 bytes (84+196+961+754)  | 1995
+PASS  0037235A is `cmp dword ptr [rcx + 0x90], 0`
+PASS  00372366 is `jle 0x372399`
+PASS  00372361 is `mov edi, edx`
+PASS  00372368 is `mov ecx, dword ptr [rcx + 0x94]`
+PASS  0037236E is `call 0x20e600`
+PASS  00372373 is `test rax, rax`
+PASS  00372376 is `je 0x372399`
+PASS  00372383 is `mov dword ptr [rax + 0x68], edi`
+PASS  00372383 is a DWORD write
+PASS  00372391 is `mov rcx, rax`
+PASS  00372394 is `call 0x3e3d70`
+PASS  producer's only guards are +90 signed>0 and Decode(+94)!=0 (no index/owner check)  | ['0037235A', '00372373']
+PASS  edi (index) not rewritten between 00372361 and 00372383
+PASS  0041F608 is `movsx edx, word ptr [r14]`
+PASS  0041F60C is `mov rcx, rsi`
+PASS  0041F60F is `call 0x372350`
+PASS  factory r14 = its arg0 (0041F361 mov r14, rcx; only other writer is the epilogue pop)  | ['0041F361', '0041F726']
+PASS  factory 0041F608 reads a WORD and sign-extends into edx
+PASS  0041F4BC is `or dword ptr [r14 + 0x284], 0x10000`
+PASS  003E3CA0 is `test rcx, rcx`
+PASS  003E3CA0 outer NULL rig -> 003E3D63 (ret)
+PASS  003E3CAE is `movzx eax, word ptr [rcx + 0x68]`
+PASS  003E3CBC is `cmp ax, -1`
+PASS  003E3CC6 is `movsx rax, ax`
+PASS  003E3CCA is `imul rcx, rax, 0x740`
+PASS  003E3CD1 adds global 022C6F28
+PASS  003E3CD8 is `cmp dword ptr [rcx + 0x284], edi`
+PASS  003E3CDE is `cmove rcx, rdi`
+PASS  003E3CE2 is `call 0x20e620`
+PASS  003E3CE9 is `mov dword ptr [rbx + 0x70], eax`
+PASS  003E3CEC is `call 0x20e600`
+PASS  003E3CF1 is `mov rcx, rax`
+PASS  003E3CF4 is `call 0x421d20`
+PASS  003E3CA0: xor edi,edi before the select (FFFF/inactive -> 0)
+PASS  003E3CA0: primary 421D20 call dominates the +6C compare and every ret after the non-NULL entry
+PASS  003E3CA0: no compare/test of the derived pointer before the 421D20 call
+PASS  003E3D01 is `cmp dword ptr [rbx + 0x6c], -1`
+PASS  003E3D01 +6C sentinel test is a full DWORD compare
+PASS  003E3D08 je -> 003E3D59 (secondary skip)
+PASS  003E3D0A is `movzx eax, word ptr [rbx + 0x6c]`
+PASS  003E3D0E is `cmp ax, -1`
+PASS  003E3CA0: secondary path 421D20 call ['003E3D49'] is reached from both WORD outcomes
+PASS  003E3CA0: secondary index is the WORD sign-extended (['003E3D14'])
+PASS  003E3CA0: no direct [rbx+74..7F] write reachable from the skip target 003E3D59  | []
+NOTE  003E3CA0 writers of rdi (the zero source for Encode(0)): ['003E3CBA xor edi, edi', '003E3D31 mov rdi, rdx', '003E3D59 mov rdi, qword ptr [rsp + 0x30]']
+PASS  003E3CA0: rdi stays 0 from 003E3CBA to both Encode(0) selects (only writer in between is the secondary cmove/mov)
+PASS  003E3CA0: rbx (rig) written only by the entry mov and the final pop  | ['003E3CB2', '003E3D62']
+PASS  link-only 003E3CA0 calls only codec/421D20 (no 3E3C30 reset)
+PASS  link-only skip path 003E3D59 goes straight to ret
+PASS  003E3D70 is `test rcx, rcx`
+PASS  003E3D70 outer NULL rig -> 003E4130 (ret)
+PASS  003E3D7E is `movzx eax, word ptr [rcx + 0x68]`
+PASS  003E3D8C is `cmp ax, -1`
+PASS  003E3D96 is `movsx rax, ax`
+PASS  003E3D9A is `imul rcx, rax, 0x740`
+PASS  003E3DA1 adds global 022C6F28
+PASS  003E3DA8 is `cmp dword ptr [rcx + 0x284], edi`
+PASS  003E3DAE is `cmove rcx, rdi`
+PASS  003E3DB2 is `call 0x20e620`
+PASS  003E3DB9 is `mov dword ptr [rbx + 0x70], eax`
+PASS  003E3DBC is `call 0x20e600`
+PASS  003E3DC1 is `mov rcx, rax`
+PASS  003E3DC4 is `call 0x421d20`
+PASS  003E3D70: xor edi,edi before the select (FFFF/inactive -> 0)
+PASS  003E3D70: primary 421D20 call dominates the +6C compare and every ret after the non-NULL entry
+PASS  003E3D70: no compare/test of the derived pointer before the 421D20 call
+PASS  003E3DD1 is `cmp dword ptr [rbx + 0x6c], -1`
+PASS  003E3DD1 +6C sentinel test is a full DWORD compare
+PASS  003E3DD8 je -> 003E3E28 (secondary skip)
+PASS  003E3DDA is `movzx eax, word ptr [rbx + 0x6c]`
+PASS  003E3DDE is `cmp ax, -1`
+PASS  003E3D70: secondary path 421D20 call ['003E3E18'] is reached from both WORD outcomes
+PASS  003E3D70: secondary index is the WORD sign-extended (['003E3DE9'])
+PASS  003E3D70: no direct [rbx+74..7F] write reachable from the skip target 003E3E28  | []
+NOTE  003E3D70 writers of rdi (the zero source for Encode(0)): ['003E3D8A xor edi, edi', '003E4007 mov edi, 1', '003E4035 cmovne edi, eax', '003E405C mov rdi, qword ptr [rsp + 0x30]']
+PASS  003E3D70: rdi stays 0 from 003E3D8A to both Encode(0) selects (only writer in between is the secondary cmove/mov)
+PASS  003E3D70: rbx (rig) written only by the entry mov and the final pop  | ['003E3D82', '003E412F']
+PASS  003E3E2B is `call 0x3e3c30`
+PASS  full-reset skip target 003E3E28 still calls the 3E3C30 reset
+PASS  full-reset reset call is reached on both secondary outcomes (dominates ret from non-NULL entry)
+PASS  004215B8 is `mov rsi, rcx`
+PASS  rsi = first argument from 004215B8 until the epilogue restore  | ['004215B8', '00421883']
+PASS  004216D3 is `movsx ebx, word ptr [rsi]`
+PASS  004216D3 reads WORD [arg0+0]
+PASS  004216D6 is `call 0x20e600`
+PASS  004216DB is `mov dword ptr [rax + 0x6c], ebx`
+PASS  004216DB is a full DWORD store
+PASS  004216CC is `mov ecx, dword ptr [r14 + 0x94]`
+PASS  004216DE is `mov ecx, dword ptr [r14 + 0x94]`
+PASS  004216EA is `mov rcx, rax`
+PASS  004216ED is `call 0x3e3ca0`
+PASS  r14 not rewritten in 004216C6..004216ED
+NOTE  4215A0 direct writes overlapping +6C..+6F (any base): ['004216DB mov dword ptr [rax + 0x6c], ebx']
+PASS  421D20 writes no rdi; 20E600/20E620 write no rdi (Encode(0) source survives the primary calls)
+PASS  math (65,536 values): signed16 writer -> SKIP exactly for FFFF, never the WORD-missing branch
+PASS  math: 0000FFFF takes the WORD-missing lookup path, FFFFFFFF the skip
+PASS  math: no signed16 value stores 0000FFFF
+PASS  math: factory signed16 -> DWORD +68 -> reader WORD/movsx gives back the same signed16 index
+== controls (each mutation must be REJECTED)
+PASS  CONTROL rejects: secondary skip edge inverted (je -> jne at 003E3D08)
+PASS  CONTROL rejects: insert a derived-pointer test before 421D20 (mov rcx,rax -> test rax,rax at 003E3DC1)
+PASS  CONTROL rejects: secondary writer zero-extends (movsx 0f bf -> movzx 0f b7 at 004216D3)
+PASS  CONTROL rejects: producer index guard: +90 compare jle -> jl at 00372366
+PASS  CONTROL rejects: a direct +74 clear on the link-only skip path (mov rdi,[rsp+30] -> mov [rbx+74],edi ; nop)
+PASS  CONTROL rejects: wrong expectation that 004216D3 is movzx
+== 0 FAIL
+# exit 0

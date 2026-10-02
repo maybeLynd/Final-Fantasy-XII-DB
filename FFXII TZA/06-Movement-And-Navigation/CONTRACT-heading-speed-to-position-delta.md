@@ -503,3 +503,17 @@ listed body in `.text`. Script: `Tools/analysis-kit/gfz-scripts/falsify_heading_
 
 Consumer record: [`_index/candidates/heading-delta-falsification-pass-1-0929/`](../_index/candidates/heading-delta-falsification-pass-1-0929/README.md).
 Contradiction: `CON-167`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-heading-speed-to-position-delta-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00345180` | 208 B | reads three floats a, b, c by calling `00267DB0(r9)` three times and three floats p, q, r through `00265020(rdx, &p, &q, &r)`; then calls `0026B4C0(rcx)` with `xmm1` = `003A1D30` of (c minus p) squared plus (b minus q) squared plus (a minus r) squared | `003451AB`, `003451DC`, `003451E1`, `00345220`, `0034522B` |
+| `003B73B0` | 131 B | returns without work when `rcx` is null or the 38-byte actor-record getter returns null for it; otherwise, with that result r, calls `00265020(rcx, r, r+4, r+8)` and `00265240(rcx, r+0x10, r+0x14, r+0x18)`, stores the low byte of `002E9BE0(rcx)` at byte `+0x64`, the float of `00263CC0(rcx)` at `+0x34`, the float of `00265200(rcx)` at `+0x24`, and then `00263CC0(rcx)` again at `+0x34` | `003B73C2`, `003B73F1`, `003B7401`, `003B7419`, `003B7423` |
+| `003DA6A0` | 112 B | calls `003DA730(rcx, rdx, r9)` and `003DA730(r8, r9, rdx)`, passing each float result through `003A1D30`, and returns (the second plus float `+0xC` of `r8`) plus (the first plus float `+0xC` of `rcx`) | `003DA6C8`, `003DA6DE`, `003DA6E8`, `003DA6ED`, `003DA701` |
+| `003E33E0` | 21 B | replaces bit 23 (`0x800000`) of dword `+0` of `rcx` with bit 0 of `dx`, ORs in 2 and stores the dword back | `003E33E3`, `003E33E8`, `003E33EF`, `003E33F2` |
+| `003E3440` | 19 B | replaces bit 24 (`0x1000000`) of dword `+0` of `rcx` with bit 0 of `edx`, ORs in 4 and stores the dword back | `003E3445`, `003E344D`, `003E3450` |
+| `0040FEF0` | 53 B | calls `0040FF30(rcx, rdx)` and `00413C80(rcx, rdx)`, then tail-jumps `00411650(rcx, rdx)` | `0040FF00`, `0040FF0B`, `0040FF20` |
+| `0043EE70` | 49 B | switches on byte `+0` of `rcx` with `rcx`, `rdx` and `r8` unchanged (`r9` is overwritten by the case arithmetic): `0x67` tail-jumps `0045FD00`, `0x6B` tail-jumps `00529D40`, `0x71` tail-jumps `0052A8A0`, `0x72` tail-jumps `0052B5D0`, and any other value returns | `0043EE74`, `0043EE8C`, `0043EE91`, `0043EE96`, `0043EE9B` |

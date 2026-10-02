@@ -360,7 +360,7 @@ the record kind byte from
 
 **Arguments.**
 
-- `rcx` is the character's `0x1C8`-byte stats record (`rbp`, `00323D26`). The wrapper `00323600` (43 B) computes it as `[02EBF190] + 8 + slot × 0x1C8` (`0032360F`–`00323627`). It passes `rcx = 0` when `slot > 0x27` (`00323600`–`00323605`).
+- `rcx` is the character's `0x1C8`-byte stats record (`rbp`, `00323D26`). The wrapper `00323600` (~~43 B~~ 47 B *(corrected 2026-10-02, OPUS: it ends with the 5-byte `jmp 00323D10` at `00323600+0x2A`, so its extent is 0x2F)*) computes it as `[02EBF190] + 8 + slot × 0x1C8` (`0032360F`–`00323627`). It passes `rcx = 0` when `slot > 0x27` (`00323600`–`00323605`).
 - `edx` is the node number, zero-extended from a `u16` by the wrapper (`00323607`, `00323624`). It is kept in `ebx` (`00323D22`).
 - `r8d` holds the flags. Only bit 0 matters: `esi = ~flags & 1` (`00323D1F`–`00323D29`), so `esi = 1` means "charge LP".
 

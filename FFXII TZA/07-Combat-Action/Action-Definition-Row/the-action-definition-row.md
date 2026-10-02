@@ -133,10 +133,10 @@ only where a reader fixes it; **shape** is what the data alone shows.
 
 ```
 ActionDefinitionRow (60 B, 543 rows, us battle_pack.bin directory +0x3C; action_data.bin per language)
-  +0x00 u16  helpTextId (4000 = none)      +0x1E u8   messageKind (255 = unused row)
-  +0x08 u8   recipe (0 = weapon's)         +0x22 u16  linkedMenuId (0xFFFF = none)
+  +0x00 u16  helpTextId (4000 = none)      +0x1E u8   messageKind (255 = unused row)   # <- corrected 2026-10-02, OPUS - +0x1E is the id-class byte (renamed 2026-09-30, field map row +0x1E)
+  +0x08 u8   recipe (0 = weapon's)         +0x22 u16  linkedMenuId (0xFFFF = none)   # <- corrected 2026-10-02, OPUS - +0x22 is an id whose space +0x1E names (field map row +0x22)
   +0x09 u8   chargeClass                   +0x26 u8   esperPartyRow (summons)
-  +0x0A u8   mpCost                        +0x28 u8   quickeningIndex (120..153, reader not found)
+  +0x0A u8   mpCost                        +0x28 u8   quickeningIndex (120..153, reader not found)   # <- corrected 2026-10-02, OPUS - the reader is 0030A190 (word read 0030A209), GR-4
   +0x0B u8   b0B (1..3 on rows 182-207)
   +0x0C u32  flags (bit 11 ...)            +0x2C u8   element (bits 0-2); bit 5 read by nothing (UQ-107)
   +0x10 u8   power                         +0x2E u16  descriptionId (10000 + k, 0 = none)
@@ -264,7 +264,7 @@ Every per-value figure in §2.2 was re-counted over the 543 rows. **79 of 80 rep
 | `+0x15`–`+0x17` padding | **zero on all 543** |
 | `+0x00` = `4000` on 327 rows, else `4001`–`4321` | **327**, and **4001 … 4321** |
 | `+0x26` — thirteen summon rows, `27`–`39` | **13 rows**, values **27–39**, all thirteen distinct |
-| `+0x28` — 26 Esper attacks, `120`–`153` | **26 rows**, **120–153** |
+| `+0x28` — 26 ~~Esper attacks~~ Quickening-family rows *(corrected 2026-10-02, OPUS: as the field map row `+0x28` was corrected 2026-09-27)*, `120`–`153` | **26 rows**, **120–153** |
 | `+0x2E` — `10000 + k` on 201 rows | **201** |
 | `+0x22` — `0xFFFF` × 343, 200 others | **343** and **200** |
 | the stated ceilings `+0x0A ≤ 768`, `+0x10 ≤ 253`, `+0x1C ≤ 9`, `+0x08` 0–108 | **768, 253, 9, 0–108** |

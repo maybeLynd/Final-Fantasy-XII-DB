@@ -29,10 +29,10 @@ audit:
 
 # EBP `section_008` — the `CML1` camera name list
 
-> The list of camera names a script is allowed to ask for, each paired with a slot the engine
-> fills in at load time with the matching camera's index in
-> [`section_009`](section-009.md). **The index that ships in the file is never used** — the
-> engine recomputes it by name.
+> The list of camera names a script is allowed to ask for, each paired with ~~a slot the engine~~
+> ~~fills in at load time with~~ the matching camera's index in
+> [`section_009`](section-009.md). ~~**The index that ships in the file is never used** — the~~
+> ~~engine recomputes it by name.~~ **The index that ships in the file is the binding**; the name lookup never runs in the shipped build *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; the correction in §3)*.
 
 **Corpus validation, before anything else.**
 
@@ -186,14 +186,14 @@ removes the camera list.
 
 > ### The authored index column does nothing
 >
-> **Three of the four dwords in every entry are overwritten at load.** Only `nameOffset` is read.
+> **~~Three~~ Two of the four dwords in every entry are overwritten at load.** *(corrected 2026-10-02, OPUS: `+0x08` is zeroed at `0x003DA292` and `+0x0C`'s low byte at `0x003DA296`; the `+0x04` store never runs — `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run)* Only `nameOffset` is read.
 > `cameraIndex` ships with the correct answer already in it — and it agrees with what the engine
-> computes in **422 of 423 files** (§5) — but the engine never looks: it calls
-> `CAM7_FindCameraByName` and **stores the result over the top**, at `0x003DA28F`.
+> computes in **422 of 423 files** (§5) ~~— but the engine never looks: it calls~~
+> ~~`CAM7_FindCameraByName` and **stores the result over the top**, at `0x003DA28F`.~~ — and the engine uses it as authored: the call and its store sit behind a gate that returns 0 *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; the reversal below)*.
 >
-> For a modder this is the useful half of the sheet. **Renaming a camera in `section_009` breaks
-> the link; renumbering the index column in `section_008` does nothing at all.** The file is a
-> runtime structure that ships pre-filled, not a table of authored parameters.
+> For a modder this is the useful half of the sheet. **~~Renaming a camera in `section_009` breaks~~
+> ~~the link; renumbering the index column in `section_008` does nothing at all.~~** **Renumbering the index column in `section_008` changes which camera plays; renaming a camera in `section_009` changes nothing** *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; the reversal below)*. ~~The file is a~~
+> ~~runtime structure that ships pre-filled, not a table of authored parameters.~~
 
 > **REVERSED 2026-09-12 — the box above has the direction wrong.** The write it relies on is behind a gate that returns
 > 0 on every shipped call (correction at the head of this section). **Renumbering the index column in `section_008`
@@ -228,8 +228,8 @@ removes the camera list.
   duplicated camera name (§5), so this is reachable in the retail data.
 
 **What loading normalises.** Beyond the three entry fields: five `(u16, u16)` pairs in the manager
-record are reset to `(0, 0xFFFF)` on every resolve — `+0x18`, `+0x118`, `+0x130`, `+0x148`,
-`+0x160`. The last four are spaced `0x18` apart, and `section_009`'s handler separately loops
+record are reset ~~to `(0, 0xFFFF)`~~ on every resolve — `+0x18` to `(0xFFFF, 0xFFFF)`, and `+0x118`, `+0x130`, `+0x148`,
+`+0x160` to `(0, 0xFFFF)` *(corrected 2026-10-02, OPUS: `0x003DA204` / `0x003DA20B` store `0xFFFF` to both `+0x18` and `+0x1A`; `0x003DA212`–`0x003DA247` store `0` / `0xFFFF` to the other four; BY-4 below)*. The last four are spaced `0x18` apart, and `section_009`'s handler separately loops
 `FUN_002566E0(slot, 0..3)`, so there appear to be **four camera channels per manager** each holding
 a resolved index initialised to "none". Their use is not established here. *(Established 2026-09-12, `BY-4`: `+0x110 + 0x18·ch` are the four **camera channels** (`ActorManagerSlotEntry`); each pair is the channel's **state** (`0` idle) and the **`CML1` entry number** it was started with (`0xFFFF` none), and `+0x18` / `+0x1A` are the main and sub frames' owning channel, both set to `0xFFFF`. See [the scripted camera player](../../17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md) §2.2.)*
 
@@ -238,7 +238,7 @@ already present, so the pair resolves once regardless of which section's load co
 `section_009`'s handler reaches it through `0x0026CE20` and the same `+0xE0`/`+0xD8` test.
 
 **Teardown.** `ActorResource_ResetManagerLoadState` (`0x0032ED80`) loads the blob at `0x0032EFD3`,
-frees it at `0x0032EFBD`, and clears the slot at `0x0032F00C`. The freed pointer's only use is the
+~~frees it at `0x0032EFBD`~~ passes it to the free at `0x0032F005` only when `0x005C5230(5)` returns non-zero, which it never does, and clears the slot at `0x0032F00C` *(corrected 2026-10-02, OPUS: `0x0032EFBD` frees the slot-9 blob; slot 8's `[r14 + rdi*8 + 0x21a6d80]` is loaded at `0x0032EFD3` and its free is gated at `0x0032EFF4`–`0x0032F000`)*. The freed pointer's only use is the
 free itself.
 
 **The write path.** None found. Nothing in the executable emits `CML1`; it is authored offline.
@@ -247,7 +247,7 @@ free itself.
 
 | Address | Role | Read? |
 |---|---|---|
-| `0x003DA1F0` | `CML1_ResolveNames` — the only reader of this section (count `0x003DA253`, nameOffset `0x003DA270`, index write-back `0x003DA28F`, scratch zeroing `0x003DA292`/`0x003DA296`, stride `0x003DA29A`) | ✅ full body |
+| `0x003DA1F0` | `CML1_ResolveNames` — ~~the only reader of this section~~ the load-time pass over this section, whose index write-back never runs; entry `+0x04` is read at run time by the §3 readers and by `0x003DA300` at `0x003DA31F` *(corrected 2026-10-02, OPUS: `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run)* (count `0x003DA253`, nameOffset `0x003DA270`, index write-back `0x003DA28F`, scratch zeroing `0x003DA292`/`0x003DA296`, stride `0x003DA29A`) | ✅ full body |
 | `0x00256530` | `CAM7_FindCameraByName` — slot bound `0x00256539`, blob fetch `0x00256558`, count `0x00256573`, `0x40` stride `0x00256589`, `strncmp` n=23 `0x00256594`, hit `0x002565BC`, miss `0x002565A4` | ✅ full body |
 | `0x0032FA10` | `CAMCTL_OnLoaded` — slot/pointer split `0x0032FA2E`/`0x0032FA36`, blob store `0x0032FA3B`, binder call `0x0032FA43`, partner test `0x0032FA4F`, resolve call `0x0032FA5C` | ✅ full body |
 | `0x0026CE00` | binder: `manager[+0xD8] = blob`, store at `0x0026CE11` | ✅ full body |
@@ -354,15 +354,15 @@ survives as corroboration of *meaning* only.
 - **The `CML1` format as used by `section_010` is not covered.** Only the magic
   and the 113-file count were checked here. Whether `section_010` shares the entry layout, and
   whether `SHK1` has an equivalent of `CAM7_FindCameraByName`, is `repos-c7`'s unit.
-- **`section_010`'s subset relationship is stated, not explained.** All 113 files with the shake
-  pair also have the camera pair; no mechanism is offered for why.
+- ~~**`section_010`'s subset relationship is stated, not explained.**~~ All 113 files with the shake
+  pair also have the camera pair; ~~no mechanism is offered for why.~~ *(answered: the co-occurrence is not engine-enforced — BY-5, answered 2026-09-26, §2; 2026-10-02, OPUS)*
 
 ## 8. Related
 
 - [`section_009` — the `CAM7` camera table](section-009.md) — the partner this section indexes into.
 - `section_010` — the other `CML1`, paired with [`SHK1` (`section_011`)](section-011.md); same
-  magic, different partner. `repos-c7`'s unit; the sheet does not exist yet, so this is
-  deliberately not a link.
+  magic, different partner. `repos-c7`'s unit; ~~the sheet does not exist yet, so this is~~
+  ~~deliberately not a link.~~ its sheet is [`section-010.md`](section-010.md) *(answered: written since; 2026-10-02, OPUS)*.
 - [`25-EBP-Script-Container/README.md`](../README.md) — the container and the frozen census.
 - [`01 — Script VM & Native Bridge`](../../01-Script-VM-Native-Bridge/README.md) — where a script
   names a camera.
@@ -421,3 +421,12 @@ the lookup the resolver *would* compute, and that the resolver does not run is u
 - **WorldAreaField — CLIENT (3 edges).** 3 inbound (WorldAreaField bodies `WorldSimulation_ProcessDeferredModeRequest` (0032FC30), `00378A60` call page-cited `0032F3D0`, `00408B10`, `00408B30`). Substantive edges include `0032F3D0` is called by `00378A60`; `00408B10` is called by `WorldSimulation_ProcessDeferredModeRequest` (0032FC30); `00408B30` is called by `WorldSimulation_ProcessDeferredModeRequest` (0032FC30).
 - **Presentation — SERVICE (1 edge).** The ATEL registration body `003306E0` calls `002561C0`, the Presentation-side record installer that validates the `CAM7` magic and stores the record into the slot table at `02092800` (stride `0xBB0`).
 - **Resource — SERVICE (1 edge).** The same `003306E0` calls `0032E400`, the indexed resource-descriptor resolver (bounds check `0xFF`, pointer table `022C51F0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-section-008-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034E9B0` | 90 B | calls `00267E10(r9)` twice (results a, then b), calls `003DA330(002640C0(), b AND 0xFFFFFF, a)` and tail-jumps `0026B4E0(rcx, that result)` | `0034E9C8`, `0034E9D2`, `0034E9DE`, `0034E9EC`, `0034EA05` |
+| `0034EDB0` | 101 B | calls `00267F90(r9, -1)`, then `00267E10(r9)` twice (results a, then b), calls `003DA330(002640C0(), b AND 0xFFFFFF, a)` and tail-jumps `0026B4E0(rcx, that result)` | `0034EDCB`, `0034EDD3`, `0034EDE9`, `0034EDF7`, `0034EE10` |

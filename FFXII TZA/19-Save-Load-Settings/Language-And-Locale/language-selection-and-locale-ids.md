@@ -553,6 +553,11 @@ of the emit's downstream reads. Mechanical.
 lookup this page's `0027D330` stat writer consults, is also called by
 `00335760`/`00338490` on the Movement layer. A shared leaf, not a shared
 responsibility.
+- **CoreRuntimeScheduling - CLIENT and SERVICE (12 edges).** `0017E210`, `0017E270`, `0017E410` are also called by bodies filed to core runtime scheduling: `0022A0B0`, `0017D6E0`, `0017D4C0`; `0022A0B0`, `0023E020`, `00241D40` reach bodies filed to core runtime scheduling: `00229E40`, `001EDEC0`, `0022BDF0` - shared machinery across the layer boundary, no shared ownership.
+- **Input - CLIENT and SERVICE (14 edges).** `0017E210`, `0022A540`, `00597970` are also called by bodies filed to input: `0079FB10`, `0022A4F0`, `001967D0`; `0023CE10`, `0023E020`, `002DDE60` reach bodies filed to input: `0035B270`, `001E08F0`, `001E0F20` (+6 more) - shared machinery across the layer boundary, no shared ownership.
+- **Platform - CLIENT and SERVICE (9 edges).** `005FD050`, `001DF340`, `0060DD70` are also called by bodies filed to platform: `00625830`, `001DD170`, `0061F200` (+3 more); `007980A0` reaches bodies filed to platform: `0019A510`, `007979B0` - shared machinery across the layer boundary, no shared ownership.
+- **PlatformOnlineAchievements - CLIENT and SERVICE (11 edges).** `001DF340`, `001F3AE0` are also called by bodies filed to platform/online achievements: `007A0C60`, `001F3E10`; `007980A0`, `00305A00` reach bodies filed to platform/online achievements: `00316C60`, `001F3ED0`, `0020CD30` (+6 more) - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (134 edges).** `00597970`, `00598100`, `0059BD40` are also called by bodies filed to resource: `001D9A40`, `001DA610`, `002DF8E0` (+29 more); `0059EE90`, `001D8D60`, `0022A0B0` reach bodies filed to resource: `002DF8E0`, `0020C710`, `0059BD80` (+34 more) - shared machinery across the layer boundary, no shared ownership.
 ## The `00473E80` exclusive subtree — all 4 members bound (SWE2-FRONTIER, followup queue)
 
 `00473E80` (372 B) is the **locale-change dispatcher**: `ebx ≤ 4` gates a jump

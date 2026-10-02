@@ -1,0 +1,38 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "ppfx-function-identification.json",
+ "rows": [
+  {
+   "fn": "007911E0",
+   "text": "when bit 31 of dword `+8` of `rdx` is clear, the dword is above 1 (unsigned) and qword `+0x10` is non-null, calls `00584730(qword +0x10)`; on every path then zeroes qword `+0x10` and dword `+8` of `rdx` and returns 1 in `al`",
+   "anchors": [
+    [
+     "007911F7",
+     "shr"
+    ],
+    [
+     "00791204",
+     "cmp"
+    ],
+    [
+     "00791212",
+     "call"
+    ],
+    [
+     "00791219",
+     "mov"
+    ],
+    [
+     "0079121D",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

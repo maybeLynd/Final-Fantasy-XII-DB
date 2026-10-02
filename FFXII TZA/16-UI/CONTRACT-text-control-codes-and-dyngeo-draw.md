@@ -92,7 +92,7 @@ text context (rcx)         reached by the interpreter; fields cited by the pages
   +0x40  u8    fixed-advance switch      +0x44  u32  flag word, bit 11 widens token 0x04
   +0x4C  f32   letter-spacing term       +0x70  ptr  argument array, 16-byte entries
   +0x78  ptr   the context's actor       +0x88  u16  page-wait tick count
-  +0x94  f32   the width justification subtracts from
+  +0x94  f32   the width justification subtracts from   <- corrected 2026-10-02, OPUS - a signed word, not f32: 002B1F20+0x1C and 002B1F20+0x4A read it with movsx eax, word ptr [rcx+0x94]
   +0x99  u8    margin       +0x9A  u8  justification selector      +0xAA  s8  indent
   +0xB0  u32   flag word; bit 19 waiting, bit 21 unread, bit 25 guards `$`, bit 26 write-only
 
@@ -157,7 +157,7 @@ So the protocol has two halves:
 - one that advances the cursor differently breaks the two probes, even if its return is right.
 
 **I-2 — THE CURSOR IS ADVANCED BY THE PARSER'S RETURN, SO THE INTERPRETER ENCODES NO CODE LENGTHS.**
-Every arm ends `lea rdx, [rsp+0x40]` / `call <parser>` / `add qword ptr [rdi], rax`
+~~Every arm ends~~ Every parser-carrying arm ends `lea rdx, [rsp+0x40]` / `call <parser>` / `add qword ptr [rdi], rax` *(corrected 2026-10-02, OPUS: the `!` arm has no parser and advances by one, `002AC5F0+0xBF5` `inc qword ptr [rdi]`; the shared arm at `002AC5F0+0x1C01` advances by `002AEB20`'s return)*
 (`002AE308`–`002AE314` is the worked copy). **Measured across all eleven parsers**, that return is:
 
 | parser | returns |
@@ -360,7 +360,7 @@ pipeline, and the DynGeo bodies have no direct caller at all.
 **RNG — none.** No body on either half draws from any generator.
 
 **Timing / update ordering.** The interpreter is re-entrant by design (I-4) and is called in a loop
-by each of its seven callers. Nothing here is frame-paced; the page wait (`#`) is a **tick** count
+by ~~each of its seven callers~~ five of its seven callers; `002B1FB0` and `002B5730` call it once *(corrected 2026-10-02, OPUS: `002B1FB0+0xCE`, `002B5730+0xF3`; I-1)*. Nothing here is frame-paced; the page wait (`#`) is a **tick** count
 consumed by the stepper `002ABF70`, not a wall-clock delay.
 
 **Threading.** No lock, no atomic, no barrier appears in the interpreter, and its shared state is a
@@ -416,7 +416,7 @@ interpret(ctx, char **cursor, float *out, int *out2):     # 002AC5F0
   arm 0x0F (002AD01A):                                    # the escape prefix
     c += 1 ; *cursor = c
     s = *c
-    if s - 0x20 > 0x50: return 1                          # 002AD029  consume and continue
+    if s - 0x20 > 0x50: return 1                          # 002AD029  consume and continue   <- corrected 2026-10-02, OPUS - not consumed: *cursor already points at the selector (002AC5F0+0xA2A), so the caller prints it
     idx = caseTable[s - 0x20]                             # 002AE3FC
     goto escapeTable[idx]                                 # 002AE370 + idx*4, + image base
 
@@ -431,7 +431,7 @@ caller:                                                   # five of seven (I-1, 
 
 DynGeoFontTextSpecialFinalInstance::slot10(this, target): # 00214210
     if (!00182F50()) goto tail                            # 00214227
-    m = identity from 008C5F80 / 008C5F90 / 008C5FB0 / 008C5FD0
+    m = identity from 008C5F80 / 008C5F90 / 008C5FB0 / 008C5FD0   # <- corrected 2026-10-02, OPUS - then m[0][0] = 00229DE0() (height x 16/9 / width) and the rest of row 0 = 0 (00214210+0x5C, +0x62, +0x6B); 00229DE0 takes no argument (jmp 00183280)
     00229DE0(m) ; target->vtbl[6](...)                    # 0021425C, 00214283
   tail:
     jmp DynGeoFontTextSpecialInstance::slot10             # 00214296  (I-9)
@@ -632,3 +632,12 @@ touches audio. The edge is real, and the layer label on its far end is the ledge
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page and the cited pages read them; no new body read
 (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-text-control-codes-and-dyngeo-d-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001E0C30` | 25 B | calls `00796E20()` and tail-jumps to `00225680` with `rcx` replaced by qword `+0xDF8` of that result, leaving `rdx`, `r8` and `r9` as passed in | `001E0C34`, `001E0C39`, `001E0C44` |
+| `00214890` | 24 B | tail-jumps through `rdx`'s vtable slot `+0x118` with `rcx` = `rdx`, both `edx` and `r9d` set to the zero-extended low byte of `r8`, and `r8d` = 0 | `00214893`, `00214897`, `0021489A`, `0021489D`, `002148A1` |

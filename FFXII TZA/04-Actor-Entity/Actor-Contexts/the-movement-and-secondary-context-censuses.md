@@ -238,9 +238,9 @@ the table's 2 / 7 counts are actor-relative sites only (9 / 14 through the contr
 | `+0x138` | 8 | ~~2 / 20~~ 3 / 20 *(answered: see the note above — `002E3546` is the third writer; 2026-10-02, OPUS)* | `002E3D00` (`002E3D2D`); `002E3AF0` (`002E3BB5`) | `0025B600` (`0025B644` +1); `0025B740` (`0025B778` +1); +18 more |
 | `+0x140` | 4 | 1 / 4 | `Actor_SetPresentationYOffsetPrimary` `00269E20` (`00269E2C`) | `0025BAD0` (`0025BBA0`); `0025C230` (`0025C29E`); +2 more |
 | `+0x144` | 4 | 1 / 4 | `Actor_SetPresentationYOffsetSecondary` `00269E40` (`00269E4C`) | `0025BAD0` (`0025BBAC`); `0025C230` (`0025C2AA`); +2 more |
-| `+0x14C` | 1 | 0 / 1 |  | `0050D860` (`0050D8C2`) — *2026-09-26: one writer, the setter (see the corrected note above); readers also include the high-model key getter* |
-| `+0x14D` | 1 | 0 / 1 |  | `0050D780` (`0050D7E2`) — *2026-09-26: one writer, the same setter; readers also include the second key getter* |
-| `+0x14E` | 1 | 0 / 1 |  | `002E6330` (`002E638C`) — *2026-09-26: one writer, the actor-record initialiser, which sets it to 1* |
+| `+0x14C` | 1 | ~~0 / 1~~ 1 / 1 *(answered: the 2026-09-26 correction above; 2026-10-02, OPUS)* |  | `0050D860` (`0050D8C2`) — *2026-09-26: one writer, the setter (see the corrected note above); readers also include the high-model key getter* |
+| `+0x14D` | 1 | ~~0 / 1~~ 1 / 1 *(answered: the 2026-09-26 correction above; 2026-10-02, OPUS)* |  | `0050D780` (`0050D7E2`) — *2026-09-26: one writer, the same setter; readers also include the second key getter* |
+| `+0x14E` | 1 | ~~0 / 1~~ 1 / 1 *(answered: the 2026-09-26 correction above; 2026-10-02, OPUS)* |  | `002E6330` (`002E638C`) — *2026-09-26: one writer, the actor-record initialiser, which sets it to 1* |
 | `+0x14F` | 1 | 2 / 7 | `002E3AF0` (`002E3B80`); `0025D480` (`0025D4BD`) | `0025B600` (`0025B637`); `0025B740` (`0025B76F`); +5 more |
 | `+0x151` | 1 | 1 / 3 | `002E5180` (`002E51BD` +1) | `Actor_RefreshPresentationVisibility` `002E8FD0` (`002E916A`); `002E4A40` (`002E4ABD`); +1 more |
 | `+0x152` | 1 | 0 / 1 |  | `002681E0` (`00268207`) |

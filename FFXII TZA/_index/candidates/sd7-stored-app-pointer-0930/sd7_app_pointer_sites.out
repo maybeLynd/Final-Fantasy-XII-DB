@@ -24,7 +24,7 @@ PASS  K1 192 [vtable+0x78] dispatch sites in 114 functions (OPUS: 192 / 114)
       E4 00863D80 00863F24 same object dispatched at +0x138 (00864085)
       E4 00864330 008645B0 same object dispatched at +0x128 (00864702)
       E4 00864860 00864B71 same object dispatched at +0x138 (00864C31)
-      classes: {'E1': 133, 'E2': 13, 'E3': 2, 'E4': 10, 'RESIDUE': 34}
+      classes: {'E1': 125, 'E2': 13, 'E3': 2, 'E4': 10, 'RESIDUE': 42}
       RESIDUE 001F3AE0 001F3BFC obj=rcx ('M', '001F3BEA qword ptr [rbx]')
       RESIDUE 0020FF10 00210178 obj=rcx ('M', '00210140 qword ptr [rip + 0x1db34b1]')
       RESIDUE 0020FF10 002101EA obj=rcx ('M', '002101C3 qword ptr [rip + 0x1db342e]')
@@ -36,9 +36,17 @@ PASS  K1 192 [vtable+0x78] dispatch sites in 114 functions (OPUS: 192 / 114)
       RESIDUE 00736D60 00736F2B obj=rcx ('M', '00736F17 qword ptr [rbp + 0x38]')
       RESIDUE 007370A0 007372BB obj=rcx ('M', '007372A7 qword ptr [rbp + 0x38]')
       RESIDUE 00738840 00738BBC obj=rcx ('M', '00738BA7 qword ptr [r13 + 0x38]')
+      RESIDUE 00739530 00739C9D obj=r14 ('M', '007397BE qword ptr [rbp + 0x138]')
+      RESIDUE 00739DF0 0073A753 obj=r13 ('C', 0); ('M', '00739E85 qword ptr [rbp + 0x550]')
+      RESIDUE 00739DF0 0073A894 obj=r13 ('C', 0); ('M', '00739E85 qword ptr [rbp + 0x550]')
       RESIDUE 0073BD30 0073C2B2 obj=rcx ('M', '0073C29C qword ptr [rbx + 0x38]')
+      RESIDUE 0073BD30 0073C4FF obj=rdi ('M', '0073C4B7 qword ptr [rbp + 0x200]')
+      RESIDUE 0073BD30 0073C56A obj=r15 ('M', '0073C521 qword ptr [rbp + 0x208]')
       RESIDUE 0073D370 0073D429 obj=rcx ('M', '0073D411 qword ptr [rbx + 0x38]')
       RESIDUE 0073DFA0 0073E18F obj=rcx ('M', '0073E17F qword ptr [rbx + 0x38]')
+      RESIDUE 0073E570 0073E63A obj=rsi ('M', '0073E5A6 qword ptr [rbp + 0x9f]')
+      RESIDUE 0073E570 0073E8DC obj=rsi ('M', '0073E5A6 qword ptr [rbp + 0x9f]')
+      RESIDUE 0073E570 0073E9BE obj=rsi ('M', '0073E5A6 qword ptr [rbp + 0x9f]')
       RESIDUE 0073EA00 0073EAB1 obj=rdi ('M', '0073EA7D qword ptr [rsp + 0x170]')
       RESIDUE 0073EA00 0073ECD4 obj=rdi ('M', '0073EA7D qword ptr [rsp + 0x170]')
       RESIDUE 0073EA00 0073EDC4 obj=rdi ('M', '0073EA7D qword ptr [rsp + 0x170]')
@@ -63,5 +71,6 @@ PASS  K2 the window procedure's application call 0079914C (object [0x2ea5368]) i
 PASS  K3 E2 types 0017D1A0's this as GameApplication and does not exclude it
 PASS  K4 GameApplication vtable = 31 slots; slot 30 is called at 0079C23A, so a slot >= 31 excludes the class
 PASS  K5 007B58C0 / 007BC2B0 return an indexed handle-table load ([table + i*40 + 0x20]), treated as E1
-PASS  S1 partition: E1 133, E2 13, E3 2, E4 10, residue 34
+PASS  K6 00739C9D's frame-pointer load is not excluded; the three loaded-pointer rbp rows stay E1
+PASS  S1 partition: E1 125, E2 13, E3 2, E4 10, residue 42 (expected {'E1': 125, 'E2': 13, 'E3': 2, 'E4': 10, 'RESIDUE': 42}; the stack-slot rows are not excludable)
 FAILS 0

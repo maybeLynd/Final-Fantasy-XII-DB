@@ -291,3 +291,11 @@ The consumer record is [`which-generator-falsification-pass-1-0929`](../_index/c
 - **Status_Periodic_Terminal - SERVICE (1 edge).** BattleSystem_InitializeAreaState (`002342F0`) reaches bodies filed to Status_Periodic_Terminal: BattleStats_RemoveStatusMode0 (`0030E990`) - shared machinery across the layer boundary, no shared ownership.
 - **World - CLIENT (1 edge).** BattleSystem_InitializeAreaState (`002342F0`) is called by bodies filed to World: `00266D10` - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - CLIENT and SERVICE (5 edges).** `0025ABA0`, RNG_SharedGameplayLCG_SetState (`00328D80`) are called by bodies filed to WorldAreaField: BattleSystem_InitializeAreaState (`002342F0`), `0025ACA0`; BattleSystem_InitializeAreaState (`002342F0`), `0025ABA0` reach bodies filed to WorldAreaField: `002658B0`, `002FA520`, FieldData_GetActiveFieldRecordBit15 (`00377C20`) - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-which-generator-serves-which-ro-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `004005E0` | 108 B | when dword `022D9138` is zero takes 1.0 (`01CEBBA8`); otherwise replaces dword `01EF93E8` (x) with ((x AND `0x3FFFFF`) OR `0x1FC00000`) shifted left by one, ORed with bit 4 of (x XOR (x >> 18)), and takes the new dword as a float; stores the taken float at `022D92E0`, copies the 16 bytes at `022D92E0` to `022D8F90`, and returns the float minus 1.0 | `004005EF`, `00400603`, `00400617`, `00400634`, `00400647` |

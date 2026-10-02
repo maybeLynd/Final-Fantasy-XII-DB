@@ -1,0 +1,87 @@
+PASS image sha256 and base 0x120000
+PASS N body ends in ret at 003FA8FF
+PASS N 003FA82F movzx ebx, word ptr [rcx + 0x272]
+PASS N 003FA836 mov esi, edx
+PASS N 003FA83B test bl, 1
+PASS N 003FA83E je 0x3fa8f0
+PASS N 003FA844 test bl, 2
+PASS N 003FA847 jne 0x3fa8f0
+PASS N 003FA84D or bx, 2
+PASS N 003FA851 mov word ptr [rcx + 0x272], bx
+PASS N 003FA858 test bl, 8
+PASS N 003FA85B jne 0x3fa861
+PASS N 003FA85D test edx, edx
+PASS N 003FA85F je 0x3fa8e0
+PASS N 003FA8E0 mov dword ptr [rdi + 0x290], esi
+PASS N 003FA8E6 mov dword ptr [rdi + 0x294], 0
+PASS N neutral path: no call; object stores exactly 003FA851, 003FA8E0, 003FA8E6
+PASS N no instruction of the body writes +0x260, +0x264 or +0x270
+PASS U 003FC5A5 xor edx, edx
+PASS U 003FC5A7 movss xmm0, dword ptr [rip + 0x1a01b0d] -> 01DFE0BC
+PASS U 003FC5AF test cl, 0x20
+PASS U 003FC5B2 je 0x3fc5ea
+PASS U 003FC5EA mulss xmm0, dword ptr [rip + 0x915a5a] -> 00D1204C
+PASS U 003FC5F2 cvttss2si eax, xmm0
+PASS U 003FC5F6 add word ptr [rbx + 0x270], ax
+PASS U 003FC5FD jns 0x3fc606
+PASS U 003FC5FF mov word ptr [rbx + 0x270], dx
+PASS U 003FC688 mov ecx, dword ptr [rbx + 0x260]
+PASS U 003FC68E sub ecx, 1
+PASS U 003FC691 je 0x3fc80f
+PASS U 003FC697 sub ecx, 1
+PASS U 003FC69A je 0x3fc7dd
+PASS U 003FC6A0 cmp ecx, 1
+PASS U 003FC6A3 jne 0x3fc8ea
+PASS U 003FC6A9 cmp word ptr [rbx + 0x270], dx
+PASS U 003FC6B0 jg 0x3fc6b8
+PASS U 003FC6B2 mov dword ptr [rbx + 0x260], edx
+PASS U 003FC6B8 mov edx, dword ptr [rbx + 0x290]
+PASS U 003FC6BE test edx, edx
+PASS U 003FC6C0 je 0x3fc8ea
+PASS U 003FC7DD movzx eax, word ptr [rbx + 0x272]
+PASS U 003FC7E4 test al, 2
+PASS U 003FC7E6 je 0x3fc8ea
+PASS U 003FC7EC mov dword ptr [rbx + 0x260], 3
+PASS U 003FC7F6 cmp dword ptr [rbx + 0x290], edx
+PASS U 003FC7FC jne 0x3fc8ea
+PASS U 003FC802 mov ecx, 0xffdf
+PASS U 003FC807 and ax, cx
+PASS U 003FC80A jmp 0x3fc8e3
+PASS U 003FC8E3 mov word ptr [rbx + 0x272], ax
+PASS U 003FC80F or word ptr [rbx + 0x272], 0x20
+PASS U 003FC839 mov dword ptr [rbx + 0x260], 2
+PASS U 003FC8D5 mov dword ptr [rbx + 0x260], 2
+PASS U the only phase stores are 003FC6B2 (0), 003FC7EC (3), 003FC839 (2), 003FC8D5 (2)
+PASS U no branch at or after 003FC7EC goes backward (2->3 cannot reach the 3->0 store)
+PASS D 00D1204C = bytes 000000c5 = binary32 -2048.0
+PASS D frame step +0.0 x -2048.0 is a signed zero that truncates to 0 (fade word unchanged)
+PASS M 003FA796 mov rdx, qword ptr [rcx + 0x2490]
+PASS M 003FA7B1 mov rbx, qword ptr [rdx + 0x278]
+PASS M 003FA7B8 cmp dword ptr [rdx + 0x260], esi
+PASS M 003FA7BE jne 0x3fa7cf
+PASS M 003FA7C3 mov word ptr [rdx + 0x272], si
+PASS M 003FA7CA call 0x3fa4e0 -> 003FA4E0
+PASS M 003FA7CF mov rdx, rbx
+PASS M 003FA7D5 jne 0x3fa7b1
+PASS M 003FA7DC mov rbx, qword ptr [rdi + 0x2490]
+PASS M 003FA7F3 call 0x3fc510 -> 003FC510
+PASS M 003FA7F8 call 0x1ede80 -> 001EDE80
+PASS M 003FA7FD test eax, eax
+PASS M 003FA7FF je 0x3fa80d
+PASS M 003FA808 call 0x3fc170 -> 003FC170
+PASS M 003FA80D mov rbx, qword ptr [rbx + 0x278]
+PASS M 003FA817 jne 0x3fa7f0
+PASS M 003FA81E ret
+PASS M recycle loop (003FA7B1..003FA7D5) lies wholly before the update loop (003FA7F0..003FA817)
+PASS L 003FA549 xor eax, eax
+PASS L 003FA54B mov qword ptr [rdx + 0x278], rax
+PASS L 003FA552 mov qword ptr [rdx + 0x280], rax
+PASS L 003FA559 mov word ptr [rdx + 0x272], ax
+PASS L 003FA560 mov dword ptr [rdx + 0x260], eax
+PASS L 003FA566 ret
+PASS G 001EDE8B je 0x1edeb3
+PASS G 001EDE94 jne 0x1edeb3
+PASS G 001EDEB3 mov eax, 1
+PASS G 001EDEBC ret
+PASS K1 control: the opposite-signedness release guard (jge for jg) at 003FC6B0 is reported as a mismatch
+FAILS 0

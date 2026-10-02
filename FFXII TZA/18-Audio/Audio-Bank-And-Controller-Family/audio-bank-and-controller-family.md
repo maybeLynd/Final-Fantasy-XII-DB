@@ -490,7 +490,8 @@ The family's container primitives are shared, and every crossing here is one of 
   - The logger `005CD4F0` is called by Platform, Presentation and Input bodies (139–1,950 bytes).
   - `00219400` and `0021A9F0` call a 63-byte Platform helper.
 - **Input — CLIENT.** The retracted 4-byte `00225680` is read by a 25-byte Input helper.
-
+- **CoreRuntimeScheduling - SERVICE (1 edge).** `001E8580` reaches bodies filed to core runtime scheduling: `001A1470` - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (64 edges).** `005CD4F0`, `005CD820`, `001BA860` are also called by bodies filed to resource: `0020BFA0`, `001A0A90`, `0020B680` (+27 more); `00210760`, `00223AD0`, `00222DC0` reach bodies filed to resource: `002121C0`, `001D6E80`, `001D6EE0` (+4 more) - shared machinery across the layer boundary, no shared ownership.
 ## The `00218E80` exclusive subtree — all 6 members bound (SWE2-FRONTIER, followup queue)
 
 `00218E80` — the record-vector grow §7 names — owns **6 frontier functions**: the `0x58`-stride

@@ -132,7 +132,7 @@ fence grammar cannot express a length read from the header.*
 | 1 | 544 | Unarmed, Broadsword, Longsword, … Agate Ring (345), Cameo Belt (372) | equipment names |
 | 2 | 1 | dummy | — |
 | 3 | 362 | Red Spiral, White Whorl, … Serenity (226), Spellbound (228), Channeling (233–235), … Second Board, Quickening | licence-board node names |
-| 4 | 63 | Attack, Magicks, Technicks, … | the battle command list (the same 63 entries as `word.bin` block 3) |
+| 4 | 63 | Attack, Magicks, Technicks, … | the battle command list (the same 63 entries as `word.bin` block ~~3~~ 4 *(corrected 2026-10-02, OPUS: `offsets[4]` of `word.bin`, 0-based as `003846F0` walks them; it was block 3 only under the struck `headerSize` reading)*) |
 | 5 | 32 | KO, Stone, Petrify, Stop, Sleep, Confuse, Doom, Blind, Poison, Silence, Sap, Oil, Reverse, Disable, Immobilize, Slow, Disease, Lure, Protect, Shell, Haste, Bravery, Faith, Reflect, Invisible, Regen, Float, Berserk, Bubble, HP Critical, Libra, X-Zone | **status names in status-id order** (0–31) |
 | 6 | 284 | Foe: party leader's target, Foe: nearest visible, Foe: any, … | gambit target conditions |
 | 7 | 16 | NOT USED × … | — |

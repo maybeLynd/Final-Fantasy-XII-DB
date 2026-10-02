@@ -745,8 +745,8 @@ displacement cleared. The register stored is provably zero: `xor r14d, r14d` imm
 store.
 
 **So the guard and the handler are two halves of one mechanism: a condition that is tested before the
-work and consumed by it.** Each channel is one-shot — running a handler twice without something
-re-setting its dword does nothing the second time, because the guard will refuse. That is a contract
+work and consumed by it.** ~~Each channel is one-shot — running a handler twice without something~~
+~~re-setting its dword does nothing the second time, because the guard will refuse.~~ Through the guarded dispatcher `006505A0`, each channel is one-shot: it tests the channel's dword (channel 0: `00625F00`, called at `006505A0+0x93`) before it tail-jumps to the handler (`006505A0+0xA8`). The handler itself tests nothing, so a direct call is not guarded. On channel 0, `00616C60` calls `0062BCB0` unconditionally (`00616C60+0x1B`), and `005DE250` calls it under the guard (`005DE250+0x1F`) and then tail-jumps to `00616C60` (`005DE250+0x2D`). On normal returns that path runs the handler twice when `+0xBC` is non-zero, and a second run is not shown to do nothing. *(corrected 2026-10-02, OPUS: ASTRA's title cleanup-guard qualification, SWE2-AUDIT-SPEC ACCEPT, routed by FABLE as R3 in [`astra-returns-title-fable-1002`](../_index/candidates/astra-returns-title-fable-1002/README.md))* That is a contract
 a reimplementation has to preserve on all three channels or none.
 
 ### What this does and does not settle
@@ -760,6 +760,23 @@ a reimplementation has to preserve on all three channels or none.
   "what sets it" is exactly the part that would turn this from a shape into a meaning.
 - **NOT CLAIMED:** what the object is, what the three channels do, what `0062B100`/`0062B170`/
   `0062B1E0` are, and what `[inner+0x20]` holds.
+- **Adopted 2026-10-02 (OPUS), from ASTRA's title packets** (each SWE2-AUDIT-SPEC ACCEPT; routed by FABLE as R4 in
+  [`astra-returns-title-fable-1002`](../_index/candidates/astra-returns-title-fable-1002/README.md)). These narrow the list above for channel 0
+  and say nothing about channels 1 and 2:
+  - **Count and selector.** n is the low 31 bits of `+0x30` (`00623DF0` clears bit 31 with `btr` before it
+    compares). Bit 31 is ignored by the selector and gates `00584730`. Records are `0x58` bytes. `00623DF0`
+    returns `base + 0x58 * k + 0x38`, the address of a record's `+0x38` field, not a record base. The base is the
+    pointer at `+0x38` for n > 1, the object's own `+0x38` for n = 1, and 0 for n = 0. There is no index bound
+    and no write. `0062B100` walks indices up to max(1, n) and calls `005CCB80` with ECX = 1 while the selected
+    DWORD is positive. With n = 0, its first read is at absolute address `0x38`: a precondition on valid
+    state, not an observed fault.
+  - **The deferred-call queue the title cleanup uses.** Entries are 16-byte `{function, data}` pairs, in four
+    32-byte banks at `ctx+0xC38+32*k`, indexed by `ctx[+0xCB8]`. The consumer `00186230` calls `function(data)`
+    with RCX = data (`00186230+0x43`, `+0x47`). The flush `00185C20` is called by the per-frame pump only when
+    `01FD4A68` is zero, at most once per pump call. The getter `00189120` takes no argument.
+  - **Heap ownership.** The queued data pointer reaches the CRT `free` import after `005DE250`.
+  - **Still open:** that n >= 1 holds for the real caller, `005CCB80`'s effects, title lifetime, cancellation and
+    idempotence.
 
 ## SWE2-EC7-34 update (2026-09-19) - `00626120`
 

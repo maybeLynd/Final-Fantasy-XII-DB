@@ -1,0 +1,22 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/CONTRACT-spawn-placement.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "contract-spawn-placement.json",
+ "rows": [
+  {
+   "fn": "0023A1F0",
+   "text": "converts the float in `xmm0` to a 32-bit integer with truncation at the entry and stores it to dword `02089358`, returning that integer in `eax`",
+   "anchors": [
+    [
+     "0023A1F4",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

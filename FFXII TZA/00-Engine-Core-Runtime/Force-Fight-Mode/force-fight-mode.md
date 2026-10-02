@@ -304,8 +304,8 @@ applied to actors has callers in all three layers.)*
 
 *(Pass 22 live-graph completion, 2026-09-15: `00265020`'s reader population continues into
 `Spawn_Encounter_Lifecycle` (`00234AF0`, `002350C0`, `00234DA0`, 3), `Rewards_Progression_
-Economy` (`002FB150`, `00312280`, 2) and `Audio` (`00362850`, 1). The force-fight getter is
-read wherever the mode matters — spawn, rewards, audio — which is what a mode flag is for.)*
+Economy` (`002FB150`, `00312280`, 2) and `Audio` (`00362850`, 1). ~~The force-fight getter is~~
+~~read wherever the mode matters — spawn, rewards, audio — which is what a mode flag is for.~~ These readers fetch an actor's position, not the mode *(corrected 2026-10-02, OPUS: `00265020` is the actor world-position getter: it copies three dwords from `[actor+0xB8]` to its three out pointers, `00265020+0x1A`–`+0x2E`; the force-fight flag reader is `00253B90`, `[01E0C2B8] == 0`).)*
 
 *(Pass 22 live-graph sweep 2, 2026-09-15: two more of the getter population's own neighbours
 — `00312280` calls `Platform_Online_Achievements` `00316A50`, and `00234AF0` calls

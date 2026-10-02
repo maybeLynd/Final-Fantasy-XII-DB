@@ -183,7 +183,7 @@ slot 127 +0x00  20 1d 16 02       +0x08  00 00 00 00   -> 0x02161D20 = slot 126,
 | `+0x00` | pointer to the previous record | `prev` |
 | `+0x08` | pointer to the next record | `next` |
 | `+0x1A` | the slot's own index, 0–127 | the handle's low half |
-| `+0x1E` | `0xFFFF` in all 128 | unknown, uniform |
+| `+0x1E` | `0xFFFF` in all 128 | ~~unknown, uniform~~ the sub-record index, `0xFFFF` none *(answered: `002EB625`–`002EB63D` index the 0x120-byte table at `02161DA0` with it; the 2026-09-18 declaration below; 2026-10-02, OPUS)* |
 | `+0x24` | `0` in all 128 | the handle's high half |
 | everything else | zero | unread |
 
@@ -240,7 +240,7 @@ referencers — likely a computed-base write.
 
 The exclusive-callee census assigns the record bind **11 frontier functions**. Every member body
 was disassembled from the shipping image within its declared extent (2026-09-14). This answers
-UQ-60's open half: **the fourteen keyed values land in the actor's `+0xB8` steering record, the
+UQ-60's open half: **~~the fourteen keyed values land~~ thirteen of the fourteen keyed values land *(corrected 2026-10-02, OPUS: `0x09042A2E` is fetched at `002E2EE5` and its result is never used before the next call, `002E2EEA`–`002E2EF2`; UQ-60's answer)* in the actor's `+0xB8` steering record, the
 `+0xC0` render link, and the render record itself** — `0x09000606` → `+0xE0`; `0x09000707` × a
 `.rdata` constant → `+0xE4` (pushed through `002E86B0` by `00263640`); `0x09001F20`/`0x09002021`
 → `+0x98`/`+0x9C` via `0026AA30`; `0x09001D1E` → `00269E60`; `0x600A1244`'s integer → `+0x151`
@@ -350,11 +350,11 @@ render `+0x108`, and refreshes position/visibility.
       offsets at six sites; that global is written by `CharacterRenderSystem_AllocateAndInitialize`
       and `00332440`, both `Presentation`, and read by **370 functions** — it is the render system's
       base pointer, not something private to this path. It also writes `01F7F508` twice and uses the
-      `.rdata` constant `30.0f` at `008F8D80`.
+      `.rdata` constant `30.0f` at `008F8D80` *(answered: only on the render-record fallback path, `002E2B0A`–`002E2B3B`; the three frame counts use `50.0f` at `008F3130`, `002E2F06`; 2026-10-02, OPUS)*.
       **NOT read: what it does with the fourteen values.** The body is 2,026 bytes and only its
       skeleton is established here — the accessor it leans on, the object it asks about, the count and
       identity of the keys, and the systems it touches. **That is a shape, not a semantics**, and the
-      bullet stays open until the fourteen destinations are read.
+      bullet stays open until the fourteen destinations are read *(answered: read by §4c and the UQ-60 answer above; 2026-10-02, OPUS)*.
 - [x] ~~**What `002EC5B0(actor, 0x10)` sets.** 31 bytes, `Movement`, unread.~~
       **READ 2026-09-13 (OPUS): it sets the movement body's `maskA`, and it OVERWRITES it.** All
       31 bytes are a two-hop guarded store:
@@ -481,7 +481,7 @@ render `+0x108`, and refreshes position/visibility.
 | slot = `id & 0x7FFF`, bounded at 128 | `and eax, 0x7fff` / `cmp eax, 0x80 / jae` | 1 | PROVEN |
 | bit 15 is always set in a valid id | `bts edx, 0xF` before the comparison | 1 | PROVEN |
 | the table is 128 × 64 bytes at `0x0215FDA0` | `shl rax, 6` and the bound; base resolved with a tool | 1 | PROVEN |
-| eleven users, five of them named verbs | `edges.tsv` with EH callers excluded, joined to the verb table | 1 | PROVEN |
+| eleven users, ~~five of them named verbs~~ seven named verbs over twenty sites *(corrected 2026-10-02, OPUS: `retool.py callers 002E97C0`: eleven functions, twenty sites, ten of them verb callbacks; §9)* | `edges.tsv` with EH callers excluded, joined to the verb table | 1 | PROVEN |
 | `x`/`z` are int16 tenths, `y` is always 0 | `movsx` + `divss` by `10.0` at `008F8180`; `mov dword [rdx+4], 0` | 1 | PROVEN |
 | `heading = -(n & 0x3F)/60 × 2π` | `and 0x3F` / `neg` / `divss [008F6D54]=60.0` / `mulss [01CEBC78]=2π` | 1 | PROVEN |
 | the decoder is treasure-only | `002FAF60` has exactly one caller | 1 | PROVEN |
@@ -489,8 +489,8 @@ render `+0x108`, and refreshes position/visibility.
 | the pool is 128 records on a doubly-linked free list | live read: slot 0 null-`prev`, slot 127 null-`next`, every link lands on an adjacent record | 10 | PROVEN |
 | all 128 self-validate at the title screen | the resolver's own rule applied to the live table, 128 of 128 | 10 | PROVEN |
 | `+0x24` is a generation that increments | `inc dword [rec+0x24]` in the allocator (`002E25EC`) and the release (`002E944B`); the pool head's only three writers are those two and the initialiser; EXP-007's in-world link order is the release's (UQ-59) | 1 | PROVEN |
-| what a record holds with a map loaded | **not established** | — | UNKNOWN |
-| any runtime observation | **none exists** | — | UNKNOWN |
+| what a record holds with a map loaded | **not established** *(answered: UQ-58, 2026-09-17, §6; 2026-10-02, OPUS)* | — | UNKNOWN |
+| any runtime observation | **none exists** *(answered: the title-screen read of all 128 records, two rows above, tier 10; 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 8. Related
 
@@ -563,7 +563,7 @@ does not clamp.
 **Not claimed.** Nothing live — **§4b was not re-read and no process was started**, so the free-list,
 the uniform `0xFFFF` at `+0x1E` and the all-zero stamp stand exactly as recorded, and `ER-1` and the
 "does the stamp ever change" question stay open. `002E28E0`, `002EC5B0`, `002650B0`, `0026DAC0`
-remain unread. Whether the other bind verbs decode a placement: the **decoder** still has one caller,
+remain unread *(answered: the stamp increments, UQ-59 2026-09-14; `002E28E0` read by §4c and UQ-60; the other three read in §6; 2026-10-02, OPUS)*. Whether the other bind verbs decode a placement: the **decoder** still has one caller,
 which is the same negative the page gives. Nothing was executed.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (OPUS, 2026-09-18)

@@ -1,0 +1,7 @@
+ok   008092C5 inc eax
+ok   00189D43 jle 0x189d76
+ok   007980F7 call qword ptr [rip + 0x12a153]
+ok   0080940B call rbx
+ok   00369DAD mov dword ptr [rip + 0x1f6f061], 0xff
+ok   0036C696 mov byte ptr [rbx - 5], 0
+FAILS 0

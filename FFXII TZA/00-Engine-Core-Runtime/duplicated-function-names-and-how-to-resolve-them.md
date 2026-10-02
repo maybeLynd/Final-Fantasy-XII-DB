@@ -421,3 +421,12 @@ Shared callees outside the census: none.
 ## SWE2-EC7-19 update (2026-05-15) — `00300520` combat-formula field-read fragment
 
 `00300520` (8 B) is the combat-formula callee this page records `002352E0` reaching (1 edge): its whole body is `sub edx, dword[rcx+0x48]` (`00300520`) + `jmp 00300530` (`00300523`) — it subtracts the record's `+0x48` field from the caller's operand and tails into the shared sibling body `00300530`, the two-instruction prefix the family's callers enter.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-duplicated-function-names-and-how-to-res-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00237690` | 81 B | for each index from 0 while it is below the signed dword `0208E6A0`, calls `BattleUnit_GetBySlotIndexIfUnitFlag4Set(index)` and, when the result is non-null, its qword `+0x698` is non-null with byte `+5` of that object equal to 1, and its byte `+0xE98` is 0, calls `00300E40(result, 0)` | `00237698`, `002376A2`, `002376B8`, `002376BE`, `002376CC` |
+| `00379F20` | 7 B | sets `dl` to 2 at the entry and tail-jumps to `0035B450`, leaving the other argument registers as passed in | `00379F22` |

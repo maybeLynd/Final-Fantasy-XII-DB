@@ -236,7 +236,7 @@ here.)*
 - **Which route serves loose files.** No `CreateFile` appears anywhere in the chain as read. Either
   loose-file support lives below the package entry or this resolver only ever serves packaged
   content; the bodies that would settle it are not read here.
-  ***Answered 2026-09-27 (FABLE, Claude Opus 5.5): neither route serves a loose file.** The resolver stores a source in only `+0x20` (route 1) and `+0x10` (route 2), never the `+8` handle; route 2's five package slots are filled only by `0019B070`, whose one call site (`0017CEF6`) mounts `../FFXII_TZA.vbf`; and the image's only `CreateFile*` import, `CreateFileA`, is used by two minidump writers (`005CCAB0`, `0079B1E0`). [Record](../../_index/candidates/pc1-config-route/README.md).*
+  ***Answered 2026-09-27 (FABLE, Claude Opus 5.5): neither route serves a loose file.** The resolver stores a source in only ~~`+0x20` (route 1) and `+0x10` (route 2), never the `+8` handle~~ the stream's `+0x40` (route 1) and `+0x30` (route 2), never the `+0x28` handle - `+0x20`, `+0x10` and `+8` of the frame it is handed, `this + 0x20` *(corrected 2026-10-02, OPUS: `0059ED70+0x20` `add rcx, 0x20` before the call; the resolver stores at `0059EE90+0x15A` `[r15 + 0x20]` and `0059EE90+0x307` `[r15 + 0x10]`, and IsOpen `0059D920` tests the stream's `+0x28`, `+0x30` and `+0x40`)*; route 2's five package slots are filled only by `0019B070`, whose one call site (`0017CEF6`) mounts `../FFXII_TZA.vbf`; and the image's only `CreateFile*` import, `CreateFileA`, is used by two minidump writers (`005CCAB0`, `0079B1E0`). [Record](../../_index/candidates/pc1-config-route/README.md).*
 - **What route 1's manager is.** Its own console-facing label is *resource*, and the prefetch system
   names a `FileCachePrefetchManager` while these log tags read `[FFXII_data]` and
   `[FFXII_data_notcache]`. *That correspondence is suggestive and is deliberately left as a
@@ -247,7 +247,7 @@ here.)*
   The prefetch token loop (`001DA810`) is the one site that passes 5. So the RAM cache is the general cache, and a
   prefetch token is one way of stamping an entry in it.*
 - ~~**What the selector values mean** beyond which branch and which log tag they select.~~ ***Answered 2026-09-30
-  (SWE2-CONTRACT, DD batch 8), from the resolver `0059EE90` read whole (`b8` S1–S5):** the selector byte `+0x18`
+  (SWE2-CONTRACT, DD batch 8), from the resolver `0059EE90` read whole (`b8` S1–S5):** the selector byte `+0x18` *(corrected 2026-10-02, OPUS: of the resolver's frame `this + 0x20`, so the stream's `+0x38`; `0059EE90+0x66` `movzx ecx, byte ptr [r15 + 0x18]`)*
   decides three things.
   - **The log line.** Selectors 3–5 log nothing, 0 logs `[FFXII_data]` and any other value logs
     `[FFXII_data_notcache]` (`0059EEFB`–`0059EF10`).

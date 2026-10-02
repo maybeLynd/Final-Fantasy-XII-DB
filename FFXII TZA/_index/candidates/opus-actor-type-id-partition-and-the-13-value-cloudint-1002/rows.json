@@ -1,0 +1,186 @@
+{
+ "page": "04-Actor-Entity/Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "actor-type-id-partition-and-the-13-value-band.json",
+ "rows": [
+  {
+   "fn": "00322350",
+   "text": "subtracts 7 from the byte `cl` and returns 1 when the result is at most `0x12` unsigned (byte values 7 to 25), else 0",
+   "anchors": [
+    [
+     "00322352",
+     "sub"
+    ],
+    [
+     "00322355",
+     "cmp"
+    ],
+    [
+     "00322358",
+     "setbe"
+    ]
+   ]
+  },
+  {
+   "fn": "0034E7D0",
+   "text": "pops three values through `00267E10(r9)`, ORing bit v into a mask for each non-negative value v and counting those for which `00322350(v)` is non-zero; starts a budget at 3 when none counted, else at 4 minus the count; when `00359C00()` lacks any mask bit it tail-jumps `0026B4E0(rcx, 0)`; otherwise it subtracts the number of set bits among the 32 of `0035A050(00359BA0() OR mask)` from the budget and tail-jumps `0026B4E0(rcx, 1 when the result is non-negative, else 0)`",
+   "anchors": [
+    [
+     "0034E814",
+     "call"
+    ],
+    [
+     "0034E82B",
+     "cmovne"
+    ],
+    [
+     "0034E83C",
+     "cmp"
+    ],
+    [
+     "0034E865",
+     "cmove"
+    ],
+    [
+     "0034E89E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00350160",
+   "text": "pops a value through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte)` returns 0 and `0031B510(stack buffer, 4)` returns more than 1 (signed) it calls `003286E0(low byte)`; otherwise returns without that call",
+   "anchors": [
+    [
+     "00350178",
+     "call"
+    ],
+    [
+     "00350184",
+     "call"
+    ],
+    [
+     "0035018C",
+     "call"
+    ],
+    [
+     "003501A2",
+     "cmp"
+    ],
+    [
+     "003501AA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00351A40",
+   "text": "pops two values a then b through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte of b)` returns 0 it calls `00328FB0(low byte of b, 1 when a is non-zero else 0)`, otherwise it returns without that call",
+   "anchors": [
+    [
+     "00351A50",
+     "call"
+    ],
+    [
+     "00351A5A",
+     "call"
+    ],
+    [
+     "00351A66",
+     "call"
+    ],
+    [
+     "00351A6E",
+     "call"
+    ],
+    [
+     "00351A81",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00352190",
+   "text": "pops a value through `00267E10(r9)`; for indices 0 to 3 calls `0026DC40(p, 0)` on each non-null `p = 00263750(index)`; calls `003601B0(0x13)` and, when `00322350(low byte of the value)` is non-zero, `003170E0(low byte)`",
+   "anchors": [
+    [
+     "003521A8",
+     "call"
+    ],
+    [
+     "003521B7",
+     "call"
+    ],
+    [
+     "003521BE",
+     "cmp"
+    ],
+    [
+     "003521D1",
+     "call"
+    ],
+    [
+     "003521DE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00352AF0",
+   "text": "pops a value through `00267E10(r9)` and calls `003601B0(0x13)`; when `00322350(low byte)` is non-zero it tail-jumps `003288F0(low byte)`, otherwise returns",
+   "anchors": [
+    [
+     "00352AF9",
+     "call"
+    ],
+    [
+     "00352B05",
+     "call"
+    ],
+    [
+     "00352B0D",
+     "call"
+    ],
+    [
+     "00352B14",
+     "je"
+    ],
+    [
+     "00352B1E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00353CB0",
+   "text": "pops a value through `00267E10(r9)` and tail-jumps `0026B4E0(rcx, r)` where r is `003596D0(value)` when `00322350(low byte)` is non-zero and `00359740(value)` when it is zero",
+   "anchors": [
+    [
+     "00353CC0",
+     "call"
+    ],
+    [
+     "00353CCA",
+     "call"
+    ],
+    [
+     "00353CD5",
+     "call"
+    ],
+    [
+     "00353CDC",
+     "call"
+    ],
+    [
+     "00353CF0",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

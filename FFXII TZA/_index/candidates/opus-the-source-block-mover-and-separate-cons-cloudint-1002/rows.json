@@ -1,0 +1,86 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+ "date": "2026-10-02",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "report": "the-source-block-mover-and-separate-consumer-refresh.json",
+ "rows": [
+  {
+   "fn": "00369C60",
+   "text": "returns 0 when bit `ecx` of dword `022D89B8` is clear; otherwise takes the record `022D7FD0 + ecx*0xA8` (null when `ecx` is above 14 unsigned) and, when its qword `+0x50` is non-zero, sets a count to `0036AAD0(record)` and calls `0036ABE0(record)` adding 1 for each non-zero return, repeating only while `edx` is non-zero and the call keeps returning non-zero; when the count is non-zero stores byte 1 at record `+0x2` and `+0x62`; returns the count (0 when qword `+0x50` is zero)",
+   "anchors": [
+    [
+     "00369C6E",
+     "bt"
+    ],
+    [
+     "00369C8F",
+     "imul"
+    ],
+    [
+     "00369CAE",
+     "call"
+    ],
+    [
+     "00369CB8",
+     "call"
+    ],
+    [
+     "00369CCF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00369CF0",
+   "text": "returns 0 when bit `ecx` of dword `022D89B8` is clear; otherwise returns byte `+0x62` of the record `022D7FD0 + ecx*0xA8`, or of a null record when `ecx` is above 14 unsigned",
+   "anchors": [
+    [
+     "00369CF6",
+     "bt"
+    ],
+    [
+     "00369D06",
+     "imul"
+    ],
+    [
+     "00369D17",
+     "movzx"
+    ],
+    [
+     "00369D1E",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "003A3A00",
+   "text": "copies qword `02F8F308` into `02F8F2D0`, stores that pointer plus `(dword 02F8F2C0 / 16) * 16` (signed division) into `02F8F2D8`, zeroes word `02F8F2C6` and byte `02F8F2C5` and clears bit 0 of word `02F8F310`",
+   "anchors": [
+    [
+     "003A3A0E",
+     "mov"
+    ],
+    [
+     "003A3A1A",
+     "sar"
+    ],
+    [
+     "003A3A26",
+     "mov"
+    ],
+    [
+     "003A3A3B",
+     "and"
+    ],
+    [
+     "003A3A42",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

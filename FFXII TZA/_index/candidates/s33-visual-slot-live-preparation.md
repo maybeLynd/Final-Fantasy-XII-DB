@@ -34,11 +34,22 @@ Any failure of 0a–0e voids the run. The first diagnosis is binding or placemen
 ## Stage 1: cadence, only after Stage 0 passes
 
 - Retire that pickup's visual in play: collect it, or evict it with further drops.
+- At the visual's creation, record its initial phase `+0x260`, motion `+0x264`, fade `+0x270`, flags word, mode `+0x290`
+  and the frame step `[01DFE0BC]`. *(added 2026-10-02, OPUS, from ASTRA's accepted retirement clock)*
 - Record the frame on which bit 1 becomes set.
-- Record the frame on which bit 0 clears, meaning `003FA790` freed the slot.
+- Record the frame on which ~~bit 0 clears, meaning `003FA790` freed the slot.~~ the manager's recycle pass clears the flags word and unlinks the record. That pass is `003FA790+0x21` to `+0x45`, and it runs before the same call's update pass. It frees only a record whose phase was already 0 when that call began; the phase-0 store itself comes from the local update `003FC510`, in an earlier manager call. Record the phase-0 frame and the unlink frame separately. *(corrected 2026-10-02, OPUS: ASTRA's s33-visual-retirement-clock, SWE2-AUDIT-SPEC ACCEPT, consumed by FABLE at c84721271)*
+- Keep three things apart in the log: the recycle pass, the local update (one phase handler per call) and the render
+  gate `001EDE80` with whatever it calls. The gate and the transform update are not shown inert. *(added 2026-10-02, OPUS)*
 - Record the number of HUD updates (`0028E290`) and of real frames between those two frames.
 
-This is the measurement the replay's 51 fixture calls cannot give.
+This is the measurement the replay's 51 fixture calls cannot give. There is no fixed 48-51 update window. A retired
+visual whose fade never falls has no finite window: a zero frame step truncates the −2048.0 decline to 0. Stage 2's
+premise already allows for that case. *(added 2026-10-02, OPUS)*
+
+**Prerequisites before any natural run** (added 2026-10-02, OPUS, from the same return): a prepared save and area, a
+normal first visual and the positive controls of Stage 0. The natural chain must be observed in order: drop, visual
+creation, any zero handle, tick, consequence. Do not retry the menu or reset the budget to force it. Do not assume a
+float trajectory or a next-call guarantee.
 
 ## Stage 2: exhaustion, only if Stage 1 shows a finite window
 

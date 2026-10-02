@@ -35,7 +35,7 @@ confirm/cancel button mapping, and the random seed.**
 ## The random number generator is seeded with a constant
 
 ```c
-002648..  func_0x00379CF0(0x11B9);      // through a 5-byte thunk -> 00863D30
+002648..  func_0x00379CF0(0x11B9);      // through a 5-byte thunk -> 00863D30   <- corrected 2026-10-02, OPUS - the call is at 0022A0B0+0x360 (mov ecx, 0x11B9 at +0x35B), not 002648..; the thunk's only callers are 0022A0B0+0x360 and 00584210+0x1C3
 ```
 
 ```c
@@ -347,7 +347,7 @@ rests on — citing them makes each row checkable rather than merely stated.
 0022A203  0x0100010 -> 01FD4A08      0022A258  0x1200010 -> 01FD4A40
 0022A214  0x01C0100 -> 01FD49F0      0022A269  0x0400100 -> 01FD4A18
 0022A225  0x6C00400 -> 01FD4A10      0022A27A  0x0080000 -> 01FD4A20
-                                     0022A28B  0x0100000 -> (not stored here)
+                                     0022A28B  0x0100000 -> (not stored here)   <- corrected 2026-10-02, OPUS - stored: 0022A0B0+0x1F3 mov [01FD4A90], rax, after the call at 0022A0B0+0x1DB
 ```
 
 **The nine registration sites** (`00369D30(id, block, size, slotCount)` — ~~`(id, size, alignment)`~~, corrected 2026-09-12):

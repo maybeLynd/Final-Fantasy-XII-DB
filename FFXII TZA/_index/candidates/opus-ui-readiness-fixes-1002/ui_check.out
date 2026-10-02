@@ -1,0 +1,8 @@
+ok   00245097 bts eax, 0xa
+ok   002466F2 or dword ptr [rdi + 0x40], eax
+ok   001EDEDA not ecx
+ok   00254A1E mov ecx, 0xd81
+ok   003FFACA and r8b, 0x7f
+ok   0055A186 test byte ptr [rcx + 0x570], 2
+ok   00244E1A test dl, 1
+FAILS 0

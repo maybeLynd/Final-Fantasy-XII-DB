@@ -49,7 +49,7 @@ that list is:
 | `00632A10` | 91 B | **124** | `Phyre::PClassDataMemberArray` construction |
 | `006B6750` | 36 B | ~~**71**~~ **1** | `Phyre::PAnnotation` destruction — **corrected 2026-09-13, §9** |
 | `006B66C0` | 37 B | **70** | `Phyre::PAnnotation` construction |
-| `0062FF50`, `0062FFC0`, `00630030`, `006300A0`, `00630110`, `00630260`, `006302D0` | 98 B each | 26–52 | **seven lazy-static accessors**, §5 |
+| `0062FF50`, `0062FFC0`, `00630030`, `006300A0`, `00630110`, `00630260`, `006302D0` | 98 B each | 26–52 | **seven lazy-static accessors**, §5 *(answered: see §9 - there are fifteen, 2026-09-13; 2026-10-02, OPUS)* |
 
 > **One row of that table is wrong (2026-09-13, §9).** `006B6750` has **one** caller in the
 > whole image, not 71. It does not belong on a high-connectivity ranking at all, and `EL-1`
@@ -183,7 +183,7 @@ was established from the shared callee, not from reading all seven bodies.
   of dwords `02CF94EC`…`02CF9524`, and each returns a distinct element of **one `0x50`-stride
   array** at `01F2E330`…`01F2E780`. **None of them constructs anything** — the cold path is
   `_Init_thread_header`, **`atexit`** (`00808B90`, already named in the function list) with its
-  own 15-byte thunk, and `_Init_thread_footer`. The objects are zero-initialised and only
+  own 15-byte thunk, and `_Init_thread_footer`. ~~The objects are zero-initialised and only~~ The objects are initialised in the image *(corrected 2026-10-02, OPUS: every element from `01F2E330` to `01F2E790` carries non-zero bytes in the file, self-links among them; answered 2026-09-14 below)* and only
   their teardown is generated, which is why no accessor names its type. The open question is
   now **what one `0x50`-byte element is**, not which of seven unrelated globals each returns.
   *Answered 2026-09-14 (FABLE): thirteen of the fifteen elements are Phyre type objects, and they are **not**
@@ -348,7 +348,7 @@ annotation ~~— both stay open~~ *(`+0x58`/`+0x5C` answered since, `UQ-281`; th
 ## Call chain (SWE2-DATA, 2026-09-30)
 
 ```
-class-descriptor initialisers (static init)
+class-descriptor initialisers (static init)   <- corrected 2026-10-02, OPUS - lazy: all 124 functions calling 00632A10 sit behind _Init_thread_header 008092FC, run the first time the class is touched
   -> 00632A10  PClassDataMemberArray ctor (124 callers, 165 sites)  -> 00632960  plain-member base (+0x58 / +0x5C kept)
   -> 00632960  PClassDataMember, directly (248 callers)
   -> 006B66C0  PAnnotation ctor (70 callers)
@@ -363,7 +363,7 @@ Counts from `_index/candidates/dd-data-2-0930/annot_checks.py` (N3) and `array_m
 
 ## Modding notes (SWE2-DATA, 2026-09-30)
 
-Nothing here is authored data: the member descriptors are built by code at static initialisation. For a tool that
+Nothing here is authored data: the member descriptors are built by code ~~at static initialisation~~ lazily, the first time the class is touched *(corrected 2026-10-02, OPUS: all 124 functions that call `00632A10` also call `_Init_thread_header` `008092FC`; member-registration-and-the-recovered-field-schema.md, correction to a sibling document)*. For a tool that
 reads Phyre files, the useful fact is §3's pair. An array member's `+0x5C` names its kind (fixed, pointer, `PArray`,
 `PSharray`) and `+0x58` its element size. Those two decide how a reader walks the array (`UQ-281`).
 

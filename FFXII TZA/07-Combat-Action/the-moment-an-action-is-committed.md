@@ -44,7 +44,7 @@ to face, reads state this function writes.
    anyone issuing them an order.
 3. The target learns it is being attacked: **the attacker's bit is set in the target's attacker mask,
    an attacker count is incremented, and enmity is registered — once while that attacker's bit remains set.**
-4. A queued repeat is dropped if the action or the target has changed — compared against the last **cancelled** action's record at `+0x740` / `+0x744` (the cancellation section below).
+4. A queued repeat is dropped if the action or the target has changed *(for a stats kind-0 unit; kind 1 keeps it whatever changed, and any other kind drops it — corrected 2026-10-02, OPUS: `0030F841`–`0030F85F`)* — compared against the last **cancelled** action's record at `+0x740` / `+0x744` (the cancellation section below).
 
 **Nothing about damage, cost or timing happens here.** This function decides *who is doing what to
 whom, and who else needs to know.*
@@ -64,7 +64,7 @@ broadcast and enmity steps are skipped.
 
 ```asm
 0030F8B2  cmp  di, r13w              ; actionId vs 0x21E  (r13d = 0x21E at 0030F798; JA refuses ids above it — corrected 2026-09-11, ASTRA-REQ-FABLE-COMMIT-ID-ANNOTATION)
-0030F8B6  ja   0030F97A
+0030F8B6  ja   0030F97A   # <- corrected 2026-10-02, OPUS - this ja accepts, it does not refuse; 0030F97A is mov eax, 1 (committed). It skips the propagation walk and the attacker mask for ids above 0x21E (band two); the refusal is 0030F7EC ja 0030F981
 ```
 
 Ids **below `0x21F`** take the normal path. Everything else is refused **unless
@@ -136,8 +136,8 @@ bit 5 cleared (`00310734`–`00310751`), and `0033C9B0` runs on the same sub-obj
 
 **So the queued-repeat check in step 4 compares against the last *cancelled* action**: `cmp di,
 [unit+0x744]` and `cmp ebp, [unit+0x740]` at `0030F84E`–`0030F857` read the cancelled record's
-action id and target — a re-issued action that matches what was just cancelled keeps `+0x770`,
-any other clears it (`0030F85F`). The shadow at `+0x718` is written by the commit and read by
+action id and target — ~~a re-issued action that matches what was just cancelled keeps `+0x770`,~~
+~~any other clears it~~ for a unit whose stats kind byte `[+0x698]+5` is 0, a re-issued action that matches what was just cancelled keeps a non-zero `+0x770`; a kind-1 unit keeps it whatever it commits, and any other combination clears it (`0030F85F`) *(corrected 2026-10-02, OPUS: `0030F841` loads the kind byte, `0030F849 cmp ecx, 1` and `0030F85D je 0030F865` keep the latch for kind 1 without the id and target compares; CONTRACT-commit-action.md §13a)*. The shadow at `+0x718` is written by the commit and read by
 nothing but the cancel; the cancelled record at `+0x730` is written by the cancel and read by the
 next commit.
 
@@ -310,15 +310,15 @@ used at these sites; **three functions agree on the protocol and none of them na
 |---|---|
 | Is `+0x08` vs `+0x24` really leader-vs-group, or two unrelated fields? | **Corroborated inside the same function**: the loop tests `[rdi+0x24] == [rbx+0x24]` for *group membership*, so `+0x24` is a group id in both uses; only `+0x08` differs. |
 | Does the decompiler's `param_1[2] != param_1[9]` mean byte offsets 2 and 9? | **No — and this is why the assembly was read.** They are dword indices: `[rbx+0x8]` and `[rbx+0x24]`. A document quoting the decompiled indices as offsets would be wrong by a factor of four. |
-| Is the `0x718` block a second live copy rather than a shadow? | **Not established either way, and left that way.** Nothing in this function reads it. |
+| Is the `0x718` block a second live copy rather than a shadow? | ~~**Not established either way, and left that way.**~~ *(answered: a shadow - the cancel `003105D0` copies it to the cancelled record `+0x730`–`+0x747` (`003106B9`–`003106E3`), which the next commit reads; see the cancellation section above; 2026-10-02, OPUS)* Nothing in this function reads it. |
 | Is `+0xEA0` the same kind of thing as `+0xEA4`? | **Same `1 << slot` construction at all four sites**, four bytes apart, in the same object. **Same indexing; the roles differ and are not asserted to be complementary.** |
 | Does the cancel loop really clear the bit from every actor? | The loop calls the actor **count** function each iteration and branches back while the index is below it — **the same walk shape as this function's own broadcast loop.** |
 | Are `+0x695` and `+0x696` the same kind of field? | **Adjacent, both one byte, both set to `0xFF`, both released through `0030C970`** — and the cancel path does the two in immediate succession. **Same protocol; whether they name the same kind of resource is not established.** *2026-09-13: yes — the same handle at two stages; `00306877`–`00306891` moves it from `+0x695` to `+0x696`, and `+0x694` is the stage before.* |
-| Is `0x80000003` explained here? | **No.** Its *use* is established — a two-word eligibility gate on receiving the broadcast — and its *meaning* is not. See `PROPOSED-repos46-5`. |
+| Is `0x80000003` explained here? | **No.** Its *use* is established — a two-word eligibility gate on receiving the broadcast — ~~and its *meaning* is not~~ *(answered: KO, Stone and X-Zone / Vanished - how-a-combo-continues-and-what-it-blocks.md, condition 4, and how-an-action-gathers-its-targets.md; 2026-10-02, OPUS)*. See `PROPOSED-repos46-5`. |
 
-**What this document does not claim:** what `0030AB40` classifies, what `00313B30` does with the
-enmity it is handed, what the `0x4000`–`0x4166` id block contains, or what the byte table at
-`022C1DB8` (indexed by slot × 12, read into `+0x6B9` when `+0x6B0` bit 1 is set) holds.
+**What this document does not claim:** ~~what `0030AB40` classifies, what `00313B30` does with the~~
+~~enmity it is handed, what the `0x4000`–`0x4166` id block contains, or what the byte table at~~
+~~`022C1DB8` (indexed by slot × 12, read into `+0x6B9` when `+0x6B0` bit 1 is set) holds.~~ *(answered: `0030AB40` in the interior citation below; `00313B30` is the notify, CONTRACT-commit-action.md §13a; the `0x4000`–`0x4166` block is the order space, Action-Dispatch/battle-action-handler-table.md; `022C1DB8` is byte `+8` of a 12-byte per-slot row at `022C1DB0`, the reserve-member slot `BattleUnit_IssueCommand` parks (`00311DA5`) and `00385756`–`0038575D` hands to `00320A40` as a battle-stats record index - Post-Result-Events/the-post-result-events-and-the-battle-message-table.md, the reserve route; 2026-10-02, OPUS)*
 
 ## Why it was never opened
 

@@ -29,7 +29,7 @@ audit:
 > One byte at `+5` of every battle record, tested at **104 sites across 82 functions in eleven
 > subsystems** — and the obvious explanation for it is wrong.
 
-**PARTIAL — deliberately.** The census is exact and the two code paths it selects are read. ~~**What
+~~**PARTIAL — deliberately.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, and the note below records GR-2 answered)* The census is exact and the two code paths it selects are read. ~~**What
 the byte means is not established**, and~~ the reading that first suggests itself is contradicted by
 the evidence. This document records the fact and refuses the story.
 
@@ -308,7 +308,7 @@ applied, which initialises the record embedded in its spawn-keep entry.
       the field cursor's helpers accept **1–2** (`00273750`), **1–3** (`002734F0`), **3** with
       `003229A0 == 0` (`00273910`) and **5** (`00273A00`); this page's `002F8E90` maps **3 → 4** and
       **1, 2, 7 → 8** for enemy-table units, which is why the loot thief message keys on 8. The
-      per-value authored meaning beyond that use is not read. *(Narrowed 2026-09-30, FABLE, on SWE2-AUDIT-SEM's [review](../../_index/candidates/auditsem-review-dd-gameplay-0930/REVIEW.md) C3; record [`dd-gameplay-corrections-fable-0930`](../../_index/candidates/dd-gameplay-corrections-fable-0930/README.md))*: the census the row planned is done: SD-160's record decodes all 63,432 calls of both verbs, and every argument is a pushed constant - `btlAtelSetUnitType` 0 / 1 / 2 / 3 (59,814 / 234 / 297 / 369 sites), `setfreetargettype` 1 / 3 / 4 / 6 (18 / 315 / 2,340 / 45 sites) - and it joins value 3 to its scripts (allied third parties and event combatants). Open: joining the other values, including 6 (which no reader listed here tests), to the kinds of actor their scripts target ([SD-160's record](../../_index/candidates/sd160-free-target-type3-0930/README.md)). *(Registered 2026-09-30 (FABLE) as `GR-2`,
+      per-value authored meaning beyond that use is not read. *(Narrowed 2026-09-30, FABLE, on SWE2-AUDIT-SEM's [review](../../_index/candidates/auditsem-review-dd-gameplay-0930/REVIEW.md) C3; record [`dd-gameplay-corrections-fable-0930`](../../_index/candidates/dd-gameplay-corrections-fable-0930/README.md))*: the census the row planned is done: SD-160's record decodes all 63,432 calls of both verbs, and every argument is a pushed constant - `btlAtelSetUnitType` 0 / 1 / 2 / 3 (59,814 / 234 / 297 / 369 sites), `setfreetargettype` 1 / 3 / 4 / 6 (18 / 315 / 2,340 / 45 sites) - and it joins value 3 to its scripts (allied third parties and event combatants). ~~Open:~~ *(answered: see `GR-2` below, 2026-09-30; 2026-10-02, OPUS)* joining the other values, including 6 (which no reader listed here tests), to the kinds of actor their scripts target ([SD-160's record](../../_index/candidates/sd160-free-target-type3-0930/README.md)). *(Registered 2026-09-30 (FABLE) as `GR-2`,
       below.)*
 - [x] ~~The full value domain. The filtered census sees only `1`; a known `== 0` site is excluded by
       the filter's conservatism, and values above 1 have not been ruled out.~~ **AL-4 ANSWERED

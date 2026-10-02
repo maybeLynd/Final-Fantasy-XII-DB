@@ -215,7 +215,7 @@ character are indistinguishable to `CAM7_FindCameraByName`. *(2026-09-12: that l
 `0x002561DC`). For `slot >= 5` the loader sets `cameraCount = -1` before allocating — `alloc(-1 << 6)`
 — and every subsequent loop is guarded `0 < count`, so nothing is written. **A blob is still stored
 at `g_camBlob[slot]` before that test**, at `0x00256205`, with no bound on `slot`. Whether any
-caller can reach `CAM7_Load` with `slot >= 5` was not established here; the one caller reads
+caller can reach `CAM7_Load` with `slot >= 5` was not established here; ~~the one caller reads~~ the live caller, `0032FAC0` (call at `0032FB0A`), reads *(corrected 2026-10-02, OPUS: `CAM7_Load` has two call sites — `0032FB0A`, and `003312A7` in `003306E0`, the loose-file route §6 finds dead in the shipped build)*
 `param & 0xF`, which admits 0–15.
 
 **Empty is a success.** `cameraCount == 0` with `slot < 5` returns **1** at `0x002561E4` without
@@ -256,7 +256,7 @@ loader is never told. A short or truncated section walks off the end.
 | name NUL-terminated within 24 B | **3,942 / 3,942** |
 
 **What varies.** `cameraCount` 1–69. `countB` 0–382 (49 files zero). `countC` 0–48 (196 files
-zero). Record length takes 11 distinct values.
+zero). Record length takes ~~11~~ 12 distinct values *(corrected 2026-10-02, OPUS: 3,942 records walked in the 423 `us` sections, read through `vbf_read_entry` from `FFXII_TZA.vbf` — 108, 152, 216, 280, 324, 388, 432, 496, 540, 560, 648, 1,296; the 2026-09-13 pass)*.
 
 **Name lengths — the strncpy limit is 24 and the corpus stops at 23:**
 
@@ -272,7 +272,7 @@ used twice — `cut4`, `cut001`, `open04`, `cut_05_02`, `cut1_2`, `cut2_2`, `map
 entire explanation for the 11 files where this section's count and `section_008`'s disagree; see
 [`section_008` §5](section-008.md#5-corpus-survey).
 
-**`subCount` at record `+0x28` is 1 in 3,941 of 3,942 records.** The single exception is a record
+**~~`subCount`~~ `firstCommand` (the first command's type) at record `+0x28` is 1 in 3,941 of 3,942 records.** *(answered: "The lead held (2026-09-12)" below and the §2 fence; 2026-10-02, OPUS)* The single exception is a record
 of 152 bytes where it is 2, against a 108-byte minimum — 44 bytes more. An invariant that holds
 3,941 times and breaks once is a much better lead than one that always holds.
 
@@ -291,7 +291,7 @@ of 152 bytes where it is 2, against a 108-byte minimum — 44 bytes more. An inv
 | Is `+0x1C` an offset from the section or from the file? | **From the section.** `CAM7_Load` computes `blob + *(u32*)(blob + 0x1C)` at `0x0025624B`, where `blob` is the section pointer. It is `0x20` in all 423 files, so the corpus alone could not have decided this — the instruction did. |
 | Does the record chain hold on the corpus or on the file that was opened? | **All 423, all 3,942 records.** Walking `cur += *(u32*)(cur+4)` for exactly `cameraCount` steps, then `countB` u32-prefixed records, then `countC` u16-prefixed records, terminated inside the section every time. |
 | Is `CML1` really the partner, or did the two just happen to co-occur? | **The binary says so, not the co-occurrence.** `0x003306E0` builds two filenames from one base and requests both: `camera/<name>.cam` tagged `CAMDAT` → callback `0x0032FAC0` → this loader, and `<name>.cml` tagged `CAMCTL` → callback `0x0032FA10`. Both leas are in the disassembly at `0x00331255`/`0x00331263` and `0x00331314`/`0x00331322`. |
-| Could the `0x8000` at record `+0x20` be read somewhere the census missed? | **Not resolved by search alone, and it is not claimed.** The loader provably does not touch it — it reads `puVar3[0x12]`/`[0x13]`, byte offsets `0x24`/`0x26`, and nothing at `0x20`. A consumer reading it through the `+0x18` payload pointer would be a *backward* read past the pointed-to address, which nothing observed does. Listed inert **with that method named**, not asserted unused. |
+| Could the `0x8000` at record `+0x20` be read somewhere the census missed? | ~~**Not resolved by search alone, and it is not claimed.**~~ **Yes — `002572E0` reads it** *(corrected 2026-10-02, OPUS: `00257341` `mov edx, dword ptr [rdi + 0x20]` with `rdi` = blob + `[blob + 0x1C]`, the first record, and bit 15 — the `0x8000` — at `002573BB`–`002573C6` `shr ecx, 0xf` / `and cl, 1`; §3's attachment word, corrected 2026-09-12)*. The loader provably does not touch it — it reads `puVar3[0x12]`/`[0x13]`, byte offsets `0x24`/`0x26`, and nothing at `0x20`. A consumer reading it through the `+0x18` payload pointer would be a *backward* read past the pointed-to address, which nothing observed does. ~~Listed inert **with that method named**, not asserted unused.~~ *(answered: read — the correction at the head of this cell; 2026-10-02, OPUS)* |
 | Did an external tool supply any of this? | **No tool reads `CAM7`.** `ff12-script` decompiles `section_000` only. Nothing here has an oracle, which is why every claim is anchored to an instruction or a 423-file count. |
 | Does the shipped game actually take the `.cam` file path? | **No — and that is why the extension evidence is still usable.** The archive census finds **0 of 89,414 entries** with either extension. The shipped route is the container walker at `0x003304A0` (`repos-1e`), which calls the *same* `0x0032FAC0`. The dead loose-file path is what **names** the section: one callback per request, `camera/<n>.cam` tagged `CAMDAT` and `<n>.cml` tagged `CAMCTL`. |
 | Is `CAM7` the only thing `CML1` pairs with? | **No — `section_010` is also `CML1`**, paired with `SHK1` (`section_011`), 113/113. Censused here over the first four bytes of every present section in all 1,114 containers. `CML1` is a shared list format and this section is one of its two partners — which the dispatcher's `.cam`/`.cml` and `.shk`/`.skl` DAT/CTL pairs say independently. |

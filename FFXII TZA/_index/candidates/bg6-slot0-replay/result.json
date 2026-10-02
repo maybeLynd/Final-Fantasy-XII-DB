@@ -1,0 +1,33 @@
+{
+  "subject": "006CA760 (PrimitiveRendererD3D11 slot 0)",
+  "exe_sha": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "cases": [
+    {
+      "idx_in": 0,
+      "ret": 67712,
+      "idx_after": 0,
+      "pub": 67712,
+      "expect_ret": 67712,
+      "pass": true
+    },
+    {
+      "idx_in": 1,
+      "ret": 100448,
+      "idx_after": 0,
+      "pub": 100448,
+      "expect_ret": 100448,
+      "pass": true
+    },
+    {
+      "idx_in": 3,
+      "ret": 165920,
+      "idx_after": 0,
+      "pub": 165920,
+      "expect_ret": 165920,
+      "pass": true
+    }
+  ],
+  "md5": "3198c99ce0ca05d8e3cf29e95c912511",
+  "live_game": false,
+  "note": "synthetic device object; NATIVE-REPLAY class only"
+}

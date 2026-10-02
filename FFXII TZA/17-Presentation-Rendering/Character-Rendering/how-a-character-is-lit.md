@@ -396,3 +396,14 @@ gather, written up on the status page, are carried.
 | G5 | section 5b | **survives**: 1.0 is stored to `02B3F518` before the list walk; the only earlier call is the output memset |
 
 No correction.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-how-a-character-is-lit-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003477E0` | 26 B | tail-jumps a 38-byte helper with `ecx` = dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns and `edx` = 1 | `003477E4`, `003477E9`, `003477EE`, `003477F5` |
+| `00347D60` | 23 B | tail-jumps a 38-byte helper with `ecx` = dword `+0x28` of the pointer the 8-byte getter of qword `02099D70` returns and `edx` = 0 | `00347D64`, `00347D69`, `00347D6B`, `00347D72` |
+| `003AED20` | 45 B | returns 0 when the word `cx` is -1; otherwise forms the record address qword `022C6F28` plus the sign-extended `cx` times `0x740` and returns 0 when that sum is zero or the record's dword `+0x284` is zero, else the record's dword `+0x28C` | `003AED24`, `003AED2D`, `003AED34`, `003AED3D`, `003AED46` |
+| `003DD6C0` | 113 B | calls a 21-byte record-address helper with i for i 0 to 4 and sets a flag when any returned record has bit 0 of byte `+0x10` and bit `0x40` of byte `+0x17` both set; with the flag clear it calls a 7-byte helper with 0 and returns, with it set it calls a 22-byte helper and returns when the result AND `0xFFFFFFFD` is non-zero, else tail-jumps a 31-byte helper with 2 | `003DD6D8`, `003DD6E3`, `003DD6E7`, `003DD6FA`, `003DD715` |

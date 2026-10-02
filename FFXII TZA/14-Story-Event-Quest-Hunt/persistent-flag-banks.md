@@ -32,7 +32,7 @@ audit:
 
 # Persistent flag banks
 
-> **Everything the game remembers about your story is bits.** Six banks of them, living at known
+> **Everything the game remembers about your story is bits.** ~~Six banks~~ Five banks of them (six accessor families) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V1, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*, living at known
 > offsets inside your save, and two reserved ids that mean *always* and *never*.
 
 ## 1. What the player sees
@@ -51,7 +51,9 @@ them.
 
 ## 2. Native mechanism
 
-### Six banks, all inside the save payload
+### ~~Six banks~~ Five banks, all inside the save payload (corrected 2026-10-02, FABLE)
+
+*Five storage regions under six accessor families: `Bank512`'s Low and High pairs address one region at `+0x14B4` (AA-4, section 8b).* *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V1, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*
 
 Every accessor resolves through `SaveImage_GetPersistentPayloadBase()` — the same payload base the
 current-area accessor reads. **Story progress is save state, addressed by offset.**
@@ -502,7 +504,7 @@ bits mean. The GFZ makes this boundary explicitly and it is correct.
       256-flag accessor pairs over the same region.
 - [x] **AA-5.** The 32-byte gap at `+0x1394`-`+0x13B3` (256 flags' worth) between `Bank64B` and `Bank2048`.
       **AA-5 — now exactly located and sized.**
-      **ANSWERED 2026-09-21 by SWE2-CONTRACT on [the flag-bank contract](CONTRACT-persistent-flag-banks.md) (item 2); noted here 2026-09-26 (FABLE, Claude Opus 5.5): dead space by all three access routes.** The payload sits at the fixed address `02164480`, so the gap is absolute `02165814`–`02165833`. An operand-level census of all 163 helper calls in 104 functions finds no displacement in the gap by either base and no rip-relative operand into the payload, and no `lea` forms a pointer into it. The bytes exist only to be zeroed by the `0x1538` memset: reserved space between `Bank64B` and `Bank2048`, not a bank.
+      **ANSWERED 2026-09-21 by SWE2-CONTRACT on [the flag-bank contract](CONTRACT-persistent-flag-banks.md) (item 2); noted here 2026-09-26 (FABLE, Claude Opus 5.5): dead space by all three access routes.** The payload sits at the fixed address `02164480`, so the gap is absolute `02165814`–`02165833`. An operand-level census of all 163 helper calls in ~~104~~ 98 functions *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V13, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* finds no displacement in the gap by either base and no rip-relative operand into the payload, and no `lea` forms a pointer into it. The bytes exist only to be zeroed by the `0x1538` memset: reserved space between `Bank64B` and `Bank2048`, not a bank.
 - [x] ~~`EventMemory_QueryDefinitionIdAbsent` and its global `DAT_02ADD0A8`.~~ **AA-6 CLOSED** —
       the function is decoded in full in
       [event memory at actor bind](event-memory-at-actor-bind.md) §2, and §8f names what fills
@@ -627,7 +629,7 @@ SaveImage_FinalizeHeaderAndChecksum                (Save)    - stamped into the 
 PersistentFlag_ApplyAuthoredInitialPrimarySet      (Story)   - authored new-game state
 ```
 
-30 query callers against 4 setters: **written rarely, read constantly, and by subsystems outside
+~~30 query callers~~ 32 callers of the gate, Primary's only reader (59 direct call sites in 31 functions, plus one caller through the gate's thunk) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V14, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*, against 4 setters: **written rarely, read constantly, and by subsystems outside
 the script VM.** It is the general-purpose game-state bank.
 
 **`Bank512` is written by combat.** `BattleUnit_TryTriggerNearbyAuthoredFieldAction` (`002F8060`)
@@ -819,13 +821,13 @@ functions that draw from any RNG             :  91   (incl. the 7 inline-LCG con
                                           both :   2
 ```
 
-**Two, and only two** - and they are strikingly alike: **both write `Bank512Low`, both draw
+~~**Two, and only two**~~ **Two functions both draw and set a persistent flag**, but only `002F8060` sets it downstream of its draw; `002FAFD0` sets its flag (`002FAFFD`) before its first draw (`002FB01D`), so the chest's flag does not depend on the roll - its contents do *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V10, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*. Otherwise they are strikingly alike: **both write `Bank512Low`, both draw
 MT19937.**
 
 | Function | Owner | Flag id from | Split |
 |---|---|---|---|
-| `002F8060` `BattleUnit_TryTriggerNearbyAuthoredFieldAction` | CombatAction | `record[2]` | hardcoded **75 / 25** |
-| `002FAFD0` *(unowned)* | - | `record[9]` | authored threshold + **50 / 45 / 5** |
+| `002F8060` `BattleUnit_TryTriggerNearbyAuthoredFieldAction` | CombatAction | ~~`record[2]`~~ byte `+0x04` (`record[2]` counts shorts) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V9, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* | hardcoded **75 / 25** |
+| `002FAFD0` *(unowned)* | - | ~~`record[9]`~~ byte `+0x09` | ~~authored threshold + **50 / 45 / 5**~~ authored gil chance (byte `+0x0B`), then **50 / 50** between two item ids, or **95 / 5** between two others with the armlet *(corrected 2026-10-02, FABLE, on OPUS's byte verdicts C-V8 and C-V9, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* |
 
 ### The second site, read
 
@@ -846,17 +848,19 @@ if (record[0xB] <= roll % 100) {                        // authored per-record t
 roll = RNG_MT19937_NextU32_Thunk();                     // third draw
 ```
 
+*In the sketch above `record` is a byte pointer: `record[9]` and `record[0xB]` are the bytes `+0x09` (flag id) and `+0x0B` (gil chance). The second draw is not a three-way split: the armlet test picks one of two pairs - with it, `< 0x5F` takes the id at `+0x10` and the rest `+0x12` (95 / 5, `002FB0ED`); without it, `< 0x32` takes `+0x0C` and the rest `+0x0E` (50 / 50, `002FB0FE`). AF-6 below reads it whole.* *(corrected 2026-10-02, FABLE, on OPUS's byte verdicts C-V8 and C-V9, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*
+
 Three things distinguish it from its sibling:
 
-**A different record layout.** The flag id sits at `record[9]`, not `record[2]`, and the gate
-threshold at `record[0xB]`. So there are **two distinct authored field-action record formats**, not
+**A different record layout.** The flag id sits at ~~`record[9]`, not `record[2]`~~ byte `+0x09` (the chest indexes bytes), not byte `+0x04` (the trap's `record[2]`, which counts shorts), and the gate
+threshold at ~~`record[0xB]`~~ byte `+0x0B` *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V9, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*. So there are **two distinct authored field-action record formats**, not
 one - which matters for anyone trying to parse them.
 
 **The probability is authored, not hardcoded.** Where `002F8060` compares against a literal 75, this
 one compares against `record[0xB]`. Per-record tuning.
 
-**A three-way outcome, 50 / 45 / 5.** `< 0x32` (50) then `< 0x5F` (95) splits the remainder into a
-45% band and a 5% tail. And it makes **at least three MT19937 draws** in one pass.
+~~**A three-way outcome, 50 / 45 / 5.** `< 0x32` (50) then `< 0x5F` (95) splits the remainder into a
+45% band and a 5% tail.~~ **Two two-way pairs, not a three-way outcome:** the item pick is **50 / 50** (`< 0x32`) without the armlet and **95 / 5** (`< 0x5F`) with it, each between its own two ids *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V8, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*. And it makes **at least three MT19937 draws** in one pass.
 
 **In both functions the flag is set unconditionally of the roll** - `0xFF` meaning "no flag" is the
 only escape. The bit records *that the record fired*, not *which outcome came up*.
@@ -895,7 +899,7 @@ only escape. The bit records *that the record fired*, not *which outcome came up
 
 ### What this settles
 
-**The RNG-to-permanent-save surface is exactly two functions, one bank, one generator.** That is a
+**The ~~RNG-to-permanent-save surface~~ set of functions that both draw and set a persistent flag is exactly two functions, one bank, one generator** (only one sets its flag after drawing, and in neither does the flag depend on the drawn value) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V10, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*. That is a
 much better answer than "unknown", and a much smaller problem than it could have been: for XIIOnline,
 reconciling those two call sites covers the entire path by which a random draw becomes irreversible
 save state.
@@ -919,7 +923,7 @@ searched for the bank offsets directly:
 
 | Bank | Functions referencing its offset |
 |---|---|
-| `Bank64A` `+0x1384` | `QueryPrimaryOrAuthoredThresholdGate`, `QueryBank64A`, `SetBank64A` |
+| `Bank64A` `+0x1384` | ~~`QueryPrimaryOrAuthoredThresholdGate`,~~ `QueryBank64A`, `SetBank64A` - the gate has no `+0x1384` operand; it reads Primary `+0x14F4` (`0032A900`) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V5, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* |
 | `Bank64B` `+0x138C` | `QueryBank64B`, `SetBank64B` |
 | `Bank2048` `+0x13B4` | `QueryBank2048`, `SetBank2048` |
 | `Bank512` `+0x14B4` | `QueryBank512Low`, `QueryBank512High`, `SetBank512Low`, `SetBank512High` |
@@ -976,8 +980,9 @@ than reported. Three apparent findings, all dissolved.
 **No code writes a persistent flag bank except the twelve named accessors.** Therefore section 8d's
 intersection is not merely a call-edge bound - it is **tight**:
 
-> **Exactly two functions in FFXII turn a random draw into permanent save state**, and both are
-> known: `002F8060` and `002FAFD0`.
+> ~~**Exactly two functions in FFXII turn a random draw into permanent save state**, and both are
+> known: `002F8060` and `002FAFD0`.~~ **Exactly two functions in FFXII both draw a random number and set a persistent flag** - `002F8060` and `002FAFD0` - **and in neither does the flag depend on the draw**: only
+> `002F8060` sets its flag after drawing, and `002FAFD0` sets it before its first draw. The draw decides the trap's message and the chest's contents, not the flag *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V10, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*.
 
 ### Why this one is recorded even though nothing was found
 
@@ -1082,8 +1087,8 @@ that still said `partial` are corrected.
 
 ### What the player sees
 
-A new game does not begin with a blank slate. **Room for fifty-three authored ids is switched on in
-the Primary bank before the first frame of play**, and they come out of a shipped file whose name
+A new game does not begin with a blank slate. ~~**Room for fifty-three authored ids is switched on in
+the Primary bank before the first frame of play**~~ **Fifty-two authored ids are switched on in the Primary bank before the first frame of play** - the shipped list holds fifty-three, but the first is id 0, which `SetPrimary` rejects (it accepts 2 to 0x1FF) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V2, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*, and they come out of a shipped file whose name
 says what they are: `mapjumpgroupinit.bin`. Everything else in the persistent payload - every bank
 in §4 - is zero at that moment, wiped in a single `memset`.
 

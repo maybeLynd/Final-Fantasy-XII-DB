@@ -455,8 +455,8 @@ makes from `[unit+0x710]`), and masks `+0x700`.
 
 **Per the standard, the writers decide.** `BattleUnit+0x714` has exactly **three** writers image-wide:
 `BattleUnit_CommitAction`, `BattleUnit_ResetStateForReuse` and `BattleUnit_CancelAndResetCurrentAction`.
-Four other `[reg+0x714]` writes exist and are **different structures** — three store the float
-`0x3F490FDB` (π/4) and one is `Audio`. Separated by operand size and owner, not assumed away.
+~~Four~~ Nine other `[reg+0x714]` writes, in eight bodies, exist and are **different structures** — ~~three store the float~~
+~~`0x3F490FDB` (π/4) and one is `Audio`.~~ five store the float `0x3F490FDB` (π/4), in `007084E0`, `00708540`, `007085A0` and `00708600`, and the others are in `00542740`, `006FEF20`, `00708470` and `007D2150` *(corrected 2026-10-02, OPUS: `retool.py grep "+ 0x714],"`, nine sites, one in each of those functions (two in `00708600`), listed in FABLE's record readiness-apply-fable-1002; a census over the known extents, so a lower bound)*. Separated by operand size and owner, not assumed away.
 
 ### The player's command id is a different field again
 
@@ -555,12 +555,12 @@ The description ids are `40000 + category*100 + slot` — a **category grid**, n
 space. So the two id systems are genuinely different, and the join between them is a third thing that
 has not been found.
 
-**AT-5's negative therefore stands in its exact original form**: *id → player-visible command name
-cannot be completed* — not from the executable, and not yet from the archive either. What has changed
+**AT-5's negative therefore stands in its exact original form**: ~~*id → player-visible command name~~
+~~cannot be completed*~~ *(answered: each id is named through its row's `+0x34` into bank 0 of the battle text - AT-8 answered by reference 2026-09-14 and AT-9 answered 2026-09-11, section 6 above; Action-Availability AI-2; 2026-10-02, OPUS)* — not from the executable, and not yet from the archive either. What has changed
 is that **the names themselves now exist in readable form**, and the missing piece is narrowed to a
 single join. **AY-9.**
 
-**AT-9 is blocked on the same join.** Command ids `0x113` and `0x95` are indices into the 543 space,
+~~**AT-9 is blocked on the same join.**~~ *(answered: AT-9 ANSWERED 2026-09-11, `0x113` Dismiss and `0x95` Dismount, section 6; 2026-10-02, OPUS)* Command ids `0x113` and `0x95` are indices into the 543 space,
 so naming them needs exactly the mapping that does not resolve.
 
 ## The `0x21E` boundary from the code side — three consumers, and the engine's own names — 2026-09-08
@@ -665,12 +665,12 @@ the same caution: **what survives is not established here.**
 
 ### What this section does not claim
 
-- **Not what lies above id 542.** `AT-8` remains open on the contents of the space; this adds that the
+- **Not what lies above id 542.** ~~`AT-8` remains open on the contents of the space;~~ *(answered: EI-2, 2026-09-12 - above 542 is the order space, section 2; 2026-10-02, OPUS)* this adds that the
   engine advances it with a different, much smaller routine and refuses to target it.
 - ~~**Not the meaning of kind `1`.** `EI-1`.~~ Answered 2026-09-11 in §3: the enemy-table kind, and the gate's polarity was inverted.
-- **Not what `FUN_004697C0` does** with `(p_698, actionId, 0xFFFF, 0)` on a successful advance.
+- ~~**Not what `FUN_004697C0` does**~~ *(answered: it posts battle message `0x05`, `0x06` or `0x07` - Post-Result-Events/the-post-result-events-and-the-battle-message-table.md, the SWE2-EC7-21 update; 2026-10-02, OPUS)* with `(p_698, actionId, 0xFFFF, 0)` on a successful advance.
 - **Not the rest of `CheckTargetEligibility`** — only its two opening gates were read; the 596-byte
-  body past `003083FF` is unread, and the `02EBF138` action-table lookups it then performs are not
+  body past `003083FF` ~~is unread,~~ *(answered: its subtree is bound in the section on the `003083B0` exclusive subtree below; 2026-10-02, OPUS)* and the `02EBF138` action-table lookups it then performs are not
   followed.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
@@ -722,7 +722,7 @@ InputGameplay relationship to the dispatch.
 
 ## The `003083B0` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
-`003083B0` `BattleAction_CheckTargetEligibility` (307 B) — the
+`003083B0` `BattleAction_CheckTargetEligibility` (~~307 B~~ 596 B *(corrected 2026-10-02, OPUS: `003083B0`–`00308603 ret`, int3 padding to `00308610`)*) — the
 eligibility battery: three `[02EBF138]` context loads each feeding a
 `0020E600` row lookup (`003083FF`/`00308413`, `0030841D`/`00308427`,
 `0030842C`), the row fields then compared against the action/target
@@ -739,7 +739,7 @@ the shared authored-table context; `02EBF0A8` is the sibling context
 
 ## The `002FE910` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`002FE910` (~55 B) — `byte[+0x6B4] == 0` selects `qword[+0x708]`,
+`002FE910` ~~(~55 B)~~ (52 B *(corrected 2026-10-02, OPUS: `002FE910`–`002FE943 ret`, as the handler table in section 3 states)*) — `byte[+0x6B4] == 0` selects `qword[+0x708]`,
 `word[rax+2]` (`002FE916`/`002FE929`).
 
 | member | role | interior |

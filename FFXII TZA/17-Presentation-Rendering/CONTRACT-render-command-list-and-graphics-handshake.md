@@ -588,3 +588,14 @@ height getter (`[display+0x14]`, default `0x438`). The ledger files it under Aud
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page and the cited pages read them; no new body read
 (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-render-command-list-and-graphic-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0018B030` | 15 B | subtracts qword `+0` of `rcx` from qword `+8`, shifts the difference right arithmetically by 3 and stores the low dword at `+0x2C` | `0018B034`, `0018B037`, `0018B03B` |
+| `0018CB10` | 28 B | calls `0018B4E0` with `rcx` unchanged and tail-jumps `0018B510(result, edx)` | `0018CB18`, `0018CB20`, `0018CB27` |
+| `001A14D0` | 9 B | copies qword `+0x18` of `rcx` into qword `+8` | `001A14D4` |
+| `00212C60` | 14 B | loads qword `+8` of `rcx` and, when it is non-null, tail-jumps `001E2AF0` with it as `rcx`; otherwise returns | `00212C64`, `00212C67` |

@@ -17,7 +17,7 @@
   are absent from the function census** - the stored qword is their only reference. **Four more control
   ids are unconditionally refused** by one shared six-byte body.
 - [`PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md`](PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md) —
-  **DOCUMENTED, tier 2, one falsification pass.** Answers **BK-3**. The release build folded the
+  ~~**DOCUMENTED, tier 2, one falsification pass.**~~ **AUDITED, tier 2** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)*. Answers **BK-3**. The release build folded the
   assertion reporter to `ret` but could not delete the arguments already pushed, so **26 source paths
   and 1,857 call sites survive** — enough to attribute **193 compiled functions to the source file
   they were written in**, 188 of them beyond RTTI's reach. Recovers Yebis/PPFX's four-directory
@@ -25,9 +25,15 @@
   FFXII TZA's bloom and depth of field.
 
 - [`third-party-middleware-inventory.md`](third-party-middleware-inventory.md) -
-  **DOCUMENTED, tier 2.** Eleven libraries, 690 functions. Includes **YEBIS**, commercial
+  **DOCUMENTED, tier 2.** ~~Eleven libraries, 690 functions.~~ At least twelve libraries, 827 tagged functions *(corrected 2026-10-02, OPUS: the inventory's 2026-10-01 re-status and its lead)*. Includes **YEBIS**, commercial
   post-effect middleware with a **licence-expiry check** in the shipping game, and a Dear ImGui
   debug menu compiled into retail.
+
+- [`Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md`](Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md) — the Phyre-to-Bullet rigid-body seam — **AUDITED**
+- [`EASTL/eastl-strings-containers-and-the-logging-allocator.md`](EASTL/eastl-strings-containers-and-the-logging-allocator.md) — EASTL strings, containers and the logging allocator — **AUDITED**
+- [`Lua-Core/the-lua-loader-and-what-it-accepts.md`](Lua-Core/the-lua-loader-and-what-it-accepts.md) — the Lua chunk loader and what it accepts — **AUDITED**
+- [`Lua-Core/CONTRACT-lua-chunk-loader.md`](Lua-Core/CONTRACT-lua-chunk-loader.md) — **CONTRACT READY**
+- *(corrected 2026-10-02, OPUS: four pages this list omitted, added with the status each page's own front matter states)*
 
 ## How to add a system here
 

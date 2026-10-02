@@ -121,7 +121,7 @@ not assume it is.
 |---|---:|---|---|
 | `0` | 20,867 | both `1.0` in 20,008 | a bare point — the extent triple is inert filler |
 | `1` | 4,801 | vary: 12.0, 10.0, 8.0, 6.0, 4.0 | a rectangle around the point |
-| `2` | 19 | near-equal pairs (32/31, 25/25, 4/4, 15/15) | a third shape, too rare to characterise |
+| `2` | 19 | near-equal pairs (32/31, 25/25, 4/4, 15/15) | a third shape~~, too rare to characterise~~: an ellipse *(answered: `CC-3`, §5 — `00236513`–`00236586`; 2026-10-02, OPUS)* |
 
 For `type == 1` the smaller of `+0x04`/`+0x08` clusters at 6.0 (1,266), 12.0 (1,263), 4.0 (530) and
 8.0 (486) — **both numbers are substantial**, so these are rectangles with real width in both axes,
@@ -341,7 +341,7 @@ first was tested on all 517 files and did not appear; the second is contradicted
   `posX / posZ` (`003193A7`–`00319415`) — `u` moves the **x** output, `v` the **z** output, and **y** is
   never touched. So `extentA` is the rectangle's (or ellipse's) full **X** size and `extentB` its **Z**
   size, both in the local frame the heading rotates; `+0x0C` is not read by this sampler.
-- **`type == 2`.** Nineteen records in 25,687. Too few to characterise honestly.
+- **`type == 2`.** Nineteen records in 25,687. ~~Too few to characterise honestly.~~ *(answered: an elliptical region — `CC-3` above, `00236513`–`00236586`; 2026-10-02, OPUS)*
 - ~~**`FUN_003dfac0` (`0x003DFAC0`) reads slot 0 incompatibly.** It gates on `byte[+7] > '1'` and
   then treats `+0x08` as an image offset to resolve (`0x003DFACF` onward), indexing a nested table
   with stride `0x20`. For `FF12POS3`, `+0x08` is the total size (`0x670` in the sample file), not a

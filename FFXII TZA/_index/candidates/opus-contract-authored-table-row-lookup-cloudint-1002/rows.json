@@ -1,0 +1,104 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "contract-authored-table-row-lookup.json",
+ "rows": [
+  {
+   "fn": "00249670",
+   "text": "tail-jumps to `0024A1D0` with `rcx` = qword `rcx+0x18` and `rdx` = qword `rcx+8`",
+   "anchors": [
+    [
+     "00249674",
+     "mov"
+    ],
+    [
+     "00249678",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002A1A80",
+   "text": "replaces dword `rcx+0x20` with `0020E620(that dword + the low 32 bits of rcx)` and passes the new value to `0020E600`; then, over the `0x14`-byte rows at the returned base for indices 0 up to dword `rcx+0x1C` (unsigned), replaces each row's dword `+0x10` with `0020E620(that dword + the low 32 bits of the row address)`",
+   "anchors": [
+    [
+     "002A1A96",
+     "add"
+    ],
+    [
+     "002A1A9F",
+     "mov"
+    ],
+    [
+     "002A1AA2",
+     "call"
+    ],
+    [
+     "002A1AD0",
+     "add"
+    ],
+    [
+     "002A1AD9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002D7FC0",
+   "text": "calls `00861EC0(02F8DA00, 0, 0x1800)` and `00861EC0(02F8C200, 0, 0x1800)`, copies dword `022D8EAC` to `02F8F214`, and with `d` = ((that value - 0x200) * 0x540) >> 6 when it is above 0x200 (unsigned) and 0 otherwise, stores 0x3B00 to `02F8F200`, `d + 0x3B00` to `02F8F20C`, `d + 0x3C00` to `02F8F210` and `02F8F208`, and `d + 0x2A00` to `02F8F204`",
+   "anchors": [
+    [
+     "002D7FD3",
+     "call"
+    ],
+    [
+     "002D7FF2",
+     "mov"
+    ],
+    [
+     "002D7FF8",
+     "cmp"
+    ],
+    [
+     "002D8004",
+     "imul"
+    ],
+    [
+     "002D8027",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0050DAD0",
+   "text": "reads `p` = qword at `002640C0()` and `q` = qword `rdx+0x40`, takes `a`, `b`, `c` from three `00267E10(r9)` calls, then calls in order `0036C1D0(b, a)`, `0036C1A0(5)`, `x` = `00263E40(p, dword at q)`, `y` = `0036B160(c)`, `0036C6C0(y, x, c)`, `0036C110()` and `0036C140()`, and tail-jumps to `0026B4E0(incoming rcx, y)`",
+   "anchors": [
+    [
+     "0050DAF1",
+     "call"
+    ],
+    [
+     "0050DB1F",
+     "call"
+    ],
+    [
+     "0050DB34",
+     "call"
+    ],
+    [
+     "0050DB4D",
+     "call"
+    ],
+    [
+     "0050DB79",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -38,7 +38,7 @@ function_families:
   - "libwebm mkvparser | C | members/libwebm-mkvparser.tsv | 104 | WebM Project libwebm mkvparser (the Matroska/WebM container parser), statically linked, not FFXII code: every joined census entry in the contiguous run 007FFBC0 up to 00808888 (exclusive) - ending where the import-thunk field begins - plus the three vtable bodies the linker scattered into the audio region (007AD440 Track::EOSBlock, 007BD590 SimpleBlock, 007E3260 BlockGroup), each carrying mkvparser:: RTTI (members/select_mkvparser.py). Fingerprint: the eight mkvparser:: class vtables 01CC6A68-01CC6B28 and IMkvReader 00D89AE0, and the Matroska element IDs compiled into the parse switch (18538067 Segment, 114D9B74 SeekHead, 1654AE6B Tracks, 1F43B675 Cluster, 1C53BB6B Cues, 1043A770 Chapters, 1254C367 Tags, 4DBB/53AB/53AC Seek); no mkvmuxer:: RTTI exists, so only the parse side is linked. The count went 100 -> 105 under FABLE's T2 adjudication (FABLE-ADJ-MKV): the five destructor bodies 007FFCD0-00800150 are reached only through unwind funclets 008A5B30-008A5B70 whose FuncInfos (01CC6880/858/830/8A8/8D0) hang off MEMBER frames (008041F0, 00804860, 00804BE0, 00804CF0, 00807650) - the selector now walks .pdata -> UNWIND_INFO -> FuncInfo -> unwind-map action RVA -> funclet mechanically. Controls: inbound only the video client at 0067xxxx (25 call sites into the public API and member getters); outbound only CRT (free/delete, memcpy, the eh_vector iterators, the security cookie, _guard_check_icall). NOT covered: the game's IMkvReader implementation and movie client (VbfMkvReader / WebM_VbfMkv.Runtime at 006Cxxxx and 001Bxxxx), the shared CRT tail 00808850 called by _Facet_Register (declared by the MSVC runtime tail row), the _purecall stub 00861EC6, the folded bodies already dispositioned elsewhere (00800140, 008005C0/008006D0/00800710, 007B6C40), the two A-measured bodies 00801210/00806F20 and IMkvReader's deleting destructor 006CC9F0 (also A-measured). 2026-09-18: 105→104 - 00801550 has since been measured as A (A beats a declaration)."
   - "MSVC runtime tail | C | members/msvc-runtime-tail.tsv | 52 | Microsoft Visual C++ runtime residue (vcruntime/CRT + ATL), statically linked into the game, not FFXII code: the joined census entries 008087C4 up to 0080C5A0 (exclusive) - less 23 A-measured bodies, the two declared NativeAdapter bodies, the 20 declared basic_streambuf import thunks 00808888-008088FA and the three declared tail-call forwarders - plus 14 stdio members the linker scattered through .text as COMDATs (members/select_msvc_runtime.py). Evidence: census names are used only where the body matches - 00808C90 is the __scrt_common_main_seh sequence (_set_app_type, _configure_narrow_argv, _initialize_narrow_environment, __setusermatherr, atexit); 00808C64 installs type_info::vftable; a qword to 00808D5C sits at .rdata 008C31D8 inside the _initterm range 008C31D0-008C5678 walked by A-measured 00808D78; 00809B44 leas 00809B54 (the 0xE06D7363 'msc' filter) into SetUnhandledExceptionFilter; A-measured 00809124 registers 00809244 through atexit; the vdecl math kernels 0080A270/0080A720/0080AFE0 are reached only through the declared thunk block inside 00809920's slot; the CAtlBaseModule trio 0080C440-0080C51C ends the block. COMDAT rule: a scattered body joins only when its ENTIRE callee set is __local_stdio_printf_options 0016D670, __stdio_common_* / __acrt_iob_func thunks and already-declared thunk entries - 005CDAA0 (16 KiB format buffer, then a virtual logger dispatch) fails and stays game code. Controls: outbound targets are the shared allocator 00210EC0, memset/free thunks, CRT config imports and the game-side entry/init bodies the CRT startup invokes; inbound callers span the whole image - CRT leaf utilities are universal; no member is admitted on position alone. NOT covered: 008098D4 the shared allocator adapter (mkvparser members and game code call it - no runtime-exclusive witness), the post-thunk strays 00861EAE-008620E0 including the FFXII-authored exit stub 008620C0, the 23 A-measured bodies inside the block Two members left the family on the 2026-09-17 re-sweep, since measured as A: 0080A270 and 0080B8A0."
   - "JsonBox JSON library | C | members/jsonbox.tsv | 54 | JsonBox (anhero/JsonBox), the JSON Value/Object/parser/serializer object linked for the game's JSON consumers, statically linked, not FFXII code: census entries in the two link runs 001FE0E0 up to 00202B10 (exclusive) and 002161C0 up to 00216540 (exclusive) joined to the object by a call or lea edge, with every external caller in the 001Cxxxx JSON-client band or a declared/EH/static-life convention (members/select_jsonbox.py). Evidence: RTTI names JsonBox::OutputFilter<JsonBox::VSolidusEscaper / VIndentCanceller / VIndenter> whose vtables at 00905070 / 009050F0 / 00905170 are basic_streambuf-derived and carry JsonBox-specific bodies only at slot 0 (deleting destructors 001FF930/001FF870/001FF8D0) and slot 3 (the write overrides 002016F0/00201690/002016C0) - slot 6 is 00660570, ICF-folded across hundreds of Phyre descriptor vtables, and is NOT a member - plus the upstream Value.cpp error-literal pool 00904FE8-00905038 ('Expected '\"', got '', 'Expected a digit, '.', 'e' or 'E', got '') referenced only by members 002008F0/00201890/00201C40/00201EB0, and nine bodies that lea the vtables. Controls: 26 distinct inbound client callers, all in 001Cxxxx (Presentation/ItemsEquipment JSON consumers), plus four convention callers (declared EH wrappers 001FE990/001FEA00, static-lifetime bodies 008A6E90/008A6F10); excluded inside the runs: declared bodies 001FE990/001FEA00/002164D0 and seven bodies joined by nothing; positive rejections 002164D0 (PhyreCore-declared) and 00660570 (ICF-folded). Edges: 001FE080 below is A-measured Presentation.EffectFont, 00202B10 above is foreign SIMD called from outside; 00216160 below the helper island is A-measured, 00216540 above is declared PhyreCore. Boundary: the member bodies; the 001Cxxxx client bodies, the declared PhyreCore filter-policy helpers and the shared basic_streambuf slots are NOT covered. 2026-09-30 (SWE2-EC7, DD re-status A-drift, record _index/candidates/ec7-dd-adrift-pairing-0930): 2 member(s) left the family, since measured as A (A beats a declaration) after OPUS re-statused the EASTL strings page (8c8406bfd) and the CL2 menu colour tables page (9bda44687) DOCUMENTED; exact A removal. select_jsonbox.py did not re-run then (it excluded rows named 'JsonBox' rather than this row's name, and treated the two departed bodies, which call members from inside the runs, as foreign callers); repaired later the same day under FABLE's accounting-state ruling (record _index/candidates/ec7-accounting-predicate-audit-0930): the row name is matched and A status no longer feeds its predicate, and its re-run on a clean HEAD export reproduces this file exactly; addresses and causing pages in the record. 2026-10-01 (OPUS for SWE2-EC7, A-drift paired with owner re-status batch 19, record _index/candidates/opus-dd-restatus-19-1001): 1 member(s) left the family, since measured as A (A beats a declaration) after OPUS re-statused the @FTR node table page DOCUMENTED (owner batch 19); exact A removal in the same publish (select_jsonbox.py does not re-run at HEAD, as EC7 recorded); addresses and causing pages in the record."
-  - "Dear ImGui context object | C | members/imgui.tsv | 9 | Dear ImGui (ocornut), a minimal dormant context object shipped in the retail build, not FFXII code: census entries in the four runs 00791D80 up to 00792350, 00795F10 up to 00796180, 00796E70 up to 007973D0 and 00798D70 up to 00798E90 joined to the object by a call or lea edge, called by nothing outside declared static-init and atexit-teardown stubs (members/select_imgui.py). Evidence: 00791D80 is ImGuiIO::ImGuiIO() - memset 0xB88, IniFilename 'imgui.ini' (01CB3990) and LogFilename 'imgui_log.txt' (01CB39A0) stored at +0x10/+0x18, the upstream default constants (DeltaTime 1/60, IniSavingRate 5.0, MouseDoubleClickTime 0.3, MouseDoubleClickMaxDist 6.0) and the three default platform-callback bodies 00796E70/00798D70/00797360 stored at +0xA0/+0xA8/+0xC0. Controls: the only inbound callers are conventions - the A-measured static-object ctor 00791E70 and the declared atexit teardown 008B7D40 - so the object is dormant, no live caller; outbound targets are four CRT bodies; the foreign Input body 00796FC0 inside run 3 is the positive rejection; .data globals touched are the allocator table 01F40380, the context global 02EA54F0 and two more. Edges: 00791CD0/00792350 (Phyre.Reflection, Phyre.Framework), 00795DC0/00796180, 00796E30/007973D0, 00798AC0/00798E90 - all independently non-ImGui. Boundary: the member bodies; the Phyre wrapper PImGuiDynamicMesh (vtable 01CB3950), the static-init/teardown machinery and the shared globals are NOT covered. 2026-10-01 (OPUS for SWE2-EC7, A-drift round 5, record _index/candidates/opus-adrift-round5-1001): 1 member(s) left the family, since measured as A (A beats a declaration) after OPUS re-statused the third-party middleware inventory (6d9fb5a1f) DOCUMENTED; exact A removal. select_imgui.py does not re-run at HEAD: it asserts the departed context-object body is a member, so its assertion has to admit an A body before the selector can reproduce this file - recorded as follow-up work; addresses and causing pages in the record."
+  - "Dear ImGui context object | C | members/imgui.tsv | 9 | Dear ImGui (ocornut), a minimal dormant context object shipped in the retail build, not FFXII code: census entries in the four runs 00791D80 up to 00792350, 00795F10 up to 00796180, 00796E70 up to 007973D0 and 00798D70 up to 00798E90 joined to the object by a call or lea edge, called by nothing outside declared static-init and atexit-teardown stubs (members/select_imgui.py). Evidence: 00791D80 is ImGuiIO::ImGuiIO() - memset 0xB88, IniFilename 'imgui.ini' (01CB3990) and LogFilename 'imgui_log.txt' (01CB39A0) stored at +0x10/+0x18, the upstream default constants (DeltaTime 1/60, IniSavingRate 5.0, MouseDoubleClickTime 0.3, MouseDoubleClickMaxDist 6.0) and the three default platform-callback bodies 00796E70/00798D70/00797360 stored at +0xA0/+0xA8/+0xC0. Controls: the only inbound callers are conventions - the A-measured static-object ctor 00791E70 and the declared atexit teardown 008B7D40 - so the object is dormant, no live caller; outbound targets are four CRT bodies; the foreign Input body 00796FC0 inside run 3 is the positive rejection; .data globals touched are the allocator table 01F40380, the context global 02EA54F0 and two more. Edges: 00791CD0/00792350 (Phyre.Reflection, Phyre.Framework), 00795DC0/00796180, 00796E30/007973D0, 00798AC0/00798E90 - all independently non-ImGui. Boundary: the member bodies; the Phyre wrapper PImGuiDynamicMesh (vtable 01CB3950), the static-init/teardown machinery and the shared globals are NOT covered. 2026-10-01 (OPUS for SWE2-EC7, A-drift round 5, record _index/candidates/opus-adrift-round5-1001): 1 member(s) left the family, since measured as A (A beats a declaration) after OPUS re-statused the third-party middleware inventory (6d9fb5a1f) DOCUMENTED; exact A removal. select_imgui.py does not re-run at HEAD: it asserts the departed context-object body is a member, so its assertion has to admit an A body before the selector can reproduce this file - recorded as follow-up work; addresses and causing pages in the record." # <- corrected 2026-10-02, OPUS - the context is the static object 02EA58C0 (00169620+0x4 passes it to the ctor 00791E70; 01F40380 holds its address), not 02EA54F0, which is the object whose address 00791D80+0x3A stores at IO +0x78
 ---
 
 # Third-party middleware inventory
@@ -48,7 +48,7 @@ function_families:
 > SWE2-STRUCT for OPUS: §2's corrected totals)* — including a **commercial post-effect middleware that checks a licence expiry
 > date every time the game starts**.
 
-> **REOPENED 2026-09-02 — this document's census had a scope defect.** It counted the
+> **~~REOPENED 2026-09-02 — this document's census had a scope defect.~~** *(answered: resolved - the front matter's `status: DOCUMENTED` and §9, both reopenings resolved 2026-10-01; 2026-10-02, OPUS)* The 2026-09-02 census had a scope defect. It counted the
 > `CodeDomain.ThirdParty.*` tag family and reported the result as the inventory of third-party code.
 > **111 further functions carry bare-name library tags** (`EASTL.*` 72, `Lua.*` 21, `Bullet.*` 18)
 > with no `ThirdParty` token at all, so the census could not see them — and **EASTL, a twelfth
@@ -263,7 +263,7 @@ look `007FD880`, free_info `007FD780`, free_look `007FD7B0`, inverse `007FDC60`)
 `007FCCB0` and differ only in inverse (`007FD190` / `007FD200` / `007FD270`) — exactly `res0` / `res1` / `res2`;
 the floor bundles start at `01F41E60` and `01F41E98`. **The conclusion stands** — Tremor is the wired-in
 decoder, reached from the SEAD stream vtables `01CB9130` / `01CB90D8` / `01CB92B8` / `01CB92D8` /
-`01CB92C0`, which are SEAD; libvorbis is unreached — only the attribution of the path's lower half is
+`01CB92C0`, which are SEAD; ~~libvorbis is unreached~~ libvorbis is reached from the movie player *(corrected 2026-10-02, OPUS: `001B7F30+0xF9` calls `0067A480`, `0067A480+0x349` calls `00679A50`, and `00679A50+0x1F`..`+0x8A` call `00880AF0`, `00880BF0` and `008800C0`)* — only the attribution of the path's lower half is
 corrected. ~~**Not yet declared:** Tremor / `vorbisfile` and the CRI HCA decoder, whose exact object
 boundaries are still open;~~ *Both declared the same day, next section;* `bitwise.c` (`oggpack_*`, e.g. `0017CAE0`) is not in this row.
 
@@ -274,7 +274,7 @@ The two objects §libogg left open now have exact boundaries (EC-7 letter C, fro
 `function_families`; both lists regenerate from `18-Audio/members/select_audio_libraries.py`, which
 asserts every fingerprint below).
 
-**Tremor, 106 members — `007F41A0` up to `007F6FB0` (exclusive) (`vorbisfile.c`) and `007F7680` up to `007FFBC0` (exclusive) (the decoder).**
+**Tremor, ~~106~~ 107 members *(corrected 2026-10-02, OPUS: the two ranges hold 107 listed entries, 26 and 81; the front matter's eight removals reach its 99 from 107)* — `007F41A0` up to `007F6FB0` (exclusive) (`vorbisfile.c`) and `007F7680` up to `007FFBC0` (exclusive) (the decoder).**
 
 | evidence | where |
 |---|---|
@@ -331,8 +331,8 @@ left out because nothing but its position says what it is.
 | `vorbis_book_encode`, smallft's factor-table initialiser — this copy carries the encoder side too | `00884100`, `0088D500` |
 
 **Clients.** Every direct caller from outside the object is one of three `Boundary.Audio` wrappers,
-`00679600`, `00679A50`, `00679F40`; CF-2's reachability (the root `00679A40` is called by nothing) is
-unchanged. **Upper edge, stated plainly:** the closure test does *not* decide it — the CRT cosine is
+`00679600`, `00679A50`, `00679F40`; ~~CF-2's reachability (the root `00679A40` is called by nothing) is~~
+~~unchanged.~~ CF-2's reachability does not hold: `00679A40` has no caller but the movie player takes its address (`0067A480+0x443`), and calls `00679A50` (`0067A480+0x349`) *(corrected 2026-10-02, OPUS: read at the image)*. **Upper edge, stated plainly:** the closure test does *not* decide it — the CRT cosine is
 called only from libvorbis, so it would pass; that edge rests on the forwarder-and-cosine bodies being
 the MSVC math runtime.
 
@@ -601,7 +601,7 @@ Phyre-side wrapper `PImGuiInternal::PImGuiDynamicMesh` (vtable `01CB3950`) and t
 
 ### Where the two "post-processing" systems sit
 
-The binary contains **three** distinct post-processing layers, which is easy to conflate:
+The binary contains ~~**three** distinct post-processing layers~~ **two** post-processing packages, Phyre's own and Yebis/PPFX, whose two tags below are one product *(corrected 2026-10-02, OPUS: `006CBD20+0x41` hands the `YEBIS_D3D11` licence text `00D86C00` to the PPFX library and `006CBD20+0xEA` reaches its verifier `006DFF40`, whose diagnostics are `ppfx.cpp`'s; X-7 in §7)*, which is easy to conflate:
 
 | Layer | Functions | Nature |
 |---|---:|---|
@@ -616,7 +616,7 @@ The binary contains **three** distinct post-processing layers, which is easy to 
 | `.?AVYebisPfxMemoryAllocatorD3D11@Yebis@@` | YEBIS D3D11 allocator RTTI | ✅ string |
 | `.?AVPfxShimD3D11@Yebis@@` | YEBIS D3D11 shim RTTI | ✅ string |
 | `008119F0` | `lua_type` — proven Lua 5.2 | ✅ read |
-| `00684D10` / `00686280` | `lua_pcall` call sites | not read |
+| `00684D10` / `00686280` | ~~`lua_pcall` call sites~~ the Phyre script callers, function entries | ~~not read~~ read *(answered: see the pointer below this table; 2026-10-02, OPUS)* |
 | — | Bullet `btSequentialImpulseConstraintSolver`, `btHashedOverlappingPairCache`, `btTriangleRaycastCallback` | GFZ-tagged |
 | — | libvpx `Vp8FilterBlock1d16V6Ssse3` (SSSE3 path) | GFZ-tagged |
 | — | `Zlib_1_2_11.InflateInit2` | GFZ-tagged |
@@ -637,9 +637,9 @@ YEBIS feature licence record   (from the format string)
   BeginDay     int         0
   EndYear      int         0
   EndMonth     int         0
-  (EndDay presumably follows; the string is truncated in the extraction)
+  (EndDay presumably follows; the string is truncated in the extraction)   <- corrected 2026-10-02, OPUS - answered: EndDay is the sixth field: the shipped text at 00D86C00 reads EndMonth = 0, EndDay = 0; the pointer below
 
-Licence gate (as described by the strings, not read from a body)
+Licence gate (as described by the strings, not read from a body)   <- corrected 2026-10-02, OPUS - read from 0071D9E0: six zero fields skip the test (0071D9E0+0x714..+0x73A); a signed / plain-text mismatch sets status 1 (0071D9E0+0x829); otherwise status 2 when now is before begin 00:00:00 or after end 23:59:59 (0071D9E0+0x815..+0x81F)
   if (today > expiry)  ->  "The YEBIS library passed over the expiration date : %s"
                        ->  "[YEBIS]Yebis Enable Failed!!!"
 ```
@@ -662,7 +662,7 @@ startup
 render frame
   -> Phyre.PostProcessing (72)   engine-native effects
   -> PPFX (348)                  framework effects
-  -> YEBIS (3+)                  DOF / lens, "YEBIS DOF Info"
+  -> YEBIS (3+)                  DOF / lens, "YEBIS DOF Info"   <- corrected 2026-10-02, OPUS - not a third layer: PPFX is Yebis's core (X-7); 006DFF40 verifies the YEBIS_D3D11 licence
 
 audio  -> libvorbis / Tremor
 video  -> libvpx VP8 1.6.0
@@ -685,7 +685,7 @@ third-party *mod loader* present in a modded install, not part of the shipping g
 - **YEBIS owns depth of field and lens effects.** Changing DOF means engaging YEBIS parameters, not
   a Phyre shader.
 - **`EnableYebis` is a named toggle** — it appears in the same string table as the JSON-backed
-  render parameters, so it is plausibly a config key. Not proven; **X-3**.
+  render parameters~~, so it is plausibly a config key. Not proven~~ *(answered: it is a JSON config key - the render-settings loader looks it up by name at its `+0x627`, and the global tuning-settings loader at its `+0x9E2`, both through `001FF740`, the JsonBox lookup, and reads it as an integer, 1 enabling; 2026-10-02, OPUS)*; **X-3**.
 - **zlib 1.2.11 is linked**, which makes it the first candidate for the `SAFH` save body — but no
   DEFLATE stream was found in a save file, so linkage is *not* proof (see the save document, V-9). *(2026-09-13: it is
   the codec — the stream is RC4-encrypted after `compress2` level 9, `0087AF40`; decrypting first exposes it. V-9 answered.)*
@@ -719,7 +719,7 @@ third-party *mod loader* present in a modded install, not part of the shipping g
 
       The shipped record is all zeros (`00D86C51`), so the window is never evaluated. The verifier's outcome for this
       build is decided by step 1, the signature and field match, which this reading does not re-derive.
-- [x] Whether `EnableYebis` is a JSON config key or a compile-time switch. **X-3.**
+- [x] Whether `EnableYebis` is a JSON config key or a compile-time switch. **X-3.** *(answered: a JSON config key, read by name in the render-settings loader (its `+0x627`) and the global tuning-settings loader (its `+0x9E2`); §6; 2026-10-02, OPUS)*
 - [x] **UQ-314.** Whether the Dear ImGui debug menu can be re-enabled at runtime. **X-4 — high modding value.**
       *Narrowed 2026-09-12 (FABLE) — the gates are runtime data, not a compile-out; the ImGui
       context is created before `main`.* **(1) ImGui is initialised in the shipped build:**
@@ -753,7 +753,7 @@ third-party *mod loader* present in a modded install, not part of the shipping g
   by nothing.~~** *(Corrected 2026-10-01 (SWE2-STRUCT for OPUS), after register `G-23` (FABLE, 2026-09-16):
   libvorbis is reached, from the movie player, see the end of this item.)* Reachability was run on the raw `E8`/`E9` index (function-list-independent), the
   gap-code operand index and a whole-image pointer scan. **Tremor:** its four bodies are called only
-  from the driver's own decoder core (`007FDC60`, `007FE530`, `007FF1C0`), and that core is the
+  from ~~the driver's own decoder core~~ Tremor's own decode core *(corrected 2026-10-02, OPUS: `007FDC60` is the inverse slot of the mapping0 bundle `01F41F40` that Tremor's registry `01F41E58` points at, and the takers `007F8220`, `007F8600`, `007F8FD0` are Tremor bodies too; the 2026-09-12 correction in the libogg section)* (`007FDC60`, `007FE530`, `007FF1C0`), and that core is the
   13-entry function table at `01F41F00`–`01F41F60` (with two more entries at `01F41ED8`) whose base
   `01F41E58` three driver functions take (`007F8220` at `007F83C4`, `007F8600` at `007F86AB`,
   `007F8FD0` at `007F9156`) — *and **two MORE index the same table** without ever taking its base,
@@ -761,14 +761,14 @@ third-party *mod loader* present in a modded install, not part of the shipping g
   (`mov rax, …`), where `r12` holds the **image base** `00120000`, so `0x00120000 + 0x1E21E58` is
   `01F41E58`. **An address scan cannot see these** — the table's address is never materialised — which
   is the blind spot measured at `UQ-382`; the list of takers was short by two for that reason and not
-  through any error in the scan that produced it.* The upward closure from those three is 62 functions, all inside the
-  sound driver, rooted at six entry points of which five are `.rdata` vtable slots of the driver's
+  through any error in the scan that produced it.* The upward closure from those three is 62 functions, ~~all inside the~~
+  ~~sound driver~~ whose lower part is Tremor, linked beside the driver *(corrected 2026-10-02, OPUS: `007F7FF0` compares the `vorbis` signature `01CEBB50`, and Tremor's registry is `01F41E58`)*, rooted at six entry points of which five are `.rdata` vtable slots of the driver's
   stream objects (`007E9340` → `01CB9130`, `007E96A0` → `01CB90D8`, `007EA37C` → `01CB92B8`, `007EA388`
   → `01CB92D8`, `007ED4C0` → `01CB92C0`). **libvorbis:** nine of its eleven functions have **no caller
-  in any form** — no `E8`/`E9` site, no gap-code reference, and their three vtables at `01CEB0A8`–
-  `01CEB178` are referenced only by two of the eleven themselves (`008923E0`, `00893860`, through
-  `01CEB190`); the other two (`00880DF0` ← `00679600` ← `00679A40`) end at a root that no site calls
-  and no pointer slot holds. So the streaming path (the driver's stream vtables) reaches Tremor,
+  in any form** — no `E8`/`E9` site, no gap-code reference, and ~~their three vtables at `01CEB0A8`–~~
+  ~~`01CEB178` are referenced only by two of the eleven themselves (`008923E0`, `00893860`, through~~
+  ~~`01CEB190`)~~ the registry there is codec bundles, not vtables, held by the `.rdata` pointer cells `01CDCF68` and `01CDD0F0`–`01CDD118`, and `01CEB190` after it is a float table that `008923E0` and `00893860` read *(corrected 2026-10-02, OPUS: read at the image; the residue bundles `01CEB0D0` / `01CEB110` / `01CEB150` of the libvorbis declaration)*; the other two (`00880DF0` ← `00679600` ← `00679A40`) end at a root that no site calls
+  ~~and no pointer slot holds~~ but whose address the movie player takes *(corrected 2026-10-02, OPUS: `0067A480+0x443` `lea`s `00679A40`)*. So the streaming path (the driver's stream vtables) reaches Tremor,
   ~~and libvorbis is dead weight carried by the link — consistent with the console heritage the
   section reads.~~ Which driver object owns which vtable is the residue. **X-5**, tracked as **CF-2**.
   *Corrected 2026-10-01 (SWE2-STRUCT for OPUS): libvorbis is not dead weight.*
@@ -806,7 +806,7 @@ third-party *mod loader* present in a modded install, not part of the shipping g
 - [x] ~~Whether PPFX is Sony's or another vendor's.~~ **X-7 ANSWERED 2026-09-13 (FABLE): another vendor's — PPFX is the core of Silicon Studio's Yebis.** `ppfx.cpp`'s licence checks and its string pool (`YEBIS_D3D11`, the YEBIS expiry messages, and `TjmjdpoTuvejp` = `SiliconStudio` shifted by one, unreferenced), `Yebis::YebisPfxMemoryAllocatorD3D11` sharing `PPFX::CPfxMemoryAllocator`'s body, and the `yeblic-ppfxlic` build workspace; the 1,660-function object is declared on [the Yebis/PPFX source map §11](PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md).
 - [x] Exact versions for Bullet, libvorbis, libxml2, JsonBox, Dear ImGui and YEBIS. **X-8.**
       ***CLOSED 2026-09-27: five versions answered, and ~~NO ADMISSIBLE SOURCE~~ OUT OF EVIDENCE BOUNDARY (relabelled the same day; FRONTIER's batch-K Extension 2026-09-27b) for YEBIS's product version, REVIEWED AND SIGNED by OPUS (lost build, the BS-5 test; FABLE, Claude Opus 5.5, author).** Bullet 2.77, libvorbis 1.3.5, Dear ImGui v1.35, JsonBox 0.6.2 ([record](../_index/candidates/x8-jsonbox-062/README.md)), libxml2 not linked. YEBIS: the image carries the build line `yeblic-ppfxlic-bl2015` and the date Feb 18 2016 but no version in either string width, its resources or any shipped module; the vendor's internal release is unpublished and its only public release list starts after the build. [Package](../_index/candidates/nas-package-6-2026-09-27/README.md), [review](../_index/candidates/nas6-review-opus/README.md).*
-      *Narrowed 2026-09-18 (FABLE): no version literal exists for any of them, so the exact versions cannot come from strings.* A case-insensitive sweep of every printable run in the image for `bullet`, `vorbis`, `xiph`, `ogg`, `libxml`, `jsonbox`, `imgui` and `yebis` finds: **Bullet** — only class and RTTI names, among them the serializer structs `btCollisionObjectFloatData` / `btCollisionShapeData` (~~`01BAC180`, `01BAD1D8`~~ `01CCD380`, `01CCE3D8` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)*), which exist only from the 2.76 serializer onward, so **≥ 2.76** is the bound; **libvorbis / Tremor** — no `Xiph.Org libVorbis I` banner and no `vorbis_` / `ogg_` symbol string at all (the only `vorbis` runs are the SEAD layer's own error strings, ~~`01B973D0`~~ `01CB85D0` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)* onward), so the codec was linked without its info banner; the sibling **libogg** is already dated **1.3** by its `framing.c` layout in the members table; **libxml2** — withdrawn 2026-09-12 (CF-1), and the sweep confirms no XML-parser string exists, so its version is moot; **JsonBox** — RTTI only (`OutputFilter<SolidusEscaper>`, `<IndentCanceller>`, `<Indenter>`, ~~`01E26F40`~~ `01F48940` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)*), a library that ships no version string; **Dear ImGui** — only `imgui.ini`, `imgui_log.txt` and Phyre's `PImGuiDynamicMesh`, no `IMGUI_VERSION` literal within `0x400` bytes of any of them; **YEBIS** — the licence string `FeatureId = YEBIS_D3D11, BeginYear = 0 …` and its expiration check (~~`00C65A00`, `00C6E490`~~ `00D86C00`, `00D8F690` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)*), which names the D3D11 build and not a version. What would settle a version is a structural fingerprint per library (a function-layout match against a known release), which no page has run.
+      *Narrowed 2026-09-18 (FABLE): no version literal exists for any of them, so the exact versions cannot come from strings.* A case-insensitive sweep of every printable run in the image for `bullet`, `vorbis`, `xiph`, `ogg`, `libxml`, `jsonbox`, `imgui` and `yebis` finds: **Bullet** — only class and RTTI names, among them the serializer structs `btCollisionObjectFloatData` / `btCollisionShapeData` (~~`01BAC180`, `01BAD1D8`~~ ~~`01CCD380`, `01CCE3D8`~~ `01CCE3D8`, `01CCD380` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)* *(corrected 2026-10-02, OPUS: in the names' order - `btCollisionObjectFloatData` is at `01CCE3D8`, `btCollisionShapeData` at `01CCD380`)*), which exist only from the 2.76 serializer onward, so **≥ 2.76** is the bound; **libvorbis / Tremor** — no `Xiph.Org libVorbis I` banner and no `vorbis_` / `ogg_` symbol string at all (the only `vorbis` runs are the SEAD layer's own error strings, ~~`01B973D0`~~ `01CB85D0` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)* onward), so the codec was linked without its info banner; the sibling **libogg** is already dated **1.3** by its `framing.c` layout in the members table; **libxml2** — withdrawn 2026-09-12 (CF-1), and the sweep confirms no XML-parser string exists, so its version is moot; **JsonBox** — RTTI only (`OutputFilter<SolidusEscaper>`, `<IndentCanceller>`, `<Indenter>`, ~~`01E26F40`~~ `01F48940` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)*), a library that ships no version string; **Dear ImGui** — only `imgui.ini`, `imgui_log.txt` and Phyre's `PImGuiDynamicMesh`, no `IMGUI_VERSION` literal within `0x400` bytes of any of them; **YEBIS** — the licence string `FeatureId = YEBIS_D3D11, BeginYear = 0 …` and its expiration check (~~`00C65A00`, `00C6E490`~~ `00D86C00`, `00D8F690` *(corrected 2026-09-27, FABLE, Claude Opus 5.5: file offsets, not addresses)*), which names the D3D11 build and not a version. What would settle a version is a structural fingerprint per library (a function-layout match against a known release), which no page has run.
       **PARTLY ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static against upstream history - the fingerprints are run.** **Bullet 2.77** (`BN-1`, corroborated by the ray-test adder's hit-fraction write-back, the cylinder still using the box inertia body, and the 0x30-byte mesh part with no `PHY_UCHAR` branch). **libvorbis 1.3.5**: the single-entry codebook branch at `00882F50` arrived in 1.3.5, and `_book_maptype1_quantvals` `00882850` has none of 1.3.6's divide guards. **Dear ImGui v1.35**: the context object is 0x3AC0 bytes with InputTextState / Tooltip / LogAutoExpandMaxDepth / FramerateSecPerFrame at `+0xFA8` / `+0x34B0` / `+0x38D4` / `+0x38D8` (`00791E70`), a layout upstream has only from 2015-03-08 to 03-13, and v1.35 is the one tag in that window. **JsonBox: the 0.6 line**, as an EASTL port - its `OutputFilter` vtables have 15 slots, where 0.5's `setbuf(char*, int)` would add a 16th; ~~which 0.6.x tag it was forked from cannot be read, because the port replaced the only containers that differ~~ *(corrected 2026-09-27, FABLE, Claude Opus 5.5: it is **0.6.2** - `String32` changed from `basic_string<int32_t>` to `vector<int32_t>` in 0.6.2, and the image's backslash-u append in `00201EB0` is a vector push with no terminator; later master changes only `getToString`, which is not linked. [Record](../_index/candidates/x8-jsonbox-062/README.md))*. **libxml2**: not linked (`X-6`), so no version. **YEBIS**: the image carries a `Feb 18 2016` build stamp and the build line `yeblic-ppfxlic-bl2015`, but no product version, and the vendor publishes no history - class 3, like `MH-1`. Also: the CRI HCA **decoder** banner is `Ver.2.05.00` (`01CBA5D1`), beside the mixer's 2.00.00. [Record and control](../_index/candidates/x8-library-versions/README.md) (FAILS 0).
 
 ## 8. Evidence
@@ -822,7 +822,7 @@ third-party *mod loader* present in a modded install, not part of the shipping g
 | Only the VP8 **decoder** is linked | that banner says `Decoder`; no encoder banner exists in the image | 2 |
 | zlib is 1.2.11 | **the library's own banners**: `deflate 1.2.11 Copyright 1995-2017 Jean-loup Gailly and Mark Adler` and `inflate 1.2.11 Copyright 1995-2017 Mark Adler` | 2 |
 | Per-library function counts, `ThirdParty.*` family | full `CodeDomain.ThirdParty.*` census, grouped by library with **no truncation** (2026-09-02). **Exact for that family — but the family is not the whole of third-party code** | 3 |
-| Bare-name families: EASTL 72, Lua +21, Bullet +18 | `CodeDomain` census over all 38,161 rows of a freshly regenerated `DumpFullCoverageGraph.java` at GN, selecting rows whose tag contains no `ThirdParty` token; 0 duplicate entry addresses | 3 |
+| Bare-name families: EASTL ~~72~~ 97 *(answered: §2's corrected count, GN162; 2026-10-02, OPUS)*, Lua +21, Bullet +18 | `CodeDomain` census over all 38,161 rows of a freshly regenerated `DumpFullCoverageGraph.java` at GN, selecting rows whose tag contains no `ThirdParty` token; 0 duplicate entry addresses | 3 |
 | Tremor is present | four GFZ-tagged MDCT/window functions under `Audio.Tremor` | 3 |
 | Dear ImGui ships in retail | GFZ tag + `JsonData/debugMenuSettings.json` string | 3 / 2 |
 
@@ -842,7 +842,7 @@ dates take an explicit branch past the date test, so the zeros are the runtime r
 
 - [`../22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md`](../22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md) — the 90 Lua functions in detail
 - [`../17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md`](../17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md) — the parameters YEBIS and PPFX consume
-- [`../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md`](../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md) — where zlib is a candidate but unproven
+- [`../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md`](../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md) — where zlib ~~is a candidate but unproven~~ is the save codec *(answered: see §6, V-9 answered 2026-09-13 - `compress2` level 9, then RC4; 2026-10-02, OPUS)*
 
 ## 10. Falsification pass 2026-09-02
 
@@ -906,7 +906,7 @@ disagreement computed from a truncated list is not evidence of anything. The cen
 ungrouped and complete before any correction was made here.
 
 **Not attacked, still tier 3 or 4:** the claim of "at least eleven libraries" rests on the same tag
-census; the YEBIS licence-expiry behaviour rests on strings, not on a read of the checking function.
+census; ~~the YEBIS licence-expiry behaviour rests on strings, not on a read of the checking function.~~ *(answered: see X-2 in §7 - the verifier `0071D9E0` was read 2026-09-14; 2026-10-02, OPUS)*
 
 ---
 
@@ -997,8 +997,8 @@ which is the entire point of knowing a version.
 
 **Honest negative for the rest.** Bullet, JsonBox, Dear ImGui and YEBIS carry **no version banner
 anywhere in the image**. That is a fact about the build, not a gap in the search: every printable
-run of ≥6 bytes was scanned and matched against each library's markers. **X-8 stays open for those
-four, and it may not be answerable from this binary at all.** *(2026-09-27, FABLE, Claude Opus 5.5: the banner negative stands; the versions were then read structurally instead - Bullet 2.77, Dear ImGui v1.35, JsonBox the 0.6 line, with YEBIS's the one not recoverable. See the X-8 box in §7.)*
+run of ≥6 bytes was scanned and matched against each library's markers. ~~**X-8 stays open for those~~
+~~four, and it may not be answerable from this binary at all.**~~ *(answered: X-8 closed 2026-09-27 - see the X-8 box in §7; 2026-10-02, OPUS)* *(2026-09-27, FABLE, Claude Opus 5.5: the banner negative stands; the versions were then read structurally instead - Bullet 2.77, Dear ImGui v1.35, JsonBox the 0.6 line, with YEBIS's the one not recoverable. See the X-8 box in §7.)*
 
 ### X-5 — both Vorbis decoders really do ship, and the bodies prove it
 
@@ -1020,8 +1020,8 @@ any kind. They also occupy a different link region (`007Fxxxx`) from the libvorb
 (`0088xxxx`–`0089xxxx`).
 
 > **The tag split survived a test built from a property it does not encode.** Both decoders ship,
-> and which one *runs* is still open — that needs a call-graph reachability read from the audio
-> streaming path, not a body property.
+> ~~and which one *runs* is still open — that needs a call-graph reachability read from the audio~~
+> ~~streaming path, not a body property.~~ *(answered: see the pointer below - Tremor runs the sound driver's streams, libvorbis the movie player's audio; 2026-10-02, OPUS)*
 >
 > *(Pointer 2026-10-01 (SWE2-STRUCT for OPUS): answered since. Tremor runs the sound driver's streams (`CF-2`, §7), and
 > libvorbis is the movie player's audio path (register `G-23`).)*
@@ -1059,7 +1059,7 @@ The four functions tagged `ThirdParty.XML.Libxml2` were read:
 > neighbours; the inventory row is withdrawn, and X-6's libxml2 half and X-8's libxml2 version have
 > no subject.
 >
-> **Reopened as `CF-1`.** The honest position is that **four functions were labelled libxml2 and the
+> ~~**Reopened as `CF-1`.**~~ *(answered: `CF-1` was closed 2026-09-12 in the box above - not libxml2, the row withdrawn; the reopening below is kept as written; 2026-10-02, OPUS)* The honest position is that **four functions were labelled libxml2 and the
 > evidence for the label has not been located.** They may be libxml2 with the strings stripped by
 > selective linking; they may be something else. **They are not confirmed, and this document listed
 > them as a shipped library.**
@@ -1099,8 +1099,8 @@ address of the space. That is a reproduction, not a new result.
 
 | library | version | the string that says so | at |
 |---|---|---|---|
-| **CRI HCA** | **Mixer 2.00.00, build 2015-07-31 16:45:20** | `HCA Mixer Ver.2.00.00 Build:Jul 31 2015 16:45:20` | `01CB7AC1` |
-| | | `right (c) 2009-2010 CRI Middleware Co., Ltd.` | `01CBA629` |
+| **CRI HCA** | ~~**Mixer 2.00.00, build 2015-07-31 16:45:20**~~ **decoder 2.05.00, build 2015-07-31 16:45:20** | ~~`HCA Mixer Ver.2.00.00 Build:Jul 31 2015 16:45:20`~~ `HCA Decoder (Float) Ver.2.05.00 Build:Jul 31 2015 16:45:20` *(corrected 2026-10-02, OPUS: that banner sits directly before the decoder's copyright string `01CBA610`, which the member `00121DB0` references; the Mixer banner lies in the sound driver's data that a 1,627-byte sound-driver body reads, `01CB7A30`–`01CB7AB0`)* | ~~`01CB7AC1`~~ `01CBA5D1` |
+| | | ~~`right (c) 2009-2010 CRI Middleware Co., Ltd.`~~ `Copyright (c) 2009-2010 CRI Middleware Co., Ltd.`, framed by newlines | ~~`01CBA629`~~ `01CBA610` *(corrected 2026-10-02, OPUS: `00121DB0+0x1C` `lea`s `01CBA610`; `01CBA629` is the string's `CRI Middleware Co., Ltd.` tail)* |
 
 **IDENTITY AND VERSION ARE DIFFERENT CLAIMS, and §X-8 answered only the second.** Its honest
 negative — *"Bullet, JsonBox, Dear ImGui and YEBIS carry no version banner anywhere in the image"* —
@@ -1222,8 +1222,8 @@ field writes plus three further `00861EC0` memsets — `0x24E0` at
 
 | member | role | interior |
 | --- | --- | --- |
-| `00791D80` (large) | context init — `memset` `0xB88` bytes via `00861EC0` (`00791D88`/`00791D91`), then loads the `"imgui.ini"` default filename (`00791D9E`) | [`00791D91`](../_index/ADDRESS-INDEX.md) |
-| `00792090` | member-object ctor at `+0xB90` (the `ImGuiIO`/settings block) | [`00792090`](../_index/ADDRESS-INDEX.md) |
+| `00791D80` (large) | ~~context init~~ `ImGuiIO`'s constructor, run on context `+8` *(corrected 2026-10-02, OPUS: `00791E70+0x11` calls it with `rcx` = context + 8)* — `memset` `0xB88` bytes via `00861EC0` (`00791D88`/`00791D91`), then loads the `"imgui.ini"` default filename (`00791D9E`) | [`00791D91`](../_index/ADDRESS-INDEX.md) |
+| `00792090` | member-object ctor at `+0xB90` (~~the `ImGuiIO`/settings block~~ the member after the `0xB88`-byte IO, not the IO *(corrected 2026-10-02, OPUS: `00791E70+0x1D` passes context + `0xB90`, where the IO built at `+8` ends)*) | [`00792090`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00861EC0`. The `0xB88` zero-fill plus
 `"imgui.ini"` identifies this as Dear ImGui's `ImGui::CreateContext`

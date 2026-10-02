@@ -439,3 +439,11 @@ run: a 0x38 block zeroes, `cx` (when not `0xFFFF`) and `edx` (when
 non-zero) seed `+0x40`/`+0x44`, and `0046AB10(0x25 : 0x24 by
 edx==1, &block)` fills it - both args false skips the call entirely.
 Interior anchor `0046A67B` (the `0046AB10` call).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-inventory-class-storage-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002FD420` | 267 B | selects the `0x58`-stride row at `01EEBCC0` by `cx >> 12` and returns 0 when its qword `+8` is null; otherwise takes bit `cx & 0xF` of word `(cx & 0xFFF) >> 4` of that array as the old bit, adds it to `edx` when `r8d` is 0 (uses `edx` alone otherwise), sets the bit and yields 1 when that value is positive or clears it and yields 0 when it is 0 or negative, writes the word back, calls `00325F40(cx, old bit, yield)` and, when `r8d` is 0 and bit 0 of the fifth (stack) argument is set, `0046A630(cx, edx)`; returns the yield | `002FD461`, `002FD494`, `002FD4E9`, `002FD4F6`, `002FD509` |

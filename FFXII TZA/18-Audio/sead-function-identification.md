@@ -1145,3 +1145,11 @@ newptr}` into the pair.
 Zero count leaves the
 pointer null. Interior anchor `005DE8F3` (the
 `0017D260` alloc).
+
+## Cross-subsystem neighbours - SWE2-DATA (pass-22 dispositions, 2026-10-02)
+
+- **Application - CLIENT (1 edge).** `00584740` is also called by bodies filed to application: `001A98B0` - shared machinery across the layer boundary, no shared ownership.
+- **Input - CLIENT and SERVICE (27 edges).** `00584740`, `0079A430`, `0079AE40` are also called by bodies filed to input: `0079A120`, `0079E3D0`, `007A2440` (+10 more); `0079F150`, `0079E3D0`, `00799860` reach bodies filed to input: `007998E0`, `00796FC0`, `0079A430` (+5 more) - shared machinery across the layer boundary, no shared ownership.
+- **Platform - CLIENT and SERVICE (5 edges).** `00584740`, `0065E5D0` are also called by bodies filed to platform: `00650D40`, `006253D0`; `0079F150` reaches bodies filed to platform: `005CC930`, `005CD0A0`, `006253D0` - shared machinery across the layer boundary, no shared ownership.
+- **Presentation - CLIENT (4 edges).** `005F03A0`, `00671690`, `00671B10` are also called by bodies filed to presentation/rendering: `001B72B0`, `005FD2A0` - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (11 edges).** `00584740`, `005CD6D0`, `005CC8C0` are also called by bodies filed to resource: `001DAAC0`, `001A11B0`, `001DAD60` (+3 more); `00792690` reaches bodies filed to resource: `00597970`, `00598100`, `0059BD80` (+1 more) - shared machinery across the layer boundary, no shared ownership.

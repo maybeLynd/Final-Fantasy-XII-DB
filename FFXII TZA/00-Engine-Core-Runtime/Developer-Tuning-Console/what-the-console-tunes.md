@@ -752,7 +752,7 @@ byte:
 | `001F0AD0`, `001C7940`, `001C3D50` | 154 / 30 / 19 | unchanged |
 
 **The console's own getter crosses layers the way every tuned-state accessor does** (Pass 22
-2026-09-14): `00265020` — the console-side fetch the arms share — is called from
+2026-09-14): `00265020` — ~~the console-side fetch the arms share~~ the actor world-position getter *(corrected 2026-10-02, OPUS: `00265020` is the actor world-position getter: it copies three dwords from `[actor+0xB8]` to its three out pointers, `00265020+0x1A`–`+0x2E`; the force-fight flag reader is `00253B90`, `[01E0C2B8] == 0`)* — is called from
 **combat-action** (`00307300`, `002F8060`, `00320E10`), **spawn** (`00234DA0`, `002350C0`,
 `00234AF0`), **gameplay** (`0031ADB0`, `00339630`), **rewards** (`002FB150`, `00312280`) and
 **combat-formula** (`00384F40`) — 11 caller edges — while `00792350` (the `01F7E350` base ctor)

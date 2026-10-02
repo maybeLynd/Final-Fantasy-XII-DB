@@ -444,7 +444,11 @@ negative. What a run's three-byte entries hold. Nothing executed.
 **Platform — SERVICE.** `005CD4F0`/`005CD820` — the critical-section enter/leave pair the measured `00220CE0` scoped-lock getter brackets — are also called by `0019CC50`, a Platform-domain body. The lock pair is shared CRT/runtime plumbing: the crossing is that Platform uses it, not that this page owns anything in Platform.
 
 **Save_Load_Settings — MECHANICAL (SWE2-EC7-160, 5 edges).** `00225580` is called by `005812B0`/`005817D0`/`00581930` and `0032E620` by `0058xxxx` — Save_Load_Settings bodies reaching this page's BGM helpers. Shared-helper fan-in, not a save relationship the music control file owns.
-
+- **ActorEntity - CLIENT and SERVICE (12 edges).** `0032E400`, `0032E620`, `0036C660` are also called by bodies filed to actor entity: `00330310`, `002628B0`, `0032FCA0` (+2 more); `0022A0B0` reaches bodies filed to actor entity: `002368D0` - shared machinery across the layer boundary, no shared ownership.
+- **RNG_Random_Selection - SERVICE (1 edge).** `0022A0B0` reaches bodies filed to random selection: `00379CF0` - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (124 edges).** `005CD4F0`, `005CD820`, `0032E620` are also called by bodies filed to resource: `003EADE0`, `0032E070`, `00384420` (+39 more); `0032E070`, `0022A0B0`, `00379D20` reach bodies filed to resource: `0032E400`, `0051ED10`, `0046DFE0` (+23 more) - shared machinery across the layer boundary, no shared ownership.
+- **World - CLIENT and SERVICE (6 edges).** `00314D40`, `0032E400`, `0032E620` are also called by bodies filed to world: `00378540`, `00266D10`; `0022A0B0` reaches bodies filed to world: `00266D10` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (24 edges).** `0036C660`, `0032E400`, `0036A190` are also called by bodies filed to world area: `00268750`, `00378030`, `003EA820` (+9 more); `003EAA70` reaches bodies filed to world area: `00265270` - shared machinery across the layer boundary, no shared ownership.
 ## The `002DF690` exclusive subtree — all 5 members bound (SWE2-FRONTIER, followup queue)
 
 `002DF690` — the `bgmstreamstop` close ~~this page's state 6 names~~ (§3.2; state 6 calls `002DF680` - *corrected 2026-10-01, OPUS*) — is a 5-byte thunk to

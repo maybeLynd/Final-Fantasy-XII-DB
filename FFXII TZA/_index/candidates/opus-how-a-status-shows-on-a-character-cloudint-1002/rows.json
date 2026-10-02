@@ -1,0 +1,45 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-status-shows-on-a-character.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "how-a-status-shows-on-a-character.json",
+ "rows": [
+  {
+   "fn": "001EF280",
+   "text": "calls a 182-byte helper (`rcx + 8`), stores the address `00902ED8` at qword `+0x0` of `rcx` and the dword `0x3F800000` at `+0xC8` and `+0xD0`, calls a 202-byte helper (`rcx`) and returns `rcx`",
+   "anchors": [
+    [
+     "001EF28D",
+     "call"
+    ],
+    [
+     "001EF299",
+     "mov"
+    ],
+    [
+     "001EF2A6",
+     "mov"
+    ],
+    [
+     "001EF2A9",
+     "mov"
+    ],
+    [
+     "001EF2B3",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001EF280",
+   "was": "calls `00184E60(rcx + 8)`, stores the address `00902ED8` at qword `+0x0` of `rcx` and the dword `0x3F800000` at `+0xC8` and `+0xD0`, calls `001F0A00(rcx)` and returns `rcx`",
+   "now": "calls a 182-byte helper (`rcx + 8`), stores the address `00902ED8` at qword `+0x0` of `rcx` and the dword `0x3F800000` at `+0xC8` and `+0xD0`, calls a 202-byte helper (`rcx`) and returns `rcx`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role (unowned callees at 001EF280+0xD, 001EF280+0x33)"
+  }
+ ]
+}

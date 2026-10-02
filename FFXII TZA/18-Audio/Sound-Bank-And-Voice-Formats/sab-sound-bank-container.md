@@ -522,3 +522,4 @@ Resource layer — `0016D6D0` by `0020B840`/`0020BFA0`/`006761F0` and
 `001FB5C0` (156 B) is the virtual-dispatch adapter `001FB470` runs: it computes `esi` from `[r8+0x20]` vs `[r9]` (and `r8 == rcx+8`/`[rsp+0x60]` lanes), invokes `[rcx+0x30]`'s `+0x10` method with `edx = 0x30`, copies the `r9` qword pair into `[rax+0x20]`, then calls `0016D840(r14, rdi, rbx+8, esi)`, bumps `[rbx+0x28]`, and stores `r14` to `[r15]` - the method-call plus shared-helper wrapper.
 
 Interior anchor `001FB635` (function `001FB5C0`).
+- **Platform - CLIENT (2 edges).** `0016D6D0` is also called by bodies filed to platform: `0019CC50`, `001B1960` - shared machinery across the layer boundary, no shared ownership.

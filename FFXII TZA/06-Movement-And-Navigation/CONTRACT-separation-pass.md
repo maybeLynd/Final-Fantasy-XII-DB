@@ -223,7 +223,7 @@ drawn.
 - Vertical extents that do not overlap refuse the pair after the cheap tests.
 - A pair whose separation is not negative returns without a push; the remembered bit is dropped.
 - The resolver returns 1 for a contact, 2, 3 or 4 when the callback ran without a mutual push, and
-  writes the raw separation to `out` when the caller asked for no push.
+  writes ~~the raw separation~~ A's share, the weight `w` from `00314E10`, to `out` when the caller asked for no push *(corrected 2026-10-02, OPUS: `0031523C` `call 00314E10` / `00315241`, `00315377` `movss [r15], xmm4`)*.
 
 ## 11. Observable behaviour
 
@@ -247,8 +247,8 @@ executes the visit walk's index mapping. The evidence class is native replay, no
 
 ## 14. Unresolved
 
-- What `00313F80`, the query-mode caller, uses the raw separation for.
-- The units and meaning of the weight masks `+0x110` / `+0x114`.
+- What `00313F80`, the query-mode caller, uses ~~the raw separation~~ the weight `w` *(corrected 2026-10-02, OPUS: `00315377` stores `w`, not a separation)* for.
+- ~~The units and meaning of the weight masks `+0x110` / `+0x114`.~~ *(answered: see [the pool page](the-movement-body-pool-and-the-separation-pass.md) UQ-104, 2026-09-14 / -18 — priority bits, vetoes and freezes, `+0x114` never written; 2026-10-02, OPUS)*
 - Whether the active list's order is stable across ticks — P-5 makes this matter, and it is not
   established here.
 

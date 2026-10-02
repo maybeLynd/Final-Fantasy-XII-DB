@@ -830,8 +830,13 @@ shared decode routine; the formula call is that layer's business.
 **Rewards_Progression_Economy — CLIENT (1 edge).** The same `002DF220` is called by
 `0030C650`, a Rewards-layer body - the same shared decode at one remove; nothing of the
 rewards call is owned here.
-
-
+- **CoreRuntimeScheduling - CLIENT and SERVICE (3 edges).** `001A9930`, `003603C0` are also called by bodies filed to core runtime scheduling: `0017D6E0`, `0022A770`; `003B99D0` reaches bodies filed to core runtime scheduling: `001EDDA0` - shared machinery across the layer boundary, no shared ownership.
+- **Gameplay - CLIENT (1 edge).** `00203170` is also called by bodies filed to gameplay: `00339630` - shared machinery across the layer boundary, no shared ownership.
+- **Movement - CLIENT and SERVICE (28 edges).** `00203170`, `00202C70`, `00230790` are also called by bodies filed to movement: `00230790`, `00338490`, `0022EF20` (+18 more); `002F5550`, `002330D0`, `002F4520` reach bodies filed to movement: `0026E5F0`, `00233050`, `0026E5D0` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+- **Presentation - CLIENT and SERVICE (376 edges).** `00398F90`, `002ED570`, `00398030` are also called by bodies filed to presentation/rendering: `0046CC70`, `003E4CB0`, `00417F40` (+268 more); `002F4520`, `002F5550`, `003E5B30` reach bodies filed to presentation/rendering: `002EDBD0`, `003E55F0`, `00180650` (+20 more) - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (36 edges).** `002ED570`, `00409F50` are also called by bodies filed to resource: `00409CA0`, `00409D60`, `00409F50` (+6 more); `00409FE0`, `00409CA0`, `00409D60` reach bodies filed to resource: `002ED570`, `0051FE30`, `003B37E0` (+12 more) - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT (6 edges).** `003A0E20`, `00203170`, `002DEF40` are also called by bodies filed to script VM / native bridge: `00356160`, `00346990`, `00357040` (+3 more) - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT (16 edges).** `00203170`, `00202C70`, `00225580` are also called by bodies filed to UI: `002D2600`, `002D28E0`, `003F26F0` (+8 more) - shared machinery across the layer boundary, no shared ownership.
 ## Interior citation — frontier hub `00421E20` (2026-09-18, SWE2-EC7)
 
 `00421E20` — 458 B, 21 callers (5 A-measured; `0046CC70` already interior-read above); the

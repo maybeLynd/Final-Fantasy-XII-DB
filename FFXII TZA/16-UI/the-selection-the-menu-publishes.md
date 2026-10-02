@@ -1,7 +1,7 @@
 ---
 system: The selection the menu publishes
 category: 16-UI
-status: DOCUMENTED — the three functions hold one object type and 0209BE80 is the per-frame update gate's singleton slot (SWE2-DATA); what the +0x2FE0 value names (SD-124) and what +0x2FF0 bit 0x4000 means (SD-125: the dispatcher's open window is kind 1, the top command list; FABLE, reviewed ACCEPT-WITH-NARROWING by SWE2-AUDIT-SEM, C1 and N1 applied) are answered; the dispatch jump table (0027E384, twenty command kinds) walked 2026-09-18 and 0027E530 identified as one of its five installed procedures (owner re-status 2026-10-01, OPUS; documented_rule READY)
+status: DOCUMENTED — the three functions hold one object type and 0209BE80 is the per-frame update gate's singleton slot (SWE2-DATA); what the +0x2FE0 value names (SD-124) and what +0x2FF0 bit 0x4000 means (SD-125: the dispatcher's open window is kind 1, the top command list; FABLE, reviewed ACCEPT-WITH-NARROWING by SWE2-AUDIT-SEM, C1 and N1 applied) are answered; the dispatch jump table (0027E384, twenty command kinds) walked 2026-09-18 and 0027E530 identified as one of its five installed procedures (owner re-status 2026-10-01, OPUS; documented_rule READY)   # <- corrected 2026-10-02, OPUS - six installed procedures, not five: 0027E050's lea sites name 00276BE0, 0027D240, 0027CE70, 0027D5C0, 0027E530 and 0027BC10
 owner_layer: PrimaryOwner:UI
 evidence_tier: 1
 verified_against:
@@ -271,3 +271,11 @@ controller drives the same widget helpers the menu uses — shared-widget fan-in
 | `003F3580` | 26 B | returns the first node on the chain linked through qword `+0x70` from `rcx` whose dword `+0x6C` equals `edx`, or 0 | `003F3585`, `003F358A`, `003F3593`, `003F3596` |
 | `003F3660` | 169 B | sets bit 0 of dword `+0x50`, stores `r8d` in dword `+0x48` and `rdx` in qword `+0x40`; calls `00271140(&v, r9, qword [rdx+0x30] + ((2*r8d sign-extended) << 37))` and stores v's floats `+8`, `+0xC`, `+0`, `+4` in floats `+0x20`, `+0x24`, `+0x28`, `+0x2C`; zeroes dword `+0x4C` and sets floats `+0x10`, `+0x14`, `+0x18` to 255.0, `+0x1C` to 127.0 and `+0x30` to 0.25 | `003F3675`, `003F3690`, `003F369B`, `003F36AC`, `003F36D3` |
 | `003F6370` | 592 B | when dwords `+0x810` and `+0x814` are non-zero and `003588B0` finds them, calls `002EA160(found, rcx + 0x10)` and `002EA0E0(found, rcx)`; combines the vectors at `+0` and `+0x10` with `00203080` and, when `002703F0` of the result is at least 1.0 (`01CEBBA8`), passes it through `00202DE0` and `00203030`, otherwise copies it to `022D9240` and `022D9260`, 1.0 to `022D925C` and three stack floats to `022D9250`-`022D9258`; after `00202B10` adds (2.0 minus floats `+0x820` and `+0x824`) times 0.75 plus 1.5 to its y (`01CEBC08`, `00901B3C`, `01CEBB70`); stores `00270F50(rcx + 0x240, ..., 3)` in dword `+0x7E0`, interpolates between the 16-byte entries `rcx + 0x240 + 16*(i-1)` and `+ 16*i` (i from (1.0 minus float `+0x838`) times the count minus one, each clamped) into `+0x1C0` with `00275490`, and adds 0.25 (`01CEBB68`) to float `+0x1C4` | `003F63B2`, `003F6400`, `003F648E`, `003F6512`, `003F6580` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-selection-the-menu-publishes-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00203030` | 77 B | multiplies each of the four floats at `rdx` `+0`..`+0xC` by the float third argument `xmm2`, stores the four products as one 16-byte block at `rcx`, then overwrites float `+0xC` of `rcx` with the unscaled float `+0xC` of `rdx` | `0020303A`, `00203050`, `0020306B`, `0020306E`, `00203073` |

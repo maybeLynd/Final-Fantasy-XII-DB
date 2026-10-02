@@ -1,0 +1,52 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "ebp2-container.json",
+ "rows": [
+  {
+   "fn": "00297640",
+   "text": "returns 0 for `edx` above 7 (unsigned); otherwise dispatches on `edx` through an 8-entry case table (decoded from the bytes): 0 returns 1; 1 calls `0029B440(0035BB00(r8d))` and `00249C60(1)` and returns 1; 2 tests bit 1 of byte `+0x318` of the `0x160`-byte record `r9d` at `rcx` and returns 0 after `00249C60(5)` when it is set, else 1 after `00249C60(0x15)`; 3 returns 0 after `00249C60(5)` when `00299B90(signed word +0x14 of 0035D320())` is zero, else calls `0035BC30()` and `00249C60(3)` and returns 1; 6 returns 0 after `00249C60(5)`; 4, 5 and 7 return 0",
+   "anchors": [
+    [
+     "00297644",
+     "cmp"
+    ],
+    [
+     "0029765E",
+     "jmp"
+    ],
+    [
+     "0029766A",
+     "test"
+    ],
+    [
+     "002976A3",
+     "call"
+    ],
+    [
+     "002976C5",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0026B870",
+   "why": [
+    "anchor 0026B898 decodes to rep stosd, not rep"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00297640",
+   "was": "returns 0 for `edx` above 7 (unsigned); otherwise jumps through an 8-entry case table whose case-to-arm mapping the listing does not decode, to arms that: test bit 1 of byte `+0x318` of the `0x160`-byte record `r9d` at `rcx` and return 0 after `00249C60(5)` when it is set, else 1 after `00249C60(0x15)`; call `0029B440(0035BB00(r8d))` and `00249C60(1)` and return 1; or return 0 after `00249C60(5)` when `00299B90(signed word +0x14 of 0035D320())` is zero, else call `0035BC30()` and `00249C60(3)` and return 1",
+   "now": "returns 0 for `edx` above 7 (unsigned); otherwise dispatches on `edx` through an 8-entry case table (decoded from the bytes): 0 returns 1; 1 calls `0029B440(0035BB00(r8d))` and `00249C60(1)` and returns 1; 2 tests bit 1 of byte `+0x318` of the `0x160`-byte record `r9d` at `rcx` and returns 0 after `00249C60(5)` when it is set, else 1 after `00249C60(0x15)`; 3 returns 0 after `00249C60(5)` when `00299B90(signed word +0x14 of 0035D320())` is zero, else calls `0035BC30()` and `00249C60(3)` and returns 1; 6 returns 0 after `00249C60(5)`; 4, 5 and 7 return 0",
+   "why": "incomplete branch account: the case table maps 0 to a bare return 1, 6 to 00249C60(5)/0 and 4,5,7 to return 0; those arms were unstated"
+  }
+ ]
+}

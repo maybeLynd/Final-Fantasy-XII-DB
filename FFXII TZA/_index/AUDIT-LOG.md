@@ -63252,3 +63252,73 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
   bit 13 of `[[0209AC30]+0x400]` (`shl ecx,0xD`/`and 0x2000`/`xor`). Gates:
   check_questions consistent, verify_doc_addresses ok on all touched docs,
   link breaks all pre-existing peer noise.
+
+## 2026-10-02 SWE2-DATA — progress-reporter cluster: R3 repair, coherent-generation export, metrics review
+
+- `FRONTIER-REQ-SWE2-DATA-PROGRESS-REPAIR-CKPT10R3`: fingerprint now covers the
+  complete consumed document surface (`_doc_preimage` - full sha256+size per
+  doc, committed as `doc-signature.txt` into each generation); per-checkbox
+  obligation rows with file/anchor/locator/owner/reviewer/class/named-ids/
+  dedup; input states split missing/empty/invalid; last-COMPLETE generation
+  retained on any failure and the preimage rechecked at commit cutover.
+- `FRONTIER-REQ-SWE2-DATA-EXPORT-COHERENT-GENERATION` +
+  `OPUS-REQ-DATA-ADOPT-GENERATION-LIB`: all outputs publish as ONE generation
+  through `gfz-scripts/generation.py` (`.partial` candidate, verified commit,
+  `CURRENT` pointer); `export <zip>` pins exactly CURRENT and `verify-zip`
+  labels a mixed/hand-made ZIP UNVERIFIED. Live: `generate` committed
+  `g20261002T070644Z-af912b`, `check` CURRENT, export VERIFIED (25 members).
+- `OPUS-REQ-DATA-MY-PROGRESS-METRICS(-R2)`: review verdict ACCEPT; family
+  counts reconcile at the reviewed commit; `audited()` factored into shared
+  `progress.audit_pass_recorded` (requirements.py delegates; live corpus
+  identical 491/491, zero diffs). Record:
+  `_index/candidates/data-review-my-progress-metrics-1001/`.
+- Suites: test_progress_report FAILS 0 (55 checks incl. T36 deep-body fp move,
+  T38 empty/invalid split, T39-T41d generation/export); test_generation
+  FAILS 0; test_requirements FAILS 0.
+
+## 2026-10-02 SWE2-CONTRACT — takebacks2 incorporation + DDRES checker repairs
+
+- `AUTO-INCORP-FABLE-REQ-AUDITSEM-REVIEW-TAKEBACKS2-0930`: accepted review
+  `8bdf31fcb` (SWE2-AUDIT-SEM `auditsem-review-takebacks2-0930`, scoped verdict)
+  incorporated into canonical consumers. RC-7/RC-8 already carried the §7 N1/N2
+  narrowed wording from `d0809ac13`; added review receipts to the RC-6, RC-9 and
+  RC-10 register rows and to the RC-9 box on the formatted-log page. t4's
+  accepted inserter census now cited where it lands: CONTRACT-phyre-class-
+  descriptor §14's "other head-insert helpers" route is no longer unswept, and
+  the BL-8 register row names the record's residue as its remaining checks.
+  t3b (OV-5/8(d)) needed no contract-lane action: FABLE repaired the writer list
+  at `089f55128`, the FRONTIER hold discharged, and OV-5/OV-8 rows carry the
+  corrected text.
+- `AUDITSPEC-REQ-CONTRACT-DDRES-B7-R1-1001`: `b7_lifetime.py` R1 now expects
+  SD-166 ANSWERED (OPUS `b3f5172c9`). FAILS 0.
+- `SWE2AUDITSPEC-REQ-CONTRACT-B20-Z1-CONTROL-1001`: `b20_checks.py` scoped the
+  `DD batch 20` tag to page body via `body_lines()` (the OPUS `9545bad56` status
+  line no longer trips Z1-Z3); Z4 line pin moved 1338 -> 1342 for SWE2-EC7's
+  legitimate `7f773f19f` append. FAILS 0.
+- `SWE2AUDITSPEC-REQ-CONTRACT-RC13-CLAIMS-ROW-0930`: the scheduling page's
+  claims-table row carries the long-tail (no function above 8%) and
+  half-of-parsed-calls qualifiers verbatim.
+- Commits `7225ed5b4` (checker repairs + RC-13 row; a stale-index sweep of four
+  peer files was repaired at `cf29d32c5`), `c40870e2d` (takebacks2 consumers +
+  scriptvm/phyre/action readiness lines, correction-gated via
+  `swe2contract-readiness-apply-1002`), `85718f321` (engine-a/platform readiness
+  applies via `swe2contract-readiness-apply-1002b`; DD batch 21 status-line
+  currency on 9 PARTIAL pages naming their registered live rows).
+- `SWE2CONTRACT-REQ-AUDITSPEC-DDRES-B21-1002`: ACCEPT-WITH-NARROWING
+  (`auditspec-review-ddres-b21-1002`) — narrowing applied:
+  `b21_checks.py` Z4 now diffs the pinned batch commit `85718f321` rather than
+  the working tree (`AUDITSPEC-REQ-CONTRACT-DDRES-B21-Z4-CONTROL-1002`);
+  FAILS 0.
+- Gates: check_questions consistent; verify_doc_addresses ok on touched docs;
+  link breaks and consistency disagreements all pre-existing peer noise.
+
+## 2026-10-02 SWE2-STRUCT — interior-offset leads adjudicated (21 -> 0 open)
+
+- `OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001`: read every flagged site;
+  7 EncodedIdQueryRecord rows + WidgetSingleton02CA99C0 +0xD0 marked
+  PER-PATH UNION, MapRefWeatherBlock +0x0 ruled false (nested member),
+  11 rows split into byte/word/dword members with WIDTH DELIBERATE prose
+  where a wider covering store remains. PhyreClassDescriptor +0xF4 was
+  already split by a peer and dropped from the open set.
+- fields.tsv +32/-20; interior-offset-leads.tsv regenerated (15 settled).
+  check_interior_offsets exits 0; types_index clean.

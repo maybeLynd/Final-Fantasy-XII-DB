@@ -346,3 +346,11 @@ already scopes out.
 
 - **Presentation — CLIENT.** Cited container accessors (17, 31 and 1,864 bytes) are called by Presentation bodies of 133, 346 and 1,587 bytes.
 - **WorldAreaField — CLIENT (2 edges).** 2 inbound (WorldAreaField bodies `00378120`, `00377400` call page-cited `00379870`). Substantive edges include `00379870` is called by `00378120`; `00379870` is called by `00377400`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-sloc-menumap-container-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00377400` | 54 B | returns without work unless `ecx` is 0 to 3 (unsigned compare); otherwise stores its low byte at `02ADD0E8`, calls `003C63A0` with the qword at `02ADD010 + ecx*8` and tail-jumps `00379870(ecx)` | `0037740C`, `00377415`, `0037741B`, `0037741F`, `0037742B` |

@@ -760,3 +760,23 @@ listed as unread in §5, which remain unread.~~ *(answered: see §5 — every it
 ## SWE2-EC7-67 update - `00473A00`
 
 `00473A00` (130 B) is a where-mp-comes-from body - `003589B0` single call, tail `00329B70`. Interior anchor `00473A37` (a `003589B0` call).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-where-mp-comes-from-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00238640` | 19 B | sign-extends `ecx`, forms the pointer `02F973C0 + ecx*8` in `rcx` and tail-jumps `003845F0` with it, leaving the other argument registers unchanged | `00238643`, `0023864A`, `0023864E` |
+| `00300500` | 28 B | clamps `ecx` to zero when it is negative (`cmovns` keeps a non-negative `ecx`), calls `00254EE0(clamped value)` and returns the clamped value | `0030050A`, `0030050F`, `00300514` |
+| `00341140` | 75 B | resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A00(resolved pointer, second value, first value)` | `00341155`, `00341160`, `0034116A`, `00341186` |
+| `00341690` | 75 B | resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A90(resolved pointer, second value, first value)` | `003416A5`, `003416B0`, `003416BA`, `003416D6` |
+| `00341EE0` | 91 B | calls `00267F90(r9, 2)`, resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A00(resolved pointer, second value, first value)` | `00341EFD`, `00341F05`, `00341F10`, `00341F1A`, `00341F36` |
+| `00342150` | 90 B | resolves `00263F10(rdx)`; when `003D9FE0()` returns non-zero, compares `003589B0(resolved pointer)` with `003D9FA0()` and takes 1 when they are equal, else 0; when `003D9FE0()` returns zero takes 0; then tail-jumps `0026B4E0(rcx, that 0 or 1)` | `00342174`, `0034217B`, `00342187`, `0034218E`, `003421A5` |
+| `00342D40` | 49 B | tail-jumps `0026B4E0(rcx, 00320790(003589B0(00263F10(rdx)), 0))` | `00342D4C`, `00342D54`, `00342D5D`, `00342D6C` |
+| `00342500` | 91 B | calls `00267F90(r9, 2)`, resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A90(resolved pointer, second value, first value)` | `0034251D`, `00342525`, `00342530`, `0034253A`, `00342556` |
+| `003438F0` | 52 B | tail-jumps `0026B4E0(rcx, 00320790(003589B0(00263F10(rdx)), 1))` | `003438FC`, `00343904`, `00343910`, `0034391F` |
+| `0034A4C0` | 102 B | calls `00267F90(r9, 2)`, reads three values by calling `00267E10(r9)` three times, resolves `00263F10(00264010(third value))` and tail-jumps `00473A00(that pointer, second value, first value)` | `0034A4DA`, `0034A4F6`, `0034A4FD`, `0034A505`, `0034A521` |
+| `00353530` | 86 B | reads two values by calling `00267E10(r9)` twice; when the second is non-zero tail-jumps `00359410(003589B0(00264010(first value)))`, otherwise tail-jumps `00359410(0)` | `00353540`, `00353551`, `00353555`, `0035356E`, `00353581` |
+| `00473A90` | 123 B | builds a flag word from `r8d`: bit 0 shifted to bit 28, bit 29 set when `r8d` bit 1 is set and bit 30 set when `r8d` bit 2 is set; when `rcx` is null returns -1, otherwise tail-jumps `00329B70(003589B0(rcx), 1, edx, flag word)` | `00473AAC`, `00473ABB`, `00473AE0`, `00473AF3`, `00473AFD` |
+| `0050D2F0` | 23 B | tail-jumps `003593A0(003589B0(rdx))` | `0050D2F7`, `0050D302` |

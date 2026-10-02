@@ -20,7 +20,7 @@ with the real callees wired in.
 
 ## Result
 
-**85/85 cases pass; 10/10 byte-level mutants detected.** Stable across two full processes.
+**87/87 cases pass; 10/10 byte-level mutants detected.** Stable across two full processes. (85→87 on 2026-10-02: additive `cpys-dest-6b0`/`cpys-nohit` regression cases per `ASTRA-REQ-ORACLE-SUSPEND-COPY-REGRESSION-1001`; the historical 85-case/10-mutant set is unmodified.)
 
 ## What each body decides (all measured, none asserted)
 
@@ -55,10 +55,24 @@ with the real callees wired in.
 - **`00308270` postf** — runs its body only when bit22 is **set**: `+0x28 = 0`,
   `unlink(+0x695)`, `+0x695 = 0xFF`, posture row `0x22C1DB0 + ea9*12` → word→`+0xDC8`,
   dword→`+0xE58`, then `0030EDA0`.
-- **`0030EDA0` cpys** — copies `0x4F0` bytes from `[unit+0xB88]` to `unit+0x730` (null `+0xB88`
-  faults at `0x30EDBD` — real precondition). Then scans the eight `0x4F0` slots at `0x22BEFC0` for
-  an entry **address** equal to the source pointer; hit → `btr` bit `i&7` of `0x22BEFB0[i>>3]`
-  (`canc-cpyhit` → `0xFF→0xFB`); miss → return 1. (Corrects the earlier noted `0x20BEFB0`.)
+- **`0030EDA0` cpys** — copies `0x4F0` bytes from `[unit+0xB88]` to **`unit+0x6B0`**
+  covering `[unit+0x6B0, unit+0xBA0)` — **CORRECTED 2026-10-02** (was recorded as
+  `unit+0x730`, copying the loop cursor's pre-advance as the origin: `rcx = unit+0x6B0`
+  at `0030EDA7`, `lea rcx,[rcx+0x80]` at `0030EDB6` runs before the first store at
+  `[rcx-0x80]` (`0030EDC7`), so the first byte written is `unit+0x6B0`; nine `0x80`
+  rounds end at `+0xB30` and the seven-movups tail ends at `+0xBA0` exclusive). Null
+  `+0xB88` faults at `0x30EDBD` — real precondition. Then scans the eight `0x4F0` slots
+  at `0x22BEFC0` for an entry **address** equal to the source pointer; hit → `btr` bit
+  `i&7` of `0x22BEFB0[i>>3]` (`canc-cpyhit` → `0xFF→0xFB`); miss → return 1. The bitmap
+  comparison uses **incoming `r8`** — the source pointer loaded at `0030EDA0` *before*
+  the copy overwrites `+0xB88` (which lies inside the copied range at offset `0x4D8`).
+  **Additive regression `cpys-dest-6b0`/`cpys-nohit` (2026-10-02,
+  `ASTRA-REQ-ORACLE-SUSPEND-COPY-REGRESSION-1001`):** direct `0030EDA0` entry,
+  patterned disjoint source, poisoned destination, `0xCC` canaries at `+0x6A8..6AF` and
+  `+0xBA0..BA7`; asserts all `0x4F0` destination bytes (incl. `+0x714`, `+0xB88`),
+  canaries intact, `+0xB88` post-copy = source's embedded slot-5 pointer while the
+  bitmap still clears bit **2** (the incoming r8), ret 1 both paths, bitmap untouched
+  on a non-table source. (Also corrects the earlier noted `0x20BEFB0`.)
 - **`0030C970` unlink** — **two** `cmp cl,0x1F` gates: `0x30C983` selects the entry for the tail
   (oob → rbx=0), `0x30C9A1` gates the unlink itself; `cl==0xFF` skips unlink but still runs the
   tail. Unlink splices neighbours + head0/head1 globals. Tail on the selected entry:

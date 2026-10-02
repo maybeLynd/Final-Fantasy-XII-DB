@@ -197,19 +197,20 @@ One caller chooses between them.
 
 | consumer | `+0x24` vectors (count `+0x16`) | `+0x28` 4-byte (count `+0x18`) | `+0x2C` 8-byte (count `+0x18`) |
 |---|---|---|---|
-| `00435050`, one record | `memcpy` of 16 bytes per entry (`004351D3`–`004351EC`) | through a per-byte kernel together with the element's `+0x40` block (`00435197`–`004351B0`) | `memcpy` of 8 bytes per entry (`004351B5`–`004351CE`) |
-| `00434CD0`, two records blended by a factor | a normalised lerp (`0043500D`), or a copy of the second record's entries when element `+0x1F1` bit 6 is set (`00434FAF`) | blended per channel (`00434F33`), then the same byte kernel (`00434F47`) | a float-pair blend (`00434FAA`), or a copy when element `+0x1F1` bit 5 is set (`00434F4C`) |
+| `00435050`, one record | `memcpy` of 16 bytes per entry (`004351D3`–`004351EC`) | through a per-byte kernel together with the draw-parameter block's `+0x40` colour — the dword at `[01FD4A78]+0x800+0x40`, written by `0026EE00` from the element instance's `+0x240` (`00435197`–`004351B0`; **narrowed per `SD-140` X4**: the operand is the parameter block, not the element) | `memcpy` of 8 bytes per entry (`004351B5`–`004351CE`) |
+| `00434CD0`, two records blended by a factor | a normalised lerp (`0043500D`), or a copy of the second record's entries when element `+0x1F1` bit 6 is set (`00434FAF`) | blended per channel (`00434F33`), then the same byte kernel (`00434F47`) — **only when `+0x1F1` bit 4 is clear; when set, the record's own `+0x28` goes straight to the kernel unblended** (`SD-140`) | a float-pair blend (`00434FAA`), or a copy when element `+0x1F1` bit 5 is set (`00434F4C`) |
 
 The `+0x24` blend (`00432030`) sums the squares of the three blended components, takes `sqrtf`, divides one by the
 length (a zero length keeps a constant) and scales the components before storing each 16-byte entry. Renormalising after
 interpolation is what a unit normal needs, and it matches the census (every shipped `+0x24` entry is unit length with
-`w = 0`). The `+0x28` bytes are not used raw: they pass through the byte kernel with the element's `+0x40` block, which
+`w = 0`). The `+0x28` bytes are not used raw: they pass through the byte kernel with the draw-parameter block's `+0x40`
+colour (one dword — `[01FD4A78]+0x800+0x40`, filled by `0026EE00` from the element instance's `+0x240`), which
 is consistent with a colour modulated by the element, but ~~the kernel was not decoded~~ *it is now
 (`SD-140`, below)*. The `+0x2C` pairs are copied or
 blended as floats, which is consistent with UVs. ~~Neither label is consumer-verified, and the emit paths were not traced.~~
 
-- [x] **What the byte kernel does to the `+0x28` entries with the element's `+0x40` block, and how the emit paths pack
-  `+0x28` / `+0x2C` into the emitted vertex.** This decides whether they are colours and texture coordinates. **SD-140**
+- [x] **What the byte kernel does to the `+0x28` entries with the ~~element's~~ draw-parameter block's `+0x40` colour,
+  and how the emit paths pack `+0x28` / `+0x2C` into the emitted vertex.** This decides whether they are colours and texture coordinates. **SD-140**
   (SWE2-DATA, 2026-09-30). *(**Answered 2026-09-30, SWE2-ORACLE** — execution-proven against shipped code over seeded
   trials; record [`sd140-vertex-prep-kernel-0930`](../../_index/candidates/sd140-vertex-prep-kernel-0930/README.md),
   `sd140_kernel.py` 23 checks FAILS 0.) `+0x28` is a **per-corner RGBA8 vertex colour** on the GS `0x80` = 1.0 scale

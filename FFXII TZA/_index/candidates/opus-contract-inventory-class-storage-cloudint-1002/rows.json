@@ -1,0 +1,38 @@
+{
+ "page": "12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "contract-inventory-class-storage.json",
+ "rows": [
+  {
+   "fn": "002FD420",
+   "text": "selects the `0x58`-stride row at `01EEBCC0` by `cx >> 12` and returns 0 when its qword `+8` is null; otherwise takes bit `cx & 0xF` of word `(cx & 0xFFF) >> 4` of that array as the old bit, adds it to `edx` when `r8d` is 0 (uses `edx` alone otherwise), sets the bit and yields 1 when that value is positive or clears it and yields 0 when it is 0 or negative, writes the word back, calls `00325F40(cx, old bit, yield)` and, when `r8d` is 0 and bit 0 of the fifth (stack) argument is set, `0046A630(cx, edx)`; returns the yield",
+   "anchors": [
+    [
+     "002FD461",
+     "mov"
+    ],
+    [
+     "002FD494",
+     "bt"
+    ],
+    [
+     "002FD4E9",
+     "mov"
+    ],
+    [
+     "002FD4F6",
+     "call"
+    ],
+    [
+     "002FD509",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -434,6 +434,10 @@ of this page's `0020BE50` mount resolver, sits inside the Resource
 layer's request path - it calls `0020BE50`/`0020C700` and is called by
 `002DF6C0`/`002DF780` there (+99 more of the same shape). The index is
 consulted by the resource queue; not a shared responsibility.
+- **ActorEntity - CLIENT (5 edges).** `0032E400`, `0032E620` are also called by bodies filed to actor entity: `0032FCA0`, `00330310`, `003306E0` - shared machinery across the layer boundary, no shared ownership.
+- **Save_Load_Settings - CLIENT (1 edge).** `0032E620` is also called by bodies filed to save/load/settings: `002EF300` - shared machinery across the layer boundary, no shared ownership.
+- **World - CLIENT (2 edges).** `0032E400`, `0032E620` are also called by bodies filed to world: `00378540` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT (8 edges).** `0032E400`, `0032E620` are also called by bodies filed to world area: `00268750`, `00378030`, `003EA820` (+2 more) - shared machinery across the layer boundary, no shared ownership.
 ## SWE2-EC7-44 update (2026-09-19) - `0021B430`
 
 `0021B430` (268 B) is a body - `0016D6A0`/`002129F0`/`00212A70`/`00223AD0` plus `call [rax+0x18]`/`[rax+0x30]` vcalls. Interior anchor `0021B45D` (an `0016D6A0` call).

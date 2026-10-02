@@ -142,7 +142,7 @@ selection in the menu at least. The other two were not read.
 ## 6. What a reimplementation must keep
 
 - One chosen target; the rest gathered from **positions at the moment the state machine makes the call**, not at the
-  moment the target was chosen. *Which step of the action that is - before or after the charge - was not read.*
+  moment the target was chosen. ~~*Which step of the action that is - before or after the charge - was not read.*~~ *(answered: after the charge - phase 4 of `BattleUnit_AdvanceStandardActionState` runs the charge progress step and phase 9 runs `Battle_BuildActionTargetSet`; see Command-And-Action-Seam/native-command-seam.md, UQ-108; 2026-10-02, OPUS)*
 - Distance in the ground plane only; a radius of 100 (the -ja spells) is "everything on the map" in practice.
 - Side by the **primary target**, confusion ignored; eligibility by the **actor**, confusion seen.
 - Cone and line are measured **from the actor toward the primary target**, while the radius is measured from

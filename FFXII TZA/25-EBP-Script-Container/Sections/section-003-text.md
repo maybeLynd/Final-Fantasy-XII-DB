@@ -192,7 +192,7 @@ return base + *(u16 *)((char *)base + 4*(id & 0xFFFFFF));   // 00264DB5, 00264DB
 | container `+0x00` (`EBP2` magic) | — | — | — | **yes — never referenced** in any of the 570 bytes of `0x003304A0` |
 | container `+0x04` slotCount | `0x00330534` | — | — | no — gates this section (`slotCount > 3`) |
 | directory slot 3 (`+0x1C`) | `0x0033053A` | `== 0` → section skipped | — | no |
-| section `+0x00` low u16 | `0x00264DA4` | — | — | no — **doubles as the entry count** (`>> 2`) |
+| section `+0x00` low u16 | `0x00264DA4` | — | — | no — ~~**doubles as the entry count** (`>> 2`)~~ the entry count is the whole sign-extended first dword `>> 2`, not this u16 *(corrected 2026-10-02, OPUS: `0x00264DA4` `movsxd rax, dword ptr [r8]`, `0x00264DAD` `shr rax, 2`; the u16 is read only as the offset at `0x00264DB5`; the two agree in all 359 `us` sections)* |
 | entry offset (low u16) | `0x00264DB5` | — | — | no |
 | entry **bit 16** | — | — | — | **yes — for this bank, absolutely.** See below |
 | entry **bits 17-31** | — | — | — | **yes** |

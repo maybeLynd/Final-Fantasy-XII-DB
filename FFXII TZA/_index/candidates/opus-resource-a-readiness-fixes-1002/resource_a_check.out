@@ -1,0 +1,10 @@
+ok   0032E92C mov dword ptr [r10 + 0x28], esi
+ok   0032E713 cmp eax, 0x80000
+ok   0046DDE6 add eax, 0x7ff
+ok   0032E0D7 cmp al, 0xff
+ok   003A9BAD mov ebx, 8
+ok   003A9BF0 cmp rbx, 0x1800
+ok   00409F23 mov edx, 0x50
+ok   00237031 mov qword ptr [rip + 0x2c881c8], rcx
+ok   00236D94 call 0x3847b0
+FAILS 0

@@ -19,7 +19,7 @@ falsification_passes: 1
 audit:
   passes: 1
   last_pass: 2026-09-13
-  last_pass_state: opus-party-std-motion-pass-1 - EVERY figure reproduces and there is no correction: the four body sizes, all four discriminating instructions at their published addresses, the identical call multisets apart from the leading discard, the loop bound, the call order, 0035AE10's two-step shape, 003580C0's two Int32Coerce pops and one discard and its seven other callees, and all nine stated body sizes; added - each body has exactly three edx writes of which only the third differs, and 00263750's bound 0..3 and base 0209A1F0 both resolve from its 23 bytes
+  last_pass_state: opus-party-std-motion-pass-1 - EVERY figure reproduces and there is no correction: the four body sizes, all four discriminating instructions at their published addresses, the identical call multisets apart from the leading discard, the loop bound, the call order, 0035AE10's two-step shape, 003580C0's two Int32Coerce pops and one discard and its seven other callees, and all nine stated body sizes; added - each body has exactly three edx writes of which only the third differs, and 00263750's bound 0..3 and base 0209A1F0 both resolve from its 23 bytes  # <- corrected 2026-10-02, OPUS - the 2026-09-14 killer tests (FABLE, section 7) refuted one claim of this pass: the extra argument of 0540/0541 is the float, kept at 00350077 / 003507D7
   crossref_clean: false
   reopened_count: 0
 ---
@@ -159,11 +159,11 @@ blend at or above the compared value (0.0, per that page) calls `004270A0`, a bl
 |---|---|---:|---|
 | `0034F060` | `partystdmotionplay` handler | 154 B | verb `053E`; third push = 1 |
 | `0034F890` | `partystdmotionplaywithoutsame` handler | 151 B | verb `053F`; third push = 0 |
-| `00350050` | `partystdmotionplay_540` handler | 157 B | verb `0540`; leading discard, third push = 1 |
-| `003507B0` | `partystdmotionplaywithoutsame_541` handler | 154 B | verb `0541`; leading discard, third push = 0 |
+| `00350050` | `partystdmotionplay_540` handler | 157 B | verb `0540`; leading ~~discard~~ float pop, kept and pushed as the blend *(corrected 2026-10-02, OPUS: `00350077 movaps xmm6, xmm0`, `003500A9`)*, third push = 1 |
+| `003507B0` | `partystdmotionplaywithoutsame_541` handler | 154 B | verb `0541`; leading ~~discard~~ float pop, kept *(corrected 2026-10-02, OPUS: `003507D7 movaps xmm6, xmm0`)*, third push = 0 |
 | `00263750` | `PartyRoster_GetActorBySlot` | 23 B | slot -> actor, for slots 0-3 |
 | `00267E10` | `VMValueStack_PopInt32CoerceFloat32` | 78 B | reads the motion id |
-| `00267DB0` | `VMValueStack_PopNumericDiscard` (ledger name; it is a float pop) | 84 B | pops the `-1.0f` inside `003580C0`, and the discarded extra argument of `0540`/`0541` |
+| `00267DB0` | `VMValueStack_PopNumericDiscard` (ledger name; it is a float pop) | 84 B | pops the `-1.0f` inside `003580C0`, and the ~~discarded~~ extra argument of `0540`/`0541`, which they keep and push as the blend *(corrected 2026-10-02, OPUS: `00350077`, `003507D7`; §2's 2026-09-14 refutation)* |
 | `00267F90` | `VMValueStack_PushInt32` | 39 B | motion, and the same/without-same flag |
 | `00267F60` | `VMValueStack_PushFloat32Bits` | 41 B | the constant `-1.0f` |
 | `0035AE10` | per-actor prologue adapter | 27 B | `00233F50(actor,1)` then tail `002ED020(actor)` |
@@ -309,7 +309,7 @@ terminal-status actors the field does not keep are torn down.
 > lands at 157/154 on the same arithmetic.
 >
 > **One refinement to this checklist's wording.** It calls the differing value *"the third push's
-> `1`/`0`"*. It is **not a push** — it is `edx`, the second integer argument in the Win64 register
+> `1`/`0`"*. It is ~~**not a push** — it is `edx`,~~ a push: `edx` carries it into `VMValueStack_PushInt32` *(corrected 2026-10-02, OPUS: `003500B4 mov edx, 1` / `003500BC call 0x267f90`; §7's later note)* `edx` is the second integer argument in the Win64 register
 > convention. The distinction matters for a reconstruction writing the call, not for the claim.
 >
 > **So the 2×2 holds on both axes, and the two bits are now named exactly:** the presence of the

@@ -145,7 +145,7 @@ so **a non-null pointer is not proof of a real handler**.
 
 ### 2.4 The callback signatures
 
-Microsoft x64, and the same four things every time:
+Microsoft x64, and ~~the same four things every time~~ these four things, with `begin` taking a fifth on the stack *(corrected 2026-10-02, OPUS: `002622C4`–`002622CD`; added below 2026-09-13)*:
 
 | | `begin` | `poll` | `result` |
 |---|---|---|---|
@@ -173,7 +173,7 @@ followed by a pop primitive — **that two-instruction sequence is "read an argu
 | family table array | 16 × 8 | `0x02B57EF0`, one pointer per family |
 | command table | `8 + 32 × count` | five of them; count at `+0x00`, records from `+0x08` |
 | command record | `0x20` | `begin` `+0x00`, `poll` `+0x08`, unused `+0x10`, `result` `+0x18` |
-| `cmdState` | ≥ `0x28` | `+0x08` bound actor id (u16) · `+0x0C` the return slot (4 bytes, int **or** float) · `+0x10` the A register · `+0x15` the phase byte · `+0x18` 16 bytes of command scratch |
+| `cmdState` | ≥ `0x28` | `+0x08` bound actor id ~~(u16)~~ (u32) *(corrected 2026-10-02, OPUS: written as a dword, `002619AE`, `002619FD`, `00261ABF`, and read as one, `00262225`)* · `+0x0C` the return slot (4 bytes, int **or** float) · `+0x10` the A register · `+0x15` the phase byte · `+0x18` 16 bytes of command scratch |
 
 ## 4. Preconditions · postconditions · invariants
 
@@ -554,8 +554,8 @@ rather than from this document, then every record decoded at the layout §2 stat
 | `01F29418` | 5 | **1** | 0 | zero |
 
 `1496 + 212 + 147 + 104 + 1 = ` **1960**, and **`+0x10` is non-NULL in none of them**. Every count in
-§2.2 reproduces, and one table holds a **single** command. `VA-1` — what that slot was for — stays
-open; what is now closed is that it is empty in the shipped image *record by record* rather than by
+§2.2 reproduces, and one table holds a **single** command. `VA-1` — what that slot was for — ~~stays~~ *(answered: resolved 2026-09-22 as dead space in the 32-byte stride, the `VA-1` line above; 2026-10-02, OPUS)*
+~~open;~~ what is now closed is that it is empty in the shipped image *record by record* rather than by
 citation.
 
 ### The "0..15 by construction" argument, completed
@@ -581,7 +581,7 @@ shift cannot differ. The row cited the one instruction; the guarantee needs all 
 | `00262205 sar r12d, 0xc` (**arithmetic**) and `0026220C and r15d, 0xfff` | both present, verbatim |
 | `0016D6A0` is a 3-byte `ret` | `C2 00 00` — **`ret 0`**, three bytes, followed by `CC` padding |
 
-**Not claimed:** the lifecycle half is still unexecuted and nothing here is a live observation; §13
+**Not claimed:** ~~the lifecycle half is still unexecuted and~~ *(answered: the lifecycle half was executed, the 2026-09-16 correction in §13; 2026-10-02, OPUS)* nothing here is a live observation; §13
 and `VA-1` are unchanged.
 
 ## 16. Parity plan

@@ -1,0 +1,67 @@
+{
+ "page": "06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "contract-corridor-query-family.json",
+ "rows": [
+  {
+   "fn": "0030BEB0",
+   "text": "calls `0031B760` with the incoming arguments and returns 0 when the result is null, the `0x8` bit (bit 3) of its dword `+0` is clear, its qword `+0x698` is null or that object's byte `+5` is non-zero; otherwise returns 1 when bit 23 of the dword `+0` is clear and 0 when it is set",
+   "anchors": [
+    [
+     "0030BEB4",
+     "call"
+    ],
+    [
+     "0030BEC3",
+     "test"
+    ],
+    [
+     "0030BEC7",
+     "mov"
+    ],
+    [
+     "0030BED3",
+     "movzx"
+    ],
+    [
+     "0030BEDB",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "0033F7F0",
+   "text": "tail-jumps `0026B4E0(rcx, 00264CE0(00263FF0(0), 003148B0()))`",
+   "anchors": [
+    [
+     "0033F7FF",
+     "call"
+    ],
+    [
+     "0033F807",
+     "call"
+    ],
+    [
+     "0033F811",
+     "call"
+    ],
+    [
+     "0033F825",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0030BEB0",
+   "was": "calls `0031B760` with the incoming arguments and returns 0 when the result is null, bit `0x8` of its dword `+0` is clear, its qword `+0x698` is null or that object's byte `+5` is non-zero; otherwise returns 1 when bit 23 of the dword `+0` is clear and 0 when it is set",
+   "now": "calls `0031B760` with the incoming arguments and returns 0 when the result is null, the `0x8` bit (bit 3) of its dword `+0` is clear, its qword `+0x698` is null or that object's byte `+5` is non-zero; otherwise returns 1 when bit 23 of the dword `+0` is clear and 0 when it is set",
+   "why": "ambiguous bit naming: `bit 0x8` reads as bit 8; the test is mask 0x8 = bit 3"
+  }
+ ]
+}

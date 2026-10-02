@@ -1,0 +1,107 @@
+{
+ "page": "12-Items-Equipment-Shops-License/CONTRACT-bazaar-unlock-and-purchase.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "contract-bazaar-unlock-and-purchase.json",
+ "rows": [
+  {
+   "fn": "00238640",
+   "text": "tail-jumps `003845F0` with the address of the 8-byte entry at `02F973C0` indexed by the sign-extended `ecx`",
+   "anchors": [
+    [
+     "00238643",
+     "lea"
+    ],
+    [
+     "0023864A",
+     "lea"
+    ],
+    [
+     "0023864E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002524C0",
+   "text": "returns 99,999,999 (`0x5F5E0FF`) when `ecx` is above it (signed) and 0 when `ecx` is negative; otherwise picks `edx` when `ecx + edx` is non-negative and `ecx` itself when that sum is negative, and returns the pick unless `ecx` plus the pick exceeds 99,999,999 (signed), in which case it returns 99,999,999 minus `ecx`",
+   "anchors": [
+    [
+     "002524C6",
+     "cmp"
+    ],
+    [
+     "002524D7",
+     "jns"
+    ],
+    [
+     "002524E9",
+     "cmovns"
+    ],
+    [
+     "002524F2",
+     "cmp"
+    ],
+    [
+     "002524F8",
+     "cmovle"
+    ]
+   ]
+  },
+  {
+   "fn": "002535D0",
+   "text": "uses `ecx` as an index (replaced by 0 after a call to `0016D6A0(0x200)` when above `0xB` unsigned, once for each of its two uses); resolves dword `+4` of the 8-byte entry at `02092760` through `0020E600` and scans the number of words given by dword `+0x47B8` of qword `020927C0` plus 4 times the index for one equal to `edx` shifted right by 16; the first match is overwritten with `0xFFFF` and followed by `002534C0` with the original `ecx` (not the clamped index), while no match or a count of 0 or less returns without either",
+   "anchors": [
+    [
+     "002535F2",
+     "cmp"
+    ],
+    [
+     "0025363E",
+     "mov"
+    ],
+    [
+     "00253653",
+     "cmp"
+    ],
+    [
+     "00253668",
+     "mov"
+    ],
+    [
+     "0025366D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0032AB50",
+   "text": "tail-jumps `0030B570(ecx, 1 when edx is non-zero else 0)`",
+   "anchors": [
+    [
+     "0032AB54",
+     "test"
+    ],
+    [
+     "0032AB56",
+     "setne"
+    ],
+    [
+     "0032AB59",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002535D0",
+   "was": "uses `ecx` as an index (replaced by 0 after a call to `0016D6A0(0x200)` when above `0xB` unsigned, once for each of its two uses); resolves dword `+4` of the 8-byte entry at `02092760` through `0020E600` and scans the number of words given by dword `+0x47B8` of qword `020927C0` plus 4 times the index for one equal to `edx` shifted right by 16; the first match is overwritten with `0xFFFF` and followed by `002534C0(ecx)`, while no match or a count of 0 or less returns without either",
+   "now": "uses `ecx` as an index (replaced by 0 after a call to `0016D6A0(0x200)` when above `0xB` unsigned, once for each of its two uses); resolves dword `+4` of the 8-byte entry at `02092760` through `0020E600` and scans the number of words given by dword `+0x47B8` of qword `020927C0` plus 4 times the index for one equal to `edx` shifted right by 16; the first match is overwritten with `0xFFFF` and followed by `002534C0` with the original `ecx` (not the clamped index), while no match or a count of 0 or less returns without either",
+   "why": "loose argument naming: the sentence says ecx is replaced by 0 for its index uses, but 002534C0 receives the original ecx (esi)"
+  }
+ ]
+}

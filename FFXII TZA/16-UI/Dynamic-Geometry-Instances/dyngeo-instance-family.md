@@ -98,7 +98,7 @@ overwrites row 0 with `(aspect, 0, 0, 0)`:**
 >   `0021426C` stores its float return over row 0's first element, and `00214272` / `0021427B` zero the rest of the
 >   row, before slot 6 is called with the buffer (`00214283`).
 > - **`00229DE0` takes no argument.** It is `jmp 00183280`, which returns height × K ÷ width, with height and width
->   read from the display object. K is `16/9` (`008C5B38`) unless the `01F82D18` object supplies its own value
+>   read from the display object. K is `16/9` (`008C5B38`) ~~unless the `01F82D18` object supplies its own value~~ in every case: with the object present `00183280` calls `001DD110`, which loads the same constant *(corrected 2026-10-02, OPUS: `001DD110` is `movss xmm0, [008C5B38]` / `ret`; the object supplies the width and height through `00182EB0`)*
 >   (`001832A8`–`001832C4`).
 > - **So row 0's x is 1.0 at 1920×1080**, where OPUS's replay received the identity, and `1.4222` at 1280×1024. The
 >   prefix is a horizontal aspect correction toward 16:9, not a reset.
@@ -241,7 +241,7 @@ contain the work inline, and its callee set is exactly the **union** of the othe
 
 - **The drop shadow is a separate draw with its own object**, so suppressing or restyling it is a
   matter of which class is instantiated, not of a shader uniform.
-- **`002142A0` is the single choke point** for all four text variants — one detour there sees every
+- **`002142A0` is the single choke point** for ~~all four~~ three of the four text variants *(corrected 2026-10-02, OPUS: ShadowFinal `002143E0` never reaches it — its body ends in an indirect `jmp qword ptr [r10 + 0x20]` — while the Shadow body tail-jumps in at `00214540+0x4D` and Final through its tail)* — one detour there sees every
   `FontTextSpecial` draw regardless of shadow or final state.
 - **XIIOnline:** nothing here carries gameplay state. It matters only if remote-player nameplates or
   damage numbers are ever drawn through the same path, which has not been checked.
@@ -331,8 +331,8 @@ contain the work inline, and its callee set is exactly the **union** of the othe
         holder, because the pointer is reachable only through the getter.
 - [x] What `+0x50` and `+0x58` hold — the plain/shadow field pair. **BC-3.**
       *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (BC-3): they are not a pair.* The
-      `FontTextSpecial` object holds **ten vertex layers**, each with its own texture, and the four shared slots 4, 5, 6
-      and 10 manage them.
+      `FontTextSpecial` object holds **ten vertex layers**, each with its own texture, and ~~the four shared slots 4, 5, 6~~ slots 4 and 5 (shared by all four classes), 6 (shared by three; Final has `00213B40`)
+      ~~and 10~~ and 10 (four bodies) manage them *(corrected 2026-10-02, OPUS: read from the vtables `00906DE8`, `00906E50`, `00906EB8` and `00906F20`)*.
 
       | field | contents | writer / reader |
       |---|---|---|
@@ -570,7 +570,7 @@ complete-object locator at `vtable - 8`.
 | 18 | `00215790` | record-array allocator: `+0x1BC` count times 48 bytes via `001A1470` on `[01F7F4C0]`, stored at `+0x18` | `002157AC` |
 | 20 | `002159A0` | copies the arg's nine-dword block into `+0x1F4…0x210` | `002159C3` |
 
-The record array at `+0x18` is 24-byte-stride, indexed by `+0x1C0` against the `+0x1BC` capacity —
+The record array at `+0x18` is ~~24-byte-stride~~ 48-byte-stride *(corrected 2026-10-02, OPUS: `00215790+0x16`/`00215790+0x19` allocate count × 48, and `002157C0+0x22`–`002157C0+0x3C` index `idx × 48`)*, indexed by `+0x1C0` against the `+0x1BC` capacity —
 slots 3/4/7/8 all write into `record[idx]` fields `+0x10`/`+0x20`, and slot 16 is the bound-checked
 commit walk over it. This is the same 48-byte-vertex layer model §4 established for the
 FontText family, at the shared base-class level.

@@ -45,7 +45,7 @@ audit:
 | size range | **64 B – 34,304 B, median 3,712 B**, 89 distinct sizes, every one a multiple of 16 |
 
 `section_014` is a **strict subset of the `008`/`009` pair**: every file that has `014` has both,
-while 423 files have the pair without `014`. That is a one-way implication, not a pair — a different
+while ~~423~~ 283 files have the pair without `014` *(corrected 2026-10-02, OPUS: 423 `us` files carry the pair and 140 of them `014`; read through `vbf_read_entry` from `FFXII_TZA.vbf`)*. That is a one-way implication, not a pair — a different
 shape of fact from the `008`/`009` and `010`/`011` pairs, and it should not be filed with them.
 
 ---
@@ -232,7 +232,7 @@ the one the instruction encoding actually supports.
 | `00331587` | `LEA RDX,[00D10A04]` — `"LGTDAT"` names the allocation | ✅ |
 | `003315BA` | `LEA RAX,[00330110]` — the completion callback | ✅ |
 | `003315DB` | `OR qword ptr [RDI],0x10000` — the `LGTDAT` pending-resource bit | ✅ |
-| `003775D0` | `FUN_003775d0` — the second binder caller (site `003776A6`) | ❌ not read |
+| `003775D0` | `FUN_003775d0` — the second binder caller (site `003776A6`) | ~~❌ not read~~ read — it passes manager slot 0, `003776A4` `xor edx, edx` *(answered: CD-1, 2026-09-12; 2026-10-02, OPUS)* |
 | `0037B230` | slot reset, called before binding | ❌ not read |
 | `0037A9B0` | type-2 initialiser | ❌ not read |
 
@@ -438,8 +438,8 @@ measurement above is mine and refines it — both encodings are in use and both 
 - **The `slot == 0` branch may be unreachable through the container route.** `FUN_0037aa90` sets
   `|= 0x20` on every light record when `slot == 0`, but the dispatcher **skips slot 14 entirely for
   manager 0** (`0033066B TEST EBX,EBX ; JE`). So on the `EBP2` path that branch never runs. It is
-  reachable only if `FUN_003775d0` passes 0, and that caller is unread — so the branch is **not**
-  claimed dead, only shown to be unreachable by the one route this sheet establishes.
+  reachable only if `FUN_003775d0` passes 0, ~~and that caller is unread — so the branch is **not**~~
+  ~~claimed dead, only shown to be unreachable by the one route this sheet establishes.~~ *(answered: it does pass 0 — CD-1 directly below; 2026-10-02, OPUS)*
   > **CD-1 answered 2026-09-12 (FABLE): the branch is live, on the lighting-set route.**
   > `003775D0` is read: it calls `0037AA90(rcx = [02ADD090], edx = 0)` at `003776A6` — manager slot
   > **0** — whenever the lighting flag word `02ADD0F0` has **bit 8** set (`00377697 bt eax, 8`), after
@@ -462,8 +462,8 @@ measurement above is mine and refines it — both encodings are in use and both 
   > `00378A60` → pack completion `00378BC0` → `003775D0` → `0037AA90(block, 0)`, for every map whose pack
   > has a light set. See [the map_ctrl pack](../../03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md) §3.
 - **Searches that came back empty, with the method that failed:**
-  - `FUN_003775d0`'s call at `003776A6` — **not read.** The second binder caller may pass a
-    different manager index and I have not checked which; see the `slot == 0` item above.
+  - `FUN_003775d0`'s call at `003776A6` — ~~**not read.** The second binder caller may pass a~~
+    ~~different manager index and I have not checked which;~~ *(answered: read — it passes slot 0, `003776A4` `xor edx, edx`, CD-1; 2026-10-02, OPUS)* see the `slot == 0` item above.
   - A writer of `LGT2` data — a literal byte search of the whole 32,864,752-byte image for `LGT2`
     returns **exactly one** hit, the compare immediate at `0037AAC1`. There is no second site that
     could be a writer emitting the magic.

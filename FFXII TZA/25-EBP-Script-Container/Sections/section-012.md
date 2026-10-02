@@ -30,7 +30,7 @@ audit:
 
 # EBP `section_012` — the per-map actor manifest
 
-> A short list, in every third map file, naming **which actors that map needs** — its NPCs, its
+> A short list, in ~~every third map file~~ 842 of the 1,114 map containers (75.6 %) *(corrected 2026-10-02, OPUS: read through `vbf_read_entry` from `FFXII_TZA.vbf`; §1's own count)*, naming **which actors that map needs** — its NPCs, its
 > monsters, its treasures — as a numeric id and a one-letter category.
 
 | | |
@@ -121,7 +121,7 @@ Each entry is two `u16`:
 three displacements are the per-manager tables **`0x022C6DA8`** (pointer), **`0x022C6E48`** (flags)
 and **`0x022C6D28`** (id, used only on the manager-0 error path at `0x0032FC00`).
 
-> **The consumer is not in this function and this document does not claim to have found it.** It
+> **The consumer is not in this function~~ and this document does not claim to have found it~~.** *(answered: there is none — nothing in this executable walks the section, §7, 2026-09-27; 2026-10-02, OPUS)* It
 > reads the pointer back out of one of the two places the handler puts it — and **the amendment
 > above narrows which: `managerRecord[+0x100]`, not `0x022C6DA8[manager]`**, because that is the one
 > a consumer reaches through `FUN_00263FF0`. **That is precisely the aliasing case `COVERAGE.md`
@@ -143,7 +143,7 @@ and **`0x022C6D28`** (id, used only on the manager-0 error path at `0x0032FC00`)
 | `0032FB70` | the handler — stores and clears the pending bit | ✅ complete body |
 | `0026CE40` | **`ActorManager_BindSection012Blob(mgr, ptr)`** — `managerRecord[+0x100] = ptr`; `lea` `0x0026CE4A`, store `0x0026CE51` | ✅ complete 21-byte body *(audit 2026-09-05)* |
 | `0026CC31` | second writer of `+0x100`, inside `ActorManager_BindLoadedDefinitionPayload` | ◐ that instruction only |
-| `0032F1B0` | teardown path when the flags word goes to zero | ❌ |
+| `0032F1B0` | ~~teardown path~~ the load finalizer, `ActorResource_FinalizeManagerRuntimeAfterLoads`, run when the flags word goes to zero *(corrected 2026-10-02, OPUS: `0032F1F9` calls the light binder `0037AA90` and `0032F227` `0026CE60`; section-014.md)* | ❌ |
 
 ### Data addresses cited
 
@@ -172,7 +172,7 @@ letter.** Seven map onto the archive's own `obj_finish` category directories:
 | `s` 115 | 32 | **summon** | 96 |
 | `S` 83 | 8 | — | — |
 
-**Column 1 is the model number less 1000**, tested against the 935 distinct `(letter, id)` model
+**~~Column 1 is the model number less 1000~~** Column 1 is the model number less 1000 for `c`, `m` and `n` only; for `b`, `g`, `s` and `t` it is the model number itself *(corrected 2026-10-02, OPUS: re-run against the `obj_finish` stems in `FFXII_TZA.vbf` — at `id + 1000` `g` 0 of 97, `b` 0 of 12, `s` 0 of 13, `t` 0 of 10; directly 77, 10, 10 and 8; the per-letter table below)*, tested against the 935 distinct `(letter, id)` model
 stems in the archive:
 
 | letter | resolves | rate |
@@ -214,9 +214,9 @@ distinct `(letter, id)` pairs.
 
 **`C`, `N` and `S` still resolve under neither rule.** The `obj_finish` tree does carry `hc`, `hn`
 and `hs` stem families, and mapping the uppercase letter to the `h`-prefixed family gives 13 of 40,
-13 of 66 and 1 of 5 — **better than zero and not a finding**: each id set is larger than its
-candidate pool (40 ids against 17 `hc` stems), so the mapping cannot be complete whatever it means.
-Recorded as a lead.
+13 of 66 and 1 of 5 — ~~**better than zero and not a finding**: each id set is larger than its~~
+~~candidate pool (40 ids against 17 `hc` stems), so the mapping cannot be complete whatever it means.~~
+~~Recorded as a lead.~~ *(answered: the uppercase letters are the high-detail tables, indexed per file, not per stem — UQ-333 below; 2026-10-02, OPUS)* *(corrected 2026-10-02, OPUS: `obj_finish/in/high` ships 47 `hc*.cm` files over those 17 stems, read through `vbf_load_index`; UQ-333's table holds 48 entries)*
 
 ## 6. Falsification pass — 2026-09-03
 
@@ -297,8 +297,8 @@ stems over a 282-slot range — **28 gaps** against only **7** unresolved ids.
 > **This narrows the question; it does not close it.** Sufficiency is not proof. What would settle
 > it is checking whether those 35 ids land **inside** `1009…1248` — in which case they are simply
 > absent models — or **outside** it, which would be the signature of a different numbering. **That
-> needs the id list, and the database does not store one**: the 112 came from `repos-4b`'s own
-> parser over 1,114 containers, and no `members/` file on this page carries them. *Writing that
+> ~~needs the id list, and the database does not store one~~**~~: the 112 came from `repos-4b`'s own~~
+> ~~parser over 1,114 containers, and no `members/` file on this page carries them.~~ *(answered: `members/section012-model-ids.tsv` stores it, and UQ-334 is answered from it, 2026-09-25; 2026-10-02, OPUS)* *Writing that
 > list out is the single cheapest thing that would finish `UQ-334`.*
 
 ## 7. What is not known
@@ -370,8 +370,8 @@ stems over a 282-slot range — **28 gaps** against only **7** unresolved ids.
       *Narrowed 2026-09-22 (FABLE):* the shipped D3D11 character tree adds **zero** `n` stems over the
       `obj_finish` pool the audit used, so they are not models in an unread tree; and the `n` numbering
       has **65 gaps** in its `n1009…n1248` range against **35** unresolved ids, so *absent models*
-      suffices without a second numbering. **Not closed** — that is sufficiency, not proof, and the id
-      list needed to finish it is not stored anywhere. See the section above.
+      suffices without a second numbering. ~~**Not closed** — that is sufficiency, not proof, and the id~~
+      ~~list needed to finish it is not stored anywhere.~~ *(answered: closed by the 2026-09-25 answer above, from `members/section012-model-ids.tsv`; 2026-10-02, OPUS)* See the section above.
 
 ## 8. Evidence
 

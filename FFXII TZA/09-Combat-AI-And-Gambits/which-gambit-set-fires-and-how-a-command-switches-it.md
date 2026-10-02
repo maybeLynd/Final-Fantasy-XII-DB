@@ -231,9 +231,9 @@ Arm `002FE0B3` (ids `0x4116`-`0x4121`) is two instructions of arithmetic on the 
 `0x16`-`0x21`, so the twelve commands map onto subgroups **0-11** with no gap and no overlap.
 
 > **Twelve commands, twelve subgroups — and section 8l of the gambit document reports a twelve-slot
-> config with a sixteen-bit enable mask.** The two twelves agree. **They are recorded as an
-> agreement, not as an identification**: nothing read here connects a command id to a config slot,
-> and a matching count is the weakest kind of join.
+> config with a sixteen-bit enable mask.** The two twelves agree. ~~**They are recorded as an~~
+> ~~agreement, not as an identification**: nothing read here connects a command id to a config slot,~~
+> ~~and a matching count is the weakest kind of join.~~ *(answered: they count different things — UQ-124, answered 2026-09-14; 2026-10-02, OPUS)*
 
 ## 5. Call chain
 
@@ -275,8 +275,8 @@ BattleUnit_ApplyUnitDefinition (0023A570) -> BattleUnit_ResetStateForReuse (0023
 | `002FE12B` | 1 | `4158` |
 | `002FE1A3` through `002FE4FC` | 1 each | `4159`-`4164`, twelve single-id arms |
 
-**Gap:** ids `4122-4138` (23 ids) and `4149-4157` (15 ids) are inside the compared range but reach
-the unhandled arm. **`0x414D` — open question Z-14 — is one of them.**
+**Gap:** ids `4122-4138` (23 ids) and `4149-4157` (15 ids) are inside the compared range but ~~reach~~
+~~the unhandled arm.~~ never reach the dispatcher *(answered: UQ-126, 2026-09-14 — their order-table slots point to other handlers, and `0x4128`'s is null; 2026-10-02, OPUS)*. ~~**`0x414D` — open question Z-14 — is one of them.**~~ *(answered: Z-14, 2026-09-12 — `01EEC460[0x14D]` is the stance-flip handler `002FE840`; 2026-10-02, OPUS)*
 
 ## 6. Modding notes
 
@@ -372,7 +372,7 @@ the unhandled arm. **`0x414D` — open question Z-14 — is one of them.**
         back, at priority B, to attacking its target.
 
       ~~**Still open:** what the `02089378` records are.~~ **Answered by propagation 2026-09-12:** they are the party's
-      **gambit sets** — `AiOrderSet` records of `0x170` bytes, twelve 24-byte order records each
+      **gambit sets** — `AiOrderSet` records of `0x170` bytes, ~~twelve 24-byte order records each~~ room for fourteen 24-byte order records after the `0x20` header, at most twelve filled by the rebuild *(corrected 2026-10-02, OPUS: `00328160 imul r13, rax, 0x170`, `00328187 lea r15d, [r12 + 0xc]`)*
       ([the gambit-walk contract](CONTRACT-gambit-walk.md) §3) — so for a party member set C is its own gambit list,
       installed by `BattleUnit_ApplyUnitDefinition` from the party slot index.
 - [x] ~~**UQ-123.** What the guards at `00305BF1`, `00305BF9` and `00305C03` test on `[unit + 0x698]` — three byte
@@ -416,13 +416,13 @@ the unhandled arm. **`0x414D` — open question Z-14 — is one of them.**
         the config-rebuilt set `02089378 + index × 0x170` (`0023AB7E`–`0023AB9F`).
       - **So** command `0x4116` selects a party set's whole gambit list, and `0x4117`–`0x4121` select the other
         subgroups, which only an authored set is shown here to fill.
-      - **Not read:** whether another writer fills header bytes 1–11 of a party set.
+      - ~~**Not read:** whether another writer fills header bytes 1–11 of a party set.~~ *(answered: none does — bytes 1–31 are born zero and stay zero, CONTRACT-gambit-walk.md §14 item 1, and no instruction outside the three rebuilders forms an address in the `02089378` array, the gambit page's section 8l status note; 2026-10-02, OPUS)*
 - [x] ~~**UQ-125.** What action `0x4021` is, beyond being the unconditional fallback.~~ **Answered 2026-09-14 (FABLE),
       by propagation: it is the *wait* order.** Its handler is the 106-byte body at `002FE7D0`, which the function
       census lacks ([the handler table](../07-Combat-Action/Action-Dispatch/battle-action-handler-table.md) §5, AT-3).
       - **Phase 0** zeroes the follower focus `+0x750` and advances.
-      - **Phase 1** completes once the action age counter `+0x75C` reaches `30 × n`, where `n` is the order record's
-        second word.
+      - **Phase 1** completes once the action age counter `+0x75C` reaches ~~`30 × n`~~ `n × (int)(01DFE0B8 × 30.0)` — `30 × n` frames at FrameLimit 30, `60 × n` at 60, `n` seconds either way — where `n` is the order record's
+        second word, which `00301830` never rolls as a chance for this id *(corrected 2026-10-02, OPUS: `002FE801`–`002FE829` multiply the word by `cvttss2si(01DFE0B8 × 30.0)` and compare `+0x75C`; ids up to `0x4050` leave `00301830` at `0030191D` → `00301A31`, returning 1 with no draw)*.
       - **`n = 0` never completes.** The fallback record `{0x4021, 0, flags 0x2000}` at `01EEC298` is exactly that
         case: the unit idles under an order that never ends, until the next selection replaces it
         ([the locomotion page](../06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md), DE-2).
@@ -522,7 +522,7 @@ function.
 **Not claimed:** nothing here was executed or observed live. §4.1's sign-extension caveat is
 untouched — this pass did not re-derive the four writers, so its "no reachable path is negative"
 still rests on 4.4 rather than on any check in the walk. §§5–7 and the dispatcher's arm map were not
-re-read; `0030F760` and `003105D0` remain unread here, as § says.
+re-read; ~~`0030F760` and `003105D0` remain unread here, as § says.~~ *(answered: both read 2026-09-18 (FABLE), section 3's table rows; 2026-10-02, OPUS)*
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
 

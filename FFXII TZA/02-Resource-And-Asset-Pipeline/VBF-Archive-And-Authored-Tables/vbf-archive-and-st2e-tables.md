@@ -144,7 +144,7 @@ a flag. `commandpack.bin` and `word.bin` carry no `st2e` magic and are a differe
 ## 3. `action_data.bin` — ~~the file behind registry slot `0x02EBF138`~~ a copy of it *(corrected §12: the slot is filled from `battle_pack.bin` `+0x3C`)*
 
 [The authored data table registry](../authored-data-table-registry.md) documents slot `0x02EBF138` as
-the **action definition table, ids `0`..`0x21E` (543)**, with 720 references — the second-highest in
+the **action definition table, ids `0`..`0x21E` (543)**, with ~~720~~ 723 references *(corrected 2026-10-02, OPUS: 722 reads and one `lea` over every function body)* — the second-highest in
 the array — and records that the bound was confirmed independently from `BattleUnit_CommitAction`.
 
 ~~**This is very probably the file that fills it** — see the correction in section 5 —~~ *Corrected 2026-10-01
@@ -339,7 +339,7 @@ their encoding, and whether their indices align with action ids are **not**. **A
       and the numbering runs straight through it.** This is an authored-data census of all nine language packs in
       the full extract `D:/FFXII_TZA_extract` (`work/FABLE/drift4/uq73_manifest_vs_pack.py`). An entry's length is the
       distance to the next entry's offset.
-      - **The manifest is the pack's directory order.** `battle_pack.bin` opens with `{u32 count = 71; u32 offset[71]}`
+      - **The manifest is the pack's directory order.** `battle_pack.bin` opens with ~~`{u32 count = 71; u32 offset[71]}`~~ `{u32 count = 71; u32 offset[72]}`, the last an end sentinel *(corrected 2026-10-02, OPUS: the binder's `+0x56` `lea rbx, [r9 + 4]` and `+0x97` `add rbx, 4`, over count + 1 entries to its `+0x9B` `cmp rdi, rax` and the `jle` at its `+0x9E`)*
         in all nine languages, and **manifest slot *k* is pack entry *k*** (directory `+4 + 4k`) for *k* = 0 … 70.
         - `WepJob_Matrix` is `+0x04`, `commandpack` `+0x2C`, `action_data` `+0x3C`, `status_data` `+0x40`,
           `attribute_data` `+0xA8`, `word.bin` `+0xF8` and `license_board` `+0x11C`.
@@ -584,7 +584,7 @@ Section 2 called the `recordSize`-4 files "string tables … the records are off
 is a text heap". **The records are string IDs**, and they point nowhere in the file — values run
 40000+, 100000+, 120000+, and none lands inside the file at any base.
 
-**Header field `+0x14` is the heap offset** (`== headerSize + count*recordSize`), which separates the
+**Header field `+0x14` is the heap offset** (~~`== headerSize + count*recordSize`~~ `headerSize + count*recordSize` in 255 files, but `0x20` in the two `mons_act.bin`, whose `headerSize` and `recordSize` are 0 *(corrected 2026-10-02, OPUS: the shipped headers, `headerSize` 32 in 393 of 407; §2's corrected struct)*), which separates the
 two shapes without guessing:
 
 ```c
@@ -592,7 +592,7 @@ struct St2e {                     struct Heap {                 /* at +0x14 */
     char magic[4];   /* st2e */       u32 one;                  /* 1        */
     u32  count;                       u32 base;                 /* 12       */
     u32  recordSize;                  u32 heapSize_minus_1;
-    u32  headerSize; /* 32 */         u32 count;
+    u32  headerSize; /* 32 */         u32 count;   /* <- corrected 2026-10-02, OPUS: headerSize is 32 in 393 of 407 and 0 in 14; the two mons_act.bin keep heapOffset 0x20 with headerSize 0 */
     u32  zero;                        u32 offsets[count + 1];   /* +1: end sentinel */
     u32  heapOffset;                  char text[];              /* relative to heap + base */
 };                                };
@@ -623,13 +623,13 @@ is an unmapped byte (almost certainly `&`). **AY-8.**
 ### `word.bin` is a container, and block 3 is the battle command menu
 
 `word.bin` carries no `st2e` magic because it holds 15 blocks:
-`{u32 count = 15; u32 headerSize = 68; u32 blockOffsets[15]}`, each block
+~~`{u32 count = 15; u32 headerSize = 68; u32 blockOffsets[15]}`~~ `{u32 count = 15; u32 offsets[16]}`, `offsets[0]` = 68 being block 0's start and `offsets[15]` the end *(corrected 2026-10-02, OPUS: the binder `003846F0` rebases count + 1 words from `+4` (`003846F0+0x56`, `003846F0+0x9B` / `003846F0+0x9E`) for slot `02EBF170`, called at `00236C30+0x3BA`; AY-4 above)*, each block
 `{u32 count; u32 offsets[count+1]; records}` with offsets relative to the block.
 
 **Its validity check is `offsets[0] == 4 + (count+1)*4`**, which holds on every block — verified
 independently here.
 
-**Block 3, 63 entries — the player's battle command list**, decoded from the bytes:
+**Block ~~3~~ 4, 63 entries — the player's battle command list** *(corrected 2026-10-02, OPUS: 0-based, `offsets[4]` = 35,444 in `us`; the binder `003846F0` rebases all sixteen words from `+4`, and the struck `headerSize` reading numbered it 3)*, decoded from the bytes:
 
 ```
  0 Attack        5 Summon       10 Gambits            18 White Magicks   23-30 Fire Lightning Ice
@@ -673,7 +673,7 @@ below 543:
 
 **Three checkable validations, not readings of prose:** block 10 has **13** entries and FFXII has
 exactly **13 Espers**; block 9 has **18 = 6 characters × 3 quickening ranks**; and blocks 1–5 appear
-in White, Black, Time, Green, Arcane order — **the same order as `word.bin` block 3 entries 18–22**,
+in White, Black, Time, Green, Arcane order — **the same order as `word.bin` block ~~3~~ 4 *(corrected 2026-10-02, OPUS: 0-based, as corrected above)* entries 18–22**,
 two independently derived orderings agreeing.
 
 ### The negative that remains

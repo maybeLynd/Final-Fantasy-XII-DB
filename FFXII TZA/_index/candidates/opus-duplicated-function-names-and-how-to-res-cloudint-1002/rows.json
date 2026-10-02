@@ -1,0 +1,48 @@
+{
+ "page": "00-Engine-Core-Runtime/duplicated-function-names-and-how-to-resolve-them.md",
+ "date": "2026-10-02",
+ "session": "session_01AgDnGDrHFC5Nb2A49asyw5",
+ "report": "duplicated-function-names-and-how-to-resolve-them.json",
+ "rows": [
+  {
+   "fn": "00237690",
+   "text": "for each index from 0 while it is below the signed dword `0208E6A0`, calls `BattleUnit_GetBySlotIndexIfUnitFlag4Set(index)` and, when the result is non-null, its qword `+0x698` is non-null with byte `+5` of that object equal to 1, and its byte `+0xE98` is 0, calls `00300E40(result, 0)`",
+   "anchors": [
+    [
+     "00237698",
+     "cmp"
+    ],
+    [
+     "002376A2",
+     "call"
+    ],
+    [
+     "002376B8",
+     "cmp"
+    ],
+    [
+     "002376BE",
+     "cmp"
+    ],
+    [
+     "002376CC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00379F20",
+   "text": "sets `dl` to 2 at the entry and tail-jumps to `0035B450`, leaving the other argument registers as passed in",
+   "anchors": [
+    [
+     "00379F22",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

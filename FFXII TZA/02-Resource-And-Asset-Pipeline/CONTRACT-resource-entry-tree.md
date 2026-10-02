@@ -504,3 +504,15 @@ not a combat claim of this contract.
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page and the cited pages read them; no new body read
 (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-resource-entry-tree-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00369C60` | 133 B | returns 0 when bit `ecx` of dword `022D89B8` is clear; otherwise takes the `0xA8`-stride entry at `022D7FD0` for `ecx` up to `0xE` (null above), returns 0 when its qword `+0x50` is 0, and else counts `0036AAD0(entry)` plus one for each non-zero `0036ABE0(entry)`, calling the latter once when `edx` is 0 and until it returns 0 when `edx` is non-zero; a non-zero count stores byte 1 at entry `+2` and `+0x62`; returns the count | `00369C6E`, `00369C8F`, `00369CAE`, `00369CB8`, `00369CCF` |
+| `0036B490` | 71 B | when `rdx` is non-null stores `0020E620(rcx)` in dword `+0x2C` of `rdx` and zeroes its word `+0x3E`; then, on both paths, stores `0020E620(rdx)` in dword `+0x24` of `rcx` and zeroes word `+0x3E` of `rcx` | `0036B4AC`, `0036B4B1`, `0036B4BB`, `0036B4C5`, `0036B4CE` |
+| `0036B5A0` | 71 B | when `rdx` is non-null stores `0020E620(rcx)` in dword `+0x2C` of `rdx` and zeroes its word `+0x3E`; then, on both paths, stores `0020E620(rdx)` in dword `+0x28` of `rcx` and zeroes word `+0x3E` of `rcx` | `0036B5BC`, `0036B5C1`, `0036B5CB`, `0036B5D5`, `0036B5DE` |
+| `003AB940` | 30 B | returns without work when `rcx` is null or its low two bits are both clear; otherwise tail-jumps `0036D170(rcx, 1)` | `003AB945`, `003AB94D`, `003AB957` |
+| `00409730` | 71 B | calls `00427B00(qword +0x30)` and `0051EE80(rcx+0x10)`, stores `0xFFFF` in word `+0`, -1 in dword `+0x44`, 0 in dwords `+4` and `+0x40` and in qword `+0x30`, then tail-jumps `0051EE10(rcx+0x10)` | `00409741`, `0040974A`, `00409754`, `00409761`, `00409772` |

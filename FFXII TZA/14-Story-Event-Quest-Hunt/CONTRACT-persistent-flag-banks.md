@@ -36,7 +36,7 @@ audit:
 
 ## 1. Purpose
 
-Remembers **what has already happened in the story**, permanently, as bits. Six banks of flags live
+Remembers **what has already happened in the story**, permanently, as bits. ~~Six banks~~ Five banks of flags (six accessor families - `Bank512`'s Low and High pairs share one region, section 3) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V1, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* live
 inside the save payload, so setting one *is* writing save state — there is no separate "story
 progress" structure that the save mirrors. A seventh mechanism, reached through the same authored
 gate, is **not** a flag at all: it answers from a schedule of thresholds, and its answer can go
@@ -71,7 +71,7 @@ non-zero, the `and`-with-complement arm on zero. **There is no "toggle" and no r
 list. A reimplementation that returns "found" will invert every decision at its call site.
 
 **There is no query for Primary.** Primary is read only through the authored gate at `0032A8A0`;
-the other five banks have a dedicated query and Primary does not.
+the other ~~five banks~~ four banks have a dedicated query (five query functions, two of them `Bank512`'s) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V1, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* and Primary does not.
 
 ## 3. Types
 
@@ -100,7 +100,7 @@ base = SaveImage_GetPersistentPayloadBase() = SaveImage_GetActiveBuffer() + 0x20
 > **441 of 5,432 bytes are declared — 8.1 %.** The rest is reported by `types_index.py` as
 > three undeclared gaps totalling 4,991 bytes, and `441 + 4,991 = 5,432` exactly. **Nine
 > tenths of the persistent payload has no known accessor**, and the store says so rather than
-> rounding the record up to “understood”. The six banks are what is mapped; they are not what
+> rounding the record up to “understood”. The ~~six~~ five banks *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V1, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* are what is mapped; they are not what
 > the payload mostly is.
 
 ## 4. Preconditions · postconditions · invariants
@@ -234,7 +234,7 @@ having written nothing. On the **lower** end they do not all agree, and the disa
 > ```
 >
 > `movsxd rcx, edi` sign-extends it, and `or byte [rax + rcx + 0x1384], bl` **writes before the
-> bank** — into the unmapped payload stretch between `+0x1164` and `+0x1384`, which is save state
+> bank** — into ~~the unmapped payload stretch between `+0x1164` and `+0x1384`~~ the payload below the bank, at `+0x1384` + trunc(id / 8), with no lower bound in the code (the `cmp ecx, 0x40` / `jge` at `0032AC77` / `0032AC7A` is signed, so every negative id passes; id -4096 reaches `+0x1184`, and a span such as `+0x1164`-`+0x1384` belongs to a set of ids, not to the setter) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V11, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*, which is save state
 > like everything else in the payload.
 >
 > **This is a latent property of the accessor, not a demonstrated bug.** No caller was found that
@@ -282,7 +282,7 @@ having written nothing. On the **lower** end they do not all agree, and the disa
 >
 > **A negative id writes only when it is a multiple of 8, and then it writes bit 0 of the byte
 > at `base + id/8`.** Over the test's id set that is **12 distinct offsets, from `0x1383` down
-> to `0x0FE0`** — 932 bytes before the bank. The earlier reading was right about where a write
+> to `0x0FE0`** — 932 bytes before the bank. *That span is the test id set's, not a bound: the setter has none, and ids -1 to -7 write nothing (their bit index is negative, so the shifted mask is 0).* *(clarified 2026-10-02, FABLE, on OPUS's byte verdict C-V11, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* The earlier reading was right about where a write
 > lands and silent about how few ids produce one; this is the correction.
 
 > ### CORRECTED 2026-09-08 — `SetBank64B`'s negatives do NOT land where `SetBank64A`'s do
@@ -325,8 +325,8 @@ wrong half.
 
 - A story beat that has happened stays happened across save and load, because the bit **is** the
   save state rather than a copy of it.
-- **A new game is not blank**: the payload is zeroed and then the ids in `mapjumpgroupinit.bin` are
-  switched on before the first frame.
+- **A new game is not blank**: the payload is zeroed and then ~~the ids in `mapjumpgroupinit.bin` are
+  switched on~~ 52 of the 53 ids in `mapjumpgroupinit.bin` are switched on - its first id, 0, is dropped by `SetPrimary`, which accepts 2 to 0x1FF *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V2, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* - before the first frame.
 - An NPC line that is available only *between* two story points is a threshold schedule, not a
   flag (§7).
 - A condition an author wants always-true or always-false is written as id `0` or id `1`, and never
@@ -389,7 +389,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/flag_banks` (ignored path). Instru
      call sites in five functions — the display-name resolver `00263990` and its by-id twin
      `002639E0` (each strips bit 14 of the actor's `+0x102` name id, queries the bit, and passes
      `(id, flag)` to `003EAC10` — the bit selects the second string of name pair `id`), the two
-     name-source readers `002B9C70`/`002BA548`, and script accessor `0034E980`; `SetBank2048`
+     name-source readers `002B9C70`/~~`002BA548`~~ `002BA530` (`002BA548` is an instruction inside it) *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V4, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*, and script accessor `0034E980`; `SetBank2048`
      `0032ABF0` has three — the message-window opener `002E16B0` (`SetBank2048(actor +0x102, 1)`)
      and script accessors `0034DFA0`/`0034E320`. The index space is the NPC-name dictionary's —
      which is why it needs 2,048 bits.
@@ -402,7 +402,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/flag_banks` (ignored path). Instru
    payload lives at the fixed address `02164280 + 0x200 = 02164480` (`SaveImage_GetActiveBuffer`
    is `lea rax, [02164280]`, not a pointer load), so the gap is absolute `02165814`–`02165833`.
    Operand-level census of all `call 002EF2B0`/`call 002EF640`/`call 002EF2D0` sites (163 calls
-   in 104 functions): zero mem operands with a displacement in `0x1394`–`0x13B3`
+   in ~~104~~ 98 functions *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V13, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*): zero mem operands with a displacement in `0x1394`–`0x13B3`
    (payload-relative) or `0x1594`–`0x15B3` (buffer-relative); zero rip-relative operands resolve
    anywhere into the payload at all — every access is helper-mediated. No `lea` forms a pointer
    into the range, so indexed access is excluded too. The bytes exist only to be zeroed by the
@@ -415,7 +415,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/flag_banks` (ignored path). Instru
      names: when the bit is set the track comes from `+0x1534` and the field-to-track map is
      skipped). Six accessors, every one `call 002EF2B0` then `[rax+0x1534]` beside a `+0x1063`
      bit-`0x40` test or update: readers `0025DBB6` / `00262029` / `0026DE41` (`movzx` → arg of
-     `003EAA70`, the music-id resolver); writers `00262A76` (`bpl`), `0026A73D` (`0`, beside
+     `003EAA70`, the music-id resolver); writers `00262A76` (`bpl`, which is zero there, so this writer clears the byte, as [the flag-bank page](persistent-flag-banks.md) says *(clarified 2026-10-02, FABLE, on OPUS's byte verdict C-V12, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*), `0026A73D` (`0`, beside
      `and +0x1063, 0xBF`), `0026A75B` (`bl`, beside `or +0x1063, 0x40`).
    - `+0x1535` — a second byte: sole writer `002EF370` (~~`buffer+0x1735 = cl`~~ `buffer+0x1735 = bl`, its first argument), ~~whose only caller
      is the session-counter function at `002DDB4A` (writes `bl` after updating the `0215E6E0`
@@ -472,7 +472,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/flag_banks` (ignored path). Instru
 
 | claim | evidence | tier | confidence |
 |---|---|---|---|
-| six banks, offsets and sizes | both routes to the payload censused — through `002EF2B0` and through the raw buffer, 36 displacements, none in the `AA-5` gap | 1 | PROVEN |
+| ~~six~~ five banks (six accessor families), offsets and sizes *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V1, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* | both routes to the payload censused — through `002EF2B0` and through the raw buffer, 36 displacements, none in the `AA-5` gap | 1 | PROVEN |
 | the two routes, re-counted here | **`002EF2B0`: 121 `E8` call sites, 0 `E9`. `002EF640`: 40 `E8`, 0 `E9`.** Controls positive for both instruments | 1 | PROVEN |
 | payload is `0x1538` bytes | `mov r8d, 0x1538` at `002EF2DB` feeding `memset` | 1 | PROVEN |
 | bit arithmetic identical in all six | read from each accessor body — the signed-division idiom `cdq`/`sar …,3` sits at `0032A94E`/`0032A960`, `0032A9B7`/`0032A9C9`, `0032AA17`/`0032AA29`, `0032AA7E`/`0032AA90`, `0032AAF2`/`0032AB04`, `0032AB78`/`0032AB8F`, `0032AC06`/`0032AC1D`, `0032AC83`/`0032AC9A`, `0032AD03`/`0032AD1A`, `0032AD86`/`0032AD9D`, `0032AE0A`/`0032AE21` across the eleven accessors | 1 | PROVEN |
@@ -481,11 +481,11 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/flag_banks` (ignored path). Instru
 | new game applies an authored list | `002EF2D0` memset + tail-jump to `00379160` | 1 | PROVEN |
 | the two shipped files and their sizes | path array with two controls; all twelve `FileSizeTable_*.fst` agree | 1 (corpus) | PROVEN |
 | the two shipped lists' ids — `mapjumpgroupinit.bin` carries 53: `0x0000`, then 52 ids `0x0056`–`0x0158` in `SetPrimary` range, so 52 are set *(Corrected 2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 306; the shipped file re-decoded.)*; `eventmemorylist.bin` carries 8 including `0x0000`, consumed by membership predicate `00377440`, not a setter | both files decoded: `FLAGDEF1`+u16 count 53 at `+8`, entries `+0x0A` → `00379160`→`SetPrimary(id,1)`; `EVMEMLST`+count 8 → `00377440` returns 0 on membership (§14 `DS-1`, 2026-09-21) | 1 (corpus + static) | PROVEN |
-| four `Bank64` accessors accept negatives | signed `jl`/`jge` with no `js` — `0032A9A4`/`0032A9A7`, `0032AA04`/`0032AA07`, `0032AC77`/`0032AC7A`, `0032ACF7`/`0032ACFA` — against seven siblings that reject by `js` (`0032A945`, `0032AA75`, `0032AAE5`) or unsigned compares (`0032A8C6`, `0032AB6F`, `0032ABFD`, `0032AD7D`, `0032ADFD`) | 1 | PROVEN |
+| four `Bank64` accessors accept negatives | signed `jl`/`jge` with no `js` — `0032A9A4`/`0032A9A7`, `0032AA04`/`0032AA07`, `0032AC77`/`0032AC7A`, `0032ACF7`/`0032ACFA` — against seven siblings that reject by `js` (`0032A945`, `0032AA75`, `0032AAE5`) or unsigned compares (~~`0032A8C6`,~~ `0032AB6F`, `0032ABFD`, `0032AD7D`, `0032ADFD`; `0032A8C6` is the gate's own `jb` after `cmp edi, 0x200`, not a sibling's bound test *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V6, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*) | 1 | PROVEN |
 | a negative id writes before the bank | `movsxd rcx, edi` then `or byte [rax+rcx+0x1384], bl` | 1 (static) | VERY HIGH |
 | the only paths into a `Bank64` accessor are six verb result-callbacks (verbs `0x2F8`–`0x2FD`), each passing a raw `00267E10` pop unmasked — and zero authored call sites for all six verbs exist across 1,114 decoded scripts | operand-level caller census over all 38,161 bodies (`0032AC70`←`0034CA20`/`0034D190`, `0032ACF0`←`0034CD40`/`0034D600`, `0032A9A0`←`0034D940`, `0032AA00`←`0034DDB0`); handler bodies are `call 00267E10; mov ecx,eax; jmp accessor`; symbolic-stack authored census zero hits (§14 `DX-1`, 2026-09-21) | 1 (static + corpus) | PROVEN |
-| the `+0x1394`–`+0x13B3` gap has no accessor by any route, and `+0x1534` is the saved music-override id (gated by `+0x1063` bit `0x40`), `+0x1535` is a written-only byte, `+0x1536`/`+0x1537` are untouched tail | payload base is static `02164280+0x200` (`002EF640` is `lea`); operand census over all 163 helper-call sites in 104 functions — zero disps in `0x1394`–`0x13B3`/`0x1594`–`0x15B3`, zero rip-rel operands into the payload, no `lea` into the gap; six `+0x1534` accessors all `call 002EF2B0`-mediated and paired with `+0x1063` bit `0x40` (§14 items 2–3, 2026-09-21) | 1 (static) | PROVEN |
-| `Bank2048` is the NPC-name-reveal bank with real engine consumers; `Bank64A`/`Bank64B` are script-facing only (six `shutoral*` verb callbacks, zero authored call sites); hunts are script conventions over these banks while the bestiary is a separate native 512-byte block at payload `+0xB404` keyed by class row `+0x52` | E8/E9 rel32 sweep of `.text` — `0032A930`: 7 sites in `00263990`/`002639E0`/`002B9C70`/`002BA548`/`0034E980`; `0032ABF0`: 3 sites in `002E16B0`/`0034DFA0`/`0034E320`; Bank64 callers exactly the six verbs (§14 `DX-1`); sibling-page answers folded (§14 items 1 and 6, 2026-09-21) | 1 (static + corpus) | PROVEN |
+| the `+0x1394`–`+0x13B3` gap has no accessor by any route, and `+0x1534` is the saved music-override id (gated by `+0x1063` bit `0x40`), `+0x1535` is a written-only byte, `+0x1536`/`+0x1537` are untouched tail | payload base is static `02164280+0x200` (`002EF640` is `lea`); operand census over all 163 helper-call sites in ~~104~~ 98 functions *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V13, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))* — zero disps in `0x1394`–`0x13B3`/`0x1594`–`0x15B3`, zero rip-rel operands into the payload, no `lea` into the gap; six `+0x1534` accessors all `call 002EF2B0`-mediated and paired with `+0x1063` bit `0x40` (§14 items 2–3, 2026-09-21) | 1 (static) | PROVEN |
+| `Bank2048` is the NPC-name-reveal bank with real engine consumers; `Bank64A`/`Bank64B` are script-facing only (six `shutoral*` verb callbacks, zero authored call sites); hunts are script conventions over these banks while the bestiary is a separate native 512-byte block at payload `+0xB404` keyed by class row `+0x52` | E8/E9 rel32 sweep of `.text` — `0032A930`: 7 sites in `00263990`/`002639E0`/`002B9C70`/~~`002BA548`~~`002BA530` *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V4, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*/`0034E980`; `0032ABF0`: 3 sites in `002E16B0`/`0034DFA0`/`0034E320`; Bank64 callers exactly the six verbs (§14 `DX-1`); sibling-page answers folded (§14 items 1 and 6, 2026-09-21) | 1 (static + corpus) | PROVEN |
 | any runtime observation | **none exists** | none | UNKNOWN |
 
 ## 15a. Falsification pass 1 — 2026-09-12 (OPUS)
@@ -643,7 +643,7 @@ each value — **a symmetry, and its absence would have been the bug.**
 
 ## The `0032A8A0` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0032A8A0` (`PersistentFlag_QueryPrimaryOrAuthoredThresholdGate`, ~127 B)
+`0032A8A0` (`PersistentFlag_QueryPrimaryOrAuthoredThresholdGate`, ~~~127 B~~ 122 B, `0032A8A0`-`0032A919` `ret` *(corrected 2026-10-02, FABLE, on OPUS's byte verdict C-V3, [record](../_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md))*)
 — `edi = ecx & 0x3FFF`; `bt ecx, 0xE` selects the authored gate
 (`0032A8A8`/`0032A8AE`).
 

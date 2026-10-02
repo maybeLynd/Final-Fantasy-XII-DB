@@ -430,20 +430,15 @@ def _run(name, fn, failed):
 
 
 def audited(t):
-    """progress.py's audit_coverage rule (progress.py main, the `audit:` block): a pass counts only with a program state
-    (`passes > 0` and `last_pass_state`), or `falsification_passes > 0` WITH a written falsification-pass section."""
-    end = t.find("\n---", 3)
-    fm = t[:end] if end > 0 else ""
-    m = re.search(r"^audit:\s*$", fm, re.M)
-    if not m:
-        return False
-    blk = fm[m.end():]
-    pm = re.search(r"^\s+passes:\s*(\d+)", blk, re.M)
-    sm = re.search(r"^\s+last_pass_state:\s*(\S+)", blk, re.M)
-    if pm and int(pm.group(1)) > 0 and sm and sm.group(1) != "null":
-        return True
-    fp = re.search(r"^\s+falsification_passes:\s*(\d+)", blk, re.M)
-    return bool(fp and int(fp.group(1)) > 0 and re.search(r"^#{2,3} .*[Ff]alsification pass", t, re.M))
+    """progress.py's audit_coverage rule - shared, not ported. DATA's
+    MY-PROGRESS-METRICS review (2026-10-01) found this function was a
+    hand-copied port of the scorer's inline rule: a rule corrected three
+    times in one night is exactly the kind that drifts when kept in two
+    places, and the review decided the dashboard must import the canonical
+    `progress.audit_pass_recorded` rather than keep its own copy."""
+    sys.path.insert(0, GS)
+    import progress as PR
+    return PR.audit_pass_recorded(t)
 
 
 # ------------------------------------------------------------------------------------------------ measure (pure)

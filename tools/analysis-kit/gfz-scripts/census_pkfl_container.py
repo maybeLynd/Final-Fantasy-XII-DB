@@ -43,17 +43,29 @@ EXTS = ("mot", "snd", "vpc", "vpcjp")
 
 
 def read_dir(blob):
-    """-> (slotCount, [offsets]) or None. Directory begins at +0x08, after magic and count."""
+    """-> (slotCount, [(offset, size)]) or None. Directory begins at +0x08, after magic and count.
+
+    Corrected 2026-10-02 (OPUS, opus-pkfl-readiness-fixes-1002): each slot is a {u32 offset, u32 size} PAIR, so the
+    directory is 8 + 8 * slotCount bytes (0x88 for 16 slots, 0x208 for 64 - the sizes the walker 0032FCA0 requests).
+    This used to read slotCount single dwords, i.e. the first half of the directory with every size taken for an
+    offset. The engine reads slot k's offset at +8+8k and its size at +0xC+8k (0032F360+0x2E). Over all 10,314
+    shipped packages the pair reading has no lone zero, every pair in bounds, offsets ascending in slot order and the
+    first payload at 0x800.
+    """
     if len(blob) < 12 or blob[:4] != MAGIC:
         return None
     n = struct.unpack_from("<I", blob, 4)[0]
-    if not (1 <= n <= 4096) or 8 + 4 * n > len(blob):
+    if not (1 <= n <= 4096) or 8 + 8 * n > len(blob):
         return None
-    return n, list(struct.unpack_from("<%dI" % n, blob, 8))
+    w = struct.unpack_from("<%dI" % (2 * n), blob, 8)
+    return n, [(w[2 * k], w[2 * k + 1]) for k in range(n)]
 
 
-def slots(offs, size):
-    """{index: (offset, length_or_None, aliased)} for present slots.
+def slots(pairs, size=None):
+    """{index: (offset, size)} for present slots (offset or size non-zero). Lengths are stored, not inferred.
+
+    *Withdrawn 2026-10-02 (OPUS): the text below described the four-byte reading. Its "aliasing" - odd slots
+    pointing inside the directory, the repeated 0x40 - was the size words read as offsets. It is kept as history.*
 
     **LENGTH IS None WHEN SLOTS SHARE AN OFFSET, and that is the whole point of this function.**
 
@@ -71,17 +83,7 @@ def slots(offs, size):
     **A census that emits a plausible number for a case it cannot measure is worse than one that
     refuses**, because the number gets read. So an aliased slot reports `None`.
     """
-    present = sorted((o, i) for i, o in enumerate(offs) if o)
-    dup = collections.Counter(o for o, _i in present)
-    out = {}
-    for k, (o, i) in enumerate(present):
-        aliased = dup[o] > 1
-        if aliased:
-            out[i] = (o, None, True)
-            continue
-        nxt = next((p for p in present[k + 1:] if p[0] > o), None)
-        out[i] = (o, (nxt[0] if nxt else size) - o, False)
-    return out
+    return {i: (o, s) for i, (o, s) in enumerate(pairs) if o or s}
 
 
 def main(argv=None):
@@ -122,13 +124,10 @@ def main(argv=None):
         n, offs = d
         counts[n] += 1
         by_ext_count[ext][n] += 1
-        s = slots(offs, len(b))
-        for i, (_o, ln, al) in s.items():
+        s = slots(offs)
+        for i, (_o, ln) in s.items():
             occ[i] += 1
-            if al:
-                aliased[i] += 1
-            else:
-                slot_sizes[i].append(ln)
+            slot_sizes[i].append(ln)
         rows.append((p, ext, n, ",".join("%02d" % i for i in sorted(s))))
 
     ok = len(rows)
@@ -184,23 +183,25 @@ def main(argv=None):
 
 
 def self_test():
-    body = MAGIC + struct.pack("<I", 4) + struct.pack("<4I", 0x40, 0, 0x80, 0)
+    body = MAGIC + struct.pack("<I", 4) + struct.pack("<8I", 0x800, 0x40, 0, 0, 0x1000, 0x30, 0, 0)
     body += b"\x00" * (0x100 - len(body))
     d = read_dir(body)
     ok = True
-    if not d or d[0] != 4 or d[1] != [0x40, 0, 0x80, 0]:
+    if not d or d[0] != 4 or d[1] != [(0x800, 0x40), (0, 0), (0x1000, 0x30), (0, 0)]:
         print("SELF-TEST FAILED: dir %s" % (d,)); ok = False
-    s = slots(d[1], len(body))
-    if sorted(s) != [0, 2] or s[0] != (0x40, 0x40) or s[2] != (0x80, 0x80):
+    s = slots(d[1])
+    if sorted(s) != [0, 2] or s[0] != (0x800, 0x40) or s[2] != (0x1000, 0x30):
         print("SELF-TEST FAILED: slots %s" % s); ok = False
+    if read_dir(MAGIC + struct.pack("<I", 4) + b"\x00" * 16) is not None:
+        print("SELF-TEST FAILED: a directory shorter than 8 + 8 * count accepted"); ok = False
     if read_dir(b"XXXX" + body[4:]) is not None:
         print("SELF-TEST FAILED: bad magic accepted"); ok = False
     if read_dir(MAGIC + struct.pack("<I", 99999)) is not None:
         print("SELF-TEST FAILED: oversized directory accepted"); ok = False
     if not ok:
         return 1
-    print("self-test ok: directory parsed at +0x08, zero slots read as absent, lengths from the "
-          "next present offset, bad magic and oversized count refused")
+    print("self-test ok: {offset, size} pairs parsed at +0x08, zero pairs read as absent, sizes as stored, "
+          "short directory, bad magic and oversized count refused")
     return 0
 
 

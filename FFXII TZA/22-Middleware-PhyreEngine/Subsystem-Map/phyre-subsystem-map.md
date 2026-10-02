@@ -38,8 +38,8 @@ audit:
 > measurement is right, and the top-level call direction is Phyre → game. See
 > [`../Application-Framework-Boundary/the-game-is-a-phyre-application.md`](../Application-Framework-Boundary/the-game-is-a-phyre-application.md).
 
-**PARTIAL, and tier 4 by construction.** This document reports *identity from RTTI*, not mechanism.
-No Phyre function body is read here. Its value is that it converts "6,769 unexplained functions"
+~~**PARTIAL, and tier 4 by construction.**~~ **DOCUMENTED, tier 4 by construction.** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`)* This document reports *identity from RTTI*, not mechanism.
+No Phyre function body is read here *(answered: see the AQ-2 and AQ-5 answers, 2026-09-18, which decode bodies; 2026-10-02, OPUS)*. Its value is that it converts "6,769 unexplained functions"
 into a named breakdown that later work can attack a piece at a time.
 
 ## 1. What the player sees
@@ -55,7 +55,7 @@ own code and is not.
 
 ## 2. What RTTI says is in there
 
-`rtti_recover.py` recovered **2,133 classes** image-wide, of which **1,604 are `Phyre::`**, carrying
+`rtti_recover.py` recovered ~~**2,133 classes**~~ **2,248 classes** image-wide, of which ~~**1,604 are `Phyre::`**~~ **1,739 are `Phyre::`** *(corrected 2026-10-02, OPUS: `Tools/work/rtti/classes.tsv` has 2,248 rows today and 1,739 `Phyre::` names; an independent walk of the image's complete-object locators finds the same 1,739 `Phyre::` classes; the 2,133 run failed to demangle most names, class-descriptor-and-metadata-system.md §14; the namespace table below is that older run's)*, carrying
 **1,714 vtables**.
 
 ### The real namespaces, by size
@@ -141,7 +141,7 @@ call the total "methods in Phyre".
 
 | Path | Contents |
 |---|---|
-| `Tools/work/rtti/classes.tsv` | 2,133 classes: name, mangled, vtable count, method count |
+| `Tools/work/rtti/classes.tsv` | ~~2,133 classes~~ 2,248 classes *(corrected 2026-10-02, OPUS: the table's current row count)*: name, mangled, vtable count, method count |
 | `Tools/work/rtti/methods.tsv` | per-method rows: address, class, slot, current name |
 | `Tools/analysis-kit/gfz-scripts/rtti_recover.py` | the recovery tool |
 | `Tools/analysis-kit/gfz-scripts/rtti_challenge.py` | its adversarial check |
@@ -343,7 +343,7 @@ Phyre — and left the split open. Splitting it turned out to matter far less th
 | `Reflection` | 617 | 4,557 | 13.5 % |
 | `ScriptVM` | 567 | 1,219 | 46.5 % |
 | **`Middleware`** | **218** | **347** | **62.8 %** |
-| `Rendering` | 54 | 287 | 18.8 % |
+| `Rendering` | 54 | ~~287~~ 288 *(corrected 2026-10-02, OPUS: the 2026-09-14 count above, `00180A70` included)* | 18.8 % |
 | `PostProcessing` | 25 | 72 | 34.7 % |
 | `Animation` | 16 | 69 | 23.2 % |
 | `Framework` | 10 | 19 | 52.6 % |

@@ -329,6 +329,14 @@ op site (`003196BC`, `0031971A`, `003197ED`, `003199AE`) and the dispatcher (`00
 `0028F053`) zero-extend it back — so the manager must live below 4 GB, the same property [the field-record table page](../03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md)
 records for the resource arena (`PROPOSED-repos2d-4`).
 
+*(FABLE, 2026-10-02, on ASTRA's s33-visual-retirement-clock, SPEC ACCEPT)* **Retiring a pickup's visual does not free its visual record, and it does not start a clock.** ASTRA's static packet [`s33-visual-retirement-clock`](../_experiments/evidence/s33-visual-retirement-clock/README.md) (producer commit `045a4c6af`) reads the shared remove and four bodies of the visual manager; SWE2-AUDIT-SPEC re-ran it and accepted it ([review](../_index/candidates/auditspec-review-astra-s33-visual-retirement-clock-1001/REVIEW.md)). The record [`astra-returns-s33-fable-1002`](../_index/candidates/astra-returns-s33-fable-1002/README.md) lists their addresses and re-reads every instruction used here.
+
+- **The neutral path.** Ops 4 and 5 pass no collector. On an occupied record that is not yet retired and whose bit 3 is clear, the shared remove sets bit 1 and zeroes `+0x290` and `+0x294`, and it calls nothing. It leaves the visual's phase `+0x260`, its motion value `+0x264` and its signed fade word `+0x270` as they were. The blink step's first call sets bit 3 (§9, the phase notify), so a pickup that has blinked takes the other branch, which this packet does not cover.
+- **Release needs the phase to move.** The visual's local update runs one phase handler per call. Phase 1 can become phase 2. A retired phase-2 record becomes phase 3, and with `+0x290` zero it also loses flag `0x20`. A phase-3 record becomes phase 0 only when its fade word is zero or below after that call's fade step. One call cannot go from phase 2 to phase 0.
+- **Release is a separate pass.** Each manager update first runs a recycle pass over the `+0x2490` list. That pass clears and unlinks each phase-0 record, and it saves the next link before clearing. Only then does the manager run the update pass. So phase 0, the cleared occupied bit and the unlink are three separate events. A record that reaches phase 0 in an update pass is not released by that same manager call. The packet does not prove that the next call releases it: after each local update the manager tests a render gate, whose default branches return 1, and it can then call a presentation transform update. Neither is shown to be inert.
+
+**What this does not say.** These are local facts. They hold for valid record memory, the ordinary calling convention and no interfering writes. The retained peer replay (R7) freed five retired records on fixture manager update 51. That observation stands within its fixture, but it counts fixture calls, not frames in play. The aged 48-update probe exists only as README prose. The packet also derives a state that is never released over repeated local calls: phase 3, flags 3, a fade word above 0 and at most `0x4000`, `+0x290` zero, and a zero global frame step. The decline step is then the frame step times the constant −2048.0, a signed zero that truncates to 0, so the fade word never falls. That refutes any universal 51-call bound over that local domain, but it does not show that shipped play reaches the state. **No fixed window of 48 to 51 updates in play is proven.** The normal chain is: a real drop, the visual's creation, any zero handle, a real next pool tick and an observed consequence. Natural visual-slot exhaustion, interleaving, real cadence, renderer effects and any consequence all stay open. So an eviction (op 5) frees its pool slot at once, as this page says, but the evicted pickup's visual record is released only later, by this phase-driven pass. The visual manager has 13 records (op 1 above).
+
 ### The three presentation tiers
 
 `Loot_DeriveWorldPickupPresentationTier(drop_buffer)` (`00319A20`) runs over the **same seven
@@ -400,7 +408,7 @@ returns, so a pickup shows its best contents, not an average.
 - **The tier is computed before creation and never revisited.** Changing an item's runtime category
   changes the shine of future drops only.
 - **Eviction is silent.** Nothing signals that an uncollected pickup was destroyed to make room; it
-  simply receives presentation op 5 instead of op 4.
+  simply receives presentation op 5 instead of op 4. *(FABLE, 2026-10-02, on ASTRA's s33-visual-retirement-clock, SPEC ACCEPT)* Its pool slot is free at once, but its visual record is not: op 5 only marks the visual retired. The visual manager releases the record later, after the visual's phase runs down ("The presentation opcode set"). No fixed delay is proven.
 
 ## 5. What is not known
 

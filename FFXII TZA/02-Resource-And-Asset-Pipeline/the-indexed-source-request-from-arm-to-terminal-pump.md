@@ -1,7 +1,7 @@
 ---
 system: Indexed source request arming, allocation and terminal queue composition
 category: 02-Resource-And-Asset-Pipeline
-status: PARTIAL
+status: PARTIAL — OV-21, OV-33 and OV-42 stay open (OV-21's loaded-state reachability — runtime; OV-33's FileCache alternates/locale/init-and-lifetime/kind-0xFF list; OV-42's remaining producers and natural rejection — runtime) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: HIGH
 verified_against:

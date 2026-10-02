@@ -196,7 +196,7 @@ base 0x02EC13C0 · walked to 0x02EC19C0 · 1,536 bytes / 24 = exactly 64 groups
 **64 groups, each tracking up to 64 members** — one bit per member in a `u64`. The table is in
 `.data` **past `SizeOfRawData`**, so it is BSS and starts at all zeros.
 
-### The reset zeroes all three fields — added 2026-09-10
+### The reset zeroes ~~all three fields~~ both masks and flag bit 0 only — added 2026-09-10 *(corrected 2026-10-02, OPUS: `003070A0`–`003070AB` are `and byte ptr [...], 0xFE`)*
 
 The `0x10` bias puts the eight qword stores on **both masks of all four entries**, not on `deadMask`
 alone. With `rax` at entry 0's `flags` byte and `rcx = 0` from `00307097 xor ecx, ecx`:
@@ -347,9 +347,9 @@ further. `EE-10`.
 > **Script-side argument order — ~~inferred, not observed~~ observed 2026-09-13 (`EE-11`, below).** The first pop is the *last* pushed
 > ([the calling convention](../../01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md)
 > §2), so as written in a script the verb is `btlAtelSetEventFlagGroup(group, mode)`. The decompiler
-> catalog types its parameters `INT, INT|FLOAT`, consistent with a small mode literal second. No
-> shipped script has been decompiled to confirm it — the two `.ebp` files on hand are containers the
-> decompiler rejects unpacked. `EE-11`.
+> catalog types its parameters `INT, INT|FLOAT`, consistent with a small mode literal second. ~~No~~
+> ~~shipped script has been decompiled to confirm it — the two `.ebp` files on hand are containers the~~
+> ~~decompiler rejects unpacked.~~ *(answered: see the next paragraph - `EE-11` observed in the shipped scripts 2026-09-13; 2026-10-02, OPUS)* `EE-11`.
 >
 > **`EE-11` answered 2026-09-13 (FABLE),** **observed in the shipped scripts.** The 1,114 decompiled `us` scripts contain **6,746** calls in **502** files, and every one sits in a `spawnGroup` block's entry function (`entry00` 2,056, `entry01` 2,014, … `entry07` 84), after `btlAtelSetUnit` and immediately after `btlAtelSetLevel` — a fixed authored preamble (`btlAtelSetUnit`, `…SetDirection`, `…SetDefaultLogic`, `…SetHpLowLimit`, `…SetLevel`, **`…SetEventFlagGroup`**, `…SetCallGroup`, `…SetUnitType`, `…SetBelong`, e.g. `bds_e01` `BOSS_カオス`). So registration runs when the spawned unit's entry script starts, before it can act or die. The argument values fit `(group, mode)` and not the reverse: the **second argument is only ever 0, 1 or 2** — exactly the values `00239710` distinguishes (`== 1`, `== 2`) — while the first ranges 0–5: `(0, 0)` 6,206 (no group — the unit stays outside the ledger), `(1, 0)` 438, `(1, 1)` 74, `(1, 2)` 13, `(2, 1)` 4, `(2…5, 0)` two each and `(3…5, 1)` one each. So 540 registrations join a group, 81 with mode 1 (the flag-and-`0x2005` arm), 13 with mode 2 (the teardown skip of `EE-10`), and groups 2–5 appear only 6, 3, 3 and 3 times against group 1's 525.
 
@@ -390,7 +390,7 @@ bool RecordMemberDeath(BattleUnit *u)
         int lane = SpawnLaneMap_ResolveBkeiIndex(u->p_40, bkei);   /* 002360D0 */
         if (lane >= 0) {
             Ledger *L = (Ledger*)(0x02EC13C0 + (group - 1) * 24);
-            L->deadMask |= (1ull << lane);
+            L->deadMask |= (1ull << lane);   # <- corrected 2026-10-02, OPUS - a sign-extended 32-bit shift, (int64)(int32)(1u << (lane & 31)); 00306F6F mov eax, 1 / 00306F74 shl eax, cl / 00306F76 cdqe / 00306F78 or [rdx+8], rax; contract section 12
             if ((L->memberMask & L->deadMask) == L->memberMask)
                 goto complete;                        /* every awaited member is dead */
         }
@@ -466,7 +466,7 @@ mode != 1   0030700C SET unit bit 47   ·                             · 0030701
                     for i in 0..63 (00307050..00307071): if flags & 1 { flags &= ~1 (00307061); 0026ADC0(3, i + 1) (00307063) }
 ```
 
-`0026ADC0(index, value)` stores `value` as a `u16` into a 64-entry table reached through the pointer at
+`0026ADC0(index, value)` stores `value` as a ~~`u16`~~ 16-bit word *(corrected 2026-10-02, OPUS: the store carries no sign; the getter `00264D20` zero-extends it at `00264D3D`, and its consumer `00321190` sign-extends that result at `003211C2` `movsx ecx, ax`, so signedness is per reader)* into a 64-entry table reached through the pointer at
 `02098E68` (`0026ADDD`), provided `index < 64` (`0026ADC0`), byte `02098E20` has bit 0 (`0026ADC5`)
 and the pointer is non-null (`0026ADD5`). **So a completed group's number is posted into slot 3 of
 that table, and the flag that requested it is cleared in the same frame.** The pointer is `+0x48` of
@@ -474,7 +474,7 @@ the ActorManager slot-0 record whose live bit is that byte
 ([the audio boundary](../../18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md) §7:
 `02098E20`, stride `0x288`, bit 0 = live). The table's other known reader is
 `AiTargetSelector_ResolveOperandValue` (`00321190` → `00264D20`, same gate at `00264D25`, `movzx` of
-the same table at `00264D3D`); which script or operand reads slot 3 is `EE-9`.
+the same table at `00264D3D`); ~~which script or operand reads slot 3 is `EE-9`~~ the zone script reads slot 3, by `waitv` on `scratch1` *(answered: see §8, `EE-9` 2026-09-18; 2026-10-02, OPUS)*.
 
 **Bit 47 of the unit's first qword therefore means "this unit's group completion is waiting for its
 death reaction to be handled."** Set at `0030700C`, cleared at `00306FC9` and `0030711A`, tested at
@@ -506,8 +506,8 @@ same call, and its event `0x2005` is routed by the reaction handler (`0032515E`)
 > calls back into `003250F0`, it does so through a pointer this image never materialises in code
 > or data, which the evidence standard does not allow this page to assume.
 >
-> **So the static reading of arm B is: bit 47 is set, `0x2008` is played, and nothing observed
-> clears bit 47 or raises the ledger flag.** Only mode-1 groups post their completion to slot 3.
+> **~~So the static reading of arm B is: bit 47 is set, `0x2008` is played, and nothing observed~~
+> ~~clears bit 47 or raises the ledger flag.~~** ~~Only mode-1 groups post their completion to slot 3.~~ *(corrected 2026-10-02, OPUS: arm B posts - `002EA4C5` registers the guard `002E70A0` in slot 0xC (`0041D6C0` stores `[02CA4410 + 0xC*8]` = `02CA4470`), the engine calls the slot at `0041DC9E`/`0041DD1D`/`0041CEE3`, `002E70B0` is `jne 003250F0`, and `003251A4` calls `00307110`, which clears bit 47 (`0030711A`) and sets the ledger flag (`00307133`); `EE-12`, §8)*
 > ~~Whether the three handlers run at all is a runtime question — a breakpoint on `00325260` in any
 > fight falsifies "dead" in one hit and its stack answers the route — filed as
 > `FABLE-REQ-ASTRA-HANDLERS`, `EE-12`.~~ The route description above is kept because it is what the
@@ -612,7 +612,7 @@ locally, two machines agree on an encounter's end only if both ledgers reach com
 something to replicate.
 
 **Still not known:** whether the three posting functions for groups whose mode is not 1 ever run (~~`EE-12`, a live
-question~~ `EE-12` is ANSWERED: see [the contract](../CONTRACT-group-completion-and-respawn.md) §14, whose EE-12 handlers were verified live), and the reset forms of the respawn clock beyond section 3.
+question~~ `EE-12` is ANSWERED: see [the contract](../CONTRACT-group-completion-and-respawn.md) §14, whose EE-12 handlers were verified ~~live~~ statically, by the slot registration and the engine's `call rax` sites; no live verification is recorded *(corrected 2026-10-02, OPUS: `002EA4C5`, `0041DC9E`/`0041DD1D`/`0041CEE3`)*), and the reset forms of the respawn clock beyond section 3.
 
 ## 5c. After the death: when the body goes, and when its slot is freed *(FABLE, Claude Opus 5.5, 2026-09-29)*
 
@@ -736,7 +736,7 @@ The addresses are in the record; this section names each step by its role.
 ## 8. What is not known
 
 - [x] ~~**Whether `+0x10`'s cooldown is in seconds**, matching `00235FB0`'s output. The two are never
-  seen compared here, and `+0x10` is not seen written here either.~~ **`EE-1` ANSWERED 2026-09-13 (FABLE):** **yes — the only consumer compares it with the elapsed seconds.** In the 1,114 decompiled `us` scripts, `btlAtelGetRespawnTime` (`0x304A`, reading `+0x10` through `002366E0`) is called **1,765** times in 285 files, and **every call is the right-hand side of `btlAtelGetElapseTime(i) > btlAtelGetRespawnTime(i)`** for the same entry `i` (`0x3036`, `00235FB0`, whole seconds), in a condition `(… > … || btlAtelGetDeadCountNow(i) == 0)` (1,737) or `(… > … || btlAtelGetRespawnCause() == −1)` (28). So the authored cooldown is consumed as a whole number of seconds, compared strictly (a respawn needs elapsed seconds **greater** than the cooldown), and by script, not native code; an entry that has never had a death passes regardless.
+  seen compared here, and `+0x10` is not seen written here either.~~ **`EE-1` ANSWERED 2026-09-13 (FABLE):** **yes — ~~the only consumer~~ the script consumer compares it with the elapsed seconds.** *(corrected 2026-10-02, OPUS: `Spawn_SelectAndPrepareAutomaticEntry` compares it too, below)* In the 1,114 decompiled `us` scripts, `btlAtelGetRespawnTime` (`0x304A`, reading `+0x10` through `002366E0`) is called **1,765** times in 285 files, and **every call is the right-hand side of `btlAtelGetElapseTime(i) > btlAtelGetRespawnTime(i)`** for the same entry `i` (`0x3036`, `00235FB0`, whole seconds), in a condition `(… > … || btlAtelGetDeadCountNow(i) == 0)` (1,737) or `(… > … || btlAtelGetRespawnCause() == −1)` (28). So the authored cooldown is consumed as a whole number of seconds, compared strictly (a respawn needs elapsed seconds **greater** than the cooldown), and by script~~, not native code~~ *(corrected 2026-10-02, OPUS: and natively - `Spawn_SelectAndPrepareAutomaticEntry` skips while elapsed < cooldown, `002358D1`–`002358D7` `sub`/`cmp`/`jb`, so it re-admits at elapsed ≥ cooldown; the contract's 2026-09-29 correction)*; an entry that has never had a death passes regardless.
 - [x] ~~**What writes `memberMask`**, and when relative to the first death.~~ `00306E60`, from each
   member's script through verb `0x3030`; range retirement removes. `EE-2` **answered 2026-09-10**.
 - [x] ~~**What distinguishes the `0x2005` and `0x2008` completion arms**, and what sets `+0xE99` bit 0.~~
@@ -832,8 +832,8 @@ The addresses are in the record; this section names each step by its role.
   place the call — a decompiled shipped script would settle both. `EE-11`.~~ **ANSWERED 2026-09-13 (FABLE), observed in
   the shipped scripts:** 6,746 calls in 502 of the 1,114 decompiled `us` scripts, each in a `spawnGroup` entry function
   right after `btlAtelSetLevel`, inside the fixed authored preamble. *(Ticked 2026-09-14, FABLE: the register's `EE-11` verdict answers this box; the page box had been left open.)*
-- [x] **EE-12.** ***ANSWERED 2026-09-19 (FABLE): all three run, and none needs a breakpoint to show it.** The command stream is an `@FMC` block of the character's `.ca` animation container; parsed out of every block in the game (62,208 blocks, 2,348,027 commands, no structural failure) class `0x04` is authored 27,631 times in attack / magic / item / ability blocks and its invoker routes subtypes 0 to 9 - 20,392 commands - to `002E70C0` -> `00325260`; class `0x06` is authored 7,008 times -> `002E7090` -> `00325090`; and id `0x0C` is not a command class at all - nothing authors it, and slot `02CA4470` is called by the engine when a track ends or is switched (`0041DC84`, `0041DD03`, `0041CEC0`), so `003250F0` is the unit being told its animation finished. [Where the commands are authored](../../17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md). The runtime request is withdrawn; a live session could add confirmation, not discovery.* ~~**Whether `003250F0`, `00325090` and `00325260` ever run.**~~ No static route of any enumerated
-  form reaches them; if they are dead, mode ≠ 1 groups never post their completion. `EE-12`.
+- [x] **EE-12.** ***ANSWERED 2026-09-19 (FABLE): all three run, and none needs a breakpoint to show it.** The command stream is an `@FMC` block of the character's `.ca` animation container; parsed out of every block in the game (62,208 blocks, 2,348,027 commands, no structural failure) class `0x04` is authored 27,631 times in attack / magic / item / ability blocks and its invoker routes subtypes 0 to 9 - 20,392 commands - to `002E70C0` -> `00325260`; class `0x06` is authored 7,008 times -> `002E7090` -> `00325090`; and id `0x0C` is not a command class at all - nothing authors it, and slot `02CA4470` is called by the engine when a track ends or is switched (~~`0041DC84`, `0041DD03`, `0041CEC0`~~ `call rax` at `0041DC9E`, `0041DD1D`, `0041CEE3` *(corrected 2026-10-02, OPUS: the struck sites are the two `mov rax, [02CA4470]` loads and the entry of `0041CEC0`, whose load is at `0041CEC6`)*), so `003250F0` is the unit being told its animation finished. [Where the commands are authored](../../17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md). The runtime request is withdrawn; a live session could add confirmation, not discovery.* ~~**Whether `003250F0`, `00325090` and `00325260` ever run.**~~ ~~No static route of any enumerated~~
+  ~~form reaches them; if they are dead, mode ≠ 1 groups never post their completion.~~ *(corrected 2026-10-02, OPUS: they run and mode ≠ 1 groups post - `002EA4C5` registers the guard `002E70A0` in slot 0xC (`0041D6C0` stores `[02CA4410 + 0xC*8]` = `02CA4470`), the engine calls the slot at `0041DC9E`/`0041DD1D`/`0041CEE3`, `002E70B0` is `jne 003250F0`, and `003251A4` calls `00307110`)* `EE-12`.
 
       **THE STATIC HALF IS NOW CLOSED TO A HIGHER STANDARD 2026-09-13 (OPUS), AND THE CLAIM
       SURVIVES.** *"No static route of any enumerated form"* was worth re-testing precisely because
@@ -883,7 +883,7 @@ The addresses are in the record; this section names each step by its role.
 | The ledger is BSS | its `.data` offset exceeds `SizeOfRawData` — checked, not assumed | 1 | PROVEN |
 | Completion is `(member & dead) == member` | `and`/`cmp`/`je` at `00306F7C`–`00306F86` | 1 | PROVEN |
 | The two arms and their event codes | `0x2005` / `0x2008` into `003299B0`, with the bit-47 mask literals | 1 | PROVEN |
-| Whether `+0x10` is seconds | **not established** | — | UNKNOWN |
+| Whether `+0x10` is seconds | ~~**not established**~~ yes, whole seconds - `EE-1` 2026-09-13, and the selector compares it with seconds natively (`002357F9` divide, `002358D7` `jb`) *(answered: see §8; 2026-10-02, OPUS)* | ~~—~~ 1 + authored-data census | ~~UNKNOWN~~ PROVEN |
 | `00306E60` writes `memberMask`, add or remove by slot, and always clears the dead bit | `00306ED4`–`00306EEA` read from the image; same gates and slot resolution as `00306F00` | 1 | PROVEN |
 | Exactly six functions address the ledger | from-entry scan of 34,270 bodies over `02EC13C0`–`02EC19C0`, both addressing forms; control `02089340` = 126 | 1 | PROVEN |
 | `+0xE98`/`+0xE99` have one byte writer, `00239710` | from-entry displacement sweep, control `00239746`; the one other `+0xE98` write is a qword in an unrelated zeroing run | 1 | PROVEN |
@@ -893,13 +893,13 @@ The addresses are in the record; this section names each step by its role.
 | The reset zeroes `memberMask` too | the eight stores against the `+0x10` bias, tabulated in §4 | 1 | PROVEN |
 | Bit 47 is touched at exactly four sites | immediate-operand sweep of every body; positive controls `00306FBF`, `00306FFD` | 1 | PROVEN |
 | Events `0x2007/0x2008/0x200C/0x200E` reach `00307110` **inside `003250F0`** | the jump table at `00325208`/`00325224` decoded from the image; `0032519C`–`003251A4` | 1 | PROVEN |
-| `003250F0`, `00325090`, `00325260` have no static route | linear boundary-free `.text` sweep for `E8`/`E9`/both `LEA` encodings (controls `00265A4F`→`00233F70`, `003251A4`→`00307110`); whole-file 64-bit pointer search; 32-bit VA and RVA words | 1 | PROVEN (as a negative over the listed routes) |
+| ~~`003250F0`, `00325090`, `00325260` have no static route~~ *(corrected 2026-10-02, OPUS: refuted - `002EA4C5` registers the guard `002E70A0` in slot 0xC (`0041D6C0` stores `[02CA4410 + 0xC*8]` = `02CA4470`), the engine calls the slot at `0041DC9E`/`0041DD1D`/`0041CEE3`, `002E70B0` is `jne 003250F0`, and `003251A4` calls `00307110`; `EE-12`, §8)* | linear boundary-free `.text` sweep for `E8`/`E9`/both `LEA` encodings (controls `00265A4F`→`00233F70`, `003251A4`→`00307110`); whole-file 64-bit pointer search; 32-bit VA and RVA words | 1 | ~~PROVEN (as a negative over the listed routes)~~ REFUTED |
 | The presentation event is consumed by the animation layer | `003299B0` → `002EB030` (`002EB04D` store at `+0xF0`) → `002EB0D0` → `00427320` on the `0x740` object | 1 | PROVEN |
 | The flag is consumed per frame into table slot 3 | `00307050`–`00307071`, `0026ADDD`; caller `00234590` | 1 | PROVEN |
 | `+0x08`/`+0x0C` are written on the lethal path in seconds | `00300801`, `00300805`–`00300829` | 1 | PROVEN |
 | No one-shot exists in the helper or its caller | `00300530` consults no flag before `0030082F`; `00306F00` tests only the masks | 1 | PROVEN |
-| Script-side argument order `(group, mode)` | inferred from the pop-order law; no decompiled script seen | 2 | PROBABLE |
-| What the row-12 bits and slot 3's reader are | **not established** | — | UNKNOWN |
+| Script-side argument order `(group, mode)` | inferred from the pop-order law; ~~no decompiled script seen~~ observed in 6,746 shipped calls *(answered: see §8, `EE-11` 2026-09-13; 2026-10-02, OPUS)* | ~~2~~ 2 + authored-data census | ~~PROBABLE~~ OBSERVED |
+| What the row-12 bits and slot 3's reader are | ~~**not established**~~ `EE-8` answered 2026-09-12 (bits 7, 11, 12 and 20 left as residue); `EE-9` answered 2026-09-18 - the zone script sleeps on slot 3 *(answered: see §8; 2026-10-02, OPUS)* | ~~—~~ 1 + authored-data census | ~~UNKNOWN~~ PROVEN, with the EE-8 residue |
 | `0x30B` is unread — `003E6C10` posts a type-3 relation-look event and clears record `+0x24C` | the single call chain `00238B70` → `002E7C10` → `003E6C10` read in full, 2026-09-11 | 1 | PROVEN |
 
 ## 10. Related
@@ -962,8 +962,8 @@ in **seven**: `00235EF0`, `00235F50`, `00235FB0`, `00236100`, `00236140`, `00236
 six of them it sits at the same index; in `00236100` it sits earlier, because that function takes a
 record pointer rather than a lane and so skips the earlier checks.
 
-**Not claimed:** the two accessors §'s shape-search does not cover — `00236030` and `00236670` — were
-not read here, so whether they carry the same branch in a different form is open. §§3–5, the ledger,
+**Not claimed:** the two accessors §'s shape-search does not cover — `00236030` and `00236670` — ~~were~~
+~~not read here, so whether they carry the same branch in a different form is open.~~ carry it in another register form, so the dead arm is in all nine *(corrected 2026-10-02, OPUS: `00236071` `movzx ecx, al` / `00236074` `test ecx, ecx` / `00236076` `js`, and `002366A3` `movzx eax, cl` / `002366A6` `test eax, eax` / `002366A8` `js`)*. §§3–5, the ledger,
 the completion test and `EE-2`–`EE-5` were not re-derived; nothing here was executed or observed live.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
@@ -1128,7 +1128,7 @@ edx`-table accumulate).
 
 ## SWE2-EC7-43 update (2026-09-19) - `003C9250`
 
-`003C9250` (280 B) is a group-respawn body - `01F44830`/`02B47730`, `0035BAD0`/`0035D3E0`/`0035DC90`/`0035DCC0`/`0035DEB0`/`00808C40`. Interior anchor `003C9276` (a `0035BAD0` call).
+`003C9250` (280 B) ~~is a group-respawn body~~ is not shown to be a group-respawn body: it references no ledger, keep bank or spawn global, and its callers are `003C87B0` and `003C8B70` *(corrected 2026-10-02, OPUS: body read)* - `01F44830`/`02B47730`, `0035BAD0`/`0035D3E0`/`0035DC90`/`0035DCC0`/`0035DEB0`/`00808C40`. Interior anchor `003C9276` (a `0035BAD0` call).
 
 ## SWE2-EC7-43 update (2026-09-19) - `003E6770`
 
@@ -1137,7 +1137,7 @@ switches off, a render record's bone trails from the model's FCP section 4;
 [bone trails](../../17-Presentation-Rendering/Character-Render-Records/the-bone-trails.md). The anchor cited below,
 `003E6823`, is a call to the constructor `0051CC30`; the `0051CC10` call is at `003E685A`.)*
 
-`003E6770` (276 B) is a group-respawn body - `003E679E`/`003E6869`/`0051CC10`/`0051CC30`. Interior anchor `003E6823` (a `0051CC10` call).
+`003E6770` (276 B) ~~is a group-respawn body~~ is not a group-respawn body *(corrected 2026-10-02, OPUS: see FABLE's 2026-09-19 correction directly above)* - `003E679E`/`003E6869`/`0051CC10`/`0051CC30`. Interior anchor `003E6823` (a `0051CC10` call).
 
 ## SWE2-EC7-89 update (2026-09-20) - `003B42B0` intrusive-list removal measured
 

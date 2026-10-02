@@ -1,0 +1,8 @@
+ok   0082E4CC mov r8d, 0x11
+ok   0016F010 mov eax, 1
+ok   00169624 lea rcx, [rip + 0x2d3c295]
+ok   00160167 lea rdi, [rip + 0x2d5a172]
+ok   0016016E lea rax, [rip + 0x2d5a16c]
+ok   01CBA5D1 b'HCA Decoder (Float) Ver.2.05.00'
+ok   01CBA610 b'\nCopyright (c) 2009-2010 CRI Middleware'
+FAILS 0

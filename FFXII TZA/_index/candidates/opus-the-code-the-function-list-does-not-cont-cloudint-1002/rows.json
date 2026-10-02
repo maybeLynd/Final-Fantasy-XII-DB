@@ -1,0 +1,108 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md",
+ "date": "2026-10-02",
+ "session": "session_01XRXP3rS6fx4VxurArNZ8tP",
+ "report": "the-code-the-function-list-does-not-contain.json",
+ "rows": [
+  {
+   "fn": "001274D0",
+   "text": "copies 32-byte rows from `rcx` (stride `rdx`, unaligned loads) to `r8` (stride `r9`, aligned stores), with the row count in the fifth (stack) argument: it copies four rows per pass and subtracts 4, repeating while the count is at least 4 (signed; the first pass runs unconditionally), then copies single rows until the count reaches 0; `xmm6` and `xmm7` are saved and restored",
+   "anchors": [
+    [
+     "001274E3",
+     "movdqu"
+    ],
+    [
+     "00127517",
+     "movdqa"
+    ],
+    [
+     "0012754B",
+     "sub"
+    ],
+    [
+     "00127550",
+     "cmp"
+    ],
+    [
+     "0012756B",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00129870",
+   "text": "for 16 rows sums `psadbw` absolute byte differences between the 16 aligned bytes of each `rcx` row (stride `rdx`) and the 16 bytes at offsets 0, 1 and 2 of the matching `r8` row (stride `r9`) into three word accumulators, adds each accumulator's two 64-bit halves and stores the three sums as dwords at `+0`, `+4` and `+8` of the fifth (stack) argument",
+   "anchors": [
+    [
+     "00129894",
+     "psadbw"
+    ],
+    [
+     "001298CD",
+     "paddw"
+    ],
+    [
+     "00129B9B",
+     "mov"
+    ],
+    [
+     "00129BAD",
+     "movd"
+    ],
+    [
+     "00129BD0",
+     "movd"
+    ]
+   ]
+  },
+  {
+   "fn": "0012A290",
+   "text": "reads eight 16-byte rows of words from `rcx` at a stride of twice `rdx` bytes, applies three stages of `paddw`/`psubw` butterflies, transposes the 8-by-8 word block with word, dword and qword unpacks, applies three more butterfly stages and stores the eight result rows to `r8` `+0` through `+0x70`; `xmm6` to `xmm9` are saved and restored",
+   "anchors": [
+    [
+     "0012A2BA",
+     "movdqa"
+    ],
+    [
+     "0012A2EF",
+     "psubw"
+    ],
+    [
+     "0012A38C",
+     "punpckhwd"
+    ],
+    [
+     "0012A42A",
+     "psubw"
+    ],
+    [
+     "0012A4C2",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "0026A420",
+   "text": "tail-jumps `002E5B00(rcx)` when byte `+3` of `rcx` ANDed with `0xE0` equals `0x60`, otherwise returns",
+   "anchors": [
+    [
+     "0026A424",
+     "and"
+    ],
+    [
+     "0026A426",
+     "cmp"
+    ],
+    [
+     "0026A428",
+     "je"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

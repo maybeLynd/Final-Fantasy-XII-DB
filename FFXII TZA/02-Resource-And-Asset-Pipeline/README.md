@@ -11,8 +11,8 @@
 ## Systems in this category
 
 - [`authored-data-table-registry.md`](authored-data-table-registry.md) -
-  **PARTIAL, tier 1.** **Every authored number in FFXII is reached through one 63-slot pointer
-  array** at `0x02EBF008`, all sharing a count/stride/RVA header. The index to the game's content.
+  **PARTIAL, tier 1.** **Every authored number in FFXII is reached through one ~~63-slot~~ 64-slot pointer
+  array** *(corrected 2026-10-02, OPUS: `0x02EBF008`–`0x02EBF200`; the registry builder stores the last slot at its `+0x401`)* at `0x02EBF008`, all sharing a count/stride/RVA header. The index to the game's content.
 - [`resource-section-addressing.md`](resource-section-addressing.md) — **DOCUMENTED, tier 1.**
   How the engine locates data inside a loaded resource: a 4-byte tag plus a 32-byte name key,
   with `0` and `@ALL` as tag wildcards and `-1` as the not-found sentinel. Two entry storage

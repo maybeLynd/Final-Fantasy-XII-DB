@@ -34,7 +34,7 @@ audit:
 > shows you — a **40-entry threat table** on every enemy that decays by **10 every interval**,
 > but only while nothing is fighting it.
 
-**PARTIAL.** The selection loop, the enmity decay and the highest-threat scan are read at tier 1
+~~**PARTIAL.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, owner re-status 2026-10-01; the paragraph is the state of 2026-09-02, as the note below says)* The selection loop, the enmity decay and the highest-threat scan are read at tier 1
 and are exact. The condition evaluator (`AiOrder_EvaluateTargetSelector`, 6,963 bytes) **was read
 on 2026-09-02 — see section 8b**: its shape, the highest/lowest opcode bit and the
 operand-to-field map are recovered, but the complete opcode numbering is not.
@@ -56,7 +56,7 @@ You each get **three gambit sets** to switch between. The game stores each chara
 
 And there is a whole layer FFXII never displays: **every enemy keeps a running grudge against
 every combatant.** Hit something and its threat toward you rises; walk away and stop fighting and
-that grudge **drains away by 10 a tick** until it forgets you. While you are still engaged, it
+that grudge **drains away by 10 a tick** ~~until it forgets you~~ down to 1, and never to 0, so it never quite forgets you *(corrected 2026-10-02, OPUS: the write floors a positive entry at 1, `0032191D`–`00321923`; CONTRACT-enmity.md E-6)*. While you are still engaged, it
 does not forget at all.
 
 ## 2. Native mechanism
@@ -213,7 +213,7 @@ store:
 }
 ```
 
-**The decay is exactly `-10`, applied to every combatant id at once**, and the interval is a
+**The decay is ~~exactly `-10`~~ a `-10` delta, applied to every combatant id at once**, which leaves a positive entry at 1 at least *(corrected 2026-10-02, OPUS: `0032191D`–`00321923` floor a positive entry at 1; section 7's Z-3 box)*, and the interval is a
 product of two configured values.
 
 **Engagement evidence suppresses forgetting entirely.** While `BattleUnit_HasActiveEngagementEvidence()`
@@ -322,7 +322,7 @@ if engaged(unit):            timer = 0
 else:
     timer = timer + 1
     if timer >= (DAT_01DFE0B8 * DAT_008F8D80):
-        for every combatant id:  enmity -= 10
+        for every combatant id:  enmity -= 10   <- corrected 2026-10-02, OPUS: floored at 1 for a positive entry, never to 0 (0032191D-00321923)
         timer = 0
 ```
 
@@ -431,7 +431,7 @@ at whom**; committing and resolving it belong to Combat Action and Combat Formul
   tool editing gambit sets must keep those counts consistent or the subgroup base index shifts.
 - **Enmity is 40 entries stored on the enemy**, not on the attacker, indexed by encoded combatant
   id. Byte 0 of that block is the decay timer, not enmity.
-- **Decay is exactly `-10` to everyone at once**, and only while disengaged. To make enemies hold
+- **Decay is ~~exactly `-10`~~ a `-10` delta to everyone at once**, floored at 1 for an entry already positive *(corrected 2026-10-02, OPUS: `0032191D`–`00321923`)*, and only while disengaged. To make enemies hold
   grudges longer, raise the interval factors; to make them forget faster, lower them.
 - **Only foes with `wDefinitionSelector[+1] == 1` keep a threat table** — the same classifier that
   decides whether a kill awards EXP and LP.
@@ -453,7 +453,7 @@ at whom**; committing and resolving it belong to Combat Action and Combat Formul
 - [x] ~~**Z-2.** The AI order record's exact **byte offsets**. **Z-2 — fields identified in section 8g**~~
       (`wActionSelector` weighted, `wActionParameter02`, `wFlags` with 7 bits, `targetSelector0[]`);
       offsets still unproven.
-      ***ANSWERED 2026-09-17 (FABLE): the 24 bytes, proven from the reader, the writer and the authored files.** `+0x00 u16` the weighted action selector (`AiOrder_EvaluateAndResolveActionTarget` passes the record base to `BattleData_ResolveWeightedId`, `003014EA`..`003014F6`); `+0x02 s16` the action parameter (`movsx` at `0030162F`, compared at `00301608`; not written by the config rebuild, authored only); `+0x04 u16` the flags word (`003015A6`, `003016BE`; the thirteen bits of Z-19); then three six-byte target-selector entries at `+0x06`, `+0x0C`, `+0x12` (`lea rbp, [r14 + 6]`, entry `i` read at `+6 + 6i` by `00301AD0` through `rdi = 3i`, `00301B0B`..`00301B1F`): `u16 operand` (the relation mode; 0 ends the list, `00301685`), `u8 opcode` (`+8`), `u8` (`+9`), `s16 parameter` (`+0xA`). The writer `GambitRuntime_RebuildOrderSetFromConfig` (`00328140`) fills the same offsets from a condition row of table `02EBF0D8`: `+0` from the slot's action word, `+4` from row `+0xE`, the three operands from row bytes `+0x10`/`+0x11`/`+0x12`, the three opcode words from row `+8`/`+0xA`/`+0xC` and the three parameters from row `+0x18`/`+0x1A`/`+0x1C` (`00328226`..`00328273`), at `set + 0x20 + 24k` ([the gambit-set page](which-gambit-set-fires-and-how-a-command-switches-it.md) reads the same writer). [The loader page](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md)'s read of all 1,422 authored sets shows the same shape at stride 24 with operand 0 marking an empty entry. Static; the Ghidra type's names (`wActionSelector`, `wActionParameter02`, `wFlags`, `targetSelector0[]`) now sit on proven offsets.*
+      ***ANSWERED 2026-09-17 (FABLE): the 24 bytes, proven from the reader, the writer and the authored files.** `+0x00 u16` the weighted action selector (`AiOrder_EvaluateAndResolveActionTarget` passes the record base to `BattleData_ResolveWeightedId`, `003014EA`..`003014F6`); `+0x02 s16` the action parameter (`movsx` at `0030162F`, compared at `00301608`; not written by the config rebuild, authored only); `+0x04 u16` the flags word (`003015A6`, `003016BE`; the thirteen bits of Z-19); then three six-byte target-selector entries at `+0x06`, `+0x0C`, `+0x12` (`lea rbp, [r14 + 6]`, entry `i` read at `+6 + 6i` by `00301AD0` through `rdi = 3i`, `00301B0B`..`00301B1F`): `u16 operand` (the relation mode; 0 ends the list, `00301685`), ~~`u8 opcode` (`+8`), `u8` (`+9`)~~ `u8` operand, the sub-selector (`+8`), `u8 opcode` (`+9`) *(corrected 2026-10-02, OPUS: `00301B14 movzx r12d, byte ptr [rdx + rdi*2 + 9]` is the byte compared as the opcode — `== 1` at `00301C08`, 52–55 at `00301C10`–`00301C25`, the jump-table index at `00301EA3`–`00301EA8` — and `00301B1A movzx ebp, byte ptr [rdx + rdi*2 + 8]` is the sub-selector compared with 3 at `00301C45`; §8b's Z-1 reading, opcode high byte)*, `s16 parameter` (`+0xA`). The writer `GambitRuntime_RebuildOrderSetFromConfig` (`00328140`) fills the same offsets from a condition row of table `02EBF0D8`: `+0` from the slot's action word, `+4` from row `+0xE`, the three operands from row bytes `+0x10`/`+0x11`/`+0x12`, the three opcode words from row `+8`/`+0xA`/`+0xC` and the three parameters from row `+0x18`/`+0x1A`/`+0x1C` (`00328226`..`00328273`), at `set + 0x20 + 24k` ([the gambit-set page](which-gambit-set-fires-and-how-a-command-switches-it.md) reads the same writer). [The loader page](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md)'s read of all 1,422 authored sets shows the same shape at stride 24 with operand 0 marking an empty entry. Static; the Ghidra type's names (`wActionSelector`, `wActionParameter02`, `wFlags`, `targetSelector0[]`) now sit on proven offsets.*
 - [x] ~~What action id `0x414D` *does*.~~ **Z-14 ANSWERED 2026-09-12 (FABLE): it flips the combat stance.** Its order-table slot `01EEC460[0x14D]` is the dedicated handler `002FE840`, which exits or enters the party combat stance by unit flag bit 23 and then waits for the transition flags 50 / 51 to clear; it is the single order of the static re-plan set `01EEC410` that every non-party unit receives at `+0x6E8` on a combat-state reset ([the gambit-set page](which-gambit-set-fires-and-how-a-command-switches-it.md) §7) — `.data` bytes, which no instruction-immediate search sees. The earlier reading that it reaches a `-1` arm concerned the direct-state sub-dispatcher, which the order table does not route it to. *Original entry:* **Z-14 — advanced in section 8h**: it is member 333 of an
       **order**-id band `0x4000`-`0x4166` that two separate gates treat specially; only one
       instruction in the binary references it, so it arrives from authored data. *(Corrected
@@ -464,7 +464,7 @@ at whom**; committing and resolving it belong to Combat Action and Combat Formul
       ***ANSWERED 2026-09-17 (FABLE): yes. The three functions §8i checked do not decode a category, but the consumers of the resolved id do, and the category they decode is the top nibble.** A census of the combat range `002F0000`..`00330000` for the three idioms (a right shift by 12, a mask of `0xFFF`, a subtraction of `0x4000`) finds them in 38 functions. Three sit on the gambit path. `00301830`, the function after `AiOrder_EvaluateAndResolveActionTarget`, takes the resolved id, subtracts `0x4000`, bound-checks the result against `0x166` and indexes the order-handler table `01EEC460` ([the gambit-set page](which-gambit-set-fires-and-how-a-command-switches-it.md) names its slots) with it (`003018DD`..`003018FB`), then compares the id with `0x4124`: **the `0x4000` band is decoded as a category and its low 12 bits as an index.** `BattleLocomotion_DecodeOrderGoal` (`00312730`) does the same for goals `0x4000`..`0x4025` (`0031278C`..`003127BA`, a byte and a dword table). `00306340`, called by the two party-list classifiers `002826F0`/`00282A40` on a word from a list entry, switches on `id >> 12` with arms for nibbles 3, 4 and 12, the last resolving `id - 0xC000` in table `02EBF0C8` (`0030635A`..`003063B5`). Nine more functions index the fifteen `0x58`-byte inventory class descriptors at `01EEBCC0` by `id >> 12`, [the encoded-id page](../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md)'s rule. So the selector word carries two discriminators: bit 15 separates a weighted selector from a literal id, and a literal id's top nibble is its category, nibble 0 an action row and nibble 4 an order with a handler slot. Static, census and bodies read.*
 - [x] ~~The weighted-table entry format at `DAT_02EBF160` beyond the count header.~~ **Z-18 ANSWERED with AD-1 (2026-09-12, FABLE):** `{u16 count = 826; u16; u32 offset[count + 1]}` bounding runs of 4-byte rows `{u16 actionId, u8 weight, u8 0}` whose weights sum to exactly 100 in every shipped run; the resolver draws one shared-LCG value `% 100` and returns the first row whose cumulative weight exceeds it ([the RNG page](../21-RNG-And-Determinism/rng-streams.md)).
 - [x] ~~The status bits `0x20` and `0x08000000` tested outside the `0x80000003` predicate.~~ **Z-17 ANSWERED 2026-09-11:** bit 5 is **Confuse** and bit 27 **Berserk** — [the battle text banks](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md), bank 5 in status-id order; a confused unit, or a berserk foe, does not choose its next action here.
-- [x] ~~The five unidentified `wFlags` bits (`0x20`, `0x400`, `0x1000`, and the rest).~~ **Z-19 answered 2026-09-12 (FABLE):** all thirteen bits the shipped sets use, with their readers — the table under section 8g (`0x4000` resumable, `0x800` no re-issue while current, `0x2000` no timeout interrupt, `0x100` / `0x200` locomotion flags, `0x400` / `0x1000` evaluator modes, ~~`0x04` unread~~ `0x04` no combat navigation step while current). *Corrected 2026-10-01 (SWE2-CONTRACT for OPUS, DD batch 16): bit `0x04` has a reader, the navigation gate `BattleUnit_CanAdvanceCombatNavigation` (`00325DF4`); section 8g's table and [the batch record](../_index/candidates/swe2contract-ddres-b16-0930/README.md), checks N4-N6.*
+- [x] ~~The five unidentified `wFlags` bits (`0x20`, `0x400`, `0x1000`, and the rest).~~ **Z-19 answered 2026-09-12 (FABLE):** all thirteen bits the shipped sets use, with their readers — the table under section 8g (`0x4000` resumable, `0x800` no re-issue while current, `0x2000` no timeout interrupt, `0x100` / `0x200` locomotion flags, `0x400` / `0x1000` evaluator modes, ~~`0x04` unread~~ `0x04` no combat navigation step while current). *Corrected 2026-10-01 (SWE2-CONTRACT for OPUS, DD batch 16): bit `0x04` has a reader, the navigation gate `BattleUnit_CanAdvanceCombatNavigation` (~~`00325DF4`~~ `00325D90`, whose `test byte ptr [rax + 4], 4` at `00325DF4` reads the bit *(corrected 2026-10-02, OPUS: the function starts at `00325D90`, its one caller `00325BD0`)*); section 8g's table and [the batch record](../_index/candidates/swe2contract-ddres-b16-0930/README.md), checks N4-N6.*
 - [x] ~~The **unit** of the decay interval. **Z-3 — values answered in section 8c**
       (`1.0 x 30.0 = 30`); frames vs ticks vs milliseconds still unproven.~~ **Z-3 ANSWERED 2026-09-12 (FABLE):
       one second of maintained field frames.** The counter `BKEI + 0x19` rises by one per call of
@@ -493,10 +493,10 @@ at whom**; committing and resolving it belong to Combat Action and Combat Formul
       per-action fields: `bEnmityDirectParam`, `bEnmityPropagationParam`, and
       `bEnmityRedistributionParam` (applied negated).
 - [x] ~~How aggro spreads.~~ **Z-6 ANSWERED in section 8e** — no distance test: it walks the whole
-      slot pool and propagates only to foes whose threat toward that character is **already nonzero**.
+      slot pool and propagates only to foes whose threat toward that character is **already nonzero** and, when there is a direct target, whose own `+0xBC8` list holds it *(corrected 2026-10-02, OPUS: `00321A7D`–`00321AB8`; CONTRACT-enmity.md E-5)*.
 - [x] ~~The relation modes in `BattleTarget_MatchesRelationMode`.~~ **Z-7 ANSWERED in section 8f** —
-      eight modes; mode 1 (`Foe:`) excludes un-provoked enemies, which is why gambits never start
-      fights.
+      ~~eight modes~~ eleven modes, 0–10; mode 1 (`Foe:`) excludes un-provoked enemies, ~~which is why gambits never start~~
+      ~~fights.~~ so a `Foe:` gambit never starts a fight *(answered: see section 8i's falsification pass, the eleven-mode table and its narrowed claim; 2026-10-02, OPUS)*.
 - [x] ~~What the `+0x54` key in relation modes 5 and 7 is.~~ **Z-12 ANSWERED 2026-09-12 (FABLE): the
       unit's script-assigned team.** Unit `+0x54` is the byte the script verb **`btlAtelSetBelong`**
       (`0x3006`, thunk `00510280`, [the verb table](../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv)) sets through `00239170(actor, isLeader, team)` —
@@ -578,7 +578,7 @@ at whom**; committing and resolving it belong to Combat Action and Combat Formul
 | Condition **and** commit must both succeed | the `&&` chain guarding the `return 1` | 1 |
 | ~~`0xFFFF` no-target sentinel~~ `0xFFFF` is the action slot's initial value (the slot is the evaluator's action out) | `local_res8[0] = 0xffff` initialisation; `00301500`, `00305DE3` (*corrected 2026-09-26, FABLE*) | 1 |
 | Resume flags `0x40` / `0x80` / `0x4000` | the guard expressions in the loop | 1 |
-| Decay is exactly `-10` | `BattleEnmity_WriteAllCombatantIds(unit, -10, 0)` | 1 |
+| Decay is ~~exactly `-10`~~ a `-10` delta, floored at 1 *(corrected 2026-10-02, OPUS: `0032191D`–`00321923`)* | `BattleEnmity_WriteAllCombatantIds(unit, -10, 0)` | 1 |
 | Engagement suppresses decay | timer written 0 whenever engagement evidence is present | 1 |
 | Highest-relevant scans the four party slots | `BattleUnit_BuildFilteredFourSlotUnitBuffer(&buf, 1)` loop | 1 |
 | Enmity indexed `table[id + 1]`, byte 0 is the timer | the scan reads `+1`; decay reads/writes byte 0 | 1 |
@@ -594,7 +594,7 @@ at whom**; committing and resolving it belong to Combat Action and Combat Formul
 | Ties in the final pick go to the shared LCG or to the nearest | `003087E0`: `00308B13`, `00308B5D` | 1 |
 | A weighted action is rolled on bit 15 of the selector | `00308EC0` (section 8i) | 1 |
 | Enmity writes: delta or set, floor at 1, +10 on a first rise, a first grudge raises every zero entry to 1 | `00321850`: `0032191D`–`003219AD`; clamp `00321E40` | 1 |
-| Threat spreads only to foes already holding threat | `003219D0` (section 8e, Z-6) | 1 |
+| Threat spreads only to foes already holding threat and, with a direct target, listing it in their own `+0xBC8` list *(corrected 2026-10-02, OPUS: `00321A7D`–`00321AB8`)* | `003219D0` (section 8e, Z-6) | 1 |
 | Engagement is a global OR a per-unit clause | `00307CE0` (section 8c, Z-4) | 1 |
 | The decay interval is one second at either frame limit | `0032157F`–`00321598`; the triple `01DFE0B4`–`01DFE0BC` written from FrameLimit by `001EDDC0` (Z-3, Z-10, DH-1) | 1 |
 | The threat table is in the keep bank and follows its restore or wipe | `0032156D` on `unit + 0x6A0`; the window compare `002337DE`–`00233801` (section 8k) | 1 |
@@ -648,7 +648,7 @@ int AiOrder_EvaluateTargetSelector(FFXII_BattleUnit_Partial *unit,
     operand  = <sub-selector byte>;
 
     seekMin  = ~opcode & 1;
-    best     = seekMin ? 0x7FFFFFFF : 0x80000001;    // seed so the first candidate always wins
+    best     = seekMin ? 0x7FFFFFFF : 0x80000001;    // seed so the first candidate always wins   <- corrected 2026-10-02, OPUS: reversed - ~opcode & 1 is 1 for an EVEN opcode and then seeds 0x80000001 (highest), 0 for an odd one and seeds 0x7FFFFFFF (lowest): 00301B44-00301B4C, 00301BE3 test r12d, r12d / je 00301BF9, 00301BE8 mov [rsp+0x138], 0x80000001, 00301BF9 mov [rsp+0x138], 0x7FFFFFFF
 
     if (opcode == 1) return ...;                      // trivial case
 
@@ -673,7 +673,7 @@ seed line is the whole explanation:
 
 ```
 seekMin = ~opcode & 1
-best    = seekMin ? 0x7FFFFFFF : 0x80000001
+best    = seekMin ? 0x7FFFFFFF : 0x80000001   <- corrected 2026-10-02, OPUS: reversed - the bit is 1 for an even opcode, which seeds 0x80000001 (00301BE3-00301BF9); the prose below is right
 ```
 
 An **odd** opcode seeds `best` to `INT_MAX`, so every comparison keeps the smaller value -
@@ -1020,7 +1020,7 @@ void BattleEnmity_PropagateToPerceivingFoes(combatant_id, value, source_filter, 
             table = &unit->pBkei->bEnmityTableHeader;
             if (table
                 && BattleEncodedId_IsValidForClass(2, combatant_id)
-                && table[combatant_id + 1] != 0)                // <-- ONLY IF ALREADY NONZERO
+                && table[combatant_id + 1] != 0)                // <-- ONLY IF ALREADY NONZERO   <- corrected 2026-10-02, OPUS: and, when source_filter is non-null, only if this foe's own list at +0xBC8 (count +0xBC4, 16-byte entries) holds source_filter's +0x10 (00321A7D-00321AB8); CONTRACT-enmity.md E-5
             {
                 BattleEnmity_WriteForCombatantId(unit, combatant_id, value, absolute);
             }
@@ -1029,8 +1029,8 @@ void BattleEnmity_PropagateToPerceivingFoes(combatant_id, value, source_filter, 
 }
 ```
 
-**There is no distance check.** It walks the **entire BattleUnit slot pool** and filters on three
-things: foe class, not the direct target, and - decisively - **`table[id + 1] != 0`**.
+**There is no distance check.** It walks the **entire BattleUnit slot pool** and filters on ~~three~~ four
+things: foe class, not the direct target, ~~and - decisively -~~ **`table[id + 1] != 0`**, and, when there is a direct target, the target's `+0x10` in the foe's own `+0xBC8` list *(corrected 2026-10-02, OPUS: `00321A7D`–`00321AB8`; the id's class-2 validity, `00321A6A`, is a fifth; CONTRACT-enmity.md E-5)*.
 
 So threat spreads only to foes that **already** hold nonzero threat toward that character. In player
 terms:
@@ -1227,7 +1227,7 @@ the *names* above are GFZ type work (tier 3) while the *roles* are read from use
 stays OPEN on the exact layout**;~~ what is now known is which fields exist and what they do. *(Pointer 2026-10-01 (SWE2-CONTRACT for OPUS, DD batch 16): stale. The offsets are Z-2, ANSWERED 2026-09-17, and section 8l reads the layout. The Z-2 box the note below cites is in section 7, not section 9.)*
 
 > **Superseded 2026-09-17 (FABLE):** the offsets are proven — `+0 u16` selector, `+2 s16` parameter, `+4 u16` flags, three
-> six-byte entries `{u16 operand, u8 opcode, u8, s16 parameter}` at `+6`, `+0xC`, `+0x12` — from the reader, the writer
+> six-byte entries ~~`{u16 operand, u8 opcode, u8, s16 parameter}`~~ `{u16 relation, u8 operand, u8 opcode, s16 parameter}` *(corrected 2026-10-02, OPUS: the opcode is the entry's byte `+3`, `00301B14`; the sub-selector its byte `+2`, `00301B1A`)* at `+6`, `+0xC`, `+0x12` — from the reader, the writer
 > `00328140` and the authored sets; see the Z-2 box in §9.
 
 ### The gate before any gambit condition runs
@@ -1237,7 +1237,7 @@ action_id = BattleData_ResolveWeightedId(&order->wActionSelector);
 *out_action_id = action_id;
 
 if (( action_id == 0xFFFF                                   // nothing resolved
-   || (DAT_02089340 & 0x20)                                 // global AI suppression
+   || (DAT_02089340 & 0x20)                                 // global AI suppression   <- corrected 2026-10-02, OPUS: this test and the 0xFFFF one above are NOT inside the 0x414D exception - 00301505-0030150A and 00301511 test [02089340], 0x20 / 00301518 jne 0030150A return 0 before 00301576 compares 0x414D; only the later tests fall over to that compare
    || (unit->qwUnitFlags & 0x10) == 0                       // unit not action-eligible
    || unit->pBkbi == NULL
    || ((status0 | status1) & 0x80000003) && !FieldRecordBit15()      // functional predicate
@@ -1261,8 +1261,8 @@ run against `pBkei->lifecycleFlags` (`& 0x30` and `& 0x48`). So a foe that is mi
 mid-retirement cannot act even when everything else passes - the spawn lifecycle and the AI share a
 gate.
 
-**`0x414D` bypasses the entire gate.** The whole condition is `AND action_id != 0x414D`, so that one
-action id is evaluated even for a unit that fails every eligibility test. What it is, is unknown -
+**`0x414D` bypasses ~~the entire gate~~ every gate but the first two.** ~~The whole condition is `AND action_id != 0x414D`, so that one~~
+~~action id is evaluated even for a unit that fails every eligibility test.~~ A `0xFFFF` id and bit `0x20` of `02089340` return 0 before the id is compared, and every later test fails over to the comparison, so that one action id is evaluated for a unit that fails any of the later tests, but never while the AI is suspended *(corrected 2026-10-02, OPUS: `00301505`–`0030150A` and `00301511`–`00301518` return 0 ahead of `00301576 mov eax, 0x414D`; CONTRACT-gambit-walk.md §4a)*. What it is, is unknown -
 recorded as **Z-14**. *(Answered since — `Z-14`, 2026-09-12: it flips the combat stance; §7's struck checkbox.)* It is a striking enough exception that guessing would be worse than naming it.
 
 ## 8h. Reopened 2026-09-02 - manual commands beat gambits, and `0x414D` explained
@@ -1890,7 +1890,7 @@ preserved across the step. **What the preserved copy is later used for is not re
   resume bit in section 2, and whether the record's `0x4000` is the same meaning is not shown.
 - **Whether the two spare record slots** in each `0x170` set are used by any other writer.
 
-> *Status of these four (FABLE, Claude Opus 5.5, 2026-09-30):* (1) answered, see the note above; (2) `+0x02` is authored in the order sets and read as a **percent chance**, rolled with the shared LCG when non-zero (`00301608`–`00301637`; Z-2); (3) answered by Z-19 (section 8g's table); (4) bounded: no instruction outside the three rebuilders forms an address in the `02089378` array (rip-reference scan), each rebuilder walks twelve slots (`00327E1A`, `00327FF4`, `00328187`), the one other referencing function only stores a set's base in unit `+0x6E0` (`0023AB9F`), and the walk reads records only below the subgroup's count byte (`00305DFD`–`00305E0A`), so records 12 and 13 are never evaluated.
+> *Status of these four (FABLE, Claude Opus 5.5, 2026-09-30):* (1) answered, see the note above; (2) `+0x02` is authored in the order sets and read ~~as a **percent chance**, rolled with the shared LCG when non-zero (`00301608`–`00301637`; Z-2)~~ by the id it carries: a **percent chance** rolled with the shared LCG when non-zero, at `00301608`–`00301637` for an action-row id and at `0030193B`–`00301962` inside `00301830` for an order id `0x4051`–`0x4121` other than `0x4091`, or `0x414B`; every other order id draws nothing, and the wait `0x4021` reads the same word as its length, `n × (int)(01DFE0B8 × 30.0)` frames (`002FE801`–`002FE829`) *(corrected 2026-10-02, OPUS: `003015CB`–`003015D2` send ids `0x4000`–`0x4166` to `00301830` and past the first roll; `0030191D`, `00301929`, `00301935` and `00301A31` return 1 with no draw; at most one percent draw per evaluation)*; (3) answered by Z-19 (section 8g's table); (4) bounded: no instruction outside the three rebuilders forms an address in the `02089378` array (rip-reference scan), each rebuilder walks twelve slots (`00327E1A`, `00327FF4`, `00328187`), the one other referencing function only stores a set's base in unit `+0x6E0` (`0023AB9F`), and the walk reads records only below the subgroup's count byte (`00305DFD`–`00305E0A`), so records 12 and 13 are never evaluated.
 
 ## `Z-10` closed — 2026-09-08: it is the frame-rate scalar, and the timeouts prove it
 

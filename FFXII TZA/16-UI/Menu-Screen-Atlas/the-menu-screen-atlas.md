@@ -32,7 +32,7 @@ audit:
 > The 80 widget procedures of the [handler census](../Widget-Object-Model/widget-message-handlers.tsv) in the range own
 > **1,065 frontier functions** in their subtrees. **913** of those sit under a labelled procedure (v2 rules, §2).
 
-**PARTIAL.** This is an atlas, not a reading. A label names the screen a procedure belongs to, not what the procedure does.
+~~**PARTIAL.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`)* This is an atlas, not a reading. A label names the screen a procedure belongs to, not what the procedure does.
 
 ## 1. What the player sees
 

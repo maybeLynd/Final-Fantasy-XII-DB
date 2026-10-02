@@ -1,7 +1,7 @@
 ---
 system: Encoded-ID query initialization, tagged outputs and reuse
 category: 00-Engine-Core-Runtime
-status: PARTIAL
+status: PARTIAL — OV-8 stays open (actual game reachability of the deliberately abnormal counts/pointers/state layouts; the remainder is runtime, ASTRA chooses the method) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 owner_layer: native
 evidence_tier: 1
 readiness: BEHAVIORALLY UNDERSTOOD

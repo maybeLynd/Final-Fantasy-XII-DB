@@ -246,8 +246,8 @@ Four things worth stating plainly:
   ~~snapshots a 0x90-byte block of the manager's `0x860`-stride record from `+0x7A0` to `+0x6F0`
   (`0025A6CB`–`0025A743`, the rest unread)~~ *corrected 2026-09-30 (FABLE), body read whole: re-seats camera
   context 0, one of two `0x860`-byte camera contexts rather than a manager record, and its `+0x7A0` to `+0x6F0` copy is
-  `0xB0` bytes (`0025A6FC`–`0025A763`), not `0x90` — §9 gives the five steps*; and the *incoming* actor gets `002681D0` → `002681E0`, a
-  locomotion-mode push for kind-3 actors driven by the secondary context's byte `+0x152`
+  `0xB0` bytes (`0025A6FC`–`0025A763`), not `0x90` — §9 gives the five steps*; and the *incoming* actor gets `002681D0` → `002681E0`, ~~a~~
+  ~~locomotion-mode push~~ the roster-role notice, which stores the movement body's cell class *(answered: O-1, party-roster-and-control-suppression.md §2; 2026-10-02, OPUS)*, for kind-3 actors driven by the secondary context's byte `+0x152`
   (`002681E9`–`00268245`). ~~which is why the formation never lags a frame behind~~ — the change
   waits for the commit, and whether the formation sees it in the same frame depends on where the
   commit runs, ~~which §9 leaves open~~ *which §9 answers (2026-09-18): once a frame, from whichever of the three mode

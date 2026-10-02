@@ -78,7 +78,7 @@ exist.
 pending action-selection ring at `022BE980`, drained **up to 8 entries per call**. It is a
 **64-entry** ring, not an 8-entry one - see the correction in section 7. Structurally it is a
 **twin** of the presentation ring: same paired byte indices, same 8-byte stride, same mod-64
-advance, same resolve-then-act loop. That is exactly why the two are easy to confuse, and why
+advance~~, same resolve-then-act loop~~ *(corrected 2026-10-02, OPUS: the drains differ - `00313CD0` pops eight entries whatever they resolve to (`00313CF7 mov edi, 8`, `00313D31 je 00313D8E`), `00313DB0` stops at the first entry that does not resolve (`00313E11 je 00313EAC`); CONTRACT-native-command-seam.md CS-3)*. That is exactly why the two are easy to confuse, and why
 they must not be merged: identical shape, different transaction.
 
 **`0030F760`** `BattleUnit_CommitAction` - a genuine lower commit owner (installs order/action
@@ -151,7 +151,7 @@ COMMAND AUTHORITY
     -> resolve to receiver-local focus / BattleStats identity
        -> 00311CF0 BattleUnit_IssueCommand  (or a wrapper)
           -> native target selection / availability / reservation
-             -> 0030F760 BattleUnit_CommitAction  (where flow reaches it)
+             -> 0030F760 BattleUnit_CommitAction  (where flow reaches it)   # <- corrected 2026-10-02, OPUS - the seam does not reach the commit; 00311CF0 records +0xBA0 / +0xBB8 only (00311D7A, 00311DB0), and BattleUnit_SelectAndCommitNextAction commits the issued command later (00305AE4-00305B2F); CONTRACT-native-command-seam.md CS-1
                 -> 00304850 BattleUnit_AdvanceStandardActionState
 
 PRESENTATION / CURRENT-UNIT SIDE TRANSACTION  (separate!)
@@ -223,7 +223,7 @@ These are **related but not interchangeable authority seams.**
 | `00313DB0` is zero-argument and ring-driven | complete body (360 B, one contiguous range, `deab0e53...2461`) | 1 |
 | Ring is 64 entries with those indices | complete body; read/write index arithmetic mod 64 | 1 |
 | Sole producer is the standard-action pipeline | producer at `00304E5C` inside `00304850` (2,034 B, `48ca39ef...d680`), gated by `0030CA80` | 1 |
-| `00313CD0` is a different 8-entry queue | complete body (220 B, `adf43795...e331`) | 1 |
+| `00313CD0` is a different ~~8-entry queue~~ 64-entry ring drained up to 8 entries per call *(corrected 2026-10-02, OPUS: `00313D18 and cl, 0x3f`, trip count `00313CF7 mov edi, 8`; section 7)* | complete body (220 B, `adf43795...e331`) | 1 |
 | Command seam bodies | `00311CF0` (283 B, `774d9502...0bc81`), `00311CD0` (26 B, `0ee477c3...e22b`), `00311B20` (426 B, `8ef0373e...2ad67`) | 1 |
 
 **Superseded readings:**
@@ -520,7 +520,7 @@ tests them **together as `0x600`**.
       | `+0x08` | 8 | previous live slot; the list tail is `022BEB88` | allocator `0030D119`–`0030D126`, release `0030C9B7`–`0030C9EB` |
       | `+0x10` / `+0x14` / `+0x18` | 4 each | the three track states (UQ-109) | allocator sets 1, release clears |
       | `+0x1C` | 2 | the action id; `0xFFFF` = free, which is the allocator's search key | allocator `0030D0AA`, `0030D14F` |
-      | `+0x1E` | 2 | **no access found** in any of the nine functions | — |
+      | `+0x1E` | 2 | **no access found** in any of the nine functions *(answered: alignment padding after the `u16` action id, accessed by nothing - the 2026-09-18 answer above; 2026-10-02, OPUS)* | — |
       | `+0x20` | 4 | the owning unit's focus handle | allocator `0030D14B`; walker and release resolve it |
       | `+0x24` | 4 | the presentation-parameter resource handle; `-1` = none | reset, release; the two handle readers return it |
       | `+0x28` | 4 | the sequence-event request handle; `0x80000000` = none | reset, release (released through its own call first) |
@@ -537,7 +537,7 @@ tests them **together as `0x600`**.
         - What codes `1` and `3` mean was not read.
       - **Which unit byte names a slot.** The ready check takes the unit's `+0x694`. The two handle readers take
         `+0x695`.
-      - **Still open:** `+0x1E`–`+0x1F`, the `+0x2C` bits above bit 4, and the meanings of the 2-bit codes.
+      - **Still open:** ~~`+0x1E`–`+0x1F`,~~ *(answered: padding, 2026-09-18 above; 2026-10-02, OPUS)* the `+0x2C` bits above bit 4, and the meanings of the 2-bit codes.
       here.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
@@ -577,7 +577,7 @@ tests them **together as `0x600`**.
 
 ## The `0030CA80` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0030CA80` (`BattleAction_CheckPresentationSlotReady`, ~21 B) — arg
+`0030CA80` ~~(`BattleAction_CheckPresentationSlotReady`, ~21 B)~~ (`BattleAction_CheckPresentationSlotReady`, 352 B *(corrected 2026-10-02, OPUS: `0030CA80`–`0030CBDF ret`, 104 instructions, as the section on `0030CA80` above states)*) — arg
 shuffle `rdi = r8`, `r14 = rdx` (`0030CA90`/`0030CA93`).
 
 | member | role | interior |

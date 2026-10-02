@@ -284,7 +284,7 @@ examples above), so a deleting destructor also tells you the exact size of its o
 
 ```c
 if (flags & 1) {
-    if (flags & 4)  free(base, size);          /* array: free the whole block  */
+    if (flags & 4)  free(base, size);          /* array: free the whole block  */   // <- corrected 2026-10-02, OPUS - wrong: bit 2 set calls 0016D6A0 (ret 0) with the size and frees nothing, bit 2 clear calls 00584730 (_aligned_free); 00185800+0x33 and 00185800+0x26, and BQ-26's answer
     else            destroy_and_free_each();   /* scalar path                  */
 }
 ```
@@ -314,7 +314,7 @@ first use of a lazy static
 object death, from anywhere in the engine
   -> vtable slot 0 = the deleting destructor (226)
      -> inner destructor (spelling B only)
-     -> free 00809950  or the aligned/guarded path via 0016D6A0
+     -> free 00809950  or the aligned/guarded path via 0016D6A0   <- corrected 2026-10-02, OPUS - 0016D6A0 is ret 0 and frees nothing; the freeing paths are 00809950 (free) and 00584730 (_aligned_free)
 ```
 
 **Upstream:** everything. These are called from every subsystem, which is exactly why they carry a
@@ -388,7 +388,7 @@ object death, from anywhere in the engine
       returns `NativeQualified`'s two known offenders, so a zero is the label's property and not
       the test's blindness. **But passing a falsification test is not confirmation** — these four
       are consistent with being standard-library code and remain unconfirmed as such, which is why
-      this row stays open and tier 6 stays the decider.
+      ~~this row stays open and tier 6 stays the decider~~ *(answered: see the BQ-23 answer below, 2026-09-27, at tier 6; 2026-10-02, OPUS)*.
 
       > **One figure to reconcile, flagged rather than adopted.** This row records
       > `OrderedContainerRuntime.*` at **19**; the current `graph/functions.tsv` gives **30**,
@@ -546,8 +546,8 @@ the other 50 are untested individually and this does not classify them.**
 - **Both instruments were validated against published figures first.** The CRT table read returns
   1,172; the guard census returns 707. Both match existing documents exactly, derived independently.
   This is the third block in a row where checking against an existing document changed the outcome.
-- **Looked for the vector deleting destructor.** `00185800` tests `dl,1` and then `dl,4` — the array
-  form — and carries none of these four labels. One instance found; the population is unmeasured
+- **Looked for the vector deleting destructor.** `00185800` tests `dl,1` and then `dl,4` — ~~the array~~
+  ~~form~~ not the array form — and carries none of these four labels. One instance found; ~~the population is unmeasured~~ *(answered: see BQ-26, ANSWERED 2026-09-02 - the population is 1,608 and bit 2 selects the deallocator; 2026-10-02, OPUS)*
   (**BQ-26**).
 - **Avoided the call graph entirely.** 689 `Thunk.*` functions are graph sinks, so any measurement
   routed through call paths would truncate silently. Every census here is over instruction bytes or a
@@ -782,7 +782,7 @@ from the shipping executable at the authority hash `73461D08…9721F8`.
 0017CC9D  je   0017CCBE     ;   no -> skip entirely
 0017CC9F  test dil, 4       ; bit 2 - SIZED delete?
 0017CCA3  jne  0017CCB0     ;   yes ->
-0017CCA5  call 00584730     ;   no  -> ordinary operator delete(ptr)
+0017CCA5  call 00584730     ;   no  -> ordinary operator delete(ptr)   <- corrected 2026-10-02, OPUS - 00584730 is if (p) _aligned_free(p): jne 0019C570, and 0019C570 is jmp [008C2B70] = _aligned_free; no operator delete is imported
 0017CCB0  mov  edx, 0x1140  ; the object size
 0017CCB8  call 0016D6A0     ; -> ret 0
 ```
@@ -851,7 +851,7 @@ shared CRT machinery, not a Presentation contract.
 
 ### Interior citation — frontier hub 005CD6D0 (2026-09-18, SWE2-EC7)
 
-**005CD6D0** (37 B, 4 A-measured callers) — the teardown chain's shared implementation §46's family-28 row names "NOT dispositioned". Clears a flag byte at `[rcx]`, reads `[rcx+8]` (the module's callback slot), calls the CRT's `[008C23CC]` IAT entry (the wake/sync primitive the family-28 teardowns all funnel to), and zeroes `[rcx+0x10]`. The "flagged teardown" members (`00677520` chain) collapse to exactly this once the slot guard drops. In-scope: flag clear [`005CD6DA`](../../_index/ADDRESS-INDEX.md); IAT call [`005CD6E5`](../../_index/ADDRESS-INDEX.md) — 4 callers, all A.
+**005CD6D0** (37 B, 4 A-measured callers) — the teardown chain's shared implementation §46's family-28 row names "NOT dispositioned". Clears a flag byte at `[rcx]`, reads `[rcx+8]` ~~(the module's callback slot), calls the CRT's `[008C23CC]` IAT entry (the wake/sync primitive the family-28 teardowns all funnel to), and zeroes `[rcx+0x10]`~~, a handle it closes through `CloseHandle`, and clears the byte `[rcx+0x10]` *(corrected 2026-10-02, OPUS: `005CD6D0+0x15` is `call [008C23E0]`, the `KERNEL32` import `CloseHandle`)*. The "flagged teardown" members (`00677520` chain) collapse to exactly this once the slot guard drops. In-scope: flag clear [`005CD6DA`](../../_index/ADDRESS-INDEX.md); IAT call [`005CD6E5`](../../_index/ADDRESS-INDEX.md) — 4 callers, all A.
 
 ## BQ-25 answered: the 88 are identified positively, and they are two unrelated things (2026-09-19, OPUS)
 
@@ -920,7 +920,7 @@ recorded and not used.)*
 
 ### What is still open
 
-The two groups should not share a label. **NOT CLAIMED:** which interface the 28 implement — the
+The two groups should not share a label. ~~**NOT CLAIMED:** which interface the 28 implement~~ *(answered: see "The 28 construct" below - the class-descriptor interface, corrected 2026-09-29; 2026-10-02, OPUS)* — the
 three constant slots (`0062EFD0`, `0062F080`, `00660570`) name it and none of the three has been
 read; what the 28 per-class callees destroy; and which containers the 60 hosts own. The `mov qword
 ptr [rsp+0x20], 0xFFFFFFFFFFFFFFFE` both groups open with is an MSVC EH-state slot and says only that

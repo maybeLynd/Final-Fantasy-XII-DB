@@ -343,7 +343,7 @@ question rather than to answer it.**
      - `camerastart_7d`'s last argument is `getcamerasubframe()` in 37 calls (a shared `mov eax, 1` / `ret` stub, so 1),
        `getcameramainframe()` once (`005C5230`, 0) and the constant 110 once.
      - `camerastart_7e` (3,833 calls) and `camerashakestart_1a3` (328) pass −1.
-   - **So the largest subscript is 110**, a store at `+0xF4`, inside the `0x200` slot. Control:
+   - **So the largest subscript is 110**, a store at `+0xF4`, inside the ~~`0x200`~~ `0x288` slot *(corrected 2026-10-02, OPUS: the slot stride, `002630AB`)*. Control:
      `_index/candidates/mgrslot-stub-005C5230/channel_reach.py` (FAILS 0).
    - *Not covered:* scripts outside the shipped `us` set, and code injected at run time.
 3. ~~**Whether `002640C0` ever returns a slot other than the one side B would have been handed** —

@@ -237,7 +237,7 @@ return base + *(u16 *)((char *)base + 4*(id & 0xFFFFFF));   // 00264D85, 00264D8
 | container `+0x00` (`EBP2` magic) | — | — | — | **yes — never referenced.** repos-1e disassembled all 570 bytes of `0x003304A0` and found zero references to `[rdi+0]` |
 | container `+0x04` slotCount | `0x00330519` | — | — | no — gates this section (`slotCount > 2`) |
 | directory slot 2 (`+0x18`) | `0x0033051F` | `== 0` → section skipped | — | no |
-| section `+0x00` low u16 (first offset) | `0x00264D74` | — | — | no — **doubles as the entry count** (`>> 2`) |
+| section `+0x00` low u16 (first offset) | `0x00264D74` | — | — | no — ~~**doubles as the entry count** (`>> 2`)~~ the entry count is the whole sign-extended first dword `>> 2`, not this u16 *(corrected 2026-10-02, OPUS: `0x00264D74` `movsxd rax, dword ptr [r8]`, `0x00264D7D` `shr rax, 2`; the u16 is read only as the offset at `0x00264D85`; the two differ in 213 of the 828 `us` sections, the 2026-09-05 audit above)* |
 | entry offset (low u16) | `0x00264D85` | — | — | no |
 | entry **bit 16** | `0x002673C0` | — | — | no — `mes` branches on it (`0x00348DF0`) |
 | entry **bits 17-31** | — | — | — | **yes — masked off by `and eax, 1` at `0x002673C6`.** Zero in all 17,327 entries; nothing could observe a change |
@@ -352,7 +352,7 @@ not have**: bit 16 is read by a different instruction than the offset.
 
 - **What any escape code means.** The 44 `0x0F` codes, 32 `0x0E` codes and 196 `0x10` codes are
   framed and counted here, not interpreted. Their semantics belong to the text renderer
-  (`FUN_00269F20`, `FUN_002E16B0`), which this document did not read. The `0x10` = glyph-escape
+  (`FUN_00269F20`, `FUN_002E16B0`)~~, which this document did not read~~ *(answered in part: BX-1 below reads the window path through `002E16B0`; the escape semantics stay open; 2026-10-02, OPUS)*. The `0x10` = glyph-escape
   reading is stated as a shape, not a claim.
 - ~~**What bit 16 means.** The engine's use is established exactly — `mes` (`0x00348DF0`) calls
   `FUN_002673A0` and, **when the result is zero**, calls `FUN_002E16B0`; when it is one it does not.
@@ -374,7 +374,7 @@ not have**: bit 16 is read by a different instruction than the offset.
   corpus correlation with `0E:82` escapes (2,327 of 3,692 flagged strings) remains a correlation —
   "presents a choice" is consistent with a modal message but is not what the code proves.
 - **The full character table.** `0xA5` (4,262 occurrences in `002`, 56 in `003` — e.g. `Way Stone
-  <A5> Sigil of Sacrifice`) and `0xA3` are unresolved. No glyph table was located in the binary; the
+  <A5> Sigil of Sacrifice`) and `0xA3` ~~are unresolved~~ are the hyphen *(answered: section-003-text.md, BX-2 of 2026-09-15; 2026-10-02, OPUS)*. No glyph table was located in the binary; the
   search that failed was a decompiled-body reading of the two accessors, which do not touch glyphs.
 - **Whether the 24-bit id has structure in its top byte.** Bits 24-31 are masked off, so the engine
   cannot see them; whether authored scripts ever set them was not surveyed.

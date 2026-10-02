@@ -361,3 +361,14 @@ residue this page owns is the unlisted code itself (`UQ-371` to `UQ-375`).
 - The action-target resolver draws the shared generator.
 
 *Tier 2: ledger names, sizes and `edges.tsv`; no new body read (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-referenced-code-the-list-never-had-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00263A30` | 109 B | returns the string "NOACTOR" (`00915708`) unless `ecx` is at most 4 (unsigned), bit 0 of byte `+0x10` of the `0x288`-byte record `ecx` at `02098E10` is set, that record's qword `+0` is non-null, `edx` is below its dword `+0x20` (signed), and `00358940(record, edx)` returns non-null with a non-null qword `+0x40`; then it returns that qword `+0` plus its dword `+0x4C` plus the sign-extended dword the `+0x40` qword points at | `00263A3D`, `00263A58`, `00263A6B`, `00263A70`, `00263A8C` |
+| `0034ED80` | 56 B | tail-jumps to `002EC3C0` with `rcx` = the incoming `rdx` and `edx` = 1 | `0034ED83`, `0034ED88` |
+| `00350320` | 56 B | tail-jumps to `0026DC50` with `rcx` = the incoming `rdx` and `edx` = 0 | `00350323`, `00350325` |
+| `00354950` | 33 B | sets `ecx` to 1 at the entry and tail-jumps to `003DE3E0` | `00354955` |

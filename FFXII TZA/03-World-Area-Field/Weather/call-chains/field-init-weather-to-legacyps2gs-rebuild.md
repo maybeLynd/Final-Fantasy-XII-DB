@@ -337,3 +337,11 @@ selected-record entries' content) ~~stays open~~ *(answered 2026-09-26: see UQ-8
 | `00180620` | gated apply — `001A9930(ecx)` non-null gate (`00180628`/`00180630`) | [`00180628`](../../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `0017D490`, `001A9930`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../../_index/candidates/opus-field-init-weather-to-legacyps2gs-rebuil-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00180650` | 108 B | stores `r9b` at byte `+0xC0` of `r8`; when `ecx` is non-zero calls `001A94C0(001A9930(), edx, r8)`, otherwise calls the function at slot `+8` of `r8`'s vtable as `(r8, 0)`; then, when `001E3E80(r8)` returns a non-zero byte and `001E3FF0(r8)` returns 0, calls `001A4FE0(001A9930(), r8)` | `0018065A`, `00180677`, `00180686`, `00180698`, `001806AC` |

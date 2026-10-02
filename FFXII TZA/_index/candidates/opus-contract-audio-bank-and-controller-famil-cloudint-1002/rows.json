@@ -1,0 +1,237 @@
+{
+ "page": "18-Audio/Audio-Bank-And-Controller-Family/CONTRACT-audio-bank-and-controller-family.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_019LqHiXRaWmgLrNYjxULfMf",
+ "report": "contract-audio-bank-and-controller-family.json",
+ "rows": [
+  {
+   "fn": "002182E0",
+   "text": "stores `00907970` at qword `[rcx]`, calls `00218070(rcx+0x78)`, `00218070(rcx+0x40)`, `00218100(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "anchors": [
+    [
+     "002182F9",
+     "mov"
+    ],
+    [
+     "00218302",
+     "call"
+    ],
+    [
+     "00218314",
+     "call"
+    ],
+    [
+     "0021831C",
+     "call"
+    ],
+    [
+     "0021832F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0021BF60",
+   "text": "stores `00907FF0` at qword `[rcx]`, calls `0021BDF0(rcx+0x78)`, `0021BDF0(rcx+0x40)`, `0021BE80(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "anchors": [
+    [
+     "0021BF79",
+     "mov"
+    ],
+    [
+     "0021BF82",
+     "call"
+    ],
+    [
+     "0021BF94",
+     "call"
+    ],
+    [
+     "0021BF9C",
+     "call"
+    ],
+    [
+     "0021BFAF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0021CDC0",
+   "text": "stores `00908200` at qword `[rcx]`, calls `0021CC50(rcx+0x78)`, `0021CC50(rcx+0x40)`, `0021CCE0(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "anchors": [
+    [
+     "0021CDD9",
+     "mov"
+    ],
+    [
+     "0021CDE2",
+     "call"
+    ],
+    [
+     "0021CDF4",
+     "call"
+    ],
+    [
+     "0021CDFC",
+     "call"
+    ],
+    [
+     "0021CE0F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00222C70",
+   "text": "when `00210930(00210B30())` is non-zero and bit 0 of byte `+0x3C` of a second `00210B30()` result is set, tail-jumps `rcx`'s vtable slot 0 with `rcx` and `edx` = 1; otherwise returns",
+   "anchors": [
+    [
+     "00222C81",
+     "call"
+    ],
+    [
+     "00222C8F",
+     "test"
+    ],
+    [
+     "00222C98",
+     "mov"
+    ],
+    [
+     "00222CA5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002230D0",
+   "text": "returns when dword `rcx+0x38` minus `0x249F0` is below `0x3E8` (unsigned), when qword `rcx+0x50` is zero, or when byte `rcx+0x49` has any of the bits `0x69`; otherwise tail-jumps `rcx`'s vtable slot 0 with the arguments unchanged",
+   "anchors": [
+    [
+     "002230D3",
+     "sub"
+    ],
+    [
+     "002230DD",
+     "jb"
+    ],
+    [
+     "002230DF",
+     "cmp"
+    ],
+    [
+     "002230E6",
+     "test"
+    ],
+    [
+     "002230EF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00223100",
+   "text": "returns when dword `rcx+0x38` minus `0x249F0` is below `0x3E8` (unsigned), when qword `rcx+0x50` is zero, when byte `rcx+0x49` has any of the bits `0x68` or when its bit 0 is clear; otherwise tail-jumps `rcx`'s vtable slot 0 with the arguments unchanged",
+   "anchors": [
+    [
+     "00223103",
+     "sub"
+    ],
+    [
+     "0022310D",
+     "jb"
+    ],
+    [
+     "0022311A",
+     "test"
+    ],
+    [
+     "0022311E",
+     "test"
+    ],
+    [
+     "00223125",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00223130",
+   "text": "returns when dword `rcx+0x38` minus `0x249F0` is `0x3E8` or more (unsigned), when qword `rcx+0x50` is zero, or when bit 0 of byte `rcx+0x49` is set; otherwise tail-jumps `rcx`'s vtable slot 0 with the arguments unchanged",
+   "anchors": [
+    [
+     "00223133",
+     "sub"
+    ],
+    [
+     "0022313D",
+     "jae"
+    ],
+    [
+     "0022313F",
+     "cmp"
+    ],
+    [
+     "00223146",
+     "test"
+    ],
+    [
+     "0022314F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00225440",
+   "text": "when `00210930(00210B30())` is non-zero and bit 2 (`& 4`) of byte `+0x3C` of a second `00210B30()` result is set, calls `rcx`'s vtable slot `+0x48` with `(rcx, rdx, 1)`; otherwise returns without that call",
+   "anchors": [
+    [
+     "00225458",
+     "call"
+    ],
+    [
+     "00225466",
+     "test"
+    ],
+    [
+     "0022546F",
+     "mov"
+    ],
+    [
+     "0022547B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002182E0",
+   "was": "stores `00907970` at qword `[rcx]`, calls `00218070(rcx+0x78)`, `00218070(rcx+0x40)`, `00218100(rcx+0x20)` and `00212760(rcx)`, then calls `00809950(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "now": "stores `00907970` at qword `[rcx]`, calls `00218070(rcx+0x78)`, `00218070(rcx+0x40)`, `00218100(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 002182E0+0x4F reaches the Thunk-domain `free`"
+  },
+  {
+   "fn": "0021BF60",
+   "was": "stores `00907FF0` at qword `[rcx]`, calls `0021BDF0(rcx+0x78)`, `0021BDF0(rcx+0x40)`, `0021BE80(rcx+0x20)` and `00212760(rcx)`, then calls `00809950(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "now": "stores `00907FF0` at qword `[rcx]`, calls `0021BDF0(rcx+0x78)`, `0021BDF0(rcx+0x40)`, `0021BE80(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 0021BF60+0x4F reaches the Thunk-domain `free`"
+  },
+  {
+   "fn": "0021CDC0",
+   "was": "stores `00908200` at qword `[rcx]`, calls `0021CC50(rcx+0x78)`, `0021CC50(rcx+0x40)`, `0021CCE0(rcx+0x20)` and `00212760(rcx)`, then calls `00809950(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "now": "stores `00908200` at qword `[rcx]`, calls `0021CC50(rcx+0x78)`, `0021CC50(rcx+0x40)`, `0021CCE0(rcx+0x20)` and `00212760(rcx)`, then calls `free(rcx, 0xB8)` only when bit 0 of `edx` is set; returns `rcx`",
+   "why": "pass-22: callee(s) outside the page's layer renamed by ledger name or role: the call at 0021CDC0+0x4F reaches the Thunk-domain `free`"
+  },
+  {
+   "fn": "00225440",
+   "was": "when `00210930(00210B30())` is non-zero and bit 2 (`& 4`) of byte `+0x3C` of a second `00210B30()` result is set, calls `rcx`'s vtable slot `+0x48` with `(rcx, rdx, 1)`; otherwise calls nothing",
+   "now": "when `00210930(00210B30())` is non-zero and bit 2 (`& 4`) of byte `+0x3C` of a second `00210B30()` result is set, calls `rcx`'s vtable slot `+0x48` with `(rcx, rdx, 1)`; otherwise returns without that call",
+   "why": "'otherwise calls nothing' overreaches: the failing test at 00225440+0x2A comes after the second getter call at 00225440+0x21; only the vtable call at 00225440+0x3B is skipped"
+  }
+ ]
+}

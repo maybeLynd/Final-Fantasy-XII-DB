@@ -712,7 +712,8 @@ to cite, not a UI relationship the profiles layer owns.
 **Save_Load_Settings - MECHANICAL (SWE2-EC7-173, 3 edges).** `0017D6E0` calls `001C18E0` and
 `001C1910`, and `001A1220` is reached from `001C1810` - the same float/helper fan-in spilling into
 the save/settings layer, not a save relationship the profiles layer owns.
-
+- **Application - CLIENT (1 edge).** `00792350` is also called by bodies filed to application: `0015BC40` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT (1 edge).** `00228480` is also called by bodies filed to world area: `00314020` - shared machinery across the layer boundary, no shared ownership.
 ## SWE2-EC7-79 update (2026-09-20) - `005DBF80` two-field zero ctor measured
 
 `005DBF80` (13 B) is the minimal ctor the binding callers use:

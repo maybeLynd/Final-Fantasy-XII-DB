@@ -341,11 +341,11 @@ measurement that killed it is in section 3.
 
 ## 7. What this document does not claim
 
-- **No loader contract.** Section 3 has no `Read by` entry that is a real instruction address. That
-  is the main gap in this sheet and the reason its status is `PARTIAL`, not `DOCUMENTED`. Until the
-  live reader is found, nothing here can say what is rejected, clamped or ignored — and **no field
-  below is marked `Inert`**, because "no reader found" is not "inert" when the reader itself has not
-  been located.
+- ~~**No loader contract.** Section 3 has no `Read by` entry that is a real instruction address. That~~
+  ~~is the main gap in this sheet and the reason its status is `PARTIAL`, not `DOCUMENTED`.~~ *(answered: §3, established 2026-09-04, is the loader contract — `FUN_00332100` → `FUN_003DFDC0` stores the pointer and reads nothing; the front matter says `status: AUDITED`; 2026-10-02, OPUS)* Until the
+  live reader is found, nothing here can say what is rejected, clamped or ignored~~ — and **no field~~
+  ~~below is marked `Inert`**, because "no reader found" is not "inert" when the reader itself has not~~
+  ~~been located.~~ *(answered: §3 marks four fields `YES — never read` on the handler path; 2026-10-02, OPUS)*.
 - **No type-to-icon mapping.** `+0x08` takes 26 values and this sheet maps none of them to a visual.
 - **`+0x0A`, `+0x0B`, `+0x0D`, `+0x0E`, `+0x0F` are undecoded.** Their value distributions are in
   section 2 because a distribution is a fact even when the meaning is not.
@@ -388,3 +388,11 @@ It is a shared file-size query, not specific to this section.
 | `00331F50` | `r11 = rsp` `0x190` stack-cookie frame (`00331F50`/`00331F65`) | [`00331F50`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-section-004-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003DFCC0` | 50 B | loads qword `02B59D58` and returns 0 when it is null, when its byte `+0x7` is below 0x32 (unsigned), when `ecx` is not below its word `+0x8` (signed compare), when `ecx` is 0 or when `ecx - 1` is above 8 (unsigned); otherwise returns the word at `+0xC + ecx*4` | `003DFCC7`, `003DFCCC`, `003DFCD6`, `003DFCE1`, `003DFCE9` |

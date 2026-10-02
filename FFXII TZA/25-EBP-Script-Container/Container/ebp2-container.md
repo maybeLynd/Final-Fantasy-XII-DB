@@ -164,7 +164,7 @@ The same function consults a **fourth** namespace, `0x25` = 37, and only for one
 0032FDC1  lea  eax, [rbp + 3]      ; the same index for both probes
 0032FDC4  mov  ecx, esi            ; the primary namespace (8 here)
 0032FDCC  call 0x32e400            ; Resource_GetSize(primary, idx)
-0032FDD9  mov  r12d, eax           ;   kept only for the skip path
+0032FDD9  mov  r12d, eax           ;   kept only for the skip path   <- corrected 2026-10-02, OPUS - in the image this follows 0032FDD4 (0032FDD1 mov rdx, rbx; 0032FDD4 mov ecx, 0x25; 0032FDD9 mov r12d, eax)
 0032FDD4  mov  ecx, 0x25           ; namespace 37
 0032FDDC  call 0x32e400            ; Resource_GetSize(37, idx) -- SAME index
 0032FDE8  mov  [rsp + 0xb0], eax   ; the ns-37 answer WINS
@@ -292,7 +292,7 @@ offsets touched  = { 0x04, 0x10, 0x18, 0x1C, 0x20, 0x28, 0x30, 0x34,
 references to [rdi]  (i.e. +0x00, the magic)  =  0
 ```
 
-`+0x00` sits four bytes below a field the function reads fourteen times, and it is never touched.
+`+0x00` sits four bytes below a field the function reads ~~fourteen~~ fifteen times *(corrected 2026-10-02, OPUS: fifteen `cmp dword ptr [rdi + 4], N` sites over fourteen slot numbers — slot 12 is tested twice, at `003304DE` and `003305E4`; §6)*, and it is never touched.
 Upstream is no better placed to check it: `BeginPrimaryPayloadLoad` allocates by size and hands the
 buffer to a generic resource reader that has no `.ebp`-specific behaviour.
 
@@ -388,7 +388,7 @@ Three consequences a file-corpus reading could not have produced:
 - **`section_017` is real code with zero shipped users.** Its handler calls the *same* binder as
   `section_016` with the selector flipped from `0` to `1`, so **`017` is a second instance of the
   `016` format**. The index space is not "13 types with gaps"; it is 14 dispatchable slots of which
-  one is unused in this territory's data. Open question `PROPOSED-repos-1e-1`.
+  one is unused in this territory's data. ~~Open question `PROPOSED-repos-1e-1`.~~ *(answered: BW-1 above — slot 17 is zero in all nine shipped language trees; 2026-10-02, OPUS)*
 - **Slots 1, 5, 7, 13, 15 and 18 are wired to nothing.** Not "absent from the corpus" —
   **structurally unreachable**. A modder can put a valid offset there and the engine will never look.
   This is the strongest possible form of the `Inert` column.
@@ -446,7 +446,7 @@ external compiler and no runtime writer.
 | `0x0032FC30` | `WorldSimulation_ProcessDeferredModeRequest` | partial |
 | `0x0032F850` | slot 0 handler | ✅ |
 | `0x00263FF0` | `FUN_00263ff0(idx)` → `0x02098E10 + idx*0x288`, the actor-manager record | ✅ |
-| `0x003DFE60` | shared binder for slot 16 (selector 0) and slot 17 (selector 1) | not read |
+| `0x003DFE60` | shared binder for slot 16 (selector 0) and slot 17 (selector 1) | ~~not read~~ read — `g_fieldRoots[selector] = ptr`, the store at `0x003DFE6A` *(answered: section-016.md key addresses; 2026-10-02, OPUS)* |
 
 ## 5. Corpus survey
 
@@ -580,8 +580,8 @@ with it — which is consistent with it never being loaded as a container at all
 | Does the `0x40` alignment invariant prove `0x40` is required? | **No, and the sheet does not say so.** The code requires 16. The corpus supplies 64. Conflating "what the data does" with "what the code demands" is the error this row exists to prevent. |
 | The oracle: does `ff12-script` agree? | **Not consulted for any claim here.** Every statement in §3 comes from the loader body; the tool reads `section_000`'s bytecode and says nothing about the container's dispatch. Nothing in this sheet rests on it. |
 
-**Not yet attacked:** whether another language's archive populates slot 17
-(`PROPOSED-repos-1e-1`) — that needs the `jp`/`eu` trees, which are not unpacked here.
+~~**Not yet attacked:** whether another language's archive populates slot 17~~
+~~(`PROPOSED-repos-1e-1`) — that needs the `jp`/`eu` trees, which are not unpacked here.~~ *(answered: BW-1, §2 — no shipped tree populates slot 17, and `FFXII_TZA.vbf` carries no `jp` or `eu` tree, only `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr` and `us`; 2026-10-02, OPUS)*
 
 ## 7. What this document does not claim
 
@@ -589,14 +589,14 @@ with it — which is consistent with it never being loaded as a container at all
   observation handed to the section sheets; **this sheet does not claim to know what `CML1` or
   `NAVI` contain.**
 - **The binders.** `FUN_003dfe60`, `FUN_003eaa00`, `FUN_003dfdc0`, `FUN_0026c8xx`, `FUN_0026ceXX`
-  and `FUN_0026d3xx` are named as the destinations of the dispatch. **Their bodies were not read**,
-  so the "what it does with the pointer" column in §3 describes the *handler*, not the consumer.
+  and `FUN_0026d3xx` are named as the destinations of the dispatch. ~~**Their bodies were not read**,~~
+  ~~so the "what it does with the pointer" column in §3 describes the *handler*, not the consumer.~~ *(answered: the section sheets have read them since — `0026C880` (section-002), `0026CE00` (section-008), `0026CE40` (section-012), `0026D3A0` (section-010), `003DFE60` (section-016); 2026-10-02, OPUS)*
   A neighbouring session found that a handler passes `(slot, base)` and the binder copies the base
   into a **second** global inside the `0x02098E10 + idx*0x288` manager record — so an xref census on
   the handler's own global under-counts consumers. That is the displacement blind spot
   `COVERAGE.md` catalogues, and it is why no `Inert` claim is made about any *section body* here.
 - **Sub-4-GiB allocation.** §3 states that the pointer is truncated to 32 bits, which is observed.
-  It does **not** claim the allocator guarantees a low arena — `FUN_0036c660` was not read.
+  It does **not** claim the allocator guarantees a low arena~~ — `FUN_0036c660` was not read~~ *(answered: read since — a header tagger, not an allocator, the 2026-09-12 correction directly below; 2026-10-02, OPUS)*.
   > ~~**BW-2 answered 2026-09-12 (FABLE): there is no arena, and the image gives no guarantee — the
   > truncation is sound only by OS policy.** `FUN_0036C660` read whole (82 bytes): it is not an
   > allocator but a **release** — it checks a `0xFF12` magic at `[rcx − 0x40]` and a flag bit at
@@ -639,8 +639,8 @@ with it — which is consistent with it never being loaded as a container at all
   > base `0`, and the **second** allocation followed a 32-bit neighbour link into low memory — a fault, or with a copy
   > mapped there, the correct return value while reading and writing the copy. That is an isolated-execution result;
   > where the shipped game's backing lands is still open.
-- **Slot 14's manager-0 exclusion is described, not explained.** What distinguishes manager 0 is
-  open.
+- ~~**Slot 14's manager-0 exclusion is described, not explained.** What distinguishes manager 0 is~~
+  ~~open.~~ *(answered: BW-3, §3 — manager 0's lighting comes from the map-control pack, not from EBP; 2026-10-02, OPUS)*
 - **No search for a writer was run beyond the absence of any header-constructing code on the read
   path.** "The game does not write `.ebp`" rests on that plus the authored provenance strings in
   `section_000`, not on an exhaustive scan.
@@ -746,3 +746,11 @@ Interior anchor `0029AF7C` (function `0029AEF0`).
 `003355A0` (157 B) is the wrapped-angle helper `002FB560` calls: `004692E0` reads both operands, `00202D20` produces the cosine-like scalar (clamped by `1.0f` + `-1.0f` fold), `0046F460` converts it, `00202E10` writes the cross at `[rsp+0x20]`, and the result is `xmm6` or `0x40EA0EA1 - xmm6` depending on the cross's `[+4]` sign - an angle normalized to one interval
 
 Interior anchor `003355C4` (function `003355A0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-ebp2-container-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00297640` | 167 B | returns 0 for `edx` above 7 (unsigned); otherwise dispatches on `edx` through an 8-entry case table (decoded from the bytes): 0 returns 1; 1 calls `0029B440(0035BB00(r8d))` and `00249C60(1)` and returns 1; 2 tests bit 1 of byte `+0x318` of the `0x160`-byte record `r9d` at `rcx` and returns 0 after `00249C60(5)` when it is set, else 1 after `00249C60(0x15)`; 3 returns 0 after `00249C60(5)` when `00299B90(signed word +0x14 of 0035D320())` is zero, else calls `0035BC30()` and `00249C60(3)` and returns 1; 6 returns 0 after `00249C60(5)`; 4, 5 and 7 return 0 | `00297644`, `0029765E`, `0029766A`, `002976A3`, `002976C5` |

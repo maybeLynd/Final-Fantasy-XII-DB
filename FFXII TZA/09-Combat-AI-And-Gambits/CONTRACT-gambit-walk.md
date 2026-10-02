@@ -169,8 +169,8 @@ will act where the original declines.
 its cause is narrower than it reads. **The action-band bound cannot refuse a condition-arm match**: the condition
 check `AiOrder_CheckActionPreconditions` rejects `id − 0x4000 > 0x166` (`003018DD`–`003018E8`), and
 `BattleUnit_CommitAction`'s band-2 test is the same bound (`0030F7D9`–`0030F7EC`). So no id that passed the condition
-arm fails that test. EXP-095's *satisfied condition whose commit fails* was supplied by a stub. Whether the unit arm
-or the slot combiner can still make a real commit refuse is open, so the parity case above stays, as a control-flow
+arm fails that test. EXP-095's *satisfied condition whose commit fails* was supplied by a stub. ~~Whether the unit arm~~
+~~or the slot combiner can still make a real commit refuse is open~~ *(answered: neither can, see the 2026-09-26 reachability note below; 2026-10-02, OPUS)*, so the parity case above stays, as a control-flow
 case rather than a demonstrated game state.
 
 *Reachability, answered 2026-09-26 (OPUS, owner), measured in

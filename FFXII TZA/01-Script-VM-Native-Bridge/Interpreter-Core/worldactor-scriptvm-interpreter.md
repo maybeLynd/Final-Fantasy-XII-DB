@@ -32,7 +32,7 @@ local_production_status: "SECTION-11 locally validated; accepted non-author 2026
 > persist. There are separate stop-request and plain-advance entries; zero-length handlers do not all
 > behave alike. Original wait and result callbacks now run through the interpreter and selected full
 > request driver. The historical "always progresses / no resume state / unused read is harmless"
-> interpretations are superseded. This page is REOPENED, preserving its older audit receipts.
+> interpretations are superseded. ~~This page is REOPENED,~~ *(answered: the front matter says `status: DOCUMENTED` — the reopening resolved, accepted non-author 2026-09-29, OV-18; 2026-10-02, OPUS)* preserving its older audit receipts.
 > [Connected specification](the-script-from-bytecode-through-wait-and-resume.md) ·
 > [Execution and limitations](../../_experiments/evidence/continuation-section11-script-resume/REVIEW.md).
 
@@ -111,7 +111,7 @@ though it remains true of the named ones — see §10 for what `FUN_008620C0` is
 | `ActorResource_RecycleEntryRange` | 3 |
 
 **A stack VM whose operands are actors.** The dominant operation by a wide margin is *pop an int32,
-coerce to float32* — so the bytecode is integer-encoded and the arithmetic is float, which is the
+coerce to float32* — ~~so the bytecode is integer-encoded and the arithmetic is float~~ but the arithmetic is typed by its operands: two int32 add and subtract as integers, anything with a float as float32 *(corrected 2026-10-02, OPUS: `0x12` takes its integer path when both tags are 1, `0025ECBA`–`0025ECD8`; `0x13` `0025EEA0 sub ecx, ebx` against `0025EF6B subss`; and the pop counted here pops an int32 and truncates a float, `00267E42 cvttss2si`)*, which is the
 usual shape for a scripting layer driving positions, timers and angles.
 
 **`WorldActorScriptVM_ServiceRequestWaitState`** is the piece that makes cutscenes possible: a script
@@ -149,9 +149,9 @@ listing.
 
 **The VM treats those six exactly as it treats an opcode it does not recognise.** They are not
 rejected loudly — `0025E60A` is `mov [rsp+0xC0], ebp ; mov edi, ebp` and continues into the common
-path — but they carry no behaviour of their own.
+path — ~~but they carry no behaviour of their own.~~ and that pair is their behaviour: with `ebp = 1` (`0025E555`) it sets the stop request, which the loop head turns into an exit when the stack is empty *(corrected 2026-10-02, OPUS: checked at `0025E555`, `0025E60A`–`0025E611` and `0025E586`–`0025E596`; the same arm as RES §6's stop entry)*.
 
-**Six of one hundred opcodes are inert in the shipped interpreter** — by their corrected names,
+**Six of one hundred opcodes ~~are inert in the shipped interpreter~~ have no handler of their own in the shipped interpreter and request a stop through the shared arm** *(corrected 2026-10-02, OPUS: `0025E60A`–`0025E611` set `edi = 1`; no shipped script uses them, BF-5)* — by their corrected names,
 **`LABEL`, `TAG`, `OPUMINUS`, `OPFIXADRS`, `DRET` and `LONGCODESTART`** (§11). This is the same shape
 as the **ten `NOT USED` markers** shipped in the retail battle command list
 ([VBF and authored tables](../../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md)):
@@ -235,7 +235,7 @@ frame -> world tick -> ActorManager_RunFieldRuntimePass -> 0025DF00 (the only ca
 
 ## 6. Modding notes
 
-- **`0x00261DF8` is the single point of control over the whole scripting language.** Repointing one
+- ~~**`0x00261DF8` is the single point of control over the whole scripting language.**~~ *(corrected 2026-10-02, OPUS: two coupled tables: the handler comes from `0x00261DF8` (`0025E5DD`) and the instruction length from the descriptor table `0x01EFEA60` (`0025E631`), as the struck repeat below says)* Repointing one
   entry replaces one opcode's behaviour for every script in the game.
 - ~~**Six opcodes are free** … the natural slots for a new instruction.~~ **WRONG, AND TWO OF THEM ARE
   TRAPS — see §10.** **`0x01 LABEL` and `0x02 TAG` have instruction length 0**: a handler installed
@@ -323,7 +323,7 @@ SWE2-CONTRACT.)*
 | The six inert opcodes occur in no shipped script | BF-5: `bf5_inert_opcode_census.py` over 7,565 `.ebp`, with the operand-byte control | 1 + authored data |
 | Instruction lengths come from the descriptor table `01EFEA60`; the name column is rotated one record | §11, §12 (BQ-6 with a positive control) | 1 |
 | The register file is `+0x64`..`+0x83` of the actor record, reached only by opcodes `0x36`–`0x45` on census routes | §13; FZ-21 | 1 |
-| The interpreter has one entry, `0025DF00`, ticked per frame | the final section: one direct call site, no stored pointer, no rip reference | 1 |
+| The interpreter ~~has one entry, `0025DF00`, ticked per frame~~ `0025E4C0` has one caller, `0025DF00` *(corrected 2026-10-02, OPUS: `0025DF00` is the caller, not the entry; this page's final section and `CONTRACT-interpreter-core.md` `entries`)* | the final section: one direct call site, no stored pointer, no rip reference | 1 |
 | SECTION-11's integrated execution | `continuation-section11-script-resume` re-executed non-author (146 assertions, 10 mutants) | isolated original-code execution |
 
 **Context for why this was missing.** A census of the database against the ledger found that
@@ -978,7 +978,7 @@ BF-3 asked what `r13` points at. It is the interpreter's **first argument**, `mo
 and the caller passes the **ActorManagerSlot**: `ActorManager_RunFieldRuntimePass` (`0025D9E0`)
 computes `rbx = 02098E10 + index × 0x288` (`0025D9EF`–`0025D9FD`) and hands it to
 `WorldActor_UpdateRuntimeAndScriptExecutionState` (`0025DF00`), which keeps it in `r15` and passes it
-on at `0025E0D0`–`0025E0D3` with the actor record in `rdx` and the actor's request entry in `r8`. So
+on at `0025E0D0`–`0025E0D3` with the actor record in `rdx` and ~~the actor's request entry~~ the actor's selected wait slot `*(actor+0xA8) + sx(actor+0x11)*0x28` in `r8` *(corrected 2026-10-02, OPUS: `0025E0CA mov r8, rsi`, `rsi` built at `0025DFB6`–`0025DFBF`; the 0x14-byte request entries are a different record)*. So
 the three arguments are (slot, record, entry): `[r13]` is the bound script image, `r15` the actor
 (§13), and `[r8]` the program counter `r14`.
 
@@ -998,7 +998,7 @@ with the route `argseed 0025E4C0:0`:
 | `+0x078` | `payloadSectionE` (header `+0x28`, "8-byte records") | the resolver (`00262459`) | **the variable descriptor table** |
 | `+0x080` | `payloadSectionF` (header `+0x2C`) | `PUSHTAG` (`002617C9`, `00261806`) | **the tag table** — count at `+0`, then 8-byte entries; `PUSHTAG` pushes the entry's word `+0xE` shifted into the operand with bit 14 set (`00261826`–`00261834`) |
 | `+0x008` | — | `ActorManager_GetRecordByOrdinal` (`00358940`) | the record table the ordinal indexes |
-| `+0x201` | — | the dispatch head (`0025E5C5`) | a byte fed into every handler in `edx` |
+| `+0x201` | — | the dispatch head (`0025E5C5`) | a byte fed into every handler in `edx` *(answered: the manager's skip mask, OV-15 in the-script-from-bytecode-through-wait-and-resume.md; 2026-10-02, OPUS)* |
 
 Two consequences. The immediate-push opcodes never touch the actor: `PUSHI`, `PUSHF`, `PUSHTAG`
 read the slot's rebased sections, which is what the generation-2 census misfiled as actor-record

@@ -16,13 +16,13 @@ verified_against:
   snapshot_sha256: a9cead8777597cdca58f2a47f27153f5231d60ad2bc16c3da9df8253820b09bd
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
   parent_tag: GN159
-last_reviewed: 2026-09-03
+last_reviewed: 2026-09-03   # <- corrected 2026-10-02, OPUS: the last whole-page review, not the last change - the body carries dated edits through 2026-09-26
 audit:
   passes: 1
   last_pass: 2026-09-13
   last_pass_state: opus-rng-generators-pass-1
   crossref_clean: true
-  reopened_count: 0
+  reopened_count: 0   # <- corrected 2026-10-02, OPUS: not advanced for the two adjudicated corrections of 2026-09-14 (sections 3 and 5)
 ---
 
 # Which roll is on which generator, and what reseeds each
@@ -39,11 +39,11 @@ Reload before opening the same chest and the sequence of loot behaves as though 
 rerolled. Both are consequences of §4 and §5, and they are **different mechanisms**, not one
 mechanism seen twice.
 
-## 2. Four generators
+## 2. ~~Four generators~~ Four of at least eight generators *(corrected 2026-10-02, OPUS: the table omits the CRT `rand()` — IAT `008C3098`, 48 call sites in 30 functions — which also decides gameplay (rng-streams.md §8g), and the presentation-only stream 5, the PPFX xorshift128 and the Bullet solver LCG)*
 
 | # | Generator | State | Seeded by | Drives |
 |---|---|---|---|---|
-| 1 | **Gameplay MT19937** | `02EB3870` (624 dwords), index `02EB4230` | constant `4537` at boot; **`_time64` on save load** | combat formula (53 sites), weather, and more — **66 consumer functions** |
+| 1 | **Gameplay MT19937** | `02EB3870` (624 dwords), index `02EB4230` | constant `4537` at boot; **`_time64` on save load** | combat formula (53 sites), weather, and more — ~~**66 consumer functions**~~ **67 consumer functions**: 66 through `00379CD0` and the camera-shake sampler through the float thunk *(corrected 2026-10-02, OPUS: `callers 00379CD0` = 98 sites in 66 functions, callers of the float thunk = 9 sites, all in the camera-shake sampler; CONTRACT-gameplay-generators.md §12c)* |
 | 2 | **Graphics-noise MT19937** | separate instance | time and clock, via `GraphicsNoiseMT19937_SeedFromTimeAndClock` (`0015BCF0`) | presentation noise only |
 | 3 | **Shared gameplay LCG** | `022C256C` | a **counter**, once per battle-area init | loot, the enemy chain, weighted action selection |
 | 4 | **Presentation bit-feedback PRNG** | `01EF93E8` | constant `0x458DC800` at startup | procedural rendering |
@@ -288,7 +288,7 @@ them reaches a draw or seed body within six levels of the call graph; indirect c
   - It calls **ActorEntity** `BattleStorage_InitializeWorkArrays` (`002368D0`), which clears the reseed gate `02089300`
     (§13). That function in turn calls **Movement** `Navigation_ClearDataset` (`00383A20`) and **Resource** `003843F0`.
 - **Area initialisation, `BattleSystem_InitializeAreaState` (`002342F0`).**
-  - Its caller is **ActorEntity** `ActorSystem_InitializeManagerRuntime` (`0026CE60`).
+  - ~~Its caller is~~ Its callers are **ActorEntity** `ActorSystem_InitializeManagerRuntime` (`0026CE60`) and the broad bootstrap (FABLE's record readiness-apply-fable-1002), which also advances the counter *(corrected 2026-10-02, OPUS: `callers 002342F0` = the broad bootstrap and `0026CE60`, one site each)*.
   - Around the LCG reseed it calls **Spawn_Encounter_Lifecycle** `SpawnKeep_RotatePersistenceBanksForAreaTransition`
     (`00233780`) and `SpawnGroup_ResetLifecycleLedger` (`00307090`).
   - It calls **Movement** `Navigation_GetWorldBoundsXZ` (`00383740`), the `MapGrid` builder `003924B0`, and `00327360`,
@@ -323,7 +323,7 @@ starting state, and only two instructions touch it.
 
 ## 10. What is not known
 
-- **What `01FD4A80` holds** — the second input to the save-load seed; it is in the zero-filled tail of
+- ~~**What `01FD4A80` holds**~~ **Its runtime value** *(answered: what `01FD4A80` holds is the dispatched-frame counter, `inc` in the frame dispatcher — CONTRACT-gameplay-generators.md §14 and CONTRACT-which-generator-serves-which-roll.md §14; 2026-10-02, OPUS)* — the second input to the save-load seed; it is in the zero-filled tail of
   `.data`, so its runtime value is not in the image.
 - [x] ~~**What `FUN_00319530` rolls for.** It is the eighth LCG draw site and is unnamed.~~
   **This was already answered elsewhere and stayed open here — struck 2026-09-13 (OPUS, §13).**
@@ -336,8 +336,8 @@ starting state, and only two instructions touch it.
   pickup**, and applies the *Chain Bonus* pseudo-action `0xF5`. **Nothing here is new; the
   question should have been closed when `AD-6` was.**
 - **The graphics MT's state address and consumer census** — established here only as *disjoint* from
-  the gameplay MT, not enumerated. *Narrowed 2026-09-13 (§13):* **there may be no fixed address to
-  find.** `GraphicsNoiseMT19937_TwistState` (`0018EE20`) has **no `rip`-relative operand at all**,
+  the gameplay MT, not enumerated. *Narrowed 2026-09-13 (§13):* **~~there may be no fixed address to~~
+  ~~find.~~** *(answered: there is one, `01F7F600` — every call site passes it as a literal `lea`, `0015BD13` and `0015BD1F` in `0015BCF0`, two sites in the procedural-noise generator (FABLE's record readiness-apply-fable-1002); CONTRACT-which-generator-serves-which-roll.md I5 and `EXP-144`; 2026-10-02, OPUS)* `GraphicsNoiseMT19937_TwistState` (`0018EE20`) has **no `rip`-relative operand at all**,
   so it works on a state the caller hands it — structurally unlike the gameplay MT, which names
   `02EB3870` directly. The seeder's three globals were **not** adopted as the state: one of them,
   `01F44858`, is referenced by 14 functions including `__isa_available_init`, so it is shared CRT
@@ -346,8 +346,8 @@ starting state, and only two instructions touch it.
   *Answered in the code 2026-09-13 (§13), not in play:* **there is an unconditional clear.**
   `BattleStorage_InitializeWorkArrays` (`002368D0`) does `xor ebx, ebx` at `002368E1` and stores
   `ebx` to the gate at `002368F8`; `FUN_00236A40` stores a literal `1` at `00236A44`. So the
-  answer to *"can it be false"* is **yes, by construction**; whether that path precedes an area
-  init in normal play is a runtime question and is not established. **And it is not only the
+  answer to *"can it be false"* is **yes, by construction**; ~~whether that path precedes an area~~
+  ~~init in normal play is a runtime question and is not established.~~ *(answered from the code, not observed: `002368D0`, the only clear, is called once, from the boot routine, and the only set, once, from boot frame mode 0 (boot frame, FABLE's record readiness-apply-fable-1002) — so the gate is 0 only between boot initialisation and boot mode 0, and 1 for the rest of the process; 2026-10-02, OPUS)* **And it is not only the
   reseed gate** — three functions read it: `BattleSystem_InitializeAreaState`,
   `BattleUnit_ApplyUnitDefinition` (`0023A5B5`) and `BattleStats_InitializeDefinitionRecord`
   (`0023ACE4`).
@@ -366,8 +366,8 @@ starting state, and only two instructions touch it.
 | Boot seeds the MT with 4537 | `mov ecx, 0x11B9 ; call 0x379CF0` at `0022A40B` | 1 |
 | Save load reseeds from `_time64` | IAT slot `008C3060` resolved through the PE import descriptors to `api-ms-win-crt-time-l1-1-0.dll!_time64` | 1 |
 | `0x1571` = 5489 is the MT default seed | the constant in the lazy-init path | 1 |
-| Two disjoint MT instances | every instruction touching `02EB3870` enumerated: three functions, none of them the graphics pair | 1 |
-| MT has 66 consumers, 53 in CombatFormula | caller census of the draw thunk `00379CD0` | 1 |
+| Two disjoint MT instances | every instruction touching `02EB3870` enumerated: ~~three functions~~ four functions — `00863BF0`, `00863C80`, `00866B90`, `00866D60` *(corrected 2026-10-02, OPUS: `refs 02EB3870..02EB4233` = 4 + 4 + 11 + 3 instructions, the 22 rows of `mt19937-state-accesses.tsv`; §13 and §2's correction)*, none of them the graphics pair | 1 |
+| MT has ~~66 consumers, 53 in CombatFormula~~ 67 consumer functions: 66 on the draw thunk (53 in CombatFormula) and the camera-shake sampler on the float thunk *(corrected 2026-10-02, OPUS: callers of the float thunk = 9 sites, all in the camera-shake sampler)* | caller census of the draw thunk `00379CD0` | 1 |
 
 ### A correction, and why three methods failed together
 
@@ -392,7 +392,7 @@ the body and every thunk that targets it, and that is what §5 rests on.
 
 ## 12. Related
 
-- [`rng-streams.md`](rng-streams.md) — the three streams this builds on, and the presentation PRNG's step accounting.
+- [`rng-streams.md`](rng-streams.md) — the ~~three streams~~ generators, at least eight *(corrected 2026-10-02, OPUS: rng-streams.md's opening line and §10, the PPFX xorshift128)*, this builds on, and the presentation PRNG's step accounting.
 - [`loot-drops-and-enemy-chain.md`](../13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md) — five of the eight LCG draw sites are its rolls.
 - [`what-the-engine-fixes-at-boot.md`](../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md) — the boot seed in its wider context.
 
@@ -459,8 +459,8 @@ the register was read on the second attempt.**
 
 §10 asks whether the gate is ever false. In the code it is: `BattleStorage_InitializeWorkArrays`
 (`002368D0`) zeroes `ebx` at `002368E1` and stores it to the gate at `002368F8`, unconditionally on
-entry; `FUN_00236A40` stores a literal `1` at `00236A44`. **Whether that clear precedes an area init
-in normal play is a runtime question and is not answered here** — but "can it be false" no longer is.
+entry; `FUN_00236A40` stores a literal `1` at `00236A44`. **~~Whether that clear precedes an area init~~
+~~in normal play is a runtime question and is not answered here~~** *(answered from the code, not observed: the clear runs once, from the boot routine, and the set once, from boot frame mode 0; 2026-10-02, OPUS)* — but "can it be false" no longer is.
 And the gate has **three readers**, not one: the LCG reseed, `BattleUnit_ApplyUnitDefinition`
 (`0023A5B5`) and `BattleStats_InitializeDefinitionRecord` (`0023ACE4`), so calling it *"the gate on
 the LCG reseed"* names one of its three jobs.
@@ -476,8 +476,8 @@ pair is in neither set.
 
 **`GraphicsNoiseMT19937_TwistState` (`0018EE20`) has no `rip`-relative operand at all**, so it twists
 a state its caller supplies. The gameplay twist names `02EB3870` directly. That is a structural
-difference, and it means the unknown may be mis-stated: there may be **no fixed graphics state
-address to enumerate.** The seeder's three globals were deliberately **not** adopted as the answer —
+difference, and it means the unknown may be mis-stated: ~~there may be~~ **~~no fixed graphics state~~
+~~address to enumerate.~~** *(answered: the fixed address is `01F7F600`, passed as a literal `lea` at all four call sites — CONTRACT-which-generator-serves-which-roll.md I5 and `EXP-144`; 2026-10-02, OPUS)* The seeder's three globals were deliberately **not** adopted as the answer —
 `01F44858` is referenced by 14 functions including `__isa_available_init`, so it is shared CRT
 machinery, not an MT array.
 

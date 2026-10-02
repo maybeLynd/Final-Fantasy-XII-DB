@@ -303,11 +303,11 @@ and 3 are reached only by the seeded callbacks of the SECTION-02 controls. The r
 what the pump would do and is kept as written.
 
 **The first argument of the delivery callback is the descriptor's `+8` word, not the buffer.** A
-requester that wants its bytes reads them at `dest0`. The twelve licence-board requests of
-`00238260` hand `3` in that word (`00238364`), so their generated setters (`00238390` + `0x30·k`)
-store **3** into registry slots `02EBF1A0`–`02EBF1F8` on delivery and on failure alike — the slots
-are completion markers, and the board bytes live in the resource block the loader allocated
-([the registry page](authored-data-table-registry.md), *the tail read*, corrected 2026-09-11).
+requester that wants its bytes reads them at `dest0`. ~~The twelve licence-board requests of~~
+~~`00238260` hand `3` in that word (`00238364`), so their generated setters (`00238390` + `0x30·k`)~~
+~~store **3** into registry slots `02EBF1A0`–`02EBF1F8` on delivery and on failure alike — the slots~~
+~~are completion markers, and the board bytes live in the resource block the loader allocated~~
+~~([the registry page](authored-data-table-registry.md), *the tail read*, corrected 2026-09-11).~~ The twelve licence-board requests of `00238260` go through `00384420`, which replaces the `3` with the buffer it allocated before it builds the descriptor, so their generated setters (`00238390` + `0x30·k`) store the loaded board's address into registry slots `02EBF1A0`–`02EBF1F8` on delivery and on failure alike: the slots are pointers to the boards *(corrected 2026-10-02, OPUS: `00384420+0x5E` `mov rbx, rax` after the `0036A190` allocation, then `00384420+0x99` `mov dword ptr [rsp + 0x38], ebx` writes the descriptor's `+8`; [the registry page](authored-data-table-registry.md), *the tail read*, corrected 2026-09-30)*.
 With a null descriptor, `0032E870` clears the two copied callbacks and argument; it clears the
 part callback regardless of descriptor presence. The pump's callback sites test for null (`0032E33D`, `0032E37D`, `0032E3BB`).
 
@@ -318,8 +318,8 @@ part callback regardless of descriptor presence. The pump's callback sites test 
 cancels: for a request the read layer holds (states 2 and 3) it sets state 4 and lets the pump
 finish it (`0032E5D4`–`0032E5DA`, `0032E603`); for one still queued it fires the cancel callback
 and releases the slot at once (`0032E5E0`–`0032E5F4`); state 4 is left alone; and for kind `0xFF`
-it frees the path the index pointed at (`0032E5B9`–`0032E5CB`, `003697F0`). Callers: `00280140`,
-`00291D90`, `002CEB40`, `002E60F0`, `002FC3C0`, `002FCF00` and the `003B1310`–`003B21E0` family.
+it frees the path the index pointed at (`0032E5B9`–`0032E5CB`, `003697F0`). Callers: ~~`00280140`,~~
+~~`00291D90`, `002CEB40`, `002E60F0`, `002FC3C0`, `002FCF00` and the `003B1310`–`003B21E0` family.~~ `002FC3C0`, `003B1310`, `003B1710` and `003B18E0`, four in all *(corrected 2026-10-02, OPUS: the direct calls are `002FC3C0+0x66`, `003B1310+0x9F`, `003B1710+0xAD` and `003B18E0+0xBD`, with no `jmp` or thunk; the struck list is the callers of the in-flight test `0032E4D0`)*.
 
 ## 3. Key addresses
 
@@ -435,7 +435,7 @@ ResourceRequestSlot (0x80 B, 64 at 022C31C0)
   +0x40 ptr  onDone(arg, dest0, ok)   +0x48 ptr onCancel(arg)   +0x50 ptr onPart(slot)
   +0x5C i32  zero              +0x60 i32 arg (descriptor +8)     +0x64 i32 requestId = (counter << 6) | slot
 RequestDescriptor (0x28 B, the caller's)
-  +0x00 i32 fileOffset   +0x04 i32 (set to 0x80000 by the builder)   +0x08 i32 arg
+  +0x00 i32 fileOffset   +0x04 i32 (set to 0x80000 by the builder)   +0x08 i32 arg   <- corrected 2026-10-02, OPUS: the builder sets +0x04 in its own stack copy (0032E620+0xAC mov dword ptr [rsp + 0x34], 0x80000); the caller's descriptor is only read (0032E620+0x58)
   +0x10 ptr onDone       +0x18 ptr onCancel    +0x20 storage not consumed by 0032E870
 requestId = ((counter++) << 6) | slotIndex; counter wraps to 1 past 0xFFFFFF
 ```

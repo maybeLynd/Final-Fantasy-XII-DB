@@ -552,3 +552,14 @@ Interior anchor `002A1E3B` (function `002A1DC0`).
 - **UI - CLIENT (5 edges).** `0031C5D0`, `00322C50` are also called by bodies filed to UI: `00273E30`, `002BFD20`, `0035D380` - shared machinery across the layer boundary, no shared ownership.
 - **World - CLIENT and SERVICE (3 edges).** `003845F0` is also called by bodies filed to World: `00238640` (Area), `003847B0` (Area); `00236C30` reaches bodies filed to World: `003847B0` (Area) - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - CLIENT and SERVICE (9 edges).** `00236C30` is also called by bodies filed to WorldAreaField (world area): `00238850`; `00236C30`, `00280140` reach bodies filed to WorldAreaField (world area): `003845F0`, `003846F0`, `00267C90` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-bazaar-unlock-and-purchase-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00238640` | 19 B | tail-jumps `003845F0` with the address of the 8-byte entry at `02F973C0` indexed by the sign-extended `ecx` | `00238643`, `0023864A`, `0023864E` |
+| `002524C0` | 60 B | returns 99,999,999 (`0x5F5E0FF`) when `ecx` is above it (signed) and 0 when `ecx` is negative; otherwise picks `edx` when `ecx + edx` is non-negative and `ecx` itself when that sum is negative, and returns the pick unless `ecx` plus the pick exceeds 99,999,999 (signed), in which case it returns 99,999,999 minus `ecx` | `002524C6`, `002524D7`, `002524E9`, `002524F2`, `002524F8` |
+| `002535D0` | 189 B | uses `ecx` as an index (replaced by 0 after a call to `0016D6A0(0x200)` when above `0xB` unsigned, once for each of its two uses); resolves dword `+4` of the 8-byte entry at `02092760` through `0020E600` and scans the number of words given by dword `+0x47B8` of qword `020927C0` plus 4 times the index for one equal to `edx` shifted right by 16; the first match is overwritten with `0xFFFF` and followed by `002534C0` with the original `ecx` (not the clamped index), while no match or a count of 0 or less returns without either | `002535F2`, `0025363E`, `00253653`, `00253668`, `0025366D` |
+| `0032AB50` | 14 B | tail-jumps `0030B570(ecx, 1 when edx is non-zero else 0)` | `0032AB54`, `0032AB56`, `0032AB59` |

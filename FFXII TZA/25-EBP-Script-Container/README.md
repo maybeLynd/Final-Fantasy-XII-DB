@@ -39,16 +39,16 @@ full run.
 | `section_000` | **1114 / 1115** (99.9 %) | **the bytecode.** `ff12-script.exe -dc` decompiles it |
 | `section_002` | 828 (74.3 %) | text — `ff12-text.exe` reads it |
 | `section_003` | 359 (32.2 %) | text — same tool |
-| `section_004` | 209 (18.7 %) | *unknown* |
-| `section_006` | 67 (6.0 %) | a `TIM2` picture — [section-006](Sections/section-006.md); **2026-09-12:** 556–633 files in the `kr` / `cn` / `ch` / `in` trees against 67–68 in every Latin-script tree, 23-pixel-high strips of varying width — pre-rendered text lines (section-006 §5) |
-| `section_008` | 423 (37.9 %) | *unknown* — **strict pair with 009** |
-| `section_009` | 423 (37.9 %) | *unknown* — **strict pair with 008** |
-| `section_010` | 113 (10.1 %) | *unknown* — **strict pair with 011** |
-| `section_011` | 113 (10.1 %) | *unknown* — **strict pair with 010** |
+| `section_004` | 209 (18.7 %) | ~~*unknown*~~ `NAVIICN2` map-icon table, stored and never read in this build — [section-004](Sections/section-004.md) *(answered: see that sheet; 2026-10-02, OPUS)* |
+| `section_006` | 67 (6.0 %) | a `TIM2` picture — [section-006](Sections/section-006.md); **2026-09-12:** 556–633 files in the `kr` / `cn` / `ch` / `in` trees against 67–68 in every Latin-script tree, 23-pixel-high strips of varying width — ~~pre-rendered text lines~~ per-event expansion-glyph sheets in the `in` / `ch` / `cn` / `kr` trees, the Latin-tree strips possibly captions (section-006 §5) *(answered: the 2026-09-24 refinement there; 2026-10-02, OPUS)* |
+| `section_008` | 423 (37.9 %) | ~~*unknown*~~ `CML1` camera-name list — [section-008](Sections/section-008.md) *(answered: see that sheet; 2026-10-02, OPUS)* — **strict pair with 009** |
+| `section_009` | 423 (37.9 %) | ~~*unknown*~~ `CAM7` camera table — [section-009](Sections/section-009.md) *(answered: see that sheet; 2026-10-02, OPUS)* — **strict pair with 008** |
+| `section_010` | 113 (10.1 %) | ~~*unknown*~~ `CML1` shake-name list — [section-010](Sections/section-010.md) *(answered: see that sheet; 2026-10-02, OPUS)* — **strict pair with 011** |
+| `section_011` | 113 (10.1 %) | ~~*unknown*~~ `SHK1` shake curves — [section-011](Sections/section-011.md) *(answered: see that sheet; 2026-10-02, OPUS)* — **strict pair with 010** |
 | `section_012` | 842 (75.5 %) | model references — `ff12-model.exe` reads it |
-| `section_014` | 140 (12.6 %) | *unknown* |
+| `section_014` | 140 (12.6 %) | ~~*unknown*~~ `LGT2` light set — [section-014](Sections/section-014.md) *(answered: see that sheet; 2026-10-02, OPUS)* |
 | `section_016` | 517 (46.4 %) | positions — `ff12-pos.exe` reads it |
-| `section_019` | 271 (24.3 %) | *unknown* |
+| `section_019` | 271 (24.3 %) | ~~*unknown*~~ `FF12AR03` area data (`MAPARD`) — [section-019](Sections/section-019.md) *(answered: see that sheet; 2026-10-02, OPUS)* |
 
 **Findings the census produced before anything was read:**
 
@@ -64,8 +64,8 @@ full run.
   containers; BW-1 / CD-3, 2026-09-12), so the thirteen section types censused here are the shipped
   population, and the dispatcher's fourteenth is authored capacity nothing uses.
 
-> **Seven of the fourteen units have no tool-side lead at all.** That is the real work here, and it
-> is not large.
+> ~~**Seven of the fourteen units have no tool-side lead at all.** That is the real work here, and it~~
+> ~~is not large.~~ *(answered: all seven now have section sheets — the table above; 2026-10-02, OPUS)*
 
 ---
 
@@ -98,8 +98,8 @@ chain. `SYSTEM.md` is for systems; `FORMAT.md` is for files.
 
 ## The build-out, in the order it should happen
 
-**Phase 1 — the container (1 unit).** `EBP2` magic at `+0x00`, a version/count `0x14` at `+0x04`,
-and an offset table in 8-byte slots. Find the loader by searching `.text` for `0x32504245`, the
+**Phase 1 — the container (1 unit).** `EBP2` magic at `+0x00`, a ~~version/count~~ slot count `0x14` at `+0x04`,
+and an offset table in ~~8-byte slots~~ 4-byte slots, `u32[20]` at `+0x10` *(corrected 2026-10-02, OPUS: the walker `003304A0` compares `[rdi + 4]` with each slot number before reading slot `n` at `[rdi + 0x10 + 4n]` — slot 2 at `0033051F` `[rdi + 0x18]`, slot 19 at `00330656` `[rdi + 0x5c]`; Container/ebp2-container.md)*. Find the loader by searching `.text` for `0x32504245`, the
 method the [VBF sheet](../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md)
 used to find `SRYK` (*"the only occurrence of those bytes in `.text`"*). **This unlocks everything
 else, because the section directory is what names the sections.**
@@ -236,7 +236,7 @@ Neither as a string (`EBP` uppercase: **0 occurrences**) nor as the dword `0x325
    16-bit halves, or folded into a hash. `COVERAGE.md` lists the arithmetic-constant blind spot for
    exactly this case.
 
-**Settling it needs the loader body read in Ghidra.** Until then the sheet may not claim either.
+~~**Settling it needs the loader body read in Ghidra.** Until then the sheet may not claim either.~~ *(answered: the loader body is read, and the first reading holds — the walker `003304A0` never references `+0x00`; [Container/ebp2-container.md](Container/ebp2-container.md) §3; 2026-10-02, OPUS)*
 
 ### The marker scan was too noisy to use, and here is the measurement
 
@@ -259,11 +259,11 @@ mask.
 
 ### What is still needed for the container sheet
 
-The census supplies §2 (layout), §5 (corpus survey) and the invariants. **§3, the loader contract,
-is still empty** and it is the point of the document: which fields the engine reads, what it
+The census supplies §2 (layout), §5 (corpus survey) and the invariants. ~~**§3, the loader contract,~~
+~~is still empty**~~ *(answered: §3 is written — [Container/ebp2-container.md](Container/ebp2-container.md), `status: AUDITED`; 2026-10-02, OPUS)* and it is the point of the document: which fields the engine reads, what it
 rejects, what it clamps, what it ignores. That needs the loader function read at tier 1.
 
-**The sheet is deliberately not written yet.** A `FORMAT.md` with an empty §3 would count in
+~~**The sheet is deliberately not written yet.**~~ *(answered: it is written — [Container/ebp2-container.md](Container/ebp2-container.md); 2026-10-02, OPUS)* A `FORMAT.md` with an empty §3 would count in
 `audit_coverage`'s denominator while explaining nothing — the metric defect this database keeps
 finding in other forms.
 

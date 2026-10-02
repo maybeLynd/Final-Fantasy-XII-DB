@@ -16,16 +16,16 @@
   dispatch** through a 32-bit RVA table at `0x00261DF8`, a stack machine over int32/float32
   operating on actors. **Six opcodes are indistinguishable from an invalid one.**
 - [`Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md`](Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md) —
-  **DOCUMENTED, tier 1.** How a 16-bit call id in the bytecode reaches a native handler: the 4-bit
+  ~~**DOCUMENTED, tier 1.**~~ **AUDITED, tier 1.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`)* How a 16-bit call id in the bytecode reaches a native handler: the 4-bit
   family / 12-bit command split, the five command tables (**1,960 slots**), the begin/poll/result
   record, and the **exact parameter encoding** — value-stack layout, both coercion rules, argument
   order, reference out-parameters and actor handles. **1,870 of the 1,960 slots carry a measured
-  arity**, agreeing with the authored catalog 1,209 times out of 1,210. Carries
+  arity**, agreeing with the authored catalog 1,209 times out of 1,210 *(answered: BQ-9 measured the other 90 on 2026-09-27; all 1,960 now carry one, 1,269 of 1,270 agree; 2026-10-02, OPUS)*. Carries
   [`Verb-Dispatch/scriptvm-verb-table.tsv`](Verb-Dispatch/scriptvm-verb-table.tsv), the full
   1,960-row id → handler → arity table.
 
 - [`scriptvm-native-dispatch-table.md`](scriptvm-native-dispatch-table.md) —
-  **DOCUMENTED, tier 2.** The predecessor: family 0's `result` column, 1,224 catalog rows mapped
+  ~~**DOCUMENTED, tier 2.**~~ **AUDITED, tier 2.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: AUDITED`; its TSV now holds 1,493 rows)* The predecessor: family 0's `result` column, 1,224 catalog rows mapped
   through it.
 
 - [`Native-Command-Lifecycle/native-command-lifecycle.md`](Native-Command-Lifecycle/native-command-lifecycle.md) —

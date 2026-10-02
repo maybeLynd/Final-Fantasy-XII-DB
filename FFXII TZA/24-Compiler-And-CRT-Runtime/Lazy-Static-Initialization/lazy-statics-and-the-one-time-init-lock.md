@@ -54,7 +54,7 @@ times a second. When the first thread finishes it takes the sign down and wakes 
 
 **If the first thread never finishes, the sign never comes down.** Everyone else waits forever,
 politely, ten times a second, which is why the process looks healthy. And because all 1,681 of
-these first-builds share *one* lock, a single stuck one can pile unrelated work up behind it.
+these first-builds share *one* lock, ~~a single stuck one can pile unrelated work up behind it~~ but a stuck one blocks only the threads that need that same static *(corrected 2026-10-02, OPUS: the header releases the lock before the construction runs, `008092FC+0x60` tail-jumps `LeaveCriticalSection`, and the 100 ms wait sleeps with the lock released, `008093C0+0x4B` calls `SleepConditionVariableCS` on `02EAED40`)*.
 
 Loading screens are where this shows up because that is where most first-builds happen: a new
 area introduces object types the game has not touched yet.
@@ -127,8 +127,8 @@ schema comes from, and the schema is recovered field by field in
 > decompiler's positional arguments at face value without reading the callee `00632FB0`, and it
 > is what caused BJ-4 to be filed with a false premise. See section 8 of the schema document.
 
-The remaining quarter is ordinary singletons. `008AADA0` builds `Phyre::PTTYCallback` (the debug
-console callback); `005C3B10` is a three-line accessor that zeroes two words and returns their
+The remaining quarter is ordinary singletons. ~~`008AADA0` builds~~ `005CDA30` builds `Phyre::PTTYCallback` *(corrected 2026-10-02, OPUS: `005CDA30+0x56` stores vtable `00D360A0` (RTTI `Phyre::PTTYCallback`) at `02CB6140`, `005CDA30+0x4F` loads `008AADA0` and `005CDA30+0x5D` registers it with `atexit` `00808B90`; `008AADA0` caches the singleton pointer at `02CB6150`)* (the debug
+console callback); `005C3B10` is a ~~three-line accessor that zeroes two words~~ guarded accessor that stores `02CAD140` with bit 0 set and `0` into its two words *(corrected 2026-10-02, OPUS: `005C3B10+0x48` loads `02CAD140`, `005C3B10+0x5A` sets bit 0 and `005C3B10+0x65` stores it at `02CB5D48`; `005C3B10+0x4F` zeroes `02CB5D50`)* and returns their
 address — the worked example of the **magic-static descriptor-pair accessors** family (61 members,
 all the identical 115-byte form; see `function_families` and
 [`members/descriptor-pair-accessors.tsv`](members/descriptor-pair-accessors.tsv)).
@@ -232,7 +232,7 @@ Verbatim from `FUN_00189CE0`, guard `01F7F5C8`:
 #define thread_epoch  (*(int *)(*(char **)((char *)ThreadLocalStoragePointer \
                                            + (unsigned long long)_tls_index * 8) + 4))
 
-if (thread_epoch < guard) {          // fast path: already built for this thread -> skip entirely
+if (thread_epoch < guard) {          // fast path: already built for this thread -> skip entirely <- corrected 2026-10-02, OPUS - backwards: thread_epoch < guard is the SLOW path that calls the header; already built is thread_epoch >= guard, where 00189CE0+0x63 jle skips the header
     _Init_thread_header(&guard);
     if (guard == -1) {               // -1 means THIS thread owns the construction
         /* ...construct... */        //  <- a throw here runs the guard's unwind funclet
@@ -247,7 +247,7 @@ if (thread_epoch < guard) {          // fast path: already built for this thread
 ```
 *guard ==  0   never initialised            -> claim it
 *guard == -1   under construction right now -> wait 100 ms, re-check, repeat
-*guard  >  0   built; value is the epoch at which it completed
+*guard  >  0   built; value is the epoch at which it completed   <- corrected 2026-10-02, OPUS - not > 0: the epoch ships 0x80000000 (01F44850) and the footer stores ++epoch (0080929C+0x29 inc, 0080929C+0x31 store), so a built guard is negative as a signed int
 ```
 
 The only transitions out of `-1` are `_Init_thread_footer` (to a positive epoch) and
@@ -360,7 +360,7 @@ gameplay reaches a type or singleton for the first time
                                  -> SleepConditionVariableCS(02EAED68, 02EAED40, 100)
                                     ... loop ...
                -> THIS SYSTEM: run the constructor
-                  -> Phyre reflection registration       00632960 / 00630180 / 006388C0   (535 of 707)
+                  -> Phyre reflection registration       00632960 / 00630180 / 006388C0   (535 of 707)   <- corrected 2026-10-02, OPUS - these three are called by 336 of the 707 callers of 008092FC; 535 counts the whole Phyre.Reflection.* label family (the BJ-5 bounding below); the atexit 526 recounts exactly
                   -> atexit(destructor)                  00808B90                          (526 of 707)
                -> _Init_thread_footer(&guard)   0080929C
                   -> bump 01F44850, stamp the guard, _Init_thread_notify -> wake all
@@ -410,11 +410,11 @@ type description — serialisation, resource binding, property lookup by name.
   - if you must bail out, bail out **before** the `call _Init_thread_header` site.
 
   Miss this and the guard stays `-1` permanently. Every later thread that touches the same static
-  blocks in `_Init_thread_wait(100)` with no timeout escape, and because all 1,681 share the one
-  critical section at `02EAED40`, unrelated first-time initialisations queue up behind it.
+  blocks in `_Init_thread_wait(100)` with no timeout escape~~, and because all 1,681 share the one~~
+  ~~critical section at `02EAED40`, unrelated first-time initialisations queue up behind it~~. Unrelated first-time initialisations do not queue: the wait sleeps with `02EAED40` released *(corrected 2026-10-02, OPUS: `008093C0+0x4B` sleeps through `SleepConditionVariableCS`; the construction itself runs outside the lock, `008092FC+0x60`)*.
 
 - **Diagnosing a suspected hang, without a debugger.** Read the guard ints in `.data`. Any guard
-  sitting at `-1` while the game is stuck is the culprit; a `0` means never touched, a positive
+  sitting at `-1` while the game is stuck is the culprit; a `0` means never touched, ~~a positive~~ any other *(corrected 2026-10-02, OPUS: a built guard holds the epoch it completed at, negative as a signed int: `01F44850` ships `0x80000000` and the footer `0080929C` stores the incremented epoch)*
   value means built. This works from an external process, needs no patching, and is the fastest
   way to tell "stuck lazy static" apart from a deadlock elsewhere. The 1,545 guards that carry an
   unwind funclet are enumerable exactly — they are the rip-relative operands of the funclets
@@ -454,7 +454,7 @@ type description — serialisation, resource binding, property lookup by name.
   `OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT`. See the register row.*
   **TESTED AND THE ROW IS RIGHT - 2026-09-16 (FABLE), now with a number instead of an assertion.** *Static reading cannot answer it* is the kind of claim I am supposed to attack, so I attacked it. It holds, and the measurement is worth more than the verdict. **The attempt.** A lazy static whose holder is not reachable from the process entry cannot be initialised on a normal boot - that *is* a static statement, and it would partition the population for free. Seeds: the PE `AddressOfEntryPoint` **`00808EE4`** plus **all 1,172 listed functions in the CRT static-initializer table `008C31D8`–`008C5678`**. **Why it fails.** Forward direct-call closure over those 1,173 roots reaches **2,397 of the 38,161 listed bodies - 6.3%**. The engine is driven overwhelmingly through **indirect** calls, so *unreachable in the direct graph* is the normal condition for **94% of the image** and carries almost no information. The partition it produces - **94 holders reachable, 613 not** - is therefore **dominated by the blind spot, and I am not publishing it as a finding.** **One thing the attempt does establish.** The population reproduces independently: the callers of `_Init_thread_header` `008092FC` number **exactly 707**, matching the figure filed by `repos-94`, so the holder set is confirmed by a second route. **And it names the instrument that would actually work.** The obstacle is indirect-call resolution - vtable and function-table binding - which is **the same blind spot `AR-5` ran into** (477 `call reg` sites, 11 indexed calls). **One instrument answers both questions.** Until it exists, boot reachability is not statically decidable here, and the row's *requires runtime evidence* stands. **Recorded as a dead route on purpose**, so the next reader does not spend the same day on it.
 - [x] **BJ-2** — The identity of `01F44830`. It is the cookie the CRT uses for pointer encoding
-  here and is read from 2,229 functions, but the count does not match the 5,372 functions that
+  here and is read from ~~2,229~~ 2,216 functions *(corrected 2026-10-02, OPUS: `01F44830` has 2,216 reads in 2,216 functions and one write; BJ-2's answer below)*, but the count does not match the 5,372 functions that
   register `__GSHandlerCheck`, so calling it `__security_cookie` is unproven.
   *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (BJ-2):* **it is `__security_cookie`; one
   variable has both roles.** Three independent anchors:
@@ -477,7 +477,7 @@ type description — serialisation, resource binding, property lookup by name.
   population (this database bans unwind data as evidence of function identity). The cookie-check call census is the
   matching measure, and it matches exactly.
 - [x] **BJ-3** — Whether the event fallback path in `_Init_thread_wait` is ever taken on a
-  supported OS. `02EAED70` is initialised by the CRT, not visible statically.
+  supported OS. `02EAED70` is initialised by the CRT~~, not visible statically~~ *(answered: see BJ-3's answer below, static, 2026-09-14; 2026-10-02, OPUS)*.
   *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (BJ-3):* **no. The fallback is chosen once at
   start-up, only when `kernel32.dll` lacks a condition-variable export, and every Windows this game can run on has them.**
   - **The decision.** `00809124` (the CRT's thread-safe-statics initialiser) first creates the lock `02EAED40`
@@ -666,7 +666,7 @@ and retakes that same address on its fallback path.
 
 **Attacked: "the timeout is 100 ms."** *Killer:* a call site passing something else. Result:
 **survived** — `_Init_thread_wait` is called from one place, `_Init_thread_header`, with the
-literal `100`. Two functions call it in total (`008093C0` has 1 caller by edge count), consistent
+literal `100`. ~~Two functions call it in total~~ One function calls it, at one site *(corrected 2026-10-02, OPUS: the only edge into `008093C0` is `008092FC+0x25`, and no data reference names it)* (`008093C0` has 1 caller by edge count), consistent
 with a single site.
 
 **Attacked: the hang itself.** *Killer:* a timeout, a retry limit, or any other path that clears a
@@ -680,7 +680,7 @@ claim here. The link to the unwind funclets cites their *bodies*, and the 1,545/
 intersection of two body-derived sets.
 
 **Not attempted, and therefore not claimed:** any runtime observation. Nothing here has been seen
-to execute; the hang is derived from the control flow, not witnessed. BJ-1 and BJ-3 both need a
+to execute; the hang is derived from the control flow, not witnessed. BJ-1 ~~and BJ-3 both need~~ needs a *(answered: see BJ-3 above, answered statically 2026-09-14; 2026-10-02, OPUS)*
 live process, and a runtime pass would materially strengthen §1 and §6.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
@@ -782,7 +782,7 @@ Interior anchor `0079F104`
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22 (OPUS, 2026-09-29)
 
-**The one-time-init lock is a service every layer takes, SERVICE throughout.** Its acquire `005CD4F0` and release
+**~~The one-time-init lock~~ The `005CD4F0` / `005CD820` shared lock is a service every layer takes, SERVICE throughout.** *(corrected 2026-10-02, OPUS: this pair is a `lock cmpxchg` flag lock with an event wake; the one-time-init lock `02EAED40` is referenced only by `00809124`, `00809244`, `0080926C`, `0080929C`, `008092FC` and `008093C0`)* Its acquire `005CD4F0` and release
 `005CD820` are called by:
 - **Resource, 42:** the queue and registration bodies `001A0A90`, `001A0BB0`, `001A0C50`, `001A1240` and more;
 - **Audio, 22:** `00212050`, `002120E0`, `00212300`, `00219C40` and the rest of the `0021xxxx` cluster;

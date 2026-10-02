@@ -940,7 +940,12 @@ Interior anchor `0041C2A6` (function `0041C260`).
 - **Script_VM_Native_Bridge - CLIENT (2 edges).** `0026BE90`, `002E8220` are called by bodies filed to Script_VM_Native_Bridge: `0034B310`, `0034D8D0` - shared machinery across the layer boundary, no shared ownership.
 - **World - SERVICE (1 edge).** `0022A0B0` reaches bodies filed to World: `00266D10` - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - SERVICE (2 edges).** `001ED020`, `00325090` reach bodies filed to WorldAreaField: FieldData_GetVariable0 (`00265270`), FieldData_GetActiveFieldRecordBit15 (`00313F60`) - shared machinery across the layer boundary, no shared ownership.
-
+- **Combat - CLIENT (1 edge).** `00263E30` is also called by bodies filed to combat: `003206E0` - shared machinery across the layer boundary, no shared ownership.
+- **CombatAI - CLIENT (7 edges).** `00313F60`, `00263E30` are also called by bodies filed to combat AI: `003247F0`, `00324F20`, `00321850` (+2 more) - shared machinery across the layer boundary, no shared ownership.
+- **Gameplay - CLIENT (5 edges).** `00263E30`, `00313F60` are also called by bodies filed to gameplay: `003176E0`, `0031ADB0`, `00321380` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+- **Spawn_Encounter_Lifecycle - CLIENT (2 edges).** `00313F60` is also called by bodies filed to spawn/encounter: `00234DA0`, `002350C0` - shared machinery across the layer boundary, no shared ownership.
+- **Status_Periodic_Terminal - CLIENT (3 edges).** `00313F60`, `00263E30` are also called by bodies filed to status/periodic terminal: `00386860`, `00320450`, `00329A20` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT and SERVICE (18 edges).** `00313F60`, `003B29B0`, `0057A2D0` are also called by bodies filed to UI: `0031EB20`, `00558FB0`, `00561390` (+1 more); `00558FB0`, `00561390`, `00572E10` reach bodies filed to UI: `00291D70`, `00291D80`, `00556D20` (+6 more) - shared machinery across the layer boundary, no shared ownership.
 ## Falsification pass 1 — 2026-09-29 (OPUS): the "dead-stripped, NULL, vestigial" table refuted (CON-195); the binder and stub survive
 
 **Attack.** The code claims of the `@FEF` section were turned into checks at their instructions, and the absence claim

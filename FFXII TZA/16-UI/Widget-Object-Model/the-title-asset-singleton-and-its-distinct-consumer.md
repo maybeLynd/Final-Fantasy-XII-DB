@@ -1,7 +1,7 @@
 ---
 system: The title asset singleton and its distinct consumer
 category: 16-UI
-status: PARTIAL
+status: PARTIAL — OV-29 stays open (actual asset IO/callback timing and cancellation/lifetime behavior in the installed game — runtime, carried by FABLE-REQ-ASTRA-RT-REMAINDERS-0929) (status line current 2026-10-02, SWE2-CONTRACT DD batch 21)
 owner_layer: UI widget object model
 readiness: BEHAVIORALLY UNDERSTOOD
 evidence_tier: 1
@@ -309,7 +309,7 @@ asset through the UI-root child link is not excluded (the bound of residue 1).
 
 *Consumed from ASTRA's [`title-root-retirement`](../../_experiments/evidence/title-root-retirement/README.md) (SWE2-AUDIT-SPEC [review](../../_index/candidates/auditspec-review-title-root-retirement-1001/REVIEW.md), ACCEPT, no narrowing); OPUS re-read `002445D8`, `0024826B`-`00248271` and `00245072`-`0024509B` at the bytes. Static only, and every claim below is conditional on the premises named.*
 
-**The title asset inherits root retention.** The title initializer `00393FF0` starts its two requests, then loads the root `*(0208EA28)` (`00394117`) and attaches the asset under it (`00244960` -> `00248220`). The roots `0208EA20` / `0208EA28` / `0208EA30` are made by `00247AE0`, and their message-1 handler `002445D0` sets `0x23` in `+0x40` (`002445D8`). Attachment copies the parent's bit `0x20` into the child (`0024826B` tests it, `00248271` sets it). So after a successful, valid, unchanged root initialization the asset carries bit `0x20`. Teardown `00245020` broadcasts message 18 and then re-reads that bit (`00245072`). Set: it calls `002473F0(self, 0)`, clears bit 1 and sets bit `0x10`, and keeps the storage. Clear: it tail-calls the physical release `002482E0`. Message and helper side effects are premises, and root membership at attach is not lifetime for good.
+**The title asset inherits root retention.** The title initializer `00393FF0` starts its two requests, then loads the root `*(0208EA28)` (`00394117`) and attaches the asset under it (`00244960` -> `00248220`). The roots `0208EA20` / `0208EA28` / `0208EA30` are made by `00247AE0`, and their message-1 handler `002445D0` sets `0x23` in `+0x40` (`002445D8`). Attachment copies the parent's bit `0x20` into the child (`0024826B` tests it, `00248271` sets it). So after a successful, valid, unchanged root initialization the asset carries bit `0x20`. Teardown `00245020` broadcasts message 18 and then re-reads that bit (`00245072`). Set: it calls `002473F0(self, 0)`, clears bit 1 and sets ~~bit `0x10`~~ bit 10 (`0x400`), and keeps the storage *(corrected 2026-10-02, OPUS: `00245020+0x77` `bts eax, 0xa`)*. Clear: it tail-calls the physical release `002482E0`. Message and helper side effects are premises, and root membership at attach is not lifetime for good.
 
 **No local revocation in the owner window.** After its ordinary gates (sealed, counts equal, ticket `+4` zero), `002495C0` reads the raw owner at ticket `+8` and that owner's current handler at owner `+0`, rejects NULL for each, and sends message 16. It reads no owner flags `+0x40`, no generation and no publication `02AEE4C0`. The title's message-16 handler `00394070` simply sets ready bit 0 at `+0xC0`. So a completion that arrives after a retained teardown, with the handler unchanged and the gates satisfied, writes the ready bit despite bit `0x10` and the cleared publication. That is a source witness under those conditions, not an observed late delivery.
 

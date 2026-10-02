@@ -42,7 +42,7 @@ audit:
 | files examined | **1,115 of 1,115** `us` `.ebp` scripts (1,114 containers) |
 | this unit present in | **67 (6.0 %)** — the rarest of the 13 section types |
 | co-occurrence | always with `000` and `002` (67/67 each); `012` 57, `016` 54, `003` 30, `004` 14, `008`/`009` 14 each, `010`/`011` 3 each, `019` 3, **`014` 1** |
-| size range | **448 B – 22,400 B, median 448 B**, 11 distinct sizes; 57 of 67 are exactly 448 B |
+| size range | **448 B – 22,400 B, median 448 B**, 11 distinct sizes; ~~57~~ 56 of 67 are exactly 448 B *(corrected 2026-10-02, OPUS: read through `vbf_read_entry` from `FFXII_TZA.vbf` — the 55 24 × 23 files and `alc_f02`'s 8 × 22)* |
 
 `section_006` implies `section_002` (the text section) in all 67 files, and the reverse does not
 hold — `002` occurs 828 times. One more one-way implication in a container full of them.
@@ -67,7 +67,7 @@ own. Offsets from the start of the section body.
 +0x00  char[4]  magic          'TIM2'                     -- 67/67
 +0x04  u8       version        4                          -- 66/67 (one file: 0xD8)
 +0x05  u8       format         0                          -- 67/67  => picture headers start at 0x10
-+0x06  u16      pictureCount   1 (57 files) or 2 (10)
++0x06  u16      pictureCount   1 (57 files) or 2 (10)   <- corrected 2026-10-02, OPUS - 1 in 58 files, 2 in 9 (us tree, read through vbf_read_entry)
 +0x08  u8[8]    0                                         -- 67/67
 +0x10  the first picture header
 ```
@@ -93,7 +93,7 @@ Picture header, at `+0x10` because `format == 0`:
 +0x30  extended header, headerSize - 0x30 bytes
 ```
 
-Pixel data begins at `0x10 + headerSize`, which is `0x70` in the 57 single-picture 448 B files, and
+Pixel data begins at `0x10 + headerSize`, which is `0x70` in the ~~57 single-picture 448 B files~~ 55 single-picture 24 × 23 files (`headerSize` 96; the 56th 448 B file, `alc_f02`'s 8 × 22, has `headerSize` 288) *(corrected 2026-10-02, OPUS: read through `vbf_read_entry` from `FFXII_TZA.vbf`)*, and
 that is exactly where 4-bit index data is observed to start.
 
 **`imageType == 4` (4-bit indexed) with `clutSize == 0` and `clutColors == 0` in all 67 files.** A
@@ -114,7 +114,7 @@ self-sufficient as an image and something else supplies its colours.
 | 200 × 16 | 1 |
 | 640 × 46 | 1 |
 
-Height is 16, 21, 23 or 46 and never anything else — four values over 67 files. Width varies far
+Height is ~~16, 21, 23 or 46 and never anything else — four values over 67 files~~ 14, 16, 21, 22, 23 or 46 — six values over 67 files, counting each file's first picture *(corrected 2026-10-02, OPUS: the table above omits three files and so sums to 64 — 64 × 23 (`rwg_d01`), 8 × 22 (`alc_f02`) and 40 × 14 (`nac_a0300`, with a second 24 × 9 picture), one each; read through `vbf_read_entry` from `FFXII_TZA.vbf`)*. Width varies far
 more. That is the profile of a **row of glyphs or a banner strip**, not of arbitrary artwork.
 
 ## 3. The loader contract
@@ -221,7 +221,7 @@ function serving both.
 | `00D11470` | `.rdata` `"TIM2"`, the only occurrence in the image | ✅ |
 | `02AEE810` | the 8-entry pointer table, slots 1–7 usable | ✅ at the 10 sites that reference it |
 | `0039BF50` | the post-registration refresh | ❌ not read |
-| `0037F1F0`, `003BC4E0`, `00575710`, `0029CAC0` | the four callers | ❌ not read |
+| `0037F1F0`, `003BC4E0`, `00575710`, `0029CAC0` | the four callers | ~~❌ not read~~ `0029CAC0` read in §3 and `003BC4E0` read as an event dispatcher (the `003BC4E0` subtree section); `0037F1F0` and `00575710` not read *(answered in part; 2026-10-02, OPUS)* |
 
 ## 5. Corpus survey
 
@@ -229,9 +229,9 @@ function serving both.
 > localisations say so.** The 67 files are the `us` tree's; across the nine trees of
 > `FFXII_TZA.vbf` the section is present in **67 (`us`, `fr`, `it`), 68 (`de`, `es`), 556 (`kr`),
 > 584 (`cn`), 603 (`ch`) and 633 (`in`)** containers, every one `TIM2`, every one `imageType 4`.
-> In every Latin-script tree the population is the same: 55–57 files carry one **24 × 23** picture
+> In every Latin-script tree the population is the same: ~~55–57~~ 55–56 *(corrected 2026-10-02, OPUS: 55 in `us`, `fr`, `it` and `es`, 56 in `de`, read through `vbf_read_entry` from `FFXII_TZA.vbf`)* files carry one **24 × 23** picture
 > (448 B), three carry a two-picture **640 × 23**, one a 64 × 23, one an 8 × 22, one a 40 × 14 and
-> one two-picture 640 × 46 (`evt_t0505`, 22,400 B). In `kr`, `cn`, `ch` and `in` the same 23-pixel
+> one two-picture 640 × 46 (`evt_t0505`, 22,400 B) — and, not listed here, one 40 × 23 (two in `es`) and the two-picture 80 × 21, 576 × 21, 616 × 16 and 200 × 16 *(corrected 2026-10-02, OPUS: the list is partial; read through `vbf_read_entry` from `FFXII_TZA.vbf`)*. In `kr`, `cn`, `ch` and `in` the same 23-pixel
 > height dominates but the **width varies per file in multiples of 8 from 24 to 640** (`kr`: 64 × 23
 > ×73, 24 × 23 ×64, 40 × 23 ×52, two-picture 640 × 23 ×85, 640 × 46 ×48, and widths 80, 104, 120,
 > 144, 160, 184, 200, 224, 240, 264, 280, 288, 304, 320, 344, 360, 400, 424, 440, 464, 480, 504,
@@ -293,9 +293,9 @@ function serving both.
   consumer *does* read it, this file is a live edge case. Either way it is one file in 67 carrying a
   value nothing else in the corpus carries, and it should be looked at before anyone writes a
   `section_006` tool.
-- **10 files carry `pictureCount == 2`**, with `headerSize` 304, 512, 560 or 640 rather than 96.
+- **~~10~~ 9 files carry `pictureCount == 2`** *(corrected 2026-10-02, OPUS: 58 carry 1 and 9 carry 2 in the `us` tree, read through `vbf_read_entry` from `FFXII_TZA.vbf`)*, with `headerSize` 304, 512, 560 or 640 rather than 96.
   Multi-picture `TIM2` is part of the format; this sheet does not walk the second picture header.
-- **The 22,400 B outlier** is 26 times the median. With 57 of 67 at exactly 448 B, `section_006` is
+- **The 22,400 B outlier** is 26 times the median. With ~~57~~ 56 *(corrected 2026-10-02, OPUS: as §1's corrected size row)* of 67 at exactly 448 B, `section_006` is
   a near-constant-size section with a handful of exceptions.
 
 ## 6. Falsification pass — 2026-09-03
@@ -305,13 +305,13 @@ function serving both.
 | Is this really `TIM2`, or a game format that reuses the fourcc? | It parses as `TIM2` **as a format, not as a guess**: `format == 0` predicts picture headers at `0x10`, `headerSize == 0x60` predicts pixel data at `0x70`, and 4-bit index data is observed to begin exactly there. Three independent predictions from the published layout, all confirmed, in 57 files. |
 | Does `imageSize` agree with `width × height` at 4 bpp? | For the 24×23 case: 12 bytes per row × 23 rows = 276, against `imageSize` 288 — consistent with row padding, not with a different bit depth. A 8-bit reading would need 552 and an 16-bit one 1,104; neither fits. |
 | Is `clutColors == 0` real, or did I read the wrong offset? | Read at picture-header `+0x0E` = section `+0x1E`, and `headerSize` at `+0x0C` = `+0x1C` gives `0x60`, which correctly predicts the pixel-data offset. If the offsets were wrong, that prediction would have failed. |
-| Is the `+0x40` gate evidence that `FUN_0039bec0` reads this section? | **Corroboration, not proof.** 67/67 pass a 1-in-16 nibble test, which is strong, but every shipped `.tm2` in the game may pass it equally — and 447 of those ship. The test that would settle it is whether any `.ebp`-side code path reaches `0039BEC0`, and **none of its four callers is in the `atelload.c` unit**. Left open rather than asserted. |
+| Is the `+0x40` gate evidence that `FUN_0039bec0` reads this section? | **Corroboration, not proof.** 67/67 pass a 1-in-16 nibble test, which is strong, but every shipped `.tm2` in the game may pass it equally — and 447 of those ship. The test that would settle it is whether any `.ebp`-side code path reaches `0039BEC0`, and **none of its four callers is in the `atelload.c` unit**. ~~Left open rather than asserted.~~ *(answered: §3 makes the link through the container directory — the slot-6 handler `00330060` tail-jumps to `0029CAC0` at `00330105`, which tail-jumps to `0039BEC0` at `0029CAFE`; 2026-10-02, OPUS)* |
 | Was the external specification consulted before or after the reading? | **The bytes were read first.** The magic and the field layout were recovered from the corpus census — an 8-byte header, a picture header at `0x10`, pixel data at `0x70` — and the published `TIM2` layout was matched to that afterwards. It is used as an oracle for field *names*. Nothing in section 3 rests on it: every entry there is an instruction address. |
 | Could the `.rdata` `"TIM2"` be a string constant rather than a compare operand? | It is passed as `RDX` to a call preceded by `MOV R8D,0x4`, and the result is tested and branched on — the shape of `strncmp(a, b, 4)`, not of a printed string. It sits in a run of float constants with no surrounding string table, which also argues against it being message text. |
 
 **What I tried that failed to break it.** I tried to connect `FUN_0039bec0` to the `.ebp` path by
-looking for any of its callers inside `atelload.c`'s address range. All four are outside it. The
-attempt failed to confirm the link, and reporting the failure is the point — the alternative was to
+looking for any of its callers inside `atelload.c`'s address range. All four are outside it. ~~The~~
+~~attempt failed to confirm the link,~~ *(answered: the link runs through the container walker, not `atelload.c` — `00330105` `jmp 0029CAC0`, `0029CAFE` `jmp 0039BEC0`, §3; 2026-10-02, OPUS)* The attempt by address range could not confirm it, and reporting the failure is the point — the alternative was to
 let a 67/67 gate match stand in for a call chain.
 
 ## 7. What this document does not claim
@@ -328,9 +328,9 @@ let a 67/67 gate match stand in for a call chain.
 - **`Inert` in section 3 is scoped to one function.** The version byte and `pictureCount` are marked
   *not read by `FUN_0039bec0`*, which is the only function read. They are **not** claimed inert in
   the engine.
-- **The palette source is unknown.** All 67 blocks are 4-bit indexed with zero CLUT entries, so
+- ~~**The palette source is unknown.**~~ *(answered in part: the text renderer supplies the colours — §5, 2026-09-25; which table it uses is not stated; 2026-10-02, OPUS)* All 67 blocks are 4-bit indexed with zero CLUT entries, so
   sixteen colours come from somewhere else, and this sheet does not say where.
-- **The second picture header is not walked** in the 10 multi-picture files.
+- **The second picture header is not walked** in the ~~10~~ 9 *(corrected 2026-10-02, OPUS: `pictureCount == 2` in 9 `us` files, read through `vbf_read_entry` from `FFXII_TZA.vbf`)* multi-picture files.
 - **The pixel data is not decoded** beyond confirming its offset and bit depth. No image is rendered
   here and none of the 67 is identified as a particular in-game graphic.
 - **`section_006` is not compared with the 447 shipped `.tm2` files.** They share a format; whether
@@ -408,3 +408,14 @@ Interior anchor `0037F81E` (function `0037F7C0`).
 `003C2210` (156 B) is the two-row drain `003BC4E0` runs on `[rcx+0x120]` and `[rcx+0x1C8]`: each `0xA8`-stride record frees every pointer in its `[+0x13]`-count `+0x18` array through `0024A680`, clears the count, `003697F0`s the `[+0x0]` head, and clears that too
 
 Interior anchor `003C225A` (function `003C2210`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-section-006-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001B1C10` | 852 B | returns at once when qword `01F811E8` is null; otherwise zeroes two 0x100-byte stack buffers, calls `0019C5D0(first buffer, size)` with the string at qword `+0` of `rcx` in `r8` (size 1 when its first byte is zero, else 0x100), copies the buffer into a string allocated through "EASTL basic_string" (`008F6600`), passes each byte through the import called via `008C3020` and fills the second buffer with `001A1E40`; then, when the first buffer is non-empty and the key `00674A00(second buffer)` is absent from the tree rooted at qword `+0x38` of the object qword `01F811E8` points to (`+0x18` of its `+0x20` sub-object) (dword key at node `+0x20`), takes `0019CA80(0019CE20(), first buffer)`, walks its list at `+0x38` for the first node whose `+0x50` chain (linked through `+0x78`) contains `02CBB900` and whose dword `+0x74` is non-zero, inserts the key with `001AE9B0` and stores at `+0x28` of the key's node that node's qword `+0x60`, stepped by the `+0x50` object's dword `+0x38` while it equals the chained qword at node `+0x10`, plus that object's dword `+0xF8`; finally frees the string through its allocator's slot `+0x18` when it was allocated | `001B1C59`, `001B1CA9`, `001B1DBA`, `001B1E40`, `001B1F06` |
+| `00249350` | 37 B | calls `00249210` with the incoming register arguments and a fifth (stack) argument 0, stores `00249660` at `+0x10` of the returned object and returns that object's qword `+0x8` | `00249354`, `0024935C`, `00249368`, `0024936C` |
+| `00249380` | 73 B | calls `00249210(rcx, rdx, r8, 3)` with a fifth (stack) argument 1, then `0024A4E0(r9, the fifth (stack) argument)`; stores that result at `+0x18` and `00249670` at `+0x10` of the object `00249210` returned, and returns the `0024A4E0` result | `00249395`, `0024939B`, `002493AA`, `002493B6`, `002493BA` |
+| `0035C160` | 651 B | switches on the dword at `rdx`: other values return `005C5230` called with `rcx` and `rdx` as passed in; 18 returns 0; 12 zeroes qword `+0xF0` of `rcx` and returns 0; 1 stores dword 0 at `+0x98` and the values of dwords `01E0C1D8` and `01E0C1DC` as words at `+0x9C` and `+0x9E` (only when `rcx` is non-null), zeroes byte `+0xC8`, dword `+0xEC`, word `+0xC0` and dword `+0xC4`, calls `00247930(rcx, 0xDC)` and `00247950(rcx, 1)` and returns 0; 4 acts only when the word `+0xC0` is 2 to 5: it stores `00861F0E(dword 0208F570 * 3.141593 / 30) * 32 + 96` as bytes `+0x91` and `+0x92` and also `+0x90` (0x80 instead when the word is 3) of the object at qword `+0x38`, and, when `002EA230(dword +0xEC)` is zero, gets a position with `002E9A90` and `00249110(.., 02AEDDB0, .., 1)`, returns 0 when its third dword is at least 0x1000000, clamps that dword to 0x100000 to 0x400000, forms the scale `(value - 0x100000) * 0.5 / 3145728 + 0.5`, calls `002B3400(&record, rcx+0xC8, 0)`, stores the scale as float `+0x34` of the record and draws with `002D8650(object at +0x38, x - scaled word +0xE8 / 2, y - scaled word +0xEA, &record)`; all these paths return 0 | `0035C1A5`, `0035C221`, `0035C2BA`, `0035C34D`, `0035C3B8` |

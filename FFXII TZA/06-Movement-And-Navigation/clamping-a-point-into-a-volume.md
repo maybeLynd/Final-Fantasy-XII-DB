@@ -111,8 +111,8 @@ and afterwards masked to **24 bits**:
 ```
 
 **Six bits per call, twenty-four bits retained — the last four outcodes**, and the result is copied to
-a second global. **Nothing in this function reads the history back**, so what it is for is not
-established here; that it *is* a history is arithmetic.
+a second global. **Nothing in this function reads the history back**, so ~~what it is for is not~~
+~~established here~~ *(answered: see the falsification table below — its reader is `0025C830`, FABLE 2026-09-18; 2026-10-02, OPUS)*; that it *is* a history is arithmetic.
 
 ## The workbench is the finding
 

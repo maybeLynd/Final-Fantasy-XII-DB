@@ -100,7 +100,7 @@ them before acting.
 | `+0x060` | 0 | i32 | parameter A[1] | 0 / 1 |  | `BattleFormula_InitializeResultRecord` `003848E0` (`00384953` +1) |
 | `+0x0DC` | 2 | ~~s16[33]~~ s16[32] *(2026-09-29, FABLE: 32)* | per-status parameter B — the status's **beat timer** (target `+0x13C`), one word per bit, all `-1` at init (`00384957`); stage 2 writes the decremented or reloaded beat here (same page) | 1 / 2 | `BattleFormula_InitializeResultRecord` `003848E0` (`00384957` +1) | `BattleFormula_ApplyTargetResult` `003112F0` (`00311507` +4); `BattleFormula_InitializeResultRecord` `003848E0` (`00384916` +3) |
 | `+0x0DE` | 0 | s16 | parameter B[1] | 0 / 1 |  | `BattleFormula_InitializeResultRecord` `003848E0` (`0038495B` +1) |
-| `+0x11C` | 2 | u16 | **the target's new level** in the low byte (`0xFF` = none): scratch `02AEE044` (`003867DE`; the high byte keeps the initialiser's `0xFF`) → `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (`0030C650`) `(targetStats, level, 0)` (`003113CB`–`003113DF`); initialised to `0xFFFF` (`0038490F`) | 1 / 1 | `BattleFormula_InitializeResultRecord` `003848E0` (`0038490F` +1) | `BattleFormula_ApplyTargetResult` `003112F0` (`003113CB`) |
+| `+0x11C` | ~~2~~ 1 | ~~u16~~ s8 | **the target's new level** ~~in the low byte~~ (`0xFF` = none): scratch `02AEE044` (`003867DE` `mov byte ptr [rbx + 0x11c], al`; ~~the high byte keeps the initialiser's `0xFF`~~ the byte above is `+0x11D`, the source's level, written at `003867EB`; only the initialiser's word store `0038490F` spans both) *(corrected 2026-10-02, OPUS: the applier reads one byte and sign-extends it, `003113CB`, `003113D2 cmp al, 0xff`, `003113D6 movsx edx, al`)* → `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (`0030C650`) `(targetStats, level, 0)` (`003113CB`–`003113DF`); initialised to `0xFFFF` (`0038490F`) | 1 / 1 | `BattleFormula_InitializeResultRecord` `003848E0` (`0038490F` +1) | `BattleFormula_ApplyTargetResult` `003112F0` (`003113CB`) |
 | `+0x11D` | 1 | u8 | **the source's new level** (`0xFF` = none): scratch `02AEE048` (`003867EB`) → `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth(sourceStats, level, 0)` (`003113E9`–`003113FD`) | 0 / 1 |  | `BattleFormula_ApplyTargetResult` `003112F0` (`003113E9`) |
 | `+0x11E` | 2 | s16 | **foe stat delta 0 = the strength modifier** `02AEE034` (`003867A6`) → target `w_08 += v − b_2A` (applier step 16, gated by the target stats' kind byte `+5 == 1`) | 1 / 1 | `BattleFormula_InitializeResultRecord` `003848E0` (`0038491D` +1) | `BattleFormula_ApplyTargetResult` `003112F0` (`003118A1`) |
 | `+0x120` | 2 | s16 | foe stat delta 1 = the magick-power modifier `02AEE038` (`003867B4`) → `w_0A += v − b_2B` | 1 / 1 | `BattleFormula_InitializeResultRecord` `003848E0` (`00384929` +1) | `BattleFormula_ApplyTargetResult` `003112F0` (`003118BF`) |
@@ -149,29 +149,29 @@ step 1). No heap allocation and no global instance exist; nothing lives above `+
 | `00385BA0` | 250 B | `BattleFormula_ApplyResultMetadata` — echoes, steal bits, the dispatch gate |
 | `00469EC0` | 1,904 B | `BattleFormula_DispatchPostResultEvents` — the battle-log reader |
 | `0038FCE0` / `0038FC10` | | the apply mask writer / `BattleFormula_CalcRemoveEligibleCandidateStatuses` |
-| `0038FF20` / `003900C0` | | the remove-status writers (`+0x3C`–`+0x3F`, timer 0) |
+| `0038FF20` / `003900C0` | | the ~~remove-status writers~~ layer-effect writers: `0038FF20` the two to add (`+0x3C`, `+0x3D`, timer 0), `003900C0` the first two to clear (`+0x3E`, `+0x3F`) *(corrected 2026-10-02, OPUS: the applier sends `+0x3C`–`+0x3D` in mode 2 and `+0x3E`–`+0x41` in mode 0, `00311788`–`00311819`)* |
 | `00388660` | | `BattleFormula_RollAndStoreComboCount` — writes `+0x18` |
 | `003896B0` / `00387FD0` | | `BattleFormula_RollAvoidGuardParryOutcome` / `BattleFormula_RollSpecialGuardOutcome` — write the kind |
 
 ## 4. Data structures and formulas
 
 ```
-ResultRecord (>= 0x148 B; -1 / 0xFFFF = untouched)
+ResultRecord (>= 0x148 B; -1 / 0xFFFF = untouched)   # <- corrected 2026-10-02, OPUS - exactly 0x148 B, a stack local at every call site (FP-2, section 2.3)
   +0x00  u8   flag byte (bit 5 low-HP pass skip)   +0x54  u32  apply mask (statuses to add)
   +0x04  u8   kind: 0 ok, 6 failed, 7 Paling/Magick Shield,
               8 Reflect-bounced, 9, 0xA immune      +0x58  u32  remove mask
-  +0x08  u32  (context +0x10)                      +0x5C  i32[32] parameter A per status bit
+  +0x08  u32  (context +0x10)                      +0x5C  i32[32] parameter A per status bit   # <- corrected 2026-10-02, OPUS - +0x08 is the gil amount the applier deducts (FP-1, row +0x008)
   +0x10  unit ptr  reflected target (kind 8)
   +0x18  u32  flag word B (bits 1-3 from prefix)   +0xDC  s16[32] parameter B per status bit
-  +0x1C  u8   resolved mark                        +0x11C u16, +0x11D u8
+  +0x1C  u8   resolved mark                        +0x11C u16, +0x11D u8   # <- corrected 2026-10-02, OPUS - +0x11C is one byte (s8, 0xFF = none), written at 003867DE and read at 003113CB; the word is only the initialiser's 0038490F
   +0x1D  s8   multiplier                           +0x11E s16[4] foe stat deltas (foe only)
   +0x20  u32  source HP; +0x24 u32 target HP       +0x128 u8[4] affinity OR; +0x12C u8[4] affinity AND-NOT
   +0x28  u16  source MP; +0x2A s16 target MP       +0x130 u16
   +0x2C  u32  flag word A (bit 23 nothing to steal) +0x138 i32 echo B -> block +0x5B0E
   +0x30  u16  0xFFFF                               +0x13C i32 echo A -> block +0x5B00
   +0x32  u8[3] steal slots                         +0x140 u32 flag word C (bits 8-11 technick notices, 14 sound)
-  +0x38  i32  (context +0x20)
-  +0x3C  u16 + u8, +0x3E u32 + u8  statuses to remove
+  +0x38  i32  (context +0x20)   # <- corrected 2026-10-02, OPUS - the poach reward item, -1 = none (row +0x038)
+  +0x3C  u16 + u8, +0x3E u32 + u8  statuses to remove   # <- corrected 2026-10-02, OPUS - six bytes, not statuses; +0x3C-+0x3D two layer effects to add (mode 2, the loop of 2 at 00311788) and +0x3E-+0x41 four to clear (mode 0, the loop of 4 at 003117E4), 0xFF = none (00384941, 00384946)
   +0x42  s16[8] effect-slot timers -> target +0x17C   (renamed 2026-09-29 from "status duration timers")
 ```
 
@@ -190,18 +190,18 @@ action commit -> BattleFormula_InitializeResultRecord 003848E0 (defaults)
 
 - **Change the effect, not the formula**: every applier step tests a field against `-1`; a hook
   that edits the record between resolve and apply changes what lands without touching a formula.
-- **Two 32-bit masks and two parameter arrays of 33** — the status space the record can express
+- **Two 32-bit masks and two parameter arrays of ~~33~~ 32** *(corrected 2026-10-02, OPUS: `00384925 lea edx, [r8 + 0x21]` with `r8 = -1` sets the loop count to 32, `00384950`–`00384963`)* — the status space the record can express
   is 32 adds with a dword and a word each, and 32 removes.
 - **The foe-only fields** (`+0x11E`–`+0x12F`) are applied only when the target stats' kind byte
   is 1; on a party target they are ignored, which is why the stats union at `+0x10` is safe there.
-- **The record is at least 0x148 bytes**; allocate more only if the allocation site says so.
+- ~~**The record is at least 0x148 bytes**; allocate more only if the allocation site says so.~~ *(answered: FP-2 - a `0x148`-byte stack local at every call site, nothing above `+0x147`, section 2.3; 2026-10-02, OPUS)*
 
 ## 7. What is not known
 
 - [x] ~~**What `+0x08` is**~~ — **FP-1 ANSWERED 2026-09-11**: the gil amount the applier deducts
   (step 18 of [the applier](../applying-a-result-to-a-target.md)); `00388D50` charges the four
   active units' current HP summed and refuses when the party cannot pay, `0038F6F0` rolls an
-  action-scaled random amount. Which actions reach the two writers is not enumerated.
+  action-scaled random amount. Which actions reach ~~the two writers~~ `00388D50` is not enumerated *(answered for `0038F6F0`: step slot 163, the whole committed list of recipe 99, action `0x103` - the `+0x008` row above and the applier's step 18; 2026-10-02, OPUS)*.
 - [x] ~~**The record's allocation size and site** — `0x148` is the initialiser's reach; the caller
   that owns the storage is not read.~~ **FP-2** — ANSWERED 2026-09-11 (§2.3): a `0x148`-byte stack
   local at all seven resolver / preview call sites, three of them zeroed by an explicit `0x148`

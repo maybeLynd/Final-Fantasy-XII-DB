@@ -873,7 +873,10 @@ quotes the same figure; 30 B disagreed with both and `check_consistency` caught 
 **UI — CLIENT (SWE2-EC7-156, 340 edges).** `002A0440` calls `00181330`/`00181560`/`001816B0`/`00181870`; batch-121's `003096F0` helpers `00322C50`/`0020E600` share the fan-in — the interface layer consults this page's functions, not a shared responsibility.
 
 **Script_VM_Native_Bridge — CLIENT (SWE2-EC7-157, 113 edges).** Batch-122's `0037E8D0` names `00473B90`/`002F9920`/`0037EF70`/`0037EFC0`, and the map's helpers (`00236740`/`00236760`/`00203170`) are reached by `0050F3F0`/`0050F540`/`00356160` on that layer — shared fan-in, no second owner.
-
+- **PlatformOnlineAchievements - CLIENT and SERVICE (58 edges).** `00315420`, `003166F0`, `002536D0` are also called by bodies filed to platform/online achievements: `00316760`, `003160C0`, `00316A50` (+8 more); `00315E90`, `00316A50`, `003162E0` reach bodies filed to platform/online achievements: `008632B0`, `00315420`, `003165C0` (+16 more) - shared machinery across the layer boundary, no shared ownership.
+- **Spawn_Encounter_Lifecycle - CLIENT and SERVICE (14 edges).** `00265020`, `0031B810`, `00265200` are also called by bodies filed to spawn/encounter: `00234AF0`, `00234DA0`, `002350C0` (+4 more); `00229B40`, `005843E0`, `00584580` reach bodies filed to spawn/encounter: `00233440`, `00233550` - shared machinery across the layer boundary, no shared ownership.
+- **StoryEvent - CLIENT (2 edges).** `00265270`, `00314910` are also called by bodies filed to story event: `001ED240` - shared machinery across the layer boundary, no shared ownership.
+- **Story_Event_Quest_Hunt - CLIENT and SERVICE (18 edges).** `002EF2B0`, `00265270`, `0032AB60` are also called by bodies filed to story/event/quest: `00377970`, `0032A8A0`, `0032A930` (+11 more); `00264920`, `002EF2D0`, `0032A8A0` reach bodies filed to story/event/quest: `0032A8A0`, `00379160`, `00377970` - shared machinery across the layer boundary, no shared ownership.
 ## The `003C5E50` exclusive subtree — all 4 members bound (SWE2-FRONTIER, followup queue)
 
 `003C5E50` (~171 B) is the third revealed-tile writer the table above names —

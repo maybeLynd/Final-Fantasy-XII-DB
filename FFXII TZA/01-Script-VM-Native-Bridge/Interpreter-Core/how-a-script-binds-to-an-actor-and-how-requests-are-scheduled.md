@@ -225,7 +225,7 @@ function declaration (`function mapjump(12)`). So the wait resolver's test — c
 `mapjump` special function"**~~ *Corrected 2026-09-30 (OPUS, on SWE2-AUDIT-SPEC's batch-14 narrowing 2): **"is the running
 function this actor's `parameter` special function"** - word `+0x18` is `special[11]` (0-based footer, word k at `+2+2k`;
 [`rc12-footer-channels-runstate-0930`](../../_index/candidates/rc12-footer-channels-runstate-0930/README.md))*, and sets record `+0x0C` bit 0 when it is. The other seventeen
-sites read other slots of the same footer; which special type each site asks for is not read here
+sites read other slots of the same footer; which special type each site asks for is not read here *(answered on ORACLE's record: RC-12, 2026-09-30, section 7 — FABLE's adjudication of the numbering is still pending; 2026-10-02, OPUS)*
 *(registered as RC-12, 2026-09-30, SWE2-CONTRACT)*.
 `+0x0C`, `+0x20`–`+0x2F` are the compiler's instruction count, duplicate id, index and three zero
 dwords (§2.2 table); no loader site reads them.

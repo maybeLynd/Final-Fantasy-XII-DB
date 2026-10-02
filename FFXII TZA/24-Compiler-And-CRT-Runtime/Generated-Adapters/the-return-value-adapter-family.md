@@ -73,7 +73,7 @@ push rbx
 sub  rsp, 0x20
 mov  rcx, rdx        ; drop argument 1, shift argument 2 into place
 mov  rbx, r8         ; argument 3 is an out-pointer
-call <target>        ; the only field that differs between the 351
+call <target>        ; the only field that differs between the 351   <- corrected 2026-10-02, OPUS - between the 403 (template scan); 351 is the tag count
 mov  [rbx], rax      ; store the callee's return value through the pointer
 add  rsp, 0x20
 pop  rbx
@@ -179,7 +179,7 @@ unresolved.** Spread across animation, rendering, scene and shader types (`PAnim
 - [x] ~~What operation the adapter wraps.~~ **`DF-2` ANSWERED — section 8.** It is **descriptor
   virtual slot 5** (120 of 120 appearances), and it wraps a `Phyre.ScriptVM.ObjectPointerAccessor`
   that gates a script-supplied value through the `"PhyreObject"` registry check at `00682980`.
-- [x] ~~**Why only 351 of the 747 known accessors have an adapter.**~~ **`DF-4` ANSWERED 2026-09-12 (FABLE):** 401 adapters exist (351 tagged, 50 under other tags), one per pointer accessor — the split *is* pointer versus reference; see the note under §"351 adapters against 747 accessors".
+- [x] ~~**Why only 351 of the 747 known accessors have an adapter.**~~ **`DF-4` ANSWERED 2026-09-12 (FABLE):** ~~401 adapters exist (351 tagged, 50 under other tags)~~ 403 adapters exist, 351 of them tagged *(corrected 2026-10-02, OPUS: the 26-byte template scan of `.text` finds 403, all function entries; DF-5's answer, 403 = 401 + 2)*, one per pointer accessor — the split *is* pointer versus reference; see the note under §"351 adapters against 747 accessors".
 - [x] ~~**The exact class count.** 93 classes from a 120-adapter sample, with 11 unresolved; the
   full 351 have not been mapped, so "one or two per class" is a sample statement.~~ **`DF-3`
   ANSWERED 2026-09-13 (OPUS): 409 classes, exactly one adapter per class.** All 403 adapters and
@@ -227,12 +227,12 @@ unresolved.** Spread across animation, rendering, scene and shader types (`PAnim
 | 409 functions, 13,254 bytes, tag breakdown | census over the GN160 function table | 1 |
 | **All 403 are exactly 26 bytes** | byte-template scan of `.text`: 403 matches, 403 distinct call targets, no overlaps, all in the graph at 26 bytes | 1 |
 | The shape, and that only the `call` target differs | four disassembled and compared instruction for instruction | 1 |
-| Each appears exactly three times in `.rdata` | raw 8-byte address search of the data sections | 1 |
+| ~~Each appears exactly three times in `.rdata`~~ 367 of the 403 appear three times in `.rdata`, 34 twice, one six times and one ten times *(corrected 2026-10-02, OPUS: an 8-byte search of `.rdata` for the 403 template addresses, 1,185 appearances; the 2026-09-13 correction in §2)* | raw 8-byte address search of the data sections | 1 |
 | The three are `ForType`/`Abstract`/`Concrete` of one class | walked back from each slot to the RTTI complete-object-locator and read the type descriptor | 1 |
 | **409 classes, one adapter each** | the walk applied to **all 403 adapters / 1,185 appearances**, none unresolved | 1 |
 | Every appearance is vtable **slot 5** | offset from each vtable's start computed after walking back to its COL — **1,185 of 1,185**, over all 403 adapters | 1 |
 | Slot 5 wraps a `ScriptVM.ObjectPointerAccessor` | the adapters' call targets carry that tag, and `005BEC00` calls `00682980`, the `"PhyreObject"` registry lookup | 1 |
-| Why not every accessor has an adapter | `DF-4`: the pointer/reference split. **The arithmetic does not close** — 403 adapters over 409 classes against 402 pointer accessors; reopened as `DF-5` | 2 |
+| Why not every accessor has an adapter | `DF-4`: the pointer/reference split. ~~**The arithmetic does not close**~~ — 403 adapters over 409 classes against 402 pointer accessors; reopened as `DF-5` *(answered: see DF-5, ANSWERED 2026-09-14 - 403 = 401 + 2; 2026-10-02, OPUS)* | 2 |
 
 ## 9. Falsification pass 1 — 2026-09-13 (OPUS)
 
@@ -430,7 +430,7 @@ side.** Two routes, same class.
 > **So the adapter is not a universal wrapper** — something distinguishes the accessors that get one
 > from those that do not. The obvious candidate is the pointer/reference split (402 pointer accessors
 > against 351 adapters is close but **not equal**, so it is not simply that), and **that difference is
-> unexplained.** `DF-4`.
+> unexplained.** `DF-4`. *(answered: see the DF-4 answer just below - 351 was the tag census; 2026-10-02, OPUS)*
 
 > **DF-4 answered 2026-09-12 (FABLE): "351" was the tag census, not the family. The family is
 > 401 — one 26-byte adapter for every pointer accessor but one — and it *is* the pointer/reference

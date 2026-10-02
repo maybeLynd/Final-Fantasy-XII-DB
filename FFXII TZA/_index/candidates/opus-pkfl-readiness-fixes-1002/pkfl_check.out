@@ -1,0 +1,7 @@
+ok   0032F273 cmp byte ptr [rcx], 0
+ok   0032F38E mov eax, dword ptr [rcx + rax*8 + 0xc]
+ok   003302D0 btr rbx, 0xd
+ok   00331780 btr rbx, 0xc
+ok   00331840 btr rbx, 0xf
+ok   003317E0 btr rbx, 0xe
+FAILS 0

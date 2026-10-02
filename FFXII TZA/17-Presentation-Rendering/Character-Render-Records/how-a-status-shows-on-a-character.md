@@ -610,3 +610,11 @@ exit 0. The per-status arms' arithmetic is carried.
 | H6 | section 4a | **survives**: the gather copies `+0x5EC` to `02B3F518` and compares against the six-light cap |
 
 No correction.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-how-a-status-shows-on-a-character-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001EF280` | 65 B | calls a 182-byte helper (`rcx + 8`), stores the address `00902ED8` at qword `+0x0` of `rcx` and the dword `0x3F800000` at `+0xC8` and `+0xD0`, calls a 202-byte helper (`rcx`) and returns `rcx` | `001EF28D`, `001EF299`, `001EF2A6`, `001EF2A9`, `001EF2B3` |

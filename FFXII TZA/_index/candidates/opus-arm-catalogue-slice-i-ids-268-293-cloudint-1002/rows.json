@@ -1,0 +1,66 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-I-ids-268-293.md",
+ "date": "2026-10-02",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "report": "arm-catalogue-slice-i-ids-268-293.json",
+ "rows": [
+  {
+   "fn": "0017D9C0",
+   "text": "tail-jumps `001DF2B0(qword 01F82D20, ecx)`",
+   "anchors": [
+    [
+     "0017D9C2",
+     "mov"
+    ],
+    [
+     "0017D9C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001DF2B0",
+   "text": "sets bit `edx` (modulo 32, via `bts`) of dword `+0x44C` of `rcx` and stores the dword back",
+   "anchors": [
+    [
+     "001DF2B6",
+     "bts"
+    ],
+    [
+     "001DF2B9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001E04F0",
+   "text": "calls `0017FE30()` and picks the double 0.01666666667 (`009010A0`) when the unsigned result is a multiple of 10, otherwise 0.01668333333 (`00900378`); returns the signed dword result of `00184950()` converted to double and multiplied by the picked value",
+   "anchors": [
+    [
+     "001E04F9",
+     "call"
+    ],
+    [
+     "001E0511",
+     "cmp"
+    ],
+    [
+     "001E0520",
+     "movsd"
+    ],
+    [
+     "001E0528",
+     "call"
+    ],
+    [
+     "001E0535",
+     "mulsd"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

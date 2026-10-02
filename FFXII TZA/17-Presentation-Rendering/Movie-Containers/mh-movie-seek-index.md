@@ -276,3 +276,16 @@ Party fan-in is likewise
 mechanical - caller/callee
 edges, not seek-index
 semantics.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-mh-movie-seek-index-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001D9F90` | 64 B | returns at once when `edx` is above 1 (unsigned); otherwise atomically decrements dword `+0x24 + edx*4` of `rcx` and stores, as a float at `+0x8C`, the QPC time getter's value minus the double at `02CB60E8`, plus 2.0 (`01DFCFE0`) | `001D9F93`, `001D9FA3`, `001D9FA9`, `001D9FAE`, `001D9FC2` |
+| `0035CF50` | 66 B | when qword `022CA468` is zero or dword `022CA45C` is non-zero, calls `002E1CA0(8, 0)`, `002E1CA0(8, 0xB)` and `00252D90()` and zeroes dword `022CA45C`; otherwise returns without work | `0035CF5E`, `0035CF6C`, `0035CF79`, `0035CF7E`, `0035CF83` |
+
+## Cross-subsystem neighbours of the interior rows (OPUS, 2026-10-02)
+
+- **Platform — SERVICE (1 edge).** The countdown step `001D9F90` in the rows above calls the timer read `005CC930`, which calls `QueryPerformanceCounter` through the import slot `008C2188` (`005CC930+0x9`) and scales the count by the frequency held at `02CB6120`. The step uses it to stamp the float at `+0x8C`: the timer value less the double at `02CB60E8`, plus 2.0. Edge from `edges.tsv`; both bodies read.

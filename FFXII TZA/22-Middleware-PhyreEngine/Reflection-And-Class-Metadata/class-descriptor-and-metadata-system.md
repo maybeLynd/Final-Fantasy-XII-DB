@@ -128,7 +128,7 @@ void FUN_00633240(undefined8 *self, ...)                           // shared hel
 {
     *self = Phyre::PClassDataMember::vftable;
     if ((longlong *)self[1] != self + 1) { ... }  // detach an intrusive list node
-    FUN_006b6700(self + 7);                       // destroy an embedded string (the name)
+    FUN_006b6700(self + 7);                       // destroy an embedded string (the name)   // <- corrected 2026-10-02, OPUS - 006B6700 unlinks every node of the list at +0x38 (006B6710-006B6744); no string
     if ((*(byte *)(self + 5) & 1) != 0) { ... }
     return;
 }
@@ -147,15 +147,15 @@ From the destructor `FUN_00633390`, which must release every owned member:
 | Offset | Released by | Inferred content |
 |---|---|---|
 | `+0x00` | vftable slot | `PClassDescriptor` → `PType` on exit |
-| `+0x0C` | `FUN_006b6700` | embedded string (the class name) |
-| `+0x0E` | `FUN_0063d640` | a sub-object, destroyed first |
-| `+0x10` | intrusive list walk | list #1 |
-| `+0x12` | intrusive list walk | list #2 |
-| `+0x14` | intrusive list walk | list #3 |
-| `+0x16` | intrusive list walk | list #4 |
-| `+0x1D` | compared to `DAT_02CF8260` | a generation / registration counter |
+| ~~`+0x0C`~~ `+0x60` | `FUN_006b6700` | ~~embedded string (the class name)~~ a sixth intrusive list *(corrected 2026-10-02, OPUS: qword indices, see the unit correction below; `00633557` passes `+0x60` to the list-unlink `006B6700`; the name is the `char *` at `+0x30`, `006388CA`)* |
+| ~~`+0x0E`~~ `+0x70` *(corrected 2026-10-02, OPUS: `006333DC`)* | `FUN_0063d640` | a sub-object, destroyed first |
+| ~~`+0x10`~~ `+0x80` *(corrected 2026-10-02, OPUS: `006334B2`)* | intrusive list walk | list #1 |
+| ~~`+0x12`~~ `+0x90` *(corrected 2026-10-02, OPUS: `006333E6`)* | intrusive list walk | list #2 |
+| ~~`+0x14`~~ `+0xA0` *(corrected 2026-10-02, OPUS: `0063344E`)* | intrusive list walk | list #3 |
+| ~~`+0x16`~~ `+0xB0` *(corrected 2026-10-02, OPUS: `0063352C`)* | intrusive list walk | list #4 |
+| ~~`+0x1D`~~ `+0xE8` *(corrected 2026-10-02, OPUS: `006333BF mov eax, [rcx+0xe8]` against `02CF8260` at `006333C7`)* | compared to `DAT_02CF8260` | a generation / registration counter |
 
-**Four separate intrusive linked lists.** Their individual roles are not established — see §7.
+**Four separate intrusive linked lists.** Their individual roles are not established — see §7. *(answered: see the unit correction below - six lists, four walked - and CONTRACT-phyre-class-descriptor.md's destructor correction, 2026-09-12; 2026-10-02, OPUS)*
 
 > **Unit correction 2026-09-02 — the offsets in this block and in §4 are qword indices, not byte
 > offsets.** The decompiler prints `param_1[0x10]` on an `undefined8 *` and they were transcribed
@@ -241,9 +241,9 @@ direct `_aligned_free`.
 | `008A8E20` / `008A8E40` / `008A8E60` | class-descriptor teardown thunks | ✅ read (via atexit link) |
 | `0063E2E0` | `Reflection.ObjectTraversal` shared helper | ⚠ decompile incomplete — *read from the disassembly 2026-09-14: the reflected byte-order walk, §7 Q-4* |
 | `005A7ED0` | `AbstractClassDescriptor.Constructor` | ✅ read (called from initializer) |
-| `0063D640` | descriptor sub-object destructor | not read |
+| `0063D640` | descriptor sub-object destructor | ~~not read~~ *(answered: see CONTRACT-phyre-class-descriptor.md, 0063D640 takes (rcx = the sub-object, rdx = the descriptor); 2026-10-02, OPUS)* |
 | `006B6700` | ~~embedded-string destructor~~ **intrusive-list unlink loop** | ✅ read 2026-09-14 (OPUS, pass 13) |
-| `02CF8260` | global compared against descriptor `+0x1D` | — |
+| `02CF8260` | global compared against descriptor ~~`+0x1D`~~ `+0xE8` *(corrected 2026-10-02, OPUS: byte offset, `006333BF`)* | — |
 
 ## 4. Data structures and formulas
 
@@ -252,7 +252,7 @@ PType                                    base of the reflection type hierarchy
 
 PClassDescriptor : PType
   +0x00   ptr    vftable
-  +0x0C   str    embedded string (class name)
+  +0x0C   str    embedded string (class name)   <- corrected 2026-10-02, OPUS - qword index; byte +0x60 is a list cleared by 006B6700 (00633557), the name is the char * at byte +0x30 (006388CA)
   +0x0E   ptr    sub-object, destroyed via 0063D640
   +0x10   list   intrusive list #1
   +0x12   list   intrusive list #2
@@ -264,7 +264,7 @@ PClassDataMember
   +0x00   ptr    vftable
   +0x08   node   intrusive list node (self-referential when empty)
   +0x28   flags  bit 0 tested during teardown
-  +0x38   str    embedded string (member name)
+  +0x38   str    embedded string (member name)   <- corrected 2026-10-02, OPUS - an intrusive list head cleared by 006B6700 (00633278-0063327C); the name pointer is at +0x20
 ```
 
 **Scalar deleting destructor flags** (MSVC convention, confirmed in body):
@@ -293,7 +293,7 @@ isEmpty(list)  iff  *list == list        a list head points at itself when empty
 ```
 process start
   -> CRT static initializers
-     -> PClassDescriptorConcrete<T> static initializer      (227 of these)
+     -> PClassDescriptorConcrete<T> static initializer      (227 of these)   <- corrected 2026-10-02, OPUS - 255 in the ledger, 254 in the family file (section 2's table)
         -> AbstractClassDescriptor constructor (005A7ED0)
         -> install PClassDescriptorConcrete<T>::vftable
         -> atexit(ClassDescriptorStaticTeardown)            <- the pairing proof
@@ -305,8 +305,8 @@ runtime
 
 process exit
   -> atexit chain
-     -> ClassDescriptorStaticTeardown       (372)
-     -> DataMemberMetadataStaticTeardown    (830)
+     -> ClassDescriptorStaticTeardown       (372)   <- corrected 2026-10-02, OPUS - 404 (section 2's table, the ledger)
+     -> DataMemberMetadataStaticTeardown    (830)   <- corrected 2026-10-02, OPUS - 853 (section 2's table, the ledger)
         -> PClassDataMember destructor (00633240)
 ```
 
@@ -486,7 +486,7 @@ system that happens to describe many of the same classes. Both exist; they are n
 | Descriptors use aligned allocation | `_aligned_free` in `FUN_00584730` | 1 |
 | MSVC scalar-deleting-destructor flag convention | `flags & 1` / `flags & 4` branches in `FUN_005847e0` | 1 |
 | Family counts | GFZ `CodeDomain` tag census over all 38,161 functions | 3 |
-| 2,134 RTTI classes | independent MSVC RTTI walk (`rtti_recover.py`) | 4 |
+| ~~2,134 RTTI classes~~ 2,248 RTTI classes *(corrected 2026-10-02, OPUS: superseded by §14, as §2 already says; `classes.tsv` has 2,248 rows)* | independent MSVC RTTI walk (`rtti_recover.py`) | 4 |
 
 ### A decompiler artifact that must not be mistaken for evidence
 
@@ -898,7 +898,7 @@ parent's whole `+0xFC` into the child's at `00639DB0`. What it validates is not 
 
 ### `0063CB80` — the same buffer, built without a constructor
 
-`+0x50` returns **false on every class measured**, so `00639A60` always hands off to `0063CB80`
+`+0x50` ~~returns **false on every class measured**, so `00639A60` always hands off to `0063CB80`~~ returns false only on some classes, so `00639A60` hands off to `0063CB80` only then or when flags bit 0 is set *(corrected 2026-10-02, OPUS: `00639AB6`-`00639ABE` and `00639B20`-`00639B25`; slot `+0x50` of all 331 `Concrete<T>` vtables is a per-class construct body, never the `xor al, al` stub `00657140`; the WITHDRAWN block above)*
 rather than giving up. (*What the false means is not what this page first said — see the
 retraction under the slot table.*) That function builds the same buffer out of inheritance
 and registration instead of construction:
@@ -1069,7 +1069,7 @@ is struck through.*
 >
 > **A string near a call is a hint about the call. A name the compiler emitted for the type is
 > evidence about the type, and where they disagree the name wins.** Everything mechanical
-> survives untouched: the stub is measured, the branch is measured, `0063CB80` always runs.
+> survives untouched: the stub is measured, the branch is measured, ~~`0063CB80` always runs~~ `0063CB80` runs only on flags bit 0 or a false `+0x50` *(corrected 2026-10-02, OPUS: `00639AB6`-`00639ABE`, `00639B20`-`00639B25`)*.
 
 ~~Three things follow, and none of them needed a new assumption. The construct-and-compare arm of
 `00639A60` is **unreachable in this build**, so the `"position dependant constructor"` diagnostic
@@ -1143,7 +1143,7 @@ claimed here; what is claimed is which class each one belongs to.
 | `+0x38` | instance size; the length of every memset/memcpy over the buffers | `00632DB4`, `00639AD2` |
 | `+0xC0` | **the default buffer** — a full-size instance every new object is copied from | set by `0063DC80`; built by `00639A60`; copied at `0063C974` |
 | `+0xC8` | the **second** construction, compared byte for byte against `+0xC0` | set by `0063DF90`; `00639A79` |
-| `+0xD0` | a third buffer registered by the same family; **no reader identified** | set by `0063DFA0` |
+| `+0xD0` | a third buffer registered by the same family; ~~**no reader identified**~~ a byte mask over the instance, built by `00639C80` *(corrected 2026-10-02, OPUS: zero-filled at `00639CD8`-`00639CE4`; CONTRACT-phyre-class-descriptor.md, purpose read 2026-09-25)* | set by `0063DFA0` |
 | `+0xD8` | resolved-pointer override; non-null short-circuits everything | `0063BC06` |
 | `+0xF8` | **signed** `int32` offset from `+0xC0` | `0063BC53` |
 | `+0xFC` | flags — **every bit ever set on a descriptor is enumerated below**; bit 31 *the default buffer has been built*, bit 30 *members registered*, bit 29 *pointer handed out*, bits 27–28 the layout-validation result, bit 1 set by every class's own constructor | `0063BC13`, `00639C55`, `00166090` |
@@ -1281,7 +1281,7 @@ not appear. `Q-7` is answered as far as the instrument reaches, and the directio
 Section 3 lists `00633240` as the `PClassDataMember` destructor helper. **There are two of them**,
 93 bytes each, and their bodies are identical instruction for instruction — both install the
 `PClassDataMember` vtable at `00D580B0`, walk the intrusive list at `+8`, ~~destroy the embedded string
-at `+0x38` through `006B6700`~~ **clear the intrusive list at `+0x38` through `006B6700`**, and conditionally free `[+0x18]` when `[+0x20] & 1`.
+at `+0x38` through `006B6700`~~ **clear the intrusive list at `+0x38` through `006B6700`**, and conditionally free ~~`[+0x18]` when `[+0x20] & 1`~~ member `+0x20` when member `+0x28` bit 0 is set *(corrected 2026-10-02, OPUS: the offsets were relative to the node at member `+0x08`: `00633261 lea rdi, [rcx+8]`, `00633282 test byte ptr [rdi+0x20], 1`, `00633288 mov rcx, [rdi+0x18]`)*.
 
 > **⚠ Corrected 2026-09-14 (OPUS), pass 13 — independent re-derivation.** `006B6700` is a list-unlink
 > loop and destroys no string: while `[head] != head` it takes `node = link - 8`, relinks
@@ -1723,7 +1723,7 @@ node, exhaustion returns 0. The find half of the descriptor registry's
 find-or-register pair.
 ### Interior citation — frontier hub 00632C90 (2026-09-18, SWE2-EC7)
 
-**00632C90** (66 B; heads the ICF-folded cluster of identical scalar-deleting destructors at `00632C90`/`00632CE0`/`00632D30`, 4 A-measured callers) — `??_G` scalar-deleting destructor for the class whose vtable is **00D30168**: stores the vtable (`lea rax,[rip+0x6fd4bf]` → `[rcx]`), then under flag bit 0 dispatches the free — bit 2 selects sized delete `0016C6A0` with `edx = 0x50` (the class size), otherwise unsized `00583730` — and returns the object. The descriptor record this deletes is 0x50 bytes, matching the `+0x50` self-chain the family-28 ctor writes. In-scope: vtable store [`00632CA9`](../../_index/ADDRESS-INDEX.md); delete-branch calls [`00632CB6`](../../_index/ADDRESS-INDEX.md)/[`00632CC3`](../../_index/ADDRESS-INDEX.md) — 4 callers, all A.
+**00632C90** (~~66 B; heads the ICF-folded cluster of identical scalar-deleting destructors~~ 226 B, a `PClassDescriptor` constructor *(corrected 2026-10-02, OPUS: it self-links `+0x08`/`+0x50`/`+0x60`, stores the name at `+0x30`, stamps `00D581C0` at `00632CD7` and zeroes `+0xF0`/`+0xF8`, ending at `00632D71`; the destructor described next is not at this address)* at `00632C90`/`00632CE0`/`00632D30`, 4 A-measured callers) — `??_G` scalar-deleting destructor for the class whose vtable is **00D30168**: stores the vtable (`lea rax,[rip+0x6fd4bf]` → `[rcx]`), then under flag bit 0 dispatches the free — bit 2 selects sized delete `0016C6A0` with `edx = 0x50` (the class size), otherwise unsized `00583730` — and returns the object. The descriptor record this deletes is 0x50 bytes, matching the `+0x50` self-chain the family-28 ctor writes. In-scope: vtable store [`00632CA9`](../../_index/ADDRESS-INDEX.md); delete-branch calls [`00632CB6`](../../_index/ADDRESS-INDEX.md)/[`00632CC3`](../../_index/ADDRESS-INDEX.md) — 4 callers, all A.
 
 ## SWE2-EC7-19 update (2026-05-15) — `00639160` guarded registration-call helper
 

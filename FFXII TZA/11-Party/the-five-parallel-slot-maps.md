@@ -130,7 +130,7 @@ displacement-addressed census can see, **they are four copies that nothing has b
 > and adds `0x5A48` to it (`003266C8`–`003266D4`), then works through that register. It copies map 0 into maps 1
 > and 3 (`00326714`–`00326724`) and sets map 1's selectors `[4..8]` to `0xFFFF` (`00326728`–`00326730`). It
 > copies map 1 into maps 2 and 4 (`00326735`–`0032674B`), then rewrites selectors `[0..3]` of maps 1, 2 and 4
-> per battle runtime mode (`003268BD`–`003268DC`). One branch restores map 4 from a copy taken on entry
+> per battle runtime mode (`003268BD`–`003268DC`). ~~One branch restores~~ Modes 3 and 5 restore map 4 from a copy taken on entry *(corrected 2026-10-02, OPUS: restores at `003268FD` (mode 3) and `003267F3` (mode 5); mode 5 rewrites only maps 1 and 2 and mode 0 nothing — CONTRACT-the-five-parallel-slot-maps.md SM-5, CON-169)*
 > (`003266F4`–`00326709`, restored `003268F8`–`00326901`). **The five are also not peers.** Map 0 is the live party configuration of
 > [the battle state block field map](Battle-State-Block/the-battle-state-block-field-map.md) (`[0..3]` active,
 > `[4..8]` available; the block reset and ten `PartyConfiguration_*` functions address it — `003172E0`, `00326110`, `003261D0`, `003273D0`, `003286E0`, `003287A0`, `003288F0`, `00328B20`, `00328DB0`, `00329080`), and maps 1–4 are

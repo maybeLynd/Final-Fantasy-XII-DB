@@ -325,3 +325,11 @@ normalises, and the draws.
 Corrected in place: sections 1, 3 and 4 of this page, plus UQ-206's item 4 and completion clause on the dispatch page.
 The same wording in OPEN-QUESTIONS UQ-206 is routed to SWE2-DATA, which holds that file. The consumer record is
 `_index/candidates/effect-element-falsification-pass-1-0929/`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-an-effect-element-frame-by-frame-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002F3890` | 122 B | copies dword `+0x1F0` of `rcx` to `+0x1F4`; when qword `+0x10` is non-null, calls a 44-byte helper with that qword and then a 377-byte routine with a stack copy of the 16 bytes at `+0x60` as both `rcx` and `rdx` and takes the vector from that stack copy, otherwise takes the 16 bytes at `+0x60` unchanged; then moves the 16 bytes at `+0x70` to `+0x80` and stores the taken vector at `+0x70`; wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`) | `002F38AE`, `002F38C7`, `002F38D6`, `002F38EA`, `002F38F2` |

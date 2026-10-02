@@ -14,7 +14,7 @@ last_reviewed: 2026-09-13
 audit:
   passes: 1
   last_pass: 2026-09-13
-  last_pass_state: opus-lua-loader-pass-1 - the 18-byte fingerprint reconstructs byte for byte from the instruction stream and the two globals, both of which resolve from their own displacements, so lua_Number = 4 and not-integral are measured rather than read; and every structural claim holds - 414 and 103 byte bodies, the 0x11 comparison length at 0082E4CC, one caller for the header checker, the three callers and three callees of the loader, and mode = NULL as a single instruction at 00683C5A. Two instructions the section-2 listing omits are recorded as unread, not interpreted. Nothing was executed
+  last_pass_state: opus-lua-loader-pass-1 - the 18-byte fingerprint reconstructs byte for byte from the instruction stream and the two globals, both of which resolve from their own displacements, so lua_Number = 4 and not-integral are measured rather than read; and every structural claim holds - 414 and 103 byte bodies, the 0x11 comparison length at 0082E4CC, one caller for the header checker, the three callers and three callees of the loader, and mode = NULL as a single instruction at 00683C5A. Two instructions the section-2 listing omits are recorded as unread, not interpreted. Nothing was executed # <- corrected 2026-10-02, OPUS - 0x11 at 0082E490+0x3C is the read length, not a comparison length; the comparison covers all 18 bytes (0082E490+0x69..+0x89)
   last_pass_kind: falsification
   crossref_clean: true
   reopened_count: 0
@@ -80,8 +80,8 @@ Laid out as the bytes it produces:
 `luac` from a Lua 5.2 configured with a 4-byte `lua_Number`, or the header check rejects it. And
 anyone writing script logic should know that a counter passing 16.7 million stops incrementing.
 
-**The header size is confirmed by the checker, not just by the writer.** The comparison at `0082E490`
-runs over **`0x11` = 17 bytes** — `LUAC_HEADERSIZE - 1` — because the first byte has already been
+**The header size is confirmed by the checker, not just by the writer.** ~~The comparison at `0082E490`~~
+~~runs over **`0x11` = 17 bytes**~~ `0082E490` reads **`0x11` = 17 bytes** and compares all 18 *(corrected 2026-10-02, OPUS: `0082E490+0x3C` `mov r8d, 0x11` is the read length; `0082E490+0x69`..`+0x89` compare qword, qword and word, bytes 0-17, byte 0 being the `0x1B` the checker plants at `0082E490+0x5A`)* — `LUAC_HEADERSIZE - 1` — because the first byte has already been
 consumed by the loader that dispatched here. 17 + 1 = 18, and the table above is 18 bytes.
 
 ## 3. The chain, end to end
@@ -190,7 +190,7 @@ bool PhyreScript_LoadBuffer(lua_State *L, Buffer *b)      /* 00683C30 */
 > buff, sz, name, mode)` the size travels in `r8` and the name in `r9`. `00683C44`/`00683C57` put `+0x10 & 0x7FFFFFFF` in
 > `r8` and `+0x48` minus its low bit in `r9`, as `EB-4` below already stated.
 >
-> **The two inner names are inferred from their argument shapes, not proven.** `FUN_00811530(L, -1, NULL)`
+> **The two inner names are inferred from their argument shapes~~, not proven~~.** *(answered: `00811130` is `lua_settop`, read in full - the contract's §10 note; `00811530` stays shape-named; 2026-10-02, OPUS)* `FUN_00811530(L, -1, NULL)`
 > and `FUN_00811130(L, -2)` are the `lua_tolstring` / `lua_settop` idiom for "read the error message,
 > then pop it", but neither function was disassembled here. **They are written as `FUN_` above for
 > that reason.**
@@ -198,10 +198,10 @@ bool PhyreScript_LoadBuffer(lua_State *L, Buffer *b)      /* 00683C30 */
 **A null buffer returns `false` without touching Lua at all**, and **a compile error is swallowed**:
 the error message is converted to a string and then popped, and the function returns `false`. Nothing
 here writes it anywhere. **A syntactically invalid script fails silently as far as this function is
-concerned** — whatever reporting exists is in the three callers, which are not read here.
+concerned** — ~~whatever reporting exists is in the three callers, which are not read here.~~ and no caller reports it either *(answered: `EB-4` below, 2026-09-12; 2026-10-02, OPUS)*.
 
-The `- (*(u8 *)(b + 0x48) & 1)` on the length is the small-string-optimisation tag bit being masked
-off a packed length field, the same idiom this database records for EASTL strings.
+The `- (*(u8 *)(b + 0x48) & 1)` ~~on the length is the small-string-optimisation tag bit being masked~~
+~~off a packed length field, the same idiom this database records for EASTL strings.~~ is a tag bit subtracted off the **name pointer**, not off a length, and it is not an EASTL idiom: this build's EASTL strings carry no tag *(corrected 2026-10-02, OPUS: `00683C30+0x6`..`+0x14` put `[b+0x48]` minus its low bit in `r9`, the name; the length is `[b+0x10]` with bit 31 cleared, `00683C30+0x17`..`+0x27`, in `r8`; the EASTL page's three-pointer string, `001600D0`)*.
 
 ## 6. Reachability — four instruments, four controls
 
@@ -239,12 +239,12 @@ ones the Lua bindings document reports as *"reached only by virtual dispatch"*.
 > **So load and execute are the same functions, and identifying the loader moves `DA-1` not at all.**
 > The chunk-supplier and the chunk-runner were never two separate unknowns that could be attacked
 > from opposite ends; they are one unknown, still gated behind virtual dispatch. **`DA-1` remains a
-> runtime question and a breakpoint on `00684D10` remains the way to settle it.**
+> runtime question and a breakpoint on `00684D10` ~~remains the way to settle it~~ can only confirm the static bound.** *(answered: the contract's `DA-1`, bounded 2026-09-26 - the image holds no code that can create a `lua_State`; 2026-10-02, OPUS)*
 
 **What `DA-3` does settle is the capability, which is the more useful half:** *if* a chunk is
 supplied, it may be source text. That is now static and certain.
 
-`00684F60` is a **third** call site not named by `DA-1`'s four-executor set, and is not read here.
+`00684F60` is a **third** call site not named by `DA-1`'s four-executor set~~, and is not read here~~ *(answered: read below, narrowed 2026-09-14 - PScheduler slots 0, 1 and 4 reach it and it takes `[task + 8]` as the buffer; 2026-10-02, OPUS)*.
 
 ## 8. Key addresses
 
@@ -257,7 +257,7 @@ supplied, it may be source text. That is now static and certain.
 | `0081D790` | 356 B | **`f_parser`** — the source/bytecode fork |
 | `0082BE30` | 630 B | `luaY_parser` — the source path, called only from `f_parser` |
 | `0082E910` | — | `luaU_undump` — the bytecode path, called only from `f_parser` |
-| `0082E490` | 414 B | the header writer / checker; 17-byte compare |
+| `0082E490` | 414 B | the header writer / checker; ~~17-byte compare~~ 17-byte read, 18-byte compare *(corrected 2026-10-02, OPUS: `0082E490+0x3C` read length, `0082E490+0x69`..`+0x89` compare)* |
 | `008216A0` | 4,778 B | `luaV_execute` — the bytecode interpreter loop, 3 calls + 1 tail jump; interior verified 2026-09-17 (SWE2-FRONTIER): `008233F0` at [`00821733`](../../_index/ADDRESS-INDEX.md), `00821090` ×7/`0081E9C0` ×5/`00823030` ×3 opcode helpers, and the `'for' initial value must be a number` FORLOOP-prep strings |
 | `00812FA0` | 776 B | `luaL_loadfilex` — the **file** loader (see §10) |
 | `00814B30` | 287 B | a third `lua_load` caller, **zero callers**, not identified |
@@ -283,7 +283,7 @@ supplied, it may be source text. That is now static and certain.
 - **Numbers are single precision.** Integer arithmetic is exact only to 2²⁴. A frame counter, a gil
   total or an experience total above 16,777,216 will not increment by one.
 - **A compile error is swallowed by `00683C30`** — it pops the message and returns `false`. Do not
-  expect a syntax error to announce itself; whether any caller reports it is unread.
+  expect a syntax error to announce itself; ~~whether any caller reports it is unread~~ no caller reports it *(answered: `EB-4`, 2026-09-12; 2026-10-02, OPUS)*.
 - **A null data pointer returns `false` before Lua is touched**, so an empty or unresolved script
   asset is indistinguishable from a failed compile at this level.
 - **Only four of the eleven standard libraries are registered** — `math`, `bit32`, `string`,
@@ -363,7 +363,7 @@ supplied, it may be source text. That is now static and certain.
   reaches `lua_load` by being loaded. **It does not close the box**, because the page's own residue is
   unchanged — *who fills a method descriptor's `+0x50` and a task's `+0x08`* — and an object built
   **natively at run time** carries no class name into any file and is outside every scan here. `DA-1`
-  remains a runtime question and a breakpoint on `00684D10` remains the way to settle it. *A further
+  remains a runtime question and a breakpoint on `00684D10` ~~remains the way to settle it~~ can only confirm the static bound *(answered: the contract's `DA-1`, 2026-09-26; 2026-10-02, OPUS)*. *A further
   limit worth stating: the name scan works because a `.phyre` cluster stores its class names as strings;
   a non-`.phyre` file feeding a natively-constructed object would never carry the name at all.*
 
@@ -496,7 +496,7 @@ supplied, it may be source text. That is now static and certain.
 | claim | evidence | tier |
 |---|---|---|
 | The build is Lua 5.2 with `lua_Number` = 4 bytes | the 18 header bytes read out of the writer's immediates at `0082E4C7`–`0082E4E6`, with `LUAC_TAIL` verified at `01CCD300` | 1 |
-| Header size 18, checker compares 17 | `mov r8d, 0x11` at `0082E4CC`; 17 + the pre-consumed signature byte | 1 |
+| Header size 18, checker ~~compares 17~~ reads 17 and compares 18 *(corrected 2026-10-02, OPUS: `0082E490+0x3C` `mov r8d, 0x11` is the read length; `0082E490+0x69`..`+0x89` compare qword, qword and word, bytes 0-17, byte 0 being the `0x1B` the checker plants at `0082E490+0x5A`)* | `mov r8d, 0x11` at `0082E4CC`; 17 + the pre-consumed signature byte | 1 |
 | `f_parser` forks on the first byte | `cmp esi,0x1b` / `jne` at `0081D7DD`, with `luaU_undump` on one arm and `luaY_parser` on the other | 1 |
 | `'b'` is computed as `0x1B + 0x47` | `lea edx,[rsi+0x47]` at `0081D7E7` with `rsi` proven `0x1B` by the branch | 1 |
 | `008C2A10` is `strchr` | PE import directory walked to the named thunk | 1 |
@@ -504,9 +504,9 @@ supplied, it may be source text. That is now static and certain.
 | `f_parser` is address-taken exactly once | four-instrument scan, **each instrument with its own passing positive control** | 1 |
 | `luaV_execute` is called | 3 `E8` + 1 `E9` from `0081D900`, `0081E5A0`, `0081E920` | 1 |
 | The loader's callers are two of `DA-1`'s executors | `edges.tsv`, cross-read against the bindings document's own list | 1 |
-| Whether a chunk is ever supplied | **not established — and this document does not narrow it** | — |
-| What the three callers pass | **not read** | — |
-| Whether `luaL_loadfilex` is reachable | **not traced** | — |
+| Whether a chunk is ever supplied | ~~**not established — and this document does not narrow it**~~ bounded statically, not closed *(answered: `UQ-312` narrowed and the contract's `DA-1` bound, 2026-09-26; 2026-10-02, OPUS)* | — |
+| What the three callers pass | ~~**not read**~~ a `PScript` object *(answered: `EB-1`, 2026-09-26; 2026-10-02, OPUS)* | — |
+| Whether `luaL_loadfilex` is reachable | ~~**not traced**~~ no *(answered: `EB-2`, 2026-09-12; 2026-10-02, OPUS)* | — |
 
 ## 12. Related
 
@@ -516,7 +516,7 @@ supplied, it may be source text. That is now static and certain.
 - [`../third-party-middleware-inventory.md`](../third-party-middleware-inventory.md)
   — the category's inventory of linked middleware.
 - [`../EASTL/eastl-strings-containers-and-the-logging-allocator.md`](../EASTL/eastl-strings-containers-and-the-logging-allocator.md)
-  — the packed-length idiom `00683C30` uses on its buffer.
+  — ~~the packed-length idiom `00683C30` uses on its buffer~~ the untagged string layout, which `00683C30`'s tagged name pointer is not *(corrected 2026-10-02, OPUS: the low bit comes off the name, `00683C30+0x6`..`+0x14`)*.
 
 ## 13. Falsification pass 1 — 2026-09-13 (OPUS)
 
@@ -544,7 +544,7 @@ integral.
 | claim | measured |
 |---|---|
 | `0082E490` is 414 B | **414** |
-| the comparison runs over `0x11` = 17 bytes | **`mov r8d, 0x11` at `0082E4CC`** — the page gives the length without its address |
+| ~~the comparison runs over `0x11` = 17 bytes~~ the read runs over `0x11` = 17 bytes and the comparison over 18 *(corrected 2026-10-02, OPUS: `0082E490+0x69`..`+0x89`)* | **`mov r8d, 0x11` at `0082E4CC`** — the page gives the length without its address |
 | `0082E490`'s callers | **one**, `0082E910` |
 | `00683C30` is 103 B | **103** |
 | **`mode = NULL`** | **`mov qword ptr [rsp + 0x20], 0` at `00683C5A`**, the fifth argument to `call 00812F70` |
@@ -561,8 +561,8 @@ slot.
 Between the constants and the call, `0082E4CC` sets `r8d = 0x11` (the length §2 discusses) and
 `0082E4EA` writes the single byte `0x1B` to a **different** stack slot, `[rsp+0x38]`. After
 `call 0x81C6A0` returns zero, `0082E4F9`–`0082E503` loads `[rsp+0x20]` and `[rsp+0x38]` and compares
-them as **qwords**. **That second step is not described anywhere on the page**, and it is **not read
-here either** — recorded so that a reimplementer copying §2's listing knows the block continues.
+them as **qwords**. **That second step is not described anywhere on the page**~~, and it is **not read~~
+~~here either**~~ *(answered: read and executed in the contract, 2026-09-12 - all eighteen bytes compared in three groups, `0082E490+0x69`..`+0x89`; 2026-10-02, OPUS)* — recorded so that a reimplementer copying §2's listing knows the block continues.
 
 **Not claimed.** Whether the shipped game ever hands the loader a chunk — `DA-1` is untouched, and
 this pass **ran nothing**. What `0081C6A0`, `00811530` or `00811130` are. The four executors, cited

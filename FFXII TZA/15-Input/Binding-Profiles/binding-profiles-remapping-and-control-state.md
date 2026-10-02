@@ -1281,7 +1281,13 @@ rule. Read from the shipping bytes 2026-09-16 (FABLE), closing one of the five p
 **CoreRuntimeScheduling — CLIENT.** `FUN_0017d4c0`, owned by that layer, calls `001C1940` on this page. That caller is a 387-byte setup that takes a **`0x20`-byte allocation** and initialises it, carrying on with a null result rather than failing; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **Presentation — CLIENT (SWE2-EC7-158, 17 edges).** Batch-123's `00182EE0` names `001DDAB0`, whose callers include the presentation layer (`001CD0..`), and `00195820`/`001C1990` reach `00865EC0`/`00187950`/`001BDAC0` there — the profile layer consults shared helpers, not a second owner.
-
+- **Application - CLIENT (1 edge).** `00792350` is also called by bodies filed to application: `0015BC40` - shared machinery across the layer boundary, no shared ownership.
+- **Platform - CLIENT and SERVICE (3 edges).** `005CC8A0` is also called by bodies filed to platform: `0061F200`; `00196480`, `00792350` reach bodies filed to platform: `005CC930`, `005CD0A0` - shared machinery across the layer boundary, no shared ownership.
+- **PlatformOnlineAchievements - CLIENT (1 edge).** `00796E20` is also called by bodies filed to platform/online achievements: `008655A0` - shared machinery across the layer boundary, no shared ownership.
+- **SaveLoad - SERVICE (1 edge).** `00866200` reaches bodies filed to save/load: `00865AE0` - shared machinery across the layer boundary, no shared ownership.
+- **Save_Load_Settings - CLIENT (2 edges).** `003936B0`, `00583FD0` are also called by bodies filed to save/load/settings: `005823B0`, `0057E4D0` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT and SERVICE (16 edges).** `002B4090`, `0017DDC0`, `00228480` are also called by bodies filed to UI: `00252030`, `003C8B70`, `00276D30` (+9 more); `0023CE10` reaches bodies filed to UI: `00291D80` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT (1 edge).** `00228480` is also called by bodies filed to world area: `00314020` - shared machinery across the layer boundary, no shared ownership.
 ## `AU-2` / `AU-3` — the initialiser found, and the `{2, 4}` head explained (OPUS, 2026-09-14)
 
 `AU-2` asks what distinguishes the three profiles at `01F80130` (stride `0x15C`); `AU-3` asks what

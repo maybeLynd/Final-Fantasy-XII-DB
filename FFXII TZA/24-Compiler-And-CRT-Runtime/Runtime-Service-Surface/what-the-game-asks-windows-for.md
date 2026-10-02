@@ -246,7 +246,7 @@ the game's own text encoding — the control-code language in
   is code that calls `006DF3A0`, which a mod could do.
 - [x] **When the crash handler runs.** `005CCB39` and `0079ADCA` reach the minidump writer, but
   neither containing function has been read, so whether it is wired to an unhandled-exception filter
-  or only to an explicit developer call is unestablished. `CV-3`.
+  or only to an explicit developer call ~~is unestablished~~ *(answered: see CV-3 just below - it is installed on every boot; 2026-10-02, OPUS)*. `CV-3`.
   *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (CV-3):* **a player's crash leaves a dump. The
   framework installs the writer as the unhandled-exception filter on every boot.**
   - **`0079AD50` is the filter.** `007980A0`, the framework startup ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md)),
@@ -281,8 +281,8 @@ the game's own text encoding — the control-code language in
     imports `008C30C8` / `008C30E8`), then starts `005CCAB0` with `CreateThread` (`005CD019` `lea r8`, `005CD03D`). That
     thread creates the file named at `[ctx + 0x10]` and writes a type-`0x1B27` dump with `ctx` as the exception parameter
     (`005CCAE8`–`005CCB39`). `005CCD00`'s only caller is `005CCBF0`, whose only caller is `008A5AD0` in the handler-funclet
-    region, so this looks like a structured-exception report path. Its trigger, and whether it can run before the filter,
-    are not read. The handshake page lists `005CCAB0` among the thread start routines as a "D3D worker"; it is this dump thread.
+    region, so this looks like a structured-exception report path. ~~Its trigger, and whether~~ Its trigger is the filter `008A5AD0` *(answered: see the `008A5AD0` row below, BK-5; 2026-10-02, OPUS)*; whether it can run before the filter,
+    ~~are~~ is not read. The handshake page lists `005CCAB0` among the thread start routines as a "D3D worker"; it is this dump thread.
 - [x] **The 121 import slots with no `FF 15` call site.** Given that two of them turned out to be
   live through `jmp` thunks, the residue needs the thunk-aware scan before any of it is called
   unused. `CV-4`.
@@ -339,7 +339,7 @@ the game's own text encoding — the control-code language in
 | `MiniDumpWriteDump` and `GetAdaptersInfo` are live | `data_xref_scan.py` with `OutputDebugStringA` (150 refs) as the passing control, then the thunks' callers | 1 |
 | `MultiByteToWideChar` absent from the import table | the import directory walk, which finds `WideCharToMultiByte` and not it | 1 |
 | The `std::locale` / `codecvt` surface | the `MSVCP140` import names | 1 |
-| **`006DF480` is Yebis's logger** | its caller set spans `006DA8F0`–`00790160`, containing the `0x782289` the PPFX document reports, and 90 of its callers carry PPFX diagnostic strings — **an address-range argument plus a string join, not a body read** | 2 |
+| **`006DF480` is Yebis's logger** | its caller set spans `006DA8F0`–`00790160`, containing the `0x782289` the PPFX document reports, and 90 of its callers carry PPFX diagnostic strings — ~~**an address-range argument plus a string join, not a body read**~~ an address-range argument plus a string join *(answered: see CV-2 above - the body, 137 B, was read whole later; 2026-10-02, OPUS)* | 2 |
 
 ## 7. Related
 
@@ -412,7 +412,7 @@ the nine data pointers to the thunk in [`members/iat-any-reference.tsv`](members
 > not a tautology.
 >
 > **The behavioural claims check too.** `WinMain`'s first guarded instruction is literally
-> `call 007980A0`, the crash-dump filter this table names. `005CD1E0` and `00863430` each decode to
+> `call 007980A0`, ~~the crash-dump filter this table names~~ the main body that installs the filter `0079AD50` *(corrected 2026-10-02, OPUS: `007980A0+0x57` calls `SetUnhandledExceptionFilter` with `0079AD50`)*. `005CD1E0` and `00863430` each decode to
 > `mov ecx, 0x406D1388` followed by `call [IAT]`, the debugger thread-naming exception this table
 > names. `005CCBA0`'s guarded span is `mov rcx, rbx` / `call rdi` — the `fn(arg)` call itself,
 > with the `[ctx+8]` / `[ctx+0x10]` loads correctly sitting *before* the range.
@@ -424,7 +424,7 @@ the nine data pointers to the thunk in [`members/iat-any-reference.tsv`](members
 
 | function | `__try` range | filter / handler | what it guards |
 |---|---|---|---|
-| `007A3770` (`WinMain`) | `007A378D`–`007A3798` | `008A5AD0` → `005CCBF0` | the whole application, `007980A0` — **the crash-dump filter** |
+| `007A3770` (`WinMain`) | `007A378D`–`007A3798` | `008A5AD0` → `005CCBF0` | the whole application, `007980A0` — ~~**the crash-dump filter**~~ the program's main body, which installs the crash-dump filter `0079AD50` *(corrected 2026-10-02, OPUS: `007980A0+0x50` loads `0079AD50` and `007980A0+0x57` calls `SetUnhandledExceptionFilter`)* |
 | `005CCBA0` | `005CCBC3`–`005CCBCC` | `008A5AD0` | a thread start trampoline: `fn(arg)` from `[ctx+8]` / `[ctx+0x10]` — the same filter per thread |
 | `005CD1E0` | `005CD2C8`–`005CD2E0` | `0089BEF0`, returns −1 | `RaiseException(0x406D1388)`, the debugger thread-name exception |
 | `00863430` | `008634CC`–`008634E4` | filter constant `1` | **only** the `0x406D1388` naming exception. *(Narrowed 2026-09-16 (FABLE): this cell used to read “`CreateThread` + `SetThreadPriority`, then the same `0x406D1388` naming exception”. The two calls at `0086348B` and `008634A6` are **outside** the range — the guarded span is `008634CC`–`008634E4` and decodes to `lea r9,[rsp+0x30]` / `xor edx,edx` / `mov ecx,0x406D1388` / `lea r8d,[r14+3]` / `call [IAT]` / `jmp`, and nothing else. The function does make those two calls; the `__try` does not cover them.)* |

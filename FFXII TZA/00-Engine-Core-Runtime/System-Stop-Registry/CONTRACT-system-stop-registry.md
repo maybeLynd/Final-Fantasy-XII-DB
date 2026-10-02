@@ -207,7 +207,7 @@ evidence, separate.)
 - **SS-4 executed**: fades `0x55`/`0x30` → callee `226640` receives `edx=0x30`; every consumed
   slot's `d10` is reset to `-1` in the same pass (`-1` slots skipped by `js`).
 - **SS-5 executed**: `q[recB] |= bit41` writeback on every apply, unconditionally.
-- **SS-6 executed**: `b[01FD46D0]==0` → immediate `ret`, zero calls/writes; start `00225CD0` and
+- **SS-6 executed**: `b[01FD46D0]==0` → immediate `ret`, zero calls/writes; ~~start~~ cancel `00225CD0` *(corrected 2026-10-02, OPUS: it clears the request's bit at `00225CD0+0x38`; the start is `00226BE0`)* and
   stop-sweep `00225EB0` both set it. Note: `00225CD0` also **clears** the request's bitset bit and
   stamps `recB d10=fade`; `00225EB0` sweeps only *set* bits, resetting records (`q0=-1`,
   `d10=-1`) + idx dispatch (`0`→`2DDC30`/`182DA0`, `0xC`→`182D60`, `0xD`→clears recB bit41 then
@@ -228,10 +228,10 @@ evidence, separate.)
   accumulated mask means "every slot has been through an apply since the last reset" — the
   tail's `ebp` is a **first-apply-after-reset flag**, not a per-request marker.
 - ~~Whether any wrapper starts a request without reaching the apply (SS-6).~~ **CLOSED
-  2026-09-23 (SWE2-CONTRACT): yes — at least ten.** The apply `00226280` has exactly 25
+  2026-09-23 (SWE2-CONTRACT): yes — at least ~~ten~~ nine.** *(corrected 2026-10-02, OPUS: `00252D90` and `002544C0` below only cancel)* The apply `00226280` has exactly 25
   call/jmp edges, all synchronous wrappers — **no frame poll exists** (`00226BE0`'s own tail
   never calls it). Start-only bodies that return with dirty raised: `002273B0`, `002273E0`,
-  `002274A0`, `002274E0`, `00227610`, `0026B980` (start-B), `00252D90`, `002544C0`,
+  `002274A0`, `002274E0`, `00227610`, `0026B980` (start-B), ~~`00252D90`, `002544C0`,~~ *(corrected 2026-10-02, OPUS: these two only cancel, through `00225CD0` or the id-22 cancel `002260A0`: `00252D90+0x22`/`+0x2E`, `002544C0+0x21`/`+0x30`; they start nothing)*
   `002630FD`, `00313EB1` (start-A), `0026326C` (start-B mid-body); none of their callers apply
   either. *SS-6's stated hazard is real: a start-only path leaves the request recorded and
   dirty until the next combined wrapper runs.* (`00227640` looks like a start-only wrapper but
@@ -239,8 +239,8 @@ evidence, separate.)
 - ~~What the rest of each `0x18` slot carries, given SS-3 shows it is never intersected.~~
   **PARTIAL 2026-09-23 (SWE2-CONTRACT):** observed fields beyond `+0x00` are **`+0x10` dword —
   the fade duration** (written at start `00226C4B` from the wrapper's stack arg, reset to `-1`,
-  read-and-consumed by the apply at `002262EE`) and **`+0x14` byte — zeroed** at start/reset in
-  both records (`00225E30`/`00226003`/`00226008`). The remaining bytes — `+0x08` qword and
+  read-and-consumed by the apply at `002262EE`) and **`+0x14` byte — ~~zeroed~~ the start's flag argument** in record B (`00227680+0x30` `mov [r8+0x14], r9b`, called from `00226BE0+0x92`), ~~at start/reset in~~ zeroed at cancel and reset in
+  both records (`00225E30`/`00226003`/`00226008`) *(corrected 2026-10-02, OPUS: the start stores the flag)*. The remaining bytes — `+0x08` qword and
   `+0x15`–`+0x17` — are still unobserved.
 
 ## 15. Evidence
@@ -346,3 +346,11 @@ No correction.
 **World — CLIENT (3 edges).** `00266D10` calls the start `00226BE0`, the cancel `00225CD0` and the apply `00226280`. That world-layer body is one of the nine direct requesters the page counts, raising, dropping and applying stops itself.
 
 **WorldAreaField — SERVICE (1 edge).** `talkfadeout` (`0026B980`) calls `00377700` when its second argument is negative; `00377700` reads bit 0 of the active field record's byte and one more field test, and the answer picks an argument of the id-6 start. The field record decides one parameter of that request; the registry stores it like any other.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-contract-system-stop-registry-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002EBBF0` | 64 B | with the mask byte `1 << cl`, clears that bit in byte `0215FD56` when `edx` is non-zero and sets it when `edx` is zero, storing the byte back; then sets bit 0 of dword `+0x48818` of qword `022C6F28` when the new byte is zero, and clears that bit otherwise | `002EBC07`, `002EBC0C`, `002EBC0F`, `002EBC20`, `002EBC28` |

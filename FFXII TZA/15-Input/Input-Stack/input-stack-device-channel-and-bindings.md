@@ -921,7 +921,21 @@ fan-in this section already dispositions; the batch-138 sections add `00629AA0` 
 `00629C70` (callee `0061DE20`) and `005CDAA0`'s Presentation callers `00639A60`, `001D1660`,
 `0067C260`, `0062A0A0`, `001946E0`, `00600F30`, `0061DBE0`/`0061DCA0`/`0061DD60`/`0061DFE0`.
 Shared-helper fan-in, not a presentation relationship this page owns.
-
+- **ActorEntity - SERVICE (3 edges).** `0022A0B0`, `00266D10`, `00358A20` reach bodies filed to actor entity: `002368D0`, `003B6ED0`, `003588B0` - shared machinery across the layer boundary, no shared ownership.
+- **Application - CLIENT (1 edge).** `00792350` is also called by bodies filed to application: `0015BC40` - shared machinery across the layer boundary, no shared ownership.
+- **Audio - CLIENT and SERVICE (25 edges).** `00225690`, `00184950`, `00229EA0` are also called by bodies filed to audio: `00361170`, `00361200`, `00221F40` (+11 more); `00228C70`, `003939B0`, `00266D10` reach bodies filed to audio: `00225690`, `00249CA0`, `002DEE70` (+6 more) - shared machinery across the layer boundary, no shared ownership.
+- **CombatAction - SERVICE (1 edge).** `002368D0` reaches bodies filed to combat action: `0030CF40` - shared machinery across the layer boundary, no shared ownership.
+- **CoreRuntimeScheduling - CLIENT and SERVICE (34 edges).** `0017DE60`, `00184950`, `002498B0` are also called by bodies filed to core runtime scheduling: `0022A0B0`, `0022A770`, `0022A580` (+7 more); `0022A580`, `001EC060`, `00228C70` reach bodies filed to core runtime scheduling: `001EDE70`, `0022BDF0`, `001E0560` (+10 more) - shared machinery across the layer boundary, no shared ownership.
+- **Developer - CLIENT (1 edge).** `00796E20` is also called by bodies filed to developer: `001C2F50` - shared machinery across the layer boundary, no shared ownership.
+- **Movement - SERVICE (4 edges).** `00266D10`, `002368D0` reach bodies filed to movement: `00383A20`, `00263560`, `002EBE40` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+- **Party - CLIENT and SERVICE (5 edges).** `0017DFC0`, `00358A20`, `003594E0` are also called by bodies filed to party: `003594E0`, `00358CB0`; `003594E0` reaches bodies filed to party: `00358A20` - shared machinery across the layer boundary, no shared ownership.
+- **RNG_Random_Selection - SERVICE (1 edge).** `0022A0B0` reaches bodies filed to random selection: `00379CF0` - shared machinery across the layer boundary, no shared ownership.
+- **Resource - CLIENT and SERVICE (13 edges).** `0017E270`, `005CD1E0`, `00796E20` are also called by bodies filed to resource: `001D9400`, `001DAAC0`, `001A7A50`; `0022A0B0`, `0079FB10`, `002368D0` reach bodies filed to resource: `00259DF0`, `002DF9A0`, `0032EAE0` (+7 more) - shared machinery across the layer boundary, no shared ownership.
+- **Save_Load_Settings - SERVICE (3 edges).** `007980A0`, `00266D10` reach bodies filed to save/load/settings: `002EF2D0`, `001DE050`, `001DED50` - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT and SERVICE (3 edges).** `00229EA0`, `00290180` are also called by bodies filed to script VM / native bridge: `00354D00`, `003423E0`; `00266D10` reaches bodies filed to script VM / native bridge: `003DC2D0` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT and SERVICE (7 edges).** `00229EA0`, `0017DDC0`, `00228480` are also called by bodies filed to UI: `0018EEE0`, `003C8B70`, `00276D30` (+2 more); `00228C70` reaches bodies filed to UI: `0029DBE0` - shared machinery across the layer boundary, no shared ownership.
+- **World - SERVICE (1 edge).** `0022A0B0` reaches bodies filed to world: `00266D10` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (8 edges).** `00228480` is also called by bodies filed to world area: `00314020`; `00266D10` reaches bodies filed to world area: `002342F0`, `00268750`, `0026D910` (+4 more) - shared machinery across the layer boundary, no shared ownership.
 ### Eight of ten come from citing the CFG guard stub
 
 This document cites `0016D6A0`. That is `_guard_check_icall`, the Control Flow Guard check stub —

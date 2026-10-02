@@ -417,7 +417,8 @@ handed pointer. ~~What `0035FCA0` and `0035FF90` would do if the flag were 1 —
 **Resource — CLIENT (32 edges through 7 of this page's functions).** The Resource layer reaches this page at `001D6F20`, `001D6E80`, `001D6FA0`, `0032FCA0` and 3 more. `FUN_0024f240` is the worked example, read in full - it is a 384-byte reader in an `0x88`-byte frame with a stack cookie: it opens a file and does nothing at all when that fails; **1 of the 19 bodies on that layer are read, the rest are counted**. The crossing is that those functions are consulted by that layer, not a shared responsibility. Edge count and subject list from `edges.tsv`. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **UI — SERVICE.** `00314440` on this page calls `FUN_00254ac0`, owned by that layer. What it reaches is a 117-byte sequence behind two gates - `[02092744]` zero and `([01E0C320] & 0xC0) != 0xC0` - after which eight calls run in fixed order; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
-
+- **Input - CLIENT and SERVICE (49 edges).** `00184950`, `0035ED50`, `0035F420` are also called by bodies filed to input: `0035FCA0`, `0035F420`, `0035FDD0` (+8 more); `0035F420`, `0035FCA0`, `002DDA30` reach bodies filed to input: `00408B00`, `0035FBD0`, `0035ED50` (+17 more) - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT and SERVICE (11 edges).** `0032FC30`, `00314440`, `00408EC0` are also called by bodies filed to script VM / native bridge: `0034B650`, `00355350`, `0050C8A0` (+7 more); `0050DFC0` reaches bodies filed to script VM / native bridge: `0026B4E0` - shared machinery across the layer boundary, no shared ownership.
 ## The `00408C30` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
 `00408C30` (2,656 B) — the FF12CONFIG load pass. `0017D240` snapshots the

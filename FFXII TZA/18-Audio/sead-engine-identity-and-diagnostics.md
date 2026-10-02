@@ -395,3 +395,7 @@ synchronised on a `(bar, beat, tick)`-style triple and that a failed sync is sur
 tolerances — which is precisely what §1 says these strings are for.
 
 *(The misspelling `ExternalSoureVoice` is verbatim from the binary, not a transcription error.)*
+
+## Cross-subsystem neighbours - SWE2-DATA (pass-22 dispositions, 2026-10-02)
+
+- **Resource - SERVICE (4 edges).** `00210760` reaches bodies filed to resource: `001D6E80`, `001D6EE0`, `001D6F20` (+1 more) - shared machinery across the layer boundary, no shared ownership.

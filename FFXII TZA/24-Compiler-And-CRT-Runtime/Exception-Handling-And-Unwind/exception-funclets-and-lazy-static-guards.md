@@ -1061,3 +1061,14 @@ layers.
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-exception-funclets-and-lazy-static-guard-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001DAAC0` | 112 B | calls `005CC8C0(&stack record, 001DADB0)`, then sets the record's dword `+0x18` to 3, qword `+0x20` to the string "FileCachePrefetchManager" (`009005E8`), dword `+0x2C` to 0xFFFFFFFE and dword `+0x8` to 0xF000 and calls `0016D6A0(&record, 0x7C)`; stores `rcx` at record `+0x10`, stores dword 1 at `+0x20` of `rcx`, calls `005CD1E0(rcx, &record)` and finally stores byte 1 at `+0x18` of `rcx` | `001DAAD5`, `001DAADA`, `001DAB08`, `001DAB21`, `001DAB26` |
+| `0089BEF0` | 18 B | copies `rdx` into `rbp` inside a 0x40-byte frame and returns 0xFFFFFFFF | `0089BEF6`, `0089BEF9` |
+| `008A5B7C` | 23 B | loads the qword at `rcx` and returns 1 when the dword it points to equals 0xC0000005, else 0 | `008A5B81`, `008A5B86`, `008A5B8C` |
+| `008A5C0A` | 64 B | with `rbp` set to `rdx`, stores `rcx` at `rbp+0x40` and `rbp+0x30` and the qword at `rcx` at `rbp+0x38`; when the dword that qword points to equals 0xE06D7363 calls `00862052()` and returns with its `eax`, otherwise stores dword 0 at `rbp+0x20` and returns 0 | `008A5C13`, `008A5C22`, `008A5C2A`, `008A5C32`, `008A5C3E` |

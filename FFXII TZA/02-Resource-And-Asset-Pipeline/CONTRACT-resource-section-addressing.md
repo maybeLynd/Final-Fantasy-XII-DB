@@ -119,8 +119,8 @@ every caller's failure handling rests on that single sentinel.*
 ### RA-7 — PRF index and offset are separate outputs
 
 The container magic is `0x50524640` (bytes `@FRP`, often called PRF in handoffs). Version0 walks
-DWORD offsets at+30; version1 walks at+40 and skips zero slots. Offsets are relative to the TABLE
-BASE, not to each slot. The root is tested before children. A matching PRF root returns offset0
+DWORD offsets at+30; version1 walks at+40 and skips zero slots. Offsets are relative to ~~the TABLE~~
+~~BASE~~ the start of that offset array (`+0x30` or `+0x40`); the offset the lookup returns adds that bias and so is table-base relative *(corrected 2026-10-02, OPUS: `00409780+0xE7` `lea ecx, [rax + 0x40]` then `00409780+0xED` `add ecx, r10d` locates a section, and `00409780+0x115` `add ecx, 0x40` forms the returned offset; `00409780+0x148` / `00409780+0x170` for `+0x30`)*, not to each slot. The root is tested before children. A matching PRF root returns offset0
 but leaves index=-1; a matching plain header returns offset0/index0. Child matches return the
 actual authored slot index, including sparse slots. Unsupported versions and missing matches leave
 both outputs=-1. Do not use a negative index as proof that the offset failed.

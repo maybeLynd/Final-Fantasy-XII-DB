@@ -293,8 +293,8 @@ interior of a known class-descriptor global at each list offset — returns 8 fu
 and 8 for `+0xB0`, dominated by `Phyre.Reflection.*`. **Those lists are not reported here as an
 answer**, because reading the candidates shows the instrument's own false-positive mode: two of
 them (`00630340`, `00630490`) are magic-static accessors for unrelated `PType` singletons that
-happen to live at an address coinciding with some descriptor's `D + offset`. Descriptors are about
-0x110 bytes and packed in `.data`, so an interior address can be the *start* of a different
+happen to live at an address coinciding with some descriptor's `D + offset`. Descriptors are ~~about~~
+~~0x110 bytes~~ `0x100` bytes *(corrected 2026-10-02, OPUS: 90 pairs of static descriptors sit exactly `0x100` apart; `0x140` is `PClassDescriptorDynamic`, CONTRACT-phyre-class-descriptor.md PCD-3)* and packed in `.data`, so an interior address can be the *start* of a different
 global, and this scan cannot tell the two apart. `+0x60` is cleared at destruction by the generic
 list-unlink helper; `+0xB0` is unlinked by the destructor's fourth walk. Neither has a writer this
 document can name.
@@ -488,14 +488,14 @@ is the member's annotation list, and every annotation in the image is one `Write
 > in this binary are (a) the attach path, which the body above shows touches `+0x08`/`+0x10` and never
 > `+0x38`, (b) the destructor and the nine per-kind teardown helpers, which only CLEAR it through
 > `006B6700`, and (c) anything that walks the class descriptor's `+0x80` member list and reaches a
-> node's `+0x38`. **(c) is the whole remaining search space, and it is not searched here.** The row
+> node's `+0x38`. **(c) is the whole remaining search space, and it is not searched here.** *(answered: see the ANSWERED 2026-09-25 block above; 2026-10-02, OPUS)* The row
 > stays OPEN: this removes the registration path as a candidate, it does not establish what the list
 > holds.
 
 The class descriptor likewise has **six** intrusive lists, at `+0x50`, `+0x60`, `+0x80`, `+0x90`,
 `+0xA0` and `+0xB0` — the reset helper `0063D550` re-initialises all six, while the destructor
 `00633390` walks only four (`+0x80`, `+0x90`, `+0xA0`, `+0xB0`) and clears `+0x60` through the same
-list-unlink helper. Only `+0x80` is identified. The type's **name** is a plain `char *` at `+0x30`,
+list-unlink helper. Only `+0x80` is identified *(answered: see BL-8 - four of six identified, `+0x60` 2026-09-25; 2026-10-02, OPUS)*. The type's **name** is a plain `char *` at `+0x30`,
 read by `006388C0`.
 
 ### Types are found by name, and the name hash collides safely
@@ -579,7 +579,7 @@ The full table for all 682 records is `Tools/work/h94/phyre_schema.tsv`.
 | `00637440` | registry root accessor | — | supplies the tree root to the lookup |
 | `00633240` | `PClassDataMember` teardown helper | — | tests attribute bit 0 before freeing the name |
 | `0062EFD0` | `PClassDescriptor::AttachMember` | — | descriptor virtual slot `+0x40` on **1,186 of 1,187** descriptor vtables; validates the offset, links the record |
-| `0063C0C0` | `FieldStorageWidth` | — | returns 8 when attribute bit 1 is set, else the type's inline size from `type+0x38` |
+| `0063C0C0` | `FieldStorageWidth` | — | ~~returns 8 when attribute bit 1 is set, else the type's inline size from `type+0x38`~~ when bit 1 is set returns `ctx->vslot08()`, or a literal 8 when `ctx` is null, else the inline width *(corrected 2026-10-02, OPUS: `0063C100`-`0063C106` and `0063C137`; null context `0063C0D3` → `0063C17D`)* |
 | `00597220` | `FindMemberByName` | — | walks `cls+0x80` and the base chain at `cls+0x78`, comparing names |
 | `0063D550` | descriptor list reset | — | re-initialises **six** intrusive lists at `cls+0x50/0x60/0x80/0x90/0xA0/0xB0` |
 | `00639290` | attach wrapper | — | the one descriptor whose slot `+0x40` differs; skips a `PClassDataMemberDynamicDefault*` sentinel |
@@ -666,7 +666,7 @@ bit 0  (0x01)   the name is heap-allocated; copy it in, free it on teardown
 bit 1  (0x02)   the field is stored as a POINTER to another reflected object
                 -> never set on a primitive-typed field, at any of the 680 sites
                 -> CONFIRMED FROM THE CONSUMER: the attach helper 0063C0C0 returns a
-                   storage size of literally 8 when this bit is set, and the type's own
+                   storage size of literally 8 when this bit is set, and the type's own   <- corrected 2026-10-02, OPUS - 8 only with a null context (0063C0D3 -> 0063C17D); with one it is ctx->vslot08() (0063C106)
                    inline size otherwise (see "How the engine uses the record" below)
 bits 3-4 (0x18) a near-per-CLASS constant: 0x00, 0x08 or 0x10
                 -> constant across every field of the class in 243 of 246 classes;
@@ -913,7 +913,7 @@ the field's type is a *pointer*, the third argument.
 | 682 registration sites; **680 fully resolved** over **246 named classes** and 109 field types | forward abstract interpretation of all 38,161 bodies: registers and stack slots carry symbolic values, calls clobber the volatiles and put `('ret', callee)` in `rax` | 1 |
 | The second pass did not contradict the first | every one of the 484 attribute, 523 offset, 593 class and 629 type values the backward scan had recovered is reproduced **identically**, with **0 disagreements and 0 losses**, plus 491 new values | 1 |
 | The offset is validated arithmetically by the consumer | complete body of `0062EFD0`: `capacity < (fieldOff - baseOffset) + width + used` | 1 |
-| Attribute bit 1 means "stored as a pointer" — from the consumer | complete body of `0063C0C0`: returns literally `8` when bit 1 is set, else the type's inline size from `type+0x38` | 1 |
+| Attribute bit 1 means "stored as a pointer" — from the consumer | complete body of `0063C0C0`: returns ~~literally `8`~~ the context's pointer width (a literal `8` only for a null context) *(corrected 2026-10-02, OPUS: `0063C106`, `0063C17D`)* when bit 1 is set, else the type's inline size from `type+0x38` | 1 |
 | The member list head is `cls+0x80`, tail `cls+0x88`; base chain at `cls+0x78` | complete bodies of `0062EFD0` and `00597220` | 1 |
 | A class descriptor has **six** intrusive lists, and the full descriptor layout | complete body of the constructor `00632D80`, which sets every field in one place; `005A7ED0` calls it with `"PAnimatableComponent", 0x108, 8` | 1 |
 | The class name is at `+0x30` and the instance size at `+0x38` | the same constructor body, corroborated by `006388C0` loading `[rcx+0x30]` as a string and by `AttachMember` comparing against `[cls+0x38]` | 1 |
@@ -1330,7 +1330,7 @@ thunks** — each is the `atexit`-registered destructor of one descriptor static
 | thunk | descriptor static | member registered | interior evidence |
 |---|---|---|---|
 | `008AFB90` | `02CF9080` | `m_size` (offset `0x38`) | re-stamps vtable `00D580B0`, unlinks lists (`008AFB9D`/`008AFBA4`) |
-| `008AF9D0` | `02CF90E0` | `m_offsetFromParent` (`0xF0`) | same 96-byte `PClassDataMember` teardown shape |
+| `008AF9D0` | `02CF90E0` | `m_offsetFromParent` (`0xF0`) | same ~~96-byte~~ 103-byte *(corrected 2026-10-02, OPUS: `008AF9D0` returns at `008AF9D0+0x66`; the array-member page's 103)* `PClassDataMember` teardown shape |
 | `008AFA40` | `02CF9140` | `m_offsetToBase` (`0xF4`) | " |
 | `008AFAB0` | `02CF91A0` | `m_offsetToBaseInAllocatedBlock` (`0xF8`) | " |
 | `008AF6C0` | `02CF9200` | `m_currentMemberCount` (`0x102`) | " |
@@ -1671,7 +1671,7 @@ runtime instance size, **bit 3** (`0x08`) not constructible via `PCluster::creat
 cleared explicitly by some registrars (e.g. `00166080` for `PWorldMatrix`,
 `and dword [02E405AC], 0xFFFFFFFD`). `descriptor+0xE0`/`+0xE4` participate in the per-list
 footprint as a count and an alignment. `descriptor+0xC0` is the default instance (§14) and
-`descriptor+0xF4`/`+0xF8` are the offset adjustments, both zero (§12).
+`descriptor+0xF4`/`+0xF8` are the offset adjustments, ~~both zero (§12)~~ sums of `+0xF0` up the parent chain *(corrected 2026-10-02, OPUS: `0063E410`, `0063E416`-`0063E448`; §16 below)*.
 
 ## 16. CORRECTION — `classdesc+0xF4` is **not** zero (2026-09-19, OPUS, same day)
 
@@ -1857,7 +1857,7 @@ reachable from the same registrar, and the instance's own hierarchy is not avail
 
 *(OPUS 2026-09-19. Measured from `phyre-field-schema.tsv` and `members/phyre-class-instance-sizes.tsv`
 as they stand at HEAD; 680 of the schema's 682 rows are already carried in `_types/fields.tsv` at
-the exact type and offset, so the schema side of the propagation is complete and this is about what
+the exact type and offset, so the schema side of the propagation is complete *(answered: see §20, corrected 2026-09-27 - four more registrations were added; 2026-10-02, OPUS)* and this is about what
 the schema never had.)*
 
 
@@ -2017,7 +2017,7 @@ own members occupy.
 **Controls 3 and 4 matter because they cannot be satisfied by accident.** A misread pointer field
 would produce cycles or an inversion somewhere across 57 edges; neither appears. Control 5 says
 something about the corpus rather than the method: **the registered Phyre hierarchy here is
-shallow.** Almost everything is one step from a root, which is consistent with Phyre exposing leaf
+shallow.** *(answered: see §19c - this reading of control 5 was wrong; 2026-10-02, OPUS)* Almost everything is one step from a root, which is consistent with Phyre exposing leaf
 data classes to reflection and keeping deep implementation hierarchies unregistered.
 
 **Of the 177, 70 carry a non-null parent and 57 resolve to a class inside the set.** The other 13
@@ -2338,7 +2338,7 @@ and mutants that reject "`regcalls` 0 means no member" (dropping `00632A10` from
 false negative on the sentinel) and "`PInstancesComponent +0x18` is 8 bytes".
 
 **Not claimed.** What the elements mean; whether the guarded registrar runs in any given scene (the registration is
-lazy); the `+0x4` dword's purpose; the other 186 unharvested registrations (`RM-1`).
+lazy); the `+0x4` dword's purpose; the other 186 unharvested registrations (`RM-1`) *(answered: see RM-1, ANSWERED 2026-09-27 - all 215 registrations of the three constructors are in the store; 2026-10-02, OPUS)*.
 
 **Correction, 2026-09-27 (OPUS): a by-value `PSharray` holds its one element inline, so its size follows the element.**
 The shared accessors fix the `PSharray` *header* for every instantiation. They do not fix its *extent*, and the store

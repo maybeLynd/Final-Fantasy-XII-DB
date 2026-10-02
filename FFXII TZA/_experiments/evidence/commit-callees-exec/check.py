@@ -46,7 +46,10 @@
 #     0030C0E0  "committed target still valid" unit scan
 #     00308270  post-cancel: bit0x16 -> +0x28=0, 0030C970(+0x695), +0x695=0xFF,
 #               0x22C1DB0+idx*12 word->+0xDC8 dword->+0xE58, 0030EDA0, mask
-#     0030EDA0  copy 0x4F0 bytes [unit+0xB88]->+0x730; scan 8x0x4F0 at
+#     0030EDA0  copy 0x4F0 bytes [unit+0xB88]->+0x6B0 (NOT +0x730: the
+#               +0x80 at 30EDB6 is cursor advance cancelled by [rcx-0x80]
+#               stores; ASTRA suspend-restore-copy-origin-1001, verified
+#               cpys-dest-6b0); scan 8x0x4F0 at
 #               0x22BEFC0 for self; btr a bit in 0x22BEFB0
 #     00313B30  notify: stats [rdx+0x698] mask 0x80000003 + 00377C20;
 #               r8d!=0 suppresses ONLY when the status check failed; actor
@@ -807,6 +810,47 @@ def build_cases():
            name="canc-cpyhit",
            check=lambda s: "cpys" in [t[0] for t in s["trace"]] and
                            s["mem"][7][1] == "fb"))
+
+    # --- EXP-091 destination regression (ASTRA-REQ-ORACLE-SUSPEND-COPY-
+    # REGRESSION-1001): 30EDA0 writes unit[0x6B0,0xBA0), NOT [0x730,0xC20).
+    # Direct entry at 0030EDA0. Source = patterned slot 2 of CSCANT; the
+    # pattern's +0x4D8 qword (which lands on unit+0xB88) is slot 5's base,
+    # so an implementation that re-read the overwritten +B88 instead of the
+    # incoming r8 would clear bit5 -- the shipped body must clear bit2.
+    src2 = CSCANT + 2 * 0x4F0
+    pat = bytearray((0xA5 + i * 0x11) & 0xFF for i in range(0x4F0))
+    struct.pack_into("<Q", pat, 0x4D8, CSCANT + 5 * 0x4F0)
+    A({"name": "cpys-dest-6b0", "entry": 0x30EDA0, "rcx": unit_addr(0),
+       "ucount": 1, "units_l": [unit(stats=0, b88=src2)],
+       "csbits": [0xFF] * 8,
+       "fill": [(src2, bytes(pat)),
+                (unit_addr(0) + 0x6A8, b"\xcc" * 8),      # pre-canary
+                (unit_addr(0) + 0x6B0, b"\xdd" * 0x4F0),  # poison dest
+                (unit_addr(0) + 0xB88, qw(src2)),         # incoming src ptr
+                (unit_addr(0) + 0xBA0, b"\xcc" * 8)],     # post-canary
+       "memprobe": [(unit_addr(0) + 0x6B0, 0x4F0),
+                    (unit_addr(0) + 0x6A8, 8),
+                    (unit_addr(0) + 0xBA0, 8),
+                    (unit_addr(0) + 0xB88, 8),
+                    (CSBITS, 1)],
+       "check": lambda s: s["mem"][0][1] == bytes(pat).hex() and
+                          s["mem"][1][1] == "cc" * 8 and
+                          s["mem"][2][1] == "cc" * 8 and
+                          s["mem"][3][1] == qw(CSCANT + 5 * 0x4F0).hex() and
+                          s["mem"][4][1] == "fb" and
+                          s["rets"][0] == "0x1"})
+    # source outside the 8-slot table: copy still runs, bitmap untouched
+    src9 = HEAP + 0x700000
+    pat2 = bytes((0x3C + i * 0x07) & 0xFF for i in range(0x4F0))
+    A({"name": "cpys-nohit", "entry": 0x30EDA0, "rcx": unit_addr(0),
+       "ucount": 1, "units_l": [unit(stats=0, b88=src9)],
+       "csbits": [0xFF] * 8,
+       "fill": [(src9, pat2), (unit_addr(0) + 0x6B0, b"\xdd" * 0x4F0),
+                (unit_addr(0) + 0xB88, qw(src9))],
+       "memprobe": [(unit_addr(0) + 0x6B0, 0x4F0), (CSBITS, 1)],
+       "check": lambda s: s["mem"][0][1] == pat2.hex() and
+                          s["mem"][1][1] == "ff" and
+                          s["rets"][0] == "0x1"})
 
     # --- 00313B30 notify / dispatch --------------------------------------------
     # actor=u0 stats rec0 (kind0 -> collect path), target=u1 stats rec1.

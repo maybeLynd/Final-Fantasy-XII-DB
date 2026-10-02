@@ -655,8 +655,14 @@ page](Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md)'s; t
 **RNG_Random_Selection — SERVICE.** `0022A0B0` on this page calls `RNG_MT19937_Seed`, owned by that layer. What it reaches is a five-byte thunk - `jmp 00863D30` - onto the CRT's Mersenne Twister seed; the crossing is that call, not a shared responsibility. Read from the shipping bytes 2026-09-14 (OPUS).
 
 **Rewards_Progression_Economy — CLIENT.** `Reward_ComputeExperienceForRecipient`, owned by that layer, calls `003135C0` on this page. That caller is the experience computation for one recipient: it needs `byte[rec+5] == 0` and takes its context from `0031B860`; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
-
-
+- **Resource - CLIENT and SERVICE (53 edges).** `0032E620`, `0032E400`, `0036A190` are also called by bodies filed to resource: `00249210`, `0024AC30`, `00259DF0` (+18 more); `0022A0B0`, `00379D20`, `0032E520` reach bodies filed to resource: `0032E620`, `0032E400`, `00259DF0` (+12 more) - shared machinery across the layer boundary, no shared ownership.
+- **SaveLoad - CLIENT (1 edge).** `0032E4D0` is also called by bodies filed to save/load: `00280140` - shared machinery across the layer boundary, no shared ownership.
+- **Save_Load_Settings - CLIENT and SERVICE (3 edges).** `0032E620` is also called by bodies filed to save/load/settings: `002EF300`; `00261F90`, `00266D10` reach bodies filed to save/load/settings: `002EF2B0`, `002EF2D0` - shared machinery across the layer boundary, no shared ownership.
+- **StoryEvent - CLIENT (1 edge).** `00265270` is also called by bodies filed to story event: `001ED240` - shared machinery across the layer boundary, no shared ownership.
+- **Story_Event_Quest_Hunt - CLIENT (1 edge).** `00265270` is also called by bodies filed to story/event/quest: `00377970` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT (10 edges).** `002DEE50`, `002DEC00`, `00303EC0` are also called by bodies filed to UI: `003EF2E0`, `0027FB70`, `00280DE0` (+3 more) - shared machinery across the layer boundary, no shared ownership.
+- **World - CLIENT and SERVICE (6 edges).** `002EA320`, `0032E400`, `0032E620` are also called by bodies filed to world: `00378540`, `00266D10`; `0022A0B0` reaches bodies filed to world: `00266D10` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (32 edges).** `0032E400`, `0036A190`, `00265270` are also called by bodies filed to world area: `003145E0`, `00268750`, `00378030` (+10 more); `00266D10`, `00261F90`, `003EAA70` reach bodies filed to world area: `003148F0`, `003EAA70`, `002342F0` (+7 more) - shared machinery across the layer boundary, no shared ownership.
 ### Interior citation — frontier hub `00361010` (2026-09-18, SWE2-EC7)
 
 `00361010` — 30 B, 5 callers: the pointer's only reader, as named above —

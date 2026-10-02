@@ -197,7 +197,7 @@ Confirmed across all 5,103 keys: the stride is 36 bytes and the fields are float
 +0x20  f32  weight       normalised segment weight; the weights of a curve's keys sum to 1.0
 ```
 
-**Seven of the nine are named `_unnamedN` on purpose.** Every byte is accounted for, so the fence
+**~~Seven~~ Three of the nine are named `_unnamedN` on purpose.** *(corrected 2026-10-02, OPUS: the fence names six — `startFrame`, `coefA`–`coefD`, `weight` — and leaves three `_unnamed`, the 2026-09-26 note below)* Every byte is accounted for, so the fence
 reports no gap — but an accounted byte is not an explained one, and a plausible name here would be
 the label-a-gap failure the template warns against.
 
@@ -244,7 +244,7 @@ every claim below cites the instruction that makes it true.
 | `+0x00` magic | `0x0037DA96` `cmp dword ptr [rcx], 0x314b4853` | **mismatch → the whole section is ignored** (`jne` at `0x0037DA9F` to the epilogue at `0x0037DB36`; not even the chunk pointer is stored) | — | — |
 | `+0x04` recordCount | `0x0037DAC4` `cmp word ptr [rcx + 4], 0` | — | **read 16-bit only**; used solely as a non-zero gate — if zero, the `je` at `0x0037DAC9` skips all binding | — |
 | `+0x06` curveCount | `0x0037DADD` `movzx ebx, word ptr [rdi + 6]` | — | **read 16-bit, zero-extended**; sizes the allocation (`lea ecx, [rbx*8]`, `0x0037DAE1`) and bounds the walk (`0x0037DB22`) | — |
-| `+0x08` dataOffset | `0x0037DAF5` `movzx eax, word ptr [rdi + 8]` | — | **read 16-bit only — the high half of the u32 is discarded.** Data must begin within 65,535 bytes of the chunk start | — |
+| `+0x08` dataOffset | `0x0037DAF5` `movzx eax, word ptr [rdi + 8]` | — | **read 16-bit only~~ — the high half of the u32 is discarded~~.** *(corrected 2026-10-02, OPUS: `+0x08` is a `u16` and `+0x0A` its own unread `u16` — §2.1's fence, audit note of 2026-09-05)* Data must begin within 65,535 bytes of the chunk start | — |
 | `+0x0C` | — | — | — | **yes — no instruction in the loader touches `[rcx+0xC]`**, and the 42-instruction body is complete |
 | record array | **`Shk1_FindByName` `0x0037DB80` reads the record NAMES** during the same load sequence, called from `SHKCTL_ResolveNames` `0x003DD120` | — | — | **not inert — CORRECTED 2026-09-05.** This row previously read *"yes, at load"*. True of the loader `FUN_0037da90`, which never reads `+0x10` onward — but misleading, because a sibling function reads the names in the same sequence. **The names are load-bearing; renaming a record breaks `section_010`'s link to it.** *(Corrected 2026-09-12: `Shk1_FindByName` is reachable only behind `0x0032F3D0`, which returns 0 in the shipped build — [section-010 §3](section-010.md#3-the-loader-contract) — so renaming a record breaks nothing and `section_010`'s authored index selects it.)* Durations and the channel table remain with no reader found |
 | curve `+0x00` byteLength | `0x0037DB1C` `movsxd rcx, dword ptr [rax]` | — | **read as *signed* 32-bit**, then `add rax, rcx` at `0x0037DB1F` | — |
@@ -269,7 +269,7 @@ one base pointer and builds one pointer array; the chunk is used in place therea
 
 ### The three limits a modder will actually hit
 
-- **`dataOffset` is truncated to 16 bits.** Declared `u32` at `+0x08` in §2.1 and read
+- **`dataOffset` is truncated to 16 bits.** Declared ~~`u32`~~ `u16` *(corrected 2026-10-02, OPUS: §2.1's fence, audit note of 2026-09-05)* at `+0x08` in §2.1 and read
   `movzx eax, word ptr [rdi + 8]` at **`0x0037DAF5`**, then `add rax, rdi` at `0x0037DB00`. The
   largest value in the shipped corpus is `0x4F0`, so no shipped file is anywhere near the ceiling —
   but a hand-built section whose record array pushes the data past 65,535 bytes will have its data
@@ -290,7 +290,7 @@ the engine's own tag `SHKDAT`** (the string at `0x00D109EC`). The registration l
 `FUN_003306e0`, which pairs the tag with the completion callback `FUN_003316b0` and pending-mask
 bit **`0x400`**. `FUN_003316b0` at `0x003316B0` calls this loader once the bytes have landed.
 
-Teardown is `FUN_0032ED70`: at `0x0032F027` it calls the unbind `FUN_0037da70`, then frees the
+Teardown is ~~`FUN_0032ED70`~~ `FUN_0032ED80` (`ActorResource_ResetManagerLoadState`) *(corrected 2026-10-02, OPUS: `0x0032ED70` is `or qword ptr [022C6E48 + mgr*8], 1`, a pending-bit setter, `0x0032ED70+0xA`)*: at `0x0032F027` it calls the unbind `FUN_0037da70`, then frees the
 chunk at `0x0032F059` and nulls the slot at `0x0032F060`.
 
 **There are exactly five shake manager slots.** `FUN_0037da70` opens with `cmp ecx, 5` / `jge` at
@@ -317,15 +317,15 @@ the same string table as the tags — and the game only ever reads them.
 | `0x0037DAB9` | `imul rsi, rax, 0x3d0` — the per-slot stride | ✅ |
 | `0x0037DAC4` | 16-bit read of `+0x04`, gate on non-zero | ✅ |
 | `0x0037DADD` | 16-bit zero-extended read of `+0x06` (`curveCount`) | ✅ |
-| `0x0037DAF5` | **16-bit read of the 32-bit `+0x08`** — the truncation | ✅ |
+| `0x0037DAF5` | **16-bit read of the ~~32-bit~~ `u16` `+0x08`** *(corrected 2026-10-02, OPUS: §2.1's fence)* ~~— the truncation~~ | ✅ |
 | `0x0037DB1C` | `movsxd` of the curve `byteLength` — the signed read | ✅ |
 | `0x0037DB22` | the loop bound against `curveCount` | ✅ |
 | `0x0037DA70` | unbind; carries the `cmp ecx, 5` slot bound | ✅ |
 | `0x0037D1F0` | runtime shake start — `slot * 0x3d0 + subSlot * 0xf0`, `-1` = none | ✅ entry and indexing arithmetic |
 | `0x003316B0` | `SHKDAT` stream-completion callback | ✅ |
-| `0x0033166F` | `btr rdi, 0xb` — clears pending-resource bit `0x400` | ✅ |
+| ~~`0x0033166F`~~ `0x00331715` | ~~`btr rdi, 0xb`~~ `btr rbx, 0xa` — clears pending-resource bit `0x400` *(corrected 2026-10-02, OPUS: `0x0033166F` is `test rdi, -2` in slot 10's handler, whose `btr rdi, 0xb` at `0x00331662` clears `0x800`; `FUN_003316b0` clears `0x400` at `0x00331715`)* | ✅ |
 | `0x003306E0` | `atelload` registration — pairs tag, callback and mask bit | partial — the `SHKDAT` block, call sites `0x00331406` and `0x00331705`; **never runs in this build** - the whole body sits behind its first size query, a kind-`0xFF` lookup that returns -1 (`00330F7D jle 003315E7`; OPUS `a31c65871`, 2026-09-29) |
-| `0x0032ED70` | teardown — unbind, free, null | partial — the `SHKDAT` block `0x0032F01B`–`0x0032F06A` |
+| ~~`0x0032ED70`~~ `0x0032ED80` | teardown — unbind, free, null *(corrected 2026-10-02, OPUS: `0x0032ED70` is `or qword ptr [022C6E48 + mgr*8], 1`, a pending-bit setter)* | partial — the `SHKDAT` block `0x0032F01B`–`0x0032F06A` |
 | `0x02ADD980` | per-slot chunk base, stride `0x3D0` | data |
 | `0x02ADD988` | per-slot curve pointer array | data |
 | `0x00D109EC` | the tag string `SHKDAT` | data |
@@ -413,8 +413,8 @@ files. One counterexample kills it; there are none.
 > names that has been found, `Shk1_FindByName`, is unreachable, and `section_010` binds by its authored index.
 
 > **Propagated correction, 2026-09-05.** `repos-4b`'s audit of the twin
-> [`section-010.md`](section-010.md) found `SHKCTL_ResolveNames` (`0x003DD120`), which resolves
-> `section_010`'s entries by **name** through `Shk1_FindByName` (`0x0037DB80`) — a reader of *this*
+> [`section-010.md`](section-010.md) found `SHKCTL_ResolveNames` (`0x003DD120`), which ~~resolves~~ would resolve
+> `section_010`'s entries by **name** *(corrected 2026-10-02, OPUS: its store never runs in the shipped build — `0x003DA27B` and `0x003DD1AB` pass kind 1 to `FUN_0032F3D0`, whose kind-1 arm ends in `0x005C5230` = `xor eax, eax; ret`, so the stores at `0x003DA28F` / `0x003DD1BF` never run; the 2026-09-12 note above)* through `Shk1_FindByName` (`0x0037DB80`) — a reader of *this*
 > section's record names. §3's record-array row is corrected above. **The loader contract itself is
 > unchanged**: every claim about `FUN_0037da90` was and remains a complete-body reading, and the
 > `0x0037DB80` bound (`< 5`) and stride (`0x3D0`) that `repos-4b` cite match what §3 already stated
@@ -479,9 +479,9 @@ both are already declared open in §7.
   295 curves. **A field nobody counted is not an invariant**, and here it was not even nearly one.
 - **What `FUN_003306e0` does with the section before the callback fires.** The registration block is
   read; the surrounding 984-instruction function is not.
-- **Whether `recordCount`'s upper 16 bits are meaningful.** The loader reads only the low half. No
-  shipped file has a non-zero upper half, so the corpus cannot say whether the field was ever
-  intended to be 32 bits wide.
+- **Whether `recordCount`'s upper 16 bits are meaningful.** The loader reads only the low half. ~~No~~
+  ~~shipped file has a non-zero upper half, so the corpus cannot say whether the field was ever~~
+  ~~intended to be 32 bits wide.~~ *(corrected 2026-10-02, OPUS: there is no upper half — `+0x06` is `curveCount`, read on its own at `0x0037DADD` `movzx ebx, word ptr [rdi + 6]` and non-zero (2..127) in all 113 `us` sections, read through `vbf_read_entry` from `FFXII_TZA.vbf`)*
 
 ## 8. Related
 

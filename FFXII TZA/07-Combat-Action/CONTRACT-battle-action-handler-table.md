@@ -162,8 +162,8 @@ class is native replay, not live.
 ## 14. Unresolved
 
 - **What the eight handlers do.** Two are opened here only far enough to establish `HT-3`; the
-  page's §8 decodes the locomotion sub-range and the rest is its open work.
-- Why 18 slots are empty, and whether any id in those gaps is ever issued.
+  page's §8 decodes the locomotion sub-range and the rest is its open work *(answered in part: see Action-Dispatch/battle-action-handler-table.md - AT-3, the `0x4021` wait handler, and AT-4 with section 10, the set/clear-status runs; 2026-10-02, OPUS)*.
+- ~~Why 18 slots are empty, and whether any id in those gaps is ever issued.~~ *(answered: AT-2, closed 2026-09-12 - rejected everywhere and never authored, Action-Dispatch/battle-action-handler-table.md section 4; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 

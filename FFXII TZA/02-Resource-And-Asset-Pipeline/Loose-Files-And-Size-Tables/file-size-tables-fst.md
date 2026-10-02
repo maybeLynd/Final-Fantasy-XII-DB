@@ -82,7 +82,7 @@ the format string at `00B56AC8`); then `fopen(path, "rb")` (`002E0415`–`002E04
 directory is the executable's `x64\`, so `../` reaches the install root. **The retail engine reads
 the table on every boot**; it is not an override-loader artefact.
 
-**Where the size goes.** `0032E620(kind, index, dest, id, …)` records the selector and index
+**Where the size goes.** `0032E620(kind, index, dest, ~~id~~ bytes, …)` *(corrected 2026-10-02, OPUS: the fourth argument is the byte count — `0032E870+0xBC` `mov dword ptr [r10 + 0x28], esi` stores it and `0032E620+0xF3` compares it with `0x80000`)* records the selector and index
 (`022C51D8` / `022C51DC`), copies the caller's `0x28`-byte descriptor, and hands the request to
 `0032E870`, which takes one of the **64 request slots** at `022C31C0` (`0x80` B each; the pool is
 initialised by `0032E450`) and links it onto the pending list; the size from this table becomes the
@@ -94,7 +94,7 @@ multiple of `0x800` rather than rounded up — the bias at `0032E8FC` is the sig
 becomes `0x800`. *Corrected 2026-09-21 (FABLE, `ASTRA-CONTRA-FABLE-RESOURCE-OFFSET-AND-COUNT`); the
 one-instruction difference between this and the genuine round-up in `0032E400` is on*
 [the queue page](../the-resource-request-queue.md). The queue itself — its six states, the chunked mode,
-the completion callback at slot `+0x48` — is read only far enough to place the size, and is
+~~the completion callback at slot `+0x48`~~ the done callback at slot `+0x40` and the cancel callback at `+0x48` *(corrected 2026-10-02, OPUS: `0032E330+0x6` loads `+0x40` and calls it with ok = 1; `+0x48` is called only on cancel, at `0032E070+0x106` in state 4 and `0032E2F0+0x6`)* — is read only far enough to place the size, and is
 **FZ-12**.
 
 ## 4. Key addresses

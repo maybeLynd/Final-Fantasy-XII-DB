@@ -130,13 +130,13 @@ the payload. `+0x08` = `0x9C` in `alc_a0100.ebp` resolves to section+0x9C, which
 
 ### The `option` block is a run of length-prefixed arrays
 
-`+0x60` through `+0x74` each point at an array whose **first byte is the element count**, followed
-by that many bytes. Censused over all 1,114 files, three of them have a **fixed** arity:
+~~`+0x60` through `+0x74` each point at an array whose **first byte is the element count**, followed~~
+~~by that many bytes.~~ `+0x60` through `+0x74` each point at a counted array, but not of one shape: `+0x64` is a count byte then that many bytes, while `+0x6C` and `+0x70` are a `u32` count then `u32` elements *(corrected 2026-10-02, OPUS: `002641FF` `cmp esi, dword ptr [rcx]` and `00264203` `mov ebx, dword ptr [rcx + rsi*4 + 4]` read `+0x6C`'s target as `{u32 count; u32 ref[]}`, and `+0x70`'s target is `05 00 00 00` then five ascending `u32` offsets in the shipped images; `+0x60`, `+0x68` and `+0x74` carry three zero bytes after the count in every file, so the data does not settle their width)*. Censused over all 1,114 files, three of them have a **fixed** arity:
 
 | field | first byte of target | reading |
 |---|---|---|
 | `+0x64` | **`3` in 1114/1114** | a 3-element authored option — `weatherProbability` |
-| `+0x6C` | **`1` in 1114/1114** | a 1-element authored option |
+| `+0x6C` | **`1` in 1114/1114** | ~~a 1-element authored option~~ `{u32 count = 1; u32 packedRef}`, the trap reference *(corrected 2026-10-02, OPUS: `002641FF` / `00264203`; the header map above, corrected 2026-09-12)* |
 | `+0x70` | **`5` in 1114/1114** | 5 entries, and these are 4-byte offsets rather than bytes |
 | `+0x68` | `2` in all 789 where non-zero | a 2-element option |
 | `+0x60`, `+0x74` | varies (0–15+) | variable-length authored lists |
@@ -281,18 +281,18 @@ text (sections 002/003) was. That is why a language-selected decoder is installe
 ### `weatherProbability` — where the glossary's `+0x64` actually points
 
 > **BW-4 answered 2026-09-12 (FABLE): the reading instruction is `002658EB`, and the three bytes are
-> availability flags to their one consumer, not chances against a roll.** `002658B0(idx)` reads
+> availability flags to ~~their one consumer, not chances against a roll~~ the transition chooser, and the current weather's own byte is a chance against a roll.** *(corrected 2026-10-02, OPUS: the survival roll is `0025ACA0`, below)* `002658B0(idx)` reads
 > the manager record at `02098E10` (version word `≥ 7` at `002658E5`), resolves its `+0x64`
 > reference through `ImageAddress_ResolveRuntimePointer` (`002658EE`) and returns `byte[table +
 > clamp(idx − 1, 0, 2) + 1]` (`002658F8`–`00265900`) — the arity-3 array behind its length byte,
-> indexed by weather 1..3. Its only caller is the transition chooser `0025ABA0` (`0025ABD4`,
-> `0025ABE4`, `0025AC05`, `0025AC11`, `0025AC30`): from the current weather it tests candidates'
+> indexed by weather 1..3. ~~Its only caller is~~ Its callers are `0025ACA0` (`0025ACCC`) and the transition chooser `0025ABA0` (`0025ABD4`,
+> `0025ABE4`, `0025AC05`, `0025AC11`, `0025AC30`, and `0025AC40`, `0025AC61`, `0025AC81` *(corrected 2026-10-02, OPUS: `retool.py callers 002658B0`, nine sites)*): from the current weather it tests candidates'
 > bytes **`> 0`** and picks the first available; when both alternatives are open the order is a
-> `RNG_MT19937_NextU32 % 100 < 50` coin (`0025ABB8`–`0025ABCB`), and the byte's *value* is never
-> compared to the roll. `0025ABA0` is called from `0025ACA0`, itself reached from the native-command
-> family (`002620E0`). So the field gates which weathers may follow the current one; the glossary's
-> "chance" is a misnomer for this consumer, and whether another reader weighs the values is not
-> established (the `+0x64` load census over `00260000`–`00280000` finds no other on this record).
+> `RNG_MT19937_NextU32 % 100 < 50` coin (`0025ABB8`–`0025ABCB`), ~~and the byte's *value* is never~~
+> ~~compared to the roll.~~ and the current weather's byte *is* compared to a roll before the chooser runs *(corrected 2026-10-02, OPUS: `0025ACA0` reads it at `0025ACCC`; `0` re-chooses (`0025ACD6`), `>= 100` keeps (`0025ACD8` `cmp edi, 0x64` / `jge`), otherwise `0025ACDD`–`0025ACEF` draw `00379CD0`, scale it to `0..99` (`imul rcx, rax, 0x64` / `shr rcx, 0x20`) and keep the weather when the draw is below the byte (`jb`); only a failed roll calls `0025ABA0` at `0025ACF3`)*. `0025ABA0` is called from `0025ACA0`, itself reached from the native-command
+> family (`002620E0`). So the field gates which weathers may follow the current one; ~~the glossary's~~
+> ~~"chance" is a misnomer for this consumer, and whether another reader weighs the values is not~~
+> ~~established~~ the glossary's "chance" is right for the current weather's byte, which `0025ACA0` weighs *(corrected 2026-10-02, OPUS: `0025ACD8`–`0025ACEF`, as above)* (the `+0x64` load census over `00260000`–`00280000` finds no other on this record).
 
 The [glossary](../../_index/GLOSSARY.md) records `weatherProbability` as *"authored per-slot chance
 the current slot survives the transition roll, script header `+0x64`"*. **This sheet locates it
@@ -311,7 +311,7 @@ In `alc_a0100.ebp`, `+0x64 = 0x114`, and section+0x114 is:
 ```
 
 `100 = 0x64`, which is exactly the decompiled form the category README quotes. Censused over the
-whole corpus the count byte is **`3` in 1,114 of 1,114 files**, and the value triples distribute as:
+whole corpus the count byte is **`3` in 1,114 of 1,114 files**, and the ~~value triples distribute as~~ eight most common of the 17 distinct triples are (1,087 of the 1,114 files) *(corrected 2026-10-02, OPUS: read through `vbf_read_entry` from `FFXII_TZA.vbf`; missing are `{30, 50, 20}` 9, `{80, 10, 5}` 5, `{0, 70, 30}` 4, `{1, 1, 1}` 4 and five single-file triples)*:
 
 | triple | files |
 |---|---:|
@@ -358,8 +358,8 @@ timings.
 >
 > Three more header offsets the loader leaves alone are read at runtime as **variable homes**:
 > `+0x38` (`image + tableOff38`, the `file` class, installed into the slot's `+0x40` by
-> `ActorSystem_InitializeManagerRuntime` at `0026D2F6`), `+0x40` (`image + tableOff40`, class 3, no
-> shipped script uses it) and the `+0x48` region (~~the name pool is only its start~~ the
+> `ActorSystem_InitializeManagerRuntime` at `0026D2F6`), `+0x40` (`image + tableOff40`, class 3, ~~no~~
+> ~~shipped script uses it~~ which no shipped variable descriptor uses, though 389 of the 1,114 scripts reach it through the tag-3 trap reference at `+0x6C` *(corrected 2026-10-02, OPUS: `002641B0` → `00265770` case 3 at `002657B2` = image + `[image + 0x40]`; 0 class-3 descriptors among 43,466 in the `+0x28` tables, read through `vbf_read_entry` from `FFXII_TZA.vbf`)*) and the `+0x48` region (~~the name pool is only its start~~ the
 > local-variable storage, `+0x44` bytes — the name pool is the next field, `+0x4C`; corrected
 > 2026-09-12: the `local` class
 > resolves `[slot + 0x50] + [[record + 0x40] + 0x1C]` through `00264E30`). So "not read at load"
@@ -387,7 +387,7 @@ The lookup is bounds-checked, and its shape is exact:
 00358A07  jb     0x358a0c                      ; out of range ->
 00358A09  xor    eax, eax                      ;   returns 0, silently
 00358A0C  movsxd rax, edx
-00358A0F  mov    eax, dword ptr [r8 + rax*8 + 8]  ; 8-byte stride, dword at entry+0
+00358A0F  mov    eax, dword ptr [r8 + rax*8 + 8]  ; 8-byte stride, dword at entry+0   <- corrected 2026-10-02, OPUS - entries start at +4 after the u32 count, so +8 + 8*id is the entry's SECOND dword (offsetWithinScript); the shipped tables put the name-pool offset first ('init', 'main'), BW-5 below
 ```
 
 **An out-of-range script id returns offset `0`, not an error** — so it starts executing at the image
@@ -494,7 +494,7 @@ Full-corpus scan of **all 10,036 valid `.ebp` containers** (every locale, 237,66
 builders pop three stack values; the third pop — the **first-pushed** argument — is the channel,
 stored into the descriptor at `002689B1` (the EF-2 narrowing). Only three channel-carrier opcodes
 ship: `REQ` (197,102 sites), `REQEW` (101,398) and `REQSW` (27,704); `FREQ`, `TREQ`, `FREQSW`,
-`TREQSW`, `FREQEW` and `TREQEW` never appear. `PREQ*`/`REQWAIT`/`REQCHG`/`REQCANCEL`/`REQALL`/`REQIALL`
+`TREQSW`, `FREQEW` and `TREQEW` never appear. `PREQ*`/`REQWAIT`/`REQCHG`/`REQCANCEL`~~/`REQALL`/`REQIALL`~~ *(corrected 2026-10-02, OPUS: `REQALL` and `REQIALL` pop a channel — `00261B6C` / `00261C69` `call 00267E10` into `[rsi + 0x26]` at `00261B80` / `00261C7D` — the correction that follows)*
 consume built entries and carry no new channel. ***Corrected 2026-09-24 (FABLE, Claude Opus 5.5) for
 `REQALL`/`REQIALL`:*** each pops **one channel** and submits fresh requests to a whole authored actor
 list. The channel is an immediate between 0 and 7 at all 51,511 shipped sites, so no `≥ 0x80` channel is
@@ -593,7 +593,7 @@ no-ops at 40% and 19% of their sites (and `REQALL` at 5%).
 | Is `+0x0C` really the source filename, or a name that merely looks like one? | **It matches the containing `.ebp`'s own filename stem in 1,114 of 1,114 files.** A coincidence would not survive 1,114 trials. |
 | Is `+0x64` the option value, or an offset to it? | **An offset.** The dword there is `0x114` in the sampled file — not a probability. Its *target* is `03 64 00 00`. The glossary's `+0x64` is right about the location and this sheet refines the encoding. |
 | Is the `3` at `+0x64`'s target a count, or the first data byte? | Fixed at `3` across **all 1,114** files while the following bytes vary freely, and `+0x6C`/`+0x70` are likewise fixed at `1`/`5`. A data byte that never varies while its neighbours do is a length. |
-| Could `weatherProbability` be a different option that also has three elements? | **Not fully excluded, and the sheet says so.** `+0x64` is the *only* header field with arity 3 in every file, and the glossary independently names `+0x64`. Two independent pointers to the same offset is strong, but the *reader* was not found — see §7. |
+| Could `weatherProbability` be a different option that also has three elements? | **Not fully excluded, and the sheet says so.** `+0x64` is the *only* header field with arity 3 in every file, and the glossary independently names `+0x64`. Two independent pointers to the same offset is strong~~, but the *reader* was not found — see §7.~~ *(answered: `002658B0` reads it at `002658EB` — BW-4 in §4; 2026-10-02, OPUS)* |
 | Is `+0x50` 16-bit or 32-bit? | **16-bit.** The instruction is `cmp word ptr` (`0026CD1A`), and the corpus agrees: as u16 it is a clean `-1`/`0`/small-positive sentinel field; as u32, 452 files are out of range. |
 | Is the header really 0x90, or is that one file? | Taking the minimum in-section offset over every offset field in every container returns **144 in all 1,114**. |
 | Did the decompiler invent the `+0x14` summation? | Read from raw instruction bytes at `0026CB7D`–`0026CBC1` out of the PE image, independently of the decompiler. |
@@ -607,8 +607,8 @@ no-ops at 40% and 19% of their sites (and `REQALL` at 5%).
   then walks is the
   [interpreter document](../../01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md)'s
   subject (100 opcodes, one-byte opcode, operand pre-decode at `0x0025E59D`).
-- **Who reads `weatherProbability` was not found.** `ActorManager_BindLoadedDefinitionPayload` does
-  **not** read `+0x64`; the consumer is in the weather subsystem and was not identified. So the
+- ~~**Who reads `weatherProbability` was not found.**~~ `ActorManager_BindLoadedDefinitionPayload` does
+  **not** read `+0x64`; ~~the consumer is in the weather subsystem and was not identified.~~ *(answered: `002658B0` reads it for the chooser `0025ABA0` and the survival roll `0025ACA0` — BW-4 in §4, corrected 2026-10-02; 2026-10-02, OPUS)* So the
   binding rests on (a) fixed arity 3 in all 1,114 files and (b) the glossary's independent
   attribution of `+0x64` — **not on a read instruction.** That is weaker than the rest of §3 and is
   marked as such. `PROPOSED-repos-1e-4`.

@@ -86,8 +86,8 @@ update.**
 
 ## 5. The award path (FABLE)
 
-- **By index — used by the achievement code:** the counter updater `00316A50` (twice), the periodic
-  checker `00315E90`, `003162E0`, `00316440` and `00352250` call `008632B0(index)`. That thunk fetches
+- **By index — used by the achievement code:** the counter updater `00316A50` (twice), ~~the periodic~~
+  ~~checker~~ the evaluator `00315E90` (run per id by the periodic sweep `00316930`) *(corrected 2026-10-02, OPUS: `00316930+0x109` calls it for ids 0–29)*, `003162E0`, `00316440` and `00352250` call `008632B0(index)`. That thunk fetches
   the manager (`0020CE00` = `mov rax, [01F83450]`), **returns if it is null**, and tail-jumps to
   `0020CE60(manager, index)`.
 - **`0020CE60`:**
@@ -158,8 +158,8 @@ receipt handlers award, and they award it exactly when every other entry is achi
 ## 9. What this contract does NOT establish (FABLE)
 
 - ~~Which achievement entry 0 is.~~ **Answered 2026-09-25:** descriptor slot 0 at `01DFE410` is `ACH_CHAMPION_IVALICE`, *Champion of Ivalice* ([`members/achievement-descriptors.tsv`](members/achievement-descriptors.tsv)), the all-achievements award. That is why only the receipt handlers ever award it.
-- Whether any caller re-issues an award that I-2 drops. The periodic checker `00315E90` is the
-  likely candidate, and it is not read for that here.
+- Whether any caller re-issues an award that I-2 drops. ~~The periodic checker `00315E90` is the~~
+  ~~likely candidate, and it is not read for that here.~~ Not the evaluator `00315E90`: it returns at once when the save block's award bit is set (`00315E90+0x4F`), and its award tail sets that bit before calling `008632B0`. `00316440` does re-issue one: when the save block's bit 13 is set and Steam's entry `0x13` reads unachieved through `00863280`, it calls `008632B0(0x13)` again (`00316440+0x9`..`+0x2D`). `003162E0`, which the sweep tail-jumps to, also tests `00863280` before its `008632B0` call (`003162E0+0x116`..`+0x123`); its condition is not read here *(answered: read 2026-10-02, OPUS)*.
 - ~~The `cmp ebx, 6` branch in `0020CB50`,~~ **Answered mechanically, 2026-09-29 (OPUS falsification pass 1):**
   - the by-id table at `00906290` has seven 12-byte rows, `{key1, key2, entry}`, whose entries are 31, 32, 34, 35, 36,
     37 and 38;
@@ -191,7 +191,7 @@ loop drives it.
 
 **CombatAction — CLIENT.** `00316440`, one of the by-index award callers, is itself called from the combat-action body `00305640`. The combat layer decides when; this subsystem transports.
 
-**Gameplay — CLIENT.** The periodic checker `00315E90` consults `00309EC0` before awarding.
+**Gameplay — CLIENT.** ~~The periodic checker~~ The evaluator `00315E90` (its mode-2 arm) *(corrected 2026-10-02, OPUS: the periodic sweep is `00316930`)* consults `00309EC0` before awarding.
 
 **ActorEntity — MECHANICAL.** `0034C9A0` (`startscene`) also calls `0032F240`, the registered-id lookup (read-only: enable byte `022C6D18+i`, id dword `022C6D28+4i`, else `-1`; it notifies nothing). That is unrelated to the award itself.
 

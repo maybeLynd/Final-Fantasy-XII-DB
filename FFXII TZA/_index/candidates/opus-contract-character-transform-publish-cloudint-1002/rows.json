@@ -1,0 +1,60 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-character-transform-publish.md",
+ "date": "2026-10-02",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "report": "contract-character-transform-publish.json",
+ "rows": [
+  {
+   "fn": "0034A3F0",
+   "text": "calls `0026AD40(rdx, 1)` and then tail-jumps `002E49B0(rdx, 0)`",
+   "anchors": [
+    [
+     "0034A3F9",
+     "mov"
+    ],
+    [
+     "0034A401",
+     "call"
+    ],
+    [
+     "0034A406",
+     "xor"
+    ],
+    [
+     "0034A410",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A860",
+   "text": "calls `00267DB0(r9)` three times and builds a stack array of four floats holding the third result, the second result, the first result and 1.0 (`01CEBBA8`) in that order; calls `0026AD40(rdx, 1)` and then `002E49B0(rdx, &array)`, under the stack-cookie check of `01F44830` and `00808C40`",
+   "anchors": [
+    [
+     "0034A884",
+     "movss"
+    ],
+    [
+     "0034A890",
+     "call"
+    ],
+    [
+     "0034A8B6",
+     "movss"
+    ],
+    [
+     "0034A8BF",
+     "call"
+    ],
+    [
+     "0034A8CC",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

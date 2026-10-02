@@ -256,7 +256,7 @@ uses **two** offsets:
 hdr  = *(void **)0x02EBF020;
 idx  = ImageAddress_ResolveRuntimePointer(hdr->offset_1C);   /* 0032A25A: [rax + 0x1C] */
 rows = ImageAddress_ResolveRuntimePointer(hdr->offset_0C);   /* 0032A2CC: [rax + 0x0C] */
-if ((unsigned)group > *(uint32_t *)hdr - 1) return 0;        /* 0032A26D: the count is at +0x00 */
+if ((unsigned)group > *(uint32_t *)hdr - 1) return 0;        /* 0032A26D: the count is at +0x00 */   /* <- corrected 2026-10-02, OPUS: the count is the first dword of the +0x1C list, *(uint32_t *)idx_list (0032A230+0x2A mov ecx, dword ptr [rax + 0x1c]; 0032A230+0x3D mov eax, dword ptr [rax] on the 0020E600 result) */
 lo = group ? idx[group - 1] : 0;                             /* 0032A28C: [r9 + rcx*4 + 4] */
 hi = idx[group];                                             /* 0032A291: [r9 + rsi*4 + 4] */
 if (lo >= hi) return 1;                                      /* an empty run */
@@ -268,8 +268,8 @@ for (i = lo; i < hi; ++i) {                                  /* 0032A300-0032A30
 ```
 
 **So it is a CSR-shaped table**: `idx[g-1]..idx[g]` delimits group `g`'s run of rows, the rows are
-`stride` bytes each, and the search key is the row's own leading `u16`. **Its count lives at `+0x00`,
-not at `+0x04`** — which is the header non-uniformity §8b already warns about, met here in the one
+`stride` bytes each, and the search key is the row's own leading `u16`. **Its count lives at ~~`+0x00`,~~ `+0x00` of the `+0x1C` group list,
+not at `+0x04`** *(corrected 2026-10-02, OPUS: `0032A230+0x2A` `mov ecx, dword ptr [rax + 0x1c]` and `0032A230+0x3D` `mov eax, dword ptr [rax]` on `0020E600`'s result; the header's own `+0x00` is the `st2e` magic)* — which is the header non-uniformity §8b already warns about, met here in the one
 place it matters most. Two callers: `0031EB20` and `0032A320`.
 
 ### `0x02EBF0A8` — an ordinary `st2e`-shaped table with a generated accessor pair
@@ -279,7 +279,7 @@ Two readers, and between them they are the whole convention:
 | function | size | what it is |
 |---|---:|---|
 | `003204B0` | 17 B | `Count()` — `return hdr ? *(uint32_t *)(hdr + 4) : 0` |
-| `00320B30` | 116 B | `Row(i)` — rejects `i < 0` and `i > count - 1`, resolves `hdr + 0x0C`, and returns `rows + *(uint16_t *)(hdr + 8) * i` |
+| `00320B30` | 116 B | `Row(i)` — rejects `i < 0` and `i > count - 1`, resolves `hdr + 0x0C`, and returns ~~`rows + *(uint16_t *)(hdr + 8) * i`~~ the row's leading dword, `*(u32 *)(rows + *(u16 *)(hdr + 8) * i)` *(corrected 2026-10-02, OPUS: `00320B30+0x58` `mov eax, dword ptr [rax]`, as the subtree table below says)* |
 
 **Both are called from exactly one function, `0037C2E0`**, which is itself called from exactly one,
 `0022B7E0`, and which selects among its arms on the byte at `02EBF3DC`. The caller census carries its
@@ -360,15 +360,15 @@ a base-plus-index scan keyed on the registry's own base, which is `AG-9`. *(2026
 | `0x02EBF138` | **action definition table**, ids `0`..`0x21E` (543) | ✅ read via consumers |
 | `0x02EBF190` | **battle system runtime state block**, >= 23 KB, mutable | ✅ read via consumers |
 | `003845F0` | `AreaData_BindAndRebaseSectionDescriptor` — binds and rebases slots | not read *(2026-09-30, SWE2-STRUCT for OPUS, DD batch 12: stale, read whole as `AG-12` in §8d)* |
-| `002383C0`–`002385A0` | 11 generated 39-byte slot setters, `0x30` apart | ✅ read |
+| ~~`002383C0`~~ `00238390`–`002385A0` | ~~11~~ 12 generated 39-byte slot setters, `0x30` apart *(corrected 2026-10-02, OPUS: `00238260+0x1D` names `00238390`, the setter for `0x02EBF1A0`, ahead of `002383C0`)* | ✅ read |
 | `00384160` | `Navigation_BindAndRebaseDataset` — same pattern, Movement | not read *(2026-09-30, SWE2-STRUCT for OPUS, DD batch 12: read on its owners' pages, [the navigation-mesh page](../06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md) and [the map control pack](../03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md))* |
 | — | `ImageAddress_ResolveRuntimePointer` | not read *(2026-09-30, SWE2-STRUCT for OPUS, DD batch 12: stale, `0020E600` is read whole on this page, "The resolver is three instructions")* |
 
 ## 4. Data structures and formulas
 
 ```
-Registry            0x02EBF008 .. 0x02EBF1F8
-  slot[i]  = *(void **)(0x02EBF008 + i * 8)        i = 0 .. 62
+Registry            0x02EBF008 .. 0x02EBF1F8   <- corrected 2026-10-02, OPUS: .. 0x02EBF200, 64 slots (00236C30+0x401 stores 0x02EBF200)
+  slot[i]  = *(void **)(0x02EBF008 + i * 8)        i = 0 .. 62   <- corrected 2026-10-02, OPUS: i = 0 .. 63
 
 Table header        at each slot pointer that IS an authored table (NOT universal - see 8b)
   +0x04   i32   entry count
@@ -410,7 +410,7 @@ This registry indexes *authored game content*. Different systems, different data
 - **Authored tables share one header** — count, stride, RVA. A generic reader can walk any of them
   once the slot is confirmed to be a table. **Check before assuming**: verify `+0x04` looks like a
   plausible count rather than a bitfield.
-- **Bounds are fail-closed.** An out-of-range index returns a miss, not garbage.
+- **Bounds are ~~fail-closed~~ per consumer.** ~~An out-of-range index returns a miss, not garbage.~~ The canonical row lookup tests neither the index nor a null table, and reads a null table at a near-null address; only the consumers that compare the index with the `+0x04` count fail closed *(corrected 2026-10-02, OPUS: `003876D0` multiplies the index at `003876D0+0x3B` with no compare, and on a null slot `003876D0+0x42` `xor ecx, ecx` is followed by `003876D0+0x44` `movzx eax, byte ptr [rcx + 9]`; the row-lookup contract §10)*.
 - **The RVA indirection means tables can move.** Never hardcode a row address; resolve through the
   slot.
 - **`0x02EBF190` and `0x02EBF138` are the highest-value unread targets** — 170 and 128 referencing
@@ -430,7 +430,7 @@ This registry indexes *authored game content*. Different systems, different data
       unread data in the database.**~~ **AG-1 WAS ALREADY ANSWERED BY THIS PAGE AND THE BOX WAS NEVER
       TICKED — closed 2026-09-13 (OPUS), stale checkbox, not new work.** §`0x02EBF138` reads it as the
       **action definition table**, Ghidra's `g_pActionDefinitionTableHeader`, ids `0`..`0x21E` (543)
-      at **720-byte rows**, confirmed through its consumers; §`0x02EBF190` reads it as **not a table
+      at ~~**720-byte rows**~~ **60-byte rows** *(corrected 2026-10-02, OPUS: the stride is the header's `u16 +8`, read at `002376F0+0x73` `movzx ecx, word ptr [rax + 8]`, and the section bound there, `battle_pack.bin` directory `+0x3C`, declares 543 x 60; 720 was a reference figure, not a size)*, confirmed through its consumers; §`0x02EBF190` reads it as **not a table
       at all** but the **battle system's runtime state block**, at least 23 KB, whose `+0x04` is a
       bitfield rather than a count — the counterexample that answered **AG-5**. The summary table at
       §4 already marks both **✅ read via consumers**.
@@ -683,8 +683,8 @@ rather than merely narrowed.
 
 ### A generated family of setters
 
-Eleven consecutive slots - `0x02EBF1A8` through `0x02EBF1F8` - each have a **39-byte** consumer, and
-those consumers sit at `0x002383C0`, `0x002383F0`, `0x00238420` ... `0x002385A0`: **exactly `0x30`
+~~Eleven~~ Twelve consecutive slots - ~~`0x02EBF1A8`~~ `0x02EBF1A0` through `0x02EBF1F8` - each have a **39-byte** consumer *(corrected 2026-10-02, OPUS: `00238390+0x1A` writes `0x02EBF1A0`; §5 of the AG-2 ruling below)*, and
+those consumers sit at `0x00238390`, `0x002383C0`, `0x002383F0`, `0x00238420` ... `0x002385A0`: **exactly `0x30`
 apart**. They are a generated family, and each one is a **setter**:
 
 ```c
@@ -779,7 +779,7 @@ identifier systems coexist, and nothing read so far connects them. **AG-10.**
 > `0x1D8`, `0x1E0`, `0x1E8`, `0x1F0`, `0x1F8`** — a contiguous run at the **top** of the span. That
 > is §8c's figure and it holds.
 >
-> **But `each has its own generated setter` is true of 11 slots out of 63**, and — the load-bearing
+> **But `each has its own generated setter` is true of ~~11 slots out of 63~~ 12 slots out of 64** *(corrected 2026-10-02, OPUS: setters `00238390`–`002385A0`, and `00236C30+0x401` stores the 64th slot `0x02EBF200`)*, and — the load-bearing
 > part — **not one of the eleven is an `.ard` category slot.** The five that
 > `BattleData_SetAreaArdSectionCategory` binds are `0x02EBF150`, `0x02EBF168`, `0x02EBF120`,
 > `0x02EBF148`, `0x02EBF140` (see the audit note in §2). **The setter family and the area-binder
@@ -813,12 +813,12 @@ identifier systems coexist, and nothing read so far connects them. **AG-10.**
 > (`002FF026`): `02EBF130` × `[rdi+4]` for a party-kind record, `02EBF120` × `[rdi+4]` for an
 > enemy-kind one.
 >
-> **What survives:** eleven slots have generated setters; those eleven are mutable and bound at
+> **What survives:** ~~eleven~~ twelve slots have generated setters *(corrected 2026-10-02, OPUS: `00238390` is the twelfth, for `0x02EBF1A0`)*; those ~~eleven~~ twelve are mutable and bound at
 > runtime; five different slots are bound by the `.ard` category dispatch; `0x02EBF118` has a
 > consumer that calls the area binder. **What does not survive is the word *the slots*** — used four
 > times in this subsection for four different populations.
 
-**Established, restated with its scope:** *eleven* slots (`0x02EBF1A8`–`0x02EBF1F8`) each have a
+**Established, restated with its scope:** ~~*eleven* slots (`0x02EBF1A8`–`0x02EBF1F8`)~~ *twelve* slots (`0x02EBF1A0`–`0x02EBF1F8`) *(corrected 2026-10-02, OPUS: `00238390+0x1A` writes `0x02EBF1A0`)* each have a
 generated 39-byte setter and are bound at runtime. *Five* slots (`0x02EBF150`, `0x168`, `0x120`,
 `0x148`, `0x140`) are bound by the `.ard` category dispatch at `0x0023A160`. `0x02EBF118` has a
 consumer that reaches `AreaData_BindAndRebaseSectionDescriptor`. **These are three findings about
@@ -851,8 +851,8 @@ three slot sets, and at least `0x02EBF130`, `0x02EBF170` and `0x02EBF190` belong
 >
 > **3. Below the hole: 34 slots installed STRAIGHT-LINE, and this is the population `0x02EBF130` and
 > `0x02EBF170` belong to.** The binder `0x00236C30` — already identified under **J-B** as the loader
-> id `0x13` `"STATIC"` delivery callback — contains **34 `lea <slot>` / `movsxd rdx, [rax + <field>]`
-> / `call 0x003845F0` triples in a row, with 34 DISTINCT field offsets and no loop**. The directory
+> id `0x13` `"STATIC"` delivery callback — contains **~~34~~ 33 `lea <slot>` / `movsxd rdx, [rax + <field>]`
+> / `call 0x003845F0` triples in a row, with ~~34~~ 33 DISTINCT field offsets and no loop**, plus two `call 0x003846F0` triples *(corrected 2026-10-02, OPUS: 33 `call 0x3845f0` and 2 `call 0x3846f0` sites in `00236C30`, the first at `00236C30+0x56` and `00236C30+0x109`)*. The directory
 > field offsets **ascend** (`+0x10`, `+0x14`, `+0x18`, `+0x1C`, `+0x24`, `+0x28`, …, `+0x118`) while
 > the slots they land in **do not** (`0F0B8`, `0F0A8`, `0F0B0`, `0F0C0`, `0F0E0`, `0F108`, `0F160`,
 > `0F110`, `0F038`, `0F130`, …). *That is the whole ruling in one sentence: the code walks an ORDERED
@@ -862,7 +862,7 @@ three slot sets, and at least `0x02EBF130`, `0x02EBF170` and `0x02EBF190` belong
 > `battle_pack.bin` directory entries CB-11 and §2.10 record.
 >
 > **So the type to declare is the DIRECTORY RECORD, not the band.** It is the thing with ordered
-> fields; the band is 63 separately-named globals that happen to be adjacent.
+> fields; the band is ~~63~~ 64 separately-named globals that happen to be adjacent *(corrected 2026-10-02, OPUS: `0x02EBF008`–`0x02EBF200`, the extent §2 corrected)*.
 >
 > **4. Five more binders, which is why "the binder" was singular too long.** Besides `0x00236C30`'s
 > 34, the address of a lower-run slot is taken in exactly five other bodies:
@@ -916,7 +916,7 @@ three slot sets, and at least `0x02EBF130`, `0x02EBF170` and `0x02EBF190` belong
 > only the five `.ard` slots**, and on every *area* change rather than every map: the area loader
 > unbinds and rebinds `0x02EBF150` / `0x168` / `0x120` / `0x148` / `0x140` whenever the outer area
 > folder changes, and sets them null when the new area ships no `.ard` ([the area-file loader](VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md) §1). The
-> eleven setter slots (`0x02EBF1A8`–`0x1F8`) are bound by their own runtime setters on their own
+> ~~eleven~~ twelve setter slots (~~`0x02EBF1A8`–`0x1F8`~~ `0x02EBF1A0`–`0x1F8`) *(corrected 2026-10-02, OPUS: `00238390+0x1A` writes `0x02EBF1A0`)* are bound by their own runtime setters on their own
 > cadence, `0x02EBF178` is published by the main loop (AG-4), and every other slot — the
 > `battle_pack.bin` tables — is bound **once**, when the STATIC delivery callback runs `00236C30`
 > at boot, and never rebound ([the row-lookup contract](CONTRACT-authored-table-row-lookup.md) §14, J-B). So a reconstruction rebinds five slots per
@@ -952,7 +952,7 @@ void BattleData_SetAreaArdSectionCategory(int section_category, int section_imag
 }
 ```
 
-**Four `.ard` section categories** (`0`, `1`, `2`, `3`) are dispatched explicitly, and the section is
+**~~Four~~ Five `.ard` section categories** (`0`, `1`, `2`, `3`, `4`) *(corrected 2026-10-02, OPUS: `0023A160` dispatches categories 0 to 4, and category 4 binds `02EBF140` at `0023A160+0x18`; the audit note in §2)* are dispatched explicitly, and the section is
 passed as an **image address**, not a pointer - which is the same encoding the row RVAs use.
 
 The binder's local variables are typed `runtime_pointer_low32` and `encoded_image_address`,
@@ -1025,7 +1025,7 @@ Reference *signature* changes partway through the array, and the change is sharp
 |---|---|---|
 | `0x02EBF008` – `0x02EBF170` | many reads + exactly **one** `LEA` (address taken once, by the binder), **no writes** | the pointer registry proper — **46 slots** |
 | `0x02EBF178` – `0x02EBF1A0` | writes present, reads sparse or absent | ~~not pointer slots~~ — corrected 2026-09-11: `178`, `180` and `1A0` hold pointers (*the tail read*, below) |
-| `0x02EBF1A8` – `0x02EBF1F8` | uniform **2 reads + 1 write** each, `CMP` common | ~~a run of scalar state, not tables~~ — corrected 2026-09-11: the completion words of the twelve board requests (*the tail read*, below) |
+| `0x02EBF1A8` – `0x02EBF1F8` | uniform **2 reads + 1 write** each, `CMP` common | ~~a run of scalar state, not tables~~ — corrected 2026-09-11: ~~the completion words of~~ the loaded-board pointers of the twelve board requests (*the tail read*, below) *(corrected 2026-10-02, OPUS: the setters store the buffer address `00384420+0x99` puts in the descriptor's `+8`)* |
 
 Two documented exceptions inside the clean run: `0x02EBF0D0` (one read, no `LEA`) and `0x02EBF158`
 (one write).
@@ -1045,7 +1045,7 @@ have nothing; the upper bound is a fade rather than an edge.
 ### Independent corroboration of the action table
 
 Slot `0x02EBF138` is documented as the **action definition table, ids `0`..`0x21E` (543)**. It
-carries **720 references**, the second-highest in the array. Separately, and for unrelated reasons,
+carries ~~**720 references**~~ **723 references** *(corrected 2026-10-02, OPUS: 722 reads and one `lea` over every function body, the count the slot census and the upper-slot pass below give)*, the second-highest in the array. Separately, and for unrelated reasons,
 `BattleUnit_CommitAction` (`0030F760`) was read on 2026-09-02 during the AH-6 pass and gates its
 action id with:
 
@@ -1061,7 +1061,7 @@ this kind.
 
 | Slot | Refs | Character |
 |---|---:|---|
-| `0x02EBF138` | 720 | action definitions |
+| `0x02EBF138` | ~~720~~ 723 *(corrected 2026-10-02, OPUS: 722 reads and one `lea`)* | action definitions |
 | `0x02EBF190` | 318 | runtime state block (§8b) |
 | `0x02EBF0F8` | 272 | equipment definitions |
 | `0x02EBF118` | 130 | — |
@@ -1119,7 +1119,7 @@ invalid rather than crashing.
 | class | slot | | class | slot | | class | slot |
 |---:|---|---|---:|---|---|---:|---|
 | 1 | `02EBF130` + re-dispatch | | 12 | `02EBF0D0` | | 23 | `02EBF110` |
-| 2 | `02EBF130` | | 13 | `02EBF090` **+ `02EBF088` + `02EBF080`** | | 24 | `02EBF110` |
+| 2 | `02EBF130` | | 13 | `02EBF090` **+ `02EBF088` + `02EBF080` + `02EBF078`** *(corrected 2026-10-02, OPUS: `00322C50+0x21E` reads the fourth)* | | 24 | `02EBF110` |
 | 3 | `02EBF120` | | 14 | `02EBF070` | | 25 | `02EBF038` |
 | 4 | `02EBF150` | | 15 | `02EBF068` | | 26 | `02EBF118` |
 | 5 | `02EBF100` | | 16 | `02EBF060` | | 27 | `02EBF050` |
@@ -1131,8 +1131,8 @@ invalid rather than crashing.
 | 11 | `02EBF0D8` | | 22 | `02EBF110` | | | |
 
 **Sharing is real and asymmetric:** `02EBF110` serves classes 22–24, `02EBF068` serves 15, 30 and 31,
-`02EBF138` serves 19 and 20, `02EBF038` serves 25 and 32. **Class 13 is composite** — it reads three
-slots and a `0x8000` constant, so its id space is partitioned across tables rather than bounded by one.
+`02EBF138` serves 19 and 20, `02EBF038` serves 25 and 32. **Class 13 is composite** — it reads ~~three~~ four
+slots *(corrected 2026-10-02, OPUS: `02EBF078` too, read at `00322C50+0x21E` and summed at `00322C50+0x22D`)* and a `0x8000` constant, so its id space is partitioned across tables rather than bounded by one.
 **Class 1 additionally calls `00309440` and re-enters the dispatch**, the function's only loop.
 
 ### What this does and does not license
@@ -1202,7 +1202,7 @@ interior addresses of `00322C50` for the same reason: switch arms are not functi
           (class 11) is the gambit target definitions; `02EBF0D0` (class 12) is §`0x02EBF0D0` above.
       - **Registered with no class**, named the same way: `02EBF018` `battle_message`, `02EBF0B8` `damagemp_data`,
         `02EBF0A8` `jochumodel_data` (empty), `02EBF0C0` `drop`, `02EBF108` `hpmpbase_data`, `02EBF160` `commandpack`
-        (AY-12), `02EBF020` `tutorial_data`, `02EBF0A0` `yugoyaku_data`, `02EBF078` `s_daiji_data` (empty), `02EBF048`
+        (AY-12), `02EBF020` `tutorial_data`, `02EBF0A0` `yugoyaku_data`, `02EBF078` `s_daiji_data` (empty) *(corrected 2026-10-02, OPUS: it is class 13's fourth table, read at `00322C50+0x21E`)*, `02EBF048`
         `shoki_data`, `02EBF028` `savemember_data`, `02EBF030` `saveparty_data`, `02EBF170` `word` (the text banks),
         `02EBF010` `move_support` and `02EBF008` `movie`.
       - **The names corroborate the roles already read.** Every table whose role this database had established lands on
@@ -1952,8 +1952,8 @@ levels of nested offsets; the consumers are the shop menu's list builder and the
 `setshopname`. [The shop table page](../12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md) declares the slot.
 
 **`02EBF180` — the weapon-class map** (directory `+4`). The binder stores this directory dword
-directly (`00236C70`–`00236C74`), the only slot it fills without
-`AreaData_BindAndRebaseSectionDescriptor`; the `us` section is `{u16 stride 1, u16 count 23}` and
+directly (`00236C70`–`00236C74`), ~~the only slot it fills without~~
+~~`AreaData_BindAndRebaseSectionDescriptor`~~ one of four slots it fills without `AreaData_BindAndRebaseSectionDescriptor` - `0x02EBF200` is stored the same way, and `02EBF160` / `02EBF170` go through `003846F0` *(corrected 2026-10-02, OPUS: `00236C30+0x401` stores `0x02EBF200`; `00236C30+0x109` and `00236C30+0x3BA` call `003846F0`)*; the `us` section is `{u16 stride 1, u16 count 23}` and
 23 bytes: `00 01 04 03 0C 0D 06 09 08 00 08 07 07 09 0A 0B 00 0E 0F 00 0F 05 02`. Its readers
 index it by an **equipment row's category byte `+0x26`**: `003203B0(id, &out)` resolves a
 `0x1000`-class id to its `02EBF0F8` row (`003203C3`–`00320408`), takes `+0x26` when the row's kind
@@ -1999,7 +1999,7 @@ each offset and size and advancing the cursor by the size rounded up to four (`0
 (`0032453C`–`00324558`). Nothing reads the slot by address. What sets state 1 and fills the 301
 ids, and who reads the blob, is **FZ-8**.
 
-**`02EBF1A0`–`02EBF1F8` — the completion words of twelve board requests** (M-7 answered; corrected the same day).
+**`02EBF1A0`–`02EBF1F8` — ~~the completion words of~~ the loaded-board pointers of twelve board requests** *(corrected 2026-10-02, OPUS: `00384420+0x99` writes the buffer address into the descriptor's `+8`; the 2026-09-30 correction below)* (M-7 answered; corrected the same day).
 `BattleStorage_InitializeWorkArrays` clears the twelve and calls `00238260(k)` for k = 0 … 11
 (`00236A17`–`00236A24`). `00238260` builds the twelve setters' addresses on its stack
 (`0023827D`–`00238300`: `00238390` + `0x30·k`), and if slot k is empty (`00238319`–`00238327`) and

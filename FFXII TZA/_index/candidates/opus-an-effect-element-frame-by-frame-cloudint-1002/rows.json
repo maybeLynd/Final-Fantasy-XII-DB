@@ -1,0 +1,45 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Gc8PZstMPLLqppwXDU6yKq",
+ "report": "an-effect-element-frame-by-frame.json",
+ "rows": [
+  {
+   "fn": "002F3890",
+   "text": "copies dword `+0x1F0` of `rcx` to `+0x1F4`; when qword `+0x10` is non-null, calls a 44-byte helper with that qword and then a 377-byte routine with a stack copy of the 16 bytes at `+0x60` as both `rcx` and `rdx` and takes the vector from that stack copy, otherwise takes the 16 bytes at `+0x60` unchanged; then moves the 16 bytes at `+0x70` to `+0x80` and stores the taken vector at `+0x70`; wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`)",
+   "anchors": [
+    [
+     "002F38AE",
+     "mov"
+    ],
+    [
+     "002F38C7",
+     "call"
+    ],
+    [
+     "002F38D6",
+     "call"
+    ],
+    [
+     "002F38EA",
+     "movdqa"
+    ],
+    [
+     "002F38F2",
+     "movdqa"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002F3890",
+   "was": "copies dword `+0x1F0` of `rcx` to `+0x1F4`; when qword `+0x10` is non-null, calls `0039AF70(qword +0x10)` and then `00398F90` with a stack copy of the 16 bytes at `+0x60` as both `rcx` and `rdx`, otherwise uses the 16 bytes at `+0x60` unchanged; then moves the 16 bytes at `+0x70` to `+0x80` and stores that vector at `+0x70`; wrapped in the stack-cookie check (`01F44830`, `00808C40`)",
+   "now": "copies dword `+0x1F0` of `rcx` to `+0x1F4`; when qword `+0x10` is non-null, calls a 44-byte helper with that qword and then a 377-byte routine with a stack copy of the 16 bytes at `+0x60` as both `rcx` and `rdx` and takes the vector from that stack copy, otherwise takes the 16 bytes at `+0x60` unchanged; then moves the 16 bytes at `+0x70` to `+0x80` and stores the taken vector at `+0x70`; wrapped in the stack-cookie check (`01F44830`, `__security_check_cookie`)",
+   "why": "'stores that vector at +0x70' read as the old +0x70 vector: 002F3890+0x62 stores xmm1 (the stack copy loaded at 002F3890+0x4B or +0x60 loaded at 002F3890+0x52) while the old +0x70 (xmm0) goes to +0x80 at 002F3890+0x5A; pass-22: callee(s) outside the page's layer renamed by ledger name or role (calls at 002F3890+0x37, 002F3890+0x46, 002F3890+0x6F)"
+  }
+ ]
+}

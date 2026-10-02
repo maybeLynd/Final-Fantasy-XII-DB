@@ -36,7 +36,7 @@ audit:
 > The machine's record is 12 bytes: an encoded actor pointer, a pending id, the state byte, the slot, and a part
 > counter. The work it sequences is:
 > 1. hide the actor;
-> 2. release what the old definition loaded and request what the new one needs, in four part slots;
+> 2. release what the old definition loaded and request what the new one needs, in ~~four part slots~~ the element slots *(answered: six elements, one enum, UQ-49 2026-09-16; 2026-10-02, OPUS)*;
 > 3. wait for each request's ready bit and apply it;
 > 4. place the actor and activate its battle unit;
 > 5. show the actor again.
@@ -59,7 +59,7 @@ A script that issues `partyallread` blocks (its poll is `0034E3E0`) until every 
 party read-in record            12 bytes; three statics are known (§2.2)
   +0x00  u32   actor            encoded image pointer (RuntimePointer_EncodeImageAddress 0020E620);
                                 resolved each call by ImageAddress_ResolveRuntimePointer - null -> return 1 at once
-  +0x04  u32   pending handle   the requested entry's handle (002EAE20 -> 002E9810), written by states 1 (0037B720) and 19 (0037BEA8)
+  +0x04  u32   pending handle   the requested entry's handle (002EAE20 -> 002E9810), written by states 1 (0037B720) and 19 (0037BEA8)   <- corrected 2026-10-02, OPUS: also by states 7, 10 and 13 (0037B95F, 0037BA5A, 0037BB62) and at 0037BDF9, 0037BE31, 0037BE6B, 0037BEC9
   +0x08  u8    state | flag     low 7 bits: state 0..23; bit 7 preserved by every transition (and byte, 0x80 | N)
   +0x09  i8    slot             party slot, -1 when the slot index was negative (0037C206 / 0037C7B9)
   +0x0A  u8    part counter     zeroed at setup; counts the two passes of states 13-15 (0037BBEA)
@@ -71,7 +71,7 @@ party read-in record            12 bytes; three statics are known (§2.2)
 | entry | record | how |
 |---|---|---|
 | `partyallread` `0x3EB` begin `0034CCD0` → `0037C980` | `02EBF3F0` | allocates a `ScheduledTaskRecord` (`002F16B0` → `022BDEC0 + slot × 0x48`, declared 2026-09-18) whose `+0x10` tick callback is **`0037C730`**, start slot `02EBF3FE` = 0, step `02EBF3FD` = +1; then `00233CF0` |
-| `partyallread2` `0x46F` begin `0034D8B0` → `0037CA00` | `02EBF3F0` | the same task, start slot 3, step −1 (`0037CA56`, `0037CA5D`) |
+| `partyallread2` `0x46F` begin `0034D8B0` → `0037CA00`; also `summontopartyread` `0x207` result `0034FE80` (`0034FE99`) *(corrected 2026-10-02, OPUS: `0037CA00`'s second caller)* | `02EBF3F0` | the same task, start slot 3, step −1 (`0037CA56`, `0037CA5D`) |
 | `summonread` `0x203` result `0034E1F0` → `0037CA80` | `02EBF3F0` | start 0, step +1, and `02EBF3FC` = 0 where the other two set 1; also reached from `0031A300`, `00324380`, `003261D0`, `003273D0` (`PartyConfiguration_SetSelectorsAndReconcileRoster`) |
 | the world tick `World_UpdateSimulationTick` `00314020` (`00314291`) → `0037C1A0` | `02EBF3D0` | for each set bit of the slot mask `02EBF3E0`, loads the slot's actor (`PartyRoster_GetActorBySlot`), fills the record, and runs the machine (`0037C28D`); `02EBF3DE` holds a slot in progress across frames |
 | `setupbattle` `0x56` end `003523B0` | caller's | calls the machine through the thunk `0037B4C0` (`00352402`) |
@@ -157,7 +157,7 @@ call (`0037BDC3` → `0037B55C`). A wait jumps to `0037C0F4` and returns 0.
       - *The element map.* SecondaryContext is a **`0x30`-stride element array, six deep** at `+0x00`–`+0xF0` —
         two elements beyond the previously proven four (`002E96D0` / `002E3110` compute `scx + (sub+4)*0x30` →
         `+0xC0`/`+0xF0`; `002EBC90` computes `scx + sel*0x30` for sel ∈ {4,5} → the same two). Each element carries
-        `entryId` (`+0x00`, −1 sentinel / low word = index into the `0x740` record pool at `022C6F28`), the bound
+        `entryId` (`+0x00`, −1 sentinel / low word = index into the `0x740` record pool ~~at `022C6F28`~~ whose base pointer is held at `022C6F28` *(corrected 2026-10-02, OPUS: `003EC3F0 add rbx, qword ptr [022C6F28]`)*), the bound
         resource id (`+0x04`, returned by `002E96D0`), a record pointer (`+0x08`), visibility nibble (`+0x10`
         high bits, written by `002EBC90`) and the selector byte (`+0x12`, element 0's written by `002EC6B0`).
       - *The k-enum is one enum, not "four slots".* `002E96D0`/`002E3110` share it: **k=0 → el `+0x30`, k=1 →

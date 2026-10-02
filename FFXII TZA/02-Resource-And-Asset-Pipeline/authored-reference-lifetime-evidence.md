@@ -1319,7 +1319,7 @@ paragraphs are untouched.
 
 - **CoreRuntimeScheduling — CLIENT and MECHANICAL.**
   - The arena initialiser `00369D30` (`"TKMALLOC EXECSPACE=%02d/START ADRS=%p"`) is run by the 978-byte boot initialiser.
-  - `0024D540` is run by `MainLoop_UpdateAndRenderFrame`.
+  - `0024D540` is run by `MainLoop_UpdateAndRenderFrame` and by `0022B0B0` and `0022BC20` *(corrected 2026-10-02, OPUS: three direct callers, `0022B0B0+0xE1`, `0022B8C0+0x67` and `0022BC20+0x4F`; this line named one)*.
   - `0032E520` is run by boot modes 0 and 1 (255 B and 219 B).
   - The arena functions `0036A100` / `0036A1A0` / `0036A490` / `0036A570` / `0036ACE0` / `0036AE00` use the
     resolver / encoder pair, which is MECHANICAL.

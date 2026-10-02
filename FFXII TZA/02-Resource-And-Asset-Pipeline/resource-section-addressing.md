@@ -197,7 +197,7 @@ Globals
 
 resolve(h)  [003AB7F0]:  h == 0            -> 0
                          (h & 3) == 0      -> h                (a raw pointer)
-                         else              -> r = 0036B130(h); r <= 0x40 ? 0 : r
+                         else              -> r = 0036B130(h); r <= 0x40 ? 0 : r   <- corrected 2026-10-02, OPUS: the test is unsigned(sext(low32(r))) <= 0x40, not the full pointer (003AB7F0+0x41 movsxd rcx, eax; 003AB7F0+0x44 cmp rcx, 0x40; 003AB7F0+0x48 cmovbe rax, rbx)
 0036B130(h):  h (32-bit) >= 0x100000 and (h & ~3) != 0  ->  [(h & ~3) + 8] + 0x40   else 0
 0051EE00(inline) = resolve(inline.q_08)      ; mode 0's "inline data" carries the handle at entry+0x18
 
@@ -323,13 +323,13 @@ find the *entry*; these functions find a *section inside* an entry.
       not data. `0051F9F0` stores it from a `.text` immediate, and only three descriptors exist, embedded in the render
       root at `+0x000`, `+0x060` and `+0x0F0`, with strides `0x50`, `0xC0` and `0x260`. The path this row reads
       (`002ED610`) takes its descriptor from `[resolved + 0xD98]`, and `0041E3E5` stores `root + 0x60` there. The same
-      path then reads the row's `+0x84` (`002ED670`), which rules out the `0x50` family. So these rows are **`0xC0`
-      bytes**.
+      path then reads the row's `+0x84` (`002ED670`), which rules out the `0x50` family. So ~~these rows~~ the rows `002ED610` reads are **`0xC0`
+      bytes**; the resource entries this box asks about are the `[+0xD90]` bank's, whose stride is `0x50` (`RenderResourceEntry`) *(corrected 2026-10-02, OPUS: the J-3 refresh `0041E500+0x10` loads `[rcx+0xD90]` for `00409F70`; `0041E3A0+0x3E` stores `root + 0` there and `0041E3A0+0xA2` hands it to `00409F10`, whose `00409F10+0x13` is `mov edx, 0x50`; `[+0xD98]` gets stride `0xC0` at `0046E250+0x22`)*.
       **ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5), from the type store:** the full layout is declared as
       `RenderStrideC0Element` (`0xC0`, rows of `RenderStrideC0Bank` at root `+0x60`; `_types/fields.tsv`). Every byte
       from `+0x000` to `+0x0BF` has a row: the flags and sentinel indices, the five encoded relative pointers, a
       4 × 4 local transform at `+0x40`, the skeleton reference `+0x94`, and the unobserved spans named as such. The
-      `0x50` family (root `+0x000`) is a different descriptor, and its rows are not this box's.
+      `0x50` family (root `+0x000`) is a different descriptor, and its rows are ~~not this box's~~ this box's resource entries *(corrected 2026-10-02, OPUS: the mode-1 entries the J-3 refresh re-resolves are the `0x50` rows, as corrected above)*.
 - [x] ~~The set of real section tags used by the game, and their meanings. **J-5.**~~ **Measured
       2026-09-12 (FABLE) over every `@FRP` container in the archive** — the 3,164 `.ca`, the 1,066
       `.cm` and the **9,909 containers embedded in the 4,392 `.mot` packs** (`PKFL` files whose
@@ -401,7 +401,7 @@ this pass stands.
 pFVar5 = section_header + 1;      /* pointer arithmetic on the 0x30-byte type */
 ```
 
-so the iteration stride **is** `0x30`. The size no longer rests on a Ghidra type having a number in
+so ~~the iteration stride **is** `0x30`~~ the header is `0x30` bytes, but the walk steps a 4-byte DWORD offset table that starts there, and each section sits at `+0x30` plus its offset *(corrected 2026-10-02, OPUS: `00409780+0x13E` `lea r11, [r10 + 0x30]`, `00409780+0x15D` `add r11, 4`, and `00409780+0x148` `add ecx, 0x30` / `00409780+0x14D` `add ecx, r10d` locate each section)*. The size no longer rests on a Ghidra type having a number in
 its name.
 
 ### NEW: the container has a magic, and `@`-prefixed tags are reserved
@@ -419,8 +419,8 @@ if (section_header->dwRawSectionTag == 0x50524640) {     /* bytes "@FRP" */
 descriptor**, not a section: tag `@FRP`, a variant field at `+0x04` that must be `0` **or `1`** —
 the finder's next test (`0040982F`) accepts `1` and then takes its offset table from `+0x40`
 instead of `+0x30`, which 1,195 shipped `.ca` files use ([the container page](../17-Presentation-Rendering/Model-And-Motion-Formats/frp-object-container.md);
-corrected 2026-09-11 from "must be `0`") — and the **section count at `+0x0C`**. Real sections
-begin at `+0x30` (variant 0) or `+0x40` (variant 1).
+corrected 2026-09-11 from "must be `0`") — and the **section count at `+0x0C`**. ~~Real sections~~
+~~begin at `+0x30` (variant 0) or `+0x40` (variant 1).~~ The DWORD offset table begins at `+0x30` (variant 0) or `+0x40` (variant 1), and each real section at that position plus its dword *(corrected 2026-10-02, OPUS: `00409780+0xD9` `lea r11, [r10 + 0x40]` and `00409780+0xE7` `lea ecx, [rax + 0x40]`, and the `+0x30` pair at `00409780+0x13E` / `00409780+0x148`)*.
 
 Together with the wildcard tag `@ALL`, this shows a convention the document did not state:
 **a tag beginning `@` is reserved** — `@FRP` marks the container, `@ALL` means "any section". An

@@ -1,0 +1,74 @@
+# item 1 - arena backing sources (static). run: item1_arena_backing.py at 8c1f67c0d
+
+## M1 raw E8/E9/jcc sites of the initializer 00369D30
+  call   0022A2AE in 0022A0B0
+  call   0022A2CB in 0022A0B0
+  call   0022A2E7 in 0022A0B0
+  call   0022A304 in 0022A0B0
+  call   0022A321 in 0022A0B0
+  call   0022A33E in 0022A0B0
+  call   0022A35B in 0022A0B0
+  call   0022A377 in 0022A0B0
+  call   0022A394 in 0022A0B0
+  jmp    0025AA21 in 0025A990
+  jmp    0025AAC1 in 0025AA30
+  call   0037B43D in 0037B3D0
+  call   003E9AEF in 003E9AA0
+  aligned sites: 13
+  absolute-qword copies of 00369D30 in the file: 0
+  RVA-dword copy at file offset 1C598C4: RUNTIME_FUNCTION begin (next dword = end RVA 249D5A, i.e. an unwind entry)
+  RVA-dword copy at file offset 1C598F8: RUNTIME_FUNCTION begin (next dword = end RVA 249D5A, i.e. an unwind entry)
+  RVA-dword copy at file offset 1E80E14: RUNTIME_FUNCTION begin (next dword = end RVA 249D5A, i.e. an unwind entry)
+  rip-relative operands resolving to 00369D30: 0
+
+## M2 writers of the enable mask 022D89B8 (rip operand census, all 38161 listed bodies)
+  00369DE7 in 00369D30  mov dword ptr [rip + 0x1f6ebca], r9d   (width 4)
+  0036D169 in 0036D160  and dword ptr [rip + 0x1f6b849], eax   (width 4)
+
+## M3 per call: id, block source, size, slots
+  0022A2AE in 0022A0B0  id=0x2  size=0x1dc0000  slots=0x10
+      block: global 01FD49F8 <- rax of call 0x36d240 at 0022A1E1 (request ecx=0x1dc0010) stored at 0022A1EB
+  0022A2CB in 0022A0B0  id=0x3  size=0xd20000  slots=0x100
+      block: global 01FD4A00 <- rax of call 0x36d240 at 0022A1F2 (request ecx=0xd20100) stored at 0022A1FC
+  0022A2E7 in 0022A0B0  id=0x4  size=0x100000  slots=0x10
+      block: global 01FD4A08 <- rax of call 0x36d240 at 0022A203 (request ecx=0x100010) stored at 0022A20D
+  0022A304 in 0022A0B0  id=0x5  size=0x1c0000  slots=0x100
+      block: global 01FD49F0 <- rax of call 0x36d240 at 0022A214 (request ecx=0x1c0100) stored at 0022A21E
+  0022A321 in 0022A0B0  id=0x6  size=0x6c00000  slots=0x400
+      block: global 01FD4A10 <- rax of call 0x36d240 at 0022A225 (request ecx=0x6c00400) stored at 0022A22F
+  0022A33E in 0022A0B0  id=0x7  size=0x3000000  slots=0x100
+      block: global 01FD4A30 <- rax of call 0x36d240 at 0022A236 (request ecx=0x3000100) stored at 0022A240
+  0022A35B in 0022A0B0  id=0x8  size=0x2000000  slots=0x100
+      block: global 01FD4A38 <- rax of call 0x36d240 at 0022A247 (request ecx=0x2000100) stored at 0022A251
+  0022A377 in 0022A0B0  id=0x9  size=0x1200000  slots=0x10
+      block: global 01FD4A40 <- rax of call 0x36d240 at 0022A258 (request ecx=0x1200010) stored at 0022A262
+  0022A394 in 0022A0B0  id=0xb  size=0x400000  slots=0x100
+      block: global 01FD4A18 <- rax of call 0x36d240 at 0022A269 (request ecx=0x400100) stored at 0022A26E
+  0025AA21 in 0025A990  id=0xd  size=0x100000  slots=0x0
+      block: global 02099DD0 <- rax of call 0x36a190 at 0025A9DA (request ecx=0x100000) stored at 0025A9DF
+  0025AAC1 in 0025AA30  id=0xe  size=0x19000  slots=0x0
+      block: global 02099DD8 <- rax of call 0x36a190 at 0025AA7A (request ecx=0x19000) stored at 0025AA7F
+  0037B43D in 0037B3D0  id=0xb  size=mov r8d, ebx  slots=0x100
+      block: rax of call 0036D240 at 0037B420 (request ecx=mov ecx, ebx)
+  003E9AEF in 003E9AA0  id=0xc  size=mov r8d, edi  slots=0x0
+      block: rax of call 0036A190 at 003E9AC9 (request ecx=mov ecx, edi); selection push 0036C1D0(arena=cmovns ebx, category=5) at 003E9AC2
+  C1 boot ids: ['0x2', '0x3', '0x4', '0x5', '0x6', '0x7', '0x8', '0x9', '0xb']
+
+## M4 the producers
+  0036D240: movsxd rcx, ecx | or r8d, 0xffffffff | xor edx, edx | jmp 0x85e730
+  0036D250: test rcx, rcx | jne 0x19c590 | ret 
+  0036A190: mov edx, 1 | jmp 0x36a1a0
+  thunk 0085E730: jmp qword ptr [rip + 0x64409] -> IAT slot 008C2B40 = ('api-ms-win-crt-heap-l1-1-0.dll', 'malloc')
+  thunk 0019C590: jmp qword ptr [rip + 0x7265b1] -> IAT slot 008C2B48 = ('api-ms-win-crt-heap-l1-1-0.dll', 'free')
+  raw sites of the shim 0036D240: 0022A1E1 in 0022A0B0, 0022A1F2 in 0022A0B0, 0022A203 in 0022A0B0, 0022A214 in 0022A0B0, 0022A225 in 0022A0B0, 0022A236 in 0022A0B0, 0022A247 in 0022A0B0, 0022A258 in 0022A0B0, 0022A269 in 0022A0B0, 0022A27A in 0022A0B0, 0022A28B in 0022A0B0, 0037B420 in 0037B3D0
+  raw sites of the free shim 0036D250: 0037B419 in 0037B3D0
+
+## M5 arena 12's caller 003E9AA0 and verb 0395
+  raw sites of 003E9AA0: jmp 0034D0AD in 0034D080
+  raw sites of 0034D080: none
+  absolute qword 0034D080 at file offset 1DD2FC0
+  decompiled US corpus: 1114 scripts; setexpandvoicememory calls: 2
+    byu_z9900.txt: setexpandvoicememory(-1, 0x100000);
+    rrp_z9900.txt: setexpandvoicememory(-1, 0x100000);
+
+FAILS 0 []

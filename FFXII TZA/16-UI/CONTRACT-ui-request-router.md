@@ -16,7 +16,7 @@ verified_against:
     route; the cell population in §5 is an image-wide rip-relative sweep
     (`_index/candidates/fable_ripband.py`).
 last_reviewed: 2026-09-29
-falsification_passes: 0
+falsification_passes: 0   # <- corrected 2026-10-02, OPUS - the body records Falsification pass 1 (2026-09-29, OPUS)
 audit:
   passes: 1
   last_pass: 2026-09-29
@@ -96,7 +96,7 @@ All three return **0**. They are three different states of the subsystem.
 
 | # | refusal | where | what it means |
 |---|---|---|---|
-| **R-a** | the **latch**: `02092734 == 1` | `00254B71`, before any policy read | a generic request is already open |
+| **R-a** | the **latch**: `02092734 == 1` | `00254B71`, before any policy read | ~~a generic request is already open~~ a request posted with flag 1 is open *(corrected 2026-10-02, OPUS: `00252B40` stores its second argument in `02092734`, and `00254B50+0x2A` refuses every id while it is 1; callers passing 1 include request 3 `0035D980+0xCA`, request 24's widget `0035D6B0+0x175`, `0027EFA0+0x35`, `0035C960+0xA9` and `003F4E70+0x19C`)* |
 | **R-b** | the **policy**: the requested bit is set in the inhibit mask | `00254BC1 bt` | the game currently forbids this operation |
 | **R-c** | the **root is busy**: `*(0209AC30) + 0xB8` or `+ 0xC0` is non-null | `00280A1A`, `00280A28` — *inside* `00280A00`, after the router passed it | a generic request widget is still mounted |
 

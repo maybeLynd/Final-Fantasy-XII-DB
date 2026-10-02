@@ -29,9 +29,32 @@ Modes:
              is incoherent OR a .dirty mark is present; else stamps checked_at
              and reports UNCHANGED (the controller cadence hook)
   check      verify the output set exists, carries the live fingerprint
-             coherently, and every stamped member agrees (CURRENT/STALE/
-             INCOMPLETE/MISSING, exit 0/1/2)
+             coherently, every stamped member agrees, and live bytes equal
+             the CURRENT generation's manifest (CURRENT/STALE/INCOMPLETE/
+             MISSING, exit 0/1/2)
   status     print the one-line state
+  export <z> export exactly the CURRENT pinned generation to a verified ZIP
+  verify-zip <z> label a ZIP VERIFIED/UNVERIFIED (a hand-made or
+             generation-mixed ZIP is never CURRENT)
+
+Checkpoint-10 R3 repair contract (asserted by test_progress_report.py):
+  * consumed sources are fingerprinted over their COMPLETE bytes - a page
+    reader consumes whole bodies, so a checkbox past the frontmatter window
+    still moves the fingerprint;
+  * input validation splits MISSING / EMPTY / INVALID - a legitimately
+    empty required file is reported as empty, never conflated with
+    malformed nonempty text;
+  * page-only obligations are rows, not just counts: file + line anchor,
+    stable locator, requirement text, owner, reviewer, discriminator and
+    the deduplication links to any register ids the box names;
+  * publications run through gfz-scripts/generation.py - one .partial
+    generation is committed atomically into the store CURRENT pointer and
+    the live outputs become a verified copy of it, so the whole last
+    COMPLETE generation survives any failure; the source preimage is
+    rechecked at the final cutover;
+  * export is exactly one generation: `export <zip>` pins CURRENT,
+    verifies every member against its manifest, and `verify-zip` labels a
+    hand-made or generation-mixed ZIP UNVERIFIED, never CURRENT;
 
 Checkpoint-10 repair contract (asserted by test_progress_report.py):
   * terminal-sequence evidence comes from accepted receipts -- PROGRAM-STATE's
@@ -58,7 +81,7 @@ Checkpoint-10 repair contract (asserted by test_progress_report.py):
   * `.dirty` forces regeneration even when the fingerprint is unchanged; the
     marker is consumed by the watchdog only after a successful run.
 """
-import argparse, hashlib, json, os, re, subprocess, sys, tempfile
+import argparse, hashlib, json, os, re, shutil, subprocess, sys, tempfile
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -66,7 +89,26 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent          # _index/progress/
 DB = HERE.parents[1]                            # Database/FFXII TZA/
 ROOT = DB.parents[1]                            # repo root
-PARSER_VERSION = 5                              # bump on any parse-rule change
+PARSER_VERSION = 7                              # bump on any parse-rule change
+
+# The coherent-generation store (OPUS's generation.py, adopted under
+# OPUS-REQ-DATA-ADOPT-GENERATION-LIB): each publication is one generation -
+# declared input snapshots + outputs + MANIFEST.json - and the live files are
+# a verified copy of CURRENT. The store lives in the ignored work tree; its
+# generations carry full input snapshots and are self-verifying on export.
+WORK = ROOT / "Database" / "Tools" / "work"
+STORE_ROOT = WORK / "progress-generations"
+# The consumed document tree's preimage (relpath + full sha256 per doc),
+# written just before a build begins and declared as a generation input so a
+# committed generation/export carries exactly what the docs hashed to.
+DOCSIG = WORK / "progress-doc-signature.txt"
+GEN = None
+try:
+    sys.path.insert(0, str(ROOT / "Database" / "Tools" / "analysis-kit"
+                             / "gfz-scripts"))
+    import generation as GEN  # noqa: E401
+except Exception:
+    GEN = None
 
 REQUIRED_INPUTS = [                             # missing -> INCOMPLETE
     "_index/OPEN-QUESTIONS.md",
@@ -341,6 +383,21 @@ def _reviewer_of(t):
     return "UNKNOWN"
 
 
+_CHORE_ID = re.compile(r"-(PUB|PUBLISH|CHECKPOINT)-")
+
+
+def _is_chore(t):
+    """A board task that is a coordination step, not a knowledge obligation
+    (FABLE CROSSWALK-MEANINGS R6, DASHBOARD-MEANINGS §2 'board tasks are not
+    packages'): publication leases (`@publication` resource or `-PUB-` id) and
+    checkpoint chores. They are still reported - under the chores section,
+    never inside the deduplicated route."""
+    if any(isinstance(r, dict) and r.get("key") == "@publication"
+           for r in t.get("resources", [])):
+        return True
+    return bool(_CHORE_ID.search(str(t.get("id", ""))))
+
+
 def parse_board(path):
     """TEAM.json -> identity + open package list."""
     try:
@@ -365,7 +422,8 @@ def parse_board(path):
     pk = []
     for t in open_sorted:
         blocked_by = [d for d in t.get("dependencies", []) if d not in done]
-        disc = "external/runtime" if t.get("kind") == "runtime" else \
+        disc = "chore:coordination" if _is_chore(t) else \
+               "external/runtime" if t.get("kind") == "runtime" else \
                "blocked by " + ",".join(blocked_by) if blocked_by else \
                "waiting-review" if t.get("kind") == "contradiction" else \
                "research"
@@ -379,6 +437,26 @@ def parse_board(path):
                    "acceptance": str(t.get("completion", ""))[:140],
                    "evidence": str(evidence)[:160],
                    "blocked_by": blocked_by, "discriminator": disc})
+    # R5 (CROSSWALK-MEANINGS): a work item's reviewer is the ASSIGNEE of the
+    # review request that names it - join each package id to the review tasks
+    # whose target / dependencies / reviews record name it. The requester is
+    # still never a reviewer; the named review assignment is.
+    reviewer_for = {}
+    for rt in tasks:
+        rv_agent = rt.get("assigned_to") or rt.get("agent")
+        if not rv_agent:
+            continue
+        if not isinstance(rt.get("reviews"), dict) \
+                and "-REVIEW-" not in str(rt.get("id", "")):
+            continue
+        hay = json.dumps([rt.get("target"), rt.get("dependencies"),
+                          rt.get("question"), rt.get("reviews")])
+        for p in pk:
+            if p["id"] and p["id"] in hay:
+                reviewer_for.setdefault(p["id"], rv_agent)
+    for p in pk:
+        if p["reviewer"] == "UNKNOWN":
+            p["reviewer"] = reviewer_for.get(p["id"], "UNKNOWN")
     return {"identity": {"revision": b.get("revision"),
                          "epoch": b.get("recovery_epoch"),
                          "phase": b.get("phase")},
@@ -386,8 +464,94 @@ def parse_board(path):
             "total": len(tasks), "tasks": tasks}
 
 
+def _transfer_rows(db):
+    """One route row per batch-K transferred obligation (CROSSWALK-MEANINGS
+    R1 - 'N obligations checked' is a check result, not the debt). The ruling
+    record itself is the source: class-1 rows went to a named measuring
+    instrument (destination owner = that page's declared owner); class-2 rows
+    went to a named carrier task (destination owner = the task's board
+    owner)."""
+    p = (db / "_index" / "candidates" / "register-triage"
+         / "batch-K-scope-rulings.md")
+    rows = []
+    if not p.exists():
+        return rows
+    carrier_owner = {}
+    try:
+        b = json.loads((db / "_index/_inbox/TEAM.json")
+                       .read_text(encoding="utf-8"))
+        for t in b.get("tasks", []):
+            carrier_owner[t.get("id")] = (
+                t.get("assigned_to") or t.get("agent") or "UNASSIGNED")
+    except Exception:
+        pass
+    cls = None
+    seen = set()
+    text = p.read_text(encoding="utf-8", errors="replace")
+    for line in text.splitlines():
+        m = re.match(r"^##\s+Class\s+(\d)", line)
+        if m:
+            cls = int(m.group(1))
+            continue
+        if not line.startswith("|") or cls not in (1, 2):
+            continue
+        cells = [c.strip() for c in CELL.split(line) if c.strip()]
+        if not cells or cells[0] == "row" or re.match(r"^[-\s]+$", cells[0]):
+            continue
+        rid = cells[0]
+        if not re.match(r"^[A-Z]+-\d+", rid) or rid in seen:
+            continue
+        seen.add(rid)
+        if cls == 1:
+            dest = cells[-1].strip("`")
+            pm = re.search(r"([\w./-]+\.(?:md|tsv|csv|py))", dest)
+            owner = _page_owner(db, pm.group(1)) if pm else "UNKNOWN"
+            action = "population now measured by the named instrument"
+        else:
+            dest = (cells[1] if len(cells) > 1 else "").strip("`")
+            owner = carrier_owner.get(dest, "UNKNOWN")
+            action = "residue carried by the named board task"
+        rows.append({"id": rid, "locator": "register:%s" % rid,
+                     "transfer_class": cls, "destination": dest[:140],
+                     "destination_owner": owner, "next_action": action})
+    # Extension rulings below the two canonical tables transfer more rows as
+    # `- **ID** - <ruling text>` bullets. Each such bullet whose text names a
+    # class-1 closure, a SUPERSEDED-onto destination, or a residue route is a
+    # transferred obligation too (R1: every transferred row listed).
+    bullets = re.split(r"(?m)^-\s+(?=\*\*[A-Z]+-\d)", text)
+    for blk in bullets:
+        m = re.match(r"\*\*([A-Z]+-\d+[a-z]?)\*\*\s*[-\u2014]?\s*(.*)",
+                     blk.lstrip("- "), re.S)
+        if not m:
+            continue
+        rid, btext = m.group(1), m.group(2)
+        if rid in seen or not re.search(
+                r"(?i)class.1|superseded onto|residue routes|routed to|"
+                r"carrier", btext):
+            continue
+        seen.add(rid)
+        pm = re.search(r"`([^`\n]+\.(?:md|tsv|csv|py))`", btext)
+        tm = re.search(r"`([A-Z][A-Z0-9]*(?:-[A-Z0-9]+){2,})`", btext)
+        if pm:
+            dest, owner = pm.group(1), _page_owner(db, pm.group(1))
+        elif tm:
+            dest = tm.group(1)
+            owner = carrier_owner.get(dest, "UNKNOWN")
+        else:
+            dest, owner = "see ruling record", "UNKNOWN"
+        c1 = bool(re.search(r"(?i)class.1", btext))
+        rows.append({"id": rid, "locator": "register:%s" % rid,
+                     "transfer_class": 1 if c1 else "ext",
+                     "destination": dest[:140],
+                     "destination_owner": owner,
+                     "next_action": "routed per the extension ruling - the "
+                                    "named carrier keeps the residue"})
+    return rows
+
+
 def parse_transfers(db):
-    """transfer_audit obligations: (problems, checked) via the instrument."""
+    """transfer_audit obligations: (problems, checked) via the instrument,
+    plus one listed row per transferred obligation (R1)."""
     try:
         sys.path.insert(0, str(ROOT / "Database" / "Tools" / "analysis-kit"
                                  / "gfz-scripts"))
@@ -395,10 +559,12 @@ def parse_transfers(db):
         problems, checked = transfer_audit.audit(str(db),
                                                  str(db / "_index/_inbox/TEAM.json"))
         return {"engine": "transfer_audit.audit", "obligations": len(checked),
-                "untracked": len(problems), "problems": problems[:20]}
+                "untracked": len(problems), "problems": problems[:20],
+                "checked_ids": list(checked), "rows": _transfer_rows(db)}
     except Exception as e:
         return {"engine": "UNMEASURED (%s)" % type(e).__name__,
-                "obligations": None, "untracked": None, "problems": []}
+                "obligations": None, "untracked": None, "problems": [],
+                "checked_ids": [], "rows": []}
 
 
 def parse_route_links(db):
@@ -472,7 +638,16 @@ def parse_page_boxes(db):
                     its row.
 
     UNMEASURED when the instrument or register is unreadable - a missing
-    reader must not read as zero obligations."""
+    reader must not read as zero obligations.
+
+    CKPT10R3: every unticked box is also published as an OBLIGATION ROW in
+    `obligations` carrying file + line anchor, a stable locator, the
+    requirement text, the page's declared owner (UNKNOWN when the page
+    declares none), reviewer UNKNOWN, a discriminator and the explicit
+    dedup links to whatever register ids the box names - a box with no
+    register id or a file the index cannot see never waives the work; the
+    class column keeps page-local / mis-marked-closed / live-row residue
+    populations distinct."""
     try:
         sys.path.insert(0, str(ROOT / "Database" / "Tools" / "analysis-kit"
                                  / "gfz-scripts"))
@@ -486,19 +661,56 @@ def parse_page_boxes(db):
     out = {"engine": "check_questions.read_boxes",
            "no_id": 0,
            "no_id_untracked": 0 if tracked is not None else None,
-           "closed_id": 0, "open_id": 0}
-    for rel, _line, ticked, ids, _text in boxes:
+           "closed_id": 0, "open_id": 0, "obligations": []}
+    owners = {}
+    for rel, line, ticked, ids, text in boxes:
         if ticked:
             continue
         if not ids:
             out["no_id"] += 1
+            cls = "page-local"
             if tracked is not None and rel not in tracked:
                 out["no_id_untracked"] += 1
+                cls = "page-local-untracked"
         elif any(reg.get(i, "OPEN") not in closed for i in ids):
             out["open_id"] += 1
+            cls = "live-row-residue"
         else:
             out["closed_id"] += 1
+            cls = "mis-marked-closed"
+        if rel not in owners:
+            owners[rel] = _page_owner(db, rel)
+        out["obligations"].append({
+            "file": rel,
+            "anchor": "%s#L%d" % (rel, line),
+            "locator": "register:" + ",".join(ids) if ids
+                       else "page:%s#L%d" % (rel, line),
+            "requirement": re.sub(r"\s+", " ", str(text or ""))[:140]
+                           or "MISSING",
+            "owner": owners[rel],
+            "reviewer": "UNKNOWN",
+            "class": cls,
+            "named_ids": list(ids),
+            "dedup": ["register:%s" % i for i in ids] or ["none"],
+            "discriminator":
+                "untracked page - the index cannot see it"
+                if cls == "page-local-untracked"
+                else "no register row - page-local" if cls == "page-local"
+                else "names %s (%s)" % (",".join(ids), cls)})
     return out
+
+
+def _page_owner(db, rel):
+    """The owning page's declared owner from frontmatter (`owner_layer:` or
+    `owner:`), else UNKNOWN - ownership is never guessed."""
+    try:
+        head = open(db / rel, encoding="utf-8", errors="replace").read(3000)
+    except OSError:
+        return "UNKNOWN"
+    m = re.search(r"^(?:owner_layer|owner)\s*:\s*(.+)$", head, re.M)
+    if not m:
+        return "UNKNOWN"
+    return m.group(1).strip().strip("`") or "UNKNOWN"
 
 
 def count_system_docs(db):
@@ -562,6 +774,37 @@ def terminal_audit(db):
             "required_consecutive": 30}
 
 
+_PKG_STAGES = ["research", "evidence-ready", "review", "repair",
+               "incorporation", "accepted-and-incorporated", "dispositioned"]
+
+
+def completion_packages(db):
+    """Completion packages by stage (DASHBOARD-MEANINGS §2: board tasks are
+    not packages - packages carry the stage vocabulary of
+    _index/completion-packages/README.md). Each PKG-*.md declares its stage
+    on the `**stage.**` line (the earliest non-adjacent item stage). Absent
+    directory or field -> UNMEASURED, never zero."""
+    d = db / "_index" / "completion-packages"
+    rec = {"engine": "pkg stage scan", "packages": [], "by_stage": {},
+           "state": "UNMEASURED"}
+    if not d.is_dir():
+        rec["engine"] = "UNMEASURED (no _index/completion-packages)"
+        return rec
+    for f in sorted(d.glob("PKG-*.md")):
+        try:
+            text = f.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        m = re.search(r"\*\*stage\.\*\*\s*`?([A-Za-z][\w-]*)", text)
+        stage = m.group(1) if m else "UNMEASURED"
+        if stage not in _PKG_STAGES:
+            stage = "UNMEASURED"
+        rec["packages"].append({"id": f.stem, "stage": stage})
+        rec["by_stage"][stage] = rec["by_stage"].get(stage, 0) + 1
+    rec["state"] = "CURRENT"
+    return rec
+
+
 def parity_status(db):
     """Parity certification from PARITY-STATUS.md ('N of M pilots certified').
     Absent or unparseable -> UNMEASURED; never implied PASS."""
@@ -583,14 +826,17 @@ def _sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _doc_signature(db):
-    """Hash the consumed document surface: each non-index document's path
-    plus the first 4000 bytes (the frontmatter window) - INCLUDING root-level
-    documents such as the AUDIT-PASS* artefacts terminal_audit() consumes
-    (CKPT10R2 C2: every consumed source is fingerprinted; the generated
-    PROGRESS.md is the only exclusion). A document appearing, disappearing,
-    or frontmatter-editing moves the fingerprint."""
-    h = hashlib.sha256()
+def _doc_preimage(db):
+    """Full preimage of the consumed document surface: one
+    'relpath<TAB>sha256<TAB>size' line per .md under the database root
+    (excluding _* dirs), INCLUDING root-level documents such as the
+    AUDIT-PASS* artefacts terminal_audit() consumes. Hashes cover COMPLETE
+    file bytes - the page readers (read_boxes, doc counts) consume whole
+    bodies, so an edit deep in a document, e.g. an unticked box past byte
+    4000, must invalidate the fingerprint (CKPT10R3: the frontmatter window
+    alone was not the consumed surface). PROGRESS.md is a generated OUTPUT -
+    hashing it would make the fingerprint self-referential."""
+    lines = []
     for dp, dns, fns in os.walk(db):
         rel = os.path.relpath(dp, db).replace(os.sep, "/")
         top = rel.split("/")[0]
@@ -600,19 +846,28 @@ def _doc_signature(db):
             if not fn.endswith(".md"):
                 continue
             p = os.path.join(dp, fn)
-            # PROGRESS.md is a generated OUTPUT - hashing it would make the
-            # fingerprint self-referential (every commit would invalidate it).
             if os.path.abspath(p) == os.path.abspath(str(PROGRESS)):
                 continue
+            r = os.path.relpath(p, db).replace(os.sep, "/")
             try:
-                with open(p, "rb") as f:
-                    head = f.read(4000)
+                raw = open(p, "rb").read()
+                lines.append("%s\t%s\t%d" % (
+                    r, hashlib.sha256(raw).hexdigest(), len(raw)))
             except OSError:
-                head = b""
-            h.update(os.path.relpath(p, db).replace(os.sep, "/").encode())
-            h.update(b"\x00")
-            h.update(head)
-            h.update(b"\x00")
+                lines.append("%s\tUNREADABLE\t-1" % r)
+    lines.sort()
+    return lines
+
+
+def _doc_signature(db):
+    """Signature over the consumed document tree's full preimage. write_all()
+    commits the same preimage into the generation store, so a committed
+    generation/export carries exactly what every consumed document hashed
+    to."""
+    h = hashlib.sha256()
+    for ln in _doc_preimage(db):
+        h.update(ln.encode("utf-8"))
+        h.update(b"\n")
     return h.hexdigest()
 
 
@@ -629,10 +884,17 @@ def fingerprint(db):
         h.update((_sha(db / rel) or "MISSING").encode())
     h.update(b"docs:")
     h.update(_doc_signature(db).encode())
-    for name in ("check_questions.py", "transfer_audit.py"):
+    for name in ("check_questions.py", "transfer_audit.py", "generation.py"):
         h.update(name.encode())
         h.update((_sha(ROOT / "Database" / "Tools" / "analysis-kit"
                        / "gfz-scripts" / name) or "MISSING").encode())
+    # completion-packages are consumed content (stage counts land in
+    # PROGRESS.md); they live under _index so the doc preimage skips them.
+    pd = db / "_index" / "completion-packages"
+    if pd.is_dir():
+        for f in sorted(pd.glob("PKG-*.md")):
+            h.update(f.name.encode())
+            h.update((_sha(f) or "MISSING").encode())
     try:
         j = json.loads((db / "_index/_inbox/TEAM.json")
                        .read_text(encoding="utf-8"))
@@ -650,40 +912,67 @@ def missing_inputs(db):
     return [rel for rel in REQUIRED_INPUTS if not (db / rel).exists()]
 
 
-def input_problems(db):
-    """(missing, invalid) required inputs. A present-but-empty or unparseable
-    required input is INVALID: "missing or invalid required evidence cannot
-    become zero CURRENT work" (CKPT10R2 C3) - an empty file is never a
-    schema-valid register. A *cleared* register still parses: a .tsv keeps
-    its header, a .md keeps a heading or table, TEAM.json keeps "tasks" - so
-    the test is structural, never "has rows"."""
-    missing, invalid = [], []
-    for rel in REQUIRED_INPUTS:
+def input_states(db):
+    """Per-declared-input structural state (CKPT10R3): ``missing`` is absent;
+    ``empty`` is a zero-byte file - reported as a DISTINCT state from
+    ``invalid`` (nonempty but unreadable/unparseable text) so the report can
+    never conflate "legitimately empty" with "malformed". ``present`` parses
+    for the input's class - a *cleared* register still parses (a .tsv keeps
+    its header, TEAM.json keeps "tasks"), so the test is structural, never
+    "has rows". Optional inputs get states too; only required states block."""
+    states = {}
+    for rel in INPUTS:
         p = db / rel
         if not p.exists():
-            missing.append(rel)
+            states[rel] = {"state": "missing"}
             continue
         try:
             if p.stat().st_size == 0:
-                invalid.append("%s (empty file)" % rel)
+                states[rel] = {"state": "empty"}
                 continue
             if rel.endswith(".json"):
                 j = json.loads(p.read_text(encoding="utf-8"))
                 if rel.endswith("TEAM.json") and \
                         not isinstance(j.get("tasks"), list):
-                    invalid.append("%s (no 'tasks' list)" % rel)
+                    states[rel] = {"state": "invalid",
+                                   "reason": "no 'tasks' list"}
+                else:
+                    states[rel] = {"state": "present"}
             else:
-                text = p.read_text(encoding="utf-8",
-                                   errors="replace")
+                text = p.read_text(encoding="utf-8", errors="replace")
                 if not text.strip():
-                    invalid.append("%s (whitespace only)" % rel)
+                    states[rel] = {"state": "invalid",
+                                   "reason": "whitespace only"}
                 elif rel.endswith(".tsv") \
                         and "\t" not in text and "|" not in text:
                     # a .tsv with no delimiter on any line is truncated or
                     # misnamed - a cleared register still keeps its header
-                    invalid.append("%s (no delimiter structure)" % rel)
+                    states[rel] = {"state": "invalid",
+                                   "reason": "no delimiter structure"}
+                else:
+                    states[rel] = {"state": "present"}
         except (OSError, ValueError):
-            invalid.append("%s (unreadable or unparseable)" % rel)
+            states[rel] = {"state": "invalid",
+                           "reason": "unreadable or unparseable"}
+    return states
+
+
+def input_problems(db):
+    """(missing, invalid) required inputs. A present-but-empty or unparseable
+    required input is INVALID: "missing or invalid required evidence cannot
+    become zero CURRENT work" (CKPT10R2 C3) - an empty file is never a
+    schema-valid register, but it is reported as the EMPTY state, distinct
+    from malformed nonempty text (CKPT10R3; input_states keeps the split)."""
+    missing, invalid = [], []
+    for rel, st in input_states(db).items():
+        if rel not in REQUIRED_INPUTS:
+            continue
+        if st["state"] == "missing":
+            missing.append(rel)
+        elif st["state"] == "empty":
+            invalid.append("%s (empty file)" % rel)
+        elif st["state"] == "invalid":
+            invalid.append("%s (%s)" % (rel, st["reason"]))
     return missing, invalid
 
 
@@ -793,6 +1082,7 @@ def build(db):
     term = terminal_audit(db)
     parity = parity_status(db)
     links = parse_route_links(db)
+    pkgs = completion_packages(db)
     reopened = sum(1 for t in board.get("tasks", [])
                    if re.search(r"reopen", str(t.get("note", "") or "")
                                 + str(t.get("checkpoint", "") or ""), re.I)
@@ -921,9 +1211,38 @@ def build(db):
         "transfers": transfers,
         "page_boxes": page_boxes,
         "route_links": links,
+        "completion_packages": pkgs,
+        # DASHBOARD-MEANINGS §1: every emitted measure declares its axis, so a
+        # consumer can never merge axes into one blended state. A measure the
+        # adapter cannot decide emits UNMEASURED, never a zero.
+        "meanings": {
+            "vocabulary": "DASHBOARD-MEANINGS s1 axes + s2 outcomes",
+            "populations": {
+                "oq_register": "s2 obligation outcomes - separate counts, "
+                               "never summed",
+                "unidentified_oq": "s2 obligation outcomes - separate "
+                                   "register, never merged",
+                "page_boxes": "s2 obligations - page-local/register/"
+                              "closed-row populations stay distinct",
+                "transfers": "s2 TRANSFERRED - residue moved with the row",
+                "l2_verdicts": "scoped-L2 verdicts - not s1 behavior, not "
+                               "DB_GOAL",
+                "system_documents": "inventory-adjacent proxy "
+                                    "(program_coverage rule) - not system "
+                                    "coverage",
+                "board_tasks": "coordination load - not packages, not "
+                               "obligations",
+                "completion_packages": "s2 completion-package stages",
+                "terminal": "receipt axis - declared final_audits receipt, "
+                            "never artefact counts",
+                "parity": "execution axis - certified pilots",
+                "route_links": "dated transition record - not current "
+                               "state",
+            }},
         "packages": board["open"],
         "board_counts": board["counts"], "board_total": board["total"],
         "board_task_count": board.get("total", 0),
+        "reopened": reopened,
     }
     d = deltas(counters)
     snap["deltas"] = d
@@ -943,6 +1262,20 @@ def _atomic_write(path, text):
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
+        os.replace(tmp, str(path))
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
+
+def _atomic_write_bytes(path, data):
+    fd, tmp = tempfile.mkstemp(dir=str(path.parent), prefix=".tmp_")
+    try:
+        with os.fdopen(fd, "wb") as f:
+            f.write(data)
         os.replace(tmp, str(path))
     except BaseException:
         try:
@@ -1027,15 +1360,63 @@ def _verify_outputs(snap):
     return problems
 
 
+def _gen_inputs(db):
+    """Every consumed input declared to the generation store
+    (OPUS-REQ-DATA-ADOPT-GENERATION-LIB): the configured inputs keyed by
+    their exported relative path, the instruments that produced the verdicts,
+    this generator, and the document-tree preimage. TEAM.json is `volatile`:
+    the board is rewritten every few seconds during fleet activity, so a
+    mid-commit move is drift - the generation binds the snapshot bytes it
+    captured - rather than a refused commit (the reporter's own fingerprint
+    check already aborts a build whose inputs moved)."""
+    ins = {}
+    for rel in INPUTS:
+        ins["in:%s" % rel] = {"path": str(db / rel),
+                              "required": rel in REQUIRED_INPUTS}
+    ins["in:_index/_inbox/TEAM.json"]["volatile"] = True
+    gfz = ROOT / "Database" / "Tools" / "analysis-kit" / "gfz-scripts"
+    for name in ("check_questions.py", "transfer_audit.py", "generation.py"):
+        ins["instrument:%s" % name] = {"path": str(gfz / name),
+                                       "required": False}
+    ins["generator:progress_report.py"] = {"path": str(HERE
+                                                      / "progress_report.py"),
+                                           "required": False}
+    ins["preimage:doc-signature.txt"] = {"path": str(DOCSIG),
+                                         "required": True}
+    return ins
+
+
+def _prune_generations(store, keep=8):
+    """Bound the store: keep CURRENT plus the newest `keep` generations -
+    each generation snapshots every input, so retention must be finite.
+    `.rejected` candidates are diagnosis data and are never touched."""
+    try:
+        cur = store.current_id()
+        gens = sorted(d for d in os.listdir(store.root)
+                      if re.match(r"^g\d{8}T\d{6}Z-.", d))
+        for g in gens[:-keep]:
+            if g != cur:
+                shutil.rmtree(os.path.join(store.root, g),
+                              ignore_errors=True)
+    except OSError:
+        pass
+
+
 def write_all(snap, counters, db):
-    """Commit one generation coherently: render the four text outputs, record
-    their content sha256 in the snapshot (so a hand-edit or a foreign write is
-    detectable, not merely a missing stamp), stage every output to a sibling
-    temp file, then replace members -- the fingerprint-bearing snapshot.json
-    LAST, so a mid-commit failure leaves the published set carrying the PRIOR
-    fingerprint (a coherent last-good set or a detectably mixed one), never a
-    silent mix. History records the publication only after the committed set
+    """Commit one generation coherently through generation.py: render the
+    outputs into a `.partial` build directory; the store re-fingerprints
+    every declared input at commit (a moved source refuses the generation,
+    FAILURE.json records it, CURRENT keeps the last COMPLETE generation);
+    then the live outputs become a verified copy of the committed
+    generation's outputs - fingerprint-bearing snapshot.json LAST, so a
+    mid-copy failure leaves the set carrying the PRIOR fingerprint
+    (a coherent last-good set or a detectably mixed one), never a silent
+    mix. History records the publication only after the committed set
     verifies complete."""
+    if GEN is None:
+        raise ProgressError("generation library unavailable "
+                            "(Database/Tools/analysis-kit/gfz-scripts/"
+                            "generation.py)")
     # C4b (AUDIT-SPEC ckpt10_exec): same-input re-publications produce
     # byte-identical outputs unless each commit carries a unique id - stamp
     # one into every member so a mid-commit failure leaves a detectably
@@ -1049,39 +1430,79 @@ def write_all(snap, counters, db):
     # outputs-map/commit-id) to this committed generation. Recorded last so
     # the hash covers the outputs map as well.
     snap["semantics_sha256"] = _semantics_sha(snap)
-    plan = texts + [(SNAP_JSON, json.dumps(snap, indent=1) + "\n")]
-    tmps = []
-    try:
-        for path, text in plan:
-            fd, tmp = tempfile.mkstemp(dir=str(path.parent), prefix=".tmp_")
-            with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as f:
-                f.write(text)
-            tmps.append((tmp, path))
-        # stamp-bearing snapshot commits last
-        ordered = [t for t in tmps if t[1] != SNAP_JSON] + \
-                  [t for t in tmps if t[1] == SNAP_JSON]
-        for tmp, path in ordered:
-            os.replace(tmp, str(path))
-    except BaseException:
-        for tmp, _ in tmps:
-            try:
-                os.unlink(tmp)
-            except OSError:
-                pass
+    plan = [(p.name, t) for p, t in texts]
+    plan.append((SNAP_JSON.name, json.dumps(snap, indent=1) + "\n"))
+    # Final cutover re-check: an input moved between build() and publication
+    # aborts - the store's commit does the same for declared inputs; this
+    # covers the document tree those inputs describe.
+    if fingerprint(db) != snap["freshness"]["fingerprint"]:
         raise ProgressError(
-            "publication commit failed - the set may be mixed; "
-            "snapshot.json still carries the prior generation's fingerprint")
+            "INCOMPLETE - an input moved between build and commit; "
+            "aborted, prior generation retained")
+    # The document preimage is committed INTO the generation so its exports
+    # carry exactly what the consumed documents hashed to.
+    docpre = "\n".join(_doc_preimage(db)) + "\n"
+    DOCSIG.parent.mkdir(parents=True, exist_ok=True)
+    _atomic_write_bytes(DOCSIG, docpre.encode("utf-8"))
+    store = GEN.Store(str(STORE_ROOT))
+    states = input_states(db)
+    validated = {}
+    for rel in INPUTS:
+        st = states.get(rel, {})
+        if rel in REQUIRED_INPUTS and st.get("state") != "present":
+            validated["in:%s" % rel] = "schema: %s" % (
+                st.get("reason") or st.get("state"))
+    try:
+        build_ = store.begin(_gen_inputs(db), generator={
+            "name": "progress_report.py",
+            "sha256": _sha(HERE / "progress_report.py"),
+            "parser": PARSER_VERSION})
+        for name, text in plan:
+            with open(build_.output_path(name), "w", encoding="utf-8",
+                      newline="\n") as f:
+                f.write(text)
+        # Recheck the document preimage at the commit edge - a source moved
+        # after begin() must refuse the generation even though the declared
+        # inputs did not move.
+        if "\n".join(_doc_preimage(db)) + "\n" != docpre:
+            store._fail(build_,
+                        "document tree moved during the build")
+        gid = store.commit(build_, [n for n, _ in plan],
+                           validated=validated)
+    except GEN.GenerationError as e:
+        raise ProgressError("generation commit failed: %s" % e)
+    man, gdir, probs = store.open_current()
+    if probs or not man or man.get("generation") != gid:
+        raise ProgressError("committed generation does not open clean: %s"
+                            % "; ".join(probs or ["CURRENT moved"]))
+    # Verified copy-out: the live outputs are a byte-exact copy of the
+    # committed generation, snapshot.json last.
+    dest = {"snapshot.json": SNAP_JSON, "snapshot.md": SNAP_MD,
+            "crosswalk.md": CROSS_MD, "metrics.md": MET_MD,
+            "PROGRESS.md": PROGRESS}
+    order = ["snapshot.md", "crosswalk.md", "metrics.md", "PROGRESS.md",
+             "snapshot.json"]
+    try:
+        for name in order:
+            data = open(os.path.join(gdir, "outputs", name), "rb").read()
+            _atomic_write_bytes(dest[name], data)
+    except BaseException as e:
+        raise ProgressError(
+            "publication copy failed (%s) - the live set may be mixed; "
+            "generation %s is intact and the store still serves it"
+            % (e, gid))
     problems = _verify_outputs(snap)
     if problems:
         raise ProgressError("output set incomplete after commit: "
                             + "; ".join(problems))
     history_append(counters, snap["freshness"]["fingerprint"])
+    _prune_generations(store)
     gen = snap["generated_at_utc"]
     ident = snap["identity"]
     print("wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,"
-          "crosswalk.md,metrics.md} @ %s head=%s board=%s fp=%s" %
+          "crosswalk.md,metrics.md} @ %s head=%s board=%s fp=%s gen=%s" %
           (gen, ident["git_head"], ident["board"],
-           snap["freshness"]["fingerprint"][:10]))
+           snap["freshness"]["fingerprint"][:10], gid))
 
 
 def write_incomplete(err, db=None):
@@ -1157,12 +1578,27 @@ def _progress_md(snap):
                  "categories | tree walk (program_coverage rule - proxy) |"
                  % (l1["system_documents"]["total"],
                     len(l1["system_documents"]["per_category"])))
-    lines.append("| L2 verdicts | **%d MET of %d systems**; blocking dims: "
+    lines.append("| L2 verdicts (**scoped** L2 - not whole-database "
+                 "completion; per-system open obligations are in the route) | "
+                 "**%d MET of %d systems**; blocking dims: "
                  "types %d, runtime %d · LIVE-unruled cells %d | L2-VERDICTS.md |"
                  % (l2["verdict_column"].get("MET", 0), l2["systems_scored"],
                     l2["systems_scored"] - l2["per_dimension_satisfied"]["types"],
                     l2["systems_scored"] - l2["per_dimension_satisfied"]["runtime"],
                     sum(l2["per_dimension_live_unruled"].values())))
+    # DASHBOARD-MEANINGS §4: DB_GOAL sits beside scoped L2 so the 52/52 cannot
+    # read as completion. The gate itself (goal_gate.py, whole-tree walk) is
+    # too heavy for this adapter, but the terminal receipt is a fingerprinted
+    # input: while declared final_audits < 30 the goal verdict cannot be MET,
+    # so NOT_MET here is derived, not re-run. If the receipt ever reads 30 the
+    # line reports UNMEASURED until goal_gate.py is run again.
+    fg = term["final_audits_declared"]
+    goal_state = ("NOT_MET - declared `final_audits` %s / 30; "
+                  "`goal_gate.py` is the instrument of record" % fg) \
+        if isinstance(fg, int) and fg < 30 else \
+        "UNMEASURED - run goal_gate.py (declared receipt no longer forces a verdict)"
+    lines.append("| DB_GOAL (whole-database goal gate) | **%s** | "
+                 "PROGRAM-STATE.md receipt |" % goal_state)
     tr = ("UNMEASURED" if t["obligations"] is None else
           "%d obligations, %d untracked" % (t["obligations"], t["untracked"]))
     lines.append("| transfers (batch-K) | %s | transfer_audit |" % tr)
@@ -1179,9 +1615,40 @@ def _progress_md(snap):
     lines.append("| page-box obligations | %s | %s |" % (pbs, pb["engine"]))
     openk = {k: v for k, v in snap["board_counts"].items()
              if k in ("READY", "ACTIVE", "BLOCKED")}
-    lines.append("| board packages | %d open (%s) | TEAM.json |"
+    # DASHBOARD-MEANINGS §4: board tasks measure coordination load, not
+    # remaining knowledge - the line is renamed so it cannot read as the
+    # completion count, and completion packages are shown separately by stage.
+    lines.append("| open board tasks (coordination load) | %d open (%s) | "
+                 "TEAM.json |"
                  % (len(snap["packages"]), ", ".join(
                      "%s %d" % (k, v) for k, v in sorted(openk.items()))))
+    # §2 obligation outcomes - separate counts, never summed into one total.
+    wiq = pb.get("closed_id") if pb.get("closed_id") is not None else None
+    lines.append("| obligation outcomes (separate, never summed) | ANSWERED "
+                 "%d · DISPOSITIONED %d (NAS %d / OEB %d) · WITHDRAWN %d · "
+                 "TRANSFERRED %s · REOPENED %d · WAITING-INTEGRATION %s "
+                 "(mis-marked closed-row boxes) | registers + batch-K + "
+                 "read_boxes |"
+                 % (dis["accepted_answers"],
+                    dis["no_admissible_source"]
+                    + dis["out_of_evidence_boundary"],
+                    dis["no_admissible_source"],
+                    dis["out_of_evidence_boundary"],
+                    q.get("WITHDRAWN", 0),
+                    "UNMEASURED" if t["obligations"] is None
+                    else t["obligations"],
+                    snap.get("reopened", 0),
+                    "UNMEASURED" if wiq is None else wiq))
+    cpk = snap.get("completion_packages", {})
+    if cpk.get("state") != "CURRENT":
+        lines.append("| completion packages | UNMEASURED - %s | "
+                     "_index/completion-packages/ |" % cpk.get("engine"))
+    else:
+        lines.append("| completion packages by stage | %s | "
+                     "_index/completion-packages/ |"
+                     % (", ".join("%s %d" % (k, v) for k, v in
+                                  sorted(cpk["by_stage"].items()))
+                        or "none"))
     declared = term["final_audits_declared"]
     lines.append("| terminal certification | declared `final_audits` **%s / "
                  "30** (PROGRAM-STATE receipt) · AUDIT-LOG complete runs %d · "
@@ -1283,7 +1750,11 @@ def _crosswalk_md(snap):
     out.append("| order | id | kind | status | pri | owner | reviewer | "
                "dependency | evidence | missing | next action / acceptance |\n"
                "|---:|---|---|---|---|---|---|---|---|---|\n")
-    for i, p in enumerate(snap["packages"], 1):
+    obligs = [p for p in snap["packages"]
+              if p.get("discriminator") != "chore:coordination"]
+    chores = [p for p in snap["packages"]
+              if p.get("discriminator") == "chore:coordination"]
+    for i, p in enumerate(obligs, 1):
         dep = ",".join(p["blocked_by"]) or "-"
         missing = "none"
         if p["owner"] in (None, "", "UNASSIGNED"):
@@ -1296,6 +1767,15 @@ def _crosswalk_md(snap):
                       (p["evidence"] or "MISSING").replace("|", "\\|"),
                       missing,
                       (p["acceptance"] or p["target"]).replace("|", "\\|")))
+    if chores:
+        # R6 (CROSSWALK-MEANINGS): publish/checkpoint chores are coordination
+        # steps - listed, but outside the route's obligation ordering.
+        out.append("\n## Coordination chores (board tasks, not completion "
+                   "obligations)\n\n")
+        out.append("| id | status | owner |\n|---|---|---|\n")
+        for p in chores:
+            out.append("| `%s` | %s | %s |\n"
+                       % (p["id"], p["status"], p["owner"]))
     out.append("\n## Transferred obligations (never complete, never vanish)\n\n")
     t = snap["transfers"]
     if t["obligations"] is None:
@@ -1303,15 +1783,35 @@ def _crosswalk_md(snap):
     else:
         out.append("%d batch-K obligations checked, %d untracked.\n"
                    % (t["obligations"], t["untracked"]))
-        out.append("| register obligation | owner | reviewer | evidence | "
-                   "next action | acceptance |\n|---|---|---|---|---|---|\n")
-        for p in t["problems"]:
-            rid = str(p).split(":")[0]
-            out.append("| %s | UNMEASURED | UNKNOWN | %s | resolve the "
-                       "audited transfer | a DONE task or accepted receipt "
-                       "closes it |\n"
-                       % (rid.replace("|", "\\|"),
-                          str(p)[:160].replace("|", "\\|")))
+        # R1 (CROSSWALK-MEANINGS): every transferred obligation is a row -
+        # '0 untracked' is the audit's verdict, not the end of the debt.
+        if t.get("rows"):
+            out.append("| register obligation | class | destination | "
+                       "destination owner | next action |\n"
+                       "|---|---|---|---|---|\n")
+            prob_by_id = {}
+            for p in t["problems"]:
+                prob_by_id[str(p).split(":")[0].strip()] = p
+            for r in t["rows"]:
+                state = prob_by_id.pop(r["id"], None)
+                out.append("| `%s` | %s | %s | %s | %s |\n"
+                           % (r["id"], r["transfer_class"],
+                              ("UNTRACKED - " + str(state)[:100] if state
+                               else r["destination"]).replace("|", "\\|"),
+                              r["destination_owner"], r["next_action"]))
+            for rid, p in prob_by_id.items():
+                out.append("| `%s` | - | UNTRACKED: %s | UNMEASURED | resolve "
+                           "the audited transfer |\n"
+                           % (rid.replace("|", "\\|"),
+                              str(p)[:120].replace("|", "\\|")))
+        else:
+            for p in t["problems"]:
+                rid = str(p).split(":")[0]
+                out.append("| %s | UNMEASURED | UNKNOWN | %s | resolve the "
+                           "audited transfer | a DONE task or accepted receipt "
+                           "closes it |\n"
+                           % (rid.replace("|", "\\|"),
+                              str(p)[:160].replace("|", "\\|")))
     out.append("\n## Coverage obligations (unsatisfied L2 cells)\n\n")
     l2 = snap["levels"]["L2_reconstruction_grade"]
     out.append("| system | cell | verdict | evidence | next action | "
@@ -1328,27 +1828,94 @@ def _crosswalk_md(snap):
                        "criterion | cell reaches MET or ruling-cited LIVE |\n"
                        % (v["system"], d, tag, ev.replace("|", "\\|")))
     res = snap["levels"]["residual_required_knowledge"]
+    # R3 (CROSSWALK-MEANINGS): the register's owner-doc cell is often blank;
+    # the owning page is derivable from the unticked box that names the row.
+    page_of = {}
+    for ob in (snap.get("page_boxes") or {}).get("obligations") or []:
+        for i in ob.get("named_ids", []):
+            page_of.setdefault(i, ob["file"])
     out.append("\n## Page obligations (open questions)\n\n")
     out.append("| id | status | owner doc | evidence / question | next "
                "action |\n|---|---|---|---|---|\n")
     for r in res["oq_open_rows"]:
+        owner = r["owner"]
+        if not owner:
+            pf = page_of.get(r["id"])
+            owner = ("[%s](../../%s)" % (pf, pf)) if pf else "UNKNOWN"
         out.append("| %s | %s | %s | %s | answer or withdraw the row |\n"
                    % (r["id"], r["status"],
-                      _oq_link_rebase(r["owner"]).replace("|", "\\|"),
+                      _oq_link_rebase(owner).replace("|", "\\|"),
                       r["question"].replace("|", "\\|")))
-    out.append("\n## Superseded rows - residue moved to a carrier "
-               "(closed for the gate, residue still required elsewhere)\n\n")
-    sr = res.get("superseded_residue_rows", [])
-    if not sr:
+    pb = snap["page_boxes"]
+    out.append("\n## Page-box obligations (per unticked checkbox)\n\n")
+    if pb.get("no_id") is None:
+        out.append("UNMEASURED - %s\n" % pb["engine"])
+    elif not pb.get("obligations"):
         out.append("None at this fingerprint.\n")
     else:
-        out.append("| id | owner doc | status text (names the carrier / "
-                   "ruling) |\n|---|---|---|\n")
-        for r in sr:
-            out.append("| %s | %s | %s |\n"
+        out.append("*One row per unticked box. `page-local` boxes name no "
+                   "register row (and never waive the work); "
+                   "`mis-marked-closed` boxes name only closed rows; "
+                   "`live-row-residue` boxes name a live row already "
+                   "counted above - the class column keeps the three "
+                   "populations distinct.*\n\n")
+        out.append("| anchor | class | requirement | owner | reviewer | "
+                   "dedup links | discriminator |\n"
+                   "|---|---|---|---|---|---|---|\n")
+        for o in pb["obligations"]:
+            out.append("| `%s` | %s | %s | %s | %s | %s | %s |\n" % (
+                o["anchor"], o["class"],
+                o["requirement"].replace("|", "\\|"),
+                o["owner"], o["reviewer"],
+                ", ".join(o["dedup"]).replace("|", "\\|"),
+                o["discriminator"].replace("|", "\\|")))
+    out.append("\n## Dispositioned rows - residue moved to a carrier "
+               "(closed for the gate, residue still required elsewhere)\n\n")
+    sr = res.get("superseded_residue_rows", [])
+    # R4 (CROSSWALK-MEANINGS): a SUPERSEDED row that is a duplicate or a split
+    # carries NO residue of its own - the survivor row(s) carry it. Only a
+    # carrier-bearing supersession stays in the residue table, with the
+    # carrier as its own column.
+    disp, dups = [], []
+    for r in sr:
+        st = r["status_text"]
+        m = re.search(r"(?i)duplicate of\s+`?([A-Z]+-\d+[a-z]?)", st)
+        if m:
+            dups.append((r, "duplicate", m.group(1)))
+            continue
+        m = re.search(r"(?i)split into\s+(.+?)(?:\(|\.\s|$)", st)
+        if m:
+            surv = ", ".join(re.findall(r"[A-Z]+-\d+[a-z]?", m.group(1)))
+            dups.append((r, "split", surv or "see status text"))
+            continue
+        disp.append(r)
+    if not disp:
+        out.append("None at this fingerprint.\n")
+    else:
+        out.append("| id | owner doc | carrier | status text |\n"
+                   "|---|---|---|---|\n")
+        for r in disp:
+            st = r["status_text"]
+            cm = (re.search(r"(?i)carrier[:\s`]+([A-Za-z][\w-]+)", st)
+                  or re.search(r"(?i)superseded by\s+`?([A-Z]+-\d+[a-z]?)", st))
+            out.append("| %s | %s | %s | %s |\n"
                        % (r["id"],
-                          _oq_link_rebase(r["owner"]).replace("|", "\\|"),
-                          _oq_link_rebase(r["status_text"]).replace("|", "\\|")))
+                          _oq_link_rebase(r["owner"] or "UNKNOWN")
+                              .replace("|", "\\|"),
+                          cm.group(1) if cm else "see status text",
+                          _oq_link_rebase(st).replace("|", "\\|")))
+    if dups:
+        out.append("\n### Duplicates and splits - no residue of their own "
+                   "(the survivor row carries it)\n\n")
+        out.append("| id | owner doc | kind | survivor(s) | status text |\n"
+                   "|---|---|---|---|---|\n")
+        for r, kind, surv in dups:
+            out.append("| %s | %s | %s | %s | %s |\n"
+                       % (r["id"],
+                          _oq_link_rebase(r["owner"] or "UNKNOWN")
+                              .replace("|", "\\|"), kind, surv,
+                          _oq_link_rebase(r["status_text"])
+                              .replace("|", "\\|")))
     out.append("\n## Route links - dated transition record\n\n")
     rl = snap.get("route_links", {})
     if rl.get("state") != "CURRENT":
@@ -1521,6 +2088,25 @@ def check(db):
     if problems:
         print("INCOMPLETE: output set not coherent - " + "; ".join(problems))
         return 2
+    # Generation coherence: when the store exists, the live outputs must be
+    # the CURRENT generation's committed bytes - a hand-assembled or
+    # generation-mixed set is INCOMPLETE, never CURRENT (CKPT10R3/export).
+    if GEN and os.path.isfile(os.path.join(str(STORE_ROOT), "CURRENT")):
+        man, gdir, gprobs = GEN.Store(str(STORE_ROOT)).open_current()
+        if gprobs:
+            print("INCOMPLETE: store CURRENT does not open clean: %s"
+                  % "; ".join(gprobs))
+            return 2
+        for name, meta in man["outputs"].items():
+            lp = {"snapshot.json": SNAP_JSON, "snapshot.md": SNAP_MD,
+                  "crosswalk.md": CROSS_MD, "metrics.md": MET_MD,
+                  "PROGRESS.md": PROGRESS}.get(name)
+            if lp is None or not lp.exists() \
+                    or hashlib.sha256(lp.read_bytes()).hexdigest() \
+                    != meta["sha256"]:
+                print("INCOMPLETE: live %s differs from generation %s"
+                      % (name, man["generation"]))
+                return 2
     print("CURRENT: generated %s, fp %s, all %d outputs coherent"
           % (snap["generated_at_utc"], cur[:12], len(_output_paths(db))))
     return 0
@@ -1540,9 +2126,16 @@ def auto(db):
         if snap and snap.get("freshness", {}).get("state") != "INCOMPLETE" \
                 and snap["freshness"]["fingerprint"] == fingerprint(db) \
                 and not _verify_outputs(snap):
-            snap["freshness"]["checked_at_utc"] = \
-                datetime.now(timezone.utc).isoformat(timespec="seconds")
-            _atomic_write(SNAP_JSON, json.dumps(snap, indent=1) + "\n")
+            # checked_at goes to a sidecar, NOT the member: snapshot.json
+            # must stay byte-identical to the committed generation's output.
+            # The sidecar lives beside the doc preimage (the ignored work
+            # tree) - it is a receipt, not an output.
+            DOCSIG.parent.mkdir(parents=True, exist_ok=True)
+            _atomic_write(DOCSIG.parent / "progress-checked-at.json",
+                          json.dumps(
+                {"checked_at_utc": datetime.now(timezone.utc)
+                 .isoformat(timespec="seconds"),
+                 "fingerprint": snap["freshness"]["fingerprint"]}) + "\n")
             print("UNCHANGED (fp %s); checked_at stamped"
                   % snap["freshness"]["fingerprint"][:12])
             return 0
@@ -1569,10 +2162,37 @@ def auto(db):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=["generate", "auto", "check", "status"])
+    ap.add_argument("mode", choices=["generate", "auto", "check", "status",
+                                     "export", "verify-zip"])
+    ap.add_argument("target", nargs="?",
+                    help="ZIP path for export / verify-zip")
     ap.add_argument("--db", default=str(DB))
     a = ap.parse_args()
     db = Path(a.db)
+    if a.mode in ("export", "verify-zip"):
+        # Export is exactly one pinned generation (EXPORT-COHERENT-
+        # GENERATION): export() opens CURRENT verified, writes manifest +
+        # outputs + input snapshots, re-opens the ZIP and checks every
+        # member against the manifest before renaming it live. verify_zip()
+        # labels a hand-made or generation-mixed ZIP UNVERIFIED - a member
+        # produced by a later generation than the declared snapshot is
+        # detected, never called CURRENT.
+        if not a.target:
+            ap.error("%s needs a ZIP path" % a.mode)
+        if GEN is None:
+            print("generation library unavailable")
+            sys.exit(2)
+        if a.mode == "verify-zip":
+            label, info = GEN.verify_zip(a.target)
+            print(label, json.dumps(info))
+            sys.exit(0 if label == "VERIFIED" else 1)
+        try:
+            gid = GEN.Store(str(STORE_ROOT)).export(a.target)
+            print("EXPORTED %s -> %s" % (gid, a.target))
+            sys.exit(0)
+        except GEN.GenerationError as e:
+            print("REFUSED: %s" % e)
+            sys.exit(1)
     if a.mode == "check":
         sys.exit(check(db))
     if a.mode == "status":

@@ -139,7 +139,7 @@ else — an index, a count, a flag word — would not be confined to `{2, 4, 8, 
 
 * **What arguments 2 and 6 are computed from.** `006372A0` and `006373D0` produce the sub-object and
   the parent descriptor. Their values are not link-time constants, so the parent of each class is
-  *not* recovered by this sweep and no class hierarchy is asserted. The field at `+0x78` is the
+  *not* recovered by this sweep and no class hierarchy is asserted *(answered: see member-registration-and-the-recovered-field-schema.md §19 and members/phyre-class-parent-chain.tsv; 2026-10-02, OPUS)*. The field at `+0x78` is the
   parent — that is the corpus's existing finding, not a new one — but this document does not say
   which parent any class has.
 * **The other 138 classes.** 177 registrars were decoded of the roughly 315 in the registrar census.

@@ -6,7 +6,7 @@ level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md
-entries: ["00316A50", "003166F0", "00315E90", "003165C0"]
+entries: ["00316A50", "003166F0", "00315E90", "003165C0"]  # <- corrected 2026-10-02, OPUS - the store 00316BF0 is an interface entry too (section 2; called at 00316A50+0x17C)
 verified_against:
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
   method: address-resolution verification 2026-09-14 (OPUS) - 45 addresses cited - 3 data, 7 entry, 34 interior, 1 text-data, every one resolving
@@ -30,9 +30,9 @@ Gameplay tells this family "achievement `n`, amount `x`". What happens next is d
 where in the save it lives, and whether it fires at all.
 
 **Scope, stated first.** The counter update, the counter read and the descriptor gates are specified
-here. `00315E90`'s store dispatches on the mode byte through an **eight-arm jump table** (`cmp eax, 7`
+here. `00315E90`'s ~~store~~ evaluate-and-award step *(corrected 2026-10-02, OPUS: it writes no counter; the store is `00316BF0`, called at `00316A50+0x17C`)* dispatches on the mode byte through an **eight-arm jump table** (`cmp eax, 7`
 / `ja` at `00315F03`, table at `0x120000 + 0x1F6098`) and `003165C0` walks a relative-offset chain at
-`022C2550`; **neither is specified** — they are named and bounded, and each arm's behaviour is open.
+`022C2550`; ~~**neither is specified** — they are named and bounded, and each arm's behaviour is open.~~ *(answered: see §14 — both CLOSED 2026-09-23, with the arm table corrected there; 2026-10-02, OPUS)*
 
 The first contract in `20-Platform-Online-Achievements`.
 
@@ -57,8 +57,8 @@ bound and the authored layout — and to be explicit about the part that is not 
 > ledger files under Presentation. For ids **0, 1, 2, 3, 4 and 11** it calls `003165C0(id)` and then `003166F0(id)`. It
 > prints the pair through `"%s%s %d/%d"` (`00900258`, via `0019C5D0`), the counter first and `003165C0`'s return second
 > (`001CFB11`–`001CFB2C`, and the `mov cl, n` arms at `001CFB31`–`001CFB5D`). The renderer only reads, and nothing on
-> that path writes a counter. The format suggests the second number is a target; that is **not established**, and
-> `003165C0` stays unspecified, as the scope note says.
+> that path writes a counter. The format suggests the second number is a target; ~~that is **not established**, and~~
+> ~~`003165C0` stays unspecified, as the scope note says.~~ it is: `003165C0` returns the `menuhandbook.bin` override that the evaluator's mode-0 arm takes as the threshold (`00315E90+0x8D`, 0 falling back to descriptor `+0x04` at `00315E90+0x98`) *(answered: see §14 and the catalogue's UQ-274; 2026-10-02, OPUS)*.
 
 > ### ⚠ `00315E90` is not the store, and the real store was missing
 >
@@ -99,11 +99,11 @@ bound and the authored layout — and to be explicit about the part that is not 
 
 **The descriptor decides the storage.** `kind` is the counter's **width in bytes** on the accumulate
 path, `+0x01` is the counter's **byte offset** inside the save block, `mode` selects the test on the
-trigger path and the arm on the store path, and `threshold` is compared **only on mode 1**.
+trigger path and the arm on the ~~store~~ evaluate path, and `threshold` is ~~compared **only on mode 1**~~ read on modes 0 and 1 by the updater and by the evaluator's mode 0, 2 and 7 arms *(corrected 2026-10-02, OPUS: `00316A50+0x56` (mode 1, `cmp edx`), `00316A50+0xB1` (the mode-0 fallback); `00315E90+0x98`, `+0xB6` and `+0x171`)*.
 
 ## 4. Preconditions · postconditions · invariants
 
-**The id is bounded at 30 before anything else happens**, in all three entry points:
+~~**The id is bounded at 30 before anything else happens**, in all three entry points~~ **Every entry point bounds the id, but not at one value and not always first** *(corrected 2026-10-02, OPUS: `00316A50` tests `< 0x1E` and `00315E90` `< 0x1F` as their first instructions; `003166F0` and `00316BF0` call `002536A0` (`003166F0+0x10`, `00316BF0+0xF`) before their range tests)*:
 `cmp cl, 0x1e` / `jae` at `00316A50`, ~~`cmp esi, 0x1e` / `jae` at `00315EB0`~~ **`cmp cl, 0x1f` / `jae` at `00315E90`**,
 and both `cmp dil, 0x1f` and `cmp dil, 0x1e` at `0031670B`–`00316715`. *Corrected 2026-09-25 (FABLE, Claude Opus 5.5),
 on OPUS block 301.* The evaluator `00315E90`'s own first instruction bounds the id at **31**. Its `cmp esi, 0x1e` at
@@ -125,7 +125,7 @@ Nothing else.
 
 - **Upstream:** every gameplay system that moves a counter — the catalogue page names Rewards,
   Combat and Movement.
-- **Downstream:** the Steam User Stats interface, reached through the store's mode arms.
+- **Downstream:** the Steam User Stats interface, reached through the ~~store's~~ evaluator's mode arms and the updater's trigger path *(corrected 2026-10-02, OPUS: both call `008632B0`, at `00315E90+0x1E8` and at `00316A50+0x9A` / `+0xF7`; the store `00316BF0` reaches nothing)*.
 - **The layout link runs backwards from the usual direction.** Code normally reads authored data;
   here authored data decides *where in the save file* the code writes. Changing a descriptor's
   `+0x01` moves a counter.
@@ -138,13 +138,13 @@ Nothing else.
 
 | mode | behaviour |
 |---|---|
-| `0` | fire unconditionally through `003165C0` (`00316A99` → `00316AF4`) |
+| `0` | ~~fire unconditionally through `003165C0` (`00316A99` → `00316AF4`)~~ fire only when the amount is at least the threshold, which is `003165C0(id)` or, when that returns 0, descriptor `+0x04` *(corrected 2026-10-02, OPUS: `00316A50+0xA8` calls `003165C0`, `00316A50+0xB1` falls back to `+0x04`, and `00316A50+0xB9` `cmp edi, eax` / `jl` skips the fire, a signed compare; the fire is the bitmap `bts` and `008632B0` at `00316A50+0xF7`)* |
 | `1` | fire **only if the amount equals `threshold`** — `cmp edx, dword [desc+4]` at `00316AA6`, `jne` away |
 | anything else | **return without firing** (`00316AA0` `jne 00316BD1`) |
 
 Of the nineteen trigger descriptors, one is mode 1 (`threshold` 53375) and three are mode 0; the rest
-carry modes 2, 5, 6 and 7 and therefore **never fire through this function**. That is why their
-`+0x04` values look arbitrary: nothing reads them.
+carry modes 2, 5, 6 and 7 and therefore **never fire through this function**. ~~That is why their~~
+~~`+0x04` values look arbitrary: nothing reads them.~~ Their `+0x04` values are read by the evaluator instead: mode 2 as a `u16` range, mode 7 as a monster-list index *(corrected 2026-10-02, OPUS: `00315E90+0xB6` and `00315E90+0x171`)*.
 
 > **THE TWO BOUNDS ARE DIFFERENT AND ONE ID FALLS IN THE GAP — `EXP-089`, consumed 2026-09-16 (OPUS),
 > verified from the authority image rather than adopted.** The first instruction of each entry point
@@ -179,7 +179,7 @@ mode 0 : saturating add by kind        00316B7E
 mode 3 : bts current, (amount - 0xE2)  00316B73   <- a BITSET, not an add
 mode 8 : return without storing        00316B6F
 other  : store current unchanged       00316B71
-Store(id, result)                      00316BBD -> 00315E90
+Store(id, result)                      00316BBD -> 00315E90   <- corrected 2026-10-02, OPUS - 00315E90 is the evaluate step (00316A50+0x171); the store is 00316BF0 (00316A50+0x17C)
 ```
 
 **Mode 3 is not an accumulation at all** — it sets bit `amount - 0xE2` in the counter, so that
@@ -226,7 +226,7 @@ void AchievementCounter_UpdateAndMaybeFire(uint8_t id, int32_t amount)
     const AchievementDescriptor *d = &desc[id];             /* 00D10460 + id*8 */
 
     if (d->kind == 0) {                                     /* trigger */
-        if (d->mode == 0)                    Fire(id);
+        if (d->mode == 0)                    Fire(id);   /* <- corrected 2026-10-02, OPUS - only if amount >= (003165C0(id), or d->threshold when that is 0), signed: 00316A50+0xB9 */
         else if (d->mode == 1 && amount == d->threshold) Fire(id);
         return;                                             /* every other mode: nothing */
     }
@@ -234,15 +234,15 @@ void AchievementCounter_UpdateAndMaybeFire(uint8_t id, int32_t amount)
     int32_t v = Read(id);                                   /* 003166F0 */
     switch (d->mode) {
     case 0:
-        if (d->kind == 2) v = (amount > 0x7FFF     - v) ? 0x7FFF     : v + amount;
-        else if (d->kind == 4) v = (amount > 0x7FFFFFFF - v) ? 0x7FFFFFFF : v + amount;
+        if (d->kind == 2) v = (amount > 0x7FFF     - v) ? 0x7FFF     : v + amount;   /* <- corrected 2026-10-02, OPUS - and v = 0 if the sum is negative (00316A50+0x14F jns / +0x151 xor) */
+        else if (d->kind == 4) v = (amount > 0x7FFFFFFF - v) ? 0x7FFFFFFF : v + amount;   /* <- corrected 2026-10-02, OPUS - and v = 0 if the sum is negative: kind 4 jumps to the same add at 00316A50+0x14D */
         else v += amount;                                   /* no clamp */
         break;
     case 3: v |= 1 << (amount - 0xE2); break;               /* a bitset */
     case 8: return;
     default: break;                                         /* stored unchanged */
     }
-    Store(id, v);                                           /* 00315E90 */
+    Store(id, v);                                           /* 00315E90 */   /* <- corrected 2026-10-02, OPUS - Evaluate(id) = 00315E90 runs first (00316A50+0x171), then the store 00316BF0 (00316A50+0x17C) */
 }
 ```
 
@@ -295,7 +295,7 @@ below and from far above.
 Driven on all three.
 
 **A faithfulness bug of mine that only the trace caught.** `003166F0` and `00316BF0` both call
-`002536A0` at their very first instruction, *before* any range or kind test — so a rejected id still
+`002536A0` ~~at their very first instruction~~ as their first call (`003166F0+0x10`, `00316BF0+0xF`; a register save comes first) *(corrected 2026-10-02, OPUS: read from the two bodies)*, *before* any range or kind test — so a rejected id still
 makes the call. The reconstruction deferred it into the counter access, which produced identical
 counters and a different call sequence on three cases. A state-only comparison would have passed.
 
@@ -335,7 +335,7 @@ nothing about the widths or offsets is waiting on a capture.
 Two checks, and the first needs no game at all:
 
 1. **The descriptor table is `.rdata` at a fixed address**, so the eleven counters' widths and
-   offsets in §3 can be confirmed by anyone with the executable — as they were here. What a live
+   offsets in ~~§3~~ §15a *(corrected 2026-10-02, OPUS: §3 states the rule only; the per-id widths and offsets are tabled in §15a, and the bytes at `00D10460` agree with it)* can be confirmed by anyone with the executable — as they were here. What a live
    check adds is only whether the save block at `+0x3844` holds what the descriptors say it should:
    read 40 bytes after earning a counter achievement and confirm the value moved at the declared
    offset and width.
@@ -357,10 +357,10 @@ Requested from ASTRA; not claimed by me.
   | 1 | `0031607D` | **no-op** — the epilogue itself |
   | 2 | `00315F46` | descriptor `+4` is a packed word pair `[lo,hi)`; loops `00309EC0(i)` over the range and awards only if **every** entry tests nonzero — a collect-all-in-range check |
   | 3 | `00315F87` | counts the low-16 set bits of `003166F0(id)` (the `shl`/`and`/`cmove` loop `00315FB0`–`00315FCB`) and awards when the count ≥ `003165C0(id)`, defaulting to `0x10` — a bit-count threshold |
-  | 4 | `00315FDC` | predicate `003160C0()` → award if true |
-  | 5 | `00315FEB` | predicate `003161A0()` → award if true |
-  | 6 | `00315FFA` | walks the `022C2550` word-offset chain (same shape as `003165C0`), bounds-checks descriptor `+4` against `word[rax+2]`, fetches `word[rcx + rdx*2 + 4]` and calls `00315420` on it — award if `> 0` |
-  | 7 | `0031607D` | **no-op** — shares mode 1's epilogue |
+  | 4 | ~~`00315FDC`~~ `00315E90+0x1ED` | ~~predicate `003160C0()` → award if true~~ **no-op** — the epilogue, like mode 1 *(corrected 2026-10-02, OPUS: the evaluator's jump-table load `00315E90+0x7C` reads eight targets: modes 1 and 4 `00315E90+0x1ED` (the return), 5 `00315E90+0x14C`, 6 `00315E90+0x15B`, 7 `00315E90+0x16A`)* |
+  | 5 | ~~`00315FEB`~~ `00315E90+0x14C` | ~~predicate `003161A0()`~~ predicate `003160C0()` (the exploration check) → award if true *(corrected 2026-10-02, OPUS: the arms are one table position later than this row had them; `00315E90+0x14C` calls `003160C0`)* |
+  | 6 | ~~`00315FFA`~~ `00315E90+0x15B` | ~~walks the `022C2550` word-offset chain (same shape as `003165C0`), bounds-checks descriptor `+4` against `word[rax+2]`, fetches `word[rcx + rdx*2 + 4]` and calls `00315420` on it — award if `> 0`~~ predicate `003161A0()` (the bestiary check) → award if true *(corrected 2026-10-02, OPUS: `00315E90+0x15B` calls `003161A0`; the monster-list walk is mode 7's arm)* |
+  | 7 | ~~`0031607D`~~ `00315E90+0x16A` | ~~**no-op** — shares mode 1's epilogue~~ walks three word-relative hops from `[022C2550]+8` (`00315E90+0x184`, `+0x18D`, `+0x196`), bounds-checks descriptor `+4` against the list's count `word[+2]` (`00315E90+0x19F`), fetches the `u16` id at `+4 + 2×index` and calls `00315420` on it (`00315E90+0x1AC`) — award if `> 0` *(corrected 2026-10-02, OPUS: the evaluator's jump-table load `00315E90+0x7C` reads eight targets: modes 1 and 4 `00315E90+0x1ED` (the return), 5 `00315E90+0x14C`, 6 `00315E90+0x15B`, 7 `00315E90+0x16A`; so the ten `MONSTER` marks, mode 7, do fire)* |
 - ~~`003165C0`'s chain walk at `022C2550`.~~ **CLOSED 2026-09-23 (SWE2-CONTRACT): already
   specified by the EC7-26 update below, re-verified against the body.** `022C2550` holds the
   root pointer; the walk is **four** word-relative hops (`movzx word; add` — a zero word exits
@@ -469,7 +469,7 @@ from a compiled-in map.
 
 ## SWE2-EC7-26 update (2026-09-18) — `003165C0` bit-index to counter read
 
-`003165C0` (172 B) resolves the `022C2550` root through three
+`003165C0` (172 B) resolves the `022C2550` root through ~~three~~ four *(corrected 2026-10-02, OPUS: hops at `003165C0+0x1A`, `+0x23`, `+0x2C` and `+0x35`, as §14 says)*
 word-relative offset hops (`word[r] + r`, a zero hop returns 0) into
 the counter record, rejects `cl >= 0x20`, requires `bt [r10+4], cl`
 set, then rotates a 1-bit mask `cl` times accumulating the
@@ -485,3 +485,15 @@ bit-index to stored-counter mapping. Interior anchor `00316617` (the
 is `*(0209AC30) + 0x408 + rcx` - the indexed
 slot-address composer the counter walks share.
 Interior anchor `00282DE4` (the `shl`).
+
+## Cross-subsystem neighbours - SWE2-DATA (pass-22 dispositions, 2026-10-02)
+
+- **CombatAI - CLIENT (1 edge).** `00309EC0` is also called by bodies filed to combat AI: `00301AD0` - shared machinery across the layer boundary, no shared ownership.
+- **CombatAction - CLIENT (2 edges).** `00309EC0` is also called by bodies filed to combat action: `00317BC0`, `00317C80` - shared machinery across the layer boundary, no shared ownership.
+- **Gameplay - CLIENT and SERVICE (2 edges).** `00309EC0` is also called by bodies filed to gameplay: `0031C5D0`; `00315E90` reaches bodies filed to gameplay: `00309EC0` - shared machinery across the layer boundary, no shared ownership.
+- **Items_Equipment_Shops_License - CLIENT (1 edge).** `00309EC0` is also called by bodies filed to items/equipment: `00317930` - shared machinery across the layer boundary, no shared ownership.
+- **Rewards_Progression_Economy - CLIENT (2 edges).** `00316A50` is also called by bodies filed to rewards/progression: `00254EE0`, `00312280` - shared machinery across the layer boundary, no shared ownership.
+- **Save_Load_Settings - CLIENT (1 edge).** `003166F0` is also called by bodies filed to save/load/settings: `00583D60` - shared machinery across the layer boundary, no shared ownership.
+- **Script_VM_Native_Bridge - CLIENT (1 edge).** `008632B0` is also called by bodies filed to script VM / native bridge: `00352250` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT (1 edge).** `00309EC0` is also called by bodies filed to UI: `0031EB20` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (3 edges).** `00309EC0` is also called by bodies filed to world area: `00576A50`; `003160C0`, `003161A0` reach bodies filed to world area: `003148F0`, `00265270` - shared machinery across the layer boundary, no shared ownership.

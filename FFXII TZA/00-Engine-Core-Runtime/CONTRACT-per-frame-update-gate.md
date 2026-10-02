@@ -25,7 +25,7 @@ audit:
 
 # Contract — the per-frame update gate
 
-One 16-bit word at `01E0C464` decides which subsystems tick, and `0028E290` is the fan-out that reads
+One ~~16-bit~~ 32-bit word *(corrected 2026-10-02, OPUS: eight `test dword` sites, e.g. `0028E290+0x16F`; the `uint32` row of §2)* at `01E0C464` decides which subsystems tick, and `0028E290` is the fan-out that reads
 it sixteen times. The page this implements establishes the word, the masks and the groups. **What a
 reimplementation needs beyond that is the order** — and the order is not the bit order.
 
@@ -100,7 +100,7 @@ that frame; it does not run. Nothing accumulates and nothing is caught up next f
 
 | | what | evidence |
 |---|---|---|
-| read | the enable word at `01E0C464`, sixteen bits, every frame | the sixteen test sites, §3 |
+| read | the enable word at `01E0C464`, ~~sixteen bits~~ a dword whose low sixteen bits are tested *(corrected 2026-10-02, OPUS: `0028E290+0x16F` `test dword`)*, every frame | the sixteen test sites, §3 |
 | read | the object behind `0209BE80`, re-loaded from its slot after almost every group | `mov rbx, [rip+...]` between groups |
 | written | `object+0x10F68` bit 1, and the three pointer fields `+0x10F20`, `+0x10F30`, `+0x10F40` | §12; each is a callee's result stored back |
 | allocated / deallocated | none | |
@@ -188,14 +188,14 @@ is never anything but all-ones.
 ## 12. Reproduction formula
 
 ```c
-void FramePump(void) {                      /* 0028E290 */
+void FramePump(void) {                      /* 0028E290 */   // <- corrected 2026-10-02, OPUS - one argument (word[01E0C2B0], 0028E290+0x10 mov edi, ecx), and the handlers take a pointer, e.g. rcx = [0209BE80] + 0x5380 for 00289970 (0028E290+0x14 to +0x22)
     uint32_t en = *(uint32_t*)0x01E0C464;   /* 4 bytes: eight dword tests; NOT a uint8 -- see section 3 */
     if (en & 0x0001) Group_00289970();
     if (en & 0x0002) Group_001EDE80();
     if (en & 0x0004) Group_002917E0();
     if (en & 0x0008) Group_003F6BB0();
     if (en & 0x0020) Group_003F9F40();
-    if (en & 0x0002) Group_00291B90();      /* same bit, second group */
+    if (en & 0x0002) Group_00291B90();      /* same bit, second group */   // <- corrected 2026-10-02, OPUS - and only when (arg & 1): 0028E290+0x127 test dil, 1
     if (en & 0x1000) Group_00273900();      /* out of bit order, deliberately */
     if (en & 0x0040) Group_003F80D0();
     if (en & 0x0080) Group_00296860();
@@ -286,7 +286,7 @@ read.
   2026-09-16), and this census independently reproduces it.** A per-body rip-relative census
   over all 35,713 `.pdata` bodies finds exactly **sixteen** references to `01E0C464` in the
   whole image — the pump's sixteen `test`s and nothing else: no writer, no `lea`, no second
-  reader, and no test anywhere uses mask `0x10`. Bit 4 is therefore set (`0xFFFF` at ship) and
+  reader, and no test anywhere uses mask `0x10`. Bit 4 is therefore set (~~`0xFFFF`~~ `0xFFFFFFFF` at ship *(corrected 2026-10-02, OPUS: the image bytes at `01E0C464` are `FF FF FF FF`)*) and
   never consulted; whether it was a retired group, a reserved slot, or never used cannot be
   recovered from this build — the signed verdict's exact scope. Addendum: there is no
   structural residue either — the byte-mask sequence `1,2,4,8,0x20,…` is not strictly sorted
@@ -295,11 +295,11 @@ read.
 - ~~Whether the two `0x0002` groups are related, or share a bit by accident of history~~ —
   **closed 2026-09-22 (SWE2-CONTRACT): two independently authored `if`s on one flag, not one
   group split and not a compiler artefact.** Group A (`0028E2B7`) is `001EDE80` — the
-  pause/cutscene-name-slot predicate (`[01F82E38]==0` or `[01DFE0C0]!=0` → return 1, else
+  ~~pause/cutscene-name-slot predicate~~ 60 fps half-rate predicate *(corrected 2026-10-02, OPUS: `001EDDC0+0x28` sets `01F82E38` with the 60 fps divisor; `0022A080`/`0022A030` read the frame counters `02064AD8`/`02064AA8`)* (`[01F82E38]==0` or `[01DFE0C0]!=0` → return 1, else
   `0022A080()`+`0022A030()` — verified byte-exact) — whose return gates `003F8B40`. Group B
   (`0028E3AE`) is `00291B90`,`003F6100`,`003F24D0`,`003F24A0`, disjoint subsystems, gated
-  *additionally* by `dil&1` — the pump's first argument, `word[01E0C2B0]`, written once at
-  `002539E5` with `0xF` (so always true in this build). Three facts make it authored, not
+  *additionally* by `dil&1` — the pump's first argument, `word[01E0C2B0]`, written ~~once~~ at
+  ~~`002539E5` with `0xF` (so always true in this build).~~ `00253970+0x75` with `0xF` and at `002547C0+0x0` with its caller's `cx` (`00226280+0x203`, `0036D840+0x2B`), so not fixed in this build *(corrected 2026-10-02, OPUS: the two stores to `01E0C2B0`)*. Three facts make it authored, not
   accidental: the second `0x0002` sits out of mask-sort order at an authored position; group B
   carries its own argument gate, so it is not a continuation of group A; and the sole pump
   caller `002508AB` *itself* calls `001EDE80` at `00250896` to gate `003BBA60` before invoking
@@ -332,7 +332,7 @@ and is kept; the table enumerates the claims so `diff_frame_gate.py` can map to 
 | each group's inner conditions are its own | the null tests and the two flag-bit tests at `+0x10F68`. Executed — every inner pointer driven null and non-null, and both flag bits at both values, independently of the enable bit reaching them | 1 (isolated original-code) | PROVEN |
 | any runtime observation | — the check needs a WRITTEN enable word, not a capture; §13 | none | UNKNOWN |
 | the sixteen tests are the word's only accessors | per-body rip-relative census over all 35,713 `.pdata` bodies: exactly 16 references to `01E0C464`, every one a `test` inside `0028E290`, none masked `0x10`; no writer, `lea`, or second reader exists — bit 4 is dead image-wide, not just in the pump | 1 | PROVEN |
-| the two `0x0002` groups are two authored `if`s, not one group | group A `001EDE80`→`003F8B40` (predicate verified byte-exact: `[01F82E38]`/`[01DFE0C0]` then `0022A080`+`0022A030`); group B `00291B90`/`003F6100`/`003F24D0`/`003F24A0` under `dil&1`; the pump's sole caller `002508AB` itself calls `001EDE80` at `00250896` gating `003BBA60`, and feeds the pump `word[01E0C2B0]` (single writer `002539E5`, value `0xF`) | 1 | PROVEN |
+| the two `0x0002` groups are two authored `if`s, not one group | group A `001EDE80`→`003F8B40` (predicate verified byte-exact: `[01F82E38]`/`[01DFE0C0]` then `0022A080`+`0022A030`); group B `00291B90`/`003F6100`/`003F24D0`/`003F24A0` under `dil&1`; the pump's sole caller `002508AB` itself calls `001EDE80` at `00250896` gating `003BBA60`, and feeds the pump `word[01E0C2B0]` (~~single writer `002539E5`, value `0xF`~~ two writers: `00253970+0x75` stores `0xF`, `002547C0+0x0` stores its caller's `cx` *(corrected 2026-10-02, OPUS: the two stores to `01E0C2B0`)*) | 1 | PROVEN |
 
 ## 15a. Falsification pass 1 — 2026-09-12 (OPUS), SURVIVED
 
@@ -579,7 +579,7 @@ still reads as a bare `void*` until that clears.
 #### `_8FA0`'s traffic is all in its last 256 bytes
 
 Censused from the fourteen thunk owners plus five bodies the closure reaches, **nineteen member
-bodies** touch **sixteen offsets** across 4,400 bytes — and every one of them lies in
+bodies** touch **sixteen offsets** across ~~4,400~~ 4,368 bytes *(corrected 2026-10-02, OPUS: `002BE450+0x10` `mov edx, 0x1110`)* — and every one of them lies in
 `+0x1030`–`+0x10FA`, the tail. Fourteen carry a single width; the two that do not are left
 undeclared:
 
@@ -597,7 +597,7 @@ measurement, not a verdict — the same closure said `_5380` and `_8FA0` had no 
 tail jumps were followed, and a region reached some third way would look exactly like this. It
 does say where to read next, and it is the opposite end of the object from where one would start.
 
-### All seven children censused: 103 offsets over 43,456 bytes, and they sit in bands
+### All seven children censused: 103 offsets over ~~43,456~~ 43,424 bytes, and they sit in bands *(corrected 2026-10-02, OPUS)*
 
 With the owner table settled, each child was censused from **its own owners** and their closure.
 The result is the same shape seven times:
@@ -609,7 +609,7 @@ The result is the same shape seven times:
 | `_57E0` | 9,920 | 18 | 32 | `+0x0`–`+0x26AE` |
 | `_7EA0` | 272 | 10 | 13 | `+0x0`–`+0x76` |
 | `_7FB0` | 4,080 | 18 | 27 | `+0x0`–`+0x104` — the first 6 % holds all of them |
-| `_8FA0` | 4,400 | 16 | 14 | `+0x1030`–`+0x10FA` — the last 6 % holds all of them |
+| `_8FA0` | ~~4,400~~ 4,368 *(corrected 2026-10-02, OPUS: `0x1110`, `002BE450+0x10`)* | 16 | 14 | `+0x1030`–`+0x10FA` — the last 6 % holds all of them |
 | `_A0D0` | 2,448 | 2 | 2 | `+0x960`, `+0x984` |
 
 *(The `_57E0` section above reports ten offsets; that was from three of its ten owners, before the
@@ -1092,7 +1092,7 @@ allocation.
 
 **Before:** 23,224 bytes reached zero times on five routes — four taint-first, one displacement-first.
 **Now:** 23,224 bytes **never read and never individually written, and zero-initialised wholesale
-exactly once, at construction.**
+~~exactly once, at construction.~~ by two bulk writes, at construction and in the `0x61F0`-byte clear of the `+0xAB30` child.** *(corrected 2026-10-02, OPUS: `00290CF0+0xA6` hands `+0xAB30` to `00276650`, whose `+0x88`–`+0x90` calls `00245000(obj, 0x61F0)`, and `002465F0+0x36` clears it; the RETRACTED 2026-09-19 note above)*
 
 That is a different and better claim, because it supplies a **lifetime** where there was only an
 absence: the bytes have a defined value from the moment the object exists, and nothing observed
@@ -1127,7 +1127,7 @@ class of *writes*.
 > **Inline unrolled copies.** Of the 136 bodies that load the singleton slot, **zero** contain a wide-move
 > run of eight or more within `0x80` — so no unrolled block copy writes this object directly.
 >
-> So on the extended sweep the constructor's `memset` remains the **only** bulk write reaching the hole.
+> ~~So on the extended sweep the constructor's `memset` remains the **only** bulk write reaching the hole.~~ *(corrected 2026-10-02, OPUS: a second bulk write reaches it, the `0x61F0`-byte clear of `+0xAB30` at `00276650+0x88`–`+0x90`; the RETRACTED 2026-09-19 note above)*
 > **The third gap was MIS-SPECIFIED, and correcting it closes most of it.** I wrote that `[rdi + 0x10FC0]`
 > was *"exactly such a hand-out"*. It is not a write path into this object at all: `0029176A` allocates
 > `0x8030` bytes and `00291779` stores that pointer **into** the singleton, so a write through it lands

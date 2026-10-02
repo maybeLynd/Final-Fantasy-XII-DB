@@ -35,7 +35,7 @@ Companion data file: [`scriptvm-verb-table.tsv`](scriptvm-verb-table.tsv) — **
 command slot: id, verb name, the three callback addresses, the measured argument count and operand
 types, and a status column saying how strongly each row is proven. **1,870 of the 1,960 rows carry a
 measured arity**; on the 1,210 of those that the authored catalog also names and declares, the two
-agree **1,209 times** (§10, §12).
+agree **1,209 times** (§10, §12) *(answered: BQ-9, 2026-09-27, measured the other 90; the TSV now carries an arity on all 1,960 rows and agrees with the catalogue on 1,269 of 1,270; 2026-10-02, OPUS)*.
 
 ## 1. What the player sees
 
@@ -55,7 +55,7 @@ is the difference between editing a script with confidence and editing it by exp
 
 It also explains a shape of the scripting language a modder meets immediately: some verbs finish
 instantly (`setforcefightmode`) and some take time (`camerasync`, `wait`, `motionsync`) and hold the
-script until they are done. That is not a convention the script authors invented — it is built into
+script until they are done *(answered: not all — 77 verbs with a `begin` and no `poll` return at once, CY-4 below; 2026-10-02, OPUS)*. That is not a convention the script authors invented — it is built into
 the table, and you can read which kind a verb is straight out of it.
 
 ## 2. Native mechanism
@@ -203,7 +203,7 @@ if (phase == 0) {                                  /* first call */
     begin = GetBeginCallback(family, command);
     if (begin) begin(b, owner, cmdState + 0x18, valueStack, a);
 }
-                                                   /* phase 0 and 1 both fall through to poll */
+                                                   /* phase 0 and 1 both fall through to poll */  /* <- corrected 2026-10-02, OPUS: phase >= 2 skips begin AND poll and calls result directly, 00262248-00262255 */
 running = poll ? poll(b, owner, cmdState + 0x18) : 0;
 if (running & 1) { cmdState[0x15] = 1; return 1; } /* stay in progress, come back next frame */
 
@@ -227,7 +227,7 @@ Three consequences a reader should take away:
 
 - **A command with only a `result` callback completes inside one call.** With no `poll`, `running`
   comes from a zero-initialised local, so the executor falls straight through to `result`. That is
-  why 1,573 of the 1,960 commands are instantaneous even though the phase byte starts at 0.
+  why ~~1,573~~ 1,571 of the 1,960 commands are instantaneous even though the phase byte starts at 0 *(corrected 2026-10-02, OPUS: 1,571 carry a real `result` and nothing else; `0x0297` and `0x20B5` also carry a `poll` and can block, CZ-1)*.
 - **Every native command yields exactly one value.** The executor pushes one — the callback's result,
   or integer `0` if none was written. That is why the bytecode has `CALLPOPA` and `CALLACTPOPA`
   opcodes at all: to throw the value away when the script does not want it. The ff12-script header
@@ -239,7 +239,7 @@ Three consequences a reader should take away:
 
 ### 2.5 Where a callback's arguments come from
 
-Every callback receives the same four things, in the Microsoft x64 convention:
+Every callback receives ~~the same four things~~ these things, in the Microsoft x64 convention — `begin` a fifth, the manager, on the stack *(corrected 2026-10-02, OPUS: `002622C4 mov rcx, [rsp + 0x70]` / `002622CD mov [rsp + 0x20], rcx` before `002622DB call rax`)*:
 
 ```
 rcx = b            the script/actor context the verb was issued from
@@ -589,7 +589,7 @@ handler, not the verb.
   | `UNPROVEN` | 0 | (retired 2026-09-27 — BQ-9 measured all 57) |
   | `CONFLICT` | 1 | `unkCall_5c7`: declared 2 arguments, handler is the shared `ret 0` |
 
-- **`guard` names the early-out** where there is one: `fsmenu` for the 33 fullscreen-menu verbs that
+- **`guard` names the early-out** where there is one: `fsmenu` for the ~~33~~ 42 fullscreen-menu verbs *(corrected 2026-10-02, OPUS: 42 rows carry `guard = fsmenu`, 33 of them with operands; the guard `call 0x280120` also opens `0x7036`'s poll `005113D0`)* that
   share one null-object test, `other` for the single family-3 verb with its own. **A guarded verb
   that bails does not read its operands** — §12.
 
@@ -601,7 +601,7 @@ handler, not the verb.
 - **Read all three callbacks, not just one.** A verb with a `begin` is durative: its arguments are
   read in `begin`, not in `result`. Looking only at the `result` column is what produced a
   long-running false contradiction in the predecessor document.
-- **327 verbs are durative, 1,573 are instantaneous.** If you need a verb that takes time, it needs
+- **327 verbs are durative, ~~1,573~~ 1,571 are instantaneous** *(corrected 2026-10-02, OPUS: plus `0x0297` and `0x20B5`, which carry a `poll` and can block, CZ-1)*. If you need a verb that takes time, it needs
   `begin` and `poll`; a `result`-only slot completes within the frame.
 - ~~**27 command slots point at the 3-byte `ret 0` stub** and 33 have no callback at all.~~ **34 callback slots over
   33 commands point at the 3-byte `ret 0` stub** (25 `result`, 9 `begin`, none `poll`; `0x03BD` has it in both), and
@@ -669,13 +669,13 @@ handler, not the verb.
       - **Family 0's ten unnamed slots are `0x059E`, `0x059F`, `0x05AA`, `0x05AE`, `0x05AF`, `0x05B2`,
         `0x05B3`, `0x05C0`, `0x05C1`, `0x05CC`.** The family spans `0x0000`–`0x05D7` (1,496 rows), so
         the **first** of them stands at **96.1 %** of the family and **all ten lie in its last 3.9 %**.
-      - **Family 3's seven are `0x3086`–`0x308F`** in a family spanning `0x3000`–`0x3092` (147 rows):
+      - **Family 3's seven are ~~`0x3086`–`0x308F`~~ `0x3086`–`0x3089` and `0x308D`–`0x308F`** *(corrected 2026-10-02, OPUS: the catalogue names `0x308A`–`0x308C`; all ten ids have a result callback)* in a family spanning `0x3000`–`0x3092` (147 rows):
         the first at **91.2 %**, all seven in the last **8.8 %**.
       - **The 13 unslotted names are `0x05D8`–`0x05E4` — the thirteen ids immediately after family 0's
         last id `0x05D7`, contiguous, with no gap.** Not scattered through the table: appended past its
         end.
       - **Two of the nineteen are not verbs.** `0x20D3` is the **last id of family 2** and its handler
-        is `0016D6A0`, the folded three-byte `ret 0` — the terminator the dispatch falls closed onto,
+        is `0016D6A0`, the folded three-byte `ret 0` ~~— the terminator the dispatch falls closed onto,~~ *(corrected 2026-10-02, OPUS: that is its `begin`; its `poll` is `005C5230` and its `result` NULL, and an out-of-range command gets NULL from the count check `003DC283`/`003DC285`, it does not land here)*
         which is what the count called "the default table". And family 5 **has exactly one row**,
         `0x5000`, so its "unnamed slot" is the whole family; its handler `003567F0` is the one
         `keywait` and `keywaitr` already share.
@@ -723,7 +723,7 @@ handler, not the verb.
       1,210. The 41 path-dependent rows that §10 could not measure are resolved in §12: 7 were
       argument hand-offs between handlers, and 34 are early-out guards whose other branch reads
       exactly the declared count. **BQ-7.**
-- [x] The **90 rows still without a measured arity**: 33 command slots with no callback at all,
+- [x] The **90 rows still without a measured arity**: 33 command slots with ~~no callback at all~~ no `begin` or `result` *(corrected 2026-10-02, OPUS: 29 of them carry a `poll`; 4 — `0x0330`, `0x0356`, `0x03B0`, `0x203E` — have no callback at all, §2's 2026-09-15 count)*,
       31 whose operand reads sit inside a loop or whose control-flow graph exceeded the path budget,
       and 26 whose handler calls a function whose own stack effect is not exactly known. Each needs a
       body read; none is blocked on an instrument. **BQ-9.**
@@ -943,7 +943,7 @@ box.*
   is declared as six floats. `debug_setrect` measures five. A wrong table would not produce matched
   debug/retail signatures.
 - **Looked for a reader of value-stack word A (`+0x84`).** 69 writes in the interpreter, 0 reads;
-  neither pop primitive touches it. Left open rather than explained away.
+  neither pop primitive touches it. Left open rather than explained away *(answered: BQ-1, 2026-09-13 — 78 stores, all zero, no reader; 2026-10-02, OPUS)*.
 
 ### Status
 
@@ -1055,11 +1055,11 @@ survive 1,091.
 |---|---:|
 | handler calls a function that can itself reach a stack primitive | 164 |
 | net stack effect **differs between paths** | 41 |
-| slot has no callback at all | 33 |
+| slot has ~~no callback at all~~ no `begin` or `result` *(corrected 2026-10-02, OPUS: 29 poll-only, 4 with no callback)* | 33 |
 | pops sit inside a loop, or the CFG exceeded the path budget | 31 |
 
 The 41 path-dependent rows are the interesting ones: a verb whose operand count depends on a branch
-is unusual, and each is a small, bounded read. **BQ-7** stays open on those four categories.
+is unusual, and each is a small, bounded read. **BQ-7** stays open on those four categories *(answered: BQ-7 closed 2026-09-02 and BQ-9 2026-09-27, §7; 2026-10-02, OPUS)*.
 
 ### The pattern, now four for four
 
@@ -1158,8 +1158,8 @@ Every guarded handler opens with it:
 ```
 
 **The guard is family 7's standard prologue**, on **65 of its 131 callbacks**. It only produces a
-path-dependent arity on the 33 records that have operands to read; the rest read none either way.
-Family 7's records come in exactly four shapes:
+path-dependent arity on the 33 records that have operands to read; the rest read none either way. *(corrected 2026-10-02, OPUS: the 65 include `0x7036`'s guarded poll `005113D0`)*
+Family 7's records come in ~~exactly four shapes~~ these four shapes and a fifth, `poll` only, on 3 records — `0x7036` (guarded `005113D0`), `0x705F` (`00511FB0`), `0x7060` (`00512010`) *(corrected 2026-10-02, OPUS: 20 + 22 + 54 + 5 + 3 = 104 under the five command tables read under the accessor frame - begin `tbl + 8 + 0x20n` (`003DC28E`), poll `+ 0x10` (`003DC25E`), result `tbl + 0x20(n + 1)` (`003DC2BA`))*:
 
 | begin | poll | result | records |
 |---|---|---|---:|
@@ -1218,7 +1218,7 @@ as **BQ-10**.
 > must exist before any family-7 verb can do anything, and the tutorials — which visibly open
 > panels in the shipped game — run inside a menu context that created it. The one family-7 verb in a
 > non-menu script, `rwf_b02`'s `fsmenu_disposeescape()` in the `起動` routine of `ロケタイイベント`
-> (no `openmenu` anywhere in the file), is in the **unguarded** half of the family (62 of 104
+> (no `openmenu` anywhere in the file), is in the **unguarded** half of the family (~~62~~ 61 *(corrected 2026-10-02, OPUS: 43 records carry the guard, `0x7036`'s poll among them)* of 104
 > handlers have no guard): its handler `00511500` tail-jumps to `00366940`, which stores 0 to the
 > global `022CBE18` and never touches the menu object, so it neither dereferences the null nor
 > leaves operands (it takes none). The operand-leak path — a guarded verb with operands issued while
@@ -1239,14 +1239,14 @@ Three passes, three samples — 76, then 1,091, then 1,210 — and the delta his
 **exactly two values every time**: `0`, and the `−2` of `unkCall_5c7`, whose handler is the shared
 `ret 0`. Growing the sample sixteen-fold has not produced a single new disagreement.
 
-**What is honestly left (BQ-9):** 33 slots with no callback, 31 whose operand reads sit inside a loop
+**What is honestly left (BQ-9):** 33 slots with ~~no callback~~ no `begin` or `result` *(corrected 2026-10-02, OPUS: 29 poll-only, 4 with none)*, 31 whose operand reads sit inside a loop *(answered: BQ-9, 2026-09-27, §7; 2026-10-02, OPUS)*
 or whose control-flow graph exceeded the path budget, and 26 whose handler calls a function whose own
 stack effect is not exactly known. Ninety rows, each needing a body read, none blocked on the
 instrument.
 
 ### Status
 
-`DOCUMENTED`, three falsification passes survived, against snapshot
+~~`DOCUMENTED`, three falsification passes survived,~~ `AUDITED` *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`)*, against snapshot
 `46f02e26104e44215f8793700fe95fc243394d6b966b366e74f16110627bbbb2`. What would kill it: a command
 whose declared arity is reproduced by neither `begin` nor `result` under path-sensitive measurement
 with callee folding; a guarded verb whose non-bail branch reads a count other than its declared one;
@@ -1319,7 +1319,7 @@ the command is done in the same call.
 **Two verbs are labelled `instantaneous` and carry a `poll`**: `usemoviememory` (`0x0297`,
 poll `003473C0`) and `debug_freeiopvoice` (`0x20B5`, poll `0050EA00`). Under the dispatcher a `poll`
 without a `begin` is reached on the first call like any other, so **these two can block despite the
-label.** Neither handler is read. `CZ-1`.
+label.** ~~Neither handler is read.~~ *(answered: both read 2026-09-14, CZ-1 below; 2026-10-02, OPUS)* `CZ-1`.
 
 > *Answered 2026-09-14 (FABLE, `CZ-1`): both are **wait-then-act** verbs, and the label is wrong for both.* Under the
 > dispatcher a poll with bit 0 set keeps the command running ([the native command lifecycle](../Native-Command-Lifecycle/native-command-lifecycle.md)).

@@ -6,7 +6,11 @@ Method, per site `call/jmp qword ptr [V + 0x78]`: find V's vtable load `mov V, q
 O with regval, then try to exclude the application in four independent ways:
   E1 displacement  every value of O is a load [B + d] with d outside the displacements the application pointer is ever
                    stored at (OPUS's 26 escapes: 0x0, 0x8, 0x20, 0x38, 0x78; no indexed store), a constant 0, or an
-                   indexed load; the handle resolvers 007B58C0 / 007BC2B0 return exactly such an indexed load
+                   indexed load; the handle resolvers 007B58C0 / 007BC2B0 return exactly such an indexed load.
+                   A load through a frame-pointer rbp is a stack slot and is never excluded: stack_base checks the
+                   last write of the base is rsp-derived (mov B,rsp / lea B,[rsp+-k] / lea B,[X+-k] with X rsp-derived)
+                   and not a pointer loaded from memory. (Repair of the auditspec-review-sd7-oracle-0930 REJECT:
+                   8 PPFX rows read stack-passed arguments through the frame pointer and must not count as E1.)
   E2 class         O is the incoming rcx (this) of a method whose every vtable (RTTI) is a class outside GameApplication's
                    hierarchy {GameApplication, PApplication, PBase, PMemoryBase}
   E3 constructed   O is the return of a constructor that stores a non-application vtable (001FBB40, 001FB870)
@@ -18,6 +22,9 @@ Controls:
   K3 E2 does not exclude GameApplication's own methods (rcx of 0017D1A0 types as GameApplication)
   K4 GameApplication's vtable has 31 slots and a real application call at slot 30 (+0xF0, 0079C23A) exists, so the E4
      threshold (>= 31) is above every slot the application answers
+  K5 007B58C0 / 007BC2B0 return an indexed handle-table load ([table + i*40 + 0x20]), treated as E1
+  K6 00739C9D's frame-pointer load is not excluded (positive); 0074C8EC / 0074CA3D / 00771C06, whose rbp is a pointer
+     loaded from a stack slot, stay E1 (negative)
 """
 import collections, os, re, struct, sys
 
@@ -82,7 +89,48 @@ def parse(mem):
     return base, idx, d
 
 
-def e1(terms):
+def stack_base(f, la, base):
+    """Is `base` stack-derived at the load `la` in function f? The last write on the linear walk is `mov B, rsp`,
+    `lea B, [rsp ± k]`, or the frame idiom `lea B, [X ± k]` where X's own last write before it is rsp-derived
+    (`mov rax, rsp; lea rbp, [rax - k]`). A base loaded from memory - `mov rbp, [rsp+0x188]` - is a pointer, not a
+    frame pointer. A base never written in the body is an incoming register, not a local frame. Linear walk of the
+    body, not flow-aware (a join from another path is not seen)."""
+    ins, idx, _ = V.body(f)
+    k = idx.get(la)
+    fam = V.canon(base)
+    if k is None or fam is None:
+        return False
+
+    def last_write(reg, upto):
+        w = None
+        for i in ins[:upto]:
+            if reg in V.writes(i):
+                w = i
+        return w
+
+    def rsp_rel(w):
+        if w is None or w.mnemonic not in ("mov", "lea"):
+            return False
+        d, s = V.ops(w)
+        if w.mnemonic == "mov":
+            return V.canon(s or "") == "rsp"
+        m = re.match(r"\[(\w+)(?: [+-] (?:0x[0-9a-f]+|\d+))?\]$", s or "")
+        if not m:
+            return False
+        if V.canon(m.group(1)) == "rsp":
+            return True
+        w2 = last_write(V.canon(m.group(1)), idx[w.address])
+        if w2 and w2.mnemonic in ("mov", "lea"):
+            d2, s2 = V.ops(w2)
+            return V.canon(d2) == V.canon(m.group(1)) and (V.canon(s2 or "") == "rsp" or
+                                                          bool(re.match(r"\[rsp", s2 or "")))
+        return False
+
+    w = last_write(fam, k)
+    return bool(w and V.canon(V.ops(w)[0]) == fam and rsp_rel(w))
+
+
+def e1(terms, f):
     if not terms:
         return False
     for t in terms:
@@ -92,8 +140,14 @@ def e1(terms):
             continue
         if t[0] == "M":
             base, idx, d = parse(t[1])
-            if base not in ("rip", "rsp") and (idx or d not in HOLD):
-                continue
+            if base not in ("rip", "rsp"):
+                # a load through a frame pointer is a stack slot and is never excluded (audit-spec review
+                # auditspec-review-sd7-oracle-0930: a stack-passed argument read through rbp is not a holder
+                # displacement, and regval does not follow it into the caller)
+                if stack_base(f, int(t[1][:8], 16), base):
+                    return False
+                if idx or d not in HOLD:
+                    continue
         return False
     return True
 
@@ -172,7 +226,7 @@ check("K1", len(rows) == 192 and len({r[0] for r in rows}) == 114,
 cls = collections.Counter()
 resid = []
 for f, a, ld, obj, terms in rows:
-    if e1(terms):
+    if e1(terms, f):
         cls["E1"] += 1
         continue
     c2 = e2(terms)
@@ -205,7 +259,7 @@ if g:
     ia = int(g[0][1].split()[0], 16)
     i = next(R.md.disasm(R.at(ia, 16), ia, 1))
     tgt = i.address + i.size + i.operands[1].mem.disp
-check("K2", txt(0x0079914C) == "call qword ptr [rax + 0x70]" and not e1(t_ctl) and tgt == 0x02EA5368,
+check("K2", txt(0x0079914C) == "call qword ptr [rax + 0x70]" and not e1(t_ctl, 0x00798FF0) and tgt == 0x02EA5368,
       "the window procedure's application call 0079914C (object [%s]) is not excluded by E1" % (hex(tgt) if tgt else None))
 check("K3", "GameApplication" in classes_of(0x0017D1A0) and e2({("U", "argument rcx of 0017D1A0: no direct caller")}) is None,
       "E2 types 0017D1A0's this as GameApplication and does not exclude it")
@@ -216,6 +270,15 @@ check("K4", n == 31 and txt(0x0079C23A) == "call qword ptr [rax + 0xf0]" and T.r
       "GameApplication vtable = %d slots; slot 30 is called at 0079C23A, so a slot >= 31 excludes the class" % n)
 check("K5", txt(0x007B58EB) == "mov rax, qword ptr [rax + rcx*8 + 0x20]" and txt(0x007BC2DB) == "mov rax, qword ptr [rax + rcx*8 + 0x20]",
       "007B58C0 / 007BC2B0 return an indexed handle-table load ([table + i*40 + 0x20]), treated as E1")
-check("S1", cls["E1"] + cls["E2"] + cls["E3"] + cls["E4"] + cls["RESIDUE"] == len(rows) and cls["RESIDUE"] == len(resid),
-      "partition: E1 %d, E2 %d, E3 %d, E4 %d, residue %d" % (cls["E1"], cls["E2"], cls["E3"], cls["E4"], cls["RESIDUE"]))
+# K6: the frame-pointer rule's own controls (auditspec-review-sd7-oracle-0930 R1). 00739C9D's load is
+# [rbp+0x138] with rbp = entry rsp - 0x58 - a stack slot, not excluded; 0074C8EC/0074CA3D/00771C06 load rbp
+# itself from a stack slot - pointers, still excluded.
+k6p = next((r for r in rows if r[1] == 0x00739C9D), None)
+k6n = [r for r in rows if r[1] in (0x0074C8EC, 0x0074CA3D, 0x00771C06)]
+check("K6", k6p is not None and not e1(k6p[4], k6p[0]) and len(k6n) == 3 and all(e1(r[4], r[0]) for r in k6n),
+      "00739C9D's frame-pointer load is not excluded; the three loaded-pointer rbp rows stay E1")
+PART = {"E1": 125, "E2": 13, "E3": 2, "E4": 10, "RESIDUE": 42}
+check("S1", dict(cls) == PART and cls["RESIDUE"] == len(resid),
+      "partition: E1 %d, E2 %d, E3 %d, E4 %d, residue %d (expected %s; the stack-slot rows are not excludable)" % (
+          cls["E1"], cls["E2"], cls["E3"], cls["E4"], cls["RESIDUE"], PART))
 print("FAILS %d" % fails)

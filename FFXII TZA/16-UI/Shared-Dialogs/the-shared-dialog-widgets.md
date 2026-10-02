@@ -32,7 +32,7 @@ audit:
 
 # The shared dialog widgets
 
-**Status:** PARTIAL — the four procedures' dispatch shapes and arm interiors are cited below; `0057C480`'s full id-4/10/12/19 arm set is now read (2026-09-15) and every listed screen-region member of the two dialog subtrees has an interior citation. These are the **shared dialogs** the atlas rows' "(child)" entries refer to: reusable widgets screens install, not screens of their own. None of them owns a layout surface of its own beyond its frame.
+**Status:** ~~PARTIAL~~ DOCUMENTED *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, GI-4 answered 2026-09-29)* — the four procedures' dispatch shapes and arm interiors are cited below; `0057C480`'s full id-4/10/12/19 arm set is now read (2026-09-15) and every listed screen-region member of the two dialog subtrees has an interior citation. These are the **shared dialogs** the atlas rows' "(child)" entries refer to: reusable widgets screens install, not screens of their own. None of them owns a layout surface of its own beyond its frame.
 
 ## `0056F810` — the menu list (CommandMenu/MenuList keys)
 

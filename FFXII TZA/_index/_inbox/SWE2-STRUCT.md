@@ -1737,3 +1737,32 @@ correction, originals preserved):
 NEXT: publish the record repairs, finish the RETURN task. Seedable frontier
 closed; ARG routes committed at `05cf6d3b5`. Standing limitation: transitive
 getter-alias consumer census remains unsupported/known debt.
+
+## 2026-10-02 — SWE2-STRUCT: interior-offset leads 21->0
+
+`OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001` — all 20 still-open leads
+ruled (PhyreClassDescriptor +0xF4 dropped out: a peer split it into
+parentChainOffsetSum/Clamped/flags before the task landed). Verdicts per
+site-level read of every flagged access:
+
+- PER-PATH UNION (8): EncodedIdQueryRecord +0x04/+0x20/+0x24/+0x28/+0x2C/
+  +0x30/+0x38 (tagged per-class views; the WORD+6 `id` overlay row already
+  existed), WidgetSingleton02CA99C0 +0xD0 (qword store vs dword reads —
+  pointer-ness not established).
+- RULED FALSE (1): MapRefWeatherBlock +0x0 — the interior byte is
+  MapRefWeatherLane.publishedByte, already declared on the nested type.
+- SPLITS (11): Manager0209AC60 +0x3E0 -> word03E0 i16 + word03E2 u16
+  (movsx/movzx reads, no dword reader); ManagerSub0209AC60_02F8 +0xC8 ->
+  byte00C8 i8 + byte00C9 u8 (zero word-width accesses); MapScreenContainer
+  +0xA1 -> byte00A1 + byte00A2; PApplication +0xD38 -> modeDword38/3C
+  (+0xD3C takes 001DE570's return at 0079856F); PpfxInitDescriptor six u64
+  rows -> dword pairs (readers address the dwords individually);
+  WidgetSingleton02AED490 +0xE6 -> byte00E6 + byte00E7 + word00E8.
+- WIDTH DELIBERATE prose carried on every split row whose base still takes
+  a wider covering store (qword/dword/word bulk init).
+- Gates: check_interior_offsets exit 0 (15 adjudicated, 0 open, control
+  holds); types_index --validate 0 errors/0 gaps/0 reviews; leads file
+  regenerated. check_census_widths shows 1 baseline mismatch
+  (RenderResourceEntryBank pageHead — peer row from a73cdc0cf, owner's call).
+
+NEXT: publish + finish the task. Unrouted-type frontier unchanged.

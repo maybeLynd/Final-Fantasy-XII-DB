@@ -1,7 +1,7 @@
 ---
 system: EFX and EFB — the effect containers
 category: 17-Presentation-Rendering
-status: PARTIAL — the residue this line named is answered in §2b (SWE2-CONTRACT DD batch 10) - all 3,698 files opened (header second half measured, +0x0C read by four callers), the EFB buffer lifetime read (one fixed block, released only by the map teardown after its contexts), both binders read (00333C80 = the 0x600 version normaliser, 004FF270 = the 0x700 offset relocator); §5 version counts and the 2026-09-16 walk corrected 2026-09-29 (FABLE, GI-8) (was — no .efx/.efb file was opened and the EFB buffer lifetime is not read; the chunk handlers 003A7E80/003A79C0 read structurally 2026-09-18 (index-registered records in two tables, their binders 00333C80 and 004FF270 unread))
+status: PARTIAL — the residue this line named is answered in §2b (SWE2-CONTRACT DD batch 10) - all 3,698 files opened (header second half measured, +0x0C read by four callers), the EFB buffer lifetime read (one fixed block, released only by the map teardown after its contexts), both binders read (00333C80 = the 0x600 version normaliser, 004FF270 = the 0x700 offset relocator); §5 version counts and the 2026-09-16 walk corrected 2026-09-29 (FABLE, GI-8); still open: SD-194 (runtime — which path the null-name fields request, and whether any such field is loaded; status line current 2026-10-02, SWE2-CONTRACT DD batch 21) (was — no .efx/.efb file was opened and the EFB buffer lifetime is not read; the chunk handlers 003A7E80/003A79C0 read structurally 2026-09-18 (index-registered records in two tables, their binders 00333C80 and 004FF270 unread))
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -365,8 +365,17 @@ overwrite `02ADD088` without freeing it. The teardown frees only `02ADD088`, so 
 not a shipped path.
 
 **Not settled here (runtime).** For 34 fields the block's index names no package, and for 121 the row's own index
-names none. `002DF880` then returns −1 without writing the buffer, and `00377DC0` does not check. The requested path is
-whatever the stack held. Which path that is, and whether those fields are ever loaded, is runtime. A row is proposed
+names none. `002DF880` then returns −1 without writing the buffer, and `00377DC0` does not check. *Narrowed
+2026-10-02 (SWE2-DATA) on ASTRA's SPEC-reviewed slice [`sd194-stale-name-slice`](../../_experiments/evidence/sd194-stale-name-slice/README.md),
+method A over bodies `377DC0..37802A`:* the buffer is not simply forwarded. The caller copies through the first NUL
+(`n`, 0≤n≤259), scans the copy backwards for a `5C`/`2F` separator (`j`, or −1), and then: **no separator** (or empty
+text) clears `output[0]`; **basename 0–3 bytes** (`k = n−j−5 < 0`) writes a terminator at the signed index −4..−1 —
+before the copied output but inside the stack frame — and keeps the copied string; **basename 4 bytes** clears
+`output[0]`; **longer** reaches the declared `memcpy` boundary `RCX=output+12, RDX=input+j+1, R8=k+12` (the copy count
+includes 12 bytes past `k`; nine long-string/early-separator length classes overlap the intervals, so the memcpy
+contract is exceeded for those inputs — a contract limit, not an observed fault). So "whatever the stack held" is
+conditional on the inherited bytes, not a raw stale name. Still live: the buffer's actual contents on the null-name
+path and which fields a session loads — runtime only. A row is proposed
 in [the batch record](../../_index/candidates/swe2contract-ddres-b14-0930/README.md).
 
 | claim | evidence | tier |

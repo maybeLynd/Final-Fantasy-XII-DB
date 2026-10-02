@@ -30,8 +30,8 @@ audit:
 
 > **Authored 2026-09-22 by FABLE.** S-11's binding gap is *"1 of 3 pages by subject"* — its one
 > contract, [`CONTRACT-field-record-accessors.md`](CONTRACT-field-record-accessors.md), covers the
-> field-record accessors. **This takes the trigger points**; the environment variant remains
-> uncontracted and this document does not claim it.
+> field-record accessors. **This takes the trigger points**; ~~the environment variant remains~~
+> ~~uncontracted and this document does not claim it~~ *(answered: the environment variant has its own contract, CONTRACT-field-environment-variant.md; 2026-10-02, OPUS)*.
 >
 > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
 > system's operations have no cross-operation invariant or ordering it leaves unstated.* §4 is seven
@@ -136,7 +136,7 @@ the acting unit's status words and selector bytes.
 | | |
 |---|---|
 | **Sibling** | [`CONTRACT-field-record-accessors.md`](CONTRACT-field-record-accessors.md) — S-11's contracted third |
-| **Uncontracted** | the field environment variant — S-11's remaining page, not claimed here |
+| ~~**Uncontracted**~~ **Sibling** | the field environment variant — ~~S-11's remaining page, not claimed here~~ [`CONTRACT-field-environment-variant.md`](CONTRACT-field-environment-variant.md) *(answered: contracted 2026-09-22; 2026-10-02, OPUS)* |
 | **Shares the generator** | [the periodic tick](../10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md), whose Regen arm draws the same `00379CD0` (TP-7) |
 | **Shares a selector** | stat derivation and enmity, on `rec[+0x05]` (TP-6) |
 
@@ -144,7 +144,7 @@ the acting unit's status words and selector bytes.
 
 Per call: *eligibility (TP-6) → for each of at most 32 live points: distance (TP-1, TP-2) → on a hit,
 roll (TP-3) → set flag → deliver → clear the bit → **stop** (TP-4).* A point transitions `live →
-spent` exactly once and never back.
+spent` exactly once ~~and never back~~, and stays spent while its field keeps one of the ring's three slots (TP-4) *(corrected 2026-10-02, OPUS: `002FB3B0` stores `{field, mask}` at the ring index `+0x24`, advances it modulo 3 and caps the count `+0x28` at 3, `002FB3CF`–`002FB417`; `002FA230` clears the ring)*.
 
 ## 8. Script · resource · event interactions
 
@@ -165,19 +165,19 @@ is not.*
 
 ## 11. Observable behaviour
 
-Walking over a spot in the field makes something happen once and never again; the same spot gives one
+Walking over a spot in the field makes something happen once ~~and never again~~, and not again while the field is among the three most recently fired-in fields (TP-4) *(corrected 2026-10-02, OPUS: the three-slot ring, `002FB3CF`–`002FB417`)*; the same spot gives one
 of two results, three times in four the first one.
 
 ## 12. Reproduction formula
 
 Place a unit at exactly the stored threshold distance and assert it fires (TP-1 — **the constant is
-below 1.3**). Place it at the point's coordinates but a height away and assert the height is charged
-against the same budget (TP-2). Author 33 points and assert the 33rd never fires (TP-5). Overlap two
+below 1.3**). ~~Place it at the point's coordinates but a height away and assert the height is charged~~
+~~against the same budget (TP-2).~~ Place it at the point's coordinates but a height away and assert it fires, because the height is not charged (TP-2) *(corrected 2026-10-02, OPUS: `002F8150 mov [rsp+0x54], edi` zeroes the unit's height before the movement call that reads it, as TP-2's correction of 2026-09-25 says)*. Author 33 points and assert the 33rd never fires (TP-5). Overlap two
 and assert exactly one fires and the other remains live (TP-4).
 
 ## 13. Runtime validation
 
-**None.** No experiment executes this body. S-11's runtime cell is not addressed by this contract.
+~~**None.** No experiment executes this body.~~ *(answered: OPUS block 317 executed it — the 2026-09-25 corrections to TP-1, TP-2 and TP-4 and the falsification pass's note; 2026-10-02, OPUS)* S-11's runtime cell is not addressed by this contract.
 *Stated rather than left blank so a CONTRACT READY header is not read as evidence of execution.*
 
 ## 14. Unresolved
@@ -198,7 +198,7 @@ and assert exactly one fires and the other remains live (TP-4).
   layer 25 (Diamond Armlet), `+0x14`/`+0x16` the gil amounts (bit 6 of `+8` = random `1..N`),
   `+9` the persistent flag set unconditionally. The "two RNG-and-flag functions" of TP-7 are a
   trigger point and a chest roll — the entire RNG→persistent-save surface.
-- The field environment variant, S-11's other uncontracted page.
+- ~~The field environment variant, S-11's other uncontracted page.~~ *(answered: CONTRACT-field-environment-variant.md contracts it; 2026-10-02, OPUS)*
 
 ## 15. Evidence
 

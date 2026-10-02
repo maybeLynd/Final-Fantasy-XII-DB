@@ -716,3 +716,15 @@ range and by no audio-range function that loads them through a descriptor pair**
 `007E9000` for `+0x2C`/`+0x24` reads with pair provenance: none). The sequence player the trigger
 `007BD240` builds (`007E6960`) keeps the pair at `+0x20` and reads nothing from it at construction.
 Whoever consumes the payload does so through a path this reading did not recognise; that is the residue. *(Dispositioned: G-2 SUPERSEDED 2026-09-27 (OPUS) under FRONTIER's class-1 ruling — every field placed or profiled, the indexed and stepped walk routes closed (§7); noted 2026-09-30, SWE2-DATA.)*
+
+## Cross-subsystem neighbours - SWE2-DATA (pass-22 dispositions, 2026-10-02)
+
+- **CombatAction - CLIENT (3 edges).** `00000215` is also called by bodies filed to combat action: `002F8410`, `002F88B0`, `002FA1A0` - shared machinery across the layer boundary, no shared ownership.
+- **CombatFormula - CLIENT (1 edge).** `00000215` is also called by bodies filed to combat formula: `00384B10` - shared machinery across the layer boundary, no shared ownership.
+- **Gameplay - SERVICE (1 edge).** `00318510` reaches bodies filed to gameplay: `0030B0E0` - shared machinery across the layer boundary, no shared ownership.
+- **Movement - CLIENT (7 edges).** `00000215` is also called by bodies filed to movement: `003343D0`, `00334E00`, `00336E40` (+4 more) - shared machinery across the layer boundary, no shared ownership.
+- **Presentation - CLIENT (3 edges).** `00000215` is also called by bodies filed to presentation/rendering: `0029F130`, `003BBD00`, `00530E40` - shared machinery across the layer boundary, no shared ownership.
+- **Rewards_Progression_Economy - CLIENT (1 edge).** `00318510` is also called by bodies filed to rewards/progression: `003180F0` - shared machinery across the layer boundary, no shared ownership.
+- **SaveLoad - CLIENT (1 edge).** `00000215` is also called by bodies filed to save/load: `00866200` - shared machinery across the layer boundary, no shared ownership.
+- **UI - CLIENT (1 edge).** `00000215` is also called by bodies filed to UI: `0055B3F0` - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - CLIENT and SERVICE (2 edges).** `0025ABA0` is also called by bodies filed to world area: `0025ACA0`; `0025ABA0` reaches bodies filed to world area: `002658B0` - shared machinery across the layer boundary, no shared ownership.

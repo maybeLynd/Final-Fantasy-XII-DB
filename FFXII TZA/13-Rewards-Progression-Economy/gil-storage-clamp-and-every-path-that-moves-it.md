@@ -486,3 +486,30 @@ with `dword[rax + 4] == edi` and returns
 the code-to-word translate ~~the gil paths share~~ of the UI menus, which no gil path reads *(corrected 2026-10-02, OPUS: the UI crossing paragraph above)*.
 Interior anchor `00272EFC` (the `+4`
 compare).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-gil-storage-clamp-and-every-path-that-mo-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0017F9E0` | 44 B | calls `001B5FB0()` and tail-jumps to `001B44A0` with `rcx` = that result, `edx` = the incoming `ecx` and `r8d` = the incoming `dl` zero-extended | `0017F9EA`, `0017F9EF`, `0017F9F7`, `0017FA07` |
+| `0020CB50` | 334 B | scans the seven 12-byte entries ending before `009062E8` (first pair at `00906294 - 4`) for one whose dwords `+0` and `+4` equal `edx` and `r8d`, returning when none does; for match `i` it updates record `k` (`k` = signed dword at `00906298 + i * 12`) of the `0x198`-byte records at qword `rcx+8`, and when `i` is 6 also records 31 to 37 (offsets `0x3168` up to `0x3C90`); a record whose byte `+0x190` is 0 gets that byte set to 1 and dword `+0x194` set to 0 and, when byte `rcx+0x18` is non-zero, the qword `+0x28` of `[008C3190](01DFE0D0)` has its vtable slot `+0x38` called with the record's qword `+8` and then slot `+0x50` | `0020CB74`, `0020CBB0`, `0020CBC8`, `0020CBF2`, `0020CC80` |
+| `0020CCA0` | 23 B | returns the zero-extended byte `+0x190` of record `edx` (sign-extended) in the `0x198`-byte records at qword `rcx+8` | `0020CCA3`, `0020CCAA`, `0020CCAE` |
+| `002494A0` | 65 B | when qword `0208F578` is 0, stores `02090910` to it and calls `00861EC0(02090910, 0, 0x780)`; on both paths then tail-jumps to `00861EC0(02090790, 0, 0x180)` | `002494A4`, `002494BD`, `002494C4`, `002494CB`, `002494DC` |
+| `0024A660` | 20 B | tail-jumps to `00861EC0(0208F580, 0, 0x1208)` | `0024A662`, `0024A669`, `0024A66F` |
+| `00272470` | 42 B | zeroes qwords `rcx+0` and `rcx+0x10`, stores the 32-bit sum `ecx + edx` zero-extended to qword `+0x18`, and stores the low 32 bits of `rcx` plus 0x30, rounded up to a multiple of 0x10 in 32 bits when not already one, to qword `+0x20` | `00272472`, `00272477`, `0027247B`, `0027248B`, `00272495` |
+| `00274840` | 40 B | when `rcx` is non-null calls `002446E0(rcx)`, `002473B0(rcx)` and `002482E0(rcx)` in that order; a null `rcx` returns at once | `00274843`, `0027484D`, `00274855`, `0027485D` |
+| `002800F0` | 38 B | when qword `0209AC30` is 0, stores `0209AC60` to it and tail-jumps to `00861EC0(0209AC60, 0, 0xE00)`; otherwise returns | `002800F8`, `002800FA`, `00280109`, `00280110` |
+| `00290430` | 19 B | stores `ecx` to dword `+0xAA44` of the qword at `0209BE80` when that qword is non-null; otherwise returns without writing | `00290437`, `0029043C` |
+| `00290DF0` | 28 B | when `rcx` is non-null, tail-jumps to `00273B40` with `rcx` = qword `+0x10FC0` of the qword at `0209BE80` and `rdx` = the incoming `rcx`; a null `rcx` returns | `00290DF5`, `00290DF8`, `00290DFF`, `00290E06` |
+| `002BE490` | 88 B | tail-jumps to `005C5230(rcx, rdx)` unless dword `[rdx]` is 2; when it is 2, zeroes word `rcx+0x10F8` if `001EDEC0(dword rcx+0xB4)` is non-zero and `002BF4F0(rcx, word rcx+0x10F8)` returns 1, then calls `002BE290(rcx+0xAC0)` and returns 0 | `002BE4A3`, `002BE4AE`, `002BE4C1`, `002BE4CD`, `002BE4DB` |
+| `00300500` | 28 B | clamps `ecx` to 0 when it is negative (`cmovns` keeps it when non-negative), calls `00254EE0` with the clamped value and returns that value | `0030050A`, `0030050F`, `00300514` |
+| `0034C9A0` | 50 B | takes `a` = `00267E10(r9)`, calls `00863240(0032F240(dword +0x28 of 002640C0()), a)` and tail-jumps to `0026B750(a)` | `0034C9A9`, `0034C9B5`, `0034C9B8`, `0034C9C1`, `0034C9CD` |
+| `0035C560` | 68 B | calls `00861EC0(022C8060, 0, 0x23C8)`, ORs dword `022C83E8` with 0x20, calls `0028F8B0()`, `00253480()` and `00290430(1)`, and stores `003C5E40()` to qword `022C83B8` | `0035C573`, `0035C578`, `0035C58E`, `0035C593`, `0035C598` |
+| `00365DD0` | 115 B | takes `p` = `004745D0(0xA00)` and fills 0x40 records of 0x28 bytes there, each with qword `+0` = the previous record, qword `+8` = the next record, dword `+0x10` = 0xFF0000 and qwords `+0x18` and `+0x20` = 0; it then stores `p` to qwords `+0x220` and `+0x228` and `p + 0x9D8` to qword `+0x230` of the qword at `022CBE00`, and zeroes the first record's qword `+0` and the last record's qword `+8` | `00365DD9`, `00365DF4`, `00365DFC`, `00365E1C`, `00365E3A` |
+| `0039BB30` | 33 B | calls `00861EC0(02AEE810, 0, 0xF0)` and tail-jumps to `0039C3F0` | `0039BB36`, `0039BB43`, `0039BB4C` |
+| `003F30A0` | 48 B | when `rcx` is non-null, walks the chain from `rcx` through each node's qword `+0x70` (read before the call) until it is null, calling `rdx` with the node in `rcx` whenever `rdx` is non-null; a null `rcx` returns at once | `003F30A3`, `003F30B2`, `003F30BB`, `003F30C3` |
+| `003F4BD0` | 92 B | builds a stack block (byte 0, qword `rdx`, dword `ecx`) and a stack record (dword 0, a pointer to that block, qword 0), calls `00244F50(0x100, 003F4E70, &record)`, and checks the stack cookie from `01F44830` through `00808C40` | `003F4BE9`, `003F4BF5`, `003F4BF9`, `003F4C15`, `003F4C22` |
+| `003FA760` | 35 B | calls `00275550(rcx, 0x26C0)` and then stores 0xFFFF to word `rcx+0x249A` | `003FA766`, `003FA76E`, `003FA773`, `003FA776` |
+| `00863240` | 53 B | calls `0020CE00()` and, when it is non-null, calls `0020CB50(0020CE00(), ecx, edx)` with a second `0020CE00()` call supplying `rcx`; a null result returns without the second call | `0086324E`, `00863256`, `00863258`, `00863265` |

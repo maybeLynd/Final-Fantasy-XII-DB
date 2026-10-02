@@ -11,8 +11,8 @@
 ## Systems in this category
 
 - [`steam-integration-and-achievement-catalogue.md`](steam-integration-and-achievement-catalogue.md) -
-  **PARTIAL, tier 2.** All **41 achievement identifiers** in the developers' own naming, in seven
-  families, plus 23 Steam interface versions. Explicitly does **not** claim latent multiplayer
+  ~~**PARTIAL, tier 2.**~~ **DOCUMENTED, tier 2.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED` and `evidence_tier: 2`)* All **41 achievement identifiers** in the developers' own naming, ~~in seven~~
+  ~~families~~ in eight families *(corrected 2026-10-02, OPUS: the 41 records at `01DFE410` point at tags with eight `ACH_<FAMILY>_` prefixes)*, plus ~~23~~ 21 Steam interface versions *(corrected 2026-10-02, OPUS: 21 version strings, `00903538`..`009037A0`)*. Explicitly does **not** claim latent multiplayer
   support from the presence of `SteamNetworking005`.
 
 ## How to add a system here

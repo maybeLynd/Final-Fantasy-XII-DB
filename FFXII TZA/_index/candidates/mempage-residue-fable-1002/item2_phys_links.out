@@ -1,0 +1,111 @@
+# item 2 - the +0x0C/+0x10 link pair (static). run: item2_phys_links.py at 8c1f67c0d
+
+## S1 arena module: 76 listed bodies in 00369700..0036D300
+  other  00369798 in 00369760  w8 r  cmp qword ptr [rcx + 0x10], rax
+  other  00369824 in 00369800  w8 r  mov rbx, qword ptr [rcx + 8]
+  other  00369E44 in 00369D30  w8 w  mov qword ptr [rbx + 8], r14
+  other  00369E4F in 00369D30  w8 w  mov qword ptr [r14 + 8], rax
+  other  00369E53 in 00369D30  w8 w  mov qword ptr [r14 + 0x10], rax
+  other  00369EF8 in 00369D30  w8 w  mov qword ptr [rax + 8], r8
+  other  00369F27 in 00369D30  w8 w  mov qword ptr [rax + 8], r8
+  other  00369F74 in 00369D30  w8 w  mov qword ptr [rbx + 0x10], r10
+  other  0036A02B in 0036A000  w8 r  mov rbx, qword ptr [rdx + 8]
+  other  0036A0D3 in 0036A0B0  w8 r  mov rdx, qword ptr [rdx + 8]
+  other  0036A25A in 0036A240  w8 w  mov qword ptr [rcx + 8], rdx
+  other  0036A364 in 0036A2A0  w8 w  mov qword ptr [rax + 8], rbx
+  other  0036A451 in 0036A2A0  w8 w  mov qword ptr [rsi + 8], rbx
+  other  0036A5A2 in 0036A570  w8 w  mov qword ptr [r11 + 0x10], rbx
+  other  0036A5C7 in 0036A570  w8 r  mov rbx, qword ptr [rdi + 0x10]
+  other  0036A7BF in 0036A570  w8 r  cmp qword ptr [rcx + 8], 0
+  other  0036A876 in 0036A850  w8 w  mov qword ptr [r11 + 0x10], rbp
+  other  0036AA7B in 0036A9C0  w8 r  mov rdi, qword ptr [rbx + 8]
+  other  0036AAB5 in 0036A9C0  w8 w  mov qword ptr [rbx + 8], rsi
+  other  0036AD12 in 0036ACE0  w8 r  sub rax, qword ptr [rsi + 0x10]
+  other  0036AE32 in 0036AE00  w8 r  sub rax, qword ptr [rsi + 0x10]
+  other  0036AFFC in 0036AF20  w8 w  mov qword ptr [rdi + 8], rsi
+  other  0036B14D in 0036B130  w8 r  mov rax, qword ptr [rax + 8]
+  other  0036B318 in 0036B2C0  w8 r  sub rax, qword ptr [r14 + 0x10]
+  other  0036B359 in 0036B2C0  w8 r  sub rax, qword ptr [r14 + 0x10]
+  other  0036B5FE in 0036B5F0  w8 r  sub rax, qword ptr [rcx + 0x10]
+  other  0036C17C in 0036C140  w8 r  mov rax, qword ptr [rdx + rcx*8 + 8]
+  other  0036C572 in 0036C4B0  w8 w  mov qword ptr [rax + 8], rdi
+  other  0036C581 in 0036C4B0  w8 w  mov qword ptr [rax + 8], rdi
+  other  0036C5F0 in 0036C5D0  w8 r  mov rdx, qword ptr [rdx + 8]
+  other  0036C6F2 in 0036C6C0  w8 r  mov rbx, qword ptr [rax + 8]
+  other  0036C916 in 0036C900  w8 r  sub rax, qword ptr [rcx + 0x10]
+  other  0036C968 in 0036C900  w8 r  sub rax, qword ptr [rsi + 0x10]
+  other  0036D196 in 0036D170  w8 r  mov rbx, qword ptr [rdx + 8]
+  other  0036D21D in 0036D200  w8 r  mov rax, qword ptr [rax + 8]
+  -- link-tagged accesses (DEC = decoded link read, ENC = encoded link store):
+  DEC    00369B49 in 00369860  mov ecx, dword ptr [rbx + 0xc]
+  DEC    00369B6B in 00369860  mov ecx, dword ptr [rbx + 0x10]
+  ENC    0036A4EE in 0036A490  mov dword ptr [rbx + 0xc], eax
+  ENC    0036A501 in 0036A490  mov dword ptr [rbx + 0x10], eax
+  DEC    0036A72F in 0036A570  mov ecx, dword ptr [rbx + 0x10]
+  DEC    0036AC10 in 0036ABE0  mov ecx, dword ptr [rdi + 0x10]
+  DEC    0036ACFC in 0036ACE0  mov ecx, dword ptr [rdx + 0x10]
+  DEC    0036AE1C in 0036AE00  mov ecx, dword ptr [rdx + 0xc]
+  DEC    0036B235 in 0036B210  mov ecx, dword ptr [rdi + 0xc]
+  DEC    0036B300 in 0036B2C0  mov ecx, dword ptr [rdi + 0x10]
+  DEC    0036B83E in 0036B7F0  mov ecx, dword ptr [rcx + 0x10]
+  ENC    0036B853 in 0036B7F0  mov dword ptr [rsi + 0x10], eax
+  ENC    0036B867 in 0036B7F0  mov dword ptr [rbp + 0xc], eax
+  ENC    0036B87F in 0036B7F0  mov dword ptr [rbx + 0xc], eax
+  ENC    0036B895 in 0036B7F0  mov dword ptr [rbx + 0x10], eax
+  DEC    0036B8FE in 0036B8B0  mov ecx, dword ptr [rcx + 0xc]
+  ENC    0036B913 in 0036B8B0  mov dword ptr [rsi + 0xc], eax
+  ENC    0036B927 in 0036B8B0  mov dword ptr [rbp + 0x10], eax
+  ENC    0036B93F in 0036B8B0  mov dword ptr [rbx + 0xc], eax
+  ENC    0036B955 in 0036B8B0  mov dword ptr [rbx + 0x10], eax
+  DEC    0036BD6C in 0036BC60  mov ecx, dword ptr [rdi + 0xc]
+  DEC    0036BD83 in 0036BC60  mov ecx, dword ptr [rdi + 0x10]
+  DEC    0036CA52 in 0036C9D0  mov ecx, dword ptr [rbx + 0x10]
+  DEC    0036CA5A in 0036C9D0  mov ecx, dword ptr [rbx + 0xc]
+  ENC    0036CA75 in 0036C9D0  mov dword ptr [rsi + 0xc], eax
+  ENC    0036CA8A in 0036C9D0  mov dword ptr [rdi + 0x10], eax
+  ENC    0036CAA3 in 0036C9D0  mov dword ptr [rbx + 0x10], eax
+  ENC    0036CAAB in 0036C9D0  mov dword ptr [rbx + 0xc], eax
+  DEC    0036CBCB in 0036CB00  mov ecx, dword ptr [rdx + 0x10]
+  DEC    0036CCC8 in 0036CB00  mov ecx, dword ptr [rbx + 0xc]
+  counts: DEC 16, ENC 14, other 35
+
+## S2 image-wide codec sites on +0x0C/+0x10 (raw call index of the codec, decoded per owner)
+  raw sites: 0020E600 4371 (4371 aligned), 0020E620 767 (767 aligned)
+  codec sites on a +0x0C/+0x10 dword OUTSIDE the module range: 1565 (DEC 1528, ENC 37) in 439 bodies - the same codec serves the authored tables, so these are filtered for arena awareness below
+  of those bodies, arena-aware (call a module body, touch an arena global 022D7FD0..022D8F10, or use the header magic): 5
+    DEC 003B1DE8 in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B1E14 in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B1F63 in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B1F8B in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B2023 in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B204B in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B20DA in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B2102 in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003B213F in 003B1BA0 FUN_003b1ba0  mov ecx, dword ptr [rax + 0x10]   [calls 0x36c1d0]
+    DEC 003EA73B in 003EA710 AreaArd_BindLoadedRootAndBattleSections  mov ecx, dword ptr [rbp + 0x10]   [calls 0x36c660]
+    DEC 00503DB0 in 00503D50 FUN_00503d50  mov ecx, dword ptr [rdi + 0x10]   [calls 0x3697f0]
+    DEC 00503DEF in 00503DE0 FUN_00503de0  mov ecx, dword ptr [rcx + 0x10]   [calls 0x3697f0]
+    DEC 00503DFC in 00503DE0 FUN_00503de0  mov ecx, dword ptr [rbx + 0x10]   [calls 0x3697f0]
+    DEC 00503E46 in 00503E30 FUN_00503e30  mov ecx, dword ptr [rcx + 0x10]   [calls 0x3697f0]
+    DEC 00503E53 in 00503E30 FUN_00503e30  mov ecx, dword ptr [rdi + 0x10]   [calls 0x3697f0]
+    ENC 00503D9C in 00503D50 FUN_00503d50  mov dword ptr [rdi + 0x10], eax   [calls 0x3697f0]
+    ENC 00503DD0 in 00503D50 FUN_00503d50  mov dword ptr [rdi + 0x10], eax   [calls 0x3697f0]
+    ENC 00503E17 in 00503DE0 FUN_00503de0  mov dword ptr [rbx + 0x10], eax   [calls 0x3697f0]
+    ENC 00503E71 in 00503E30 FUN_00503e30  mov dword ptr [rdi + 0x10], eax   [calls 0x3697f0]
+    ENC 00503EAD in 00503E30 FUN_00503e30  mov dword ptr [rdi + 0x10], eax   [calls 0x3697f0]
+    ENC 00503EDB in 00503E30 FUN_00503e30  mov dword ptr [rdi + 0x10], eax   [calls 0x3697f0]
+  bodies reading the base cell 01F83530 directly (inline codec): 0; of those, also touching a +0x0C/+0x10 dword: 0
+
+## S3 anchor: initializer stores and the header fill
+  00369F74 mov qword ptr [rbx + 0x10], r10
+  00369F8C mov qword ptr [rbx + 0x90], r10
+  00369F95 mov qword ptr [rbx + 0x98], r10
+  00369F9C mov rdx, r10
+  00369FA7 mov qword ptr [rbx + 0x18], rcx
+  00369FD4 call 0x36a490
+  0036A4D3 call 0x20e620
+  0036A4EE mov dword ptr [rbx + 0xc], eax
+  0036A4F1 call 0x20e620
+  0036A501 mov dword ptr [rbx + 0x10], eax
+
+FAILS 0 []

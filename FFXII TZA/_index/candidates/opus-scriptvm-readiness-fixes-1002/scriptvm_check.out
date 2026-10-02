@@ -1,0 +1,13 @@
+ok   0025E555 mov ebp, 1
+ok   00226C7A or dword ptr [rip + 0x1dada53], r13d
+ok   003DC2D5 lea rax, [rip + 0x1b4a444]
+ok   0026230B mov byte ptr [rdi + 0x15], 1
+ok   0026220C and r15d, 0xfff
+ok   0037CEBB mov byte ptr [rbx + 0xa], 0
+ok   00261B97 mov word ptr [rsi + 0x14], 0x107
+ok   002E944B inc dword ptr [rbx + 0x24]
+ok   002E949A cmp dword ptr [rdx + 0x24], eax
+ok   00266B54 lea rax, [rdx + 0x120]
+ok   0034FE99 jmp 0x37ca00
+ok   003DBDD4 movsx rax, byte ptr [rcx + 0x11]
+FAILS 0

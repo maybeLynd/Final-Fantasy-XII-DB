@@ -1,0 +1,306 @@
+{
+ "page": "10-Status-Periodic-Terminal/where-mp-comes-from.md",
+ "date": "2026-10-02",
+ "session": "session_01EsnYZKbu767dCnSLHP8iar",
+ "report": "where-mp-comes-from.json",
+ "rows": [
+  {
+   "fn": "00238640",
+   "text": "sign-extends `ecx`, forms the pointer `02F973C0 + ecx*8` in `rcx` and tail-jumps `003845F0` with it, leaving the other argument registers unchanged",
+   "anchors": [
+    [
+     "00238643",
+     "lea"
+    ],
+    [
+     "0023864A",
+     "lea"
+    ],
+    [
+     "0023864E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00300500",
+   "text": "clamps `ecx` to zero when it is negative (`cmovns` keeps a non-negative `ecx`), calls `00254EE0(clamped value)` and returns the clamped value",
+   "anchors": [
+    [
+     "0030050A",
+     "cmovns"
+    ],
+    [
+     "0030050F",
+     "call"
+    ],
+    [
+     "00300514",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00341140",
+   "text": "resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A00(resolved pointer, second value, first value)`",
+   "anchors": [
+    [
+     "00341155",
+     "call"
+    ],
+    [
+     "00341160",
+     "call"
+    ],
+    [
+     "0034116A",
+     "call"
+    ],
+    [
+     "00341186",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00341690",
+   "text": "resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A90(resolved pointer, second value, first value)`",
+   "anchors": [
+    [
+     "003416A5",
+     "call"
+    ],
+    [
+     "003416B0",
+     "call"
+    ],
+    [
+     "003416BA",
+     "call"
+    ],
+    [
+     "003416D6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00341EE0",
+   "text": "calls `00267F90(r9, 2)`, resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A00(resolved pointer, second value, first value)`",
+   "anchors": [
+    [
+     "00341EFD",
+     "call"
+    ],
+    [
+     "00341F05",
+     "call"
+    ],
+    [
+     "00341F10",
+     "call"
+    ],
+    [
+     "00341F1A",
+     "call"
+    ],
+    [
+     "00341F36",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00342150",
+   "text": "resolves `00263F10(rdx)`; when `003D9FE0()` returns non-zero, compares `003589B0(resolved pointer)` with `003D9FA0()` and takes 1 when they are equal, else 0; when `003D9FE0()` returns zero takes 0; then tail-jumps `0026B4E0(rcx, that 0 or 1)`",
+   "anchors": [
+    [
+     "00342174",
+     "test"
+    ],
+    [
+     "0034217B",
+     "call"
+    ],
+    [
+     "00342187",
+     "cmp"
+    ],
+    [
+     "0034218E",
+     "cmove"
+    ],
+    [
+     "003421A5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00342D40",
+   "text": "tail-jumps `0026B4E0(rcx, 00320790(003589B0(00263F10(rdx)), 0))`",
+   "anchors": [
+    [
+     "00342D4C",
+     "call"
+    ],
+    [
+     "00342D54",
+     "call"
+    ],
+    [
+     "00342D5D",
+     "call"
+    ],
+    [
+     "00342D6C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00342500",
+   "text": "calls `00267F90(r9, 2)`, resolves `00263F10(rdx)`, reads two values by calling `00267E10(r9)` twice, and tail-jumps `00473A90(resolved pointer, second value, first value)`",
+   "anchors": [
+    [
+     "0034251D",
+     "call"
+    ],
+    [
+     "00342525",
+     "call"
+    ],
+    [
+     "00342530",
+     "call"
+    ],
+    [
+     "0034253A",
+     "call"
+    ],
+    [
+     "00342556",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003438F0",
+   "text": "tail-jumps `0026B4E0(rcx, 00320790(003589B0(00263F10(rdx)), 1))`",
+   "anchors": [
+    [
+     "003438FC",
+     "call"
+    ],
+    [
+     "00343904",
+     "call"
+    ],
+    [
+     "00343910",
+     "call"
+    ],
+    [
+     "0034391F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A4C0",
+   "text": "calls `00267F90(r9, 2)`, reads three values by calling `00267E10(r9)` three times, resolves `00263F10(00264010(third value))` and tail-jumps `00473A00(that pointer, second value, first value)`",
+   "anchors": [
+    [
+     "0034A4DA",
+     "call"
+    ],
+    [
+     "0034A4F6",
+     "call"
+    ],
+    [
+     "0034A4FD",
+     "call"
+    ],
+    [
+     "0034A505",
+     "call"
+    ],
+    [
+     "0034A521",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00353530",
+   "text": "reads two values by calling `00267E10(r9)` twice; when the second is non-zero tail-jumps `00359410(003589B0(00264010(first value)))`, otherwise tail-jumps `00359410(0)`",
+   "anchors": [
+    [
+     "00353540",
+     "call"
+    ],
+    [
+     "00353551",
+     "je"
+    ],
+    [
+     "00353555",
+     "call"
+    ],
+    [
+     "0035356E",
+     "jmp"
+    ],
+    [
+     "00353581",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00473A90",
+   "text": "builds a flag word from `r8d`: bit 0 shifted to bit 28, bit 29 set when `r8d` bit 1 is set and bit 30 set when `r8d` bit 2 is set; when `rcx` is null returns -1, otherwise tail-jumps `00329B70(003589B0(rcx), 1, edx, flag word)`",
+   "anchors": [
+    [
+     "00473AAC",
+     "shl"
+    ],
+    [
+     "00473ABB",
+     "cmove"
+    ],
+    [
+     "00473AE0",
+     "cmove"
+    ],
+    [
+     "00473AF3",
+     "jmp"
+    ],
+    [
+     "00473AFD",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "0050D2F0",
+   "text": "tail-jumps `003593A0(003589B0(rdx))`",
+   "anchors": [
+    [
+     "0050D2F7",
+     "call"
+    ],
+    [
+     "0050D302",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

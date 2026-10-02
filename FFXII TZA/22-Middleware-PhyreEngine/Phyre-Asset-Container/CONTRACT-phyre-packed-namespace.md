@@ -171,7 +171,7 @@ matches that region's records:**
 |---|---|---|
 | the 8-word header | inline in `0059C180` | **eight `bswap`s, one per fixed dword** (*"fourteen" corrected 2026-09-25, OPUS - counted at `0059C18B`...`0059C1C2`*) at `+0x00`…`+0x1C` — `0059C186`–`0059C1C4` |
 | `u32[A]`, the type table | `0059A8B0` (246 B) | an **SSE-vectorised** loop — `cmp ecx, 8 / jb` to a scalar tail, then `movdqu`/`movdqa` with shuffle constants — which is what a **flat `u32` array** gets and nothing else would |
-| `class[B]` | `0059A780` (294 B) | a loop striding **`0x24` = 36 bytes**, swapping **nine** words per record; the first is an inlined byte-reversal, the rest `bswap` |
+| `class[B]` | `0059A780` (294 B) | a loop striding **`0x24` = 36 bytes**, swapping **nine** words per record; ~~the first is an inlined byte-reversal, the rest `bswap`~~ words 1-3 and 7-8 by `bswap`, words 0 and 4-6 open-coded *(corrected 2026-10-02, OPUS: `0059A7CB`, `0059A7D3`, `0059A7DB`, `0059A88E`, `0059A896` are the five `bswap`s; §15a)* |
 | `member[C]` | inline in `0059C180` | a loop at `0059C200`–`0059C230` striding **`0x18` = 24 bytes**, swapping **six** words |
 
 ```asm
@@ -475,7 +475,7 @@ a register: the operation is present, its canonical spelling is not.
 
 **Not claimed:** the corpus arithmetic (`0x20 + 4A + 36B + 24C + D`) is file-side; it has since been
 extended to the whole archive (35,984/35,984) by the full-corpus census (§14 `NS-5`). `NS-2`,
-`NS-3` and `NS-5` are resolved by that census; `NS-1`'s bit names and `NS-4` stay open, and the
+`NS-3` and `NS-5` are resolved by that census; `NS-1`'s bit names and `NS-4` stay open *(answered: see NS-1 and NS-4, both answered 2026-09-26, below; 2026-10-02, OPUS)*, and the
 unbounded-swap kind D is untouched by this pass.
 
 ## 16. Parity plan

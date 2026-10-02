@@ -214,7 +214,7 @@ ids 2–7, 11, 13, 16, 17 are unhandled. ~~The arm bodies' per-helper roles (`00
 - `0027EE80` (75 B) sets word `+0x44` of the `[0209AC30]` sub-widgets at `+0x2B8` and `+0x2C8` to `0x6E` (`002C9400` /
   `002C9890` -> `00247930`, only when the value changes, which also marks the parent dirty) and starts a 200 ms move of
   each to `(56, 4)` and `(32, 4)` (`002C9060` / `002C9490` record the change and convert 200 ms to frames; the four
-  values are the `.data` dwords `01E0C3CC`, `01E0C3D0`, `01E0C3BC`, `01E0C3E8`, which no instruction writes).
+  values are the `.data` dwords `01E0C3CC`, `01E0C3D0`, `01E0C3BC`, `01E0C3E8`, ~~which no instruction writes~~ the layout keys `DeftopBlackBandH`, `DefUnderBlackBandH`, `PartyBlackBandGradH` and `BlackBandAnimTime`, written through the slot pointers `001AF470` installs, e.g. `001AF470+0x214` `lea rax, [01E0C3D0]` *(corrected 2026-10-02, OPUS: `layout-key-slots.tsv`)*).
 
 What the player sees for the bit, the two widgets and the `0x6E` id is not claimed.
 

@@ -1,0 +1,196 @@
+# item 3 - CharacterRenderRecord +0x0C1 writers and the nibble domain (static). run: item3_c1_writers_and_domain.py at 8c1f67c0d
+
+## (a) A1 width-aware store sweep for byte 0xC1, 38161 listed bodies; CRR receiver census bodies: 499
+  stores covering 0xC1 (any type): 736 in 537 bodies; by width: w1=20, w2=27, w4=343, w8=299, w16=47
+  of those, in a CRR body (census or 0x740 pool indexer): 9
+    002E29E9 in 002E28E0 FUN_002e28e0                                 w1 mov byte ptr [rcx + 0xc1], dl   [census SITE (receiver-proven CRR)]
+    002E33B3 in 002E3110 FUN_002e3110                                 w1 mov byte ptr [rcx + 0xc1], dl   [census SITE (receiver-proven CRR)]
+    00371501 in 003714A0 AddMotion_ApplyBonePose                      w16 movaps xmmword ptr [rbp + 0xc0], xmm13   [census body, site not attributed to CRR]
+    00371D34 in 003714A0 AddMotion_ApplyBonePose                      w4 movss dword ptr [rbx + 0xc0], xmm0   [census body, site not attributed to CRR]
+    00372097 in 003714A0 AddMotion_ApplyBonePose                      w4 movss dword ptr [rbx + 0xc0], xmm0   [census body, site not attributed to CRR]
+    003B5850 in 003B56D0 FUN_003b56d0                                 w8 mov qword ptr [rbx + 0xbc], rsi   [census body, site not attributed to CRR]
+    003B66B4 in 003B62D0 FUN_003b62d0                                 w4 movss dword ptr [rbx + 0xc0], xmm4   [census body, site not attributed to CRR]
+    003B9DF4 in 003B99D0 FUN_003b99d0                                 w4 mov dword ptr [rbx + rdi*8 + 0xc0], r12d   [census body, site not attributed to CRR]
+    0053ABF6 in 0053AB50 FUN_0053ab50                                 w8 mov qword ptr [rbp + 0xc0], r8   [census body, site not attributed to CRR]
+  receiver-proven CRR stores covering 0xC1: 2
+  K2 width sensitivity: stores covering byte 0xBF in ResetDefaults 0041F730: ['0041F80A w4 mov dword ptr [rbx + 0xbc], 0x442f0000']
+
+## (a) A2 bulk writers in CRR bodies (rep stos/movs; calls to the memset / memcpy import thunks)
+  import thunks: 00861EBA memcpy, 00861EC0 memset
+  0037046F in 003703A0 Skeleton_UpdateFinalPoseAndCombatLook    call 0x861ec0  r8 not set in block
+  00370485 in 003703A0 Skeleton_UpdateFinalPoseAndCombatLook    call 0x861ec0  r8<- shl r8, 4
+  00370592 in 003703A0 Skeleton_UpdateFinalPoseAndCombatLook    call 0x861ec0  r8<- shl r8, 2
+  00371694 in 003714A0 AddMotion_ApplyBonePose                  call 0x861ec0  r8<- shl r8, 2
+  003716CC in 003714A0 AddMotion_ApplyBonePose                  call 0x861ec0  r8<- shl r8, 2
+  00371934 in 003714A0 AddMotion_ApplyBonePose                  call 0x861ec0  r8 not set in block
+  00371947 in 003714A0 AddMotion_ApplyBonePose                  call 0x861ec0  r8<- shl r8, 2
+  003B03B6 in 003B02A0 FUN_003b02a0                             call 0x861ec0  r8<- mov r8d, 0x3b0
+  003B9D27 in 003B99D0 FUN_003b99d0                             call 0x861eba  r8<- movsxd r8, r14d
+  003E7570 in 003E7500 FUN_003e7500                             call 0x861ec0  r8<- mov r8d, 0x80
+  004172EB in 00417110 PresentationAuthoredCommand_Class0B_Sele call 0x861ec0  r8<- mov r8d, 0xa0
+  0041F509 in 0041F340 FUN_0041f340                             call 0x861ec0  r8<- mov r8, rbx
+  0041F5E7 in 0041F340 FUN_0041f340                             call 0x861eba  r8<- mov r8, rbx
+  0041F754 in 0041F730 CharacterRenderRecord_ResetDefaults      call 0x861ec0  r8<- mov r8d, 0x740
+  0051CCF6 in 0051CC30 FUN_0051cc30                             call 0x861ec0  r8<- mov r8d, 0x100
+  0051CD0A in 0051CC30 FUN_0051cc30                             call 0x861ec0  r8<- mov r8d, 0x100
+  0051CD1E in 0051CC30 FUN_0051cc30                             call 0x861ec0  r8<- mov r8d, 0x140
+  0053AC98 in 0053AB50 FUN_0053ab50                             call 0x861ec0  r8<- mov r8d, 0x100
+  0053AD94 in 0053AB50 FUN_0053ab50                             call 0x861ec0  r8<- shl r8, 2
+  0053B224 in 0053AB50 FUN_0053ab50                             call 0x861ec0  r8<- mov r8d, 0x80
+  0053B238 in 0053AB50 FUN_0053ab50                             call 0x861ec0  r8<- mov r8d, 0x80
+  0053BE13 in 0053AB50 FUN_0053ab50                             call 0x861eba  r8<- shl r8, 2
+
+## (b) B1 the nibble setter 002EBC90 and the r8 value at each site
+  body tail: 002EBD2B je 0x2ebd39 | 002EBD2D and byte ptr [rcx + 0x10], 0xf | 002EBD31 shl r8b, 4 | 002EBD35 or byte ptr [rcx + 0x10], r8b | 002EBD39 ret 
+  call  00265EF1 in 00265B60 FUN_00265b60                       r8 <- 00265EE9 xor r8d, r8d => nibble 0
+  call  00265F00 in 00265B60 FUN_00265b60                       r8 <- 00265EF6 xor r8d, r8d => nibble 0
+  call  00265F0F in 00265B60 FUN_00265b60                       r8 <- 00265F05 xor r8d, r8d => nibble 0
+  call  00265F20 in 00265B60 FUN_00265b60                       r8 <- 00265F1C lea r8d, [rdx - 2] => nibble 1
+  call  00265F2F in 00265B60 FUN_00265b60                       r8 <- 00265F25 xor r8d, r8d => nibble 0
+  call  00265F3E in 00265B60 FUN_00265b60                       r8 <- 00265F34 xor r8d, r8d => nibble 0
+  call  0026DF4E in 0026DF40 FUN_0026df40                       r8 <- 0026DF46 xor r8d, r8d => nibble 0
+  call  0026DF5D in 0026DF40 FUN_0026df40                       r8 <- 0026DF53 xor r8d, r8d => nibble 0
+  call  0026DF6C in 0026DF40 FUN_0026df40                       r8 <- 0026DF62 xor r8d, r8d => nibble 0
+  call  0026DF7D in 0026DF40 FUN_0026df40                       r8 <- 0026DF79 lea r8d, [rdx - 2] => nibble 1
+  call  0026DF8C in 0026DF40 FUN_0026df40                       r8 <- 0026DF82 xor r8d, r8d => nibble 0
+  jmp   0026DFA0 in 0026DF40 FUN_0026df40                       r8 <- 0026DF91 xor r8d, r8d => nibble 0
+  call  00340AAF in 003409F0 FUN_003409f0                       r8 <- 00340AA7 mov r8d, edi => nibble 1
+  call  0034266B in 00342640 FUN_00342640                       r8 <- 00342667 lea r8d, [rdx + 1] => nibble 1
+  call  00342697 in 00342640 FUN_00342640                       r8 <- 00342693 lea r8d, [rdx - 2] => nibble 1
+  call  0034457E in 00344550 FUN_00344550                       r8 <- 00344578 mov r8d, 1 => nibble 1
+  call  00345A89 in 00345A60 FUN_00345a60                       r8 <- 00345A85 lea r8d, [rdx - 2] => nibble 1
+  call  00346174 in 003460F0 FUN_003460f0                       r8 <- 00346170 lea r8d, [rdx - 2] => nibble 1
+  call  0037B763 in 0037B4D0 FUN_0037b4d0                       r8 <- 0037B74B xor r8d, r8d => nibble 0
+  call  0037B99D in 0037B4D0 FUN_0037b4d0                       r8 <- 0037B98F xor r8d, r8d => nibble 0
+  call  0037BA98 in 0037B4D0 FUN_0037b4d0                       r8 <- 0037BA8A xor r8d, r8d => nibble 0
+  call  0037BBB1 in 0037B4D0 FUN_0037b4d0                       r8 <- 0037BBA0 xor r8d, r8d => nibble 0
+  call  0037BF04 in 0037B4D0 FUN_0037b4d0                       r8 <- 0037BF00 lea r8d, [rdx - 2] => nibble 1
+  call  0050CBF2 in 0050CBD0 FUN_0050cbd0                       r8 <- 0050CBEE lea r8d, [rdx - 1] => nibble 1
+  call  0050CDA1 in 0050CD80 FUN_0050cd80                       r8 <- 0050CD9E mov r8d, edx => nibble 1
+  call  0050CF42 in 0050CF20 FUN_0050cf20                       r8 <- 0050CF3E lea r8d, [rdx - 2] => nibble 1
+  call  0050D829 in 0050D810 FUN_0050d810                       r8 <- 0050D825 lea r8d, [rdx + 1] => nibble 1
+  sites: 27; nibble values: ['0', '1']
+  pointer routes to 002EBC90: absolute qwords 0, RVA dwords 0, rip operands 0
+
+## (b) B2 stores to an element's byte +0x10 (element k at context + 0x30k) that could set bits 4..7
+  context getters (body <= 32 bytes, sole read `mov rax, qword ptr [rcx + 0xc0]`): 00269E20, 00269E40, 002E97B0, 006CB530, 00802500; bodies calling them: 35
+  bodies loading a qword at +0xC0: 795; ctx-derived element-byte stores: 54; added from the published context / element censuses: 1
+  0025E277 in 0025DF00 WorldActor_UpdateRuntimeAndScriptExecu w1 and byte ptr [rax + 0x10], 0xfb  (ctx-derived from 0025E266)  AND (clears only) -> bits4-7 clear
+  0025E373 in 0025DF00 WorldActor_UpdateRuntimeAndScriptExecu w1 and byte ptr [rbx + 0x10], 0xfb  (ctx-derived from 0025E26B)  AND (clears only) -> bits4-7 clear
+  0025E37E in 0025DF00 WorldActor_UpdateRuntimeAndScriptExecu w1 or byte ptr [rbx + 0x10], al  (ctx-derived from 0025E26B)  REG al mask 0xfc [movzx eax, sil ; shl al, 2] | READ BY HAND (7 cited instructions verified): sil is 0 or 1 here: ebp is zeroed at entry and set to 1 only after esi is computed; every path to 0025E373 passes `mov esi, ebp` at 0025E255 (the region 0025E256..0025E373 has no entry from outside, and the body's backward jumps all lie before it), and the only later write is `and esi, 1`; so `shl al, 2` gives bit 2 only -> bits4-7 clear
+  00265B90 in 00265B60 FUN_00265b60                           w1 mov byte ptr [rcx + 0x10], al  (ctx-derived from 00265B69)  REG al mask 0xf [movzx eax, byte ptr [rcx + 0x10] ; and al, 4 ; or al, 0xb] -> bits4-7 clear
+  00265BB4 in 00265B60 FUN_00265b60                           w1 and byte ptr [rcx + 0x10], 0xfb  (ctx-derived from 00265B69)  AND (clears only) -> bits4-7 clear
+  00265BF3 in 00265B60 FUN_00265b60                           w1 mov byte ptr [rcx + 0x40], al  (ctx-derived from 00265BD8)  REG al mask 0xf [movzx eax, byte ptr [rcx + 0x40] ; and al, 4 ; or al, 0xb] -> bits4-7 clear
+  00265C10 in 00265B60 FUN_00265b60                           w1 and byte ptr [rcx + 0x40], 0xfb  (ctx-derived from 00265BD8)  AND (clears only) -> bits4-7 clear
+  00265C4E in 00265B60 FUN_00265b60                           w1 mov byte ptr [rcx + 0x70], al  (ctx-derived from 00265C34)  REG al mask 0xf [movzx eax, byte ptr [rcx + 0x70] ; and al, 4 ; or al, 0xb] -> bits4-7 clear
+  00265C78 in 00265B60 FUN_00265b60                           w1 and byte ptr [rcx + 0x70], 0xfb  (ctx-derived from 00265C34)  AND (clears only) -> bits4-7 clear
+  00265CBC in 00265B60 FUN_00265b60                           w1 mov byte ptr [rcx + 0x10], al  (ctx-derived from 00265C9F)  REG al mask 0xf [movzx eax, byte ptr [rcx + 0x10] ; and al, 4 ; or al, 0xb] -> bits4-7 clear
+  00265CE2 in 00265B60 FUN_00265b60                           w1 and byte ptr [rcx + 0x10], 0xfb  (ctx-derived from 00265C9F)  AND (clears only) -> bits4-7 clear
+  00292793 in 00292390 FUN_00292390                           w8 mov qword ptr [rbp + 0x10], rcx  (ctx-derived from 002926F2)  WIDE/OTHER -> bits4-7 POSSIBLE
+  00298C4C in 002986E0 FUN_002986e0                           w2 add word ptr [rdx + 0x10], 0x10  (ctx-derived from 00298C20)  IMM byte 0x10 -> bits4-7 POSSIBLE
+  00298C63 in 002986E0 FUN_002986e0                           w2 mov word ptr [rax + 0x10], cx  (ctx-derived from 00298C56)  WIDE/OTHER -> bits4-7 POSSIBLE
+  00298DAC in 002986E0 FUN_002986e0                           w2 mov word ptr [rax + 0x10], cx  (ctx-derived from 00298DA5)  WIDE/OTHER -> bits4-7 POSSIBLE
+  00298EFE in 002986E0 FUN_002986e0                           w2 mov word ptr [rax + 0x10], r15w  (ctx-derived from 00298EF7)  WIDE/OTHER -> bits4-7 POSSIBLE
+  002991AD in 00299090 FUN_00299090                           w8 mov qword ptr [rcx + 0x10], rax  (ctx-derived from 0029918F)  WIDE/OTHER -> bits4-7 POSSIBLE
+  0029926B in 00299090 FUN_00299090                           w8 mov qword ptr [rsi + 0x10], rcx  (ctx-derived from 00299227)  WIDE/OTHER -> bits4-7 POSSIBLE
+  00299305 in 00299090 FUN_00299090                           w8 mov qword ptr [rcx + 0x10], r8  (ctx-derived from 002992DE)  WIDE/OTHER -> bits4-7 POSSIBLE
+  0029A29C in 0029A0A0 FUN_0029a0a0                           w1 mov byte ptr [rcx + 0xa0], al  (ctx-derived from 0029A28C)  REG al mask 0xff [movzx eax, sil] -> bits4-7 POSSIBLE
+  002CBBD3 in 002CBA50 FUN_002cba50                           w4 mov dword ptr [rax + 0xd0], ecx  (ctx-derived from 002CBB7E)  WIDE/OTHER -> bits4-7 POSSIBLE
+  002E32F8 in 002E3110 FUN_002e3110                           w1 or byte ptr [rbx + 0x10], 0xb  (ctx-derived from 002E312A)  IMM byte 0xb -> bits4-7 clear
+  002E3315 in 002E3110 FUN_002e3110                           w1 and byte ptr [rbx + 0x10], 0xf  (ctx-derived from 002E312A)  AND (clears only) -> bits4-7 clear
+  002E3A16 in 002E35B0 FUN_002e35b0                           w1 and byte ptr [r14 + 0x10], 0xf  (census-element)  AND (clears only) -> bits4-7 clear
+  002EBB96 in 002EBB80 Actor_SetPresentationVisibilityEnabled w1 and byte ptr [rax + 0x10], 0xf7  (ctx-derived from 002EBB8A)  AND (clears only) -> bits4-7 clear
+  002EBBA0 in 002EBB80 Actor_SetPresentationVisibilityEnabled w1 or byte ptr [rax + 0x10], dl  (ctx-derived from 002EBB8A)  REG dl mask 0x8 [and dl, 1 ; shl dl, 3] -> bits4-7 clear
+  002EBD2D in 002EBC90 FUN_002ebc90                           w1 and byte ptr [rcx + 0x10], 0xf  (ctx-derived from 002EBD18)  AND (clears only) -> bits4-7 clear
+  002EBD35 in 002EBC90 FUN_002ebc90                           w1 or byte ptr [rcx + 0x10], r8b  (ctx-derived from 002EBD18)  REG r8b mask 0xf0 [shl r8b, 4] -> bits4-7 POSSIBLE
+  002ECD6A in 002ECD50 FUN_002ecd50                           w1 and byte ptr [rax + 0x10], 0xfe  (ctx-derived from 002ECD60)  AND (clears only) -> bits4-7 clear
+  002ECD6E in 002ECD50 FUN_002ecd50                           w1 or byte ptr [rax + 0x10], dl  (ctx-derived from 002ECD60)  REG dl mask 0x1 [and dl, 1] -> bits4-7 clear
+  002ECDDC in 002ECDC0 FUN_002ecdc0                           w1 and byte ptr [rax + 0x70], 0xfe  (ctx-derived from 002ECDD0)  AND (clears only) -> bits4-7 clear
+  002ECDE7 in 002ECDC0 FUN_002ecdc0                           w1 or byte ptr [rax + 0x10], dl  (ctx-derived from 002ECDD0)  REG dl mask 0x1 [and dl, 1] -> bits4-7 clear
+  002ECDEF in 002ECDC0 FUN_002ecdc0                           w1 and byte ptr [rax + 0x10], 0xfe  (ctx-derived from 002ECDD0)  AND (clears only) -> bits4-7 clear
+  002ECDF6 in 002ECDC0 FUN_002ecdc0                           w1 or byte ptr [rax + 0x10], dl  (ctx-derived from 002ECDD0)  REG dl mask 0x1 [and dl, 1] -> bits4-7 clear
+  002ECE1C in 002ECE00 FUN_002ece00                           w1 and byte ptr [rax + 0x40], 0xfe  (ctx-derived from 002ECE10)  AND (clears only) -> bits4-7 clear
+  002ECE27 in 002ECE00 FUN_002ece00                           w1 or byte ptr [rax + 0x10], dl  (ctx-derived from 002ECE10)  REG dl mask 0x1 [and dl, 1] -> bits4-7 clear
+  002ECE2F in 002ECE00 FUN_002ece00                           w1 and byte ptr [rax + 0x10], 0xfe  (ctx-derived from 002ECE10)  AND (clears only) -> bits4-7 clear
+  002ECE36 in 002ECE00 FUN_002ece00                           w1 or byte ptr [rax + 0x10], dl  (ctx-derived from 002ECE10)  REG dl mask 0x1 [and dl, 1] -> bits4-7 clear
+  003B70EF in 003B70B0 FUN_003b70b0                           w1 and byte ptr [rax + 0x10], 0xfd  (ctx-derived from 003B70E5)  AND (clears only) -> bits4-7 clear
+  003B70FC in 003B70B0 FUN_003b70b0                           w1 or byte ptr [rax + 0x10], cl  (ctx-derived from 003B70E5)  REG cl mask 0x2 [movzx ecx, bpl ; and cl, 1 ; add cl, cl] -> bits4-7 clear
+  003B77F6 in 003B7770 FUN_003b7770                           w1 or byte ptr [rax + 0x10], 2  (ctx-derived from 003B77EC)  IMM byte 0x2 -> bits4-7 clear
+  003B782A in 003B7770 FUN_003b7770                           w1 and byte ptr [rax + 0x10], 0xfd  (ctx-derived from 003B7820)  AND (clears only) -> bits4-7 clear
+  003B7833 in 003B7770 FUN_003b7770                           w1 or byte ptr [rax + 0x10], bl  (ctx-derived from 003B7820)  REG bl mask 0xfe [and bl, r12b ; add bl, bl] | READ BY HAND (6 cited instructions verified): r12 is 1: it is set once, before the loop head 003B77A7, from r15 = 0 (r15 is the loop counter, incremented at 003B7845 only after); r12's only other write is the epilogue pop 003B786E; so `and bl, r12b` / `add bl, bl` gives bit 1 only -> bits4-7 clear
+  003B7918 in 003B7880 FUN_003b7880                           w1 or byte ptr [rax + 0x10], 2  (ctx-derived from 003B790E)  IMM byte 0x2 -> bits4-7 clear
+  003B796C in 003B7880 FUN_003b7880                           w1 and byte ptr [rax + 0x10], 0xfd  (ctx-derived from 003B7962)  AND (clears only) -> bits4-7 clear
+  003B7975 in 003B7880 FUN_003b7880                           w1 or byte ptr [rax + 0x10], bl  (ctx-derived from 003B7962)  REG bl mask 0x2 [and bl, 1 ; add bl, bl] -> bits4-7 clear
+  003B80FA in 003B8090 FUN_003b8090                           w1 or byte ptr [rax + 0x10], 2  (ctx-derived from 003B80F0)  IMM byte 0x2 -> bits4-7 clear
+  004087C2 in 00408780 FUN_00408780                           w4 mov dword ptr [rax + 0x100], r8d  (ctx-derived from 0040879A)  WIDE/OTHER -> bits4-7 POSSIBLE
+  0053E814 in 0053E640 FUN_0053e640                           w4 mov dword ptr [rdx], eax  (ctx-derived from 0053E7C3)  WIDE/OTHER -> bits4-7 POSSIBLE
+  00559306 in 00558FB0 FUN_00558fb0                           w8 mov qword ptr [rbp + 0x100], rax  (ctx-derived from 00559208)  WIDE/OTHER -> bits4-7 POSSIBLE
+  00560B50 in 00560910 FUN_00560910                           w4 and dword ptr [rax + 0x40], 0xfffff7ff  (ctx-derived from 00560B49)  AND (clears only) -> bits4-7 clear
+  005616A8 in 00561390 FUN_00561390                           w8 mov qword ptr [rsi + 0x100], rax  (ctx-derived from 00561601)  WIDE/OTHER -> bits4-7 POSSIBLE
+  005650DD in 00564E10 FUN_00564e10                           w8 mov qword ptr [rcx + 0xd0], rdi  (ctx-derived from 005650B3)  WIDE/OTHER -> bits4-7 POSSIBLE
+  007DAD95 in 007DACF0 FUN_007dacf0                           w4 movss dword ptr [rdi - 4], xmm1  (ctx-derived from 007DAD10)  WIDE/OTHER -> bits4-7 POSSIBLE
+  007E0504 in 007E01F0 FUN_007e01f0                           w16 movaps xmmword ptr [rcx + 0x10], xmm1  (ctx-derived from 007E04DE)  WIDE/OTHER -> bits4-7 POSSIBLE
+  verdicts: {'bits4-7 clear': 37, 'bits4-7 POSSIBLE': 18}
+  actor storage record census: 1130 rows, 0 at record +0x340..+0x47F (the inline context reached through the record)
+
+## (b) B3 002E3110: clear dominates the read; closure of the calls in between
+  002E32DE test rbx, rbx
+  002E32E1 je 0x2e3334
+  002E32E3 cmp dword ptr [rbx], -1
+  002E32E6 je 0x2e3315
+  002E32E8 movzx ecx, word ptr [rbx]
+  002E32EB call 0x42f250
+  002E32F0 movzx eax, byte ptr [rbx + 0x11]
+  002E32F4 mov ecx, dword ptr [rbx]
+  002E32F6 and al, 0x9f
+  002E32F8 or byte ptr [rbx + 0x10], 0xb
+  002E32FC or al, 6
+  002E32FE mov byte ptr [rbx + 0x11], al
+  002E3301 call 0x2ed470
+  002E3306 mov ecx, dword ptr [rbx + 4]
+  002E3309 call 0x2eb810
+  002E330E mov qword ptr [rbx], 0xffffffffffffffff
+  002E3315 and byte ptr [rbx + 0x10], 0xf
+  002E3319 xor r8d, r8d
+  002E331C xor edx, edx
+  002E331E mov dword ptr [rbx], 0xffffffff
+  002E3324 mov rcx, rbx
+  002E3327 mov qword ptr [rbx + 8], r12
+  002E332B call 0x269d60
+  002E3330 mov dword ptr [rbx + 0x20], r12d
+  002E3334 inc word ptr [r15 + 0x1c]
+  002E3339 mov rcx, rdi
+  002E333C and byte ptr [r15 + 0x18], 0xfb
+  002E3341 call 0x2e8fd0
+  002E3346 mov eax, dword ptr [r15 + 0x14]
+  002E334A xor r8d, r8d
+  002E334D mov dword ptr [rip + 0x1c9c1b5], eax
+  002E3353 mov ecx, dword ptr [r15 + 0x10]
+  002E3357 lea edx, [r8 + 1]
+  002E335B call 0x42fb80
+  002E3360 mov dword ptr [rip + 0x1c9c1a1], r12d
+  002E3367 movzx edx, byte ptr [rbx + 0x10]
+  002E336B cwde 
+  002E336C mov dword ptr [rbx], eax
+  002E336E mov eax, dword ptr [r15 + 0x14]
+  002E3372 mov dword ptr [rbx + 4], eax
+  002E3375 mov qword ptr [rbx + 8], r15
+  002E3379 mov rax, qword ptr [rdi + 0xc0]
+  002E3380 shr edx, 4
+  002E3383 test rax, rax
+  002E3386 je 0x2e33b9
+  002E3388 cmp dword ptr [rax], -1
+  002E338B je 0x2e33b9
+  002E338D movzx eax, word ptr [rax]
+  002E3390 cmp ax, -1
+  002E3394 je 0x2e33b9
+  002E3396 movsx rax, ax
+  002E339A imul rcx, rax, 0x740
+  002E33A1 add rcx, qword ptr [rip + 0x1fe3b80]
+  002E33A8 je 0x2e33b9
+  002E33AA cmp dword ptr [rcx + 0x284], r12d
+  002E33B1 je 0x2e33b9
+  002E33B3 mov byte ptr [rcx + 0xc1], dl
+  closure of {00269D60, 002E8FD0, 0042FB80}: 59 bodies; contains 002EBC90: False; contains a B2 store body: none
+
+FAILS 0 []

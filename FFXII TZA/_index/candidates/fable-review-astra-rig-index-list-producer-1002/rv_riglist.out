@@ -1,0 +1,140 @@
+# rv_riglist.py at HEAD 1f193fec9, 2026-10-02T09:59:42Z
+== image sha256 verified, base 120000
+PASS  manifest.json sha256 = 49f2d7af98080cdd...  | 49f2d7af98080cdde1a4ba3fa36fa7ec4f44439e7f8f40d3d3d95f6b3daf37f7
+PASS  all 63 manifest members hash as listed  | []
+PASS  body 003E1C50..003E2800 decodes exactly (2992 B)
+PASS  body 003E1C50 .pdata tiles it (5 record(s))  | 003E1C50..003E1C61 003E1C61..003E1D5D~chain 003E1D5D..003E27F0~chain 003E27F0..003E27FF~chain 003E27FF..003E2800~chain
+PASS  body 003E1C50: no jcc leaves; exits rets=['003E27FF'] tails=[]
+PASS  body 003E3C30..003E3C9D decodes exactly (109 B)
+PASS  body 003E3C30 .pdata tiles it (1 record(s))  | 003E3C30..003E3C9D
+PASS  body 003E3C30: no jcc leaves; exits rets=['003E3C9C'] tails=[]
+PASS  body 00421D20..00421D66 decodes exactly (70 B)
+PASS  body 00421D20 .pdata tiles it (1 record(s))  | 00421D20..00421D66
+PASS  body 00421D20: no jcc leaves; exits rets=['00421D65'] tails=['00421D59->0020E600']
+PASS  new source total 3,171 bytes (2,992 + 109 + 70)  | 3171
+PASS  0020E600 is `mov eax, ecx`
+PASS  0020E602 is `add rax, qword ptr [rip + 0x1d74f27]`
+PASS  decoder base cell is 01F83530 (QWORD)
+PASS  0020E609 is `ret`
+PASS  0020E620 is `sub ecx, dword ptr [rip + 0x1d74f0a]`
+PASS  encoder subtracts the low DWORD of the same cell
+PASS  0020E626 is `mov eax, ecx`
+PASS  0020E628 is `ret`
+PASS  decoder/encoder write no memory and no rbx/rsi/rdi
+PASS  003E1C50 is `test rcx, rcx`
+PASS  003E1C53 is `je 0x3e27ff`
+PASS  003E1C5E is `mov rdi, rcx`
+PASS  rdi written only at 003E1C5E (rig) and the final pop  | ['003E1C5E', '003E27FE']
+PASS  003E1C66 is `mov ecx, dword ptr [rcx + 0x70]`
+PASS  003E1C6E is `call 0x20e600`
+PASS  003E1C75 is `test rax, rax`
+PASS  003E1C78 is `je 0x3e1cc6`
+PASS  003E1C73 is `xor ebx, ebx`
+PASS  003E1C7A is `movzx eax, word ptr [rdi + 0x68]`
+PASS  003E1C7E is `cmp ax, -1`
+PASS  003E1C84 is `mov ecx, ebx`
+PASS  003E1C88 is `movsx rax, ax`
+PASS  003E1C8C is `imul rcx, rax, 0x740`
+PASS  003E1C93 is `add rcx, qword ptr [rip + 0x1ee528e]`
+PASS  003E1C93 adds global 022C6F28
+PASS  003E1C9A is `cmp dword ptr [rcx + 0x284], ebx`
+PASS  003E1CA0 is `cmove rcx, rbx`
+PASS  003E1CA4 is `call 0x20e620`
+PASS  003E1CAB is `mov dword ptr [rdi + 0x70], eax`
+PASS  003E1CAE is `call 0x20e600`
+PASS  003E1CB3 is `mov rcx, rax`
+PASS  003E1CB6 is `call 0x421d20`
+PASS  003E1CBE is `call 0x20e620`
+PASS  003E1CC3 is `mov dword ptr [rdi + 0x78], eax`
+PASS  no compare/test of the derived pointer between 003E1CA0 and the 421D20 call
+PASS  the only direct [rdi+78] writes are ['003E1CC3']
+PASS  +70==0 path (003E1C78 taken) cannot reach the 003E1CC3 store
+PASS  003E1CC3 store is reached only through the +70!=0 fall-through
+PASS  003E1D49 is `mov eax, dword ptr [rdi + 0x84]`
+PASS  003E1D4F is `cmp eax, edi`
+PASS  003E1D51 is `je 0x3e27f0`
+PASS  +70/+78 refresh (003E1CC3) can precede the cache check: 003E1D49 reachable from 003E1CC3
+PASS  every path to the cache check passes the +70 gate at 003E1C78
+PASS  equal-cache path 003E27F0 reaches only the epilogue (no +84/+88 write)
+PASS  003E1D57 is `mov ecx, dword ptr [rdi + 0x88]`
+PASS  003E1D62 is `test eax, eax`
+PASS  003E1D64 is `jne 0x3e22b7`
+PASS  003E1D6E is `call 0x20e600`
+PASS  003E1D73 is `lea ecx, [rdi + rax]`
+PASS  003E1D76 is `call 0x20e620`
+PASS  003E1D7D is `mov dword ptr [rdi + 0x88], eax`
+PASS  ecx (old +88) not rewritten between 003E1D57 and 003E1D6E
+PASS  003E22B7 is `mov esi, edi`
+PASS  003E22B9 is `sub esi, eax`
+PASS  003E22BB is `call 0x20e600`
+PASS  003E22C0 is `lea ecx, [rsi + rax]`
+PASS  003E22C3 is `call 0x20e620`
+PASS  003E22CA is `mov dword ptr [rdi + 0x88], eax`
+PASS  0x3E1D64->0x3E22B7 edge carries ecx = old +88 (no writer at 003E1D5D..003E1D64)
+PASS  003E27EA is `mov dword ptr [rdi + 0x84], edi`
+PASS  003E27EA is the only direct write overlapping rig +84..+87  | ['003E27EA']
+PASS  003E27EA stores raw EDI (no encoder call between 003E27E5 and it)
+PASS  fresh path: 003E27EA reached on every path 003E1D6A -> ret
+PASS  relocation path: 003E27EA reached on every path 003E22B7 -> ret
+PASS  direct writes to rig +88 are exactly 003E1D7D and 003E22CA  | ['003E1D7D', '003E22CA']
+PASS  no direct rdi-relative access overlapping +8C in the fixup  | []
+PASS  003E3C3F is `mov rsi, rcx`
+PASS  003E3C42 is `mov ecx, dword ptr [rcx + 0x88]`
+PASS  003E3C48 is `call 0x20e600`
+PASS  003E3C4F is `mov rbx, rax`
+PASS  003E3C52 is `cmp dword ptr [rsi + 0x8c], edi`
+PASS  003E3C4D is `xor edi, edi`
+PASS  003E3C58 is `jbe 0x3e3c8d`
+PASS  decode of +88 (003E3C48) precedes the count check (dominates 003E3C52)
+PASS  003E3C60 is `mov ecx, dword ptr [rsi + 0x78]`
+PASS  003E3C63 is `call 0x20e600`
+PASS  003E3C68 is `mov ecx, dword ptr [rbx]`
+PASS  003E3C68 index read is a DWORD (zero-extended into rcx)
+PASS  003E3C6A is `add rax, 0x230`
+PASS  003E3C70 is `imul rcx, rcx, 0x290`
+PASS  003E3C77 is `add rcx, rax`
+PASS  003E3C7A is `call 0x203170`
+PASS  003E3C7F is `inc edi`
+PASS  003E3C81 is `lea rbx, [rbx + 4]`
+PASS  003E3C85 is `cmp edi, dword ptr [rsi + 0x8c]`
+PASS  003E3C8B is `jb 0x3e3c60`
+PASS  the only compares are the two unsigned count compares (no per-index bound)
+PASS  count 0: 003E3C58 taken skips every list read and 00203170 call
+PASS  model: index 00000000 -> arg = Decode(+78)+230h+index*290h = 7FF600000230 (64-bit, no wrap at 32)
+PASS  model: index 00000001 -> arg = Decode(+78)+230h+index*290h = 7FF6000004C0 (64-bit, no wrap at 32)
+PASS  model: index FFFFFFFF -> arg = Decode(+78)+230h+index*290h = 8285FFFFFFA0 (64-bit, no wrap at 32)
+PASS  00421D20 is `push rbx`
+PASS  00421D22 is `sub rsp, 0x20`
+PASS  00421D26 is `mov ebx, dword ptr [rcx + 0x18]`
+PASS  00421D26 is the first non-stack memory access and no test of rcx precedes it
+PASS  00421D26 reads a DWORD
+PASS  00421D29 is `cmp ebx, -1`
+PASS  00421D2E is `mov ecx, dword ptr [rcx + 0x10]`
+PASS  00421D31 is `call 0x20e600`
+PASS  00421D3B is `mov rcx, qword ptr [rax + 0xd98]`
+PASS  00421D42 is `mov edx, ebx`
+PASS  00421D44 is `call 0x2ed570`
+PASS  00421D49 is `test rax, rax`
+PASS  00421D4E is `mov ecx, dword ptr [rax + 0x84]`
+PASS  00421D59 is `jmp 0x20e600`
+PASS  00421D5E is `xor eax, eax`
+NOTE  421D20 returns 0 (00421D5E) for index -1 or a NULL row, else tail-decodes row +84; both need a readable input
+PASS  math (20,000 random bases/pointers): fresh new88 = low32(old88 + low32(rig)) for a stable base
+PASS  math: relocated new88 = low32(old88 + low32(currentRig - oldRawSelf84)) for a stable base
+PASS  math: pointers 4 GiB apart share the low DWORD (cache collision)
+PASS  math: a nonzero pointer with low DWORD 0 equals the cold zero cache value
+NOTE  Decode(Encode(0)) at base 0 = 0; first read at 18
+NOTE  Decode(Encode(0)) at base 100000000 = 100000000; first read at 100000018
+NOTE  Decode(Encode(0)) at base 7FF612340000 = 7FF700000000; first read at 7FF700000018
+PASS  math: at base 0 the derived pointer is 0 and the 421D20 read is at 18h
+PASS  math: at a nonzero base the address is not 18h (e.g. base 7FF612340000)
+== controls (each mutation must be REJECTED)
+PASS  CONTROL rejects: reset count compare signed (jbe -> jle at 003E3C58)
+PASS  CONTROL rejects: reset loop compare signed (jb -> jl at 003E3C8B)
+PASS  CONTROL rejects: cache compare against eax,esi (3b c6) instead of edi
+PASS  CONTROL rejects: +84 store source edi -> esi (89 bf -> 89 b7 at 003E27EA)
+PASS  CONTROL rejects: 421D20 first read at +1C instead of +18
+PASS  CONTROL rejects: encoder subtracts a different cell
+PASS  CONTROL rejects: wrong 64-bit (no low32) fresh formula
+== 0 FAIL
+# exit 0

@@ -357,3 +357,11 @@ No contradiction row: nothing the contract asserted was false.
 - **UI - CLIENT (7 edges).** `00265020`, `00265200`, `00313F60` are also called by bodies filed to UI: `003C5130`, `0031EB20`, `00322A80` (BattleMenu) - shared machinery across the layer boundary, no shared ownership.
 - **World - CLIENT (2 edges).** `003590D0` is also called by bodies filed to World: `0025E400` (ActorManager), `002623A0` (ActorManager) - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - CLIENT and SERVICE (6 edges).** `00313F60` is also called by bodies filed to WorldAreaField (world area): `00234590`; `00234AF0`, `00234DA0` reach bodies filed to WorldAreaField (world area): `002374E0`, `003209C0`, `00313F60` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-spawn-placement-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0023A1F0` | 11 B | converts the float in `xmm0` to a 32-bit integer with truncation at the entry and stores it to dword `02089358`, returning that integer in `eax` | `0023A1F4` |

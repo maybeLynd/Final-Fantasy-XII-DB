@@ -546,3 +546,11 @@ focused unit to build the command menu.
 flag read everywhere is not a crossing this contract makes.
 
 *Tier 2: ledger names, sizes and `edges.tsv`; no new body read (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-commit-action-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002ED2A0` | 93 B | calls `003588B0` with `rcx` unchanged and returns without further work when its result is null, when the result's qword `+0xC0` is null, when the dword that qword points at is -1, when its low word is `0xFFFF`, when the sign-extended word times `0x740` plus qword `022C6F28` is zero, or when that record's dword `+0x284` is zero; otherwise tail-jumps `003E6B50(record, rdx)` | `002ED2A9`, `002ED2B3`, `002ED2D1`, `002ED2E1`, `002ED2F2` |

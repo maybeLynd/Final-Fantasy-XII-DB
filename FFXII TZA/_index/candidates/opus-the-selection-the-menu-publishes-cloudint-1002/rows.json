@@ -1,0 +1,38 @@
+{
+ "page": "16-UI/the-selection-the-menu-publishes.md",
+ "date": "2026-10-02",
+ "session": "session_01TC3EwFqtoYbhukMEoJ3ZVA",
+ "report": "the-selection-the-menu-publishes.json",
+ "rows": [
+  {
+   "fn": "00203030",
+   "text": "multiplies each of the four floats at `rdx` `+0`..`+0xC` by the float third argument `xmm2`, stores the four products as one 16-byte block at `rcx`, then overwrites float `+0xC` of `rcx` with the unscaled float `+0xC` of `rdx`",
+   "anchors": [
+    [
+     "0020303A",
+     "mulss"
+    ],
+    [
+     "00203050",
+     "mulss"
+    ],
+    [
+     "0020306B",
+     "movups"
+    ],
+    [
+     "0020306E",
+     "movss"
+    ],
+    [
+     "00203073",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

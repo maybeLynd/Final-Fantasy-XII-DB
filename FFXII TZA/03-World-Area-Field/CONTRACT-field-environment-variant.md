@@ -38,7 +38,7 @@ audit:
 ## 1. Purpose
 
 Pick which of three environment variants a field uses, and publish the result for the presentation
-side to read.
+side to read *(answered: and for the combat side, which reads `02099DA8` and `02099DAC` through `00263E10` / `00263E20` — CONTRACT-weather.md §5; 2026-10-02, OPUS)*.
 
 ## 2. Interface
 
@@ -73,19 +73,19 @@ the callee receives `(0, 0, 0, 0)` at *this* site.
 
 > **The constants in the trig block a decompilation attributes to this function are the callee's, and
 > they are not flowing out of the field setup — they cannot be, because the arguments are zero.** *A
-> tail call is a call; a decompiler renders it as a body, and a body is what a reader believes.* The
-> variant page records this as the **fourth** distinct way this executable's decompiled output has
-> misdescribed a function boundary, and the only one of the four that is about the body rather than
-> the return.
+> tail call is a call; a decompiler renders it as a body, and a body is what a reader believes.* ~~The~~
+> ~~variant page records this as the **fourth** distinct way this executable's decompiled output has~~
+> ~~misdescribed a function boundary, and the only one of the four that is about the body rather than~~
+> ~~the return.~~ *(answered: the variant page struck that count on 2026-09-30 — the three earlier cases are not cited, so it has no anchor; 2026-10-02, OPUS)*
 
 **EV-2 — Three states, from a clamp.** `selector = clamp(count − 1, 0, 2)` (`0026D943 cmovg`), so the
 domain is exactly `{0, 1, 2}` however large the count.
 
-**EV-3 — The selector is latched, and the latch is FIRST-WRITER-WINS and released on exit.**
+**EV-3 — The selector is ~~latched, and the latch is FIRST-WRITER-WINS and released on exit~~ gated by a skip flag that this body only clears.**
 `0026D951` tests `[ctx + 0x1061]`; only when it is clear does `0026D95E` write the selector to
-`[ctx + 0x1060]`. At the end, `0026DA92` clears `[ctx + 0x1061]` to zero. *So the selector written by
-whoever got there first is consumed exactly once per pass, and a second caller within the same pass
-publishes the first caller's choice.*
+`[ctx + 0x1060]`. At the end, `0026DA92` clears `[ctx + 0x1061]` to zero. *~~So the selector written by~~
+~~whoever got there first is consumed exactly once per pass, and a second caller within the same pass~~
+~~publishes the first caller's choice.~~* *(corrected 2026-10-02, OPUS: the body never sets `+0x1061` - its setters are `0026D8F0` (`0026D8F9`) and `00268320` (`0026836C`), and a save-lifecycle function stores `dil` there (FABLE's record readiness-apply-fable-1002). So with the flag set, the first call publishes the slot already in `+0x1060` and consumes the flag, and a second call in the same pass writes its own selector unless a setter runs between them; with the flag clear, every call writes its own.)*
 
 **EV-4 — The variant is an index INTO THE ROW, not a separate table.** The field's row is
 `records + fieldId*8`; its `+2` selects an entry in the 16-byte block **offset by
@@ -132,7 +132,7 @@ pair. **Read, never written:** the `map_ref` image at `02099D88` and the second 
 ## 7. State transitions
 
 *count → clamp → latch if free → resolve the row → publish → release the latch → tail-call.* The
-latch transitions `free → held → free` within one call.
+~~latch transitions `free → held → free` within one call.~~ flag is only cleared here (`0026DA92`); it is set outside the body *(corrected 2026-10-02, OPUS: the body never sets `+0x1061` - its setters are `0026D8F0` (`0026D8F9`) and `00268320` (`0026836C`), and a save-lifecycle function stores `dil` there (FABLE's record readiness-apply-fable-1002); EV-3)*.
 
 ## 8. Script · resource · event interactions
 
@@ -156,8 +156,8 @@ once per pass and the same for everything that reads it afterwards.
 
 ## 12. Reproduction formula
 
-Call twice within one pass with different counts and assert the second publishes the **first's**
-selector (EV-3). Assert the body's last instruction is `jmp 002E3D40` with `rcx`, `rdx`, `r8`, `r9`
+~~Call twice within one pass with different counts and assert the second publishes the **first's**~~
+~~selector (EV-3).~~ Set `+0x1061`, call twice within one pass with different counts, and assert the first publishes the slot already stored and the second its own selector (EV-3) *(corrected 2026-10-02, OPUS: `0026D951` / `0026D957` skip the `0026D95E` store only while the flag is set, and `0026DA92` clears it)*. Assert the body's last instruction is `jmp 002E3D40` with `rcx`, `rdx`, `r8`, `r9`
 all zero (EV-1). Drive `00377850` to return 3 and 4 and assert `02099DAC` is `1` then `2` (EV-5).
 
 ## 13. Runtime validation
@@ -170,8 +170,8 @@ replay, not live.
 
 ## 14. Unresolved
 
-- What the five globals feed — published here, consumed elsewhere.
-- What the three variants mean to a player; three states exist and nothing names them.
+- ~~What the five globals feed — published here, consumed elsewhere.~~ *(answered: the four globals' readers are censused in CONTRACT-weather.md §5 — `00263E10`, `00263E20`, `00264D50`, and none found for `02099DB0`; choosing-the-field-environment-variant.md, reconciled 2026-09-30; 2026-10-02, OPUS)*
+- ~~What the three variants mean to a player; three states exist and nothing names them.~~ *(answered: the selector is the field's weather slot — choosing-the-field-environment-variant.md and CONTRACT-weather.md §1; 2026-10-02, OPUS)*
 - ~~The four-versus-five count of EV-6's note.~~ **Answered 2026-09-29 (OPUS, pass 1):** the fifth is the selector byte `021654E0` (`[ctx+0x1060]`, `ctx = 02164480`).
 
 ## 15. Evidence
@@ -195,8 +195,8 @@ function's behaviour to this one, with constants that cannot be reached from her
 - **Presentation — SERVICE, but only through the tail call.** `002E3D40` is the weather-to-presentation
   refresh; this contract hands control to it and asserts nothing about it beyond the zero arguments.
 - **Save_Load_Settings — MECHANICAL.** One callee of this body belongs to that layer. The variant
-  selector is latched per pass (EV-3) and published to globals; **whether any of it reaches the save
-  image is not established here**, and this edge is not evidence that it does.
+  selector is latched per pass (EV-3) and published to globals; ~~**whether any of it reaches the save~~
+  ~~image is not established here**, and this edge is not evidence that it does.~~ *(answered: the selector is the persistent payload byte `+0x1060`, `021654E0` — this contract's falsification pass V5 and CONTRACT-weather.md §3 — so it is in the save image; 2026-10-02, OPUS)*
 - **Every other layer reached is MECHANICAL**, through this body's own callees. *Their addresses are
   deliberately not cited: each is a hub, and naming one imports its whole edge set.*
 

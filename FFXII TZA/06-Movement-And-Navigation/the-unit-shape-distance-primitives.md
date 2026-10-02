@@ -114,7 +114,7 @@ box                        the six-face table at 0xD11200, margin 1.001, epsilon
 D2020(pt)                  1 when -1 < y < 1 and sqrt(x^2 + z^2) < 1
 EB0(sub, pt)               local = inverse(+0x50) * pt; type 0 |local| < 1, type 1 as D2020, type 2 |x|,|y|,|z| < 1
 D5A0(out, capA, posB, capB, posA)
-                           ellA = A1D30(DA730(capA, posB, posA)), ellB symmetric; out = {posA - posB, 1.0};
+                           ellA = A1D30(DA730(capA, posB, posA)), ellB symmetric; out = {posA - posB, 1.0};   <- corrected 2026-10-02, OPUS - out.w is the horizontal distance sqrt(dz^2 + dx^2), not 1.0: 003DA663 overwrites the 1.0 stored at 003DA62D-003DA63E
                            returns dist - (ellA + capA.w + ellB + capB.w)
 ```
 

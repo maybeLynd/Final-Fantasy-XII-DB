@@ -127,9 +127,15 @@ if sj.exists():
     s = json.loads(sj.read_text(encoding="utf-8"))
     need = {"id", "kind", "status", "owner", "reviewer", "acceptance",
             "discriminator", "blocked_by", "evidence"}
-    badp = [p.get("id") for p in s["packages"] if not need <= set(p)]
-    check("T8 package rows carry discriminator fields", not badp,
-          "%d packages" % len(s["packages"]))
+    if "packages" not in s:
+        check("T8 package rows carry discriminator fields", False,
+              "snapshot state=%s - a failed generation published an "
+              "INCOMPLETE stub; run generate" %
+              s.get("freshness", {}).get("state"))
+    else:
+        badp = [p.get("id") for p in s["packages"] if not need <= set(p)]
+        check("T8 package rows carry discriminator fields", not badp,
+              "%d packages" % len(s["packages"]))
 else:
     check("T8 package rows carry discriminator fields", False, "no snapshot")
 
@@ -166,7 +172,20 @@ def _fx_db(root):
         "id\tthing\tkind\nCT-1\tx\tDISPOSITIONED\n", encoding="utf-8")
     (idx / "candidates" / "register-triage" /
      "batch-K-scope-rulings.md").write_text(
-        "# batch K\n\n| reg | instrument |\n|---|---|\n", encoding="utf-8")
+        "# batch K\n\n"
+        "## Class 1: SUPERSEDED onto the instrument (1)\n\n"
+        "| row | population | instrument |\n|---|---|---|\n"
+        "| TQ-7 | fixture population | fixture-doc.md |\n\n"
+        "## Class 2: NOT A QUESTION, with a carrier (1)\n\n"
+        "| row | carrier |\n|---|---|\n"
+        "| TQ-8 | `FX-CARRIER-TASK-0926` |\n\n"
+        "## Extension 2026-09-99: later ruling\n\n"
+        "- **TQ-9** — class 1 applies (FX-RULING-0926). "
+        "`fixture-instrument.tsv` measures the population; SUPERSEDED "
+        "onto the instrument.\n", encoding="utf-8")
+    (idx / "completion-packages").mkdir(parents=True)
+    (idx / "completion-packages" / "PKG-FIXTURE.md").write_text(
+        "# PKG-FIXTURE\n\n**stage.** `research`\n", encoding="utf-8")
     (idx / "COVERAGE.md").write_text("# coverage\n", encoding="utf-8")
     (idx / "COVERAGE-DIMENSIONS.md").write_text("# dims\n", encoding="utf-8")
     (idx / "PROGRAM-STATE.md").write_text(
@@ -187,7 +206,21 @@ def _fx_db(root):
             {"id": "FX-REQ-TRANSFER", "kind": "request", "status": "READY",
              "priority": "P2", "requester": "FX-A",
              "assigned_to": "FX-B", "target": "transferred work",
-             "completion": "must stay visible"}]}), encoding="utf-8")
+             "completion": "must stay visible"},
+            {"id": "FX-REQ-TWO", "kind": "request", "status": "READY",
+             "priority": "P2", "requester": "FX-REQUESTER2",
+             "assigned_to": "FX-WORKER2", "target": "second fixture work",
+             "completion": "must carry a joined reviewer"},
+            {"id": "FX-REVIEW-TWO-0930", "kind": "request", "status": "DONE",
+             "assigned_to": "FX-REVIEWER",
+             "target": "review FX-REQ-TWO against its acceptance",
+             "reviews": {"FX-REQ-TWO": "fixture-review-record"}},
+            {"id": "FX-CARRIER-TASK-0926", "kind": "request", "status": "DONE",
+             "assigned_to": "FX-CARRIER", "target": "carrier task"},
+            {"id": "FX-PUB-CHORE-1002", "kind": "request", "status": "READY",
+             "assigned_to": "FX-PUBLISHER",
+             "resources": [{"key": "@publication"}],
+             "target": "publish the fixture outputs"}]}), encoding="utf-8")
     (idx / "progress" / "progress.config.json").write_text(
         json.dumps({"package": "progress", "parser_version": 3}),
         encoding="utf-8")
@@ -206,6 +239,8 @@ def _bind(root):
     pr.HIST = prog / "history.jsonl"
     pr.PROGRESS = root / "PROGRESS.md"
     pr.DIRTY = prog / ".dirty"
+    pr.STORE_ROOT = prog / "store"          # coherent-generation store
+    pr.DOCSIG = prog / "doc-signature.txt"  # declared preimage input
     return prog
 
 
@@ -689,6 +724,232 @@ check("T35 struck-id row with an unreadable lead is WITHDRAWN/STRUCK; unstruck c
       r35.get("TQ-8", {}).get("status") == "WITHDRAWN" and r35["TQ-8"]["lead"] == "STRUCK"
       and r35.get("TQ-9", {}).get("status") == "UNKNOWN" and not live,
       "%s | %s | live UNKNOWN %s" % (r35.get("TQ-8"), r35.get("TQ-9", {}).get("status"), live))
+
+# ---------------------------------------------------------------- CKPT10R3
+# C1: the fingerprint covers COMPLETE document bodies - a checkbox deep past
+# the old 4000-byte head window still invalidates the generation.
+fx = _fx_db(FXROOT / "t36")
+_bind(fx)
+doc = fx / "01-Fixture-Category" / "fixture-doc.md"
+pad = "".join("padding line %04d\n" % i for i in range(300))  # >4000 bytes
+doc.write_text("system: fixture\n---\n" + pad + "- [ ] deep box one\n",
+               encoding="utf-8")
+f0 = pr.fingerprint(fx)
+doc.write_text("system: fixture\n---\n" + pad + "- [ ] deep box two\n",
+               encoding="utf-8")
+f1 = pr.fingerprint(fx)
+doc.write_text("system: fixture\n---\n" + pad + "- [ ] deep box one\n",
+               encoding="utf-8")
+f2 = pr.fingerprint(fx)
+check("T36 deep-body edit past byte 4000 moves the fingerprint",
+      f0 != f1 and f0 == f2, "%s vs %s" % (f0[:8], f1[:8]))
+
+# C2: every page-only obligation is a ROW - file+anchor, locator,
+# requirement, owner, reviewer, discriminator, dedup links; page-local /
+# closed-row / live-row populations stay distinct.
+fx = _fx_db(FXROOT / "t37")
+_bind(fx)
+(fx / "01-Fixture-Category" / "fixture-doc.md").write_text(
+    "system: fixture\nowner_layer: PrimaryOwner:Fixture\n---\n"
+    "- [ ] page-local work naming no register id\n"
+    "- [ ] **TQ-1.** residue of a live row\n"
+    "- [ ] **TQ-2.** residue of a closed row\n", encoding="utf-8")
+pb = pr.parse_page_boxes(fx)
+obs = pb.get("obligations") or []
+need = {"file", "anchor", "locator", "requirement", "owner", "reviewer",
+        "class", "named_ids", "dedup", "discriminator"}
+check("T37 obligation rows carry the full contract, classes distinct",
+      len(obs) == 3 and all(need <= set(o) for o in obs)
+      and [o["class"] for o in obs]
+      == ["page-local", "live-row-residue", "mis-marked-closed"]
+      and obs[0]["dedup"] == ["none"]
+      and obs[0]["locator"].startswith("page:")
+      and obs[1]["dedup"] == ["register:TQ-1"]
+      and obs[1]["locator"] == "register:TQ-1"
+      and obs[2]["owner"] == "PrimaryOwner:Fixture"
+      and all(o["reviewer"] == "UNKNOWN" for o in obs),
+      "%s" % (obs[:1],))
+
+# C3: EMPTY and INVALID are distinct input states; both block a required
+# input; a cleared register (header present) is neither.
+fx = _fx_db(FXROOT / "t38")
+_bind(fx)
+(fx / "_index" / "CONTRADICTIONS.tsv").write_text("", encoding="utf-8")
+(fx / "_index" / "_inbox" / "TEAM.json").write_text('{"revision": 1, "ta',
+                                                   encoding="utf-8")
+st = pr.input_states(fx)
+m, i = pr.input_problems(fx)
+check("T38 empty and invalid are distinct states, both blocking",
+      st["_index/CONTRADICTIONS.tsv"]["state"] == "empty"
+      and st["_index/_inbox/TEAM.json"]["state"] == "invalid"
+      and st["_index/COVERAGE.md"]["state"] == "present"
+      and any("CONTRADICTIONS.tsv (empty file)" in x for x in i)
+      and any("TEAM.json" in x and "empty" not in x for x in i),
+      "invalid=%s" % i)
+
+# C4: a publication commits ONE generation in the store; live outputs are
+# byte-exact copies of its manifest's outputs.
+fx = _fx_db(FXROOT / "t39")
+_bind(fx)
+snap, counters = pr.build(fx)
+pr.write_all(snap, counters, fx)
+store = pr.GEN.Store(str(pr.STORE_ROOT))
+man, gdir, probs = store.open_current()
+live_ok = (man and all(
+    open(os.path.join(gdir, "outputs", n), "rb").read()
+    == {"snapshot.json": pr.SNAP_JSON, "snapshot.md": pr.SNAP_MD,
+        "crosswalk.md": pr.CROSS_MD, "metrics.md": pr.MET_MD,
+        "PROGRESS.md": pr.PROGRESS}[n].read_bytes()
+    for n in man["outputs"]))
+check("T39 committed generation is CURRENT; live set is its verified copy",
+      not probs and man and man["generation"].startswith("g")
+      and set(man["outputs"]) == {"snapshot.json", "snapshot.md",
+                                  "crosswalk.md", "metrics.md",
+                                  "PROGRESS.md"}
+      and "preimage:doc-signature.txt" in man["inputs"]
+      and live_ok,
+      "probs=%s gen=%s" % (probs, (man or {}).get("generation")))
+
+# C5: a failed run leaves the last COMPLETE generation CURRENT and the
+# failure state separate (FAILURE.json / failures.jsonl, not CURRENT).
+fx = _fx_db(FXROOT / "t40")
+_bind(fx)
+snap, counters = pr.build(fx)
+pr.write_all(snap, counters, fx)
+store = pr.GEN.Store(str(pr.STORE_ROOT))
+gen1 = store.current_id()
+(fx / "_index" / "L2-VERDICTS.md").unlink()
+rc = pr.auto(fx)
+man, gdir, probs = store.open_current()
+check("T40 failed run keeps the last COMPLETE generation",
+      rc == 1 and store.current_id() == gen1 and not probs
+      and man["generation"] == gen1
+      and "L2-VERDICTS.md" in open(
+          pr.SNAP_JSON, encoding="utf-8").read(),
+      "rc=%s cur=%s probs=%s" % (rc, store.current_id(), probs))
+# ...and a mid-commit source move refuses the candidate the same way.
+(fx / "_index" / "L2-VERDICTS.md").write_text(
+    "| system | contract | types | relationships | runtime | "
+    "script/data | L2 | gap |\n|---|---|---|---|---|---|---|---|\n",
+    encoding="utf-8")
+orig_pb = pr.parse_page_boxes
+def _mid_move2(db):
+    out = orig_pb(db)
+    (fx / "_index" / "COVERAGE.md").write_text("# moved mid-commit\n",
+                                              encoding="utf-8")
+    return out
+pr.parse_page_boxes = _mid_move2
+try:
+    pr.build(fx)
+    mid = "no-raise"
+except pr.ProgressError:
+    mid = "raised"
+finally:
+    pr.parse_page_boxes = orig_pb
+check("T40b source move during build still aborts the generation",
+      mid == "raised" and store.current_id() == gen1, mid)
+
+# C6 (EXPORT-COHERENT-GENERATION): export is exactly one pinned generation;
+# a hand-made or generation-mixed ZIP is UNVERIFIED, never CURRENT; a
+# mid-export failure leaves no partial ZIP and keeps CURRENT.
+fx = _fx_db(FXROOT / "t41")
+_bind(fx)
+snap, counters = pr.build(fx)
+pr.write_all(snap, counters, fx)
+store = pr.GEN.Store(str(pr.STORE_ROOT))
+gen1 = store.current_id()
+zp = str(FXROOT / "progress-export.zip")
+gid = store.export(zp)
+label, info = pr.GEN.verify_zip(zp)
+import zipfile
+names = zipfile.ZipFile(zp).namelist()
+man1, _d, _p = store.open_current()
+check("T41a export is VERIFIED, pinned to the CURRENT generation",
+      gid == gen1 and label == "VERIFIED"
+      and info["generation"] == gen1
+      and "preimage:doc-signature.txt" in man1["inputs"]
+      and any(n.startswith("inputs/") for n in names),
+      "%s %s" % (label, info))
+# a refresh during the day does not change what was exported: committing a
+# second generation leaves the first ZIP VERIFIED for gen1.
+(fx / "_index" / "COVERAGE.md").write_text("# moved\n", encoding="utf-8")
+snap2, counters2 = pr.build(fx)
+pr.write_all(snap2, counters2, fx)
+gen2 = store.current_id()
+label2, info2 = pr.GEN.verify_zip(zp)
+check("T41b a later commit does not retro-edit an exported ZIP",
+      gen2 != gen1 and label2 == "VERIFIED"
+      and info2["generation"] == gen1, "%s %s" % (label2, info2))
+# hand-assembled mixed ZIP: gen1's manifest with a member from gen2.
+mixed = str(FXROOT / "progress-mixed.zip")
+man_bytes = open(os.path.join(str(pr.STORE_ROOT), gen1,
+                              "MANIFEST.json"), "rb").read()
+with zipfile.ZipFile(mixed, "w") as z:
+    z.writestr("MANIFEST.json", man_bytes)
+    g1 = os.path.join(str(pr.STORE_ROOT), gen1)
+    g2 = os.path.join(str(pr.STORE_ROOT), gen2)
+    for n in os.listdir(os.path.join(g2, "outputs")):
+        z.write(os.path.join(g2, "outputs", n), "outputs/" + n)
+    for n in os.listdir(os.path.join(g1, "inputs")):
+        z.write(os.path.join(g1, "inputs", n), "inputs/" + n)
+label3, info3 = pr.GEN.verify_zip(mixed)
+check("T41c a generation-mixed ZIP is UNVERIFIED, never CURRENT",
+      label3 == "UNVERIFIED" and info3.get("hash_mismatch"), str(info3))
+# a failure writing the second output mid-export leaves no ZIP and CURRENT
+# untouched; last COMPLETE is preserved.
+zp2 = str(FXROOT / "progress-export2.zip")
+orig_write = zipfile.ZipFile.write
+count = [0]
+def _boom(self, src, arc=None):
+    count[0] += 1
+    if count[0] == 2:
+        raise OSError("simulated mid-export write failure")
+    return orig_write(self, src, arc)
+zipfile.ZipFile.write = _boom
+try:
+    store.export(zp2)
+    rc = "no-raise"
+except Exception:
+    rc = "raised"
+finally:
+    zipfile.ZipFile.write = orig_write
+check("T41d mid-export failure keeps CURRENT, leaves no ZIP",
+      rc == "raised" and not os.path.exists(zp2)
+      and store.current_id() == gen2, rc)
+
+# T42 CROSSWALK-MEANINGS semantics: reviewer joins from the assigned review
+# task (never the requester), chores leave the route, every transferred
+# obligation is a listed row, outcomes stay separate counts.
+fx42 = _fx_db(FXROOT / "t42")
+_bind(fx42)
+snap42, counters42 = pr.build(fx42)
+pr.write_all(snap42, counters42, fx42)
+revs42 = {p["id"]: p["reviewer"] for p in snap42["packages"]}
+check("T42a reviewer joins from the assigned review task, not requester",
+      revs42.get("FX-REQ-TWO") == "FX-REVIEWER"
+      and "FX-REQUESTER2" not in revs42.values(), str(revs42))
+discs42 = {p["id"]: p["discriminator"] for p in snap42["packages"]}
+cross42 = (fx42 / "_index" / "progress" / "crosswalk.md") \
+    .read_text(encoding="utf-8")
+route42 = cross42.split("## Coordination chores")[0]
+check("T42b chores leave the deduplicated route but stay visible",
+      discs42.get("FX-PUB-CHORE-1002") == "chore:coordination"
+      and "FX-PUB-CHORE-1002" not in route42
+      and "FX-PUB-CHORE-1002" in cross42
+      and "## Coordination chores" in cross42,
+      "disc=%s" % discs42.get("FX-PUB-CHORE-1002"))
+trows = {r["id"]: r for r in snap42["transfers"]["rows"]}
+check("T42c every transferred obligation is a listed row",
+      {"TQ-7", "TQ-8", "TQ-9"} <= set(trows)
+      and trows["TQ-8"]["destination_owner"] == "FX-CARRIER"
+      and "TQ-9" in cross42 and "TQ-7" in cross42,
+      str(sorted(trows)))
+pm42 = (fx42 / "PROGRESS.md").read_text(encoding="utf-8")
+check("T42d PROGRESS.md separates outcomes, tasks and package stages",
+      "open board tasks (coordination load)" in pm42
+      and "obligation outcomes" in pm42 and "TRANSFERRED" in pm42
+      and "completion packages by stage" in pm42
+      and "research 1" in pm42, "")
 
 shutil.rmtree(FXROOT, ignore_errors=True)
 
