@@ -1,0 +1,14 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md",
+ "session": "session_01VgTzWvj54SWcQeC3wEsotH",
+ "rows": [
+  {"fn": "006B6750",
+   "text": "stores `00D80930` to qword `rcx+0`; with a = qword `rcx+8` and b = qword `rcx+0x10`, stores b to qword `a+8` and a to qword `b+0`, then stores the pointer `rcx+8` to both qwords `rcx+8` and `rcx+0x10`",
+   "anchors": [["006B675B", "mov"], ["006B6765", "mov"], ["006B6769", "mov"], ["006B676C", "mov"], ["006B676F", "mov"]]},
+  {"fn": "006B68A0",
+   "text": "stores `00D80970` to qword `rcx+0`; with a = qword `rcx+0x50` and b = qword `rcx+0x58`, stores b to qword `a+8` and a to qword `b+0`, stores the pointer `rcx+0x50` to both qwords `rcx+0x50` and `rcx+0x58`, then stores `00D31168` to qword `rcx+0`",
+   "anchors": [["006B68AB", "mov"], ["006B68B5", "mov"], ["006B68B9", "mov"], ["006B68C3", "mov"], ["006B68CA", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Both bodies unlink a two-pointer node (next at +0, prev at +8) and point it back at itself; the row states only the stores."
+}
