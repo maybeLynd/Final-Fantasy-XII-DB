@@ -1,0 +1,27 @@
+ok   0030EDA0 mov      mov r8, qword ptr [rcx + 0xb88]
+ok   0030EDA7 add      add rcx, 0x6b0
+ok   0030EDB1 mov      mov edx, 9
+ok   0030EDB6 lea      lea rcx, [rcx + 0x80]
+ok   0030EDC7 movups   movups xmmword ptr [rcx - 0x80], xmm0
+ok   0030EE13 movups   movups xmmword ptr [rcx], xmm0
+ok   0030EE44 movups   movups xmmword ptr [rcx + 0x60], xmm0
+ok   0030EE5D cmp      cmp r8, rdx
+ok   0030EFFF bt       bt rax, 0x18
+ok   0030F00A mov      mov eax, 0x21e
+ok   0030F00F cmp      cmp word ptr [rcx + 0x714], ax
+ok   0030F016 ja       ja 0x30f025
+ok   0030F018 cmp      cmp byte ptr [rcx + 0x6b4], 6
+ok   0030F01F jae      jae 0x30f114
+ok   0030F02A call     call 0x30dfa0
+ok   0030F04A lea      lea rax, [rbx + 0x6b0]
+ok   0030F0AC mov      mov r8d, 0x4f0
+ok   0030F0E5 lea      lea rcx, [rbx + 0x6b0]
+ok   0030F0F1 mov      mov qword ptr [rbx + 0xb88], rdi
+ok   00312FB5 mov      mov dword ptr [rcx + 0x28], 0
+ok   0031307B call     call 0x30eff0
+ok   00313096 mov      mov r8d, 0x96
+ok   0031309C mov      mov dword ptr [rsp + 0x20], 0
+ok   003130DC call     call 0x30f760
+ok   0030FA54 mov      mov dword ptr [rsp + 0x20], 1
+ok   0030FA5C call     call 0x30f760
+FAILS 0

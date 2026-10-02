@@ -29,7 +29,7 @@ audit:
 > Three layers between a button and the game: the device state, a per-frame channel with **sixteen
 > frames of history**, and a rebindable keymap loaded from an `.ini`.
 
-**PARTIAL.** The three families, their call structure, the channel record's shape and the history
+~~**PARTIAL.**~~ *(Superseded 2026-10-01, OPUS: the status line reads DOCUMENTED and every residue named below is answered.)* The three families, their call structure, the channel record's shape and the history
 ring are read. ~~Most individual bodies are not, and the binding format itself is not decoded.~~
 *(Corrected 2026-09-30, SWE2-DATA: the binding format is decoded (AP-5, 2026-09-08), and the poll, the three
 channel builders, the bridge and the keyboard path are read (§2, §5). What stays open is registered as SD-5 to
@@ -297,7 +297,7 @@ slot 15 called nowhere in the image. See the SD-7 note in §5.)*
 | `00195DF0` | 526 B | `InputManager_RestoreDefaultBindingProfiles` — *the name is backwards: the publisher (DD-1)* |
 | `00195060` | 153 B | `InputManager_Initialize` — load, validate, then publish or install defaults (§3b) |
 | `00196550` | 135 B | `InputManager_ValidateBindingUniqueness` — returns 1 on a duplicate code |
-| `001965E0` | 159 B | `InputManager_ValidateBindingIdRanges` — returns 1 when no profile is fully in range |
+| `001965E0` | 159 B | `InputManager_ValidateBindingIdRanges` — ~~returns 1 when no profile is fully in range~~ returns 1 unless profile 1 is fully in range: the outer pass repeats the same scan of profile 1 three times (`r11` is loaded once with `01F80F94` at `001965EB` and never advanced), so profiles 2 and 3 are range-checked by nothing *(corrected 2026-10-01, OPUS, from the 15-Input reconstruction-readiness map, re-read at the bytes; the keymap page's validator section had it right)* |
 | `00198A00` | 349 B | `InputManager_AssignBindingWithConflictPolicy` |
 | `00198790` | 8 B | `InputManager_GetSingleton` — **46 external callers** |
 | `007A2440` | 3,269 B | `InputBackend_UpdateResolvedDeviceState` — largest in the stack |
@@ -397,7 +397,7 @@ bindings (boot)
     -> InputManager_BuildKeymapPath 00197EE0                     001950B2
     -> InputManager_LoadKeymapIni 00198000                       001950BA
     -> InputManager_ValidateBindingUniqueness 00196550           001950C2   (returns 1 on a duplicate)
-    -> InputManager_ValidateBindingIdRanges 001965E0             001950CE   (returns 1 when no profile is fully in range)
+    -> InputManager_ValidateBindingIdRanges 001965E0             001950CE   (returns 1 unless profile 1 is fully in range - profiles 2 and 3 are not checked; see the table above)
     -> either returned 1: 00198B60, the defaults installer       001950EB
        both returned 0:   00195DF0, the publisher                001950DA
 ```
@@ -790,7 +790,7 @@ for (i = 0; i < 3; i++) {                      /* rdi 0x01F80FD8 .. 0x01F81128 s
 manager->byte_0x3B = 1;                        /* flag set on the manager object */
 ```
 
-**`0x01DF15DC` is a staging buffer, not the authored defaults.** The prototype-copy census
+~~**`0x01DF15DC` is a staging buffer, not the authored defaults.**~~ *(Corrected 2026-10-01, OPUS: `0x01DF15DC` and `0x01DF1738` are records 1 and 2 of the five-record bank the poll walks every frame - `00197089` loads `01DF1480`, five rounds, `add rsi, 0x15c` at `001970BB` - so the publisher writes records 2-4 of that live bank, not a scratch area. The keymap and binding-profile pages say the same. The rest of this paragraph is kept as written history.)* The prototype-copy census
 (see [static initialization order](../../24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md)
 section 11) flagged that cluster as a destination of authored bytes and this document's own lead read
 it as "the default control scheme". **It is the scratch area the defaults are assembled *in*.** The

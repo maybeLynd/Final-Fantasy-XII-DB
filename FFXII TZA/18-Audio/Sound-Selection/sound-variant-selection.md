@@ -29,7 +29,7 @@ audit:
 > How FFXII decides *which* sound actually plays when one sound event fires — and why a
 > footstep on stone differs from one on sand without the game asking for a different sound.
 
-**PARTIAL.** `SwitchSound` is read and proven at tier 1, as is the record-format versioning.
+~~**PARTIAL.**~~ *(Superseded: DOCUMENTED, owner re-status 2026-09-30; struck 2026-10-01, OPUS.)* `SwitchSound` is read and proven at tier 1, as is the record-format versioning.
 The base `Sound` shape is read. What distinguishes `RandomSound`, `OrderSound` and
 `CycleSound` is **read whole in §12 (2026-09-17)**; the two explanations §2 eliminated were the wrong place to
 look, and §12 also names the class selector. Nothing here is asserted from class names.
@@ -611,8 +611,8 @@ the code normalises the weights or checks that they sum to 100, but the `% 101` 
 ### Why the shipped data shows only zero — and what that costs
 
 A candidate whose weight is `0` is **skipped by the weighted pass** (`test al, al` / `je`). Every
-shipped record's field is `0`, so **the weighted pass never selects anything in this build**, and
-selection always falls through to the uniform second pass §3 describes. The field is live code
+shipped record's field is `0`, so **the weighted pass never selects anything in this build**, ~~and
+selection always falls through to the uniform second pass §3 describes~~ *(corrected 2026-10-01, OPUS, per §12: so pass 1 plays every set and the weighted roll finds nothing; there is no uniform second pass)*. The field is live code
 serving authored data that does not exist here.
 
 **What this does NOT establish.** The unit is inferred from the modulus, not from an authored table:

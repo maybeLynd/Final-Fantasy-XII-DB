@@ -164,8 +164,8 @@ curve 3, and `2^1.5 − 1 = 1.83` on curve 4. **Whether that can happen depends 
 > `007A9E00` returns the end value first. The music layer's ramps use the same clamp with the same record fields
 > (`007C36C0` at `007C398F`, `007C4790` at `007C515A`). **An `elapsed` past `duration` would need a writer other than
 > these advancers.** An image-wide search in the Sead span for the `addss [rec+0x10]` advance form found no unclamped
-> instance, but writes of other forms were not censused. `dt` itself (the `xmm1` argument) was not traced, so a negative
-> step is not ruled out.
+> instance, but writes of other forms were not censused. ~~`dt` itself (the `xmm1` argument) was not traced, so a negative
+> step is not ruled out.~~ *(Superseded by §4's trace, struck 2026-10-01, OPUS: `dt` is the frame time `007A5400` computes from an unsigned QPC difference (`007A5452`-`007A5488`), passed through `007AAEA0` (`007AAECD` -> `007AB030`), so a negative step cannot occur.)*
 
 ## 5. What this does not claim
 

@@ -324,7 +324,7 @@ BGM stream would exercise and nothing else does.
 - [x] ~~The four sound-layer entry points `00211270` / `00211230` / `00211260` / `00211280` (take
       the buffer, start, still playing, close — inferred from the machine's order).~~ **ANSWERED
       2026-09-11** — read in §3.3: bind a stream bank, start it, poll its state, stop and unlink it.
-      What `0x40` and `0x7F` set on the bank (`002256F0` / `002257E0`) is not named. `FZ-15`.
+      ~~What `0x40` and `0x7F` set on the bank (`002256F0` / `002257E0`) is not named. `FZ-15`.~~ *(Answered from the setters, 2026-10-01, OPUS: `002256F0` takes `0x40` as the pan, `(v - 0x40) / 128` = 0, centre (`00225750`); `002257E0` takes `0x7F` as the volume, `127 / 127` = 1.0 (`0022581F`); both fade over `r8 / 60` s, 0 here. `FZ-15`.)*
 - [x] ~~The rest of the queue's read plumbing named on the queue page: the four-state tick `0046DD50`
       over `02CA6068`, the status word, and `003E9780` / `003BB790` after each pass.~~ **ANSWERED
       2026-09-11** on [the queue page](../02-Resource-And-Asset-Pipeline/the-resource-request-queue.md) §8
@@ -403,7 +403,7 @@ and a walk built that way collapses on the first page. `003EAA70` says it plainl
 ```
 
 **With the widths, the walk reproduces to the run**; without them it cannot be reproduced at all.
-The measured distributions are `count` **0 in 243 of 291** (max 6) and `span` **0 in 169** (max 5) —
+The measured distributions are `count` **0 in 243 of 291** (max 6) and `span` **0 in 169** (~~max 5~~ max 22, *corrected 2026-10-01, OPUS, re-walking the shipped file; §2.3 had it right*) —
 a 5-bit span field, consistent with the `u16` split and with nothing larger ever appearing.
 
 > **Recorded because it cost two attempts.** The figures on this page are right; the note that lets
@@ -447,7 +447,7 @@ negative. What a run's three-byte entries hold. Nothing executed.
 
 ## The `002DF690` exclusive subtree — all 5 members bound (SWE2-FRONTIER, followup queue)
 
-`002DF690` — the `bgmstreamstop` close this page's state 6 names — is a 5-byte thunk to
+`002DF690` — the `bgmstreamstop` close ~~this page's state 6 names~~ (§3.2; state 6 calls `002DF680` - *corrected 2026-10-01, OPUS*) — is a 5-byte thunk to
 `001DC330`. It owns **5 frontier functions**; every member was disassembled from the
 shipping image and each interior cite sits inside its declared extent. The chain §3.3
 sketches confirmed in full: `001DC330` fetches the audio registry (`00210B30`) and tails
@@ -484,8 +484,8 @@ then calls `002252C0` (`0021D6EA`). `002252C0` (265 B) builds the voice:
 `00221E00(elem, 0, 0)` resolves the sound object; if `00225680` reports status 1 the
 stale voice is reset through `007A7010`/`007A7A20` (`002252FB`–`00225322`), otherwise
 the configure ladder runs — `002257D0`, `00225580(arg2)`, `00225590(1)`,
-`002256E0(6)`, `00221C70(elem, obj, 0)`, `002256F0(arg4 = 0x7F, the volume)`,
-`002257E0(arg3 = 0x40)` (`00225327`–`00225379`) — then `007A78B0` starts playback
+`002256E0(6)`, `00221C70(elem, obj, 0)`, ~~`002256F0(arg4 = 0x7F, the volume)`,
+`002257E0(arg3 = 0x40)`~~ `002256F0(arg3 = 0x40, the pan: (v - 0x40) / 128, centre)`, `002257E0(arg4 = 0x7F, the volume: v / 127 = 1.0)` *(corrected 2026-10-01, OPUS: `002252DA mov ebp, r8d` / `00225367 mov edx, ebp` feeds the pan setter, `002252E5 mov esi, r9d` / `00225374 mov edx, esi` the volume setter)* (`00225327`–`00225379`) — then `007A78B0` starts playback
 and on success `00225590(2)` marks it and the element's vtable `+0x50` attaches the
 voice (`0022538C`–`002253AB`).
 
@@ -511,7 +511,7 @@ poll the state 7 row waits on before clearing `active`.
 | `002252C0` (265 B) | the start: resolve/configure/`007A78B0`-start/attach | [`00225351`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00210B30` (registry), the `00221xxx`/`00225xxx`
-voice helpers, `007A7010`/`007A78B0`/`007A7A20` (the XAudio-side calls), and the
+voice helpers, `007A7010`/`007A78B0`/`007A7A20` (~~the XAudio-side calls~~ SEAD handle-level driver calls that queue commands to the sound thread; the backend is WASAPI - *corrected 2026-10-01, OPUS*), and the
 element vtable `+0x50` attach. The list shape — head at `+8`, node links at `+0`,
 element at `+0x10`, id at element `+0x38` — is the same structure the `002DF690`
 stop family walks.

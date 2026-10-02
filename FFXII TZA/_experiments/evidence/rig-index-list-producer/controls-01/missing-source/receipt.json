@@ -1,0 +1,18 @@
+{
+  "name": "missing-source",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\controls-01\\missing-source\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+  "diagnostic": "source-01.json",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "a115ae1960583a2b9b28d58777e17c86746386906426b5b45d653502f569ff8b"
+}

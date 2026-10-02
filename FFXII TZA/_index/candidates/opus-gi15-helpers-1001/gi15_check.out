@@ -1,0 +1,43 @@
+ok   0037382D test dword ptr [rsi + 4], 0x100
+ok   00373834 jne 0x37383f
+ok   00409250 test dword ptr [rcx + 4], 0x40000000
+ok   0040925E mov eax, dword ptr [rcx]
+ok   00409260 and eax, 0xfff
+ok   00520528 movzx ecx, word ptr [r8 + 0x10]
+ok   00520533 movzx edx, word ptr [rdx + 2]
+ok   00520542 mov word ptr [rsp + 0x36], ax
+ok   00520556 mov word ptr [rsp + 0x34], dx
+ok   0052055B mov word ptr [rsp + 0x38], cx
+ok   00520560 cmp dx, ax
+ok   00520567 mov word ptr [rsp + 0x36], ax
+ok   00520630 call 0x372800
+ok   00520635 movzx edx, word ptr [rbp + 2]
+ok   00520642 mov word ptr [rsp + 0x34], ax
+ok   0052064F mov word ptr [rsp + 0x36], cx
+ok   00520663 mov word ptr [rsp + 0x36], bx
+ok   00520FA2 movzx edi, word ptr [r14 + 0x14]
+ok   00520FA7 movzx esi, word ptr [r14 + 0x16]
+ok   00520FBF mov r9d, edi
+ok   00520FC7 mov edx, esi
+ok   00520FC9 call 0x40abf0
+ok   0040AC1E mov byte ptr [rcx + 0x3e], dil
+ok   0040AC2E test edx, edx
+ok   0040ACC0 mov word ptr [rbx + 0x3c], si
+ok   00410303 movzx ecx, word ptr [rdi + 0x3c]
+ok   00410307 imul rdx, rcx, 0x290
+ok   004238F5 lea rax, [rip + 0x1adcb14] -> 01F00410
+ok   00423909 setle bpl
+ok   00422DE3 lea rax, [rip + 0x1add626] -> 01F00410
+ok   003E723B mov r8, qword ptr [rsi + 0x400]
+ok   003E724B movzx ecx, word ptr [r8 + 0xa]
+ok   0042194E or dword ptr [rbx + 0x284], 0x4000000
+ok   0042195D mov word ptr [rbx + 0x2f2], ax
+ok   0042198E test dword ptr [rbx + 0x284], 0x4000000
+ok   00421A6F or dword ptr [rsi + 0x284], 0x4000000
+ok   00421A9C mov edx, 0x1e
+ok   00421AC1 call 0x46e640
+ok   005208BA movss dword ptr [rdx + 0x24], xmm0
+ok   005208CF subss xmm1, dword ptr [rdx + 0x24]
+ok   003D7FFF cmp byte ptr [rip + 0x277579c], 0 -> 02B4D7A2
+ok   003517D2 jmp 0x2ea880
+FAILS 0

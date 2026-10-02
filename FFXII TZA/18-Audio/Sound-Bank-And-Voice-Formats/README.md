@@ -1,6 +1,6 @@
 # Sound bank and voice file formats
 
-**The largest undocumented hole in the database by file count.** Audio has eleven documents and
+~~**The largest undocumented hole in the database by file count.**~~ *(Superseded: the sab, seb, spp and config formats have AUDITED sheets; struck 2026-10-01, OPUS.)* Audio has eleven documents and
 2,064 owned functions — the engine is well read — and the files it eats had two passing mentions
 between them.
 

@@ -1,7 +1,7 @@
 ---
 system: The authored presentation-command handler family — the 00520xxx band and its two-level dispatch
 category: 17-Presentation-Rendering
-status: "PARTIAL — GI-15 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the per-site not-read helpers named on the page are live. GI-7 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI7, ACCEPT, d998217e2). Was PARTIAL on: residue registered as GI-7
+status: "DOCUMENTED — every register row is closed (owner re-status 2026-10-01, OPUS; documented_rule READY): GI-15 answered 2026-10-01 (OPUS, static - every per-site helper read, see the GI-15 section; what remains is content, not code; review requested from SWE2-AUDIT-SEM). History: PARTIAL on GI-15 from 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930). GI-7 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI7, ACCEPT, d998217e2). Was PARTIAL on: residue registered as GI-7
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -255,7 +255,7 @@ runtime watch. The data and the dispatch code answer it:
   handler. Authored counts by subtype: 7,656 / 2,559 / 2,283 / 2,559 / 3,169 / 220 / 622 / 622 / 622 / 80 / 1,256 /
   1,050 / 4,933. **So 20,392 authored commands (subtypes 0 to 9), in the attack, magic, item and ability animations of
   2,613 containers, are routed to the battle unit's timeline handler.** This is how an attack animation's timing reaches the battle
-  system; what each subtype means to the handler is the battle side's and was not read here (GI-15).
+  system; ~~what each subtype means to the handler is the battle side's and was not read here (GI-15).~~ Each subtype's arm in `00325260` is now read (the GI-15 section, OPUS 2026-10-01).
 - **Id `6` - `002E7090` -> `00325090`.** 7,008 authored commands, one per block, in the same animation families.
 - **Id `0x0C` - `002E70A0` -> `003250F0` - is not a command class at all.** No block authors it, and no generated
   invoker reads its slot. Slot `02CA4470` is read by the **engine**, at three places: the two end-of-track sites of
@@ -299,7 +299,7 @@ the same version-1 container ([the container page](../Model-And-Motion-Formats/f
 
 *(Superseded 2026-09-20 by the section below, which reads the invoker whole.)* *Read but not written up here: `0x09` (invoker 00417F40, 1,717 B - only its first 0x140 bytes read, so written without code marks) looks its payload up as
 the **name of an `@FMN` section** of the entry's resource, the bone-motion child that sits beside each `@FMC` block in
-the container - 108,511 authored, one or two per block. What it does with the section was not read (GI-15).*
+the container - 108,511 authored, one or two per block. ~~What it does with the section was not read (GI-15).~~ The `0x09` section below reads it (GI-15, OPUS 2026-10-01).*
 ## Command `0x34` is the shadow command (FABLE, Claude Opus 5, 2026-09-20)
 
 **`byte[cmd + 2] == 0xFF` is a global toggle, and it is a pair this database already knows.**
@@ -324,7 +324,7 @@ the default sit at exactly the **one-hot** values:
 
 | `byte + 2` | arm | what it writes on the shadow object |
 |---:|---|---|
-| `0x01` | `005208A4` | `byte[+0x1C]` = `byte+3`; when that is 0 or 1, also a float from `dword[cmd + 4]` |
+| `0x01` | `005208A4` | `byte[+0x1C]` = `byte+3`; ~~when that is 0 or 1, also a float from `dword[cmd + 4]`~~ a ramp - the float `dword[cmd + 4]` is used in every case: set at once when `byte+3` is 0 or 1, else approached over `byte+3` steps *(corrected 2026-10-01, OPUS: the GI-15 section)* |
 | `0x02` | `005208F2` | `byte[+0x1D]`, same shape |
 | `0x04` | `00520940` | `byte[+0x1E]`, same shape |
 | `0x08` | `0052098E` | `byte[+0x1F]` low bits — `and 0xF2` then `or 2` |
@@ -350,8 +350,8 @@ and one is a nested switch.*
 So **the 120-wide default arm is dead in shipped data**, every real arm is live, and the global shadow toggle is
 authored 28 times across the game.
 
-**Not read here (GI-15):** the seven arms past their first store; the `0x80` arm's nested switch; what `003AFC10` builds;
-which of `+0x1C`–`+0x55` mean what to the shadow pools.
+~~**Not read here (GI-15):** the seven arms past their first store; the `0x80` arm's nested switch; what `003AFC10` builds;
+which of `+0x1C`–`+0x55` mean what to the shadow pools.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## Command `0x48` is command `0x3F` with its target named (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -361,7 +361,7 @@ this section claimed `0x3F` acts on one record while `0x48` broadcasts; reading 
 
 **Everything is shared.** Both handlers require `word[rec + 6] == 0xFFFF` (`00520514`, `005205F9`); both build the
 same `0x20`-byte block — the record at `+0`, the command's three dwords from `+4`/`+8`/`+0xC` at `+8`/`+0xC`/`+0x10`,
-an index at `+0x14`, `word+2 & 0xFFF` at `+0x16`, `word+2 >> 15` at `+0x18`; and both call
+~~an index at `+0x14`, `word+2 & 0xFFF` at `+0x16`, `word+2 >> 15` at `+0x18`~~ a bone at `+0x14`, a preset at `+0x16` and a flag at `+0x18`, filled from different words by the two commands *(corrected 2026-10-01, OPUS: the GI-15 section)*; and both call
 **`00426870(word[rec + 0], 00520E90, block)`** — the entity and its whole sub-tree, through the helper corrected in
 `0x14`'s section — with `00520E90`, the sway-oscillator configurator of the `0x3F` row above.
 
@@ -369,10 +369,10 @@ an index at `+0x14`, `word+2 & 0xFFF` at `+0x16`, `word+2 >> 15` at `+0x18`; and
 
 | | `0x3F` (`00520510`) | `0x48` (`005205B0`) |
 |---|---|---|
-| the block's `+0x14` index | `word[cmd + 0x10] & 0xFFF`, **used directly**, zeroed when it equals the masked `word+2` (`00520560`–`00520567`) | the low word of `dword[cmd + 0x10]` passed to **`00372800(resource, key)`** as a **name key**, `0xFFFF` back zeroing the field (`00520630`, `0052065E`–`00520663`) |
+| the block's `+0x14` index | ~~`word[cmd + 0x10] & 0xFFF`, **used directly**, zeroed when it equals the masked `word+2`~~ `word[cmd + 2]`, **used directly**; `word[cmd + 0x10]` fills the preset `+0x16`, zeroed when `word[cmd + 2]` is `0xFFFF` (`00520560`–`00520567`) *(corrected 2026-10-01, OPUS: the GI-15 section)* | the low word of `dword[cmd + 0x10]` passed to **`00372800(resource, key)`** as a **name key**, `0xFFFF` back zeroing ~~the field~~ the preset `+0x16`, which comes from `word[cmd + 2]` *(corrected 2026-10-01, OPUS: the GI-15 section)* (`00520630`, `0052065E`–`00520663`) |
 | the resource | not needed | resolved first (`dword[+0x18]` through the `+0xD98` table), and the command aborts without it |
 
-That is the whole difference: **one addresses the oscillator by index, the other by name.**
+~~That is the whole difference: **one addresses the oscillator by index, the other by name.**~~ The difference: `0x3F` gives the bone by index and the preset from `word+0x10`; `0x48` finds the bone by name key and takes the preset from `word+2`, which is 0 (sway off) in 5,167 of 5,771 *(corrected 2026-10-01, OPUS: the GI-15 section)*.
 
 ### What is authored (FABLE)
 
@@ -390,8 +390,8 @@ Both passes, with **both** published totals as controls — `0x3F` 3,108 and `0x
 authoring context: inside an animation container the oscillator is addressed by index, inside an event block by name
 — which is what an event needs, since it is authored against models it does not own.
 
-**Not read here (GI-15):** `00372800`'s lookup beyond its `0xFFFF` contract; what name key `29` is; why `0x3F` zeroes its
-index when it matches the masked `word+2`.
+~~**Not read here (GI-15):** `00372800`'s lookup beyond its `0xFFFF` contract; what name key `29` is; why `0x3F` zeroes its
+index when it matches the masked `word+2`.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## Command `0x2F`: one presentation event, pushed down the child sub-tree (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -456,7 +456,7 @@ when that lookup fails** (`0041FE57`–`0041FE97`). `CharacterRenderRecord_Reset
 `word[+0x2F8] == 0xFFFF` means *this record has no command block*, and that is exactly why `0x2F` skips such a node:
 there is no command stream there to affect.
 
-**Not read here (GI-15):** `00423790`.
+~~**Not read here (GI-15):** `00423790`.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## `word[record + 0x2F2]`: the field two commands key on marks a **substitute** record (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -477,9 +477,9 @@ The writers are `004218A0` and `004219C0`, a pair with the same shape — in `00
 ```
 
 So the field is **0 by default**, and it is set to **1 — together with `+0x284` bit 26 — exactly when the record is
-built with no key**. That is a placeholder: the record exists, but nothing was resolved for it.
+built with no key**. ~~That is a placeholder: the record exists, but nothing was resolved for it.~~ That is attach code `0x7FFF`, the whole-skeleton bind; the bind still runs, with bone -1 *(corrected 2026-10-01, OPUS: the GI-15 section)*.
 
-**Leaving that state restores three fades.** On the other branch the key is resolved
+~~**Leaving that state restores three fades.**~~ *(Corrected 2026-10-01, OPUS: both paths reach the bit-26 test, and the no-key path has just set bit 26, so `003E5D30` runs on that path itself; nothing read clears bit 26 - the GI-15 section.)* On the other branch the key is resolved
 (`00372760(resource, key)` → a `u16` index, `-1` aborting), and then:
 
 ```asm
@@ -499,8 +499,8 @@ to fully opaque when a record stops being a substitute.
 **substitute-versus-real selector**, and the census shows the event blocks address **both** sides deliberately: bit 0
 set on 6,164 commands and clear on 1,029.
 
-**Not read here (GI-15):** `004219C0`, the sibling writer, beyond confirming its two stores match; what the key argument
-*names*; `00372760` and `0046E590` beyond their return contracts.
+~~**Not read here (GI-15):** `004219C0`, the sibling writer, beyond confirming its two stores match; what the key argument
+*names*; `00372760` and `0046E590` beyond their return contracts.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## Command `0x14`: a filtered hierarchy broadcast - and `00426870` is not a deferral (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -550,9 +550,9 @@ id" reduces to plain `word[cmd + 2]` every time. The lookup `005048A0` is nevert
 `-1`, which drops that node silently — so the one failure this command can have in practice is a resource id that the
 entity's own table does not carry.
 
-**Not read here (GI-15):** `00373060` (read only for its shape — it resolves two image pointers and indexes a `0x292`-stride
+~~**Not read here (GI-15):** `00373060` (read only for its shape — it resolves two image pointers and indexes a `0x292`-stride
 table) and `005048A0` beyond its `-1` contract; what `word[+0x2F2]` *is*, beyond being the field `0x13` gates on and
-`0x14` filters by.
+`0x14` filters by.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## Command `0x13`: store the switch, then broadcast it across the hierarchy (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -635,7 +635,7 @@ re-applies the record with its class pinned to `0x80`.*
 `byte+3 = 0xFF`, so from this command `004288B0` always takes the **reset** branch — `byte[+0x40A] = 0` plus
 `+0x284` bit 17 — and never the add. The add path has eight other callers outside this page's subject.
 
-**Not read here (GI-15):** what `word[+0x2F2]` counts ~~; the block's `+0`~~ (settled under `0x2F`).
+~~**Not read here (GI-15):** what `word[+0x2F2]` counts~~ *(read 2026-10-01, OPUS: a 0/1 flag, not a count - the GI-15 section)* ~~; the block's `+0`~~ (settled under `0x2F`).
 
 ## Command `0x2A`: a pooled, generation-tagged handle, two at a time (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -694,12 +694,12 @@ Census of every `.ca` container, `@FMC` walk, control reproducing the published 
 containers, so the container-only figure was already the whole population.
 
 Three of the four have **x equal to y** with a different z, and the fourth is uniform. *That is the shape of a
-scale, not of a position offset* — but nothing read here consumes the floats, so they are recorded as three floats
+scale, not of a position offset* — ~~but nothing read here consumes the floats, so they are recorded as three floats~~ *(2026-10-01, OPUS: they are the camera-shake source's intensity, time rate and radius scale - the GI-15 section)* and earlier they were recorded as three floats
 with four authored values and no name.
 
-**Not read here (GI-15):** what the pool's slots are for (`003D8300`, the release, and the slot's own `+0x30`/`+0x40` were
+~~**Not read here (GI-15):** what the pool's slots are for (`003D8300`, the release, and the slot's own `+0x30`/`+0x40` were
 read only for their shape); the `02B4D7A2` gate; the table at `02B4E3D0` the kind-2 path indexes with the request's
-clamped word.
+clamped word.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## Command `0x16`: bind the model's sub-resource variants - and the two arms nothing authors (FABLE, Claude Opus 5, 2026-09-20)
 
@@ -757,8 +757,8 @@ register-sourced `or`s into it. Only a wholesale `mov dword` could raise it — 
 render-record band (`00426E20`, `0042F250`, `0042F310`) — and those were **not traced**. Until one is, the honest
 statement is that the bit has no additive setter, not that nothing sets it.
 
-**Not read here (GI-15):** what a "sub-resource variant" is on the model side (`RenderModelInstance_RemoveSubresourceVariantBinding`
-`00504610` and the `003E7210` table walk were read only for their shape); which slot each of the five indices is.
+~~**Not read here (GI-15):** what a "sub-resource variant" is on the model side (`RenderModelInstance_RemoveSubresourceVariantBinding`
+`00504610` and the `003E7210` table walk were read only for their shape); which slot each of the five indices is.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 ## Command `0x09`: play this bone motion - and where the blend rule is spent (FABLE, 2026-09-20)
 
@@ -854,7 +854,7 @@ ten-argument call (`0041850F`..`00418561`).
 >
 > — `0x104` used inside the `0x108` stride, with no overlap at all.
 >
-> *Not read (GI-15):* `0041B650`, `00409190` and `003AB7F0`, and the tail past the loop.
+> ~~*Not read (GI-15):* `0041B650`, `00409190` and `003AB7F0`, and the tail past the loop.~~ *(read 2026-10-01, OPUS: the GI-15 section at the end of this page)*
 
 **6. Finish:** previous motion := current, entry `+0x328` := the state's track byte, state flag bit 2 := header byte
 `+0x24` bit 0 (or the index payload's bit 0), `+0x2E8` bits 1-2 cleared, state playing at the entry's speed.
@@ -1020,3 +1020,122 @@ effect's own authored request map, so `1`/`10` are per-effect ports, not global 
 
 **Presentation - effect side (crossing).** `0x28`'s value is consumed by the dirty-bit processor, whose callees belong
 to the effect runtime. This section cites it by role and depends only on the setter's write, which was read whole.
+
+## GI-15: the per-site helpers read (OPUS, 2026-10-01)
+
+Static, from the shipping image; a read-only reader pass, checked at the bytes by OPUS (control `gi15_check.py` in
+`_index/candidates/opus-gi15-helpers-1001/`). One item per "not read" site above.
+
+**`0x34`, the shadow object.** `003AFC10(h)` returns slot `02B3F570 + (h & 0xFF) * 0x70` when the slot's `+4` equals
+`h`, else null. Arms `0x01`, `0x02`, `0x04`, `0x20` and `0x40` are linear ramps, each a count byte, a value and a rate:
+
+| arm | count | value | rate |
+|---|---|---|---|
+| `0x01` | `+0x1C` | `+0x24` | `+0x2C` |
+| `0x02` | `+0x1D` | `+0x28` | `+0x30` |
+| `0x04` | `+0x1E` | `+0x34` | `+0x38` |
+| `0x20` | `+0x54` | `+0x3C` | `+0x48` |
+| `0x40` | `+0x55` | `+0x44` | `+0x4C` |
+
+With `n = byte+3`, the float `dword[cmd + 4]` is always used. When `n <= 1` the value takes it at once and the count
+becomes 0. Otherwise `rate = (float - value) / n` and `count = n`. `0x08` sets `+0x1F`'s low nibble to 2 (`byte+3`
+non-zero) or 1. `0x10` sets its high nibble to `0x20` or `0x10`. The `0x80` arm switches on `byte+3`:
+- 1: `+0x40 = float`;
+- 2: `+0x58 |= 2` and word `+0x56` = `0x40`, `0x80` or `0x100` for a float up to 1.5, up to 2.5, or above;
+- 4: `+0x58 |= 1` and `+0x50 = float`;
+- other values: nothing.
+
+The ramps are stepped by the tick `003AF460` / `003AFB30`
+([CONTRACT-authored-command-ramp-channels.md](../CONTRACT-authored-command-ramp-channels.md)). The allocator `003AF340`
+sets `+0x1F = 0x11` and the three first values to 1.0. Across the pool `02B3F550`-`02B40370`, no function other than
+the tick and the two resets reads these fields. **In static code the pool is write-only**, as `02B3F554` already is,
+so what the values do on screen is not established here.
+
+**`0x3F` / `0x48`, `00372800` and key 29.** `00372800` returns -1 unless the resource's `@FTR` entry is of kind 2
+(`+0x9C`); otherwise it tail-jumps to `003737C0`. That search returns the first record whose key (`00409250`: word
+`+8` when flags bit 30 is set, else link bits 0-11) equals the argument **and whose flags bit 8 is set**; otherwise it
+returns `0xFFFF`. The block's `+0x14` is the **bone** the sway hangs on. `00520E90` hands it to `0040ABF0`, which
+stores it at oscillator `+0x3C`, and the heavy stage `0040FF30` reads that bone's `0x290`-stride record, and its `+0x284` matrix handle, from `+0x3C`. `+0x16` is the
+**preset**: `0040ABF0` stores it at `+0x3E`, and preset 0 skips the set-up. So name key 29 names a skeleton bone of
+each model; which bone is per-model data. The corrected field sources:
+
+| | `0x3F` (`00520510`) | `0x48` (`005205B0`) |
+|---|---|---|
+| `+0x14` bone | `word[cmd + 2]`, used directly (0 in every shipped command) | `00372800(resource, low word of dword[cmd + 0x10])` |
+| `+0x16` preset | `word[cmd + 0x10] & 0xFFF` (4, 5 or 6 as authored) | `word[cmd + 2] & 0xFFF` (0 in 5,167 of 5,771) |
+| `+0x18` flag | `word[cmd + 0x10] >> 15` | `word[cmd + 2] >> 15` |
+| preset zeroed | when `word[cmd + 2]` is `0xFFFF` | when the lookup returns `0xFFFF` |
+
+In both commands "no bone" forces preset 0, which leaves the sway off.
+
+**`00423790`.** This is the reaction-eligibility predicate (`004274E4` is its one call). A non-zero third argument
+(`word[rec + 0x3B4]`) whose kind nibble is 0 refuses. No pending record admits. Both ids are then normalised and
+kind-tested. The result compares their priorities, `prio[arg & 0xFFF] <= prio[candidate & 0xFFF]`, in the byte map
+**`01F00410`**. For `0x203D`, `prio` is 3.
+
+**`004219C0`, the key, `00372760` and `0046E590`.** `004219C0(parent, key, child)` mirrors `004218A0`:
+- `key == -1` sets `+0x284` bit 26 and `+0x2F2 = 1`.
+- Otherwise `00372800(parent resource, key)` runs, retried once with key `0x1E`, and the bind aborts if both miss.
+- It then binds through `0046E640`, the twin of `0046E590` that calls `00370390` instead of `00370180`.
+
+The key is a bone: a C-string bone name for `004218A0` (compared by `00372760`) and a numeric `@FTR` key for
+`004219C0`. `004215A0` passes no key for attach code `0x7FFF`, and a looked-up key for the others. `00372760` reads
+the kind-0 layout (names at `+0x30`, stride `0x4C`) without testing `+0x9C`. Whether its by-name path ever matches on
+the shipped kind-2 `@FTR` data is not established.
+
+**`word[+0x2F2]`, `00373060` and `005048A0`.** `+0x2F2` is a 0/1 flag, set to 1 only by the no-key path of the two
+binders. That path is attach code `0x7FFF`, the whole-skeleton bind. The bind still runs then, with bone -1.
+`00373060` and `005048A0` are read whole on
+[ftr-node-table.md](../Model-And-Motion-Formats/ftr-node-table.md) and
+[fdm-and-for-entries.md](../Model-And-Motion-Formats/fdm-and-for-entries.md).
+
+**`0x2A`, the pool, its gate and its table.** The pool is the camera-shake source pool of
+[the-element-types-40-42-a0-ab-d0-d1.md](../Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md) (`0x42`). So the
+command's three floats are its intensity, time rate and radius scale.
+- `003D8300` checks the handle, decrements the live count `02B4D7A0`, clears `+4` and unlinks the slot.
+- The gate `02B4D7A2` refuses kind-2 requests in `003D7FF0`. It is set by `003D8D60` (thunk `002EA880`) from the
+  script verb `0x4A0` (`deny_char_camerashake`, handler `003517C0`), and cleared by the area unload `002628B0` and
+  by init `003D8C30`.
+- `003D8C30` fills `02B4E3D0` with four `.data` blocks, `01EFE3A0` / `01EFE520` / `01EFE6A0` / `01EFE820`. They are
+  byte-identical: radius 25.0, duration 22.0. The kind-2 path clamps its index to 3 and uses block `+0x80` as the
+  shake group.
+
+**`0x16`, the sub-resource variant.** The variant is an `@FCT` palette binding
+([fte-fct-texture-colour-tables.md](../Model-And-Motion-Formats/fte-fct-texture-colour-tables.md), `00504D30`).
+`003E7210`'s table is the FCP block's section 5 (the word at `[record + 0x400] + 0x0A`). Each listed record takes the
+palette resource id at its `+4`. The five authored indices are palette records of the 7 models whose FCP carries
+section 5. Which palette each one is, is content.
+
+**`0x09`, the tail.** `0041B650`, `00409190` and `003AB7F0` are read on
+[fef-and-motion-entries.md](../Model-And-Motion-Formats/fef-and-motion-entries.md) and
+[resource-section-addressing.md](../../02-Resource-And-Asset-Pipeline/resource-section-addressing.md). Past the loop,
+`0041BEE0` sets the binding record:
+- `+0x14 = 0`;
+- `+0x16` = the `@FMN` entry's duration `word[+0x50]`;
+- `+0x18` = the same, or 0 when the caller's byte `+0x96` bit 6 is set;
+- `+0x1C = (duration - [01DFE0BC]) / duration`, or 0 for a zero duration.
+
+It then calls `0041C260`. A resource index of -1 skips straight to that call.
+
+**Ids 4 and 6.** `00325090` (id 6) never reads the command. For a unit with `+0x698` (and field bit 15 when the unit
+is KO, Stone or X-Zone), it calls `00319E40`, which hands the target buffer's ids and the current action-stage handle
+to `002EAD00`. Id 4's `00325260` maps the subtype (tables `0032574C` / `00325720`) to an arm:
+
+| subtype | arm |
+|---|---|
+| 0 | `003191B0` per matching target |
+| 2, 6 | the effect handle through `002EACD0`, `0026A430`, `0033CB10` |
+| 3 | `003257D0(1)` |
+| 4 | `002EB4A0`, then `+0x690 \|= 2` |
+| 5 | `002FD0C0(handle, byte+3)` |
+| 9 | unit `\|= 0x80000` |
+| 7, 8 | nothing (`return 1`) |
+| `0x80`-`0x83` (from 1) | `003257D0` with classes 2, 3 then `0xA`, 4, 5 |
+
+`003257D0(class)` emits the reaction (`003176E0`) of every target entry whose code equals the class. The classes are
+the evade / parry codes of the formula scratch block's §2.6. Subtype 1 therefore shows every evade and parry
+reaction, and 3 the band-C evades.
+
+**Not established here:** what the shadow pool's values do on screen; which bone key 29 or `0x1E` is in each model;
+what subtypes 2/6, 4, 5 and 9 look like, and why 7 and 8 are authored at all; which palettes the 7 section-5 models
+carry; whether `004218A0`'s by-name lookup matches on kind-2 data. All are content or live questions, not code.

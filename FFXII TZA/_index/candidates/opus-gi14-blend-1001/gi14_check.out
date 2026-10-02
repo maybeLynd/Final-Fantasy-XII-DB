@@ -1,0 +1,22 @@
+ok   008642C5 mov edx, 0x68
+ok   008642DE mov qword ptr [rax], rcx
+ok   008642F8 lea rax, [rbx + 8]
+ok   00864291 mov dword ptr [rdi + 0x60], esi
+ok   0039D78A mov rbx, rax
+ok   0039D84B mov dword ptr [rbx + 0x44], 1
+ok   0039D875 mov qword ptr [rbx + 0x30], rax
+ok   0039DA1A mov rdi, rax
+ok   0039DA82 mov dword ptr [rdi + 0x44], 1
+ok   0039DAAC mov qword ptr [rdi + 0x30], rax
+ok   00863DB4 mov r14, rcx
+ok   00863DCD mov edx, dword ptr [r14 + 0x60]
+ok   00863ED4 cmp dword ptr [r14 + 0x4c], r12d
+ok   00863EE6 mov rcx, qword ptr [r14 + 0x38]
+ok   00863EFA call 0x1ee650
+ok   00863F24 call qword ptr [r10 + 0x78]
+ok   00863FF9 mov eax, dword ptr [r14 + 0x30]
+ok   00864029 call qword ptr [rbx + 0x40]
+ok   006CAEB0 mov eax, dword ptr [rsp + 0x28]
+ok   006CAEB7 mov dword ptr [rcx + 0x208fc], eax
+ok   PrimitiveRendererD3D11 vtable 00D86960 slot 8 = 006CAEB0
+FAILS 0

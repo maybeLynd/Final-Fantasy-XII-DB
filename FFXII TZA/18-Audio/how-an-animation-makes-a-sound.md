@@ -180,8 +180,8 @@ presentation layer's; the bone and attachment lookups and the FCP property read 
 **Actor entity - DATA.** The sound set, the voice id and the manager flags the lookup tests are fields of the actor
 record and its manager.
 
-**Gameplay - SHARED GENERATOR.** The picker draws from the gameplay random number generator; that is the crossing this
-page exists to record.
+~~**Gameplay - SHARED GENERATOR.** The picker draws from the gameplay random number generator; that is the crossing this
+page exists to record.~~ *(Superseded by CON-190 (2026-09-29), struck 2026-10-01, OPUS: **Presentation RNG - SERVICE.** The picker draws from the presentation bit-feedback PRNG, `003A6E60` on `01EF93E8`; no gameplay generator is touched.)*
 
 **Party - READ-ONLY GETTER.** The play routine asks for the party's focus actor to gate two types.
 

@@ -270,8 +270,8 @@ driver, whose internals live in the high address range and are documented struct
   - the script verb **`fsmenu_sedisable`** (`0x7013`, handler `00512080`), which passes the script's integer straight into the
     gate unless the full-screen menu context `[0209AC30] + 0xC0` is empty (`00280120`). The verb's own name, *se disable*, is
     the authored vocabulary ([the sound request contract](CONTRACT-sound-request.md));
-  - the full-screen request widget `0027F5D0`, which closes it (`00249FC0(1)` at `0027F67B`) in the sub-state entered when its
-    parameter `+0xD4` is `0x42`;
+  - the full-screen request widget `0027F5D0`, which closes it (`00249FC0(1)` at `0027F67B`) ~~in the sub-state entered when its
+    parameter `+0xD4` is `0x42`~~ in state 10 of its own state word `+0xC0` (message 2) *(corrected 2026-10-01, OPUS: `0027F646`-`0027F67B`; `+0xD4 == 0x42` at `0027F629` only gates the teardown call at `0027F632` under message 15)*;
   - that widget's teardown `002D6F90`, which opens it again (`002D6FD4`).
 
   `0x42` is the remapped parameter of UI request 22 for the map-jump controller `__MJ_CTRL005`

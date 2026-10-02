@@ -32,7 +32,7 @@ audit:
 > **Authored 2026-09-22 by FABLE.** S-41's binding gap is *"1 of 3 pages contracted"* — its one
 > contract, [`Audio-Boundary/CONTRACT-sound-request.md`](Audio-Boundary/CONTRACT-sound-request.md),
 > covers the request boundary. **This takes the spatial source objects**; the bank and controller
-> family remains uncontracted and this document does not claim it.
+> family ~~remains uncontracted and this document does not claim it~~ is contracted separately in `Audio-Bank-And-Controller-Family/CONTRACT-audio-bank-and-controller-family.md` (2026-09-22; *corrected 2026-10-01, OPUS*).
 >
 > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
 > system's operations have no cross-operation invariant or ordering it leaves unstated.* §4 is seven
@@ -139,7 +139,7 @@ here because a contract that cited the twelve would be repeating a withdrawn fig
 | | |
 |---|---|
 | **Sibling** | [`Audio-Boundary/CONTRACT-sound-request.md`](Audio-Boundary/CONTRACT-sound-request.md) — S-41's contracted third |
-| **Uncontracted** | [the bank and controller family](Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md) — S-41's remaining page, not claimed here |
+| **Sibling** | [the bank and controller family](Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md) — ~~S-41's remaining page, not claimed here~~ contracted in its own CONTRACT page since 2026-09-22 (corrected 2026-10-01, OPUS) |
 | **Consumes** | the listener, moved by `Lay` actions rather than by a per-frame poll — [the page](the-spatial-audio-object-model.md) §2 |
 
 ## 7. State transitions
@@ -188,7 +188,7 @@ slot 39 and the radius test of slot 34 agree for all five (SA-6).
 - What `DynamicSound` computes its radius **from** (SA-4).
 - Whether `+0xE0` is consumed as a cull or only as a mix weight; this contract establishes what
   writes it, not what reads it.
-- The bank and controller family, S-41's other uncontracted page.
+- ~~The bank and controller family, S-41's other uncontracted page.~~ *(Superseded: it has its own contract since 2026-09-22. Struck 2026-10-01, OPUS.)*
 
 ## 15. Evidence
 
@@ -220,7 +220,7 @@ for the two classes anyone would test first.
 
 - [The spatial audio object model](the-spatial-audio-object-model.md) — the mechanism
 - [Contract — the sound request](Audio-Boundary/CONTRACT-sound-request.md) — S-41's contracted third
-- [Audio bank and controller family](Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md) — S-41's remaining page
+- [Audio bank and controller family](Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md) — ~~S-41's remaining page~~ contracted separately (corrected 2026-10-01, OPUS)
 
 ## Falsification pass 1 — 2026-09-29 (OPUS): every invariant survives
 

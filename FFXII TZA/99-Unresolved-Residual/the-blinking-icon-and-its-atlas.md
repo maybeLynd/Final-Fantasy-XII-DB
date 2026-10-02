@@ -385,9 +385,13 @@ driver shares — three gates before any table work: `[02B457E0]` non-null,
 `00473B70(0)` counts the table, `003BC260(obj)` resolves the kind word
 `+0xCC` through `0046B240`/`00315DC0`/`00380170` (fallback `0046B180`),
 and the loop `00473BB0(0, i, kind, &rec)` walks entries: on
-`rec[+0] == 1 && rec[+0x14] == 0` it writes `02B457D8 = (i != 0)` and
+`rec[+0] == 1 &&` ~~`rec[+0x14] == 0`~~ `rec[+0x14] != 0` it writes `02B457D8 = (i != 0)` and
 returns `003C0380(rec[+0xC])`; any failed gate or a full walk returns
 -1. Interior anchor `003BC1FC` (the `call 00473BB0` in the scan loop).
+*(Corrected 2026-10-01 (SWE2-EC7 for OPUS, OPUS-REQ-EC7-BLINKING-ICON-EQ0-1001): the hit needs `rec[+0x14]`
+non-zero - `003BC208` is `cmp dword ptr [rsp + 0x34], ebp` with `ebp` = 0 and `003BC20C` `jne` to the hit;
+same `003BC160` correction as the map-screens page, DD batch 20
+[consumer-check](../_index/candidates/swe2contract-ddres-b20-1001/consumer-check.md).)*
 
 ## SWE2-EC7-30 update (2026-09-18) — `003BC260` kind-word gate + `003C0380` deep scan + `002752E0` packed lerp
 

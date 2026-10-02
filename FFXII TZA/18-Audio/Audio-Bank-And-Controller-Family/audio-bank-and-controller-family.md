@@ -103,14 +103,14 @@ keeps at `+0x8` (payload at node `+0x10`); the `002256xx` bodies are its field a
 
 | slot | what it is |
 |---|---|
-| 0 | **broadcast — self-dispatch over the entry list.** `00222550` walks the `+0x8` entry list and calls the bank's **own** `vtable[+0x48]` (= slot 9) once per entry, passing the entry payload `[node+0x10]` as `rdx` and the caller's arg as `r8` (`00222580`: `rax = [this]` loaded once before the loop, `rcx = this`, `0022258D`); the vtable is the bank's, not the node's. Music's `00222C00` is driver-shaped instead: `007A7010` on `[this+0x38]`, then a result-switch — arg≠0 and result−1 ≤ 1 tail-jumps `007A8590` (`00222C3C`), arg==0 and result==3 calls `007A7A20` (`00222C41`). It never calls `00210B30`/`00210930` — those are Music **slot 10** `00222C70`'s first two calls. |
+| 0 | **broadcast — self-dispatch over the entry list.** `00222550` walks the `+0x8` entry list and calls the bank's **own** `vtable[+0x48]` (= slot 9) once per entry, passing the entry payload `[node+0x10]` as `rdx` and the caller's arg as `r8` (`00222580`: ~~`rax = [this]` loaded once before the loop~~ `rax = [this]` reloaded every iteration - `00222580` is the loop-back target of `00222596` *(corrected 2026-10-01, OPUS, as C-BK AC-4 says)*, `rcx = this`, `0022258D`); the vtable is the bank's, not the node's. Music's `00222C00` is driver-shaped instead: `007A7010` on `[this+0x38]`, then a result-switch — arg≠0 and result−1 ≤ 1 tail-jumps `007A8590` (`00222C3C`), arg==0 and result==3 calls `007A7A20` (`00222C41`). It never calls `00210B30`/`00210930` — those are Music **slot 10** `00222C70`'s first two calls. |
 | 1, 3, 4, 5, 8 | **empty in the base** (`ret 0`); only Seb/Sep implement them — they are the sound-effect machinery. Sep slot 1 `00223490` and Seb `00224A30` are driver-backed entry ops (`007A7010`/`007A84A0`, accessor `00225680`). |
 | 2 | **teardown.** Base `00222000`: if `+0x30 == 1`, frees handle `+0x28` by zeroing its slot in the 128-entry global table `01FD36C0` (`00212A70`, `00222014`), runs `00222080`, then driver-frees `[+0x20]+8` through `007A88F0`. Music `00222BD0` calls `007A84A0` on `this+0x38` (43 B) then **tail-jumps the base `00222000`** (`00222BF6`) — the driver call plus the full teardown, not driver-only; Sep `00222FE0`, Seb `00223E60`, Shout `00224D40` route their cleanup through `002255B0` + `00809950`. |
 | 3, 4, 5 | **Sep: three id-range-gated re-dispatches to slot 0.** `00223100` fires when ~~`[+0x38] ≥ 151000` (`0x249F0 + 0x3E8`)~~ `[+0x38]` lies **outside** `[0x249F0, 0x249F0+999]`: it computes `[+0x38] − 0x249F0` and returns on an unsigned `< 0x3E8`, so ids below 150000 pass as well as ids from 151000 up (*corrected 2026-09-26, FABLE; `s41-opus-replay-bank-family` AC-7 case*). It also needs `+0x50` set and `+0x49 & 0x68 == 0, & 1 == 1`; `002230D0` is the same gate with mask `0x69`; `00223130` fires when `[+0x38]` lies **in** `[0x249F0, 0x249F0+999]`, `+0x50 != 0` and `+0x49 & 1 == 0` — ~~the six-digit id space splits at 150999/151000~~ one 1000-id band, 150000–150999, is treated apart (slots 3/4 skip it, slot 5 acts only inside it), and the flag byte picks the state. **Seb: three 258–266 B copies of one iterator** (`00224180`/`00223FA0`/`00224360`): walk `+0x8` entries, skip when state `00225680 == 2` or `[+0x24] / 1000 == 150` (reciprocal `0x10624dd3`, `sar 6`, `cmp 0x96` — ~~the `≥ 150000` six-digit range~~ exactly the band 150000–150999, the same window the Sep gates use), read `[+0x14]` via `002256A0`, then probe the `+0x60`/`+0x70` map — **the BD-3 "one operation with a varying parameter" is confirmed**: same body, the differing bytes are the constant/field used per slot. |
 | 6 | base `00657140` = `ret 0`. Sep `00222D30`: get entry `00221E60`, require state 1 + `+0x49 & 0x40`, then `002224F0` when arg equals `[+0x38]` else `002225B0` (both with `0x120`). Seb `002238F0` (292 B) runs the same predicate family plus driver `007A84A0`. |
 | 7 | scalar deleting destructors — the 52 B `free`-calling bodies §2 already proves. |
 | 9 | **arm one entry.** Base `00222340` loads a float constant (`008C5F6C`), then tail-jumps a driver on `rdx+8` — `007A8590` when `r8 != 0` (`0022237B`), `007A7A20` when `r8 == 0` (`0022238A`). Seb `00223F40` is the filtered variant: forwards when `[+0x38] != 0` **or** (`+0x38 == 0` and entry `[+0x14]` ∉ {2, `0x59`}) — `+0x38 != 0` alone forwards unconditionally (`00223F5C`); only the `+0x38 == 0` path reads the entry type. |
-| 10 | **manager-gated replay — a five-bit command mask.** All four concrete banks read the shared manager through `00210B30`→`00210930` and test its `+0x3C` flag byte: Music `00222C70` needs `& 1` and re-dispatches **slot 0**; Sep `00223540` and Seb `00224B30` (the latter also requires `[+0x38] != 0`) need `& 2` and re-dispatch **slot 9**; Shout/Stream `00225440` need `& 4`, also to slot 9. The byte carries three more commands, all with `edx = 1`: Sep `00223540` continues, but only when bit 2 is clear (bit 2 is a tail jump that ends slot 10), with `& 8` → own `vtable[+0x18]` (**slot 3**), `& 0x10` → `[+0x20]` (**slot 4**), `& 0x20` → `[+0x28]` (**slot 5**) (`00223596`–`002235CF`); Seb `00224B30`, again only when bit 2 is clear, calls the entry-level copies of the same op family — `& 8` → `00224290`, `& 0x10` → `002240B0`, `& 0x20` → `00224470` (each opens with the `00225690` accessor + `/1000` quotient test on the rdx entry). |
+| 10 | **manager-gated replay — a ~~five-bit~~ six-bit command mask** *(corrected 2026-10-01, OPUS: `0x01`-`0x20`)*. All four concrete banks read the shared manager through `00210B30`→`00210930` and test its `+0x3C` flag byte: Music `00222C70` needs `& 1` and re-dispatches **slot 0**; Sep `00223540` and Seb `00224B30` (the latter also requires `[+0x38] != 0`) need `& 2` and re-dispatch **slot 9**; Shout/Stream `00225440` need `& 4`, also to slot 9. The byte carries three more commands, all with `edx = 1`: Sep `00223540` continues, but only when bit 2 is clear (bit 2 is a tail jump that ends slot 10), with `& 8` → own `vtable[+0x18]` (**slot 3**), `& 0x10` → `[+0x20]` (**slot 4**), `& 0x20` → `[+0x28]` (**slot 5**) (`00223596`–`002235CF`); Seb `00224B30`, again only when bit 2 is clear, calls the entry-level copies of the same op family — `& 8` → `00224290`, `& 0x10` → `002240B0`, `& 0x20` → `00224470` (each opens with the `00225690` accessor + `/1000` quotient test on the rdx entry). |
 
 **AudioController:**
 
@@ -125,9 +125,9 @@ keeps at `+0x8` (payload at node `+0x10`); the `002256xx` bodies are its field a
 | 6 | **pop a request, or make one — then dispatch it.** Music `00218920`: call own slot 7 (the `+0x20` queue drain); if it returns nothing, call slot 4 and retry the drain (`0021893B`–`0021894D`); then tail-dispatches the popped request through own `vtable[+0x28]` = **slot 5** (`00218966`, `rdx` = the popped entry). Shout `0021C3D0` same shape; Stream `0021D3D0` does the identical sequence directly on `+0x20` through `0021D280` — consistent with Stream's missing slot 7. |
 | 7 | the `+0x20` request-queue drain — the adjustor/`161 B`-body family of §2, fully read under BD-4 below. |
 
-The +0x50 field the Sep slot-8 bodies require non-null is the driver's voice/handle object
+~~The +0x50 field the Sep slot-8 bodies require non-null is the driver's voice/handle object
 (lazy-created through `00221D10` → `00221710` → `00220CE0`); `00221780` constructs the callback
-wrapper it carries (vtable `009078B0`).
+wrapper it carries (vtable `009078B0`).~~ *(Corrected 2026-10-01, OPUS, at the bytes: the Sep slot-8 body `00222F20` requires `+0x50` non-null (`00222F26`) and passes it to `007A48C0` (`00222F61`); the voice/handle object it also needs is cached at `+0x20`, lazily created through `00221D10` -> `00221710` -> `00220CE0` (`00221D16`, `00221D47`), as SWE2-EC7-68 below says. `00221780` is the `AudioBank` base constructor (vtable `009078B0`).)*
 
 ## 3. Key addresses
 
@@ -238,11 +238,11 @@ play/load request
 > from `(end − begin) / stride` by reciprocal multiply, `00218EA0`–`00218ECD`), then **inserts every
 > record `[this] + i·stride` into the free set** (`002189D0`–`002189FA`, `00199DB0`) and marks
 > `+0x90`. The strides are the record sizes: **Music 2 × 0x58, Seb 96 × 0xA0, Sep 256 × 0x68,
-> Stream 4 × 0x48, Shout 6 × 0x68** — so 2 concurrent music voices, 96 environmental, 256
+> Stream 4 × 0x48, Shout 6 × 0x68** — ~~so 2 concurrent music voices, 96 environmental, 256
 > effect, 4 stream and 6 shout records exist to be handed out, and a request for a seventh shout
 > or third music voice finds the free set empty. That the free set's consumer is the voice-acquire
 > path is the reading the controller names and the set structure give; the acquire function was
-> not read here.
+> not read here.~~ *(Struck 2026-10-01, OPUS, as the 2026-09-18 correction above withdrew it: so at most 2 Music, 96 Seb, 256 Sep, 4 Stream and 6 Shout bank objects can be live at once; voices come from the shared 1024-record pool, `UQ-244`.)*
 
 - [x] **`ShoutAudioController` and `StreamAudioController` are unidentified.** Neither references any
       inline format or path string anywhere in `0x210000`–`0x227000`; only 17 distinct strings are
@@ -337,8 +337,8 @@ play/load request
       prologues, unread.~~ **BD-4 ANSWERED 2026-09-12 (FABLE): not a base at all — an embedded
       request queue, and slot 7 is its drain step.** The RTTI of `MusicAudioController` (`00907970`)
       and `SebAudioController` (`00907DE0`) lists one base each, `AudioController` — no second
-      inheritance path — and the base constructor `002130E0` zero-fills `+0x08`–`+0x38` as plain
-      data. The `add rcx, 0x20 ; jmp` thunks are therefore member-object method calls, and the four
+      inheritance path — and ~~the base constructor `002130E0` zero-fills `+0x08`–`+0x38` as plain
+      data~~ the base constructor `00212710` builds only the entry list at `+0x08` / `+0x10`, and each derived constructor then builds the member at `+0x20` (e.g. `00217FD0` -> `00217E10`) *(corrected 2026-10-01, OPUS: `002130E0` installs `00906DC8`, the `DynGeoFontTextInstance` vtable, and its only caller is `001E8580`)*. The `add rcx, 0x20 ; jmp` thunks are therefore member-object method calls, and the four
       161-byte targets (`002187D0`, `0021AF80`, `002199C0`, `0021C280`) are **one body specialised
       only in its last call**: with `q = controller + 0x20`, if the count `q+0x48` is non-zero, take
       the head node `q+0x30` (its `+0x20` is the request payload), decrement, ~~unlink it
@@ -485,7 +485,7 @@ The family's container primitives are shared, and every crossing here is one of 
   - The ~~tree-node unlink~~ red-black iterator step `0016D6D0` and the ~~pool free~~ red-black erase `0016DA60` (corrected 2026-09-15) are used by Platform bodies (182 B and 232 B) and six
     Presentation bodies.
   - `00199DB0`, which runs in the family's erase sequence, is used by a 346-byte Presentation body.
-  - The base constructor `002130E0` is used by a 3,572-byte Presentation body.
+  - ~~The base constructor `002130E0` is used by a 3,572-byte Presentation body.~~ *(Struck 2026-10-01, OPUS: `002130E0` is not this family's base constructor - it builds a `DynGeoFontTextInstance`; the family's base constructor is `00212710`.)*
   - The retracted 4-byte `00225690` is read by four Platform bodies and a 1,293-byte Presentation body.
   - The logger `005CD4F0` is called by Platform, Presentation and Input bodies (139–1,950 bytes).
   - `00219400` and `0021A9F0` call a 63-byte Platform helper.

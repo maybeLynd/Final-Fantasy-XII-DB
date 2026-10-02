@@ -72,6 +72,9 @@ Records begin at `align16(0x40 + 4*count)` and tile up to `auxOff`; each is vari
                    file in 1,057/1,066, unread by the binder and the four
                    resolvers (a per-bone id, unproven); bits 24..31 = 0xFF in
                    27,561/27,561
+                   [CORRECTED 2026-10-01, OPUS: bits 0..11 are not unread -
+                   00409250 returns them as the record key when +0x04
+                   bit 30 is clear; the tag search 003737C0 uses it]
 +0x04  u32  flags   presence bitstream - which u16 indices follow at +0x08
 +0x08  u16[] indexStream  each present slot contributes one u16 index into the aux pool
 ```

@@ -1,7 +1,7 @@
 ---
 id: ui-gambit-screens
 title: The gambit screens — the list, the editor, the icon, and the bank-commit protocol
-status: "PARTIAL — GI-18 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the editor's 12 sub-commands and the list's 19 arms below entry level are live. GI-1 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). Was PARTIAL on: which value of the gambit row's +0x14 bit 0 selects condition art and which action art is not established; the earlier 02F8F570 was a misread of 0208F570, the tick counter (corrected 2026-09-18)"
+status: "DOCUMENTED — every register row is closed (owner re-status 2026-10-01, OPUS; documented_rule READY): GI-18 answered 2026-10-01 (OPUS, static - every arm of both procedures read one level down, see the GI-18 section; review requested from SWE2-AUDIT-SEM). GI-1 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). History: PARTIAL on GI-18 from 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930); earlier PARTIAL on: which value of the gambit row's +0x14 bit 0 selects condition art and which action art (GI-1); the earlier 02F8F570 was a misread of 0208F570, the tick counter (corrected 2026-09-18)"
 evidence_tier: 1
 tags: [ui, gambits, menu-screens]
 verified_against:
@@ -34,7 +34,7 @@ addresses:
 
 # The gambit screens
 
-**Status:** PARTIAL — the four widget procedures, the parent→child `0x121` destroy notification, the bank-commit-on-close arm, and every screen-region helper are cited below. The editor's 12 sub-commands, the list's 19 arms and the list's `0x8000`/`0x8001`/`0x8002`/`0x8005` sub-command arms are decoded; every listed screen-region member carries a role and an interior citation (2026-09-15). The ~123 shared subtree members are cited as engine-helper families, not re-read.
+~~**Status:** PARTIAL~~ *(Superseded 2026-10-01, OPUS: DOCUMENTED - see the status line; GI-18 answered)* — the four widget procedures, the parent→child `0x121` destroy notification, the bank-commit-on-close arm, and every screen-region helper are cited below. The editor's 12 sub-commands, the list's 19 arms and the list's `0x8000`/`0x8001`/`0x8002`/`0x8005` sub-command arms are decoded; every listed screen-region member carries a role and an interior citation (2026-09-15). The ~123 shared subtree members are cited as engine-helper families, not re-read.
 
 ## The tree
 
@@ -57,11 +57,11 @@ The gambit UI is two related screens, not one: ~~the **gambit list** (the per-me
 
 | id | arm | role |
 |---|---|---|
-| 1 | `0056B57F` | construct: clears the editor's `+0xC8` byte, builds a two-entry child table (`0056B4D0` `lea`s `0056BB60`/`0056BB70` records), copies `msg->arg` into `+0x5A4`, then installs the editor child |
-| 2 | `0056B9D4` | reconcile: calls `0056BE40` (layout refresh), decrements `+0x580`; on the last pending request posts `{0x8000,0,0}` to self via `00247510` |
-| 8 | `0056B7E9` | enable on: `or +0x5A0,2` and sends id 1 to `+0xC0` |
-| 9 | `0056B808` | enable off: `and +0x5A0,~2`, zeroes `+0x580` |
-| 10 | `0056B81E` | directional input: reads the three pad-mask globals, tests `+0xE0 & 0x200000` (list mode), routes confirm/cancel through `002D3A50`/`002D45C0` on `+0xC0` |
+| 1 | `0056B57F` | construct: ~~clears the editor's `+0xC8` byte, builds a two-entry child table (`0056B4D0` `lea`s `0056BB60`/`0056BB70` records), copies `msg->arg` into `+0x5A4`, then installs the editor child~~ clears `[02CA96D8]+0xC8`, builds the layout descriptors `00D234A8` / `00D234D0` (callbacks `0056BBD0` / `0056A780`), copies `msg->arg` into `+0x5A4` and the create record into `+0xC8` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 2 | `0056B9D4` | reconcile: calls `0056BE40` (layout refresh), ~~decrements `+0x580`; on the last pending request posts~~ counts the frame countdown `+0x580` (`0xB4` from `0056AC50`) down and at zero posts `{0x8000,0,0}` to self via `00247510` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 8 | `0056B7E9` | ~~enable on~~ focus gained: `or +0x5A0,2` and ~~sends id 1 to `+0xC0`~~ `002D45C0([+0xC0], 1)` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 9 | `0056B808` | ~~enable off~~ focus lost *(corrected 2026-10-01, OPUS: GI-18 section)*: `and +0x5A0,~2`, zeroes `+0x580` |
+| 10 | `0056B81E` | directional input: reads the three pad-mask globals, tests `+0xE0 & 0x200000` (list mode), ~~routes confirm/cancel through `002D3A50`/`002D45C0` on `+0xC0`~~ pages up / down (`0056AAC0` / `0056AD50`) or hands the input to the list child (`002D3A50`) *(corrected 2026-10-01, OPUS: GI-18 section)* |
 | 12 | `0056BA10` | sub-command: computes the slot index `(+0xF2 + +0xF4) * +0xEC + +0xEE + +0xED` (row×cols + col) and dispatches sub-ids `0x8000`–`0x8002` plus `0x8005` (`0x8003`/`0x8004` fall to the `0056BB4F` default) |
 | 15 | `0056B80F` | about-to-destroy: shared with the enable-off tail, zeroes `+0x580` |
 | 18 | `0056B516` | destroy: if `+0x58E` is set, builds `{0x121,0,0}` and calls the `+0xC8` editor child's first vtable slot (`0056B516`–`0056B549`) — the parent→child destroy notification |
@@ -79,26 +79,26 @@ The id-12 slot-math (`0056BA10`) is the same row/column indexing the quest list 
 | 1 | `005692A2` | construct |
 | 2 | `005696A5` | reconcile |
 | 5 | `00569718` | draw pass |
-| 8 | `0056961E` | enable on |
-| 9 | `00569671` | enable off |
+| 8 | `0056961E` | ~~enable on~~ focus gained *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 9 | `00569671` | ~~enable off~~ focus lost *(corrected 2026-10-01, OPUS: GI-18 section)* |
 | 10 | `0056981E` | directional input: if `+0x360` (modal picker) is clear, indexes the child table `[rip+0x273FEA7]` by `+0x35C`, tests `+0x340 & 1`, reads pad masks `0x800`/`0x400`/`0x200`/`0x100`, and drives `+0xD8` through `002D45C0`; `00282DF0`+`002C1A80` map pad→cursor |
 | 12 | `00569DC1` | bank sub-command dispatcher (below) |
-| 16 | `0056955F` | refresh |
-| 17 | `00569781` | secondary input |
-| 18 | `00569236` | close: `002922F0`, checks `[global + 0xDEB]`, commits the edited bank through `003282C0` (`GambitConfig_CommitBankAndRebuildRuntimeOrders`), then clears `+0x35C`/`+0x360` and the global arrays |
-| 19,20 | `0056960B` | transition flags |
-| 22 | `005696B9` | secondary enable |
-| 26 | `00569ED4` | `+0x331` byte → 6 |
+| 16 | `0056955F` | ~~refresh~~ resource batch complete: snapshots the set into `+0x128` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 17 | `00569781` | ~~secondary input~~ position tween finished: commits a pending edit *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 18 | `00569236` | close: `002922F0`, checks `[global + 0xDEB]`, ~~commits the edited bank~~ only when it is set writes the id-16 snapshot `+0x128` through `003282C0` (`GambitConfig_CommitBankAndRebuildRuntimeOrders`), then ~~clears `+0x35C`/`+0x360` and the global arrays~~ nulls `02CA96E0` / `02CA96F8` at `+0x35C` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 19,20 | `0056960B` | ~~transition flags~~ transition finished: `002D7580(0, 1)` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 22 | `005696B9` | ~~secondary enable~~ position tween stepped: `002D78B0(6, rect)` *(corrected 2026-10-01, OPUS: GI-18 section)* |
+| 26 | `00569ED4` | ~~`+0x331` byte → 6~~ `00568FE0(self, b, a)`, the per-row slide step (the `+0x331` store is the `0x121` arm) *(corrected 2026-10-01, OPUS: GI-18 section)* |
 | 3,4,6,7,11,13,14,15,21,23,24,25 | `00569EF7` | default → `005C5230` |
 | 0x121 | `00569EE3` (peeled `cmp`/`je`, not a table entry) | parent-destroy notification: sets `+0x331 = 6` when `+0x331` is nonzero |
 
 The id-12 arm (`00569DC1`) is a five-way switch on `msg->a − 0x8000`:
 
-- `0x8000` → loads strings `0xCEE`/`0xCEF`/`0xCF1`/`0xCF2` via `002F9860` (selected by `+0x33E`), formats through `00291D70`/`00291D80`, stores the prompt id at `+0x344` — the copy/paste-confirm prompt
+- `0x8000` → loads strings `0xCEE`/`0xCEF`/`0xCF1`/`0xCF2` via `002F9860` (selected by `+0x33E`), formats through `00291D70`/`00291D80`, ~~stores the prompt id at `+0x344`~~ stores the tick `[0208F570]` at `+0x344` *(corrected 2026-10-01, OPUS: GI-18 section)* — the copy/paste-confirm prompt
 - `0x8001` → `00569E4C` → `00567D80` (bank ops dispatcher), gated on `[[02CA9700]+0x360] == 0`
-- `0x8002` → `00569E42` → `005679D0` (bank clear)
-- `0x8003` → `0056A1D0` picker, then `00249C60` on the chosen index
-- `0x8004` → `005680E0` (bank move) when `+0x342` is clear
+- `0x8002` → `00569E42` → `005679D0` (~~bank clear~~ pane rebuild *(corrected 2026-10-01, OPUS: GI-18 section)*)
+- `0x8003` → ~~`0056A1D0` picker, then `00249C60` on the chosen index~~ when `00264150()` is 0, `0056A1D0(self, -1, b, 0, 0)` empties row `b`; a result other than -1 goes to `00249C60` *(corrected 2026-10-01, OPUS: GI-18 section)*
+- `0x8004` → `005680E0` (~~bank move~~ pane reset *(corrected 2026-10-01, OPUS: GI-18 section)*) when `+0x342` is clear
 
 ## The screen-region members
 
@@ -125,11 +125,11 @@ interior call-targets the census has no entry for (`00567F6D`, `005687B9`, `0056
 | `005678C0` | kind→value selector — `ecx`≠3 returns `dword_table[ecx]` via `lea rcx,[rip]`; `ecx`==3 returns 8 or 9 by `00254A10` | `005678CC` `lea rcx,[rip+0x7bbc25]` |
 | `005678F0` | cursor blink/fade tick — `+0xC0` bits0-1 gate; elapsed `rip-global − +0xD0` through `00248F40` (curve `((+0xC0)>>2)&0xF`); `+0x343` = `+0xC4` + `+0xC8`·α; clears `+0xC0` bits0-1 at completion | `00567902` `mov r8d,[rip+0x1b27c67]` |
 | `00567990` | bank-select refresh — `0056A010` + `00249C60` | `0056799D` `call 0027ED10` |
-| `005679D0` | bank clear — `lea rbx` on the bank record, `0027Fxxx` ops | `005679E1` `lea rbx,[rip+0x2741cf8]` |
+| `005679D0` | ~~bank clear~~ pane rebuild (the-two-transform-primitives.md) *(corrected 2026-10-01, OPUS: GI-18 section)* — `lea rbx` on the bank record, `0027Fxxx` ops | `005679E1` `lea rbx,[rip+0x2741cf8]` |
 | `00567B60` | bank-copy row UI — `GambitConfig_CopySelectedBankForStatsIndex` (`00327C40`) + text emit | `00567B83` `call 00861EC0` |
 | `00567D80` | bank-ops dispatcher — `00368240` + the `00567F90`/`005680E0`/`005687F0`/`00569F90`/`0056B350` cluster | `00567DA5` `call 00368240` |
 | `00567F90` | bank edit (move/copy path) | `00567F95` `push rdi` |
-| `005680E0` | bank move — `002CB9C0` + `00368830`/`00368A60` field setters | `005680EA` `mov rax,[rip+0x19dc73f]` |
+| `005680E0` | ~~bank move~~ pane reset (the-two-transform-primitives.md) *(corrected 2026-10-01, OPUS: GI-18 section)* — `002CB9C0` + `00368830`/`00368A60` field setters | `005680EA` `mov rax,[rip+0x19dc73f]` |
 | `00568280` | bank edit — `0056A010` + `00249C60` | `0056828D` `call 0027F360` |
 | `005682C0` | editor fade controller — `+0x354`=`0x80808080`; `edx`→`+0x352` bits + `+0x350`=0x80; else ramps `+0x350` ±0x20 clamped [0x80,0xFF] | `005682CA` `cmp byte ptr [rcx+0x174],0` |
 | `00568460` | `002B3050` layout position | `0056857D` `call 002B3050` |
@@ -262,6 +262,65 @@ The tab pane `0056C060` shows that word as the node's frame index (`0056C264` �
 frame 0 (2 when empty), action art frame 1 (3 when empty)**; what each frame depicts is in the atlas of layout
 `[0209AC30]+0x50` entry 9, not in the code.
 
+## GI-18: the editor's and the pick list's arms below entry level (OPUS, 2026-10-01)
+
+Static, read whole from the shipping image, one level into each callee. The message names are the framework's
+(the-widget-message-protocol.md): 1 construct, 2 reconcile, 5 draw after children, 8 / 9 focus gained / lost,
+10 directional input, 12 sub-command, 15 about to be destroyed, 16 resource batch complete, 17 position tween
+finished, 18 being destroyed, 19 / 20 transition finished, 22 position tween stepped, 26 per-element query.
+Id-12 messages are `{12, a, b}` records from `00247510`. Both screens post them to themselves through
+`002D1AC0(child, a)`, which supplies the child's cursor slot `(+0xF2 + +0xF4) * +0xEC + +0xEE + +0xED` as `b`.
+The editor's row `i` is `self + 0x160 + i * 0x20`. `02CA96E0`, `02CA96F8` and `02CA9700` / `02CA9708` are the
+three-editor pointer tables, one editor per gambit set.
+
+**The editor `005691E0`.** Twelve table arms (ids 1, 2, 5, 8, 9, 10, 12, 16, 17, 18, 19/20, 22, 26 - 19 and 20 share
+one) plus the peeled `0x121`:
+
+| id | arm | work |
+|---|---|---|
+| 1 | `005692A2` | Setup. `+0x360 = 0`; claims the first free entry of `02CA96E0[0..2]` (`005692EB`) into `+0x35C`. Compared with the member's current set index (`dword [[02EBF190] + 0x7370 + member * 4]`), it places itself as the centre pane (`02CA9700`, layout element 6), the next pane (`02CA9708`, element 8) or the previous one (`02CA96F8`, element 7), each through `002432B0`. It wires the two list children, calls `002D45C0(child, 0)` (`0056945E`) and seeds nine word pairs at `+0x300`: the first word 1, the second 0 when `00264150()` is non-zero and 1 otherwise (`005694C6`-`005694F2`). It sets `+0x354 = 0x80808080`, `00285F20(member)` and `+0x343 = 0x80`. It then opens a resource batch (`00249580` / `00292210` / `00249410`) whose completion is message 16. |
+| 2 | `005696A5` | `0056A3D0(self)` (the pane-transition state machine), then `005678F0(self)` (the cursor blink tick). |
+| 5 | `00569718` | When the cursor row's byte `+0x17` is set (`00569751`), draws one fixed sprite from `[+0x38]` at `+0x348` / `+0x34A` (`002426F0`); `0056B350` writes all three when the pick list opens. |
+| 8 | `0056961E` | `+0x358 \|= 1`; `002D45C0([+0xD8], 1)`; then posts `0x8000` to itself (`002D1AC0`). |
+| 9 | `00569671` | `+0x358 &= ~1`; `002D45C0([+0xD8], 0)`. |
+| 10 | `0056981E` | Nothing while `+0x360` is set. If the active editor's `+0x340` bit 0 is set, the input goes to the list child (`002D3A50`). Otherwise `002D45C0(child, 1)`; a non-zero `002C1A80` party gate undoes it and returns. It stores the slot and `+0x33E` in the editor's pair table. One pad branch moves the member's set index -1 mod 3 (`005699F0`), the other +1 mod 3 (`00569AF1`). Each plays sound `0x51`, slides the three panes (`002468A0`) and rotates the three pane pointers (`00569BED`-`00569C0C`). Masks `0x800` / `0x400` step to the next / previous member (`00568280` / `00567990`). With a non-zero slot, two more bits cycle `+0x33E` through 0-2. |
+| 12 | `00569DC1` | Sub-command switch on `msg->a - 0x8000` (below). |
+| 16 | `0056955F` | Starts the forward transition (`00246AD0`), lazy-creates two helper widgets (`002CBE40`, `002CF3E0`), then **snapshots** the live set `+0xF4..+0x127` into `+0x128..+0x15B` (`005695CE`-`005695FE`). |
+| 17 | `00569781` | Only for `msg->a == 1`. A pending edit (`+0x360`) is committed through `00569F90` and cleared. A pending pick-list close (`+0x342`) clears the cursor row's `+0x17` (`005697F5`) and re-enables the list child (`002D49C0(child, 0)`). |
+| 18 | `00569236` | `002922F0()`. **Only when byte `[[0209AC30] + 0xDEB]` is set** does it write the id-16 snapshot `+0x128`, not the live set, through `003282C0(member, self + 0x128)` (`0056924B`-`00569259`). The centre editor also calls `002814E0(0x4B9)`. It then nulls `02CA96E0` / `02CA96F8` at `+0x35C` (`0056928F`, `00569293`). |
+| 19, 20 | `0056960B` | `002D7580(0, 1)`. |
+| 22 | `005696B9` | When `+0x33B` is set, `005685B0(+0x336, +0x337, &rect)` and `002D78B0(6, rect)`. |
+| 26 | `00569ED4` | `00568FE0(self, msg->b, msg->a)`: the per-row slide step (rows `+0x18` state, `+0x1A` current, `+0x1C` target, 4 units per call), copied to the child's `+0x114` / `+0x116`. |
+| `0x121` | `00569EE3` | `+0x331 = 6` when `+0x331` is non-zero. |
+
+| id-12 sub-id | arm | work |
+|---|---|---|
+| `0x8000` | `00569E6D` | Prompt text `0xCF1`, or `0xCEE` / `0xCEF` for `+0x33E` 1 / 2, or `0xCF2` when `msg->b` is 0 (`002F9860`, `00291D70`, `00291D80`); then `+0x344 = [0208F570]`, the tick (`00569ECA`). |
+| `0x8001` | `00569E4C` | `00567D80(self, msg->b)` when the centre editor's `+0x360` is clear: opens the pick list (`0056B350`, modes 1 / 2). |
+| `0x8002` | `00569E42` | `005679D0(self)`, the pane rebuild. |
+| `0x8003` | `00569E06` | When `00264150()` is 0: `0056A1D0(self, -1, msg->b, 0, 0)`, mode -1. That empties row `b`: both texts `0x3EB`, id `-1`, bit `b - 1` of `+0x124` cleared, then committed. A result other than -1 is played as a sound (`00249C60`). |
+| `0x8004` | `00569DED` | `005680E0(self)`, the pane reset, when `+0x342` is clear. |
+| other | `00569EF3` | returns 0. |
+
+**The pick list `0056B4D0`.** The 19 table entries; ids 3-7, 11, 13, 14, 16 and 17 share `0056BB53` (`005C5230`,
+`xor eax, eax; ret`):
+
+| id | arm | work |
+|---|---|---|
+| 1 | `0056B57F` | `[02CA96D8] + 0xC8 = 0` (`0056B58D`). Builds two layout descriptors, `00D234A8` (callback `0056BBD0`) and `00D234D0` (callback `0056A780`). It copies the create record (editor `+0xC8`, `+0x584`, `+0xD0`, mode `+0x588`) and the editor's cursor bytes into `+0x58E`..`+0x59C`, then lays out the first page (`0056ADA0`, `0056BC70` / `0056A890`). |
+| 2 | `0056B9D4` | `0056BE40(self)`; then counts `+0x580` down. At zero it posts `0x8000` to itself (`0056BA04`). `+0x580` is a frame countdown, set to `0xB4` by `0056AC50` (`0056ACBB`). |
+| 8 | `0056B7E9` | `+0x5A0 \|= 2`; `002D45C0([+0xC0], 1)`. |
+| 9 | `0056B808` | `+0x5A0 &= ~2`, then the id-15 tail. |
+| 10 | `0056B81E` | Page up / page down on the pad masks (`0056AAC0` / `0056AD50`; wrapping needs a second mask), clamping the cursor to the new page's count. Without a page change the input goes to the list child (`002D3A50`). |
+| 12 | `0056BA10` | `0x8001` → `0056AC50(self, row)`. It shows a refusal text and arms the `0xB4` countdown for a disabled row. Otherwise `0056A1D0` writes the picked id into the editor's row (mode 1: word `+0x10`, mode 2: word `+0x12`) and commits. `0x8002` → `0056AB00`, the close. |
+| 15 | `0056B80F` | `+0x580 = 0`. |
+| 18 | `0056B516` | Sends `{0x121}` to the editor `[+0xC8]` when `+0x58E` is set; `[02CA96D8] + 0xC8 = 1`. |
+| 19 | `0056B7AE` | With `+0x58E`: `+0x58F = 0x18`, word `+0x58C = 0x302`; with `+0x5A0` bit 2: editor `+0x358 \|= 2`. |
+
+**Not established here:** what sets `[0209AC30] + 0xDEB` (no writer in the gambit region), so whether id 18's
+snapshot write is a revert-on-cancel; which of the three pad words `02F97390` / `02F97392` / `02F97394` is pressed,
+repeat or held. What the player sees is not claimed.
+
 ## Falsification pass
 
 **Pass 1 — 2026-09-14 (OPUS).** Attacked at parent `GN160` (`fa0db293…`), EXE `73461d08…`, every
@@ -288,8 +347,8 @@ page false), and the destroy window was read correctly but judged by the wrong p
 sharpest claim on the page — that a `lea` with a specific displacement yields exactly the image
 base — is also the one that would have been easiest to get wrong, and it is exact.**
 
-**Not attacked by this pass**, and still `PARTIAL` on the editor's 12 sub-commands and the
-list's 19 arms below entry level — registered as **GI-18**. The other two reasons the page
+**Not attacked by this pass**, and ~~still `PARTIAL` on the editor's 12 sub-commands and the
+list's 19 arms below entry level~~ *(read 2026-10-01, OPUS: the GI-18 section)* — registered as **GI-18**. The other two reasons the page
 gave are settled: ~~the per-leaf roles in *Not yet established*~~ *(all eight read 2026-09-15,
 member table)* ~~and whether `00566C10`'s icon set is condition- or action-type art~~
 *(settled 2026-09-29 (FABLE, GI-1): `00566C10` is a tab-strip pointer, not condition/action

@@ -1,7 +1,7 @@
 ---
 system: Which variation of a sound you hear
 category: 18-Audio
-status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS): ~~the group value and the emitter's use of the entry are not established~~ the group value is answered (UQ-259), the emitter's use of the entry is answered on the trigger page (UQ-262), and the descriptor's other bytes are SUPERSEDED under G-2; the 007CF830 predicate read 2026-09-18 (is a range authored); the SD-24 record identity answered 2026-09-30
+status: AUDITED — every register row is closed (owner re-status 2026-09-30, OPUS): ~~the group value and the emitter's use of the entry are not established~~ the group value is answered (UQ-259), the emitter's use of the entry is answered on the trigger page (UQ-262), and the descriptor's other bytes are SUPERSEDED under G-2; the 007CF830 predicate read 2026-09-18 (is the candidate weighted - corrected 2026-10-01); the SD-24 record identity answered 2026-09-30
 owner_layer: PrimaryOwner:Audio
 evidence_tier: 1
 verified_against:
@@ -173,7 +173,7 @@ given.** The six are `007BFE30`, `007BFDB0`, `007BFD00`, `007BFEB0` (with 0, the
 | Is `state - 6 <= 1` two states or a range? | **Two** — states 6 and 7, expressed as an unsigned compare after a subtract, the same idiom as the actor-kind band. |
 | Is the sibling a stripped copy, or a different descriptor format? | **Same format** — `[param_1 + 0x30]`, count at `+0x05`, key at `+0x04`, emitter `007BD240`. It is the same walk **with the selection removed**, not a different structure. |
 
-**Read 2026-09-18 (FABLE): the predicate at `007CF830` asks whether a range is authored.** It takes the container at `[ctx + 8]` (the version byte first), and returns whether the first byte of the version-positioned range field is non-zero — `+4` for versions 0–2, `+0x10` for later versions (`007CF834`–`007CF850`) — the same field the range getters on [the sound-variant page](Sound-Selection/sound-variant-selection.md) (G-2) read as a float, so it is a byte test on that float's low byte, true only when a range was authored. The rest stands.
+~~**Read 2026-09-18 (FABLE): the predicate at `007CF830` asks whether a range is authored.**~~ *(Corrected 2026-10-01, OPUS, at the bytes `007CF834`-`007CF850`: it returns whether the candidate's WEIGHT byte - `+4` for versions 0-2, `+0x10` later, the byte `007CF9C0` returns and the random selects sum - is non-zero. The storage is shared with the range-minimum float, but the test means weighted, not range-authored: 1.0f reads 0 in that byte. See the sound-variant page's §11-§12.)* It takes the container at `[ctx + 8]` (the version byte first), and returns whether the first byte of the version-positioned range field is non-zero — `+4` for versions 0–2, `+0x10` for later versions (`007CF834`–`007CF850`) — the same field the range getters on [the sound-variant page](Sound-Selection/sound-variant-selection.md) (G-2) read as a float, so it is a byte test on that float's low byte~~, true only when a range was authored~~. The rest stands.
 
 **What this document does not claim:** ~~what the predicate at `007CF830` tests,~~ ~~what the group value at
 `007CF9A0` represents, what `007BD240` does with the entry it is handed,~~ ~~what the `u16` key indexes,~~ ~~or
@@ -191,7 +191,7 @@ what the other bytes of the descriptor hold.~~ *(Corrected 2026-09-30, SWE2-DATA
 | `007E6360` | `CycleSound` select: groups by key byte | "The sibling" table |
 | `007BD240` | the emitter all four converge on | "The emitter" |
 | `007CF9A0` | the group byte (UQ-259) | "Consecutive entries can be grouped" |
-| `007CF830` | is a range authored (a byte test on the range field) | "Read 2026-09-18" |
+| `007CF830` | ~~is a range authored (a byte test on the range field)~~ is the candidate weighted (its weight byte non-zero; corrected 2026-10-01, OPUS) | "Read 2026-09-18" |
 | `007CF9E0` | a `seq ` chunk's get-by-index (UQ-250) | "Placed 2026-09-18" |
 | `007E7300` | the sequence arm the emitter starts | "The emitter" |
 

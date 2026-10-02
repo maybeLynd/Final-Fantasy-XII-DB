@@ -1,0 +1,94 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "68aca829ace26cdbc1d81a55ab6b5a255e94a8323425c045b0f3bdbfdd7aeed0",
+  "positive_producer_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+  "source_order_control": {
+    "driver_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+    "gate_lines": [
+      40,
+      46,
+      89,
+      92,
+      94
+    ],
+    "output_line": 249,
+    "gate_before_output": true,
+    "method": "Static AST actual producer path, not helper existence"
+  },
+  "cases": [
+    {
+      "name": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\controls-01\\failed-capture\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+      "diagnostic": "required capture status failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "340b20e23ed7b9213f87e8a3758064105cc9f96b55a67aa38391f165bda8542e"
+    },
+    {
+      "name": "incomplete-capture-wrapper",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\controls-01\\incomplete-capture-wrapper\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+      "diagnostic": "actual capture incomplete",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8b6c9b97111a42c994c04a11c5c301429999979b57e14f8e4aace7f4ffeded5a"
+    },
+    {
+      "name": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\controls-01\\missing-source\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a115ae1960583a2b9b28d58777e17c86746386906426b5b45d653502f569ff8b"
+    },
+    {
+      "name": "coherent-lookup-first-read-mutation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\controls-01\\coherent-lookup-first-read-mutation\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "ecbd57cbf06d4925e0a7cd7639d8a593de0f84a909965db136fa15c4cb4dfb70",
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f6109306a1575a60804d91b32f794edd720fed0cb5fe228f2895467fcd007150"
+    }
+  ],
+  "count": 4,
+  "limits": "Four actual disposable producer CLI refusals plus checked positive. Not original-code/native/live execution, fault sampling or independent project acceptance."
+}

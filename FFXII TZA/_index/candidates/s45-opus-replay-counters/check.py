@@ -46,6 +46,14 @@ cwd = os.getcwd(); os.chdir(BASE)
 with contextlib.redirect_stdout(io.StringIO()):
     import check as C                                     # block 332 (its cases run first, unchanged)
 os.chdir(cwd)
+# THE UPSTREAM'S VERDICT GATES THIS REPLAY (2026-10-01, OPUS): the import used to be trusted, so an upstream that
+# printed FAIL still let every case below run. Same guard as s33-opus-replay-op1-real (upstream_guard.py, tested there).
+sys.path.append(os.path.normpath(os.path.join(HERE, "..", "s33-opus-replay-op1-real")))
+import upstream_guard                                     # noqa: E402
+_ok, _why = upstream_guard.verdict(C)
+if not _ok:
+    print("REFUSED: %s" % _why)
+    sys.exit(2)
 W, uc, S = C.W, C.uc, C.S
 UPD, READ, EVAL, STORE, FIRE, AWARD, MGR, BUILD = 0x316A50, 0x3166F0, 0x315E90, 0x316BF0, 0x3165C0, 0x8632B0, 0x20CE00, 0x20CD30
 for f in (UPD, READ, EVAL, STORE, FIRE, AWARD, BUILD):

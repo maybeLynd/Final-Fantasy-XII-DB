@@ -64,3 +64,37 @@ is the number of thread-safe statics built so far.**
 **Why this settles BJ-1.** One read-only memory snapshot of `01F44850` and the 1,681 guards, taken at the title screen
 and again after a field is loaded, answers the row. It needs no breakpoint and no hook, and it tells which statics the
 boot built and in what order. That request goes to ASTRA: `OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT`.
+
+## Capture state and acceptance for the snapshot (OPUS, 2026-10-01)
+
+For `ASTRA-RETURN-OPUS-BJ1-PREPARATION-1001`, on ASTRA's [`bj1-guard-preparation/`](../../../_experiments/evidence/bj1-guard-preparation/BJ1-METHOD-1001.md)
+(ACCEPT by SWE2-AUDIT-SPEC, [review](../auditspec-review-astra-bj1-guard-preparation-1001/REVIEW.md)). OPUS is the
+consumer; this section fixes what OPUS will accept. It authorizes no session and asks for no menu retry.
+
+**The two predicates.**
+
+| state | holds when | does not hold when |
+|---|---|---|
+| TITLE | the ordinary title menu is on screen after a normal launch, no save has been loaded in this process, and no input has been given for at least 5 s | any load, any menu other than the title menu, a fade, a dialog, or a debugger attached |
+| FIELD | in the SAME process, after TITLE was captured, one save has been loaded through the ordinary trigger below, the party is controllable (field HUD visible, no fade, no dialog, no battle engaged), and no input has been given for at least 5 s | a battle, a cutscene, a menu, a second load, or an area change after the load |
+
+**The save.** No backed-up test save is prepared today, and OPUS does not choose one. The capture piggybacks the
+first session that is already authorized for another reason and loads a save anyway. That session's own backup
+manifest (every original file hashed before launch and re-hashed after, as EXP-124 did for its 26 files) names
+the save: the capture records the slot number, the save file's SHA-256 from that manifest, and the area the save
+opens in as the game reports it once FIELD holds. A capture without those three values is INVALID, not partial.
+
+**The ordinary trigger.** Title menu -> Load Game -> the recorded slot -> confirm, and nothing else until FIELD
+holds. No New Game, no options change, no other input.
+
+**State health.** The session owner (the identity running the session) supplies the before/after visible-state
+proof and the post-read responsiveness proof the method requires; OPUS accepts the capture only with that proof
+attached. Process existence, CPU activity and a clean CloseHandle are not proof.
+
+**What OPUS will accept, and what it will claim.** One table per capture, one row per guard in
+[`bj1-guards.tsv`](bj1-guards.tsv): its TITLE value, its FIELD value and the class G2 gives each (`0` not built,
+`0xFFFFFFFF` being built, `>= 0x80000001` built with its order). The epoch `01F44850` is read before and after each
+snapshot; a moved epoch or a value outside G2 is recorded as observed, never dropped. The claim is scoped to that
+one boot and that one save: which guards were built at TITLE, which only by FIELD, which were not built by FIELD.
+No universal boot partition, no claim about other saves, and the replay's 19 are an annotation to compare
+against, not an expected answer.

@@ -269,7 +269,7 @@ live or has no variable bank, rather than selecting nothing.*
 > case named `dead-actor` writes that flag to 0 in supplied state; it executes no death. So the supported statement is
 > *gate off or null bank → getter 0 → the run's default track*. Whether an actor's death ever clears that slot bit, and
 > whether the default track is then heard, are **not established** here - neither observed nor excluded. The gate and
-> ladder results, the 22 cases and 20 mutants stay as recorded. Regression:
+> ladder results, the 22 cases and ~~20~~ 10 mutants *(corrected 2026-10-01, OPUS: `result.json` and EXP-099 record 10)* stay as recorded. Regression:
 > `_experiments/evidence/field-music-gate-scope/check.py` (ASTRA; four corrupted-derivation controls, one of them an
 > actor-pointer substitution for the fixed global). Neither half of that is visible from either function alone, which is why it took
 the composition to see it.
@@ -409,7 +409,7 @@ lifetime after binding stays `UNKNOWN / NOT EXERCISED`.
 - **`STRUCTURAL` parity** against the layout in §3.
 - **`EDGE-CASE` parity** for the four distinct routes to `-1`.
 
-**Requires further original-game evidence:** the table producer and lifetime (`DG-1`),
+**Requires further original-game evidence:** ~~the table producer and lifetime (`DG-1`)~~ an observed run of the table producer (its chain is read statically, §14.1) and the table's lifetime after binding (`DG-1`'s open half) *(corrected 2026-10-01, OPUS)*,
 caller/state/scheduling behavior, and native substitution with observed consequences. EXP-008
 provides captured input bytes; EXP-009 provides two input/return conditions. Neither closes
 these remaining requirements. The former claim that nothing remains blocked on knowledge is

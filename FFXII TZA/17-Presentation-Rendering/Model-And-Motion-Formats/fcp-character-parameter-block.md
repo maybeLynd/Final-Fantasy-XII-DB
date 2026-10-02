@@ -665,7 +665,7 @@ it into the (correctly sized) tail. Every "section 18" byte region reported earl
 | `+0x04` | 2 | `003E4B40` — returns the raw word; only callers `0041FE24` / `0041FE3B` (the copy-source computation above) |
 | `+0x06` | 3 | `003E5CD0` + the attachment consumers (§ "Section 3 is the attachment table") |
 | `+0x08` | 4 | `003E6D80` (callers `0051BEAD`, `0052448A`) + inline `003E677C` |
-| `+0x0A` | 5 | **none** — present in 7 blocks, unread |
+| `+0x0A` | 5 | ~~**none** — present in 7 blocks, unread~~ inline in `003E7210`, the palette-binding walk of authored command `0x16` - present in 7 blocks *(corrected 2026-10-01, OPUS: the authored-commands page's GI-15 section; the scans above missed the `[record + 0x400]` load)* |
 | `+0x0C` | 6 | `003E5C0E` — **dead code**: no E8/E9/dword/qword reference anywhere |
 | `+0x0E` | 7 | `003E6F50` + inline `003E6A2D`, `003E7464` |
 | `+0x10` | 8 | `003E6CF0` / `003E6D10`, both called only by the initialiser's copy at `0041F5CE` / `0041F5D9` |

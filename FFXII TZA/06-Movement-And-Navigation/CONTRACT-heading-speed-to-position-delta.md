@@ -237,6 +237,17 @@ whose records name no contract, which is a different half of S-18 and is not cla
         whose conditional tail enters `00265510`.
       - The object-state setters `003E33E0` / `003E3440` read their flags word twice and replace bit 23 / 24. They
         could touch actor byte `+3` only if that word sat at `actor + 1`, an alias neither observed nor excluded.
+        *Placement condition made exact (2026-10-01, OPUS, on ASTRA's `heading-flag-class-mask/`, ACCEPT by
+        SWE2-AUDIT-SPEC, `_index/candidates/auditspec-review-astra-heading-flag-class-mask-1001/`; both snippets re-read
+        by OPUS):* `003E33E0` stores `((dx << 23) ^ d0) & 0x800000 ^ d1 | 2` and `003E3440` stores
+        `((edx << 24) ^ d0) & 0x1000000 ^ d1 | 4`, where `d0` and `d1` are the two separate reads of `[rcx]`. Every
+        bit outside the replaced bit and the dirty bit is copied from `d1`. A dword covering actor byte `+3` sits at
+        `actor + q` with `q` in 0..3, which puts the class bits that `002E6000` tests (`byte [rcx+3] & 0xE0`,
+        `002E6022`) at bits `8*(3-q)+5 .. 8*(3-q)+7`. So `003E3440` (bits 24 and 2) can never reach them at any
+        placement, aligned or not, and `003E33E0` (bits 23 and 1) reaches one only at `q = 1`, where bit 23 is class
+        bit 7. A 4-aligned flag word and a 4-aligned actor exclude `q = 1`. The real placement, alignment, the absence
+        of an interfering write between `d1` and the store, and the class's stability across other writers stay OPEN.
+        These are algebraic cases, not observed values.
       - The position path goes through the placement solver `00380D30`, not a copy.
       - The render commit is gated by `003EC3D0`'s global `02B3EC90` OR an optional argument, so a zero argument
         does not prune its four tails.

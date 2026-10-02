@@ -395,7 +395,7 @@ both, and the rule is identity.
   `+0x18` value equals the keymap control code on **13 of 13** of that document's worked examples,
   and all **46 of 46** button values land inside its non-keyboard band 11–27 while a − 1 would drop
   four of them into the range it says nothing polls. See the section above. `DM-3`.
-- **That the alias groups are indistinguishable downstream.** They are one channel at the registry;
+- ~~**That the alias groups are indistinguishable downstream.**~~ *(Superseded: **`DM-1` ANSWERED 2026-09-22 (FABLE)** - downstream separates them completely, and no name reaches the mouse codes; see the `DM-1` section above. Struck 2026-10-01, OPUS.)* They are one channel at the registry;
   whether a consumer separates mouse from pad is unread. `DM-1`.
 - **That 143 and 97 are the complete registries.** They are the complete sets of *static
   registrations found in the image*. A name registered at runtime from data would not appear, and

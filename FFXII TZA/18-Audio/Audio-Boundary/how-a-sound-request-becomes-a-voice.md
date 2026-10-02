@@ -104,7 +104,7 @@ handle does not mean a sound is playing.
 > boot**: `003A13F0` (called from `00266D10`) requests files `(0x20, 0)`, `(0x20, 1)` and `(0x20, 3)`
 > through `002ED8C0`, each into an arena buffer and an asynchronous read whose completion callback sets
 > one handle — `003A1390` → `02AEF3FC`, `003A1330` → `02AEF400`, `003A12D0` → `02AEF404`
-> (`003A14E9`, `003A1568`, `003A15E7`); it first resets all three to `−1`. The file names behind
+> (`003A14E9`, `003A1568`, `003A15E7`); ~~it first resets all three to `−1`~~ *(corrected 2026-10-01, OPUS: after its requests it writes −1 to A at `003A14BE` and `003A153D` and to C at `003A15BC`; B is never written)*. The file names behind
 > namespace `0x20` are not resolved here. So `(0x40, 0x7F)` is a property of the **four wrappers**, not
 > of the path, and `02091098` is not a master mute: `00271500` and the script verb never read it.
 
@@ -355,13 +355,13 @@ alongside five neighbouring bytes and writes `0x5A` at `022CB724`.
 | `003A11F0` | `Audio_ResolveBankLocalId` | 79 B | the same arithmetic with no precondition |
 | `003A0E20` | `Audio_PlayByEncodedId` | 41 B | routes on **bit 30** to a two-byte id encoding |
 | `003A1390` | `Audio_SelectBankSlot` | 83 B | sets the active bank-slot handle `02AEF3FC` |
-| `003A13F0` | `Audio_ReleaseBankSlots` | 582 B | invalidates `02AEF3FC` to `0xFFFFFFFF` |
+| `003A13F0` | ~~`Audio_ReleaseBankSlots`~~ the boot bank setup *(corrected 2026-10-01, OPUS; only caller `00266D10`)* | 582 B | ~~invalidates `02AEF3FC` to `0xFFFFFFFF`~~ clears the 9 bytes at `02AEF3F0`, builds the slot list, requests the three banks, and writes −1 to A (`003A14BE`, `003A153D`) and C (`003A15BC`); never B |
 | `00267330` | `ActorSlot_IsLiveAndUnheld` | 39 B | reads the ActorManager slot flag byte; the world-live precondition |
 | `002671F0` | `ActorSlot_IsLive` | 25 B | bit 0 only |
 | `00267360` | `ActorSlot_IsLiveAndUnheld2` | 50 B | bit 0, plus bit 7 or the neighbouring byte's bit 0 |
 | `002DF220` | `Audio_PlayResolvedSound` | 92 B | the shared play call; second gate, masks, hardcoded selector 0 |
 | `002DEF40` | `Audio_PlayResolvedSound_BitSelector` | 95 B | same, but derives the selector from **bit 31** of the id |
-| `002DF010` | `Audio_PlayResolvedSound_PanOnly` | 61 B | same shape, passes only `0x40` |
+| `002DF010` | `Audio_PlayResolvedSound_PanOnly` | 61 B | same shape, ~~passes only `0x40`~~ passes `r8d = 0x40` and `r9d = 0x7F` into `001DBDB0` (`002DF03F`, `002DF02B`) *(corrected 2026-10-01, OPUS)* |
 | `003603C0` | `Audio_ReadSecondGate` | 8 B | `movsx eax, byte [022CB726]` |
 | `00360110` | `Audio_OpenSecondGate` | 8 B | writes `0` |
 | `00360370` | `Audio_ResetGateBlock` | 52 B | clears the gate and five neighbours, writes `0x5A` at `022CB724` |
@@ -440,7 +440,7 @@ Addresses are Ghidra image base `0x00120000`. Body sizes are exact-current body 
 | `0215EF50` | registration table | 16 × 8 B | `+4` key (`0xFFFF` = free), `+6` refcount, `+1` sticky flag |
 | `0215EFD8` | group mask | `u32` | bitmask maintained by `002DF370` |
 | `0215EFDC` | sequence counter | `u32` | post-incremented by `002DF660` |
-| `022CB9F0` | audio track slots | 4 × 24 B | `+0` state, `+1` key, `+2` flags, `+3` handle |
+| `022CB9F0` | audio track slots | 4 × 24 B | `+0` state, `+1` key, `+2` flags, `+3` slot index (returned by `00361630`; corrected 2026-10-01, OPUS) |
 | `02EBBA00` | ref-counted registrations | 32 × 132 B | `+0` kind, `+2` refcount |
 | `00917290` | `SeSep` magic | 5-byte string | the `SepAudioBank` container marker |
 | `008F6D54` | frame divisor | `f32` | `60.0` |
@@ -660,7 +660,8 @@ while (size > 0x10
   +0x00  u8   state       0 = free, 3 = reserving, 4 = active, 5 = pending release
   +0x01  u8   key         the caller's track id
   +0x02  u8   flags       bit0/bit1 maintained by the sweep; cleared with & 0xFC
-  +0x03  u8   handle      the value returned to callers
+  +0x03  u8   index       the slot's own index 0-3, written by 00360C70 and returned by 00361630;
+                          00360C20 returns +0x00 instead (corrected 2026-10-01, OPUS)
   +0x08  u64  = 0 on reserve
   +0x10  u32  = 0 on reserve
   +0x14  u32  = thunk_001DBB80(key)
@@ -1813,12 +1814,12 @@ remainder drops to `≤ 0x10` or a header fails the magic/version/size test.
 | `001DBE60` (43 B) | per-chunk adapter — `00210B30()` obtains the bank-context object, then tails into `00210C40(obj, id, payload)` | [`001DBE85`](../../_index/ADDRESS-INDEX.md) |
 | `00210C40` (9 B) | one hop — `rcx = [obj + 0x10]` then tails into `0021A040`; the list the records live in hangs off `+0x10` | [`00210C44`](../../_index/ADDRESS-INDEX.md) |
 | `0021A040` (182 B) | find-or-create — walks the intrusive list at `[ctx + 8]` for an element whose `[elem + 0x10] + 0x38` equals the sound id; on a miss, when `002129F0` reports capacity and the payload is non-null, calls the context vtable `+0x30` factory and hands the fresh object to `00222DC0` | [`0021A0A9`](../../_index/ADDRESS-INDEX.md) |
-| `00222DC0` (346 B) | record constructor — asserts `[+0x50] == 0` and `[+0x38] == -1` via `0016D6A0`, stores `+0x28` = capacity count, `+0x3C` = `id / 100` (the `0x10624DD3` magic divide — the bank/section group), copies the chunk's two dwords + version byte into `+0x40`–`+0x49`, `+0x38` = id, `+0x30` = 1; formats a debug name through `0017D2E0` using templates `00908998`/`009089A8`, then allocates a registration record via `002125E0`/`002120E0` (`[+0]=1`, `[+8]` = callback `00222200`, `[+0x10]` = parent, `[+0x18]=1`, `[+0x20]` a `0x100`-byte string copy, `[+0x120]` = `&parent + 0x50`) and links it through `002121C0` | [`00222E31`](../../_index/ADDRESS-INDEX.md) |
+| `00222DC0` (346 B) | record constructor — asserts `[+0x50] == 0` and `[+0x38] == -1` via `0016D6A0`, stores `+0x28` = capacity count, `+0x3C` = ~~`id / 100`~~ `id / 1000` (the `0x10624DD3` magic divide — the bank's block number; *corrected 2026-10-01, OPUS: `0x10624DD3` with `sar 6` divides by 1,000*), copies the chunk's two dwords + version byte into `+0x40`–`+0x49`, `+0x38` = id, `+0x30` = 1; formats a debug name through `0017D2E0` using templates `00908998`/`009089A8`, then allocates a registration record via `002125E0`/`002120E0` (`[+0]=1`, `[+8]` = callback `00222200`, `[+0x10]` = parent, `[+0x18]=1`, `[+0x20]` a `0x100`-byte string copy, `[+0x120]` = `&parent + 0x50`) and links it through `002121C0` | [`00222E31`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees — deliberately outside the census: `00210B30`, `002129F0`,
 `00212A70`, `0016D6A0`, `0017D2E0`, `002125E0`/`002120E0`/`002121C0`, `00808C40`.
-The `id / 100` group at `+0x3C` is measured (`imul 0x10624DD3`, `sar 6`, sign
-fixup — round-toward-zero divide by 100).
+The ~~`id / 100`~~ `id / 1000` group at `+0x3C` is measured (`imul 0x10624DD3`, `sar 6`, sign
+fixup — round-toward-zero divide by ~~100~~ 1,000 *(corrected 2026-10-01, OPUS; the SAB page's §3 had it right)*).
 
 
 ## Interior citation — frontier hubs `00195200`, `002DEE80` (2026-09-18, SWE2-EC7)

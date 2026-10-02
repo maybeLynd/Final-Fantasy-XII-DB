@@ -1,0 +1,69 @@
+{
+  "preimages": [
+    {
+      "path": "Database/FFXII TZA/17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md",
+      "whole_file_sha256": "41d8f650f5a0ac0087e8bc019836cadc6e09d8e1efb0ab2d6dd3f0cceb42bda0",
+      "selected_original_lines": [
+        {
+          "line": 482,
+          "text": "`003713C0` (215 B) is the motion-table wiring: `[rbx+0x80]` resolves through `0020E600` + `003AB7F0` rebase + `0020E620` into `dword[+0x84]`; when `word[+0x16] != -1` the `[+0x18]` handle chains `00409F50` + `004096C0` into `+0xA0`/`+0x94`, and the `+0x90`-gated tail rebases `+0x84`/`+0x94` by the resolved bases then hands the block to `003E1C50` - the bind pass the motion-table and ramp-channel callers share."
+        },
+        {
+          "line": 490,
+          "text": "`003E1C50` (2992 B) is the load-side pointer fixup pass over a freshly read record: every stored offset field is resolved through `0020E600` (offset to live pointer) and rewritten in place with `0020E620`, word-indexed slots reach the 0x740-stride table at `022C6F28` only while its `+0x284` sentinel is nonzero, and nested structures recurse through the type-dispatched relocators `00421D20`, `00512A90`, `004719B0`, `0051A380`, `0051B850`, `005161D0` and `0040EEA0` - clearing the field to a fresh `0020E620(0)` offset when the sub-record is absent. Called from `003713C0` on the motion-table load path."
+        },
+        {
+          "line": 492,
+          "text": "Interior anchor `003E1D9A` (function `003E1C50`)."
+        },
+        {
+          "line": 494,
+          "text": "`00421D20` (70 B) is the keyed sub-record probe the load-side fixup `003E1C50` and the staged-look command `003E3D70` share: when the record's `+0x18` index is not -1 it resolves the `+0x10` page offset through `0020E600`, probes the resolved page's `+0xD98` manager table with `002ED570` for that index, and on a hit tail-resolves the found record's `+0x84` field through `0020E600` - an absent index or empty slot returns 0."
+        },
+        {
+          "line": 496,
+          "text": "Interior anchor `00421D49` (function `00421D20`)."
+        },
+        {
+          "line": 498,
+          "text": "`00415A80` (1117 B) is the delta-shifted offset rebase `003E1C50` applies to its nested record families: the head offset `[r13]` is resolved through `0020E600`, shifted by `edi` and stored back through `0020E620`, then for each of the `[r13+4]`-counted outer records the same resolve-shift-store pair fixes the `+0x8` section head before walking that record's own byte-counted `0x20`-stride sub-record array - each sub-record's offset fields (`[r15-0x1C]`, `[r15+8]`, and the deeper sub-arrays) receive the identical treatment, a uniform pointer-plus-delta rewrite over the whole nested layout."
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+      "whole_file_sha256": "8dc48558d17b3bbca91e640b2cc687a9022984efb7a1da5b97f67269f553068f",
+      "selected_original_lines": [
+        {
+          "line": 584,
+          "text": "- **Presentation \u2014 CLIENT and SERVICE (482 edges).** 338 inbound (Presentation bodies `0041F340`, `0041FCF0`, `PresentationAuthoredCommand_Class09_ActivateLoadedResourceState` (00417F40) call page-cited `ResourceTable_ResolveEntryByIndex` (002ED570), `003D8E50`, `003AB7F0`); 144 outbound (page-cited `005004C0`, `CharacterRender_RebindCombatLookAndSkeletonResources` (003E3D70), `0024D540` call Presentation bodies `0041E500`, `CharacterRenderRecord_ResolveSkeletonBoneArray` (00421D20), `CharacterRenderRecord_GetFCPPresentationConfigurationPayload` (003E55F0)). Substantive edges include `00332590` calls `00426950`; `00332590` calls `0041E500`; `00332660` calls `00426950`; `00332660` calls `0041E500`; the remaining edges run through shared helpers the page cites."
+        },
+        {
+          "line": 863,
+          "text": "`003E1C50` (2992 B) is the record walk `003713C0` runs: null `rcx` bails whole, `0020E600([rcx+0x70])` resolves, `word[+0x68] = -1` folds to 0, then a 137-call `0020E600` + 95-call `0020E620` walk over the section's records with `0051B850`, `004719B0`, `005161D0`, `00421D20`, `0040EEA0` - the dense resolution body behind the section address pass."
+        },
+        {
+          "line": 865,
+          "text": "Interior anchor `003E2285` (function `003E1C50`)."
+        },
+        {
+          "line": 867,
+          "text": "`00421D20` (70 B) is the keyed chain walk `003E1C50`/`003E3CA0`/`003E3D70` share: `ebx = [rcx+0x18]` bails 0 on -1, `0020E600([rcx+0x10])` resolves, `002ED570([rax+0xD98], ebx)` looks the key up, and a non-null hit tail-jumps `0020E600([rax+0x84])` - a two-hop resolved-record chase."
+        },
+        {
+          "line": 869,
+          "text": "Interior anchor `00421D31` (function `00421D20`)."
+        },
+        {
+          "line": 871,
+          "text": "`0040EEA0` (1252 B) is the relocation pass `003E1C50` and `0054A9C0` share: `0020E620`/`0020E600` chains rebase `[rdi]`'s stored offsets into resolved pointers, then a `byte[rdi+4]`-counted loop walks the `+8` table rebasing each entry (`0020E600` x42, `0020E620` x28, `003D8E50` x2 total) - the fixup body behind the section address pass and the `+0x148` sub-record init."
+        },
+        {
+          "line": 875,
+          "text": "`00415A80` (1117 B) is the record-resolve walk `003E1C50` runs inside its dense loop: `0020E600([rcx])` resolves the head, `0020E620(edi+rax)` lands the result at `[r13]`, then a `byte[r13+4]`-bounded walk from `rax+0x1C` runs `0020E600` x42 and `0020E620` x26 over the sub-records - the per-record resolution half of the section address pass."
+        }
+      ]
+    }
+  ],
+  "limits": "At-read ownedconsumerprose; no edit permission/currentfreshness implied"
+}

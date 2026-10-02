@@ -1,0 +1,59 @@
+ok   002DF236 cmp ecx, -1
+ok   002DF23B call 0x3603c0
+ok   002DF240 test eax, eax
+ok   002DF242 je 0x2df256
+ok   002DF244 xor eax, eax
+ok   003A14BE mov dword ptr [rip + 0x274df34], 0xffffffff
+ok   003A153D mov dword ptr [rip + 0x274deb5], 0xffffffff
+ok   003A15BC mov dword ptr [rip + 0x274de3e], 0xffffffff
+ok   002DF02B mov r9d, 0x7f
+ok   002DF03F lea r8d, [r9 - 0x3f]
+ok   00360C66 movzx eax, byte ptr [r10 + rcx*8]
+ok   00360C90 mov byte ptr [rax + 3], cl
+ok   003A0E30 movzx edx, cl
+ok   003A0E36 shr ecx, 8
+ok   003A0E3C movzx ecx, cl
+ok   0027F646 mov ecx, dword ptr [rbx + 0xc0]
+ok   0027F67B call 0x249fc0
+ok   0027F629 cmp dword ptr [rbx + 0xd4], 0x42
+ok   0027F632 call 0x2d6f90
+ok   002D6FD4 call 0x249fc0
+ok   00217FE6 call 0x212710
+ok   00222580 mov rax, qword ptr [rdi]
+ok   00222596 jne 0x222580
+ok   00222C8F test byte ptr [rax + 0x3c], 1
+ok   0022356E test dil, 2
+ok   00225466 test byte ptr [rax + 0x3c], 4
+ok   00223596 test dil, 8
+ok   002235AA test dil, 0x10
+ok   002235BE test dil, 0x20
+ok   002130E0 lea rax, [rip + 0x6f3ce1]
+ok   00212726 lea rax, [rip + 0x6f45a3]
+ok   00221D16 mov rax, qword ptr [rcx + 0x20]
+ok   00221D47 mov qword ptr [rdi + 0x20], rbx
+ok   00222F26 cmp qword ptr [rcx + 0x50], 0
+ok   00222F3A call 0x221d10
+ok   007EE01D movzx ebx, word ptr [rcx + 0xa]
+ok   007EE02B cmp bx, 1
+ok   002252DA mov ebp, r8d
+ok   002252E5 mov esi, r9d
+ok   00225367 mov edx, ebp
+ok   0022536C call 0x2256f0
+ok   00225374 mov edx, esi
+ok   00225379 call 0x2257e0
+ok   00225750 lea edi, [rsi - 0x40]
+ok   0022581F divss xmm1, dword ptr [rip + 0x6e121d]
+ok   00361014 mov rdx, qword ptr [rip + 0x1f6aa35]
+ok   007AAECD movaps xmm8, xmm0
+ok   007AB030 movaps xmm1, xmm8
+ok   007AB037 call 0x7aa770
+ok   007A9E5A ja 0x7a9f14
+ok   007A9F14 xorps xmm0, xmm0
+ok   007BFF11 movss xmm1, dword ptr [rdi + rbx*8 + 0x25c]
+ok   007BFF1F movss xmm2, dword ptr [rdi + rbx*8 + 0x254]
+ok   007CF83C cmp byte ptr [rax + 4], 0
+ok   007CF849 cmp byte ptr [rax + 0x10], 0
+ok   003A6E60 mov r8d, dword ptr [rip + 0x1f322d1]
+ok   vtables: Ambient differs from SoundSourceObject at [0, 1, 34, 35, 39]; slot 7 both 007F0210
+ok   CoreSourceVoice slot 16 007E26B0, slot 17 38000100 (not code)
+FAILS 0

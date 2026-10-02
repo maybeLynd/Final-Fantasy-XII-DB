@@ -2,6 +2,7 @@
 # # call shared guard 002F2D60; if zero, call a member fn + shared 0044B960
 # # and store the result into a member field; return 1.
 address	targets
+0044BA80	002F2D60,0044B960,0044C850
 0044CC10	002F2D60,0044B960,00450CE0
 0044D460	002F2D60,0044B960,0044D840
 0044ED90	002F2D60,0044B960,0044F4C0

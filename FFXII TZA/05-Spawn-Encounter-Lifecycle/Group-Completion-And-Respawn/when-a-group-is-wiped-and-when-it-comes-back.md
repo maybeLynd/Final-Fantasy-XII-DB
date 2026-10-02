@@ -1016,9 +1016,9 @@ crossings).
 | `003DCA00` | 36 B | the single-entry variant: `ecx & 0xF` selects a `02B57F70` row directly; `[+8]==ecx` and `[+6]==3` → returns `[+0]`, else 0 | `003DCA16` |
 | `003DD740` | 38 B | a second lookup table `02B581A0`: element `(ecx*16 + edx)` at `0x1C` stride, `[+4]==4` → returns `[+0]`, else 0 | `003DD758` |
 | `00322710` | 71 B | sub-record probe the scanner calls per candidate: `00263E30(unit)` → `[+0x698]`; absent sub-record returns **1**, present returns `byte[+5] != 0` | `0032272F` |
-| `00422DE0` | 15 B | sign-extended byte fetch from the `01E6B410` priority map (`movsx eax, byte[rcx + 01E6B410]`) | `00422DEA` |
+| `00422DE0` | 15 B | sign-extended byte fetch from the ~~`01E6B410`~~ `01F00410` priority map (~~`movsx eax, byte[rcx + 01E6B410]`~~ `lea rax, 01F00410` then `movsx eax, byte [rcx + rax]`; corrected 2026-10-01, OPUS) | `00422DEA` |
 | `00423230` | 74 B | pending-reaction clear: when `+0xC4 != -1`, resolves `[+0x10]` → `0020E600` → `[+0xDA8]` → `0051B9E0(+0xC4)`, then `btr [rec+0x2C8], 0xC` | `00423268` |
-| `00423790` | 385 B | the reaction-eligibility predicate: resolves the pending record the same way (`+0xC4`, `0020E600`, `[+0xDA8]`, `0051B9E0`), rejects `arg4` when `arg4 != 0 && !(arg4 & 0xF000)`, decodes both ids' class nibble (`>>12 & 0xF`: class 4 → `0x2035`/`0x2036` by low `0x35/0x36`, class 3 → `0x2036`, `&0xF000==0x5000` → `0x203E`), then class-1 → `[+0x284] < 0x80000000` and class-2 → the `01E6B410` byte-map compare `map[a&0xFFF] >= map[b&0xFFF]` | `00423902` |
+| `00423790` | 385 B | the reaction-eligibility predicate: resolves the pending record the same way (`+0xC4`, `0020E600`, `[+0xDA8]`, `0051B9E0`), rejects `arg4` when `arg4 != 0 && !(arg4 & 0xF000)`, decodes both ids' class nibble (`>>12 & 0xF`: class 4 → `0x2035`/`0x2036` by low `0x35/0x36`, class 3 → `0x2036`, `&0xF000==0x5000` → `0x203E`), then class-1 → `[+0x284] < 0x80000000` and class-2 → the ~~`01E6B410`~~ `01F00410` byte-map compare *(corrected 2026-10-01, OPUS; the `arg4` above is the third argument, `r8` = `word[rec + 0x3B4]`)* `map[a&0xFFF] >= map[b&0xFFF]` | `00423902` |
 
 `00263E30`, `0020E600`, `002E96B0`, `002E9C00`, `0051B9E0`, `002D1AC0`-family callees are
 shared — deliberately not census members.

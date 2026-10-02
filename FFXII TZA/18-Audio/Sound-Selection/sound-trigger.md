@@ -112,7 +112,7 @@ slots at `+0x400`, and pushes **one distinct stored parameter** onto every live 
 | `007BFE30` | `+0xD0` |
 | `007BFDB0` | `+0xD8` |
 | `007BFD00` | `+0xE0` |
-| `007BFEB0(i)` | `+0x254 + i*0x30`, i = 0, 1 |
+| `007BFEB0(i)` | ~~`+0x254 + i*0x30`~~ the ramp record at `+0x248 + i*0x30` (G-14), i = 0, 1 *(corrected 2026-10-01, OPUS)* |
 | `007BFBA0` | `+0x3F8`, `+0x400` |
 | `007BFC30` | `+0x2B0`, `+0x2B4`, `+0x2B8`, `+0x2C4` |
 
@@ -191,8 +191,8 @@ if (this->slotCount > 0) {                       // +0x4C
 ```
 
 So the parameter ops are **per-slot**: each walks every allocated sequence and applies a
-block of floats selected by index. The blocks are **0x30 bytes apart**, starting at `+0x254`,
-so index 0 reads `+0x254`/`+0x25C` and index 1 reads `+0x284`/`+0x28C`.
+block of floats selected by index. The blocks are **0x30 bytes apart**, ~~starting at `+0x254`,
+so index 0 reads `+0x254`/`+0x25C` and index 1 reads `+0x284`/`+0x28C`.~~ *(Corrected 2026-10-01, OPUS, per G-14: each is a ramp record at `+0x248 + i*0x30` - `+0x250` start, `+0x254` target, `+0x258` elapsed, `+0x25C` duration, `+0x264` curve mode; `007BFEB0` reads the duration and, when it is 0, returns the target.)*
 
 This independently confirms the slot array at `+0x400` bounded by `slotCount` at `+0x4C` —
 the same fields the trigger uses — and it is the reason those seven ops must run *after* the
@@ -221,8 +221,8 @@ Sound object
   +0x4C   i32    slotCount        post-incremented per trigger, unbounded here
   +0x54   i32    lifecycle state  see the classes below
   +0x400  ...    slot array, 8-byte stride, indexed by slotCount
-  +0x254  f32[]  parameter block, index 0   } stride 0x30, fields at +0x00 and +0x08
-  +0x284  f32[]  parameter block, index 1   } (i.e. +0x254 and +0x25C for index 0)
+  +0x248  ramp record, index 0: +0x250 start, +0x254 target, +0x258 elapsed, +0x25C duration,
+          +0x264 curve mode; index 1 at +0x278 (stride 0x30; G-14, corrected 2026-10-01, OPUS)
   +0x500  f32    start offset (seconds) - the arm request's second float; see G-18
   +0x51C  f32    start delay (seconds) - written by the trigger's own event-script opcode 165; see G-18
 
@@ -251,7 +251,7 @@ seq[0xAC] = a ; seq[0xC0] = b ; seq.state = 2 ; seq[0xA9] = 1 ; return 0
 **Parameter block selection:**
 
 ```
-block(i) at this + 0x254 + i*0x30      (i = 0, 1)
+ramp(i) at this + 0x248 + i*0x30      (i = 0, 1; G-14, corrected 2026-10-01)
 ```
 
 **Trigger gate:**
@@ -292,12 +292,12 @@ selection variant (vtable slot 43)
          -> FUN_007b4ef0   bind SabFile::Sequence
          -> FUN_007b5070   handle
          -> 7 parameter ops in fixed order
-         -> FUN_007e7300   dispatch to playback   (unread)
+         -> FUN_007e7300   dispatch to playback   (read, §2: arms state 1 -> 2)
 ```
 
 **Upstream:** all five selection variants — see
 [sound-variant-selection](sound-variant-selection.md).
-**Downstream:** `FUN_007e7300`, unread.
+**Downstream:** `FUN_007e7300`, ~~unread~~ read in §2 *(corrected 2026-10-01, OPUS)*.
 
 **Do not confuse with:** the selection methods. Those choose; this starts. A sound that picks
 correctly but never plays failed *here*, most likely on the state gate.
@@ -444,8 +444,8 @@ correctly but never plays failed *here*, most likely on the state gate.
 | Out-parameter receives the header vtable on both paths | `SQEX::Sd::AudioBinaryFile::BaseClass<SQEX::Sd::SABSEQUENCEHEADER>::vftable` assigned before each return | 1 + 3 |
 
 **Scope honesty:** the parameter operations and the dispatch target are named by address only.
-Nothing here claims what they adjust — calling them "volume" or "pitch" would be a guess, and
-the naming discipline forbids it without an internal bridge.
+~~Nothing here claims what they adjust — calling them "volume" or "pitch" would be a guess, and
+the naming discipline forbids it without an internal bridge.~~ *(Superseded: G-14 (2026-09-17) names them through the `Set*` siblings - pitch, panning and lowpass; `007BFE30`'s is volume-shaped, its setter unnamed. Struck 2026-10-01, OPUS.)*
 
 ## 9. Related
 

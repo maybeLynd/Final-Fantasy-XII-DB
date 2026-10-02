@@ -291,10 +291,10 @@ Both survivors are **kind B, fixture scaffolding** — see §10. They mutate `Na
 
 1. ~~**The real registration order.**~~ **RESOLVED 2026-09-08** — `Empty = 0` first, then strictly
    descending by value, in both registries. `EW-5`, and §13.
-2. **Whether a channel value is what `keymap.ini` stores.** The keymap document proves
+2. ~~**Whether a channel value is what `keymap.ini` stores.**~~ *(Superseded: **ANSWERED 2026-09-22 (FABLE)** on the system page - the node `+0x18` value IS the keymap control code for buttons too, 13 of 13 worked examples, 46 of 46 button values inside the band 11-27; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* The keymap document proves
    `keymapCode = PInputKeySemantic − 1` for keys, 28 of 28; **no equivalent check was run for the
    `Button_*` channels.** `DM-3`.
-3. **Whether the alias groups stay indistinguishable downstream.** They are one channel here;
+3. ~~**Whether the alias groups stay indistinguishable downstream.**~~ *(Superseded: **ANSWERED 2026-09-22 (FABLE)** on the system page - downstream separates mouse buttons, codes 1-3 on their own backend, from pad buttons, 11-27; but no name reaches codes 1-3, so `Button_LeftMB` binds the pad; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* They are one channel here;
    whether a consumer separates mouse from pad is unread. `DM-1`.
 4. ~~**Whether 143 and 97 are complete.**~~ **RESOLVED 2026-09-08** — the live chains are exactly
    **143 and 97** with **0 live-only names**, so nothing is registered at runtime in the state

@@ -9095,7 +9095,10 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   unsupported flags. Hash audit clean (standing unreproduced/EXP-stamp set only, nothing on batch hosts).
   Neighbour guard ADDS NOTHING (451 -> 451) on complete worktree sides - the earlier 5-pair refusal was an
   incomplete-checkout artifact. Audit splice `4155f5009`.
-- **Lifecycle:** publish `7f773f19f`, seal `93e7bd189`; tail+board-tail+fin in flight.
-- **Exact next action:** board-tail -> fin marker. Then the two READY EC7-directed requests:
-  OPUS-REQ-EC7-BLINKING-ICON-EQ0-1001, OPUS-REQ-EC7-ROUND5-FOLLOWUPS-1001.
-- **Latest coherent commit:** `93e7bd189` (batch-171 seal); research task DONE at `69b8ed680`.
+- **Lifecycle:** COMPLETE - publish `7f773f19f`, seal `93e7bd189`, tail `1748202e1`, board-tail `51507472a`,
+  fin `a84c42f27`; all board tasks DONE (research `69b8ed680`, pub, seal, tail).
+- **Requests closed:** OPUS-REQ-EC7-BLINKING-ICON-EQ0-1001 (`f007a62da`, 003BC160 hit-test corrected,
+  byte-verified) and OPUS-REQ-EC7-ROUND5-FOLLOWUPS-1001 (`211260c79`, select_imgui pin retired, form drift
+  dispositioned, pipeline review in the round-5 folder).
+- **Exact next action:** board-tail commit for the two request finishes, then batch 172 frontier recompute.
+- **Latest coherent commit:** `211260c79` (round-5 follow-ups publish).

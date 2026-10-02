@@ -116,8 +116,8 @@ order in one translation unit:
 | `PointSound` | **yes** — `007F1A50` | `sqrtps` ×1 |
 | `PolygonSound` | **yes** — `007F25E0` | `sqrtps` ×7 |
 | `DynamicSound` | **yes** — `007F1340` | `sqrtps` ×1 |
-| `DirectionSound` | **no** — its heavy method is slot 7, `007F1EC0` | `rsqrtps` ×1 |
-| `AmbientSound` | **no override at all** | none |
+| `DirectionSound` | ~~**no** — its heavy method is slot 7, `007F1EC0`~~ **yes** - superseded by the 2026-09-14 correction below | `rsqrtps` ×1 |
+| `AmbientSound` | ~~**no override at all**~~ **yes** - a constant position (`007F1D10`); superseded by the correction below | none |
 
 > **Corrected 2026-09-14 (FABLE, `CO-4` / `CO-6`), from the vtables themselves: every source class overrides slot 34.
 > What differs is how much each one computes there.** Read straight from the five RTTI-named 40-slot vtables:
@@ -127,7 +127,7 @@ order in one translation unit:
 >
 > | slot | `AmbientSound` | `PointSound` | `DirectionSound` | `DynamicSound` | `PolygonSound` |
 > |---:|---|---|---|---|---|
-> | 7 | `007F0210` (262 B) | `007F1960` (212 B) | `007F1EC0` (188 B) | `007F1220` (210 B) | `007F24F0` (219 B) |
+> | 7 | `007F0210` (262 B), inherited from `SoundSourceObject` (corrected 2026-10-01, OPUS) | `007F1960` (212 B) | `007F1EC0` (188 B) | `007F1220` (210 B) | `007F24F0` (219 B) |
 > | 34 | **`007F1D10` (33 B)** | `007F1A50` (497 B) | **`007F1F80` (35 B)** | `007F1340` (742 B) | `007F25E0` (2,115 B) |
 > | 35 | `007F1CE0` (42 B) | `007F1850` (265 B) | `007F1DD0` (232 B) | `007F10F0` (265 B) | `007F20E0` (1,032 B) |
 > | 36 | `007E57B0` → `false` | `007F1A40` → byte `+0x128` | `007E57B0` → `false` | `007F1300` (8 B) | `007F25D0` (8 B) |
@@ -157,7 +157,7 @@ order in one translation unit:
 >   and returns 0 (`007F1CE0`). The other four compute theirs.
 > - **Slot 39** returns `false` for Ambient and Direction and `true` for Point, Dynamic and Polygon: a
 >   geometric-source flag.
-> - **Slot 7 is per-class in all five.** It is not `DirectionSound`'s substitute for slot 34.
+> - ~~**Slot 7 is per-class in all five.**~~ *(Corrected 2026-10-01, OPUS: in four of five - `AmbientSound`'s slot 7 is `SoundSourceObject`'s own `007F0210`.)* It is not `DirectionSound`'s substitute for slot 34.
 
 > **A sound that is everywhere needs no geometry, and the class that models it has none.**
 > `AmbientSound` contributes **three** methods and not one SIMD instruction. `PolygonSound` needs
@@ -259,7 +259,7 @@ optionally calls **`this->vtable[0x20]`** (a virtual on itself) whose result is 
 
 - **Sound source *shape* is a class, not a parameter.** Making a point source behave like a river is
   not a tuning change; it is a different object with a different slot-34 implementation.
-- **`AmbientSound` has no spatial method**, so nothing about listener position can affect it. A mod
+- ~~**`AmbientSound` has no spatial method**, so nothing about listener position can affect it.~~ *(Superseded 2026-09-14, CO-4: its slot 34 writes a constant position, so listener position still does not move it. Struck 2026-10-01, OPUS.)* A mod
   that expects an ambient bed to attenuate is fighting the class hierarchy.
 - **The five heavy methods have no direct callers** — they are reached through vtables only, so a
   call-graph search for them returns nothing. That is what made this family invisible until the RTTI
@@ -321,7 +321,7 @@ optionally calls **`this->vtable[0x20]`** (a virtual on itself) whose result is 
   - Its slot 34 writes the constant position `(0, 0, 0, 1)` (`007F1D10`).
   - Its slot 35 returns constant outputs (`007F1CE0`).
   - Slots 36 and 39 return `false`; the geometric classes return `true` at 39.
-  - It contributes five slots of its own (0, 1, 7, 34, 35), not three. No function in its vtable calls the listener
+  - ~~It contributes five slots of its own (0, 1, 7, 34, 35), not three.~~ *(Corrected 2026-10-01, OPUS, from the vtable bytes: it differs from `SoundSourceObject` (`01CB98A8`) at slots 0, 1, 34, 35 and 39, but slot 1 (`007E3260`) and slot 39 (`007E57B0`) are shared stubs and slot 7 (`007F0210`) is the parent's own entry, so its own bodies are 0, 34 and 35 - three, as `UQ-267` says.)* No function in its vtable calls the listener
     accessor `007BB610`; all 15 call sites are in the Point, Direction, Dynamic and Polygon bodies and the driver.
 - [x] ~~**UQ-266.** **The full slot map of `Sd::Lay::SoundObject`** — the base class whose 4 methods every source
   inherits.~~
@@ -452,7 +452,7 @@ optionally calls **`this->vtable[0x20]`** (a virtual on itself) whose result is 
 | Nine classes, 39 virtual methods, contiguous per class | the recovered RTTI vtable map (`vtable-method-index.md`) | 4 |
 | All 12 SIMD-bearing functions are in this cluster | full-image instruction decode over every function body | 1 |
 | ~~All 12 callers are Audio-owned~~ **Nine distinct callers; five from outside the cluster; all Audio-owned** | caller census over the current call graph, **corrected 2026-09-07** — the original counted edges, and four of the nine callers are cluster members | 1 + 11 |
-| Slot 34 overridden by Point / Polygon / Dynamic and not by Ambient | vtable map slot numbers | 4 |
+| ~~Slot 34 overridden by Point / Polygon / Dynamic and not by Ambient~~ *(Superseded 2026-09-14, CO-4: all five override slot 34; Ambient's writes a constant position. Struck 2026-10-01, OPUS.)* | vtable map slot numbers | 4 |
 | `PolygonSound::slot34` holds 7 × `sqrtps` | instruction decode of its exact body | 1 |
 | The `+0xE4` gate and the listener reads | complete decompilation of `PointSound::slot34` | 1 |
 | **The player-facing shape descriptions in §1** | ~~inference from class names plus the SIMD distribution~~ — **UPGRADED 2026-09-07 to tier 1 for `PolygonSound`**: the plane projection, point-in-triangle test and three edge distances are read in full (see the `CO-3` extension). `AmbientSound`, `DynamicSound` and `DirectionSound` remain **tier 8** — class name plus instruction census, no body read. | 1 / 8 |
@@ -509,7 +509,7 @@ to the **face and its edges**. A designer picks per source.
 |---|---|
 | `+0x0E4` | float gate — `<= 0.0` disables the source entirely |
 | `+0x0E0` | flag byte, cleared on the disabled path |
-| `+0x104` | **mode byte** — `0` selects nearest-vertex, non-zero selects plane-and-edges |
+| `+0x104` | **mode byte** — ~~`0` selects nearest-vertex, non-zero selects plane-and-edges~~ 0-4: point set, polyline, triangle strip, triangle fan, triangle list *(superseded by the CO-8 box above; struck 2026-10-01, OPUS)* |
 | `+0x108` | **vertex count** — `< 1` disables the source |
 | `+0x110 …` | the vertex array, **16-byte stride** (four floats each) |
 | `+0x218` | written `0xFFFFFFFF` whenever an edge improves the best distance |
@@ -906,7 +906,7 @@ inside `0046CC70`'s descriptor build.
 
 `003A0E20` (41 B) is the two-way index dispatch the audio bodies call:
 `ecx == -1` returns 0; `bt ecx, 0x1E` set splits `cl`/`ecx>>8` and
-tails `002DF4D0(cl, cl>>8, edx, r8d)`, clear tails `002DF220` - the
+tails ~~`002DF4D0(cl, cl>>8, edx, r8d)`~~ `002DF4D0((ecx >> 8) & 0xFF, ecx & 0xFF, edx, r8d)` *(corrected 2026-10-01, OPUS: `003A0E3C movzx ecx, cl` after `shr ecx, 8` is the first argument, `003A0E30 movzx edx, cl` the second)*, clear tails `002DF220` - the
 bit-30 selected decode path.
 Interior anchor `003A0E2A` (the `bt ecx, 0x1e` test).
 

@@ -1,0 +1,17 @@
+ok   sab files: 4609
+ok   magic sabf: 4609
+ok   +0x05 == 0: 512
+ok   +0x05 == 1: 4097
+ok   folders with more than one +0x0A: 0
+ok   se folders holding .sab: 267
+ok   se directories in the archive: 267
+ok   se003-se006 present: 0
+ok   se distinct values: 267
+ok   se ordinals missing from 0-267: [3]
+ok   shout folders: 132
+ok   shout jp / us folders: (66, 66)
+ok   shout distinct values: 83
+ok   shout range: (5172, 5256)
+ok   jp / us namesakes sharing a value: 0
+ok   distinct +0x0A overall: 350
+FAILS 0

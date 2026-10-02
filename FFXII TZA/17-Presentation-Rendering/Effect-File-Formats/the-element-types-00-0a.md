@@ -1,7 +1,7 @@
 ---
 system: the element types 0x00-0x0A
 category: 17-Presentation-Rendering
-status: "PARTIAL — GI-14 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the six step/update tail helpers, the line emitter `0039D6C0` and the record `+0x38` consumer are live. GI-8 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2). Was PARTIAL on: seven of the ten walks (the draws) are not read, so what those types look like on screen is not established; 0x01 is a point, 0x02 a sprite and 0x03 a line (2026-09-19); the update side (all ten tails, the cull test, the release, the child-spawn slots) is read whole and has its own page, an-effect-element-frame-by-frame"
+status: "DOCUMENTED — every register row is closed (owner re-status 2026-10-01, OPUS; documented_rule READY): GI-14 answered 2026-10-01 (OPUS, static - the six tail helpers, the line emitter and the blend value's consumer read, see the GI-14 section; review requested from SWE2-AUDIT-SEM). History: PARTIAL on GI-14 from 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930). GI-8 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2). Was PARTIAL on: seven of the ten walks (the draws) are not read, so what those types look like on screen is not established; 0x01 is a point, 0x02 a sprite and 0x03 a line (2026-09-19); the update side (all ten tails, the cull test, the release, the child-spawn slots) is read whole and has its own page, an-effect-element-frame-by-frame"
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -42,9 +42,9 @@ selects a *variant*, not an independent implementation:
   `00447830`/`00448800` for `0x02`/`0x05`/`0x06`/`0x07`, `0044C850`+`0044B960`
   for `0x0A`) — and in the 0x04/0x05/0x06/0x07 steps the tail is followed by
   extra helper work. All steps are 43–310 B **except `0x02`'s `00448DE0`
-  (739 B)**. The tail helpers `00442600`, `004428F0`, `0044B3C0`, `00449560`,
+  (739 B)**. ~~The tail helpers `00442600`, `004428F0`, `0044B3C0`, `00449560`,
   `00447830` and `00448800` were not instruction-read this pass — registered as
-  **GI-14**. (`0044A180` and `0044C850` are the shared `0x05`/`0x0A` tails, read
+  **GI-14**.~~ *(Read 2026-10-01, OPUS - the GI-14 section at the end of this page.)* (`0044A180` and `0044C850` are the shared `0x05`/`0x0A` tails, read
   2026-09-29 under GI-11, groups B1 and A5.)
 - **`update` is base + same tail.** Every derived update is exactly 56 B **except
   `0x02`'s `00448D70` (103 B)**: call the type-`0x00` update `002F2530` (2094 B —
@@ -197,7 +197,7 @@ setup `00539170` = base + five `3G` `+0x80`–`+0x180` + `1T@+0x1C0` + `4G@+0x1D
 
 | method | address | what it does |
 |---|---|---|
-| step | `0044BA80` | 54 B; base + shared tail `0044C850`, then step-only `0044B960` whose return goes to `+0x458` (`0044BA9B`–`0044BAA5`) |
+| step | `0044BA80` | 54 B; base + shared tail `0044C850`, then step-only `0044B960` whose return goes to `+0x458` (in `0044BA80`'s tail) |
 | update | `0044BA40` | base + tail `0044C850` (the step's extra `0044B960` is step-only) |
 | walk | `0044BAC0` | 3461 B; uses the bank **save/restore pair `0036D930`/`0036D8E0`** plus `0036DD80` (`vf00`), `0036D8E0`, `003A2B20`, `0039B620` |
 
@@ -270,13 +270,13 @@ then the map to the PC renderer's topology enum. That is a reading of six table 
 | mode | emitter | what it does |
 |---|---|---|
 | 0 | `0039D890` (point, 224 B), `0039D5A0` (line, 286 B), both read whole | builds the primitive on the current command list and submits it at once; the point emitter also clears record `+0x58`, which the constructor sets to 1 |
-| 1-7 | `0039D970` (point, 348 B, read whole); the line's `0039D6C0` (457 B) **not read (GI-14)** | first **appends a `0x28`-byte entry to the depth-sorted display list** (`[02F8F2F8]`, count word `02F8F2C6` - the Gi page's section 11): callback and argument null, its own command list at `+0x18`, **sort key `+8` := the projected point's third word (after the x and y words the cull test reads - so depth, by position), with the pass nibble `02AEE910` or-ed into bits 28-31**, a flag dword at `+0x20` from three predicates not read. Then the primitive, with record `+0x4C` := 1 and **record `+0x38` := a blend value** |
+| 1-7 | `0039D970` (point, 348 B, read whole); ~~the line's `0039D6C0` (457 B) **not read (GI-14)**~~ the line's `0039D6C0` (457 B, read 2026-10-01 by OPUS - the GI-14 section) | first **appends a `0x28`-byte entry to the depth-sorted display list** (`[02F8F2F8]`, count word `02F8F2C6` - the Gi page's section 11): callback and argument null, its own command list at `+0x18`, **sort key `+8` := the projected point's third word (after the x and y words the cull test reads - so depth, by position), with the pass nibble `02AEE910` or-ed into bits 28-31**, a flag dword at `+0x20` from three predicates not read. Then the primitive, with record `+0x4C` := 1 and **record `+0x38` := a blend value** |
 
 The blend value is `01EFAC20[mode]`, eight qwords: `0x44`, `0x48`, `0x42`, `0x44`, `0x49`, `0x46`, then two values that
 do not look like members (`0x80000000A8`, `4`). **Mode 6 does not use the table: it takes `02AEE908`, the `+0x30` track
 value** - an authored, animatable blend value. *The table values have the layout of a PS2 GS `ALPHA` register -
 `0x44` = (Cs - Cd) x As + Cd, normal; `0x48` = Cs x As + Cd, additive; `0x42` = Cd - Cs x As, subtractive; `0x49` = Cd x As
-+ Cd; `0x46` = Cd x (1 - As) - **an inference from the encoding; the consumer of record `+0x38` was not read (GI-14)**, and mode
++ Cd; `0x46` = Cd x (1 - As) - **an inference from the encoding; ~~the consumer of record `+0x38` was not read (GI-14)~~ ~~the value sits at the GiPrim command's `+0x30` and GiPrim hands it to its render context's vtable `+0x40` - the GI-14 section, corrected 2026-10-01, OPUS~~ record `+0x38` is right: `GiPrim` translates it through the GS ALPHA translator `001EE650` - the GI-14 section, re-corrected 2026-10-01, OPUS**, and mode
 7 indexes past the six plausible entries.*
 
 **This explains a threshold in the tails.** They apply the `+0x30` percent track to alpha only when definition `+0x49`
@@ -463,3 +463,41 @@ as an unbounded ratio downstream.
 **World — MECHANICAL (1 edge).** `00378540` (943 B, filed to no owner, resolved by the audit to World) allocates through `0036A190` (`00378586`). It shares the allocator and no effect state.
 
 **WorldAreaField — MECHANICAL (4 edges).** `MapRef_BeginLoadResources` (`00268750`), `00377DC0`, `00378030` and `00378BC0` allocate through `0036A190`. `00268750` calls it at `002687C7`. Field resource loading and the effect walk share the allocator and nothing else.
+
+## GI-14: the six tail helpers, the line emitter and the blend consumer read (OPUS, 2026-10-01)
+
+Static, read whole from the shipping image. `def` is the element's definition (`[element + 0x20]`), and the frame index
+every curve read takes is the element's `+0x44`. `004309C0` returns a float curve value (`movss` into the field),
+`004314E0` an integer one (`mov` from `eax`), and `0042FDB0` a packed colour (skipped when it returns `0x80808080`, then
+modulated by the element's `+0x1F0` through `0026EE00`). Every tail ends the same way. When `def + 0x49 >= 0x20` it
+scales alpha by the `def + 0x30` percent track. It mirrors the colour, then calls `005002E0(def, ...)`, which selects
+either `002F31C0(element, [element + 8])` or the per-element command interpreter `003A8950(2, element)`.
+
+| helper (type) | what it reads into the element | what it composes |
+|---|---|---|
+| `00442600` (`0x01`) | `def+0xD0` integer -> `+0x244`; colour `def+0x80` -> `+0x240` (mirrored to `+0x1F4`) | position `+0x60` -> `+0x230`, through the parent's matrix (`0039AF70` / `00398F90`) when `[+0x10]` is set; history `+0x70` -> `+0x80` |
+| `004428F0` (`0x03`) | rows `+0x110` / `+0x120` (`00430B90`); integer `def+0x180` -> `+0x258`; `003A2B20` -> `+0x240`; colours `def+0x190` -> `+0x250` and `def+0x1E0` -> `+0x254` | `00398480(+0x110)`, `003970F0`, `0039ADE0`, `00397ED0`, `0039AF70` / `00398F90` |
+| `0044B3C0` (`0x08`) | rows `+0x230`, `+0x240` (then `0043EEB0`), `+0x120`, `+0x280`, `+0x290` (`00430B90`); floats `def+0x1C0` -> `+0x260`, `def+0x1D0` -> `+0x264`; integers `def+0x2C0` -> `+0x270`, `def+0x2D0` -> `+0x274`, `def+0x2E0` -> `+0x278`; `003A2A10(+0x240)` | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0`, `003970F0` and `0039ADE0` on `+0x2C0` into `+0x2F0` |
+| `00449560` (`0x02`) | integer `def+0x150` -> `+0x284`; colour `def+0x80` -> `+0x280`; rows `+0x110` / `+0x120` (`00430B90`) | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0`, `0039ADE0(+0x230)` into `+0x260` |
+| `00447830` (`0x06`) | rows `+0x110` / `+0x120` (`00430B90`); ten floats `def+0x140`..`def+0x1D0` -> `+0x240`..`+0x264` (each `def+0x10*k` to its own field); integers `def+0x1F0` -> `+0x268`, `def+0x200` -> `+0x26C`, `def+0x210` -> `+0x270`; colour -> `+0x274`; float `def+0x1E0` -> `+0x280` | `00398480(+0x110)`, `0039AF70` / `00398F90` / `00397ED0` into `+0x80`, `002F3570`, `00397910`, `003970F0`, `0039ADE0` into `+0x2E0` |
+| `00448800` (`0x07`) | the same ladder as `0x06` one slot along: floats `def+0x140`..`def+0x1B0` -> `+0x24C`..`+0x268`, integer `def+0x1F0` -> `+0x26C`, `def+0x1C0` / `def+0x200` read, colour -> `+0x29C`, float `def+0x1E0` -> `+0x278` | the same compose chain as `0x06`, into `+0x80` and `+0x2E0` |
+
+**The mode 1-7 line emitter `0039D6C0` (457 B).** It appends a `0x28`-byte entry to the depth-sorted display list
+`[02F8F2F8]` (count word `02F8F2C6`):
+- callback null;
+- a fresh command list (`0020E680`) at `+0x18`;
+- sort key `+8` = the lesser of the two endpoints' depth words, with the pass nibble `02AEE910` in bits 28-31;
+- `+0xC` = 1;
+- a flag dword `+0x20` = `003A2C70()` OR 2 when `0024E460()` or `003A3D20()` is non-zero.
+
+It then builds a two-vertex `GiPrim` (`008642A0(list, 2)`, then `0039CDC0`) and writes each endpoint's four colour bytes
+as floats. It stores the blend value - `01EFAC20[mode]`, or the `+0x30` track `02AEE908` in mode 6 - at ~~the command's
+`+0x30`~~ `+0x30` of the pointer `008642A0` returns, which is the GiPrim object plus 8, so object `+0x38`; it also sets that pointer's `+0x44`, object `+0x4C`, to 1 *(re-corrected 2026-10-01, OPUS)*. It closes the list (`0020E670`). It is the line twin of the point emitter `0039D970`, which stores the
+blend value at the same offset (`0039DAAC`).
+
+~~**Where the blend value goes.** The value the section above calls record `+0x38` is the `GiPrim` command's `+0x30`.
+`GiPrim` (`00863D80`) reads it as a dword (`00863FF9`) and passes it as the fifth argument of its render context's
+vtable `+0x40` call (`00864029`). **Still open (GI-14, narrowed):** which class implements that slot, and so how the
+GS-ALPHA-shaped value becomes the actual blend state.~~
+
+**Where the blend value goes (re-corrected 2026-10-01, OPUS - the paragraph above was off by 8).** `008642A0` returns the new `GiPrim` object plus 8 (`lea rax, [rbx + 8]`), and both emitters address the command through that pointer. So their `+0x30` store is object `+0x38`, the record `+0x38` the section above names, and their `+0x44 = 1` is object `+0x4C`. `GiPrim` (`00863D80`, called with the object itself) tests `+0x4C`. When it is set, `GiPrim` passes `+0x38` to `001EE650`, the GS ALPHA to D3D11 blend translator of BC-1 (81-entry table `00902750` indexed `27·A + 9·B + 3·C + D`; [the BC-1 record](../../_index/candidates/bc1-selector-enum/README.md)). It then applies the result through the device's slot `+0x78`. So the value is a PS2 GS ALPHA register, and the port turns it into blend state as the GS would. The dword at object `+0x30` that `GiPrim` passes to the device's slot 8 (`PrimitiveRendererD3D11`, `006CAEB0`, stored at renderer `+0x208FC`) is a different field. **GI-14 is answered.**

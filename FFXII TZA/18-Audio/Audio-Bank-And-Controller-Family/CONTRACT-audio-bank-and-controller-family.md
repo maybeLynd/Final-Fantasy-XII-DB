@@ -69,7 +69,7 @@ bank    +0x08  an intrusive entry list; each node's payload is at node +0x10
         +0x38  the id the slot-10 and slot-9 gates test
 controller
         +0x08  the same entry list shape
-        +0x20  a SECOND BASE SUBOBJECT -- present in four of six (AC-3)
+        +0x20  the controller's embedded bank pool, a member object -- in four of six (AC-3, corrected 2026-10-01)
         +0x60  a keyed map, erased through slot 3
 ```
 
@@ -88,12 +88,12 @@ slots**, and every one of their slot 7s is a **52-byte** body in the sized-`oper
 **`AudioController` and `StreamAudioController` have 7 slots; the other four have 8.** *So "the
 controller layout" is not one layout either, and the extra slot is the whole difference.*
 
-**AC-3 — That extra slot is a SECOND BASE, and it is present in exactly four of six.** Each of the
+**AC-3 — That extra slot is ~~a SECOND BASE~~ a member-object thunk *(corrected 2026-10-01, OPUS, on BK `BD-4` and the bytes: `00217FD0` constructs the member at `lea rcx, [rbx+0x20]` through `00217E10`, the pool template; RTTI lists one base)*, and it is present in exactly four of six.** Each of the
 four 8-slot controllers' slot 7 is a **9-byte** thunk, and all four are the same two instructions —
 `add rcx, 0x20` then `jmp` — to **four distinct bodies of exactly 161 bytes each**. `add rcx, 0x20`
-before dispatch is the `this`-adjustment for a secondary base subobject at `+0x20`. *The four
+before dispatch is ~~the `this`-adjustment for a secondary base subobject at `+0x20`. *The four
 targets being separate 161-byte bodies rather than one folded body is what makes this four
-inheritance paths and not one.*
+inheritance paths and not one.*~~ the call into the bank pool embedded at `+0x20`; the four 161-byte targets are one body that differs only in the per-type bank constructor it calls *(corrected 2026-10-01, OPUS)*.
 
 **AC-4 — The bank broadcast dispatches through the BANK's own vtable, and re-resolves it on every
 entry.** `00222550` walks the `+0x08` list and calls `[this_vtable + 0x48]` — slot 9 — once per
@@ -113,7 +113,7 @@ proves AC-1 rather than merely asserting it: if the two halves were one hierarch
 offset, a bank's slot 0 would be a destructor — and the one bank that does not share the common body
 still is not one.*
 
-**AC-6 — Slot 10 is a FIVE-BIT COMMAND MASK on one shared manager byte, split across the classes.**
+**AC-6 — Slot 10 is a ~~FIVE-BIT~~ SIX-BIT *(corrected 2026-10-01, OPUS: bits 0x01-0x20, the six tests listed below)* COMMAND MASK on one shared manager byte, split across the classes.**
 ~~Carried from [the page](audio-bank-and-controller-family.md) §2 and not re-derived: every concrete bank reads the
 manager's `+0x3C` and re-dispatches a different slot per bit — `& 1` → slot 0, `& 2` and `& 4` →
 slot 9, `& 8` → slot 3, `& 0x10` → slot 4, `& 0x20` → slot 5.~~ *Corrected 2026-09-26 (FABLE, Claude Opus 5.5), from
@@ -163,7 +163,7 @@ AC-6 reads. **Not owned:** the driver objects both halves call into.
 
 ## 7. State transitions
 
-Per controller: *register an entry (slot 5) → drain the request queue (slot 7, where present) →
+Per controller: *register an entry (slot 5) → ~~drain the request queue~~ take a free bank from the pool (slot 7, where present) →
 dispatch → erase from the map (slot 3).* Per bank: *broadcast over the entries (slot 0) → arm one
 (slot 9) → tear down (slot 2, destructor at slot 7).*
 
@@ -178,7 +178,7 @@ Deterministic. No generator is drawn in either layout.
 ## 10. Failure paths and edge conditions
 
 - `StreamAudioController` has **no slot 7**, so anything that dispatches slot 7 generically across
-  controllers is wrong for it — its queue drain is reached directly instead (AC-2, AC-3).
+  controllers is wrong for it — its ~~queue drain~~ pool step is reached directly instead (AC-2, AC-3).
 - A bank whose entry list is empty broadcasts to nobody: `00222550` tests head against the sentinel
   before the first iteration (`00222571`).
 
@@ -203,10 +203,10 @@ assert it is `00222580`, the vtable load (AC-4). Sweep `00222C00` for `free` and
 
 ## 14. Unresolved
 
-- What the secondary base at `+0x20` **is** — AC-3 establishes that four controllers have one and
-  that its methods are four separate bodies, not what interface it implements.
+- ~~What the secondary base at `+0x20` **is** — AC-3 establishes that four controllers have one and
+  that its methods are four separate bodies, not what interface it implements.~~ *(Superseded: it is no base; BK `BD-4` reads it as the controller's bank pool. Struck 2026-10-01, OPUS.)*
 - Why `StreamAudioController` alone among the concrete controllers lacks it.
-- What the five commands of AC-6's mask mean to a player.
+- What the ~~five~~ six commands of AC-6's mask mean to a player.
 
 ## 15. Evidence
 

@@ -324,7 +324,7 @@ and both bands travel the same loader path (`0021A040` → `00222DC0`). Their `.
 same four-chunk schema (`snd ` `seq ` `trk ` `mtrl`, chunk flag `0x00100000`), and the `snd `
 program header is byte-identical in shape across folders.
 
-**`sabf +0x0A` is a flat bank index, not a class code.** Re-read as a `u16` over all 268 folders it
+**`sabf +0x0A` is a flat bank index, not a class code.** Re-read as a `u16` over all ~~268~~ 267 `se` folders *(corrected 2026-10-01, OPUS, by a census of all 4,609 `.sab` headers: the archive holds 267 `se` folders - no `se003`-`se006` - so the ordinals run 0-267 with slot 3 unused; the 350 distinct values the container page counts are these 267 plus 83 in the 132 `shout` banks, `5172`-`5256`; every folder carries exactly one value; `../../_index/candidates/opus-sab-param-census-1001/`)* it
 is a strict ordinal — se000→0, se001→1, se002→2, se007→4, se010→5, se050→6, se100/se101→7/8,
 se150/se151→9/10, se200–se433→11–244, se600–se610→245–255, se650→256, se700–se709→257–266,
 se434→267 — one slot per folder in the global bank table. Its single identified reader
@@ -404,7 +404,7 @@ dominant (varies widely when `w0hi = 2`), `w0hi ∈ {1, 2}` — byte-identical i
 `.seb` node's dead carryover u32 (`{1–16|0x80, 0xE0, 0x01, 0x00}`), confirming the two chunk
 families were authored by the same record template.
 
-*DATA: the id→file join over all 632 ids, the `sabf` `+0x05`/`+0x0A` census over 268 folders, the
+*DATA: the id→file join over all 632 ids, the `sabf` `+0x05`/`+0x0A` census over ~~268~~ 267 `se` folders *(corrected 2026-10-01, OPUS)*, the
 `SeSep` payload census over all 6,523 chunks (flag byte + dword0 subfields + payload sizes), and
 the payload-consumption trace; static: `00222DC0`, `0021A040`, `002DF070`, `001DBE60`,
 `007EE01D`, `003638B0`, `003631B0`, `00223190`, `002230D0`–`002234D7`, ~~`00213140`/`007EFC40`~~ (see the

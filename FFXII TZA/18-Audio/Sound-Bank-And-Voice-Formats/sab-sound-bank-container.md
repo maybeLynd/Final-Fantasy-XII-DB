@@ -344,7 +344,7 @@ one sequence across 116. This is a fixed schema, not a variable container, and i
 as the `.ard`'s "exactly four `st2e` tables in 166 of 166".
 
 **What varies.** `nameLength` is 5 (4,345 — the `se` banks, names like `se000`) or 7 (264 — the
-`shout` banks, `shout00`). `+0x05` is 1 in 4,097 and 0 in 512. `+0x0A` takes 350 distinct values in
+`shout` banks, `shout00`). `+0x05` is 1 in 4,097 and 0 in 512. `+0x0A` takes 350 distinct values *(267 `se` folder ordinals plus 83 `shout` values, one per folder - census 2026-10-01, OPUS, `../../_index/candidates/opus-sab-param-census-1001/`)* in
 `.sab` and is **constant `0x2710` = 10,000 in all 116 `.mab`** — a round decimal constant, which
 usually means a rate or a scale, and is not decided here.
 
@@ -445,12 +445,12 @@ arithmetic might be a decompiler artefact — it is five consecutive instruction
 - **Nothing about chunk contents.** `snd `, `seq `, `trk `, `mtrl`, `musc` and `inst` are located,
   bounded and named; none is parsed. The obvious reading — samples, sequences, tracks, materials —
   is **not** established, and the tags are not evidence for it. → `PROPOSED-repos-4b-10`
-- **`+0x05` and `+0x0A` are undecided.** `+0x05` is a 0/1 split of 512 against 4,097; `+0x0A` is
+- ~~**`+0x05` and `+0x0A` are undecided.** `+0x05` is a 0/1 split of 512 against 4,097; `+0x0A` is
   constant `10000` in `.mab` and takes 350 values in `.sab`. Neither is read by the two functions
   read here, so both are `Inert` **with respect to those functions only**, not proven unread by the
-  program. → `PROPOSED-repos-4b-11`
-- **How the 4,345 `se` banks are addressed is not established.** Their paths are not in the binary,
-  and path-table kind 33 begins with `shout` entries. → `PROPOSED-repos-4b-12`
+  program. → `PROPOSED-repos-4b-11`~~ *(Superseded, struck 2026-10-01, OPUS: §3 (2026-09-21) finds the reader `007EE01D movzx ebx, word [rcx+0xA]` / `007EE02B cmp bx, 1`, which zeroes `frpan` when `+0x0A` is 1, and the map sound list page (2026-09-27) gives `+0x0A` as a per-folder ordinal 0-267 and `+0x05` as the block / per-sound split. Whether the 350 distinct values in all `.sab` files agree with ~~268~~ 267 `se` folders plus the `shout` banks ~~is not re-counted here~~ is re-counted 2026-10-01 (OPUS): they do - 267 `se` ordinals (0-267, slot 3 unused) plus 83 `shout` values (`5172`-`5256`) make the 350, one value per folder; census `../../_index/candidates/opus-sab-param-census-1001/`.)*
+- ~~**How the 4,345 `se` banks are addressed is not established.** Their paths are not in the binary,
+  and path-table kind 33 begins with `shout` entries. → `PROPOSED-repos-4b-12`~~ *(Superseded: answered in §3 (2026-09-18) - the 248 block banks open through `%s/se%03d/se%03d%s`, the other 4,097 through the factory `00222DC0` with `%s/se%03d/se%06d%s`. Struck 2026-10-01, OPUS.)*
 - **The callers of `Sab_FindChunk` were not audited**, so "no bounds check relates `chunkCount` to
   `totalSize`" is a property of that function and **not** a claim that a malformed bank can be made
   to fault.

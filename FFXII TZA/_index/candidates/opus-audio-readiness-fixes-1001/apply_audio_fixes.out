@@ -1,0 +1,79 @@
+CHECK FAILS 0
+ALREADY CSR: and all three reset to `-1` by the 582-byte teardo
+ALREADY REQ: (`003A14E9`, `003A1568`, `003A15E7`); it first res
+ALREADY REQ: | `003A13F0` | `Audio_ReleaseBankSlots` | 582 B | 
+ALREADY CSR: `002DF236 cmp ecx, -1` / `je` and `002DF23B call 0
+ALREADY CSR: `ecx == -1` or a zero from `003603C0` returns 0 im
+ALREADY CSR: **`00210C50` remains    unread**, and is now the w
+ALREADY CSR: | any execution of this path, isolated or live | *
+ALREADY REQ: | 61 B | same shape, passes only `0x40` |
+ALREADY REQ:   +0x03  u8   handle      the value returned to ca
+ALREADY REQ: `+2` flags, `+3` handle |
+ALREADY REQ: `+0x3C` = `id / 100` (the `0x10624DD3` magic divid
+ALREADY REQ: The `id / 100` group at `+0x3C` is measured (`imul
+ALREADY ENG: in the sub-state entered when its     parameter `+
+ALREADY LAY: tails `002DF4D0(cl, cl>>8, edx, r8d)`
+ALREADY LAY: | `DirectionSound` | **no** — its heavy method is 
+ALREADY LAY: | `AmbientSound` | **no override at all** | none |
+ALREADY LAY: > | 7 | `007F0210` (262 B) |
+ALREADY LAY: > - **Slot 7 is per-class in all five.**
+ALREADY LAY: - **`AmbientSound` has no spatial method**, so not
+ALREADY LAY: It contributes five slots of its own (0, 1, 7, 34,
+ALREADY LAY: | Slot 34 overridden by Point / Polygon / Dynamic 
+ALREADY LAY: | `+0x104` | **mode byte** — `0` selects nearest-v
+ALREADY DRV: setting the ready byte `+0xE0`
+ALREADY CBK:         +0x20  a SECOND BASE SUBOBJECT -- present 
+ALREADY CBK: **AC-3 — That extra slot is a SECOND BASE, and it 
+ALREADY CBK: before dispatch is the `this`-adjustment for a sec
+ALREADY CBK: drain the request queue (slot 7, where present)
+ALREADY CBK: its queue drain is reached directly instead
+ALREADY CBK: - What the secondary base at `+0x20` **is** — AC-3
+ALREADY CBK: Slot 10 is a FIVE-BIT COMMAND MASK on one shared m
+ALREADY CBK: - What the five commands of AC-6's mask mean to a 
+ALREADY BK: a five-bit command mask.**
+ALREADY BK: `rax = [this]` loaded once before the loop,
+ALREADY BK: and the base constructor `002130E0` zero-fills `+0
+ALREADY BK:   - The base constructor `002130E0` is used by a 3
+ALREADY BK: The +0x50 field the Sep slot-8 bodies require non-
+ALREADY BK: so 2 concurrent music voices, 96 environmental, 25
+ALREADY CSP: the bank and controller > family remains uncontrac
+ALREADY CSP: | **Uncontracted** | [the bank and controller fami
+ALREADY CSP: - The bank and controller family, S-41's other unc
+ALREADY CSP:  — S-41's remaining page 
+ALREADY SAB: - **`+0x05` and `+0x0A` are undecided.** `+0x05` i
+ALREADY SAB: - **How the 4,345 `se` banks are addressed is not 
+ALREADY MCF: (the XAudio-side calls)
+ALREADY MCF: `002256F0(arg4 = 0x7F, the volume)`, `002257E0(arg
+ALREADY MCF: What `0x40` and `0x7F` set on the bank (`002256F0`
+ALREADY MCF: the `bgmstreamstop` close this page's state 6 name
+ALREADY MCF: `span` **0 in 169** (max 5)
+ALREADY AREA: `[022DBA50]` live
+ALREADY CFM: the 22 cases and 20 mutants stay as recorded.
+ALREADY CFM: the table producer and lifetime (`DG-1`),
+ALREADY CMC: contract: Load the music-control table once per pr
+ALREADY FADE: `dt` itself (the `xmm1` argument) was not traced, 
+ALREADY CFG: arms compute `1−(1−t²)³`, `1−(1−t)²`, `t²`, `powf(
+ALREADY TRG: | `007BFEB0(i)` | `+0x254 + i*0x30`, i = 0, 1 |
+ALREADY TRG: starting at `+0x254`, so index 0 reads `+0x254`/`+
+ALREADY TRG:   +0x254  f32[]  parameter block, index 0   } stri
+ALREADY TRG: block(i) at this + 0x254 + i*0x30      (i = 0, 1)
+ALREADY TRG: -> FUN_007e7300   dispatch to playback   (unread)
+ALREADY TRG: **Downstream:** `FUN_007e7300`, unread.
+ALREADY TRG: Nothing here claims what they adjust — calling the
+ALREADY WVAR: **Read 2026-09-18 (FABLE): the predicate at `007CF
+ALREADY WVAR: so it is a byte test on that float's low byte, tru
+ALREADY WVAR: | `007CF830` | is a range authored (a byte test on
+ALREADY WVAR: the 007CF830 predicate read 2026-09-18 (is a range
+ALREADY VAR: and selection always falls through to the uniform 
+ALREADY ANIM: **Gameplay - SHARED GENERATOR.** The picker draws 
+ALREADY VPK: 0 free · 1 already resident · 2 requested · 3 load
+ALREADY DRV: **Status is PARTIAL and the scope limit is importa
+ALREADY DRV: **Why this document exists at PARTIAL:**
+ALREADY DRV: **Still open:**         which rows of the options 
+ALREADY DRV: | `SQEX::Sd::Driver::Core::CoreSourceVoice` | 16 |
+ALREADY VAR: **PARTIAL.** `SwitchSound` is read
+ALREADY R0:   **PARTIAL, tier 1.** The 64 voice slots
+ALREADY R0: _None yet._ **This is the second-largest owner cat
+ALREADY R1: **The largest undocumented hole in the database by
+ALREADY CFG: Which game setting drives which category is not tr
+FAILS 0

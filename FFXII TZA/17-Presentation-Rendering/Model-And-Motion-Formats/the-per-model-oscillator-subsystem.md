@@ -74,6 +74,7 @@ always reached through the `[r14]` encoded-id resolve). Fields read this pass:
 | `+0x00` | u32 | encoded id resolved by `0020E600` → the `0x30`-stride entry array (`0040AEC1`–`0040AED0`) |
 | `+0x04` | u8 | entry count |
 | `+0x05` | u8 | if set, `+0x0C` is resolved and *its* `[0]` resolved again before proceeding (a parent indirection, `0040AD0E`–`0040AD28`) |
+| `+0x08` | u32 | id → an object whose `+0x00` id resolves to the skeleton's `0x290`-stride bone array, read by `0040DBB0` (`0040DC6B`–`0040DC79`; added 2026-10-01, OPUS) |
 | `+0x0C` | u32 | parent id (only when `+5` set) |
 | `+0x10` | f32 | bank row `022D9390` (VU vector row 31) gets the whole `+0x10` xmmword; `1.0f / [+0x10].x` goes to Q `022D9198` and accumulator `022D9394` (`0040AD28`–`0040AD97`) |
 | `+0x1C` | s32 | stored to `022D8FB0`, then the 16-byte row `022D8FB0` is copied to `022D9350` (`0040AD63`–`0040AD88`) |
@@ -138,8 +139,8 @@ once per sub-step but the node apply happens on one fixed pass.
 
 ## 4. What the apply writes — the H1 verdict
 
-`0040DBB0` resolves a four-deep id chain per entry — `[entry + 8]` → object → `[obj + 4]` →
-object → `[obj]` → object — and walks a `0x290`-stride record array indexed by a u16. From each
+`0040DBB0` ~~resolves a four-deep id chain per entry — `[entry + 8]` → object → `[obj + 4]` →
+object → `[obj]` → object~~ *(corrected 2026-10-01, OPUS, at the bytes: two two-step resolves, not one four-deep chain, both through `0020E600`. The record's `+0x08` id resolves to an object whose `+0x00` id resolves to the skeleton's `0x290`-stride bone array (`0040DC6B`–`0040DC79`). The entry's `+0x08` id resolves to an array of `0x40`-byte sub-entries, one per count in entry `+0x00` (`0040ECEB`–`0040ECF2`), each holding at `+0x04` an id that resolves to an object whose u16 `+0x00` is the bone index (`0040DC63`–`0040DC7E`))* — and walks a `0x290`-stride record array indexed by a u16. From each
 `0x290` record it loads four xmmword rows at `+0x80`–`+0xB0` straight into **VU vector rows 1–4**
 (`022D91B0`–`022D91E0`, `0040DC93`–`0040DD2D`) and a second 4×4 at `[sub-obj + 0x150]`–`+0x180`
 into rows 5–8 (`022D91F0`–`022D9220`, `0040DE9E`–`0040DEEF`), computes a position delta
@@ -155,8 +156,8 @@ inputs are the two phase pairs of §2, whose speeds are re-drawn from `003D8E50`
 perturbation helper the weather system uses — which is the concrete mechanism behind wind/gust
 sway. ~~What the `0x290` records are *named* (node vs bone vs attachment) is not established~~
 *(settled: they are the skeleton's bone records — "Not established this pass" below, named
-2026-09-18 FABLE)*; the four-deep resolve chain's intermediate object types are likewise
-unnamed — registered as **GI-19**.
+2026-09-18 FABLE)*; the resolve chain's intermediate object types are likewise
+unnamed — registered as **GI-19**. *(Narrowed 2026-10-01, OPUS: the chain is the two two-step resolves above; only the class names of the three intermediate objects remain open.)*
 
 ## 5. The parameter-install path (`0054B1F0`)
 
@@ -454,8 +455,8 @@ routine `0040ABF0` (241 B); counts from the authored-command census.*
 The per-record half of an oscillator - the pair this page describes as advanced "while `+0x3E` is set" - is switched
 by the animation. Authored command `0x3F`
 ([the authored-command page](../Authored-Commands/the-authored-presentation-command-handlers.md)) acts only on a root
-render record (its word `+6` is -1) and posts a callback across the record's hierarchy with a **preset** (command word
-`+2`; `0xFFFF` clears the id), an id and a flag (word `+0x10`: low twelve bits, bit 15) and a **direction** (three
+render record (its word `+6` is -1) and posts a callback across the record's hierarchy with ~~a **preset** (command word
+`+2`; `0xFFFF` clears the id), an id and a flag (word `+0x10`: low twelve bits, bit 15)~~ a **bone** (command word `+2`; `0xFFFF` zeroes the preset), a **preset** and a flag (word `+0x10`: low twelve bits, bit 15) *(corrected 2026-10-01, OPUS: the two words were swapped - the authored-commands page's GI-15 section)* and a **direction** (three
 floats `+4`..`+0xC`). For each record the callback resolves the resource entry, its rig
 ([the rig](../Character-Render-Records/the-rig-of-seventeen-controllers.md)) and the rig's controller 0 - this
 object - and calls `0040ABF0(object, preset, &direction, id, flag)`:
@@ -465,7 +466,7 @@ object - and calls `0040ABF0(object, preset, &direction, id, flag)`:
   normalised);
 - `+0x2C` := the preset's parameter block, `01EFFA30 + (preset - 1) x 0x20` - the block the per-record pair's speed and
   amplitude re-draws read;
-- `+0x3C` := the id, `+0x3F` bit 3 := the flag, bit 1 raised so the pair re-draws at once.
+- `+0x3C` := ~~the id~~ the bone, which the heavy stage `0040FF30` reads *(corrected 2026-10-01, OPUS)*, `+0x3F` bit 3 := the flag, bit 1 raised so the pair re-draws at once.
 
 It is authored 3,108 times, in `ability_ready`, `magic_ready` and `magic` blocks of party members, NPCs and summons:
 **a directed sway while casting** - robes and hair blown along an authored direction. *"Blown" is a reading of where it

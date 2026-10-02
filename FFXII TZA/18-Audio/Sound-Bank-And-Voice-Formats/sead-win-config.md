@@ -44,8 +44,8 @@ audit:
 ## 1. What the player sees
 
 **The mixer the game starts with.** The sound engine groups what it plays into the categories this
-file names — music, sound effects, voice — and sums them through its single `Master` bus. Which game
-setting drives which category is not traced here. Nothing in the file is per area or per scene.
+file names — music, sound effects, voice — and sums them through its single `Master` bus. ~~Which game
+setting drives which category is not traced here.~~ *(Superseded by §7 and `SD-22`: the Music / Sound Effect / Voice settings drive categories 1 / 2 / 3 through commands 0x13 / 0x14 / 0x15. Struck 2026-10-01, OPUS.)* Nothing in the file is per area or per scene.
 
 ## 2. The layout
 
@@ -449,8 +449,8 @@ unfixed because nothing reads it*. All nine consumers are Sound-family methods t
 scan finds no function that dereferences a `+0x38`-bound element into its `+0x02`/`+0x04`/
 `+0x10` payload. **What actually evaluates fades is `007A9E50`**, a fixed six-kind easing
 table keyed on `slot+0x1C` (the `r9d`/`edi` arg `007CA560` stores there): arms compute
-`1−(1−t²)³`, `1−(1−t)²`, `t²`, `powf(C,t)−1` and `C−powf(C,1−t)` (`C = [01CEBC08]`, via
-`00861F6E`), default `0`. The tick is `007CD000`: `t = slot+0x10 / slot+0x14` → `007A9E50` →
+`t` (id 0, linear), `1−(1−t²)³`, `1−(1−t)²`, `t²`, `powf(C,t)−1` and `C−powf(C,1−t)` (ids 1-5; `C = [01CEBC08]`, via
+`00861F6E`); ~~default `0`~~ an id above 5 returns 0 *(corrected 2026-10-01, OPUS: arm 0 at `007A9F17` returns `t`; the out-of-range exit is `007A9F14`)*. The tick is `007CD000`: `t = slot+0x10 / slot+0x14` → `007A9E50` →
 `current = start + eased·(target−start)` on the `ctx+0x840` slot, then a completion callback
 through `vft[+0x10]` once the eased output reaches `1.0`. So `curv` is **dead-authored on the
 shipped title**: bound for provenance, never evaluated — the same disposition as `ctgr +0x06`.

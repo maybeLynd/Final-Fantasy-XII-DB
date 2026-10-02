@@ -417,6 +417,15 @@ void translate(const BindingRecord *r, Frame *f)
 asymmetric by one, because the contributions are `−127` and `+128`, not `±127.5`. Stated as the code
 computes it, not rounded.
 
+*Which way `codeA` pushes, settled 2026-10-01 (OPUS, from the 15-Input reconstruction-readiness map's G-C3x, at the
+bytes `0019750A`-`0019753E` and `001975BB`-`001975EF`): the `invert` above is per ENTRY, not one flag. Entry 0 uses the
+input manager's byte `+0x08` (non-zero inverts; `0019751A`), entry 1 its `+0x09` (`0019752E`), entries 2 and 3 are
+always inverted (`00197536`-`0019753C`), entries 4-15 never. So section 3.2's "`codeA` negative, `codeB` positive"
+holds for entries 0 and 1 with those bytes clear and for entries 4-15, while in entries 2 and 3 - the LX and LY slots
+of the shipped profiles (`UQ-143`) - `codeA` adds `+0x7F` and `codeB` `-0x80`. That is why the keyboard records list
+"positive code, then negative" for D/A and S/W: D and S raise LX and LY. Which on-screen direction a low or high
+right-stick value turns the camera is not established here.*
+
 **Channel timing** (`0035F690`), thresholds `1790` / `1760` / `180`, accumulator ceiling `16384`,
 rate `±546` at `+0x18`, added once per tick — `16384 / 546 ≈ 30` ticks to traverse the range:
 
@@ -492,15 +501,15 @@ The single survivor is **kind A** and was already documented in the reconstructi
 |---|---|
 | ~~`DD-1`~~ | **ANSWERED** — `00195DF0`, in full, §7a |
 | ~~`DD-3`~~ | **ANSWERED** — `T-7` was right; the map was blind to image-base addressing, §14a |
-| `DC-2` | the device gate `FUN_001C1990()[0] != 1 \|\| FUN_00228480()`, tested before **every** binding |
-| `DC-3` | `008F3A28` = `120.0`, loaded every iteration and used on no path read |
-| `BP-3` | the `(kind, code)` walk in the second half of `00197160`, advancing 18 dwords |
-| `BP-4` | what the 0–16384 triangular accumulator **drives** |
-| `BP-5` | why codes `0`, `4`–`10` exist but are polled by nothing |
+| ~~`DC-2`~~ | *(Superseded: **ANSWERED 2026-09-14 (FABLE)**, register `DC-2` - statically the gate never closes: `001C1990` returns `[01F81268]`, whose one field is written once, `= 0`, by `001C1940`; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* the device gate `FUN_001C1990()[0] != 1 \|\| FUN_00228480()`, tested before **every** binding |
+| ~~`DC-3`~~ | *(Superseded: **ANSWERED 2026-09-14 (FABLE)**, register `DC-3` - `120.0` is `WHEEL_DELTA` for the mouse-wheel binding mode 4; the load at `00197253` is hoisted and used at `00197383`; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* `008F3A28` = `120.0`, loaded every iteration and used on no path read |
+| ~~`BP-3`~~ | *(Superseded: **ANSWERED 2026-09-12 (FABLE)**, register `BP-3` - the walk is over the `0x140` runtime record's axis entries; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* the `(kind, code)` walk in the second half of `00197160`, advancing 18 dwords |
+| ~~`BP-4`~~ | *(Superseded: **ANSWERED 2026-09-12 (FABLE)**, register `BP-4` - it is the controller vibration gain, which `0035F590` applies to the motors; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* what the 0–16384 triangular accumulator **drives** |
+| ~~`BP-5`~~ | *(Superseded: **CLOSED 2026-09-18 as `NO ADMISSIBLE SOURCE`** (proposed FABLE, signed OPUS), register `BP-5` - the shipped default profile binds none of them; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* why codes `0`, `4`–`10` exist but are polled by nothing |
 | `AP-4` | ~~why `InputManager_*` and `InputControl_*` share no call edge~~ **answered 2026-09-13:** one pipeline through the bridge `00862670` → `001E09B0` → `00196FF0`, which fills `InputControl`'s buffer `022CB680` ([input stack §2](../Input-Stack/input-stack-device-channel-and-bindings.md)) |
 | new | what `mgr[+0x39]`, `+0x3A` and `+0x3B` are. `+0x39` gates the poll, `+0x3A` bits 1 and 0\|2 gate banks B and C, `+0x3B` is cleared each poll — **their meaning is not established** |
 | new | the `0x1C` bytes per record beyond the translator's `0x140` |
-| new | the three bank writers `0015BD30` / `0015C0D0` / `0015BF20`, none read |
+| ~~new~~ | *(Superseded: **ANSWERED 2026-09-26 (OPUS)**, register `AU-4` - the region is three blocks at stride `0x420`, each built by its own CRT initialiser before `main`; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* the three bank writers `0015BD30` / `0015C0D0` / `0015BF20`, none read |
 
 ### 14a. `DD-3` resolved — `T-7` was right, and the instrument was blind
 
@@ -654,17 +663,17 @@ actually had.
 
 ## 17. What this contract does not establish
 
-- **That the three banks are keyboard / pad / something else.** The prose page calls `01DF1738`
+- ~~**That the three banks are keyboard / pad / something else.**~~ *(Superseded: register `UQ-143`, narrowed 2026-09-18 and 2026-09-25 (FABLE) - bank A's records 0 and 1 are the gamepad and mouse profiles, 2-4 the three keyboard layouts, and the two conditional banks follow system-stop slots: the battle-menu bank and the menu / cutscene-lock bank; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* The prose page calls `01DF1738`
   "live keyboard profile records"; this contract does not confirm what any bank *is*.
 - **What `mgr[+0x39]`/`+0x3A`/`+0x3B` mean.** Their control-flow role is read; their meaning is not.
 - **Anything about the assignment path in a live process.** §13 covers reading only.
 - **That eleven is the maximum.** Eleven is what `00196FF0` runs; no other caller of `00197160` was
   enumerated.
-- **Where group 2's four slots are consumed.** They are authored, conflict-checked, and **never
+- ~~**Where group 2's four slots are consumed.**~~ *(Superseded: `00197710` is their read surface - the keymap page's "Where the file's bindings are actually read" section; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* They are authored, conflict-checked, and **never
   published**; `00197710` is the obvious candidate and was not read.
-- **What records 0 and 1 of the bank at `01DF1480` hold.** The publisher writes only 2, 3 and 4.
+- ~~**What records 0 and 1 of the bank at `01DF1480` hold.**~~ *(Superseded: register `UQ-143` - the gamepad and the mouse profiles; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* The publisher writes only 2, 3 and 4.
 - **Why digital slots 8 and 9 are zeroed**, or what the authored profile puts there.
-- **What the axis entry's `+0x04` field means.** The publisher writes the literal `4` into all four
+- ~~**What the axis entry's `+0x04` field means.**~~ *(Superseded: **ANSWERED 2026-09-18 (FABLE)**, register `UQ-144` - the fields are `{kind, subKind, codeA, codeB}`, and the 4 is a sub-kind only the mouse kind reads; propagated 2026-10-01, OPUS, from the system page; register rows answered.)* The publisher writes the literal `4` into all four
   entries; the translator uses that field only in mode 3, and these are mode 2.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22

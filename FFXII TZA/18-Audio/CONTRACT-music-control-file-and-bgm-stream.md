@@ -1,5 +1,5 @@
 ---
-contract: Load the music-control table once per process and rebase it in place, and run the one script BGM stream
+contract: Load the music-control table (one writer; how often it is bound is not established, MC-1) and rebase it in place, and run the one script BGM stream
 category: 18-Audio
 scope: subsystem
 level: L2

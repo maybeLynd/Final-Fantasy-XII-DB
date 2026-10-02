@@ -1,0 +1,21 @@
+CHECK FAILS 0
+ALREADY input-stack-device-channel-and-bindings.md: | `001965E0` | 159 B | `InputManager_ValidateBindi
+ALREADY input-stack-device-channel-and-bindings.md: (returns 1 when no profile is fully in range)
+ALREADY keymap-ini-file-format-and-default-controls.md: | 488 B | copies 2 records `01F80130` → `01DF1738`
+ALREADY input-stack-device-channel-and-bindings.md: **`0x01DF15DC` is a staging buffer, not the author
+ALREADY input-stack-device-channel-and-bindings.md: **PARTIAL.** The three families,
+ALREADY r2-force-fight-toggle.md: **What the mode looks like on screen is not establ
+ALREADY CONTRACT-input-name-registry.md: 2. **Whether a channel value is what `keymap.ini` 
+ALREADY CONTRACT-input-name-registry.md: 3. **Whether the alias groups stay indistinguishab
+ALREADY the-input-name-registry-and-channel-aliases.md: - **That the alias groups are indistinguishable do
+ALREADY CONTRACT-binding-profiles.md: | `DC-2` | the device gate
+ALREADY CONTRACT-binding-profiles.md: | `DC-3` | `008F3A28` = `120.0`,
+ALREADY CONTRACT-binding-profiles.md: | `BP-3` | the `(kind, code)` walk
+ALREADY CONTRACT-binding-profiles.md: | `BP-4` | what the 0–16384 triangular accumulator
+ALREADY CONTRACT-binding-profiles.md: | `BP-5` | why codes `0`, `4`–`10` exist
+ALREADY CONTRACT-binding-profiles.md: | new | the three bank writers `0015BD30`
+ALREADY CONTRACT-binding-profiles.md: - **That the three banks are keyboard / pad / some
+ALREADY CONTRACT-binding-profiles.md: - **Where group 2's four slots are consumed.**
+ALREADY CONTRACT-binding-profiles.md: - **What records 0 and 1 of the bank at `01DF1480`
+ALREADY CONTRACT-binding-profiles.md: - **What the axis entry's `+0x04` field means.**
+FAILS 0

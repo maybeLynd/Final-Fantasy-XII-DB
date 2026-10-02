@@ -2,8 +2,5 @@
 # # call a member op; return sete(eax). Sibling of CallBoolNormalizeReturn
 # # (setne on al).
 address	targets
-002DEBB0	002DDE20
-002E05C0	00253C20
 002FFED0	002FFF50
 0035A250	0030BAD0
-004735E0	00466AD0

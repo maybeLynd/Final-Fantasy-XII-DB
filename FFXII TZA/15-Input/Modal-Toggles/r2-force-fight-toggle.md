@@ -30,7 +30,7 @@ audit:
 > and the area you are standing in can pin it.
 
 **PARTIAL, deliberately.** The input, the latch, the pin, the polarity and the output are all read
-at tier 1. **What the mode looks like on screen is not established**, and this document says so
+at tier 1. ~~**What the mode looks like on screen is not established**~~ *(Superseded 2026-10-01, OPUS: it is the HUD's `FLEEING` label - see the correction under the overview and SD-2 in §7.)* This document said so
 rather than attaching a plausible label — see §7. It was written from
 [the field record table](../../03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md)
 §11, which found this consumer while dispositioning a crossref finding.

@@ -1,0 +1,53 @@
+ok   00558607 mov word ptr [rbp + 0x37c], 0x401
+ok   00557DF0 movzx ecx, byte ptr [rbp + 0x37d]
+ok   002D45CA and dword ptr [rcx + 0xe0], 0xfffeffff
+ok   002D45D6 and eax, 1
+ok   002D45DB shl eax, 0x10
+ok   002D45E1 or dword ptr [rcx + 0xe0], eax
+ok   002D45E7 call 0x244820
+ok   002D4605 test dl, 8
+ok   002D460D shl eax, 0x1c
+ok   002D4610 sar eax, 0x1c
+ok   002D4613 test eax, 0xfffffffa
+ok   002D4618 jne 0x2d461f
+ok   002D461A cmp eax, 5
+ok   002D461D jne 0x2d463b
+ok   002D4622 mov rbx, qword ptr [rbx + 0x10]
+ok   002D4636 call 0x3689e0
+ok   0027EE84 mov ecx, 0x6e
+ok   0027EE89 call 0x2c9400
+ok   002C9409 mov rcx, qword ptr [rax + 0x2b8]
+ok   002C9415 movsx eax, word ptr [rcx + 0x44]
+ok   0039DAAC mov qword ptr [rdi + 0x30], rax
+ok   00863FF9 mov eax, dword ptr [r14 + 0x30]
+ok   00864029 call qword ptr [rbx + 0x40]
+ok   0040DBE8 lea rbp, [rax + 3]
+ok   0040DC63 mov ecx, dword ptr [rbp + 1]
+ok   0040DC66 call 0x20e600
+ok   0040DC6B mov ecx, dword ptr [r14 + 8]
+ok   0040DC72 call 0x20e600
+ok   0040DC77 mov ecx, dword ptr [rax]
+ok   0040DC79 call 0x20e600
+ok   0040DC7E movzx ecx, word ptr [rbx]
+ok   0040DC89 imul rdx, rcx, 0x290
+ok   0040ECE6 movzx eax, byte ptr [r13]
+ok   0040ECEE add rbp, 0x40
+ok   00569EDC call 0x568fe0
+ok   00569EEC mov byte ptr [rcx + 0x331], 6
+ok   00569242 cmp byte ptr [rax + 0xdeb], 0
+ok   00569252 lea rdx, [rbx + 0x128]
+ok   00569259 call 0x3282c0
+ok   0056928F mov qword ptr [rdi + rax*8], rsi
+ok   00569293 mov qword ptr [r15 + rax*8 + 0x2b896f8], rsi
+ok   00569ECA mov dword ptr [rbx + 0x344], eax
+ok   00569E06 call 0x264150
+ok   00569E20 or edx, 0xffffffff
+ok   00569E26 call 0x56a1d0
+ok   005695E2 movups xmmword ptr [rbx + 0x128], xmm0
+ok   00569612 call 0x2d7580
+ok   00569751 cmp byte ptr [rax + rbx + 0x177], 0
+ok   0056B58D mov dword ptr [rax + 0xc8], ebp
+ok   0056ACBB mov dword ptr [rdi + 0x580], 0xb4
+ok   0056BA04 call 0x247510
+ok   0056B7FC call 0x2d45c0
+FAILS 0

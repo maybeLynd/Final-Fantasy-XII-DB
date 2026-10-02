@@ -660,7 +660,7 @@ page](Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md)'s; t
 ### Interior citation — frontier hub `00361010` (2026-09-18, SWE2-EC7)
 
 `00361010` — 30 B, 5 callers: the pointer's only reader, as named above —
-`ecx >= 0` and `[022DBA50]` live, then `movzx eax, byte[rdx + rcx*2] & 1` at
+`ecx >= 0` and ~~`[022DBA50]`~~ `[022CBA50]` *(typo corrected 2026-10-01, OPUS; `00361014`)* live, then `movzx eax, byte[rdx + rcx*2] & 1` at
 [`00361023`](../_index/ADDRESS-INDEX.md); every other case returns 0. The
 per-area flag bit the music switch tests.
 

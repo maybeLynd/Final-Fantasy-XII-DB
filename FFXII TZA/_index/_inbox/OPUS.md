@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45558 epoch=3 queue_sha=48a9cbe5ada52bf8 -->
-> generated 2026-10-01T20:39:35+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45936 epoch=3 queue_sha=7c347950c5b84e0b -->
+> generated 2026-10-02T00:25:36+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-CLOUD-AUDIT-PRERUN-1001, OPUS-CLOUD-F-INTERIOR-W1-1001, OPUS-CLOUD-RE-READINESS-INPUT-AUDIO-1001, OPUS-DD-TYPES-CRT-0930, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-CLOUD-PROGRAM-1001
-> READY addressed to you: P1 ASTRA-REQ-OPUS-SUSPEND-COPY-CORRECTION-1001, P1 ASTRA-RETURN-OPUS-OV33-E2-SIX-CACHE-KEYS-0930, P2 ASTRA-REQ-OPUS-S33-UPSTREAM-VERDICT-GUARD-1001, P2 FRONTIER-REQ-OPUS-DISPOSITIONS-RECORD-GATE-1001
-> READY pool: 1 | BLOCKED: 0
+> ACTIVE: OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-2330-1001
+> READY addressed to you: P1 ASTRA-REQ-OPUS-ACCOUNTING-DISPATCH-INDEX-1001, P1 ASTRA-REQ-OPUS-OV21-COUNT-PUBLICATION-WINDOW-1001, P1 ASTRA-REQ-OPUS-OV21-PAGE-SELECTION-CORRECTION-1001, P1 ASTRA-REQ-OPUS-RENDER-C1-NIBBLE-PRODUCERS-1001, P1 ASTRA-REQ-OPUS-SKELETON-WORKSPACE-FACTORY-1001, P1 ASTRA-REQ-OPUS-SKELETONREF-PRODUCER-SLICE-1001
+> READY pool: 0 | BLOCKED: 2
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -17,43 +17,34 @@
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
 
-## Resume state - 2026-10-01 20:45 UTC (OPUS)
+## Resume state - 2026-10-01 23:30 UTC (OPUS)
 
-- **STANDING (user, 2026-10-01): GitHub repos + cloud program are OPUS's job.** Read the section "Standing
-  responsibility: the GitHub repos and the cloud program" further down in this file (after the RESUME PROTOCOL) and
-  do its resume steps every time: follow OPUS-CLOUD-* tasks, ingest finished cloud reports, sync + push the DB snapshot
-  from committed state, plan the next wave. Wave 1 running since 20:40 UTC: OPUS-CLOUD-F-INTERIOR-W1-1001 (session
-  01MsKSmz4qgiM3h8TPNKv3gp), OPUS-CLOUD-AUDIT-PRERUN-1001 (0193YNrU1oBcBFBoWgpYKQNr), OPUS-CLOUD-RE-READINESS-INPUT-
-  AUDIO-1001 (014xapq8GYgyFvvwy2xRFAwk). Ask the user for the credit bar after wave 1. Snapshot pushed at 1e19c52b /
-  31aa5485 (source f59c531bc). The 20:05 publishes all landed (menu selection 20f3f8a2e, render records 157fcd85d,
-  time-stop 87908a4fa, this block's predecessor 787271b18); the runner exited at max life, queue empty.
-- **Authority:** all non-ASTRA work while FABLE is inactive (user, 2026-10-01); FABLE gets a notice for every edit on
-  its pages; FABLE's ASTRA twins stay FABLE's (only the assignee can close them).
-- **Gate (dashboard generation 19:59 UTC):** questions OPEN 5 / PARTIAL 7 (ASTRA live); DD 20; F 3,705 (3,620 in the
-  tree once the queued interior packages count); acceptance 0/30. DB_GOAL NOT_MET.
-- **Interior citations, 729 functions out of F today (pattern _index/candidates/opus-pfgate-interior-1001/).** Earlier:
-  per-frame gate 41, world-tick 125, boot 45, game-application 57, map-ctrl 36. Since 17:30 UTC: two-frames 41
-  (85ec53a30), cutscene slots 47 (c25af296b), largest-unclassified 46 (40680efb1), console 35 (30ae6dfea), fef 36
-  (10b781cce), sound-voice 42 (08c3d9197), settings table 36 (a86e29002), input stack 32 (172c2cb95), widget messages 30
-  (fa30e0c59), menu selection 27, character render records 27, time-stop registry 26 (the last three queued). Every
-  package: each body read, anchors verified as instruction boundaries with the recorded mnemonic, every rip target
-  resolved, gates clean (check_links, self-contradiction, consistency 4 known, verify_doc_addresses 0).
-- **Scaling note (OPUS):** the 17:30 block paused interior pages until SWE2-AUDIT-SPEC ruled on the method; after a
-  context compaction OPUS scaled past that to 17 pages without a verdict. Paused again now. Each page is its own commit,
-  so a REJECT reverts per page. OPUS-REQ-FRONTIER-INTERIOR-METHOD-VERDICT-1001 asks FRONTIER to route one method verdict
-  (a 15-row sample across pages covers all 17 per-page requests).
-- **DD 20:** 16 PARTIAL on live register ids (OV-5/8/10/16/19/21/29/33/42, RC-5, GR-18, SD-194); READY but held:
-  ui-request-router (its last rows LR-5..LR-9 are in SWE2-DATA's uncommitted register edit), effect-mesh kind 54
-  (SWE2-DATA's page), spawn-placement (FABLE: stays REOPENED until a fresh graph audit), memory page (SECTION-07).
-- **Staged, apply after SPEC:** _index/candidates/opus-frame-drain-1001/frame_drain.py --apply (ASTRA's lane-drain
-  correction); held: opus-ov33-e2-incorp-1001/ov33_incorp.py and the RC-17 row restatement (register dirty, DATA).
-- **Waiting:** SWE2-AUDIT-SPEC (idle since 14:48 UTC, ~45 ACTIVE): section acceptances SECTION01/04/05/07-10/08-09, 17
-  interior reviews, DD owner reads; FRONTIER: tiny-form ruling, method-verdict routing; STRUCT: types.tsv TS-2/TS-3;
-  DATA: OPUS-REQ-DATA-REGISTER-RT-LAND-1001; ASTRA: two re-reviews; SPEC-gated ASTRA returns.
-- **Cloud:** routines bill the plan, not the credit; claude --cloud via C:/Users/Kristian/Tools/cloud-launch/cloud_launch.py;
-  awaiting the user's confirmation that the credit moved after probe session_01GBKBghCBkGvvHjNQghLtXj.
-- **Runner:** pubqueue --max-life 3600 hidden; restart when the log says "max life reached"; never edit files of a spec
-  the runner may have loaded; follow-ups need a fresh id.
+- **STANDING (user, 2026-10-01): GitHub repos + cloud program are OPUS's job** - see "Standing responsibility: the
+  GitHub repos and the cloud program" below the RESUME PROTOCOL; do its resume steps every time.
+- **Gate (goal_gate, latest generation):** Q 13 (OPEN 6, PARTIAL 7), DD 20, F 3,680.
+  - Since 22:56: GI-14..GI-18 answered, router / shop / licence-board / gambit / authored-commands / element-types
+    pages DOCUMENTED.
+- **Published this session (newest last):**
+  - 9b6bc9c38 15-Input fixes; f5e837cec sibling guards; bff8124f3 OV-33 narrowing;
+  - af392a926 18-Audio fixes; 22ae17df7 router; a9523c7ee G-C3x;
+  - 518a7f2d8 GI-16 / GI-17 / GI-18 (+ GI-14 / GI-19 narrowed); cd9d296dd GI-15; de783570d `.sab` census;
+  - the GI-14 re-correction (queued as 9q; its register cell is already in de783570d).
+- **GI-14 lesson:** 518a7f2d8's GI-14 text was off by 8. `008642A0` returns object + 8, so the blend value is object
+  `+0x38`, which GiPrim translates through `001EE650`. 9q withdraws the old text with strikes.
+- **Open board items:**
+  - OPUS-CLOUD-F-INTERIOR-W1-1001 BLOCKED until SWE2-AUDIT-SPEC rules on the interior method. Then run
+    `interior_ingest.py check` / `apply`.
+  - OPUS-GI14-ELEMENT-HELPERS-1001 BLOCKED. Resume + claim + finish at 9q's commit.
+  - OPUS-DD-UNCLAIMED-15-99-0930 ACTIVE.
+- **In flight:** a read-only reader is mapping GI-19 (`0040EEA0` relocates the sway section of `@FCP` rig section 2,
+  so the "intermediate objects" are likely authored sub-records). Byte-check its claims before any edit.
+- **Reviews requested from SWE2-AUDIT-SEM:** GI16-GI17-GI18, GI15, GI14 (with 9q).
+- **RE repo:** readiness maps record the settled items (a88bf5c, ac6c80b). DB repo snapshot: re-sync after 9q.
+- **Cloud wave 2:** proposed, not launched. It needs the user's Settings -> Usage reading.
+- **Lessons today (memory):**
+  - a/c.json-only flow dir = claim loop on my own ACTIVE task: block such tasks first;
+  - gate mutations leak into the next publish;
+  - never include an earlier package's consumer-check record in a publish.
 
 ## RESUME PROTOCOL - read this first (OPUS, 2026-09-26)
 

@@ -1,7 +1,7 @@
 ---
 id: ui-shop-screens
 title: The shop screens — the menu list, the trade panel, and the item list
-status: "PARTIAL — GI-17 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the id-20 arm helpers `002D45C0`/`002CFCF0`/`0027EE80` are live. GI-5 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). Was PARTIAL on: +0xE4 mode values beyond 0x1C0/0x2C0 are not established; 0057A4E0's contents read 2026-09-18 (a styled text element torn down at shop state 3)"
+status: "DOCUMENTED — every register row is closed (owner re-status 2026-10-01, OPUS; documented_rule READY): GI-17 answered 2026-10-01 (OPUS, static - the id-20 arm helpers `002D45C0`/`002CFCF0`/`0027EE80` read, see the GI-17 section; review requested from SWE2-AUDIT-SEM). GI-5 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2). History: PARTIAL on GI-17 from 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930); earlier PARTIAL on: +0xE4 mode values beyond 0x1C0/0x2C0 are not established; 0057A4E0's contents read 2026-09-18 (a styled text element torn down at shop state 3)"
 evidence_tier: 1
 tags: [ui, shop, menu-screens]
 addresses:
@@ -33,7 +33,7 @@ audit:
 
 # The shop screens
 
-**Status:** PARTIAL — the five widget procedures, the installer chain, both dispatch tables, and every listed screen-region member are cited below with interior citations (2026-09-15); the 157 shared listed subtree members are cited as engine-helper families.
+~~**Status:** PARTIAL~~ *(Superseded 2026-10-01, OPUS: DOCUMENTED - see the status line; GI-17 answered)* — — the five widget procedures, the installer chain, both dispatch tables, and every listed screen-region member are cited below with interior citations (2026-09-15); the 157 shared listed subtree members are cited as engine-helper families.
 
 ## The tree
 
@@ -203,8 +203,20 @@ site `0056E15F`; unhandled ids share the `0056E3AB` return-0 tail):
 | 19 | `0056E222` | `0056E5D0` |
 | 20 | `0056E356` | `0056DD00` gate, then `002CFCF0`, `0027EE80` (`0056E356`–`0056E373`) |
 
-ids 2–7, 11, 13, 16, 17 are unhandled. The arm bodies' per-helper roles (`002D45C0`,
-`002CFCF0`, `0027EE80`) are named by call site only — not read in this pass; registered as **GI-17**.
+ids 2–7, 11, 13, 16, 17 are unhandled. ~~The arm bodies' per-helper roles (`002D45C0`,
+`002CFCF0`, `0027EE80`) are named by call site only — not read in this pass; registered as **GI-17**.~~
+**GI-17 answered 2026-10-01 (OPUS, static: the three bodies read):**
+- `002D45C0(widget, on)` (134 B) writes `on & 1` into bit 16 of the widget's `+0xE0`. Then, when the focused widget
+  `00244820` returns is this widget or one of its `+0x10` ancestors, and every widget on that chain up to the root is live (`+0x40` bits 0 and 3) and of a
+  kind whose signed `+0x7C` low nibble is not 0, 1 or 4 - it calls `003689E0(on)`. Arms 8 and 9 pair it with `002445C0`.
+- `002CFCF0` (32 B) re-attaches the shared UI record `[0209AC30]`'s `+0x278` widget under the UI root `0208EA28`
+  (`00246AD0`) when that widget exists, and otherwise does nothing.
+- `0027EE80` (75 B) sets word `+0x44` of the `[0209AC30]` sub-widgets at `+0x2B8` and `+0x2C8` to `0x6E` (`002C9400` /
+  `002C9890` -> `00247930`, only when the value changes, which also marks the parent dirty) and starts a 200 ms move of
+  each to `(56, 4)` and `(32, 4)` (`002C9060` / `002C9490` record the change and convert 200 ms to frames; the four
+  values are the `.data` dwords `01E0C3CC`, `01E0C3D0`, `01E0C3BC`, `01E0C3E8`, which no instruction writes).
+
+What the player sees for the bit, the two widgets and the `0x6E` id is not claimed.
 
 ## The `01E0C490` query-class dispatch — NOCALLER-INSTALLERS, 2026-09-14 (FRONTIER)
 

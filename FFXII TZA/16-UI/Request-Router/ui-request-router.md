@@ -1,7 +1,7 @@
 ---
 system: Native UI request router
 category: 16-UI
-status: PARTIAL — UQ-162 answered 2026-09-25 (7-9, 13, 16 and 20 have no screen in the image; 12 is the spattack window) (UQ-162 history: 17 the Strahl boarding menu and 22 the map screen named 2026-09-18 from the field scripts, 6 and 10 confirmed; 15 the airship-route map, 17 and 18 further world-map kinds and 19 the hunt list named 2026-09-25 from the code and the shipped text); the state block's owner (UQ-163, a text-draw state embedded in the caption and message widgets or on the text helpers' stacks) answered 2026-09-17
+status: DOCUMENTED — every register row is closed (owner re-status 2026-10-01, OPUS; documented_rule READY): UQ-162 answered 2026-09-25 (7-9, 13, 16 and 20 have no screen in the image; 12 is the spattack window) (UQ-162 history: 17 the Strahl boarding menu and 22 the map screen named 2026-09-18 from the field scripts, 6 and 10 confirmed; 15 the airship-route map, 17 and 18 further world-map kinds and 19 the hunt list named 2026-09-25 from the code and the shipped text); the state block's owner (UQ-163, a text-draw state embedded in the caption and message widgets or on the text helpers' stacks) answered 2026-09-17
 owner_layer: PrimaryOwner:UI
 evidence_tier: 1
 verified_against:
@@ -165,7 +165,7 @@ a separate 24-byte **descriptor** `{u32 0, 4 bytes never written, void* payload,
 2. constructs two `0xD8`-byte widgets through the widget factory `00244F50` with procs
    `0027FB70` and `00280140` and the descriptor as their init message (`00280A65`–`00280A8C`;
    [the widget model](../Widget-Object-Model/the-widget-constructor-and-object-sizes.md));
-3. calls the thunk `0028E860`, which zeroes the 0x80 bytes at **`[0209BE80] + 0x7EA0`** (`0028E860`–`0028E86E` → `0028CA30` → `memset`) — the region the per-frame gate's `0x0800` group updates ([the update gate](../../00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md)) — and returns **1** (`00280A91`–`00280A96`).
+3. calls the thunk `0028E860`, which zeroes the 0x80 bytes at **`[0209BE80] + 0x7EA0`** (`0028E860` → `0028CA30` → `memset`) — the region the per-frame gate's `0x0800` group updates ([the update gate](../../00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md)) — and returns **1** (`00280A91`–`00280A96`).
 
 So the generic scheduler accepts any request dword the router forwards, and what it *means* is
 whatever the two widget procs make of the descriptor — `0027FB70` (1,237 B) is bound with its whole
@@ -440,7 +440,7 @@ routing
       11, 15–19 their own arms and **ids 3, 4, 5, 7, 8, 9, 12, 13, 14, 20, 21 the shared arm
       `0028000E`**; and the fullscreen proc `0027F5D0`'s table (`0027FAD0`, 21 cases; `0027F8BA`–
       `0027F8D9`) singles out ids 2 / 22, 6, 15, 17, 18, 19 and drops **ids 3, 4, 5, 7–14, 16, 20, 21
-      into the shared arm `0027FA31`**, which only clears bit 7 of five widget records' `+0x38`.
+      into the shared arm `0027FA31`**, which only clears bit 7 of five ~~widget records'~~ named UI atlas slots' `+0x38` *(corrected 2026-10-01, OPUS, on SWE2-CONTRACT's request, at the bytes: `0024A5A0` finds each slot by name in the 64-slot registry `0208F580`, and bit 7 admits an atlas to the texture-memory layout pass `0024A710`, which takes a slot only when its `+0x38` holds `0xE0 | (1 << k)` - see [a typed list measured once](../../02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md) §5d)*.
       Request **21** is beyond the first table's range and in the shared arm of the other two;
       request **14** is in the shared arm of all three. With no ordinary producer either (§2), the
       two ids are **unused generic-arm request numbers**: injecting them opens the generic
@@ -911,7 +911,7 @@ tail calls `00245020(self)` — the teardown §19.2 of the spawn page separates 
 | tick gate pair | `0024AC00` (7 B), `0024AC10` (21 B) | `0024AC00` returns `[02091094]` (state-3 test); `0024AC10` stores `1` to `02091094` when `ecx == 1` and returns 0, otherwise tail-jumps `0024AC30` | `0024AC06` (the getter's `ret`) / `0024AC15` (`mov [02091094], ecx`) |
 | event `0xF0` | `0027F540` (142 B) | gated by `*(0209AC30)+0x100`; `002C99A0` with the `01E0C3B8`/`01E0C3BC` pair (bit 15 of the request selects the constant 1 variant), then widget factory `00244F50(0xF0, 0027F5D0, {request, parameter, flag})` — the close arm's re-issue of the request | `0027F5B7` (`call 00244F50` — the `0xF0` construction) |
 | event `0x288` pair | `00280D20` (189 B), `002D7070` (123 B) | both gated by `*(0209AC30)+0xD8`; each posts `00244F50(0x288, …, {0, ecx, edx})` — `00280D20` with proc `00280DE0`, `002D7070` with `002D70F0` — followed by `002C99A0`; `00280D20` additionally lazy-builds `*(0209C318)` via `00244F50(0xC0, 0029D340)` + `00247570(00915C10)` + `00246AC0` | `00280D6D` (`call 00244F50`) / `002D70BD` (`call 00244F50`) |
-| event `0x268` | `0057B800` (138 B) | for `ecx ≥ 0`: `002C99A0` on the same pair plus `or [0024A5A0(01E0C1F8)+0x38], 0x80` (marks a widget record); unconditionally posts `00244F50(0x268, 0057B890, {0, ecx})` | `0057B855` (`or dword [rax+0x38], 0x80` — the record mark) |
+| event `0x268` | `0057B800` (138 B) | for `ecx ≥ 0`: `002C99A0` on the same pair plus `or [0024A5A0(01E0C1F8)+0x38], 0x80` (~~marks a widget record~~ re-admits that atlas to the layout pass - *corrected 2026-10-01, OPUS*); unconditionally posts `00244F50(0x268, 0057B890, {0, ecx})` | `0057B855` (`or dword [rax+0x38], 0x80` — the record mark) |
 | chain mark | `0028C560` (36 B) | writes `5` to `+0xD54` of every node in the `+0xD70` intrusive chain — `002909F0`'s teardown marker | `0028C570` (`mov [rcx+0xD54], ax`) |
 | flag setter | `00251F20` (32 B) | `*(020927F0)+0xE8` bit 3 ← `ecx & 1` — the id-10 open arm's flag write | `00251F36` (`shl ecx, 3`) |
 

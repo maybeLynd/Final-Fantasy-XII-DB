@@ -1,0 +1,7 @@
+{
+  "status": "VALID_SCOPED_SUPERSEDED_ADDITIVELY",
+  "driver_sha256": "27f3301c6e21b4170499d680be1a664a257de46daa93264c8d505a4f2aa5a0a5",
+  "result": "result-01.json",
+  "receipt": "prove-01.status.json",
+  "reason": "Originalnormal-return pointer/cache source facts preserved; added exactNULL propagation boundary/input precondition inproducer2. No semanticpromotion orfalseinvalidation ofprevious scopedfacts."
+}

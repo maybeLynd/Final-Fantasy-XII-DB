@@ -1,0 +1,17 @@
+ok   0027FA38 call 0x24a5a0
+ok   0027FA42 and dword ptr [rax + 0x38], 0xffffff7f
+ok   0027FA5A and dword ptr [rax + 0x38], 0xffffff7f
+ok   0027FA72 and dword ptr [rax + 0x38], 0xffffff7f
+ok   0027FA8A and dword ptr [rax + 0x38], 0xffffff7f
+ok   0027FA98 call 0x24a5a0
+ok   0024A5A3 lea r9, [rip + 0x1e44fd6]
+ok   0024A733 mov ebx, 0xe0
+ok   0024A73B bts ebx, ecx
+ok   0024A762 lea r14, [rip + 0x1e44e4f]
+ok   0024A793 and rcx, rax
+ok   0024A796 cmp rcx, rax
+ALREADY which only clears bit 7 of five widget records' `+
+ALREADY (marks a widget record)
+ALREADY (`0028E860`–`0028E86E` → `0028CA30` → `memset`)
+ALREADY status: PARTIAL — UQ-162 answered 2026-09-25
+FAILS 0

@@ -50,7 +50,7 @@ number and **twenty functions read it** — nineteen in `003E98B0` … `003EA5C0
 ```
 VoiceSlot (0x40) at 02B5D0B0 + slot * 0x40
   +0x00  u8    manager        the actor-manager slot (0..4) the pack belongs to (dispose-all key)
-  +0x04  u8    state          0 free · 1 already resident · 2 requested · 3 loaded · 4 · 5 loaded, sized
+  +0x04  u8    state          0 free · 1 parked · 2 loading · 3 delivered · 4 dispose pending · 5 delivered, more owed (GA-4; corrected 2026-10-01)
   +0x05  u8    manager        as passed at load (003EA088)
   +0x07  u8    heap           2, or 0xC when the expanded voice memory 02B5E0B0 is set (003EA01D-003EA02A)
   +0x0C  u16   kind[0]        0x25 (37): the `in` pack, .vpcjp        (003EA06B, table index 0)

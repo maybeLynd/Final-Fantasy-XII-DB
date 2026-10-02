@@ -166,7 +166,11 @@ assert "Phyre" in tags.get(0x796180, "") and "ScriptVM" in tags.get(0x796E30, ""
 assert 0x795DC0 in eset and 0x795DC0 not in mset                # run 2 lower edge: foreign dispatch
 assert "CrossSubsystem" in tags.get(0x798AC0, "") or "Native" in tags.get(0x798AC0, "")
 assert "DearImGui" not in tags.get(0x798E90, "")                # run 4 upper edge
-assert set(members) >= set(CALLBACKS) | {0x791D80, 0x792090}
+assert set(members) >= set(CALLBACKS) | {0x792090}
+assert 0x791D80 in a_set and 0x791D80 not in mset   # the context-object ctor 00791D80 is A-measured by the
+                                                  # middleware inventory page (interior cites 00791D88/00791D91/
+                                                  # 00791D9E); member pin retired 2026-10-01 (OPUS-REQ-EC7-
+                                                  # ROUND5-FOLLOWUPS-1001) - the row is exact-managed now
 assert 0x791E70 in a_set and 0x791E70 not in mset   # the static object's ctor is A-measured by the middleware
                                                   # inventory page - a convention caller of the member ctors
 if "--write" in sys.argv:

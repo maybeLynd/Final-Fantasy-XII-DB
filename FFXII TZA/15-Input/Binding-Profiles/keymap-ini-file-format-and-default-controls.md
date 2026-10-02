@@ -380,7 +380,7 @@ bits map to slots.
 | `00196FF0` | `InputManager_PollAndBuildControlState` | 356 B | polls five records at `01DF1480`, then two conditional banks |
 | `00197160` | `InputManager_TranslateBindingProfileToControlState` | 1,406 B | one record → the per-frame control mask |
 | `00197710` | `InputManager_GetBinding` *(working name)* | 99 B | `(profile, group, slot)` → the stored code; the only reader of group 2 **as a binding** (§10) |
-| `00196290` | `InputProfiles_CopyLiveRecordsBackToBank` *(working name)* | 488 B | copies 2 records `01F80130` → `01DF1738` |
+| `00196290` | `InputProfiles_CopyLiveRecordsBackToBank` *(working name)* | 488 B | copies ~~2 records `01F80130` → `01DF1738`~~ **3 records of `0x15C`**: `01F80130` / `01F8028C` / `01F803E8` → `01DF1738` / `01DF1894` / `01DF19F0` (the `2` at `00196290` is the inner `0x80`-byte round count) *(corrected 2026-10-01, OPUS, from the 15-Input reconstruction-readiness map, re-read at the bytes)* |
 | `001967D0` | `InputProfiles_ApplyConfirmBindingToPointerDevice` *(working name)* | 499 B | reads dword 13/14 keyed on `DecideButton` |
 | `001E0F40` | `InputConfig_SaveKeymap` *(working name)* | 36 B | singleton → the writer |
 | `001E0F70` | `InputConfig_ResetBindingsToShippedDefaults` *(working name)* | 49 B | `Materialize` then `Restore` |

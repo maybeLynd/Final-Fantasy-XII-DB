@@ -762,7 +762,7 @@ Three helpers this page's arms call, all read against the shipping image:
 - `002D45C0` (134 B, 11 A-callers) — flag-write + conditional notify: `+0xE0` bit 16 is
   rewritten from `arg & 1` ([`002D45CA`](../../_index/ADDRESS-INDEX.md)), then the `[rbx+0x10]`
   chain is walked for a node whose `[+0x40]` bits 0 and 3 are set and whose `[+0x7C]` low nibble
-  is 5-or-negative; reaching `00244820`'s result node fires `003689E0(arg)`.
+  ~~is 5-or-negative~~ is not 0, 1 or 4 (signed: `test eax, 0xFFFFFFFA` then `cmp eax, 5`; *corrected 2026-10-01, OPUS*); reaching `00244820`'s result node fires `003689E0(arg)`.
 - `0024A5A0` (75 B, 11 A-callers) — the dense reader's lookup: a 64-entry name table at
   `0208F580`, stride 0x48, gated on `[entry+0x38] & 0x20`; entries that pass get a byte-string
   compare against the arg ([`0024A5C0`](../../_index/ADDRESS-INDEX.md) loop), returning the

@@ -26,11 +26,11 @@
   the shipped build (no kind-`0x24` paths, sizes or script callers) and the only thing that makes
   the request queue chunk.
 - [`the-voice-pack-slots-and-the-voice-verbs.md`](the-voice-pack-slots-and-the-voice-verbs.md) —
-  **PARTIAL, tier 1.** The 64 voice slots behind `voiceread` / `voiceplay` / `voicestop`: each loads
+  ~~**PARTIAL, tier 1.**~~ **AUDITED, tier 1** *(per the page's status line; corrected 2026-10-01, OPUS)*. The 64 voice slots behind `voiceread` / `voiceplay` / `voicestop`: each loads
   an event's or map's `.vpc` (language) and `.vpcjp` (`in`) pack for a manager, one config bit picks
   which plays, cues are `sabf` banks handed to the stream controller and started by the request
   pump's post-pass helper.
-_None yet._ **This is the second-largest owner category in the engine and is entirely undocumented.** Codec paths (Vorbis/Tremor) belong in [`../23-Third-Party-Libraries/`](../23-Third-Party-Libraries/); the FFXII-side sound runtime belongs here.
+~~_None yet._ **This is the second-largest owner category in the engine and is entirely undocumented.**~~ *(Superseded: the systems listed above are documented; struck 2026-10-01, OPUS.)* Codec paths (Vorbis/Tremor) belong in [`../23-Third-Party-Libraries/`](../23-Third-Party-Libraries/); the FFXII-side sound runtime belongs here.
 
 ## How to add a system here
 

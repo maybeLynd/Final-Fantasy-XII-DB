@@ -1,0 +1,17 @@
+ok   001965E5 mov r9d, 3
+ok   001965EB lea r11, [rip + 0x1dea9a2] -> 01F80F94
+ok   00196600 xor edx, edx
+ok   00196602 mov rax, r11
+ok   0019666E sub r9, rbx
+ok   00196671 jne 0x196600
+ok   00196290 mov r8d, 2
+ok   00196296 lea rcx, [rip + 0x1c5b49b] -> 01DF1738
+ok   001962A0 lea rdx, [rip + 0x1de9e89] -> 01F80130
+ok   00196334 lea rdx, [rip + 0x1de9f51] -> 01F8028C
+ok   0019633E lea rcx, [rip + 0x1c5b54f] -> 01DF1894
+ok   001963D4 lea rdx, [rip + 0x1c5b615] -> 01DF19F0
+ok   001963DE lea rax, [rip + 0x1dea003] -> 01F803E8
+ok   00197089 lea rsi, [rip + 0x1c5a3f0] -> 01DF1480
+ok   001970A9 lea r14d, [rax + 5]
+ok   001970BB add rsi, 0x15c
+FAILS 0

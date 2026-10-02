@@ -763,7 +763,7 @@ Interior anchor `003E4B67` (function `003E4B50`).
 
 Interior anchor `00370FF6` (function `00370FA0`).
 
-`003737C0` (160 B) is the tag-index search `00370FA0`/`00372800`/`00373160` call on `dword[rcx+0xA0]`'s handle table: two `0020E600` decodes fetch the table (null exits `0xFFFF`), then `dword[+0xC]` entries iterate - each slot resolves through `00409270` + `00409250` and the first entry whose `word` tag equals `edx` with `dword[+4] & 0x100` clear returns its index, else `0xFFFF` - the pose publish's record lookup.
+`003737C0` (160 B) is the tag-index search `00370FA0`/`00372800`/`00373160` call on `dword[rcx+0xA0]`'s handle table: two `0020E600` decodes fetch the table (null exits `0xFFFF`), then `dword[+0xC]` entries iterate - each slot resolves through `00409270` + `00409250` and the first entry whose `word` tag equals `edx` with `dword[+4] & 0x100` ~~clear~~ **set** returns its index *(corrected 2026-10-01, OPUS: `003737C0` takes the record when bit 8 is set - the authored-commands page's GI-15 section)*, else `0xFFFF` - the pose publish's record lookup.
 
 Interior anchor `00373815` (function `003737C0`).
 

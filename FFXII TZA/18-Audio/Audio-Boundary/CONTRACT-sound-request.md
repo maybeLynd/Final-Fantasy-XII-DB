@@ -117,8 +117,8 @@ sebsoundplay_2c1(int bankClass, int localIndex, int pan, int volume)
 | voice `+0x20` | 4 | **pan**, reset to `0x40` |
 
 **The three handles are consecutive dwords — one small array of bank slots**, each set by its own
-83-byte setter (`003A1390`, `003A1330`, `003A12D0`) and all three reset to `-1` by the 582-byte
-teardown `003A13F0`.
+83-byte setter (`003A1390`, `003A1330`, `003A12D0`) and ~~all three reset to `-1` by the 582-byte
+teardown `003A13F0`~~ *(corrected 2026-10-01, OPUS: `003A13F0` is the 582-byte boot bank setup, called only from `00266D10`; after its requests it writes -1 to A at `003A14BE` and `003A153D` and to C at `003A15BC`, and never writes B - §14 `SR-2`, §15)*.
 
 ### The table is 64 entries, and that bounds the whole id space
 
@@ -593,8 +593,8 @@ and pass **pan where volume belongs**. The shift is the part worth writing down.
 
 #### Two refusals that return different values, and neither is −1
 
-`002DF236 cmp ecx, -1` / `je` and `002DF23B call 003603C0` / `test eax, eax` / `je` both land on
-`002DF244 xor eax, eax`. **The play call answers 0 on an id of −1 and 0 when the second gate
+~~`002DF236 cmp ecx, -1` / `je` and `002DF23B call 003603C0` / `test eax, eax` / `je` both land on
+`002DF244 xor eax, eax`.~~ *(Corrected 2026-10-01, OPUS, at the bytes: `002DF236 cmp ecx, -1` / `je` lands on `002DF244 xor eax, eax`, but after `002DF23B call 003603C0` / `test eax, eax` the `je` at `002DF242` jumps to the work at `002DF256`, so it is a NON-ZERO gate value that falls through to `002DF244` - as §10 row 5 and §12 say.)* **The play call answers 0 on an id of −1 and 0 when the second gate
 refuses**, while a resolver failure makes the *wrapper* answer −1 from its own `or eax, -1`. §10's
 failure table now has the boundary between the two pinned by execution rather than by reading.
 
@@ -710,8 +710,8 @@ negative clamps to 0 rather than wrapping high; and the spin fence runs only whe
 
    So `002DF0F0(id, flag)` calls `001DBE90(selector = flag >= 0, id, flag & 0x7FFFFFFF)` — **the id
    raw, no bank resolution, no pan and no volume.** `0024A1A0` passes `flag = 0`, so its selector is
-   always 1. It belongs to this contract only because it reads the same gate. **`00210C50` remains
-   unread**, and is now the whole of what `SR-1` asked.
+   always 1. It belongs to this contract only because it reads the same gate. ~~**`00210C50` remains
+   unread**, and is now the whole of what `SR-1` asked.~~ *(Superseded: `00210C50` is read - `SR-7`, ANSWERED 2026-09-12, below: a sibling of the fork through the same `[rcx+8]` / `[rcx+0x10]` pair. Struck 2026-10-01, OPUS.)*
 2. ~~**`SR-2`** — **why `003A1070` guards on handle B and reads handle C.** A real cross-slot
    dependency in shipped code, with no reading yet.~~ **NO ADMISSIBLE SOURCE for the *why*; the mechanism and its
    consequence are read (2026-09-14, FABLE).**
@@ -897,7 +897,7 @@ negative clamps to 0 rather than wrapping high; and the spin fence runs only whe
 | the `0x40` that evidences the table's length is a not-found sentinel, not a length | **§15a**: `003A0C90` sets `mov r9d, 0x40` *before* the search and tests `cmp r9d, 0x40 / je` after it, so it establishes that **64 is not a valid slot**, not that the table has 64 rows. Against it, `003A0EA0` sweeps the same stride-24 table over a **9-byte / 72-bit** bitmap at `02AEF3F0` (`cmp r14d, 0x48`), and only **66** entries fit between `02AEEDC0` and that bitmap. Three candidate lengths; the row above asserts one. **RESOLVED 2026-09-23 (SWE2-CONTRACT, §15a addendum): all three are right — 64 pool slots + 2 sentinel head nodes + 72 bitmap bits, proven by the init loop `003A1434`–`003A14A6`** | 1 (static) | **PROVEN** |
 | the gate's two non-script writers are a disable/restore pair | **disassembled by me**: `0027F676 mov ecx,1 / call 00249FC0` under a state ladder on `[rbx+0xC0]`, and `002D6FD2 xor ecx,ecx / call 00249FC0` in a teardown; `0027F632` calls `002D6F90` | 1 | PROVEN |
 | `0024A1A0` is a control entry, not a request site | **disassembled by me**: all 46 bytes, then `002DF0F0`'s 41 — `jmp 001DBE90` with a computed selector, a raw id and no pan/volume pair; `001DBE90` is a different function from `001DBDB0` | 1 | PROVEN |
-| any execution of this path, isolated or live | **none**; §13 | none | UNKNOWN |
+| any execution of this path, isolated or live | ~~**none**; §13~~ *(Corrected 2026-10-01, OPUS: isolated original-code execution exists - §13, 326 comparisons over six bodies with 0 mismatches, and §13a's EXP-096 / EXP-105; nothing live)* | none live | UNKNOWN for live |
 | why `003A1070` guards on a handle it does not read | **not established**; `SR-2` | none | UNKNOWN |
 
 ## 15a. Falsification pass 1 — 2026-09-12 (OPUS)
@@ -1063,7 +1063,7 @@ Shared callees outside the census: none.
 ## Interior citation — frontier hub `002DF220` (2026-09-18, SWE2-EC7)
 
 `002DF220` — 92 B, 9 callers; a gated forwarder into the request path. `ecx == -1` or a
-zero from `003603C0` returns 0 immediately; otherwise it strips the top bit of `ebx`
+~~zero~~ **non-zero** *(corrected 2026-10-01, OPUS: `test eax, eax` / `je 002DF256` at `002DF240`)* from `003603C0` returns 0 immediately; otherwise it strips the top bit of `ebx`
 (`btr ebx, 0x1F`), masks `r8d` to `0x7F`, widens `sil`, and tail-jumps to `001DBDB0`
 ([`002DF277`](../../_index/ADDRESS-INDEX.md)) with `ecx = 0`. The `-1` id convention and
 the bit-31 clear match the request contract's "no voice / don't-care flag" semantics —
