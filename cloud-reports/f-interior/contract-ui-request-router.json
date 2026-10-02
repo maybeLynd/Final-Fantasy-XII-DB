@@ -1,0 +1,20 @@
+{
+ "page": "16-UI/CONTRACT-ui-request-router.md",
+ "session": "session_01BbJEW8EUsZAfZd7QTFetdW",
+ "rows": [
+  {"fn": "002E0DA0",
+   "text": "keeps `ecx AND 0x8000` and clears bit 15 of `ecx`; a remaining value above 6 (unsigned) returns 2 OR the kept bit, and 0 to 6 go through a seven-entry offset table to arms that return 0x11, 0x12, 0xA, 0xF, 0x13, 6 or 0x16, each ORed with the kept bit (which value reaches which arm is in the table, not in the listing)",
+   "anchors": [["002E0DA2", "btr"], ["002E0DA6", "and"], ["002E0DAF", "ja"], ["002E0DC6", "jmp"], ["002E0E05", "or"]]},
+  {"fn": "002E1AE0",
+   "text": "when byte `0215F1A1` is 0, stores 1 to byte `0215F1A0`, 0xC to dword `0215F1A4` and 0 to dword `0215F1A8`; otherwise returns without a write",
+   "anchors": [["002E1AE7", "jne"], ["002E1AE9", "mov"], ["002E1AF0", "mov"], ["002E1AFA", "mov"]]},
+  {"fn": "003462D0",
+   "text": "stores the zero-extended byte `00229EB0()` to dword `r8+4` and 0 to dword `r8+8`, takes `a` then `b` from two `00267E10(r9)` calls, calls `002E1A60(b, a)` and `002E1690()`, and tail-jumps to `002E0650()`",
+   "anchors": [["003462EB", "mov"], ["003462EE", "mov"], ["00346308", "call"], ["0034630D", "call"], ["0034631C", "jmp"]]},
+  {"fn": "003470D0",
+   "text": "calls `00267F90(r9, 0)`, stores the zero-extended byte `00229EB0()` to dword `r8+4` and 0 to dword `r8+8`, takes `a` then `b` from two `00267E10(r9)` calls, calls `002E1A60(b, a)` and `002E1690()`, and tail-jumps to `002E0650()`",
+   "anchors": [["003470E5", "call"], ["003470F5", "mov"], ["00347112", "call"], ["00347117", "call"], ["00347126", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002E0DA0 (doubt): the dword offset table follows the body and is not decoded in the listing, and the page does not decode the selector map either, so the row lists the arm return values in code order without tying them to selectors; FABLE should either add the 0..6 mapping from the table or downgrade the row to a skip. The seven arms at 002E0DC8..002E0DF8 are 8 bytes apart and the default arm 002E0E00 may also be a table target. 003462D0/003470D0: 002E1A60 receives the second popped value in ecx and the first in edx; r8 is kept in rbx only until the stores, then rbx is reused for the first pop."
+}
