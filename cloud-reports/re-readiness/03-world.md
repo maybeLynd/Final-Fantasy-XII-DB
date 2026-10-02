@@ -413,3 +413,383 @@ The full reproduction pseudocode for apply, the MWeather read, the roll, the res
 | G-15 | **The `LGT2` output's consumer:** `0037AExx` / `0037AF4D` collect `member+0x30` pointers into `02EBF5C0` "for the renderer". No 03 page says what the renderer does with it. | Light animation. | `Map-Pack/the-map-ctrl-pack.md:353` |
 | G-16 | **Weather → spawn.** Two pages say spawn eligibility depends on weather. No 03 page names the reader. | Ordering on field entry and late join. | `Weather/weather-probability-and-transition-roll.md:150-152`; `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:109-112` |
 | G-17 | **Serialization of the payload bytes** (`+0x1044`, `+0x1060`–`+0x1063`) is deferred: "the two payload bytes are covered by the save-image layout, which owns its own parity". | Save / load parity. | `CONTRACT-weather.md:582-583` |
+
+---
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Quotes are exact; `…` marks an elision only, and `/` separates two quoted lines. "Favoured" is named only where a dated
+correction on the pages settles the point. Otherwise the item says **no favoured side**. Every item in 3.1 is
+**page-text only - needs local check**: this session cannot see the executable. A favoured side is a reading of the
+pages, not a verification.
+
+### 3.1 Value-changing (counts, offsets, addresses, constants, formulas, behaviour) — page-text only - needs local check
+
+**C-V1. Does the unit's height count in the trigger radius?**
+- Side A, `walking-into-an-authored-trigger-point.md:54-57`: "**The authored point has no height.** The third component
+  is written **zero** (`002F81C1`, … while the unit's own position is real in all three. **The unit's height therefore
+  counts against the 1.3 budget directly**".
+  - The same page at `:140-141`: "the zero height of the authored point counts against it linearly".
+  - The contract's own §12 at `CONTRACT-authored-trigger-points.md:174-175`, unstruck: "Place it at the point's
+    coordinates but a height away and assert the height is charged against the same budget (TP-2)."
+- Side B, `CONTRACT-authored-trigger-points.md:79-86`: "~~The authored point has NO HEIGHT …~~ BOTH HEIGHTS ARE ZEROED,
+  so the radius is horizontal. *(Corrected 2026-09-25, FABLE, …, on OPUS block 317, which executed it; bytes re-read.)*
+  … `002F8150 mov [rsp+0x54], edi` overwrites the height … **Height does not count at all.**" Falsification P2 (`:279`)
+  agrees.
+- **Favoured: side B** (dated correction 2026-09-25). Page-text only - needs local check.
+
+**C-V2. The trigger threshold.**
+- Side A, `walking-into-an-authored-trigger-point.md:51-52`: "The threshold is **1.3**."
+- Side B, `CONTRACT-authored-trigger-points.md:69-71`: "the threshold is the float NEAREST 1.3 … against `xmm7` =
+  **`1.2999999523162842`**, the `f32` at `00901B34`". The 2026-09-25 correction (`:74-77`) restates it: "The original
+  fires only for `d ≤ 1.2999999523`."
+- **Favoured: side B** (dated correction 2026-09-25, which restates the constant). Page-text only - needs local check.
+
+**C-V3. "Once, ever" versus a three-field ring.**
+- Side A:
+  - `walking-into-an-authored-trigger-point.md:35-36`: "Walk close enough to one and it fires — once, ever."
+  - The same page at `:99-101`: "**The live set is a 32-bit mask stored per field** in a 12-byte-stride table at
+    `0x2EC3EA0`, found by scanning for the current field id. **Clearing the bit is what makes the trigger once-only**".
+  - Unstruck in the contract: `CONTRACT-authored-trigger-points.md:146-147`, "A point transitions `live → spent` exactly
+    once and never back."; and `:168`, "makes something happen once and never again".
+- Side B, `CONTRACT-authored-trigger-points.md:97-101`: "**The "once-ever" is bounded by a ring** *(Corrected
+  2026-09-25 …)*. The field's live mask is held in a **three-slot ring** at `02EC3EA0` … So a cleared bit is remembered
+  for the three most recently fired-in fields, until that clear." The `.tsv` route "stride=0xC count=3" fits side B.
+- **Favoured: side B** (dated correction 2026-09-25). Page-text only - needs local check.
+
+**C-V4. What `00377700` returns when there is no table.**
+- Side A, `Field-Record-Table/field-record-table-navimapdata.md`:
+  - `:127-130`: "**fails to a fixed default record** … the *restrictive* value for every flag."
+  - `:683-685`: "**It fails closed.** An absent table or an out-of-range field id yields record `0x0FFF` / third byte
+    `0`: no navigation map, and every flag clear — the restrictive answer."
+  - `:306`: "/* the fail-closed default record */"
+- Side B:
+  - `CONTRACT-field-record-accessors.md:245`: "| `00377700` | `xor dl, dl`, then **its own** `not` / `test al,1` |
+    **1**, unless the save vetoes — **CORRECTED 2026-09-11** |"
+  - `CONTRACT-field-record-accessors.md:264`: "**A missing table is therefore the most PERMISSIVE input to this
+    accessor, not the least.**"
+  - The navimapdata page's own `:531-533`: "its failure default is bit 0 *clear* — the permissive value"
+- **Favoured: side B** (dated correction 2026-09-11, by execution). Page-text only - needs local check.
+
+**C-V5. Which bits of the third byte `00377C70` takes.**
+- Side A, `CONTRACT-field-record-accessors.md:65`: "| | **bits 4–7** | `00377C70` | `shr 4` |". Also `:69`: "**Bits 1–3
+  of the byte are the only part no accessor touches.**"
+- Side B:
+  - `CONTRACT-field-record-accessors.md:51`: "byte 2, bits 4–6"
+  - `CONTRACT-field-record-accessors.md:425-426`: "**Bit 7 of that byte is also dead** — `00377C70` does `shr 4` then
+    `and 7`, so it takes three bits, not four."
+  - `Field-Record-Table/field-record-table-navimapdata.md:294-295`, `:324`
+- **No favoured side.** The execution note at `:423-426` supports side B, but it is not a dated correction of `:65`.
+  Page-text only - needs local check.
+
+**C-V6. When the field record table is loaded.**
+- Side A:
+  - `Field-Record-Table/field-record-table-navimapdata.md:629-633`: "area load / transition / -> 00377CC0
+    WorldAreaField_BootMapTables / -> 00378540 … request (9, 8) navimapdata.bin"
+  - `Field-Record-Table/field-record-bit15-action-permission.md:149-150`: "area load / transition / -> field record
+    table bound (DAT_02add100)"
+  - The same page at `:162`: "the field record table bound at area load"
+- Side B:
+  - `Field-Record-Table/field-record-table-navimapdata.md:73`: "`00378540` is the World/Area/Field boot-time
+    registration routine"
+  - The same page at `:681-682`: "the file is published once per boot into `02ADD100` and read directly thereafter."
+- **No favoured side.** It decides whether the null window (S-4, G-5) recurs on every area change. Page-text only -
+  needs local check.
+
+**C-V7. The `0x80000003` mask-site census does not add up.**
+- `Field-Record-Table/field-record-table-navimapdata.md:149`: "In **117 of the 173 instructions** in the image that test
+  the constant `0x80000003`"
+- `:660`: "55 of the 173 mask sites have no escape call at all."
+- `:936`: "Re-run at ±8 instructions: 116 PAIRED, 55 NO-ESCAPE. At ±25: 117 / 55."
+- 117 + 55 = 172 and 116 + 55 = 171; neither total is 173. **No favoured side.** Page-text only - needs local check.
+
+**C-V8. Who calls `00377C20`, and how many.**
+- Side A:
+  - `Field-Record-Table/field-record-bit15-action-permission.md:109`: "**65 direct callers**, **110 including the
+    thunk**"
+  - The same page at `:227`: "65 distinct callers across 13 subsystems"
+  - The same page at `:279-280`: "**called both ways** | **2**" / "**union** | **110** | **15**"
+  - The same page at `:315`: "**65 direct callers** — matches exactly."
+  - `Field-Record-Table/field-record-table-navimapdata.md:134`: "65 direct callers + 47 through thunk `00313F60`"
+  - The same page at `:519`: "110 functions, 15 subsystems"
+  - `README.md:27`: "65 callers across 13 subsystems, 17 in CombatAction"
+- Side B: `CONTRACT-field-record-accessors.md:122-130`, "**RE-DERIVED 2026-09-11, and the old numbers did not
+  survive.** ~~`00377C20` has 65 direct callers plus 47 through the thunk.~~ … | `00377C20` bit 15 | **79** | **66** |
+  … the 65 does not match either column".
+- Side C, the same contract's pass 1 (2026-09-12), `CONTRACT-field-record-accessors.md:477-480`: "**110 distinct
+  functions across 16 subsystems reach it** … 65 directly and 47 through the 5-byte thunk `00313F60`. (§6's own census
+  counts *call sites* and gets 79/66 and 67/47 … and three functions use both routes.)"
+- Direct callers are 65 or 66, functions using both routes 2 or 3, and subsystems 13, 15 or 16.
+- **No favoured side.** The 2026-09-11 strike is followed by a 2026-09-12 restatement of 65. Page-text only - needs
+  local check.
+
+**C-V9. When the weather resolver draws the RNG.**
+- Side A, `Weather/weather-probability-and-transition-roll.md:61-63`, unstruck: "picks the single eligible one directly,
+  and draws MT19937 only when two remain."
+- Side B:
+  - The same page at `:377-383` (2026-09-21, `CON-147`): "The **only** call to `00379CD0` in the 253-byte body is at
+    `0025ABB8`, inside the arm taken when the current slot is **2** — and it is taken *before* any probability is read.
+    … **Both are deterministic, and slot 2 always wins when eligible**"
+  - `CONTRACT-weather.md:297-308`, with the draw-count table at `:360-369`
+- **Favoured: side B** (dated 2026-09-21 correction). Draw counts change every later gameplay roll on the shared stream
+  (`CONTRACT-weather.md:571`). Page-text only - needs local check.
+
+**C-V10. Probability 0: "always re-roll" or "pinned".**
+- Side A, `Weather/weather-probability-and-transition-roll.md`:
+  - `:37`: "some always re-roll (probability 0)"
+  - `:48`: "probability **0** → current slot cannot be retained → pick an alternate"
+- Side B:
+  - The same page at `:385-389` (2026-09-21): "**And every arm falls back to the current slot.** … So
+    `weatherProbability = {0, 0, 0}` **pins the weather permanently** — the opposite of what "probability 0 → current
+    slot cannot be retained" implies."
+  - `CONTRACT-weather.md:172-179` (I-6, citation corrected 2026-09-29)
+- **Favoured: side B** (dated 2026-09-21 correction). Page-text only - needs local check.
+
+**C-V11. What the field-init latch skips.**
+- Side A, `Weather/weather-probability-and-transition-roll.md`:
+  - `:70`: "if already set, the whole weather/resource initialization core is skipped"
+  - F-2 at `:173`: "skips its whole body if `byte [rcx + 0x10] & 4`"
+- Side B:
+  - The same page at `:391-397` (2026-09-21, `CON-148`): "`002620E0`'s init-bit test at `002620F3` jumps to
+    `002621A8`, **not** to the return. `002621A8` runs `003601C0(0x0B)` and tail-jumps `003601C0(0x0C)`"
+  - `CONTRACT-weather.md:135-139` (P-2)
+- **Favoured: side B** (dated 2026-09-21 correction). Page-text only - needs local check.
+
+**C-V12. The domain of `02099DA8`.**
+- Side A, `Weather/weather-apply-and-environment-materialization.md:119`, unstruck: "`02099DA8         u32  global
+  environment class 0..3`"
+- Side B:
+  - The same page at `:524-534` (2026-09-21, `CON-146`): "**The authored domain is `0..4`.** … **So `02099DA8` = 4 for
+    246 of 279 lanes**"
+  - `CONTRACT-weather.md:345`, `:560-561`
+- **Favoured: side B** (dated 2026-09-21 correction). Page-text only - needs local check.
+
+**C-V13. What the `+0x1061` gate does to a second apply.**
+- Side A, `CONTRACT-field-environment-variant.md:84-88`: "**EV-3 — The selector is latched, and the latch is
+  FIRST-WRITER-WINS and released on exit.** … *So the selector written by whoever got there first is consumed exactly
+  once per pass, and a second caller within the same pass publishes the first caller's choice.*"
+  - The same contract's `:149`: "A latch already held means this call publishes someone else's selector (EV-3)."
+  - Its reproduction formula, `:159-160`: "Call twice within one pass with different counts and assert the second
+    publishes the **first's** selector (EV-3)."
+  - `choosing-the-field-environment-variant.md:79`: "; a latch: first writer wins".
+- Side B, `CONTRACT-weather.md:79`: "`bInitializationRestoreState` | `u8` | world-transition policy; gates the commit and
+  is consumed by it | tested `0026D951`, cleared `0026DA92`, set `0026D8F9`". `0026D8F9` is inside the arm-restore
+  `0026D8F0`, not inside `0026D910`.
+  - I-3 at `CONTRACT-weather.md:151-155`: "When `payload[0x1061] != 0` the requested slot is thrown away … The flag is then
+    cleared at `0026DA92` … so it is consumed exactly once per apply".
+  - The setters listed elsewhere are `0026D8F0` (the `setweatherslot` arm) and `00268320`. `00280140` clears it
+    (`Weather/weather-apply-and-environment-materialization.md:156-160`;
+    `Weather/weather-slot-state-model.md:51-53`, `:69-70`).
+- Side B names no writer inside `0026D910` that sets the flag. Side A's "a second caller … publishes the first caller's
+  choice" needs the flag held between the two calls.
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V14. Who calls `0026D910`.**
+- Side A, `Weather/weather-apply-and-environment-materialization.md:65-72`: "Only **four** direct control-flow entries
+  exist in the whole executable" — `0025ACA0` (tail jump), `00266E74`, `00266E7B`, `003565C0`. Fits
+  `CONTRACT-weather.md:67` ("`0025ACA0` likewise tail-jumps into it at `0025AD06`") and
+  `choosing-the-field-environment-variant.md:169-171`.
+- Side B, D-3 (2026-09-12), on two pages: `Weather/weather-slot-state-model.md:138` and
+  `Weather/weather-apply-and-environment-materialization.md:165`. "`WorldField_InitializeCurrentFieldRuntimeParameters`
+  (`0026D910`) has exactly three call sites: the script verb **`setweatherslot`** … and two back-to-back native calls
+  with argument 1 at `00266E74` / `00266E7B` … So at runtime every weather apply comes through the VM verb".
+- Side C, F-2 (2026-09-16), `Weather/weather-probability-and-transition-roll.md:173`: "`0026D910` has **three** direct
+  callers: the roll `0025ACA0`, one CoreRuntimeScheduling path, and **`003565C0`**".
+- Side B's "every weather apply comes through the VM verb" omits the field-entry roll that side A and side C both
+  include.
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V15. What `0209A6E8` is.**
+- Side A, `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:274-279` (UQ-88, answered 2026-09-14): "it
+  is **the Weather Slot cached for the resource rebuild**, 1-based … slots 1, 2 and 3 select bits **24, 25 and 26** of
+  each entry's flags dword."
+- Side B, `Map-Pack/the-map-ctrl-pack.md:592-595` (§2.2, decoded 2026-09-20): "**the flag dword's bits 24–31 (the byte
+  at `+0x0F`) are a per-bank presence mask** (`0209A6E8` = the active bank, so bank *n* = bit *n*+0x17; the census
+  `+0x0E` values `0x8000`/ `0x8700`/`0x9700` decode as banks {14} / {7,8,9,14} / {7,8,9,11,14})".
+  - Also `:606`: "**the active-bank working set**"; `:608`: "`002F7380` is the bank-change reselection".
+  - Side B's own formula does not give its own decode. `0x8700` in the `u16` at `+0x0E` sets dword bits 24, 25, 26 and
+    31, which "bit *n*+0x17" maps to *n* = 1, 2, 3, 8, not {7, 8, 9, 14}.
+- **No favoured side.** Neither text corrects the other, and side B is the later one. Page-text only - needs local check.
+
+**C-V16. The `00466220` type filter.**
+- Side A, `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:317`: "passes only when `byte[rec] ∈ {0x14,
+  0x1C, 0x24, 0x2C}` … and returns 1 for `{0x14, 0x24, 0x2C}`, 0 for `0x1C`"
+- Side B, `Map-Pack/the-map-ctrl-pack.md:604-605`: "a type filter `00466220` (`byte[entry]` ∈ `{0x14,0x1C}`)"
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V17. Is the `+0x218` slot table zeroed?**
+- Side A, `Map-Pack/the-map-ctrl-pack.md:605-606`: "The survivors (`ctx+0x228` count) get a `count×0x28` zeroed table at
+  `ctx+0x218`"
+- Side B, `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:231-237`: "**Correction, 2026-09-15 (OPUS)**,
+  … This sentence said *“zeroed on creation”* … **Neither is true of the whole entry.** … `+0x21`..`+0x27` are
+  uninitialised allocator memory for the life of the table"
+- **Favoured: side B** (dated correction 2026-09-15). Page-text only - needs local check.
+
+**C-V18. The pass-1 increment in `002F7380`.**
+- Side A, `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:204-205`, unstruck in the sentence:
+  "`00466220(rec)` is a predicate selecting an increment of either `i+1` or `4`"
+- Side B, the inline note on the same line: "*(Corrected 2026-09-14 (FABLE): the increment is **1**, not `i+1`.*"
+  - The same page at `:300`: "the sum of 1 per 4-bit-indexed record and 4 per other record"
+- **Favoured: side B** (dated correction 2026-09-14). Page-text only - needs local check.
+
+**C-V19. What `0026FAD0` does, and what its third argument is.**
+- Side A:
+  - `Weather/weather-probability-and-transition-roll.md:157-164`: "`0026FAD0(channel, value, manager)` is the effect
+    registry's instantiate call … looks up the kind-2 record `{2, channel, manager}` (`0024F680`), allocates one if
+    absent, and runs `0026F470` over the EFB's **binding table** … instantiating every row whose channel byte `+4`
+    equals `channel` … and whose enable byte at **`+7 + value`** is set"
+  - `CONTRACT-weather.md:257-258`: "`0026FAD0(0, committedSlot+1, managerIndex)`"
+- Side B:
+  - `Map-Pack/the-map-ctrl-pack.md:175-180`: "`0026FAD0(idx, value, mode)` — gated on `byte[02F8F238]` — probes
+    `0024F680` and, finding nothing pending, posts a type-2 message `{u16 idx; u16 mode}` through `0026F470` … then
+    marks `flags[idx] |= 8` and `|= 4` when bit0 clear."
+  - The same page at `:186`: "the alternator ops call `0026FAD0` with `mode = s8[+0x15]`"
+- The third argument is a manager index on one side and a mode / group on the other. The operation is "instantiate
+  binding rows" on one side and "post a message and set flag bits" on the other.
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V20. `map_ref.bin` row `+0x04`.**
+- Side A, `CONTRACT-weather.md:106`: "`+0x04  s32  (not read by weather)`"
+- Side B:
+  - `choosing-the-field-environment-variant.md:24`: "`{u16, i16, u16 area, u16 group}`"
+  - The same page at `:120`: "the area index `MapRef_GetAreaArdFieldResourceIndex` returns (`00264EF9`)" (row word `+4`)
+  - `Field-Record-Table/field-record-table-navimapdata.md:1142`: "`word[slot+6]` is the answer"
+  - `Map-Pack/the-map-ctrl-pack.md:1283`: "`{u16 own pack index, i16 block index, i16, i16}`"
+- `map-ref-field-row-accesses.tsv` shows 16-bit loads at `+4` (`00264EF9`) and `+6` (`00264FB9`, `0026DBB2`, `0026DBE7`).
+  That fits side B as a layout.
+- Signedness also differs on side B: `u16` versus `i16`.
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V21. Can the image-address base `01F83530` be written?**
+- Side A, `Map-Pack/the-map-ctrl-pack.md:901-904`: "it is zero-initialised `.data` that no instruction in the image
+  writes — the static route to a writer is exhausted … so the decode is zero-extension for the process life"
+- Side B, `Field-Record-Table/field-record-table-navimapdata.md:725`: "*(Scope corrected 2026-09-25, FABLE, …: `01F83530`
+  is **zero at image load** … one in-image store route can. The texture-id table writer `00210570` … so id `0xFFFB`
+  stores a pointer into `01F83530`. … the route is **undriven, not absent**. "Zero for the process's life" is
+  supported, not proven."
+- **Favoured: side B** (dated correction 2026-09-25). Page-text only - needs local check.
+
+**C-V22. Function sizes that disagree.**
+- `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:332`: "`0026D910`
+  (`WorldField_InitializeCurrentFieldRuntimeParameters`, ~44 B)". Against: "418 bytes"
+  (`choosing-the-field-environment-variant.md:36`; `CONTRACT-field-environment-variant.md:47`; `CONTRACT-weather.md:64`).
+- `Field-Record-Table/field-record-table-navimapdata.md:1111`: "`00378540` (~85 B)". Against: the same page's `:75` and
+  `:213`, "943 bytes" / "943 B".
+- `Field-Record-Table/field-record-table-navimapdata.md:1100`: "`00326500` (`PartyFocus_SelectAndRequestDefaultActor`,
+  ~119 B)". Against: `:235`, "274 B".
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V23. The MWeather bit base: which slot domain?**
+- Side A:
+  - `Weather/mweather-resource-format.md:50`, `:156`: "`9 * (3 * selector + weatherSlotIndex)`"
+  - The same page at `:21`, `:208-209`: "bit base `9 × (3 × selector + slot)`, `width` bits read most-significant
+    first". This is the rule the D-7 corpus decode used.
+  - `choosing-the-field-environment-variant.md:135`: "whose bit base is `9 × (3 × selector + slot)`", with the caller
+    passing `selector+1`.
+- Side B, `CONTRACT-weather.md:157-164` (I-4): "**That `-10` is a `-9` for the slot bias and a `-1` for the MSB-first
+  walk**: the effective entry index is `3*selector + slot - 1` … not the one a literal `3*selector + slot` would need."
+  - The file-size argument is at `:599`.
+- With the authored slot `1..3`, side A read literally is off by one entry.
+- **No favoured side.** Side B is not a dated correction of side A. Page-text only - needs local check.
+
+**C-V24. The signedness of `+0x1060`.**
+- Side A, `Weather/weather-probability-and-transition-roll.md:248`: "`+0x1060   u8   field runtime parameter`"
+- Side B: `Weather/weather-slot-state-model.md:77`, "`+0x1060  s8   currentWeatherSlot`"; `CONTRACT-weather.md:78`
+  (`s8`), `:440` ("`(int8)payload[0x1060]`"); `Weather/weather-apply-and-environment-materialization.md:436`
+  ("`sign-extended byte [rax+0x1060] + 1`").
+- **No favoured side.** It matters only for out-of-domain bytes. Page-text only - needs local check.
+
+**C-V25. Does `02099DA8` have a reader?**
+- Side A, `CONTRACT-weather.md:553`, the evidence row, unstruck: "sibling `02099DA8` identical (one store, `0026DA26`)".
+  In context this means one accessor total, no reader.
+- Side B:
+  - The same contract's `:518-523`: "*Corrected 2026-09-30 …: `02099DA8` is not the same shape. It has a reader, the
+    7-byte getter `00263E10`*"
+  - `CONTRACT-weather.md:217`
+- **Favoured: side B** (dated correction 2026-09-30). Page-text only - needs local check.
+
+**C-V26. Tag-30 flag bit 30 and the tag-24 entry `+0xC0`: who writes it, and what it means.**
+- Side A, `Map-Pack/the-map-ctrl-pack.md`:
+  - `:535`: "bit 30 = has tag-24 link"
+  - `:537-540`: "writes `-1` to `entry+0xC0` — a deferred-alloc marker; a later pass (`002F71F0`) allocates"
+  - `:741-743`: "`qword[entry+0xC0]` is a **byte-bitmap pointer** (the `-1` expansion write is its unset sentinel)"
+- Side B, the same page:
+  - `:1181`: "**the per-instance presentation-entry array** (the periodic tick's post-recovery mark writes `+0xC0` of
+    entry `[+8]`)"
+  - `:1200-1202`: "honoring the bit-30 post-recovery mark by writing `-1` into the unit's `0xE0` presentation entry
+    `+0xC0` (`002F701D`–`002F7037` — the periodic-tick contract)"
+- Side B adds a second writer, the status layer's periodic tick, and gives the bit another meaning.
+- **No favoured side.** Page-text only - needs local check.
+
+**C-V27. The argument `002620E0` passes to `00379860`.**
+- Side A:
+  - `Weather/weather-probability-and-transition-roll.md:129`: "`00379860(weatherSlot)`"
+  - The same page at `:319-321`: "The three `0026FAD0` posts each take `0017D490()` when positive else
+    `byte[002EF2B0()+0x1060]+1` … against channels `0`, `0x1F`, and the arg to `00379860`". That is the debug override
+    when positive.
+- Side B, `CONTRACT-weather.md:259`: "`00379860(committedSlot+1)`", with no override.
+- **No favoured side.** It differs only while the debug override is positive. Page-text only - needs local check.
+
+**C-V28. The `00377BA0` "mask".**
+- Side A, `CONTRACT-field-record-accessors.md:578-580`: "`byte[rcx+rax+9]` and `byte[rcx+rax+8]` are the compared kind
+  bytes (`00377BD4`/`00377BDD`), and the value is masked to `0xFFF` (`00377BF4`) — matching the documented `shr 0xC /
+  and 3` two-bit read."
+- Side B, the same contract's `:61`: "**bits 12–13** | `00377BA0` | `shr 0xC` / `and 3`". Its `:243`: "`00377BA0` |
+  `(0xFFF >> 12) & 3` | **0**", where `0xFFF` is the failure constant.
+- Read literally, a mask to `0xFFF` before `shr 0xC` always yields 0. "Compared kind bytes" are the two bytes of the
+  `u16`.
+- **No favoured side.** Side A is probably a description of the failure-path constant, but no page says so. Page-text
+  only - needs local check.
+
+### 3.2 Stale "not read / open" claims, struck-but-repeated text, and banner disagreements
+
+These do not change a value; a re-implementer would only be misled about what is known.
+
+| id | stale or banner text | answered or contradicted by |
+|---|---|---|
+| C-S1 | `README.md:37-41`: "### Not yet documented / - MapRef root and auxiliary data layout / - Field runtime parameter derivation (`002E3D40` zero-mode path) / - The field environment table and target-local environment index resolution" | `map_ref.bin` decoded: `choosing-the-field-environment-variant.md:85-91`, `:107-128` (2026-09-13 / 09-29); `CONTRACT-weather.md:87-117`. `002E3D40` read 2026-09-18 (`choosing-the-field-environment-variant.md:141`); `Weather/mweather-resource-format.md:316-343` |
+| C-S2 | The README index lists only `field-record-bit15-action-permission.md` under `Field-Record-Table/` and none of the four contracts or the two root pages (`README.md:14-35`); it calls Weather and the record table "**documented**" (`:16`, `:24`) | `Field-Record-Table/field-record-table-navimapdata.md:4` and `Field-Record-Table/field-record-bit15-action-permission.md:4` say `status: AUDITED`; the contracts exist (`CONTRACT-*.md`) |
+| C-S3 | `README.md:55-57`: "`002E3D40(mode, a, b, c)` is the engine's **map wind** entry point" | `choosing-the-field-environment-variant.md:141` and `CONTRACT-field-environment-variant.md:130`, `:195`: "the **weather-to-presentation refresh**". Same function, two names; `Weather/mweather-resource-format.md:223-226` (D-9, 2026-09-26) supports "wind" for the basis it builds. |
+| C-S4 | `walking-into-an-authored-trigger-point.md:30`: "`BattleUnit_TryTriggerNearbyAuthoredFieldActivation`" | the same page `:153` and `CONTRACT-authored-trigger-points.md:49`: "`BattleUnit_TryTriggerNearbyAuthoredFieldAction`" |
+| C-S5 | `walking-into-an-authored-trigger-point.md:116-118`: "**Two unrelated systems excluding the same band of kinds is a fact about the band, and neither function says what it is.**"; `:130-132`: does not claim "what the excluded kind band `0x1B … 0x27` contains" | `CONTRACT-authored-trigger-points.md:185-191`: "**CLOSED 2026-09-23 (SWE2-CONTRACT): the thirteen Espers.**" |
+| C-S6 | `CONTRACT-authored-trigger-points.md:180`: "**None.** No experiment executes this body." | the same contract `:74`, `:80`, `:97`: "on OPUS block 317, which executed it"; `:83`: "OPUS measured it"; `:273`: "TP-4's ring behaviour is OPUS block 317's execution" |
+| C-S7 | `CONTRACT-authored-trigger-points.md:33-34`: "the environment variant remains uncontracted and this document does not claim it"; `:139`: "**Uncontracted** \| the field environment variant"; `:201`: "The field environment variant, S-11's other uncontracted page." | `CONTRACT-field-environment-variant.md:30-32`: "**this takes the environment variant**, so all three of S-11's pages now have a contract" (`readiness: CONTRACT READY`, `:6`) |
+| C-S8 | `CONTRACT-authored-trigger-points.md:247`: "**CombatAction — OWNER.** The body is that layer's by primary owner." | the same contract `:222`: "**WorldAreaField — internal.** The body is this category's own."; `walking-into-an-authored-trigger-point.md:5`: `owner_layer: PrimaryOwner:WorldAreaField` |
+| C-S9 | `walking-into-an-authored-trigger-point.md:18`: `last_reviewed: 2026-09-03`, `status: AUDITED` (`:4`) | its TP-2 and once-only text was overturned on the contract on 2026-09-25 (C-V1, C-V3) and is unstruck on the page |
+| C-S10 | `CONTRACT-field-environment-variant.md:76-79`: "The variant page records this as the **fourth** distinct way this executable's decompiled output has misdescribed a function boundary" | `choosing-the-field-environment-variant.md:68-71`: struck, "*(Struck 2026-09-30, SWE2-DATA: the three earlier cases are not cited, so the count has no anchor.…)*" |
+| C-S11 | `CONTRACT-field-environment-variant.md:173`: "What the five globals feed — published here, consumed elsewhere." and `:174`: "What the three variants mean to a player; three states exist and nothing names them." (unstruck §14) | `choosing-the-field-environment-variant.md:132-133` and `:136-137`, both "*Answered by reconciliation 2026-09-30*"; the count "five" is itself corrected to four at `choosing-the-field-environment-variant.md:40`, `:75`, while `CONTRACT-field-environment-variant.md:243` reconciles "five" as "the four plus the selector" and `CONTRACT-weather.md:73` still says "five published globals" |
+| C-S12 | `CONTRACT-field-environment-variant.md:198-199`: "**whether any of it reaches the save image is not established here**" | `choosing-the-field-environment-variant.md:137`, `:149`: "the choice survives save and load"; `CONTRACT-weather.md:421`; the same contract's `:217` (the selector lives in the persistent payload) |
+| C-S13 | `CONTRACT-field-environment-variant.md:40-41`: "publish the result for the presentation side to read" | `choosing-the-field-environment-variant.md:147-148`: "The combat side follows it through `02099DAC`, the weather class the damage formula reads" |
+| C-S14 | `CONTRACT-field-record-accessors.md:17`: `last_reviewed: 2026-09-11` | dated additions on the same page 2026-09-12 (`:75-88`, `:457`) and 2026-09-25 (`:107`, `:111`, `:219`) |
+| C-S15 | `CONTRACT-field-record-accessors.md:420-422`: "The four bytes at the table's `+0x00`, left undeclared … **Still open**" | `Field-Record-Table/field-record-table-navimapdata.md:279`: "`+0x00  u32   magic          'N''A''V' 0x02`"; `:334-335` (fence, 2026-09-10); the contract itself at `:225`: "magic `NAV\x02`" |
+| C-S16 | `CONTRACT-field-record-accessors.md:410-411`: "What the bit regions mean. The referenced page carries what is known; this contract deliberately adds nothing to it." | the same contract `:75-88`: "**The semantics arrived, and they are cited here**" (2026-09-12) |
+| C-S17 | `Field-Record-Table/field-record-table-navimapdata.md:21`: `last_reviewed: 2026-09-08`; `:27` `last_pass: 2026-09-02` | dated edits on the page to 2026-09-26 (`:438`) and 2026-09-27 (`:770`) |
+| C-S18 | `Field-Record-Table/field-record-table-navimapdata.md:74-76`: "**Three were read here; two more were found on 2026-09-08** … so five is a floor"; `:111-112`: "**the string keys were not read**"; `:213`: "requests all three map tables"; the call chain `:631-633` shows three tables | the same page `:86-96` (2026-09-14): "`00378540` installs **seven** publishers … the string keys for the two previously unread rows are now decoded" |
+| C-S19 | `Field-Record-Table/field-record-table-navimapdata.md:517`: "The `AiOrder_EvaluateTargetSelector` use is **not** examined, so **PROPOSED-repos2d-2 stays open**"; `:716-718`: "**The `AiOrder_EvaluateTargetSelector` consumer is still unread, so this box stays unticked.**" | the same page `:568` (2026-09-12): "one selector predicate compares the raw value with its operand (`00303043`–`0030304D`…)"; the box at `:708-710` is ticked "**C-11 ANSWERED**" |
+| C-S20 | `Field-Record-Table/field-record-table-navimapdata.md:1023-1026`: "**What the toggle is remains unnamed** — that is 15-Input's to close"; `Field-Record-Table/field-record-bit15-action-permission.md:204-205`: "what the toggle *is* remains open and belongs to 15-Input" | `Field-Record-Table/field-record-table-navimapdata.md:759-765` (2026-09-12): "`020927E0` is the **R2 force-fight toggle**"; the bit-15 page's own marker on the same bullet, `:203`: "C-12 is ANSWERED" (2026-09-30) |
+| C-S21 | `Field-Record-Table/field-record-table-navimapdata.md:959`: "`audit_crossrefs.py` has not yet been run against this document — `crossref_clean: false`." | the same page `:29`: `crossref_clean: true`; `:1062-1063`: "Both documents in the folder are now `crossref_clean: true`" |
+| C-S22 | Status 31 is "**Vanished**" in `Field-Record-Table/field-record-table-navimapdata.md:186`, `:472` and `Field-Record-Table/field-record-bit15-action-permission.md:189` | `Field-Record-Table/field-record-table-navimapdata.md:449` (2026-09-26): "bank 5's entries decode to the status names: 0 KO, 3 Stop, 6 Doom, 31 X-Zone"; `:730`: "Status 31 is *X-Zone* in the name bank" |
+| C-S23 | `Field-Record-Table/field-record-bit15-action-permission.md:81`: "Both effect layers are OR'd"; `:76` `statusLayer0 \| statusLayer1` | the same page `:211-217` (2026-09-02): "There are in fact **three** 32-bit status masks … They are also a different structure from the 128-bit effect layers" |
+| C-S24 | `Field-Record-Table/field-record-bit15-action-permission.md:18`: `last_reviewed: 2026-09-02` | its marker normalisation 2026-09-30 (`:203`) and relabel 2026-09-27 (`:209`) |
+| C-S25 | `Weather/weather-slot-state-model.md:301`: "`02099DBC` is cleared first and nothing here reads it back; what it means is not established." | `CONTRACT-weather.md:98`, `:246-248`: the `+0x18` boolean table, second writer `0026AB40`, reader `00264D50` (`:220`) |
+| C-S26 | `Weather/weather-slot-state-model.md:341-343`: `002FA230` is "the twin reset to `002FA260`'s `02BE3E60` block, same shape, different slot array", filed as "the fixed-shape reset the slot model applies on reinit" | `CONTRACT-authored-trigger-points.md:100`: "`002FA230` clears the ring" — the trigger points' live-set ring at `02EC3EA0`, not weather state |
+| C-S27 | `Weather/weather-apply-and-environment-materialization.md:434-437`: "`0017D490()` answers the pending-state count … the stored mode plus one, the "next state" convention" | `Weather/weather-slot-state-model.md:67`: "`0017D490` \| `WorldField_GetDebugWeatherSlotOverride` \| 20 B \| returns `[debugSingleton+0xAAC]`"; `CONTRACT-weather.md:80` |
+| C-S28 | `0026D910` is named "`WorldField_ApplyWeatherSlotAndDerivedEnvironmentState`" on `Weather/weather-slot-state-model.md:71`, `Weather/weather-probability-and-transition-roll.md:87`, `Weather/weather-apply-and-environment-materialization.md:106` | "`WorldField_InitializeCurrentFieldRuntimeParameters`" on `choosing-the-field-environment-variant.md:36`, `CONTRACT-field-environment-variant.md:47`, `CONTRACT-weather.md:706`; the equivalence is recorded at `Weather/weather-probability-and-transition-roll.md:213-231` |
+| C-S29 | `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:56-57`: "publish to notification channel 0" / "publish to notification channel 0x1F" | `Weather/weather-probability-and-transition-roll.md:156-157` (2026-09-12): "**they are EFB binding channels, not notification channels.**" |
+| C-S30 | `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:263-267`: "**Two of the forty bytes are read.** `+0x00` is cleared and `+0x20` is set to `0xFF`" (writes, called reads); `:323-324`: "UQ-89 (the `0x28`-byte selected-record entries' content) stays open" | the same page `:280-296`: "**UQ-89.** … **ANSWERED 2026-09-26 …: only their initial and per-frame reset values, because nothing reads them.**" |
+| C-S31 | `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:254-256`: "All seven callees … are still unnamed `FUN_` in the ledger" | the same page `:303-320`: "all 6 members bound" |
+| C-S32 | `Weather/*.md` and the call-chain page: `last_reviewed: 2026-09-02`, `status: DOCUMENTED` (`Weather/weather-slot-state-model.md:4`, `:20`; `Weather/weather-probability-and-transition-roll.md:4`, `:19`; `Weather/weather-apply-and-environment-materialization.md:4`, `:19`; `Weather/mweather-resource-format.md:4`, `:19`; `Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md:4`, `:19`) | dated corrections on those pages run to 2026-09-29 (`Weather/weather-probability-and-transition-roll.md:385`), and the contract for them is `BEHAVIORALLY UNDERSTOOD` (`CONTRACT-weather.md:6`) |
+| C-S33 | `CONTRACT-weather.md:59`: "The subsystem has **four entry points**" | the same table `:64` lists six; front matter `:9` lists ten `entries`; `:68` sends the resolver to "(I-5)", which is the slot-bounds invariant — the resolver's is I-6 (`:172`) |
+| C-S34 | `CONTRACT-weather.md:83-85`: "obtained **four separate times** inside one `0026D910` call (`0026D94C`, `0026D959`, `0026D96A`, `0026D9AF`, `0026DA83`; five call sites, four of them before the tail)" | `choosing-the-field-environment-variant.md:175`: "the payload getter    five times" |
+| C-S35 | `CONTRACT-weather.md:230`: "`02099DB4` is read by five `cmp` sites" | the same line lists nine addresses (`0026324D` … `0026E012`) |
+| C-S36 | `CONTRACT-weather.md:528`: "**F-1 — thread/frame requirements for calling `0026D910` safely.** Unchanged and still open."; `:578`: "**TIMING** and **INTEGRATION** — the frame phase and thread requirements are open (§14.4)" | the same contract `:390-394`: "*F-1 SUPERSEDED 2026-09-26 …*"; the same note on `Weather/weather-slot-state-model.md:139-144` and `Weather/weather-apply-and-environment-materialization.md:226-231` |
+| C-S37 | `CONTRACT-weather.md:222-224`: "**`02099DB0` is published and never read.** … It is inert in the shipped build by both routes."; `Weather/weather-apply-and-environment-materialization.md:549`: "read by nothing" | `choosing-the-field-environment-variant.md:193` (2026-09-30): "~~is written and never read, so editing that byte has no effect in the shipped build.~~ is written, and no reader is found (GB-3)"; `CONTRACT-weather.md:241-244`, residual |
+| C-S38 | `CONTRACT-weather.md:19`: `last_reviewed: 2026-09-21` | dated edits on the same page 2026-09-23 (`:511`), 2026-09-26 (`:390`), 2026-09-29 (`:175`), 2026-09-30 (`:518`) |
+| C-S39 | `Weather/mweather-resource-format.md:233-242`: "***NARROWED, NOT ANSWERED, 2026-09-20 (OPUS)** … Naming it still needs `0040FF30`, the sole identified consumer, read" | the same box `:223-226`: "**ANSWERED 2026-09-26 …: it is the map's wind direction**" |
+| C-S40 | `Weather/mweather-resource-format.md:282-284`: "**Width caveat:** … The widths 4 and 2 are inferred …, not read directly." | the same page `:369-382`: "**The field widths are read, not inferred — §9's caveat is closed**" |
+| C-S41 | `Weather/mweather-resource-format.md:198-199`: `MapRef_BeginLoadResources` "requests at bootstrap as loader id 9, kinds 4 and 2" (for the one map-reference table) | `choosing-the-field-environment-variant.md:113-122` (2026-09-29): `(9, 2)` is `test_area_ref.bin`, "loaded and never read"; `map_ref.bin` is "kind 9 id 4" (`:85`) |
+| C-S42 | `Weather/mweather-resource-format.md:414`: "`003777C0` (144 B) is the 3-bit weather preset body" | the same page `:141`: "packed bitfield reader … shared by all three extractors"; `:416`: `00377850` is the preset extractor |
+| C-S43 | `Map-Pack/the-map-ctrl-pack.md:1275-1277`: "## 6. Falsification pass / Not yet run." | the same page `:1374`: "## 9. Falsification pass 1 — 2026-09-13 (OPUS)"; front matter `:24-26` |
+| C-S44 | `Map-Pack/the-map-ctrl-pack.md:570-571`: "`+0x20C`'s writer is outside `002F6AB0` (residue)." | the same page `:783-795`: "`ctx+0x20C` is now **closed — it was never a standalone field**" |
+| C-S45 | `Map-Pack/the-map-ctrl-pack.md:477`: "`00466E70` (1453 B handler, unread)" | the same page `:1180` (it builds the `02EBB6E0` slot family) and `:1216`: "interior verified 2026-09-17, SWE2-FRONTIER" |
+| C-S46 | `Map-Pack/the-map-ctrl-pack.md:20`: `last_reviewed: 2026-09-12`; `README.md:30`: "**documented 2026-09-12**" | dated edits on the page to 2026-10-01 (`:402`, `:1809`) |
