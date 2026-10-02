@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`86b70c69`); no executable, Ghidra or live game was used. Several pages in this folder are being edited by other lanes; every quotation is the snapshot's text. |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item is a quotation or a paraphrase of a page, with its location. |
 
-**Counts:** *(filled in when the report is complete — see the final commit)*
+**Counts:** 23 pages read in full (22 system pages + `README.md`), 20 member `.tsv` files checked for layout and counts only · **38 entry-point rows** mapped (5 frame/driver/interpreter, 10 request scheduling, 4 lifecycle and dispatch, 6 value-stack and result, 5 variable, 8 verb groups) · **31** self-stated open gaps + **18** structural gaps · **128 contradictions**: **60 value-changing** (45 itemised + 15 count rows; **17** with a favoured side settled by a dated correction, two of them only in part: C-V9, C-V20; **43** with no favoured side; all "page-text only - needs local check") and **68 stale / banner** · **Rating: NOT YET** overall (lifecycle, value stack, variables and request scheduling MOSTLY; interpreter opcode set and verb bodies NOT YET).
 
 ## How to read the citations
 
@@ -984,3 +984,28 @@ dated line that settles it where there is one.
 | C-S66 | `STDM:107`: "then three gates and a 7..25 range split" | `LOOKS:325`: "four slots, two gates, one range test"; `LOOKS:352`. Not settled. |
 | C-S67 | `LOOKS:410-411`: "The second half … remains open."; `LOOKS:532`: "What the four setters do — **none of their bodies was read here**"; `LOOKS:636`: "the scripted colour/alpha triple" | `LOOKS:421` (RC-18, 2026-09-30); `LOOKS:384`; the superseding note on `LOOKS:636` itself (2026-09-30: "a position, not a colour"). |
 | C-S68 | `BP:56`: "the setter itself was not read here"; `BP:128`: "Not read: … the flag setter and clearer keyed `0x13`"; `BP:55`: "Each pops its arguments from the script stack, then **raises flag `0x13`**" | `BP:156`: "`003601B0` / `003601C0` set and clear bit `cl` of `022CB720`"; `BP:162`: "`setbattlemember` runs its preamble and raises the flag (`0034D542`) before its first pop" (2026-09-29). |
+
+---
+
+## 4. Rating
+
+**Overall: NOT YET.** The machinery that runs a script is documented closely. What a script *does* is not: the
+verb bodies (G-1) and about half the opcodes' semantics (G-2) are not on the category's pages.
+
+| part | rating | why |
+|---|---|---|
+| Dispatch tables, call-id split and the begin / poll / result lifecycle | **MOSTLY** | The table layout, the accessors, the executor's arms and the push rules are stated at instruction level, and the lifecycle was executed from shipped bytes (EXP-085, `C-VD:315-334`). Open: which tables the initialiser installs (C-V8), the `cmdState+0x08` width (C-V15), what `0x20D3` is (C-V17), and the per-command scratch shapes (G-9). C-V11, C-V13, C-V14 and C-V16 are each settled by a dated correction, but the stale side is still printed on `VD`. |
+| Value stack and the script-to-native calling convention | **MOSTLY** | Layout, capacity, coercion, argument order, references and actor handles are stated. Open: the `+0x44` byte (C-V12, S-10), the unknown-tag pop (C-V22), and the `+0x15` values and writers (C-V20, C-V21). |
+| Variables and storage classes | **MOSTLY** | Descriptor format, the six homes, array clamping, saturation and persistence are stated and agree with the TSVs. Open: variable meanings (S-7), group-id sharing (S-8), the stale edge-element rule (C-V23, settled 2026-09-28). |
+| Request scheduling (`REQ*`, the entry list, the channel walk, wait kinds) | **MOSTLY** | The submit, admission, channel walk, wait kinds and notification are stated. Open: the wait-slot index source (C-V3), three function extents (C-V4), the driver beyond its kind table and kind 2 (G-5), the mode-1 start arm (G-7), live scheduling and pool exhaustion (S-1, S-2). |
+| The interpreter (dispatch loop and opcode set) | **NOT YET** | **Structural gap.** The loop, the dispatch, the length table, the budget and the stop/advance arms are stated (the default arm is settled as a stop request, C-V1). But about half the 100 opcodes have no semantics on any page (G-2), arithmetic typing per opcode is not stated (G-3, C-V2), and the yield path `0025B400` is undescribed (G-4). |
+| Verbs (the native handlers) | **NOT YET** | **Structural gap.** 1,886 callback functions; about forty are described here (G-1). The verb table gives arity and operand types only. |
+| Party verbs, entity names, waits and stubs (the verbs this category does describe) | **MOSTLY** | The verb layer of each is stated. Open: the party read-in record (C-V31–C-V34), the render-record base (C-V35), the bind family (C-V29), the ATRAC3 shapes (C-V24), and the unread Party-layer mutators (S-27, G-13, G-14). |
+| Debug companion files (`.sbn`, `.dbg`, `.msb`) | not needed | The shipped game never loads them (`ATEL:881-887`). Their pages carry eleven value disagreements (C-V44, C-V45). |
+
+**To reach MOSTLY overall**, the database would need:
+- the semantics of every opcode on the interpreter page or its contract, not only in the candidate directory (G-2),
+  with arithmetic typing per opcode (G-3) and the body of `0025B400` (G-4);
+- a local check of C-V2, C-V3, C-V8, C-V12, C-V15, C-V17, C-V20, C-V21 and C-V22 against the image;
+- a statement of which category owns each verb body. If the verbs belong to their subsystems' pages, the category's
+  README could say so, and G-1 would become a dependency rather than a gap.
