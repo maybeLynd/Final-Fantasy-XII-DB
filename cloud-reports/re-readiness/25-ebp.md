@@ -14,11 +14,15 @@
 |---|---:|
 | `.md` pages read (every one in the folder and its subfolders) | 14 |
 | member `.tsv` files checked for layout and row counts | 4 |
-| entry-point rows listed (§1.1) | _pending_ |
-| open items the pages list themselves (§2.1) | _pending_ |
-| structural gaps: a function, formula or format a port needs that no page states (§2.2) | _pending_ |
-| **contradictions, total (§2.3)** | _pending_ |
-| **Rating (§3)** | _pending_ |
+| entry-point rows listed (§1.1: load path 7, slot handlers 14, script image 9, teardown and dead routes 8) | 38 |
+| open items the pages list themselves (§2.1) | 31 |
+| structural gaps: a function, formula or format a port needs that no page states (§2.2) | 22 |
+| **contradictions, total (§2.3)** | **62** |
+| — A. value-changing (each marked "page-text only - needs local check") | 16 |
+| — B. counts, sizes and addresses that disagree but change no ported behaviour | 18 |
+| — C. stale "open / not read" claims, banners and names | 28 |
+| — of all 62, items where a dated correction on the pages names a favoured side (A 14, B 3, C 23) | 40 |
+| **Rating (§3)** | **NOT YET** overall. Container and dispatch, section 0 image, sections 2/3, 6, 8–11, 16: MOSTLY. Section 12: READY (store only). Sections 4, 14, 19: NOT YET. |
 
 ## Citation form
 
@@ -554,7 +558,7 @@ settled on the pages".
 - "**The eight constant `u32` in the header are not explained**" (`S019:474`) — against "**`BZ-2` closes**: the eight fields are directory slots" (`S019:179`) and BZ-2 of 2026-09-12 (`S019:271-282`).
 - "The agreement is structural — same directory, same size, same absent slots" (`S019:183-184`) — against "**CORRECTED 2026-09-05 by the audit — the two absences are not the same**" (`S019:162`).
 - "`003320D0` | the `.ard` stream-completion callback … | ❌ not read" (`S019:413`) — against "`FUN_003320D0  (13 bytes)`" read in §3 (`S019:242-244`).
-- "the `.ard` files were not extracted from the archive for this block" (`S019:396`) — against "from my own parse of the 166 extracted files" (`S019:177`).
+- "the `.ard` files were not extracted from the archive for this block" (`S019:395-396`) — against "from my own parse of the 166 extracted files" (`S019:177`).
 - **Favoured: the dated §2/§3 corrections (2026-09-04, 2026-09-05, 2026-09-12).**
 
 **C16. S006 "not read" and "open" rows against its §3 and §5.**
@@ -590,3 +594,41 @@ settled on the pages".
 **C27. S016: `type == 2` "too rare".** "a third shape, too rare to characterise" (`S016:124`); "**`type == 2`.** Nineteen records in 25,687. Too few to characterise honestly." (`S016:344`) — against CC-3: "**2** draws `u` the same way and bounds `v` by the ellipse `sqrt(B² − u²·B²/A²)`" (`S016:339`). **Favoured: CC-3, 2026-09-12** (`S016:333`).
 
 **C28. Evidence tier 9 on instruction-level sheets.** S002 and S003 carry `evidence_tier: 9` (`S002:6`, `S003:6`) while every loader claim in them cites instructions read "from raw instruction bytes via capstone against the authorized EXE" (`S003:303`) and their siblings carry tier 1. Banner only; not settled on the pages.
+
+---
+
+## 3. Rating
+
+**NOT YET overall.** A re-implementer could write the container loader, the section-0 header binding and most of
+the per-section bindings from these pages alone, but three shipped sections have a structural gap (no consumer,
+or a record the engine reads that no page decodes), and the load barrier depends on a pending mask whose setter on
+the live route is not stated (G2).
+
+| unit | rating | why |
+|---|---|---|
+| container (header, directory, dispatch, packing) | **MOSTLY** | Layout, dispatch rule, inert fields and the 16-byte / 4-GiB constraints are stated at instruction level (`CON:75-81`, `CON:304-331`, `CON:408-422`). Named gaps: manager-index assignment (G1), the pending-mask setter (G2), what the ns-37 probe sizes (G3), the slot-12 pre-pass (G4), the rest of the finalizer (G5) |
+| `section_000` script image | **MOSTLY** | Header, directory entry, the four pools, the function and jump tables, packed references and actor lists are stated (`S000:79-117`, `S000:409-449`, `S000:520-564`). Named gaps: the binder's other writes (G6), the `+0x64` route (G7), the unread option fields (G8), the decoders (O7). A3, A4 and A15 need the dated side taken |
+| `section_002` / `section_003` text banks | **MOSTLY** | Bank layout, the engine's exact (flawed) count, the fallback string and the modal flag are stated (`S002:90-122`, `S002:217-233`, `S002:360-370`). Named gap: escape-code semantics and the renderer (G9, O10, O13). A2 needs the dated side taken |
+| `section_004` `NAVIICN2` | **NOT YET** | Bound and never read by any traced path (`S004:165-166`, `S004:277-278`): there is no behaviour to port, and nothing says whether one exists (G10) |
+| `section_006` `TIM2` | **MOSTLY** | Validation, the refcounted cache, the registry and the resref delivery are stated (`S006:125-174`, `S006:319-327`). Named gaps: the register-side link (O17), palette and glyph pitch (G11, O18) |
+| `section_008` / `section_010` `CML1` | **MOSTLY** | Format, load-time zeroing and the binding readers are stated (`S008:80-98`, `S008:131-139`, `S010:154`). The camera and shake players they feed are on other pages (G12, G13). A1 and A8 need the dated side taken |
+| `section_009` `CAM7` | **MOSTLY** | Loader and runtime entry stated (`S009:136-226`); command stream, ease curves and paths are summarised with the full decode on the scripted-camera page (G12) |
+| `section_011` `SHK1` | **MOSTLY** | Loader, curve chain and evaluator stated (`S011:239-265`, `S011:214-229`); the oscillator sampler is summarised with its detail on the camera page (G13). A7 and A9 need settling |
+| `section_012` actor manifest | **READY** (store only) | The handler stores two pointers and nothing walks the table (`S012:85-118`, `S012:323-326`): a port can bind and ignore it. What the ids mean is answered for model matching (`S012:197-212`, `S012:331-345`), and only matters if a port wants the cast list |
+| `section_014` `LGT2` | **NOT YET** | The binder, its in-place rewrites and the stale-bind trap are stated (`S014:120-202`), but the 0x70-byte light record and the type-3/5/6 payloads the renderer reads are not decoded (`S014:426-432`), nor the remap table's values (G14) |
+| `section_016` `FF12POS3` | **MOSTLY** | Format, accessor, version gate, legacy layout and region sampling are stated (`S016:79-206`, `S016:316-343`). Named gap: what fixed entries 8 and 32 are (G16) |
+| `section_017` | **READY** (nothing to port) | Same binder as 16 with selector 1, 0 shipped files (`CON:388-391`, `CON:91-97`) |
+| `section_019` `FF12AR03` | **NOT YET** | Header, directory and the record decode (CC-10) are stated (`S019:102-125`, `S019:466-469`), but table B, which the `+0x0C` trailer reader serves to the flag-mask appliers (`S019:264`, `S019:271-276`), is "not decoded at all" (`S019:473`) |
+
+### What would move the rating
+
+1. **State who sets the pending-resource bits on the `.ebp` route** (G2) and which manager index each load uses
+   (G1). With those, the container rises to READY.
+2. **Settle the two unsettled A items**, A6 (the section-6 store and the mask array) and A7 (`btr rdi, 0xb` against
+   bit `0x400`), against the bytes, and strike the stale sides of the fourteen A items that have a dated correction.
+3. **Decode the `LGT2` light record and chunk payloads** (G14) and **section 19's table B** (O29). Those two move
+   14 and 19 to MOSTLY.
+4. **Find, or rule out, a reader of section 4** (O15). If none exists, section 4 is READY as "bind and ignore",
+   like section 12.
+5. **Bring the README up to date** (C1–C5): it is the category's entry page and still describes the plan, not the
+   result.
