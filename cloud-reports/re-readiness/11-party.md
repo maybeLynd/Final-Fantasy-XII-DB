@@ -8,7 +8,7 @@
 | Snapshot | this repo's text snapshot only (`df2c9f47`); no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item quotes or paraphrases a page, with its location. Several 11-Party pages are being edited by other lanes; every quotation is the text as `df2c9f47` has it. |
 
-**Counts:** _(filled in when the report is complete)_
+**Counts:** 10 pages read in full (9 system / contract pages + `README.md`), 4 `.tsv` files checked for layout and counts only · **51 entry-point rows** mapped (8 roster, 14 focus, 6 suppression, 12 configuration / slot maps, 6 block, 2 follow, 3 SetSaveData) · **22** self-stated open gaps + **19** structural gaps · **54 contradictions**: **27 value-changing** (13 with a favoured side settled by a dated correction: C-V1–C-V9, C-V13, C-V18, C-V24, C-V25; 14 with no favoured side; all 27 "page-text only - needs local check") and **27 stale / banner** · **Rating: NOT YET** overall (roster, focus, slot maps, block and SetSaveData MOSTLY; control suppression and the follow formation NOT YET).
 
 Citation form: `page:line`. `page` is the file name inside `FFXII TZA/11-Party/`; the two pages in the subfolder
 carry the `Battle-State-Block/` prefix. The ten pages:
@@ -467,3 +467,22 @@ status, or a corrected claim still repeated unstruck.
 | **C-B25** "the active party is three" | "**Four is not a mistake for three** — the active party is three, and the fourth slot is what a guest occupies." (`party-roster-and-control-suppression.md:382`–`:383`) | "Your active party is **four slots**." (`:34`); "**The roster is four slots, not three**" (`active-party-reserve-and-the-moment-the-leader-changes.md:337`); a guest takes the first free of 3, 2, 1 (`:160`) |
 | **C-B26** `00311E20`'s world-position read | "reads its world position and then tail-jumps into a Movement routine" (`Battle-State-Block/CONTRACT-battle-state-block.md:270`, 2026-09-29) | "The `Actor_GetWorldPosition` into locals at `00311E65` is dead — the frame is popped before the jump." (`Battle-State-Block/the-battle-state-block-field-map.md:420`–`:421`, FO-6 2026-09-12) |
 | **C-B27** what `+0x5AA4` is | "`+0x5AA4  u32      the source table's first byte — NOT part of any map (SM-8)`" (`CONTRACT-the-five-parallel-slot-maps.md:60`); "**A dword at `+0x5AA4` takes the source table's first byte** and is not part of any map" (`the-five-parallel-slot-maps.md:108`) | "**the preferred definition selector — the party leader**", six writers (`Battle-State-Block/the-battle-state-block-field-map.md:107`). The two are compatible (the initialiser seeds the leader from the table), but neither slot-maps page names the field |
+
+---
+
+## 4. Rating
+
+| subsystem | rating | why |
+|---|---|---|
+| Roster and slot assignment | **MOSTLY** | The contract and the roster page together give every step of `00269C70` and the init path, executed in isolation. Dated 2026-09-25 corrections settle four value questions (C-V1 to C-V4), but §10, the evidence row and the §12 code were not brought in line. Open: what `+0x0F` selects (G-1), `002681C0` (G-2), the writer set against the TSV (C-V20, S-13) |
+| Focus and leader change | **MOSTLY** | The request / upgrade / commit ordering, the teardown's five steps and the getter are fully stated (PF-1 to PF-8; `active-party-reserve-and-the-moment-the-leader-changes.md:446`–`:458`). Open: `003D9B80` (G-9), where the commit falls inside the three frame bodies (§1.4), the camera copy direction (S-14). The count disagreements C-V14 to C-V16 do not change behaviour |
+| Control suppression and the lock words | **NOT YET** | The lock words and their consumer are stated, but the three-bit mask is not: its contributions are named and deferred to the 15-Input policy page (S-1). Also missing: the mode-1 replacement (S-2), the `[0208E6B8]` store and `0209A2C5`'s consumer (S-3), the publication polarity (C-V17) and when the recompute runs (S-4). Never executed (G-22) |
+| Party configuration and the five slot maps | **MOSTLY** | The resolver is fully stated (SM-1 to SM-3), as are the initialiser and the refresher's copy order. Missing: the refresher's per-mode values (S-6), the reconcile's general rule (S-8), the `00329080` body (S-7) and the `00321100` polarity (C-V11). Several unstruck "maps 1–4 never written" statements remain (C-V5) |
+| Battle-state block | **MOSTLY** | Size, binding, reset and every byte above the records are placed (FO-5, `Battle-State-Block/the-battle-state-block-field-map.md:442`–`:455`); bind and reset are contracted. Open: the writer side is under-covered (G-18), why the reset runs twice (G-17), `+0x5AD0` bits (C-V22), and the table-size disagreements (C-V21, C-V26) |
+| Follow formation | **NOT YET** | Only the solver's skip gates and the lookup are stated. The formation geometry and the slot vectors are "NOT CLAIMED", and who calls either function, and when, is not stated (S-5) |
+| SetSaveData | **MOSTLY** | Both tables are laid out and censused, and the apply is ordered step by step. Open: the licence-condition polarity (C-V19), the unread tail calls `00327870` / `002CFD10` / `0016D6A0` (S-10), and the apply was "**not re-read**" in the pass (`the-setsavedata-presets-test-battle-scenarios.md:288`) |
+
+**Overall: NOT YET.** Two subsystems have structural gaps: suppression (S-1 to S-4) and the follow formation (S-5). The
+other five are MOSTLY. The 13 value contradictions with a favoured side are settled by dated corrections on the pages
+but still need their losing sides struck. The 14 without a favoured side need local byte checks before a port can
+choose.
