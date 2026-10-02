@@ -1,0 +1,79 @@
+{
+ "page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+ "session": "session_013aUyF9Cw8dmXC6Vyt6UA4p",
+ "rows": [
+  {
+   "fn": "00259370",
+   "text": "stores `ecx` zero-extended as qword `02098DF0`; when `ecx` is non-zero and the signed dword at `+4` of that zero-extended address is positive, stores dword 0 at `02098DF8` and tail-jumps `00259FE0(rcx)`; otherwise returns",
+   "anchors": [
+    [
+     "00259372",
+     "mov"
+    ],
+    [
+     "0025937D",
+     "cmp"
+    ],
+    [
+     "00259383",
+     "mov"
+    ],
+    [
+     "0025938D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "004C2160",
+   "why": "5292-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 44 conditional branches, 11 direct calls (most often 005376D0 (4), 004C4C40 (2), 0022CC40 (1), 0022CC30 (1)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004C4D20",
+   "why": "3755-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 27 conditional branches, 6 direct calls (most often 0022CC20 (2), 00861F14 (2), 004C4C40 (2)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004C5DF0",
+   "why": "3508-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 25 conditional branches, 5 direct calls (most often 0022CC20 (2), 004C4C40 (2), 00861F14 (1)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004C6DE0",
+   "why": "3851-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 29 conditional branches, 5 direct calls (most often 00861F14 (2), 004C4C40 (2), 0022CC20 (1)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004C8320",
+   "why": "28422-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 101 conditional branches, 47 direct calls (most often 0022CC20 (16), 004CF230 (10), 004C7F00 (10), 004CF350 (6)) and 2 indirect calls through a register that the body reloads after copying rcx into it; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004CF490",
+   "why": "5098-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 77 conditional branches, 23 direct calls (most often 0022CC20 (11), 0022CC40 (5), 0022CC30 (5), 004CF3B0 (2)) and 2 indirect calls through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004D0FA0",
+   "why": "11709-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 77 conditional branches, 25 direct calls (most often 0022CC20 (10), 0022CC40 (5), 0022CC30 (5), 00861F14 (4)) and 1 indirect call through a register that the body reloads after copying rcx into it; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004DB350",
+   "why": "4953-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 66 conditional branches, 8 direct calls (most often 0022CC20 (2), 00861F14 (2), 004DB270 (2), 0022CC40 (1)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004DF440",
+   "why": "6957-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 65 conditional branches, 14 direct calls (most often 0022CC40 (4), 0022CC30 (4), 0022CC20 (4), 00861F14 (2)); one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004EBE80",
+   "why": "2769-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 15 conditional branches, 12 direct calls (most often 004EB910 (5), 002EFE70 (2), 0022CC40 (1), 0022CC30 (1)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004ECC50",
+   "why": "3334-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 31 conditional branches, 19 direct calls (most often 0022CC20 (5), 0022CC40 (4), 0022CC30 (4), 005375F0 (2)) and 1 indirect call through a register holding the incoming rcx; one sentence cannot state its reads, writes and every path accurately"
+  },
+  {
+   "fn": "004F7070",
+   "why": "24541-byte body of long straight-line float and integer work indexing 02064E30 and nearby globals, with 129 conditional branches, 50 direct calls (most often 0022CC20 (14), 00861F14 (10), 0022CC40 (8), 0022CC30 (8)); one sentence cannot state its reads, writes and every path accurately"
+  }
+ ],
+ "notes": "00259370 uses the 32-bit ecx as the pointer for the +4 read (mov eax, ecx zero-extends into rax), so it is stated literally as a zero-extended address. The twelve skips are 2.7-28 KB bodies of the same family the effect-element-type-dispatch report already skipped (004DB350, 004DF440 and 004ECC50 recur here); each loads 02064E30 into a register and reads it at shl-4 (16-byte) strides, and 004C2160 repeats an shr 0x12 / xor / AND 0x3FFFFF / OR 0x1FC00000 step on 01E02828. In 004C8320 and 004D0FA0 the indirect-call register (rbp, r9) is overwritten after taking rcx, so what those calls target is not stated. They need a block-by-block reading that one access sentence cannot carry. No doubts on the single row."
+}
