@@ -3339,3 +3339,64 @@ These do not change a value; a re-implementer would only be misled about what is
 | C-S275 | ARM-D:128 "Flagged 2026-09-08, unresolved." | still unresolved (no later dated line) — listed in G.1 |
 | C-S276 | ARMDIV:20 `crossref_clean: true` | slices all `crossref_clean: false` (e.g. ARM-A:25); C.1 items above |
 
+---
+
+## 4. Rating
+
+**Overall: NOT YET.** The frame skeleton is documented closely: boot fixups, the application root's latch, the
+world tick and field-frame order, the sixteen-group update gate and the 28-record stop registry. So are the
+self-contained services: the log call, the class validator, the workbench save/restore pair and the two transform
+primitives. But a port of this category still meets structural gaps. Most of the `0x10FD0` gate singleton is
+unmapped (S-26–S-28). The skip / fast-forward sub-steps contradict each other on addresses and strides
+(C-V19, C-V20). The mode-transition dispatcher's table columns disagree (C-V52). The 267 workbench member routines
+are a census only (S-58). Most of the 4,275 virtual methods have no behaviour on any page (S-67, S-68), and the
+action-timeline interpreter has no operand layouts (S-78). Separately, 168 value-changing contradictions (40 with
+a favoured side) are page-text only and need a local check before any of them is used.
+
+| part | rating | why |
+|---|---|---|
+| Boot fixups (`BOOT`, `C-BOOT`) | **MOSTLY** | Seed, masks, frame base, memory budget, failure behaviour, writers and readers are stated with sites. Open: where the 1 MiB pointer is stored (C-V5), the seed call site (C-V6), the allocation order in `0017D000` (C-V7), `02064ACC` after boot (C-V8, C-V9), the call order inside `0022A0B0` (S-1) and initial values (S-4). |
+| Startup float-table builders (`FLOAT`) | **MOSTLY** | The chain, header, registry and handle codec are stated. The packet contents live on `17-Presentation` pages (not audited). Object counts disagree (75 vs 66; see §3.1.C1), and two hub tail-jump objects have no row (S-7). |
+| Application root (`APP`) | **MOSTLY** | The latch, vtable, object size, pump set and init burst are stated; 16 vs 13 singletons is settled by a dated answer (C-V11). Open: the pump order of the 13, which the page calls load-bearing (S-2), and the run-once initialiser `0017D650` (S-3). |
+| World tick and field frame (`TICK`, `C-TICK`) | **MOSTLY** | The order, bounds, guard and deferred request (WT-1..WT-6) and the 23-step orchestrator are stated. Open: the third-gate polarity (C-V2), the predicate globals (C-V17), the slot-table base (C-V23), the tick callers' mode numbers (C-V24), function extents (C-V25–C-V27), and prologue / tail / unit-frame callees without behaviour (S-17–S-21). |
+| Skip / fast-forward sub-steps (`TICK`) | **NOT YET** | **Structural.** The array addresses (C-V19), the entry stride and the `00360710` shape (C-V20), and the timed-record pool (C-V21) contradict each other; no favoured side. |
+| Force-fight mode (`FORCE`) | **MOSTLY** | Flag, polarity, setter, enable, readers and main consumers are stated. Open: the flag's initial value and whether it is saved (S-13); the `00265020` identity (C-V3). |
+| Per-frame update gate (`GATE`, `C-GATE`) | **MOSTLY** | Order, masks, the 16 groups, the argument, the tail jump and the receivers are stated; the enable-word width, the test widths, the pump argument and the handler signatures are settled by dated corrections (C-V31–C-V34). Against that: the §12 reproduction formula is stale on all four, and it omits the gate's own writes and inner tests (S-26, S-27). The pump argument's writers conflict (C-V35), and so does the meaning of `001EDE80` (C-V36). |
+| Gate singleton `0209BE80` layout (`C-GATE` annexes) | **NOT YET** | **Structural.** The children are mostly unmapped (G-42–G-61: `_57E0`, `_8FA0`, `+0xAB38`). `_8FA0` is 0x1130 vs 0x1110 (C-V43). No destructor is stated (S-28). Six member-file checks disagree with the page counts (Pages read). |
+| System stop registry (`STOP`, `C-STOP`) | **MOSTLY** | All 28 records, the bit layout, seven invariants, the per-actor sets and the global outputs are stated, and a dated pass survives. Open: `00226280` AND-over-28 vs a best-fit search on `TICK` (C-V45), record B `+0x14` (C-V46), the flag-word address (C-V49), the elided `00226BE0` arguments (S-33), and the `+0x08` slot field that a member file shows written (G-54). |
+| Mode ladder core (`MODE`, `C-MODE`) | **MOSTLY** | Formula, inputs, null behaviour and save capture / restore are stated. Open: the `+0x5AE0` width (C-V56), one or two saved words (C-V57), and the new-game initial values (S-37). The slot-map base is settled by a dated correction (C-V58). |
+| Mode transition dispatcher and summon / chocobo handlers | **NOT YET** | **Structural.** The column assignment of `01EECFC0` (C-V52), the reset direction in `00313650` (C-V53, settled 2026-09-14 but still repeated), setters vs getters (C-V54) and the target object (C-V55) conflict; the `00313840` reset body is not described (S-36). |
+| Log call, duplicated names, all-ones convention (`LOG`, `DUP`, `ONES`) | **READY** | Complete behaviour for the log call (the "gate" reading is withdrawn, C-V65), the thunk and name resolution rules, and the convention. Residue: who publishes the sink pointer (C-V64); the `0016D6A0` body (C-V1). |
+| Encoded-id registry and inventory API (`EID`, `C-EID`) | **MOSTLY** | Layout, handlers, channels and formulas are stated; dated corrections settle C-V66 and C-V67. Open: whether the two state blocks are one object (S-49), the slot-descriptor header (S-51, C-V77), and the filler arms not given as formulas (S-52). |
+| Class validator (`CLS`) | **READY** | Table, arms, tail and bounds are stated and survive a falsification pass. The stale mapping on `NBR` is settled against it (C-V73). |
+| Query record (`QREC`) | **MOSTLY** | Lanes, failure rules and the per-class store table are stated. The complete arm formulas are not (S-52). |
+| Text / description resolvers `002F9860` / `002F9920` | **NOT YET** | The table address conflicts (C-V75), so do the empty-record defaults (C-V76), and the bank format is only sketched (S-54). |
+| Basis-column helpers (`BASIS`) | **NOT YET** | The operation is stated. The translation-slot and scratch offsets conflict (C-V80, C-V81), and the carried components and rotation axes are not named (S-56). |
+| ABI recovery (`ABI`) | **MOSTLY** (reference only) | The arity tables match the member files exactly. Most rows have no types, and the page says it explains nothing (S-57). |
+| Workbench save / restore (`SAVE`, `C-SAVE`) | **READY** | Full pseudo-code, differentially tested. Open: which rows callers protect (C-V85, favoured) and the save capacity wording (C-V88). |
+| Transform primitives (`PRIM`, `C-PRIM`) | **READY** | Exact laws, deposits, aliasing and float order. Stale text to ignore: C-V91, C-V92 and C-V101–C-V103 (settled by dated corrections); C-V93 is open. The sine-table address conflicts (C-V95). |
+| EE / VU0 register-bank model (`EEVU`, `WB`, `C-WB`) | **MOSTLY** | The layout is stated. It conflicts with other pages on `022D8F10` (C-V84), the vf00 writer count (C-V83), the clear range of `0036D9E0` (C-V89) and the area size (C-V118). |
+| The 267 workbench member routines | **NOT YET** | **Structural.** A census only (S-58, S-59, S-64). |
+| RTTI recovery and the vtable method index (`RTTI`, `VTIDX`) | **MOSTLY** | The mechanism and the address-to-(class, slot) map are exact and agree with their files. The 4,275 / 6,886 headline counts include three non-pointers (C-V104, C-V105, favoured 4,272 / 6,883). Five slot numbers disagree with the appendix (C-V111). The GameApplication destructor is overturned but still repeated (C-V113). |
+| Object behaviour and per-class layouts | **NOT YET** | **Structural.** No method bodies (S-67), no per-class sizes (S-68), no slot semantics across classes (S-69); the allocator callees are not described (S-70). |
+| Shared-state accessor hubs and shared neighbours (`HUBS`, `NBR`) | **MOSTLY** | The three hubs, the resolvers, the payload base, the audio request chain and the pointer codec are stated. Open: the `+0x1044` writer (G-126–G-140), the pool globals' initial values (S-74), `0020E600`'s reach (C-V126). |
+| Ownership classification and shared scratch (`OWN` §1–10) | **MOSTLY** | Mainly a classification audit. Count conflicts: 62 vs 13 objects (C-V117, favoured 62, still repeated in `README`), 1,436 vs 1,536 bytes (C-V118), three vs two wrong labels (C-V119, favoured two). |
+| Action-timeline interpreter (`OWN` §12 and its member file) | **NOT YET** | **Structural.** The opcode operands are the residue (S-78). The action context's allocation, size and lifetime are not stated (S-77), and `02F97348` is called private although the world tick reads and writes it (C-V122). The member file disagrees with two dated opcode corrections (C-V128, C-V129). |
+| Console dispatcher, name table and second table (`C-CON`, `CON282`, `CMDNAMES`, `CON2`) | **MOSTLY** | The dispatch rule, id bound, table decoding and labels are exact; the name table is READY on its own. Missing: the press-to-direction mapping (S-84), the caller cadence (S-93), the settings singleton's initial values (S-85), and the code-table contents (S-89). Arm extents, the authored-code index and the table extent are settled by dated corrections (C-V133, C-V137, C-V138). |
+| Render-settings block and its loaders (`TUNES`) | **MOSTLY** | The layout comes from the constant-buffer member file. Defaults are given for 27 of 107 offsets (S-86). The constructor-vs-none question is settled (C-V140) but repeated unstruck. Open: the loaders' cadence (C-V142) and the next-frame effect (C-V143). |
+| Event-slot panel (`EVSLOT`) | **MOSTLY** | Producers and consumers are specified. Open: initial values (S-91), the `001EC560` polarity (C-V2) and the gate question (C-V144). |
+| Per-arm behaviour (the arm catalogue, `ARMDIV`, `ARM-A`–`ARM-I`) | **MOSTLY** | All 282 ids are catalogued, and a scripted join of every arm address against `CMDNAMES` found no difference. Open per slice: id 28's constants (C-V151), the `01F82D20` arm counts (C-V156), the `+0x10C4` owner (C-V157), id 200's party base (C-V158), id 227's wrap (C-V159), `005DC720` (C-V160), id 108's constant (C-V161), and unnamed accessors and callees (S-95–S-100). The "consumed by nothing" claims are overturned by the 2026-09-27 answer but still printed (C-V149). |
+| `README.md` as a status source | **NOT YET** | Its status claims disagree with the pages' front matter (§3.2.1). It repeats overturned facts (75 objects, "no stated object size", 13 scratch objects) and does not list several pages (§3.2). |
+
+**To reach MOSTLY overall**, the database would need:
+- a field map of the `0209BE80` singleton's children, or a statement that a port can treat the unmapped bytes as
+  zero-initialised opaque storage (S-26–S-28), and a §12 formula on `C-GATE` brought up to the dated corrections
+  (C-V31–C-V35);
+- one reconciled statement of the skip / fast-forward arrays, entry stride and timed-record pool (C-V19–C-V21);
+- the column assignment of `01EECFC0` and the summon / chocobo handler bodies (C-V52–C-V55, S-36);
+- a statement of which category owns the bodies of the 267 workbench member routines, the virtual methods and
+  the timeline opcodes. If they belong to other categories' pages, this README could say so, and S-58, S-67 and
+  S-78 would become dependencies rather than gaps;
+- a local check of the 128 value-changing items with no favoured side, starting with those that change control
+  flow: C-V1 (the body of `0016D6A0` at 2,868 call sites), C-V2, C-V35, C-V36, C-V45, C-V52, C-V53 and C-V84.
+
