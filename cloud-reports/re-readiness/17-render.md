@@ -1652,3 +1652,700 @@ Matrices: `02AEEA20` 64 B, `02AED5F0` 16 B, `02AEECB0` 64 B, `02F97348` 8 B (Pos
 
 Resource (kind-0x1C path table, string helpers `001A0A90`/`001A0BB0`/`001A1220`) (Movie-Containers/mh-movie-seek-index.md:223; Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:301-311, 692-698); Audio (`005CD330` etc. row-buffer releases in `0067A9B0`) (Movie-Containers/mh-movie-seek-index.md:216); Script VM verbs (Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:95-98; Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:293-296; Scripted-Camera/how-a-camera-reaches-the-renderer.md:420; Scripted-Camera/the-scripted-camera-player.md:95-104); world tick / field frame (Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:76; Scripted-Camera/how-a-camera-reaches-the-renderer.md:386-387, 422); time-stop registry (`020926E8` ramp; display-deny `02B59D71`) (Position-To-Scalar/how-a-position-becomes-a-single-number.md:361-362); character fade (`003B30D0` writes container colours) (Position-To-Scalar/how-a-position-becomes-a-single-number.md:348-351); RNG gameplay MT19937 via `RNG_MT19937_NextFloatClosed` (Scripted-Camera/how-a-camera-reaches-the-renderer.md:234-239, 416); settings Screen Shake `02EBF3C4` (Scripted-Camera/how-a-camera-reaches-the-renderer.md:183-185); DXGI mode list from Platform `001DD420`/`006242C0` (Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:203-210); `GameSettingConfig_WriteFile` (Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:212-214); EBP section_008/009/010 (Scripted-Camera/the-scripted-camera-player.md:70-78, 541); frame pass mask / queued-effect kinds (22-Middleware The-Frame) (Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:286-289); Movement `0026E500`/`00233230` (Scripted-Camera/how-a-camera-reaches-the-renderer.md:392-394).
 
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, or live-only)
+
+Only items still open after every later dated section on the pages was read are listed. Items that a later section answers are in §3.3 as stale text. Ids are `<part>.S-n`.
+
+#### 2.1.1 [AC] Authored commands, ramp channels and the coast-down latch
+
+| id | gap | cite |
+|---|---|---|
+| AC.S-1 | How often the repeat dispatch fires in play: "its frequency is a live question, not measurable statically" | CONTRACT-authored-command-ramp-channels.md:449-450 |
+| AC.S-2 | Threading: "not established. The bodies take no lock" | CONTRACT-authored-command-ramp-channels.md:313-314 |
+| AC.S-3 | The `.rdata` words `01CC74B4`/`01CC78B4`: "a second, not-yet-decoded `{u32,u32}` record table" | CONTRACT-authored-command-ramp-channels.md:188-189, :273-274 |
+| AC.S-4 | The out record's field names "stay interpretive — the arithmetic is proven, the labels are not" | CONTRACT-authored-command-ramp-channels.md:401-402 |
+| AC.S-5 | `02B3F554`: "its consumer is outside static addressing or does not exist" | CONTRACT-authored-command-ramp-channels.md:417 |
+| AC.S-6 | Ramp TIMING "is read statically in §9, not measured" | CONTRACT-authored-command-ramp-channels.md:391-392 |
+| AC.S-7 | What the V2 shadow pool values do on screen: "is not established here" | Authored-Commands/the-authored-presentation-command-handlers.md:1051-1052, :1139 |
+| AC.S-8 | Which bone key 29 / 0x1E is per model; what subtypes 2/6, 4, 5 and 9 look like, and why 7 and 8 are authored; palettes; whether `004218A0`'s by-name lookup matches on kind-2 `@FTR` | Authored-Commands/the-authored-presentation-command-handlers.md:1083-1084, :1139-1141 |
+| AC.S-9 | `+0x290` bit 24 re-apply: the 34 wholesale `mov dword` writers "were **not traced**" | Authored-Commands/the-authored-presentation-command-handlers.md:754-758 |
+| AC.S-10 | Equal 3/4/5 variant counts: "that was not checked container by container" | Authored-Commands/the-authored-presentation-command-handlers.md:751-752 |
+| AC.S-11 | What precedes `0x00` in the other blocks (31,942 − 30,003 = 1,939, my arithmetic): "not tallied" | Authored-Commands/the-authored-presentation-command-handlers.md:291-292 |
+| AC.S-12 | The dispatch-table writer sweep "cannot see image-base-relative stores" | Authored-Commands/the-authored-presentation-command-handlers.md:1007-1008 |
+| AC.S-13 | Live only: whether a real character reaches 128 stopped calls; which subtypes occur (0x0D) | CONTRACT-coast-down-latch.md:386-392 |
+| AC.S-14 | "What index `0x10` is on screen remains unnamed"; the 0x2010 post "is not traced" | CONTRACT-coast-down-latch.md:435-438 |
+| AC.S-15 | `01F83530` zero for the process's life is "**supported, not proven**" | CONTRACT-coast-down-latch.md:508-509 |
+| AC.S-16 | TIMING, INTEGRATION and PRESENTATION parity are not covered | CONTRACT-coast-down-latch.md:527-531 |
+| AC.S-17 | The `+0x457` writer "was read, not run" | CONTRACT-coast-down-latch.md:383-384 |
+
+#### 2.1.2 [RO] Render-record pool, character render object, transform publish and lighting
+
+Short names in this part: **POOL** = `CONTRACT-render-record-pool-lifecycle.md`; **CRO-C** = `CONTRACT-character-render-object.md`; **PUB** = `CONTRACT-character-transform-publish.md`; **CRO** = `Character-Rendering/character-render-object.md`; **LIT** = `Character-Rendering/how-a-character-is-lit.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| RO.S-1 | "The bit meanings of the flag word at `+0x18`" | CONTRACT-render-record-pool-lifecycle.md:531-532 |
+| RO.S-2 | `+0x40` and `+0x4C..+0x70`: "no reader observed in a depth-2 route census" | CONTRACT-render-record-pool-lifecycle.md:533-534 |
+| RO.S-3 | "`+0x64` … whether it is one field or two is **not** decided" | CONTRACT-render-record-pool-lifecycle.md:535-536 |
+| RO.S-4 | "The relationship, if any, between the 16-bit index at `+0x2C` and either list" | CONTRACT-render-record-pool-lifecycle.md:537 |
+| RO.S-5 | "Which caller supplies the names that key allocation" | CONTRACT-render-record-pool-lifecycle.md:538 |
+| RO.S-6 | "What the eleven scripted callees do to a record beyond these fields is NOT established" | CONTRACT-render-record-pool-lifecycle.md:600, 431-433 |
+| RO.S-7 | Retire's child loop: "its termination is **the callee's postcondition, not retire's**" (not driven) | CONTRACT-render-record-pool-lifecycle.md:425-428 |
+| RO.S-8 | "What the pointer in `+0x48830` points AT … 16 readers use it" | CONTRACT-render-record-pool-lifecycle.md:868-870 |
+| RO.S-9 | "Whether any `PHOOK` implementation reads `+0x48818` bit 0" | CONTRACT-render-record-pool-lifecycle.md:871-873 |
+| RO.S-10 | "Left open: `0041D220` / `0041CB90` resource admission and defaults, the native cleanup helpers, and external ID invalidation" | CONTRACT-render-record-pool-lifecycle.md:705-706 |
+| RO.S-11 | "Whether `003AB7F0` can unlink a node is not established here" | CONTRACT-render-record-pool-lifecycle.md:702-703 |
+| RO.S-12 | Three live-game requests (invariant 3, cursor termination, promotion boundary) | CONTRACT-render-record-pool-lifecycle.md:435-446 |
+| RO.S-13 | "The extent of the embedded object at `+0x3E0`" | CONTRACT-character-render-object.md:191; Character-Rendering/character-render-object.md:208 |
+| RO.S-14 | "What `r8d` selects … the selector's own meaning stays with the caller" | CONTRACT-character-transform-publish.md:343-347 |
+| RO.S-15 | Publish: "nothing observed live" | CONTRACT-character-transform-publish.md:363, 406 |
+| RO.S-16 | "the pooled element's `3` (a likely expiry count) is not followed here" (see also RO.CS-7) | Character-Rendering/character-render-object.md:419 |
+| RO.S-17 | "`001F5C20`, has no caller in the graph at all and is not explained" | Character-Rendering/character-render-object.md:445-446 |
+| RO.S-18 | "Which values each slot receives per frame is not followed here" | Character-Rendering/character-render-object.md:484-485 |
+| RO.S-19 | "Which records draw first is the render command list's order, not read here" | Character-Rendering/character-render-object.md:349-350 |
+| RO.S-20 | WH/HS matrix meaning: "an interpretation of the names, and no matrix was multiplied out" | Character-Rendering/character-render-object.md:824-826 |
+| RO.S-21 | UQ-203 residual: "receiver types at those 18 sites were not proven" | Character-Rendering/character-render-object.md:850-851 |
+| RO.S-22 | `+0x118`/`+0x80`/`+0x420` spans: "unread on every route this corpus has" | Character-Rendering/character-render-object.md:1092-1099 |
+| RO.S-23 | "The heads of four evaluators (kinds 2 to 5) were not read line by line; what the third space mode (byte `+6` = 1) is for; the units of range" | Character-Rendering/how-a-character-is-lit.md:251-252 |
+| RO.S-24 | "What the two typed-handle predicates test, and what byte of the character's object sets the camera-anchored light's float" | Character-Rendering/how-a-character-is-lit.md:256-257 |
+| RO.S-25 | "What writes `+0x28C` was not traced" | Character-Rendering/how-a-character-is-lit.md:257-258 |
+| RO.S-26 | "What sets `02B3F520`" (the `02B3F503`/`02B3F51C` part is answered, RO.CS-10) | Character-Rendering/how-a-character-is-lit.md:259 |
+| RO.S-27 | "what class 3 is was not established" | Character-Rendering/how-a-character-is-lit.md:78-79 |
+| RO.S-28 | `004FD4B0`: "only its head … was read"; whether it scales the six directional colours "was not checked"; "what the shader does with the fourth component was not read" | Character-Rendering/how-a-character-is-lit.md:212, 228-230 |
+| RO.S-29 | `+0x244`/`+0x248`: "What writes the record's five fields, and what the mode and the other two values do in the draw, were not read" | Character-Rendering/how-a-character-is-lit.md:237-238 |
+| RO.S-30 | `003AC110`: "its second half was not read line by line"; its caller is "not read and not named" | Character-Rendering/how-a-character-is-lit.md:191-193, 206-207 |
+| RO.S-31 | "Nothing here was observed running" | Character-Rendering/how-a-character-is-lit.md:262 |
+
+#### 2.1.3 [RA] The character render record array, render events, focus point and track pick
+
+Short names in this part: **CRR** = `Character-Render-Records/the-character-render-record-array.md`; **RES** = `Character-Render-Records/render-event-selection-evidence.md`; **FOC** = `Character-Render-Records/the-focus-point-of-a-character.md`; **TRK** = `Character-Render-Records/how-a-presentation-entry-picks-its-track.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| RA.S-1 | 15 `UNRESOLVED` tail fields — "What remains open is meaning, not discovery" | Character-Render-Records/the-character-render-record-array.md:1038-1039 |
+| RA.S-2 | meaning of the record's constant blocks (ladder +0xA4..+0xBC, reciprocals, `03 03 05 03`) and 333 untouched bytes; carried to "static-FIELDS work" | Character-Render-Records/the-character-render-record-array.md:376-377 |
+| RA.S-3 | the five stage bodies "are not read here" | Character-Render-Records/the-character-render-record-array.md:407 |
+| RA.S-4 | no setter for +0x290 bits 2,5,24 and +0x294 bits 4,6,10,11,13,14,20 | Character-Render-Records/the-character-render-record-array.md:773-776 |
+| RA.S-5 | `+0x348` mid component / range units "Deliberately not claimed" | Character-Render-Records/the-character-render-record-array.md:831-833 |
+| RA.S-6 | `004209C0` +0x2E0 vector "what that vector is was not established" | Character-Render-Records/the-character-render-record-array.md:1067-1068 |
+| RA.S-7 | what the empty-callback hierarchy walks were for — "cannot learn from this image" | Character-Render-Records/the-character-render-record-array.md:1057-1058 |
+| RA.S-8 | `003E1C50` and `0040ED90` effects "remain outside this package" | Character-Render-Records/render-event-selection-evidence.md:460-461 |
+| RA.S-9 | meanings of the two vectors `00372280` resets "require their consumers" | Character-Render-Records/render-event-selection-evidence.md:436-437 |
+| RA.S-10 | `0041CA70` helper semantics outside the package | Character-Render-Records/render-event-selection-evidence.md:302-303 |
+| RA.S-11 | which in-game situations change the focus source | Character-Render-Records/the-focus-point-of-a-character.md:35-36 |
+| RA.S-12 | @FRM census; where +0x66C nibbles are decremented; second vector meaning; three sibling getters | Character-Render-Records/the-focus-point-of-a-character.md:105-109 |
+| RA.S-13 | command interpreter advancing the cursor; what starts a pending state; state-word values; who raises entry bit 6 | Character-Render-Records/how-a-presentation-entry-picks-its-track.md:163-164 |
+| RA.S-14 | what counts +0x5E down | Character-Render-Records/how-a-presentation-entry-picks-its-track.md:137 |
+| RA.S-15 | what reads +0x2E8 bits and the factor | Character-Render-Records/how-a-presentation-entry-picks-its-track.md:144-145 |
+| RA.S-16 | `0051B970` callbacks not read | Character-Render-Records/how-a-presentation-entry-picks-its-track.md:152-154 |
+| RA.S-17 | what kinds of model carry record flag bit 27 | Character-Render-Records/how-a-presentation-entry-picks-its-track.md:109-110 |
+
+#### 2.1.4 [RG] Rig controllers, fades, status looks, bone trails and the staged look
+
+Short names in this part: **FADE** = `Character-Render-Records/how-a-character-fades-the-ten-channels.md`; **STAT** = `Character-Render-Records/how-a-status-shows-on-a-character.md`; **TRAIL** = `Character-Render-Records/the-bone-trails.md`; **RIG** = `Character-Render-Records/the-rig-of-seventeen-controllers.md`; **LOOK** = `Character-Render-Records/the-staged-look-command.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| RG.S-1 | Channel 3 has no writer ("reset to 1.0; no writer in the sweeps"); bounded negative | Character-Render-Records/how-a-character-fades-the-ten-channels.md:87, :449-450 |
+| RG.S-2 | What the owner states behind channel 1 are (`+0x284` bit 27, `+0xCC` value 0x35, `+0x40B` bits 0-1) and which kinds 0x11..0x15 / >= 0x1C are | Character-Render-Records/how-a-character-fades-the-ten-channels.md:425-426 |
+| RG.S-3 | What `+0x22C` is | Character-Render-Records/how-a-character-fades-the-ten-channels.md:427 |
+| RG.S-4 | What bit 14 of `+0x284` and `+0x2CA` mean in the climb; the effect object | Character-Render-Records/how-a-character-fades-the-ten-channels.md:428-430 |
+| RG.S-5 | What the three large bodies that read channel 4 alone do with it | Character-Render-Records/how-a-character-fades-the-ten-channels.md:431 |
+| RG.S-6 | Attachment slots 0x10A / 0x7FFF; what 0042F4C0, 004215A0, 00426E40 do | Character-Render-Records/how-a-character-fades-the-ten-channels.md:434-435 |
+| RG.S-7 | 003CBB30 body and the camera update 003820C0 not read whole | Character-Render-Records/how-a-character-fades-the-ten-channels.md:334-337 |
+| RG.S-8 | "The setter's two other callers, both record phases, were not read" (partly answered, see RG.CS-12) | Character-Render-Records/how-a-character-fades-the-ten-channels.md:248 |
+| RG.S-9 | Requester 1 of the cull veto: "only the call site was read" | Character-Render-Records/how-a-character-fades-the-ten-channels.md:284 |
+| RG.S-10 | Not followed: presentation-entry callbacks under 0042C410 | Character-Render-Records/how-a-character-fades-the-ten-channels.md:272-273 |
+| RG.S-11 | What `+0x304` bit 5 does (Stone/Stop): "What the bit does was not read" | Character-Render-Records/how-a-status-shows-on-a-character.md:71 |
+| RG.S-12 | What the model variant blocks hold; what pass the model draw (9,695 B) skips for variant 3 | Character-Render-Records/how-a-status-shows-on-a-character.md:107-110, :372 |
+| RG.S-13 | Who calls the variant binder's allocator-side routines | Character-Render-Records/how-a-status-shows-on-a-character.md:120-121 |
+| RG.S-14 | Curve tables 01F21F40 / 01F22030 values not read | Character-Render-Records/how-a-status-shows-on-a-character.md:146-147 |
+| RG.S-15 | Berserk's point: "which point that is was not read" (code 0x100) | Character-Render-Records/how-a-status-shows-on-a-character.md:202-203 |
+| RG.S-16 | What sets the second block's `+0x14` | Character-Render-Records/how-a-status-shows-on-a-character.md:272 |
+| RG.S-17 | What the shadow draw does with Slow/Immobilize colour and vector; what virtual slot 25 does | Character-Render-Records/how-a-status-shows-on-a-character.md:283-284, :297-298 |
+| RG.S-18 | Light selector 003ACC10 read only in part; filler of 02B3F508 | Character-Render-Records/how-a-status-shows-on-a-character.md:313, :349, :373-374 |
+| RG.S-19 | Whether anything selects look 12 or second-block index 2 | Character-Render-Records/how-a-status-shows-on-a-character.md:377 |
+| RG.S-20 | VU1 program 0053F490 not read; per-vertex ST/RGBAQ values (UQ-213) | Character-Render-Records/the-bone-trails.md:379-384 |
+| RG.S-21 | Sibling sampler 003712C0 not read | Character-Render-Records/the-bone-trails.md:117-118, :30 |
+| RG.S-22 | Callers of off-only route 0042F250 (handbook loader, 003B8260, 002E35B0) not read | Character-Render-Records/the-bone-trails.md:80-81, :434-435 |
+| RG.S-23 | Entry `+0xC` (20.0) has no reader found | Character-Render-Records/the-bone-trails.md:106 |
+| RG.S-24 | Which vertex ADC skips, and why | Character-Render-Records/the-bone-trails.md:377 |
+| RG.S-25 | Controller 8 unidentified, no enabler; controller 5 trigger and purpose | Character-Render-Records/the-rig-of-seventeen-controllers.md:270-272 |
+| RG.S-26 | What lip flap, nod, head shake, Confuse, Immobilize, body shake updates compute | Character-Render-Records/the-rig-of-seventeen-controllers.md:273-276 |
+| RG.S-27 | Bit 8 / controller 10 dirty bit "not traced here" | Character-Render-Records/the-rig-of-seventeen-controllers.md:107 |
+| RG.S-28 | What the rotators are attached to in shipped models | Character-Render-Records/the-rig-of-seventeen-controllers.md:163-164 |
+| RG.S-29 | Hit-flinch handler 00427320: "only the two windows round the enables were read" | Character-Render-Records/the-rig-of-seventeen-controllers.md:141 |
+| RG.S-30 | What the look controller and eye object do each frame | Character-Render-Records/the-staged-look-command.md:212 |
+| RG.S-31 | Rig fields `+0x58`..`+0x62`; global `02B59D64` | Character-Render-Records/the-staged-look-command.md:214-215 |
+| RG.S-32 | Names of request bits 2, 5, 6, 30; bits 5 and 6 have no stager | Character-Render-Records/the-staged-look-command.md:217-218 |
+| RG.S-33 | Who reads staged bits 7 and 8 | Character-Render-Records/the-staged-look-command.md:219 |
+| RG.S-34 | What 00426220 tests | Character-Render-Records/the-staged-look-command.md:220 |
+| RG.S-35 | What the three reset vectors accumulate; what byte +6 selects | Character-Render-Records/the-staged-look-command.md:195-196 |
+| RG.S-36 | All five pages: static, nothing observed running | Character-Render-Records/how-a-character-fades-the-ten-channels.md:437; Character-Render-Records/how-a-status-shows-on-a-character.md:378; Character-Render-Records/the-rig-of-seventeen-controllers.md:281; Character-Render-Records/the-staged-look-command.md:221 |
+
+#### 2.1.5 [CL] Ordered render command list and graphics-thread handshake
+
+Short names in this part: **C** = `CONTRACT-render-command-list-and-graphics-handshake.md`; **L** = `Render-Command-List/the-ordered-render-command-list.md`; **H** = `Graphics-Thread-Handshake/the-shared-command-state-word.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| CL.S-1 | Who writes `+0x08` executeTarget: "a bounded census … finds **no writer**" | CONTRACT-render-command-list-and-graphics-handshake.md:460-467, CONTRACT-render-command-list-and-graphics-handshake.md:495 |
+| CL.S-2 | What consumes the staging buffers: "the consumer of the staging buffers at `[02F8F2E0]` … was not traced here" | Graphics-Thread-Handshake/the-shared-command-state-word.md:324, CONTRACT-render-command-list-and-graphics-handshake.md:469-471 |
+| CL.S-3 | How a walked command list becomes the kicked buffer: "how a walked-and-executed command list becomes the buffer the three publishers kick" | Graphics-Thread-Handshake/the-shared-command-state-word.md:900-903 |
+| CL.S-4 | The Tk workers' callback tables were not followed (limit of CG-3) | CONTRACT-render-command-list-and-graphics-handshake.md:472-473, Graphics-Thread-Handshake/the-shared-command-state-word.md:300-301, Graphics-Thread-Handshake/the-shared-command-state-word.md:149 |
+| CL.S-5 | Whether the third publisher's guard byte is ever non-zero: "this publisher is **not known to be unreached** rather than known to run" | Graphics-Thread-Handshake/the-shared-command-state-word.md:286-288 |
+| CL.S-6 | What bits 2/3 and `0x14D` meant to the backend: "not decidable from this executable" | Graphics-Thread-Handshake/the-shared-command-state-word.md:231-232 |
+| CL.S-7 | Runtime validation is empty: "Nothing in this contract has been observed on a running game." | CONTRACT-render-command-list-and-graphics-handshake.md:416 |
+| CL.S-8 | Who registers the `0x20`-stride table at `01EF8B00` that triggers ReadPresetDof: "What registers that table is not read here." | Render-Command-List/the-ordered-render-command-list.md:776-779 |
+| CL.S-9 | Render-param record: class name (`EA-2`), the map loader's call sites, "the rest of the ~96 unnamed rows" | Render-Command-List/the-ordered-render-command-list.md:846-847, Render-Command-List/the-ordered-render-command-list.md:814-815 |
+| CL.S-10 | `+0xEE`: "NOT CLAIMED: that `+0xEE` has no other writer" | Render-Command-List/the-ordered-render-command-list.md:1268-1273 |
+| CL.S-11 | `+0x11..+0x17` bound: "a body outside the 129 that holds a command pointer could still address the gap" | Render-Command-List/the-ordered-render-command-list.md:873-875 |
+
+#### 2.1.6 [GP] Gi render commands and the legacy PS2 GS/VIF layer
+
+Short names in this part: **GI** = `Gi-Render-Commands/gi-render-command-family.md`; **TEX** = `Legacy-PS2-GS/texture-mip-local-memory-budget.md`; **VIF** = `Legacy-PS2-GS/the-vif1-vu1-layer.md`.
+
+
+| # | gap | cite |
+|---|---|---|
+| GP.S-1 | Command arena: "Not read: whether a caller resets the cursor each frame." (no other R/ page found answering) | Gi-Render-Commands/gi-render-command-family.md:1000 |
+| GP.S-2 | DynGeo slots 3-20 semantic names "beyond the shapes above; which caller dispatches each." | Gi-Render-Commands/gi-render-command-family.md:1054-1055 |
+| GP.S-3 | "NOT claimed: what the `01F7F4C0` object is beyond the arena anchor" | Gi-Render-Commands/gi-render-command-family.md:1533 |
+| GP.S-4 | Opcode 0x25 fields: "Not claimed: that no other route applies a depth bias to the shadow pass. And the level-1 arms 0x01-0x06 were read no further than their first call." | Gi-Render-Commands/gi-render-command-family.md:1484-1485 |
+| GP.S-5 | GS replay: "What the flush submits, and how often shipped packets use each mode, is not established." | Legacy-PS2-GS/the-vif1-vu1-layer.md:175-176 |
+| GP.S-6 | GIF size: "Not established: what bounds real producers, how the gate byte is initialised, what the callees do with such sizes" | Legacy-PS2-GS/the-vif1-vu1-layer.md:158-159 |
+| GP.S-7 | MSCAL fallback: "Not established: when the count is reset in normal play, and whether a stale slot 0 is ever called." | Legacy-PS2-GS/the-vif1-vu1-layer.md:78 |
+| GP.S-8 | Callback flag upper bytes: "Not established: what the upper bytes hold in normal play, and whether the flag ever changes a picture." | Legacy-PS2-GS/the-vif1-vu1-layer.md:88 (Legacy-PS2-GS/the-vif1-vu1-layer.md:89-91 narrows it) |
+| GP.S-9 | UNPACK admission: "Not established: whether any shipped packet has these values." | Legacy-PS2-GS/the-vif1-vu1-layer.md:98 |
+| GP.S-10 | Vertex colour: "which byte is which channel is not established"; "+0x28-+0x2F ... not written ... does not make it padding" | Legacy-PS2-GS/the-vif1-vu1-layer.md:305-306, Legacy-PS2-GS/the-vif1-vu1-layer.md:317 |
+| GP.S-11 | "The leaf also stores `01F83578` ... its reader is not traced here." | Legacy-PS2-GS/the-vif1-vu1-layer.md:357 |
+| GP.S-12 | "Not read: ... the rest of `0020ED30`'s state selection" | Legacy-PS2-GS/the-vif1-vu1-layer.md:374 |
+| GP.S-13 | "Not read here: ... `001DB640`/`001DB660` beyond §2.1a; what `002105C0` measures." | Legacy-PS2-GS/the-vif1-vu1-layer.md:271 |
+| GP.S-14 | "Not read here: what any of the seven draws; the eight `02AE92xx` objects type `'j'` reads; whether the two programs a type installs run in one MSCALF each" | Legacy-PS2-GS/the-vif1-vu1-layer.md:518-519 |
+| GP.S-15 | GIF values: "says nothing about what the values mean — what an `ST` pair spans, how `RGBAQ` combines with authored colour" | Legacy-PS2-GS/the-vif1-vu1-layer.md:621-623 |
+| GP.S-16 | 2D layer: "what the batcher's topology table at `008F80F8` and the four integers of its mode setter select; how `DynGeoTextureInstance` turns a batch into a draw" | Legacy-PS2-GS/the-vif1-vu1-layer.md:711-712 |
+| GP.S-17 | UQ-214 residue: "Not claimed: that the `0x2A8`/`0x168` arithmetic is a double buffer ... or what the `+0x8000` names."; GIF-tag discriminator "was NOT run" | Legacy-PS2-GS/the-vif1-vu1-layer.md:821-824 |
+| GP.S-18 | GP.G-6: purpose of 1-vs-4 accounting factor — closed as "NO ADMISSIBLE SOURCE", unanswered in fact | Legacy-PS2-GS/texture-mip-local-memory-budget.md:252 |
+| GP.S-19 | UQ-212: record names — "Closed for the gate, unanswered in fact." | Legacy-PS2-GS/texture-mip-local-memory-budget.md:253-257 |
+| GP.S-20 | GP.G-5 second surface: "That it was the PS2 double buffer's other half is the reading of the reservation, not something the code shows." | Legacy-PS2-GS/texture-mip-local-memory-budget.md:247-249 |
+| GP.S-21 | Bracket-flag quad emitter texture name "was not checked" | Legacy-PS2-GS/the-vif1-vu1-layer.md:699 |
+
+#### 2.1.7 [EF] Effect containers, element dispatch and the per-frame element update
+
+Short names in this part: **DISP** = `Effect-File-Formats/effect-element-type-dispatch.md`; **FBF** = `Effect-File-Formats/an-effect-element-frame-by-frame.md`; **EFX** = `Effect-File-Formats/efx-and-efb-effect-containers.md`; **ERM** = `Effect-File-Formats/README.md`; **CAT** = `README.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| EF.S-1 | "The spawner itself was not read here" (`003A8AE0`) - DISP only gives its callers/callee | Effect-File-Formats/an-effect-element-frame-by-frame.md:156, 303 |
+| EF.S-2 | "whether the matrix builder `003A2570` normalises it was not read" (EC7-56 adds calls only) | Effect-File-Formats/an-effect-element-frame-by-frame.md:182-183, 274-276, 303-304 |
+| EF.S-3 | "What that global holds was not established" (`02064AB0`) | Effect-File-Formats/an-effect-element-frame-by-frame.md:186 |
+| EF.S-4 | whose position the stash `02AED5F0` holds - "that page's open runtime item" | Effect-File-Formats/an-effect-element-frame-by-frame.md:131-132 |
+| EF.S-5 | type 0x09's default arm `0043EAB0` "this page does not read" | Effect-File-Formats/an-effect-element-frame-by-frame.md:60-61 |
+| EF.S-6 | the 56-byte form "51 times image-wide … some members are reached another way (not traced)" | Effect-File-Formats/effect-element-type-dispatch.md:91-92 |
+| EF.S-7 | "Not read here: `002D7FC0`, `003B3D20` and `0039D200` …; what `word[02F8F310]` bit 0 means; the body of `00542100` …; the five other types' builders …; what any of the seven microprograms draws" | Effect-File-Formats/effect-element-type-dispatch.md:596-599 |
+| EF.S-8 | "`003A3D20`, `003A2C70`" predicates not read (`0024E460` answered, see E3) | Effect-File-Formats/effect-element-type-dispatch.md:606-607 |
+| EF.S-9 | "which codes ever reach this leaf in practice" | Effect-File-Formats/effect-element-type-dispatch.md:607-609 |
+| EF.S-10 | type 0x05 walk: "`0039B620`, `002F1F40`, `0026EE00` and `004355D0` beyond their roles; what the `+0x1F1` bits mean …; the four resolve-and-branch blocks" | Effect-File-Formats/effect-element-type-dispatch.md:652-653 |
+| EF.S-11 | §2.6 "the inner-table subtype selectors, the kind-3/6 arm interiors, and every per-kind helper body" | Effect-File-Formats/effect-element-type-dispatch.md:733-734 |
+| EF.S-12 | §2.7 "`0x56`/`0x57`/`0x59` loaders are call-shape only" | Effect-File-Formats/effect-element-type-dispatch.md:784-785 |
+| EF.S-13 | "Which loader caller takes the `.mpk` streams is not traced here" | Effect-File-Formats/effect-element-type-dispatch.md:798-799 |
+| EF.S-14 | `01F83530` "run-time value in play is still not observed live" | Effect-File-Formats/effect-element-type-dispatch.md:585-586; Effect-File-Formats/efx-and-efb-effect-containers.md:255-256 |
+| EF.S-15 | `002F2D60`'s "five subtype arms' field semantics … not claimed" | Effect-File-Formats/effect-element-type-dispatch.md:1053-1054 |
+| EF.S-16 | `002F2530` callees "their own bodies were not read" | Effect-File-Formats/effect-element-type-dispatch.md:936 |
+| EF.S-17 | `0xB00` count "was not re-walked" | Effect-File-Formats/efx-and-efb-effect-containers.md:54 |
+| EF.S-18 | single-chunk fallback `003EE2D0` "not read" | Effect-File-Formats/efx-and-efb-effect-containers.md:112 |
+| EF.S-19 | "The write path is not documented here" | Effect-File-Formats/efx-and-efb-effect-containers.md:451, 622-623 |
+| EF.S-20 | null-name fields' path - runtime, SD-194 | Effect-File-Formats/efx-and-efb-effect-containers.md:367-370, 378 |
+| EF.S-21 | borrowed-context relocation: "no instance of such a move is observed … the list handlers and native subtype effects are not executed" | Effect-File-Formats/efx-and-efb-effect-containers.md:195-197 |
+| EF.S-22 | "Any chunk's meaning" beyond 0x600/0x700 | Effect-File-Formats/efx-and-efb-effect-containers.md:606-610 |
+
+#### 2.1.8 [ET] Effect element types, kind-0x54 meshes, menu effect registry and VFX layers
+
+Short names in this part: **mesh** = `Effect-File-Formats/effect-mesh-records-kind-54.md`; **00-0a** = `Effect-File-Formats/the-element-types-00-0a.md`; **40-42** = `Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md`; **60-74** = `Effect-File-Formats/the-element-types-60-74.md`; **80-97** = `Effect-File-Formats/the-element-types-80-97.md`; **menu** = `Effect-File-Formats/the-menu-effect-registry.md`; **six-layers** = `Effect-File-Formats/the-six-vfx-display-layers.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| ET.S-1 | "uncharacterised pass operators (`0043E7B0`/`00434630`/`00434760`/`00396F20`/`00394B70`/`0043E840`) and the clipper `00521450` itself" | Effect-File-Formats/effect-mesh-records-kind-54.md:223-224 (also `:4`) |
+| ET.S-2 | `0x800`-chunk class (32,639 sub-records) "not covered by this census beyond the subtype histogram" | Effect-File-Formats/effect-mesh-records-kind-54.md:187-188 |
+| ET.S-3 | kind-0x54 figures "were not re-walked and are a lower bound" | Effect-File-Formats/effect-mesh-records-kind-54.md:48-49 |
+| ET.S-4 | plain sprite drawer: "its first 0x340 bytes read, the rest skimmed for calls" | Effect-File-Formats/the-element-types-00-0a.md:335 |
+| ET.S-5 | "what UV sources 1, 3 and 4 compute, and `00446050`'s exact colour interpolation" (registered GI-14 at :396, not covered by GI-14 section) | Effect-File-Formats/the-element-types-00-0a.md:396, :430 |
+| ET.S-6 | point emitter flag dword "from three predicates not read" | Effect-File-Formats/the-element-types-00-0a.md:273 |
+| ET.S-7 | "whether any shipped effect uses mode 6 was not checked" | Effect-File-Formats/the-element-types-00-0a.md:284 |
+| ET.S-8 | not-read list: `003AA280`'s internals, `003992B0`, `00398030`, … `002F3890`, `003A2900`, `00808C40` | Effect-File-Formats/the-element-types-00-0a.md:350-355 |
+| ET.S-9 | 0x71 triple 4: "the colour sets and the t4 < 0 branch `004D6F46` are not traced" | Effect-File-Formats/the-element-types-60-74.md:270 |
+| ET.S-10 | 0xAB default block "calling it a state primer is inference" | Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md:194-195 |
+| ET.S-11 | registry: `003B28F0`/`003B2B40` "bodies were not read beyond the type argument"; `003B2CA0` role not read; "A computed call is outside this census" | Effect-File-Formats/the-menu-effect-registry.md:130-131, :136 |
+| ET.S-12 | spawn caller `0055F010` "stays unplaced" | Effect-File-Formats/the-menu-effect-registry.md:100, :119 |
+| ET.S-13 | what the mode dword means once installed is "the workbench page's unclaimed item" | Effect-File-Formats/the-menu-effect-registry.md:117 |
+| ET.S-14 | audio routine `003B3D20` "what that routine plays is not read here" | Effect-File-Formats/the-menu-effect-registry.md:165 |
+| ET.S-15 | six layers: lookups for kinds 4,5,6,9; commit step; transform composer; writers of group-enable words; bracket pair; layer-3 routines; state call values; mode getter meaning; callers | Effect-File-Formats/the-six-vfx-display-layers.md:137-140, :250-251 |
+| ET.S-16 | who writes the enable words and the two bytes; what raises bit 11 of `020926E4` | Effect-File-Formats/the-six-vfx-display-layers.md:66-67, :111-112 |
+| ET.S-17 | order of layers "is the names', not a measurement" | Effect-File-Formats/the-six-vfx-display-layers.md:54-56 |
+| ET.S-18 | odd wait loop ("a bit found set on entry would never be seen to clear") | Effect-File-Formats/the-six-vfx-display-layers.md:49-50 |
+
+#### 2.1.9 [MF] Model formats: add-motion tables, ADM, FCP, FDM/FOR
+
+Short names in this part: **SKEL** = `Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md`; **ADM** = `Model-And-Motion-Formats/adm-add-motion-tables.md`; **FCP** = `Model-And-Motion-Formats/fcp-character-parameter-block.md`; **FDM** = `Model-And-Motion-Formats/fdm-and-for-entries.md`; **MREADME** = `Model-And-Motion-Formats/README.md`.
+
+
+| id | gap | cite |
+|---|---|---|
+| MF.S-1 | "Not claimed: what is drawn (nothing found hides the base model), and the run-time order of the `bindp2` / `bindh` calls." | Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md:221 |
+| MF.S-2 | "Whether `1570` is a story-progress value in the units the flag banks use — the number is read, the scale is not." | Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md:300-301 |
+| MF.S-3 | `0037CCC0` read only "to the pair loop's end"; `00372820` and `003703A0` only partly read (◐) | Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md:136-139 |
+| MF.S-4 | "Still open: who consumes the second triple (dead to the sole traced consumer), and what the group header's other floats mean." | Model-And-Motion-Formats/adm-add-motion-tables.md:194-195 |
+| MF.S-5 | `002E7CE0` "What that value is was not established." | Model-And-Motion-Formats/adm-add-motion-tables.md:154 |
+| MF.S-6 | "what the allocator `00210EC0` does with a saturated size is not read" | Model-And-Motion-Formats/adm-add-motion-tables.md:121 |
+| MF.S-7 | Section-8 packet: "What the packet looks like on screen is not read." | Model-And-Motion-Formats/fcp-character-parameter-block.md:732 |
+| MF.S-8 | Rig controllers: "what each controller's record holds. Those are the rig page's own unknowns" | Model-And-Motion-Formats/fcp-character-parameter-block.md:391 |
+| MF.S-9 | Section 10: "The remaining 42 bytes of the 48 … have no reader" | Model-And-Motion-Formats/fcp-character-parameter-block.md:770-771 |
+| MF.S-10 | Section header `+0x04`, `+0x0C`: "no reader found by the tag scan" | Model-And-Motion-Formats/fcp-character-parameter-block.md:186 |
+| MF.S-11 | "what the VU1 program does with the pair is not established (no microcode read)" | Model-And-Motion-Formats/fdm-and-for-entries.md:302-303 |
+| MF.S-12 | "Which file the partner index names is inferred from that fit, not traced." | Model-And-Motion-Formats/fdm-and-for-entries.md:193-194 |
+| MF.S-13 | "Not established here: which of those commands run in play, and whether each `w2` is present in the table of the entity it reaches." | Model-And-Motion-Formats/fdm-and-for-entries.md:312-313 |
+| MF.S-14 | `@FDM` descriptor "`+0x0A` / `+0x0B` unread there" | Model-And-Motion-Formats/fdm-and-for-entries.md:229 |
+| MF.S-15 | `.nmb` "is the most tractable unknown"; no sheet | Model-And-Motion-Formats/README.md:48-50 |
+| MF.S-16 | "These may belong to 04-Actor-Entity rather than 17-Presentation; a sheet decides that" | Model-And-Motion-Formats/README.md:52-53 |
+
+#### 2.1.10 [MM] Motion formats: FEF/motion entries, FRP, FTE/FCT, FTR, oscillator, pose sequencer
+
+Short names in this part: **ACH** = `Authored-Commands/the-authored-presentation-command-handlers.md`.
+
+
+| # | gap | cite |
+|---|---|---|
+| MM.S-1 | "What the target-bearing arm's run_r_* looks like against the target, which is a visual question." | Model-And-Motion-Formats/fef-and-motion-entries.md:771 |
+| MM.S-2 | which `@FEF` models a session loads is runtime-only ("which a session loads is content") | Model-And-Motion-Formats/fef-and-motion-entries.md:751 |
+| MM.S-3 | `@FMW` arm-0 record shapes "are a read attribution"; corpus control "(subagent, not re-run)"; skinning non-inheritance/`+0x1E0`/`+0x6C0` "are read attribution" | Model-And-Motion-Formats/fef-and-motion-entries.md:598-600, :608-609, :697-699 |
+| MM.S-4 | "Runtime-only: whether two such models are ever drawn while both are bound, and what the second one then shows." | Model-And-Motion-Formats/fte-fct-texture-colour-tables.md:242-243 |
+| MM.S-5 | variant-1 layout reason and alignment policy are declared limits (build tooling); ownership "provisional" | Model-And-Motion-Formats/frp-object-container.md:307-313, :325-333 |
+| MM.S-6 | bit 29's value: "SD-195, NO ADMISSIBLE SOURCE" | Model-And-Motion-Formats/ftr-node-table.md:254-256, :282-283 |
+| MM.S-7 | "What each controller's record holds is the open section 7 of the rig page" | Model-And-Motion-Formats/ftr-node-table.md:179-181 |
+| MM.S-8 | heavy stages `0040FF30`/`00413C80`/`00411650`/`0040B780` "read at head + call-shape level only … the per-sub-entry math is not walked" | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:186-189, :315-316, :352-355 |
+| MM.S-9 | GI-19 not established: names of C, D, F, G, H, I and A/B targets; whether the bone-supplying resource entry is the rig's; `0040EEA0`'s second host `0054A9C0` | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:430-434 |
+| MM.S-10 | entry `+0x08`: "the +0x28 / +4 reading is not reconciled here" | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:94 |
+| MM.S-11 | preset 7 "would read unrelated data; whether any field's weather record carries 7 was not censused" | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:271-272 |
+| MM.S-12 | "Not read: the two routines the draw-side copy hands its descriptor and coordinates to; the rest of the three raisers …; … the 571-byte 004778D0 …; the random picker; the rest of the pose applier." | Model-And-Motion-Formats/the-pose-sequencer.md:206-208 |
+| MM.S-13 | rectangle head "+2, +4, +8 three more words that feed the copy descriptor; not decoded" | Model-And-Motion-Formats/the-pose-sequencer.md:125 |
+
+#### 2.1.11 [PP] Post-processing and visual tuning parameters
+
+Short names in this part: **CS** = `Post-Processing/CONTRACT-post-processing-subsystem.md`; **CP** = `Post-Processing/CONTRACT-ppfx-effect-creation.md`; **PI** = `Post-Processing/ppfx-function-identification.md`; **CAT** = `Post-Processing/the-post-processing-effect-catalogue.md`; **VR** = `Visual-Tuning-Parameters/README.md`; **RR** = `Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md`; **RCL** = `Render-Command-List/the-ordered-render-command-list.md`; **HL** = `Post-Processing/members/ppfx-handle-layout.tsv`.
+
+
+| id | gap | cite |
+|---|---|---|
+| PP.S-1 | Which techniques `ApplyEffects` runs for a given configuration (UQ-227 PARTIAL) | Post-Processing/CONTRACT-post-processing-subsystem.md:260-261; Post-Processing/the-post-processing-effect-catalogue.md:984, Post-Processing/the-post-processing-effect-catalogue.md:1039-1041 |
+| PP.S-2 | What steps 1, 3, 4 and 6 configure; API names not in image | Post-Processing/CONTRACT-post-processing-subsystem.md:262; Post-Processing/the-post-processing-effect-catalogue.md:986 |
+| PP.S-3 | Which float the map loader passes at `+0x11C`; the computed focus pair's meaning; whether a zone-script verb writes the block | Post-Processing/CONTRACT-post-processing-subsystem.md:151-154 (Render-Command-List/the-ordered-render-command-list.md:1925 names `EnableDofObj`/`SetDofObj` commands, not traced to the block) |
+| PP.S-4 | For I-3 features other than motion blur, whether `ApplyEffects` reaches them by another test | Post-Processing/CONTRACT-post-processing-subsystem.md:192-193, Post-Processing/CONTRACT-post-processing-subsystem.md:267-268; Post-Processing/the-post-processing-effect-catalogue.md:1036-1038 |
+| PP.S-5 | Nothing observed live | Post-Processing/CONTRACT-post-processing-subsystem.md:269; Post-Processing/CONTRACT-ppfx-effect-creation.md:228-233 |
+| PP.S-6 | Whether a registration helper / lookup can fail and what follows | Post-Processing/CONTRACT-ppfx-effect-creation.md:237-238, Post-Processing/CONTRACT-ppfx-effect-creation.md:306 |
+| PP.S-7 | What the vtable step at `0072D8D9` is | Post-Processing/CONTRACT-ppfx-effect-creation.md:239-240 |
+| PP.S-8 | Total handle count: loop bounds of `0072DFD0`, `0072DAC0`, `0072E5B0`, `0072EC00` | Post-Processing/CONTRACT-ppfx-effect-creation.md:241-243 |
+| PP.S-9 | No teardown/unwind for partial registration | Post-Processing/CONTRACT-ppfx-effect-creation.md:141, Post-Processing/CONTRACT-ppfx-effect-creation.md:171 |
+| PP.S-10 | What the reset arm destroys and who sets `+0x99` | Post-Processing/the-post-processing-effect-catalogue.md:814 |
+| PP.S-11 | `0072DFD0` body not read | Post-Processing/the-post-processing-effect-catalogue.md:806 |
+| PP.S-12 | What lies between handle runs | Post-Processing/the-post-processing-effect-catalogue.md:803 |
+| PP.S-13 | What the Glare-off `(1.0, 0.0)` pair does to the passes ("an inference") | Post-Processing/the-post-processing-effect-catalogue.md:971-974 |
+| PP.S-14 | Platform switch `0065E580(wrapper,1)` not read | Post-Processing/the-post-processing-effect-catalogue.md:1045 |
+| PP.S-15 | `EAPERTUREFM_*` members other than `_DISC` not in image | Post-Processing/ppfx-function-identification.md:191-217 |
+| PP.S-16 | 545-string / 20-pattern figure not reproducible | Post-Processing/ppfx-function-identification.md:390-393 |
+| PP.S-17 | 15 multi-claimed name rows unresolved | Post-Processing/ppfx-function-identification.md:600-605 |
+| PP.S-18 | Per-technique semantics: zero shader bodies read (UQ-223 superseded as population) | Post-Processing/the-post-processing-effect-catalogue.md:797-799 |
+| PP.S-19 | Fade arithmetic for flying-fade pair not decompiled | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:402 |
+| PP.S-20 | OV-42: softEdges F4 premise, loaded-list identity, whether the resource loads, pointers/lifetime/aliasing, other two binder routes | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:791-794 |
+| PP.S-21 | Numeric formula for any tuning parameter not asserted | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:284-285, Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:443-444 |
+| PP.S-22 | `0059E070` Vignette blocks elided; §3 bodies declared unread (W-7) | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:242, Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:251-252, Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:446-447 |
+| PP.S-23 | 44 authored keys with no reader; composed families may move keys | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:663-665, Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:751-753 |
+| PP.S-24 | Which targets carry the `+0xC` bit 1 (residue of W-5 narrowing; answered as "no Inverted pass draws") | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:354-360 |
+
+#### 2.1.12 [CM] Scripted camera, screen fade, screen effects, aspect fit, position-to-scalar, movie index
+
+Short names in this part: **MR** = `Movie-Containers/README.md`; **MH** = `Movie-Containers/mh-movie-seek-index.md`; **PTS** = `Position-To-Scalar/how-a-position-becomes-a-single-number.md`; **SF** = `Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md`; **AF** = `Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md`; **CI** = `Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md`; **CR** = `Scripted-Camera/how-a-camera-reaches-the-renderer.md`; **P** = `Scripted-Camera/the-scripted-camera-player.md`; **RM** = `README.md`; **WT** = `../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md`.
+
+
+| # | gap | cite |
+|---|---|---|
+| CM.S-1 | "which codecs this build accepts, at what resolutions, and what it does with a file it cannot decode — none of which the spec answers" (no later page answers it) | Movie-Containers/README.md:12-14 |
+| CM.S-2 | `.mh` `+0x04`, `+0x06`, entry flags meaning: "OUT OF EVIDENCE BOUNDARY ... The residue stays unanswered in fact" (UQ-222 / MH-1) | Movie-Containers/mh-movie-seek-index.md:192-194, 201-205 |
+| CM.S-3 | width/height reading of `+0x08`-`+0x10` "is still an inference from the values, not from a consumer" | Movie-Containers/mh-movie-seek-index.md:81-82, 194-195 |
+| CM.S-4 | `02AEEA20` "**what it holds in play was not tested**"; all live readings title-screen only | Position-To-Scalar/how-a-position-becomes-a-single-number.md:224-225, 119-121; Position-To-Scalar/how-a-position-becomes-a-single-number.md:4 |
+| CM.S-5 | `BI-9` "is not answered — the in-world observation is still the one that would settle it" | Position-To-Scalar/how-a-position-becomes-a-single-number.md:158-160 |
+| CM.S-6 | "What kind `0x40` is in authoring terms was not established" | Position-To-Scalar/how-a-position-becomes-a-single-number.md:353-354 |
+| CM.S-7 | who sets container bit 5 "was not traced" | Position-To-Scalar/how-a-position-becomes-a-single-number.md:361 |
+| CM.S-8 | `UQ-237` residue: "what the stem is *used for* after `001DA290` computes it, and what `[obj+0x7C]` counts" | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:319-320 |
+| CM.S-9 | `0035CA70` helper bodies `002DED60`, `00360C20`, `00361630`, `00303D90`, `003C58B0` "**not read** ... which transition the machine sequences ... is left open" (00360D70/00360E50 read later, see E3) | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:177-180 |
+| CM.S-10 | `MapIndex` step: "What the `MapIndex` step then triggers is the harness's business" | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:277-278 |
+| CM.S-11 | "What each code's movie shows" | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:687-688 |
+| CM.S-12 | DXGI `Format`/`ScanlineOrdering`/`Scaling` "rest on the layout match"; "the swap chain must take its format from elsewhere"; census limit (pointer reloaded elsewhere escapes) | Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:116-117, 141-142 |
+| CM.S-13 | kinds 2, 5, 6, 7, 0x0D: what they draw; returns of kinds 3, 5, 7 not read | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:254-256, 95, 163-164 |
+| CM.S-14 | contents of the three mask tables and three line textures | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:257 |
+| CM.S-15 | why `0024D540` is called with 0 from the menu frame and capture-backed frame | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:258-260 |
+| CM.S-16 | preset constants: "*What each constant means to the kind's handler was not read*" | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:183-184 |
+| CM.S-17 | `0024E910`'s called resets and owner of the fourth target `020926D0` "were not read"; `003DE210`'s third caller "not read" | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:231-232, 222-223 |
+| CM.S-18 | keeper of block-address table `0209E6C0` "was not read" | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:104-105 |
+| CM.S-19 | soft focus in other language builds; on-screen look | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:261-262 |
+| CM.S-20 | the "shared predicate" of submit and "whose vectors override the submitted camera" | Scripted-Camera/how-a-camera-reaches-the-renderer.md:43-45, 336 |
+| CM.S-21 | "what the second field-of-view float is for was not established" | Scripted-Camera/how-a-camera-reaches-the-renderer.md:93 |
+| CM.S-22 | what `001824E0`'s device method does, the Movement object of the tail, and what `0024E180` does with `02AEDD30` (SWE2 note at Scripted-Camera/how-a-camera-reaches-the-renderer.md:476 lists callees only) | Scripted-Camera/how-a-camera-reaches-the-renderer.md:333-335 |
+| CM.S-23 | `02089350` meaning; how often `0037D970` runs; per-frame invocation count of `00314370` | Scripted-Camera/how-a-camera-reaches-the-renderer.md:198-200, 266-269 |
+| CM.S-24 | "the curve evaluator the loader calls"; `camerashakechange` / `camerashakeratio` / sync verbs; bank entry layout beyond data id | Scripted-Camera/how-a-camera-reaches-the-renderer.md:286, 318-319 |
+| CM.S-25 | skip flag `byte +0x201` "its setter was not traced" | Scripted-Camera/the-scripted-camera-player.md:135 |
+| CM.S-26 | frame step `02B4E4B0` "(not traced)" | Scripted-Camera/the-scripted-camera-player.md:355 |
+| CM.S-27 | 5.0 vs 1.0 look-at distance observability "NOT established" | Scripted-Camera/the-scripted-camera-player.md:617-619, 743-745 |
+| CM.S-28 | which cutscenes set attachment bits 9 and 10 (data question) | Scripted-Camera/the-scripted-camera-player.md:606-607 |
+| CM.S-29 | BY-6: "how often play queries such a path or what the camera shows" | Scripted-Camera/the-scripted-camera-player.md:583 |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no page states them)
+
+A function, formula, format, field, initial value or ordering that a re-implementation needs and that no 17-Presentation-Rendering page states. Ids are `<part>.G-n`.
+
+#### 2.2.0 Category-wide structural gaps
+
+These are the gaps that cut across parts. Each is stated in the part tables below; they are drawn together here because
+no single page owns them.
+
+| id | what is missing | why a port needs it | where the gap shows |
+|---|---|---|---|
+| X.G-1 | **One frame order for the category.** Each part orders its own steps, but no page places the character update pipeline (`003323D0` → `00426090`), the authored-command drains, the pool promote/retire, the effect update and walk, the ordered-list walks inside the render pass `00187950`, the Gi drain and reset, the post-processing steps and the graphics-thread handshake against one another. | State seen by each consumer depends on it; double-tick and teardown cases (`0022B8C0`, `01FD4A88`) already show the order matters. | AC.G-6, RO.G-6, RA.G-2, RG.G-1, CL.G-4, CL.G-8, CL.G-15, GP.G-7, EF.G-19, ET.G-19, MF.G-20 |
+| X.G-2 | **The D3D11 device interface.** `PrimitiveRendererD3D11` is identified and its slot addresses listed, but almost none of the slot semantics are stated, and the slots each Gi command calls are disputed (GP.CV-1). | Every Gi command, and every ordered-list class that draws, ends in this device. | GP.G-2, GP.CV-1 |
+| X.G-3 | **Execute bodies of the render command classes.** 8 of 36 enqueue classes have a described execute body; allocation sizes are known for 19. | Without them nothing is drawn. | CL.G-1, CL.G-2, CL.G-13 |
+| X.G-4 | **The VU1 microprograms** (recompiled bodies) behind bone trails, effect types, `@FDM` draws and the oscillator stages are characterised by primitive or call shape only. | The per-vertex output of these paths cannot be written. | GP.G-9, RG.S-20, MF.S-11, MM.G-11, MM.G-13 |
+| X.G-5 | **Shared track evaluators.** `004309C0` / `004314E0` / `0042FDB0` are sampled by every effect element and tail, but the track record format and the interpolation between keys are not stated. | All effect motion and colour. | EF.G-6, ET.G-7 |
+| X.G-6 | **Frame-rate globals.** `01DFE0B4`, `01DFE0B8` and `01DFE0BC` are read side by side across parts with disputed widths, values and roles (AC.CV-6, RA.CV-10, RG.CV-11, RG.CV-15), and no page states their writer sequence and relation in one place. | Every timer, ramp and fade that is scaled by frame rate. | RG.G-13, RA.G-1, AC.CV-6 |
+| X.G-7 | **`@FRM` motion data and the WebM movie path** are bound or opened but never decoded. | Character motion and movie playback. | MM.G-3, CM.G-1 |
+
+#### 2.2.1 [AC] Authored commands, ramp channels and the coast-down latch
+
+| # | what is missing | why a port needs it | where |
+|---|---|---|---|
+| AC.G-1 | Which callee the `0x09` invoker uses when "Type 1 also hands six floats and a count to the ramp-channel object `+0x35C`". The ramp contract has `003B5D40` with one caller `0041D560`, and "No authored-command class … writes" channel +0x43 | the fifth channel's writer set and the cross-fade start | Authored-Commands/the-authored-presentation-command-handlers.md:792-794 vs CONTRACT-authored-command-ramp-channels.md:195-197 |
+| AC.G-2 | The link from `PresentationEntry_RebuildAndFastForwardToTime` to `003B5D40`: §8 says it "reaches it through `003B5D40`", but `003B5D40`'s only caller is `0041D560`, and no 0041D820→0041D560 edge is stated | call graph for fast-forward | CONTRACT-authored-command-ramp-channels.md:300-301 vs :197 |
+| AC.G-3 | Per-site argument (4 or 6) of the five `003B6930` calls: "on"/"off" is used without saying whether on means shown or hidden. 003B8670's "on" range contains the `r12d` site | gate polarity per driver | CONTRACT-authored-command-ramp-channels.md:179-182, :409-410 |
+| AC.G-4 | No field written to by `003B6900` (the V1 verb `V1(h,6)`/`V1(h,4)`), and no writer of the per-slot `+0x41` pause/hide byte named. Only the allocator writes it in the TSV | the per-slot hide/pause cannot be driven | CONTRACT-authored-command-ramp-channels.md:702, :715-716; ramp-channel-record-accesses.tsv (0x41w only in 003B56D0) |
+| AC.G-5 | `0042F030` "the ramp tick `00426090` calls" (global `02CA48F8`): a second ramp in the same pass with no object or layout | frame-pass completeness | CONTRACT-authored-command-ramp-channels.md:956 |
+| AC.G-6 | When in the frame the command drains (`0041DA90`/`0041E000`/`0041E1D0`) and the draw stage gate `00428E40` run, relative to the ramp tick | ordering of set vs advance vs draw | Authored-Commands/the-authored-presentation-command-handlers.md:31-34; CONTRACT-authored-command-ramp-channels.md:657-667 |
+| AC.G-7 | Bank capacity vs id range: the bank is 0x258 bytes = 75 slots (0x00–0x4A), but ids clamp to 0x4B and "76 ids". Slot 0x4B would be `02CA4668` (the context pointer). The page only says the 0x49–0x4B invokers are NULL ("call 0") | out-of-range id behaviour | Authored-Commands/the-authored-presentation-command-handlers.md:35-36, :48, :64-65, :72-73, :239 |
+| AC.G-8 | Complete initial values of a V1 slot set by `003B56D0`. The page says only "sweep ends at +0x9C" (contradicted by the TSV). `003B67F0` gives the 1.0 defaults for some fields | a port must zero/seed each field | CONTRACT-authored-command-ramp-channels.md:201, :473-474, :881 |
+| AC.G-9 | Handler bodies described only by callee name or touched field: 0x12 (`003E6DA0`/`003E29F0`), 0x19 (`0046CC70`, 1,069 B; no effect stated, though 0x29 says footstep sound), 0x1E (`003E6A20`), 0x1F (`003E6710`), 0x23 (`004293C0`; `+0x20`/`+0x40`) | handler semantics | Authored-Commands/the-authored-presentation-command-handlers.md:89, :95, :98-99, :102, :243-244 |
+| AC.G-10 | `00520100` when `word[rcx+6] != -1`; `00520010`'s per-step work; the `01EFFAF0` flag semantics beyond the `0x10\|0x14` path and bit 4/end-of-track | the submit wrapper and the flag path | Authored-Commands/the-authored-presentation-command-handlers.md:66-67, :124, :126, :264 |
+| AC.G-11 | The §12 reproduction formula omits the §7a tail, which §16 says "must" be implemented. The tail is given only as asm fragments; which subtypes reach `speed scale := 1.0f` vs the 0.9 path is ambiguous | the full outcome set | CONTRACT-coast-down-latch.md:152-166, :307-339, :537-538 |
+| AC.G-12 | `00424230`'s relation to `00424080` and who calls it; `0041C760`'s role | the stated "permissive default" cannot be placed | CONTRACT-coast-down-latch.md:223-227 |
+| AC.G-13 | Initial values of +0x610–+0x62C (who seeds the motion blocks and the latch bit) | first-call behaviour | CONTRACT-coast-down-latch.md:54-62 (no initialiser named) |
+| AC.G-14 | What `+0x456` (the sibling counter) gates | the pair reset is required but the second counter's reader is not named | CONTRACT-coast-down-latch.md:279-282 |
+| AC.G-15 | `003B5C00`'s channel set (four vs five) and order are not given as code | the fast-forward path | CONTRACT-authored-command-ramp-channels.md:225, :860 (see AC.CV-3) |
+
+#### 2.2.2 [RO] Render-record pool, character render object, transform publish and lighting
+
+Short names in this part: **POOL** = `CONTRACT-render-record-pool-lifecycle.md`; **CRO-C** = `CONTRACT-character-render-object.md`; **PUB** = `CONTRACT-character-transform-publish.md`; **CRO** = `Character-Rendering/character-render-object.md`; **LIT** = `Character-Rendering/how-a-character-is-lit.md`.
+
+
+| id | what is missing | why a port needs it | where it shows |
+|---|---|---|---|
+| RO.G-1 | `00420480` record initializer: its parameters (`r9d` + stack "flags") and what it writes. Only `+0x284 = 0x2010F9` is stated | allocate cannot be written without it | CONTRACT-render-record-pool-lifecycle.md:51, 147-148, 460 |
+| RO.G-2 | Who sets `+0x284` **bit 2** (the "live" bit release tests). The initializer value 0x2010F9 has bit 2 clear | release's path choice depends on it | CONTRACT-render-record-pool-lifecycle.md:271, 460 |
+| RO.G-3 | Initial value of tail `+0x30`/`+0x48830`. The ctor's list (CONTRACT-render-record-pool-lifecycle.md:152-156) omits it; its only writer is `00426480` | allocate passes it to `00420480` on every call | CONTRACT-render-record-pool-lifecycle.md:181, 816-818 |
+| RO.G-4 | Values written to tail `+0x40`, `+0x4C..+0x70` ("The tuning block follows") | the constructor | CONTRACT-render-record-pool-lifecycle.md:155, 533 |
+| RO.G-5 | Effects of `0041FCF0`, `003E68E0`, `0042C410`, `0042F4C0`, `004200A0`, `00422D50`, `00426EC0` on the record (only one-line roles) | promote/retire/release semantics | CONTRACT-render-record-pool-lifecycle.md:600, 1161-1167, 1199 |
+| RO.G-6 | When in the frame `00428710` and `00427C90` run (who calls them, apart from the teardown) | the visibility boundary downstream depends on it | CONTRACT-render-record-pool-lifecycle.md:442-444, 1450 |
+| RO.G-7 | `0041F730` full default map ("~100 stores") is given only by example | reset/allocate | CONTRACT-render-record-pool-lifecycle.md:853-856 |
+| RO.G-8 | The 0x740 record's tree links (`+0x06` parent, `+0x08` child, `+0x0A` sibling) are not in POOL's §3 link table, which lists only `+0x00/+0x02/+0x04` | retire's drain and the hierarchy walk use them | CONTRACT-render-record-pool-lifecycle.md:76, 236, 848; Character-Rendering/character-render-object.md:885-886 |
+| RO.G-9 | Slot 2 setup (2,328 B): no step list apart from the latch write and the two binder calls | the object cannot be initialised | Character-Rendering/character-render-object.md:135, 454 |
+| RO.G-10 | Bodies of slots 19 (3,397 B), 24 (547 B), 26 (812 B), 30 (488 B) and of `001F5D70` (the draw): only roles. BB-1's per-method table lives in a candidate README | the draw path | Character-Rendering/character-render-object.md:152, 157, 159, 163, 314-322 |
+| RO.G-11 | Field meanings `+0x480..+0x498` (incl. `+0x488`, `+0x490`), `+0x4A4`, `+0x4B0`, `+0x4B5`, `+0x4B6..+0x4BC`, `+0x644`, `+0x654`, `+0x664`; the vector element types at `+0x08` and `+0x390` | setters exist with no semantics | Character-Rendering/character-render-object.md:144, 209-221 |
+| RO.G-12 | 0x318 binding record: slot `+0x238` (index 65) has no row in the slot TSV; record bytes `+0x18..+0x2F` not described | the binder writes a contiguous run `+0x30..+0x310` | TSV check (A); Character-Rendering/character-render-object.md:463 |
+| RO.G-13 | What slot 16 passes to slot 13 (index, flag, scalars, three matrix sources) | the publish inputs | Character-Rendering/character-render-object.md:338-344; CONTRACT-character-transform-publish.md:343-347 |
+| RO.G-14 | The `{object, 3}` countdown: who decrements it and slot 3's teardown trigger | object recycling | Character-Rendering/character-render-object.md:345-346, 398, 419 |
+| RO.G-15 | UpdateViewParameters inputs: `[001EBA40()]+0x118` flag and `001EC560()` result have no meaning; param block layout beyond `+0x64..`, `+0xC0..+0xD0` | the formula | Character-Rendering/character-render-object.md:259, 271 |
+| RO.G-16 | `001F89E0` ResetState: full write list given only as an EC7 one-liner ("`+0x4B5`=`0x101`", word at a byte field) | the acquire-on-hit path resets with it | Character-Rendering/character-render-object.md:392-393, 1147 |
+| RO.G-17 | Light pool: free-entry criterion, the counter `[02B3F504]` initial value and wrap; the light free routine | lights are created and freed | Character-Rendering/how-a-character-is-lit.md:47-50, 392 |
+| RO.G-18 | The gather's ordering routines ("two ordering routines", "runs of falling priority") are described by role only; the algorithm is on the status page | the six-light cut | Character-Rendering/how-a-character-is-lit.md:137, 192, 290-292 |
+| RO.G-19 | Writers of record `+0x5D0/+0x5DC/+0x5E0/+0x5EC` (ambient mode, light scale) | ambient mode / scale | Character-Rendering/how-a-character-is-lit.md:113-114, 130 |
+| RO.G-20 | The relation (if any) between the light pool (`[02B3F528]`, 128 × 0x70) and the 32 × 0x70 table at `02B3F570` used for record `+0x118` | adjacent globals, same stride; not stated | Character-Rendering/how-a-character-is-lit.md:47; CONTRACT-render-record-pool-lifecycle.md:249, 1175 |
+| RO.G-21 | Kind-2 "space 1" stores the negated position into "the light's own direction field": offset not given | point-light port | Character-Rendering/how-a-character-is-lit.md:153-154 |
+
+#### 2.2.3 [RA] The character render record array, render events, focus point and track pick
+
+Short names in this part: **CRR** = `Character-Render-Records/the-character-render-record-array.md`; **RES** = `Character-Render-Records/render-event-selection-evidence.md`; **FOC** = `Character-Render-Records/the-focus-point-of-a-character.md`; **TRK** = `Character-Render-Records/how-a-presentation-entry-picks-its-track.md`.
+
+
+| id | missing | why a port needs it | where |
+|---|---|---|---|
+| RA.G-1 | Focus countdown reload at FrameLimit=60: reload is "8 x the frame-rate multiplier" into a 4-bit nibble; at multiplier 2 that is 16 > 15 — overflow behaviour not stated | slide timing at 60 fps | Character-Render-Records/the-focus-point-of-a-character.md:67-71, :76 |
+| RA.G-2 | Bodies of `RenderSystem_UpdateCharacterRecords` (`00426090`) beyond two calls, and of `0042ED60` call order relative to `00426090` within a frame | frame ordering | Character-Render-Records/the-character-render-record-array.md:637-639, :648-651, :721-723 |
+| RA.G-3 | Stage bodies `004264A0`, `00428E40`, `0041E4D0`, `00425DC0`, `00426500` | the draw itself | Character-Render-Records/the-character-render-record-array.md:407 |
+| RA.G-4 | 52 handler semantics given only as "distinctive leaf call" (TSV) — e.g. `0042AC30` "+0x124/+0x254/+0x304 field refresh" | dirty protocol effects | Character-Render-Records/the-character-render-record-array.md:778-797 |
+| RA.G-5 | `0042A580` returns an uninitialised stack dword used as a rebuild flag — a port must pick a value | determinism | Character-Render-Records/the-character-render-record-array.md:790 |
+| RA.G-6 | Selector objects' rules (`01F000A0` table) — not on these pages (partly on the handlers page) | track choice | Character-Render-Records/how-a-presentation-entry-picks-its-track.md:101-103 |
+| RA.G-7 | Payload `+0x2C8` vs `+0x0C` bit-12 consumers (see RA.CV-8) not reconciled | entry update passes | Character-Render-Records/render-event-selection-evidence.md:76; Character-Render-Records/how-a-presentation-entry-picks-its-track.md:38, :152-154 |
+| RA.G-8 | `0041F340` per-@FLD-entry fill, `0041E500` lookup, `003697C0(6)` post: named, not described | bind / refresh | Character-Render-Records/the-character-render-record-array.md:376, :650-651 |
+| RA.G-9 | `0042C410` interior only sketched by callee counts | tail commit | Character-Render-Records/the-character-render-record-array.md:734 |
+| RA.G-10 | `003B5980` LOD clamp constants `[low, 1.0]` — `low` value not stated | shadow LOD | Character-Render-Records/the-character-render-record-array.md:712 |
+| RA.G-11 | `0051F240` mode 0 vs 1 table provider for the concrete root is kind 1; tagged-handle semantics deferred to another page | lookup | Character-Render-Records/render-event-selection-evidence.md:41-43 |
+| RA.G-12 | Initial values of focus fields +0x660..+0x6A8 not stated (only implied by ResetDefaults memset) | first-frame slide | Character-Render-Records/the-focus-point-of-a-character.md:67-71; Character-Render-Records/the-character-render-record-array.md:376 |
+
+#### 2.2.4 [RG] Rig controllers, fades, status looks, bone trails and the staged look
+
+Short names in this part: **FADE** = `Character-Render-Records/how-a-character-fades-the-ten-channels.md`; **STAT** = `Character-Render-Records/how-a-status-shows-on-a-character.md`; **TRAIL** = `Character-Render-Records/the-bone-trails.md`; **RIG** = `Character-Render-Records/the-rig-of-seventeen-controllers.md`; **LOOK** = `Character-Render-Records/the-staged-look-command.md`.
+
+
+| id | what is missing | why a port needs it | where |
+|---|---|---|---|
+| RG.G-1 | Relative order, inside one frame, of the status push, the dirty-state pass, the distance-fade phase, the animation-presentation phase (stepper), the root/child frames, the rig frame and the trail update | the fade stepper, the composite and the cull all touch the same channels; one frame of lag changes visuals | Character-Render-Records/how-a-character-fades-the-ten-channels.md:72, :233; Character-Render-Records/the-rig-of-seventeen-controllers.md:117, :228; Character-Render-Records/the-bone-trails.md:126 |
+| RG.G-2 | 0041E960 writes `+0x2E0..+0x2EC` (one is a factor of the final opacity) from an "SSE web" and "three global-byte constants" with no formula | `+0x2EC` scales every character's opacity | Character-Render-Records/how-a-character-fades-the-ten-channels.md:644-651, :154 |
+| RG.G-3 | `+0x22C` writer and value | factor of final opacity | Character-Render-Records/how-a-character-fades-the-ten-channels.md:154, :427 |
+| RG.G-4 | 003E4DD0 described two ways (horizontal extents vs "a fade-channel weight", mode-dispatched product incl. `[r8+0x118]`) - the radius formula for the behind-test depends on it | cull bit 3 | Character-Render-Records/how-a-character-fades-the-ten-channels.md:305, :560 |
+| RG.G-5 | 0042E1F0 has no caller / schedule stated | when channel 1 is re-applied each frame | Character-Render-Records/how-a-character-fades-the-ten-channels.md:85, :108 |
+| RG.G-6 | Data meanings of the four root-frame side-object scalars: `003AFD80` vector "from +0x160, +0x260..+0x268 and +0x278" with no formula for the middle component | shadow scaling | Character-Render-Records/how-a-character-fades-the-ten-channels.md:372-374 |
+| RG.G-7 | Shadow `+0x44` input: "a value from the record times +0x278" - which value not stated | shadow quad scale | Character-Render-Records/how-a-character-fades-the-ten-channels.md:370-371 |
+| RG.G-8 | Viewer-inside test uses "the body's band" for height - band bounds not given | channel 4 trigger | Character-Render-Records/how-a-character-fades-the-ten-channels.md:89 |
+| RG.G-9 | Distance fade "normalised distance left" - exact normaliser (clip distance, range, near) not written as a formula | channel 0 target | Character-Render-Records/how-a-character-fades-the-ten-channels.md:84 |
+| RG.G-10 | Composite scalar sibling `003E4780`: caller-supplied factor, callers not stated | | Character-Render-Records/how-a-character-fades-the-ten-channels.md:155 |
+| RG.G-11 | Status unit accessor described only by role; how the unit is found from record `+4` / `+0x108` | push input | Character-Render-Records/how-a-status-shows-on-a-character.md:57, :167, :417-418 |
+| RG.G-12 | Light creation `003AB960` "its head read" only; light release routine by role | creating/releasing status lights | Character-Render-Records/how-a-status-shows-on-a-character.md:211, :420-421 |
+| RG.G-13 | `01DFE0BC` vs `01DFE0B4` used side by side (tint phase / envelope use 01DFE0BC; flash frame numbers use 01DFE0B4) with no statement of their relation on these pages | frame-rate behaviour of looks | Character-Render-Records/how-a-status-shows-on-a-character.md:156, :223; Character-Render-Records/how-a-character-fades-the-ten-channels.md:64 |
+| RG.G-14 | Tint envelope target/start on install: "zeroes the phase and envelope"; Stone phase "rises once over thirty frames" - rate constant not given | timing | Character-Render-Records/how-a-status-shows-on-a-character.md:131, :207 |
+| RG.G-15 | Petrify / Doom flash curve values (curve1, curve2) unread, so flash shape cannot be ported | | Character-Render-Records/how-a-status-shows-on-a-character.md:146-147 |
+| RG.G-16 | Slow's colour goes "integer colour (128 s, 32 s, 8 s)" through 003B6B30 to shadow `+0x20`; shadow draw interpretation not on page | Slow visual | Character-Render-Records/how-a-status-shows-on-a-character.md:281, :494 |
+| RG.G-17 | 00428AF0 three bits at `+0x304`[17..19]: meaning of each bit, and reader 004295E0's use, not stated | Invisible's record field | Character-Render-Records/how-a-status-shows-on-a-character.md:269, :482-484; Character-Render-Records/the-bone-trails.md:469 |
+| RG.G-18 | `+0x304` bit 5 reader (dirty bit 28 handler) | Stone/Stop body freeze | Character-Render-Records/how-a-status-shows-on-a-character.md:71 |
+| RG.G-19 | Trail draw parameter block "0x20" and the template float block `+0x348`..`+0x3F8` unread | GPU-side reconstruction | Character-Render-Records/the-bone-trails.md:164, :383 |
+| RG.G-20 | Trail half-rate gate: "a 27-byte getter of the core runtime, by role" - which getter and its rule | sample cadence | Character-Render-Records/the-bone-trails.md:132 |
+| RG.G-21 | 0042F250 "also rewrites three bits of +0x290" - which bits | trail off path | Character-Render-Records/the-bone-trails.md:80-81 |
+| RG.G-22 | Rig slot init function: "the rig's slot initialiser" not named or addressed on the page | load path | Character-Render-Records/the-rig-of-seventeen-controllers.md:64-66 |
+| RG.G-23 | Countdown sets/clears via "the same wrapper-caller" - the caller's identity for bit 8/eyes absent | | Character-Render-Records/the-rig-of-seventeen-controllers.md:113-115, :127 |
+| RG.G-24 | Controller on/off routine addresses per controller mostly not given (only Float 004718D0/00471640, look off 00513150, Confuse on 00515FE0) | to port switches | Character-Render-Records/the-rig-of-seventeen-controllers.md:93-97, :244-246, :298 |
+| RG.G-25 | Body-shake update bodies 472/1,294 B: only shape; amount usage unknown | | Character-Render-Records/the-rig-of-seventeen-controllers.md:273-274 |
+| RG.G-26 | Look request bits 2 and 4 value semantics (`+0x1D`, `+0x1E` nibbles) | head limits | Character-Render-Records/the-staged-look-command.md:67-68 |
+| RG.G-27 | 003E36F0 stages bits 9+10 / 12+13 "bits only" - so three-dword payload source for vector kind 0 is not stated | look-at-point path | Character-Render-Records/the-staged-look-command.md:70, :72 |
+| RG.G-28 | `00426220` busy test unexplained; command dropped when busy | lost requests | Character-Render-Records/the-staged-look-command.md:49, :207, :220 |
+
+#### 2.2.5 [CL] Ordered render command list and graphics-thread handshake
+
+Short names in this part: **C** = `CONTRACT-render-command-list-and-graphics-handshake.md`; **L** = `Render-Command-List/the-ordered-render-command-list.md`; **H** = `Graphics-Thread-Handshake/the-shared-command-state-word.md`.
+
+
+| id | missing | why a port needs it | where |
+|---|---|---|---|
+| CL.G-1 | Allocation size, constructor arguments and fields for all 36 enqueue classes. The size census covers only "19 enqueue builders". `0018CA50` (SetDofObj, 0x28) is outside it, and SetDofObj's ctor size is "—" | object layout per class | Render-Command-List/the-ordered-render-command-list.md:892, Render-Command-List/the-ordered-render-command-list.md:361, Graphics-Thread-Handshake/the-shared-command-state-word.md:925 |
+| CL.G-2 | What slot 1 (execute) does for most classes. Only 8 execute bodies are tabled. C excludes PRESENTATION | without them nothing is drawn | Render-Command-List/the-ordered-render-command-list.md:365-372, CONTRACT-render-command-list-and-graphics-handshake.md:520-521 |
+| CL.G-3 | Flush `0018C8F0`: the pseudocode reads `e.flushSelector` with no null test, though the destroy loop tests null. Which `device()` it passes is not named | §10.1 null-append path; execute argument | CONTRACT-render-command-list-and-graphics-handshake.md:397-400, CONTRACT-render-command-list-and-graphics-handshake.md:319-321 |
+| CL.G-4 | When in the frame `0018B510` (split) and `0018B030` (mark) are called. Only their wrappers `0018CB10`/`001829F0` are named | decides which entries are in part 1 or part 0 | CONTRACT-render-command-list-and-graphics-handshake.md:274-275, CONTRACT-render-command-list-and-graphics-handshake.md:188-191 |
+| CL.G-5 | `+0x28 splitArmed` is written, but no reader is stated | field semantics | CONTRACT-render-command-list-and-graphics-handshake.md:80, Render-Command-List/the-ordered-render-command-list.md:607 |
+| CL.G-6 | Writer and polarity of `byte[01FD4A88]` (frame-tick teardown gate) | whether the teardown runs twice or once per frame | CONTRACT-render-command-list-and-graphics-handshake.md:216, CONTRACT-render-command-list-and-graphics-handshake.md:234, CONTRACT-render-command-list-and-graphics-handshake.md:308 |
+| CL.G-7 | Value of `+0x49C` contextIndex at construction. C uses it as a boolean | reverse-walk bounds | Render-Command-List/the-ordered-render-command-list.md:812-813, CONTRACT-render-command-list-and-graphics-handshake.md:380-381 |
+| CL.G-8 | Ordering of the handshake spins and publishes against the list walks. C's postcondition "`02EBA3F8` has bits 2, 3 and 8 clear" needs the last clear to follow the last publish | frame postcondition | CONTRACT-render-command-list-and-graphics-handshake.md:208-210, Graphics-Thread-Handshake/the-shared-command-state-word.md:900-903 |
+| CL.G-9 | A removal path from the ordered list exists elsewhere ("removal is slot 3's `0018B0B0`", `Character-Rendering/character-render-object.md:134`). C and L never mention `0018B0B0`. C names `0018B040` as the only clear | a list op missing from the contract | CONTRACT-render-command-list-and-graphics-handshake.md:60, CONTRACT-render-command-list-and-graphics-handshake.md:389-391 |
+| CL.G-10 | The forward arm of `0018B1B0`: C §12 gives "reverse arm" only | bounds of the forward class-filtered walk | CONTRACT-render-command-list-and-graphics-handshake.md:378-387, CONTRACT-render-command-list-and-graphics-handshake.md:155 |
+| CL.G-11 | Entry address and callers of the reset burst `GraphicsSync_WaitBackendState100ClearAndResetSharedState`. Value of `02EBA3F8` at load | init of the word | Graphics-Thread-Handshake/the-shared-command-state-word.md:86-89, Graphics-Thread-Handshake/the-shared-command-state-word.md:242-246 |
+| CL.G-12 | Writers and initial values of `01DFE0C4` and `01F82EC0`. Whether the screen index resets each frame other than through mode-0 ctors | gating; PostProcessObj behaviour | Render-Command-List/the-ordered-render-command-list.md:386-387, Render-Command-List/the-ordered-render-command-list.md:265-271 |
+| CL.G-13 | Where the data-driven keys come from: GiReset* `this[+0x18]` (who sets it), GeometryInstanceOrderedObject `this[+0x20]` | mask filtering for these classes | Render-Command-List/the-ordered-render-command-list.md:307-309, Render-Command-List/the-ordered-render-command-list.md:1008-1011 |
+| CL.G-14 | Who frees the four manager-only appended objects (pool or embedded). The owner never sees them | lifetime | Render-Command-List/the-ordered-render-command-list.md:650-666 |
+| CL.G-15 | What the render pass `00187950` (3,311 B) does between and around the two walks. C shows "..." | frame order | CONTRACT-render-command-list-and-graphics-handshake.md:241 |
+
+#### 2.2.6 [GP] Gi render commands and the legacy PS2 GS/VIF layer
+
+Short names in this part: **GI** = `Gi-Render-Commands/gi-render-command-family.md`; **TEX** = `Legacy-PS2-GS/texture-mip-local-memory-budget.md`; **VIF** = `Legacy-PS2-GS/the-vif1-vu1-layer.md`.
+
+
+| # | missing | why a port needs it | where |
+|---|---|---|---|
+| GP.G-1 | Per-class field layouts of most Gi* commands (only GiPolyGT4T, GiPrim, GiSetTexture fields given; and whether offsets are object- or payload-relative given factories return `result+0x10`) | to build/execute commands | Gi-Render-Commands/gi-render-command-family.md:96, Gi-Render-Commands/gi-render-command-family.md:146-148, Gi-Render-Commands/gi-render-command-family.md:210-211, Gi-Render-Commands/gi-render-command-family.md:979 |
+| GP.G-2 | Semantics of most of the 20 device slots (only slot 0, slot 4 batch, 0x80/0x88 stub, 0x128/0x130 bracket described) | execute bodies call them | Gi-Render-Commands/gi-render-command-family.md:1343-1350, Gi-Render-Commands/gi-render-command-family.md:679-682 |
+| GP.G-3 | `GiPolyGT4T` resource resolution callees `002D7FA0`/`002D7EE0` and meaning of `0xE00`/`0xDFF` compare | prepare step | Gi-Render-Commands/gi-render-command-family.md:114-115, Gi-Render-Commands/gi-render-command-family.md:146-148 |
+| GP.G-4 | Display-list record `+0x20` flag semantics (paths selected), `+0x0C` count use, sort-key bits 24-27 | sort/drain behaviour | Gi-Render-Commands/gi-render-command-family.md:383-387, Gi-Render-Commands/gi-render-command-family.md:352 |
+| GP.G-5 | Abandon-condition flags `01DF08FC`/`01F7F594`: meaning, writers, initial values | decides whether records execute | Gi-Render-Commands/gi-render-command-family.md:592 |
+| GP.G-6 | Watermark `+0x24` (`0018B510`): who calls it, when | splits prefix/tail passes | Gi-Render-Commands/gi-render-command-family.md:596 |
+| GP.G-7 | Frame position of `003A3740` drain and `003A3A00` reset relative to `00187950` | frame ordering | Gi-Render-Commands/gi-render-command-family.md:346-348, Gi-Render-Commands/gi-render-command-family.md:409, Gi-Render-Commands/gi-render-command-family.md:583 |
+| GP.G-8 | 0x2F frame field 8 (`&[rsp+0x50]`) meaning | callback ABI | Gi-Render-Commands/gi-render-command-family.md:1294 |
+| GP.G-9 | Microprogram semantics: 57 recompiled x64 bodies described only by primitive; inputs/outputs (VU cells, callback ABI) not stated | a port must re-implement or reuse them | Legacy-PS2-GS/the-vif1-vu1-layer.md:799-805, Legacy-PS2-GS/the-vif1-vu1-layer.md:63 |
+| GP.G-10 | TOP/TOPS computation in flush `0022C8D0` (UNPACK add-TOPS flag depends on it) | UNPACK addressing | Legacy-PS2-GS/the-vif1-vu1-layer.md:76-77, Legacy-PS2-GS/the-vif1-vu1-layer.md:827 |
+| GP.G-11 | Phase-2 state calls `002105B0`, `002104D0`, `00210560(0x51001)`, `002104E0` not described; `00210320` `flag` meaning | replay state | Legacy-PS2-GS/the-vif1-vu1-layer.md:125-127 |
+| GP.G-12 | Per-register handler stores beyond the summary (e.g. how ALPHA/TEST map to D3D state) | GS emulation fidelity | Legacy-PS2-GS/the-vif1-vu1-layer.md:843 |
+| GP.G-13 | Texture reference descriptor 0x30 layout, the "current dynamic mask", and the continuation-link rule | admission counts | Legacy-PS2-GS/texture-mip-local-memory-budget.md:53-54, Legacy-PS2-GS/texture-mip-local-memory-budget.md:126-127, Legacy-PS2-GS/texture-mip-local-memory-budget.md:130 |
+| GP.G-14 | Derived slot record field meanings (+0x00..+0x20) and the consumer that resets them "per frame" (not named) | downstream use | Legacy-PS2-GS/texture-mip-local-memory-budget.md:131-134, Legacy-PS2-GS/texture-mip-local-memory-budget.md:173-174, Legacy-PS2-GS/texture-mip-local-memory-budget.md:211 |
+| GP.G-15 | Source record unexplained bytes +0x01..+0x04, +0x0A..+0x0B, +0x10..+0x5F | layout | Legacy-PS2-GS/texture-mip-local-memory-budget.md:119-128 |
+| GP.G-16 | Admission walk order (which texture order "Admission stops at the first texture that would cross") | result depends on order | Legacy-PS2-GS/texture-mip-local-memory-budget.md:56-58, Legacy-PS2-GS/texture-mip-local-memory-budget.md:223-225 |
+| GP.G-17 | Formats 0x00/0x01 under `format - 2` indexing (underflow handling) | PSM class for 32/24-bit | Legacy-PS2-GS/texture-mip-local-memory-budget.md:182-193 |
+| GP.G-18 | Meaning of `0x4000` seed at `02CA5FF0` and of `022D8EA8` | arena policy | Legacy-PS2-GS/texture-mip-local-memory-budget.md:107, Legacy-PS2-GS/texture-mip-local-memory-budget.md:304, Legacy-PS2-GS/texture-mip-local-memory-budget.md:369 |
+| GP.G-19 | Frame-index global address (stated only as "one rip-relative write") | FRAME_1 base | Legacy-PS2-GS/texture-mip-local-memory-budget.md:239-248 |
+| GP.G-20 | `0020EB60`'s texture-key role (GI says it is one of two `01F83580` readers) is absent from VIF's description of `0020EB60` | texture bind path | Gi-Render-Commands/gi-render-command-family.md:221-224, Legacy-PS2-GS/the-vif1-vu1-layer.md:365-369 |
+
+#### 2.2.7 [EF] Effect containers, element dispatch and the per-frame element update
+
+Short names in this part: **DISP** = `Effect-File-Formats/effect-element-type-dispatch.md`; **FBF** = `Effect-File-Formats/an-effect-element-frame-by-frame.md`; **EFX** = `Effect-File-Formats/efx-and-efb-effect-containers.md`; **ERM** = `Effect-File-Formats/README.md`; **CAT** = `README.md`.
+
+
+| id | missing | why a port needs it | where |
+|---|---|---|---|
+| EF.G-1 | Age at birth: `002F2D60` zeroes `+0x3C`/`+0x40`/`+0x48`, then step adds 1.0 to `+0x3C` (conditional); value of `+0x44` and `+0x38` at birth not stated | first-frame timing of tracks, spawn tag start, expiry | Effect-File-Formats/effect-element-type-dispatch.md:56-57, 68-69; Effect-File-Formats/an-effect-element-frame-by-frame.md:43 |
+| EF.G-2 | What `002F31C0` does for types < 0x40 (method range "`+0` − `0x40`", TSV `-` below 0x40) though every 0x01-0x0A tail releases through it | release of basic elements | Effect-File-Formats/effect-element-type-dispatch.md:162, 176; Effect-File-Formats/an-effect-element-frame-by-frame.md:79-80, 134-136 |
+| EF.G-3 | Who calls the nine tails each frame: FBF never names the caller; DISP blocks show the birth step arms calling them as "prelude" | order: tail at birth vs per update | Effect-File-Formats/an-effect-element-frame-by-frame.md:69-233; Effect-File-Formats/effect-element-type-dispatch.md:2166, 2250, 2254, 2258, 1962 |
+| EF.G-4 | Spawner `003A8AE0`: meaning of constant 2, time argument use, owner `+0x1C`/byte `+0x1A`, how sub-resource index becomes element(s) | child spawning | Effect-File-Formats/an-effect-element-frame-by-frame.md:153-156; Effect-File-Formats/effect-element-type-dispatch.md:100 |
+| EF.G-5 | Trigger passed by `002F2D60`'s own `003A8950` call at birth | spawn at birth | Effect-File-Formats/effect-element-type-dispatch.md:1050-1051 |
+| EF.G-6 | Track record format sampled by `004309C0`/`004314E0`/`0042FDB0` and full definition (0xA00 record) layout; only scattered offsets named | all tails sample tracks | Effect-File-Formats/an-effect-element-frame-by-frame.md:22, 73; Effect-File-Formats/effect-element-type-dispatch.md:931 |
+| EF.G-7 | Element object size and complete layout; pool size / free-list initialisation | allocation | Effect-File-Formats/effect-element-type-dispatch.md:39 |
+| EF.G-8 | Rate gate multiplier from `001EDDA0()` and exact compare | element rate | Effect-File-Formats/effect-element-type-dispatch.md:138-140 |
+| EF.G-9 | Render byte `02AEE910` formula "from the definition's `+0x4A` / `+0x4C` or from `020926F8`" | layer key | Effect-File-Formats/effect-element-type-dispatch.md:127, 854 |
+| EF.G-10 | "even-rounded" in expiry test not defined | lifetime end frame | Effect-File-Formats/effect-element-type-dispatch.md:920 |
+| EF.G-11 | Return value of `002F2530` and what `0043EF40` does after the loop (`+0x139`, `[+0x2C]` vs `[+0x28]`) | update result handling | Effect-File-Formats/effect-element-type-dispatch.md:89, 960-961 |
+| EF.G-12 | 0x800 payload layout beyond id/subtype at +0x280/+0x282; subtype meanings 0..8 | sub-resources used by spawns | Effect-File-Formats/efx-and-efb-effect-containers.md:183-185; Effect-File-Formats/effect-element-type-dispatch.md:812-814 |
+| EF.G-13 | `0xB00` record-store chunk (30,033) not one of the loader's seven types; route to `003EE2D0` and link to the `0x50`-kind store (§2.7) not stated | parse completeness | Effect-File-Formats/efx-and-efb-effect-containers.md:49-50, 101-112; Effect-File-Formats/effect-element-type-dispatch.md:736-751 |
+| EF.G-14 | Fourth run pointer: "four run pointers `+0x870`–`+0x888`" but only `+0x870`/`+0x878`/`+0x880` assigned; 0x600-family "second buffer" location not given | loader context | Effect-File-Formats/efx-and-efb-effect-containers.md:109-113, 143-144 |
+| EF.G-15 | 0x700 subtype bodies' relocated field lists ("a fixed list of sub-blocks") not enumerated | relocation | Effect-File-Formats/efx-and-efb-effect-containers.md:246-249 |
+| EF.G-16 | 0x600 record bytes +0x01..+0x09, +0x16 low bits, +0x18..+0x2B meanings beyond lanes/request slots | effect definitions | Effect-File-Formats/efx-and-efb-effect-containers.md:258-277 |
+| EF.G-17 | EFB 0xA0 row bytes beyond +0/+1/+4/+5/+8..+0xB; meaning of the 12 bytes in each blob header | EFB binding | Effect-File-Formats/efx-and-efb-effect-containers.md:453-462 |
+| EF.G-18 | Element `+0x294` resource index for type 0x05 walk: writer not stated (tail 0x05 does not write it) | type 0x05 draw | Effect-File-Formats/effect-element-type-dispatch.md:643-647; Effect-File-Formats/an-effect-element-frame-by-frame.md:210-213 |
+| EF.G-19 | Order of update vs walk within one frame not stated | frame ordering | Effect-File-Formats/effect-element-type-dispatch.md:147-149 |
+
+#### 2.2.8 [ET] Effect element types, kind-0x54 meshes, menu effect registry and VFX layers
+
+Short names in this part: **mesh** = `Effect-File-Formats/effect-mesh-records-kind-54.md`; **00-0a** = `Effect-File-Formats/the-element-types-00-0a.md`; **40-42** = `Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md`; **60-74** = `Effect-File-Formats/the-element-types-60-74.md`; **80-97** = `Effect-File-Formats/the-element-types-80-97.md`; **menu** = `Effect-File-Formats/the-menu-effect-registry.md`; **six-layers** = `Effect-File-Formats/the-six-vfx-display-layers.md`.
+
+
+| id | what is missing | why a port needs it | where |
+|---|---|---|---|
+| ET.G-1 | Index lists A/B: what each indexes (positions vs normals vs corners) and why `6·tri + 8·quad` u16 per list | cannot build the mesh topology | Effect-File-Formats/effect-mesh-records-kind-54.md:84-86, :135-136 |
+| ET.G-2 | Per-primitive byte `+0x188` ("a small selector") meaning; runtime `+0x18C` flags use | draw-path choice per primitive | Effect-File-Formats/effect-mesh-records-kind-54.md:137-138, :73 |
+| ET.G-3 | What a kind-0x52 record is (the `+0x1C` ids resolve to them) | resource bound to a mesh | Effect-File-Formats/effect-mesh-records-kind-54.md:139-141 |
+| ET.G-4 | The "alternate vertex-attribute constants" written for language ids 1-6 — values not given | packing differs by language | Effect-File-Formats/effect-mesh-records-kind-54.md:233-235 |
+| ET.G-5 | Which caller chooses `00435050` vs `00434CD0` and on what | "One caller chooses between them" unnamed | Effect-File-Formats/effect-mesh-records-kind-54.md:196 |
+| ET.G-6 | Handle stride at element `+0x5A0` (32 slots) vs "all ≥ 0x640 B" records (32×8 B would end at 0x6A0) | record extent of type 0x05 | Effect-File-Formats/effect-mesh-records-kind-54.md:149-151, :156; Effect-File-Formats/the-element-types-00-0a.md:85 |
+| ET.G-7 | Track evaluators `004309C0`/`004314E0`/`0042FDB0`: interpolation between keyframes, the role of the two arrays per head (A/B) | every element samples tracks | Effect-File-Formats/the-element-types-00-0a.md:78-82, :470-472 |
+| ET.G-8 | Seventh method / `003A8950` spawn-slot semantics and `002F31C0` release are only named on these pages | lifecycle | Effect-File-Formats/the-element-types-00-0a.md:473-474; Effect-File-Formats/the-element-types-80-97.md:145-146 |
+| ET.G-9 | Types 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6-0xAA have method addresses only; no behaviour section (GI-9 covers 0x40,0x41,0x42,0xA0,0xAB,0xD0,0xD1). type_census.tsv: 0xA2 6,303 chunks / 493 assets | heavily authored types cannot be ported | Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md:59-73, :108 |
+| ET.G-10 | Most 0x80-0x97 walks: program addresses and primitive only, no vertex layout (unlike 0x04/0x06/0x07/0x08) | geometry | Effect-File-Formats/the-element-types-80-97.md:166-173 |
+| ET.G-11 | 0x60-0x67/0x68-0x74 walks: VU1 program named, no geometry for most (except 0x71 table) | geometry | Effect-File-Formats/the-element-types-60-74.md:190-203 |
+| ET.G-12 | 0x41 seventh `003B42B0` on `+0x234/+0x238`, 0x42 seventh `003D8300` — behaviour not stated | teardown | Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md:46, :56 |
+| ET.G-13 | `00428AF0` (two-bit render field) and `00428CD0` with `+0x235` | 0xD0 apply | Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md:221-222 |
+| ET.G-14 | Relation between group number (1-9, list `020910F0`) and container kind byte `+0` (gate kinds 2-9); group 8 refused yet kind 8 "always" | which effects are drawn | Effect-File-Formats/the-six-vfx-display-layers.md:62-64, :92-101; Effect-File-Formats/the-menu-effect-registry.md:184 |
+| ET.G-15 | Menu effects are type-4 contexts; whether "type" = group 4 (drawn last) is never stated | layering of menu effects | Effect-File-Formats/the-menu-effect-registry.md:60; Effect-File-Formats/the-six-vfx-display-layers.md:45 |
+| ET.G-16 | `0024B270` instance creation / instance layout (only `+0x304/+0x338/+0x373` named), `003EDAD0` parse | registry spawn | Effect-File-Formats/the-menu-effect-registry.md:60-61, :114 |
+| ET.G-17 | `0024EEE0` described as "record registration `0024EE60` runs" while `0024EE60` is the release `003B2AA0` runs — a release calling a register is unexplained | remove path | Effect-File-Formats/the-menu-effect-registry.md:183-187, :363 |
+| ET.G-18 | Initial values of `02092162/4/6`, `02AEE910`, `01EF93E8` not given | first-frame behaviour | Effect-File-Formats/the-six-vfx-display-layers.md:65; Effect-File-Formats/the-element-types-00-0a.md:273; Effect-File-Formats/the-element-types-60-74.md:45 |
+| ET.G-19 | Who calls the per-element update per frame and in which frame phase (pages state draw-side walk only) | update/draw ordering | Effect-File-Formats/the-element-types-00-0a.md:49-53; Effect-File-Formats/the-six-vfx-display-layers.md:83-84 |
+| ET.G-20 | `00258B90` caller/phase not stated | camera handoff ordering | Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md:260 |
+
+#### 2.2.9 [MF] Model formats: add-motion tables, ADM, FCP, FDM/FOR
+
+Short names in this part: **SKEL** = `Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md`; **ADM** = `Model-And-Motion-Formats/adm-add-motion-tables.md`; **FCP** = `Model-And-Motion-Formats/fcp-character-parameter-block.md`; **FDM** = `Model-And-Motion-Formats/fdm-and-for-entries.md`; **MREADME** = `Model-And-Motion-Formats/README.md`.
+
+
+| id | what is missing | why a port needs it | where |
+|---|---|---|---|
+| MF.G-1 | Which handle slot (`+0x6E8` or `+0x6F0`) holds the `_town` table, and which `00377C20` value means "town" | the applier picks by "handle 1"/"handle 0" and a combat flag; no page maps these to the slots or gives the flag's polarity | Model-And-Motion-Formats/adm-add-motion-tables.md:136-137, 300-302, 492-493 |
+| MF.G-2 | Where the kind-0 "current channel parameter" comes from | the interpolation needs it; only `(frame − key0) / span * rate` is given, and frame/key0/span/rate are not defined | Model-And-Motion-Formats/adm-add-motion-tables.md:305-306, 461-463 |
+| MF.G-3 | Behaviour when the parameter lies outside the lane range (clamp or extrapolate) | an edge case of the interpolation | Model-And-Motion-Formats/adm-add-motion-tables.md:461-463 |
+| MF.G-4 | Euler order / convention of `Matrix4x4f_BuildEulerRotation`, and how the result combines with the base pose (add or replace) | needed to reproduce the pose | Model-And-Motion-Formats/adm-add-motion-tables.md:425, 308 |
+| MF.G-5 | Meaning of the 11 all-zero group headers that are not group 0 | §10 explains only the 35 first-group sentinels | Model-And-Motion-Formats/adm-add-motion-tables.md:253-255, 483-484 |
+| MF.G-6 | `.adm` registry container (how parsed records are "appended"), the name field's maximum length in the 32-byte record | needed to rebuild the lookup | Model-And-Motion-Formats/adm-add-motion-tables.md:108-109, 115, 431 |
+| MF.G-7 | `003703A0`'s joint-follow math (only "each non-`-1` value makes that joint follow the given joint") | needed to apply SkeletonMapping | Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md:231-233 |
+| MF.G-8 | `0037B4D0` body: only a callee list | it is a `0037CB90` caller | Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md:116-118 |
+| MF.G-9 | Integer default table `01F266B0` contents; float defaults past slot 47 | every weapon reads defaults ("Every weapon's section-9 reads return it") | Model-And-Motion-Formats/fcp-character-parameter-block.md:135-153, 190-192 |
+| MF.G-10 | The constants in `0026A490` ("each × a constant"), `003045A0`, `00236210`, `00320DE6`, knockback | the readers' outputs depend on them | Model-And-Motion-Formats/fcp-character-parameter-block.md:238, 337, 342, 344, 348 |
+| MF.G-11 | The mode-2 id `0x40000000` reading payload `+0x01` (what it returns) | index 28 of the tunable table | Model-And-Motion-Formats/fcp-character-parameter-block.md:184, 321 |
+| MF.G-12 | Payload `+0x2A` per-file value and `+0x38` (`_w38`) meaning, readers | layout fields with no stated role | Model-And-Motion-Formats/fcp-character-parameter-block.md:85, 91 |
+| MF.G-13 | Section-1 slots read by the inline `+0x02` readers (`003E4700`, `003E4B71`, …) | readers listed, slots not given | Model-And-Motion-Formats/fcp-character-parameter-block.md:664 |
+| MF.G-14 | Range-band table entries for weapon kind 2 (slots 18/19): the table has six kinds but kind 2 is excluded | no page says what slots 18/19 hold | Model-And-Motion-Formats/fcp-character-parameter-block.md:333-338 |
+| MF.G-15 | Section-8 record: `+0x1A0` point lies inside the "0x120-byte zero region" (0x90..0x1AF), and `+0x1C0`/`+0x1C4` lie past the three-float tail | the authored layout and the runtime readers do not line up | Model-And-Motion-Formats/fcp-character-parameter-block.md:722-725, 737-754 |
+| MF.G-16 | `@FOR` `+0x31..+0x33` given as "(1,1,1)", yet `+0x32` multiplies the variant and `+0x33` clamps `+0xB9` | the bytes have roles that the header does not state | Model-And-Motion-Formats/fdm-and-for-entries.md:68, 142, 165 |
+| MF.G-17 | `@FOR` record `+0xC0..+0xDF`, and the `+0x1C` count / `+0x80` array on the `dword[ctx+0x86F8]!=0` arm | part of the 0xE0 record has no meaning | Model-And-Motion-Formats/fdm-and-for-entries.md:94, 137-138, 157-158 |
+| MF.G-18 | Where the table-A record count `k` is stored | needed to find table B | Model-And-Motion-Formats/fdm-and-for-entries.md:70 |
+| MF.G-19 | `00421280(object,1)` and the `003E57D0` bit `0x2000` (LOD apply) | the LOD step ends in them | Model-And-Motion-Formats/fdm-and-for-entries.md:116-117 |
+| MF.G-20 | Frame/timing of `004201F0`, `00373860`, `001BDC40` | B4 ordering | Model-And-Motion-Formats/fdm-and-for-entries.md:96, Model-And-Motion-Formats/adm-add-motion-tables.md:104, 128 |
+
+#### 2.2.10 [MM] Motion formats: FEF/motion entries, FRP, FTE/FCT, FTR, oscillator, pose sequencer
+
+Short names in this part: **ACH** = `Authored-Commands/the-authored-presentation-command-handlers.md`.
+
+
+| # | missing | why a port needs it | where |
+|---|---|---|---|
+| MM.G-1 | `.ca` v1 header bytes `+0x30..+0x3F`: the container page gives no fields there (table only at `+0x40`); fef names `+0x30` stride and `+0x34` group count; `+0x38`/`+0x3C` not stated | slot math needs group count/stride; a writer needs the full header | Model-And-Motion-Formats/frp-object-container.md:66-81; Model-And-Motion-Formats/fef-and-motion-entries.md:99-102 |
+| MM.G-2 | `@FTR` bit-30 leading u16: ftr says only "skip a leading u16"; what it holds (the record key `00409250` returns when bit 30 set, per Character-Render-Records/how-a-character-fades-the-ten-channels.md:774) is not on the page | key search `003737C0`/`00373540` matches on it; bit 30 is set in every record (:204) | Model-And-Motion-Formats/ftr-node-table.md:86, :75-77 |
+| MM.G-3 | `@FRM` payload format: "the two bound regions are handed to the request, not parsed here" — no decode of the motion resource beyond the head offset list | the motion resource is the core motion data | Model-And-Motion-Formats/fef-and-motion-entries.md:704-707, :718-722 |
+| MM.G-4 | how `f32[state+0xC]` (frame position) advances per tick (rate from `+0x18 = 0x1E0000`, `+0x20 = 30.0f`?) not stated | sampler and event thresholds both read it | Model-And-Motion-Formats/fef-and-motion-entries.md:271-273, :313 |
+| MM.G-5 | full layout of the 0xA0-stride descriptor/state row (`+0x0C`, `+0x16/+0x18/+0x1C`, `+0x48..+0x80`, `+0x88/+0x8C/+0x90/+0x96`, `+0x5E`) only given piecemeal | executor and sampler state | Model-And-Motion-Formats/fef-and-motion-entries.md:254-255, :312-314, :477-482 |
+| MM.G-6 | three of ten `0x0B` selector kinds' bodies not described ("seven of ten are read"); op `0x00` tail-call `[[02CA4668]+0x2F8]` callee not described; op `0x04` arms only partly given | track selection behaviour | Model-And-Motion-Formats/fef-and-motion-entries.md:352-355, :312, :315 |
+| MM.G-7 | `@FMN` `+0x70` vec2 → `003E2EA0`, `{+0xA4,+0xA0}`/`+0xA8` → `003B5CE0`, `+0xEE` → `003E2D20`: written targets given, meaning of the authored values not stated | the applier arm consumes them every motion | Model-And-Motion-Formats/fef-and-motion-entries.md:519-522 |
+| MM.G-8 | 0x290 bone fields `+0x1A0`, `+0x1C0` (read by the inline composer and the `@FMW` apply) and `+0xB8` ("+0xB8/+0x270 parent word") have no stated meaning | pose composition | Model-And-Motion-Formats/ftr-node-table.md:97, :263, :265 |
+| MM.G-9 | `0040B180` (554 B, controller 0's evaluator in `003E00C0`) named only; relation to the `003703A0`→`003DFFE0`→`0040ACF0` path not stated; absent from members TSV | which path actually drives sway per frame | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:237-238, :332 |
+| MM.G-10 | phase-advance time factor: pose-sequencer Q10 says `0040AA20` "adds +0x24 × [01DFE0BC]"; the oscillator page's advance formulas (`0040ACF0`) state no time factor | 30/60 fps parity | Model-And-Motion-Formats/the-pose-sequencer.md:277; Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:81, :83 |
+| MM.G-11 | `0046FAE0(entry, mode', nibble_hi)`, `00415EE0`/`00416FB0` scope/post-step semantics ("call-site roles" only) | tier dispatch | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:128-129, :354 |
+| MM.G-12 | `0054B1F0` sub-entry fields `+0x3C/+0x40/+0x4C/+0x2C` (0x50 stride) and `0x20`-stride tail entries' `+0x18`: meaning not stated | effect type 0x72 parameter install | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:170-174 |
+| MM.G-13 | oscillator record `+0x10` (row 31 / Q reciprocal) and `+0x1C` (row `022D8FB0`→`022D9350`): what the VU program uses them for not stated | VU math port | Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md:79-80 |
+| MM.G-14 | phase-entry header: `+0x08` and the initial values of the slot arrays on allocation not stated (only `+0`, `+2`, `+4`, `+0xC`) | sequencer start state | Model-And-Motion-Formats/the-pose-sequencer.md:59, :71-81, :92 |
+| MM.G-15 | random picker formula with `pickParam` not stated (picker "not read") | choice distribution | Model-And-Motion-Formats/the-pose-sequencer.md:48, :89, :208 |
+
+#### 2.2.11 [PP] Post-processing and visual tuning parameters
+
+Short names in this part: **CS** = `Post-Processing/CONTRACT-post-processing-subsystem.md`; **CP** = `Post-Processing/CONTRACT-ppfx-effect-creation.md`; **PI** = `Post-Processing/ppfx-function-identification.md`; **CAT** = `Post-Processing/the-post-processing-effect-catalogue.md`; **VR** = `Visual-Tuning-Parameters/README.md`; **RR** = `Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md`; **RCL** = `Render-Command-List/the-ordered-render-command-list.md`; **HL** = `Post-Processing/members/ppfx-handle-layout.tsv`.
+
+
+| id | missing | why a port needs it | where |
+|---|---|---|---|
+| PP.G-1 | Meaning of flag bits `0x20000` and `0x1` in `0x20001`, and of the low groups `Initialize` forces (`0x0F`/`0x70`, bit 7) | port must pick equivalent library init | Post-Processing/CONTRACT-post-processing-subsystem.md:73; Post-Processing/the-post-processing-effect-catalogue.md:1021-1022 |
+| PP.G-2 | `006CBBC0` default block: only "aspect 16/9, 0x780 and 7 qwords of -1"; full layout, meaning of `0x780` (RCL calls it "size") and kinds 3/5 not stated | needed to reproduce library init | Post-Processing/CONTRACT-post-processing-subsystem.md:72-73; Render-Command-List/the-ordered-render-command-list.md:1720 |
+| PP.G-3 | Step 1 reset arm: the two virtual calls' semantics | frames with `cfg+0x99` behave differently | Post-Processing/CONTRACT-post-processing-subsystem.md:82; Post-Processing/the-post-processing-effect-catalogue.md:937 |
+| PP.G-4 | Step 3 block content/semantics (`&cfg+0x9C`, size disputed) | input to library each frame | Post-Processing/CONTRACT-post-processing-subsystem.md:85; Post-Processing/the-post-processing-effect-catalogue.md:940 |
+| PP.G-5 | Step 4 vec3 meaning ("half-extent" per RCL) and why last is halved | same | Post-Processing/CONTRACT-post-processing-subsystem.md:86; Post-Processing/the-post-processing-effect-catalogue.md:941 |
+| PP.G-6 | Step 6 `006CC170` / `006DC820(32.0, -FLT_MAX)` meaning, and who sets `cfg+0x98`/`+0x9A` | same | Post-Processing/CONTRACT-post-processing-subsystem.md:100-101; Post-Processing/the-post-processing-effect-catalogue.md:944 |
+| PP.G-7 | Sources of `cfg+0x30`/`+0x34` (step 7 on-path floats) and the 0.5/0.5/0.0/1.0 off defaults' meaning | DOF parameters | Post-Processing/the-post-processing-effect-catalogue.md:945-946; Post-Processing/CONTRACT-post-processing-subsystem.md:137-145 (table omits them) |
+| PP.G-8 | Who sets `cfg+0x98`, `+0x99`, `+0x9A`, `+0x9C..`, `+0xDC..+0xE4` (only +0x18..+0x2C and +0x94 sourced) | cfg builder `0018EEE0` only partly described | Post-Processing/CONTRACT-post-processing-subsystem.md:137-145, Post-Processing/CONTRACT-post-processing-subsystem.md:263-265 |
+| PP.G-9 | `006CBEA0` run: what "Phyre render-context guard" is; how cfg[0]/[8]/[0x10] map to library calls | run call | Post-Processing/CONTRACT-post-processing-subsystem.md:106-107 |
+| PP.G-10 | Effect file base name `<name>` (only suffix literal given) | must load the right `.pso` | Post-Processing/the-post-processing-effect-catalogue.md:97, Post-Processing/the-post-processing-effect-catalogue.md:783-784; Post-Processing/CONTRACT-ppfx-effect-creation.md:217 |
+| PP.G-11 | Handle slot map for 15 unplaced and 73 built-string lookups; what `+0x48` vs `+0x60` vs `+0xC8` interface slots are (only "reading, labelled") | a port of the library binding | Post-Processing/the-post-processing-effect-catalogue.md:803, Post-Processing/the-post-processing-effect-catalogue.md:806 |
+| PP.G-12 | `0072DCF0` suffix-table full contents and order | determines handle variants | Post-Processing/the-post-processing-effect-catalogue.md:806 |
+| PP.G-13 | Two of the 22 call targets / ~4 of 358 sites not itemised (enumerations reach 20 targets, ~356 sites) | census reproduction | Post-Processing/CONTRACT-ppfx-effect-creation.md:82-85, Post-Processing/CONTRACT-ppfx-effect-creation.md:157-162; Post-Processing/the-post-processing-effect-catalogue.md:123-137 |
+| PP.G-14 | Wrapper lifetime/teardown (`[02D38540]`, library object, CTextureUtil release caller) not stated | shutdown/reset | Post-Processing/CONTRACT-post-processing-subsystem.md:56-58; Post-Processing/the-post-processing-effect-catalogue.md:814 |
+| PP.G-15 | `0065E580(wrapper, 1)` platform switch semantics | device setup | Post-Processing/CONTRACT-post-processing-subsystem.md:290-292 |
+| PP.G-16 | `+0x8000` / `+0x400` features (bytes +0x143, +0x144/+0x146) unnamed | feature set | Post-Processing/the-post-processing-effect-catalogue.md:1009-1010 |
+| PP.G-17 | Map reader (`001C7940`) key → block field mapping beyond glare/DOF; render-param fields for SAO/HBAO/shadow keys in RR | loading scene JSON into block | Post-Processing/CONTRACT-post-processing-subsystem.md:129; Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:345 |
+| PP.G-18 | Flying-fade globals' addresses not given | state | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:144-147 |
+| PP.G-19 | `001EF2D0`'s target object not identified ("a different object") | cascade defaults | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:741-743 |
+| PP.G-20 | Arithmetic consuming any of ~150 parameters (no formula) | the look | Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md:284-285 |
+
+#### 2.2.12 [CM] Scripted camera, screen fade, screen effects, aspect fit, position-to-scalar, movie index
+
+Short names in this part: **MR** = `Movie-Containers/README.md`; **MH** = `Movie-Containers/mh-movie-seek-index.md`; **PTS** = `Position-To-Scalar/how-a-position-becomes-a-single-number.md`; **SF** = `Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md`; **AF** = `Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md`; **CI** = `Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md`; **CR** = `Scripted-Camera/how-a-camera-reaches-the-renderer.md`; **P** = `Scripted-Camera/the-scripted-camera-player.md`; **RM** = `README.md`; **WT** = `../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md`.
+
+
+| # | what is missing | why a port needs it | where |
+|---|---|---|---|
+| CM.G-1 | The WebM player itself: decoder, codec set, A/V sync, what `001B7F30` hands the path to, and who calls the open (only the path build is documented) | movies cannot be played from the DB | Movie-Containers/README.md:11-14; Movie-Containers/mh-movie-seek-index.md:90-92; Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:644-650 |
+| CM.G-2 | `0067A9B0` sub-record at `+0x678` (fields `+0x150`,`+0x218`,`+0x238`,`+0x260`,`+0x268`,`+0x288`,`+0x290`,`+0x2A8`,`+0x480`,`+0x4B8`,`+0x4D0`,`+0x508`,`+0x510`) has offsets but no meanings, and its callees (`006CC670`, `006CC730`, `006CCA70`, `00679F40`) are undescribed | movie container lifecycle | Movie-Containers/mh-movie-seek-index.md:241 |
+| CM.G-3 | `001B82F0` / `001848A0` / `001B7F20`: when they run and what `edx` carries | ordering of movie ops | Movie-Containers/mh-movie-seek-index.md:230-237 |
+| CM.G-4 | fade node: units/type of the near/far words and floor bytes; behaviour when `near == far` is asserted (`0x80`) without the division guard shown; kind values other than 1/2/3/4 | alpha formula incomplete for some inputs | Position-To-Scalar/how-a-position-becomes-a-single-number.md:194-200 |
+| CM.G-5 | fade kind 3: the timed-fade value from `003ED0E0` / timer block `02EBB7E4`-`02EBB7EF` is not given as a formula, nor which near/far pair "the depth path again" uses | kind 3 cannot be reproduced | Position-To-Scalar/how-a-position-becomes-a-single-number.md:196-198 |
+| CM.G-6 | modifier order and arithmetic: bit 3 blend through `0026EE00` (operation not stated), bit 10 table `02EBF278` layout, bits 12/13 `+0x35C` factor, order in which bits 2/3/4/5/10/12/13 apply | output colour not reproducible exactly | Position-To-Scalar/how-a-position-becomes-a-single-number.md:201-208, 358-362 |
+| CM.G-7 | writer and in-play value of `02AEEA20` (labelled "view" in the composition, identity at title) | mode 1/2 distance depends on it | Position-To-Scalar/how-a-position-becomes-a-single-number.md:119-121, 224-225, 238 |
+| CM.G-8 | "A second body, 857 bytes in the `00332xxx` run" — unnamed address | second consumer of the ramp | Position-To-Scalar/how-a-position-becomes-a-single-number.md:362 |
+| CM.G-9 | fade start: "two frame-rate words defaulted to 1" / "the two words zeroed" — addresses never named; layer descriptor bytes `+0x0C`-`+0x23` of the record unexplained | start/reset state incomplete | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:60-61, 90, 51 |
+| CM.G-10 | consumer of `022BDEB0`/`022BDEB4`/`022BDEB8` ("kind and wait words ... for whoever resumes the scene") not named | skip/schedule semantics | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:92, 133-136 |
+| CM.G-11 | `00375A20` slot chooser (kind nibble, priority) algorithm; `00374950` pool tick caller and frame position; the "scheduling predicate" that makes it advance 2 | fade duration timing (counter vs `2×frames`) | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:65, 239-242 |
+| CM.G-12 | whether the layer start ever sets descriptor `+0x1C` bit 1 (the tick's release condition for kind 1); `+0x24` documented only as "bit 0 = direction 1" | when finished fade records are released by the pool | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:51, 240-242 |
+| CM.G-13 | `0024DE70` / `0024CFF0` nine-arm tables: only class 8 described | other handle classes reaching the fade path | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:71-72 |
+| CM.G-14 | the three `WorldTransition_*` callers' layer/frames/colour arguments not listed | transitions not reproducible | Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md:99 |
+| CM.G-15 | aspect record and display object initial values (constructor `001DC5C0` fields not given); `+0x08` in branch C "whatever it held before" | first-fit state | Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:84, 154 |
+| CM.G-16 | when `001DDBA0` runs (what triggers `001DC730` / `00182F70`) | ordering of mode change vs render | Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md:94-97 |
+| CM.G-17 | render-target allocator, its texture getter, late-release list owner, frame-count scaler and pass-mask setters are "described by role and not named" | a port must locate/replicate them | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:77-86, 187, 317-319 |
+| CM.G-18 | `003B2F90` note ends mid-sentence ("then `0024C460(3)` reaps") | reaping behaviour | Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md:402 |
+| CM.G-19 | camera rebuild `003CBD60` math (only callees listed), `003CC080`/`003CC000`/`003CC970` beyond field copies | view matrix build | Scripted-Camera/how-a-camera-reaches-the-renderer.md:84-86, 430; Scripted-Camera/the-scripted-camera-player.md:191-193, 1039-1046 |
+| CM.G-20 | `003D83A0` "candidate calculation" and `002563F0` "two base scalars" contents | shake output | Scripted-Camera/how-a-camera-reaches-the-renderer.md:150, 169, 426 |
+| CM.G-21 | authored shake entry: width of the 32 curve numbers (0x30 bytes available from `+0x30` in a 0x60 entry); "shared mode flag" in step 5; `[02B58190]` global | sampler parameters/timing | Scripted-Camera/how-a-camera-reaches-the-renderer.md:214, 222-232 |
+| CM.G-22 | camera record (0x110) layout beyond `+0` eye, `+0x10` target, `+0xF0` mode; what `0025A2C0`/`0025A3D0` copy; who sets records 0-4 and 6-7 | arbitration stack | Scripted-Camera/the-scripted-camera-player.md:284-289, 511-513, 1093-1101 |
+| CM.G-23 | plain timing word `0` (`progress = clock / 0`) and path progress with `word==0` not covered; duration "never 0 in the corpus" only for `+0x22` | divide-by-zero behaviour | Scripted-Camera/the-scripted-camera-player.md:213-214, 387 |
+| CM.G-24 | hit-check probe `00230B60` / `0022F430` semantics (only callee lists) | `camerahitcheck` result | Scripted-Camera/the-scripted-camera-player.md:195-197, 1127-1133 |
+| CM.G-25 | blend `00257520`: which "position fields" of the record are blended | resume-behind blend | Scripted-Camera/the-scripted-camera-player.md:630-631 |
+| CM.G-26 | what reads `02AEDF94` heading and `02AEDE30` (far-1000) — "-" in table | consumers of build outputs | Scripted-Camera/how-a-camera-reaches-the-renderer.md:111-120 |
+
