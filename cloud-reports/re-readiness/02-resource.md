@@ -590,3 +590,775 @@ still unstruck.
 | G-T36 | **Loader-bound families: ids and census.** The page cites "`members/loader-bound-census.tsv` … 87 files, all rows", which does not exist; only the generator is present. The kind-9 ids of `behindcamera`/`pc_skillmotion` and the kind-7 ids of `tex2pack` (`0xD7`) and `fontpack_fs` (`0xD2`) are not on the page; they appear only in the generator. | `LBB:36`, `LBB:179-180`, `PS2-…/members/gen_loader_bound_census.py:34-46` |
 | G-T37 | **Movie / TGA helpers.** The TGA probe `002DF8E0` and texture loader `00183180` are named only, and the "0x1C-stride movie table" has no layout (see C-V67). | `SF:65-66`, `SF:148` |
 | G-T38 | **One boot order.** The boot steps in §1.4 are stated piecemeal across eight pages. No page gives their relative order inside `0022A0B0` (FST read vs arena init vs seeder vs `002368D0`). | `FST:71`, `EV:344-361`, `RND:398`, `ROW:874` |
+
+---
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Each item quotes both sides exactly as the snapshot has them, with `page:line`.
+
+- **§3.1** lists items that change a value: a count, offset, address, constant, size, formula, layout or role. Every one
+  is marked **page-text only - needs local check**, because this session cannot see the executable.
+- **"Favoured"** names a side only when a dated correction, answer or superseding note on the pages settles it.
+  Otherwise it says **none**.
+- **§3.2** lists stale "not read / open" claims that another page or a later dated section answers, banners that
+  disagree with front matter, and similar items whose fix changes no value.
+- **§3.3** lists the cross-checks that came out consistent.
+
+### 3.1 Value-changing — page-text only - needs local check
+
+#### File-size table, request queue, read path
+
+**C-V1 — what slot `+0x48` holds.**
+- `FST:97`: "the completion callback at slot `+0x48`".
+- `RQ:287`: "`+0x48` | `+0x18` | on cancel completion (state 4) and by `0032E590` for a request not yet issued". The
+  done callback is `+0x40` (`RQ:286`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V2 — 4th argument of `0032E620`.**
+- `FST:85`: "`0032E620(kind, index, dest, id, …)`".
+- `RQ:86`: "`0032E620(kind, index, dest, bytes, &descriptor)`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V3 — `0046DD50` live or dormant, and its rounding.**
+- `FST:378`: "`0046DD50` (251 B) is the `02CA6068` state stepper the pump `0032E070` runs: … state 1 sizes the next
+  stag[e] … (each `(x + (x>>31 & 0x7FF))` rounded down by `>> 0xB`)".
+- `RQ:717`: "**`0046DD50` is dormant.** Its state word `02CA6068` has no writer but itself (whole-image scan)". `RQ:717-721`
+  adds that states 1–4 are unreachable and "state 2 rounds two sizes up to `0x800`".
+- The two sides differ on live vs dormant, on which state rounds, and on rounding direction.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V4 — callers of the cancel `0032E590`.**
+- `RQ:321-322`: "Callers: `00280140`, `00291D90`, `002CEB40`, `002E60F0`, `002FC3C0`, `002FCF00` and the
+  `003B1310`–`003B21E0` family".
+- `RQ:648`: "Its direct callers are `002FC3C0`, `003B1310`, `003B1710` and `003B18E0`"; `RQ:678`: "The cancel's four
+  callers …". The four-caller list equals the `0032E520` ask-callers (`RQ:133-140`).
+- The P9 double-free conclusion (`RQ:675-679`) rests on the four.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V64 — size of `003EADE0`.**
+- `RQ:345`: "`003EADD0` → `003EADE0` | — | 12 / 522 B".
+- `RQ:891`: "`003EADE0` (512 B) — the request state machine".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V65 — how many callers `0032E040` has.**
+- `RQ:119-126` lists the seven frame-mode bodies, boot `0022A0B0`, `0036EEB0` and `00379E30`.
+- `RQ:945`: "`0032E040` — 38 B, 8 A-measured callers"; `RQ:828-829` names eight.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V73 — which requests `002DF6C0` serves.**
+- `FST:390`: "`002DF6C0` … `0032E070` runs per request" (as the general read gate).
+- `RQ:145`: kind `0xFF` → `002DF6C0`; other kinds → `0046E030` → `002DF780`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V109 — does the builder write the caller's descriptor?**
+- `RQ:438`: "`+0x04 i32 (set to 0x80000 by the builder)`", in the caller's `RequestDescriptor`.
+- `RQC:90-91`: "The gated builder writes its local `+4=0x80000` ... The input descriptor remains unchanged in the
+  controls."
+- Favoured: none (RQC is the later contract, but it does not mark RQ as corrected). *page-text only - needs local check.*
+
+#### Arena, tree, handles, image address
+
+**C-V6 — address of the re-resolve flag.**
+- `TREE:386`: "the `027A2E10` flag is armed, resolves `+0x30` through `003AB7F0`".
+- `CSA:71`: "Global: `02B62E10`, the engine-wide re-resolve flag (RA-5)"; also `RSA:590` and `OWNC:174`. `027A2E10`
+  occurs nowhere else in the folder.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V7 — the `003AB7F0` ≤ `0x40` guard.**
+- `RSA:200`: "`else -> r = 0036B130(h); r <= 0x40 ? 0 : r`" (a full-pointer compare).
+- `EFX:98`: "**The full 64-bit result survives unless `unsigned(sext(low32(result))) <= 0x40`**".
+- `EFX:536` (EXP-084): rejected is "`low32(slot+8) ∈ {0} ∪ [0xFFFFFFC0, 0xFFFFFFFF]`".
+- `EV:845-850`: "compares **the unsigned 64-bit value of the sign-extended low 32 bits** with `40` … Returned
+  `100000040` is suppressed, while `100000041` survives".
+- Favoured: the EFX/EV side, by the dated executed record "**Consumed 2026-09-16 (OPUS) from [`EXP-084`]**"
+  (`EFX:511`). RSA is not marked. *page-text only - needs local check.*
+
+**C-V8 — what `003AB7F0` returns for an untagged handle.**
+- `EFX:421-422` (reproduction formula): "`resolve (0036B130, called via 003AB7F0): if handle == 0 or (handle & 3) == 0:
+  return 0  # tag required`".
+- `EFX:90`: "untagged -> return the input unchanged (`003AB846`)"; `RSA:199`: "`(h & 3) == 0 -> h (a raw pointer)`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V13 — how many entries the rebase loops repoint.**
+- `EFX:916`: `003A9BA0` "for each `rbx` step of 8 through `0x1800` … - 768 entries repointed"; `EFX:920`: "320 entries
+  repointed".
+- `RSA:895`: "`rbx` strides 8 from 8 to 0x1800" (767). `EFX:261-262`: teardown "(319 walked)" / "(767 walked)".
+  `EV:868-874`: the helpers skip index 0.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V14 — what a below-base offset does.**
+- `EFX:205-207`: "Past that the stored offset wraps and later resolves to the wrong address *inside* the arena".
+- `TREE:80-81` (⚠ CORRECTED 2026-09-15, accepting EXP-083): "So the failure is not a wrap *inside* the arena as this
+  page previously said — it is a fault outside it."
+- Favoured: TREE (dated correction 2026-09-15). EFX §4 is unstruck. *page-text only - needs local check.*
+
+**C-V15 — does an offset before the arena base fail to round-trip?**
+- `EFX:408-409`: "**Offset before the arena base** — cannot round-trip at all". Also `EFX:551-552` and `EFX:607-608`:
+  "must fail to round-trip".
+- `EFX:521-524`: "executed as `off-delta-underflow`, and **it does not fail. It wraps.** `0x100 − 0x200` stores
+  `0xFFFFFF00`".
+- Favoured: `EFX:521-524` (EXP-084, consumed 2026-09-16, `EFX:511`). *page-text only - needs local check.*
+
+**C-V16 — the delta bound.**
+- `EFX:406`: "**`|delta| >= 2 GiB`** — pointers shift by `delta - 2^32`".
+- `EFX:491`: "**`|newBase − oldBase| < 2 GiB` is off by one value.**". `EFX:168`: "−2^31 <= newBase − oldBase <=
+  2^31−1".
+- Favoured: the exact range (falsification pass 1, 2026-09-13, `EFX:491-494`; EXP-084 `EFX:531`).
+  *page-text only - needs local check.*
+
+**C-V17 — role of `003AB880` / `0036A000`.**
+- `EXT:246`: "`003AB880` (42 B) is the alignment guard … anything misaligned tail-jumps `0036A000` (the subsystem's
+  invalid-parameter handler) … the 'aligned or die' check".
+- `OWN:136`: "`003AB880` removes a tagged node from its arena tree and returns payload."
+- `EFX:120`: `0036A000` does the "**generation check**, then **removes the entry from the arena tree**".
+- `TREE:347`: "`0036A000` requires it set, removes, clears it".
+- Favoured: none (no dated correction on EXT). *page-text only - needs local check.*
+
+**C-V18 — callers of `0024D540`.**
+- `EV:1455-1456`: "called only by the three main-loop frame functions `0022B0B0`, `0022B8C0` and `0022BC20`".
+- `EV:1322`: "`0024D540` is run by `MainLoop_UpdateAndRenderFrame`" (one caller).
+- `EFX:620`: "run by `MainLoop_UpdateAndRenderFrame` and a 463-byte core body".
+- `RSA:583` groups `0022BC20`, `0022B8C0` and `0022B6E0` as callers of {`00332590`, `00332660`, `0024D540`}.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V19 — what `0024D970`'s delta drives.**
+- `EXT:224`: "the three callees consuming the queue backlog the delta represents".
+- `OWNC:322`, `EFX:143-146`, `MOV:136-138`: a relocation delta applied to the lookup tables and encoded pointers.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V60 — size of `00442460`.**
+- `EV:753`: "`00442460` (82 B)".
+- `EXT:258`: "`00442460` (121 B)".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V61 — how many applies `00442380` makes.**
+- `EV:755-757`: "7×`004304F0` … 7×`00430AF0` … 1×`0042FCF0` (4G) at `+0x230`" (15).
+- `EXT:283`: "the fourteen-slot field apply".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V62 — size of `0036BC60`.**
+- `EV:229`: "The full 887-byte `0036BC60` body".
+- `ROW:1146`: "`0036BC60` (~179 B)".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V63 — EFX ticket pool size, and the overlap at `02EBD480`.**
+- `OWN:106` / `OWN:239`: "64 slots of `0x38` at `02EBCD80`" (ends `02EBDB80`).
+- `EV:1172-1173`: "`003B39E0` separately recycles matching entries in its 32-record management pool".
+- `EFX:269`: "`02EBD480 + (id & 0x3F) * 0x38 + 0x10` — the character-bound container handle table". `02EBD480` is
+  `02EBCD80 + 0x700`, inside the 64-slot range.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V66 — `+0x40` of the resolved record.**
+- `EXT:240`: "`+0x40` adds a base offset".
+- `OWNC:104`: "source size+40 is taken from header+8"; `OWN:51`: "The source header+8 supplies size+40."
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V110 — rounding of the EFX copy length.**
+- `OWN:83`: "a signed32 rounded-down copy".
+- `OWNC:134`: "copy length is its signed-32 truncation toward zero to a multiple of16".
+- The two differ for negative values. Favoured: none. *page-text only - needs local check.*
+
+**C-V111 — role of `0036C660`.**
+- `EV:71-73` and `EV:177-220`: a prefix tagger that "neither allocates nor calls a deallocator".
+- `ROW:1359`: "the row fetch `0036A190` and the rebase `0036C660`".
+- Favoured: none. *page-text only - needs local check.*
+
+#### Section addressing
+
+**C-V5 — size of the resource entry: `0xC0` or `0x50`.**
+- `RSA:326-329` (J-4, "Corrected 2026-09-26"): "So these rows are **`0xC0` bytes** … `RenderStrideC0Element`"; restated
+  at `RSA:773-774`.
+- `RSA:743-744` names the `0x50` family `RenderResourceEntry`. `RSA:318-319` says "each row *is* a mode-1 entry" of the
+  `[+0xD90]` bank.
+- `OWNC:103-105`: "`RenderResourceEntry` … `0x50`". `render-resource-entry-buffer-accesses.tsv` routes every
+  `00409600`/`00409780`/`00409A60` access as `EMBED RenderResourceEntry +0x10`.
+- J-4 derives `0xC0` from the `+0xD98` bank (`RSA:324-326`), not the `+0xD90` bank the entry functions use.
+- Favoured: none. The dated J-4 text is the one in question. *page-text only - needs local check.*
+
+**C-V9 — size of `00409780`.**
+- `CSA:231`: "`00409780` (429 B)".
+- `RSA:749`: "`00409780` (`ResourceEntry_FindSectionIndexAndOffset`, ~101 B)". 101 B is `00409C30` (`CSA:52`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V10 — outputs of `00409780`.**
+- `CSA:231`: "the first hit writes its index to `*rsi` and its count to `*r9`".
+- `CSA:124`: "A matching PRF root returns offset0 but leaves index=-1"; `PRF:34`: "initializes both index and offset to
+  -1". These make the second output the offset.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V11 — name of `00409A30`.**
+- `RSA:169`: "`ResourceEntry_FindSectionOffsetByTagAndName`".
+- `RSA:797`: "`00409A30` — 33 B, 10 callers, `ResourceEntry_FindSectionOffsetByType`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V12 — how sections are walked.**
+- `RSA:398-404` (falsification 2026-09-02): "so the iteration stride **is** `0x30`"; `RSA:422-423`: "Real sections begin
+  at `+0x30` (variant 0) or `+0x40` (variant 1)".
+- `RSA:133-134` (SECTION-10): "These are fixed table-relative DWORD offsets, not slot-relative ones". `CSA:121-122`:
+  "Version0 walks DWORD offsets at+30; version1 walks at+40 … Offsets are relative to the TABLE BASE".
+- Favoured: none (the later text does not strike the earlier). *page-text only - needs local check.*
+
+#### Authored data registry and row lookup
+
+**C-V23 — reference count of slot `0x02EBF138`.**
+- `VBF:147`: "with 720 references"; `REG:1048` and `REG:1064`: 720.
+- `REG:1881`: "| 38 | `02EBF138` | **723** |".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V24 — row size of the action table.**
+- `REG:433`: "at **720-byte rows**".
+- `VBF:120`: "`action_data.bin` | 32,612 | **543** | **60**"; `README:28-29`: "543 records of 60".
+- Favoured: none (720 is the reference count, `REG:1048`). *page-text only - needs local check.*
+
+**C-V25 — what `00236C30` registers.**
+- `REG:854`: "contains **34 `lea <slot>` / `movsxd rdx, [rax + <field>]` / `call 0x003845F0` triples".
+- `ROW:251`: "**35 pairs**"; `ROW:308`: "`FUN_00236C30` makes **33** calls to `003845F0`" and 2 to `003846F0`.
+- `REG:465`: "Decoding `00236C30` gives **42** field-to-slot pairs, not 34, by three routes".
+- `REG:2098-2099`: "not among the 38 slot addresses the STATIC registrar `00236C30` takes individually".
+- Favoured: `REG:465` over "34", inside the 2026-09-26 AG-2 answer (`REG:458`). `REG:854` and `REG:2098` are not struck,
+  and the 33+2 split is not reconciled with `REG:854`. *page-text only - needs local check.*
+
+**C-V26 — image-wide count of `003845F0` calls.**
+- `ROW:343-344`: "A sweep of every `call 003845F0` in the image reports 36 registrations"; `ROW:904`: "36 `003845F0` +
+  5 `003846F0` sites".
+- `REG:541`: "all 42 calls of `003845F0` are handed one slot's own address".
+- Favoured: none (the `REG:538` correction of 2026-09-30 is about slot 50, not ROW's census). *page-text only - needs
+  local check.*
+
+**C-V29 — the STATIC delivery callback.**
+- `ROW:870`: "`00236C30` is not called by anyone: it is the **delivery** callback"; `REG:533`; `REG:853`.
+- `ROW:841-844`: "registers the delivery stub `00238850` for loader `0x13` … On delivery `00238850` … tail-jumps to
+  `00236C30(1)`"; also `ROW:1121-1122` and `REG:2277`.
+- Favoured: none (no correction marker on `ROW:870`). *page-text only - needs local check.*
+
+**C-V30 — slots with "no binder provenance".**
+- `ROW:855-857`: "`02EBF000`, `02EBF0D0`, `02EBF118`, `02EBF120`, `02EBF140`, `02EBF148`, `02EBF150`, `02EBF168` — have
+  **no binder-family provenance**".
+- `ROW:334`, `ROW:1125`: `02EBF118` ← `003847B0` (→ `jmp 0x3845F0`). `REG:219-223`: the four `.ard` slots are bound by
+  `003845F0`/`003846F0`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V31 — array extent: 63 slots ending `0x1F8`, or 64 ending `0x200`.**
+- `README:14`: "one 63-slot pointer array". `REG:370-371`: "`Registry 0x02EBF008 .. 0x02EBF1F8`" / "`i = 0 .. 62`".
+  Also `REG:337-338`, `REG:1840-1844`, `REG:1927`, `REG:782`, `REG:865`.
+- `REG:84`: "**Corrected 2026-09-22 (FABLE)** … This page read the array as **63 slots ending at `0x02EBF1F8`**. It ends
+  at **`0x02EBF200`**"; `REG:81`.
+- Favoured: 64 (`REG:84`, 2026-09-22). *page-text only - needs local check.*
+
+**C-V32 — ROW's slot band against REG's array.**
+- `ROW:198`: "The registry is a band of qword slots at `02EBEF70..02EBF3FC`" (146 slots). `ROW:349`: "47 slots"
+  image-wide, counting `02EBF000` (`ROW:855`).
+- `REG:497-501`: "`0x02EBF000` … **float** … The array starts cold at `0x02EBF008`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V33 — what an out-of-range or missing table does.**
+- `REG:413`: "**Bounds are fail-closed.** An out-of-range index returns a miss, not garbage". `REG:381-382`: "else fail
+  closed".
+- `ROW:511`: "**So a missing table faults rather than degrades**"; `ROW:515`: "**The index is not bounds-checked in
+  the canonical shape**". Only nine consumers check, per `ROW:517-519` and `ROW:766-771`.
+- Favoured: none (ROW's `RESOLVED 2026-09-20`, `ROW:736`, does not strike REG). *page-text only - needs local check.*
+
+**C-V34 — the encode/decode round-trip condition.**
+- `ROW:892`: "**the exact round-trip condition is `((p - base) mod 2^64) < 2^32`** … This row first read `0 <= p - base
+  < 2^32` and called a 32-bit base necessary"; `ROW:98-104` says a base of `0x100000000` round-trips.
+- `ROW:891`: "Executed in both directions at a base of `0x100000000`, where the round trip does not return the
+  reference". `ROW:1235`: "the pair round-trips only while the base's high half is zero and the delta fits 32 bits".
+- Favoured: none (the corrected row and the 2026-09-20 ruling disagree). *page-text only - needs local check.*
+
+**C-V35 — what the twelve board slots hold.**
+- `RQ:308-309`: "store **3** into registry slots `02EBF1A0`–`02EBF1F8` … the slots are completion markers". Also
+  `REG:1028` and the `REG:2002` heading.
+- `REG:2016`: "*Corrected 2026-09-30 (SWE2-STRUCT for OPUS, DD batch 12 …)*: the word is the buffer's address, so the
+  twelve are pointers to the loaded boards".
+- Favoured: pointers (2026-09-30). *page-text only - needs local check.*
+
+**C-V36 — initial value of slot `0x02EBF198`.**
+- `REG:2092`: "**Initialised in the image.** The `.data` bytes hold `0x009224A8`"; also `REG:548-552`, `REG:2080`,
+  `REG:2117`.
+- `REG:505`: "The slot itself is BSS"; `REG:2108-2109`: "corrects the 'initialised in the image' bullet above: the slot
+  is BSS".
+- Favoured: BSS (2026-09-18 / 2026-09-30). The neighbour value claimed at `REG:2093-2094` is not re-addressed.
+  *page-text only - needs local check.*
+
+**C-V37 — class 13: three slots or four.**
+- `REG:1122`: "13 | `02EBF090` **+ `02EBF088` + `02EBF080`**"; `REG:1134-1135`: "it reads three slots".
+- `REG:309-316` / `REG:1239-1251`: "computes class 13's upper bound by **adding four row counts**", including
+  `02EBF078`. `REG:1205` still lists `02EBF078` as "Registered with no class".
+- Favoured: four (`REG:1230-1236`, 2026-09-12/13). *page-text only - needs local check.*
+
+**C-V38 — eleven or twelve generated setters.**
+- `REG:363`, `REG:686`, `REG:821-822`, `REG:919`, `REG:2034`: eleven, `0x02EBF1A8`–`0x02EBF1F8`. The front-matter list
+  `REG:37-47` has 11.
+- `REG:877-880`: "**That walks `0x02EBF1A0`–`0x02EBF1F8` = 12 slots.**". `REG:2064`: "**Twelve setters, not eleven.**
+  The generated family runs `00238390`–`002385A0`".
+- Favoured: twelve. *page-text only - needs local check.*
+
+**C-V41 — where the `0x02EBF020` (tutorial) count lives.**
+- `REG:259`: "`/* 0032A26D: the count is at +0x00 */`".
+- `VBF:289-292`: "**`+0x1C` is a group-end list.** … `{u32 count = 5; u32 end[5] …}`". The st2e header `+0x00` is the
+  magic (`VBF:90`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V42 — what `Row(i)` of `0x02EBF0A8` returns.**
+- `REG:282`: "returns `rows + *(uint16_t *)(hdr + 8) * i`".
+- `REG:295`: "returns **the row's leading dword** … a dereference, not the pointer".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V43 — the `0037C2E0` state machine.**
+- `REG:293`: "state 3 loops to 1, state 4 writes `4` to `02EBF3DC` and returns 0".
+- `REG:2258`: "state `3` exits".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V112 — number of `.ard` categories.**
+- `REG:955`: "**Four `.ard` section categories** (`0`, `1`, `2`, `3`)".
+- `REG:231`: "**The caution names four slots; there are five.**" (audit 2026-09-06); `REG:1820-1821`.
+- Favoured: five. *page-text only - needs local check.*
+
+**C-V113 — slots `00236C30` fills without `003845F0`.**
+- `REG:1954-1956`: `02EBF180` is "the only slot it fills without `AreaData_BindAndRebaseSectionDescriptor`".
+- `REG:468`: "two stored directly: `+4` into `0x02EBF180` and `+0x11C` into `0x02EBF200`", plus two via `003846F0`
+  (`ROW:847-848`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V114 — number of inner binders.**
+- `ROW:850-853` and `ROW:904`: four (`00237FC0`, `00238160`, `00238880`, `00238660`).
+- `ROW:1124-1125`: five member calls, adding `+0x40` → `003847B0`; `REG:467`: "five through the bespoke binders".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V115 — writers in the band `02EBF000`–`02EBF178`.**
+- `ROW:865-867`: "has **no rip-relative writer in the image**".
+- `REG:509`: "`0x02EBF178` | **2** | both **stores**, `00324558` and `0032469A`". `REG:885`: "**Eighteen slots are
+  DIRECTLY written, which narrows J-B**".
+- Favoured: REG (2026-09-22 narrowing). *page-text only - needs local check.*
+
+**C-V122 — label of `0x02EBF040`.**
+- `REG:1782` / `REG:1867`: "status auxiliary / timer parameters".
+- `REG:1195`: "`02EBF040` | 29 | `+0xEC` | `ability_data` (augments) | 129 × 8".
+- `REG:491-493` leaves it "as a lead". Favoured: none. *page-text only - needs local check.*
+
+#### Archive, st2e, battle_pack, text
+
+**C-V20 — the `battle_pack.bin` directory.**
+- `VBF:24`: "`{u32 count 71, u32 sectionOffset[72], the last an end sentinel …}` … directory entry i at +4+4i".
+- `VBF:342`: "`battle_pack.bin` opens with `{u32 count = 71; u32 offset[71]}`".
+- `VBF:879`: "the offset table ends at 292 while the first offset is 296".
+- `S2R:178`: "**A 71-entry offset table**, ascending, table ending `0x120`"; `S2R:182-183`: "packed, with 8-byte
+  entries".
+- The table end (`0x120` vs 292) and the entry width (4 vs 8) both differ.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V21 — the `word.bin` header.**
+- `VBF:626`: "`{u32 count = 15; u32 headerSize = 68; u32 blockOffsets[15]}`".
+- `VBF:377-381`: "**AY-4 ANSWERED 2026-09-15 (OPUS)** … `{ u32 count; u32 offsets[count+1]; payload }`, the offsets
+  **absolute from the start of the file**". `BTB:23`: "`u32 offsets[16]` (first 68, last the end)".
+- Favoured: AY-4 (2026-09-15). *page-text only - needs local check.*
+
+**C-V22 — numbering of the `word.bin` command block.**
+- `VBF:632`: "**Block 3, 63 entries — the player's battle command list**".
+- `VBF:388` order `545 · 544 · 1 · 362 · 63 · …` puts 63 at index 4. `BTB:134-135`: bank `4` = 63 entries "the same 63
+  entries as `word.bin` block 3".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V116 — the §7 heap struct after the 2026-10-01 header correction.**
+- `VBF:595`: "`u32  headerSize; /* 32 */`"; `VBF:587`: heap "`== headerSize + count*recordSize`".
+- `VBF:93`: "`headerSize; /* ~~32~~ 32 in 393 of 407; 0 in 14 (no record array) */`"; `VBF:1253-1255`: heap `0x20` in
+  the two `mons_act` files.
+- Favoured: the corrected §2 (2026-10-01). *page-text only - needs local check.*
+
+**C-V117 — `001F4720` role and digest-tree node layout.**
+- `BIG:264`: "`001F4720` / `001F3FD0` | digest-tree insert: node `{links, key +0x18/+0x20, record +0x28}`".
+- `BIG:460`: "`001F4720` (176 B) | index-record accessor — `rbx = [rcx+0x30]`, `edx = dword[rcx+0x4C]`". `BIG:459`:
+  `001F3FD0` "parent walk `[rdx+0x18]`" (the key offset in `BIG:135`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V118 — frame of the stream-object offsets.**
+- `PATH:72`: IsOpen tests object `+0x28`/`+0x30`/`+0x40`; `PATH:85`: path at `+0x10`; `PATH:250`: "the selector byte
+  `+0x18`".
+- `PATH:239`: "The resolver stores a source in only `+0x20` (route 1) and `+0x10` (route 2)". It is unstated whether
+  §8's offsets are relative to `this+0x20`, the base the locale page uses for `0059EE90(this+0x20, …)`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V119 — normalisation of the route-2 MD5 key.**
+- `PATH:186-187`: skip `.`,`/`,`\`; `\`→`/`; lowercase, then MD5.
+- `PATH:287`: "The MD5 key is built afresh from the caller's original path. So the first normalized copy (backslashes,
+  lowercase) and its UTF-16 widening are computed and dropped".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V121 — help-action ids below 543.**
+- `VBF:658`: "only 82 of 322 fall below 543".
+- The table at `VBF:663-667` sums to 81.
+- Favoured: none. *page-text only - needs local check.*
+
+#### `.ard`, `.nmb`, text banks
+
+**C-V44 — which function resolves the `.ard` path.**
+- `ARDC:52` and `LDR:151-161`: the resolver is `002DF980`.
+- `NMB:212`: "`ResourcePath_Get`'s eleven sites resolve to kinds 1, 4, 5, 8, 11, 13–16, 18–20, 22–25, 28, 34 and 37"
+  (no 21). `NMB:216-223`: requests via `0032E620` resolve through `002DF780`. `ISR:277`: `003EA820` files its
+  resources "through `0032E620`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V45 — what `0032EB40` is.**
+- `ARDC:250`: "calls the read request `0032EB40` - the same request the reader `003EA820` submits"; also `ARDC:239`
+  and `ARDC:254`.
+- `FST:74`: "`0032EB40` — the same lookup and rounding for the staged (2 KB-chunk) request path"; `FST:108` calls it
+  the staged path's size reader.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V46 — the sibling `.fpk` request.**
+- `ARDC:90`: "`003EA852 lea r8d, [rsi + 1]`", with namespace in `ecx` at `003EA840` (`ARDC:70`).
+- `LDR:176`: "`field_index * 2 + 1` (`003EA83E`, via `FUN_0032eb40(0, 0x15, field_index*2+1)`)"; `LDR:585`.
+- The address and the argument position both differ.
+- Favoured: none (ARDC's 2026-09-29 re-measurement does not mark LDR). *page-text only - needs local check.*
+
+**C-V47 — `003846F0` recursion and the `00384704` instruction.**
+- `BTB:66-69`: "with depth left it **recurses** into each entry (`0038476B`), otherwise it **adds the section base to
+  the offset in place** (`00384780`)"; "stores the image-relative encoding of the section (`0020E620`,
+  `00384704`–`00384709`)".
+- `LDR:376-380`: "`slot = resolve(desc)` (`00384704`–`00384709`)"; "the first `count` through a recursive call with the
+  depth argument decremented …, the last in place".
+- `REG:220`: `.ard` category 1 passes "a third argument zeroed".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V48 — fields rebased by `003845F0`.**
+- `LDR:297-305`: `+0x0C`, `+0x10`, `+0x18`, `+0x1C`, with `+0x14` re-encoded.
+- `LDR:715-716`: "descriptor fields (`+0x00`, `+0x10`, `+0x14`, `+0x18`, `+0x1C`) are recorded as rebased".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V49 — is `.ard` slot 7 zero?**
+- `LDR:687-688`: "The `.ard` slot is 0 in all 166 `in` files".
+- `LDR:453`: "`+0x2C` `slot7` | 0 | 166 | 0 | 151"; `LDR:457-458`: "`slot5`, `slot6` and `slot7` … are **non-zero in
+  all 166 files**"; `S2R:87`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V50 — the `.ard` trailer record.**
+- `LDR:469-470`: "`{u16 id, u16 kind, u32 param}`".
+- `LDR:631-633`: "8-byte `{selector, mask}` records … the selector (0–13)".
+- `LDR:481`: "*(Corrected (FABLE, Claude Opus 5.5, 2026-09-26 …): the trailer is read. The same eight bytes are a
+  `u32` key*"; `ARDC:185`: "`{u32 count; {u32 key; u32 mask}[count]}`".
+- Favoured: key/mask (2026-09-26). `LDR:631-633` is unstruck. *page-text only - needs local check.*
+
+**C-V51 — which locales get the `ch` tree.**
+- `LDR:602-605` (CC-9, 2026-09-12): "**exactly one body touches the `.ard` slot: locale 7**".
+- `NMB:779-781` (corrected 2026-09-30, for `.nmb`): "regions 7, 8 and 11 … reach the `ch` install at `002DFE58`". The
+  `.ard` store `002DFE66` is 14 bytes away.
+- Favoured: none for `.ard`. *page-text only - needs local check.*
+
+**C-V52 — length of the `ch` `.nmb` run.**
+- `NMB:494-495`: "contiguous stride-8 runs of 321 (`in`) and 313 + 7 (`ch`)" = 320.
+- `NMB:383`: "**Both arrays are 321 entries**"; also `NMB:545` and `NMB:686`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V53 — number of path-table bases.**
+- `LDR:200-201`: "over all **83** path-table bases".
+- `NMB:453-454`: "`repos-1e`'s implementation … recovered 83 array bases where `repos-3f` got 94"; `NMB:688`: "all 94
+  array bases".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V54 — offset of the augment name word.**
+- `BTB:166-168`: "`{u16 nameId, u16 0x5000 + row, u16 parameter, u16 0xFF}`".
+- `BTB:181`: the filler reads "augments `+0x02`" as the name word; `BTB:141`: "row `+2`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V55 — word `+2` range for rows 116–127.**
+- `BTB:233-234` and `BTB:245`: "`0x5070`–`0x507F`" (16 values for 12 rows).
+- `BTB:167`: "`0x5000 + row`" (gives `0x5074`–`0x507F`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V107 — the `.nmb` assembler table.**
+- `REG:1995`: `{i32 id, i32 size}` pairs.
+- `NMB:314`: `{u32 size, u32 requestId}`.
+- `NMB:296` "`0032E620(0x1a, i, cursor, id)`" against `NMB:315` "`0032E620(0x1A, i, cursor, size, &desc)`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V123 — motion-index lookup `003DCA30`.**
+- `LDR:677`: "`003DCA30(modelKey, groupId, class, &primary, &secondary)` sets `primary = 0x1E`".
+- `REG:1977-1978`: "`003DCA30(model, motion, class, &kind, &index)` — **kind `0x1E` = 30**".
+- `ARDC:188`: the rows are "`{u32 model, u16 class, u16 motion, u16 index}`", citing "`02EBF178` neighbourhood" for
+  `02B58178`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V124 — row 103 against 64 help ids.**
+- `BTB:169-172`: "`listhelp_ability.bin` (64 ids, `130000`–`130063`) … row 103 → 'Increases magick power when HP is
+  full.'". With `n = row` that id cannot exist.
+- Favoured: none. *page-text only - needs local check.*
+
+#### Authored expressions
+
+**C-V56 — `0039B630`.**
+- `RND:96` and `AEC:120`: the quadratic B-spline "`0.5(1-t)² p0 + ((1-t)t + 0.5) p1 + 0.5t² p2` (`0039B630`)".
+- `RND:699`: "`0039B630` (170 B) is a call-free 3x3 matrix-vector transform".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V57 — the `1.0f` in `f`.**
+- `RND:401`: "`01CEBBA8` | `1.0f` | 4 B | `.rdata`".
+- `AEC:303-304` (falsification pass 1, 2026-09-29, `AEC:268`): "the `1.0f` in `P − B · 1.0f` is **vf00.w**
+  (`01EF93FC`)", a writable cell whose writers store the `.rdata` 1.0.
+- Favoured: vf00.w (2026-09-29). *page-text only - needs local check.*
+
+**C-V58 — the colour combiner `00431430` against `00431350`.**
+- `RND:118-131` / `AEC:68-76` (`00431350`): op 4 = `a × (f(b) + 1)`, op 5 = `b == a ? a : a + f(b − a)`.
+- `RND:849` (`00431430`, used by `0042FDB0`): "`rbx + r9`, `rbx - r9`, `2*r9 - r8 + rbx`, `(r9+1) * rbx`, or (modes 4/5
+  with `r8 != rbx`) `003A6E60(r8 - rbx)` + `rbx`". Here both 4 and 5 draw f(b−a)+a and arms 1–3 call no `f`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V59 — "kinds 2 and 3 return 0".**
+- `AEC:146`: "**Kinds 2 and 3 of the curve evaluator return 0**".
+- `RND:96`: the kind byte ≥ 2 is the point count, and the flag-bit curve-selector values 2 and 3 return 0 (`00431113`).
+- Favoured: none. *page-text only - needs local check.*
+
+#### Typed list, prefetch, `.ah`, `.ta`, standard formats
+
+**C-V27 — type-7 second-atlas distribution.**
+- `TL:349-351`: "pack unit 01's 258 type-7s author `+0x40 = 0x0001` (`battle_4_c`, same as the required id)".
+- The page's own `members/atlas-name-census.tsv` spreads the 258 over 8 units (unit 01 has 150), with second-atlas ids
+  0/1/2/`0xFFFF` and `partytop_4_c` required in units 14–15.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V28 — distinct atlas names.**
+- `TL:370`: "the arrays declare 48 distinct names but items reference only 28 — 20 names are authored yet never
+  indexed".
+- `members/atlas-name-census.tsv` distinct-name section: 49 rows, 28 `yes`, 21 `no`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V120 — is the typed list's table B empty everywhere?**
+- `TL:363`, `TL:406`, `TL:451-452`: "authored-empty in every shipped unit".
+- `MRP:113-116` ("*Refined since (pointer 2026-09-30, SWE2-CONTRACT)*"): a populated table B ships in
+  `rwg0201`/`rwg0202`.
+- Favoured: MRP (2026-09-30), outside TL's 344 blobs. *page-text only - needs local check.*
+
+**C-V67 — `002DF980` as a "0x1C-stride movie table".**
+- `SF:148`: "from a 0x1C-stride movie table (`002DF980`)"; also `SF:302` and `SF:340`; `LDR:781`: "The movie table
+  `002DF980`".
+- `SF:341-342`: "`[0215F000][ecx*8]` gives the row head …, `[row][edx*8]` the element"; `NMB:114`: "**`ResourcePath_Get`
+  — `0x002DF980`, 22 bytes**". `0x1C` = 28 = the movie kind (`FST:142`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V68 — callers of `002DF980`.**
+- `SF:340`: "22 B, 34 callers".
+- `NMB:154` / `NMB:212`: "all eleven `ResourcePath_Get` call sites".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V69 — prefetch file count.**
+- `PJR:5`: "| `txt` | 10,253 | `prefetchdata/<lang>`"; also `PJR:13`.
+- `PJR:26`, `PFM:41`, `VBF:69`: prefetchdata 9,351. 10,253 is the archive-wide `.txt` count (`VBF:75`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V70 — `.ah` corpus bytes.**
+- `AH:33`, `AH:40`, `AH:222`: 11.7 MB.
+- `AH:44`: "~~none~~ **all 2,564, 2026-09-13 (§7)** — **142,481** tokens, **12.2 MB**"; `AH:267`.
+- Favoured: 12.2 MB (pass 2, 2026-09-13). *page-text only - needs local check.*
+
+**C-V71 — the `.ta` frame clock.**
+- `TA:328` / `TA:332`: "`001E5790` is the clock source (`01CEBDA0` …)". `TA:402` instead calls `001E5790` "a call-free
+  mode-switch record writer".
+- `TA:204`: "**`TA-1` ANSWERED 2026-09-25 (OPUS)** … its clock is that slot's time".
+- Favoured: slot time (2026-09-25). *page-text only - needs local check.*
+
+**C-V72 — identity of the memory-card icon pair.**
+- `SF:189-190`: "resource-pool entries 494 and 495".
+- `SF:205` (answered 2026-09-26): "kind 7, ids `0x2C` and `0x2D`".
+- Favoured: none (possibly two numberings; not reconciled). *page-text only - needs local check.*
+
+**C-V74 — `.ah` request `+0x120`.**
+- `AH:103`: the buffer pointer is at `+0x120`.
+- `AH:331`: "`+0x120` self-links".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V108 — number of FST files.**
+- `AMAP:39`: "in all nine `FileSizeTable_*.fst`".
+- `FST:41`: "**12 of 12**".
+- Favoured: none. *page-text only - needs local check.*
+
+#### PS2-era formats
+
+**C-V75 — `.bin` file count.**
+- `PR:10`: "| `bin` | 1,437 | 2,366 MB |".
+- `PR:41`: "| archive entries | 1,439 |"; `UBF:21`; `FST:229`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V76 — thirteen or fourteen loader-bound families.**
+- `LBB:2`: "Thirteen .bin families"; `LBB:31`; `PR:130`.
+- The page enumerates 14: 6 packs (`LBB:70-77`), 3 kind-9 (`LBB:177-181`), 5 kind-7 singletons (`LBB:270-276`). The
+  87-file total (`LBB:37`) needs all 14.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V77 — clutpack slots.**
+- `LBB:75` / `LBB:107`: four slots `+0x390/+0x398/+0x3A0/+0x3A8`.
+- `LBB:586`: "`+0x390`/`+0x398`/`+0x3A0` populated".
+- Favoured: none (pass B4 `LBB:387` "survives … `+0x390..+0x3A8`" does not strike `LBB:586`). *page-text only - needs
+  local check.*
+
+**C-V78 — the tex2pack slot walk.**
+- `LBB:94`: "walks slots `+0x338..+0x388` in step-8 lockstep".
+- `LBB:387` (falsification pass 1, 2026-09-29, `LBB:374`): "`+0x338..+0x380` step 8 … dir 10 raw at `+0x388`".
+- Favoured: `LBB:387` (2026-09-29). *page-text only - needs local check.*
+
+**C-V79 — where `00366080` writes.**
+- `LBB:133`: "element *i* → `obj+0x10+i*8`".
+- `LBB:742`: "resolves every entry's offset+dword into the `+0x18` pointer array".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V80 — `.btm` buffer slot base.**
+- `BTM:76`: "`[022CBE00 + 0x110 + slot*8]`".
+- `LBB:142`: "`+0x110+(slotIdx-1)*8` and registers face `slotIdx+0xA`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V81 — the `.btm` ready bit.**
+- `BTM:77`: "`[022CBE00 + 0x240]`".
+- `BTM:152` (RC-37): "`[[022CBE00] + 0x240]`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V82 — what `002C8EE0` loads.**
+- `AS7:92`: "`002C8EE0` | `char_silhouette` load path"; also `AS7:71` and `AS7:139`.
+- `LBB:276` / `LBB:287`: `monotone_chr` `7/0x74`, and "`0x75` (**no file ships — the slot stays null**)". The
+  constant-request census row for `002C8EE0` names `monotone_chr.bin`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V83 — the `02AEE810` registry.**
+- `TIM2:252`: "**`FUN_0039BEC0` is the `.nfs` gate, not the TIM2 gate.**"
+- `LBB:157` / `LBB:163`: `02AEE810` is "`fontVariant[0]` of an 8-pointer array", filled `[1..7]` by `0039BB60`.
+  `HIMG:138` and `GMAP:82` route embedded TIM2s through `0039BEC0`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V84 — `.cl2` id → name.**
+- `CL2:90`: "`0xE2`–`0xE4` per the path arrays (`Loca_bhm`/`Loca_gil`/`Loca_rbl`)".
+- `CL2:110`: "`0xE2` `Loca_gil`) and 46 (byte 2, `0xE3` `Loca_bhm`)", in the RC-30 answer of 2026-09-30 (`CL2:105`).
+- Favoured: `CL2:110` (2026-09-30). *page-text only - needs local check.*
+
+**C-V85 — `008FCE00`: menu manifest or console page table.**
+- `CL2:89`: "the `.cl2` ids ride the **menu resource manifest**: `008FCE00`–`008FD2D0` … 14 `u32-2`-tagged id lists".
+  `MRP:148-151`: "also manifest list …"; `MRP:154-159`: "**The manifest is a second path.**"
+- `MRP:226`: "**ANSWERED 2026-09-30 with the premise refuted** … `008FCE00` is the developer console's page lay[out
+  table]". `MRP:229`: "*Superseded reading, 2026-09-30*". `CL2:172` gives the extent `008FCE00`–`008FD328` (15 × 22
+  u32).
+- Favoured: console page table (2026-09-30). The old range and "14 lists" remain at `MRP:154-155`, `MRP:223`,
+  `CL2:89` and `CL2:168`. *page-text only - needs local check.*
+
+**C-V86 — who reads the MRP/CL2 data.**
+- `MRP:246`: "The row renderer `001CD0E0`, the label filler `001D0390` and the page-header refresh `001D5260` **read the
+  packages**"; `CL2:192`: "… **read the tables**".
+- `MRP:226` / `CL2:172` (RC-29): those functions read the developer-console page table.
+- Favoured: none (both texts dated 2026-09-30). *page-text only - needs local check.*
+
+**C-V87 — offsets in the `_name` tables.**
+- `UBF:131-132`: "a `u32` count, then that many ascending offsets".
+- `UBF:26`: "`{u32 count, u32 offsets[count+1] (the last = file size)}`" (narrowed 2026-09-30).
+- Favoured: `count+1` (2026-09-30). *page-text only - needs local check.*
+
+**C-V88 — `sign` sections 1 and 2.**
+- `FIVE:159`: "| 1 | `0x0EC` | 24 | `{u16, u16}` | **`0x150`** |", with section 2 also `{u16, u16}` (`FIVE:160`).
+- `FIVE:206`: "***ANSWERED 2026-09-18 (FABLE)*** … Section 1 … `{u24 labelTextId, u8 buttonIndex}` … Section 2 … a
+  `u16[19]` offset table … over 8-byte scene records".
+- Favoured: `FIVE:206` (2026-09-18). *page-text only - needs local check.*
+
+**C-V89 — `summoneffectdata` byte split.**
+- `FIVE:408-409`: "`+0x04 … 668 B packed parameter bytes`" / "`tail 8 B zero pad`" (680 ≠ 672).
+- `FIVE:412`: "*Superseded 2026-09-29 … the 668 bytes are 64 ten-byte records and a 32-byte tail.*" (that is 672).
+  `FIVE:465`: "`64·10 + 4·4 + 2·4 + 8 = 672`".
+- Favoured: `FIVE:465` layout (2026-09-29). The superseding sentence's "668" is itself 4 short. *page-text only -
+  needs local check.*
+
+**C-V90 — the map-menu loader's request API.**
+- `WMAP:134-135`: "**kind-7 resource id `0xA2`** via the shared request queue (`0032E620`) in `003BC2D0`".
+- `LMAP:467`: "Its loader `003BC2D0` makes three resource requests `00249210(pool, 7, id, 2)`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V91 — the `menuhandbook.bin` id space.**
+- `HCHK:69-70`: "The sibling `menuhandbook.bin`/`order.bin` pair uses a different id space (kind-6 base `0x80`)".
+- `HIMG:214`: "`menuhandbook_order.bin`/`menuhandbook.bin` (ids `0xC9`/`0xC8`)" (kind 7).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V92 — the per-kind descriptor table.**
+- `BINM:120`: "`00238640` | indexes the per-kind record table `0x050E53C0 + kind*8`"; `BINM:125-126`.
+- `BINM:25`: "the record table 02F973C0"; `REG:542`: "`00238640`, indexes `0x02F973C0`".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V93 — `003845F0` and `+0x14`.**
+- `BINM:121`: "`dword` offset fields at `rec+0xC/0x10/0x14/0x18/0x1C` relocated to absolute".
+- `BINM:212` (section "*Added 2026-09-30*", `BINM:210`): "re-encodes only its `+0x14` pointer through the
+  image-address codec (`0020E620`)"; also `REG:968-983`.
+- Favoured: `BINM:212` (2026-09-30). *page-text only - needs local check.*
+
+**C-V94 — CHSE `002E60F0`.**
+- `CHSE:321`: "A 491-byte body this page cites calls a 256-byte Audio-filed helper"; `CHSE:322` names the helper
+  `003A1650`.
+- `CHSE:337`: "`002E60F0` (~62 B)", with subtree member `003A1290` (`CHSE:341`).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V95 — stride of the handbook root's handles.**
+- `HCHK:380`: "`+0xC8` … `+0xF0` | six family `hchk` buffers (48-byte stride, …)".
+- `HCHK:387`: "stores the six handles at `+0xC8…+0xF0`" (an 8-byte stride).
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V96 — `himg` widget fields.**
+- `HIMG:96`: "`+0xC9  u8 load phase (0 idle, 2 loading, 3 releasing)`"; `HIMG:99`: "`+0xD2  u8 page mode`".
+- `HCHK:424-440`: "must have `+0xC9` == 1"; `HIMG:113`: "`byte[+0xD2]=type`"; `HCHK:202`: "the bound object's
+  **family ordinal** byte".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V97 — ownership of `00575710` / `00576F50` / `005771F0`.**
+- `LST:94`: "the pane builder `00575710` resolves rows from the loaded quest data"; `LST:113-114`: "quest-data loader /
+  quest-list parent widget".
+- `HIMG:137-138`: "**State 1** (`00575710` …) … registers `buf + off` as a TIM2" (handbook). `HCHK:386-388` and
+  `HCHK:412`: `00576F50` / `005771F0` are the handbook bind and state object.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V98 — the `gmap` corpus.**
+- `GMAP:12`: "(5 units x 7 locales)".
+- `GMAP:124`: "There are 35 copies (guide00–04: 9, 8, 6, 6, 6)".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V99 — number of named regions.**
+- `LMAP:621-622`: "`menumap_world.h` also defines 38 areas, 8 named regions, …".
+- `WMAP:149`: "| `region_MAX 11` | 11 named region ids + 1 sentinel | match |"; `WMAP:73`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V100 — `menumap_sub` file sizes.**
+- `LMAP:624-625`: "the TZA `menumap_sub00`–`47.bin` files are 4–11 MB".
+- The page's own table lists `1,051,056` (`LMAP:639`); `SLOC:45` gives "**1,049,520 B – 11,544,192 B**".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V101 — `sloc` header size and `dirOffset`.**
+- `SLOC:78`: "### 2.1 Header — 16 bytes, then the directory"; `SLOC:83`: "`dirOffset    16 in 52 of 52 - the
+  directory begins at +0x14`".
+- `SLOC:80`: "`struct SlocHeader base=file size=0x14`"; `SLOC:89`: the directory is at `+0x14`.
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V102 — `sloc` `.bin` total.**
+- `SLOC:45`: "4.5 GB of `.bin` in total".
+- `PR:10`: "| `bin` | 1,437 | 2,366 MB |".
+- Favoured: none. *page-text only - needs local check.*
+
+**C-V103 — `.bin` signature count.**
+- `SLOC:332-333`: "**The `.bin` signature census has since measured 28 signatures over 236 logical units**".
+- `PR:43`: "distinct magics | **26**, over 178 units", in "## The full census — 2026-09-19 (OPUS)" (`PR:30`).
+- Favoured: `PR:43` (2026-09-19). *page-text only - needs local check.*
+
+**C-V104 — `himg` share of `.dat`.**
+- `HIMG:27-28`: "`himg` is 90% of the `.dat` extension by logical unit (309 of 343)".
+- `PR:99`: "**302–309 of 343 units, 88.0%–90.1%**, depending on how the seven are assigned" (2026-09-19 census).
+- Favoured: `PR:99` (2026-09-19). *page-text only - needs local check.*
+
+**C-V105 — `lmap` array C cross-references.**
+- `LMAP:305-306`: "it is `+12` **and** `+14`, each an A id from the same record in **501 of 545** entries".
+- `LMAP:372`: "*(2026-09-13, FABLE, §10.3: … At native offsets it is C `+0` / `+2`, in **545 of [545]**"; `LMAP:502`.
+- Favoured: `LMAP:372` (2026-09-13). *page-text only - needs local check.*
+
+#### Handbook census against its page
+
+**C-V39 — monster `hdat` file count (the `himg` delta base).**
+- `HCHK:67-69`: "`hctg +0x14` therefore = **the family's `hdat` file count** (1 for story/world/person/tutorial, 2 for
+  knowledge, 4 for monster — matching the shipped file names exactly, corpus-verified)"; `HIMG:131-132` repeats it.
+- `PR:94-96`: "**7 of `.dat`'s 343 units carry different magics across locales** — `menuhandbook_monster004.dat`
+  through `010`, `hdat` in some locales and `himg` in others". `members/hb-index-census.tsv` monster `hdat_files`:
+  `ch 5, cn 5, de 4, es 5, fr 5, in 11, it 4, kr 4, us 4`.
+- Favoured: none. A port using `2 + hdatCount` mis-numbers `himg` files in five locales unless `+0x14` varies per
+  locale. *page-text only - needs local check.*
+
+**C-V40 — `hctg +0x04`.**
+- `HCHK:77`: "`+0x04  u32      familyTag  {6400, 6401, 3954, 6403, 6404, 3877} — per-family constant`".
+- `members/hb-index-census.tsv` column `tag` (the u32 at hctg `+4`, per its generator) is `102` in all 54 rows.
+  `HCHK:83-84` gives the same per-family numbers (`0x1900`…) as "the high 12 bits" of `+0x08`, which cannot hold them.
+- Favoured: none. *page-text only - needs local check.*
