@@ -1,0 +1,22 @@
+ok   002E29A4 movzx edx, byte ptr [rsi + 0x10]
+ok   002E29B6 shr edx, 4
+ok   002E29E9 mov byte ptr [rcx + 0xc1], dl
+ok   002E3367 movzx edx, byte ptr [rbx + 0x10]
+ok   002E3380 shr edx, 4
+ok   002E33B3 mov byte ptr [rcx + 0xc1], dl
+ok   0041F515 movsx ebx, byte ptr [r14 + 0xc1]
+ok   0041F525 mov edx, ebx
+ok   0041F527 call 0x3ab910
+ok   003AB932 jmp 0x36c5d0
+ok   0036C5D0 movsxd r8, edx
+ok   0036C616 mov byte ptr [rdx + 0x17], r8b
+ok   0041F443 call 0x3712e0
+ok   0041F4D2 mov edx, 1
+ok   0041F4DB call 0x3ab8b0
+ok   0041F4EA mov dword ptr [r14 + 0x2fc], eax
+ok   0041F57A call 0x46e4d0
+ok   0041F57F cmp eax, -1
+ok   0041F584 xor esi, esi
+ok   0041F586 jmp 0x41f595
+ok   0041F595 mov ecx, dword ptr [rsi + 4]
+FAILS 0

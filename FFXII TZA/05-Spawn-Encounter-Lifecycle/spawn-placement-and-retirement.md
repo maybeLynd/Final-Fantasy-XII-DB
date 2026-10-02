@@ -1,7 +1,7 @@
 ---
 system: Spawn placement, retirement and the keep window
 category: 05-Spawn-Encounter-Lifecycle
-status: REOPENED — reopened 2026-09-12 by ASTRA's independent falsification (§11), whose corrections are integrated; the two rows it opened are closed as L-12 SUPERSEDED (2026-09-26) and L-13 SUPERSEDED (2026-09-27), and L-13's live-only residue is routed for a runtime carrier (§7); the status word stays REOPENED (FABLE 2026-09-30: not re-statused by this DD pass) until the amended citation surface has a fresh graph audit (crossref_clean false) and the owner read of the 2026-09-30 DD pass
+status: DOCUMENTED — owner re-status 2026-10-01 (OPUS, for FABLE; documented_rule READY-WITH-POINTER): FABLE's 2026-09-30 conditions are met - a fresh graph audit of this page reports 0 findings (_index/candidates/opus-spawn-restatus-1001/xref_report.md) and the DD pass is read. History: REOPENED 2026-09-12 by ASTRA's independent falsification (§11), whose corrections are integrated; the two rows it opened are closed as L-12 SUPERSEDED (2026-09-26) and L-13 SUPERSEDED (2026-09-27), and L-13's live-only residue is routed for a runtime carrier (§7)
 owner_layer: PrimaryOwner:Spawn_Encounter_Lifecycle
 evidence_tier: 1
 verified_against:
@@ -20,7 +20,7 @@ audit:
   passes: 3
   last_pass: 2026-09-12
   last_pass_state: ASTRA independent falsification; signed attempt byte, output state and one-bank restore corrected; consumer propagation and remaining caller questions open (§11)
-  crossref_clean: false
+  crossref_clean: true
   reopened_count: 5
 ---
 
@@ -691,8 +691,8 @@ index gives each entry point one or two sites, each resolved to its containing f
 
 | entry point | its call sites | reached from |
 |---|---|---|
-| `Spawn_SelectAndPrepareAutomaticEntry` `00235720` | `0050F52C` only | the ScriptVM adapter `VM_Spawn_SelectAutomaticEntry` (`0050F520`), verb `0x301A` `btlAtelDecideEntryPointAuto`: a zone script asks for each placement |
-| `Spawn_SelectContinuousEntry` `00235360` | `0051026C` only | the verb `305F` adapter `00510260` (§7, L-11) |
+| `Spawn_SelectAndPrepareAutomaticEntry` `00235720` | one call site, in `0050F520` | the ScriptVM adapter `VM_Spawn_SelectAutomaticEntry` (`0050F520`), verb `0x301A` `btlAtelDecideEntryPointAuto`: a zone script asks for each placement |
+| `Spawn_SelectContinuousEntry` `00235360` | one call site, in `00510260` | the verb `305F` adapter `00510260` (§7, L-11) |
 | `SpawnLifecycle_CheckAndRetireByNativeRange` `002350C0` | `00234022` only | `BattleUnit_UpdateLifecycleAndCombatFrame` (`00233F70`), which the field runtime pass calls through the actor record's `+0x38` callback ([the field runtime pass](../04-Actor-Entity/the-field-runtime-pass.md)) |
 | `SpawnKeep_RotatePersistenceBanksForAreaTransition` `00233780` | `00234423` only | `BattleSystem_InitializeAreaState` (`002342F0`), whose two callers §13 reads |
 | `SpawnKeep_SerializePersistenceBanks` `00233440` | `00229CF2`; `005845AA`, `005845E1` | the two captures `00229B40` and `00584580` (§12) |
@@ -893,7 +893,7 @@ function's name.
 | The continuous-entry restore (L-11) | `Spawn_SelectContinuousEntry` `00235360` read whole: flag tests `00235413`–`0023541D`, key compare `0023541F`, the `0x250`-byte copy `00235460`–`002354DD` (4 × `0x80` + `0x50`), re-read 2026-09-12 | 1 |
 | `00321170` tests bit 4 (mask `0x10`) | `00321174`–`00321181` | 1 |
 | The active cap counts units with flag bit 21 (2026-09-30) | complete 69-byte body of `00308D90`: a loop over the battle-unit slots, `test dword ptr [rax], 0x200000` at `00308DB3`, one increment per hit | 1 |
-| Each entry point's call sites (§5 upstream, 2026-09-30) | the raw direct-call index `Database/Tools/work/FABLE/pub140-scratch/tools/rawcalls.json`, each site resolved to its containing function in `functions.tsv` and read there: `0050F52C`, `0051026C`, `00234022`, `00234423`, `00229CF2`, `005845AA` / `005845E1`, `0058443B` / `0058445E` | 1 + 11 |
+| Each entry point's call sites (§5 upstream, 2026-09-30) | the raw direct-call index `Database/Tools/work/FABLE/pub140-scratch/tools/rawcalls.json`, each site resolved to its containing function in `functions.tsv` and read there: the sites in `0050F520` and `00510260`, `00234022`, `00234423`, `00229CF2`, `005845AA` / `005845E1`, `0058443B` / `0058445E` | 1 + 11 |
 | `004058E0` is not a spawn function (2026-09-30 correction of the residual placement) | complete 828-byte body: counter `+0x178` against `+0x17A`, child `[+0xD0]` extents `+0x4A` / `+0x48` and scale `+0x98`, completion bits of `+0x130`; no spawn, keep-entry or battle-unit reference | 1 |
 | SWE2-FRONTIER subtree sizes and copy widths (2026-09-30 corrections) | extents from `functions.tsv`, each body disassembled to its last instruction; the copy helpers' loop counts `mov edx, 0x400` / `4` / `0xC0` with 128 bytes moved per iteration | 1 |
 
@@ -3563,9 +3563,9 @@ from the shipping image; interior cites are one instruction inside each extent.
 | `00581310` (56 B) | `00244F00`/`00291D40`/`002CA110`, then when `[02CA99B8]+0xC4` bit 3 is set runs `002CC9B0` → `002CC9C0` — a status probe on the controller object | [`0058132A`](../_index/ADDRESS-INDEX.md) |
 | `005819A0` (80 B) | lazy init on `[02CA99C8]`: while `+0xCC` bit 0 is clear it runs `00249C60(0x42)` → `+0xE8` and raises the bit; always writes `cl` at `+0xD0` | [`005819C7`](../_index/ADDRESS-INDEX.md) |
 | `00393600` (48 B) | the record-size selector: `cl` 0 → `0x3C4`, 1 → `0xE240`, 2–4 → `0x8398`, else 0 | [`00393614`](../_index/ADDRESS-INDEX.md) |
-| `00394400` (17 B) | `[02AEE4C0]` non-null → `00244F00` — the conditional UI-state dispatch the bit-4 branch uses | [`0039440A`](../_index/ADDRESS-INDEX.md) |
+| `00394400` (17 B) | `[02AEE4C0]` non-null → `00244F00` — the conditional UI-state dispatch the bit-4 branch uses | [`00394400`](../_index/ADDRESS-INDEX.md) |
 | `00238A30` (26 B) — **shared, not exclusive** | sets or clears bit 0 of `02089344` by its `ecx` arg — called twice in the `+0xC4`==3 arm (`00238A30(1)` at `00582CC8`, `00238A30(0)` at `00582CDE`) and once unconditionally via the script-verb thunk `0050F5A0` | [`00238A40`](../_index/ADDRESS-INDEX.md) |
-| `00394520` (13 B) | `02CA9AC0` non-null probe — the guard the `00582EA2`/`00182D40` sequence tests at `00582EAC` | [`00394522`](../_index/ADDRESS-INDEX.md) |
+| `00394520` (13 B) | `02CA9AC0` non-null probe — the guard the `00582EA2`/`00182D40` sequence tests at `00582EAC` | [`00394520`](../_index/ADDRESS-INDEX.md) |
 
 `00244F00`/`00244F50`/`00249580`/`00249210`/`00249410`/`00249C60`, the `0039xxxx` table helpers,
 `003697F0`, `00233C10`, `002CFD10` and `0057EDB0`/`0057FE80`/`00583990`/`0057EC60`/`00581350` are

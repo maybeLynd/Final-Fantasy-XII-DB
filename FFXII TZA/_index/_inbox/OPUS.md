@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45936 epoch=3 queue_sha=7c347950c5b84e0b -->
-> generated 2026-10-02T00:25:36+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=45969 epoch=3 queue_sha=d5505e854af00a8f -->
+> generated 2026-10-02T00:53:34+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-2330-1001
-> READY addressed to you: P1 ASTRA-REQ-OPUS-ACCOUNTING-DISPATCH-INDEX-1001, P1 ASTRA-REQ-OPUS-OV21-COUNT-PUBLICATION-WINDOW-1001, P1 ASTRA-REQ-OPUS-OV21-PAGE-SELECTION-CORRECTION-1001, P1 ASTRA-REQ-OPUS-RENDER-C1-NIBBLE-PRODUCERS-1001, P1 ASTRA-REQ-OPUS-SKELETON-WORKSPACE-FACTORY-1001, P1 ASTRA-REQ-OPUS-SKELETONREF-PRODUCER-SLICE-1001
-> READY pool: 0 | BLOCKED: 2
+> ACTIVE: OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-0005-1002
+> READY addressed to you: P1 ASTRA-REQ-OPUS-ACCOUNTING-DISPATCH-INDEX-1001
+> READY pool: 0 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -17,34 +17,36 @@
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
 
-## Resume state - 2026-10-01 23:30 UTC (OPUS)
+## Resume state - 2026-10-02 00:05 UTC (OPUS)
 
 - **STANDING (user, 2026-10-01): GitHub repos + cloud program are OPUS's job** - see "Standing responsibility: the
   GitHub repos and the cloud program" below the RESUME PROTOCOL; do its resume steps every time.
-- **Gate (goal_gate, latest generation):** Q 13 (OPEN 6, PARTIAL 7), DD 20, F 3,680.
-  - Since 22:56: GI-14..GI-18 answered, router / shop / licence-board / gambit / authored-commands / element-types
-    pages DOCUMENTED.
-- **Published this session (newest last):**
-  - 9b6bc9c38 15-Input fixes; f5e837cec sibling guards; bff8124f3 OV-33 narrowing;
-  - af392a926 18-Audio fixes; 22ae17df7 router; a9523c7ee G-C3x;
-  - 518a7f2d8 GI-16 / GI-17 / GI-18 (+ GI-14 / GI-19 narrowed); cd9d296dd GI-15; de783570d `.sab` census;
-  - the GI-14 re-correction (queued as 9q; its register cell is already in de783570d).
-- **GI-14 lesson:** 518a7f2d8's GI-14 text was off by 8. `008642A0` returns object + 8, so the blend value is object
-  `+0x38`, which GiPrim translates through `001EE650`. 9q withdraws the old text with strikes.
-- **Open board items:**
-  - OPUS-CLOUD-F-INTERIOR-W1-1001 BLOCKED until SWE2-AUDIT-SPEC rules on the interior method. Then run
-    `interior_ingest.py check` / `apply`.
-  - OPUS-GI14-ELEMENT-HELPERS-1001 BLOCKED. Resume + claim + finish at 9q's commit.
+- **Gate (latest generation):** Q 13 -> GI rows all answered, so expect 12; DD 19 (18 after the spawn re-status);
+  F 3,680.
+  - Every remaining Q / DD blocker is a runtime row: OV-5, 8, 10, 16, 19, 21, 29, 33, 42, GR-18's high base.
+  - The other blockers are other lanes' rows: RC-5 (CONTRACT) and SD-194 (DATA).
+- **Published since 23:30:**
+  - ce70d7fe1 GI-19.
+  - a73cdc0cf OV-21 page list / count phase + `+0x094` producer.
+  - b83439b6c C1 + `+0x2FC` workspace.
+  - The spawn page re-status (queued 9v).
+  - ASTRA requests closed: OV21 x2, SKELETONREF, C1-NIBBLE, WORKSPACE-FACTORY.
+- **Open for OPUS:**
+  - ASTRA-REQ-OPUS-ACCOUNTING-DISPATCH-INDEX-1001: the C1 row is done in b83439b6c. The allocator page's
+    OPUS-CONTRA-ARENA-ACCOUNTING-ARRAY range argument still needs qualifying, but
+    `24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md` carries another lane's
+    uncommitted edits. Wait until it is clean.
+  - ASTRA returns waiting on SPEC: SD194, S33-visual, presentation-index, mode-summon.
+  - OPUS-CLOUD-F-INTERIOR-W1-1001 BLOCKED on SPEC's interior-method verdicts (ten OPUS-REQ-AUDITSPEC-*-INTERIOR-1001
+    READY).
   - OPUS-DD-UNCLAIMED-15-99-0930 ACTIVE.
-- **In flight:** a read-only reader is mapping GI-19 (`0040EEA0` relocates the sway section of `@FCP` rig section 2,
-  so the "intermediate objects" are likely authored sub-records). Byte-check its claims before any edit.
-- **Reviews requested from SWE2-AUDIT-SEM:** GI16-GI17-GI18, GI15, GI14 (with 9q).
-- **RE repo:** readiness maps record the settled items (a88bf5c, ac6c80b). DB repo snapshot: re-sync after 9q.
+- **Reviews requested from SWE2-AUDIT-SEM:** GI16-GI17-GI18, GI15, GI14, GI19.
+- **Repos:** RE maps record the settled items (a88bf5c, ac6c80b). DB snapshot c7499287 (source 5d0553380). Re-sync
+  after 9v.
 - **Cloud wave 2:** proposed, not launched. It needs the user's Settings -> Usage reading.
-- **Lessons today (memory):**
-  - a/c.json-only flow dir = claim loop on my own ACTIVE task: block such tasks first;
-  - gate mutations leak into the next publish;
-  - never include an earlier package's consumer-check record in a publish.
+- **Lessons (memory):** claim loops on own ACTIVE tasks; gate mutations leak into the next publish; an Affected line
+  naming a `.tsv` can never pass the correction gate (touched = `.md` only); a re-status turns interior citations into
+  A-drift, so narrow them to function entries first.
 
 ## RESUME PROTOCOL - read this first (OPUS, 2026-09-26)
 

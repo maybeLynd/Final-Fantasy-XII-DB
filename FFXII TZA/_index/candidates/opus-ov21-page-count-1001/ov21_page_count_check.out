@@ -1,0 +1,27 @@
+ok   0051F7AA cmp word ptr [rcx + 0x22], 0
+ok   0051F7B2 jle 0x51f825
+ok   0051F7E9 mov edi, dword ptr [rbx + 0x18]
+ok   0051F81D mov edi, dword ptr [rdx + 8]
+ok   0051F825 mov rcx, rbx
+ok   0051F828 call 0x51f6b0
+ok   0051F743 cmp dword ptr [rbx + 0x18], -1
+ok   0051F749 mov dword ptr [rbx + 0x18], eax
+ok   0051F74C movsxd rsi, dword ptr [rbx + 0x1c]
+ok   0051F782 mov dword ptr [rbx + 0x1c], ecx
+ok   0051F930 cmp esi, dword ptr [rbx + 0x18]
+ok   0051F938 mov dword ptr [rbx + 0x18], eax
+ok   0051F93B cmp esi, dword ptr [rbx + 0x1c]
+ok   0051F943 mov dword ptr [rbx + 0x1c], eax
+ok   0051FC71 inc dword ptr [r14 + 0x14]
+ok   0051FCB2 inc dword ptr [rbx + 0x58]
+ok   0051FD5E mov dword ptr [rax + 0x14], ecx
+ok   0051FE0C dec dword ptr [rdi + 0x58]
+ok   00372914 mov dword ptr [rsi + 0x94], eax
+ok   00372991 add eax, dword ptr [rsi + 0x90]
+ok   003729A9 mov dword ptr [rsi + 0x94], eax
+ok   003729BD call 0x861eba
+ok   00371435 mov dword ptr [rbx + 0x94], eax
+ok   00371459 add eax, dword ptr [rbx + 0x90]
+ok   00371469 mov dword ptr [rbx + 0x94], eax
+ok   00371487 call 0x3e1c50
+FAILS 0

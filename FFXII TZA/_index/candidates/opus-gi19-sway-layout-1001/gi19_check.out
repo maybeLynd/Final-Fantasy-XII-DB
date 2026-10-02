@@ -1,0 +1,27 @@
+ok   003E1D97 lea edx, [rdi + rax]
+ok   003E1D9A call 0x40eea0
+ok   003E1D9F lea rcx, [rdi + 0x78]
+ok   003E1DB5 mov dword ptr [rax + 8], ebx
+ok   003E1CB6 call 0x421d20
+ok   003E1CC3 mov dword ptr [rdi + 0x78], eax
+ok   00421D26 mov ebx, dword ptr [rcx + 0x18]
+ok   00421D3B mov rcx, qword ptr [rax + 0xd98]
+ok   00421D44 call 0x2ed570
+ok   00421D4E mov ecx, dword ptr [rax + 0x84]
+ok   0040EEAE mov rdi, rdx
+ok   0040EEC2 lea ecx, [rdi + rax]
+ok   0040EECC mov dword ptr [rdi], eax
+ok   0040EEF2 lea r14, [rax + 8]
+ok   0040EF0C lea ecx, [rdi + rax]
+ok   0040EF16 mov dword ptr [r14], eax
+ok   0040EF39 lea ecx, [rdi + rax]
+ok   0040EF45 mov dword ptr [r15 - 0x1c], eax
+ok   0040DC63 mov ecx, dword ptr [rbp + 1]
+ok   0040DC6B mov ecx, dword ptr [r14 + 8]
+ok   0040DD9D mov ecx, dword ptr [r14 + 8]
+ok   0040DDAD movzx ecx, word ptr [rbx - 8]
+ok   0040DDB5 imul rdi, rcx, 0x290
+ok   0040DDC5 add rdi, rax
+ok   0040DE9E movups xmm0, xmmword ptr [rdi + 0x150]
+ok   0040DEE5 movups xmm0, xmmword ptr [rdi + 0x180]
+FAILS 0

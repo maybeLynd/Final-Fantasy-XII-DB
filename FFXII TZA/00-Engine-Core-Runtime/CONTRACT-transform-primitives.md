@@ -292,7 +292,7 @@ Both survivors are **kind C, undefined behaviour**: `c < 4` → `c < 5` writes a
    bank](Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md), BQ-16's answer. The
    oscillating contents belong to whichever translated routine ran last; the routine family is
    identified: the per-model oscillator's walkers `0040DBB0` / `0040B780` write a second 4×4 from
-   `[sub-obj + 0x150]`–`+0x180` straight into rows 5–8 (`022D91F0`–`022D9220`, `0040DE9E`–
+   ~~`[sub-obj + 0x150]`–`+0x180`~~ the bone's `0x290` row `+0x150`–`+0x180` *(corrected 2026-10-01, OPUS - the oscillator page's GI-19 section)* straight into rows 5–8 (`022D91F0`–`022D9220`, `0040DE9E`–
    `0040DEEF`), node matrices through the VU0 bank — [the oscillator
    subsystem](../17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md)
    §5b. Residual: which routine holds them *at the title screen specifically* is not

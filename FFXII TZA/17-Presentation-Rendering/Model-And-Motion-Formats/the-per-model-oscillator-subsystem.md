@@ -1,7 +1,7 @@
 ---
 system: The per-model oscillator subsystem (the 0040ACF0 family)
 category: 17-Presentation-Rendering
-status: "PARTIAL — GI-19 registered 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930): the resolve chain's intermediate object types are unnamed. GI-12 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI12, ACCEPT-WITH-NARROWING applied on the page, cfc5a4863). Was PARTIAL on: which pose slot each evaluator owns is not established; the 0x290 records named 2026-09-18 as the skeleton's bone records (the Skeleton_* family strides them)"
+status: "DOCUMENTED — every register row is closed (owner re-status 2026-10-01, OPUS; documented_rule READY): GI-19 answered 2026-10-01 (OPUS, static - the sway section's layout and the chain's objects, see the GI-19 section; review requested from SWE2-AUDIT-SEM). History: PARTIAL on GI-19 from 2026-10-01 (SWE2-FRONTIER, on SWE2-AUDIT-SEM's REJECT of c97af7156, record dd-restatus-gi-0930). GI-12 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI12, ACCEPT-WITH-NARROWING applied on the page, cfc5a4863). Was PARTIAL on: which pose slot each evaluator owns is not established; the 0x290 records named 2026-09-18 as the skeleton's bone records (the Skeleton_* family strides them)"
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -74,7 +74,7 @@ always reached through the `[r14]` encoded-id resolve). Fields read this pass:
 | `+0x00` | u32 | encoded id resolved by `0020E600` → the `0x30`-stride entry array (`0040AEC1`–`0040AED0`) |
 | `+0x04` | u8 | entry count |
 | `+0x05` | u8 | if set, `+0x0C` is resolved and *its* `[0]` resolved again before proceeding (a parent indirection, `0040AD0E`–`0040AD28`) |
-| `+0x08` | u32 | id → an object whose `+0x00` id resolves to the skeleton's `0x290`-stride bone array, read by `0040DBB0` (`0040DC6B`–`0040DC79`; added 2026-10-01, OPUS) |
+| `+0x08` | u32 | id → an object whose `+0x00` id resolves to the skeleton's `0x290`-stride bone array, read by `0040DBB0` (`0040DC6B`–`0040DC79`; added 2026-10-01, OPUS). Not authored: `003E1C50` sets it to the rig's own slot `+0x78`, which holds the bone array's id *(GI-19 section, OPUS 2026-10-01)* |
 | `+0x0C` | u32 | parent id (only when `+5` set) |
 | `+0x10` | f32 | bank row `022D9390` (VU vector row 31) gets the whole `+0x10` xmmword; `1.0f / [+0x10].x` goes to Q `022D9198` and accumulator `022D9394` (`0040AD28`–`0040AD97`) |
 | `+0x1C` | s32 | stored to `022D8FB0`, then the 16-byte row `022D8FB0` is copied to `022D9350` (`0040AD63`–`0040AD88`) |
@@ -91,7 +91,7 @@ Each `0x30`-byte entry (`rbx` in the loop at `0040AF00`):
 |---|---|---|
 | `+0x00` | u8 | sub-entry count read by `0040FF30`/`0040DBB0`-family walkers |
 | `+0x02` | u8 | enable — zero skips the entry (`0040AF13`) |
-| `+0x08` | u32 | id → sub-object whose `+0x28`-array / `+4`-count the heavy stages walk |
+| `+0x08` | u32 | id → sub-object whose `+0x28`-array / `+4`-count the heavy stages walk. `0040EEA0` relocates it as the authored A array (`0x40`-byte records, entry `+0x00` of them), which `0040DBB0` walks; the `+0x28` / `+4` reading is not reconciled here *(GI-19 section, OPUS 2026-10-01)* |
 | `+0x20` | f32 | blend factor `t`: `0040F390` initializes it to `1.0` if `+0x2A` bit0 else `0`; `0 < t < 1` selects the blend apply `0040B780`, otherwise `0040DBB0` (`0040B0E3`–`0040B10A`) |
 | `+0x24` | u32 | id consumed by stage 2 (`00413C80` resolves it) |
 | `+0x29` | u8 | flags: low nibble cleared each pass; bit4 receives `+0x2A` bit0 (`0040AF00`–`0040AF10`); nonzero low nibble enables the blend/`0046FAE0` path (`0040B0B1`) |
@@ -142,7 +142,7 @@ once per sub-step but the node apply happens on one fixed pass.
 `0040DBB0` ~~resolves a four-deep id chain per entry — `[entry + 8]` → object → `[obj + 4]` →
 object → `[obj]` → object~~ *(corrected 2026-10-01, OPUS, at the bytes: two two-step resolves, not one four-deep chain, both through `0020E600`. The record's `+0x08` id resolves to an object whose `+0x00` id resolves to the skeleton's `0x290`-stride bone array (`0040DC6B`–`0040DC79`). The entry's `+0x08` id resolves to an array of `0x40`-byte sub-entries, one per count in entry `+0x00` (`0040ECEB`–`0040ECF2`), each holding at `+0x04` an id that resolves to an object whose u16 `+0x00` is the bone index (`0040DC63`–`0040DC7E`))* — and walks a `0x290`-stride record array indexed by a u16. From each
 `0x290` record it loads four xmmword rows at `+0x80`–`+0xB0` straight into **VU vector rows 1–4**
-(`022D91B0`–`022D91E0`, `0040DC93`–`0040DD2D`) and a second 4×4 at `[sub-obj + 0x150]`–`+0x180`
+(`022D91B0`–`022D91E0`, `0040DC93`–`0040DD2D`) and a second 4×4 at ~~`[sub-obj + 0x150]`–`+0x180`~~ the same bone's `0x290` row `+0x150`–`+0x180` *(corrected 2026-10-01, OPUS: `rdi` is the bone array plus the index × `0x290`, `0040DDB5` / `0040DDC5`)*
 into rows 5–8 (`022D91F0`–`022D9220`, `0040DE9E`–`0040DEEF`), computes a position delta
 `022D9340 − 022D9330 → 022D9310` (`0040DDDA`–`0040DE4A`), reloads vf00 through `0036DD80` and
 continues the transform. `0040B780` has the same skeleton with the blend weight from `xmm2`
@@ -157,7 +157,7 @@ perturbation helper the weather system uses — which is the concrete mechanism 
 sway. ~~What the `0x290` records are *named* (node vs bone vs attachment) is not established~~
 *(settled: they are the skeleton's bone records — "Not established this pass" below, named
 2026-09-18 FABLE)*; the resolve chain's intermediate object types are likewise
-unnamed — registered as **GI-19**. *(Narrowed 2026-10-01, OPUS: the chain is the two two-step resolves above; only the class names of the three intermediate objects remain open.)*
+unnamed — registered as **GI-19**. *(Narrowed 2026-10-01, OPUS: the chain is the two two-step resolves above; only the class names of the three intermediate objects remain open.)* *(Answered 2026-10-01, OPUS: they are the rig's slot `+0x78` and the authored A and B arrays - the GI-19 section.)*
 
 ## 5. The parameter-install path (`0054B1F0`)
 
@@ -372,6 +372,50 @@ belongs to the rig slot loaded before its call, and the order is a slot table - 
 NATIVE/STATIC reads of the cited bodies against the shipping image; FABLE's `0040ACF0` sketch
 verified and refined (the `+0` field is an encoded id resolved by `0020E600`, the `+0x10` scalar
 is `1/x` into Q, and `0040D890` is a sub-stepped twin, not a separate record type).*
+
+## GI-19: the sway section's layout and the chain's objects (OPUS, 2026-10-01)
+
+Static, from the shipping image: a read-only reader pass, byte-checked by OPUS (control `gi19_check.py` in
+`_index/candidates/opus-gi19-sway-layout-1001/`).
+
+**Where the record comes from.** The oscillator record is controller 0 of the rig, so it is authored data: a
+sub-block of the model's `@FCP` section 2 ([the rig](../Character-Render-Records/the-rig-of-seventeen-controllers.md)
+§2). The rig's slot initialiser `003E1C50` calls `0040EEA0(rig, S)`, where S is the sway section, rig base plus its
+slot-0 offset (`003E1D9A`). `0040EEA0` is a relocation pass. Every offset field is turned into an encoded pointer
+relative to S (`0020E600`, `lea ecx, [S + rax]`, `0020E620`), so every relocated target lies inside the sway section.
+
+| record | stride | authored layout (offsets relocated by `0040EEA0`) |
+|---|---|---|
+| header S | - | `+0x00` → the entry array, `+0x04` u8 entry count |
+| entry E | `0x30` | `+0x00` u8 count of A; `+0x03`..`+0x07` u8 counts of C, D, F, G, H; `+0x08` → A; `+0x0C` → C (`0x20`); `+0x10` → D (`0x40`); `+0x14` → F (`0x50`); `+0x18` → G (`0x50`); `+0x1C` → H (`0x60`); `+0x20` f32 blend t; `+0x24` → I (`0x40`), `+0x28` u8 its count |
+| A | `0x40` | `+0x03` u8 count of B; `+0x04` → B; `+0x20`, `+0x28`, `+0x2C` → further records |
+| B | `0x50` | `+0x00` u16 bone index (`0xFFFF` skips); `+0x04` → optional; `+0x08` → optional record holding two vec4s; `+0x10` vec4 |
+
+Three header fields are **not** authored. `003E1C50` writes them after the relocation:
+- S `+0x08` is set to the encoded address of the rig's own slot `+0x78` (`003E1D9F`–`003E1DB5`);
+- S `+0x0C` is set to the encoded address of the rig's `+0x7C`, the parent's bone array;
+- S `+0x5C` is set to the encoded address of the rig's `+0x70`, the render record.
+
+The rig's `+0x78` holds `encode(00421D20(render record))`, written at `003E1CC3`. `00421D20` resolves the render
+record's resource entry (owner `+0x10`, table `+0xD98`, key `+0x18`) and returns that entry's `+0x84`: the skeleton's
+`0x290`-stride bone array.
+
+**So the chain's objects are named.**
+- The record's `+0x08` resolves to **the rig's own field `+0x78`**, a slot rather than an object. Its `+0x00` is the
+  encoded bone array. A rebind can rewrite the slot (`003E3CA0` rewrites `+0x70`..`+0x7C`) without touching the
+  authored section.
+- The entry's `+0x08` resolves to **the authored A array** (`0x40`-byte records, entry `+0x00` of them).
+- Each A's `+0x04` resolves to **the authored B array** (`0x50`-byte link records). Each B record holds its bone index
+  at `+0x00`.
+
+`0040DBB0` runs with `r14` = S and `r13` = the entry. Per bone it indexes the bone array with B's index × `0x290`
+(`0040DDB5` / `0040DDC5`). The "second 4×4" it loads into VU rows 5–8 is that **bone row's** `+0x150`–`+0x180`.
+
+**Not established here:**
+- the names of the authored records beyond A and B (C, D, F, G, H, I, and the targets of A `+0x20`/`+0x28`/`+0x2C`
+  and B `+0x04`/`+0x08`), which the heavy stages `0040FF30`, `00411650` and `00413C80` read;
+- whether the resource entry that supplies the bones is always the one that carries this rig (likely, not shown);
+- `0040EEA0`'s second host `0054A9C0`.
 
 ## Falsification pass
 
