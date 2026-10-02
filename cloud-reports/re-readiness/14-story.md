@@ -290,3 +290,53 @@ byte: "read by no accessor in that family … still open" (`:236-238`).
 | 18 Audio | `+0x1534` override reader | `persistent-flag-banks.md:456-460` |
 | 15 Input | input arbitration calls the gate | `persistent-flag-banks.md:424-426` |
 | 13 Items / 20 Achievements | loot grant, achievement counter beside the defeat count | `persistent-flag-banks.md:1361`; `event-memory-at-actor-bind.md:205` |
+
+---
+
+## 2. Gaps
+
+### 2.1 Gaps the pages state themselves (still open, or live-only)
+
+| # | gap | cite |
+|---|---|---|
+| S-1 | **No live observation exists** for any claim; the readiness gate needs one. Three cheap checks named (read `0x02164280 + 0x200 + 0x14F4`; step `0032A8A0` with `0x400B`; confirm the gap is zero on a fresh game). | `CONTRACT-persistent-flag-banks.md:34-35`, `:351-352`, `:364-370`, `:489` |
+| S-2 | `FULL-SUBSYSTEM` parity not covered: 11 of 17 entries differentially tested; outstanding: the gate (schedule arm needs authored data), `00377970`, `00379160`, `002EF2D0`, `00377440`, `002EF2B0`. Mutation verdict `INCOMPLETE` (one `INVALID`). | `CONTRACT-persistent-flag-banks.md:580-585`, `:375-378` |
+| S-3 | `STATE-TRANSITION`, `INTEGRATION`, `TIMING`, `PRESENTATION` untested; need the running game. | `CONTRACT-persistent-flag-banks.md:549-550`, `:614-615` |
+| S-4 | Single-threaded access "not proven". | `CONTRACT-persistent-flag-banks.md:205-206` |
+| S-5 | Which map jump each `Primary` id controls — per-script reading not done. | `persistent-flag-banks.md:376`, `:378`, `:391` |
+| S-6 | The `shutoral` (airship) reading of `Bank64A`/`64B` is "an inference from a romanised identifier". | `persistent-flag-banks.md:392-393`, `:496` |
+| S-7 | `+0x1535`: "its name rests only on the verb's catalog name"; a reader through a block copy or computed offset "would not be seen". | `persistent-flag-banks.md:463-464`, `:482-484` |
+| S-8 | Census limit on every absence claim: a payload pointer stored and reloaded, or a bulk `memcpy`, would not be seen. | `persistent-flag-banks.md:358-359`, `:1063-1067` |
+| S-9 | Whether a `0xFFFF` caller reads false as "never" or "absent" "is not asserted". | `persistent-flag-banks.md:235-236` |
+| S-10 | `FUN_00266D10` not read in full; no menu path traced to it; so the "new game" trigger is not established. | `persistent-flag-banks.md:1325-1326` |
+| S-11 | `0016D6A0`, `00253A80`, `00238A80` (the chain around `002EF650`) unread. | `persistent-flag-banks.md:1327-1328` |
+| S-12 | Whether `00378540` registers exactly five tables (943 B, read at two sites only). | `persistent-flag-banks.md:1329-1330` |
+| S-13 | The eight header bytes before each list's count are untouched by both consumers (meaning not needed, but not stated). | `persistent-flag-banks.md:1331-1332` |
+| S-14 | What the two actor payload buffers hold. | `event-memory-at-actor-bind.md:234-235` |
+| S-15 | The third byte of a `02ADD100` record — "still open". | `event-memory-at-actor-bind.md:236-238` |
+| S-16 | Whether the two bind-time lookups concern the same kind of event. | `event-memory-at-actor-bind.md:256-257` |
+| S-17 | The bestiary exclusion list's meaning ("marks, story bosses") "is not read here"; the Clan Primer functions "were not re-read". | `event-memory-at-actor-bind.md:208-210`, `:331-332` |
+| S-18 | "Which achievements they serve is not read" (the two achievement bodies reading `FieldData_GetVariable0`). | `CONTRACT-persistent-flag-banks.md:626-628` |
+| S-19 | `01F83530` base staying zero is "supported, not proven". | `persistent-flag-banks.md:521-524` |
+| S-20 | The map-data gate words with bit 15 set: "a form this page does not read". | `persistent-flag-banks.md:380` |
+
+### 2.2 Structural gaps found while mapping (a port needs these and no 14 page states them)
+
+| # | gap | what shows it |
+|---|---|---|
+| G-1 | **The threshold schedule's input variable is not located.** `FieldData_GetVariable0` is given only as pseudo-C over `g_fieldFlags` and `g_fieldVariables`; neither global's address, writer, the meaning of `g_fieldFlags` bit 0, nor when the field variable block is loaded or replaced is stated. Without it the schedule (and every bit-14 gate id) cannot be driven. | `persistent-flag-banks.md:219-230` |
+| G-2 | **Publish vs reset ordering.** `00379160` silently does nothing when `02ADD0D0` is null (`persistent-flag-banks.md:1133-1135`), and the pointer is published by an area-table request and cleared by `00377CC0` (`:1200-1202`). No page states that the list is guaranteed to be loaded when `002EF2D0` runs on a new game. | `persistent-flag-banks.md:1092-1114`, `:1195-1202` |
+| G-3 | **Treasure record and per-chest mask.** The record's size and bytes `+0x01`..`+0x07`, `+0x0A` are not stated; the per-chest mask `002FB430(table, fieldId, index, 0)` — its table, layout and lifetime — is named only; the bit-6 "random 1..N" draw formula and which `+0x14`/`+0x16` applies when are given in prose without a body. | `persistent-flag-banks.md:870-883`, `:893-894` |
+| G-4 | **Treasure flag half vs script check.** The native chest writer sets a `Bank512Low` bit (`persistent-flag-banks.md:836`, `:874`), while the shipped script check `istreasureflag` reads the **High** half and the Low-half verb `istreasurebattleflag` has "no shipped use" (`:369`). No page reconciles which half a chest's flag lives in from the script's side. | `persistent-flag-banks.md:369`, `:836` |
+| G-5 | **Bank512 VM handlers are not mapped to accessors.** Two query handlers and four setter handlers are listed without saying which is Low/High or set/clear. | `persistent-flag-banks.md:612` |
+| G-6 | **Trap trigger cadence and caller.** `002F8060`'s result "returns to `BattleUnit_RunPeriodicCombatMaintenance`", but the call edge, its frequency and which units are polled are not stated; the 342-byte body `002FA740` calls (`persistent-flag-banks.md:1353`), `002FB560` (marker placement), `003EB720` (marker slots) and the `0046A9D0` message poster are named only. | `persistent-flag-banks.md:750-754`, `:766-767`, `:1353` |
+| G-7 | **Trap table header source.** The reference format (`tag = bits 24–26`) is given, but the "six-way base chooser `00265770`" and the `msp` region are delegated to 01 / 25 pages; `002641B0(0, 0)` ("manager slot 0's script image") is not described. | `persistent-flag-banks.md:736-741` |
+| G-8 | **Save header use of `gate(0x400B)`.** Which header field receives the result, and what the two other `0x400B` call sites are, is not stated. | `persistent-flag-banks.md:415-418`, `:1008` |
+| G-9 | **Gate caller list.** Of 32 callers, about six are named; the call sites that produce the observed id vocabulary are not listed per caller. A port of the gate itself does not need them; a port of its consumers does. | `persistent-flag-banks.md:238-244`, `:424`, `:1057-1059` |
+| G-10 | **Event-memory record bodies.** `00576300` ("event-memory record body", caller `00570080`) and `00570080` ("event-memory body") are placed by call signature only; what they read and write is not described, so "event memory" as a whole is not covered by the page that bears the name. | `event-memory-at-actor-bind.md:336-338`, `:387-393` |
+| G-11 | **Statistics counter.** `00316A50` has "about twenty kinds"; the kinds, storage and reset are not stated, though the page says a hunt is "a flag convention plus a counter". | `event-memory-at-actor-bind.md:183-185`, `:190` |
+| G-12 | **Bestiary `00315D50` return contract.** The defeat counter runs "only when `00315D50(id)` returns −1"; the page states the listed case returns a word from `01EED130` but not that the unlisted case returns −1, nor the chain's three hops. | `event-memory-at-actor-bind.md:205`, `:208-210` |
+| G-13 | **Bestiary base.** "save payload `+0xB404`" vs the persistent payload being `0x1538` bytes: the base `+0xB404` is relative to (beyond "block `+0x3404` of what `002536A0` returns") is not reconciled in 14. | `event-memory-at-actor-bind.md:198-199`; `persistent-flag-banks.md:1119` |
+| G-14 | **`00377B60` fallback address is malformed**: "returns the `02EB1F0` fallback string" — seven hex digits where every other address has eight; the lookup's table global is not named. | `persistent-flag-banks.md:1399-1403` |
+| G-15 | **Hunts.** Declared authored (`event-memory-at-actor-bind.md:190`), but no page names the flags or counters any hunt uses; a port of hunt behaviour needs the script reading, which is not done. | `event-memory-at-actor-bind.md:158-192` |
+| G-16 | **`+0x1062`/`+0x1063` cluster** (29 access sites; bit `0x40` gates the music override) is in the payload this folder maps but its other bits are not stated. | `persistent-flag-banks.md:344`; `CONTRACT-persistent-flag-banks.md:86` |
