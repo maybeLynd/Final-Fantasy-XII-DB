@@ -1,0 +1,20 @@
+{
+ "page": "04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md",
+ "session": "session_01VgTzWvj54SWcQeC3wEsotH",
+ "rows": [
+  {"fn": "00263AC0",
+   "text": "returns 0 for a null `rcx` and returns byte `rcx+0xF` zero-extended when it is not 2; when it is 2 it saves qword `02099D70`, stores `02098E10` there, calls `003590D0` (`rcx` unchanged) and, when that returns non-zero r, `003588B0(r)` (else uses 0), restores `02099D70`, and returns 1 when `rcx` equals that result, else 2",
+   "anchors": [["00263AD3", "movzx"], ["00263AEF", "mov"], ["00263B01", "call"], ["00263B0D", "mov"], ["00263B1E", "cmove"]]},
+  {"fn": "002A26A0",
+   "text": "returns at once when bit 7 of byte `rcx+0x3F3` is set; otherwise sets bit 3 of that byte and takes the `0x60`-byte entry e at `qword rcx+0x3F8 + 0x60*edx` (sign-extended); when the sixth (stack) argument is 0 it clears bit `0x10` of dword `e+8` and stores `xmm2`/`xmm3` to floats `e+0x24`/`e+0x28`; else it sets that bit, stores the fifth (stack) argument's low word to word `e+0x5C`, the old floats `e+0x24`/`e+0x28` to `e+0x48`/`e+0x50`, `xmm2` and `xmm3` minus those old floats to `e+0x4C`/`e+0x54`, 0 to word `e+0x58` and the sixth argument's low word to word `e+0x5A`",
+   "anchors": [["002A26A9", "js"], ["002A26AD", "mov"], ["002A26CD", "and"], ["002A26DC", "or"], ["002A2715", "mov"]]},
+  {"fn": "00345CD0",
+   "text": "pops three floats f1, f2, f3 through `00267DB0(r9)` and a value v through `00267E10(r9)`, and returns when a = `00359CA0(v, 1, 1)` is null or `002EA6A0(a)` is 0; otherwise calls `00264420(a)` (b), `0030BEB0(a)` (d), `0035A720(a, 0)`, `002ECF10(a, b, 2)`, pushes f3, f2, f1 and `003590B0()` through `00267F60(r9, value)`, then calls `00357A20(rcx, a, r8, r9)`, `002EB430(00263F40(a))`, `0026C120(a, 2)` and `00269D80(a, 1, d)`",
+   "anchors": [["00345D2B", "call"], ["00345D46", "je"], ["00345D7F", "call"], ["00345DC2", "call"], ["00345DEF", "call"]]},
+  {"fn": "00537BA0",
+   "text": "returns 1 when `004FE930(rcx)` is 0; otherwise calls `003A56C0(qword rcx+0xE0 + 0xD0, rcx, rcx+0x110, stack buffer)` and returns 0 when that is 0, else calls `004FEAD0(rcx, buffer)` and returns 1",
+   "anchors": [["00537BB9", "mov"], ["00537BC3", "call"], ["00537BE2", "call"], ["00537BF3", "call"], ["00537BF8", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00263AC0: rcx is not reloaded before the 003590D0 call, so whether that callee takes an argument is not visible here. 002A26A0: the fifth and sixth (stack) arguments are read at [rsp+0x28] and [rsp+0x30] with no prior push. 00537BA0: 004FE930 is called with rcx still the argument."
+}
