@@ -8,7 +8,21 @@
 | Snapshot | this repo's text snapshot at `f26c5667` only; no executable, Ghidra or live game was used |
 | Status of this file | **draft / pointer**. Nothing here is evidence. Every item quotes or paraphrases a page and gives `page:line`. Text is quoted as the snapshot has it; several of these pages are being edited by other lanes. |
 
-COUNTS-PLACEHOLDER
+**Counts:**
+- **Pages:** 59 `.md` pages read in full (26,673 lines). 23 `.tsv` + 1 `.json` member files checked for layout and
+  counts only. One cited member file is missing (`LBB:36`).
+- **Interface:** 81 entry-point rows mapped (§1.1).
+- **Gaps:** 31 self-stated gaps (G-S1–G-S31) and 38 structural gaps (G-T1–G-T38).
+- **Contradictions:** 179 in total.
+  - **123 value-changing** (C-V1–C-V123), all marked "page-text only - needs local check". 29 have a favoured side
+    settled by a dated correction on the pages: C-V7, C-V14, C-V15, C-V16, C-V21, C-V25, C-V31, C-V35, C-V36, C-V37,
+    C-V38, C-V50, C-V57, C-V70, C-V71, C-V78, C-V84, C-V85, C-V87, C-V88, C-V89, C-V93, C-V103, C-V104, C-V105,
+    C-V111, C-V114, C-V115, C-V119. The other 94 have no favoured side.
+  - **56 stale / banner** (C-S1–C-S56).
+- **Cross-checks:** 34 came out consistent.
+- **Rating:** **NOT YET** overall. The core load path (archive → path → FST → queue → arena/codec → section lookup →
+  registry) is **MOSTLY**. The EFX relocators, `.ard`/`.nmb`, text banks and four PS2-era format groups are
+  **NOT YET** (§4).
 
 Citation form: `ALIAS:line`, where the alias names a page inside `FFXII TZA/02-Resource-And-Asset-Pipeline/` (table
 below). "Not stated" means no page in this folder says it. Where only another category's page makes a point, the
@@ -604,6 +618,8 @@ Each item quotes both sides exactly as the snapshot has them, with `page:line`.
 - **§3.2** lists stale "not read / open" claims that another page or a later dated section answers, banners that
   disagree with front matter, and similar items whose fix changes no value.
 - **§3.3** lists the cross-checks that came out consistent.
+
+The ids are stable labels. Items are grouped by layer, not listed in numeric order.
 
 ### 3.1 Value-changing — page-text only - needs local check
 
@@ -1759,3 +1775,59 @@ as written. The "settled by" side is quoted when a dated text exists.
   agrees at `BTM:74` and `FIVE:198`.
 - The checks named in the brief's launch notes: "Eight extensions" (`README:32`, `SF:37`, `SF:281`); the `.ico`
   overturn (`README:34-35`, `SF:24`, `SF:139-142`).
+
+---
+
+## 4. Rating
+
+**Overall: NOT YET.** The core load path is documented well enough to write from the pages, once the listed
+value conflicts are settled at the bytes:
+
+> archive → path resolver → file-size table → request queue → arena / handle / image-address codec → section lookup →
+> registry binding
+
+The folder still has structural gaps that a port cannot work around:
+- text decoding (G-T23, G-T24);
+- the EFX specialised relocators (G-T6, G-T7);
+- the two-level binder `003846F0` (G-T16);
+- the field-to-area map for `.ard` (G-T21);
+- several file formats whose layout is not on the page (`mg` G-T31, `sloc` G-T32, AS7 codec G-T30, TIM2 decode route
+  G-T29, binmenu texture format G-T34).
+
+On top of these, 123 value conflicts (§3.1) leave a re-implementer choosing between stated values. 94 of them have no
+dated correction to settle them.
+
+| layer | pages | rating | what blocks READY |
+|---|---|---|---|
+| Archive container, index, integrity | BIG, VBF §1 | **MOSTLY** | object fields and mount order (G-T26); node layout (C-V116) |
+| Path resolution (RAM cache + archive) | PATH | **MOSTLY** | route-1 extension test and cache policy (G-T25); offset frame and key normalisation (C-V117, C-V118) |
+| File-size tables | FST | **MOSTLY** | four disagreements with the queue page (C-V1, C-V2, C-V3, C-V73); `0032EB40` (G-T3) |
+| Request queue and external-source owners | RQ, RQC, ISR | **MOSTLY** | pacer/clock/return values (G-T1); two pump branches only in the contract (G-T2); caller lists (C-V4, C-V65); size (C-V64) |
+| Arena allocator, tree, handles, image-address codec | TREE, EV, MOV | **MOSTLY** | add-path tree selection and splice helpers (G-T8); handle table (G-T9); header initial values (G-T10); the guard formula (C-V7); flag address (C-V6); base lifetime is live-only (G-S6) |
+| EFX source rebase and input ownership | EFX, OWN, OWNC, EXT, PRF | **NOT YET** | 38 per-element relocators, 'R' repair, `.cm` table (G-T6, G-T7); ticket id (G-T4); role conflicts (C-V17, C-V19, C-V63) |
+| Section addressing | RSA, CSA | **MOSTLY** | entry size `0xC0` vs `0x50` (C-V5); section walk (C-V12); `00409780` outputs (C-V10); `00409930` body (G-T11) |
+| Authored registry and row lookup | REG, ROW, VBF §2/§7 | **MOSTLY** | `003846F0` and bespoke binders (G-T16, G-T17); bounds behaviour (C-V33); registrar counts (C-V25, C-V26); row-address width (G-T20) |
+| `battle_pack`, `word.bin`, text banks, text ids | VBF, BTB | **NOT YET** | directory shape (C-V20); escape codes, CJK, `002B58B0`, group-table filler (G-T23, G-T24) |
+| `.ard` binder and `.nmb` | ARDC, LDR, NMB, S2R | **NOT YET** | field→area index (G-T21); resolver identity (C-V44); `0032EB40` (C-V45); `003846F0` depth (C-V47); slot 7 (C-V49); record level (G-S13); `.nmb` meaning (G-S14) |
+| Authored expressions | AEC, RND | **MOSTLY** | `advance()` lives on another category's page (G-T13); curve edge cases (G-T14); colour combiner (C-V58); `1.0f` operand (C-V57) |
+| Typed list (menu widgets) | TL | **MOSTLY** | type-4 drawer jump (G-T12); census conflicts (C-V27, C-V28, C-V119) |
+| Prefetch, `.ah`, `.ta` | PJR, PFM, AH, TA | **MOSTLY** | `.ah` entry layout and kind-4 dispatch (G-T27); phyremaps (G-T28). Prefetch itself is resolve-and-mark only (`PFM:131-132`) |
+| Standard formats (TGA, ico, `system.cnf`, csv/json, webm) | SF | **MOSTLY** | "movie table" misreading (C-V67); webm decoding is libvpx (`SF:147-153`) |
+| Menu-map family (`amap`, `wmap`, `lmap`, `cmap`, `gmap`) | AMAP, WMAP, LMAP, CMAP, GMAP | **MOSTLY** | loader API (C-V90); region count (C-V99); `loc_MAX` owner (G-T33) |
+| Handbook family (`hctg`, `hchk`, `hdat`, `himg`) | HCHK, HIMG | **MOSTLY** | `himg` numbering base (C-V39); `hctg +0x04` (C-V40); root stride (C-V95); widget fields (C-V96) |
+| Quest, CHSE, `.btm`, `.cl2`, MRP, five small tables | LST, MQ, CHSE, BTM, CL2, MRP, FIVE | **MOSTLY** | manifest premise residue (C-V85, C-V86); `.btm` slot base and ready bit (C-V80, C-V81) |
+| TIM2, AS7, `mg`, `sloc`, binmenu, unnamed `.bin` | TIM2, AS7, MG, SLOC, BINM, UBF, LBB | **NOT YET** | TIM2 route (G-T29); AS7 codec (G-T30); `mg` layout only off-page (G-T31); `sloc` records (G-T32); binmenu texture format (G-T34); registry identity (C-V83); loader census missing (G-T36) |
+
+What would move the folder to MOSTLY overall:
+1. A local byte check of the 94 unsettled §3.1 items, starting with these, which change a port's behaviour on every
+   load:
+   - C-V5 (entry size);
+   - C-V7 (resolver guard);
+   - C-V20 (`battle_pack` directory);
+   - C-V33 (row bounds);
+   - C-V44 / C-V45 (`.ard` request route);
+   - C-V3 (`0046DD50`);
+   - C-V90 (map loader API).
+2. Pages for `003846F0`, the `005004C0` relocator family, `002B58B0` with the text escape and CJK encodings, the
+   `00264ED0` field→area mapping, and the `mg` / `sloc` record layouts.
+3. Striking the 56 §3.2 items, so that the pages say one thing each.
