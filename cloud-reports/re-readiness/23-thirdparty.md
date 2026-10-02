@@ -378,3 +378,224 @@ sentence remains; those are in §3.2.
 | F-10 | Debug gates: frame mode byte `02064AD3`, mask `[022C7F94]`, latch `01F81258` `+9` / `+0xA74` | `INV:734-736` |
 | F-11 | PPFX nesting counter `02EA0B3C` (incremented / decremented / tested; meaning not given) | `PPFX:348` |
 | F-12 | `PScheduler` task `+0x20` dword (third argument) and the running-scheduler refusal code `0x17` | `LUA:427-429` |
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Every quotation below was checked mechanically against the snapshot text at the line cited (blockquote markers,
+backticks and emphasis stripped; `…` marks an elision). A range such as `INV:755-756` means the quotation wraps
+across those lines. Each item carries one of two labels:
+- "favoured side" is named only where a **dated correction on the pages** settles it;
+- "none" means the pages leave the choice open.
+
+Value-changing items (§3.1) disagree on a count, offset, address, constant, field role, reachability or algorithm
+step. None can be settled from text alone, so every one is marked **page-text only - needs local check** (the
+executable was not available to this session). Stale and banner items (§3.2) do not change a value a port would
+use: they are "open / not read" claims that another part of the pages answers, or status lines that disagree.
+
+| group | items | with a favoured side | no favoured side |
+|---|---:|---:|---:|
+| §3.1 value-changing | X-COUNT | X-FAV | X-NONE |
+| §3.2 stale "open / not read" | S-COUNT | S-FAV | S-NONE |
+| §3.2 status banner / front matter | B-COUNT | B-FAV | B-NONE |
+| **total** | **T-COUNT** | **T-FAV** | **T-NONE** |
+
+The value-changing items a port is most likely to trip on:
+- the Phyre body's `+0x28..+0x30` (X-1) and Bullet's `+0x160` (X-2);
+- the Lua header check, read 17 / compare 18 (X-3), and the chunk-name field (X-4, X-5);
+- EASTL's static-string object size and empty-string state (X-6, X-7, X-8);
+- which audio decoder serves which path (X-18, X-19);
+- the post-processing layering and the YEBIS licence gate (X-28, X-29).
+
+### 3.1 Value-changing — page-text only - needs local check
+
+##### Bullet seam
+
+#### X-1. Phyre body `+0x28 / +0x2C / +0x30`: centre of mass, or scale
+- §4: “+0x28 f32 centreOfMass.z negated into every child transform” (`BUL:204`), with `+0x2C` / `+0x30` as `.y` / `.x` (`BUL:205-206`); §3 of the seam negates them into each child origin (`BUL:120`).
+- `006A4A60` read: “multiplied componentwise by the scale at self+0x28/0x2C/0x30 and offset by the translation at self+0x38/0x3C/0x40” (`BUL:605-607`), while the per-shape rescale reads “a vec3 at self+0x88/0x8C/0x90” (`BUL:613-614`), which §4 calls scale (`BUL:210-212`).
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-2. Bullet body `+0x160`: angular velocity, or the target of a basis write
+- BN-2: “pow(1 − [+0x1E4], dt) over the angular velocity +0x160..+0x168” (`BUL:404`).
+- `006A0A50`: “offset by +0x160/+0x164/+0x168 and stored back into +0x160..+0x164” in what the page calls “the basis-write” (`BUL:654`). Also `+0x160` receives a vec3 from `006A4A60` (`BUL:600-601`).
+- The two readings agree only if the "basis write" is an angular-velocity write; no line says so. Favoured side: none. **page-text only - needs local check.**
+
+##### Lua loader
+
+#### X-3. Header check: 17 bytes compared, or 18
+- “The comparison at 0082E490 runs over 0x11 = 17 bytes — LUAC_HEADERSIZE - 1” (`LUA:83-84`); “the header writer / checker; 17-byte compare” (`LUA:260`); “Header size 18, checker compares 17” (`LUA:499`); “the comparison runs over 0x11 = 17 bytes” (`LUA:547`).
+- Inside the contract, unstruck: “rejected by the 17-byte compare” (`LUAC:194`); “its boundary is exact — 17 compared bytes, not 18” (`LUAC:454`); “must still be accepted by the 17-byte compare, because byte 0 is not in the compared range” (`LUAC:500-501`).
+- Corrected: “CORRECTED 2026-09-12 (OPUS-LUAHDR-ISOLATED), from the body. The function builds an 18-byte expected header, reads 17 bytes from the stream, and compares all 18.” (`LUAC:459-460`); executed: “the read length observed is 17 on every single case” (`LUAC:308`).
+- Favoured side: **18 compared, 17 read** (dated correction 2026-09-12, executed in isolation). The `LUA` falsification pass is dated a day later (2026-09-13) and still says "comparison" for the `0x11` (`LUA:17`). **page-text only - needs local check.**
+
+#### X-4. `00683C30`'s `+0x48` low-bit subtraction: on the length, or on the name
+- “The - (*(u8 *)(b + 0x48) & 1) on the length is the small-string-optimisation tag bit being masked off a packed length field” (`LUA:203-204`); related link: “the packed-length idiom 00683C30 uses on its buffer” (`LUA:519`).
+- Same page's sketch and correction: “const char *name = *(char **)(b + 0x48) - (*(u8 *)(b + 0x48) & 1); /* -> r9, the chunk name */” (`LUA:175`); “Corrected 2026-09-14 (FABLE): the first version of this sketch had len and name swapped.” (`LUA:189`); the contract: “+0x48 u64 name tagged pointer; the low bit is subtracted off -> r9, the name” (`LUAC:108`).
+- Favoured side: **name** (dated corrections 2026-09-13 `LUAC:252-265`, 2026-09-14 `LUA:189-191`, 2026-09-25 `LUAC:109`). **page-text only - needs local check.**
+
+#### X-5. Is the low-bit tag "the EASTL idiom"?
+- `LUA`: “the same idiom this database records for EASTL strings” (`LUA:204`).
+- `EASTL`: “this build carries no short-string optimisation” (`EASTL:67-68`); the low-bit test is “MSVC's short-string representation in a different structure, not EASTL's” (`EASTL:72-73`).
+- Favoured side: none (neither line is a dated correction of the other). **page-text only - needs local check.**
+
+##### EASTL
+
+#### X-6. Size of a static `basic_string` object: 24 bytes, or an allocator at `+0x18`
+- “eastl::basic_string -- 24 bytes, three pointers, NO inline buffer” (`EASTL:187`).
+- Front matter: “every member calls 001EDF00 … EXACTLY twice - the stack copy and the allocator embedded at +0x18 of the static object” (`EASTL:27`); the members file header says the same.
+- A port that lays out the 58 static strings needs to know whether each object is 24 or at least 32 bytes. Favoured side: none. **page-text only - needs local check.**
+
+#### X-7. The empty string's three pointers
+- Front matter: “point all three pointers at the shared empty byte 02EBA2E0” (`EASTL:27`).
+- Body: “if (n < 2) { end = 02EBA2E0; capacity_end = 02EBA2E1; }” (`EASTL:211`), and BS-3: “the triple is set to the shared sentinel 02EBA2E0 / 02EBA2E1” (`EASTL:355`).
+- The destruction guard tests `capacity_end - begin > 1` (`EASTL:222`), so both readings pass it, but the stored values differ. Favoured side: none. **page-text only - needs local check.**
+
+#### X-8. Do empty static strings allocate?
+- §4, under its heading Static string initializer, exactly: “p = allocator->allocate(payloadLen + 1, 0);” with no branch (`EASTL:246`).
+- BS-3: “len + 1 = 1 takes the jbe path and the triple is set to the shared sentinel” (`EASTL:354-355`); BS-4 (2026-09-15): “the jbe is simply always taken in the empty case” (`EASTL:374`).
+- Favoured side: **the sentinel path** (BS-3 2026-09-12, BS-4 2026-09-15, both from the bodies). **page-text only - needs local check.**
+
+#### X-9. The static-initialiser census
+- Body: “EASTL.BasicString.StaticInitializer is 58 functions” … “52 are 240 bytes and 6 are 228” (`EASTL:144-145`); §10: “58; {240: 52, 228: 6} — exact” (`EASTL:476`).
+- Front matter: 51 members “all 240 bytes” (`EASTL:27`); a variant family of 7 “(6 at 228 bytes, 2 at 74 bytes - different source-string argument forms)” after “1 member(s) left the family 2026-09-20” (`EASTL:28`); a container family of 4 (`EASTL:29`). The files hold 51 at 240, five at 228 and two at 74.
+- So the 240-byte count is 52 or 51, the 74-byte form appears only in the front matter, and the variant row's own figures (6 + 2) do not make its count (7). Favoured side: none. **page-text only - needs local check.**
+
+#### X-10. Addresses of the EASTL literals
+- BS-5 narrowing: “EASTL vector (007A4D58), EASTL set (007D2AB0), EASTL list (007D2AC0), EASTL map (007D2F20), EASTL basic_string (007D5400) and EASTL (01BB9C78)” (`EASTL:382`).
+- §10 and BS-2: `EASTL basic_string` `008F6600`, `vector` `008C5F58`, `set` `008F3CB0`, `list` `008F3CC0`, `map` `008F4120` (`EASTL:486-490`, `:332-333`); slot 4 returns “"EASTL" (01CDAE78)” (`EASTL:396`).
+- Each pair differs by `0x121200`, the shape of a file offset against an image address. The inventory relabels its own file offsets with a dated note (`INV:809`); this page does not. Favoured side: none on this page. **page-text only - needs local check.**
+
+#### X-11. What `001FF740` does
+- §3: “strlen → empty-sentinel or allocate len+1 → memmove → terminate; 17 callers” (`EASTL:164`) and §5 places it as the string constructor in the call chain (`EASTL:259-264`).
+- §10: “Not a constructor: it destroys the string on the way out and returns another function's result.” (`EASTL:532`), under the heading “Name corrected 2026-09-03” (`EASTL:516`).
+- Favoured side: **§10** (dated 2026-09-03; the §3 name was changed but not its role column). **page-text only - needs local check.**
+
+##### libvpx
+
+#### X-12. Control-handler return values: three, or four
+- “Three distinct return values appear” (`VPX:78`): 0, 4, 8 (`VPX:82-84`).
+- Row `0x101`, corrected 2026-09-15: “returns 8 when the out-pointer or [ctx+0x1B0] is null, 1 when [+0x1A38] is null, else copies dword +0x88” (`VPX:71`).
+- Favoured side: **four (0, 1, 4, 8)** (dated correction 2026-09-15). **page-text only - needs local check.**
+
+#### X-13. `0016EEC0` (control `0x102`): two passes, or three
+- Row `0x102`: “two nested loop pairs over a 0x4C stride” (`VPX:72`); UQ-310 narrowing: “two full passes, not one” (`VPX:191`).
+- UQ-310 answer (2026-09-26): “There are three passes, not two.” and “the result is altref*4 | golden*2 | last” (`VPX:198-199`).
+- Favoured side: **three passes** (dated 2026-09-26). **page-text only - needs local check.**
+
+#### X-14. Are the four missing handlers referenced only by the control map?
+- “For each of the four, the qword in this control map is its only reference - no call, no jmp, no rip-relative lea, and no second relocation anywhere.” (`VPX:98-100`); “once each” (`VPX:172-173`).
+- The UC-1 row (2026-09-29): “each is held in the decoder's control map at 01CDB320 …, one is also branched to from inside the span” (`INV:36`); `members/libvpx-vp8-decoder-uc1.tsv` gives `0016EFF0` two references.
+- Favoured side: none (the UC-1 row is later but is not phrased as a correction of `VPX`). **page-text only - needs local check.**
+
+#### X-15. Are the libvpx SIMD kernels referenced?
+- `VPX` §5: “the 66 SIMD blocks at the head of .text. Those are a separate population, reached by nothing at all” (`VPX:120-121`).
+- `INV`: kernels are defined as entries whose “every direct caller and every lea referencer is a decoder member or another kernel”, and “The run-time dispatch setup 0016F080 leas four of them” (`INV:455`).
+- Favoured side: none (both dated 2026-09-13). **page-text only - needs local check.**
+
+#### X-16. libvpx kernel counts by range
+- Body (2026-09-13): “31 at 00125740–001297DE, 00133B40, 32 at 001481D0–0014C221, 00158B40 / 00158C09” (`INV:455`).
+- Front matter: “27 at 00125740-00128FB3 directly after the CRI HCA decoder, one at 00133B40, 32 at 001481D0-0014C221, two at 00158B40 / 00158C09” (`INV:37`), which sums to 62 against the row's count of 63.
+- The members file holds 30 / 1 / 30 / 2. Favoured side: none. **page-text only - needs local check.**
+
+##### Audio codecs
+
+#### X-17. Is libvorbis reached?
+- Unstruck: “libvorbis is unreached — only the attribution of the path's lower half is corrected” (`INV:266-267`); “CF-2's reachability (the root 00679A40 is called by nothing) is unchanged” (`INV:334-335`).
+- Corrected: “REACHED FROM THE MOVIE PLAYER IN TWO HOPS (corrected 2026-09-16, OPUS …)” (`INV:30`); “Corrected 2026-10-01 (SWE2-STRUCT for OPUS): libvorbis is not dead weight.” (`INV:774`).
+- A port that drops libvorbis loses movie audio. Favoured side: **reached** (dated corrections 2026-09-16 and 2026-10-01). **page-text only - needs local check.**
+
+#### X-18. Is the Tremor decode core SEAD's code or Xiph's?
+- CF-2 box, unstruck: “its four bodies are called only from the driver's own decoder core (007FDC60, 007FE530, 007FF1C0)” and “The upward closure from those three is 62 functions, all inside the sound driver” (`INV:755-756`, `:764-765`).
+- Correction (2026-09-12): “The lower part of that closure is Xiph code linked beside SEAD, not SEAD: 007F41A0–≈007FF1C0 is Tremor” (`INV:257-258`); the table at `01F41E58` is “Tremor's own codec registry” (`INV:259-260`).
+- Favoured side: **Xiph (Tremor)** (dated 2026-09-12; `INV:264-267` says the conclusion stands and only the attribution changes). **page-text only - needs local check.**
+
+#### X-19. Tremor's size
+- “Tremor, 106 members” (`INV:277`); “the linked object is 107 entries” (`INV:311-312`); “fixed above to 107 … the linked objects are 122 and 107” (`INV:346-347`), while the table it says it fixed still reads 4 (`INV:100`).
+- Front matter: count 99, after “less two entries since measured as A (007F41A0, 007F7FF0 …)”, “007FF1C0 left the family 2026-09-17”, “007F5CC0”, “007FE0F0”, and “3 member(s) left the family” on 2026-10-01 (`INV:28`). From 106 those removals give 98, not 99.
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-20. Lua's size
+- “The linked interpreter is 623 entries … and 606 are declared” (`INV:384-386`); “13 entries already in OPUS's Lua math unary-function adapter family, 4 A-measured” (`INV:406`).
+- Front matter: count 600, “less 13 in OPUS's Lua math-adapter family and 5 A-measured”, then “One member left the family 2026-09-17, since measured as A: 008216A0 …; two more, 008162F0 and 00827600, went A” (`INV:33`). 623 − 13 − 5 − 3 = 602, not 600.
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-21. zlib's size
+- “58 are declared” (`INV:413-414`), 2026-09-13.
+- Front matter: “2026-09-18: 57→56 - 0080C750 … is now measured as A” (`INV:34`). No line records the step from 58 to 57; the later removals (2026-09-30, 2026-10-01) give 54, which matches the file.
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-22. libvorbis registry: "three vtables" or three residue bundles
+- CF-2 box: “their three vtables at 01CEB0A8” … “01CEB178 are referenced only by two of the eleven themselves” (`INV:768-769`).
+- Declaration (2026-09-13): “three residue bundles at 01CEB0D0 / 01CEB110 / 01CEB150 … floor and mapping bundles around them at 01CEB070–01CEB0C8” (`INV:327`).
+- Favoured side: none (the declaration does not say it corrects the CF-2 reading). **page-text only - needs local check.**
+
+#### X-23. CRI HCA decoder version
+- Pass 26: “CRI HCA | Mixer 2.00.00, build 2015-07-31 16:45:20” as the version banner for the decoder family (`INV:1097-1102`).
+- X-8 box (2026-09-27): “the CRI HCA decoder banner is Ver.2.05.00 (01CBA5D1), beside the mixer's 2.00.00” (`INV:810`).
+- Favoured side: none (the later line is not phrased as a correction). **page-text only - needs local check.**
+
+#### X-24. CRI copyright string address
+- “00121DB0 references Copyright (c) 2009-2010 CRI Middleware Co., Ltd. at 01CBA610” (`INV:298-299`).
+- Pass 26: “right (c) 2009-2010 CRI Middleware Co., Ltd. | 01CBA629” (`INV:1103`). `0x19` bytes separate them, which is not the 4-character "Copy" prefix.
+- Favoured side: none. **page-text only - needs local check.**
+
+##### Inventory, versions and smaller libraries
+
+#### X-25. JsonBox version
+- “JsonBox the 0.6 line” (`INV:1001`); “JsonBox: the 0.6 line, as an EASTL port” (`INV:810`, struck tail).
+- “JsonBox 0.6.2” (`INV:808`); “(corrected 2026-09-27, FABLE, Claude Opus 5.5: it is 0.6.2” (`INV:810`).
+- Favoured side: **0.6.2** (dated correction 2026-09-27). **page-text only - needs local check.**
+
+#### X-26. Which serializer name sits at `01CCD380`
+- “Lua's pool ends exactly where Bullet's serialisation names start (01CCD380 btCollisionShapeData)” (`INV:398-399`).
+- X-8: “btCollisionObjectFloatData / btCollisionShapeData (~~01BAC180, 01BAD1D8~~ 01CCD380, 01CCE3D8 …)” (`INV:809`), which pairs `01CCD380` with `btCollisionObjectFloatData`; `BUL` puts all twenty names at “file offsets 0x1BAC800..0x1BAE300” (`BUL:386`), above the inventory's file offset `0x1BAC180`.
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-27. Dear ImGui context global
+- Front matter: “the context global 02EA54F0” (`INV:41`).
+- Body: “the shared static at 02EA54C0 are integration machinery” (`INV:599-600`).
+- `00793140`: “the 02EA58C0 object the uq314 record identifies as the ImGui context” (`INV:1232`).
+- Favoured side: none. **page-text only - needs local check.** (Low impact: the context is dormant.)
+
+#### X-28. Post-processing layering: three systems, or two
+- “The binary contains three distinct post-processing layers” with `ThirdParty.Rendering.PPFX` “a separate framework” and `ThirdParty.Rendering.Yebis` “commercial, owns DOF/lens” (`INV:604-610`); call chain “PPFX (348) framework effects” then “YEBIS (3+) DOF / lens” (`INV:664-665`).
+- X-7 (2026-09-13): “PPFX is the core of Silicon Studio's Yebis” (`INV:806`); `PPFX`: “PPFX is the post-effect core shipped as Silicon Studio's Yebis, not a Sony component.” (`PPFX:424-425`); depth of field is `GPUDepthOfField.cpp` inside PPFX (`PPFX:110`, `:219-220`).
+- Favoured side: **one Yebis/PPFX package beside Phyre's own** (X-7 dated 2026-09-13). The §2 table and §5 chain were not updated. **page-text only - needs local check.**
+
+#### X-29. YEBIS licence gate
+- §4: “Licence gate (as described by the strings, not read from a body) if (today > expiry)” (`INV:642-643`); §8: “the YEBIS licence-expiry behaviour rests on strings, not on a read of the checking function” (`INV:908-909`).
+- X-2 (2026-09-14), from the body: a mismatch between signed and plain-text fields “sets status 1, not valid”; “All six zero skips the date test”; otherwise “sets status 2, expired …, when now is before begin or after end” (`INV:712-718`).
+- The body adds a validity check and a lower bound the strings-only gate lacks. Favoured side: **X-2** (dated 2026-09-14). **page-text only - needs local check.**
+
+#### X-30. Which body is `ImGuiIO::ImGuiIO()`
+- “00791D80 is ImGuiIO::ImGuiIO()” (`INV:585`); “the IO ctor plus the 00792090 context-construction mass” (`INV:591`).
+- `00791E70` subtree: `00791D80` is “context init” and `00792090` is “member-object ctor at +0xB90 (the ImGuiIO/settings block)” (`INV:1225-1226`); “Dear ImGui's ImGui::CreateContext path” (`INV:1229-1230`).
+- Favoured side: none. **page-text only - needs local check.** (Low impact: dormant.)
+
+##### Yebis / PPFX
+
+#### X-31. PPFX member count
+- §11 heading: “The library's extent — 1,638 functions declared” (`PPFX:331`) and “The count fell 1,657 → 1,638” (`PPFX:336`); §11 scope: “What the 1,657 bodies compute” (`PPFX:427`); `INV`: “the 1,660-function object is declared on” the source map’s §11 (`INV:806`).
+- Front matter: count 1,598, from 1,766 entries “less 128 already dispositioned or foreign (14 A-measured, 113 in other declared families …)”, one folded body and `0071F970` (`PPFX:28`), then removals of 12, 1, 1, 9, 1, 8, 1 and 2. That arithmetic gives 1,601, not 1,598; §11 says “11 A-measured” where the front matter says 14 (`PPFX:365`).
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-32. Number of source paths
+- “26 source paths and 1,857 call sites survive” (`PPFX:37`); “300 strings / 26 distinct paths” (`PPFX:487-488`); “26 source paths exist in the image” (`PPFX:311`).
+- BQ-32's sweep of “every source path in the image”: `.cpp` 24 relative, `.c` 3 relative, `.h` 1 absolute (`PPFX:436-442`), i.e. 28 before `PhyreScripting.inl`; BQ-32's own answer omits the `.c` row: “(.cpp 24 relative / 0 absolute, .h 1 absolute / 0 relative)” (`PPFX:300-301`).
+- §11 and the front matter count “the 25 ..\src\ paths of §2.2” (`PPFX:340-341`), though one of the 25 (`GPUClassUtil.h`) is absolute (`PPFX:96`).
+- Favoured side: none. **page-text only - needs local check.**
+
+#### X-33. Assertion sites: 1,857 or about 363
+- “1,857 such sites survive across 940 functions. They are authored evidence — the file names are what a Silicon Studio engineer typed” (`PPFX:81-82`).
+- “PhyreScripting.inl is referenced 1,494 times from 747 distinct functions … this is one header included into 747 generated scripting bindings, not 747 assertions” (`PPFX:149-152`). 1,857 − 1,494 = 363 PPFX sites, consistent with §2.3's per-file site column.
+- Favoured side: none (both undated). **page-text only - needs local check.**
+
+#### X-34. `__LINE__` values
+- §2.3 gives distinct-line counts per file, for example `GPUDepthOfField.cpp` 59 and `GPUPostEffect.cpp` 35 (`PPFX:110`, `:112`).
+- BQ-31 (2026-09-22): at four window widths `GPUDepthOfField.cpp` gives “25 / 26 / 26 / 29” (`PPFX:276`) and `GPUPostEffect.cpp` “6 / 6 / 6 / 18” (`PPFX:278`); “Neither holds when the value is whichever mov reg, imm happens to sit nearest” (`PPFX:289-290`).
+- Favoured side: **BQ-31** (dated 2026-09-22: the column is not reliable line data). **page-text only - needs local check.**
+
+#### X-35. `GPUClassUtil.h`: how many copies, and which are referenced
+- §3: “00D94ED0, 00D94F50 | d:\bamboo\build\yeblic-ppfxlic-bl2015\src\gpu\GPUClassUtil.h — the referenced copies” (`PPFX:164`).
+- BQ-32: “All 12 occurrences are byte-identical” (`PPFX:454`) and “20 code sites reference the twelve copies, and 73 is a nearby immediate at 19 of them” (`PPFX:458`); §10: “six identical copies of GPUClassUtil.h, all at line 73” (`PPFX:481-482`), explained there as a display artefact.
+- Two referenced copies against references to all twelve. Favoured side: none. **page-text only - needs local check.**
