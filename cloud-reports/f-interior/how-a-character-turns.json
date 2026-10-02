@@ -1,0 +1,96 @@
+{
+ "page": "06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md",
+ "session": "session_01924rEWURNFUyvDKP31ShM7",
+ "rows": [
+  {
+   "fn": "00269C30",
+   "text": "when byte `+3` of `rcx` AND `0xE0` equals `0x60`, takes the qword `+0xF0` of qword `+0xB8` of `rcx`, stores `xmm1` times float `01DFE0BC` (decoded 1.0) at its float `+0x2C` and `r8b` at its byte `+0x2B`; otherwise returns without work",
+   "anchors": [
+    [
+     "00269C36",
+     "cmp"
+    ],
+    [
+     "00269C49",
+     "mulss"
+    ],
+    [
+     "00269C54",
+     "movss"
+    ],
+    [
+     "00269C60",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0026AE30",
+   "text": "builds the 16 bytes (`xmm1`, `xmm2`, `xmm3`, 1.0 from `01CEBBA8`) on the stack; when byte `+3` of `rcx` AND `0xE0` equals `0x60`, copies them to offsets `+0x00`..`+0x0C` of the qword `+0xF0` of qword `+0xB8` of `rcx` and zeroes its byte `+0x2A`; otherwise returns without storing",
+   "anchors": [
+    [
+     "0026AE53",
+     "movss"
+    ],
+    [
+     "0026AE59",
+     "cmp"
+    ],
+    [
+     "0026AE6F",
+     "movups"
+    ],
+    [
+     "0026AE79",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0026B450",
+   "text": "when `rcx` is non-null and byte `+3` of `rcx` AND `0xE0` equals `0x60`, stores `xmm1` at float `+0x20` of the qword `+0xF0` of qword `+0xB8` of `rcx`; otherwise returns without work",
+   "anchors": [
+    [
+     "0026B45B",
+     "cmp"
+    ],
+    [
+     "0026B466",
+     "mov"
+    ],
+    [
+     "0026B46D",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "002EA780",
+   "text": "returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and `003E6AF0` (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910(rcx)` returns 1 and 0 otherwise (`sete`)",
+   "anchors": [
+    [
+     "002EA7AC",
+     "imul"
+    ],
+    [
+     "002EA7BC",
+     "cmp"
+    ],
+    [
+     "002EA7C5",
+     "call"
+    ],
+    [
+     "002EA7D1",
+     "call"
+    ],
+    [
+     "002EA7DB",
+     "sete"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002EA780 is also rowed in setting-the-movement-mode-and-which-way-a-character-turns.json with the identical sentence. 00269C30: 01DFE0BC is decoded as 1.0 in the image; the page reads it as a runtime frame-rate scale, which the listing does not show."
+}
