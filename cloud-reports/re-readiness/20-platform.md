@@ -299,3 +299,221 @@ context's `+0x18` is already set, skip to step 3" (`STM:59-60`).
 | G-22 | `00315390` (one of the "twenty achievement-counter bodies", `CAT:288`) appears in the unlinked `achievement-state-accesses.tsv` reading the `+0x3844` route at `base+0x24` (`+0x3868`, counter 17); CAT's displacement-scan list (`CAT:331`) does not name it. Pointer only. | A possible extra reader of counter 17. | `CAT:331`; member TSV row `00315390 … 003153A4 0x24 r` |
 | G-23 | What `003162E0` and `00316440` decide before calling `008632B0` (the TSV shows `00316440` reading `+0x3845`). | Two award callers with no stated condition. | `STM:89-90`, `STM:192` |
 | G-24 | Thread and frame relation between gameplay counter updates and the window pump. | I-2's "lost award" window depends on when 1101 arrives relative to the first awards. | `STM:84-85`, `STM:126-130` |
+
+---
+
+## 3. Contradictions (statements a re-implementer would have to choose between)
+
+Each item quotes both sides with `page:line`. **Value-changing** items (3.1) would change what a port computes or
+stores; every one is **page-text only - needs local check** (this session cannot see the executable). A favoured side
+is named only where a dated correction on the pages settles it, and even then the byte check is still owed. **Stale /
+banner** items (3.2) change no value: an "open / not read" claim another page or later section answers, a banner that
+disagrees with front matter, or a corrected claim repeated unstruck.
+
+### 3.1 Value-changing — page-text only - needs local check
+
+**C-V1 — Which arm of `00315E90`'s jump table each mode 4–7 reaches.** *No favoured side.*
+
+- CAT (dated "ANSWERED 2026-09-17 (FABLE)"): "**1, 4** → nothing (arms at the return label); … **5** → `003160C0()`:
+  every navigation-map entry flagged … is visited …; **6** → `003161A0()`: every id below `0x200` satisfies its
+  bestiary requirement …; **7** → the threshold (0–9) indexes the `u16` id list at the handbook's third hop
+  (`00316014`–`00316037`), and that monster's defeat count `00315420(id)` must be above 0." (`CAT:662`). Also "the
+  exploration check, achievement mode 5" (`CAT:170`) and "the checker's mode-7 arm (`00315FFA`) indexes the
+  descriptor's threshold (0–9) into the `u16` monster-id list" (`CAT:297`).
+- CTR (dated "CLOSED 2026-09-23 (SWE2-CONTRACT): all eight arms decoded"): "| 1 | `0031607D` | **no-op** — the epilogue
+  itself |", "| 4 | `00315FDC` | predicate `003160C0()` → award if true |", "| 5 | `00315FEB` | predicate `003161A0()` →
+  award if true |", "| 6 | `00315FFA` | walks the `022C2550` word-offset chain (same shape as `003165C0`), bounds-checks
+  descriptor `+4` against `word[rax+2]`, fetches `word[rcx + rdx*2 + 4]` and calls `00315420` on it — award if `> 0` |",
+  "| 7 | `0031607D` | **no-op** — shares mode 1's epilogue |" (`CTR:357-363`).
+- The two agree on modes 0, 2 and 3 (arms `00315F19`, `00315F46`, `00315F87`: `CTR:356-359`, `CAT:244`, `CAT:696`) and
+  on the bodies behind the arms; they disagree by one position for modes 4–7. The descriptor table uses modes 5 (id
+  15), 6 (id 16) and 7 (ids 20–29) and no mode 4 (`CAT:608-622`). Under CTR's table, the ten `MONSTER` marks (mode 7)
+  never fire, Cartographer (mode 5) runs the bestiary predicate and Scrivener (mode 6) runs the monster-list arm.
+  Neither page strikes the other; CAT's later reconciliations (2026-09-30, `CAT:308`) keep mode 7 = monster list, and
+  the member file `menuhandbook-achievement-records.tsv` labels descriptors 20–29 "mode 7" with "`003165C0 /
+  00315FFA`" as the walker. **Local check:** the eight dwords at `00316098` and the index arithmetic before
+  `00315F0C`–`00315F17`.
+
+**C-V2 — The updater's trigger path, mode 0: unconditional fire or a threshold compare.** *No favoured side* (the
+weight of the pages is on "compare", but nothing strikes CTR §7).
+
+- CTR §7: "| `0` | fire unconditionally through `003165C0` (`00316A99` → `00316AF4`) |" (`CTR:141`); §12: "`if (d->mode
+  == 0)                    Fire(id);`" (`CTR:229`); §15a: "Of the nineteen trigger descriptors, one is mode 1 … and three
+  are mode 0" (`CTR:145`).
+- CTR's own claim table: "when the id has no counter, submode 0 fires on a threshold and submode 1 on an exact match |
+  `00316AF4` against `00316AA6`. Executed at, below and above the threshold" and "the fire lookup supplies the threshold
+  when it is non-zero | `00316AF8` then `00316B01`" (`CTR:407-408`); CAT: "mode `0` compares the amount against the
+  threshold (or against a value from `003165C0` when that returns non-zero)" (`CAT:578-579`); CAT (read 2026-09-30,
+  SWE2-DATA): "The updater's kind-0 arm compares the value `0028F0C0` passes … against the override 50 and fires on it"
+  (`CAT:696`).
+- Affects ids 5, 8, 18 (the three mode-0 trigger descriptors). **Local check:** `00316A99`–`00316B01`.
+
+**C-V3 — CTR §12 reproduction formula: the store target, and the missing evaluate.** *Favoured: the 2026-09-12
+correction* (`00316BF0` stores; `00315E90` evaluates first).
+
+- CTR §7/§12: "`Store(id, result)                      00316BBD -> 00315E90`" (`CTR:182`); "`Store(id, v);
+  /* 00315E90 */`" (`CTR:245`); the formula calls no evaluate step.
+- CTR box, "**CORRECTED 2026-09-12 (`OPUS-ACHIEVE-ISOLATED`)**": "The store is **`00316BF0`**" (`CTR:78`); "`00316BC1 call
+  00315E90`, then `00316BCC call 00316BF0` with the new value" (`CTR:83-84`); claim row "the store is 00316BF0, not
+  00315E90" (`CTR:409`).
+- The formula also omits the trigger path's award-bit set and notify (`CAT:582-587`) behind `Fire(id)`.
+
+**C-V4 — Negative-sum clamp on the accumulate path.** *Favoured: clamp to 0 on kinds 2 and 4, none on the fall-through*
+(the 2026-09-12 run, "What the run established that reading had put in the wrong row", `CTR:285`, re-checked
+2026-09-30 by `pf_steam_checks.py` C, `CAT:714`).
+
+- CTR §12: "`if (d->kind == 2) v = (amount > 0x7FFF     - v) ? 0x7FFF     : v + amount;`" / "`else if (d->kind == 4) v =
+  (amount > 0x7FFFFFFF - v) ? 0x7FFFFFFF : v + amount;`" — no lower clamp (`CTR:237-238`); CAT §10: "| `4` | add, clamped
+  to **`0x7FFFFFFF`** |" against "| `2` | add, clamped to **`0x7FFF`**, and clamped **up to 0** if the result goes
+  negative |" (`CAT:598-599`).
+- CTR: "Kinds 2 and 4 reach `add ebx, edi / jns` and clamp a negative sum to zero; the fall-through arm adds and does
+  not." (`CTR:293-294`); claim row "a sum that goes negative is clamped to zero on kinds 2 and 4 but NOT on the
+  fall-through" (`CTR:405`); CAT: "the updater cannot, because its kind-4 arm clamps a negative sum to 0" (`CAT:714`);
+  "kind-4 sums never go below 0" (`CAT:357`).
+
+**C-V5 — `003165C0`'s hop count.** *Favoured: four* (dated 2026-09-23 correction).
+
+- CTR SWE2-EC7-26 (2026-09-18): "resolves the `022C2550` root through three word-relative offset hops" (`CTR:472-473`).
+- CTR §14 (2026-09-23): "the walk is **four** word-relative hops … The EC7 note says "three" hops; the verified count is
+  four (`003165DA`/`003165E3`/`003165EC`/`003165F5`)" (`CTR:366-370`); CAT: "four hops in all" (`CAT:664`).
+
+**C-V6 — The id bound "before anything else".** *Favoured: CTR's 2026-09-25 correction* (evaluator `< 0x1F`; update and
+store `< 0x1E`).
+
+- CTR §4 lead sentence, unstruck: "**The id is bounded at 30 before anything else happens**, in all three entry points"
+  (`CTR:106`).
+- Same paragraph, "*Corrected 2026-09-25*": "The evaluator `00315E90`'s own first instruction bounds the id at **31**"
+  (`CTR:108-110`); EXP-089 box: "`00315E90  cmp cl, 0x1f / jae     evaluate  accepts id < 0x1F   (0..30)`" (`CTR:154`);
+  and "`003166F0` and `00316BF0` both call `002536A0` at their very first instruction, *before* any range or kind test"
+  (`CTR:298-299`), which contradicts "before anything else happens" for the read and the store.
+
+**C-V7 — The set of updater feeders.** *Favoured: the 2026-09-30 corrections* (three direct sites plus six thunk
+sites; ids 0–4, 6, 7, 11, 13, 14, 17, 18, 19).
+
+- CAT AB-7 (2026-09-12), unstruck: "The updater's seven callers fire indices 0–4, 6, 7, 11, 13, 18 and 19 only"
+  (`CAT:292-293`); "`00316A50` is reached directly from three sites and through one thunk (`00253770`) from four more"
+  (`CAT:309-310`); "So kills, steals, magicks, technicks, gil in, gil out and licence points are the counters this
+  build advances natively" (`CAT:320-321`).
+- CAT (corrected 2026-09-30, FABLE): "these are the three DIRECT sites; six more reach `00316A50` by tail jump through
+  the thunk `00253770`, and two of them pass 17" (`CAT:331`); OPUS 2026-09-30: "the same driver's sale arm passes
+  **14** with the quantity sold" (`CAT:331`, also `CAT:320`).
+
+**C-V8 — The amount `BattleUnit_ProcessDefeatRewardsAndLoot` passes for counter 11.** *No favoured side.*
+
+- CAT (2026-09-12): "fires **11** with the licence points awarded (`00312496`)" (`CAT:312-313`).
+- CAT (2026-09-18): "passes 11 with the 99,999-clamped total it keeps at `+0x190` (`00312475`–`00312496`)" (`CAT:331`).
+- A per-award delta and a running total give different kind-4 sums under mode 0 (`CAT:610-618`, id 11 is kind 4 mode
+  0). **Local check:** `00312475`–`00312496`.
+
+**C-V9 — Whether the ten `MONSTER` marks have a producer.** *Favoured: a producer exists* (CAT's dated "REOPENED AND
+ANSWERED 2026-09-17 (FABLE) - the 2026-09-12 closure was wrong"), **subject to C-V1**.
+
+- CAT, unstruck: "so the ten mode-7 descriptors have **no producer in the shipped executable**" (`CAT:294`); "a
+  reconstruction needs only the fact that nothing ever raises them" (`CAT:295-296`); "the ten mode-7 descriptors have
+  no producer in the image — either the Steam side unlocks them from stats, or they are dead" (`CAT:321-322`).
+- CAT: "**REOPENED AND ANSWERED 2026-09-17 (FABLE) - the 2026-09-12 closure was wrong: a producer exists, and it is not
+  the updater.**" (`CAT:297`). If CTR's arm table (C-V1) is right, mode 7 is a no-op and the 2026-09-12 conclusion
+  returns by another route.
+
+**C-V10 — Whether descriptor `+0x04` is read outside mode 1, and its type for mode 2.** *Favoured: it is read (modes 0,
+2, and the monster-list arm), as a `u16` pair for mode 2* (CAT "ANSWERED 2026-09-17", CTR "CLOSED 2026-09-23").
+
+- CTR §3: "`threshold` is compared **only on mode 1**" (`CTR:102`); CTR §7: "the rest carry modes 2, 5, 6 and 7 and
+  therefore **never fire through this function**. That is why their `+0x04` values look arbitrary: nothing reads them."
+  (`CTR:145-147`); CAT §10: "The type is **not established** and no reading is asserted here." (`CAT:651-656`).
+- CTR §14: mode 0 "threshold = `003165C0(id)`, falling back to descriptor `+4` when 0"; mode 2 "descriptor `+4` is a
+  packed word pair `[lo,hi)`" (`CTR:356-358`); CAT: "**2** → the threshold is two `u16`s" (`CAT:662`); mode-7/6 arm
+  indexes the list with it (`CAT:662`, `CTR:362`).
+
+**C-V11 — The extent of by-id row 6's walk.** *No favoured side.*
+
+- STM: "when the matched row is index 6, `0020CB50` also walks entry offsets `0x3168`–`0x3C90`, which is entries
+  **31–37**" (`STM:166`).
+- `0x3168 / 0x198 = 31` and `0x3C90 / 0x198 = 38` exactly, so "`0x3168`–`0x3C90`" names entries 31–38 if the end is
+  inclusive; STM's falsification table: "the seven by-id rows map to entries 31–38" (`STM:216`) against the row list
+  "31, 32, 34, 35, 36, 37 and 38" (`STM:164-165`). Whether entry 38 is in the walk (it is row 6's own entry) and whether
+  the walk includes 33 (not a by-id row; awarded by `slm_a01`, `CAT:751`) both follow from the bound. **Local check:**
+  the loop bound in `0020CB50`.
+
+**C-V12 — What the 1101 handler does with `"name"` / `"desc"`.** *No favoured side.*
+
+- STM: "copies the display attributes `"name"` / `"desc"` (slot `+0x60`)" (`STM:106-107`); entry layout "`+0x10` display
+  name (`0x80`), `+0x90` description (`0x100`)" (`STM:54`).
+- CAT AB-6 census: "`0020C940` prints `name` and `desc` through `OutputDebugStringA`" (`CAT:288`); "`0020C940`
+  `OnUserStatsReceived` (the `name` / `desc` debug print)" (`CAT:289`); and the title at `+0x10` is described as static
+  "inline Steam title" read from the file image (`CAT:108-115`).
+- Whether `+0x10`/`+0x90` are overwritten at runtime. **Local check:** `0020C940` after the slot `+0x60` call.
+
+**C-V13 — How many descriptors accumulate.** *No dated correction; the page's own table counts eleven.*
+
+- CAT AB-1: "the twelve accumulating descriptors carry 0 (index 13's `16` is a mode-3 bit index)" (`CAT:243`).
+- CAT §10: "**Eleven entries carry a numeric type** (`2` ×7, `4` ×4): indices 0–4, 6, 7, 11, 13, 14, 17" (`CAT:627`);
+  CTR §15a: "**So 11 of 30 ids carry a counter and 19 do not.**" (`CTR:442`); the table `CAT:608-622` shows eleven.
+
+**C-V14 — How many Trial Mode award sites are live.** *Favoured: 9 live per index* (CAT, "corrected 2026-10-01,
+SWE2-DATA, `SD-162`").
+
+- STM: "**39** `ACH_TRIAL_MODE_50` (*Judge Magister*) and **40** `ACH_TRIAL_MODE_100` (*Imperator*) are passed by the
+  Trial Mode stage scripts `tri_*`, 900 sites each (100 per locale)" (`STM:190`).
+- CAT: "~~900~~ 900 code copies (100 files × 9 languages); 9 live, `tri_j05` only" and "9 live, `tri_t05` only"
+  (`CAT:749-750`); "18 live sites, 1,782 statically excluded" (`CAT:761`). The member census (no live column) agrees
+  with the 900/900/9 totals only.
+
+**C-V15 — Which achievements have a stored counter.** *Favoured: the AB-2 binding (2026-09-17) and the record read
+(2026-09-18)* — `ACH_COUNT_STEP` and `ACH_COUNT_CHAIN` have no save counter; `ACH_MASTER_LICENSE` and
+`ACH_COMPLETE_YUGOU` do.
+
+- CAT §1: "Eleven achievements are pure counters — steps walked, gil earned, gil spent, enemies killed, items stolen,
+  spells cast, techniques used, chains built." (`CAT:42-44`); §10: "**Eleven entries carry a numeric type** … Section 2
+  lists **eleven `ACH_COUNT_*` cumulative counters.**" (`CAT:627-628`); §6: "Those totals exist in memory and ~~almost
+  certainly~~ in the save payload" (`CAT:229-231`).
+- CAT: "Ids 5, 8 and 18 carry `kind = 0` - no save field" (`CAT:693`); the counter-id list "5 `STEP` … 18
+  `COUNT_CHAIN`" (`CAT:268`); member `achievement-descriptors.tsv` slots 6/7 (counter ids 18/5). Numeric-type ids 11 and
+  13 are `ACH_MASTER_LICENSE` and `ACH_COMPLETE_YUGOU` (`CAT:268`, `CAT:330`).
+
+### 3.2 Stale "open / not read" claims, corrected claims repeated unstruck, and banner disagreements
+
+| # | stale side (quoted) | answering / correcting side (quoted) |
+|---|---|---|
+| C-S1 | README: "**PARTIAL, tier 2.**" (`README.md:14`); CAT body: "**PARTIAL.** … The 59 platform functions are unnamed and none was read." (`CAT:33-34`) | CAT front matter: "status: DOCUMENTED — every register row it names is closed (owner re-status 2026-09-30, OPUS)" (`CAT:4`); "the achievement path's code is read" (`CAT:174`) |
+| C-S2 | README: "in seven families" (`README.md:14-15`) | CAT: "41 identifiers in eight families" (`CAT:48`); "The ~~seven-family~~ eight-family taxonomy *(corrected 2026-09-30 …)*" (`CAT:346`) |
+| C-S3 | README: "plus 23 Steam interface versions" (`README.md:15`) | CAT: "The binary requests **21** named Steam interfaces … (corrected 2026-09-02, §9" (`CAT:128`); "~~23~~ 21 Steam interface versions" (`CAT:349`) |
+| C-S4 | CAT §4 grammar: "`TRIAL          2   MODE_50 / MODE_100          (Zodiac Age only)`" (`CAT:188`) | "~~`ACH_TRIAL_MODE_50` and `_100` are **Zodiac Age-specific**~~ … *(Struck 2026-09-30, SWE2-DATA: a claim about the 2006 release, which nothing in this image or corpus can check.*" (`CAT:90-91`) |
+| C-S5 | "What the 58 unnamed Platform-owned functions do." (`CAT:287`); "**59 functions carry the `PlatformOnlineAchievements` owner**, and all but `SteamController_PollState` are unnamed" (`CAT:172-173`, i.e. 58 unnamed) | "the unnamed set is 59 today" (`CAT:288`); member TSV has 59 rows; `README.md:8` "Functions \| 59" |
+| C-S6 | AB-6 census: "`0020CD30` a 77-byte body with nothing to name it" (`CAT:288`) | STM (2026-09-25): "Create the manager, `0020CD30` (`0079812D`). It allocates `0x80` bytes and calls `0020C730` …" (`STM:62-63`) |
+| C-S7 | `00315E90` named as "the counter updater `00315E90`" (`CAT:288`), "**The store path takes the id only**: `00315E90`" (`CAT:331`), "`00315E90`'s store dispatches on the mode byte" (`CTR:33`), "the periodic checker `00315E90`" (`STM:89-90`, `STM:161`, `STM:194`), "Downstream: the Steam User Stats interface, reached through the store's mode arms." (`CTR:128`) | CTR box (CORRECTED 2026-09-12): "`00315E90` is not the store" (`CTR:63`), the updater is `00316A50` (`CTR:48`); the periodic sweep is `00316930` (`CAT:662`). The behaviour each side describes agrees (id only, no store); only the names are stale |
+| C-S8 | CTR scope note: "`00315E90`'s store dispatches … and `003165C0` walks a relative-offset chain at `022C2550`; **neither is specified** — they are named and bounded, and each arm's behaviour is open." (`CTR:33-35`); debug-menu box: "`003165C0` stays unspecified, as the scope note says" (`CTR:61`) | CTR §14: "**CLOSED 2026-09-23 (SWE2-CONTRACT): all eight arms decoded.**" (`CTR:349`) and "`003165C0`'s chain walk … **CLOSED 2026-09-23**" (`CTR:364-365`) |
+| C-S9 | "The correct test is whether any code path reaches the accessor, and that requires reading the platform functions — none of which were read here." (`CAT:367-368`) | "*Superseded 2026-09-26 …: **AB-3** was answered on 2026-09-17.*" (`CAT:370`); "**ANSWERED 2026-09-17 (FABLE): only linked.**" (`CAT:281`) |
+| C-S10 | §9 Related: "story bits, which overlap in subject with `ACH_EVENT_*` but are not yet connected to it" (`CAT:436`) | "**AB-4** *(answered 2026-09-12, FABLE: separate state.*" (`CAT:223`); "**AB-4 ANSWERED 2026-09-12 (FABLE): separate state, inside the save image.**" (`CAT:282`) |
+| C-S11 | §9 Related: "where the counters most likely live" (`CAT:437`) | "**AB-5** — ANSWERED 2026-09-10: inside the save image at payload `+0x8000`" (`CAT:283-286`) |
+| C-S12 | "*Half answered 2026-09-15 (FABLE) — `HORIDASHI` is named by the shipped data; `YUGOU` is not.*" (`CAT:246`); "**YUGOU stays open.**" (`CAT:266`) | "***ANSWERED 2026-09-17 (FABLE): YUGOU is the achievement the player sees as *Mist Walker*" (`CAT:268`); "**BOTH ANSWERED — `AB-2` is closed**" (`CAT:104`) |
+| C-S13 | "Which of them the achievement `ACH_SPECIAL_HORIDASHI` counts is not tied in the image: the achievement names have no index binding" (`CAT:263-265`) | the record array binds every tag to a counter id, "19 `HORIDASHI`" (`CAT:268`); member TSV slot 17 `counter_id 19` |
+| C-S14 | "nothing in the image ties the name to an index" (`CAT:327-328`); "no string in this table ties an index to a name, and **this document should not treat the correspondence as a mapping until one is found.**" (`CAT:634-636`) | "***NARROWED 2026-09-17 (FABLE): the tag-to-index tie is now proved**" (`CAT:330`); `CAT:268` |
+| C-S15 | "**So whatever decides that a counter has "reached" its goal is not here.** That closes AB-1 as posed and reopens it as *"who compares a counter against a target"*." (`CAT:646-647`) | "*(Corrected 2026-09-30, SWE2-DATA: AB-1 is answered. The targets are the `menuhandbook.bin` overrides tabled in §10, compared locally by the checker.)*" (`CAT:196`); `CAT:244` |
+| C-S16 | Key-address row: "`SteamController_PollState` \| 1,124 B \| not read (`SD-163`)" (`CAT:165`) | status line: "since answered in the register: … SD-163 (the controller poll)" (`CAT:4`) — the answer itself is not on the page |
+| C-S17 | status line: "AB-6, AB-8 and UQ-272 SUPERSEDED" (`CAT:4`); AB-8 row: "the register row is ~~WITHDRAWN~~ **SUPERSEDED** 2026-09-26" (`CAT:323`) | same row: "The register word is pending with the register owner, so SUPERSEDED is not the current summary." (`CAT:323`) |
+| C-S18 | CAT front matter: "`evidence_tier: 2`" (`CAT:6`), "`last_reviewed: 2026-09-02`" (`CAT:19`), "`last_pass: 2026-09-02`" (`CAT:22`) | body corrections dated up to 2026-10-01 (`CAT:749`); "The award path is now tier 1" (`CAT:377`) |
+| C-S19 | CTR front matter: "`entries: ["00316A50", "003166F0", "00315E90", "003165C0"]`" (`CTR:9`) | CTR §2 lists the store `00316BF0` as an interface entry ("**Missing from this contract until 2026-09-12**", `CTR:51`) |
+| C-S20 | CAT: "Id 31 is dead through the engine" (`CAT:697-698`, the following clause struck); member `menuhandbook-achievement-records.tsv` last comment: "id 31 is out of range for every caller (checker id<0x1F, updater id<0x1E) — dead data." | "**Corrected 2026-09-29 (FABLE, GI-2):** no achievement check reads its override, but the value is read: the Sky Pirate's Den layout `00572920` calls `003165C0`" (`CAT:699-700`) |
+| C-S21 | CTR §13: "the eleven counters' widths and offsets in §3 can be confirmed" (`CTR:337-338`) | §3 (`CTR:93-102`) gives no per-counter widths or offsets; they are in §15a (`CTR:436-454`) |
+| C-S22 | §5 call chain: "`-> (unread) platform code sets the matching ACH_* identifier`" (`CAT:208`) | "*(Corrected 2026-09-30, SWE2-DATA: the `(unread)` step is read.*" (`CAT:215`) — annotated, not struck |
+| C-S23 | STM §9: "Whether any caller re-issues an award that I-2 drops. The periodic checker `00315E90` is the likely candidate, and it is not read for that here." (`STM:161-162`) | CAT reads the checker and the sweep (`CAT:662`) and CTR states the checker "**returns if it is already set**" (`CTR:68-69`); neither page draws the I-2 conclusion, so O-1 stays open — listed here only because "not read" is stale |
+
+### 3.3 Checked and found consistent (not contradictions)
+
+- Record addresses: `01DFE410 + 9×0x198 = 01DFF268` (`CAT:331`, slot 9 `ACH_COUNT_SCORE`) and `+ 19×0x198 = 01E00258`
+  (`CAT:110`); both match the member TSV.
+- Award-id table vs record slots: counter 13 → `0x13` (slot 19, YUGOU), 17 → `0x09` (slot 9), 11 → `0x0D` (slot 13,
+  MASTER_LICENSE), 20 → `0x16` (slot 22, MONSTER01), 25 → `0x14` (slot 20, MONSTER06) (`CAT:608-622` against the member
+  TSV); no award id is 0, consistent with I-4 / W4 (`STM:139-141`, `STM:216`).
+- Table addresses: `0x120000 + 0x1F6098 = 0x316098` (`CTR:34` vs `CTR:50`); `0x120000 + 0xBF0550 = 0xD10550 =
+  0xD10460 + 30×8` (`CTR:351-352`, `CTR:255`, `CTR:158-160`, `CAT:567`).
+- Save block: `4 + 4 + 0x20 = 40` bytes (`CTR:98`, `CTR:384-385`); counter 17 at `+0x3868 = +0x384C + 0x1C`
+  (`CAT:331`, `CTR:448`); id 11 at `+0x384C+0x10` (`CAT:713`, `CTR:448`).
+- Callback ids: `0x44D`/`0x44E`/`0x44F` = 1101/1102/1103 and `0x14B` = 331 (`CAT:289`, `STM:65-70`); `0x91640` = 595520
+  (`STM:71`).
+- Imports: nine `steam_api64.dll` imports (`CAT:389-397`, `STM:14-15`); one `RunCallbacks` site (`CAT:522`, `STM:217`).
+- Handbook: hop 3 at `+0xDC`, hop 4 at `+0xF8`, record end `0xF8 + 8 + 0x38 = 0x138` (`CAT:299-300`, `CAT:669-671`,
+  member TSV).
+- Script census totals 900 / 900 / 9 (`STM:190`, `CAT:749-751`, member TSV).
+- Mode-3 evaluator default 16 / override 8 for id 13 (`CTR:359`, `CAT:662`, `CAT:696-697`).
