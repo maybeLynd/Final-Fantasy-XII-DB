@@ -104,3 +104,16 @@ the-menu-effect-registry	17-Presentation-Rendering/Effect-File-Formats/the-menu-
 the-save-load-screen-widgets	19-Save-Load-Settings/the-save-load-screen-widgets.md	5	1097	2026-10-02 10:27	PACKED-FABLE
 contract-phyre-cluster-header	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	4	239	2026-10-02 10:27	PACKED-FABLE
 the-npc-name-dictionary	04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md	4	503	2026-10-02 10:27	PACKED-FABLE
+the-map-screens-and-their-shared-map-data	16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md	13	1503	2026-10-02 18:33	PACKED-FABLE
+the-party-read-in-state-machine	01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md	7	543	2026-10-02 18:33	PACKED-FABLE
+the-thunk-layer-and-why-call-counts-disagree	24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md	4	181	2026-10-02 18:33	PACKED-FABLE
+contract-boot-fixups	00-Engine-Core-Runtime/CONTRACT-boot-fixups.md	13	104224	2026-10-02 18:33	PACKED-FABLE
+character-render-object	17-Presentation-Rendering/Character-Rendering/character-render-object.md	6	676	2026-10-02 18:33	PACKED-FABLE
+battle-record-kind-byte	04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	5	325	2026-10-02 18:33	PACKED-FABLE
+what-the-game-asks-windows-for	24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	9	3132	2026-10-02 18:33	PACKED-FABLE
+the-config-screen-and-what-a-setting-change-runs	16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md	7	437	2026-10-02 18:33	PACKED-FABLE
+the-actor-storage-record-field-map	04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md	6	515	2026-10-02 18:33	PACKED-FABLE
+scriptvm-verb-dispatch-and-parameter-encoding	01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	8	836	2026-10-02 18:33	PACKED-FABLE
+game-settings-ini-and-runtime-config	19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	7	436	2026-10-02 18:33	PACKED-FABLE
+dyngeo-instance-family	16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md	6	776	2026-10-02 18:33	PACKED-FABLE
+heading-speed-to-position-delta	06-Movement-And-Navigation/heading-speed-to-position-delta.md	4	2775	2026-10-02 18:33	PACKED-FABLE
