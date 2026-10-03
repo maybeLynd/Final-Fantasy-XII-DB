@@ -1,0 +1,17 @@
+{
+ "page": "16-UI/License-Board-View/the-license-board-screen-widgets.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "0027F150", "entered_from": "`002C2320` + 0x895",
+   "text": "reads five words starting at `+0xD48` of qword `0209AC30` with stride `0x20` and returns 0 at the first one that is neither `0xFFFF` nor `0x1000`; returns 1 when all five are one of those two values",
+   "anchors": [["0027F159", "add"], ["0027F173", "cmp"], ["0027F179", "cmp"], ["0027F186", "cmp"], ["0027F18C", "mov"]]},
+  {"fn": "003FF160", "entered_from": "`002C2320` + 0x35F",
+   "text": "builds a stack block of a zero dword followed by the sign-extended `ecx` and `edx` as qwords; when qword `+0x108` of qword `0209AC30` is null, calls `003FF160` + 0x4D with (`0x190`, `003FF360`, the block), stores the result to that `+0x108` and calls `003FF160` + 0x6A with (qword `0208EA28`, the result); when `+0x108` is already non-null it does neither; both paths end with the stack-cookie check (cookie `01F44830`) at `003FF160` + 0x77",
+   "anchors": [["003FF176", "mov"], ["003FF192", "cmp"], ["003FF1AD", "call"], ["003FF1BC", "mov"], ["003FF1CA", "call"]]},
+  {"fn": "003FF9F0", "entered_from": "`002C2320` + 0x5E2",
+   "text": "when qword `+0x108` of qword `0209AC30` is non-null, stores `ecx` to its dword `+0x178` and `rdx` to its qword `+0x180`; otherwise does nothing",
+   "anchors": [["003FF9FE", "test"], ["003FFA03", "mov"], ["003FFA18", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "003FF160: 003FF360 is a lea target passed as the second argument (0x17F bytes past this function's end, so not data adjoining its code); the listing does not decode it. The block layout is dword 0 at rsp+0x20, ecx at rsp+0x28, edx at rsp+0x30."
+}
