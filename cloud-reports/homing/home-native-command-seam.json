@@ -1,0 +1,158 @@
+{
+ "page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+ "session": "session_01VnuySB6H7e8WAWRL1qnmZN",
+ "rows": [
+  {
+   "fn": "0026AB60",
+   "entered_from": "`00355A00` + 0x1C6",
+   "text": "takes the top three bits of byte `rcx+3` (`shr 5`) and the larger of `xmm1` and 0.01 (`008F30E4`, `maxss`); when the bits equal 1 it stores that float to `+0x70` of qword `rcx+0xB8`, when they equal 3 to `+0xFC` of the same qword, and for any other value it returns without a store",
+   "anchors": [
+    [
+     "0026AB6C",
+     "shr"
+    ],
+    [
+     "0026AB6F",
+     "maxss"
+    ],
+    [
+     "0026AB76",
+     "je"
+    ],
+    [
+     "0026AB84",
+     "movss"
+    ],
+    [
+     "0026AB94",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0026B480",
+   "entered_from": "`00355A00` + 0x64",
+   "text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, clears bit 3 of byte `rcx+0xD` (`AND 0xF7`) and ORs bit 0 of `dl`, shifted left by 3, back into it; for any other value it returns without a write",
+   "anchors": [
+    [
+     "0026B489",
+     "cmp"
+    ],
+    [
+     "0026B48F",
+     "and"
+    ],
+    [
+     "0026B496",
+     "shl"
+    ],
+    [
+     "0026B499",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "0026BB00",
+   "entered_from": "`00355A00` + 0x159",
+   "text": "switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it stores `xmm1`, `xmm2` and `xmm3` to floats `+0x10`, `+0x14` and `+0x18` of qword `rcx+0xB8`; for 3 it subtracts floats `+0`, `+4` and `+8` of that qword from `xmm1`, `xmm2` and `xmm3` and tail-jumps (`0026BB00` + 0x26) with `rcx` unchanged; for any other value it returns without a write",
+   "anchors": [
+    [
+     "0026BB0A",
+     "je"
+    ],
+    [
+     "0026BB22",
+     "subss"
+    ],
+    [
+     "0026BB26",
+     "jmp"
+    ],
+    [
+     "0026BB32",
+     "movss"
+    ],
+    [
+     "0026BB3C",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0026BDD0",
+   "entered_from": "`00355A00` + 0x1AC",
+   "text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, stores `xmm1`, `xmm2` and `xmm3` to floats `+0x20`, `+0x24` and `+0x28` of qword `rcx+0xB8`; for any other value it returns without a write",
+   "anchors": [
+    [
+     "0026BDD7",
+     "cmp"
+    ],
+    [
+     "0026BDE3",
+     "movss"
+    ],
+    [
+     "0026BDED",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0026BFF0",
+   "entered_from": "`00355A00` + 0x11B",
+   "text": "takes the absolute values of `xmm1` and `xmm2` (widened to double, sign cleared with the mask at `01CEBD80`, narrowed back) and switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it ORs 2 into byte `+0x5D` of qword `rcx+0xB8`, stores the two values to floats `+0x30` and `+0x34`, and lowers float `+0x40` to the first and float `+0x44` to the second wherever the stored float is greater; for 3 it tail-jumps (`0026BFF0` + 0x38) with the two values in `xmm1` and `xmm2`; for any other value it returns without a write",
+   "anchors": [
+    [
+     "0026BFFE",
+     "andps"
+    ],
+    [
+     "0026C028",
+     "jmp"
+    ],
+    [
+     "0026C034",
+     "or"
+    ],
+    [
+     "0026C04C",
+     "movss"
+    ],
+    [
+     "0026C05B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003DF790",
+   "entered_from": "`00355A00` + 0xB6",
+   "text": "maps `ecx` to a return value: 0 returns 3, 1 returns 2, and any other value returns 1",
+   "anchors": [
+    [
+     "003DF792",
+     "je"
+    ],
+    [
+     "003DF797",
+     "je"
+    ],
+    [
+     "003DF799",
+     "mov"
+    ],
+    [
+     "003DF79F",
+     "mov"
+    ],
+    [
+     "003DF7A5",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "All six bodies read whole. 0026AB60: `maxss xmm0, xmm1` with xmm0 = 0.01 returns xmm1 when either operand is NaN; the sentence says 'the larger' and ignores the NaN case. 0026BB00 and 0026BFF0: the tail jumps are cited by site because their targets are not named in the host excerpt. 0026BFF0: both lowering stores are skipped on an unordered compare (jbe), consistent with 'wherever the stored float is greater'. No doubts."
+}
