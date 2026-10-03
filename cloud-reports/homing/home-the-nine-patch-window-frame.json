@@ -1,0 +1,14 @@
+{
+ "page": "99-Unresolved-Residual/the-nine-patch-window-frame.md",
+ "session": "session_013d18gLR7WCyczJCeHPeArU",
+ "rows": [
+  {"fn": "0028CF80", "entered_from": "`0028BB50` + 0x2FE",
+   "text": "when dword `+0xD50` of `rcx` is not 1, issues the call at `0028CF80` + 0x22 with (`rcx`, 6, `xmm2` = `xmm1`) and tail-jumps at `0028CF80` + 0x40 with (`rcx+0x5D0`, 6, `xmm2` = the incoming `xmm1`); when it is 1, divides 6.283185 (`01CEBC78`) by twice word `+0xD48` (converted to float), passes that to the call at `0028CF80` + 0x66, multiplies the result by the incoming `xmm1`, and issues the call at `0028CF80` + 0x7D with (`rcx`, 6, `xmm2` = product) and the tail jump at `0028CF80` + 0xA0 with (`rcx+0x5D0`, 6, `xmm2` = product)",
+   "anchors": [["0028CF86", "cmp"], ["0028CFA2", "call"], ["0028CFE2", "divss"], ["0028CFF3", "mulss"], ["0028D020", "jmp"]]},
+  {"fn": "002A84F0", "entered_from": "`002A6190` + 0x7A2",
+   "text": "when bit `0x1000` of dword `+0x3E8` of `rcx` is set, walks the qwords from `0209CC18` up to (not including) `0209CC30`, passing each to the call at `002A84F0` + 0x33 and then storing 0 to it; with the bit clear it returns without touching them",
+   "anchors": [["002A84F4", "test"], ["002A8520", "mov"], ["002A8523", "call"], ["002A8528", "mov"], ["002A852F", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0028CF80: the non-1 path's first call also still has the incoming xmm1 in xmm1; only xmm2 is stated as the passed float. The callee at +0x66 takes xmm0 = 2*pi / (2*word) and is likely a trig routine; not named. 002A84F0: the walk covers 3 qwords (0209CC18, 0209CC20, 0209CC28)."
+}
