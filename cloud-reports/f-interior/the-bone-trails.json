@@ -1,0 +1,62 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-bone-trails.md",
+ "session": "session_0182wopbAGkg4Gtt5QPc4Pw1",
+ "rows": [
+  {
+   "fn": "003712C0",
+   "text": "compares dword `+0x9C` of `rcx` with 2: when equal, tail-jumps through the jump at `003712C0`+0xC with the arguments unchanged; otherwise returns 0",
+   "anchors": [
+    [
+     "003712C7",
+     "je"
+    ],
+    [
+     "003712C9",
+     "xor"
+    ],
+    [
+     "003712CC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0042BDD0",
+   "text": "replaces `edx` with dword `+0x38` of `rdx` and tail-jumps `003E6770` with `rcx` unchanged",
+   "anchors": [
+    [
+     "0042BDD3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0042E440",
+   "text": "calls `00426220(rcx, qword +8 of rdx)`; only when that returns 0 does it call `00424010` with the original `rcx` and the floats `+0x2C`, `+0x30` and `+0x34` of `rdx` in `xmm1`, `xmm2` and `xmm3`, otherwise it returns without the second call",
+   "anchors": [
+    [
+     "0042E450",
+     "mov"
+    ],
+    [
+     "0042E454",
+     "call"
+    ],
+    [
+     "0042E45B",
+     "jne"
+    ],
+    [
+     "0042E465",
+     "movss"
+    ],
+    [
+     "0042E46F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0042BDD0: the entry instruction (the edx load) is half the work; the only interior anchor is the tail jump. 003712C0: the tail-jump target is not named on the page context, so it is cited by its site."
+}
