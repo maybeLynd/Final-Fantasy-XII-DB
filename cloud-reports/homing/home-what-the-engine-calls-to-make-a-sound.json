@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "003DEFC0", "entered_from": "`003DEC90` + 0x160",
+   "text": "when qword `rcx+8` is non-null passes it to the call at `003DEFC0` + 0x21 and zeroes it, and when qword `rcx+0x18` is non-null passes it to the call at + 0x37 and zeroes it (each skipped when null); then stores byte 0 at `rcx+0x10` and clears bit `r8d` (shift count `cl`, so modulo 32) of the dword at `02B59C20` + sign-extended `edx` times 4",
+   "anchors": [["003DEFE1", "call"], ["003DEFF7", "call"], ["003DF00B", "mov"], ["003DF024", "shl"], ["003DF028", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "003DEFC0: the same callee is reached from both sites; it is cited by site per the homing rule."
+}
