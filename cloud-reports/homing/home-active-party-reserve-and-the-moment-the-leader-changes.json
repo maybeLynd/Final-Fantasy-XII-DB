@@ -1,0 +1,23 @@
+{
+ "page": "11-Party/active-party-reserve-and-the-moment-the-leader-changes.md",
+ "session": "session_01Dq1LGzf21EuvVAMphWnGMn",
+ "rows": [
+  {
+   "fn": "0036F510",
+   "entered_from": "`0022A770` + 0x12F",
+   "text": "calls the site `0036F510` + 0x4 with the incoming registers, then tail-jumps at `0036F510` + 0xD with no argument set up between the two, returning what that target returns",
+   "anchors": [
+    [
+     "0036F514",
+     "call"
+    ],
+    [
+     "0036F51D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Both callees (003820C0, 0026EB30) are cited by call site because the host excerpt does not name them. Six sites (four in 0022A770, two in 0022B8C0); the first is given. Doubt: the body is a two-call thunk, so the row says little beyond the call order; FABLE may prefer to skip it."
+}
