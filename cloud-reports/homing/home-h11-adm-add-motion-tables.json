@@ -1,0 +1,35 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "002ECCF0",
+   "entered_from": "`00262F50` + 0x20",
+   "text": "when `rcx` is non-null, its qword `+0xC0` is non-null and that qword's dword `+0x0` is not -1, replaces bit 7 of the qword's byte `+0x11` with bit 0 of `dl` (AND 0x7F, then OR `dl` shifted left 7); otherwise does nothing",
+   "anchors": [
+    [
+     "002ECCF5",
+     "mov"
+    ],
+    [
+     "002ECD01",
+     "cmp"
+    ],
+    [
+     "002ECD06",
+     "and"
+    ],
+    [
+     "002ECD0A",
+     "shl"
+    ],
+    [
+     "002ECD0D",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
