@@ -234,3 +234,45 @@ verdicts against other folders.
 | N12 | **The README states contract levels that the contracts no longer carry.** `level:` was removed from the front matter of all seven contracts and the two record pages after pass 1 | DOC | "`CONTRACT-commit-action.md` — L1, **BEHAVIORALLY UNDERSTOOD**" … "`CONTRACT-apply-result-to-target.md` — L2" (`README.md:47-53`) against front matter that runs `scope:` then `readiness:` with no `level:` (`CONTRACT-commit-action.md:4-5`; likewise each contract's `:4-5`) | none |
 | N13 | **The OV-42 subsections' own residue.** These are new open items that pass 1 could not list: who writes `+0x714` and what values they admit; the natural pairing of the slot walker's word with the terminal phase's entry word; the kind-to-row consistency of `00306760` | STATIC (natural rejection: RUNTIME) | "the standard producer frontier therefore narrows to whatever writes `+0x714` and what that writer admits" (`Action-Availability/battle-command-availability-and-reason-codes.md:1017-1022`); "Natural pairing of the classifier's slot word (`0030CBE0`) and this routine's entry `+0x714` stays OPEN" (`:1243-1245`); "Kind-to-row, caller and owner consistency stays OPEN." (`:1077`) | OV-42 (PARTLY ANSWERED) |
 | N14 | **A callee named in a new interior citation is not described anywhere**: `002ED2A0` tail-jumps to `003E6B50` | STATIC | "otherwise tail-jumps `003E6B50(record, rdx)`" (`CONTRACT-commit-action.md:552`). No other page in the database names `003E6B50` | none |
+
+## 4. Rating
+
+**NOT YET** for `07-Combat-Action` as a whole. That is unchanged from pass 1. The core is now nearer READY than
+MOSTLY.
+
+**What changed.** Pass 1's main reason for keeping the core below READY was 17 value-changing contradictions. All 17
+are resolved on the pages, the three undecided ones (A2, A9, A13) included, and all 22 stale "open" claims are struck.
+A re-implementer reading the folder today no longer has to choose a side anywhere pass 1 found one. Only the
+count/size residue remains: B6, B7, B8 and B9, and the new N1 and N2. Of these, only N2 changes a value: the wait
+order's duration at 60 fps. Since pass 1, these became writable from the database:
+- the effective action id (S10);
+- the special-sequence queue routine's kind dispatch;
+- the slot walker's path;
+- the event ring's lifetime and reset;
+- the message realiser up to the HUD call.
+
+Pass 1 asked for four things to reach MOSTLY overall:
+1. **A page for the per-target step.** Not met (S1).
+2. **Frame order.** Met by pointer only: it was already on the 00 and 04 pages (S2, N6).
+3. **The remaining handlers and the order record.** Half met: the record was already on the 09 page (S4, N7); three
+   handlers are still undecoded (S3).
+4. **Group A resolved.** Met.
+
+**What decides NOT YET.** Two structural gaps remain, and each blocks a whole stage of the action:
+- **The step that lands a hit is still undocumented.** `Battle_ProcessActionTarget` `00307300` and the timeline
+  handlers `00319F50` and `00325260` have no page anywhere in the database (S1). From the folder a port can commit an
+  action and can build and apply a result record. It cannot tell which timeline event, in which phase, turns the
+  committed action into per-target results, or how many target-buffer entries one event processes.
+- **Part of the order vocabulary and the text output are unread.** These are `002FE660`'s three bodies, `002FE8D0` and
+  `002FE910` (S3), and the escape grammar of the two format engines (S7). So some enemy orders cannot be executed, and
+  a battle-log line cannot be rendered past the realiser.
+
+Fixing S1 alone would move the system to MOSTLY; it is one STATIC read of `00307300` and its two callers. READY then
+also needs:
+- S3 and S7;
+- the presentation residue (S5, §2.1-7, §2.1-9);
+- the live evidence every contract still lacks (§2.1-1 to §2.1-4 and §2.1-19). That is RUNTIME work, routed through
+  FL-2 / AQ-16 and the contracts' own live-check lists.
+
+Seven of the 14 new gaps are DOC: the answer exists, and only a pointer or a correction is missing. FABLE can close
+them in one editing pass without a desk read.
