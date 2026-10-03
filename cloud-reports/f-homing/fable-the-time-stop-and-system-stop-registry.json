@@ -1,0 +1,18 @@
+{
+ "page": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {"fn": "0035AA50",
+   "text": "takes `R` = `00263FF0()` (incoming `rcx`) and walks i from word `R+0x1de` up to that plus word `R+0x1d6`, taking `e` = `00358940(R, i)`: when `edx` is non-negative (signed) it acts only on entries where `00263BE0(e)` equals `edx`, when `edx` is negative on every entry, and in both cases, when `002647B0(e)` returns 0, calls the function at `0035AA50`+0x6B (or +0x9E on the negative path) with (`e`, `r8d`); returns nothing",
+   "anchors": [["0035AA76", "movzx"], ["0035AA89", "js"], ["0035AAA5", "cmp"], ["0035AABB", "call"], ["0035AAEE", "call"]]},
+  {"fn": "003B76B0",
+   "text": "for i from 0 while i is less than dword `02EBCBC0` (signed, re-read each pass) takes qword `p` = entry i of the qword table at `02EBCAC0` (stride 8) and, when `p` is non-null and `002E7600(p)` returns non-zero, calls the function at `003B76B0`+0x40 with (`p`, `ecx`); returns nothing",
+   "anchors": [["003B76BE", "cmp"], ["003B76D7", "mov"], ["003B76E2", "call"], ["003B76F0", "call"], ["003B76FB", "cmp"]]},
+  {"fn": "003E9190",
+   "text": "calls `003588B0(003590D0())`; then for i = 0 to 3 calls the function at `003E9190`+0x16 with `ecx` = i and, when it returns non-null, passes that pointer to `002E9FE0`; returns nothing",
+   "anchors": [["003E919D", "call"], ["003E91A6", "call"], ["003E91AE", "je"], ["003E91B3", "call"], ["003E91BA", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). 0035AA50: the loop's first bound check is unsigned (jae) and the back-edge is signed (jl); both bounds are zero-extended words, so they agree. Calls to 0026DC40, 002E7A10 and 00263750 are cited by site because the page does not name them."
+}
