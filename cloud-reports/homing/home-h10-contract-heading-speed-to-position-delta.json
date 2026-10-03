@@ -1,0 +1,11 @@
+{
+ "page": "06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "002E9BE0", "entered_from": "`003B73B0` + 0x49",
+   "text": "returns -1 when `rcx` is null or qword `rcx+0xC0` is null; otherwise returns byte `+0x13` of that qword sign-extended",
+   "anchors": [["002E9BE3", "je"], ["002E9BEF", "je"], ["002E9BF1", "movsx"], ["002E9BF6", "or"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
