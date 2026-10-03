@@ -34,6 +34,18 @@ stride `0x60`, ten slot indices written by `00319B10`, and the presence table `0
 "Not stated" means no page of this folder says it. Where another category's page or the register says it, the
 pointer is given as a path from `FFXII TZA/`. Those pages were read only at the cited lines.
 
+## Summary
+
+- **Pass 1:** did not map this system, so there are no pass-1 gaps to re-verdict. Counts: CLOSED 0 / NARROWED 0 / OPEN 0 / WRONG-IN-PASS-1 0 (not applicable).
+- **This pass (part B):** 14 prose pages read (6 contracts, 7 system pages, the README); the 3 `.tsv` files checked for layout. **23 entry-point rows** are mapped (§1.1).
+- **Gaps:** 33. Of these, 13 the pages state themselves and 20 were found while mapping.
+  - by class: **STATIC 16, DOC 12, DATA 2, RUNTIME 3**;
+  - register rows: GR-18 is still **PARTIAL** (S-1), and AE-7's ANSWERED wording contradicts its page (N-2).
+- **Rating:** **MOSTLY** (old rating: none, not mapped). By part: EXP / LP computers and gil READY; defeat sequence, level advance, loot rolls and chain, and the pickup pool MOSTLY (§3).
+- **Highest-value fixes:**
+  - N-1, the defeat contract omits step 0 and the step-1–6 gate (DOC);
+  - N-6 to N-9, the profile weights and walk, the chain's draw conditions and its break path (DATA / STATIC). These decide whether a port can match the shared LCG stream.
+
 ## 1. Interface
 
 The system has five parts:
@@ -247,7 +259,7 @@ Class key, per the R2 brief:
 | N-11 | **The pickup tick's caller is not named in this folder.** `WP:46` marks "once per field frame" as **[page]**, and `PK:93` says the same. The field-frame orchestrator `00234590` calls it at `00234708`, step 14 (`00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:225`, `:351`). | DOC | `WP:46`; `PK:93` | none |
 | N-12 | **What advances the field clock `0208D45C` is not stated here.** Only "BSS, so `0` at image load" is (`WP:105`). It is `0032A100`, `0208D45C++` when the timer changed (`00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:371`, `:434`). Whether it is reset across area loads, which would matter to live pickup stamps, is not stated on either page. | DOC | `WP:105`; `PK:100` | CM-1 ANSWERED (unit only) |
 | N-13 | **The collect argument is named two ways.** One section reads "`collector_field_id`" / "the collecting character's field id" (`PK:203`, `PK:213`, `PK:318`). Another reads "Both get `ecx` = the slot and `edx` = the unit's handle" (`PK:297`–`298`, from the caller read). The contract says only "a value forwarded" (`WP:46`). Which value `003FA820` stores at `+0x290` matters to the visual's release path (`PK:334`). | DOC | as cited | none |
-| N-14 | **The zero-handle pickup is not described.** `003FA160` returns 0 when none of its 13 visual records is free (`PK:316`), and create stores the result at `+0x58` (`WP:63`, `LR`/`WP` §2). Not stated: what the tick does with a state-1 node whose handle is 0 (`0028EFE0(0)`), and whether such a node can ever leave state 1 except by eviction or timer (state 1 has no timer, `PK:103`–`105`). `WP:63` also uses handle `0` to mean "free". | STATIC | `PK:316`; `WP:63`; `PK:338` | none |
+| N-14 | **The zero-handle pickup is not described.** `003FA160` returns 0 when none of its 13 visual records is free (`PK:316`), and create stores the result at `+0x58` (`WP:63`; `PK:316`, "the result is the node's `+0x58`"). Not stated: what the tick does with a state-1 node whose handle is 0 (`0028EFE0(0)`), and whether such a node can ever leave state 1 except by eviction or timer (state 1 has no timer, `PK:103`–`105`). `WP:63` also uses handle `0` to mean "free". | STATIC | `PK:316`; `WP:63`; `PK:338` | none |
 | N-15 | **The HP / MP growth helpers' edges.** `002F9A60(level, value, 0)` and `002F9B20(level, value, 0)` (`LU:89`–`90`): the meaning of the third argument is not stated, nor is any upper clamp on the returned HP (i32) or MP (i16 at `+0x0C`). The formula is given for `b / 5 ≥ 0.01` and otherwise (`LU:271`–`273`). | STATIC | `LU:89`–`90`, `LU:267`–`275` | UQ-134 ANSWERED (names only) |
 | N-16 | **Authored tables given only as samples.** The HP / MP curve `02EBF108` (99 rows `{u8 hp, u8 mp}`) is quoted at six levels (`LU:274`–`275`). The growth bytes of `chr_data` are quoted for the six main characters, plus the Esper / base-`0xFF` notes (`LU:169`–`180`). The tables are shipped data, and the page does not tabulate them. | DATA | `LU:269`–`275`; `LU:169`–`180` | none |
 | N-17 | `00469E30` runs on the collecting unit's stats record before collect or remove (`00311114`–`0031111B`), and it is not described. | STATIC | `PK:293`–`294` | none |
@@ -266,3 +278,25 @@ Class key, per the R2 brief:
 
 Register rows involved: one is still open (**GR-18 PARTIAL**, S-1). One is stale in wording (**AE-7**, N-2). Several
 answered rows are cited only for context (GR-17, GR-19, UQ-134, UQ-136, CM-1, AE-4).
+
+## 3. Rating
+
+**MOSTLY** for the system as a whole (pass 1 gave no rating, because pass 1 did not map this system).
+
+| part | rating | what decides it |
+|---|---|---|
+| EXP / LP computers | **READY** | Gates, widths, signed division, modifier order and the NULL-recipient rule are all stated at instruction level, with native controls (`XA` §§4–7). The only open item is runtime and does not change the algorithm (S-1, GR-18). |
+| Defeat sequence | **MOSTLY** | The page gives the body in full, with every cap and the gil arithmetic (`ED`, `DR`). The contract omits step 0 and the gate in front of steps 1–6 (N-1). The recipient index walk (N-18) and `+0xE9A` bit 3 (N-19) are pointers or a short read. |
+| Level advance | **MOSTLY** | All eight invariants and the float growth are exact (`LA`, `LU` §4a). Open: the HP / MP helpers' edges (N-15), the full `02EBF108` and growth tables (N-16), and presentation-side callees (S-7, S-8, S-12) that do not affect stats. |
+| Gil | **READY** | One setter, its order, both clamps, the meter and all 13 writers are stated (`GS`, `GP`). The open items are runtime subscribers (S-5) and a bundle-key read (S-10) outside the core. |
+| Loot rolls and chain | **MOSTLY** | The roll shapes, tables, LCG step and ranks are exact, but bit-exact reproduction of the shared stream needs three things. **First**, the profile-selection weights and walk (N-6, N-7), used on every chain break. **Second**, the exact conditions of the chain's two draws (N-8). **Third**, the break / first-kill path of the chain update (N-9). The input path to the spawn row (N-10) is unstated. |
+| Pickup pool | **MOSTLY** | The pool, list, ladder, presentation ops and collection rules are exact and replayed (`WP` §13a). Open: the zero-handle node (N-14), the visual-side 1 → 2 condition (S-4), the collect-argument naming (N-13), and the in-play release timing (S-13, runtime). |
+
+**What decides MOSTLY rather than READY:** every gap is named, and none is structural. No part of the system lacks a
+mechanism, a record layout or an order. But the loot and chain half shares one generator stream with the rest of the
+engine (LC-2), so an unstated draw condition or an unknown weight changes every later random outcome, not just loot.
+N-6 to N-9 are the gaps that stop a recording-exact port. Each is a short desk read of `00318820`, `003183D0` and
+`00317ED0`, or a dump of four table bytes. The twelve DOC items need only pointers or corrections: the answers exist
+elsewhere in the database, and N-1 and N-2 are the two a re-implementer would be most likely to trip on. One runtime
+item is a true unknown: S-1, whether the `.ard` buffer can land above 4 GB (GR-18). It cannot be closed from the
+database.
