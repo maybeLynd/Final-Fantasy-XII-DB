@@ -1,0 +1,11 @@
+{
+ "page": "06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "00263910", "entered_from": "`002E6000` + 0x4B",
+   "text": "returns the float `+0x140` plus 0.0 plus the float `+0x144` of qword `rcx+0xC0`, or 0.0 when that qword is null",
+   "anchors": [["0026391D", "je"], ["0026391F", "movss"], ["00263927", "addss"], ["0026392B", "addss"], ["00263934", "movaps"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
