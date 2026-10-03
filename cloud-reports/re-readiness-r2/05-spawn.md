@@ -206,3 +206,30 @@ one page without its neighbours. None is tracked by a register row except N4, wh
 | N10 | **Whether the slot release runs after a retirement.** "whether the slot release `00234200` (bit 2) runs after a retirement" (`C-SP:326`). Bit 2 decides "fresh" (`(flags & 5) == 0`) and is tested by the re-entry query (`FM:117`), so the keep entry's state after a retirement is not fully stated | STATIC | `C-SP:326`, `FM:117` | none |
 | N11 | **The reset's static closure is not fully followed.** "In its static call closure, 2,156 functions with 843 indirect sites not followed" (`C-GC:471-472`); "**Not traced:** whether `00236100`'s callers in the closure run during a reset, the 843 indirect sites" (`C-GC:504`). G9a ("A restart zeroes the counter and leaves the bank-1 stamps as they were") rests on that closure | STATIC | `C-GC:471-472`, `C-GC:504` | none |
 | N12 | **No live capture of a clock restart or of re-entry timing.** "**Live: none of G9.**" (`C-GC:502`); "the player-visible respawn after any route" (`C-GC:504-505`); "the player-visible re-entry timing" (`C-SP:327`) | RUNTIME | `C-GC:502-505`, `C-SP:327` | none |
+
+## 4. Rating
+
+**NOT YET** (pass 1: **NOT YET**). By part:
+
+| part | pass 1 | now | what decides it |
+|---|---|---|---|
+| group-completion ledger, death and respawn clock | MOSTLY | **MOSTLY** | Every value-changing contradiction on it is settled on the pages (A1, A2, A11–A14). The clock's writers and reset routes are in C-GC §10a. Left: group ids above 64 and the 32-bit group mask (G13), the deferred arm's timing (G15), the counter's real-time rate (G1), and a live kill (item 5). |
+| keep entry and bank rotation | MOSTLY | **MOSTLY** | The rotation is contracted with executed cases: "the banks are kept only on A → B → A inside the window, and the test is unsigned" (`C-SP:251`). The window and stamp are in no save (A10), and the field map's flag table is complete (A3, A4, A6). Left: L-13's live residue (item 2), and stale or missing pointers (N2, N3, G9). |
+| retirement | NOT YET | **MOSTLY** | C-SP §7a gives the trigger, the gate order, both senses, the offsets and their writers, and the re-entry mark: "Invariant I9 — one trigger, two opposite senses" (`C-SP:202`); "Invariant I10 — retirement leaves a mark, and it is the only teardown that keeps one" (`C-SP:234`). This closes G4 and A8. Left: the teardown's callees (G7), N8–N10. |
+| placement | NOT YET | **NOT YET** | Area mode accepts a point only through `FieldRegion_ContainsWorldPosition` `002374E0`, and its formula is still not stated (G2). The main entry `00235720`'s lane-and-candidate loop is still pseudocode with an unstated `candId` and winner rule (G3). The previous-map and random-candidate selectors are still size-only (G5), and the zone scripts call the previous-map verb on every restorable branch. The record format is no longer a gap: S16 has it, but the folder never links it. |
+
+**What decides the rating.** Since pass 1, the pages corrected 17 of the 18 value-changing contradictions, and contracted
+retirement and the clock. What still keeps the system at NOT YET is three unwritten bodies on the placement path: `002374E0`
+(G2), the `00235720` loop (G3), and `002354F0` / `002355A0` (G5). All three are STATIC, a desk read of the executable. With them
+written, the system would rate MOSTLY.
+
+READY additionally needs:
+- the runtime items, which have no carrier yet: L-12's stack word, L-13's autosave load, a kill across the ledger, a
+  clock restart (items 1, 2, 5; N12);
+- the DOC fixes, so that a reader of any one page meets the current answer: N1–N7, A17's three unstruck sites, B3, B4,
+  C21, C25, and pointers from the folder to S16, ENM, UDEF, RNG and HEAD for G2 and G8–G11.
+
+The S-16 L2 verdict is consistent with this rating. It was re-scored **SCOPE-SHORT** on 2026-10-03 because "the retirement
+trigger `002350C0` and the keep-bank rotation `00233780` (the keep window) sit in no credited contract"
+(`../_index/L2-VERDICTS.md:241`). C-SP §7a is the section written for that finding. Whether it is credited is the verdict
+page's question, not this map's.
