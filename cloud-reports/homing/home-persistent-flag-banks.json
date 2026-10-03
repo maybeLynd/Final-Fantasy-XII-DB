@@ -1,0 +1,17 @@
+{
+ "page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "002E11B0", "entered_from": "`002E16B0` + 0x90",
+   "text": "returns 0 unless `ecx` plus 5 is at most 0x14 unsigned (`ecx` -5 to 15); for those values dispatches through a dword offset table to arms that each return a constant from 1 to 0x10, or to the 0 return",
+   "anchors": [["002E11B3", "cmp"], ["002E11B6", "ja"], ["002E11C2", "mov"], ["002E11CC", "jmp"], ["002E122E", "xor"]]},
+  {"fn": "002ED3A0", "entered_from": "`003EC6C0` + 0x24",
+   "text": "returns without work when `rcx` is null, when its dword `+0` is -1 or its word `+0` is `0xFFFF`, when qword `022C6F28` plus that signed word times 0x740 is zero, or when dword `+0x284` of that element is 0; otherwise replaces bit 1 (`0x2`) of the element's dword `+0x304` with 1 when `edx` is non-zero and 0 when it is zero, and sets bit 4 (`0x10`) of its dword `+0x290`",
+   "anchors": [["002ED3B7", "imul"], ["002ED3C7", "cmp"], ["002ED3D0", "and"], ["002ED3DE", "or"], ["002ED3E4", "or"]]},
+  {"fn": "00363730", "entered_from": "`00378230` + 0x9E",
+   "text": "zeroes byte `022CBA90`, qword `022CBAF0` and byte `022CBA9A`",
+   "anchors": [["00363737", "mov"], ["00363742", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "002E11B0: the dword offset table itself is not in the listing, so which of the 21 inputs reaches which constant (1 to 0x10, or 0) is not stated; FABLE can read the case map from the executable. The row names neither the table nor the image base."
+}
