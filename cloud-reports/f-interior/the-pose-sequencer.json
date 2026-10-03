@@ -1,0 +1,60 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "00477670",
+   "text": "takes the entry at `02CA6CA0` + zero-extended `cl` * 0x40 and does nothing unless its dword `+4` equals `ecx`; otherwise reads byte `b` at (word `[r8 + edx*2]` + `r8d`, a 32-bit sum) + dword `+0xC` of the entry * 6 and stores 0 at entry bytes `+0x10 + b` and `+0x18 + b` and 0xFF at `+0x20 + b` and `+0x28 + b`",
+   "anchors": [
+    [
+     "00477684",
+     "cmp"
+    ],
+    [
+     "00477688",
+     "cmovne"
+    ],
+    [
+     "0047769C",
+     "add"
+    ],
+    [
+     "004776A7",
+     "mov"
+    ],
+    [
+     "004776BB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00504800",
+   "text": "calls the callee at `00504800` + 0xF with `ecx` = word `+0x100 + edx*2` of `rcx` (`edx` sign-extended) and returns 0 when it returns null or bit 0 of its byte `+0x1C` is clear; otherwise returns its word `+0x1E` shifted left 16 OR its word `+0x20`",
+   "anchors": [
+    [
+     "00504807",
+     "movzx"
+    ],
+    [
+     "0050480F",
+     "call"
+    ],
+    [
+     "0050481C",
+     "test"
+    ],
+    [
+     "0050482A",
+     "shl"
+    ],
+    [
+     "0050482D",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00477670: the byte address is formed with `add edx, r8d` (a 32-bit add that zero-extends into `rdx`), so the pointer `r8` is truncated to its low 32 bits; the sentence states this literally."
+}
