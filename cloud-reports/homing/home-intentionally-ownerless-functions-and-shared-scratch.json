@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md",
+ "session": "session_01FFgsi7DcuyVgymuET5UYvk",
+ "rows": [
+  {"fn": "00311E90", "entered_from": "`00346EB0` + 0x6",
+   "text": "for `esi` = 0 to 3 calls the function at `00311E90` + 0x2A with `ecx` = `esi` and skips that index when the result `P` or qword `P+0x698` (`Q`) is null, or when dword `Q+0x64` OR dword `Q+0x3C` has any bit of `0x80000003` set and the call at `00311E90` + 0x51 (with `ecx` = that OR) returns 0; every other `P` is stored to the next qword of `022C1788` (only while fewer than 4 are stored) and counted; then ORs `0x600` into dword `+4` of each non-null qword among the first count entries of `022C1788`",
+   "anchors": [["00311EBA", "call"], ["00311ED9", "test"], ["00311EE1", "call"], ["00311EF0", "mov"], ["00311F19", "or"]]},
+  {"fn": "0041C770", "entered_from": "`00423380` + 0x39",
+   "text": "with `n` = word `rcx+0x28` sign-extended, scans k = 1 up to `n`-1 (signed) at stride 0xA0 for the first k whose byte `rcx+0xC5+k*0xA0` equals 1 and returns float dword `rcx+0x3C+k*0xA0` in `xmm0`; returns 0.0 when no k matches or `n` is at most 1",
+   "anchors": [["0041C781", "cmp"], ["0041C790", "cmp"], ["0041C79B", "add"], ["0041C7A7", "xorps"], ["0041C7B6", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "00311E90: the call at +0x2A is to the function the host row names as `00346EB0`+0x12; cited by site per rule 1. The `cmp rdi, 4` guard can never fail with four iterations, but is stated as listed. 0041C770: the scan pointer starts at `rcx+0x165` for k = 1, hence `rcx+0xC5+k*0xA0`; the result offset is `(k*5)<<5` + 0x3C. No doubts."
+}
