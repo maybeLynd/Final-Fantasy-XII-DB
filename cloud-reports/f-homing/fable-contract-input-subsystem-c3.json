@@ -1,0 +1,35 @@
+{
+ "page": "15-Input/CONTRACT-input-subsystem.md",
+ "session": "session_01HfPRM3vgupD1jscEXG8z9Y",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00344410",
+   "text": "calls `00342770` with the incoming registers, then in the bytes at `r8` ANDs byte `+2` with `0xf1` and ORs 1 into it (clearing bits 1-3, setting bit 0) and ANDs byte `+3` with `0xbf` (clearing bit 6), then tail-jumps through the jump at `00344410` + 0x1F without reloading `rcx` or `rdx`",
+   "anchors": [
+    [
+     "00344419",
+     "call"
+    ],
+    [
+     "0034441E",
+     "and"
+    ],
+    [
+     "00344422",
+     "or"
+    ],
+    [
+     "00344426",
+     "and"
+    ],
+    [
+     "0034442F",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
