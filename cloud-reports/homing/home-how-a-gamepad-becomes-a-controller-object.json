@@ -1,0 +1,11 @@
+{
+ "page": "15-Input/how-a-gamepad-becomes-a-controller-object.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "00797460", "entered_from": "`00796230` + 0x3C",
+   "text": "when qword `02EA58B8` (o) is non-null, unlinks each of the six 0x48-stride nodes from `o+0x30` to `o+0x198` whose qword `+0x10` equals o (self-linking it and zeroing its qwords `+0x10`, `+0x38` and `+0x40`), unlinks the node at `o+8` and links it before the head `01F401F8` (updating qword `01F40200`), and stores 1 into byte `02EA537A`; then calls vtable slot `+0x18` of qword `02EA5370` with `rcx+4`, a stack out-pointer and 0, and on the object it returns calls slots `+0x58` (with `01CC7130`), `+0x68` (with qword `02EA5248` and 6) and `+0x38`, returning early on a negative result from the first two or 0x80004001 from the third; finally stores into qword `02EA58B8` the result of the call at `00797460` + 0x209 on a 0x1F8-byte allocation (`00797460` + 0x1F4) given a 0x10-byte block (`00797460` + 0x1DC) holding byte 0 and the object, or 0 when that allocation is null",
+   "anchors": [["0079748D", "cmp"], ["007975C8", "mov"], ["007975EC", "call"], ["00797625", "cmp"], ["00797671", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00797460: over 600 characters because the body has two independent halves (the teardown of the previous object at 02EA58B8 and the creation of a new one); every early return is stated. The vtable calls are indirect through the returned objects, so they are given as slot offsets. The sentence does not name the interface; the listing shows no string."
+}
