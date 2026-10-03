@@ -1,0 +1,14 @@
+{
+ "page": "04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "003F2580", "entered_from": "`002915C0` + 0x15A",
+   "text": "returns `rdx` when `rcx` is null; otherwise follows qword `+0x9B0` from `rcx` to the last node `t` whose qword `+0x9B0` is null (`rcx` itself when its own is null), stores `rdx` to qword `[t+0x9B0]` and `t` to qword `[rdx+0x9B8]`, and returns `rcx`",
+   "anchors": [["003F2588", "mov"], ["003F25A3", "mov"], ["003F25AF", "mov"], ["003F25B6", "mov"], ["003F25B9", "mov"]]},
+  {"fn": "003F2600", "entered_from": "`002915C0` + 0x13F",
+   "text": "with `s` = `rdx`, makes the call at `003F2600` + 0x21 with (`rcx`, `rcx+0x3C0`, 6, 0x20), stores 0x3F800000 to dword `[rcx+0x998]`, makes the calls at `003F2600` + 0x3A and `003F2600` + 0x49 with (`rcx+0x780`, `s`) and (`rcx+0x870`, `s`); copies dwords `[s]` and `[s+8]` to dwords `[rcx+0x970]` and `[rcx+0x978]`; with `f` = float `[s+4]` stores `f` * 0.5 (`01CEBB70`) - `f` / 10 (`008F8180`) to float `[rcx+0x974]` and `f` * 0.5 + float `[s+0xC]` + `f` / 10 to float `[rcx+0x97C]`; stores 0x3E570A3D to dword `[rcx+0x924]`, 0x3E4CCCCD to `+0x92C`, 0x42FE0000 to `+0x930` and `+0x934`, and qword 0x42FE0000 to `+0x938`",
+   "anchors": [["003F2621", "call"], ["003F263A", "call"], ["003F2672", "movss"], ["003F26D1", "mov"], ["003F26DC", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "003F2600: the immediates 0x3F800000, 0x3E570A3D, 0x3E4CCCCD and 0x42FE0000 are not decoded by the listing, so they are given in hex; the qword store at +0x938 leaves dword +0x93C at 0."
+}
