@@ -1,0 +1,62 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md",
+ "session": "session_01BHLzhjKPBLPLYeBc5581cg",
+ "rows": [
+  {
+   "fn": "001C1C00",
+   "entered_from": "`001C1E70` + 0x44",
+   "text": "zeroes dword `[rcx]`; with `n` = dword `[rdx]` AND 0x7FFFFFFF takes `p` = 0 when `n` is 0, else the result of the call at `001C1C00` + 0x3A with (`n`*8, 8), and when `p` is non-null makes the call at `001C1C00` + 0x50 with (`p`, qword `[rdx+8]`, `n`); stores `p` to qword `[rcx+8]`, and `n` to dword `[rcx]` when `p` is non-null, else 0; returns `rcx`",
+   "anchors": [
+    [
+     "001C1C29",
+     "and"
+    ],
+    [
+     "001C1C3A",
+     "call"
+    ],
+    [
+     "001C1C50",
+     "call"
+    ],
+    [
+     "001C1C69",
+     "cmovne"
+    ],
+    [
+     "001C1C71",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0067ACF0",
+   "entered_from": "`001C1E70` + 0x69",
+   "text": "stores 0 to dword `[rcx]` and qword `[rcx+8]` and copies dword `[rdx+0x10]` to dword `[rcx+0x10]`; when that dword is 0 returns `rcx` at once; otherwise makes the call at `0067ACF0` + 0x3B with (`rcx`, dword `[rdx]` with bit 31 cleared) and, when qword `[rcx+8]` is then non-null, the call at `0067ACF0` + 0x50 with (that qword, qword `[rdx+8]`, dword `[rcx+0x10]`); returns `rcx`",
+   "anchors": [
+    [
+     "0067AD16",
+     "mov"
+    ],
+    [
+     "0067AD1B",
+     "je"
+    ],
+    [
+     "0067AD27",
+     "btr"
+    ],
+    [
+     "0067AD2B",
+     "call"
+    ],
+    [
+     "0067AD40",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0067ACF0: the cmovne at 0067AD20 selects qword [rdx+8] only when dword [rdx+0x10] is non-zero, which is already guaranteed on that path, so the sentence states it unconditionally. 001C1C00: the jbe at 001C1C2F follows the AND and so branches only on n = 0."
+}
