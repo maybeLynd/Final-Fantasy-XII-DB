@@ -1,0 +1,11 @@
+{
+ "page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "001FDF10", "entered_from": "`001B6230` + 0x24",
+   "text": "zeroes qwords `+0`, `+8` and `+0x10` of `rdx`, makes the call at `001FDF10` + 0x2C with `rdx+0x18`, `rcx+0xF8` and a zero fifth (stack) argument, then the call at `001FDF10` + 0x42 with (`rdx`, qword `rcx+0xE0`, qword `rcx+0xE8`), and returns `rdx`",
+   "anchors": [["001FDF1F", "mov"], ["001FDF3C", "call"], ["001FDF4B", "mov"], ["001FDF52", "call"], ["001FDF5C", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001FDF10: the first call's r8 and r9 are not set in this body (passed through from the caller), so the sentence names only rcx, rdx and the stack argument."
+}
