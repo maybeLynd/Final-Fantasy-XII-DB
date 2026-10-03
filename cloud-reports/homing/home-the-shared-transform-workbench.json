@@ -1,0 +1,35 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md",
+ "session": "session_01HFDWqiFGBo93D32pyB6Lkx",
+ "rows": [
+  {
+   "fn": "003B2750",
+   "entered_from": "`0036E9B0` + 0x32",
+   "text": "when `ecx AND 0xF0000000` is `0x70000000`, scans the 32 records of 48 bytes from `02EBE5E0` (below `02EBEBE0`) for the first whose dword `+0` equals `ecx`, stopping without a write at a record whose dword `+0` is 0, and in the matching record replaces bit 0 of byte `+0x20` with bit 0 of `edx`; with no match, or any other top nibble, it writes nothing",
+   "anchors": [
+    [
+     "003B275A",
+     "cmp"
+    ],
+    [
+     "003B2777",
+     "test"
+    ],
+    [
+     "003B277B",
+     "cmp"
+    ],
+    [
+     "003B278B",
+     "cmp"
+    ],
+    [
+     "003B279A",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003B2750: 02EBEBE0 is the loop's end bound (02EBE5E0 + 32 * 0x30), a global in the data section, not data after this function's code."
+}
