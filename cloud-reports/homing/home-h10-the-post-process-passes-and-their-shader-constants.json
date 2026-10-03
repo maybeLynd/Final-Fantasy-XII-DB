@@ -1,0 +1,14 @@
+{
+ "page": "22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "0017D900", "entered_from": "`00191130` + 0x1DA",
+   "text": "calls the function at `0017D900` + 0x4 and returns its null result when it returns null; otherwise calls it again (`0017D900` + 0xE) and returns byte `+0x10E0` of that result zero-extended",
+   "anchors": [["0017D904", "call"], ["0017D90C", "je"], ["0017D90E", "call"], ["0017D913", "movzx"]]},
+  {"fn": "0020B9A0", "entered_from": "`001D6AA0` + 0x1C",
+   "text": "returns 0 in `al` when `r8` is null; otherwise calls the function at `0020B9A0` + 0x29 with `rcx+0x58`, searches the tree rooted at qword `rcx+0x38` (header `rcx+0x28`, children qwords `[node]` and `+8`) for a node whose dword `+0x20` equals `edx` (unsigned lower-bound walk) and, when one is found, decrements byte `+0x10` of its qword `+0x28` if that byte is non-zero; then calls the functions at `0020B9A0` + 0x82 with `rcx+0x58`, at `0020B9A0` + 0x8A with `r8` and at `0020B9A0` + 0x97 with `r8` and 0x10, and returns 1 in `al`",
+   "anchors": [["0020B9E0", "cmp"], ["0020B9FC", "cmp"], ["0020BA1B", "mov"], ["0020BA37", "call"], ["0020BA41", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Callees cited by site because the host excerpts do not name them. 0020B9A0: the walk keeps the last node whose key is not below edx, moving to qword +8 from it and to qword [node] past smaller keys; a candidate whose key is above edx is replaced by the header, so only an exact match is used."
+}
