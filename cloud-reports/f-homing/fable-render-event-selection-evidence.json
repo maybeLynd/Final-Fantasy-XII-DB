@@ -1,0 +1,24 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md",
+ "session": "session_011Dcenz5EPZBdrLRrFP8ia6",
+ "mode": "homing",
+ "rows": [
+  {"fn": "003B4DA0",
+   "text": "for word `02B4050C` and then word `02B40514`: when the word is not -1 and the 0x740-byte record at qword `022C6F28` + sign-extended word*0x740 is non-null with non-zero dword `+0x284`, calls `003E6AA0(record, 2)`; after each slot it stores dword -1 at that slot (`02B4050C` or `02B40514`) and zeroes word `02B40508` and byte `02B4050A` (first slot) or word `02B40510` and byte `02B40512` (second slot), on both paths",
+   "anchors": [["003B4DC7", "cmp"], ["003B4DD9", "call"], ["003B4DE5", "mov"], ["003B4E28", "call"], ["003B4E2D", "mov"]]},
+  {"fn": "003B5180",
+   "text": "builds an 8-byte selection `S` as a local {word 0, dword -1 at +4}, replaced by qword `02B40508` when byte `02B4050A` is 1, then by qword `02B40510` when byte `02B40512` is 1 and byte 1 of the current choice is below byte `02B40511` (unsigned), and keeps it as `S0`; when the call at `003B5180+0x57` with 0 returns `ecx`, it calls `003E6AA0(record, 2)` for word `02B4050C` (when not -1 and the 0x740-byte record at qword `022C6F28` + word*0x740 is non-null with non-zero dword `+0x284`) and resets dword `02B4050C` to -1 and word `02B40508`, byte `02B4050A` to 0; when the call at `003B5180+0xb5` with 1 returns `ecx`, it does the same for word `02B40514` and resets dword `02B40514`, word `02B40510` and byte `02B40512`; it then rebuilds `S` the same way from the current values and calls `003B5180+0x172` only when dword +4 or byte 0 of the two selections differ",
+   "anchors": [["003B51C8", "cmovb"], ["003B5213", "call"], ["003B5271", "call"], ["003B52E1", "cmp"], ["003B52F2", "call"]]},
+  {"fn": "003E0740",
+   "text": "walks 0x740-byte records at qword `022C6F28`, starting at index dword `+0x48800` of that base (returns at once when it is -1) and moving to each record's signed word `+4` until -1; for an index whose low word is not -1 and whose record is non-null with non-zero dword `+0x284` it calls `003E6DA0(record)` and, when that returns non-null `r`, for each of dwords `r+8`, `r+0x28`, `r+0x34`, `r+0x3c`, `r+0x24` in that order calls `0020E600(id)` and, when that is non-null, passes it to the call at `003E0740+0x75`, `003E0740+0x92`, `003E0740+0xaf`, `003E0740+0xcc` or `003E0740+0xe9` respectively",
+   "anchors": [["003E0753", "cmp"], ["003E077F", "cmp"], ["003E078C", "call"], ["003E07B5", "call"], ["003E083E", "movsx"]]},
+  {"fn": "00423980",
+   "text": "when dword `rcx+0xc4` is not -1 calls `0051BA40(qword +0xda8 of 0020E600(dword rcx+0x10), that dword)`; then stores -1 at `rcx+0xc4` and, when dword `rcx+0x18` is not -1, calls `002ED570(qword +0xd98 of 0020E600(dword rcx+0x10), that dword)` and, when the result is non-null and its float `+0x98` is not below 1.0 (`01CEBBA8`), clears bit `0x8` of its dword `+0` and zeroes its dword `+0x98`",
+   "anchors": [["004239A9", "call"], ["004239B1", "mov"], ["004239D6", "call"], ["004239E8", "comiss"], ["004239F1", "and"]]},
+  {"fn": "0046E8D0",
+   "text": "returns with `rax` = the incoming `rdx` when dword `rcx+0x10` is -1; otherwise tail-jumps to `00372F60(rcx, 002ED570(rdx, that dword))`",
+   "anchors": [["0046E8D6", "mov"], ["0046E8DF", "cmp"], ["0046E8E7", "call"], ["0046E8F7", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002EA030, 003B4FD0 and the five 003E0740 consumers are not named by the page and are cited by call site. 003B5180: the local selection's bytes +2/+3 are uninitialised stack in the default case, but only byte 0, byte 1 and dword +4 are compared; when the second slot is reset, the rebuild uses cl = dl = 0 instead of rereading 02B40511/02B40512 (same values after the reset). 003E0740: the first index is the full dword +0x48800 (tested for -1 as a dword, then its low word for -1); later indices are sign-extended words, and the record address uses the index zero-extended (mov eax, edi). 00423980: the comiss jb skips when float +0x98 is below 1.0 or unordered; the cleared +0x98 is written as dword 0."
+}
