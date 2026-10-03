@@ -1,0 +1,130 @@
+{
+ "page": "18-Audio/the-spatial-audio-object-model.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "001A7600",
+   "text": "loads qword `+0x88` of `rcx` and returns 0 when it is null, when `r8d` is negative (`js`) or when `r8d` is not below dword `+0x20` (signed `jge`); otherwise returns the qword at index `edx + r8d*2` (both sign-extended, stride 8) of that array",
+   "anchors": [
+    [
+     "001A760A",
+     "je"
+    ],
+    [
+     "001A760F",
+     "js"
+    ],
+    [
+     "001A7611",
+     "cmp"
+    ],
+    [
+     "001A7621",
+     "mov"
+    ],
+    [
+     "001A7626",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "001DBE00",
+   "text": "calls the callee at `001DBE00` + 0x16 with the incoming `rcx`, `rdx` and `r8` unchanged, then tail-jumps the callee at `001DBE00` + 0x35 with `rcx` = that call's result, `edx` = the incoming `ecx`, `r8d` = the incoming `edx` and `r9` = the incoming `r8`",
+   "anchors": [
+    [
+     "001DBE16",
+     "call"
+    ],
+    [
+     "001DBE1B",
+     "mov"
+    ],
+    [
+     "001DBE21",
+     "mov"
+    ],
+    [
+     "001DBE35",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00223EB0",
+   "text": "calls the callee at `00223EB0` + 0x19 with `rcx`, `rdx` and `r8` passed through, `r9d` = 0, the fifth (stack) argument the dword 0, the sixth the byte 1 and the seventh the incoming `r9`, and returns its result",
+   "anchors": [
+    [
+     "00223EB4",
+     "mov"
+    ],
+    [
+     "00223EB9",
+     "xor"
+    ],
+    [
+     "00223EBC",
+     "mov"
+    ],
+    [
+     "00223EC1",
+     "mov"
+    ],
+    [
+     "00223EC9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0026E5D0",
+   "text": "returns 0 when qword `0209A670` is zero; otherwise returns the bitwise NOT of qword `0209A6C0` AND qword `0209A6C8`",
+   "anchors": [
+    [
+     "0026E5D8",
+     "je"
+    ],
+    [
+     "0026E5E1",
+     "not"
+    ],
+    [
+     "0026E5E4",
+     "and"
+    ],
+    [
+     "0026E5EC",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0041C970",
+   "text": "walks the sign-extended word `+0x28` of `rcx` records of 0xA0 bytes starting at `rcx + 0x30` and returns the address of the first whose dword `+0x80` equals `edx`; returns 0 when the count is not positive or no record matches",
+   "anchors": [
+    [
+     "0041C97F",
+     "jle"
+    ],
+    [
+     "0041C981",
+     "cmp"
+    ],
+    [
+     "0041C98C",
+     "add"
+    ],
+    [
+     "0041C995",
+     "jl"
+    ],
+    [
+     "0041C997",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
