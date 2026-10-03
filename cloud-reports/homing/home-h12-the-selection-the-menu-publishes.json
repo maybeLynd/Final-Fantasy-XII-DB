@@ -1,0 +1,11 @@
+{
+ "page": "16-UI/the-selection-the-menu-publishes.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "00270F50", "entered_from": "`003F6370` + 0x192",
+   "text": "loads 0x10 into `r9d` and tail-jumps (`00270F50` + 0x6), passing `rcx`, `edx` and `r8d` through unchanged",
+   "anchors": [["00270F56", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00270F50: an 11-byte wrapper; the r9d load is the entry instruction, so the only interior anchor is the tail jmp. The tail target is cited by site because the host excerpt does not name it."
+}
