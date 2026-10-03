@@ -1,0 +1,17 @@
+{
+ "page": "16-UI/Widget-Object-Model/the-widget-message-protocol.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "00297E10", "entered_from": "`0029A0A0` + 0x4C5",
+   "text": "returns 0 when `edx` equals dword `rcx+0xE0` and `r8d` equals dword `rcx+0xE8`; otherwise takes the object at qword `+0x30` of qword `rcx+0x60`, makes the call at `00297E10` + 0x39 with that object and the signed larger of `edx` and `r8d`, then the call at + 0x43 with that object and the incoming `edx`, and returns 1",
+   "anchors": [["00297E18", "cmp"], ["00297E20", "cmp"], ["00297E44", "jle"], ["00297E49", "call"], ["00297E53", "call"]]},
+  {"fn": "00297F60", "entered_from": "`0029A0A0` + 0x529",
+   "text": "returns without a store when dword `rcx+0xEC` equals `edx`; otherwise makes the call at `00297F60` + 0x21 with `ecx` = `edx`, keeps its result or, when that is null, the incoming `r8`, and stores it at qword `R+0x18`, where X is qword `+0xE0` of qword `rcx+0x60` and R is the qword at `[qword X+0x18]+0x60` dereferenced (R = 0 when qword `X+0x18` is null); then stores the result of the call at + 0x55 (`ecx` = 0) at that record's dword `+0x20` and `edx` at dword `rcx+0xEC`",
+   "anchors": [["00297F77", "cmp"], ["00297F90", "cmove"], ["00297FB1", "mov"], ["00297FBA", "mov"], ["00297FBD", "mov"]]},
+  {"fn": "003FCDE0", "entered_from": "`003FCD20` + 0xA2",
+   "text": "reads a qword from `+0x98` of qword `+0x18` of qword `+0x28` of qword `rcx+0x60` (0 as the base when `rcx` is null); for each offset 0 to `0x28` in steps of 8 makes the call at `003FCDE0` + 0x57 with (qword `+0x18` of the qword at that offset of qword `rcx+0x60`, 0); then for each index 0 to 8 makes the call at + 0x82 with the index and, when the call at + 0x8D with that result returns non-zero, takes qword `+0x18` of the qword at slot (the dword at `00D120A0` indexed by that result's signed word `+0x60`) of qword `rcx+0x60`, makes the call at + 0xBC with (it, 1) and stores the running qword at its `+0x98`, then adds the qword's bits 32 to 47 to its low word for the next store",
+   "anchors": [["003FCE10", "mov"], ["003FCE37", "call"], ["003FCE84", "movsxd"], ["003FCE9C", "call"], ["003FCEA5", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00297F60: when qword +0x18 of the +0xE0 object is null the body still stores through 0 (writes to absolute +0x18/+0x20); the sentence states the representation, not that it faults. Return value of 00297F60 is not stated (rax is whatever the last call or the entry left). 003FCDE0: the first loop runs for offsets 0, 8, ..., 0x28 (six passes, `jle` signed); in the second loop only the low word of the running qword advances (by the word at its bits 32..47, `003FCEA1`/`003FCEAC`), and the first store uses the unadvanced value. 00D120A0 is a dword index table reached by `lea` (not a jump table, not adjacent to the body)."
+}
