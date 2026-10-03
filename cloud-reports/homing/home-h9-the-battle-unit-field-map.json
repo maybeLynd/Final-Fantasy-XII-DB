@@ -1,0 +1,14 @@
+{
+ "page": "04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md",
+ "session": "session_01D1qcH91DQC7cqg95y9syrn",
+ "rows": [
+  {"fn": "0026B940", "entered_from": "`00239370` + 0x4D",
+   "text": "takes the top three bits of byte `rcx+3` (`shr 5`): when they equal 1 stores `xmm1` as float `+0x50` of qword `rcx+0xB8`, when they equal 3 stores it at `+0xBC` of that qword, and for any other value stores nothing; returns",
+   "anchors": [["0026B944", "shr"], ["0026B94C", "cmp"], ["0026B958", "movss"], ["0026B968", "movss"]]},
+  {"fn": "0026BA00", "entered_from": "`00239370` + 0x3D",
+   "text": "takes the top three bits of byte `rcx+3` (`shr 5`): when they equal 3 stores `xmm1` as float `+0xC8` of qword `rcx+0xB8` and sets byte `+0xDD` of that qword to 1 when `xmm1` is below 0.0 (`comiss`/`seta`, so 0 for NaN) else 0, when they equal 1 stores the float at `+0x68` and the flag at byte `+0x5C` instead, and for any other value stores nothing; every path then tail-jumps with the incoming `rcx` and `xmm1` (at `0026BA00` + 0x32 for 3, at `0026BA00` + 0x52 otherwise; both reach the same target)",
+   "anchors": [["0026BA21", "movss"], ["0026BA2C", "mov"], ["0026BA32", "jmp"], ["0026BA4C", "mov"], ["0026BA52", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0026BA00: both tail jumps go to 00268380, which the host excerpt does not name, so they are cited by site. No doubts."
+}
