@@ -1,0 +1,27 @@
+{
+ "page": "22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md",
+ "session": "session_01HfPRM3vgupD1jscEXG8z9Y",
+ "mode": "homing",
+ "rows": [
+  {"fn": "001C1A60",
+   "text": "returns `r8` unchanged when `rdx` equals `rcx`; otherwise steps the source `rdx` and the destination `r8` back by 0x230 bytes per element until the source reaches `rcx`, copying each element's dwords `+0` and `+4` and its 0x100 bytes at `+8` (0x80 two-byte steps) and then calling `001C22A0(destination + 0x108, source + 0x108)`; returns the last destination pointer",
+   "anchors": [["001C1A7B", "je"], ["001C1A80", "sub"], ["001C1AC5", "mov"], ["001C1AE1", "call"], ["001C1AE9", "jne"]]},
+  {"fn": "001C2230",
+   "text": "copies dwords `+0` and `+4` of `rdx` to `rcx` and the 0x100 bytes at `rdx+8` to `rcx+8` (0x80 two-byte steps), then calls `001C22A0(rcx + 0x108, rdx + 0x108)` and returns `rcx`",
+   "anchors": [["001C223C", "mov"], ["001C2247", "mov"], ["001C2265", "mov"], ["001C228A", "call"], ["001C228F", "mov"]]},
+  {"fn": "006305A0",
+   "text": "builds a stack record (dword 0, dword `02CF82A8`, qword `rcx`, byte 1) and, for each block in the chain starting at `02CF8270` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` forward through qword `+0` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [["006305AF", "mov"], ["006305CD", "mov"], ["006305E7", "mov"], ["00630608", "call"], ["00630624", "mov"]]},
+  {"fn": "006306E0",
+   "text": "builds a stack record (dword 0, dword `02CF84A8`, qword `rcx + 0x30`, or 0 when `rcx` is null, byte 1) and, for each block in the chain starting at `02CF8470` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` forward through qword `+0` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [["006306EF", "mov"], ["00630712", "cmove"], ["00630727", "mov"], ["00630748", "call"], ["00630764", "mov"]]},
+  {"fn": "00630BE0",
+   "text": "builds a stack record (dword 0, dword `02CF82A8`, qword `rcx`, byte 0) and, for each block in the chain starting at `02CF8270` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` backward through qword `+8` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [["00630BEF", "mov"], ["00630C0D", "mov"], ["00630C27", "mov"], ["00630C48", "call"], ["00630C4D", "mov"]]},
+  {"fn": "00630D20",
+   "text": "builds a stack record (dword 0, dword `02CF84A8`, qword `rcx + 0x30`, or 0 when `rcx` is null, byte 0) and, for each block in the chain starting at `02CF8470` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` backward through qword `+8` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [["00630D2F", "mov"], ["00630D51", "cmove"], ["00630D67", "mov"], ["00630D88", "call"], ["00630D8D", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "006305A0/006306E0 follow the first link qword at the head (+0x80+0) and each link's qword +0; 00630BE0/00630D20 follow head +0x88 and each link's qword +8, so 'forward'/'backward' only names which link qword is followed. None of the four ring walkers sets a return value, so no return is stated."
+}
