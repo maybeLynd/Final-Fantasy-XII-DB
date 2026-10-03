@@ -1,0 +1,20 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "0019B400", "entered_from": "`00202930` + 0x19F",
+   "text": "stores `008F3EC8` at qword `+0` of `rcx`; when qword `+0x80` is non-null and the qword pointed to by qword `+0x18` equals `rcx+0x70`, writes qword `+0x88` through the pointers at qwords `+0x18` and `+0x38` and writes the dword difference of qword `+0x90` minus qword `+0x88` through the pointer at qword `+0x50`; when byte `+0x7C` is non-zero makes the call at `0019B400` + 0x5E with `rcx`; then tail-jumps through qword `008C27A0` with `rcx`",
+   "anchors": [["0019B419", "mov"], ["0019B42E", "cmp"], ["0019B452", "mov"], ["0019B45E", "call"], ["0019B46C", "jmp"]]},
+  {"fn": "0019B8C0", "entered_from": "`00202930` + 0x150",
+   "text": "when qword `+0x80` of `rcx` is null the result is 0; otherwise makes the call at `0019B8C0` + 0x22 with `rcx` and calls through qword `008C2F00` with qword `+0x80`, and the result is `rcx` only when the first call returned a non-zero `al` and the second a zero `eax`, else 0; on both paths then clears bytes `+0x7C` and `+0x71`, calls through qword `008C27B0` with `rcx`, clears qwords `+0x80` and `+0x68`, copies qword `01F81140` to qword `+0x74`, and returns the result",
+   "anchors": [["0019B8E2", "call"], ["0019B8F5", "cmove"], ["0019B901", "cmovne"], ["0019B910", "call"], ["0019B92C", "mov"]]},
+  {"fn": "0019B990", "entered_from": "`00202930` + 0xFA",
+   "text": "returns 0 when qword `+0x80` of `rcx` is non-null or when the call through qword `008C25C8` (`rdx`, `r8d`, `r9d`) returns null; otherwise sets byte `+0x7C` to 1 and clears byte `+0x71`, calls through qword `008C27B0` with `rcx`, calls through qword `008C2E20` with the returned handle and three zeroed out-qwords and stores them at qwords `+0x18`/`+0x20`, `+0x38`/`+0x40` and `+0x50`/`+0x58`, stores the handle at qword `+0x80`, copies qword `01F81140` to qword `+0x74` and clears qword `+0x68`; passes the result of the call through qword `008C27A8` (`rcx`, a stack buffer) to the call at `0019B990` + 0xD3, and when the call through qword `008C2638` on that value returns zero `al` stores the value at qword `+0x68` and calls through qword `008C27B0` again, else clears qword `+0x68`; then, when the buffer's second qword is non-null, calls its vtable slot `+0x10` and, on a non-null result, that result's vtable slot 0 with `edx` = 1; returns `rcx`",
+   "anchors": [["0019B9BA", "jne"], ["0019B9C8", "call"], ["0019BA0E", "call"], ["0019BA63", "call"], ["0019BA7E", "mov"]]},
+  {"fn": "001EF540", "entered_from": "`001AC7C0` + 0x38",
+   "text": "when `dl` is non-zero XORs dword `+0x130` of `rcx` with 2; otherwise copies dword `+0x134` into dword `+0x130`",
+   "anchors": [["001EF542", "je"], ["001EF544", "xor"], ["001EF54C", "mov"], ["001EF552", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0019B990: the buffer whose second qword is tested (stack +0x30) is only written by the callee through qword 008C27A8 (it receives stack +0x28); the sentence assumes that callee fills 16 bytes there. The listing does not show a write to stack +0x30 otherwise. 0019B400 and 0019B8C0 reach each other (0019B400 + 0x5E calls 0019B8C0); cited by site per the homing rule."
+}
