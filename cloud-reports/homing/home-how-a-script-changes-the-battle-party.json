@@ -1,0 +1,11 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "0035A050", "entered_from": "`0034D4E0` + 0xA4",
+   "text": "returns `ecx AND 0x7F`",
+   "anchors": [["0035A053", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0035A050 (doubt): the mask is the entry instruction and the only interior instruction before `ret` is the `mov eax, ecx` that returns it; rowed with that anchor. If FABLE treats this as entry-only work, move it to skipped."
+}
