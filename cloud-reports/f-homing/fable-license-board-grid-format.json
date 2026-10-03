@@ -1,0 +1,12 @@
+{
+ "page": "12-Items-Equipment-Shops-License/license-board-grid-format.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {"fn": "003FCAD0",
+   "text": "for k from `r8d` to `r9d` (signed) takes `E` = qword `[rcx+0x10]`[k], stores word 7 at `E+0xa`, clears bit `0x1` of dword `E+8` and copies byte `+0x3f` of qword `E+0x20` to `E+0x39`; returns if `w` = word `rdx+8` is `0xffff`, else for i = 0 to 8 takes `s` = call `003FCAD0`+0x82 (i) and, only when call +0x8D (s) is non-zero, sets bit `0x1` of dword `+8` of `E` = `[rcx+0x10]`[min(`r8d`+i, `r9d`)], then branches on dword `[`call +0xBD (1, w << 0x10)`]` with `f` = low byte of call +0xCD (w, s): 8 or 9 stores word 8 at `E+0xa` and byte `+0x47` of qword `E+0x20` at `E+0x39`; 6, only if `f` is non-zero, stores word 9 and byte `+0x4f` instead when `003FC900` is non-zero for (call +0x153 result, w) or (call +0x15F result, w), else word 8 and byte `+0x47`, then searches the 5 words at `s+0x9a` (stride 4) for w; if `f` is non-zero on 8 or 9, or the search hits on 6, it stores `j` = call +0xFE (signed word `s+0x60`, 5) plus 1 at `E+0xa` and byte `+7` of 8-byte entry `j` of qword `E+0x20` at `E+0x39`; other values store nothing more",
+   "anchors": [["003FCB13", "mov"], ["003FCB29", "cmp"], ["003FCB74", "cmovle"], ["003FCC40", "call"], ["003FCBE1", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). 'call +0xNN' means the call instruction at 003FCAD0 + 0xNN (callees not named on the page). The second-phase index uses r15, which starts at sign-extended r8d and is incremented on every iteration including skipped ones, hence min(r8d+i, r9d). Doubt: long row (near the limit); the arm-6 store happens before the search, and when f is zero arm 6 goes straight to the search."
+}
