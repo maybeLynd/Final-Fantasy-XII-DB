@@ -1,0 +1,165 @@
+{
+ "page": "22-Middleware-PhyreEngine/Shader-Variant-Selection/the-context-switch-axes-and-the-variant-key.md",
+ "session": "session_0137cceA3k2cA9BjsRcas6z4",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "001670A0",
+   "text": "calls `006B8D20(01F2EBF0)` and, only when it returns 0, increments dword `02E522E0` and stores dword 1 at `01F2EC10`; on both paths stores the address `00D80EF8` at qword `01F2EBF0` and tail-jumps at `001670A0` + 0x3D with `rcx` = `008B58B0`",
+   "anchors": [
+    [
+     "001670AB",
+     "call"
+    ],
+    [
+     "001670B4",
+     "inc"
+    ],
+    [
+     "001670BA",
+     "mov"
+    ],
+    [
+     "001670D2",
+     "mov"
+    ],
+    [
+     "001670DD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001670F0",
+   "text": "calls `006B8D20(01F2EBC8)` and, only when it returns 0, adds 3 to dword `02E522E0` and stores dword 3 at `01F2EBE8`; on both paths stores the address `00D80ED0` at qword `01F2EBC8` and tail-jumps at `001670F0` + 0x3E with `rcx` = `008B5930`",
+   "anchors": [
+    [
+     "001670FB",
+     "call"
+    ],
+    [
+     "00167104",
+     "add"
+    ],
+    [
+     "0016710B",
+     "mov"
+    ],
+    [
+     "00167123",
+     "mov"
+    ],
+    [
+     "0016712E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00167140",
+   "text": "calls `006B8D20(01F2ECE0)` and, only when it returns 0, increments dword `02E522E0` and stores dword 1 at `01F2ED00`; on both paths stores byte 0 at `01F2ED04`, stores the address `00D80FE8` at qword `01F2ECE0` and tail-jumps at `00167140` + 0x44 with `rcx` = `008B59B0`",
+   "anchors": [
+    [
+     "0016714B",
+     "call"
+    ],
+    [
+     "00167154",
+     "inc"
+    ],
+    [
+     "0016716B",
+     "mov"
+    ],
+    [
+     "00167179",
+     "mov"
+    ],
+    [
+     "00167184",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00167190",
+   "text": "calls `006B8D20(01F2EC90)` and, only when it returns 0, increments dword `02E522E0` and stores dword 1 at `01F2ECB0`; on both paths stores the address `00D80F98` at qword `01F2EC90` and tail-jumps at `00167190` + 0x3D with `rcx` = `008B5A30`",
+   "anchors": [
+    [
+     "0016719B",
+     "call"
+    ],
+    [
+     "001671A4",
+     "inc"
+    ],
+    [
+     "001671AA",
+     "mov"
+    ],
+    [
+     "001671C2",
+     "mov"
+    ],
+    [
+     "001671CD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001671E0",
+   "text": "calls `006B8D20(01F2EC40)` and, only when it returns 0, increments dword `02E522E0` and stores dword 1 at `01F2EC60`; on both paths stores the address `00D80F48` at qword `01F2EC40` and tail-jumps at `001671E0` + 0x3D with `rcx` = `008B5AB0`",
+   "anchors": [
+    [
+     "001671EB",
+     "call"
+    ],
+    [
+     "001671F4",
+     "inc"
+    ],
+    [
+     "001671FA",
+     "mov"
+    ],
+    [
+     "00167212",
+     "mov"
+    ],
+    [
+     "0016721D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00167230",
+   "text": "calls `006B8D20(01F2EC68)` and, only when it returns 0, increments dword `02E522E0` and stores dword 1 at `01F2EC88`; on both paths stores the address `00D80F70` at qword `01F2EC68` and tail-jumps at `00167230` + 0x3D with `rcx` = `008B5B30`",
+   "anchors": [
+    [
+     "0016723B",
+     "call"
+    ],
+    [
+     "00167244",
+     "inc"
+    ],
+    [
+     "0016724A",
+     "mov"
+    ],
+    [
+     "00167262",
+     "mov"
+    ],
+    [
+     "0016726D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Six same-shape bodies. Each tail-jumps to one shared callee (the jmp at the cited site) that the page does not name, so it is cited by site only; its return value is what the body returns. The listing shows the initial (file) values of the stored-to globals as 0x00D80EA8 for the qwords and 0 for the dwords (byte 01F2ED04 shows 1); these initial values are not used in the rows. 001670F0 differs from the others in adding 3 (not 1) to 02E522E0 and storing 3 (not 1); 00167140 additionally clears byte 01F2ED04 on both paths. Purpose (static initialisers with an exit registration) is not stated since the listing does not show it."
+}
