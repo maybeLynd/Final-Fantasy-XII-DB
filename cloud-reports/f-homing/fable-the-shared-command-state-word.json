@@ -1,0 +1,12 @@
+{
+ "page": "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {"fn": "0035E760",
+   "text": "returns without calling anything when dword `022CA5F8` is 0; otherwise calls `00369160()` and, when the qword at the returned address is non-zero, tail-jumps to `003691B0(0)`, else returns",
+   "anchors": [["0035E76C", "je"], ["0035E76E", "call"], ["0035E773", "cmp"], ["0035E77F", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). 003691B0 is named on the page, so it is cited by address. No doubts."
+}
