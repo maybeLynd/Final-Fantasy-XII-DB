@@ -1,0 +1,31 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "002E5B90",
+   "entered_from": "`0026AC70` + 0x5C",
+   "text": "when `rcx` is non-null and its qword `+0xC0` is non-zero, stores the float in `xmm1` at dword `+0x58` of qword `+0xF0` of qword `rcx+0xB8`; otherwise does nothing",
+   "anchors": [
+    [
+     "002E5B95",
+     "cmp"
+    ],
+    [
+     "002E5B9F",
+     "mov"
+    ],
+    [
+     "002E5BA6",
+     "mov"
+    ],
+    [
+     "002E5BAD",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
