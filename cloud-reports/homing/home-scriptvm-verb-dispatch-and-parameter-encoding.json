@@ -1,0 +1,32 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "0025D460", "entered_from": "`003DBDC0` + 0x3D",
+   "text": "zeroes the first 0x17 bytes of `rcx`: qwords `+0` and `+8`, dword `+0x10`, word `+0x14` and byte `+0x16`",
+   "anchors": [["0025D462", "mov"], ["0025D465", "mov"], ["0025D469", "mov"], ["0025D46C", "mov"], ["0025D470", "mov"]]},
+  {"fn": "00264110", "entered_from": "`00377900` + 0x35",
+   "text": "returns the call at `00264110` + 0x2A with its arguments shifted one place right and 1 inserted first: (1, `ecx`, `edx`, `r8`, `r9`, the fifth (stack) argument, the sixth (stack) argument)",
+   "anchors": [["00264119", "mov"], ["00264123", "mov"], ["00264128", "mov"], ["00264135", "mov"], ["0026413A", "call"]]},
+  {"fn": "00264B90", "entered_from": "`00264B50` + 0x27",
+   "text": "zeroes the dwords at `r9` and at the fifth, sixth and seventh (stack) argument pointers, then takes the record at qword `02098E10` + `edx` times 0x288 and returns 0 when it is null; resolves `r8d` as an index (-1 to signed word `+0x52`, then -2 to word `+0x78`, then -3 to word `+0x7A`, tested in that order, then a negative value to word `+0x52`, and a value still negative to 0); returns 0 when word `+0` is at most 2, when the call at `00264B90` + 0xA8 with dword `+0x54` (`ecx` 0) or dword `+0x84` (`ecx` non-zero) returns 0, or when the index is not below (unsigned) the dword at the record plus the low 32 bits of that result; otherwise copies the dwords at that base plus 0x20 times the index plus 4, 8, 0xC and 0x10 to the four out pointers and returns 1",
+   "anchors": [["00264BC7", "imul"], ["00264C1F", "cmovns"], ["00264C38", "call"], ["00264C47", "cmp"], ["00264C56", "mov"]]},
+  {"fn": "002D75F0", "entered_from": "`00511550` + 0x21",
+   "text": "takes qword `+0xD8` of qword `0209AC30`, or qword `+0x100` when that is null, and returns without work when both are null; otherwise stores 1 at dword `+0xCC` and the qword 2 at `+0xC4` of that object, then, when `ecx` is -1, sets its dword `+0xC0` to 0xA if it is 0, and for any other `ecx` sets it to 1 if it is 9",
+   "anchors": [["002D7606", "mov"], ["002D7623", "mov"], ["002D762D", "mov"], ["002D7646", "mov"], ["002D765A", "mov"]]},
+  {"fn": "0036B060", "entered_from": "`0037B3D0` + 0xB",
+   "text": "returns `022D7FD0` + `ecx` times 0xA8 when `ecx` is at most 0xE (unsigned), otherwise 0",
+   "anchors": [["0036B063", "ja"], ["0036B068", "lea"], ["0036B06F", "imul"], ["0036B07A", "xor"]]},
+  {"fn": "003944D0", "entered_from": "`00511FB0` + 0x4",
+   "text": "returns 1 when byte `01EFAC12` is not 2 or when bit 1 (`0x2`) of byte `+0xC4` of qword `02AEE4C8` is set, otherwise 0",
+   "anchors": [["003944D7", "jne"], ["003944E0", "test"], ["003944E9", "xor"], ["003944EC", "mov"]]},
+  {"fn": "003DE700", "entered_from": "`00378230` + 0x152",
+   "text": "returns 1 when bit `ecx` (modulo 32) of the sign-extended byte `02B59350` is set, otherwise 0",
+   "anchors": [["003DE707", "xor"], ["003DE709", "bt"], ["003DE70C", "setb"]]},
+  {"fn": "005688D0", "entered_from": "`005113D0` + 0x14",
+   "text": "indexes the qword table `02CA96E0` by the signed dword at qword `02EBF190` + 0x7370 + 4 times signed dword `+0xF0` of qword `+0x160` of qword `0209AC30`; when the entry is null, makes the call at `005688D0` + 0x58 and returns 1; otherwise makes the call at `005688D0` + 0x3A (`rcx` still that index) and returns 0 when bit 1 (`0x2`) of the entry's byte `+0x358` is clear or the call returned 2 or 3, else makes the call at `005688D0` + 0x58 and returns 1",
+   "anchors": [["005688F9", "movsxd"], ["00568905", "test"], ["0056890F", "test"], ["00568923", "cmp"], ["00568928", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002D75F0: the je at 002D7621 cannot be taken (the +0x100 qword was already found non-null), so the stores at +0xCC and +0xC4 always run on the chosen object. 003944D0: the listing's static byte value (0x06) at 01EFAC12 is not used in the row. 005688D0: the call at +0x3A receives rcx = the table index left by the movsxd at 005688F9; whether the callee reads it is not visible here."
+}
