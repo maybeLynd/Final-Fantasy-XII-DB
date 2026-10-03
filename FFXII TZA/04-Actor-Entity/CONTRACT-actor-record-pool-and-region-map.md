@@ -323,6 +323,56 @@ here.
 from the bytes; the descriptor's two counts stated as layout rather than as a correction, and one
 terminology slip corrected against §7a.)*
 
+## 7c. Removal order, the release gate's two callers, and the ordinal / row / preset bindings (OPUS, 2026-10-02)
+
+Incorporated from FABLE's independent reviews of three ASTRA packets, all ACCEPT-WITH-NARROWING:
+[`notification-retirement-order`](../_index/candidates/fable-review-astra-notification-retirement-order-1002/),
+[`request-cancel-notification`](../_index/candidates/fable-review-astra-request-cancel-notification-1002/) and
+[`actor-directory-kind-proof`](../_index/candidates/fable-review-astra-actor-directory-kind-proof-1002/). OPUS re-read
+the removal, the index leaf and the notification's refusals at the bytes on 2026-10-02. The release gate's mode-4
+caller and the directory bindings stand on FABLE's review evidence (`rv_actordir.py`, 69 / 69 PASS).
+
+**Removal (`003DB2A0`).**
+- Index `0xFF` returns a constant 1 and does nothing else.
+- A removed index that is not the list head does not walk the list. Every pass hands the removed index itself to
+  `003DB550` (the record page's removal table states the three outcomes).
+- The mode-3 end notification through `003DC0D0` is attempted **before** the removed index is relinked onto the free
+  list (`003DB650`) and published at `+0x60`. Its result is discarded.
+- The removal returns entry `+0x12` bit 0.
+
+**The notification's refusals (`003DBCF0`).** The record `003DC0D0` builds carries function id 0 at `+4`.
+- `003DBCF0` checks that id against the count at `[actor+0x48]` first: a zero count returns 3.
+- It then checks the free head `actor+0x60`: `0xFF` returns 2.
+- Neither refusal makes a call or writes the object.
+
+**The release gate's second caller.** The gate is reached from RET's removal and from `003DB420` mode 4 (the
+`freqcancel` verbs).
+- **Range.** Channels run from `byte actor+0x88 - 1` down to `max(0, signed edx)`. Both compares are signed 64-bit.
+  Each channel is gated by the entry snapshot of `word actor+6`, at bit (channel mod 32).
+- **Selection.** The state filter `r14d` = (`r8d` != 4 ? `r8d` : 0). The recycler takes the first nonzero
+  `byte entry+0x11`, following each entry's `+0` link, with the walk bounded by `byte actor+0x89`. It takes at most
+  one entry per channel per call.
+- **Removal.** It completes only when the selected index is the head of the list named by `entry+2`, or by
+  `actor+0x61` when `+0x10` is 4.
+- **Return.** EAX 1 on every normal path.
+
+**Ordinal, row and preset.**
+- The allocator `002679F0` publishes `pool[1 + ordinal]` row by row. Ordinal i is in row k exactly when
+  sum(counts[:k]) <= i < sum(counts[:k+1]). The counts are the u16 entries after the group count at descriptor +
+  s32 `[desc+0x14]`.
+- Nothing bounds the published ordinals by N = manager `+0x20`. N covering sum(counts) is a precondition.
+- The initializer `00266530` binds record `+0x40` = desc + s32 `[desc+0x18]` + 4 + 48*i (32*i when WORD `[desc+0]` < 8).
+- The preset leaf `00266BD0` switches on the GROUP (record `+3` & 0x1F), not on the kind:
+  - groups 5 and 6 store `0x00030004` (group 5 also sets `+0x14` bit 7);
+  - group 7 stores `0x00034C85` and sets `+0x14` bit 7;
+  - group 0 stores 0, groups 1-2 store `0x38`, groups 3-4 store `0x40`.
+- The initializer clears `+0x0B` bit 3 before its two `00268EA0` call sites. It therefore never files talkhold /
+  talkterm itself unless a callee sets that bit.
+- The directory WORD `+4` (scriptType) is read nowhere on this path.
+
+**Limits kept.** All of this is static and conditional. Natural reachability of the cancel path and the end
+notification's timing stay open where the register rows OV-10 and OV-16 leave them.
+
 ## 8. Script · resource · event interactions
 
 The sizes and layout classes are authored data in `.data`; the per-sequence counts come from a table

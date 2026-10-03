@@ -180,7 +180,7 @@ EDITS = [
     # C-V4 / C-V7 / stale items on the binding page (held: an ACTIVE SWE2-CONTRACT task edits this page).
     (BIND, "`003DBDC0` `ActorResource_StartEntryScriptExecution` (41 B) — the",
      "`003DBDC0` `ActorResource_StartEntryScriptExecution` (~~41 B~~ 210 B " + C + "its last `ret` is `003DBE91`, "
-     "followed by `int3` at `003DBE92`; `003DBE68` is inside it)*) — the"),
+     "followed by `int3` padding; `003DBE68` is inside it)*) — the"),
     (BIND, "`dword[r8]` bound (`00358A04`), `eax = dword[r8+rax*8+8]` (`00358A0F`), then `dword[022C7FE0]` + `003588B0` "
            "(`00358A24`/`00358A37`) |",
      "`dword[r8]` bound (`00358A04`), `eax = dword[r8+rax*8+8]` (`00358A0F`)~~, then `dword[022C7FE0]` + `003588B0` "

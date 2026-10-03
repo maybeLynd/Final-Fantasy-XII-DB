@@ -1738,9 +1738,9 @@ because it has to unlink from whichever list the entry is on and therefore names
 |---|---|---|
 | `idx == 0xFF` returns `1` | `003DB2B0` | the null ordinal is a no-op, and the return value is not a success flag |
 | pick the owning list | `003DB2F8`, `003DB2FE` | `state == 4` **or** a negative `channel` byte means the list is `rec+0x61`; otherwise it is `channelHead[channel]` |
-| walk to find it | `003DB326`–`003DB33F` | linear from the head through `003DB550`, so removal is O(list) |
+| ~~walk to find it~~ look for it | `003DB326`–`003DB33F` | ~~linear from the head through `003DB550`, so removal is O(list)~~ not a walk: every iteration passes the removed index itself to `003DB550` (`mov edx, esi`), so a non-head entry is unlinked only when its own `next` byte equals its index, returns with no unlink when that byte is `0xFF`, and otherwise repeats the same iteration *(corrected 2026-10-02, OPUS, from FABLE's review `fable-review-astra-notification-retirement-order-1002`; `003DB550` is a pure index leaf, `[actor+0xA0] + idx*20`)* |
 | unlink | `003DB346` → `003DC1B0` | the helper loads `prev` at `+0x01` and `next` at `+0x00` — **the lists are doubly linked** |
-| release a payload | `003DB36B`, `003DB371` | only when `entry+0x06 != 0x8000` **and** `state == 3` |
+| ~~release a payload~~ end notification | `003DB36B`, `003DB371` | ~~only when `entry+0x06 != 0x8000` **and** `state == 3`~~ the mode-3 end notification through `003DC0D0`, attempted before the free-list relink and its result discarded; only when the signed channel byte `entry+0x02` is non-negative, `entry+0x06 != 0x8000` **and** `entry+0x10 == 3` (`+0x10` is the request mode) *(corrected 2026-10-02, OPUS, from FABLE's review `fable-review-astra-notification-retirement-order-1002`)* |
 | class-indexed notify | `003DB382`–`003DB392` | only when `classAndFlag >= 2`, passing `classAndFlag >> 1` |
 | fix the head | `003DB39D`–`003DB3AB` | `channelHead[ch] = entry->next` if the entry was the head |
 | **fix the mask** | `003DB3C5`–`003DB3CD` | if the new head is `0xFF` the channel is empty, and **three** masks are cleared together: `+0x06`, `+0x24`, `+0x26` |
@@ -2925,7 +2925,7 @@ meaning is established by this pass.
 
 ## The `00265B60` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00265B60` (~90 B) — `qword[rcx+0xC0]` null-gate then `byte[+0x29] &=
+`00265B60` ~~(~90 B)~~ (1,067 B) *(corrected 2026-10-02, OPUS: the body runs to the `ret` at `00265F8A`)* — `qword[rcx+0xC0]` null-gate then `byte[+0x29] &=
 0xFC` (clears the low flag pair) on the sub-record (`00265B69`/
 `00265B79`).
 
@@ -2937,7 +2937,7 @@ Shared callees outside the census: none.
 
 ## The `00265FF0` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00265FF0` (~97 B) — frame record op under a `rax = rsp` prologue.
+`00265FF0` ~~(~97 B)~~ (1,339 B) *(corrected 2026-10-02, OPUS: the body runs to the 5-byte `jmp` at `00266526`)* — frame record op under a `rax = rsp` prologue.
 
 | member | role | interior |
 | --- | --- | --- |

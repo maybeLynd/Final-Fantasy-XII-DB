@@ -1,0 +1,16 @@
+PASS  003DB2A0+0x86: every pass loads the removed index (mov edx, esi)
+PASS  the loop calls 003DB550 and jumps back to +0x86 with edx reloaded from esi (no walk)
+PASS  index 0xFF returns 1
+PASS  the end notification precedes the free-list relink and the +0x60 publish
+PASS  the notification's result is discarded
+PASS  the gate needs a non-negative channel and mode 3
+PASS  removal returns +0x12 bit 0
+PASS  003DB550 is a pure index leaf (no call, no store)
+PASS  003DBCF0 refuses on the count first (3), then the free head (2), with no call before either
+PASS  0030CFB0 is 185 B
+PASS  0030D070 is 229 B, no calls
+PASS  the slot word +0x1C is stored last
+PASS  00348330 is 165 B (tail jmp at +0xA0)
+PASS  the bridge reads both out-references after the writer
+PASS  02EBF138 lies in .data's zero-filled virtual tail
+FAILS 0

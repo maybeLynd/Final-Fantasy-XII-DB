@@ -139,7 +139,7 @@ EDITS = [
     (MOD, "(including `00617810`, the `PUtilityDynamicGeometry` registrar of the §2 table)",
      "(including `00617810`, ~~the `PUtilityDynamicGeometry` registrar of the §2 table~~ the member registration of "
      "`PShaderComputeProgramD3D11`, descriptor `02CF1C40` " + C + "called at `00686C6C`, it registers fields through "
-     "`00632960` from `006178A2`; the `PUtilityDynamicGeometry` registrar is `00167810`, held by the CRT table at "
+     "`00632960` from `00617810` + 0x92; the `PUtilityDynamicGeometry` registrar is `00167810`, held by the CRT table at "
      "`008C44B0`, so this is not a digit slip)*)"),
     # C-V13: the 0xE0 object is at 01F7F5B8 (005A08FC mov ecx,0xE0; 005A0919 mov [01F7F5B8],rax); 01F3F5B8 has no refs.
     (MOD, "**Init allocates a `0xE0`-byte object at `01F3F5B8`**",

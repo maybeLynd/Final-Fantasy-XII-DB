@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=47699 epoch=3 queue_sha=f3d27cd93ece52da -->
-> generated 2026-10-02T19:46:55+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=48159 epoch=4 queue_sha=ff3bd7a87d78639d -->
+> generated 2026-10-03T00:02:34+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-CLOUD-F-LOCAL-W41-1002, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-1002-1800
-> READY addressed to you: P1 ASTRA-REQ-OPUS-AUTHORED-CENSUS-ADMISSION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-CLOSE-ZERO-SENTINEL-1002, P1 ASTRA-REQ-OPUS-FILECACHE-INSERT-KEY-ADMISSION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-OPEN-SENTINEL-1002, P1 ASTRA-REQ-OPUS-FILECACHE-READ-ZERO-VIEW-1002, P1 ASTRA-REQ-OPUS-FILECACHE-ROUTE2-COMMIT-KEY-1002, P1 ASTRA-REQ-OPUS-FILECACHE-SOURCE-KEY-INITIALIZATION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-ZERO-HANDLE-RETURN-1002, P1 ASTRA-REQ-OPUS-OV42-ACTOR-PREDICATE-DOMAIN-1002, P1 ASTRA-REQ-OPUS-OV42-QUEUE-OUTPUT-ALIAS-1002, P1 ASTRA-REQ-OPUS-RENDER-REVIEW-ADDENDUM-1002, P1 FABLE-NOTICE-OPUS-CLOUD-F-SPLIT-1002, P1 FABLE-NOTICE-OPUS-RC5-RESTATEMENT-UNCOMMITTED-1002, P2 FABLE-REQ-OPUS-CLOUD-F-ON-OPUS-PAGES-1002
+> ACTIVE: OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-1003-0015B
+> READY addressed to you: P1 ASTRA-REQ-OPUS-AUTHORED-CENSUS-ADMISSION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-CLOSE-ZERO-SENTINEL-1002, P1 ASTRA-REQ-OPUS-FILECACHE-INSERT-KEY-ADMISSION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-OPEN-SENTINEL-1002, P1 ASTRA-REQ-OPUS-FILECACHE-READ-ZERO-VIEW-1002, P1 ASTRA-REQ-OPUS-FILECACHE-ROUTE2-COMMIT-KEY-1002, P1 ASTRA-REQ-OPUS-FILECACHE-SOURCE-KEY-INITIALIZATION-1002, P1 ASTRA-REQ-OPUS-FILECACHE-ZERO-HANDLE-RETURN-1002, P1 ASTRA-REQ-OPUS-OV42-CALLER-ROW-1002, P1 ASTRA-REQ-OPUS-OV42-EFFECTIVE-ID-1002, P1 ASTRA-REQ-OPUS-OV42-KIND-ROW-1002, P1 ASTRA-REQ-OPUS-OV42-QUEUE-INTERPRETER-TRANSFER-1002, P1 ASTRA-REQ-OPUS-OV42-QUOTIENT-BOUND-1002, P1 ASTRA-REQ-OPUS-OV42-SEQUENCE-QUEUE-1002, P1 ASTRA-REQ-OPUS-RENDER-REVIEW-ADDENDUM-1002, P3 FABLE-NOTICE-OPUS-CLOUD-F-W3-1002, P3 FABLE-NOTICE-OPUS-FILECACHE-ZERO-VIEW-1002, P3 FABLE-REQ-OPUS-EFFECTIVE-ID-TYPES-1002, P3 FABLE-REQ-OPUS-SEQUENCE-QUEUE-TYPES-1002
 > READY pool: 0 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
 
@@ -16,6 +16,30 @@
 > `BoardIncident`; if you held a pre-recovery in-memory copy, re-read and re-apply.
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
+
+## Resume state - 2026-10-03 00:15 UTC (OPUS, session e5e00d7b)
+
+- **Published this session:**
+  - 36d76cacb: the user reported console windows popping. Cause: the watchdog launched its helpers as pythonw, which
+    ignores `CREATE_NO_WINDOW`, so their git / claude calls each opened a window. Fix: the helpers launch `python.exe`.
+    The controller was restarted, and a 4-minute window monitor recorded no new window. FRONTIER was notified
+    (OPUS-NOTICE-FRONTIER-WATCHDOG-PYTHONW-NOWIN-1002).
+  - d98208c6e: FABLE's routed OV-10 / OV-16 / OV-42 / slot-ABI text on five OPUS pages. It also carries SWE2-FRONTIER's
+    worktree applications of OPUS readiness lines, and the modules page's 006178A2 rewritten as 00617810 + 0x92
+    (adrift 1 -> 0). Eight board items closed.
+- **The user's dashboards** run hidden through `python.exe`: FFXII 8765, DWNO 8766, Radiata 8767, Wizardry 8768,
+  FEA 8769.
+- **GitHub DB repo:** synced and pushed at a30f3893 (from 36d76cacb). Re-sync after each batch.
+- **Routed:** OPUS-REQ-CONTRACT-SCRIPTBINDS-INT3-CITE-1002. SWE2-CONTRACT's uncommitted hunk cites `003DBE92`, the
+  last REVIEW in verify_doc_addresses.
+- **NEXT:**
+  - the ASTRA filecache packets x7 (FABLE consumed four at 5d4e7e087; check OPUS's stream-ABI / resource contracts);
+  - OV42-EFFECTIVE-ID / SEQUENCE-QUEUE / KIND-ROW;
+  - RENDER-REVIEW-ADDENDUM;
+  - AUTHORED-CENSUS-ADMISSION;
+  - the ACTIVE claim OPUS-DD-UNCLAIMED-15-99-0930.
+- **Watchdog:** it still auto-resumes the old OPUS session 96b9c437 (classified STALLED). This session is e5e00d7b.
+- **Tools:** `board_request.py` (adds requests). `board_close.py` now prints REFUSED instead of an empty result.
 
 ## Resume state - 2026-10-02 18:00 UTC (OPUS)
 

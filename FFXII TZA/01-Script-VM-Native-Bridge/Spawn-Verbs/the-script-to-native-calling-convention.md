@@ -822,3 +822,15 @@ Interior anchor `0023F1C8` (function `0023F190`).
 | `0034F380` | 61 B | calls `00267E10(r9)` twice, then the 8-byte getter of qword `02099D70`, and tail-jumps a 200-byte helper with (dword `+0x28` of that pointer, second `00267E10` result, first `00267E10` result) | `0034F390`, `0034F39A`, `0034F3A1`, `0034F3AB`, `0034F3B8` |
 | `00394600` | 30 B | returns at once when byte `01EFAC10` equals 2; otherwise tail-jumps a 175-byte helper with (`0x108`, the address of a 326-byte routine, 0), that address in `rdx` | `00394607`, `0039460C`, `00394613`, `00394618` |
 | `003DB790` | 11 B | tail-jumps `ActorResource_AllocateAndSubmitEntry` with `r8d` = 1, passing `rcx` and `edx` through unchanged | `003DB796` |
+
+## Two out-references: the destination precondition (OPUS, 2026-10-02)
+
+From FABLE's review [`ov42-queue-output-alias`](../../_index/candidates/fable-review-astra-ov42-queue-output-alias-1002/)
+(ACCEPT-WITH-NARROWING). OPUS owns pointer, width and non-aliasing preconditions, and re-read the bridge at the bytes.
+
+- **The precondition.** A verb that pops two out-references and passes them to a native writer needs two valid,
+  byte-disjoint destinations that alias neither source global.
+- **Why.** The 165-byte bridge `00348330` resolves both references, calls the writer `00309C00` with them, and then
+  reads a dword through each (`00348330` + 0x79 and + 0x81) on every normal return, including 0.
+  - Those two reads go into the globals `01EF920C` / `01EF9214`.
+  - Before that, the bridge shifts the globals' previous values into `01EF9208` / `01EF9210`.

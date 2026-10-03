@@ -158,6 +158,18 @@ Deterministic at this level. What the committed action then computes is the form
 - A target focus can be written **without** an action, by the `talktreasure` chain (`CS-2`).
 - Draining the presentation ring by hand consumes lifecycle state and issues nothing (`CS-4`).
 - The two rings are indistinguishable by shape (`CS-3`).
+- **Presentation-slot acquire / allocate ABI** *(OPUS, 2026-10-02, from FABLE's review
+  [`ov42-slot-id-producer`](../_index/candidates/fable-review-astra-ov42-slot-id-producer-1002/); sizes and the
+  allocator's shape re-read at the bytes by OPUS).*
+  - The acquire wrapper `0030CFB0` (185 B) takes RCX = the unit, EDX = the identity and R8W = the action word. It
+    returns nothing; its result is unit+4.
+  - The allocator `0030D070` (229 B, no calls) takes ECX = the identity and DX = the action word (zero-extended; the
+    upper RDX bits are ignored).
+    - It returns EAX = the slot index 0..31 on success. On a full array it returns AL = FF only, with the upper RAX
+      bits undefined.
+    - Occupancy is WORD `+0x1C` == FFFF. The word is stored last, so a FFFF action word leaves the slot reading free.
+  - The flag gate in the wrapper sets bit 1 of `022C2158` before allocating and never clears it.
+  - The row read has no null guard: a null `[02EBF138]` reads address 0xC.
 
 ## 11. Observable behaviour
 

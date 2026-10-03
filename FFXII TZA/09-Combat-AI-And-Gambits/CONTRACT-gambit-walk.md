@@ -178,7 +178,7 @@ case rather than a demonstrated game state.
 **over the shipped action table, a line whose condition matched is never refused by the commit.**
 - **The unit arm cannot produce a refusal.** Its availability check `002FFCF0` asks `BattleEncodedId_IsValidForClass(20,
   id)` (`002FFD8B`) and refuses with reason 4 (`002FFD94`) before any target selector. Class 20 accepts exactly
-  `0`–`0x21E`, because the action table `[02EBF138]` has 543 rows, and that is the commit's first band. Measured:
+  `0`–`0x21E`, because the action table `[02EBF138]` has 543 rows *(qualified 2026-10-02, OPUS, from FABLE's review `fable-review-astra-ov42-actor-predicate-domain-1002`: the count is bound at run time, since `02EBF138` lies in `.data`'s zero-filled virtual tail past the section's raw bytes; a null descriptor refuses every id with reason 4)*, and that is the commit's first band. Measured:
   reason 4 for `0x21F`, `0x3FFF`, `0x4167` and `0x7FFF`.
 - **The slot combiner cannot either.** It never touches the action. The evaluator's action slot has one writer, the
   decode at `00301500`, and the walk hands that slot only to the evaluator (`00305DCA`).
