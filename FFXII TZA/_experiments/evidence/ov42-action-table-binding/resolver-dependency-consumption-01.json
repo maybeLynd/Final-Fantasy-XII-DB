@@ -1,0 +1,20 @@
+{
+  "method": "A retained original dependency consumption; not new native experiment",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+  "range": [
+    "0x20e600",
+    "0x20e60a"
+  ],
+  "annotation": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 3,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "facts": "20E600 zeroextends inputECX intoRAX, thenADD RAX,QWORD[1F83530] modulo2^64 andRET. No calls or own memory writes. low32(return)=(low32(arenaQWORD)+encodedDWORD) mod2^32. Zerooffset returns arena, not universally NULL.",
+  "limits": "Existing dependency code, no new capture/experiment/independent acceptance. Natural arena/header stability and caller helper/alias effects remain open; K14 identity/init is not reopened.",
+  "next": "Inspect original registry-slot38 binder/clear and header+8/+C writers in the named terminal call window, including generic slot arguments. No absence claim from direct references alone."
+}

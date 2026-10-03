@@ -1,0 +1,6 @@
+inputs: 10045 attempted | decoded 10036 | read_failed 0 | malformed 0 | not_script 9
+status: COMPLETE
+CALL-family sites decoded: 16666842 | matching calls: 63432
+   2718  0x265 setfreetargettype
+  60714  0x3005 btlAtelSetUnitType
+zone files: 573 (language copies agree on (script, verb) in 573)

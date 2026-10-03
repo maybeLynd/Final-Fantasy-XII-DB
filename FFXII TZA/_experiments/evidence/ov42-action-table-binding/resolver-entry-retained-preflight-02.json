@@ -1,0 +1,88 @@
+{
+  "complete": true,
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "requested": [
+    "0x20e600",
+    "0x20e601"
+  ],
+  "requested_sha256": "3ebe1b59762a1c8020c1efe3747dd07f0e30617ed60b4e6a5bee16b6ea421dd0",
+  "maps_examined": 1291,
+  "matches": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\rig-owner-rebind-preconditions\\retained\\rig\\retained\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\rig-index-list-producer\\retained\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeletonref-producer-slice\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeleton-workspace-factory\\retained\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\retained\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-owner-rebind-preconditions\\retained\\rig\\retained\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\skeleton-workspace-factory\\retained\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\skeletonref-producer-slice\\source-01.json",
+      "file_sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f",
+      "range": [
+        "0x20e600",
+        "0x20e60a"
+      ],
+      "range_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    }
+  ],
+  "malformed_candidates": [],
+  "decision": "REUSE_VERIFIED_RETAINED_BYTES",
+  "limits": "Bounded physical byte coverage in named source-map corpus, not global absence, provenance acceptance, source semantics or live initialization. Retain/check original lineage and receipts before semantic use."
+}

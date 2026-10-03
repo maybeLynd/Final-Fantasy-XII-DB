@@ -40,7 +40,7 @@ FABLE-REQ-OPUS-ACTORKIND-SLOT-ABI-TEXT-1002.
   - The generator `opus-phyre-readiness-fixes-1002/apply_22phyre.py` is amended to match.
 - **`opus-scriptvm-readiness-fixes-1002/apply_01scriptvm.py`:**
   - It now says "`int3` padding" instead of citing the pad byte `003DBE92` by address.
-  - The page carrying that text is SWE2-CONTRACT's (routed: OPUS-REQ-CONTRACT-SCRIPTBINDS-INT3-CITE-1002).
+  - That text sits in SWE2-FRONTIER's applied-worktree hunk on SWE2-CONTRACT's page (routed: OPUS-NOTICE-FRONTIER-READINESS-BATCH-OVERLAP-1002; the first request to SWE2-CONTRACT was misrouted and retired).
 
 ## Verified by OPUS before applying
 

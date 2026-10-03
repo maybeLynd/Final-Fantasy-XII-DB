@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-action-table-binding\controls-01\failed-extents\prove.py", line 97, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-action-table-binding\controls-01\failed-extents\prove.py", line 71, in main
+    receipts=[receipt('binding-extents-01','prepare-binding-extents.py'),receipt('binding-capture-01','capture-binding.py'),receipt('binding-helper-extents-01','prepare-binding-helper-extents.py'),receipt('binding-helper-capture-01','capture-binding-helpers.py')]
+              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-action-table-binding\controls-01\failed-extents\prove.py", line 19, in receipt
+    need(s.get('terminal') is True and s.get('exit')==0 and s.get('exception') is None and s.get('driver_sha256')==sha(P/driver),'required successful current '+tag)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-action-table-binding\controls-01\failed-extents\prove.py", line 14, in need
+    if not x:raise ValueError(m)
+             ^^^^^^^^^^^^^^^^^^^
+ValueError: required successful current binding-extents-01

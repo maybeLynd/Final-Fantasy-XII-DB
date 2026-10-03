@@ -1,0 +1,96 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "e6ca85bbfea8b4876321e8a4f938a3b03c6215c5c3954072d1cf3d7dd38de9df",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "action-wrapper-entry-retained-preflight-01.json",
+      "sha256": "073aec1fc4ac26e57cbfda2f5337a574b4a853ec45baf55bc5861872ba0c5365"
+    },
+    {
+      "path": "child-entry-retained-preflight-01.json",
+      "sha256": "cd15a55ebcfaea0a928c0919711bc04ef7e1ff2057a202e3b57591ad3a68edce"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x237fc0",
+      "end_exclusive": "0x238154",
+      "bytes": 404,
+      "sha256": "a2f42c704103aa3700f2e73126191e63e96945a789a0456a45f7442187cdb0e2",
+      "physical_bytes": "48895c24084889742410574883ec204863d183cfff488d0d5c71c8028bdfe80dc61400488b154e71c80233f60f1f40004885d274623b7204735d8b4a0ce8fe65fdff4885c07423488b052a71c8028b480ce8ea65fdff488b151b71c8020fb74a080fafce03c18bc8eb09488b150771c80233c90fb641383cff74080fb6c03bc70f4ff80fb641393cff74080fb6c03bc30f4fd8ffc6eb99ffc748c705a452e50100000000ffc340883d9352e501881d8e52e50185ff0f8ec900000085db0f8ec10000000fafdf488d15fbc56d004533c003db8bcbe877c414004c63c3baff000000488bc84889055d52e501e8109e6200488b158170c80233db0f1f80000000004885d2747f3b5a04737a8b4a0ce82e65fdff4885c07423488b055a70c8028b480ce81a65fdff488b154b70c8020fb74a080fafcb03c18bc8eb09488b153770c80233c90fb641383cff7432440fb641394180f8ff74270fb6c80fb605e151e501480fafc8410fb6c04803c8488b05d651e50166891c48488b15fb6fc802ffc3e97cffffff488b5c2430488b7424384883c4205fc3",
+      "records": [
+        {
+          "begin": "0x237fc0",
+          "end_exclusive": "0x238154",
+          "chain": [
+            {
+              "record_bytes": "c07f110054811100902ac301",
+              "header_address": "0x1d52a90",
+              "header_bytes": "010f0600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x3846f0",
+      "end_exclusive": "0x3847a1",
+      "bytes": 177,
+      "sha256": "7f34f7b7c1645dbfbf846d04f7fd1a6b2b5b7e2a32dec499a73c831ceabd0086",
+      "physical_bytes": "448944241855574883ec28488bf9488bea488bcae8179fe8ff89074885ed0f848600000048895c24588bc84889742420e8db9ee8ff8b0f0fb718e8d19ee8ff8b4c24504c8bc8488944244833f68bc348895c24408bfe498d5904660f1f44000085c9742c483bf874278b13448d41ff4863c603d548ffc0498d0c81e880ffffff488b4424408b4c24504c8b4c2448eb02012bffc648ffc74883c304483bf87ec0488b742420488b5c24584883c4285f5dc3",
+      "records": [
+        {
+          "begin": "0x3846f0",
+          "end_exclusive": "0x384714",
+          "chain": [
+            {
+              "record_bytes": "f04626001447260074cbc501",
+              "header_address": "0x1d7cb74",
+              "header_bytes": "010b0300"
+            }
+          ]
+        },
+        {
+          "begin": "0x384714",
+          "end_exclusive": "0x38479a",
+          "chain": [
+            {
+              "record_bytes": "144726009a47260080cbc501",
+              "header_address": "0x1d7cb80",
+              "header_bytes": "210c0400",
+              "chain_footer": "0x1d7cb8c",
+              "chain_bytes": "f04626001447260074cbc501"
+            },
+            {
+              "record_bytes": "f04626001447260074cbc501",
+              "header_address": "0x1d7cb74",
+              "header_bytes": "010b0300"
+            }
+          ]
+        },
+        {
+          "begin": "0x38479a",
+          "end_exclusive": "0x3847a1",
+          "chain": [
+            {
+              "record_bytes": "9a472600a147260098cbc501",
+              "header_address": "0x1d7cb98",
+              "header_bytes": "21000000",
+              "chain_footer": "0x1d7cb9c",
+              "chain_bytes": "f04626001447260074cbc501"
+            },
+            {
+              "record_bytes": "f04626001447260074cbc501",
+              "header_address": "0x1d7cb74",
+              "header_bytes": "010b0300"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata."
+}

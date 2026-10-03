@@ -1,0 +1,5 @@
+inputs: 10045 attempted | decoded 10036 | read_failed 0 | malformed 0 | not_script 9
+status: COMPLETE
+CALL-family sites decoded: 16666842 | matching calls: 18
+     18  0x395 setexpandvoicememory
+zone files: 2 (language copies agree on (script, verb) in 2)

@@ -1,0 +1,170 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01C3h8BLp4DosVqvFsrqPP3a",
+ "report": "the-party-read-in-state-machine.json",
+ "rows": [
+  {
+   "fn": "002E8450",
+   "text": "when qword `rcx+0xC0` is non-null, stores `dl` at byte `+0x150` of that object; then, re-reading qword `rcx+0xC0`, it returns unless the pointer is non-null, its dword `+0x00` is not -1 and its word `+0x00` is not -1, and otherwise takes the address qword `022C6F28` + (that word, sign-extended) * `0x740` and, when that address is non-zero and its dword `+0x284` is non-zero, copies the object's byte `+0x150` to byte `+0x40C` at that address; every other path returns without a store",
+   "anchors": [
+    [
+     "002E845C",
+     "mov"
+    ],
+    [
+     "002E846E",
+     "cmp"
+    ],
+    [
+     "002E8480",
+     "imul"
+    ],
+    [
+     "002E8490",
+     "cmp"
+    ],
+    [
+     "002E84A0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0031BE30",
+   "text": "returns `0x10A` unless `rcx` is non-null, `00263E30(rcx)` is non-null, qword `+0x698` of that result is non-null, `edx` is 8, byte `+5` of the `+0x698` object is 1 and `r8d` < 2 (signed compare); when all hold it copies bytes `+0x40` and `+0x41` of the object at qword `+0xE60` of the `00263E30` result to a two-byte stack array and returns dword `00D107F8 + 4 * b`, where b is the array byte indexed by `r8d` (`+0x40` for 0, `+0x41` for 1)",
+   "anchors": [
+    [
+     "0031BE44",
+     "mov"
+    ],
+    [
+     "0031BE4E",
+     "call"
+    ],
+    [
+     "0031BE6D",
+     "cmp"
+    ],
+    [
+     "0031BE72",
+     "cmp"
+    ],
+    [
+     "0031BEA0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0034E3E0",
+   "text": "calls `0037CB50` (incoming registers passed through); when it returns non-zero, returns 0, otherwise calls `00314D40(1)` and returns 1",
+   "anchors": [
+    [
+     "0034E3E4",
+     "call"
+    ],
+    [
+     "0034E3EB",
+     "je"
+    ],
+    [
+     "0034E3ED",
+     "xor"
+    ],
+    [
+     "0034E3F9",
+     "call"
+    ],
+    [
+     "0034E3FE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00351F40",
+   "text": "calls `00267E10(r9)` and stores the low byte of its result at byte `r8+0xD`; calls `002647C0` with that full result and stores 1 at byte `r8+0xC` when `002647C0` returns non-zero, 0 when it returns zero; then tail-jumps to `0026B4A0(rdx, 0xB)`",
+   "anchors": [
+    [
+     "00351F53",
+     "call"
+    ],
+    [
+     "00351F5A",
+     "mov"
+    ],
+    [
+     "00351F5D",
+     "call"
+    ],
+    [
+     "00351F6F",
+     "mov"
+    ],
+    [
+     "00351F7C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00359B10",
+   "text": "calls `0032A060(0)` (result A) and then `00313590()` (result B), and tail-jumps to `003B5470(x, y)` where x is `002E9B60(003588B0(B))` when B is non-zero and -1 otherwise, and y is `002E9B60(003588B0(A))` when A is non-zero and -1 otherwise",
+   "anchors": [
+    [
+     "00359B21",
+     "call"
+    ],
+    [
+     "00359B28",
+     "call"
+    ],
+    [
+     "00359B2D",
+     "or"
+    ],
+    [
+     "00359B55",
+     "call"
+    ],
+    [
+     "00359B6F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0037C980",
+   "text": "stores the pointer `002F16B0()` returns at qword `02EBF400` and 1 at byte `02EBF3FC`; when the pointer is null it returns 0, otherwise it stores `0037C730` at qword `+0x10` of that record, 0 at qword `+0x08`, dword `+0x00` and word `+0x1C`, 4 at dword `+0x04`, 0 at byte `02EBF3FE` and 1 at byte `02EBF3FD`, and tail-jumps to `00233CF0` with `ecx` = 0",
+   "anchors": [
+    [
+     "0037C989",
+     "mov"
+    ],
+    [
+     "0037C99A",
+     "je"
+    ],
+    [
+     "0037C9A3",
+     "mov"
+    ],
+    [
+     "0037C9C4",
+     "mov"
+    ],
+    [
+     "0037C9E7",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00264EC0": "its whole work is the entry instruction (movsx eax, byte [rcx+0x12]) followed by ret"
+ },
+ "missing": [],
+ "corrections": []
+}

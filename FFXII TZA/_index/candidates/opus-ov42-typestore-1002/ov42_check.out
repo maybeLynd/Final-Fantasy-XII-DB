@@ -1,0 +1,19 @@
+PASS  00306760 + 0x152 reads the u16 stride +0x08
+PASS  00306760 + 0x13F reads the array ref +0x0C
+PASS  00306760: lookup call, a second descriptor load, an unguarded unsigned div
+PASS  00306760 + 0xC7 reads the u16 stride +0x08
+PASS  00306760 + 0xB4 reads the array ref +0x0C
+PASS  00306760: lookup call, a second descriptor load, an unguarded unsigned div
+PASS  00306BD0 + 0xAC reads the u16 stride +0x08
+PASS  00306BD0 + 0x99 reads the array ref +0x0C
+PASS  00306BD0: lookup call, a second descriptor load, an unguarded unsigned div
+PASS  00306760 + 0x174 stores the queue DWORD (022C2178)
+PASS  0031B860 is 83 B
+PASS  a NULL query returns 0 first
+PASS  first index-order match on +0x698, signed loop compare
+PASS  00387090 is 149 B
+PASS  the getter calls the resolver twice (O1, O2)
+PASS  O1 is stored to 02EBF188
+PASS  the O2 +0x714 read is reachable with RAX = 0
+PASS  00387090 + 0x7E reads record +0x10 (the 0x9F swap)
+FAILS 0

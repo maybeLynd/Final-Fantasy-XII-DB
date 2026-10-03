@@ -1,0 +1,156 @@
+{
+ "page": "04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_017oZMRE9rawUwYiuJTWnT1T",
+ "report": "the-actor-storage-record-field-map.json",
+ "rows": [
+  {
+   "fn": "002E6420",
+   "text": "for `i` = 0 to 2 calls `00263FF0(i)` and, when bit 0 of byte `+0x10` of the result is set, walks indices from word `+0x1DE` up to (word `+0x1DE` + word `+0x1D6`) exclusive, calling `00358940(result, index)`; for each non-null return whose qword `+0xC0` is non-null and whose dword there is not -1 and low word not 0xFFFF, takes the `0x740`-byte record at qword `022C6F28` + that signed word `* 0x740` and, when it is non-null and its dword `+0x284` is non-zero, calls `00428FE0(record, 0)`",
+   "anchors": [
+    [
+     "002E6438",
+     "call"
+    ],
+    [
+     "002E6440",
+     "test"
+    ],
+    [
+     "002E6465",
+     "call"
+    ],
+    [
+     "002E649D",
+     "cmp"
+    ],
+    [
+     "002E64A8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002EA970",
+   "text": "returns without work when `rcx` is null, its qword `+0xC0` is null, the dword there is -1 or its low word is 0xFFFF, or when the `0x740`-byte record at qword `022C6F28` + that signed word `* 0x740` is null, has dword `+0x284` zero or gives a null `record + 0x550`; otherwise tail-jumps to `003AF320(record + 0x550, edx == 0)`",
+   "anchors": [
+    [
+     "002EA978",
+     "mov"
+    ],
+    [
+     "002EA996",
+     "imul"
+    ],
+    [
+     "002EA9A6",
+     "cmp"
+    ],
+    [
+     "002EA9BD",
+     "sete"
+    ],
+    [
+     "002EA9C0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00340970",
+   "text": "calls `002640C0` (incoming `rcx`, `rdx`, `r8` unchanged), then `00267E10(r9)`, and with `v` = that result calls `0025AE00(first result, k, v)` for `k` = 0, 1, 4, 2 and finally 3, the last as a tail jump",
+   "anchors": [
+    [
+     "0034097D",
+     "call"
+    ],
+    [
+     "00340988",
+     "call"
+    ],
+    [
+     "00340997",
+     "call"
+    ],
+    [
+     "003409B7",
+     "call"
+    ],
+    [
+     "003409E1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00358A00",
+   "text": "with `p` = qword `+0x48` of `rcx`, returns 0 when `edx` is not below dword `p+0` (unsigned), else returns dword `p + 8 + edx * 8` (`edx` sign-extended)",
+   "anchors": [
+    [
+     "00358A04",
+     "cmp"
+    ],
+    [
+     "00358A07",
+     "jb"
+    ],
+    [
+     "00358A09",
+     "xor"
+    ],
+    [
+     "00358A0F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003B7D30",
+   "text": "when dword `02EBCAA0` is greater than 0 (signed), calls `0026B500(qword, 1)` for each qword of the 8-byte-stride array at `02EBCA80`, while the index stays below dword `02EBCAA0` (re-read each pass, signed); otherwise does nothing",
+   "anchors": [
+    [
+     "003B7D38",
+     "cmp"
+    ],
+    [
+     "003B7D45",
+     "lea"
+    ],
+    [
+     "003B7D58",
+     "call"
+    ],
+    [
+     "003B7D63",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00420A10",
+   "text": "stores 0 at dword `+0x23C` of `rcx` when dword `+0xC4` is -1 or bit 14 (0x4000) of dword `+0x304` is set; otherwise stores `xmm1` there (`movss`)",
+   "anchors": [
+    [
+     "00420A17",
+     "je"
+    ],
+    [
+     "00420A19",
+     "test"
+    ],
+    [
+     "00420A25",
+     "movss"
+    ],
+    [
+     "00420A2E",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -1,0 +1,13 @@
+--- all-readable: rc 0 | stdout 'inputs: 2 attempted | decoded 2 | read_failed 0 | malformed 0 | not_script 0\nstatus: COMPLETE\nCALL-family sites decoded: 2 | matching calls: 2\n      1  0x29A ge' | stderr ''
+PASS  all readable: exit 0, both 029A and 029B rows
+PASS  all readable: status COMPLETE, 2 decoded, nothing undecoded
+--- one-extraction-fails: rc 1 | stdout 'inputs: 2 attempted | decoded 1 | read_failed 1 | malformed 0 | not_script 0' | stderr 'READ_FAILED: fixture/b.ebp (OSError: LABELLED synthetic extraction failure)\nREFUSE: INCOMPLETE - 1 relevant input(s) not read or parsed; positives below would hide them. Re-run with --allow-partial fo'
+PASS  second read fails: REFUSE (exit 1), nothing written
+PASS  second read fails: stderr names INCOMPLETE and the failed path
+--- one-extraction-fails-allow-partial: rc 0 | stdout 'inputs: 2 attempted | decoded 1 | read_failed 1 | malformed 0 | not_script 0\nstatus: PARTIAL (no absence or every-caller claims)\nCALL-family sites decoded: 1 | ' | stderr 'READ_FAILED: fixture/b.ebp (OSError: LABELLED synthetic extraction failure)'
+PASS  --allow-partial: exit 0, the one real 029A row kept
+PASS  --allow-partial: status PARTIAL, b.ebp listed as read_failed
+PASS  --allow-partial: stdout says PARTIAL
+--- all-extractions-fail: rc 1 | stdout 'inputs: 2 attempted | decoded 0 | read_failed 2 | malformed 0 | not_script 0' | stderr 'READ_FAILED: fixture/a.ebp (OSError: LABELLED synthetic extraction failure)\n  READ_FAILED: fixture/b.ebp (OSError: LABELLED synthetic extraction failure)\nREFUSE: control failed - no CALL-family site d'
+PASS  all reads fail: REFUSE (exit 1), nothing written
+FAILS 0

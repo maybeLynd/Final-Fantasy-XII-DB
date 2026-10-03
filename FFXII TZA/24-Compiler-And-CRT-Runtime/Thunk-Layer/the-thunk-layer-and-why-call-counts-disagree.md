@@ -822,3 +822,14 @@ have ordinary callers:
 The page's subject is why call counts disagree, not what these callers do.
 
 *Tier 2: ledger names, sizes and `edges.tsv`; no new body read (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-thunk-layer-and-why-call-counts-disa-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002C9040` | 21 B | stores dword 0 at `0209E638 + ecx * 0x10` (`ecx` sign-extended), that is, at `+0x00` of the `0x10`-byte record `ecx` of the table at `0209E638` | `002C9043`, `002C904A`, `002C904D` |
+| `002CEAE0` | 82 B | when bit `0x2` of byte `+0xD3C` of the object at qword `0209AC30` is set, calls `00249180(rcx, 7, byte +0xB2D of that object + 0x10, 2)` with `rcx` passed through unchanged and 1 and 0 as the fifth and sixth (stack) arguments, and stores the returned qword at `+0x3C0` of the object at qword `0209AC30` (re-read); when the bit is clear it returns without the call or the store | `002CEAEB`, `002CEAF2`, `002CEB01`, `002CEB1A`, `002CEB26` |
+| `0037B2C0` | 41 B | when `ecx` < 5 (signed compare), stores the floats `xmm1`, `xmm2` and `xmm3` at `+0x40`, `+0x44` and `+0x48` of the `0x50`-byte record `ecx` (sign-extended) of the table at `02EBF420`; when `ecx` >= 5 it returns without a store | `0037B2C3`, `0037B2D6`, `0037B2DC`, `0037B2E2` |
+| `003B5440` | 37 B | compares bit 0 of byte `02B40518` with the whole of `ecx`; when they are equal it returns without a store, otherwise it replaces bit 0 of that byte with bit 0 of `cl` (other bits kept), stores the byte back to `02B40518` and tail-jumps to `003B4FD0` | `003B544C`, `003B544E`, `003B5457`, `003B5459`, `003B545F` |

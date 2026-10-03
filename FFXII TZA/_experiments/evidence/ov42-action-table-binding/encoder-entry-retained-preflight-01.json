@@ -1,0 +1,106 @@
+{
+  "complete": true,
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "requested": [
+    "0x20e620",
+    "0x20e621"
+  ],
+  "requested_sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b",
+  "maps_examined": 1293,
+  "matches": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\ov21-count-publication-window\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\rig-index-list-producer\\retained\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\rig-owner-rebind-preconditions\\retained\\rig\\retained\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeleton-workspace-factory\\retained\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeletonref-producer-slice\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov21-count-publication-window\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-owner-rebind-preconditions\\retained\\rig\\retained\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\rig-index-list-producer\\retained\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\skeleton-workspace-factory\\retained\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\skeletonref-producer-slice\\retained\\source-01.json",
+      "file_sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa",
+      "range": [
+        "0x20e620",
+        "0x20e629"
+      ],
+      "range_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    }
+  ],
+  "malformed_candidates": [],
+  "decision": "REUSE_VERIFIED_RETAINED_BYTES",
+  "limits": "Bounded physical byte coverage in named source-map corpus, not global absence, provenance acceptance, source semantics or live initialization. Retain/check original lineage and receipts before semantic use."
+}

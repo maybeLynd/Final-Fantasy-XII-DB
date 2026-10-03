@@ -1,0 +1,1 @@
+PROVED slot38 binder dataflow; same-pointer rebind is not rows-base invariance;20E620 encodes; stride preservation needs alias bounds

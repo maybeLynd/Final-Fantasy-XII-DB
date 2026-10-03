@@ -191,7 +191,7 @@ in the shipped `action_data.bin` that pool is **25 rows**: ids `0x12`–`0x21`, 
 `ResolveAndCacheEffectiveActionId` (`00387A50`) stores the pick in the source's record `+0x10`
 (`00387ADE`) when the committed id is `0x9F`; `GetEffectiveActionId` (`00387090`) and the two
 formula entry points then read `+0x10` instead of `0x9F`, so preview and resolution agree on the
-same draw. `BattleUnit_AdvanceStandardActionState` sets unit flag bit 35 when the committed id is
+same draw *(qualified 2026-10-02, OPUS: only when the getter selects a record; when its first owner lookup returns null, it returns `0x9F` itself - see "The effective-id getter beside its owner resolver" below)*. `BattleUnit_AdvanceStandardActionState` sets unit flag bit 35 when the committed id is
 `0x9F` (`00304DA5`–`00304DBA`). What the 25 rows are in the game's words, and who commits `0x9F`,
 is `FT-3`. *(2026-09-15: the rows are seventeen black-magick rows and eight status-magick rows, and `0x9F` is technick 1, "Shades of Black" — §7 `FT-3`.)*
 
@@ -529,3 +529,26 @@ not re-derived~~, and `FT-4` remains open~~ *(answered: see §7 — `FT-4` ANSWE
 **Status_Periodic_Terminal — CLIENT and SERVICE (4 edges).** `0030C650` calls `BattleStats_RecomputeDerivedStateAndAutoStatuses` `0030FED0`; `003299B0` is called by `BattleUnit_RecoverFromTerminalStatusSetIfClear` `00301140` and `BattleStats_ChangeStatusAndProcessSideEffects` `0030E360`; `BattleUnit_RunPeriodicCombatMaintenance` `00310DB0` calls the resolver `BattleFormula_ResolveTargetResult` `00385F60`. The periodic tick runs the same resolver that writes and reads the scratch block, a level change ends in the status recompute, and the unit-event dispatcher that receives the result kinds of §2.6 is shared with the status paths.
 
 **WorldAreaField — DEPENDENCY (7 edges).** `00305AB0`, `00307300`, `0030D160`, `0030F760` and `00312FA0` call `FieldData_GetActiveFieldRecordBit15` `00377C20`, and `Battle_EmitReactionPresentationForSlot` `003176E0` and `00384F40` call it through its thunk `00313F60`. Selection, targeting, commit and the reaction presentation consult the current field's bit 15, the per-area waiver for disabling statuses; the scratch words themselves are not field state.
+
+## The effective-id getter beside its owner resolver (OPUS, 2026-10-02)
+
+From FABLE's review of ASTRA's [`ov42-effective-id-source`](../../_index/candidates/fable-review-astra-ov42-effective-id-source-1002/REVIEW.md)
+(ACCEPT-WITH-NARROWING). OPUS re-read both bodies at the bytes
+([`ov42_check.py`](../../_index/candidates/opus-ov42-typestore-1002/ov42_check.py)).
+
+- **Owner resolver `BattleStats_FindOwningBattleUnit` (83 B), NULLABLE.**
+  - RCX = a stats-record query. A NULL query returns RAX = 0 before any registry call.
+  - Otherwise it returns the FIRST registry unit whose QWORD `+0x698` equals the query, as a full 64-bit pointer, or 0.
+    "First" is by index order: null entries are skipped, the count is re-read at each step, and the compare is signed.
+- **Effective-id getter `00387090` (149 B), OWNER-BACKED.**
+  - RCX = the same query. It returns EAX = a zero-extended u16.
+  - **Precondition: the second resolver call (O2) is non-null.** There is no NULL guard: a null O2 still reads
+    WORD `[0 + 0x714]`.
+  - **It makes two separate resolver calls.**
+    - O1 is stored to QWORD `02EBF188` (0 included). It selects the `BattleRuntimeUnitRecord`: from the `0208DE80`
+      bank by O1 `+0xEA9`, or, when query `+5` is 0, from the `0208D480` bank by query byte `+4`, with no O1 call.
+    - O2 supplies `BattleUnit +0x714`.
+    - O1 == O2 is not guaranteed.
+  - **Result.** O2 `+0x714`, except that `0x9F` with a selected record becomes the record's WORD `+0x10`.
+    - The record pointer is 0 only for a null O1, and then the getter returns `0x9F` itself.
+    - The byte index is not bounded against the banks' sizes.

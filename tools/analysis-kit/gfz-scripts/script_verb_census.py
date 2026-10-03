@@ -10,8 +10,23 @@ entry +0x00 is the name offset, +0x08 the code start; BW-5). The plan_master lan
 summary folds them into one zone file per language-independent path and reports whether the copies agree.
 
 Refuses to write when no CALL-family instruction was decoded at all (a broken decoder would otherwise report zero).
+
+Input admission (OPUS, 2026-10-02, ASTRA-REQ-OPUS-AUTHORED-CENSUS-ADMISSION-1002). Every .ebp entry is attempted and
+lands in exactly one class:
+- decoded: its script section was walked;
+- read_failed: extraction raised;
+- malformed: the script section's directory does not fit;
+- not_script: the bytes were read but carry no EBP2 script magic at +0x80.
+The run is COMPLETE only when read_failed and malformed are both empty. Otherwise it is INCOMPLETE, and it refuses
+(exit 1, nothing written) unless --allow-partial is given. Before 2026-10-02 a failed extraction was skipped
+silently, so one readable sibling made a partial run look complete.
+Every written table has a sidecar <out>.status.json with the class counts, every non-decoded path and its reason,
+and status COMPLETE or PARTIAL.
+- A PARTIAL table's rows are real call sites.
+- A PARTIAL table supports no absence or "every caller" claim.
+- not_script entries are listed but do not make a run INCOMPLETE: their read succeeded.
 """
-import argparse, collections, io, os, struct, sys
+import argparse, collections, io, json, os, struct, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.abspath(os.path.join(HERE, "..", "..", "..", "FFXII TZA"))
@@ -30,18 +45,23 @@ def census(want):
     finally:
         os.chdir(cwd)
     rows, seen, calls_total = [], set(), 0
+    adm = {"decoded": [], "read_failed": [], "malformed": [], "not_script": []}
     for path in sorted(p for p in names if p.lower().endswith(".ebp")):
         try:
             b = G.V.read_entry(f, names, blocks, path)
-        except Exception:
+        except Exception as e:
+            adm["read_failed"].append((path, "%s: %s" % (type(e).__name__, e)))
             continue
-        if len(b) < 0x80 or U32(b, 0x80) != 0x8000000B:
+        if len(b) < 0x88 or U32(b, 0x80) != 0x8000000B:
+            adm["not_script"].append((path, "%d bytes, no EBP2 script magic at +0x80" % len(b)))
             continue
         sec = b[0x80:0x80 + U32(b, 0x84)]
-        diroff = U32(sec, 0x18)
-        cnt = U32(sec, diroff)
+        diroff = U32(sec, 0x18) if len(sec) >= 0x1C else len(sec)
+        cnt = U32(sec, diroff) if diroff + 4 <= len(sec) else 0x401
         if cnt > 0x400 or diroff + 4 + cnt * 0x30 > len(sec):
+            adm["malformed"].append((path, "directory at +0x%X does not fit the %d-byte section" % (diroff, len(sec))))
             continue
+        adm["decoded"].append((path, ""))
         pool = U32(sec, 0x4C)
         sname = {}
         for s in range(cnt):
@@ -69,7 +89,16 @@ def census(want):
                 args, st = G.resolve_args(ins, j, need, verbs) if need else ([], "ok")
                 rows.append((path, sname[start], "%x" % (start + pc), "0x%03X" % imm, want[imm], G.OPN.get(op), st,
                              ";".join("%s:%s" % (a[0], a[1]) for a in args) if args else ""))
-    return rows, calls_total
+    return rows, calls_total, adm
+
+
+def admission(adm):
+    """(status, summary line) - COMPLETE only when no relevant input failed to read or parse."""
+    bad = len(adm["read_failed"]) + len(adm["malformed"])
+    line = "inputs: %d attempted | decoded %d | read_failed %d | malformed %d | not_script %d" % (
+        sum(len(v) for v in adm.values()), len(adm["decoded"]), len(adm["read_failed"]), len(adm["malformed"]),
+        len(adm["not_script"]))
+    return ("INCOMPLETE" if bad else "COMPLETE"), line
 
 
 def fold(path):
@@ -81,6 +110,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verbs", required=True, help="comma list of call ids, e.g. 0x202,0x232")
     ap.add_argument("--out")
+    ap.add_argument("--allow-partial", action="store_true",
+                    help="write an INCOMPLETE run's table anyway, marked PARTIAL in <out>.status.json")
     a = ap.parse_args()
     out = os.path.abspath(a.out) if a.out else None
     os.chdir(os.path.abspath(os.path.join(DB, "..", "..")))   # the decoder resolves its own imports from the repo root
@@ -90,9 +121,19 @@ def main():
     for v in a.verbs.split(","):
         i = int(v, 0)
         want[i] = (verbs_tab.get(i) or (None, None, "?"))[2]
-    rows, total = census(want)
+    rows, total, adm = census(want)
+    status, line = admission(adm)
+    print(line)
+    for cls in ("read_failed", "malformed"):
+        for p, why in adm[cls]:
+            print("  %s: %s (%s)" % (cls.upper(), p, why), file=sys.stderr)
     if total == 0:
-        sys.exit("REFUSE: control failed - no CALL-family site decoded")
+        sys.exit("REFUSE: control failed - no CALL-family site decoded (%s)" % line)
+    if status != "COMPLETE" and not a.allow_partial:
+        sys.exit("REFUSE: INCOMPLETE - %d relevant input(s) not read or parsed; positives below would hide them. "
+                 "Re-run with --allow-partial for a PARTIAL table (no absence claims)."
+                 % (len(adm["read_failed"]) + len(adm["malformed"])))
+    print("status: %s" % ("COMPLETE" if status == "COMPLETE" else "PARTIAL (no absence or every-caller claims)"))
     print("CALL-family sites decoded: %d | matching calls: %d" % (total, len(rows)))
     for v, n in sorted(collections.Counter((r[3], r[4]) for r in rows).items()):
         print("  %5d  %s %s" % (n, v[0], v[1]))
@@ -107,6 +148,12 @@ def main():
             w.write("file\tscript\tpc\tverb\tname\topcode\tstatus\targs_push_order\n")
             for r in rows:
                 w.write("\t".join(r) + "\n")
+        with open(out + ".status.json", "w", encoding="utf-8", newline="\n") as w:
+            json.dump({"status": "COMPLETE" if status == "COMPLETE" else "PARTIAL", "verbs": a.verbs,
+                       "call_sites_decoded": total, "matching_calls": len(rows),
+                       "inputs": {k: len(v) for k, v in adm.items()},
+                       "not_decoded": {k: [{"path": p, "reason": why} for p, why in v]
+                                       for k, v in adm.items() if k != "decoded" and v}}, w, indent=1)
     return rows
 
 

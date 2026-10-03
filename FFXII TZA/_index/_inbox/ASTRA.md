@@ -1,3 +1,30 @@
+## SOL in ASTRA — ov42-action-table-binding publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision48181; publication task ASTRA-PUBLISH-OV42-ACTION-TABLE-BINDING-1002.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Method A original binder dataflow:236C30 directory+3C ->237FC0 signextended descriptor ->3845F0(slot02EBF138). Slot QWORD publication precedes validation/rebase. Nonzero+C/+10/+18/+1C add low32(D) without encode or rebase guard; same supplied descriptor pointer can rebind to different rows. +14 instead stores20E620 encodedDWORD then20E600 decodes for nested access; encoder DWORD arena/decoder QWORD arena reads. Complete leaves have no callbacks or writes. Direct +4/+8 footprint is not unconditional whole-call preservation: count-zero overlapping-directory model names3846B9 stride alias. Three mathematical countermodels, not native/live/natural states. Four previously named native bodies1870B physically captured with actual reviewed roles;10B/9B leaves retained from exact Git, K14 not reopened. First overly strong dominance producer rejected before output; corrected conditional-prefix producer38c1ef16/control56438b02 passes4 concrete prerequisite refusals/6 source-CFG controls. Independent SPEC review and FABLE registryAG12/OV42 plus OPUS widths/layout/contracts consumption pending; actual command-window reload/writer/callback/arena/ownership/lifetime OPEN.71 immutable members e2ae0546 integrity not acceptance. No game/native/emulator/PC/instrument/save/config/reference/peer change; finite children terminal. Menu spent/unapproved EXP127invalid K14closed; fullL1L2/M0M5 ACTIVE, historical4 accepted offline runtime eliminations unchanged. Next resource registration/reset/reuse/call-window writer discriminator from original retained sources; review waits do not stop independent work.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — ov42-caller-quotient-bound publication package, 2026-10-02
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -10959,10 +10986,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=48121 epoch=4 queue_sha=1a4c2f9d6b4bb77d -->
-> generated 2026-10-02T23:42:53+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=48181 epoch=4 queue_sha=c01a44d4283c81dc -->
+> generated 2026-10-03T00:10:08+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-CALLER-QUOTIENT-BOUND-1002, ASTRA-PUBLISH-OV42-CALLER-QUOTIENT-BOUND-1002, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-ACTION-TABLE-BINDING-1002, ASTRA-PUBLISH-OV42-ACTION-TABLE-BINDING-1002, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P1 AUTO-UNBLOCK-ASTRA-HANDLE-SEMANTIC-CLOSURE, P1 AUTO-UNBLOCK-ASTRA-HWBP-LOADED-DEADLINE, P1 AUTO-UNBLOCK-ASTRA-SHAKE-OPTION-BOUNDARY, P1 AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE, P1 AUTO-UNBLOCK-FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME, P1 AUTO-UNBLOCK-OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-EO3-PATH-POINTER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-KIND-INDEX-TRACE, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEADER-STATS-NULL, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEDGER, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-OLD-SAVE-LOAD, P2 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-AUDIO-GATE-LIVE, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-MGRMARK-RELOAD, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME, P2 AUTO-UNBLOCK-OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY, P2 AUTO-UNBLOCK-SWE2STRUCT-REQ-ASTRA-OV58D-ESPER-ORDER-0930, P2 DATA-REQ-ASTRA-SD194-RUNTIME-1001, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-REGFILE-REUSE, P3 AUTO-UNBLOCK-FABLE-REQ-ASTRA-STATE-ROUNDTRIP, P3 FABLE-NOTICE-ASTRA-GG1-SHARPER-CAPTURE, P3 FABLE-NOTICE-ASTRA-OV42-PACKET-WORDING-AND-NEXT-1002, P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ, P3 FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, P3 FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001
 > READY pool: 0 | BLOCKED: 32
 <!-- TEAM-CURRENT:end -->

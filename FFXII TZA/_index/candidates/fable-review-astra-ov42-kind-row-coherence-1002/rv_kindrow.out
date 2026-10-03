@@ -1,0 +1,97 @@
+== packet integrity
+PASS  manifest.json sha256 = dfea4a7f12fe6ab3...  | dfea4a7f12fe6ab3360100026863e66b81cf1cf757a84922e177abdd31a62ec1
+PASS  all 48 manifest members hash as listed  | []
+NOTE  committed manifest at d83287255: sha256 dfea4a7f12fe6ab3360100026863e66b81cf1cf757a84922e177abdd31a62ec1
+PASS  retained-prefix-01.json is byte-identical to 318e510c's special-admission-raw-01.json (sha256 33276301865c4c6a...)
+PASS  packet's new source range 00306C5B .. 00306CEC (145 B) hashes to this image's bytes, and its 37 instruction records concatenate to them
+PASS  packet's retained prefix 00306BD0 .. 00306C5B (139 B) hashes to this image's bytes
+PASS  packet's retained queue range 00306760 .. + 0x38F hashes to this image's bytes
+PASS  packet's physical body (440 B), seven DWORDs and 128 selector bytes equal this image's (body sha256 27683107a3bb...)
+PASS  packet's extent-01 records equal the image's .pdata records
+PASS  result-02's seven arms (selector -> target -> kind) equal the reviewer's derivation
+PASS  packet README keeps open: natural caller consistency, the equalities for normal callers, and the list of things not established; it forbids a natural impossibility claim
+PASS  ASTRA's addendum (19e732aa6) holds: the 145-byte suffix 00306C5B .. 00306CEC is already a range of autoattack-commit-exception/retained/current-row-source-01.json with the same sha256
+== raw direct-reference census (E8/E9 rel32 and 0F 8x jcc, .text)
+NOTE  00306BD0 raw direct references (1): 30CF0D call (indirect callers not covered)
+PASS  00306BD0 has exactly one raw direct reference, the call at 0030CE10 + 0xFD (0030CF0D)
+NOTE  raw direct references to the kind-4 arm + 0xE7: 0; to the kind store + 0x10B: 0; to the DIV + 0xB2: 0
+NOTE  rip-relative / image-base-relative disp32 references to 00306BD0 (e.g. a `lea` forming its address): 0 []; unresolved candidates 0, unanchored readings 0
+NOTE  the RVA DWORD 001E6BD0 occurs 3 times in the file: .rdata 1D74FAC, .rdata 1D74FC0, .pdata 2FB3198; the 8-byte VA occurs 0 times
+PASS  no stored or formed pointer to 00306BD0 outside unwind metadata: no disp32 reference, no 8-byte VA, and the RVA DWORD occurs only in .pdata (the root record) and in .rdata at the two CHAININFO footers (01D74FAC, 01D74FC0)
+PASS  the caller 0030CE10 (three chained .pdata records, decodes exactly to + 0x12F): RSI = entry RCX (+ 0xA), RBP = entry RDX (+ 0xD), neither rewritten before the call; + 0xF7 `mov rdx, rbp`, + 0xFA `mov rcx, rsi`, + 0xFD `call 00306BD0`; a nonzero EAX sets bit 29 of QWORD [rsi] (+ 0x106)
+NOTE  0030CE10 raw direct references (1): 30CD99 call
+PASS  0030CE10 has exactly one raw direct reference, the call at 0030CD99 = 0030CBE0 + 0x1B9 (0030CBE0's .pdata chain tiles 0030CBE0 .. 0030CE01 and resolves to that root)  | [('0x30cbe0', '0x30cbfc', 0), ('0x30cbfc', '0x30ce01', 4)]
+== kind-cell access census (rip-relative and image-base-relative disp32 whose access covers 022C215C)
+NOTE  3065A1  mov qword ptr [rip + 0x1fbbbb4], rax         target 22C215C size 8  (.pdata record 306570..3065C7)
+NOTE  306633  mov eax, dword ptr [rip + 0x1fbbb23]         target 22C215C size 4  (.pdata record 306623..306672)
+NOTE  30670F  mov qword ptr [rip + 0x1fbba46], rsi         target 22C215C size 8  (.pdata record 3066C9..306731)
+NOTE  3067AA  mov eax, dword ptr [rip + 0x1fbb9ac]         target 22C215C size 4  (.pdata record 306770..3067C2)
+NOTE  306CDB  mov dword ptr [rip + 0x1fbb47b], ebx         target 22C215C size 4  (.pdata record 306C3D..306D88)
+NOTE  unresolved candidates (no .pdata record or decode desync): 2 ['306562', '306BA4']; their decode-back readings that access the cell: []
+NOTE  unresolved 306562 decode-back readings: 306560 `or dword ptr [rip + 0x1fbbbf1], 1` -> 22C2158 (4 B)
+NOTE  unresolved 306BA4 decode-back readings: 306BA2 `cmp dword ptr [rip + 0x1fbb5b7], 5` -> 22C2160 (4 B)
+PASS  kind cell 022C215C: five instructions access it - writes at 00306BD0 + 0x10B (DWORD, EBX), 003065A1 (QWORD 022C215C..022C2163, RAX) and 0030670F (QWORD, RSI); reads at 00306633 and 003067AA (00306760 + 0x4A, the dispatch); nothing else in this census  | writes ['3065A1', '30670F', '306CDB'] reads ['306633', '3067AA']
+PASS  both QWORD stores write 0: 00306570 + 0x2F `xor eax, eax` then + 0x31 / + 0x38 store RAX to 022C215C and 022C2168 (no RAX write between); 003065D0 + 0x5B `xor esi, esi`, RSI written nowhere else in 003065D0 .. + 0x169 but the restore + 0x15C, then + 0x13F / + 0x146 store RSI to 022C215C and 022C2168
+NOTE  owner cell 022C2168 accessors (same census): 306579 mov rax, qword ptr [rip + 0x1fbbbe8], 3065A8 mov qword ptr [rip + 0x1fbbbb9], rax, 3065DC mov rbx, qword ptr [rip + 0x1fbbb85], 306716 mov qword ptr [rip + 0x1fbba4b], rsi, 306B16 cmp rcx, qword ptr [rip + 0x1fbb64b], 306BFC cmp rdi, qword ptr [rip + 0x1fbb565], 306C1B mov qword ptr [rip + 0x1fbb546], rdi
+PASS  00306760 (the queue writer, .. + 0x3A8) has no access to the owner cell 022C2168 in this census
+== shipping-image re-derivation
+NOTE  q -> kind (from the bytes): 148..148 -> 5; 149..149 -> 6; 150..181 -> 7; 182..207 -> 3; 208..225 -> 4; 226..261 -> 7; 262..274 -> 1; 275..275 -> 2; all other q -> 7
+PASS  image sha256 = 73461d0896204b1c259c...
+PASS  00306BD0's .pdata: three records tile 00306BD0 .. + 0x1B8 (440 B) exactly - the root .. + 0x35, then CHAININFO records + 0x35 .. + 0x6D and + 0x6D .. + 0x1B8, each resolving to the root 00306BD0  | [('0x0', '0x35', 0), ('0x35', '0x6d', 4), ('0x6d', '0x1b8', 4)]
+PASS  int3 padding 00306BD0 + 0x1B8 .. + 0x1C0 up to the next root record 00306D90
+PASS  code: 00306BD0 .. + 0x11C (284 B) decodes exactly; its last instruction is a `ret` at 00306CEB (+ 0x11B); there are three rets (+ 0x2B, + 0x6C, + 0x11B)
+PASS  local CFG closed: no tail jump other than the one indirect `jmp rcx` (+ 0xD7), no branch leaves the code, no direct branch targets + 0x11C .. + 0x1B8
+PASS  + 0x11C .. + 0x138 are seven DWORDs (28 B) and + 0x138 .. + 0x1B8 are 128 selector bytes: the indexed loads address exactly 00306CEC and 00306D08 from the image base
+PASS  RSI = entry RDX: home save `mov qword ptr [rsp + 0x10], rsi` (+ 0x0), `mov rsi, rdx` (+ 0x10), no RDX write before it; RSI written only at + 0x10, the two early-return restores (+ 0x21, + 0x62), `sub esi, eax` (+ 0xA1) and the restore + 0x101; the restores do not reach + 0xA1
+PASS  first descriptor: + 0x92 RAX = QWORD [02EBF138] (8 B); + 0x99 ECX = DWORD [rax + 0xC] (4 B); + 0x9C `call 0020E600`; + 0xA1 `sub esi, eax` (2B F0) - a 32-bit subtraction: D = (low32(row) - low32(base)) mod 2^32
+PASS  second descriptor: + 0xA3 `xor edx, edx`; + 0xA5 RAX = QWORD [02EBF138] again (8 B); + 0xAC `movzx ecx, word ptr [rax + 8]` (2 B, zero-extended); + 0xB0 `mov eax, esi`; + 0xB2 `div ecx` (F7 F1: unsigned 32-bit EDX:EAX / ECX)
+PASS  two separate loads, no divisor guard: the only 02EBF138 loads in the body are + 0x92 and + 0xA5 with the lookup call between; no cmp/test/jcc from + 0x8B to the DIV; ECX not written between the WORD load and the DIV; EDX written there only by the `xor`
+PASS  the guard: + 0xB4 `add eax, 0xffffff6c` (05 6C FF FF FF: 32-bit, no 66 prefix) immediately after the DIV; + 0xB9 `cmp eax, 0x7f` (83 F8 7F: 32-bit); + 0xBC `ja` + 0xFC (77: unsigned) - the full 32-bit quotient, not a WORD of it, is biased by -0x94 and compared unsigned with 0x7F
+PASS  between the DIV and the `ja`, RAX is written only by the `add` (no movzx/cwde/and narrowing); the index loads use RAX zero-extended by that 32-bit `add`
+PASS  dispatch: + 0xBE RDX = image base (`lea`, rip-relative); + 0xC5 `movzx eax, byte ptr [rdx + rax + 0x1e6d08]` (1 B) = selector 00306D08 + x; + 0xCD `mov ecx, dword ptr [rdx + rax*4 + 0x1e6cec]` (4 B) = DWORD 00306CEC + 4*sel; + 0xD4 `add rcx, rdx`; + 0xD7 `jmp rcx`; no RDX write between + 0xBE and + 0xD7
+PASS  all 128 selector bytes are in 0..6, so every in-range x selects one of the seven DWORDs  | max 6
+PASS  the seven DWORDs resolve to instruction boundaries: sel 0 + 0xEE, sel 1 + 0xF5, sel 2 + 0x101, sel 3 + 0xE7, sel 4 + 0xD9, sel 5 + 0xE0, sel 6 + 0xFC  | +EE +F5 +101 +E7 +D9 +E0 +FC
+PASS  published EBX per selector (CFG straight line from each target to the store + 0x10B, last EBX writer): sel 0 -> 5, 1 -> 6, 2 -> no writer (EBX as at the jump), 3 -> 4, 4 -> 1, 5 -> 2, 6 -> 7; the `ja` default + 0xFC -> 7  | {0: 5, 1: 6, 2: 'EBX0', 3: 4, 4: 1, 5: 2, 6: 7}
+PASS  kind 3 is EBX's initial value: + 0x3A `mov ebx, 3`; EBX's other writers are the six arms, the early-return restore + 0x5D (whose block ends in `ret` + 0x6C) and the restore + 0x111 after the store; none between + 0x3A and the indirect jump on the publishing path (calls preserve RBX only by the Win64 ABI)
+PASS  the q -> kind map from the bytes, q = 0x94 + x for selector index x: 148 -> 5; 149 -> 6; 150..181 -> 7; 182..207 -> 3; 208..225 -> 4; 226..261 -> 7; 262..274 -> 1; 275 -> 2; every other 32-bit q -> 7 (the unsigned `ja`); kind 4 exactly for q = 208..225  | 148..148 -> 5; 149..149 -> 6; 150..181 -> 7; 182..207 -> 3; 208..225 -> 4; 226..261 -> 7; 262..274 -> 1; 275..275 -> 2
+PASS  the kind store: + 0x10B `mov dword ptr [rip + ...], ebx` to 022C215C (4 B), the body's only write to it; with the table edges added, every path from the entry to it passes the DIV; it is followed by EAX = 1 (+ 0x106) and the ret + 0x11B, while the two other rets return EAX = 0 (+ 0x1F, + 0x5B) without it
+PASS  the entry gate: + 0xA EAX = DWORD [022C2160]; 0 -> + 0x35; 1 -> `cmp rdi, qword ptr [022C2168]` (+ 0x2C, RDI = entry RCX from + 0x13), equal -> + 0x35, else return 0; then + 0x41 state := 1, + 0x4B owner QWORD 022C2168 := RDI, + 0x52 `call 0032F6E0` with ECX = 3, nonzero -> return 0; + 0x70 state := 2
+PASS  0032FC30's return is unused: after `call 0032FC30` (+ 0x86) the instructions are `mov ecx, ebx` (+ 0x8B), `call 0032ED70` (+ 0x8D) and `mov rax, qword ptr [02EBF138]` (+ 0x92), which writes RAX without reading it; no instruction in between reads RAX or the flags, and none branches
+PASS  the callee 0032ED70 (no .pdata, a 16-byte leaf) starts `movsxd rax, ecx` - it writes RAX from ECX without reading it - then `lea rcx, [022C6E48]`, `or qword ptr [rcx + rax*8], 1`, `ret`
+PASS  by contrast the other two returns are used: 0032F6E0's EAX is tested (+ 0x57) and 00309230's EAX is passed as EDX to 0032FC30 (+ 0x82 `mov edx, eax`, + 0x84 `mov ecx, ebx`)
+PASS  queue writer 00306760 kind-4 arm (re-read): + 0x147 `sub edi, eax`; + 0x152 `movzx ecx, word ptr [rax + 8]`; + 0x158 `div ecx`; + 0x162 `cmp ax, dx` (66 3B C2, low 16 bits); + 0x167 `movzx eax, ax`; + 0x16A `sub eax, 0xd0`; + 0x174 DWORD store to 022C2178 - the queue narrows its own quotient to 16 bits
+PASS  emulated full classifier from the entry (state 022C2160 = 0, 0032F6E0 -> 0, q = 210): returns EAX = 1 with RBX/RSI/RDI restored; writes state 1, the owner QWORD 022C2168 = entry RCX, state 2, then kind 4 to 022C215C (one 4-byte store from 00306BD0 + 0x10B); calls 0032F6E0, 00309230, 0032FC30, 0032ED70 (run from the image), 0020E600 in that order  | rax 1 kind 4 state 2 owner 61000000 trace ['32F6E0', '309230', '32FC30', '32ED70', '20E600'] kw [('306CDB', 4)] ok True
+PASS  emulated: 0032F6E0 gets ECX = 3; 00309230 gets RCX = entry RCX, RDX = entry RDX (the row); 0032FC30 gets ECX = 3, EDX = 00309230's EAX; 0032ED70 gets ECX = 3 and ORs 1 into QWORD 022C6E48 + 3*8; the lookup gets ECX = descriptor DWORD +0xC  | {'32F6E0': ('3', '23453138'), '309230': ('61000000', '23453138'), '32FC30': ('3', '1234'), '32ED70': ('3', '1234'), '20E600': ('1D74', '1234')}
+PASS  emulated sweep q = 0..512 (stride 60, row = base + 60q + q mod 60): the published kind equals the map derived from the bytes for every q, and kind 4 is published exactly for q = 208..225  |  k4 [208, 209, 210, 223, 224, 225]
+PASS  emulated full-32 edge cases (15): quotients whose low 16 bits lie in 148..275 (208..225 among them) but whose full value lies outside 148..275 publish kind 7; wraps, upper row/lookup bits, stride FFFF and the band ends behave as the full unsigned 32-bit formula
+PASS  emulated 200 random 64-bit rows / lookup returns / strides: each published kind equals map(((low32(row) - low32(base)) mod 2^32) // u16 stride)
+PASS  emulated: when 02EBF138 is repointed during the lookup call, the key came from the first descriptor (+0xC = 1D74) and the divisor from the second (+8 = 30): 60*104 / 30 = 208 -> kind 4 (the first descriptor's stride 60 would give q 104 -> kind 7)  | key 7540 kind 4
+PASS  emulated: stride WORD 0 -> divide error (#DE, interrupt 0) at the DIV 00306BD0 + 0xB2; the kind cell is not written (no zero-divisor guard), state 022C2160 already holds 2  | intr (0, 3173506) fault None kind A5A5A5A5 state 2
+PASS  emulated entry gate: state 1 with the same owner QWORD publishes (EAX 1, kind 4); state 1 with another owner, state 2 and state 5 return EAX 0 with no call and no write to kind/state/owner; 0032F6E0 returning nonzero returns EAX 0 after writing state 1 and the owner, with the kind cell untouched  | same:rax 1 kind 4 st 2 tr 5 other:rax 0 kind A5A5A5A5 st 1 tr 0 s2:rax 0 kind A5A5A5A5 st 2 tr 0 s5:rax 0 kind A5A5A5A5 st 5 tr 0 gate:rax 0 kind A5A5A5A5 st 1 tr 1
+PASS  emulated: 0032FC30 returning 0, 1, FFFFFFFF, 2^63 or 2^64 - 1 gives the same kind, return, writes and 0032ED70 effect for q 207/208/225/226 (its return is not used)  | 4 distinct outcomes
+PASS  conditional invariant: the classifier's kind-4 band is q = 208..225; the emulated queue arm, given the same quotient, stores q - 208 = 0..17 for each, none of 303..326 (the queue values of ids 511..534)
+PASS  countermodel 1: classifier q 208 publishes kind 4 (map) while a later queue quotient 511 stores 303 (emulated queue arm)  | queue 12F
+PASS  countermodel 2: q 65744 (0x100D0) - the classifier publishes kind 7 (map), while the queue arm narrows it to low16 208 and stores 0 (emulated)  | queue 0
+PASS  over q = 0 .. 0x2FFFF only 208..225 publish kind 4 (the full-32 guard does not alias at 0x100D0 / 0x200D0); the queue arm's low16 formula maps 0x100D0..0x100E1 and 0x200D0..0x200E1 to 0..17 as well  | [208, 209, 210, 223, 224, 225]
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy passes every check  | 37 of 37; []
+PASS  control: guard narrowed to 16 bits: + 0xB4..+ 0xBC `add ax, 0xff6c` / `cmp ax, 0x7f` (66 prefixes), `ja` kept  | 3 failed: the guard: + 0xB4 `add eax, 0xffffff6c` (05 6C FF FF FF: 32-; between the DIV and the `ja`, RAX is written only by the `ad; emulated full-32 edge cases (15): quotients whose low 16 bit
+PASS  control: + 0xBC `ja` -> `jg` (signed guard)  | 3 failed: the guard: + 0xB4 `add eax, 0xffffff6c` (05 6C FF FF FF: 32-; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m; emulated full-32 edge cases (15): quotients whose low 16 bit
+PASS  control: + 0xB4 bias -0x94 -> -0x93 (`add eax, 0xffffff6d`)  | 3 failed: the guard: + 0xB4 `add eax, 0xffffff6c` (05 6C FF FF FF: 32-; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m; emulated full-32 edge cases (15): quotients whose low 16 bit
+PASS  control: kind-4 arm publishes 7 (+ 0xE7 `mov ebx, 4` -> `mov ebx, 7`)  | 10 failed: published EBX per selector (CFG straight line from each targ; the q -> kind map from the bytes, q = 0x94 + x for selector ; emulated full classifier from the entry (state 022C2160 = 0,
+PASS  control: selector byte x = 60 (q 208) 03 -> 06  | 7 failed: the q -> kind map from the bytes, q = 0x94 + x for selector ; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m; emulated full-32 edge cases (15): quotients whose low 16 bit
+PASS  control: selector byte x = 59 (q 207) 02 -> 03  | 4 failed: the q -> kind map from the bytes, q = 0x94 + x for selector ; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m; conditional invariant: the classifier's kind-4 band is q = 2
+PASS  control: selector byte x = 100 -> 07 (outside the seven DWORDs)  | 3 failed: all 128 selector bytes are in 0..6, so every in-range x sele; the q -> kind map from the bytes, q = 0x94 + x for selector ; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m
+PASS  control: DWORD for selector 3 -> the kind-7 arm (+ 0xFC)  | 11 failed: the seven DWORDs resolve to instruction boundaries: sel 0 + ; published EBX per selector (CFG straight line from each targ; the q -> kind map from the bytes, q = 0x94 + x for selector 
+PASS  control: + 0x10 `mov rsi, rdx` -> `mov rsi, rcx` (the owner as row)  | 8 failed: RSI = entry RDX: home save `mov qword ptr [rsp + 0x10], rsi`; emulated full classifier from the entry (state 022C2160 = 0,; emulated: 0032F6E0 gets ECX = 3; 00309230 gets RCX = entry R
+PASS  control: + 0xA1 `sub esi, eax` -> `sub esi, ecx`  | 7 failed: first descriptor: + 0x92 RAX = QWORD [02EBF138] (8 B); + 0x9; emulated full classifier from the entry (state 022C2160 = 0,; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m
+PASS  control: + 0xAC divisor WORD -> BYTE (`movzx ecx, byte ptr [rax + 8]`)  | 3 failed: second descriptor: + 0xA3 `xor edx, edx`; + 0xA5 RAX = QWORD; emulated full-32 edge cases (15): quotients whose low 16 bit; emulated: stride WORD 0 -> divide error (#DE, interrupt 0) a
+PASS  control: + 0xB2 `div ecx` -> `idiv ecx` (signed)  | 3 failed: second descriptor: + 0xA3 `xor edx, edx`; + 0xA5 RAX = QWORD; emulated full-32 edge cases (15): quotients whose low 16 bit; emulated: stride WORD 0 -> divide error (#DE, interrupt 0) a
+PASS  control: + 0xA5 second descriptor cell 02EBF138 -> 02EBF140  | 10 failed: second descriptor: + 0xA3 `xor edx, edx`; + 0xA5 RAX = QWORD; two separate loads, no divisor guard: the only 02EBF138 load; emulated full classifier from the entry (state 022C2160 = 0,
+PASS  control: + 0x10B kind store target 022C215C -> 022C2160  | 7 failed: the kind store: + 0x10B `mov dword ptr [rip + ...], ebx` to ; emulated full classifier from the entry (state 022C2160 = 0,; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m
+PASS  control: + 0x8B `mov ecx, ebx` -> `mov ecx, eax` (0032FC30's return used as 0032ED70's argument)  | 10 failed: 0032FC30's return is unused: after `call 0032FC30` (+ 0x86) ; emulated full classifier from the entry (state 022C2160 = 0,; emulated: 0032F6E0 gets ECX = 3; 00309230 gets RCX = entry R
+PASS  control: + 0x18 `je` + 0x35 -> `jne` (entry gate inverted)  | 8 failed: emulated full classifier from the entry (state 022C2160 = 0,; emulated: 0032F6E0 gets ECX = 3; 00309230 gets RCX = entry R; emulated sweep q = 0..512 (stride 60, row = base + 60q + q m
+PASS  control: queue + 0x167 `movzx eax, ax` -> `mov eax, eax` + NOP (no low16 narrowing in the queue)  | 2 failed: queue writer 00306760 kind-4 arm (re-read): + 0x147 `sub edi; countermodel 2: q 65744 (0x100D0) - the classifier publishes
+PASS  control: queue + 0x16A `sub eax, 0xd0` -> `sub eax, 0xd1`  | 4 failed: queue writer 00306760 kind-4 arm (re-read): + 0x147 `sub edi; conditional invariant: the classifier's kind-4 band is q = 2; countermodel 1: classifier q 208 publishes kind 4 (map) whil
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 75 checks, 75 PASS, 0 FAIL (18 controls)

@@ -2277,3 +2277,34 @@ Interior anchor `0037C35E` (function `0037C2E0`).
 - **WorldAreaField — CLIENT and SERVICE (96 edges).** 62 inbound (WorldAreaField bodies `00236C30`, `AreaArd_LoadOrUnloadFieldResource` (003EA820), `00378A60` call page-cited `0036C660`, `0032E400`, `003846F0`); 34 outbound (page-cited `00378A60`, `00331990`, `BattleSystem_InitializeAreaState` (002342F0) call WorldAreaField bodies `AreaData_BindAndRebaseSectionDescriptor` (003845F0), `FieldData_GetActiveFieldRecordBit15` (00377C20), `003846F0`). Substantive edges include `001805D0` is called by `00379A10`; `BattleSystem_InitializeAreaState` (002342F0) calls `002FA520`; `00236C30` is called by `00238850`; `00236C30` calls `003846F0`; the remaining edges run through shared helpers the page cites.
 - **CoreRuntimeScheduling - CLIENT and SERVICE (17 edges).** 12 inbound (CoreRuntimeScheduling bodies `0022B7E0`, `0022A0B0`, `0022A580` call page-cited `00324510`, `00184960`, `0032E520`); 5 outbound (page-cited `00184960`, `00233C10`, `0046AB10` call CoreRuntimeScheduling bodies `001EDE70`, `001EDEF0`, `00229EA0`).
 - **PlatformOnlineAchievements — CLIENT (1 edge).** 1 inbound (PlatformOnlineAchievements bodies `00315E90` call page-cited `BattleEncodedId_DispatchQueryMode0Value` (00309EC0)).
+
+## The inverse reader: three row-to-index divides over the action table (OPUS, 2026-10-02)
+
+From FABLE's reviews of ASTRA's [`ov42-sequence-queue-source`](../_index/candidates/fable-review-astra-ov42-sequence-queue-source-1002/REVIEW.md)
+and [`ov42-kind-row-coherence`](../_index/candidates/fable-review-astra-ov42-kind-row-coherence-1002/REVIEW.md), both ACCEPT-WITH-NARROWING.
+- OPUS re-read the six descriptor reads, the divides and the queue store at the bytes
+  ([`ov42_check.py`](../_index/candidates/opus-ov42-typestore-1002/ov42_check.py)).
+- The classifier's selector values and the return use rest on FABLE's review evidence (`rv_kindrow.py`).
+
+The usual access multiplies an index by the slot `02EBF138` header's `+0x08` stride. Three sites run it backwards:
+they turn a row pointer into an index.
+- **The sites.** `00306760` + 0x138 .. + 0x158 (the kind-4 arm), `00306760` + 0xAD .. + 0xCD (the kind-3 arm) and
+  `00306BD0` + 0x92 .. + 0xB2.
+- **The arithmetic.** D = (low32(row) - low32(`0020E600`(header `+0x0C`))) mod 2^32 (a 32-bit `sub`), then an
+  UNSIGNED 32-bit `div` by the zero-extended u16 header `+0x08`, with EDX zeroed first.
+- **Two descriptor loads.** Each site loads the `02EBF138` QWORD twice, with the lookup call between the loads:
+  `+0x0C` comes from the first load and `+0x08` from the second. Equality and stability are not established.
+- **Precondition: recordStride > 0.** No zero test sits between the WORD load and the `div`. A zero stride would
+  fault (#DE in emulation; a source prediction, not an observed fault).
+- **What each site does with the quotient.**
+  - Kind 4 at `00306760` narrows the quotient to its low 16 bits. FFFF becomes a queue DWORD FFFFFFFF; anything else
+    becomes (w - 0xD0) mod 2^32, stored at `022C2178` (`00306760` + 0x174).
+  - Kind 3 passes the full 32-bit quotient on as EDX.
+  - `00306BD0` classifies the full 32-bit quotient (`add eax, -0x94`, unsigned `cmp eax, 0x7f`, a 128-byte selector).
+    It publishes kind 4 exactly for q 208..225, and kind 7 for every q outside 148..275.
+- **Return use at `00306BD0` + 0x86.**
+  - The RAX / flags of the callee `0032FC30` are never read: a 16-byte leaf overwrites RAX, and + 0x92 overwrites it
+    again.
+  - The `0032F6E0` return is tested (+ 0x57).
+- **Open, as the register's OV-42 states.** Row-to-kind / caller / owner consistency. A quotient equals an action id
+  only for a row on the descriptor's stride grid.

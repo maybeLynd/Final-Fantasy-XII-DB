@@ -1,0 +1,262 @@
+{
+  "case": "capture-exception",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-action-table-binding\\controls-01\\capture-exception\\prove.py",
+    "rejected-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "38c1ef163d3e81df8bbf387d1bb0fea1dfe16a542a93266894b4fde4ddab01bd",
+  "expected": "required successful current binding-capture-01",
+  "refused_without_result": true,
+  "inputs": [
+    {
+      "path": "action-wrapper-entry-retained-preflight-01.json",
+      "bytes": 696,
+      "sha256": "073aec1fc4ac26e57cbfda2f5337a574b4a853ec45baf55bc5861872ba0c5365"
+    },
+    {
+      "path": "binder-entry-retained-preflight-01.json",
+      "bytes": 696,
+      "sha256": "ae26979619ba6122f18e2276694e07f661255036b08d0fac7d831a8e82dceda8"
+    },
+    {
+      "path": "binding-capture-01.status.json",
+      "bytes": 556,
+      "sha256": "748f810e69b7a69bf0cd2cabb6ef5bcbe4094ea46d1cf60e934fa6028924d48e"
+    },
+    {
+      "path": "binding-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binding-capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "binding-extents-01.json",
+      "bytes": 9664,
+      "sha256": "6b59f56c24eabea2cec2d82c5785b630af7ea5ed68ad0f80a5a50db550a1c140"
+    },
+    {
+      "path": "binding-extents-01.status.json",
+      "bytes": 589,
+      "sha256": "e075ebc7ad21147e659104652825e90d13d461c58fa9b46d79289311db20fe7d"
+    },
+    {
+      "path": "binding-extents-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binding-extents-01.stdout",
+      "bytes": 115,
+      "sha256": "3cb4be8297dac664ab6124f0199c8c9c8822f19a6f2cc92b0f087c803936885d"
+    },
+    {
+      "path": "binding-helper-capture-01.status.json",
+      "bytes": 595,
+      "sha256": "8eb175b5b284e6932a00a75ba7829d2d8e4266ba1ee98f65303e3a1bc435dd4a"
+    },
+    {
+      "path": "binding-helper-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binding-helper-capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "binding-helper-extents-01.json",
+      "bytes": 4223,
+      "sha256": "046bc503d83a586a003e0f59f1c06e559b412844c15ce1173fe5ece6d9510dc5"
+    },
+    {
+      "path": "binding-helper-extents-01.status.json",
+      "bytes": 603,
+      "sha256": "1f76af539cba8eac08ef18e6f6e48cd6195d684b575400ebd83aa28307a0e0f0"
+    },
+    {
+      "path": "binding-helper-extents-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binding-helper-extents-01.stdout",
+      "bytes": 114,
+      "sha256": "131c193e0ead2411cb49e6127e1908a90416f501d8888555446356b56d65dd77"
+    },
+    {
+      "path": "binding-helper-source-01.json",
+      "bytes": 43992,
+      "sha256": "b9d983e3d51ee3fb1336a961f99fea82d6b15bf36e97a58fd524be60fe4e5f61"
+    },
+    {
+      "path": "binding-source-01.json",
+      "bytes": 88269,
+      "sha256": "cfccd184a8c66d89ba9f29a1af890a60b924597dd18e79dd49eb8a81de712b4a"
+    },
+    {
+      "path": "capture-binding-helpers.py",
+      "bytes": 2018,
+      "sha256": "8664c57ca04b83c9aa1a7b5037ea9156a52ddd04855aea8dfc126a455b864b16"
+    },
+    {
+      "path": "capture-binding.py",
+      "bytes": 1938,
+      "sha256": "242fe3b9d74653afc46e98d72ec8adf03c35f33f8be90305df7d74d1027defb4"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "child-entry-retained-preflight-01.json",
+      "bytes": 696,
+      "sha256": "cd15a55ebcfaea0a928c0919711bc04ef7e1ff2057a202e3b57591ad3a68edce"
+    },
+    {
+      "path": "control.py",
+      "bytes": 5201,
+      "sha256": "56438b025fb99a28c912c68c5c336a51a859a75f707df42c574eb16a495d1aea"
+    },
+    {
+      "path": "encoder-entry-retained-preflight-01.json",
+      "bytes": 5132,
+      "sha256": "0e0fdda433f5525656ecb49f964c2d54bae4f193cdb0c9008953419f844ac641"
+    },
+    {
+      "path": "encoder-lineage-01.json",
+      "bytes": 346,
+      "sha256": "a25b9856713189b2d1e16a2c2a3d1301602af5160c9e8171e154127abe432fcd"
+    },
+    {
+      "path": "known-before-width-check.txt",
+      "bytes": 1030,
+      "sha256": "d6dd5660b1410a177de2e8ca823c8e74173f38ac30bd651d05da84a6c5ee7682"
+    },
+    {
+      "path": "KNOWN-PRECONDITIONS.md",
+      "bytes": 2556,
+      "sha256": "a52b880aa342181235c5bb7f2928b53059a168cf9677a362d85c0c27947a2cb8"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1476,
+      "sha256": "fcc624dc22367613dfb714101eebba05a152e8939b30f14c1e8b8ef4544e2036"
+    },
+    {
+      "path": "prepare-binding-extents.py",
+      "bytes": 4144,
+      "sha256": "b93730a8c96778f5c4d24277bff8614859ef4123fc115b5d6dae22f49517a89f"
+    },
+    {
+      "path": "prepare-binding-helper-extents.py",
+      "bytes": 4154,
+      "sha256": "e6ca85bbfea8b4876321e8a4f938a3b03c6215c5c3954072d1cf3d7dd38de9df"
+    },
+    {
+      "path": "proof-01.status.json",
+      "bytes": 562,
+      "sha256": "755cabda1a7a250fc4eb5e8eeb18248b5bb1bf4e62dff872ab5525a649768ba2"
+    },
+    {
+      "path": "proof-01.stderr",
+      "bytes": 1086,
+      "sha256": "a694ab7084e1e3fc29139eff781709ee8ffeab5af644d62e1f34bd7b5f9e6578"
+    },
+    {
+      "path": "proof-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.status.json",
+      "bytes": 562,
+      "sha256": "10c6ad4a968dbc7f140e3d22cf992935e74c22fee0c2745c97f7685ddf6a78b5"
+    },
+    {
+      "path": "proof-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.stdout",
+      "bytes": 135,
+      "sha256": "5640930348756f5ba927277c4d36dafc2f2af8ecc7931cb4e72ea577950dd479"
+    },
+    {
+      "path": "prove-before-conditional-order-correction.py",
+      "bytes": 12628,
+      "sha256": "2761ac53533f106389be3434047253f0eb935591aea8d15126e38a7836e8f431"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 12744,
+      "sha256": "38c1ef163d3e81df8bbf387d1bb0fea1dfe16a542a93266894b4fde4ddab01bd"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "registrar-entry-retained-preflight-01.json",
+      "bytes": 696,
+      "sha256": "c6847a5c4a0aab73d28e180e96579c56a097a4603eba5f34c05d2794e9d0851d"
+    },
+    {
+      "path": "resolver-dependency-consumption-01.json",
+      "bytes": 1411,
+      "sha256": "f2e876305562ac4cfe6224c53d779b671de5cba11b038161a81f6c83a8b3cbc3"
+    },
+    {
+      "path": "resolver-entry-retained-preflight-02.json",
+      "bytes": 4194,
+      "sha256": "768aca8bb6183429e9ebb3017681b135418cebda8fb0908b56ab821ff272db22"
+    },
+    {
+      "path": "resolver-lineage-01.json",
+      "bytes": 287,
+      "sha256": "4000dfaf5d762be424e811d4f022bb8212307ab6e19f79a2c52cc6517e08c5e1"
+    },
+    {
+      "path": "resolver-retained-preflight-01.json",
+      "bytes": 696,
+      "sha256": "6747d0064f8b12a62a6e40b6697ffeafa969a8297863347361814fbaec54460b"
+    },
+    {
+      "path": "result-02.json",
+      "bytes": 9100,
+      "sha256": "2d6260733324a997614b61758a291a37089a5ef2c7bb9c6b9200418ac7e9afef"
+    },
+    {
+      "path": "retained-encoder-source-01.json",
+      "bytes": 35579,
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    },
+    {
+      "path": "retained-resolver-source-01.json",
+      "bytes": 132942,
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

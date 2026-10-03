@@ -1,0 +1,23 @@
+PASS  E-planar 0 / 600 rows off the model
+PASS  E-matcap-z 0 / 600 rows off the model
+PASS  E-matcap-y 0 / 600 rows off the model
+PASS  E-carry-w 0 / 1200 rows off the model
+PASS  E-reflect-z 0 / 600 rows off the model
+PASS  E-reflect-y 0 / 600 rows off the model
+PASS  E-reflect-w 0 / 1200 rows off the model
+PASS  N-planar-no-neg wrong model rejected on 600 / 600 rows
+PASS  N-matcap-z-as-y wrong model rejected on 600 / 600 rows
+PASS  N-reflect-no-flip wrong model rejected on 600 / 600 rows
+PASS  N-reflect-raw-n wrong model rejected on 600 / 600 rows
+PASS  A-004359E5 the mode byte +0x1B0 + p (movzx ecx, byte ptr [r15 + rdi + 0x1b0])
+PASS  A-00435A75 +0x1B4 picks the matcap axis (cmp byte ptr [r15 + rax + 0x1b4], 0)
+PASS  A-00435A80 +0x1B4 == 0: y-axis matcap 00396A30 (call 0x396a30)
+PASS  A-00435A8A +0x1B4 != 0: z-axis matcap 00396560 (call 0x396560)
+PASS  A-00435AE8 planar scalar at param + 0x1D8 + 4k, k from rbx (not shown equal to the pass index) (lea r8, [r15 + r8*4])
+PASS  A-00435AF1 mode 2: planar 003962F0 (call 0x3962f0)
+PASS  A-00435BBE +0x1B4 picks the reflection axis (cmp byte ptr [r15 + rax + 0x1b4], 0)
+PASS  A-00435BC9 +0x1B4 == 0: y-axis reflection 00395CF0 (call 0x395cf0)
+PASS  A-00435BD0 +0x1B4 != 0: z-axis reflection 00395780 (call 0x395780)
+PASS  K-008C5FB0 the reflection path's V is (0, 0, 1, 0) before 00394DA0 transforms it
+PASS  E-zero-guard matcap of n = (0,0,-1) is the centre (0.5, 0.5, 0.5)
+FAILS 0

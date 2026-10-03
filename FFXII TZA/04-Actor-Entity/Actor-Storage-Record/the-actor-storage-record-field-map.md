@@ -529,3 +529,16 @@ Interior anchor `003DB6B5` (function `003DB650`).
 `003A1C90` (158 B) is the two-delta normal `003A17D0` calls: it builds `rdx - rcx` and `r8 - rcx` as vec3s on the stack, `00202E10`s them into a cross/normal at `[rsp+0x40]`, and returns `[rsp+0x44]` - the middle component of the plane between two position pairs
 
 Interior anchor `003A1D11` (function `003A1C90`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-actor-storage-record-field-map-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002E6420` | 179 B | for `i` = 0 to 2 calls `00263FF0(i)` and, when bit 0 of byte `+0x10` of the result is set, walks indices from word `+0x1DE` up to (word `+0x1DE` + word `+0x1D6`) exclusive, calling `00358940(result, index)`; for each non-null return whose qword `+0xC0` is non-null and whose dword there is not -1 and low word not 0xFFFF, takes the `0x740`-byte record at qword `022C6F28` + that signed word `* 0x740` and, when it is non-null and its dword `+0x284` is non-zero, calls `00428FE0(record, 0)` | `002E6438`, `002E6440`, `002E6465`, `002E649D`, `002E64A8` |
+| `002EA970` | 86 B | returns without work when `rcx` is null, its qword `+0xC0` is null, the dword there is -1 or its low word is 0xFFFF, or when the `0x740`-byte record at qword `022C6F28` + that signed word `* 0x740` is null, has dword `+0x284` zero or gives a null `record + 0x550`; otherwise tail-jumps to `003AF320(record + 0x550, edx == 0)` | `002EA978`, `002EA996`, `002EA9A6`, `002EA9BD`, `002EA9C0` |
+| `00340970` | 118 B | calls `002640C0` (incoming `rcx`, `rdx`, `r8` unchanged), then `00267E10(r9)`, and with `v` = that result calls `0025AE00(first result, k, v)` for `k` = 0, 1, 4, 2 and finally 3, the last as a tail jump | `0034097D`, `00340988`, `00340997`, `003409B7`, `003409E1` |
+| `00358A00` | 21 B | with `p` = qword `+0x48` of `rcx`, returns 0 when `edx` is not below dword `p+0` (unsigned), else returns dword `p + 8 + edx * 8` (`edx` sign-extended) | `00358A04`, `00358A07`, `00358A09`, `00358A0F` |
+| `003B7D30` | 70 B | when dword `02EBCAA0` is greater than 0 (signed), calls `0026B500(qword, 1)` for each qword of the 8-byte-stride array at `02EBCA80`, while the index stays below dword `02EBCAA0` (re-read each pass, signed); otherwise does nothing | `003B7D38`, `003B7D45`, `003B7D58`, `003B7D63` |
+| `00420A10` | 41 B | stores 0 at dword `+0x23C` of `rcx` when dword `+0xC4` is -1 or bit 14 (0x4000) of dword `+0x304` is set; otherwise stores `xmm1` there (`movss`) | `00420A17`, `00420A19`, `00420A25`, `00420A2E` |

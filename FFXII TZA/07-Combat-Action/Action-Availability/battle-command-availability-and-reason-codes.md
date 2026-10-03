@@ -796,7 +796,9 @@ natural action selection and whole OV-42 stay OPEN.
   These are the "idle or same owner" and "allows it" conditions of [the mode ladder,
   §2d](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md). Separately,
   `00306760`'s six-way dispatch (`003067AA`) switches on the kind `022C215C`, not on `+0x1E`. Only its kind-4 arm
-  writes the queue (FABLE 2026-10-02, the special-sequence queue-writer subsection below).
+  writes the queue (FABLE 2026-10-02, the special-sequence queue-writer subsection below). When both gates are
+  open, `00306BD0` publishes that kind from its own full 32-bit row quotient (FABLE 2026-10-02, the kind-band
+  subsection below).
 
 **What a zero availability reason proves about the id** *(FABLE 2026-10-02, from ASTRA's
 [`ov42-actor-predicate-domain`](../../_experiments/evidence/ov42-actor-predicate-domain/README.md) (`2b341ca3a`),
@@ -1022,11 +1024,74 @@ passes. That consistency is not established.
 **Limits kept.** These limits are ASTRA's and FABLE's.
 
 - Kind-to-row, caller and owner consistency stays OPEN. A normal kind-4 call is not shown to carry a row in the
-  usual Quickening range. The kind cell's writers and persistence are not read. ASTRA's later packet
-  `ov42-kind-row-coherence` (`d83287255`) bears on this and is not yet reviewed.
+  usual Quickening range. ~~The kind cell's writers and persistence are not read.~~ ASTRA's later packet
+  `ov42-kind-row-coherence` (`d83287255`) bears on this ~~and is not yet reviewed~~. *(narrowed 2026-10-02, FABLE:
+  the packet is reviewed, and the kind cell's direct writers are now counted; its persistence is still not closed -
+  the kind-band subsection below)*
 - The two descriptor loads are not shown to read the same, initialized descriptor. A positive WORD `+8` is a
   precondition.
 - The arm's five earlier callees (four helpers and a `memset`) are opaque. The Win64 ABI, which preserves RDI and
   RBX, and valid, readable, stable row, unit and descriptor state are premises.
 - No natural kind-4 call, queue consumption, command execution or rejection is observed.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: which quotients publish kind 4, and what that binds in the queue (OV-42)
+
+*From ASTRA's packet [`ov42-kind-row-coherence`](../../_experiments/evidence/ov42-kind-row-coherence/README.md)
+(`d83287255`; method addendum `19e732aa6`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-kind-row-coherence-1002/REVIEW.md), 75 checks, 0 FAIL, 18 controls).
+Static, plus an emulation of the original classifier and of the queue's kind-4 arm on synthetic rows, descriptors
+and stubbed callees.*
+
+- **The classifier `00306BD0` (three chained `.pdata` records, 440 bytes).** Its 284 code bytes end at its last
+  `ret` (`00306BD0` + 0x11B). Seven DWORD jump entries (+ 0x11C) and 128 selector bytes (+ 0x138) follow. They are
+  data, not code.
+- **When it publishes.** Only past the two gates above. It then records its RCX as the owner in `022C2168`, sets
+  `022C2160` to 2, computes the kind, stores it as a DWORD to `022C215C` and returns 1. The owner compare tests the
+  unit, not the row.
+- **The quotient is full 32-bit.** The row is the classifier's incoming RDX. It computes
+  q = ((low32(row) - low32(base)) mod 2^32) / u16 stride with an unsigned 32-bit `div`. The key comes from the
+  first load of `02EBF138` and the stride from a second load after the lookup call; there is no zero test. This is
+  the same shape as the queue arm (subsection above). The full EAX then goes through `add eax, -0x94` and an
+  unsigned `cmp eax, 0x7f`. Nothing narrows q to a WORD first.
+- **The kinds.** For q = 148..275 a selector byte picks one of seven entries: 148 -> 5, 149 -> 6, 150..181 -> 7,
+  182..207 -> 3, 208..225 -> 4, 226..261 -> 7, 262..274 -> 1, 275 -> 2. Every other 32-bit q, including 0..147,
+  publishes 7. **Kind 4 is published exactly for q = 208..225.** Kind 3 has no arm of its own: it is the 3 that
+  the routine loads into EBX at its start, and it survives five calls only by the Win64 ABI.
+- **The full-32 / low-16 split.** The queue arm narrows its own quotient to 16 bits before its FFFF test and its
+  `- 0xD0`; the classifier does not. So q = 65744 (`0x100D0`) publishes kind 7, while the queue arm would read it
+  as 208 and queue 0 (emulated).
+- **The `0032FC30` result is unused.** On the publishing path nothing reads that call's RAX or flags. The next
+  call is a 16-byte leaf whose first instruction overwrites RAX, and the descriptor load after it writes RAX again.
+  This concerns return use only. It does not show the request's native effect or success.
+- **The kind cell's direct writers.** In a census of rip-relative and image-base-relative accesses, only the
+  classifier writes a nonzero kind. Two end-of-sequence routines zero kind and state together with one 8-byte
+  store each, then clear the owner. The two readers are the queue routine's dispatch and the finisher's kind
+  dispatch. The queue routine never reads the owner cell. Register-based, aliased and indirect writes are not
+  covered.
+- **The two rows come from different routines.** The classifier's one direct caller is `0030CE10`, which passes its
+  own incoming row unchanged; `0030CE10`'s one direct caller is `0030CBE0` (first subsection). The queue routine's
+  one direct caller builds its row separately (queue-writer subsection). Indirect callers are not covered.
+
+**The conditional invariant.** Suppose the queue routine's dispatch still reads the kind 4 that this classifier
+published, and the queue arm's quotient equals the classifier's. Then q is 208..225, its low 16 bits are q, and the
+queue DWORD is q - 208 = 0..17. Ids 511..534, which queue as 303..326, are then excluded on this leg. Equal row
+low32, equal base low32 and equal positive strides are enough. Equal quotients alone are also enough, so pointer
+identity is not needed. Neither equality is established for a normal call. Two supplied states mark the limits:
+a kind-4 publication at q 208 followed by a queue quotient of 511 queues 303, and q 65744 publishes kind 7 but
+queues 0. Both are arithmetic run through the original bytes in emulation, not native runs.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- Natural kind-to-row, caller and owner consistency stays OPEN. The two quotients come from rows built in
+  different routines, at different times, from separate descriptor reads. No natural-impossibility claim is made
+  for 511..534.
+- The kind's persistence between the classifier and the queue dispatch is closed only for direct writes. Re-entry
+  between the two is not read.
+- The descriptor's initialization and its stability between each pair of loads and across calls are premises. So is
+  a positive stride: a zero WORD faults after state 2 and the owner are written (a source prediction).
+- The native effects of `0032F6E0`, `00309230`, `0032FC30` and `0020E600` are not read. The Win64 ABI, which
+  preserves RSI and RBX, and valid, readable, stable row and descriptor state are premises.
+- ASTRA's later packet `summon-kind-row-carrier` (`c40b24340`), on the queue routine's row carrier, is not yet
+  reviewed.
 - Whole OV-42 stays OPEN.

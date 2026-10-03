@@ -1,0 +1,301 @@
+{
+ "page": "16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01C3h8BLp4DosVqvFsrqPP3a",
+ "report": "the-map-screens-and-their-shared-map-data.json",
+ "rows": [
+  {
+   "fn": "00254E70",
+   "text": "tail-jumps to `00251F40` with `ecx` = dword `020927E8`",
+   "anchors": [
+    [
+     "00254E76",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00255020",
+   "text": "flips bit 0 of dword `020927E8` (XOR 1), stores the result back and tail-jumps to `00251F40` with `ecx` = the new value",
+   "anchors": [
+    [
+     "00255026",
+     "xor"
+    ],
+    [
+     "00255029",
+     "mov"
+    ],
+    [
+     "0025502F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0028E660",
+   "text": "calls `002B9D30(rcx, 5)` with `rcx` passed through, then `002BA020` and `002BA000` (no arguments set), and tail-jumps to `002BA040`",
+   "anchors": [
+    [
+     "0028E664",
+     "mov"
+    ],
+    [
+     "0028E669",
+     "call"
+    ],
+    [
+     "0028E66E",
+     "call"
+    ],
+    [
+     "0028E673",
+     "call"
+    ],
+    [
+     "0028E67C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002B7540",
+   "text": "stores qword 0 at `0209E5C0`; then, only when qword `0209E5C8` (read before that store) is null and `00402220()` returns null, calls `00285F00` with `rcx` = the address `0209E5D0` and tail-jumps to `002814E0(0x4EA)`; otherwise it returns after the store",
+   "anchors": [
+    [
+     "002B7544",
+     "cmp"
+    ],
+    [
+     "002B754C",
+     "mov"
+    ],
+    [
+     "002B7559",
+     "call"
+    ],
+    [
+     "002B756A",
+     "call"
+    ],
+    [
+     "002B7578",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002BA240",
+   "text": "switches on dword `[rdx]` under a stack cookie from `01F44830` checked by `00808C40` on every exit: 1 returns 0; 14 calls `00249580()`, then `003C2100(that result, 2)` and `00249410(that result)`, and returns 0; 16 calls `00245020()` and returns 0; 18 calls `00275440(rcx, p)`, p being a stack record with dword `+0x00` = `0x20` and bytes `+0x08` to `+0x17` zeroed, and returns 0; any other value calls `005C5230` with `rcx` and `rdx` unchanged and `r8d` = the value minus 16, and does not set `eax` after that call",
+   "anchors": [
+    [
+     "002BA253",
+     "mov"
+    ],
+    [
+     "002BA25A",
+     "je"
+    ],
+    [
+     "002BA272",
+     "call"
+    ],
+    [
+     "002BA29F",
+     "call"
+    ],
+    [
+     "002BA2E6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002BA6B0",
+   "text": "stores qword 0 at `0209E5F0`; then, only when qword `0209E5F8` (read before that store) is null and `00402220()` returns null, calls `00285F00` with `rcx` = the address `0209E608` and tail-jumps to `002814E0(0x417)`; otherwise it returns after the store",
+   "anchors": [
+    [
+     "002BA6B4",
+     "cmp"
+    ],
+    [
+     "002BA6BC",
+     "mov"
+    ],
+    [
+     "002BA6C9",
+     "call"
+    ],
+    [
+     "002BA6DA",
+     "call"
+    ],
+    [
+     "002BA6E8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0035F0F0",
+   "text": "returns the zero-extended byte at `022CAE94 + ecx * 0x294` (`ecx` sign-extended), that is, byte `+0x00` of the `0x294`-byte record `ecx` of the table at `022CAE94`",
+   "anchors": [
+    [
+     "0035F0F3",
+     "imul"
+    ],
+    [
+     "0035F101",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "00368860",
+   "text": "when bit `0x10` of byte `022CBE32` is clear, returns without a store; otherwise stores word `0x406` at `022CBE41`, byte `0x1E` at `022CBE43`, byte 1 at `022CBE3D`, byte `ecx + 2` at `022CBE40` (2 instead when `ecx + 2` is -1) and word 0 at `022CBE3E`, and returns 0",
+   "anchors": [
+    [
+     "00368863",
+     "test"
+    ],
+    [
+     "0036886F",
+     "mov"
+    ],
+    [
+     "00368884",
+     "cmove"
+    ],
+    [
+     "00368890",
+     "mov"
+    ],
+    [
+     "00368896",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00402BF0",
+   "text": "walks the list from `rcx` through qword `+0x60` until null (returning at once when `rcx` is null) and, for each node whose byte `+0x02` is 1, ANDs word `+0x4E` with `0xFFF9` then ORs it with 9, stores dword `0x3F800000` at `+0x38` and stores word `0x80` at `+0x4C`",
+   "anchors": [
+    [
+     "00402C00",
+     "cmp"
+    ],
+    [
+     "00402C06",
+     "and"
+    ],
+    [
+     "00402C0A",
+     "or"
+    ],
+    [
+     "00402C0F",
+     "mov"
+    ],
+    [
+     "00402C1A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00510950",
+   "text": "when `00280120()` returns 0, tail-jumps to `00247780(1)`; otherwise returns with that non-zero result in `eax`",
+   "anchors": [
+    [
+     "00510954",
+     "call"
+    ],
+    [
+     "0051095B",
+     "jne"
+    ],
+    [
+     "0051095D",
+     "lea"
+    ],
+    [
+     "00510964",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00510990",
+   "text": "when `00280120()` returns 0, tail-jumps to `00247780(0)`; otherwise returns with that non-zero result in `eax`",
+   "anchors": [
+    [
+     "00510994",
+     "call"
+    ],
+    [
+     "0051099B",
+     "jne"
+    ],
+    [
+     "0051099D",
+     "xor"
+    ],
+    [
+     "005109A3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00552230",
+   "text": "stores qword 0 at `02CA8F38` and tail-jumps to `002814E0(0x418)`",
+   "anchors": [
+    [
+     "00552235",
+     "mov"
+    ],
+    [
+     "00552240",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0057FB00",
+   "text": "with T = the pointer table at qword `rcx+0x10` and set/clear meaning bit 0 of dword `+8` of a T entry: when bit 0 of byte `r8+0x57` is set, calls `002DC290(rdx, ...)` with a stack record built from qword `rcx+8`; calls `00393190(rcx, 1)`, clears T`[+0xD8]` and T`[+0xB0]`, sets the 7 entries indexed by the bytes at `00D23EAC`, clears T`[+0xD0]`, and sets T`[+0xD8]` when bit 2 of byte `r8+0x57` is set; when bit 0 is set it fills T`[+0xB8]`, T`[+0xC8]` and T`[+0xC0]` (`00377B60`, `0029FE20`, `003778B0`, `0029FB50`) and takes id = dword `r8+0x80` (`r8+0x4C` when 0), else clears those three and takes id = dword `r8+0x4C`; stores `003778B0(id)` at qword `+0x18` of T`[+0x90]`, or `002F9860` of `0x7EC`, `0x7EB`, `0x7EE` or `0x7ED` when the call at `0057FB00` + 0x21C is non-zero and `00264F90(id)` is 7, `0x16`, `0x19` or `0x1D`; clears T`[+0xA0]`, stores `00377B60(id)` at qword `+0x18` of T`[+0x98]`; and calls `00393160(rcx, 8, 3, 3, a)`, clears T`[+0x38]`, then `00393160(rcx, 11, 2, 1, b)` and `00393160(rcx, 13, 2, 1, c)`, where a, b, c are 0 when a `002F9860` value was stored, else word `r8+0x18` and bytes `r8+0x1A`, `r8+0x1B` capped at 999, 59, 59 (b, c = 59 when the word exceeds 999)",
+   "anchors": [
+    [
+     "0057FB8F",
+     "call"
+    ],
+    [
+     "0057FBE3",
+     "or"
+    ],
+    [
+     "0057FD61",
+     "call"
+    ],
+    [
+     "0057FDCE",
+     "cmp"
+    ],
+    [
+     "0057FE4D",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0057FB00",
+   "was": "with T = the pointer table at qword `rcx+0x10` and set/clear meaning bit 0 of dword `+8` of a T entry: when bit 0 of byte `r8+0x57` is set, calls `002DC290(rdx, ...)` with a stack record built from qword `rcx+8`; calls `00393190(rcx, 1)`, clears T`[+0xD8]` and T`[+0xB0]`, sets the 7 entries indexed by the bytes at `00D23EAC`, clears T`[+0xD0]`, and sets T`[+0xD8]` when bit 2 of byte `r8+0x57` is set; when bit 0 is set it fills T`[+0xB8]`, T`[+0xC8]` and T`[+0xC0]` (`00377B60`, `0029FE20`, `003778B0`, `0029FB50`) and takes id = dword `r8+0x80` (`r8+0x4C` when 0), else clears those three and takes id = dword `r8+0x4C`; stores `003778B0(id)` at qword `+0x18` of T`[+0x90]`, or `002F9860` of `0x7EC`, `0x7EB`, `0x7EE` or `0x7ED` when the no-argument callee is non-zero (entry cite removed) and `00264F90(id)` is 7, `0x16`, `0x19` or `0x1D`; clears T`[+0xA0]`, stores `00377B60(id)` at qword `+0x18` of T`[+0x98]`; and calls `00393160(rcx, 8, 3, 3, a)`, clears T`[+0x38]`, then `00393160(rcx, 11, 2, 1, b)` and `00393160(rcx, 13, 2, 1, c)`, where a, b, c are 0 when a `002F9860` value was stored, else word `r8+0x18` and bytes `r8+0x1A`, `r8+0x1B` capped at 999, 59, 59 (b and c are 59 when the word is 1000 or more)",
+   "now": "with T = the pointer table at qword `rcx+0x10` and set/clear meaning bit 0 of dword `+8` of a T entry: when bit 0 of byte `r8+0x57` is set, calls `002DC290(rdx, ...)` with a stack record built from qword `rcx+8`; calls `00393190(rcx, 1)`, clears T`[+0xD8]` and T`[+0xB0]`, sets the 7 entries indexed by the bytes at `00D23EAC`, clears T`[+0xD0]`, and sets T`[+0xD8]` when bit 2 of byte `r8+0x57` is set; when bit 0 is set it fills T`[+0xB8]`, T`[+0xC8]` and T`[+0xC0]` (`00377B60`, `0029FE20`, `003778B0`, `0029FB50`) and takes id = dword `r8+0x80` (`r8+0x4C` when 0), else clears those three and takes id = dword `r8+0x4C`; stores `003778B0(id)` at qword `+0x18` of T`[+0x90]`, or `002F9860` of `0x7EC`, `0x7EB`, `0x7EE` or `0x7ED` when the call at `0057FB00` + 0x21C is non-zero and `00264F90(id)` is 7, `0x16`, `0x19` or `0x1D`; clears T`[+0xA0]`, stores `00377B60(id)` at qword `+0x18` of T`[+0x98]`; and calls `00393160(rcx, 8, 3, 3, a)`, clears T`[+0x38]`, then `00393160(rcx, 11, 2, 1, b)` and `00393160(rcx, 13, 2, 1, c)`, where a, b, c are 0 when a `002F9860` value was stored, else word `r8+0x18` and bytes `r8+0x1A`, `r8+0x1B` capped at 999, 59, 59 (b, c = 59 when the word exceeds 999)",
+   "why": "FABLE neighbour pre-check: the entry citation of the no-argument callee imported a foreign-layer caller edge onto the page; the call is cited by its site 0057FB00 + 0x21C instead"
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "status": "COMPLETE",
+ "verbs": "0x29A,0x29B",
+ "call_sites_decoded": 16666842,
+ "matching_calls": 27,
+ "inputs": {
+  "decoded": 10036,
+  "read_failed": 0,
+  "malformed": 0,
+  "not_script": 9
+ },
+ "not_decoded": {
+  "not_script": [
+   {
+    "path": "ps2data/plan_master/ch/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/cn/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/de/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/es/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/fr/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/in/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/it/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/kr/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   },
+   {
+    "path": "ps2data/plan_master/us/event/evt_t/evt_t0020/evt_t0020.ebp",
+    "reason": "2416 bytes, no EBP2 script magic at +0x80"
+   }
+  ]
+ }
+}
