@@ -1,0 +1,61 @@
+{
+ "page": "16-UI/License-Board-View/the-license-board-screen-widgets.md",
+ "session": "session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00511920",
+   "text": "calls `00511920+0x9` with the incoming registers and returns its result when non-zero; otherwise reads three values a, b, c by the calls at `00511920+0x1F`, `+0x29` and `+0x33` (each with `r9`) and returns `002D7B40(c, b, a, 0)`",
+   "anchors": [
+    [
+     "00511929",
+     "call"
+    ],
+    [
+     "00511930",
+     "jne"
+    ],
+    [
+     "0051193F",
+     "call"
+    ],
+    [
+     "00511953",
+     "call"
+    ],
+    [
+     "00511962",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00561280",
+   "text": "takes qword `+0x320` of the object at qword `0209AC30`; when it is non-null and `ecx` is 0 with bit 1 of its dword `+0x570` clear, calls `0055A1F0` on it and sets that bit; when it is non-null and `ecx` is non-zero with the bit set, calls `00559800` on it and clears the bit; in every other case calls `002D7580(1, 3)` and tail-jumps to `002D7580(0, 3)`",
+   "anchors": [
+    [
+     "0056129D",
+     "test"
+    ],
+    [
+     "005612A9",
+     "call"
+    ],
+    [
+     "005612C7",
+     "call"
+    ],
+    [
+     "005612E1",
+     "call"
+    ],
+    [
+     "005612F2",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00511920: the three r9 reads are cited as +0x1F, +0x29, +0x33 from the entry 00511920 (00267E10 and 00280120 are not named by the page)."
+}
