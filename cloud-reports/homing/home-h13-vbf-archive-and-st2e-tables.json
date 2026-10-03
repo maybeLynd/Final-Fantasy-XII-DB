@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "0029CF10", "entered_from": "`00253780` + 0x61",
+   "text": "sets no argument registers itself: makes the calls at `0029CF10` + 0x4 and `0029CF10` + 0x9 in turn, then tail-jumps at `0029CF10` + 0x12",
+   "anchors": [["0029CF14", "call"], ["0029CF19", "call"], ["0029CF22", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0029CF10: a pure three-call sequencer; the incoming rcx/rdx reach the first call unchanged, and no return value is consumed between calls."
+}
