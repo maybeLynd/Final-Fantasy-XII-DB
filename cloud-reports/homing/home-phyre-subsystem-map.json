@@ -1,0 +1,36 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00793410",
+   "entered_from": "`007933C0` + 0x40",
+   "text": "stores the address `01CB2498` at qword `[rcx]`; when dword `rcx+8` is non-zero it makes the call at `00793410` + 0x3C with qword `rcx+0x10` if that qword is non-null and bit 31 of the dword is clear, then zeroes qword `+0x10` and dword `+8`; it then makes the call at + 0x5E (same callee) with qword `+0x10` when bit 31 of dword `+8` is clear and that qword is non-null (reachable only when the dword was 0 on entry), and finally zeroes qword `+0x10` and dword `+8` again",
+   "anchors": [
+    [
+     "0079342E",
+     "mov"
+    ],
+    [
+     "00793438",
+     "je"
+    ],
+    [
+     "0079344C",
+     "call"
+    ],
+    [
+     "0079346E",
+     "call"
+    ],
+    [
+     "00793478",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00793410: the bit-31 test is shr 0x1f / not / test al,1, i.e. the call runs only when bit 31 is clear. Entered from 007933C0 by a jmp (tail call), as the pack lists."
+}
