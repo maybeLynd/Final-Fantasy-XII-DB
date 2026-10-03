@@ -1,0 +1,23 @@
+{
+ "page": "15-Input/Input-Stack/input-stack-device-channel-and-bindings.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "007A1080",
+   "entered_from": "`00198E80` + 0x3A",
+   "text": "stores `dl` in byte `rcx+0x98`, `r8b` in byte `rcx+0x99` and 1 in byte `rcx+0x9A`",
+   "anchors": [
+    [
+     "007A1086",
+     "mov"
+    ],
+    [
+     "007A108D",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "007A1080: the `dl` store is the entry instruction, so the anchors cover only the `+0x99` and `+0x9A` stores."
+}
