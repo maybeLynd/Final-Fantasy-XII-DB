@@ -1,0 +1,561 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_011QWFCygJHNVxmVxkuiv6f5",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "rows": [
+  {
+   "fn": "00853BB0",
+   "text": "returns without effect when `xmm1` is 0.0 (a NaN does not count as 0); otherwise, when qword `+0x208` is non-null, calls its slot `+8`(object, `rcx+0x10`), then calls `00853BB0+0x67`(`rcx+0x50`, `rcx+0x10`, `xmm1` passed in `xmm2`, `rcx+0x150`, fifth (stack) argument `rcx+0x160`), copies the vectors at `+0x150` and `+0x160` to `+0x90` and `+0xA0` and the 64 bytes at `+0x10` to `+0x50`",
+   "anchors": [
+    [
+     "00853BC9",
+     "je"
+    ],
+    [
+     "00853BF6",
+     "call"
+    ],
+    [
+     "00853C17",
+     "call"
+    ],
+    [
+     "00853C3B",
+     "movdqa"
+    ],
+    [
+     "00853C52",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00853F70",
+   "text": "calls slot `+0x18` of `rcx`'s vtable, passes its result (sign-extended) and 1 to slot `+0x18` of `rdx`'s vtable, calls `rcx`'s slot `+0x20`(qword `+8` of that second result, `rdx`) and then `rdx`'s slot `+0x20`(the second result, that return, 0x59444252, `rcx`); the constant is the four bytes 'RBDY', consistent with btRigidBody::serializeSingleObject in Bullet",
+   "anchors": [
+    [
+     "00853F8B",
+     "call"
+    ],
+    [
+     "00853F9A",
+     "call"
+    ],
+    [
+     "00853FAD",
+     "call"
+    ],
+    [
+     "00853FB4",
+     "mov"
+    ],
+    [
+     "00853FC8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00854110",
+   "text": "when float `+0x170` is non-zero (or NaN) stores the three floats at `rdx` times 1.0 (`01CEBBA8`) / `+0x170`, lane 3 zero, at `+0x190`; in every case copies the 16-byte vector at `rdx` to `+0x1A0`",
+   "anchors": [
+    [
+     "00854124",
+     "je"
+    ],
+    [
+     "0085412E",
+     "divss"
+    ],
+    [
+     "00854163",
+     "movdqa"
+    ],
+    [
+     "0085416E",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00854180",
+   "text": "when `xmm1` is 0.0 sets bit 0 of `dword +0xE8` and stores 0 at `+0x170`, otherwise clears that bit and stores 1.0 (`01CEBBA8`) / `xmm1` there; then stores `xmm1` times the floats at `+0x1A0` to `+0x1A8` at `+0x190`, the reciprocals of the three floats at `r8` (0 for a zero component) at `+0x1B0` to `+0x1B8` with 0 at `+0x1BC`, and float `+0x170` times the floats at `+0x180` to `+0x188` at `+0x270` (lane 3 zero in both vectors)",
+   "anchors": [
+    [
+     "0085419B",
+     "or"
+    ],
+    [
+     "008541AA",
+     "and"
+    ],
+    [
+     "008541F4",
+     "movdqa"
+    ],
+    [
+     "00854251",
+     "movss"
+    ],
+    [
+     "0085429E",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00854560",
+   "text": "with R the 3x3 rows at `+0x10`, `+0x20`, `+0x30` and S the diagonal of floats `+0x1B0`, `+0x1B4`, `+0x1B8`, stores the rows of R times S times the transpose of R at `+0x120`, `+0x130` and `+0x140` (lane 3 zero)",
+   "anchors": [
+    [
+     "008545B4",
+     "movss"
+    ],
+    [
+     "00854614",
+     "mulss"
+    ],
+    [
+     "008547B0",
+     "movdqa"
+    ],
+    [
+     "008547C7",
+     "movdqa"
+    ],
+    [
+     "008547D4",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00854830",
+   "text": "sorts the pointer array at qword `rcx+0x10` between indices `r8d` and `r9d` by a key, the `dword +0xEC` of the element's qword `+0x20` record or, when that is negative, of its qword `+0x28` record: with the element at (`r8d` + `r9d`) / 2 as pivot it moves a lower index up past smaller keys and an upper index down past larger ones, swapping the two elements and stepping both while they have not crossed, then recurses into `00854830` for (`r8d`, upper index) when `r8d` is below it and for (lower index, `r9d`) when that is below `r9d`, passing `dl` through",
+   "anchors": [
+    [
+     "0085486A",
+     "mov"
+    ],
+    [
+     "008548B8",
+     "cmp"
+    ],
+    [
+     "00854925",
+     "mov"
+    ],
+    [
+     "00854955",
+     "call"
+    ],
+    [
+     "00854971",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00854980",
+   "text": "calls `00854AB0`(`rcx`, `rdx`, `r8`, fifth (stack) argument), stores `01CCF5E0` at `+0`, `r9` at qword `+0xF0`, 1 at bytes `+0x118`, `+0x138`, `+0x170`, 0xC1200000 at `+0x144`, and zeroes qwords `+0x104`, `+0x110`, `+0x124`, `+0x130`, `+0x148`, `+0x15C`, `+0x168`, dwords `+0x140`, `+0x150`, `+0x178` and byte `+0x156`; when `+0xF0` is null it calls `00854980+0xB5`(0xD0, 0x10) and, if non-null, `00854980+0xCC` on it, storing that result (or 0) at `+0xF0` and 1 at byte `+0x155`, else 0 at `+0x155`; it then calls `00854980+0xF5`(0x70, 0x10) and, if non-null, `00854980+0x10C` on it, stores that result (or 0) at `+0xF8` and 1 at byte `+0x154`, and returns `rcx`",
+   "anchors": [
+    [
+     "008549A3",
+     "call"
+    ],
+    [
+     "008549B0",
+     "mov"
+    ],
+    [
+     "008549EC",
+     "mov"
+    ],
+    [
+     "00854A56",
+     "mov"
+    ],
+    [
+     "00854A94",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00854AB0",
+   "text": "calls `00854AB0+0x9`(`rcx`), stores `01CCF4D8` at `+0`, zeroes qwords `+0x90`, `+0x98`, `+0xA0` and dwords `+0xB8`, `+0xD4`, `+0xDC`, and stores 0x3F19999A at `+0xA8`, 0x3F800000 at `+0xAC` and `+0xC4`, 0x3E99999A at `+0xB0`, 0xA at `+0xBC`, 0x41A00000 at `+0xC0`, 0x3E4CCCCD at `+0xC8`, qword 0x3DCCCCCD at `+0xCC`, 0xBCA3D70A at `+0xD8`, 0x3F59999A at `+0xE0`, 0x104 at `+0xE4`, 2 at `+0xE8` and 0x80 at `+0xEC`; returns `rcx`",
+   "anchors": [
+    [
+     "00854AB9",
+     "call"
+    ],
+    [
+     "00854AC5",
+     "mov"
+    ],
+    [
+     "00854AF4",
+     "mov"
+    ],
+    [
+     "00854B45",
+     "mov"
+    ],
+    [
+     "00854B6D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00854B80",
+   "text": "when qword `+0x10` is non-null, passes it to `00854B80+0x28` if byte `+0x18` is non-zero; then sets byte `+0x18` to 1 and zeroes qword `+0x10` and the qword at `+4`",
+   "anchors": [
+    [
+     "00854BA0",
+     "je"
+    ],
+    [
+     "00854BA6",
+     "je"
+    ],
+    [
+     "00854BA8",
+     "call"
+    ],
+    [
+     "00854BB2",
+     "mov"
+    ],
+    [
+     "00854BBA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00854BD0",
+   "text": "when qword `+0x10` is non-null, passes it to `00854BD0+0x28` if byte `+0x18` is non-zero; then sets byte `+0x18` to 1 and zeroes qword `+0x10` and the qword at `+4`",
+   "anchors": [
+    [
+     "00854BF0",
+     "je"
+    ],
+    [
+     "00854BF6",
+     "je"
+    ],
+    [
+     "00854BF8",
+     "call"
+    ],
+    [
+     "00854C02",
+     "mov"
+    ],
+    [
+     "00854C0A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00854C20",
+   "text": "for each triple (qword `+0x90`, byte `+0x98`, qword `+0x84`), (`+0x70`, `+0x78`, `+0x64`) and (`+0x50`, `+0x58`, `+0x44`): when the pointer is non-null and the byte non-zero passes the pointer to the callee at `00854C20+0x2E`, `00854C20+0x5F` or `00854C20+0x84`; then sets the byte to 1 and zeroes the pointer and the third qword; finally stores `01CCF738` at `+0`",
+   "anchors": [
+    [
+     "00854C4E",
+     "call"
+    ],
+    [
+     "00854C7F",
+     "call"
+    ],
+    [
+     "00854CA4",
+     "call"
+    ],
+    [
+     "00854CB6",
+     "mov"
+    ],
+    [
+     "00854CC1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00854CE0",
+   "text": "stores `01CCF5E0` at `+0`; when byte `+0x154` is set calls slot 0 of the object at qword `+0xF8` with (object, 0) and then `00854CE0+0x40`(`+0xF8`), and when byte `+0x155` is set does the same for qword `+0xF0` (`00854CE0+0x65`); then for each triple (qword `+0x168`, byte `+0x170`, qword `+0x15C`), (`+0x130`, `+0x138`, `+0x124`), (`+0x110`, `+0x118`, `+0x104`) passes a non-null pointer whose byte is set to the callee at `00854CE0+0x82`, `00854CE0+0xB9` or `00854CE0+0xF0`, sets the byte to 1 and zeroes the pointer and the third qword; finally stores `01CCF4D8` at `+0` and tail-jumps `00854CE0+0x129`(`rcx`)",
+   "anchors": [
+    [
+     "00854D16",
+     "call"
+    ],
+    [
+     "00854D3B",
+     "call"
+    ],
+    [
+     "00854D62",
+     "call"
+    ],
+    [
+     "00854DF9",
+     "mov"
+    ],
+    [
+     "00854E09",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00854E10",
+   "text": "stores `01CCF4D8` at `+0` and tail-jumps `00854E10+0xA`(`rcx`)",
+   "anchors": [
+    [
+     "00854E17",
+     "mov"
+    ],
+    [
+     "00854E1A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00854E60",
+   "text": "stores `01CCF738` at `+0`; when bit 0 of `dl` is set calls `00854E60+0x1D`(`rcx`, 8); returns `rcx`",
+   "anchors": [
+    [
+     "00854E70",
+     "mov"
+    ],
+    [
+     "00854E73",
+     "test"
+    ],
+    [
+     "00854E7D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00854E90",
+   "text": "stores `00D7AB30` at `+0`; when bit 0 of `dl` is set calls `00854E90+0x1D`(`rcx`, 0x80); returns `rcx`",
+   "anchors": [
+    [
+     "00854EA0",
+     "mov"
+    ],
+    [
+     "00854EA3",
+     "test"
+    ],
+    [
+     "00854EAD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00855970",
+   "text": "returns 1.0 (`01CEBBA8`) when qword `[rdx]` equals qword `+0x60`, when bit 2 of `dword +0xE8` of the object at `[rdx]` is set, or when the three floats `+0x20` minus `+0x10` dotted with the floats at `rdx+0x10` are at least minus float `+0x68`; otherwise tail-jumps `00855970+0x76`",
+   "anchors": [
+    [
+     "00855973",
+     "cmp"
+    ],
+    [
+     "0085598D",
+     "test"
+    ],
+    [
+     "008559E1",
+     "comiss"
+    ],
+    [
+     "008559E4",
+     "jae"
+    ],
+    [
+     "008559E6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008559F0",
+   "text": "for each of the `dword +0x124` pointers at qword `+0x130` (signed count) calls `008559F0+0x3B`(pointer) unless the pointed record's `dword +0xF4` is 2 or 5",
+   "anchors": [
+    [
+     "008559FF",
+     "cmp"
+    ],
+    [
+     "00855A1B",
+     "mov"
+    ],
+    [
+     "00855A24",
+     "je"
+    ],
+    [
+     "00855A29",
+     "je"
+    ],
+    [
+     "00855A2B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00855B30",
+   "text": "for each of the `dword +0x124` pointers at qword `+0x130` (signed count) zeroes the four qwords at `+0x1C0` to `+0x1D8` of the pointed record",
+   "anchors": [
+    [
+     "00855B50",
+     "mov"
+    ],
+    [
+     "00855B55",
+     "mov"
+    ],
+    [
+     "00855B6A",
+     "mov"
+    ],
+    [
+     "00855B71",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00857950",
+   "text": "copies the 16-byte vector at `+0x140` to `[rdx]` and returns `rdx`",
+   "anchors": [
+    [
+     "00857957",
+     "mov"
+    ],
+    [
+     "0085795A",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00857F10",
+   "text": "when `dword +0x64` plus `dword +0x84` is positive, calls slot `+0x10` of the object at qword `+0x10` with (qword `+0x50`, `dword +0x44`, qword `+0x70`, `dword +0x64`, qword `+0x90`, `dword +0x84`, qword `+8`, qword `+0x28`, qword `+0x30`, qword `+0x38`); then sets the counts `dword +0x44`, `+0x64` and `+0x84` to 0, first running, only for a negative count, the generic grow path of the array at qword `+0x50`, `+0x70` or `+0x90`: when its capacity `+0x48`, `+0x68` or `+0x88` is negative it frees the old block through `00857F10+0xB2`, `00857F10+0x12C` or `00857F10+0x1C5` if byte `+0x58`, `+0x78` or `+0x98` is set and leaves a null block, capacity 0 and the byte set",
+   "anchors": [
+    [
+     "00857F33",
+     "jle"
+    ],
+    [
+     "00857F7B",
+     "call"
+    ],
+    [
+     "00857FF4",
+     "mov"
+    ],
+    [
+     "00858072",
+     "mov"
+    ],
+    [
+     "00858116",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00858130",
+   "text": "searches the `dword +0x15C` pointers at qword `+0x168` for `rdx` and, when found, swaps that entry with the last one and decrements `+0x15C`; otherwise writes nothing",
+   "anchors": [
+    [
+     "00858150",
+     "cmp"
+    ],
+    [
+     "00858167",
+     "jge"
+    ],
+    [
+     "00858186",
+     "mov"
+    ],
+    [
+     "00858190",
+     "mov"
+    ],
+    [
+     "00858194",
+     "dec"
+    ]
+   ]
+  },
+  {
+   "fn": "008581B0",
+   "text": "when bit 1 of byte `rdx+0x104` is set tail-jumps slot `+0xA0` of `rcx`'s vtable with (`rcx`, `rdx`); otherwise tail-jumps `008581B0+0x26`(`rcx`, `rdx`)",
+   "anchors": [
+    [
+     "008581C0",
+     "cmove"
+    ],
+    [
+     "008581CC",
+     "jmp"
+    ],
+    [
+     "008581D6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00858270",
+   "text": "searches the `dword +0x124` pointers at qword `+0x130` for `rdx` and, when found, swaps that entry with the last one and decrements `+0x124`; in either case tail-jumps `00858270+0x71`(`rcx`, `rdx`)",
+   "anchors": [
+    [
+     "00858290",
+     "cmp"
+    ],
+    [
+     "008582C6",
+     "mov"
+    ],
+    [
+     "008582D0",
+     "mov"
+    ],
+    [
+     "008582D4",
+     "dec"
+    ],
+    [
+     "008582E1",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00857940",
+   "why": "its whole work is the entry instruction (loads qword +0xF0 into rax), followed by ret"
+  },
+  {
+   "fn": "00857960",
+   "why": "its whole work is the entry instruction (loads dword +0x104 into eax), followed by ret"
+  }
+ ],
+ "notes": "Member pack m1-12, 25 bodies: 23 rows, 2 skipped (entry-instruction-only getters). Calls to callees outside this pack are cited by site (entry+0xNN). Doubts: 00857F10 states the never-normally-taken grow path of each array clear only at top level. 00853F70: the library clause rests on the immediate 0x59444252, whose bytes read 'RBDY'. 00854980/00854AB0: the 32-bit immediates are given raw because the listing does not decode them as floats. 00855970: the tail jump leaves xmm0 holding minus float +0x68; the sentence does not claim an argument meaning for it."
+}
