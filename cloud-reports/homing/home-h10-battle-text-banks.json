@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "002D4FB0", "entered_from": "`002902D0` + 0x1E",
+   "text": "under a stack cookie (`01F44830`), packs `rcx`, `edx`, `r8d`, `r9d` and the fifth and sixth (stack) arguments into a stack block, builds a second stack block of dword 0, a pointer to the first block and qword 0, and calls `002D4FB0` + 0x5F with `ecx` = `0xF8`, `rdx` = `002D59E0` and `r8` = the second block's address",
+   "anchors": [["002D4FC6", "mov"], ["002D4FE8", "mov"], ["002D4FD9", "lea"], ["002D4FE0", "mov"], ["002D500F", "call"]]},
+  {"fn": "0056DA80", "entered_from": "`0056CF10` + 0x1F3",
+   "text": "reads flags `F` = dword `[r8]` and dwords `d0` to `d5` at `r9+0` to `r9+0x14`, calling s the one of `d0`/`d1` that `F` bit `0x1` picks (`d0` when set) and t the other, objects being the qwords of the array at qword `rdx+0x10` at those indexes; when `F` bit `0x2` is set the main index is t, the cleared indexes are s and `d2`, and the count is word `r8+4` when `F` bit `0x4` is set (otherwise the first call is skipped); when bit `0x2` is clear the main index is `d2`, the cleared indexes are s and t, and the count is word `rcx+0xE`; it sets bit 0 of dword `+8` of the main object to whether the first call runs, copies `F` bit `0x4` into bit 0 of dword `+8` of the objects at `d3`, `d4` and `d5`, and clears bit 0 of dword `+8` of the two cleared objects; the first call is `0056DA80` + 0x132 (main object, 0, 0, count, 0, 0) followed by `0056DA80` + 0x13F (main object); then, when bit `0x4` of byte `[r8]` is set, it calls `0056DA80` + 0x172 (object at `d3`, 0, 0, dword `rcx+0x10` with bit 31 cleared times the count, 0, 0) and `0056DA80` + 0x183 (object at `d3`)",
+   "anchors": [["0056DB20", "or"], ["0056DB3C", "xor"], ["0056DB83", "and"], ["0056DBB2", "call"], ["0056DBF2", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002D4FB0: `002D59E0` is a resolved rip-relative target well past this body's end (not data right after the code); it is written because the listing resolves it. The block layout is rcx at rsp+0x20, edx +0x28, r8d +0x2C, r9d +0x30, fifth arg +0x34, sixth arg +0x38; the second block is dword 0 at rsp+0x40, the pointer at +0x48 and qword 0 at +0x50. DOUBT 0056DA80: long row (about 1,000 characters) with several derived names (F, d0-d5, s, t, main); FABLE should check it closely. When F bit 0x2 is set and bit 0x4 clear the count is -1 (esi) but unused because neither call runs. The calls' fifth (stack) argument is a dword 0 and the sixth a qword 0. The two-call pairs share one callee pair (sites +0x132/+0x172 and +0x13F/+0x183)."
+}
