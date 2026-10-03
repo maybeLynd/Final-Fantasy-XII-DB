@@ -1,0 +1,35 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+ "session": "session_0113mD5fGL648y6vQqrtN2Rj",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0026BA00",
+   "text": "takes byte `rcx+3` shifted right by 5; when it is 1, stores `xmm1` as a float at `+0x68` of the qword at `rcx+0xb8` and writes byte `+0x5c` there as 1 when 0.0 is greater than `xmm1` (else 0); when it is 3, does the same at `+0xc8` and byte `+0xdd` of that qword; on every path, other values included, it tail-jumps to `00268380` with the incoming `rcx`",
+   "anchors": [
+    [
+     "0026BA07",
+     "shr"
+    ],
+    [
+     "0026BA21",
+     "movss"
+    ],
+    [
+     "0026BA2C",
+     "mov"
+    ],
+    [
+     "0026BA44",
+     "movss"
+    ],
+    [
+     "0026BA52",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0026BA00: the comparison is comiss 0.0, xmm1 with seta, so an unordered (NaN) xmm1 gives 0. On the value-3 path rdx holds the qword at rcx+0xb8 at the tail jump; on the value-1 path rcx is restored from r8 and edx is 0; xmm1 is unchanged on all paths (not stated as arguments since the listing does not show 00268380 reading them)."
+}
