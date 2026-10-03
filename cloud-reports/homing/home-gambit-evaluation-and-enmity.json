@@ -1,0 +1,35 @@
+{
+ "page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+ "session": "session_014Lqi23L8goQ9zhmHGJGtzN",
+ "rows": [
+  {
+   "fn": "003340C0",
+   "entered_from": "`003A7AA0` + 0x26",
+   "text": "when `edx` is below 0x1D (signed), reads dword `rcx+0x2C+edx*4` and calls `003340C0` + 0x19 with it; when that returns non-null, calls `003340C0` + 0x26 with the same dword and passes the result to `003340C0` + 0x2E, calls `003340C0` + 0x36 with the dword again and passes the result to `003340C0` + 0x3E, then stores the `eax` of `003340C0` + 0x45 (called with `ecx` = 0) into that dword; when either guard fails it returns without writing",
+   "anchors": [
+    [
+     "003340C4",
+     "cmp"
+    ],
+    [
+     "003340E1",
+     "je"
+    ],
+    [
+     "003340EE",
+     "call"
+    ],
+    [
+     "003340FE",
+     "call"
+    ],
+    [
+     "0033410A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003340C0: all callees are cited by site (+0x19, +0x26, +0x36 share one callee; +0x2E, +0x3E and +0x45 are three others). edx is sign-extended (movsxd) and the bound is jge, so negative edx passes the guard. No return value is stated. Doubt: low."
+}
