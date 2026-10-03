@@ -1,0 +1,14 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "005DCC10", "entered_from": "`00616140` + 0x16",
+   "text": "stores the address `02CF7A30` in qword `[rcx]`, word 0x300 at `+8`, qword 0 at `+0xC`, dword 0 at `+0x14`, qword 0 at `+0x20` and `+0x28`, dword 0 at `+0x30` and dword 2 at `+0x18`, and returns `rcx`",
+   "anchors": [["005DCC17", "mov"], ["005DCC1C", "mov"], ["005DCC2D", "mov"], ["005DCC31", "mov"], ["005DCC37", "mov"]]},
+  {"fn": "005DCC40", "entered_from": "`006161A0` + 0x16",
+   "text": "stores the address `02CF7A30` in qword `[rcx]`, word 0x300 at `+8`, qword 0 at `+0xC`, dword 0 at `+0x14`, qword 0 at `+0x20`, dword 0 at `+0x28` and dword 2 at `+0x18`, and returns `rcx`",
+   "anchors": [["005DCC47", "mov"], ["005DCC4C", "mov"], ["005DCC59", "mov"], ["005DCC5D", "mov"], ["005DCC63", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "The two bodies differ only in the tail: 005DCC10 writes qword +0x28 and dword +0x30, 005DCC40 writes dword +0x28 and nothing at +0x30."
+}
