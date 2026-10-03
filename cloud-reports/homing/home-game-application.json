@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "001A49C0", "entered_from": "`008B1B10` + 0x1B",
+   "text": "returns at once when `rdx` is null; otherwise, for each node from `rdx` along qword `+8`, it calls itself with `rcx` and the node's qword `+0`, resets the buffer headers at node `+0x40` and node `+0x20` (pointer `+0`, length `+0x10`, capacity `+0x18`): when the capacity is 0x10 or more it frees the pointer through the call at `001A49C0` + 0x8F or + 0xF1, first, for capacity + 1 of 0x1000 or more, requiring 32-byte alignment and a distance of 8 to 0x27 bytes back to qword `[pointer-8]`, which it frees instead, and failing through the pointer at `008C2DA8` otherwise; it then stores capacity 0xF, length 0 and a zero first byte; finally it calls virtual slot `+0x18` of `rcx+0x30` with the node and 0x60",
+   "anchors": [["001A49F6", "call"], ["001A4A0B", "cmp"], ["001A4A4F", "call"], ["001A4A54", "mov"], ["001A4AE8", "call"]]},
+  {"fn": "0025A880", "entered_from": "`00229590` + 0x293",
+   "text": "stores 1 at dword `02098354` when `ecx` is non-zero and 0 otherwise",
+   "anchors": [["0025A884", "setne"], ["0025A887", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001A49C0: the self-call at +0x36 recurses into the node's qword +0 subtree; the loop then continues with the node's qword +8. 008C2DA8 is the pointer slot the failure calls go through (decoded value 0x1CCED90), named as the listing resolves it; each failure call is followed by int3. The rcx+0x30 vtable call passes rcx+0x30 as this."
+}
