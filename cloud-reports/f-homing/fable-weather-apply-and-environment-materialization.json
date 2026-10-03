@@ -1,0 +1,35 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md",
+ "session": "session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003EBE70",
+   "text": "stores qword `02B5EC60` = `rcx` and returns when it is null; otherwise passes a non-null qword `02B5EC68` to the call at `003EBE70+0x20` and zeroes it, calls `0036C1D0(5, 5)`, stores qword `02B5EC68` = `0036A190(0x100)` and, when that is non-null, calls `0036C660(it, \"VOICEWK\" 00D11820, 0x100)`; then calls `0036C140()`, zeroes qwords `02B5EC70` to `02B5EC88` and, when qword `02B5EC60` is still non-null, tail-jumps through `003EBE70+0xA1` with (it, `02B5EC70`), else returns",
+   "anchors": [
+    [
+     "003EBE7E",
+     "je"
+    ],
+    [
+     "003EBE90",
+     "call"
+    ],
+    [
+     "003EBEB6",
+     "mov"
+    ],
+    [
+     "003EBED2",
+     "call"
+    ],
+    [
+     "003EBF11",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003697F0 and 00321EA0 are not named by the weather page and are cited by site."
+}
