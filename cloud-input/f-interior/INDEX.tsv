@@ -190,3 +190,6 @@ contract-field-music-selection	18-Audio/CONTRACT-field-music-selection.md	1	48	2
 sab-sound-bank-container	18-Audio/Sound-Bank-And-Voice-Formats/sab-sound-bank-container.md	1	133	2026-10-02 20:44	PACKED
 katano-debug-savedata	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	1	64	2026-10-02 20:44	PACKED
 r2-force-fight-toggle	15-Input/Modal-Toggles/r2-force-fight-toggle.md	6	334	2026-10-02 20:44	PACKED
+ui-request-router	16-UI/Request-Router/ui-request-router.md	8	614	2026-10-02 23:37	PACKED-FABLE
+keymap-ini-file-format-and-default-controls	15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	5	316	2026-10-02 23:37	PACKED-FABLE
+what-happens-when-a-character-levels-up	13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md	5	235	2026-10-02 23:37	PACKED-FABLE
