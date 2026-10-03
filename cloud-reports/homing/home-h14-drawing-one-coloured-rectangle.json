@@ -1,0 +1,14 @@
+{
+ "page": "99-Unresolved-Residual/drawing-one-coloured-rectangle.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "001B2000", "entered_from": "`001B0190` + 0x26",
+   "text": "calls the function at `001B2000` + 0xE and copies the 16 dwords at `+0x6C8` of its result to `rcx+0x3AA8`; then reads float `+0x754` and float `+0x750` of the results of the calls at `001B2000` + 0x7F and + 0x8C, and tail-jumps (`001B2000` + 0xA9) with `rcx` = `rcx+0x3AA8`, `xmm1` = the `+0x750` float and `xmm2` = the `+0x754` float",
+   "anchors": [["001B200E", "call"], ["001B2023", "mov"], ["001B207C", "mov"], ["001B2084", "movss"], ["001B20A9", "jmp"]]},
+  {"fn": "00403F00", "entered_from": "`002BC9C0` + 0x46",
+   "text": "saves byte `+0x5C` of `rcx`, builds two local 4-word records from qword p = `r8+0x20`, A = {0, 0, word p`+0x14`, word p`+0x16`} and B = {-word `rcx+0x50`, -word `rcx+0x50`, word p`+0x14`, signed word p`+0x16` times 1.75 (`00D117D8`) truncated}, calls the function at `00403F00` + 0x75 with (`rcx`, `r8`, &A, &B), and then restores the saved byte `+0x5C`",
+   "anchors": [["00403F13", "movzx"], ["00403F4B", "neg"], ["00403F64", "mulss"], ["00403F75", "call"], ["00403F7A", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00403F00: A is the 8 bytes at [rsp+0x40] (its first dword zeroed at 00403F19), B is a copy of A at [rsp+0x30] with words 0 and 1 overwritten by the negated word rcx+0x50 and word 3 scaled; the call's return is discarded."
+}
