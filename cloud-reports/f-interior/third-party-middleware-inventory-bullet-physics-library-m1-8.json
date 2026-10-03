@@ -1,0 +1,636 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "session": "session_01S3Hnscp1e3ynbqT4LWzgMV",
+ "rows": [
+  {
+   "fn": "00842B40",
+   "text": "converts the doubles of `rdx` `+0x20..+0x38`, `+0x0..+0x18`, `+0x40..+0x58` to floats at `rcx+0x20..+0x2C`, `+0x10..+0x1C`, `+0x30..+0x3C`, copies dword `+0x60` to `+0x44` and sets byte `+0x48` to (dword `+0x64` non-zero); then resizes and fills three arrays: dword `+0x68` elements of 0x40 bytes (count `+0x74`, capacity `+0x78`, pointer `+0x80`, owner byte `+0x88`) from qword `+0x70`, stride 0x50, doubles `+0x20..+0x38` and `+0x0..+0x18` to floats `+0x10..+0x1C` and `+0x0..+0xC`, dwords `+0x40..+0x48` to `+0x20..+0x28`; dword `+0x6C` elements of 0x10 bytes (`+0xB4`, `+0xB8`, `+0xC0`, `+0xC8`) copied from qword `+0x78` (words `+0x0..+0xA`, dword `+0xC`); then dword `+0x80` to `+0xD0` and dword `+0x84` elements of 0x20 bytes (`+0xDC`, `+0xE0`, `+0xE8`, `+0xF0`) from qword `+0x88`, stride 0x14, words `+0x8..+0x12` to `+0x0..+0xA`, dwords `+0x0`, `+0x4` to `+0xC`, `+0x10`; a count above the capacity allocates count*size (align 0x10) (`00842B40+0x12F`, `00842B40+0x340`, `00842B40+0x4E0`), copies the old elements, frees the old block when its owner byte is set (`00842B40+0x1A0`, `00842B40+0x398`, `00842B40+0x540`) and sets the owner byte to 1; slots above the old count are zeroed",
+   "anchors": [
+    [
+     "00842B65",
+     "cvtpd2ps"
+    ],
+    [
+     "00842C19",
+     "mov"
+    ],
+    [
+     "00842C6F",
+     "call"
+    ],
+    [
+     "00842D88",
+     "movss"
+    ],
+    [
+     "00843113",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008431B0",
+   "text": "from the float record `rdx`, copies dwords `+0x10..+0x1C`, `+0x0..+0xC`, `+0x20..+0x2C` to `rcx+0x20..+0x2C`, `+0x10..+0x1C`, `+0x30..+0x3C`, dword `+0x30` to `+0x44` and sets byte `+0x48` to (dword `+0x34` non-zero); then resizes and fills three arrays: dword `+0x38` elements of 0x40 bytes (count `+0x74`, capacity `+0x78`, pointer `+0x80`, owner byte `+0x88`) from qword `+0x40`, stride 0x30, copying dwords `+0x0..+0x28`; dword `+0x3C` elements of 0x10 bytes (`+0xB4`, `+0xB8`, `+0xC0`, `+0xC8`) from qword `+0x48` (words `+0x0..+0xA`, dword `+0xC`); then dword `+0x58` to `+0xD0` and dword `+0x5C` elements of 0x20 bytes (`+0xDC`, `+0xE0`, `+0xE8`, `+0xF0`) from qword `+0x50`, stride 0x14, words `+0x8..+0x12` to `+0x0..+0xA`, dwords `+0x0`, `+0x4` to `+0xC`, `+0x10`; a count above the capacity allocates count*size (align 0x10) (`008431B0+0xCF`, `008431B0+0x2A1`, `008431B0+0x43C`), copies the old elements, frees the old block when its owner byte is set (`008431B0+0x140`, `008431B0+0x2F9`, `008431B0+0x49E`) and sets the owner byte to 1; slots above the old count are zeroed",
+   "anchors": [
+    [
+     "008431D3",
+     "mov"
+    ],
+    [
+     "00843229",
+     "mov"
+    ],
+    [
+     "0084327F",
+     "call"
+    ],
+    [
+     "00843392",
+     "mov"
+    ],
+    [
+     "008436E3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00843780",
+   "text": "when byte `rcx+0x48` is non-zero, quantizes the vectors `r8` and `r9` per axis k (0..2) as trunc((v - float `rcx+0x10`+4k) times float `rcx+0x30`+4k), ANDed with 0xFFFE for `r8` and plus 1.0 (`01CEBBA8`) then ORed with 1 for `r9`, and in the 16-byte element `edx` of qword `rcx+0xC0` lowers words `+0x0..+0x4` to the `r8` values and raises words `+0x6..+0xA` to the `r9` values (unsigned); otherwise, in the 0x40-byte element `edx` of qword `rcx+0x80`, it lowers floats `+0x0..+0xC` to `r8[0..3]` and raises floats `+0x10..+0x1C` to `r9[0..3]`",
+   "anchors": [
+    [
+     "00843797",
+     "je"
+    ],
+    [
+     "008437F8",
+     "and"
+    ],
+    [
+     "00843852",
+     "or"
+    ],
+    [
+     "00843897",
+     "mov"
+    ],
+    [
+     "008438EF",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "008439A0",
+   "text": "when byte `rcx+0x48` is 0 it calls `00846040`(`rcx`, `rdx`, `r8`, `r9`); otherwise it clamps the vectors `r8` and `r9` per axis to floats `rcx+0x10..+0x18` and `rcx+0x20..+0x28`, quantizes them as trunc((v - `+0x10`) times `+0x30`) AND 0xFFFE for `r8` and trunc(... + 1.0 `01CEBBA8`) OR 1 for `r9` into stack words, and by dword `rcx+0xD0` calls `00845520`(`rcx`, qword `rcx+0xC0`, `rdx`, min, max) for 2, `00845F40`(`rcx`, `rdx`, min, max) for 1, `008456B0`(`rcx`, `rdx`, min, max, 0, dword `rcx+0x44`) for 0, and nothing for other values",
+   "anchors": [
+    [
+     "008439BA",
+     "je"
+    ],
+    [
+     "00843A59",
+     "and"
+    ],
+    [
+     "00843B0D",
+     "or"
+    ],
+    [
+     "00843B3E",
+     "jne"
+    ],
+    [
+     "00843BB4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00843BF0",
+   "text": "passes `rcx`, `rdx`, `r8`, `r9`, the fifth and sixth (stack) arguments, 0 and dword `rcx+0x44` to `00845800` when byte `rcx+0x48` is non-zero, else to `00846170`",
+   "anchors": [
+    [
+     "00843BF4",
+     "cmp"
+    ],
+    [
+     "00843BFB",
+     "mov"
+    ],
+    [
+     "00843C1B",
+     "je"
+    ],
+    [
+     "00843C1D",
+     "call"
+    ],
+    [
+     "00843C27",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00843C40",
+   "text": "passes `rcx`, `rdx`, `r8`, `r9`, pointers to two zeroed 16-byte stack vectors, 0 and dword `rcx+0x44` to `00845800` when byte `rcx+0x48` is non-zero, else to `00846170`",
+   "anchors": [
+    [
+     "00843C44",
+     "cmp"
+    ],
+    [
+     "00843C71",
+     "movaps"
+    ],
+    [
+     "00843C7B",
+     "je"
+    ],
+    [
+     "00843C7D",
+     "call"
+    ],
+    [
+     "00843C87",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00843CA0",
+   "text": "copies dwords `rcx+0x20..+0x2C`, `+0x10..+0x1C`, `+0x30..+0x3C` to `rdx+0x10..+0x1C`, `+0x0..+0xC`, `+0x20..+0x2C`, dword `+0x44` to `rdx+0x30`, byte `+0x48` to dword `rdx+0x34` and dword `+0x74` to `rdx+0x38`; then for three arrays it stores in a qword of `rdx` 0 or, when the count is non-zero, the result of the `[[r8]+0x30]`(`r8`, array pointer) call, and when that is non-null gets a block from `[[r8]+0x18]`(`r8`, size, count), copies every element into the block's qword `+0x8` and calls `[[r8]+0x20]`(`r8`, block, name, 0x59415241, array pointer): count `+0x74`, pointer `+0x80` into `rdx+0x40`, size 0x30, \"btOptimizedBvhNodeData\" `01CCEAD0` (`00843CA0+0x8C`, `00843CA0+0xB8`, `00843CA0+0x17F`); dword `+0xB4` to `rdx+0x3C`, pointer `+0xC0` into `rdx+0x48`, size 0x10, \"btQuantizedBvhNodeData\" `01CCEAE8` (`00843CA0+0x1A2`, `00843CA0+0x1CC`, `00843CA0+0x2A0`); dwords `+0xD0`, `+0xDC` to `rdx+0x58`, `+0x5C`, pointer `+0xE8` into `rdx+0x50`, size 0x14, \"btBvhSubtreeInfoData\" `01CCEB00` (`00843CA0+0x2CD`, `00843CA0+0x2FC`, `00843CA0+0x3C9`); it returns \"btQuantizedBvhFloatData\" `01CCEB18`",
+   "anchors": [
+    [
+     "00843D09",
+     "mov"
+    ],
+    [
+     "00843D2C",
+     "call"
+    ],
+    [
+     "00843E1F",
+     "call"
+    ],
+    [
+     "00843F40",
+     "call"
+    ],
+    [
+     "00844072",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00844090",
+   "text": "with source `rcx`, destination `rdx` and flag `r9b`: copies dword `+0xDC` to `rcx+0xF8`, calls `00844090+0x34`(`rdx`) when `rdx` is non-null, and copies dwords `+0x44`, `+0xD0`, `+0xF8` and the 0x30 bytes `+0x10..+0x3F` to `rdx`, byte-reversing each dword when `r9b` is non-zero; copies byte `+0x48` and, with n = dword `rcx+0x44`, points the destination array at `rdx+0x100` (qword `+0xC0`, counts `+0xB4`/`+0xB8`, owner byte `+0xC8` = 0, when byte `+0x48` is set; else qword `+0x80`, `+0x74`/`+0x78`, `+0x88`) after freeing any owned old block (`00844090+0x28D`, `00844090+0x4ED`), copies n 0x10-byte (resp. 0x40-byte) elements from the matching source array (byte-swapping words and dwords when `r9b` is set), then zeroes those array fields (the free calls at `00844090+0x4B2`, `00844090+0x7A9` are guarded by the owner byte just set to 0); it does the same for dword `rcx+0xF8` 0x20-byte elements from qword `rcx+0xE8` into `rdx+0x100`+n*size (`+0xE8`, `+0xDC`/`+0xE0`, `+0xF0`; the unswapped copy also zeroes dwords `+0x14..+0x1C`; frees at `00844090+0x7E5`, `00844090+0xA96`), zeroes qword `[rdx]` and returns 1",
+   "anchors": [
+    [
+     "008440C4",
+     "call"
+    ],
+    [
+     "008440F9",
+     "mov"
+    ],
+    [
+     "00844330",
+     "mov"
+    ],
+    [
+     "0084437B",
+     "rol"
+    ],
+    [
+     "00844B52",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00844B70",
+   "text": "when byte `rcx+0x48` is non-zero, stores in words `+0x6`, `+0x8`, `+0xA` of the 16-byte element `edx` of qword `rcx+0xC0` the values trunc((`r8[k]` - float `rcx+0x10`+4k) times float `rcx+0x30`+4k + 1.0 `01CEBBA8`) OR 1 for k = 0..2; otherwise it stores the 16 bytes at `r8` at offset `+0x10` of the 0x40-byte element `edx` of qword `rcx+0x80`",
+   "anchors": [
+    [
+     "00844B77",
+     "je"
+    ],
+    [
+     "00844BBD",
+     "addss"
+    ],
+    [
+     "00844BCE",
+     "or"
+    ],
+    [
+     "00844BD2",
+     "mov"
+    ],
+    [
+     "00844C09",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00844C10",
+   "text": "when byte `rcx+0x48` is non-zero, stores in words `+0x0`, `+0x2`, `+0x4` of the 16-byte element `edx` of qword `rcx+0xC0` the values trunc((`r8[k]` - float `rcx+0x10`+4k) times float `rcx+0x30`+4k) AND 0xFFFE for k = 0..2; otherwise it stores the 16 bytes at `r8` at the start of the 0x40-byte element `edx` of qword `rcx+0x80`",
+   "anchors": [
+    [
+     "00844C17",
+     "je"
+    ],
+    [
+     "00844C4A",
+     "add"
+    ],
+    [
+     "00844C60",
+     "and"
+    ],
+    [
+     "00844C63",
+     "mov"
+    ],
+    [
+     "00844C91",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00844CA0",
+   "text": "stores at `rcx+0x10` the vector (`rdx[0..2]` minus `xmm3`, 0), at `rcx+0x20` (`r8[0..2]` plus `xmm3`, 0) and at `rcx+0x30` (65533.0 `01CCEB30` divided by each component of `+0x20` minus `+0x10`, 0), and sets byte `rcx+0x48` to 1",
+   "anchors": [
+    [
+     "00844CDE",
+     "movdqa"
+    ],
+    [
+     "00844D19",
+     "movdqa"
+    ],
+    [
+     "00844D35",
+     "divss"
+    ],
+    [
+     "00844D56",
+     "mov"
+    ],
+    [
+     "00844D6C",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00844D80",
+   "text": "for elements i from `edx` to `r8d`-1 it reads each element's min and max (when byte `rcx+0x48` is set, words `+0x0..+0x4` and `+0x6..+0xA` of the 16-byte entries of qword `rcx+0xA0`, each divided by float `rcx+0x30`+4k and added to float `rcx+0x10`+4k; else floats `+0x0..+0x8` and `+0x10..+0x18` of the 0x40-byte entries of qword `rcx+0x60`), sums (min+max)*0.5 (`01CEBB70`) and scales the sum by 1.0 (`01CEBBA8`)/(`r8d`-`edx`); taking axis `r9d` of that mean as split, a second pass swaps each element whose center on that axis is above the split with the element at a running index s from `edx` (16 or 0x40 bytes) and increments s; with third = (`r8d`-`edx`)/3 it returns s when s is above `edx`+third and below `r8d`-1-third, else `edx` + (`r8d`-`edx`)>>1",
+   "anchors": [
+    [
+     "00844E23",
+     "je"
+    ],
+    [
+     "00844F61",
+     "divss"
+    ],
+    [
+     "008450CE",
+     "comiss"
+    ],
+    [
+     "008450EB",
+     "movdqa"
+    ],
+    [
+     "008451C6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008451F0",
+   "text": "for the 16-byte elements `edx` and then `r8d` of qword `rcx+0xC0`, takes size 1 when its dword `+0xC` is non-negative, else minus that dword; when size times 16 is at most 0x800 it appends a 0x20-byte entry to the array at qword `rcx+0xE8` (count `+0xDC`, capacity `+0xE0`, owner byte `+0xF0`), first growing a full array to double the count (1 when empty) with an aligned allocation (`008451F0+0xD0`, `008451F0+0x225`), copy, free of an owned old block (`008451F0+0x12F`, `008451F0+0x284`) and owner byte 1, then copies the element's words `+0x0..+0xA` and stores the index in dword `+0xC` and the size in dword `+0x10`; finally it copies dword `+0xDC` to `rcx+0xF8`",
+   "anchors": [
+    [
+     "00845230",
+     "js"
+    ],
+    [
+     "0084527A",
+     "jg"
+    ],
+    [
+     "0084535C",
+     "inc"
+    ],
+    [
+     "008453C3",
+     "mov"
+    ],
+    [
+     "0084550B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00845520",
+   "text": "with node `rdx` (16 bytes), word triples `r9` (low) and the fifth argument (high): returns unless high words `+0..+4` are at least the node's words `+0x0..+0x4` and low words are at most its words `+0x6..+0xA` (unsigned); while overlapping, a node with negative dword `+0xC` recurses through `00845520`(`rcx`, node+0x10, `r8`, `r9`, fifth) and moves to node+0x10 plus 0x10 (or minus 16 times that child's dword `+0xC` when negative) and re-tests; a node with non-negative dword `+0xC` makes it call `[[r8]+8]` at `00845520+0x169`(`r8`, dword `+0xC` >> 21 (arithmetic), dword `+0xC` AND 0x1FFFFF) and return",
+   "anchors": [
+    [
+     "0084554D",
+     "movzx"
+    ],
+    [
+     "008455B4",
+     "jge"
+    ],
+    [
+     "008455DF",
+     "call"
+    ],
+    [
+     "00845669",
+     "jl"
+    ],
+    [
+     "00845689",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008456B0",
+   "text": "walks the 16-byte elements of qword `rcx+0xC0` from index fifth argument while below the sixth, counting visits; an element overlaps when words `r8[0..2]` are at most its words `+0x6..+0xA` and `r9[0..2]` at least its words `+0x0..+0x4` (unsigned); an overlapping element with non-negative dword `+0xC` calls `[[rdx]+8]` at `008456B0+0xE0`(`rdx`, dword `+0xC` >> 21 (arithmetic), dword `+0xC` AND 0x1FFFFF); it steps one element when overlapping or dword `+0xC` is non-negative, else minus dword `+0xC` elements; at the end dword `02EAF388` becomes the larger of itself and the visit count",
+   "anchors": [
+    [
+     "00845706",
+     "inc"
+    ],
+    [
+     "00845765",
+     "mov"
+    ],
+    [
+     "00845790",
+     "call"
+    ],
+    [
+     "008457A4",
+     "neg"
+    ],
+    [
+     "008457DF",
+     "cmovl"
+    ]
+   ]
+  },
+  {
+   "fn": "00845800",
+   "text": "with source `r8`, target `r9`, vectors fifth and sixth (stack) and an index range from the seventh to the eighth: it calls `00845800+0xB9` on the squared length of target minus source, forms the unit direction d, lambda = d dot (target minus source), per-axis 1/d (`01CCE8AC` when a component is 0) and sign flags; it quantizes min(source, target)+fifth and max(source, target)+sixth after clamping to floats `rcx+0x10..+0x18`/`+0x20..+0x28` (trunc((v-`+0x10`)*`+0x30`) AND 0xFFFE, or +1.0 `01CEBBA8` then OR 1); over the 16-byte elements of qword `rcx+0xC0` it counts visits, and for an element whose words overlap the quantized box it dequantizes its bounds, subtracts sixth from the min and fifth from the max and runs a slab test against lambda and 0; a hit on an element with non-negative dword `+0xC` calls `[[rdx]+8]` at `00845800+0x697`(`rdx`, dword `+0xC` >> 21, dword `+0xC` AND 0x1FFFFF); it steps one element after a hit or a non-negative dword `+0xC`, else minus dword `+0xC` elements, and finally raises dword `02EAF388` to the visit count",
+   "anchors": [
+    [
+     "008458B9",
+     "call"
+    ],
+    [
+     "00845BB6",
+     "or"
+    ],
+    [
+     "00845C6F",
+     "jge"
+    ],
+    [
+     "00845E97",
+     "call"
+    ],
+    [
+     "00845EFB",
+     "cmovl"
+    ]
+   ]
+  },
+  {
+   "fn": "00845F40",
+   "text": "for each 0x20-byte entry of qword `rcx+0xE8` up to dword `rcx+0xDC`, when word triples `r8` are at most the entry's words `+0x6..+0xA` and `r9` at least its words `+0x0..+0x4` (unsigned) it calls `008456B0`(`rcx`, `rdx`, `r8`, `r9`, dword `+0xC`, dword `+0xC` + dword `+0x10`)",
+   "anchors": [
+    [
+     "00845F61",
+     "cmp"
+    ],
+    [
+     "00845FE3",
+     "jge"
+    ],
+    [
+     "00845FF3",
+     "add"
+    ],
+    [
+     "00846003",
+     "call"
+    ],
+    [
+     "0084600A",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00846040",
+   "text": "walks the 0x40-byte elements of qword `rcx+0x80` while the index is below dword `rcx+0x44`, counting visits; an element overlaps when no float of `r8[0..2]` is above its floats `+0x10..+0x18` and none of its floats `+0x0..+0x8` is above `r9[0..2]`; when dword `+0x20` is -1 and it overlaps it calls `[[rdx]+8]` at `00846040+0xBA`(`rdx`, dword `+0x24`, dword `+0x28`); it steps one element when overlapping or dword `+0x20` is -1, else dword `+0x20` elements; at the end dword `02EAF388` becomes the larger of itself and the visit count",
+   "anchors": [
+    [
+     "0084609C",
+     "ja"
+    ],
+    [
+     "008460E4",
+     "cmp"
+    ],
+    [
+     "008460FA",
+     "call"
+    ],
+    [
+     "0084610B",
+     "movsxd"
+    ],
+    [
+     "0084614A",
+     "cmovl"
+    ]
+   ]
+  },
+  {
+   "fn": "00846170",
+   "text": "with source `r8`, target `r9` and vectors fifth and sixth (stack): builds min(source, target)+fifth and max(source, target)+sixth, calls `00846170+0x162` on the squared length of target minus source to form the unit direction d, lambda = d dot (target minus source), per-axis 1/d (`01CCE8AC` when a component is 0) and sign flags; over the 0x40-byte elements of qword `rcx+0x80`, while the index is below dword `rcx+0x44`, it counts visits and, when floats `+0x0..+0x8`/`+0x10..+0x18` overlap that box, runs a slab test on the bounds (min minus sixth, max minus fifth) against lambda and 0; a hit with dword `+0x20` equal to -1 calls `[[rdx]+8]` at `00846170+0x3CF`(`rdx`, dword `+0x24`, dword `+0x28`); it steps one element after a hit or a -1, else dword `+0x20` elements, and finally raises dword `02EAF388` to the visit count",
+   "anchors": [
+    [
+     "008462D2",
+     "call"
+    ],
+    [
+     "00846426",
+     "ja"
+    ],
+    [
+     "0084651C",
+     "mov"
+    ],
+    [
+     "0084653F",
+     "call"
+    ],
+    [
+     "008465A9",
+     "cmovl"
+    ]
+   ]
+  },
+  {
+   "fn": "008472A0",
+   "text": "stores `01CCEC00` in qword `[rcx]`, 0x23 in dword `rcx+0x8`, 0 in qword `rcx+0x10` and dword `rcx+0x18`, and returns `rcx`",
+   "anchors": [
+    [
+     "008472A7",
+     "mov"
+    ],
+    [
+     "008472B0",
+     "mov"
+    ],
+    [
+     "008472B6",
+     "mov"
+    ],
+    [
+     "008472BA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008472C0",
+   "text": "stores `01CCD3C8` in qword `[rcx]`, calls `008472C0+0x1D`(`rcx`, 0x20) when bit 0 of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "008472D0",
+     "mov"
+    ],
+    [
+     "008472D3",
+     "test"
+    ],
+    [
+     "008472DD",
+     "call"
+    ],
+    [
+     "008472E2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00847300",
+   "text": "stores `01CCEC80` in qword `[rcx]`, calls `00847300+0x1D`(`rcx`, 8) when bit 0 of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "00847310",
+     "mov"
+    ],
+    [
+     "00847313",
+     "test"
+    ],
+    [
+     "0084731D",
+     "call"
+    ],
+    [
+     "00847322",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00847330",
+   "text": "stores `00D7A770` in qword `[rcx]` and tail-jumps at `00847330+0xA` with `rcx`",
+   "anchors": [
+    [
+     "00847337",
+     "mov"
+    ],
+    [
+     "0084733A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00847710",
+   "text": "with e1 = floats `rcx+0x60..+0x68` minus `rcx+0x50..+0x58` and e2 = floats `rcx+0x70..+0x78` minus the same, stores the cross product e1 x e2 with a 0 fourth component at `rdx`, then calls `00847710+0xD1` on its squared length and stores the three components times 1.0 (`01CEBBA8`) divided by that result back at `rdx+0x0..+0x8`",
+   "anchors": [
+    [
+     "00847772",
+     "subss"
+    ],
+    [
+     "008477AF",
+     "movdqa"
+    ],
+    [
+     "008477E1",
+     "call"
+    ],
+    [
+     "008477EE",
+     "divss"
+    ],
+    [
+     "00847812",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00847830",
+   "text": "calls `[[rcx]+0xB8]` at `00847830+0x1B`(`rcx`, `edx`, `r8`, `r9`), then tail-jumps at `00847830+0x4E` through the same slot with `rcx`, (`edx`+1) mod 3 (signed remainder) and `r8` set to the original `r9` (`r9` is not reloaded)",
+   "anchors": [
+    [
+     "00847842",
+     "lea"
+    ],
+    [
+     "0084784B",
+     "call"
+    ],
+    [
+     "00847859",
+     "imul"
+    ],
+    [
+     "0084786B",
+     "sub"
+    ],
+    [
+     "0084787E",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls through vtables ([[reg]+N]) are cited by site. 00842B40/008431B0: each resize only reallocates when the new count exceeds the capacity dword; slots from the old count up to the new count are written from zeroed stack locals; a smaller count only rewrites the count. 00843CA0: the per-element copies mirror the layouts in 00842B40/008431B0 (0x40->0x30, 0x10->0x10, 0x20->0x14); the vtable sites listed in parentheses are (+0x30 call, +0x18 call, +0x20 call) in that order. 00844090: the order is quantized-or-not first (n = dword rcx+0x44 elements), then the 0x20-byte entries; the destination block start for the second array is rdx+0x100 plus n*0x10 (quantized) or n*0x40. 008451F0: the 0x20-byte entry is first filled from 32 bytes of stack locals this body never writes (rsp+0x20..+0x3F), then words/dwords as stated; dwords +0x14..+0x1C of the entry therefore hold whatever those locals held. 00844D80: the two arrays are qword rcx+0xA0 (quantized) and rcx+0x60, unlike +0xC0/+0x80 elsewhere. 00845800/00846170: slab test detail (sign-indexed bounds, maxss/minss, the comparisons against lambda at [rbp+0x57] or xmm11 and against 0) is compressed to 'slab test'. 00847830: the second call's r9 is whatever the first call left (volatile register, not reloaded)."
+}
