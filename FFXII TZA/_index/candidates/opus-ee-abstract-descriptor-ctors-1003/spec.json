@@ -1,0 +1,17 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "members": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/abstract-class-descriptor-constructors.tsv",
+ "kind": "named_call",
+ "target": 6499712,
+ "reg": "r8",
+ "size_reg": "r9d",
+ "group": "ctors",
+ "title": "the AbstractClassDescriptor constructors, one row per member",
+ "heading": "## Per-member rows: the class name and size each AbstractClassDescriptor constructor registers (OPUS, 2026-10-03)",
+ "lead": "The family `AbstractClassDescriptor constructors` (frontmatter: 178 members; {N} get a row here) shares one form, not repeated per row: it calls the context getter `006373D0`, passes its result to the shared descriptor constructor `00632D80` with the class name in `r8`, the instance size in `r9d` and a descriptor pointer as a stack argument, stores the concrete vtable at qword `+0`, sets bit `0x2` of dword `+0xFC`, and calls the three member-registration helpers `0063DC80`, `0063DF90` and `0063DFA0` (all 178 members make exactly these five calls, in this order). What differs from member to member is the name and size it passes. Each row anchors the `lea r8, [S]` before the `00632D80` call (the member's distinguishing instruction) and states S, the class-name string at S, and the immediate size from `mov r9d`. All are read from the certified image. {CHECK} re-derives every row and compares it with the committed {ROWS}. A body without exactly one `00632D80` call, a name that is not a clean string, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-abstract-descriptor-ctors-1003/excluded.tsv).",
+ "group_heading": "### All {N} constructors (OPUS)",
+ "groups": {},
+ "value_col": "name string S",
+ "name_col": "class name and instance size passed",
+ "name_fmt": "{NAME}"
+}

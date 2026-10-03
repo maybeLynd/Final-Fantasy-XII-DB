@@ -1,0 +1,1043 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pgeometry-module-1.json",
+ "rows": [
+  {
+   "fn": "006617A0",
+   "text": "copy-constructs `r8d` 0x88-byte elements from `rdx` into `rcx` (nothing when `r8d` is 0; a null destination element is skipped without advancing the source): dwords `+0`/`+4`; dword `+8` = 0, then `p` = `00665190(source dword +8 AND 0x7FFFFFFF, source qword +0x10)` to qword `+0x10` and dword `+8` = that count when `p` is non-null, else 0; dword `+0x18`, bytes `+0x1C`/`+0x1D`; `00662890(destination+0x20, source+0x20)`; dwords `+0x70`/`+0x74`/`+0x78` and qword `+0x80`",
+   "anchors": [
+    [
+     "006617FD",
+     "mov"
+    ],
+    [
+     "00661817",
+     "call"
+    ],
+    [
+     "0066181C",
+     "mov"
+    ],
+    [
+     "0066184B",
+     "call"
+    ],
+    [
+     "00661869",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00661920",
+   "text": "copy-constructs `r8d` 0xC0-byte elements from `rdx` into `rcx` (nothing when `r8d` is 0; a null destination element is skipped without advancing the source): `00662AD0(destination, source)`; dword `+0x30` = 0, and with `n` = source dword `+0x30` AND 0x7FFFFFFF, `p` = 0 when `n` is 0, else `0017D260(n*0x88, 8)` filled by `006617A0(p, source qword +0x38, n)` when non-null; qword `+0x38` = `p` and dword `+0x30` = `n` when `p` is non-null, else 0; dwords `+0x40`/`+0x44`/`+0x48`, bytes `+0x4C`/`+0x4D`/`+0x4E`, dword `+0x50`; `00662940(destination+0x58, source+0x58)`; dwords `+0xA8`/`+0xAC`/`+0xB0` and qword `+0xB8`",
+   "anchors": [
+    [
+     "00661987",
+     "call"
+    ],
+    [
+     "006619B1",
+     "call"
+    ],
+    [
+     "006619C7",
+     "call"
+    ],
+    [
+     "00661A18",
+     "call"
+    ],
+    [
+     "00661A33",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00662890",
+   "text": "zeroes dword `[rcx]`; with `n` = dword `[rdx]` AND 0x7FFFFFFF and the source elements at qword `[rdx+8]` (`n` above 1), `rdx+8` (`n` = 1) or 0, takes `p` = `0066F710(rcx, n, source)`; with the count re-read from dword `[rcx]` after the call, the old buffer (qword `[rcx+8]` when that count AND 0x7FFFFFFF is above 1, `rcx+8` when it is 1, 0 when 0) goes to `00584730` when it is neither `p` nor `rcx+8`, is non-null and bit `0x80000000` of the re-read dword is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` unless `p` is `rcx+8`; returns `rcx`",
+   "anchors": [
+    [
+     "006628AF",
+     "mov"
+    ],
+    [
+     "006628CF",
+     "call"
+    ],
+    [
+     "006628D4",
+     "mov"
+    ],
+    [
+     "00662912",
+     "call"
+    ],
+    [
+     "00662921",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00662940",
+   "text": "zeroes dword `[rcx]`; with `n` = dword `[rdx]` AND 0x7FFFFFFF and the source elements at qword `[rdx+8]` (`n` above 1), `rdx+8` (`n` = 1) or 0, takes `p` = `0066F780(rcx, n, source)`; with the count re-read from dword `[rcx]` after the call, the old buffer (qword `[rcx+8]` when that count AND 0x7FFFFFFF is above 1, `rcx+8` when it is 1, 0 when 0) goes to `00584730` when it is neither `p` nor `rcx+8`, is non-null and bit `0x80000000` of the re-read dword is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` unless `p` is `rcx+8`; returns `rcx`",
+   "anchors": [
+    [
+     "0066295F",
+     "mov"
+    ],
+    [
+     "0066297F",
+     "call"
+    ],
+    [
+     "00662984",
+     "mov"
+    ],
+    [
+     "006629C2",
+     "call"
+    ],
+    [
+     "006629D1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00662AD0",
+   "text": "copy-constructs `rdx` into `rcx` and returns `rcx`: dwords `+0`/`+4`; dword `+8` = 0, then `p` = `00665110(source dword +8 AND 0x7FFFFFFF, source qword +0x10)` to qword `+0x10` and dword `+8` = that count when `p` is non-null, else 0; dwords `+0x18`, `+0x1C`, `+0x20`, `+0x24` and `+0x28`",
+   "anchors": [
+    [
+     "00662AEA",
+     "mov"
+    ],
+    [
+     "00662AF7",
+     "mov"
+    ],
+    [
+     "00662B07",
+     "call"
+    ],
+    [
+     "00662B0C",
+     "mov"
+    ],
+    [
+     "00662B48",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00662B60",
+   "text": "initialises `rcx` and returns it: dwords `+0`, `+8`, `+0x28` and `+0x30` and qword `+0x10` = 0; dwords `+4`, `+0x1C`, `+0x20` and `+0x24` = 0xFFFFFFFF; dword `+0x18` = 6; qwords `+0x38` and `+0x40` = 0, dword `+0x48` = 0, word `+0x4C` = 0x334, byte `+0x4E` = 0, dwords `+0x50` and `+0x58` = 0; `006726A0(rcx+0x58, 1)`; then qword `+0xA8`, dword `+0xB0` and qword `+0xB8` = 0",
+   "anchors": [
+    [
+     "00662B84",
+     "mov"
+    ],
+    [
+     "00662B92",
+     "mov"
+    ],
+    [
+     "00662BC1",
+     "mov"
+    ],
+    [
+     "00662BD7",
+     "call"
+    ],
+    [
+     "00662BE3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00662C20",
+   "text": "when bit `0x80000000` of dword `[rcx]` is clear and qword `[rcx+8]` is non-null, calls `006631D0` on each of the dword AND 0x7FFFFFFF 0xC0-byte elements there and then `00584730` on the buffer; on every path dword `[rcx]` and qword `[rcx+8]` end zeroed",
+   "anchors": [
+    [
+     "00662C4C",
+     "je"
+    ],
+    [
+     "00662C67",
+     "call"
+    ],
+    [
+     "00662C7D",
+     "call"
+    ],
+    [
+     "00662C85",
+     "mov"
+    ],
+    [
+     "00662C8F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00663010",
+   "text": "for the pairs (dword `+0x18`, qword `+0x20`) and then (dword `+8`, qword `+0x10`) of `rcx` it calls `00584730(qword)` when bit `0x80000000` of the dword is clear and the qword is non-null, and zeroes both fields of the pair",
+   "anchors": [
+    [
+     "00663031",
+     "je"
+    ],
+    [
+     "0066303C",
+     "call"
+    ],
+    [
+     "00663044",
+     "mov"
+    ],
+    [
+     "00663060",
+     "call"
+    ],
+    [
+     "00663066",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00663100",
+   "text": "calls `00674420(rcx)` when bit `0x1` of byte `[rcx+0x6C]` is set, then `006737F0(rcx)`, then `00674420(rcx)` again when that bit is set; then calls `00584730(qword [rcx+0x20])` when bit `0x80000000` of dword `[rcx+0x18]` is clear, that dword AND 0x7FFFFFFF is above 1 and the qword is non-null, and zeroes qword `+0x20` and dword `+0x18`",
+   "anchors": [
+    [
+     "00663112",
+     "test"
+    ],
+    [
+     "00663118",
+     "call"
+    ],
+    [
+     "00663121",
+     "call"
+    ],
+    [
+     "00663130",
+     "call"
+    ],
+    [
+     "00663156",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006631D0",
+   "text": "calls `006737F0(rcx+0x40)`, then `00674420(rcx+0x40)` when bit `0x1` of byte `[rcx+0xAC]` is set; calls `00584730(qword [rcx+0x60])` when bit `0x80000000` of dword `[rcx+0x58]` is clear, that dword AND 0x7FFFFFFF is above 1 and the qword is non-null, and zeroes qword `+0x60` and dword `+0x58`; calls `001B6EF0(rcx+0x30)`; then calls `00584730(qword [rcx+0x10])` when bit `0x80000000` of dword `[rcx+8]` is clear and the qword is non-null, and zeroes qword `+0x10` and dword `+8`",
+   "anchors": [
+    [
+     "006631F0",
+     "call"
+    ],
+    [
+     "00663203",
+     "call"
+    ],
+    [
+     "00663229",
+     "call"
+    ],
+    [
+     "0066323C",
+     "call"
+    ],
+    [
+     "00663257",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00663280",
+   "text": "for the pairs (dword `+0x20`, qword `+0x28`) and then (dword `+8`, qword `+0x10`) of `rcx` it calls `00584730(qword)` when bit `0x80000000` of the dword is clear and the qword is non-null, and zeroes both fields of the pair",
+   "anchors": [
+    [
+     "006632A1",
+     "je"
+    ],
+    [
+     "006632AC",
+     "call"
+    ],
+    [
+     "006632B4",
+     "mov"
+    ],
+    [
+     "006632D0",
+     "call"
+    ],
+    [
+     "006632D6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006632F0",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF takes `p` = 0 when `n` is 0, else `0017D260(n*0x88, 8)` filled by `006617A0(p, qword [rdx+8], n)` when non-null; calls `001B8100(rcx, p, n)` and returns `rcx`",
+   "anchors": [
+    [
+     "00663312",
+     "and"
+    ],
+    [
+     "00663326",
+     "call"
+    ],
+    [
+     "0066333C",
+     "call"
+    ],
+    [
+     "0066334A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00663370",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF takes `p` = 0 when `n` is 0, else `0017D260(n*0xC0, 8)` filled by `00661920(p, qword [rdx+8], n)` when non-null; when the old qword `[rcx+8]` differs from `p` and bit `0x80000000` of dword `[rcx]` is clear it calls `001B7170(old qword, dword [rcx] AND 0x7FFFFFFF)`; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]`; returns `rcx`",
+   "anchors": [
+    [
+     "00663392",
+     "and"
+    ],
+    [
+     "006633A5",
+     "call"
+    ],
+    [
+     "006633BB",
+     "call"
+    ],
+    [
+     "006633DA",
+     "call"
+    ],
+    [
+     "006633EE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00663400",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF and the source elements at qword `[rdx+8]` (`n` above 1), `rdx+8` (`n` = 1) or 0, takes `p` = `0066F710(rcx, n, source)`; with the count read from dword `[rcx]` after the call, the old buffer (qword `[rcx+8]` when that count AND 0x7FFFFFFF is above 1, `rcx+8` when it is 1, 0 when 0) goes to `00584730` when it is neither `p` nor `rcx+8`, is non-null and bit `0x80000000` of that dword is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` unless `p` is `rcx+8`; returns `rcx`",
+   "anchors": [
+    [
+     "0066341E",
+     "btr"
+    ],
+    [
+     "0066343D",
+     "call"
+    ],
+    [
+     "00663464",
+     "cmp"
+    ],
+    [
+     "00663480",
+     "call"
+    ],
+    [
+     "0066348F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006634B0",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF and the source elements at qword `[rdx+8]` (`n` above 1), `rdx+8` (`n` = 1) or 0, takes `p` = `0066F780(rcx, n, source)`; with the count read from dword `[rcx]` after the call, the old buffer (qword `[rcx+8]` when that count AND 0x7FFFFFFF is above 1, `rcx+8` when it is 1, 0 when 0) goes to `00584730` when it is neither `p` nor `rcx+8`, is non-null and bit `0x80000000` of that dword is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` unless `p` is `rcx+8`; returns `rcx`",
+   "anchors": [
+    [
+     "006634CE",
+     "btr"
+    ],
+    [
+     "006634ED",
+     "call"
+    ],
+    [
+     "00663514",
+     "cmp"
+    ],
+    [
+     "00663530",
+     "call"
+    ],
+    [
+     "0066353F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00663560",
+   "text": "assigns `rdx` to `rcx` and returns `rcx`: dwords `+0`/`+4`; for the pair (dword `+8`, qword `+0x10`) it takes `p` = `00665190(source dword AND 0x7FFFFFFF, source qword)`, calls `00584730(old qword)` when the old qword differs from `p`, is non-null and bit `0x80000000` of the old dword is clear, and stores the count and `p`; then dword `+0x18` and bytes `+0x1C`/`+0x1D`",
+   "anchors": [
+    [
+     "00663579",
+     "mov"
+    ],
+    [
+     "00663591",
+     "call"
+    ],
+    [
+     "006635B4",
+     "call"
+    ],
+    [
+     "006635C2",
+     "mov"
+    ],
+    [
+     "006635D4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006635F0",
+   "text": "assigns `rdx` to `rcx` and returns `rcx`: dwords `+0`/`+4`; for the pair (dword `+8`, qword `+0x10`) with `p` = `00665190(source dword AND 0x7FFFFFFF, source qword)` and the pair (dword `+0x18`, qword `+0x20`) with `p` = `006176B0(source dword AND 0x7FFFFFFF, source qword)` it calls `00584730(old qword)` when the old qword differs from `p`, is non-null and bit `0x80000000` of the old dword is clear, and stores the count and `p`",
+   "anchors": [
+    [
+     "00663609",
+     "mov"
+    ],
+    [
+     "00663621",
+     "call"
+    ],
+    [
+     "00663644",
+     "call"
+    ],
+    [
+     "0066365D",
+     "call"
+    ],
+    [
+     "00663680",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006636B0",
+   "text": "assigns `rdx` to `rcx` and returns `rcx`: dwords `+0`, `+4` and `+8`, bytes `+0xC`, `+0xD` and `+0xE`, dword `+0x10`; `006634B0(rcx+0x18, rdx+0x18)`; dwords `+0x68`, `+0x6C` and `+0x70` and qword `+0x78`",
+   "anchors": [
+    [
+     "006636BF",
+     "mov"
+    ],
+    [
+     "006636D4",
+     "mov"
+    ],
+    [
+     "006636F3",
+     "call"
+    ],
+    [
+     "006636FB",
+     "mov"
+    ],
+    [
+     "00663713",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00663720",
+   "text": "assigns `rdx` to `rcx` and returns `rcx`: `00663370(rcx, rdx)`; for the pairs (dword `+0x10`, qword `+0x18`) and (dword `+0x30`, qword `+0x38`) with `p` = `005E2E00(source dword AND 0x7FFFFFFF, source qword)`, (dword `+0x20`, qword `+0x28`) with `00665080`, and (dword `+0x50`, qword `+0x58`) and (dword `+0x70`, qword `+0x78`) with `00664F80`, it calls `00584730(old qword)` when the old qword differs from `p`, is non-null and bit `0x80000000` of the old dword is clear, and stores the count and `p`; between them `005DE8C0(rcx+0x40, rdx+0x40)` and `00646C00(rcx+0x60, rdx+0x60)`",
+   "anchors": [
+    [
+     "0066373A",
+     "call"
+    ],
+    [
+     "0066374C",
+     "call"
+    ],
+    [
+     "00663788",
+     "call"
+    ],
+    [
+     "006637FB",
+     "call"
+    ],
+    [
+     "00663844",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006638A0",
+   "text": "assigns `rdx` to `rcx` and returns `rcx`: dwords `+0`/`+4`; for the pair (dword `+8`, qword `+0x10`) it takes `p` = `00665110(source dword AND 0x7FFFFFFF, source qword)`, calls `00584730(old qword)` when the old qword differs from `p`, is non-null and bit `0x80000000` of the old dword is clear, and stores the count and `p`; then dwords `+0x18`, `+0x1C`, `+0x20`, `+0x24` and `+0x28`",
+   "anchors": [
+    [
+     "006638B9",
+     "mov"
+    ],
+    [
+     "006638D1",
+     "call"
+    ],
+    [
+     "006638F4",
+     "call"
+    ],
+    [
+     "00663902",
+     "mov"
+    ],
+    [
+     "00663925",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00663940",
+   "text": "assigns `rdx` to `rcx` and returns `rcx`: dword `+0`; for the pairs (dword `+8`, qword `+0x10`) and (dword `+0x20`, qword `+0x28`) it takes `p` = `00664F10(source dword AND 0x7FFFFFFF, source qword)`, calls `00584730(old qword)` when the old qword differs from `p`, is non-null and bit `0x80000000` of the old dword is clear, and stores the count and `p`; between them dword `+0x18`; then bytes `+0x30` and `+0x31`",
+   "anchors": [
+    [
+     "00663959",
+     "mov"
+    ],
+    [
+     "0066396B",
+     "call"
+    ],
+    [
+     "0066399D",
+     "mov"
+    ],
+    [
+     "006639AD",
+     "call"
+    ],
+    [
+     "006639EA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00665080",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x20, 4)`, returned null when null, else `ecx` 0x20-byte elements are copied from `rdx` into it and `p` is returned",
+   "anchors": [
+    [
+     "0066508F",
+     "test"
+    ],
+    [
+     "006650A5",
+     "call"
+    ],
+    [
+     "006650CF",
+     "movups"
+    ],
+    [
+     "006650DA",
+     "movups"
+    ],
+    [
+     "006650E4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00665110",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*4, 2)`, returned null when null, else `ecx` dwords are copied from `rdx` into it and `p` is returned",
+   "anchors": [
+    [
+     "0066511F",
+     "test"
+    ],
+    [
+     "00665137",
+     "call"
+    ],
+    [
+     "0066515C",
+     "mov"
+    ],
+    [
+     "00665162",
+     "mov"
+    ],
+    [
+     "0066516A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00665220",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x88, 8)`, returned null when null; else it calls `006617A0(p, rdx, r8d)` for the first `r8d` elements and `0066F280(p + r8d*0x88, ecx - r8d)` for the rest, and returns `p`",
+   "anchors": [
+    [
+     "00665237",
+     "test"
+    ],
+    [
+     "0066524C",
+     "call"
+    ],
+    [
+     "00665262",
+     "call"
+    ],
+    [
+     "00665275",
+     "call"
+    ],
+    [
+     "0066527A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006652B0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x10, 4)` is null; otherwise copies `r8d` 0x10-byte elements from `rdx` into `p`, sets dword `+0`, qword `+4` and dword `+0xC` of each of the remaining `ecx` - `r8d` elements to 0, and returns `p`",
+   "anchors": [
+    [
+     "006652DB",
+     "call"
+    ],
+    [
+     "00665303",
+     "movups"
+    ],
+    [
+     "0066530C",
+     "sub"
+    ],
+    [
+     "00665329",
+     "mov"
+    ],
+    [
+     "0066532F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00665360",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0xC0, 8)`, returned null when null; else it calls `00661920(p, rdx, r8d)` for the first `r8d` elements and `001B7210(p + r8d*0xC0, ecx - r8d)` for the rest, and returns `p`",
+   "anchors": [
+    [
+     "00665379",
+     "je"
+    ],
+    [
+     "0066538D",
+     "call"
+    ],
+    [
+     "006653A3",
+     "call"
+    ],
+    [
+     "006653B7",
+     "call"
+    ],
+    [
+     "006653BC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006653F0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x20, 4)` is null; otherwise copies `r8d` 0x20-byte elements from `rdx` into `p`, sets dword `+0`, qwords `+4` and `+0xC`, dword `+0x14` and qword `+0x18` of each of the remaining `ecx` - `r8d` elements to 0, and returns `p`",
+   "anchors": [
+    [
+     "0066541F",
+     "call"
+    ],
+    [
+     "0066544F",
+     "movups"
+    ],
+    [
+     "00665464",
+     "sub"
+    ],
+    [
+     "00665489",
+     "mov"
+    ],
+    [
+     "00665496",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006654D0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*4, 2)`; when `p` is non-null it copies `r8d` dwords from `rdx` into its start (the rest is left as allocated); returns `p`",
+   "anchors": [
+    [
+     "006654E0",
+     "test"
+    ],
+    [
+     "006654EF",
+     "call"
+    ],
+    [
+     "0066551C",
+     "mov"
+    ],
+    [
+     "00665522",
+     "mov"
+    ],
+    [
+     "0066552A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00665620",
+   "text": "calls `006388C0(02D39D40)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02D39D40, type, name, n, f, 0, 0)` `m_memoryType` (`02D3B210`, `0062FFC0()`, 0x1D, 0x10), `m_stride` (`02D3B270`, `00630180()`, 0, 0x10) and `m_elementCount` (`02D3B2D0`, `00630180()`, 4, 0x10); after an unguarded `0066A130(qword 01F2E9F0)` it registers, under its guard, `m_streams` by `00632A10(02D3B330, 02D39D40, 0066A130(0), name, 8, 0, 3, 8)` with qword `02D3B330` = `00D691A8`, and then sets bit `0x10` of dword `02D3B358` unguarded; then tail-jumps to `00639450(02D39D40)`",
+   "anchors": [
+    [
+     "006656B2",
+     "call"
+    ],
+    [
+     "00665721",
+     "call"
+    ],
+    [
+     "00665794",
+     "call"
+    ],
+    [
+     "006657B9",
+     "call"
+    ],
+    [
+     "00665818",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00665A40",
+   "text": "calls `006388C0(02D39F40)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02D39F40, type, name, n, 0x10, 0, 0)` `m_stride` (`02D3B3A0`, `00630180()`, 0) and `m_elementCount` (`02D3B400`, `00630180()`, 4); after an unguarded `0066A130(qword 01F2E9F8)` it registers `m_streams` by `00632A10(02D3B460, 02D39F40, 0066A130(0), name, 8, 0, 3, 8)` with qword `02D3B460` = `00D691A8` and sets bit `0x10` of dword `02D3B488` unguarded; after unguarded `0062FFC0()` and `00618970(qword 01F2EA00)` it registers `m_data` by `00632A10(02D3B4D0, 02D39F40, 00618970(0), name, 0x18, 0, 3, 1)` with qword `02D3B4D0` = `00D54D68` and sets bit `0x10` of dword `02D3B4F8` unguarded; then tail-jumps to `00639450(02D39F40)`",
+   "anchors": [
+    [
+     "00665ACE",
+     "call"
+    ],
+    [
+     "00665B41",
+     "call"
+    ],
+    [
+     "00665BC5",
+     "call"
+    ],
+    [
+     "00665BF8",
+     "call"
+    ],
+    [
+     "00665C63",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00665CB0",
+   "text": "calls `006388C0(02D3A140)` and an unguarded `0066A130(qword 01F2EA08)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_dynamicStreams` by `00632A10(02D3B6C0, 02D3A140, 0066A130(0), name, 0x10, 0, 3, 8)` with qword `02D3B6C0` = `00D691A8`, then (unguarded) sets bit `0x8` of dword `02D3B6E8` and calls `00669470(qword 01F2EA10)`; registers `m_segments` by `00632A10(02D3B730, 02D3A140, 00669470(0), name, 0x20, 0, 3, 4)` with qword `02D3B730` = `00D69278`, then sets bit `0x8` of dword `02D3B758` unguarded; registers `m_mesh` by `00632960(02D3B7A0, 02D3A140, 02D3A640, name, 8, 0xA, 0, 0)`; then tail-jumps to `00639450(02D3A140)`",
+   "anchors": [
+    [
+     "00665CD7",
+     "call"
+    ],
+    [
+     "00665D53",
+     "call"
+    ],
+    [
+     "00665D8D",
+     "call"
+    ],
+    [
+     "00665DEC",
+     "call"
+    ],
+    [
+     "00665E73",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00665EB0",
+   "text": "calls `006388C0(02D3A040)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02D3A040, type, name, n, 8, 0, 0)` `m_startStreamIndex` (`02D3B540`, `00630180()`, 0), `m_streamCount` (`02D3B5A0`, `00630180()`, 4), `m_elementCount` (`02D3B600`, `00630180()`, 8) and `m_indexCount` (`02D3B660`, `00630110()`, 0xC); then tail-jumps to `00639450(02D3A040)`",
+   "anchors": [
+    [
+     "00665F3E",
+     "call"
+    ],
+    [
+     "00665FB1",
+     "call"
+    ],
+    [
+     "00666024",
+     "call"
+    ],
+    [
+     "00666097",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006660D0",
+   "text": "calls `006388C0(02D3A240)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02D3A240, type, name, n, 0x10, 0, 0)` `m_memoryType` (`02D3B800`, `0062FFC0()`, 0xD), `m_elementCount` (`02D3B860`, `00630180()`, 8), `m_type` (`02D3B8C0`, `0062FFC0()`, 0xC), `m_minimumIndex` (`02D3B920`, `00630180()`, 0) and `m_maximumIndex` (`02D3B980`, `00630180()`, 4); then tail-jumps to `00639450(02D3A240)`",
+   "anchors": [
+    [
+     "00666162",
+     "call"
+    ],
+    [
+     "006661D5",
+     "call"
+    ],
+    [
+     "00666248",
+     "call"
+    ],
+    [
+     "006662B7",
+     "call"
+    ],
+    [
+     "0066632A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00666550",
+   "text": "calls `006388C0(02D3A440)` and an unguarded `0066A460(qword 01F2EA18)`; each once under its own TLS-epoch guard dword (`008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_materials` by `00632A10(02D3B9E0, 02D3A440, 0066A460(0), name, 0, 0, 4, 8)` with qword `02D3B9E0` = `00D69338`, then sets bit `0x8` of dword `02D3BA08` unguarded; it builds the methods `setMaterial` (`02D3BA50`), `getMaterial` (`02D3BAB0`) and `getMaterialCount` (`02D3BB10`): each method record `M` gets `00632FB0(M, class, name, 0)`, qword `M+0x28` = 0, and is linked at the tail of the list at qword `M+0x10` + 0x90 when qword `M+0x18` is non-null and `005A7A40(qword M+0x10, qword M+0x18)` returns null; after each, unguarded, qwords `M+0x30`/`M+0x38` = `00D6AD90`/`001B80C0`, `00D6ADC0`/`005C39B0` and `00D6ADF0`/`005C4CC0` and qword `M+0x28` = `M+0x30`; then tail-jumps to `00639450(02D3A440)`",
+   "anchors": [
+    [
+     "00666581",
+     "call"
+    ],
+    [
+     "006665F9",
+     "call"
+    ],
+    [
+     "0066666A",
+     "call"
+    ],
+    [
+     "006666E1",
+     "mov"
+    ],
+    [
+     "006667FE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006668B0",
+   "text": "calls `006388C0(02D3A640)`; each once under its own TLS-epoch guard dword (`008092FC`/`0080929C`, exit routine by `00808B90`): array fields get, after an unguarded `T(type qword)`, `00632A10(rec, 02D3A640, T(0), name, n, 0, 3, s)` and a fixed address in qword `rec`, then bit `0x8` of dword `rec+0x28` set unguarded - `m_meshSegments` (`006697A0`, `02D3BD10`, 0, 8), `m_skeletonMatrices` (`005ED1A0`, `02D3BD80`, 0x10, 4), `m_skeletonBounds` (`00669AD0`, `02D3BDF0`, 0x20, 4), `m_defaultPose` (`005ED1A0`, `02D3BE60`, 0x30, 4), `m_matrixNames` (`005EF7E0`, `02D3BED0`, 0x40, 8), `m_matrixParents` (`00668E10`, `02D3BF40`, 0x50, 4), `m_ps2DLIndices` (`00668E10`, `02D3C070`, 0x70, 4); unguarded `006B09E0()` follows the 1st and 3rd, `00630110()` precedes the last two; `m_defaultMaterials` is `00632960(02D3BFB0, 02D3A640, 02D3A440, name, 0x60, 8, 0, 0)`; `M` = `02D3C010` (`findMatrix`) gets `00632FB0(M, 02D3A640, name, 0)`, qword `M+0x28` = 0, a tail link into the list at qword `M+0x10` + 0x90 when qword `M+0x18` is non-null and `005A7A40` of the two returns null, and unguarded qwords `M+0x30`/`M+0x38` = `00D6AE20`/`006708A0`, `M+0x28` = `M+0x30`; then tail-jumps to `00639450(02D3A640)`",
+   "anchors": [
+    [
+     "006668E6",
+     "call"
+    ],
+    [
+     "0066695E",
+     "call"
+    ],
+    [
+     "00666991",
+     "call"
+    ],
+    [
+     "00666CEA",
+     "call"
+    ],
+    [
+     "00666D46",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00666E90",
+   "text": "calls `006388C0(02D3A840)`; each once under its own TLS-epoch guard dword (`008092FC`/`0080929C`, exit routine by `00808B90`) it registers with `00632960(record, 02D3A840, type, name, n, 0x10, 0, 0)` `m_materialIndex` (`02D3C1A0`, `00630180()`, 0) and `m_matrixIndex` (`02D3C200`, `00630110()`, 4); after an unguarded `00669E00(qword 01F2EA58)`, `m_skinBones` by `00632A10(02D3C260, 02D3A840, 00669E00(0), name, 8, 0, 3, 2)` with qword `02D3C260` = `00D69640`, then sets bit `0x10` of dword `02D3C288` unguarded; `m_primitiveType` by `00632BE0(02D3C2D0, 02D3A840, 00630110(), name, 0x18, 0x10, 6)`; and with `00632960` again `m_lodIndex` (`02D3C340`, 0x1C), `m_shapeIndex` (`02D3C3A0`, 0x20) and `m_gatherIndex` (`02D3C400`, 0x24), each typed `00630110()` with flags 0x10; then tail-jumps to `00639450(02D3A840)`",
+   "anchors": [
+    [
+     "00666F1E",
+     "call"
+    ],
+    [
+     "00666F91",
+     "call"
+    ],
+    [
+     "00667015",
+     "call"
+    ],
+    [
+     "0066709C",
+     "call"
+    ],
+    [
+     "006671F5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006673A0",
+   "text": "calls `006388C0(02D3ACE0)`; each once under its own TLS-epoch guard dword (`008092FC`/`0080929C`, exit routine by `00808B90`), with unguarded `0062FFC0()` and `00668AE0(qword 01F2EA60)` first, it registers `m_indices` by `00632A10(02D3C4D0, 02D3ACE0, 00668AE0(0), name, 8, 0, 3, 4)` with qword `02D3C4D0` = `00D54D68` and then sets bit `0x8` of dword `02D3C4F8` unguarded; with `00632960(record, 02D3ACE0, type, name, n, 8, 0, 0)` `m_indexFormat` (`02D3C540`, `0062FFC0()`, 0x31) and `m_indexCount` (`02D3C5A0`, `00630180()`, 0); after unguarded `0062FFC0()` and `00668AE0(qword 01F2EA68)`, `m_vertexData` by `00632A10(02D3C600, 02D3ACE0, 00668AE0(0), name, 0x20, 0, 3, 4)` with qword `02D3C600` = `00D54D68`, then bit `0x8` of dword `02D3C628` set unguarded; then `m_vertexFormat` (`02D3C670`, `0062FFC0()`, 0x30) and `m_vertexCount` (`02D3C6D0`, `00630180()`, 0x18); then tail-jumps to `00639450(02D3ACE0)`",
+   "anchors": [
+    [
+     "006673D1",
+     "call"
+    ],
+    [
+     "00667454",
+     "call"
+    ],
+    [
+     "006674D5",
+     "call"
+    ],
+    [
+     "006675CD",
+     "call"
+    ],
+    [
+     "006676C1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00667700",
+   "text": "calls `006388C0(02D3A540)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_min` by `00632A70(02D3BB70, 02D3A540, 006301F0(), name, 0, 0, 3)` and `m_size` by `00632A70(02D3BBE0, 02D3A540, 006301F0(), name, 0x10, 0, 3)`, after each setting bit `0x8` of dword `02D3BB98` and `02D3BC08` respectively unguarded, then with `00632960(record, 02D3A540, 00630180(), name, n, 8, 0, 0)` `m_hierarchyMatrixIndex` (`02D3BC50`, 0xC) and `m_pad` (`02D3BCB0`, 0x1C); then tail-jumps to `00639450(02D3A540)`",
+   "anchors": [
+    [
+     "00667789",
+     "call"
+    ],
+    [
+     "006677A7",
+     "or"
+    ],
+    [
+     "006677FE",
+     "call"
+    ],
+    [
+     "00667878",
+     "call"
+    ],
+    [
+     "006678EB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00667920",
+   "text": "calls `006388C0(02D3A740)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02D3A740, 006300A0(), name, n, 0x10, 0, 0)` `m_hierarchyMatrixIndex` (`02D3C0E0`, 0) and `m_skeletonMatrixIndex` (`02D3C140`, 2); then tail-jumps to `00639450(02D3A740)`",
+   "anchors": [
+    [
+     "0066797C",
+     "call"
+    ],
+    [
+     "006679AE",
+     "call"
+    ],
+    [
+     "006679EB",
+     "call"
+    ],
+    [
+     "00667A21",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00667A60",
+   "text": "calls `006388C0(02D3ADE0)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02D3ADE0, type, name, n, f, 0, 0)` `m_type` (`02D3C730`, `0062FFC0()`, 0x10, 0x10), `m_offset` (`02D3C790`, `00630180()`, 0, 0x10), `m_renderDataType` (`02D3C7F0`, `00661A70()`, 8, 0x12) and `m_streamSet` (`02D3C850`, `0062FFC0()`, 0x11, 0x10); then tail-jumps to `00639450(02D3ADE0)`",
+   "anchors": [
+    [
+     "00667AF2",
+     "call"
+    ],
+    [
+     "00667B61",
+     "call"
+    ],
+    [
+     "00667B9E",
+     "call"
+    ],
+    [
+     "00667BD4",
+     "call"
+    ],
+    [
+     "00667C47",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PGeometry module",
+ "method": "The page declares the family `Phyre PGeometry module` (a classification family: ordinary functions grouped by module, not template copies). No page explained these members. A local drafting agent (local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` (member mode: the body is an unexplained member of a family this page declares). A second local agent, not the drafter, then read every one of the 272 rows of this batch against the disassembly (repetitive destructors, initialisers and clone bodies compared instruction by instruction against a fixed template): 262 stood, 10 clauses in 8 functions were corrected (signed compares written as above/below, one missing dereference, two operand groupings, one pair of per-pair callees). OPUS confirmed each correction at the bytes and re-read a random sample of the rows that stood; the corrections are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

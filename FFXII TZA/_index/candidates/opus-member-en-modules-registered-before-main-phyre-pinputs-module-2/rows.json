@@ -1,0 +1,1048 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pinputs-module-2.json",
+ "rows": [
+  {
+   "fn": "0086DE90",
+   "text": "calls `006388C0(02EB53F0)`; under guard dword `02EB70C8` it registers `m_positiveKeySemantic` with `00632960(02EB7070, 02EB53F0, 00876AE0(), name, 0x30, 2, 0, 0)` (exit routine `008B97A0`) and under guard dword `02EB7128` it registers `m_negativeKeySemantic` with `00632960(02EB70D0, 02EB53F0, 00876AE0(), name, 0x38, 2, 0, 0)` (exit routine `008B9780`), each a thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`); then tail-jumps to `00639450(02EB53F0)`",
+   "anchors": [
+    [
+     "0086DEAB",
+     "call"
+    ],
+    [
+     "0086DEEC",
+     "call"
+    ],
+    [
+     "0086DF22",
+     "call"
+    ],
+    [
+     "0086DF5F",
+     "call"
+    ],
+    [
+     "0086DF95",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086E090",
+   "text": "calls `006388C0(02EB56F0)`; under a thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`) it registers `m_mouseButtonSemantic` with `00632960(02EB7250, 02EB56F0, 00876EC0(), name, 0x30, 2, 0, 0)`; then tail-jumps to `00639450(02EB56F0)`",
+   "anchors": [
+    [
+     "0086E0A4",
+     "call"
+    ],
+    [
+     "0086E0C4",
+     "cmp"
+    ],
+    [
+     "0086E0E1",
+     "call"
+    ],
+    [
+     "0086E119",
+     "call"
+    ],
+    [
+     "0086E142",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0086E150",
+   "text": "calls `006388C0(02EB57F0)`; under guard dword `02EB7308` it registers `m_modifierButtonSemantic` with `00632960(02EB72B0, 02EB57F0, 00876EC0(), name, 0x30, 2, 0, 0)` (exit routine `008B9710`) and under guard dword `02EB7368` it registers `m_modifierKeySemantic` with `00632960(02EB7310, 02EB57F0, 00876AE0(), name, 0x38, 2, 0, 0)` (exit routine `008B9730`), each a thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`); then tail-jumps to `00639450(02EB57F0)`",
+   "anchors": [
+    [
+     "0086E16B",
+     "call"
+    ],
+    [
+     "0086E1AC",
+     "call"
+    ],
+    [
+     "0086E1E2",
+     "call"
+    ],
+    [
+     "0086E21F",
+     "call"
+    ],
+    [
+     "0086E255",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086E290",
+   "text": "calls `006388C0(02EB58F0)`; under guard dword `02EB73C8` it registers `m_modifierButtonSemantic` with `00632960(02EB7370, 02EB58F0, 00876EC0(), name, 0x30, 2, 0, 0)` (exit routine `008B9720`) and under guard dword `02EB7428` it registers `m_modifierKeySemantic` with `00632960(02EB73D0, 02EB58F0, 00876AE0(), name, 0x38, 2, 0, 0)` (exit routine `008B9740`), each a thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`); then tail-jumps to `00639450(02EB58F0)`",
+   "anchors": [
+    [
+     "0086E2AB",
+     "call"
+    ],
+    [
+     "0086E2EC",
+     "call"
+    ],
+    [
+     "0086E322",
+     "call"
+    ],
+    [
+     "0086E35F",
+     "call"
+    ],
+    [
+     "0086E395",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086E470",
+   "text": "returns the record `02EB7860`; once (guard `02EB7960`) it calls `00632D80(02EB7860, 006373D0(), qword 02EB7AD8, 0x10, 8, 006372A0(), 0)`, stores `01CD6A60`, sets bit `0x2` of dword `02EB795C`, calls `0063DC80`, `0063DF90` and `0063DFA0` with `02EB7860` and `02EB7B10`/`02EB7B20`/`02EB7B30`, stores `01CD6AE8`, clears that bit and registers `008B9580`; then, when `rcx` is non-null and qword `02EB7890` is 0, it sets qword `02EB7AD8` to `rcx` if it was null and copies it to `02EB7890`, and (each once, under guards `02EB79C8`, `02EB7A08`, `02EB7A88`) registers `m_count` by `00632960(02EB7970, 02EB7860, 00630180(), name, 0, 0, 0, 0)`, builds `006B66C0(02EB79D0, 02CF8570, 00630180(), 0)` with qword `02EB79D0` = `00D32D50` and dword `02EB7A00` = 0x7FFFFFFF, and registers `m_els` by `00632A10(02EB7A10, 02EB7860, 02EB6CF0, name, 8, 2, 2, 8)` with qword `02EB7A10` = `01CD6B70` and qwords `02EB7A70`/`02EB7A78`/`02EB7A80` = `005C4CC0`/0/`00673130`; between the last two it calls `006B67D0(02EB79A8, 02EB79D0)` when qword `02EB79D8` holds its own address; it then sets dword `02EB7A68` = 8 and calls `006388C0(02EB7860)` and `00639450(02EB7860)`",
+   "anchors": [
+    [
+     "0086E513",
+     "call"
+    ],
+    [
+     "0086E527",
+     "or"
+    ],
+    [
+     "0086E5B6",
+     "mov"
+    ],
+    [
+     "0086E661",
+     "call"
+    ],
+    [
+     "0086E71A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086E7B0",
+   "text": "returns the record `02EB7630`; once (guard `02EB7730`) it calls `00632D80(02EB7630, 006373D0(), qword 02EB7AD0, 0x10, 8, 006372A0(), 0)`, stores `01CD6868`, sets bit `0x2` of dword `02EB772C`, calls `0063DC80`, `0063DF90` and `0063DFA0` with `02EB7630` and `02EB7AE0`/`02EB7AF0`/`02EB7B00`, stores `01CD68F0`, clears that bit and registers `008B95A0`; then, when `rcx` is non-null and qword `02EB7660` is 0, it sets qword `02EB7AD0` to `rcx` if it was null and copies it to `02EB7660`, and (each once, under guards `02EB7798`, `02EB77D8`, `02EB7858`) registers `m_count` by `00632960(02EB7740, 02EB7630, 00630180(), name, 0, 0, 0, 0)`, builds `006B66C0(02EB77A0, 02CF8570, 00630180(), 0)` with qword `02EB77A0` = `00D32D50` and dword `02EB77D0` = 0x7FFFFFFF, and registers `m_els` by `00632A10(02EB77E0, 02EB7630, 02EB52F0, name, 8, 2, 2, 8)` with qword `02EB77E0` = `01CD6978` and qwords `02EB7840`/`02EB7848`/`02EB7850` = `005C4CC0`/0/`00673130`; between the last two it calls `006B67D0(02EB7778, 02EB77A0)` when qword `02EB77A8` holds its own address; it then sets dword `02EB7838` = 8 and calls `006388C0(02EB7630)` and `00639450(02EB7630)`",
+   "anchors": [
+    [
+     "0086E853",
+     "call"
+    ],
+    [
+     "0086E867",
+     "or"
+    ],
+    [
+     "0086E8F6",
+     "mov"
+    ],
+    [
+     "0086E9A1",
+     "call"
+    ],
+    [
+     "0086EA5A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873090",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB55F0, 0)` (the object is the result - 8, or 0 for a null result), copies qword `+0x30`, dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008730B1",
+     "call"
+    ],
+    [
+     "008730BB",
+     "lea"
+    ],
+    [
+     "008730CA",
+     "mov"
+    ],
+    [
+     "008730D8",
+     "mov"
+    ],
+    [
+     "008730E4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873100",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB54F0, 0)` (the object is the result - 8, or 0 for a null result), copies qwords `+0x30`/`+0x38`, dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873121",
+     "call"
+    ],
+    [
+     "0087312B",
+     "lea"
+    ],
+    [
+     "0087313A",
+     "mov"
+    ],
+    [
+     "00873142",
+     "mov"
+    ],
+    [
+     "0087315C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873170",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB53F0, 0)` (the object is the result - 8, or 0 for a null result), copies qwords `+0x30`/`+0x38`, dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873191",
+     "call"
+    ],
+    [
+     "0087319B",
+     "lea"
+    ],
+    [
+     "008731AA",
+     "mov"
+    ],
+    [
+     "008731B2",
+     "mov"
+    ],
+    [
+     "008731CC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008731E0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB63F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873201",
+     "call"
+    ],
+    [
+     "0087320B",
+     "lea"
+    ],
+    [
+     "00873219",
+     "mov"
+    ],
+    [
+     "00873220",
+     "mov"
+    ],
+    [
+     "0087322C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873240",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB64F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873261",
+     "call"
+    ],
+    [
+     "0087326B",
+     "lea"
+    ],
+    [
+     "00873279",
+     "mov"
+    ],
+    [
+     "00873280",
+     "mov"
+    ],
+    [
+     "0087328C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008732A0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB65F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008732C1",
+     "call"
+    ],
+    [
+     "008732CB",
+     "lea"
+    ],
+    [
+     "008732D9",
+     "mov"
+    ],
+    [
+     "008732E0",
+     "mov"
+    ],
+    [
+     "008732EC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873300",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB66F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873321",
+     "call"
+    ],
+    [
+     "0087332B",
+     "lea"
+    ],
+    [
+     "00873339",
+     "mov"
+    ],
+    [
+     "00873340",
+     "mov"
+    ],
+    [
+     "0087334C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873360",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB67F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873381",
+     "call"
+    ],
+    [
+     "0087338B",
+     "lea"
+    ],
+    [
+     "00873399",
+     "mov"
+    ],
+    [
+     "008733A0",
+     "mov"
+    ],
+    [
+     "008733AC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008733C0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB68F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008733E1",
+     "call"
+    ],
+    [
+     "008733EB",
+     "lea"
+    ],
+    [
+     "008733F9",
+     "mov"
+    ],
+    [
+     "00873400",
+     "mov"
+    ],
+    [
+     "0087340C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873420",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB62F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873441",
+     "call"
+    ],
+    [
+     "0087344B",
+     "lea"
+    ],
+    [
+     "00873459",
+     "mov"
+    ],
+    [
+     "00873460",
+     "mov"
+    ],
+    [
+     "0087346C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873480",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB5FF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008734A1",
+     "call"
+    ],
+    [
+     "008734AB",
+     "lea"
+    ],
+    [
+     "008734B9",
+     "mov"
+    ],
+    [
+     "008734C0",
+     "mov"
+    ],
+    [
+     "008734CC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008734E0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB60F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873501",
+     "call"
+    ],
+    [
+     "0087350B",
+     "lea"
+    ],
+    [
+     "00873519",
+     "mov"
+    ],
+    [
+     "00873520",
+     "mov"
+    ],
+    [
+     "0087352C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873540",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB61F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873561",
+     "call"
+    ],
+    [
+     "0087356B",
+     "lea"
+    ],
+    [
+     "00873579",
+     "mov"
+    ],
+    [
+     "00873580",
+     "mov"
+    ],
+    [
+     "0087358C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008735A0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB56F0, 0)` (the object is the result - 8, or 0 for a null result), copies qword `+0x30`, dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008735C1",
+     "call"
+    ],
+    [
+     "008735CB",
+     "lea"
+    ],
+    [
+     "008735DA",
+     "mov"
+    ],
+    [
+     "008735E8",
+     "mov"
+    ],
+    [
+     "008735F4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873610",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB57F0, 0)` (the object is the result - 8, or 0 for a null result), copies qwords `+0x30`/`+0x38`, dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873631",
+     "call"
+    ],
+    [
+     "0087363B",
+     "lea"
+    ],
+    [
+     "0087364A",
+     "mov"
+    ],
+    [
+     "00873652",
+     "mov"
+    ],
+    [
+     "0087366C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873680",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB58F0, 0)` (the object is the result - 8, or 0 for a null result), copies qwords `+0x30`/`+0x38`, dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008736A1",
+     "call"
+    ],
+    [
+     "008736AB",
+     "lea"
+    ],
+    [
+     "008736BA",
+     "mov"
+    ],
+    [
+     "008736C2",
+     "mov"
+    ],
+    [
+     "008736DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008736F0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB5BF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873711",
+     "call"
+    ],
+    [
+     "0087371B",
+     "lea"
+    ],
+    [
+     "00873729",
+     "mov"
+    ],
+    [
+     "00873730",
+     "mov"
+    ],
+    [
+     "0087373C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873750",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB5CF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873771",
+     "call"
+    ],
+    [
+     "0087377B",
+     "lea"
+    ],
+    [
+     "00873789",
+     "mov"
+    ],
+    [
+     "00873790",
+     "mov"
+    ],
+    [
+     "0087379C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008737B0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB5AF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008737D1",
+     "call"
+    ],
+    [
+     "008737DB",
+     "lea"
+    ],
+    [
+     "008737E9",
+     "mov"
+    ],
+    [
+     "008737F0",
+     "mov"
+    ],
+    [
+     "008737FC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873810",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB59F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873831",
+     "call"
+    ],
+    [
+     "0087383B",
+     "lea"
+    ],
+    [
+     "00873849",
+     "mov"
+    ],
+    [
+     "00873850",
+     "mov"
+    ],
+    [
+     "0087385C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873870",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB5DF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873891",
+     "call"
+    ],
+    [
+     "0087389B",
+     "lea"
+    ],
+    [
+     "008738A9",
+     "mov"
+    ],
+    [
+     "008738B0",
+     "mov"
+    ],
+    [
+     "008738BC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008738D0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB5EF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008738F1",
+     "call"
+    ],
+    [
+     "008738FB",
+     "lea"
+    ],
+    [
+     "00873909",
+     "mov"
+    ],
+    [
+     "00873910",
+     "mov"
+    ],
+    [
+     "0087391C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873930",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB69F0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873951",
+     "call"
+    ],
+    [
+     "0087395B",
+     "lea"
+    ],
+    [
+     "00873969",
+     "mov"
+    ],
+    [
+     "00873970",
+     "mov"
+    ],
+    [
+     "0087397C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873990",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB6AF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "008739B1",
+     "call"
+    ],
+    [
+     "008739BB",
+     "lea"
+    ],
+    [
+     "008739C9",
+     "mov"
+    ],
+    [
+     "008739D0",
+     "mov"
+    ],
+    [
+     "008739DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008739F0",
+   "text": "creates a copy of `rcx` through `0063A990(rdx, 1, 02EB6BF0, 0)` (the object is the result - 8, or 0 for a null result), copies dword `+0x18`, byte `+0x1C` and dword `+0x20` from `rcx` into it, calls its vtable slot `+8` with it, and returns it",
+   "anchors": [
+    [
+     "00873A11",
+     "call"
+    ],
+    [
+     "00873A1B",
+     "lea"
+    ],
+    [
+     "00873A29",
+     "mov"
+    ],
+    [
+     "00873A30",
+     "mov"
+    ],
+    [
+     "00873A3C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873C10",
+   "text": "returns `e+8` for `e` = qword `edx` (zero-extended) of the array at qword `[rcx+0x18]`, or 0 when `e` is null",
+   "anchors": [
+    [
+     "00873C14",
+     "mov"
+    ],
+    [
+     "00873C16",
+     "mov"
+    ],
+    [
+     "00873C1F",
+     "lea"
+    ],
+    [
+     "00873C23",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "00873C30",
+   "text": "returns qword `+8` of `e` = qword `edx` (zero-extended) of the array at qword `[rcx+0x18]`",
+   "anchors": [
+    [
+     "00873C34",
+     "mov"
+    ],
+    [
+     "00873C36",
+     "mov"
+    ],
+    [
+     "00873C3A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00873FB0",
+   "text": "stores to dword `[rcx+0x28]` the result of `00879750(qword [rcx+0x30])` when that qword is non-null, else 0",
+   "anchors": [
+    [
+     "00873FBD",
+     "test"
+    ],
+    [
+     "00873FC2",
+     "call"
+    ],
+    [
+     "00873FC7",
+     "mov"
+    ],
+    [
+     "00873FD0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00873FE0",
+   "text": "takes `a` and `b` = the values returned by vtable slot `+8` of the objects at qwords `[rcx+0x30]` and `[rcx+0x38]` (0 for a null object), replaces each object with the address `01F45148` when its value is greater than 0x1A (signed compare), and then stores slot `+8` of the (possibly replaced) objects to dwords `+0x28` and `+0x2C` (0 for a null object)",
+   "anchors": [
+    [
+     "00873FF9",
+     "call"
+    ],
+    [
+     "0087401C",
+     "cmp"
+    ],
+    [
+     "00874021",
+     "mov"
+    ],
+    [
+     "00874045",
+     "mov"
+    ],
+    [
+     "00874053",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00874080",
+   "text": "takes `a` and `b` = the values returned by vtable slot `+8` of the objects at qwords `[rcx+0x30]` and `[rcx+0x38]` (0 for a null object), replaces each object with the address `01F456C8` when its value is less than 0x1C (signed compare, so a null object, value 0, is replaced too), and then stores slot `+8` of the (possibly replaced) objects to dwords `+0x28` and `+0x2C` (0 for a null object)",
+   "anchors": [
+    [
+     "00874099",
+     "call"
+    ],
+    [
+     "008740BC",
+     "cmp"
+    ],
+    [
+     "008740C1",
+     "mov"
+    ],
+    [
+     "008740E5",
+     "mov"
+    ],
+    [
+     "008740F3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00874120",
+   "text": "replaces qword `[rcx+0x30]` with the address `01F462E8` when it is null or its vtable slot `+8` returns a value outside 0xB..0xD, then stores slot `+8` of that object to dword `[rcx+0x28]` (0 when it is null)",
+   "anchors": [
+    [
+     "00874135",
+     "call"
+    ],
+    [
+     "0087413B",
+     "cmp"
+    ],
+    [
+     "00874147",
+     "mov"
+    ],
+    [
+     "00874157",
+     "call"
+    ],
+    [
+     "0087415A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00874170",
+   "text": "replaces qword `[rcx+0x30]` with the address `01F462E8` when it is null or its vtable slot `+8` returns a value outside 0xB..0xD; replaces qword `[rcx+0x38]` with the address `01F456C8` when it is null or slot `+8` of the `+0x30` object is outside 0xB..0xD; then stores slot `+8` of the `+0x30` and `+0x38` objects to dwords `+0x28` and `+0x2C` (0 for a null object)",
+   "anchors": [
+    [
+     "0087418B",
+     "cmp"
+    ],
+    [
+     "00874197",
+     "mov"
+    ],
+    [
+     "0087419B",
+     "cmp"
+    ],
+    [
+     "008741BB",
+     "mov"
+    ],
+    [
+     "008741E4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00875E10",
+   "text": "calls, in order, `0086DA70`, `0086DE90`, `0086DD50`, `0086DC90`, `0086E090`, `0086E150`, `0086E290`, `00867660`, `0086E3F0`, `008684F0`, `00868D00`, `0086E3D0`, `00869D80`, `0086E030`, `0086E050`, `0086E070`, `0086E010`, `00867C40`, `0086DFD0`, `00868BF0`, `00869510`, `00869CE0`, `0086DFF0`, `0086E410`, `0086E430`, `0086E450`, `0086D670` and `0086D990`, all without arguments; then passes the record returned by each of `008762F0`, `008793D0`, `008766D0`, `00876AE0`, `00876EC0` and `00875F00` to `006388C0`; returns 0",
+   "anchors": [
+    [
+     "00875E14",
+     "call"
+    ],
+    [
+     "00875E96",
+     "call"
+    ],
+    [
+     "00875EA8",
+     "call"
+    ],
+    [
+     "00875EE9",
+     "call"
+    ],
+    [
+     "00875EEE",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00875F00",
+   "text": "returns the record at `02EB8270`, building it once under the thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`): `006B6820(02EB8270, 'PInputTypeSemantic', 0x18, 8, 00876870, 00876130)`, qword `02EB8270` = `01CD7F90`, exit routine `008BA250`",
+   "anchors": [
+    [
+     "00875F2A",
+     "cmp"
+    ],
+    [
+     "00875F39",
+     "call"
+    ],
+    [
+     "00875F7A",
+     "call"
+    ],
+    [
+     "00875F86",
+     "mov"
+    ],
+    [
+     "00875FA1",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00873FE0",
+   "why": "byte verifier, re-read by OPUS: 0087401C/00874025 use cmp + jle (signed): the object is replaced when its value is signed-greater than 0x1A; 'above' reads as the unsigned condition"
+  },
+  {
+   "fn": "00874080",
+   "why": "byte verifier, re-read by OPUS: 008740BC/008740C5 use cmp + jge (signed): the object is replaced when its value is signed-less than 0x1C; 'below' reads as unsigned, and the null-object path (value 0) is replaced too, which the row leaves implicit"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PInputs module",
+ "method": "The page declares the family `Phyre PInputs module` (a classification family: ordinary functions grouped by module, not template copies). No page explained these members. A local drafting agent (local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` (member mode: the body is an unexplained member of a family this page declares). A second local agent, not the drafter, then read every one of the 272 rows of this batch against the disassembly (repetitive destructors, initialisers and clone bodies compared instruction by instruction against a fixed template): 262 stood, 10 clauses in 8 functions were corrected (signed compares written as above/below, one missing dereference, two operand groupings, one pair of per-pair callees). OPUS confirmed each correction at the bytes and re-read a random sample of the rows that stood; the corrections are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

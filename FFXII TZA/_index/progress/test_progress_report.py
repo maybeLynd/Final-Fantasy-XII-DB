@@ -339,16 +339,28 @@ _bind(fx)
 snap, counters = pr.build(fx)
 pr.write_all(snap, counters, fx)
 good_progress = pr.PROGRESS.read_text(encoding="utf-8")
+good_snap = pr.SNAP_JSON.read_bytes()
 (fx / "_index" / "L2-VERDICTS.md").unlink()
 rc = pr.auto(fx)
-snap_j = json.loads(pr.SNAP_JSON.read_text(encoding="utf-8"))
+lf12 = json.loads(pr.last_failure_path().read_text(encoding="utf-8"))
 check("T12 missing source -> INCOMPLETE, last-good retained",
-      rc == 1 and snap_j["freshness"]["state"] == "INCOMPLETE"
-      and "L2-VERDICTS.md" in str(snap_j["freshness"].get("missing"))
+      rc == 1 and lf12["state"] == "INCOMPLETE"
+      and "L2-VERDICTS.md" in str(lf12.get("missing"))
       and pr.PROGRESS.read_text(encoding="utf-8") == good_progress,
       "rc=%s state=%s missing=%s"
-      % (rc, snap_j["freshness"]["state"],
-         snap_j["freshness"].get("missing")))
+      % (rc, lf12["state"], lf12.get("missing")))
+# T12c (2026-10-03): a failed run leaves snapshot.json byte-identical - no
+# INCOMPLETE stub replaces the last coherent generation's member - and check
+# still reports the failure beside it.
+import io as _io, contextlib as _cl
+_buf = _io.StringIO()
+with _cl.redirect_stdout(_buf):
+    rc12c = pr.check(fx)
+check("T12c failed run leaves snapshot.json byte-identical; check reports it",
+      pr.SNAP_JSON.read_bytes() == good_snap
+      and "levels" in json.loads(good_snap.decode("utf-8"))
+      and rc12c == 2 and "L2-VERDICTS.md" in _buf.getvalue(),
+      "rc=%s out=%s" % (rc12c, _buf.getvalue()[:120]))
 check("T12b INCOMPLETE records no history row",
       len(_history_rows()) == 1, "%d rows" % len(_history_rows()))
 
@@ -703,12 +715,14 @@ snap, counters = pr.build(fx)
 pr.write_all(snap, counters, fx)
 (fx / "_index" / "OPEN-QUESTIONS.md").write_text("", encoding="utf-8")
 m, i = pr.input_problems(fx)
+good31 = pr.SNAP_JSON.read_bytes()
 rc_auto = pr.auto(fx)
-sj = json.loads(pr.SNAP_JSON.read_text(encoding="utf-8"))
+sj = json.loads(pr.last_failure_path().read_text(encoding="utf-8"))
 check("T31 empty required input -> INCOMPLETE, not CURRENT (C3)",
       rc_auto == 1 and any("OPEN-QUESTIONS.md" in x for x in i)
-      and sj["freshness"]["state"] == "INCOMPLETE"
-      and "OPEN-QUESTIONS.md" in str(sj["freshness"].get("invalid")),
+      and sj["state"] == "INCOMPLETE"
+      and "OPEN-QUESTIONS.md" in str(sj.get("invalid"))
+      and pr.SNAP_JSON.read_bytes() == good31,
       "rc=%s invalid=%s" % (rc_auto, i))
 
 # C3 second face: a schema-valid CLEARED register is not invalid - a
@@ -875,7 +889,8 @@ check("T40 failed run keeps the last COMPLETE generation",
       rc == 1 and store.current_id() == gen1 and not probs
       and man["generation"] == gen1
       and "L2-VERDICTS.md" in open(
-          pr.SNAP_JSON, encoding="utf-8").read(),
+          pr.last_failure_path(), encoding="utf-8").read()
+      and "levels" in json.loads(pr.SNAP_JSON.read_text(encoding="utf-8")),
       "rc=%s cur=%s probs=%s" % (rc, store.current_id(), probs))
 # ...and a mid-commit source move refuses the candidate the same way.
 (fx / "_index" / "L2-VERDICTS.md").write_text(

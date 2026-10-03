@@ -1,0 +1,55 @@
+# readiness_view.py generated 2026-10-03T06:26:43Z at HEAD 8fabf1300; phase=DATABASE; a view input, not a gate - no score; goal_gate.py owns DB_GOAL
+system	name	l2	pages	contracts	types	fields	gap_spans	census_rows	register_live	register_closed	contradictions_unresolved	residue_partial_pages	residue_unmapped	readiness_pending	unresolved_unregistered	runtime_exp	parity_probes	board_open	maturity	maturity_withheld_by
+S-01	Application root and boot — the VBF mount, the startup latch, what boot fixes an	MET	2	1	0	0	0	0	0	6	0	0	0	0	0	4	0	1	SPECIFICATION READY	
+S-02	The world tick and the field frame — the per-frame order on the battle layer and	MET	3	3	0	0	0	0	0	2	0	0	0	0	1	1	1	2		unresolved_unregistered=1
+S-03	Battle runtime mode ladder — who owns the party (script, area, combat, UI)	MET	1	1	1	42	7	1135	0	1	0	0	0	0	0	2	1	1	SPECIFICATION READY	
+S-04	Encoded-id space and class registry — the fifteen inventory classes behind `id >	MET	2	1	2	55	3	365	2	0	0	1	0	0	0	1	0	0		register_live=2
+S-05	Shared transform workbench — the matrix area four subsystems pass arguments thro	MET	1	3	0	0	0	0	0	1	0	0	0	0	3	0	2	0		unresolved_unregistered=3
+S-06	Developer tuning console — 282 commands over the render-settings block	MET	1	1	2	146	0	777	0	0	0	0	0	0	1	0	0	0		unresolved_unregistered=1
+S-07	The zone-script VM — the 100-opcode interpreter, verb dispatch and parameter enc	MET	3	4	3	105	8	1184	0	6	0	0	0	0	11	3	1	2		unresolved_unregistered=11
+S-08	The resource request queue and file layer — 64 slots, the file-size table, loose	MET	3	1	1	24	1	89	0	0	0	1	0	0	3	3	0	0		unresolved_unregistered=3
+S-09	The authored-data table registry — the 64 slots, the `.ard` binder, section addr	MET	3	3	3	55	10	2930	0	3	0	0	0	0	3	3	1	1		unresolved_unregistered=3
+S-10	The authored expression evaluator — how an authored number gets its randomness	MET	1	1	0	0	0	0	0	0	0	0	0	0	3	1	0	0		unresolved_unregistered=3
+S-11	Field records and area transition — `navimapdata.bin`, trigger points, the envir	MET	3	3	3	34	0	13	0	5	0	0	0	0	2	0	1	1		unresolved_unregistered=2
+S-12	Weather — the slot state model, the probability roll, the apply	MET	3	1	1	2	0	53	0	2	0	0	0	0	1	0	0	1		unresolved_unregistered=1
+S-13	Actor storage, manager slots and the unit pool — the record behind every actor, 	MET	3	2	1	85	7	1130	0	5	0	0	0	0	2	2	1	0		unresolved_unregistered=2
+S-14	Battle-unit construction from its definition — the two tables, the two paths, ev	MET	2	1	3	256	37	3597	0	4	0	0	0	0	0	18	0	1	SPECIFICATION READY	
+S-15	The field runtime pass — how one frame drives every actor's script	MET	1	1	0	0	0	0	0	1	0	0	0	0	0	3	1	1	SPECIFICATION READY	
+S-16	Spawn placement, the keep window and retirement	MET	3	1	0	0	0	0	0	5	0	0	0	0	1	2	0	0		unresolved_unregistered=1
+S-17	Group completion and respawn — the dead-member ledger and the cooldown clock	MET	2	1	4	244	40	3465	0	0	0	0	0	0	1	3	1	1		unresolved_unregistered=1
+S-18	Locomotion and steering — heading and speed to position, facing, movement mode, 	MET	3	3	1	40	2	186	0	6	0	0	0	0	3	1	1	0		unresolved_unregistered=3
+S-19	The movement body pool and the separation pass	MET	1	2	0	0	0	0	0	2	0	0	0	0	4	1	1	1		unresolved_unregistered=4
+S-20	Command commit and action dispatch — the moment an action is committed, the nati	MET	4	6	3	182	29	2269	0	3	0	0	0	0	2	7	2	3		unresolved_unregistered=2
+S-21	Result application and post-result events — the result record, the applier, the 	MET	3	1	0	0	0	0	0	3	0	0	0	0	4	4	0	0		unresolved_unregistered=4
+S-22	The formula step table and calculator slots — recipes, the preparation family, t	MET	4	4	1	58	4	1286	0	1	0	0	0	0	4	1	1	1		unresolved_unregistered=4
+S-23	The HP write and the lethal transition	MET	1	1	0	0	0	0	0	1	0	0	0	0	0	2	1	0	SPECIFICATION READY	
+S-24	Stat derivation and the auto-status rebuild — where a stat number comes from, eq	MET	3	2	2	62	4	1286	0	6	0	0	0	0	2	75	1	2		unresolved_unregistered=2
+S-25	Gambit evaluation, set selection and enmity	MET	2	2	2	9	0	3	0	1	0	0	0	0	0	2	1	2	SPECIFICATION READY	
+S-26	The status write and the two-layer effect model	MET	2	2	4	290	41	3757	0	1	0	0	0	0	1	1	1	1		unresolved_unregistered=1
+S-27	The periodic tick — regen, drain, MP, what ends a status	MET	2	1	0	0	0	0	0	0	0	0	0	0	1	0	0	1		unresolved_unregistered=1
+S-28	Party roster, control suppression and the leader change — the five slot maps, th	MET	4	4	4	318	39	4652	0	2	0	0	0	0	5	1	1	2		unresolved_unregistered=5
+S-29	Inventory, item use and equipment compatibility	MET	2	2	2	72	6	1325	0	0	0	0	0	0	1	1	1	2		unresolved_unregistered=1
+S-30	Shops and the bazaar — stock ladders, the loot-sold tally, purchase	MET	2	2	2	73	10	2860	0	0	0	0	0	0	0	1	1	2	SPECIFICATION READY	
+S-31	The licence board and the licence check	MET	2	1	1	58	4	1286	0	0	0	0	0	0	2	1	0	0		unresolved_unregistered=2
+S-32	Enemy death and its rewards — experience and LP division, loot drops, the chain,	MET	5	5	0	0	0	0	0	2	0	1	0	0	3	2	1	2		unresolved_unregistered=3
+S-33	World loot pickups — the ten-slot pool, the blink, the despawn	MET	1	1	2	12	2	55	0	1	0	0	0	0	1	1	0	1		unresolved_unregistered=1
+S-34	Persistent flag banks and event memory	MET	2	1	1	31	0	13	0	7	0	0	0	0	0	0	1	1	SPECIFICATION READY	
+S-35	The input stack, binding profiles and the capability policy — devices, channels,	MET	3	2	0	0	0	0	0	6	0	0	0	0	0	3	2	3	SPECIFICATION READY	
+S-36	The widget object model, its message protocol and the request router	MET	3	1	4	82	14	465	0	5	0	0	0	0	1	2	1	4		unresolved_unregistered=1
+S-37	Text rendering and the control-code language, DynGeo drawing	MET	2	1	1	10	0	39	0	3	0	0	0	0	0	0	0	0	SPECIFICATION READY	
+S-38	Character rendering — the render object, the render record array, transform publ	MET	2	4	3	423	34	3352	0	9	0	0	0	0	6	10	3	1		unresolved_unregistered=6
+S-39	The render command list and the graphics-thread handshake	MET	2	1	3	13	2	238	0	2	0	0	0	0	0	0	0	2	SPECIFICATION READY	
+S-40	Post-processing — the Yebis effect catalogue	MET	1	1	1	143	0	777	0	1	0	0	0	0	1	0	0	2		unresolved_unregistered=1
+S-41	Sound request to voice — the audio boundary, the bank and controller family, fad	MET	3	3	0	0	0	0	0	5	0	0	0	0	4	2	1	5		unresolved_unregistered=4
+S-42	Field music selection — the area's ladder, the mode overrides, the bank file	MET	2	2	3	23	2	60	0	6	0	0	0	0	0	5	1	2	SPECIFICATION READY	
+S-43	The save image — buffers, header and payload, capture, what loading normalises	MET	3	4	0	0	0	0	0	3	0	0	0	0	0	3	2	2	SPECIFICATION READY	
+S-44	Game settings and locale	MET	2	1	1	42	0	163	0	5	0	0	0	0	3	2	1	1		unresolved_unregistered=3
+S-45	Steam integration and achievements	MET	1	1	2	19	3	24	0	2	0	0	0	0	0	1	1	1	SPECIFICATION READY	
+S-46	RNG streams and which roll is on which generator	MET	2	2	6	7	0	39	0	3	0	0	0	0	2	4	1	1		unresolved_unregistered=2
+S-47	The resource entry tree and arena reference lifetime — ordered-tree membership, 	MET	1	3	4	51	5	111	0	1	0	0	0	0	8	3	0	1		unresolved_unregistered=8
+S-48	Authored command ramp channels — the channel state machine the presentation laye	MET	1	1	0	0	0	0	12	136	0	0	0	0	2	1	1	20		register_live=12; unresolved_unregistered=2
+S-49	Phyre asset container and class-descriptor surface — cluster header, packed name	MET	3	3	25	162	17	168	0	6	0	0	0	0	0	2	3	2	SPECIFICATION READY	
+S-50	Lua core loader surface — the chunk loader and what it accepts	MET	1	1	0	0	0	0	0	2	0	0	0	0	0	1	1	1	SPECIFICATION READY	
+S-51	The navigation mesh and the corridor-query layer - the authored mesh dataset, re	MET	1	2	6	390	45	3730	0	3	0	0	0	0	1	1	0	0		unresolved_unregistered=1
+S-52	Manager slot entry tables — the four-entry tables an actor manager slot binds, c	MET	1	1	1	8	0	26	0	0	0	0	0	0	2	0	1	1		unresolved_unregistered=2
+UNATTRIBUTED	production residue pages no registered system lists		14									14	0							not a system; listed so no residue is dropped

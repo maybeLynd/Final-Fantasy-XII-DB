@@ -6,7 +6,7 @@
  "rows": [
   {
    "fn": "00125743",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after a `ret` and is not 16-byte aligned; it reserves 8 bytes of stack, stores the incoming `rcx` to `[rsp]`, loads the x87 control word from that slot's low word with `fldcw`, releases the slot and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after a `ret` and is not 16-byte aligned; it reserves 8 bytes of stack, stores the incoming `rcx` to `[rsp]`, loads the x87 control word from that slot's low word with `fldcw`, releases the slot and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00125747",
@@ -24,7 +24,7 @@
   },
   {
    "fn": "00125753",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after a `ret` and is not 16-byte aligned; it reserves 8 bytes of stack, executes `wait`, stores the x87 control word to the low word of `[rsp]` with `fnstcw`, loads the qword at `[rsp]` into `rax` (its upper six bytes are not written by the body), releases the slot and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after a `ret` and is not 16-byte aligned; it reserves 8 bytes of stack, executes `wait`, stores the x87 control word to the low word of `[rsp]` with `fnstcw`, loads the qword at `[rsp]` into `rax` (its upper six bytes are not written by the body), releases the slot and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00125757",
@@ -714,7 +714,7 @@
   },
   {
    "fn": "008824F0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it rotates `ecx` by 16 and then swaps bytes, nibbles, bit pairs and single bits with mask-and-shift steps (masks 0xFF00FF, 0xF0F0F0F and the alternating 2-bit and 1-bit masks), returning in `eax` the incoming `ecx` with its 32 bits in reversed order; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it rotates `ecx` by 16 and then swaps bytes, nibbles, bit pairs and single bits with mask-and-shift steps (masks 0xFF00FF, 0xF0F0F0F and the alternating 2-bit and 1-bit masks), returning in `eax` the incoming `ecx` with its 32 bits in reversed order; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00882502",
@@ -740,7 +740,7 @@
   },
   {
    "fn": "008832D0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it returns in `eax` the number of right shifts by 1 that bring `ecx` to zero (0 when `ecx` is zero), the count of bits up to and including the highest set bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it returns in `eax` the number of right shifts by 1 that bring `ecx` to zero (0 when `ecx` is zero), the count of bits up to and including the highest set bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "008832D6",
@@ -758,7 +758,7 @@
   },
   {
    "fn": "00884090",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it rotates `ecx` by 16 and then swaps bytes, nibbles, bit pairs and single bits with mask-and-shift steps (masks 0xFF00FF, 0xF0F0F0F and the alternating 2-bit and 1-bit masks), returning in `eax` the incoming `ecx` with its 32 bits in reversed order; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it rotates `ecx` by 16 and then swaps bytes, nibbles, bit pairs and single bits with mask-and-shift steps (masks 0xFF00FF, 0xF0F0F0F and the alternating 2-bit and 1-bit masks), returning in `eax` the incoming `ecx` with its 32 bits in reversed order; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "008840A2",
@@ -784,7 +784,7 @@
   },
   {
    "fn": "008858B0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it takes a count from the dword stack argument at `[rsp+0x40]` and returns when it is not positive; otherwise for each index i below the count it writes dword 1 or 0 to the i-th dword of the array at qword `[rsp+0x30]`: 1 when the threshold (incoming `xmm1` while i is below `ecx` minus dword `[rsp+0x38]`, else incoming `xmm2`) is at or below, or unordered with, the double absolute value of the i-th f32 of the `r9` array (mask at `01CEBD80`) divided by the i-th f32 of the array at qword `[rsp+0x28]`, rounded back to f32; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it takes a count from the dword stack argument at `[rsp+0x40]` and returns when it is not positive; otherwise for each index i below the count it writes dword 1 or 0 to the i-th dword of the array at qword `[rsp+0x30]`: 1 when the threshold (incoming `xmm1` while i is below `ecx` minus dword `[rsp+0x38]`, else incoming `xmm2`) is at or below, or unordered with, the double absolute value of the i-th f32 of the `r9` array (mask at `01CEBD80`) divided by the i-th f32 of the array at qword `[rsp+0x28]`, rounded back to f32; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "008858C7",
@@ -810,7 +810,7 @@
   },
   {
    "fn": "00888650",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it broadcasts the low f32 of `xmm1` to all four lanes and adds it to each of the 56 f32 values at `rcx` (seven passes of two unaligned 16-byte loads and stores), then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it broadcasts the low f32 of `xmm1` to all four lanes and adds it to each of the 56 f32 values at `rcx` (seven passes of two unaligned 16-byte loads and stores), then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00888655",
@@ -832,7 +832,7 @@
   },
   {
    "fn": "00888690",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; for 56 f32 positions (14 passes of four) it stores the f32 at `rdx` + i*4 into `rcx` + i*4 when it is above the f32 already there (ordered `comiss`), leaving it otherwise, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; for 56 f32 positions (14 passes of four) it stores the f32 at `rdx` + i*4 into `rcx` + i*4 when it is above the f32 already there (ordered `comiss`), leaving it otherwise, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "008886A6",
@@ -850,7 +850,7 @@
   },
   {
    "fn": "00888700",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; for 56 f32 positions (14 passes of four) it stores the f32 at `rdx` + i*4 into `rcx` + i*4 when the f32 already there is above it (ordered `comiss`), leaving it otherwise, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; for 56 f32 positions (14 passes of four) it stores the f32 at `rdx` + i*4 into `rcx` + i*4 when the f32 already there is above it (ordered `comiss`), leaving it otherwise, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "0088871B",
@@ -868,7 +868,7 @@
   },
   {
    "fn": "00888780",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it spills `xmm0` to `[rsp+8]`, keeps only the sign bit and the f32 1.0 exponent bits of it (`and`), ORs in the f32 1.0 bit pattern and reloads `xmm0`, so it returns f32 1.0 carrying the incoming sign bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it spills `xmm0` to `[rsp+8]`, keeps only the sign bit and the f32 1.0 exponent bits of it (`and`), ORs in the f32 1.0 bit pattern and reloads `xmm0`, so it returns f32 1.0 carrying the incoming sign bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00888786",
@@ -890,7 +890,7 @@
   },
   {
    "fn": "008888C0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; when `rcx` is null it returns; otherwise it zeroes the five qwords `+0x0` to `+0x20` of `rcx` and tail-jumps through the qword at `01CEB630` with `rcx` incoming and `rax` = 0; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; when `rcx` is null it returns; otherwise it zeroes the five qwords `+0x0` to `+0x20` of `rcx` and tail-jumps through the qword at `01CEB630` with `rcx` incoming and `rax` = 0; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "008888C3",
@@ -912,7 +912,7 @@
   },
   {
    "fn": "00889330",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it zeroes the seven qwords `+0x0` to `+0x30` of `rcx` and returns 0 in `rax`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it zeroes the seven qwords `+0x0` to `+0x30` of `rcx` and returns 0 in `rax`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00889332",
@@ -926,7 +926,7 @@
   },
   {
    "fn": "0088D4E0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; when `ecx` equals 1 it returns; otherwise it advances `rdx` by sign-extended `ecx` times 4 and tail-jumps to `0088D500` with `rcx`, `r8` and `r9` incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; when `ecx` equals 1 it returns; otherwise it advances `rdx` by sign-extended `ecx` times 4 and tail-jumps to `0088D500` with `rcx`, `r8` and `r9` incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "0088D4E3",
@@ -944,7 +944,7 @@
   },
   {
    "fn": "0088DB60",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it returns in `rax` the qword at `01CEAE30` + sign-extended `ecx` times 8 (`rcx` is overwritten with the table address); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it returns in `rax` the qword at `01CEAE30` + sign-extended `ecx` times 8 (`rcx` is overwritten with the table address); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "0088DB63",
@@ -958,7 +958,7 @@
   },
   {
    "fn": "008922A0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it returns in `eax` the number of set bits in `ecx`, adding bit `0x1` of `ecx` per right shift until `ecx` is zero (0 when `ecx` is zero); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it returns in `eax` the number of set bits in `ecx`, adding bit `0x1` of `ecx` per right shift until `ecx` is zero (0 when `ecx` is zero); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "008922B2",
@@ -976,7 +976,7 @@
   },
   {
    "fn": "00892990",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; with i = sign-extended `r8d` it reads dword `[rcx+i*4]` into `eax` and dword `[rdx+i*4]` into `r8d`; when the `rdx` value is negative it returns the `rcx` value, otherwise it returns their 32-bit sum shifted right arithmetically by 1; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; with i = sign-extended `r8d` it reads dword `[rcx+i*4]` into `eax` and dword `[rdx+i*4]` into `r8d`; when the `rdx` value is negative it returns the `rcx` value, otherwise it returns their 32-bit sum shifted right arithmetically by 1; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "0089299B",
@@ -998,7 +998,7 @@
   },
   {
    "fn": "00893A80",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it reads f32 `[rcx]`, multiplies it by f32 7.314286 (`01CEBC7C`), adds f32 1023.5 (`01CEBC94`), truncates to `eax` and returns 0x3FF when that is greater than 0x3FF (signed), 0 when it is negative (`cmovs`), else the value; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it reads f32 `[rcx]`, multiplies it by f32 7.314286 (`01CEBC7C`), adds f32 1023.5 (`01CEBC94`), truncates to `eax` and returns 0x3FF when that is greater than 0x3FF (signed), 0 when it is negative (`cmovs`), else the value; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00893A84",
@@ -1020,7 +1020,7 @@
   },
   {
    "fn": "00893AC0",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; with `r8d` and `r9d` masked to 0x7FFF it computes `eax` = the absolute value of (`r9d` - `r8d`) times (dword stack argument `[rsp+0x28]` - `ecx`) divided signed by (`edx` - `ecx`) (`idiv`), then returns `r8d` - `eax` when `r9d` - `r8d` is negative, else `r8d` + `eax`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; with `r8d` and `r9d` masked to 0x7FFF it computes `eax` = the absolute value of (`r9d` - `r8d`) times (dword stack argument `[rsp+0x28]` - `ecx`) divided signed by (`edx` - `ecx`) (`idiv`), then returns `r8d` - `eax` when `r9d` - `r8d` is negative, else `r8d` + `eax`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "00893ACA",
@@ -1046,7 +1046,7 @@
   },
   {
    "fn": "00895570",
-   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it reads f32 `[rcx]` and f32 `[rdx]` and returns in `eax` 1 when the `rdx` value is above the `rcx` value, -1 when the `rcx` value is above, else 0 (also when unordered); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "text": "no direct reference was found (census of `E8`/`E9`, `0F 8x`, `EB`/`7x` and rip-relative targets at every `.text` offset, and of qwords and 32-bit image-relative values in every section, `.pdata` included: SWE2-AUDIT-SPEC re-review 2026-10-03); it starts right after `int3` padding; it reads f32 `[rcx]` and f32 `[rdx]` and returns in `eax` 1 when the `rdx` value is above the `rcx` value, -1 when the `rcx` value is above, else 0 (also when unordered); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
    "anchors": [
     [
      "0089557C",
@@ -1097,6 +1097,82 @@
   {
    "fn": "00195340, 002969D0, 002E4C90, 002E5B00, 002ED250, 002ED350, 0031AD90, 00365660, 00379F50, 0037AA00, 003DCF20, 003F5030, 003F7000, 004278D0, 0042FCC0",
    "why": "SWE2-AUDIT-SPEC REJECT (auditspec-review-opus-referenced-code-the-list-never-had-uc1-1002): the first census missed 0F 8x conditional jumps and 32-bit image-relative fields, so these 15 rows said no direct reference was found; entry statements replaced with SPEC's verified sites; uc1_entry_check.py is the regression"
+  },
+  {
+   "fn": "00125743",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00125753",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "008824F0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "008832D0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00884090",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "008858B0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00888650",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00888690",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00888700",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00888780",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "008888C0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00889330",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "0088D4E0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "0088DB60",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "008922A0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00892990",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00893A80",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00893AC0",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
+  },
+  {
+   "fn": "00895570",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-uc1-entry-rereview-1003), incorporated verbatim: the row names the census R1 test 1 now requires"
   }
  ],
  "mode": "uc1"

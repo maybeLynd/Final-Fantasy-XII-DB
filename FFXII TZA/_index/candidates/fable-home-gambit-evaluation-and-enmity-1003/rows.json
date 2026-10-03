@@ -1,0 +1,48 @@
+{
+ "page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_014Lqi23L8goQ9zhmHGJGtzN",
+ "report": "home-gambit-evaluation-and-enmity.json",
+ "rows": [],
+ "rejected": [
+  {
+   "fn": "003340C0",
+   "reason": "held 2026-10-03 (FABLE): its entered_from caller 003A7AA0 is itself being re-homed to 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md by FABLE-PUB-HOST-MOVES-1003 (SWE2-AUDIT-SPEC host-fit REJECT); re-home this row with its caller on that page",
+   "row": {
+    "fn": "003340C0",
+    "entered_from": "`003A7AA0` + 0x26",
+    "text": "when `edx` is below 0x1D (signed), reads dword `rcx+0x2C+edx*4` and calls `003340C0` + 0x19 with it; when that returns non-null, calls `003340C0` + 0x26 with the same dword and passes the result to `003340C0` + 0x2E, calls `003340C0` + 0x36 with the dword again and passes the result to `003340C0` + 0x3E, then stores the `eax` of `003340C0` + 0x45 (called with `ecx` = 0) into that dword; when either guard fails it returns without writing",
+    "anchors": [
+     [
+      "003340C4",
+      "cmp"
+     ],
+     [
+      "003340E1",
+      "je"
+     ],
+     [
+      "003340EE",
+      "call"
+     ],
+     [
+      "003340FE",
+      "call"
+     ],
+     [
+      "0033410A",
+      "mov"
+     ]
+    ]
+   }
+  }
+ ],
+ "skipped": {},
+ "missing": [
+  "003A7950",
+  "003A7A50",
+  "003A7AA0",
+  "003A92B0"
+ ],
+ "corrections": []
+}

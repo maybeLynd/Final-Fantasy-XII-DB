@@ -233,7 +233,7 @@ The flags are read both by console arms and by the script driver's wait-park gat
 - `00265680` (run when a slot reports pending events) is unexamined.
   *Answered (2026-09-30 pointer, SWE2-CONTRACT):* it is read. It requires manager slot 0 live with `+0x10` bit 7 and
   `+0x11` bit 0 clear, every live slot's `+0x17` bits 0–1 set (`002656C0`–`002656DF`), no entry of the eight
-  `0x68`-byte records at `0215F200` flagged at `+0x38`/`+0x3E` bit 7 (`002E0540`), and then `00265720()`; ~~it is one of~~
+  `0x68`-byte records at `0215F200` flagged at `+0x38`/`+0x3E` ~~bit 7~~ **bit 0** (`002E0540`'s `shl 7` / `sar 7` keeps bit 0; corrected 2026-10-03, SWE2-CONTRACT, to FABLE's `30b2fd926` reading), and then `00265720()`; ~~it is one of~~
   ~~the field frame's three entry gates~~ it is not a gate itself but the test inside the third gate `001EC560` (called at `001EC560+0x20`; the field frame `0022A770` calls its gates `001800E0`, `001800C0`, `001EC560` at `0022A770+0x449`, `+0x452`, `+0x45B`) *(corrected 2026-10-02, OPUS: read at those calls)* ([the world tick and the field frame](../Battle-Frame/the-world-tick-and-the-field-frame.md),
   "The three entry gates" row, tier 1).
 

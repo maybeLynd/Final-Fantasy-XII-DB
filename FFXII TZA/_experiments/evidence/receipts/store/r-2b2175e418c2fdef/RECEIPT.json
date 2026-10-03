@@ -1,0 +1,116 @@
+{
+ "case_sources": {},
+ "cases": [
+  "link:Database/FFXII TZA/_experiments/evidence/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md -> ../../../_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md -> ../../../_experiments/evidence/render-clear-callee-footprints/README.md",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md -> rv_clear.out",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md -> rv_clear.py",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md -> rvlib.py",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md -> ../../../_experiments/evidence/render-removal-phase-contracts/README.md",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md -> ../fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md -> rv_removal.out",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md -> rv_removal.py",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md -> rvlib.py",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md -> ../../../_experiments/evidence/render-slot-identity-publication/README.md",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md -> rv_slot.out",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md -> rv_slot.py",
+  "link:Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md -> rvlib.py",
+  "old-manifest-76"
+ ],
+ "driver_repos": {
+  "prepare.py": "C:/Users/Kristian/source/repos/XIIOnline"
+ },
+ "drivers": {
+  "prepare.py": {
+   "committed": true,
+   "git_blob": "e841a51c13ea928fba9b3de48b821cd70284a0d6",
+   "sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654",
+   "size": 6282
+  }
+ },
+ "environment": {
+  "modules": {
+   "capstone": "5.0.7",
+   "pefile": "2024.8.26",
+   "unicorn": "2.1.4"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.6",
+  "run_artifacts": {
+   "status.json": {
+    "sha256": "c01ff815e054ee671eaec0b5474f4434c7634b7e62a02bfb276e3ca10b416eb5",
+    "size": 709
+   },
+   "stderr": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+   },
+   "stdout": {
+    "sha256": "b9814d1c62f205ac53bf0d2a6bd01fc7cb4370be17cc06b56297cf92c4c63f52",
+    "size": 72
+   }
+  },
+  "run_status": {
+   "driver_sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654",
+   "exception": null,
+   "exit": 0,
+   "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+   "terminal": true
+  }
+ },
+ "inputs": {
+  "clear-callee-footprints__rv_clear.out": {
+   "sha256": "9ee5e75a57c9a8d75333ea3fb4ba622d4079ebed5cfa1280b39fef0cf860e8ea",
+   "size": 6926
+  },
+  "clear-callee-footprints__rv_clear.py": {
+   "sha256": "dcc0e838fc00fbe54967106dba2fd874f14a343c79df55ffe6c0a46225b22e25",
+   "size": 21452
+  },
+  "clear-callee-footprints__rvlib.py": {
+   "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca",
+   "size": 13365
+  },
+  "old-manifest.json": {
+   "sha256": "5b647504198d614ff8f507eef6efbaf89875d9142853703f65854ec7980d8823",
+   "size": 14163
+  },
+  "removal-phase-contracts__rv_removal.out": {
+   "sha256": "2515c28e29acc78dd371b101728a2596dde590188b3f71482ff046a86e07d019",
+   "size": 6726
+  },
+  "removal-phase-contracts__rv_removal.py": {
+   "sha256": "3bcb9a6d4656e594e542b9aede2a9ffd9a4c680094718b2e3cfb0cb03a7fa36b",
+   "size": 15113
+  },
+  "removal-phase-contracts__rvlib.py": {
+   "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca",
+   "size": 13365
+  },
+  "slot-identity-publication__rv_slot.out": {
+   "sha256": "a6e0c0fee49cd4ae1efb596b0aa3ec1b219424e9e365d056ed0ac682c06119f8",
+   "size": 8022
+  },
+  "slot-identity-publication__rv_slot.py": {
+   "sha256": "96dfdfc5ae69256c385246afcbca426c1bd8081f30b299c0b9815b948fb9124b",
+   "size": 16608
+  },
+  "slot-identity-publication__rvlib.py": {
+   "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca",
+   "size": 13365
+  }
+ },
+ "limitations": [
+  "offline publication closure; no game execution and no new scientific result",
+  "the reviewer scripts/outputs in additions[] are payload (FABLE corroboration), not ASTRA executions",
+  "not independent scientific acceptance"
+ ],
+ "result": {
+  "name": "result.json",
+  "sha256": "cb9cbb021ff5ce9d983c58bb725bc29a5179496996079f95392d5a5eb992302c",
+  "size": 13950
+ },
+ "run_id": "r-2b2175e418c2fdef",
+ "sealed_at": "2026-10-03T06:24:33Z",
+ "wip": false
+}

@@ -177,3 +177,49 @@ dimensions and is not a maturity step. The banner above it still reads `DATABASE
   `functions.tsv` has owners per function; whether owner category maps to systems is a ruling, not a join.
 - **SWE2-STRUCT:** a committed census for BattleTargetEntry, if its own column C should not read "no census". The
   projection exists already.
+
+## 11. Amendment, 2026-10-03: FABLE's ruling on this note (SWE2-STRUCT)
+
+FABLE ruled on this note (`78fec6629`): **ACCEPT, with one refinement.** It was relayed by the coordinator on
+2026-10-03, and FABLE amends DASHBOARD-MEANINGS §6.4 in its follow-up publish. Recorded here as the note's amendment,
+superseding section 5 where they differ:
+
+- **SPECIFICATION READY evidence: accepted as proposed in section 5, plus one condition.** The system has no PARTIAL or
+  REOPENED production page that `check_status_residue.py` (FABLE, `f3b0b29d4`) classes **UNMAPPED** (a status line
+  whose residue no live register row owns, and which names no process item).
+- **Phase cap: ruled.** SPECIFICATION READY is the one maturity label a view may show while `current_primary_phase` is
+  `DATABASE`. Every later label (SEMANTIC CORE IMPLEMENTED and beyond) may appear **only as a database-phase PROBE**,
+  until the user authorizes reconstruction. Column F already carries the probes; the cap lives in §6.4, not in the
+  view, and the view enforces it.
+- **Page-to-system attribution for the new condition.** `system:` front matter holds a page title, not an S-id. A
+  residue page therefore counts against a system when `important-subsystems.tsv` lists it among that system's pages or
+  contracts. Residue pages no system lists are shown in a separate UNATTRIBUTED row, never dropped and never guessed
+  onto a system.
+- **Build:** the generator `readiness_view.py` writes the per-system TSV as a dashboard-generation input. Its tests
+  cover the phase cap and the UNMAPPED condition. The dashboard hook is coordinated with SWE2-FRONTIER through files,
+  not by editing FRONTIER's or DATA's dashboard code.
+
+### 11a. Build result (SWE2-STRUCT, 2026-10-03 06:30Z)
+
+- **Built:**
+  - `Database/Tools/analysis-kit/gfz-scripts/readiness_view.py`: the generator. Its self-test has 15 cases, FAILS 0.
+  - `test_readiness_view.py`: 10 unit tests, OK, covering the phase cap, the UNMAPPED condition, UNMEASURED-not-zero,
+    a lifecycle file that is absent or malformed, and section-14 item parsing.
+  - The file-level hook for the dashboard owners: [`HOOK.md`](HOOK.md).
+  - A dated sample of the output: [`readiness-view-sample.tsv`](readiness-view-sample.tsv), generated 06:26Z at
+    `8fabf1300`. The phase was read from FABLE's lifecycle file in the worktree, before FABLE's publish.
+- **The sample, at 06:26Z:**
+  - 52 systems: 16 SPECIFICATION READY, 36 withheld.
+  - 35 are withheld by `unresolved_unregistered`: contract section-14 items that name no register id.
+  - 2 are withheld by live register rows: S-04 (2) and S-48 (12).
+  - 0 UNMAPPED residue pages. The UNATTRIBUTED row lists 14 PARTIAL production pages that no system lists.
+- **S-20 at 06:26Z:** withheld by `unresolved_unregistered=2`. These are the two open bullets in the native command
+  seam contract's section 14: whether the pending-selection ring can hold an entry the commit funnel rejects, and why
+  the two rings are twins. Neither names a register row. Every other S-20 condition holds. This replaces section 9's
+  "SPECIFICATION READY at most" with the measured answer.
+- **Section-14 parsing:**
+  - An item runs from its `- ` / `* ` / `N. ` start to the next item.
+  - Struck text is removed across lines before testing.
+  - An item counts as registered if it names a register id, or as closed if it carries ANSWERED / RESOLVED / CLOSED /
+    WITHDRAWN / SUPERSEDED / REFUTED / none.
+  - A first-line-only reading over-counted (46 withheld instead of 35).

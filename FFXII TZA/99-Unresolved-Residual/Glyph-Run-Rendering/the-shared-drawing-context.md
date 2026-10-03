@@ -784,3 +784,11 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **WorldAreaField — MECHANICAL, 2 edges.** `001CD0E0` calls `FieldData_GetVariable0` (`00265270`), `WorldTransition_GetTransitionFieldId` (`00314910`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `95d495604`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b4-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00285FE0` | 26 B | `002B5C90` + 0x38 | maps `ecx` to a return value: 1 returns 8, 2 returns 7, and any other value returns 9 | Interior anchor `00285FE3`; Interior anchor `00285FE8`; Interior anchor `00285FEA`; Interior anchor `00285FEE`; Interior anchor `00285FF4` | [keymap-ini-file-format-and-default-controls](../../15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md) |

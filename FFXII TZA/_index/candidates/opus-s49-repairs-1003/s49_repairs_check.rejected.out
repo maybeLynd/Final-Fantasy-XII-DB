@@ -1,0 +1,6 @@
+FAIL P2 PhyrePackedNamespaceMemberRecord+0x08 still states 'byte offset of the field within the class' unstruck
+FAIL P2 PhyrePackedNamespaceMemberRecord+0x0C still states 'element size in bytes' unstruck
+FAIL P2 PhyrePackedNamespaceMemberRecord+0x10 still states 'bit 31 marks a pointer' unstruck
+FAIL P2 PhyrePackedNamespaceHeader+0x00 still states 'the loader acts on the cluster header's order, not this' unstruck
+FAIL P3 section 8 still states the CFG-path claim unstruck
+checks D1 4+1, P2 5+2, P3 1+2  (rejected texts: the text checks must fail)  FAILS 5

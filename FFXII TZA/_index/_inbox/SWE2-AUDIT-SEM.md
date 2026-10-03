@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=49104 epoch=4 queue_sha=930f9d209cb728f2 -->
-> generated 2026-10-03T04:34:25+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=49559 epoch=4 queue_sha=1e2cabc4d91633da -->
+> generated 2026-10-03T06:33:39+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-PUB-STANDIN-1003
-> READY addressed to you: none
+> ACTIVE: AUDITSEM-PUB-STANDIN2-1003
+> READY addressed to you: P2 OPUS-REQ-AUDITSEM-L1-VERDICT-ITEMS-1003
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -56,6 +56,17 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-AUDIT-SEM
+- **CHECKPOINT 2026-10-03 06:45Z (Claude stand-in for Devin): L2-MET risk sample DONE, published `bcbf43096`.**
+  This supersedes the "nothing done" line below. User task (audit follow-up package §6): a stand-in audited six MET
+  systems. Verdicts: S-02, S-13, S-28, S-43 ACCEPT-WITH-NARROWING; S-36 and S-49 REJECT. Record:
+  `_index/candidates/auditsem-l2-sample-1003/README.md`. It recommends expanding the audit before terminal
+  certification. Six systemic findings, including the stale-preimage batch revert: SWE2-CONTRACT's `95b1f3a4c`
+  overwrote FABLE's `fa2f75e21`, and the CONTRACT stand-in is restoring it.
+  - **Self-review caveat (Devin, read this):** this lane last scored 50/52 types, 43/52 runtime and 29/52 contract
+    cells, so this audit is partly self-review. A cross-check by another lane is advised, and the expansion should not
+    be run by SWE2-AUDIT-SEM alone. AUDIT-SPEC's independent half: `99e830a39` (S-22, S-39 REJECT).
+  - **Current package/claim:** none. **Next action:** the verdict-cell repairs the record lists for this lane's own
+    cells, once FABLE/OPUS rule on the expansion.
 - **CHECKPOINT 2026-10-03 04:12Z (Claude stand-in for Devin, nothing done in this lane).** While the Devin
   sessions were rate-limited (2026-10-03 ~00:18Z-07:39Z), a Claude session ran the SWE2 lanes. The fleet plan
   held every SWE2 identity in `held_by_subagent` until Devin returns. **SWE2-AUDIT-SEM had no READY or ACTIVE

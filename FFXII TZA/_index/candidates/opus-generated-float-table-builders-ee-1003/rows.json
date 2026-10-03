@@ -1,0 +1,112 @@
+{
+ "page": "00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "generated-float-table-builders.json",
+ "rows": [
+  {
+   "fn": "004C2040",
+   "text": "zeroes `0xc20` bytes at `rcx` with `memset` (`00861EC0`) and stores immediates: dwords `+8` = `0x3000000`, `+0xc` = `0x2000000`, `+0x18` = `0x1000404`, `+0x1c` = `0x6cbc0000`, `+0x20` and `+0x24` = `0x44fa0000`, `+0x28` and `+0x2c` = `0x45000000`, `+0x30` and `+0x34` = `0x457fa000`, `+0x38` = `0x3f800000`, `+0x4c` = `0x8000`, `+0xbb0` = 1, `+0xbb4` = `0x10000000`, `+0xbc8` = 6, `+0xbd0` = `0x8000`, `+0xbd4` = `0x902a4000`, `+0xbd8` = `0x24242412`, `+0xbdc` = 4, `+0xbec` = `0x50000002`, `+0xbf0` = `0x8001`, `+0xbf4` = `0x10000000`, `+0xc10` = `0x15000000` and `+0xc1c` = 0, and qwords `+0xbb8` = `0xe`, `+0xbf8` = `0xe`, `+0xc00` = 0, `+0xc08` = 8 and `+0xc14` = `0x13000000`; returns 0",
+   "anchors": [
+    [
+     "004C2051",
+     "call"
+    ],
+    [
+     "004C2056",
+     "mov"
+    ],
+    [
+     "004C20AC",
+     "mov"
+    ],
+    [
+     "004C20DF",
+     "mov"
+    ],
+    [
+     "004C2148",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004DF360",
+   "text": "loads the 16-byte cell at `02064E30` + word `[02064DD0]`*16 into `02064C60` and, with `c` = the cell at word `[02064DB0]`, stores word `02064DB8` + `0x8000` (zero-extended) to dword `[c]` and the loaded cell's bytes `+4`..`+0xf` to `c+4`; it stores `w` = word `02064B0C` to word `02064DB8` and `w`+`0x352` to word `02064DB4`, replaced by `w`+`0x2bc` unless `w` equals word `02064DB0` minus `0x2bc`; it calls `rcx(c, rdx, 0)`, then stores word `02064B0C` plus word `02064DB4` to word `02064DB0` and that plus 1 to word `02064DB4`",
+   "anchors": [
+    [
+     "004DF386",
+     "movups"
+    ],
+    [
+     "004DF3B6",
+     "mov"
+    ],
+    [
+     "004DF3FC",
+     "je"
+    ],
+    [
+     "004DF410",
+     "call"
+    ],
+    [
+     "004DF424",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "004825F0",
+   "why": [
+    "sentence over 1200 chars"
+   ]
+  },
+  {
+   "fn": "004B0CF0",
+   "why": [
+    "names 004825F0, not in its listing"
+   ]
+  },
+  {
+   "fn": "004B1190",
+   "why": [
+    "names 02064A00, not in its listing",
+    "names 02064DFF, not in its listing"
+   ]
+  },
+  {
+   "fn": "004C8320",
+   "why": [
+    "sentence over 1200 chars",
+    "names 02064DFF, not in its listing"
+   ]
+  },
+  {
+   "fn": "004E31E0",
+   "why": [
+    "names 02064DFF, not in its listing"
+   ]
+  },
+  {
+   "fn": "004E7D90",
+   "why": [
+    "names 02064DFF, not in its listing"
+   ]
+  },
+  {
+   "fn": "004F7070",
+   "why": [
+    "names 02064DFF, not in its listing",
+    "names 02064A00, not in its listing"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

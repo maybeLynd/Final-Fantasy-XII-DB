@@ -30,7 +30,13 @@
      "jmp"
     ]
    ]
-  },
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "moved": [
   {
    "fn": "001DE180",
    "entered_from": "`001DE5D0` + 0x720",
@@ -56,11 +62,12 @@
      "001DE1ED",
      "jmp"
     ]
-   ]
+   ],
+   "moved_to": "19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-arm-catalogue-slice-a-ids-12-43-1002/REVIEW.md"
   }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": []
+ ]
 }

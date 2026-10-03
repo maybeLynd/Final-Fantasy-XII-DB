@@ -1,0 +1,97 @@
+{
+  "_what": "Machine-readable supersession index (user's improvement addendum section 15; FABLE, 2026-10-03). Artifacts that a reader could mistake for current state, labelled WITHOUT editing them. check_lifecycle_consumers.py refuses a current entry point (database README, TEAM.md) that links one of these paths on a line that does not also carry its label. Rules: CONTEXT-MAINTENANCE.md sections 1 and 4.",
+  "version": "2026-10-03.1",
+  "labels": [
+    "CURRENT AUTHORITY",
+    "CURRENT DERIVED",
+    "AS-OF SNAPSHOT",
+    "HISTORICAL CHECKPOINT",
+    "SUPERSEDED CURRENT-STATE VIEW",
+    "SEALED EVIDENCE",
+    "PROPOSAL / NOT ADOPTED"
+  ],
+  "entries": [
+    {
+      "artifact": "GM160 / GN continuation handoff (2026-09-01)",
+      "paths": [
+        "Database/Tools/docs/NEXT_CHAT_HANDOFF_2026-09-01_Gfz9_V121_GM160_GN_READ_ONLY_FINAL_160.md",
+        "Database/GFZ_V121_GM160_GN_READ_ONLY_FINAL_160_NEXT_CHAT_HANDOFF_2026-09-01.zip",
+        "Database/Tools/docs/GFZ_V121_CONTINUATION_REQUIREMENTS_2026-09-01.md",
+        "Database/Tools/docs/GFZ_HANDOFF_BUILD_STANDARD_2026-09-01.md",
+        "Database/Tools/docs/V121_HANDOFF_PACKAGE_SEAL_2026-09-01.json"
+      ],
+      "status": "HISTORICAL CHECKPOINT",
+      "superseded_by": "each identity's Resume state block; _index/PROGRAM-STATE.md; TEAM.md 'Starting or resuming'",
+      "reason": "the frontier advanced through the certified GN162 parent and the database phase that followed",
+      "preserve_as_evidence": true
+    },
+    {
+      "artifact": "GM160 recovery-transfer package (2026-08-30/31)",
+      "paths": [
+        "Database/Tools/docs/source_context/original_gm160_package/"
+      ],
+      "status": "HISTORICAL CHECKPOINT",
+      "superseded_by": "the certified GN162 parent",
+      "reason": "earlier lineage, kept as provenance",
+      "preserve_as_evidence": true
+    },
+    {
+      "artifact": "EXTERNAL-CONTINUATION.md, titled 'current handoff' (SECTION-12, 2026-09-24/25)",
+      "paths": [
+        "Database/FFXII TZA/_index/_inbox/EXTERNAL-CONTINUATION.md"
+      ],
+      "status": "SUPERSEDED CURRENT-STATE VIEW",
+      "superseded_by": "each identity's Resume state block; TEAM.json",
+      "reason": "SECTION-12 was accepted by a non-author review on 2026-09-29; the file still calls itself the current handoff",
+      "preserve_as_evidence": true
+    },
+    {
+      "artifact": "2026-09-28 migration ZIP start file START-HERE.md",
+      "paths": [
+        "Database/FFXII TZA/_index/workflow/START-HERE.md"
+      ],
+      "status": "HISTORICAL CHECKPOINT",
+      "superseded_by": "_index/workflow/COMPLETION-WORKFLOW.md (adopted) and TEAM.md 'Starting or resuming'",
+      "reason": "it instructs the installation of the migration, which is done; ALL-TOP-LEVEL-GOALS.md beside it is NOT superseded (it holds the agents' goal texts, governing per TEAM.md)",
+      "preserve_as_evidence": true
+    },
+    {
+      "artifact": "TEAM.md 'Exact starting instructions' (2026-09-13 first claims)",
+      "paths": [
+        "Database/FFXII TZA/_index/_inbox/TEAM.md#exact-starting-instructions"
+      ],
+      "status": "HISTORICAL CHECKPOINT",
+      "superseded_by": "TEAM.md 'Starting or resuming'",
+      "reason": "the named packages (EE-2, EH-3, ASTRA-RT1) are long finished; labelled in place",
+      "preserve_as_evidence": true
+    },
+    {
+      "artifact": "RECONSTRUCTION-READINESS-GATE.md as the programme endpoint",
+      "paths": [],
+      "status": "SUPERSEDED CURRENT-STATE VIEW",
+      "superseded_by": "goal_gate.py (L1+L2) then user authorization (RECONSTRUCTION-CHARTER.md section 0)",
+      "reason": "endpoint replaced 2026-09-12 (TEAM.md); the gate remains a valid instrument",
+      "preserve_as_evidence": true,
+      "note": "no link check: the gate remains a valid instrument and is correctly linked as one; only its endpoint role is superseded"
+    },
+    {
+      "artifact": "GN161 residual list",
+      "paths": [
+        "Database/FFXII TZA/99-Unresolved-Residual/residual-30-GN161.tsv",
+        "Database/FFXII TZA/99-Unresolved-Residual/residual-30-GN161-stage1.tsv"
+      ],
+      "status": "SEALED EVIDENCE",
+      "superseded_by": "the certified GN162 parent (0 residual, sealed 2026-09-16)",
+      "reason": "the 30 rows were applied and re-certified",
+      "preserve_as_evidence": true
+    },
+    {
+      "artifact": "user-supplied knowledge.sqlite snapshots (built 2026-09-25 / 2026-09-26)",
+      "paths": [],
+      "status": "AS-OF SNAPSHOT",
+      "superseded_by": "_index/knowledge.sqlite when knowledge_db.py check reports CURRENT (rebuilt pinned to HEAD at 8c22cbe8f)",
+      "reason": "a newer ZIP name is not freshness",
+      "preserve_as_evidence": true
+    }
+  ]
+}

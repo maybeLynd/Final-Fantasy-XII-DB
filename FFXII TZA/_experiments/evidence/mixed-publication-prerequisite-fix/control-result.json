@@ -1,0 +1,40 @@
+{
+  "status": "ACTUAL_MIXED_PREREQUISITE_PATH_CONTROLS_PASS",
+  "cases": [
+    {
+      "id": "actual-mixed-science-owner",
+      "expected": "BEFORE_GIT",
+      "observed": "BEFORE_GIT",
+      "diagnostic": "typed guard and immutable path checks passed; stopped before Git"
+    },
+    {
+      "id": "empty-required-qualifications",
+      "expected": "REFUSED_BEFORE_GIT",
+      "observed": "REFUSED_BEFORE_GIT",
+      "diagnostic": "missing/empty/stale publication prerequisite"
+    },
+    {
+      "id": "missing-scientific-source-check",
+      "expected": "REFUSED_BEFORE_GIT",
+      "observed": "REFUSED_BEFORE_GIT",
+      "diagnostic": "saved prerequisite disagrees with current actual checker: ov42-gauge-callback-binding"
+    },
+    {
+      "id": "owner-falsely-labelled-scientific",
+      "expected": "REFUSED_BEFORE_GIT",
+      "observed": "REFUSED_BEFORE_GIT",
+      "diagnostic": "saved prerequisite disagrees with current actual checker: astra-queue-reconciliation-checkpoint77"
+    },
+    {
+      "id": "partial-owner-falsely-labelled-complete",
+      "expected": "REFUSED_BEFORE_GIT",
+      "observed": "REFUSED_BEFORE_GIT",
+      "diagnostic": "saved prerequisite disagrees with current actual checker: astra-queue-reconciliation-checkpoint77"
+    }
+  ],
+  "delivery_sha256": "3e8c50825913535a944bd358077c942233f7f949f50b09ea665a5f5b3dde7b49",
+  "publisher_source_sha256": "eb288544f19601871b6ac381f11b315114d871c5fb8a2ef2f72bf38e400786be",
+  "controller_sha256": "05b4b3db1024591143bc7d61fae970441a6cb197173275fc64277787c6fd3a69",
+  "prepared_qualification_sha256": "274a2e50b2387ad1236acd5328e0d41fdb5ffabf0f355eb63c7341bc9cf2b233",
+  "limits": "Virtual qualification input mutations on actual owned prepared path; Git command intercepted before invocation. No board/files/Git publication/FF12 execution. Administrative owner history never becomes scientific closure; independent procedure review remains required."
+}

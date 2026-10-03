@@ -1,0 +1,91 @@
+{
+ "page": "99-Unresolved-Residual/drawing-one-coloured-rectangle.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "001B0190",
+   "text": "calls `001B2000(rcx)` and returns when dword `+0x3928` is negative; otherwise for `i` from 0 to that dword inclusive (signed) it calls `0016D6A0(1)` and takes `b` = `001FBB40(001A1470(qword 01F7F4C0, 0x238))`, and for `i` up to 0x3F (unsigned), with record `r` = `rcx+0x2328` + `i`*0x58: calls `b`'s slot `+0x90` with (qword `r+0x40` - qword `r+0x38`) / 0x30; when qword `[r]` is non-null slots `+0x48`(qword `[r]`) and `+0x70`(qword `r+8`) and copies dwords `r+0x2c`/`+0x30` to `rcx+0x3930`/`+0x3934`, else slot `+0x68(rcx+0x3930)`; then slots `+0x78(r+0x10, those two dwords)` and `+0x88(rcx+0x3930)`, slot `+0x80` for each 0x30-byte entry from qword `r+0x38` to qword `r+0x40`, and slot `+0xa0` with the identity matrix from `008C5F80`..`008C5FD0`; calls `001FB840` and `001FB810(.., 0x20)` on a stack local, and resets qword `r+0x40` to `r+0x38`, qword `[r]` to 0 and dwords `r+0x2c`/`+0x30` to 1; after the loop it calls `001B0100(rcx)`",
+   "anchors": [
+    [
+     "001B01C4",
+     "js"
+    ],
+    [
+     "001B01F8",
+     "call"
+    ],
+    [
+     "001B0270",
+     "call"
+    ],
+    [
+     "001B0357",
+     "call"
+    ],
+    [
+     "001B0398",
+     "jle"
+    ]
+   ]
+  },
+  {
+   "fn": "002BC9C0",
+   "text": "dispatches on dword `[rdx]`: 1 stores `002BA1F0` at qword `+8` when `rcx` is non-null, calls `00247570(rcx, 00916C00)` and, when `rcx` is non-null, stores the low word of dword `01E0C1D8` (0x200) at `+0x9c`, 0 at dword `+0x98` and the low word of dword `01E0C1DC` (0x1C0) at `+0x9e`; 4 calls `00403F00(qword +0x38, rcx+0x98, qword +0xc0, 1.0)` (1.0 `01CEBBA8` in `xmm3`) when qword `+0xc0` is non-null; 0xE does nothing; these return 0, and any other value tail-jumps to `005C5230(rcx)`",
+   "anchors": [
+    [
+     "002BC9CE",
+     "je"
+    ],
+    [
+     "002BCA06",
+     "call"
+    ],
+    [
+     "002BCA1F",
+     "mov"
+    ],
+    [
+     "002BCA2D",
+     "call"
+    ],
+    [
+     "002BCA45",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002DD3C0",
+   "text": "with `o` = `rcx` and `p` = qword `[o+8]`, zeroes dwords `p+8` and `p+0xc`, calls `0016D6A0(&t, (dword [o+0x10] - low dword of p - 0x10) >> 4)` (unsigned) on a stack copy `t` of `p`, adds (`t`'s low dword after that call - dword `[o+8]`, as 32 bits) AND `0xFFFFFFFFFFFFFFF0` to qword `+8` of qword `[o]`, and calls `003A1DB0` with that masked value in `rcx` and qword `[o]` in `rdx`",
+   "anchors": [
+    [
+     "002DD3DC",
+     "mov"
+    ],
+    [
+     "002DD3E4",
+     "shr"
+    ],
+    [
+     "002DD3EF",
+     "call"
+    ],
+    [
+     "002DD402",
+     "add"
+    ],
+    [
+     "002DD406",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "002986E0",
+   "why": "2468-byte body; deferred to a slower read"
+  }
+ ],
+ "notes": "drafted by OPUS itself"
+}

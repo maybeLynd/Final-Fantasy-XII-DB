@@ -1,21 +1,21 @@
-# members the image refuses for this family's per-member form - no row; check verifies each is still refused
+# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for this family's per-member form (check verifies each is still refused)
 entry	reason
-00867660	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-00867C40	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-008684F0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-00868BF0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-00868D00	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-00869510	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-00869CE0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-00869D80	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086DFD0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086DFF0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E010	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E030	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E050	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E070	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E3D0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E3F0	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E410	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E430	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
-0086E450	called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00867660	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00867C40	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+008684F0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00868BF0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00868D00	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00869510	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00869CE0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+00869D80	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086DFD0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086DFF0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E010	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E030	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E050	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E070	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E3D0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E3F0	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E410	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E430	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour
+0086E450	skip: called from 00875E10 (another layer); citing it pulls that caller edge into this page as an unaccounted pass-22 neighbour

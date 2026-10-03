@@ -3,7 +3,12 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_01B5JAqPgewUFviUD5ZfpMqA",
  "report": "home-contract-world-simulation-tick.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "moved": [
   {
    "fn": "002DEF20",
    "entered_from": "`00332C40` + 0x320",
@@ -21,7 +26,12 @@
      "002DEF2C",
      "jmp"
     ]
-   ]
+   ],
+   "moved_to": "18-Audio/the-spatial-audio-object-model.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-world-simulation-tick-1002/REVIEW.md"
   },
   {
    "fn": "002DF1A0",
@@ -44,11 +54,12 @@
      "002DF1CE",
      "call"
     ]
-   ]
+   ],
+   "moved_to": "18-Audio/the-spatial-audio-object-model.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-world-simulation-tick-1002/REVIEW.md"
   }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": []
+ ]
 }

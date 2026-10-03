@@ -1,0 +1,189 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-ptext-module-1.json",
+ "rows": [
+  {
+   "fn": "0067CC20",
+   "text": "for the (dword count, qword pointer) pairs at `+0x20`/`+0x28` and then `+0x10`/`+0x18` of `rcx`: calls `00584730(pointer)` when bit `0x80000000` of the count is clear and the pointer is non-null, then zeroes the pointer and the count",
+   "anchors": [
+    [
+     "0067CC3A",
+     "shr"
+    ],
+    [
+     "0067CC4C",
+     "call"
+    ],
+    [
+     "0067CC58",
+     "mov"
+    ],
+    [
+     "0067CC70",
+     "call"
+    ],
+    [
+     "0067CC7A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0067CE70",
+   "text": "returns 0 when `ecx` is 0; otherwise it allocates `p` = `0017D260(ecx*0x30, 4)` and, when `p` is non-null, copies `ecx` 0x30-byte elements from `rdx` into it (three 16-byte moves each); returns `p` (0 when the allocation failed)",
+   "anchors": [
+    [
+     "0067CE97",
+     "call"
+    ],
+    [
+     "0067CEBC",
+     "movups"
+    ],
+    [
+     "0067CECA",
+     "movups"
+    ],
+    [
+     "0067CED6",
+     "sub"
+    ],
+    [
+     "0067CEDC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0067CF00",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x30, 4)` is null; otherwise it copies `r8d` 0x30-byte elements from `rdx` into `p` and initialises the remaining `ecx` - `r8d` elements with dword `+0`, the five qwords from `+4` and byte `+0x2C` all zero, and returns `p`",
+   "anchors": [
+    [
+     "0067CF31",
+     "call"
+    ],
+    [
+     "0067CF5F",
+     "movups"
+    ],
+    [
+     "0067CF7C",
+     "sub"
+    ],
+    [
+     "0067CF9A",
+     "mov"
+    ],
+    [
+     "0067CFA4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0067CFE0",
+   "text": "calls `006388C0(02E3FA60)`, then each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`, with `008092FC` before and `0080929C` after the one-time body, which also registers an exit routine with `00808B90`) registers fields of `02E3FA60`: `m_fontSize`, `m_isSDF`, `m_lineSpacing` and `m_baselineOffset` through `00632960(record, 02E3FA60, type, name, n, 0x10, 0, 0)` (records `02E3FEF0`/`02E3FF50`/`02E3FFB0`/`02E40010`, `n` = 4/0/8/0xC, types from `00630180`/`00630490`/`006301F0`/`006301F0`); `m_characterInfo` and `m_kerningInfo` through `00632A10(record, 02E3FA60, type, name, 0x10 or 0x20, 0, 3, 4)` with types `0067D810(0)` and `00668E10(0)`, storing `00D6D988` to qword `02E40070` and `00D69508` to qword `02E400E0`, after unguarded calls `0067D810(qword 01F2EAB8)`, `00630110()` and `00668E10(qword 01F2EAC0)`; it sets bit `0x10` of dwords `02E40098` and `02E40108`; `m_bitmapFontTexture` goes through `00632960(02E40150, 02E3FA60, 02CBB900, name, 0x30, 0x12, 0, 0)`; it then tail-jumps to `00639450(02E3FA60)`",
+   "anchors": [
+    [
+     "0067CFFB",
+     "call"
+    ],
+    [
+     "0067D072",
+     "call"
+    ],
+    [
+     "0067D24B",
+     "call"
+    ],
+    [
+     "0067D277",
+     "or"
+    ],
+    [
+     "0067D370",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067D3B0",
+   "text": "calls `006388C0(02E3F960)`, then each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`, with `008092FC` before and `0080929C` after the one-time body, which also registers an exit routine with `00808B90`) registers fields of `02E3F960`: `m_characterCode`, `m_kernPairs`, `m_kernOffset` (`n` = 0/4/8, type `00630110()`), `m_width` and `m_height` (`n` = 0x14/0x18, type `006301F0()`) and `m_rotated` (`n` = 0x2C, type `00630490()`) through `00632960(record, 02E3F960, type, name, n, 0x10, 0, 0)`, and `m_uv`, `m_offset` and `m_advance` (`n` = 0xC/0x1C/0x24, type `006301F0()`) through `00632A70(record, 02E3F960, type, name, n, 0, 2)`, setting bit `0x10` of dwords `02E3FCA8`, `02E3FDD8` and `02E3FE48` after the three `00632A70` groups; it then tail-jumps to `00639450(02E3F960)`",
+   "anchors": [
+    [
+     "0067D3CB",
+     "call"
+    ],
+    [
+     "0067D43E",
+     "call"
+    ],
+    [
+     "0067D592",
+     "call"
+    ],
+    [
+     "0067D5B0",
+     "or"
+    ],
+    [
+     "0067D7DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067E250",
+   "text": "returns 0 at once when `edx` equals dword `[rcx]`; otherwise `p` = `0067CF00(edx, qword [rcx+8], min(edx, dword [rcx] AND 0x7FFFFFFF))`, and a null `p` with a non-zero `edx` returns 0xD; else, when the old qword `[rcx+8]` differs from `p`, is non-null and bit `0x80000000` of dword `[rcx]` is clear, it calls `00584730(old)`; it stores `p` to qword `[rcx+8]` and `edx` to dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "0067E264",
+     "btr"
+    ],
+    [
+     "0067E27D",
+     "call"
+    ],
+    [
+     "0067E28E",
+     "lea"
+    ],
+    [
+     "0067E2BA",
+     "call"
+    ],
+    [
+     "0067E2C3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006CCD60",
+   "text": "calls `0067CFE0()` and then `0067D3B0()`, and returns 0",
+   "anchors": [
+    [
+     "006CCD64",
+     "call"
+    ],
+    [
+     "006CCD69",
+     "call"
+    ],
+    [
+     "006CCD6E",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PText module",
+ "method": "The page declares the family `Phyre PText module` (a classification family: ordinary functions grouped by module, not template copies). No page explained these members. A local drafting agent (local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` (member mode: the body is an unexplained member of a family this page declares). A second local agent, not the drafter, then read every one of the 272 rows of this batch against the disassembly (repetitive destructors, initialisers and clone bodies compared instruction by instruction against a fixed template): 262 stood, 10 clauses in 8 functions were corrected (signed compares written as above/below, one missing dereference, two operand groupings, one pair of per-pair callees). OPUS confirmed each correction at the bytes and re-read a random sample of the rows that stood; the corrections are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

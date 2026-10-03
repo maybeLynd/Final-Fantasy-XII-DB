@@ -16,330 +16,6 @@
    ]
   },
   {
-   "fn": "0044D460",
-   "entered_from": "`002F3BC0` + 0xCA",
-   "text": "calls `0044D460` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044D460` + 0x1B with the original `rcx`, then `0044D460` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x258` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "0044D469",
-     "call"
-    ],
-    [
-     "0044D470",
-     "jne"
-    ],
-    [
-     "0044D47B",
-     "call"
-    ],
-    [
-     "0044D485",
-     "mov"
-    ],
-    [
-     "0044D48B",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "0044ED90",
-   "entered_from": "`002F3BC0` + 0xF1",
-   "text": "calls `0044ED90` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044ED90` + 0x1B with the original `rcx`, then `0044ED90` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "0044ED99",
-     "call"
-    ],
-    [
-     "0044EDA0",
-     "jne"
-    ],
-    [
-     "0044EDAB",
-     "call"
-    ],
-    [
-     "0044EDB5",
-     "mov"
-    ],
-    [
-     "0044EDBB",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "0044F930",
-   "entered_from": "`002F3BC0` + 0xFE",
-   "text": "calls `0044F930` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044F930` + 0x1B with the original `rcx`, then `0044F930` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x454` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "0044F939",
-     "call"
-    ],
-    [
-     "0044F940",
-     "jne"
-    ],
-    [
-     "0044F94B",
-     "call"
-    ],
-    [
-     "0044F955",
-     "mov"
-    ],
-    [
-     "0044F95B",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "00451140",
-   "entered_from": "`002F3BC0` + 0x118",
-   "text": "calls `00451140` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451140` + 0x1B with the original `rcx`, then `00451140` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "00451149",
-     "call"
-    ],
-    [
-     "00451150",
-     "jne"
-    ],
-    [
-     "0045115B",
-     "call"
-    ],
-    [
-     "00451165",
-     "mov"
-    ],
-    [
-     "0045116B",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "00451890",
-   "entered_from": "`002F3BC0` + 0x125",
-   "text": "calls `00451890` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451890` + 0x1B with the original `rcx`, then `00451890` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "00451899",
-     "call"
-    ],
-    [
-     "004518A0",
-     "jne"
-    ],
-    [
-     "004518AB",
-     "call"
-    ],
-    [
-     "004518B5",
-     "mov"
-    ],
-    [
-     "004518BB",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "00453CB0",
-   "entered_from": "`002F3BC0` + 0x14C",
-   "text": "calls `00453CB0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00453CB0` + 0x1B with the original `rcx`, then `00453CB0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "00453CB9",
-     "call"
-    ],
-    [
-     "00453CC0",
-     "jne"
-    ],
-    [
-     "00453CCB",
-     "call"
-    ],
-    [
-     "00453CD5",
-     "mov"
-    ],
-    [
-     "00453CDB",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "004548F0",
-   "entered_from": "`002F3BC0` + 0x159",
-   "text": "calls `004548F0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `004548F0` + 0x1B with the original `rcx`, then `004548F0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
-   "anchors": [
-    [
-     "004548F9",
-     "call"
-    ],
-    [
-     "00454900",
-     "jne"
-    ],
-    [
-     "0045490B",
-     "call"
-    ],
-    [
-     "00454915",
-     "mov"
-    ],
-    [
-     "0045491B",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "0045BF50",
-   "entered_from": "`002F3BC0` + 0x1E8",
-   "text": "calls `0045BF50` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045BF50` + 0x2C and `0045BF50` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045BF50` + 0x45 with the original `rcx` and returns 1",
-   "anchors": [
-    [
-     "0045BF60",
-     "jne"
-    ],
-    [
-     "0045BF72",
-     "mov"
-    ],
-    [
-     "0045BF81",
-     "mov"
-    ],
-    [
-     "0045BF8F",
-     "mov"
-    ],
-    [
-     "0045BF95",
-     "call"
-    ]
-   ]
-  },
-  {
-   "fn": "0045C920",
-   "entered_from": "`002F3BC0` + 0x1F5",
-   "text": "calls `0045C920` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045C920` + 0x2C and `0045C920` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045C920` + 0x45 with the original `rcx` and returns 1",
-   "anchors": [
-    [
-     "0045C930",
-     "jne"
-    ],
-    [
-     "0045C942",
-     "mov"
-    ],
-    [
-     "0045C951",
-     "mov"
-    ],
-    [
-     "0045C95F",
-     "mov"
-    ],
-    [
-     "0045C965",
-     "call"
-    ]
-   ]
-  },
-  {
-   "fn": "0045D290",
-   "entered_from": "`002F3BC0` + 0x202",
-   "text": "calls `0045D290` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045D290` + 0x2C and `0045D290` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045D290` + 0x45 with the original `rcx` and returns 1",
-   "anchors": [
-    [
-     "0045D2A0",
-     "jne"
-    ],
-    [
-     "0045D2B2",
-     "mov"
-    ],
-    [
-     "0045D2C1",
-     "mov"
-    ],
-    [
-     "0045D2CF",
-     "mov"
-    ],
-    [
-     "0045D2D5",
-     "call"
-    ]
-   ]
-  },
-  {
-   "fn": "0045DCA0",
-   "entered_from": "`002F3BC0` + 0x20C",
-   "text": "calls `0045DCA0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045DCA0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045DCA0` + 0x3A, `0045DCA0` + 0x45 and `0045DCA0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045DCA0` + 0x5E with the original `rcx` and returns 1",
-   "anchors": [
-    [
-     "0045DCB0",
-     "jne"
-    ],
-    [
-     "0045DCC6",
-     "call"
-    ],
-    [
-     "0045DCD0",
-     "mov"
-    ],
-    [
-     "0045DCF8",
-     "mov"
-    ],
-    [
-     "0045DCFE",
-     "call"
-    ]
-   ]
-  },
-  {
-   "fn": "0045E8C0",
-   "entered_from": "`002F3BC0` + 0x216",
-   "text": "calls `0045E8C0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045E8C0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045E8C0` + 0x3A, `0045E8C0` + 0x45 and `0045E8C0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045E8C0` + 0x5E with the original `rcx` and returns 1",
-   "anchors": [
-    [
-     "0045E8D0",
-     "jne"
-    ],
-    [
-     "0045E8E6",
-     "call"
-    ],
-    [
-     "0045E8F0",
-     "mov"
-    ],
-    [
-     "0045E918",
-     "mov"
-    ],
-    [
-     "0045E91E",
-     "call"
-    ]
-   ]
-  },
-  {
    "fn": "004CF230",
    "entered_from": "`004C8320` + 0x396A",
    "text": "writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing",
@@ -424,5 +100,391 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "0044D460",
+   "entered_from": "`002F3BC0` + 0xCA",
+   "text": "calls `0044D460` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044D460` + 0x1B with the original `rcx`, then `0044D460` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x258` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "0044D469",
+     "call"
+    ],
+    [
+     "0044D470",
+     "jne"
+    ],
+    [
+     "0044D47B",
+     "call"
+    ],
+    [
+     "0044D485",
+     "mov"
+    ],
+    [
+     "0044D48B",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0044ED90",
+   "entered_from": "`002F3BC0` + 0xF1",
+   "text": "calls `0044ED90` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044ED90` + 0x1B with the original `rcx`, then `0044ED90` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "0044ED99",
+     "call"
+    ],
+    [
+     "0044EDA0",
+     "jne"
+    ],
+    [
+     "0044EDAB",
+     "call"
+    ],
+    [
+     "0044EDB5",
+     "mov"
+    ],
+    [
+     "0044EDBB",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0044F930",
+   "entered_from": "`002F3BC0` + 0xFE",
+   "text": "calls `0044F930` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044F930` + 0x1B with the original `rcx`, then `0044F930` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x454` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "0044F939",
+     "call"
+    ],
+    [
+     "0044F940",
+     "jne"
+    ],
+    [
+     "0044F94B",
+     "call"
+    ],
+    [
+     "0044F955",
+     "mov"
+    ],
+    [
+     "0044F95B",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "00451140",
+   "entered_from": "`002F3BC0` + 0x118",
+   "text": "calls `00451140` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451140` + 0x1B with the original `rcx`, then `00451140` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "00451149",
+     "call"
+    ],
+    [
+     "00451150",
+     "jne"
+    ],
+    [
+     "0045115B",
+     "call"
+    ],
+    [
+     "00451165",
+     "mov"
+    ],
+    [
+     "0045116B",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "00451890",
+   "entered_from": "`002F3BC0` + 0x125",
+   "text": "calls `00451890` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451890` + 0x1B with the original `rcx`, then `00451890` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "00451899",
+     "call"
+    ],
+    [
+     "004518A0",
+     "jne"
+    ],
+    [
+     "004518AB",
+     "call"
+    ],
+    [
+     "004518B5",
+     "mov"
+    ],
+    [
+     "004518BB",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "00453CB0",
+   "entered_from": "`002F3BC0` + 0x14C",
+   "text": "calls `00453CB0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00453CB0` + 0x1B with the original `rcx`, then `00453CB0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "00453CB9",
+     "call"
+    ],
+    [
+     "00453CC0",
+     "jne"
+    ],
+    [
+     "00453CCB",
+     "call"
+    ],
+    [
+     "00453CD5",
+     "mov"
+    ],
+    [
+     "00453CDB",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "004548F0",
+   "entered_from": "`002F3BC0` + 0x159",
+   "text": "calls `004548F0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `004548F0` + 0x1B with the original `rcx`, then `004548F0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "004548F9",
+     "call"
+    ],
+    [
+     "00454900",
+     "jne"
+    ],
+    [
+     "0045490B",
+     "call"
+    ],
+    [
+     "00454915",
+     "mov"
+    ],
+    [
+     "0045491B",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0045BF50",
+   "entered_from": "`002F3BC0` + 0x1E8",
+   "text": "calls `0045BF50` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045BF50` + 0x2C and `0045BF50` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045BF50` + 0x45 with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045BF60",
+     "jne"
+    ],
+    [
+     "0045BF72",
+     "mov"
+    ],
+    [
+     "0045BF81",
+     "mov"
+    ],
+    [
+     "0045BF8F",
+     "mov"
+    ],
+    [
+     "0045BF95",
+     "call"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0045C920",
+   "entered_from": "`002F3BC0` + 0x1F5",
+   "text": "calls `0045C920` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045C920` + 0x2C and `0045C920` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045C920` + 0x45 with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045C930",
+     "jne"
+    ],
+    [
+     "0045C942",
+     "mov"
+    ],
+    [
+     "0045C951",
+     "mov"
+    ],
+    [
+     "0045C95F",
+     "mov"
+    ],
+    [
+     "0045C965",
+     "call"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0045D290",
+   "entered_from": "`002F3BC0` + 0x202",
+   "text": "calls `0045D290` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045D290` + 0x2C and `0045D290` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045D290` + 0x45 with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045D2A0",
+     "jne"
+    ],
+    [
+     "0045D2B2",
+     "mov"
+    ],
+    [
+     "0045D2C1",
+     "mov"
+    ],
+    [
+     "0045D2CF",
+     "mov"
+    ],
+    [
+     "0045D2D5",
+     "call"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0045DCA0",
+   "entered_from": "`002F3BC0` + 0x20C",
+   "text": "calls `0045DCA0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045DCA0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045DCA0` + 0x3A, `0045DCA0` + 0x45 and `0045DCA0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045DCA0` + 0x5E with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045DCB0",
+     "jne"
+    ],
+    [
+     "0045DCC6",
+     "call"
+    ],
+    [
+     "0045DCD0",
+     "mov"
+    ],
+    [
+     "0045DCF8",
+     "mov"
+    ],
+    [
+     "0045DCFE",
+     "call"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0045E8C0",
+   "entered_from": "`002F3BC0` + 0x216",
+   "text": "calls `0045E8C0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045E8C0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045E8C0` + 0x3A, `0045E8C0` + 0x45 and `0045E8C0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045E8C0` + 0x5E with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045E8D0",
+     "jne"
+    ],
+    [
+     "0045E8E6",
+     "call"
+    ],
+    [
+     "0045E8F0",
+     "mov"
+    ],
+    [
+     "0045E918",
+     "mov"
+    ],
+    [
+     "0045E91E",
+     "call"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  }
+ ]
 }

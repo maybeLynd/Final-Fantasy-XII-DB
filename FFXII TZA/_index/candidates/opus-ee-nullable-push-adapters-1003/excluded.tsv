@@ -1,4 +1,4 @@
-# members the image refuses for this family's per-member form - no row; check verifies each is still refused
+# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for this family's per-member form (check verifies each is still refused)
 entry	reason
 0062EE50	descriptor not named by exactly one class (0)
 0062F110	descriptor not named by exactly one class (0)

@@ -1,0 +1,27 @@
+## Starting or resuming — current authority first (FABLE, 2026-10-03, from the user's context refresh package)
+
+Every identity, on every start or resume, takes its state from **current authority, in this order**. It never takes
+state from a handoff because the handoff is the newest file it found, or the first.
+
+1. **Lifecycle.** Read [`RECONSTRUCTION-CHARTER.md` §0](../../../../RECONSTRUCTION-CHARTER.md#0-project-lifecycle-fable-user-directive-2026-10-02)
+   ([`PROJECT-LIFECYCLE.json`](../workflow/PROJECT-LIFECYCLE.json)). It settles four things:
+   - the current phase is DATABASE and the goal is L1+L2;
+   - L3 is later;
+   - bounded probes are evidence only;
+   - primary reconstruction needs the user's explicit authorization.
+   **No agent infers that authorization from a green table, a pilot count or an old file.**
+2. **Whole-database state.** Read `goal_gate.py` (or the generated [`PROGRESS.md`](../../PROGRESS.md)).
+3. **Your work.** Run `team.py show --agent <ID>` and read your inbox file's **Resume state** block. That block is
+   the identity's only resume point (CLAUDE.md, *What a plain `Continue` means*).
+4. **The roadmap and frontier.** Read [`PROGRAM-STATE.md`](../PROGRAM-STATE.md).
+
+**The startup guard for old handoffs.** A handoff or continuation note that is not your current Resume state block
+is **historical context**. That covers the GM160/GN-era continuation handoffs, dated session logs and the
+*Exact starting instructions* below. Before acting on anything in it:
+- compare its source revision, board revision or parent identity with the current ones above;
+- if the project has moved past it, use its technical evidence but **not its task queue**;
+- if you are unsure, use the board.
+
+An old date alone does not make a handoff stale. A superseded state does. Old handoffs are never rewritten. They are
+labelled where current indexes point to them. The rules are in
+[`CONTEXT-MAINTENANCE.md`](../workflow/CONTEXT-MAINTENANCE.md).

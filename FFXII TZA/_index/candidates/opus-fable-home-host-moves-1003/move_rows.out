@@ -1,0 +1,44 @@
+VERIFY 14 functions, 59 anchors, 9 target pages
+DRY source 001DE180 00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md
+DRY record 001DE180 _index/candidates/fable-home-arm-catalogue-slice-a-ids-12-43-1002
+DRY target 001DE180 19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md
+DRY source 00183260 00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md (section withdrawn)
+DRY record 00183260 _index/candidates/fable-home-arm-catalogue-slice-h-ids-236-267-1002
+DRY target 00183260 00-Engine-Core-Runtime/Application-Root/game-application.md
+DRY source 00273800 11-Party/CONTRACT-the-five-parallel-slot-maps.md (section withdrawn)
+DRY record 00273800 _index/candidates/fable-home-contract-the-five-parallel-slot-maps-1002
+DRY target 00273800 16-UI/the-selection-the-menu-publishes.md
+DRY source 003EBD70 16-UI/CONTRACT-ui-request-router.md
+DRY record 003EBD70 _index/candidates/fable-home-contract-ui-request-router-1002
+DRY target 003EBD70 00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md
+DRY source 002DEF20 00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md
+DRY record 002DEF20 _index/candidates/fable-home-contract-world-simulation-tick-1002
+DRY target 002DEF20 18-Audio/the-spatial-audio-object-model.md
+DRY source 002DF1A0 00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md
+DRY record 002DF1A0 _index/candidates/fable-home-contract-world-simulation-tick-1002
+DRY target 002DF1A0 18-Audio/the-spatial-audio-object-model.md
+DRY source 003A7950 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md
+DRY record 003A7950 _index/candidates/fable-home-gambit-evaluation-and-enmity-1002
+DRY target 003A7950 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+DRY source 003A7A50 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md
+DRY record 003A7A50 _index/candidates/fable-home-gambit-evaluation-and-enmity-1002
+DRY target 003A7A50 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+DRY source 003A7AA0 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md
+DRY record 003A7AA0 _index/candidates/fable-home-gambit-evaluation-and-enmity-1002
+DRY target 003A7AA0 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+DRY source 003A92B0 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md
+DRY record 003A92B0 _index/candidates/fable-home-gambit-evaluation-and-enmity-1002
+DRY target 003A92B0 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+DRY source 00198730 04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md
+DRY record 00198730 _index/candidates/fable-home-the-actor-storage-record-field-map-1002
+DRY target 00198730 00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md
+DRY source 00322950 10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md
+DRY record 00322950 _index/candidates/fable-home-the-status-write-and-its-side-effects-1002
+DRY target 00322950 04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md
+DRY source 002FB250 05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md
+DRY record 002FB250 _index/candidates/fable-home-when-a-group-is-wiped-and-when-it-comes-1002
+DRY target 002FB250 13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md
+DRY source 00363B00 05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md
+DRY record 00363B00 _index/candidates/fable-home-when-a-group-is-wiped-and-when-it-comes-1002
+DRY target 00363B00 00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md
+FAILS 0

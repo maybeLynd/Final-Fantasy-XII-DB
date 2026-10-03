@@ -118,7 +118,10 @@ def _rdata_refs():
 
 def _col_type_name(vt):
     """MSVC x64 RTTI: the complete-object locator before the vtable -> its type descriptor's decorated name."""
-    col = struct.unpack("<Q", R.at(vt - 8, 8))[0]
+    q = R.at(vt - 8, 8) if vt else None
+    if not q:
+        return None              # not inside the image (2026-10-03: the refusal-reason scan reaches such leas)
+    col = struct.unpack("<Q", q)[0]
     b = R.at(col, 16)
     if not b or struct.unpack_from("<I", b, 0)[0] != 1:
         return None
@@ -143,7 +146,7 @@ def _template_arg(decorated):
 def ex_call_class(a):
     """A one-call adapter: the call target is the member's own; the reflected type is the T of every
     PClassDescriptor*<T> vtable holding the member at SPEC['slot'] (all must agree)."""
-    ins = disasm(a, 0x30)
+    ins = _body(a)          # 2026-10-03 (SPEC narrowing): the census extent, not a fixed 0x30 window
     calls = [i for i in ins if i.mnemonic == "call"]
     if len(calls) != 1 or not re.fullmatch(r"0x[0-9a-f]+", calls[0].op_str):
         return None, "form (not exactly one direct call)"
@@ -375,6 +378,8 @@ def ex_descriptor_lea(a):
     L = [j for j in b if j.mnemonic == "lea" and j.op_str.startswith(SPEC["reg"] + ", ")]
     if SPEC.get("same_target_ok") and len(L) > 1 and len({rip_target(j) for j in L}) == 1:
         L = L[:1]          # the same descriptor loaded on each path; the first load is the anchor
+    if SPEC.get("first_lea") and len(L) > 1:
+        L = L[:1]          # later loads are the shared form (stated in the lead); the first is the descriptor
     if len(L) != 1:
         return None, "%d lea %s" % (len(L), SPEC["reg"])
     if L[0].address == a and not SPEC.get("entry_anchor"):
@@ -506,6 +511,29 @@ def ex_accessor_call(a):
 EXTRACT["accessor_call"] = ex_accessor_call
 
 
+def ex_string_static(a):
+    """A static basic_string<char> initialiser: its one `movdqu xmmword ptr [rip + d], xmm0` zeroes the static string
+    object S (the value; no two members initialise the same S), and its one `lea rsi, [L]` loads the literal copied
+    into it (the name, which several members may share)."""
+    b = _body(a)
+    st = [j for j in b if j.mnemonic == "movdqu" and j.op_str.startswith("xmmword ptr [rip")]
+    ls = [j for j in b if j.mnemonic == "lea" and j.op_str.startswith("rsi, [rip")]
+    if len(st) != 1 or len(ls) != 1:
+        return None, "%d object stores, %d literal loads" % (len(st), len(ls))
+    S = rip_target(st[0])
+    L = rip_target(ls[0])
+    text = cstr(L) if L else None
+    if text is None or "|" in text or "`" in text:
+        return None, "literal not a clean string"
+    if st[0].address == a:
+        return None, "the store is the entry instruction"
+    return {"entry": "%08X" % a, "anchor": "%08X" % st[0].address, "mnemonic": "movdqu", "value": "%08X" % S,
+            "name": '"%s" at %08X' % (text, L), "callee": SPEC.get("group", "all")}, None
+
+
+EXTRACT["string_static"] = ex_string_static
+
+
 def ex_static_vtable(a):
     """A static-object registration: the body's first `lea REG, [X]` (SPEC['reg']) names the static object, and the first
     `lea rax, [V]` immediately followed by `mov qword ptr [rip + d], rax` storing into X is its vtable store. V is the
@@ -533,7 +561,19 @@ def ex_static_vtable(a):
                 return None, "pipe in name"
             return {"entry": "%08X" % a, "anchor": "%08X" % j.address, "mnemonic": "lea", "value": "%08X" % V,
                     "name": name, "callee": SPEC.get("group", "all")}, None
-    return None, "no vtable store into the static object"
+    # 2026-10-03 (SPEC narrowing): say which of the two causes refuses the member
+    stored = False
+    for k, j in enumerate(b):
+        if j.mnemonic == "lea" and rip_target(j) and _col_type_name(rip_target(j)):
+            reg = j.op_str.split(",")[0]
+            if any(n.mnemonic == "mov" and n.op_str.startswith("qword ptr [") and n.op_str.endswith(", " + reg)
+                   for n in b[k + 1:k + 12]):
+                stored = True
+                break
+    if stored:
+        return None, ("a vtable is stored, but into an offset inside a lea-loaded record or from a register other than "
+                      "rax, which the checker's store pattern does not match")
+    return None, "no RTTI-located vtable is stored"
 
 
 EXTRACT["static_vtable"] = ex_static_vtable
@@ -550,7 +590,7 @@ def derive_all():
         for r in list(rows):
             if r["entry"] == k:
                 rows.remove(r)
-                bad.append((k, why))
+                bad.append((k, "skip: " + why))
     # 2026-10-03: a value that several members share distinguishes none of them (e.g. the ForType / Concrete
     # deleting-destructor pairs restore the same vtable with identical bodies) - such members get no row
     import collections
@@ -585,7 +625,9 @@ def cmd_derive():
         for r in rows:
             f.write("\t".join(r[c] for c in COLS) + "\n")
     with io.open(os.path.join(HERE, "excluded.tsv"), "w", encoding="utf-8", newline="\n") as f:
-        f.write("# members the image refuses for this family's per-member form - no row; check verifies each is still refused\n")
+        f.write("# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it "
+                "still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for "
+                "this family's per-member form (check verifies each is still refused)\n")
         f.write("entry\treason\n")
         for a, why in bad:
             f.write("%s\t%s\n" % (a, why))
@@ -608,48 +650,125 @@ def cmd_check():
     print("members %d, committed rows %d, declared exclusions %d" % (len(want), len(got), len(excl)))
     full_rows, _full_bad = derive_all()
     derived = {r["entry"]: r for r in full_rows}
+    msgs = compare(want, got, excl, derived)
+    for m in msgs:
+        print(m)
+    fails += len(msgs)
+    rows = read_rows()
+    fails += controls(want, got, excl, derived, rows)
+    fails += skips_check()
+    return finish_check(fails, rows)
+
+
+def compare(want, got, excl, derived):
+    """The one comparison: committed rows against the image's derivation. Returns the failure messages."""
+    out = []
     for a in want:
         k = "%08X" % a
         r = derived.get(k)
         why = None if r else "refused by the derivation"
         if k in excl:
             if r is not None:
-                print("FAIL %s: declared excluded but the image now gives a row" % k); fails += 1
+                out.append("FAIL %s: declared excluded but the image now gives a row" % k)
             continue
         if r is None:
-            print("FAIL %s: image form refused (%s)" % (k, why)); fails += 1; continue
+            out.append("FAIL %s: image form refused (%s)" % (k, why)); continue
         c = got.get(k)
         if c is None:
-            print("FAIL %s: no committed row" % k); fails += 1; continue
+            out.append("FAIL %s: no committed row" % k); continue
         diff = [col for col in COLS if r[col] != c.get(col)]
         if diff:
-            print("FAIL %s: %s differ (image %s, row %s)" % (k, diff, [r[x] for x in diff], [c.get(x) for x in diff]))
-            fails += 1
+            out.append("FAIL %s: %s differ (image %s, row %s)" % (k, diff, [r[x] for x in diff], [c.get(x) for x in diff]))
     for k in set(got) - {"%08X" % a for a in want}:
-        print("FAIL %s: row for a non-member" % k); fails += 1
-    # controls: the comparison must refuse a swapped value and a moved anchor
-    rows = read_rows()
-    if len(rows) >= 2:
-        a0 = rows[0]
-        a1 = next((r for r in rows[1:] if r["value"] != a0["value"]), rows[1])
-        sw = dict(a0, value=a1["value"], name=a1["name"])
-        ok1 = EXTRACT[SPEC["kind"]](int(a0["entry"], 16))[0]["value"] != sw["value"]
-        mv = dict(a0, anchor="%08X" % (int(a0["anchor"], 16) + 1))
-        ok2 = EXTRACT[SPEC["kind"]](int(a0["entry"], 16))[0]["anchor"] != mv["anchor"]
-        print("control swapped-value %s, control moved-anchor %s" % ("refused" if ok1 else "ACCEPTED", "refused" if ok2 else "ACCEPTED"))
-        fails += (not ok1) + (not ok2)
-        if SPEC.get("unique_within") == "callee":
-            # two members sharing a value across groups (pointer / reference template of one class): moving a row to
-            # the other group must be refused, or the group would not distinguish them
-            pair = next(((x, y) for x in rows for y in rows if x is not y and x["value"] == y["value"]
-                         and x["callee"] != y["callee"]), None)
-            if pair:
-                x, y = pair
-                ok3 = EXTRACT[SPEC["kind"]](int(x["entry"], 16))[0]["callee"] != y["callee"]
-                print("control swapped-group %s (%s as %s)" % ("refused" if ok3 else "ACCEPTED", x["entry"], y["callee"]))
-                fails += (not ok3)
-            else:
-                print("control swapped-group: no cross-group pair in the rows")
+        out.append("FAIL %s: row for a non-member" % k)
+    return out
+
+
+def _raw_ref(anchor):
+    """The address an instruction references, decoded from its raw bytes without capstone: E8/E9 rel32, or a
+    ModRM rip-relative operand (mod 00, rm 101) after optional legacy/REX prefixes and a one- or two-byte opcode."""
+    import struct
+    b = R.at(anchor, 16) or b""
+    i = 0
+    while i < len(b) and b[i] in (0x66, 0xF2, 0xF3):
+        i += 1
+    if i < len(b) and 0x40 <= b[i] <= 0x4F:
+        i += 1
+    if i < len(b) and b[i] in (0xE8, 0xE9):
+        return anchor + i + 5 + struct.unpack_from("<i", b, i + 1)[0]
+    if i < len(b) and b[i] == 0x0F:
+        i += 1
+    i += 1                                   # opcode
+    if i >= len(b) or (b[i] & 0xC7) != 0x05:
+        return None
+    return anchor + i + 5 + struct.unpack_from("<i", b, i + 1)[0]
+
+
+def controls(want, got, excl, derived, rows):
+    """Mutated copies of the committed rows must FAIL the same comparison; one value must match its raw bytes."""
+    f = 0
+    if len(rows) < 2:
+        print("controls: fewer than two rows")
+        return 0
+    a0 = rows[0]
+    a1 = next((r for r in rows[1:] if r["value"] != a0["value"]), None)
+    muts = []
+    if a1:
+        g = dict(got)
+        g[a0["entry"]] = dict(a0, value=a1["value"], name=a1["name"])
+        g[a1["entry"]] = dict(a1, value=a0["value"], name=a0["name"])
+        muts.append(("swapped-value", g))
+    g = dict(got)
+    g[a0["entry"]] = dict(a0, anchor="%08X" % (int(a0["anchor"], 16) + 1))
+    muts.append(("moved-anchor", g))
+    if SPEC.get("unique_within") == "callee":
+        pair = next(((x, y) for x in rows for y in rows if x is not y and x["value"] == y["value"]
+                     and x["callee"] != y["callee"]), None)
+        if pair:
+            g = dict(got)
+            g[pair[0]["entry"]] = dict(pair[0], callee=pair[1]["callee"])
+            muts.append(("swapped-group", g))
+    for name, g in muts:
+        n = len(compare(want, g, excl, derived))
+        print("control %s: %s (%d failure(s) from the comparison)" % (name, "refused" if n else "ACCEPTED", n))
+        f += (n == 0)
+    ref = _raw_ref(int(a0["anchor"], 16))
+    # kinds whose value IS the anchor's referenced address (lea target, call target, store target)
+    ref_kinds = {"descriptor_lea", "vtable_lea", "static_vtable", "string_static", "accessor_call", "fetch_call",
+                 "call_class"}
+    if ref is not None and "%08X" % ref == a0["value"]:
+        print("known answer %s: anchor %s references %08X in its raw bytes = committed value" % (a0["entry"], a0["anchor"], ref))
+    elif SPEC["kind"] in ref_kinds:
+        print("known answer %s: FAIL - anchor %s raw bytes reference %s, committed value %s" % (
+            a0["entry"], a0["anchor"], "%08X" % ref if ref is not None else "nothing decodable", a0["value"]))
+        f += 1
+    else:
+        print("known answer: n/a (kind %s: the value is not the anchor's referenced address)" % SPEC["kind"])
+    return f
+
+
+def skips_check():
+    """Declared skips must still derive; with skip_caller, that caller must still call each of them."""
+    sk = SPEC.get("skip", {})
+    if not sk:
+        return 0
+    f = 0
+    caller = SPEC.get("skip_caller")
+    called = set()
+    if caller:
+        called = {int(j.op_str, 16) for j in _body(int(caller, 16))
+                  if j.mnemonic in ("call", "jmp") and re.fullmatch(r"0x[0-9a-f]+", j.op_str)}
+    for k in sk:
+        r, why = EXTRACT[SPEC["kind"]](int(k, 16))
+        if r is None:
+            print("FAIL %s: declared skip no longer derives (%s)" % (k, why)); f += 1
+        if caller and int(k, 16) not in called:
+            print("FAIL %s: skip_caller %s no longer calls it" % (k, caller)); f += 1
+    print("skips: %d re-verified (still derive%s)" % (len(sk), ", called by %s" % caller if caller else ""))
+    return f
+
+
+def finish_check(fails, rows):
     # every anchor strictly inside its member's body (the census extent)
     sys.path.insert(0, KIT)
     import check_dispositions as CD
@@ -728,15 +847,28 @@ def cmd_readme():
            "image. The shared form is stated once in the section's lead, and the lead is the authority for what each "
            "column means." % len(rows), ""]
     if excl:
+        nskip = sum(1 for e in excl if e[1].startswith("skip: "))
         out += ["**No rows: %d members**, each listed with its reason in [`excluded.tsv`](excluded.tsv):" % len(excl)]
         out += ["- %d: %s;" % (n, w) for w, n in reasons.most_common()]
         out[-1] = out[-1].rstrip(";") + "."
-        out += ["", "The checker fails if any of them starts deriving.", ""]
-    out += ["## Verified", "",
+        out += [""]
+        if nskip:
+            out += ["The %d `skip:` members derive and are left without a row by a declared skip in spec.json: `check` "
+                    "re-derives each and requires that it still derives%s." % (
+                        nskip, " and that `%s` still calls it" % SPEC["skip_caller"] if SPEC.get("skip_caller") else "")]
+        if len(excl) > nskip:
+            out += ["The other %d are refused by the image for this family's per-member form, and `check` fails if any "
+                    "of them starts deriving." % (len(excl) - nskip)]
+        out += [""]
+    out += ["## Verified (OPUS)", "",
             "- [`fam_rows.py`](fam_rows.py) `check` re-derives every row from the image and compares it with "
             "[`rows.tsv`](rows.tsv) ([`fam_rows_check.out`](fam_rows_check.out)):"]
     out += ["  - %s" % l for l in chk]
-    out += ["- `fam_rows.py apply` is idempotent: a second run prints ALREADY.",
+    out += ["- The controls pass mutated copies of the committed rows (swapped value, moved anchor and, where groups "
+            "exist, swapped group) through the same comparison and require it to fail; the known-answer line recomputes "
+            "the first row's value from the anchor's raw instruction bytes without capstone.",
+            "- `check` needs an interpreter with capstone and pefile (the analysis venv).",
+            "- `fam_rows.py apply` is idempotent: a second run prints ALREADY.",
             "- Page gates are run per batch before publishing: `nb_page`, `check_links`, `verify_doc_addresses`, "
             "`check_consistency` and `check_self_contradiction --db`.", ""]
     io.open(os.path.join(HERE, "README.md"), "w", encoding="utf-8", newline="\n").write("\n".join(out))

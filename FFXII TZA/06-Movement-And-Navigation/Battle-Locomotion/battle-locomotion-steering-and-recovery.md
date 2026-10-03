@@ -933,3 +933,11 @@ unit-frame `BU+0x160` facing writers are the same field viewed one embed
 out. The only type breaks in the corpus are the `MovementContext+0xE0`,
 `MovementBody+0xE0` and `SecondaryContext+0x138`-entry accesses the raw
 displacement scan also surfaces — none of them are `st`.
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `95d495604`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b4-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00310D30` | 94 B | `00310920` + 0x147 | calls `00310D30` + 0x15 with the incoming registers and returns when it yields null; otherwise, on that returned pointer, calls + 0x33 with the three floats at `rcx+0x0`, `rcx+0x4` and `rcx+0x8` in `xmm1`, `xmm2` and `xmm3`, then calls + 0x3E and + 0x49 each with the incoming float `xmm1` | Interior anchor `00310D45`; Interior anchor `00310D50`; Interior anchor `00310D63`; Interior anchor `00310D6E`; Interior anchor `00310D79` | [the-moment-an-action-is-committed](../../07-Combat-Action/the-moment-an-action-is-committed.md) |

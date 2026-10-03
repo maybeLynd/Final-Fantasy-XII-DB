@@ -51,48 +51,6 @@
    ]
   },
   {
-   "fn": "002FB250",
-   "entered_from": "`00319B10` + 0x17E",
-   "text": "stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns",
-   "anchors": [
-    [
-     "002FB257",
-     "mov"
-    ],
-    [
-     "002FB273",
-     "mov"
-    ],
-    [
-     "002FB28F",
-     "mov"
-    ]
-   ]
-  },
-  {
-   "fn": "00363B00",
-   "entered_from": "`0026C5D0` + 0x174",
-   "text": "stores `cl` into byte `022CBA9A`; when `ecx` is 1 it also copies the 16 bytes at `rdx` to `022CBB10` and the float in `xmm2` to dword `022CBAAC`",
-   "anchors": [
-    [
-     "00363B06",
-     "cmp"
-    ],
-    [
-     "00363B0B",
-     "movaps"
-    ],
-    [
-     "00363B0E",
-     "movdqa"
-    ],
-    [
-     "00363B16",
-     "movss"
-    ]
-   ]
-  },
-  {
    "fn": "003C94A0",
    "entered_from": "`003C8B70` + 0x54B",
    "text": "calls `003C94A0` + 0x4 and, on a non-null result r, returns when dword `[r]` AND 0x8000 is non-zero and tail-jumps (`003C94A0` + 0x3D) with dword `r+8` in `ecx` when dword `r+4` differs from it; when the result is null or those two dwords are equal, stores 0 into dword `+0xC8` of the object at qword `02B47730` when that qword is non-null, and returns",
@@ -123,5 +81,59 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "002FB250",
+   "entered_from": "`00319B10` + 0x17E",
+   "text": "stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns",
+   "anchors": [
+    [
+     "002FB257",
+     "mov"
+    ],
+    [
+     "002FB273",
+     "mov"
+    ],
+    [
+     "002FB28F",
+     "mov"
+    ]
+   ],
+   "moved_to": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-when-a-group-is-wiped-and-when-it-comes-1002/REVIEW.md"
+  },
+  {
+   "fn": "00363B00",
+   "entered_from": "`0026C5D0` + 0x174",
+   "text": "stores `cl` into byte `022CBA9A`; when `ecx` is 1 it also copies the 16 bytes at `rdx` to `022CBB10` and the float in `xmm2` to dword `022CBAAC`",
+   "anchors": [
+    [
+     "00363B06",
+     "cmp"
+    ],
+    [
+     "00363B0B",
+     "movaps"
+    ],
+    [
+     "00363B0E",
+     "movdqa"
+    ],
+    [
+     "00363B16",
+     "movss"
+    ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-when-a-group-is-wiped-and-when-it-comes-1002/REVIEW.md"
+  }
+ ]
 }

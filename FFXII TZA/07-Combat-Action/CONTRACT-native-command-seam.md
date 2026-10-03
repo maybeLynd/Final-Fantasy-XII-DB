@@ -64,7 +64,7 @@ battle unit
 ### The six cross-operation invariants
 
 **CS-1 — ONE intent seam, and it takes RESOLVED identities.** `BattleUnit_IssueCommand` is reached
-through two callers only — the by-focus-handles fan-out and the defeat-cleanup step — and its
+through two callers only — the by-focus-handles fan-out and the defeat-cleanup step (three call sites: `00311B20` at `00311C7B` and `00311CA6`, `003138D0` at `0031395D`) — and its
 arguments are receiver-local focus and `BattleStats` identities, **not raw input and not a target
 search**. *So target resolution happens above the seam, and everything below it sees an already
 decided receiver.*
@@ -75,8 +75,7 @@ decided receiver.*
   `+0x714` = 0 and returns −1. Intent and commit are therefore separated in time, ~~and what carries `+0xBA0` into~~
   ~~the funnel is not read here.~~ *(answered: `BattleUnit_SelectAndCommitNextAction` commits the issued command, `+0xBA0` id and `+0xBB8` handle, at `00305AE4`–`00305B2F`; see Command-And-Action-Seam/native-command-seam.md, E-5 settled 2026-09-12; 2026-10-02, OPUS)*
 - **Its return cannot separate refusal from success.** A status in `0x8800203B` jumps from `00311D72` to
-  `00311DED`, which returns **0** with nothing recorded, the same value as the success path. Only a null stats
-  record, or the `0x80000003` status gate with the field bit clear, returns −2.
+  `00311DED`, which returns **0** with nothing recorded, the same value as the success path. ~~Only a null stats record, or the `0x80000003` status gate with the field bit clear, returns −2.~~ Three cases return −2 (`00311DF1`): a null stats record (`00311D1B`), the `0x80000003` status gate with the field bit clear (`00311D35`), and command `0x113` while the unit's word `+0x714` already holds `0x113` (`00311D40`–`00311D4C`), each with nothing recorded; for command `0x113` over any other `+0x714` it first clears bit `0x1` of word `+0x5AD0` of the record at qword `02EBF190`. OPUS block 351's retained run records the third case (`s20-opus-replay-command-seam/result.json`: return `0xFFFFFFFE`, `+0xBA0` unchanged, no calls). *(corrected 2026-10-03, OPUS, on ASTRA-REQ-OPUS-CS1-RETAINED-DISMISS-REFUSAL-1003)*
 
 **CS-2 — ONE commit funnel, and the three commit fields have no other writer in the battle-unit
 population.** Re-measured image-wide: within the battle-unit bodies, `+0x708`, `+0x710` and `+0x714`

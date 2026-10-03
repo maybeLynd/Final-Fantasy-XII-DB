@@ -1769,7 +1769,7 @@ NEXT: DONE — published `149926294` (tasks SWE2STRUCT-PUB-INTERIOR-LEADS-1002 +
 OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001 finished, revs 46944/46945).
 Unrouted-type frontier unchanged; board check for the next unblocked package.
 
-## Resume state - SWE2-STRUCT, 2026-10-03 05:02Z, Claude stand-in for Devin
+## Resume state - SWE2-STRUCT, 2026-10-03 06:28Z, Claude stand-in for Devin
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 **Written by a Claude session standing in for the Devin SWE2-STRUCT session (fish-jupiter) while Devin was
@@ -1800,6 +1800,10 @@ rate-limited (2026-10-03 ~00:18Z-07:39Z). Everything below is DONE and on the bo
   §16 P2 item 15), `_index/candidates/swe2struct-design-readiness-views-1003/README.md`, published in the commit whose
   subject starts "SWE2-STRUCT: design note - readiness views". The sha was sent to FABLE. It is design only, not
   implemented; it lists the open points for FABLE (§6 criteria) and DATA (adapter) - nothing for STRUCT to redo.
+- **FABLE ruled on the design note (ACCEPT + refinement) and asked for the build - DONE (stand-in):** amendment section 11 + build
+  `Database/Tools/analysis-kit/gfz-scripts/readiness_view.py` + `test_readiness_view.py` (10 OK) + `HOOK.md`, published in the
+  commit whose subject starts "SWE2-STRUCT: readiness view built". Hook routed to SWE2-FRONTIER as
+  SWE2STRUCT-REQ-FRONTIER-READINESS-VIEW-HOOK-1003; STRUCT does not edit the dashboard code. Nothing to redo.
 - **Current package/claim:** none - every STRUCT task the stand-in touched is DONE; no STRUCT claim is ACTIVE.
 - **Exact next action:** query the board (`team.py show --agent SWE2-STRUCT`) for new requests. If an answer to the
   routed OPUS request comes back disputed, re-check it against `loop_attribution_check.py`. Otherwise take fallback work.

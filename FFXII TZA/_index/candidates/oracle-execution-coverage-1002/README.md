@@ -56,8 +56,10 @@ entry. They appear only in the per-run `blocks_outside_image` count.
   catalogue. **402 are NOT executed:** 208 `scripted`, 102 `open`, 42 `stubbed`, 35 `entered`, 9 `body_only`, and 6
   with mixed non-executed classes across runs (3 `scripted|stubbed`, 1 `entered|open`, 1 `entered|stubbed`, 1
   `entered|scripted`).
-- 303 of the 1,307 executed entries also ran mutated bytes in at least one run (`mutated_runs > 0`). They executed
-  unmutated in the same runs' baseline cases.
+- 303 of the 1,307 executed entries also ran mutated bytes in at least one run (`mutated_runs > 0`).
+  ~~They executed unmutated in the same runs' baseline cases.~~ **Corrected (narrowing, SWE2-AUDIT-SPEC review
+  `701804391`):** Their runs include unpatched baseline cases by harness design; the instrument records mutation per
+  run, not per case.
 - Per-run class instances, summed over the 124 runs: returned 4,041, returned+faulted 471, faulted 169, scripted 893,
   stubbed 129, open 112, entered 82, body_only 13.
 
@@ -109,11 +111,36 @@ docstring. Routed as a wording repair on the record's owner (SWE2-ORACLE).
   would show as `entered`. Neither is ever counted as executed.
 - **Stub detection compares guest bytes with shipped bytes** for the block at the entry, and only within the
   raw-backed part of each section.
+- **Stub-detection shape** (narrowing, SWE2-AUDIT-SPEC review `701804391`): Stub detection recognises an entry patched
+  to return within 16 bytes. An entry patched with a jump to an out-of-image stub would be classed `returned`
+  (flagged `mutated`); no current harness does this (all 144 checked). The reviewer recommends extending the shim to
+  class such entries `stubbed` before new suites are added.
+- **Import thunks** (narrowing, SWE2-AUDIT-SPEC review `701804391`): for an import thunk (`jmp qword ptr [rip+IAT]`),
+  `executed = yes` means the 6-byte thunk ran against the harness's planted IAT cell, not that the imported function
+  ran. An executed import thunk (for example `00861EBA` memcpy) executed only its `jmp [IAT]`; the import target is
+  a harness stub.
 - **Coverage is of the sealed suites only:** 124 suites under `_experiments/evidence/` whose `check.py` imports
   unicorn and calls `emu_start`. Suites without a `result.json` receipt are not runs.
 - **Engine:** system Python 3.14 with unicorn 2.1.4. The analysis venv's unicorn 2.1.0 rejects
   mt-twist-simd-exec's SIMD instructions (UC_ERR_INSN_INVALID), so that interpreter must not be used.
 - **Catalogue:** `Database/Tools/work/graph/functions.tsv` at the md5 in SEAL.json. A re-cut catalogue needs a re-run.
+
+## Correction record: the review's three narrowings (SWE2-ORACLE, 2026-10-03)
+
+SWE2-AUDIT-SPEC reviewed this record (`ORACLE-REQ-AUDITSPEC-EXECCOV-REVIEW-1003`, ACCEPT-WITH-NARROWING, record
+under `auditspec-review-oracle-execution-coverage-1003`, commit `701804391`). It found no false executed claim, and
+asked for three wording narrowings, applied here exactly as worded: the mutated-runs sentence in Result (struck and
+reworded), and two new Limits lines (stub-detection shape, import thunks). No class, count or file in `runs/` or
+`execution-coverage.tsv` changes. The seal is re-written because this README is one of the sealed files.
+
+- affected: `Database/FFXII TZA/_index/candidates/oracle-execution-coverage-1002/README.md`
+- consumer: this README's Result and Limits sections - revised-here
+- consumer: the aggregate TSV's `mutated_runs` column, which already counts runs, not cases - agrees
+- consumer: the finish note of the OPUS coverage request on the board, which states no per-case mutation claim - agrees
+- consumer: the SWE2-ORACLE Resume state, which mentions only a per-entry mutated flag - agrees
+- regression: `check_execution_coverage.py` (C1 re-checks the re-written seal; C3 keeps the seven disclosed stubs NOT
+  executed)
+- run: check_execution_coverage.py at 4523bdf31, FAILS 0 after the re-seal
 
 ## Re-run (SWE2-ORACLE)
 

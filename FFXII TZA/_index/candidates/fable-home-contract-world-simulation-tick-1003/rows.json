@@ -1,0 +1,42 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01TiSPB1n4bzRPUs6xFapccb",
+ "report": "home-contract-world-simulation-tick.json",
+ "rows": [],
+ "rejected": [
+  {
+   "fn": "001DBFA0",
+   "reason": "held 2026-10-03 (FABLE): its entered_from caller 002DF1A0 is itself being re-homed to 18-Audio/the-spatial-audio-object-model.md by FABLE-PUB-HOST-MOVES-1003 (SWE2-AUDIT-SPEC host-fit REJECT); re-home this row with its caller on that page",
+   "row": {
+    "fn": "001DBFA0",
+    "entered_from": "`002DF1A0` + 0x2E",
+    "text": "calls `001DBFA0` + 0x1E with no arguments, then calls `001DBFA0` + 0x3A with that result in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d`, the incoming `r8d` in `r9d`, the incoming `r9d` as the fifth (stack) argument and the incoming fifth (stack) argument as the sixth, and returns with that second call's `rax` unchanged",
+    "anchors": [
+     [
+      "001DBFBE",
+      "call"
+     ],
+     [
+      "001DBFC9",
+      "mov"
+     ],
+     [
+      "001DBFD6",
+      "mov"
+     ],
+     [
+      "001DBFDA",
+      "call"
+     ]
+    ]
+   }
+  }
+ ],
+ "skipped": {},
+ "missing": [
+  "002DEF20",
+  "002DF1A0"
+ ],
+ "corrections": []
+}

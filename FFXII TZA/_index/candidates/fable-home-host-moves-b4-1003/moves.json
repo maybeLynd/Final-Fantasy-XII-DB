@@ -1,0 +1,1379 @@
+{
+ "date": "2026-10-03",
+ "by": "FABLE",
+ "target_heading": "## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)",
+ "review_commit": "95d495604",
+ "moves": [
+  {
+   "fn": "0036F510",
+   "source_page": "11-Party/active-party-reserve-and-the-moment-the-leader-changes.md",
+   "source_record": "_index/candidates/fable-home-active-party-reserve-and-the-moment-the-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-active-party-reserve-and-the-moment-the-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "entered_from": "`0022A770` + 0x12F",
+   "source_text": "calls the site `0036F510` + 0x4 with the incoming registers, then tail-jumps at `0036F510` + 0xD with no argument set up between the two, returning what that target returns",
+   "text": "calls the site `0036F510` + 0x4 with the incoming registers, then tail-jumps at `0036F510` + 0xD with no argument set up between the two, returning what that target returns",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0036F514",
+     "call"
+    ],
+    [
+     "0036F51D",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 479,
+     "quote": "### The `0022A770` exclusive subtree — the field frame's helper set"
+    }
+   ]
+  },
+  {
+   "fn": "0044D460",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0xCA",
+   "source_text": "calls `0044D460` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044D460` + 0x1B with the original `rcx`, then `0044D460` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x258` (original `rcx`) and returns 1",
+   "text": "calls `0044D460` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044D460` + 0x1B with the original `rcx`, then `0044D460` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x258` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0044D469",
+     "call"
+    ],
+    [
+     "0044D470",
+     "jne"
+    ],
+    [
+     "0044D47B",
+     "call"
+    ],
+    [
+     "0044D485",
+     "mov"
+    ],
+    [
+     "0044D48B",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0044ED90",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0xF1",
+   "source_text": "calls `0044ED90` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044ED90` + 0x1B with the original `rcx`, then `0044ED90` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "text": "calls `0044ED90` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044ED90` + 0x1B with the original `rcx`, then `0044ED90` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0044ED99",
+     "call"
+    ],
+    [
+     "0044EDA0",
+     "jne"
+    ],
+    [
+     "0044EDAB",
+     "call"
+    ],
+    [
+     "0044EDB5",
+     "mov"
+    ],
+    [
+     "0044EDBB",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0044F930",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0xFE",
+   "source_text": "calls `0044F930` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044F930` + 0x1B with the original `rcx`, then `0044F930` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x454` (original `rcx`) and returns 1",
+   "text": "calls `0044F930` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044F930` + 0x1B with the original `rcx`, then `0044F930` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x454` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0044F939",
+     "call"
+    ],
+    [
+     "0044F940",
+     "jne"
+    ],
+    [
+     "0044F94B",
+     "call"
+    ],
+    [
+     "0044F955",
+     "mov"
+    ],
+    [
+     "0044F95B",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "00451140",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x118",
+   "source_text": "calls `00451140` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451140` + 0x1B with the original `rcx`, then `00451140` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "text": "calls `00451140` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451140` + 0x1B with the original `rcx`, then `00451140` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00451149",
+     "call"
+    ],
+    [
+     "00451150",
+     "jne"
+    ],
+    [
+     "0045115B",
+     "call"
+    ],
+    [
+     "00451165",
+     "mov"
+    ],
+    [
+     "0045116B",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "00451890",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x125",
+   "source_text": "calls `00451890` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451890` + 0x1B with the original `rcx`, then `00451890` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "text": "calls `00451890` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451890` + 0x1B with the original `rcx`, then `00451890` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00451899",
+     "call"
+    ],
+    [
+     "004518A0",
+     "jne"
+    ],
+    [
+     "004518AB",
+     "call"
+    ],
+    [
+     "004518B5",
+     "mov"
+    ],
+    [
+     "004518BB",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "00453CB0",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x14C",
+   "source_text": "calls `00453CB0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00453CB0` + 0x1B with the original `rcx`, then `00453CB0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "text": "calls `00453CB0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00453CB0` + 0x1B with the original `rcx`, then `00453CB0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00453CB9",
+     "call"
+    ],
+    [
+     "00453CC0",
+     "jne"
+    ],
+    [
+     "00453CCB",
+     "call"
+    ],
+    [
+     "00453CD5",
+     "mov"
+    ],
+    [
+     "00453CDB",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "004548F0",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x159",
+   "source_text": "calls `004548F0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `004548F0` + 0x1B with the original `rcx`, then `004548F0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "text": "calls `004548F0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `004548F0` + 0x1B with the original `rcx`, then `004548F0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "004548F9",
+     "call"
+    ],
+    [
+     "00454900",
+     "jne"
+    ],
+    [
+     "0045490B",
+     "call"
+    ],
+    [
+     "00454915",
+     "mov"
+    ],
+    [
+     "0045491B",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0045BF50",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x1E8",
+   "source_text": "calls `0045BF50` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045BF50` + 0x2C and `0045BF50` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045BF50` + 0x45 with the original `rcx` and returns 1",
+   "text": "calls `0045BF50` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045BF50` + 0x2C and `0045BF50` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045BF50` + 0x45 with the original `rcx` and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0045BF60",
+     "jne"
+    ],
+    [
+     "0045BF72",
+     "mov"
+    ],
+    [
+     "0045BF81",
+     "mov"
+    ],
+    [
+     "0045BF8F",
+     "mov"
+    ],
+    [
+     "0045BF95",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0045C920",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x1F5",
+   "source_text": "calls `0045C920` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045C920` + 0x2C and `0045C920` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045C920` + 0x45 with the original `rcx` and returns 1",
+   "text": "calls `0045C920` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045C920` + 0x2C and `0045C920` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045C920` + 0x45 with the original `rcx` and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0045C930",
+     "jne"
+    ],
+    [
+     "0045C942",
+     "mov"
+    ],
+    [
+     "0045C951",
+     "mov"
+    ],
+    [
+     "0045C95F",
+     "mov"
+    ],
+    [
+     "0045C965",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0045D290",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x202",
+   "source_text": "calls `0045D290` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045D290` + 0x2C and `0045D290` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045D290` + 0x45 with the original `rcx` and returns 1",
+   "text": "calls `0045D290` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045D290` + 0x2C and `0045D290` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045D290` + 0x45 with the original `rcx` and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0045D2A0",
+     "jne"
+    ],
+    [
+     "0045D2B2",
+     "mov"
+    ],
+    [
+     "0045D2C1",
+     "mov"
+    ],
+    [
+     "0045D2CF",
+     "mov"
+    ],
+    [
+     "0045D2D5",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0045DCA0",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x20C",
+   "source_text": "calls `0045DCA0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045DCA0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045DCA0` + 0x3A, `0045DCA0` + 0x45 and `0045DCA0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045DCA0` + 0x5E with the original `rcx` and returns 1",
+   "text": "calls `0045DCA0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045DCA0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045DCA0` + 0x3A, `0045DCA0` + 0x45 and `0045DCA0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045DCA0` + 0x5E with the original `rcx` and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0045DCB0",
+     "jne"
+    ],
+    [
+     "0045DCC6",
+     "call"
+    ],
+    [
+     "0045DCD0",
+     "mov"
+    ],
+    [
+     "0045DCF8",
+     "mov"
+    ],
+    [
+     "0045DCFE",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0045E8C0",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`002F3BC0` + 0x216",
+   "source_text": "calls `0045E8C0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045E8C0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045E8C0` + 0x3A, `0045E8C0` + 0x45 and `0045E8C0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045E8C0` + 0x5E with the original `rcx` and returns 1",
+   "text": "calls `0045E8C0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045E8C0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045E8C0` + 0x3A, `0045E8C0` + 0x45 and `0045E8C0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045E8C0` + 0x5E with the original `rcx` and returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0045E8D0",
+     "jne"
+    ],
+    [
+     "0045E8E6",
+     "call"
+    ],
+    [
+     "0045E8F0",
+     "mov"
+    ],
+    [
+     "0045E918",
+     "mov"
+    ],
+    [
+     "0045E91E",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 61,
+     "quote": "`002F3BC0(element)`:"
+    },
+    {
+     "line": 53,
+     "quote": "birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`"
+    }
+   ]
+  },
+  {
+   "fn": "0035D070",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+   "entered_from": "`003C6000` + 0x13",
+   "source_text": "loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work",
+   "text": "loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0035D077",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1670,
+     "quote": "`003C6000` (236 B) is the state-bit driver `002507C0` runs on `02B45A00`"
+    },
+    {
+     "line": 1672,
+     "quote": "Interior anchor `003C6013` (function `003C6000`)."
+    }
+   ]
+  },
+  {
+   "fn": "004CF230",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md",
+   "entered_from": "`004C8320` + 0x396A",
+   "source_text": "writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing",
+   "text": "writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing",
+   "text_edit": null,
+   "anchors": [
+    [
+     "004CF234",
+     "minss"
+    ],
+    [
+     "004CF238",
+     "movss"
+    ],
+    [
+     "004CF241",
+     "comiss"
+    ],
+    [
+     "004CF246",
+     "movss"
+    ],
+    [
+     "004CF24D",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 412,
+     "quote": "functions in the region (`004B1190` 32,136 B, `004C8320`"
+    },
+    {
+     "line": 513,
+     "quote": "`004C8320` 28,422"
+    }
+   ]
+  },
+  {
+   "fn": "00272400",
+   "source_page": "12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md",
+   "source_record": "_index/candidates/fable-home-equipment-slots-and-the-single-stat-reb-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-equipment-slots-and-the-single-stat-reb-1002/REVIEW.md",
+   "target_page": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+   "entered_from": "`0027D740` + 0x149",
+   "source_text": "copies from `rdx` to `rcx` the dword `+0x00`, the bytes `+0x08` to `+0x3F` (three 16-byte `movups` and one qword `movsd`) and the dwords `+0x40` and `+0x44`; then, when dword `rdx+0x40` is above 0 (signed), copies that many qwords from `rdx+0x50` to `rcx+0x50` at stride 8, re-reading the count from `rdx+0x40` on each step; the bytes `+0x04` to `+0x07` and `+0x48` to `+0x4F` are not copied",
+   "text": "copies from `rdx` to `rcx` the dword `+0x00`, the bytes `+0x08` to `+0x3F` (three 16-byte `movups` and one qword `movsd`) and the dwords `+0x40` and `+0x44`; then, when dword `rdx+0x40` is above 0 (signed), copies that many qwords from `rdx+0x50` to `rcx+0x50` at stride 8, re-reading the count from `rdx+0x40` on each step; the bytes `+0x04` to `+0x07` and `+0x48` to `+0x4F` are not copied",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00272406",
+     "mov"
+    ],
+    [
+     "0027240F",
+     "movups"
+    ],
+    [
+     "00272430",
+     "mov"
+    ],
+    [
+     "0027243B",
+     "cmp"
+    ],
+    [
+     "00272456",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 633,
+     "quote": "`0027D740` (interior read 2026-09-17, SWE2-FRONTIER: `00808F10` first at"
+    },
+    {
+     "line": 1198,
+     "quote": "`002727F0` (426 B) is the record clone `0027D740` calls"
+    },
+    {
+     "line": 1202,
+     "quote": "`002729A0` (411 B) is the broadcast `0027D740` calls"
+    }
+   ]
+  },
+  {
+   "fn": "0027C220",
+   "source_page": "12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md",
+   "source_record": "_index/candidates/fable-home-equipment-slots-and-the-single-stat-reb-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-equipment-slots-and-the-single-stat-reb-1002/REVIEW.md",
+   "target_page": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+   "entered_from": "`0027D740` + 0x10E",
+   "source_text": "reads dword `[rcx]`: for 6 to 0xA (signed) it requires bit 1 (mask 2) of byte `rcx+edx*8+0x53` and takes byte `rcx+edx*8+0x54`, and for 0xB it requires bit 0 (mask 1) of byte `rcx+edx*8+0x54` and takes byte `rcx+edx*8+0x56` (`edx` sign-extended); when that byte is positive as a signed byte it passes it in `ecx` to the call at `0027C220` + 0x44 and, when that result is not negative, tail-jumps at `0027C220` + 0x53 with the result in `ecx`; every other path (dword below 6 or above 0xB, bit clear, byte zero or negative, negative result) returns 0",
+   "text": "reads dword `[rcx]`: for 6 to 0xA (signed) it requires bit 1 (mask 2) of byte `rcx+edx*8+0x53` and takes byte `rcx+edx*8+0x54`, and for 0xB it requires bit 0 (mask 1) of byte `rcx+edx*8+0x54` and takes byte `rcx+edx*8+0x56` (`edx` sign-extended); when that byte is positive as a signed byte it passes it in `ecx` to the call at `0027C220` + 0x44 and, when that result is not negative, tail-jumps at `0027C220` + 0x53 with the result in `ecx`; every other path (dword below 6 or above 0xB, bit clear, byte zero or negative, negative result) returns 0",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0027C226",
+     "cmp"
+    ],
+    [
+     "0027C238",
+     "test"
+    ],
+    [
+     "0027C24C",
+     "test"
+    ],
+    [
+     "0027C264",
+     "call"
+    ],
+    [
+     "0027C273",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 633,
+     "quote": "`0027D740` (interior read 2026-09-17, SWE2-FRONTIER: `00808F10` first at"
+    },
+    {
+     "line": 1198,
+     "quote": "`002727F0` (426 B) is the record clone `0027D740` calls"
+    },
+    {
+     "line": 1202,
+     "quote": "`002729A0` (411 B) is the broadcast `0027D740` calls"
+    }
+   ]
+  },
+  {
+   "fn": "001941F0",
+   "source_page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+   "source_record": "_index/candidates/fable-home-keymap-ini-file-format-and-default-cont-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-keymap-ini-file-format-and-default-cont-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+   "entered_from": "`00189CE0` + 0x1CF",
+   "source_text": "copies the 64 bytes at `rdx` (four 16-byte loads) to `rcx+0x440` through `rcx+0x47F`, then stores the float `xmm2` at dword `+0x480`, the float `xmm3` at `+0x484` and the float fifth (stack) argument at `+0x488`",
+   "text": "copies the 64 bytes at `rdx` (four 16-byte loads) to `rcx+0x440` through `rcx+0x47F`, then stores the float `xmm2` at dword `+0x480`, the float `xmm3` at `+0x484` and the float fifth (stack) argument at `+0x488`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "001941F3",
+     "movups"
+    ],
+    [
+     "0019421A",
+     "movups"
+    ],
+    [
+     "00194221",
+     "movss"
+    ],
+    [
+     "00194229",
+     "movss"
+    ],
+    [
+     "00194231",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 530,
+     "quote": "different update bodies (`00189CE0`, 1,083 B"
+    },
+    {
+     "line": 2282,
+     "quote": "`001AC950` (722 B) is the worker the renderer update `00189CE0` calls"
+    }
+   ]
+  },
+  {
+   "fn": "00194490",
+   "source_page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+   "source_record": "_index/candidates/fable-home-keymap-ini-file-format-and-default-cont-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-keymap-ini-file-format-and-default-cont-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+   "entered_from": "`00189CE0` + 0x405",
+   "source_text": "stores the float `xmm2` at dword `rcx+0x128` and `edx` at dword `+0x124`; when `r9` is non-null, also copies the qword at `r9` to `+0x12C` and the dword at `r9+8` to `+0x134`",
+   "text": "stores the float `xmm2` at dword `rcx+0x128` and `edx` at dword `+0x124`; when `r9` is non-null, also copies the qword at `r9` to `+0x12C` and the dword at `r9+8` to `+0x134`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00194498",
+     "mov"
+    ],
+    [
+     "0019449E",
+     "test"
+    ],
+    [
+     "001944A8",
+     "movsd"
+    ],
+    [
+     "001944B4",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 530,
+     "quote": "different update bodies (`00189CE0`, 1,083 B"
+    },
+    {
+     "line": 2282,
+     "quote": "`001AC950` (722 B) is the worker the renderer update `00189CE0` calls"
+    }
+   ]
+  },
+  {
+   "fn": "00285FE0",
+   "source_page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+   "source_record": "_index/candidates/fable-home-keymap-ini-file-format-and-default-cont-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-keymap-ini-file-format-and-default-cont-1002/REVIEW.md",
+   "target_page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md",
+   "entered_from": "`002B5C90` + 0x38",
+   "source_text": "maps `ecx` to a return value: 1 returns 8, 2 returns 7, and any other value returns 9",
+   "text": "maps `ecx` to a return value: 1 returns 8, 2 returns 7, and any other value returns 9",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00285FE3",
+     "je"
+    ],
+    [
+     "00285FE8",
+     "jne"
+    ],
+    [
+     "00285FEA",
+     "lea"
+    ],
+    [
+     "00285FEE",
+     "mov"
+    ],
+    [
+     "00285FF4",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 192,
+     "quote": "All three are read by one body, `002B5C90`"
+    },
+    {
+     "line": 613,
+     "quote": "| `002B5C90` | reads the `+0x400` table and the three pointer slots (§3a, §3c) |"
+    }
+   ]
+  },
+  {
+   "fn": "00314820",
+   "source_page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+   "source_record": "_index/candidates/fable-home-keymap-ini-file-format-and-default-cont-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-keymap-ini-file-format-and-default-cont-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "entered_from": "`0022A770` + 0x1D8",
+   "source_text": "calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result",
+   "text": "calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00314824",
+     "call"
+    ],
+    [
+     "0031482D",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 2579,
+     "quote": "`00377520` (58 B) is the once-per-change gate the `0022A770` frame"
+    },
+    {
+     "line": 479,
+     "quote": "### The `0022A770` exclusive subtree — the field frame's helper set"
+    }
+   ]
+  },
+  {
+   "fn": "0026AB60",
+   "source_page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+   "source_record": "_index/candidates/fable-home-native-command-seam-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "target_page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "entered_from": "`00355A00` + 0x1C6",
+   "source_text": "takes the top three bits of byte `rcx+3` (`shr 5`) and the larger of `xmm1` and 0.01 (`008F30E4`, `maxss`); when the bits equal 1 it stores that float to `+0x70` of qword `rcx+0xB8`, when they equal 3 to `+0xFC` of the same qword, and for any other value it returns without a store",
+   "text": "takes the top three bits of byte `rcx+3` (`shr 5`) and the larger of `xmm1` and 0.01 (`008F30E4`, `maxss`); when the bits equal 1 it stores that float to `+0x70` of qword `rcx+0xB8`, when they equal 3 to `+0xFC` of the same qword, and for any other value it returns without a store",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0026AB6C",
+     "shr"
+    ],
+    [
+     "0026AB6F",
+     "maxss"
+    ],
+    [
+     "0026AB76",
+     "je"
+    ],
+    [
+     "0026AB84",
+     "movss"
+    ],
+    [
+     "0026AB94",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1016,
+     "quote": "caller is verb **`0176` `fieldsign`** (`00355A00`)"
+    },
+    {
+     "line": 1087,
+     "quote": "Verb **`0176` `fieldsign`** (`00355A00`) calls the setter"
+    }
+   ]
+  },
+  {
+   "fn": "0026BB00",
+   "source_page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+   "source_record": "_index/candidates/fable-home-native-command-seam-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "target_page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "entered_from": "`00355A00` + 0x159",
+   "source_text": "switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it stores `xmm1`, `xmm2` and `xmm3` to floats `+0x10`, `+0x14` and `+0x18` of qword `rcx+0xB8`; for 3 it subtracts floats `+0`, `+4` and `+8` of that qword from `xmm1`, `xmm2` and `xmm3` and tail-jumps (`0026BB00` + 0x26) with `rcx` unchanged; for any other value it returns without a write",
+   "text": "switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it stores `xmm1`, `xmm2` and `xmm3` to floats `+0x10`, `+0x14` and `+0x18` of qword `rcx+0xB8`; for 3 it subtracts floats `+0`, `+4` and `+8` of that qword from `xmm1`, `xmm2` and `xmm3` and tail-jumps (`0026BB00` + 0x26) with `rcx` unchanged; for any other value it returns without a write",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0026BB0A",
+     "je"
+    ],
+    [
+     "0026BB22",
+     "subss"
+    ],
+    [
+     "0026BB26",
+     "jmp"
+    ],
+    [
+     "0026BB32",
+     "movss"
+    ],
+    [
+     "0026BB3C",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1016,
+     "quote": "caller is verb **`0176` `fieldsign`** (`00355A00`)"
+    },
+    {
+     "line": 1087,
+     "quote": "Verb **`0176` `fieldsign`** (`00355A00`) calls the setter"
+    }
+   ]
+  },
+  {
+   "fn": "0026BDD0",
+   "source_page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+   "source_record": "_index/candidates/fable-home-native-command-seam-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "target_page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "entered_from": "`00355A00` + 0x1AC",
+   "source_text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, stores `xmm1`, `xmm2` and `xmm3` to floats `+0x20`, `+0x24` and `+0x28` of qword `rcx+0xB8`; for any other value it returns without a write",
+   "text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, stores `xmm1`, `xmm2` and `xmm3` to floats `+0x20`, `+0x24` and `+0x28` of qword `rcx+0xB8`; for any other value it returns without a write",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0026BDD7",
+     "cmp"
+    ],
+    [
+     "0026BDE3",
+     "movss"
+    ],
+    [
+     "0026BDED",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1016,
+     "quote": "caller is verb **`0176` `fieldsign`** (`00355A00`)"
+    },
+    {
+     "line": 1087,
+     "quote": "Verb **`0176` `fieldsign`** (`00355A00`) calls the setter"
+    }
+   ]
+  },
+  {
+   "fn": "0026BFF0",
+   "source_page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+   "source_record": "_index/candidates/fable-home-native-command-seam-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "target_page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "entered_from": "`00355A00` + 0x11B",
+   "source_text": "takes the absolute values of `xmm1` and `xmm2` (widened to double, sign cleared with the mask at `01CEBD80`, narrowed back) and switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it ORs 2 into byte `+0x5D` of qword `rcx+0xB8`, stores the two values to floats `+0x30` and `+0x34`, and lowers float `+0x40` to the first and float `+0x44` to the second wherever the stored float is greater; for 3 it tail-jumps (`0026BFF0` + 0x38) with the two values in `xmm1` and `xmm2`; for any other value it returns without a write",
+   "text": "takes the absolute values of `xmm1` and `xmm2` (widened to double, sign cleared with the mask at `01CEBD80`, narrowed back) and switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it ORs 2 into byte `+0x5D` of qword `rcx+0xB8`, stores the two values to floats `+0x30` and `+0x34`, and lowers float `+0x40` to the first and float `+0x44` to the second wherever the stored float is greater; for 3 it tail-jumps (`0026BFF0` + 0x38) with the two values in `xmm1` and `xmm2`; for any other value it returns without a write",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0026BFFE",
+     "andps"
+    ],
+    [
+     "0026C028",
+     "jmp"
+    ],
+    [
+     "0026C034",
+     "or"
+    ],
+    [
+     "0026C04C",
+     "movss"
+    ],
+    [
+     "0026C05B",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1016,
+     "quote": "caller is verb **`0176` `fieldsign`** (`00355A00`)"
+    },
+    {
+     "line": 1087,
+     "quote": "Verb **`0176` `fieldsign`** (`00355A00`) calls the setter"
+    }
+   ]
+  },
+  {
+   "fn": "003DF790",
+   "source_page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+   "source_record": "_index/candidates/fable-home-native-command-seam-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "target_page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "entered_from": "`00355A00` + 0xB6",
+   "source_text": "maps `ecx` to a return value: 0 returns 3, 1 returns 2, and any other value returns 1",
+   "text": "maps `ecx` to a return value: 0 returns 3, 1 returns 2, and any other value returns 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003DF792",
+     "je"
+    ],
+    [
+     "003DF797",
+     "je"
+    ],
+    [
+     "003DF799",
+     "mov"
+    ],
+    [
+     "003DF79F",
+     "mov"
+    ],
+    [
+     "003DF7A5",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1016,
+     "quote": "caller is verb **`0176` `fieldsign`** (`00355A00`)"
+    },
+    {
+     "line": 1087,
+     "quote": "Verb **`0176` `fieldsign`** (`00355A00`) calls the setter"
+    }
+   ]
+  },
+  {
+   "fn": "00310D30",
+   "source_page": "07-Combat-Action/the-moment-an-action-is-committed.md",
+   "source_record": "_index/candidates/fable-home-the-moment-an-action-is-committed-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-the-moment-an-action-is-committed-1002/REVIEW.md",
+   "target_page": "06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md",
+   "entered_from": "`00310920` + 0x147",
+   "source_text": "calls `00310D30` + 0x15 with the incoming registers and returns when it yields null; otherwise, on that returned pointer, calls + 0x33 with the three floats at `rcx+0x0`, `rcx+0x4` and `rcx+0x8` in `xmm1`, `xmm2` and `xmm3`, then calls + 0x3E and + 0x49 each with the incoming float `xmm1`",
+   "text": "calls `00310D30` + 0x15 with the incoming registers and returns when it yields null; otherwise, on that returned pointer, calls + 0x33 with the three floats at `rcx+0x0`, `rcx+0x4` and `rcx+0x8` in `xmm1`, `xmm2` and `xmm3`, then calls + 0x3E and + 0x49 each with the incoming float `xmm1`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00310D45",
+     "call"
+    ],
+    [
+     "00310D50",
+     "je"
+    ],
+    [
+     "00310D63",
+     "call"
+    ],
+    [
+     "00310D6E",
+     "call"
+    ],
+    [
+     "00310D79",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 880,
+     "quote": "| facing publish, record loop | `00310B00`, `00310BB1`, `00310CA6` (`00310920`, caller `0037D000`) |"
+    }
+   ]
+  },
+  {
+   "fn": "00231F20",
+   "source_page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "source_record": "_index/candidates/fable-home-world-loot-pickups-the-ten-slot-pool-an-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-world-loot-pickups-the-ten-slot-pool-an-1002/REVIEW.md",
+   "target_page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+   "entered_from": "`002FB560` + 0xA5",
+   "source_text": "sign-extends the word `r8w`, shifts it left by 5 (a 32-byte stride) and indexes the array at qword `rcx+0x10`; copies the four dwords at offsets `+0x0`, `+0x4`, `+0x8` and `+0xC` of that 32-byte element to `rdx+0x0` through `rdx+0xC`",
+   "text": "sign-extends the word `r8w`, shifts it left by 5 (a 32-byte stride) and indexes the array at qword `rcx+0x10`; copies the four dwords at offsets `+0x0`, `+0x4`, `+0x8` and `+0xC` of that 32-byte element to `rdx+0x0` through `rdx+0xC`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00231F24",
+     "mov"
+    ],
+    [
+     "00231F28",
+     "shl"
+    ],
+    [
+     "00231F2C",
+     "mov"
+    ],
+    [
+     "00231F47",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 752,
+     "quote": "places a world marker at the record's position (`002FB560(i, x, y)`,"
+    }
+   ]
+  },
+  {
+   "fn": "0033CBF0",
+   "source_page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "source_record": "_index/candidates/fable-home-world-loot-pickups-the-ten-slot-pool-an-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-world-loot-pickups-the-ten-slot-pool-an-1002/REVIEW.md",
+   "target_page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+   "entered_from": "`002FB560` + 0xFB",
+   "source_text": "under a stack cookie (`01F44830`), calls `0033CBF0` + 0x2F with `rcx` = a local at `rsp+0x20`; passes the incoming float `xmm2` as `xmm0` to the call at + 0x37; calls + 0x49 with that local as both `rcx` and `rdx` and the float result of + 0x37 in `xmm2`; then calls + 0x59 with the incoming `rcx`, the local and the incoming `rdx`",
+   "text": "under a stack cookie (`01F44830`), calls `0033CBF0` + 0x2F with `rcx` = a local at `rsp+0x20`; passes the incoming float `xmm2` as `xmm0` to the call at + 0x37; calls + 0x49 with that local as both `rcx` and `rdx` and the float result of + 0x37 in `xmm2`; then calls + 0x59 with the incoming `rcx`, the local and the incoming `rdx`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0033CC1F",
+     "call"
+    ],
+    [
+     "0033CC27",
+     "call"
+    ],
+    [
+     "0033CC39",
+     "call"
+    ],
+    [
+     "0033CC49",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 752,
+     "quote": "places a world marker at the record's position (`002FB560(i, x, y)`,"
+    }
+   ]
+  },
+  {
+   "fn": "003EC5B0",
+   "source_page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "source_record": "_index/candidates/fable-home-world-loot-pickups-the-ten-slot-pool-an-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-world-loot-pickups-the-ten-slot-pool-an-1002/REVIEW.md",
+   "target_page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+   "entered_from": "`002FB560` + 0x33",
+   "source_text": "calls `003EC5B0` + 0x8 with the incoming `ecx` and returns its value when non-zero; otherwise returns 0 when dword `02B5EC94` is zero or `ecx` is above 15 (unsigned), and else calls + 0x2D with (`ecx`, dword `02B5EC94`, 0, 1) and a fifth (stack) argument of 0, returning that call's `eax`",
+   "text": "calls `003EC5B0` + 0x8 with the incoming `ecx` and returns its value when non-zero; otherwise returns 0 when dword `02B5EC94` is zero or `ecx` is above 15 (unsigned), and else calls + 0x2D with (`ecx`, dword `02B5EC94`, 0, 1) and a fifth (stack) argument of 0, returning that call's `eax`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003EC5B8",
+     "call"
+    ],
+    [
+     "003EC5C1",
+     "mov"
+    ],
+    [
+     "003EC5CB",
+     "cmp"
+    ],
+    [
+     "003EC5D4",
+     "mov"
+    ],
+    [
+     "003EC5DD",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 752,
+     "quote": "places a world marker at the record's position (`002FB560(i, x, y)`,"
+    }
+   ]
+  },
+  {
+   "fn": "003EC720",
+   "source_page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "source_record": "_index/candidates/fable-home-world-loot-pickups-the-ten-slot-pool-an-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-world-loot-pickups-the-ten-slot-pool-an-1002/REVIEW.md",
+   "target_page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+   "entered_from": "`002FB560` + 0x79",
+   "source_text": "keeps the incoming floats `xmm1`, `xmm2` and `xmm3` across a call to `003EC720` + 0x1E made with the incoming arguments, then tail-jumps (+ 0x44) with `rcx` = the sign-extended dword that call returned and the saved `xmm1`, `xmm2` and `xmm3` restored",
+   "text": "keeps the incoming floats `xmm1`, `xmm2` and `xmm3` across a call to `003EC720` + 0x1E made with the incoming arguments, then tail-jumps (+ 0x44) with `rcx` = the sign-extended dword that call returned and the saved `xmm1`, `xmm2` and `xmm3` restored",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003EC73E",
+     "call"
+    ],
+    [
+     "003EC743",
+     "movsxd"
+    ],
+    [
+     "003EC74C",
+     "movaps"
+    ],
+    [
+     "003EC764",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 752,
+     "quote": "places a world marker at the record's position (`002FB560(i, x, y)`,"
+    }
+   ]
+  },
+  {
+   "fn": "003EC770",
+   "source_page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "source_record": "_index/candidates/fable-home-world-loot-pickups-the-ten-slot-pool-an-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-world-loot-pickups-the-ten-slot-pool-an-1002/REVIEW.md",
+   "target_page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+   "entered_from": "`002FB560` + 0x12A",
+   "source_text": "keeps the incoming floats `xmm1`, `xmm2` and `xmm3` across a call to `003EC770` + 0x1E made with the incoming arguments, then tail-jumps (+ 0x44) with `rcx` = the sign-extended dword that call returned and the saved `xmm1`, `xmm2` and `xmm3` restored",
+   "text": "keeps the incoming floats `xmm1`, `xmm2` and `xmm3` across a call to `003EC770` + 0x1E made with the incoming arguments, then tail-jumps (+ 0x44) with `rcx` = the sign-extended dword that call returned and the saved `xmm1`, `xmm2` and `xmm3` restored",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003EC78E",
+     "call"
+    ],
+    [
+     "003EC793",
+     "movsxd"
+    ],
+    [
+     "003EC79C",
+     "movaps"
+    ],
+    [
+     "003EC7B4",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 752,
+     "quote": "places a world marker at the record's position (`002FB560(i, x, y)`,"
+    }
+   ]
+  }
+ ],
+ "drops": [
+  {
+   "fn": "0026B480",
+   "source_page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+   "source_record": "_index/candidates/fable-home-native-command-seam-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "source_text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, clears bit 3 of byte `rcx+0xD` (`AND 0xF7`) and ORs bit 0 of `dl`, shifted left by 3, back into it; for any other value it returns without a write",
+   "already_bound_on": {
+    "page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+    "line": 1013,
+    "quote": "`jmp 0026B480`. It sets the bit and does nothing else. `0026B480` is twenty-nine bytes and is"
+   }
+  },
+  {
+   "fn": "00379D40",
+   "source_page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+   "source_record": "_index/candidates/fable-home-scriptvm-verb-dispatch-and-parameter-en-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-scriptvm-verb-dispatch-and-parameter-en-1002/REVIEW.md",
+   "source_text": "calls `00379D40` + 0x4 with the incoming registers unchanged, then tail-jumps (site `00379D40` + 0xD) with whatever registers that call leaves; it has no other work",
+   "already_bound_on": {
+    "page": "02-Resource-And-Asset-Pipeline/the-resource-request-queue.md",
+    "line": 875,
+    "quote": "## The `00379D40` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)"
+   }
+  }
+ ],
+ "deferred": [
+  {
+   "fn": "004EB910",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "why": "page text at HEAD still has the false `1.0 (`01E0283C`)` clause (correction package fable-corr-004eb910-1003 not yet on HEAD), and the-vif1-vu1-layer.md does not cite `004EBE80`; the review says re-home on the VIF1 page once it names `004EBE80`, otherwise park"
+  },
+  {
+   "fn": "00361480",
+   "source_page": "15-Input/CONTRACT-input-subsystem.md",
+   "source_record": "_index/candidates/fable-home-contract-input-subsystem-1002",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-input-subsystem-1002/REVIEW.md",
+   "why": "18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md does not cite the caller `00342770`; the review says the row cannot be caller-hosted (callee/table stream, or have that page cite `00342770` first)"
+  },
+  {
+   "fn": "00314D60",
+   "source_page": "19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md",
+   "source_record": "_index/candidates/fable-home-ff12config-and-debglobal-1002",
+   "review": "_index/candidates/auditspec-review-fable-home-ff12config-and-debglobal-1002/REVIEW.md",
+   "why": "01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md does not cite the caller `0050C8A0`; the review says non-caller stream, or once that page cites `0050C8A0`"
+  }
+ ]
+}

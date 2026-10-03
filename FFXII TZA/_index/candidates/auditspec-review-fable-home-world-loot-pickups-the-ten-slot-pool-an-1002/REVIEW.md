@@ -1,0 +1,23 @@
+# SWE2-AUDIT-SPEC review: FABLE homing rows (fable-home-world-loot-pickups-the-ten-slot-pool-an-1002)
+
+Reviewer: SWE2-AUDIT-SPEC (Claude stand-in for the rate-limited Devin session; not FABLE, not the drafting cloud session) · 2026-10-03 · Task: `FABLE-REQ-AUDITSPEC-FABLE-HOME-WORLD-LOOT-PICKUPS-THE-TEN-SLOT-P` · Package: `_index/candidates/fable-home-world-loot-pickups-the-ten-slot-pool-an-1002/` · Page: `13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md`
+
+## SWE2-AUDIT-SPEC verdict: REJECT
+
+## SWE2-AUDIT-SPEC checks
+
+- `homing_applier.py` was re-run fresh from the package directory with the analysis venv python. It exited 0 and printed `VERIFY 5 functions, 21 anchors` / `ALREADY` / `FAILS 0`. Without `--apply` it only verifies; `ALREADY` means the section is already on the page. It wrote nothing.
+- `rows.json`: 5 rows, 21 anchors; mechanically rejected 1, skipped 0, missing 0. Each row's text is on the page verbatim.
+- Semantic pass: **all 5 rows** read clause by clause against the full `disr.py` disassembly of the certified image (rip targets resolved). Every call offset, stack-argument slot, compare signedness and branch polarity was checked. Each entered_from site was disassembled and confirmed as a direct call to the body. Host fit was checked against every citation of the caller on the page outside the homed section, and against the whole DB.
+- `00231F20`: `movsx r9, r8w; mov r8, [rcx+0x10]; shl r9, 5`, then four dword copies from `[r9+r8+0/4/8/0xC]` to `[rdx+0/4/8/0xC]`. Exact.
+- `0033CBF0`: cookie from `01F44830`. `rcx = rsp+0x20` (a local below the 0x80 frame) for +0x2F (`00203170`); `xmm0 = xmm6` (the incoming `xmm2`) for +0x37 (`Angle_NormalizeRadiansPi`); `rcx = rdx = rsp+0x20` and `xmm2` = that result for +0x49 (`00202F00`); then `rcx = rdi` (incoming `rcx`), `rdx` = local and `r8 = rbx` (incoming `rdx`) for +0x59 (`00202B70`). Exact.
+- `003EC5B0`: the +0x8 call (`FieldData_GetActiveFieldRecordBit15`) is followed by `jne` straight to the epilogue, so a non-zero result is returned. Otherwise `eax` = 0 is returned when `[02B5EC94]` = 0 or `ebx > 0xF` (`ja`, unsigned). The +0x2D call (`003EB200`) gets `ecx = ebx`, `edx = [02B5EC94]`, `r8d = 0`, `r9d = rax+1 = 1` and the fifth argument at `[rsp+0x20]` = `eax` = 0 (the 0x30 frame plus the push), and falls through to the return. Exact.
+- `003EC720` / `003EC770`: `xmm1`/`xmm2`/`xmm3` are parked in `xmm8`/`xmm7`/`xmm6` across `call 003EB700` at +0x1E. Then `movsxd rcx, eax`, the three are restored, and the tail `jmp` at +0x44 goes to `003EB8E0` / `003EB910`. Both exact.
+- Sites: `002FB560` + 0x33 / 0x79 / 0xA5 / 0xFB / 0x12A = `002FB593` / `002FB5D9` / `002FB605` / `002FB65B` / `002FB68A`, each a `call` to its row's body.
+- Limits: body statements only, static evidence. A cloud draft plus FABLE's re-read is not independent review; this record is.
+
+## SWE2-AUDIT-SPEC narrowing / notes
+
+- **All 5 rows (every one entered from `002FB560`): host-fit defect.** The page cites `002FB560` exactly once, at L578, inside *"## Cross-subsystem neighbours - FINAL-AUDIT pass 22"* -> *"**Movement - SERVICE and CLIENT (165 edges).** ... and their other callers, among them `0026E3C0`, `002FB560`, `003808A0` and `0022F430`, are movement bodies"*. So the page itself says the caller is **not** one of its functions. The section heading (*"called from this page's functions"*) is therefore false for every row. The applier's "page cites the caller" check passes only on that boundary mention. The sentences, sites and anchors are exact; only the host is wrong.
+- **Where `002FB560` is read.** `14-Story-Event-Quest-Hunt/persistent-flag-banks.md` (the trap section, L748-L756) reads it as the trap-marker placement: `002FA740` *"places a world marker at the record's position (`002FB560(i, x, y)`, `002FA81E`-`002FA841`)"*. The bytes confirm `002FA841 call 002FB560`, with `ecx = r14d` (the record index) and `xmm1`/`xmm2` the record's two `movsx` words divided by `xmm6`. The homed bodies fit that reading: `003EC5B0` bounds `ecx` at 15, the page's *"sixteen marker slots `003EB720` indexes"*. `003EC720`/`003EC770` forward `ecx` plus three floats into the `003EB700`/`003EB8E0`/`003EB910` slot family.
+  - **Repair:** remove the five rows from this package, and from the section already on the world-loot page (the applier prints `ALREADY`). Re-home them unchanged, entered_from sites included, on `14-Story-Event-Quest-Hunt/persistent-flag-banks.md`, which cites `002FB560` as the function its trap-arming walk calls. (`25-EBP-Script-Container/Container/ebp2-container.md` L746 also names `002FB560` as the caller of `003355A0`, but only as a callee note, so it is the weaker host.)

@@ -1,0 +1,131 @@
+# rv_slot.py at HEAD 1f193fec9, 2026-10-02T09:59:41Z
+== image sha256 verified, base 120000
+PASS  manifest.json sha256 = a2bcea12693de557...  | a2bcea12693de55748686a2cef48402c0189666974a8af9a8c0720b2717c73ee
+PASS  all 81 manifest members hash as listed  | []
+PASS  body 0041F730..0041FBE8 decodes exactly (1208 B)
+PASS  body 0041F730 .pdata tiles it as one function (1 record(s), later ones chained to the root)  | 0041F730..0041FBE8
+PASS  body 0041F730 local CFG closed (no jcc/jmp leaves, last insn ret)  | rets=['0x41fbe7'] tails=[] outs=[]
+PASS  body 00420480..00420851 decodes exactly (977 B)
+PASS  body 00420480 .pdata tiles it as one function (1 record(s), later ones chained to the root)  | 00420480..00420851
+PASS  body 00420480 local CFG closed (no jcc/jmp leaves, last insn ret)  | rets=['0x420850'] tails=[] outs=[]
+PASS  body 004269A0..00426C85 decodes exactly (741 B)
+PASS  body 004269A0 .pdata tiles it as one function (1 record(s), later ones chained to the root)  | 004269A0..00426C85
+PASS  body 004269A0 local CFG closed (no jcc/jmp leaves, last insn ret)  | rets=['0x426c84'] tails=[] outs=[]
+PASS  body 004279B0..00427AF9 decodes exactly (329 B)
+PASS  body 004279B0 .pdata tiles it as one function (4 record(s), later ones chained to the root)  | 004279B0..004279F5 004279F5..00427A96~chain 00427A96..00427AE4~chain 00427AE4..00427AF9~chain
+PASS  body 004279B0 local CFG closed (no jcc/jmp leaves, last insn ret)  | rets=['0x427af8'] tails=[] outs=[]
+PASS  total bytes = 3255  | 3255
+PASS  0041F744 is `xor edx, edx`
+PASS  0041F74B is `mov r8d, 0x740`
+PASS  0041F751 is `mov rbx, rcx`
+PASS  0041F754 is `call 0x861ec0`
+PASS  00861EC0 is the IAT thunk for memset  | memset
+PASS  memset args rcx=arg0, edx=0, r8d=0x740 unchanged before call  | []
+PASS  0041F768 is `or ebp, 0xffffffff`
+PASS  0041F795 is `mov word ptr [rbx], bp`
+PASS  0041F795 store is WORD write at disp 0
+PASS  rbp/rbx not rewritten between 0041F768 and 0041F795  | []
+PASS  0041F768 dominates 0041F795
+NOTE  41F730 direct rbx-based writes overlapping +0: [('0x41f795', 2)]
+NOTE  41F730 direct writes overlapping +284..+287 after the memset: []
+PASS  004269AF is `mov rsi, qword ptr [rip + 0x1ea0572]`
+PASS  004269AF loads global 022C6F28
+PASS  004269B6 is `mov edi, 0xa0`
+PASS  004269BB is `mov rbx, rsi`
+PASS  004269C0 is `mov rcx, rbx`
+PASS  004269C3 is `call 0x41f730`
+PASS  004269C8 is `add rbx, 0x740`
+PASS  004269CF is `sub rdi, 1`
+PASS  004269D3 is `jne 0x4269c0`
+PASS  clear loop runs 160 times at stride 740h, offsets 0..480C0h
+PASS  004269DF is `xor ebx, ebx`
+PASS  004269ED is `mov qword ptr [rsi + 0x48808], rbx`
+PASS  004269ED is a QWORD write (covers 48808 cursor and 4880C count)
+PASS  rbx/rsi not rewritten between 004269DF and 004269ED  | []
+PASS  004269ED is reached straight-line after the loop (no branch in 004269D5..004269ED)
+PASS  004279C4 is `mov rbx, qword ptr [rip + 0x1e9f55d]`
+PASS  004279C4 loads global 022C6F28
+PASS  004279D7 is `call 0x4278e0`
+PASS  004279DC is `cmp ax, -1`
+PASS  004279E0 is `je 0x4279e9`
+PASS  004279E9 is `cmp dword ptr [rbx + 0x4880c], 0xa0`
+PASS  004279F3 is `jge 0x4279e2`
+PASS  004279E2 is `xor eax, eax`
+PASS  004279FA is `movsxd rsi, dword ptr [rbx + 0x48808]`
+PASS  00427A06 is `imul rdi, rsi, 0x740`
+PASS  00427A0D is `add rdi, rbx`
+PASS  00427A10 is `mov rcx, rdi`
+PASS  00427A13 is `call 0x41f730`
+PASS  only compares before the first clear are 004279DC (name lookup) and 004279E9 (count<160)  | ['0x4279dc', '0x4279e9']
+PASS  004279E9 count compare is signed (jge)
+PASS  cursor load 004279FA is a signed DWORD read (movsxd, size 4)
+PASS  00427A4D is `mov word ptr [rdi], si`
+PASS  00427A4D is a WORD write at [rdi+0]
+PASS  rsi/rdi have no in-body writer between 00427A0D and 00427A4D (calls rely on nonvolatile ABI)  | []
+PASS  00427A6E is `mov rcx, rdi`
+PASS  00427A71 is `call 0x420480`
+PASS  00427A76 is `or dword ptr [rdi + 0x290], 1`
+PASS  00427A7F is `inc dword ptr [rbx + 0x4880c]`
+PASS  00427A18 is `cmp dword ptr [rbx + 0x48810], -1`
+PASS  00427A21 is `mov dword ptr [rbx + 0x48810], esi`
+PASS  00427A37 is `mov word ptr [rcx + rbx + 4], si`
+PASS  00427A43 is `mov word ptr [rdi + 2], ax`
+PASS  00427A47 is `mov dword ptr [rbx + 0x48814], esi`
+PASS  list tail write 00427A47 dominates the self-index store 00427A4D
+PASS  each path to 00427A4D first writes list head 48810 (00427A21) or the old tail row's WORD +4 (00427A37)
+NOTE  so the new index (SI) is published into pool list state (48810/48814, predecessor +4) BEFORE WORD [record+0]
+PASS  00427A13 dominates 00427A4D
+PASS  00427A4D dominates 00427A71
+PASS  00427A71 dominates 00427A76
+PASS  00427A76 dominates 00427A7F
+PASS  00427A4D is not reached again after 00427A71 (no back edge into the publish region)
+PASS  00427A7D is `xor eax, eax`
+PASS  00427A85 is `cmp dword ptr [rbx + 0x4880c], 0xa0`
+PASS  00427A94 is `jl 0x427a9e`
+PASS  00427A96 is `mov dword ptr [rbx + 0x48808], eax`
+PASS  00427AB0 is `inc ecx`
+PASS  00427AB2 is `mov dword ptr [rbx + 0x48808], ecx`
+PASS  00427AB8 is `cmp ecx, 0xa0`
+PASS  00427ABE is `jl 0x427ac8`
+PASS  00427AC0 is `mov ecx, eax`
+PASS  00427AC8 is `movsxd rdx, ecx`
+PASS  00427ACB is `imul r8, rdx, 0x740`
+PASS  00427AD2 is `cmp dword ptr [r8 + rbx + 0x284], eax`
+PASS  00427ADA is `jne 0x427ab0`
+PASS  eax (=0) has no writer between 00427A7D and the loop exit
+PASS  scan loop has no other exit than 00427ADA fall-through
+PASS  0042049A is `or dword ptr [rcx + 0x284], 0x2010f9`
+PASS  0042049A is the first non-stack memory access
+PASS  rcx not written before 0042049A
+PASS  first call in 420480 (00420504) is after 0042049A
+PASS  0042049A dominates every call in 420480
+PASS  0042049A is a DWORD read-modify-write
+NOTE  420480 direct writes overlapping +0..+1 or +284..+287 (any base): [('0042049A', 'or dword ptr [rcx + 0x284], 0x2010f9'), ('004204EF', 'or dword ptr [rcx + 0x284], 0x4000')]
+PASS  those writes are only ORs (no clear of +0 or +284)
+PASS  420480 has no indexed non-stack writes (so the scan above is not missing one)  | []
+NOTE  420480 writers of rsi: ['004204B8 mov rsi, rcx', '00420840 mov rsi, qword ptr [rsp + 0x40]'] (rsi = record from 004204B8 to the epilogue)
+PASS  0041F608 is `movsx edx, word ptr [r14]`
+PASS  0041F60F is `call 0x372350`
+PASS  factory r14 = its arg0 (0041F361 mov r14, rcx; only other writer is the epilogue pop)  | ['0041F361', '0041F726']
+PASS  00372383 is `mov dword ptr [rax + 0x68], edi`
+PASS  004216D3 is `movsx ebx, word ptr [rsi]`
+PASS  004216DB is `mov dword ptr [rax + 0x6c], ebx`
+PASS  model: from any cursor 0..159 every visited index is 0..159
+PASS  model: 160 visits cover all 160 rows exactly once, ending at the start cursor
+PASS  model: with one stable zero +284 anywhere, the scan stops within 160 visits (160x160 cases)
+PASS  countermodel: all 160 flags nonzero -> no stop within 1600 visits (cycles)
+PASS  countermodel: count 0 passes gate, cursor -1 -> record offset -1856 outside [0, 296960)
+PASS  countermodel: count 0 passes gate, cursor 160 -> record offset 296960 outside [0, 296960)
+PASS  countermodel premise: count 0 -> 1 after 00427A7F, 1 < 160 so the scan at 00427A9E is entered
+== controls (each mutation/wrong expectation must be REJECTED)
+PASS  CONTROL rejects: count cap 0xA0 -> 0x9F at 004279EF
+PASS  CONTROL rejects: self-index WORD store -> DWORD (66 89 37 -> 89 37 90)
+PASS  CONTROL rejects: insert cursor compare before clear (movsxd -> cmp esi,0 ; nops)
+PASS  CONTROL rejects: OR 2010F9 -> AND at 0042049A
+PASS  CONTROL rejects: clear size 740h -> 73Fh at 0041F74D
+PASS  CONTROL rejects: reset loop count 0xA0 -> 0x9F at 004269B7
+PASS  CONTROL rejects: body end shifted: wrong .pdata expectation
+PASS  CONTROL known-answer: 66 89 37 = WORD write; 0F 11 01 = 16-byte write (corrected reader)
+NOTE  instrument defect recorded: capstone's own access flag for 0F 11 01 says write=False; rvlib treats a destination memory operand as written
+== 0 FAIL
+# exit 0

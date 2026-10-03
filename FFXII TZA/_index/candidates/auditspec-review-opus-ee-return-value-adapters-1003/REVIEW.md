@@ -53,13 +53,13 @@ All 394 rows are correct against the bytes. The stated reason for four of the ei
 
 ## SWE2-AUDIT-SPEC narrowing / notes
 
-**Narrowing: the exclusion sentence in spec.json `lead` (and so on the page) and README "No rows".** Replace:
+**Narrowing: the exclusion sentence in spec.json `lead` (and so on the page) and README "No rows".** Replace (the two quotes below link `excluded.tsv` relative to this review; in spec.json and on the page the same link keeps its page-relative target `../../_index/candidates/opus-ee-return-value-adapters-1003/excluded.tsv`):
 
-> Eight DF-4 members get no row, and each is listed with its reason in [`excluded.tsv`](...): five are not a single direct call, and three sit in descriptor vtables that do not name one template type T (a non-template descriptor class beside the template one, or several Vectormath types sharing one body).
+> Eight DF-4 members get no row, and each is listed with its reason in [`excluded.tsv`](../opus-ee-return-value-adapters-1003/excluded.tsv): five are not a single direct call, and three sit in descriptor vtables that do not name one template type T (a non-template descriptor class beside the template one, or several Vectormath types sharing one body).
 
 with:
 
-> Eight DF-4 members get no row; they are listed in [`excluded.tsv`](...). All eight have the shared 26-byte form with one direct call. Four sit in descriptor vtables that do not name one template type T: `0062F0F0` and `0063C000` (a non-template descriptor class beside the template one), and `006B2950` and `006B2970` (several Vectormath types sharing one body). The other four, `005D3460`, `005D46F0`, `0063EF20` and `006AF570`, are refused only because the checker decodes a fixed 0x30 bytes from the entry, which reaches a call in the following function. Their `excluded.tsv` reason "form (not exactly one direct call)" describes that window, not their bodies.
+> Eight DF-4 members get no row; they are listed in [`excluded.tsv`](../opus-ee-return-value-adapters-1003/excluded.tsv). All eight have the shared 26-byte form with one direct call. Four sit in descriptor vtables that do not name one template type T: `0062F0F0` and `0063C000` (a non-template descriptor class beside the template one), and `006B2950` and `006B2970` (several Vectormath types sharing one body). The other four, `005D3460`, `005D46F0`, `0063EF20` and `006AF570`, are refused only because the checker decodes a fixed 0x30 bytes from the entry, which reaches a call in the following function. Their `excluded.tsv` reason "form (not exactly one direct call)" describes that window, not their bodies.
 
 In README "No rows", replace "five are not a single direct call; three sit in vtables that do not name one template type" with "four sit in vtables that do not name one template type; four are refused by the checker's fixed 0x30-byte decode window, which reaches the next function's call (their own bodies are single-call members of the form)".
 
@@ -67,3 +67,9 @@ In README "No rows", replace "five are not a single direct call; three sit in vt
 - **Alternative repair.** Decode the census extent in `ex_call_class` (`R.at(a, _sizes()[a])` instead of 0x30), then re-derive. That gives 398 rows and 4 exclusions. This review has already verified the four new rows' getters and T (above). It needs a re-run of check and a recount in the lead and README (EE +4).
 - **Control repair.** Pass mutated copies of `rows.tsv` through the comparison and add a raw-byte known-answer row; see the input-name review. Today's controls cannot fail while the extractor returns anything.
 - **Reproducibility.** Add `pefile` to the analysis venv, or say in the README that check needs an interpreter with pefile.
+
+## SWE2-AUDIT-SPEC link correction (2026-10-03)
+
+Task `ASTRA-REQ-AUDITSPEC-REVIEWER-PLACEHOLDER-LINKS-1003`. The two quoted sentences in the narrowing carried the placeholder link target `(...)`. ASTRA's `check_links.py --db` run at reviewer publication `4522aeff6` reported exactly these two links as broken (record: `Database/Tools/work/ASTRA/runtime-residue-method-retriage/checkpoint83-link-delivery/result.json`). Both now point at `../opus-ee-return-value-adapters-1003/excluded.tsv`, which exists. One clause was added to the narrowing's lead-in. It says the page and spec.json keep their own page-relative target, the one the live sentence on line 502 of `the-return-value-adapter-family.md` uses. The verdict, the evidence, the replacement wording and every other row of this review are unchanged.
+
+After the correction, `check_links.py --db "FFXII TZA"` was re-run read-only on the working tree at HEAD `8fabf1300`. It exited 0, scanned 4061 Markdown files and 76320 relative links, excluded 4945 capture links, had 0 waivers and reported "all relative links resolve, on this filesystem and on a case-sensitive one". That covers the links only. It does not make the full link gate PASS for any other procedure.

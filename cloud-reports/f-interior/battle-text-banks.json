@@ -1,0 +1,57 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "00197A40",
+   "text": "returns 1 when bit `edx` (taken mod 32 by `bt`) of the sign-extended byte `rcx+0x3a` is set and 0 when it is clear; bits above 7 repeat bit 7 of the byte",
+   "anchors": [
+    [
+     "00197A44",
+     "bt"
+    ],
+    [
+     "00197A47",
+     "setb"
+    ]
+   ]
+  },
+  {
+   "fn": "002902D0",
+   "text": "returns `002D4FB0(rcx, rdx, 1, 0x40, 0x28, 0x30)`, the last two as the fifth and sixth (stack) arguments",
+   "anchors": [
+    [
+     "002902D4",
+     "mov"
+    ],
+    [
+     "002902DA",
+     "mov"
+    ],
+    [
+     "002902E2",
+     "mov"
+    ],
+    [
+     "002902EA",
+     "lea"
+    ],
+    [
+     "002902EE",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "002B5390",
+   "why": "long branching body; deferred to a slower read"
+  },
+  {
+   "fn": "0055FB20",
+   "why": "long body with a jump table; deferred to a slower read"
+  }
+ ],
+ "notes": "drafted by OPUS itself"
+}

@@ -3229,7 +3229,7 @@ The family `PClassDescriptorForType destructor thunks` (frontmatter: 384 members
 
 ## Per-member rows: the class name and size each base-aware descriptor constructor registers (OPUS, 2026-10-03)
 
-The family `AbstractClassDescriptor base-aware constructors` (frontmatter: 132 members; 132 get a row here) shares one form, not repeated per row. It calls the two context getters, passes them to the shared descriptor constructor `00632D80` with the class name in `r8` and the instance size in `r9d`, stores the concrete vtable, sets bit `0x2` of dword `+0xFC`, and calls the three member-registration helpers. What differs from member to member is the name and size it passes. Each row anchors the `lea r8, [S]` before the `00632D80` call (the member's distinguishing instruction) and states S, the class-name string at S, and the immediate size from `mov r9d`. All are read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-base-aware-ctors-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-base-aware-ctors-1003/rows.tsv). A body without exactly one `00632D80` call, a name that is not a clean string, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-base-aware-ctors-1003/excluded.tsv).
+The family `AbstractClassDescriptor base-aware constructors` (frontmatter: 132 members; 132 get a row here) shares one form, not repeated per row. It calls the two context getters, passes them to the shared descriptor constructor `00632D80` with the class name in `r8`, the instance size in `r9d` and two dword stack arguments, stores its own `PClassDescriptorAbstract<T>` vtable, sets bit `0x2` of dword `+0xFC`, and calls the three member-registration helpers `0063DC80`, `0063DF90` and `0063DFA0`, each with its own `lea rdx` argument. What differs from member to member is the name and size it passes, the two stack dwords (at + 0x2B and + 0x38), the vtable it stores (+ 0x56), and the three `lea rdx` arguments (+ 0x67, + 0x76 and + 0x85). The rows anchor the name `lea`; they do not state the others. Each row anchors the `lea r8, [S]` before the `00632D80` call (the member's distinguishing instruction) and states S, the class-name string at S, and the immediate size from `mov r9d`. All are read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-base-aware-ctors-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-base-aware-ctors-1003/rows.tsv). A body without exactly one `00632D80` call, a name that is not a clean string, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-base-aware-ctors-1003/excluded.tsv).
 
 ### All 132 constructors (OPUS)
 
@@ -3370,7 +3370,7 @@ The family `AbstractClassDescriptor base-aware constructors` (frontmatter: 132 m
 
 ## Per-member rows: the class descriptor each of the reflection object traversal adapters loads (OPUS, 2026-10-03)
 
-The family `reflection object traversal adapters` (frontmatter: 304 members; 304 get a row here) shares one shape, stated here once and not repeated per row: a null-guarded selection of the object pointer and the flag, then `lea rcx, [X]` and a call to the shared traversal `0063E2E0` on each path. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-traversal-adapters-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-traversal-adapters-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-traversal-adapters-1003/excluded.tsv).
+The family `reflection object traversal adapters` (frontmatter: 304 members; 304 get a row here) shares two forms, stated here once and not repeated per row (the census row above). In 188 members (46 B), `lea rcx, [X]` comes first, then the flag selects one of two calls to the shared traversal `0063E2E0`, with `r8b` set to 1 or 0. In 116 members (75-76 B), the object pointer is offset by a constant member offset (`add rdx, 8`, or `inc rdx` in three members) and null-guarded, and each flag path then does `lea rcx, [X]` and calls `0063E2E0`. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-traversal-adapters-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-traversal-adapters-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-traversal-adapters-1003/excluded.tsv).
 
 ### All 304 members (OPUS)
 
@@ -3683,7 +3683,7 @@ The family `reflection object traversal adapters` (frontmatter: 304 members; 304
 
 ## Per-member rows: the class descriptor each of the PType name-only class-registration initialisers loads (OPUS, 2026-10-03)
 
-The family `PType name-only class-registration initialisers` (frontmatter: 110 members; 91 get a row here) shares one shape, stated here once and not repeated per row: `lea rcx, [X]`, a call to `006388C0`, `lea rcx, [X]` again and a tail jump to `00639450`. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-name-only-registration-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-name-only-registration-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-name-only-registration-1003/excluded.tsv).
+The family `PType name-only class-registration initialisers` (frontmatter: 110 members; 91 get a row here) shares one shape, stated here once and not repeated per row: `lea rcx, [X]`, a call to `006388C0`, `lea rcx, [X]` again and a tail jump to `00639450`. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-name-only-registration-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-name-only-registration-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Nineteen members that derive are left without a row by a declared skip (spec.json `skip`), each with its reason in [`excluded.tsv`](../../_index/candidates/opus-ee-name-only-registration-1003/excluded.tsv): `00875E10`, a caller in another layer, calls each of them, and citing them here would pull that caller edge into the page.
 
 ### All 91 members (OPUS)
 
@@ -3807,11 +3807,13 @@ The family `registry-fetch reflection traversal adapters` (frontmatter: 84 membe
 
 ## Per-member rows: the vtable each guarded class-registration stub installs, and its reflected type (OPUS, 2026-10-03)
 
-The family `guarded class-registration stubs` (frontmatter: 99 members; 43 get a row here) shares one pattern in many spellings, stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs its static class descriptor through `00632D80`, installs that descriptor's vtable, and registers members and teardowns. What differs from member to member is the static descriptor and the vtable stored into it. Each row anchors the `lea rax, [V]` whose following `mov` stores V into the static descriptor X the body also loads with a `lea` (the member's distinguishing instruction), and states V and the class V's MSVC RTTI complete-object locator names, read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-guarded-registration-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/excluded.tsv).
+The family `guarded class-registration stubs` (frontmatter: 99 members; 43 get a row here) shares a pattern, not a form (129 to 3757 bytes), stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs one or more static Phyre metadata objects and registers members and teardowns. Members differ in far more than the anchored instruction. Each row anchors the body's first `lea rax, [V]` whose following `mov` stores V into a static object X that the body also loads with a `lea`, and states V and the class V's MSVC RTTI complete-object locator names, read from the certified image: the template argument T for a `PClassDescriptor*<T>`, otherwise the decorated class.
+- In 25 rows, X is the static class descriptor the body constructs. In 15, it is built through `00632D80` and V is its `PClassDescriptorAbstract<T>` vtable, which a later store replaces with `PClassDescriptorConcrete<T>`. In 10, it is built through `00632C90` and V is its `PClassDescriptorWrapper<T>` vtable.
+- In the other 18, the body constructs no class descriptor. X is a static data-member object in 15 rows (`PClassDataMember*<…>`), a `PTypeDefault<unsigned int>` in `006315B0`, and a `PNamedSemanticDescriptorForType<…>` in `00661A70` and `006D5810`. [`fam_rows.py`](../../_index/candidates/opus-ee-guarded-registration-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/excluded.tsv).
 
 ### All 43 stubs (OPUS)
 
-| member | distinguishing instruction | vtable V installed | reflected type (RTTI before V) |
+| member | distinguishing instruction | first vtable V stored into a lea-loaded static | class named by the RTTI locator before V (T for a class descriptor) |
 |---|---|---|---|
 | 005B5130 | `005B51D9` `lea` | `00D32C40` | decorated `V?$PArray@M$03@Phyre@@` |
 | 005B7790 | `005B7839` `lea` | `00D33050` | decorated `V?$PArray@VPQWord@Phyre@@$0BA@@Phyre@@` |
@@ -3879,7 +3881,7 @@ The family `flag-selected reflection traversal adapters` (frontmatter: 11 member
 
 ## Per-member rows: the vtable each two-member descriptor registrar installs, and its reflected type (OPUS, 2026-10-03)
 
-The family `two-member class-descriptor registrars (m_count + m_els)` (frontmatter: 38 members; 38 get a row here) shares one pattern in many spellings, stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs its static class descriptor through `00632D80`, installs that descriptor's vtable, and registers members and teardowns. What differs from member to member is the static descriptor and the vtable stored into it. Each row anchors the `lea rax, [V]` whose following `mov` stores V into the static descriptor X the body also loads with a `lea` (the member's distinguishing instruction), and states V and the class V's MSVC RTTI complete-object locator names, read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-two-member-registrars-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-two-member-registrars-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-two-member-registrars-1003/excluded.tsv).
+The family `two-member class-descriptor registrars (m_count + m_els)` (frontmatter: 38 members; 38 get a row here) shares one 815-byte form, stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs its static class descriptor through `00632D80`, stores the `PClassDescriptorAbstract<T>` vtable into it, calls the three member-registration helpers, then replaces that vtable with `PClassDescriptorConcrete<T>`, and goes on to register the `m_count` and `m_els` members and their teardowns. Members differ in every per-class operand of that form (53 instructions: the descriptor, its guard variables, both vtables, the helper arguments, the element descriptor and the teardowns). Each row anchors the first of them that names the class, the `lea rax, [V]` at + 0xA9 whose following `mov` stores the `PClassDescriptorAbstract<T>` vtable V into the descriptor. It states V and T, the template argument named by V's MSVC RTTI complete-object locator, read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-two-member-registrars-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-two-member-registrars-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-two-member-registrars-1003/excluded.tsv).
 
 ### All 38 registrars (OPUS)
 
@@ -3923,3 +3925,773 @@ The family `two-member class-descriptor registrars (m_count + m_els)` (frontmatt
 | 006D2390 | `006D2439` `lea` | `00D8D010` | decorated `V?$PArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@$07@Phyre@@` |
 | 006D26C0 | `006D2769` `lea` | `00D8D208` | decorated `V?$PArray@VPModifierNetworkBuffer@PDynamicGeometry@Phyre@@$07@Phyre@@` |
 | 006D29F0 | `006D2A99` `lea` | `00D8CE18` | decorated `V?$PArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@$03@Phyre@@` |
+
+## Per-member rows: the class descriptor each of the PClassDescriptor static teardowns loads (OPUS, 2026-10-03)
+
+The family `PClassDescriptor static teardowns` (frontmatter: 404 members; 311 get a row here) shares one shape, stated here once and not repeated per row: each loads its class descriptor X into rcx, stores a vtable pointer at qword [X] and tail-jumps to the descriptor destructor 00633390. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-descriptor-static-teardowns-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-descriptor-static-teardowns-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-descriptor-static-teardowns-1003/excluded.tsv).
+
+### All 311 members (OPUS)
+
+| member | distinguishing instruction | class descriptor X | class X describes |
+|---|---|---|---|
+| 008A8E20 | `008A8E27` `lea` | `02CAD140` | PAnimatableComponent |
+| 008A8E40 | `008A8E47` `lea` | `02CAD240` | PAnimationAdditiveBlenderController |
+| 008A8E60 | `008A8E67` `lea` | `02CAD340` | PAnimationBlenderController |
+| 008A8E80 | `008A8E87` `lea` | `02CAD440` | PAnimationChannel |
+| 008A8EA0 | `008A8EA7` `lea` | `02CAD540` | PAnimationChannelBase |
+| 008A8EC0 | `008A8EC7` `lea` | `02CAD640` | PAnimationChannelTarget |
+| 008A8EE0 | `008A8EE7` `lea` | `02CAD740` | PAnimationChannelTimes |
+| 008A8F00 | `008A8F07` `lea` | `02CAD840` | PAnimationClip |
+| 008A8F20 | `008A8F27` `lea` | `02CADB40` | PAnimationClipBinding |
+| 008A8F40 | `008A8F47` `lea` | `02CAD940` | PAnimationClipBindingChannelMap |
+| 008A8F60 | `008A8F67` `lea` | `02CADA40` | PAnimationClipBindingDataBlockCache |
+| 008A8F80 | `008A8F87` `lea` | `02CADC50` | PAnimationConstantChannel |
+| 008A8FA0 | `008A8FA7` `lea` | `02CADD50` | PAnimationController |
+| 008A8FC0 | `008A8FC7` `lea` | `02CADE50` | PAnimationDataSource |
+| 008A8FE0 | `008A8FE7` `lea` | `02CAE350` | PAnimationDataSourceListEntry |
+| 008A9000 | `008A9007` `lea` | `02CAE050` | PAnimationEvent |
+| 008A9020 | `008A9027` `lea` | `02CADF50` | PAnimationEventController |
+| 008A9040 | `008A9047` `lea` | `02CAE150` | PAnimationEventList |
+| 008A9060 | `008A9067` `lea` | `02CAE250` | PAnimationHierarchyNode |
+| 008A9080 | `008A9087` `lea` | `02CAE550` | PAnimationNetworkInstance |
+| 008A90A0 | `008A90A7` `lea` | `02CAE450` | PAnimationNetworkInstanceTarget |
+| 008A90C0 | `008A90C7` `lea` | `02CAE660` | PAnimationSet |
+| 008A90E0 | `008A90E7` `lea` | `02CAE860` | PAnimationSlotArray |
+| 008A9100 | `008A9107` `lea` | `02CAEA60` | PAnimationSlotFilter |
+| 008A9120 | `008A9127` `lea` | `02CAE960` | PAnimationSlotFilterDeferredLoad |
+| 008A9140 | `008A9147` `lea` | `02CAE760` | PAnimationSlotListIndex |
+| 008A9160 | `008A9167` `lea` | `02CAEBE0` | PAnimationSpuTargetBlenderController |
+| 008A9180 | `008A9187` `lea` | `02CAECE0` | PAnimationTargetBlenderController |
+| 008A91A0 | `008A91A7` `lea` | `02CAEDE0` | PAnimationWeightedBlenderController |
+| 008A91C0 | `008A91C7` `lea` | `02CAD040` | PBlendableAnimationSource |
+| 008A91E0 | `008A91E7` `lea` | `02CAEEE0` | PTimeController |
+| 008A9200 | `008A9207` `lea` | `02CAEFE0` | PTimeIntervalController |
+| 008A9220 | `008A9227` `lea` | `02CAF0E0` | PTimeScaleOffsetController |
+| 008AAE70 | `008AAE77` `lea` | `02CB6480` | PConstantBuffer |
+| 008AAE90 | `008AAE97` `lea` | `02CB6380` | PConstantBufferBase |
+| 008AAEB0 | `008AAEB7` `lea` | `02CB7BA0` | PContextVariantFoldingTable |
+| 008AAED0 | `008AAED7` `lea` | `02CB6580` | PDynamicMeshInstance |
+| 008AAEF0 | `008AAEF7` `lea` | `02CB6680` | PEffect |
+| 008AAF10 | `008AAF17` `lea` | `02CB6780` | PEffectVariant |
+| 008AAF30 | `008AAF37` `lea` | `02CBB400` | PForwardShadowRenderer |
+| 008AAF50 | `008AAF57` `lea` | `02CB6980` | PIndirectArgsBuffer |
+| 008AAF70 | `008AAF77` `lea` | `02CB6880` | PIndirectArgsBufferBase |
+| 008AAF90 | `008AAF97` `lea` | `02CB6B80` | PMaterial |
+| 008AAFB0 | `008AAFB7` `lea` | `02CB6A80` | PMaterialSwitch |
+| 008AAFD0 | `008AAFD7` `lea` | `02CB6E80` | PMeshInstance |
+| 008AAFF0 | `008AAFF7` `lea` | `02CB6F80` | PMeshInstanceAttachPoint |
+| 008AB010 | `008AB017` `lea` | `02CB7080` | PMeshInstanceBounds |
+| 008AB030 | `008AB037` `lea` | `02CB6D80` | PMeshInstanceSegmentContext |
+| 008AB050 | `008AB057` `lea` | `02CB6C80` | PMeshInstanceSegmentStreamBinding |
+| 008AB070 | `008AB077` `lea` | `02CB7180` | PModifierNetworkDynamicMeshInstance |
+| 008AB090 | `008AB097` `lea` | `02CB7280` | PNodeContext |
+| 008AB0B0 | `008AB0B7` `lea` | `02CB7480` | PParameterBuffer |
+| 008AB0D0 | `008AB0D7` `lea` | `02CB7380` | PParameterBufferBase |
+| 008AB0F0 | `008AB0F7` `lea` | `02CB76A0` | PRenderTarget |
+| 008AB110 | `008AB117` `lea` | `02CB75A0` | PRenderTargetBase |
+| 008AB130 | `008AB137` `lea` | `02CB78A0` | PSamplerState |
+| 008AB150 | `008AB157` `lea` | `02CB77A0` | PSamplerStateBase |
+| 008AB170 | `008AB177` `lea` | `02CB79A0` | PSceneRenderPass |
+| 008AB190 | `008AB197` `lea` | `02CB7CA0` | PSceneWideParameterBuffer |
+| 008AB1B0 | `008AB1B7` `lea` | `02CB9000` | PShader |
+| 008AB1D0 | `008AB1D7` `lea` | `02CBB200` | PShaderComputeProgram |
+| 008AB1F0 | `008AB1F7` `lea` | `02CBB000` | PShaderFragmentProgram |
+| 008AB210 | `008AB217` `lea` | `02CBB100` | PShaderGeometryProgram |
+| 008AB230 | `008AB237` `lea` | `02CBA500` | PShaderParameterCaptureBufferByteAddressBuffer |
+| 008AB250 | `008AB257` `lea` | `02CBA700` | PShaderParameterCaptureBufferDataBlock |
+| 008AB270 | `008AB277` `lea` | `02CBA800` | PShaderParameterCaptureBufferIndexDataBlock |
+| 008AB290 | `008AB297` `lea` | `02CB9100` | PShaderParameterCaptureBufferLocation |
+| 008AB2B0 | `008AB2B7` `lea` | `02CB9200` | PShaderParameterCaptureBufferLocationSize |
+| 008AB2D0 | `008AB2D7` `lea` | `02CB9300` | PShaderParameterCaptureBufferLocationType |
+| 008AB2F0 | `008AB2F7` `lea` | `02CB9400` | PShaderParameterCaptureBufferLocationTypeConstantBuffer |
+| 008AB310 | `008AB317` `lea` | `02CBA600` | PShaderParameterCaptureBufferRWByteAddressBuffer |
+| 008AB330 | `008AB337` `lea` | `02CBA400` | PShaderParameterCaptureBufferRWStructuredBuffer |
+| 008AB350 | `008AB357` `lea` | `02CBA900` | PShaderParameterCaptureBufferRWTexture2D |
+| 008AB370 | `008AB377` `lea` | `02CBAA00` | PShaderParameterCaptureBufferRWTexture3D |
+| 008AB390 | `008AB397` `lea` | `02CBA200` | PShaderParameterCaptureBufferSampler |
+| 008AB3B0 | `008AB3B7` `lea` | `02CB9C00` | PShaderParameterCaptureBufferStream |
+| 008AB3D0 | `008AB3D7` `lea` | `02CBA300` | PShaderParameterCaptureBufferStructuredBuffer |
+| 008AB3F0 | `008AB3F7` `lea` | `02CB9F00` | PShaderParameterCaptureBufferTexture2D |
+| 008AB410 | `008AB417` `lea` | `02CBA000` | PShaderParameterCaptureBufferTexture3D |
+| 008AB430 | `008AB437` `lea` | `02CB9D00` | PShaderParameterCaptureBufferTextureBase |
+| 008AB450 | `008AB457` `lea` | `02CBA100` | PShaderParameterCaptureBufferTextureCubeMap |
+| 008AB470 | `008AB477` `lea` | `02CB9E00` | PShaderParameterCaptureConstantBuffer |
+| 008AB490 | `008AB497` `lea` | `02CB9500` | PShaderParameterDefinition |
+| 008AB4B0 | `008AB4B7` `lea` | `02CB9A00` | PShaderPass |
+| 008AB4D0 | `008AB4D7` `lea` | `02CB9900` | PShaderPassBase |
+| 008AB4F0 | `008AB4F7` `lea` | `02CB7AA0` | PShaderPassInfo |
+| 008AB510 | `008AB517` `lea` | `02CB9700` | PShaderPassParameterLocationTypes |
+| 008AB530 | `008AB537` `lea` | `02CB9600` | PShaderPassParameterLocationTypesBase |
+| 008AB550 | `008AB557` `lea` | `02CB9800` | PShaderPassParameterLocationTypesConstantBuffer |
+| 008AB570 | `008AB577` `lea` | `02CB9B00` | PShaderPassStateBase |
+| 008AB590 | `008AB597` `lea` | `02CBAD00` | PShaderProgramBase |
+| 008AB5B0 | `008AB5B7` `lea` | `02CBAC00` | PShaderProgramParamsAndStreams |
+| 008AB5D0 | `008AB5D7` `lea` | `02CBAB00` | PShaderSource |
+| 008AB5F0 | `008AB5F7` `lea` | `02CBAE00` | PShaderStreamDefinition |
+| 008AB610 | `008AB617` `lea` | `02CBAF00` | PShaderVertexProgram |
+| 008AB630 | `008AB637` `lea` | `02CBB300` | PShadowRenderer |
+| 008AB650 | `008AB657` `lea` | `02CBB600` | PStructuredBuffer |
+| 008AB670 | `008AB677` `lea` | `02CBB500` | PStructuredBufferBase |
+| 008AB690 | `008AB697` `lea` | `02CBB900` | PTexture2D |
+| 008AB6B0 | `008AB6B7` `lea` | `02CBB800` | PTexture2DBase |
+| 008AB6D0 | `008AB6D7` `lea` | `02CBBB00` | PTexture3D |
+| 008AB6F0 | `008AB6F7` `lea` | `02CBBA00` | PTexture3DBase |
+| 008AB710 | `008AB717` `lea` | `02CBB700` | PTextureCommonBase |
+| 008AB730 | `008AB737` `lea` | `02CBBD00` | PTextureCubeMap |
+| 008AB750 | `008AB757` `lea` | `02CBBC00` | PTextureCubeMapBase |
+| 008AE730 | `008AE737` `lea` | `02CF2440` | PConstantBufferD3D11 |
+| 008AE750 | `008AE757` `lea` | `02CF2340` | PIndirectArgsBufferD3D11 |
+| 008AE770 | `008AE777` `lea` | `02CF2040` | PRenderTargetD3D11 |
+| 008AE790 | `008AE797` `lea` | `02CF2140` | PSamplerStateD3D11 |
+| 008AE7B0 | `008AE7B7` `lea` | `02CF1C40` | PShaderComputeProgramD3D11 |
+| 008AE7D0 | `008AE7D7` `lea` | `02CF1A40` | PShaderFragmentProgramD3D11 |
+| 008AE7F0 | `008AE7F7` `lea` | `02CF1B40` | PShaderGeometryProgramD3D11 |
+| 008AE810 | `008AE817` `lea` | `02CF1440` | PShaderPassD3D11 |
+| 008AE830 | `008AE837` `lea` | `02CF1540` | PShaderPassStateD3D11 |
+| 008AE850 | `008AE857` `lea` | `02CF1840` | PShaderProgramD3D11 |
+| 008AE870 | `008AE877` `lea` | `02CF1940` | PShaderVertexProgramD3D11 |
+| 008AE890 | `008AE897` `lea` | `02CF1640` | PStreamInputDescD3D11 |
+| 008AE8B0 | `008AE8B7` `lea` | `02CF1740` | PStreamInputLayoutD3D11 |
+| 008AE8D0 | `008AE8D7` `lea` | `02CF2240` | PStructuredBufferD3D11 |
+| 008AE8F0 | `008AE8F7` `lea` | `02CF1D40` | PTexture2DD3D11 |
+| 008AE910 | `008AE917` `lea` | `02CF1E40` | PTexture3DD3D11 |
+| 008AE930 | `008AE937` `lea` | `02CF1F40` | PTextureCubeMapD3D11 |
+| 008AFEF0 | `008AFEF7` `lea` | `02D368A0` | PAtmospherics |
+| 008AFF10 | `008AFF17` `lea` | `02D367A0` | PAtmosphericsBase |
+| 008AFF30 | `008AFF37` `lea` | `02D369A0` | PAtmosphericsD3D11 |
+| 008AFF50 | `008AFF57` `lea` | `02D362A0` | PCelShading |
+| 008AFF70 | `008AFF77` `lea` | `02D361A0` | PCelShadingBase |
+| 008AFF90 | `008AFF97` `lea` | `02D363A0` | PCelShadingD3D11 |
+| 008AFFB0 | `008AFFB7` `lea` | `02D34940` | PDeferredLighting |
+| 008AFFD0 | `008AFFD7` `lea` | `02D34840` | PDeferredLightingBase |
+| 008AFFF0 | `008AFFF7` `lea` | `02D34A40` | PDeferredLightingD3D11 |
+| 008B0010 | `008B0017` `lea` | `02D34C40` | PDepthOfField |
+| 008B0030 | `008B0037` `lea` | `02D34B40` | PDepthOfFieldBase |
+| 008B0050 | `008B0057` `lea` | `02D34D40` | PDepthOfFieldD3D11 |
+| 008B0070 | `008B0077` `lea` | `02D35FA0` | PFXAA |
+| 008B0090 | `008B0097` `lea` | `02D35EA0` | PFXAABase |
+| 008B00B0 | `008B00B7` `lea` | `02D360A0` | PFXAAD3D11 |
+| 008B00D0 | `008B00D7` `lea` | `02D35CA0` | PGlow |
+| 008B00F0 | `008B00F7` `lea` | `02D35AA0` | PGlowBase |
+| 008B0110 | `008B0117` `lea` | `02D35DA0` | PGlowD3D11 |
+| 008B0130 | `008B0137` `lea` | `02D35BA0` | PGlowGPUBase |
+| 008B0150 | `008B0157` `lea` | `02D36AA0` | PLowResParticles |
+| 008B0170 | `008B0177` `lea` | `02D357A0` | PMLAA |
+| 008B0190 | `008B0197` `lea` | `02D356A0` | PMLAABase |
+| 008B01B0 | `008B01B7` `lea` | `02D358A0` | PMLAAD3D11 |
+| 008B01D0 | `008B01D7` `lea` | `02D36BA0` | PMaterialPostEffect |
+| 008B01F0 | `008B01F7` `lea` | `02D359A0` | PMeshParticleSystemBase |
+| 008B0210 | `008B0217` `lea` | `02D34F40` | PMotionBlur |
+| 008B0230 | `008B0237` `lea` | `02D34E40` | PMotionBlurBase |
+| 008B0250 | `008B0257` `lea` | `02D35040` | PMotionBlurD3D11 |
+| 008B0270 | `008B0277` `lea` | `02D34740` | PPostEffectBase |
+| 008B0290 | `008B0297` `lea` | `02D36CA0` | PPostEffectManager |
+| 008B02B0 | `008B02B7` `lea` | `02D35400` | PScreenSpaceAmbientOcclusion |
+| 008B02D0 | `008B02D7` `lea` | `02D35300` | PScreenSpaceAmbientOcclusionBase |
+| 008B02F0 | `008B02F7` `lea` | `02D35500` | PScreenSpaceAmbientOcclusionD3D11 |
+| 008B0310 | `008B0317` `lea` | `02D365A0` | PScreenSpaceReflection |
+| 008B0330 | `008B0337` `lea` | `02D364A0` | PScreenSpaceReflectionBase |
+| 008B0350 | `008B0357` `lea` | `02D366A0` | PScreenSpaceReflectionD3D11 |
+| 008B0BA0 | `008B0BA7` `lea` | `02D39E40` | PDataBlock |
+| 008B0BC0 | `008B0BC7` `lea` | `02D39D40` | PDataBlockBase |
+| 008B0BE0 | `008B0BE7` `lea` | `02D39B40` | PDataBlockBufferD3D11 |
+| 008B0C00 | `008B0C07` `lea` | `02D39C40` | PDataBlockD3D11 |
+| 008B0C20 | `008B0C27` `lea` | `02D39F40` | PDynamicDataBlock |
+| 008B0C40 | `008B0C47` `lea` | `02D3A140` | PDynamicMesh |
+| 008B0C60 | `008B0C67` `lea` | `02D3A040` | PDynamicSegmentDesc |
+| 008B0C80 | `008B0C87` `lea` | `02D3A340` | PIndexDataBlock |
+| 008B0CA0 | `008B0CA7` `lea` | `02D3A240` | PIndexDataBlockBase |
+| 008B0CC0 | `008B0CC7` `lea` | `02D39940` | PIndexDataBlockBufferD3D11 |
+| 008B0CE0 | `008B0CE7` `lea` | `02D39A40` | PIndexDataBlockD3D11 |
+| 008B0D00 | `008B0D07` `lea` | `02D3A440` | PMaterialSet |
+| 008B0D20 | `008B0D27` `lea` | `02D3A640` | PMesh |
+| 008B0D40 | `008B0D47` `lea` | `02D3A940` | PMeshSegment |
+| 008B0D60 | `008B0D67` `lea` | `02D3A840` | PMeshSegmentBase |
+| 008B0D80 | `008B0D87` `lea` | `02D39840` | PMeshSegmentD3D11 |
+| 008B0DA0 | `008B0DA7` `lea` | `02D3ACE0` | PShape |
+| 008B0DC0 | `008B0DC7` `lea` | `02D3A540` | PSkeletonJointBounds |
+| 008B0DE0 | `008B0DE7` `lea` | `02D3A740` | PSkinBoneRemap |
+| 008B0E00 | `008B0E07` `lea` | `02D3ADE0` | PVertexStream |
+| 008B1AC0 | `008B1AC7` `lea` | `02D3E680` | PAssetReference |
+| 008B1AE0 | `008B1AE7` `lea` | `02D3E780` | PAssetReferenceImport |
+| 008B1DB0 | `008B1DB7` `lea` | `02D3F210` | PCamera |
+| 008B1DD0 | `008B1DD7` `lea` | `02D3F310` | PCameraProjection |
+| 008B1F80 | `008B1F87` `lea` | `02E3FA60` | PBitmapFont |
+| 008B1FA0 | `008B1FA7` `lea` | `02E3F960` | PBitmapFontCharInfo |
+| 008B2110 | `008B2117` `lea` | `02E404B0` | PWorldMatrix |
+| 008B22C0 | `008B22C7` `lea` | `02E41270` | PAsyncProcessHeader |
+| 008B22E0 | `008B22E7` `lea` | `02E41070` | PClassCallableMethodScript |
+| 008B2300 | `008B2307` `lea` | `02E41370` | PScheduler |
+| 008B2320 | `008B2327` `lea` | `02E41470` | PScript |
+| 008B2340 | `008B2347` `lea` | `02E41170` | PScriptCallbackHandler |
+| 008B26D0 | `008B26D7` `lea` | `02E479D0` | PPhysicsBox |
+| 008B26F0 | `008B26F7` `lea` | `02E478D0` | PPhysicsBoxBase |
+| 008B2710 | `008B2717` `lea` | `02E496D0` | PPhysicsBoxBullet |
+| 008B2730 | `008B2737` `lea` | `02E48AD0` | PPhysicsCallbackData |
+| 008B2750 | `008B2757` `lea` | `02E47BD0` | PPhysicsCapsule |
+| 008B2770 | `008B2777` `lea` | `02E47AD0` | PPhysicsCapsuleBase |
+| 008B2790 | `008B2797` `lea` | `02E497D0` | PPhysicsCapsuleBullet |
+| 008B27B0 | `008B27B7` `lea` | `02E47CD0` | PPhysicsCharacterCamera |
+| 008B27D0 | `008B27D7` `lea` | `02E47ED0` | PPhysicsCharacterController |
+| 008B27F0 | `008B27F7` `lea` | `02E47DD0` | PPhysicsCharacterControllerBase |
+| 008B2810 | `008B2817` `lea` | `02E49FD0` | PPhysicsCharacterControllerBullet |
+| 008B2830 | `008B2837` `lea` | `02E480D0` | PPhysicsCylinder |
+| 008B2850 | `008B2857` `lea` | `02E47FD0` | PPhysicsCylinderBase |
+| 008B2870 | `008B2877` `lea` | `02E498D0` | PPhysicsCylinderBullet |
+| 008B2890 | `008B2897` `lea` | `02E482D0` | PPhysicsInterface |
+| 008B28B0 | `008B28B7` `lea` | `02E481D0` | PPhysicsInterfaceBase |
+| 008B28D0 | `008B28D7` `lea` | `02E49ED0` | PPhysicsInterfaceBullet |
+| 008B28F0 | `008B28F7` `lea` | `02E483D0` | PPhysicsMaterial |
+| 008B2910 | `008B2917` `lea` | `02E485D0` | PPhysicsMesh |
+| 008B2930 | `008B2937` `lea` | `02E484D0` | PPhysicsMeshBase |
+| 008B2950 | `008B2957` `lea` | `02E499D0` | PPhysicsMeshBullet |
+| 008B2970 | `008B2977` `lea` | `02E486D0` | PPhysicsModel |
+| 008B2990 | `008B2997` `lea` | `02E488D0` | PPhysicsPlane |
+| 008B29B0 | `008B29B7` `lea` | `02E487D0` | PPhysicsPlaneBase |
+| 008B29D0 | `008B29D7` `lea` | `02E49AD0` | PPhysicsPlaneBullet |
+| 008B29F0 | `008B29F7` `lea` | `02E48BD0` | PPhysicsRigidBody |
+| 008B2A10 | `008B2A17` `lea` | `02E489D0` | PPhysicsRigidBodyBase |
+| 008B2A30 | `008B2A37` `lea` | `02E49CD0` | PPhysicsRigidBodyBullet |
+| 008B2A50 | `008B2A57` `lea` | `02E48DD0` | PPhysicsShape |
+| 008B2A70 | `008B2A77` `lea` | `02E48CD0` | PPhysicsShapeBase |
+| 008B2A90 | `008B2A97` `lea` | `02E495D0` | PPhysicsShapeBullet |
+| 008B2AB0 | `008B2AB7` `lea` | `02E48FD0` | PPhysicsSphere |
+| 008B2AD0 | `008B2AD7` `lea` | `02E48ED0` | PPhysicsSphereBase |
+| 008B2AF0 | `008B2AF7` `lea` | `02E49BD0` | PPhysicsSphereBullet |
+| 008B2B10 | `008B2B17` `lea` | `02E490D0` | PPhysicsTaperedCapsule |
+| 008B2B30 | `008B2B37` `lea` | `02E491D0` | PPhysicsTaperedCylinder |
+| 008B2B50 | `008B2B57` `lea` | `02E494D0` | PPhysicsWorld |
+| 008B2B70 | `008B2B77` `lea` | `02E492D0` | PPhysicsWorldBase |
+| 008B2B90 | `008B2B97` `lea` | `02E49DD0` | PPhysicsWorldBullet |
+| 008B2BB0 | `008B2BB7` `lea` | `02E493D0` | PRaycastResult |
+| 008B3E90 | `008B3E97` `lea` | `02E4D630` | PString |
+| 008B3F20 | `008B3F27` `lea` | `02E4D940` | PTrigger |
+| 008B4160 | `008B4167` `lea` | `02E4E1E0` | PQuarryComponent |
+| 008B41B0 | `008B41B7` `lea` | `02E4E430` | PTypedObject |
+| 008B4200 | `008B4207` `lea` | `02E4E720` | PComponent |
+| 008B4310 | `008B4317` `lea` | `02E4EAF0` | PEntity |
+| 008B4620 | `008B4627` `lea` | `02E4F290` | PCameraOrthographic |
+| 008B46B0 | `008B46B7` `lea` | `02E4F710` | PCameraPerspective |
+| 008B46E0 | `008B46E7` `lea` | `02E4F900` | PInstancesComponent |
+| 008B48E0 | `008B48E7` `lea` | `02E4FF60` | PNameComponent |
+| 008B4970 | `008B4977` `lea` | `02E50160` | PRandomGenerator |
+| 008B5200 | `008B5207` `lea` | `02E518D0` | PNode |
+| 008B5800 | `008B5807` `lea` | `02E522F0` | PMeshSegmentContext |
+| 008B5CF0 | `008B5CF7` `lea` | `02E58060` | PModifierNetworkDynamicMesh |
+| 008B5D10 | `008B5D17` `lea` | `02E57F60` | PModifierNetworkDynamicMeshSegment |
+| 008B5EA0 | `008B5EA7` `lea` | `02E58DB0` | PLight |
+| 008B65B0 | `008B65B7` `lea` | `02E59DC0` | PShadowCaster |
+| 008B65D0 | `008B65D7` `lea` | `02E59CC0` | PShadowSplit |
+| 008B6920 | `008B6927` `lea` | `02E5A6C0` | PModifierNetworkInstance |
+| 008B6940 | `008B6947` `lea` | `02E5A4C0` | PModifierNetworkInstanceInput |
+| 008B6960 | `008B6967` `lea` | `02E5A5C0` | PModifierNetworkInstancePacketInput |
+| 008B6B00 | `008B6B07` `lea` | `02E5AE00` | PLODGroup |
+| 008B6B20 | `008B6B27` `lea` | `02E5AD00` | PLODLevel |
+| 008B6D60 | `008B6D67` `lea` | `02E5BBB0` | POccluderGeometryInstance |
+| 008B6F60 | `008B6F67` `lea` | `02E5C050` | PScriptableComponent |
+| 008B7020 | `008B7027` `lea` | `02E5C370` | PTriggerReceiverTypeCallbackData |
+| 008B7080 | `008B7087` `lea` | `02E5C710` | PTriggerReceiverComponent |
+| 008B70F0 | `008B70F7` `lea` | `02E5E030` | PModifierAndInputs |
+| 008B7110 | `008B7117` `lea` | `02E5E540` | PModifierNetwork |
+| 008B7130 | `008B7137` `lea` | `02E5DF30` | PModifierNetworkBuffer |
+| 008B7150 | `008B7157` `lea` | `02E5E430` | PModifierNetworkInfoPacket |
+| 008B7170 | `008B7177` `lea` | `02E5E330` | PModifierNetworkInfoPacket_Buffer |
+| 008B7190 | `008B7197` `lea` | `02E5E130` | PModifierNetworkInfoPacket_ModifierCode |
+| 008B71B0 | `008B71B7` `lea` | `02E5E230` | PModifierNetworkInfoPacket_ModifierInstance |
+| 008B71D0 | `008B71D7` `lea` | `02E5DE30` | PRenderStream |
+| 008B71F0 | `008B71F7` `lea` | `02E5DD30` | PRenderStreamInput |
+| 008B75F0 | `008B75F7` `lea` | `02E9FDF0` | PMorphModifierWeightsUserDataObject |
+| 008B78B0 | `008B78B7` `lea` | `02EA0850` | POccluderGeometryObject |
+| 008B79B0 | `008B79B7` `lea` | `02EA5660` | PApplication |
+| 008B79D0 | `008B79D7` `lea` | `02EA5380` | PApplicationViewport |
+| 008B79F0 | `008B79F7` `lea` | `02EA9400` | PDebugUtils |
+| 008B7A10 | `008B7A17` `lea` | `02EA5560` | PInputMapper |
+| 008B91E0 | `008B91E7` `lea` | `02EB6CF0` | PInputAction |
+| 008B9200 | `008B9207` `lea` | `02EB6DF0` | PInputMap |
+| 008B9220 | `008B9227` `lea` | `02EB52F0` | PInputSource |
+| 008B9240 | `008B9247` `lea` | `02EB55F0` | PInputSourceJoypadAxis |
+| 008B9260 | `008B9267` `lea` | `02EB54F0` | PInputSourceJoypadButton |
+| 008B9280 | `008B9287` `lea` | `02EB53F0` | PInputSourceKey |
+| 008B92A0 | `008B92A7` `lea` | `02EB63F0` | PInputSourceMotionAngularVelocityX |
+| 008B92C0 | `008B92C7` `lea` | `02EB64F0` | PInputSourceMotionAngularVelocityY |
+| 008B92E0 | `008B92E7` `lea` | `02EB65F0` | PInputSourceMotionAngularVelocityZ |
+| 008B9300 | `008B9307` `lea` | `02EB66F0` | PInputSourceMotionLinearAccelerationX |
+| 008B9320 | `008B9327` `lea` | `02EB67F0` | PInputSourceMotionLinearAccelerationY |
+| 008B9340 | `008B9347` `lea` | `02EB68F0` | PInputSourceMotionLinearAccelerationZ |
+| 008B9360 | `008B9367` `lea` | `02EB62F0` | PInputSourceMotionQuatW |
+| 008B9380 | `008B9387` `lea` | `02EB5FF0` | PInputSourceMotionQuatX |
+| 008B93A0 | `008B93A7` `lea` | `02EB60F0` | PInputSourceMotionQuatY |
+| 008B93C0 | `008B93C7` `lea` | `02EB61F0` | PInputSourceMotionQuatZ |
+| 008B93E0 | `008B93E7` `lea` | `02EB56F0` | PInputSourceMouseButton |
+| 008B9400 | `008B9407` `lea` | `02EB57F0` | PInputSourceMouseDeltaX |
+| 008B9420 | `008B9427` `lea` | `02EB58F0` | PInputSourceMouseDeltaY |
+| 008B9440 | `008B9447` `lea` | `02EB5BF0` | PInputSourceTouchDragX |
+| 008B9460 | `008B9467` `lea` | `02EB5CF0` | PInputSourceTouchDragY |
+| 008B9480 | `008B9487` `lea` | `02EB5AF0` | PInputSourceTouchPinch |
+| 008B94A0 | `008B94A7` `lea` | `02EB59F0` | PInputSourceTouchRotate |
+| 008B94C0 | `008B94C7` `lea` | `02EB5DF0` | PInputSourceTouchTwoFingerDragX |
+| 008B94E0 | `008B94E7` `lea` | `02EB5EF0` | PInputSourceTouchTwoFingerDragY |
+| 008B9500 | `008B9507` `lea` | `02EB69F0` | PInputSourceVisionTrackerX |
+| 008B9520 | `008B9527` `lea` | `02EB6AF0` | PInputSourceVisionTrackerY |
+| 008B9540 | `008B9547` `lea` | `02EB6BF0` | PInputSourceVisionTrackerZ |
+| 008B97D0 | `008B97D7` `lea` | `02EB7CD0` | PVisionMoveTracker |
+| 008B97F0 | `008B97F7` `lea` | `02EB7BD0` | PVisionMoveTrackerBase |
+| 008B9810 | `008B9817` `lea` | `02EB7DD0` | PVisionMoveTrackerWin32 |
+| 008B9830 | `008B9837` `lea` | `02EB8060` | PVisionTracker |
+| 008B9850 | `008B9857` `lea` | `02EB7F60` | PVisionTrackerBase |
+| 008B9870 | `008B9877` `lea` | `02EB8160` | PVisionTrackerWin32 |
+| 008BDD20 | `008BDD27` `lea` | `02EB9070` | POctree |
+| 008BDD40 | `008BDD47` `lea` | `02EB9370` | POctreeChildren |
+| 008BDD60 | `008BDD67` `lea` | `02EB9170` | POctreeData |
+| 008BDD80 | `008BDD87` `lea` | `02EB9270` | POctreeWorld |
+| 008C14E0 | `008C14E7` `lea` | `02EB9E60` | PGameConfig |
+
+## Per-member rows: the class name and size each AbstractClassDescriptor constructor registers (OPUS, 2026-10-03)
+
+The family `AbstractClassDescriptor constructors` (frontmatter: 178 members; 178 get a row here) shares one form, not repeated per row: it calls the context getter `006373D0`, passes its result to the shared descriptor constructor `00632D80` with the class name in `r8`, the instance size in `r9d` and a descriptor pointer as a stack argument, stores the concrete vtable at qword `+0`, sets bit `0x2` of dword `+0xFC`, and calls the three member-registration helpers `0063DC80`, `0063DF90` and `0063DFA0` (all 178 members make exactly these five calls, in this order). What differs from member to member is the name and size it passes. Each row anchors the `lea r8, [S]` before the `00632D80` call (the member's distinguishing instruction) and states S, the class-name string at S, and the immediate size from `mov r9d`. All are read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-abstract-descriptor-ctors-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-abstract-descriptor-ctors-1003/rows.tsv). A body without exactly one `00632D80` call, a name that is not a clean string, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-abstract-descriptor-ctors-1003/excluded.tsv).
+
+### All 178 constructors (OPUS)
+
+| member | distinguishing instruction | name string S | class name and instance size passed |
+|---|---|---|---|
+| 00597690 | `005976D0` `lea` | `00D24880` | "PClusterHeader", size 0x54 |
+| 005977E0 | `00597820` `lea` | `00D246D0` | "PClusterHeaderD3D11", size 0x54 |
+| 005A7ED0 | `005A7F10` `lea` | `00D29808` | "PAnimatableComponent", size 0x108 |
+| 005A7F70 | `005A7FB0` `lea` | `00D2C308` | "PAnimationAdditiveBlenderController", size 0x38 |
+| 005A8010 | `005A8050` `lea` | `00D2AE98` | "PAnimationBlenderController", size 0x28 |
+| 005A80B0 | `005A80F0` `lea` | `00D29780` | "PAnimationChannel", size 0x68 |
+| 005A8150 | `005A8190` `lea` | `00D28E80` | "PAnimationChannelBase", size 0x48 |
+| 005A8610 | `005A8650` `lea` | `00D2A240` | "PAnimationConstantChannel", size 0x58 |
+| 005A86B0 | `005A86F0` `lea` | `00D27E68` | "PAnimationController", size 0x28 |
+| 005A8750 | `005A8790` `lea` | `00D2BE80` | "PAnimationDataSource", size 0x18 |
+| 005A8950 | `005A8990` `lea` | `00D2C958` | "PAnimationEventController", size 0x28 |
+| 005A8E10 | `005A8E50` `lea` | `00D29B28` | "PAnimationSlotFilter", size 0x40 |
+| 005A9010 | `005A9050` `lea` | `00D2CCB0` | "PAnimationSpuTargetBlenderController", size 0x20 |
+| 005A90B0 | `005A90F0` `lea` | `00D28480` | "PAnimationTargetBlenderController", size 0x20 |
+| 005A9150 | `005A9190` `lea` | `00D2B6C0` | "PAnimationWeightedBlenderController", size 0x38 |
+| 005A92A0 | `005A92E0` `lea` | `00D28A60` | "PTimeController", size 0x10 |
+| 005A9340 | `005A9380` `lea` | `00D29670` | "PTimeIntervalController", size 0x28 |
+| 005A93E0 | `005A9420` `lea` | `00D2A010` | "PTimeScaleOffsetController", size 0x20 |
+| 005D8F20 | `005D8F60` `lea` | `00D3B118` | "PConstantBuffer", size 0x50 |
+| 005D9330 | `005D9370` `lea` | `00D3FA08` | "PForwardShadowRenderer", size 0x10 |
+| 005D93D0 | `005D9410` `lea` | `00D42108` | "PIndirectArgsBuffer", size 0x28 |
+| 005D99E0 | `005D9A20` `lea` | `00D36400` | "PModifierNetworkDynamicMeshInstance", size 0x28 |
+| 005D9B30 | `005D9B70` `lea` | `00D3A9A8` | "PParameterBuffer", size 0x20 |
+| 005D9C80 | `005D9CC0` `lea` | `00D3D138` | "PRenderTarget", size 0x50 |
+| 005D9DD0 | `005D9E10` `lea` | `00D36620` | "PSamplerState", size 0x28 |
+| 005D9FD0 | `005DA010` `lea` | `00D41648` | "PSceneWideParameterBuffer", size 0x8 |
+| 005DA120 | `005DA160` `lea` | `00D41290` | "PShaderComputeProgram", size 0x90 |
+| 005DA1C0 | `005DA200` `lea` | `00D3E110` | "PShaderFragmentProgram", size 0x80 |
+| 005DA260 | `005DA2A0` `lea` | `00D3FD58` | "PShaderGeometryProgram", size 0x80 |
+| 005DA300 | `005DA340` `lea` | `00D3CA48` | "PShaderParameterCaptureBufferByteAddressBuffer", size 0x20 |
+| 005DA3A0 | `005DA3E0` `lea` | `00D40CA0` | "PShaderParameterCaptureBufferDataBlock", size 0x18 |
+| 005DA440 | `005DA480` `lea` | `00D41CC0` | "PShaderParameterCaptureBufferIndexDataBlock", size 0x18 |
+| 005DA590 | `005DA5D0` `lea` | `00D3F480` | "PShaderParameterCaptureBufferLocationSize", size 0x4 |
+| 005DA630 | `005DA670` `lea` | `00D40D50` | "PShaderParameterCaptureBufferLocationType", size 0x4 |
+| 005DA6D0 | `005DA710` `lea` | `00D41D20` | "PShaderParameterCaptureBufferLocationTypeConstantBuffer", size 0x10 |
+| 005DA770 | `005DA7B0` `lea` | `00D3DAD0` | "PShaderParameterCaptureBufferRWByteAddressBuffer", size 0x28 |
+| 005DA810 | `005DA850` `lea` | `00D3B2C0` | "PShaderParameterCaptureBufferRWStructuredBuffer", size 0x20 |
+| 005DA8B0 | `005DA8F0` `lea` | `00D42B60` | "PShaderParameterCaptureBufferRWTexture2D", size 0x18 |
+| 005DA950 | `005DA990` `lea` | `00D37010` | "PShaderParameterCaptureBufferRWTexture3D", size 0x18 |
+| 005DA9F0 | `005DAA30` `lea` | `00D38BE8` | "PShaderParameterCaptureBufferSampler", size 0x18 |
+| 005DAB40 | `005DAB80` `lea` | `00D3A050` | "PShaderParameterCaptureBufferStructuredBuffer", size 0x20 |
+| 005DABE0 | `005DAC20` `lea` | `00D3E7E8` | "PShaderParameterCaptureBufferTexture2D", size 0x18 |
+| 005DAC80 | `005DACC0` `lea` | `00D406A0` | "PShaderParameterCaptureBufferTexture3D", size 0x18 |
+| 005DADD0 | `005DAE10` `lea` | `00D418E8` | "PShaderParameterCaptureBufferTextureCubeMap", size 0x18 |
+| 005DAE70 | `005DAEB0` `lea` | `00D3F3D0` | "PShaderParameterCaptureConstantBuffer", size 0x18 |
+| 005DAFC0 | `005DB000` `lea` | `00D3A998` | "PShaderPass", size 0x2C0 |
+| 005DB1C0 | `005DB200` `lea` | `00D39388` | "PShaderPassParameterLocationTypes", size 0x20 |
+| 005DB310 | `005DB350` `lea` | `00D3B908` | "PShaderPassParameterLocationTypesConstantBuffer", size 0x20 |
+| 005DB720 | `005DB760` `lea` | `00D3CFA0` | "PShaderVertexProgram", size 0x98 |
+| 005DB870 | `005DB8B0` `lea` | `00D3D8F8` | "PStructuredBuffer", size 0x68 |
+| 005DB9C0 | `005DBA00` `lea` | `00D3D1D0` | "PTexture2D", size 0x188 |
+| 005DBA60 | `005DBAA0` `lea` | `00D36CD0` | "PTexture2DBase", size 0x30 |
+| 005DBB00 | `005DBB40` `lea` | `00D383E0` | "PTexture3D", size 0x90 |
+| 005DBBA0 | `005DBBE0` `lea` | `00D3F9F8` | "PTexture3DBase", size 0x38 |
+| 005DBCF0 | `005DBD30` `lea` | `00D40A68` | "PTextureCubeMap", size 0x350 |
+| 005DBD90 | `005DBDD0` `lea` | `00D3A870` | "PTextureCubeMapBase", size 0x30 |
+| 00614A90 | `00614AD0` `lea` | `00D50E10` | "PConstantBufferD3D11", size 0x50 |
+| 00614B30 | `00614B70` `lea` | `00D52198` | "PIndirectArgsBufferD3D11", size 0x28 |
+| 00614BD0 | `00614C10` `lea` | `00D512B8` | "PRenderTargetD3D11", size 0x50 |
+| 00614C70 | `00614CB0` `lea` | `00D525B8` | "PSamplerStateD3D11", size 0x28 |
+| 00614D10 | `00614D50` `lea` | `00D51210` | "PShaderComputeProgramD3D11", size 0x90 |
+| 00614DB0 | `00614DF0` `lea` | `00D50970` | "PShaderFragmentProgramD3D11", size 0x80 |
+| 00614E50 | `00614E90` `lea` | `00D50F38` | "PShaderGeometryProgramD3D11", size 0x80 |
+| 00614EF0 | `00614F30` `lea` | `00D50A70` | "PShaderPassD3D11", size 0x2C0 |
+| 00614F90 | `00614FD0` `lea` | `00D50210` | "PShaderPassStateD3D11", size 0x190 |
+| 00615030 | `00615070` `lea` | `00D525A0` | "PShaderProgramD3D11", size 0x78 |
+| 006150D0 | `00615110` `lea` | `00D50228` | "PShaderVertexProgramD3D11", size 0x98 |
+| 006152D0 | `00615310` `lea` | `00D51358` | "PStructuredBufferD3D11", size 0x68 |
+| 00615370 | `006153B0` `lea` | `00D51200` | "PTexture2DD3D11", size 0x188 |
+| 00615410 | `00615450` `lea` | `00D50200` | "PTexture3DD3D11", size 0x90 |
+| 006154B0 | `006154F0` `lea` | `00D51C28` | "PTextureCubeMapD3D11", size 0x350 |
+| 00643E80 | `00643EC0` `lea` | `00D5A7E8` | "PAtmospherics", size 0x288 |
+| 00643F20 | `00643F60` `lea` | `00D5EED0` | "PAtmosphericsBase", size 0x288 |
+| 00643FC0 | `00644000` `lea` | `00D596A8` | "PAtmosphericsD3D11", size 0x288 |
+| 00644060 | `006440A0` `lea` | `00D5D818` | "PCelShading", size 0xC0 |
+| 00644100 | `00644140` `lea` | `00D5C2E8` | "PCelShadingBase", size 0xC0 |
+| 006441A0 | `006441E0` `lea` | `00D5CED8` | "PCelShadingD3D11", size 0xC0 |
+| 00644380 | `006443C0` `lea` | `00D5BB90` | "PDeferredLightingD3D11", size 0x4330 |
+| 00644420 | `00644460` `lea` | `00D595E0` | "PDepthOfField", size 0xD0 |
+| 006444C0 | `00644500` `lea` | `00D5D760` | "PDepthOfFieldBase", size 0x80 |
+| 00644560 | `006445A0` `lea` | `00D5EA40` | "PDepthOfFieldD3D11", size 0xD0 |
+| 00644600 | `00644640` `lea` | `00D5EC80` | "PFXAA", size 0x70 |
+| 006446A0 | `006446E0` `lea` | `00D5D6D0` | "PFXAABase", size 0x70 |
+| 00644740 | `00644780` `lea` | `00D5E228` | "PFXAAD3D11", size 0x70 |
+| 006447E0 | `00644820` `lea` | `00D5CBC8` | "PGlow", size 0xD8 |
+| 00644880 | `006448C0` `lea` | `00D5A378` | "PGlowBase", size 0xA0 |
+| 00644920 | `00644960` `lea` | `00D5BD20` | "PGlowD3D11", size 0xD8 |
+| 006449C0 | `00644A00` `lea` | `00D5B250` | "PGlowGPUBase", size 0xD8 |
+| 00644B00 | `00644B40` `lea` | `00D5B644` | "PMLAA", size 0xB0 |
+| 00644BA0 | `00644BE0` `lea` | `00D598D0` | "PMLAABase", size 0xB0 |
+| 00644C40 | `00644C80` `lea` | `00D5A908` | "PMLAAD3D11", size 0xB0 |
+| 00644CE0 | `00644D20` `lea` | `00D5C2D0` | "PMaterialPostEffect", size 0x68 |
+| 00644D80 | `00644DC0` `lea` | `00D5E210` | "PMeshParticleSystemBase", size 0x3248 |
+| 00644E20 | `00644E60` `lea` | `00D5AB80` | "PMotionBlur", size 0xD70 |
+| 00644EC0 | `00644F00` `lea` | `00D5EDB0` | "PMotionBlurBase", size 0xD68 |
+| 00644F60 | `00644FA0` `lea` | `00D597A8` | "PMotionBlurD3D11", size 0xD70 |
+| 00645160 | `006451A0` `lea` | `00D5D100` | "PScreenSpaceAmbientOcclusion", size 0x68 |
+| 00645200 | `00645240` `lea` | `00D5B7C8` | "PScreenSpaceAmbientOcclusionBase", size 0x68 |
+| 006452A0 | `006452E0` `lea` | `00D5C4E8` | "PScreenSpaceAmbientOcclusionD3D11", size 0x68 |
+| 00645340 | `00645380` `lea` | `00D5B540` | "PScreenSpaceReflection", size 0xB0 |
+| 006453E0 | `00645420` `lea` | `00D59760` | "PScreenSpaceReflectionBase", size 0xB0 |
+| 00645480 | `006454C0` `lea` | `00D5A568` | "PScreenSpaceReflectionD3D11", size 0xB0 |
+| 00661B30 | `00661B70` `lea` | `00D66290` | "PDataBlock", size 0x88 |
+| 00661D30 | `00661D70` `lea` | `00D65628` | "PDataBlockD3D11", size 0x88 |
+| 00661FE0 | `00662020` `lea` | `00D65EC8` | "PIndexDataBlock", size 0x80 |
+| 006621E0 | `00662220` `lea` | `00D654F0` | "PIndexDataBlockD3D11", size 0x80 |
+| 006623E0 | `00662420` `lea` | `00D651C8` | "PMeshSegment", size 0xC0 |
+| 00662530 | `00662570` `lea` | `00D648A8` | "PMeshSegmentD3D11", size 0xC0 |
+| 00678420 | `00678460` `lea` | `00D6C868` | "PCameraProjection", size 0xD0 |
+| 006812B0 | `006812F0` `lea` | `00D6EAC0` | "PClassCallableMethodScript", size 0x68 |
+| 0068F250 | `0068F290` `lea` | `00D75610` | "PPhysicsBox", size 0x88 |
+| 0068F2F0 | `0068F330` `lea` | `00D74598` | "PPhysicsBoxBase", size 0x80 |
+| 0068F390 | `0068F3D0` `lea` | `00D74E68` | "PPhysicsBoxBullet", size 0x88 |
+| 0068F4E0 | `0068F520` `lea` | `00D75620` | "PPhysicsCapsule", size 0x90 |
+| 0068F580 | `0068F5C0` `lea` | `00D745A8` | "PPhysicsCapsuleBase", size 0x88 |
+| 0068F620 | `0068F660` `lea` | `00D74E80` | "PPhysicsCapsuleBullet", size 0x90 |
+| 0068F770 | `0068F7B0` `lea` | `00D71448` | "PPhysicsCharacterController", size 0x190 |
+| 0068F8C0 | `0068F900` `lea` | `00D70528` | "PPhysicsCharacterControllerBullet", size 0x190 |
+| 0068F960 | `0068F9A0` `lea` | `00D73D48` | "PPhysicsCylinder", size 0x88 |
+| 0068FA00 | `0068FA40` `lea` | `00D72588` | "PPhysicsCylinderBase", size 0x80 |
+| 0068FAA0 | `0068FAE0` `lea` | `00D73260` | "PPhysicsCylinderBullet", size 0x88 |
+| 0068FB40 | `0068FB80` `lea` | `00D73248` | "PPhysicsInterface", size 0xA0 |
+| 0068FC90 | `0068FCD0` `lea` | `00D72628` | "PPhysicsInterfaceBullet", size 0xA0 |
+| 0068FDE0 | `0068FE20` `lea` | `00D717F0` | "PPhysicsMesh", size 0x90 |
+| 0068FE80 | `0068FEC0` `lea` | `00D76238` | "PPhysicsMeshBase", size 0x78 |
+| 0068FF20 | `0068FF60` `lea` | `00D70A90` | "PPhysicsMeshBullet", size 0x90 |
+| 00690070 | `006900B0` `lea` | `00D73278` | "PPhysicsPlane", size 0x88 |
+| 00690110 | `00690150` `lea` | `00D71868` | "PPhysicsPlaneBase", size 0x80 |
+| 006901B0 | `006901F0` `lea` | `00D72640` | "PPhysicsPlaneBullet", size 0x88 |
+| 00690250 | `00690290` `lea` | `00D730F8` | "PPhysicsRigidBody", size 0x128 |
+| 006903A0 | `006903E0` `lea` | `00D72200` | "PPhysicsRigidBodyBullet", size 0x128 |
+| 00690440 | `00690480` `lea` | `00D71758` | "PPhysicsShape", size 0x70 |
+| 00690590 | `006905D0` `lea` | `00D709D8` | "PPhysicsShapeBullet", size 0x70 |
+| 00690630 | `00690670` `lea` | `00D73D28` | "PPhysicsSphere", size 0x80 |
+| 006906D0 | `00690710` `lea` | `00D72570` | "PPhysicsSphereBase", size 0x78 |
+| 00690770 | `006907B0` `lea` | `00D731A8` | "PPhysicsSphereBullet", size 0x80 |
+| 00690810 | `00690850` `lea` | `00D70B30` | "PPhysicsTaperedCapsule", size 0x88 |
+| 006908B0 | `006908F0` `lea` | `00D76350` | "PPhysicsTaperedCylinder", size 0x88 |
+| 00690950 | `00690990` `lea` | `00D70550` | "PPhysicsWorld", size 0xE8 |
+| 00690AA0 | `00690AE0` `lea` | `00D75518` | "PPhysicsWorldBullet", size 0xE8 |
+| 006A9720 | `006A9760` `lea` | `00D7C178` | "PQuarryComponent", size 0x68 |
+| 006ACFF0 | `006AD030` `lea` | `00D7D400` | "PCameraOrthographic", size 0xD8 |
+| 006AD860 | `006AD8A0` `lea` | `00D7D7E0` | "PCameraPerspective", size 0xD8 |
+| 006ADED0 | `006ADF10` `lea` | `00D7DB20` | "PInstancesComponent", size 0x28 |
+| 006AFB70 | `006AFBB0` `lea` | `00D7E580` | "PNameComponent", size 0x30 |
+| 006BBAD0 | `006BBB10` `lea` | `00D81778` | "PModifierNetworkDynamicMesh", size 0x78 |
+| 006C2EF0 | `006C2F30` `lea` | `00D841C8` | "PModifierNetworkInstanceInput", size 0x20 |
+| 006CCF50 | `006CCF90` `lea` | `00D89D00` | "PScriptableComponent", size 0x40 |
+| 006CDFF0 | `006CE030` `lea` | `00D8A370` | "PTriggerReceiverComponent", size 0x58 |
+| 0086B4C0 | `0086B500` `lea` | `01CD2948` | "PInputSourceJoypadAxis", size 0x38 |
+| 0086B560 | `0086B5A0` `lea` | `01CD1E20` | "PInputSourceJoypadButton", size 0x40 |
+| 0086B600 | `0086B640` `lea` | `01CD1600` | "PInputSourceKey", size 0x40 |
+| 0086B6A0 | `0086B6E0` `lea` | `01CD09B0` | "PInputSourceMotionAngularVelocityX", size 0x28 |
+| 0086B740 | `0086B780` `lea` | `01CD0DA0` | "PInputSourceMotionAngularVelocityY", size 0x28 |
+| 0086B7E0 | `0086B820` `lea` | `01CD1690` | "PInputSourceMotionAngularVelocityZ", size 0x28 |
+| 0086B880 | `0086B8C0` `lea` | `01CD1EC8` | "PInputSourceMotionLinearAccelerationX", size 0x28 |
+| 0086B920 | `0086B960` `lea` | `01CD2960` | "PInputSourceMotionLinearAccelerationY", size 0x28 |
+| 0086B9C0 | `0086BA00` `lea` | `01CD3440` | "PInputSourceMotionLinearAccelerationZ", size 0x28 |
+| 0086BA60 | `0086BAA0` `lea` | `01CD0458` | "PInputSourceMotionQuatW", size 0x28 |
+| 0086BB00 | `0086BB40` `lea` | `01CD3468` | "PInputSourceMotionQuatX", size 0x28 |
+| 0086BBA0 | `0086BBE0` `lea` | `01CD3D88` | "PInputSourceMotionQuatY", size 0x28 |
+| 0086BC40 | `0086BC80` `lea` | `01CD4540` | "PInputSourceMotionQuatZ", size 0x28 |
+| 0086BCE0 | `0086BD20` `lea` | `01CD33B8` | "PInputSourceMouseButton", size 0x38 |
+| 0086BD80 | `0086BDC0` `lea` | `01CD3D70` | "PInputSourceMouseDeltaX", size 0x40 |
+| 0086BE20 | `0086BE60` `lea` | `01CD4558` | "PInputSourceMouseDeltaY", size 0x40 |
+| 0086BEC0 | `0086BF00` `lea` | `01CD1F60` | "PInputSourceTouchDragX", size 0x28 |
+| 0086BF60 | `0086BFA0` `lea` | `01CD2A00` | "PInputSourceTouchDragY", size 0x28 |
+| 0086C000 | `0086C040` `lea` | `01CD09D8` | "PInputSourceTouchPinch", size 0x28 |
+| 0086C0A0 | `0086C0E0` `lea` | `01CD04D0` | "PInputSourceTouchRotate", size 0x28 |
+| 0086C140 | `0086C180` `lea` | `01CD0E50` | "PInputSourceTouchTwoFingerDragX", size 0x28 |
+| 0086C1E0 | `0086C220` `lea` | `01CD1740` | "PInputSourceTouchTwoFingerDragY", size 0x28 |
+| 0086C280 | `0086C2C0` `lea` | `01CD3D50` | "PInputSourceVisionTrackerX", size 0x28 |
+| 0086C320 | `0086C360` `lea` | `01CD44B0` | "PInputSourceVisionTrackerY", size 0x28 |
+| 0086C3C0 | `0086C400` `lea` | `01CD0438` | "PInputSourceVisionTrackerZ", size 0x28 |
+| 00874B70 | `00874BB0` `lea` | `01CD73A0` | "PVisionMoveTracker", size 0x8 |
+| 00874CC0 | `00874D00` `lea` | `01CD7120` | "PVisionMoveTrackerWin32", size 0x8 |
+| 00875760 | `008757A0` `lea` | `01CD7B68` | "PVisionTracker", size 0x8 |
+| 008758B0 | `008758F0` `lea` | `01CD7900` | "PVisionTrackerWin32", size 0x8 |
+
+## Per-member rows: the class descriptor each of the PClassDescriptorConcrete static initialisers loads (OPUS, 2026-10-03)
+
+The family `PClassDescriptorConcrete static initialisers` (frontmatter: 254 members; 254 get a row here) shares one shape, stated here once and not repeated per row: each loads its class descriptor X into rcx and calls its own descriptor-constructor wrapper, clears bit 0x2 of dword [X+0xFC], stores the concrete vtable at qword [X], and tail-jumps to 00808B90 with rcx = its static teardown (the atexit registration); all 254 have exactly this nine-instruction form. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (the first `lea rcx` in the body; the second loads the member's teardown, part of the shared form). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-descriptor-static-initialisers-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-descriptor-static-initialisers-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-descriptor-static-initialisers-1003/excluded.tsv).
+
+### All 254 members (OPUS)
+
+| member | distinguishing instruction | class descriptor X | class X describes |
+|---|---|---|---|
+| 001603E0 | `001603E4` `lea` | `02CAD140` | PAnimatableComponent |
+| 00160420 | `00160424` `lea` | `02CAD240` | PAnimationAdditiveBlenderController |
+| 00160480 | `00160484` `lea` | `02CAD440` | PAnimationChannel |
+| 001604C0 | `001604C4` `lea` | `02CAD540` | PAnimationChannelBase |
+| 00160500 | `00160504` `lea` | `02CAD640` | PAnimationChannelTarget |
+| 00160540 | `00160544` `lea` | `02CAD740` | PAnimationChannelTimes |
+| 00160580 | `00160584` `lea` | `02CAD840` | PAnimationClip |
+| 00160620 | `00160624` `lea` | `02CAD940` | PAnimationClipBindingChannelMap |
+| 00160660 | `00160664` `lea` | `02CADA40` | PAnimationClipBindingDataBlockCache |
+| 001606A0 | `001606A4` `lea` | `02CADC50` | PAnimationConstantChannel |
+| 001606E0 | `001606E4` `lea` | `02CADD50` | PAnimationController |
+| 00160740 | `00160744` `lea` | `02CAE350` | PAnimationDataSourceListEntry |
+| 00160780 | `00160784` `lea` | `02CAE050` | PAnimationEvent |
+| 001607C0 | `001607C4` `lea` | `02CADF50` | PAnimationEventController |
+| 00160800 | `00160804` `lea` | `02CAE150` | PAnimationEventList |
+| 00160860 | `00160864` `lea` | `02CAE550` | PAnimationNetworkInstance |
+| 001608A0 | `001608A4` `lea` | `02CAE450` | PAnimationNetworkInstanceTarget |
+| 001608E0 | `001608E4` `lea` | `02CAE660` | PAnimationSet |
+| 00160920 | `00160924` `lea` | `02CAE860` | PAnimationSlotArray |
+| 00160960 | `00160964` `lea` | `02CAEA60` | PAnimationSlotFilter |
+| 001609A0 | `001609A4` `lea` | `02CAE960` | PAnimationSlotFilterDeferredLoad |
+| 001609E0 | `001609E4` `lea` | `02CAE760` | PAnimationSlotListIndex |
+| 00160A20 | `00160A24` `lea` | `02CAEBE0` | PAnimationSpuTargetBlenderController |
+| 00160A60 | `00160A64` `lea` | `02CAECE0` | PAnimationTargetBlenderController |
+| 00160AA0 | `00160AA4` `lea` | `02CAEDE0` | PAnimationWeightedBlenderController |
+| 00160AE0 | `00160AE4` `lea` | `02CAD040` | PBlendableAnimationSource |
+| 00160B20 | `00160B24` `lea` | `02CAEEE0` | PTimeController |
+| 00160B60 | `00160B64` `lea` | `02CAEFE0` | PTimeIntervalController |
+| 00160BA0 | `00160BA4` `lea` | `02CAF0E0` | PTimeScaleOffsetController |
+| 00161140 | `00161144` `lea` | `02CB6480` | PConstantBuffer |
+| 00161180 | `00161184` `lea` | `02CB6380` | PConstantBufferBase |
+| 001611C0 | `001611C4` `lea` | `02CB7BA0` | PContextVariantFoldingTable |
+| 00161240 | `00161244` `lea` | `02CB6680` | PEffect |
+| 001612C0 | `001612C4` `lea` | `02CBB400` | PForwardShadowRenderer |
+| 00161300 | `00161304` `lea` | `02CB6980` | PIndirectArgsBuffer |
+| 00161340 | `00161344` `lea` | `02CB6880` | PIndirectArgsBufferBase |
+| 001613C0 | `001613C4` `lea` | `02CB6A80` | PMaterialSwitch |
+| 00161480 | `00161484` `lea` | `02CB7080` | PMeshInstanceBounds |
+| 001614C0 | `001614C4` `lea` | `02CB6D80` | PMeshInstanceSegmentContext |
+| 00161500 | `00161504` `lea` | `02CB6C80` | PMeshInstanceSegmentStreamBinding |
+| 00161580 | `00161584` `lea` | `02CB7280` | PNodeContext |
+| 00161690 | `00161694` `lea` | `02CB78A0` | PSamplerState |
+| 001616D0 | `001616D4` `lea` | `02CB77A0` | PSamplerStateBase |
+| 00161710 | `00161714` `lea` | `02CB79A0` | PSceneRenderPass |
+| 00161750 | `00161754` `lea` | `02CB7CA0` | PSceneWideParameterBuffer |
+| 00161790 | `00161794` `lea` | `02CB9000` | PShader |
+| 00161890 | `00161894` `lea` | `02CBA500` | PShaderParameterCaptureBufferByteAddressBuffer |
+| 001618D0 | `001618D4` `lea` | `02CBA700` | PShaderParameterCaptureBufferDataBlock |
+| 00161910 | `00161914` `lea` | `02CBA800` | PShaderParameterCaptureBufferIndexDataBlock |
+| 00161950 | `00161954` `lea` | `02CB9100` | PShaderParameterCaptureBufferLocation |
+| 00161990 | `00161994` `lea` | `02CB9200` | PShaderParameterCaptureBufferLocationSize |
+| 001619D0 | `001619D4` `lea` | `02CB9300` | PShaderParameterCaptureBufferLocationType |
+| 00161A10 | `00161A14` `lea` | `02CB9400` | PShaderParameterCaptureBufferLocationTypeConstantBuffer |
+| 00161A50 | `00161A54` `lea` | `02CBA600` | PShaderParameterCaptureBufferRWByteAddressBuffer |
+| 00161A90 | `00161A94` `lea` | `02CBA400` | PShaderParameterCaptureBufferRWStructuredBuffer |
+| 00161AD0 | `00161AD4` `lea` | `02CBA900` | PShaderParameterCaptureBufferRWTexture2D |
+| 00161B10 | `00161B14` `lea` | `02CBAA00` | PShaderParameterCaptureBufferRWTexture3D |
+| 00161B50 | `00161B54` `lea` | `02CBA200` | PShaderParameterCaptureBufferSampler |
+| 00161B90 | `00161B94` `lea` | `02CB9C00` | PShaderParameterCaptureBufferStream |
+| 00161BD0 | `00161BD4` `lea` | `02CBA300` | PShaderParameterCaptureBufferStructuredBuffer |
+| 00161C10 | `00161C14` `lea` | `02CB9F00` | PShaderParameterCaptureBufferTexture2D |
+| 00161C50 | `00161C54` `lea` | `02CBA000` | PShaderParameterCaptureBufferTexture3D |
+| 00161CD0 | `00161CD4` `lea` | `02CBA100` | PShaderParameterCaptureBufferTextureCubeMap |
+| 00161D10 | `00161D14` `lea` | `02CB9E00` | PShaderParameterCaptureConstantBuffer |
+| 00161D50 | `00161D54` `lea` | `02CB9500` | PShaderParameterDefinition |
+| 00161D90 | `00161D94` `lea` | `02CB9A00` | PShaderPass |
+| 00161DD0 | `00161DD4` `lea` | `02CB9900` | PShaderPassBase |
+| 00161E10 | `00161E14` `lea` | `02CB7AA0` | PShaderPassInfo |
+| 00161E50 | `00161E54` `lea` | `02CB9700` | PShaderPassParameterLocationTypes |
+| 00161E90 | `00161E94` `lea` | `02CB9600` | PShaderPassParameterLocationTypesBase |
+| 00161ED0 | `00161ED4` `lea` | `02CB9800` | PShaderPassParameterLocationTypesConstantBuffer |
+| 00161F10 | `00161F14` `lea` | `02CB9B00` | PShaderPassStateBase |
+| 00161F50 | `00161F54` `lea` | `02CBAD00` | PShaderProgramBase |
+| 00161F90 | `00161F94` `lea` | `02CBAC00` | PShaderProgramParamsAndStreams |
+| 00162010 | `00162014` `lea` | `02CBAE00` | PShaderStreamDefinition |
+| 00162090 | `00162094` `lea` | `02CBB300` | PShadowRenderer |
+| 001620D0 | `001620D4` `lea` | `02CBB600` | PStructuredBuffer |
+| 00162110 | `00162114` `lea` | `02CBB500` | PStructuredBufferBase |
+| 00162150 | `00162154` `lea` | `02CBB900` | PTexture2D |
+| 00162190 | `00162194` `lea` | `02CBB800` | PTexture2DBase |
+| 001621D0 | `001621D4` `lea` | `02CBBB00` | PTexture3D |
+| 00162210 | `00162214` `lea` | `02CBBA00` | PTexture3DBase |
+| 00162250 | `00162254` `lea` | `02CBB700` | PTextureCommonBase |
+| 00162290 | `00162294` `lea` | `02CBBD00` | PTextureCubeMap |
+| 001622D0 | `001622D4` `lea` | `02CBBC00` | PTextureCubeMapBase |
+| 00162BD0 | `00162BD4` `lea` | `02CF2440` | PConstantBufferD3D11 |
+| 00162C10 | `00162C14` `lea` | `02CF2340` | PIndirectArgsBufferD3D11 |
+| 00162C70 | `00162C74` `lea` | `02CF2140` | PSamplerStateD3D11 |
+| 00162D70 | `00162D74` `lea` | `02CF1440` | PShaderPassD3D11 |
+| 00162DB0 | `00162DB4` `lea` | `02CF1540` | PShaderPassStateD3D11 |
+| 00162E70 | `00162E74` `lea` | `02CF1640` | PStreamInputDescD3D11 |
+| 00162EF0 | `00162EF4` `lea` | `02CF2240` | PStructuredBufferD3D11 |
+| 00162F30 | `00162F34` `lea` | `02CF1D40` | PTexture2DD3D11 |
+| 00162F70 | `00162F74` `lea` | `02CF1E40` | PTexture3DD3D11 |
+| 00162FB0 | `00162FB4` `lea` | `02CF1F40` | PTextureCubeMapD3D11 |
+| 00164230 | `00164234` `lea` | `02D368A0` | PAtmospherics |
+| 00164270 | `00164274` `lea` | `02D367A0` | PAtmosphericsBase |
+| 001642B0 | `001642B4` `lea` | `02D369A0` | PAtmosphericsD3D11 |
+| 001642F0 | `001642F4` `lea` | `02D362A0` | PCelShading |
+| 00164330 | `00164334` `lea` | `02D361A0` | PCelShadingBase |
+| 00164370 | `00164374` `lea` | `02D363A0` | PCelShadingD3D11 |
+| 001643B0 | `001643B4` `lea` | `02D34940` | PDeferredLighting |
+| 001643F0 | `001643F4` `lea` | `02D34840` | PDeferredLightingBase |
+| 00164430 | `00164434` `lea` | `02D34A40` | PDeferredLightingD3D11 |
+| 00164470 | `00164474` `lea` | `02D34C40` | PDepthOfField |
+| 001644B0 | `001644B4` `lea` | `02D34B40` | PDepthOfFieldBase |
+| 001644F0 | `001644F4` `lea` | `02D34D40` | PDepthOfFieldD3D11 |
+| 00164530 | `00164534` `lea` | `02D35FA0` | PFXAA |
+| 00164570 | `00164574` `lea` | `02D35EA0` | PFXAABase |
+| 001645B0 | `001645B4` `lea` | `02D360A0` | PFXAAD3D11 |
+| 001645F0 | `001645F4` `lea` | `02D35CA0` | PGlow |
+| 00164630 | `00164634` `lea` | `02D35AA0` | PGlowBase |
+| 00164670 | `00164674` `lea` | `02D35DA0` | PGlowD3D11 |
+| 001646B0 | `001646B4` `lea` | `02D35BA0` | PGlowGPUBase |
+| 001646F0 | `001646F4` `lea` | `02D36AA0` | PLowResParticles |
+| 00164730 | `00164734` `lea` | `02D357A0` | PMLAA |
+| 00164770 | `00164774` `lea` | `02D356A0` | PMLAABase |
+| 001647B0 | `001647B4` `lea` | `02D358A0` | PMLAAD3D11 |
+| 001647F0 | `001647F4` `lea` | `02D36BA0` | PMaterialPostEffect |
+| 00164830 | `00164834` `lea` | `02D359A0` | PMeshParticleSystemBase |
+| 00164870 | `00164874` `lea` | `02D34F40` | PMotionBlur |
+| 001648B0 | `001648B4` `lea` | `02D34E40` | PMotionBlurBase |
+| 001648F0 | `001648F4` `lea` | `02D35040` | PMotionBlurD3D11 |
+| 00164930 | `00164934` `lea` | `02D34740` | PPostEffectBase |
+| 00164970 | `00164974` `lea` | `02D36CA0` | PPostEffectManager |
+| 001649B0 | `001649B4` `lea` | `02D35400` | PScreenSpaceAmbientOcclusion |
+| 001649F0 | `001649F4` `lea` | `02D35300` | PScreenSpaceAmbientOcclusionBase |
+| 00164A30 | `00164A34` `lea` | `02D35500` | PScreenSpaceAmbientOcclusionD3D11 |
+| 00164A70 | `00164A74` `lea` | `02D365A0` | PScreenSpaceReflection |
+| 00164AB0 | `00164AB4` `lea` | `02D364A0` | PScreenSpaceReflectionBase |
+| 00164AF0 | `00164AF4` `lea` | `02D366A0` | PScreenSpaceReflectionD3D11 |
+| 00165480 | `00165484` `lea` | `02D39E40` | PDataBlock |
+| 001654C0 | `001654C4` `lea` | `02D39D40` | PDataBlockBase |
+| 00165500 | `00165504` `lea` | `02D39B40` | PDataBlockBufferD3D11 |
+| 00165540 | `00165544` `lea` | `02D39C40` | PDataBlockD3D11 |
+| 00165580 | `00165584` `lea` | `02D39F40` | PDynamicDataBlock |
+| 001655E0 | `001655E4` `lea` | `02D3A040` | PDynamicSegmentDesc |
+| 00165620 | `00165624` `lea` | `02D3A340` | PIndexDataBlock |
+| 00165660 | `00165664` `lea` | `02D3A240` | PIndexDataBlockBase |
+| 001656A0 | `001656A4` `lea` | `02D39940` | PIndexDataBlockBufferD3D11 |
+| 001656E0 | `001656E4` `lea` | `02D39A40` | PIndexDataBlockD3D11 |
+| 00165720 | `00165724` `lea` | `02D3A440` | PMaterialSet |
+| 00165760 | `00165764` `lea` | `02D3A640` | PMesh |
+| 001657A0 | `001657A4` `lea` | `02D3A940` | PMeshSegment |
+| 001657E0 | `001657E4` `lea` | `02D3A840` | PMeshSegmentBase |
+| 00165820 | `00165824` `lea` | `02D39840` | PMeshSegmentD3D11 |
+| 00165860 | `00165864` `lea` | `02D3ACE0` | PShape |
+| 001658A0 | `001658A4` `lea` | `02D3A540` | PSkeletonJointBounds |
+| 001658E0 | `001658E4` `lea` | `02D3A740` | PSkinBoneRemap |
+| 00165920 | `00165924` `lea` | `02D3ADE0` | PVertexStream |
+| 00165FA0 | `00165FA4` `lea` | `02D3F210` | PCamera |
+| 00166040 | `00166044` `lea` | `02E3F960` | PBitmapFontCharInfo |
+| 001660C0 | `001660C4` `lea` | `02E41270` | PAsyncProcessHeader |
+| 00166180 | `00166184` `lea` | `02E41470` | PScript |
+| 001661C0 | `001661C4` `lea` | `02E41170` | PScriptCallbackHandler |
+| 00166270 | `00166274` `lea` | `02E479D0` | PPhysicsBox |
+| 001662B0 | `001662B4` `lea` | `02E478D0` | PPhysicsBoxBase |
+| 001662F0 | `001662F4` `lea` | `02E496D0` | PPhysicsBoxBullet |
+| 00166370 | `00166374` `lea` | `02E47BD0` | PPhysicsCapsule |
+| 001663B0 | `001663B4` `lea` | `02E47AD0` | PPhysicsCapsuleBase |
+| 001663F0 | `001663F4` `lea` | `02E497D0` | PPhysicsCapsuleBullet |
+| 00166430 | `00166434` `lea` | `02E47CD0` | PPhysicsCharacterCamera |
+| 00166470 | `00166474` `lea` | `02E47ED0` | PPhysicsCharacterController |
+| 001664B0 | `001664B4` `lea` | `02E47DD0` | PPhysicsCharacterControllerBase |
+| 001664F0 | `001664F4` `lea` | `02E49FD0` | PPhysicsCharacterControllerBullet |
+| 00166530 | `00166534` `lea` | `02E480D0` | PPhysicsCylinder |
+| 00166570 | `00166574` `lea` | `02E47FD0` | PPhysicsCylinderBase |
+| 001665B0 | `001665B4` `lea` | `02E498D0` | PPhysicsCylinderBullet |
+| 00166610 | `00166614` `lea` | `02E481D0` | PPhysicsInterfaceBase |
+| 00166650 | `00166654` `lea` | `02E49ED0` | PPhysicsInterfaceBullet |
+| 00166690 | `00166694` `lea` | `02E483D0` | PPhysicsMaterial |
+| 001666D0 | `001666D4` `lea` | `02E485D0` | PPhysicsMesh |
+| 00166710 | `00166714` `lea` | `02E484D0` | PPhysicsMeshBase |
+| 00166750 | `00166754` `lea` | `02E499D0` | PPhysicsMeshBullet |
+| 00166790 | `00166794` `lea` | `02E486D0` | PPhysicsModel |
+| 001667D0 | `001667D4` `lea` | `02E488D0` | PPhysicsPlane |
+| 00166810 | `00166814` `lea` | `02E487D0` | PPhysicsPlaneBase |
+| 00166850 | `00166854` `lea` | `02E49AD0` | PPhysicsPlaneBullet |
+| 00166890 | `00166894` `lea` | `02E48BD0` | PPhysicsRigidBody |
+| 001668D0 | `001668D4` `lea` | `02E489D0` | PPhysicsRigidBodyBase |
+| 00166910 | `00166914` `lea` | `02E49CD0` | PPhysicsRigidBodyBullet |
+| 00166950 | `00166954` `lea` | `02E48DD0` | PPhysicsShape |
+| 001669B0 | `001669B4` `lea` | `02E495D0` | PPhysicsShapeBullet |
+| 001669F0 | `001669F4` `lea` | `02E48FD0` | PPhysicsSphere |
+| 00166A30 | `00166A34` `lea` | `02E48ED0` | PPhysicsSphereBase |
+| 00166A70 | `00166A74` `lea` | `02E49BD0` | PPhysicsSphereBullet |
+| 00166AB0 | `00166AB4` `lea` | `02E490D0` | PPhysicsTaperedCapsule |
+| 00166AF0 | `00166AF4` `lea` | `02E491D0` | PPhysicsTaperedCylinder |
+| 00166B30 | `00166B34` `lea` | `02E494D0` | PPhysicsWorld |
+| 00166B70 | `00166B74` `lea` | `02E492D0` | PPhysicsWorldBase |
+| 00166BB0 | `00166BB4` `lea` | `02E49DD0` | PPhysicsWorldBullet |
+| 00166BF0 | `00166BF4` `lea` | `02E493D0` | PRaycastResult |
+| 00166C90 | `00166C94` `lea` | `02E4D630` | PString |
+| 00166CD0 | `00166CD4` `lea` | `02E4D940` | PTrigger |
+| 00166D10 | `00166D14` `lea` | `02E4E1E0` | PQuarryComponent |
+| 00166D90 | `00166D94` `lea` | `02E4E720` | PComponent |
+| 00166DD0 | `00166DD4` `lea` | `02E4EAF0` | PEntity |
+| 00166E20 | `00166E24` `lea` | `02E4F290` | PCameraOrthographic |
+| 00166E60 | `00166E64` `lea` | `02E4F710` | PCameraPerspective |
+| 00166EA0 | `00166EA4` `lea` | `02E4F900` | PInstancesComponent |
+| 00166F60 | `00166F64` `lea` | `02E518D0` | PNode |
+| 00166FD0 | `00166FD4` `lea` | `02E522F0` | PMeshSegmentContext |
+| 00167330 | `00167334` `lea` | `02E58060` | PModifierNetworkDynamicMesh |
+| 00167370 | `00167374` `lea` | `02E57F60` | PModifierNetworkDynamicMeshSegment |
+| 001673B0 | `001673B4` `lea` | `02E58DB0` | PLight |
+| 00167560 | `00167564` `lea` | `02E59DC0` | PShadowCaster |
+| 001675A0 | `001675A4` `lea` | `02E59CC0` | PShadowSplit |
+| 00167750 | `00167754` `lea` | `02E5A6C0` | PModifierNetworkInstance |
+| 00167790 | `00167794` `lea` | `02E5A4C0` | PModifierNetworkInstanceInput |
+| 001677D0 | `001677D4` `lea` | `02E5A5C0` | PModifierNetworkInstancePacketInput |
+| 001678D0 | `001678D4` `lea` | `02E5AE00` | PLODGroup |
+| 00167910 | `00167914` `lea` | `02E5AD00` | PLODLevel |
+| 00167CB0 | `00167CB4` `lea` | `02E5C710` | PTriggerReceiverComponent |
+| 00167CF0 | `00167CF4` `lea` | `02E5E030` | PModifierAndInputs |
+| 00167D30 | `00167D34` `lea` | `02E5E540` | PModifierNetwork |
+| 00167D70 | `00167D74` `lea` | `02E5DF30` | PModifierNetworkBuffer |
+| 00167E10 | `00167E14` `lea` | `02E5E330` | PModifierNetworkInfoPacket_Buffer |
+| 00167E50 | `00167E54` `lea` | `02E5E130` | PModifierNetworkInfoPacket_ModifierCode |
+| 00167E90 | `00167E94` `lea` | `02E5E230` | PModifierNetworkInfoPacket_ModifierInstance |
+| 00167ED0 | `00167ED4` `lea` | `02E5DE30` | PRenderStream |
+| 00167F10 | `00167F14` `lea` | `02E5DD30` | PRenderStreamInput |
+| 00167FA0 | `00167FA4` `lea` | `02E9FDF0` | PMorphModifierWeightsUserDataObject |
+| 00169320 | `00169324` `lea` | `02EA9400` | PDebugUtils |
+| 00169360 | `00169364` `lea` | `02EA5560` | PInputMapper |
+| 0016A360 | `0016A364` `lea` | `02EB6CF0` | PInputAction |
+| 0016A3A0 | `0016A3A4` `lea` | `02EB6DF0` | PInputMap |
+| 0016A400 | `0016A404` `lea` | `02EB55F0` | PInputSourceJoypadAxis |
+| 0016A440 | `0016A444` `lea` | `02EB54F0` | PInputSourceJoypadButton |
+| 0016A480 | `0016A484` `lea` | `02EB53F0` | PInputSourceKey |
+| 0016A4C0 | `0016A4C4` `lea` | `02EB63F0` | PInputSourceMotionAngularVelocityX |
+| 0016A500 | `0016A504` `lea` | `02EB64F0` | PInputSourceMotionAngularVelocityY |
+| 0016A540 | `0016A544` `lea` | `02EB65F0` | PInputSourceMotionAngularVelocityZ |
+| 0016A580 | `0016A584` `lea` | `02EB66F0` | PInputSourceMotionLinearAccelerationX |
+| 0016A5C0 | `0016A5C4` `lea` | `02EB67F0` | PInputSourceMotionLinearAccelerationY |
+| 0016A600 | `0016A604` `lea` | `02EB68F0` | PInputSourceMotionLinearAccelerationZ |
+| 0016A640 | `0016A644` `lea` | `02EB62F0` | PInputSourceMotionQuatW |
+| 0016A680 | `0016A684` `lea` | `02EB5FF0` | PInputSourceMotionQuatX |
+| 0016A6C0 | `0016A6C4` `lea` | `02EB60F0` | PInputSourceMotionQuatY |
+| 0016A700 | `0016A704` `lea` | `02EB61F0` | PInputSourceMotionQuatZ |
+| 0016A740 | `0016A744` `lea` | `02EB56F0` | PInputSourceMouseButton |
+| 0016A780 | `0016A784` `lea` | `02EB57F0` | PInputSourceMouseDeltaX |
+| 0016A7C0 | `0016A7C4` `lea` | `02EB58F0` | PInputSourceMouseDeltaY |
+| 0016A800 | `0016A804` `lea` | `02EB5BF0` | PInputSourceTouchDragX |
+| 0016A840 | `0016A844` `lea` | `02EB5CF0` | PInputSourceTouchDragY |
+| 0016A880 | `0016A884` `lea` | `02EB5AF0` | PInputSourceTouchPinch |
+| 0016A8C0 | `0016A8C4` `lea` | `02EB59F0` | PInputSourceTouchRotate |
+| 0016A900 | `0016A904` `lea` | `02EB5DF0` | PInputSourceTouchTwoFingerDragX |
+| 0016A940 | `0016A944` `lea` | `02EB5EF0` | PInputSourceTouchTwoFingerDragY |
+| 0016A980 | `0016A984` `lea` | `02EB69F0` | PInputSourceVisionTrackerX |
+| 0016A9C0 | `0016A9C4` `lea` | `02EB6AF0` | PInputSourceVisionTrackerY |
+| 0016AA00 | `0016AA04` `lea` | `02EB6BF0` | PInputSourceVisionTrackerZ |
+| 0016AA40 | `0016AA44` `lea` | `02EB7CD0` | PVisionMoveTracker |
+| 0016AAC0 | `0016AAC4` `lea` | `02EB8060` | PVisionTracker |
+| 0016D560 | `0016D564` `lea` | `02EB9E60` | PGameConfig |

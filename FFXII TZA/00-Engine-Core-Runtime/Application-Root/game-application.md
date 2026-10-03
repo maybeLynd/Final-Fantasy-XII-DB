@@ -2462,3 +2462,20 @@ Interior anchor `00600086` (function `00600070`).
 | `0067F280` | 344 B | copies the twelve floats at `rcx` (`+0`..`+0x2C`), the floats `+0x20`..`+0x28` of `rdx` and the float at `01CEBBA8` into stack operands, calls `001EB4B0` on them, and writes 48 bytes of the result back over `rcx` `+0`..`+0x2F` | `0067F293`, `0067F2CB`, `0067F2D8`, `0067F383`, `0067F3A3`, `0067F3CA` |
 | `008B1B10` | 38 B | calls `001A49C0(02D3ECA8, *02D3ECC0)` | `008B1B1D`, `008B1B24`, `008B1B2B` |
 | `008B1C00` | 31 B | calls `0067F580(01F2EA70)` | `008B1C0D`, `008B1C14` |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; move drafted by OPUS)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `4522aeff6`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged except where `moves.json` records a bits-as-values edit. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/opus-fable-home-host-moves-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00183260` | 28 B | `0079C140` + 0x37D | calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result | Interior anchor `00183264`; Interior anchor `00183269`; Interior anchor `0018326E`; Interior anchor `00183273` | [arm-catalogue-slice-H-ids-236-267](../../00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md) |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `95d495604`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b4-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `001941F0` | 74 B | `00189CE0` + 0x1CF | copies the 64 bytes at `rdx` (four 16-byte loads) to `rcx+0x440` through `rcx+0x47F`, then stores the float `xmm2` at dword `+0x480`, the float `xmm3` at `+0x484` and the float fifth (stack) argument at `+0x488` | Interior anchor `001941F3`; Interior anchor `0019421A`; Interior anchor `00194221`; Interior anchor `00194229`; Interior anchor `00194231` | [keymap-ini-file-format-and-default-controls](../../15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md) |
+| `00194490` | 43 B | `00189CE0` + 0x405 | stores the float `xmm2` at dword `rcx+0x128` and `edx` at dword `+0x124`; when `r9` is non-null, also copies the qword at `r9` to `+0x12C` and the dword at `r9+8` to `+0x134` | Interior anchor `00194498`; Interior anchor `0019449E`; Interior anchor `001944A8`; Interior anchor `001944B4` | [keymap-ini-file-format-and-default-controls](../../15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md) |

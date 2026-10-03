@@ -58,7 +58,7 @@
   },
   {
    "fn": "007CF780",
-   "text": "reads `h` = qword `[rcx+8]` and the sign-extended index `r8d`, and writes to the output pair at `rdx` the qword `01CB6E80` followed by `h` plus a dword offset: for byte `[h]` below 9 the offset is the dword at `h` + word `[h+2]` + index*4; for 9 or 10 it uses `pad` = (byte `[h+0x23]` + 0x10) masked with 0xf0 and the offset is `pad` plus the dword at `h` + word `[h+2]` + `pad` + index*4; for 11 or more the offset is the dword at `h` + word `[h+0x46]` + index*4; it returns `rdx`",
+   "text": "reads `h` = qword `[rcx+8]` and the sign-extended index `r8d`, and writes to the output pair at `rdx` the address `01CB6E80` followed by `h` plus a dword offset: for byte `[h]` below 9 the offset is the dword at `h` + word `[h+2]` + index*4; for 9 or 10 it uses `pad` = (byte `[h+0x23]` + 0x10) masked with 0xf0 and the offset is `pad` plus the dword at `h` + word `[h+2]` + `pad` + index*4; for 11 or more the offset is the dword at `h` + word `[h+0x46]` + index*4; it returns `rdx`",
    "anchors": [
     [
      "007CF78E",
@@ -84,7 +84,7 @@
   },
   {
    "fn": "007CFE60",
-   "text": "reads `h` = qword `[rcx+8]` and writes the qword `01CB6E10` to `[rdx]` and a pointer to `[rdx+8]`: for byte `[h]` = 0 the pointer is 0; for 1 it is `h` + word `[h+0xa]` when `r8d` is zero (then setting byte `+6` of it to 1) and `h` + word `[h+0xc]` otherwise (setting byte `+6` to 2); for 2 the same with words `[h+0x12]` and `[h+0x14]`; for any other type the pointer is `h` plus the dword at `h` + word `[h+2]` + `r8d`*4 when `r8d` is not negative and below byte `[h+8]`, and 0 otherwise; it returns `rdx`",
+   "text": "reads `h` = qword `[rcx+8]` and writes the address `01CB6E10` to `[rdx]` and a pointer to `[rdx+8]`: for byte `[h]` = 0 the pointer is 0; for 1 it is `h` + word `[h+0xa]` when `r8d` is zero (then setting byte `+6` of it to 1) and `h` + word `[h+0xc]` otherwise (setting byte `+6` to 2); for 2 the same with words `[h+0x12]` and `[h+0x14]`; for any other type the pointer is `h` plus the dword at `h` + word `[h+2]` + `r8d`*4 when `r8d` is not negative and below byte `[h+8]`, and 0 otherwise; it returns `rdx`",
    "anchors": [
     [
      "007CFE6D",
@@ -110,7 +110,7 @@
   },
   {
    "fn": "007D0710",
-   "text": "writes the qword `01CB6E10` to `[rdx]` and to `[rdx+8]` either 0, when `r8d` is negative or not below byte `[h+0x43]` of `h` = qword `[rcx+8]`, or `h` plus the dword at `h` + word `[h+2]` + (bytes `[h+4]` + `[h+5]` + `[h+0x41]` + `[h+0x42]` + `r8d`)*4 + `pad`, where `pad` is (byte `[h+0x48]` + 0x10) masked with 0xf0 when byte `[h]` is 9 or more and 0 otherwise; it returns `rdx`",
+   "text": "writes the address `01CB6E10` to `[rdx]` and to `[rdx+8]` either 0, when `r8d` is negative or not below byte `[h+0x43]` of `h` = qword `[rcx+8]`, or `h` plus the dword at `h` + word `[h+2]` + (bytes `[h+4]` + `[h+5]` + `[h+0x41]` + `[h+0x42]` + `r8d`)*4 + `pad`, where `pad` is (byte `[h+0x48]` + 0x10) masked with 0xf0 when byte `[h]` is 9 or more and 0 otherwise; it returns `rdx`",
    "anchors": [
     [
      "007D0719",
@@ -193,6 +193,19 @@
   "007BC8D0",
   "007CFD00"
  ],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "007CF780",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-sound-variant-selection-ee-1003), incorporated verbatim: each body stores the lea result, the address itself"
+  },
+  {
+   "fn": "007CFE60",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-sound-variant-selection-ee-1003), incorporated verbatim: each body stores the lea result, the address itself"
+  },
+  {
+   "fn": "007D0710",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-sound-variant-selection-ee-1003), incorporated verbatim: each body stores the lea result, the address itself"
+  }
+ ],
  "mode": "ee"
 }

@@ -396,11 +396,3 @@ each side's `[+0x10]` record ([`0030AB7F`/`0030AB8B`](../_index/ADDRESS-INDEX.md
 `+0` (`0030ABA6`–`0030ABB2`); the classification proper reads `+0x698` lists from both
 operands ([`0030ABB8`](../_index/ADDRESS-INDEX.md)). This is the relationship matrix the
 "greater than 1" threshold compares against.
-
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-the-moment-an-action-is-committed-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `00310D30` | 94 B | `00310920` + 0x147 | calls `00310D30` + 0x15 with the incoming registers and returns when it yields null; otherwise, on that returned pointer, calls + 0x33 with the three floats at `rcx+0x0`, `rcx+0x4` and `rcx+0x8` in `xmm1`, `xmm2` and `xmm3`, then calls + 0x3E and + 0x49 each with the incoming float `xmm1` | Interior anchor `00310D45`; Interior anchor `00310D50`; Interior anchor `00310D63`; Interior anchor `00310D6E`; Interior anchor `00310D79` |

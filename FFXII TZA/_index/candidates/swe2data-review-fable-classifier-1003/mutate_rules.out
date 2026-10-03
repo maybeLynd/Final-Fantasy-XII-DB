@@ -1,0 +1,8 @@
+M0 unmutated (harness control, must PASS)     rc=0 FAILS 0 
+M1 correction without a strike                rc=1 FAILS 2 | FAIL  correction-shaped record, nothing struck, page edit -> UNCLASSIF
+M2 undated register lead credited             rc=1 FAILS 2 | FAIL  answered without a date -> UNCLASSIFIED                         
+M3 coverage without a knowledge event         rc=1 FAILS 3 | FAIL  correction-shaped record, nothing struck, page edit -> UNCLASSIF
+M4 repeat acceptance counted as first         rc=1 FAILS 1 | FAIL  repeat review of an already-accepted record -> workflow         
+M5 rule f ignores strikes                     rc=0 FAILS 0 
+M6 later-accepted record counted unreviewed   rc=1 FAILS 1 | FAIL  new evidence record accepted later -> no event at the addition  
+M7 rule f without a page section              rc=0 FAILS 0 

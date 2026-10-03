@@ -888,8 +888,11 @@ Shared callees deliberately outside the census: `00583920`, `0032F6E0`,
   > `003141F2`. So a request the arbiter posts at `00253D78`, `00253EE6`, `00253F44` or `00253F53`
   > **is visible to the drain in the same tick**, and the call order alone permits same-tick delivery.
   > What actually holds a request back is this paragraph's own guard — `02092730` must be `0` or `5`,
-  > no slot of the eight `0x68` records may carry `+0x38` or `+0x3E` bit 7, and for a non-exempt id no
-  > transition may be running. That is a **conditional** deferral with a testable condition, and it is
+  > no slot of the eight `0x68` records may carry `+0x38` or `+0x3E` ~~bit 7~~ **bit 0**, ~~and for a non-exempt id no
+  > transition may be running~~. *(Corrected 2026-09-26, FABLE, Claude Opus 5.5, on OPUS's executed replay.
+  > The test is `shl al, 7` / `sar al, 7`, which keeps bit 0. The transition clause never holds a request on this
+  > build, because its device term `0053DD10` returns a constant 1. A not-ready manager slot 0 discards the request
+  > rather than deferring it; see [the router contract](../../16-UI/CONTRACT-ui-request-router.md) R-5.)* That is a **conditional** deferral with a testable condition, and it is
   > a different claim from a fixed one-frame latency. Nothing else in the EX-3 answer changes. **`00362850` is the audio listener update:** it resolves the party
   focus actor (`PartyFocus_GetCurrentPackedActorHandle` → `ActorHandle_ResolveRegistryEntryByPackedId`
   → `Actor_GetWorldPosition`), reads the camera matrix at `02AEDEF0` through `00202C70`, forms
@@ -929,7 +932,8 @@ Shared callees deliberately outside the census: `00583920`, `0032F6E0`,
   `01F832B0` is set, and ~~`00265680()` holds~~ `00265680()` answers zero* *(corrected 2026-10-02, OPUS: `001EC560+0x20` `call 00265680`, `+0x25` `test eax, eax`, `+0x27` `lea eax, [rbx+1]`, `+0x2A` `je` — 1 only when it returned 0)* — the same marker and flag array [the cutscene name-slot page](../../99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md) §2
   decodes. `00265680` requires manager slot 0 live with `+0x10` bit 7 / `+0x11` bit 0 clear, every
   live slot's `+0x17` bits 0–1 set (`002656C0`–`002656DF`, [the actor-manager record map](../../04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md)), no entry of the eight
-  `0x68`-byte records at `0215F200` flagged at `+0x38` / `+0x3E` bit 7 (`002E0540`), and then
+  `0x68`-byte records at `0215F200` flagged at `+0x38` / `+0x3E` ~~bit 7~~ **bit 0** (`002E0540`'s `shl 7` / `sar 7`
+  keeps bit 0; corrected 2026-09-26), and then
   `00265720()`. So the field frame skips the tick while the console holds that byte, or while a
   queued ring is non-empty during a cutscene whose slot holds a releasable entry.
 - [x] ~~**The meaning of unit flag bits ~~1, 3,~~ 16 ~~and 24~~** beyond their effect here.~~ **Narrowed

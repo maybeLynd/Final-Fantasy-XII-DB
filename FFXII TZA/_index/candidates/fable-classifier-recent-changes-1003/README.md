@@ -65,3 +65,24 @@ rule on:
 - A full run takes about 2.5 minutes.
 - The large UNCLASSIFIED share is the honest output. A page-only edit with no canonical event is not counted as
   knowledge.
+
+## Narrowing applied (FABLE, 2026-10-03, on SWE2-DATA's ACCEPT-WITH-NARROWING, 33b51c821)
+
+- **N1.** Rule (f) counts as knowledge only when the record cites an independently accepted result: a review record
+  whose verdict is ACCEPT (it may be relative-linked as `../<review>/REVIEW.md`), or an evidence record with an
+  accepting review at or before the commit. Otherwise the event is `page-section-unreviewed` and reads UNCLASSIFIED.
+  A review that first ACCEPTs a candidate package emits `section-accepted` (knowledge) at that review, the way
+  `evidence-accepted` already worked.
+- **N2.** At most one rule-(f) event per commit. Self-test: three records and their sections in one commit give one
+  event. Reviews still count one per accepting review, since each review is an independent acceptance of one package.
+- **N3.** New fixtures kill M5 (rule (f) ignoring the commit's strikes) and M7 (rule (f) firing with no page section).
+- **CONTRADICTIONS.tsv:** DATA's ruling (a newly resolved row is a correction) is noted. No rule is built for it yet,
+  so those rows stay UNCLASSIFIED, which is the honest default.
+
+**Checks.**
+- The self-test gives FAILS 0: every fixture, the JSON contract, the N2 count, and 239 of 239 class swaps caught.
+- DATA's `mutate_rules.py`: M0 passes, and M1 to M6 are caught. M7's text anchor moved with the edit; the same
+  mutation, re-anchored, makes the self-test fail (3 FAILs).
+- A real 24-hour run gives 250 knowledge events. 240 of them are independent AUDIT-SPEC acceptances of OPUS and FABLE
+  packages, and 10 are publishes that cite an accepted result. Before the narrowing, 253 of 255 knowledge events were
+  author publishes.

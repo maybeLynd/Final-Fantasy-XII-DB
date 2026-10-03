@@ -91,12 +91,14 @@ entry	anchor	mnemonic	value	name	callee
 005D2EB0	005D2EBC	call	005FC210	Phyre::PRendering::PShaderVertexProgram	slot5
 005D30E0	005D30EC	call	005F9160	Phyre::PRendering::PRenderTarget	slot5
 005D3130	005D313C	call	005FC6D0	Phyre::PRendering::PTexture2D	slot5
+005D3460	005D346C	call	005F9880	Phyre::PRendering::PShader	slot5
 005D3920	005D392C	call	005FC470	Phyre::PRendering::PStructuredBuffer	slot5
 005D3A10	005D3A1C	call	005FA0D0	Phyre::PRendering::PShaderParameterCaptureBufferLocation	slot5
 005D3A30	005D3A3C	call	005FA590	Phyre::PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer	slot5
 005D3C90	005D3C9C	call	005FC340	Phyre::PRendering::PShadowRenderer	slot5
 005D4040	005D404C	call	005F9AE0	Phyre::PRendering::PShaderFragmentProgram	slot5
 005D4420	005D442C	call	005F8450	Phyre::PRendering::PMaterial	slot5
+005D46F0	005D46FC	call	005FADE0	Phyre::PRendering::PShaderParameterCaptureBufferTexture2D	slot5
 005D4830	005D483C	call	005F86B0	Phyre::PRendering::PMeshInstance	slot5
 005D48A0	005D48AC	call	005F7E60	Phyre::PRendering::PEffect	slot5
 005D4C10	005D4C1C	call	005FB2A0	Phyre::PRendering::PShaderParameterCaptureConstantBuffer	slot5
@@ -180,6 +182,7 @@ entry	anchor	mnemonic	value	name	callee
 0063EBB0	0063EBBC	call	0064E480	Phyre::PPostProcessing::PDepthOfField	slot5
 0063ECE0	0063ECEC	call	0064DC30	Phyre::PPostProcessing::PAtmosphericsD3D11	slot5
 0063EDB0	0063EDBC	call	00650230	Phyre::PPostProcessing::PScreenSpaceReflectionBase	slot5
+0063EF20	0063EF2C	call	0064F9E0	Phyre::PPostProcessing::PMotionBlurD3D11	slot5
 0063F0C0	0063F0CC	call	0064F2C0	Phyre::PPostProcessing::PMLAABase	slot5
 0063F560	0063F56C	call	0064E220	Phyre::PPostProcessing::PDeferredLightingBase	slot5
 0063F8E0	0063F8EC	call	0064ECD0	Phyre::PPostProcessing::PGlowBase	slot5
@@ -308,6 +311,7 @@ entry	anchor	mnemonic	value	name	callee
 006ACD90	006ACD9C	call	006AD370	Phyre::PCameraOrthographic	slot5
 006AD600	006AD60C	call	006ADAF0	Phyre::PCameraPerspective	slot5
 006ADCA0	006ADCAC	call	006AEE00	Phyre::PInstancesComponent	slot5
+006AF570	006AF57C	call	006AECC0	decorated `V?$PArray@VPTypedObject@Phyre@@$07@Phyre@@`	slot5
 006AF9A0	006AF9AC	call	006AFF70	Phyre::PNameComponent	slot5
 006B0240	006B024C	call	006B0630	Phyre::PRandom::PRandomGenerator	slot5
 006B39C0	006B39CC	call	006B3780	Phyre::PMatrix4x3	slot5

@@ -1,0 +1,6 @@
+PASS G1 drain guard: ['movzx eax, byte ptr [rdx + r15 + 0x3e]', 'shl al, 7', 'sar al, 7', 'or al, byte ptr [rdx + r15 + 0x38]', 'jne 0x2e0d57']
+PASS G2 probe 002E0540: ['movzx ecx, byte ptr [rdx + r9 + 0x3e]', 'shl cl, 7', 'sar cl, 7', 'or cl, byte ptr [rdx + r9 + 0x38]', 'jne 0x2e058c']
+PASS G3 device term: ['mov eax, 1', 'ret']
+PASS G4 not-ready arm discards: ['xor ebp, ebp', 'xor ecx, ecx', 'call 0x267360', 'je 0x2e0baf', 'xor r8b, r8b', 'mov dword ptr [rip + 0x1e7e607], ebp', 'mov dword ptr [rip + 0x1e7e605], ebp', 'mov byte ptr [rip + 0x1e7e5f7], bpl', 'jmp 0x2e0c65', 'mov byte ptr [rip + 0x1e7e534], r8b', '0215F1A4', '0215F1A8', '0215F1A1', '0215F1A0']
+PASS S1 sensitivity: bit0-only -> block, bit7-only -> dispatch (the bit-7 reading would predict dispatch, block)
+FAILS 0

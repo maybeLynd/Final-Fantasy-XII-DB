@@ -1438,11 +1438,3 @@ Interior anchor `00267E9C` (function `00267E60`).
 | `0034EBC0` | 116 B | pops three floats a, b, c in that order through `00267DB0(r9)`; when byte `+0x10` of `rdx` is non-zero it calls `0026B0C0(rdx)`, otherwise `0026AF80(rdx)`, either with `xmm1` = c, `xmm2` = b, `xmm3` = a; then tail-jumps to `0026AE90(rdx, 0)` | `0034EBF3`, `0034EBF8`, `0034EC0A`, `0034EC11`, `0034EC2F` |
 | `00353D90` | 101 B | tests `00267310(byte +0x15 of rdx)` and on both paths pops one value through `00267E10(r9)` and discards it; when the test is non-zero it calls `002E2440(1, 0)` and `002E1C40(0, 3)` and tail-jumps to `002E1C70(1, 3)`; when it is zero it calls `002E2440(0, 0)` and tail-jumps to `002E1C40(0, 3)` | `00353D9D`, `00353DA7`, `00353DB3`, `00353DD1`, `00353DF0` |
 | `00377900` | 104 B | calls `00264110(0, ecx, rdx, rdx+4, rdx+8, rdx+0xC)`; when that returns zero it zeroes the qword at `+0` and the dwords at `+8` and `+0xC` of `rdx`; on both paths it then replaces float `+0xC` of `rdx` with `003A1C50` of itself | `00377935`, `0037793C`, `0037793E`, `00377949`, `00377958` |
-
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-scriptvm-verb-dispatch-and-parameter-en-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `00379D40` | 18 B | `0022A0B0` + 0x2F8 | calls `00379D40` + 0x4 with the incoming registers unchanged, then tail-jumps (site `00379D40` + 0xD) with whatever registers that call leaves; it has no other work | Interior anchor `00379D44`; Interior anchor `00379D4D` |

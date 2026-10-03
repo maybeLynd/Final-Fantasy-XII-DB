@@ -1,0 +1,17 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "members": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/pclassdescriptor-static-initialisers.tsv",
+ "kind": "descriptor_lea",
+ "reg": "rcx",
+ "same_target_ok": true,
+ "group": "all",
+ "title": "the PClassDescriptorConcrete static initialisers, one row per member",
+ "heading": "## Per-member rows: the class descriptor each of the PClassDescriptorConcrete static initialisers loads (OPUS, 2026-10-03)",
+ "lead": "The family `PClassDescriptorConcrete static initialisers` (frontmatter: 254 members; {N} get a row here) shares one shape, stated here once and not repeated per row: each loads its class descriptor X into rcx and calls its own descriptor-constructor wrapper, clears bit 0x2 of dword [X+0xFC], stores the concrete vtable at qword [X], and tail-jumps to 00808B90 with rcx = its static teardown (the atexit registration); all 254 have exactly this nine-instruction form. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (the first `lea rcx` in the body; the second loads the member's teardown, part of the shared form). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. {CHECK} re-derives every row and compares it with the committed {ROWS}. A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-descriptor-static-initialisers-1003/excluded.tsv).",
+ "group_heading": "### All {N} members (OPUS)",
+ "groups": {},
+ "value_col": "class descriptor X",
+ "name_col": "class X describes",
+ "name_fmt": "{NAME}",
+ "first_lea": true
+}

@@ -5,33 +5,6 @@
  "report": "home-the-actor-storage-record-field-map.json",
  "rows": [
   {
-   "fn": "00198730",
-   "entered_from": "`00182D60` + 0x10",
-   "text": "when bit 0 of byte `+0x3A` of `rcx` is set, sets byte `+0x3B` to 1 and clears that bit (AND `0xFE`); otherwise returns without work",
-   "anchors": [
-    [
-     "00198734",
-     "test"
-    ],
-    [
-     "00198736",
-     "je"
-    ],
-    [
-     "00198738",
-     "and"
-    ],
-    [
-     "0019873A",
-     "mov"
-    ],
-    [
-     "0019873E",
-     "mov"
-    ]
-   ]
-  },
-  {
    "fn": "002E4F40",
    "entered_from": "`002693D0` + 0xD1",
    "text": "returns 0 when `rcx` is null, when its qword `+0xC0` is null or when the dword that pointer addresses is -1; otherwise returns 1, first making the call at `002E4F40` + 0x4E with `rcx` = qword `022C6F28` plus the pointer's signed word `+0` times 0x740 unless that word is `0xFFFF`, the sum is zero or dword `+0x284` of that element is 0",
@@ -116,5 +89,39 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "00198730",
+   "entered_from": "`00182D60` + 0x10",
+   "text": "when bit 0 of byte `+0x3A` of `rcx` is set, sets byte `+0x3B` to 1 and clears that bit (AND `0xFE`); otherwise returns without work",
+   "anchors": [
+    [
+     "00198734",
+     "test"
+    ],
+    [
+     "00198736",
+     "je"
+    ],
+    [
+     "00198738",
+     "and"
+    ],
+    [
+     "0019873A",
+     "mov"
+    ],
+    [
+     "0019873E",
+     "mov"
+    ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-the-actor-storage-record-field-map-1002/REVIEW.md"
+  }
+ ]
 }

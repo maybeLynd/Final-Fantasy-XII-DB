@@ -64,7 +64,11 @@ def check(report, session):
     homing = rep.get("mode") == "homing"
     uc1 = rep.get("mode") == "uc1"
     ee = rep.get("mode") == "ee"
-    if ee:
+    member = rep.get("mode") == "member"
+    if member:
+        # family members (OPUS, 2026-10-03, mem_pack.py): unexplained members of a family the page declares
+        targets = member_targets(page)
+    elif ee:
         # engine_explained (OPUS, 2026-10-03): unexplained bodies >= 128 B the page cites only at the entry, F or family
         targets = ee_targets(page)
     elif uc1:
@@ -123,15 +127,21 @@ def check(report, session):
         (bad if why else ok).append((r, why))
     rowed = {r["fn"] for r, _w in ok + bad}
     skipped = {s.get("fn", "").upper(): s.get("why", "") for s in rep.get("skipped", [])}
-    missing = [] if homing else sorted("%08X" % f for f in targets if "%08X" % f not in rowed and "%08X" % f not in skipped)
+    # member mode (2026-10-03): a pack covers part of the page's families, so 'missing' is not measured against them all
+    missing = [] if (homing or member) else sorted("%08X" % f for f in targets if "%08X" % f not in rowed and "%08X" % f not in skipped)
     rec = "opus-%s-%s-%s" % (slug[:40], "ee" if ee else "uc1" if uc1 else "homing" if homing else "cloudint", time.strftime("%m%d"))
+    if member:
+        # one record per pack part: the report name carries the family slug and part number
+        part = os.path.splitext(os.path.basename(report))[0]
+        rec = "opus-%s-%s" % ("member" if member else "ee" if ee else "", part[-56:].strip("-"))
     rdir = os.path.join(cl.DB, "_index", "candidates", rec)
     os.makedirs(rdir, exist_ok=True)
     shutil.copyfile(os.path.join(cl.HERE, "interior_applier.py"), os.path.join(rdir, "interior_applier.py"))
     cfg = {"page": page, "date": time.strftime("%Y-%m-%d"), "session": session or rep.get("session", ""),
            "report": os.path.basename(report), "rows": [r for r, _w in ok],
            "rejected": [{"fn": r["fn"], "why": w} for r, w in bad], "skipped": skipped, "missing": missing,
-           "corrections": [], "mode": "ee" if ee else "uc1" if uc1 else "homing" if homing else "interior"}
+           "corrections": [], "mode": "member" if member else "ee" if ee else "uc1" if uc1 else "homing" if homing else "interior",
+           "family": rep.get("family", "")}
     json.dump(cfg, io.open(os.path.join(rdir, "rows.json"), "w", encoding="utf-8", newline="\n"), indent=1, ensure_ascii=False)
     os.makedirs(REVIEW, exist_ok=True)
     out = ["# Review: %s (%s)" % (page, rec), "", "Re-read every row against its listing; edit rows.json; record each change "
@@ -157,6 +167,12 @@ UC1_PHRASE = "UC-1 body admitted to frontier 2026-09-28, explained by interior c
 
 
 EB_JSON = os.path.normpath(os.path.join(cl.HERE, "..", "family", "entry_big.json"))
+
+
+def member_targets(page):
+    """Unexplained members of every family the page declares (mem_pack.py), measured now."""
+    import mem_pack
+    return {f for fs in mem_pack.unexplained_members(page).values() for f in fs}
 
 
 def ee_targets(page, fresh=False):
@@ -289,7 +305,8 @@ def apply(rec, allow):
     import f_pack
     # uc1 (2026-10-03): SWE2-FRONTIER's gate change a46d39253 credits a UC-1 body cited inside its extent by a row
     # carrying the break phrase, so every applied uc1 row must now measure A like any other.
-    still = (ee_targets(page, fresh=True) if cfg.get("mode") == "ee" else
+    still = (member_targets(page) if cfg.get("mode") == "member" else
+             ee_targets(page, fresh=True) if cfg.get("mode") == "ee" else
              uc1_targets() if cfg.get("mode") == "uc1" else homing_targets() if cfg.get("mode") == "homing"
              else f_pack.entry_only_pages().get(page, set()))
     left = sorted("%08X" % int(r["fn"], 16) for r in cfg["rows"] if int(r["fn"], 16) in still)
@@ -323,6 +340,16 @@ def apply(rec, allow):
               "**Limits.** Body statements, not meanings. A cloud draft is a pointer, not evidence: what stands here is "
               "OPUS's re-read. The session's agreement with OPUS is not independent review.", "",
               "## Review (OPUS)", "", "A non-author spot-check goes to SWE2-AUDIT-SPEC: at least 15 rows read against the bytes.", ""]
+    if cfg.get("mode") == "member":
+        readme[0] = "# Family members explained one by one: %d %s members on %s (OPUS, %s)" % (
+            n, cfg.get("family", ""), os.path.basename(page), cfg["date"])
+        readme[2] = ("The page declares the family `%s` (a classification family: ordinary functions grouped by module, not "
+                     "template copies). No page explained these members. %s drafted one sentence and 1-5 interior anchors per "
+                     "body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` "
+                     "(member mode: the body is an unexplained member of a family this page declares) and re-read every "
+                     "sentence against the bytes before applying." % (cfg.get("family", ""),
+                         ("A local drafting agent (%s)" % cfg["session"]) if str(cfg.get("session", "")).startswith("local")
+                         else "A session (%s)" % cfg.get("session", "")))
     if cfg.get("mode") == "homing":
         # F homing (2026-10-03): say what these rows are; the entry-cited wording above does not apply.
         readme[0] = "# Homed bodies: %s hosts %d functions no page cited (OPUS, %s, F homing)" % (os.path.basename(page), n, cfg["date"])
@@ -352,13 +379,25 @@ def apply(rec, allow):
                      "`verify_doc_addresses --all` %d REVIEW on this page (tree total %s)." % (
                          n, gates["check_links"], gates["self_contradiction"], gates["consistency"], tree[0],
                          gates["verify_doc_addresses"], tree[1]))
+    if cfg.get("method"):
+        # 2026-10-03: a record verified other than by OPUS re-reading every sentence states its own method
+        readme[2] = cfg["method"]
     io.open(os.path.join(rdir, "README.md"), "w", encoding="utf-8", newline="\n").write("\n".join(readme))
-    tag = re.sub(r"[^A-Z0-9]+", "-", rec.upper())[:48].strip("-")
+    # 2026-10-03: a 48-character cut collided for sibling records (five member reviews refused "already exists" in
+    # 1003M); a digest of the full record name keeps the ids apart
+    import hashlib as _h
+    tag = re.sub(r"[^A-Z0-9]+", "-", rec.upper())[:42].strip("-") + "-" + _h.sha1(rec.encode()).hexdigest()[:5].upper()
     title = "OPUS: interior citations (cloud-drafted, OPUS-verified) for %s - %d functions, %d anchors verified; all %d now A" % (
         os.path.basename(page), n, na, n)
+    if cfg.get("session") == "opus-self":
+        title = "OPUS: interior citations (OPUS-drafted) for %s - %d functions, %d anchors verified; all %d now A" % (
+            os.path.basename(page), n, na, n)
     if cfg.get("mode") == "uc1":
         title = ("OPUS: %d UC-1 game-code bodies explained by interior citation on %s (FABLE's route ruling; drafted by a "
                  "non-OPUS agent, OPUS re-read, %d anchors)" % (n, os.path.basename(page), na))
+    if cfg.get("mode") == "member":
+        title = "OPUS: %d %s members explained one by one on %s (drafted locally, OPUS-verified, %d anchors)" % (
+            n, cfg.get("family", ""), os.path.basename(page), na)
     if cfg.get("mode") == "homing":
         title = "OPUS: F homing - %d uncited bodies homed on %s by a documented callee (OPUS-verified, %d anchors); all %d now A" % (
             n, os.path.basename(page), na, n)

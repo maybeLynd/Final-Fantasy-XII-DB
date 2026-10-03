@@ -1,0 +1,15 @@
+{
+ "page": "23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md",
+ "members": "23-Third-Party-Libraries/EASTL/members/eastl-string-static-initialisers.tsv",
+ "kind": "string_static",
+ "group": "all",
+ "title": "the EASTL basic_string<char> static initialisers, one row per member",
+ "heading": "## Per-member rows: the static string object each EASTL basic_string<char> initialiser builds (OPUS, 2026-10-03)",
+ "lead": "The family `EASTL basic_string<char> static initialisers` (frontmatter: 51 members; {N} get a row here) shares one form, not repeated per row: it builds a named allocator with `001EDF00` (twice: a stack temporary, then the allocator at `S+0x18`), zeroes the static string object S (qwords `+0`, `+8` and `+0x10`), and copies a literal into it: for a length above 1 it allocates through the allocator's slot `+0x10` and stores begin, end and capacity at `S+0`, `S+8` and `S+0x10`, otherwise it points S at the empty-string sentinel `02EBA2E0`; it then tail-jumps to `00808B90` with its teardown (the atexit registration). All 51 make exactly these external calls. What differs from member to member is S: no two members initialise the same object. Each row anchors the member's `movdqu` that zeroes S (its distinguishing instruction) and states S and the literal it copies (loaded with `lea rsi`; several members copy the same text into different objects). All are read from the certified image. {CHECK} re-derives every row and compares it with the committed {ROWS}. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-eastl-string-initialisers-1003/excluded.tsv).",
+ "group_heading": "### All {N} initialisers (OPUS)",
+ "groups": {},
+ "value_col": "static string object S",
+ "value_fmt": "{V}",
+ "name_col": "literal copied into it",
+ "name_fmt": "`{NAME}`"
+}

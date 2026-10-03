@@ -1,0 +1,456 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pserialization-module-1.json",
+ "rows": [
+  {
+   "fn": "001D6CE0",
+   "text": "takes `x` = `0020C700()` and tail-jumps to `0020C180(x, rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "001D6CF7",
+     "call"
+    ],
+    [
+     "001D6CFF",
+     "mov"
+    ],
+    [
+     "001D6D17",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020C180",
+   "text": "returns -1 when `rdx` is null; otherwise tail-jumps to `00217AD0(rdx, r8d, r9d)`",
+   "anchors": [
+    [
+     "0020C186",
+     "test"
+    ],
+    [
+     "0020C194",
+     "jmp"
+    ],
+    [
+     "0020C199",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "00217AD0",
+   "text": "sets the position dword `[rcx+0xC]` by `r8d`: to `edx` for 0, to itself + `edx` for 1, to dword `[rcx+8]` + `edx` for 2 (any other value leaves it), then lowers it to dword `[rcx+8]` when it is above that (unsigned) and returns it",
+   "anchors": [
+    [
+     "00217AD8",
+     "mov"
+    ],
+    [
+     "00217AE3",
+     "add"
+    ],
+    [
+     "00217AEE",
+     "mov"
+    ],
+    [
+     "00217AFB",
+     "cmp"
+    ],
+    [
+     "00217B01",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005981B0",
+   "text": "stores `00D26C18` to qword `[rcx]` and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x40)`; returns `rcx`",
+   "anchors": [
+    [
+     "005981C0",
+     "mov"
+    ],
+    [
+     "005981C3",
+     "test"
+    ],
+    [
+     "005981CD",
+     "call"
+    ],
+    [
+     "005981D2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00598210",
+   "text": "stores `00D26C60` to qword `[rcx]`, calls `00584730` on qword `[rcx+0x10]` when it is non-null with bit `0x1` clear, and, when bit `0x1` of `edx` is set, releases `rcx` itself: `0016D6A0(rcx, 0x18)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "00598230",
+     "mov"
+    ],
+    [
+     "00598244",
+     "call"
+    ],
+    [
+     "00598250",
+     "test"
+    ],
+    [
+     "00598259",
+     "call"
+    ],
+    [
+     "00598269",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00598280",
+   "text": "stores `00D26C60` to qword `[rcx]`, calls `00584730` on qword `[rcx+0x10]` when it is non-null with bit `0x1` clear, and, when bit `0x1` of `edx` is set, releases `rcx` itself: `0016D6A0(rcx, 0x50)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "005982A0",
+     "mov"
+    ],
+    [
+     "005982B4",
+     "call"
+    ],
+    [
+     "005982C0",
+     "test"
+    ],
+    [
+     "005982C9",
+     "call"
+    ],
+    [
+     "005982D9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005982F0",
+   "text": "stores `00D26C60` to qword `[rcx]`, calls `00584730` on qword `[rcx+0x10]` when it is non-null with bit `0x1` clear, and, when bit `0x1` of `edx` is set, releases `rcx` itself: `0016D6A0(rcx, 0x50)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "00598310",
+     "mov"
+    ],
+    [
+     "00598324",
+     "call"
+    ],
+    [
+     "00598330",
+     "test"
+    ],
+    [
+     "00598339",
+     "call"
+    ],
+    [
+     "00598349",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00598C50",
+   "text": "calls `006388C0(02CA9DA0)`, then, each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which also registers an exit routine with `00808B90`), registers `m_indexBufferSize`, `m_vertexBufferSize` and `m_maxTextureBufferSize` with `00632960(record, 02CA9DA0, 00630180(), name, n, 0, 0, 0)` (records `02CAA1D0`, `02CAA230`, `02CAA290`; `n` = 0x48, 0x4C, 0x50), and tail-jumps to `00639450(02CA9DA0)`",
+   "anchors": [
+    [
+     "00598C6B",
+     "call"
+    ],
+    [
+     "00598CDE",
+     "call"
+    ],
+    [
+     "00598D4D",
+     "call"
+    ],
+    [
+     "00598DBC",
+     "call"
+    ],
+    [
+     "00598DEB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0059D4B0",
+   "text": "returns `002150E0(qword [rcx+0x30], rdx, r8)` when that qword is non-null; otherwise returns 0 for `r8d` = 0; with a file handle qword `[rcx+0x28]` other than -1 it calls `ReadFile(handle, rdx, r8d, &count, 0)` and returns the count; else it returns `001D6CA0(qword [rcx+0x40], rdx, r8)` when that qword is greater than 0 (signed `jle` at `0059D500`, so -1 does not qualify), and 0 when not",
+   "anchors": [
+    [
+     "0059D4C0",
+     "call"
+    ],
+    [
+     "0059D4CE",
+     "test"
+    ],
+    [
+     "0059D4D7",
+     "cmp"
+    ],
+    [
+     "0059D4EA",
+     "call"
+    ],
+    [
+     "0059D502",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0059D550",
+   "text": "calls `005983E0()`, `00598C50()`, `006388C0(02CAA0A0)`, `00639450(02CAA0A0)` and `00598DF0()`, stores 1 to byte `02CA9D90` and returns 0",
+   "anchors": [
+    [
+     "0059D554",
+     "call"
+    ],
+    [
+     "0059D559",
+     "call"
+    ],
+    [
+     "0059D565",
+     "call"
+    ],
+    [
+     "0059D576",
+     "call"
+    ],
+    [
+     "0059D57D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0059D920",
+   "text": "returns 0 when qword `[rcx+0x28]` is -1, qword `[rcx+0x30]` is 0 and qword `[rcx+0x40]` is -1, and 1 otherwise",
+   "anchors": [
+    [
+     "0059D925",
+     "jne"
+    ],
+    [
+     "0059D927",
+     "cmp"
+    ],
+    [
+     "0059D92E",
+     "cmp"
+    ],
+    [
+     "0059D935",
+     "xor"
+    ],
+    [
+     "0059D938",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0059EE10",
+   "text": "stores `n` = `0059EE90(rcx+0x20, rdx, 0)` to dword `[rcx+8]` and takes `s` = `001C26B0(rdx)`; when `rdx` is null or `s` is non-null it calls `00584730` on the old qword `[rcx+0x10]` (when non-null with bit `0x1` clear) and stores `s` there; returns 1 when `n` is 0, else 0",
+   "anchors": [
+    [
+     "0059EE31",
+     "call"
+    ],
+    [
+     "0059EE39",
+     "mov"
+    ],
+    [
+     "0059EE3E",
+     "call"
+    ],
+    [
+     "0059EE63",
+     "call"
+    ],
+    [
+     "0059EE68",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0059F490",
+   "text": "tail-jumps to `005A0250(rcx+0x20)`, passing the other registers through",
+   "anchors": [
+    [
+     "0059F494",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0059FD10",
+   "text": "moves a read position by `edx` relative to the current one (origin 1) through the first available backend: `00215220(qword [rcx+0x10], edx, 1)` when that qword is non-null, else `SetFilePointer(qword [rcx+8], edx, 0, 1)` when that handle is not -1, else `001D6CE0(qword [rcx+0x20], edx, 1)` when that qword is greater than 0 (signed `jle` at `0059FD7A`, so -1 does not qualify); it returns `edx`, or 0 when the backend returned -1 or none was available",
+   "anchors": [
+    [
+     "0059FD2A",
+     "call"
+    ],
+    [
+     "0059FD38",
+     "cmovne"
+    ],
+    [
+     "0059FD5B",
+     "call"
+    ],
+    [
+     "0059FD82",
+     "call"
+    ],
+    [
+     "0059FD90",
+     "cmovne"
+    ]
+   ]
+  },
+  {
+   "fn": "0059FDA0",
+   "text": "tail-jumps to `0059FD10(rcx+0x20)`, passing the other registers through",
+   "anchors": [
+    [
+     "0059FDA4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0059FE20",
+   "text": "while the list head qword `02CA9D88` is non-null, unlinks the head node `n` (the next link is qword `n+0`, which is then zeroed) and frees it: `00584730` on qword `n+0x70` when non-null and bit `0x80000000` of dword `n+0x68` is clear (both then zeroed), `00598040(n+0x18)`, the same release for the pair dword `n+8` / qword `n+0x10`, and `00584730(n)`; then calls `0067F580(01F2CDA0)`, zeroes bytes `02CA9D91` and `02CA9D90` and returns 0",
+   "anchors": [
+    [
+     "0059FE8A",
+     "mov"
+    ],
+    [
+     "0059FEB1",
+     "call"
+    ],
+    [
+     "0059FEC1",
+     "call"
+    ],
+    [
+     "0059FEEB",
+     "call"
+    ],
+    [
+     "0059FF08",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A0120",
+   "text": "returns without work when qword `[rcx+0x30]` is non-null, bit `0x2` of the fifth argument is set, or `t` = `r9`'s vtable slot `+8`(r9) is null; with `s` = qword `[rcx+0x10]` it finds the first 0x30-byte entry `e` of qword `[s+0x30]` (count dword `[s+0x28]` AND 0x7FFFFFFF) whose qword `+0x10` is `t`, and `d` = qword `e+8`; with `b` = `rdx` + signed dword `[t+0xF8]` and `a` = dword `[rcx+0x20]` + dword `[rcx+0x18]` - `b`, element size `w` = dword `d+4` AND 0xFFFFFFF (else dword `[t+0x38]`), and start dword `d+0x18` (else dword `[t+0xF8]`), when start + `a` is not negative and signed-less than `w` * `r8d` it calls `0059BED0(s, e, &p, a mod w, qword [rcx+0x28])` (`a` / `w` and `a mod w` from one unsigned `div`) with `p` = (`a` / `w`) * dword `[t+0x38]` + `b`, storing the result to qword `[rcx+0x38]` and `p` as re-read after the call (the callee gets `&p`) to qword `[rcx+0x30]`",
+   "anchors": [
+    [
+     "005A0154",
+     "call"
+    ],
+    [
+     "005A0184",
+     "cmp"
+    ],
+    [
+     "005A01C6",
+     "and"
+    ],
+    [
+     "005A01ED",
+     "div"
+    ],
+    [
+     "005A0212",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A0250",
+   "text": "returns 0 when qword `[rcx+0x10]` is non-null; with a handle qword `[rcx+8]` other than -1 it returns 1 when `WriteFile(handle, rdx, r8d, &written, 0)` returns 1 and 0 otherwise; with handle -1 it calls `005CDAA0(3, \"can't write to file by file cache (%d)!\", qword [rcx+0x20])` when that qword is greater than 0 (signed `jle` at `005A02A4`), and returns 0",
+   "anchors": [
+    [
+     "005A0254",
+     "cmp"
+    ],
+    [
+     "005A026D",
+     "cmp"
+    ],
+    [
+     "005A0284",
+     "call"
+    ],
+    [
+     "005A028D",
+     "sete"
+    ],
+    [
+     "005A02B2",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0059D4B0",
+   "why": "byte verifier, re-read by OPUS: 0059D4FD/0059D500 is test + jle (signed): the fallback runs only when qword [rcx+0x40] is signed-greater than 0; 'above 0' reads as unsigned non-zero, which would include the -1 empty-handle sentinel"
+  },
+  {
+   "fn": "0059FD10",
+   "why": "byte verifier, re-read by OPUS: 0059FD77/0059FD7A is test + jle (signed): the third backend runs only when qword [rcx+0x20] is signed-greater than 0; 'above 0' reads as unsigned non-zero"
+  },
+  {
+   "fn": "005A0120",
+   "why": "byte verifier, re-read by OPUS: 005A01E3/005A01E6 is cmp + jge (signed): the call needs start + a signed-less than w * r8d; 'below' reads as unsigned; &p is passed to 0059BED0 (005A01F0), and 005A021B re-reads p from the stack after the call before storing it to [rcx+0x30], so the stored value is the callee-updated p, not the computed one; 005A01ED is an unsigned div: a / w and a mod w are unsigned"
+  },
+  {
+   "fn": "005A0120",
+   "why": "byte verifier, re-read by OPUS: same function, further clause"
+  },
+  {
+   "fn": "005A0120",
+   "why": "byte verifier, re-read by OPUS: same function, further clause"
+  },
+  {
+   "fn": "005A0250",
+   "why": "byte verifier, re-read by OPUS: 005A02A1/005A02A4 is test + jle (signed): the log call needs qword [rcx+0x20] signed-greater than 0; 'above 0' reads as unsigned non-zero"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PSerialization module",
+ "method": "The page declares the family `Phyre PSerialization module` (a classification family: ordinary functions grouped by module, not template copies). No page explained these members. A local drafting agent (local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` (member mode: the body is an unexplained member of a family this page declares). A second local agent, not the drafter, then read every one of the 272 rows of this batch against the disassembly (repetitive destructors, initialisers and clone bodies compared instruction by instruction against a fixed template): 262 stood, 10 clauses in 8 functions were corrected (signed compares written as above/below, one missing dereference, two operand groupings, one pair of per-pair callees). OPUS confirmed each correction at the bytes and re-read a random sample of the rows that stood; the corrections are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

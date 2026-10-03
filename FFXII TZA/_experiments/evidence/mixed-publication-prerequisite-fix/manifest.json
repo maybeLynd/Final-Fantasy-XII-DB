@@ -1,0 +1,75 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "control-result.json",
+      "bytes": 1973,
+      "sha256": "bc448e7e3f973d8dee4a567393009cba27519b5b77fa87fffab9de692fc22a33"
+    },
+    {
+      "path": "control-status.json",
+      "bytes": 594,
+      "sha256": "0a781f13105d10d29cd24be013ffa600bb359c737ff91b2a159c9b00c0e67ee7"
+    },
+    {
+      "path": "control.py",
+      "bytes": 3266,
+      "sha256": "05b4b3db1024591143bc7d61fae970441a6cb197173275fc64277787c6fd3a69"
+    },
+    {
+      "path": "control.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control.stdout",
+      "bytes": 74,
+      "sha256": "b99233f97a68de5df33c4ec73c9516a52346983e13e84684cd7859928cd05599"
+    },
+    {
+      "path": "copier-delivery-after.py",
+      "bytes": 7665,
+      "sha256": "e4dcf45f5f0c6036b7168248d195e1fbbb90f825e8f02d95911990c16749e31b"
+    },
+    {
+      "path": "copier-delivery-before.py",
+      "bytes": 7562,
+      "sha256": "be062b4b36667c4855899d226d6afbbceae52a031e2fa9b32d28223428cb94d9"
+    },
+    {
+      "path": "failure.json",
+      "bytes": 566,
+      "sha256": "db876911b59a4cc3d7b080dec5307c5f0cd63e242d46ca2e1d34d273874bdf9d"
+    },
+    {
+      "path": "gauge-delivery-after.py",
+      "bytes": 8417,
+      "sha256": "3e8c50825913535a944bd358077c942233f7f949f50b09ea665a5f5b3dde7b49"
+    },
+    {
+      "path": "gauge-delivery-before.py",
+      "bytes": 8314,
+      "sha256": "a0918efe53a03eeb40a027b4514ccdb130e5b7fb1ac6f19fca2ac91ce66ff437"
+    },
+    {
+      "path": "publisher-after.py",
+      "bytes": 277621,
+      "sha256": "eb288544f19601871b6ac381f11b315114d871c5fb8a2ef2f72bf38e400786be"
+    },
+    {
+      "path": "publisher-before.py",
+      "bytes": 259043,
+      "sha256": "5c1b458faeafcc4b206d30ba1ce660ceebd0e8dc54834f974931445490a6eb18"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2774,
+      "sha256": "700801f4aee0676c20ec7624dc4997166a956678843e3450e346ffb8e4ea5d8d"
+    }
+  ],
+  "limits": "Producer engineering evidence/provenance, not FF12 semantic closure or independent acceptance. Historical controlled path preconditions explicit."
+}

@@ -3,7 +3,12 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_01VnuySB6H7e8WAWRL1qnmZN",
  "report": "home-native-command-seam.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "moved": [
   {
    "fn": "0026AB60",
    "entered_from": "`00355A00` + 0x1C6",
@@ -29,30 +34,12 @@
      "0026AB94",
      "movss"
     ]
-   ]
-  },
-  {
-   "fn": "0026B480",
-   "entered_from": "`00355A00` + 0x64",
-   "text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, clears bit 3 of byte `rcx+0xD` (`AND 0xF7`) and ORs bit 0 of `dl`, shifted left by 3, back into it; for any other value it returns without a write",
-   "anchors": [
-    [
-     "0026B489",
-     "cmp"
-    ],
-    [
-     "0026B48F",
-     "and"
-    ],
-    [
-     "0026B496",
-     "shl"
-    ],
-    [
-     "0026B499",
-     "or"
-    ]
-   ]
+   ],
+   "moved_to": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md"
   },
   {
    "fn": "0026BB00",
@@ -79,7 +66,12 @@
      "0026BB3C",
      "movss"
     ]
-   ]
+   ],
+   "moved_to": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md"
   },
   {
    "fn": "0026BDD0",
@@ -98,7 +90,12 @@
      "0026BDED",
      "movss"
     ]
-   ]
+   ],
+   "moved_to": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md"
   },
   {
    "fn": "0026BFF0",
@@ -125,7 +122,12 @@
      "0026C05B",
      "movss"
     ]
-   ]
+   ],
+   "moved_to": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md"
   },
   {
    "fn": "003DF790",
@@ -152,11 +154,42 @@
      "003DF7A5",
      "mov"
     ]
-   ]
+   ],
+   "moved_to": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md"
   }
  ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": []
+ "dropped": [
+  {
+   "fn": "0026B480",
+   "entered_from": "`00355A00` + 0x64",
+   "text": "when the top three bits of byte `rcx+3` (`shr 5`) equal 1, clears bit 3 of byte `rcx+0xD` (`AND 0xF7`) and ORs bit 0 of `dl`, shifted left by 3, back into it; for any other value it returns without a write",
+   "anchors": [
+    [
+     "0026B489",
+     "cmp"
+    ],
+    [
+     "0026B48F",
+     "and"
+    ],
+    [
+     "0026B496",
+     "shl"
+    ],
+    [
+     "0026B499",
+     "or"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-native-command-seam-1002/REVIEW.md",
+   "already_bound_on": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md"
+  }
+ ]
 }

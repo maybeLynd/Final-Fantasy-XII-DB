@@ -3,7 +3,12 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_013d18gLR7WCyczJCeHPeArU",
  "report": "home-contract-the-five-parallel-slot-maps.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "moved": [
   {
    "fn": "00273800",
    "entered_from": "`0035BC50` + 0x375",
@@ -29,11 +34,12 @@
      "00273845",
      "and"
     ]
-   ]
+   ],
+   "moved_to": "16-UI/the-selection-the-menu-publishes.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-the-five-parallel-slot-maps-1002/REVIEW.md"
   }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": []
+ ]
 }

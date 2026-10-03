@@ -239,7 +239,7 @@ void *ClassDescriptorForType_X::~scalar_deleting(void *self, unsigned long long 
 ```
 
 **This is the MSVC scalar-deleting-destructor convention**: bit 0 means "delete after destructing".
-Bit 2 selects a Control Flow Guard-mediated path instead of the direct `_aligned_free`.
+~~Bit 2 selects a Control Flow Guard-mediated path instead of the direct `_aligned_free`.~~ Bit `0x4` (with bit `0x1`) calls `0016D6A0(self, 0x100)` instead of `_aligned_free` (`00584820`..`00584828`), and `0016D6A0` is a single `ret 0`: nothing is freed on that arm. *(corrected 2026-10-03, OPUS, S-49 point 3)*
 
 ## 9. Determinism
 
@@ -552,7 +552,7 @@ is exactly as open as it was. *(Superseded 2026-09-25/26 by `PCD-1`, FABLE: five
 | the walk advances the cursor before unlinking the current node | **re-read**: `00633408 mov rax, [rdi]` at the top of the body, before `0063341B` | 1 | PROVEN |
 | **six `test rax, rax` guards in `0063D550` are provably dead** | **re-read**: each follows a `lea rax,[rcx+N]`, which cannot be null | 1 | PROVEN |
 | descriptors are `_aligned_malloc` storage freed by `_aligned_free` | `005847E0`'s `00584730` call, and `00584730` → IAT `008C2B70` → `_aligned_free`, resolved in [the cluster header contract](../Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md) §5 | 1 | PROVEN |
-| the deleting-destructor flag convention: bit 0 frees, bit 2 takes the CFG path | the source page's `005847E0` | 1 | PROVEN |
+| the deleting-destructor flag convention: bit `0x1` frees, ~~bit 2 takes the CFG path~~ bit `0x4` with it calls the `ret 0` stub `0016D6A0` and frees nothing *(corrected 2026-10-03, OPUS, S-49 point 3)* | the source page's `005847E0` | 1 | PROVEN |
 | 4,557 generated reflection functions in 42 families, 1,149 deleting destructors | the source page's census, **corrected by its own falsification pass**; the total survived exactly and the family split was revised | 1 | PROVEN |
 | any execution of any of this | ~~**none**; §13~~ *(answered: see the EXP-097 execution and the PCD-3 answer; 2026-10-02, OPUS)* | none | UNKNOWN |
 | what the six lists hold, what bit 0 tags, the descriptor's size, the `+0x100` guard, `0063E410` | first four **not established** (`PCD-1`…`PCD-4`) *(2026-09-25, FABLE: `PCD-1` PARTIAL — five of six lists named;

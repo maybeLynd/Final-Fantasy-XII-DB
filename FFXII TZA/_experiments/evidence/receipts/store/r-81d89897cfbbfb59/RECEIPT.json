@@ -1,0 +1,69 @@
+{
+ "case_sources": {},
+ "cases": [
+  "changed-old-member",
+  "conflicting-library",
+  "missing-referent"
+ ],
+ "driver_repos": {
+  "control.py": "C:/Users/Kristian/source/repos/XIIOnline",
+  "prepare.py": "C:/Users/Kristian/source/repos/XIIOnline"
+ },
+ "drivers": {
+  "control.py": {
+   "committed": true,
+   "git_blob": "67a97f27251dc54aafb7e867c4b333e7af160bf6",
+   "sha256": "2cf69ccb1ad3cfd8127db1dc75d6afdb585ebe3cce808ad512246bccd49de84a",
+   "size": 2741
+  },
+  "prepare.py": {
+   "committed": true,
+   "git_blob": "e841a51c13ea928fba9b3de48b821cd70284a0d6",
+   "sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654",
+   "size": 6282
+  }
+ },
+ "environment": {
+  "modules": {
+   "capstone": "5.0.7",
+   "pefile": "2024.8.26",
+   "unicorn": "2.1.4"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.6",
+  "run_artifacts": {
+   "status.json": {
+    "sha256": "7418c27935888c6167d4911225b73495b7fd84ac6f56ace251b50812b9d3e203",
+    "size": 692
+   },
+   "stderr": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+   },
+   "stdout": {
+    "sha256": "f9e1758c740f45eec99df58b280d36a48b42e44413a0e1027d51d40c0dfb52ea",
+    "size": 59
+   }
+  },
+  "run_status": {
+   "driver_sha256": "2cf69ccb1ad3cfd8127db1dc75d6afdb585ebe3cce808ad512246bccd49de84a",
+   "exception": null,
+   "exit": 0,
+   "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+   "terminal": true
+  }
+ },
+ "inputs": {},
+ "limitations": [
+  "three actual CLI refusal controls of prepare.py (missing referent, conflicting library, changed old member); each must exit 1 with no output",
+  "not independent scientific acceptance"
+ ],
+ "result": {
+  "name": "result.json",
+  "sha256": "2443cefeec19f583faca72b8332011ecce17a2e66c875fa419639eefd5420dc8",
+  "size": 3551
+ },
+ "run_id": "r-81d89897cfbbfb59",
+ "sealed_at": "2026-10-03T06:24:33Z",
+ "wip": false
+}

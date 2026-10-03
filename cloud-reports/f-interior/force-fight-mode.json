@@ -1,0 +1,78 @@
+{
+ "page": "00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "002734B0",
+   "text": "for `i` from 0 while `i` is below `0035BB60()` (re-read each step, signed), tail-jumps to `0035BB20(i)` for the first `i` whose `0035BB20(i)` record has bit `0x4` of its first byte set; returns 0 when none has (or the count is not above 0)",
+   "anchors": [
+    [
+     "002734BF",
+     "jle"
+    ],
+    [
+     "002734C3",
+     "call"
+    ],
+    [
+     "002734C8",
+     "test"
+    ],
+    [
+     "002734D6",
+     "jl"
+    ],
+    [
+     "002734E7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050EEA0",
+   "text": "with `n` = `003BB420` of the incoming `rcx`, calls `00254CB0(0)` and `0017D280(00D22AD8, n)`, then tail-jumps to `0026B4E0(rcx, n)`",
+   "anchors": [
+    [
+     "0050EEAD",
+     "call"
+    ],
+    [
+     "0050EEB6",
+     "call"
+    ],
+    [
+     "0050EEC4",
+     "call"
+    ],
+    [
+     "0050EED8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050F0A0",
+   "text": "with `n` = `003BB420` of the incoming `rcx`, calls `0017D280(00D22860, n)` and `0026B4E0(rcx, n)`, then tail-jumps to `00254CB0(0)`",
+   "anchors": [
+    [
+     "0050F0AD",
+     "call"
+    ],
+    [
+     "0050F0BD",
+     "call"
+    ],
+    [
+     "0050F0C7",
+     "call"
+    ],
+    [
+     "0050F0D8",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

@@ -342,11 +342,9 @@ is carried from the page, and mode 1's call counts are OPUS block 318's executio
 
 No correction.
 
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
 
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-contract-world-simulation-tick-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-contract-world-simulation-tick-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
 
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
-| `002DEF20` | 17 B | `00332C40` + 0x320 | tail-jumps (`002DEF20` + 0xC) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `edx` in `r9d` | Interior anchor `002DEF23`; Interior anchor `002DEF28`; Interior anchor `002DEF2C` |
-| `002DF1A0` | 56 B | `003B99D0` + 0x2EE | when `edx` is zero, tail-jumps (`002DF1A0` + 0x18) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `r8d` in `r9d`; otherwise calls `002DF1A0` + 0x2E with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d`, the incoming `edx` in `r9d` and the incoming `r8d` as the fifth (stack) argument, and returns its result | Interior anchor `002DF1A6`; Interior anchor `002DF1B8`; Interior anchor `002DF1BD`; Interior anchor `002DF1CE` |

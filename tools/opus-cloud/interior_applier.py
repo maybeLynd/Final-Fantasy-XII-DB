@@ -37,6 +37,16 @@ if CFG.get("mode") == "homing":
             "instruction boundary inside its function and decodes to the recorded mnemonic.*\n\n"
             % (os.path.basename(__file__), DEPTH, REC, os.path.basename(__file__))
             + "| function | size | what the body does | interior anchors |\n|---|---|---|---|\n")
+if CFG.get("mode") == "member":
+    # family members (OPUS, 2026-10-03): one block per family part; the heading names the family and the record
+    HEAD = ("## Family members explained one by one: %s (OPUS, %s, %s)\n\n" % (CFG.get("family", ""), CFG["date"], REC)
+            + "*Members of the family `%s`, which this page declares, that no page explained. Each sentence states what "
+            "the body does (access and representation, not purpose), and the anchors are instructions inside it that do "
+            "it. Drafted locally from OPUS's pack and re-read by OPUS against the certified image; verified by "
+            "[`%s`](%s_index/candidates/%s/%s): every anchor is an instruction boundary inside its function and decodes "
+            "to the recorded mnemonic.*\n\n" % (CFG.get("family", ""), os.path.basename(__file__), DEPTH, REC,
+                                                  os.path.basename(__file__))
+            + "| function | size | what the body does | interior anchors |\n|---|---|---|---|\n")
 if CFG.get("mode") == "uc1":
     # UC-1 game-code bodies (OPUS, 2026-10-03; FABLE's route ruling fable-uc1-gamecode-route-ruling-1003, test 3: the
     # count of such rows is stated once in the heading; each row carries the series-break phrase).

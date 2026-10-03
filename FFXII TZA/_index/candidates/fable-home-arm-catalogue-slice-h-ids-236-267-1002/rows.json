@@ -3,7 +3,19 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_01Xkefj8Gz4bCEiqGqVRB1MS",
  "report": "home-arm-catalogue-slice-h-ids-236-267.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00183260",
+   "was": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; returns nothing",
+   "now": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result",
+   "why": "'returns nothing' is a claim the bytes do not make: rax is left holding the last call's result on both paths"
+  }
+ ],
+ "moved": [
   {
    "fn": "00183260",
    "entered_from": "`0079C140` + 0x37D",
@@ -25,18 +37,12 @@
      "00183273",
      "mov"
     ]
-   ]
-  }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": [
-  {
-   "fn": "00183260",
-   "was": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; returns nothing",
-   "now": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result",
-   "why": "'returns nothing' is a claim the bytes do not make: rax is left holding the last call's result on both paths"
+   ],
+   "moved_to": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-arm-catalogue-slice-h-ids-236-267-1002/REVIEW.md"
   }
  ]
 }

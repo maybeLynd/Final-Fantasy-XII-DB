@@ -14,7 +14,8 @@ keeps the generator runnable standalone. Instrument *versions* are part of the
 fingerprint: a check_questions.py or transfer_audit.py edit forces regeneration.
 
 Outputs (staged atomically, committed as one generation; a failed run leaves
-the last good set and marks snapshot.json INCOMPLETE):
+the last good set UNTOUCHED - snapshot.json included - and records the
+failure in the store's LAST-FAILURE.json, which `check` reports):
   Database/FFXII TZA/PROGRESS.md        - brief summary, identity, freshness
   _index/progress/snapshot.json         - machine-readable state
   _index/progress/snapshot.md           - the route, human-readable
@@ -98,6 +99,11 @@ PARSER_VERSION = 7                              # bump on any parse-rule change
 # generations carry full input snapshots and are self-verifying on export.
 WORK = ROOT / "Database" / "Tools" / "work"
 STORE_ROOT = WORK / "progress-generations"
+# The last failed attempt, kept OUT of the live output set (2026-10-03, SWE2-DATA): until then a failure
+# replaced snapshot.json with a 447-byte INCOMPLETE stub, which broke the coherent last-good set write_all
+# promises and every reader of `levels` (the dashboard's My Progress read PARTIAL). Resolved at call time
+# from STORE_ROOT so a fixture's rebound store gets its own file.
+LAST_FAILURE_NAME = "LAST-FAILURE.json"
 # The consumed document tree's preimage (relpath + full sha256 per doc),
 # written just before a build begins and declared as a generation input so a
 # committed generation/export carries exactly what the docs hashed to.
@@ -147,8 +153,9 @@ CONFIG = OUT_DIR / "progress.config.json"
 
 
 class ProgressError(Exception):
-    """A generation cannot be honestly produced; the named cause is published
-    into snapshot.json as an INCOMPLETE state and the last-good set is kept."""
+    """A generation cannot be honestly produced; the named cause is recorded
+    in LAST-FAILURE.json and the last-good set - snapshot.json included - is
+    kept untouched."""
 
 
 # ---------------------------------------------------------------- OQ status
@@ -1517,16 +1524,32 @@ def write_incomplete(err, db=None):
     except Exception:
         pass
     _m, _i = input_problems(db or DB)
-    snap = {"generated_at_utc": datetime.now(timezone.utc)
-            .isoformat(timespec="seconds"),
-            "identity": {"git_head": git_head()},
-            "freshness": {"state": "INCOMPLETE", "reason": str(err),
-                          "fingerprint": last_fp or "none",
-                          "checked_at_utc": datetime.now(timezone.utc)
-                          .isoformat(timespec="seconds"),
-                          "missing": _m, "invalid": _i},
-            "engines": {"parser_version": PARSER_VERSION}}
-    _atomic_write(SNAP_JSON, json.dumps(snap, indent=1) + "\n")
+    rec = {"failed_at_utc": datetime.now(timezone.utc)
+           .isoformat(timespec="seconds"),
+           "git_head": git_head(), "state": "INCOMPLETE", "reason": str(err),
+           "live_snapshot_fingerprint": last_fp or "none",
+           "missing": _m, "invalid": _i,
+           "parser_version": PARSER_VERSION,
+           "note": "the live output set is the prior generation, untouched"}
+    # The live outputs - snapshot.json included - are NOT written: they stay the
+    # last coherent generation, and `check` reports this record beside them.
+    Path(STORE_ROOT).mkdir(parents=True, exist_ok=True)
+    _atomic_write(last_failure_path(), json.dumps(rec, indent=1) + "\n")
+
+
+def last_failure_path():
+    return Path(STORE_ROOT) / LAST_FAILURE_NAME
+
+
+def last_failure(snap=None):
+    """The recorded failed attempt if it is newer than the live snapshot's
+    generation, else None."""
+    try:
+        rec = json.loads(last_failure_path().read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    gen = (snap or {}).get("generated_at_utc") or ""
+    return rec if rec.get("failed_at_utc", "") > gen else None
 
 
 def _hdr(snap, title):
@@ -2095,6 +2118,11 @@ def check(db):
     if fr.get("state") == "INCOMPLETE":
         print("INCOMPLETE: last generation failed: %s" % fr.get("reason"))
         return 2
+    lf = last_failure(snap)
+    if lf:
+        print("NOTE: the last generation attempt failed at %s (%s); the live set is the"
+              " prior generation %s, untouched" % (lf.get("failed_at_utc"), lf.get("reason"),
+                                                  snap.get("generated_at_utc")))
     missing, invalid = input_problems(db)
     if missing or invalid:
         print("INCOMPLETE: " + "; ".join(

@@ -1,0 +1,27 @@
+# SWE2-AUDIT-SPEC review: FABLE homing rows (fable-home-keymap-ini-file-format-and-default-cont-1002)
+
+Reviewer: SWE2-AUDIT-SPEC (Claude stand-in for the rate-limited Devin session; not FABLE, not the drafting cloud session) · 2026-10-03 · Task: `FABLE-REQ-AUDITSPEC-FABLE-HOME-KEYMAP-INI-FILE-FORMAT-AND-DEFAUL` · Package: `_index/candidates/fable-home-keymap-ini-file-format-and-default-cont-1002/` · Page: `15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md`
+
+## SWE2-AUDIT-SPEC verdict: REJECT
+
+## SWE2-AUDIT-SPEC checks
+
+- `homing_applier.py` was re-run fresh from the package directory with the analysis venv python. It exited 0 and printed `VERIFY 4 functions, 16 anchors` / `ALREADY` / `FAILS 0`. Without `--apply` it only verifies; `ALREADY` means the section is already on the page. It wrote nothing.
+- `rows.json`: 4 rows, 16 anchors; mechanically rejected 0, skipped 0, missing 0.
+- Semantic pass: **all 4 rows** read clause by clause against the full `disr.py` disassembly of the certified image (rip targets resolved; image-base-relative forms rebased on `00120000`). Every call offset, stack-argument slot, compare signedness and branch polarity was checked. Each entered_from site was disassembled and confirmed as a direct call or jump to the body. Host fit was checked against every citation of the caller on the page outside the homed section, and the caller was grepped across the database for the page that reads it as its own.
+- `001941F0`: four `movups` pairs copy `[rdx]..[rdx+0x3F]` to `rcx+0x440..+0x47F`; `movss xmm0, [rsp+0x28]` is the fifth (stack) argument, stored at `+0x488`, with `xmm2` at `+0x480` and `xmm3` at `+0x484`. Site `00189EAF` passes `rdx = rsp+0x30` and the fifth float at `[rsp+0x20]`.
+- `00194490`: `xmm2` to `+0x128`, `edx` to `+0x124`; `test r9, r9; je` guards the `movsd` qword copy to `+0x12C` and the dword `[r9+8]` to `+0x134`.
+- `00285FE0`: `sub ecx, 1; je` gives 1 -> 8; `cmp ecx, 1; jne` then `lea eax, [rcx+6]` gives 2 -> 7; everything else 9. Exact.
+- `00314820`: `call 00377520` at +0x4, `jmp 003B6C70` at +0xD, no argument set-up. Exact.
+- Every sentence, site and anchor is exact. The defect is host fit, for all four rows.
+
+## SWE2-AUDIT-SPEC narrowing / notes
+
+- **`001941F0` and `00194490` (entered from `00189CE0` + 0x1CF / + 0x405): host-fit defect.** The page cites `00189CE0` once outside the homed section, in the pass-22 neighbours paragraph: *"Presentation — MECHANICAL ... `0017D6E0` calls Presentation-tagged bodies `00189CE0`/`001BC190`/`001BDAC0`/`001CCxxx` et al. — the binding pump's fan-in to shared presentation helpers. Not a keymap responsibility."* The page says the caller is not one of its functions, so the section heading (*"called from this page's functions"*) is false for both rows. Both bodies write the render-parameter block returned by `00193D50` (`00189E84`, `0018A0C8`), which this page does not discuss.
+  - **Repair:** remove both rows from this package (and from the section already on the page), and re-home them unchanged on `00-Engine-Core-Runtime/Application-Root/game-application.md`. That page reads `00189CE0` as the renderer singleton's update (L530, L772) and already homes its worker `001AC950` (L2282). `17-Presentation-Rendering/CONTRACT-character-transform-publish.md` (the per-frame method at `00189CE0`+0x40A) is the alternative.
+- **`00285FE0` (entered from `002B5C90` + 0x38): host-fit defect.** The page cites `002B5C90` only as a call-site count: §10 *"`002B5C90` calls it **six times**"* (of `InputConfig_GetBinding`), and the Script_VM neighbours line. Its input is `001E0B90` (`002B5CC1`), which `02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md` (SWE2-EC7-71) measured as the keyboard-layout language selector (French 1, German 2, else 0), "NOT an input helper". So the body maps a locale code to 8/7/9. That is not a keymap fact, and the page never reads `002B5C90` as its own.
+  - **Repair:** remove the row and re-home it unchanged on `99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md`, which reads `002B5C90` as its body (§3a/§3c, L192, L613, L625). `99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md` (interior row for `002B5C90`, L1515) is the alternative.
+- **`00314820` (entered from `0022A770` + 0x1D8): host-fit defect.** The page lists `0022A770` `MainLoop_RunFrame` for one role only: it polls the speed keys through `0017DEA0` (L290, L404, L737). §10 says outright that its other callees are out of scope: *"It is a host frame routine, and the flagged edges are its own callees ... That is what a frame routine calls. Irrelevant to the keymap format, cited for a different edge."* The homed body is one of those frame callees: `00377520`, the once-per-change gate, then `003B6C70`. The page disclaims exactly the kind of edge it is.
+  - **Repair:** remove the row and re-home it unchanged on `00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md`. Its SWE2-EC7-92 update reads `00377520` as *"the once-per-change gate the `0022A770` frame walker runs"* (L2575), and it cites `0022A770` 11 times.
+- After the repairs this package has no rows left. Each row stays exact and can be moved verbatim (the applier's caller-cited check passes on each named target, since each cites the caller).
+- Limits: body statements only, static evidence. A cloud draft plus FABLE's re-read is not independent review; this record is.

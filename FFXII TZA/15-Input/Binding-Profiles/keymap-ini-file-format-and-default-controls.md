@@ -1613,9 +1613,6 @@ cites them only for which stop slot sets or clears each input-mode bit. Nothing 
 
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
-| `001941F0` | 74 B | `00189CE0` + 0x1CF | copies the 64 bytes at `rdx` (four 16-byte loads) to `rcx+0x440` through `rcx+0x47F`, then stores the float `xmm2` at dword `+0x480`, the float `xmm3` at `+0x484` and the float fifth (stack) argument at `+0x488` | Interior anchor `001941F3`; Interior anchor `0019421A`; Interior anchor `00194221`; Interior anchor `00194229`; Interior anchor `00194231` |
-| `00194490` | 43 B | `00189CE0` + 0x405 | stores the float `xmm2` at dword `rcx+0x128` and `edx` at dword `+0x124`; when `r9` is non-null, also copies the qword at `r9` to `+0x12C` and the dword at `r9+8` to `+0x134` | Interior anchor `00194498`; Interior anchor `0019449E`; Interior anchor `001944A8`; Interior anchor `001944B4` |
-| `00285FE0` | 26 B | `002B5C90` + 0x38 | maps `ecx` to a return value: 1 returns 8, 2 returns 7, and any other value returns 9 | Interior anchor `00285FE3`; Interior anchor `00285FE8`; Interior anchor `00285FEA`; Interior anchor `00285FEE`; Interior anchor `00285FF4` |
 | `00314820` | 18 B | `0022A770` + 0x1D8 | calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result | Interior anchor `00314824`; Interior anchor `0031482D` |
 
 ## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)

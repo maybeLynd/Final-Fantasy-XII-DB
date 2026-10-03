@@ -1,0 +1,29 @@
+{
+  "method": "synthetic private preparation invocation, no publication or semantic credit",
+  "producer_sha256": "5c1b458faeafcc4b206d30ba1ce660ceebd0e8dc54834f974931445490a6eb18",
+  "controller_sha256": "aae9e61c9cbe59097a3af5a897a361127404abc840d907899a8a18fb7d953699",
+  "exception": "ValueError('copied render review link unresolved before copying: fable-render-control-REVIEW.md -> rv_clear.py')",
+  "expected_diagnostic": true,
+  "preparation_output_absent": true,
+  "canonical_output_absent": true,
+  "handoff_unchanged": true,
+  "positive_helper_control": {
+    "status": "VERIFIED_COPIED_REVIEW_LINKS",
+    "links": [
+      {
+        "document": "fable-render-control-REVIEW.md",
+        "target": "rv_clear.py",
+        "sha256": "bf97dc78612d41821aaada59bbe3ad9015d0559dd7d694da64a5e268afef2db0"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "missing-review-stops-before-writes"
+    },
+    {
+      "id": "present-review-referent-detected"
+    }
+  ],
+  "status": "INVOCATION_PATH_CONTROL_PASS"
+}

@@ -1,0 +1,29 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md",
+ "session": "opus-self",
+ "rows": [
+  {"fn": "00249080",
+   "text": "calls `0024AD00(rcx, rdx, r8, r9d)`; then, for `r9d` entries of 0x10 bytes from `rcx` (none when `r9d` is not greater than 0, signed), sets dword `+0` to (dword `+0` - 0x8000) shifted right 4 (arithmetic) plus the truncated 0x200 (`01E0C1D8`, as a float) / `00183280()` shifted right 1, and dword `+4` to (dword `+4` - 0x8000) shifted right 4 plus dword `01E0C1DC` (0x1C0) shifted right 1",
+   "anchors": [["00249093", "call"], ["0024909B", "jle"], ["002490CE", "divss"], ["002490DD", "mov"], ["002490F3", "mov"]]},
+  {"fn": "00264870",
+   "text": "returns 0 when bit `0x1` of byte `02098E20` is clear, when qword `02098E10` is null or when `0020E600(dword +0x8c of it)` is null; otherwise, with `b` = that qword plus the sign-extended low dword of a second `0020E600(dword +0x8c)`, returns `b` + 4 + `ecx`*0x10 when `ecx` is less than dword `[b]` (signed), else 0",
+   "anchors": [["00264876", "test"], ["00264891", "je"], ["002648A9", "call"], ["002648B4", "cmp"], ["002648C4", "add"]]},
+  {"fn": "0026ABA0",
+   "text": "when `ecx` is less than 0x100 (signed), bit `0x1` of byte `02098E20` is set and qword `02098E58` is non-null, stores `dx` as word `ecx` of the array that qword points to; otherwise it stores nothing",
+   "anchors": [["0026ABA6", "jge"], ["0026ABA8", "test"], ["0026ABB8", "test"], ["0026ABC0", "mov"]]},
+  {"fn": "002E13C0",
+   "text": "returns 0x1D when `ecx` is above 9 (unsigned); otherwise a jump table maps 0 to 0, 1 to 1, 2 to 9, 3 to 7 to 0x12 to 0x16, 8 to 0x1D and 9 to 0x1E",
+   "anchors": [["002E13C5", "cmp"], ["002E13C8", "ja"], ["002E13D4", "mov"], ["002E13DF", "jmp"], ["002E13F6", "mov"]]},
+  {"fn": "003F6FD0",
+   "text": "leaves word `+0x2f0` unchanged when no bit other than `0x4` is set in it (`test` with `0xfffb`); otherwise stores 4 there when it equals 1 and 3 when it does not",
+   "anchors": [["003F6FDC", "test"], ["003F6FE1", "cmp"], ["003F6FEC", "mov"], ["003F6FF1", "mov"]]},
+  {"fn": "00473B90",
+   "text": "with `t` = qword `02CA6C60`, returns dword `ecx` of the array at `t+8` AND 0x1FFF when `ecx` is less than dword `t+4` (signed), else -1",
+   "anchors": [["00473B97", "cmp"], ["00473B9A", "jle"], ["00473B9F", "mov"], ["00473BA3", "and"], ["00473BA9", "or"]]},
+  {"fn": "00862930",
+   "text": "multiplies each of the four floats at `rdx` `+0`/`+4`/`+8`/`+0xc` by 16.0 (`01CEBC84`) and stores each truncated to an integer as the dword at the same offset of `rcx`",
+   "anchors": [["0086293C", "mulss"], ["00862940", "cvttss2si"], ["00862953", "mov"], ["00862963", "mov"], ["00862973", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself; 002E13C0's case values read from the jump table bytes (not named)"
+}

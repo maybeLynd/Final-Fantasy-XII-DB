@@ -1,0 +1,457 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pinputs-module-3.json",
+ "rows": [
+  {
+   "fn": "00876020",
+   "text": "stores `01CD7F68` to qword `[rcx]`, unlinks `rcx` from the list whose head is qword `02EB8260` (entries linked through qword `+0x10`; the link that pointed at `rcx` takes its qword `+0x10`, which is then zeroed; nothing changes when it is not on the list), and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x18)`; returns `rcx`",
+   "anchors": [
+    [
+     "00876030",
+     "mov"
+    ],
+    [
+     "0087605B",
+     "cmp"
+    ],
+    [
+     "00876078",
+     "mov"
+    ],
+    [
+     "0087607F",
+     "test"
+    ],
+    [
+     "0087608C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876130",
+   "text": "looks up `rdx` in the list whose head is qword `02EB8260` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "0087613D",
+     "test"
+    ],
+    [
+     "00876150",
+     "mov"
+    ],
+    [
+     "00876163",
+     "movzx"
+    ],
+    [
+     "00876177",
+     "mov"
+    ],
+    [
+     "00876186",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008762F0",
+   "text": "returns the record at `02EB82E0`, building it once under the thread-safe guard dword `02EB8340` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02EB82E0, 'PInputAxisSemantic', 0x20, 8, 00876870, 00876520)`, qword `02EB82E0` = `01CD80E0`, and `00808B90(008BA680)`",
+   "anchors": [
+    [
+     "0087631A",
+     "cmp"
+    ],
+    [
+     "00876329",
+     "call"
+    ],
+    [
+     "0087636A",
+     "call"
+    ],
+    [
+     "00876376",
+     "mov"
+    ],
+    [
+     "00876391",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876410",
+   "text": "stores `01CD80B8` to qword `[rcx]`, unlinks `rcx` from the list whose head is qword `02EB82D8` (entries linked through qword `+0x10`; the link that pointed at `rcx` takes its qword `+0x10`, which is then zeroed; nothing changes when it is not on the list), and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "00876420",
+     "mov"
+    ],
+    [
+     "0087644B",
+     "cmp"
+    ],
+    [
+     "00876468",
+     "mov"
+    ],
+    [
+     "0087646F",
+     "test"
+    ],
+    [
+     "0087647C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876520",
+   "text": "looks up `rdx` in the list whose head is qword `02EB82D8` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "0087652D",
+     "test"
+    ],
+    [
+     "00876540",
+     "mov"
+    ],
+    [
+     "00876553",
+     "movzx"
+    ],
+    [
+     "00876567",
+     "mov"
+    ],
+    [
+     "00876576",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008766D0",
+   "text": "returns the record at `02EB8350`, building it once under the thread-safe guard dword `02EB83B0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02EB8350, 'PInputJoypadButtonSemantic', 0x20, 8, 00876870, 00876930)`, qword `02EB8350` = `01CD8480`, and `00808B90(008BB710)`",
+   "anchors": [
+    [
+     "008766FA",
+     "cmp"
+    ],
+    [
+     "00876709",
+     "call"
+    ],
+    [
+     "0087674A",
+     "call"
+    ],
+    [
+     "00876756",
+     "mov"
+    ],
+    [
+     "00876771",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008767F0",
+   "text": "stores `01CD8448` to qword `[rcx]`, unlinks `rcx` from the list whose head is qword `02EB8348` (entries linked through qword `+0x10`; the link that pointed at `rcx` takes its qword `+0x10`, which is then zeroed; nothing changes when it is not on the list), and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "00876800",
+     "mov"
+    ],
+    [
+     "0087682B",
+     "cmp"
+    ],
+    [
+     "00876848",
+     "mov"
+    ],
+    [
+     "0087684F",
+     "test"
+    ],
+    [
+     "0087685C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876930",
+   "text": "looks up `rdx` in the list whose head is qword `02EB8348` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "0087693D",
+     "test"
+    ],
+    [
+     "00876950",
+     "mov"
+    ],
+    [
+     "00876963",
+     "movzx"
+    ],
+    [
+     "00876977",
+     "mov"
+    ],
+    [
+     "00876986",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00876AE0",
+   "text": "returns the record at `02EB83C0`, building it once under the thread-safe guard dword `02EB8420` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02EB83C0, 'PInputKeySemantic', 0x20, 8, 00876870, 00876D10)`, qword `02EB83C0` = `01CD8A08`, and `00808B90(008BDB80)`",
+   "anchors": [
+    [
+     "00876B0A",
+     "cmp"
+    ],
+    [
+     "00876B19",
+     "call"
+    ],
+    [
+     "00876B5A",
+     "call"
+    ],
+    [
+     "00876B66",
+     "mov"
+    ],
+    [
+     "00876B81",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876C00",
+   "text": "stores `01CD89D8` to qword `[rcx]`, unlinks `rcx` from the list whose head is qword `02EB83B8` (entries linked through qword `+0x10`; the link that pointed at `rcx` takes its qword `+0x10`, which is then zeroed; nothing changes when it is not on the list), and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "00876C10",
+     "mov"
+    ],
+    [
+     "00876C3B",
+     "cmp"
+    ],
+    [
+     "00876C58",
+     "mov"
+    ],
+    [
+     "00876C5F",
+     "test"
+    ],
+    [
+     "00876C6C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876D10",
+   "text": "looks up `rdx` in the list whose head is qword `02EB83B8` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "00876D1D",
+     "test"
+    ],
+    [
+     "00876D30",
+     "mov"
+    ],
+    [
+     "00876D43",
+     "movzx"
+    ],
+    [
+     "00876D57",
+     "mov"
+    ],
+    [
+     "00876D66",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00876EC0",
+   "text": "returns the record at `02EB8430`, building it once under the thread-safe guard dword `02EB8490` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02EB8430, 'PInputMouseButtonSemantic', 0x20, 8, 00876870, 008770F0)`, qword `02EB8430` = `01CD8B20`, and `00808B90(008BDD10)`",
+   "anchors": [
+    [
+     "00876EEA",
+     "cmp"
+    ],
+    [
+     "00876EF9",
+     "call"
+    ],
+    [
+     "00876F3A",
+     "call"
+    ],
+    [
+     "00876F46",
+     "mov"
+    ],
+    [
+     "00876F61",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00876FE0",
+   "text": "stores `01CD8AE8` to qword `[rcx]`, unlinks `rcx` from the list whose head is qword `02EB8428` (entries linked through qword `+0x10`; the link that pointed at `rcx` takes its qword `+0x10`, which is then zeroed; nothing changes when it is not on the list), and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "00876FF0",
+     "mov"
+    ],
+    [
+     "0087701B",
+     "cmp"
+    ],
+    [
+     "00877038",
+     "mov"
+    ],
+    [
+     "0087703F",
+     "test"
+    ],
+    [
+     "0087704C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008770F0",
+   "text": "looks up `rdx` in the list whose head is qword `02EB8428` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "008770FD",
+     "test"
+    ],
+    [
+     "00877110",
+     "mov"
+    ],
+    [
+     "00877123",
+     "movzx"
+    ],
+    [
+     "00877137",
+     "mov"
+    ],
+    [
+     "00877146",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008793D0",
+   "text": "returns the record at `02EB9D90`, building it once under the thread-safe guard dword `02EB9DF0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02EB9D90, 'PInputChannelSemantic', 0x20, 8, 00876870, 00879600)`, qword `02EB9D90` = `01CD9938`, and `00808B90(008C14D0)`",
+   "anchors": [
+    [
+     "008793FA",
+     "cmp"
+    ],
+    [
+     "00879409",
+     "call"
+    ],
+    [
+     "0087944A",
+     "call"
+    ],
+    [
+     "00879456",
+     "mov"
+    ],
+    [
+     "00879471",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008794F0",
+   "text": "stores `01CD9908` to qword `[rcx]`, unlinks `rcx` from the list whose head is qword `02EB9D80` (entries linked through qword `+0x10`; the link that pointed at `rcx` takes its qword `+0x10`, which is then zeroed; nothing changes when it is not on the list), and, when bit `0x1` of `edx` is set, calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "00879500",
+     "mov"
+    ],
+    [
+     "0087952B",
+     "cmp"
+    ],
+    [
+     "00879548",
+     "mov"
+    ],
+    [
+     "0087954F",
+     "test"
+    ],
+    [
+     "0087955C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00879600",
+   "text": "looks up `rdx` in the list whose head is qword `02EB9D80` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "0087960D",
+     "test"
+    ],
+    [
+     "00879620",
+     "mov"
+    ],
+    [
+     "00879633",
+     "movzx"
+    ],
+    [
+     "00879647",
+     "mov"
+    ],
+    [
+     "00879656",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PInputs module",
+ "method": "The page declares the family `Phyre PInputs module` (a classification family: ordinary functions grouped by module, not template copies). No page explained these members. A local drafting agent (local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` (member mode: the body is an unexplained member of a family this page declares). A second local agent, not the drafter, then read every one of the 272 rows of this batch against the disassembly (repetitive destructors, initialisers and clone bodies compared instruction by instruction against a fixed template): 262 stood, 10 clauses in 8 functions were corrected (signed compares written as above/below, one missing dereference, two operand groupings, one pair of per-pair callees). OPUS confirmed each correction at the bytes and re-read a random sample of the rows that stood; the corrections are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

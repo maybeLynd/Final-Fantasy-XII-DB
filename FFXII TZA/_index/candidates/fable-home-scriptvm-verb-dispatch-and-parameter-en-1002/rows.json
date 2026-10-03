@@ -3,7 +3,21 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_015JQJRUavwc3iK8Y7ZWtHdD",
  "report": "home-scriptvm-verb-dispatch-and-parameter-encoding.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0025D460",
+  "00264110",
+  "00264B90",
+  "002D75F0",
+  "0036B060",
+  "003944D0",
+  "003DE700",
+  "005688D0"
+ ],
+ "corrections": [],
+ "dropped": [
   {
    "fn": "00379D40",
    "entered_from": "`0022A0B0` + 0x2F8",
@@ -17,20 +31,12 @@
      "00379D4D",
      "jmp"
     ]
-   ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-scriptvm-verb-dispatch-and-parameter-en-1002/REVIEW.md",
+   "already_bound_on": "02-Resource-And-Asset-Pipeline/the-resource-request-queue.md"
   }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [
-  "0025D460",
-  "00264110",
-  "00264B90",
-  "002D75F0",
-  "0036B060",
-  "003944D0",
-  "003DE700",
-  "005688D0"
- ],
- "corrections": []
+ ]
 }

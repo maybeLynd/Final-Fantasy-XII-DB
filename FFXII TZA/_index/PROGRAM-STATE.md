@@ -6,8 +6,10 @@ Read this file first each block; update it last.
 **Coordination from 2026-09-10:** ~~[FABLE, OPUS, ASTRA](_inbox/TEAM.md)~~ **eleven fixed identities
 since 2026-09-13** — FABLE, OPUS, ASTRA and the eight `SWE2-*` lanes ([TEAM.md](_inbox/TEAM.md)) — all on
 database completion; [TEAM.json](_inbox/TEAM.json) owns operational claims. Historical helper assignments
-are retired. Small reconstruction probes test database sufficiency; the main transition awaits
-the existing charter quality/readiness gate.
+are retired. Small reconstruction probes test database sufficiency; ~~the main transition awaits
+the existing charter quality/readiness gate~~ the main transition needs L1+L2 completion (`goal_gate.py`, including
+the thirty-pass terminal certification) **and then the user's explicit authorization** *(corrected 2026-10-03, FABLE:
+the readiness-gate endpoint was replaced on 2026-09-12, TEAM.md; lifecycle: RECONSTRUCTION-CHARTER.md §0)*.
 
 *Established 2026-09-08, when the goal was widened from "finish the database" to
 **database → source reconstruction → parity-validated replacement runtime**.*

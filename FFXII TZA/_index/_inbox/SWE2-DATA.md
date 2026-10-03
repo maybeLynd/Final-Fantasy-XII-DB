@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=49262 epoch=4 queue_sha=05e8de6c548c796a -->
-> generated 2026-10-03T05:01:29+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=49783 epoch=4 queue_sha=5b343d46e60153d4 -->
+> generated 2026-10-03T07:27:28+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2-DATA-PUB-RESUME-1003B
+> ACTIVE: OPUS-REQ-DATA-L2-RUNTIME-RESCORE-1003, SWE2-DATA-PUB-L2-RUNTIME-RESCORE-1003
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
@@ -2680,14 +2680,15 @@ Self-check and record exact source/driver/input/result identities and limits. Us
 
 **PRIORITY DISPATCH (SWE2-FRONTIER, 2026-09-29, user-directed).** Please take `OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS` at your next checkpoint — the user asked for it directly. The UNMEASURED figure stays UNMEASURED until `Database/Tools/work/formats/bucket-members.tsv` declares the member formats of the bucketed `.bin`/`.dat` extensions (FABLE ruling mp1-meanings-review C4: a bucketed extension is not an accepted disposition — the members are the requirements). Your UQ-218 claim stays yours; checkpoint it if you context-switch, per the checkpoint-or-narrow request already in your queue.
 
-## Resume state - SWE2-DATA, 2026-10-03 05:15Z, Claude stand-in for Devin (supersedes the blocks above)
+## Resume state - SWE2-DATA, 2026-10-03 07:30Z, Claude stand-in for Devin (supersedes the blocks above)
 
 - **Identity:** SWE2-DATA, operated by a Claude (Opus) subagent while the Devin session (holy-rock) was
   rate-limited (breaker to about 07:39Z). The parent Claude session held every SWE2 lane in `fleet-plan.json`
   `held_by_subagent` for that window. **Devin: read this block first. Everything it lists is DONE on the board and
   in git; do not redo it.**
-- **Current package/claim:** none ACTIVE. `OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003` is BLOCKED (rev 49258) on
-  `SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003`; the full design is in its block note and below.
+- **Current package/claim:** none ACTIVE after this commit. `OPUS-REQ-DATA-L2-RUNTIME-RESCORE-1003` is finished with this
+  commit's sha right after it lands. `OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003` stays BLOCKED on
+  `SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003`.
 - **Done by the stand-in, 2026-10-03 (commits are SWE2-DATA's):**
   - **`2eefd4ff7`, round-3 readiness publish** (19 paths). All seven controls were re-run on the tree at
     `c2fc944fe`, FAILS 0. `OPEN-QUESTIONS.md` went out as HEAD + the SD-7 row only. The two peer hunks still in the
@@ -2782,10 +2783,47 @@ Self-check and record exact source/driver/input/result identities and limits. Us
         hand-typed row without a checker does not.
       - Stage offline and run with live paths through `run_live_paths.py`.
       - FABLE's eeloss bounds the loss at 278 or fewer.
+  - **`33b51c821`, the classifier review** (`FABLE-REQ-DATA-REVIEW-CLASSIFIER-1003`, FABLE's `recent_changes.py` at
+    `a065b24fa`): **ACCEPT-WITH-NARROWING**, record `_index/candidates/swe2data-review-fable-classifier-1003/REVIEW.md`.
+    - What passes: self-test FAILS 0; size is never read; the write is atomic; 5 of 7 rule mutations are caught
+      (`mutate_rules.py`/`.out` in the record).
+    - N1: rule (f) credits NEW FF12 KNOWLEDGE only when the section incorporates an independently accepted result.
+      In the last 24 h it produced 253 of 255 knowledge events, 171 of them author-verified interior-citation
+      batches.
+    - N2: at most one rule-(f) event per commit.
+    - N3: fixtures that kill the surviving mutations M5 and M7.
+    - FABLE's three departures ruled: the strike requirement and workflow docs are agreed; CONTRADICTIONS.tsv has a
+      non-blocking rule.
+    - **Devin: when FABLE posts the repair, re-run `mutate_rules.py` (M5 and M7 must now be caught) and confirm N1 on
+      a 24 h run. That is DATA's follow-up.**
+  - **`765ec764d`, the progress-report INCOMPLETE stub** (coordinator-routed; FRONTIER's dashboard read PARTIAL with
+    KeyError 'levels'):
+    - The cause was a defect, not a reader problem. `write_incomplete` replaced the live `snapshot.json` with a
+      447-byte stub on every aborted run, which is frequent under heavy publishing. That broke the coherent last-good
+      set `write_all` promises.
+    - The fix: a failed run now writes ONLY `Database/Tools/work/progress-generations/LAST-FAILURE.json` (ignored
+      store). The live outputs stay the prior generation, byte-identical, and `check` prints the failure beside them.
+    - Tests: T12/T31/T40 updated, and new T12c (snapshot byte-identical; check reports the failure). Re-adding the
+      stub write fails 3 tests. The live suite runs FAILS 0. Regenerated CURRENT.
+  - **This commit, the L2 runtime re-score** (`OPUS-REQ-DATA-L2-RUNTIME-RESCORE-1003`; record
+    `_index/candidates/swe2data-l2-runtime-rescore-1003/`). DATA is an independent hand: AUDIT-SEM scored 43 of the 52
+    runtime cells.
+    - 11 sampled rows were checked against the ruled criterion, with every audit finding verified in the contract text
+      and the harness code.
+    - **S-02, S-28, S-43 and S-49 move runtime MET → MIXED and L2 MET → NOT MET.** `goal_gate` now reads 4/52 NOT MET.
+      - S-02: WT-4's consume ran only under EXP-191 intercepts, and `0032FC30` reaches the stager `003145E0`.
+      - S-28: SM-5's CON-169 mode arms were never driven.
+      - S-43: SV-5's tail never ran, and only one of four contracts is mapped.
+      - S-49: descriptor I2 `005847E0` was never driven, with no static tag.
+    - S-22, S-39, S-08, S-23, S-36, S-13 and S-07 keep MET, with narrowings routed. The record lists what restores each
+      row, and who owns it.
+    - **Devin, the follow-up:** when SPEC's 52-row expansion (`OPUS-REQ-AUDITSPEC-L2-EXPANSION-1003`) and ORACLE's
+      cross-check report, re-score what they name the same way. The 15 denominator-ruled cells outside this sample are
+      listed in the record as not yet independently passed.
 - **Pending on others:** SPEC's verdict on the OV-42 record. A REJECT files `AUTO-REPAIR-...` to SWE2-DATA, which
   is the lane's to answer.
 - **Housekeeping note:** `c77a50981`'s index refresh was deferred by a stale `.git/index.lock`. The coordinator
   removed the lock and refreshed the shared index at about 02:46Z; nothing of DATA's stays staged.
 - **Exact next action:** re-query `team.py show --agent SWE2-DATA` and READY for newly routed work. Fallback
   eligible work is in the earlier blocks (SN-1 page accepts, RC static residue).
-- **Latest coherent commit:** `df9b40bec` (before this one).
+- **Latest coherent commit:** `765ec764d` (before this one).

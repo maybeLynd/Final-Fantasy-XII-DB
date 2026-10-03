@@ -1,0 +1,10 @@
+{
+  "actual_helper_session": 51021,
+  "terminal": true,
+  "exit": 1,
+  "diagnostic": "ValueError: missing/stale annotation prerequisite; no publication",
+  "stage": "After exact gauge/partial77 preparation, before Git/publisher attempt; original saved qualifier remains in owned prepared folder",
+  "actual_later_commit": "64cb2c0c330931d7511a930c722b17a86afa6cfc",
+  "verified_paths": 93,
+  "limits": "Failure diagnostic transcribed from retained tool output, not a new execution; five actual corrected controls have separate raw status/stdout/stderr."
+}

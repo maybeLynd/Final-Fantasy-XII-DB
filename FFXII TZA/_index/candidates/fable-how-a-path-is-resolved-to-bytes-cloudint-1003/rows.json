@@ -1,0 +1,125 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01TFBw2QrzKFvVHXJ35bQC9s",
+ "report": "how-a-path-is-resolved-to-bytes.json",
+ "rows": [
+  {
+   "fn": "001D6B70",
+   "text": "makes the call at `001D6B70` + 0x4 (no arguments set up) and returns 1 when byte `+0x88` of the pointer it returns is non-zero, else 0",
+   "anchors": [
+    [
+     "001D6B74",
+     "call"
+    ],
+    [
+     "001D6B7B",
+     "cmp"
+    ],
+    [
+     "001D6B81",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "001D6D20",
+   "text": "makes the call at `001D6D20` + 0x1F (no arguments set up) and returns `0020C1B0(that result, rcx, edx, r8, r9)`, the incoming `r9` going to the callee as its fifth (stack) argument",
+   "anchors": [
+    [
+     "001D6D3F",
+     "call"
+    ],
+    [
+     "001D6D47",
+     "mov"
+    ],
+    [
+     "001D6D55",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001DB050",
+   "text": "for each of four names at a 6-byte stride from `01DFCFE8` (\"c1004\"), calls `001DB050` + 0x4D (256-byte stack buffer, 0, 0x100), copies \"PS2Data\\obj_finish\\in\\chara\\c10\\\" (`01DFD010`) into the buffer and appends the name and the word 0x005C (`008FB2B0`); only when the string at `rdx` is longer (unsigned) than the built string, calls `001DB050` + 0xFE the same way on a second 256-byte buffer, makes the call at `001DB050` + 0x111 (through qword `008C2F70`) with (second buffer, `rdx`, the built string's length) and byte-compares the two buffers to the terminating zero, returning 1 when they are equal; returns 0 when no name matches (`rcx` is not read)",
+   "anchors": [
+    [
+     "001DB115",
+     "mov"
+    ],
+    [
+     "001DB13C",
+     "jbe"
+    ],
+    [
+     "001DB161",
+     "call"
+    ],
+    [
+     "001DB1D3",
+     "mov"
+    ],
+    [
+     "001DB19F",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001F47D0",
+   "text": "walks a binary tree from qword `rcx+0x20` until it reaches the sentinel `rcx+8`, comparing the 128-bit key at `rdx` (qword `+0`, then qword `+8`) signed against each node's qwords `+0x18` then `+0x20` and descending to the node's qword `+8` when the node is less than the key and to its qword `+0` when greater; on an exact match it tail-jumps at `001F47D0` + 0x64 with `rcx` unchanged and `rdx` set to the node's qword `+0x28`; returns 0 when the sentinel is reached",
+   "anchors": [
+    [
+     "001F47DE",
+     "mov"
+    ],
+    [
+     "001F47EB",
+     "cmp"
+    ],
+    [
+     "001F47F2",
+     "cmp"
+    ],
+    [
+     "001F4815",
+     "mov"
+    ],
+    [
+     "001F4834",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001D6B70",
+   "was": "makes the call at `001D6B70+0x04` (no arguments set up) and returns 1 when byte `+0x88` of the pointer it returns is non-zero, else 0",
+   "now": "makes the call at `001D6B70` + 0x4 (no arguments set up) and returns 1 when byte `+0x88` of the pointer it returns is non-zero, else 0",
+   "why": "re-read: call-site cite put in the house form `FN` + 0xNN; content verified"
+  },
+  {
+   "fn": "001D6D20",
+   "was": "makes the call at `001D6D20+0x1F` (no arguments set up) and returns `0020C1B0(that result, rcx, edx, r8, r9)`, the incoming `r9` going to the callee as its fifth (stack) argument",
+   "now": "makes the call at `001D6D20` + 0x1F (no arguments set up) and returns `0020C1B0(that result, rcx, edx, r8, r9)`, the incoming `r9` going to the callee as its fifth (stack) argument",
+   "why": "re-read: call-site cite put in the house form `FN` + 0xNN; content verified"
+  },
+  {
+   "fn": "001DB050",
+   "was": "for each of four names at a 6-byte stride from `01DFCFE8` (\"c1004\"), calls `001DB050+0x4D`(256-byte stack buffer, 0, 0x100), copies \"PS2Data\\obj_finish\\in\\chara\\c10\\\" (`01DFD010`) into the buffer and appends the name and the word 0x005C (`008FB2B0`); only when the string at `rdx` is longer (unsigned) than the built string, calls `001DB050+0xFE` the same way on a second 256-byte buffer, makes the call at `001DB050+0x111` (through qword `008C2F70`) with (second buffer, `rdx`, the built string's length) and byte-compares the two buffers to the terminating zero, returning 1 when they are equal; returns 0 when no name matches (`rcx` is not read)",
+   "now": "for each of four names at a 6-byte stride from `01DFCFE8` (\"c1004\"), calls `001DB050` + 0x4D (256-byte stack buffer, 0, 0x100), copies \"PS2Data\\obj_finish\\in\\chara\\c10\\\" (`01DFD010`) into the buffer and appends the name and the word 0x005C (`008FB2B0`); only when the string at `rdx` is longer (unsigned) than the built string, calls `001DB050` + 0xFE the same way on a second 256-byte buffer, makes the call at `001DB050` + 0x111 (through qword `008C2F70`) with (second buffer, `rdx`, the built string's length) and byte-compares the two buffers to the terminating zero, returning 1 when they are equal; returns 0 when no name matches (`rcx` is not read)",
+   "why": "re-read: call-site cites put in the house form `FN` + 0xNN; content verified"
+  },
+  {
+   "fn": "001F47D0",
+   "was": "walks a binary tree from qword `rcx+0x20` until it reaches the sentinel `rcx+8`, comparing the 128-bit key at `rdx` (qword `+0`, then qword `+8`) signed against each node's qwords `+0x18` then `+0x20` and descending to the node's qword `+8` when the node is less than the key and to its qword `+0` when greater; on an exact match it tail-jumps at `001F47D0+0x64` with `rcx` unchanged and `rdx` set to the node's qword `+0x28`; returns 0 when the sentinel is reached",
+   "now": "walks a binary tree from qword `rcx+0x20` until it reaches the sentinel `rcx+8`, comparing the 128-bit key at `rdx` (qword `+0`, then qword `+8`) signed against each node's qwords `+0x18` then `+0x20` and descending to the node's qword `+8` when the node is less than the key and to its qword `+0` when greater; on an exact match it tail-jumps at `001F47D0` + 0x64 with `rcx` unchanged and `rdx` set to the node's qword `+0x28`; returns 0 when the sentinel is reached",
+   "why": "re-read: call-site cite put in the house form `FN` + 0xNN; content verified"
+  }
+ ]
+}

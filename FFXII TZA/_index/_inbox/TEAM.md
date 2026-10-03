@@ -318,7 +318,7 @@ having it approved does not end the work.**
 [`GOAL-REVISION-2026-09-08.md`](../GOAL-REVISION-2026-09-08.md) and
 [`FINAL-AUDIT-PROTOCOL.md`](../FINAL-AUDIT-PROTOCOL.md) for **L1 and L2**, including the reviews those
 documents require. L3 parity is later. Bounded reconstruction probes may test database sufficiency;
-a **primary reconstruction phase needs a separate user instruction**.
+a **primary reconstruction phase needs a separate user instruction**. *(2026-10-03: the full lifecycle after the database is now written once, in [`RECONSTRUCTION-CHARTER.md` §0](../../../../RECONSTRUCTION-CHARTER.md#0-project-lifecycle-fable-user-directive-2026-10-02), with a machine-readable twin [`PROJECT-LIFECYCLE.json`](../workflow/PROJECT-LIFECYCLE.json).)*
 
 **And what is explicitly not completion:** a report, a pilot count, a green validator, an empty
 board, or an approval request. Required unknowns and contradictions stay **open until resolved** —
@@ -665,7 +665,37 @@ All three may improve the process only for an observed recurring bottleneck, mea
 class or clear high reuse across remaining work. Make the smallest useful change, validate it, then
 return to FFXII. Once the bootstrap scenarios pass, stop building coordination infrastructure.
 
+## Starting or resuming — current authority first (FABLE, 2026-10-03, from the user's context refresh package)
+
+Every identity, on every start or resume, takes its state from **current authority, in this order**. It never takes
+state from a handoff because the handoff is the newest file it found, or the first.
+
+1. **Lifecycle.** Read [`RECONSTRUCTION-CHARTER.md` §0](../../../../RECONSTRUCTION-CHARTER.md#0-project-lifecycle-fable-user-directive-2026-10-02)
+   ([`PROJECT-LIFECYCLE.json`](../workflow/PROJECT-LIFECYCLE.json)). It settles four things:
+   - the current phase is DATABASE and the goal is L1+L2;
+   - L3 is later;
+   - bounded probes are evidence only;
+   - primary reconstruction needs the user's explicit authorization.
+   **No agent infers that authorization from a green table, a pilot count or an old file.**
+2. **Whole-database state.** Read `goal_gate.py` (or the generated [`PROGRESS.md`](../../PROGRESS.md)).
+3. **Your work.** Run `team.py show --agent <ID>` and read your inbox file's **Resume state** block. That block is
+   the identity's only resume point (CLAUDE.md, *What a plain `Continue` means*).
+4. **The roadmap and frontier.** Read [`PROGRAM-STATE.md`](../PROGRAM-STATE.md).
+
+**The startup guard for old handoffs.** A handoff or continuation note that is not your current Resume state block
+is **historical context**. That covers the GM160/GN-era continuation handoffs, dated session logs and the
+*Exact starting instructions* below. Before acting on anything in it:
+- compare its source revision, board revision or parent identity with the current ones above;
+- if the project has moved past it, use its technical evidence but **not its task queue**;
+- if you are unsure, use the board.
+
+An old date alone does not make a handoff stale. A superseded state does. Old handoffs are never rewritten. They are
+labelled where current indexes point to them. The rules are in
+[`CONTEXT-MAINTENANCE.md`](../workflow/CONTEXT-MAINTENANCE.md).
+
 ## Exact starting instructions
+
+*(HISTORICAL CHECKPOINT, 2026-09-13. The three package names below were the first claims of that week and are long finished. Do not resume from them; follow *Starting or resuming* above.)*
 
 1. **FABLE:** use ID FABLE; run the startup commands and required reading; inspect READY candidates
    and current evidence for EE-2 (member-mask writer); claim FABLE-EE2 or a fresher unblocked semantic

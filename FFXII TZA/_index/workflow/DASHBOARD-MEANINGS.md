@@ -184,3 +184,133 @@ row `T` and the reporter adopt "else 0" and the separate observed-run line).
 
 FABLE checks each view against §1–§3 when DATA's adapters produce their first generation (matrix A10, A11, A17 meanings).
 Findings go back to the adapter owner. A non-author (AUDIT-SPEC) reviews this file, because FABLE authored it.
+
+## 6. Phase, lifecycle and reconstruction labels (FABLE, 2026-10-03, from the user's context refresh package and improvement addendum)
+
+The phase vocabulary has one source: [`PROJECT-LIFECYCLE.json`](PROJECT-LIFECYCLE.json), the machine-readable twin of
+`RECONSTRUCTION-CHARTER.md` §0. A view reads the phase from there. Whole-database MET / NOT_MET comes from `goal_gate.py`.
+Neither is restated in view code. The JSON should be a declared generation input, so a lifecycle change makes the
+served generation STALE like any other moved input.
+
+### 6.1 The phase axis (FABLE)
+
+`DATABASE IN PROGRESS` → `DATABASE READY - awaiting user authorization` → `RECONSTRUCTION AUTHORIZED` → `INTEGRATION`
+→ `PARITY CERTIFICATION` → `HIGH-PARITY RUNTIME`.
+
+1. **The phase is its own axis and never merges with another.** It is not a completion percentage, an L2 state or a
+   count.
+2. **`DATABASE READY - awaiting user authorization` needs two things:** `goal_gate.py` MET, including the thirty
+   accepted final-audit passes (§4e), and the measured requirement union complete. The existing `requirements.py`
+   rule is unchanged.
+3. **No view, adapter or agent moves to `RECONSTRUCTION AUTHORIZED`.** Only an explicit user instruction, recorded in
+   charter §0 and the JSON, changes `current_primary_phase`. A view that finds the JSON and the goal gate in
+   disagreement shows both, plus the disagreement. It never shows the later phase.
+4. **Database-phase parity pilots and reconstruction probes are evidence probes.** Label them `PROBE (database
+   phase)`. Their count is never a phase signal or a completion score.
+
+### 6.2 Why a green table is not a finished database (FABLE)
+
+A view that shows scoped L2 verdicts, for example 52 of 52 MET, labels them **scoped system verdicts**. Whole-database
+completion is a different axis.
+
+Under `DB_GOAL` the view shows the **blocking chain** that `goal_gate.py` prints: its `remaining=`, `next=` and
+`detail=` lines, in order, each `UNMET` family with its count, and a link to its page or register where one exists.
+The rules for the chain:
+- it is copied from the gate, not inferred from board workload;
+- it is never written by hand;
+- it is never taken from a stale generation;
+- when the gate's only remaining item is the terminal certification, the view says exactly that.
+
+`progress.py`'s weighted `OVERALL` is the **Depth diagnostic**. Label it that way, with its definition visible. It
+never stands in for `DB_GOAL`, cumulative L2 or the terminal count, and it is never averaged with them.
+
+### 6.3 Knowledge progress and workflow activity are different axes (FABLE)
+
+**Knowledge events:**
+- accepted answers;
+- resolved contradictions;
+- corrected or falsified claims;
+- new type, ABI or lifetime facts;
+- accepted completion packages;
+- new runtime or original-code evidence;
+- parity or integration evidence.
+
+**Workflow activity:**
+- tasks opened or closed;
+- reviews requested;
+- commits;
+- generated files;
+- dashboard builds;
+- tooling.
+
+Activity diagnoses throughput. It is never a knowledge or completion measure. A "recent changes" list classifies
+each item from a canonical event: a register transition, a package acceptance, a correction record or an evidence
+incorporation. Its classes are:
+- `NEW FF12 KNOWLEDGE`;
+- `CORRECTED / FALSIFIED FF12 CLAIM`;
+- `NEW RUNTIME / ORIGINAL-CODE EVIDENCE`;
+- `NEW RECONSTRUCTION-GRADE TYPE / CONTRACT / RELATIONSHIP`;
+- `RECONSTRUCTION / DIFFERENTIAL PROBE`;
+- `INTEGRATION / PARITY EVIDENCE`;
+- `TOOLING / INSTRUMENTATION`;
+- `WORKFLOW / COORDINATION`;
+- `GENERATED / BOOKKEEPING ONLY`.
+
+An item with no supporting canonical event is `UNCLASSIFIED`. Commit size and line count classify nothing.
+
+### 6.4 Reconstruction maturity labels (FABLE; used only once evidenced; in the database phase only SPECIFICATION READY, the rest as probes)
+
+The labels, in order:
+1. `SPECIFICATION READY`;
+2. `SEMANTIC CORE IMPLEMENTED`;
+3. `NATIVE OPERATION REPLACEMENT`;
+4. `SUBSYSTEM RECONSTRUCTED`;
+5. `CROSS-SYSTEM INTEGRATED`;
+6. `PLAYABLE PATH`;
+7. `PARITY TESTED`;
+8. `PARITY CERTIFIED`;
+9. `WHOLE-GAME INTEGRATED`.
+
+**Each label needs its own evidence. None implies the next.** A passing differential harness is not a native
+replacement, an integrated subsystem or parity certification.
+
+**The phase cap** *(FABLE ruling of 2026-10-03, on SWE2-STRUCT's readiness-views design; it replaces "none current in
+the database phase")*. `SPECIFICATION READY` is a property of the database, so it is the one label a view may show in
+the DATABASE phase. A system is `SPECIFICATION READY` when all of the following hold:
+- its scoped L2 verdict is MET;
+- no OPEN, PARTIAL or BLOCKED register row names its files;
+- every contradiction on them is resolved;
+- no readiness line is pending;
+- its contract's §14 items are registered;
+- no PARTIAL or REOPENED production page in it is classed UNMAPPED by `check_status_residue.py`.
+
+Every later label appears only as `PROBE (database phase)` until the user authorizes reconstruction (§6.1 rule 3).
+`readiness_view.py` (SWE2-STRUCT, `8d5788541`) enforces the cap.
+
+**Behaviour delegated to the original executable is not reconstruction.** That covers a wrapper, oracle delegation,
+a hidden fallback or circular execution. It takes no maturity label, and a view that finds such delegation labels it
+`ORIGINAL-BINARY DELEGATION`.
+
+When a parity comparison fails, the view shows the **first known divergence**:
+- the step or state;
+- its class: initialization, input, field/type/layout, branch, RNG, ordering, lifetime, resource binding,
+  script/native bridge, state transition, downstream, presentation-only, or unknown;
+- the likely owner.
+
+If earlier states were not compared, the first divergence is `UNKNOWN`. The last visible mismatch is never reported
+as the first divergence.
+
+### 6.5 Current versus historical identity (FABLE)
+
+A view, index or startup surface that links an artifact labels the link with one of:
+- `CURRENT AUTHORITY`;
+- `CURRENT DERIVED`;
+- `AS-OF SNAPSHOT`;
+- `HISTORICAL CHECKPOINT`;
+- `SUPERSEDED CURRENT-STATE VIEW`;
+- `SEALED EVIDENCE`;
+- `PROPOSAL / NOT ADOPTED`.
+
+A "resume from here" link may point only at an identity's current Resume state block. `knowledge.sqlite` is
+`CURRENT DERIVED` only while `knowledge_db.py check` reports CURRENT; otherwise it is an `AS-OF SNAPSHOT`, with its
+build time and pinned commit. Historical files are labelled where they are linked from, never rewritten.

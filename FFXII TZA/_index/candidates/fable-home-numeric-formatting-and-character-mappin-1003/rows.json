@@ -1,0 +1,55 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01TiSPB1n4bzRPUs6xFapccb",
+ "report": "home-numeric-formatting-and-character-mapping.json",
+ "rows": [
+  {
+   "fn": "00406DD0",
+   "entered_from": "`004052A0` + 0x9",
+   "text": "returns without a write when `rcx` is null or when the whole of `edx` equals bit 5 of dword `rcx+0xC8`; otherwise replaces bit 5 of that dword with bit 0 of `edx` and walks the two qwords at `+0xC8` and `+0xD0` of qword `+0xC0` of qword `02B62D88`, calling `00406DD0` + 0x7B with the entry in `rcx` and the incoming `edx` for each entry that is non-null and has bit 4 (0x10) of byte `+0x130` set, skipping it when qword `02B62D88`, its `+0xC0` qword or the entry is null or that bit is clear",
+   "anchors": [
+    [
+     "00406DEE",
+     "cmp"
+    ],
+    [
+     "00406E0D",
+     "mov"
+    ],
+    [
+     "00406E40",
+     "test"
+    ],
+    [
+     "00406E4B",
+     "call"
+    ],
+    [
+     "00406E5E",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0028F810",
+   "why": [
+    "already cited by 16-UI\\Widget-Object-Model\\CONTRACT-widget-object.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [
+  "002476E0",
+  "0028F750",
+  "002A4030",
+  "002A5520",
+  "004052A0",
+  "004052B0",
+  "00574770",
+  "005766B0"
+ ],
+ "corrections": []
+}

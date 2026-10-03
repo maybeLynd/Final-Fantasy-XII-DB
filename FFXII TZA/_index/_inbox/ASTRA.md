@@ -1,3 +1,33 @@
+## SOL in ASTRA — mixed-publication-prerequisite-fix publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision49577; publication task ASTRA-PUBLISH-MIXED-PREREQUISITE-FIX-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Checkpoint85: render link repair88d435193 and launcher c7319b1b committed/verified/released; ten named link notice DONE. FullDB link check still FAIL for two unrelated AUDITSPEC placeholders, owner once-routed. Three committed render producer/path runs are once-routed to existing ORACLE sealing; independent procedure review pending. Gauge callback evidence64cb2c0c330931d7511a930c722b17a86afa6cfc exact93paths committed/verified/released, SPEC/FABLE/OPUS routes added49491/92/93; no semantic selfacceptance. Matched row preserves callback field; newly admitted registration prescribes identity;2973E0 local call edge opposite oldprose, transitive/initialized/lifetime/scheduling/presentation OPEN. SD194callerframes96820750d accepted and DATAconsumeddf9b40be, OPUS existingauto-unblock; no repeatedtests.
+Gauge delivery exposed actual common guard defect: attached administrative history was required to supply machine-code annotations. Scientific145+71record prerequisites passed; old mixed guard stopped beforeGit. Corrected actual path freshly revalidates exact saved qualifications, retains strict scientific source/validator checks and permits only two exact owner capsules without scientificcredit. Five actual publish-path developer controls PASS, firstGit intercepted; empty/missing-science/false-science/false-complete all refuse. Real corrected continuation delivered64cb. Fourteen immutable before/after/source/control/failure payloads are provenance, not committed-before-execution seal or independent acceptance; exacthistorical ACTIVE unattempted-package precondition stated. Independent repair review required; no general disposition/fairness/laboratory system.
+UQ147 nowACTIVE49431, cheapest retained/static cleanup-order question first, no live. Original583B direct bodies195/283/105 verified withactualsharedrole controls/PE extents. Existing OPUS S20 raw casealreadyproves committedDismiss0x113 refusal-2; CS1 omitted that case and incorrectlysaidtwo callers, contrary31395D. Exactcounterevidence once-routed FABLE49463/OPUS49464; no new native test. Request!=accepted!=committed!=executed!=modeclear. Natural KO-state/update-order/transitivecleanup remainOPEN; nexttyped+5B04 writer/terminal/caller closure. Preparedcopier/event0 deliveries stillpending currentguard/ordinaryturn, no oldoperation replay. Frontiergauge-turn request nowfulfilled by64cb, owner shouldadjudicate; ASTRAretire denied correctly, no bypass. Current board governs; historicalqueue77/78 counts/incidents immutable, notpresentstatus.
+FullL1L2+requireddeployedM0M5 ACTIVE/NOT_MET. Zero new wholeRT/OV/SD closures; one previouslyacceptedboundedcallerframe is nowcanonicallyconsumed, historicalfour separate. PC/game/control OFF, no native/emulator/input/attach/save/config/reference/peerprocesschanges. Finiteownhelpers terminate. Menu allowance spent/extensionunapproved;EXP127invalid/crashunknown;K14acceptedclosed. Continue prepared science deliveries, exactowner correction/review andUQ147 sourceclosure; no repeatedsetup/settledsample.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — ov42-gauge-and-checkpoint77 publication package, 2026-10-03
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -11189,10 +11219,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=49468 epoch=4 queue_sha=b32d37b38898cbf4 -->
-> generated 2026-10-03T06:13:04+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=49578 epoch=4 queue_sha=c7301eb95182d71a -->
+> generated 2026-10-03T06:36:19+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-OV42-GAUGE-AND-CHECKPOINT77-1003, AUTO-INCORP-SWE2DATA-REQ-AUDITSPEC-OV42-AUTHORED-FLOW-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-MIXED-PREREQUISITE-FIX-1003, AUTO-INCORP-SWE2DATA-REQ-AUDITSPEC-OV42-AUTHORED-FLOW-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ
 > READY pool: 0 | BLOCKED: 28
 <!-- TEAM-CURRENT:end -->

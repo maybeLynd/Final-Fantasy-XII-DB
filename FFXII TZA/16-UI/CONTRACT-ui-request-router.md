@@ -181,9 +181,20 @@ this single dword is where S-35 and S-36 meet.
 `002E09A0` is called at `0031427D`, in the **fixed tail** of `World_UpdateSimulationTick`, and the
 arbiter's two call sites (`00314137`, `003141F2`) are earlier in the same body. What defers a
 request is the drain's guard — `02092730` must be `0` or `5`, no slot of the eight `0x68` records at
-`0215F200` may carry `+0x38` or `+0x3E` bit 7, the pending byte must be set, the device must be
-available, and for an id outside `{12, 15, 17, 18, 19}` no transition may be running — **not a frame
-boundary.** *(This corrects the world-tick page's own earlier wording; see
+`0215F200` may carry `+0x38` or ~~`+0x3E` bit 7~~ **`+0x3E` bit 0**, the pending byte must be set, ~~the device must be
+available, and for an id outside `{12, 15, 17, 18, 19}` no transition may be running~~ — **not a frame
+boundary.**
+*Corrected 2026-09-26 (FABLE, Claude Opus 5.5), on `OPUS-NOTE-FABLE-S36-R5-DRAIN-GUARD`. OPUS executed the drain
+(`candidates/s36-opus-replay-request-router/r45.py`), and each point was re-read here from the bytes:*
+- **`+0x3E` bit 0, not bit 7.** `002E0C8D`–`002E0C9E` load the byte, `shl al, 7` / `sar al, 7` it, OR in `+0x38`
+  and branch on non-zero. The shift pair keeps bit 0. OPUS measured `0x01` blocking and `0x80` dispatching.
+- **The device and transition clauses never hold a request on this build.** The device term, the shared
+  predicate called at `002E0CC9`, is `mov eax, 1; ret`, so the `cmove esi, ebp` at `002E0CD6` never fires. `esi` keeps the 1 it was given at `002E09C7`,
+  and the transition test at `002E0CF1` (`test esi, esi; je`) never blocks, even while a transition runs.
+- **A not-ready manager slot 0 DISCARDS the request; it does not defer it.** When the manager-slot readiness query for slot 0 returns non-zero
+  (`002E0B8B`), the drain zeroes the request word `0215F1A4` and its argument `0215F1A8` (`002E0B97`, `002E0B9D`),
+  the byte `0215F1A1` (`002E0BA3`) and, through `r8b = 0` at `002E0C65`, the pending byte `0215F1A0`. It does so
+  without calling the router. A reimplementation that re-queues here keeps a request the original drops. *(This corrects the world-tick page's own earlier wording; see
 [the world tick](../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)
 EX-3, corrected 2026-09-21.)*
 *Falsified by:* a second drain call site, or a path from a producer to `002E09A0` that leaves the

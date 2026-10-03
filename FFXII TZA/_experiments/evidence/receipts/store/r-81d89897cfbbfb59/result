@@ -1,0 +1,66 @@
+{
+  "status": "CONTROLS_PASS",
+  "cases": [
+    {
+      "id": "missing-referent",
+      "case": "missing-referent",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\render-review-link-closure\\drivers-v2\\prepare.py",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-committed-01\\missing-referent\\input",
+        "--output",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-committed-01\\missing-referent\\output"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_diagnostic": "missing local review referent",
+      "diagnostic_observed": true,
+      "result_absent": true,
+      "output_absent": true,
+      "driver_sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654"
+    },
+    {
+      "id": "conflicting-library",
+      "case": "conflicting-library",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\render-review-link-closure\\drivers-v2\\prepare.py",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-committed-01\\conflicting-library\\input",
+        "--output",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-committed-01\\conflicting-library\\output"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_diagnostic": "conflicting same-name review referent",
+      "diagnostic_observed": true,
+      "result_absent": true,
+      "output_absent": true,
+      "driver_sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654"
+    },
+    {
+      "id": "changed-old-member",
+      "case": "changed-old-member",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\render-review-link-closure\\drivers-v2\\prepare.py",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-committed-01\\changed-old-member\\input",
+        "--output",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-committed-01\\changed-old-member\\output"
+      ],
+      "exit": 1,
+      "terminal": true,
+      "expected_diagnostic": "old published member changed",
+      "diagnostic_observed": true,
+      "result_absent": true,
+      "output_absent": true,
+      "driver_sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654"
+    }
+  ],
+  "controller_sha256": "2cf69ccb1ad3cfd8127db1dc75d6afdb585ebe3cce808ad512246bccd49de84a"
+}

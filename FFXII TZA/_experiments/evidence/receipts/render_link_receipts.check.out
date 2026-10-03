@@ -1,0 +1,17 @@
+R-PREP-exists            PASS r-2b2175e418c2fdef
+R-PREP-verify            PASS intact
+R-PREP-publishable       PASS no refusal
+R-PREP-result            PASS cb9cbb021ff5, 15 cases
+R-PREP-drivers           PASS prepare.py
+R-CTRL-exists            PASS r-81d89897cfbbfb59
+R-CTRL-verify            PASS intact
+R-CTRL-publishable       PASS no refusal
+R-CTRL-result            PASS 2443cefeec19, 3 cases
+R-CTRL-drivers           PASS control.py, prepare.py
+R-PATH-exists            PASS r-e51471d199e0e709
+R-PATH-verify            PASS intact
+R-PATH-publishable       PASS no refusal
+R-PATH-result            PASS 626f28af87c1, 2 cases
+R-PATH-drivers           PASS control-publisher-path.py, launch.py, publisher-driver.py
+N-invalid-run-01         PASS seal() refuses committed-path-controls-01 (no result file)
+FAILS 0

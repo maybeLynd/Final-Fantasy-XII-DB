@@ -1,4 +1,6 @@
 members 161, committed rows 153, declared exclusions 8
-control swapped-value refused, control moved-anchor refused
-control swapped-group refused (005A05D0 as pointer form)
+control swapped-value: refused (2 failure(s) from the comparison)
+control moved-anchor: refused (1 failure(s) from the comparison)
+control swapped-group: refused (1 failure(s) from the comparison)
+known answer 005A05D0: anchor 005A060A references 005A02D0 in its raw bytes = committed value
 FAILS 0

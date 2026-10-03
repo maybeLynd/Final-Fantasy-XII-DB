@@ -1,0 +1,559 @@
+{
+ "date": "2026-10-03",
+ "by": "FABLE (move drafted and verified by OPUS, applied and published by FABLE)",
+ "target_heading": "## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; move drafted by OPUS)",
+ "moves": [
+  {
+   "fn": "001DE180",
+   "source_page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md",
+   "source_record": "_index/candidates/fable-home-arm-catalogue-slice-a-ids-12-43-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-arm-catalogue-slice-a-ids-12-43-1002/REVIEW.md",
+   "target_page": "19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md",
+   "entered_from": "`001DE5D0` + 0x720",
+   "source_text": "takes the dword `+4` of the table at qword `rcx-0x90` as an offset `d` (read before each of the first two stores), stores the address `00901028` to the qword at `rcx - 0x90 + d` and `d - 0x90` to the dword at `rcx - 0x94 + d`, stores `00900F20` to qword `rcx-0x80`, issues the call at `001DE180` + 0x50 and then the indirect call at `001DE180` + 0x59, both with `rcx-0x80`, and tail-jumps through the indirect jump at `001DE180` + 0x6D with `rcx-0x78`",
+   "text": "takes the dword `+4` of the table at qword `rcx-0x90` as an offset `d` (read before each of the first two stores), stores the address `00901028` to the qword at `rcx - 0x90 + d` and `d - 0x90` to the dword at `rcx - 0x94 + d`, stores `00900F20` to qword `rcx-0x80`, issues the call at `001DE180` + 0x50 and then the indirect call at `001DE180` + 0x59, both with `rcx-0x80`, and tail-jumps through the indirect jump at `001DE180` + 0x6D with `rcx-0x78`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "001DE19F",
+     "mov"
+    ],
+    [
+     "001DE1C0",
+     "mov"
+    ],
+    [
+     "001DE1C8",
+     "mov"
+    ],
+    [
+     "001DE1D0",
+     "call"
+    ],
+    [
+     "001DE1ED",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 987,
+     "quote": "| interface populate | `001DE5D0` (1,919 B"
+    },
+    {
+     "line": 999,
+     "quote": "The `001DE5D0` question is **answered 2026-09-17 (SWE2-FRONTIER):**"
+    }
+   ]
+  },
+  {
+   "fn": "00183260",
+   "source_page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md",
+   "source_record": "_index/candidates/fable-home-arm-catalogue-slice-h-ids-236-267-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-arm-catalogue-slice-h-ids-236-267-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+   "entered_from": "`0079C140` + 0x37D",
+   "source_text": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result",
+   "text": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00183264",
+     "call"
+    ],
+    [
+     "00183269",
+     "test"
+    ],
+    [
+     "0018326E",
+     "call"
+    ],
+    [
+     "00183273",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 2003,
+     "quote": "## SWE2-EC7-122 update (2026-09-21) - the `0079C140` display-mode family measured"
+    },
+    {
+     "line": 609,
+     "quote": "| 10 | `0017D120` | `00189120` lookup then `byte [rax] = 1`"
+    }
+   ]
+  },
+  {
+   "fn": "00273800",
+   "source_page": "11-Party/CONTRACT-the-five-parallel-slot-maps.md",
+   "source_record": "_index/candidates/fable-home-contract-the-five-parallel-slot-maps-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-the-five-parallel-slot-maps-1002/REVIEW.md",
+   "target_page": "16-UI/the-selection-the-menu-publishes.md",
+   "entered_from": "`0035BC50` + 0x375",
+   "source_text": "issues the call at `00273800` + 0x12 for indices 0 to 3 and, at the first non-null result whose dword `+4` equals `ecx`, returns 1 when bit 3 (`0x8`) of that record's byte `+0` is clear and 0 when it is set; when no index matches it returns 0",
+   "text": "issues the call at `00273800` + 0x12 for indices 0 to 3 and, at the first non-null result whose dword `+4` equals `ecx`, returns 1 when bit `0x8` of that record's byte `+0` is clear and 0 when it is set; when no index matches it returns 0",
+   "text_edit": "bits as values: 'bit 3 (`0x8`)' -> 'bit `0x8`'",
+   "anchors": [
+    [
+     "00273812",
+     "call"
+    ],
+    [
+     "0027381C",
+     "cmp"
+    ],
+    [
+     "00273823",
+     "cmp"
+    ],
+    [
+     "00273828",
+     "xor"
+    ],
+    [
+     "00273845",
+     "and"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 114,
+     "quote": "`002732E0` is the four-slot find. It returns the record among `0035BB20(0..3)` whose `+4` equals the handle"
+    },
+    {
+     "line": 175,
+     "quote": "Which records `0035BB20` returns for slots 0 to 3"
+    }
+   ]
+  },
+  {
+   "fn": "003EBD70",
+   "source_page": "16-UI/CONTRACT-ui-request-router.md",
+   "source_record": "_index/candidates/fable-home-contract-ui-request-router-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-ui-request-router-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "entered_from": "`002628B0` + 0x1CD",
+   "source_text": "stores 0 in qword `02B5EC60`; when qword `02B5EC68` is non-null, makes the call at `003EBD70` + 0x1B with it and stores 0 there; then stores 0 in qwords `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88` and returns 0",
+   "text": "stores 0 in qword `02B5EC60`; when qword `02B5EC68` is non-null, makes the call at `003EBD70` + 0x1B with it and stores 0 there; then stores 0 in qwords `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88` and returns 0",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003EBD7B",
+     "mov"
+    ],
+    [
+     "003EBD8B",
+     "call"
+    ],
+    [
+     "003EBD90",
+     "mov"
+    ],
+    [
+     "003EBD9D",
+     "mov"
+    ],
+    [
+     "003EBDB2",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 530,
+     "quote": "### The `002628B0` exclusive subtree"
+    },
+    {
+     "line": 87,
+     "quote": "it calls the unload `002628B0` for each set bit"
+    }
+   ]
+  },
+  {
+   "fn": "002DEF20",
+   "source_page": "00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md",
+   "source_record": "_index/candidates/fable-home-contract-world-simulation-tick-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-world-simulation-tick-1002/REVIEW.md",
+   "target_page": "18-Audio/the-spatial-audio-object-model.md",
+   "entered_from": "`00332C40` + 0x320",
+   "source_text": "tail-jumps (`002DEF20` + 0xC) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `edx` in `r9d`",
+   "text": "tail-jumps (`002DEF20` + 0xC) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `edx` in `r9d`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "002DEF23",
+     "mov"
+    ],
+    [
+     "002DEF28",
+     "lea"
+    ],
+    [
+     "002DEF2C",
+     "jmp"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 609,
+     "quote": "<- 00332C40 / 003B99D0 / 0046C8F0 / 0046CC70      (four callers, the first bodies that"
+    }
+   ]
+  },
+  {
+   "fn": "002DF1A0",
+   "source_page": "00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md",
+   "source_record": "_index/candidates/fable-home-contract-world-simulation-tick-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-world-simulation-tick-1002/REVIEW.md",
+   "target_page": "18-Audio/the-spatial-audio-object-model.md",
+   "entered_from": "`003B99D0` + 0x2EE",
+   "source_text": "when `edx` is zero, tail-jumps (`002DF1A0` + 0x18) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `r8d` in `r9d`; otherwise calls `002DF1A0` + 0x2E with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d`, the incoming `edx` in `r9d` and the incoming `r8d` as the fifth (stack) argument, and returns its result",
+   "text": "when `edx` is zero, tail-jumps (`002DF1A0` + 0x18) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `r8d` in `r9d`; otherwise calls `002DF1A0` + 0x2E with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d`, the incoming `edx` in `r9d` and the incoming `r8d` as the fifth (stack) argument, and returns its result",
+   "text_edit": null,
+   "anchors": [
+    [
+     "002DF1A6",
+     "jne"
+    ],
+    [
+     "002DF1B8",
+     "jmp"
+    ],
+    [
+     "002DF1BD",
+     "mov"
+    ],
+    [
+     "002DF1CE",
+     "call"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 609,
+     "quote": "<- 00332C40 / 003B99D0 / 0046C8F0 / 0046CC70      (four callers, the first bodies that"
+    }
+   ]
+  },
+  {
+   "fn": "003A7950",
+   "source_page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+   "source_record": "_index/candidates/fable-home-gambit-evaluation-and-enmity-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`003ED8A0` + 0x135",
+   "source_text": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, then, re-reading `t` from `02EBEFA8` for each access, stores 0 to qword `t+8+k*8` and decrements dword `[t]`; returns `rcx+2` on both paths",
+   "text": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, then, re-reading `t` from `02EBEFA8` for each access, stores 0 to qword `t+8+k*8` and decrements dword `[t]`; returns `rcx+2` on both paths",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003A7976",
+     "mov"
+    ],
+    [
+     "003A7983",
+     "call"
+    ],
+    [
+     "003A798B",
+     "call"
+    ],
+    [
+     "003A7997",
+     "mov"
+    ],
+    [
+     "003A79A7",
+     "dec"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1099,
+     "quote": "`003ED8A0` (552 B) is the effect-file data parse"
+    },
+    {
+     "line": 2218,
+     "quote": "is the sibling emit `003ED8A0` runs for the chain-tracked kind"
+    }
+   ]
+  },
+  {
+   "fn": "003A7A50",
+   "source_page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+   "source_record": "_index/candidates/fable-home-gambit-evaluation-and-enmity-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`003ED8A0` + 0x142",
+   "source_text": "copies the 0x2C bytes at `rcx+4` into the buffer returned by `003A7A50` + 0xE(byte `rcx+1`), passes that buffer (with 0 in `edx`) to `003A7A50` + 0x37, and returns `rcx+0xA4`",
+   "text": "copies the 0x2C bytes at `rcx+4` into the buffer returned by `003A7A50` + 0xE(byte `rcx+1`), passes that buffer (with 0 in `edx`) to `003A7A50` + 0x37, and returns `rcx+0xA4`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003A7A5E",
+     "call"
+    ],
+    [
+     "003A7A69",
+     "movups"
+    ],
+    [
+     "003A7A81",
+     "mov"
+    ],
+    [
+     "003A7A87",
+     "call"
+    ],
+    [
+     "003A7A8C",
+     "lea"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1099,
+     "quote": "`003ED8A0` (552 B) is the effect-file data parse"
+    },
+    {
+     "line": 2214,
+     "quote": "is the copy-in element emit `003ED8A0` runs for table-driven payloads"
+    }
+   ]
+  },
+  {
+   "fn": "003A7AA0",
+   "source_page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+   "source_record": "_index/candidates/fable-home-gambit-evaluation-and-enmity-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`003ED8A0` + 0x1C7",
+   "source_text": "when qword `02EBEFA8` `+8` + byte `rcx+1` times 8 holds a non-null qword, calls `003A7AA0` + 0x26 with it and the zero-extended byte `rcx+2`; returns `rcx+3` on both paths",
+   "text": "when qword `02EBEFA8` `+8` + byte `rcx+1` times 8 holds a non-null qword, calls `003A7AA0` + 0x26 with it and the zero-extended byte `rcx+2`; returns `rcx+3` on both paths",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003A7AB9",
+     "mov"
+    ],
+    [
+     "003A7AC1",
+     "je"
+    ],
+    [
+     "003A7AC6",
+     "call"
+    ],
+    [
+     "003A7ACB",
+     "lea"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1099,
+     "quote": "`003ED8A0` (552 B) is the effect-file data parse"
+    },
+    {
+     "line": 2218,
+     "quote": "is the sibling emit `003ED8A0` runs for the chain-tracked kind"
+    }
+   ]
+  },
+  {
+   "fn": "003A92B0",
+   "source_page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+   "source_record": "_index/candidates/fable-home-gambit-evaluation-and-enmity-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "entered_from": "`003ED8A0` + 0x1D1",
+   "source_text": "calls `003A92B0` + 0x9(`rcx`) and returns `rcx+2`",
+   "text": "calls `003A92B0` + 0x9(`rcx`) and returns `rcx+2`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003A92B9",
+     "call"
+    ],
+    [
+     "003A92BE",
+     "lea"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 1099,
+     "quote": "`003ED8A0` (552 B) is the effect-file data parse"
+    }
+   ]
+  },
+  {
+   "fn": "00198730",
+   "source_page": "04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md",
+   "source_record": "_index/candidates/fable-home-the-actor-storage-record-field-map-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-the-actor-storage-record-field-map-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+   "entered_from": "`00182D60` + 0x10",
+   "source_text": "when bit 0 of byte `+0x3A` of `rcx` is set, sets byte `+0x3B` to 1 and clears that bit (AND `0xFE`); otherwise returns without work",
+   "text": "when bit `0x1` of byte `+0x3A` of `rcx` is set, sets byte `+0x3B` to 1 and clears that bit (AND `0xFE`); otherwise returns without work",
+   "text_edit": "bits as values: 'bit 0 of byte' -> 'bit `0x1` of byte'",
+   "anchors": [
+    [
+     "00198734",
+     "test"
+    ],
+    [
+     "00198736",
+     "je"
+    ],
+    [
+     "00198738",
+     "and"
+    ],
+    [
+     "0019873A",
+     "mov"
+    ],
+    [
+     "0019873E",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 83,
+     "quote": "with per-id side calls for a few ids (`00182D60`, `00182D40`, and"
+    }
+   ]
+  },
+  {
+   "fn": "00322950",
+   "source_page": "10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md",
+   "source_record": "_index/candidates/fable-home-the-status-write-and-its-side-effects-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-the-status-write-and-its-side-effects-1002/REVIEW.md",
+   "target_page": "04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md",
+   "entered_from": "`002C7660` + 0x1AD",
+   "source_text": "returns 0 when bit `0x10` of byte `02089340` is clear; otherwise passes the result of the call at `00322950` + 0xD to the call at `00322950` + 0x1A and that result with 0 to the call at `00322950` + 0x29, returning 0 if either of the first two results is null and else 1 when the last call returns 0 and 0 when it returns non-zero",
+   "text": "returns 0 when bit `0x10` of byte `02089340` is clear; otherwise passes the result of the call at `00322950` + 0xD to the call at `00322950` + 0x1A and that result with 0 to the call at `00322950` + 0x29, returning 0 if either of the first two results is null and else 1 when the last call returns 0 and 0 when it returns non-zero",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00322954",
+     "test"
+    ],
+    [
+     "0032295D",
+     "call"
+    ],
+    [
+     "0032296A",
+     "call"
+    ],
+    [
+     "00322979",
+     "call"
+    ],
+    [
+     "00322982",
+     "sete"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 296,
+     "quote": "| `002C7660` | 1190 | ~~display-record channel evaluation~~ the per-unit overhead-display evaluation"
+    }
+   ]
+  },
+  {
+   "fn": "002FB250",
+   "source_page": "05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md",
+   "source_record": "_index/candidates/fable-home-when-a-group-is-wiped-and-when-it-comes-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-when-a-group-is-wiped-and-when-it-comes-1002/REVIEW.md",
+   "target_page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+   "entered_from": "`00319B10` + 0x17E",
+   "source_text": "stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns",
+   "text": "stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns",
+   "text_edit": null,
+   "anchors": [
+    [
+     "002FB257",
+     "mov"
+    ],
+    [
+     "002FB273",
+     "mov"
+    ],
+    [
+     "002FB28F",
+     "mov"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 370,
+     "quote": "| `00319B10` | `Loot_InitializeWorldPickupPool` | 387 B |"
+    },
+    {
+     "line": 703,
+     "quote": "## SWE2-EC7-40 update (2026-09-19) - `00319B10`"
+    }
+   ]
+  },
+  {
+   "fn": "00363B00",
+   "source_page": "05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md",
+   "source_record": "_index/candidates/fable-home-when-a-group-is-wiped-and-when-it-comes-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-when-a-group-is-wiped-and-when-it-comes-1002/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+   "entered_from": "`0026C5D0` + 0x174",
+   "source_text": "stores `cl` into byte `022CBA9A`; when `ecx` is 1 it also copies the 16 bytes at `rdx` to `022CBB10` and the float in `xmm2` to dword `022CBAAC`",
+   "text": "stores `cl` into byte `022CBA9A`; when `ecx` is 1 it also copies the 16 bytes at `rdx` to `022CBB10` and the float in `xmm2` to dword `022CBAAC`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00363B06",
+     "cmp"
+    ],
+    [
+     "00363B0B",
+     "movaps"
+    ],
+    [
+     "00363B0E",
+     "movdqa"
+    ],
+    [
+     "00363B16",
+     "movss"
+    ]
+   ],
+   "evidence": [
+    {
+     "line": 253,
+     "quote": "| 17 | verbs **`ucon`** / `ucon_4a5` (`0026C5D0`)"
+    },
+    {
+     "line": 508,
+     "quote": "## The `0026C3E0`/`0026C5D0` exclusive-subtree pair"
+    }
+   ]
+  }
+ ]
+}

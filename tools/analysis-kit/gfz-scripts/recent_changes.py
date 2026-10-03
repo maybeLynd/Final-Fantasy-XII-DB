@@ -143,6 +143,8 @@ EVENT_CLASS = {
     "parity-probe": K_PROBE,
     "parity-certification": K_PARITY,
     "page-section-record": K_NEW,
+    "page-section-unreviewed": UNCL,
+    "section-accepted": K_NEW,
     "review-verdict": A_WORK,
     "tools": A_TOOL,
     "board": A_WORK,
@@ -156,7 +158,8 @@ EVIDENCE_KIND = {
     "register-superseded": "register-transition", "correction-record": "correction-record",
     "evidence-accepted": "review-accept", "package-accepted": "package-acceptance",
     "type-promoted": "type-promotion", "l2-met": "l2-verdict", "parity-probe": "parity-row",
-    "parity-certification": "parity-row", "page-section-record": "path-class",
+    "parity-certification": "parity-row", "page-section-record": "review-accept",
+    "section-accepted": "review-accept",
     "review-verdict": "path-class", "tools": "path-class", "board": "board",
     "workflow-doc": "path-class", "generated": "generated",
 }
@@ -434,6 +437,39 @@ def is_review_path(p):
 
 
 EVREF = re.compile(r"_experiments/evidence/([A-Za-z0-9_.\-]+)")
+# a candidate record named in a review header or a record README: `_index/candidates/<dir>` or `candidates/<dir>`
+CANDREF = re.compile(r"candidates/([A-Za-z0-9_.\-]+)")
+
+
+def review_candidates(text):
+    """Candidate packages a review's header block names (its subject), excluding review dirs themselves."""
+    head = []
+    for i, ln in enumerate((text or "").splitlines()):
+        if i > 0 and ln.startswith("## "):
+            break
+        head.append(ln)
+    return sorted({m.group(1).rstrip(".") for m in CANDREF.finditer("\n".join(head))
+                   if "review" not in m.group(1)})
+
+
+def accepted_review_cited(repo, sha, readme_text, ct, ctx):
+    """N1 (SWE2-DATA review 33b51c821): a rule-(f) section counts as knowledge only when its record cites an
+    independently accepted result: a review record (a *review* candidate dir) whose verdict at `sha` is ACCEPT
+    (incl. ACCEPT-WITH-NARROWING), or an evidence record with an accepting review at or before this commit."""
+    dirs = [m.group(1).rstrip(".") for m in CANDREF.finditer(readme_text or "")]
+    # records link their reviews relatively, as `../<review dir>/REVIEW.md`
+    dirs += re.findall(r"\.\./([A-Za-z0-9_.\-]*review[A-Za-z0-9_.\-]*)/REVIEW\.md", readme_text or "")
+    for d in dict.fromkeys(dirs):
+        if "review" not in d:
+            continue
+        p = CAND + d + "/REVIEW.md"
+        if repo.exists(sha, p) and parse_review(repo.blob(sha, p)[1])[0] == "ACCEPT":
+            return p
+    for rec in set(m.group(1).rstrip(".") for m in EVREF.finditer(readme_text or "")):
+        acc = ctx["accept_index"].get(rec)
+        if (acc and acc[0] <= ct) or prior_acceptance(repo, sha, rec, ctx):
+            return EVID + rec + "/"
+    return None
 VERDICT_LINE = re.compile(r"(?im)^[^\n]*\bverdict\b[^\n]*\b(?:ACCEPT|REJECT)[^\n]*")
 
 
@@ -649,6 +685,7 @@ def classify_commit(repo, c, ctx):
         cand_dirs[rest.split("/", 1)[0]].append((st, p))
     page_md = [p for st, p in cats.get("page", []) if st in "AM" and p.endswith(".md")]
     pages_with_section = None
+    rule_f_done = False
     for d, files in sorted(cand_dirs.items()):
         dir_events = 0
         for st, p in files:
@@ -671,7 +708,14 @@ def classify_commit(repo, c, ctx):
                         ctx["_accepted_in_commit"].setdefault(sha, set()).add(rec)
                 for rec in firsts:
                     emit("evidence-accepted", EVID + rec + "/", "first accepting review: %s" % p, [p])
-                if not firsts:
+                # N1, second half: a published section counts as knowledge at the review that first ACCEPTs its
+                # candidate package (the way evidence-accepted works), not at the author's publish.
+                pkgs = []
+                if not firsts and verdict == "ACCEPT" and old_verdict != "ACCEPT":
+                    pkgs = [k for k in review_candidates(txt) if repo.exists(sha, CAND + k + "/README.md")]
+                if pkgs:
+                    emit("section-accepted", p, "first accepting review of %s" % ", ".join(pkgs[:3]), [p])
+                elif not firsts:
                     emit("review-verdict", p, "%s%s" % (verdict, (" of " + ", ".join(recs)) if recs
                                                         else ""), [p])
                 dir_events += 1
@@ -697,8 +741,17 @@ def classify_commit(repo, c, ctx):
                 pages_with_section = [p for p in page_md
                                       if HEADING_ADDED.search(repo.diff(parent, sha, p))]
             if pages_with_section:
-                emit("page-section-record", readme,
-                     "record %s + section on %s" % (d, pages_with_section[0][len(DBP):]))
+                # N2: one rule-(f) event per commit - one per candidate directory would be a size proxy
+                if not rule_f_done:
+                    acc = accepted_review_cited(repo, sha, repo.blob(sha, readme)[1], c["ct"], ctx)
+                    if acc:
+                        emit("page-section-record", readme, "record %s + section on %s, incorporating the "
+                             "accepted %s" % (d, (pages_with_section or ['?'])[0][len(DBP):], acc))
+                    else:
+                        emit("page-section-unreviewed", readme, "record %s + section on %s; no independently "
+                             "accepted result cited - counted when a review accepts it" %
+                             (d, (pages_with_section or ['?'])[0][len(DBP):]))
+                    rule_f_done = True
                 dir_events += 1
         if dir_events:
             covered.update(p for st, p in files)
@@ -1130,20 +1183,45 @@ def _fixtures():
          (P, pg): "# p\nold\n", (R, pg): "# p\nold\nnew text\n"},
         [("A", rec), ("M", pg)], {UNCL})
     rec2 = CAND + "astra-returns-x-fable-1002/"
-    add("affected record + control + new page section, nothing struck -> knowledge (rule f)",
+    add("affected record + control + new page section, no accepted result cited -> UNCLASSIFIED (N1)",
         {(R, rec2 + "README.md"): "# returns\naffected: `16-UI/some-page.md`\nconsumer agrees\n",
          (R, rec2 + "check.py"): "print(1)\n",
          (P, pg): "# p\nold\n", (R, pg): "# p\nold\n\n### New subsection (FABLE)\nx\n"},
-        [("A", rec2 + "README.md"), ("A", rec2 + "check.py"), ("M", pg)], {K_NEW})
+        [("A", rec2 + "README.md"), ("A", rec2 + "check.py"), ("M", pg)], {UNCL})
     add("unknown path -> UNCLASSIFIED", {}, [("A", "Foo/bar.txt")], {UNCL})
     add("page-only edit -> UNCLASSIFIED",
         {(P, pg): "# p\n", (R, pg): "# p\nx\n"}, [("M", pg)], {UNCL})
     add("tools/work scratch -> UNCLASSIFIED", {}, [("A", "Database/Tools/work/FABLE/x.txt")], {UNCL})
     nr = CAND + "fable-x-cloudint-1002/"
-    add("page section + new candidate record -> knowledge (rule f)",
+    add("page section + new record, no accepted result cited -> UNCLASSIFIED (N1)",
         {(R, nr + "README.md"): "# interior citations\n", (R, nr + "rows.json"): "[]",
          (P, pg): "# p\n", (R, pg): "# p\n\n## Interior citations (FABLE)\n| a | b |\n"},
+        [("A", nr + "README.md"), ("A", nr + "rows.json"), ("M", pg)], {UNCL})
+    acc_rv = CAND + "auditspec-review-fable-x-1002/REVIEW.md"
+    add("page section + record citing an ACCEPTed review -> knowledge (rule f, N1)",
+        {(R, nr + "README.md"): "# consumed\nreviewed: [r](../auditspec-review-fable-x-1002/REVIEW.md)\n",
+         (R, nr + "rows.json"): "[]", (R, acc_rv): "# review\n\n## Verdict: ACCEPT\n",
+         (P, pg): "# p\n", (R, pg): "# p\n\n## Consumed (FABLE)\n| a | b |\n"},
         [("A", nr + "README.md"), ("A", nr + "rows.json"), ("M", pg)], {K_NEW})
+    add("page section + record citing a REJECTed review -> UNCLASSIFIED (N1)",
+        {(R, nr + "README.md"): "# consumed\nreviewed: [r](../auditspec-review-fable-x-1002/REVIEW.md)\n",
+         (R, nr + "rows.json"): "[]", (R, acc_rv): "# review\n\n## Verdict: REJECT\n",
+         (P, pg): "# p\n", (R, pg): "# p\n\n## Consumed (FABLE)\n| a | b |\n"},
+        [("A", nr + "README.md"), ("A", nr + "rows.json"), ("M", pg)], {UNCL})
+    add("record + section + a NEW strike on the page -> not rule f (N3, kills M5)",
+        {(R, nr + "README.md"): "# x\nreviewed: [r](../auditspec-review-fable-x-1002/REVIEW.md)\n",
+         (R, nr + "rows.json"): "[]", (R, acc_rv): "# review\n\n## Verdict: ACCEPT\n",
+         (P, pg): "# p\nold claim\n", (R, pg): "# p\n~~old claim~~ new claim\n\n## Consumed (FABLE)\nx\n"},
+        [("A", nr + "README.md"), ("A", nr + "rows.json"), ("M", pg)], {UNCL})
+    add("record + page edit WITHOUT a new section -> not rule f (N3, kills M7)",
+        {(R, nr + "README.md"): "# x\nreviewed: [r](../auditspec-review-fable-x-1002/REVIEW.md)\n",
+         (R, nr + "rows.json"): "[]", (R, acc_rv): "# review\n\n## Verdict: ACCEPT\n",
+         (P, pg): "# p\n", (R, pg): "# p\nmore text\n"},
+        [("A", nr + "README.md"), ("A", nr + "rows.json"), ("M", pg)], {UNCL})
+    add("first ACCEPT review of a candidate package -> knowledge at the review (N1)",
+        {(R, acc_rv): "# review\nPackage: `_index/candidates/fable-x-cloudint-1002/`\n\n## Verdict: ACCEPT\n",
+         (R, nr + "README.md"): "# interior citations\n"},
+        [("A", acc_rv)], {K_NEW})
     ev = EVID + "sd-1/"
     rv = CAND + "auditspec-review-astra-sd-1-1003/REVIEW.md"
     add("accepting review of an evidence record -> evidence",
@@ -1237,6 +1315,27 @@ def self_test(db):
     fails += not ok
     print("  %s  %-66s %s" % ("PASS" if ok else "FAIL", "JSON contract: keys, class list, axis = class",
                               "" if ok else bad[:3]))
+    # N2: at most one rule-(f) event per commit, however many candidate records the commit adds
+    P2, R2 = "p" * 40, "r" * 40
+    pgn = DBP + "16-UI/some-page.md"
+    rvn = CAND + "auditspec-review-fable-x-1002/REVIEW.md"
+    blobs = {(R2, rvn): "# review\n\n## Verdict: ACCEPT\n", (P2, pgn): "# p\n",
+             (R2, pgn): "# p\n\n## A (FABLE)\nx\n\n## B (FABLE)\ny\n"}
+    chg = [("M", pgn)]
+    for k in range(3):
+        d = CAND + "fable-n2-%d-1003/" % k
+        blobs[(R2, d + "README.md")] = "# r\nreviewed: [r](../auditspec-review-fable-x-1002/REVIEW.md)\n"
+        blobs[(R2, d + "rows.json")] = "[]"
+        chg += [("A", d + "README.md"), ("A", d + "rows.json")]
+    _CLS_CACHE.clear()
+    evs, _ = classify_commit(FakeRepo(blobs), {"sha": R2, "parent": P2, "ct": 1000, "subject": "FABLE: n2",
+                                               "changes": chg},
+                             {"db": db, "head_headers": {}, "table": EVENT_CLASS, "accept_index": {}})
+    nf = sum(1 for e in evs if e["kind"] in ("page-section-record", "page-section-unreviewed"))
+    ok = nf == 1
+    fails += not ok
+    print("  %s  %-66s %s" % ("PASS" if ok else "FAIL", "N2: three records + sections in one commit -> one rule-(f) event",
+                              "" if ok else "got %d" % nf))
     broken = dict(j)
     broken["events"] = [dict(j["events"][0], axis="knowledge" if j["events"][0]["axis"] != "knowledge"
                              else "activity")]

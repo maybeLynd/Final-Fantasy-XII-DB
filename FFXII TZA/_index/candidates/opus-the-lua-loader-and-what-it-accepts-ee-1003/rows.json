@@ -1,0 +1,1199 @@
+{
+ "page": "23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-lua-loader-and-what-it-accepts.json",
+ "rows": [
+  {
+   "fn": "001600D0",
+   "text": "constructs the string object at `01FD40D8`: its allocator name via `001EDF00(rsp+0x30, 'EASTL basic_string')` and `001EDF00(01FD40F0, that)`, begin/end/capacity qwords `01FD40D8`/`01FD40E0`/`01FD40E8` zeroed, then for the length 5 taken from `008FCDA4` - `008FCDA0` + 1 a buffer from the allocator's vtable slot `+0x10`(01FD40F0, 5, 0) (begin = end = buffer, capacity = buffer+5; a length of 1 or less would use the one-byte buffer `02EBA2E0` instead), `memmove(buffer, 008FCDA0 'true', 4)`, end = buffer+4 and a 0 byte there; it tail-jumps to `00808B90(008A80A0)`",
+   "anchors": [
+    [
+     "001600E6",
+     "call"
+    ],
+    [
+     "00160141",
+     "call"
+    ],
+    [
+     "00160196",
+     "call"
+    ],
+    [
+     "001601AE",
+     "mov"
+    ],
+    [
+     "001601BB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005850F0",
+   "text": "when dword `02CAB018` is above the epoch dword at `+4` of this thread's TLS block (index dword `02EAED3C`) it runs `008092FC(02CAB018)` and, when `02CAB018` is then -1, fills the node at `02CAAFE8`: qwords `+0`/`+8`/`+0x10` = the node, qword `+0x18` = the second and `+0x20` = the first of two `0062FF50()` results, qword `+0x28` = `00595C00`, registers `00808B90(008A83E0)` and closes with `0080929C(02CAB018)`; on every path it then sets bit `0x1` of qword `+0x10`, sets `+0`/`+8` to `01F2CDA0`, and walks the tree from the root qword `01F2CDB8` comparing (qword `+0x18`, qword `+0x20`) with each node's pair: an equal pair returns without linking; otherwise the node becomes child `+0` (smaller) or `+8` (larger) of the last node visited (or the root when the tree is empty), its qword `+0x10` = that parent + 1, and it calls `0067F700(01F2CDA0, node)`",
+   "anchors": [
+    [
+     "00585128",
+     "cmp"
+    ],
+    [
+     "00585145",
+     "call"
+    ],
+    [
+     "00585184",
+     "mov"
+    ],
+    [
+     "005851BC",
+     "mov"
+    ],
+    [
+     "0058525F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00585270",
+   "text": "when dword `02CAB050` is above the epoch dword at `+4` of this thread's TLS block (index dword `02EAED3C`) it runs `008092FC(02CAB050)` and, when `02CAB050` is then -1, fills the node at `02CAB020`: qwords `+0`/`+8`/`+0x10` = the node, qword `+0x18` = the `0062FF50()` result and `+0x20` = the `0062FFC0()` result (called first), qword `+0x28` = `00595C00`, registers `00808B90(008A83F0)` and closes with `0080929C(02CAB050)`; on every path it then sets bit `0x1` of qword `+0x10`, sets `+0`/`+8` to `01F2CDA0`, and walks the tree from the root qword `01F2CDB8` comparing (qword `+0x18`, qword `+0x20`) with each node's pair: an equal pair returns without linking; otherwise the node becomes child `+0` (smaller) or `+8` (larger) of the last node visited (or the root when the tree is empty), its qword `+0x10` = that parent + 1, and it calls `0067F700(01F2CDA0, node)`",
+   "anchors": [
+    [
+     "005852A8",
+     "cmp"
+    ],
+    [
+     "005852C5",
+     "call"
+    ],
+    [
+     "00585304",
+     "mov"
+    ],
+    [
+     "0058533C",
+     "mov"
+    ],
+    [
+     "005853DF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005853F0",
+   "text": "when dword `02CAB088` is above the epoch dword at `+4` of this thread's TLS block (index dword `02EAED3C`) it runs `008092FC(02CAB088)` and, when `02CAB088` is then -1, fills the node at `02CAB058`: qwords `+0`/`+8`/`+0x10` = the node, qword `+0x18` = the `0062FF50()` result and `+0x20` = the `00630030()` result (called first), qword `+0x28` = `005928F0`, registers `00808B90(008A8400)` and closes with `0080929C(02CAB088)`; on every path it then sets bit `0x1` of qword `+0x10`, sets `+0`/`+8` to `01F2CDA0`, and walks the tree from the root qword `01F2CDB8` comparing (qword `+0x18`, qword `+0x20`) with each node's pair: an equal pair returns without linking; otherwise the node becomes child `+0` (smaller) or `+8` (larger) of the last node visited (or the root when the tree is empty), its qword `+0x10` = that parent + 1, and it calls `0067F700(01F2CDA0, node)`",
+   "anchors": [
+    [
+     "00585428",
+     "cmp"
+    ],
+    [
+     "00585445",
+     "call"
+    ],
+    [
+     "00585484",
+     "mov"
+    ],
+    [
+     "005854BC",
+     "mov"
+    ],
+    [
+     "0058555F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00585570",
+   "text": "when dword `02CAB0C0` is above the epoch dword at `+4` of this thread's TLS block (index dword `02EAED3C`) it runs `008092FC(02CAB0C0)` and, when `02CAB0C0` is then -1, fills the node at `02CAB090`: qwords `+0`/`+8`/`+0x10` = the node, qword `+0x18` = the `0062FF50()` result and `+0x20` = the `006300A0()` result (called first), qword `+0x28` = `005928F0`, registers `00808B90(008A8410)` and closes with `0080929C(02CAB0C0)`; on every path it then sets bit `0x1` of qword `+0x10`, sets `+0`/`+8` to `01F2CDA0`, and walks the tree from the root qword `01F2CDB8` comparing (qword `+0x18`, qword `+0x20`) with each node's pair: an equal pair returns without linking; otherwise the node becomes child `+0` (smaller) or `+8` (larger) of the last node visited (or the root when the tree is empty), its qword `+0x10` = that parent + 1, and it calls `0067F700(01F2CDA0, node)`",
+   "anchors": [
+    [
+     "005855A8",
+     "cmp"
+    ],
+    [
+     "005855C5",
+     "call"
+    ],
+    [
+     "00585604",
+     "mov"
+    ],
+    [
+     "0058563C",
+     "mov"
+    ],
+    [
+     "005856DF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00682E30",
+   "text": "for each of dword `[rcx+0x70]` records starting at qword `[rcx+0x58]` (stride dword `+0x38` of qword `[rcx+0x50]`): self-links the record's qwords `+0`/`+8` (when non-null), stores qword `+0x58` with bit `0x1` cleared to qword `+0x18`, and, when that value is non-null, appends the record to the circular list whose sentinel is at qword `+0x10` + 0x90 unless an entry already in that list has a non-null qword `+0x18` string equal (byte compare to the terminator) to the record's; then stores `00D6FDB8` and the record to qwords `+0x30`/`+0x38` and `record+0x30` to qword `+0x28`; returns 0",
+   "anchors": [
+    [
+     "00682E58",
+     "mov"
+    ],
+    [
+     "00682E8F",
+     "mov"
+    ],
+    [
+     "00682EC3",
+     "movzx"
+    ],
+    [
+     "00682EF7",
+     "mov"
+    ],
+    [
+     "00682F10",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006853C0",
+   "text": "returns 0x13 unless it finds, in the list from qword `[rcx+0x40]` (next at qword `+0`), an entry `e` whose qwords `+8` and `+0x10` equal `rdx` and `r8`, and an index `i` below dword `[rdx+0x20]` AND 0x7FFFFFFF whose name (qword `i` of qword `[rdx+0x28]` with bit `0x1` cleared) is `r9` or a byte-equal string (`r9` pointing at an empty string counts as null); then, with qword `02E41058` = `e` around the call and 0 after it, the result is `006852B0(e, i)` when qword `e+0x30` is non-null, else, when dword `[rcx+0x58]` is below dword `[rcx+0x48]` AND 0x7FFFFFFF, it takes the next 0x28-byte slot `s` of qword `[rcx+0x50]` (incrementing `+0x58`), calls `00861EBA(qword s+8, qword s+0x18, dword s+0x10 AND 0x7FFFFFFF)` and `00684F60(e, qword s+0x20, i)`, and gives the slot back when it is still the last; returns the result",
+   "anchors": [
+    [
+     "0068540A",
+     "cmp"
+    ],
+    [
+     "00685451",
+     "cmp"
+    ],
+    [
+     "006854AE",
+     "call"
+    ],
+    [
+     "00685502",
+     "call"
+    ],
+    [
+     "00685518",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00685560",
+   "text": "returns 0x17 when qword `02E41050` is non-null; otherwise stores `rcx` there and, for each entry `e` of the list from qword `[rcx+0x40]` (next at qword `+0`) whose dword `+0x28` is not 1, word `+0x24` is non-zero and (word `+0x26` + `edx`) is a multiple of word `+0x24`: with qword `02E41058` = `e` around the call, `r` = `006852B0(e, dword e+0x20)` when qword `e+0x30` is non-null, else (only when a 0x28-byte slot of qword `[rcx+0x50]` is free below dword `+0x48` AND 0x7FFFFFFF) `00861EBA(qword s+8, qword s+0x18, dword s+0x10 AND 0x7FFFFFFF)` then `r` = `00684F60(e, qword s+0x20, dword e+0x20)` with the slot given back when still last; a non-zero `r` zeroes word `e+0x24`; finally it calls `00685B70(rcx)`, zeroes qword `02E41050` and returns 0",
+   "anchors": [
+    [
+     "00685588",
+     "cmp"
+    ],
+    [
+     "006855D5",
+     "div"
+    ],
+    [
+     "006855F8",
+     "call"
+    ],
+    [
+     "00685667",
+     "call"
+    ],
+    [
+     "00685698",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00810340",
+   "text": "takes the error-handler offset as 0 for `r9d` = 0, else `0080F300(rcx, r9d)` - qword `[rcx+0x38]`, and the call slot `f` = qword `[rcx+0x10]` - (`edx`+1)*16; when the sixth argument is non-null and word `[rcx+0x44]` is 0, it fills the record `c` = qword `[rcx+0x20]` (qword `+0x38` = sixth argument, dword `+0x30` = fifth, qword `+0x28` = `f` - qword `[rcx+0x38]`, byte `+0x48` = byte `[rcx+0x49]`, qword `+0x40` = qword `[rcx+0x78]`), stores the offset to `[rcx+0x78]`, sets bit `0x10` of byte `c+0x22` around `0081D900(rcx, f, r8d, 1)`, then clears it and restores `[rcx+0x78]`, with result 0; otherwise the result is `0081DB20(rcx, 0080F2E0, &{f, r8d}, f - qword [rcx+0x38], offset)`; when `r8d` is -1 it raises qword `+8` of qword `[rcx+0x20]` to qword `[rcx+0x10]`; returns the result",
+   "anchors": [
+    [
+     "00810367",
+     "call"
+    ],
+    [
+     "00810394",
+     "cmp"
+    ],
+    [
+     "008103DA",
+     "or"
+    ],
+    [
+     "008103E3",
+     "call"
+    ],
+    [
+     "00810417",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008113D0",
+   "text": "resolves stack index `edx` to a 16-byte value slot (positive: qword `[qword [rcx+0x20]]` + idx*16, or the nil slot `01CCB510` when not below qword `[rcx+0x10]`; negative above 0xFFF0B9D8: qword `[rcx+0x10]` + idx*16; 0xFFF0B9D8: qword `[rcx+0x18]` + 0x40; below: with `v` = qword `[qword [rcx+0x20]]`, qword `[v]` + (0xFFF0B9D8 - idx + 1)*16, or `01CCB510` when dword `v+8` is 0x16 or the index exceeds byte `+0xA` of qword `[v]`); returns 0 when the slot's dword `+8` is 0, or is 1 with dword `+0` zero, and 1 otherwise",
+   "anchors": [
+    [
+     "008113E9",
+     "add"
+    ],
+    [
+     "0081140E",
+     "mov"
+    ],
+    [
+     "0081141D",
+     "cmp"
+    ],
+    [
+     "0081144A",
+     "mov"
+    ],
+    [
+     "00811456",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00811470",
+   "text": "resolves stack index `edx` to a 16-byte value slot (positive: qword `[qword [rcx+0x20]]` + idx*16, or the nil slot `01CCB510` when not below qword `[rcx+0x10]`; negative above 0xFFF0B9D8: qword `[rcx+0x10]` + idx*16; 0xFFF0B9D8: qword `[rcx+0x18]` + 0x40; below: with `v` = qword `[qword [rcx+0x20]]`, qword `[v]` + (0xFFF0B9D8 - idx + 1)*16, or `01CCB510` when dword `v+8` is 0x16 or the index exceeds byte `+0xA` of qword `[v]`); when the slot's dword `+8` is not 3 it calls `00823220(slot, rsp+0x20)` and, if that returns null, stores 0 to dword `[r8]` (when `r8` is non-null) and returns 0; otherwise it stores 1 to dword `[r8]` (when non-null) and returns the float `+0` of the slot (or of the converted value) truncated to an integer",
+   "anchors": [
+    [
+     "00811492",
+     "add"
+    ],
+    [
+     "008114F1",
+     "cmp"
+    ],
+    [
+     "008114FC",
+     "call"
+    ],
+    [
+     "00811518",
+     "cvttss2si"
+    ],
+    [
+     "00811522",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00811530",
+   "text": "resolves stack index `edx` to a 16-byte value slot (positive: qword `[qword [rcx+0x20]]` + idx*16, or the nil slot `01CCB510` when not below qword `[rcx+0x10]`; negative above 0xFFF0B9D8: qword `[rcx+0x10]` + idx*16; 0xFFF0B9D8: qword `[rcx+0x18]` + 0x40; below: with `v` = qword `[qword [rcx+0x20]]`, qword `[v]` + (0xFFF0B9D8 - idx + 1)*16, or `01CCB510` when dword `v+8` is 0x16 or the index exceeds byte `+0xA` of qword `[v]`); when the low 4 bits of its dword `+8` are not 4 it calls `00823280(rcx, slot)`, which on 0 makes it store 0 to qword `[r8]` (when non-null) and return 0, and otherwise is followed by `0081A8A0(rcx)` when qword `+0x18` of qword `[rcx+0x18]` is above 0 and a fresh `0080F300(rcx, edx)`; it then stores qword `+0x10` of the slot's object to `[r8]` (when non-null) and returns the slot's object + 0x20",
+   "anchors": [
+    [
+     "00811557",
+     "add"
+    ],
+    [
+     "008115C3",
+     "cmp"
+    ],
+    [
+     "008115CA",
+     "call"
+    ],
+    [
+     "008115FF",
+     "call"
+    ],
+    [
+     "0081161D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00811640",
+   "text": "resolves stack index `edx` to a 16-byte value slot (positive: qword `[qword [rcx+0x20]]` + idx*16, or the nil slot `01CCB510` when not below qword `[rcx+0x10]`; negative above 0xFFF0B9D8: qword `[rcx+0x10]` + idx*16; 0xFFF0B9D8: qword `[rcx+0x18]` + 0x40; below: with `v` = qword `[qword [rcx+0x20]]`, qword `[v]` + (0xFFF0B9D8 - idx + 1)*16, or `01CCB510` when dword `v+8` is 0x16 or the index exceeds byte `+0xA` of qword `[v]`); when the slot's dword `+8` is not 3 it calls `00823220(slot, rsp+0x20)` and, if that returns null, stores 0 to dword `[r8]` (when `r8` is non-null) and returns 0.0; otherwise it stores 1 to dword `[r8]` (when non-null) and returns the float at `+0` of the slot (or of the converted value) in `xmm0`",
+   "anchors": [
+    [
+     "00811662",
+     "add"
+    ],
+    [
+     "008116C1",
+     "cmp"
+    ],
+    [
+     "008116CC",
+     "call"
+    ],
+    [
+     "008116EE",
+     "mov"
+    ],
+    [
+     "008116F4",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00812FA0",
+   "text": "with `t` = `0080FD00(rcx)` + 1, pushes `=stdin` (`008105C0`) and reads `__acrt_iob_func(0)` when `rdx` is null, else pushes `@` + `rdx` (`00810540`) and opens `fopen(rdx, 'r')`, a null file returning `00811F50(rcx, 'open', t)`; it drops a leading EF BB BF (the three bytes at `01CCA2A4`, read by `getc`; a partial match keeps the bytes in a stack buffer), skips a first line starting `#` (appending one 0xA), and on a first byte 0x1B with a name reopens with `freopen(rdx, 'rb', f)` (null: `00811F50(rcx, 'reopen', t)`) and repeats both skips; the byte then in hand (unless -1) joins the buffer, `r` = `00810180(rcx, 008120F0, &state, 00811530(rcx, -1, 0), r8)`; it `fclose`s a named file, and when `ferror` was set calls `00811130(rcx, t)`, pushes `cannot %s %s: %s` with `read`, the name past its first byte and `strerror(*_errno())`, calls `00810D20(rcx, t)` and returns 7, else calls `00810D20(rcx, t)` and returns `r`",
+   "anchors": [
+    [
+     "00812FEE",
+     "call"
+    ],
+    [
+     "0081307A",
+     "call"
+    ],
+    [
+     "0081310F",
+     "call"
+    ],
+    [
+     "008131E7",
+     "call"
+    ],
+    [
+     "00813263",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00814B30",
+   "text": "with `n` = `0080FD00(rcx)`, `s` = `00811530(rcx, 1, &len)` and mode `m` = `00813380(rcx, 3, 'bt', 0)`: when `s` is non-null the status is `00812F70(rcx, s, len, 00813380(rcx, 2, s, 0), m)`; otherwise it takes the name `00813380(rcx, 2, '=(load)', 0)`, calls `00812740(rcx, 1, 6)` and `00811130(rcx, 5)`, and the status is `00810180(rcx, 00814E60, 0, name, m)`; a zero status returns 1, after `00810730(rcx, 4)` and `00811180(rcx, -2, 1)` when `n` is at least 4; a non-zero status calls `00810620(rcx)` and `0080FEE0(rcx, -2)` and returns 2",
+   "anchors": [
+    [
+     "00814B5B",
+     "call"
+    ],
+    [
+     "00814B74",
+     "call"
+    ],
+    [
+     "00814BA6",
+     "call"
+    ],
+    [
+     "00814BEF",
+     "call"
+    ],
+    [
+     "00814C14",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0081C6A0",
+   "text": "copies `r8` bytes to `rdx` from the buffer whose remaining count is qword `[rcx]` and cursor qword `[rcx+8]`: while bytes remain to copy, an empty buffer is refilled by calling qword `[rcx+0x10]`(qword `[rcx+0x20]`, qword `[rcx+0x18]`, &size) (count = size, cursor = the returned pointer); a null pointer or zero size returns the number of bytes still uncopied; each pass copies min(remaining, count) bytes with `00861EBA` and advances both sides; returns 0 when all were copied",
+   "anchors": [
+    [
+     "0081C6C2",
+     "cmp"
+    ],
+    [
+     "0081C6D5",
+     "call"
+    ],
+    [
+     "0081C71E",
+     "cmovbe"
+    ],
+    [
+     "0081C725",
+     "call"
+    ],
+    [
+     "0081C72A",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "0081D900",
+   "text": "increments word `[rcx+0x46]`; at exactly 200 it calls `0081D3A0(rcx, 'C stack overflow')` (which does not return), and at 225 or more it loads `edx` = 6 and `rcx` for a call that straddles the end of the recorded extent; otherwise it increments word `+0x44` when `r9d` is 0, calls `008216A0(rcx)` when `0081DCD0(rcx, rdx, r8d)` returns 0, decrements word `+0x44` (when `r9d` is 0) and word `+0x46`, and calls `0081A8A0(rcx)` when qword `+0x18` of qword `[rcx+0x18]` is above 0",
+   "anchors": [
+    [
+     "0081D90A",
+     "inc"
+    ],
+    [
+     "0081D939",
+     "call"
+    ],
+    [
+     "0081D945",
+     "call"
+    ],
+    [
+     "0081D957",
+     "add"
+    ],
+    [
+     "0081D983",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0081E5A0",
+   "text": "raises an error (sets qword `[rcx+0x10]` = `rdx`, stores `s` = `0081EF90(rcx, message)` to qword `[rdx]` with dword `+8` = byte `s+8` OR 0x40, advances `+0x10` by 0x10, calls `0081D9A0(rcx, 0)` when fewer than 0x10 bytes remain below qword `+0x30`, then `0081E2C0(rcx, -1)`) with `C stack overflow` when word `+0x46` is 200 or more, with `cannot resume non-suspended coroutine` when byte `+0xA` is 0 and qword `+0x20` is not `rcx+0x80`, and with `cannot resume dead coroutine` when byte `+0xA` is neither 0 nor 1; for byte 0 it tail-jumps to `008216A0(rcx)` unless `0081DCD0(rcx, rdx-0x10, -1)` is non-zero; for byte 1 it clears that byte, sets qword `c+0` of record `c` = qword `[rcx+0x20]` to qword `[rcx+0x38]` + qword `c+0x28`, and then either calls `008216A0(rcx)` (bit `0x1` of byte `c+0x22` set) or, when qword `c+0x38` is non-null, sets bit `0x8` of that byte and byte `c+0x49` = 1, calls it, and passes qword `[rcx+0x10]` - result*16 to `0081DC10` (when it is null, `0081DC10` gets the incoming `rdx`); both then call `0081E920(rcx, 0)`",
+   "anchors": [
+    [
+     "0081E5B9",
+     "cmp"
+    ],
+    [
+     "0081E603",
+     "jne"
+    ],
+    [
+     "0081E657",
+     "call"
+    ],
+    [
+     "0081E6B8",
+     "mov"
+    ],
+    [
+     "0081E70E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0081E920",
+   "text": "until qword `[rcx+0x20]` is `rcx+0x80`, takes the record `c` it points at: when bit `0x1` of byte `c+0x22` is set it calls `008229F0(rcx)` and `008216A0(rcx)`; otherwise it raises qword `c+8` to qword `[rcx+0x10]` when word `c+0x20` is -1, sets byte `c+0x49` = 1 when bit `0x20` of byte `+0x22` is clear, rewrites that byte as (byte AND 0xCF) OR 8, calls qword `c+0x38`(rcx) and passes qword `[rcx+0x10]` - result*16 to `0081DC10(rcx, ...)`",
+   "anchors": [
+    [
+     "0081E940",
+     "test"
+    ],
+    [
+     "0081E964",
+     "mov"
+    ],
+    [
+     "0081E974",
+     "call"
+    ],
+    [
+     "0081E988",
+     "call"
+    ],
+    [
+     "0081E992",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0081E9C0",
+   "text": "while the list at qword `[rcx+0x60]` has a head `u` whose qword `+0x10` is not below `rdx`: makes qword `u+0` the new head; when (byte `u+9` XOR 3) AND (byte `+0x54` of qword `[rcx+0x18]` XOR 3) is 0 it unlinks `u` through qwords `+0x18`/`+0x20` (only when qword `u+0x10` is not `u+0x18`) and calls `00823670(rcx, u, 0x28, 0)`; otherwise it unlinks it, copies the qword and dword at qword `u+0x10` into `u+0x18`/`u+0x20`, points qword `u+0x10` at `u+0x18`, pushes `u` on the list at qword `+0x60` of qword `[rcx+0x18]` and calls `0081A350(that, u)`",
+   "anchors": [
+    [
+     "0081E9F4",
+     "cmp"
+    ],
+    [
+     "0081EA16",
+     "test"
+    ],
+    [
+     "0081EA40",
+     "call"
+    ],
+    [
+     "0081EA71",
+     "mov"
+    ],
+    [
+     "0081EA80",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00821090",
+   "text": "takes each of `r8` and `r9` as a number when its dword `+8` is 3, or when its low 4 bits are 4 and `0081C300(object+0x20, qword object+0x10, &n)` converts it (a stack copy {float `n`, 3} is used); when both are numbers it stores `0081BCF0(fifth argument - 6, first float, second float)` to float `[rdx]` and 3 to dword `[rdx+8]`; otherwise it returns when `00820E00(rcx, r8, r9, rdx, fifth argument)` is non-zero and else calls `0081D240(rcx, r8, r9)`",
+   "anchors": [
+    [
+     "008210B2",
+     "cmp"
+    ],
+    [
+     "008210D9",
+     "call"
+    ],
+    [
+     "0082115A",
+     "call"
+    ],
+    [
+     "00821164",
+     "mov"
+    ],
+    [
+     "00821195",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00823030",
+   "text": "for up to 100 rounds with `t` = `rdx`: when `t`'s dword `+8` is 0x45 it takes `s` = `0081F4A0(h, r8)` for `h` = qword `[t]` and, unless `s` is empty (dword `+8` 0) and `h`'s qword `+0x10` table (bit `0x2` of its byte `+0xA` clear) yields a handler from `00823520(that, 1, qword +0x128 of qword [rcx+0x18])`, uses `s` (or `0081F700(rcx, h, r8)` when `s` is the nil slot `01CCB510`): copies the 16-byte value at `r9` into it, zeroes byte `h+0xA` and calls `0081A170(rcx, h)` when that value has bit `0x40` of its dword `+8`, its object byte `+9` AND 3 is non-zero and byte `h+9` has bit `0x4`, and returns; otherwise the handler is `00823560(rcx, t, 1)` (dword `+8` 0 loads `rcx`, `t` and `index` for a call that straddles the end of the recorded extent); a handler whose low 4 type bits are 6 is pushed with `t`, `r8` and `r9` (calling `0081D9A0(rcx, 0)` when stack room is short) and called by `0081D900(rcx, top-0x40, 0, bit 0x1 of byte +0x22 of qword [rcx+0x20])`; any other handler becomes `t`; after 100 rounds it calls `0081D3A0(rcx, 'loop in settable')`",
+   "anchors": [
+    [
+     "00823060",
+     "cmp"
+    ],
+    [
+     "00823073",
+     "call"
+    ],
+    [
+     "008230A0",
+     "call"
+    ],
+    [
+     "008230C3",
+     "call"
+    ],
+    [
+     "008231F2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008233F0",
+   "text": "with mask byte `[rcx+0x48]` and record `c` = qword `[rcx+0x20]`: when bit `0x8` is set and dword `+0x50` is 0 it reloads `+0x50` from dword `+0x4C` and notes a count event; when bit `0x80` of byte `c+0x22` is set it clears it and returns; a count event calls `0081DA20(rcx, 3, -1)`; with bit `0x4` of the mask it takes `pc` = (qword `c+0x38` - code qword `+0x18`) / 4 - 1 of the prototype at qword `+0x18` of qword `[qword [c]]`, the line dword `pc` of qword `+0x28` (0 when null), and calls `0081DA20(rcx, 2, line)` when `pc` is 0, qword `c+0x38` is not above qword `[rcx+0x28]`, or the line differs from the one at that older position; it then stores qword `c+0x38` to `[rcx+0x28]` and, when byte `[rcx+0xA]` is 1, sets dword `+0x50` = 1 (count event), steps qword `c+0x38` back by 4, sets bit `0x80` of byte `c+0x22`, stores qword `[rcx+0x10]` - 0x10 to qword `c+0` and calls `0081E2C0(rcx, 1)`",
+   "anchors": [
+    [
+     "0082340A",
+     "movzx"
+    ],
+    [
+     "00823438",
+     "and"
+    ],
+    [
+     "00823464",
+     "call"
+    ],
+    [
+     "008234CF",
+     "call"
+    ],
+    [
+     "008234FB",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "00828D30",
+   "text": "gets the registry subtable `_CLIBS` (`00812B70(rcx, 0xFFF0B9D8, ...)`), gives it a new table holding the closure `00828A80` as `__gc` and sets that as its metatable; creates the package table (`0080F740(rcx, 0, 2)`), fills it from `01CCC940` (`008135B0`) and `00828870(rcx)`, and stores `searchers`; for `path` (environment `LUA_PATH_5_2`, else `LUA_PATH`, by `getenv`) and `cpath` (`LUA_CPATH_5_2`, else `LUA_CPATH`): when a variable is set and registry `LUA_NOENV` is false it rewrites `;;` to `;` 0x1 `;` and 0x1 to the default with `00812C10`, else pushes the default (`!\\lua\\?.lua;...` or `!\\?.dll;!\\loadall.dll;.\\?.dll`), then calls `008295D0(rcx)` and stores the field; it stores `config` (10 bytes at `01CCCB98`), `loaded` (`_LOADED`) and `preload` (`_PRELOAD`), registers the functions at `01CCC970` into the registry's index-2 table with the package table as their one upvalue (`008109F0`, `00810730(rcx, -2)`, `008135B0(.., 1)`), pops one value and returns 1",
+   "anchors": [
+    [
+     "00828D4E",
+     "call"
+    ],
+    [
+     "00828DD7",
+     "call"
+    ],
+    [
+     "00828E40",
+     "call"
+    ],
+    [
+     "00828F6C",
+     "call"
+    ],
+    [
+     "00829005",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829320",
+   "text": "takes the name `n` = `00812500(rcx, 1, 0)`, reads field `path` of index 0xFFF0B9D7 (`0080FA50`) and `p` = `00811530(rcx, -1, 0)`, raising `00812960(rcx, \"'package.%s' must be a string\", 'path')` when `p` is null; `f` = `00829460(rcx, n, p, '.', '\\\\')`; a null `f` returns 1, otherwise it tail-jumps to `008287F0(rcx, 00812FA0(rcx, f, 0) == 0, f)`",
+   "anchors": [
+    [
+     "00829339",
+     "call"
+    ],
+    [
+     "00829350",
+     "call"
+    ],
+    [
+     "0082937C",
+     "call"
+    ],
+    [
+     "0082939D",
+     "call"
+    ],
+    [
+     "008293C6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829810",
+   "text": "requires dword `[rdx+8]` to be 7, 8 or 9 (else `syntax error`); on token dword `[rcx+0x10]` = 0x2C it calls `00824260(rcx)` and `0082D5C0(rcx, &v)` for a new list node linked to `rdx`; when `v`'s dword `+0` is not 9 it retargets earlier nodes of kind 9 whose byte `+0xF`/`+0xE` match `v` (byte `+0xF` = 7, byte `+0xE` = byte `+0x44` of qword `[rcx+0x30]`) or, for kind-7 `v`, whose word `+0xC` matches, and on any change emits `0082F450(fs, 0 or 5, that byte, v's dword +4, 0)` and `008300E0(fs, 1)`; then `00829E10(fs, word +0x46 of qword [rcx+0x38] + r8d, 200, 'C levels')` and recursion with `r8d`+1; on 0x3D it reads `0082D470` expressions separated by 0x2C (`0082F860` between them) and, when their count `n` equals `r8d`, calls `00830300(fs, &e)` and stores `e`, otherwise calls `00829770(rcx, r8d, n, &e)` and lowers byte `fs+0x44` by `n` - `r8d` when `n` is larger; the stored value (by `00830410(fs, rdx+8, &e)`) is otherwise {6, byte `fs+0x44` - 1, -1}; other tokens raise `%s expected` for 0x3D",
+   "anchors": [
+    [
+     "0082983E",
+     "cmp"
+    ],
+    [
+     "0082986D",
+     "call"
+    ],
+    [
+     "00829908",
+     "call"
+    ],
+    [
+     "00829945",
+     "call"
+    ],
+    [
+     "008299EE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082A280",
+   "text": "emits `pc` = `0082F450(fs, 0xB, 0, 0, 0)` (fs = qword `[rcx+0x30]`), sets `rdx` to {dword 0xB, dword `pc`, qword -1}, calls `0082F860(fs, rdx)` and requires token dword `[rcx+0x10]` 0x7B (else `%s expected`); it then reads fields until 0x7D, separated by 0x2C or 0x3B: a pending list item is flushed with `0082F860` and, at 50 pending, `00830250(fs, dword rdx+4, count, 50)`; token 0x5B, or 0x120 followed by 0x3D (`008241A0`), goes to `0082C6E0`, any other to `0082D470` with the array count capped at 0x7FFFFFFD (`too many %s (limit is %d) in %s`); it calls `00829D70(rcx, 0x7D, 0x7B, line)`, flushes the rest (kinds 0xC/0xD through `00830350(fs, &v, -1)` and a -1 count), and writes `0081BFC0`(array count) << 23 and (`0081BFC0`(hash count) AND 0x1FF) << 14 into instruction `pc`",
+   "anchors": [
+    [
+     "0082A2CB",
+     "call"
+    ],
+    [
+     "0082A309",
+     "cmp"
+    ],
+    [
+     "0082A3D5",
+     "call"
+    ],
+    [
+     "0082A3FE",
+     "call"
+    ],
+    [
+     "0082A4C9",
+     "shl"
+    ]
+   ]
+  },
+  {
+   "fn": "0082A660",
+   "text": "calls `0082D5C0(rcx, &v)`; when token dword `[rcx+0x10]` is 0x3D or 0x2C it calls `00829810(rcx, &{0, v}, 1)`; otherwise, when `v`'s dword `+0` is not 0xC it calls `00824330(rcx, 'syntax error')`, and when it is it rewrites dword `v.+4` of the code array qword `+0x18` of qword `[qword [rcx+0x30]]` as (dword AND 0xFF807FFF) OR 0x4000",
+   "anchors": [
+    [
+     "0082A685",
+     "call"
+    ],
+    [
+     "0082A697",
+     "cmp"
+    ],
+    [
+     "0082A6AD",
+     "and"
+    ],
+    [
+     "0082A6B2",
+     "bts"
+    ],
+    [
+     "0082A6D2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082AAD0",
+   "text": "with fs = qword `[rcx+0x30]`: activates 3 locals (byte `fs+0x42` += 3, and each one's entry in qword `+0x30` of qword `[fs]`, indexed through the word list at qword `[qword +0x50 of qword fs+0x18]`, gets dword `+8` = dword `fs+0x28`); requires token 0x103 (else `%s expected`) and calls `00824260`; `p` = `0082F470(fs, 0x21, edx, 0x1FFFE)` when the dword fifth argument is non-zero, else `0082FB30(fs)`; links a stack block record into qword `fs+0x20`, activates `r9d` more locals the same way, calls `008300E0(fs, r9d)`, opens a second block, calls `0082D3B0(rcx)` and `0082B9A0` twice, and `0082FE20(fs, p)`; the loop instruction is `0082F470(fs, 0x20, edx, 0x1FFFE)` for a non-zero fifth argument, else `0082F450(fs, 0x22, edx, 0, r9d)`, `0082F960(fs, r8d)` and `0082F470(fs, 0x23, edx+2, 0x1FFFE)`; it calls `0082FDE0(fs, that, p+1)` and `0082F960(fs, r8d)`",
+   "anchors": [
+    [
+     "0082AAFA",
+     "add"
+    ],
+    [
+     "0082AB6F",
+     "call"
+    ],
+    [
+     "0082AC70",
+     "call"
+    ],
+    [
+     "0082ACB7",
+     "call"
+    ],
+    [
+     "0082ACE7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082AD40",
+   "text": "with fs = qword `[rcx+0x30]` and `b` = byte `fs+0x44`: declares locals through `0082C220` for `(for generator)`, `(for state)` and `(for control)` (strings from `008241C0` with lengths 15, 11 and 13) and for `rdx`, then one more for each token 0x2C followed by a token 0x120 (qword `[rcx+0x18]`; a missing 0x120 raises `%s expected`); requires token 0x10C (else `%s expected`), records the line dword `[rcx+4]`, reads `0082D470` expressions separated by 0x2C (`0082F860` between them) and adjusts them to 3 values (kinds 0xC/0xD through `00830350` and `008300E0`, otherwise `0082F860` and, for a shortfall, `008300E0` and `0082FBF0(fs, register, shortfall)`); then calls `0082F320(fs, 3)` and `0082AAD0(rcx, b, line, names - 3, 0)`",
+   "anchors": [
+    [
+     "0082AD7B",
+     "call"
+    ],
+    [
+     "0082ADE2",
+     "cmp"
+    ],
+    [
+     "0082AE0A",
+     "cmp"
+    ],
+    [
+     "0082AED8",
+     "call"
+    ],
+    [
+     "0082AF0F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082AFA0",
+   "text": "with fs = qword `[rcx+0x30]` and `b` = byte `fs+0x44`: declares locals through `0082C220` for `(for index)`, `(for limit)` and `(for step)` (strings from `008241C0` with lengths 11, 11 and 10) and for `rdx`; requires token 0x3D and then 0x2C (each else `%s expected`, after `00824260`), reading an expression with `0082D470` and `0082F860` after each; a third expression follows a further 0x2C, otherwise it emits `0082F490(fs, byte fs+0x44, 0082FCB0(fs, 1.0))` and `008300E0(fs, 1)`; then calls `0082AAD0(rcx, b, r8d, 1, 1)`",
+   "anchors": [
+    [
+     "0082AFD9",
+     "call"
+    ],
+    [
+     "0082B034",
+     "cmp"
+    ],
+    [
+     "0082B064",
+     "cmp"
+    ],
+    [
+     "0082B0CD",
+     "call"
+    ],
+    [
+     "0082B105",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082B180",
+   "text": "links a stack block record into qword `+0x20` of fs = qword `[rcx+0x30]` (byte `+0x42` of fs, words `+0x28`/`+0x18` of qword `+0x50` of qword `fs+0x18`, byte `+0xE` = 1), calls `00824260` and requires token 0x120 (else `%s expected`), takes the name qword `[rcx+0x18]` and calls `00824260`; on token 0x3D it calls `0082AFA0(rcx, name, edx)`, on 0x2C or 0x10C `0082AD40(rcx, name)`, and on any other token `00824330(rcx, \"'=' or 'in' expected\")`; then it calls `00829D70(rcx, 0x106, 0x108, edx)` and `0082B9A0(fs)`",
+   "anchors": [
+    [
+     "0082B195",
+     "mov"
+    ],
+    [
+     "0082B1E5",
+     "cmp"
+    ],
+    [
+     "0082B21E",
+     "call"
+    ],
+    [
+     "0082B22B",
+     "call"
+    ],
+    [
+     "0082B23F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082B2A0",
+   "text": "reads call arguments into a stack descriptor `a` (fs = qword `[rcx+0x30]`): token 0x28 calls `00824260` and, unless the next token is 0x29 (`a` kind 0), reads `0082D470` expressions separated by 0x2C (`0082F860` between) and calls `00830350(fs, &a, -1)`, then `00829D70(rcx, 0x29, 0x28, r8d)`; token 0x7B calls `0082A280(rcx, &a)`; token 0x121 sets `a` = {4, `00830510(fs, qword [rcx+0x18])`, -1} and calls `00824260`; any other raises `function arguments expected`; with `b` = dword `[rdx+4]` the count is -1 for kinds 0xC/0xD, else (after `0082F860` for a non-zero kind) byte `fs+0x44` - `b` - 1; it emits `0082F450(fs, 0x1D, b, count+1, 2)`, sets `rdx` to {0xC, that pc, -1}, calls `0082F960(fs, r8d)` and sets byte `fs+0x44` = `b`+1",
+   "anchors": [
+    [
+     "0082B2CB",
+     "cmp"
+    ],
+    [
+     "0082B2E7",
+     "call"
+    ],
+    [
+     "0082B310",
+     "call"
+    ],
+    [
+     "0082B3C6",
+     "call"
+    ],
+    [
+     "0082B3E8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082BC50",
+   "text": "declares one local per name: repeatedly requires token 0x120 (else `%s expected`), takes qword `[rcx+0x18]`, calls `00824260` and `0082C220(rcx, name)`, continuing after each token 0x2C; on token 0x3D it reads `0082D470` expressions separated by 0x2C (`0082F860` between), otherwise none; it adjusts them to the name count (kinds 0xC/0xD through `00830350` and `008300E0`, otherwise `0082F860` and, for a shortfall, `008300E0` and `0082FBF0(fs, register, shortfall)`), then adds the count to byte `+0x42` of qword `[rcx+0x30]` and gives each new local's entry dword `+8` = dword `+0x28` of that record",
+   "anchors": [
+    [
+     "0082BC80",
+     "cmp"
+    ],
+    [
+     "0082BC9F",
+     "call"
+    ],
+    [
+     "0082BCC2",
+     "cmp"
+    ],
+    [
+     "0082BD62",
+     "call"
+    ],
+    [
+     "0082BDDC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082BE30",
+   "text": "creates `c` = `0081ECD0(rcx, 1)` and pushes it (dword type 0x46; `0081D9A0(rcx, 0)` when stack room is short), creates `p` = `0081ED30(rcx)` into qword `c+0x18` with qword `p+0x48` = `0081EF90(rcx, fifth argument)`, zeroes dwords `+8`, `+0x18` and `+0x28` of `r9`, and sets up a stack lexer state with `008242A0(rcx, &ls, rdx, qword p+0x48, dword sixth argument)` and a stack function state; it sets byte `p+0x7A` = 2, pushes `0081F6B0(rcx)` (type 0x45), opens a block, sets byte `p+0x79` = 1, calls `0082C3D0(&fs, env name, &{7, 0})` and `00824260(&ls)`, runs statements with `0082D130` until token 0x104..0x106, 0x115 or 0x11E (a token-0x112 statement ends the list), requires 0x11E (else `%s expected`), calls `00829F50(&ls)` and returns `c`",
+   "anchors": [
+    [
+     "0082BE61",
+     "call"
+    ],
+    [
+     "0082BE70",
+     "mov"
+    ],
+    [
+     "0082BEEF",
+     "call"
+    ],
+    [
+     "0082BFF9",
+     "call"
+    ],
+    [
+     "0082C054",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082C220",
+   "text": "with fs = qword `[rcx+0x30]` and the list `d` = qword `[rcx+0x50]`: takes `r` = `0082C8C0(rcx, rdx)`; when dword `d+8` + 1 - dword `fs+0x3C` exceeds 200 it raises `too many %s (limit is %d) in %s` with `local variables`, 200 and `main function` or `function at line %d`; when dword `d+8` + 2 exceeds dword `d+0xC` it grows qword `[d]` with `008235B0(qword [rcx+0x38], qword [d], d+0xC, 2, 0x7FFFFFFD, 'local variables')`; then stores word `r` at index dword `d+8` of qword `[d]` and increments `d+8`",
+   "anchors": [
+    [
+     "0082C23F",
+     "call"
+    ],
+    [
+     "0082C250",
+     "cmp"
+    ],
+    [
+     "0082C27C",
+     "cmp"
+    ],
+    [
+     "0082C2A2",
+     "call"
+    ],
+    [
+     "0082C2B6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082CCC0",
+   "text": "fills the descriptor at `rdx` from token dword `[rcx+0x10]` (a jump table) and then calls `00824260(rcx)`: 0x11F gives {5, dword `[rcx+0x18]`, -1}; 0x121 {4, `00830510(fs, qword [rcx+0x18])`, -1}; 0x10E, 0x114 and 0x107 give kinds 1, 2 and 3 with -1; 0x118 gives {0xD, `0082F450(fs, 0x26, 0, 1, 0)`, -1} but raises `cannot use '...' outside a vararg function` when byte `+0x79` of qword `[fs]` is 0; 0x7B tail-jumps to `0082A280(rcx, rdx)`, 0x109 calls `00824260` and tail-jumps to `00829B10(rcx, rdx, 0, dword [rcx+4])`, and any other token tail-jumps to `0082D5C0(rcx, rdx)` (fs = qword `[rcx+0x30]`)",
+   "anchors": [
+    [
+     "0082CCD6",
+     "cmp"
+    ],
+    [
+     "0082CD2F",
+     "call"
+    ],
+    [
+     "0082CDA9",
+     "cmp"
+    ],
+    [
+     "0082CDC8",
+     "call"
+    ],
+    [
+     "0082CE21",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0082D130",
+   "text": "with `l` = dword `[rcx+4]`, calls `0082A5D0(rcx)` and dispatches on token dword `[rcx+0x10]` (a jump table): 0x3B calls `00824260`; 0x10B `0082B7F0(rcx, l)`; 0x116 `0082DA80(rcx, l)`; 0x103 `00824260`, `00829A70` and `00829D70(rcx, 0x106, 0x103, l)`; 0x108 `0082B180(rcx, l)`; 0x111 `0082C9A0(rcx, l)`; 0x109 `0082B420(rcx, l)`; 0x10D `00824260` then `00824260` and `0082BB40` when the next token is 0x109, else `0082BC50`; 0x11D `00824260` and `0082B890(rcx, 0082D410(rcx), l)`; 0x112 `00824260` and `0082CB10`; 0x102 and 0x10A `0082B730(rcx, 0082FB30(fs))`; any other `0082A660(rcx)`; then it sets byte `+0x44` of fs = qword `[rcx+0x30]` to its byte `+0x42` and decrements word `+0x46` of qword `[rcx+0x38]`",
+   "anchors": [
+    [
+     "0082D140",
+     "call"
+    ],
+    [
+     "0082D14B",
+     "cmp"
+    ],
+    [
+     "0082D20D",
+     "call"
+    ],
+    [
+     "0082D25B",
+     "call"
+    ],
+    [
+     "0082D272",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082D470",
+   "text": "calls `0082A5D0(rcx)`; for token 0x23, 0x2D or 0x10F (operators 2, 0 and 1) it takes the line dword `[rcx+4]`, calls `00824260`, recurses `0082D470(rcx, rdx, 8)` and calls `00830010(fs, operator, rdx, line)`, otherwise `0082CCC0(rcx, rdx)`; then, with `op` = `0082B570(token)`, while `op` is not 0xF and the byte `01CCCFA8[op*2]` is above `r8d`, it calls `00824260`, `0082FAE0(fs, op, rdx)`, `next` = `0082D470(rcx, &v2, byte 01CCCFA8[op*2+1])` and `0082FE40(fs, op, rdx, &v2, line)`, continuing with `next`; it decrements word `+0x46` of qword `[rcx+0x38]` and returns the last `op` (fs = qword `[rcx+0x30]`)",
+   "anchors": [
+    [
+     "0082D49B",
+     "call"
+    ],
+    [
+     "0082D4E8",
+     "call"
+    ],
+    [
+     "0082D4F9",
+     "call"
+    ],
+    [
+     "0082D52B",
+     "cmp"
+    ],
+    [
+     "0082D57C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082D5C0",
+   "text": "calls `0082C650(rcx, rdx)` and then, while token dword `[rcx+0x10]` selects a case (a jump table; fs = qword `[rcx+0x30]`, line = dword `[rcx+4]` at entry): 0x2E calls `0082A700(rcx, rdx)`; 0x5B calls `0082F7F0(fs, rdx)`, `00824260`, `0082D470(rcx, &k, 0)` and `0082F8E0(fs, &k)`, requires 0x5D (else `%s expected`), calls `00824260` and `0082FAA0(fs, rdx, &k)`; 0x3A calls `00824260`, requires 0x120 (else `%s expected`), calls `00824260` and `00830140(fs, rdx, &{4, 00830510(fs, name), -1})` and then `0082B2A0(rcx, rdx, line)`; 0x28, 0x7B and 0x121 call `0082F860(fs, rdx)` and `0082B2A0(rcx, rdx, line)`; any other token returns",
+   "anchors": [
+    [
+     "0082D5E7",
+     "call"
+    ],
+    [
+     "0082D62F",
+     "call"
+    ],
+    [
+     "0082D687",
+     "call"
+    ],
+    [
+     "0082D6DB",
+     "call"
+    ],
+    [
+     "0082D6F6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082E910",
+   "text": "takes the chunk name `r9` past its first byte when that byte is `@` or `=`, `binary string` when it is 0x1B, else `r9` as is; calls `0082E490(&{rcx, rdx, r8, name})`, creates `c` = `0081ECD0(rcx, 1)` and pushes it (dword type 0x46; `0081D9A0(rcx, 0)` when stack room is short), stores `p` = `0081ED30(rcx)` to qword `c+0x18` and calls `0082E350(&state, p)`; when dword `p+0x50` is 1 it returns `c`, otherwise it creates `c2` = `0081ECD0(rcx, that count)` with qword `c2+0x18` = `p`, stores it over the pushed slot (type 0x46) and returns `c2`",
+   "anchors": [
+    [
+     "0082E926",
+     "cmp"
+    ],
+    [
+     "0082E95D",
+     "call"
+    ],
+    [
+     "0082E96A",
+     "call"
+    ],
+    [
+     "0082E9B4",
+     "call"
+    ],
+    [
+     "0082E9CD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082F000",
+   "text": "calls `0082EEF0(rcx, rdx, r8d)` and, for kind dword `[rdx]` 0xA, `0082F500(rcx, rdx+8, dword rdx+4)`; when dwords `+8` and `+0xC` differ it walks both jump lists (code qword `+0x18` of qword `[rcx]`; each jump's controlling instruction is the previous one when the byte `01CCCCD0`[its low 6 bits] is negative; next = pc + 1 + (instruction >> 14) - 0x1FFFF, ending at -1) and, if any controlling instruction's low 6 bits are not 0x1C, emits (after `0082FB30(rcx)` unless the kind is 0xA) `0082F360(rcx, r8d << 6 OR 0x4003)` and `0082F360(rcx, r8d << 6 OR 0x800003)` (dword `+0x2C` = dword `+0x28` before each) and calls `0082F500(rcx, rcx+0x30, that jump)`; then it calls `00830540` for list `+0xC` and list `+8` with the current pc, `r8d` and the position of the emitted false and true load respectively (-1 when none was emitted); finally `rdx` becomes {6, `r8d`, -1, -1}",
+   "anchors": [
+    [
+     "0082F012",
+     "call"
+    ],
+    [
+     "0082F07A",
+     "cmp"
+    ],
+    [
+     "0082F135",
+     "call"
+    ],
+    [
+     "0082F187",
+     "call"
+    ],
+    [
+     "0082F1BD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082F660",
+   "text": "calls `0082F8E0(rcx, rdx)`; for kinds 1, 2 and 3 with dword `[rcx+0x34]` at most 0xFF it adds a constant with `0082EA10(rcx, key, value)` (kind 1: key {qword `[rcx+8]`, type 0x45} and a nil value; kinds 2/3: the boolean {kind == 2, type 1} as both), sets `rdx` to {4, index} and returns index OR 0x100; kind 5 first becomes {4, `0082FCB0(rcx, float rdx+4)`}; kind 4 returns dword `rdx+4` OR 0x100 when it is at most 0xFF; every other case calls `0082F5A0(rcx, rdx)` and, for a kind-6 value with differing dwords `+8`/`+0xC`, `0082F000(rcx, rdx, dword rdx+4)` when that register is at least byte `[rcx+0x42]`, else `0082F860(rcx, rdx)` (also used for non-6 kinds), and returns dword `rdx+4`",
+   "anchors": [
+    [
+     "0082F670",
+     "call"
+    ],
+    [
+     "0082F69A",
+     "call"
+    ],
+    [
+     "0082F6B2",
+     "bts"
+    ],
+    [
+     "0082F70C",
+     "call"
+    ],
+    [
+     "0082F754",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00830410",
+   "text": "stores the value `r8` into the variable `rdx` (kind dword `[rdx]`): kind 7 frees `r8` then calls `0082F000(rcx, r8, dword rdx+4)`; kind 8 calls `0082F360(rcx, ((dword rdx+4) << 17 OR 0082F780(rcx, r8)) << 6 OR 9)`; kind 9 calls `0082F360(rcx, ((((signed word rdx+4) << 9 OR 0082F660(rcx, r8)) << 8 OR byte rdx+6) << 6) OR op)` with `op` = 0xA when byte `rdx+7` is 7 and 8 otherwise; for kinds 8, 9 and any other it then frees `r8`; freeing a kind-6 value whose dword `+4` has bit `0x100` clear and is at least byte `[rcx+0x42]` decrements byte `[rcx+0x44]`",
+   "anchors": [
+    [
+     "0083042E",
+     "je"
+    ],
+    [
+     "0083045A",
+     "call"
+    ],
+    [
+     "0083047B",
+     "call"
+    ],
+    [
+     "008304A4",
+     "call"
+    ],
+    [
+     "008304F8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00585270, 005853F0, 00585570",
+   "why": "OPUS re-read: family-sibling rows referred to an unnamed 'family base'; each sibling checked at the bytes to share the base's instruction form and rewritten as a self-contained sentence with its own values (fix_family_siblings.py)"
+  },
+  {
+   "fn": "00682E30",
+   "why": "OPUS re-read: the branch at 00682E9A tests ZF from `sub rbx, rax` (the cleared pointer), not the bit; the insert at 00682EE9..00682EF7 links before the sentinel, i.e. at the tail"
+  },
+  {
+   "fn": "0081E5A0",
+   "why": "OPUS re-read: a null qword c+0x38 skips the call but still reaches 0081DC10 with rdi = the incoming rdx (0081E6E0 -> 0081E6FE)"
+  },
+  {
+   "fn": "008233F0",
+   "why": "OPUS re-read: `jbe 008234C7` at 008234AD calls the line hook when the position is at or below the saved one; the line comparison runs only when it is above"
+  },
+  {
+   "fn": "00828D30",
+   "why": "OPUS re-read: 008135B0 sets each closure into the table at -(nup+2) (the index-2 table pushed by 008109F0) with nup copies of the top value (the package table copy from 00810730) as upvalues"
+  },
+  {
+   "fn": "0082F000",
+   "why": "OPUS re-read: the fifth argument of the two 00830540 calls is r15d / r12d, the 0082F360 results or -1 (0082F182, 0082F195)"
+  },
+  {
+   "fn": "008113D0",
+   "why": "OPUS re-read: the upvalue case loads v = [[rcx+0x20]], tests dword [v+8] against 0x16, then indexes from qword [v] and bounds by byte +0xA of [v] (one dereference more than the row said)"
+  },
+  {
+   "fn": "00811470",
+   "why": "OPUS re-read: the upvalue case loads v = [[rcx+0x20]], tests dword [v+8] against 0x16, then indexes from qword [v] and bounds by byte +0xA of [v] (one dereference more than the row said)"
+  },
+  {
+   "fn": "00811530",
+   "why": "OPUS re-read: the upvalue case loads v = [[rcx+0x20]], tests dword [v+8] against 0x16, then indexes from qword [v] and bounds by byte +0xA of [v] (one dereference more than the row said)"
+  },
+  {
+   "fn": "00811640",
+   "why": "OPUS re-read: the upvalue case loads v = [[rcx+0x20]], tests dword [v+8] against 0x16, then indexes from qword [v] and bounds by byte +0xA of [v] (one dereference more than the row said)"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

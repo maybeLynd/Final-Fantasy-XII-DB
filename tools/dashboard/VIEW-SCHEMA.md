@@ -112,3 +112,90 @@ carries it in `counts`. Added 2026-09-29 for FABLE-REQ-OPUS-VIEW-SCHEMA-MEANINGS
   UNKNOWN. This rule was repaired after ASTRA's REJECT of 8ddc8c7e8 (`00fd54fda`); `test_live.py` A8 and A9 cover it.
   ASTRA's REJECT (`00fd54fda`) is upheld (L327). R2 (ASTRA `8380c611c`) is ACCEPT, scoped to the writer-attribution
   repair on synthetic classification (L335). Both ratified `verdict:ACCEPT` by SWE2-AUDIT-SPEC at `a95c664bf`.
+
+## DB_GOAL chain, Depth diagnostic and Source/Freshness drawer (SWE2-FRONTIER, 2026-10-03)
+
+The user's context-refresh package v3 (`08_DASHBOARD_REQUIRED_UPDATE.md`) and improvement addendum section 1. Test:
+`test_dashboard_base.py`.
+- **`progress.db_goal` / `glance.db_goal`** (`db_goal_block`): goal_gate.py's own `verdict` / `remaining` / `next` /
+  `detail`, verbatim, never inferred from the board. The glance page shows `remaining` as well.
+- **Depth**: the title, the OVERALL label and the glance tile say "weighted diagnostic (not DB_GOAL)". The view carries
+  `diagnostic` (`is`, `is_not`, `never_combined_with`, `completion_authority`), and the tab is "Depth (diagnostic)".
+- **Input `knowledge_check`** = this build's `knowledge_db.py check` text (volatile). **`glance.provenance`**
+  (`provenance_block`) carries generated at, source commit, board revision and epoch, the progress reporter's freshness
+  state and fingerprint, the knowledge.sqlite check (CURRENT / STALE + the stale tables / UNMEASURED), the goal-gate
+  identity, and the lifecycle file hash once that input exists. The page's Source / freshness drawer adds the served
+  generation id, `committed_at` and the stale sources from the server's `meta.drift`.
+
+## Lifecycle panel (SWE2-FRONTIER, 2026-10-03)
+
+FABLE-REQ-FRONTIER-DASHBOARD-LIFECYCLE-1003; meanings in `DASHBOARD-MEANINGS.md` section 6. Test: `test_lifecycle.py` (L1-L9).
+- **Input `lifecycle`** = `_index/workflow/PROJECT-LIFECYCLE.json`, strict (a change makes the served generation STALE),
+  `required: False`. If the file is absent, malformed or names an unknown phase, the panel is FAILED, never a default.
+- **`progress.lifecycle` / `glance.lifecycle`** (`lifecycle_block`):
+  - `phase` is the file's `current_primary_phase`, read and never computed.
+  - The gate verdict and `requirements_ready` are shown beside the phase and never move it; parity pilots and the
+    board are not inputs.
+  - A file declaring a later phase than DB_GOAL supports is shown with `declared_phase` and a DISAGREEMENT note, never
+    as current (meanings 6.1 rule 3). Probes are labelled `PROBE (database phase)`.
+  - The block also carries the phase list, the transition chain with user authorization, the original game as oracle
+    (never the production backend), the validation chain and the modding statement.
+
+## Recent meaningful changes (SWE2-FRONTIER, 2026-10-03)
+
+Improvement addendum section 2; DASHBOARD-MEANINGS 6.3. Test: `test_recent_changes.py`.
+- **Input `recent_changes`** = this build's `recent_changes.py --json` (FABLE, `a065b24fa`), volatile, `required: False`.
+  The contract was agreed with FABLE: `events[]` carries `class` (the addendum's nine long names or `UNCLASSIFIED`),
+  `axis`, `at`, `title`, `identity`, `commit` and `evidence{kind, ref}`; `windows{24h, 7d}.since`, where 24h is the subset of
+  7d with `at >= since`.
+- **`glance.recent_changes`** counts knowledge / activity / unclassified per window, separately and never summed, and
+  lists knowledge events with their canonical evidence. It never classifies. An unknown class string makes it PARTIAL
+  and is named. If the output is absent it is UNMEASURED, never zero.
+
+## Next highest-value work (SWE2-FRONTIER, 2026-10-03)
+
+Improvement addendum section 11. Test: `test_next_work.py`.
+- **`glance.next_work`** (`next_work_block`): the gate's `remaining` / `next`, plus board tasks placed in the addendum's
+  seven buckets by board fields, first match wins:
+  1. BLOCKS DB_GOAL NOW - the task names an open register row;
+  2. AWAITING INDEPENDENT REVIEW;
+  3. AWAITING INTEGRATION;
+  4. RUNTIME / LIVE AUTHORIZATION NEEDED;
+  5. TOOLING BLOCKER - P0/P1 with a dashboard or kit file key;
+  6. HIGH-VALUE NONBLOCKING KNOWLEDGE - other P0/P1;
+  7. POST-DB / DEFERRED.
+  Inside a bucket the board's own order applies (priority, ACTIVE first, id). `unowned_blockers` lists open register
+  rows that no task names. There is no score, no age term and no second scheduler.
+
+## Evidence lineage on the systems view (SWE2-FRONTIER, 2026-10-03)
+
+Improvement addendum section 6. Test: `test_lineage.py`.
+- Each registered system node carries `lineage`: nine steps (system / mechanism, current claim, structured contract,
+  static/native, isolated original-code, live, review/acceptance, downstream consumers, reconstruction probe/parity).
+  Each step is `present` / `not required` / `not measured` / `unknown` / `not yet available`, with a reason, from
+  `important-subsystems.tsv` and `L2-VERDICTS.md`. The steps are mirrored into `counts` as `lineage N. <step>`. The
+  node also links its contract and the L2 verdicts file. A step no current structure answers per system says so; none
+  is left blank or implied required.
+
+## Production system status residue (SWE2-FRONTIER, 2026-10-03)
+
+The user's FFXII_INDEPENDENT_CORPUS_AUDIT_FOLLOWUP_2026-10-03, section 9. Test: `test_status_residue.py`.
+- **View `residue`** (`v_residue`, tab "Status residue"). Input `status_residue` = this build's
+  `check_status_residue.py --json` (FABLE). It counts system pages by status word (AUDITED / DOCUMENTED / PARTIAL /
+  REOPENED), then splits the PARTIAL / REOPENED pages into LIVE-ROW / PROCESS-ONLY / UNMAPPED, listing UNMAPPED first.
+  It is UNMEASURED without a census and has no score.
+
+## System readiness view on the systems view (SWE2-FRONTIER, 2026-10-03)
+
+SWE2-STRUCT's `readiness_view.py` (HOOK.md, `_index/candidates/swe2struct-design-readiness-views-1003/`;
+SWE2STRUCT-REQ-FRONTIER-READINESS-VIEW-HOOK-1003). Test: `test_readiness_hook.py`.
+- **Input `readiness`** = this build's `readiness_view.py --out` TSV, `required: False`. It is captured with `--board`
+  at the live TEAM.json at capture time. That is not byte-bound to the generation's `team` snapshot; `board_open` is
+  coordination load only. A missing capture makes every system read UNMEASURED.
+- Each registered system node's counts gain:
+  - "open obligations under this system" from `register_live` / `register_closed`;
+  - `maturity` (SPECIFICATION READY or no label, with the withholding conditions);
+  - `parity probes (PROBE, database phase)`;
+  - the remaining columns as `readiness: <col>`.
+- Maturity stays in counts, not the node `state`: the state vocabulary is DASHBOARD-MEANINGS sections 1-2.
+- The phase cap: a label past SPECIFICATION READY reads WITHHELD. Columns are never summed and no percentage is drawn.

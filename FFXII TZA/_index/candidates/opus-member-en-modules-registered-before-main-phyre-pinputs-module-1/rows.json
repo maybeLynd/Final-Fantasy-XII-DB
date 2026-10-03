@@ -1,0 +1,1055 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pinputs-module-1.json",
+ "rows": [
+  {
+   "fn": "0086C460",
+   "text": "initialises the object at `rcx`: qword `+8` = `02EB54F0`, qword `+0x10` = `01F44DA8`, dword `+0x18` = 0, byte `+0x1C` = 0, dword `+0x20` = 0x3F800000, qword `+0` = `01CD62A8`, qwords `+0x30`/`+0x38` = 0; then calls `00873FE0(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "0086C47D",
+     "mov"
+    ],
+    [
+     "0086C48E",
+     "mov"
+    ],
+    [
+     "0086C494",
+     "mov"
+    ],
+    [
+     "0086C4A2",
+     "mov"
+    ],
+    [
+     "0086C4B0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C4C0",
+   "text": "initialises the object at `rcx`: qword `+8` = `02EB53F0`, qword `+0x10` = `01F44D90`, dword `+0x18` = 0, byte `+0x1C` = 0, dword `+0x20` = 0x3F800000, qword `+0` = `01CD6288`, qwords `+0x30`/`+0x38` = 0; then calls `00874080(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "0086C4DD",
+     "mov"
+    ],
+    [
+     "0086C4EE",
+     "mov"
+    ],
+    [
+     "0086C4F4",
+     "mov"
+    ],
+    [
+     "0086C502",
+     "mov"
+    ],
+    [
+     "0086C510",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C520",
+   "text": "initialises the object at `rcx`: qword `+8` = `02EB56F0`, qword `+0x10` = `01F44DD8`, dword `+0x18` = 0, byte `+0x1C` = 0, dword `+0x20` = 0x3F800000, qword `+0` = `01CD62E8`, qword `+0x30` = the address `01F462E8`, and dword `+0x28` = the value returned by vtable slot `+8` of the object at `01F462E8` (called with that object); returns `rcx`",
+   "anchors": [
+    [
+     "0086C53D",
+     "mov"
+    ],
+    [
+     "0086C557",
+     "mov"
+    ],
+    [
+     "0086C565",
+     "mov"
+    ],
+    [
+     "0086C57A",
+     "call"
+    ],
+    [
+     "0086C57D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C590",
+   "text": "initialises the object at `rcx`: qword `+8` = `02EB57F0`, qword `+0x10` = `01F44DF0`, dword `+0x18` = 0, byte `+0x1C` = 0, dword `+0x20` = 0x3F800000, qword `+0` = `01CD6308`, qwords `+0x30`/`+0x38` = 0; then calls `00874170(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "0086C5AD",
+     "mov"
+    ],
+    [
+     "0086C5BE",
+     "mov"
+    ],
+    [
+     "0086C5C4",
+     "mov"
+    ],
+    [
+     "0086C5D2",
+     "mov"
+    ],
+    [
+     "0086C5E0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C5F0",
+   "text": "initialises the object at `rcx`: qword `+8` = `02EB58F0`, qword `+0x10` = `01F44E08`, dword `+0x18` = 0, byte `+0x1C` = 0, dword `+0x20` = 0x3F800000, qword `+0` = `01CD6328`, qwords `+0x30`/`+0x38` = 0; then calls `00874170(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "0086C60D",
+     "mov"
+    ],
+    [
+     "0086C61E",
+     "mov"
+    ],
+    [
+     "0086C624",
+     "mov"
+    ],
+    [
+     "0086C632",
+     "mov"
+    ],
+    [
+     "0086C640",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C830",
+   "text": "stores `01CD65A8` to qword `[rcx]`; when qword `[rcx+0x20]` is non-null, for each of dword `[rcx+0x10]` AND 0x7FFFFFFF entries `e` of qword `[rcx+0x18]` it calls `0063ABF0(qword [rcx+0x20], e+8, or 0 for a null e)`; then (twice, the first time only when dword `+0x10` is non-zero) calls `00584730` on qword `+0x18` when it is non-null and bit `0x80000000` of dword `+0x10` is clear and zeroes both; finally calls `00584730` on qword `[rcx+8]` when it is non-null with bit `0x1` clear",
+   "anchors": [
+    [
+     "0086C858",
+     "cmp"
+    ],
+    [
+     "0086C889",
+     "call"
+    ],
+    [
+     "0086C8B5",
+     "call"
+    ],
+    [
+     "0086C8BF",
+     "mov"
+    ],
+    [
+     "0086C8F5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C910",
+   "text": "releases the (dword count, qword pointer) pair at `rcx`/`rcx+8` twice, the first time only when the count is non-zero: each time it calls `00584730(pointer)` when the pointer is non-null and bit `0x80000000` of the count is clear, then zeroes the pointer and the count",
+   "anchors": [
+    [
+     "0086C92B",
+     "test"
+    ],
+    [
+     "0086C941",
+     "call"
+    ],
+    [
+     "0086C94B",
+     "mov"
+    ],
+    [
+     "0086C961",
+     "call"
+    ],
+    [
+     "0086C967",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086C990",
+   "text": "copies `rdx` into `rcx` and returns `rcx`: unless `rcx` and `rdx` are the same object it calls `001EAD40(rcx+8, qword [rdx+8] with bit 0x1 cleared)`; `p` = `006BC4C0(n, qword [rdx+0x18])` with `n` = dword `[rdx+0x10]` AND 0x7FFFFFFF; when the old qword `[rcx+0x18]` differs from `p`, is non-null and bit `0x80000000` of dword `[rcx+0x10]` is clear it calls `00584730(old)`; then stores `p` to qword `+0x18`, `n` to dword `+0x10` and qword `[rdx+0x20]` to qword `+0x20`",
+   "anchors": [
+    [
+     "0086C9B2",
+     "cmp"
+    ],
+    [
+     "0086C9C3",
+     "call"
+    ],
+    [
+     "0086C9D5",
+     "call"
+    ],
+    [
+     "0086C9F8",
+     "call"
+    ],
+    [
+     "0086CA12",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CDF0",
+   "text": "calls `0086C830(rcx)` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CE09",
+     "call"
+    ],
+    [
+     "0086CE0F",
+     "test"
+    ],
+    [
+     "0086CE1E",
+     "call"
+    ],
+    [
+     "0086CE2E",
+     "call"
+    ],
+    [
+     "0086CE34",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CE50",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CE69",
+     "mov"
+    ],
+    [
+     "0086CE6C",
+     "test"
+    ],
+    [
+     "0086CE76",
+     "call"
+    ],
+    [
+     "0086CE83",
+     "call"
+    ],
+    [
+     "0086CE89",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CEA0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x38)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CEB9",
+     "mov"
+    ],
+    [
+     "0086CEBC",
+     "test"
+    ],
+    [
+     "0086CEC6",
+     "call"
+    ],
+    [
+     "0086CED3",
+     "call"
+    ],
+    [
+     "0086CED9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CEF0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x40)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CF09",
+     "mov"
+    ],
+    [
+     "0086CF0C",
+     "test"
+    ],
+    [
+     "0086CF16",
+     "call"
+    ],
+    [
+     "0086CF23",
+     "call"
+    ],
+    [
+     "0086CF29",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CF40",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x40)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CF59",
+     "mov"
+    ],
+    [
+     "0086CF5C",
+     "test"
+    ],
+    [
+     "0086CF66",
+     "call"
+    ],
+    [
+     "0086CF73",
+     "call"
+    ],
+    [
+     "0086CF79",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CF90",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CFA9",
+     "mov"
+    ],
+    [
+     "0086CFAC",
+     "test"
+    ],
+    [
+     "0086CFB6",
+     "call"
+    ],
+    [
+     "0086CFC3",
+     "call"
+    ],
+    [
+     "0086CFC9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086CFE0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086CFF9",
+     "mov"
+    ],
+    [
+     "0086CFFC",
+     "test"
+    ],
+    [
+     "0086D006",
+     "call"
+    ],
+    [
+     "0086D013",
+     "call"
+    ],
+    [
+     "0086D019",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D030",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D049",
+     "mov"
+    ],
+    [
+     "0086D04C",
+     "test"
+    ],
+    [
+     "0086D056",
+     "call"
+    ],
+    [
+     "0086D063",
+     "call"
+    ],
+    [
+     "0086D069",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D080",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D099",
+     "mov"
+    ],
+    [
+     "0086D09C",
+     "test"
+    ],
+    [
+     "0086D0A6",
+     "call"
+    ],
+    [
+     "0086D0B3",
+     "call"
+    ],
+    [
+     "0086D0B9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D0D0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D0E9",
+     "mov"
+    ],
+    [
+     "0086D0EC",
+     "test"
+    ],
+    [
+     "0086D0F6",
+     "call"
+    ],
+    [
+     "0086D103",
+     "call"
+    ],
+    [
+     "0086D109",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D120",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D139",
+     "mov"
+    ],
+    [
+     "0086D13C",
+     "test"
+    ],
+    [
+     "0086D146",
+     "call"
+    ],
+    [
+     "0086D153",
+     "call"
+    ],
+    [
+     "0086D159",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D170",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D189",
+     "mov"
+    ],
+    [
+     "0086D18C",
+     "test"
+    ],
+    [
+     "0086D196",
+     "call"
+    ],
+    [
+     "0086D1A3",
+     "call"
+    ],
+    [
+     "0086D1A9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D1C0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D1D9",
+     "mov"
+    ],
+    [
+     "0086D1DC",
+     "test"
+    ],
+    [
+     "0086D1E6",
+     "call"
+    ],
+    [
+     "0086D1F3",
+     "call"
+    ],
+    [
+     "0086D1F9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D210",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D229",
+     "mov"
+    ],
+    [
+     "0086D22C",
+     "test"
+    ],
+    [
+     "0086D236",
+     "call"
+    ],
+    [
+     "0086D243",
+     "call"
+    ],
+    [
+     "0086D249",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D260",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D279",
+     "mov"
+    ],
+    [
+     "0086D27C",
+     "test"
+    ],
+    [
+     "0086D286",
+     "call"
+    ],
+    [
+     "0086D293",
+     "call"
+    ],
+    [
+     "0086D299",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D2B0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x38)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D2C9",
+     "mov"
+    ],
+    [
+     "0086D2CC",
+     "test"
+    ],
+    [
+     "0086D2D6",
+     "call"
+    ],
+    [
+     "0086D2E3",
+     "call"
+    ],
+    [
+     "0086D2E9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D300",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x40)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D319",
+     "mov"
+    ],
+    [
+     "0086D31C",
+     "test"
+    ],
+    [
+     "0086D326",
+     "call"
+    ],
+    [
+     "0086D333",
+     "call"
+    ],
+    [
+     "0086D339",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D350",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x40)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D369",
+     "mov"
+    ],
+    [
+     "0086D36C",
+     "test"
+    ],
+    [
+     "0086D376",
+     "call"
+    ],
+    [
+     "0086D383",
+     "call"
+    ],
+    [
+     "0086D389",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D3A0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D3B9",
+     "mov"
+    ],
+    [
+     "0086D3BC",
+     "test"
+    ],
+    [
+     "0086D3C6",
+     "call"
+    ],
+    [
+     "0086D3D3",
+     "call"
+    ],
+    [
+     "0086D3D9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D3F0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D409",
+     "mov"
+    ],
+    [
+     "0086D40C",
+     "test"
+    ],
+    [
+     "0086D416",
+     "call"
+    ],
+    [
+     "0086D423",
+     "call"
+    ],
+    [
+     "0086D429",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D440",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D459",
+     "mov"
+    ],
+    [
+     "0086D45C",
+     "test"
+    ],
+    [
+     "0086D466",
+     "call"
+    ],
+    [
+     "0086D473",
+     "call"
+    ],
+    [
+     "0086D479",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D490",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D4A9",
+     "mov"
+    ],
+    [
+     "0086D4AC",
+     "test"
+    ],
+    [
+     "0086D4B6",
+     "call"
+    ],
+    [
+     "0086D4C3",
+     "call"
+    ],
+    [
+     "0086D4C9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D4E0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D4F9",
+     "mov"
+    ],
+    [
+     "0086D4FC",
+     "test"
+    ],
+    [
+     "0086D506",
+     "call"
+    ],
+    [
+     "0086D513",
+     "call"
+    ],
+    [
+     "0086D519",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D530",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D549",
+     "mov"
+    ],
+    [
+     "0086D54C",
+     "test"
+    ],
+    [
+     "0086D556",
+     "call"
+    ],
+    [
+     "0086D563",
+     "call"
+    ],
+    [
+     "0086D569",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D580",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D599",
+     "mov"
+    ],
+    [
+     "0086D59C",
+     "test"
+    ],
+    [
+     "0086D5A6",
+     "call"
+    ],
+    [
+     "0086D5B3",
+     "call"
+    ],
+    [
+     "0086D5B9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D5D0",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D5E9",
+     "mov"
+    ],
+    [
+     "0086D5EC",
+     "test"
+    ],
+    [
+     "0086D5F6",
+     "call"
+    ],
+    [
+     "0086D603",
+     "call"
+    ],
+    [
+     "0086D609",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D620",
+   "text": "stores `01CD6268` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "0086D639",
+     "mov"
+    ],
+    [
+     "0086D63C",
+     "test"
+    ],
+    [
+     "0086D646",
+     "call"
+    ],
+    [
+     "0086D653",
+     "call"
+    ],
+    [
+     "0086D659",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D670",
+   "text": "calls `006388C0(02EB6CF0)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`): registers `m_name` with `00632960(02EB7430, 02EB6CF0, 02E4D630, name, 8, 0, 0, 0)` and, after an unguarded `0086E7B0(qword 01F44D60)`, `m_inputSources` with `00632A10(02EB7490, 02EB6CF0, 0086E7B0(0), name, 0x10, 0, 3, 8)` and qword `02EB7490` = `01CD66C8`; builds the method records `02EB7500` (`getInputAt`) and `02EB7560` (`getInputType`) with `00632FB0(record, 02EB6CF0, name, 0)`, zeroing qwords `02EB7528`/`02EB7588` and linking each record at the tail of the list at qword `02EB7510`/`02EB7570` + 0x90 only when qword `02EB7518`/`02EB7578` is non-null and `005A7A40(that list qword, that qword)` returns null; unguarded, it stores `01CD6BD0` and {`00873C10`, 0} to `02EB7530`/`02EB7538` and points qword `02EB7528` at `02EB7530`, and likewise `01CD6C00` and {`00873C30`, 0} to `02EB7590`/`02EB7598` with qword `02EB7588`; it then tail-jumps to `00639450(02EB6CF0)`",
+   "anchors": [
+    [
+     "0086D693",
+     "call"
+    ],
+    [
+     "0086D705",
+     "call"
+    ],
+    [
+     "0086D789",
+     "call"
+    ],
+    [
+     "0086D7F3",
+     "call"
+    ],
+    [
+     "0086D878",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "0086D990",
+   "text": "calls `006388C0(02EB6DF0)` and `0086E470(qword 01F44D68)`; under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`) registers `m_inputActions` with `00632A10(02EB75C0, 02EB6DF0, 0086E470(0), name, 0, 0, 3, 8)` and stores `01CD6770` to qword `02EB75C0`; then tail-jumps to `00639450(02EB6DF0)`",
+   "anchors": [
+    [
+     "0086D9A4",
+     "call"
+    ],
+    [
+     "0086D9B0",
+     "call"
+    ],
+    [
+     "0086D9EF",
+     "call"
+    ],
+    [
+     "0086DA26",
+     "call"
+    ],
+    [
+     "0086DA32",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0086DA70",
+   "text": "calls `006388C0(02EB52F0)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`): registers fields of `02EB52F0` with `00632960(record, 02EB52F0, type, name, n, f, 0, 0)`: `m_typeSemantic` (record `02EB6EF0`, type `00875F00()`, `n` = 0x10, `f` = 2), `m_id` (`02EB6F50`, `00630180()`, 0x18, 0), `m_invert` (`02EB6FB0`, `00630490()`, 0x1C, 0) and `m_scale` (`02EB7010`, `006301F0()`, 0x20, 0); then tail-jumps to `00639450(02EB52F0)`",
+   "anchors": [
+    [
+     "0086DA8B",
+     "call"
+    ],
+    [
+     "0086DB02",
+     "call"
+    ],
+    [
+     "0086DB71",
+     "call"
+    ],
+    [
+     "0086DBE0",
+     "call"
+    ],
+    [
+     "0086DC4F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0086DC90",
+   "text": "calls `006388C0(02EB55F0)`; under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`) registers `m_joypadAxisSemantic` with `00632960(02EB71F0, 02EB55F0, 008762F0(), name, 0x30, 2, 0, 0)`; then tail-jumps to `00639450(02EB55F0)`",
+   "anchors": [
+    [
+     "0086DCA4",
+     "call"
+    ],
+    [
+     "0086DCC4",
+     "cmp"
+    ],
+    [
+     "0086DCE1",
+     "call"
+    ],
+    [
+     "0086DD19",
+     "call"
+    ],
+    [
+     "0086DD42",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0086DD50",
+   "text": "calls `006388C0(02EB54F0)`; each under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`): registers `m_positiveButtonSemantic` and `m_negativeButtonSemantic` with `00632960(record, 02EB54F0, 008766D0(), name, n, 2, 0, 0)` (records `02EB7130` and `02EB7190`, `n` = 0x30 and 0x38); then tail-jumps to `00639450(02EB54F0)`",
+   "anchors": [
+    [
+     "0086DD6B",
+     "call"
+    ],
+    [
+     "0086DDAC",
+     "call"
+    ],
+    [
+     "0086DDE2",
+     "call"
+    ],
+    [
+     "0086DE55",
+     "call"
+    ],
+    [
+     "0086DE84",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PInputs module",
+ "method": "The page declares the family `Phyre PInputs module` (a classification family: ordinary functions grouped by module, not template copies). No page explained these members. A local drafting agent (local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`); OPUS checked every row mechanically with `interior_ingest.py` (member mode: the body is an unexplained member of a family this page declares). A second local agent, not the drafter, then read every one of the 272 rows of this batch against the disassembly (repetitive destructors, initialisers and clone bodies compared instruction by instruction against a fixed template): 262 stood, 10 clauses in 8 functions were corrected (signed compares written as above/below, one missing dereference, two operand groupings, one pair of per-pair callees). OPUS confirmed each correction at the bytes and re-read a random sample of the rows that stood; the corrections are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=49308 epoch=4 queue_sha=6b4294be54307473 -->
-> generated 2026-10-03T05:07:13+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=49581 epoch=4 queue_sha=3bcca6e6086deefc -->
+> generated 2026-10-03T06:36:50+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2-ORACLE-PUB-RESUME-1003C
+> ACTIVE: SWE2-ORACLE-PUB-EXECCOV-NARROW-1003
 > READY addressed to you: none
-> READY pool: 1 | BLOCKED: 0
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -71,6 +71,21 @@ A Claude session (Opus) operated SWE2-ORACLE from 02:10Z to 04:33Z on 2026-10-03
 `tulip-krypton` was rate-limited (breaker until about 07:39Z). **Devin: do not redo any of this. Rebuild from here.**
 
 - **Current package/claim:** none
+- **DONE (06:40Z): the coverage review is answered.** SWE2-AUDIT-SPEC finished
+  `ORACLE-REQ-AUDITSPEC-EXECCOV-REVIEW-1003` with ACCEPT-WITH-NARROWING at `701804391`: checker `FAILS 0`, all 893
+  scripted entries are real hooks, no sealed result modified, docstring finding upheld. Its three wording narrowings
+  (mutation per run, not per case; import thunks; stub-detection shape) are applied to the coverage README, with a
+  consumer-check record, in the same commit as this line. The seal was re-written and the checker still ends
+  `FAILS 0`. Incorporation into the dashboard's executable view is OPUS's (`AUTO-INCORP`), not ORACLE's.
+- **DONE (06:32Z): ASTRA's committed render-link runs sealed**, `51853f51d`. Requests
+  `ASTRA-REQ-ORACLE-SEAL-COMMITTED-RENDER-LINK-1003` (finish rev `49545`) and
+  `ASTRA-REQ-ORACLE-SEAL-RENDER-PATH-CONTROL-1003` (finish rev `49547`). Applier
+  `_experiments/evidence/receipts/render_link_receipts.py` (exp201-shaped, `check` `FAILS 0`; ids in
+  `render_link_receipts.ids.json`): PREP `r-2b2175e418c2fdef` (prepare.py, 15 cases), CTRL `r-81d89897cfbbfb59`
+  (control.py + prepare.py, 3 refusals), PATH `r-e51471d199e0e709` (launch.py + controller + producer, 2 cases,
+  synthetic, no FF12 credit). The invalid path run 01 is not sealed (negative control). This closes the follow-up
+  promised in the render-link addendum entry below. Do not re-seal: seal() is idempotent, but the requests are
+  closed.
 - **DONE (05:01Z): first-divergence design note** (user request relayed by FABLE; addendum
   `Database/Tools/work/FABLE/FFXII_PROJECT_IMPROVEMENT_ADDENDUM_2026-10-03.md` section 5, P2), published
   `67869ee22`: `_index/candidates/swe2oracle-design-first-divergence-1003/` (README, `first_divergence_probe.py`
@@ -110,11 +125,14 @@ A Claude session (Opus) operated SWE2-ORACLE from 02:10Z to 04:33Z on 2026-10-03
 - **Leftovers:** `_experiments/_cov_runs/` is sandbox scratch, ignored by its own `.gitignore`. The `NUL` files in
   `evidence/commit-callees-exec/`, `evidence/mt-twist-simd-exec/` and two other evidence dirs date from your 10-02
   debugging (17:33 local). They are untracked and were left alone.
-- **Next action:** answer `ORACLE-REQ-AUDITSPEC-EXECCOV-REVIEW-1003` when it lands, and seal ASTRA's render link
-  addendum receipts if ASTRA asks after committing its drivers. Then the docstring repair above,
-  then the surrogate residue and SD-7 residue reads (`00210320`, the PPFX `+0x38` holders) if OPUS routes them back.
+- **Next action (Devin):** the sound-request-fork-exec docstring repair. The review upheld the finding (code and
+  instrument right, docstring wrong). It touches a SEALED harness: edit only the docstring lines 18-22, never the
+  code, then re-run its `check.py` and confirm `result.json` reproduces byte-identically before publishing. The
+  owner is the EXP-105 suite's author, routed through SWE2-ORACLE. Optional and recommended by the reviewer before
+  new suites are added: extend the execcov shim to class an entry patched with a jump to an out-of-image stub as
+  `stubbed`. No current harness does this. Then the surrogate residue and SD-7 residue reads (`00210320`, the PPFX `+0x38` holders) if OPUS routes them back.
   Then continue the queue in `team.py current` order (empty at 04:33Z).
-- **Latest coherent commit:** `67869ee22` (first-divergence design note), after `76bf92900` (render link addendum
+- **Latest coherent commit:** the review-narrowing commit carrying this line, after `51853f51d` (render-link receipts), after `67869ee22` (first-divergence design note), after `76bf92900` (render link addendum
   record) and `b742fa6c9` (coverage record), followed by this inbox publish.
 
 ### Earlier: 2026-09-30, SD-107 / SD-7 / SD-62 (SWE2-ORACLE)

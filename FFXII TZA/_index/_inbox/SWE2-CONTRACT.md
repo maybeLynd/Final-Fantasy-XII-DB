@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=49359 epoch=4 queue_sha=6d9d9e97d9458a97 -->
-> generated 2026-10-03T05:22:22+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=49531 epoch=4 queue_sha=b7fef448aa6d1704 -->
+> generated 2026-10-03T06:29:00+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003, SWE2CONTRACT-PUB-RECON-DEPGRAPH-DESIGN-1003
-> READY addressed to you: none
-> READY pool: 0 | BLOCKED: 0
+> ACTIVE: SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003, SWE2CONTRACT-PUB-RECON-DEPGRAPH-GEN-1003
+> READY addressed to you: P2 OPUS-REQ-CONTRACT-L1-PROPOSED-EDITS-1003
+> READY pool: 1 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -82,19 +82,21 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-CONTRACT (fixed; not renamed).
-- **Claude stand-in for Devin, 2026-10-03 01:43Z-01:50Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus
+- **Claude stand-in for Devin, 2026-10-03 01:43Z-06:30Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus
   subagent ran this lane under board identity SWE2-CONTRACT, session `claude-standin-contract`). Devin: rebuild from
   this bullet; do not redo what it lists.
-  - **Current package/claim:** `SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003` (ACTIVE since board rev 49335; user task relayed
-    by FABLE 2026-10-03 ~04:50Z). The DD-RESIDUE claim is finished.
-  - **Stand-in, 2026-10-03 05:15Z: reconstruction dependency graph DESIGN NOTE** written for addendum §4 (P2, planning
-    aid, not a metric) at `_index/candidates/swe2contract-design-reconstruction-dependency-graph-1003/README.md`. It
-    covers: sources S1-S6 (edges.tsv/functions.tsv + CODEDOMAIN-OWNER-MAP, neighbour-dispositions.tsv labels,
-    field-access-index x types.tsv, scriptvm-dispatch.tsv, CONTRACT §3/§5/§6/§8, PKG dependencies); level-0/1 nodes;
-    the edge schema; the hard/sequencing rule per fact; why the level-0 SCC swallows 19 of 22 nodes; outputs; checks
-    C1-C6; five verified example edges E1-E5; non-goals. Published with this line, sha sent to FABLE. Next: an optional
-    minimal generator `recon_depgraph.py` + `test_recon_depgraph.py` (design §11), only if time allows before 06:45Z;
-    otherwise finish the task on the design sha.
+  - **Current package/claim:** none. The lane is parked; DD-RESIDUE and the design task SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003
+    (user task relayed by FABLE 2026-10-03 ~04:50Z) are both finished on their shas.
+  - **Stand-in, 2026-10-03 (05:15Z, resumed 06:25Z): reconstruction dependency graph (addendum §4, P2 planning aid,
+    not a metric).** DESIGN NOTE **PUBLISHED `fb2de5ab8`** (`_index/candidates/swe2contract-design-reconstruction-dependency-graph-1003/README.md`;
+    publish task `SWE2CONTRACT-PUB-RECON-DEPGRAPH-DESIGN-1003` DONE). The sha was sent to FABLE, plus a board note for
+    `FABLE-REQ-OPUS-FINISH-PACKAGES-ZIP-1003` (rev 49505).
+    Minimal generator `gfz-scripts/recon_depgraph.py` (S1-S4, level 0) + `test_recon_depgraph.py` (C1-C6 + 2, 8/8 OK) +
+    `level0-run-receipt.md` (largest SCC 21 nodes, so packages must come from level 1; 258 unresolved endpoints are
+    unowned far bodies labelled by CodeDomain family) are published with this line under
+    `SWE2CONTRACT-PUB-RECON-DEPGRAPH-GEN-1003`; then `SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003` is finished on both shas.
+    **Next increment (not started; free for any lane):** S5 (CONTRACT §3/§5/§6/§8) and S6 (PKG dependencies) for level-1
+    packages (design §5, §11).
   - **Done by the stand-in:**
     1. Cont. 7's snapshot was still uncommitted at takeover. **PUBLISHED `c7e2bb2a1`** under
        `SWE2CONTRACT-PUB-METHODS-SNAPSHOT-1003` (5 paths: `members/rtti-methods.tsv`, UQ-2 page + register row,
@@ -107,9 +109,10 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
        file and an AUDIT-LOG entry, and the claim was **finished** on the receipt, which routes the owner read of
        the 79 READY pages to OPUS.
   - **Exact next action:** none carried over. Take role-appropriate READY requests targeted at SWE2-CONTRACT, if any.
+    Optional, unclaimed: the dependency graph's level-1 increment (S5/S6) in the item above.
     Still routed to FABLE (not ours): `SWE2CONTRACT-NOTICE-FABLE-METHODS-TSV-SNAPSHOT-1002`.
-  - **Latest coherent commit:** the DD receipt publish named in the board finish of
-    `SWE2CONTRACT-PUB-DDRES-FINAL-1003` (its `committed sha:`).
+  - **Latest coherent commit:** the generator publish named in the board finish of
+    `SWE2CONTRACT-PUB-RECON-DEPGRAPH-GEN-1003` (its `committed sha:`). Before it: `fb2de5ab8` (design note), `e69188d39`.
 <!-- P22D-RESUME -->
 - **Session 2026-10-01 (PASS22-DEBT, FRONTIER-REQ-SWE2-CONTRACT-PASS22-DEBT, P2).** The routed 597-pair
   six-folder worklist (00/01/02/24/25/26) is fully dispositioned: fresh `audit_crossrefs.py` reports

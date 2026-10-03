@@ -84,7 +84,7 @@
   },
   {
    "fn": "005C6D90",
-   "text": "reads `s` = qword `[rcx+0x18]` and fills the record at `r8`: dword `+0` = 0x30, qword `+4` = 2, dword `+0xc` = 0, float `+0x30` = the result of the vtable slot `+0x20` of the object qword `[rcx+0x20]` (0.0 when that is null), word `+0x34` = the low 31 bits of dword `[s+8]`, word `+0x36` = the low 31 bits `k` of dword `[s+0x18]`, qword `+0x18` = qword `[s]`, dword `+0x10` = the word at that pointer, qword `+0x28` = qword `[s+0x20]` and dword `+0x20` = `k`*0x58 + 0xf rounded down to a multiple of 16; it returns 0x40",
+   "text": "reads `s` = qword `[rcx+0x18]` and fills the record at `r8`: dword `+0` = 0x30, qword `+4` = 2, dword `+0xc` = 0, float `+0x30` = the result of the vtable slot `+0x20` of the object qword `[rcx+0x20]` (0.0 when that is null), word `+0x34` = the low 16 bits of dword `[s+8]`, word `+0x36` = the low 16 bits of `k`, where `k` = the low 31 bits of dword `[s+0x18]`, qword `+0x18` = qword `[s]`, dword `+0x10` = the word at that pointer, qword `+0x28` = qword `[s+0x20]` and dword `+0x20` = `k`*0x58 + 0xf rounded down to a multiple of 16; it returns 0x40",
    "anchors": [
     [
      "005C6DC6",
@@ -195,6 +195,11 @@
   "005C4F30",
   "005C61A0"
  ],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "005C6D90",
+   "why": "SWE2-AUDIT-SPEC narrowing (auditspec-review-opus-animation-channel-binding-and-transform--ee-1003), incorporated verbatim"
+  }
+ ],
  "mode": "ee"
 }

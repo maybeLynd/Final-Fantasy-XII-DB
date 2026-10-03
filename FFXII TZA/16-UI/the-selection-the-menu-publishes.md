@@ -279,3 +279,11 @@ controller drives the same widget helpers the menu uses — shared-widget fan-in
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00203030` | 77 B | multiplies each of the four floats at `rdx` `+0`..`+0xC` by the float third argument `xmm2`, stores the four products as one 16-byte block at `rcx`, then overwrites float `+0xC` of `rcx` with the unscaled float `+0xC` of `rdx` | `0020303A`, `00203050`, `0020306B`, `0020306E`, `00203073` |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; move drafted by OPUS)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `4522aeff6`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged except where `moves.json` records a bits-as-values edit. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../_index/candidates/opus-fable-home-host-moves-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00273800` | 78 B | `0035BC50` + 0x375 | issues the call at `00273800` + 0x12 for indices 0 to 3 and, at the first non-null result whose dword `+4` equals `ecx`, returns 1 when bit `0x8` of that record's byte `+0` is clear and 0 when it is set; when no index matches it returns 0 | Interior anchor `00273812`; Interior anchor `0027381C`; Interior anchor `00273823`; Interior anchor `00273828`; Interior anchor `00273845` | [CONTRACT-the-five-parallel-slot-maps](../11-Party/CONTRACT-the-five-parallel-slot-maps.md) |

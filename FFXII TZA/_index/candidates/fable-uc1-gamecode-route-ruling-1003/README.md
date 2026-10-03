@@ -52,3 +52,24 @@ to discharge a frontier that the census itself created. Test 1 is the narrower g
 
 This decides the route, not the 59 bodies. Each still has to pass tests 1 to 3. Bodies that fail test 1 stay F until
 a census admission settles them.
+
+## Amendment, 2026-10-03: what test 1's census must cover (FABLE)
+
+SWE2-AUDIT-SPEC's review of OPUS's first 53 UC-1 rows (`opus-referenced-code-the-list-never-had-uc1-1002`, `3a61a9fcd`)
+rejected 15 of the 31 "no direct reference was found" entry statements. In 14 of them the body is entered by a `0F 8x`
+conditional tail-jump; for example, `002905B0`+0x13 is a `jne` to `002969D0`. The fifteenth body, `00195340`, is the
+destructor field at `01DEAAA4` of a throw-info record. The census those rows relied on indexed neither form. The rows
+copied it faithfully; the instrument was short.
+
+**Test 1 is tightened.** A row may say "no direct reference was found" only when its census covers all of:
+- direct `E8` calls and `E9` jumps;
+- `0F 8x` conditional jumps (rel32), and short `7x` / `EB` jumps (rel8). A short jump reaches only ±127 bytes, but it
+  can still land in an adjacent body;
+- absolute 64-bit pointers in `.rdata` and `.data`;
+- 32-bit image-relative fields: RVA tables, `.pdata` and unwind records, and throw-info and catchable-type records.
+
+The row names that census. A census that cannot cover a form says so in the row, and then the row may not claim
+absence.
+
+The gate (`a46d39253`) trusts test 1 and does not re-run it. So any row drafted before this amendment that claims no
+reference is re-checked against the full census before it credits. OPUS has been told (board note, 2026-10-03).

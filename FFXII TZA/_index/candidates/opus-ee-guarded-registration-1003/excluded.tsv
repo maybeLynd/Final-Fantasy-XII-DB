@@ -1,58 +1,58 @@
-# members the image refuses for this family's per-member form - no row; check verifies each is still refused
+# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for this family's per-member form (check verifies each is still refused)
 entry	reason
-005FCF20	no vtable store into the static object
-00617810	no vtable store into the static object
-00617A00	no vtable store into the static object
-00617E60	no vtable store into the static object
-006182D0	no vtable store into the static object
-00618390	no vtable store into the static object
-00634540	no vtable store into the static object
-00634830	no vtable store into the static object
+005FCF20	no RTTI-located vtable is stored
+00617810	no RTTI-located vtable is stored
+00617A00	no RTTI-located vtable is stored
+00617E60	no RTTI-located vtable is stored
+006182D0	no RTTI-located vtable is stored
+00618390	no RTTI-located vtable is stored
+00634540	no RTTI-located vtable is stored
+00634830	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
 006352A0	value 00D580B0 shared with 1 other member(s): no member-specific instruction
-00635470	no vtable store into the static object
+00635470	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
 006357E0	value 00D580B0 shared with 1 other member(s): no member-specific instruction
-00635980	no vtable store into the static object
-00635B80	no vtable store into the static object
-00676A70	no vtable store into the static object
-006784E0	no vtable store into the static object
-006788C0	no vtable store into the static object
-0067E6C0	no vtable store into the static object
-00693EC0	no vtable store into the static object
-00693F80	no vtable store into the static object
-00694120	no vtable store into the static object
-00694260	no vtable store into the static object
-006949A0	no vtable store into the static object
-00695490	no vtable store into the static object
-006955D0	no vtable store into the static object
-00695780	no vtable store into the static object
-00695840	no vtable store into the static object
-006959F0	no vtable store into the static object
-00695AB0	no vtable store into the static object
-00697320	no vtable store into the static object
-006976A0	no vtable store into the static object
-00697760	no vtable store into the static object
-00697910	no vtable store into the static object
-00697AC0	no vtable store into the static object
-00698180	no vtable store into the static object
-00698500	no vtable store into the static object
-006A9F10	no vtable store into the static object
-006AAA80	no vtable store into the static object
-006AB7E0	no vtable store into the static object
-006AD0A0	no vtable store into the static object
-006AD910	no vtable store into the static object
-006AFC20	no vtable store into the static object
-006B04B0	no vtable store into the static object
-006B41A0	no vtable store into the static object
-006B6410	no vtable store into the static object
-006BCA20	no vtable store into the static object
-006C3580	no vtable store into the static object
-006C36C0	no vtable store into the static object
-006D1580	no vtable store into the static object
-006D1810	no vtable store into the static object
-006D1C70	no vtable store into the static object
-006D1D30	no vtable store into the static object
-006D1EE0	no vtable store into the static object
-006D2110	no vtable store into the static object
-006D2250	no vtable store into the static object
-00795320	no vtable store into the static object
-00795590	no vtable store into the static object
+00635980	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00635B80	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00676A70	no RTTI-located vtable is stored
+006784E0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006788C0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+0067E6C0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00693EC0	no RTTI-located vtable is stored
+00693F80	no RTTI-located vtable is stored
+00694120	no RTTI-located vtable is stored
+00694260	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006949A0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00695490	no RTTI-located vtable is stored
+006955D0	no RTTI-located vtable is stored
+00695780	no RTTI-located vtable is stored
+00695840	no RTTI-located vtable is stored
+006959F0	no RTTI-located vtable is stored
+00695AB0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00697320	no RTTI-located vtable is stored
+006976A0	no RTTI-located vtable is stored
+00697760	no RTTI-located vtable is stored
+00697910	no RTTI-located vtable is stored
+00697AC0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00698180	no RTTI-located vtable is stored
+00698500	no RTTI-located vtable is stored
+006A9F10	no RTTI-located vtable is stored
+006AAA80	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006AB7E0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006AD0A0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006AD910	no RTTI-located vtable is stored
+006AFC20	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006B04B0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006B41A0	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+006B6410	no RTTI-located vtable is stored
+006BCA20	no RTTI-located vtable is stored
+006C3580	no RTTI-located vtable is stored
+006C36C0	no RTTI-located vtable is stored
+006D1580	no RTTI-located vtable is stored
+006D1810	no RTTI-located vtable is stored
+006D1C70	no RTTI-located vtable is stored
+006D1D30	no RTTI-located vtable is stored
+006D1EE0	no RTTI-located vtable is stored
+006D2110	no RTTI-located vtable is stored
+006D2250	no RTTI-located vtable is stored
+00795320	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match
+00795590	a vtable is stored, but into an offset inside a lea-loaded record or from a register other than rax, which the checker's store pattern does not match

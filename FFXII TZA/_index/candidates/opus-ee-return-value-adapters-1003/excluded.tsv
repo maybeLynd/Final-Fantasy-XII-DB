@@ -1,10 +1,6 @@
-# members the image refuses for this family's per-member form - no row; check verifies each is still refused
+# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for this family's per-member form (check verifies each is still refused)
 entry	reason
-005D3460	form (not exactly one direct call)
-005D46F0	form (not exactly one direct call)
 0062F0F0	reflected type not unique at slot 5 (['None', 'Phyre::PClassDescriptor'])
 0063C000	reflected type not unique at slot 5 (['None', 'Phyre::PBase'])
-0063EF20	form (not exactly one direct call)
-006AF570	form (not exactly one direct call)
 006B2950	reflected type not unique at slot 5 (['Phyre::PMatrix4', 'sce::Vectormath::Scalar::Aos::Matrix3', 'sce::Vectormath::Scalar::Aos::Matrix4'])
-006B2970	form (not exactly one direct call)
+006B2970	reflected type not unique at slot 5 (['sce::Vectormath::Scalar::Aos::Point3', 'sce::Vectormath::Scalar::Aos::Quat', 'sce::Vectormath::Scalar::Aos::Vector2'])

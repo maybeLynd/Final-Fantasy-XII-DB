@@ -1,0 +1,39 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01TiSPB1n4bzRPUs6xFapccb",
+ "report": "home-how-a-path-is-resolved-to-bytes.json",
+ "rows": [
+  {
+   "fn": "0059FD10",
+   "entered_from": "`0059FDA0` + 0x4",
+   "text": "returns 0 in `eax` when the call it makes returns -1 (32-bit compare) and the incoming `edx` otherwise: when qword `rcx+0x10` is non-null it calls `0059FD10` + 0x1A with that qword, `rdx` and 1; otherwise when qword `rcx+8` is not -1 it calls through the import pointer at `0059FD10` + 0x4B with that qword, `rdx`, 0 and 1; otherwise when qword `rcx+0x20` is greater than 0 (signed) it calls `0059FD10` + 0x72 with that qword, `rdx` and 1, and when it is 0 or less it returns 0 without a call",
+   "anchors": [
+    [
+     "0059FD2A",
+     "call"
+    ],
+    [
+     "0059FD49",
+     "cmp"
+    ],
+    [
+     "0059FD5B",
+     "call"
+    ],
+    [
+     "0059FD7A",
+     "jle"
+    ],
+    [
+     "0059FD90",
+     "cmovne"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

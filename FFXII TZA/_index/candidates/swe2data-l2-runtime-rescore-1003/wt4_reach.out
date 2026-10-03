@@ -1,0 +1,13 @@
+writers of 01EED060/01EED064:
+   00314092 in 00314020  mov dword ptr [rip + 0x1bd8fc8], eax
+   003140BF in 00314020  mov dword ptr [rip + 0x1bd8f9f], ebx
+   0031442B in 00314410  mov dword ptr [rip + 0x1bd8c2f], ebx
+   00314575 in 00314530  mov dword ptr [rip + 0x1bd8ae9], edx
+   0031467F in 003145E0  mov dword ptr [rip + 0x1bd89df], esi
+   00314974 in 00314970  mov dword ptr [rip + 0x1bd86e2], 0xffffffff
+   0031497E in 00314970  mov dword ptr [rip + 0x1bd86dc], 0xffffffff
+closure of 0017D280: 2 functions; writers reached: []
+   indirect calls inside the closure (not followed): 2
+closure of 0032FC30: 4278 functions; writers reached: ['003145E0']
+   path: 003145E0 <- 00314440 <- 00319F50 <- 002EB740 <- 003B8670 <- 0046EFD0 <- 003331A0 <- 003337B0 <- 003A74F0 <- 0024FE70 <- 002FD0C0 <- 0024FE30 <- 002EAEA0 <- 00319420 <- 00310780 <- 00300FC0 <- 0030E360 <- 0030FED0 <- 00323910 <- 0023AC80 <- 0023A570 <- 003266C0 <- 00233CF0 <- 0026CE60 <- 0032F1B0 <- 003304A0 <- 00330310 <- 0032FCA0 <- 0032FC30
+   indirect calls inside the closure (not followed): 1286

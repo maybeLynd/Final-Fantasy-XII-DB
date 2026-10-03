@@ -499,9 +499,9 @@ Edges are from `edges.tsv`; each sentence rests on the read body named.*
 
 ## Per-member rows: the getter each return-value adapter calls, and the type it is installed for (OPUS, 2026-10-03)
 
-The DF-4 family (402 members in the frontmatter; 394 get a row here) shares the 26-byte shape of section 2, stated there once and not repeated here: `mov rcx, rdx`, `mov rbx, r8`, one `call`, `mov [rbx], rax`. What differs from member to member is that one `call`: each adapter calls its own getter (no two rows share a target). Each row anchors that call, the member's distinguishing instruction, and states its target and the reflected type T. T is the template argument of every `PClassDescriptor*<T>` vtable that holds the adapter at slot 5 (section 8), read from that vtable's MSVC RTTI type descriptor in the certified image, and every such vtable must agree on T. [`fam_rows.py`](../../_index/candidates/opus-ee-return-value-adapters-1003/fam_rows.py) derives every row from the image and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-return-value-adapters-1003/rows.tsv). A member that is not exactly one direct call fails, and so does a member whose slot-5 vtables disagree on T or whose target or T differs from the row. Two controls are refused: a swapped target and a moved anchor. The getter is given as a bare address, not a citation, because the getters are explained, or not, on their own pages. Only the adapter's anchor counts here, per SWE2-AUDIT-SPEC's ruling `202e59a0a`. Eight DF-4 members get no row, and each is listed with its reason in [`excluded.tsv`](../../_index/candidates/opus-ee-return-value-adapters-1003/excluded.tsv): five are not a single direct call, and three sit in descriptor vtables that do not name one template type T (a non-template descriptor class beside the template one, or several Vectormath types sharing one body). The checker fails if any of them starts deriving. The 46 DF-1 members have no distinguishing instruction (their bodies are identical), so they get no rows.
+The DF-4 family (402 members in the frontmatter; 398 get a row here) shares the 26-byte shape of section 2, stated there once and not repeated here: `mov rcx, rdx`, `mov rbx, r8`, one `call`, `mov [rbx], rax`. What differs from member to member is that one `call`: each adapter calls its own getter (no two rows share a target). Each row anchors that call, the member's distinguishing instruction, and states its target and the reflected type T. T is the template argument of every `PClassDescriptor*<T>` vtable that holds the adapter at slot 5 (section 8), read from that vtable's MSVC RTTI type descriptor in the certified image, and every such vtable must agree on T. [`fam_rows.py`](../../_index/candidates/opus-ee-return-value-adapters-1003/fam_rows.py) derives every row from the image and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-return-value-adapters-1003/rows.tsv). A member that is not exactly one direct call fails, and so does a member whose slot-5 vtables disagree on T or whose target or T differs from the row. Two controls are refused: a swapped target and a moved anchor. The getter is given as a bare address, not a citation, because the getters are explained, or not, on their own pages. Only the adapter's anchor counts here, per SWE2-AUDIT-SPEC's ruling `202e59a0a`. Four DF-4 members get no row; they are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-return-value-adapters-1003/excluded.tsv). All four sit in descriptor vtables that do not name one template type T: `0062F0F0` and `0063C000` (a non-template descriptor class beside the template one), and `006B2950` and `006B2970` (several Vectormath types sharing one body). The checker fails if any of them starts deriving. The 46 DF-1 members have no distinguishing instruction (their bodies are identical), so they get no rows.
 
-### All 394 adapters (descriptor slot 5, OPUS)
+### All 398 adapters (descriptor slot 5, OPUS)
 
 | member | distinguishing instruction | getter called | reflected type T |
 |---|---|---|---|
@@ -596,12 +596,14 @@ The DF-4 family (402 members in the frontmatter; 394 get a row here) shares the 
 | 005D2EB0 | `005D2EBC` `call` | 005FC210 | Phyre::PRendering::PShaderVertexProgram |
 | 005D30E0 | `005D30EC` `call` | 005F9160 | Phyre::PRendering::PRenderTarget |
 | 005D3130 | `005D313C` `call` | 005FC6D0 | Phyre::PRendering::PTexture2D |
+| 005D3460 | `005D346C` `call` | 005F9880 | Phyre::PRendering::PShader |
 | 005D3920 | `005D392C` `call` | 005FC470 | Phyre::PRendering::PStructuredBuffer |
 | 005D3A10 | `005D3A1C` `call` | 005FA0D0 | Phyre::PRendering::PShaderParameterCaptureBufferLocation |
 | 005D3A30 | `005D3A3C` `call` | 005FA590 | Phyre::PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer |
 | 005D3C90 | `005D3C9C` `call` | 005FC340 | Phyre::PRendering::PShadowRenderer |
 | 005D4040 | `005D404C` `call` | 005F9AE0 | Phyre::PRendering::PShaderFragmentProgram |
 | 005D4420 | `005D442C` `call` | 005F8450 | Phyre::PRendering::PMaterial |
+| 005D46F0 | `005D46FC` `call` | 005FADE0 | Phyre::PRendering::PShaderParameterCaptureBufferTexture2D |
 | 005D4830 | `005D483C` `call` | 005F86B0 | Phyre::PRendering::PMeshInstance |
 | 005D48A0 | `005D48AC` `call` | 005F7E60 | Phyre::PRendering::PEffect |
 | 005D4C10 | `005D4C1C` `call` | 005FB2A0 | Phyre::PRendering::PShaderParameterCaptureConstantBuffer |
@@ -685,6 +687,7 @@ The DF-4 family (402 members in the frontmatter; 394 get a row here) shares the 
 | 0063EBB0 | `0063EBBC` `call` | 0064E480 | Phyre::PPostProcessing::PDepthOfField |
 | 0063ECE0 | `0063ECEC` `call` | 0064DC30 | Phyre::PPostProcessing::PAtmosphericsD3D11 |
 | 0063EDB0 | `0063EDBC` `call` | 00650230 | Phyre::PPostProcessing::PScreenSpaceReflectionBase |
+| 0063EF20 | `0063EF2C` `call` | 0064F9E0 | Phyre::PPostProcessing::PMotionBlurD3D11 |
 | 0063F0C0 | `0063F0CC` `call` | 0064F2C0 | Phyre::PPostProcessing::PMLAABase |
 | 0063F560 | `0063F56C` `call` | 0064E220 | Phyre::PPostProcessing::PDeferredLightingBase |
 | 0063F8E0 | `0063F8EC` `call` | 0064ECD0 | Phyre::PPostProcessing::PGlowBase |
@@ -813,6 +816,7 @@ The DF-4 family (402 members in the frontmatter; 394 get a row here) shares the 
 | 006ACD90 | `006ACD9C` `call` | 006AD370 | Phyre::PCameraOrthographic |
 | 006AD600 | `006AD60C` `call` | 006ADAF0 | Phyre::PCameraPerspective |
 | 006ADCA0 | `006ADCAC` `call` | 006AEE00 | Phyre::PInstancesComponent |
+| 006AF570 | `006AF57C` `call` | 006AECC0 | decorated `V?$PArray@VPTypedObject@Phyre@@$07@Phyre@@` |
 | 006AF9A0 | `006AF9AC` `call` | 006AFF70 | Phyre::PNameComponent |
 | 006B0240 | `006B024C` `call` | 006B0630 | Phyre::PRandom::PRandomGenerator |
 | 006B39C0 | `006B39CC` `call` | 006B3780 | Phyre::PMatrix4x3 |

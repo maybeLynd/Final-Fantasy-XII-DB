@@ -512,7 +512,7 @@ tr.arow{cursor:pointer}tr.arow:hover{background:var(--soft)}</style></head><body
 <div id="timer" class="mut">Next full refresh: UNKNOWN</div></div><div id="gen" class="mut"></div></header>
 <nav id="tabs"></nav><main id="main"></main><script>
 let cur="progress",lastStatus=null,openCat={};const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const LABEL={progress:"My Progress",glance:"At a glance",journey:"Player progression",depth:"Depth (progress.py)",activity:"Agent Activity",evidence:"Evidence & lessons"};
+const LABEL={progress:"My Progress",glance:"At a glance",journey:"Player progression",depth:"Depth (diagnostic)",residue:"Status residue",activity:"Agent Activity",evidence:"Evidence & lessons"};
 function dtip(d){if(!d)return "";const o=d.old?d.old.numerator+" / "+d.old.denominator:"-",n=d.new?d.new.numerator+" / "+d.new.denominator:"-";
  return "vs prior generation: "+o+" -> "+n+(d.why?" ("+d.why+")":"")}
 function dcol(m,v){const dir=(m.direction==="up"||m.direction==="down")?m.direction:"none";return v===0?"dz":(dir==="none"?"dmut":((dir==="up")===(v>0)?"dpos":"dneg"))}

@@ -147,9 +147,16 @@ def v_systems(inp, t):
         ver.setdefault(m.group(1), m.group(2) or "UNKNOWN")
     cats = json.load(open(inp["_tree"], encoding="utf-8"))
     bycat = collections.defaultdict(list)
+    rr = readiness_rows(inp)
     for r in subs:
-        bycat[r[1][:2]].append({"id": r[0], "label": "%s %s" % (r[0], r[2][:90]), "state": "UNMEASURED", "counts": {"scoped L2 verdict": ver.get(r[0], "UNKNOWN"), "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"},
-                                "links": [{"label": "page", "href": x} for x in r[4].split(";") if x][:2]})
+        lin = system_lineage(r, ver.get(r[0], "UNKNOWN"), r[0])
+        counts = {"scoped L2 verdict": ver.get(r[0], "UNKNOWN"), "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"}
+        counts.update({"lineage %d. %s" % (n + 1, s): "%s - %s" % (st, why) for n, (s, st, why) in enumerate(lin)})
+        counts.update(readiness_counts(rr, r[0]))
+        bycat[r[1][:2]].append({"id": r[0], "label": "%s %s" % (r[0], r[2][:90]), "state": "UNMEASURED", "counts": counts, "lineage": lin,
+                                "links": [{"label": "page", "href": x} for x in r[4].split(";") if x][:2]
+                                + [{"label": "contract", "href": x} for x in (r[5] if len(r) > 5 else "").split(";") if x][:2]
+                                + [{"label": "L2 verdict", "href": "../_index/L2-VERDICTS.md"}]})
     tree = []
     for c in cats:
         node = {"id": c["name"], "label": c["name"], "counts": {"documents": c["docs"], "subcategories": len(c["subs"])},
@@ -393,6 +400,13 @@ DEPTH_LABELS = {
 }
 
 
+DEPTH_TITLE = "Depth - progress.py's weighted diagnostic (not DB_GOAL)"
+DEPTH_DIAGNOSTIC = {"is": "a weighted diagnostic of research depth (progress.py OVERALL)",
+                    "is_not": "DB_GOAL, database readiness, or percent of the game reconstructed",
+                    "never_combined_with": ["My Progress", "final-audit passes", "parity", "board workload"],
+                    "completion_authority": "goal_gate.py (DB_GOAL), with My Progress / cumulative L2 / terminal certification"}
+
+
 def v_depth(inp, t):
     """The weighted depth score of gfz-scripts/progress.py (user request 2026-09-30: "add the percentages we're missing").
     Eight dimensions with fixed weights; OVERALL is their weighted mean. It differs from My Progress by design: a function
@@ -401,12 +415,12 @@ def v_depth(inp, t):
     try:
         d = json.load(open(inp["progress_py"], encoding="utf-8"))
     except (OSError, ValueError) as e:
-        return {"view": "depth", "title": "Depth - progress.py's weighted score", "status": "FAILED",
+        return {"view": "depth", "title": DEPTH_TITLE, "status": "FAILED",
                 "source": {"identity": "progress.py capture", "as_of": t, "instrument": "progress.py --json",
                            "limits": "the capture could not be read: %s" % type(e).__name__}, "measures": []}
     ms = []
     if d.get("overall") is not None:
-        ms.append(M("overall", "OVERALL - weighted depth score (progress.py)", round(d["overall"], 2), 100, "progress.py weights",
+        ms.append(M("overall", "OVERALL - weighted depth diagnostic (progress.py; not DB_GOAL)", round(d["overall"], 2), 100, "progress.py weights",
                     "progress.py --json", t, "the weighted mean of the dimensions below; weights are fixed in progress.py"))
     rows = []
     for x in d.get("dimensions", []):
@@ -417,11 +431,11 @@ def v_depth(inp, t):
                     "weight %.2f of the overall" % x["weight"]))
         rows.append([x["id"], "%.2f%%" % (100.0 * x["numerator"] / x["denominator"]), x["numerator"], x["denominator"], x["weight"]])
     st = "OK" if d.get("overall") is not None and not d.get("broken") else "PARTIAL"
-    return {"view": "depth", "title": "Depth - progress.py's weighted score", "status": st,
+    return {"view": "depth", "title": DEPTH_TITLE, "status": st,
             "source": {"identity": "progress.py %s" % sha12(inp["progress.py"]), "as_of": t, "instrument": "progress.py --json",
                        "limits": "a weighted composite: engine_explained (0.55) counts a function only when a page explains it, "
                                  "so it runs below My Progress, which accepts any function disposition; the two are not summed"},
-            "measures": ms,
+            "measures": ms, "diagnostic": DEPTH_DIAGNOSTIC,
             "rows": {"columns": ["dimension", "percent", "numerator", "denominator", "weight"], "data": rows}}
 
 
@@ -786,6 +800,292 @@ def v_fleet(inp, t):
                      [["(watchdog) " + k, "in flight", "", ""] for k in sorted(ws.get("inflight", {}))]}}
 
 
+def db_goal_block(gg):
+    """The DB_GOAL blocking chain, copied from goal_gate.py's own remaining / next / detail lines (never inferred from the
+    board), so scoped L2 at 100 % beside DB_GOAL NOT_MET explains itself."""
+    return {"verdict": gg.get("verdict"), "remaining": gg.get("remaining"), "next": gg.get("next"), "detail": list(gg.get("detail", [])),
+            "source": "goal_gate.py --json (this build)",
+            "note": "the governing whole-database gate; scoped L2 verdicts, Depth OVERALL, parity pilots and board load do not set it"}
+
+
+def provenance_block(inp, t, b, gg):
+    """Source / Freshness drawer (build half; the page adds the served generation id and its stale sources from the
+    server's meta): generated at, source commit, board revision, progress fingerprint, knowledge.sqlite check, gate identity."""
+    try:
+        commit = (open(inp["gitlog"], encoding="utf-8", errors="replace").readline().split("\t") + [""])[0] or None
+    except OSError:
+        commit = None
+    try:
+        snap = json.load(open(inp["progress_snapshot"], encoding="utf-8"))
+        fr = snap.get("freshness") or {}
+        prog = {"state": fr.get("state"), "fingerprint": (fr.get("fingerprint") or "")[:16] or None, "commit": snap.get("commit_id"),
+                "generated_at": snap.get("generated_at_utc")}
+    except (OSError, ValueError):
+        prog = {"state": "UNREADABLE"}
+    try:
+        kt = open(inp["knowledge_check"], encoding="utf-8", errors="replace").read().splitlines()
+        stale = [x.strip() for x in kt if x.strip().startswith("STALE")]
+        ex = next((x.split()[1] for x in reversed(kt) if x.startswith("exit ")), None)
+        know = {"state": "CURRENT" if ex == "0" and not stale else ("STALE" if stale else "UNKNOWN"), "exit": ex,
+                "stale": stale[:12], "built": kt[0] if kt else None}
+    except (OSError, KeyError):
+        know = {"state": "UNMEASURED"}
+    return {"generated_at": t, "source_commit": commit, "board_revision": b.get("revision"), "board_epoch": b.get("recovery_epoch"),
+            "progress": prog, "knowledge": know,
+            "goal_gate": "%s (goal_gate.py %s)" % (gg.get("verdict"), sha12(inp["goal_gate.py"])),
+            "lifecycle": sha12(inp["lifecycle"]) if os.path.isfile(inp.get("lifecycle") or "") else None}
+
+
+# Display labels for PROJECT-LIFECYCLE.json's phase ids (DASHBOARD-MEANINGS.md section 6). The phase itself is READ from the
+# lifecycle file; no view computes, infers or advances it (FABLE-REQ-FRONTIER-DASHBOARD-LIFECYCLE-1003).
+PHASE_LABELS = {"DATABASE": "DATABASE IN PROGRESS", "DATABASE_READY_AWAITING_AUTHORIZATION": "DATABASE READY - awaiting user authorization",
+                "RECONSTRUCTION": "RECONSTRUCTION AUTHORIZED", "INTEGRATION": "INTEGRATION", "PARITY_CERTIFICATION": "PARITY CERTIFICATION",
+                "HIGH_PARITY_RUNTIME": "HIGH-PARITY RUNTIME"}
+
+
+def lifecycle_block(inp, gg, ready):
+    """The lifecycle panel. The phase is PROJECT-LIFECYCLE.json's `current_primary_phase` and nothing else: the goal gate,
+    readiness, parity pilots and the board never move it (the file changes only with the charter, by user instruction).
+    The gate's verdict and the requirement readiness are shown BESIDE the phase, never folded into it."""
+    try:
+        L = json.load(open(inp["lifecycle"], encoding="utf-8"))
+        phases = [(x["id"], x["meaning"]) for x in L["phases"]]
+        cur = L["current_primary_phase"]
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        return {"status": "FAILED", "why": "PROJECT-LIFECYCLE.json could not be read: %s" % type(e).__name__,
+                "source": "_index/workflow/PROJECT-LIFECYCLE.json"}
+    ids = [i for i, _m in phases]
+    if cur not in ids:
+        return {"status": "FAILED", "why": "current_primary_phase %r is not one of the declared phases" % cur,
+                "source": "_index/workflow/PROJECT-LIFECYCLE.json %s" % sha12(inp["lifecycle"])}
+    k = ids.index(cur)
+    gate = gg.get("verdict")
+    notes = []
+    declared = cur
+    if k > 0 and gate != "MET":
+        # DASHBOARD-MEANINGS 6.1 rule 3: the file and the gate disagree - show both and the disagreement, never the later
+        # phase as current. The database phase is what DB_GOAL NOT_MET supports; the declared phase is reported beside it.
+        notes.append("DISAGREEMENT: the lifecycle file declares %s while DB_GOAL is %s; the later phase is not shown as current "
+                     "- the file or the gate must be corrected" % (PHASE_LABELS.get(cur, cur), gate))
+        cur, k = ids[0], 0
+    if cur == "DATABASE" and ready and gate == "MET":
+        notes.append("the database is ready by the gate; the phase moves only when the user authorizes it in the charter")
+    og = L.get("original_game_role", {})
+    return {"status": "OK",
+            "source": "_index/workflow/PROJECT-LIFECYCLE.json %s (contract %s; authority %s)" % (
+                sha12(inp["lifecycle"]), L.get("contract_version"), L.get("authority")),
+            "phase": cur, "phase_label": PHASE_LABELS.get(cur, cur), "phase_set_by": L.get("phase_set_by"),
+            "declared_phase": declared, "disagreement": declared != cur,
+            "phases": [[i, PHASE_LABELS.get(i, i), m, "current" if n == k else ("done" if n < k else "ahead")]
+                       for n, (i, m) in enumerate(phases)],
+            "transition_chain": L.get("transition_chain", []),
+            "user_authorization_required": bool(L.get("primary_reconstruction_requires_user_authorization", True)),
+            "automatic_transition": bool(L.get("automatic_transition_from_database_ready", False)),
+            "db_goal_verdict": gate, "requirements_ready": bool(ready),
+            "probes": L.get("bounded_probes_are"), "probe_label": "PROBE (database phase)",
+            "original_game": {"role": "evidence and oracle - static reference, original machine-code oracle and live oracle; "
+                                      "never the production backend of the reconstruction",
+                              "production_backend": bool(og.get("production_backend", False)),
+                              "not_reconstruction": og.get("not_reconstruction", [])},
+            "validation_chain": L.get("validation_chain", []), "on_disagreement": L.get("on_disagreement"),
+            "modding_first_class": bool(L.get("modding_first_class", True)), "notes": notes}
+
+
+# Recent meaningful changes (addendum section 2; DASHBOARD-MEANINGS 6.3). The classes come from FABLE's classifier
+# (recent_changes.py); this adapter never classifies. Knowledge and activity are separate axes and are never summed.
+RC_KNOWLEDGE = ("KNOWLEDGE", "CORRECTED", "RUNTIME", "TYPE", "PROBE", "PARITY")
+RC_ACTIVITY = ("TOOLING", "WORKFLOW", "GENERATED")
+
+
+def rc_axis(cls):
+    c = str(cls or "").upper()
+    if not c or c == "UNCLASSIFIED":
+        return "unclassified"
+    if any(k in c for k in RC_ACTIVITY):
+        return "activity"
+    if any(k in c for k in RC_KNOWLEDGE):
+        return "knowledge"
+    return None                                   # a class string the dashboard does not know: reported, never guessed
+
+
+def recent_changes_block(inp):
+    try:
+        d = json.load(open(inp["recent_changes"], encoding="utf-8"))
+        evs = list(d["events"])
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        return {"status": "UNMEASURED", "why": "classifier output absent or unreadable (%s); nothing is classified here" % type(e).__name__,
+                "source": "recent_changes.py --json (FABLE-CLASSIFIER-RECENT-CHANGES-1003)"}
+    unknown = sorted({str(e.get("class")) for e in evs if rc_axis(e.get("class")) is None})
+    wins = {}
+    for w, spec in (d.get("windows") or {}).items():
+        since = str((spec or {}).get("since") or "")
+        ws = [e for e in evs if str(e.get("at") or "") >= since]
+        cls = collections.Counter(str(e.get("class") or "UNCLASSIFIED") for e in ws)
+        ax = collections.Counter((e.get("axis") if e.get("axis") in ("knowledge", "activity", "unclassified") else rc_axis(e.get("class"))) or "unclassified"
+                                 for e in ws)
+        wins[w] = {"since": since, "knowledge": ax.get("knowledge", 0), "activity": ax.get("activity", 0),
+                   "unclassified": ax.get("unclassified", 0), "by_class": sorted(cls.items(), key=lambda kv: (-kv[1], kv[0]))}
+    know = [[e.get("at"), e.get("class"), e.get("title"), e.get("identity"), (e.get("evidence") or {}).get("kind"),
+             (e.get("evidence") or {}).get("ref"), e.get("commit")]
+            for e in sorted(evs, key=lambda e: str(e.get("at") or ""), reverse=True)
+            if ((e.get("axis") if e.get("axis") in ("knowledge", "activity", "unclassified") else rc_axis(e.get("class"))) == "knowledge")]
+    return {"status": "OK" if not unknown else "PARTIAL",
+            "source": "recent_changes.py %s (version %s, generated %s, commit %s)" % (
+                sha12(inp["recent_changes.py"]) if os.path.isfile(inp.get("recent_changes.py") or "") else "?", d.get("version"),
+                d.get("generated_at"), d.get("source_commit")),
+            "windows": wins, "knowledge_events": know[:60], "unknown_classes": unknown,
+            "rule": "knowledge and workflow activity are separate axes; activity diagnoses throughput and is never a knowledge or "
+                    "completion measure; an item with no canonical event is UNCLASSIFIED (DASHBOARD-MEANINGS 6.3)"}
+
+
+# Next highest-value work (addendum section 11): goal_gate.py's blocking chain plus board ownership. Buckets are rules
+# over existing board fields, in this order, first match wins; inside a bucket the board's own order (priority, ACTIVE
+# before READY, id). No score, no age term, no second scheduler.
+NEXT_BUCKETS = ["BLOCKS DB_GOAL NOW", "AWAITING INDEPENDENT REVIEW", "AWAITING INTEGRATION", "RUNTIME / LIVE AUTHORIZATION NEEDED",
+                "TOOLING BLOCKER", "HIGH-VALUE NONBLOCKING KNOWLEDGE", "POST-DB / DEFERRED"]
+
+
+def next_work_block(gg, tasks, open_ids):
+    open_ids = list(open_ids)
+    named = collections.defaultdict(list)
+    buckets = collections.OrderedDict((b, []) for b in NEXT_BUCKETS)
+    for tk in tasks:
+        st = tk.get("status")
+        if st not in ("ACTIVE", "READY", "BLOCKED"):
+            continue
+        text = " ".join(str(tk.get(k) or "") for k in ("id", "target", "scope", "question", "checkpoint"))
+        keys = [str(r.get("key") or "") for r in (tk.get("claimed_resources") or tk.get("resources") or [])]
+        rows = [q for q in open_ids if re.search(r"(?<![A-Z0-9-])%s(?![0-9])" % re.escape(q), text)]
+        who = tk.get("agent") if st == "ACTIVE" else tk.get("assigned_to") or tk.get("agent")
+        item = [tk["id"], st, tk.get("priority"), who or "", (tk.get("target") or "")[:140], rows]
+        if st == "BLOCKED":
+            b = "POST-DB / DEFERRED" if re.search(r"post-db|deferred|\bL3\b|after the database", text, re.I) else None
+            if b:
+                buckets[b].append(item)
+            continue
+        if rows:
+            b = "BLOCKS DB_GOAL NOW"
+            for q in rows:
+                named[q].append(tk["id"])
+        elif tk.get("reviews") or re.search(r"REVIEW|AUDITSPEC|AUDITSEM|AUDIT-SPEC|AUDIT-SEM", tk["id"]):
+            b = "AWAITING INDEPENDENT REVIEW"
+        elif "INCORP" in tk["id"]:
+            b = "AWAITING INTEGRATION"
+        elif tk.get("kind") == "runtime" or "@runtime" in keys:
+            b = "RUNTIME / LIVE AUTHORIZATION NEEDED"
+        elif tk.get("priority") in ("P0", "P1") and any(k.startswith("file:database/tools/") for k in keys):
+            b = "TOOLING BLOCKER"
+        elif re.search(r"post-db|deferred|\bL3\b", text, re.I):
+            b = "POST-DB / DEFERRED"
+        elif tk.get("priority") in ("P0", "P1"):
+            b = "HIGH-VALUE NONBLOCKING KNOWLEDGE"
+        else:
+            continue
+        buckets[b].append(item)
+    for b in buckets:
+        buckets[b].sort(key=lambda r: (PRIO.get(r[2], 9), r[1] != "ACTIVE", r[0]))
+    return {"gate": {"verdict": gg.get("verdict"), "remaining": gg.get("remaining"), "next": gg.get("next")},
+            "buckets": [[b, items[:25], len(items)] for b, items in buckets.items()],
+            "unowned_blockers": [q for q in open_ids if not named.get(q)],
+            "rule": "derived from goal_gate.py's blocking chain (open register rows) and board ownership; first matching bucket, "
+                    "board order inside it; age never raises priority; no second scheduler"}
+
+
+def system_lineage(r, verdict, l2_id):
+    """Evidence lineage drilldown for one registered system (addendum section 6), from important-subsystems.tsv and
+    L2-VERDICTS.md only. A step no current structure answers per system says so: not measured / unknown / not yet
+    available. Never blank, never implied required."""
+    pages = [x for x in (r[4] if len(r) > 4 else "").split(";") if x]
+    contracts = [x for x in (r[5] if len(r) > 5 else "").split(";") if x]
+    base = lambda x: x.rsplit("/", 1)[-1]
+    return [
+        ["system / mechanism", "present" if pages else "unknown", "%d primary page(s): %s (CURRENT AUTHORITY)" % (len(pages), ", ".join(base(x) for x in pages)) if pages else "no primary page registered"],
+        ["current claim", "present" if pages else "unknown", "the primary pages state the current claim (CURRENT AUTHORITY)" if pages else "no page to read"],
+        ["structured type / contract / state machine", "present" if contracts else "unknown",
+         ", ".join(base(x) for x in contracts) + " (CURRENT AUTHORITY)" if contracts else "no contract registered for this system in important-subsystems.tsv"],
+        ["static / native evidence", "not measured", "page-level evidence classes are not indexed per system yet; read the primary pages"],
+        ["isolated original-code evidence", "not measured", "receipts are indexed by run id, not by system (evidence_scan)"],
+        ["live evidence (if required)", "unknown", "whether this system needs live evidence is not recorded per system; runtime rows are in the register"],
+        ["review / acceptance", "present" if verdict not in (None, "UNKNOWN") else "unknown", "scoped L2 verdict %s (L2-VERDICTS.md row %s)" % (verdict or "UNKNOWN", l2_id)],
+        ["downstream consumers", "not measured", "no per-system consumer index; contract pages list their consumers"],
+        ["reconstruction probe / parity evidence", "not yet available", "PARITY-STATUS.md keys pilots by subsystem slug; no system-id map yet (PROBE (database phase) when present)"],
+    ]
+
+
+RESIDUE_CLASSES = [("LIVE-ROW", "with a live registered row"), ("PROCESS-ONLY", "with an accepted disposition / process-only residue"),
+                   ("UNMAPPED", "with no mapped current obligation")]
+
+
+def v_residue(inp, t):
+    """Production system status residue (user's FFXII_INDEPENDENT_CORPUS_AUDIT_FOLLOWUP_2026-10-03 section 9), from
+    FABLE's check_status_residue.py --json every build. Counts system pages by status word, then splits the PARTIAL /
+    REOPENED pages by what owns their residue. Not a completion score: it makes a PARTIAL page with unregistered open
+    semantics impossible to hide behind a nearly empty register."""
+    title = "Production system status residue"
+    try:
+        d = json.load(open(inp["status_residue"], encoding="utf-8"))
+        counts, pages = dict(d["counts"]), list(d["pages"])
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        return {"view": "residue", "title": title, "status": "UNMEASURED",
+                "source": {"identity": "check_status_residue.py capture", "as_of": t, "instrument": "check_status_residue.py --json",
+                           "limits": "the census is absent or unreadable (%s); nothing is shown as zero" % type(e).__name__}, "measures": []}
+    total = sum(counts.values())
+    inst = "check_status_residue.py %s --json" % (sha12(inp["check_status_residue.py"]) if os.path.isfile(inp.get("check_status_residue.py") or "") else "?")
+    ms = [M("st-" + k.lower(), "system pages %s" % k, counts.get(k, 0), total, "system documents (front matter system:)", inst, t,
+            "a status census, not a completion score") for k in ("AUDITED", "DOCUMENTED", "PARTIAL", "REOPENED") if k in counts or k in ("PARTIAL", "REOPENED")]
+    for k, v in sorted(counts.items()):
+        if k not in ("AUDITED", "DOCUMENTED", "PARTIAL", "REOPENED"):
+            ms.append(M("st-" + k.lower(), "system pages %s" % k, v, total, "system documents", inst, t, "a status census, not a completion score"))
+    pr = [x for x in pages if x.get("status") in ("PARTIAL", "REOPENED")]
+    known = {c for c, _l in RESIDUE_CLASSES}
+    for c, lab in RESIDUE_CLASSES:
+        ms.append(M("cls-" + c.lower(), "PARTIAL/REOPENED pages %s" % lab, sum(1 for x in pr if x.get("class") == c), len(pr),
+                    "PARTIAL/REOPENED system pages", inst, t, "classified by the register rows the status line names (check_questions.read_table)"))
+    odd = sorted({str(x.get("class")) for x in pr if x.get("class") not in known})
+    rows = [[x.get("page"), x.get("status"), x.get("class"), ", ".join("%s=%s" % kv for kv in (x.get("rows") or {}).items()), (x.get("line") or "")[:220]]
+            for x in sorted(pr, key=lambda x: ({"UNMAPPED": 0, "PROCESS-ONLY": 1, "LIVE-ROW": 2}.get(x.get("class"), 0), x.get("page") or ""))]
+    return {"view": "residue", "title": title, "status": "OK" if not odd else "PARTIAL",
+            "source": {"identity": "%s over %s" % (inst, d.get("db", "?")), "as_of": t, "instrument": inst,
+                       "limits": "generated from the pages' status lines and the register each build; adds no completion score"
+                                 + ("; unknown class(es) %s" % odd if odd else "")},
+            "measures": ms, "rows": {"columns": ["page", "status", "class", "named register rows", "status line"], "data": rows}}
+
+
+def readiness_rows(inp):
+    """SWE2-STRUCT's readiness_view.py TSV (HOOK.md, SWE2STRUCT-REQ-FRONTIER-READINESS-VIEW-HOOK-1003) as {system: row}, or
+    None when the capture is absent or unreadable - then every system says UNMEASURED, never 0. A view input, not a gate:
+    the columns are shown per system and never summed or turned into a percentage."""
+    try:
+        lines = [l.rstrip("\r\n") for l in open(inp["readiness"], encoding="utf-8") if not l.startswith("#")]
+        head = lines[0].split("\t")
+        return {c[0]: dict(zip(head, c)) for c in (l.split("\t") for l in lines[1:] if l)}
+    except (OSError, KeyError, IndexError, TypeError):
+        return None
+
+
+# Maturity labels this view may show in the DATABASE phase: SPECIFICATION READY only (FABLE, DASHBOARD-MEANINGS 6.4).
+READINESS_MATURITY_ALLOWED = ("SPECIFICATION READY", "", "UNMEASURED")
+
+
+def readiness_counts(rr, sid):
+    if rr is None:
+        return {"open obligations under this system": "UNMEASURED (readiness_view.py capture absent)"}
+    r = rr.get(sid)
+    if r is None:
+        return {"open obligations under this system": "UNMEASURED (system not in the readiness capture)"}
+    mat = r.get("maturity", "")
+    if mat not in READINESS_MATURITY_ALLOWED:          # the phase cap: a later label is never shown
+        mat = "WITHHELD (label %r is past SPECIFICATION READY in the DATABASE phase)" % mat
+    out = {"open obligations under this system": "%s live / %s closed register rows (readiness_view.py)" % (
+               r.get("register_live", "UNMEASURED"), r.get("register_closed", "UNMEASURED")),
+           "maturity (DASHBOARD-MEANINGS 6.4)": (mat or "no label") + ((" - withheld by " + r["maturity_withheld_by"]) if r.get("maturity_withheld_by") else ""),
+           "parity probes (PROBE, database phase)": r.get("parity_probes", "UNMEASURED")}
+    for k in ("types", "census_rows", "contradictions_unresolved", "residue_partial_pages", "residue_unmapped", "readiness_pending",
+              "unresolved_unregistered", "runtime_exp", "board_open"):
+        out["readiness: " + k] = r.get(k, "UNMEASURED")
+    return out
+
+
 def v_progress(inp, t):
     """My Progress (MP-2, FABLE review C1-C4 applied): requirement accounting from the captured facts, the category map, the board, DATA's reporter
     snapshot and the goal gate. Every headline number is also a validated measure; the drill-down rides alongside."""
@@ -848,6 +1148,8 @@ def v_progress(inp, t):
                          "scopes": sc, "families": {k: dict(v, label=R.FAMILIES[k]) for k, v in r["families"].items()},
                          "terminal": r["terminal"], "terminal_observed": r.get("terminal_observed"),
                          "reconstruction": {"state": "DATABASE READY - awaiting user authorization" if ready else "NOT READY", "why": r["why_not_ready"]},
+                         "lifecycle": lifecycle_block(inp, json.load(open(inp["goal_gate"], encoding="utf-8")), ready),
+                         "db_goal": db_goal_block(json.load(open(inp["goal_gate"], encoding="utf-8"))),
                          "categories": cats, "change": r["change"], "excluded": r["excluded"], "unplaced": r["unplaced"],
                          "duplicates_merged": r["duplicates_merged"]}}
 
@@ -947,8 +1249,8 @@ def v_glance(inp, t):
     fams = {x.split("=")[0]: int(x.split("=")[1]) for x in re.findall(r"\b(?:DA|DD|F|P)=\d+", " ".join(gg.get("detail", [])))}
     ms = [dict(pm[k], id=k) for k in ("union", "L1", "L2-specific", "L2-cumulative", "terminal") if k in pm]
     if pp.get("overall") is not None:
-        ms.append(M("overall", "progress.py OVERALL (weighted depth)", round(pp["overall"], 2), 100, "progress.py", "progress.py --json", t,
-                    "a weighted composite; see the Depth tab"))
+        ms.append(M("overall", "progress.py OVERALL - weighted depth diagnostic (not DB_GOAL)", round(pp["overall"], 2), 100, "progress.py", "progress.py --json", t,
+                    "a weighted diagnostic of research depth; never DB_GOAL, readiness or percent of reconstruction; see the Depth tab"))
     qo = sum(v.get("OPEN", 0) for _, v in sections); qp = sum(v.get("PARTIAL", 0) for _, v in sections)
     qtot = sum(sum(v.values()) for _, v in sections)
     ms.append(M("register-closed", "register rows neither OPEN nor PARTIAL", qtot - qo - qp, qtot, "OPEN-QUESTIONS.md", "check_questions.classify", t,
@@ -961,7 +1263,13 @@ def v_glance(inp, t):
             "glance": {"verdict": gg.get("verdict"), "remaining": gg.get("remaining"), "next": gg.get("next"), "detail": gg.get("detail", []),
                        "families_unmet": fams, "open": qo, "partial": qp, "sections": sections, "open_rows": open_rows[:60],
                        "lanes": lanes, "ladder": ladder[:40], "audits": audits[:30], "verdicts": dict(verdicts),
-                       "commits": commits[:40], "series": series}}
+                       "commits": commits[:40], "series": series,
+                       "db_goal": db_goal_block(gg), "provenance": provenance_block(inp, t, board, gg),
+                       "lifecycle": lifecycle_block(inp, gg, prog["progress"]["reconstruction"]["state"].startswith("DATABASE READY")),
+                       "recent_changes": recent_changes_block(inp),
+                       "next_work": next_work_block(gg, tasks, [r[0] for r in open_rows]),
+                       # dashboard blocks (each publish adds its line above this comment)
+                       }}
 
 
 # Player progression (user request 2026-09-30, modelled on the Wizardry local server's tab): the game's content as a
@@ -1490,7 +1798,7 @@ def journey_tree(c, fams):
     return root, entries, links
 
 
-ADAPTERS = {"progress": v_progress, "depth": v_depth, "glance": v_glance, "journey": v_journey, "journey_entries": v_journey_entries, "overview": v_overview, "systems": v_systems, "vbf": v_vbf, "executable": v_executable, "types": v_types,
+ADAPTERS = {"progress": v_progress, "residue": v_residue, "depth": v_depth, "glance": v_glance, "journey": v_journey, "journey_entries": v_journey_entries, "overview": v_overview, "systems": v_systems, "vbf": v_vbf, "executable": v_executable, "types": v_types,
             "evidence": v_evidence, "fleet": v_fleet}
 
 
@@ -1553,6 +1861,29 @@ def _build_once(a):
     category_tree(os.path.join(cap, "category_tree.json"))
     r = timed("progress_check", [sys.executable, os.path.join(DB, "_index", "progress", "progress_report.py"), "check", "--db", DB])
     open(os.path.join(cap, "progress_check.txt"), "w", encoding="utf-8").write((r.stdout + r.stderr).strip() + "\n")
+    r = timed("knowledge_check", [sys.executable, os.path.join(GS, "knowledge_db.py"), "check", "--out",
+                                  os.path.join(TOOLS, "work", "knowledge", "knowledge.sqlite")])
+    open(os.path.join(cap, "knowledge_check.txt"), "w", encoding="utf-8").write(
+        (r.stdout + r.stderr).strip() + "\nexit %d\n" % r.returncode)
+    try:
+        os.remove(os.path.join(cap, "recent_changes.json"))
+    except OSError:
+        pass
+    if os.path.isfile(os.path.join(GS, "recent_changes.py")):          # a failed run leaves no file: the section says UNMEASURED
+        timed("recent_changes", [sys.executable, os.path.join(GS, "recent_changes.py"), "--db", DB, "--json", os.path.join(cap, "recent_changes.json")])
+    try:
+        os.remove(os.path.join(cap, "status_residue.json"))
+    except OSError:
+        pass
+    if os.path.isfile(os.path.join(GS, "check_status_residue.py")):     # exit 1 = FAILS N (UNMAPPED pages); the JSON is still the census
+        timed("status_residue", [sys.executable, os.path.join(GS, "check_status_residue.py"), "--db", DB, "--json", os.path.join(cap, "status_residue.json")])
+    try:
+        os.remove(os.path.join(cap, "readiness.tsv"))
+    except OSError:
+        pass
+    if os.path.isfile(os.path.join(GS, "readiness_view.py")):          # a failed run leaves no file: every system reads UNMEASURED
+        timed("readiness_view", [sys.executable, os.path.join(GS, "readiness_view.py"), "--db", DB,
+                                 "--board", os.path.join(DB, "_index", "_inbox", "TEAM.json"), "--out", os.path.join(cap, "readiness.tsv")])
     open(os.path.join(cap, "instruments.json"), "w", encoding="utf-8").write(json.dumps(inst, indent=1))
     # the Evidence & lessons tab's verification checks: a curated set of read-only checkers (run_checks.CHECKS), in
     # parallel; a failed run leaves no record, and every card then reads UNMEASURED rather than a previous build's verdict
@@ -1673,6 +2004,20 @@ def declare_inputs(cap):
               "requirement_facts": {"path": os.path.join(cap, "requirement_facts.json")},
               "category_map": {"path": os.path.join(I, "workflow", "my-progress", "category-map.tsv")},
               "requirements.py": {"path": os.path.join(HERE, "requirements.py")},
+              # system readiness view (SWE2-STRUCT's readiness_view.py, HOOK.md): captured every build; a view input, not a gate
+              "readiness": {"path": os.path.join(cap, "readiness.tsv"), "required": False},
+              "readiness_view.py": {"path": os.path.join(GS, "readiness_view.py"), "required": False},
+              # Production system status residue (audit follow-up section 9): FABLE's check_status_residue.py --json
+              "status_residue": {"path": os.path.join(cap, "status_residue.json"), "required": False},
+              "check_status_residue.py": {"path": os.path.join(GS, "check_status_residue.py"), "required": False},
+              # Recent meaningful changes (addendum section 2): FABLE's classifier output, captured every build; volatile
+              "recent_changes": {"path": os.path.join(cap, "recent_changes.json"), "required": False, "volatile": True},
+              "recent_changes.py": {"path": os.path.join(GS, "recent_changes.py"), "required": False},
+              # the project lifecycle (FABLE, RECONSTRUCTION-CHARTER.md section 0's machine twin): strict, so a lifecycle
+              # change makes the served generation STALE; the panel reads the phase from it and from nothing else
+              "lifecycle": {"path": os.path.join(I, "workflow", "PROJECT-LIFECYCLE.json"), "required": False},
+              # knowledge_db.py check, every build (the Source/Freshness drawer); per-build text, so volatile
+              "knowledge_check": {"path": os.path.join(cap, "knowledge_check.txt"), "required": False, "volatile": True},
               "build_views.py": {"path": os.path.abspath(__file__)}, "uc1_band.py": {"path": os.path.abspath(uc1_band.__file__)}}
     for p in sorted(glob.glob(os.path.join(I, "completion-packages", "PKG-*.md"))):
         inputs["pkg:" + os.path.basename(p)] = {"path": p}
@@ -1681,7 +2026,7 @@ def declare_inputs(cap):
 
 # Each view's DEFINITION version: a delta is numeric only between two generations whose view carries the same version,
 # the same measure id, scope and denominator. Bump a view's version whenever its counting rule changes.
-DEFINITIONS = {"progress": None, "depth": "v1", "glance": "v1", "journey": "v3", "journey_entries": "v1", "overview": "v1", "systems": "v1", "vbf": "v2", "executable": "v4", "types": "v1",
+DEFINITIONS = {"progress": None, "residue": "v1", "depth": "v1", "glance": "v1", "journey": "v3", "journey_entries": "v1", "overview": "v1", "systems": "v1", "vbf": "v2", "executable": "v4", "types": "v1",
                "evidence": "v3", "fleet": "v1"}
 HISTORY_MEASURES = "measures-history.jsonl"
 # Which way is progress, per measure (FABLE-REQ-OPUS-DELTA-COLOUR-DIRECTION): "up" (a rise is progress), "down" (a rise
@@ -1739,6 +2084,10 @@ DIRECTIONS = {
     },
     'vbf': {
         'files': 'none', 'bytes': 'none', 'extensions': 'none', 'listing-drift': 'down', 'formats-ext': 'up', 'formats-members': 'up',
+    },
+    'residue': {
+        'st-audited': 'up', 'st-documented': 'none', 'st-partial': 'down', 'st-reopened': 'down',
+        'cls-live-row': 'none', 'cls-process-only': 'none', 'cls-unmapped': 'down',
     },
     'fleet': {
         'active': 'none',

@@ -1,3 +1,5 @@
 members 853, committed rows 803, declared exclusions 50
-control swapped-value refused, control moved-anchor refused
+control swapped-value: refused (2 failure(s) from the comparison)
+control moved-anchor: refused (1 failure(s) from the comparison)
+known answer 008AA000: anchor 008AA000 references 02CB0A40 in its raw bytes = committed value
 FAILS 0

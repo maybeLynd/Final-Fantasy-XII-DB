@@ -572,3 +572,63 @@ Interior anchor `001A6A67` (function `001A6A20`).
 `001BCE30` (372 B) is an ordered `eastl::list` lower-bound the render object's `001BD840` calls: it walks the `[rcx+0x18]` node chain comparing `qword[node+0x20]` against `*rdx` (`cmp`/`cmov` lower-bound step), attaches the `008F3CC0` `\"EASTL list\"` allocator via `001EDF00` when no node owns the key, then splices a new node through `001BC8C0`/`001BD1B0` - the ordered-key insert-or-find the EASTL families share.
 
 Interior anchor `001BCEA2` (function `001BCE30`).
+
+## Per-member rows: the static string object each EASTL basic_string<char> initialiser builds (OPUS, 2026-10-03)
+
+The family `EASTL basic_string<char> static initialisers` (frontmatter: 51 members; 51 get a row here) shares one form, not repeated per row: it builds a named allocator with `001EDF00` (twice: a stack temporary, then the allocator at `S+0x18`), zeroes the static string object S (qwords `+0`, `+8` and `+0x10`), and copies a literal into it: for a length above 1 it allocates through the allocator's slot `+0x10` and stores begin, end and capacity at `S+0`, `S+8` and `S+0x10`, otherwise it points S at the empty-string sentinel `02EBA2E0`; it then tail-jumps to `00808B90` with its teardown (the atexit registration). All 51 make exactly these external calls. What differs from member to member is S: no two members initialise the same object. Each row anchors the member's `movdqu` that zeroes S (its distinguishing instruction) and states S and the literal it copies (loaded with `lea rsi`; several members copy the same text into different objects). All are read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-eastl-string-initialisers-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-eastl-string-initialisers-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-eastl-string-initialisers-1003/excluded.tsv).
+
+### All 51 initialisers (OPUS)
+
+| member | distinguishing instruction | static string object S | literal copied into it |
+|---|---|---|---|
+| 0015CE70 | `0015CEA3` `movdqu` | 01F83230 | `"\b" at 009047AC` |
+| 0015CF60 | `0015CF93` `movdqu` | 01F83150 | `"\u" at 009047C0` |
+| 0015D050 | `0015D083` `movdqu` | 01F831D0 | `"\r" at 009047B8` |
+| 0015D140 | `0015D173` `movdqu` | 01F830F0 | `"0123456789ABCDEFabcdef" at 00904788` |
+| 0015D340 | `0015D373` `movdqu` | 01F83190 | `"false" at 008FCD98` |
+| 0015D430 | `0015D463` `movdqu` | 01F831B0 | `"\f" at 009047B0` |
+| 0015D520 | `0015D553` `movdqu` | 01F83090 | `"\n" at 009047B4` |
+| 0015D610 | `0015D643` `movdqu` | 01F830D0 | `"null" at 00904780` |
+| 0015D700 | `0015D733` `movdqu` | 01F83210 | `"\"" at 009047A0` |
+| 0015D7F0 | `0015D823` `movdqu` | 01F83110 | `"\\" at 009047A4` |
+| 0015D8E0 | `0015D913` `movdqu` | 01F83170 | `"\/" at 009047A8` |
+| 0015D9D0 | `0015DA03` `movdqu` | 01F830B0 | `"\t" at 009047BC` |
+| 0015DAC0 | `0015DAF3` `movdqu` | 01F831F0 | `"true" at 008FCDA0` |
+| 0015DD30 | `0015DD63` `movdqu` | 01FD3DD8 | `"\b" at 009047AC` |
+| 0015DE20 | `0015DE53` `movdqu` | 01FD3CF8 | `"\u" at 009047C0` |
+| 0015DF10 | `0015DF43` `movdqu` | 01FD3D78 | `"\r" at 009047B8` |
+| 0015E000 | `0015E033` `movdqu` | 01FD3CB8 | `"0123456789ABCDEFabcdef" at 00904788` |
+| 0015E0F0 | `0015E123` `movdqu` | 01FD3D38 | `"false" at 008FCD98` |
+| 0015E1E0 | `0015E213` `movdqu` | 01FD3D58 | `"\f" at 009047B0` |
+| 0015E2D0 | `0015E303` `movdqu` | 01FD3C58 | `"\n" at 009047B4` |
+| 0015E3C0 | `0015E3F3` `movdqu` | 01FD3C98 | `"null" at 00904780` |
+| 0015E4B0 | `0015E4E3` `movdqu` | 01FD3DB8 | `"\"" at 009047A0` |
+| 0015E5A0 | `0015E5D3` `movdqu` | 01FD3CD8 | `"\\" at 009047A4` |
+| 0015E690 | `0015E6C3` `movdqu` | 01FD3D18 | `"\/" at 009047A8` |
+| 0015E780 | `0015E7B3` `movdqu` | 01FD3C78 | `"\t" at 009047BC` |
+| 0015E870 | `0015E8A3` `movdqu` | 01FD3D98 | `"true" at 008FCDA0` |
+| 0015E960 | `0015E993` `movdqu` | 01FD3F78 | `"\b" at 009047AC` |
+| 0015EA50 | `0015EA83` `movdqu` | 01FD3E98 | `"\u" at 009047C0` |
+| 0015EB40 | `0015EB73` `movdqu` | 01FD3F18 | `"\r" at 009047B8` |
+| 0015EC30 | `0015EC63` `movdqu` | 01FD3E58 | `"0123456789ABCDEFabcdef" at 00904788` |
+| 0015ED20 | `0015ED53` `movdqu` | 01FD3ED8 | `"false" at 008FCD98` |
+| 0015EE10 | `0015EE43` `movdqu` | 01FD3EF8 | `"\f" at 009047B0` |
+| 0015EF00 | `0015EF33` `movdqu` | 01FD3DF8 | `"\n" at 009047B4` |
+| 0015EFF0 | `0015F023` `movdqu` | 01FD3E38 | `"null" at 00904780` |
+| 0015F0E0 | `0015F113` `movdqu` | 01FD3F58 | `"\"" at 009047A0` |
+| 0015F1D0 | `0015F203` `movdqu` | 01FD3E78 | `"\\" at 009047A4` |
+| 0015F2C0 | `0015F2F3` `movdqu` | 01FD3EB8 | `"\/" at 009047A8` |
+| 0015F3B0 | `0015F3E3` `movdqu` | 01FD3E18 | `"\t" at 009047BC` |
+| 0015F4A0 | `0015F4D3` `movdqu` | 01FD3F38 | `"true" at 008FCDA0` |
+| 0015F590 | `0015F5C3` `movdqu` | 01FD4118 | `"\b" at 009047AC` |
+| 0015F680 | `0015F6B3` `movdqu` | 01FD4038 | `"\u" at 009047C0` |
+| 0015F770 | `0015F7A3` `movdqu` | 01FD40B8 | `"\r" at 009047B8` |
+| 0015F860 | `0015F893` `movdqu` | 01FD3FF8 | `"0123456789ABCDEFabcdef" at 00904788` |
+| 0015F950 | `0015F983` `movdqu` | 01FD4078 | `"false" at 008FCD98` |
+| 0015FA40 | `0015FA73` `movdqu` | 01FD4098 | `"\f" at 009047B0` |
+| 0015FB30 | `0015FB63` `movdqu` | 01FD3F98 | `"\n" at 009047B4` |
+| 0015FC20 | `0015FC53` `movdqu` | 01FD3FD8 | `"null" at 00904780` |
+| 0015FD10 | `0015FD43` `movdqu` | 01FD40F8 | `"\"" at 009047A0` |
+| 0015FE00 | `0015FE33` `movdqu` | 01FD4018 | `"\\" at 009047A4` |
+| 0015FEF0 | `0015FF23` `movdqu` | 01FD4058 | `"\/" at 009047A8` |
+| 001600D0 | `00160103` `movdqu` | 01FD40D8 | `"true" at 008FCDA0` |

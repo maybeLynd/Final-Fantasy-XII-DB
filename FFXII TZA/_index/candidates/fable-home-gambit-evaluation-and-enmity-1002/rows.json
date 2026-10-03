@@ -3,7 +3,19 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_01G1D6BV8reSc8hRtefJLZec",
  "report": "home-gambit-evaluation-and-enmity.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003A7950",
+   "was": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, stores 0 to that qword and decrements dword `[t]`; returns `rcx+2` on both paths",
+   "now": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, then, re-reading `t` from `02EBEFA8` for each access, stores 0 to qword `t+8+k*8` and decrements dword `[t]`; returns `rcx+2` on both paths",
+   "why": "t is re-read from the global after the two calls (and again before the decrement), not kept across them"
+  }
+ ],
+ "moved": [
   {
    "fn": "003A7950",
    "entered_from": "`003ED8A0` + 0x135",
@@ -29,7 +41,12 @@
      "003A79A7",
      "dec"
     ]
-   ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md"
   },
   {
    "fn": "003A7A50",
@@ -56,7 +73,12 @@
      "003A7A8C",
      "lea"
     ]
-   ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md"
   },
   {
    "fn": "003A7AA0",
@@ -79,7 +101,12 @@
      "003A7ACB",
      "lea"
     ]
-   ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md"
   },
   {
    "fn": "003A92B0",
@@ -94,18 +121,12 @@
      "003A92BE",
      "lea"
     ]
-   ]
-  }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": [
-  {
-   "fn": "003A7950",
-   "was": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, stores 0 to that qword and decrements dword `[t]`; returns `rcx+2` on both paths",
-   "now": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, then, re-reading `t` from `02EBEFA8` for each access, stores 0 to qword `t+8+k*8` and decrements dword `[t]`; returns `rcx+2` on both paths",
-   "why": "t is re-read from the global after the two calls (and again before the decrement), not kept across them"
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-gambit-evaluation-and-enmity-1002/REVIEW.md"
   }
  ]
 }
