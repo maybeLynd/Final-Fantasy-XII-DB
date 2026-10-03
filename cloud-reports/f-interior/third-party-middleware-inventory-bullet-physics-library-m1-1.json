@@ -1,0 +1,561 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "session": "session_013rwnEBVBjHYrPM3ikBMija",
+ "rows": [
+  {
+   "fn": "00830760",
+   "text": "calls `[vtable+8]`(`rcx`, `rdx`, sixth argument, seventh argument) at `00830760`+0x6B, then adds each component of the float3 at `r8` times the fifth (float) argument to the seventh-argument float3 when it is positive and to the sixth-argument float3 otherwise; multiplies `[vtable+0x18]`(`rcx`) (call at +0x113) by the call at +0x11C on the squared length of the float3 at `r9` and by the fifth argument, writes both float3s back with a zero fourth float, subtracts that product from each of the three sixth-argument floats and adds it to each of the seventh-argument floats",
+   "anchors": [
+    [
+     "008307CB",
+     "call"
+    ],
+    [
+     "0083081C",
+     "addss"
+    ],
+    [
+     "00830873",
+     "call"
+    ],
+    [
+     "00830889",
+     "mulss"
+    ],
+    [
+     "0083094F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00830970",
+   "text": "calls `[vtable+0x10]`(`rcx`, a stack float3, a stack float) at `00830970`+0x11 and returns the call at +0x3A on the float3's squared length plus that float",
+   "anchors": [
+    [
+     "00830981",
+     "call"
+    ],
+    [
+     "00830996",
+     "mulss"
+    ],
+    [
+     "008309AA",
+     "call"
+    ],
+    [
+     "008309B5",
+     "addss"
+    ]
+   ]
+  },
+  {
+   "fn": "008309D0",
+   "text": "builds an identity transform on the stack (rows `008C5F80`, `008C5F90`, `008C5FB0` and a zero row), calls `[vtable+8]`(`rcx`, it, stack min, stack max) at `008309D0`+0x73, stores 0.5 (`01CEBB70`) times the call at +0xBE on the squared length of max - min to the float at `r8`, and stores 0.5 x (min + max) with a zero fourth float as 16 bytes at `rdx`; the frame is guarded by the cookie at `01F44830` (check call at +0x126)",
+   "anchors": [
+    [
+     "00830A43",
+     "call"
+    ],
+    [
+     "00830A8E",
+     "call"
+    ],
+    [
+     "00830AC1",
+     "movss"
+    ],
+    [
+     "00830AE7",
+     "movdqa"
+    ],
+    [
+     "00830AF6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00830B20",
+   "text": "returns `[vtable+0x18]`(`rcx`) (call at `00830B20`+0xF) times `xmm1`",
+   "anchors": [
+    [
+     "00830B2C",
+     "movaps"
+    ],
+    [
+     "00830B2F",
+     "call"
+    ],
+    [
+     "00830B32",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "00830B40",
+   "text": "calls `[r8 vtable+0x48]`(`r8`, `rcx`) at `00830B40`+0x26, passes that result to `[r8 vtable+0x30]`(`r8`, it) (+0x35) and stores what it returns at qword `rdx+0`, calls `[r8 vtable+0x58]`(`r8`, first result) (+0x4A) when that stored value is non-null, copies dword `rcx+8` to dword `rdx+8`, and returns `01CCD380` \"btCollisionShapeData\"; consistent with btCollisionShape::serialize in Bullet (the returned struct name)",
+   "anchors": [
+    [
+     "00830B66",
+     "call"
+    ],
+    [
+     "00830B79",
+     "mov"
+    ],
+    [
+     "00830B8A",
+     "call"
+    ],
+    [
+     "00830BA0",
+     "mov"
+    ],
+    [
+     "00830BA3",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00830BB0",
+   "text": "calls `[vtable+0x58]`(`rcx`) (`00830BB0`+0x18), then `[rdx vtable+0x18]`(`rdx`, that size sign-extended, 1) (+0x2A), then `[vtable+0x60]`(`rcx`, qword `+8` of the returned record, `rdx`) (+0x3E), and finally `[rdx vtable+0x20]`(`rdx`, the record, that result, 0x50414853 (the bytes 'SHAP'), `rcx`) (+0x59)",
+   "anchors": [
+    [
+     "00830BC8",
+     "call"
+    ],
+    [
+     "00830BDA",
+     "call"
+    ],
+    [
+     "00830BEE",
+     "call"
+    ],
+    [
+     "00830BF5",
+     "mov"
+    ],
+    [
+     "00830C09",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00830C20",
+   "text": "stores `01CCD440` at qword `rcx+0`, 0x23 at dword `+8` and 0 at qword `+0x10`, and returns `rcx`",
+   "anchors": [
+    [
+     "00830C27",
+     "mov"
+    ],
+    [
+     "00830C2E",
+     "mov"
+    ],
+    [
+     "00830C34",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00830C50",
+   "text": "stores `01CCD3C8` at qword `rcx+0` and, when bit 0 of `dl` is set, makes the call at `00830C50`+0x1D with (`rcx`, 0x18); returns `rcx`",
+   "anchors": [
+    [
+     "00830C60",
+     "mov"
+    ],
+    [
+     "00830C63",
+     "test"
+    ],
+    [
+     "00830C6D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00830C80",
+   "text": "stores `01CCD3C8` at qword `rcx+0` and, when bit 0 of `dl` is set, makes the call at `00830C80`+0x33 with (`rcx`, 0x20) if bit 2 is also set, else the call at +0x26 with `rcx`; returns `rcx`",
+   "anchors": [
+    [
+     "00830C99",
+     "mov"
+    ],
+    [
+     "00830C9C",
+     "test"
+    ],
+    [
+     "00830CA1",
+     "test"
+    ],
+    [
+     "00830CA6",
+     "call"
+    ],
+    [
+     "00830CB3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00830CD0",
+   "text": "scales the float3 at `rdx` by the float3 at the fifth argument, scans the `r9d` 16-byte points at `r8` (four per step while at least four remain, then one by one) for the largest dot product with it, starting from the bound at `01CCD4E4` (raw `0xDD5E0B6B`) and index -1 and replacing only on a strictly greater value, then writes that point's x, y, z times the fifth-argument float3 to `rcx` with dword `+0xc` 0 and returns `rcx`",
+   "anchors": [
+    [
+     "00830CDE",
+     "movss"
+    ],
+    [
+     "00830D70",
+     "comiss"
+    ],
+    [
+     "00830E42",
+     "comiss"
+    ],
+    [
+     "00830E6B",
+     "mulss"
+    ],
+    [
+     "00830E81",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00830F20",
+   "text": "from the float3s A at `rcx+0x50` and B at `rcx+0x60` takes half-extents 0.5 (`01CEBB70`) x (B - A) plus the fifth (float) argument and centre 0.5 x (A + B), maps the centre through the 3x3 rows at `rdx+0`, `+0x10`, `+0x20` plus the float3 at `rdx+0x30`, takes the extents as the absolute row values (mask `01CEBD80`) times the half-extents, and stores centre minus extents as 16 bytes at `r8` and centre plus extents as 16 bytes at `r9`, both with a zero fourth float",
+   "anchors": [
+    [
+     "00830F6F",
+     "subss"
+    ],
+    [
+     "00831024",
+     "andps"
+    ],
+    [
+     "008310F0",
+     "addss"
+    ],
+    [
+     "00831215",
+     "movdqa"
+    ],
+    [
+     "0083121A",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00831230",
+   "text": "copies the 16 bytes at `r8` and, when their squared x, y, z length is below `01CCD4E0` (raw `0x28800000`), replaces them with (-1, -1, -1, 0) from `00D7B290`; scales the vector by 1.0 (`01CEBBA8`) over the call at `00831230`+0x9D on its squared length, multiplies that unit vector by the float the call at +0xD1 returns for `rcx`, adds the float3 returned by `00831380`(rcx, stack out, unit vector) and stores the sum to `rdx` with dword `+0xc` 0, returning `rdx`",
+   "anchors": [
+    [
+     "0083128E",
+     "comiss"
+    ],
+    [
+     "008312DD",
+     "divss"
+    ],
+    [
+     "00831301",
+     "call"
+    ],
+    [
+     "00831333",
+     "call"
+    ],
+    [
+     "00831351",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00831380",
+   "text": "switches on dword `rcx+8` (0 to 0xd, through a table) and returns `rdx`; the arms: zero the 16 bytes at `rdx`; store the float3 at `rcx+0x30` with each component negated where `[r8]`'s is negative; store whichever 16-byte vertex at `rcx+0x50`, `+0x60` or `+0x70` has the largest dot product with `[r8]`; with axis k = dword `rcx+0x50`, store `rcx+0x30`[k] signed by `[r8]`'s k component on axis k and the other two components of `[r8]` times the lower other half-extent over their length (call at `00831380`+0x21B; that half-extent and 0 when the length is 0); normalize `[r8]` ((1, 0, 0) below 0.0001 `01CEBB60`) and keep, of the points ±`rcx+0x30`[k] on axis k each plus the unit vector times `rcx+0x30`[(k+2) mod 3] times the float3 `rcx+0x20` minus the unit vector times float `rcx+0x40`, the one with the larger dot product (start `01CCD4E4`); call `00830CD0`(rdx, r8, qword `+0x80`, dword `+0x88`, `rcx+0x20`) or `00830CD0`(rdx, r8, qword `+0x90`, dword `+0x84`, `rcx+0x20`); float3 stores carry a zero dword `+0xc`; above 0xd it calls `[vtable+0x78]`(rcx, rdx, r8) at +0x5CC",
+   "anchors": [
+    [
+     "008313D4",
+     "jmp"
+    ],
+    [
+     "008314C9",
+     "movaps"
+    ],
+    [
+     "0083159B",
+     "call"
+    ],
+    [
+     "0083170A",
+     "comiss"
+    ],
+    [
+     "0083194C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008319D0",
+   "text": "takes m = `[vtable+0x50]`(`rcx`) (call at `008319D0`+0x3A), then for each axis i of 0-2: maps the unit vector +e_i through the transpose of the 3x3 rows at `rdx`, calls `[vtable+0x70]`(rcx, stack out, it) at +0xF6, maps the returned point by the rows plus the float3 at `rdx+0x30` and stores its i component plus m to float i at `r9`; then does the same for -e_i (call at +0x222) and stores the i component minus m to float i at `r8`",
+   "anchors": [
+    [
+     "00831A0A",
+     "call"
+    ],
+    [
+     "00831AC6",
+     "call"
+    ],
+    [
+     "00831B75",
+     "movss"
+    ],
+    [
+     "00831BF2",
+     "call"
+    ],
+    [
+     "00831C8B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00831CD0",
+   "text": "stores the absolute values of the three floats at `rdx` (mask `01CEBD80`) with a zero fourth float as 16 bytes at `rcx+0x20`",
+   "anchors": [
+    [
+     "00831CF0",
+     "andps"
+    ],
+    [
+     "00831D12",
+     "movss"
+    ],
+    [
+     "00831D26",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00831D30",
+   "text": "makes the call at `00831D30`+0x9 with `rcx`, stores `01CCD620` at qword `rcx+0`, 1.0 (`0x3f800000`) at dwords `+0x50`, `+0x54` and `+0x58` (the last as a qword store that zeroes `+0x5c`), -1.0 (`0xbf800000`) at dwords `+0x60`, `+0x64` and `+0x68`, 0 at dword `+0x6c` and byte `+0x70`, and returns `rcx`",
+   "anchors": [
+    [
+     "00831D39",
+     "call"
+    ],
+    [
+     "00831D45",
+     "mov"
+    ],
+    [
+     "00831D58",
+     "mov"
+    ],
+    [
+     "00831D63",
+     "mov"
+    ],
+    [
+     "00831D78",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00831E80",
+   "text": "when `r9d` is positive, stores the raw `0xdd5e0b6b` at dword `+0xc` of each of the `r9d` 16-byte records at `r8`, then for each 16-byte vector at `rdx` loops i from 0 while i is below `[vtable+0xa0]`(`rcx`) (calls at `00831E80`+0x68 and +0xCD), fetches point i through `[vtable+0xb8]`(rcx, i, stack) (+0x7F) and, when its dot product with the vector exceeds the record's dword `+0xc`, copies the point's 16 bytes into the record and the dot product into its dword `+0xc`",
+   "anchors": [
+    [
+     "00831EB0",
+     "mov"
+    ],
+    [
+     "00831EE8",
+     "call"
+    ],
+    [
+     "00831EFF",
+     "call"
+    ],
+    [
+     "00831F2D",
+     "comiss"
+    ],
+    [
+     "00831F39",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00831F80",
+   "text": "takes m = `[vtable+0x50]`(`rcx`) (call at `00831F80`+0x35), calls `[vtable+8]`(rcx, an identity transform from `008C5F80`/`008C5F90`/`008C5FB0` and a zero row, stack min, stack max) at +0x7C, forms L = 2 x (0.5 (`01CEBB70`) x (max - min) + m) per axis and stores `xmm1` x 0.08333333 (`01CCD6F8`) times (Ly² + Lz², Lx² + Lz², Lx² + Ly²) with a zero fourth float as 16 bytes at `r8`; the frame is guarded by the cookie at `01F44830` (check call at +0x12D)",
+   "anchors": [
+    [
+     "00831FB5",
+     "call"
+    ],
+    [
+     "00831FFC",
+     "call"
+    ],
+    [
+     "00832013",
+     "mulss"
+    ],
+    [
+     "0083204B",
+     "addss"
+    ],
+    [
+     "0083209E",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008320D0",
+   "text": "returns `00830F20`(rcx, rdx, r8, r9) with the fifth argument set to the float `[vtable+0x50]`(`rcx`) returns (call at `008320D0`+0x24)",
+   "anchors": [
+    [
+     "008320F4",
+     "call"
+    ],
+    [
+     "00832100",
+     "movss"
+    ],
+    [
+     "00832109",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00832130",
+   "text": "zeroes the 16 bytes at `rdx`, normalizes the vector at `r8` (1.0 `01CEBBA8` over the call at `00832130`+0x95 on its squared length; (1, 0, 0) when that is below 0.0001 `01CEBB60`), then for i from 0 while below `[vtable+0xa0]`(`rcx`) (calls at +0xBA and +0x124) fetches point i through `[vtable+0xb8]`(rcx, i, stack) (+0xDD) and copies its 16 bytes to `rdx` whenever its dot product with the unit vector exceeds the best so far (starting from `01CCD4E4`, raw `0xDD5E0B6B`); returns `rdx`",
+   "anchors": [
+    [
+     "0083216E",
+     "mov"
+    ],
+    [
+     "008321AB",
+     "comiss"
+    ],
+    [
+     "0083220D",
+     "call"
+    ],
+    [
+     "0083223B",
+     "comiss"
+    ],
+    [
+     "00832248",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00832290",
+   "text": "sets byte `rcx+0x70` to 1, calls `[vtable+0x80]`(rcx, `01F44880`, six zeroed 16-byte stack records, 6) at `00832290`+0x5B, then with m = float `rcx+0x40` stores record 0's x + m at `+0x60`, record 1's y + m at `+0x64`, record 2's z + m at `+0x68`, record 3's x - m at `+0x50`, record 4's y - m at `+0x54` and record 5's z - m at `+0x58`; the frame is guarded by the cookie at `01F44830` (check call at +0xCC)",
+   "anchors": [
+    [
+     "008322B6",
+     "mov"
+    ],
+    [
+     "008322EB",
+     "call"
+    ],
+    [
+     "00832302",
+     "movss"
+    ],
+    [
+     "00832312",
+     "movss"
+    ],
+    [
+     "0083234C",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00832370",
+   "text": "calls `00831CD0`(rcx, rdx) and then tail-jumps to `00832290`(rcx)",
+   "anchors": [
+    [
+     "00832379",
+     "call"
+    ],
+    [
+     "00832386",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00832460",
+   "text": "when qword `rcx+0x10` is non-null, passes it to the call at `00832460`+0x28 if byte `+0x18` is non-zero and zeroes it; then sets byte `+0x18` to 1 and zeroes qword `+0x10` and the qword at `+4`",
+   "anchors": [
+    [
+     "0083247D",
+     "test"
+    ],
+    [
+     "00832482",
+     "cmp"
+    ],
+    [
+     "00832488",
+     "call"
+    ],
+    [
+     "00832492",
+     "mov"
+    ],
+    [
+     "0083249A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00832CB0",
+   "why": "its whole work is the entry instruction (loads float rcx+0x6c into xmm0) before ret"
+  },
+  {
+   "fn": "00832CC0",
+   "why": "its whole work is the entry instruction (returns the address of the string \"Compound\" at 01CCD828) before ret"
+  }
+ ],
+ "notes": "Calls outside this pack are cited by site; vtable calls are written [vtable+0xNN] on the object in rcx (or on r8/rdx where stated). 00831380: the jump table after the body is not listed, so the row names the arms without their case numbers (doubt: which dword rcx+8 values reach which arm is not in the listing). 00830CD0/00830F20/00831230/00832130: 01CCD4E4 and 01CCD4E0 are given as raw words because the listing does not decode them as floats. 'consistent with' only for 00830B40 (string btCollisionShapeData)."
+}
