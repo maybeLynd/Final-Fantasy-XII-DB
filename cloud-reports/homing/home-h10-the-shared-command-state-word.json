@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "0018D5F0", "entered_from": "`00214C30` + 0x36",
+   "text": "copies byte `rcx+0x110` to byte `[rdx]` and dwords `rcx+0x114`, `+0x118`, `+0x11C` and `+0x120` to dwords `rdx+4`, `+8`, `+0xC` and `+0x10`, and returns `rdx`",
+   "anchors": [["0018D5F7", "mov"], ["0018D5FF", "mov"], ["0018D611", "mov"], ["0018D61A", "mov"], ["0018D61D", "mov"]]},
+  {"fn": "001C53B0", "entered_from": "`00214C30` + 0x20",
+   "text": "returns 1 in `al` when byte `01F81280` is non-zero and byte `01F81281` is zero, and 0 otherwise",
+   "anchors": [["001C53B7", "je"], ["001C53B9", "cmp"], ["001C53C2", "mov"], ["001C53C5", "xor"]]},
+  {"fn": "001C53D0", "entered_from": "`00214C30` + 0x6A",
+   "text": "returns 1 in `al` when byte `01F81281` is non-zero and byte `01F81280` is zero, and 0 otherwise",
+   "anchors": [["001C53D7", "je"], ["001C53D9", "cmp"], ["001C53E2", "mov"], ["001C53E5", "xor"]]},
+  {"fn": "00253A10", "entered_from": "`0022B6E0` + 0xA6",
+   "text": "calls `00253A10` + 0x4, `00253A10` + 0x9 and `00253A10` + 0xE in turn without setting any argument registers, then tail-jumps (`00253A10` + 0x17)",
+   "anchors": [["00253A14", "call"], ["00253A19", "call"], ["00253A1E", "call"], ["00253A27", "jmp"]]},
+  {"fn": "0036CAD0", "entered_from": "`00251E00` + 0x5D",
+   "text": "calls `0036CAD0` + 0x1C with `ecx` = dword `022D89BC`, `rdx` = the incoming `rcx`, `r8d` = the incoming `edx`, `r9d` = 0 and a fifth (stack) argument of 0, and returns its result",
+   "anchors": [["0036CAD4", "mov"], ["0036CAD7", "mov"], ["0036CAE3", "xor"], ["0036CAE6", "mov"], ["0036CAEC", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "00253A10: the three calls receive whatever the caller left in rcx/rdx/r8/r9; the sentence says only that none are set here."
+}
