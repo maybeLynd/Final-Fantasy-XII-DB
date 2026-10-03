@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "0031A8C0", "entered_from": "`002FDDA0` + 0x36F",
+   "text": "calls the function at `0031A8C0` + 0xA with the incoming `ecx` and `edx` = 0, then ANDs dword `022C314C` with the bitwise NOT of the incoming `ecx`",
+   "anchors": [["0031A8C6", "xor"], ["0031A8CA", "call"], ["0031A8CF", "not"], ["0031A8D1", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "Callee cited by site because the host excerpt does not name it."
+}
