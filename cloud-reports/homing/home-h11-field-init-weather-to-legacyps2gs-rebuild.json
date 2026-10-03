@@ -1,0 +1,35 @@
+{
+ "page": "03-World-Area-Field/Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "003ED7B0",
+   "entered_from": "`0026E8D0` + 0x81",
+   "text": "when qword `02EBB7F0` is non-null, indexes it by sign-extended `ecx` with a stride of 0x180 (`ecx` times 3, shifted left 7) and copies that entry's dwords `+0x10`, `+0x14` and `+0x1C` to dwords `02EBB7F8`, `02EBB7FC` and `02EBB804`; otherwise does nothing",
+   "anchors": [
+    [
+     "003ED7BA",
+     "je"
+    ],
+    [
+     "003ED7C3",
+     "shl"
+    ],
+    [
+     "003ED7CB",
+     "mov"
+    ],
+    [
+     "003ED7D5",
+     "mov"
+    ],
+    [
+     "003ED7DF",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
