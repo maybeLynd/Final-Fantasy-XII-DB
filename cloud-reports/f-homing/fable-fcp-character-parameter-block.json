@@ -1,0 +1,32 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md",
+ "session": "session_01N8PUkJsja9yJNF2AzvWKKK",
+ "mode": "homing",
+ "rows": [
+  {"fn": "00263810",
+   "text": "reads byte `rcx+3`: when its top three bits (AND `0xe0`) equal `0x60` it tail-jumps to `002E9630` with `rcx`; otherwise it switches on that byte shifted right by 5, returning float `+0x68` of qword `rcx+0xb8` for 1 and 0.0 for every other value (the arm for 3, which returns float `+0xc0` times float `+0x24` of that qword, is unreachable because 3 is the `0x60` case already taken)",
+   "anchors": [["00263819", "cmp"], ["00263820", "xorps"], ["0026384C", "movss"], ["00263852", "jmp"]]},
+  {"fn": "00344050",
+   "text": "calls `00344050`+0x28(`r9`) and keeps its float result, calls `0034BE50` with the incoming `rcx`, `rdx`, `r8`, `r9`, then tail-jumps to `0026AC70` with `rdx` and that float in `xmm1`",
+   "anchors": [["00344078", "call"], ["0034408C", "call"], ["00344091", "movaps"], ["003440B0", "jmp"]]},
+  {"fn": "00349F10",
+   "text": "calls `00349F10`+0x2E with `r9` and the float returned by `00349F10`+0x23(`rdx`) in `xmm1`, calls `0026A1A0(rdx, 0)` twice, then tail-jumps to `00349F10`+0x67 with the incoming `rcx`, `rdx`, `r8`, `r9`",
+   "anchors": [["00349F33", "call"], ["00349F3E", "call"], ["00349F48", "call"], ["00349F52", "call"], ["00349F77", "jmp"]]},
+  {"fn": "00356740",
+   "text": "calls `00356740`+0x2E with `r9` and the float returned by `00356740`+0x23(`rdx`) in `xmm1`, calls `0026A1A0(rdx, 1)` twice, then tail-jumps to `00356740`+0x6D with the incoming `rcx`, `rdx`, `r8`, `r9`",
+   "anchors": [["00356763", "call"], ["0035676E", "call"], ["0035677B", "call"], ["00356788", "call"], ["003567AD", "jmp"]]},
+  {"fn": "00356AF0",
+   "text": "calls `00356AF0`+0x28(`r9`, `0x30b`), then `00356AF0`+0x3B with `r9` and the float returned by `00356AF0`+0x30(`rdx`) in `xmm1`, calls `0026A1A0(rdx, 0)` twice, then tail-jumps to `00356AF0`+0x74 with the incoming `rcx`, `rdx`, `r8`, `r9`",
+   "anchors": [["00356B18", "call"], ["00356B2B", "call"], ["00356B35", "call"], ["00356B3F", "call"], ["00356B64", "jmp"]]},
+  {"fn": "00356F20",
+   "text": "calls `00356F20`+0x28(`r9`, `0x30b`), then `00356F20`+0x3B with `r9` and the float returned by `00356F20`+0x30(`rdx`) in `xmm1`, calls `0026A1A0(rdx, 1)` twice, then tail-jumps to `00356F20`+0x7A with the incoming `rcx`, `rdx`, `r8`, `r9`",
+   "anchors": [["00356F48", "call"], ["00356F5B", "call"], ["00356F68", "call"], ["00356F75", "call"], ["00356F9A", "jmp"]]},
+  {"fn": "003573C0",
+   "text": "keeps v = `003573C0`+0x29(`r9`), calls `003573C0`+0x38(`r9`, `0x30b`) and `003573C0`+0x42(`r9`, v), calls `0026A1A0(rdx, 0)`, then tail-jumps to `003573C0`+0x77 with the incoming `rcx`, `rdx`, `r8`, `r9`",
+   "anchors": [["003573E9", "call"], ["003573F8", "call"], ["00357402", "call"], ["0035740C", "call"], ["00357437", "jmp"]]}
+ ],
+ "skipped": [
+  {"fn": "00505240", "why": "698-byte body with two loops over 0x20-byte stack records, an all-zero test with two alternative paths, and nine callees with out-parameters (only 00265020 and 00265240 named by the page); it cannot be stated with every path and argument under 1,200 characters without guessing what the out-parameters hold"}
+ ],
+ "notes": "00263810: the `mulss` arm (00263830-00263844) is dead code by construction: `byte >> 5 == 3` is exactly `(byte AND 0xe0) == 0x60`, which jumps to 002E9630 first. 00349F10/00356740/00356AF0/00356F20: the second call's `ecx` is `r9` but `edx` is whatever the first call left, so no second integer argument is stated. 00349F10 and 00356740 (and 00356AF0 and 00356F20) differ only in the 0/1 passed to 0026A1A0."
+}
