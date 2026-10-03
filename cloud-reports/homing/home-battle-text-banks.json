@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "002D4FB0", "entered_from": "`002902D0` + 0x1E",
+   "text": "under a stack cookie (`01F44830`) stores qword `rcx` and dwords `edx`, `r8d`, `r9d`, the fifth and the sixth (stack) arguments in a stack block, builds a stack descriptor of dword 0, a pointer to that block and qword 0, and makes the call at `002D4FB0` + 0x5F with `ecx` = `0xF8`, `rdx` = `002D59E0` and `r8` = that descriptor; then checks the cookie through the call at + 0x6C",
+   "anchors": [["002D4FC6", "mov"], ["002D4FD9", "lea"], ["002D4FE0", "mov"], ["002D500F", "call"], ["002D501C", "call"]]},
+  {"fn": "0056DA80", "entered_from": "`0056CF10` + 0x1F3",
+   "text": "with F = dword `[r8]` and the object-pointer table at qword `rdx+0x10` indexed by signed dwords of the array at `r9`: takes X = `[r9+4]` when bit 0 of F is set, else `[r9]`, and Y = the other; when bit 1 of F is set the target index is X and Z = `[r9+8]`, with set value 1 and W = word `r8+4` when bit 2 of F is set, else set value 0; when bit 1 is clear the target is `[r9+8]`, Z = X, set value 1 and W = word `rcx+0xE`; it sets bit 0 of dword `+8` of the target object to the set value, copies bit 2 of F into bit 0 of dword `+8` of the objects at indices `[r9+0xC]`, `[r9+0x10]` and `[r9+0x14]`, and clears that bit in the objects at Y and Z; when the set value is 1 it makes the calls at `0056DA80` + 0x132 with (target object, 0, 0, W, 0, 0) and + 0x13F with the target object; when bit 2 of F is set it makes the calls at + 0x172 with (the `[r9+0xC]` object, 0, 0, (dword `rcx+0x10` with bit 31 cleared) times W, 0, 0) and + 0x183 with that object",
+   "anchors": [["0056DB20", "or"], ["0056DB3C", "xor"], ["0056DB8F", "and"], ["0056DBB2", "call"], ["0056DBF2", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002D4FB0: the block is at rsp+0x20 (qword rcx at +0, dwords at +8..+0x18) and the descriptor at rsp+0x40 (dword 0, pointer at +8, qword 0 at +0x10); `002D59E0` is the code pointer passed in `rdx` (a lea target, not a jump table). Return value not stated. 0056DA80: when bit 1 of F is set and bit 2 clear, W stays -1 (`or esi, 0xffffffff`) but neither call pair runs (set value 0, bit 2 clear); bit 2 of F is re-read from `[r8]` for each copy and for the final test. The fifth/sixth call arguments are dword 0 at [rsp+0x20] and qword 0 at [rsp+0x28]."
+}
