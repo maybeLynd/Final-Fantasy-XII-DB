@@ -1,0 +1,14 @@
+{
+ "page": "16-UI/Request-Router/ui-request-router.md",
+ "session": "session_01TiSPB1n4bzRPUs6xFapccb",
+ "rows": [
+  {"fn": "002D5060", "entered_from": "`00290740` + 0x1A",
+   "text": "calls `002D5060` + 0x2A with dword `01E0C1D8` (0x200 in the image) halved in `ecx`, dword `01E0C1DC` (0x1C0 in the image) halved in both `edx` and `r9d`, and 1 in `r8d`, each halving a signed division by 2 that rounds toward zero (`cdq`, `sub`, `sar`); then calls `002D5060` + 0x35 with that result in `rcx` and returns the same result in `rax`",
+   "anchors": [["002D5075", "sar"], ["002D5086", "sar"], ["002D508A", "call"], ["002D5095", "call"], ["002D509A", "mov"]]},
+  {"fn": "002F8B90", "entered_from": "`00309E40` + 0x18",
+   "text": "returns in `xmm0` the smaller of 4.0 (`01CEBC70`) and `xmm0` plus `xmm1` times 0.5 (`01CEBB70`), computed by `minss` with 4.0 as the first operand and the sum as the second, so a NaN sum is returned as is",
+   "anchors": [["002F8B98", "addss"], ["002F8B9C", "movss"], ["002F8BA4", "minss"]]}
+ ],
+ "skipped": [],
+ "notes": "002D5060: the two dwords are read at run time; 0x200 and 0x1C0 are their values as the listing decodes them from the image, so they are stated as image values. Both callees are absent from the host excerpt and are cited by site. 002F8B90: the multiply by 0.5 is the entry instruction and cannot be anchored; the addss anchor carries the sum clause. minss returns its second operand when either is NaN (and when equal), hence the NaN clause."
+}
