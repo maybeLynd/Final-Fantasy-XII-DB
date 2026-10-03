@@ -1,0 +1,36 @@
+{
+ "page": "13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "002BE290",
+   "entered_from": "`002BE490` + 0x4B",
+   "text": "when bit 0 of byte `rcx+0x57E` is set, makes the call at `002BE290` + 0x12 with `rcx` and, when that returns non-null, the call at + 0x22 with (`rcx`, that result); then, when qword `rcx+0x570` is non-null and its word `+0x280` has bit 0 clear and bit 2 set, makes the call at + 0x42 with that qword, zeroes qword `rcx+0x570` and clears bit 1 of word `rcx+0x57E` (AND `0xfffd`); otherwise returns without further writes",
+   "anchors": [
+    [
+     "002BE296",
+     "test"
+    ],
+    [
+     "002BE2B2",
+     "call"
+    ],
+    [
+     "002BE2CA",
+     "test"
+    ],
+    [
+     "002BE2DC",
+     "mov"
+    ],
+    [
+     "002BE2E7",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002BE290: the bit-0 test reads byte +0x57E; the final clear writes word +0x57E."
+}
