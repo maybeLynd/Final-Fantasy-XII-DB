@@ -172,3 +172,7 @@ home-contract-audio-bank-and-controller-family	18-Audio/Audio-Bank-And-Controlle
 home-the-script-to-native-calling-convention	01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md	1	82	2026-10-03 06:31	PACKED-FABLE-HOMING
 home-the-save-payload-field-map	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md	1	17	2026-10-03 06:31	PACKED-FABLE-HOMING
 home-what-the-engine-calls-to-make-a-sound	18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	1	112	2026-10-03 06:31	PACKED-FABLE-HOMING
+home-the-fifteen-modules-registered-before-main	22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md	15	1825	2026-10-03 07:51	PACKED-FABLE-HOMING
+home-vbf-archive-and-st2e-tables	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	2	148	2026-10-03 07:51	PACKED-FABLE-HOMING
+home-arm-catalogue-slice-c-ids-76-107	00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md	2	228	2026-10-03 07:51	PACKED-FABLE-HOMING
+home-the-unlabelled-procedures	16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	1	187	2026-10-03 07:51	PACKED-FABLE-HOMING

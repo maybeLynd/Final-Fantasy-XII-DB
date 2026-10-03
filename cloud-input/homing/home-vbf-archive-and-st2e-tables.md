@@ -1,70 +1,63 @@
 # Homing pack: `02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md`
 
-Generated 2026-10-03 03:37 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-vbf-archive-and-st2e-tables.json`.
+Generated 2026-10-03 07:51 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-vbf-archive-and-st2e-tables.json`.
 
-Bodies: 3. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
+Bodies: 2. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
 
-## 0028FF80 (88 B, extent 0028FF80-0028FFD8)
+## 003C9840 (86 B, extent 003C9840-003C9896)
 
-Entered from (direct sites whose caller this page cites): `0035C630` + 0x9 (call; `0035C630` is cited on this page)
+Entered from (direct sites whose caller this page cites): `003C9A30` + 0x13D (call; `003C9A30` is cited on this page); `003C9A30` + 0x288 (call; `003C9A30` is cited on this page)
 Other direct sites: none
 
-Host context: "d (UI bodies '00253780', '00562F90', '00561390' call page-cited '00249210', '002493D0', '00249180'); 12 outbound (page-cited '00558FB0', '00561390', '00253780' call UI bodies '00291D70', '00291D80', '0035C630'). Substantive edges include '002467A0' is called by '00253780'; '00249180' is called by '0035C5B0'; '00249180' is called by '00253780'; '00249210' is called by '00561390'; the remaining edges run through shared helpers the page ci"
+Host context: "B'; Interior anchor '0028FFD0' | | '003C98E0' | 31 B | '0035C630' + 0x13 | returns when qword '02B47740' is non-zero; otherwise tail-jumps at '003C98E0' + 0x19 with 'ecx' = 0xD8, 'rdx' = the address '003C9A30' and 'r8d' = 0 | Interior anchor '003C98E8'; Interior anchor '003C98ED'; Interior anchor '003C98F4'; Interior anchor '003C98F9' | | '003CA280' | 48 B | '0035C630' + 0xE | when qword '02B47758' is null, stores there the result of th" / "B'; Interior anchor '0028FFD0' | | '003C98E0' | 31 B | '0035C630' + 0x13 | returns when qword '02B47740' is non-zero; otherwise tail-jumps at '003C98E0' + 0x19 with 'ecx' = 0xD8, 'rdx' = the address '003C9A30' and 'r8d' = 0 | Interior anchor '003C98E8'; Interior anchor '003C98ED'; Interior anchor '003C98F4'; Interior anchor '003C98F9' | | '003CA280' | 48 B | '0035C630' + 0xE | when qword '02B47758' is null, stores there the result of th"
 
 ```
-0028FF80  sub      rsp, 0x28
-0028FF84  mov      rcx, qword ptr [rip + 0x1e0bef5]  ; -> 0209BE80
-0028FF8B  cmp      qword ptr [rcx + 0x10f80], 0
-0028FF93  jne      0x28ffc7  ; -> 0028FFC7
-0028FF95  mov      ecx, 0x1d90
-0028FF9A  call     0x271420  ; -> 00271420 fn
-0028FF9F  mov      rcx, qword ptr [rip + 0x1e0beda]  ; -> 0209BE80
-0028FFA6  mov      qword ptr [rcx + 0x10f80], rax
-0028FFAD  mov      rcx, qword ptr [rip + 0x1e0becc]  ; -> 0209BE80
-0028FFB4  mov      rcx, qword ptr [rcx + 0x10f80]
-0028FFBB  call     0x2c63d0  ; -> 002C63D0 fn
-0028FFC0  mov      rcx, qword ptr [rip + 0x1e0beb9]  ; -> 0209BE80
-0028FFC7  xor      eax, eax
-0028FFC9  cmp      qword ptr [rcx + 0x10f80], rax
-0028FFD0  setne    al
-0028FFD3  add      rsp, 0x28
-0028FFD7  ret      
+003C9840  push     rbx
+003C9842  sub      rsp, 0x20
+003C9846  cmp      qword ptr [rcx + 0xc8], 0
+003C984E  mov      rbx, rcx
+003C9851  je       0x3c9890  ; -> 003C9890
+003C9853  call     0x3c5fb0  ; -> 003C5FB0 fn
+003C9858  mov      rcx, rbx
+003C985B  mov      edx, 2
+003C9860  test     eax, eax
+003C9862  jne      0x3c9869  ; -> 003C9869
+003C9864  mov      edx, 1
+003C9869  call     0x394690  ; -> 00394690 fn
+003C986E  mov      rcx, qword ptr [rbx + 0xc8]
+003C9875  movsx    edx, word ptr [rax + 0xe]
+003C9879  test     rcx, rcx
+003C987C  je       0x3c9890  ; -> 003C9890
+003C987E  movzx    eax, word ptr [rax + 0xc]
+003C9882  mov      word ptr [rcx + 0x98], ax
+003C9889  mov      word ptr [rcx + 0x9a], dx
+003C9890  add      rsp, 0x20
+003C9894  pop      rbx
+003C9895  ret      
 ```
 
-## 003C98E0 (31 B, extent 003C98E0-003C98FF)
+## 003C98A0 (62 B, extent 003C98A0-003C98DE)
 
-Entered from (direct sites whose caller this page cites): `0035C630` + 0x13 (call; `0035C630` is cited on this page)
+Entered from (direct sites whose caller this page cites): `003C9A30` + 0x178 (call; `003C9A30` is cited on this page); `003C9A30` + 0x307 (call; `003C9A30` is cited on this page)
 Other direct sites: none
 
-Host context: "d (UI bodies '00253780', '00562F90', '00561390' call page-cited '00249210', '002493D0', '00249180'); 12 outbound (page-cited '00558FB0', '00561390', '00253780' call UI bodies '00291D70', '00291D80', '0035C630'). Substantive edges include '002467A0' is called by '00253780'; '00249180' is called by '0035C5B0'; '00249180' is called by '00253780'; '00249210' is called by '00561390'; the remaining edges run through shared helpers the page ci"
+Host context: "B'; Interior anchor '0028FFD0' | | '003C98E0' | 31 B | '0035C630' + 0x13 | returns when qword '02B47740' is non-zero; otherwise tail-jumps at '003C98E0' + 0x19 with 'ecx' = 0xD8, 'rdx' = the address '003C9A30' and 'r8d' = 0 | Interior anchor '003C98E8'; Interior anchor '003C98ED'; Interior anchor '003C98F4'; Interior anchor '003C98F9' | | '003CA280' | 48 B | '0035C630' + 0xE | when qword '02B47758' is null, stores there the result of th" / "B'; Interior anchor '0028FFD0' | | '003C98E0' | 31 B | '0035C630' + 0x13 | returns when qword '02B47740' is non-zero; otherwise tail-jumps at '003C98E0' + 0x19 with 'ecx' = 0xD8, 'rdx' = the address '003C9A30' and 'r8d' = 0 | Interior anchor '003C98E8'; Interior anchor '003C98ED'; Interior anchor '003C98F4'; Interior anchor '003C98F9' | | '003CA280' | 48 B | '0035C630' + 0xE | when qword '02B47758' is null, stores there the result of th"
 
 ```
-003C98E0  cmp      qword ptr [rip + 0x277de58], 0  ; -> 02B47740
-003C98E8  jne      0x3c98fe  ; -> 003C98FE
-003C98EA  xor      r8d, r8d
-003C98ED  lea      rdx, [rip + 0x13c]  ; -> 003C9A30
-003C98F4  mov      ecx, 0xd8
-003C98F9  jmp      0x244f50  ; -> 00244F50 fn
-003C98FE  ret      
-```
-
-## 003CA280 (48 B, extent 003CA280-003CA2B0)
-
-Entered from (direct sites whose caller this page cites): `0035C630` + 0xE (call; `0035C630` is cited on this page)
-Other direct sites: none
-
-Host context: "d (UI bodies '00253780', '00562F90', '00561390' call page-cited '00249210', '002493D0', '00249180'); 12 outbound (page-cited '00558FB0', '00561390', '00253780' call UI bodies '00291D70', '00291D80', '0035C630'). Substantive edges include '002467A0' is called by '00253780'; '00249180' is called by '0035C5B0'; '00249180' is called by '00253780'; '00249210' is called by '00561390'; the remaining edges run through shared helpers the page ci"
-
-```
-003CA280  sub      rsp, 0x28
-003CA284  mov      rax, qword ptr [rip + 0x277d4cd]  ; -> 02B47758
-003CA28B  test     rax, rax
-003CA28E  jne      0x3ca2ab  ; -> 003CA2AB
-003CA290  xor      r8d, r8d
-003CA293  lea      rdx, [rip + 0x5c6]  ; -> 003CA860
-003CA29A  mov      ecx, 0xaa0
-003CA29F  call     0x244f50  ; -> 00244F50 fn
-003CA2A4  mov      qword ptr [rip + 0x277d4ad], rax  ; -> 02B47758
-003CA2AB  add      rsp, 0x28
-003CA2AF  ret      
+003C98A0  push     rbx
+003C98A2  sub      rsp, 0x20
+003C98A6  mov      rbx, rcx
+003C98A9  mov      rcx, qword ptr [rcx + 0xc8]
+003C98B0  test     rcx, rcx
+003C98B3  je       0x3c98d8  ; -> 003C98D8
+003C98B5  mov      eax, dword ptr [rcx + 0x7c]
+003C98B8  and      eax, 0x3ff7ff
+003C98BD  or       eax, 0x4b000800
+003C98C2  mov      dword ptr [rcx + 0x7c], eax
+003C98C5  mov      rcx, qword ptr [rbx + 0xc8]
+003C98CC  call     0x244dd0  ; -> 00244DD0 fn
+003C98D1  and      dword ptr [rbx + 0xc4], 0xfffffffd
+003C98D8  add      rsp, 0x20
+003C98DC  pop      rbx
+003C98DD  ret      
 ```
