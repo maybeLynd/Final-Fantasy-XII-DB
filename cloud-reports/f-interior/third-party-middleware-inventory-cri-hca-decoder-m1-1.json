@@ -1,0 +1,644 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01Qb35WU9jkfZsMnRhLhis8N",
+ "mode": "member",
+ "family": "CRI HCA decoder",
+ "rows": [
+  {
+   "fn": "001210A0",
+   "text": "returns 1 when `rcx` is null; otherwise makes the call at `001210A0`+0x34 once for each qword of the array at `rcx+0x40`, for the signed dword count at `rcx+0x84` (no call when it is not positive), then stores 0 to dword `rcx+0x8c` and returns 0",
+   "anchors": [
+    [
+     "001210AE",
+     "lea"
+    ],
+    [
+     "001210BC",
+     "movsxd"
+    ],
+    [
+     "001210D4",
+     "call"
+    ],
+    [
+     "001210EC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00121100",
+   "text": "writes -1 to the dword at `r8` (a stack slot when `r8` is null) and returns 1 when `rcx` or `rdx` is null; otherwise scans the dword `rcx+0x88` entries of 0x30 bytes at qword `rcx+0x90` for the first whose qword `+0` is zero, storing `rdx` there, and returns 7 when the scan index ends equal to the count; for found index i it stores `rcx` at qword `+8`, i at dword `+0x28`, 0x80 at dword `+0x20` and the qword 0x3F800000 at `+0x18`, zeroes dword `rcx+0x80` times dword `rcx+0x84` dwords of the array at the entry's qword `+0x10`, writes i to the dword at `r8` and returns 0",
+   "anchors": [
+    [
+     "00121115",
+     "mov"
+    ],
+    [
+     "00121160",
+     "cmp"
+    ],
+    [
+     "00121188",
+     "mov"
+    ],
+    [
+     "001211C7",
+     "mov"
+    ],
+    [
+     "00121205",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00121240",
+   "text": "with entry e = qword `rcx+0x90` + 0x30*`edx`, clamps a start s = min(fifth (stack) argument, dword e`+0x1c`) and a length n = min(dword e`+0x20`, fifth argument minus s); for each of min(`r9d`, dword `rcx+0x80`) source float arrays (qword table at `r8`, read from index s) and each of dword `rcx+0x84` destination float arrays (qword table at `rcx`, written from index s) it takes gain = float e`+0x18` times the next float of the array at qword e`+0x10`, skips the pair when the float with bits 0x33800000 (`00D5003C`) is not below the gain, adds the n source floats unscaled when the gain is at least 1.0 (`01CEBBA8`), and otherwise adds gain times each source float",
+   "anchors": [
+    [
+     "00121290",
+     "cmovl"
+    ],
+    [
+     "00121339",
+     "comiss"
+    ],
+    [
+     "0012134A",
+     "comiss"
+    ],
+    [
+     "001213A7",
+     "addss"
+    ],
+    [
+     "0012150E",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "00121700",
+   "text": "returns 1 when `rcx` is null and 2 unless 0 <= `edx` < dword `rcx+0x88`, 0 <= `r8d` < dword `rcx+0x80` and 0 <= `r9d` < dword `rcx+0x84`; otherwise stores the fifth (stack) argument float at index `r8d`*dword `rcx+0x84` + `r9d` of the float array at qword `+0x10` of entry `edx` (0x30-byte stride) of qword `rcx+0x90`, and returns 0",
+   "anchors": [
+    [
+     "00121708",
+     "lea"
+    ],
+    [
+     "00121710",
+     "cmp"
+    ],
+    [
+     "0012171D",
+     "cmp"
+    ],
+    [
+     "00121732",
+     "cmp"
+    ],
+    [
+     "00121760",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00121770",
+   "text": "returns 1 when `rcx`, `rdx` or `r8` is null; otherwise calls `00121100(rcx, rdx, &index)`, returns its result when nonzero, and else stores qword `rcx+0x90` + 0x30*index at the qword `r8` and returns 0",
+   "anchors": [
+    [
+     "00121783",
+     "je"
+    ],
+    [
+     "00121794",
+     "call"
+    ],
+    [
+     "0012179B",
+     "jne"
+    ],
+    [
+     "001217B3",
+     "mov"
+    ],
+    [
+     "001217C1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001217E0",
+   "text": "returns 1 when `rcx` is null, when qword `rcx+8` (p) is null, or when dword `rcx+0x28` (i) is negative or not below dword p`+0x88`; otherwise zeroes qword `+0` of entry i (0x30-byte stride) of qword p`+0x90` and returns 0",
+   "anchors": [
+    [
+     "001217E5",
+     "lea"
+    ],
+    [
+     "001217F4",
+     "je"
+    ],
+    [
+     "001217FA",
+     "cmp"
+    ],
+    [
+     "00121812",
+     "mov"
+    ],
+    [
+     "00121819",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00121830",
+   "text": "returns 1 when `rcx` or qword `rcx+8` (p) is null and 2 when dword `rcx+0x28` (i) is negative or not below dword p`+0x88`; otherwise stores the float `xmm1` at `+0x18` of entry i (0x30-byte stride) of qword p`+0x90` and returns 0",
+   "anchors": [
+    [
+     "00121840",
+     "jne"
+    ],
+    [
+     "0012184C",
+     "cmp"
+    ],
+    [
+     "00121862",
+     "movss"
+    ],
+    [
+     "0012186B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00121880",
+   "text": "returns 1 when `rcx` is null; otherwise returns `00121700(qword rcx+8, dword rcx+0x28, edx, r8d)` with the float `xmm3` passed as the fifth (stack) argument",
+   "anchors": [
+    [
+     "00121889",
+     "lea"
+    ],
+    [
+     "00121897",
+     "mov"
+    ],
+    [
+     "0012189E",
+     "movss"
+    ],
+    [
+     "001218A4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001218B0",
+   "text": "returns 5 unless dword `02EAE080` is positive, 1 when `r9` or the sixth (stack) argument is null, 2 when `edx` is not positive or `r8d` is outside 1-8, and 7 when the fifth (stack) argument is below the size 0x630*`r8d` + 4*(`ecx`*(`edx`*`r8d` + 12) + 0x80*`r8d`) + 0xB8; otherwise clears that many bytes at `r9` (call at `001218B0`+0xD1), zeroes the qword at the sixth argument and lays out a 16-aligned block b in `r9`: `r8d` pointers at b to 0x200-byte areas, then the results of the call at `001218B0`+0x128 (each on a 0x630-byte area) at b`+0x40` (one null result calls `001218B0`+0x1C9 on b and returns 7), qword b`+0x90` pointing to `ecx` 0x30-byte entries whose qword `+0x10` gets successive 4*`edx`*`r8d`-byte arrays; returns 8 when the end overruns the size, else stores `edx`, `r8d` and `ecx` at dwords b`+0x80`, `+0x84`, `+0x88`, calls `001210A0(b)`, stores b at the sixth argument and returns 0",
+   "anchors": [
+    [
+     "001218C2",
+     "cmp"
+    ],
+    [
+     "0012195B",
+     "cmp"
+    ],
+    [
+     "001219D8",
+     "call"
+    ],
+    [
+     "00121A47",
+     "cmp"
+    ],
+    [
+     "00121AA0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00121AE0",
+   "text": "zeroes the dword at `r8`, clears 0x200 bytes at each of the dword `rcx+0x84` qword pointers at `rcx` (call at `00121AE0`+0x7C), then visits the dword `rcx+0x88` entries (0x30-byte stride, qword `rcx+0x90`) in ascending order when bit 0 of dword `rcx+0x8c` is clear and descending when set; for an entry with nonzero qword `+0` and zero dword `+0x24` it repeats, while `00122390(entry +0, &flag)` returns 0 with flag 0, the call at `00121AE0`+0x117 (entry +0, &count) until count is positive, and with a positive count calls `001237E0(entry +0, buffer, 0x10, &a, &b)` and on 0 `00121240(rcx, index, buffer, a, b)`, counting those; when the count is positive it makes the call at `00121AE0`+0x1EB for each pointer slot (qword `rcx+0x40`+8k, qword `rcx`+8k, qword `rdx`+8k), increments dword `rcx+0x8c` and stores 0x80 at the dword `r8`, else makes the call at `00121AE0`+0x224 on each qword `rcx+0x40`+8k and stores 0 there; returns 0",
+   "anchors": [
+    [
+     "00121B2B",
+     "and"
+    ],
+    [
+     "00121BDB",
+     "call"
+    ],
+    [
+     "00121C62",
+     "call"
+    ],
+    [
+     "00121CCB",
+     "call"
+    ],
+    [
+     "00121D04",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00121D40",
+   "text": "zeroes the dword at the fifth (stack) argument (a stack slot when it is null); returns 1 when `rcx` or `rdx` is null or `r8d` or `r9d` is negative, 2 when `r8d` is below dword `rcx+0x84` or `r9d` is below 0x80, and otherwise the result of `00121AE0(rcx, rdx, that dword pointer)`",
+   "anchors": [
+    [
+     "00121D55",
+     "mov"
+    ],
+    [
+     "00121D5F",
+     "je"
+    ],
+    [
+     "00121D70",
+     "cmp"
+    ],
+    [
+     "00121D79",
+     "cmp"
+    ],
+    [
+     "00121D85",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00121E20",
+   "text": "returns 1 when `rcx` is null; otherwise for each of the dword `rcx+0` pointers at qword `rcx+0x58`+8i that is non-null and whose qword `+0x508` is non-null, makes the call at `00121E20`+0x56 on that qword and zeroes it; returns 0",
+   "anchors": [
+    [
+     "00121E41",
+     "movsxd"
+    ],
+    [
+     "00121E65",
+     "test"
+    ],
+    [
+     "00121E76",
+     "call"
+    ],
+    [
+     "00121E7B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00121EB0",
+   "text": "returns 1 when `rcx` is null; otherwise, for each of the dword `rcx+0` pointers at qword `rcx+0x58`+8i, makes the call at `00121EB0`+0x41 on its qword `+0x508` when that is non-null, then stores 0x7FFFFFFFFFFFFFFF at qword `rcx+0x100`, 0 at dwords `rcx+0x28` and `rcx+0xe0` and at qword `rcx+0xf8`, and returns 0",
+   "anchors": [
+    [
+     "00121EE5",
+     "mov"
+    ],
+    [
+     "00121EF1",
+     "call"
+    ],
+    [
+     "00121F12",
+     "mov"
+    ],
+    [
+     "00121F19",
+     "mov"
+    ],
+    [
+     "00121F2C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00121F40",
+   "text": "returns 0xB unless dword `rdx+0x18` <= dword `rcx+0` (signed), the sign-extended dword `rdx+0x14` <= qword `rcx+0xf0` (unsigned), dword `rdx+0x20` is 1 and dword `rdx+0x1c` is 0xF; otherwise copies dwords of `rdx` into `rcx` (`+0x18` to `+4`, `+4`/`+8`/`+0xc`/`+0x10` to `+8`..`+0x14`, `+0x14` to `+0x2c` and times 8 to `+0x30`, `+0x3c`..`+0x48` to `+0x18`..`+0x24`, `+0x24`/`+0x28`/`+0x2c` to `+0x34`..`+0x3c`, `+0x30`/`+0x34`/`+0x38` to `+0x44`..`+0x4c`, `+0x50` to `+0x50`), stores at `rcx+0x40` the signed quotient (`rdx+0x24` minus `+0x2c` minus `+0x28`) / `rdx+0x30` rounded up on a positive remainder (0 when `+0x30` is not positive), calls the callee at `00121F40`+0x10F with (`+0x18`, `+0x34`, `+0x38`, `+0x2c` > 0, a 0x10-dword stack array, 0x10), and for each i below dword `rdx+0x18` stores array[i] at dword `+0x510` of qword `rcx+0x58`+8i and at its `+0x514` dword `rdx+0x28` when array[i] is 2, else `rdx+0x28` + `rdx+0x2c`; returns 0",
+   "anchors": [
+    [
+     "00121F65",
+     "cmp"
+    ],
+    [
+     "00121F88",
+     "cmp"
+    ],
+    [
+     "00122023",
+     "idiv"
+    ],
+    [
+     "0012204F",
+     "call"
+    ],
+    [
+     "00122075",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001220D0",
+   "text": "zeroes the dwords at `rdx`, `r8` and `r9` (a stack slot for each null one); returns 1 when `rcx` is null and 6 when dword `rcx+0x28` is not positive; otherwise copies dwords `rcx+0xc`, `+0x10` and `+0x14` to those three and returns 0",
+   "anchors": [
+    [
+     "001220E1",
+     "mov"
+    ],
+    [
+     "00122103",
+     "mov"
+    ],
+    [
+     "00122109",
+     "cmp"
+    ],
+    [
+     "00122117",
+     "mov"
+    ],
+    [
+     "00122122",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00122130",
+   "text": "zeroes the dwords at `rdx`, `r8`, `r9` and the fifth (stack) argument (a stack slot for each null one); returns 1 when `rcx` is null and 6 when dword `rcx+0x28` is not positive; otherwise copies dwords `rcx+0x18`, `+0x1c`, `+0x20` and `+0x24` to those four and returns 0",
+   "anchors": [
+    [
+     "00122171",
+     "mov"
+    ],
+    [
+     "00122179",
+     "lea"
+    ],
+    [
+     "0012217D",
+     "cmp"
+    ],
+    [
+     "0012218C",
+     "mov"
+    ],
+    [
+     "0012219D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00122230",
+   "text": "with L = dword `rcx+0x2c`, returns 9 when `r8` plus the fifth (stack) argument is below L; otherwise takes n1 = min(`r8`, L) bytes from `rdx` and n2 = L - n1 from `r9`, chains the 16-bit results of the calls at `00122230`+0x69 (0, `rdx`, n1) and `00122230`+0x77 (that result, `r9`, n2) and returns 0xC when the second is nonzero; it then fills the buffer at qword `rcx+0xe8` with the n1 then n2 bytes, each mapped through the byte table at qword `rcx+0x108` when that is non-null, else copied by the calls at `00122230`+0xEF and `+0x10E` (each only when its source is non-null, sized by qword `rcx+0xf0`); returns 0xA unless the first two buffer bytes are both 0xFF, in which case it stores 1 at qword `rcx+0xe0`, L at the qword of the sixth (stack) argument, and returns 0",
+   "anchors": [
+    [
+     "0012226E",
+     "cmp"
+    ],
+    [
+     "001222A7",
+     "call"
+    ],
+    [
+     "001222DB",
+     "movzx"
+    ],
+    [
+     "00122343",
+     "cmp"
+    ],
+    [
+     "00122355",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00122390",
+   "text": "zeroes the dword at `rdx` (a stack slot when null); returns 1 when `rcx` is null; otherwise sets that dword to 1 when dword `rcx+0xe0` is not positive or is at least 0xB, and returns 0",
+   "anchors": [
+    [
+     "0012239C",
+     "mov"
+    ],
+    [
+     "001223A8",
+     "mov"
+    ],
+    [
+     "001223B6",
+     "jle"
+    ],
+    [
+     "001223B8",
+     "cmp"
+    ],
+    [
+     "001223BD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001223D0",
+   "text": "ignores its incoming `edx`/`r8` and reads bit position p = dword `rcx+0xe4` in the byte buffer at qword `rcx+0xe8` as a big-endian bit stream refilled 16 bits at a time; for each of the dword `rcx+4` records (qword `rcx+0x58`+8i) and each k below the record's dword `+0x514` it takes byte `+0x480+k` as a class r, reads a field of the width given by the signed byte at image base + 0x1B9A340 + r masked by dword `01CBA300`[width], and for r below 8 takes float `01CBA350`[16r + field] and consumes the signed byte at image base + 0x1B9A550 + 16r + field bits, else takes the float of the sign-and-magnitude value (bit 0 = sign) consuming one bit fewer when it is zero; it stores that times float `+0x200+4k` at float `+4k` and zero-fills floats k..0x7F (call at `001223D0`+0x9D7); finally it writes the advanced position to dword `rcx+0xe4` only when it does not exceed dword `rcx+0x30`, increments dword `rcx+0xe0` and returns 0",
+   "anchors": [
+    [
+     "001223E5",
+     "movsxd"
+    ],
+    [
+     "00122555",
+     "and"
+    ],
+    [
+     "0012256D",
+     "movss"
+    ],
+    [
+     "00122D7B",
+     "movss"
+    ],
+    [
+     "00122E7A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00122E90",
+   "text": "reads a 9-bit big-endian field at bit `edx` of the byte buffer `rcx` (16 bits masked by dword `01CBA2E0`[bit AND 7]); when its top 3 bits w are 0 it zero-fills 0x80 bytes at `r9` (call at `00122E90`+0x70) and writes `edx`+3 to the dword at the fifth (stack) argument; otherwise it stores the low 6 bits at byte `r9[0]` and, for k from 1 below `r8d`, stores at `r9[k]` a raw 6-bit field when w is at least 6, else the previous byte plus a w-bit delta minus ((1 shl w) - 1) shr 1, replaced by a fresh 6-bit field when the delta is all ones; it writes the bit position after the last field to the fifth argument's dword; returns 0 on both paths",
+   "anchors": [
+    [
+     "00122EDC",
+     "and"
+    ],
+    [
+     "00122F00",
+     "call"
+    ],
+    [
+     "00122F84",
+     "cmp"
+    ],
+    [
+     "00122FC8",
+     "mov"
+    ],
+    [
+     "0012302B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00123050",
+   "text": "reads the byte at bit `edx` of the buffer `rcx` (16 big-endian bits masked by dword `01CBA2E0`[bit AND 7]) and stores its high nibble at byte `r8[0]`; when that nibble is 0xF it returns 0 at once; otherwise it stores the low nibble at `r8[1]` and splits the three following bytes (bits `edx`+8, +16, +24) into high and low nibbles at `r8[2]`..`r8[7]`, writes `edx`+32 to the dword at `r9`, and returns 0",
+   "anchors": [
+    [
+     "00123098",
+     "and"
+    ],
+    [
+     "001230AA",
+     "mov"
+    ],
+    [
+     "001230AD",
+     "cmp"
+    ],
+    [
+     "00123113",
+     "mov"
+    ],
+    [
+     "0012311D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00123140",
+   "text": "for each of the dword `rcx+4` records (qword `rcx+0x58`+8i) and each k below the record's dword `+0x514`, stores at byte `+0x480+k` 0 when byte `+0x400+k` (s) is 0, otherwise d = ((t + k) sar 8) - (5s sar 1) + 1 with t = (dword `rcx+0xd8` shl 8) - dword `rcx+0xdc`, giving 0xF when d is negative, 1 when d is at least 0x39, else byte `01CBA648`[d]; then zero-fills bytes `+0x480+k` up to `+0x4FF` (call at `00123140`+0xD8) when the count is below 0x80; returns 0",
+   "anchors": [
+    [
+     "00123175",
+     "sub"
+    ],
+    [
+     "001231CD",
+     "lea"
+    ],
+    [
+     "001231DE",
+     "mov"
+    ],
+    [
+     "001231EE",
+     "movzx"
+    ],
+    [
+     "00123218",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00123250",
+   "text": "returns 0 at once when dword `rcx+0x44` (m) is not positive; otherwise, for each of the dword `rcx+4` records (qword `rcx+0x58`+8i) whose dword `+0x510` is not 2, walks dword `rcx+0x40` groups j and in each writes up to m floats at ascending indexes from b = dword `rcx+0x38` + dword `rcx+0x3c` (continuing across groups, stopping at dword `rcx+0x34`), each being the float at a descending index s (from b - 1, continuing across groups) times float `01CBA6D0`[63 + byte `+0x400`+b+j - byte `+0x400`+s]; it then zeroes float `+0x1fc` of that record; returns 0",
+   "anchors": [
+    [
+     "0012325E",
+     "test"
+    ],
+    [
+     "001232B5",
+     "cmp"
+    ],
+    [
+     "00123308",
+     "sub"
+    ],
+    [
+     "00123321",
+     "movss"
+    ],
+    [
+     "00123447",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001234A0",
+   "text": "returns 0 at once when dword `rcx+0x3c` is not positive; otherwise, for each adjacent pair of records A = qword `rcx+0x58`+8i and B = the next one (i below dword `rcx+4` - 1) where A's dword `+0x510` is 1, takes r = float `01CBA690`[byte B`+0x500`+(dword `rcx+0xe0` - 3)] and, for float indexes from dword `rcx+0x38` up to below dword `rcx+0x34`, replaces A's float x by x*r and stores x*(2.0 (`01CEBC08`) - r) at the same index of B; returns 0",
+   "anchors": [
+    [
+     "001234AA",
+     "cmp"
+    ],
+    [
+     "00123533",
+     "cmp"
+    ],
+    [
+     "00123553",
+     "movss"
+    ],
+    [
+     "0012355D",
+     "subss"
+    ],
+    [
+     "0012365F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "001237E0",
+   "text": "writes -1 to the dwords at `r9` and the fifth (stack) argument (a stack slot for each null one); returns 1 when `rcx` or `rdx` is null and 2 when `r8d` is below dword `rcx+4` (n); otherwise copies the n qwords from `rcx+0x58` to `rdx`, writes n and dword `rcx+0x34` to those two dwords, and returns 0",
+   "anchors": [
+    [
+     "00123802",
+     "mov"
+    ],
+    [
+     "00123815",
+     "je"
+    ],
+    [
+     "00123820",
+     "cmp"
+    ],
+    [
+     "0012384B",
+     "mov"
+    ],
+    [
+     "00123858",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Callees outside this pack are cited by call site (entry + offset). Doubts: 00121100 (when the dword count at rcx+0x88 is negative the scan exits with index 0 unequal to the count and the slot-0 path runs without the rdx store; not stated); 001223D0 (the byte tables at image base + 0x1B9A340 and + 0x1B9A550 are not resolved by the listing, so they are given as image-base offsets; the sentence is a structural summary of the 8/4/1-unrolled loops); 00123250 (the source index s and the output index both persist across groups, as read from the listing; worth a second look)."
+}
