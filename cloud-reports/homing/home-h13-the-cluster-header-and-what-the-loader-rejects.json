@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "0063BC80", "entered_from": "`0063BEF0` + 0x7B",
+   "text": "takes dword `+0x10` of `rcx` with bit 31 cleared as a count; when dword `rdx+0xEC` is below it (unsigned) and the 0x20-byte entry at that index of the array at qword `rcx+0x18` is non-zero, returns that entry's dword `+0x10`; otherwise follows qword `+0x78` from `rdx` to the first node whose dword `+0xEC` is non-negative (signed), returning 0 when there is none or when that index is not below the count; from that index's entry it walks the nodes linked through qword `+0`, moving on to the following entries while their dword `+0x18` is greater (signed) than the first entry's, and for each node whose chain from qword `+0x18` through qword `+0x78` reaches `rdx` adds into the result counts derived from the node's dword `+0x3C` and the stride dword `+0x38` of its qword `+0x18` object, stepping a cursor from qword `+0x28` against chunk limits from qword `-0x28` linked through qword `+0`; returns the sum",
+   "anchors": [["0063BCA7", "mov"], ["0063BCC0", "cmp"], ["0063BD42", "cmp"], ["0063BD90", "cmp"], ["0063BDFE", "add"]]}
+ ],
+ "skipped": [],
+ "notes": "0063BC80 (doubt): the first two paths (direct entry dword +0x10; 0 when no non-negative +0xEC is found or the index is out of range) are read with confidence. The accumulation loop (0063BDE4-0063BE7B) is described only structurally: the per-step amount r10d is dword +0x3C or (limit - cursor) / stride, and the branch at 0063BE13 (cursor past the limit) subtracts and re-adds in a way I could not reduce to a closed form, so the sentence deliberately does not claim the sum equals the total of the +0x3C counts. FABLE may prefer to trim the sentence to the first two paths or skip."
+}
