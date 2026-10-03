@@ -90,7 +90,23 @@ does not already carry it.
 
 ## 1. Summary
 
-*(written last; see the next commit)*
+| | |
+|---|---|
+| Pass-1 gaps re-decided | **278** (G-1..G-176 self-stated, S-1..S-102 structural); none skipped |
+| CLOSED | **5**: G-27, G-42, G-141, G-176, S-47 |
+| NARROWED | **49** |
+| OPEN | **204** |
+| WRONG-IN-PASS-1 | **20**: G-10, G-20, G-24, G-30, G-35, G-38, G-39, G-97, G-123, G-151, G-156, G-175, S-12, S-19, S-32, S-54, S-74, S-83, S-88, S-92 |
+| Still OPEN or NARROWED, by class | STATIC **168** · RUNTIME **20** · DATA **6** · DOC **59** |
+| New gaps | **74**: STATIC **41** · RUNTIME **0** · DATA **0** · DOC **33** |
+| Rating | **NOT YET** (pass 1: **NOT YET**); see §4 |
+
+Most of the WRONG-IN-PASS-1 items were answered before 2026-10-02 in a register row (for example FZ-11, SD-1,
+UQ-185, AS-2) or on another page, while the 00 page kept its old "not known" line. They are pointer defects on the
+page rather than knowledge gaps. Many of the new gaps are of the same kind: a 2026-10-02/03 correction or homed
+body that has not reached a sibling page, the contract or the register status cell (for example N-1.3 slot 7's
+latch order, N-2.4 and N-2.2 stale register cells, N-3.3 the `01FD46B0` fade cells, N-6.5, N-7.4 and N-7.5
+unapplied review narrowings, N-8.6, N-10.8).
 
 ## 2. Pass-1 gaps
 
