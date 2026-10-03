@@ -1,0 +1,20 @@
+{
+ "page": "09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "003A7950", "entered_from": "`003ED8A0` + 0x135",
+   "text": "with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, stores 0 to that qword and decrements dword `[t]`; returns `rcx+2` on both paths",
+   "anchors": [["003A7976", "mov"], ["003A7983", "call"], ["003A798B", "call"], ["003A7997", "mov"], ["003A79A7", "dec"]]},
+  {"fn": "003A7A50", "entered_from": "`003ED8A0` + 0x142",
+   "text": "copies the 0x2C bytes at `rcx+4` into the buffer returned by `003A7A50` + 0xE(byte `rcx+1`), passes that buffer (with 0 in `edx`) to `003A7A50` + 0x37, and returns `rcx+0xA4`",
+   "anchors": [["003A7A5E", "call"], ["003A7A69", "movups"], ["003A7A81", "mov"], ["003A7A87", "call"], ["003A7A8C", "lea"]]},
+  {"fn": "003A7AA0", "entered_from": "`003ED8A0` + 0x1C7",
+   "text": "when qword `02EBEFA8` `+8` + byte `rcx+1` times 8 holds a non-null qword, calls `003A7AA0` + 0x26 with it and the zero-extended byte `rcx+2`; returns `rcx+3` on both paths",
+   "anchors": [["003A7AB9", "mov"], ["003A7AC1", "je"], ["003A7AC6", "call"], ["003A7ACB", "lea"]]},
+  {"fn": "003A92B0", "entered_from": "`003ED8A0` + 0x1D1",
+   "text": "calls `003A92B0` + 0x9(`rcx`) and returns `rcx+2`",
+   "anchors": [["003A92B9", "call"], ["003A92BE", "lea"]]}
+ ],
+ "skipped": [],
+ "notes": "003A7950/003A7A50/003A7AA0/003A92B0 have the shape of byte-stream operand readers (each returns rcx advanced past its operands), but the row states only the access. 003A7A50: the copy is 16 bytes from rcx+4, 16 from rcx+0x14, 8 from rcx+0x24 and 4 from rcx+0x2C to buffer +0, +0x10, +0x20, +0x28; the return value rcx+0xA4 skips well past the 0x2C copied bytes. 003A7AA0: the qword is read from the table at qword 02EBEFA8 at offset 8 + 8*byte(rcx+1)."
+}
