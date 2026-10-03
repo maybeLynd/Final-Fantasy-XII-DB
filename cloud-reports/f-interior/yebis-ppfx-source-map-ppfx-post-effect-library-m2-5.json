@@ -1,0 +1,564 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "session": "session_017DsdqG4U4kGfYmsNf7ryWB",
+ "rows": [
+  {
+   "fn": "006E1420",
+   "text": "multiplies the four floats at `rdx` as a row vector by the 4x4 float matrix at `r8` (rows 0x10 apart): output component j is the sum over i of `rdx[i]` times the float at `r8 + 0x10*i + 4*j`; the four sums are assembled on the stack, stored as 16 bytes to `rcx`, and `rcx` is returned",
+   "anchors": [
+    [
+     "006E145C",
+     "mulss"
+    ],
+    [
+     "006E14E2",
+     "mulss"
+    ],
+    [
+     "006E14FE",
+     "addss"
+    ],
+    [
+     "006E151C",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1530",
+   "text": "transforms the three floats (x, y, z) at `rdx` by the 4x4 float matrix at `r8` with an implied fourth component 1: output j is x times `r8+4*j` plus y times `r8+0x10+4*j` plus z times `r8+0x20+4*j` plus the float at `r8+0x30+4*j`, for j = 0..2; it stores the first two as 8 bytes to `rcx`, the third to `rcx+8`, and returns `rcx`",
+   "anchors": [
+    [
+     "006E1556",
+     "mulss"
+    ],
+    [
+     "006E159E",
+     "addss"
+    ],
+    [
+     "006E15C3",
+     "movsd"
+    ],
+    [
+     "006E15D1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E15F0",
+   "text": "transforms the three floats (x, y, z) at `rdx` by the 4x4 float matrix at `r8` with an implied fourth component 1 (output j = x*`r8[4j]` + y*`r8[0x10+4j]` + z*`r8[0x20+4j]` + `r8[0x30+4j]`, j = 0..2) and stores the three results plus 1.0 (`01CEBBA8`) as four floats (16 bytes) at `rcx`, returning `rcx`",
+   "anchors": [
+    [
+     "006E1661",
+     "addss"
+    ],
+    [
+     "006E1667",
+     "movss"
+    ],
+    [
+     "006E1688",
+     "addss"
+    ],
+    [
+     "006E16A3",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E16C0",
+   "text": "transforms the two floats (x, y) at `rdx` by the matrix at `r8`: stores x*`[r8]` + y*`[r8+0x10]` + `[r8+0x30]` and x*`[r8+4]` + y*`[r8+0x14]` + `[r8+0x34]` as two floats (8 bytes) at `rcx` and returns `rcx`",
+   "anchors": [
+    [
+     "006E16CF",
+     "mulss"
+    ],
+    [
+     "006E16F1",
+     "addss"
+    ],
+    [
+     "006E16F7",
+     "addss"
+    ],
+    [
+     "006E1703",
+     "movsd"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1710",
+   "text": "transforms the two floats (x, y) at `rdx` by the matrix at `r8` (x*`[r8]` + y*`[r8+0x10]` + `[r8+0x30]`, x*`[r8+4]` + y*`[r8+0x14]` + `[r8+0x34]`) and stores those two results followed by 0.0 and 1.0 (`01CEBBA8`) as four floats (16 bytes) at `rcx`, returning `rcx`",
+   "anchors": [
+    [
+     "006E174E",
+     "addss"
+    ],
+    [
+     "006E1744",
+     "movss"
+    ],
+    [
+     "006E1767",
+     "movss"
+    ],
+    [
+     "006E1777",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1790",
+   "text": "multiplies the three floats (x, y, z) at `rdx` by the upper 3x3 of the matrix at `r8` with no translation: output j = x*`[r8+4j]` + y*`[r8+0x10+4j]` + z*`[r8+0x20+4j]` for j = 0..2; stores the first two as 8 bytes at `rcx`, the third at `rcx+8`, and returns `rcx`",
+   "anchors": [
+    [
+     "006E17B6",
+     "mulss"
+    ],
+    [
+     "006E17F4",
+     "mulss"
+    ],
+    [
+     "006E1811",
+     "movsd"
+    ],
+    [
+     "006E181F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1830",
+   "text": "multiplies the three floats (x, y, z) at `rdx` by the transposed upper 3x3 of the matrix at `r8`: output 0 = x*`[r8]` + y*`[r8+4]` + z*`[r8+8]`, output 1 = x*`[r8+0x10]` + y*`[r8+0x14]` + z*`[r8+0x18]`, output 2 = x*`[r8+0x20]` + y*`[r8+0x28]` + z*`[r8+0x28]` (the listing reads `+0x28` for both y and z, never `+0x24`); stores outputs 0-1 as 8 bytes at `rcx`, output 2 at `rcx+8`, and returns `rcx`",
+   "anchors": [
+    [
+     "006E184D",
+     "mulss"
+    ],
+    [
+     "006E187D",
+     "mulss"
+    ],
+    [
+     "006E1894",
+     "mulss"
+    ],
+    [
+     "006E18B1",
+     "movsd"
+    ],
+    [
+     "006E18BF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E18D0",
+   "text": "keeps `rcx` and the sign-extended `edx`, makes the call at `006E18D0` + 0x10, then copies the 16 bytes at `02EA13C0 + 0x10*edx` to `rcx` and returns `rcx`",
+   "anchors": [
+    [
+     "006E18E0",
+     "call"
+    ],
+    [
+     "006E18F7",
+     "movups"
+    ],
+    [
+     "006E18FE",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1910",
+   "text": "clamps the float `xmm0` to 375.0 (`01F3BC54`) .. 785.0 (`01F3BEE4`), computes u = (clamped - 375.0) / 5.0 (`009146E4`), passes u to the call at `006E1910` + 0x3A and truncates its result to an index i; returns a + (b - a)*(u - i), where a is the float at `01F3BC50 + 8*i` and b the float at `01F3BC50 + 8*min(i+1, 0x52)`",
+   "anchors": [
+    [
+     "006E1933",
+     "comiss"
+    ],
+    [
+     "006E193F",
+     "divss"
+    ],
+    [
+     "006E194A",
+     "call"
+    ],
+    [
+     "006E1974",
+     "cmovl"
+    ],
+    [
+     "006E1987",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "006E19C0",
+   "text": "clamps the float `xmm1` to 355.0 (`01F3BEFC`) .. 835.0 (`01F3C4FC`), computes u = (clamped - 355.0) / 5.0 (`009146E4`), passes u to the call at `006E19C0` + 0x3F and truncates its result to an index i; stores 0 at `rcx+0xc` and, for the three floats at offsets 0, 4, 8 of the 0x10-byte entries of the table at `01F3BEF0`, stores entry_i + (entry_j - entry_i)*(u - i) with j = min(i+1, 0x60) to `rcx+0`, `+4`, `+8`; returns `rcx`",
+   "anchors": [
+    [
+     "006E19E8",
+     "comiss"
+    ],
+    [
+     "006E19FF",
+     "call"
+    ],
+    [
+     "006E1A0F",
+     "mov"
+    ],
+    [
+     "006E1A27",
+     "cmovl"
+    ],
+    [
+     "006E1A93",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1AB0",
+   "text": "multiplies `xmm1` by the dword at `00D905B8` (which the listing decodes only as the bytes \"(knN\", not as a float) and calls `006E19C0` with the unchanged `rcx` and that product, returning `rcx`",
+   "anchors": [
+    [
+     "006E1AB6",
+     "mulss"
+    ],
+    [
+     "006E1AC1",
+     "call"
+    ],
+    [
+     "006E1AC6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1AE0",
+   "text": "calls `006E19C0` (stack vector, `xmm1`) and `006E3000` (stack matrix, `r8d`), stores 0 at `rcx+0xc` and the vector times that matrix plus its `+0x30` row at `rcx+0..8`; when `xmm3` is not 1.0, or the sixth (stack) byte is nonzero, it makes the call at `006E1AE0` + 0x11C and takes d = the fourth float of the 16 bytes at `02EA13C0 + 0x10*r8d` (else d = 0), and when `xmm3` is not 1.0 or the fifth (stack) byte is nonzero it multiplies the four floats at `rcx` by 1.0/d; a positive seventh (stack) float s becomes s times the sum of 0.2126 (`008F6D48`), 0.7152 (`008F6D4C`) and 0.0722 (`008F6D44`) times the positive parts of the three floats; on that same sixth-byte path, if s > 0 each of the three floats c becomes s times the call at +0x244/+0x265/+0x286 on (the call at +0x23B and siblings on c/s) plus the call at +0x22A on 0/s, kept only if it lies between c and d (else c clamped below at 0), and if s <= 0 all four floats are clamped below at 0; finally it stores `006E1910(xmm1)` at `rcx+0xc` and, when `xmm3` is not 1.0, replaces each positive one of the four floats by the call at +0x3F0 on it and 0.4545454 (`00D904B0`); returns `rcx`",
+   "anchors": [
+    [
+     "006E1B32",
+     "call"
+    ],
+    [
+     "006E1C0E",
+     "movups"
+    ],
+    [
+     "006E1CBA",
+     "mulss"
+    ],
+    [
+     "006E1EA3",
+     "movss"
+    ],
+    [
+     "006E1ED0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006E1F10",
+   "text": "multiplies `xmm1` by the dword at `00D905B8` (decoded by the listing only as the bytes \"(knN\") and calls `006E1AE0` with `rcx`, `r8`, `xmm3` and the product, re-passing its fifth and sixth (stack) bytes and seventh (stack) float as that call's fifth, sixth and seventh arguments; returns `rcx`",
+   "anchors": [
+    [
+     "006E1F27",
+     "mulss"
+    ],
+    [
+     "006E1F35",
+     "mov"
+    ],
+    [
+     "006E1F3E",
+     "mov"
+    ],
+    [
+     "006E1F42",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006E2660",
+   "text": "stores a constant 4x4 matrix of immediates at `rcx`: rows (`0x404F6402`, `0xBF782129`, `0x3D63EF28`, 0), (`0xBFC4C155`, `0x3FF02079`, `0xBE50F0A6`, 0), (`0xBEFF3FFB`, `0x3D2A36A0`, `0x3F8755F8`, 0) and (0, 0, 0, `0x3F800000`); returns `rcx`",
+   "anchors": [
+    [
+     "006E2662",
+     "mov"
+    ],
+    [
+     "006E2675",
+     "mov"
+    ],
+    [
+     "006E2698",
+     "mov"
+    ],
+    [
+     "006E26A7",
+     "mov"
+    ],
+    [
+     "006E26AF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E26C0",
+   "text": "builds two 4x4 float matrices on the stack, the first with rows (0.412453, 0.212671, 0.019334, 0), (0.35758, 0.71516, 0.119193, 0), (0.180423, 0.072169, 0.950227, 0), (0, 0, 0, 1), the second with rows (0.4184344, -0.09116033, 0.0009209266, 0), (-0.1586448, 0.2524229, -0.002550046, 0), (-0.08284546, 0.01570764, 0.1786426, 0), (0, 0, 0, 1); passes a stack output, the first and the second as `rcx`, `rdx`, `r8` to the call at `006E26C0` + 0x155 and copies the 64-byte result to `rcx`, which is returned",
+   "anchors": [
+    [
+     "006E26EA",
+     "movss"
+    ],
+    [
+     "006E2766",
+     "movss"
+    ],
+    [
+     "006E2815",
+     "call"
+    ],
+    [
+     "006E2825",
+     "movups"
+    ],
+    [
+     "006E2838",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E2860",
+   "text": "builds two 4x4 matrices on the stack, the first with rows (the dword at `00D90580`, decoded only as the bytes \"L71@\", then `0x3F800000`, 0, 0), (1.7517, 4.5907, 0.0565, 0), (1.1301, 0.0601, 5.5928, 0), (0, 0, 0, `0x3F800000`), the second with rows (3.240479, -0.969256, 0.055648, 0), (-1.53715, 1.875991, -0.204043, 0), (-0.498535, 0.041556, 1.057311, 0), (0, 0, 0, `0x3F800000`); passes a stack output, the first and the second as `rcx`, `rdx`, `r8` to the call at `006E2860` + 0x143 and copies the 64-byte result to `rcx`, which is returned",
+   "anchors": [
+    [
+     "006E288A",
+     "movss"
+    ],
+    [
+     "006E2951",
+     "mov"
+    ],
+    [
+     "006E28DF",
+     "movss"
+    ],
+    [
+     "006E29A3",
+     "call"
+    ],
+    [
+     "006E29C6",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E2C30",
+   "text": "for `edx` above 10 (unsigned) returns `rcx` unwritten; otherwise jumps through an image-relative table to one of eleven arms, each storing a 4x4 matrix of immediate dwords at `rcx` and returning `rcx`: ten arms (from `006E2C50` to `006E2F3B`) store different 3x3 constants (for example `0x3ED32D0A` at `+0` in the first) with 0 at `+0xc`, `+0x1c`, `+0x2c`, `+0x30`..`+0x38` and `0x3F800000` at `+0x3c`, and the arm at `006E2F8C` stores the identity (`0x3F800000` at `+0`, `+0x14`, `+0x28`, `+0x3c`, zero elsewhere)",
+   "anchors": [
+    [
+     "006E2C33",
+     "ja"
+    ],
+    [
+     "006E2C4E",
+     "jmp"
+    ],
+    [
+     "006E2C52",
+     "mov"
+    ],
+    [
+     "006E2FB4",
+     "mov"
+    ],
+    [
+     "006E2FC1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E3000",
+   "text": "for `edx` above 10 (unsigned) returns `rcx` unwritten; otherwise jumps through an image-relative table to one of eleven arms, each storing a 4x4 matrix of immediate dwords at `rcx` and returning `rcx`: ten arms (from `006E3020` to `006E3321`) store different 3x3 constants (the arm at `006E3020` begins `0x404F6402`) with 0 at `+0xc`, `+0x1c`, `+0x2c`, `+0x30`..`+0x38` and `0x3F800000` at `+0x3c`, and the arm at `006E3378` stores the identity (`0x3F800000` at `+0`, `+0x14`, `+0x28`, `+0x3c`, zero elsewhere)",
+   "anchors": [
+    [
+     "006E3003",
+     "ja"
+    ],
+    [
+     "006E301E",
+     "jmp"
+    ],
+    [
+     "006E3022",
+     "mov"
+    ],
+    [
+     "006E33A0",
+     "mov"
+    ],
+    [
+     "006E33AD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E33F0",
+   "text": "builds on the stack a 4x4 matrix P whose rows are (x, y, 1 - x - y, 0) for the float pairs at `rdx`, `r8` and `r9`, then (0, 0, 0, 1.0), and passes a stack output and P to the call at `006E33F0` + 0x11C; with the float pair (wx, wy) at the fifth (stack) pointer it multiplies the row vector (wx/wy, 1, (1 - wx - wy)/wy) by the upper 3x3 of that output, stores the three sums on the diagonal (`+0`, `+0x14`, `+0x28`) of a zeroed stack matrix with `0x3F800000` at `+0x3c`, passes that matrix and P to the call at +0x20E, and copies its 64-byte result to `rcx`, which is returned",
+   "anchors": [
+    [
+     "006E350C",
+     "call"
+    ],
+    [
+     "006E352F",
+     "divss"
+    ],
+    [
+     "006E3566",
+     "addss"
+    ],
+    [
+     "006E35FE",
+     "call"
+    ],
+    [
+     "006E3642",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006E3660",
+   "text": "zeroes `rcx+4`..`+0x10`, `+0x18`..`+0x24` and `+0x2c`; copies the three dwords at `rdx` to `+0`, `+0x14`, `+0x28` when `rdx` is non-null, else stores `0x3F800000` there; stores `0x3F800000` at `+0x3c`; copies the three dwords at `r8` to `+0x30`, `+0x34`, `+0x38` when `r8` is non-null, else zeroes them; returns `rcx`",
+   "anchors": [
+    [
+     "006E3677",
+     "test"
+    ],
+    [
+     "006E3683",
+     "mov"
+    ],
+    [
+     "006E369C",
+     "mov"
+    ],
+    [
+     "006E36B1",
+     "mov"
+    ],
+    [
+     "006E36C6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E36E0",
+   "text": "takes f = (three floats at `r9`) - (three at `r8`) when `dl` is nonzero, else `r8` minus `r9`, and scales f by 1.0 over the call at `006E36E0` + 0xC6 or + 0x162 on its squared length unless that is exactly 0.0 or 1.0; forms s = (three floats at the fifth (stack) pointer) cross f and normalizes it the same way (call at +0x269); writes s, f cross s and f down the first, second and third columns of the 4x4 at `rcx` (`+0/+0x10/+0x20`, `+4/+0x14/+0x24`, `+8/+0x18/+0x28`), 0 at `+0xc/+0x1c/+0x2c`, the dot products of s, f cross s and f with the floats at `r8`, sign-flipped by XOR with `0x80000000` (`01CEBDA0`), at `+0x30`, `+0x34`, `+0x38`, and `0x3F800000` at `+0x3c`; returns `rcx`",
+   "anchors": [
+    [
+     "006E37A6",
+     "call"
+    ],
+    [
+     "006E38C0",
+     "subss"
+    ],
+    [
+     "006E3949",
+     "call"
+    ],
+    [
+     "006E3A18",
+     "xorps"
+    ],
+    [
+     "006E3A5D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E3AA0",
+   "text": "takes f = (three floats at `r9`) - (three at `r8`) when `dl` is nonzero, else `r8` minus `r9`, and scales f by 1.0 over the call at `006E3AA0` + 0xC6 or + 0x162 on its squared length unless that is exactly 0.0 or 1.0; forms s = (three floats at the fifth (stack) pointer) cross f and normalizes it the same way (call at +0x269); writes s to `rcx+0..8`, f cross s to `+0x10..0x18`, f to `+0x20..0x28`, 0 to `+0xc`, `+0x1c`, `+0x2c`, copies the three dwords at `r8` to `+0x30..0x38` and stores `0x3F800000` at `+0x3c`; returns `rcx`",
+   "anchors": [
+    [
+     "006E3B66",
+     "call"
+    ],
+    [
+     "006E3C81",
+     "subss"
+    ],
+    [
+     "006E3D09",
+     "call"
+    ],
+    [
+     "006E3D9D",
+     "movss"
+    ],
+    [
+     "006E3DC9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006E3E00",
+   "text": "when `rcx` differs from `rdx` copies the 64 bytes at `rdx` to `rcx`; then multiplies the floats at `rcx+8`, `+0x18`, `+0x20`, `+0x24`, `+0x2c` and `+0x38` by -1.0 (`01CEBC9C`) in place and returns `rcx`",
+   "anchors": [
+    [
+     "006E3E03",
+     "je"
+    ],
+    [
+     "006E3E08",
+     "movups"
+    ],
+    [
+     "006E3E33",
+     "mulss"
+    ],
+    [
+     "006E3E53",
+     "movss"
+    ],
+    [
+     "006E3E7D",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Doubts: 006E1AE0 (1058 B) is stated as top-level structure; the stack-argument mapping assumes rbp = entry rsp - 0x47 (so [rbp+0x57] is the xmm1 home, [rbp+0x67] the xmm3 home, [rbp+0x6f]/[rbp+0x77]/[rbp+0x7f] the fifth/sixth/seventh stack arguments), consistent with the 006E1F10 wrapper. 006E1830 really reads +0x28 for both the y and z terms of output 2 (not +0x24); worth a second look. 00D905B8 and 00D90580 are decoded by the listing only as strings (\"(knN\", \"L71@\"); their bytes would read as floats 0x4E6E6B28 and 0x4031374C, but no value is stated. 006E2C30/006E3000: the jump table is not decoded, so which edx selects which arm is not stated. The constant matrices of 006E26C0/006E2860 look like colour-space matrices, but nothing in the listing names them, so no meaning is stated. 006E2660 stores exactly the matrix of the first arm (006E3020) of 006E3000."
+}
