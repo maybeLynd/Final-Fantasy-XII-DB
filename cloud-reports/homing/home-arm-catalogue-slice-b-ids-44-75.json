@@ -1,0 +1,23 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md",
+ "session": "session_01VnuySB6H7e8WAWRL1qnmZN",
+ "rows": [
+  {
+   "fn": "001FB830",
+   "entered_from": "`001F16C0` + 0x6E",
+   "text": "tail-jumps (`001FB830` + 0xA) with `rcx` = qword `01F7F4D0` and `rdx` = the qword at the incoming `rcx`",
+   "anchors": [
+    [
+     "001FB833",
+     "mov"
+    ],
+    [
+     "001FB83A",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Read whole; the entry instruction loads `rdx`, so the body's work goes past the entry and the row is kept. No doubts."
+}
