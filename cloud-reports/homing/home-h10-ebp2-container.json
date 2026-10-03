@@ -1,0 +1,14 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "0029B440", "entered_from": "`00297640` + 0x63",
+   "text": "makes five calls in order: `0029B440` + 0xF(2, `ecx`), `0029B440` + 0x16(0), `0029B440` + 0x22(4, `ecx`), `0029B440` + 0x29(`ecx`) and `0029B440` + 0x2E(); when the last returns non-zero it tail-jumps at `0029B440` + 0x3E with `ecx`, otherwise it returns",
+   "anchors": [["0029B44F", "call"], ["0029B462", "call"], ["0029B46E", "call"], ["0029B475", "je"], ["0029B47E", "jmp"]]},
+  {"fn": "0035BC30", "entered_from": "`00297640` + 0x8E",
+   "text": "returns bit 2 of dword `022C8060` as 0 or 1 (shift right by 2, AND 1)",
+   "anchors": [["0035BC36", "shr"], ["0035BC39", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "0029B440: none of its callees is named in the host excerpt; all six are cited by site. 0035BC30: the dword load is the entry instruction; the anchors are the shift and mask."
+}
