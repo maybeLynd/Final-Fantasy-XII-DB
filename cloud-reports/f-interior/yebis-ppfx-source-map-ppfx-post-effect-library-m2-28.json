@@ -1,0 +1,608 @@
+{
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "session": "session_01Q9HcspskDwbbxEBnx8EL9L",
+ "rows": [
+  {
+   "fn": "00719920",
+   "text": "on the length-and-buffer record at `rcx` (dword `+0x0` length, qword `+0x8` buffer) makes the call at `00719920`+0x1A with (`rcx`, length+1, 1), increments the length, stores `dl` at buffer[new length - 1] and a NUL at buffer[new length], and returns `rcx`",
+   "anchors": [
+    [
+     "0071993A",
+     "call"
+    ],
+    [
+     "0071993F",
+     "inc"
+    ],
+    [
+     "00719948",
+     "mov"
+    ],
+    [
+     "00719959",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719970",
+   "text": "with len = dword `[rcx]` and n = `r8d`, makes the call at `00719970`+0x2C with `rdx`, len*n and a fifth argument 0; then for i = 0..n-1 makes the call at +0x53 with (qword `rcx+0x8` + len*i, qword `rcx+0x8`, len); stores len*n to dword `[rcx]` and returns `rdx`",
+   "anchors": [
+    [
+     "0071998E",
+     "imul"
+    ],
+    [
+     "0071999C",
+     "call"
+    ],
+    [
+     "007199C3",
+     "call"
+    ],
+    [
+     "007199DD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719A00",
+   "text": "with len = dword `[rcx]` and n = `edx`, makes the call at `00719A00`+0x21 with (`rcx`, len*n, 1); then for i = 1..n-1 makes the call at +0x43 with (qword `rcx+0x8` + len*i, qword `rcx+0x8`, len); stores len*n to dword `[rcx]` and returns `rcx`",
+   "anchors": [
+    [
+     "00719A1B",
+     "imul"
+    ],
+    [
+     "00719A21",
+     "call"
+    ],
+    [
+     "00719A43",
+     "call"
+    ],
+    [
+     "00719A58",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719A70",
+   "text": "lowers the length dword `[rcx]` while it is at least 1 and the call at `00719A70`+0x38 on the sign-extended last byte (qword `rcx+0x8`)[length-1] returns non-zero; when the length changed it makes the call at +0x60 with (`rcx`, new length, 1), stores the new length and, when dword `rcx+0x4` is non-zero, writes a NUL at buffer[new length]; returns `rcx`",
+   "anchors": [
+    [
+     "00719A9C",
+     "movzx"
+    ],
+    [
+     "00719AA8",
+     "call"
+    ],
+    [
+     "00719AB2",
+     "dec"
+    ],
+    [
+     "00719AD0",
+     "call"
+    ],
+    [
+     "00719AE4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719B40",
+   "text": "calls `00719A70(rdx)` and makes the call at `00719B40`+0x39 with (`rcx`, that result); then, when qword `rdx+0x8` is neither `02EA1720` nor null, makes the call at +0x66 with (qword `01F3BA68`, that pointer - 8) and zeroes qword `rdx+0x8`; returns `rcx`",
+   "anchors": [
+    [
+     "00719B6E",
+     "call"
+    ],
+    [
+     "00719B79",
+     "call"
+    ],
+    [
+     "00719B91",
+     "cmp"
+    ],
+    [
+     "00719BA6",
+     "call"
+    ],
+    [
+     "00719BAB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719BD0",
+   "text": "makes the call at `00719BD0`+0x23 with (a local record, `rdx`), calls `00719A70` on that local and makes the call at +0x39 with (`rcx`, local); then, when the local's qword `+0x8` is neither `02EA1720` nor null, makes the call at +0x67 with (qword `01F3BA68`, that pointer - 8); returns `rcx`",
+   "anchors": [
+    [
+     "00719BF3",
+     "call"
+    ],
+    [
+     "00719BFE",
+     "call"
+    ],
+    [
+     "00719C09",
+     "call"
+    ],
+    [
+     "00719C37",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00719C50",
+   "text": "lowers n from the length dword `[rcx]` while n >= 1 and `0071A4D0(rcx, n)` equals some byte of the buffer qword `rdx+0x8` of the record at `rdx` (positions 1 to its dword `[rdx]`; an empty set stops at once); when n differs from the length it makes the call at `00719C50`+0xCE with (`rcx`, n, 1), stores n to dword `[rcx]` and, when dword `rcx+0x4` is non-zero, writes a NUL at buffer[n]; returns `rcx`",
+   "anchors": [
+    [
+     "00719CBE",
+     "call"
+    ],
+    [
+     "00719CD2",
+     "cmove"
+    ],
+    [
+     "00719CE5",
+     "dec"
+    ],
+    [
+     "00719D1E",
+     "call"
+    ],
+    [
+     "00719D34",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719D80",
+   "text": "raises i from 1 while i <= the length dword `[rcx]` and `0071A4D0(rcx, i)` equals some byte of the buffer qword `rdx+0x8` of the record at `rdx` (positions 1 to its dword `[rdx]`; an empty set stops at once); when i ends above 1 it makes the call at `00719D80`+0xCA with (`rcx`, i, length); returns `rcx`",
+   "anchors": [
+    [
+     "00719DF0",
+     "call"
+    ],
+    [
+     "00719E04",
+     "cmove"
+    ],
+    [
+     "00719E1A",
+     "inc"
+    ],
+    [
+     "00719E4A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00719E70",
+   "text": "takes k = `r8d`, or the length of the NUL-terminated string at `rdx` when `r8d` is negative, and raises i from 1 while i <= the length dword `[rcx]` and `0071A4D0(rcx, i)` equals one of the first k bytes at `rdx` (k < 1 stops at once); when i ends above 1 it makes the call at `00719E70`+0xA7 with (`rcx`, i, the length); returns `rcx`",
+   "anchors": [
+    [
+     "00719E93",
+     "cmp"
+    ],
+    [
+     "00719ED5",
+     "call"
+    ],
+    [
+     "00719EE3",
+     "cmove"
+    ],
+    [
+     "00719EF4",
+     "inc"
+    ],
+    [
+     "00719F17",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00719F40",
+   "text": "makes the call at `00719F40`+0x1E with (`rcx`, qword `r8+0x8`, dword `[r8]` + `edx`, dword `[r8]`); finds the highest position p from the length dword `[rcx]` down to `edx` whose byte (qword `rcx+0x8`)[p-1] is 0x0A (p = 0 when none), and returns 1 when p is below that call's result (signed), else 0",
+   "anchors": [
+    [
+     "00719F5E",
+     "call"
+    ],
+    [
+     "00719F77",
+     "cmp"
+    ],
+    [
+     "00719F89",
+     "mov"
+    ],
+    [
+     "00719F94",
+     "setl"
+    ]
+   ]
+  },
+  {
+   "fn": "00719FB0",
+   "text": "takes r from the call at `00719FB0`+0x2D with (`rcx`, qword `r8+0x8`, dword `[r8]` + `edx`, dword `[r8]`) and returns 0 when r is 0; otherwise e = the call at +0x64 with (`rcx`, r, `r8`, `r9`, byte 0) + dword `[r9]` (read before it) - 1, returning 0 when e is 0, else 1 when r <= `edx` <= e (signed) and 0 otherwise",
+   "anchors": [
+    [
+     "00719FDD",
+     "call"
+    ],
+    [
+     "00719FE6",
+     "jne"
+    ],
+    [
+     "0071A014",
+     "call"
+    ],
+    [
+     "0071A021",
+     "add"
+    ],
+    [
+     "0071A02D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A050",
+   "text": "takes r from the call at `0071A050`+0x31 with (`rcx`, qword `r8+0x8`, dword `[r8]` + `edx`, dword `[r8]`) and the highest position p from the length dword `[rcx]` down to `edx` whose byte (qword `rcx+0x8`)[p-1] is 0x0A (0 when none); calls `00719FB0(rcx, edx, r9, fifth (stack) argument)` and returns 1 when p < r (signed) or that call returned non-zero, else 0",
+   "anchors": [
+    [
+     "0071A081",
+     "call"
+    ],
+    [
+     "0071A097",
+     "cmp"
+    ],
+    [
+     "0071A0B7",
+     "call"
+    ],
+    [
+     "0071A0BC",
+     "cmp"
+    ],
+    [
+     "0071A0C5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A0F0",
+   "text": "raises i from 1 while i <= the length dword `[rcx]` and `0071A4D0(rcx, i)` equals one of the three bytes at `00D99914`, making the call at `0071A0F0`+0x95 with (`rcx`, i, length) when i ends above 1; then calls `00719A70(rcx)` and, when the new length L is at least 2, the first buffer byte equals the last and that byte occurs in the NUL-terminated string at `rdx`, makes the call at +0x11B with (`rcx`, 2, L-2); returns `rcx`",
+   "anchors": [
+    [
+     "0071A14A",
+     "cmp"
+    ],
+    [
+     "0071A185",
+     "call"
+    ],
+    [
+     "0071A18D",
+     "call"
+    ],
+    [
+     "0071A1CB",
+     "cmp"
+    ],
+    [
+     "0071A20B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A4D0",
+   "text": "returns byte (qword `rcx+0x8`)[`edx`-1] when 1 <= `edx` <= dword `[rcx]` (signed), else 0",
+   "anchors": [
+    [
+     "0071A4D3",
+     "jl"
+    ],
+    [
+     "0071A4D7",
+     "jg"
+    ],
+    [
+     "0071A4E0",
+     "movzx"
+    ],
+    [
+     "0071A4E6",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A4F0",
+   "text": "for `ecx` from 1 to 0x5D dispatches through a byte-indexed jump table to arms that return 0x80, 0x60, 0x40, 0x20, 8 or 0x10 divided by 8 (16, 12, 8, 4, 1, 2); other values return 0 (the value-to-arm mapping is in tables this listing does not decode)",
+   "anchors": [
+    [
+     "0071A4F4",
+     "cmp"
+    ],
+    [
+     "0071A503",
+     "movzx"
+    ],
+    [
+     "0071A517",
+     "jmp"
+    ],
+    [
+     "0071A526",
+     "sar"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A600",
+   "text": "returns 1 when `ecx` is 0x1D or one of 0x48, 0x4B, 0x4E, 0x5B, 0x5D, 0x63 (`ecx` - 0x48 at most 0x1B with its bit set in 0x08280049), and 0 for 0 and every other value",
+   "anchors": [
+    [
+     "0071A604",
+     "cmp"
+    ],
+    [
+     "0071A616",
+     "bt"
+    ],
+    [
+     "0071A61B",
+     "xor"
+    ],
+    [
+     "0071A61E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A630",
+   "text": "for `ecx` from 0 to 0x5B dispatches through a jump table to arms that each return a name string (\"GPUFMT_UNKNOWN\" (`00D99F08`), \"GPUFMT_A8R8G8B8\", ... and the \"DXGI_FORMAT_...\" names up to \"DXGI_FORMAT_B8G8R8A8_UNORM_SRGB\"); for larger values it formats `ecx` with \"0x%08x\" into `02EA1730` through the call at `0071A630`+0x5CA and returns `02EA1730` (the value-to-arm mapping is in a table this listing does not decode)",
+   "anchors": [
+    [
+     "0071A636",
+     "cmp"
+    ],
+    [
+     "0071A654",
+     "jmp"
+    ],
+    [
+     "0071A656",
+     "lea"
+    ],
+    [
+     "0071ABFA",
+     "call"
+    ],
+    [
+     "0071ABFF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071AD80",
+   "text": "for `ecx` from -1 to 0x20 dispatches through a jump table to arms that each return a name string (\"GPUMULTISAMPLE_NONE\" (`00D9A8E8`), \"GPUMULTISAMPLE_2_SAMPLES\" ... \"GPUMULTISAMPLE_32_SAMPLES\", \"GPUMULTISAMPLE_UNKNOWN\"); for other values it formats `ecx` with \"Unknown GPUMULTISAMPLE_TYPE(0x%08x)\" into `02EA1770` through the call at `0071AD80`+0x24C and returns `02EA1770` (the value-to-arm mapping is in a table this listing does not decode)",
+   "anchors": [
+    [
+     "0071AD89",
+     "cmp"
+    ],
+    [
+     "0071ADA6",
+     "jmp"
+    ],
+    [
+     "0071ADA8",
+     "lea"
+    ],
+    [
+     "0071AFCC",
+     "call"
+    ],
+    [
+     "0071AFD1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B070",
+   "text": "clears byte `02EA17B0` and builds a string there: when `ecx` AND 1 is set it writes at the string's end, through the call at `0071B070`+0x7A, format `00D99FAC` with `00D99F3C` when `dl` is non-zero, else format `00D99FBC` with \"GPUUSAGE_RENDERTARGET\"; when `ecx` AND 2 is set it appends through the call at +0xE6, when `dl` is non-zero, format `00D99FF4` (after a first part) or `00D9A02C` with `00D99FDC`, else the separator format at `00D9AD58` (after a first part) or `00D9A0AC` with \"GPUUSAGE_DEPTHSTENCIL\"; returns `02EA17B0`",
+   "anchors": [
+    [
+     "0071B086",
+     "mov"
+    ],
+    [
+     "0071B0EA",
+     "call"
+    ],
+    [
+     "0071B10C",
+     "cmovne"
+    ],
+    [
+     "0071B134",
+     "cmovne"
+    ],
+    [
+     "0071B156",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B180",
+   "text": "returns \"GPUIBFMT_UNKNOWN\" (`00D9AD60`) for `ecx` = -1, the string at `00D9AD88` for 0x2A, the string at `00D9AD78` for 0x39 (both decoded as \"GPUIBFMT_UINT16\"), and null for every other value",
+   "anchors": [
+    [
+     "0071B183",
+     "je"
+    ],
+    [
+     "0071B188",
+     "je"
+    ],
+    [
+     "0071B18F",
+     "lea"
+    ],
+    [
+     "0071B197",
+     "xor"
+    ],
+    [
+     "0071B19A",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B1B0",
+   "text": "returns a name string for the code in `ecx` (signed compares): \"D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS\" for 0x887C0001, \"D3D11_ERROR_FILE_NOT_FOUND\" for 0x887C0002, \"DXGI_STATUS_OCCLUDED\" for 0x087A0001; codes 0x887A0001-0x887A0024 go through a byte-indexed jump table to the \"DXGI_ERROR_...\" arms and codes 0x087A0002-0x087A0008 through a second table to the \"DXGI_STATUS_...\" arms (\"DXGI_STATUS_CLIPPED\" to \"DXGI_STATUS_MODE_CHANGE_IN_PROGRESS\"); every other code returns null (which table entries reach which arm, or null, is not decoded in this listing)",
+   "anchors": [
+    [
+     "0071B1B2",
+     "cmp"
+    ],
+    [
+     "0071B1F1",
+     "jmp"
+    ],
+    [
+     "0071B298",
+     "lea"
+    ],
+    [
+     "0071B2C0",
+     "lea"
+    ],
+    [
+     "0071B2EB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B4C0",
+   "text": "returns `ecx` shifted right (logical) by `cl` of `edx`, or 1 when that is not above 1 (unsigned)",
+   "anchors": [
+    [
+     "0071B4CA",
+     "shr"
+    ],
+    [
+     "0071B4D0",
+     "cmova"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B4E0",
+   "text": "takes m = the largest of `ecx`, `edx` and `r8d` (unsigned), converts it to float, divides the result of the call at `0071B4E0`+0x33 on it by the result of the same callee at +0x43 on 2.0, passes the quotient as a double to the call at +0x53, and returns its truncated value plus 1",
+   "anchors": [
+    [
+     "0071B500",
+     "cmovbe"
+    ],
+    [
+     "0071B507",
+     "cmova"
+    ],
+    [
+     "0071B513",
+     "call"
+    ],
+    [
+     "0071B528",
+     "divss"
+    ],
+    [
+     "0071B542",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B550",
+   "text": "for `ecx` from 1 to 0x41 dispatches through a byte-indexed jump table to arms returning 1, 5, 9, 0xF, 0x13, 0x17, 0x1B, 0x21, 0x27, 0x2C, 0x30, 0x35 or 0x3C; other values return `ecx` unchanged (the value-to-arm mapping is in tables this listing does not decode)",
+   "anchors": [
+    [
+     "0071B555",
+     "cmp"
+    ],
+    [
+     "0071B567",
+     "movzx"
+    ],
+    [
+     "0071B57B",
+     "jmp"
+    ],
+    [
+     "0071B5E2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B670",
+   "text": "returns 0x15 plus 1 when `dl` is non-zero for `ecx` = 0x14, 0x29 for 0x28, 0x2E plus 1 when `dl` is non-zero for 0x2D, 0x38 for 0x37, and 0 otherwise",
+   "anchors": [
+    [
+     "0071B675",
+     "je"
+    ],
+    [
+     "0071B686",
+     "mov"
+    ],
+    [
+     "0071B691",
+     "add"
+    ],
+    [
+     "0071B695",
+     "mov"
+    ],
+    [
+     "0071B6A0",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Member mode; calls to callees outside this pack are cited by site (entry + offset of the call instruction). Jump-table bodies (0071A4F0, 0071A630, 0071AD80, 0071B1B0, 0071B550) are stated by range and arm values only; the tables after their code are not named and their value-to-arm mapping is not decoded in the listing. 00719A70 and 00719C50: the length-growing branch (calls at +0x8B/+0xA3 and +0xF3/+0x10B, padding with 0x20) is unreachable because the new length never exceeds the old one, so it is not stated. 0071B070: the listing stops at 0071B163 (before the extent end 0071B16C); the return of 02EA17B0 is from the `mov rax, rdi` at 0071B160. 0071B180: the pack decodes both 00D9AD78 and 00D9AD88 as \"GPUIBFMT_UINT16\"; FABLE may want to check whether one is UINT32. 0071B4E0: the call shape (same callee on m and on 2.0, then a divide) is consistent with a base-2 logarithm, not stated as fact."
+}
