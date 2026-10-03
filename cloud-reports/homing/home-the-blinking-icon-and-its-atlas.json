@@ -1,0 +1,20 @@
+{
+ "page": "99-Unresolved-Residual/the-blinking-icon-and-its-atlas.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "00247980", "entered_from": "`00228130` + 0x1A6",
+   "text": "returns the null `rdx` when `rdx` is null; when qword `rdx+0x10` is non-zero, tail-jumps (`00247980` + 0x29) with `rdx` in `rcx` and `r8d` in `edx`; otherwise clears bit 1 of dword `rdx+0x40`, ORs in bit 0 of `r8d` shifted to bit 1, and tail-jumps (`00247980` + 0x1E) with `rcx` and `rdx` unchanged and that shifted bit in `r8d`",
+   "anchors": [["00247986", "je"], ["00247988", "cmp"], ["0024798F", "and"], ["0024799A", "or"], ["002479A9", "jmp"]]},
+  {"fn": "00264420", "entered_from": "`00345430` + 0x3C",
+   "text": "when qword `rcx+0xC0` is non-null and bit 1 of its byte `+0x154` is set, returns bit 0 of that byte; otherwise calls `00264420` + 0x27 and returns 1 when it returns a non-zero `eax`, else 0",
+   "anchors": [["0026442E", "je"], ["00264437", "test"], ["0026443F", "and"], ["00264447", "call"], ["00264450", "setne"]]},
+  {"fn": "002644E0", "entered_from": "`00340480` + 0x23",
+   "text": "when byte `rcx+3` AND 0xE0 equals 0x60, returns in `xmm0` float `+0xB0` of the object at qword `rcx+0xB8`; otherwise returns 1.0 (`01DFE0BC`) times 0.2094395 (`00915728`)",
+   "anchors": [["002644E6", "cmp"], ["002644F2", "mulss"], ["00264502", "movss"]]},
+  {"fn": "0037FA00", "entered_from": "`0037F4D0` + 0x47",
+   "text": "when qword `rcx+0xC8` is non-null, passes it to the call at `0037FA00` + 0x1B and zeroes it; then, when byte `+0xEE` is non-zero, for each index below byte `+0xEE` (re-read each pass, signed compare) passes qword `+0x10` of the 0x18-byte entry at `rcx+0xF0` to the call at `0037FA00` + 0x44 and zeroes the entry's byte `+0`, and finally zeroes byte `+0xEE`",
+   "anchors": [["0037FA1B", "call"], ["0037FA20", "mov"], ["0037FA44", "call"], ["0037FA49", "mov"], ["0037FA62", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "002644E0: the constant product 1.0 x 0.2094395 is computed at run time from two decoded constants; the sentence gives both. 00247980: on the null path rax is the incoming rdx, so the return value is null."
+}
