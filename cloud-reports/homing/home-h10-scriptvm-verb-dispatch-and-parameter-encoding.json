@@ -1,0 +1,14 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "00264110", "entered_from": "`00377900` + 0x35",
+   "text": "calls `00264110` + 0x2A with `ecx` = 1, `edx` = the incoming `ecx`, `r8d` = the incoming `edx`, `r9` = the incoming `r8`, the incoming `r9` as the fifth (stack) argument and the incoming fifth and sixth (stack) arguments as the sixth and seventh, and returns its result",
+   "anchors": [["00264114", "mov"], ["00264128", "mov"], ["0026412D", "mov"], ["00264135", "mov"], ["0026413A", "call"]]},
+  {"fn": "00264B90", "entered_from": "`00264B50` + 0x27",
+   "text": "zeroes the dwords at `r9` and at the fifth, sixth and seventh (stack) argument pointers and loads the qword at `02098E10` plus sign-extended `edx` times `0x288`, returning 0 when it is null; it then replaces `r8d` in turn (-1 by sign-extended word `+0x52`, then -2 by word `+0x78`, then -3 by word `+0x7A`, then any negative value by word `+0x52`) and uses 0 if still negative; it returns 0 when word `+0` is at most 2 (unsigned), when `00264B90` + 0xA8 (called with dword `+0x54` when `ecx` is 0, else dword `+0x84`) returns null, or when the index is not below the dword at the record plus that result's low 32 bits; otherwise it copies dwords `+4`, `+8`, `+0xC` and `+0x10` of the `0x20`-byte entry at that index (entries start 4 bytes after that dword) to the four pointers and returns 1",
+   "anchors": [["00264BDC", "mov"], ["00264C1F", "cmovns"], ["00264C38", "call"], ["00264C47", "cmp"], ["00264C56", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00264B90: the index compare at 00264C47 is unsigned (jae). The entry offsets are written relative to table + index * 0x20, matching the listing's `[rcx + rdx + 4]` .. `[rcx + rdx + 0x10]`; the phrase 'entries start 4 bytes after that dword' restates that. The `+0x2A` site in 00264110 is the call to 00264B90 (cited by site because the host excerpt does not name it)."
+}
