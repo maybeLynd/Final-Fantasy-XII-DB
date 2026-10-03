@@ -1,0 +1,517 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "005AA160",
+   "text": "when bit 31 of dword `rcx+0x10` is clear and qword `rcx+0x18` is non-null calls `00584730(qword rcx+0x18)`, then zeroes qword `+0x18` and dword `+0x10`; does the same for dword `+0` and qword `+8`; returns nothing",
+   "anchors": [
+    [
+     "005AA17D",
+     "not"
+    ],
+    [
+     "005AA18C",
+     "call"
+    ],
+    [
+     "005AA194",
+     "mov"
+    ],
+    [
+     "005AA1AF",
+     "call"
+    ],
+    [
+     "005AA1B9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA280",
+   "text": "when qword `p` = `[rcx]` is non-null calls `00809054(p, 0x138, qword [p-8], 005AA2F0)` and then `00584730(p-8)`; otherwise returns without calling",
+   "anchors": [
+    [
+     "005AA295",
+     "je"
+    ],
+    [
+     "005AA29B",
+     "lea"
+    ],
+    [
+     "005AA2AA",
+     "call"
+    ],
+    [
+     "005AA2B3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA2F0",
+   "text": "for the pairs (dword `+0x120`, qword `+0x128`), (dword `+0x110`, qword `+0x118`) and (dword `+0x100`, qword `+0x108`) of `rcx`, in that order, calls `00584730` on the qword when bit 31 of the dword is clear and the qword is non-null, then zeroes both; returns nothing",
+   "anchors": [
+    [
+     "005AA322",
+     "call"
+    ],
+    [
+     "005AA32A",
+     "mov"
+    ],
+    [
+     "005AA352",
+     "call"
+    ],
+    [
+     "005AA380",
+     "call"
+    ],
+    [
+     "005AA38D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA3C0",
+   "text": "takes `n` = dword `[rdx]` AND `0x7fffffff` and, when `n` is non-zero, `b` = `0017D260(n*4, 4)`, calling the function at `005AA3C0`+0x49 (`b`, qword `rdx+8`, `n`) when `b` is non-null (`b` is 0 when `n` is 0); then, when qword `rcx+8` differs from `b`, bit 31 of dword `[rcx]` is clear and that qword is non-null, calls `00584730` on it; stores `n` at dword `[rcx]` and `b` at qword `rcx+8` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA3E2",
+     "and"
+    ],
+    [
+     "005AA3F3",
+     "call"
+    ],
+    [
+     "005AA409",
+     "call"
+    ],
+    [
+     "005AA427",
+     "call"
+    ],
+    [
+     "005AA43B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AD1B0",
+   "text": "returns 0 when `ecx` is 0; otherwise calls `0017D260(ecx*8, 4)`, returns that result (0) when it is null, and else copies `ecx` qwords from `[rdx]` onwards into the new block (skipping only a slot whose address is null) and returns the block",
+   "anchors": [
+    [
+     "005AD1C1",
+     "je"
+    ],
+    [
+     "005AD1D7",
+     "call"
+    ],
+    [
+     "005AD1E2",
+     "je"
+    ],
+    [
+     "005AD203",
+     "mov"
+    ],
+    [
+     "005AD20A",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "005B7E80",
+   "text": "returns at once when `rcx` is null; otherwise, for each of `edx` elements of 0x20 bytes from `rcx`, calls the first entry of the element's vtable (qword `[[element]]`) with (element, 0), and then calls `00584730(rcx)` (also when `edx` is 0)",
+   "anchors": [
+    [
+     "005B7E83",
+     "je"
+    ],
+    [
+     "005B7EB8",
+     "call"
+    ],
+    [
+     "005B7EBA",
+     "add"
+    ],
+    [
+     "005B7EC6",
+     "jne"
+    ],
+    [
+     "005B7EDA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B7EF0",
+   "text": "returns at once when `rcx` is null; otherwise, for each of `edx` elements of 0x10 bytes from `rcx`, calls the first entry of the element's vtable (qword `[[element]]`) with (element, 0), and then calls `00584730(rcx)` (also when `edx` is 0)",
+   "anchors": [
+    [
+     "005B7EF3",
+     "je"
+    ],
+    [
+     "005B7F28",
+     "call"
+    ],
+    [
+     "005B7F2A",
+     "add"
+    ],
+    [
+     "005B7F36",
+     "jne"
+    ],
+    [
+     "005B7F4A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B7F60",
+   "text": "returns at once when `rcx` is null; otherwise, for each of `edx` elements of 0x18 bytes from `rcx`, calls the first entry of the element's vtable (qword `[[element]]`) with (element, 0), and then calls `00584730(rcx)` (also when `edx` is 0)",
+   "anchors": [
+    [
+     "005B7F63",
+     "je"
+    ],
+    [
+     "005B7F98",
+     "call"
+    ],
+    [
+     "005B7F9A",
+     "add"
+    ],
+    [
+     "005B7FA6",
+     "jne"
+    ],
+    [
+     "005B7FBA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005CD960",
+   "text": "reads dword `+4` of the thread-local block indexed by dword `02EAED3C` in the `gs:[0x58]` array and, only when dword `02CB6158` is greater (signed), calls `008092FC(02CB6158)` and, when `02CB6158` is then -1, stores `005CDA30()` at qword `02CB6150` and calls `0080929C(02CB6158)`; returns otherwise",
+   "anchors": [
+    [
+     "005CD97F",
+     "cmp"
+    ],
+    [
+     "005CD993",
+     "call"
+    ],
+    [
+     "005CD998",
+     "cmp"
+    ],
+    [
+     "005CD9AD",
+     "mov"
+    ],
+    [
+     "005CD9B4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005CEBA0",
+   "text": "when bit 31 of dword `rdx+0x38` is clear, that dword is above 1 (unsigned) and qword `rdx+0x40` is non-null, calls `00584730(qword rdx+0x40)`; then zeroes qword `rdx+0x40` and dword `rdx+0x38` and returns 1",
+   "anchors": [
+    [
+     "005CEBBA",
+     "not"
+    ],
+    [
+     "005CEBC7",
+     "jbe"
+    ],
+    [
+     "005CEBD2",
+     "call"
+    ],
+    [
+     "005CEBD9",
+     "mov"
+    ],
+    [
+     "005CEBE0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D2470",
+   "text": "calls `00584730` on qword `rdx+8` and then on qword `[rdx]`, each only when it is non-null and its bit 0 is clear; returns `al` = 1",
+   "anchors": [
+    [
+     "005D248F",
+     "test"
+    ],
+    [
+     "005D2493",
+     "call"
+    ],
+    [
+     "005D24A5",
+     "test"
+    ],
+    [
+     "005D24A9",
+     "call"
+    ],
+    [
+     "005D24AF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D7720",
+   "text": "calls `005CCB80(1)` repeatedly while dword `rdx+4` (re-read after each call) is greater than 0 (signed), then calls the function at `005D7720`+0x34 (`rdx`) and returns `al` = 1",
+   "anchors": [
+    [
+     "005D7737",
+     "jle"
+    ],
+    [
+     "005D7745",
+     "call"
+    ],
+    [
+     "005D774F",
+     "jg"
+    ],
+    [
+     "005D7754",
+     "call"
+    ],
+    [
+     "005D775A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005DE310",
+   "text": "calls `005CDAA0(3, 00D4B350)` when byte `rcx+8` is non-zero, then calls `006108C0(qword rcx+0x20)` when that qword is non-null; returns nothing",
+   "anchors": [
+    [
+     "005DE322",
+     "cmp"
+    ],
+    [
+     "005DE334",
+     "call"
+    ],
+    [
+     "005DE341",
+     "je"
+    ],
+    [
+     "005DE343",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005DE390",
+   "text": "calls `005CDAA0(3, 00D4B350)` when byte `rcx+8` is non-zero, then calls `006108C0(qword rcx+0x20)` when that qword is non-null; returns nothing",
+   "anchors": [
+    [
+     "005DE3A2",
+     "cmp"
+    ],
+    [
+     "005DE3B4",
+     "call"
+    ],
+    [
+     "005DE3C1",
+     "je"
+    ],
+    [
+     "005DE3C3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005F0470",
+   "text": "returns at once when `rcx` is null; otherwise, for each of `edx` elements of 0x30 bytes from `rcx`, calls `00584730` on the element's qwords `+0x18`, `+0x10`, `+8` and `+0` in that order, each only when it is non-null and its bit 0 is clear, and then calls `00584730(rcx)` (also when `edx` is 0)",
+   "anchors": [
+    [
+     "005F0473",
+     "je"
+    ],
+    [
+     "005F04B1",
+     "call"
+    ],
+    [
+     "005F04F5",
+     "call"
+    ],
+    [
+     "005F04FB",
+     "add"
+    ],
+    [
+     "005F0508",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060C340",
+   "text": "returns 0 when `edx` equals dword `[rcx]`; otherwise, with `b` = 0 when `edx` is 0, calls `0017D260(edx*8, 8)` and returns `0xd` when it is null, else zero-fills its `edx` qwords as `b`; then, when qword `rcx+8` differs from `b`, bit 31 of dword `[rcx]` is clear and that qword is non-null, calls `00584730` on it, stores `b` at qword `rcx+8` and `edx` at dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "0060C35A",
+     "cmp"
+    ],
+    [
+     "0060C371",
+     "call"
+    ],
+    [
+     "0060C393",
+     "rep stosq"
+    ],
+    [
+     "0060C3B4",
+     "call"
+    ],
+    [
+     "0060C3DB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0060C3F0",
+   "text": "returns 0 when `edx` equals dword `[rcx]`; otherwise calls the function at `0060C3F0`+0x2D (`edx`, qword `rcx+8`, the smaller (unsigned) of `edx` and dword `[rcx]` AND `0x7fffffff`) and returns `0xd` when it returns null while `edx` is non-zero; else, when qword `rcx+8` differs from the result, bit 31 of dword `[rcx]` is clear and that qword is non-null, calls `00584730` on it, stores the result at qword `rcx+8` and `edx` at dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "0060C40C",
+     "cmp"
+    ],
+    [
+     "0060C413",
+     "cmovb"
+    ],
+    [
+     "0060C41D",
+     "call"
+    ],
+    [
+     "0060C42E",
+     "lea"
+    ],
+    [
+     "0060C45A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060F400",
+   "text": "takes `E` = `rdx` + (dword `rcx+0x48` minus dword `+0xf4` of qword `rcx+0x18`, sign-extended); returns 5 when `r9d` is negative (signed); otherwise, when qword `E+8` differs from `r8`, bit 31 of dword `[E]` is clear and qword `E+8` is non-null, calls `00584730(qword E+8)`, then stores `r8` at qword `E+8` and `r9d` OR `0x80000000` at dword `[E]` and returns 0",
+   "anchors": [
+    [
+     "0060F41C",
+     "sub"
+    ],
+    [
+     "0060F42B",
+     "jns"
+    ],
+    [
+     "0060F45B",
+     "call"
+    ],
+    [
+     "0060F460",
+     "bts"
+    ],
+    [
+     "0060F46F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00610AE0",
+   "text": "returns 0 at once when `rdx` is null; otherwise adds 8 to the qword at the fifth (stack) argument and takes `q` = the qword at that updated value minus 8, calls `005CDAA0(1, 00D4E750)`, then calls the function pointer at qword `rcx+8` with (`rdx`, `q`, the address of the 16-byte stack slot `rsp+0x20`) and returns 0",
+   "anchors": [
+    [
+     "00610AF3",
+     "je"
+    ],
+    [
+     "00610B0B",
+     "add"
+    ],
+    [
+     "00610B12",
+     "mov"
+    ],
+    [
+     "00610B16",
+     "call"
+    ],
+    [
+     "00610B31",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006155B0",
+   "text": "stores `rdx` at qword `rcx+0x400`, `r8` at `+0x488` and `r9` at `+0x4d0`, calls `00861EC0` with (`rcx`, 0, 0x400), (`rcx+0x408`, 0, 0x80), (`rcx+0x4d8`, 0, 0x400) and (`rcx+0x8e0`, 0, 0x80), zeroes qwords `+0x490`..`+0x4c8` and `+0x968`..`+0x9a0`, stores qwords 0x80 at `+0x8d8`, 0x10 at `+0x960` and 8 at `+0x9a8`; then takes qword `+0x1840` of `005FD050()` and, for i = 0 to 15, lowers dword `+0x960` to i when i is smaller and raises dword `+0x964` to i when i is greater (signed) and stores that qword at `rcx+0x8e0` + i*8; returns `rcx`",
+   "anchors": [
+    [
+     "006155D7",
+     "call"
+    ],
+    [
+     "006156C0",
+     "call"
+    ],
+    [
+     "006156D8",
+     "cmovl"
+    ],
+    [
+     "006156E9",
+     "cmovg"
+    ],
+    [
+     "006156F7",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). 'the function at <entry>+0xNN' cites callees the page does not name (005A5B40, 006164B0, 005E3040). The idiom 'shr 0x1f; not al; test al, 1; je' skips the call when bit 31 is SET, so the rows say 'when bit 31 is clear'; 'mov eax, ecx; not al; test al, 1; je' on a pointer acts only when its bit 0 is clear. 005AD1B0: the per-slot null test is on the destination slot address, which starts non-null. 00610AE0: the 16 bytes at rsp+0x20 are only reloaded and re-stored in place before their address is passed; the body does not otherwise initialise them (doubt on how to phrase it). 005D2470 and 005D7720 set only al to 1. Anchor 0060C393 carries the two-word mnemonic 'rep stosq' exactly as the listing prints it."
+}
