@@ -1,0 +1,62 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md",
+ "session": "session_014Lqi23L8goQ9zhmHGJGtzN",
+ "rows": [
+  {
+   "fn": "001C1C80",
+   "entered_from": "`001C2D50` + 0x34",
+   "text": "copies dwords `+0` and `+4` of `rdx` to `rcx`, copies the 0x100 bytes at `rdx+8` to `rcx+8` with 16-byte `movups` moves in a loop of two 0x80-byte passes, then calls `001C1C80` + 0x89 with `rcx+0x108` and `rdx+0x108` and returns the incoming `rcx`",
+   "anchors": [
+    [
+     "001C1C8C",
+     "mov"
+    ],
+    [
+     "001C1CB2",
+     "movups"
+    ],
+    [
+     "001C1CF9",
+     "jne"
+    ],
+    [
+     "001C1D09",
+     "call"
+    ],
+    [
+     "001C1D0E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001C2790",
+   "entered_from": "`001C2D50` + 0x49",
+   "text": "treats qwords `rcx+0`, `+8` and `+0x10` as begin, end and limit of 0x230-byte elements; when end differs from limit, it adds 0x230 to `r8` if `r8` lies in [`rdx`, end) (unsigned), calls `001C2790` + 0x5B (end, end-0x230) when end is non-null, then `001C2790` + 0x6F (`rdx`, end-0x230, end) and `001C2790` + 0x7A (`rdx`, `r8`), and adds 0x230 to `+8`; otherwise it sets a capacity of 1 when the 32-bit count (end-begin)/0x230 is 0, else twice the count (a null buffer, without allocating, when that is 0), allocates capacity times 0x230 through vtable slot `+0x10` of the object at `rcx+0x18`, calls `001C2790` + 0xF6 (stack slot, begin, `rdx`, buffer), then `001C2790` + 0x118 with the qword it returns and `r8` when that is non-null, then `001C2790` + 0x13F (slot, `rdx`, end, that qword+0x230), calls `001C2790` + 0x167 on `+0x108` of each old element, frees a non-null old begin through vtable slot `+0x18` with (limit-begin)/0x230 times 0x230 bytes, and stores the buffer, the second returned qword and buffer plus capacity times 0x230 to `+0`, `+8` and `+0x10`",
+   "anchors": [
+    [
+     "001C27C0",
+     "cmp"
+    ],
+    [
+     "001C280F",
+     "add"
+    ],
+    [
+     "001C2869",
+     "call"
+    ],
+    [
+     "001C293E",
+     "call"
+    ],
+    [
+     "001C2956",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001C1C80: the 0x89 callee is cited by site, not address. 001C2790: every callee (including 001C1C80 at +0x5B and +0x118) is cited by its site because the host excerpt does not name them; the two indirect calls are described by vtable slot of the object at rcx+0x18. The magic constant 0xEA0EA0EA0EA0EA1 with sar 5 is the divide by 0x230; the count is truncated to 32 bits (test edx,edx; mov eax,eax before the free size). No return value is stated because rax is left by the last call on the first path and holds the capacity on the second. Doubt: low; the row is long (about 1,070 characters) because both paths carry several calls; the allocate call's third argument is 0 (r8d cleared at 001C2866)."
+}
