@@ -1,0 +1,62 @@
+{
+ "page": "99-Unresolved-Residual/drawing-one-coloured-rectangle.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "001B2000",
+   "entered_from": "`001B0190` + 0x26",
+   "text": "copies the 16 dwords at `+0x6c8` through `+0x704` of the object `001B2000` + 0xE() returns to `rcx+0x3aa8` onward; reads float `+0x754` of the result of `001B2000` + 0x7F() and float `+0x750` of the result of `001B2000` + 0x8C(), and tail-jumps to `001B2000` + 0xA9(`rcx+0x3aa8`, the `+0x750` float in `xmm1`, the `+0x754` float in `xmm2`)",
+   "anchors": [
+    [
+     "001B200E",
+     "call"
+    ],
+    [
+     "001B2023",
+     "mov"
+    ],
+    [
+     "001B207C",
+     "mov"
+    ],
+    [
+     "001B2084",
+     "movss"
+    ],
+    [
+     "001B20A9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00403F00",
+   "entered_from": "`002BC9C0` + 0x46",
+   "text": "with `w`, `h` = words `+0x14`/`+0x16` of qword `[r8+0x20]` and `x` = word `rcx+0x50`, builds two local records of four words, `A` = (0, 0, `w`, `h`) and `B` = (-`x`, -`x`, `w`, trunc(signed `h` * 1.75 (`00D117D8`))), calls `00403F00` + 0x75(`rcx`, `r8`, address of `A`, address of `B`), then writes back the byte `rcx+0x5c` held on entry",
+   "anchors": [
+    [
+     "00403F28",
+     "movzx"
+    ],
+    [
+     "00403F4B",
+     "neg"
+    ],
+    [
+     "00403F64",
+     "mulss"
+    ],
+    [
+     "00403F75",
+     "call"
+    ],
+    [
+     "00403F7A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001B2000: the three 0x0E/0x7F/0x8C calls go to the same callee, which takes no explicit arguments in the listing. 00403F00: rcx reaches the 0x75 call unchanged (only copied to rdi); the 1.75 scale is applied to the sign-extended fourth word only; the fourth-word truncation is stored as a word."
+}
