@@ -1,0 +1,14 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "0028F810", "entered_from": "`002A5520` + 0x12",
+   "text": "loads qword `+0x10F78` of qword `0209BE80` into `rcx` and tail-jumps (`0028F810` + 0xE) with it, leaving the other argument registers unchanged",
+   "anchors": [["0028F817", "mov"], ["0028F81E", "jmp"]]},
+  {"fn": "002A84F0", "entered_from": "`002A6190` + 0x7A2",
+   "text": "when bit `0x1000` of dword `rcx+0x3E8` is set, walks the qwords from `0209CC18` up to (not including) `0209CC30` with stride 8, calling `002A84F0` + 0x33 with each and then storing 0 to it; when the bit is clear it returns without doing anything",
+   "anchors": [["002A84F4", "test"], ["002A8505", "lea"], ["002A8523", "call"], ["002A8528", "mov"], ["002A852F", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002A84F0: three slots (0x18 bytes / 8); the intermediate slot addresses are not written because they do not appear in the listing. The loop bound uses a signed `jl` on the pointer, which is harmless for these addresses."
+}
