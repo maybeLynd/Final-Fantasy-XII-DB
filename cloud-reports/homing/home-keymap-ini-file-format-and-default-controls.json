@@ -1,0 +1,100 @@
+{
+ "page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+ "session": "session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "rows": [
+  {
+   "fn": "001941F0",
+   "entered_from": "`00189CE0` + 0x1CF",
+   "text": "copies the 64 bytes at `rdx` (four 16-byte loads) to `rcx+0x440` through `rcx+0x47F`, then stores the float `xmm2` at dword `+0x480`, the float `xmm3` at `+0x484` and the float fifth (stack) argument at `+0x488`",
+   "anchors": [
+    [
+     "001941F3",
+     "movups"
+    ],
+    [
+     "0019421A",
+     "movups"
+    ],
+    [
+     "00194221",
+     "movss"
+    ],
+    [
+     "00194229",
+     "movss"
+    ],
+    [
+     "00194231",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00194490",
+   "entered_from": "`00189CE0` + 0x405",
+   "text": "stores the float `xmm2` at dword `rcx+0x128` and `edx` at dword `+0x124`; when `r9` is non-null, also copies the qword at `r9` to `+0x12C` and the dword at `r9+8` to `+0x134`",
+   "anchors": [
+    [
+     "00194498",
+     "mov"
+    ],
+    [
+     "0019449E",
+     "test"
+    ],
+    [
+     "001944A8",
+     "movsd"
+    ],
+    [
+     "001944B4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00285FE0",
+   "entered_from": "`002B5C90` + 0x38",
+   "text": "maps `ecx` to a return value: 1 returns 8, 2 returns 7, and any other value returns 9",
+   "anchors": [
+    [
+     "00285FE3",
+     "je"
+    ],
+    [
+     "00285FE8",
+     "jne"
+    ],
+    [
+     "00285FEA",
+     "lea"
+    ],
+    [
+     "00285FEE",
+     "mov"
+    ],
+    [
+     "00285FF4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00314820",
+   "entered_from": "`0022A770` + 0x1D8",
+   "text": "calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result",
+   "anchors": [
+    [
+     "00314824",
+     "call"
+    ],
+    [
+     "0031482D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00194490: the store of xmm2 to +0x128 is the entry instruction, so that clause has no interior anchor; the other clauses are anchored. 00314820: entered from three sites in 0022A770 (+ 0x1D8, + 0x4D6, + 0x661); the first is used. Its callee and tail target are cited by site because the host excerpt names neither."
+}
