@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/the-spatial-audio-object-model.md",
+ "session": "session_019FhK6qDUyvajmAsnJawqmj",
+ "rows": [
+  {"fn": "00223030", "entered_from": "`00219BC0` + 0x59",
+   "text": "calls `00223190` with the incoming `rcx`, `rdx` and `r8`, `r9d` 0, a fifth (stack) argument of dword 0, a sixth of byte 1 and the incoming `r9` as the seventh (stack) argument, and returns that call's result",
+   "anchors": [["00223034", "mov"], ["00223039", "xor"], ["0022303C", "mov"], ["00223041", "mov"], ["00223049", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "00223190 is cited by address because the host page already names it."
+}
