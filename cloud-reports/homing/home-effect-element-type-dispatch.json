@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+ "session": "session_01FFgsi7DcuyVgymuET5UYvk",
+ "rows": [
+  {"fn": "00265380", "entered_from": "`0034C630` + 0x4F",
+   "text": "compares byte `rdx+0x18` with 1: when it equals 1 it returns 0 in `eax`; otherwise it tail-jumps (at `00265380` + 0x9) with the incoming registers unchanged",
+   "anchors": [["00265384", "jne"], ["00265386", "xor"], ["00265389", "jmp"]]},
+  {"fn": "00290840", "entered_from": "`00473B30` + 0xF",
+   "text": "returns 1 when qword `0209BE80` is null or when bit `0x20` of its dword `+0x10F68` is set; otherwise walks the chain from qword `+0x10F10` through each node's qword `+0x868` to the first node whose dword `+0x810` equals `ecx` and, when one is found, copies bit `0x100` of that node's word `+0x842` (shifted right 3) into bit `0x20` of dword `+0x10F68`, leaving its other bits unchanged; on that path and when the chain is empty or has no match it returns bit 5 of dword `+0x10F68` as 0 or 1",
+   "anchors": [["00290859", "test"], ["00290870", "cmp"], ["00290878", "mov"], ["002908A4", "mov"], ["002908B7", "shr"]]}
+ ],
+ "skipped": [],
+ "notes": "00290840: after the store the global qword `0209BE80` is re-read before the final read of `+0x10F68`. On the chain-empty path the returned bit is necessarily 0 because bit 0x20 was tested clear just before; the sentence states it as the bit read. No doubts."
+}
