@@ -1,0 +1,14 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "001D9D80", "entered_from": "`001DADC0` + 0xA3",
+   "text": "returns `al` = 1 when bytes `+0x130` and `+0x78` of `rcx` are both non-zero, otherwise `al` = 0",
+   "anchors": [["001D9D87", "je"], ["001D9D89", "cmp"], ["001D9D8F", "mov"], ["001D9D92", "xor"]]},
+  {"fn": "001DAD30", "entered_from": "`001DADC0` + 0x1C9",
+   "text": "takes the node at qword `+0` of `rcx`, stores the node's qword `+0` at qword `+0` of the node's qword `+8` and the node's qword `+8` at qword `+8` of the node's qword `+0`, then tail-jumps through vtable slot `+0x18` of the object at `rcx+0x10` with (`rcx+0x10`, the node, `0x18`)",
+   "anchors": [["001DAD3E", "mov"], ["001DAD48", "mov"], ["001DAD4C", "mov"], ["001DAD55", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
