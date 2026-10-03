@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/character-render-object.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "001E1440", "entered_from": "`001E2250` + 0xC6",
+   "text": "walks the 0x18-byte elements from `rcx` up to `rdx` (none when they are equal) in step with a destination starting at `r8`: for each non-null destination it stores `009010B8` at its qword `+0`, copies the source's qword `+8` and byte `+0x10` into it, then stores `009010D8` at its qword `+0`; a null destination is skipped but still advanced by 0x18; returns the destination pointer past the last element",
+   "anchors": [["001E1443", "je"], ["001E1465", "mov"], ["001E146C", "mov"], ["001E1474", "mov"], ["001E1478", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
