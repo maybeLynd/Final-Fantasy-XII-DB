@@ -284,3 +284,16 @@ home-h12-field-init-weather-to-legacyps2gs-rebuild	03-World-Area-Field/Weather/c
 home-h12-the-selection-the-menu-publishes	16-UI/the-selection-the-menu-publishes.md	1	11	2026-10-03 12:43	PACKED-FABLE-HOMING
 home-h12-setting-the-movement-mode-and-which-way-a-characte	06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md	1	35	2026-10-03 12:43	PACKED-FABLE-HOMING
 home-h12-ui-layout-parameters-and-editor-schema	16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md	1	97	2026-10-03 12:43	PACKED-FABLE-HOMING
+home-h13-scriptvm-verb-dispatch-and-parameter-encoding	01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	18	1376	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-cross-subsystem-accessor-hubs	00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md	1	65	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-gil-storage-clamp-and-every-path-that-moves-it	13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md	1	100	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-the-world-tick-and-the-field-frame	00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md	6	819	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-what-the-console-tunes	00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md	4	578	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-how-the-engine-chooses-3d-or-flat-movement	06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md	2	286	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-fef-and-motion-entries	17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md	2	85	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-audio-bank-and-controller-family	18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md	1	93	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-character-render-object	17-Presentation-Rendering/Character-Rendering/character-render-object.md	1	80	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-the-cluster-header-and-what-the-loader-rejects	22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md	1	623	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-dyngeo-instance-family	16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md	1	85	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-the-actor-manager-record-field-map	04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md	1	67	2026-10-03 13:52	PACKED-FABLE-HOMING
+home-h13-vbf-archive-and-st2e-tables	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	1	23	2026-10-03 13:52	PACKED-FABLE-HOMING
