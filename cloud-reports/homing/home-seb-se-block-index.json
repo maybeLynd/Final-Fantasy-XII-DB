@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "00212970", "entered_from": "`002129F0` + 0x9",
+   "text": "increments dword `01FD36B0`, ANDs it with `0x7FFFFFFF`, replaces a 0 result by 1 and stores it back and in dword `[rcx]`; then, from the cursor qword `01E027D0`, scans the 8-byte slots from `01FD36C0` up to `01FD3AC0` (wrapping to the start) for one whose dword `+0` is 0: returns -1 when the scan comes back to the cursor, otherwise stores that value in the slot's dword `+0` and `edx` in its dword `+4`, sets the cursor to the next slot (wrapped) and returns the slot's index (its offset from `01FD36C0` shifted right by 3)",
+   "anchors": [["00212993", "cmove"], ["0021299C", "mov"], ["002129BA", "cmp"], ["002129D3", "mov"], ["002129E7", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00212970: the image's initial cursor value is `01FD36C0`; the range end `01FD3AC0` gives 128 slots. The wrap uses `cmovb` (unsigned)."
+}
