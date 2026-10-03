@@ -1,0 +1,11 @@
+{
+ "page": "04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "002A2650", "entered_from": "`003E94D0` + 0x45",
+   "text": "returns without work when bit 7 of byte `+0x3F3` of `rcx` is set; otherwise ORs 4 into that byte and tail-jumps at `002A2650` + 0x3C with the 0x60-byte entry at sign-extended index `edx` of the array at qword `rcx+0x3F8`, then `r8`, `r9d` and the fifth (stack) argument shifted down one register each",
+   "anchors": [["002A2664", "js"], ["002A266D", "mov"], ["002A2680", "shl"], ["002A2684", "add"], ["002A268C", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
