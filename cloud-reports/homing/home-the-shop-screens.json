@@ -1,0 +1,139 @@
+{
+ "page": "16-UI/Shop-Screens/the-shop-screens.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "00243580",
+   "entered_from": "`003FCFE0` + 0x4D",
+   "text": "with `n` = dword `[rcx]` shifted right by 2 and cut to its low word, clears bit `0x1` of dword `+8` in each of the first `n` objects of the qword array at `[rcx+0x10]`; when bits 2-17 of dword `[rcx]` are all clear (`test` with `0x3fffc`) it returns without writing; `edx` and `r8` are not read",
+   "anchors": [
+    [
+     "00243585",
+     "test"
+    ],
+    [
+     "0024359A",
+     "mov"
+    ],
+    [
+     "0024359F",
+     "and"
+    ],
+    [
+     "002435A6",
+     "shr"
+    ],
+    [
+     "002435AE",
+     "jb"
+    ]
+   ]
+  },
+  {
+   "fn": "0027F030",
+   "entered_from": "`003FCFE0` + 0xF4",
+   "text": "builds a result from 0: when `r9d` is 0 and the fifth (stack) argument is not 1, it becomes 4 when `0027F030` + 0x3A(`r8d`) is non-zero and `0027F030` + 0x5F(`0027F030` + 0x51(`edx`), word `+0xd68` of qword `0209AC30`) returns 0; when `r9d` is 1 and `0027F030` + 0x87(`r8d`) is non-zero, with `s` = byte `+0xd6b` of that qword, it becomes 4 except when `0027F030` + 0x92(`s`) is non-zero and `r8d` equals `s`, or when `0027F030` + 0x92(`s`) and `0027F030` + 0xAB(`s`) are 0, `0027F030` + 0xCB(`t`) is non-zero for `t` = `0027F030` + 0xC2(word `+0xd48` of that qword) and `r8d` equals `t`; it stays 0 on every other path; on every path it then calls `0027F030` + 0xF2(low byte of `ecx`, low word of `edx`, `r9d`, the fifth argument), ORs in 1 when that returns 0, and returns the result",
+   "anchors": [
+    [
+     "0027F05B",
+     "jne"
+    ],
+    [
+     "0027F098",
+     "lea"
+    ],
+    [
+     "0027F0D2",
+     "cmove"
+    ],
+    [
+     "0027F122",
+     "call"
+    ],
+    [
+     "0027F13F",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "003FCAD0",
+   "entered_from": "`003FCFE0` + 0x1CC",
+   "text": "for `i` from `r8d` to `r9d` (signed, inclusive) sets word `+0xa` of object `i` of the qword array at `[rcx+0x10]` to 7, clears bit `0x1` of its dword `+8` and copies byte `+0x3f` of its qword `+0x20` to byte `+0x39`; returns there when word `rdx+8` is `0xffff`; otherwise for `k` 0 to 8, with `s` = `003FCAD0` + 0x82(`k`) and `003FCAD0` + 0x8D(`s`) non-zero, sets bit `0x1` in object min(`r8d`+`k`, `r9d`) and, by dword `+0` of `003FCAD0` + 0xBD(1, word `rdx+8` << 0x10), with `f` = `003FCAD0` + 0xCD(word `rdx+8`, `s`): 8 or 9 writes 8 to its word `+0xa` and byte `+0x47` of its qword `+0x20` to `+0x39`, then when `f` is non-zero writes `j` = `003FCAD0` + 0xFE(signed word `s+0x60`, 5) + 1 and byte `+7` of 8-byte entry `j`; 6 writes, only when `f` is non-zero, 9 and byte `+0x4f` when `003FCAD0` + 0x170 or `003FCAD0` + 0x182 returns non-zero, else 8 and byte `+0x47`, then writes `j` when word `rdx+8` equals word `+2` of one of five 4-byte entries at `s+0x98`; other values write nothing more",
+   "anchors": [
+    [
+     "003FCB13",
+     "mov"
+    ],
+    [
+     "003FCB2E",
+     "je"
+    ],
+    [
+     "003FCB81",
+     "or"
+    ],
+    [
+     "003FCBCE",
+     "call"
+    ],
+    [
+     "003FCCA7",
+     "je"
+    ]
+   ]
+  },
+  {
+   "fn": "0057A960",
+   "entered_from": "`0056DD00` + 0x9",
+   "text": "returns 1 when qword `02CA9790` and qword `02CA97A0` are both non-zero, and 0 when either is zero",
+   "anchors": [
+    [
+     "0057A962",
+     "cmp"
+    ],
+    [
+     "0057A969",
+     "je"
+    ],
+    [
+     "0057A96B",
+     "cmp"
+    ],
+    [
+     "0057A972",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "0057FA30",
+   "entered_from": "`0057F8C0` + 0xB3",
+   "text": "calls `0057FA30` + 0x12(`rcx`, 0); with `A` = qword `[rcx+0x10]` it clears bit `0x1` of dword `+8` of the object at qword `[A+0xd8]`, sets it in `[A+0xb0]` and in `[A+8*b]` for each of the seven bytes `b` at `00D23EAC`, and clears it in `[A+0xd0]`; then by dword `[r8]` it stores `0057FA30` + 0x99(`0x874`) for 3, (`0x873`) for 4, (`0x872`) for 5, or `01CEB638` for any other value at qword `+0x18` of `[A+0xb0]`, and `0057FA30` + 0xB2(0) at its dword `+0x20`",
+   "anchors": [
+    [
+     "0057FA42",
+     "call"
+    ],
+    [
+     "0057FA59",
+     "and"
+    ],
+    [
+     "0057FA83",
+     "or"
+    ],
+    [
+     "0057FAAD",
+     "lea"
+    ],
+    [
+     "0057FAE7",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0027F030: the result is 0 or 4 before the final OR of 1; the r9d==1 sub-cases are read from 0027F0B7-0027F108 (cmove at 0027F0D2 keeps 0 when r8d equals s). 003FCAD0: the second loop index into the array is min(r8d+k, r9d) via cmovle at 003FCB75; the 0x170/0x182 calls take the byte results of 003FCAD0 + 0x153 and + 0x15F on byte s+0x60, with word rdx+8, not spelled out in the row; the 5-entry scan at 003FCC88 runs on the dword-6 path even when f is 0; row is close to the 1,200 cap. 0057FA30: 00D23EAC is a 7-byte index table reached by lea (not a jump table; verify it is not data right after code); 01CEB638 is a lea target whose content the listing does not decode. Callee addresses are cited by call site because the host excerpts do not name them."
+}
