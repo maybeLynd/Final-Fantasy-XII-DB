@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "002EB810", "entered_from": "`002E3A60` + 0x45",
+   "text": "looks for a node whose dword `+0x14` equals `ecx` on the chain that starts at qword `0215FD58` and links through qword `+8`, then, if none is found, on the chain that starts at qword `0215FD78`; when a node is found it decrements its word `+0x1C` and, when the result is not above 0 (signed) and byte `+0x19` AND 3 is non-zero, stores 0 to that word; when no node is found it returns without writing",
+   "anchors": [["002EB820", "cmp"], ["002EB840", "cmp"], ["002EB854", "dec"], ["002EB85F", "test"], ["002EB867", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
