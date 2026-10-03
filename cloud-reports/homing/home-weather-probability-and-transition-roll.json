@@ -1,0 +1,17 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-probability-and-transition-roll.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "001817D0", "entered_from": "`003C5910` + 0x9B",
+   "text": "keeps the incoming `xmm0`, makes the call at `001817D0` + 0xC (`rcx` passed through), then tail-jumps through the site `001817D0` + 0x20 with `rcx` = that result and `xmm1` = the kept `xmm0`",
+   "anchors": [["001817D9", "movaps"], ["001817DC", "call"], ["001817E1", "mov"], ["001817E4", "movaps"], ["001817F0", "jmp"]]},
+  {"fn": "003ED7B0", "entered_from": "`0026E8D0` + 0x81",
+   "text": "returns without work when qword `02EBB7F0` is null; otherwise copies dwords `+0x10`, `+0x14` and `+0x1C` of the 0x180-byte entry at that pointer plus the sign-extended `ecx` times 0x180 to dwords `02EBB7F8`, `02EBB7FC` and `02EBB804`",
+   "anchors": [["003ED7BA", "je"], ["003ED7C3", "shl"], ["003ED7CB", "mov"], ["003ED7D5", "mov"], ["003ED7DF", "mov"]]},
+  {"fn": "003FFF70", "entered_from": "`003C5910` + 0x440",
+   "text": "makes the call at `003FFF70` + 0x19; when it returns non-zero, passes (0, that value, the stack buffer at `rsp+0x20`) to the call at `003FFF70` + 0x4D and, when that returns non-zero and the buffer's dword `+8` is non-zero, makes the call at `003FFF70` + 0x63 with (1, that dword); on every other path makes the call at `003FFF70` + 0x27 with `ecx` = 1; the frame carries the stack cookie from `01F44830`, checked through the call at `003FFF70` + 0x37 or `003FFF70` + 0x73",
+   "anchors": [["003FFF89", "call"], ["003FFF97", "call"], ["003FFFBD", "call"], ["003FFFCF", "test"], ["003FFFD3", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "003FFF70: when the buffer dword is 0 the call at +0x27 receives edx = 0; on the other two paths into it edx is not set by this body. The return value (whatever the cookie-check call leaves in eax) is not stated."
+}
