@@ -155,3 +155,67 @@ another page, or the fix is an edit to stale text on this one).
 | B-18 | duplicate Script_VM bullet | OPEN | `PK:501` and `PK:504` are still identical. | — | DOC |
 | B-19 | the 1,809 / 1,809 explanation | NARROWED | `OQ:2640` (FRP-2) now names ns 5's ten arrays as ten languages, and `VP:111-113` shows both `.vpc` and `.vpcjp` loaded per pack. `PK:68` and `PK:124-126` are unchanged. | Why the `.vpc` and `.vpcjp` *file* counts are equal (1,809 each) when the string counts are 3,290 and 658 (`PK:133-134`) is still not stated (see G-7). | DOC |
 | B-20 | `RM:50-60` median table | CLOSED | Unstruck but under the `RM:39-46` banner ("this section's headline, its medians and the aliasing story below all read sizes as offsets … Kept as history."). | — | — |
+
+## 3. New gaps
+
+Found by re-reading `PK` and `RM` after the 2026-10-02 corrections, and by reading the neighbouring pages that now
+carry this system's loader. None of these is tracked by a register row. The register rows that touch this system
+(FZ-12, FZ-19, FZ-20, GA-3, GA-5, GA-6, CC-9, FRP-2, OV-35) are all ANSWERED.
+
+| # | gap | class | evidence (`page:line`) | register row |
+|---|---|---|---|---|
+| N-1 | **The directory tables are written at three different addresses, and no page says how the forms relate.** `PK:165`, `PK:382-385`, `VP:88` and the body of FZ-20 give `022C6EC0` / `022C6EE8`; the `0032F360` note at `VP:411-412` gives "`021A6EC0[ecx]` … `021A6EE8[ecx]`"; FZ-20's struck title (`OQ:2404`) and `VP:270` give "`021C6EC0` / `021C6EE8`". Elsewhere the database writes an image-base-relative form of this region (`25-EBP-Script-Container/Sections/section-014.md:229`, "found as the image-base-relative dword `021A6E20`"), but neither `PK` nor `VP` states which form each figure is. | DOC | `PK:165`; `VP:88`; `VP:270`; `VP:411-412`; `OQ:2404` | none (FZ-20 is ANSWERED; its title carries the third form) |
+| N-2 | **§5 item 3 of `PK` still states the withdrawn aliasing as fact, beside corrections that refute it.** `PK:98`: "no two slots share an offset"; `PK:270` corrected: "`+0x40` / `+0x44` are slot 7's offset and size". The unstruck text that follows reads: "In `alc_a0100.snd`, slots **1, 5, 7, 9, 11, 13 and 15 all carry the offset `0x40`** — they point at slot 14's own directory entry" (`PK:271-272`), and "**2,349 of 10,314 files have two or more slots pointing at the same offset**" (`PK:265`). The box `PK:275-280` and the paragraph `PK:282-286` keep the "canonical *this half is empty* marker" reading. Only the heading `PK:253` ("*as first read; see the correction above*") marks them. | DOC | `PK:98`, `PK:253`, `PK:265-286` | none |
+| N-3 | **`RM:113-115` was given a new count but kept the old conclusion.** "**~~2,952~~ 4,761 files do not fill their pairs contiguously from 0.** … Nearly a third skip. **So a pair index is a typed slot, not a sequence number** — which is what makes 14 a population rather than a maximum." 4,761 of 10,314 is 46 % (this report's arithmetic), not "nearly a third". The populations are now 16 and 14 by family (`PK:244`), not one 14. | DOC | `RM:113-115`; `PK:244` | none |
+| N-4 | **One `RM:117` figure carries no re-measure mark while its neighbours do.** "Pairs per file range ~~0–14~~ 0–15; 4,212 files carry exactly one pair, ~~2,331~~ 558 carry eight *(corrected 2026-10-02 …)*". The 4,212 is unmarked, so it is not stated whether it was re-measured under the pair reading. | DATA | `RM:117` | none |
+| N-5 | **`PK` never says that the request rounds a sub-file's file offset down to `0x800`.** `QP:104-105`: `0032E870` fills slot "`+0x2C` the descriptor's `+0` offset **truncated toward zero to a multiple of** `0x800`" (also the chunked path, `QP:96-98`). `PK:220` states `0x10` alignment, and `PK:251` reports `0x800` boundaries as an observation of the corpus. A writer that reads only `PK` would learn `0x10`, not `0x800`. | DOC | `PK:220`, `PK:251`; `QP:96-98`, `QP:104-105` | none |
+| N-6 | **The homed-body row for `003DF2C0` names call instructions, not callees.** `PK:520`: "calls `003DF2C0`+0x18 with (qword `[rbx+0x18]`, a 16-byte local buffer, 2)" and "then calls `003DF2C0`+0x83 with (signed byte `+0x11`, …)". The same body on `SP:436` names the callees: "calls `0036B970` with the record's qword `+0x18`" and "it then calls `003DF360` with the signed bytes `+0x11` and `+0x12`". | DOC | `PK:520`; `SP:436` | none |
+| N-7 | **`PK` describes the language split as a namespace request, but both packs are loaded.** `PK:66-68`: "the engine chooses between them by asking for a different *resource namespace*, not a different filename". `VP:111-113`: for managers 1–3 `0032FCA0` requests the `.vpc` directory *and* "the `.vpcjp` (namespace 37, `0x208` → `022C6EC0`)". `VP:67-69` then picks a table per call by the language bit. The value a port computes does not change, but `PK`'s wording would lead a port to load one pack. | DOC | `PK:66-68`, `PK:124-126`; `VP:67-69`, `VP:111-113` | none (FZ-19 answers the mechanism) |
+| N-8 | **Initial values of the loader's state are not stated.** Not stated: the pointer arrays at `022C6E70` / `022C6E98` / `022C6EC0` / `022C6EE8` before `0032F430` runs; bytes 1–`0x207` of each `0x208` buffer (`PK:386` says only that the allocator "zeroes its first byte"); and `022C6E48[m]` before the first `0032FCA0`. The only stated rule of this kind is for the neighbouring `022C6D18` / `022C6D28`: "both lie past `.data`'s raw size (`01F7E400`), so the loader zeroes them" (`SV:307-308`). Bytes past `0x88` matter for G-11. | STATIC | `PK:386`; `SV:307-308` | none |
+
+## 4. Rating
+
+**MOSTLY, unchanged from pass 1** (pass 1: MOSTLY overall; NOT YET for writing a package, `(ns, index)` addressing
+and the sub-file request).
+
+What decides it. A re-implementer can now read and load every shipped package from the database alone. The header
+and the `{u32 offset, u32 size}` directory (`PK:72-86`), the corpus invariants under the pair reading (`PK:213-224`,
+`PK:240-251`) and the load are all stated. The load is: which tables, which bytes, which pending bits, which reader
+reads which table, and what `-1` means (`PK:381-398`, `PK:512`; `VP:104-119`; `IS:95-99`). The addressing layer is
+stated too: `ResourcePath_Get`'s element is a `char*` (`AN:114-123`), the manager → kind / index decoder is on
+`AN:558`, the ten ns-5 arrays are the ten languages (FRP-2), and the voice language is one config bit (FZ-19). The
+request is stated: `0032E620`'s full contract is on `QP` §2.2, and the PKFL kinds are 5, 8 and `0x25`. Nothing in
+§2-§3 is structural.
+
+It stays MOSTLY rather than READY for three reasons:
+1. **Most of those answers live off-page.** `PK` points to `AN` and `VP` but not to `QP`, `IS`, FZ-19, GA-5, FRP-2
+   or `SW`. Its own body still carries unstruck four-byte-era text (N-2, X-2, X-5), and its front matter is stale
+   (B-1…B-6). A re-implementer has to know which half of `PK` to ignore.
+2. **Four narrow static reads remain:**
+   - what `0032FCA0` puts in the `.snd` table for manager 0, whose `base + 2` is an `.fpk` (G-9);
+   - the conditions behind the three remaining "do not request" stores (G-8);
+   - the result of a read at `k ≥ 16` of a 16-slot load (G-11, N-8);
+   - the locale-id → array map for ns 8 and ns 37 (G-5).
+3. **Three data questions bear on a writer or validator:**
+   - the fill bytes and the tail padding (G-2);
+   - whether `.mot` / `.snd` payloads are compressed (G-3);
+   - the stale census `.tsv` (X-4).
+
+| part | pass 1 | pass 2 | why |
+|---|---|---|---|
+| on-disk layout (reading) | MOSTLY | **READY** | layout, byte widths, invariants and ordering are stated under the pair reading (`PK:81-86`, `PK:213-251`). Byte order is implicit in the dword readers but never written (G-1, DOC). |
+| on-disk layout (writing) | NOT YET | **MOSTLY** | ordering, the `0x800` first payload and boundaries, alignment and the slot ceilings are now stated (`PK:220`, `PK:251`, `PK:260`, `PK:244`). Not stated: fill bytes and tail padding (G-2), payload compression (G-3), the request's `0x800` truncation (N-5, off-page). There is still no writer in the executable (S-3). |
+| addressing `(ns, index)` | NOT YET | **MOSTLY** | element type and index formula (`AN:114-123`, `AN:558`); the ten language arrays (FRP-2); the language bit (FZ-19). Not stated: the locale-id → array map for ns 8 / 37 (G-5); the 9-roots vs 10-variants file mapping (G-7). |
+| directory load and slot readers | MOSTLY | **MOSTLY** | tables, bits, completions, readers, bounds and `-1` handling are all stated (G-10, G-12, G-13, X-10, X-11). Not stated: manager 0's `.snd` table (G-9), the "not requested" conditions (G-8), `k ≥ 16` (G-11), initial values (N-8), the address-form ambiguity (N-1). |
+| sub-file request | NOT YET | **MOSTLY → READY on `QP`** | `PK:165` now gives the five-argument form, and `QP` §2.2 / §2.4 give the contract. What remains is the missing pointer from `PK` (G-15). |
+| state and order | MOSTLY | **MOSTLY** | the walker's sole caller and its eight call sites (GA-5), the reset at the walker's start (`VP:106-107`). Not stated: the boot order of `ResourcePath_Init` vs `0032F430` (G-14). |
+| slot payloads | out of scope | out of scope | by the folder's rule (`RM:170-172`). `.vpc` slots are `VSP1` cue tables (GA-3); `.mot` / `.snd` slot meaning is not stated (S-1). |
+
+**Highest-value fixes for FABLE to route.**
+1. `PK`: strike or banner `PK:265-286` and §6b's rows `PK:330-335`, the way `PK:232` does (N-2, X-2, X-5, B-10).
+2. `PK`: add pointers to `QP` §2.2, `IS` §3, `VP` §2.1 / §2.5, FZ-19, GA-5, FRP-2 and `SW:3602`. This closes G-4,
+   G-6, G-13, G-14, G-15, U-3, U-4 and N-5 in one edit.
+3. `PK` §4: list the seven readers and the four completions (X-10).
+4. `PK`: refresh the front matter (B-1…B-6).
+5. One static read of `0032FCA0` covering manager 0's `base + 2` and the three un-analysed "do not request" stores
+   (G-8, G-9).
