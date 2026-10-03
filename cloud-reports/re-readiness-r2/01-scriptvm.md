@@ -136,10 +136,93 @@ an elision. A `~~struck~~` passage is struck on the page itself.
 | G-9 | per-command scratch shapes | **OPEN** | `C-NCL:220`: "- Other commands' scratch shapes, service effects, polling conditions and resource ownership." | As stated. Some new body sentences show scratch use (e.g. `0034CDF0`'s state dword at `[r8]`, `BP:173`), but no census exists. · **STATIC** · no row |
 | G-10 | the partition of the 1,960 commands | **OPEN** | `VD:604`: "**327 verbs are durative, ~~1,573~~ 1,571 are instantaneous** *(corrected 2026-10-02, OPUS: plus `0x0297` and `0x20B5`, which carry a `poll` and can block, CZ-1)*"; `VD:1271-1274`: 1,571 / 250 / 77 / 29; `VD:1350`: "no handler at all \| 4" | 1,571 + 2 + 250 + 77 + 29 + 4 = 1,933, so 27 of the 1,960 are still in no row. No page gives a partition that sums to 1,960. · **STATIC** · no row |
 | G-11 | notification ids from `0032F240` for the voice verbs | **OPEN** | `VARS:309-311`: "**every slot's enable byte is `0` and `0032F240` returns `-1` for all five.** The notification is a runtime registration, not authored data" | As stated. · **RUNTIME** · no row |
-| G-12 | entity names: `002650B0`'s host object and six pools; the fourteen bind keys; the `.rdata` constant; the list-head map; `0050D810`'s verb id; `0037B4D0` as a bind caller | **WRONG-IN-PASS-1** (in part) | The host object was already answered at pass 1's snapshot, `CC:247-248`: "**`EF-3` ANSWERED 2026-09-11 (FABLE):** `002640C0` returns the current actor-manager slot block, the qword at `02099D70`". The six pools are the variable storage homes (`NAMES:404-410`, matching `VARS:122-129`; class 1 re-derived in the new `VARS` section at `VARS:620-623`). The key opacity is a stated design: `NAMES:344`: "**The key is opaque and must stay that way.**" | Still missing: the `.rdata` constant multiplied with `0x09000707` (`NAMES:244`: "`0x09000707` × a `.rdata` constant → `+0xE4`", no address); the full list-head map in one place; `0050D810`'s verb id (`NAMES:441` gives only "`.data@01F26740`"); what `0037B4D0` does as a bind caller (`NAMES:442`). · **STATIC** · no row |
+| G-12 | entity names: `002650B0`'s host object and six pools; the fourteen bind keys; the `.rdata` constant; the list-head map; `0050D810`'s verb id; `0037B4D0` as a bind caller | **WRONG-IN-PASS-1** (in part) | The host object was already answered at pass 1's snapshot, `CC:247-248`: "**`EF-3` ANSWERED 2026-09-11 (FABLE):** `002640C0` returns the current actor-manager slot block, the qword at `02099D70`". The six pools are the variable storage homes (`NAMES:404-410`, matching `VARS:122-129`; class 1 re-derived in the new `VARS` section at `VARS:619-622`). The key opacity is a stated design: `NAMES:344`: "**The key is opaque and must stay that way.**" | Still missing: the `.rdata` constant multiplied with `0x09000707` (`NAMES:244`: "`0x09000707` × a `.rdata` constant → `+0xE4`", no address); the full list-head map in one place; `0050D810`'s verb id (`NAMES:441` gives only "`.data@01F26740`"); what `0037B4D0` does as a bind caller (`NAMES:442`). · **STATIC** · no row |
 | G-13 | party read-in: the verb-mode byte `02EBF3FC`; the state-2 and state-22 chains; `0037C2E0`; the `highmodelreplace.bin` lookup; `00233AA0`/`00233CF0` constituents; the shared poll `0034E3E0` | **NARROWED** | The shared poll is now described, `READIN:417`: "`0034E3E0` \| 40 B \| calls `0037CB50` (incoming registers passed through); when it returns non-zero, returns 0, otherwise calls `00314D40(1)` and returns 1". Its end test is `0037CB50` (`BP:179`). The installer is described at `READIN:420` (`0037C980` "stores … 1 at byte `02EBF3FC`") | What `02EBF3FC` changes inside `0037B4D0` (only its writers are stated: `READIN:75`, `:254`, `:420`); the state-2 and state-22 chains are still address lists (`READIN:103`, `:119`); `0037C2E0`; the `highmodelreplace.bin` lookup ("22 records, `(a,b,c)` keys", `READIN:189`). · **STATIC** · no row |
 | G-14 | battle party: the `setbattlemember` reconcile; the add routine behind `0034C370`; `00324360` | **NARROWED** | `BP:172`: "`00324360` \| 23 B \| calls `0037CB50()` and returns 1 when its result is non-zero, otherwise 0"; `0037CB50` at `BP:179` | The reconcile and add routines are among the roster mutators that are "Not read" (`BP:127`). · **STATIC** · no row |
 | G-15 | standard motion: what a motion id selects; the `00427860` commit | **OPEN** | `STDM:152`: "For `002EB4F0` the blend is not consulted and `00427860` commits instead." | Both. · **STATIC** · no row |
 | G-16 | party appearance: `002E8FD0`'s visibility gates via `00428E10`/`00428DE0`/`00429020`; `002367A0` | **OPEN** | `LOOKS:580-582`: "`00428E10`/`00428DE0`/`00429020` write the per-record visibility flags, with `[+0x284]` as the present-check." (the render base is corrected to the pointer at `022C6F28`, `LOOKS:579`); `LOOKS:334`: "`002367A0` \| `BattleUnit_FindByDefinitionSelector` \| 126 B \| id -> unit" | Which flags the three setters write and what each gate tests. · **STATIC** · no row |
 | G-17 | spawn native targets (`002366E0`, `002354F0`, `00235360`, `002391C0`, `0023A3B0`, `00239840`, `0023A2E0`) | **OPEN** | `CC:158-165` names them; `CC:303-306` points to the 05 spawn pages. Every one of the seven appears on a 05, 04, 08 or 11 page (for example `05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md` names six of them), not audited here | The verb pages do not carry the effects. Whether the pages they point to describe the effects completely was not checked here. · **DOC** · no row |
 | G-18 | `setuptreasure`'s callees and the bind's tail callees | **OPEN** | `NAMES:139-148` (`0026E060`, `0026A320`, `0026AF80`, `0026DAC0`); `NAMES:245-248`, `:261` (`00269E60`, `0026B2E0`, `0026A370`, `00426C90`, `00263A30`) | Not described in this folder. `0026A320`, `0026E060`, `0026B2E0`, `00426C90`, `00263A30` and `0026AF80` appear on 04, 06 and 17 pages (not audited). `0026A370` and `00269E60` appear on no page outside the folder. · **STATIC** (part DOC) · no row |
+
+### 2.3 Pass-1 value contradictions (C-V1 to C-V60): follow-up
+
+Pass 1's §3.1 listed 60 value-changing disagreements. Its rating asked for a local check of nine of them (C-V2,
+C-V3, C-V8, C-V12, C-V15, C-V17, C-V20, C-V21, C-V22). **All nine are now resolved on the pages.**
+
+**Resolved (41).** In each case the stale side is now struck or annotated with a dated correction, nearly all
+"*(corrected 2026-10-02, OPUS: …)*":
+- C-V1 (`INT:150-154`);
+- C-V2 (`INT:114`);
+- C-V3 (`REQ:246`, row A1: "`sx(byte[actor+0x11])·0x28`");
+- C-V4 (`BIND:431`, `:440`, `:447`: 210 B, `00358A00` ends at `00358A14`, 545 B);
+- C-V5 for the value (`BIND:79`, `BIND:4`; the stale text is N-1);
+- C-V7 (`BIND:405-407`);
+- C-V8 and C-V9 (`DT:642-646`, `:762-776`, `:830-836`, `:855-860`);
+- C-V10 (`DT:752-753`);
+- C-V12 (`VARS:469`, `C-BR:117`);
+- C-V13 (`VD:208`);
+- C-V14 (`VD:242`, `C-VD:147`);
+- C-V15 (`C-VD:175`: "(u32)");
+- C-V16 (`VD:726`, `:1058`, `:1242`);
+- C-V17 (`VD:677-679`);
+- C-V18 (`VD:229-230`, `:604`);
+- C-V19 (`CC:29-30`, `C-BR:205-206`);
+- C-V20 and C-V21 (`C-BR:266-268`, `:358`, `CC:216`, `CC:442-450`: both `0026230B` and `00261B97` write `1`);
+- C-V22 (`C-BR:396-398`);
+- C-V23 (`VARS:254`);
+- C-V24 to C-V26 (`WAIT:239-241`, `:126`, `:373`, `:383`);
+- C-V28 (`NAMES:242`);
+- C-V32 and C-V33 (`READIN:352-354`, `:62`);
+- C-V35 (`LOOKS:579`, `:636`, `READIN:160`: the base pointer is *held* at `022C6F28`);
+- C-V37 (`STDM:485`);
+- C-V38 (`BP:56`);
+- C-V39 (`READIN:74`);
+- C-V40 (`STDM:491-494`);
+- C-V42 (`C-NCL:282`: "built, once");
+- C-V43 (`NCL:777`);
+- C-V46 to C-V49 (`README:22-23`, `VD:36-38`, `:592`, `:1160-1162`, `:1221`, `:672`);
+- C-V51 and C-V52 (`DT:389`, `DT:198`, `C-BR:205`);
+- C-V55 (`VARS:152`).
+
+**Still open (19).** None has a dated settlement. "Unstruck stale side" means a correction exists elsewhere but this
+line was not amended.
+
+| id | what | current text | class |
+|---|---|---|---|
+| C-V6 | width of actor-entry `+0x06` | `BIND:70` "`u8` party code" against `BIND:76` "the `u16` ff12-script writes as `pcId`" | STATIC |
+| C-V11 | does an out-of-range command fail closed | `VD:170-172` and `NCL:232-233` still say "fails closed"; `C-VD:112` "the guard is ONE-SIDED" (signed compare). Favoured side B (2026-09-12); stale side unstruck | DOC |
+| C-V27 | width of the entity stamp | `NAMES:285` "a stamp that is sixteen bits wide" against `NAMES:316-317` "The stamp is a full `dword`" and `NAMES:552` "a **dword** load" | STATIC |
+| C-V29 | which verbs call the bind `002E28E0` | **narrowed**: three of the six bind-verb callbacks named at `NAMES:454-455` now have bodies (`READIN:429` `00344550`, `:430` `00345A60`, `:432` `003463F0`), and none of the three calls `002E28E0` (they call `002EBC90` and `002E3110`, or a site-relative callee). `NAMES:46` still lists "the whole *bind* family" | STATIC |
+| C-V30 | where `requestMask` lives | `NAMES:206` "`+0x28` requestMask" against `NAMES:599` "`[r10+rax*4+0x48]` requestMask" | STATIC |
+| C-V31 | size and first field of the read-in record | `READIN:36`, `:59` "12 bytes" against `READIN:141` "size `0x18`" | STATIC |
+| C-V34 | `VM_Spawn_ApplySelectedUnit`: `00510160` or `005101B0` | `READIN:79`, `:204` against `READIN:336`, `CC:162` | STATIC |
+| C-V36 | the movement-context offset written by `002E5C90` | `LOOKS:395` gives both `[actor+0xB8]` and "the 0x230-byte context at actor `+0x120`" in one sentence | STATIC |
+| C-V41 | is a running command polled every frame | `NCL:54-55` "polled every frame", `NCL:182` "once per frame per actor" against `NCL:547` "Invocation count is not automatically live frame count." and `C-NCL:195`. Favoured side B; stale side unstruck | DOC (side B) / RUNTIME (the actual rate) |
+| C-V44 | debug companions: corrected narrowings still unstruck | **in part**: the `.sbn` trailer, the `.dbg` header pairs and q0's 1-based line numbers are corrected at `ATEL:805-806`. Still unstruck at `ATEL:806`: "btlctrl index `N` ↔ `global_debug_flag[N+34]`" (against `ATEL:210`) and "T3/T4/T8/q1 land mid-string" (against `ATEL:391`); at `ATEL:807`: "T1 RESOLVED 2026-09-22 (SWE2-DATA): it is the ATEL verb-category directory." (against `ATEL:235`) | DOC (debug only) |
+| C-V45 | debug-companion figures | **in part**: the `003306E0` size (`ATEL:917`), the S2 shape (`ATEL:387`) and the `btlctrl` heap start (`ATEL:393`) are corrected. Still `ATEL:264` "143 bytes" against `ATEL:273` "144 bytes", and `ATEL:302-304` "**no variable names at all**" against `ATEL:400` "exactly its `@`-labels and named variables" | DATA (debug only) |
+| C-V50 | adapter-family counts | `POP:158` "1,053 of the 1,682 frontier callbacks" against `POP:25` "… \| 1030" | STATIC |
+| C-V53 | single-callback and instantaneous counts | `NCL:117`, `:341` "1,155 of 1,496"; `NCL:492` "**1,573 of the 1,960 commands**". These were not carried over from the 2026-10-02 corrections at `C-NCL:133` ("family 0 has 1,288 single-callback records") and `VD:229`, `:604` (1,571) | DOC |
+| C-V54 | two different lists both called "the authored catalogue" | `NCL:243-244` "(… 1,960 ids)" against `NCL:276` (1,954 entries, AO-5) | DOC |
+| C-V56 | registers read before write | `INT:908` "172 functions in 84 scripts" against the TSV's 96 scripts | DATA |
+| C-V57 | `param_types` of the single-int verbs | `CC:343` "**`0x10`** for the single-int verbs" against the verb table | DATA |
+| C-V58 | ActorEntity reach count | `REACH:337` "**162** against 142" against `REACH:358` (RC-21: 135–154) | DOC |
+| C-V59 | read-in transition sites | `READIN:108`, `:111`, `:112` against `members/party-read-states.tsv` | STATIC |
+| C-V60 | battle-party body count | `BP:9` "eleven bodies", and the list that follows names twelve | DOC |
+
+---
+
+## 3. New gaps
+
+Gaps found on this pass that pass 1 did not list. Most come from text added since 2026-10-02.
+
+| id | gap | class | evidence | register row |
+|---|---|---|---|---|
+| N-1 | **Two lines on `BIND` still say the RC-12 adjudication is pending**, and one still says the wait resolver tests `mapjump`, against the page's own status line and the register | DOC | `BIND:236` (added 2026-10-02): "*(answered on ORACLE's record: RC-12, 2026-09-30, section 7 — FABLE's adjudication of the numbering is still pending; 2026-10-02, OPUS)*"; `BIND:299`: "**FABLE adjudication pending**"; `BIND:298`: "wait resolver's `mapjump` test is §2.6"; against `BIND:4` and REG `RC-12` ("Restated 2026-10-03 on FABLE's adjudication at `a8aed6ca9`") and `BIND:79` ("word `+0x18` is `special[11]`, the actor's `parameter` function") | `RC-12` ANSWERED |
+| N-2 | **The value-stack `+0x44` and `+0x84` meanings are still printed as unknown** on two pages, against the 2026-10-02 answers | DOC | `C-BR:356`: "\| `+0x44` source-kind \| direct pushes store6; … complete enum remains unresolved \| existing scoped evidence \| NOT universally resolved \|"; `CC:217`: "both pushes store **`6`** — meaning unknown"; `CC:218`: "both pushes store **`0`** — meaning unknown"; against `C-BR:117`, `C-BR:325`, `VARS:469` (two-valued; one reader `00263450`) and `C-BR:116`/`:357` (`+0x84` "written 0, never read") | none |
+| N-3 | **The flags helper the removal crosses for entry flags 2 and above is unread, and its pointer leads nowhere.** `REQ` says its address is on "the binding-and-channels page", but `BIND` names no helper for `+0x12`: it states only bit 0, "always 1 here" | STATIC (and DOC for the pointer) | `REQ:102-103`: "The removal past the attempt is opaque for entry flags 2 and above (a flags helper whose effects are not read; its address is on the binding-and-channels page)."; `REQ:130-131`: "(2 and above also cross a flags helper whose effects are not established)"; `BIND:161`: "\| `+8` flag \| `+0x12` bit 0 \| always 1 here (`002689C0`) \|" | none |
+| N-4 | **Whether any authored scene cancels a mode-3 (`REQEW`) entry** through the `freqcancel` verbs, which would make the new end-notification-without-RET path reachable | DATA | `REQ:104`: "**Still open:** whether an authored scene cancels a mode-3 entry; natural interleaving; same-key re-entry; the scheduler's own effects."; REG `OV-16` counts the verbs: "the shipped scripts call `freqcancel` / `freqcancel2` 84 times, 77 of them `freqcancel(0)`" | `OV-16` OPEN (its static half covers the verbs, not the mode-3 pairing) |
+| N-5 | **The request scheduler `003DB6E0`'s own effects after a cancel**, including the stated NULL-actor read | STATIC | `REQ:100-101`: "After a NULL actor both verbs still tail-jump to the request scheduler `003DB6E0`, which reads `[rcx + 0x63]` without testing rcx."; `REQ:104`: "the scheduler's own effects" | none |
+| N-6 | **The insertion helpers' success and effects on a non-`0xFF` free head** (the notification allocation path) | STATIC | `REQ:140-141`: "**Still open:** … the insertion helpers' success and effects on a non-`0xFF` free head." | `OV-10` (adjacent) |
+| N-7 | **The `029A` → `029B` out-reference flow's open items**: the initial queue order, native writers of the destination cells, the image buffer's allocation and lifetime, and what action word 0 means | STATIC (queue order, writers); DATA (action word 0) | `CC:878-882`: "**OPEN, as SWE2-DATA states them:** the initial queue order (`022C2178` at init); native writers of these cells outside the bytecode; allocation, non-aliasing and lifetime of the image buffer against the queue globals; the meaning of action word 0."; `VARS:634-635`: "It does not establish the context base's value, the image's allocation or lifetime, or native writers of the cells outside the bytecode." | no row names `022C2178`; `OV-42` PARTLY ANSWERED is the nearest |
+| N-8 | **`POP` still says `DO-1` is open and growing**, although the register answered it before pass 1 | DOC | `POP:473`: "`DO-1` stays open and gets larger."; `POP:271`: "unclassified** — `DO-1`."; against REG `DO-1`: "**ANSWERED 2026-09-26 … all 505 handlers are in members/dispatch-secondary-handler-shapes.tsv.**" | `DO-1` ANSWERED |
+| N-9 | **The new homed handler bodies do not say which verb reaches them, and name most callees only by call site.** A re-implementer cannot attach them to a verb id, and the callee is not described. By contrast, the `NCL` rows give the dispatch record | STATIC | `VD:1444`: "*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers.*"; e.g. `VD:1453` `00511200`: "makes the call at `00511200+0x3F` with (c, b, a)"; `VD:1477` `0034A920`: "loops forever calling `00267F90(r9, 2)`; it has no exit path" (reaching record not given); the same form at `READIN:422-441` and `BP:181-187`. The `NCL` form, for contrast: `NCL:808` "reached through the result field (`+0x20`) of record 0x1D7 … so it is the result callback of command id 0x01D7" | `CY-3` SUPERSEDED (scope) |
