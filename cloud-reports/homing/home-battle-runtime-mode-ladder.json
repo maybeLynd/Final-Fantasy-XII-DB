@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md",
+ "session": "session_019FhK6qDUyvajmAsnJawqmj",
+ "rows": [
+  {"fn": "00422E40", "entered_from": "`0042DF10` + 0x92",
+   "text": "sets `r8d` to 1 and tail-jumps at `00422E40` + 0x6 with the incoming `rcx` and `rdx` unchanged",
+   "anchors": [["00422E46", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00422E40 (doubt, minor): the body is two instructions; the r8d store is the entry instruction and cannot be anchored, so the single anchor is the tail jump. If FABLE treats a two-instruction thunk as entry-only work, skip it instead."
+}
