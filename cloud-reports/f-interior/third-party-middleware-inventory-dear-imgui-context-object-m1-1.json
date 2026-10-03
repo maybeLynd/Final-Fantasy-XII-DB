@@ -1,0 +1,218 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01KtQZhtQA1irJtgt5Sjzg2C",
+ "mode": "member",
+ "family": "Dear ImGui context object",
+ "rows": [
+  {
+   "fn": "00792090",
+   "text": "fills the structure at `rcx` with constants and returns `rcx`: dword `+0` = 1.0, float pairs (8.0, 8.0) at `+4` (`01CEBC80`), (32.0, 32.0) at `+0xC` (`009159F8`), 9.0 at `+0x14` and 0 at `+0x18` (one qword store), (4.0, 3.0) at `+0x1C` (`01CEBC70`, `008F311C`), 0 at `+0x24`, (8.0, 4.0) at `+0x28`, (4.0, 4.0) at `+0x30`, (0, 0) at `+0x38`, (8.0, 8.0) at `+0x40`, then dwords 0.7, 22.0, 6.0, 16.0 and 10.0 at `+0x48` to `+0x58`; then 39 consecutive 16-byte slots `+0x5C` to `+0x2BC` (stride `0x10`) are each copied from a 16-byte constant (the first from `01CB3EE0`, `+0x6C` from `008C5FD0` = (0, 0, 0, 1)), except `+0x7C`, which is zeroed",
+   "anchors": [
+    [
+     "007920BA",
+     "mov"
+    ],
+    [
+     "007920F7",
+     "mov"
+    ],
+    [
+     "00792142",
+     "movups"
+    ],
+    [
+     "00792270",
+     "mov"
+    ],
+    [
+     "00792345",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "00795F10",
+   "text": "stores the float pair (-0.5, 0.5) (`0090030C`, `01CEBB70`) at `rcx+8` and zero to dword `+0`, qword `+0x18`, qword `+0x38` and dword `+0x40`; then for each of the qwords `+0x30`, `+0x58` and `+0x70` that is non-null it zeroes the two qwords below it (`+0x20`/`+0x28`, `+0x48`/`+0x50`, `+0x60`/`+0x68`), passes the pointer to the function at slot `+0xC0` of the table pointed to by qword `01F40380` and zeroes the qword",
+   "anchors": [
+    [
+     "00795F32",
+     "movsd"
+    ],
+    [
+     "00795F55",
+     "call"
+    ],
+    [
+     "00795F5F",
+     "mov"
+    ],
+    [
+     "00795F7E",
+     "call"
+    ],
+    [
+     "00795FA0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00795FC0",
+   "text": "calls `007960E0(rcx)`; passes the non-null qwords `+8` and `+0x10` to the function at slot `+0xC0` of the table pointed to by qword `01F40380` and zeroes both; for each index below qword `+0x30` (unsigned) takes the element pointer at qword `+0x40` + index*8, calls `00795F10` on it, then passes its non-null qwords `+0x70`, `+0x58` and `+0x30` and then the element itself to the same slot; finally, when qword `+0x40` is non-null, zeroes `+0x38` and `+0x30`, passes `+0x40` to the same slot and zeroes it",
+   "anchors": [
+    [
+     "00795FE1",
+     "call"
+    ],
+    [
+     "00796014",
+     "mov"
+    ],
+    [
+     "0079603B",
+     "call"
+    ],
+    [
+     "00796095",
+     "call"
+    ],
+    [
+     "007960BC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007960E0",
+   "text": "for each index below qword `rcx+0x48` (unsigned) takes the element pointer at qword `+0x58` + index*8, passes its qword `+8` (when non-null) and then the element itself to the function at slot `+0xC0` of the table pointed to by qword `01F40380`; then, when qword `+0x58` is non-null, zeroes qwords `+0x50` and `+0x48`, passes `+0x58` to the same slot and zeroes it",
+   "anchors": [
+    [
+     "00796104",
+     "mov"
+    ],
+    [
+     "00796118",
+     "call"
+    ],
+    [
+     "0079612D",
+     "call"
+    ],
+    [
+     "00796136",
+     "cmp"
+    ],
+    [
+     "0079615C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00796E70",
+   "text": "when qword `02EACD78` is non-null passes it to slot `+0xC0` of the table pointed to by qword `01F40380` and zeroes it; calls the import at `00796E70`+0x2A with 0 and returns 0 when that returns 0; calls the import at `00796E70`+0x45 with `0xD` and returns 0 when that returns null; otherwise passes that result to the import at `00796E70`+0x65 and, when the returned pointer is non-null, sums over its 16-bit units up to the terminating 0 a byte count (1 below `0x80`, 2 below `0x800`, 0 for `0xDC00`-`0xDFFF`, 4 for `0xD800`-`0xDBFF`, else 3), gets count+1 bytes from slot `+0xB8` of the same table, stores that pointer in `02EACD78` and calls `00797210(buffer, count+1, units, 0)`; on both of these last paths it then calls the import at `00796E70`+0x11F (with the `+0x45` result) and the import at `00796E70`+0x125, and returns qword `02EACD78`",
+   "anchors": [
+    [
+     "00796E9A",
+     "call"
+    ],
+    [
+     "00796EB5",
+     "call"
+    ],
+    [
+     "00796F3F",
+     "setbe"
+    ],
+    [
+     "00796F78",
+     "mov"
+    ],
+    [
+     "00796F82",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00797050",
+   "text": "decodes one UTF-8 sequence at `rdx` into the dword at `rcx` and returns its length: a byte below `0x80` is stored as is and returns 1; otherwise the dword is first set to 0 and, with `r8` as end bound when non-null (fewer than 2, 3 or 4 bytes left returns 0), a `0xC2`-`0xDF` lead plus one `10xxxxxx` byte stores `(b0 AND 0x1F) << 6` plus its low 6 bits and returns 2; an `0xE0`-`0xEF` lead (second byte `0xA0`-`0xBF` after `0xE0`, at most `0x9F` after `0xED`) plus two continuation bytes stores the 4+6+6-bit value and returns 3; an `0xF0`-`0xF4` lead (second byte `0x90`-`0xBF` after `0xF0`, at most `0x8F` after `0xF4`) plus three continuation bytes stores the 3+6+6+6-bit value unless that value AND `0xFFFFF800` equals `0xD800`, and returns 4; every other case returns 0",
+   "anchors": [
+    [
+     "0079705D",
+     "mov"
+    ],
+    [
+     "00797069",
+     "mov"
+    ],
+    [
+     "007970B8",
+     "mov"
+    ],
+    [
+     "00797149",
+     "mov"
+    ],
+    [
+     "007971FB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00797210",
+   "text": "encodes 16-bit units from `r8` as UTF-8 into the buffer `rcx` of `rdx` bytes: while the write pointer is below `rcx+rdx-1`, `r8` is below `r9` (when `r9` is non-null) and the unit is non-zero, it writes 1 byte for a unit below `0x80`, 2 bytes (`0xC0` plus bits 6 and up, `0x80` plus the low 6 bits) below `0x800`, nothing for `0xDC00`-`0xDFFF`, 4 bytes built from the unit alone for `0xD800`-`0xDBFF` and 3 bytes otherwise, each only when at least that many bytes remain before the last buffer byte (else nothing), stepping `r8` by 2; it then stores a 0 byte at the write pointer and returns the number of bytes written",
+   "anchors": [
+    [
+     "00797271",
+     "mov"
+    ],
+    [
+     "0079729B",
+     "mov"
+    ],
+    [
+     "007972D6",
+     "mov"
+    ],
+    [
+     "00797314",
+     "mov"
+    ],
+    [
+     "0079734C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00798D70",
+   "text": "returns at once when the import at `00798D70`+0xB returns 0 for 0; otherwise counts the code points below `0x10000` that `00797050(&cp, p, 0)` decodes from the byte string `rcx` (stopping at a 0 byte or a decoded 0), calls the import at `00798D70`+0x7D with (2, 2 * (count + 1)) and returns when that is null; else passes the result to the import at `00798D70`+0x8E, writes each decoded code point below `0x10000` as a 16-bit unit into the returned buffer (stopping before its last unit) plus a 0 terminator, then calls the import at `00798D70`+0xE1 with the `+0x7D` result, the import at `00798D70`+0xE7, the import at `00798D70`+0xF5 with (`0xD`, the `+0x7D` result) and the import at `00798D70`+0xFB",
+   "anchors": [
+    [
+     "00798DB8",
+     "call"
+    ],
+    [
+     "00798DED",
+     "call"
+    ],
+    [
+     "00798E3D",
+     "mov"
+    ],
+    [
+     "00798E4D",
+     "mov"
+    ],
+    [
+     "00798E65",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Indirect calls through qword 01F40380 are written as slots of the table that qword points to (+0xB8 takes a byte count and returns a pointer, +0xC0 takes a pointer); the listing does not decode that table further. Import calls are cited by call site. 00796E70 and 00798D70: the import calls with format 0xD and a 2-argument allocation followed by lock/unlock pairs are consistent with Dear ImGui's default Win32 clipboard get/set functions (call shape plus the 0xD constant), not stated as fact in the rows. 00797210: the 0xD800-0xDBFF branch encodes the single unit into 4 bytes without pairing it with a following low surrogate (as the listing shows). Doubts: none specific."
+}
