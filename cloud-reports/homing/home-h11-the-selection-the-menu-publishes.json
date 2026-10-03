@@ -1,0 +1,19 @@
+{
+ "page": "16-UI/the-selection-the-menu-publishes.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "00270F50",
+   "entered_from": "`003F6370` + 0x192",
+   "text": "puts 0x10 in `r9d` and tail-jumps (`00270F50` + 0x6) with `rcx`, `edx` and `r8d` unchanged",
+   "anchors": [
+    [
+     "00270F56",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00270F50: an 11-byte thunk; the `r9d` store is the entry instruction, so the only interior anchor is the tail jump. Skip it if FABLE treats such thunks as entry-only."
+}
