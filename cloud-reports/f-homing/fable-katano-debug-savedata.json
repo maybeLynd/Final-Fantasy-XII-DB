@@ -1,0 +1,139 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md",
+ "session": "session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "001C1C00",
+   "text": "stores dword `[rcx]` = 0 and takes n = dword `[rdx]` AND 0x7fffffff; when n is non-zero calls `0017D260(n*8, 8)` and, when that is non-null, `001C19A0(result, qword [rdx+8], n)`; then stores qword `[rcx+8]` = the `0017D260` result (0 when n is 0 or the allocation returned null) and dword `[rcx]` = n when that result is non-null, else 0; returns `rcx`",
+   "anchors": [
+    [
+     "001C1C29",
+     "and"
+    ],
+    [
+     "001C1C3A",
+     "call"
+    ],
+    [
+     "001C1C50",
+     "call"
+    ],
+    [
+     "001C1C69",
+     "cmovne"
+    ],
+    [
+     "001C1C71",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001C1E70",
+   "text": "copies bytes `+0` to `+0x27` from `[rdx]` to `[rcx]`; calls `001C1E70+0x44(rcx+0x28, rdx+0x28)`; stores qword `[rcx+0x38]` = `001C26B0(qword [rdx+0x38] with bit 0 cleared)`; calls `001C1E70+0x69(rcx+0x40, rdx+0x40)`; then copies `+0x58` to `+0xe7` (nine 16-byte moves), bytes `+0xe8` to `+0xea`, dwords `+0xec` to `+0xfc`, the 16 bytes at `+0x100` and dwords `+0x110` to `+0x124` from `rdx` to `rcx`; returns `rcx`",
+   "anchors": [
+    [
+     "001C1E91",
+     "movups"
+    ],
+    [
+     "001C1EB4",
+     "call"
+    ],
+    [
+     "001C1EC8",
+     "call"
+    ],
+    [
+     "001C1ED9",
+     "call"
+    ],
+    [
+     "001C1FFD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063AD30",
+   "text": "when bit 31 of dword `[rdx]` is clear, takes n = its low 31 bits: for n above 1 (unsigned) calls `001C2720(qword [rdx+8], n)`, for n = 1 calls `00584730` on qword `[rdx+8]` when that is non-null with bit 0 clear, and for n = 0 calls nothing; on every path then stores qword `[rdx+8]` = 0 and dword `[rdx]` = 0 and returns 1 in `al`",
+   "anchors": [
+    [
+     "0063AD4D",
+     "je"
+    ],
+    [
+     "0063AD5E",
+     "call"
+    ],
+    [
+     "0063AD65",
+     "jne"
+    ],
+    [
+     "0063AD78",
+     "call"
+    ],
+    [
+     "0063AD80",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063DCA0",
+   "text": "when `r9` equals `rdx` goes straight to the stores; when `r9` equals `rcx+8` calls `00584730(qword [r9])` if that qword is non-null with bit 0 clear; otherwise, when bit 31 of dword `[rcx]` is clear, calls `001C2720(r9, the fifth (stack) argument)`; then stores dword `[rcx]` = `r8d` and, unless `rdx` equals `rcx+8`, qword `[rcx+8]` = `rdx`",
+   "anchors": [
+    [
+     "0063DCCB",
+     "cmp"
+    ],
+    [
+     "0063DCE5",
+     "call"
+    ],
+    [
+     "0063DCFF",
+     "call"
+    ],
+    [
+     "0063DD04",
+     "mov"
+    ],
+    [
+     "0063DD0B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063DE10",
+   "text": "returns 5 when `r8d` is negative; otherwise takes n = the low 31 bits of dword `[rcx]` and an old pointer (qword `[rcx+8]` when n is above 1, `rcx+8` when n is 1, 0 when n is 0); when `r8d` is 1 it calls `00584730(qword [rcx+8])` if n is 1 and that qword is non-null with bit 0 clear, stores qword `[rcx+8]` = `001C26B0(qword [rdx] with bit 0 cleared)` and uses `rcx+8` and count 1, otherwise it uses `rdx` and `r8d` OR 0x80000000; both paths call `0063DE10+0xB3` with (`rcx`, that pointer, that count, the old pointer, n) and return 0",
+   "anchors": [
+    [
+     "0063DE38",
+     "jns"
+    ],
+    [
+     "0063DE69",
+     "jne"
+    ],
+    [
+     "0063DE88",
+     "call"
+    ],
+    [
+     "0063DEA5",
+     "call"
+    ],
+    [
+     "0063DEC3",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions the page does not name (001C1C00, 0067ACF0, 0063DCA0) are cited by site. 'with bit 0 cleared' renders the movzx/and 1/sub sequence (value minus its low bit)."
+}
