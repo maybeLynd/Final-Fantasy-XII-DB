@@ -1,0 +1,17 @@
+{
+ "page": "04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "00182870", "entered_from": "`00382BF0` + 0xCC",
+   "text": "makes the argument-less call at `00182870` + 0x17 and, when it returns null, returns that null; otherwise repeats the same call at `00182870` + 0x21 and passes (its result, `ecx`, the float in `xmm1`, `r8`) to the call at `00182870` + 0x31",
+   "anchors": [["00182887", "call"], ["0018288F", "je"], ["00182891", "call"], ["001828A1", "call"]]},
+  {"fn": "001D9930", "entered_from": "`001DA220` + 0x42",
+   "text": "returns at once when the list whose sentinel is at `rcx+0x118` (next at qword `[node]`) is empty; otherwise makes the call at `001D9930` + 0x2A with qword `[node+0x10]` for every node, then for every node (its next read first) calls vtable slot `+0x18` of the object at `rcx+0x128` with (`rcx+0x128`, node, 0x18), stores `rcx+0x118` to qwords `[rcx+0x118]` and `[rcx+0x120]` and stores 1 to byte `[rcx+0x130]`",
+   "anchors": [["001D9947", "je"], ["001D995A", "call"], ["001D9988", "call"], ["001D999A", "mov"], ["001D99A1", "mov"]]},
+  {"fn": "001D9EC0", "entered_from": "`001DA220` + 0x56",
+   "text": "walks the list whose sentinel is at `rcx+0xD0` (next at qword `[node]`) with `d` = qword `[node+0x10]`, `a` = word `[d]`, `e` = word `[rcx+0xE8]` and `s` = word `[rcx+0x1BC]` (all re-read per node, compared signed): when `a` equals `e` it makes the call at `001D9EC0` + 0x84 with (`rcx`, dword `[d+4]`) unless `s` also equals `e`; when `a` is below `e` it skips the node; when `a` is above `e` it makes that call at once if `a` equals `s`, and otherwise stores `a` to word `[rcx+0x1BC]`, sets a local flag and makes that call, except that an `a` above `s` with the flag already set ends the walk",
+   "anchors": [["001D9EFF", "cmp"], ["001D9F15", "jle"], ["001D9F2D", "jne"], ["001D9F2F", "mov"], ["001D9F44", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "00182870: the two sites +0x17 and +0x21 call the same callee; the final call's argument order is read from rcx, edx, xmm2 and r9 as loaded."
+}
