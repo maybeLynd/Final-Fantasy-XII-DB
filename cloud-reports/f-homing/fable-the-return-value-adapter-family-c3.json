@@ -1,0 +1,35 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md",
+ "session": "session_01HfPRM3vgupD1jscEXG8z9Y",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "006B2A60",
+   "text": "calls `00683B10(rdx)` and copies the 0x40 bytes at the returned pointer to `r8` as 16 dwords (`+0` through `+0x3c`)",
+   "anchors": [
+    [
+     "006B2A6C",
+     "call"
+    ],
+    [
+     "006B2A74",
+     "mov"
+    ],
+    [
+     "006B2A76",
+     "mov"
+    ],
+    [
+     "006B2ACC",
+     "mov"
+    ],
+    [
+     "006B2ACF",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "006B2A60 leaves the source dword +0x3c in eax; no return value is stated."
+}
