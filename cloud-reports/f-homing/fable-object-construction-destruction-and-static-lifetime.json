@@ -1,0 +1,101 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md",
+ "session": "session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0019B2F0",
+   "text": "calls the import at `0019B2F0+0x23` with (a stack slot, 0) and reads the cached pointer qword `01F81148`; gets an index from the import call at `0019B2F0+0x3D` (passing qword `008C25A8`) and takes that entry of the qword array at `+0x10` of the object at qword `[rcx+8]` when the index is below its qword `+0x18` (unsigned); when none is found and that object's byte `+0x24` is non-zero it tries the same lookup on the object the import call at `0019B2F0+0x6B` returns; when still null it uses the cached pointer, and when that is null too it calls the import at `0019B2F0+0x96` with (the cache slot, `rcx`): a result of -1 throws through `00861ECC` with a stack object of `008F3618`, the string \"bad cast\" (`008F3628`) and 0, and `01DEAAA0`; otherwise it stores the new pointer at `01F81148`, calls its vtable slot `+8` and passes it to `00808850`; every non-throwing path calls the import at `0019B2F0+0xF6` on the stack slot and puts the pointer in `rax`",
+   "anchors": [
+    [
+     "0019B33A",
+     "cmp"
+    ],
+    [
+     "0019B35B",
+     "call"
+    ],
+    [
+     "0019B38C",
+     "cmp"
+    ],
+    [
+     "0019B3C8",
+     "mov"
+    ],
+    [
+     "0019B3DB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001DE200",
+   "text": "reads the signed dword `+4` of the table at qword `[rcx-0x88]` as d and stores qword `[rcx+d-0x88]` = `00901090` and dword `[rcx+d-0x8c]` = d - 0x88; stores qword `[rcx-0x80]` = `00900F20`, calls `001DF8C0(rcx-0x80)` and the import at `001DE200+0x59` with `rcx-0x80`, then tail-jumps through the import at `001DE200+0x6D` with `rcx-0x78`",
+   "anchors": [
+    [
+     "001DE21F",
+     "mov"
+    ],
+    [
+     "001DE240",
+     "mov"
+    ],
+    [
+     "001DE248",
+     "mov"
+    ],
+    [
+     "001DE250",
+     "call"
+    ],
+    [
+     "001DE26D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008A4BAB",
+   "text": "copies `rdx` into `rbp` and calls `00861ECC(0, 0)`; no instruction after that call lies inside the extent",
+   "anchors": [
+    [
+     "008A4BB5",
+     "mov"
+    ],
+    [
+     "008A4BBC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008B90A0",
+   "text": "stores qword `02EAF400` = `01CCF348`; when qword `02EAF620` is non-null and byte `02EAF628` is non-zero calls `0085E710` on that qword, otherwise skips it; then stores byte `02EAF628` = 1, qword `02EAF620` = 0 and qword `02EAF614` = 0 and calls `008B90A0+0x5E(02EAF400)`",
+   "anchors": [
+    [
+     "008B90BF",
+     "mov"
+    ],
+    [
+     "008B90D2",
+     "cmp"
+    ],
+    [
+     "008B90DB",
+     "call"
+    ],
+    [
+     "008B90E0",
+     "mov"
+    ],
+    [
+     "008B90FE",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0019B2F0: the extent ends at the 'pop rdi' at 0019B3FD; the ret that follows is outside the listed extent, so the row says the pointer is put in rax rather than 'returns'. The import calls go through the slots 008C25F0, 008C2628, 008C2630, 008C2790 and 008C25F8 and are cited by site. 008A4BAB: the listing stops at a nop after the call (no return path in the extent)."
+}
