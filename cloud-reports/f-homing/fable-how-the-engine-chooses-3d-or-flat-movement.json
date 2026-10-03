@@ -1,0 +1,35 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+ "session": "session_011Dcenz5EPZBdrLRrFP8ia6",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003DD8D0",
+   "text": "returns without other work unless dword `02B581A4` + ((sign-extended `edx` << 4) + sign-extended `r8d`)*0x1c equals 4; when it does, passes the float result of the call at `003DD8D0+0x3e(rcx)` in `xmm1` to the call at `003DD8D0+0x49(rcx)`, sets bit `0x1` of byte `rcx+0xd`, stores the low byte of `r8d` at byte `rcx+0xf5`, calls `003DD8D0+0x6b(rcx, bit 7 of byte +0xd of 00263F40(rcx))`, and calls `003DD8D0+0x88` with (`rcx`, ((`edx` << 4) OR `r8d`) << 0x10 OR `r9d`, 0) and the fifth (stack) argument float in `xmm3`",
+   "anchors": [
+    [
+     "003DD905",
+     "cmp"
+    ],
+    [
+     "003DD91E",
+     "or"
+    ],
+    [
+     "003DD92C",
+     "call"
+    ],
+    [
+     "003DD954",
+     "or"
+    ],
+    [
+     "003DD958",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002E9560, 002E4F40, 002E8170 and 002EB080 are not named by this page and are cited by site. 02B581A4 is the resolved base of the 0x1c-stride table read at 003DD905, not data after the function. The +0x88 call's fourth argument is the caller's fifth (stack) argument at [rsp+0x50] in this frame, loaded as a float into xmm3."
+}
