@@ -1,0 +1,648 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_017xjc7Mufp2Duoak7yA6of2",
+ "mode": "member",
+ "family": "Tremor with vorbisfile.c",
+ "rows": [
+  {
+   "fn": "007F46D0",
+   "text": "runs the call at `007F46D0 + 0x10` on `rcx+0x218` and the call at `+0x1C` on `rcx+0x278`, then stores dword 2 at `rcx+0x80`",
+   "anchors": [
+    [
+     "007F46E0",
+     "call"
+    ],
+    [
+     "007F46EC",
+     "call"
+    ],
+    [
+     "007F46F1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F4710",
+   "text": "loops on state dword `rcx+0x80`: state 3 returns a negative `007F5370(rcx)`; state 4 takes packets with the call at `007F4710 + 0x76` on `rcx+0xA0` (into `rdx`, or a stack packet if null), returns -3 on -1, and for a positive result retries while `+0x99` on `rcx+0x278` is nonzero, returns -0x81 if `+0xAB` is nonzero, else runs `+0x24E` and `+0x25C`, adds the latter to qword `+0x98` and 8 * packet dword `+8` to qword `+0x90`, stores at `+0x78` a sum of packet qword `+0x18` and qword array `+0x60` entries when that qword is not -1 and packet dword `+0x10` is 0, and returns 1; otherwise, at state 2 or more, it returns 0 if `r8d` is 0, reads a page with `007F4DF0(rcx, page, -1)` (-2 if negative), adds 8 * page dword `+8` to `+0x90`, and at state 4 on a serial (`+0x116`) unequal to dword `+0x84` re-reads unless `+0x128` is nonzero, which returns -2 if `r9d` is 0, else resets state to 2; below state 3 it looks the serial up in dword array `+0x58` (count `+0x40`; absent restarts) and sets `+0x88`, `+0x84` and state 3, or with dword `+8` 0 returns a nonzero `007F4A80(rcx, [+0x68], [+0x70], 0, 0, page)`; then it feeds the page (`+0x236`) and loops",
+   "anchors": [
+    [
+     "007F474C",
+     "call"
+    ],
+    [
+     "007F4786",
+     "call"
+    ],
+    [
+     "007F47F5",
+     "call"
+    ],
+    [
+     "007F48F2",
+     "mov"
+    ],
+    [
+     "007F4A39",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F4A80",
+   "text": "takes the page at the sixth argument, or reads one with `007F4DF0(rcx, page, 0x400)` (returning -0x80 as is and other negatives as -0x84 before any setup); it runs the calls at `007F4A80 + 0x74` on `rdx` and `+0x7C` on `r8` and sets state dword `rcx+0x80` to 2; while pages pass the call at `+0x8E` it appends each page's serial (call at `+0xB2`) to the dword list at `[r9]` whose count is the fifth argument's dword (resized by the import call at `+0xF0`, or a fresh 4-byte block from `+0xFD`), failing when the serial is already listed (list freed, pointer and count zeroed), and below state 3 seeds `rcx+0xA0` from the page and, when its first packet passes the call at `+0x169`, sets state 3 and feeds that packet with the call at `+0x18F`; it then needs two more packets for state 3, each fed with the call at `+0x269`, refilled from pages whose serial equals dword `+0x200` (a second foreign start page fails); success returns 0, and each later failure (-0x85, -0x84, -0x80, or the `+0x269` call's nonzero result) runs the calls at `+0x1A5` on `rdx` and `+0x1AD` on `r8`, sets state 2 and returns that code",
+   "anchors": [
+    [
+     "007F4ABD",
+     "call"
+    ],
+    [
+     "007F4B04",
+     "mov"
+    ],
+    [
+     "007F4B92",
+     "mov"
+    ],
+    [
+     "007F4BFF",
+     "mov"
+    ],
+    [
+     "007F4C34",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F4DF0",
+   "text": "with `r8` positive sets a limit of `r8` plus qword `rcx+0x10` (otherwise the limit is `r8`); it loops: returns -1 once a positive limit is reached by qword `+0x10`; calls `007F4DF0 + 0x42` on `rcx+0x20` with `rdx`, subtracting a negative result from `+0x10` and retrying, and for a positive result adds it to `+0x10` and returns the previous value; for 0 it returns -1 when the limit is 0, otherwise zeroes the dword returned by the import call at `+0x5B` and, when function pointer `+0x2F0` and qword `[rcx]` are set, reads through `[+0x2F0](buffer from the call at `+0x7B`, 1, 0x400, [rcx])`, passing a positive count to the call at `+0xA4` and retrying; it returns -2 for a zero count with that dword still 0 or for a null `[rcx]`, and -0x80 for a negative count, a set dword or a null `+0x2F0`",
+   "anchors": [
+    [
+     "007F4E32",
+     "call"
+    ],
+    [
+     "007F4E3E",
+     "sub"
+    ],
+    [
+     "007F4E81",
+     "call"
+    ],
+    [
+     "007F4EA8",
+     "or"
+    ],
+    [
+     "007F4EC9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F4EF0",
+   "text": "steps a start position back from qword `rcx+0x10` by 0x400 per round (floored at 0): each round seeks with `[+0x2F8]([rcx], start, 0)` (returning -0x81 for a null `[rcx]` and -0x80 for a null `+0x2F8` or a -1 result), stores the start at `+0x10`, calls `007F4EF0 + 0x6A` on `rcx+0x20`, and while `+0x10` is below the original value zeroes the four qwords at `rdx` and keeps each non-negative `007F4DF0(rcx, rdx, original - offset)` result (-0x80 is returned at once, other negatives end the round); it repeats until one was kept, returns it when dword `rdx+8` is nonzero, else returns a nonzero `007F57E0(rcx, kept)`, -0x81 when `007F4DF0(rcx, rdx, 0x400)` is then negative, and the kept value otherwise",
+   "anchors": [
+    [
+     "007F4F30",
+     "cmovns"
+    ],
+    [
+     "007F4F4B",
+     "call"
+    ],
+    [
+     "007F4F9E",
+     "call"
+    ],
+    [
+     "007F4FCD",
+     "call"
+    ],
+    [
+     "007F4FE5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F5020",
+   "text": "steps a start position back from qword `rcx+0x10` by 0x400 per round (floored at 0), seeking as `[+0x2F8]([rcx], start, 0)` (-0x81 for a null `[rcx]`, -0x80 for a null `+0x2F8` or a -1 result) then storing the start at `+0x10` and calling `007F5020 + 0x7C` on `rcx+0x20`; while `+0x10` is below the original value it reads pages with `007F4DF0(rcx, page, original - offset)` (-0x80 returned at once, other negatives end the round), keeping the last result with its serial (call at `+0xDB`) and 64-bit value (call at `+0xE8`), recording the result and storing the value at the fifth argument's qword when the serial equals dword `[r9]`, and dropping that record when the serial is absent from the `r8d`-entry dword list at `rdx`; with nothing read it steps again, otherwise it returns the recorded result if non-negative, else stores the last serial at `[r9]` and value at the fifth argument and returns the last result",
+   "anchors": [
+    [
+     "007F506B",
+     "cmovns"
+    ],
+    [
+     "007F50DF",
+     "call"
+    ],
+    [
+     "007F5130",
+     "mov"
+    ],
+    [
+     "007F5151",
+     "or"
+    ],
+    [
+     "007F519C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F51C0",
+   "text": "pulls pages with the call at `007F51C0 + 0x3B` on `rcx+0x20` (a negative result is subtracted from qword `+0x10`, a positive one added), refilling through `[+0x2F0](buffer, 1, 0x400, [rcx])` when none is ready; it stops on a failed or empty read, a negative previous offset or a page the call at `+0xD0` flags, skips pages whose serial (call at `+0xE2`) differs from dword `rcx+0x200`, feeds matching pages with the call at `+0xFC` on `rcx+0xA0` and, for each positive packet, adds (size + previous size)>>2 of the sizes from the call at `+0x120` on (`rdx`, packet) to a running sum once a previous size exists; at the first such page whose call at `+0x153` is not -1 it takes that value minus the sum, and it returns the result (or the running sum on a stop) floored at 0",
+   "anchors": [
+    [
+     "007F51FB",
+     "call"
+    ],
+    [
+     "007F524D",
+     "call"
+    ],
+    [
+     "007F52E0",
+     "call"
+    ],
+    [
+     "007F52F4",
+     "add"
+    ],
+    [
+     "007F5342",
+     "cmovns"
+    ]
+   ]
+  },
+  {
+   "fn": "007F5370",
+   "text": "returns 0 when the state dword `rcx+0x80` is above 3 and -0x81 when below 3; at 3 it calls `007F5370 + 0x57` on `rcx+0x218` with the `+0x68` record (0x28 stride) at index dword `+0x88` when dword `+8` is nonzero, else the first, returning -0x89 when that is nonzero; otherwise it calls `+0x7A` with (`rcx+0x218`, `rcx+0x278`), zeroes qwords `+0x90` and `+0x98`, sets state 4 and returns 0",
+   "anchors": [
+    [
+     "007F5382",
+     "jle"
+    ],
+    [
+     "007F53B2",
+     "lea"
+    ],
+    [
+     "007F53C7",
+     "call"
+    ],
+    [
+     "007F53EA",
+     "call"
+    ],
+    [
+     "007F5404",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F5420",
+   "text": "saves dword `rcx+0x200` and the qword at `[rcx+0x50]`, gets `007F51C0(rcx, [rcx+0x68])`, and when function pointers `+0x2F8` and `+0x308` are set calls `[+0x2F8]([rcx], 0, 2)` and stores the sign-extended `[+0x308]([rcx])` in qwords `+0x18` and `+0x10` (else -1 in both), returning -0x83 when it is -1; it returns a negative `007F5020(rcx, [+0x58]+8, dword [[+0x58]+4], &serial, &value)` and -0x80 when the call at `007F5420 + 0xFF` (given 0, the saved qword, `+0x10`, that value and serial and the same list) is negative; otherwise it zeroes `[[+0x48]]`, stores the saved serial at `[[+0x58]]`, the saved qword at `[[+0x50]]` and the `007F51C0` result at `[[+0x60]]`, subtracts that result from `[[+0x60]+8]`, and returns `007F6330(rcx, saved qword)`",
+   "anchors": [
+    [
+     "007F544D",
+     "call"
+    ],
+    [
+     "007F5483",
+     "mov"
+    ],
+    [
+     "007F54D7",
+     "call"
+    ],
+    [
+     "007F551F",
+     "call"
+    ],
+    [
+     "007F556A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F5580",
+   "text": "when `rcx` and the qword at the fifth argument `+8` are set calls that pointer as (`rcx`, 0, 1), else uses -1; it clears 0x310 bytes at `rdx` (call at `007F5580 + 0x62`), stores `rcx` at `[rdx]`, copies the 32 bytes at the fifth argument to `rdx+0x2F0`, runs the call at `+0x83` on `rdx+0x20` and, when `r8` is non-null, copies `r9d` bytes from it into that buffer (calls at `+0x94`, `+0xA2`, `+0xAE`); it sets dword `+8` to 1 unless that first call gave -1, sets dword `+0x40` to 1, allocates qwords `+0x68` (1 by 0x28, import call at `+0xCE`) and `+0x70` (count by 0x20), calls `+0xF5` on `rdx+0xA0` with -1, and calls `007F4A80(rdx, [+0x68], [+0x70], &list, &count, 0)`; a negative result zeroes `[rdx]` and calls `007F5850(rdx)`, otherwise it copies dword `+0x200` to `+0x84`, allocates `+0x58` as count+2 dwords holding that serial, the count and the list, allocates one-qword `+0x48` (set to 0) and `+0x50` (set to qword `+0x10`) and sets dword `+0x80` to 1; it frees a non-null list and returns the result",
+   "anchors": [
+    [
+     "007F55E7",
+     "mov"
+    ],
+    [
+     "007F55F1",
+     "movups"
+    ],
+    [
+     "007F569C",
+     "call"
+    ],
+    [
+     "007F56B2",
+     "call"
+    ],
+    [
+     "007F573B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F5770",
+   "text": "returns -0x83 unless the state dword `rcx+0x80` is 1; it sets the state to 2 and, when dword `+8` is nonzero, returns `007F5420(rcx)`, first zeroing qword `[rcx]` and calling `007F5850(rcx)` when that result is nonzero; when dword `+8` is 0 it sets the state to 3 and returns 0",
+   "anchors": [
+    [
+     "007F5780",
+     "je"
+    ],
+    [
+     "007F5791",
+     "mov"
+    ],
+    [
+     "007F57A2",
+     "call"
+    ],
+    [
+     "007F57B7",
+     "call"
+    ],
+    [
+     "007F57C9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F57E0",
+   "text": "returns -0x81 when qword `[rcx]` is null and -0x80 when function pointer `rcx+0x2F8` is null or `[+0x2F8]([rcx], rdx, 0)` returns -1; otherwise stores `rdx` at qword `+0x10`, calls `007F57E0 + 0x36` on `rcx+0x20` and returns 0",
+   "anchors": [
+    [
+     "007F57F6",
+     "je"
+    ],
+    [
+     "007F5807",
+     "call"
+    ],
+    [
+     "007F5812",
+     "mov"
+    ],
+    [
+     "007F5816",
+     "call"
+    ],
+    [
+     "007F5828",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F5850",
+   "text": "returns 0 at once for a null `rcx`; otherwise runs the calls at `007F5850 + 0x19` on `rcx+0x278`, `+0x25` on `+0x218` and `+0x31` on `+0xA0`, and when qword `+0x68` is non-null and dword `+0x40` nonzero calls `+0x6F` on each `+0x68` record (0x28 stride) and `+0x7F` on each `+0x70` record (0x20 stride) for the dword `+0x40` entries and frees both arrays (import calls at `+0x94`, `+0x9E`); it frees each non-null qword `+0x50`, `+0x60`, `+0x58`, `+0x48`, calls `+0xE9` on `+0x20`, calls function pointer `+0x300` with `[rcx]` when both are set, clears 0x310 bytes at `rcx` (call at `+0x10F`) and returns 0",
+   "anchors": [
+    [
+     "007F58BF",
+     "call"
+    ],
+    [
+     "007F58CF",
+     "call"
+    ],
+    [
+     "007F5939",
+     "call"
+    ],
+    [
+     "007F5952",
+     "call"
+    ],
+    [
+     "007F595F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F59C0",
+   "text": "returns a negative result of the call at `007F59C0 + 0x17` and a nonzero `007F5370(rcx)`; then loops on `+0x6C` on `rcx+0xA0`: a positive result sizes the packet (`+0x93`; negative drops it via `+0xA7`), adds (size + previous)>>2 to qword `+0x78` once a previous size exists and stops when that plus (`+0xC8` + size)>>2 reaches `rdx`, else drops it, runs `+0xFD` and `+0x110` and, for packet qword `+0x18` above -1, rebuilds `+0x78` from it and qword array `+0x60` (floored at 0); 0 or -3 reads a page with `007F4DF0(rcx, page, -1)` (negative stops), sets state `+0x80` to 2 after `+0x1A8` and `+0x1B4` when `+0x198` is nonzero, below state 3 adopts a serial found in dword array `+0x58` (`+0x88`, state 3, `+0x84`, `+0x229`, returning a nonzero `007F5370(rcx)`), and feeds the page (`+0x24D`); other results stop; it then zeroes qwords `+0x90`, `+0x98` and, while `+0x78` is below `rdx`, advances by the smaller of `+0x280`'s count and the remainder (`+0x297`), adding it to `+0x78`, and on a short count sets `+0x78` to `007F62A0(rcx, -1)` when `007F4710(rcx, 0, 1, 1)` is not positive; returns 0",
+   "anchors": [
+    [
+     "007F59E7",
+     "call"
+    ],
+    [
+     "007F5A53",
+     "call"
+    ],
+    [
+     "007F5B45",
+     "call"
+    ],
+    [
+     "007F5C5F",
+     "add"
+    ],
+    [
+     "007F5C76",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F62A0",
+   "text": "returns -0x83 when the state dword `rcx+0x80` is below 2, dword `+8` is 0 or `edx` is not below dword `+0x40`; for a negative `edx` returns the sum of `007F62A0(rcx, i)` over i below dword `+0x40`, otherwise returns qword `[+0x60]` entry 2*`edx`+1",
+   "anchors": [
+    [
+     "007F62B0",
+     "jl"
+    ],
+    [
+     "007F62DA",
+     "call"
+    ],
+    [
+     "007F62DF",
+     "add"
+    ],
+    [
+     "007F630A",
+     "mov"
+    ],
+    [
+     "007F6314",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F6330",
+   "text": "returns -0x83 below state 2 (dword `rcx+0x80`) or for `rdx` negative or above qword `+0x18`, and -0x8A when dword `+8` is 0; at state 3 or more with `rdx` outside the qwords at `+0x48` indexes `+0x88` and `+0x88`+1 it calls `007F46D0(rcx)`; it sets qword `+0x78` to -1, runs the calls at `007F6330 + 0x9C` and `+0xA8`, and when `007F57E0(rcx, rdx)` is nonzero calls `007F46D0(rcx)` and returns -0x89; otherwise it sets up a stack stream (`+0x122`, `+0x12C`) and loops: at state 3 or more it sizes stack-stream packets with the call at `+0x190`, summing (size + previous)>>2, until a packet qword `+0x18` is not -1, then stores in `+0x78` that value less `+0x60` entry 2*link (a negative difference becomes 0) plus the odd `+0x60` entries below it minus the sum (a negative total becomes 0); when packets run out it stores -1 in `+0x78` if a size is pending, else reads a page with `007F4DF0(rcx, page, -1)` (on failure `+0x78` becomes `007F62A0(rcx, -1)`), calls `007F46D0` on a flagged page of a new serial, adopts a serial listed in the dword array `+0x58` below state 3, and feeds the page to both streams; it ends by zeroing qwords `+0x90` and `+0x98` and returning 0",
+   "anchors": [
+    [
+     "007F63AF",
+     "call"
+    ],
+    [
+     "007F63E3",
+     "call"
+    ],
+    [
+     "007F64C0",
+     "call"
+    ],
+    [
+     "007F6533",
+     "call"
+    ],
+    [
+     "007F669B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F6750",
+   "text": "returns -0x83 below state 2 (dword `rcx+0x80`); until state 4 gives a nonzero count from the call at `007F6750 + 0x55` on `rcx+0x218` it calls `007F4710(rcx, 0, 1, 1)`, returning 0 for -2 and any other non-positive result as is; a negative count is returned, otherwise the count is capped at `r8d` / (2 * channels), channels being dword `+4` of the `+0x68` record (0x28 stride) at index dword `+0x88` when dword `+8` is set and the state is at least 3, else of the first; it writes each channel's 32-bit samples shifted right by 9 and clamped to -32768..32767 as interleaved words at `rdx`, calls `+0x193` with the count, adds the count to qword `+0x78`, stores dword `+0x88` at `[r9]` when `r9` is non-null and returns count * channels * 2",
+   "anchors": [
+    [
+     "007F67A5",
+     "call"
+    ],
+    [
+     "007F67BE",
+     "call"
+    ],
+    [
+     "007F6876",
+     "sar"
+    ],
+    [
+     "007F68AA",
+     "mov"
+    ],
+    [
+     "007F68E8",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "007F6930",
+   "text": "returns `r8` when `rcx` is not below `rdx` and 0 when `rcx` is not positive; otherwise forms 64 quotient bits of `rcx`/`rdx` by shift-and-subtract (32 rounds of two steps), then folds them from the lowest bit up into an accumulator that adds `r8` for each set bit and shifts right arithmetically by 1 per bit, and returns the accumulator",
+   "anchors": [
+    [
+     "007F6939",
+     "jl"
+    ],
+    [
+     "007F6944",
+     "xor"
+    ],
+    [
+     "007F6959",
+     "sub"
+    ],
+    [
+     "007F6993",
+     "cmove"
+    ],
+    [
+     "007F69AB",
+     "sar"
+    ]
+   ]
+  },
+  {
+   "fn": "007F69C0",
+   "text": "loops on state dword `rcx+0x80`: state 4 takes packets with the call at `007F69C0 + 0x56` on `rcx+0xA0` (into `rdx`, or a stack packet if null), returns -3 on -1, and for a positive result retries while `+0x79` on `rcx+0x278` is nonzero, returns -0x81 if `+0x8B` is nonzero, else runs `+0x1EF` and `+0x1FD`, adds the latter to qword `+0x98` and 8 * packet dword `+8` to qword `+0x90`, stores packet qword `+0x18` (floored at 0) minus `+0x237`'s result at `+0x78` when that qword is not -1 and packet dword `+0x10` is 0, and returns 1; otherwise, at state 2 or more, it pulls a page with `+0xB9` on `rcx+0x20` (negative results are subtracted from qword `+0x10`; 0 refills via `[+0x2F0](buffer, 1, 0x400, [rcx])`), returns -2 when no data comes or the previous offset is negative, adds the result to `+0x10` and 8 * page dword `+8` to `+0x90`, and at state 4 on a serial unequal to dword `+0x84` re-reads unless `+0x184` is nonzero, which runs `+0x198` and `+0x1A4`, sets state 2 and, when dword `+8` is 0, runs `+0x1BD` and `+0x1C6`; it then feeds the page (below state 2 the unread stack page) with `+0x1D7` and loops",
+   "anchors": [
+    [
+     "007F6A16",
+     "call"
+    ],
+    [
+     "007F6A79",
+     "call"
+    ],
+    [
+     "007F6B1D",
+     "add"
+    ],
+    [
+     "007F6B69",
+     "mov"
+    ],
+    [
+     "007F6C02",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F6C20",
+   "text": "returns -1 when function pointer `rcx+0x2F0` is null and 0 when qword `[rcx]` is null; otherwise reads through `[+0x2F0](buffer, 1, 0x400, [rcx])`, the buffer coming from the call at `007F6C20 + 0x33` on `rcx+0x20` with 0x400, passes a positive count to the call at `+0x5B`, and returns the count, or -1 when it is 0",
+   "anchors": [
+    [
+     "007F6C31",
+     "jne"
+    ],
+    [
+     "007F6C53",
+     "call"
+    ],
+    [
+     "007F6C69",
+     "call"
+    ],
+    [
+     "007F6C7B",
+     "call"
+    ],
+    [
+     "007F6C8A",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "007F6CA0",
+   "text": "stores `rdx` at qword `rcx+0x10`, runs the call at `007F6CA0 + 0x31` on `rcx+0x20`, sets qword `+0x78` to -1 and pulls one page with `+0x49` (negative results are subtracted from `+0x10` and retried, 0 retries while `007F6C20(rcx)` is positive, a positive one is added to `+0x10`); runs `+0x79`, `+0x8E` (dword `+0x84`) and `+0x9B`, drops packets (`+0xC5`) until one's qword `+0x18` is not -1 and copies it to `+0x78`; then loops: each peeked packet (`+0xF9`) is sized by `+0x120` (negative drops it), (size + previous)>>2 is added to `+0x78` once a previous size exists, and the loop stops when that plus (`+0x154` + size)>>2 reaches `r8`, else the packet is dropped, `+0x186` and `+0x199` run and a packet qword `+0x18` above -1 is copied to `+0x78`; a peek of 0 or -3 pulls a page via `[+0x2F0](buffer, 1, 0x400, [rcx])` and feeds it (`+0x300`), stopping when none comes; other peeks stop; finally it zeroes qwords `+0x90`, `+0x98` and, while `+0x78` is below `r8`, advances by the smaller of `+0x270`'s count and the remainder (`+0x287`), adding it to `+0x78` and, on a short count, setting `+0x78` to `007F62A0(rcx, -1)` when `007F69C0(rcx, 0)` is not positive; returns 0",
+   "anchors": [
+    [
+     "007F6CC6",
+     "mov"
+    ],
+    [
+     "007F6D85",
+     "mov"
+    ],
+    [
+     "007F6DC0",
+     "call"
+    ],
+    [
+     "007F6E0A",
+     "jge"
+    ],
+    [
+     "007F6F4C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F7680",
+   "text": "returns -0x81 when qword `rcx+0x20` is null; otherwise, reading fields from `rdx` with the bit reader of the call at `007F7680 + 0x47` (widths 8, 6, 16, 1), it stores read+1 counts at that block's dwords `+0x1C`, `+0x10`, `+0x14`, `+0x18`, `+0xC` and `+8` and per count fills: qwords `+0xC20` from the call at `+0x6B` on `rdx`; dwords `+0x520`, which must be 0; type dwords `+0x620` (0 to 1), `+0x920` (0 to 2) and `+0x220` (0 only) with qwords `+0x720`, `+0xA20` and `+0x320` returned by the first function pointer of the object listed for that type in the tables `01F41E30`, `01F41E40` and `01F41E58`, called with (`rcx`, `rdx`); and 0x10-byte records at qwords `+0x20` (import call at `+0x278`) holding a 1-bit field, two 16-bit fields that must be below 1 and an 8-bit field below dword `+0xC`; a final 1-bit read of 1 returns 0, and any non-positive count, null result or out-of-range value calls `+0x30F` on `rcx` and returns -0x85",
+   "anchors": [
+    [
+     "007F76C7",
+     "call"
+    ],
+    [
+     "007F76F0",
+     "mov"
+    ],
+    [
+     "007F77B3",
+     "call"
+    ],
+    [
+     "007F78F8",
+     "call"
+    ],
+    [
+     "007F798F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F79C0",
+   "text": "reads a 32-bit length from `rdx` (call at `007F79C0 + 0x26`) and, when it is non-negative and not above dword `rdx+0x18` minus the call at `+0x38`'s result, allocates length+1 bytes (import call at `+0x55`) into qword `rcx+0x18` and fills them with `007F7CC0(rdx, buffer, length)`; it then reads a 32-bit count (at most 0x7FFFFFFE and not above a quarter of the remaining bytes), allocates count+1 qwords at `[rcx]` and dwords at `[rcx+8]`, stores the count at dword `rcx+0x10` and, per entry, reads a bounded 32-bit length into the dword array and fills a length+1 byte allocation stored in the qword array with `007F7CC0`; a final 1-bit read of 1 returns 0, and otherwise, or on any failed bound or allocation (a null entry also cuts dword `+0x10` to its index) calls `+0x186` on `rcx` and returns -0x85",
+   "anchors": [
+    [
+     "007F7A1B",
+     "mov"
+    ],
+    [
+     "007F7A31",
+     "call"
+    ],
+    [
+     "007F7AA4",
+     "mov"
+    ],
+    [
+     "007F7AED",
+     "mov"
+    ],
+    [
+     "007F7B46",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F7B70",
+   "text": "returns -0x81 when qword `rcx+0x20` is null; reads from `rdx` with the bit reader of the call at `007F7B70 + 0x3B` a 32-bit dword into `[rcx]` (nonzero returns -0x86), an 8-bit `+4`, 32-bit `+8`, `+0xC`, `+0x10`, `+0x14`, and two 4-bit shifts stored as 1 << n at that block's dwords `+0` and `+4`; it returns 0 when `+8` and `+4` are at least 1, the first block value is at least 0x40, the second is at least the first and at most 0x2000 and a final 1-bit read is 1, otherwise calls `+0x127` on `rcx` and returns -0x85",
+   "anchors": [
+    [
+     "007F7BB0",
+     "mov"
+    ],
+    [
+     "007F7C39",
+     "mov"
+    ],
+    [
+     "007F7C5D",
+     "cmp"
+    ],
+    [
+     "007F7C67",
+     "cmp"
+    ],
+    [
+     "007F7C97",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007F7CC0",
+   "text": "returns at once when `r8d` is 0; otherwise stores `r8d` successive 8-bit reads of the call at `007F7CC0 + 0x28` on `rcx` as bytes at `rdx`",
+   "anchors": [
+    [
+     "007F7CC3",
+     "je"
+    ],
+    [
+     "007F7CE8",
+     "call"
+    ],
+    [
+     "007F7CED",
+     "mov"
+    ],
+    [
+     "007F7CF6",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions outside this pack are cited by call site (entry + offset); after the first, a bare `+0xNN` in the same row is a call site of that row's function. Doubts: 007F4710 and 007F69C0/007F6CA0/007F59C0/007F6330 are long state loops stated as top-level structure; in 007F4710 the page read is skipped (straight to the serial lookup) when the state is below 2, which the row compresses. 007F6330's listing ends at 007F6714 inside its extent (epilogue cut), so its return value 0 is read from the zeroing at 007F66DC. In 007F7680 the per-field bounds are read from cmp/jge pairs (e.g. 007F779A cmp eax, 2 / jge fail)."
+}
