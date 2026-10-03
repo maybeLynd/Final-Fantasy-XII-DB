@@ -1,0 +1,61 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+ "session": "cloud session_01U9MRHY1rprnFC3Ptyv2Mfo",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003CA530",
+   "text": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`)",
+   "anchors": [
+    [
+     "003CA554",
+     "je"
+    ],
+    [
+     "003CA5DD",
+     "jb"
+    ],
+    [
+     "003CA6F5",
+     "call"
+    ],
+    [
+     "003CA76A",
+     "call"
+    ],
+    [
+     "003CA82B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00404E10",
+   "text": "with `g` = qword `02B62D88`, returns without work when `g` or qword `g+0xc0` is null or bit 0 of byte `+0xc2` of the latter is set; otherwise calls `00406DD0(g, 0)`, re-reads `g`, sets that bit 0, and scans the first byte `g+0xe3` entries of the 0x18-byte array at qword `g+0xe8`: when one has dword `+8` greater than 0 (signed) it tail-jumps to `00404E10`+0x99 with `rcx` = qword `g+0xc0`; otherwise, for each of the two qwords at `+0xc8` and `+0xd0` of qword `g+0xc0` (skipping null ones, and re-reading `g` from `02B62D88` after each call), it sets bit `0x8` of that object's dword `+0x130` when its bit `0x10` is set, else calls `00404E10`+0xDD with it; it sets no return value on these paths",
+   "anchors": [
+    [
+     "00404E3B",
+     "jne"
+    ],
+    [
+     "00404E48",
+     "call"
+    ],
+    [
+     "00404E62",
+     "or"
+    ],
+    [
+     "00404EA9",
+     "jmp"
+    ],
+    [
+     "00404EED",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003CA530 (about 1,160 characters, close to the cap): constants are 10.0 (008F8180), 1.0 (01CEBBA8), 3.141593 (01CEBC50), 30.0 (008F8D80), 64.0 (00916318), 128.0 (008F3A2C), 256.0 (00915A00), left out of the row for length. The frame difference is computed in 32 bits and converted from the zero-extended 64-bit register (cvtsi2ss rax), i.e. as an unsigned 32-bit value. 'f >= 1.0' takes the comiss/jb path (NaN goes to the else branch); 'f <= 0' likewise includes NaN. The >> 7 is arithmetic (sar). A stack cookie from 01F44830 is checked by 00808C40 on every exit; not stated. Null rcx in case 2 and null Q in case 1 dereference small addresses; not stated. The callee at +0x105 (00861F0E) is a single-float math routine whose identity (sin/cos) the listing does not show. 00404E10: the 'cmp rdi, 2' guard inside the slot loop never fires (the loop runs exactly twice, rbx 0xc8 and 0xd0); 00406DD0 is called with rcx = g (still in rcx from the guard) and edx = 0."
+}
