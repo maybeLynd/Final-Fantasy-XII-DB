@@ -1,0 +1,15 @@
+{
+ "page": "16-UI/Shared-Dialogs/the-shared-dialog-widgets.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {"fn": "00270230", "entered_from": "`0028D460` + 0x307",
+   "text": "stores at floats `rcx+0`, `+4`, `+8` and `+0xC` the floats `rdx+0`, `+4`, `+8` and `+0xC` plus `xmm2`, `xmm3`, `xmm2` and `xmm3` respectively (the third and fourth arguments)",
+   "anchors": [["00270236", "addss"], ["0027023A", "movss"], ["00270243", "movss"], ["0027024D", "movss"], ["00270257", "movss"]]},
+  {"fn": "003FF9A0", "entered_from": "`002C2320` + 0x561",
+   "text": "reads qword `+0x108` of the object at qword `0209AC30` and returns when it is null; otherwise makes the call at `003FF9A0` + 0x26 with that object's qword `+0x170` and `edx`, `r8d`, `r9d` all 0, then tail-jumps at + 0x3D with `rcx` = qword `+0x108` re-read from `0209AC30`",
+   "anchors": [["003FF9AB", "mov"], ["003FF9B5", "je"], ["003FF9B7", "mov"], ["003FF9C6", "call"], ["003FF9DD", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003FF9A0: the call at + 0x26 and the tail jump at + 0x3D go to different callees, both cited by site."
+}
