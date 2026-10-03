@@ -1,0 +1,11 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "003B7130", "entered_from": "`0025D9E0` + 0x3E8",
+   "text": "when `edx` is 0, tail-jumps (`003B7130` + 0x45) with the incoming `ecx`; otherwise takes the dword result of `003B7130` + 0x1D (called with 1) when `ecx` is 1, or of `003B7130` + 0x11 (called with the incoming registers) otherwise, passes it to `003B7130` + 0x24, and tail-jumps (`003B7130` + 0x3B) with `rcx` = that call's pointer result and `edx` = the incoming `ecx`, or -1 when that pointer is null",
+   "anchors": [["003B713A", "je"], ["003B714D", "call"], ["003B7154", "call"], ["003B715E", "or"], ["003B716B", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
