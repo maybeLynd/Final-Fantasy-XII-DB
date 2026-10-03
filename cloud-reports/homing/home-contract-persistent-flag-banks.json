@@ -1,0 +1,17 @@
+{
+ "page": "14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "001D9930", "entered_from": "`001DA220` + 0x42",
+   "text": "returns at once when the circular list headed at `rcx+0x118` (next pointer at `+0x0`) is empty; otherwise walks it once calling `001D9930` + 0x2A with each node's qword `+0x10`, walks it again calling the slot at `+0x18` of the table whose pointer is qword `rcx+0x128` with (`rcx+0x128`, the node, 0x18) after reading each node's next pointer, then points the head's qwords `+0x0` and `+0x8` back at the head and stores byte 1 at `rcx+0x130`",
+   "anchors": [["001D9944", "cmp"], ["001D995A", "call"], ["001D9988", "call"], ["001D999A", "mov"], ["001D99A1", "mov"]]},
+  {"fn": "001D9EC0", "entered_from": "`001DA220` + 0x56",
+   "text": "walks the circular list headed at `rcx+0xD0`, comparing (signed) the word key at the start of each node's entry (qword node `+0x10`) with word `rcx+0xE8` (A) and word `rcx+0x1BC` (B): when the key equals A and B differs from A, or the key is above A and equals B, it calls `001D9EC0` + 0x84 with (`rcx`, the entry's dword `+0x4`); when the key is above A and differs from B it stores the key to B, sets a local flag and makes the same call, except that a key above B with the flag already set ends the walk; keys below A, or equal to both A and B, are skipped",
+   "anchors": [["001D9EFF", "cmp"], ["001D9F1E", "cmp"], ["001D9F2A", "test"], ["001D9F2F", "mov"], ["001D9F44", "call"]]},
+  {"fn": "002A3210", "entered_from": "`002E16B0` + 0x2D7",
+   "text": "replaces bit 18 of dword `rcx+0x180` with bit 0 of `r9d` and sets its bit 17 (`bts`), stores `dl` at byte `rcx+0x174` and `r8b` at byte `rcx+0x175`, and writes the dword back",
+   "anchors": [["002A321B", "and"], ["002A3222", "mov"], ["002A322F", "bts"], ["002A3234", "mov"], ["002A323B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001D9930: the second walk reads the node's next pointer before the indirect call, so the call may free the node; after both walks the head is reset to empty. 001D9EC0: the 'skipped' cases are both reached through the jle at 001D9F15 (key below A, or key equal to A when B also equals A, via the repeated cmp at 001D9F12); the flag is the bp register, set to 1 only on the path that stores B. 002A3210: the bit-18 merge is the xor/and/xor idiom ((r9d shl 18) xor d) and 0x40000 xor d; the shl is the entry instruction. 001D9930 and 001D9EC0 are also entered from 001DA970 (+0x40 and +0x54)."
+}
