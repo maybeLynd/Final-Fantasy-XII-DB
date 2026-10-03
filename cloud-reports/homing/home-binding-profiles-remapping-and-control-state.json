@@ -1,0 +1,23 @@
+{
+ "page": "15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "0017E500", "entered_from": "`002284F0` + 0xB4",
+   "text": "tail-jumps through the indirect pointer slot at the site `0017E500` + 0x18 with (qword `02EA5248`, `0x8002`, 1 when `ecx` is non-zero else 0, 0)",
+   "anchors": [["0017E503", "mov"], ["0017E50A", "mov"], ["0017E511", "setne"], ["0017E518", "jmp"]]},
+  {"fn": "001E0980", "entered_from": "`002284F0` + 0x160",
+   "text": "returns without work when the call at `001E0980` + 0x4 returns null; otherwise repeats that call at `001E0980` + 0xE and tail-jumps through the site `001E0980` + 0x1A with `rcx` = its result",
+   "anchors": [["001E0984", "call"], ["001E098C", "je"], ["001E098E", "call"], ["001E099A", "jmp"]]},
+  {"fn": "002498A0", "entered_from": "`001EC060` + 0xEF",
+   "text": "returns dword `02F97364` ANDed with `0x800` (bit 11)",
+   "anchors": [["002498A6", "and"]]},
+  {"fn": "002E2570", "entered_from": "`002284F0` + 0xA4",
+   "text": "clamps `ecx` to 0..7 (signed), takes the qword at `0215F200` + the clamped value times 0x68 and, when it is non-null, replaces bit 0 of its dword `+0x40` with bit 0 of `edx`; returns without work when the qword is null",
+   "anchors": [["002E257D", "cmovg"], ["002E2583", "imul"], ["002E258E", "mov"], ["002E2597", "and"], ["002E259E", "or"]]},
+  {"fn": "0035C100", "entered_from": "`003C8B70` + 0x2FF",
+   "text": "returns without work when qword `022C83E0` is null; otherwise makes the call at `0035C100` + 0x12 (`ecx` passed through), zeroes dword `+0xC4` of qword `022C83E0`, and when `ecx` was non-zero tail-jumps through the site `0035C100` + 0x33 with `ecx` = 0",
+   "anchors": [["0035C110", "je"], ["0035C112", "call"], ["0035C11E", "mov"], ["0035C12A", "je"], ["0035C133", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0017E500: the tail-jump is indirect through a pointer slot; the slot address is left out of the row on purpose. 002E2570: the two clamp orders (non-negative input then upper clamp, negative input to 0) both give clamp(ecx, 0, 7); the second negative test at 002E25A9 cannot fire."
+}
