@@ -1,0 +1,20 @@
+{
+ "page": "00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "0028F6A0", "entered_from": "`0022A770` + 0x2E0",
+   "text": "with `R` = qword `0209BE80`, returns 0 when `R` is null, when bit `0x2000` of dword `R+0x10F68` is set, or when the call at `0028F6A0` + 0x2A with `R+0xAB30` returns 0; otherwise returns 1 when bit `0x10` of byte `R+0x10F68` is set and 2 when it is clear",
+   "anchors": [["0028F6AB", "test"], ["0028F6B7", "test"], ["0028F6CA", "call"], ["0028F6E1", "and"], ["0028F6E8", "add"]]},
+  {"fn": "0036B060", "entered_from": "`0037B3D0` + 0xB",
+   "text": "returns 0 when `ecx` is above 0xE (unsigned); otherwise returns `022D7FD0` + `ecx`*0xA8",
+   "anchors": [["0036B063", "ja"], ["0036B06F", "imul"], ["0036B076", "add"], ["0036B07A", "xor"]]},
+  {"fn": "003AA1F0", "entered_from": "`00501750` + 0x93",
+   "text": "starts from the qword at the pointer in qword `02EBEF70` and, while the node is non-null, returns it when its word `+0xC` (sign-extended) equals `ecx` and its byte `+0xE` (sign-extended) equals `edx`, otherwise moves to the result of the call at `003AA1F0` + 0x36 with the node's dword `+0`; returns 0 when it reaches a null node",
+   "anchors": [["003AA205", "mov"], ["003AA215", "cmp"], ["003AA21F", "cmp"], ["003AA226", "call"], ["003AA230", "xor"]]},
+  {"fn": "008632E0", "entered_from": "`00863540` + 0x28",
+   "text": "gets an 8-byte block from the call at `008632E0` + 0x21 with 8; when it is non-null, stores at its qword `+0` the result of the import call at `008632E0` + 0x3D with (0, `edx`, `r8d`, 0) and stores the block at qword `[rcx]`; when it is null, stores 0 at qword `[rcx]`; returns `rcx`",
+   "anchors": [["00863301", "call"], ["0086331D", "call"], ["00863323", "mov"], ["00863326", "mov"], ["0086332B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "008632E0: the import slot called at +0x3D is 008C2100 (its resolved import is not named in the listing)."
+}
