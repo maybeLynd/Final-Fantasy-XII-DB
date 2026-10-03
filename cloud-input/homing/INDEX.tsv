@@ -185,3 +185,8 @@ home-cutscene-name-slots-and-the-depth-of-field-sidecar	99-Unresolved-Residual/C
 home-game-settings-ini-and-runtime-config	19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	3	339	2026-10-03 08:08	PACKED-FABLE-HOMING
 home-item-id-encoding-and-equipment-compatibility	12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	1	58	2026-10-03 08:08	PACKED-FABLE-HOMING
 home-the-font-painters-public-api	99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md	1	33	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-game-application	00-Engine-Core-Runtime/Application-Root/game-application.md	15	4805	2026-10-03 09:39	PACKED-FABLE-HOMING
+home-effect-element-type-dispatch	17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md	2	140	2026-10-03 09:39	PACKED-FABLE-HOMING
+home-intentionally-ownerless-functions-and-shared-scratch	00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md	2	255	2026-10-03 09:39	PACKED-FABLE-HOMING
+home-license-board-grid-format	12-Items-Equipment-Shops-License/license-board-grid-format.md	1	98	2026-10-03 09:39	PACKED-FABLE-HOMING
+home-character-render-object	17-Presentation-Rendering/Character-Rendering/character-render-object.md	1	928	2026-10-03 09:39	PACKED-FABLE-HOMING
