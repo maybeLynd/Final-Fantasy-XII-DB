@@ -1,0 +1,165 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "cloud session_01U9MRHY1rprnFC3Ptyv2Mfo",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "006A7800",
+   "text": "returns 5 when bit 0 of `dl` is set; otherwise takes the new value as `rdx`+1 (0 when `rdx` is 0), calls `00584730(old)` for the old qword `[rcx]` only when it is non-null and its bit 0 is clear, stores the new value at qword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "006A7809",
+     "test"
+    ],
+    [
+     "006A7823",
+     "lea"
+    ],
+    [
+     "006A7838",
+     "test"
+    ],
+    [
+     "006A783D",
+     "call"
+    ],
+    [
+     "006A7842",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A7940",
+   "text": "when bit 31 of dword `[rdx+8]` is clear, that dword is above 1 (unsigned) and qword `[rdx+0x10]` is non-null, calls `00584730(qword [rdx+0x10])`; on every path it then zeroes qword `+0x10` and dword `+8` of `rdx` and returns 1",
+   "anchors": [
+    [
+     "006A795C",
+     "test"
+    ],
+    [
+     "006A7964",
+     "cmp"
+    ],
+    [
+     "006A7972",
+     "call"
+    ],
+    [
+     "006A7979",
+     "mov"
+    ],
+    [
+     "006A7980",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006AB600",
+   "text": "seeds a stack cookie from qword `01F44830` XOR `rsp`; with `o` = qword `[rcx+0x28]`, when `o` is non-null calls the function at qword `+0x10` of `[o]` with (`o`, `rdx`, `02E404B0` OR 1, a 16-byte-aligned local buffer, and as fifth (stack) argument a pointer to a local holding the address of the spilled `r8`, so `r8`, `r9` and the stack arguments follow it); on both paths returns qword `+8` of that buffer (not written by this body when `o` is null), after checking the cookie with `00808C40`",
+   "anchors": [
+    [
+     "006AB614",
+     "mov"
+    ],
+    [
+     "006AB642",
+     "je"
+    ],
+    [
+     "006AB656",
+     "or"
+    ],
+    [
+     "006AB65D",
+     "call"
+    ],
+    [
+     "006AB66D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC770",
+   "text": "reads dword `+4` of the thread-local block selected by dword `02EAED3C` in the `gs:[0x58]` array; when dword `02E4EFB0` is greater than it (signed) it calls `008092FC(02E4EFB0)` and, when dword `02E4EFB0` is then -1, stores `02E4E430` at qword `02E4EFA0`, zeroes qword `02E4EFA8` and calls `0080929C(02E4EFB0)`; returns the address `02E4EFA0` on every path",
+   "anchors": [
+    [
+     "006AC78F",
+     "cmp"
+    ],
+    [
+     "006AC7AA",
+     "call"
+    ],
+    [
+     "006AC7B6",
+     "jne"
+    ],
+    [
+     "006AC7D1",
+     "mov"
+    ],
+    [
+     "006AC7D8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006ADC20",
+   "text": "when bit 31 of dword `[rdx+0x18]` is clear and qword `[rdx+0x20]` is non-null, calls `00584730(qword [rdx+0x20])`; on every path it then zeroes qword `+0x20` and dword `+0x18` of `rdx`, calls `006ADC20`+0x38 with `rcx` = `rdx`, and returns with `al` = 1",
+   "anchors": [
+    [
+     "006ADC3A",
+     "test"
+    ],
+    [
+     "006ADC47",
+     "call"
+    ],
+    [
+     "006ADC4E",
+     "mov"
+    ],
+    [
+     "006ADC58",
+     "call"
+    ],
+    [
+     "006ADC5D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF760",
+   "text": "returns 0 without writing when `r8d` is negative (signed); otherwise, with `old` = qword `[rcx+8]`, calls `00584730(old)` only when `old` differs from `rdx`, bit 31 of dword `[rcx]` is clear and `old` is non-null, then stores `rdx` at qword `+8` and `r8d` with bit 31 set at dword `[rcx]`, and returns 0",
+   "anchors": [
+    [
+     "006AF77B",
+     "js"
+    ],
+    [
+     "006AF786",
+     "je"
+    ],
+    [
+     "006AF796",
+     "call"
+    ],
+    [
+     "006AF79B",
+     "bts"
+    ],
+    [
+     "006AF7A3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "006A7940: the 'above 1' test runs on the dword after btr of bit 31, which is already known clear on that path, so it equals the dword itself. 006ADC20: only al is set to 1; the upper bits of eax are whatever the call at +0x38 returned. 006AB600: the buffer is the 16-byte-aligned address inside [r11-0x30]; the fifth argument is a pointer to [r11-0x38], which holds r11+0x18 (the r8 home slot), the va_list shape; when o is null the returned qword is uninitialised stack. 006AC770 has the shape of a thread-safe local-static guard (02E4EFB0 as guard, 008092FC/0080929C as header/footer) but the row states only accesses."
+}
