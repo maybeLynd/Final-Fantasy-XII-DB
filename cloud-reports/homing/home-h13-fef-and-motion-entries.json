@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "0025C130", "entered_from": "`0034B310` + 0xC",
+   "text": "splits `ecx` by signed division into a byte index `ecx` / 8 and a bit number `ecx` mod 8, tests that bit of the byte at `0209A2A0` plus the index, and returns 1 when it is set, else 0",
+   "anchors": [["0025C140", "sar"], ["0025C14E", "shl"], ["0025C157", "test"], ["0025C15F", "setne"]]},
+  {"fn": "003CD7F0", "entered_from": "`00504BC0` + 0x59",
+   "text": "addresses the 0x40-byte entry indexed by the low byte of `ecx` in the array at qword `02B47790`; only when that entry's dword `+4` equals the full `ecx`, replaces bit 7 of its byte `+1` with bit 0 of `dl`, leaving the other bits; otherwise does nothing",
+   "anchors": [["003CD7F4", "shl"], ["003CD7FF", "cmp"], ["003CD805", "and"], ["003CD80D", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "0025C130: the remainder is computed with the cdq/and 7 rounding, so a negative ecx gives a negative remainder; the sentence says signed division and does not describe the negative case further."
+}
