@@ -1,0 +1,11 @@
+{
+ "page": "06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "003E6AF0", "entered_from": "`002EA780` + 0x45",
+   "text": "returns 0 when dword `rcx+0x18` is -1; otherwise calls (`003E6AF0` + 0x11) with dword `rcx+0x10`, then (`003E6AF0` + 0x24) with qword `+0xD98` of the returned object and the `+0x18` value in `edx`, then (`003E6AF0` + 0x31) with that result, returning 0 when either of the last two returns null, and otherwise tail-jumps (`003E6AF0` + 0x43) with the final result in `rcx`",
+   "anchors": [["003E6AF9", "cmp"], ["003E6B01", "call"], ["003E6B14", "call"], ["003E6B21", "call"], ["003E6B33", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003E6AF0: all four callees cited by site since the host excerpt names none of them. The second `cmp ebx, -1` at 003E6B06 repeats the first test and can never take its branch. The result of the +0x11 call is not null-tested before qword +0xD98 is read."
+}
