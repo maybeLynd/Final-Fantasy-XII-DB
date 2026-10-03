@@ -1,0 +1,35 @@
+{
+ "page": "12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md",
+ "session": "session_01VnuySB6H7e8WAWRL1qnmZN",
+ "rows": [
+  {
+   "fn": "002ABAA0",
+   "entered_from": "`0029CCD0` + 0xE",
+   "text": "calls `002ABAA0` + 0x8 and, only when that returns 0, `002ABAA0` + 0x11; when the second call returns 7 and `ecx` is zero it returns 26 (`00916484`, truncated) with no further call; on every other path it makes one call (`002ABAA0` + 0x1F, `002ABAA0` + 0x48 or `002ABAA0` + 0x63) and returns the truncated (`cvttss2si`) product of its `xmm0` result with 15 (`00916314`) when `ecx` is non-zero or with 10 (`008F8180`) when `ecx` is zero",
+   "anchors": [
+    [
+     "002ABAB6",
+     "cmp"
+    ],
+    [
+     "002ABAD6",
+     "movss"
+    ],
+    [
+     "002ABAC4",
+     "mulss"
+    ],
+    [
+     "002ABB0C",
+     "mulss"
+    ],
+    [
+     "002ABACC",
+     "cvttss2si"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Read whole. The three call sites + 0x1F, + 0x48 and + 0x63 all call the same callee (the listing resolves each to one address), cited by site. Paths: first call non-zero -> + 0x63; first zero and second 7 with `ecx` non-zero -> + 0x1F; first zero and second not 7 -> + 0x48. No doubts."
+}
