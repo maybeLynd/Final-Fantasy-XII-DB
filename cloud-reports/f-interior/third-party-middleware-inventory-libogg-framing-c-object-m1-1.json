@@ -1,0 +1,140 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "libogg framing.c object",
+ "session": "session_01NgpgLF1bfi2v4CpEv1Fjik",
+ "rows": [
+  {
+   "fn": "007B9DE0",
+   "text": "returns 0 at once when dword `+0x28` of `rcx` is greater (signed) than dword `+0x2c` plus `edx`; otherwise passes qword `+0x18` and `(edx + 0x20 + dword +0x28) * 4` to the indirect call at `007B9DE0 + 0x2E`, then qword `+0x20` and the same count times 8 to the indirect call at `007B9DE0 + 0x66`, storing each non-null result back to `+0x18` and `+0x20`, adds `edx + 0x20` to dword `+0x28` and returns 0; when either call returns null it makes the call at `007B9DE0 + 0x3C` with `rcx` and returns -1",
+   "anchors": [
+    [
+     "007B9DFC",
+     "jg"
+    ],
+    [
+     "007B9E0E",
+     "call"
+    ],
+    [
+     "007B9E1C",
+     "call"
+    ],
+    [
+     "007B9E46",
+     "call"
+    ],
+    [
+     "007B9E58",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "007B9E70",
+   "text": "returns 0 when dword `+0x30` of `rcx` is not greater (signed) than dword `+0x34`; else reads the dword entry at index `+0x34` of the array at qword `+0x18`: with bit 0x400 set it increments qword `+0x168`, stores index + 1 to `+0x34` and returns -1; with `rdx` null and `r8d` zero it returns 1; otherwise it sums the low bytes of entries from that index on, continuing while the last byte summed is 0xff (keeping 0x200 if any summed entry has it) and, when `rdx` is non-null, writes to it dword `+0x10` = the 0x200 bit, dword `+0xc` = the first entry's 0x100 bit, qword `+0` = qword `+0` of `rcx` plus dword `+0x10`, qword `+0x20` = qword `+0x168`, qword `+0x18` = the qword at the last index of the array at qword `+0x20`, dword `+8` = the sum; when `r8d` is nonzero it adds the sum to dword `+0x10`, increments qword `+0x168` and stores last index + 1 to `+0x34`; returns 1",
+   "anchors": [
+    [
+     "007B9E9D",
+     "bt"
+    ],
+    [
+     "007B9EFF",
+     "cmovne"
+    ],
+    [
+     "007B9F26",
+     "mov"
+    ],
+    [
+     "007B9F4B",
+     "add"
+    ],
+    [
+     "007B9F63",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BA160",
+   "text": "returns -1 when `rcx` is null; otherwise makes the call at `007BA160 + 0x20` with (`rcx`, 0, 0x178), stores 0x4000 to dword `+8` and 0x400 to dword `+0x28`, and stores the results of the indirect calls at `007BA160 + 0x38` (0x4000), `007BA160 + 0x49` (dword `+0x28` times 4) and `007BA160 + 0x5B` (dword `+0x28` times 8) to qwords `+0`, `+0x18` and `+0x20`; when all three are non-null it stores `edx` to dword `+0x160` and returns 0, else it passes each non-null one of the three to the indirect calls at `007BA160 + 0x8C`, `007BA160 + 0x9B` and `007BA160 + 0xAA`, repeats the call at `007BA160 + 0xBB` with (`rcx`, 0, 0x178) and returns -1",
+   "anchors": [
+    [
+     "007BA180",
+     "call"
+    ],
+    [
+     "007BA18A",
+     "mov"
+    ],
+    [
+     "007BA1D9",
+     "mov"
+    ],
+    [
+     "007BA1EC",
+     "call"
+    ],
+    [
+     "007BA21B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BA270",
+   "text": "returns -1 when `rcx` or qword `[rcx]` is null; shifts out dword `+0x10` bytes of buffer qword `+0` and dword `+0x34` entries of arrays qword `+0x18`/`+0x20` (calls at `007BA270 + 0x130`, `007BA270 + 0x155`, `007BA270 + 0x170`); with header H = qword `[rdx]`, returns -1 when dword H`+0xe` differs from dword `+0x160`, byte H`+4` is nonzero or `007B9DE0(rcx, byte H+0x1a + 1)` is nonzero; when dword H`+0x12` differs from dword `+0x164` it drops entries from index dword `+0x30` on (taking their low bytes off dword `+0xc`) and, unless `+0x164` is -1, appends 0x400; with bit 0 of byte H`+5` set and the array empty or ending in 0x400 it clears bit 1 and skips lacing bytes (H`+0x1b` on) through the first below 0xff; a nonzero remaining body length goes to the call at `007BA270 + 0x275` (nonzero returns -1) and is copied by the call at `007BA270 + 0x2A2` to buffer offset dword `+0xc`, which grows; each remaining lacing byte is appended (qword -1 beside it, the first ORed with 0x100 under bit 1), the last below 0xff taking qword H`+6` and setting dword `+0x30` past it; bit 2 stores 1 to dword `+0x158` and ORs 0x200 into the last entry; stores dword H`+0x12` plus 1 to `+0x164`, returns 0",
+   "anchors": [
+    [
+     "007BA3F7",
+     "jne"
+    ],
+    [
+     "007BA417",
+     "call"
+    ],
+    [
+     "007BA4E5",
+     "call"
+    ],
+    [
+     "007BA53E",
+     "mov"
+    ],
+    [
+     "007BA5D2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BA6A0",
+   "text": "returns 0 when bit 31 of dword `+8` of `rcx` is set; otherwise, when dword `+0x10` is nonzero, subtracts it from dword `+0xc`, moves the remaining bytes (if positive) from qword `+0` plus the old `+0x10` to qword `+0` via the indirect call at `007BA6A0 + 0x42` and zeroes `+0x10`; when `edx` exceeds (signed) dword `+8` minus dword `+0xc` it requests `edx + 0x1000 + dword +0xc` bytes, through the indirect call at `007BA6A0 + 0x6E` with qword `+0` when that is non-null or through the one at `007BA6A0 + 0x79` otherwise, and on a null result passes a non-null qword `+0` to the indirect call at `007BA6A0 + 0x8C`, zeroes qwords `+0`, `+8`, `+0x10`, `+0x18` and returns 0, else stores the pointer to `+0` and the size to dword `+8`; returns qword `+0` plus dword `+0xc`",
+   "anchors": [
+    [
+     "007BA6AA",
+     "test"
+    ],
+    [
+     "007BA6E2",
+     "call"
+    ],
+    [
+     "007BA6F7",
+     "cmp"
+    ],
+    [
+     "007BA737",
+     "mov"
+    ],
+    [
+     "007BA758",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "007BA270: the longest body; the sentence states its top-level structure in clauses (rule 5) and leaves the order of the two array shifts and the zeroing of dwords +0x10/+0x34 implicit. Doubt (low): the sentence calls the parsed fields by byte offset only; no library-routine name is given since the listing carries no string."
+}
