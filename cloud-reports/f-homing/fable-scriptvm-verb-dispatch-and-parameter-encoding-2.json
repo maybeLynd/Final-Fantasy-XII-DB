@@ -1,0 +1,485 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "cloud FABLE c2-1",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00347A50",
+   "text": "calls `00267F90(r9, 1)`, then the function at site `00347A50` + 0x39 with the incoming `rcx`, `rdx`, `r8`, `r9`, then tail-jumps to the function at site `00347A50` + 0x52 without setting its argument registers",
+   "anchors": [
+    [
+     "00347A6A",
+     "mov"
+    ],
+    [
+     "00347A78",
+     "call"
+    ],
+    [
+     "00347A89",
+     "call"
+    ],
+    [
+     "00347AA2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348040",
+   "text": "reads three floats by calling `00267DB0(r9)` three times (first, second, third), calls the function at site `00348040` + 0x4A with (`rdx`, 1), then tail-jumps to the function at site `00348040` + 0x76 with `rcx` = the incoming `rdx`, `xmm1` = the first float, `xmm2` = the third and `xmm3` = the second",
+   "anchors": [
+    [
+     "00348063",
+     "call"
+    ],
+    [
+     "0034808A",
+     "call"
+    ],
+    [
+     "00348092",
+     "movaps"
+    ],
+    [
+     "00348095",
+     "movaps"
+    ],
+    [
+     "003480B6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348750",
+   "text": "reads three floats by calling `00267DB0(r9)` three times (first, second, third), calls the function at site `00348750` + 0x4A with (`rdx`, 1), then tail-jumps to the function at site `00348750` + 0x76 with `rcx` = the incoming `rdx`, `xmm1` = the first float, `xmm2` = the third and `xmm3` = the second",
+   "anchors": [
+    [
+     "00348773",
+     "call"
+    ],
+    [
+     "0034879A",
+     "call"
+    ],
+    [
+     "003487A2",
+     "movaps"
+    ],
+    [
+     "003487A5",
+     "movaps"
+    ],
+    [
+     "003487C6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A3B0",
+   "text": "calls `002640C0` with the incoming registers and `00267E10(r9)`, then tail-jumps to the function at site `0034A3B0` + 0x31 with `ecx` = dword `+0x28` of the `002640C0` result and `edx` = 1 when the `00267E10` result is 0, else 0",
+   "anchors": [
+    [
+     "0034A3BD",
+     "call"
+    ],
+    [
+     "0034A3C8",
+     "call"
+    ],
+    [
+     "0034A3CD",
+     "mov"
+    ],
+    [
+     "0034A3D4",
+     "sete"
+    ],
+    [
+     "0034A3E1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A720",
+   "text": "calls `002640C0` with the incoming registers, then `00267DB0(r9)` (a float) and `00267E10(r9)` (an int), and tail-jumps to the function at site `0034A720` + 0x44 with `rcx` = the `002640C0` result, `edx` = the int and `xmm2` = the float",
+   "anchors": [
+    [
+     "0034A732",
+     "call"
+    ],
+    [
+     "0034A73D",
+     "call"
+    ],
+    [
+     "0034A748",
+     "call"
+    ],
+    [
+     "0034A764",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A7A0",
+   "text": "reads three ints a, b, c by calling `00267E10(r9)` three times, then calls `00267F90(r9, x)` for x = c, b, 0, 0, 0 and -3 (`0xFFFFFFFD`) in that order, calls the function at site `0034A7A0` + 0x8B with (`ecx` = c, `edx` = a), and tail-jumps to the function at site `0034A7A0` + 0xBA with the incoming `rcx`, `rdx`, `r8`, `r9`",
+   "anchors": [
+    [
+     "0034A7E1",
+     "call"
+    ],
+    [
+     "0034A7ED",
+     "call"
+    ],
+    [
+     "0034A81A",
+     "mov"
+    ],
+    [
+     "0034A82B",
+     "call"
+    ],
+    [
+     "0034A85A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A920",
+   "text": "loops forever calling `00267F90(r9, 2)`; it has no exit path",
+   "anchors": [
+    [
+     "0034A930",
+     "mov"
+    ],
+    [
+     "0034A938",
+     "call"
+    ],
+    [
+     "0034A93D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034AC70",
+   "text": "converts the int `00267E10(r9)` to a float, calls `00267F90(r9, 0)` and `00267F60(r9, that float)`, then calls `002640C0` without setting its argument registers, reads a float `00267DB0(r9)` and an int `00267E10(r9)`, and tail-jumps to the function at site `0034AC70` + 0x68 with `rcx` = the `002640C0` result, `edx` = the int and `xmm2` = the float",
+   "anchors": [
+    [
+     "0034AC93",
+     "cvtdq2ps"
+    ],
+    [
+     "0034AC96",
+     "call"
+    ],
+    [
+     "0034ACA1",
+     "call"
+    ],
+    [
+     "0034ACA6",
+     "call"
+    ],
+    [
+     "0034ACD8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034B1E0",
+   "text": "calls `00267F90(r9, dword [r8])`, `00267F90(r9, dword [r8+4])` and `00267F90(r9, 0)`, reads three ints a, b, c by calling `00267E10(r9)` three times; when a is nonzero it calls the function at site `0034B1E0` + 0x69 with (`ecx` = c, `edx` = b, `r8d` = 1), otherwise skips it; then calls the function at site `0034B1E0` + 0x72 with (c, b) and tail-jumps to `0026B4E0(rcx, that result)`",
+   "anchors": [
+    [
+     "0034B1F4",
+     "mov"
+    ],
+    [
+     "0034B208",
+     "mov"
+    ],
+    [
+     "0034B23B",
+     "test"
+    ],
+    [
+     "0034B249",
+     "call"
+    ],
+    [
+     "0034B270",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034BFE0",
+   "text": "calls `002640C0` with the incoming registers, then the function at site `0034BFE0` + 0x13 with (`ecx` = dword `+0x28` of that result, `edx` = dword `[r8]`), and returns 1 when that returns nonzero, else 0",
+   "anchors": [
+    [
+     "0034BFE9",
+     "call"
+    ],
+    [
+     "0034BFEE",
+     "mov"
+    ],
+    [
+     "0034BFF3",
+     "call"
+    ],
+    [
+     "0034BFFC",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "0034C5C0",
+   "text": "reads three floats (first, second, third) by calling `00267DB0(r9)` three times, then for `ecx` = 0 to 4 calls the function at site `0034C5C0` + 0x4C with `xmm1` = the third, `xmm2` = the second and `xmm3` = the first; returns",
+   "anchors": [
+    [
+     "0034C5DC",
+     "call"
+    ],
+    [
+     "0034C60C",
+     "call"
+    ],
+    [
+     "0034C613",
+     "cmp"
+    ],
+    [
+     "0034C616",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "0034C9E0",
+   "text": "returns 0 when qword `[r8]` is null or dword `[r8+8]` is negative (signed); otherwise calls `003DBF60(qword [r8], dword [r8+8], -1)` and returns 1 when that does not return `0xFF`, else 0",
+   "anchors": [
+    [
+     "0034C9E7",
+     "test"
+    ],
+    [
+     "0034C9F9",
+     "js"
+    ],
+    [
+     "0034C9FF",
+     "call"
+    ],
+    [
+     "0034CA0B",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "0034CAC0",
+   "text": "reads a float f by calling `00267DB0(r9)`, calls the function at site `0034CAC0` + 0x1F with (`rdx`, `xmm1` = f), then tail-jumps to the function at site `0034CAC0` + 0x3C with (`rdx`, `xmm1` = f times 0.25 (`01CEBB68`))",
+   "anchors": [
+    [
+     "0034CAD1",
+     "call"
+    ],
+    [
+     "0034CADF",
+     "call"
+    ],
+    [
+     "0034CAE4",
+     "mulss"
+    ],
+    [
+     "0034CAFC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034D260",
+   "text": "reads a float f by calling `00267DB0(r9)`, calls the function at site `0034D260` + 0x1F with (`rdx`, `xmm1` = f), then tail-jumps to the function at site `0034D260` + 0x3C with (`rdx`, `xmm1` = f times 0.25 (`01CEBB68`))",
+   "anchors": [
+    [
+     "0034D271",
+     "call"
+    ],
+    [
+     "0034D27F",
+     "call"
+    ],
+    [
+     "0034D284",
+     "mulss"
+    ],
+    [
+     "0034D29C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00351210",
+   "text": "reads two ints a, b by calling `00267E10(r9)` twice, calls `002640C0` without setting its argument registers, and tail-jumps to the function at site `00351210` + 0x38 with (`ecx` = dword `+0x28` of that result, `edx` = b, `r8d` = a)",
+   "anchors": [
+    [
+     "00351220",
+     "call"
+    ],
+    [
+     "0035122A",
+     "call"
+    ],
+    [
+     "00351231",
+     "call"
+    ],
+    [
+     "0035123B",
+     "mov"
+    ],
+    [
+     "00351248",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00351250",
+   "text": "reads a float f `00267DB0(r9)` and an int n `00267E10(r9)`, calls `0016D6A0(n)` and the function at site `00351250` + 0x2C with n, then tail-jumps to the function at site `00351250` + 0x47 with `rcx` = that result sign-extended and f in `xmm1`, `xmm2` and `xmm3`",
+   "anchors": [
+    [
+     "00351261",
+     "call"
+    ],
+    [
+     "00351275",
+     "call"
+    ],
+    [
+     "0035127C",
+     "call"
+    ],
+    [
+     "00351281",
+     "movsxd"
+    ],
+    [
+     "00351297",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003512A0",
+   "text": "calls `002640C0` with the incoming registers, then three times calls `002650B0(that result, incoming rcx, 00267E10(r9))` for pointers p1, p2, p3; loads qword `+0xB8` of the incoming `rdx` and copies its dwords `+0`, `+4` and `+8` to `[p3]`, `[p2]` and `[p1]`; returns the dword `+8` value",
+   "anchors": [
+    [
+     "003512C1",
+     "call"
+    ],
+    [
+     "003512DA",
+     "call"
+    ],
+    [
+     "00351311",
+     "mov"
+    ],
+    [
+     "00351324",
+     "mov"
+    ],
+    [
+     "00351333",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00351340",
+   "text": "reads a float f by calling `00267DB0(r9)`, calls the function at site `00351340` + 0x1C with `rdx` (a float g), then tail-jumps to the function at site `00351340` + 0x35 with (`rdx`, `xmm1` = f times g)",
+   "anchors": [
+    [
+     "00351351",
+     "call"
+    ],
+    [
+     "0035135C",
+     "call"
+    ],
+    [
+     "00351361",
+     "mulss"
+    ],
+    [
+     "00351375",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00351850",
+   "text": "reads an int n by calling `00267E10(r9)`, calls `002640C0` without setting its argument registers, and tail-jumps to the function at site `00351850` + 0x1F with (`ecx` = dword `+0x28` of that result, `edx` = n)",
+   "anchors": [
+    [
+     "00351859",
+     "call"
+    ],
+    [
+     "00351860",
+     "call"
+    ],
+    [
+     "00351867",
+     "mov"
+    ],
+    [
+     "0035186F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00351970",
+   "text": "calls `002640C0` with the incoming registers, then three times calls `002650B0(that result, incoming rcx, 00267E10(r9))` for pointers p1, p2, p3, and calls the function at site `00351970` + 0x7D with a fourth `00267E10(r9)`; when that returns non-null it loads its qword `+0xB8` and copies that block's dwords `+0`, `+4` and `+8` to `[p3]`, `[p2]` and `[p1]`, otherwise it stores 0 to all three; returns the value stored to `[p1]`",
+   "anchors": [
+    [
+     "003519DB",
+     "call"
+    ],
+    [
+     "003519ED",
+     "call"
+    ],
+    [
+     "003519F5",
+     "je"
+    ],
+    [
+     "003519FE",
+     "mov"
+    ],
+    [
+     "00351A21",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions the page does not name are cited by site (entry + offset). 00351850 doubt: the pack's extent (00351850-003518B9) runs past the int3 padding at 00351874-0035187F into a second prologue at 00351880 (which stores two 00267E10(r9) ints at [r8+4] and [r8] and tail-jumps elsewhere); the row describes only 00351850-0035186F, the body that calls the documented callee 002640C0. Please confirm the extent. 00347A50 / 0034AC70 / 00351210 / 00351850: 'without setting its argument registers' means rcx/rdx/r8/r9 are not reloaded before that call or tail jump, so they hold what the previous call left (rcx and rdx are volatile). 00348040 and 00348750 differ only in their tail-jump target."
+}
