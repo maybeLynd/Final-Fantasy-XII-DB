@@ -1,0 +1,11 @@
+{
+ "page": "03-World-Area-Field/CONTRACT-weather.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "003DE700", "entered_from": "`00379080` + 0x66",
+   "text": "returns 1 when bit (`ecx` AND 31) of byte `02B59350` sign-extended to 32 bits is set and 0 otherwise, so bit indexes 7 to 31 all read the byte's bit 7",
+   "anchors": [["003DE707", "xor"], ["003DE709", "bt"], ["003DE70C", "setb"]]}
+ ],
+ "skipped": [],
+ "notes": "003DE700: bt with a register bit offset on a register operand takes the offset modulo 32."
+}
