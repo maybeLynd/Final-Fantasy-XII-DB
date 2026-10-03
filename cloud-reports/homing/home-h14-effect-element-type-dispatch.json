@@ -1,0 +1,26 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "00265380", "entered_from": "`0034C630` + 0x4F",
+   "text": "returns 0 when byte `+0x18` of `rdx` equals 1; otherwise tail-jumps (at `00265380` + 0x9) with the incoming registers unchanged",
+   "anchors": [["00265384", "jne"], ["00265386", "xor"], ["00265389", "jmp"]]},
+  {"fn": "00290840", "entered_from": "`00473B30` + 0xF",
+   "text": "reads qword `0209BE80` and returns 1 when it is null or when bit 0x20 of its dword `+0x10F68` is set; otherwise walks the list headed by qword `+0x10F10` and linked through qword `+0x868` for a node whose dword `+0x810` equals `ecx`, and when one is found copies bit 8 of that node's word `+0x842` (shifted right by 3) into bit 0x20 of dword `+0x10F68`; on the found, not-found and empty-list paths it returns bit 5 of dword `+0x10F68` (shift right 5, AND 1)",
+   "anchors": [["0029085D", "jne"], ["00290870", "cmp"], ["00290878", "mov"], ["002908A4", "mov"], ["002908B7", "shr"]]},
+  {"fn": "003A7AE0", "entered_from": "`003ED8A0` + 0x167",
+   "text": "calls (at `003A7AE0` + 0x21) with byte `[rcx]` and, when that is non-null, calls (at `003A7AE0` + 0x32) with that result and byte `[rcx+1]`; when the second result is non-null it stores dword `rcx+4` at its offset 0, calls (at `003A7AE0` + 0x4E) with (result + 4, `rcx+8`, byte `+0x2` of the result) and returns `rcx` plus sign-extended `edx`; either null result returns 0",
+   "anchors": [["003A7B01", "call"], ["003A7B12", "call"], ["003A7B23", "mov"], ["003A7B2E", "call"], ["003A7B33", "lea"]]},
+  {"fn": "003A8340", "entered_from": "`003A8AE0` + 0xF1",
+   "text": "scans up to 0x20 eight-byte entries starting at qword `02EBEF88` + 0x18: an entry whose dword +0 equals `ecx` and whose byte +4 equals `edx` gets its word +6 incremented; otherwise the first entry whose dword +0 is -1 is claimed by clearing bit 0 of byte +5 and storing `ecx` at +0, 1 at word +6 and `dl` at byte +4; when 0x20 entries pass without either, it returns without writing",
+   "anchors": [["003A8353", "cmp"], ["003A8377", "inc"], ["003A8362", "cmp"], ["003A8380", "mov"], ["003A836F", "cmp"]]},
+  {"fn": "003A9AD0", "entered_from": "`003A99F0` + 0x22",
+   "text": "uses the qword table at `[02EBEF78]`: when `ecx` is 0 it picks the first null slot from index 1 below 0x300 (returning 0 if none), otherwise it takes index `ecx` and, when that slot is non-null, calls (at `003A9AD0` + 0x3B) with it and zeroes the slot; it then calls (at `003A9AD0` + 0x59) with `r8d`, and a non-null result gets byte `+0x44` = `dl` and word `+0x42` = the index, is stored in the slot and returned, while a null result returns 0",
+   "anchors": [["003A9B73", "cmp"], ["003A9B0B", "call"], ["003A9B1A", "mov"], ["003A9B29", "call"], ["003A9B4E", "mov"]]},
+  {"fn": "00441EE0", "entered_from": "`002F2530` + 0x6EF",
+   "text": "returns 1 when `rdx` equals a node of the list headed by qword `rcx+0x118` and linked through qword `+0x30`, and 0 when `rcx` is null, the list is empty or no node matches",
+   "anchors": [["00441EE5", "mov"], ["00441EF1", "cmp"], ["00441EF6", "mov"], ["00441F02", "mov"], ["00441EFF", "xor"]]}
+ ],
+ "skipped": [],
+ "notes": "00290840: on the not-found path the returned bit 5 is necessarily 0 (the bit was tested clear on entry); the sentence states the instruction-level result. 003A7AE0: the callee at +0x4E is plausibly memcpy (dst, src, length byte) but the listing does not name it, so the sentence does not."
+}
