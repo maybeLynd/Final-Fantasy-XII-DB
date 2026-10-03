@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "00264CE0", "entered_from": "`0033F7F0` + 0x21",
+   "text": "when `rcx` and the qword at `[rcx]` are both non-null, replaces `edx` in sequence: -1 by the sign-extended word `+0x52` of that record, then -2 by word `+0x78`, then -3 by word `+0x7A`, then any remaining negative value by word `+0x52`; on both paths it returns `edx` when it is non-negative and 0 otherwise (`cmovns`)",
+   "anchors": [["00264CF2", "movsx"], ["00264CFB", "movsx"], ["00264D04", "movsx"], ["00264D0C", "movsx"], ["00264D14", "cmovns"]]},
+  {"fn": "004092A0", "entered_from": "`00373640` + 0x83",
+   "text": "takes a base of 0, or of dword `rcx+0x34` plus `ecx` as a 32-bit sum when dword `rcx+0x4` is 2; reads flags = dword `rdx+0x4` and returns 0.0 when flags bit 22 is clear; otherwise starts a pointer at `rdx+0x8`, adds 2 when flags bit 30 is set, 2 more when bit 31 is set and 0x20 more when flags AND `0x200100` equals `0x200100`, and returns the float at base + the zero-extended word at that pointer times 4",
+   "anchors": [["004092AF", "add"], ["004092C1", "cmovae"], ["004092DB", "jae"], ["004092E7", "cmovne"], ["004092EE", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "004092A0: the base is formed with 'add r8d, ecx', so it is a zero-extended 32-bit sum, not a 64-bit pointer add; stated literally. The bit-30 and bit-31 adjustments are computed before the bit-22 test but only used after it. 004092A0 is also entered from 003736D0 + 0xA8 (call); the host site 00373640 + 0x83 is a jmp. 00264CE0: the replacements cascade (a -1 replaced by word +0x52 that is itself -2 is replaced again by word +0x78)."
+}
