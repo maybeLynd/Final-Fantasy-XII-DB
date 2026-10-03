@@ -1,0 +1,32 @@
+{
+ "page": "99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md",
+ "session": "session_01VNt9U2NfNQBph7nwiLwJy4",
+ "rows": [
+  {"fn": "002E4FE0", "entered_from": "`003490F0` + 0x50",
+   "text": "returns 0 when `rcx` is null or dword `[rcx]` is -1; otherwise, when signed word `[rcx]` is not -1, forms `E` = word * 0x740 + qword `022C6F28` and, when `E` is non-zero and dword `E+0x284` is non-zero, calls the site at `002E4FE0` + 0x34 with `rcx` = `E` (other argument registers unchanged); on every path past the first guard it returns 1",
+   "anchors": [["002E4FE9", "cmp"], ["002E4FFB", "imul"], ["002E500B", "cmp"], ["002E5014", "call"], ["002E5019", "mov"]]},
+  {"fn": "002E95B0", "entered_from": "`003490F0` + 0x37",
+   "text": "returns 0.0 when `rcx` is null or dword `[rcx]` is -1; returns float 30 (`008F8D80`) when signed word `[rcx]` is -1, or when `E` = word * 0x740 + qword `022C6F28` is zero, or when dword `E+0x284` is zero; otherwise tail-jumps at `002E95B0` + 0x39 with `rcx` = `E`",
+   "anchors": [["002E95C3", "movss"], ["002E95D0", "imul"], ["002E95E0", "cmp"], ["002E95E9", "jmp"], ["002E95EE", "xorps"]]},
+  {"fn": "002EC630", "entered_from": "`003498D0` + 0x31",
+   "text": "returns 0 when `rcx` is null or dword `[rcx]` is -1; otherwise, when signed word `[rcx]` is not -1, forms `E` = word * 0x740 + qword `022C6F28` and, when `E` is non-zero and dword `E+0x284` is non-zero, calls the site at `002EC630` + 0x34 with `rcx` = `E` (other argument registers unchanged); on every path past the first guard it returns 1",
+   "anchors": [["002EC639", "cmp"], ["002EC64B", "imul"], ["002EC65B", "cmp"], ["002EC664", "call"], ["002EC669", "mov"]]},
+  {"fn": "002EC890", "entered_from": "`0034C900` + 0x39",
+   "text": "when `rcx` is non-null and dword `[rcx]` is not -1, clears bit 3 (0x08) of byte `rcx+0x11` and sets it again when `edx` is non-zero; otherwise returns without writing",
+   "anchors": [["002EC895", "cmp"], ["002EC89A", "and"], ["002EC8A0", "setne"], ["002EC8A6", "or"]]},
+  {"fn": "002EC900", "entered_from": "`00348580` + 0x6C",
+   "text": "when float `xmm1` is above 0.0 (an unordered compare skips this), replaces it with the float conversion of the int returned by the call at `002EC900` + 0x15 with `ecx` = `xmm1` truncated to int; then, when `rcx` is non-null and dword `[rcx]` is not -1, stores `xmm1` (converted or original) to float `rcx+0x1C`, else stores nothing",
+   "anchors": [["002EC90C", "comiss"], ["002EC911", "cvttss2si"], ["002EC915", "call"], ["002EC91E", "cvtdq2ps"], ["002EC92B", "movss"]]},
+  {"fn": "002EC9C0", "entered_from": "`00348580` + 0x61",
+   "text": "when float `xmm1` is above 0.0 (an unordered compare skips this), replaces it with the float conversion of the int returned by the call at `002EC9C0` + 0x15 with `ecx` = `xmm1` truncated to int; then, when `rcx` is non-null and dword `[rcx]` is not -1, stores `xmm1` (converted or original) to float `rcx+0x18`, else stores nothing",
+   "anchors": [["002EC9CC", "comiss"], ["002EC9D1", "cvttss2si"], ["002EC9D5", "call"], ["002EC9DE", "cvtdq2ps"], ["002EC9EB", "movss"]]},
+  {"fn": "002ECCB0", "entered_from": "`00348A90` + 0x40",
+   "text": "when float `xmm1` is above 0.0 (an unordered compare skips this), replaces it with the float conversion of the int returned by the call at `002ECCB0` + 0x15 with `ecx` = `xmm1` truncated to int; then, when `rcx` is non-null and dword `[rcx]` is not -1, stores `xmm1` (converted or original) to float `rcx+0x14`, else stores nothing",
+   "anchors": [["002ECCBC", "comiss"], ["002ECCC1", "cvttss2si"], ["002ECCC5", "call"], ["002ECCCE", "cvtdq2ps"], ["002ECCDB", "movss"]]},
+  {"fn": "002ED3F0", "entered_from": "`0034B0A0` + 0x3E",
+   "text": "returns without a call when `rcx` is null, dword `[rcx]` is -1, signed word `[rcx]` is -1, `E` = word * 0x740 + qword `022C6F28` is zero, or dword `E+0x284` is zero; otherwise tail-jumps at `002ED3F0` + 0x2E with `rcx` = `E` and `rdx` unchanged",
+   "anchors": [["002ED3F5", "cmp"], ["002ED3FD", "cmp"], ["002ED407", "imul"], ["002ED417", "cmp"], ["002ED41E", "jne"]]}
+ ],
+ "skipped": [],
+ "notes": "002E4FE0 and 002EC630 are the same shape with different callees (sites +0x34 in each). 002EC900, 002EC9C0 and 002ECCB0 differ only in the stored offset (+0x1C, +0x18, +0x14); the call is made before the rcx guard, so it runs even when the store is skipped. 002ED3F0: the early-return paths set no return value (eax holds whatever the compares left); it is also entered from `0034B710` + 0x4B and `0034BAB0` + 0x48. In the 0x740-stride rows the 'E is zero' test is the ZF of the add, i.e. the computed address itself being zero."
+}
