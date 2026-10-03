@@ -1,0 +1,11 @@
+{
+ "page": "08-Combat-Formula/Recipe-System/the-count-clock-and-bank-recipes.md",
+ "session": "session_01TiSPB1n4bzRPUs6xFapccb",
+ "rows": [
+  {"fn": "007A1080", "entered_from": "`00198E80` + 0x3A",
+   "text": "stores `dl` to byte `rcx+0x98`, `r8b` to byte `rcx+0x99` and the constant 1 to byte `rcx+0x9A`, then returns",
+   "anchors": [["007A1086", "mov"], ["007A108D", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "007A1080: the first store (dl to +0x98) is the entry instruction and cannot be anchored; the body does two more stores, so it is rowed rather than skipped as entry-only. The host excerpt is about input feedback, not recipes; the host is fixed, so the row stays on this page."
+}
