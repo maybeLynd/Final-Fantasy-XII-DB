@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/the-music-control-file-and-the-bgm-stream.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "003EACA0", "entered_from": "`003557C0` + 0x17",
+   "text": "takes n = `ecx` + 0xFFFF rounded toward zero to a multiple of 0x10000 (signed `cdq` idiom), raised to 0x30000 when below it (signed); calls `0036C1D0(2)`, allocates n bytes through `0036A190(n)`, passes (the result, the string \"BGMSTR\" at `00D11814`, n) to `0036C660`, makes the call at `003EACA0` + 0x4F, and returns the `0036A190` result",
+   "anchors": [["003EACC0", "and"], ["003EACCB", "cmovl"], ["003EACD5", "call"], ["003EACEA", "call"], ["003EACEF", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "003EACA0: the host excerpt says the buffer is tagged 'with the empty string at 00D51814'; the listing loads 00D11814, decoded as \"BGMSTR\". The row follows the listing; the page's address and string may need a check. 0036C1D0, 0036A190 and 0036C660 are named by the excerpt, so the row names them; the fourth call (+0x4F) is cited by site. The call at +0x4F gets no argument set up in this body."
+}
