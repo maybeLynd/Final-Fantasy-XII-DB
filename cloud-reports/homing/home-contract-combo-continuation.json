@@ -1,0 +1,11 @@
+{
+ "page": "07-Combat-Action/CONTRACT-combo-continuation.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "00253A10", "entered_from": "`0022B6E0` + 0xA6",
+   "text": "calls `00253A10` + 0x4, `00253A10` + 0x9 and `00253A10` + 0xE in that order without setting up arguments, then tail-jumps to `00253A10` + 0x17",
+   "anchors": [["00253A14", "call"], ["00253A19", "call"], ["00253A1E", "call"], ["00253A27", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00253A10: no argument registers are written; the row does not claim what the four callees take."
+}
