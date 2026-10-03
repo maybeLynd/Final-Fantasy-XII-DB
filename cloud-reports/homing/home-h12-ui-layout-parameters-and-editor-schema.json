@@ -1,0 +1,11 @@
+{
+ "page": "16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "003689E0", "entered_from": "`002D45C0` + 0x76",
+   "text": "returns at once when word `022CBE30` is zero; when `ecx` is non-zero, tail-jumps (`003689E0` + 0x13) with 8 in `ecx`; otherwise it switches on byte `022CBE87`: 2 or 3 returns without writing, 0 stores 0 to word `022CBE8A`, 1 stores to word `022CBE8A` its sign-extended value times 8 divided (signed `idiv`) by sign-extended word `022CBE88`, and the values 0, 1 and 4 or more then store 2 to byte `022CBE87` and 8 to word `022CBE88`",
+   "anchors": [["003689F3", "jmp"], ["00368A0B", "ja"], ["00368A20", "idiv"], ["00368A26", "mov"], ["00368A32", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "003689E0: the 4-or-more arm skips the 022CBE8A store and goes straight to the 022CBE87/022CBE88 stores (ja 00368A2D after sub al,2). The tail-jump target is cited by site since the host excerpt does not name it. The 00368A39 store of word 022CBE88 = 8 is not anchored (5-anchor limit); 00368A32 anchors the shared tail."
+}
