@@ -1,0 +1,14 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md",
+ "session": "session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "rows": [
+  {"fn": "001D6BB0", "entered_from": "`0059A9B0` + 0x1F",
+   "text": "calls `001D6BB0` + 0xF with the incoming registers, then tail-jumps (+ 0x27) with `rcx` = the pointer that call returned, `edx` = the incoming `ecx` and `r8d` = the incoming `dl` zero-extended",
+   "anchors": [["001D6BBA", "movzx"], ["001D6BBF", "call"], ["001D6BC4", "mov"], ["001D6BC7", "movzx"], ["001D6BD7", "jmp"]]},
+  {"fn": "00314D60", "entered_from": "`0050C8A0` + 0x24",
+   "text": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero",
+   "anchors": [["00314D68", "call"], ["00314D6F", "test"], ["00314D71", "cmovne"], ["00314D74", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Both callees and the 001D6BB0 tail target are cited by site because the host excerpt names none of them (it names 0020C610, not the callee). 00314D60 returns with eax still holding the call's result; the sentence does not state a return."
+}
