@@ -1,0 +1,14 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "005DCC10", "entered_from": "`00616140` + 0x16",
+   "text": "stores the pointer `02CF7A30` at qword `[rcx]`, word 0x300 at `+8`, dword 2 at `+0x18`, and zeroes qwords `+0xC`, `+0x20`, `+0x28` and dwords `+0x14`, `+0x30`; returns `rcx`",
+   "anchors": [["005DCC17", "mov"], ["005DCC1C", "mov"], ["005DCC31", "mov"], ["005DCC34", "mov"], ["005DCC37", "mov"]]},
+  {"fn": "005DCC40", "entered_from": "`006161A0` + 0x16",
+   "text": "stores the pointer `02CF7A30` at qword `[rcx]`, word 0x300 at `+8`, dword 2 at `+0x18`, and zeroes qwords `+0xC`, `+0x20` and dwords `+0x14`, `+0x28`; returns `rcx`",
+   "anchors": [["005DCC47", "mov"], ["005DCC4C", "mov"], ["005DCC5D", "mov"], ["005DCC60", "mov"], ["005DCC63", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
