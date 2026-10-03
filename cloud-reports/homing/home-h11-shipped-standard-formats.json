@@ -1,0 +1,35 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Standard-Formats/shipped-standard-formats.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "00597A20",
+   "entered_from": "`00225C40` + 0x47",
+   "text": "fills the object at `rcx`: the address `00D26C90` in qword `+0x0`, 0xB in dword `+0x8`, 0 in qword `+0x10`, dwords `+0x18`, `+0x20`, `+0x48` and qword `+0x30`, -1 in dword `+0x1C` and qwords `+0x28` and `+0x40`, and 1 in byte `+0x38`; returns `rcx`",
+   "anchors": [
+    [
+     "00597A22",
+     "mov"
+    ],
+    [
+     "00597A3C",
+     "mov"
+    ],
+    [
+     "00597A40",
+     "mov"
+    ],
+    [
+     "00597A55",
+     "mov"
+    ],
+    [
+     "00597A58",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
