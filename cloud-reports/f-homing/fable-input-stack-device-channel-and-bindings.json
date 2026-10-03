@@ -1,0 +1,139 @@
+{
+ "page": "15-Input/Input-Stack/input-stack-device-channel-and-bindings.md",
+ "session": "session_019yEjih72UCRaxGuuSzfAJF",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00343C60",
+   "text": "calls `00343C60`+0x10(`r9`) and `00343C60`+0x1B(byte `rdx+0x15`), and calls `00361200`(first result, 1, 1), passing 0 instead of the first result when the second is non-zero; then calls +0x36 and +0x3F(byte `rdx+0x15`) and, when that last call returns non-zero, calls +0x50(-1, 0, 0)",
+   "anchors": [
+    [
+     "00343C70",
+     "call"
+    ],
+    [
+     "00343C8C",
+     "cmovne"
+    ],
+    [
+     "00343C91",
+     "call"
+    ],
+    [
+     "00343CA6",
+     "je"
+    ],
+    [
+     "00343CB0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005DCD10",
+   "text": "when bit 31 of dword `[rcx]` is clear and qword `rcx+8` is non-null, calls `00662EA0` on each element of that array at stride `0x88` for the dword's count (none when it is 0) and then `00584730`(the array); on every path stores 0 to qword `rcx+8` and dword `[rcx]`",
+   "anchors": [
+    [
+     "005DCD3C",
+     "je"
+    ],
+    [
+     "005DCD49",
+     "je"
+    ],
+    [
+     "005DCD57",
+     "call"
+    ],
+    [
+     "005DCD6D",
+     "call"
+    ],
+    [
+     "005DCD75",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005DE1D0",
+   "text": "when qword `[rcx]` (O) is non-null, calls `0060B750`(qword `O+0x28`, `rcx+8`, O); then stores 0 at qword `[rcx]` and tail-jumps to `0016D6A0`(`rcx+8`)",
+   "anchors": [
+    [
+     "005DE1E8",
+     "je"
+    ],
+    [
+     "005DE1F1",
+     "mov"
+    ],
+    [
+     "005DE1F5",
+     "call"
+    ],
+    [
+     "005DE1FB",
+     "mov"
+    ],
+    [
+     "005DE20B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00670790",
+   "text": "ignores `rcx`; takes v = dword `+8` of the seventh (stack) argument when that pointer is non-null, otherwise the first non-zero dword `+4` among the dword `[sixth]` AND `0x7fffffff` elements of stride `0x88` at qword `sixth+8` (0 when none); with `edx` = dword `+0x18` of the fifth argument it tail-jumps, when the seventh is non-null, to `006224E0`(`rdx`, `edx`, v, seventh) with the eighth argument moved into the fifth-argument slot, otherwise to `00622350`(`rdx`, `edx`, 0, v) with the stack arguments unchanged",
+   "anchors": [
+    [
+     "0067079F",
+     "mov"
+    ],
+    [
+     "006707AF",
+     "and"
+    ],
+    [
+     "006707C9",
+     "mov"
+    ],
+    [
+     "006707F4",
+     "jmp"
+    ],
+    [
+     "00670802",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00670810",
+   "text": "ignores `rcx`; takes v = dword `+8` of the seventh (stack) argument when that pointer is non-null, otherwise the first non-zero dword `+4` among the dword `[sixth]` AND `0x7fffffff` elements of stride `0x88` at qword `sixth+8` (0 when none); with `edx` = dword `+0x18` of the fifth argument it tail-jumps, when the seventh is non-null, to `006226D0`(`rdx`, `edx`, v, seventh) with the eighth and ninth arguments moved into the fifth and sixth slots, otherwise to `00622450`(`rdx`, `edx`, 0, v) with the ninth argument moved into the fifth slot",
+   "anchors": [
+    [
+     "0067081F",
+     "mov"
+    ],
+    [
+     "0067082F",
+     "and"
+    ],
+    [
+     "00670849",
+     "mov"
+    ],
+    [
+     "0067087C",
+     "jmp"
+    ],
+    [
+     "0067088E",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Stack arguments for 00670790 and 00670810 are counted Win64-style (fifth argument at [rsp+0x28] on entry); the tail jumps overwrite the caller's own stack-argument slots, which the sentences describe as moving arguments into the callee's fifth/sixth slots. 00343C60's call at +0x36 gets no argument set by the body. Doubts: 1 (00670790/00670810 stack-slot wording, please re-read)."
+}
