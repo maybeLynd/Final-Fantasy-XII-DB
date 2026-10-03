@@ -1,0 +1,35 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-slot-state-model.md",
+ "session": "session_013d18gLR7WCyczJCeHPeArU",
+ "rows": [
+  {
+   "fn": "00254480",
+   "entered_from": "`00280140` + 0x95",
+   "text": "stores `ecx` to dword `02092744` and `edx` with bit 7 cleared to dword `020927EC`, and stores 0 to dword `01E0C320` when bit `0x80` of `dl` is set, otherwise writes back its current value",
+   "anchors": [
+    [
+     "0025448F",
+     "mov"
+    ],
+    [
+     "00254495",
+     "cmovne"
+    ],
+    [
+     "00254499",
+     "btr"
+    ],
+    [
+     "0025449D",
+     "mov"
+    ],
+    [
+     "002544A3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00254480: the listing decodes 01E0C320 as u32 0x40, which is its image-time value; the sentence does not claim 0x40 at runtime."
+}
